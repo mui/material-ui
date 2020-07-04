@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/core",
-  "version": "5.0.0-alpha.1",
+  "version": "5.0.0-alpha.2",
   "private": false,
   "author": "Material-UI Team",
   "description": "React components that implement Google's Material Design.",

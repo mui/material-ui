@@ -1,5 +1,67 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 5.0.0-alpha.2
+
+###### _July 4, 2020_
+
+Big thanks to the 16 contributors who made this release possible.
+
+### `@material-ui/core@v5.0.0-alpha.2`
+
+#### Breaking changes
+
+- [Button] Make primary the default color (#21594) @mbrookes
+  The button `color` prop is now "primary" by default, and "default" has been removed. This makes the button closer to the Material Design specification and simplifies the API.
+
+  ```diff
+  -<Button color="default" />
+  -<Button color="primary" />
+  +<Button />
+  +<Button />
+  ```
+
+- [ExpansionPanel] Remove component (#21630) @mnajdova
+  This completes our effort on renaming the ExpansionPanel component Accordion
+- [Collapse] Add orientation and horizontal support (#20619) @darkowic
+  The `collapsedHeight` prop was renamed `collapsedSize` to support the horizontal direction.
+
+  ```diff
+  -<Collapse collapsedHeight={40}>
+  +<Collapse collapsedSize={40}>
+  ```
+
+#### Changes
+
+- [Card] Fix vertically center header action (#21646) @kgregory
+- [l10n] Update cs-CZ and sk-SK locales (#21656) @char0n
+- [l10n] Update sv-SE locale (#21631) @tbz
+- [Menu] Remove overflow style in MenuItem (#21644) @tj3407
+- [MenuItem] Add types for ListItemClasses (#21654) @eps1lon
+- [Slider] Fix cannot read property ‘focus’ of nulll (#21653) @mageprincess
+- [TextField] Fix CSS isolation issue (#21665) @Codetalker777
+- [TrapFocus] Fix portal support (#21610) @mnajdova
+- [TypeScript] Fix version support (#21640) @jakubfiglak
+
+### `@material-ui/lab@v5.0.0-alpha.2`
+
+- [TreeView] Improve node registration and fix other issues (#21574) @joshwooding
+
+### Docs
+
+- [blog] Post survey results 2020 (#21555) @mnajdova
+- [docs] Add new showcase (#21637) @cjoecker
+- [docs] CodeFund is shutting down (#21632) @oliviertassinari
+- [docs] Document next version (#21591) @oliviertassinari
+- [docs] Enable docs search on v5.0.0 & fix duplicate on master @oliviertassinari
+- [docs] Fix ad issues @oliviertassinari
+- [docs] Move more prop docs into IntelliSense (#21655) @eps1lon
+- [docs] Remove in-context translation code & files (#21633) @mbrookes
+- [example] Remove dead dependency from next-typescript (#21628) @StefanWerW
+
+### Core
+
+- [test] Add toWarnDev() and toErrorDev() matcher (#21581) @eps1lon
+
 ## 5.0.0-alpha.1
 
 ###### _June 27, 2020_
