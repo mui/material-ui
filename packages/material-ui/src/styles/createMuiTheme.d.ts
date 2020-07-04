@@ -16,6 +16,7 @@ export type Direction = 'ltr' | 'rtl';
 export interface ThemeOptions {
   shape?: ShapeOptions;
   additions?: Additions;
+  variants?: any;
   breakpoints?: BreakpointsOptions;
   direction?: Direction;
   mixins?: MixinsOptions;
@@ -39,6 +40,7 @@ export interface Theme {
   overrides?: Overrides;
   palette: Palette;
   props?: ComponentsProps;
+  variants: any;
   shadows: Shadows;
   spacing: Spacing;
   transitions: Transitions;

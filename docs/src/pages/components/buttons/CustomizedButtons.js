@@ -81,6 +81,34 @@ const theme = createMuiTheme({
       },
     },
   },
+  variants: {
+    MuiButton: [
+      {
+        trigger: (props) => props.variant === 'red',
+        styles: {
+          color: 'red'
+        }
+      },
+      {
+        trigger: (props) => props.size === 'xxsmall',
+        styles: {
+          fontSize: '5px'
+        }
+      },
+      {
+        trigger: (props) => props.toggle,
+        styles: {
+          background: 'green'
+        }
+      },
+      {
+        trigger: (props) => props.toggle === 'red',
+        styles: {
+          backgroundColor: 'red'
+        }
+      }
+    ],
+  }
 });
 
 export default function CustomizedButtons() {
@@ -101,6 +129,9 @@ export default function CustomizedButtons() {
         </Button>
         <Button variant="dashed" color="primary" className={classes.margin}>
           Dashed Variant
+        </Button>
+        <Button variant="red" color="primary" className={classes.margin}>
+          Red Variant
         </Button>
       </ThemeProvider>
       <BootstrapButton
