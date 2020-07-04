@@ -165,15 +165,43 @@ describe('<TrapFocus />', () => {
 
     describe('prop: disableAutoFocus', () => {
       it('should not focus the trap focus root', () => {
-        const { getByTestId } = render(
+        render(
           <TrapFocus {...defaultProps} open disableAutoFocus>
             <div tabIndex={-1} data-testid="modal" />
           </TrapFocus>,
         );
 
         clock.tick(500); // wait for the interval check to kick in.
-        expect(getByTestId('modal')).not.toHaveFocus();
         expect(initialFocus).toHaveFocus();
+      });
+
+      it('should only trap focus once the focus moves inside', () => {
+        const Test = (props) => (
+          <div>
+            <input />
+            <TrapFocus {...defaultProps} open disableAutoFocus {...props}>
+              <div tabIndex={-1} data-testid="modal" />
+            </TrapFocus>
+          </div>
+        );
+
+        const { getByRole, getByTestId, setProps } = render(<Test />);
+
+        // the trap doesn't force anyone
+        getByRole('textbox').focus();
+        expect(getByRole('textbox')).toHaveFocus();
+
+        // the trap kick-in
+        getByTestId('modal').focus();
+        expect(getByTestId('modal')).toHaveFocus();
+
+        // the trap prevent to escape
+        getByRole('textbox').focus();
+        expect(getByTestId('modal')).toHaveFocus();
+
+        // restore the focus to the first element before triggering the trap
+        setProps({ open: false });
+        expect(getByRole('textbox')).toHaveFocus();
       });
     });
   });
