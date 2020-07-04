@@ -95,7 +95,7 @@ const inHouseAds = [
     link:
       'https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-sketch',
     img: '/static/in-house/sketch.png',
-    description: '<b>Sketch</b>. A large UI kit with over 600 handcrafted Material-UI symbols 💎.',
+    description: '<b>For Sketch</b>. A large UI kit with over 600 handcrafted Material-UI symbols 💎.',
   },
   {
     name: 'figma',
@@ -103,7 +103,7 @@ const inHouseAds = [
       'https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-figma',
     img: '/static/in-house/figma.png',
     description:
-      '<b>Figma</b>. A large UI kit with over 600 handcrafted Material-UI components 🎨.',
+      '<b>For Figma</b>. A large UI kit with over 600 handcrafted Material-UI components 🎨.',
   },
 ];
 
