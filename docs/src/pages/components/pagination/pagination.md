@@ -65,6 +65,8 @@ For the pagination of a large set of tabular data, you should use the `TablePagi
 
 {{"demo": "pages/components/pagination/TablePagination.js"}}
 
+> ⚠️ Note that the `Pagination` page prop starts at 1 to match the requirement of including the value in the URL, while the `TablePagination` page prop stats at 0 to match the requirement of zero-based JavaScript arrays that comes with rendering a lot of tabular data.
+
 You can learn more about this use case in the [table section](/components/tables/#custom-pagination-options) of the documentation.
 
 ## Accessibility
