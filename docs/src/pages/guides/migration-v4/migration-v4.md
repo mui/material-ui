@@ -49,7 +49,7 @@ yarn add @material-ui/core@next
 
 - typescript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
   ```diff
-  -<BottomNavigation onChange={(event: React.ChangEvent<{}>) => {}} />
+  -<BottomNavigation onChange={(event: React.ChangeEvent<{}>) => {}} />
   +<BottomNavigation onChange={(event: React.SyntheticEvent) => {}} />
   ```
 
@@ -101,7 +101,7 @@ yarn add @material-ui/core@next
 
 - typescript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
   ```diff
-  -<Slider onChange={(event: React.ChangEvent<{}>, value: unknown) => {}} />
+  -<Slider onChange={(event: React.ChangeEvent<{}>, value: unknown) => {}} />
   +<Slider onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
   ```
 
@@ -120,7 +120,7 @@ yarn add @material-ui/core@next
 
 - typescript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
   ```diff
-  -<Tabs onChange={(event: React.ChangEvent<{}>, value: unknown) => {}} />
+  -<Tabs onChange={(event: React.ChangeEvent<{}>, value: unknown) => {}} />
   +<Tabs onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
   ```
 
@@ -180,6 +180,6 @@ yarn add @material-ui/core@next
 
 - typescript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
   ```diff
-  -<Accordion onChange={(event: React.ChangEvent<{}>, expanded: boolean) => {}} />
+  -<Accordion onChange={(event: React.ChangeEvent<{}>, expanded: boolean) => {}} />
   +<Accordion onChange={(event: React.SyntheticEvent, expanded: boolean) => {}} />
   ```
