@@ -429,6 +429,24 @@ describe('<Autocomplete />', () => {
       fireEvent.keyDown(firstSelectedValue, { key: 'ArrowRight' });
       expect(textbox).toHaveFocus();
     });
+
+    it('should not be required if a value is selected', () => {
+      const { getByRole, setProps } = render(
+        <Autocomplete
+          {...defaultProps}
+          multiple
+          options={['one', 'two']}
+          renderInput={(params) => <TextField {...params} autoFocus required />}
+          value={[]}
+        />,
+      );
+
+      const textbox = getByRole('textbox');
+      expect(textbox.hasAttribute('required')).to.equal(true);
+
+      setProps({ value: ['one'] });
+      expect(textbox.hasAttribute('required')).to.equal(false);
+    });
   });
 
   it('should trigger a form expectedly', () => {
