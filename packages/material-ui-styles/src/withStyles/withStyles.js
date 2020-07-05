@@ -43,17 +43,13 @@ const withStyles = (stylesOrCreator, options = {}) => (Component) => {
     ...stylesOptions,
   });
 
-  // console.log(stylesOrCreator);
-  // if(defaultTheme) {
-  //   console.log(defaultTheme.variants);
-  // }
-
   const WithStyles = React.forwardRef(function WithStyles(props, ref) {
     const { classes: classesProp, innerRef, ...other } = props;
     // The wrapper receives only user supplied props, which could be a subset of
     // the actual props Component might receive due to merging with defaultProps.
     // So copying it here would give us the same result in the wrapper as well.
-    const classes = useStyles({ ...Component.defaultProps, ...props });
+    const allProps = { ...Component.defaultProps, ...props };
+    const classes = useStyles(allProps);
 
     let theme;
     let more = other;
@@ -62,25 +58,24 @@ const withStyles = (stylesOrCreator, options = {}) => (Component) => {
       // name and withTheme are invariant in the outer scope
       // eslint-disable-next-line react-hooks/rules-of-hooks
       theme = useTheme() || defaultTheme;
-      if(theme && theme.variants && theme.variants[name]) {
+      // if(theme && theme.variants && theme.variants[name]) {
 
-        const arr = theme.variants[name];
-        const styles = arr.reduce((acc, curr) => {
-          // TODO: add state
-          if(curr.trigger(props)) {
-            acc = { ...acc, ...curr.styles } // TODO: deepmerge
-          }
-          return acc;
-        }, {});
-
-        
-        const useVariantStyles = makeStyles({ root: styles });
+      //   const arr = theme.variants[name];
+      //   const styles = arr.reduce((acc, curr) => {
+      //     // TODO: add state
+      //     if(curr.trigger(allProps)) {
+      //       acc = { ...acc, ...curr.styles } // TODO: deepmerge
+      //     }
+      //     return acc;
+      //   }, {});
 
         
-        const variantClasses = useVariantStyles();
-        console.log(variantClasses.root);
-        classes.root = classes.root + " " + variantClasses.root; // merge styles first :\
-      }
+      //   const useVariantStyles = makeStyles({ root: styles });
+        
+      //   const variantClasses = useVariantStyles();
+
+      //   classes.root = classes.root + " " + variantClasses.root; // merge styles first :\
+      // }
       if (name) {
         more = getThemeProps({ theme, name, props: other });
       }

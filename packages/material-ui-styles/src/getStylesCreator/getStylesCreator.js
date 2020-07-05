@@ -1,6 +1,23 @@
 import { deepmerge } from '@material-ui/utils';
 import noopTheme from './noopTheme';
 
+const capitalize = (string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1)
+}
+
+// This should be defined somehwere per component
+// ideally each component would define this for itself...
+const propsToClassKey = (matcher) => {
+  let classKey = matcher.variant ? matcher.variant : '';
+  if(matcher.color) {
+    classKey += capitalize(matcher.color);
+  }
+  if(matcher.size) {
+    classKey += (classKey.length === 0 ? 's' : 'S') + `ize${capitalize(matcher.size)}`;
+  }
+  return classKey;
+}
+
 export default function getStylesCreator(stylesOrCreator) {
   const themingEnabled = typeof stylesOrCreator === 'function';
 
@@ -46,6 +63,7 @@ export default function getStylesCreator(stylesOrCreator) {
 
       const additions = theme.additions[name] || {};
       const overrides = theme.overrides[name] || {};
+      const variants = theme.variantsV2[name] || [];
       const stylesWithOverrides = { ...styles };
 
       Object.keys(overrides).forEach((key) => {
@@ -67,6 +85,12 @@ export default function getStylesCreator(stylesOrCreator) {
       Object.keys(additions).forEach((key) => {
         stylesWithOverrides[key] = deepmerge(stylesWithOverrides[key] || {}, additions[key]);
       });
+
+      variants.forEach(definition => {
+        const classKey = propsToClassKey(definition.matcher);
+        console.log(classKey);
+        stylesWithOverrides[classKey] = deepmerge(stylesWithOverrides[classKey] || {}, definition.styles);
+      })
 
       return stylesWithOverrides;
     },

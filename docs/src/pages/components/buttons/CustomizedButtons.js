@@ -108,6 +108,23 @@ const theme = createMuiTheme({
         }
       }
     ],
+  },
+  variantsV2: {
+    MuiButton: [
+      {
+        matcher: { variant: 'yellow' },
+        styles: {
+          color: 'yellow',
+          background: 'grey',
+        }
+      },
+      {
+        matcher: { size: 'xxlarge' },
+        styles: {
+          fontSize: '50px',
+        }
+      },
+    ],
   }
 });
 
@@ -132,6 +149,9 @@ export default function CustomizedButtons() {
         </Button>
         <Button variant="red" color="primary" className={classes.margin}>
           Red Variant
+        </Button>
+        <Button variant="yellow" size="xxlarge" className={classes.margin}>
+          Yellow Variant
         </Button>
       </ThemeProvider>
       <BootstrapButton

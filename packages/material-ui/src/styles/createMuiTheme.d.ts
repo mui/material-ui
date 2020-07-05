@@ -9,6 +9,7 @@ import { Transitions, TransitionsOptions } from './transitions';
 import { ZIndex, ZIndexOptions } from './zIndex';
 import { Overrides } from './overrides';
 import { Additions } from './additions';
+import { Variants } from './variants';
 import { ComponentsProps } from './props';
 
 export type Direction = 'ltr' | 'rtl';
@@ -17,6 +18,7 @@ export interface ThemeOptions {
   shape?: ShapeOptions;
   additions?: Additions;
   variants?: any;
+  variantsV2?: Variants;
   breakpoints?: BreakpointsOptions;
   direction?: Direction;
   mixins?: MixinsOptions;
