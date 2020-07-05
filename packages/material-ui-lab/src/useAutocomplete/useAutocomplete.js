@@ -962,6 +962,7 @@ export default function useAutocomplete(props) {
       ref: inputRef,
       autoCapitalize: 'none',
       spellCheck: 'false',
+      ...(multiple && value.length > 0 ? { required: null } : {}),
     }),
     getClearProps: () => ({
       tabIndex: -1,
