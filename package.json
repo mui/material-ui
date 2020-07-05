@@ -125,7 +125,7 @@
     "prettier": "^2.0.1",
     "pretty-format-v24": "npm:pretty-format@24",
     "prop-types": "^15.7.2",
-    "puppeteer": "^4.0.0",
+    "puppeteer": "^5.0.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-test-renderer": "^16.13.0",
