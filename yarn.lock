@@ -7673,12 +7673,11 @@ fill-range@^7.0.1:
     to-regex-range "^5.0.1"
 
 final-form@^4.18.5:
-  version "4.20.0"
-  resolved "https://registry.yarnpkg.com/final-form/-/final-form-4.20.0.tgz#454ba46f783a4c4404ad875cf36f470395ad5efa"
-  integrity sha512-kdPGNlR/23M2p7ccVwE/vCBQH9TH1NAhhMVkETHbaQXkTWIJdEii3ZdHrOgYvFY7O87myEhcqzx3zjMERtoNJg==
+  version "4.20.1"
+  resolved "https://registry.yarnpkg.com/final-form/-/final-form-4.20.1.tgz#525a7f7f27f55c28d8994b157b24d6104fc560e9"
+  integrity sha512-IIsOK3JRxJrN72OBj7vFWZxtGt3xc1bYwJVPchjVWmDol9DlzMSAOPB+vwe75TUYsw1JaH0fTQnIgwSQZQ9Acg==
   dependencies:
     "@babel/runtime" "^7.10.0"
-    "@scarf/scarf" "^1.0.5"
 
 finalhandler@1.1.2, finalhandler@~1.1.2:
   version "1.1.2"
