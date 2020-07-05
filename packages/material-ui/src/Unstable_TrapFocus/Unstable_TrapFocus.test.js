@@ -164,18 +164,45 @@ describe('<TrapFocus />', () => {
     });
 
     describe('prop: disableAutoFocus', () => {
-      it('should not focus the trap focus root', () => {
-        render(
-          <TrapFocus {...defaultProps} open disableAutoFocus>
-            <div tabIndex={-1} data-testid="modal" />
-          </TrapFocus>,
+      it('should not trap', () => {
+        const { getByRole } = render(
+          <div>
+            <input />
+            <TrapFocus {...defaultProps} open disableAutoFocus>
+              <div tabIndex={-1} data-testid="modal" />
+            </TrapFocus>
+          </div>,
         );
 
-        clock.tick(500); // wait for the interval check to kick in.
+        clock.tick(500); // trigger an interval call
         expect(initialFocus).toHaveFocus();
+
+        getByRole('textbox').focus(); // trigger a focus event
+        expect(getByRole('textbox')).toHaveFocus();
       });
 
-      it('should only trap focus once the focus moves inside', () => {
+      it('should trap once the focus moves inside', () => {
+        const { getByRole, getByTestId } = render(
+          <div>
+            <input />
+            <TrapFocus {...defaultProps} open disableAutoFocus>
+              <div tabIndex={-1} data-testid="modal" />
+            </TrapFocus>
+          </div>,
+        );
+
+        expect(initialFocus).toHaveFocus();
+
+        // the trap activates
+        getByTestId('modal').focus();
+        expect(getByTestId('modal')).toHaveFocus();
+
+        // the trap prevent to escape
+        getByRole('textbox').focus();
+        expect(getByTestId('modal')).toHaveFocus();
+      });
+
+      it('should restore the focus', () => {
         const Test = (props) => (
           <div>
             <input />
@@ -187,16 +214,12 @@ describe('<TrapFocus />', () => {
 
         const { getByRole, getByTestId, setProps } = render(<Test />);
 
-        // the trap doesn't force anyone
+        // set the expected focus restore location
         getByRole('textbox').focus();
         expect(getByRole('textbox')).toHaveFocus();
 
-        // the trap kick-in
+        // the trap activates
         getByTestId('modal').focus();
-        expect(getByTestId('modal')).toHaveFocus();
-
-        // the trap prevent to escape
-        getByRole('textbox').focus();
         expect(getByTestId('modal')).toHaveFocus();
 
         // restore the focus to the first element before triggering the trap
