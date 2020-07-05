@@ -5,7 +5,7 @@ const capitalize = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1)
 }
 
-// This should be defined somehwere per component
+// This should be defined somewhere per component
 // ideally each component would define this for itself...
 const propsToClassKey = (matcher) => {
   let classKey = matcher.variant ? matcher.variant : '';
