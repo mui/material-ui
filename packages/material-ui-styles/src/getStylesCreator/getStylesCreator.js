@@ -88,7 +88,6 @@ export default function getStylesCreator(stylesOrCreator) {
 
       variants.forEach(definition => {
         const classKey = propsToClassKey(definition.matcher);
-        console.log(classKey);
         stylesWithOverrides[classKey] = deepmerge(stylesWithOverrides[classKey] || {}, definition.styles);
       })
 
