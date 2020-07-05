@@ -2,8 +2,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
-import StepperContext from '../Stepper/StepperContext'
-import StepContext from '../Step/StepContext'
+import StepperContext from '../Stepper/StepperContext';
+import StepContext from '../Step/StepContext';
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
@@ -49,14 +49,10 @@ export const styles = (theme) => ({
 });
 
 const StepConnector = React.forwardRef(function StepConnector(props, ref) {
-  const {
-    classes,
-    className,
-    ...other
-  } = props;
+  const { classes, className, ...other } = props;
 
-  const { alternativeLabel, orientation } = React.useContext(StepperContext)
-  const { active, disabled, completed } = React.useContext(StepContext)
+  const { alternativeLabel, orientation } = React.useContext(StepperContext);
+  const { active, disabled, completed } = React.useContext(StepContext);
 
   return (
     <div

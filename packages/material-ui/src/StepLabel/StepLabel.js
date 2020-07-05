@@ -4,8 +4,8 @@ import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 import StepIcon from '../StepIcon';
-import StepperContext from '../Stepper/StepperContext'
-import StepContext from '../Step/StepContext'
+import StepperContext from '../Stepper/StepperContext';
+import StepContext from '../Step/StepContext';
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
@@ -81,8 +81,8 @@ const StepLabel = React.forwardRef(function StepLabel(props, ref) {
     ...other
   } = props;
 
-  const { alternativeLabel, orientation } = React.useContext(StepperContext)
-  const { active, disabled, completed, icon } = React.useContext(StepContext)
+  const { alternativeLabel, orientation } = React.useContext(StepperContext);
+  const { active, disabled, completed, icon } = React.useContext(StepContext);
 
   let StepIconComponent = StepIconComponentProp;
 

@@ -3,8 +3,8 @@ import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
-import StepperContext from '../Stepper/StepperContext'
-import StepContext from './StepContext'
+import StepperContext from '../Stepper/StepperContext';
+import StepContext from './StepContext';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -27,22 +27,39 @@ export const styles = {
 
 const Step = React.forwardRef(function Step(props, ref) {
   const {
-    active = false,
+    active: activeProp,
     children,
     classes,
     className,
-    completed = false,
-    disabled = false,
+    completed: completedProp,
+    disabled: disabledProp,
     expanded = false,
     index,
     last,
     ...other
   } = props;
 
-  const { connector, alternativeLabel, orientation } = React.useContext(StepperContext)
-  const contextValue = React.useMemo(() => ({ index, active, last, completed, disabled, expanded, icon: index + 1 }), [
-    index, active, last, completed, disabled, expanded
-  ]);
+  const { activeStep, connector, alternativeLabel, orientation, nonLinear } = React.useContext(
+    StepperContext,
+  );
+  let [active = false, completed = false, disabled = false] = [
+    activeProp,
+    completedProp,
+    disabledProp,
+  ];
+
+  if (activeStep === index) {
+    active = activeProp !== undefined ? activeProp : true;
+  } else if (!nonLinear && activeStep > index) {
+    completed = completedProp !== undefined ? completedProp : true;
+  } else if (!nonLinear && activeStep < index) {
+    disabled = disabledProp !== disabledProp ? disabledProp : true;
+  }
+
+  const contextValue = React.useMemo(
+    () => ({ index, last, expanded, icon: index + 1, active, completed, disabled }),
+    [index, last, expanded, active, completed, disabled],
+  );
 
   const newChildren = (
     <div
@@ -58,8 +75,6 @@ const Step = React.forwardRef(function Step(props, ref) {
       ref={ref}
       {...other}
     >
-      <StepContext.Provider value={contextValue}>
-
       {connector && alternativeLabel && index !== 0 ? connector : null}
 
       {React.Children.map(children, (child) => {
@@ -82,19 +97,21 @@ const Step = React.forwardRef(function Step(props, ref) {
           ...child.props,
         });
       })}
-      </StepContext.Provider>
     </div>
   );
 
-  if (connector && !alternativeLabel && index !== 0) {
-    return (
-      <React.Fragment>
-        {connector}
-        {newChildren}
-      </React.Fragment>
-    );
-  }
-  return newChildren;
+  return (
+    <StepContext.Provider value={contextValue}>
+      {connector && !alternativeLabel && index !== 0 ? (
+        <React.Fragment>
+          {connector}
+          {newChildren}
+        </React.Fragment>
+      ) : (
+        newChildren
+      )}
+    </StepContext.Provider>
+  );
 });
 
 Step.propTypes = {

@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Collapse from '../Collapse';
 import withStyles from '../styles/withStyles';
-import StepperContext from '../Stepper/StepperContext'
-import StepContext from '../Step/StepContext'
+import StepperContext from '../Stepper/StepperContext';
+import StepContext from '../Step/StepContext';
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
@@ -36,8 +36,8 @@ const StepContent = React.forwardRef(function StepContent(props, ref) {
     ...other
   } = props;
 
-  const { orientation } = React.useContext(StepperContext)
-  const { active, last, expanded } = React.useContext(StepContext)
+  const { orientation } = React.useContext(StepperContext);
+  const { active, last, expanded } = React.useContext(StepContext);
 
   if (process.env.NODE_ENV !== 'production') {
     if (orientation !== 'vertical') {

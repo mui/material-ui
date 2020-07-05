@@ -5,7 +5,7 @@ import CheckCircle from '../internal/svg-icons/CheckCircle';
 import Warning from '../internal/svg-icons/Warning';
 import withStyles from '../styles/withStyles';
 import SvgIcon from '../SvgIcon';
-import StepContext from '../Step/StepContext'
+import StepContext from '../Step/StepContext';
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
@@ -38,7 +38,7 @@ export const styles = (theme) => ({
 
 const StepIcon = React.forwardRef(function StepIcon(props, ref) {
   const { icon, error = false, classes } = props;
-  const { active, completed } = React.useContext(StepContext)
+  const { active, completed } = React.useContext(StepContext);
 
   if (typeof icon === 'number' || typeof icon === 'string') {
     const className = clsx(classes.root, {

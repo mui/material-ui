@@ -3,6 +3,7 @@ import { expect } from 'chai';
 import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import { createClientRender } from 'test/utils/createClientRender';
+import Step from '../Step';
 import StepIcon from './StepIcon';
 
 describe('<StepIcon />', () => {
@@ -16,7 +17,8 @@ describe('<StepIcon />', () => {
   }));
 
   it('renders <CheckCircle> when completed', () => {
-    const { container } = render(<StepIcon icon={1} completed />);
+    const { container } = render(<StepIcon icon={1} />);
+
     expect(container.querySelectorAll('svg[data-mui-test="CheckCircleIcon"]')).to.have.length(1);
   });
 

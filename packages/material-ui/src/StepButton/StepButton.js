@@ -5,8 +5,8 @@ import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 import StepLabel from '../StepLabel';
 import isMuiElement from '../utils/isMuiElement';
-import StepperContext from '../Stepper/StepperContext'
-import StepContext from '../Step/StepContext'
+import StepperContext from '../Stepper/StepperContext';
+import StepContext from '../Step/StepContext';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -31,17 +31,10 @@ export const styles = {
 };
 
 const StepButton = React.forwardRef(function StepButton(props, ref) {
-  const {
-    children,
-    classes,
-    className,
-    icon,
-    optional,
-    ...other
-  } = props;
+  const { children, classes, className, icon, optional, ...other } = props;
 
-  const { disabled } = React.useContext(StepContext)
-  const { orientation } = React.useContext(StepperContext)
+  const { disabled } = React.useContext(StepContext);
+  const { orientation } = React.useContext(StepperContext);
 
   const childProps = {
     icon,
