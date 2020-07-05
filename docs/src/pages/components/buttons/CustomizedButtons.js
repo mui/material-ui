@@ -112,10 +112,10 @@ const theme = createMuiTheme({
   variantsV2: {
     MuiButton: [
       {
-        matcher: { variant: 'yellow' },
+        matcher: { variant: 'dashed', color: 'yellow' },
         styles: {
-          color: 'yellow',
-          background: 'grey',
+          padding: '5px 15px',
+          border: '5px dashed yellow',
         }
       },
       {
@@ -150,7 +150,7 @@ export default function CustomizedButtons() {
         <Button variant="red" color="primary" className={classes.margin}>
           Red Variant
         </Button>
-        <Button variant="yellow" size="xxlarge" className={classes.margin}>
+        <Button variant="dashed" color="yellow" size="xxlarge" className={classes.margin}>
           Yellow Variant
         </Button>
       </ThemeProvider>
