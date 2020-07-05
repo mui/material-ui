@@ -95,7 +95,8 @@ const inHouseAds = [
     link:
       'https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-sketch',
     img: '/static/in-house/sketch.png',
-    description: '<b>Sketch</b>. A large UI kit with over 600 handcrafted Material-UI symbols 💎.',
+    description:
+      '<b>For Sketch</b>. A large UI kit with over 600 handcrafted Material-UI symbols 💎.',
   },
   {
     name: 'figma',
@@ -103,7 +104,7 @@ const inHouseAds = [
       'https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-figma',
     img: '/static/in-house/figma.png',
     description:
-      '<b>Figma</b>. A large UI kit with over 600 handcrafted Material-UI components 🎨.',
+      '<b>For Figma</b>. A large UI kit with over 600 handcrafted Material-UI components 🎨.',
   },
 ];
 
@@ -112,7 +113,6 @@ function Ad(props) {
 
   const [adblock, setAdblock] = React.useState(null);
   const [carbonOut, setCarbonOut] = React.useState(null);
-  const [codeFundOut, setCodeFundOut] = React.useState(null);
 
   let children;
 
@@ -133,7 +133,7 @@ function Ad(props) {
   }
 
   if (!children) {
-    if (carbonOut || codeFundOut) {
+    if (carbonOut) {
       children = <AdInHouse ad={inHouseAds[Math.floor(inHouseAds.length * randomInHouse)]} />;
     } else {
       children = <AdCarbon />;
@@ -146,9 +146,7 @@ function Ad(props) {
     if (children.type === AdCarbon) {
       label = 'carbon';
     } else if (children.type === AdInHouse) {
-      if (!adblock && codeFundOut) {
-        label = 'in-house-codefund';
-      } else if (!adblock && carbonOut) {
+      if (!adblock && carbonOut) {
         label = 'in-house-carbon';
       } else {
         label = 'in-house';
@@ -170,7 +168,6 @@ function Ad(props) {
       if (
         document.querySelector('.cf-wrapper') ||
         document.querySelector('#carbonads') ||
-        codeFundOut ||
         carbonOut
       ) {
         if (
@@ -195,7 +192,7 @@ function Ad(props) {
         setAdblock(true);
       }
     },
-    [codeFundOut, carbonOut],
+    [carbonOut],
   );
 
   React.useEffect(() => {
@@ -208,18 +205,6 @@ function Ad(props) {
       clearTimeout(timerAdblock.current);
     };
   }, [checkAdblock]);
-
-  React.useEffect(() => {
-    const handler = (event) => {
-      if (event.detail.status === 'no-advertiser') {
-        setCodeFundOut(true);
-      }
-    };
-    window.addEventListener('codefund', handler);
-    return () => {
-      window.removeEventListener('codefund', handler);
-    };
-  }, []);
 
   React.useEffect(() => {
     // Avoid an exceed on the Google Analytics quotas.
