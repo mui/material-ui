@@ -253,7 +253,9 @@ If you have several applications running on one page, consider using one @materi
 ## My App doesn't render correctly on the server
 
 If it doesn't work, in 99% of cases it's a configuration issue.
-A missing property, a wrong call order, or a missing component – server-side rendering is strict about configuration, and the best way to find out what's wrong is to compare your project to an already working setup.
+A missing property, a wrong call order, or a missing component – server-side rendering is strict about configuration.
+
+The best way to find out what's wrong is to compare your project to an **already working setup**.
 Check out the [reference implementations](/guides/server-rendering/#reference-implementations), bit by bit.
 
 ### CSS works only on first load then is missing
@@ -267,7 +269,7 @@ The styling solution relies on a cache, the _sheets manager_, to only inject the
 (if you use two buttons, you only need the CSS of the button one time).
 You need to create **a new `sheets` instance for each request**.
 
-_example of fix:_
+Example of fix:
 
 ```diff
 -// Create a sheets instance.
@@ -285,6 +287,8 @@ function handleRender(req, res) {
 
 ### React class name hydration mismatch
 
+> Warning: Prop className did not match.
+
 There is a class name mismatch between the client and the server. It might work for the first request.
 Another symptom is that the styling changes between initial page load and the downloading of the client scripts.
 
@@ -297,21 +301,21 @@ This generator needs to behave identically on the server and on the client. For 
 - You need to provide a new class name generator for each request.
   But you shouldn't share a `createGenerateClassName()` between different requests:
 
-_example of fix:_
+  Example of fix:
 
-```diff
--// Create a new class name generator.
--const generateClassName = createGenerateClassName();
+  ```diff
+  -// Create a new class name generator.
+  -const generateClassName = createGenerateClassName();
 
-function handleRender(req, res) {
-+ // Create a new class name generator.
-+ const generateClassName = createGenerateClassName();
+  function handleRender(req, res) {
+  + // Create a new class name generator.
+  + const generateClassName = createGenerateClassName();
 
-  //…
+    //…
 
-  // Render the component to a string.
-  const html = ReactDOMServer.renderToString(
-```
+    // Render the component to a string.
+    const html = ReactDOMServer.renderToString(
+  ```
 
 - You need to verify that your client and server are running the **exactly the same version** of Material-UI.
   It is possible that a mismatch of even minor versions can cause styling problems.
@@ -319,16 +323,16 @@ function handleRender(req, res) {
 
   You can also ensure the same version in different environments by specifying a specific MUI version in the dependencies of your package.json.
 
-_example of fix (package.json):_
+  _example of fix (package.json):_
 
-```diff
-  "dependencies": {
-    ...
--   "@material-ui/core": "^4.0.0",
-+   "@material-ui/core": "4.0.0",
-    ...
-  },
-```
+  ```diff
+    "dependencies": {
+      ...
+  -   "@material-ui/core": "^4.0.0",
+  +   "@material-ui/core": "4.0.0",
+      ...
+    },
+  ```
 
 - You need to make sure that the server and the client share the same `process.env.NODE_ENV` value.
 
