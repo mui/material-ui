@@ -58,24 +58,6 @@ const withStyles = (stylesOrCreator, options = {}) => (Component) => {
       // name and withTheme are invariant in the outer scope
       // eslint-disable-next-line react-hooks/rules-of-hooks
       theme = useTheme() || defaultTheme;
-      // if(theme && theme.variants && theme.variants[name]) {
-
-      //   const arr = theme.variants[name];
-      //   const styles = arr.reduce((acc, curr) => {
-      //     // TODO: add state
-      //     if(curr.trigger(allProps)) {
-      //       acc = { ...acc, ...curr.styles } // TODO: deepmerge
-      //     }
-      //     return acc;
-      //   }, {});
-
-        
-      //   const useVariantStyles = makeStyles({ root: styles });
-        
-      //   const variantClasses = useVariantStyles();
-
-      //   classes.root = classes.root + " " + variantClasses.root; // merge styles first :\
-      // }
       if (name) {
         more = getThemeProps({ theme, name, props: other });
       }

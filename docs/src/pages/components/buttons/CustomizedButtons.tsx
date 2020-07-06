@@ -70,21 +70,6 @@ const theme = createMuiTheme({
   palette: {
     primary: green,
   },
-  additions: {
-    MuiButton: {
-      dashed: {
-        padding: '5px 15px',
-        border: '5px dashed red',
-        '&$disabled': {
-          border: `5px dashed red`,
-        },
-      },
-      tertiery: {
-        backgroundColor: 'yellow',
-        padding: 20,
-      },
-    },
-  },
 });
 
 export default function CustomizedButtons() {
@@ -102,9 +87,6 @@ export default function CustomizedButtons() {
       <ThemeProvider theme={theme}>
         <Button variant="contained" color="primary" className={classes.margin}>
           Theme Provider
-        </Button>
-        <Button variant="dashed" color="primary" className={classes.margin}>
-          Dashed Variant
         </Button>
       </ThemeProvider>
       <BootstrapButton

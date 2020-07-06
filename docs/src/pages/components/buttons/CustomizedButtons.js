@@ -66,66 +66,6 @@ const theme = createMuiTheme({
   palette: {
     primary: green,
   },
-  additions: {
-    MuiButton: {
-      dashed: {
-        padding: '5px 15px',
-        border: '5px dashed red',
-        '&$disabled': {
-          border: `5px dashed red`,
-        },
-      },
-      tertiery: {
-        backgroundColor: 'yellow',
-        padding: 20,
-      },
-    },
-  },
-  variants: {
-    MuiButton: [
-      {
-        trigger: (props) => props.variant === 'red',
-        styles: {
-          color: 'red'
-        }
-      },
-      {
-        trigger: (props) => props.size === 'xxsmall',
-        styles: {
-          fontSize: '5px'
-        }
-      },
-      {
-        trigger: (props) => props.toggle,
-        styles: {
-          background: 'green'
-        }
-      },
-      {
-        trigger: (props) => props.toggle === 'red',
-        styles: {
-          backgroundColor: 'red'
-        }
-      }
-    ],
-  },
-  variantsV2: {
-    MuiButton: [
-      {
-        matcher: { variant: 'dashed', color: 'yellow' },
-        styles: {
-          padding: '5px 15px',
-          border: '5px dashed yellow',
-        }
-      },
-      {
-        matcher: { size: 'xxlarge' },
-        styles: {
-          fontSize: '50px',
-        }
-      },
-    ],
-  }
 });
 
 export default function CustomizedButtons() {
@@ -143,15 +83,6 @@ export default function CustomizedButtons() {
       <ThemeProvider theme={theme}>
         <Button variant="contained" color="primary" className={classes.margin}>
           Theme Provider
-        </Button>
-        <Button variant="dashed" color="primary" className={classes.margin}>
-          Dashed Variant
-        </Button>
-        <Button variant="red" color="primary" className={classes.margin}>
-          Red Variant
-        </Button>
-        <Button variant="dashed" color="yellow" size="xxlarge" className={classes.margin}>
-          Yellow Variant
         </Button>
       </ThemeProvider>
       <BootstrapButton

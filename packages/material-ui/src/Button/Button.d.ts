@@ -14,7 +14,7 @@ export type ButtonTypeMap<
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
      */
-    color?: PropTypes.Color;
+    color?: PropTypes.Color | string;
     /**
      * If `true`, the button will be disabled.
      */
@@ -44,7 +44,7 @@ export type ButtonTypeMap<
      * The size of the button.
      * `small` is equivalent to the dense button styling.
      */
-    size?: 'small' | 'medium' | 'large';
+    size?: 'small' | 'medium' | 'large' | string;
     /**
      * Element placed before the children.
      */

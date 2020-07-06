@@ -100,6 +100,12 @@ Here are some examples of customizing the component. You can learn more about th
 
 🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/button).
 
+## Custom variants buttons
+
+Here are some examples of how you can add your custom variants to the component.
+
+{{"demo": "pages/components/buttons/CustomVariantButtons.js", "defaultCodeOpen": false}}
+
 ## Loading buttons
 
 The loading buttons can show pending state and disable interactions.

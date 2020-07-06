@@ -351,7 +351,10 @@ Button.propTypes = {
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary']),
+    PropTypes.string,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -397,7 +400,10 @@ Button.propTypes = {
    * The size of the button.
    * `small` is equivalent to the dense button styling.
    */
-  size: PropTypes.oneOf(['large', 'medium', 'small']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['large', 'medium', 'small']),
+    PropTypes.string,
+  ]),
   /**
    * Element placed before the children.
    */
@@ -409,7 +415,7 @@ Button.propTypes = {
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOfType([
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['contained', 'outlined', 'text']),
     PropTypes.string,
   ]),
