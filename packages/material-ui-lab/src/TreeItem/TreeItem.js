@@ -133,6 +133,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     }),
     [nodeId, nodeRef],
   );
+
   const { index, parentId } = useDescendant(descendant);
 
   let icon = iconProp;
