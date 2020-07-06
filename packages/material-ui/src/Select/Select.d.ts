@@ -21,7 +21,6 @@ export interface SelectProps
   children?: React.ReactNode;
   /**
    * The default element value. Use when the component is not controlled.
-   * @document
    */
   defaultValue?: unknown;
   /**
@@ -79,7 +78,6 @@ export interface SelectProps
    * @param {object} event The event source of the callback.
    * You can pull out the new value by accessing `event.target.value` (any).
    * @param {object} [child] The react element that was selected when `native` is `false` (default).
-   * @document
    */
   onChange?: SelectInputProps['onChange'];
   /**
@@ -120,7 +118,6 @@ export interface SelectProps
    *
    * If the value is an object it must have reference equality with the option in order to be selected.
    * If the value is not an object, the string representation must match with the string representation of the option in order to be selected.
-   * @document
    */
   value?: unknown;
   /**

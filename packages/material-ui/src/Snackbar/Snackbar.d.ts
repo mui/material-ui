@@ -52,7 +52,6 @@ export interface SnackbarProps
    * <Snackbar/>, add the key prop to ensure independent treatment of each message.
    * e.g. <Snackbar key={message} />, otherwise, the message may update-in-place and
    * features such as autoHideDuration may be canceled.
-   * @document
    */
   key?: any;
   /**
