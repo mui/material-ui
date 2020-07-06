@@ -72,7 +72,7 @@
     "sinon": "^9.0.2",
     "styled-jsx": "^3.3.0",
     "typescript": "^3.8.3",
-    "yup": "^0.28.5"
+    "yup": "^0.29.1"
   },
   "devDependencies": {
     "dotenv": "^8.2.0",

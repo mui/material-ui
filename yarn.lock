@@ -13907,10 +13907,10 @@ yauzl@2.10.0, yauzl@^2.10.0:
     buffer-crc32 "~0.2.3"
     fd-slicer "~1.1.0"
 
-yup@^0.28.5:
-  version "0.28.5"
-  resolved "https://registry.yarnpkg.com/yup/-/yup-0.28.5.tgz#85cabb4000d3623ef69be81551190692e631a8a5"
-  integrity sha512-7JZcvpUGUxMKoaEtcoMEM8lCWRaueGNH/A3EhL/UWqfbFm3uloiI+x59Yq4nzhbbYWUTwAsCteaZOJ+VbqI1uw==
+yup@^0.29.1:
+  version "0.29.1"
+  resolved "https://registry.yarnpkg.com/yup/-/yup-0.29.1.tgz#35d25aab470a0c3950f66040ba0ff4b1b6efe0d9"
+  integrity sha512-U7mPIbgfQWI6M3hZCJdGFrr+U0laG28FxMAKIgNvgl7OtyYuUoc4uy9qCWYHZjh49b8T7Ug8NNDdiMIEytcXrQ==
   dependencies:
     "@babel/runtime" "^7.9.6"
     fn-name "~3.0.0"
