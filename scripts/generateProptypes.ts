@@ -24,15 +24,6 @@ const todoComponents = [
   'Skeleton',
   'TabList',
   'ToggleButton',
-  // core
-  'RootRef',
-  'Slider',
-  'StepButton',
-  'SvgIcon',
-  'SwipeableDrawer',
-  'Tab',
-  'Toolbar',
-  'Typography',
 ];
 
 const useExternalPropsFromInputBase = [
@@ -92,6 +83,15 @@ const useExternalDocumentation: Record<string, string[]> = {
     'required',
     'value',
   ],
+  SwipeableDrawer: [
+    'anchor',
+    'hideBackdrop',
+    'ModalProps',
+    'PaperProps',
+    'transitionDuration',
+    'variant',
+  ],
+  Tab: ['disableRipple'],
 };
 const transitionCallbacks = [
   'onEnter',
@@ -122,6 +122,7 @@ const ignoreExternalDocumentation: Record<string, string[]> = {
   Menu: ['PaperProps'],
   MenuItem: ['button', 'disabled', 'selected'],
   Slide: transitionCallbacks,
+  SwipeableDrawer: ['anchor', 'hideBackdrop', 'ModalProps', 'PaperProps', 'variant'],
   TextField: ['hiddenLabel'],
   Zoom: transitionCallbacks,
 };

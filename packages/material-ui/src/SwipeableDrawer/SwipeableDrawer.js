@@ -148,6 +148,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
   const swipeInstance = React.useRef({
     isSwiping: null,
   });
+
   const swipeAreaRef = React.useRef();
   const backdropRef = React.useRef();
   const paperRef = React.useRef();
@@ -295,6 +296,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
         current: horizontalSwipe ? currentX : currentY,
         anchor,
       });
+
       if (nativeHandler) {
         nodeThatClaimedTheSwipe = nativeHandler;
         return;
@@ -546,12 +548,16 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
 });
 
 SwipeableDrawer.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * @ignore
    */
-  anchor: PropTypes.oneOf(['left', 'top', 'right', 'bottom']),
+  anchor: PropTypes.oneOf(['bottom', 'left', 'right', 'top']),
   /**
-   * The content of the component.
+   * The contents of the drawer.
    */
   children: PropTypes.node,
   /**
@@ -587,7 +593,7 @@ SwipeableDrawer.propTypes = {
   /**
    * @ignore
    */
-  ModalProps: PropTypes.shape({
+  ModalProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({
     BackdropProps: PropTypes.shape({
       component: elementTypeAcceptingRef,
     }),
@@ -611,7 +617,7 @@ SwipeableDrawer.propTypes = {
   /**
    * @ignore
    */
-  PaperProps: PropTypes.shape({
+  PaperProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({
     component: elementTypeAcceptingRef,
     style: PropTypes.object,
   }),
@@ -630,7 +636,11 @@ SwipeableDrawer.propTypes = {
    */
   transitionDuration: PropTypes.oneOfType([
     PropTypes.number,
-    PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
+    PropTypes.shape({
+      appear: PropTypes.number,
+      enter: PropTypes.number,
+      exit: PropTypes.number,
+    }),
   ]),
   /**
    * @ignore

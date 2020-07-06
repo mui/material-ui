@@ -30,17 +30,22 @@ export const styles = {
 
 const StepButton = React.forwardRef(function StepButton(props, ref) {
   const {
+    // eslint-disable-next-line react/prop-types
     active,
+    // eslint-disable-next-line react/prop-types
     alternativeLabel,
     children,
     classes,
     className,
     completed,
     disabled,
+    // eslint-disable-next-line react/prop-types
     expanded,
     icon,
+    // eslint-disable-next-line react/prop-types
     last,
     optional,
+    // eslint-disable-next-line react/prop-types
     orientation,
     ...other
   } = props;
@@ -54,6 +59,7 @@ const StepButton = React.forwardRef(function StepButton(props, ref) {
     optional,
     orientation,
   };
+
   const child = isMuiElement(children, ['StepLabel']) ? (
     React.cloneElement(children, childProps)
   ) : (
@@ -75,16 +81,10 @@ const StepButton = React.forwardRef(function StepButton(props, ref) {
 });
 
 StepButton.propTypes = {
-  /**
-   * @ignore
-   * Passed in via `Step` - passed through to `StepLabel`.
-   */
-  active: PropTypes.bool,
-  /**
-   * @ignore
-   * Set internally by Stepper when it's supplied with the alternativeLabel property.
-   */
-  alternativeLabel: PropTypes.bool,
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * Can be a `StepLabel` or a node to place inside `StepLabel` as children.
    */
@@ -93,42 +93,28 @@ StepButton.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
   className: PropTypes.string,
   /**
-   * @ignore
-   * Sets completed styling. Is passed to StepLabel.
+   * For non-linear Steppers you need to manually set which steps are completed.
+   * Otherwise the Stepper determines if a step is completed.
    */
   completed: PropTypes.bool,
   /**
-   * @ignore
-   * Disables the button and sets disabled styling. Is passed to StepLabel.
+   * @ignore This prop is ignored. You should disable the whole `Step`.
    */
   disabled: PropTypes.bool,
-  /**
-   * @ignore
-   * potentially passed from parent `Step`
-   */
-  expanded: PropTypes.bool,
   /**
    * The icon displayed by the step label.
    */
   icon: PropTypes.node,
   /**
-   * @ignore
-   */
-  last: PropTypes.bool,
-  /**
    * The optional node to display.
    */
   optional: PropTypes.node,
-  /**
-   * @ignore
-   */
-  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
 };
 
 export default withStyles(styles, { name: 'MuiStepButton' })(StepButton);

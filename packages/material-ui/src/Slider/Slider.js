@@ -788,6 +788,10 @@ const Slider = React.forwardRef(function Slider(props, ref) {
 });
 
 Slider.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * The label of the slider.
    */
@@ -821,10 +825,14 @@ Slider.propTypes = {
     return null;
   }),
   /**
+   * @ignore
+   */
+  children: PropTypes.node,
+  /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -841,7 +849,7 @@ Slider.propTypes = {
   /**
    * The default element value. Use when the component is not controlled.
    */
-  defaultValue: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
+  defaultValue: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
   /**
    * If `true`, the slider will be disabled.
    */
@@ -866,7 +874,15 @@ Slider.propTypes = {
    * If `true` the marks will be spaced according the value of the `step` prop.
    * If an array, it should contain objects with `value` and an optional `label` keys.
    */
-  marks: PropTypes.oneOfType([PropTypes.bool, PropTypes.array]),
+  marks: PropTypes.oneOfType([
+    PropTypes.arrayOf(
+      PropTypes.shape({
+        label: PropTypes.node,
+        value: PropTypes.number.isRequired,
+      }),
+    ),
+    PropTypes.bool,
+  ]),
   /**
    * The maximum allowed value of the slider.
    * Should not be equal to min.
@@ -926,12 +942,12 @@ Slider.propTypes = {
    * - `inverted` the track will render a bar representing the remaining slider value.
    * - `false` the track will render without a bar.
    */
-  track: PropTypes.oneOf(['normal', false, 'inverted']),
+  track: PropTypes.oneOf(['inverted', 'normal', false]),
   /**
    * The value of the slider.
    * For ranged sliders, provide an array with two values.
    */
-  value: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
+  value: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
   /**
    * The value label component.
    */
@@ -943,7 +959,7 @@ Slider.propTypes = {
    * - `on` will display persistently.
    * - `off` will never display.
    */
-  valueLabelDisplay: PropTypes.oneOf(['on', 'auto', 'off']),
+  valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on']),
   /**
    * The format function the value label's value.
    *
@@ -952,7 +968,7 @@ Slider.propTypes = {
    * - {number} value The value label's value to format
    * - {number} index The value label's index to format
    */
-  valueLabelFormat: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  valueLabelFormat: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };
 
 export default withStyles(styles, { name: 'MuiSlider' })(Slider);
