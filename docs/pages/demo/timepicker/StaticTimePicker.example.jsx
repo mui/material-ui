@@ -8,7 +8,6 @@ export default function StaticTimePickerExample() {
   return (
     <React.Fragment>
       <StaticTimePicker
-        autoOk
         openTo="hours"
         value={date}
         onChange={date => handleDateChange(date)}

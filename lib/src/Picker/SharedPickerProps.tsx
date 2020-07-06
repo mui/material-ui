@@ -2,9 +2,13 @@ import { DateTimePickerView } from '../DateTimePicker';
 import { ParsableDate } from '../constants/prop-types';
 import { BasePickerProps } from '../typings/BasePicker';
 import { MaterialUiPickersDate } from '../typings/date';
+import { PickerOnChangeFn } from '../_shared/hooks/useViews';
 import { ExportedDateInputProps } from '../_shared/PureDateInput';
+import { ExportedClockViewProps } from '../views/Clock/ClockView';
 import { WithDateAdapterProps } from '../_shared/withDateAdapterProp';
-import { WrapperVariant, DateInputPropsLike } from '../wrappers/Wrapper';
+import { PickerSelectionState } from '../_shared/hooks/usePickerState';
+import { DateInputPropsLike, WrapperVariant } from '../wrappers/Wrapper';
+import { ExportedCalendarViewProps } from '../views/Calendar/CalendarView';
 
 export type AnyPickerView = DateTimePickerView;
 
@@ -26,8 +30,8 @@ export interface SharedPickerProps<
   date: TDateValue;
   onDateChange: (
     date: TDateValue,
-    currentVariant: WrapperVariant,
-    isFinish?: boolean | symbol
+    currentWrapperVariant: WrapperVariant,
+    isFinish?: PickerSelectionState
   ) => void;
 }
 
@@ -41,3 +45,28 @@ export interface WithViewsProps<T extends AnyPickerView> {
    */
   openTo?: T;
 }
+
+export type CalendarAndClockProps = ExportedCalendarViewProps & ExportedClockViewProps;
+
+export type ToolbarComponentProps<
+  TDate = MaterialUiPickersDate,
+  TView extends AnyPickerView = AnyPickerView
+> = CalendarAndClockProps & {
+  ampmInClock?: boolean;
+  date: TDate;
+  dateRangeIcon?: React.ReactNode;
+  getMobileKeyboardInputViewButtonText?: () => string;
+  // TODO move out, cause it is DateTimePickerOnly
+  hideTabs?: boolean;
+  isLandscape: boolean;
+  isMobileKeyboardViewOpen: boolean;
+  onChange: PickerOnChangeFn;
+  openView: TView;
+  setOpenView: (view: TView) => void;
+  timeIcon?: React.ReactNode;
+  toggleMobileKeyboardView: () => void;
+  toolbarFormat?: string;
+  toolbarPlaceholder?: React.ReactNode;
+  toolbarTitle?: React.ReactNode;
+  views: TView[];
+};

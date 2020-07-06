@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { ReactWrapper } from 'enzyme';
 import TextField from '@material-ui/core/TextField';
+import { ReactWrapper } from 'enzyme';
 import { mount, utilsToUse } from './test-utils';
 import { DesktopDateTimePicker, DateTimePickerProps } from '../DateTimePicker/DateTimePicker';
 
@@ -16,7 +16,6 @@ describe('e2e - DesktopDateTimePicker', () => {
     jest.clearAllMocks();
     component = mount(
       <DesktopDateTimePicker
-        autoOk
         onChange={onChangeMock}
         onClose={onCloseMock}
         onOpen={onOpenMock}

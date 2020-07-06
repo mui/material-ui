@@ -7,8 +7,8 @@ import { useUtils } from '../_shared/hooks/useUtils';
 import { DateTimePickerView } from './DateTimePicker';
 import { makeStyles } from '@material-ui/core/styles';
 import { MaterialUiPickersDate } from '../typings/date';
-import { ToolbarComponentProps } from '../Picker/Picker';
 import { withDefaultProps } from '../_shared/withDefaultProps';
+import { ToolbarComponentProps } from '../Picker/SharedPickerProps';
 import { WrapperVariantContext } from '../wrappers/WrapperVariantContext';
 
 const muiComponentConfig = { name: 'MuiPickersDateTimePickerToolbar' };
@@ -53,10 +53,12 @@ export const DateTimePickerToolbar: React.FC<ToolbarComponentProps> = withDefaul
     openView,
     setOpenView,
     timeIcon,
+    onChange,
     toggleMobileKeyboardView,
     toolbarFormat,
     toolbarPlaceholder = '––',
     toolbarTitle = 'SELECT DATE & TIME',
+    ...other
   }) => {
     const utils = useUtils();
     const classes = useStyles();
@@ -86,11 +88,12 @@ export const DateTimePickerToolbar: React.FC<ToolbarComponentProps> = withDefaul
         {wrapperVariant !== 'desktop' && (
           <PickerToolbar
             toolbarTitle={toolbarTitle}
-            isLandscape={false}
             penIconClassName={classes.penIcon}
             className={classes.toolbar}
             isMobileKeyboardViewOpen={isMobileKeyboardViewOpen}
             toggleMobileKeyboardView={toggleMobileKeyboardView}
+            {...other}
+            isLandscape={false}
           >
             <div className={classes.dateContainer}>
               <ToolbarButton

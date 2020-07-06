@@ -8,7 +8,7 @@ import { ExtendMui } from '../typings/helpers';
 import { PenIcon } from '../_shared/icons/PenIcon';
 import { CalendarIcon } from './icons/CalendarIcon';
 import { makeStyles } from '@material-ui/core/styles';
-import { ToolbarComponentProps } from '../Picker/Picker';
+import { ToolbarComponentProps } from '../Picker/SharedPickerProps';
 
 export const useStyles = makeStyles(
   theme => {
@@ -72,7 +72,6 @@ const PickerToolbar: React.SFC<PickerToolbarProps> = ({
   penIconClassName,
   toggleMobileKeyboardView,
   toolbarTitle,
-  ...other
 }) => {
   const classes = useStyles();
 
@@ -80,7 +79,6 @@ const PickerToolbar: React.SFC<PickerToolbarProps> = ({
     <Toolbar
       data-mui-test="picker-toolbar"
       className={clsx(classes.toolbar, { [classes.toolbarLandscape]: isLandscape }, className)}
-      {...other}
     >
       <Typography data-mui-test="picker-toolbar-title" color="inherit" variant="overline">
         {toolbarTitle}

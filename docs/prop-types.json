@@ -663,12 +663,12 @@
         "name": "(date: DateIOType, keyboardInputValue?: string) => void"
       }
     },
-    "autoOk": {
+    "disableCloseOnSelect": {
       "defaultValue": {
-        "value": "false"
+        "value": "`true` for Desktop, `false` for Mobile (based on the chosen wrapper and `desktopModeMediaQuery` prop)."
       },
-      "description": "Auto accept date on selection.",
-      "name": "autoOk",
+      "description": "If `true` picker will immediately close after submitting full date.",
+      "name": "disableCloseOnSelect",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
         "name": "BasePickerProps"
@@ -1355,12 +1355,12 @@
         "name": "(date: DateIOType, keyboardInputValue?: string) => void"
       }
     },
-    "autoOk": {
+    "disableCloseOnSelect": {
       "defaultValue": {
-        "value": "false"
+        "value": "`true` for Desktop, `false` for Mobile (based on the chosen wrapper and `desktopModeMediaQuery` prop)."
       },
-      "description": "Auto accept date on selection.",
-      "name": "autoOk",
+      "description": "If `true` picker will immediately close after submitting full date.",
+      "name": "disableCloseOnSelect",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
         "name": "BasePickerProps"
@@ -2416,12 +2416,12 @@
         "name": "(date: DateIOType, keyboardInputValue?: string) => void"
       }
     },
-    "autoOk": {
+    "disableCloseOnSelect": {
       "defaultValue": {
-        "value": "false"
+        "value": "`true` for Desktop, `false` for Mobile (based on the chosen wrapper and `desktopModeMediaQuery` prop)."
       },
-      "description": "Auto accept date on selection.",
-      "name": "autoOk",
+      "description": "If `true` picker will immediately close after submitting full date.",
+      "name": "disableCloseOnSelect",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
         "name": "BasePickerProps"
@@ -3295,12 +3295,12 @@
         "name": "boolean"
       }
     },
-    "autoOk": {
+    "disableCloseOnSelect": {
       "defaultValue": {
-        "value": "false"
+        "value": "`true` for Desktop, `false` for Mobile (based on the chosen wrapper and `desktopModeMediaQuery` prop)."
       },
-      "description": "Auto accept date on selection.",
-      "name": "autoOk",
+      "description": "If `true` picker will immediately close after submitting full date.",
+      "name": "disableCloseOnSelect",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
         "name": "BasePickerProps"
@@ -3846,7 +3846,7 @@
       },
       "required": true,
       "type": {
-        "name": "PickerOnChangeFn"
+        "name": "PickerOnChangeFn<any>"
       }
     },
     "renderDay": {
@@ -4149,7 +4149,7 @@
       },
       "required": true,
       "type": {
-        "name": "PickerOnChangeFn"
+        "name": "PickerOnChangeFn<DateIOType>"
       }
     },
     "onChange": {
@@ -4162,11 +4162,13 @@
       },
       "required": true,
       "type": {
-        "name": "PickerOnChangeFn"
+        "name": "PickerOnChangeFn<DateIOType>"
       }
     },
     "getHoursClockNumberText": {
-      "defaultValue": null,
+      "defaultValue": {
+        "value": null
+      },
       "description": "Get clock number aria-text for hours.",
       "name": "getHoursClockNumberText",
       "parent": {
@@ -4179,7 +4181,9 @@
       }
     },
     "getMinutesClockNumberText": {
-      "defaultValue": null,
+      "defaultValue": {
+        "value": null
+      },
       "description": "Get clock number aria-text for minutes.",
       "name": "getMinutesClockNumberText",
       "parent": {
@@ -4192,7 +4196,9 @@
       }
     },
     "getSecondsClockNumberText": {
-      "defaultValue": null,
+      "defaultValue": {
+        "value": null
+      },
       "description": "Get clock number aria-text for seconds.",
       "name": "getSecondsClockNumberText",
       "parent": {
@@ -4221,7 +4227,7 @@
     },
     "minutesStep": {
       "defaultValue": {
-        "value": "1"
+        "value": 1
       },
       "description": "Step over minutes",
       "name": "minutesStep",
@@ -4345,7 +4351,9 @@
       }
     },
     "leftArrowButtonText": {
-      "defaultValue": null,
+      "defaultValue": {
+        "value": "open previous view"
+      },
       "description": "Left arrow icon aria-label text.",
       "name": "leftArrowButtonText",
       "parent": {
@@ -4358,7 +4366,9 @@
       }
     },
     "rightArrowButtonText": {
-      "defaultValue": null,
+      "defaultValue": {
+        "value": "open next view"
+      },
       "description": "Right arrow icon aria-label text.",
       "name": "rightArrowButtonText",
       "parent": {

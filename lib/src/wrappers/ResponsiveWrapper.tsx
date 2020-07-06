@@ -63,4 +63,4 @@ export const makeResponsiveWrapper = (
 
 export const ResponsiveWrapper = makeResponsiveWrapper(DesktopWrapper, MobileWrapper);
 
-export const ResponsivePopperWrapper = makeResponsiveWrapper(DesktopTooltipWrapper, MobileWrapper);
+export const ResponsiveTooltipWrapper = makeResponsiveWrapper(DesktopTooltipWrapper, MobileWrapper);

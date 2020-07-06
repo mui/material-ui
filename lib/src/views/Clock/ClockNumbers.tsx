@@ -2,13 +2,14 @@ import * as React from 'react';
 import ClockNumber from './ClockNumber';
 import { IUtils } from '@date-io/core/IUtils';
 import { MaterialUiPickersDate } from '../../typings/date';
+import { PickerSelectionState } from '../../_shared/hooks/usePickerState';
 
 interface GetHourNumbersOptions {
   ampm: boolean;
   date: MaterialUiPickersDate;
   getClockNumberText: (hour: string) => string;
   isDisabled: (value: number) => boolean;
-  onChange: (value: number, isFinish?: boolean | symbol) => void;
+  onChange: (value: number, isFinish?: PickerSelectionState) => void;
   utils: IUtils<MaterialUiPickersDate>;
 }
 
@@ -58,7 +59,7 @@ export const getHourNumbers = ({
         selected={isSelected(hour)}
         disabled={isDisabled(hour)}
         label={utils.formatNumber(label)}
-        onSelect={() => onChange(hour, true)}
+        onSelect={() => onChange(hour, 'finish')}
         getClockNumberText={getClockNumberText}
       />
     );

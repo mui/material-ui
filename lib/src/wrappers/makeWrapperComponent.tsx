@@ -32,7 +32,7 @@ export function makeWrapperComponent<
       Partial<OmitInnerWrapperProps<ResponsiveWrapperProps> & StaticWrapperProps>
   ) {
     const {
-      autoOk,
+      disableCloseOnSelect,
       cancelText,
       children,
       clearable,

@@ -4,8 +4,6 @@ import { WrapperVariant } from '../../wrappers/Wrapper';
 import { BasePickerProps } from '../../typings/BasePicker';
 import { useUtils, useNow, MuiPickersAdapter } from './useUtils';
 
-export const FORCE_FINISH_PICKER = Symbol('Force closing picker, useful for accessibility');
-
 export interface PickerStateValueManager<TInput, TDateValue> {
   parseInput: (utils: MuiPickersAdapter, props: BasePickerProps<TInput, TDateValue>) => TDateValue;
   emptyValue: TDateValue;
@@ -16,11 +14,21 @@ export interface PickerStateValueManager<TInput, TDateValue> {
   ) => boolean;
 }
 
+export type PickerSelectionState = 'partial' | 'shallow' | 'finish';
+
 export function usePickerState<TInput, TDateValue>(
   props: BasePickerProps<TInput, TDateValue>,
   valueManager: PickerStateValueManager<TInput, TDateValue>
 ) {
-  const { autoOk, inputFormat, disabled, readOnly, onAccept, onChange, value } = props;
+  const {
+    inputFormat,
+    disabled,
+    readOnly,
+    onAccept,
+    onChange,
+    disableCloseOnSelect,
+    value,
+  } = props;
 
   if (!inputFormat) {
     throw new Error('inputFormat prop is required');
@@ -71,10 +79,10 @@ export function usePickerState<TInput, TDateValue>(
       onSetToday: () => {
         // TODO FIX ME
         setPickerDate(now as any);
-        acceptDate(now as any, Boolean(autoOk));
+        acceptDate(now as any, !disableCloseOnSelect);
       },
     }),
-    [acceptDate, autoOk, isOpen, now, pickerDate, setIsOpen, valueManager.emptyValue]
+    [acceptDate, disableCloseOnSelect, isOpen, now, pickerDate, setIsOpen, valueManager.emptyValue]
   );
 
   const pickerProps = React.useMemo(
@@ -92,26 +100,24 @@ export function usePickerState<TInput, TDateValue>(
       },
       onDateChange: (
         newDate: TDateValue,
-        currentVariant: WrapperVariant,
-        isFinish: boolean | symbol = true
+        wrapperVariant: WrapperVariant,
+        selectionState: PickerSelectionState = 'partial'
       ) => {
         setPickerDate(newDate);
-        const isFinishing =
-          typeof isFinish === 'boolean' ? isFinish : isFinish === FORCE_FINISH_PICKER;
 
-        if (isFinishing) {
-          const autoAcceptRequested = Boolean(autoOk) || isFinish === FORCE_FINISH_PICKER;
-          if (currentVariant === 'mobile' && autoAcceptRequested) {
-            acceptDate(newDate, true);
-          }
-
-          if (currentVariant !== 'mobile') {
-            acceptDate(newDate, autoAcceptRequested);
-          }
+        if (selectionState === 'partial') {
+          acceptDate(newDate, false);
         }
+
+        if (selectionState === 'finish') {
+          const shouldCloseOnSelect = !(disableCloseOnSelect ?? wrapperVariant === 'mobile');
+          acceptDate(newDate, shouldCloseOnSelect);
+        }
+
+        // if selectionState === "shallow" do nothing (we already update picker state)
       },
     }),
-    [acceptDate, autoOk, isMobileKeyboardViewOpen, pickerDate]
+    [acceptDate, disableCloseOnSelect, isMobileKeyboardViewOpen, pickerDate]
   );
 
   const inputProps = React.useMemo(

@@ -15,7 +15,6 @@ export default function StaticDatePickerExample() {
   return (
     <React.Fragment>
       <StaticDatePicker
-        autoOk
         displayStaticWrapperAs="desktop"
         openTo="year"
         value={date}
@@ -24,7 +23,6 @@ export default function StaticDatePickerExample() {
       />
 
       <StaticDatePicker
-        autoOk
         orientation="landscape"
         openTo="date"
         value={date}

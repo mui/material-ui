@@ -15,9 +15,9 @@ function CustomInput() {
       label="Advanced keyboard"
       value={selectedDate}
       onChange={date => handleDateChange(date)}
-      renderInput={({ ref, inputProps, InputProps }) => (
-        <InputContainer ref={ref}>
-          <input {...inputProps} />
+      renderInput={({ inputRef, inputProps, InputProps }) => (
+        <InputContainer>
+          <input ref={inputRef} {...inputProps} />
           {InputProps?.endAdornment}
         </InputContainer>
       )}

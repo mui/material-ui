@@ -9,21 +9,31 @@ import * as Accessibility from './Accessibility.example';
 
 <Ad />
 
-Pickers accessibility is highly impoertant, because this control is becoming completely unusable if there is
-no appropriate focus managment.
+Pickers accessibility is highly important, because this control is becoming completely unusable for disabled people
+if there is no appropriate focus managment and keyboard control.
 
-The dialog contains a calendar that uses the [grid](https://www.w3.org/TR/wai-aria-practices/#grid) pattern to present buttons that enable the user to choose a day from the calendar.
+The dialog contains a calendar that uses the [grid](https://www.w3.org/TR/wai-aria-practices/#grid)
+pattern to present buttons that enable the user to choose a day from the calendar.
 Choosing a date from the calendar closes the dialog and populates the date input field. When the dialog is opened,
 if the input field is empty, or does not contain a valid date, then the current date is focused in the calendar.
 Otherwise, the focus is placed on the day in the calendar that matches the value of the date input field.
 It is possible to navigate throught the calendar, year selection and clock with only keyboard.
 
-But still there are some limitations:
+#### Limitations
 
-- You need to provide accessible placeholder (`mm/dd/yyyy`) according to used format and locale
-- Masked input is not really well announcing via screen readers, so you may consider disable it
+- `placeholder` with helper text is completely important to be set for people with disabilities.
+- `disableCloseOnSelect` prop makes picker less acessible for Desktop users because it will not be closed by `Enter` or `Space`.
+- `allowKeyboardControl` is required for proper a11y. **Important**: It is by default disabled for **all Static** components.
+  It's necessary to pass it manually if you are rendering datepicker in custom popper/popover or modal in order to enable focus managment and keyboard control:
 
-### Example
+```jsx
+<StaticDatePicker
+  allowKeyboardControl
+  ...
+/>
+```
+
+### Test accessibility
 
 Here is working accessible example, compare it to the [wia-aria datepicker dialog example](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/datepicker-dialog.html)
 

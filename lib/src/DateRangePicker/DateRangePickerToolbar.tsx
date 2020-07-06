@@ -3,9 +3,9 @@ import PickerToolbar from '../_shared/PickerToolbar';
 import Typography from '@material-ui/core/Typography';
 import { useUtils } from '../_shared/hooks/useUtils';
 import { makeStyles } from '@material-ui/core/styles';
-import { ToolbarComponentProps } from '../Picker/Picker';
 import { ToolbarButton } from '../_shared/ToolbarButton';
 import { withDefaultProps } from '../_shared/withDefaultProps';
+import { ToolbarComponentProps } from '../Picker/SharedPickerProps';
 import { DateRange, CurrentlySelectingRangeEndProps } from './RangeTypes';
 
 const muiComponentConfig = { name: 'MuiPickersDateRangePickerToolbarProps' };

@@ -1,8 +1,8 @@
 // @ts-nocheck
 import React from 'react';
-import { date, object } from 'yup';
-import { Grid } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
+import { date, object } from 'yup';
+import Grid from '@material-ui/core/Grid';
 import { Formik, Form, Field, FieldProps } from 'formik';
 import { DatePicker, BaseDatePickerProps } from '@material-ui/pickers';
 
@@ -22,7 +22,6 @@ function DatePickerField({
 
   return (
     <DatePicker
-      autoOk
       clearable
       minDate={minDate}
       maxDate={maxDate}

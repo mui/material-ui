@@ -3,6 +3,8 @@ import Year from './Year';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { useUtils, useNow } from '../../_shared/hooks/useUtils';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { PickerOnChangeFn } from '../../_shared/hooks/useViews';
+import { PickerSelectionState } from '../../_shared/hooks/usePickerState';
 import { WrapperVariantContext } from '../../wrappers/WrapperVariantContext';
 import { useGlobalKeyDown, keycode as keys } from '../../_shared/hooks/useKeyDown';
 
@@ -27,17 +29,18 @@ export interface YearSelectionProps extends ExportedYearSelectionProps {
   isDateDisabled: (day: MaterialUiPickersDate) => boolean;
   maxDate: MaterialUiPickersDate;
   minDate: MaterialUiPickersDate;
-  onChange: (date: MaterialUiPickersDate, isFinish: boolean) => void;
+  onChange: PickerOnChangeFn;
 }
 
 export const useStyles = makeStyles(
   {
-    container: {
+    root: {
       display: 'flex',
       flexDirection: 'row',
       flexWrap: 'wrap',
       overflowY: 'auto',
       height: '100%',
+      margin: '0 4px',
     },
   },
   { name: 'MuiPickersYearSelection' }
@@ -58,7 +61,6 @@ export const YearSelection: React.FC<YearSelectionProps> = ({
   const theme = useTheme();
   const utils = useUtils();
   const classes = useStyles();
-  const rootRef = React.useRef(null);
 
   const selectedDate = __dateOrNull || now;
   const currentYear = utils.getYear(selectedDate);
@@ -67,7 +69,7 @@ export const YearSelection: React.FC<YearSelectionProps> = ({
   const [focusedYear, setFocusedYear] = React.useState<number | null>(currentYear);
 
   const handleYearSelection = React.useCallback(
-    (year: number, isFinish = true) => {
+    (year: number, isFinish: PickerSelectionState = 'finish') => {
       const newDate = utils.setYear(selectedDate, year);
       if (isDateDisabled(newDate)) {
         return;
@@ -102,7 +104,7 @@ export const YearSelection: React.FC<YearSelectionProps> = ({
   });
 
   return (
-    <div ref={rootRef} className={classes.container}>
+    <div className={classes.root}>
       {utils.getYearRange(minDate, maxDate).map(year => {
         const yearNumber = utils.getYear(year);
         const selected = yearNumber === currentYear;

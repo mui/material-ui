@@ -7,11 +7,10 @@ function BasicDatePicker() {
 
   return (
     <DatePicker
-      renderInput={props => <TextField {...props} />}
-      disableMaskedInput
       label="Accessible"
       value={selectedDate}
       onChange={date => handleDateChange(date)}
+      renderInput={props => <TextField {...props} />}
     />
   );
 }

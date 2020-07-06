@@ -1,7 +1,7 @@
 import * as React from 'react';
+import TextField from '@material-ui/core/TextField';
 import { ReactWrapper } from 'enzyme';
 import { clickOKButton } from './commands';
-import TextField from '@material-ui/core/TextField';
 import { mount, utilsToUse } from './test-utils';
 import { DatePicker, DatePickerProps } from '../DatePicker';
 
@@ -15,7 +15,6 @@ describe('e2e - DatePicker', () => {
       <DatePicker
         renderInput={props => <TextField {...props} />}
         open
-        autoOk
         openTo="date"
         value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
         onChange={onChangeMock}
@@ -45,7 +44,7 @@ describe('e2e - DatePicker', () => {
     expect(component.find('[data-mui-test="year"]').length).toBe(200);
 
     component
-      .find('[data-mui-test="year"]')
+      .find('[data-mui-test="year"] button')
       .at(1)
       .simulate('click');
 
@@ -77,7 +76,7 @@ describe('e2e -- DatePicker views year', () => {
     expect(component.find('[data-mui-test="year"]').length).toBe(200);
 
     component
-      .find('[data-mui-test="year"]')
+      .find('[data-mui-test="year"] button')
       .at(1)
       .simulate('click');
 
@@ -97,7 +96,6 @@ describe('e2e -- DatePicker views year and month', () => {
       <DatePicker
         renderInput={props => <TextField {...props} />}
         open
-        autoOk
         value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
         onChange={onChangeMock}
         onMonthChange={onMonthChangeMock}
@@ -137,7 +135,6 @@ describe('e2e -- DatePicker views year and month open from year', () => {
       <DatePicker
         renderInput={props => <TextField {...props} />}
         open
-        autoOk
         value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
         onChange={onChangeMock}
         views={['year', 'month']}

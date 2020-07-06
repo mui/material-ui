@@ -8,7 +8,6 @@ function DateTimePickerDemo(props) {
   return (
     <React.Fragment>
       <MobileDateTimePicker
-        autoOk
         disableFuture
         value={selectedDate}
         onChange={handleDateChange}

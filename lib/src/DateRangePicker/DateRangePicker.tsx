@@ -8,7 +8,7 @@ import { withDefaultProps } from '../_shared/withDefaultProps';
 import { useParsedDate } from '../_shared/hooks/date-helpers-hooks';
 import { withDateAdapterProp } from '../_shared/withDateAdapterProp';
 import { makeWrapperComponent } from '../wrappers/makeWrapperComponent';
-import { ResponsivePopperWrapper } from '../wrappers/ResponsiveWrapper';
+import { ResponsiveTooltipWrapper } from '../wrappers/ResponsiveWrapper';
 import { defaultMinDate, defaultMaxDate } from '../constants/prop-types';
 import { DesktopTooltipWrapper } from '../wrappers/DesktopTooltipWrapper';
 import { SomeWrapper, ExtendWrapper, StaticWrapper } from '../wrappers/Wrapper';
@@ -157,7 +157,7 @@ export type DateRange = DateRangeType;
 
 export const DateRangePicker = makeRangePicker(
   'MuiPickersDateRangePicker',
-  ResponsivePopperWrapper
+  ResponsiveTooltipWrapper
 );
 
 export type DateRangePickerProps = React.ComponentProps<typeof DateRangePicker>;

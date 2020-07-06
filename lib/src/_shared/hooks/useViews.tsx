@@ -1,9 +1,13 @@
 import * as React from 'react';
 import { arrayIncludes } from '../../_helpers/utils';
+import { PickerSelectionState } from './usePickerState';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { AnyPickerView } from '../../Picker/SharedPickerProps';
 
-export type PickerOnChangeFn = (date: MaterialUiPickersDate, isFinish?: boolean | symbol) => void;
+export type PickerOnChangeFn<TDate = MaterialUiPickersDate> = (
+  date: TDate,
+  selectionState?: PickerSelectionState
+) => void;
 
 export function useViews({
   views,
@@ -35,6 +39,7 @@ export function useViews({
 
   const previousView = views[views.indexOf(openView!) - 1];
   const nextView = views[views.indexOf(openView!) + 1];
+
   const openNext = React.useCallback(() => {
     if (nextView) {
       setOpenView(nextView);
@@ -42,10 +47,15 @@ export function useViews({
   }, [nextView, setOpenView]);
 
   const handleChangeAndOpenNext = React.useCallback(
-    (date: MaterialUiPickersDate, isFinishedSelectionInCurrentView?: boolean | symbol) => {
-      onChange(date, Boolean(nextView) ? false : isFinishedSelectionInCurrentView);
+    (date: MaterialUiPickersDate, currentViewSelectionState?: PickerSelectionState) => {
+      const isSelectionFinishedOnCurrentView = currentViewSelectionState === 'finish';
+      const globalSelectionState =
+        isSelectionFinishedOnCurrentView && Boolean(nextView)
+          ? 'partial'
+          : currentViewSelectionState;
 
-      if (isFinishedSelectionInCurrentView) {
+      onChange(date, globalSelectionState);
+      if (isSelectionFinishedOnCurrentView) {
         openNext();
       }
     },

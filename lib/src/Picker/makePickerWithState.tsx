@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Picker, { ToolbarComponentProps, ExportedPickerProps } from './Picker';
+import Picker, { ExportedPickerProps } from './Picker';
 import { ParsableDate } from '../constants/prop-types';
 import { MaterialUiPickersDate } from '../typings/date';
 import { MuiPickersAdapter } from '../_shared/hooks/useUtils';
@@ -11,8 +11,8 @@ import { ResponsiveWrapper } from '../wrappers/ResponsiveWrapper';
 import { withDateAdapterProp } from '../_shared/withDateAdapterProp';
 import { makeWrapperComponent } from '../wrappers/makeWrapperComponent';
 import { PureDateInput, DateInputProps } from '../_shared/PureDateInput';
-import { AnyPickerView, AllSharedPickerProps } from './SharedPickerProps';
 import { usePickerState, PickerStateValueManager } from '../_shared/hooks/usePickerState';
+import { AnyPickerView, AllSharedPickerProps, ToolbarComponentProps } from './SharedPickerProps';
 
 type AllAvailableForOverrideProps = ExportedPickerProps<AnyPickerView>;
 

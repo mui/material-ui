@@ -23,7 +23,6 @@ function DatePickerField({
 
   return (
     <DatePicker
-      autoOk
       clearable
       minDate={minDate}
       maxDate={maxDate}

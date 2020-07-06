@@ -13,6 +13,7 @@ import { PickerOnChangeFn } from '../../_shared/hooks/useViews';
 import { getHours, getMinutes } from '../../_helpers/time-utils';
 import { withDefaultProps } from '../../_shared/withDefaultProps';
 import { useMeridiemMode } from '../../TimePicker/TimePickerToolbar';
+import { PickerSelectionState } from '../../_shared/hooks/usePickerState';
 import { useGlobalKeyDown, keycode } from '../../_shared/hooks/useKeyDown';
 import { WrapperVariantContext } from '../../wrappers/WrapperVariantContext';
 
@@ -23,7 +24,7 @@ export interface ClockProps extends ReturnType<typeof useMeridiemMode> {
   isTimeDisabled: (timeValue: number, type: ClockViewType) => boolean;
   children: React.ReactElement<any>[];
   onDateChange: PickerOnChangeFn;
-  onChange: (value: number, isFinish?: boolean | symbol) => void;
+  onChange: (value: number, isFinish?: PickerSelectionState) => void;
   ampm?: boolean;
   minutesStep?: number;
   ampmInClock?: boolean;
@@ -120,7 +121,7 @@ export const Clock: React.FC<ClockProps> = withDefaultProps(
     const isSelectedTimeDisabled = isTimeDisabled(value, type);
     const isPointerInner = !ampm && type === 'hours' && (value < 1 || value > 12);
 
-    const handleValueChange = (newValue: number, isFinish: boolean) => {
+    const handleValueChange = (newValue: number, isFinish: PickerSelectionState) => {
       if (isTimeDisabled(newValue, type)) {
         return;
       }
@@ -128,7 +129,7 @@ export const Clock: React.FC<ClockProps> = withDefaultProps(
       onChange(newValue, isFinish);
     };
 
-    const setTime = (e: any, isFinish = false) => {
+    const setTime = (e: any, isFinish: PickerSelectionState) => {
       let { offsetX, offsetY } = e;
 
       if (typeof offsetX === 'undefined') {
@@ -148,12 +149,12 @@ export const Clock: React.FC<ClockProps> = withDefaultProps(
 
     const handleTouchMove = (e: React.TouchEvent) => {
       isMoving.current = true;
-      setTime(e);
+      setTime(e, 'shallow');
     };
 
     const handleTouchEnd = (e: React.TouchEvent) => {
       if (isMoving.current) {
-        setTime(e, true);
+        setTime(e, 'finish');
         isMoving.current = false;
       }
     };
@@ -166,7 +167,7 @@ export const Clock: React.FC<ClockProps> = withDefaultProps(
         typeof e.buttons === 'undefined' ? e.nativeEvent.which === 1 : e.buttons === 1;
 
       if (isButtonPressed) {
-        setTime(e.nativeEvent, false);
+        setTime(e.nativeEvent, 'shallow');
       }
     };
 
@@ -175,7 +176,7 @@ export const Clock: React.FC<ClockProps> = withDefaultProps(
         isMoving.current = false;
       }
 
-      setTime(e.nativeEvent, true);
+      setTime(e.nativeEvent, 'finish');
     };
 
     const hasSelected = React.useMemo(() => {
@@ -190,10 +191,10 @@ export const Clock: React.FC<ClockProps> = withDefaultProps(
     useGlobalKeyDown(
       Boolean(allowKeyboardControl ?? wrapperVariant !== 'static') && !isMoving.current,
       {
-        [keycode.Home]: () => handleValueChange(0, false), // annulate both hours and minutes
-        [keycode.End]: () => handleValueChange(type === 'minutes' ? 59 : 23, false),
-        [keycode.ArrowUp]: () => handleValueChange(value + keyboardControlStep, false),
-        [keycode.ArrowDown]: () => handleValueChange(value - keyboardControlStep, false),
+        [keycode.Home]: () => handleValueChange(0, 'partial'), // annulate both hours and minutes
+        [keycode.End]: () => handleValueChange(type === 'minutes' ? 59 : 23, 'partial'),
+        [keycode.ArrowUp]: () => handleValueChange(value + keyboardControlStep, 'partial'),
+        [keycode.ArrowDown]: () => handleValueChange(value - keyboardControlStep, 'partial'),
       }
     );
 
@@ -265,5 +266,3 @@ Clock.defaultProps = {
 } as any;
 
 Clock.displayName = 'Clock';
-
-export default Clock;

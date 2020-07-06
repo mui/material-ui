@@ -8,6 +8,7 @@ import { PickerOnChangeFn } from '../../_shared/hooks/useViews';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { DAY_SIZE, DAY_MARGIN } from '../../constants/dimensions';
 import { withDefaultProps } from '../../_shared/withDefaultProps';
+import { PickerSelectionState } from '../../_shared/hooks/usePickerState';
 import { useGlobalKeyDown, keycode } from '../../_shared/hooks/useKeyDown';
 import { SlideTransition, SlideDirection, SlideTransitionProps } from './SlideTransition';
 
@@ -131,8 +132,11 @@ export const Calendar: React.FC<CalendarProps> = withDefaultProps(
     const classes = useStyles();
 
     const handleDaySelect = React.useCallback(
-      (day: MaterialUiPickersDate, isFinish: boolean | symbol = true) => {
-        onChange(Array.isArray(date) ? day : utils.mergeDateAndTime(day, date || now), isFinish);
+      (day: MaterialUiPickersDate, isFinish: PickerSelectionState = 'finish') => {
+        // TODO possibly buggy line figure out and add tests
+        const finalDate = Array.isArray(date) ? day : utils.mergeDateAndTime(day, date || now);
+
+        onChange(finalDate, isFinish);
       },
       [date, now, onChange, utils]
     );

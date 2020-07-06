@@ -21,7 +21,6 @@ function DatePickersVariants(props) {
       />
 
       <DesktopDatePicker
-        autoOk
         label="For desktop"
         minDate={new Date('2017-01-01')}
         value={selectedDate}

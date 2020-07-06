@@ -68,6 +68,4 @@ describe('DateRangePicker', () => {
     expect(component.find('Calendar').length).toBe(3);
     expect(component.find('button[data-mui-test="DateRangeDay"]').length).toBe(90);
   });
-
-
 });

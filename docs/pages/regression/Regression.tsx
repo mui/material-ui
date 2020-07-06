@@ -48,13 +48,11 @@ function Regression() {
           {...sharedProps}
         />
         <DesktopDatePicker
-          autoOk
           {...makeRenderInputProp({ id: 'keyboard-mask-datepicker' })}
           {...sharedProps}
           inputFormat="MM/dd/yyyy"
         />
         <DesktopDatePicker
-          autoOk
           {...makeRenderInputProp({ id: 'keyboard-invalid-mask-datepicker' })}
           {...sharedProps}
           mask="__"

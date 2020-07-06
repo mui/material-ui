@@ -5,8 +5,8 @@ import Typography from '@material-ui/core/Typography';
 import { DatePickerView } from './DatePicker';
 import { useUtils } from '../_shared/hooks/useUtils';
 import { makeStyles } from '@material-ui/core/styles';
-import { ToolbarComponentProps } from '../Picker/Picker';
 import { withDefaultProps } from '../_shared/withDefaultProps';
+import { ToolbarComponentProps } from '../Picker/SharedPickerProps';
 import { isYearAndMonthViews, isYearOnlyView } from '../_helpers/date-utils';
 
 const muiPickersComponentConfig = { name: 'MuiPickersDatePickerToolbar' };
@@ -33,8 +33,10 @@ export const DatePickerToolbar: React.FC<ToolbarComponentProps> = withDefaultPro
     isMobileKeyboardViewOpen,
     toggleMobileKeyboardView,
     toolbarFormat,
+    onChange,
     toolbarPlaceholder = '––',
     toolbarTitle = 'SELECT DATE',
+    ...other
   }) => {
     const utils = useUtils();
     const classes = useStyles();
@@ -71,6 +73,7 @@ export const DatePickerToolbar: React.FC<ToolbarComponentProps> = withDefaultPro
         toggleMobileKeyboardView={toggleMobileKeyboardView}
         isLandscape={isLandscape}
         penIconClassName={classes.penIcon}
+        {...other}
       >
         <Typography
           variant="h4"
