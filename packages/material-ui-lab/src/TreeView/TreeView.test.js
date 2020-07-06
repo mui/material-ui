@@ -91,6 +91,48 @@ describe('<TreeView />', () => {
     });
   });
 
+  it('should call onKeyDown when a key is pressed', () => {
+    const handleKeyDown = spy();
+
+    const { getByRole } = render(
+      <TreeView onKeyDown={handleKeyDown}>
+        <TreeItem nodeId="test" label="test" data-testid="test" />
+      </TreeView>,
+    );
+    getByRole('tree').focus();
+
+    fireEvent.keyDown(getByRole('tree'), { key: 'Enter' });
+    fireEvent.keyDown(getByRole('tree'), { key: 'A' });
+    fireEvent.keyDown(getByRole('tree'), { key: ']' });
+
+    expect(handleKeyDown.callCount).to.equal(3);
+  });
+
+  it('should call onFocus when tree is focused', () => {
+    const handleFocus = spy();
+
+    const { getByRole } = render(
+      <TreeView onFocus={handleFocus}>
+        <TreeItem nodeId="test" label="test" data-testid="test" />
+      </TreeView>,
+    );
+    getByRole('tree').focus();
+    expect(handleFocus.callCount).to.equal(1);
+  });
+
+  it('should call onBlur when tree is blurred', () => {
+    const handleBlur = spy();
+
+    const { getByRole } = render(
+      <TreeView onBlur={handleBlur}>
+        <TreeItem nodeId="test" label="test" data-testid="test" />
+      </TreeView>,
+    );
+    getByRole('tree').focus();
+    getByRole('tree').blur();
+    expect(handleBlur.callCount).to.equal(1);
+  });
+
   it('should be able to be controlled with the expanded prop', () => {
     function MyComponent() {
       const [expandedState, setExpandedState] = React.useState([]);
@@ -106,14 +148,16 @@ describe('<TreeView />', () => {
       );
     }
 
-    const { getByTestId, getByText } = render(<MyComponent />);
+    const { getByTestId, getByText, getByRole } = render(<MyComponent />);
 
     expect(getByTestId('one')).to.have.attribute('aria-expanded', 'false');
     fireEvent.click(getByText('one'));
+    // Clicks would normally focus tree
+    getByRole('tree').focus();
     expect(getByTestId('one')).to.have.attribute('aria-expanded', 'true');
     fireEvent.click(getByText('one'));
     expect(getByTestId('one')).to.have.attribute('aria-expanded', 'false');
-    fireEvent.keyDown(getByTestId('one'), { key: '*' });
+    fireEvent.keyDown(getByRole('tree'), { key: '*' });
     expect(getByTestId('one')).to.have.attribute('aria-expanded', 'true');
   });
 
@@ -174,31 +218,32 @@ describe('<TreeView />', () => {
       const [, setState] = React.useState(1);
 
       return (
-        <TreeView>
-          <TreeItem
-            nodeId="one"
-            label="one"
-            data-testid="one"
-            onFocus={() => {
-              setState(Math.random);
-            }}
-          >
+        <TreeView
+          onFocus={() => {
+            setState(Math.random);
+          }}
+          id="tree"
+        >
+          <TreeItem nodeId="one" label="one" data-testid="one">
             <TreeItem nodeId="two" label="two" data-testid="two" />
           </TreeItem>
         </TreeView>
       );
     }
 
-    const { getByText, getByTestId } = render(<MyComponent />);
+    const { getByText, getByRole } = render(<MyComponent />);
 
     fireEvent.click(getByText('one'));
-    expect(getByTestId('one')).toHaveFocus();
-    fireEvent.keyDown(getByTestId('one'), { key: 'ArrowDown' });
-    expect(getByTestId('two')).toHaveFocus();
-    fireEvent.keyDown(getByTestId('two'), { key: 'ArrowUp' });
-    expect(getByTestId('one')).toHaveFocus();
-    fireEvent.keyDown(getByTestId('one'), { key: 'ArrowDown' });
-    expect(getByTestId('two')).toHaveFocus();
+    // Clicks would normally focus tree
+    getByRole('tree').focus();
+
+    expect(getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-one');
+    fireEvent.keyDown(getByRole('tree'), { key: 'ArrowDown' });
+    expect(getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-two');
+    fireEvent.keyDown(getByRole('tree'), { key: 'ArrowUp' });
+    expect(getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-one');
+    fireEvent.keyDown(getByRole('tree'), { key: 'ArrowDown' });
+    expect(getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-two');
   });
 
   it('should support conditional rendered tree items', () => {
@@ -220,6 +265,23 @@ describe('<TreeView />', () => {
     expect(getByText('test')).not.to.equal(null);
     fireEvent.click(getByText('Hide'));
     expect(queryByText('test')).to.equal(null);
+  });
+
+  describe('onNodeFocus', () => {
+    it('should be called when node is focused', () => {
+      const focusSpy = spy();
+      const { getByRole } = render(
+        <TreeView onNodeFocus={focusSpy}>
+          <TreeItem nodeId="1" label="one" />
+        </TreeView>,
+      );
+
+      // First node receives focus when tree focused
+      getByRole('tree').focus();
+
+      expect(focusSpy.callCount).to.equal(1);
+      expect(focusSpy.args[0][1]).to.equal('1');
+    });
   });
 
   describe('onNodeToggle', () => {
