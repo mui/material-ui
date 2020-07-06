@@ -432,7 +432,12 @@ describe('<Autocomplete />', () => {
       expect(textbox).toHaveFocus();
     });
 
-    it('should fail validation if a required field has no value', () => {
+    it('should fail validation if a required field has no value', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // Enable once https://github.com/jsdom/jsdom/issues/2898 is resolved
+        this.skip();
+      }
+
       const handleSubmit = spy((event) => event.preventDefault());
       render(
         <form onSubmit={handleSubmit}>
@@ -453,6 +458,12 @@ describe('<Autocomplete />', () => {
     });
 
     it('should pass validation if a required field has a value', () => {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // Enable once https://github.com/jsdom/jsdom/issues/2898 is resolved
+        // The test is passing in JSDOM but form validation is buggy in JSDOM so we rather skip than have false confidence
+        this.skip();
+      }
+
       const handleSubmit = spy((event) => event.preventDefault());
       render(
         <form onSubmit={handleSubmit}>
