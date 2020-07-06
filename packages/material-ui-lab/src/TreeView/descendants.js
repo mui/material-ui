@@ -99,7 +99,11 @@ export function useDescendant(descendant) {
   // feels a little off, but checking in render and using the result in the
   // effect's dependency array works well enough.
   const someDescendantsHaveChanged = descendants.some((newDescendant, position) => {
-    return newDescendant.element !== previousDescendants?.[position]?.element;
+    return (
+      previousDescendants &&
+      previousDescendants[position] &&
+      previousDescendants[position].element !== newDescendant.element
+    );
   });
 
   // Prevent any flashing
@@ -142,7 +146,7 @@ export function DescendantProvider(props) {
 
       const index = binaryFindElement(oldItems, element);
 
-      if (oldItems[index]?.element === element) {
+      if (oldItems[index] && oldItems[index].element === element) {
         // If the element is already registered, just use the same array
         newItems = oldItems;
       } else {
