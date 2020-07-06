@@ -28,6 +28,10 @@ declare namespace Chai {
      */
     toHaveFocus(): void;
     /**
+     * checks if the element is virtually focused
+     */
+    toHaveVirtualFocus(): void;
+    /**
      * Matches calls to `console.warn` in the asserted callback.
      *
      * @example expect(() => render()).not.toWarnDev()

@@ -265,7 +265,7 @@ describe('<TreeItem />', () => {
 
         expect(screen.queryAllByRole('treeitem', { selected: true })).to.have.length(0);
         screen.getByRole('tree').focus();
-        expect(screen.getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-1');
+        expect(screen.getByTestId('one')).toHaveVirtualFocus();
       });
 
       it('should focus the selected node if a node is selected before the tree receives focus', () => {
@@ -279,7 +279,7 @@ describe('<TreeItem />', () => {
 
         expect(screen.getByTestId('two')).to.have.attribute('aria-selected', 'true');
         screen.getByRole('tree').focus();
-        expect(screen.getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-2');
+        expect(screen.getByTestId('two')).toHaveVirtualFocus();
       });
     });
 
@@ -300,7 +300,7 @@ describe('<TreeItem />', () => {
           fireEvent.keyDown(screen.getByRole('tree'), { key: 'ArrowRight' });
 
           expect(screen.getByTestId('one')).to.have.attribute('aria-expanded', 'true');
-          expect(screen.getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-one');
+          expect(screen.getByTestId('one')).toHaveVirtualFocus();
         });
 
         it('should move focus to the first child if focus is on an open node', () => {
@@ -317,7 +317,7 @@ describe('<TreeItem />', () => {
           screen.getByRole('tree').focus();
           fireEvent.keyDown(screen.getByRole('tree'), { key: 'ArrowRight' });
 
-          expect(screen.getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-two');
+          expect(screen.getByTestId('two')).toHaveVirtualFocus();
         });
 
         it('should do nothing if focus is on an end node', () => {
@@ -330,13 +330,12 @@ describe('<TreeItem />', () => {
           );
 
           fireEvent.click(screen.getByText('two'));
-
-          expect(screen.getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-two');
-
           screen.getByRole('tree').focus();
+
+          expect(screen.getByTestId('two')).toHaveVirtualFocus();
           fireEvent.keyDown(screen.getByRole('tree'), { key: 'ArrowRight' });
 
-          expect(screen.getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-two');
+          expect(screen.getByTestId('two')).toHaveVirtualFocus();
         });
       });
 
@@ -344,7 +343,7 @@ describe('<TreeItem />', () => {
         it('should close the node if focus is on an open node', () => {
           render(
             <TreeView id="tree">
-              <TreeItem nodeId="one" label="one" data-testid="one" id="tree">
+              <TreeItem nodeId="one" label="one" data-testid="one">
                 <TreeItem nodeId="two" label="two" />
               </TreeItem>
             </TreeView>,
@@ -360,7 +359,7 @@ describe('<TreeItem />', () => {
           fireEvent.keyDown(screen.getByRole('tree'), { key: 'ArrowLeft' });
 
           expect(firstItem).to.have.attribute('aria-expanded', 'false');
-          expect(screen.getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-one');
+          expect(screen.getByTestId('one')).toHaveVirtualFocus();
         });
 
         it("should move focus to the node's parent node if focus is on a child node that is an end node", () => {
@@ -377,11 +376,12 @@ describe('<TreeItem />', () => {
           expect(firstItem).to.have.attribute('aria-expanded', 'true');
 
           fireEvent.click(secondItemLabel);
-          expect(screen.getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-two');
           screen.getByRole('tree').focus();
+
+          expect(screen.getByTestId('two')).toHaveVirtualFocus();
           fireEvent.keyDown(screen.getByRole('tree'), { key: 'ArrowLeft' });
 
-          expect(screen.getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-one');
+          expect(screen.getByTestId('one')).toHaveVirtualFocus();
           expect(firstItem).to.have.attribute('aria-expanded', 'true');
         });
 
@@ -410,7 +410,7 @@ describe('<TreeItem />', () => {
 
           fireEvent.keyDown(screen.getByRole('tree'), { key: 'ArrowLeft' });
 
-          expect(screen.getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-one');
+          expect(screen.getByTestId('one')).toHaveVirtualFocus();
           expect(screen.getByTestId('one')).to.have.attribute('aria-expanded', 'true');
         });
 
@@ -426,7 +426,7 @@ describe('<TreeItem />', () => {
           screen.getByRole('tree').focus();
           expect(screen.getByTestId('one')).to.have.attribute('aria-expanded', 'false');
           fireEvent.keyDown(screen.getByRole('tree'), { key: 'ArrowLeft' });
-          expect(screen.getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-one');
+          expect(screen.getByTestId('one')).toHaveVirtualFocus();
         });
 
         it('should do nothing if focus is on a root node that is an end node', () => {
@@ -439,7 +439,7 @@ describe('<TreeItem />', () => {
           screen.getByRole('tree').focus();
           fireEvent.keyDown(screen.getByRole('tree'), { key: 'ArrowLeft' });
 
-          expect(screen.getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-one');
+          expect(screen.getByTestId('one')).toHaveVirtualFocus();
         });
       });
 
@@ -455,7 +455,7 @@ describe('<TreeItem />', () => {
           screen.getByRole('tree').focus();
           fireEvent.keyDown(screen.getByRole('tree'), { key: 'ArrowDown' });
 
-          expect(screen.getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-two');
+          expect(screen.getByTestId('two')).toHaveVirtualFocus();
         });
 
         it('moves focus to a child node', () => {
@@ -472,7 +472,7 @@ describe('<TreeItem />', () => {
           screen.getByRole('tree').focus();
           fireEvent.keyDown(screen.getByRole('tree'), { key: 'ArrowDown' });
 
-          expect(screen.getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-two');
+          expect(screen.getByTestId('two')).toHaveVirtualFocus();
         });
 
         it('moves focus to a child node works with a dynamic tree', () => {
@@ -511,7 +511,7 @@ describe('<TreeItem />', () => {
           screen.getByRole('tree').focus();
           fireEvent.keyDown(screen.getByRole('tree'), { key: 'ArrowDown' });
 
-          expect(screen.getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-two');
+          expect(screen.getByTestId('two')).toHaveVirtualFocus();
         });
 
         it("moves focus to a parent's sibling", () => {
@@ -529,11 +529,11 @@ describe('<TreeItem />', () => {
           fireEvent.click(screen.getByText('two'));
           screen.getByRole('tree').focus();
 
-          expect(screen.getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-two');
+          expect(screen.getByTestId('two')).toHaveVirtualFocus();
 
           fireEvent.keyDown(screen.getByRole('tree'), { key: 'ArrowDown' });
 
-          expect(screen.getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-three');
+          expect(screen.getByTestId('three')).toHaveVirtualFocus();
         });
       });
 
@@ -548,11 +548,11 @@ describe('<TreeItem />', () => {
 
           fireEvent.click(screen.getByText('two'));
           screen.getByRole('tree').focus();
-          expect(screen.getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-two');
+          expect(screen.getByTestId('two')).toHaveVirtualFocus();
 
           fireEvent.keyDown(screen.getByRole('tree'), { key: 'ArrowUp' });
 
-          expect(screen.getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-one');
+          expect(screen.getByTestId('one')).toHaveVirtualFocus();
         });
 
         it('moves focus to a parent', () => {
@@ -568,11 +568,11 @@ describe('<TreeItem />', () => {
 
           fireEvent.click(screen.getByText('two'));
           screen.getByRole('tree').focus();
-          expect(screen.getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-two');
+          expect(screen.getByTestId('two')).toHaveVirtualFocus();
 
           fireEvent.keyDown(screen.getByRole('tree'), { key: 'ArrowUp' });
 
-          expect(screen.getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-one');
+          expect(screen.getByTestId('one')).toHaveVirtualFocus();
         });
 
         it("moves focus to a sibling's child", () => {
@@ -590,11 +590,11 @@ describe('<TreeItem />', () => {
           fireEvent.click(screen.getByText('three'));
           screen.getByRole('tree').focus();
 
-          expect(screen.getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-three');
+          expect(screen.getByTestId('three')).toHaveVirtualFocus();
 
           fireEvent.keyDown(screen.getByRole('tree'), { key: 'ArrowUp' });
 
-          expect(screen.getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-two');
+          expect(screen.getByTestId('two')).toHaveVirtualFocus();
         });
       });
 
@@ -612,11 +612,11 @@ describe('<TreeItem />', () => {
           fireEvent.click(screen.getByText('four'));
           screen.getByRole('tree').focus();
 
-          expect(screen.getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-four');
+          expect(screen.getByTestId('four')).toHaveVirtualFocus();
 
           fireEvent.keyDown(screen.getByRole('tree'), { key: 'Home' });
 
-          expect(screen.getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-one');
+          expect(screen.getByTestId('one')).toHaveVirtualFocus();
         });
       });
 
@@ -633,11 +633,11 @@ describe('<TreeItem />', () => {
 
           screen.getByRole('tree').focus();
 
-          expect(screen.getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-one');
+          expect(screen.getByTestId('one')).toHaveVirtualFocus();
 
           fireEvent.keyDown(screen.getByRole('tree'), { key: 'End' });
 
-          expect(screen.getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-four');
+          expect(screen.getByTestId('four')).toHaveVirtualFocus();
         });
 
         it('moves focus to the last node in the tree with expanded items', () => {
@@ -656,11 +656,11 @@ describe('<TreeItem />', () => {
 
           screen.getByRole('tree').focus();
 
-          expect(screen.getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-one');
+          expect(screen.getByTestId('one')).toHaveVirtualFocus();
 
           fireEvent.keyDown(screen.getByRole('tree'), { key: 'End' });
 
-          expect(screen.getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-six');
+          expect(screen.getByTestId('six')).toHaveVirtualFocus();
         });
       });
 
@@ -677,19 +677,19 @@ describe('<TreeItem />', () => {
 
           screen.getByRole('tree').focus();
 
-          expect(screen.getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-one');
+          expect(screen.getByTestId('one')).toHaveVirtualFocus();
 
           fireEvent.keyDown(screen.getByRole('tree'), { key: 't' });
 
-          expect(screen.getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-two');
+          expect(screen.getByTestId('two')).toHaveVirtualFocus();
 
           fireEvent.keyDown(screen.getByRole('tree'), { key: 'f' });
 
-          expect(screen.getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-four');
+          expect(screen.getByTestId('four')).toHaveVirtualFocus();
 
           fireEvent.keyDown(screen.getByRole('tree'), { key: 'o' });
 
-          expect(screen.getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-one');
+          expect(screen.getByTestId('one')).toHaveVirtualFocus();
         });
 
         it('moves focus to the next node with the same starting character', () => {
@@ -704,19 +704,19 @@ describe('<TreeItem />', () => {
 
           screen.getByRole('tree').focus();
 
-          expect(screen.getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-one');
+          expect(screen.getByTestId('one')).toHaveVirtualFocus();
 
           fireEvent.keyDown(screen.getByRole('tree'), { key: 't' });
 
-          expect(screen.getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-two');
+          expect(screen.getByTestId('two')).toHaveVirtualFocus();
 
           fireEvent.keyDown(screen.getByRole('tree'), { key: 't' });
 
-          expect(screen.getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-three');
+          expect(screen.getByTestId('three')).toHaveVirtualFocus();
 
           fireEvent.keyDown(screen.getByRole('tree'), { key: 't' });
 
-          expect(screen.getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-two');
+          expect(screen.getByTestId('two')).toHaveVirtualFocus();
         });
 
         it('should not move focus when pressing a modifier key + letter', () => {
@@ -731,19 +731,19 @@ describe('<TreeItem />', () => {
 
           screen.getByRole('tree').focus();
 
-          expect(screen.getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-apple');
+          expect(screen.getByTestId('apple')).toHaveVirtualFocus();
 
           fireEvent.keyDown(screen.getByRole('tree'), { key: 'v', ctrlKey: true });
 
-          expect(screen.getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-apple');
+          expect(screen.getByTestId('apple')).toHaveVirtualFocus();
 
           fireEvent.keyDown(screen.getByRole('tree'), { key: 'v', metaKey: true });
 
-          expect(screen.getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-apple');
+          expect(screen.getByTestId('apple')).toHaveVirtualFocus();
 
           fireEvent.keyDown(screen.getByRole('tree'), { key: 'v', shiftKey: true });
 
-          expect(screen.getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-apple');
+          expect(screen.getByTestId('apple')).toHaveVirtualFocus();
         });
 
         it('should not throw when an item is removed', () => {
@@ -757,7 +757,7 @@ describe('<TreeItem />', () => {
                 <TreeView id="tree">
                   {!hide && <TreeItem nodeId="hide" label="ab" />}
                   <TreeItem nodeId="keyDown" label="keyDown" data-testid="keyDown" />
-                  <TreeItem nodeId="navTo" data-testid="navTo" label="ac" />
+                  <TreeItem nodeId="navTo" label="ac" data-testid="navTo" />
                 </TreeView>
               </React.Fragment>
             );
@@ -770,14 +770,11 @@ describe('<TreeItem />', () => {
 
           expect(() => {
             screen.getByRole('tree').focus();
-            expect(screen.getByRole('tree')).to.have.attribute(
-              'aria-activedescendant',
-              'tree-keyDown',
-            );
+            expect(screen.getByTestId('keyDown')).toHaveVirtualFocus();
             fireEvent.keyDown(screen.getByRole('tree'), { key: 'a' });
           }).not.to.throw();
 
-          expect(screen.getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-navTo');
+          expect(screen.getByTestId('navTo')).toHaveVirtualFocus();
         });
       });
 
@@ -939,7 +936,7 @@ describe('<TreeItem />', () => {
 
           fireEvent.keyDown(screen.getByRole('tree'), { key: 'ArrowDown', shiftKey: true });
 
-          expect(screen.getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-four');
+          expect(screen.getByTestId('four')).toHaveVirtualFocus();
           expect(screen.queryAllByRole('treeitem', { selected: true })).to.have.length(2);
 
           fireEvent.keyDown(screen.getByRole('tree'), { key: 'ArrowDown', shiftKey: true });
@@ -951,7 +948,7 @@ describe('<TreeItem />', () => {
 
           fireEvent.keyDown(screen.getByRole('tree'), { key: 'ArrowUp', shiftKey: true });
 
-          expect(screen.getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-four');
+          expect(screen.getByTestId('four')).toHaveVirtualFocus();
           expect(screen.queryAllByRole('treeitem', { selected: true })).to.have.length(2);
 
           fireEvent.keyDown(screen.getByRole('tree'), { key: 'ArrowUp', shiftKey: true });
@@ -986,7 +983,7 @@ describe('<TreeItem />', () => {
           fireEvent.click(screen.getByText('three'));
           screen.getByRole('tree').focus();
           fireEvent.keyDown(screen.getByRole('tree'), { key: 'ArrowDown', shiftKey: true });
-          expect(screen.getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-two');
+          expect(screen.getByTestId('two')).toHaveVirtualFocus();
           expect(screen.queryAllByRole('treeitem', { selected: true })).to.have.length(0);
 
           fireEvent.keyDown(screen.getByRole('tree'), { key: 'ArrowUp', shiftKey: true });
@@ -1360,8 +1357,9 @@ describe('<TreeItem />', () => {
     );
 
     fireEvent.click(screen.getByText('two'));
+    screen.getByRole('tree').focus();
 
-    expect(screen.getByRole('tree')).to.have.attribute('aria-activedescendant', 'tree-two');
+    expect(screen.getByTestId('two')).toHaveVirtualFocus();
 
     screen.getByRole('button').focus();
 

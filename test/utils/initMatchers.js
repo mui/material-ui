@@ -28,6 +28,21 @@ chai.use((chaiAPI, utils) => {
     );
   });
 
+  chai.Assertion.addMethod('toHaveVirtualFocus', function elementIsVirtuallyFocused() {
+    const element = utils.flag(this, 'object');
+    const id = element.getAttribute('id');
+
+    const virtualFocusedNode = document.activeElement.getAttribute('aria-activedescendant');
+
+    this.assert(
+      virtualFocusedNode === id,
+      'expected element to have have virtual focus',
+      'expected element to NOT to have virtual focus',
+      id,
+      virtualFocusedNode,
+    );
+  });
+
   chai.Assertion.addMethod('toBeAriaHidden', function elementIsAccessible() {
     const element = utils.flag(this, 'object');
 
