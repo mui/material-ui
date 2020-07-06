@@ -216,7 +216,6 @@ describe('<TrapFocus />', () => {
 
         // set the expected focus restore location
         getByRole('textbox').focus();
-        expect(getByRole('textbox')).toHaveFocus();
 
         // the trap activates
         getByTestId('modal').focus();
