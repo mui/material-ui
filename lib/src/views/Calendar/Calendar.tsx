@@ -98,7 +98,7 @@ export const useStyles = makeStyles(theme => {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      color: theme.palette.text.hint,
+      color: theme.palette.text.secondary,
     },
   };
 }, muiComponentConfig);

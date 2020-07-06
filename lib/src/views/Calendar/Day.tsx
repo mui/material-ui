@@ -40,14 +40,14 @@ export const useStyles = makeStyles(
       margin: `0 ${DAY_MARGIN}px`,
     },
     dayOutsideMonth: {
-      color: theme.palette.text.hint,
+      color: theme.palette.text.secondary,
     },
     hiddenDaySpacingFiller: {
       visibility: 'hidden',
     },
     today: {
       '&:not($daySelected)': {
-        border: `1px solid ${theme.palette.text.hint}`,
+        border: `1px solid ${theme.palette.text.secondary}`,
       },
     },
     daySelected: {
@@ -64,7 +64,7 @@ export const useStyles = makeStyles(
     },
     dayDisabled: {
       pointerEvents: 'none',
-      color: theme.palette.text.hint,
+      color: theme.palette.text.secondary,
     },
     dayLabel: {
       // need for overrides

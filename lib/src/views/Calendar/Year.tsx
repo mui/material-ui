@@ -54,7 +54,7 @@ export const useStyles = makeStyles(
     },
     yearDisabled: {
       pointerEvents: 'none',
-      color: theme.palette.text.hint,
+      color: theme.palette.text.secondary,
     },
   }),
   { name: 'MuiPickersYear' }

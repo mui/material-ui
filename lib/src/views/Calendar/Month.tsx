@@ -34,7 +34,7 @@ export const useStyles = makeStyles(
     },
     monthDisabled: {
       pointerEvents: 'none',
-      color: theme.palette.text.hint,
+      color: theme.palette.text.secondary,
     },
   }),
   { name: 'MuiPickersMonth' }
