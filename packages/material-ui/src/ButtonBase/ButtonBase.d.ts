@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { TouchRippleProps } from './TouchRipple';
 import { OverrideProps, OverridableComponent, OverridableTypeMap } from '../OverridableComponent';
-import { Omit } from '@material-ui/types';
 
 export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button'> {
   props: P & {
