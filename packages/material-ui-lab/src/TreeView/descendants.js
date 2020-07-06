@@ -26,7 +26,7 @@ function binaryFindElement(array, element) {
     if (array[middle].element === element) {
       return middle;
     }
-    // Is before
+
     // eslint-disable-next-line no-bitwise
     if (array[middle].element.compareDocumentPosition(element) & Node.DOCUMENT_POSITION_PRECEDING) {
       end = middle - 1;
