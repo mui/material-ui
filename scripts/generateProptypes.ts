@@ -208,24 +208,18 @@ async function generateProptypes(
 
       return generated;
     },
-    shouldInclude: ({ component, prop, usedProps }) => {
+    shouldInclude: ({ component, prop }) => {
       if (prop.name === 'children') {
         return true;
       }
       let shouldDocument;
 
-      const documentRegExp = new RegExp(/\r?\n?@document/);
-      if (prop.jsDoc && documentRegExp.test(prop.jsDoc)) {
-        prop.jsDoc = prop.jsDoc.replace(documentRegExp, '');
-        shouldDocument = true;
-      } else {
-        prop.filenames.forEach((filename) => {
-          const isExternal = filename !== tsFile;
-          if (!isExternal) {
-            shouldDocument = true;
-          }
-        });
-      }
+      prop.filenames.forEach((filename) => {
+        const isExternal = filename !== tsFile;
+        if (!isExternal) {
+          shouldDocument = true;
+        }
+      });
 
       const { name: componentName } = component;
       if (
