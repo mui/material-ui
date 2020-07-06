@@ -116,17 +116,7 @@ export function useDescendant(descendant) {
     forceUpdate({});
 
     return undefined;
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    registerDescendant,
-    unregisterDescendant,
-    index,
-    someDescendantsHaveChanged,
-    // re-run effect if `descendant` is not equal shallowly
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    ...Object.keys(descendant).map((key) => descendant[key]),
-  ]);
+  }, [registerDescendant, unregisterDescendant, index, someDescendantsHaveChanged, descendant]);
 
   return { parentId, index };
 }

@@ -122,14 +122,18 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     treeId,
   } = React.useContext(TreeViewContext);
 
-  const nodeRef = React.useRef(null);
+  const [nodeRef, setNodeRef] = React.useState(null);
   const contentRef = React.useRef(null);
-  const handleRef = useForkRef(nodeRef, ref);
+  const handleRef = useForkRef(setNodeRef, ref);
 
-  const { index, parentId } = useDescendant({
-    element: nodeRef.current,
-    id: nodeId,
-  });
+  const descendant = React.useMemo(
+    () => ({
+      element: nodeRef,
+      id: nodeId,
+    }),
+    [nodeId, nodeRef],
+  );
+  const { index, parentId } = useDescendant(descendant);
 
   let icon = iconProp;
 
