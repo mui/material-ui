@@ -2,11 +2,12 @@ import React from 'react';
 import {
   createMuiTheme,
   makeStyles,
+  Theme,
   ThemeProvider,
 } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   margin: {
     margin: theme.spacing(1),
   },
@@ -30,15 +31,15 @@ const theme = createMuiTheme({
       },
       {
         matcher: { size: 'xxlarge' },
-        styles: {
-          fontSize: '50px',
-        },
+        styles: (theme: Theme) => ({
+          fontSize: theme.typography.pxToRem(20),
+        }),
       },
     ],
   },
 });
 
-export default function CustomizedButtons() {
+export default function CustomVariantButtons() {
   const classes = useStyles();
 
   return (
