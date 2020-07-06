@@ -1,8 +1,8 @@
 import { ComponentsPropsList } from './props';
-import { CSSProperties, CreateCSSProperties, PropsFunc } from './withStyles';
+import { CSSProperties, CreateCSSProperties, PropsFunc } from '@material-ui/styles/withStyles';
 
 export type Variants = {
-  [Name in keyof ComponentsPropsList]?: {
+  [Name in keyof ComponentsPropsList]?: Array<{
     matcher: Partial<ComponentsPropsList[Name]>;
     styles: // JSS property bag
     | CSSProperties
@@ -13,5 +13,5 @@ export type Variants = {
           Partial<ComponentsPropsList[Name]>,
           CreateCSSProperties<Partial<ComponentsPropsList[Name]>>
         >;
-  }[];
+  }>;
 };

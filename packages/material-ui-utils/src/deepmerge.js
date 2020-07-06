@@ -5,7 +5,6 @@ export function isPlainObject(item) {
 export default function deepmerge(target, source, options = { clone: true }) {
   const output = options.clone ? { ...target } : target;
 
-  // TODO: add merging of arrays
   if (isPlainObject(target) && isPlainObject(source)) {
     Object.keys(source).forEach((key) => {
       // Avoid prototype pollution
@@ -15,7 +14,7 @@ export default function deepmerge(target, source, options = { clone: true }) {
 
       if (isPlainObject(source[key]) && key in target) {
         output[key] = deepmerge(target[key], source[key], options);
-      } else {
+      } else{
         output[key] = source[key];
       }
     });

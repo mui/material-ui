@@ -31,9 +31,9 @@ const theme = createMuiTheme({
       },
       {
         matcher: { size: 'xxlarge' },
-        styles: (theme: Theme) => ({
-          fontSize: theme.typography.pxToRem(20),
-        }),
+        styles: {
+          fontSize: 20,
+        },
       },
     ],
   },
