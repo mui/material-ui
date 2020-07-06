@@ -431,6 +431,46 @@ describe('<Autocomplete />', () => {
       fireEvent.keyDown(firstSelectedValue, { key: 'ArrowRight' });
       expect(textbox).toHaveFocus();
     });
+
+    it('should fail validation if a required field has no value', () => {
+      const handleSubmit = spy((event) => event.preventDefault());
+      render(
+        <form onSubmit={handleSubmit}>
+          <Autocomplete
+            {...defaultProps}
+            multiple
+            options={['one', 'two']}
+            renderInput={(params) => <TextField {...params} autoFocus required />}
+            value={[]}
+          />
+          <button type="submit">Submit</button>
+        </form>,
+      );
+
+      screen.getByRole('button', { name: 'Submit' }).click();
+
+      expect(handleSubmit.callCount).to.equal(0);
+    });
+
+    it('should pass validation if a required field has a value', () => {
+      const handleSubmit = spy((event) => event.preventDefault());
+      render(
+        <form onSubmit={handleSubmit}>
+          <Autocomplete
+            {...defaultProps}
+            multiple
+            options={['one', 'two']}
+            renderInput={(params) => <TextField {...params} autoFocus required />}
+            value={['one']}
+          />
+          <button type="submit">Submit</button>
+        </form>,
+      );
+
+      screen.getByRole('button', { name: 'Submit' }).click();
+
+      expect(handleSubmit.callCount).to.equal(1);
+    });
   });
 
   it('should trigger a form expectedly', () => {
