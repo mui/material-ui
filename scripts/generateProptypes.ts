@@ -18,13 +18,10 @@ enum GenerateResult {
   TODO,
 }
 
-const todoComponents = [
-  // lab
-  'PaginationItem',
-  'Skeleton',
-  'TabList',
-  'ToggleButton',
-];
+/**
+ * Includes component names for which we can't generate .propTypes from the TypeScript types.
+ */
+const todoComponents: string[] = [];
 
 const useExternalPropsFromInputBase = [
   'autoComplete',
@@ -92,6 +89,7 @@ const useExternalDocumentation: Record<string, string[]> = {
     'variant',
   ],
   Tab: ['disableRipple'],
+  ToggleButton: ['disableRipple'],
 };
 const transitionCallbacks = [
   'onEnter',

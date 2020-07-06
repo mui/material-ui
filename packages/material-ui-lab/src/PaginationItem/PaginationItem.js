@@ -230,6 +230,7 @@ const PaginationItem = React.forwardRef(function PaginationItem(props, ref) {
           first: FirstPageIcon,
           last: LastPageIcon,
         };
+
   const Icon = normalizedIcons[type];
 
   return type === 'start-ellipsis' || type === 'end-ellipsis' ? (
@@ -270,10 +271,19 @@ const PaginationItem = React.forwardRef(function PaginationItem(props, ref) {
 });
 
 PaginationItem.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * @ignore
    */
-  classes: PropTypes.object.isRequired,
+  children: PropTypes.node,
+  /**
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css) below for more details.
+   */
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -281,7 +291,7 @@ PaginationItem.propTypes = {
   /**
    * The active color.
    */
-  color: PropTypes.oneOf(['standard', 'primary', 'secondary']),
+  color: PropTypes.oneOf(['primary', 'secondary', 'standard']),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -306,23 +316,23 @@ PaginationItem.propTypes = {
   /**
    * The size of the pagination item.
    */
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  size: PropTypes.oneOf(['large', 'medium', 'small']),
   /**
    * The type of pagination item.
    */
   type: PropTypes.oneOf([
-    'page',
+    'end-ellipsis',
     'first',
     'last',
     'next',
+    'page',
     'previous',
     'start-ellipsis',
-    'end-ellipsis',
   ]),
   /**
    * The pagination item variant.
    */
-  variant: PropTypes.oneOf(['text', 'outlined']),
+  variant: PropTypes.oneOf(['outlined', 'text']),
 };
 
 export default withStyles(styles, { name: 'MuiPaginationItem' })(PaginationItem);
