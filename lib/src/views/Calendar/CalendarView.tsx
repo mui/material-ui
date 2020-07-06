@@ -126,8 +126,8 @@ export const CalendarView: React.FC<CalendarViewProps> = withDefaultProps(
         const closestEnabledDate = findClosestEnabledDate({
           utils,
           date,
-          minDate: utils.date(minDate),
-          maxDate: utils.date(maxDate),
+          minDate,
+          maxDate,
           disablePast: Boolean(disablePast),
           disableFuture: Boolean(disableFuture),
           shouldDisableDate: isDateDisabled,

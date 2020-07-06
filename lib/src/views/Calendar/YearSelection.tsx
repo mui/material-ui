@@ -4,6 +4,7 @@ import { MaterialUiPickersDate } from '../../typings/date';
 import { useUtils, useNow } from '../../_shared/hooks/useUtils';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { PickerOnChangeFn } from '../../_shared/hooks/useViews';
+import { findClosestEnabledDate } from '../../_helpers/date-utils';
 import { PickerSelectionState } from '../../_shared/hooks/usePickerState';
 import { WrapperVariantContext } from '../../wrappers/WrapperVariantContext';
 import { useGlobalKeyDown, keycode as keys } from '../../_shared/hooks/useKeyDown';
@@ -53,6 +54,8 @@ export const YearSelection: React.FC<YearSelectionProps> = ({
   isDateDisabled,
   maxDate,
   minDate,
+  disableFuture,
+  disablePast,
   onChange,
   onYearChange,
   shouldDisableYear,
@@ -70,19 +73,44 @@ export const YearSelection: React.FC<YearSelectionProps> = ({
 
   const handleYearSelection = React.useCallback(
     (year: number, isFinish: PickerSelectionState = 'finish') => {
+      const submitDate = (newDate: MaterialUiPickersDate) => {
+        onChange(newDate, isFinish);
+        changeFocusedDay(newDate);
+
+        if (onYearChange) {
+          onYearChange(newDate);
+        }
+      };
+
       const newDate = utils.setYear(selectedDate, year);
       if (isDateDisabled(newDate)) {
-        return;
-      }
+        const closestEnabledDate = findClosestEnabledDate({
+          utils,
+          date: newDate,
+          minDate,
+          maxDate,
+          disablePast: Boolean(disablePast),
+          disableFuture: Boolean(disableFuture),
+          shouldDisableDate: isDateDisabled,
+        });
 
-      if (onYearChange) {
-        onYearChange(newDate);
+        submitDate(closestEnabledDate);
+      } else {
+        submitDate(newDate);
       }
-
-      onChange(newDate, isFinish);
-      changeFocusedDay(newDate);
     },
-    [changeFocusedDay, selectedDate, isDateDisabled, onChange, onYearChange, utils]
+    [
+      utils,
+      selectedDate,
+      isDateDisabled,
+      onChange,
+      changeFocusedDay,
+      onYearChange,
+      minDate,
+      maxDate,
+      disablePast,
+      disableFuture,
+    ]
   );
 
   const focusYear = React.useCallback(
@@ -119,8 +147,8 @@ export const YearSelection: React.FC<YearSelectionProps> = ({
             focused={yearNumber === focusedYear}
             ref={selected ? selectedYearRef : undefined}
             disabled={
-              // Make sure that final date (with month and day included) will be enabled
-              isDateDisabled(utils.setYear(selectedDate, yearNumber)) ||
+              (disablePast && utils.isBeforeYear(year, now)) ||
+              (disableFuture && utils.isAfterYear(year, now)) ||
               (shouldDisableYear && shouldDisableYear(year))
             }
           >

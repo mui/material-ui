@@ -1,26 +1,30 @@
 import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
-import { createClientRender } from './createClientRender';
+import { getByMuiTest } from './test-utils';
+import { screen, waitFor } from '@testing-library/react';
 import { utilsToUse, FakeTransitionComponent } from './test-utils';
-import { screen, fireEvent, waitFor } from '@testing-library/react';
-import { DatePicker, MobileDatePicker, DesktopDatePicker } from '../DatePicker';
+import { createClientRender, fireEvent } from './createClientRender';
+import { DatePicker, MobileDatePicker, DesktopDatePicker } from '@material-ui/pickers';
 
 describe('<DatePicker />', () => {
   const render = createClientRender({ strict: false });
+
   it('Allows to select edge years from list', () => {
     render(
       <DatePicker
         open
+        reduceAnimations
         value={null}
         onChange={jest.fn()}
-        views={['year']}
+        openTo="year"
         minDate={new Date('2000-01-01')}
         maxDate={new Date('2010-01-01')}
         renderInput={props => <TextField {...props} />}
       />
     );
 
-    expect(screen.getByRole('button', { name: '2010' })).toBeDisabled();
+    fireEvent.click(screen.getByRole('button', { name: '2010' }));
+    expect(getByMuiTest('datepicker-toolbar-date')).toHaveTextContent('Fri, Jan 1');
   });
 
   it("doesn't close picker on selection in Mobile mode", () => {
