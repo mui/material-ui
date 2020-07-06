@@ -432,6 +432,19 @@ describe('<Autocomplete />', () => {
       expect(textbox).toHaveFocus();
     });
 
+    it('has no textbox value', () => {
+      render(
+        <Autocomplete
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
+          multiple
+          value={['one', 'two']}
+        />,
+      );
+
+      expect(screen.getByRole('textbox')).to.have.property('value', '');
+    });
+
     it('should fail validation if a required field has no value', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         // Enable once https://github.com/jsdom/jsdom/issues/2898 is resolved
@@ -442,10 +455,9 @@ describe('<Autocomplete />', () => {
       render(
         <form onSubmit={handleSubmit}>
           <Autocomplete
-            {...defaultProps}
             multiple
             options={['one', 'two']}
-            renderInput={(params) => <TextField {...params} autoFocus required />}
+            renderInput={(params) => <TextField {...params} required />}
             value={[]}
           />
           <button type="submit">Submit</button>
@@ -457,7 +469,8 @@ describe('<Autocomplete />', () => {
       expect(handleSubmit.callCount).to.equal(0);
     });
 
-    it('should pass validation if a required field has a value', () => {
+    it('should fail validation if a required field has a value', function test() {
+      // Unclear how native Constraint validation can be enabled for `multiple`
       if (/jsdom/.test(window.navigator.userAgent)) {
         // Enable once https://github.com/jsdom/jsdom/issues/2898 is resolved
         // The test is passing in JSDOM but form validation is buggy in JSDOM so we rather skip than have false confidence
@@ -468,10 +481,9 @@ describe('<Autocomplete />', () => {
       render(
         <form onSubmit={handleSubmit}>
           <Autocomplete
-            {...defaultProps}
             multiple
             options={['one', 'two']}
-            renderInput={(params) => <TextField {...params} autoFocus required />}
+            renderInput={(params) => <TextField {...params} required />}
             value={['one']}
           />
           <button type="submit">Submit</button>
@@ -480,7 +492,7 @@ describe('<Autocomplete />', () => {
 
       screen.getByRole('button', { name: 'Submit' }).click();
 
-      expect(handleSubmit.callCount).to.equal(1);
+      expect(handleSubmit.callCount).to.equal(0);
     });
   });
 
