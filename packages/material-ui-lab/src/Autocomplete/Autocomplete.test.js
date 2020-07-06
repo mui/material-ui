@@ -215,11 +215,12 @@ describe('<Autocomplete />', () => {
       );
 
       expect(container.textContent).to.equal('onetwo+1');
-      expect(getAllByRole('button')).to.have.lengthOf(4);
+      // include hidden clear button because JSDOM thinks it's visible
+      expect(getAllByRole('button', { hidden: true })).to.have.lengthOf(4);
 
       getByRole('textbox').focus();
       expect(container.textContent).to.equal('onetwothree');
-      expect(getAllByRole('button')).to.have.lengthOf(5);
+      expect(getAllByRole('button', { hidden: false })).to.have.lengthOf(5);
     });
 
     it('show 0 item on close when set 0 to limitTags', () => {
@@ -235,11 +236,12 @@ describe('<Autocomplete />', () => {
       );
 
       expect(container.textContent).to.equal('+3');
-      expect(getAllByRole('button')).to.have.lengthOf(2);
+      // include hidden clear button because JSDOM thinks it's visible
+      expect(getAllByRole('button', { hidden: true })).to.have.lengthOf(2);
 
       getByRole('textbox').focus();
       expect(container.textContent).to.equal('onetwothree');
-      expect(getAllByRole('button')).to.have.lengthOf(5);
+      expect(getAllByRole('button', { hidden: false })).to.have.lengthOf(5);
     });
   });
 
@@ -562,12 +564,17 @@ describe('<Autocomplete />', () => {
       const listbox = queryByRole('listbox', { hidden: true });
       expect(listbox).to.equal(null);
 
-      const buttons = getAllByRole('button');
-      expect(buttons).to.have.length(2);
-      expect(buttons[0]).toHaveAccessibleName('Clear');
-      expect(buttons[0]).to.have.attribute('title', 'Clear');
+      const buttons = getAllByRole('button', { hidden: true });
+      if (!/jsdom/.test(window.navigator.userAgent)) {
+        expect(buttons[0]).toBeInaccessible();
+      } else {
+        // JSDOM thinks the "Clear"-button has `visibility: visible`
+        // Leaving this to be notified once the JSDOM is fixed.
+        expect(buttons[0]).not.toBeInaccessible();
+      }
       expect(buttons[1]).toHaveAccessibleName('Open');
       expect(buttons[1]).to.have.attribute('title', 'Open');
+      expect(buttons).to.have.length(2);
       buttons.forEach((button) => {
         expect(button, 'button is not in tab order').to.have.property('tabIndex', -1);
       });
@@ -604,12 +611,13 @@ describe('<Autocomplete />', () => {
         expect(listbox).to.contain(option);
       });
 
-      const buttons = getAllByRole('button');
-      expect(buttons).to.have.length(2);
-      expect(buttons[0]).toHaveAccessibleName('Clear');
-      expect(buttons[0]).to.have.attribute('title', 'Clear');
+      const buttons = getAllByRole('button', { hidden: true });
+      if (!/jsdom/.test(window.navigator.userAgent)) {
+        expect(buttons[0]).toBeInaccessible();
+      }
       expect(buttons[1]).toHaveAccessibleName('Close');
       expect(buttons[1]).to.have.attribute('title', 'Close');
+      expect(buttons).to.have.length(2);
       buttons.forEach((button) => {
         expect(button, 'button is not in tab order').to.have.property('tabIndex', -1);
       });

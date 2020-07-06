@@ -98,8 +98,9 @@ export function useDescendant(descendant) {
     unregisterDescendant,
     index,
     someDescendantsHaveChanged,
+    // re-run effect if `descendant` is not equal shallowly
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    ...Object.values(descendant),
+    ...Object.keys(descendant).map((key) => descendant[key]),
   ]);
 
   return { parentId, index };
