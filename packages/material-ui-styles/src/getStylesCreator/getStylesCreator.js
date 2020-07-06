@@ -7,7 +7,7 @@ const capitalize = (string) => {
 
 const isEmpty = (string) => {
   return string.length === 0;
-}
+};
 
 const propsToClassKey = (matcher) => {
   let classKey = matcher.variant ? matcher.variant : '';
@@ -15,7 +15,7 @@ const propsToClassKey = (matcher) => {
     classKey += isEmpty(classKey) ? matcher.color : capitalize(matcher.color);
   }
   if (matcher.size) {
-    classKey += `${(isEmpty(classKey) ? 'size' : 'Size')}${capitalize(matcher.size)}`;
+    classKey += `${isEmpty(classKey) ? 'size' : 'Size'}${capitalize(matcher.size)}`;
   }
   return classKey;
 };
@@ -62,8 +62,8 @@ export default function getStylesCreator(stylesOrCreator) {
         return styles;
       }
 
-      const overrides = theme.overrides && theme.overrides[name] || {};
-      const variants = theme.variants && theme.variants[name] || [];
+      const overrides = (theme.overrides && theme.overrides[name]) || {};
+      const variants = (theme.variants && theme.variants[name]) || [];
       const stylesWithOverrides = { ...styles };
 
       Object.keys(overrides).forEach((key) => {
@@ -84,7 +84,10 @@ export default function getStylesCreator(stylesOrCreator) {
 
       variants.forEach((definition) => {
         const classKey = propsToClassKey(definition.matcher);
-        stylesWithOverrides[classKey] = deepmerge(stylesWithOverrides[classKey] || {}, definition.styles);
+        stylesWithOverrides[classKey] = deepmerge(
+          stylesWithOverrides[classKey] || {},
+          definition.styles,
+        );
       });
 
       return stylesWithOverrides;

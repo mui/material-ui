@@ -14,7 +14,7 @@ export default function deepmerge(target, source, options = { clone: true }) {
 
       if (isPlainObject(source[key]) && key in target) {
         output[key] = deepmerge(target[key], source[key], options);
-      } else{
+      } else {
         output[key] = source[key];
       }
     });
