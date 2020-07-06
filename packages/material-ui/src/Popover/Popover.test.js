@@ -5,7 +5,6 @@ import { findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils
 import createMount from 'test/utils/createMount';
 import * as PropTypes from 'prop-types';
 import describeConformance from '../test-utils/describeConformance';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Grow from '../Grow';
 import Modal from '../Modal';
 import Paper from '../Paper';
@@ -428,36 +427,29 @@ describe('<Popover />', () => {
 
   describe('warnings', () => {
     beforeEach(() => {
-      consoleErrorMock.spy();
       PropTypes.resetWarningCache();
     });
 
-    afterEach(() => {
-      consoleErrorMock.reset();
-    });
-
     it('should warn if anchorEl is not valid', () => {
-      PropTypes.checkPropTypes(
-        Popover.Naked.propTypes,
-        { classes: {}, open: true },
-        'prop',
-        'MockedPopover',
-      );
-
-      expect(consoleErrorMock.callCount()).to.equal(1);
-      expect(consoleErrorMock.messages()[0]).to.include('It should be an Element instance');
+      expect(() => {
+        PropTypes.checkPropTypes(
+          Popover.Naked.propTypes,
+          { classes: {}, open: true },
+          'prop',
+          'MockedPopover',
+        );
+      }).toErrorDev('It should be an Element instance');
     });
 
     it('warns if a component for the Paper is used that cant hold a ref', () => {
-      PropTypes.checkPropTypes(
-        Popover.Naked.propTypes,
-        { ...defaultProps, classes: {}, PaperProps: { component: () => <div />, elevation: 4 } },
-        'prop',
-        'MockedPopover',
-      );
-
-      expect(consoleErrorMock.callCount()).to.equal(1);
-      expect(consoleErrorMock.messages()[0]).to.include(
+      expect(() => {
+        PropTypes.checkPropTypes(
+          Popover.Naked.propTypes,
+          { ...defaultProps, classes: {}, PaperProps: { component: () => <div />, elevation: 4 } },
+          'prop',
+          'MockedPopover',
+        );
+      }).toErrorDev(
         'Warning: Failed prop type: Invalid prop `PaperProps.component` supplied to `MockedPopover`. Expected an element type that can hold a ref.',
       );
     });

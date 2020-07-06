@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
 import { act, createClientRender, fireEvent } from 'test/utils/createClientRender';
@@ -380,36 +379,29 @@ describe('<Tooltip />', () => {
   });
 
   describe('disabled button warning', () => {
-    beforeEach(() => {
-      consoleErrorMock.spy();
-    });
-
-    afterEach(() => {
-      consoleErrorMock.reset();
-    });
-
     it('should not raise a warning if title is empty', () => {
-      render(
-        <Tooltip title="">
-          <button type="submit" disabled>
-            Hello World
-          </button>
-        </Tooltip>,
-      );
-      expect(consoleErrorMock.callCount()).to.equal(0);
+      expect(() => {
+        render(
+          <Tooltip title="">
+            <button type="submit" disabled>
+              Hello World
+            </button>
+          </Tooltip>,
+        );
+      }).not.toErrorDev();
     });
 
     it('should raise a warning when we are uncontrolled and can not listen to events', () => {
-      render(
-        <Tooltip title="Hello World">
-          <button type="submit" disabled>
-            Hello World
-          </button>
-        </Tooltip>,
-      );
-      expect(consoleErrorMock.callCount()).to.equal(1);
-      expect(consoleErrorMock.messages()[0]).to.match(
-        /Material-UI: You are providing a disabled `button` child to the Tooltip component/,
+      expect(() => {
+        render(
+          <Tooltip title="Hello World">
+            <button type="submit" disabled>
+              Hello World
+            </button>
+          </Tooltip>,
+        );
+      }).toErrorDev(
+        'Material-UI: You are providing a disabled `button` child to the Tooltip component',
       );
     });
 
@@ -421,7 +413,7 @@ describe('<Tooltip />', () => {
           </button>
         </Tooltip>,
       );
-      expect(consoleErrorMock.callCount()).to.equal(0);
+      expect(() => {}).not.toErrorDev();
     });
   });
 
@@ -593,14 +585,6 @@ describe('<Tooltip />', () => {
   });
 
   describe('warnings', () => {
-    beforeEach(() => {
-      consoleErrorMock.spy();
-    });
-
-    afterEach(() => {
-      consoleErrorMock.reset();
-    });
-
     it('should warn when switching between uncontrolled to controlled', () => {
       const { setProps } = render(
         <Tooltip title="Hello World">
@@ -610,8 +594,9 @@ describe('<Tooltip />', () => {
         </Tooltip>,
       );
 
-      setProps({ open: true });
-      expect(consoleErrorMock.messages()[0]).to.include(
+      expect(() => {
+        setProps({ open: true });
+      }).toErrorDev(
         'Material-UI: A component is changing the uncontrolled open state of Tooltip to be controlled.',
       );
     });

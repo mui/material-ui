@@ -4,7 +4,6 @@ import { createShallow, getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
 import HiddenCss from './HiddenCss';
 import { createMuiTheme, MuiThemeProvider } from '../styles';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 
 const Foo = () => <div>bar</div>;
 
@@ -140,26 +139,15 @@ describe('<HiddenCss />', () => {
     });
   });
 
-  describe('warnings', () => {
-    beforeEach(() => {
-      consoleErrorMock.spy();
-    });
-
-    afterEach(() => {
-      consoleErrorMock.reset();
-    });
-
-    it('warns about excess props (potentially undeclared breakpoints)', () => {
+  it('warns about excess props (potentially undeclared breakpoints)', () => {
+    expect(() => {
       mount(
         <HiddenCss xxlUp>
           <div />
         </HiddenCss>,
       );
-
-      expect(consoleErrorMock.callCount()).to.equal(1);
-      expect(consoleErrorMock.messages()[0]).to.include(
-        'Material-UI: Unsupported props received by `<Hidden implementation="css" />`: xxlUp.',
-      );
-    });
+    }).toErrorDev(
+      'Material-UI: Unsupported props received by `<Hidden implementation="css" />`: xxlUp.',
+    );
   });
 });

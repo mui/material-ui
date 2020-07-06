@@ -3,7 +3,6 @@ import { expect } from 'chai';
 import * as PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 import elementAcceptingRef from './elementAcceptingRef';
 
 describe('elementAcceptingRef', () => {
@@ -17,34 +16,28 @@ describe('elementAcceptingRef', () => {
   }
 
   beforeEach(() => {
-    consoleErrorMock.spy();
     PropTypes.resetWarningCache();
-  });
-
-  afterEach(() => {
-    consoleErrorMock.reset();
   });
 
   describe('acceptance when not required', () => {
     let rootNode;
 
     function assertPass(element, options = {}) {
-      const { failsOnMount = false, shouldMount = true } = options;
+      const { shouldMount = true } = options;
 
-      checkPropType(element);
-      if (shouldMount) {
-        ReactDOM.render(
-          <React.Suspense fallback={<p />}>
-            {React.cloneElement(element, { ref: React.createRef() })}
-          </React.Suspense>,
-          rootNode,
-        );
+      function testAct() {
+        checkPropType(element);
+        if (shouldMount) {
+          ReactDOM.render(
+            <React.Suspense fallback={<p />}>
+              {React.cloneElement(element, { ref: React.createRef() })}
+            </React.Suspense>,
+            rootNode,
+          );
+        }
       }
 
-      expect(consoleErrorMock.callCount()).to.equal(
-        failsOnMount ? 1 : 0,
-        `but got '${consoleErrorMock.messages()[0]}'`,
-      );
+      expect(testAct).not.toErrorDev();
     }
 
     before(() => {
@@ -118,25 +111,24 @@ describe('elementAcceptingRef', () => {
 
   describe('rejections', () => {
     function assertFail(Component, hint) {
-      checkPropType(Component);
-
-      expect(consoleErrorMock.callCount()).to.equal(1);
-      expect(consoleErrorMock.messages()[0]).to.include(
+      expect(() => {
+        checkPropType(Component);
+      }).toErrorDev(
         'Invalid props `children` supplied to `DummyComponent`. ' +
           `Expected an element that can hold a ref. ${hint}`,
       );
     }
 
     it('rejects undefined values when required', () => {
-      checkPropType(undefined, true);
-      expect(consoleErrorMock.callCount()).to.equal(1);
-      expect(consoleErrorMock.messages()[0]).to.include('marked as required');
+      expect(() => {
+        checkPropType(undefined, true);
+      }).toErrorDev('marked as required');
     });
 
     it('rejects null values when required', () => {
-      checkPropType(null, true);
-      expect(consoleErrorMock.callCount()).to.equal(1);
-      expect(consoleErrorMock.messages()[0]).to.include('marked as required');
+      expect(() => {
+        checkPropType(null, true);
+      }).toErrorDev('marked as required');
     });
 
     it('rejects function components', () => {

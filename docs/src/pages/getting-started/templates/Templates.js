@@ -131,12 +131,7 @@ function Templates(props) {
               <Typography component="p">{layout.description}</Typography>
             </CardContent>
             <CardActions>
-              <Button
-                component="a"
-                href={layout.source}
-                size="small"
-                color="primary"
-              >
+              <Button component="a" href={layout.source} size="small">
                 {t('sourceCode')}
               </Button>
             </CardActions>

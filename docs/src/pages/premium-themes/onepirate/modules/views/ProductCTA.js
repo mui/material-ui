@@ -90,7 +90,6 @@ function ProductCTA(props) {
               />
               <Button
                 type="submit"
-                color="primary"
                 variant="contained"
                 className={classes.button}
               >

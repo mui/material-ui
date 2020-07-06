@@ -7,7 +7,6 @@ import { Input } from '@material-ui/core';
 import createMount from 'test/utils/createMount';
 import { isMuiElement } from '@material-ui/core/utils';
 import { createMuiTheme } from '@material-ui/core/styles';
-// import consoleErrorMock from 'test/utils/consoleErrorMock';
 import StylesProvider from '../StylesProvider';
 import createGenerateClassName from '../createGenerateClassName';
 import ThemeProvider from '../ThemeProvider';

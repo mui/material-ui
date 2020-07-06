@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import 'docs/src/modules/components/bootstrap';
 // --- Post bootstrap -----
 import React from 'react';
@@ -37,24 +36,12 @@ function useFirstRender() {
   return firstRenderRef.current;
 }
 
-acceptLanguage.languages(['en', 'zh', 'pt']);
-
-function loadCrowdin() {
-  window._jipt = [];
-  window._jipt.push(['project', 'material-ui-docs']);
-  loadScript('https://cdn.crowdin.com/jipt/jipt.js', document.querySelector('head'));
-}
+acceptLanguage.languages(['en', 'zh', 'pt', 'ru']);
 
 function LanguageNegotiation() {
   const dispatch = useDispatch();
   const router = useRouter();
   const userLanguage = useSelector((state) => state.options.userLanguage);
-
-  React.useEffect(() => {
-    if (userLanguage === 'aa') {
-      loadCrowdin();
-    }
-  }, [userLanguage]);
 
   React.useEffect(() => {
     const { userLanguage: userLanguageUrl, canonical } = pathnameToLanguage(

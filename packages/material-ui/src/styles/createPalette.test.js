@@ -1,5 +1,4 @@
 import { expect } from 'chai';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { deepOrange, indigo, pink } from '../colors';
 import { darken, lighten } from './colorManipulator';
 import createPalette, { dark, light } from './createPalette';
@@ -136,20 +135,10 @@ describe('createPalette()', () => {
   });
 
   describe('warnings', () => {
-    beforeEach(() => {
-      consoleErrorMock.spy();
-    });
-
-    afterEach(() => {
-      consoleErrorMock.reset();
-    });
-
     it('throws an exception when an invalid type is specified', () => {
-      createPalette({ type: 'foo' });
-      expect(consoleErrorMock.callCount()).to.equal(1);
-      expect(consoleErrorMock.messages()[0]).to.include(
-        'Material-UI: The palette type `foo` is not supported',
-      );
+      expect(() => {
+        createPalette({ type: 'foo' });
+      }).toErrorDev('Material-UI: The palette type `foo` is not supported');
     });
 
     it('throws an exception when a wrong color is provided', () => {
@@ -162,16 +151,19 @@ describe('createPalette()', () => {
     });
 
     it('logs an error when the contrast ratio does not reach AA', () => {
-      const { getContrastText } = createPalette({
-        contrastThreshold: 0,
-      });
-
-      getContrastText('#fefefe');
-
-      expect(consoleErrorMock.callCount()).to.equal(3);
-      expect(consoleErrorMock.messages()[0]).to.include(
+      let getContrastText;
+      expect(() => {
+        ({ getContrastText } = createPalette({
+          contrastThreshold: 0,
+        }));
+      }).toErrorDev([
         'falls below the WCAG recommended absolute minimum contrast ratio of 3:1',
-      );
+        'falls below the WCAG recommended absolute minimum contrast ratio of 3:1',
+      ]);
+
+      expect(() => {
+        getContrastText('#fefefe');
+      }).toErrorDev('falls below the WCAG recommended absolute minimum contrast ratio of 3:1');
     });
   });
 });

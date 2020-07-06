@@ -101,14 +101,10 @@ export default function Album() {
             <div className={classes.heroButtons}>
               <Grid container spacing={2} justify="center">
                 <Grid item>
-                  <Button variant="contained" color="primary">
-                    Main call to action
-                  </Button>
+                  <Button variant="contained">Main call to action</Button>
                 </Grid>
                 <Grid item>
-                  <Button variant="outlined" color="primary">
-                    Secondary action
-                  </Button>
+                  <Button variant="outlined">Secondary action</Button>
                 </Grid>
               </Grid>
             </div>
@@ -135,12 +131,8 @@ export default function Album() {
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small" color="primary">
-                      View
-                    </Button>
-                    <Button size="small" color="primary">
-                      Edit
-                    </Button>
+                    <Button size="small">View</Button>
+                    <Button size="small">Edit</Button>
                   </CardActions>
                 </Card>
               </Grid>

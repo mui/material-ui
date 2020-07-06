@@ -4,7 +4,6 @@ import sinon, { spy, stub, useFakeTimers } from 'sinon';
 import createMount from 'test/utils/createMount';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 import TextareaAutosize from './TextareaAutosize';
 
 describe('<TextareaAutosize />', () => {
@@ -236,14 +235,6 @@ describe('<TextareaAutosize />', () => {
     });
 
     describe('warnings', () => {
-      before(() => {
-        consoleErrorMock.spy();
-      });
-
-      after(() => {
-        consoleErrorMock.reset();
-      });
-
       it('warns if layout is unstable but not crash', () => {
         const { container, forceUpdate } = render(<TextareaAutosize rowsMax={3} />);
         const input = container.querySelector('textarea[aria-hidden=null]');
@@ -259,10 +250,15 @@ describe('<TextareaAutosize />', () => {
             return 15 + index;
           },
         });
-        forceUpdate();
 
-        expect(consoleErrorMock.callCount()).to.equal(3); // strict mode renders twice
-        expect(consoleErrorMock.messages()[0]).to.include('Material-UI: Too many re-renders.');
+        expect(() => {
+          forceUpdate();
+        }).toErrorDev([
+          'Material-UI: Too many re-renders.',
+          // strict mode renders twice
+          'Material-UI: Too many re-renders.',
+          'Material-UI: Too many re-renders.',
+        ]);
       });
     });
   });

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
 import { createClientRender, fireEvent, screen } from 'test/utils/createClientRender';
@@ -82,19 +81,16 @@ describe('<Tabs />', () => {
   });
 
   describe('warnings', () => {
-    before(() => {
-      consoleErrorMock.spy();
-    });
-
-    after(() => {
-      consoleErrorMock.reset();
-    });
-
     it('should warn if the input is invalid', () => {
-      render(<Tabs value={0} centered variant="scrollable" />);
-      expect(consoleErrorMock.messages()[0]).to.match(
-        /Material-UI: You can not use the `centered={true}` and `variant="scrollable"`/,
-      );
+      expect(() => {
+        render(<Tabs value={0} centered variant="scrollable" />);
+      }).toErrorDev([
+        'Material-UI: You can not use the `centered={true}` and `variant="scrollable"`',
+        // StrictMode renders twice
+        'Material-UI: You can not use the `centered={true}` and `variant="scrollable"`',
+        'Material-UI: You can not use the `centered={true}` and `variant="scrollable"`',
+        'Material-UI: You can not use the `centered={true}` and `variant="scrollable"`',
+      ]);
     });
   });
 
@@ -260,25 +256,21 @@ describe('<Tabs />', () => {
     });
 
     describe('warnings', () => {
-      beforeEach(() => {
-        consoleErrorMock.spy();
-      });
-
-      afterEach(() => {
-        consoleErrorMock.reset();
-      });
-
       it('warns when the value is not present in any tab', () => {
-        render(
-          <Tabs value={2}>
-            <Tab value={1} />
-            <Tab value={3} />
-          </Tabs>,
-        );
-        expect(consoleErrorMock.callCount()).to.equal(4);
-        expect(consoleErrorMock.messages()[0]).to.include(
+        expect(() => {
+          render(
+            <Tabs value={2}>
+              <Tab value={1} />
+              <Tab value={3} />
+            </Tabs>,
+          );
+        }).toErrorDev([
           'You can provide one of the following values: 1, 3',
-        );
+          // StrictMode renders twice
+          'You can provide one of the following values: 1, 3',
+          'You can provide one of the following values: 1, 3',
+          'You can provide one of the following values: 1, 3',
+        ]);
       });
     });
   });

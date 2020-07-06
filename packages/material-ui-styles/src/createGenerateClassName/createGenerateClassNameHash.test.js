@@ -1,5 +1,4 @@
 import { expect } from 'chai';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 import createGenerateClassNameHash from './createGenerateClassNameHash';
 
 describe('createGenerateClassNameHash', () => {
@@ -232,12 +231,10 @@ describe('createGenerateClassNameHash', () => {
     before(() => {
       nodeEnv = env.NODE_ENV;
       env.NODE_ENV = 'production';
-      consoleErrorMock.spy();
     });
 
     after(() => {
       env.NODE_ENV = nodeEnv;
-      consoleErrorMock.reset();
     });
 
     it('should output a short representation', () => {

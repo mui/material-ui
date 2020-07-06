@@ -97,7 +97,7 @@ export default function DensityTool() {
         </Grid>
       </Grid>
       <Grid item>
-        <Button color="primary" variant="contained" onClick={resetDensity}>
+        <Button variant="contained" onClick={resetDensity}>
           {t('resetDensity')}
         </Button>
       </Grid>

@@ -9,7 +9,6 @@ import { createClientRender } from 'test/utils/createClientRender';
 import FormGroup from '../FormGroup';
 import Radio from '../Radio';
 import RadioGroup from './RadioGroup';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 import useRadioGroup from './useRadioGroup';
 
 describe('<RadioGroup />', () => {
@@ -211,15 +210,6 @@ describe('<RadioGroup />', () => {
     });
 
     describe('with non-string values', () => {
-      before(() => {
-        // swallow prop-types warnings
-        consoleErrorMock.spy();
-      });
-
-      after(() => {
-        consoleErrorMock.reset();
-      });
-
       it('passes the value of the selected Radio as a string', () => {
         function selectNth(wrapper, n) {
           return wrapper.find('input[type="radio"]').at(n).simulate('change');
@@ -325,14 +315,6 @@ describe('<RadioGroup />', () => {
   });
 
   describe('warnings', () => {
-    beforeEach(() => {
-      consoleErrorMock.spy();
-    });
-
-    afterEach(() => {
-      consoleErrorMock.reset();
-    });
-
     it('should warn when switching from controlled to uncontrolled', () => {
       const wrapper = mount(
         <RadioGroup value="foo">
@@ -340,8 +322,9 @@ describe('<RadioGroup />', () => {
         </RadioGroup>,
       );
 
-      wrapper.setProps({ value: undefined });
-      expect(consoleErrorMock.messages()[0]).to.include(
+      expect(() => {
+        wrapper.setProps({ value: undefined });
+      }).toErrorDev(
         'Material-UI: A component is changing the controlled value state of RadioGroup to be uncontrolled.',
       );
     });
@@ -353,8 +336,9 @@ describe('<RadioGroup />', () => {
         </RadioGroup>,
       );
 
-      wrapper.setProps({ value: 'foo' });
-      expect(consoleErrorMock.messages()[0]).to.include(
+      expect(() => {
+        wrapper.setProps({ value: 'foo' });
+      }).toErrorDev(
         'Material-UI: A component is changing the uncontrolled value state of RadioGroup to be controlled.',
       );
     });

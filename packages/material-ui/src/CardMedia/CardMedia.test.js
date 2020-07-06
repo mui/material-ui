@@ -5,7 +5,6 @@ import createMount from 'test/utils/createMount';
 import { createClientRender } from 'test/utils/createClientRender';
 import describeConformance from '../test-utils/describeConformance';
 import CardMedia from './CardMedia';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 import PropTypes from 'prop-types';
 
 describe('<CardMedia />', () => {
@@ -78,18 +77,13 @@ describe('<CardMedia />', () => {
 
   describe('warnings', () => {
     before(() => {
-      consoleErrorMock.spy();
       PropTypes.resetWarningCache();
     });
 
-    after(() => {
-      consoleErrorMock.reset();
-    });
-
     it('warns when neither `children`, nor `image`, nor `src`, nor `component` are provided', () => {
-      PropTypes.checkPropTypes(CardMedia.Naked.propTypes, { classes: {} }, 'prop', 'MockedName');
-      expect(consoleErrorMock.callCount()).to.equal(1);
-      expect(consoleErrorMock.messages()[0]).to.contain(
+      expect(() => {
+        PropTypes.checkPropTypes(CardMedia.Naked.propTypes, { classes: {} }, 'prop', 'MockedName');
+      }).toErrorDev(
         'Material-UI: Either `children`, `image`, `src` or `component` prop must be specified.',
       );
     });

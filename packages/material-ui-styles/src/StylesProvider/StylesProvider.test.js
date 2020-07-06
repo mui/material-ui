@@ -6,7 +6,6 @@ import createMount from 'test/utils/createMount';
 import StylesProvider, { StylesContext } from './StylesProvider';
 import makeStyles from '../makeStyles';
 import createGenerateClassName from '../createGenerateClassName';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 
 function Test() {
   const options = React.useContext(StylesContext);
@@ -136,25 +135,16 @@ describe('StylesProvider', () => {
   });
 
   describe('warnings', () => {
-    beforeEach(() => {
-      consoleErrorMock.spy();
-    });
-
-    afterEach(() => {
-      consoleErrorMock.reset();
-    });
-
     it('should support invalid input', () => {
       const jss = create();
-      mount(
-        <StylesProvider injectFirst jss={jss}>
-          <Test />
-        </StylesProvider>,
-      );
-      expect(consoleErrorMock.callCount()).to.equal(1);
-      expect(consoleErrorMock.messages()[0]).to.include(
-        'Material-UI: You cannot use the jss and injectFirst props at the same time',
-      );
+
+      expect(() => {
+        mount(
+          <StylesProvider injectFirst jss={jss}>
+            <Test />
+          </StylesProvider>,
+        );
+      }).toErrorDev('Material-UI: You cannot use the jss and injectFirst props at the same time');
     });
   });
 });

@@ -6,7 +6,7 @@ Looking for the v4 docs? [Find them here](https://material-ui.com/versions/).
 
 > This document is a work in progress.
 > Have you upgraded your site and run into something that's not covered here?
-> [Add your changes on GitHub](https://github.com/mui-org/material-ui/blob/next/docs/src/pages/guides/migration-v3/migration-v3.md).
+> [Add your changes on GitHub](https://github.com/mui-org/material-ui/blob/next/docs/src/pages/guides/migration-v4/migration-v4.md).
 
 ## Introduction
 
@@ -49,8 +49,28 @@ yarn add @material-ui/core@next
 
 - typescript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
   ```diff
-  -<BottomNavigation onChange={(event: React.ChangEvent<{}>) => {}} />
+  -<BottomNavigation onChange={(event: React.ChangeEvent<{}>) => {}} />
   +<BottomNavigation onChange={(event: React.SyntheticEvent) => {}} />
+  ```
+
+### Button
+
+- The button `color` prop is now "primary" by default, and "default" has been removed. This makes the button closer to the Material Design specification and simplifies the API.
+
+  ```diff
+  -<Button color="primary" />
+  -<Button color="default" />
+  +<Button />
+  +<Button />
+  ```
+
+### Collapse
+
+- The `collapsedHeight` prop was renamed `collapsedSize` to support the horizontal direction.
+
+  ```diff
+  -<Collapse collapsedHeight={40}>
+  +<Collapse collapsedSize={40}>
   ```
 
 ### Divider
@@ -81,7 +101,7 @@ yarn add @material-ui/core@next
 
 - typescript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
   ```diff
-  -<Slider onChange={(event: React.ChangEvent<{}>, value: unknown) => {}} />
+  -<Slider onChange={(event: React.ChangeEvent<{}>, value: unknown) => {}} />
   +<Slider onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
   ```
 
@@ -100,7 +120,7 @@ yarn add @material-ui/core@next
 
 - typescript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
   ```diff
-  -<Tabs onChange={(event: React.ChangEvent<{}>, value: unknown) => {}} />
+  -<Tabs onChange={(event: React.ChangeEvent<{}>, value: unknown) => {}} />
   +<Tabs onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
   ```
 
@@ -151,7 +171,7 @@ yarn add @material-ui/core@next
   -  <ExpansionPanelActions>
   +  <AccordionActions>
        <Button size="small">Cancel</Button>
-       <Button size="small" color="primary">Save</Button>
+       <Button size="small">Save</Button>
   -  </ExpansionPanelActions>
   +  </AccordionActions>
   -</ExpansionPanel>
@@ -160,6 +180,6 @@ yarn add @material-ui/core@next
 
 - typescript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
   ```diff
-  -<Accordion onChange={(event: React.ChangEvent<{}>, expanded: boolean) => {}} />
+  -<Accordion onChange={(event: React.ChangeEvent<{}>, expanded: boolean) => {}} />
   +<Accordion onChange={(event: React.SyntheticEvent, expanded: boolean) => {}} />
   ```

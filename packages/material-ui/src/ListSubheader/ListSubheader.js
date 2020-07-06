@@ -72,6 +72,10 @@ const ListSubheader = React.forwardRef(function ListSubheader(props, ref) {
 });
 
 ListSubheader.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * The content of the component.
    */
@@ -80,7 +84,7 @@ ListSubheader.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -88,7 +92,7 @@ ListSubheader.propTypes = {
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color: PropTypes.oneOf(['default', 'primary', 'inherit']),
+  color: PropTypes.oneOf(['default', 'inherit', 'primary']),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.

@@ -9,9 +9,9 @@ export interface CollapseProps extends StandardProps<TransitionProps, CollapseCl
    */
   children?: React.ReactNode;
   /**
-   * The height of the container when collapsed.
+   * The width (horizontal) or height (vertical) of the container when collapsed.
    */
-  collapsedHeight?: string | number;
+  collapsedSize?: string | number;
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -27,6 +27,10 @@ export interface CollapseProps extends StandardProps<TransitionProps, CollapseCl
    * If `true`, the component will transition in.
    */
   in?: boolean;
+  /**
+   * The collapse transition orientation.
+   */
+  orientation?: 'horizontal' | 'vertical';
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.

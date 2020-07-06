@@ -2,7 +2,6 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { mount } from 'enzyme';
 import { isMuiElement, setRef, useForkRef } from '.';
 import { Input, ListItemSecondaryAction, SvgIcon } from '..';
@@ -64,14 +63,6 @@ describe('utils/index.js', () => {
   });
 
   describe('useForkRef', () => {
-    beforeEach(() => {
-      consoleErrorMock.spy();
-    });
-
-    afterEach(() => {
-      consoleErrorMock.reset();
-    });
-
     it('returns a single ref-setter function that forks the ref to its inputs', () => {
       function Component(props) {
         const { innerRef } = props;
@@ -89,10 +80,11 @@ describe('utils/index.js', () => {
       };
 
       const outerRef = React.createRef();
-      mount(<Component innerRef={outerRef} />);
 
+      expect(() => {
+        mount(<Component innerRef={outerRef} />);
+      }).not.toErrorDev();
       expect(outerRef.current.textContent).to.equal('has a ref');
-      expect(consoleErrorMock.callCount()).to.equal(0);
     });
 
     it('forks if only one of the branches requires a ref', () => {
@@ -104,10 +96,11 @@ describe('utils/index.js', () => {
         return <div ref={handleRef}>{String(hasRef)}</div>;
       });
 
-      const wrapper = mount(<Component />);
-
+      let wrapper;
+      expect(() => {
+        wrapper = mount(<Component />);
+      }).not.toErrorDev();
       expect(wrapper.containsMatchingElement(<div>true</div>)).to.equal(true);
-      expect(consoleErrorMock.callCount()).to.equal(0);
     });
 
     it('does nothing if none of the forked branches requires a ref', () => {
@@ -124,12 +117,13 @@ describe('utils/index.js', () => {
         return <div />;
       }
 
-      mount(
-        <Outer>
-          <Inner />
-        </Outer>,
-      );
-      expect(consoleErrorMock.callCount()).to.equal(0);
+      expect(() => {
+        mount(
+          <Outer>
+            <Inner />
+          </Outer>,
+        );
+      }).not.toErrorDev();
     });
 
     describe('changing refs', () => {
@@ -148,25 +142,28 @@ describe('utils/index.js', () => {
       };
 
       it('handles changing from no ref to some ref', () => {
-        const wrapper = mount(<Div id="test" />);
+        let wrapper;
 
-        expect(consoleErrorMock.callCount()).to.equal(0);
+        expect(() => {
+          wrapper = mount(<Div id="test" />);
+        }).not.toErrorDev();
 
         const ref = React.createRef();
-        wrapper.setProps({ leftRef: ref });
-
+        expect(() => {
+          wrapper.setProps({ leftRef: ref });
+        }).not.toErrorDev();
         expect(ref.current.id).to.equal('test');
-        expect(consoleErrorMock.callCount()).to.equal(0);
       });
 
       it('cleans up detached refs', () => {
         const firstLeftRef = React.createRef();
         const firstRightRef = React.createRef();
         const secondRightRef = React.createRef();
+        let wrapper;
 
-        const wrapper = mount(<Div leftRef={firstLeftRef} rightRef={firstRightRef} id="test" />);
-
-        expect(consoleErrorMock.callCount()).to.equal(0);
+        expect(() => {
+          wrapper = mount(<Div leftRef={firstLeftRef} rightRef={firstRightRef} id="test" />);
+        }).not.toErrorDev();
         expect(firstLeftRef.current.id).to.equal('test');
         expect(firstRightRef.current.id).to.equal('test');
         expect(secondRightRef.current).to.equal(null);

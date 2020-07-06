@@ -167,7 +167,7 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(props, ref) {
     children,
     classes,
     className,
-    color = 'default',
+    color = 'primary',
     component: Component = 'div',
     disabled = false,
     disableElevation = false,
@@ -260,7 +260,7 @@ ButtonGroup.propTypes = {
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary']),
+  color: PropTypes.oneOf(['inherit', 'primary', 'secondary']),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.

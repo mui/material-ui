@@ -31,54 +31,24 @@ export default function ButtonSizes() {
         </Button>
       </div>
       <div>
-        <Button
-          variant="outlined"
-          size="small"
-          color="primary"
-          className={classes.margin}
-        >
+        <Button variant="outlined" size="small" className={classes.margin}>
           Small
         </Button>
-        <Button
-          variant="outlined"
-          size="medium"
-          color="primary"
-          className={classes.margin}
-        >
+        <Button variant="outlined" size="medium" className={classes.margin}>
           Medium
         </Button>
-        <Button
-          variant="outlined"
-          size="large"
-          color="primary"
-          className={classes.margin}
-        >
+        <Button variant="outlined" size="large" className={classes.margin}>
           Large
         </Button>
       </div>
       <div>
-        <Button
-          variant="contained"
-          size="small"
-          color="primary"
-          className={classes.margin}
-        >
+        <Button variant="contained" size="small" className={classes.margin}>
           Small
         </Button>
-        <Button
-          variant="contained"
-          size="medium"
-          color="primary"
-          className={classes.margin}
-        >
+        <Button variant="contained" size="medium" className={classes.margin}>
           Medium
         </Button>
-        <Button
-          variant="contained"
-          size="large"
-          color="primary"
-          className={classes.margin}
-        >
+        <Button variant="contained" size="large" className={classes.margin}>
           Large
         </Button>
       </div>

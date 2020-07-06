@@ -2,8 +2,8 @@ import * as React from 'react';
 import { useFakeTimers } from 'sinon';
 import { expect } from 'chai';
 import TrapFocus from './Unstable_TrapFocus';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { createClientRender, fireEvent, screen } from 'test/utils/createClientRender';
+import Portal from '../Portal';
 
 describe('<TrapFocus />', () => {
   const render = createClientRender({ strict: false });
@@ -15,8 +15,6 @@ describe('<TrapFocus />', () => {
 
   let initialFocus = null;
   beforeEach(() => {
-    consoleErrorMock.spy();
-
     initialFocus = document.createElement('button');
     initialFocus.tabIndex = 0;
     document.body.appendChild(initialFocus);
@@ -24,7 +22,6 @@ describe('<TrapFocus />', () => {
   });
 
   afterEach(() => {
-    consoleErrorMock.reset();
     document.body.removeChild(initialFocus);
   });
 
@@ -59,23 +56,34 @@ describe('<TrapFocus />', () => {
     expect(initialFocus).toHaveFocus();
   });
 
-  it('should warn if the modal content is not focusable', () => {
-    const UnfocusableDialog = React.forwardRef((_, ref) => <div ref={ref} />);
-
-    render(
+  it('should focus first focusable child in portal', () => {
+    const { getByTestId } = render(
       <TrapFocus open {...sharedProps}>
-        <UnfocusableDialog />
+        <div tabIndex={-1}>
+          <Portal>
+            <input autoFocus data-testid="auto-focus" />
+          </Portal>
+        </div>
       </TrapFocus>,
     );
 
-    expect(consoleErrorMock.callCount()).to.equal(1);
-    expect(consoleErrorMock.messages()[0]).to.include(
-      'Material-UI: The modal content node does not accept focus',
-    );
+    expect(getByTestId('auto-focus')).toHaveFocus();
+  });
+
+  it('should warn if the modal content is not focusable', () => {
+    const UnfocusableDialog = React.forwardRef((_, ref) => <div ref={ref} />);
+
+    expect(() => {
+      render(
+        <TrapFocus open {...sharedProps}>
+          <UnfocusableDialog />
+        </TrapFocus>,
+      );
+    }).toErrorDev('Material-UI: The modal content node does not accept focus');
   });
 
   it('should not attempt to focus nonexistent children', () => {
-    const EmptyDialog = () => null;
+    const EmptyDialog = React.forwardRef(() => null);
 
     render(
       <TrapFocus open {...sharedProps}>

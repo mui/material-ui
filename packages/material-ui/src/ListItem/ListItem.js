@@ -113,6 +113,7 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
     dense: dense || context.dense || false,
     alignItems,
   };
+
   const listItemRef = React.useRef(null);
   useEnhancedEffect(() => {
     if (autoFocus) {
@@ -154,6 +155,7 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
     disabled,
     ...other,
   };
+
   let Component = componentProp || 'li';
 
   if (button) {
@@ -199,10 +201,14 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
 });
 
 ListItem.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * Defines the `align-items` style property.
    */
-  alignItems: PropTypes.oneOf(['flex-start', 'center']),
+  alignItems: PropTypes.oneOf(['center', 'flex-start']),
   /**
    * If `true`, the list item will be focused during the first mount.
    * Focus will also be triggered if the value changes from false to true.
@@ -245,7 +251,7 @@ ListItem.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -253,7 +259,6 @@ ListItem.propTypes = {
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
-   * By default, it's a `li` when `button` is `false` and a `div` when `button` is `true`.
    */
   component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**

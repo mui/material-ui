@@ -9,6 +9,7 @@ export const styles = (theme) => {
   return {
     /* Styles applied to the root element. */
     root: {
+      textAlign: 'left',
       position: 'absolute',
       bottom: 0,
       right: 0,
@@ -24,7 +25,6 @@ export const styles = (theme) => {
     },
     /* Styles applied to the legend element when `labelWidth` is provided. */
     legend: {
-      textAlign: 'left',
       padding: 0,
       lineHeight: '11px', // sync with `height` in `legend` styles
       transition: theme.transitions.create('width', {
@@ -36,7 +36,6 @@ export const styles = (theme) => {
     legendLabelled: {
       display: 'block',
       width: 'auto',
-      textAlign: 'left',
       padding: 0,
       height: 11, // sync with `lineHeight` in `legend` styles
       fontSize: '0.75em',

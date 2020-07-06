@@ -1,6 +1,5 @@
 import { expect } from 'chai';
 import createSpacing from './createSpacing';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 
 describe('createSpacing', () => {
   it('should work as expected', () => {
@@ -47,32 +46,20 @@ describe('createSpacing', () => {
   });
 
   describe('warnings', () => {
-    beforeEach(() => {
-      consoleErrorMock.spy();
-    });
-
-    afterEach(() => {
-      consoleErrorMock.reset();
-    });
-
     // TODO v5: remove
     it('should warn for the deprecated API', () => {
       const spacing = createSpacing(11);
-      expect(spacing.unit).to.equal(11);
-      expect(consoleErrorMock.callCount()).to.equal(1);
-      expect(consoleErrorMock.messages()[0]).to.include(
-        'theme.spacing.unit usage has been deprecated',
-      );
+      expect(() => {
+        expect(spacing.unit).to.equal(11);
+      }).toErrorDev('theme.spacing.unit usage has been deprecated');
     });
 
     it('should warn for wrong input', () => {
-      createSpacing({
-        unit: 4,
-      });
-      expect(consoleErrorMock.callCount()).to.equal(1);
-      expect(consoleErrorMock.messages()[0]).to.include(
-        'Material-UI: The `theme.spacing` value ([object Object]) is invalid',
-      );
+      expect(() => {
+        createSpacing({
+          unit: 4,
+        });
+      }).toErrorDev('Material-UI: The `theme.spacing` value ([object Object]) is invalid');
     });
   });
 });

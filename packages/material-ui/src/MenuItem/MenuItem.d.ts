@@ -5,16 +5,21 @@ import { Omit } from '@material-ui/types';
 
 export type MenuItemClassKey = 'root' | 'gutters' | 'selected' | 'dense';
 
-export type MenuItemTypeMap<P = {}, D extends React.ElementType = 'li'> = Omit<
-  ListItemTypeMap<P, D>,
-  'classKey'
-> & {
+export interface MenuItemTypeMap<P = {}, D extends React.ElementType = 'li'> {
+  props: P &
+    Omit<ListItemTypeMap<P, D>['props'], 'children'> & {
+      /**
+       * Menu item contents.
+       */
+      children?: React.ReactNode;
+      /**
+       * `classes` prop applied to the [`ListItem`](/api/list-item/) element.
+       */
+      ListItemClasses?: ListItemProps['classes'];
+    };
+  defaultComponent: D;
   classKey: MenuItemClassKey;
-  /**
-   * `classes` prop applied to the [`ListItem`](/api/list-item/) element.
-   */
-  ListItemClasses: ListItemProps['classes'];
-};
+}
 
 /**
  *

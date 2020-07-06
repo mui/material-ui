@@ -113,15 +113,19 @@ const Link = React.forwardRef(function Link(props, ref) {
 });
 
 Link.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * The content of the link.
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -130,13 +134,13 @@ Link.propTypes = {
    * The color of the link.
    */
   color: PropTypes.oneOf([
-    'initial',
+    'error',
     'inherit',
+    'initial',
     'primary',
     'secondary',
     'textPrimary',
     'textSecondary',
-    'error',
   ]),
   /**
    * The component used for the root node.
@@ -158,11 +162,26 @@ Link.propTypes = {
   /**
    * Controls when the link should have an underline.
    */
-  underline: PropTypes.oneOf(['none', 'hover', 'always']),
+  underline: PropTypes.oneOf(['always', 'hover', 'none']),
   /**
    * Applies the theme typography styles.
    */
-  variant: PropTypes.string,
+  variant: PropTypes.oneOf([
+    'body1',
+    'body2',
+    'button',
+    'caption',
+    'h1',
+    'h2',
+    'h3',
+    'h4',
+    'h5',
+    'h6',
+    'inherit',
+    'overline',
+    'subtitle1',
+    'subtitle2',
+  ]),
 };
 
 export default withStyles(styles, { name: 'MuiLink' })(Link);

@@ -5,7 +5,6 @@ import styled from './styled';
 import { SheetsRegistry } from 'jss';
 import createMount from 'test/utils/createMount';
 import { createGenerateClassName } from '@material-ui/styles';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 import StylesProvider from '../StylesProvider';
 
 describe('styled', () => {
@@ -87,26 +86,18 @@ describe('styled', () => {
 
   describe('warnings', () => {
     beforeEach(() => {
-      consoleErrorMock.spy();
       PropTypes.resetWarningCache();
     });
 
-    afterEach(() => {
-      consoleErrorMock.reset();
-    });
-
     it('warns if it cant detect the secondary action properly', () => {
-      PropTypes.checkPropTypes(
-        StyledButton.propTypes,
-        { clone: true, component: 'div' },
-        'prop',
-        'StyledButton',
-      );
-
-      expect(consoleErrorMock.callCount()).to.equal(1);
-      expect(consoleErrorMock.messages()[0]).to.include(
-        'You can not use the clone and component prop at the same time',
-      );
+      expect(() => {
+        PropTypes.checkPropTypes(
+          StyledButton.propTypes,
+          { clone: true, component: 'div' },
+          'prop',
+          'StyledButton',
+        );
+      }).toErrorDev('You can not use the clone and component prop at the same time');
     });
   });
 

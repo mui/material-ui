@@ -135,7 +135,6 @@ export default function HorizontalLinearStepper() {
               {isStepOptional(activeStep) && (
                 <Button
                   variant="contained"
-                  color="primary"
                   onClick={handleSkip}
                   className={classes.button}
                 >
@@ -144,7 +143,6 @@ export default function HorizontalLinearStepper() {
               )}
               <Button
                 variant="contained"
-                color="primary"
                 onClick={handleNext}
                 className={classes.button}
               >

@@ -4,8 +4,7 @@ import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import Breadcrumbs from './Breadcrumbs';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { createClientRender } from 'test/utils/createClientRender';
+import { createClientRender, screen } from 'test/utils/createClientRender';
 
 describe('<Breadcrumbs />', () => {
   const mount = createMount();
@@ -82,17 +81,9 @@ describe('<Breadcrumbs />', () => {
     expect(getAllByRole('listitem', { hidden: false })).to.have.length(9);
   });
 
-  describe('warnings', () => {
-    beforeEach(() => {
-      consoleErrorMock.spy();
-    });
-
-    afterEach(() => {
-      consoleErrorMock.reset();
-    });
-
-    it('should warn about invalid input', () => {
-      const { getAllByRole, getByRole } = render(
+  it('should warn about invalid input', () => {
+    expect(() => {
+      render(
         <Breadcrumbs maxItems={3} itemsAfterCollapse={2} itemsBeforeCollapse={2}>
           <span>first</span>
           <span>second</span>
@@ -100,12 +91,11 @@ describe('<Breadcrumbs />', () => {
           <span>fourth</span>
         </Breadcrumbs>,
       );
-      expect(getAllByRole('listitem', { hidden: false })).to.have.length(4);
-      expect(getByRole('list')).to.have.text('first/second/third/fourth');
-      expect(consoleErrorMock.callCount()).to.equal(2); // strict mode renders twice
-      expect(consoleErrorMock.messages()[0]).to.include(
-        'Material-UI: You have provided an invalid combination of props to the Breadcrumbs.\nitemsAfterCollapse={2} + itemsBeforeCollapse={2} >= maxItems={3}',
-      );
-    });
+    }).toErrorDev([
+      'Material-UI: You have provided an invalid combination of props to the Breadcrumbs.\nitemsAfterCollapse={2} + itemsBeforeCollapse={2} >= maxItems={3}',
+      'Material-UI: You have provided an invalid combination of props to the Breadcrumbs.\nitemsAfterCollapse={2} + itemsBeforeCollapse={2} >= maxItems={3}',
+    ]);
+    expect(screen.getAllByRole('listitem', { hidden: false })).to.have.length(4);
+    expect(screen.getByRole('list')).to.have.text('first/second/third/fourth');
   });
 });

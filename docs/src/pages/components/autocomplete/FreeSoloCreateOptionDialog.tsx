@@ -137,12 +137,8 @@ export default function FreeSoloCreateOptionDialog() {
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleClose} color="primary">
-              Cancel
-            </Button>
-            <Button type="submit" color="primary">
-              Add
-            </Button>
+            <Button onClick={handleClose}>Cancel</Button>
+            <Button type="submit">Add</Button>
           </DialogActions>
         </form>
       </Dialog>

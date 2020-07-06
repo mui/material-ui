@@ -73,6 +73,8 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     disableScrollLock = false,
     hideBackdrop = false,
     keepMounted = false,
+    // private
+    // eslint-disable-next-line react/prop-types
     manager = defaultManager,
     onBackdropClick,
     onClose,
@@ -222,11 +224,11 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
   return (
     <Portal ref={handlePortalRef} container={container} disablePortal={disablePortal}>
       {/*
-          Marking an element with the role presentation indicates to assistive technology
-          that this element should be ignored; it exists to support the web application and
-          is not meant for humans to interact with directly.
-          https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-static-element-interactions.md
-        */}
+       * Marking an element with the role presentation indicates to assistive technology
+       * that this element should be ignored; it exists to support the web application and
+       * is not meant for humans to interact with directly.
+       * https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-static-element-interactions.md
+       */}
       <div
         data-mui-test="Modal"
         ref={handleRef}
@@ -242,6 +244,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
         {hideBackdrop ? null : (
           <BackdropComponent open={open} onClick={handleBackdropClick} {...BackdropProps} />
         )}
+
         <TrapFocus
           disableEnforceFocus={disableEnforceFocus}
           disableAutoFocus={disableAutoFocus}
@@ -258,6 +261,10 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
 });
 
 Modal.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * A backdrop component. This prop enables custom backdrop rendering.
    */
@@ -333,10 +340,6 @@ Modal.propTypes = {
    * when you want to maximize the responsiveness of the Modal.
    */
   keepMounted: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  manager: PropTypes.object,
   /**
    * Callback fired when the backdrop is clicked.
    */

@@ -31,7 +31,6 @@ export default function IconLabelButtons() {
       {/* This Button uses a Font Icon, see the installation instructions in the Icon component docs. */}
       <Button
         variant="contained"
-        color="primary"
         className={classes.button}
         endIcon={<Icon>send</Icon>}
       >
@@ -39,7 +38,6 @@ export default function IconLabelButtons() {
       </Button>
       <Button
         variant="contained"
-        color="default"
         className={classes.button}
         startIcon={<CloudUploadIcon />}
       >
@@ -56,7 +54,6 @@ export default function IconLabelButtons() {
       </Button>
       <Button
         variant="contained"
-        color="primary"
         size="small"
         className={classes.button}
         startIcon={<SaveIcon />}
@@ -65,7 +62,6 @@ export default function IconLabelButtons() {
       </Button>
       <Button
         variant="contained"
-        color="primary"
         size="large"
         className={classes.button}
         startIcon={<SaveIcon />}

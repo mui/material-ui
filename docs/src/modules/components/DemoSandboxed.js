@@ -10,10 +10,10 @@ import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
 function FramedDemo(props) {
   const { children, document } = props;
 
-  const theme = useTheme();
+  const { direction } = useTheme();
   React.useEffect(() => {
-    document.body.dir = theme.direction;
-  }, [document, theme.direction]);
+    document.body.dir = direction;
+  }, [document, direction]);
 
   const { jss, sheetsManager } = React.useMemo(() => {
     return {

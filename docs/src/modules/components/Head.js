@@ -35,7 +35,7 @@ export default function Head(props) {
       <meta property="og:ttl" content="604800" />
       {/* Algolia */}
       <meta name="docsearch:language" content={userLanguage} />
-      <meta name="docsearch:version" content="master" />
+      <meta name="docsearch:version" content="next" />
       {children}
     </NextHead>
   );

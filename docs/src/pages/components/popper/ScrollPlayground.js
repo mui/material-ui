@@ -209,12 +209,8 @@ export default function ScrollPlayground() {
                   </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                  <Button onClick={handleClickButton} color="primary">
-                    Disagree
-                  </Button>
-                  <Button onClick={handleClickButton} color="primary">
-                    Agree
-                  </Button>
+                  <Button onClick={handleClickButton}>Disagree</Button>
+                  <Button onClick={handleClickButton}>Agree</Button>
                 </DialogActions>
               </Paper>
             </Popper>

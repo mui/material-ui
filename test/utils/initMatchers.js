@@ -3,6 +3,7 @@ import chaiDom from 'chai-dom';
 import { isInaccessible } from '@testing-library/dom';
 import { prettyDOM } from '@testing-library/react/pure';
 import { computeAccessibleName } from 'dom-accessibility-api';
+import formatUtil from 'format-util';
 
 // chai#utils.elToString that looks like stringified elements in testing-library
 function elementToString(element) {
@@ -150,4 +151,138 @@ chai.use((chaiAPI, utils) => {
     // eslint-disable-next-line no-underscore-dangle, no-unused-expressions
     new chai.Assertion(this._obj).to.be.visible;
   });
+});
+
+chai.use((chaiAPI, utils) => {
+  function addConsoleMatcher(matcherName, methodName) {
+    /**
+     * @param {string[]} expectedMessages
+     */
+    function matcher(expectedMessages = []) {
+      // documented pattern to get the actual value of the assertion
+      // eslint-disable-next-line no-underscore-dangle
+      const callback = this._obj;
+
+      if (process.env.NODE_ENV !== 'production') {
+        const remainingMessages =
+          typeof expectedMessages === 'string' ? [expectedMessages] : expectedMessages.slice();
+        const unexpectedMessages = [];
+        let caughtError = null;
+
+        this.assert(
+          remainingMessages.length > 0,
+          `Expected to call console.${methodName} but didn't provide messages. ` +
+            `If you don't expect any messages prefer \`expect().not.${matcherName}();\`.`,
+          `Expected no call to console.${methodName} while also expecting messages.` +
+            'Expected no call to console.error but provided messages. ' +
+            "If you want to make sure a certain message isn't logged prefer the positive. " +
+            'By expecting certain messages you automatically expect that no other messages are logged',
+        );
+
+        // eslint-disable-next-line no-console
+        const originalMethod = console[methodName];
+
+        const consoleMatcher = (format, ...args) => {
+          const actualMessage = formatUtil(format, ...args);
+          const expectedMessage = remainingMessages.shift();
+
+          let message = null;
+          if (expectedMessage === undefined) {
+            message = `Expected no more error messages but got:\n"${actualMessage}"`;
+          } else if (!actualMessage.includes(expectedMessage)) {
+            message = `Expected "${actualMessage}"\nto include\n"${expectedMessage}"`;
+          }
+
+          if (message !== null) {
+            const error = new Error(message);
+
+            const { stack: fullStack } = error;
+            const fullStacktrace = fullStack.replace(`Error: ${message}\n`, '').split('\n');
+
+            const usefulStacktrace = fullStacktrace
+              //
+              // first line points to this frame which is irrelevant for the tester
+              .slice(1);
+            const usefulStack = `${message}\n${usefulStacktrace.join('\n')}`;
+
+            error.stack = usefulStack;
+            unexpectedMessages.push(error);
+          }
+        };
+        // eslint-disable-next-line no-console
+        console[methodName] = consoleMatcher;
+
+        try {
+          callback();
+        } catch (error) {
+          caughtError = error;
+        } finally {
+          // eslint-disable-next-line no-console
+          console[methodName] = originalMethod;
+
+          // unexpected thrown error takes precedence over unexpected console call
+          if (caughtError !== null) {
+            // not the same pattern as described in the block because we don't rethrow in the catch
+            // eslint-disable-next-line no-unsafe-finally
+            throw caughtError;
+          }
+
+          const formatMessages = (messages) => {
+            const formattedMessages = messages.map((message) => {
+              if (typeof message === 'string') {
+                return `"${message}"`;
+              }
+              // full Error
+              return `${message.stack}`;
+            });
+            return `\n\n  - ${formattedMessages.join('\n\n-  ')}`;
+          };
+
+          const shouldHaveWarned = utils.flag(this, 'negate') !== true;
+
+          // unreachable from expect().not.toWarnDev(messages)
+          if (unexpectedMessages.length > 0) {
+            const unexpectedMessageRecordedMessage = `Recorded unexpected console.${methodName} calls: ${formatMessages(
+              unexpectedMessages,
+            )}`;
+            // chai will duplicate the stack frames from the unexpected calls in their assertion error
+            // it's not ideal but the test failure is located the second to last stack frame
+            // and the origin of the call is the second stackframe in the stack
+            this.assert(
+              // force chai to always trigger an assertion error
+              !shouldHaveWarned,
+              unexpectedMessageRecordedMessage,
+              unexpectedMessageRecordedMessage,
+            );
+          }
+
+          if (shouldHaveWarned) {
+            this.assert(
+              remainingMessages.length === 0,
+              `Could not match the following console.${methodName} calls. ` +
+                `Make sure previous actions didn't call console.${methodName} by wrapping them in expect(() => {}).not.${matcherName}(): ${formatMessages(
+                  remainingMessages,
+                )}`,
+              `Impossible state reached in \`expect().${matcherName}()\`. ` +
+                `This is a bug in the matcher.`,
+            );
+          }
+        }
+      } else {
+        // nothing to do in prod
+        // If there are still console calls than our test setup throws.
+        callback();
+      }
+    }
+
+    chai.Assertion.addMethod(matcherName, matcher);
+    /* eslint-enable no-console */
+  }
+
+  /**
+   * @example expect(() => render()).toWarnDev('single message')
+   * @example expect(() => render()).toWarnDev(['first warning', 'then the second'])
+   */
+  addConsoleMatcher('toWarnDev', 'warn');
+  addConsoleMatcher('toErrorDev', 'error');
 });

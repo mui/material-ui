@@ -6,7 +6,6 @@ import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
 import { fireEvent, createClientRender } from 'test/utils/createClientRender';
 import describeConformance from '../test-utils/describeConformance';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 import TableFooter from '../TableFooter';
 import TableCell from '../TableCell';
 import TableRow from '../TableRow';
@@ -352,31 +351,25 @@ describe('<TablePagination />', () => {
 
   describe('warnings', () => {
     before(() => {
-      consoleErrorMock.spy();
       PropTypes.resetWarningCache();
     });
 
-    after(() => {
-      consoleErrorMock.reset();
-    });
-
     it('should raise a warning if the page prop is out of range', () => {
-      PropTypes.checkPropTypes(
-        TablePagination.Naked.propTypes,
-        {
-          classes: {},
-          page: 2,
-          count: 20,
-          rowsPerPage: 10,
-          onChangePage: noop,
-          onChangeRowsPerPage: noop,
-        },
-        'prop',
-        'MockedTablePagination',
-      );
-
-      expect(consoleErrorMock.callCount()).to.equal(1);
-      expect(consoleErrorMock.messages()[0]).to.include(
+      expect(() => {
+        PropTypes.checkPropTypes(
+          TablePagination.Naked.propTypes,
+          {
+            classes: {},
+            page: 2,
+            count: 20,
+            rowsPerPage: 10,
+            onChangePage: noop,
+            onChangeRowsPerPage: noop,
+          },
+          'prop',
+          'MockedTablePagination',
+        );
+      }).toErrorDev(
         'Material-UI: The page prop of a TablePagination is out of range (0 to 1, but page is 2).',
       );
     });

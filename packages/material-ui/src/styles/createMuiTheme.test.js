@@ -1,7 +1,6 @@
 import { expect } from 'chai';
 import createMuiTheme from './createMuiTheme';
 import { deepOrange, green } from '../colors';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 
 describe('createMuiTheme', () => {
   it('should have a palette', () => {
@@ -90,28 +89,24 @@ describe('createMuiTheme', () => {
   });
 
   describe('overrides', () => {
-    beforeEach(() => {
-      consoleErrorMock.spy();
-    });
-
-    afterEach(() => {
-      consoleErrorMock.reset();
-    });
-
     it('should warn when trying to override an internal state the wrong way', () => {
       let theme;
 
-      theme = createMuiTheme({ overrides: { Button: { disabled: { color: 'blue' } } } });
+      expect(() => {
+        theme = createMuiTheme({ overrides: { Button: { disabled: { color: 'blue' } } } });
+      }).not.toErrorDev();
       expect(Object.keys(theme.overrides.Button.disabled).length).to.equal(1);
-      expect(consoleErrorMock.messages().length).to.equal(0);
-      theme = createMuiTheme({ overrides: { MuiButton: { root: { color: 'blue' } } } });
-      expect(consoleErrorMock.messages().length).to.equal(0);
-      theme = createMuiTheme({ overrides: { MuiButton: { disabled: { color: 'blue' } } } });
-      expect(Object.keys(theme.overrides.MuiButton.disabled).length).to.equal(0);
-      expect(consoleErrorMock.messages().length).to.equal(1);
-      expect(consoleErrorMock.messages()[0]).to.match(
-        /Material-UI: The `MuiButton` component increases the CSS specificity of the `disabled` internal state./,
+
+      expect(() => {
+        theme = createMuiTheme({ overrides: { MuiButton: { root: { color: 'blue' } } } });
+      }).not.toErrorDev();
+
+      expect(() => {
+        theme = createMuiTheme({ overrides: { MuiButton: { disabled: { color: 'blue' } } } });
+      }).toErrorDev(
+        'Material-UI: The `MuiButton` component increases the CSS specificity of the `disabled` internal state.',
       );
+      expect(Object.keys(theme.overrides.MuiButton.disabled).length).to.equal(0);
     });
   });
 

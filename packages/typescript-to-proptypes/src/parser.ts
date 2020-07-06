@@ -70,6 +70,19 @@ export function parseFromProgram(
 ) {
   const { checkDeclarations = false } = parserOptions;
 
+  const sigilIds: Map<ts.Symbol | ts.Type, number> = new Map();
+  /**
+   *
+   * @param sigil - Prefer ts.Type if available since these are re-used in the type checker. Symbols (especially those for literals) are oftentimes re-created on every usage.
+   */
+  function createPropTypeId(sigil: ts.Symbol | ts.Type) {
+    if (!sigilIds.has(sigil)) {
+      sigilIds.set(sigil, sigilIds.size);
+    }
+
+    return sigilIds.get(sigil)!;
+  }
+
   const shouldInclude: ParserOptions['shouldInclude'] = (data) => {
     if (parserOptions.shouldInclude) {
       const result = parserOptions.shouldInclude(data);
@@ -371,7 +384,7 @@ export function parseFromProgram(
           getDocumentation(symbol),
           declaration.questionToken ? t.unionNode([t.undefinedNode(), elementNode]) : elementNode,
           symbolFilenames,
-          (symbol as any).id,
+          createPropTypeId(symbol),
         );
       }
     }
@@ -417,7 +430,7 @@ export function parseFromProgram(
       getDocumentation(symbol),
       parsedType,
       symbolFilenames,
-      (symbol as any).id,
+      createPropTypeId(type),
     );
   }
 

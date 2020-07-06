@@ -3,7 +3,6 @@ import { expect } from 'chai';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { createClientRender } from 'test/utils/createClientRender';
 import Typography from '../Typography';
 import InputAdornment from './InputAdornment';
@@ -128,16 +127,8 @@ describe('<InputAdornment />', () => {
       expect(adornment).to.have.class(classes.filled);
     });
 
-    describe('warnings', () => {
-      before(() => {
-        consoleErrorMock.spy();
-      });
-
-      after(() => {
-        consoleErrorMock.reset();
-      });
-
-      it('should warn if the variant supplied is equal to the variant inferred', () => {
+    it('should warn if the variant supplied is equal to the variant inferred', () => {
+      expect(() => {
         render(
           <FormControl variant="filled">
             <Input
@@ -149,12 +140,10 @@ describe('<InputAdornment />', () => {
             />
           </FormControl>,
         );
-        expect(consoleErrorMock.callCount()).to.equal(1);
-        expect(consoleErrorMock.messages()[0]).to.equal(
-          'Material-UI: The `InputAdornment` variant infers the variant ' +
-            'prop you do not have to provide one.',
-        );
-      });
+      }).toErrorDev(
+        'Material-UI: The `InputAdornment` variant infers the variant ' +
+          'prop you do not have to provide one.',
+      );
     });
   });
 

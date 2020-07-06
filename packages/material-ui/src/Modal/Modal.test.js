@@ -3,7 +3,6 @@ import * as ReactDOM from 'react-dom';
 import { expect } from 'chai';
 import { useFakeTimers, spy } from 'sinon';
 import PropTypes from 'prop-types';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { createClientRender, fireEvent, within } from 'test/utils/createClientRender';
 import { createMuiTheme } from '@material-ui/core/styles';
 import createMount from 'test/utils/createMount';
@@ -390,12 +389,9 @@ describe('<Modal />', () => {
       initialFocus.tabIndex = 0;
       document.body.appendChild(initialFocus);
       initialFocus.focus();
-
-      consoleErrorMock.spy();
     });
 
     afterEach(() => {
-      consoleErrorMock.reset();
       document.body.removeChild(initialFocus);
     });
 
@@ -417,7 +413,7 @@ describe('<Modal />', () => {
       const { getByTestId, setProps } = render(
         <Modal open>
           <div>
-            <input data-testid="auto-focus" type="text" autoFocus className />
+            <input data-testid="auto-focus" type="text" autoFocus />
           </div>
         </Modal>,
       );

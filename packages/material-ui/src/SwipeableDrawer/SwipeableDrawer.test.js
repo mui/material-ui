@@ -4,7 +4,6 @@ import { spy } from 'sinon';
 import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import PropTypes, { checkPropTypes } from 'prop-types';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Drawer from '../Drawer';
 import SwipeableDrawer, { reset } from './SwipeableDrawer';
 import SwipeArea from './SwipeArea';
@@ -508,48 +507,41 @@ describe('<SwipeableDrawer />', () => {
 
   describe('warnings', () => {
     beforeEach(() => {
-      consoleErrorMock.spy();
       PropTypes.resetWarningCache();
     });
 
-    afterEach(() => {
-      consoleErrorMock.reset();
-    });
-
     it('warns if a component for the Paper is used that cant hold a ref', () => {
-      checkPropTypes(
-        SwipeableDrawer.propTypes,
-        {
-          onOpen: () => {},
-          onClose: () => {},
-          open: false,
-          PaperProps: { component: () => <div />, elevation: 4 },
-        },
-        'prop',
-        'MockedSwipeableDrawer',
-      );
-
-      expect(consoleErrorMock.callCount()).to.equal(1);
-      expect(consoleErrorMock.messages()[0]).to.include(
+      expect(() => {
+        checkPropTypes(
+          SwipeableDrawer.propTypes,
+          {
+            onOpen: () => {},
+            onClose: () => {},
+            open: false,
+            PaperProps: { component: () => <div />, elevation: 4 },
+          },
+          'prop',
+          'MockedSwipeableDrawer',
+        );
+      }).toErrorDev(
         'Warning: Failed prop type: Invalid prop `PaperProps.component` supplied to `MockedSwipeableDrawer`. Expected an element type that can hold a ref.',
       );
     });
 
     it('warns if a component for the Backdrop is used that cant hold a ref', () => {
-      checkPropTypes(
-        SwipeableDrawer.propTypes,
-        {
-          onOpen: () => {},
-          onClose: () => {},
-          open: false,
-          ModalProps: { BackdropProps: { component: () => <div />, 'data-backdrop': true } },
-        },
-        'prop',
-        'MockedSwipeableDrawer',
-      );
-
-      expect(consoleErrorMock.callCount()).to.equal(1);
-      expect(consoleErrorMock.messages()[0]).to.include(
+      expect(() => {
+        checkPropTypes(
+          SwipeableDrawer.propTypes,
+          {
+            onOpen: () => {},
+            onClose: () => {},
+            open: false,
+            ModalProps: { BackdropProps: { component: () => <div />, 'data-backdrop': true } },
+          },
+          'prop',
+          'MockedSwipeableDrawer',
+        );
+      }).toErrorDev(
         'Warning: Failed prop type: Invalid prop `ModalProps.BackdropProps.component` supplied to `MockedSwipeableDrawer`. Expected an element type that can hold a ref.',
       );
     });

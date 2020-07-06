@@ -5,7 +5,6 @@ import { spy } from 'sinon';
 import { getClasses, findOutermostIntrinsic } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Paper from '../Paper';
 import Accordion from './Accordion';
 import AccordionSummary from '../AccordionSummary';
@@ -130,38 +129,29 @@ describe('<Accordion />', () => {
   describe('prop: children', () => {
     describe('first child', () => {
       beforeEach(() => {
-        consoleErrorMock.spy();
         PropTypes.resetWarningCache();
       });
 
-      afterEach(() => {
-        consoleErrorMock.reset();
-      });
-
       it('requires at least one child', () => {
-        PropTypes.checkPropTypes(
-          Accordion.Naked.propTypes,
-          { classes: {}, children: [] },
-          'prop',
-          'MockedName',
-        );
-
-        expect(consoleErrorMock.callCount()).to.equal(1);
-        expect(consoleErrorMock.messages()[0]).to.include('Material-UI: Expected the first child');
+        expect(() => {
+          PropTypes.checkPropTypes(
+            Accordion.Naked.propTypes,
+            { classes: {}, children: [] },
+            'prop',
+            'MockedName',
+          );
+        }).toErrorDev(['Material-UI: Expected the first child']);
       });
 
       it('needs a valid element as the first child', () => {
-        PropTypes.checkPropTypes(
-          Accordion.Naked.propTypes,
-          { classes: {}, children: <React.Fragment /> },
-          'prop',
-          'MockedName',
-        );
-
-        expect(consoleErrorMock.callCount()).to.equal(1);
-        expect(consoleErrorMock.messages()[0]).to.include(
-          "Material-UI: The Accordion doesn't accept a Fragment",
-        );
+        expect(() => {
+          PropTypes.checkPropTypes(
+            Accordion.Naked.propTypes,
+            { classes: {}, children: <React.Fragment /> },
+            'prop',
+            'MockedName',
+          );
+        }).toErrorDev(["Material-UI: The Accordion doesn't accept a Fragment"]);
       });
     });
 
@@ -175,31 +165,19 @@ describe('<Accordion />', () => {
     });
   });
 
-  describe('warnings', () => {
-    beforeEach(() => {
-      consoleErrorMock.spy();
-    });
+  it('should warn when switching from controlled to uncontrolled', () => {
+    const wrapper = mount(<Accordion expanded>{minimalChildren}</Accordion>);
 
-    afterEach(() => {
-      consoleErrorMock.reset();
-    });
+    expect(() => wrapper.setProps({ expanded: undefined })).to.toErrorDev(
+      'Material-UI: A component is changing the controlled expanded state of Accordion to be uncontrolled.',
+    );
+  });
 
-    it('should warn when switching from controlled to uncontrolled', () => {
-      const wrapper = mount(<Accordion expanded>{minimalChildren}</Accordion>);
+  it('should warn when switching between uncontrolled to controlled', () => {
+    const wrapper = mount(<Accordion>{minimalChildren}</Accordion>);
 
-      wrapper.setProps({ expanded: undefined });
-      expect(consoleErrorMock.messages()[0]).to.include(
-        'Material-UI: A component is changing the controlled expanded state of Accordion to be uncontrolled.',
-      );
-    });
-
-    it('should warn when switching between uncontrolled to controlled', () => {
-      const wrapper = mount(<Accordion>{minimalChildren}</Accordion>);
-
-      wrapper.setProps({ expanded: true });
-      expect(consoleErrorMock.messages()[0]).to.include(
-        'Material-UI: A component is changing the uncontrolled expanded state of Accordion to be controlled.',
-      );
-    });
+    expect(() => wrapper.setProps({ expanded: true })).toErrorDev(
+      'Material-UI: A component is changing the uncontrolled expanded state of Accordion to be controlled.',
+    );
   });
 });

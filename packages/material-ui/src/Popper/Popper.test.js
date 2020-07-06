@@ -6,7 +6,6 @@ import createMount from 'test/utils/createMount';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 import PopperJs from 'popper.js';
 import Grow from '../Grow';
 import Popper from './Popper';
@@ -272,28 +271,22 @@ describe('<Popper />', () => {
 
   describe('warnings', () => {
     beforeEach(() => {
-      consoleErrorMock.spy();
       PropTypes.resetWarningCache();
     });
 
-    afterEach(() => {
-      consoleErrorMock.reset();
-    });
-
     it('should warn if anchorEl is not valid', () => {
-      PropTypes.checkPropTypes(
-        Popper.propTypes,
-        {
-          ...defaultProps,
-          open: true,
-          anchorEl: null,
-        },
-        'prop',
-        'MockedPopper',
-      );
-
-      expect(consoleErrorMock.callCount()).to.equal(1);
-      expect(consoleErrorMock.messages()[0]).to.include('It should be an HTML element instance');
+      expect(() => {
+        PropTypes.checkPropTypes(
+          Popper.propTypes,
+          {
+            ...defaultProps,
+            open: true,
+            anchorEl: null,
+          },
+          'prop',
+          'MockedPopper',
+        );
+      }).toErrorDev('It should be an HTML element instance');
     });
   });
 });

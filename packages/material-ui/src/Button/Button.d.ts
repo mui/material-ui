@@ -14,7 +14,7 @@ export type ButtonTypeMap<
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
      */
-    color?: PropTypes.Color | string;
+    color?: 'inherit' | 'primary' | 'secondary' | string;
     /**
      * If `true`, the button will be disabled.
      */

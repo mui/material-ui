@@ -1,7 +1,6 @@
 import { expect } from 'chai';
 import createPalette from './createPalette';
 import createTypography from './createTypography';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 
 describe('createTypography', () => {
   let palette;
@@ -76,30 +75,16 @@ describe('createTypography', () => {
   });
 
   describe('warnings', () => {
-    beforeEach(() => {
-      consoleErrorMock.spy();
-    });
-
-    afterEach(() => {
-      consoleErrorMock.reset();
-    });
-
     it('logs an error if `fontSize` is not of type number', () => {
-      createTypography({}, { fontSize: '1' });
-
-      expect(consoleErrorMock.callCount()).to.equal(1);
-      expect(consoleErrorMock.messages()[0]).to.match(
-        /Material-UI: `fontSize` is required to be a number./,
-      );
+      expect(() => {
+        createTypography({}, { fontSize: '1' });
+      }).toErrorDev('Material-UI: `fontSize` is required to be a number.');
     });
 
     it('logs an error if `htmlFontSize` is not of type number', () => {
-      createTypography({}, { htmlFontSize: '1' });
-
-      expect(consoleErrorMock.callCount()).to.equal(1);
-      expect(consoleErrorMock.messages()[0]).to.match(
-        /Material-UI: `htmlFontSize` is required to be a number./,
-      );
+      expect(() => {
+        createTypography({}, { htmlFontSize: '1' });
+      }).toErrorDev('Material-UI: `htmlFontSize` is required to be a number.');
     });
   });
 });
