@@ -104,7 +104,7 @@ StepButton.propTypes = {
    */
   completed: PropTypes.bool,
   /**
-   * If `true`, the base button will be disabled.
+   * @ignore This prop is ignored. You should disable the whole `Step`.
    */
   disabled: PropTypes.bool,
   /**

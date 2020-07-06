@@ -8,33 +8,34 @@ import { OverrideProps } from '../OverridableComponent';
  */
 export type StepButtonIcon = React.ReactNode;
 
-export type StepButtonTypeMap<P, D extends React.ElementType> = ExtendButtonBaseTypeMap<
-  {
-    props: P & {
-      /**
-       * Can be a `StepLabel` or a node to place inside `StepLabel` as children.
-       */
-      children?: React.ReactNode;
-      /**
-       * For non-linear Steppers you need to manually set which steps are completed.
-       * Otherwise the Stepper determines if a step is completed.
-       */
-      completed?: boolean;
-      /**
-       * The icon displayed by the step label.
-       */
-      icon?: React.ReactNode;
-      /**
-       * The optional node to display.
-       */
-      optional?: React.ReactNode;
-    };
-    defaultComponent: D;
-    classKey: StepButtonClasskey;
-    ignoredProps: 'disabled';
-  },
-  'disabled'
->;
+export type StepButtonTypeMap<P, D extends React.ElementType> = ExtendButtonBaseTypeMap<{
+  props: P & {
+    /**
+     * Can be a `StepLabel` or a node to place inside `StepLabel` as children.
+     */
+    children?: React.ReactNode;
+    /**
+     * For non-linear Steppers you need to manually set which steps are completed.
+     * Otherwise the Stepper determines if a step is completed.
+     */
+    completed?: boolean;
+    /**
+     * @ignore This prop is ignored. You should disable the whole `Step`.
+     */
+    disabled?: boolean;
+    /**
+     * The icon displayed by the step label.
+     */
+    icon?: React.ReactNode;
+    /**
+     * The optional node to display.
+     */
+    optional?: React.ReactNode;
+  };
+  defaultComponent: D;
+  classKey: StepButtonClasskey;
+  ignoredProps: 'disabled';
+}>;
 
 /**
  *
