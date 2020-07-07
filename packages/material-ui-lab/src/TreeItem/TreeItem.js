@@ -247,7 +247,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
       aria-expanded={expandable ? expanded : null}
       aria-selected={ariaSelected}
       ref={handleRef}
-      id={`${treeId}-${nodeId}`}
+      id={treeId && nodeId && `${treeId}-${nodeId}`}
       {...other}
     >
       {/* Key event is handled by the TreeView */}

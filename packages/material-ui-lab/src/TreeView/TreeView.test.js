@@ -236,13 +236,13 @@ describe('<TreeView />', () => {
     // Clicks would normally focus tree
     screen.getByRole('tree').focus();
 
-    expect(screen.getByTestId('one')).toHaveVirtualFocus();
+    expect(screen.getByTestId('one')).toBeActiveDescendant();
     fireEvent.keyDown(screen.getByRole('tree'), { key: 'ArrowDown' });
-    expect(screen.getByTestId('two')).toHaveVirtualFocus();
+    expect(screen.getByTestId('two')).toBeActiveDescendant();
     fireEvent.keyDown(screen.getByRole('tree'), { key: 'ArrowUp' });
-    expect(screen.getByTestId('one')).toHaveVirtualFocus();
+    expect(screen.getByTestId('one')).toBeActiveDescendant();
     fireEvent.keyDown(screen.getByRole('tree'), { key: 'ArrowDown' });
-    expect(screen.getByTestId('two')).toHaveVirtualFocus();
+    expect(screen.getByTestId('two')).toBeActiveDescendant();
   });
 
   it('should support conditional rendered tree items', () => {
