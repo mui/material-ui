@@ -10,10 +10,27 @@ export type ToggleButtonTypeMap<
   D extends React.ElementType = 'button'
 > = ExtendButtonBaseTypeMap<{
   props: P & {
+    /**
+     * The content of the button.
+     */
+    children?: React.ReactNode;
+    /**
+     * If `true`, the button will be disabled.
+     */
+    disabled?: boolean;
+    /**
+     * If `true`, the  keyboard focus ripple will be disabled.
+     */
     disableFocusRipple?: boolean;
+    /**
+     * If `true`, the button will be rendered in an active state.
+     */
     selected?: boolean;
-    size?: 'small' | 'medium' | 'large';
-    value?: any;
+    /**
+     * The value to associate with the button when selected in a
+     * ToggleButtonGroup.
+     */
+    value: NonNullable<unknown>;
   };
   defaultComponent: D;
   classKey: ToggleButtonClassKey;

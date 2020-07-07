@@ -28,15 +28,16 @@ The `MuiPaginationItem` name can be used for providing [default props](/customiz
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">color</span> | <span class="prop-type">'standard'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'</span> | <span class="prop-default">'standard'</span> | The active color. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span class="prop-name">color</span> | <span class="prop-type">'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'standard'</span> | <span class="prop-default">'standard'</span> | The active color. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> |  | The component used for the root node. Either a string to use a HTML element or a component. |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the item will be disabled. |
 | <span class="prop-name">page</span> | <span class="prop-type">number</span> |  | The current page number. |
 | <span class="prop-name">selected</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true` the pagination item is selected. |
 | <span class="prop-name">shape</span> | <span class="prop-type">'round'<br>&#124;&nbsp;'rounded'</span> | <span class="prop-default">'round'</span> | The shape of the pagination item. |
-| <span class="prop-name">size</span> | <span class="prop-type">'small'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'large'</span> | <span class="prop-default">'medium'</span> | The size of the pagination item. |
-| <span class="prop-name">type</span> | <span class="prop-type">'page'<br>&#124;&nbsp;'first'<br>&#124;&nbsp;'last'<br>&#124;&nbsp;'next'<br>&#124;&nbsp;'previous'<br>&#124;&nbsp;'start-ellipsis'<br>&#124;&nbsp;'end-ellipsis'</span> | <span class="prop-default">'page'</span> | The type of pagination item. |
-| <span class="prop-name">variant</span> | <span class="prop-type">'text'<br>&#124;&nbsp;'outlined'</span> | <span class="prop-default">'text'</span> | The pagination item variant. |
+| <span class="prop-name">size</span> | <span class="prop-type">'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'</span> | <span class="prop-default">'medium'</span> | The size of the pagination item. |
+| <span class="prop-name">type</span> | <span class="prop-type">'end-ellipsis'<br>&#124;&nbsp;'first'<br>&#124;&nbsp;'last'<br>&#124;&nbsp;'next'<br>&#124;&nbsp;'page'<br>&#124;&nbsp;'previous'<br>&#124;&nbsp;'start-ellipsis'</span> | <span class="prop-default">'page'</span> | The type of pagination item. |
+| <span class="prop-name">variant</span> | <span class="prop-type">'outlined'<br>&#124;&nbsp;'text'</span> | <span class="prop-default">'text'</span> | The pagination item variant. |
 
 The `ref` is forwarded to the root element.
 

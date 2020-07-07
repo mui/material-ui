@@ -7,7 +7,12 @@ export interface TabListTypeMap<
   P = {},
   D extends React.ElementType = TabsTypeMap['defaultComponent']
 > {
-  props: P & Omit<TabsTypeMap['props'], 'value'>;
+  props: P & {
+    /**
+     * A list of `<Tab />` elements.
+     */
+    children?: React.ReactElement[];
+  } & Omit<TabsTypeMap['props'], 'children' | 'value'>;
   defaultComponent: D;
   classKey: TabListClassKey;
 }
