@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
       margin: theme.spacing(1),
-    }
+    },
   },
 }));
 
@@ -46,17 +46,11 @@ export default function CustomVariantButtons() {
   return (
     <ThemeProvider theme={theme}>
       <div className={classes.root}>
-        <Button variant="dashed">
-          Dashed
-        </Button>
+        <Button variant="dashed">Dashed</Button>
         <Button variant="dashed" color="teal">
           Dashed teal
         </Button>
-        <Button
-          variant="dashed"
-          color="teal"
-          size="xxlarge"
-        >
+        <Button variant="dashed" color="teal" size="xxlarge">
           Extra large teal dashed
         </Button>
       </div>
