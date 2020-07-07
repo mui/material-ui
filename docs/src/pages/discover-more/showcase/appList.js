@@ -640,6 +640,17 @@ const appList = [
     stars: 14,
     dateAdded: '2020-03-25',
   },
-];
+  {
+    title: 'Componofy',
+    description:
+      'A web application that helps Spotify users combine tracks from different playlists and then' +
+      ' either create a new playlist or merge those tracks with the existing personal playlist.',
+    image: 'componofy.png',
+    link: 'https://componofy.herokuapp.com/',
+    source: 'https://github.com/DalerAsrorov/componofy',
+    stars: 9,
+    dateAdded: '2020-07-07',
+  },
+]
 
-export default appList;
+export default appList
