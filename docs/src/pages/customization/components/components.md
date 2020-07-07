@@ -341,15 +341,22 @@ const theme = createMuiTheme({
           border: '5px dashed teal',
         },
       },
-      {
-        matcher: { size: 'xxlarge' },
-        styles: {
-          fontSize: 20,
-        },
-      },
     ],
   },
 });
+```
+
+If you are using typescript, you will need to specify your new variants/colors, using module augmentation.
+
+```tsx
+declare module '@material-ui/core/Button/Button' {
+  interface ButtonPropsColorOverrides {
+    teal: true;
+  }
+  interface ButtonPropsVariantOverrides {
+    dashed: true;
+  }
+}
 ```
 
 {{"demo": "pages/customization/components/GlobalThemeVariants.js"}}
