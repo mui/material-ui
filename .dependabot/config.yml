@@ -51,7 +51,3 @@ update_configs:
           # https://github.com/mui-org/material-ui/pull/17168#issuecomment-524861427
           dependency_name: 'tslint'
           version_requirement: '5.x'
-      - match:
-          # as of 3.x requires node@10. We can upgrade once we do as well
-          dependency_name: 'url-loader'
-          version_requirement: '>= 3.0'
