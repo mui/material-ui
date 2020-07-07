@@ -6,14 +6,14 @@ import { createClientRender, fireEvent, screen } from 'test/utils/createClientRe
 import Portal from '../Portal';
 
 describe('<TrapFocus />', () => {
-  const render = createClientRender({ strict: false });
+  const render = createClientRender();
 
-  const sharedProps = {
+  const defaultProps = {
     getDoc: () => document,
     isEnabled: () => true,
   };
-
   let initialFocus = null;
+
   beforeEach(() => {
     initialFocus = document.createElement('button');
     initialFocus.tabIndex = 0;
@@ -27,7 +27,7 @@ describe('<TrapFocus />', () => {
 
   it('should return focus to the children', () => {
     const { getByTestId } = render(
-      <TrapFocus open {...sharedProps}>
+      <TrapFocus {...defaultProps} open>
         <div tabIndex={-1} data-testid="modal">
           <input autoFocus data-testid="auto-focus" />
         </div>
@@ -42,7 +42,7 @@ describe('<TrapFocus />', () => {
 
   it('should not return focus to the children when disableEnforceFocus is true', () => {
     const { getByTestId } = render(
-      <TrapFocus open disableEnforceFocus {...sharedProps}>
+      <TrapFocus {...defaultProps} open disableEnforceFocus>
         <div tabIndex={-1}>
           <input autoFocus data-testid="auto-focus" />
         </div>
@@ -58,7 +58,7 @@ describe('<TrapFocus />', () => {
 
   it('should focus first focusable child in portal', () => {
     const { getByTestId } = render(
-      <TrapFocus open {...sharedProps}>
+      <TrapFocus {...defaultProps} open>
         <div tabIndex={-1}>
           <Portal>
             <input autoFocus data-testid="auto-focus" />
@@ -75,7 +75,7 @@ describe('<TrapFocus />', () => {
 
     expect(() => {
       render(
-        <TrapFocus open {...sharedProps}>
+        <TrapFocus {...defaultProps} open>
           <UnfocusableDialog />
         </TrapFocus>,
       );
@@ -86,7 +86,7 @@ describe('<TrapFocus />', () => {
     const EmptyDialog = React.forwardRef(() => null);
 
     render(
-      <TrapFocus open {...sharedProps}>
+      <TrapFocus {...defaultProps} open>
         <EmptyDialog />
       </TrapFocus>,
     );
@@ -94,7 +94,7 @@ describe('<TrapFocus />', () => {
 
   it('should loop the tab key', () => {
     render(
-      <TrapFocus open {...sharedProps}>
+      <TrapFocus {...defaultProps} open>
         <div tabIndex={-1} data-testid="modal">
           <div>Title</div>
           <button type="button">x</button>
@@ -122,7 +122,7 @@ describe('<TrapFocus />', () => {
     expect(document.querySelector('[data-test="sentinelEnd"]')).toHaveFocus();
   });
 
-  describe('', () => {
+  describe('interval', () => {
     let clock;
 
     beforeEach(() => {
@@ -141,7 +141,7 @@ describe('<TrapFocus />', () => {
 
       function WithRemovableElement({ hideButton = false }) {
         return (
-          <TrapFocus open {...sharedProps}>
+          <TrapFocus {...defaultProps} open>
             <div tabIndex={-1} role="dialog">
               {!hideButton && <button type="button">I am going to disappear</button>}
             </div>
@@ -161,6 +161,70 @@ describe('<TrapFocus />', () => {
       expect(dialog).not.toHaveFocus();
       clock.tick(500); // wait for the interval check to kick in.
       expect(dialog).toHaveFocus();
+    });
+
+    describe('prop: disableAutoFocus', () => {
+      it('should not trap', () => {
+        const { getByRole } = render(
+          <div>
+            <input />
+            <TrapFocus {...defaultProps} open disableAutoFocus>
+              <div tabIndex={-1} data-testid="modal" />
+            </TrapFocus>
+          </div>,
+        );
+
+        clock.tick(500); // trigger an interval call
+        expect(initialFocus).toHaveFocus();
+
+        getByRole('textbox').focus(); // trigger a focus event
+        expect(getByRole('textbox')).toHaveFocus();
+      });
+
+      it('should trap once the focus moves inside', () => {
+        const { getByRole, getByTestId } = render(
+          <div>
+            <input />
+            <TrapFocus {...defaultProps} open disableAutoFocus>
+              <div tabIndex={-1} data-testid="modal" />
+            </TrapFocus>
+          </div>,
+        );
+
+        expect(initialFocus).toHaveFocus();
+
+        // the trap activates
+        getByTestId('modal').focus();
+        expect(getByTestId('modal')).toHaveFocus();
+
+        // the trap prevent to escape
+        getByRole('textbox').focus();
+        expect(getByTestId('modal')).toHaveFocus();
+      });
+
+      it('should restore the focus', () => {
+        const Test = (props) => (
+          <div>
+            <input />
+            <TrapFocus {...defaultProps} open disableAutoFocus {...props}>
+              <div tabIndex={-1} data-testid="modal" />
+            </TrapFocus>
+          </div>
+        );
+
+        const { getByRole, getByTestId, setProps } = render(<Test />);
+
+        // set the expected focus restore location
+        getByRole('textbox').focus();
+
+        // the trap activates
+        getByTestId('modal').focus();
+        expect(getByTestId('modal')).toHaveFocus();
+
+        // restore the focus to the first element before triggering the trap
+        setProps({ open: false });
+        expect(getByRole('textbox')).toHaveFocus();
+      });
     });
   });
 });

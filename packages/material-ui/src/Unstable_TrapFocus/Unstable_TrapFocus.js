@@ -24,6 +24,9 @@ function Unstable_TrapFocus(props) {
   const sentinelEnd = React.useRef(null);
   const nodeToRestore = React.useRef();
   const reactFocusEventTarget = React.useRef(null);
+  // This variable is useful when disableAutoFocus is true.
+  // It waits for the active element to move into the component to activate.
+  const activated = React.useRef(false);
 
   const rootRef = React.useRef(null);
   // can be removed once we drop support for non ref forwarding class components
@@ -37,7 +40,8 @@ function Unstable_TrapFocus(props) {
   React.useEffect(() => {
     prevOpenRef.current = open;
   }, [open]);
-  if (!prevOpenRef.current && open && typeof window !== 'undefined') {
+
+  if (!prevOpenRef.current && open && typeof window !== 'undefined' && !disableAutoFocus) {
     // WARNING: Potentially unsafe in concurrent mode.
     // The way the read on `nodeToRestore` is setup could make this actually safe.
     // Say we render `open={false}` -> `open={true}` but never commit.
@@ -50,14 +54,15 @@ function Unstable_TrapFocus(props) {
   }
 
   React.useEffect(() => {
-    if (!open) {
+    // We might render an empty child.
+    if (!open || !rootRef.current) {
       return;
     }
 
+    activated.current = !disableAutoFocus;
     const doc = ownerDocument(rootRef.current);
 
-    // We might render an empty child.
-    if (!disableAutoFocus && rootRef.current && !rootRef.current.contains(doc.activeElement)) {
+    if (!rootRef.current.contains(doc.activeElement)) {
       if (!rootRef.current.hasAttribute('tabIndex')) {
         if (process.env.NODE_ENV !== 'production') {
           console.error(
@@ -71,7 +76,9 @@ function Unstable_TrapFocus(props) {
         rootRef.current.setAttribute('tabIndex', -1);
       }
 
-      rootRef.current.focus();
+      if (activated.current) {
+        rootRef.current.focus();
+      }
     }
 
     const contain = (nativeEvent) => {
@@ -85,7 +92,11 @@ function Unstable_TrapFocus(props) {
         return;
       }
 
-      if (rootRef.current && !rootRef.current.contains(doc.activeElement)) {
+      if (!activated.current) {
+        nodeToRestore.current = doc.activeElement;
+      }
+
+      if (!rootRef.current.contains(doc.activeElement)) {
         // if the focus event is not coming from inside the children's react tree, reset the refs
         if (
           (nativeEvent && reactFocusEventTarget.current !== nativeEvent.target) ||
@@ -96,7 +107,13 @@ function Unstable_TrapFocus(props) {
           return;
         }
 
+        if (!activated.current) {
+          return;
+        }
+
         rootRef.current.focus();
+      } else {
+        activated.current = true;
       }
     };
 
@@ -122,13 +139,16 @@ function Unstable_TrapFocus(props) {
     doc.addEventListener('focus', contain, true);
     doc.addEventListener('keydown', loopFocus, true);
 
-    // With Edge, Safari and Firefox, no focus related events are fired when the focused area stops being a focused area
+    // With Edge, Safari and Firefox, no focus related events are fired when the focused area stops being a focused area.
     // e.g. https://bugzilla.mozilla.org/show_bug.cgi?id=559561.
+    // Instead, we can look if the active element was restored on the BODY element.
     //
     // The whatwg spec defines how the browser should behave but does not explicitly mention any events:
     // https://html.spec.whatwg.org/multipage/interaction.html#focus-fixup-rule.
     const interval = setInterval(() => {
-      contain();
+      if (doc.activeElement.tagName === 'BODY') {
+        contain();
+      }
     }, 50);
 
     return () => {
@@ -153,6 +173,7 @@ function Unstable_TrapFocus(props) {
   }, [disableAutoFocus, disableEnforceFocus, disableRestoreFocus, isEnabled, open]);
 
   const onFocus = (event) => {
+    activated.current = true;
     reactFocusEventTarget.current = event.target;
 
     const childrenPropsHandler = children.props.onFocus;
