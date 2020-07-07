@@ -96,7 +96,6 @@ function createMuiTheme(options = {}, ...args) {
     };
 
     traverse(muiTheme.overrides);
-    traverse(muiTheme.variants);
   }
 
   return muiTheme;

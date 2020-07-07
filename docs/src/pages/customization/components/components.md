@@ -319,3 +319,37 @@ const theme = createMuiTheme({
 ```
 
 {{"demo": "pages/customization/components/GlobalThemeOverride.js"}}
+
+### Adding new theme variants
+
+You can take advantage of the `variants` key of the `theme` to potentially add new variants for the Material-UI components.
+
+```jsx
+const theme = createMuiTheme({
+  variants: {
+    MuiButton: [
+      {
+        matcher: { variant: 'dashed' },
+        styles: {
+          padding: '5px 15px',
+          border: '5px dashed grey',
+        },
+      },
+      {
+        matcher: { variant: 'dashed', color: 'teal' },
+        styles: {
+          border: '5px dashed teal',
+        },
+      },
+      {
+        matcher: { size: 'xxlarge' },
+        styles: {
+          fontSize: 20,
+        },
+      },
+    ],
+  },
+});
+```
+
+{{"demo": "pages/customization/components/GlobalThemeVariants.js"}}

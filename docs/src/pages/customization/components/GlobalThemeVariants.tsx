@@ -8,8 +8,10 @@ import {
 import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme: Theme) => ({
-  margin: {
-    margin: theme.spacing(1),
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+    }
   },
 }));
 
@@ -44,20 +46,21 @@ export default function CustomVariantButtons() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Button variant="dashed" className={classes.margin}>
-        Dashed
-      </Button>
-      <Button variant="dashed" color="teal" className={classes.margin}>
-        Dashed teal
-      </Button>
-      <Button
-        variant="dashed"
-        color="teal"
-        size="xxlarge"
-        className={classes.margin}
-      >
-        Extra large teal dashed
-      </Button>
+      <div className={classes.root}>
+        <Button variant="dashed">
+          Dashed
+        </Button>
+        <Button variant="dashed" color="teal">
+          Dashed teal
+        </Button>
+        <Button
+          variant="dashed"
+          color="teal"
+          size="xxlarge"
+        >
+          Extra large teal dashed
+        </Button>
+      </div>
     </ThemeProvider>
   );
 }
