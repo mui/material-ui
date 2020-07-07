@@ -651,6 +651,6 @@ const appList = [
     stars: 9,
     dateAdded: '2020-07-07',
   },
-]
+];
 
-export default appList
+export default appList;
