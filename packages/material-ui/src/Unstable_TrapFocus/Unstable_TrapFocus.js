@@ -19,6 +19,14 @@ function Unstable_TrapFocus(props) {
     isEnabled,
     open,
   } = props;
+  const ignoreNextEnforceFocus = React.useRef();
+  const sentinelStart = React.useRef(null);
+  const sentinelEnd = React.useRef(null);
+  const nodeToRestore = React.useRef();
+  const reactFocusEventTarget = React.useRef(null);
+  // This variable is useful when disableAutoFocus is true.
+  // It waits for the active element to move into the component to activate.
+  const activated = React.useRef(false);
 
   const rootRef = React.useRef(null);
   // can be removed once we drop support for non ref forwarding class components
@@ -27,14 +35,6 @@ function Unstable_TrapFocus(props) {
     rootRef.current = ReactDOM.findDOMNode(instance);
   }, []);
   const handleRef = useForkRef(children.ref, handleOwnRef);
-
-  const sentinelStart = React.useRef(null);
-  const sentinelEnd = React.useRef(null);
-  const nodeToRestore = React.useRef();
-  const ignoreNextEnforceFocus = React.useRef();
-  // This variable is useful when disableAutoFocus is true.
-  // It waits for the active element to move into the component to activate.
-  const activated = React.useRef(false);
 
   const prevOpenRef = React.useRef();
   React.useEffect(() => {
@@ -52,8 +52,6 @@ function Unstable_TrapFocus(props) {
     // hold a weak ref.
     nodeToRestore.current = getDoc().activeElement;
   }
-
-  const reactFocusEventTarget = React.useRef(null);
 
   React.useEffect(() => {
     // We might render an empty child.
