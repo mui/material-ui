@@ -59,7 +59,7 @@
     "next-images": "^1.4.0",
     "next-transpile-modules": "^2.0.0",
     "notistack": "^0.9.17",
-    "now": "^19.0.1",
+    "now": "^19.1.1",
     "prismjs": "^1.20.0",
     "raw-loader": "^1.0.0",
     "react": "^16.13.0",
@@ -78,7 +78,7 @@
     "dotenv": "^8.2.0",
     "eslint-plugin-react": "^7.19.0",
     "fs-extra": "^9.0.0",
-    "now": "^18.0.0",
+    "now": "^19.1.1",
     "patreon": "^0.4.1"
   }
 }
