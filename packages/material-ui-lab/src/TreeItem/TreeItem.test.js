@@ -765,8 +765,7 @@ describe('<TreeItem />', () => {
 
           render(<TestComponent />);
           fireEvent.click(screen.getByText('Hide'));
-          const navTreeItem = screen.getByTestId('navTo');
-          expect(navTreeItem).not.toHaveFocus();
+          expect(screen.getByTestId('navTo')).not.toBeActiveDescendant();
 
           expect(() => {
             screen.getByRole('tree').focus();
