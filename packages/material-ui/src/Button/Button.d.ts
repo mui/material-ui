@@ -1,6 +1,16 @@
 import { PropTypes } from '..';
+import { OverridableStringUnion } from '@material-ui/types';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps, OverridableComponent, OverridableTypeMap } from '../OverridableComponent';
+
+export interface ButtonPropsColorOverrides {}
+export type ColorDefaults = Record<'inherit' | 'primary' | 'secondary', true>;
+
+export interface ButtonPropsVariantOverrides {}
+export type VariantDefaults = Record<'text' | 'outlined' | 'contained', true>;
+
+export interface ButtonPropsSizeOverrides {}
+export type SizeDefaults = Record<'small' | 'medium' | 'large', true>;
 
 export type ButtonTypeMap<
   P = {},
@@ -14,7 +24,7 @@ export type ButtonTypeMap<
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
      */
-    color?: 'inherit' | 'primary' | 'secondary' | string;
+    color?: OverridableStringUnion<ColorDefaults, ButtonPropsColorOverrides>;
     /**
      * If `true`, the button will be disabled.
      */
@@ -44,7 +54,7 @@ export type ButtonTypeMap<
      * The size of the button.
      * `small` is equivalent to the dense button styling.
      */
-    size?: 'small' | 'medium' | 'large' | string;
+    size?: OverridableStringUnion<SizeDefaults, ButtonPropsSizeOverrides>;
     /**
      * Element placed before the children.
      */
@@ -52,7 +62,7 @@ export type ButtonTypeMap<
     /**
      * The variant to use.
      */
-    variant?: 'text' | 'outlined' | 'contained' | string;
+    variant?: OverridableStringUnion<VariantDefaults, ButtonPropsVariantOverrides>;
   };
   defaultComponent: D;
   classKey: ButtonClassKey;

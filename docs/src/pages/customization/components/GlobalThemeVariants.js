@@ -31,7 +31,7 @@ const theme = createMuiTheme({
         },
       },
       {
-        matcher: { size: 'xxlarge' },
+        matcher: { size: 'xlarge' },
         styles: {
           fontSize: 20,
         },
@@ -40,7 +40,7 @@ const theme = createMuiTheme({
   },
 });
 
-export default function CustomVariantButtons() {
+export default function GlobalThemeVariants() {
   const classes = useStyles();
 
   return (
@@ -50,7 +50,7 @@ export default function CustomVariantButtons() {
         <Button variant="dashed" color="teal">
           Dashed teal
         </Button>
-        <Button variant="dashed" color="teal" size="xxlarge">
+        <Button variant="dashed" color="teal" size="xlarge">
           Extra large teal dashed
         </Button>
       </div>
