@@ -94,16 +94,16 @@ describe('<TreeView />', () => {
   it('should call onKeyDown when a key is pressed', () => {
     const handleKeyDown = spy();
 
-    render(
+    const { getByRole } = render(
       <TreeView onKeyDown={handleKeyDown}>
         <TreeItem nodeId="test" label="test" data-testid="test" />
       </TreeView>,
     );
-    screen.getByRole('tree').focus();
+    getByRole('tree').focus();
 
-    fireEvent.keyDown(screen.getByRole('tree'), { key: 'Enter' });
-    fireEvent.keyDown(screen.getByRole('tree'), { key: 'A' });
-    fireEvent.keyDown(screen.getByRole('tree'), { key: ']' });
+    fireEvent.keyDown(getByRole('tree'), { key: 'Enter' });
+    fireEvent.keyDown(getByRole('tree'), { key: 'A' });
+    fireEvent.keyDown(getByRole('tree'), { key: ']' });
 
     expect(handleKeyDown.callCount).to.equal(3);
   });
@@ -111,25 +111,25 @@ describe('<TreeView />', () => {
   it('should call onFocus when tree is focused', () => {
     const handleFocus = spy();
 
-    render(
+    const { getByRole } = render(
       <TreeView onFocus={handleFocus}>
         <TreeItem nodeId="test" label="test" data-testid="test" />
       </TreeView>,
     );
-    screen.getByRole('tree').focus();
+    getByRole('tree').focus();
     expect(handleFocus.callCount).to.equal(1);
   });
 
   it('should call onBlur when tree is blurred', () => {
     const handleBlur = spy();
 
-    render(
+    const { getByRole } = render(
       <TreeView onBlur={handleBlur}>
         <TreeItem nodeId="test" label="test" data-testid="test" />
       </TreeView>,
     );
-    screen.getByRole('tree').focus();
-    screen.getByRole('tree').blur();
+    getByRole('tree').focus();
+    getByRole('tree').blur();
     expect(handleBlur.callCount).to.equal(1);
   });
 
@@ -148,16 +148,16 @@ describe('<TreeView />', () => {
       );
     }
 
-    render(<MyComponent />);
+    const { getByRole, getByTestId, getByText } = render(<MyComponent />);
 
-    expect(screen.getByTestId('one')).to.have.attribute('aria-expanded', 'false');
-    fireEvent.click(screen.getByText('one'));
-    screen.getByRole('tree').focus();
-    expect(screen.getByTestId('one')).to.have.attribute('aria-expanded', 'true');
-    fireEvent.click(screen.getByText('one'));
-    expect(screen.getByTestId('one')).to.have.attribute('aria-expanded', 'false');
-    fireEvent.keyDown(screen.getByRole('tree'), { key: '*' });
-    expect(screen.getByTestId('one')).to.have.attribute('aria-expanded', 'true');
+    expect(getByTestId('one')).to.have.attribute('aria-expanded', 'false');
+    fireEvent.click(getByText('one'));
+    getByRole('tree').focus();
+    expect(getByTestId('one')).to.have.attribute('aria-expanded', 'true');
+    fireEvent.click(getByText('one'));
+    expect(getByTestId('one')).to.have.attribute('aria-expanded', 'false');
+    fireEvent.keyDown(getByRole('tree'), { key: '*' });
+    expect(getByTestId('one')).to.have.attribute('aria-expanded', 'true');
   });
 
   it('should be able to be controlled with the selected prop and singleSelect', () => {
@@ -174,16 +174,16 @@ describe('<TreeView />', () => {
       );
     }
 
-    render(<MyComponent />);
+    const { getByTestId, getByText } = render(<MyComponent />);
 
-    expect(screen.getByTestId('one')).to.not.have.attribute('aria-selected');
-    expect(screen.getByTestId('two')).to.not.have.attribute('aria-selected');
-    fireEvent.click(screen.getByText('one'));
-    expect(screen.getByTestId('one')).to.have.attribute('aria-selected', 'true');
-    expect(screen.getByTestId('two')).to.not.have.attribute('aria-selected');
-    fireEvent.click(screen.getByText('two'));
-    expect(screen.getByTestId('one')).to.not.have.attribute('aria-selected');
-    expect(screen.getByTestId('two')).to.have.attribute('aria-selected', 'true');
+    expect(getByTestId('one')).to.not.have.attribute('aria-selected');
+    expect(getByTestId('two')).to.not.have.attribute('aria-selected');
+    fireEvent.click(getByText('one'));
+    expect(getByTestId('one')).to.have.attribute('aria-selected', 'true');
+    expect(getByTestId('two')).to.not.have.attribute('aria-selected');
+    fireEvent.click(getByText('two'));
+    expect(getByTestId('one')).to.not.have.attribute('aria-selected');
+    expect(getByTestId('two')).to.have.attribute('aria-selected', 'true');
   });
 
   it('should be able to be controlled with the selected prop and multiSelect', () => {
@@ -200,16 +200,16 @@ describe('<TreeView />', () => {
       );
     }
 
-    render(<MyComponent />);
+    const { getByTestId, getByText } = render(<MyComponent />);
 
-    expect(screen.getByTestId('one')).to.have.attribute('aria-selected', 'false');
-    expect(screen.getByTestId('two')).to.have.attribute('aria-selected', 'false');
-    fireEvent.click(screen.getByText('one'));
-    expect(screen.getByTestId('one')).to.have.attribute('aria-selected', 'true');
-    expect(screen.getByTestId('two')).to.have.attribute('aria-selected', 'false');
-    fireEvent.click(screen.getByText('two'), { ctrlKey: true });
-    expect(screen.getByTestId('one')).to.have.attribute('aria-selected', 'true');
-    expect(screen.getByTestId('two')).to.have.attribute('aria-selected', 'true');
+    expect(getByTestId('one')).to.have.attribute('aria-selected', 'false');
+    expect(getByTestId('two')).to.have.attribute('aria-selected', 'false');
+    fireEvent.click(getByText('one'));
+    expect(getByTestId('one')).to.have.attribute('aria-selected', 'true');
+    expect(getByTestId('two')).to.have.attribute('aria-selected', 'false');
+    fireEvent.click(getByText('two'), { ctrlKey: true });
+    expect(getByTestId('one')).to.have.attribute('aria-selected', 'true');
+    expect(getByTestId('two')).to.have.attribute('aria-selected', 'true');
   });
 
   it('should not error when component state changes', () => {
@@ -230,19 +230,19 @@ describe('<TreeView />', () => {
       );
     }
 
-    render(<MyComponent />);
+    const { getByRole, getByText, getByTestId } = render(<MyComponent />);
 
-    fireEvent.click(screen.getByText('one'));
+    fireEvent.click(getByText('one'));
     // Clicks would normally focus tree
-    screen.getByRole('tree').focus();
+    getByRole('tree').focus();
 
-    expect(screen.getByTestId('one')).toBeActiveDescendant();
-    fireEvent.keyDown(screen.getByRole('tree'), { key: 'ArrowDown' });
-    expect(screen.getByTestId('two')).toBeActiveDescendant();
-    fireEvent.keyDown(screen.getByRole('tree'), { key: 'ArrowUp' });
-    expect(screen.getByTestId('one')).toBeActiveDescendant();
-    fireEvent.keyDown(screen.getByRole('tree'), { key: 'ArrowDown' });
-    expect(screen.getByTestId('two')).toBeActiveDescendant();
+    expect(getByTestId('one')).toBeActiveDescendant();
+    fireEvent.keyDown(getByRole('tree'), { key: 'ArrowDown' });
+    expect(getByTestId('two')).toBeActiveDescendant();
+    fireEvent.keyDown(getByRole('tree'), { key: 'ArrowUp' });
+    expect(getByTestId('one')).toBeActiveDescendant();
+    fireEvent.keyDown(getByRole('tree'), { key: 'ArrowDown' });
+    expect(getByTestId('two')).toBeActiveDescendant();
   });
 
   it('should support conditional rendered tree items', () => {
@@ -259,24 +259,24 @@ describe('<TreeView />', () => {
       );
     }
 
-    render(<TestComponent />);
+    const { getByText, queryByText } = render(<TestComponent />);
 
-    expect(screen.getByText('test')).not.to.equal(null);
-    fireEvent.click(screen.getByText('Hide'));
-    expect(screen.queryByText('test')).to.equal(null);
+    expect(getByText('test')).not.to.equal(null);
+    fireEvent.click(getByText('Hide'));
+    expect(queryByText('test')).to.equal(null);
   });
 
   describe('onNodeFocus', () => {
     it('should be called when node is focused', () => {
       const focusSpy = spy();
-      render(
+      const { getByRole } = render(
         <TreeView onNodeFocus={focusSpy}>
           <TreeItem nodeId="1" label="one" />
         </TreeView>,
       );
 
       // First node receives focus when tree focused
-      screen.getByRole('tree').focus();
+      getByRole('tree').focus();
 
       expect(focusSpy.callCount).to.equal(1);
       expect(focusSpy.args[0][1]).to.equal('1');
@@ -287,7 +287,7 @@ describe('<TreeView />', () => {
     it('should be called when a parent node label is clicked', () => {
       const handleNodeToggle = spy();
 
-      render(
+      const { getByText } = render(
         <TreeView onNodeToggle={handleNodeToggle}>
           <TreeItem nodeId="1" label="outer">
             <TreeItem nodeId="2" label="inner" />
@@ -295,7 +295,7 @@ describe('<TreeView />', () => {
         </TreeView>,
       );
 
-      fireEvent.click(screen.getByText('outer'));
+      fireEvent.click(getByText('outer'));
 
       expect(handleNodeToggle.callCount).to.equal(1);
       expect(handleNodeToggle.args[0][1]).to.deep.equal(['1']);
@@ -304,7 +304,7 @@ describe('<TreeView />', () => {
     it('should not be called when a parent node label is clicked and onLabelClick preventDefault', () => {
       const handleNodeToggle = spy();
 
-      render(
+      const { getByText } = render(
         <TreeView onNodeToggle={handleNodeToggle}>
           <TreeItem onLabelClick={(event) => event.preventDefault()} nodeId="1" label="outer">
             <TreeItem nodeId="2" label="inner" />
@@ -312,7 +312,7 @@ describe('<TreeView />', () => {
         </TreeView>,
       );
 
-      fireEvent.click(screen.getByText('outer'));
+      fireEvent.click(getByText('outer'));
 
       expect(handleNodeToggle.callCount).to.equal(0);
     });
@@ -320,7 +320,7 @@ describe('<TreeView />', () => {
     it('should be called when a parent node icon is clicked', () => {
       const handleNodeToggle = spy();
 
-      render(
+      const { getByTestId } = render(
         <TreeView onNodeToggle={handleNodeToggle}>
           <TreeItem icon={<div data-testid="icon" />} nodeId="1" label="outer">
             <TreeItem nodeId="2" label="inner" />
@@ -328,7 +328,7 @@ describe('<TreeView />', () => {
         </TreeView>,
       );
 
-      fireEvent.click(screen.getByTestId('icon'));
+      fireEvent.click(getByTestId('icon'));
 
       expect(handleNodeToggle.callCount).to.equal(1);
       expect(handleNodeToggle.args[0][1]).to.deep.equal(['1']);
@@ -337,7 +337,7 @@ describe('<TreeView />', () => {
     it('should not be called when a parent node icon is clicked and onIconClick preventDefault', () => {
       const handleNodeToggle = spy();
 
-      render(
+      const { getByTestId } = render(
         <TreeView onNodeToggle={handleNodeToggle}>
           <TreeItem
             onIconClick={(event) => event.preventDefault()}
@@ -350,7 +350,7 @@ describe('<TreeView />', () => {
         </TreeView>,
       );
 
-      fireEvent.click(screen.getByTestId('icon'));
+      fireEvent.click(getByTestId('icon'));
 
       expect(handleNodeToggle.callCount).to.equal(0);
     });
@@ -358,21 +358,21 @@ describe('<TreeView />', () => {
 
   describe('Accessibility', () => {
     it('(TreeView) should have the role `tree`', () => {
-      render(<TreeView />);
+      const { getByRole } = render(<TreeView />);
 
-      expect(screen.getByRole('tree')).not.to.equal(null);
+      expect(getByRole('tree')).not.to.equal(null);
     });
 
     it('(TreeView) should have the attribute `aria-multiselectable=false if using single select`', () => {
-      render(<TreeView />);
+      const { getByRole } = render(<TreeView />);
 
-      expect(screen.getByRole('tree')).to.have.attribute('aria-multiselectable', 'false');
+      expect(getByRole('tree')).to.have.attribute('aria-multiselectable', 'false');
     });
 
     it('(TreeView) should have the attribute `aria-multiselectable=true if using multi select`', () => {
-      render(<TreeView multiSelect />);
+      const { getByRole } = render(<TreeView multiSelect />);
 
-      expect(screen.getByRole('tree')).to.have.attribute('aria-multiselectable', 'true');
+      expect(getByRole('tree')).to.have.attribute('aria-multiselectable', 'true');
     });
   });
 });
