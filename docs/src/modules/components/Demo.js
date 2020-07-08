@@ -27,6 +27,7 @@ import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import DemoSandboxed from 'docs/src/modules/components/DemoSandboxed';
 import getDemoConfig from 'docs/src/modules/utils/getDemoConfig';
 import getJsxPreview from 'docs/src/modules/utils/getJsxPreview';
+import { AdCarbonInline } from 'docs/src/modules/components/AdCarbon';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import { ACTION_TYPES, CODE_VARIANTS } from 'docs/src/modules/constants';
 
@@ -686,7 +687,7 @@ const useStyles = makeStyles(
         overflow: 'auto',
         lineHeight: 1.5,
         margin: '0 !important',
-        maxHeight: 1000,
+        maxHeight: 'min(68vh, 1000px)',
       },
     },
     anchorLink: {
@@ -700,6 +701,9 @@ const useStyles = makeStyles(
       width: theme.spacing(4),
       height: theme.spacing(4),
       pointerEvents: 'none',
+    },
+    ad: {
+      margin: theme.spacing(1.5, 0, 0.5),
     },
   }),
   { name: 'Demo' },
@@ -812,12 +816,15 @@ function Demo(props) {
         />
       )}
       <Collapse in={openDemoSource} unmountOnExit>
-        <HighlightedCode
-          className={classes.code}
-          id={demoSourceId}
-          code={showPreview && !codeOpen ? jsx : demoData.raw}
-          language={demoData.sourceLanguage}
-        />
+        <div>
+          <HighlightedCode
+            className={classes.code}
+            id={demoSourceId}
+            code={showPreview && !codeOpen ? jsx : demoData.raw}
+            language={demoData.sourceLanguage}
+          />
+          {codeOpen ? <AdCarbonInline className={classes.ad} /> : null}
+        </div>
       </Collapse>
     </div>
   );

@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import AdCarbon from 'docs/src/modules/components/AdCarbon';
+import AdReadthedocs from 'docs/src/modules/components/AdReadthedocs';
 import AdInHouse from 'docs/src/modules/components/AdInHouse';
 import { AdContext, adShape } from 'docs/src/modules/components/AdManager';
 
@@ -113,6 +114,7 @@ function Ad(props) {
   const [adblock, setAdblock] = React.useState(null);
   const [carbonOut, setCarbonOut] = React.useState(null);
 
+  const { current: randomSplit } = React.useRef(Math.random());
   const { current: randomAdblock } = React.useRef(Math.random());
   const { current: randomInHouse } = React.useRef(Math.random());
 
@@ -132,21 +134,25 @@ function Ad(props) {
   } else if (carbonOut) {
     children = <AdInHouse ad={inHouseAds[Math.floor(inHouseAds.length * randomInHouse)]} />;
     label = 'in-house-carbon';
-  } else {
+  } else if (randomSplit < 0.95) {
     children = <AdCarbon />;
     label = 'carbon';
+  } else {
+    children = <AdReadthedocs />;
+    label = 'readthedocs';
   }
 
   const ad = React.useContext(AdContext);
-  const eventLabel = `${label}-${ad.portal.placement}-${adShape}`;
+  const eventLabel = label ? `${label}-${ad.portal.placement}-${adShape}` : null;
 
   const timerAdblock = React.useRef();
 
   const checkAdblock = React.useCallback(
     (attempt = 1) => {
       if (
-        document.querySelector('.cf-wrapper') ||
+        document.querySelector('.ea-placement') ||
         document.querySelector('#carbonads') ||
+        document.querySelector('.ad-display') ||
         carbonOut
       ) {
         if (
@@ -187,7 +193,7 @@ function Ad(props) {
 
   React.useEffect(() => {
     // Avoid an exceed on the Google Analytics quotas.
-    if (Math.random() < 0.9) {
+    if (Math.random() < 0.9 || !eventLabel) {
       return undefined;
     }
 

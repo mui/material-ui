@@ -13,9 +13,9 @@ export const AdContext = React.createContext();
 const randomSession = Math.random();
 
 // Distribution profile:
-// 50% body-image
-// 50% body-inline
-export const adShape = randomSession < 0.5 ? 'inline' : 'image';
+// 20% body-inline
+// 80% body-image
+export const adShape = randomSession < 0.2 ? 'inline' : 'image';
 
 export default function AdManager(props) {
   const [portal, setPortal] = React.useState({});
