@@ -375,7 +375,7 @@ export function reportWebVitals({ id, name, label, value }) {
   // Track fraction of actual events to prevent exceeding event quota
   // TODO: Track all for `next` branch for testing.
   // Reduce to .1% before release of v5
-  if (Math.random() <= 1) {
+  if (Math.random() > 1) {
     return;
   }
 
