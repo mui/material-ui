@@ -373,16 +373,12 @@ MyApp.getInitialProps = async ({ ctx, Component }) => {
 
 export function reportWebVitals({ id, name, label, value }) {
   // Track fraction of actual events to prevent exceeding event quota
-  // TODO: Track all for `next` branch for testing.
-  // Reduce to .1% before release of v5
-  if (Math.random() > 1) {
+  if (Math.random() > 0.0001) {
     return;
   }
 
-  const eventCategory = label === 'web-vital' ? 'Web Vitals' : 'Next.js custom metric';
-  console.log('sending %s', eventCategory);
   window.ga('send', 'event', {
-    eventCategory,
+    eventCategory: label === 'web-vital' ? 'Web Vitals' : 'Next.js custom metric',
     eventAction: name,
     eventValue: Math.round(name === 'CLS' ? value * 1000 : value), // values must be integers
     eventLabel: id, // id unique to current page load
