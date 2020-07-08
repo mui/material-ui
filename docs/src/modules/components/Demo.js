@@ -459,9 +459,15 @@ function DemoToolbar(props) {
               <IconButton
                 aria-controls={openDemoSource ? demoSourceId : null}
                 aria-label={showCodeLabel}
-                data-ga-event-category="demo"
-                data-ga-event-label={demoOptions.demo}
-                data-ga-event-action="expand"
+                {...(codeOpen
+                  ? // We want to track if a Demo is looked at.
+                    // Tracking if a demo is collapsed is less interesting.
+                    {
+                      'data-ga-event-category': 'demo',
+                      'data-ga-event-label': demoOptions.demo,
+                      'data-ga-event-action': 'expand',
+                    }
+                  : undefined)}
                 onClick={handleCodeOpenClick}
                 color={demoHovered ? 'primary' : 'default'}
                 {...getControlProps(2)}

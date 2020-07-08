@@ -29,9 +29,9 @@ export default function AdInHouse(props) {
         href={ad.link}
         target="_blank"
         rel="noopener sponsored"
-        data-ga-event-category="in-house-ad"
+        data-ga-event-category="ad"
         data-ga-event-action="click"
-        data-ga-event-label={ad.name}
+        data-ga-event-label={`in-house-${ad.name}`}
       >
         <span className={classes.imageWrapper}>
           <img height="100" width="130" className={classes.image} src={ad.img} alt={ad.name} />

@@ -113,52 +113,32 @@ function Ad(props) {
   const [adblock, setAdblock] = React.useState(null);
   const [carbonOut, setCarbonOut] = React.useState(null);
 
-  let children;
-
-  // Hide the content to google bot.
-  if (/Googlebot/.test(navigator.userAgent) || disable) {
-    children = <span />;
-  }
-
   const { current: randomAdblock } = React.useRef(Math.random());
   const { current: randomInHouse } = React.useRef(Math.random());
 
-  if (!children && adblock) {
+  let children;
+  let label;
+  // Hide the content to google bot.
+  if (/Googlebot/.test(navigator.userAgent) || disable) {
+    children = <span />;
+  } else if (adblock) {
     if (randomAdblock < 0.2) {
       children = <PleaseDisableAdblock className={classes.paper} />;
-    } else {
-      children = <AdInHouse ad={inHouseAds[Math.floor(inHouseAds.length * randomInHouse)]} />;
-    }
-  }
-
-  if (!children) {
-    if (carbonOut) {
-      children = <AdInHouse ad={inHouseAds[Math.floor(inHouseAds.length * randomInHouse)]} />;
-    } else {
-      children = <AdCarbon />;
-    }
-  }
-
-  const getNetwork = () => {
-    let label;
-
-    if (children.type === AdCarbon) {
-      label = 'carbon';
-    } else if (children.type === AdInHouse) {
-      if (!adblock && carbonOut) {
-        label = 'in-house-carbon';
-      } else {
-        label = 'in-house';
-      }
-    } else if (children.type === PleaseDisableAdblock) {
       label = 'in-house-adblock';
+    } else {
+      children = <AdInHouse ad={inHouseAds[Math.floor(inHouseAds.length * randomInHouse)]} />;
+      label = 'in-house';
     }
-
-    return label;
-  };
+  } else if (carbonOut) {
+    children = <AdInHouse ad={inHouseAds[Math.floor(inHouseAds.length * randomInHouse)]} />;
+    label = 'in-house-carbon';
+  } else {
+    children = <AdCarbon />;
+    label = 'carbon';
+  }
 
   const ad = React.useContext(AdContext);
-  const eventLabel = `${getNetwork()}-${ad.portal.placement}-${adShape}`;
+  const eventLabel = `${label}-${ad.portal.placement}-${adShape}`;
 
   const timerAdblock = React.useRef();
 
@@ -212,33 +192,18 @@ function Ad(props) {
     }
 
     const delay = setTimeout(() => {
-      if (!eventLabel) {
-        return;
-      }
-
       window.ga('send', {
         hitType: 'event',
         eventCategory: 'ad',
         eventAction: 'display',
         eventLabel,
       });
-
-      if (eventLabel.indexOf('in-house') === 0) {
-        window.ga('send', {
-          hitType: 'event',
-          eventCategory: 'in-house-ad',
-          eventAction: 'display',
-          eventLabel: children.props.ad.name,
-        });
-      }
     }, 2500);
 
     return () => {
       clearTimeout(delay);
     };
-  }, [eventLabel, children.props.ad]);
-
-  const key = 0;
+  }, [eventLabel]);
 
   return (
     <span
@@ -247,7 +212,7 @@ function Ad(props) {
       data-ga-event-action="click"
       data-ga-event-label={eventLabel}
     >
-      {React.cloneElement(children, { key })}
+      {children}
     </span>
   );
 }
