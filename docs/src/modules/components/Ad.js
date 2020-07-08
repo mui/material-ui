@@ -192,10 +192,6 @@ function Ad(props) {
     }
 
     const delay = setTimeout(() => {
-      if (!eventLabel) {
-        return;
-      }
-
       window.ga('send', {
         hitType: 'event',
         eventCategory: 'ad',
