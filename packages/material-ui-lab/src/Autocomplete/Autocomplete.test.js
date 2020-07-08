@@ -432,22 +432,67 @@ describe('<Autocomplete />', () => {
       expect(textbox).toHaveFocus();
     });
 
-    it('should not be required if a value is selected', () => {
-      const { getByRole, setProps } = render(
+    it('has no textbox value', () => {
+      render(
         <Autocomplete
-          {...defaultProps}
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
           multiple
-          options={['one', 'two']}
-          renderInput={(params) => <TextField {...params} autoFocus required />}
-          value={[]}
+          value={['one', 'two']}
         />,
       );
 
-      const textbox = getByRole('textbox');
-      expect(textbox.hasAttribute('required')).to.equal(true);
+      expect(screen.getByRole('textbox')).to.have.property('value', '');
+    });
 
-      setProps({ value: ['one'] });
-      expect(textbox.hasAttribute('required')).to.equal(false);
+    it('should fail validation if a required field has no value', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // Enable once https://github.com/jsdom/jsdom/issues/2898 is resolved
+        this.skip();
+      }
+
+      const handleSubmit = spy((event) => event.preventDefault());
+      render(
+        <form onSubmit={handleSubmit}>
+          <Autocomplete
+            multiple
+            options={['one', 'two']}
+            renderInput={(params) => <TextField {...params} required />}
+            value={[]}
+          />
+          <button type="submit">Submit</button>
+        </form>,
+      );
+
+      screen.getByRole('button', { name: 'Submit' }).click();
+
+      expect(handleSubmit.callCount).to.equal(0);
+    });
+
+    it('should fail validation if a required field has a value', function test() {
+      // Unclear how native Constraint validation can be enabled for `multiple`
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // Enable once https://github.com/jsdom/jsdom/issues/2898 is resolved
+        // The test is passing in JSDOM but form validation is buggy in JSDOM so we rather skip than have false confidence
+        this.skip();
+      }
+
+      const handleSubmit = spy((event) => event.preventDefault());
+      render(
+        <form onSubmit={handleSubmit}>
+          <Autocomplete
+            multiple
+            options={['one', 'two']}
+            renderInput={(params) => <TextField {...params} required />}
+            value={['one']}
+          />
+          <button type="submit">Submit</button>
+        </form>,
+      );
+
+      screen.getByRole('button', { name: 'Submit' }).click();
+
+      expect(handleSubmit.callCount).to.equal(0);
     });
   });
 
