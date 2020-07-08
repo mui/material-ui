@@ -49,6 +49,31 @@ describe('ThemeProvider', () => {
     expect(text()).to.equal('foobar');
   });
 
+  it('should spread variant arrays when merging themes', () => {
+    const ref = React.createRef();
+    const text = () => ref.current.textContent;
+    const outerVariants = [ { matcher: { variant: 'red'}, styles: { color: 'red'}} ];
+    const innerVariants = [ { matcher: { variant: 'blue'}, styles: { color: 'blue'}} ]
+    function Test() {
+      const theme = useTheme();
+
+      return (
+        <span ref={ref}>
+          {JSON.stringify(theme.variants.MuiButton)}
+        </span>
+      );
+    }
+
+    render(
+      <ThemeProvider theme={{ variants: { MuiButton: outerVariants, }}}>
+        <ThemeProvider theme={{ variants: { MuiButton: innerVariants, }}}>
+          <Test />
+        </ThemeProvider>
+      </ThemeProvider>,
+    );
+    expect(text()).to.equal(JSON.stringify([ ...outerVariants, ...innerVariants]));
+  });
+
   it('should memoize the merged output', () => {
     const themes = [];
 

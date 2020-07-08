@@ -5,6 +5,28 @@ import ThemeContext from '../useTheme/ThemeContext';
 import useTheme from '../useTheme';
 import nested from './nested';
 
+export function isPlainObject(item) {
+  return item && typeof item === 'object' && item.constructor === Object;
+}
+
+export function mergeThemes(target, source, options = { clone: true }) {
+  const output = options.clone ? { ...target } : target;
+
+  if (isPlainObject(target) && isPlainObject(source)) {
+    Object.keys(source).forEach((key) => {
+      if (isPlainObject(source[key]) && key in target) {
+        output[key] = mergeThemes(target[key], source[key], options);
+      } else if(Array.isArray(source[key]) && key in target && Array.isArray(target[key]) && key.substring(0, 3) === 'Mui') {
+        output[key] = [...target[key], ...source[key]];
+      } else {
+        output[key] = source[key];
+      }
+    });
+  }
+
+  return output;
+}
+
 // To support composition of theme.
 function mergeOuterLocalTheme(outerTheme, localTheme) {
   if (typeof localTheme === 'function') {
@@ -24,7 +46,7 @@ function mergeOuterLocalTheme(outerTheme, localTheme) {
     return mergedTheme;
   }
 
-  return { ...outerTheme, ...localTheme };
+  return mergeThemes(outerTheme, localTheme);
 }
 
 /**
