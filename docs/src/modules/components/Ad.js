@@ -202,21 +202,12 @@ function Ad(props) {
         eventAction: 'display',
         eventLabel,
       });
-
-      if (eventLabel.indexOf('in-house') === 0) {
-        window.ga('send', {
-          hitType: 'event',
-          eventCategory: 'in-house-ad',
-          eventAction: 'display',
-          eventLabel: children.props.ad.name,
-        });
-      }
     }, 2500);
 
     return () => {
       clearTimeout(delay);
     };
-  }, [eventLabel, children.props.ad]);
+  }, [eventLabel]);
 
   const key = 0;
 
