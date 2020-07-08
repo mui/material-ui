@@ -205,8 +205,6 @@ function Ad(props) {
     };
   }, [eventLabel]);
 
-  const key = 0;
-
   return (
     <span
       className={clsx(classes.root, classes[`placement-body-${adShape}`])}
@@ -214,7 +212,7 @@ function Ad(props) {
       data-ga-event-action="click"
       data-ga-event-label={eventLabel}
     >
-      {React.cloneElement(children, { key })}
+      {children}
     </span>
   );
 }
