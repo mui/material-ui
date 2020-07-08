@@ -371,9 +371,11 @@ MyApp.getInitialProps = async ({ ctx, Component }) => {
   };
 };
 
+// Track fraction of actual events to prevent exceeding event quota.
+// Filter sessions instead of individual events so that we can track multiple metrics per device.
+const disableWebVitalsReporting = Math.random() > 0.0001;
 export function reportWebVitals({ id, name, label, value }) {
-  // Track fraction of actual events to prevent exceeding event quota
-  if (Math.random() > 0.0001) {
+  if (disableWebVitalsReporting) {
     return;
   }
 
