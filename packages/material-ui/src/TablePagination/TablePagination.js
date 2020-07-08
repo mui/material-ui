@@ -107,8 +107,8 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
     colSpan = colSpanProp || 1000; // col-span over everything
   }
 
-  const selectId = useId();
-  const labelId = useId();
+  const selectId = useId(SelectProps.id);
+  const labelId = useId(SelectProps.labelId);
   const MenuItemComponent = SelectProps.native ? 'option' : MenuItem;
 
   return (
