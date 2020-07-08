@@ -379,8 +379,10 @@ export function reportWebVitals({ id, name, label, value }) {
     return;
   }
 
+  const eventCategory = label === 'web-vital' ? 'Web Vitals' : 'Next.js custom metric';
+  console.log('sending %s', eventCategory);
   window.ga('send', 'event', {
-    eventCategory: label === 'web-vital' ? 'Web Vitals' : 'Next.js custom metric',
+    eventCategory,
     eventAction: name,
     eventValue: Math.round(name === 'CLS' ? value * 1000 : value), // values must be integers
     eventLabel: id, // id unique to current page load
