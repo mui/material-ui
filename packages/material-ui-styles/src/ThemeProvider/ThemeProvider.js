@@ -16,7 +16,12 @@ export function mergeThemes(target, source, options = { clone: true }) {
     Object.keys(source).forEach((key) => {
       if (isPlainObject(source[key]) && key in target) {
         output[key] = mergeThemes(target[key], source[key], options);
-      } else if(Array.isArray(source[key]) && key in target && Array.isArray(target[key]) && key.substring(0, 3) === 'Mui') {
+      } else if (
+        Array.isArray(source[key]) &&
+        key in target &&
+        Array.isArray(target[key]) &&
+        key.substring(0, 3) === 'Mui'
+      ) {
         output[key] = [...target[key], ...source[key]];
       } else {
         output[key] = source[key];
