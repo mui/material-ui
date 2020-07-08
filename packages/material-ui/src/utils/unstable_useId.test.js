@@ -2,11 +2,19 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { createClientRender } from 'test/utils/createClientRender';
-import useId from './unstable_useId';
+import useId, { IdContext } from './unstable_useId';
 
 const TestComponent = ({ id: idProp }) => {
   const id = useId(idProp);
   return <span>{id}</span>;
+};
+
+const TestContextComponent = ({ id }) => {
+  return (
+    <IdContext.Provider value={{ generateId: () => 'context-id' }}>
+      <TestComponent id={id} />
+    </IdContext.Provider>
+  );
 };
 
 TestComponent.propTypes = {
@@ -32,5 +40,23 @@ describe('unstable_useId', () => {
 
     setProps({ id: 'another-id' });
     expect(getByText('another-id')).not.to.equal(null);
+  });
+
+  it('generates an ID using generateId if provided', () => {
+    const { getByText, setProps } = render(<TestContextComponent />);
+
+    expect(getByText('context-id')).not.to.equal(null);
+
+    setProps({ id: 'a-new-id' });
+    expect(getByText('a-new-id')).not.to.equal(null);
+  });
+
+  it('override when using generateId', () => {
+    const { getByText, setProps } = render(<TestContextComponent id="attached-id" />);
+
+    expect(getByText('attached-id')).not.to.equal(null);
+
+    setProps({ id: 'a-new-id' });
+    expect(getByText('a-new-id')).not.to.equal(null);
   });
 });
