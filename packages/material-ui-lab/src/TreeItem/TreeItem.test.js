@@ -331,6 +331,42 @@ describe('<TreeItem />', () => {
         fireEvent.focusIn(getByTestId('two'));
         expect(getByTestId('two')).toHaveVirtualFocus();
       });
+
+      it('should work when focused node is removed', () => {
+        let removeActiveItem;
+        // a TreeItem which can remove from the tree by calling `removeActiveItem`
+        function ControlledTreeItem(props) {
+          const [mounted, setMounted] = React.useReducer(() => false, true);
+          removeActiveItem = setMounted;
+
+          if (!mounted) {
+            return null;
+          }
+          return <TreeItem {...props} />;
+        }
+
+        const { getByTestId, getByText } = render(
+          <TreeView defaultExpanded={['parent']}>
+            <TreeItem nodeId="parent" label="parent" data-testid="parent">
+              <TreeItem nodeId="1" label="one" data-testid="one" />
+              <ControlledTreeItem nodeId="2" label="two" data-testid="two" />
+            </TreeItem>
+          </TreeView>,
+        );
+        expect(getByTestId('parent')).to.have.attribute('tabindex', '0');
+
+        fireEvent.click(getByText('two'));
+
+        expect(getByTestId('two')).to.have.attribute('tabindex', '0');
+
+        // generic action that removes an item.
+        // Could be promise based, or timeout, or another user interaction
+        act(() => {
+          removeActiveItem();
+        });
+
+        expect(getByTestId('parent')).to.have.attribute('tabindex', '0');
+      });
     });
 
     describe('Navigation', () => {
