@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import * as babel from '@babel/core';
 import traverse from '@babel/traverse';
-import { mkdir, readFileSync, writeFileSync } from 'fs';
+import { mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { getLineFeed } from './helpers';
 import { rewriteUrlForNextExport } from 'next/dist/next-server/lib/router/rewrite-url-for-export';
 import path from 'path';
@@ -22,20 +22,6 @@ import getStylesCreator from '../../packages/material-ui-styles/src/getStylesCre
 import createGenerateClassName from '../../packages/material-ui-styles/src/createGenerateClassName';
 
 const generateClassName = createGenerateClassName();
-
-function ensureExists(pat, mask, cb) {
-  mkdir(pat, mask, (err) => {
-    if (err) {
-      if (err.code === 'EEXIST') {
-        cb(null); // ignore the error if the folder already exists
-      } else {
-        cb(err); // something else went wrong
-      }
-    } else {
-      cb(null); // successfully created folder
-    }
-  });
-}
 
 const inheritedComponentRegexp = /\/\/ @inheritedComponent (.*)/;
 
@@ -308,19 +294,13 @@ async function buildDocs(options) {
     throw err;
   }
 
-  ensureExists(outputDirectory, 0o744, (err) => {
-    if (err) {
-      console.log('Error creating directory', outputDirectory);
-      return;
-    }
-
-    writeFileSync(
-      path.resolve(outputDirectory, `${kebabCase(reactAPI.name)}.md`),
-      markdown.replace(/\r?\n/g, reactAPI.EOL),
-    );
-    writeFileSync(
-      path.resolve(outputDirectory, `${kebabCase(reactAPI.name)}.js`),
-      `import React from 'react';
+  writeFileSync(
+    path.resolve(outputDirectory, `${kebabCase(reactAPI.name)}.md`),
+    markdown.replace(/\r?\n/g, reactAPI.EOL),
+  );
+  writeFileSync(
+    path.resolve(outputDirectory, `${kebabCase(reactAPI.name)}.js`),
+    `import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
@@ -336,10 +316,9 @@ Page.getInitialProps = () => {
   return { demos, docs };
 };
 `.replace(/\r?\n/g, reactAPI.EOL),
-    );
+  );
 
-    console.log('Built markdown docs for', reactAPI.name);
-  });
+  console.log('Built markdown docs for', reactAPI.name);
 
   await annotateComponentDefinition(componentObject, reactAPI);
 }
@@ -351,6 +330,8 @@ function run(argv) {
   });
   const outputDirectory = path.resolve(argv.outputDirectory);
   const grep = argv.grep == null ? null : new RegExp(argv.grep);
+
+  mkdirSync(outputDirectory, { mode: 0o777, recursive: true });
 
   const theme = createMuiTheme();
 
