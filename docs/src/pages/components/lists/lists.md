@@ -86,11 +86,11 @@ Unfortunately it's [not implemented](https://caniuse.com/#search=sticky) by all 
 
 {{"demo": "pages/components/lists/InsetList.js", "bg": true}}
 
-## Disabled Gutters
+## Gutterless List
 
-When rendering a `List` within a component that defines its own gutters, the `ListItem` gutters can be disabled with the `disabledGutters` prop.
+When rendering a `List` within a component that defines its own gutters, `ListItem` gutters can be disabled.
 
-{{"demo": "pages/components/lists/DisabledGutters.js", "bg": true}}
+{{"demo": "pages/components/lists/GutterlessList.js", "bg": true}}
 
 ## Virtualized List
 
