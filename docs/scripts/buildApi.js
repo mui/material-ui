@@ -350,6 +350,8 @@ function run(argv) {
     return path.resolve(componentDirectory);
   });
   const outputDirectory = path.resolve(argv.outputDirectory);
+  const grep = argv.grep == null ? null : new RegExp(argv.grep);
+
   const theme = createMuiTheme();
 
   const pagesMarkdown = findPagesMarkdown()
@@ -361,9 +363,16 @@ function run(argv) {
       };
     })
     .filter((markdown) => markdown.components.length > 0);
-  const components = componentDirectories.reduce((directories, componentDirectory) => {
-    return directories.concat(findComponents(componentDirectory));
-  }, []);
+  const components = componentDirectories
+    .reduce((directories, componentDirectory) => {
+      return directories.concat(findComponents(componentDirectory));
+    }, [])
+    .filter((component) => {
+      if (grep === null) {
+        return true;
+      }
+      return grep.test(component.filename);
+    });
 
   components.forEach((component) => {
     buildDocs({ component, outputDirectory, pagesMarkdown, theme, workspaceRoot }).catch(
@@ -388,6 +397,11 @@ yargs
         })
         .positional('componentDirectories', {
           description: 'Directories to component sources',
+          type: 'string',
+        })
+        .option('grep', {
+          description:
+            'Only generate markdown for component filenames matching the pattern. The string is treated as a RegExp.',
           type: 'string',
         });
     },
