@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CheckboxListSecondary() {
+export default function GutterlessList() {
   const classes = useStyles();
 
   return (
