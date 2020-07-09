@@ -112,6 +112,7 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
   const childContext = {
     dense: dense || context.dense || false,
     alignItems,
+    disableGutters,
   };
 
   const listItemRef = React.useRef(null);
