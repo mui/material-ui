@@ -374,14 +374,28 @@ function run(argv) {
       return grep.test(component.filename);
     });
 
-  components.forEach((component) => {
-    buildDocs({ component, outputDirectory, pagesMarkdown, theme, workspaceRoot }).catch(
-      (error) => {
-        console.warn(`error building docs for ${component.filename}`);
-        console.error(error);
-        process.exit(1);
-      },
-    );
+  const componentBuilds = components.map((component) => {
+    // use Promise.allSettled once we switch to node 12
+    return buildDocs({ component, outputDirectory, pagesMarkdown, theme, workspaceRoot })
+      .then((value) => {
+        return { status: 'fulfilled', value };
+      })
+      .catch((error) => {
+        error.message = `with component ${component.filename}: ${error.message}`;
+
+        return { status: 'rejected', reason: error };
+      });
+  });
+
+  Promise.all(componentBuilds).then((builds) => {
+    const fails = builds.filter(({ status }) => status === 'rejected');
+
+    fails.forEach((build) => {
+      console.error(build.reason);
+    });
+    if (fails.length > 0) {
+      process.exit(1);
+    }
   });
 }
 
