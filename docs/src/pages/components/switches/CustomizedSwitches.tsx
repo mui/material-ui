@@ -20,22 +20,24 @@ interface Props extends SwitchProps {
   classes: Styles;
 }
 
-const PurpleSwitch = withStyles((theme: Theme) => ({
-  switchBase: {
-    color: purple[300],
-    '&$checked': {
-      color: purple[500],
-      '&:hover': {
-        backgroundColor: fade(purple[500], theme.palette.action.hoverOpacity),
+const PurpleSwitch = withStyles((theme: Theme) =>
+  createStyles({
+    switchBase: {
+      color: purple[300],
+      '&$checked': {
+        color: purple[500],
+        '&:hover': {
+          backgroundColor: fade(purple[500], theme.palette.action.hoverOpacity),
+        },
+      },
+      '&$checked + $track': {
+        backgroundColor: purple[500],
       },
     },
-    '&$checked + $track': {
-      backgroundColor: purple[500],
-    },
-  },
-  checked: {},
-  track: {},
-}))(Switch);
+    checked: {},
+    track: {},
+  }),
+)(Switch);
 
 const IOSSwitch = withStyles((theme: Theme) =>
   createStyles({
