@@ -32,6 +32,28 @@ describe('<TreeItem />', () => {
     skip: ['componentProp'],
   }));
 
+  describe('warnings', () => {
+    it('should warn if an id prop is supplied', () => {
+      expect(() => {
+        render(
+          <TreeView>
+            <TreeItem id="abc" nodeId="1" label="one" />
+          </TreeView>,
+        );
+      }).toErrorDev('Failed prop type: The prop `id` is not supported.');
+    });
+
+    it('should warn if an onFocus callback is supplied', () => {
+      expect(() => {
+        render(
+          <TreeView>
+            <TreeItem onFocus={() => {}} nodeId="1" label="one" />
+          </TreeView>,
+        );
+      }).toErrorDev('Failed prop type: The prop `onFocus` is not supported.');
+    });
+  });
+
   it('should call onClick when clicked', () => {
     const handleClick = spy();
 
@@ -278,6 +300,21 @@ describe('<TreeItem />', () => {
 
         expect(getByTestId('two')).to.have.attribute('aria-selected', 'true');
         getByRole('tree').focus();
+        expect(getByTestId('two')).toBeActiveDescendant();
+      });
+
+      it('should work with programmatic focus', () => {
+        const { getByRole, getByTestId } = render(
+          <TreeView>
+            <TreeItem nodeId="1" label="one" data-testid="one" />
+            <TreeItem nodeId="2" label="two" data-testid="two" />
+          </TreeView>,
+        );
+
+        getByRole('tree').focus();
+        expect(getByTestId('one')).toBeActiveDescendant();
+
+        fireEvent.focusIn(getByTestId('two'));
         expect(getByTestId('two')).toBeActiveDescendant();
       });
     });
@@ -968,7 +1005,7 @@ describe('<TreeItem />', () => {
         });
 
         specify('keyboard arrow does not select when selectionDisabled', () => {
-          const { getByRole, getByTestId, getByText, queryAllByRole } = render(
+          const { getByRole, getByTestId, queryAllByRole } = render(
             <TreeView disableSelection multiSelect id="tree">
               <TreeItem nodeId="one" label="one" data-testid="one" />
               <TreeItem nodeId="two" label="two" data-testid="two" />
@@ -978,9 +1015,10 @@ describe('<TreeItem />', () => {
             </TreeView>,
           );
 
-          fireEvent.click(getByText('three'));
           getByRole('tree').focus();
+
           fireEvent.keyDown(getByRole('tree'), { key: 'ArrowDown', shiftKey: true });
+
           expect(getByTestId('two')).toBeActiveDescendant();
           expect(queryAllByRole('treeitem', { selected: true })).to.have.length(0);
 

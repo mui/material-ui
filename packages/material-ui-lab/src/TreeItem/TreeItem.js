@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import Collapse from '@material-ui/core/Collapse';
 import { fade, withStyles } from '@material-ui/core/styles';
-import { useForkRef } from '@material-ui/core/utils';
+import { ownerDocument, useForkRef, unsupportedProp } from '@material-ui/core/utils';
 import TreeViewContext from '../TreeView/TreeViewContext';
 import { DescendantProvider, useDescendant } from '../TreeView/descendants';
 
@@ -240,6 +240,29 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     ariaSelected = true;
   }
 
+  React.useEffect(() => {
+    if (nodeRef && treeId) {
+      const handleFocusIn = (event) => {
+        event.preventDefault();
+        const tree = ownerDocument(nodeRef).getElementById(treeId);
+        if (ownerDocument(nodeRef).activeElement !== tree) {
+          tree.focus();
+        }
+
+        if (!focused && event.currentTarget === event.target) {
+          focus(event, nodeId);
+        }
+      };
+
+      nodeRef.addEventListener('focusin', handleFocusIn);
+
+      return () => {
+        nodeRef.removeEventListener('focusin', handleFocusIn);
+      };
+    }
+    return undefined;
+  }, [focus, focused, nodeId, nodeRef, treeId]);
+
   return (
     <li
       className={clsx(classes.root, className)}
@@ -248,6 +271,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
       aria-selected={ariaSelected}
       ref={handleRef}
       id={treeId && nodeId && `${treeId}-${nodeId}`}
+      tabIndex="-1"
       {...other}
     >
       {/* Key event is handled by the TreeView */}
@@ -324,6 +348,11 @@ TreeItem.propTypes = {
    */
   icon: PropTypes.node,
   /**
+   * This prop isn't supported.
+   * Use the `nodeId` prop if you need to change the node's id.
+   */
+  id: unsupportedProp,
+  /**
    * The tree node label.
    */
   label: PropTypes.node,
@@ -335,6 +364,11 @@ TreeItem.propTypes = {
    * @ignore
    */
   onClick: PropTypes.func,
+  /**
+   * This prop isn't supported.
+   * Use the `onNodeFocus` callback on the tree if you need to monitor a node's focus.
+   */
+  onFocus: unsupportedProp,
   /**
    * `onClick` handler for the icon container. Call `event.preventDefault()` to prevent `onNodeToggle` from being called.
    */
