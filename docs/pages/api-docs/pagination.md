@@ -66,8 +66,6 @@ You can override the style of the component thanks to one of these customization
 
 If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-lab/src/Pagination/Pagination.js) for more detail.
 
-To override lab components styles with Typescript, check [the documentation](https://material-ui.com/components/about-the-lab/#typescript).
-
 ## Demos
 
 - [Pagination](/components/pagination/)
