@@ -254,6 +254,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
         }
       };
 
+      // Using focusin to avoid blurring the tree.
       nodeRef.addEventListener('focusin', handleFocusIn);
 
       return () => {
