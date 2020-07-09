@@ -61,7 +61,8 @@ return (
 
 You can change the default props of all the Material-UI components.
 A `props` key is exposed in the `theme` for this use case.
-To override lab components styles with Typescript, check [this documentation](https://material-ui.com/components/about-the-lab/#typescript).
+
+To override lab components styles with TypeScript, check [this documentation](/components/about-the-lab/#typescript).
 
 ```js
 const theme = createMuiTheme({
