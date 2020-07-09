@@ -3,10 +3,6 @@
 declare namespace Chai {
   interface Assertion {
     /**
-     * checks if the element is the active-descendant of the active element.
-     */
-    toBeActiveDescendant(): void;
-    /**
      * checks if the element in question is considered aria-hidden
      * Does not replace accessibility check as that requires display/visibility/layout
      * @deprecated Use `inaccessible` + `visible` instead
@@ -31,6 +27,10 @@ declare namespace Chai {
      * checks if the element is focused
      */
     toHaveFocus(): void;
+    /**
+     * checks if the element is the active-descendant of the active element.
+     */
+    toHaveVirtualFocus(): void;
     /**
      * Matches calls to `console.warn` in the asserted callback.
      *

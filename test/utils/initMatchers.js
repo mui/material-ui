@@ -28,18 +28,18 @@ chai.use((chaiAPI, utils) => {
     );
   });
 
-  chai.Assertion.addMethod('toBeActiveDescendant', function elementIsActiveDescendant() {
+  chai.Assertion.addMethod('toHaveVirtualFocus', function elementIsVirtuallyFocused() {
     const element = utils.flag(this, 'object');
     const id = element.getAttribute('id');
 
-    const activeDescendant = document.activeElement.getAttribute('aria-activedescendant');
+    const virutallyFocusedElement = document.activeElement.getAttribute('aria-activedescendant');
 
     this.assert(
-      activeDescendant === id,
-      'expected element to be active descendant',
-      'expected element to NOT to be active descendant',
+      virutallyFocusedElement === id,
+      'expected element to be virtually focused',
+      'expected element to NOT to be virtually focused',
       id,
-      activeDescendant,
+      virutallyFocusedElement,
     );
   });
 
