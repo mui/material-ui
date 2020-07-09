@@ -6,7 +6,9 @@
 
 When the configuration variables aren't powerful enough, you can take advantage of the
 `overrides` key of the `theme` to potentially change **every single style** injected by Material-UI into the DOM.
-That's a really powerful feature. To override lab components styles with Typescript, check [this documentation](https://material-ui.com/components/about-the-lab/#typescript).
+That's a really powerful feature.
+
+To override lab components styles with TypeScript, check [this documentation](/components/about-the-lab/#typescript).
 
 ```js
 const theme = createMuiTheme({
