@@ -245,6 +245,9 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
       const handleFocusIn = (event) => {
         event.preventDefault();
         const tree = ownerDocument(nodeRef).getElementById(treeId);
+
+        // Some browsers don't focus the tree when using active-descendant.
+        // Probably can remove when we drop IE11 support.
         if (ownerDocument(nodeRef).activeElement !== tree) {
           tree.focus();
         }
