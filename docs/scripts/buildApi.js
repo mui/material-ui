@@ -10,6 +10,7 @@ import uniqBy from 'lodash/uniqBy';
 import { defaultHandlers, parse as docgenParse } from 'react-docgen';
 import remark from 'remark';
 import remarkVisit from 'unist-util-visit';
+import * as yargs from 'yargs';
 import muiDefaultPropsHandler from '../src/modules/utils/defaultPropsHandler';
 import generateMarkdown from '../src/modules/utils/generateMarkdown';
 import { findPagesMarkdown, findComponents } from '../src/modules/utils/find';
@@ -35,23 +36,6 @@ function ensureExists(pat, mask, cb) {
     }
   });
 }
-
-// Read the command-line args
-const args = process.argv;
-
-// Exit with a message
-function exit(error) {
-  console.log(error, '\n');
-  process.exit();
-}
-
-if (args.length < 4) {
-  exit('\nERROR: syntax: buildApi source target');
-}
-
-const rootDirectory = path.resolve(__dirname, '../../');
-const docsApiDirectory = path.resolve(rootDirectory, args[3]);
-const theme = createMuiTheme();
 
 const inheritedComponentRegexp = /\/\/ @inheritedComponent (.*)/;
 
@@ -214,7 +198,13 @@ async function annotateComponentDefinition(component, api) {
 }
 
 async function buildDocs(options) {
-  const { component: componentObject, pagesMarkdown } = options;
+  const {
+    component: componentObject,
+    outputDirectory,
+    workspaceRoot,
+    pagesMarkdown,
+    theme,
+  } = options;
   const src = readFileSync(componentObject.filename, 'utf8');
 
   if (src.match(/@ignore - internal component\./) || src.match(/@ignore - do not document\./)) {
@@ -307,7 +297,7 @@ async function buildDocs(options) {
   // }
 
   // Relative location in the file system.
-  reactAPI.filename = componentObject.filename.replace(rootDirectory, '');
+  reactAPI.filename = componentObject.filename.replace(workspaceRoot, '');
   reactAPI.inheritance = getInheritance(testInfo, src);
 
   let markdown;
@@ -318,18 +308,18 @@ async function buildDocs(options) {
     throw err;
   }
 
-  ensureExists(docsApiDirectory, 0o744, (err) => {
+  ensureExists(outputDirectory, 0o744, (err) => {
     if (err) {
-      console.log('Error creating directory', docsApiDirectory);
+      console.log('Error creating directory', outputDirectory);
       return;
     }
 
     writeFileSync(
-      path.resolve(docsApiDirectory, `${kebabCase(reactAPI.name)}.md`),
+      path.resolve(outputDirectory, `${kebabCase(reactAPI.name)}.md`),
       markdown.replace(/\r?\n/g, reactAPI.EOL),
     );
     writeFileSync(
-      path.resolve(docsApiDirectory, `${kebabCase(reactAPI.name)}.js`),
+      path.resolve(outputDirectory, `${kebabCase(reactAPI.name)}.js`),
       `import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
@@ -354,7 +344,16 @@ Page.getInitialProps = () => {
   await annotateComponentDefinition(componentObject, reactAPI);
 }
 
-function run() {
+function run(argv) {
+  const workspaceRoot = path.resolve(__dirname, '../../');
+  const componentDirectories = argv.componentDirectories.map((componentDirectory) => {
+    return path.resolve(componentDirectory);
+  });
+  const outputDirectory = path.resolve(argv.outputDirectory);
+  const grep = argv.grep == null ? null : new RegExp(argv.grep);
+
+  const theme = createMuiTheme();
+
   const pagesMarkdown = findPagesMarkdown()
     .map((markdown) => {
       const markdownSource = readFileSync(markdown.filename, 'utf8');
@@ -364,15 +363,51 @@ function run() {
       };
     })
     .filter((markdown) => markdown.components.length > 0);
-  const components = findComponents(path.resolve(rootDirectory, args[2]));
+  const components = componentDirectories
+    .reduce((directories, componentDirectory) => {
+      return directories.concat(findComponents(componentDirectory));
+    }, [])
+    .filter((component) => {
+      if (grep === null) {
+        return true;
+      }
+      return grep.test(component.filename);
+    });
 
   components.forEach((component) => {
-    buildDocs({ component, pagesMarkdown }).catch((error) => {
-      console.warn(`error building docs for ${component.filename}`);
-      console.error(error);
-      process.exit(1);
-    });
+    buildDocs({ component, outputDirectory, pagesMarkdown, theme, workspaceRoot }).catch(
+      (error) => {
+        console.warn(`error building docs for ${component.filename}`);
+        console.error(error);
+        process.exit(1);
+      },
+    );
   });
 }
 
-run();
+yargs
+  .command({
+    command: '$0 <outputDirectory> [componentDirectories...]',
+    description: 'formats codebase',
+    builder: (command) => {
+      return command
+        .positional('outputDirectory', {
+          description: 'directory where the markdown is written to',
+          type: 'string',
+        })
+        .positional('componentDirectories', {
+          description: 'Directories to component sources',
+          type: 'string',
+        })
+        .option('grep', {
+          description:
+            'Only generate markdown for component filenames matching the pattern. The string is treated as a RegExp.',
+          type: 'string',
+        });
+    },
+    handler: run,
+  })
+  .help()
+  .strict(true)
+  .version(false)
+  .parse();
