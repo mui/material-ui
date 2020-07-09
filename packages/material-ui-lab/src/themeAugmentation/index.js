@@ -1,2 +1,1 @@
-export * from './overrides';
-export * from './props';
+export default {};
