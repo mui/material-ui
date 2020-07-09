@@ -521,9 +521,9 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
    * Mapping Helpers
    */
   const registerNode = React.useCallback((node) => {
-    const { id, index, parentId, expandable } = node;
+    const { id, index, parentId, expandable, idAttribute } = node;
 
-    nodeMap.current[id] = { id, index, parentId, expandable };
+    nodeMap.current[id] = { id, index, parentId, expandable, idAttribute };
   }, []);
 
   const unregisterNode = React.useCallback((id) => {
@@ -551,6 +551,10 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     delete newMap[id];
     firstCharMap.current = newMap;
   }, []);
+
+  /**
+   * Event handlers and Navigation
+   */
 
   const handleNextArrow = (event) => {
     if (nodeMap.current[focusedNodeId].expandable) {
@@ -688,6 +692,10 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     }
   };
 
+  const activeDescendant = nodeMap.current[focusedNodeId]
+    ? nodeMap.current[focusedNodeId].idAttribute
+    : null;
+
   return (
     <TreeViewContext.Provider
       value={{
@@ -711,7 +719,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
         <ul
           role="tree"
           id={treeId}
-          aria-activedescendant={focusedNodeId && `${treeId}-${focusedNodeId}`}
+          aria-activedescendant={activeDescendant}
           aria-multiselectable={multiSelect}
           className={clsx(classes.root, className)}
           ref={handleRef}

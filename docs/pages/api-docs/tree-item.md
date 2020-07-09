@@ -34,7 +34,6 @@ The `MuiTreeItem` name can be used for providing [default props](/customization/
 | <span class="prop-name">endIcon</span> | <span class="prop-type">node</span> |  | The icon displayed next to a end node. |
 | <span class="prop-name">expandIcon</span> | <span class="prop-type">node</span> |  | The icon used to expand the node. |
 | <span class="prop-name">icon</span> | <span class="prop-type">node</span> |  | The icon to display next to the tree node's label. |
-| <span class="prop-name">id</span> | <span class="prop-type">unsupportedProp</span> |  | This prop isn't supported. Use the `nodeId` prop if you need to change the node's id. |
 | <span class="prop-name">label</span> | <span class="prop-type">node</span> |  | The tree node label. |
 | <span class="prop-name required">nodeId<abbr title="required">*</abbr></span> | <span class="prop-type">string</span> |  | The id of the node. |
 | <span class="prop-name">onFocus</span> | <span class="prop-type">unsupportedProp</span> |  | This prop isn't supported. Use the `onNodeFocus` callback on the tree if you need to monitor a node's focus. |

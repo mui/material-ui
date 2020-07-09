@@ -94,6 +94,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     endIcon,
     expandIcon,
     icon: iconProp,
+    id: idProp,
     label,
     nodeId,
     onClick,
@@ -121,6 +122,14 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     unregisterNode,
     treeId,
   } = React.useContext(TreeViewContext);
+
+  let id = null;
+
+  if (idProp) {
+    id = idProp;
+  } else if (treeId && nodeId) {
+    id = `${treeId}-${nodeId}`;
+  }
 
   const [nodeRef, setNodeRef] = React.useState(null);
   const contentRef = React.useRef(null);
@@ -203,6 +212,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     if (registerNode && unregisterNode && index !== -1) {
       registerNode({
         id: nodeId,
+        idAttribute: id,
         index,
         parentId,
         expandable,
@@ -214,7 +224,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     }
 
     return undefined;
-  }, [registerNode, unregisterNode, parentId, index, nodeId, expandable]);
+  }, [registerNode, unregisterNode, parentId, index, nodeId, expandable, id]);
 
   React.useEffect(() => {
     if (mapFirstChar && unMapFirstChar && label) {
@@ -274,7 +284,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
       aria-expanded={expandable ? expanded : null}
       aria-selected={ariaSelected}
       ref={handleRef}
-      id={treeId && nodeId && `${treeId}-${nodeId}`}
+      id={id}
       tabIndex="-1"
       {...other}
     >
@@ -352,10 +362,9 @@ TreeItem.propTypes = {
    */
   icon: PropTypes.node,
   /**
-   * This prop isn't supported.
-   * Use the `nodeId` prop if you need to change the node's id.
+   * @ignore
    */
-  id: unsupportedProp,
+  id: PropTypes.string,
   /**
    * The tree node label.
    */

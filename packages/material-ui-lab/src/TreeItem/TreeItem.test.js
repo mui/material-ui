@@ -33,16 +33,6 @@ describe('<TreeItem />', () => {
   }));
 
   describe('warnings', () => {
-    it('should warn if an id prop is supplied', () => {
-      expect(() => {
-        render(
-          <TreeView>
-            <TreeItem id="abc" nodeId="1" label="one" />
-          </TreeView>,
-        );
-      }).toErrorDev('Failed prop type: The prop `id` is not supported.');
-    });
-
     it('should warn if an onFocus callback is supplied', () => {
       expect(() => {
         render(
@@ -158,6 +148,17 @@ describe('<TreeItem />', () => {
     fireEvent.click(getByText('two'));
 
     expect(handleClick.callCount).to.equal(0);
+  });
+
+  it('should be able to use a custom id', () => {
+    const { getByRole } = render(
+      <TreeView>
+        <TreeItem id="customId" nodeId="test" label="test" data-testid="test" />
+      </TreeView>,
+    );
+
+    getByRole('tree').focus();
+    expect(getByRole('tree')).to.have.attribute('aria-activedescendant', 'customId');
   });
 
   describe('Accessibility', () => {
