@@ -86,6 +86,12 @@ Unfortunately it's [not implemented](https://caniuse.com/#search=sticky) by all 
 
 {{"demo": "pages/components/lists/InsetList.js", "bg": true}}
 
+## Disabled Gutters
+
+When rendering a `List` within a component that defines its own gutters, the `ListItem` gutters can be disabled with the `disabledGutters` prop.
+
+{{"demo": "pages/components/lists/DisabledGutters.js", "bg": true}}
+
 ## Virtualized List
 
 In the following example, we demonstrate how to use [react-window](https://github.com/bvaughn/react-window) with the `List` component.
