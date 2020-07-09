@@ -251,18 +251,6 @@ function generatePropType(type) {
   }
 }
 
-function getProp(props, key) {
-  switch (key) {
-    case 'classes':
-      return {
-        ...props[key],
-        required: false,
-      };
-    default:
-      return props[key];
-  }
-}
-
 function generateName(reactAPI) {
   if (!reactAPI.styles.classes.length) {
     return '\n';
@@ -287,7 +275,7 @@ function generateProps(reactAPI) {
 |:-----|:-----|:--------|:------------|\n`;
 
   text = Object.keys(reactAPI.props).reduce((textProps, propRaw) => {
-    const prop = getProp(reactAPI.props, propRaw);
+    const prop = reactAPI.props[propRaw];
 
     if (typeof prop.description === 'undefined') {
       throw new Error(`The "${propRaw}" prop is missing a description`);
