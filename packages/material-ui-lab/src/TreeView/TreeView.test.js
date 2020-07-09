@@ -8,6 +8,7 @@ import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
 import TreeView from './TreeView';
 import TreeItem from '../TreeItem';
+import Portal from '@material-ui/core/Portal';
 
 describe('<TreeView />', () => {
   let classes;
@@ -264,6 +265,27 @@ describe('<TreeView />', () => {
     expect(getByText('test')).not.to.equal(null);
     fireEvent.click(getByText('Hide'));
     expect(queryByText('test')).to.equal(null);
+  });
+
+  it('should work in a portal', () => {
+    const { getByRole, getByTestId } = render(
+      <Portal>
+        <TreeView id="tree">
+          <TreeItem nodeId="one" label="one" data-testid="one" />
+          <TreeItem nodeId="two" label="two" data-testid="two" />
+          <TreeItem nodeId="three" label="three" data-testid="three" />
+          <TreeItem nodeId="four" label="four" data-testid="four" />
+        </TreeView>
+      </Portal>,
+    );
+
+    getByRole('tree').focus();
+    fireEvent.keyDown(getByRole('tree'), { key: 'ArrowDown' });
+    expect(getByTestId('two')).toHaveVirtualFocus();
+    fireEvent.keyDown(getByRole('tree'), { key: 'ArrowDown' });
+    expect(getByTestId('three')).toHaveVirtualFocus();
+    fireEvent.keyDown(getByRole('tree'), { key: 'ArrowDown' });
+    expect(getByTestId('four')).toHaveVirtualFocus();
   });
 
   describe('onNodeFocus', () => {
