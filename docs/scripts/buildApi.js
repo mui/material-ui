@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import * as babel from '@babel/core';
 import traverse from '@babel/traverse';
-import { mkdir, readFileSync, writeFileSync } from 'fs';
+import { mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { getLineFeed } from './helpers';
 import { rewriteUrlForNextExport } from 'next/dist/next-server/lib/router/rewrite-url-for-export';
 import path from 'path';
@@ -22,20 +22,6 @@ import getStylesCreator from '../../packages/material-ui-styles/src/getStylesCre
 import createGenerateClassName from '../../packages/material-ui-styles/src/createGenerateClassName';
 
 const generateClassName = createGenerateClassName();
-
-function ensureExists(pat, mask, cb) {
-  mkdir(pat, mask, (err) => {
-    if (err) {
-      if (err.code === 'EEXIST') {
-        cb(null); // ignore the error if the folder already exists
-      } else {
-        cb(err); // something else went wrong
-      }
-    } else {
-      cb(null); // successfully created folder
-    }
-  });
-}
 
 const inheritedComponentRegexp = /\/\/ @inheritedComponent (.*)/;
 
@@ -308,19 +294,13 @@ async function buildDocs(options) {
     throw err;
   }
 
-  ensureExists(outputDirectory, 0o744, (err) => {
-    if (err) {
-      console.log('Error creating directory', outputDirectory);
-      return;
-    }
-
-    writeFileSync(
-      path.resolve(outputDirectory, `${kebabCase(reactAPI.name)}.md`),
-      markdown.replace(/\r?\n/g, reactAPI.EOL),
-    );
-    writeFileSync(
-      path.resolve(outputDirectory, `${kebabCase(reactAPI.name)}.js`),
-      `import React from 'react';
+  writeFileSync(
+    path.resolve(outputDirectory, `${kebabCase(reactAPI.name)}.md`),
+    markdown.replace(/\r?\n/g, reactAPI.EOL),
+  );
+  writeFileSync(
+    path.resolve(outputDirectory, `${kebabCase(reactAPI.name)}.js`),
+    `import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
@@ -336,10 +316,9 @@ Page.getInitialProps = () => {
   return { demos, docs };
 };
 `.replace(/\r?\n/g, reactAPI.EOL),
-    );
+  );
 
-    console.log('Built markdown docs for', reactAPI.name);
-  });
+  console.log('Built markdown docs for', reactAPI.name);
 
   await annotateComponentDefinition(componentObject, reactAPI);
 }
@@ -351,6 +330,8 @@ function run(argv) {
   });
   const outputDirectory = path.resolve(argv.outputDirectory);
   const grep = argv.grep == null ? null : new RegExp(argv.grep);
+
+  mkdirSync(outputDirectory, { mode: 0o777, recursive: true });
 
   const theme = createMuiTheme();
 
@@ -374,14 +355,28 @@ function run(argv) {
       return grep.test(component.filename);
     });
 
-  components.forEach((component) => {
-    buildDocs({ component, outputDirectory, pagesMarkdown, theme, workspaceRoot }).catch(
-      (error) => {
-        console.warn(`error building docs for ${component.filename}`);
-        console.error(error);
-        process.exit(1);
-      },
-    );
+  const componentBuilds = components.map((component) => {
+    // use Promise.allSettled once we switch to node 12
+    return buildDocs({ component, outputDirectory, pagesMarkdown, theme, workspaceRoot })
+      .then((value) => {
+        return { status: 'fulfilled', value };
+      })
+      .catch((error) => {
+        error.message = `with component ${component.filename}: ${error.message}`;
+
+        return { status: 'rejected', reason: error };
+      });
+  });
+
+  Promise.all(componentBuilds).then((builds) => {
+    const fails = builds.filter(({ status }) => status === 'rejected');
+
+    fails.forEach((build) => {
+      console.error(build.reason);
+    });
+    if (fails.length > 0) {
+      process.exit(1);
+    }
   });
 }
 
