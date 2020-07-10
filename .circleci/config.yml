@@ -230,6 +230,7 @@ workflows:
       - test_unit:
           requires:
             - checkout
+          react-dist-tag: next
       - test_static:
           requires:
             - checkout
@@ -239,12 +240,14 @@ workflows:
       - test_browser:
           requires:
             - checkout
+          react-dist-tag: next
       - test_regressions:
           requires:
             - test_unit
             - test_static
             - test_types
             - test_browser
+          react-dist-tag: next
   react-next:
     triggers:
       - schedule:
