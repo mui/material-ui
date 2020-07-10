@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { DateRange } from './RangeTypes';
-import { DateRangeDay } from './DateRangePickerDay';
 import { useUtils } from '../_shared/hooks/useUtils';
 import { makeStyles } from '@material-ui/core/styles';
 import { MaterialUiPickersDate } from '../typings/date';
 import { calculateRangePreview } from './date-range-manager';
 import { Calendar, CalendarProps } from '../views/Calendar/Calendar';
+import { DateRangeDay, DateRangeDayProps } from './DateRangePickerDay';
 import { defaultMinDate, defaultMaxDate } from '../constants/prop-types';
 import { ArrowSwitcher, ExportedArrowSwitcherProps } from '../_shared/ArrowSwitcher';
 import {
@@ -25,11 +25,16 @@ export interface ExportedDesktopDateRangeCalendarProps {
    * @default 2
    */
   calendars?: 1 | 2 | 3;
+  /**
+   * Custom renderer for `<DateRangePicker />` days.
+   * @example (date, DateRangeDayProps) => <DateRangePickerDay {...DateRangeDayProps} />
+   */
+  renderDay?: (date: MaterialUiPickersDate, DateRangeDayProps: DateRangeDayProps) => JSX.Element;
 }
 
 interface DesktopDateRangeCalendarProps
   extends ExportedDesktopDateRangeCalendarProps,
-    CalendarProps,
+    Omit<CalendarProps, 'renderDay'>,
     DateValidationProps,
     ExportedArrowSwitcherProps {
   date: DateRange;
@@ -93,6 +98,7 @@ export const DateRangePickerViewDesktop: React.FC<DesktopDateRangeCalendarProps>
   maxDate: __maxDate,
   currentlySelectingRangeEnd,
   currentMonth,
+  renderDay = (_, props) => <DateRangeDay {...props} />,
   ...other
 }) => {
   const utils = useUtils();
@@ -175,18 +181,18 @@ export const DateRangePickerViewDesktop: React.FC<DesktopDateRangeCalendarProps>
               onChange={handleDayChange}
               currentMonth={monthOnIteration}
               TransitionProps={CalendarTransitionProps}
-              renderDay={(day, _, DayProps) => (
-                <DateRangeDay
-                  isPreviewing={isWithinRange(utils, day, previewingRange)}
-                  isStartOfPreviewing={isStartOfRange(utils, day, previewingRange)}
-                  isEndOfPreviewing={isEndOfRange(utils, day, previewingRange)}
-                  isHighlighting={isWithinRange(utils, day, date)}
-                  isStartOfHighlighting={isStartOfRange(utils, day, date)}
-                  isEndOfHighlighting={isEndOfRange(utils, day, date)}
-                  onMouseEnter={() => handlePreviewDayChange(day)}
-                  {...DayProps}
-                />
-              )}
+              renderDay={(day, _, DayProps) =>
+                renderDay(day, {
+                  isPreviewing: isWithinRange(utils, day, previewingRange),
+                  isStartOfPreviewing: isStartOfRange(utils, day, previewingRange),
+                  isEndOfPreviewing: isEndOfRange(utils, day, previewingRange),
+                  isHighlighting: isWithinRange(utils, day, date),
+                  isStartOfHighlighting: isStartOfRange(utils, day, date),
+                  isEndOfHighlighting: isEndOfRange(utils, day, date),
+                  onMouseEnter: () => handlePreviewDayChange(day),
+                  ...DayProps,
+                })
+              }
             />
           </div>
         );

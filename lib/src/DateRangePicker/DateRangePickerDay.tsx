@@ -5,7 +5,7 @@ import { useUtils } from '../_shared/hooks/useUtils';
 import { makeStyles, fade } from '@material-ui/core/styles';
 import { Day, DayProps, areDayPropsEqual } from '../views/Calendar/Day';
 
-interface DateRangeDayProps extends DayProps {
+export interface DateRangeDayProps extends DayProps {
   isHighlighting: boolean;
   isEndOfHighlighting: boolean;
   isStartOfHighlighting: boolean;

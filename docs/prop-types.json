@@ -3183,19 +3183,6 @@
         "name": "(date: any) => void"
       }
     },
-    "renderDay": {
-      "defaultValue": null,
-      "description": "Custom renderer for day. Check [DayComponentProps api](https://material-ui-pickers.dev/api/Day).",
-      "name": "renderDay",
-      "parent": {
-        "fileName": "material-ui-pickers/lib/src/views/Calendar/Calendar.tsx",
-        "name": "ExportedCalendarProps"
-      },
-      "required": false,
-      "type": {
-        "name": "(day: DateIOType, selectedDates: DateIOType[], DayComponentProps: DayProps) => Element"
-      }
-    },
     "allowKeyboardControl": {
       "defaultValue": {
         "value": "currentWrapper !== 'static'"
@@ -3267,6 +3254,19 @@
       "required": false,
       "type": {
         "name": "2 | 3 | 1"
+      }
+    },
+    "renderDay": {
+      "defaultValue": null,
+      "description": "Custom renderer for `<DateRangePicker />` days.\n@example (date, DateRangeDayProps) => <DateRangePickerDay {...DateRangeDayProps} />",
+      "name": "renderDay",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/DateRangePicker/DateRangePickerViewDesktop.tsx",
+        "name": "ExportedDesktopDateRangeCalendarProps"
+      },
+      "required": false,
+      "type": {
+        "name": "(date: any, DateRangeDayProps: DateRangeDayProps) => Element"
       }
     },
     "className": {

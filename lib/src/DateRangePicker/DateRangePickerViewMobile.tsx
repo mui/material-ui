@@ -7,6 +7,7 @@ import { MaterialUiPickersDate } from '../typings/date';
 import { Calendar, CalendarProps } from '../views/Calendar/Calendar';
 import { ExportedArrowSwitcherProps } from '../_shared/ArrowSwitcher';
 import { defaultMinDate, defaultMaxDate } from '../constants/prop-types';
+import { ExportedDesktopDateRangeCalendarProps } from './DateRangePickerViewDesktop';
 import {
   isWithinRange,
   isStartOfRange,
@@ -14,11 +15,12 @@ import {
   DateValidationProps,
 } from '../_helpers/date-utils';
 
-export interface ExportedMobileDateRangeCalendarProps {}
+export interface ExportedMobileDateRangeCalendarProps
+  extends Pick<ExportedDesktopDateRangeCalendarProps, 'renderDay'> {}
 
 interface DesktopDateRangeCalendarProps
   extends ExportedMobileDateRangeCalendarProps,
-    CalendarProps,
+    Omit<CalendarProps, 'renderDay'>,
     DateValidationProps,
     ExportedArrowSwitcherProps {
   date: DateRange;
@@ -39,6 +41,7 @@ export const DateRangePickerViewMobile: React.FC<DesktopDateRangeCalendarProps> 
   rightArrowButtonProps,
   rightArrowButtonText,
   rightArrowIcon,
+  renderDay = (_, props) => <DateRangeDay {...props} />,
   ...other
 }) => {
   const utils = useUtils();
@@ -67,17 +70,17 @@ export const DateRangePickerViewMobile: React.FC<DesktopDateRangeCalendarProps> 
         {...other}
         date={date}
         onChange={onChange}
-        renderDay={(day, _, DayProps) => (
-          <DateRangeDay
-            isPreviewing={false}
-            isStartOfPreviewing={false}
-            isEndOfPreviewing={false}
-            isHighlighting={isWithinRange(utils, day, date)}
-            isStartOfHighlighting={isStartOfRange(utils, day, date)}
-            isEndOfHighlighting={isEndOfRange(utils, day, date)}
-            {...DayProps}
-          />
-        )}
+        renderDay={(day, _, DayProps) =>
+          renderDay(day, {
+            isPreviewing: false,
+            isStartOfPreviewing: false,
+            isEndOfPreviewing: false,
+            isHighlighting: isWithinRange(utils, day, date),
+            isStartOfHighlighting: isStartOfRange(utils, day, date),
+            isEndOfHighlighting: isEndOfRange(utils, day, date),
+            ...DayProps,
+          })
+        }
       />
     </React.Fragment>
   );

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { utilsToUse } from './test-utils';
 import { DesktopDateRangePicker } from '../';
 import { screen, waitFor } from '@testing-library/react';
+import { utilsToUse, getAllByMuiTest } from './test-utils';
 import { TextField, TextFieldProps } from '@material-ui/core';
 import { createClientRender, fireEvent } from './createClientRender';
 
@@ -30,5 +30,20 @@ describe('<DateRangePicker />', () => {
 
     await waitFor(() => screen.getByRole('tooltip'));
     expect(screen.getByRole('tooltip')).toBeInTheDocument();
+  });
+
+  it('prop – `renderDay` should be called and render days', async () => {
+    render(
+      <DesktopDateRangePicker
+        open
+        renderInput={defaultRangeRenderInput}
+        onChange={jest.fn()}
+        renderDay={day => <div key={String(day)} data-mui-test="renderDayCalled" />}
+        value={[null, null]}
+      />
+    );
+
+    await waitFor(() => screen.getByRole('tooltip'));
+    expect(getAllByMuiTest('renderDayCalled').length).not.toBe(0);
   });
 });
