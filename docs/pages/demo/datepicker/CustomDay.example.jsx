@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import isSameDay from 'date-fns/isSameDay';
 import endOfWeek from 'date-fns/endOfWeek';
 import startOfWeek from 'date-fns/startOfWeek';
-import isWithinInterval from 'date-fns/isWithinInterval';
 import TextField from '@material-ui/core/TextField';
+import isWithinInterval from 'date-fns/isWithinInterval';
 import { makeStyles } from '@material-ui/core';
 import { DatePicker, Day } from '@material-ui/pickers';
 // this guy required only on the docs site to work with dynamic date library

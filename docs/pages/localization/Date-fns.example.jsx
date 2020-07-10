@@ -2,10 +2,10 @@ import * as React from 'react';
 import frLocale from 'date-fns/locale/fr';
 import ruLocale from 'date-fns/locale/ru';
 import enLocale from 'date-fns/locale/en-US';
-import DateFnsAdapter from '@material-ui/pickers/adapter/date-fns';
-import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
+import DateFnsAdapter from '@material-ui/pickers/adapter/date-fns';
 import { DatePicker, LocalizationProvider } from '@material-ui/pickers';
 
 const localeMap = {

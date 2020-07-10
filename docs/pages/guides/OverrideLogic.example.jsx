@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import DateFnsAdapter from '@material-ui/pickers/adapter/date-fns';
 import TextField from '@material-ui/core/TextField';
+import DateFnsAdapter from '@material-ui/pickers/adapter/date-fns';
 import { LocalizationProvider, DatePicker } from '@material-ui/pickers';
 
 class OverriddenAdapter extends DateFnsAdapter {

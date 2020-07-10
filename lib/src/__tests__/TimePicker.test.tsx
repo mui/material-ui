@@ -1,7 +1,7 @@
 import * as React from 'react';
+import TextField from '@material-ui/core/TextField';
 import { ReactWrapper } from 'enzyme';
 import { clickOKButton } from './commands';
-import TextField from '@material-ui/core/TextField';
 import { MaterialUiPickersDate } from '../typings/date';
 import {
   mount,

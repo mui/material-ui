@@ -1,11 +1,11 @@
 import 'moment/locale/fr';
 import 'moment/locale/ru';
 import moment from 'moment';
-import React, { useState, useCallback } from 'react';
-import MomentAdapter from '@material-ui/pickers/adapter/moment';
-import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import React, { useState, useCallback } from 'react';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
+import MomentAdapter from '@material-ui/pickers/adapter/moment';
 import { DatePicker, LocalizationProvider } from '@material-ui/pickers';
 
 moment.locale('fr'); // it is required to select default locale manually
