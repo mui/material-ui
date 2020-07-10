@@ -28,17 +28,29 @@ const [queryDescriptionOf, , getDescriptionOf, , findDescriptionOf] = buildQueri
 const customQueries = { queryDescriptionOf, getDescriptionOf, findDescriptionOf };
 
 /**
+ * @typedef {object} RenderOptions
+ * @property {HTMLElement} [options.baseElement] - https://testing-library.com/docs/react-testing-library/api#baseelement-1
+ * @property {HTMLElement} [options.container] - https://testing-library.com/docs/react-testing-library/api#container
+ * @property {boolean} [options.disableUnnmount] - if true does not cleanup before mount
+ * @property {boolean} [options.hydrate] - https://testing-library.com/docs/react-testing-library/api#hydrate
+ * @property {boolean} [options.strict] - wrap in React.StrictMode?
+ */
+
+/**
  *
  * @param {React.ReactElement} element
- * @param {object} [options]
- * @param {boolean} [options.baseElement] - https://testing-library.com/docs/react-testing-library/api#baseelement-1
- * @param {boolean} [options.disableUnnmount] - if true does not cleanup before mount
- * @param {boolean} [options.strict] - wrap in React.StrictMode?
+ * @param {RenderOptions} [options]
  * @returns {import('@testing-library/react').RenderResult<typeof queries & typeof customQueries> & { setProps(props: object): void}}
  * TODO: type return RenderResult in setProps
  */
 function clientRender(element, options = {}) {
-  const { baseElement, strict = true, wrapper: InnerWrapper = React.Fragment } = options;
+  const {
+    baseElement,
+    container,
+    hydrate,
+    strict = true,
+    wrapper: InnerWrapper = React.Fragment,
+  } = options;
 
   const Mode = strict ? React.StrictMode : React.Fragment;
   function Wrapper({ children }) {
@@ -52,6 +64,8 @@ function clientRender(element, options = {}) {
 
   const result = testingLibraryRender(element, {
     baseElement,
+    container,
+    hydrate,
     queries: { ...queries, ...customQueries },
     wrapper: Wrapper,
   });
@@ -76,6 +90,10 @@ function clientRender(element, options = {}) {
   return result;
 }
 
+/**
+ * @param {RenderOptions} globalOptions
+ * @returns {clientRender}
+ */
 export function createClientRender(globalOptions = {}) {
   const { strict: globalStrict } = globalOptions;
 
