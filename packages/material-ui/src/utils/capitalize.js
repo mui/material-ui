@@ -1,2 +1,3 @@
-import { capitalize } from '@material-ui/utils'
+import { capitalize } from '@material-ui/utils';
+
 export default capitalize;

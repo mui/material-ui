@@ -10,14 +10,16 @@ const propsToClassKey = (matcher) => {
 
   let classKey = matcher.variant ? matcher.variant : '';
 
-  Object.keys(rest).sort().forEach(key => {
-    if(key === 'color') {
-      classKey += isEmpty(classKey) ? matcher.color : capitalize(matcher.color);
-    } else {
-      classKey += `${isEmpty(classKey) ? key : capitalize}${capitalize(matcher.size)}`;
-    }
-  });
-  
+  Object.keys(rest)
+    .sort()
+    .forEach((key) => {
+      if (key === 'color') {
+        classKey += isEmpty(classKey) ? matcher.color : capitalize(matcher.color);
+      } else {
+        classKey += `${isEmpty(classKey) ? key : capitalize}${capitalize(matcher.size)}`;
+      }
+    });
+
   return classKey;
 };
 
