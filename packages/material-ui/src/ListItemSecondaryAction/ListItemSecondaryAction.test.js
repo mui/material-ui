@@ -30,7 +30,7 @@ describe('<ListItemSecondaryAction />', () => {
         <ListItemSecondaryAction data-testid="secondary-action" />
       </ListItem>,
     );
-    expect(getByTestId('listitem')).not.to.have.class(classes.disableGutters);
+    expect(getByTestId('secondary-action')).not.to.have.class(classes.disableGutters);
   });
 
   it('should disable the gutters', () => {
@@ -39,6 +39,6 @@ describe('<ListItemSecondaryAction />', () => {
         <ListItemSecondaryAction data-testid="secondary-action" />
       </ListItem>,
     );
-    expect(getByTestId('listitem')).to.have.class(classes.disableGutters);
+    expect(getByTestId('secondary-action')).to.have.class(classes.disableGutters);
   });
 });
