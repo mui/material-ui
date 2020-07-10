@@ -51,20 +51,6 @@ const fit = (imgEl, classes) => {
   }
 };
 
-function ensureImageCover(imgEl, classes) {
-  if (!imgEl) {
-    return;
-  }
-
-  if (imgEl.complete) {
-    fit(imgEl, classes);
-  } else {
-    imgEl.addEventListener('load', () => {
-      fit(imgEl, classes);
-    });
-  }
-}
-
 const GridListTile = React.forwardRef(function GridListTile(props, ref) {
   // cols rows default values are for docs only
   const {
@@ -82,7 +68,28 @@ const GridListTile = React.forwardRef(function GridListTile(props, ref) {
   const imgRef = React.useRef(null);
 
   React.useEffect(() => {
-    ensureImageCover(imgRef.current, classes);
+    const img = imgRef.current;
+
+    if (!img) {
+      return undefined;
+    }
+
+    let listener;
+
+    if (img.complete) {
+      fit(img, classes);
+    } else {
+      listener = () => {
+        fit(img, classes);
+      };
+      img.addEventListener('load', listener);
+    }
+
+    return () => {
+      if (listener) {
+        img.removeEventListener('load', listener);
+      }
+    };
   });
 
   React.useEffect(() => {
