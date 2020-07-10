@@ -1,3 +1,4 @@
+// @ts-check
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender } from 'test/utils/createClientRender';
@@ -11,6 +12,9 @@ import TabContext from '../TabContext';
 
 describe('<TabList />', () => {
   const mount = createMount();
+  /**
+   * @type {Record<string, string>}
+   */
   let classes;
   const render = createClientRender();
 
@@ -18,6 +22,10 @@ describe('<TabList />', () => {
     classes = getClasses(<Tabs />);
   });
 
+  /**
+   *
+   * @param {React.ReactNode} node
+   */
   function mountInContext(node) {
     const wrapper = mount(<TabContext value="0">{node}</TabContext>);
     return wrapper.childAt(0);
@@ -29,7 +37,7 @@ describe('<TabList />', () => {
     mount: mountInContext,
     refInstanceof: window.HTMLDivElement,
     // TODO: no idea why reactTestRenderer fails
-    skip: ['reactTestRenderer'],
+    skip: [/** @type {'reactTestRenderer'} */ ('reactTestRenderer')],
   }));
 
   // outside of TabContext pass every test in Tabs

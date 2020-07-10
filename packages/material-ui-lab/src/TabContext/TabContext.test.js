@@ -1,3 +1,4 @@
+// @ts-check
 import * as React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { expect } from 'chai';
@@ -20,8 +21,14 @@ describe('<TabContext />', () => {
   });
 
   it('provides an id prefix for IDREFs and the active value', () => {
+    /**
+     *
+     * @param {{value: string}} props
+     */
     function Tabs({ value }) {
       const context = useTabContext();
+      if (context === null) throw new TypeError();
+
       return (
         <React.Fragment>
           <div data-testid="active-value" data-value={context.value} />
@@ -46,8 +53,14 @@ describe('<TabContext />', () => {
   });
 
   it('provides undefined tab and panel prefixes and the active value when ssr', () => {
+    /**
+     *
+     * @param {{value: string}} props
+     */
     function Tabs({ value }) {
       const context = useTabContext();
+      if (context === null) throw new TypeError();
+
       return (
         <React.Fragment>
           <div data-testid="active-value" data-value={context.value} />
@@ -69,8 +82,13 @@ describe('<TabContext />', () => {
   });
 
   it('hydrates tab and tabpanel prefixes', () => {
+    /**
+     * @param {{value: string}} props
+     */
     function Tabs({ value }) {
       const context = useTabContext();
+      if (context === null) throw new TypeError();
+
       return (
         <React.Fragment>
           <div role="tab" id={getTabId(context, value)} />
