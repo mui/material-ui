@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { arrayIncludes } from '../../_helpers/utils';
 import { PickerSelectionState } from './usePickerState';
-import { MaterialUiPickersDate } from '../../typings/date';
+
 import { AnyPickerView } from '../../Picker/SharedPickerProps';
 
-export type PickerOnChangeFn<TDate = MaterialUiPickersDate> = (
+export type PickerOnChangeFn<TDate = unknown> = (
   date: TDate,
   selectionState?: PickerSelectionState
 ) => void;
@@ -47,7 +47,7 @@ export function useViews({
   }, [nextView, setOpenView]);
 
   const handleChangeAndOpenNext = React.useCallback(
-    (date: MaterialUiPickersDate, currentViewSelectionState?: PickerSelectionState) => {
+    (date: unknown, currentViewSelectionState?: PickerSelectionState) => {
       const isSelectionFinishedOnCurrentView = currentViewSelectionState === 'finish';
       const globalSelectionState =
         isSelectionFinishedOnCurrentView && Boolean(nextView)

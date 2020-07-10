@@ -1,14 +1,9 @@
-import { IUtils } from '@date-io/core/IUtils';
 import { ParsableDate } from '../constants/prop-types';
-import { MaterialUiPickersDate } from '../typings/date';
 import { MuiPickersAdapter } from '../_shared/hooks/useUtils';
 
 type Meridiem = 'am' | 'pm' | null;
 
-export const getMeridiem = (
-  date: MaterialUiPickersDate,
-  utils: IUtils<MaterialUiPickersDate>
-): Meridiem => {
+export const getMeridiem = (date: unknown, utils: MuiPickersAdapter): Meridiem => {
   if (!date) {
     return null;
   }
@@ -28,10 +23,10 @@ export const convertValueToMeridiem = (value: number, meridiem: Meridiem, ampm: 
 };
 
 export const convertToMeridiem = (
-  time: MaterialUiPickersDate,
+  time: unknown,
   meridiem: 'am' | 'pm',
   ampm: boolean,
-  utils: IUtils<MaterialUiPickersDate>
+  utils: MuiPickersAdapter
 ) => {
   const newHoursAmount = convertValueToMeridiem(utils.getHours(time), meridiem, ampm);
   return utils.setHours(time, newHoursAmount);
@@ -93,14 +88,14 @@ export const getHours = (offsetX: number, offsetY: number, ampm: boolean) => {
   return value;
 };
 
-export function getSecondsInDay(date: MaterialUiPickersDate, utils: MuiPickersAdapter) {
+export function getSecondsInDay(date: unknown, utils: MuiPickersAdapter) {
   return utils.getHours(date) * 3600 + utils.getMinutes(date) * 60 + utils.getSeconds(date);
 }
 
 export const createIsAfterIgnoreDatePart = (
   disableIgnoringDatePartForTimeValidation: boolean,
   utils: MuiPickersAdapter
-) => (dateLeft: MaterialUiPickersDate, dateRight: MaterialUiPickersDate) => {
+) => (dateLeft: unknown, dateRight: unknown) => {
   if (disableIgnoringDatePartForTimeValidation) {
     return utils.isAfter(dateLeft, dateRight);
   }
@@ -113,12 +108,12 @@ export interface TimeValidationProps {
    * Min time acceptable time.
    * For input validation date part of passed object will be ignored if `disableIgnoringDatePartForTimeValidation` not specified.
    */
-  minTime?: MaterialUiPickersDate;
+  minTime?: unknown;
   /**
    * Max time acceptable time.
    * For input validation date part of passed object will be ignored if `disableIgnoringDatePartForTimeValidation` not specified.
    */
-  maxTime?: MaterialUiPickersDate;
+  maxTime?: unknown;
   /**
    * Dynamically check if time is disabled or not.
    * If returns `false` appropriate time point will ot be acceptable.
@@ -133,7 +128,7 @@ export interface TimeValidationProps {
 
 export const validateTime = (
   utils: MuiPickersAdapter,
-  value: MaterialUiPickersDate | ParsableDate,
+  value: unknown | ParsableDate,
   {
     minTime,
     maxTime,

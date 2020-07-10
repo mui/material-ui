@@ -2,7 +2,6 @@ import * as React from 'react';
 import { DateRange } from './RangeTypes';
 import { useUtils } from '../_shared/hooks/useUtils';
 import { makeStyles } from '@material-ui/core/styles';
-import { MaterialUiPickersDate } from '../typings/date';
 import { calculateRangePreview } from './date-range-manager';
 import { Calendar, CalendarProps } from '../views/Calendar/Calendar';
 import { DateRangeDay, DateRangeDayProps } from './DateRangePickerDay';
@@ -26,10 +25,10 @@ export interface ExportedDesktopDateRangeCalendarProps {
    */
   calendars?: 1 | 2 | 3;
   /**
-   * Custom renderer for `<DateRangePicker />` days.
+   * Custom renderer for `<DateRangePicker />` days. @DateIOType
    * @example (date, DateRangeDayProps) => <DateRangePickerDay {...DateRangeDayProps} />
    */
-  renderDay?: (date: MaterialUiPickersDate, DateRangeDayProps: DateRangeDayProps) => JSX.Element;
+  renderDay?: (date: unknown, DateRangeDayProps: DateRangeDayProps) => JSX.Element;
 }
 
 interface DesktopDateRangeCalendarProps
@@ -38,7 +37,7 @@ interface DesktopDateRangeCalendarProps
     DateValidationProps,
     ExportedArrowSwitcherProps {
   date: DateRange;
-  changeMonth: (date: MaterialUiPickersDate) => void;
+  changeMonth: (date: unknown) => void;
   currentlySelectingRangeEnd: 'start' | 'end';
 }
 
@@ -106,7 +105,7 @@ export const DateRangePickerViewDesktop: React.FC<DesktopDateRangeCalendarProps>
   const minDate = __minDate || utils.date(defaultMinDate);
   const maxDate = __maxDate || utils.date(defaultMaxDate);
 
-  const [rangePreviewDay, setRangePreviewDay] = React.useState<MaterialUiPickersDate>(null);
+  const [rangePreviewDay, setRangePreviewDay] = React.useState<unknown>(null);
 
   const isNextMonthDisabled = useNextMonthDisabled(currentMonth, { disableFuture, maxDate });
   const isPreviousMonthDisabled = usePreviousMonthDisabled(currentMonth, { disablePast, minDate });
@@ -119,14 +118,14 @@ export const DateRangePickerViewDesktop: React.FC<DesktopDateRangeCalendarProps>
   });
 
   const handleDayChange = React.useCallback(
-    (day: MaterialUiPickersDate) => {
+    (day: unknown) => {
       setRangePreviewDay(null);
       onChange(day);
     },
     [onChange]
   );
 
-  const handlePreviewDayChange = (newPreviewRequest: MaterialUiPickersDate) => {
+  const handlePreviewDayChange = (newPreviewRequest: unknown) => {
     if (!isWithinRange(utils, newPreviewRequest, date)) {
       setRangePreviewDay(newPreviewRequest);
     } else {

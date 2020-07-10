@@ -2,7 +2,6 @@ import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { ReactWrapper } from 'enzyme';
 import { mount as enzymeDefaultMount } from 'enzyme';
-import { MaterialUiPickersDate } from '../typings/date';
 import { mount, utilsToUse, mountPickerWithState } from './test-utils';
 import { DateTimePicker, DateTimePickerProps } from '../DateTimePicker/DateTimePicker';
 
@@ -102,7 +101,7 @@ describe('e2e -- Override utils using `dateAdapter`', () => {
 });
 
 it('e2e - DateTimePicker empty date', () => {
-  const component = mountPickerWithState(null as MaterialUiPickersDate, props => (
+  const component = mountPickerWithState(null, props => (
     <DateTimePicker open toolbarPlaceholder="Enter Date" {...props} />
   ));
 

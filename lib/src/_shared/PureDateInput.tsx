@@ -2,7 +2,6 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import { onSpaceOrEnter } from '../_helpers/utils';
 import { ParsableDate } from '../constants/prop-types';
-import { MaterialUiPickersDate } from '../typings/date';
 import { TextFieldProps } from '@material-ui/core/TextField';
 import { IconButtonProps } from '@material-ui/core/IconButton';
 import { useUtils, MuiPickersAdapter } from './hooks/useUtils';
@@ -11,7 +10,7 @@ import { getDisplayDate, getTextFieldAriaText } from '../_helpers/text-field-hel
 
 export type MuiTextFieldProps = TextFieldProps | Omit<TextFieldProps, 'variant'>;
 
-export interface DateInputProps<TInputValue = ParsableDate, TDateValue = MaterialUiPickersDate> {
+export interface DateInputProps<TInputValue = ParsableDate<unknown>, TDateValue = unknown> {
   open: boolean;
   rawValue: TInputValue;
   inputFormat: string;
@@ -74,7 +73,7 @@ export interface DateInputProps<TInputValue = ParsableDate, TDateValue = Materia
    */
   disableMaskedInput?: boolean;
   /**
-   * Get aria-label text for control that opens picker dialog. Aria-label text must include selected date.
+   * Get aria-label text for control that opens picker dialog. Aria-label text must include selected date. @DateIOType
    * @default (value, utils) => `Choose date, selected date is ${utils.format(utils.date(value), 'fullDate')}`
    */
   getOpenDialogAriaText?: (value: ParsableDate, utils: MuiPickersAdapter) => string;

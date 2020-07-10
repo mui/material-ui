@@ -5,7 +5,6 @@ import ToolbarButton from '../_shared/ToolbarButton';
 import PickerToolbar from '../_shared/PickerToolbar';
 import { arrayIncludes } from '../_helpers/utils';
 import { useUtils } from '../_shared/hooks/useUtils';
-import { MaterialUiPickersDate } from '../typings/date';
 import { PickerOnChangeFn } from '../_shared/hooks/useViews';
 import { withDefaultProps } from '../_shared/withDefaultProps';
 import { useTheme, makeStyles } from '@material-ui/core/styles';
@@ -55,7 +54,7 @@ export const useStyles = makeStyles(
 );
 
 export function useMeridiemMode(
-  date: MaterialUiPickersDate,
+  date: unknown,
   ampm: boolean | undefined,
   onChange: PickerOnChangeFn
 ) {
@@ -97,7 +96,7 @@ export const TimePickerToolbar: React.FC<ToolbarComponentProps> = withDefaultPro
     const showAmPmControl = Boolean(ampm && !ampmInClock);
     const { meridiemMode, handleMeridiemChange } = useMeridiemMode(date, ampm, onChange);
 
-    const formatHours = (time: MaterialUiPickersDate) =>
+    const formatHours = (time: unknown) =>
       ampm ? utils.format(time, 'hours12h') : utils.format(time, 'hours24h');
 
     const separator = (

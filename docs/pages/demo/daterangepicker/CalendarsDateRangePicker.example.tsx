@@ -4,7 +4,7 @@ import { Typography, TextField } from '@material-ui/core';
 import { DateRangePicker, DateRangeDelimiter, DateRange } from '@material-ui/pickers';
 
 function CalendarsDateRangePicker() {
-  const [selectedDate, handleDateChange] = React.useState<DateRange>([null, null]);
+  const [selectedDate, handleDateChange] = React.useState<DateRange<Date>>([null, null]);
 
   return (
     <Grid container direction="column" alignItems="center">

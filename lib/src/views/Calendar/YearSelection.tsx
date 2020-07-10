@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Year from './Year';
-import { MaterialUiPickersDate } from '../../typings/date';
 import { useUtils, useNow } from '../../_shared/hooks/useUtils';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { PickerOnChangeFn } from '../../_shared/hooks/useViews';
@@ -13,23 +12,23 @@ export interface ExportedYearSelectionProps {
   /**
    * Callback firing on year change @DateIOType.
    */
-  onYearChange?: (date: MaterialUiPickersDate) => void;
+  onYearChange?: (date: unknown) => void;
   /**
    * Disable specific years dynamically.
    * Works like `shouldDisableDate` but for year selection view. @DateIOType.
    */
-  shouldDisableYear?: (day: MaterialUiPickersDate) => boolean;
+  shouldDisableYear?: (day: unknown) => boolean;
 }
 
 export interface YearSelectionProps extends ExportedYearSelectionProps {
   allowKeyboardControl?: boolean;
-  changeFocusedDay: (day: MaterialUiPickersDate) => void;
-  date: MaterialUiPickersDate;
+  changeFocusedDay: (day: unknown) => void;
+  date: unknown;
   disableFuture?: boolean | null | undefined;
   disablePast?: boolean | null | undefined;
-  isDateDisabled: (day: MaterialUiPickersDate) => boolean;
-  maxDate: MaterialUiPickersDate;
-  minDate: MaterialUiPickersDate;
+  isDateDisabled: (day: unknown) => boolean;
+  maxDate: unknown;
+  minDate: unknown;
   onChange: PickerOnChangeFn;
 }
 
@@ -73,7 +72,7 @@ export const YearSelection: React.FC<YearSelectionProps> = ({
 
   const handleYearSelection = React.useCallback(
     (year: number, isFinish: PickerSelectionState = 'finish') => {
-      const submitDate = (newDate: MaterialUiPickersDate) => {
+      const submitDate = (newDate: unknown) => {
         onChange(newDate, isFinish);
         changeFocusedDay(newDate);
 

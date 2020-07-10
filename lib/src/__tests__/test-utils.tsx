@@ -7,7 +7,6 @@ import TextField from '@material-ui/core/TextField';
 import LocalizationProvider from '../LocalizationProvider';
 import { IUtils } from '@date-io/core/IUtils';
 import { DatePickerProps } from '../DatePicker';
-import { MaterialUiPickersDate } from '../typings/date';
 import { BasePickerProps } from '../typings/BasePicker';
 import { createClientRender } from './createClientRender';
 import { TransitionProps } from '@material-ui/core/transitions/transition';
@@ -50,7 +49,7 @@ export const FakeTransitionComponent = React.forwardRef<HTMLDivElement, Transiti
 );
 
 interface WithUtilsProps {
-  utils: IUtils<MaterialUiPickersDate>;
+  utils: IUtils<any>;
 }
 
 const getUtilClass = () => {
@@ -67,7 +66,7 @@ const getUtilClass = () => {
 };
 
 export const UtilClassToUse: any = getUtilClass();
-export const utilsToUse: IUtils<MaterialUiPickersDate> = new UtilClassToUse();
+export const utilsToUse: IUtils<any> = new UtilClassToUse();
 
 const getComponentWithUtils = <P extends WithUtilsProps>(element: React.ReactElement<P>) =>
   React.cloneElement(element, { utils: utilsToUse } as any);

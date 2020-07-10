@@ -1,7 +1,5 @@
 import { DateTimePickerView } from '../DateTimePicker';
-import { ParsableDate } from '../constants/prop-types';
 import { BasePickerProps } from '../typings/BasePicker';
-import { MaterialUiPickersDate } from '../typings/date';
 import { PickerOnChangeFn } from '../_shared/hooks/useViews';
 import { ExportedDateInputProps } from '../_shared/PureDateInput';
 import { ExportedClockViewProps } from '../views/Clock/ClockView';
@@ -12,12 +10,12 @@ import { ExportedCalendarViewProps } from '../views/Calendar/CalendarView';
 
 export type AnyPickerView = DateTimePickerView;
 
-export type AllSharedPickerProps<
-  TInputValue = ParsableDate,
-  TDateValue = MaterialUiPickersDate
-> = BasePickerProps<TInputValue, TDateValue> &
+export type AllSharedPickerProps<TInputValue = any, TDateValue = any> = BasePickerProps<
+  TInputValue,
+  TDateValue
+> &
   ExportedDateInputProps<TInputValue, TDateValue> &
-  WithDateAdapterProps;
+  WithDateAdapterProps<TDateValue>;
 
 export interface SharedPickerProps<
   TInputValue,
@@ -49,7 +47,7 @@ export interface WithViewsProps<T extends AnyPickerView> {
 export type CalendarAndClockProps = ExportedCalendarViewProps & ExportedClockViewProps;
 
 export type ToolbarComponentProps<
-  TDate = MaterialUiPickersDate,
+  TDate = unknown,
   TView extends AnyPickerView = AnyPickerView
 > = CalendarAndClockProps & {
   ampmInClock?: boolean;

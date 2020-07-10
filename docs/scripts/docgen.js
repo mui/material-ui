@@ -51,7 +51,7 @@ function processProp(prop) {
   const { description } = prop;
 
   if (description.includes('@DateIOType')) {
-    prop.type.name = prop.type.name.replace(/any/g, 'DateIOType');
+    prop.type.name = prop.type.name.replace(/unknown/g, 'DateIOType');
     prop.description = description.replace(' @DateIOType', '');
   }
 

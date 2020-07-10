@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Picker, { ExportedPickerProps } from './Picker';
 import { ParsableDate } from '../constants/prop-types';
-import { MaterialUiPickersDate } from '../typings/date';
 import { MuiPickersAdapter } from '../_shared/hooks/useUtils';
 import { parsePickerInputValue } from '../_helpers/date-utils';
 import { withDefaultProps } from '../_shared/withDefaultProps';
@@ -25,7 +24,7 @@ export interface MakePickerOptions<T extends unknown> {
   /**
    * Hook that running validation for the `value` and input.
    */
-  useValidation: (value: ParsableDate, props: T) => string | null;
+  useValidation: (value: ParsableDate<unknown>, props: T) => string | null;
   /**
    * Intercept props to override or inject default props specifically for picker.
    */
@@ -33,12 +32,21 @@ export interface MakePickerOptions<T extends unknown> {
   DefaultToolbarComponent: React.ComponentType<ToolbarComponentProps>;
 }
 
-const valueManager: PickerStateValueManager<ParsableDate, MaterialUiPickersDate> = {
+const valueManager: PickerStateValueManager<unknown, unknown> = {
   emptyValue: null,
   parseInput: parsePickerInputValue,
-  areValuesEqual: (utils: MuiPickersAdapter, a: MaterialUiPickersDate, b: MaterialUiPickersDate) =>
-    utils.isEqual(a, b),
+  areValuesEqual: (utils: MuiPickersAdapter, a: unknown, b: unknown) => utils.isEqual(a, b),
 };
+
+type PickerComponent<
+  TViewProps extends AllAvailableForOverrideProps,
+  TWrapper extends SomeWrapper
+> = <TDate>(
+  props: TViewProps &
+    ExtendWrapper<TWrapper> &
+    AllSharedPickerProps<ParsableDate<TDate>, TDate | null> &
+    React.RefAttributes<HTMLInputElement>
+) => JSX.Element;
 
 export function makePickerWithStateAndWrapper<
   T extends AllAvailableForOverrideProps,
@@ -46,23 +54,22 @@ export function makePickerWithStateAndWrapper<
 >(
   Wrapper: TWrapper,
   { name, useInterceptProps, useValidation, DefaultToolbarComponent }: MakePickerOptions<T>
-) {
-  const PickerWrapper = makeWrapperComponent<DateInputProps, ParsableDate, MaterialUiPickersDate>(
-    Wrapper,
-    {
-      KeyboardDateInputComponent: KeyboardDateInput,
-      PureDateInputComponent: PureDateInput,
-    }
-  );
+): PickerComponent<T, TWrapper> {
+  const WrapperComponent = makeWrapperComponent<DateInputProps<any, any>>(Wrapper, {
+    KeyboardDateInputComponent: KeyboardDateInput,
+    PureDateInputComponent: PureDateInput,
+  });
 
-  function PickerWithState(__props: T & AllSharedPickerProps & ExtendWrapper<TWrapper>) {
+  function PickerWithState<TDate>(
+    __props: T & AllSharedPickerProps<ParsableDate<TDate>, TDate> & ExtendWrapper<TWrapper>
+  ) {
     const allProps = useInterceptProps(__props) as AllPickerProps<T, TWrapper>;
 
     const validationError = useValidation(allProps.value, allProps) !== null;
-    const { pickerProps, inputProps, wrapperProps } = usePickerState<
-      ParsableDate,
-      MaterialUiPickersDate
-    >(allProps, valueManager);
+    const { pickerProps, inputProps, wrapperProps } = usePickerState<ParsableDate<TDate>, TDate>(
+      allProps,
+      valueManager as PickerStateValueManager<ParsableDate<TDate>, TDate>
+    );
 
     // Note that we are passing down all the value without spread.
     // It saves us >1kb gzip and make any prop available automatically on any level down.
@@ -70,7 +77,7 @@ export function makePickerWithStateAndWrapper<
     const AllDateInputProps = { ...inputProps, ...other, validationError };
 
     return (
-      <PickerWrapper wrapperProps={wrapperProps} DateInputProps={AllDateInputProps} {...other}>
+      <WrapperComponent wrapperProps={wrapperProps} DateInputProps={AllDateInputProps} {...other}>
         <Picker
           {...pickerProps}
           toolbarTitle={allProps.label || allProps.toolbarTitle}
@@ -78,11 +85,15 @@ export function makePickerWithStateAndWrapper<
           DateInputProps={AllDateInputProps}
           {...other}
         />
-      </PickerWrapper>
+      </WrapperComponent>
     );
   }
 
   const FinalPickerComponent = withDefaultProps({ name }, withDateAdapterProp(PickerWithState));
+
+  // @ts-ignore Simply ignore generic values in props, because it is impossible
+  // to keep generics without additional cast when using forwardRef
+  // @see https://github.com/DefinitelyTyped/DefinitelyTyped/issues/35834
   return React.forwardRef<HTMLInputElement, React.ComponentProps<typeof FinalPickerComponent>>(
     (props, ref) => <FinalPickerComponent {...(props as any)} forwardedRef={ref} />
   );

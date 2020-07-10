@@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import { StaticDateRangePicker, DateRangeDelimiter, DateRange } from '@material-ui/pickers';
 
 function StaticDateRangePickerExample() {
-  const [selectedDate, handleDateChange] = React.useState<DateRange>([null, null]);
+  const [selectedDate, handleDateChange] = React.useState<DateRange<Date>>([null, null]);
 
   return (
     <React.Fragment>

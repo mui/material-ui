@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import * as React from 'react';
 import { DateRangePicker, DateRange } from '@material-ui/pickers';
 
 function CustomRangeInputs() {
-  const [selectedDate, handleDateChange] = useState<DateRange>([null, null]);
+  const [selectedDate, handleDateChange] = React.useState<DateRange<Date>>([null, null]);
 
   return (
     <DateRangePicker

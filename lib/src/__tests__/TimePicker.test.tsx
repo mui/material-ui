@@ -2,7 +2,6 @@ import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { ReactWrapper } from 'enzyme';
 import { clickOKButton } from './commands';
-import { MaterialUiPickersDate } from '../typings/date';
 import {
   mount,
   utilsToUse,
@@ -260,9 +259,7 @@ describe('e2e - TimePicker time validation', () => {
 });
 
 it('e2e - TimePicker empty date', () => {
-  const component = mountPickerWithState(null as MaterialUiPickersDate, props => (
-    <TimePicker open {...props} />
-  ));
+  const component = mountPickerWithState(null, props => <TimePicker open {...props} />);
 
   expect(component.find('button[data-mui-test="hours"]').text()).toBe('--');
   expect(component.find('button[data-mui-test="minutes"]').text()).toBe('--');

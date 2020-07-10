@@ -8,7 +8,6 @@ import { DatePickerView } from '../../DatePicker';
 import { SlideDirection } from './SlideTransition';
 import { makeStyles } from '@material-ui/core/styles';
 import { useUtils } from '../../_shared/hooks/useUtils';
-import { MaterialUiPickersDate } from '../../typings/date';
 import { FadeTransitionGroup } from './FadeTransitionGroup';
 import { DateValidationProps } from '../../_helpers/date-utils';
 import { ArrowDropDownIcon } from '../../_shared/icons/ArrowDropDownIcon';
@@ -23,16 +22,16 @@ export interface CalendarHeaderProps
     Omit<DateValidationProps, 'shouldDisableDate'> {
   view: DatePickerView;
   views: DatePickerView[];
-  currentMonth: MaterialUiPickersDate;
+  currentMonth: unknown;
   /**
    * Get aria-label text for switching between views button.
    */
   getViewSwitchingButtonText?: (currentView: DatePickerView) => string;
   reduceAnimations: boolean;
   changeView: (view: DatePickerView) => void;
-  minDate: MaterialUiPickersDate;
-  maxDate: MaterialUiPickersDate;
-  onMonthChange: (date: MaterialUiPickersDate, slideDirection: SlideDirection) => void;
+  minDate: unknown;
+  maxDate: unknown;
+  onMonthChange: (date: unknown, slideDirection: SlideDirection) => void;
 }
 
 export const useStyles = makeStyles(

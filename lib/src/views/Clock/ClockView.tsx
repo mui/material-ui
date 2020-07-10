@@ -3,7 +3,7 @@ import * as PropTypes from 'prop-types';
 import { Clock } from './Clock';
 import { pipe } from '../../_helpers/utils';
 import { makeStyles } from '@material-ui/core/styles';
-import { MaterialUiPickersDate } from '../../typings/date';
+
 import { useUtils, useNow } from '../../_shared/hooks/useUtils';
 import { PickerOnChangeFn } from '../../_shared/hooks/useViews';
 import { withDefaultProps } from '../../_shared/withDefaultProps';
@@ -44,7 +44,7 @@ export interface ClockViewProps extends ExportedClockViewProps, ExportedArrowSwi
   /**
    * Selected date @DateIOType.
    */
-  date: MaterialUiPickersDate;
+  date: unknown;
   /**
    * Clock type.
    */
@@ -128,9 +128,7 @@ const _ClockView: React.FC<ClockViewProps> = ({
 
   const isTimeDisabled = React.useCallback(
     (rawValue: number, type: 'hours' | 'minutes' | 'seconds') => {
-      const validateTimeValue = (
-        getRequestedTimePoint: (when: 'start' | 'end') => MaterialUiPickersDate
-      ) => {
+      const validateTimeValue = (getRequestedTimePoint: (when: 'start' | 'end') => unknown) => {
         const isAfterComparingFn = createIsAfterIgnoreDatePart(
           Boolean(disableIgnoringDatePartForTimeValidation),
           utils

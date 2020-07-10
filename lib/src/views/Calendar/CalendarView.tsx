@@ -4,7 +4,7 @@ import { DatePickerView } from '../../DatePicker';
 import { useCalendarState } from './useCalendarState';
 import { makeStyles } from '@material-ui/core/styles';
 import { useUtils } from '../../_shared/hooks/useUtils';
-import { MaterialUiPickersDate } from '../../typings/date';
+
 import { FadeTransitionGroup } from './FadeTransitionGroup';
 import { Calendar, ExportedCalendarProps } from './Calendar';
 import { PickerOnChangeFn } from '../../_shared/hooks/useViews';
@@ -32,7 +32,7 @@ export interface CalendarViewProps
     ExportedCalendarProps,
     ExportedYearSelectionProps,
     PublicCalendarHeaderProps {
-  date: MaterialUiPickersDate;
+  date: unknown;
   view: DatePickerView;
   views: DatePickerView[];
   changeView: (view: DatePickerView) => void;
@@ -43,9 +43,9 @@ export interface CalendarViewProps
    */
   reduceAnimations?: boolean;
   /**
-   * Callback firing on month change.
+   * Callback firing on month change. @DateIOType
    */
-  onMonthChange?: (date: MaterialUiPickersDate) => void;
+  onMonthChange?: (date: unknown) => void;
 }
 
 export type ExportedCalendarViewProps = Omit<

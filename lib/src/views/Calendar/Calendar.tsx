@@ -2,7 +2,7 @@ import * as React from 'react';
 import clsx from 'clsx';
 import Typography from '@material-ui/core/Typography';
 import { Day, DayProps } from './Day';
-import { MaterialUiPickersDate } from '../../typings/date';
+
 import { useUtils, useNow } from '../../_shared/hooks/useUtils';
 import { PickerOnChangeFn } from '../../_shared/hooks/useViews';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -21,11 +21,7 @@ export interface ExportedCalendarProps
   /**
    * Custom renderer for day. Check [DayComponentProps api](https://material-ui-pickers.dev/api/Day) @DateIOType.
    */
-  renderDay?: (
-    day: MaterialUiPickersDate,
-    selectedDates: MaterialUiPickersDate[],
-    DayComponentProps: DayProps
-  ) => JSX.Element;
+  renderDay?: (day: unknown, selectedDates: unknown[], DayComponentProps: DayProps) => JSX.Element;
   /**
    * Enables keyboard listener for moving between days in calendar.
    * @default currentWrapper !== 'static'
@@ -45,13 +41,13 @@ export interface ExportedCalendarProps
 }
 
 export interface CalendarProps extends ExportedCalendarProps {
-  date: MaterialUiPickersDate | MaterialUiPickersDate[];
-  isDateDisabled: (day: MaterialUiPickersDate) => boolean;
+  date: unknown | unknown[];
+  isDateDisabled: (day: unknown) => boolean;
   slideDirection: SlideDirection;
-  currentMonth: MaterialUiPickersDate;
+  currentMonth: unknown;
   reduceAnimations: boolean;
-  focusedDay: MaterialUiPickersDate | null;
-  changeFocusedDay: (newFocusedDay: MaterialUiPickersDate) => void;
+  focusedDay: unknown | null;
+  changeFocusedDay: (newFocusedDay: unknown) => void;
   isMonthSwitchingAnimating: boolean;
   onMonthSwitchingAnimationEnd: () => void;
   TransitionProps?: Partial<SlideTransitionProps>;
@@ -132,7 +128,7 @@ export const Calendar: React.FC<CalendarProps> = withDefaultProps(
     const classes = useStyles();
 
     const handleDaySelect = React.useCallback(
-      (day: MaterialUiPickersDate, isFinish: PickerSelectionState = 'finish') => {
+      (day: unknown, isFinish: PickerSelectionState = 'finish') => {
         // TODO possibly buggy line figure out and add tests
         const finalDate = Array.isArray(date) ? day : utils.mergeDateAndTime(day, date || now);
 

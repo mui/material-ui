@@ -1,20 +1,18 @@
 import { arrayIncludes } from './utils';
-import { IUtils } from '@date-io/core/IUtils';
 import { ParsableDate } from '../constants/prop-types';
-import { MaterialUiPickersDate } from '../typings/date';
 import { BasePickerProps } from '../typings/BasePicker';
 import { DatePickerView } from '../DatePicker/DatePicker';
 import { MuiPickersAdapter } from '../_shared/hooks/useUtils';
 import { DateRange, RangeInput } from '../DateRangePicker/RangeTypes';
 
 interface FindClosestDateParams {
-  date: MaterialUiPickersDate;
-  utils: IUtils<MaterialUiPickersDate>;
-  minDate: MaterialUiPickersDate;
-  maxDate: MaterialUiPickersDate;
+  date: unknown;
+  utils: MuiPickersAdapter;
+  minDate: unknown;
+  maxDate: unknown;
   disableFuture: boolean;
   disablePast: boolean;
-  shouldDisableDate: (date: MaterialUiPickersDate) => boolean;
+  shouldDisableDate: (date: unknown) => boolean;
 }
 
 export const findClosestEnabledDate = ({
@@ -84,10 +82,7 @@ export const isYearOnlyView = (views: readonly DatePickerView[]) =>
 export const isYearAndMonthViews = (views: readonly DatePickerView[]) =>
   views.length === 2 && arrayIncludes(views, 'month') && arrayIncludes(views, 'year');
 
-export const getFormatByViews = (
-  views: readonly DatePickerView[],
-  utils: IUtils<MaterialUiPickersDate>
-) => {
+export const getFormatByViews = (views: readonly DatePickerView[], utils: MuiPickersAdapter) => {
   if (isYearOnlyView(views)) {
     return utils.formats.year;
   }
@@ -102,7 +97,7 @@ export const getFormatByViews = (
 export function parsePickerInputValue(
   utils: MuiPickersAdapter,
   { value }: BasePickerProps
-): MaterialUiPickersDate | null {
+): unknown | null {
   const parsedValue = utils.date(value);
 
   return utils.isValid(parsedValue) ? parsedValue : null;
@@ -124,45 +119,33 @@ export const isRangeValid = (
   return Boolean(range && range[0] && range[1] && utils.isBefore(range[0], range[1]));
 };
 
-export const isWithinRange = (
-  utils: MuiPickersAdapter,
-  day: MaterialUiPickersDate,
-  range: DateRange | null
-) => {
+export const isWithinRange = (utils: MuiPickersAdapter, day: unknown, range: DateRange | null) => {
   return isRangeValid(utils, range) && utils.isWithinRange(day, range);
 };
 
-export const isStartOfRange = (
-  utils: MuiPickersAdapter,
-  day: MaterialUiPickersDate,
-  range: DateRange | null
-) => {
+export const isStartOfRange = (utils: MuiPickersAdapter, day: unknown, range: DateRange | null) => {
   return isRangeValid(utils, range) && utils.isSameDay(day, range[0]);
 };
 
-export const isEndOfRange = (
-  utils: MuiPickersAdapter,
-  day: MaterialUiPickersDate,
-  range: DateRange | null
-) => {
+export const isEndOfRange = (utils: MuiPickersAdapter, day: unknown, range: DateRange | null) => {
   return isRangeValid(utils, range) && utils.isSameDay(day, range[1]);
 };
 
 export interface DateValidationProps {
   /**
-   * Min selectable date.
+   * Min selectable date. @DateIOType
    * @default Date(1900-01-01)
    */
-  minDate?: MaterialUiPickersDate;
+  minDate?: unknown;
   /**
-   * Max selectable date.
+   * Max selectable date. @DateIOType
    * @default Date(2099-31-12)
    */
-  maxDate?: MaterialUiPickersDate;
+  maxDate?: unknown;
   /**
-   * Disable specific date @DateIOType.
+   * Disable specific date. @DateIOType
    */
-  shouldDisableDate?: (day: MaterialUiPickersDate) => boolean;
+  shouldDisableDate?: (day: unknown) => boolean;
   /**
    * Disable past dates.
    * @default false
@@ -177,7 +160,7 @@ export interface DateValidationProps {
 
 export const validateDate = (
   utils: MuiPickersAdapter,
-  value: MaterialUiPickersDate | ParsableDate,
+  value: unknown | ParsableDate,
   { minDate, maxDate, disableFuture, shouldDisableDate, disablePast }: DateValidationProps
 ) => {
   const now = utils.date();

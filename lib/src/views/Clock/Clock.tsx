@@ -8,7 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useUtils } from '../../_shared/hooks/useUtils';
 import { VIEW_HEIGHT } from '../../constants/dimensions';
 import { ClockViewType } from '../../constants/ClockType';
-import { MaterialUiPickersDate } from '../../typings/date';
+
 import { PickerOnChangeFn } from '../../_shared/hooks/useViews';
 import { getHours, getMinutes } from '../../_helpers/time-utils';
 import { withDefaultProps } from '../../_shared/withDefaultProps';
@@ -18,7 +18,7 @@ import { useGlobalKeyDown, keycode } from '../../_shared/hooks/useKeyDown';
 import { WrapperVariantContext } from '../../wrappers/WrapperVariantContext';
 
 export interface ClockProps extends ReturnType<typeof useMeridiemMode> {
-  date: MaterialUiPickersDate;
+  date: unknown;
   type: ClockViewType;
   value: number;
   isTimeDisabled: (timeValue: number, type: ClockViewType) => boolean;

@@ -1,16 +1,15 @@
 import * as React from 'react';
 import ClockNumber from './ClockNumber';
-import { IUtils } from '@date-io/core/IUtils';
-import { MaterialUiPickersDate } from '../../typings/date';
+import { MuiPickersAdapter } from '../../_shared/hooks/useUtils';
 import { PickerSelectionState } from '../../_shared/hooks/usePickerState';
 
 interface GetHourNumbersOptions {
   ampm: boolean;
-  date: MaterialUiPickersDate;
+  date: unknown;
   getClockNumberText: (hour: string) => string;
   isDisabled: (value: number) => boolean;
   onChange: (value: number, isFinish?: PickerSelectionState) => void;
-  utils: IUtils<MaterialUiPickersDate>;
+  utils: MuiPickersAdapter;
 }
 
 export const getHourNumbers = ({

@@ -5,7 +5,6 @@ import ButtonBase, { ButtonBaseProps } from '@material-ui/core/ButtonBase';
 import { ExtendMui } from '../../typings/helpers';
 import { onSpaceOrEnter } from '../../_helpers/utils';
 import { useUtils } from '../../_shared/hooks/useUtils';
-import { MaterialUiPickersDate } from '../../typings/date';
 import { makeStyles, fade } from '@material-ui/core/styles';
 import { DAY_SIZE, DAY_MARGIN } from '../../constants/dimensions';
 import { withDefaultProps } from '../../_shared/withDefaultProps';
@@ -77,7 +76,7 @@ export interface DayProps extends ExtendMui<ButtonBaseProps> {
   /**
    * The date to show.
    */
-  day: MaterialUiPickersDate;
+  day: unknown;
   /**
    * Is focused by keyboard navigation.
    */
@@ -124,8 +123,8 @@ export interface DayProps extends ExtendMui<ButtonBaseProps> {
    * @default false
    */
   disableHighlightToday?: boolean;
-  onDayFocus: (day: MaterialUiPickersDate) => void;
-  onDaySelect: (day: MaterialUiPickersDate, isFinish: PickerSelectionState) => void;
+  onDayFocus: (day: unknown) => void;
+  onDaySelect: (day: unknown, isFinish: PickerSelectionState) => void;
 }
 
 const PureDay: React.FC<DayProps> = ({

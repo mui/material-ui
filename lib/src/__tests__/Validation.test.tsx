@@ -2,7 +2,6 @@ import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { isWeekend } from 'date-fns';
 import { act } from 'react-dom/test-utils';
-import { MaterialUiPickersDate } from '../typings/date';
 import { DesktopDatePicker } from '../DatePicker/DatePicker';
 import { mountPickerWithState, utilsToUse } from './test-utils';
 import { DesktopDateRangePicker } from '../DateRangePicker/DateRangePicker';
@@ -10,7 +9,7 @@ import { TimePickerProps, DesktopTimePicker } from '../TimePicker/TimePicker';
 
 jest.useFakeTimers();
 
-const disableWeekends = (date: MaterialUiPickersDate) => {
+const disableWeekends = (date: unknown) => {
   return isWeekend(utilsToUse.toJsDate(date));
 };
 

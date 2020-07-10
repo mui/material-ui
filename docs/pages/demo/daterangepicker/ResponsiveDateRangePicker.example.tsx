@@ -8,7 +8,7 @@ import {
 } from '@material-ui/pickers';
 
 function ResponsiveDateRangePicker() {
-  const [selectedDate, handleDateChange] = React.useState<DateRange>([null, null]);
+  const [selectedDate, handleDateChange] = React.useState<DateRange<Date>>([null, null]);
 
   return (
     <React.Fragment>

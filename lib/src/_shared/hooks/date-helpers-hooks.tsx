@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { useUtils } from './useUtils';
-import { MaterialUiPickersDate } from '../../typings/date';
 
-export function useParsedDate(possiblyUnparsedValue: any): MaterialUiPickersDate | undefined {
+export function useParsedDate(possiblyUnparsedValue: any): unknown | undefined {
   const utils = useUtils();
   return React.useMemo(
     () =>
@@ -14,12 +13,12 @@ export function useParsedDate(possiblyUnparsedValue: any): MaterialUiPickersDate
 interface MonthValidationOptions {
   disablePast?: boolean;
   disableFuture?: boolean;
-  minDate: MaterialUiPickersDate;
-  maxDate: MaterialUiPickersDate;
+  minDate: unknown;
+  maxDate: unknown;
 }
 
 export function useNextMonthDisabled(
-  month: MaterialUiPickersDate,
+  month: unknown,
   { disableFuture, maxDate }: Pick<MonthValidationOptions, 'disableFuture' | 'maxDate'>
 ) {
   const utils = useUtils();
@@ -33,7 +32,7 @@ export function useNextMonthDisabled(
 }
 
 export function usePreviousMonthDisabled(
-  month: MaterialUiPickersDate,
+  month: unknown,
   { disablePast, minDate }: Pick<MonthValidationOptions, 'disablePast' | 'minDate'>
 ) {
   const utils = useUtils();

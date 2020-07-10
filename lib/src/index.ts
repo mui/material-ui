@@ -30,7 +30,6 @@ export { useUtils } from './_shared/hooks/useUtils';
 
 export { usePickerState } from './_shared/hooks/usePickerState';
 
-export * from './typings/date';
 export * from './typings/BasePicker';
 
 export {
@@ -48,5 +47,5 @@ export type ClockProps = import('./views/Clock/Clock').ClockProps;
 export type ToolbarComponentProps = import('./Picker/SharedPickerProps').ToolbarComponentProps;
 export type DateRangeDelimiterProps = import('./DateRangePicker/DateRangeDelimiter').DateRangeDelimiterProps;
 export type LocalizationProviderProps = import('./LocalizationProvider').LocalizationProviderProps;
-export type DateRange = import('./DateRangePicker/RangeTypes').DateRange;
+export type DateRange<T> = import('./DateRangePicker/RangeTypes').DateRange<T>;
 export type RangeInput = import('./DateRangePicker/RangeTypes').RangeInput;

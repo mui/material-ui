@@ -1,0 +1,83 @@
+import PageMeta from '_shared/PageMeta';
+
+<PageMeta
+  title="TypeScript – @material-ui/pickers"
+  description="A guide of how to use @material-ui/pickers with TypeScript"
+/>
+
+## TypeScript guide
+
+The date picker components come with built-in TypeScript definitions.
+Here is some information about how to achive better experience with TypeScript.
+
+<!-- https://stackoverflow.com/questions/62452160/material-datetimepicker-onchange-typescript-mismatch-error/62471345 -->
+
+#### Nullable value
+
+Any picker can return null in the `onChange` argument so if you are using `React.useState`, you **must** manually cast your default value as nullable. (e.g. `Date | null`)
+
+```tsx
+function MyComponent() {
+  const [value, setValue] = React.useState<Date | null>(new Date());
+
+  return (
+    <DatePicker
+      value={value}
+      onChange={newValue => setValue(newValue)}
+      renderInput={props => <TextField {...props} />}
+    />
+  );
+}
+```
+
+#### Generics
+
+The components don't know which adapter you will pass to the `<LocalizationProvider />`. So any picker component is generic by default.
+It means that it will try to infer the `value` and `onChange` type from the passed props.
+
+```tsx
+<DatePicker
+  value={new Date()}
+  // date will be inferred as `Date | null`
+  onChange={newValue => newValue?.getDate()}
+/>
+```
+
+It also means that you can manually set value type thanks to the generic JSX sytax:
+
+```tsx
+<DatePicker<Date>
+  // You can pass any value right here that can be parsed
+  value={new Date()}
+  onChange={newValue => newValue?.getDate()}
+/>
+```
+
+#### Important note on type inference!
+
+If you are passing not typed value to the picker (such like `null`) we cannot properly infer the type for you. It is required to properly type the vaue:
+
+```tsx
+<DatePicker
+  value={null}
+  // @ts-expect-error `Property 'getDate' does not exist on type 'never'.`
+  onChange={newValue => newValue?.getDate()}
+/>
+```
+
+In this case it is required to manually set proper [generic type manually](#generics).
+
+```tsx
+<DatePicker<Date>
+  value={null}
+  onChange={newValue => newValue?.getDate()}
+/>
+
+// Or cast the type for the `value` or `onChange` prop.
+
+<DatePicker
+  value={null as Date | null}
+  // @ts-expect-error `Property 'getDate' does not exist on type 'never'.`
+  onChange={newValue => newValue?.getDate()}
+/>
+```
