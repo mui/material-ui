@@ -25,24 +25,20 @@ describe('<ListItemSecondaryAction />', () => {
   }));
 
   it('should render without classes that disable gutters', () => {
-    const { getByRole } = render(
+    const { getByTestId } = render(
       <ListItem>
-        <ListItemSecondaryAction />
+        <ListItemSecondaryAction data-testid="secondary-action" />
       </ListItem>,
     );
-    const listItem = getByRole('listitem');
-    expect(listItem.querySelector(`div.${classes.disableGutters}`)).to.equal(null);
+    expect(getByTestId('listitem')).not.to.have.class(classes.disableGutters);
   });
 
   it('should disable the gutters', () => {
-    const { getByRole } = render(
+    const { getByTestId } = render(
       <ListItem disableGutters>
-        <ListItemSecondaryAction />
+        <ListItemSecondaryAction data-testid="secondary-action" />
       </ListItem>,
     );
-    const listItem = getByRole('listitem');
-    expect(listItem.querySelector(`div.${classes.root}.${classes.disableGutters}`)).not.to.equal(
-      null,
-    );
+    expect(getByTestId('listitem')).to.have.class(classes.disableGutters);
   });
 });
