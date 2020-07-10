@@ -1,22 +1,23 @@
-import { deepmerge } from '@material-ui/utils';
+import { deepmerge, capitalize } from '@material-ui/utils';
 import noopTheme from './noopTheme';
-
-const capitalize = (string) => {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-};
 
 const isEmpty = (string) => {
   return string.length === 0;
 };
 
 const propsToClassKey = (matcher) => {
+  const { variant, ...rest } = matcher;
+
   let classKey = matcher.variant ? matcher.variant : '';
-  if (matcher.color) {
-    classKey += isEmpty(classKey) ? matcher.color : capitalize(matcher.color);
-  }
-  if (matcher.size) {
-    classKey += `${isEmpty(classKey) ? 'size' : 'Size'}${capitalize(matcher.size)}`;
-  }
+
+  Object.keys(rest).sort().forEach(key => {
+    if(key === 'color') {
+      classKey += isEmpty(classKey) ? matcher.color : capitalize(matcher.color);
+    } else {
+      classKey += `${isEmpty(classKey) ? key : capitalize}${capitalize(matcher.size)}`;
+    }
+  });
+  
   return classKey;
 };
 
