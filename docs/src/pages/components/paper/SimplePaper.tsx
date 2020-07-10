@@ -21,7 +21,7 @@ export default function SimplePaper() {
 
   return (
     <div className={classes.root}>
-      <Paper elevation={0} />
+      <Paper variant="outlined" elevation={0} />
       <Paper />
       <Paper elevation={3} />
     </div>

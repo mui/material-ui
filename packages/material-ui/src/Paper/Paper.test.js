@@ -1,17 +1,16 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createShallow, getClasses, createMount, describeConformance } from 'test/utils';
+import { createClientRender, getClasses, createMount, describeConformance } from 'test/utils';
 import * as PropTypes from 'prop-types';
 import Paper from './Paper';
 import { createMuiTheme, ThemeProvider } from '../styles';
 
 describe('<Paper />', () => {
   const mount = createMount();
-  let shallow;
   let classes;
+  const render = createClientRender();
 
   before(() => {
-    shallow = createShallow({ dive: true });
     classes = getClasses(<Paper />);
   });
 
@@ -25,42 +24,64 @@ describe('<Paper />', () => {
 
   describe('prop: square', () => {
     it('can disable the rounded class', () => {
-      const wrapper = mount(<Paper square>Hello World</Paper>);
-      expect(wrapper.find(`.${classes.root}`).some(`.${classes.rounded}`)).to.equal(false);
+      const { container } = render(<Paper square>Hello World</Paper>);
+      expect(container.firstChild).not.to.have.class(classes.rounded);
     });
 
     it('adds a rounded class to the root when omitted', () => {
-      const wrapper = mount(<Paper>Hello World</Paper>);
-      expect(wrapper.find(`.${classes.root}`).every(`.${classes.rounded}`)).to.equal(true);
+      const { container } = render(<Paper>Hello World</Paper>);
+      expect(container.firstChild).to.have.class(classes.rounded);
     });
   });
 
   describe('prop: variant', () => {
     it('adds a outlined class', () => {
-      const wrapper = mount(<Paper variant="outlined">Hello World</Paper>);
-      expect(wrapper.find(`.${classes.root}`).some(`.${classes.outlined}`)).to.equal(true);
+      const { container } = render(<Paper variant="outlined">Hello World</Paper>);
+      expect(container.firstChild).to.have.class(classes.outlined);
     });
   });
 
-  it('should set the elevation elevation class', () => {
-    const wrapper = shallow(<Paper elevation={16}>Hello World</Paper>);
-    expect(wrapper.hasClass(classes.elevation16)).to.equal(true);
-    wrapper.setProps({ elevation: 24 });
-    expect(wrapper.hasClass(classes.elevation24)).to.equal(true);
-    wrapper.setProps({ elevation: 2 });
-    expect(wrapper.hasClass(classes.elevation2)).to.equal(true);
+  it('should set the overlay class based on the elevation prop in dark theme', () => {
+    const darkTheme = createMuiTheme({ palette: { type: 'dark' } });
+    const { container, rerender } = render(
+      <ThemeProvider theme={darkTheme}>
+        <Paper elevation={16}>Hello World</Paper>
+      </ThemeProvider>,
+    );
+    expect(container.firstChild).to.have.class(classes.overlay16);
+    rerender(
+      <ThemeProvider theme={darkTheme}>
+        <Paper elevation={24}>Hello World</Paper>
+      </ThemeProvider>,
+    );
+    expect(container.firstChild).to.have.class(classes.overlay24);
+    rerender(
+      <ThemeProvider theme={darkTheme}>
+        <Paper elevation={2}>Hello World</Paper>
+      </ThemeProvider>,
+    );
+    expect(container.firstChild).to.have.class(classes.overlay2);
+  });
+
+  it('should set the elevation class based on the elevation prop', () => {
+    const { container, setProps } = render(<Paper elevation={16}>Hello World</Paper>);
+    expect(container.firstChild).to.have.class(classes.elevation16);
+    setProps({ elevation: 24 });
+    expect(container.firstChild).to.have.class(classes.elevation24);
+    setProps({ elevation: 2 });
+    expect(container.firstChild).to.have.class(classes.elevation2);
   });
 
   it('allows custom elevations via theme.shadows', () => {
     const theme = createMuiTheme();
     theme.shadows.push('20px 20px');
-    const wrapper = mount(
+    const { container } = render(
       <ThemeProvider theme={theme}>
-        <Paper data-testid="paper" classes={{ elevation25: 'custom-elevation' }} elevation={25} />
+        <Paper classes={{ elevation25: 'custom-elevation' }} elevation={25} />
       </ThemeProvider>,
     );
 
-    expect(wrapper.find('div[data-testid="paper"]').hasClass('custom-elevation')).to.equal(true);
+    expect(container.firstChild).to.have.class('custom-elevation');
   });
 
   describe('warnings', () => {

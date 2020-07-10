@@ -55,7 +55,32 @@ export type PaperClassKey =
   | 'elevation21'
   | 'elevation22'
   | 'elevation23'
-  | 'elevation24';
+  | 'elevation24'
+  | 'overlay0'
+  | 'overlay1'
+  | 'overlay2'
+  | 'overlay3'
+  | 'overlay4'
+  | 'overlay5'
+  | 'overlay6'
+  | 'overlay7'
+  | 'overlay8'
+  | 'overlay9'
+  | 'overlay10'
+  | 'overlay11'
+  | 'overlay12'
+  | 'overlay13'
+  | 'overlay14'
+  | 'overlay15'
+  | 'overlay16'
+  | 'overlay17'
+  | 'overlay18'
+  | 'overlay19'
+  | 'overlay20'
+  | 'overlay21'
+  | 'overlay22'
+  | 'overlay23'
+  | 'overlay24';
 
 /**
  *

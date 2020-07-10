@@ -3,12 +3,32 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
+import { fade, useTheme } from '../styles';
+
+// Inspired by https://github.com/material-components/material-components-ios/blob/bca36107405594d5b7b16265a5b0ed698f85a5ee/components/Elevation/src/UIColor%2BMaterialElevation.m#L61
+function calculateAlpha(elevation) {
+  let alphaValue;
+  if (elevation < 1) {
+    alphaValue = 5.11916 * elevation ** 2;
+  } else {
+    alphaValue = 4.5 * Math.log(elevation + 1) + 2;
+  }
+
+  return (alphaValue / 100).toFixed(2);
+}
 
 export const styles = (theme) => {
   const elevations = {};
   theme.shadows.forEach((shadow, index) => {
     elevations[`elevation${index}`] = {
       boxShadow: shadow,
+    };
+  });
+
+  const overlays = {};
+  theme.shadows.forEach((_, index) => {
+    overlays[`overlay${index}`] = {
+      backgroundColor: fade(theme.palette.background.paper, calculateAlpha(index)),
     };
   });
 
@@ -28,6 +48,7 @@ export const styles = (theme) => {
       border: `1px solid ${theme.palette.divider}`,
     },
     ...elevations,
+    ...overlays,
   };
 };
 
@@ -42,6 +63,8 @@ const Paper = React.forwardRef(function Paper(props, ref) {
     ...other
   } = props;
 
+  const theme = useTheme();
+
   return (
     <Component
       className={clsx(
@@ -49,6 +72,7 @@ const Paper = React.forwardRef(function Paper(props, ref) {
         {
           [classes.rounded]: !square,
           [classes[`elevation${elevation}`]]: variant === 'elevation',
+          [classes[`overlay${elevation}`]]: theme.palette.type === 'dark',
           [classes.outlined]: variant === 'outlined',
         },
         className,
