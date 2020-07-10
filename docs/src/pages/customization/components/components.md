@@ -332,13 +332,13 @@ const theme = createMuiTheme({
         matcher: { variant: 'dashed' },
         styles: {
           padding: '5px 15px',
-          border: '5px dashed grey',
+          border: `5px dashed grey${blue[500]}`,
         },
       },
       {
-        matcher: { variant: 'dashed', color: 'teal' },
+        matcher: { variant: 'dashed', color: 'secondary' },
         styles: {
-          border: '5px dashed teal',
+          border: `5px dashed ${red[500]}`,
         },
       },
     ],
@@ -350,9 +350,6 @@ If you are using typescript, you will need to specify your new variants/colors, 
 
 ```tsx
 declare module '@material-ui/core/Button/Button' {
-  interface ButtonPropsColorOverrides {
-    teal: true;
-  }
   interface ButtonPropsVariantOverrides {
     dashed: true;
   }

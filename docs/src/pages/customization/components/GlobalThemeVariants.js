@@ -5,6 +5,7 @@ import {
   ThemeProvider,
 } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import { blue, red } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,19 +22,13 @@ const theme = createMuiTheme({
         matcher: { variant: 'dashed' },
         styles: {
           padding: '5px 15px',
-          border: '5px dashed grey',
+          border: `5px dashed ${blue[500]}`,
         },
       },
       {
-        matcher: { variant: 'dashed', color: 'teal' },
+        matcher: { variant: 'dashed', color: 'secondary' },
         styles: {
-          border: '5px dashed teal',
-        },
-      },
-      {
-        matcher: { size: 'xlarge' },
-        styles: {
-          fontSize: 20,
+          border: `5px dashed ${red[500]}`,
         },
       },
     ],
@@ -47,11 +42,8 @@ export default function GlobalThemeVariants() {
     <ThemeProvider theme={theme}>
       <div className={classes.root}>
         <Button variant="dashed">Dashed</Button>
-        <Button variant="dashed" color="teal">
-          Dashed teal
-        </Button>
-        <Button variant="dashed" color="teal" size="xlarge">
-          Extra large teal dashed
+        <Button variant="dashed" color="secondary">
+          Dashed secondary
         </Button>
       </div>
     </ThemeProvider>
