@@ -16,7 +16,7 @@ const propsToClassKey = (matcher) => {
       if (key === 'color') {
         classKey += isEmpty(classKey) ? matcher.color : capitalize(matcher.color);
       } else {
-        classKey += `${isEmpty(classKey) ? key : capitalize}${capitalize(matcher.size)}`;
+        classKey += `${isEmpty(classKey) ? key : capitalize(key)}${capitalize(matcher.size)}`;
       }
     });
 
