@@ -3,7 +3,7 @@ import MuiError from '@material-ui/utils/macros/MuiError.macro';
 import noopTheme from './noopTheme';
 
 // TODO: remove this once the capiitalize is moved to the @material-ui/utils package
-export default function capitalize(string) {
+export function capitalize(string) {
   if (typeof string !== 'string') {
     throw new MuiError('Material-UI: capitalize(string) expects a string argument.');
   }
