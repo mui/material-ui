@@ -20,44 +20,36 @@ function round(value) {
 
 function arrowGenerator() {
   return {
-    '&[x-placement*="bottom"] $arrow': {
+    '&[data-popper-placement*="bottom"] $arrow': {
       top: 0,
       left: 0,
       marginTop: '-0.71em',
-      marginLeft: 4,
-      marginRight: 4,
       '&::before': {
         transformOrigin: '0 100%',
       },
     },
-    '&[x-placement*="top"] $arrow': {
+    '&[data-popper-placement*="top"] $arrow': {
       bottom: 0,
       left: 0,
       marginBottom: '-0.71em',
-      marginLeft: 4,
-      marginRight: 4,
       '&::before': {
         transformOrigin: '100% 0',
       },
     },
-    '&[x-placement*="right"] $arrow': {
+    '&[data-popper-placement*="right"] $arrow': {
       left: 0,
       marginLeft: '-0.71em',
       height: '1em',
       width: '0.71em',
-      marginTop: 4,
-      marginBottom: 4,
       '&::before': {
         transformOrigin: '100% 100%',
       },
     },
-    '&[x-placement*="left"] $arrow': {
+    '&[data-popper-placement*="left"] $arrow': {
       right: 0,
       marginRight: '-0.71em',
       height: '1em',
       width: '0.71em',
-      marginTop: 4,
-      marginBottom: 4,
       '&::before': {
         transformOrigin: '0 0',
       },
@@ -520,12 +512,16 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     return deepmerge(
       {
         popperOptions: {
-          modifiers: {
-            arrow: {
+          modifiers: [
+            {
+              name: 'arrow',
               enabled: Boolean(arrowRef),
-              element: arrowRef,
+              options: {
+                element: arrowRef,
+                padding: 4,
+              },
             },
-          },
+          ],
         },
       },
       PopperProps,

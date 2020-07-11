@@ -809,11 +809,14 @@ describe('<Tooltip />', () => {
           PopperProps={{
             popperRef,
             popperOptions: {
-              modifiers: {
-                arrow: {
-                  foo: 'bar',
+              modifiers: [
+                {
+                  name: 'foobar',
+                  options: {
+                    foo: 'bar',
+                  },
                 },
-              },
+              ],
             },
           }}
         >
@@ -822,7 +825,9 @@ describe('<Tooltip />', () => {
           </button>
         </Tooltip>,
       );
-      expect(popperRef.current.modifiers.find((x) => x.name === 'arrow').foo).to.equal('bar');
+      expect(
+        popperRef.current.state.options.modifiers.find((x) => x.name === 'foobar').options.foo,
+      ).to.equal('bar');
 
       // TOD: Unclear why not running triggers microtasks but runAll does not trigger microtasks
       // can be removed once Popper#update is sync

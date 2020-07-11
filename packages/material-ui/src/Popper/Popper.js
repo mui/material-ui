@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import PopperJs from 'popper.js';
+import { createPopper } from '@popperjs/core';
 import { chainPropTypes, refType, HTMLElementType } from '@material-ui/utils';
 import { useTheme } from '@material-ui/styles';
 import Portal from '../Portal';
@@ -78,7 +78,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
 
   React.useEffect(() => {
     if (popperRef.current) {
-      popperRef.current.update();
+      popperRef.current.forceUpdate();
     }
   });
 
@@ -120,25 +120,43 @@ const Popper = React.forwardRef(function Popper(props, ref) {
       }
     }
 
-    const popper = new PopperJs(getAnchorEl(anchorEl), tooltipRef.current, {
+    let popperModifiers = [
+      {
+        name: 'preventOverflow',
+        options: {
+          altBoundary: disablePortal,
+        },
+      },
+      {
+        name: 'flip',
+        options: {
+          altBoundary: disablePortal,
+        },
+      },
+      {
+        name: 'onUpdate',
+        enabled: true,
+        phase: 'afterWrite',
+        fn({ state }) {
+          createChainedFunction(handlePopperUpdate, popperOptions.onUpdate)(state);
+        },
+      },
+    ];
+
+    if (modifiers != null) {
+      popperModifiers = popperModifiers.concat(modifiers);
+    }
+    if (popperOptions && popperOptions.modifiers != null) {
+      popperModifiers = popperModifiers.concat(popperOptions.modifiers);
+    }
+
+    const popper = createPopper(getAnchorEl(anchorEl), tooltipRef.current, {
       placement: rtlPlacement,
       ...popperOptions,
-      modifiers: {
-        ...(disablePortal
-          ? {}
-          : {
-              // It's using scrollParent by default, we can use the viewport when using a portal.
-              preventOverflow: {
-                boundariesElement: 'viewport',
-              },
-            }),
-        ...modifiers,
-        ...popperOptions.modifiers,
-      },
+      modifiers: popperModifiers,
       // We could have been using a custom modifier like react-popper is doing.
       // But it seems this is the best public API for this use case.
-      onCreate: createChainedFunction(handlePopperUpdate, popperOptions.onCreate),
-      onUpdate: createChainedFunction(handlePopperUpdate, popperOptions.onUpdate),
+      onFirstUpdate: createChainedFunction(handlePopperUpdate, popperOptions.onFirstUpdate),
     });
 
     handlePopperRefRef.current(popper);
@@ -312,7 +330,7 @@ Popper.propTypes = {
    * For this reason, modifiers should be very performant to avoid bottlenecks.
    * To learn how to create a modifier, [read the modifiers documentation](https://popper.js.org/docs/v1/#modifiers).
    */
-  modifiers: PropTypes.object,
+  modifiers: PropTypes.array,
   /**
    * If `true`, the popper is visible.
    */
@@ -336,7 +354,7 @@ Popper.propTypes = {
     'top',
   ]),
   /**
-   * Options provided to the [`popper.js`](https://popper.js.org/docs/v1/) instance.
+   * Options provided to the [`popper.js`](https://popper.js.org/docs/v2/) instance.
    * @default {}
    */
   popperOptions: PropTypes.object,
