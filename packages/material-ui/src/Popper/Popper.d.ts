@@ -4,7 +4,7 @@ import { Omit } from '..';
 import { PortalProps } from '../Portal';
 import { OptionsGeneric } from '@popperjs/core/lib/types';
 
-export type PopperPlacementType = Options['Placement'];
+export type PopperPlacementType = Options['placement'];
 
 export interface PopperProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
   ref?: React.Ref<HTMLDivElement>;
