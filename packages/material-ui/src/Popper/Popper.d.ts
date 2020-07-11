@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { Instance, VirtualElement, ComputedPlacement, Options } from '@popperjs/core';
+import { Instance, VirtualElement, Options } from '@popperjs/core';
 import { Omit } from '..';
 import { PortalProps } from '../Portal';
+import { OptionsGeneric } from '@popperjs/core/lib/types';
 
-export type PopperPlacementType = ComputedPlacement;
+export type PopperPlacementType = Options['Placement'];
 
 export interface PopperProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
   ref?: React.Ref<HTMLDivElement>;
@@ -70,7 +71,7 @@ export interface PopperProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 
    * Options provided to the [`popper.js`](https://popper.js.org/docs/v2/constructors/#options) instance.
    * @default {}
    */
-  popperOptions?: object;
+  popperOptions?: Partial<OptionsGeneric<any>>;
   /**
    * A ref that points to the used popper instance.
    */

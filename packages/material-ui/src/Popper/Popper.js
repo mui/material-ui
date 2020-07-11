@@ -361,25 +361,33 @@ Popper.propTypes = {
    * Popper placement.
    * @default 'bottom'
    */
-  placement: PropTypes.oneOf([
-    'bottom-end',
-    'bottom-start',
-    'bottom',
-    'left-end',
-    'left-start',
-    'left',
-    'right-end',
-    'right-start',
-    'right',
-    'top-end',
-    'top-start',
-    'top',
-  ]),
+  placement: PropTypes.any,
   /**
    * Options provided to the [`popper.js`](https://popper.js.org/docs/v2/constructors/#options) instance.
    * @default {}
    */
-  popperOptions: PropTypes.object,
+  popperOptions: PropTypes.shape({
+    modifiers: PropTypes.array,
+    onFirstUpdate: PropTypes.func,
+    placement: PropTypes.oneOf([
+      'auto-end',
+      'auto-start',
+      'auto',
+      'bottom-end',
+      'bottom-start',
+      'bottom',
+      'left-end',
+      'left-start',
+      'left',
+      'right-end',
+      'right-start',
+      'right',
+      'top-end',
+      'top-start',
+      'top',
+    ]),
+    strategy: PropTypes.oneOf(['absolute', 'fixed']),
+  }),
   /**
    * A ref that points to the used popper instance.
    */
