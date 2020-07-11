@@ -73,9 +73,6 @@ describe('<Menu /> integration', () => {
    * @type {ReturnType<useFakeTimers>}
    */
   let clock;
-  // StrictModeViolation: uses Popover
-  const render = createClientRender({ strict: false });
-
   beforeEach(() => {
     clock = useFakeTimers();
   });
@@ -83,6 +80,9 @@ describe('<Menu /> integration', () => {
   afterEach(() => {
     clock.restore();
   });
+
+  // StrictModeViolation: uses Popover
+  const render = createClientRender({ strict: false });
 
   it('is part of the DOM by default but hidden', () => {
     const { getByRole } = render(<ButtonMenu />);

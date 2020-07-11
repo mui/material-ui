@@ -24,20 +24,7 @@ function simulatePointerDevice() {
 }
 
 describe('<Tooltip />', () => {
-  // StrictModeViolation: uses Grow and tests a lot of impl details
-  const mount = createMount({ strict: null });
-  let classes;
-  const render = createClientRender({ strict: false });
   let clock;
-
-  before(() => {
-    classes = getClasses(
-      <Tooltip title="Hello World">
-        <button type="submit">Hello World</button>
-      </Tooltip>,
-    );
-  });
-
   beforeEach(() => {
     testReset();
     clock = useFakeTimers();
@@ -46,6 +33,19 @@ describe('<Tooltip />', () => {
   afterEach(() => {
     clock.tick(800); // cleanup the hystersis timer
     clock.restore();
+  });
+
+  // StrictModeViolation: uses Grow and tests a lot of impl details
+  const mount = createMount({ strict: null });
+  let classes;
+  const render = createClientRender({ strict: false });
+
+  before(() => {
+    classes = getClasses(
+      <Tooltip title="Hello World">
+        <button type="submit">Hello World</button>
+      </Tooltip>,
+    );
   });
 
   describeConformance(

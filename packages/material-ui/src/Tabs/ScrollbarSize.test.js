@@ -5,16 +5,17 @@ import ScrollbarSize from './ScrollbarSize';
 import { createClientRender } from 'test/utils/createClientRender';
 
 describe('<ScrollbarSize />', () => {
-  const render = createClientRender();
   let clock;
 
-  before(() => {
+  beforeEach(() => {
     clock = useFakeTimers();
   });
 
-  after(() => {
+  afterEach(() => {
     clock.restore();
   });
+
+  const render = createClientRender();
 
   describe('mount', () => {
     it('should call on initial load', () => {

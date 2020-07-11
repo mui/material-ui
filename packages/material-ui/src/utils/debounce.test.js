@@ -5,11 +5,11 @@ import debounce from './debounce';
 describe('debounce', () => {
   let clock;
 
-  before(() => {
+  beforeEach(() => {
     clock = useFakeTimers();
   });
 
-  after(() => {
+  afterEach(() => {
     clock.restore();
   });
 

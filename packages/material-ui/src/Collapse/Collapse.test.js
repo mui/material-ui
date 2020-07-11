@@ -143,11 +143,11 @@ describe('<Collapse />', () => {
   describe('prop: timeout', () => {
     let clock;
 
-    before(() => {
+    beforeEach(() => {
       clock = useFakeTimers();
     });
 
-    after(() => {
+    afterEach(() => {
       clock.restore();
     });
 

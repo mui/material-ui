@@ -8,10 +8,9 @@ import { act, createClientRender, fireEvent } from 'test/utils/createClientRende
 import Tab from './Tab';
 import ButtonBase from '../ButtonBase';
 
-const render = createClientRender();
-
 describe('<Tab />', () => {
   const mount = createMount();
+  const render = createClientRender();
   let classes;
 
   before(() => {

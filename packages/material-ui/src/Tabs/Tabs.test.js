@@ -332,11 +332,11 @@ describe('<Tabs />', () => {
       </Tabs>
     );
 
-    before(() => {
+    beforeEach(() => {
       clock = useFakeTimers();
     });
 
-    after(() => {
+    afterEach(() => {
       clock.restore();
     });
 
@@ -409,11 +409,11 @@ describe('<Tabs />', () => {
   describe('prop: scrollButtons', () => {
     let clock;
 
-    before(() => {
+    beforeEach(() => {
       clock = useFakeTimers();
     });
 
-    after(() => {
+    afterEach(() => {
       clock.restore();
     });
 
@@ -543,11 +543,11 @@ describe('<Tabs />', () => {
   describe('scroll button behavior', () => {
     let clock;
 
-    before(() => {
+    beforeEach(() => {
       clock = useFakeTimers();
     });
 
-    after(() => {
+    afterEach(() => {
       clock.restore();
     });
 
@@ -584,11 +584,11 @@ describe('<Tabs />', () => {
   describe('scroll into view behavior', () => {
     let clock;
 
-    before(() => {
+    beforeEach(() => {
       clock = useFakeTimers();
     });
 
-    after(() => {
+    afterEach(() => {
       clock.restore();
     });
 

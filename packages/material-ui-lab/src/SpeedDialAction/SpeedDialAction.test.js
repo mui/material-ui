@@ -11,23 +11,23 @@ import SpeedDialAction from './SpeedDialAction';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 
 describe('<SpeedDialAction />', () => {
-  // StrictModeViolation: uses Tooltip
-  const mount = createMount({ strict: false });
-  const render = createClientRender({ strict: false });
-  let classes;
-  const fabClasses = getClasses(<Fab>Fab</Fab>);
   let clock;
-
-  before(() => {
-    classes = getClasses(<SpeedDialAction icon={<Icon>add</Icon>} tooltipTitle="placeholder" />);
-  });
-
   beforeEach(() => {
     clock = useFakeTimers();
   });
 
   afterEach(() => {
     clock.restore();
+  });
+
+  // StrictModeViolation: uses Tooltip
+  const mount = createMount({ strict: false });
+  const render = createClientRender({ strict: false });
+  let classes;
+  const fabClasses = getClasses(<Fab>Fab</Fab>);
+
+  before(() => {
+    classes = getClasses(<SpeedDialAction icon={<Icon>add</Icon>} tooltipTitle="placeholder" />);
   });
 
   describeConformance(
