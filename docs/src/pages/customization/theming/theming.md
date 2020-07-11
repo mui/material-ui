@@ -190,7 +190,7 @@ function Fade() {
           <ThirdPartyTabPanel />
         </Fade>
       </ThemeProvider>
-    </React.StrictMode>,
+    </React.StrictMode>
   );
 }
 ```
@@ -217,7 +217,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <LandingPage />
       </ThemeProvider>
-    </React.StrictMode>,
+    </React.StrictMode>
   );
 }
 ```
