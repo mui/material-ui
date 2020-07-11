@@ -15,7 +15,7 @@ const appList = [
   {
     title: 'd-cide',
     description:
-      'A progressive Web App helps that helps to make rational decisions in workshops.' +
+      'A progressive Web App to make rational decisions in workshops. ' +
       'It uses Material-UI with a neumorphic custom theme.',
     image: 'dcide.jpg',
     link: 'https://d-cide.me/',
