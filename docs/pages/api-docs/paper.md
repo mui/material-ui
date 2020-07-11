@@ -71,6 +71,31 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">elevation22</span> | <span class="prop-name">.MuiPaper-elevation22</span> | 
 | <span class="prop-name">elevation23</span> | <span class="prop-name">.MuiPaper-elevation23</span> | 
 | <span class="prop-name">elevation24</span> | <span class="prop-name">.MuiPaper-elevation24</span> | 
+| <span class="prop-name">overlay0</span> | <span class="prop-name">.MuiPaper-overlay0</span> | 
+| <span class="prop-name">overlay1</span> | <span class="prop-name">.MuiPaper-overlay1</span> | 
+| <span class="prop-name">overlay2</span> | <span class="prop-name">.MuiPaper-overlay2</span> | 
+| <span class="prop-name">overlay3</span> | <span class="prop-name">.MuiPaper-overlay3</span> | 
+| <span class="prop-name">overlay4</span> | <span class="prop-name">.MuiPaper-overlay4</span> | 
+| <span class="prop-name">overlay5</span> | <span class="prop-name">.MuiPaper-overlay5</span> | 
+| <span class="prop-name">overlay6</span> | <span class="prop-name">.MuiPaper-overlay6</span> | 
+| <span class="prop-name">overlay7</span> | <span class="prop-name">.MuiPaper-overlay7</span> | 
+| <span class="prop-name">overlay8</span> | <span class="prop-name">.MuiPaper-overlay8</span> | 
+| <span class="prop-name">overlay9</span> | <span class="prop-name">.MuiPaper-overlay9</span> | 
+| <span class="prop-name">overlay10</span> | <span class="prop-name">.MuiPaper-overlay10</span> | 
+| <span class="prop-name">overlay11</span> | <span class="prop-name">.MuiPaper-overlay11</span> | 
+| <span class="prop-name">overlay12</span> | <span class="prop-name">.MuiPaper-overlay12</span> | 
+| <span class="prop-name">overlay13</span> | <span class="prop-name">.MuiPaper-overlay13</span> | 
+| <span class="prop-name">overlay14</span> | <span class="prop-name">.MuiPaper-overlay14</span> | 
+| <span class="prop-name">overlay15</span> | <span class="prop-name">.MuiPaper-overlay15</span> | 
+| <span class="prop-name">overlay16</span> | <span class="prop-name">.MuiPaper-overlay16</span> | 
+| <span class="prop-name">overlay17</span> | <span class="prop-name">.MuiPaper-overlay17</span> | 
+| <span class="prop-name">overlay18</span> | <span class="prop-name">.MuiPaper-overlay18</span> | 
+| <span class="prop-name">overlay19</span> | <span class="prop-name">.MuiPaper-overlay19</span> | 
+| <span class="prop-name">overlay20</span> | <span class="prop-name">.MuiPaper-overlay20</span> | 
+| <span class="prop-name">overlay21</span> | <span class="prop-name">.MuiPaper-overlay21</span> | 
+| <span class="prop-name">overlay22</span> | <span class="prop-name">.MuiPaper-overlay22</span> | 
+| <span class="prop-name">overlay23</span> | <span class="prop-name">.MuiPaper-overlay23</span> | 
+| <span class="prop-name">overlay24</span> | <span class="prop-name">.MuiPaper-overlay24</span> | 
 
 You can override the style of the component thanks to one of these customization points:
 
