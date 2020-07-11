@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { exactProp, deepmerge } from '@material-ui/utils';
+import { exactProp } from '@material-ui/utils';
 import ThemeContext from '../useTheme/ThemeContext';
 import useTheme from '../useTheme';
 import nested from './nested';
@@ -24,7 +24,7 @@ function mergeOuterLocalTheme(outerTheme, localTheme) {
     return mergedTheme;
   }
 
-  return deepmerge(outerTheme, localTheme);
+  return { ...outerTheme, ...localTheme };
 }
 
 /**
