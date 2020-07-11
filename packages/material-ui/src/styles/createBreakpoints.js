@@ -1,12 +1,12 @@
 // Sorted ASC by size. That's important.
 // It can't be configured as it's used statically for propTypes.
-export const keys = ['xs', 'sm', 'md', 'lg', 'xl'];
+export const breakpointKeys = ['xs', 'sm', 'md', 'lg', 'xl'];
 
 // Keep in mind that @media is inclusive by the CSS specification.
 export default function createBreakpoints(breakpoints) {
   const {
     // The breakpoint **start** at this value.
-    // For instance with the first breakpoint xs: [xs, sm[.
+    // For instance with the first breakpoint xs: [xs, sm).
     values = {
       xs: 0,
       sm: 600,
@@ -19,6 +19,8 @@ export default function createBreakpoints(breakpoints) {
     ...other
   } = breakpoints;
 
+  const keys = Object.keys(values);
+
   function up(key) {
     const value = typeof values[key] === 'number' ? values[key] : key;
     return `@media (min-width:${value}${unit})`;
@@ -29,8 +31,8 @@ export default function createBreakpoints(breakpoints) {
     const upperbound = values[keys[endIndex]];
 
     if (endIndex === keys.length) {
-      // xl down applies to all sizes
-      return up('xs');
+      // down from the biggest breakpoint applies to all sizes
+      return up(0);
     }
 
     const value = typeof upperbound === 'number' && endIndex > 0 ? upperbound : key;

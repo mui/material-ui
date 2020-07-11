@@ -3,6 +3,13 @@ import createBreakpoints from './createBreakpoints';
 
 describe('createBreakpoints', () => {
   const breakpoints = createBreakpoints({});
+  const customBreakpoints = createBreakpoints({
+    values: {
+      tablet: 640,
+      laptop: 1024,
+      desktop: 1280,
+    },
+  });
 
   describe('up', () => {
     it('should work for xs', () => {
@@ -11,6 +18,10 @@ describe('createBreakpoints', () => {
 
     it('should work for md', () => {
       expect(breakpoints.up('md')).to.equal('@media (min-width:960px)');
+    });
+
+    it('should work for custom breakpoints', () => {
+      expect(customBreakpoints.up('laptop')).to.equal('@media (min-width:1024px)');
     });
   });
 
@@ -30,6 +41,14 @@ describe('createBreakpoints', () => {
     it('should apply to all sizes for xl', () => {
       expect(breakpoints.down('xl')).to.equal('@media (min-width:0px)');
     });
+
+    it('should work for custom breakpoints', () => {
+      expect(customBreakpoints.down('laptop')).to.equal('@media (max-width:1279.95px)');
+    });
+
+    it('should work for the largest of custom breakpoints', () => {
+      expect(customBreakpoints.down('desktop')).to.equal('@media (min-width:0px)');
+    });
   });
 
   describe('between', () => {
@@ -48,6 +67,12 @@ describe('createBreakpoints', () => {
     it('on xl should call up', () => {
       expect(breakpoints.between('lg', 'xl')).to.equal('@media (min-width:1280px)');
     });
+
+    it('should work for custom breakpoints', () => {
+      expect(customBreakpoints.between('tablet', 'laptop')).to.equal(
+        '@media (min-width:640px) and (max-width:1279.95px)',
+      );
+    });
   });
 
   describe('only', () => {
@@ -58,11 +83,21 @@ describe('createBreakpoints', () => {
     it('on xl should call up', () => {
       expect(breakpoints.only('xl')).to.equal('@media (min-width:1920px)');
     });
+
+    it('should work for custom breakpoints', () => {
+      expect(customBreakpoints.only('tablet')).to.equal(
+        '@media (min-width:640px) and (max-width:1023.95px)',
+      );
+    });
   });
 
   describe('width', () => {
     it('should work', () => {
       expect(breakpoints.width('md')).to.equal(960);
+    });
+
+    it('should work for custom breakpoints', () => {
+      expect(customBreakpoints.width('tablet')).to.equal(640);
     });
   });
 });
