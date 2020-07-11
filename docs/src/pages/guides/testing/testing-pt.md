@@ -6,40 +6,40 @@ Exemplos neste guia usam [métodos globais do Mocha](https://mochajs.org/api/glo
 
 ## Interno
 
-Para saber mais sobre os testes internos, você pode dar uma olhada no [LEIA-ME](https://github.com/mui-org/material-ui/blob/master/test/README.md). Material-UI tem **uma vasta gama** de testes para que possamos liberar os componentes com confiança, por exemplo, os testes de regressão visual são feitos através da [Argos-CI](https://www.argos-ci.com/mui-org/material-ui), provaram ser realmente úteis.
+Material-UI tem **uma vasta gama** de testes para que possamos liberar os componentes com confiança, por exemplo, os testes de regressão visual são feitos através da [Argos-CI](https://www.argos-ci.com/mui-org/material-ui), provaram ser realmente úteis. Para saber mais sobre os testes internos, você pode dar uma olhada no [LEIA-ME](https://github.com/mui-org/material-ui/blob/master/test/README.md).
 
 ## Espaço do usuário
 
-Que tal escrever testes no espaço do usuário? A infraestrutura de estilos do Material-UI usa algumas funções auxiliares construídas sobre o [enzyme](https://github.com/airbnb/enzyme) para facilitar o processo, ao qual estamos expondo. Você pode aproveitá-los, se assim preferir. Usamos APIs de processamento de DOM quase que totalmente completas. Nós encorajamos você a fazer o mesmo, especialmente, se seus componentes dependem de temas personalizados. Testes usando APIs de renderização rasas tornam-se mais frágeis com a quantidade de componentes que necessitam.
+Que tal escrever testes no espaço do usuário? A infraestrutura de estilos do Material-UI usa algumas funções utilitárias construídas sobre o [enzyme](https://github.com/airbnb/enzyme) para facilitar o processo, ao qual estamos expondo. Você pode aproveitá-las, se assim preferir. Usamos, quase que exclusivamente, APIs para renderização completa do DOM. Nós recomendamos você a fazer o mesmo, especialmente, se seus componentes dependem de temas customizados. Testes usando APIs de renderização rasas tornam-se mais frágeis com a medida que a quantidade de componentes aumenta.
 
 ### Renderização completa do DOM (Full)
 
-A renderização total do DOM é ideal para casos em que você tem componentes que podem interagir com as APIs do DOM, ou podem exigir o ciclo de vida completo para testar completamente o componente (por exemplo, `componentDidMount` etc).
+A renderização completa do DOM é ideal para casos em que você tem componentes que podem interagir com as APIs do DOM, ou podem exigir o ciclo de vida completo para testar completamente o componente (por exemplo, `componentDidMount` etc).
 
-A função `createMount ()` é fornecida para esta situação. Além de envolver enzyme API, ela fornece uma função chamada `cleanUp`.
+A função `createMount()` é fornecida para esta situação. Além de encapsular a API do enzyme, ela fornece uma função chamada `cleanUp`.
 
-### Renderização Rasa (Shallow)
+### Renderização rasa (Shallow)
 
-A renderização rasa é útil para restringir seu teste a um componente como uma unidade. Isso também garante que seus testes não estão adquirindo indiretamente o comportamento de componentes filhos. A renderização rasa foi criada para testar componentes isoladamente. Isso significa sem vazar detalhes de implementação de filhos, como o contexto.
+A renderização rasa é útil para restringir seu teste a um componente como uma unidade. Isso também garante que seus testes não estão adquirindo indiretamente o comportamento de componentes filhos. A renderização rasa foi criada para testar componentes isoladamente. Isso significa, sem vazar detalhes de implementação de filhos, como o contexto.
 
 A função `createShallow()` pode ser utilizada para esta situação. Além de encapsular a API do enzyme, ela fornece uma opção `dive` e `untilSelector`.
 
 ### Renderizar para string
 
-Renderizar em uma string é útil para testar o comportamento dos componentes usados no servidor. Você pode aproveitar isso para confirmar a sequência HTML gerada.
+Renderizar em uma string é útil para testar o comportamento dos componentes usados no servidor. Você pode utilizar isso para confirmar a sequência HTML gerada.
 
-A função `createRender()` é ideal para isso. Isso é apenas um alias para enzyme API, que é apenas exposta para consistência.
+A função `createRender()` é ideal para isso. Isso é apenas um alias para API enzyme, que é apenas exposta para consistência.
 
 ## API
 
 ### `createMount([options]) => mount`
 
-Gere uma função de montagem aprimorada com o contexto necessário. Por favor, consulte [a documentação da API enzyme ](https://airbnb.io/enzyme/docs/api/mount.html) para mais detalhes sobre a função `mount`.
+Gere uma função de montagem aprimorada com o contexto necessário. Por favor, consulte [a documentação da API enzyme](https://airbnb.io/enzyme/docs/api/mount.html) para mais detalhes sobre a função `mount`.
 
 #### Argumentos
 
 1. `options` (*Object* [opcional]) 
-  - `options.mount` (*Function* [opcional]): A função de montagem para melhorar, usa **enzyme por padrão**.
+  - `options.mount` (*Function* [opcional]): A função de montagem para aprimorar, usa **enzyme por padrão**.
   - As outras chaves são encaminhadas para o argumento de opções de `enzyme.mount()`.
 
 #### Retornos
@@ -79,14 +79,14 @@ describe('<MyComponent />', () => {
 
 ### `createShallow([options]) => shallow`
 
-Gere uma função superficial aprimorada com o contexto necessário. Por favor, consulte [a documentação da API enzyme ](https://airbnb.io/enzyme/docs/api/shallow.html) para mais detalhes sobre a função `shallow`.
+Gere uma função superficial aprimorada com o contexto necessário. Por favor, consulte [a documentação da API enzyme](https://airbnb.io/enzyme/docs/api/shallow.html) para mais detalhes sobre a função `shallow`.
 
 #### Argumentos
 
 1. `options` (*Object* [opcional]) 
-  - `options.shallow` (*Function* [opcional]): A função superficial para melhorar, usa **enzyme por padrão**.
-  - `options.untilSelector` (*String* [opcional]): Recursivamente, renderiza superficialmente o componente children até encontrar o seletor fornecido. É útil para detalhar os componentes de ordem mais alta.
-  - `options.dive` (*Boolean* [opcional]): A função superficial renderiza o filho não-DOM do wrapper atual e retorna um wrapper em torno do resultado.
+  - `options.shallow` (*Function* [opcional]): A função shallow para aprimorar, usa **enzyme por padrão**.
+  - `options.untilSelector` (*String* [opcional]): Recursivamente, renderiza com shallow o componente children até encontrar o seletor fornecido. É útil para detalhar os componentes de ordem mais alta.
+  - `options.dive` (*Boolean* [opcional]): A função shallow renderiza o filho não-DOM do wrapper atual e retorna um wrapper em torno do resultado.
   - As outras chaves são encaminhadas para o argumento de opções de `enzyme.shallow()`.
 
 #### Retornos
@@ -113,12 +113,12 @@ describe('<MyComponent />', () => {
 
 ### `createRender([options]) => render`
 
-Gere uma função de render para string com o contexto necessário. Por favor, consulte [a documentação da API enzyme ](https://airbnb.io/enzyme/docs/api/render.html) para mais detalhes sobre a função `render`.
+Gere uma função de render para string com o contexto necessário. Por favor, consulte [a documentação da API enzyme](https://airbnb.io/enzyme/docs/api/render.html) para mais detalhes sobre a função `render`.
 
 #### Argumentos
 
 1. `options` (*Object* [opcional]) 
-  - `options.render` (*Function* [opcional]): A função de renderização para melhorar, usa **enzyme por padrão**.
+  - `options.render` (*Function* [opcional]): A função de renderização para aprimorar, usa **enzyme por padrão**.
   - As outras chaves são encaminhadas para o argumento de opções de `enzyme.render()`.
 
 #### Retornos

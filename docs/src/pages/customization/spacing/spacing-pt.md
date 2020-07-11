@@ -34,7 +34,7 @@ const theme = createMuiTheme({
 theme.spacing(2); // = 0.25 * 2rem = 0.5rem = 8px
 ```
 
-- um vetor
+- uma matriz
 
 ```js
 const theme = createMuiTheme({

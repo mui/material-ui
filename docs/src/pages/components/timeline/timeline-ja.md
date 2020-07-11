@@ -7,7 +7,7 @@ components: Timeline, TimelineItem, TimelineSeparator, TimelineDot, TimelineConn
 
 <p class="description">The timeline displays a list of events in chronological order.</p>
 
-**Note:** This component is not documented in the [Material Design guidelines](https://material.io/), but Material-UI supports it.
+**注意:** このコンポーネントは [Material Design guidelines](https://material.io/)に記載されていませんが、Material-UIはそれをサポートしています。
 
 ## Basic timeline
 

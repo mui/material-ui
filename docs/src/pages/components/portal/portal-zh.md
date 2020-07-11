@@ -1,6 +1,6 @@
 ---
 title: React 传送门组件
-components: Portal 传送门
+components: Portal
 ---
 
 # Portal 传送门

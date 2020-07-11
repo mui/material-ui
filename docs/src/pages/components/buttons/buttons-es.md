@@ -46,13 +46,13 @@ Los botones delineados también son una alternativa de menos énfasis que los bo
 
 ## Handling clicks
 
-All components accept an `onClick` handler that is applied to the root DOM element.
+Todos los componentes aceptan un controlador `onClick` el cual se aplica al elemento raíz en el DOM.
 
 ```jsx
 <Button onClick={() => { alert('clicked') }}>Click me</Button>
 ```
 
-Note that the documentation [avoids](/guides/api/#native-properties) mentioning native props (there are a lot) in the API section of the components.
+Ten en cuenta que la documentación [evita](/guides/api/#native-properties) mencionar las propiedades nativas (existen varias) en la sección API de los componentes. 
 
 ## Botón de subida
 
@@ -84,7 +84,7 @@ Here are some examples of customizing the component. You can learn more about th
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js", "defaultCodeOpen": false}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/button).
+🎨 Si estás buscando inspiración, puedes mirar [los ejemplos de MUI Treasury](https://mui-treasury.com/styles/button).
 
 ## Botones Complejos
 
@@ -102,11 +102,11 @@ Here is an [integration example with react-router](/guides/composition/#button).
 
 ### Cursor not-allowed
 
-The ButtonBase component sets `pointer-events: none;` on disabled buttons, which prevents the appearance of a disabled cursor.
+El componente ButtonBase define `pointer-events: none;` en los botones deshabilitados, lo que previene la aparición del cursor desactivado.
 
-If you wish to use `not-allowed`, you have two options:
+Si deseas usar `not-allowed`, tienes dos opciones:
 
-1. **CSS only**. You can remove the pointer events style on the disabled state of the `<button>` element:
+1. **Mediante CSS**. Puedes eliminar los estilos del cursor aplicados cuando el elemento `<button>` está deshabilitado:
 
   ```css
   .MuiButtonBase-root:disabled {

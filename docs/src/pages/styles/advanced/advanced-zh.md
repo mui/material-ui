@@ -268,7 +268,7 @@ export default function MyComponent() {
   // Order doesn't matter
   const className = clsx(classes.root, classesBase.root)
 
-  // color: red 🔴 wins.
+  // color: 红色 🔴 胜出。
   return <div className={className} />;
 }
 ```

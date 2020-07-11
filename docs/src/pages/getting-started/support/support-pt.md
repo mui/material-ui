@@ -49,7 +49,7 @@ Receba as últimas notícias sobre Material-UI.
 
 O Material-UI CE (Community Edition) é 100% de código aberto (MIT) desde o início, e sempre será. Os desenvolvedores podem garantir que Material-UI seja a escolha certa para seus aplicativos React através da estratégia de manutenção da comunidade do Material-UI. A equipe do Material-UI disponibiliza regularmente novos lançamentos, correções de bugs e é muito receptiva às solicitações da comunidade.
 
-Dada a realidade das restrições de tempo e recursos, bem como o desejo de continuar inovando, com o tempo, torna-se necessário mudar o foco para as versões mais recentes do framework ([nosso cronograma de lançamento](https://material-ui.com/versions/#release-frequency)), enquanto faz a transição para as versões mais recentes tão suave quanto possível. Incluindo a publicação de guias de migração como [este para a v4](/guides/migration-v3/). A comunidade de código aberto é sempre bem-vinda para enviar novos recursos e correções de erros também.
+Dada a realidade das restrições de tempo e recursos, bem como o desejo de continuar inovando, com o tempo, torna-se necessário mudar o foco para as versões mais recentes do framework ([nosso cronograma de lançamento](https://material-ui.com/versions/#release-frequency)), enquanto essa transição ocorre para as versões mais recentes, sempre que possível, inclusões de publicação de guias de migração são feitas, como [esta para a v4](/guides/migration-v3/). A comunidade de código aberto é sempre bem-vinda para enviar novos recursos e correções de erros também.
 
 O status atual de cada versão do Material-UI é o seguinte:
 
@@ -67,14 +67,14 @@ Para equipes e organizações que exigem suporte adicional para versões mais an
 
 Material-UI e os mantenedores de milhares de outros pacotes estão trabalhando com Tidelift para fornecer uma assinatura corporativa que abranja todo o código aberto que você usa.
 
-Se você quiser a flexibilidade de código aberto e a confiança do software de nível comercial, vale a pena olhar.
+Se você quiser a flexibilidade do código aberto e a confiança do software em nível comercial, vale a pena conferir.
 
 A Tidelift Subscription fornece esses recursos para você:
 
 - Obtenha as ferramentas que você precisa continuamente catalogar e entenda o software de código aberto do qual seu aplicativo depende.
 - Sua assinatura ajuda a pagar os mantenedores da comunidade de código aberto dos pacotes que você usa, para garantir que eles cumpram os padrões que você precisa.
 - Resolve proativamente problemas, com ferramentas que buscam novos problemas de segurança, licenciamento e manutenção, e alerta os mantenedores de código aberto participantes para que possam resolvê-los em seu nome.
-- Tidelift ajuda a medir e melhorar a saúde das suas dependências de código aberto - o que melhora a saúde do seu aplicativo - e fornece uma lista curta de passos de alto impacto que sua equipe pode dar para melhorá-las ainda mais.
+- Tidelift ajuda a medir e melhorar a saúde das suas dependências de código aberto - o que aprimora a saúde do seu aplicativo - e fornece uma lista de etapas de alto impacto que sua equipe pode dar para aprimorar ainda mais.
 - Receba garantias comerciais que não vem de graça com pacotes de código aberto, como indenização de propriedade intelectual e suporte sob um contrato de nível de serviço. Você espera essas garantias de um software proprietário, e pode obtê-las ao usar o código aberto também.
 
 O resultado final? Todas as capacidades que você espera de um software de nível comercial, com toda a amplitude de código aberto que você usa. Isso significa menos tempo lutando com trivia esotérica de código aberto, e mais tempo criando seus próprios aplicativos – e seus negócios.

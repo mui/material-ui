@@ -53,7 +53,7 @@ return (
 
 ## Propriedades padrão
 
-Você pode alterar as propriedades padrão de todos os componentes de Material-UI. A chave `props` é exposta no `theme` para este caso de uso.
+Você pode alterar as propriedades padrão de todos os componentes de Material-UI. A chave `props` é exposta no `theme` para estas situações de uso.
 
 ```js
 const theme = createMuiTheme({

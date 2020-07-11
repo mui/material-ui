@@ -2,7 +2,7 @@
 
 <p class="description">这是我们 Material-UI 的创始团队和核心贡献者的总览。</p>
 
-Material-UI 是由一群宝贵的核心贡献者维护的，并且得到了社区的大量支持和参与。
+Material-UI 是由一群宝贵的核心贡献者维护的，它也得到了社区的大量支持和参与。
 
 {{"demo": "pages/discover-more/team/Team.js", "hideToolbar": true, "bg": "inline"}}
 

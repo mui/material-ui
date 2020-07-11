@@ -21,6 +21,6 @@ Os utilitários permitem que você controle a profundidade ou distância relativ
 import { shadows } from '@material-ui/system';
 ```
 
-| Nome da importação | Prop        | Propriedade CSS | Chave do tema |
+| Nome da importação | Propriedade | Propriedade CSS | Chave do tema |
 |:------------------ |:----------- |:--------------- |:------------- |
 | `boxShadow`        | `boxShadow` | `box-shadow`    | `shadows`     |

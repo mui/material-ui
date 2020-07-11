@@ -25,7 +25,7 @@ Aqui estão alguns exemplos de customização do componente. Você pode aprender
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 
-## Dicas de seta
+## Dicas com seta
 
 Você pode usar a propriedade `arrow` para dar à sua dica uma seta indicando a qual elemento se refere.
 
@@ -33,7 +33,7 @@ Você pode usar a propriedade `arrow` para dar à sua dica uma seta indicando a 
 
 ## Elemento filho customizado
 
-A dica precisa aplicar ouvintes de evento DOM ao seu elemento filho. Se o filho for um elemento React personalizado, você precisará garantir que ele repasse suas propriedades para o elemento DOM subjacente.
+A dica precisa aplicar eventos DOM ao seu elemento filho. Se o filho for um elemento React customizado, você precisará garantir que ele repasse suas propriedades para o elemento DOM subjacente.
 
 ```jsx
 const MyComponent = React.forwardRef(function MyComponent(props, ref) {
@@ -48,7 +48,7 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 </Tooltip>
 ```
 
-Você pode encontrar um conceito similar no guia de [componentes de encapsulamento](/guides/composition/#wrapping-components).
+Você pode encontrar um conceito similar no guia [encapaulando componentes](/guides/composition/#wrapping-components).
 
 ## Gatilhos
 
@@ -76,13 +76,13 @@ Uma dica pode ser interativa. Ela não será fechada quando o usuário passar po
 
 ## Elementos Desabilitados
 
-Por padrão os elementos desativados como `<button>` não disparam interações do usuário, então uma `Tooltip` não será ativada em eventos normais, como passar o mouse. Para acomodar elementos desativados, adicione um elemento encapsulador simples, como um `span`.
+Por padrão os elementos desabilitados como `<button>` não disparam interações do usuário, então uma `Tooltip` não será ativada em eventos normais, como passar o mouse. Para acomodar elementos desabilitados, adicione um elemento encapsulador simples, como um `span`.
 
 > ⚠️ Para trabalhar com o Safari, você precisa de pelo menos um display block ou flex item abaixo do elemento que encapsula a dica.
 
 {{"demo": "pages/components/tooltips/DisabledTooltips.js"}}
 
-> Se você não estiver manipulando com um componente Material-UI que herde de `ButtonBase`, por exemplo, um elemento `<button>` nativo, você também deve adicionar a propriedade CSS *pointer-events: none;* ao seu elemento quando desativado:
+> Se você não estiver manipulando com um componente Material-UI que herde de `ButtonBase`, por exemplo, um elemento `<button>` nativo, você também deve adicionar a propriedade CSS *pointer-events: none;* ao seu elemento quando desabilitado:
 
 ```jsx
 <Tooltip title="Você não tem permissão para esta tarefa">

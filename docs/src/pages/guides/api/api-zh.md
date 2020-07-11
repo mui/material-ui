@@ -6,47 +6,47 @@
 
 [@sebmarkbage](https://twitter.com/sebmarkbage/status/728433349337841665)
 
-正如Sebastian Markbage [指出](https://2014.jsconf.eu/speakers/sebastian-markbage-minimal-api-surface-area-learning-patterns-instead-of-frameworks.html)，没有抽象优于错误的抽象。 我们提供低级的组件以最大化保留可用性。 我们提供低级的组件以最大化使用封装功能。
+正如Sebastian Markbage [指出](https://2014.jsconf.eu/speakers/sebastian-markbage-minimal-api-surface-area-learning-patterns-instead-of-frameworks.html)，没有抽象也优于错误的抽象。 我们提供低级的组件以最大化使用封装功能。
 
-## 构成
+## 封装
 
-您可能已经注意到API中有关组合组件的一些不一致之处。 为了提供一些透明度，我们在设计API时一直使用以下规则： 您可能已经注意到API中有关组合组件的一些不一致之处。 为了提供一些透明度，我们在设计API时一直使用以下规则：
+您可能已经注意到 API 中有关封装组件的一些不一致。 为了给予一些透明度，我们在设计 API 时一直使用以下的规则：
 
-1. 使用`children`属性是使用React进行合成的惯用方法。
-2. 有时我们只需要有限的子组成，例如当我们不需要允许子顺序排列时。 在这种情况下，提供显式属性可以使实现更简单，更高效; 例如，`Tab`采用`icon`和`label`属性。
-3. API一致性很重要。
+1. 用 React 进行封装的惯用方法是使用 `children` 属性。
+2. 有时我们只需要有限的子组件封装，例如，当我们不需要允许子组件的顺序排列的时候。 在这种情况下，提供显式属性可以使实现更简单，更高效；例如，`Tab` 接受了一个 `icon` 和一个 `label` 属性。
+3. API 的一致性至关重要。
 
 ## 规则
 
-除了上述构成权衡之外，我们还执行以下规则：
+除了上述封装规则的取舍之外，我们还执行以下这些：
 
-### 传播
+### 扩展
 
 如果您提供组件的属性如果没有明确说明，那么它将会被扩展到根元素；例如，`className` 属性会被应用于根元素。
 
-现在，假设您要禁用 `MenuItem` 上的涟漪。 您可以利用传播行为：
+现在，假设您要禁用 `MenuItem` 上的涟漪效果。 您可以使用扩展的行为：
 
 ```jsx
 <MenuItem disableRipple />
 ```
 
-`disableRipple`属性将以这种方式流动：[`MenuItem`](/api/menu-item/)> [`ListItem`](/api/list-item/)> [`ButtonBase`](/api/button-base/)。
+`disableRipple` 属性这样传播开来：[`MenuItem`](/api/menu-item/) > [`ListItem`](/api/list-item/) > [`ButtonBase`](/api/button-base/)。
 
 ### 原生属性
 
-我们避免记录DOM支持的本机属性，如[`className`](/customization/components/#overriding-styles-with-class-names)。
+我们避免记录 DOM 支持的那些原生属性，如[`className`](/customization/components/#overriding-styles-with-class-names)。
 
 ### CSS classes
 
-所有组件都接受 [`classes`](/customization/components/#overriding-styles-with-classes) 属性来自定义样式。 类设计回答了两个约束： 使类结构尽可能简单，同时足以实现Material Design规范。
+为了自定义样式，所有组件都接受 [`classes`](/customization/components/#overriding-styles-with-classes) 属性。 类的设计解决了两个约束：使类的结构尽可能简单，同时足以实现 Material Design 的规范。
 
-- 应用于根元素的类始终称为`root`。
-- 所有默认样式都分组在一个类中。
-- 应用于非根元素的类以元素的名称为前缀，例如， Dialog组件中的`paperWidthXs`。
-- 由布尔属性应用的variants **不是** 前缀，例如 `rounded` 类由 `rounded` 属性应用
-- 由 enum 属性应用的variants ** 是 ** 前缀, 例如 `colorPrimary` 类 应用的 `color = "primary"` 属性。
-- Variant具有 ** 一个特定级别 **。 `color`和`variant`属性被视为variant。 样式特异性越低, 它就越容易覆盖。
-- 我们增加了variant修饰符的特异性。 我们已经 ** 必须这样做 ** 为伪类 (`:hover `, `:focus ` 等)。 它允许更多的控制，但代价是更多的样板。 希望它也更直观。
+- 应用于根元素的类始终称为 `root`。
+- 所有默认样式都分组在单个类中。
+- 应用于非根元素的类则以元素的名称为前缀，例如， Dialog 组件中的 `paperWidthXs`。
+- 由一个布尔（boolean）属性应用的变体**并没有**前缀，如 `rounded` 属性应用于`rounded` 类。
+- 由 enum 属性应用的变体**是**有前缀的，例如 `color = "primary"` 属性应用于 `colorPrimary` 类。
+- 一个变体（variant）具有** 一个级别的特异性**。 `color` 和 `variant` 属性被视为一个变体。 样式特异性越低，它就越容易被覆盖。
+- 我们增加了变体修饰符（variant modifier）的特异性。 对于伪类（pseudo-classes）（`:hover `，`:focus ` 等），我们**必须这样做**。 以更多模板为代价，它才会开放更多的控制权。 我们也希望，它也能更加直观。
 
 ```js
 const styles = {
@@ -62,31 +62,31 @@ const styles = {
 
 ### 嵌套的组件
 
-组件内的嵌套组件具有:
+一个组件内的嵌套组件具有：
 
-- 它们自己的扁平化属性（当这些属性是顶层组件抽象的关键时），例如 `id` 的 `Input` 组件的属性。
-- 当用户可能需要调整内部render方法的子组件时，他们自己的`xxxProps`属性，例如，在内部使用`input`的组件上公开`inputProps`和`InputProps`属性。
-- 他们自己的`xxxComponent`属性，用于执行组件注入。
-- 当您可能需要执行命令性操作时，例如，暴露 `inputRef` 属性以访问 `input` 组件上的原生`input`，您就可以使用它们自己的 `xxxRef` 属性。 这个方法有助于解答 [“我应该怎么访问 DOM 元素？”](/getting-started/faq/#how-can-i-access-the-dom-element)。
+- 它们自己的扁平化属性（当这些属性是顶层组件抽象的关键时），例如 `Input` 组件的 `id` 属性。
+- 当用户可能需要调整内部渲染方法的子组件时，会有它们自己的 `xxxProps` 属性，例如，在内部使用 `input` 的组件时，公开 `inputProps` 和 `InputProps` 属性。
+- 它们有自己的 `xxxComponent` 属性，用于执行组件的注入。
+- 当您可能需要执行命令性操作时，例如，公开 `inputRef` 属性以访问 `input` 组件上的原生`input`，您就可以使用它们自己的 `xxxRef` 属性。 这个方法有助于解答 [“我应该怎么访问 DOM 元素？”](/getting-started/faq/#how-can-i-access-the-dom-element)。
 
 ### 属性名称
 
-应根据 ** 默认值 ** 选择布尔属性的名称。 应根据 ** 默认值 ** 选择布尔属性的名称。 例如, 输入元素上的 `disabled` 特性 (如果提供) 默认为 `true`。 此选项允许速记符号: 此选项允许速记符号:
+一个布尔属性的名称则应根据**默认值**来决定。 例如，若提供了一个输入框元素的 `disabled` 属性，则默认值为 `true`。 此选项允许简写的表示：
 
 ```diff
 -<Input enabled={false} />
 +<Input disabled />
 ```
 
-### 受控组件
+### 受控的组件
 
-大多数受控组件通过 `value` 和 `onChange` 属性进行控制, 但是, `onChange`/`onClose`/`onOpen` 组合用于显示相关状态。
+您能够通过 `value` 和 `onChange` 属性来控制大多数的受控组件，但是，`open` / `onClose` / `onOpen` 的组合用于显示相关的状态。
 
-### 布尔值 vs 枚举
+### boolean vs enum
 
-为组件的变体设计API有两种选择：使用* boolean*; 或者使用* enum *。 例如, 让我们取一个具有不同类型的按钮。 每个选项都有其优点和缺点: 例如, 让我们取一个具有不同类型的按钮。 每个选项都有其优点和缺点:
+当设计组件的变体的 API 时，有两种选择：使用一个 *boolean*；或者使用一个*enum*。 比如说，我们选取了一个有着不同类型的按钮组件。 每个选项都有其优缺点：
 
-- 选项 1 * 布尔值(boolean) *:
+- 选项 1 *布尔值（boolean）*：
     
     ```tsx
     type Props = {
@@ -95,9 +95,9 @@ const styles = {
     };
     ```
     
-    该 API 启用了速记符号：`<Button>`, `<Button contained />`, `<Button fab />`.
+    该 API 启用了简写的表示法：`<Button>`，`<Button contained />`，`<Button fab />`。
 
-- 选项2*枚举（enum）*
+- 选项 2 *枚举（enum）*：
     
     ```tsx
     type Props = {
@@ -105,25 +105,25 @@ const styles = {
     }
     ```
     
-    为组件的变体设计API有两种选择：使用* boolean*; 或者使用* enum *。 例如, 让我们取一个具有不同类型的按钮。 每个选项都有其优点和缺点:
+    这个 API 会更加详细：`<Button>`，`<Button variant="contained">`， `<Button variant="fab">`。
     
-    这个API更详细： `<Button>`,`<Button variant="contained">`,`<Button variant="fab">`。
+    但是它可以阻止使用无效的组合，限制公开的属性数量，并且在将来可以轻松地支持新的值。
 
 Material-UI 组件根据以下规则将两种方法结合使用：
 
 - 当需要 **2** 个可能的值时，我们使用 *boolean*。 
-- 当需要 **2** 个或在将来可能需要其他更多的值时，那么就使用*枚举*。
+- 当需要 **2** 个或在将来可能需要其他更多的值时，那么就使用 *enum*。
 
-请看到前面的按钮示例；因为它需要 3 个可能的值，所以我们就会使用*枚举*。
+若回到之前的按钮组件示例；因为它需要 3 个可能的值，所以我们使用了 *enum*。
 
 ### Ref
 
-`ref` 会被转发给根元素。 这意味着，在不通过 `component` 属性改变渲染的根元素的情况下，它将会被转发到组件渲染的最外层 DOM 元素。 如果您通过 `component` 属性传递给不同的组件，那么 ref 将会被附加到该组件上。
+`ref` 则会被传递到根元素中。 这意味着，在不通过 `component` 属性改变渲染的根元素的情况下，它将会被传递到组件渲染的最外层 DOM 元素中。 如果您通过 `component` 属性传递给不同的组件，那么 ref 将会被附加到该组件上。
 
 ## 术语表
 
-- **host component**：`react-dom` 的 DOM 节点类型，例如 `'div'`。 另请参阅 [React 实施说明](https://reactjs.org/docs/implementation-notes.html#mounting-host-elements)。
+- **host component**：`react-dom` 的 DOM 节点类型，例如，一个 `“div”`。 另请参阅 [React 实施说明](https://reactjs.org/docs/implementation-notes.html#mounting-host-elements)。
 - **host element**：`react-dom` 中的一个 DOM 节点，例如 `window.HTMLDivElement` 的实例。
-- **outermost**：从上到下读取组件树时的第一个组件，即广度优先搜索。
-- **root component**：渲染宿主组件的最外层组件。
-- **root element**：渲染宿主组件的最外层元素。
+- **outermost**：从上到下读取组件树时的第一个组件，例如，广度优先（breadth-first）搜索。
+- **root component**：渲染一个宿主组件的最外层的那个组件。
+- **root element**：渲染一个宿主组件的最外层的那个元素。

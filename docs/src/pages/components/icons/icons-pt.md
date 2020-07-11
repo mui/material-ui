@@ -34,10 +34,10 @@ Esses componentes usam o componente Material-UI SvgIcon para renderizar o caminh
 Se você ainda não estiver usando Material-UI no seu projeto, você pode adicioná-lo com:
 
 ```sh
-// usando npm
+// utilizando o npm
 npm install @material-ui/core
 
-// usando yarn
+// utilizando o yarn
 yarn add @material-ui/core
 ```
 

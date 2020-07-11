@@ -204,7 +204,7 @@ Material-UI 的样式是由 [@material-ui/styles](https://www.npmjs.com/package/
 
 这样一来，无需系统性的提供一个主题，默认的 Material-UI 主题被应用到重新导出的 `makeStyles`，`styled`，`withTheme`，`useTheme`，和 `withStyles` 模块当中。
 
-就像这样：
+例如：
 
 ```js
 // 重新与默认的主题导出

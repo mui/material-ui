@@ -3,7 +3,7 @@ title: Componente React para Campo de Texto
 components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 ---
 
-# Campo de Texto
+# Campo de texto
 
 <p class="description">Campos de texto permitem que os usuários digitem e editem texto.</p>
 

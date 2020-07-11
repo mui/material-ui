@@ -12,7 +12,7 @@ You can find some example projects in the [GitHub repository](https://github.com
 - [Preact](https://github.com/mui-org/material-ui/tree/master/examples/preact)
 - [CDN](https://github.com/mui-org/material-ui/tree/master/examples/cdn)
 - [Plain server-side](https://github.com/mui-org/material-ui/tree/master/examples/ssr)
-- E mais
+- И многое другое
 
 Create React App - отличный проект для изучения React. Посмотрите на [доступные альтернативы](https://github.com/facebook/create-react-app/blob/master/README.md#popular-alternatives) чтобы увидеть, какой проект лучше всего соответствует вашим потребностям.
 

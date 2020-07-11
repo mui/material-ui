@@ -1,12 +1,12 @@
 ---
-title: Backdrop React Component
+title: 背景 React Component
 components: Backdrop
 ---
 
-# Backdrop
+# 背景
 
-<p class="description">The backdrop component is used to provide emphasis on a particular element or parts of it.</p>
+<p class="description">背景コンポーネントは、特定の要素やその一部に重点を置くために使用されます。</p>
 
-The backdrop signals to the user of a state change within the application and can be used for creating loaders, dialogs and more. In its simplest form, the backdrop component will add a dimmed layer over your application.
+アプリケーション内での状態変化のユーザーへのバックドロップ信号と、ローダー、ダイアログなどの作成に使用できます。 最も簡単な形式では、backdrop コンポーネントはアプリケーションにdimmed レイヤーを追加します。
 
 {{"demo": "pages/components/backdrop/SimpleBackdrop.js"}}

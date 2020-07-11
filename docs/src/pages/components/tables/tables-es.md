@@ -47,7 +47,7 @@ La Tabla tiene un ancho fijo para demostrar el desplazamiento horizontal. Para e
 
 ## Tablas personalizadas
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+La siguiente tabla muestra un ejemplo de personalización del componente. Puedes aprender más sobre esto en la [sección Personalizando Componentes de la documentación](/customization/components/).
 
 {{"demo": "pages/components/tables/CustomizedTables.js", "bg": true}}
 

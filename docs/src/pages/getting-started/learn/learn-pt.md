@@ -24,6 +24,8 @@ Ao começar a aprender o Material-UI, você pode encontrar postagens de blogs de
 
 - **Introduction to Material-UI**: a series of videos covering all the important Material-UI components. 
   - 📹 [The videos](https://www.youtube.com/watch?v=pHclLuRolzE&list=PLQg6GaokU5CwiVmsZ0d_9Zsg_DnIP_xwr)
+- **Customize Material-UI for your project**: a look at how you can customize Material-UI to align with your company identity (design system) and products 
+  - 📹 [The videos](https://www.youtube.com/watch?v=bDkB3LoQKxs)
 - **Meet Material-UI — your new favorite user interface library**: a blog post that guides you in building a Todo MVC while covering some important concepts of Material-UI. 
   - 📝 [The blog post](https://medium.freecodecamp.org/meet-your-material-ui-your-new-favorite-user-interface-library-6349a1c88a8c)
 - **Learn React & Material-UI**: a series of videos covering all the important Material-UI components. 
@@ -36,18 +38,18 @@ Ao começar a aprender o Material-UI, você pode encontrar postagens de blogs de
 
 ### Pago
 
-- **Apply Google Material Design**: Este curso ensina os fundamentos do Google Material Design e como desenvolver uma pesquisa e aplicação de reserva de voo de ponta a ponta usando Material-UI e React.
+- **Implement high fidelity designs**: Bridge the gap between Design & Development. Break down detailed designs and bring them to life with Material-UI and React.
   
-  - 📹 [Trailer do Curso](https://www.youtube.com/watch?v=hhZ6yFvCWho)
-  - 💻 [O Curso](https://bonsaiilabs.com/courseDetail/material-ui-with-react)
-- **Implement high fidelity designs**: Ponte entre a lacuna de Design & Desenvolvimento. Divida os projetos detalhadamente e os traga a vida com Material-UI e React.
+  - 💻 [The Course](https://click.linksynergy.com/deeplink?id=IVuPfk1F/Ow&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Fcourse%2Fimplement-high-fidelity-designs-with-material-ui-and-reactjs%2F)
+- **Apply Google Material Design**: This course teaches the fundamentals of Google Material Design and how to develop an end-to-end flight search and booking application using Material-UI and React.
   
-  - 💻 [O Curso](https://click.linksynergy.com/deeplink?id=IVuPfk1F/Ow&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Fcourse%2Fimplement-high-fidelity-designs-with-material-ui-and-reactjs%2F)
-- **Cookbook**: Crie aplicativos modernos, implementando os princípios de Material Design no React, usando Material-UI.
+  - 📹 [Watch Course Trailer](https://www.youtube.com/watch?v=hhZ6yFvCWho)
+  - 💻 [The Course](https://bonsaiilabs.com/courseDetail/material-ui-with-react)
+- **Cookbook**: Build modern-day applications by implementing Material Design principles in React, using Material-UI.
   
-  - 📘 [O livro](https://www.amazon.com/gp/product/1789615224/)
+  - 📘 [The book](https://www.amazon.com/gp/product/1789615224/)
 
 [![cookbook](/static/blog/material-ui-v4-is-out/cookbook.png)](https://www.amazon.com/gp/product/1789615224/)
 
-- **Builder Book**: Aprenda como criar um aplicativo web totalmente com JavaScript a partir do zero, usando uma stack moderna de JavaScript e Material-UI. 
-  - 📘 [O livro](https://builderbook.org/book)
+- **Builder Book**: Learn how to build a full-stack JavaScript web application from scratch, using a Modern JavaScript stack and Material-UI. 
+  - 📘 [The book](https://builderbook.org/book)

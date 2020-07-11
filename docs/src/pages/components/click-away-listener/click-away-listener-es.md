@@ -16,18 +16,18 @@ Por ejemplo, si necesita ocultar un menú desplegable cuando las personas hacen 
 
 {{"demo": "pages/components/click-away-listener/ClickAway.js"}}
 
-Notice that the component only accepts one child element. You can find a more advanced demo on the [Menu documentation section](/components/menus/#menulist-composition).
+Ten en cuenta que el componente sólo acepta un elemento child. Puedes encontrar una demostración más avanzada en la [sección de documentación del Menú](/components/menus/#menulist-composition).
 
 ## Portal
 
-The following demo uses [`Portal`](/components/portal/) to render the dropdown into a new "subtree" outside of current DOM hierarchy.
+La siguiente demostración utiliza [`Portal`](/components/portal/) para renderizar el desplegable en un nuevo "subárbol" fuera de la jerarquía del DOM actual.
 
 {{"demo": "pages/components/click-away-listener/PortalClickAway.js"}}
 
-## Leading edge
+## Eventos
 
-By default, the component responds to the trailing events (click + touch end). However, you can configure it to respond to the leading events (mouse down + touch start).
+Por defecto, el componente responde a los eventos clic y de toque final (click + touch end). Sin embargo, puedes configurarlo para que responda a los eventos de ratón presionado y toque inicial (mouse down + touch start).
 
 {{"demo": "pages/components/click-away-listener/LeadingClickAway.js"}}
 
-> ⚠️ In this mode, only interactions on the scrollbar of the document is ignored.
+> ⚠️ En este modo, sólo se ignoran las interacciones con la barra de desplazamiento del documento.
