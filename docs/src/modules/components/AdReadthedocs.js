@@ -74,9 +74,7 @@ export default function AdReadthedocs() {
     };
   }, []);
 
-  return adShape === 'image' ? (
-    <div data-ea-publisher="material-ui" data-ea-type="image" />
-  ) : (
-    <div data-ea-publisher="material-ui" data-ea-type="image" />
+  return (
+    <div data-ea-publisher="material-ui" data-ea-type={adShape === 'image' ? 'image' : 'text'} />
   );
 }
