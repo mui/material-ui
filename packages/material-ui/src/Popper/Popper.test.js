@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import createMount from 'test/utils/createMount';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
-import { createClientRender, fireEvent } from 'test/utils/createClientRender';
+import { act, createClientRender, fireEvent } from 'test/utils/createClientRender';
 import PopperJs from 'popper.js';
 import Grow from '../Grow';
 import Popper from './Popper';
@@ -98,7 +98,7 @@ describe('<Popper />', () => {
     it('should flip placement when edge is reached', () => {
       const renderSpy = spy();
       const popperRef = React.createRef();
-      render(
+      const { unmount } = render(
         <ThemeProvider theme={rtlTheme}>
           <Popper popperRef={popperRef} {...defaultProps} placement="bottom">
             {({ placement }) => {
@@ -110,10 +110,17 @@ describe('<Popper />', () => {
         </ThemeProvider>,
       );
       expect(renderSpy.args).to.deep.equal([['bottom'], ['bottom']]);
-      popperRef.current.options.onUpdate({
-        placement: 'top',
+
+      act(() => {
+        popperRef.current.options.onUpdate({
+          placement: 'top',
+        });
       });
+
       expect(renderSpy.args).to.deep.equal([['bottom'], ['bottom'], ['top'], ['top']]);
+
+      // FIXME: Unclear why we need this to fix "missing act()"-warning
+      unmount();
     });
   });
 
@@ -210,10 +217,8 @@ describe('<Popper />', () => {
       clock.restore();
     });
 
-    const looseRender = createClientRender({ strict: false });
-
     it('should work', () => {
-      const { queryByRole, getByRole, setProps } = looseRender(
+      const { queryByRole, getByRole, setProps } = render(
         <Popper {...defaultProps} transition>
           {({ TransitionProps }) => (
             <Grow {...TransitionProps}>
@@ -221,6 +226,7 @@ describe('<Popper />', () => {
             </Grow>
           )}
         </Popper>,
+        { strict: false },
       );
       expect(getByRole('tooltip')).to.have.text('Hello World');
       setProps({ anchorEl: null, open: false });

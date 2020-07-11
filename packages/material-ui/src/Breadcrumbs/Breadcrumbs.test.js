@@ -4,7 +4,7 @@ import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import Breadcrumbs from './Breadcrumbs';
-import { createClientRender, screen } from 'test/utils/createClientRender';
+import { act, createClientRender, screen } from 'test/utils/createClientRender';
 
 describe('<Breadcrumbs />', () => {
   const mount = createMount();
@@ -76,7 +76,10 @@ describe('<Breadcrumbs />', () => {
       </Breadcrumbs>,
     );
 
-    getByRole('button').click();
+    act(() => {
+      getByRole('button').click();
+    });
+
     expect(document.activeElement).to.equal(getByText('first'));
     expect(getAllByRole('listitem', { hidden: false })).to.have.length(9);
   });

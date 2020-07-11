@@ -4,7 +4,7 @@ import { spy } from 'sinon';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
-import { createClientRender } from 'test/utils/createClientRender';
+import { act, createClientRender } from 'test/utils/createClientRender';
 import Checkbox from './Checkbox';
 import FormControl from '../FormControl';
 import IconButton from '../IconButton';
@@ -48,13 +48,17 @@ describe('<Checkbox />', () => {
     const handleChange = spy((event) => event.persist());
     const { getByRole } = render(<Checkbox onChange={handleChange} />);
 
-    getByRole('checkbox').click();
+    act(() => {
+      getByRole('checkbox').click();
+    });
 
     expect(getByRole('checkbox')).to.have.property('checked', true);
     expect(handleChange.callCount).to.equal(1);
     expect(handleChange.getCall(0).args[0].target).to.have.property('checked', true);
 
-    getByRole('checkbox').click();
+    act(() => {
+      getByRole('checkbox').click();
+    });
 
     expect(getByRole('checkbox')).to.have.property('checked', false);
     expect(handleChange.callCount).to.equal(2);

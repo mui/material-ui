@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
+import { act } from 'test/utils/createClientRender';
 import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import PropTypes, { checkPropTypes } from 'prop-types';
@@ -10,34 +11,38 @@ import SwipeArea from './SwipeArea';
 import useForkRef from '../utils/useForkRef';
 
 function fireMouseEvent(name, element, properties = {}) {
-  const event = document.createEvent('MouseEvents');
-  event.initEvent(name, true, true);
-  Object.keys(properties).forEach((key) => {
-    event[key] = properties[key];
+  act(() => {
+    const event = document.createEvent('MouseEvents');
+    event.initEvent(name, true, true);
+    Object.keys(properties).forEach((key) => {
+      event[key] = properties[key];
+    });
+    if (element.dispatchEvent) {
+      element.dispatchEvent(event);
+    } else {
+      element.getDOMNode().dispatchEvent(event);
+    }
   });
-  if (element.dispatchEvent) {
-    element.dispatchEvent(event);
-  } else {
-    element.getDOMNode().dispatchEvent(event);
-  }
-  return event;
 }
 
 function fireBodyMouseEvent(name, properties = {}) {
-  return fireMouseEvent(name, document.body, properties);
+  fireMouseEvent(name, document.body, properties);
 }
 
 function fireSwipeAreaMouseEvent(wrapper, name, properties = {}) {
-  const event = document.createEvent('MouseEvents');
-  event.initEvent(name, true, true);
-  Object.keys(properties).forEach((key) => {
-    event[key] = properties[key];
+  let event;
+  act(() => {
+    event = document.createEvent('MouseEvents');
+    event.initEvent(name, true, true);
+    Object.keys(properties).forEach((key) => {
+      event[key] = properties[key];
+    });
+    const swipeArea = wrapper.find(SwipeArea);
+    if (swipeArea.length >= 1) {
+      // if no SwipeArea is mounted, the body event wouldn't propagate to it anyway
+      swipeArea.getDOMNode().dispatchEvent(event);
+    }
   });
-  const swipeArea = wrapper.find(SwipeArea);
-  if (swipeArea.length >= 1) {
-    // if no SwipeArea is mounted, the body event wouldn't propagate to it anyway
-    swipeArea.getDOMNode().dispatchEvent(event);
-  }
   return event;
 }
 

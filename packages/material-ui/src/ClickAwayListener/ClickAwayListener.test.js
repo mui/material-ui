@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createClientRender, fireEvent, screen } from 'test/utils/createClientRender';
+import { act, createClientRender, fireEvent, screen } from 'test/utils/createClientRender';
 import Portal from '../Portal';
 import ClickAwayListener from './ClickAwayListener';
 
@@ -246,7 +246,9 @@ describe('<ClickAwayListener />', () => {
       }
       render(<Test />);
 
-      screen.getByRole('button').click();
+      act(() => {
+        screen.getByRole('button').click();
+      });
 
       expect(handleClickAway.callCount).to.equal(1);
     });
@@ -269,7 +271,9 @@ describe('<ClickAwayListener />', () => {
       }
       render(<Test />);
 
-      screen.getByRole('button').click();
+      act(() => {
+        screen.getByRole('button').click();
+      });
 
       expect(handleClickAway.callCount).to.equal(0);
     });

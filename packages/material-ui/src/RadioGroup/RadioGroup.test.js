@@ -5,7 +5,7 @@ import * as PropTypes from 'prop-types';
 import { findOutermostIntrinsic } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
-import { createClientRender } from 'test/utils/createClientRender';
+import { act, createClientRender } from 'test/utils/createClientRender';
 import FormGroup from '../FormGroup';
 import Radio from '../Radio';
 import RadioGroup from './RadioGroup';
@@ -304,10 +304,16 @@ describe('<RadioGroup />', () => {
 
           expect(radioGroupRef.current).to.have.property('value', 'zero');
 
-          radioGroupRef.current.onChange({ target: { value: 'one' } });
+          act(() => {
+            radioGroupRef.current.onChange({ target: { value: 'one' } });
+          });
+
           expect(radioGroupRef.current).to.have.property('value', 'one');
 
-          radioGroupRef.current.onChange({ target: { value: 'two' } });
+          act(() => {
+            radioGroupRef.current.onChange({ target: { value: 'two' } });
+          });
+
           expect(radioGroupRef.current).to.have.property('value', 'two');
         });
       });

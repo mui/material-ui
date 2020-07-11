@@ -4,7 +4,7 @@ import { spy } from 'sinon';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
-import { createClientRender, fireEvent } from 'test/utils/createClientRender';
+import { act, createClientRender, fireEvent } from 'test/utils/createClientRender';
 import Accordion from '../Accordion';
 import AccordionSummary from './AccordionSummary';
 import ButtonBase from '../ButtonBase';
@@ -73,8 +73,10 @@ describe('<AccordionSummary />', () => {
     fireEvent.mouseDown(document.body); // pointer device
     const button = getByRole('button');
 
-    fireEvent.keyDown(document.body, { key: 'Tab' }); // not actually focusing (yet)
-    button.focus();
+    act(() => {
+      fireEvent.keyDown(document.body, { key: 'Tab' }); // not actually focusing (yet)
+      button.focus();
+    });
 
     expect(button).toHaveFocus();
     expect(button).to.have.class(classes.focused);
@@ -85,9 +87,13 @@ describe('<AccordionSummary />', () => {
     fireEvent.mouseDown(document.body); // pointer device
     fireEvent.keyDown(document.body, { key: 'Tab' }); // not actually focusing (yet)
     const button = getByRole('button');
-    button.focus();
 
-    button.blur();
+    act(() => {
+      button.focus();
+    });
+    act(() => {
+      button.blur();
+    });
 
     expect(button).not.toHaveFocus();
     expect(button).not.to.have.class(classes.focused);
@@ -110,7 +116,9 @@ describe('<AccordionSummary />', () => {
       </Accordion>,
     );
 
-    getByRole('button').click();
+    act(() => {
+      getByRole('button').click();
+    });
 
     expect(handleChange.callCount).to.equal(1);
   });
@@ -123,7 +131,9 @@ describe('<AccordionSummary />', () => {
 
     // this doesn't actually apply focus like in the browser. we need to move focus manually
     fireEvent.keyDown(document.body, { key: 'Tab' });
-    getByRole('button').focus();
+    act(() => {
+      getByRole('button').focus();
+    });
 
     expect(handleFocusVisible.callCount).to.equal(1);
   });

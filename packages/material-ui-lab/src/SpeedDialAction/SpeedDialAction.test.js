@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { getClasses } from '@material-ui/core/test-utils';
 import { useFakeTimers } from 'sinon';
 import createMount from 'test/utils/createMount';
-import { createClientRender, fireEvent } from 'test/utils/createClientRender';
+import { act, createClientRender, fireEvent } from 'test/utils/createClientRender';
 import Icon from '@material-ui/core/Icon';
 import Tooltip from '@material-ui/core/Tooltip';
 import Fab from '@material-ui/core/Fab';
@@ -52,8 +52,15 @@ describe('<SpeedDialAction />', () => {
     );
 
     fireEvent.mouseOver(container.querySelector('button'));
-    clock.tick(100);
+    act(() => {
+      clock.tick(100);
+    });
+
     expect(getByText('placeholder')).to.have.class('bar');
+
+    // FIXME: Unclear what timer is dangling here and what it does.
+    // Not running all timers triggers "missing act()"-warning
+    clock.runAll();
   });
 
   it('should render a Fab', () => {

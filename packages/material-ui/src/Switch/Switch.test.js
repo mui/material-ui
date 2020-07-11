@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
-import { createClientRender, fireEvent } from 'test/utils/createClientRender';
+import { act, createClientRender, fireEvent } from 'test/utils/createClientRender';
 import FormControl from '../FormControl';
 import Switch from './Switch';
 
@@ -82,8 +82,10 @@ describe('<Switch />', () => {
     const { getByRole } = render(<Switch defaultChecked />);
 
     // how a user would trigger it
-    getByRole('checkbox').click();
-    fireEvent.change(getByRole('checkbox'), { target: { checked: '' } });
+    act(() => {
+      getByRole('checkbox').click();
+      fireEvent.change(getByRole('checkbox'), { target: { checked: '' } });
+    });
 
     expect(getByRole('checkbox')).to.have.property('checked', false);
   });

@@ -4,7 +4,7 @@ import { expect } from 'chai';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
-import { createClientRender } from 'test/utils/createClientRender';
+import { act, createClientRender } from 'test/utils/createClientRender';
 import FormLabel from './FormLabel';
 import FormControl, { useFormControl } from '../FormControl';
 
@@ -100,7 +100,9 @@ describe('<FormLabel />', () => {
 
         expect(container.querySelector('label')).not.to.have.class(classes.focused);
 
-        formControlRef.current.onFocus();
+        act(() => {
+          formControlRef.current.onFocus();
+        });
         expect(container.querySelector('label')).to.have.class(classes.focused);
       });
 
@@ -118,7 +120,9 @@ describe('<FormLabel />', () => {
         const { container, setProps } = render(<FormLabel data-testid="FormLabel" />, {
           wrapper: Wrapper,
         });
-        formControlRef.current.onFocus();
+        act(() => {
+          formControlRef.current.onFocus();
+        });
 
         expect(container.querySelector('label')).to.have.class(classes.focused);
 
