@@ -67,7 +67,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   });
 
   const inputRef = React.useRef(null);
-  const lastItemIndex = React.useRef(null);
+  const lastSelectedItemValue = React.useRef(null);
   const [displayNode, setDisplayNode] = React.useState(null);
   const { current: isOpenControlled } = React.useRef(openProp != null);
   const [menuMinWidthState, setMenuMinWidthState] = React.useState();
@@ -172,12 +172,12 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       const itemIndex = value.indexOf(child.props.value);
       if (
         event.shiftKey &&
-        lastItemIndex.current &&
-        lastItemIndex.current !== child.props.value &&
-        value.indexOf(lastItemIndex.current) > -1
+        lastSelectedItemValue.current &&
+        lastSelectedItemValue.current !== child.props.value &&
+        value.indexOf(lastSelectedItemValue.current) > -1
       ) {
         const optionValues = React.Children.map(children, (c) => c.props.value);
-        const startOptionIndex = optionValues.indexOf(lastItemIndex.current);
+        const startOptionIndex = optionValues.indexOf(lastSelectedItemValue.current);
         const endOptionIndex = optionValues.indexOf(child.props.value);
 
         if (startOptionIndex > -1 && endOptionIndex > -1) {
@@ -187,12 +187,12 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
           } else {
             range = optionValues.slice(endOptionIndex, startOptionIndex + 1);
           }
-          // Selected range chould contain selected values so we filter them out if exists.
+          // Selected range could contain selected values so we filter them out if they exists.
           newValue.push(...range.filter((v) => !value.some((vv) => areEqualValues(v, vv))));
         }
       } else if (itemIndex === -1) {
         newValue.push(child.props.value);
-        lastItemIndex.current = child.props.value;
+        lastSelectedItemValue.current = child.props.value;
       } else {
         newValue.splice(itemIndex, 1);
       }
