@@ -53,14 +53,14 @@ Alternatively, you can use [react-spring](https://github.com/react-spring/react-
 
 {{"demo": "pages/components/popper/ScrollPlayground.js", "hideToolbar": true, "bg": true}}
 
-## Faked reference object
+## Virtual element
 
 The value of the `anchorEl` prop can be a reference to a fake DOM element.
-You need to create an object shaped like the [`ReferenceObject`](https://github.com/FezVrasta/popper.js/blob/0642ce0ddeffe3c7c033a412d4d60ce7ec8193c3/packages/popper/index.d.ts#L118-L123).
+You need to create an object shaped like the [`VirtualElement`](https://popper.js.org/docs/v2/virtual-elements/).
 
 Highlight part of the text to see the popper:
 
-{{"demo": "pages/components/popper/FakedReferencePopper.js"}}
+{{"demo": "pages/components/popper/VirtualElementPopper.js"}}
 
 ## Complementary projects
 
