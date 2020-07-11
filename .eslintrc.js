@@ -11,13 +11,12 @@ module.exports = {
     browser: true,
     node: true,
   },
-  extends: ['plugin:import/recommended', 'airbnb', 'prettier', 'prettier/react'],
-  parser: 'babel-eslint',
+  extends: ['plugin:import/recommended', 'airbnb-typescript', 'prettier', 'prettier/react', 'prettier/@typescript-eslint'],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaVersion: 7,
-    sourceType: 'module',
+    project: './tsconfig.json',
   },
-  plugins: ['babel', 'material-ui', 'react-hooks'],
+  plugins: ['material-ui', 'react-hooks', '@typescript-eslint'],
   settings: {
     'import/resolver': {
       webpack: {
@@ -25,89 +24,84 @@ module.exports = {
       },
     },
   },
-  /**
-   * Sorted alphanumerically within each group. built-in and each plugin form
-   * their own groups.
-   */
+  // Sorted alphanumerically
   rules: {
-    'consistent-this': ['error', 'self'],
-    'linebreak-style': 'off', // Doesn't play nicely with Windows
-    // just as bad as "max components per file"
-    'max-classes-per-file': 'off',
-    'no-alert': 'error',
-    // Strict, airbnb is using warn; allow warn and error for dev environments
-    'no-console': ['error', { allow: ['warn', 'error'] }],
-    'no-constant-condition': 'error',
-    // Airbnb use error
-    'no-param-reassign': 'off',
-    'no-prototype-builtins': 'off',
-    'no-restricted-imports': [
-      'error',
-      {
-        patterns: [
-          '@material-ui/*/*/*',
-          '!@material-ui/core/test-utils/*',
-          '!@material-ui/utils/macros/*.macro',
-        ],
-      },
-    ],
-    'nonblock-statement-body-position': 'error',
-    // Airbnb restricts isNaN and isFinite which are necessary for IE 11
-    // we have to be disciplined about the usage and ensure the Number type for its
-    // arguments
-    'no-restricted-globals': ['error'].concat(confusingBrowserGlobals),
-    'no-underscore-dangle': 'error',
-    'prefer-arrow-callback': ['error', { allowNamedFunctions: true }],
-    'prefer-destructuring': 'off', // Destructuring harm grep potential.
+    'import/no-extraneous-dependencies': 'off', // Missing yarn workspace support
+    'no-console': ['error', { allow: ['warn', 'error'] }], // More strict than airbnb. Allow warn and error for production events
+    'no-param-reassign': 'off', // Less strict than airbnb. It's fine.
+    'react/destructuring-assignment': 'off', // Less strict than airbnb. It's fine.
+    'react/jsx-fragments': ['error', 'element'], // Prefer <React.Fragment> over <>.
+    'react/jsx-props-no-spreading': 'off', // Less strict than airbnb. We are a UI library.
 
-    'jsx-a11y/label-has-associated-control': 'off',
-    'jsx-a11y/label-has-for': 'off', // deprecated
-    'jsx-a11y/no-autofocus': 'off', // We are a library, people do what they want.
+    // 'consistent-this': ['error', 'self'],
+    // 'linebreak-style': 'off', // Doesn't play nicely with Windows
+    // // just as bad as "max components per file"
+    // 'max-classes-per-file': 'off',
+    // 'no-alert': 'error',
+    // 'no-constant-condition': 'error',
+    // // Airbnb use error
+    // 'no-prototype-builtins': 'off',
+    // 'no-restricted-imports': [
+    //   'error',
+    //   {
+    //     patterns: [
+    //       '@material-ui/*/*/*',
+    //       '!@material-ui/core/test-utils/*',
+    //       '!@material-ui/utils/macros/*.macro',
+    //     ],
+    //   },
+    // ],
+    // 'nonblock-statement-body-position': 'error',
+    // // Airbnb restricts isNaN and isFinite which are necessary for IE 11
+    // // we have to be disciplined about the usage and ensure the Number type for its
+    // // arguments
+    // 'no-restricted-globals': ['error'].concat(confusingBrowserGlobals),
+    // 'no-underscore-dangle': 'error',
+    // 'prefer-arrow-callback': ['error', { allowNamedFunctions: true }],
+    // 'prefer-destructuring': 'off', // Destructuring harm grep potential.
 
-    'material-ui/docgen-ignore-before-comment': 'error',
+    // 'jsx-a11y/label-has-associated-control': 'off',
+    // 'jsx-a11y/label-has-for': 'off', // deprecated
+    // 'jsx-a11y/no-autofocus': 'off', // We are a library, people do what they want.
 
-    // This rule is great for raising people awareness of what a key is and how it works.
-    'react/no-array-index-key': 'off',
-    'react/destructuring-assignment': 'off',
-    // It's buggy
-    'react/forbid-prop-types': 'off',
-    'react/jsx-curly-brace-presence': 'off',
-    // prefer <React.Fragment> over <>. The former allows `key` while the latter doesn't
-    'react/jsx-fragments': ['error', 'element'],
-    'react/jsx-filename-extension': ['error', { extensions: ['.js'] }], // airbnb is using .jsx
-    'react/jsx-handler-names': [
-      'error',
-      {
-        // airbnb is disabling this rule
-        eventHandlerPrefix: 'handle',
-        eventHandlerPropPrefix: 'on',
-      },
-    ],
-    // not a good rule for components close to the DOM
-    'react/jsx-props-no-spreading': 'off',
-    'react/no-danger': 'error',
-    // Strict, airbnb is using off
-    'react/no-direct-mutation-state': 'error',
-    'react/no-find-dom-node': 'off',
-    'react/no-multi-comp': 'off',
-    'react/require-default-props': 'off',
-    'react/sort-prop-types': 'error',
-    // This depends entirely on what you're doing. There's no universal pattern
-    'react/state-in-constructor': 'off',
-    // stylistic opinion. For conditional assignment we want it outside, otherwise as static
-    'react/static-property-placement': 'off',
+    // 'material-ui/docgen-ignore-before-comment': 'error',
 
-    'import/no-extraneous-dependencies': 'off', // It would be better to enable this rule.
-    'import/namespace': ['error', { allowComputed: true }],
-    'import/order': [
-      'error',
-      {
-        groups: [['index', 'sibling', 'parent', 'internal', 'external', 'builtin']],
-        'newlines-between': 'never',
-      },
-    ],
+    // // This rule is great for raising people awareness of what a key is and how it works.
+    // 'react/no-array-index-key': 'off',
+    // // It's buggy
+    // 'react/forbid-prop-types': 'off',
+    // 'react/jsx-curly-brace-presence': 'off',
+    // 'react/jsx-filename-extension': ['error', { extensions: ['.js'] }], // airbnb is using .jsx
+    // 'react/jsx-handler-names': [
+    //   'error',
+    //   {
+    //     // airbnb is disabling this rule
+    //     eventHandlerPrefix: 'handle',
+    //     eventHandlerPropPrefix: 'on',
+    //   },
+    // ],
+    // // not a good rule for components close to the DOM
+    // 'react/no-danger': 'error',
+    // // Strict, airbnb is using off
+    // 'react/no-direct-mutation-state': 'error',
+    // 'react/no-find-dom-node': 'off',
+    // 'react/no-multi-comp': 'off',
+    // 'react/require-default-props': 'off',
+    // 'react/sort-prop-types': 'error',
+    // // This depends entirely on what you're doing. There's no universal pattern
+    // 'react/state-in-constructor': 'off',
+    // // stylistic opinion. For conditional assignment we want it outside, otherwise as static
+    // 'react/static-property-placement': 'off',
+    // 'import/namespace': ['error', { allowComputed: true }],
+    // 'import/order': [
+    //   'error',
+    //   {
+    //     groups: [['index', 'sibling', 'parent', 'internal', 'external', 'builtin']],
+    //     'newlines-between': 'never',
+    //   },
+    // ],
 
-    'react-hooks/rules-of-hooks': 'error',
+    // 'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': ['error', { additionalHooks: 'useEnhancedEffect' }],
   },
   overrides: [
@@ -188,6 +182,17 @@ module.exports = {
     {
       files: ['docs/pages/**/*.js'],
       rules: {
+        'react/prop-types': 'off',
+      },
+    },
+    {
+      files: ['*.spec.tsx'],
+      rules: {
+        '@typescript-eslint/no-unused-expressions': 'off',
+        '@typescript-eslint/no-unused-vars': 'off',
+        'max-classes-per-file': 'off',
+        'no-lone-blocks': 'off',
+        'react/prefer-stateless-function': 'off',
         'react/prop-types': 'off',
       },
     },

@@ -1,6 +1,5 @@
 import {
   ClassNameMap,
-  PropsOfStyles,
   Styles,
   WithStylesOptions,
 } from '@material-ui/styles/withStyles';

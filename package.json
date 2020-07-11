@@ -25,9 +25,9 @@
     "extract-error-codes": "lerna run --parallel extract-error-codes",
     "framer:build": "yarn workspace framer build",
     "jsonlint": "node scripts/jsonlint.js",
-    "lint": "eslint . --cache --report-unused-disable-directives",
-    "lint:ci": "eslint . --report-unused-disable-directives",
-    "lint:fix": "eslint . --cache --fix",
+    "lint": "eslint . --cache --report-unused-disable-directives --ext .ts,.tsx",
+    "lint:ci": "eslint . --report-unused-disable-directives --ext .ts,.tsx",
+    "lint:fix": "eslint . --cache --fix --ext .ts,.tsx",
     "prettier": "node ./scripts/prettier.js",
     "prettier:all": "node ./scripts/prettier.js write",
     "size:snapshot": "node scripts/sizeSnapshot/create",
@@ -72,8 +72,6 @@
     "@types/react": "^16.9.3",
     "@types/sinon": "^9.0.0",
     "argos-cli": "^0.3.0",
-    "babel-core": "^7.0.0-bridge.0",
-    "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.0",
     "babel-plugin-istanbul": "^6.0.0",
     "babel-plugin-macros": "^2.8.0",
@@ -96,7 +94,7 @@
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "eslint": "^7.4.0",
-    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-airbnb-typescript": "^8.0.2",
     "eslint-config-prettier": "^6.11.0",
     "eslint-import-resolver-webpack": "^0.12.2",
     "eslint-plugin-babel": "^5.3.1",
@@ -186,5 +184,9 @@
     "packages/*",
     "docs",
     "framer"
-  ]
+  ],
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^3.6.0",
+    "@typescript-eslint/parser": "^3.6.0"
+  }
 }

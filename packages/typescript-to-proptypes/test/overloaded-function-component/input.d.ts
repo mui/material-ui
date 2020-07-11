@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 interface ButtonProps {
   variant?: string;
 }

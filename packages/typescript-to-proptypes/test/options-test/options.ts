@@ -6,6 +6,7 @@ const options: TestOptions = {
       if (name.endsWith('Props')) {
         return false;
       }
+      return true;
     },
   },
   injector: {

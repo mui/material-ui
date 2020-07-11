@@ -288,7 +288,7 @@ const ChipsTest = () => (
   <div>
     <Chip label="Basic Chip" />
     <Chip avatar={<Avatar>M</Avatar>} label="Clickable Chip" onClick={(e) => log(e)} />
-    <Chip avatar={<Avatar src={'image.bmp'} />} label="Deletable Chip" onDelete={(e) => log(e)} />
+    <Chip avatar={<Avatar src="image.bmp" />} label="Deletable Chip" onDelete={(e) => log(e)} />
     <Chip
       avatar={
         <Avatar>
@@ -305,7 +305,7 @@ const ChipsTest = () => (
 const DialogTest = () => {
   const emails = ['username@gmail.com', 'user02@gmail.com'];
   return (
-    <Dialog onClose={(e) => log(e)} open>
+    <Dialog onClose={(event) => log(event)} open>
       <DialogTitle>Set backup account</DialogTitle>
       <div>
         <List>
@@ -399,14 +399,14 @@ const DrawerTest = () => {
   };
   return (
     <div>
-      <Drawer variant="persistent" open={open.left} onClose={(e) => log(e)} onClick={(e) => log(e)}>
+      <Drawer variant="persistent" open={open.left} onClose={(event) => log(event)} onClick={(e) => log(e)}>
         List
       </Drawer>
       <Drawer
         variant="temporary"
         anchor="top"
         open={open.top}
-        onClose={(e) => log(e)}
+        onClose={(event) => log(event)}
         onClick={(e) => log(e)}
         ModalProps={{
           hideBackdrop: true,
@@ -418,7 +418,7 @@ const DrawerTest = () => {
         anchor="bottom"
         variant="temporary"
         open={open.bottom}
-        onClose={(e) => log(e)}
+        onClose={(event) => log(event)}
         onClick={(e) => log(e)}
       >
         List
@@ -427,7 +427,7 @@ const DrawerTest = () => {
         variant="persistent"
         anchor="right"
         open={open.right}
-        onClose={(e) => log(e)}
+        onClose={(event) => log(event)}
         onClick={(e) => log(e)}
       >
         List
@@ -447,7 +447,7 @@ const SwipeableDrawerTest = () => {
     <div>
       <SwipeableDrawer
         open={open.left}
-        onClose={(e) => log(e)}
+        onClose={(event) => log(event)}
         onClick={(e) => log(e)}
         onOpen={(e) => log(e)}
       >
@@ -456,7 +456,7 @@ const SwipeableDrawerTest = () => {
       <SwipeableDrawer
         anchor="top"
         open={open.top}
-        onClose={(e) => log(e)}
+        onClose={(event) => log(event)}
         onClick={(e) => log(e)}
         onOpen={(e) => log(e)}
         ModalProps={{
@@ -468,7 +468,7 @@ const SwipeableDrawerTest = () => {
       <SwipeableDrawer
         anchor="bottom"
         open={open.bottom}
-        onClose={(e) => log(e)}
+        onClose={(event) => log(event)}
         onClick={(e) => log(e)}
         onOpen={(e) => log(e)}
       >
@@ -478,7 +478,7 @@ const SwipeableDrawerTest = () => {
         variant="temporary"
         anchor="right"
         open={open.right}
-        onClose={(e) => log(e)}
+        onClose={(event) => log(event)}
         onClick={(e) => log(e)}
         onOpen={(e) => log(e)}
       >
@@ -516,7 +516,7 @@ const GridTest = () => (
     <Grid item sm={12}>
       ...
     </Grid>
-    <Grid item xl={true}>
+    <Grid item xl>
       ...
     </Grid>
     <Grid item style={{ color: 'red' }}>
@@ -538,7 +538,7 @@ const ListTest = () => (
   <List>
     {[0, 1, 2, 3].map((value) => (
       <ListItem dense button selected={false} key={value} onClick={(e) => log(e)}>
-        <Checkbox checked={true} tabIndex={-1} disableRipple />
+        <Checkbox checked tabIndex={-1} disableRipple />
         <ListItemText primary={`Line item ${value + 1}`} />
         <ListItemSecondaryAction>
           <IconButton aria-label="comments">
@@ -566,8 +566,8 @@ const MenuTest = () => {
     <Menu
       id="lock-menu"
       anchorEl={anchorEl}
-      open={true}
-      onClose={(e) => log(e)}
+      open
+      onClose={(event) => log(event)}
       PopoverClasses={{ paper: 'foo' }}
     >
       {options.map((option, index) => (
@@ -744,9 +744,9 @@ const SnackbarTest = () => (
         vertical: 'bottom',
         horizontal: 'left',
       }}
-      open={true}
+      open
       autoHideDuration={6000}
-      onClose={(e) => log(e)}
+      onClose={(event) => log(event)}
       ContentProps={
         {
           // 'aria-describedby': 'message-id',
