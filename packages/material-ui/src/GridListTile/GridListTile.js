@@ -57,10 +57,10 @@ const GridListTile = React.forwardRef(function GridListTile(props, ref) {
     children,
     classes,
     className,
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     cols = 1,
     component: Component = 'li',
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     rows = 1,
     ...other
   } = props;

@@ -215,8 +215,7 @@ const CardTest = () => (
       <Typography variant="body1">adjective</Typography>
       <Typography component="p">
         well meaning and kindly.
-        <br />
-        {'"a benevolent smile"'}
+        <br />a benevolent smile
       </Typography>
     </CardContent>
     <CardActions>
@@ -233,7 +232,7 @@ const CardMediaTest = () => (
       subheader="September 14, 2016"
     />
     <CardMedia image="src.png" component="div">
-      <img src={'image/src.png'} alt="Contemplative Reptile" />
+      <img src="image/src.png" alt="Contemplative Reptile" />
     </CardMedia>
     <CardContent>
       <Typography component="p">
@@ -252,7 +251,7 @@ const CardMediaTest = () => (
         <FakeIcon />
       </IconButton>
     </CardActions>
-    <Collapse in={true} timeout="auto" unmountOnExit>
+    <Collapse in timeout="auto" unmountOnExit>
       <CardContent>
         <Typography paragraph variant="body2">
           Method:
@@ -399,7 +398,12 @@ const DrawerTest = () => {
   };
   return (
     <div>
-      <Drawer variant="persistent" open={open.left} onClose={(event) => log(event)} onClick={(e) => log(e)}>
+      <Drawer
+        variant="persistent"
+        open={open.left}
+        onClose={(event) => log(event)}
+        onClick={(e) => log(e)}
+      >
         List
       </Drawer>
       <Drawer
@@ -691,9 +695,7 @@ const SelectionControlTest = () => {
         label="Indeterminate"
       />
       <FormControlLabel
-        control={
-          <Checkbox checked={true} onChange={handleChange} name="checkedF" value="checkedF" />
-        }
+        control={<Checkbox checked onChange={handleChange} name="checkedF" value="checkedF" />}
         label="Custom color"
       />
     </FormGroup>
@@ -942,9 +944,9 @@ const TabsTest = () => {
               <Tab label="Item Three" />
             </Tabs>
           </AppBar>
-          {this.state.value === 0 && <TabContainer>{'Item One'}</TabContainer>}
-          {this.state.value === 1 && <TabContainer>{'Item Two'}</TabContainer>}
-          {this.state.value === 2 && <TabContainer>{'Item Three'}</TabContainer>}
+          {this.state.value === 0 && <TabContainer>Item One</TabContainer>}
+          {this.state.value === 1 && <TabContainer>Item Two</TabContainer>}
+          {this.state.value === 2 && <TabContainer>Item Three</TabContainer>}
         </div>
       );
     }
@@ -955,15 +957,15 @@ const TabsTest = () => {
 
 const TextFieldTest = () => (
   <div>
-    <TextField id="name" label="Name" value={'Alice'} />
-    <TextField id="name" label={<strong>Name</strong>} value={'Alice'} />
+    <TextField id="name" label="Name" value="Alice" />
+    <TextField id="name" label={<strong>Name</strong>} value="Alice" />
     <TextField
       id="name"
       label="Name"
-      value={'Alice'}
+      value="Alice"
       onChange={(event) => log({ name: event.currentTarget.value })}
     />
-    <TextField id="name" label="Name" value={'Alice'} InputProps={{ classes: { root: 'foo' } }} />
+    <TextField id="name" label="Name" value="Alice" InputProps={{ classes: { root: 'foo' } }} />
     <TextField
       type="number"
       inputProps={{
@@ -1047,15 +1049,15 @@ const InputLabelTest = () => (
 );
 
 const LinkTest = () => {
-  const dudUrl = 'javascript:;';
+  const dudUrl = 'javascript';
   return (
     <Typography>
       <Link href={dudUrl}>Link</Link>
       <Link href={dudUrl} color="inherit">
-        {'color="inherit"'}
+        inherit
       </Link>
       <Link href={dudUrl} variant="body1">
-        {'variant="body1"'}
+        body1
       </Link>
     </Typography>
   );

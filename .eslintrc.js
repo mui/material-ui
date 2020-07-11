@@ -11,10 +11,17 @@ module.exports = {
     browser: true,
     node: true,
   },
-  extends: ['plugin:import/recommended', 'airbnb-typescript', 'prettier', 'prettier/react', 'prettier/@typescript-eslint'],
+  extends: [
+    'plugin:import/recommended',
+    'plugin:import/typescript',
+    'airbnb-typescript',
+    'prettier',
+    'prettier/react',
+    'prettier/@typescript-eslint',
+  ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: './tsconfig.json',
+    // project: './tsconfig.json',
   },
   plugins: ['material-ui', 'react-hooks', '@typescript-eslint'],
   settings: {
@@ -26,31 +33,45 @@ module.exports = {
   },
   // Sorted alphanumerically
   rules: {
+    '@typescript-eslint/dot-notation': 'off', // Too slow
+    '@typescript-eslint/no-implied-eval': 'off', // Too slow
+    '@typescript-eslint/no-throw-literal': 'off', // Too slow
+    'consistent-this': ['error', 'self'],
+    'import/export': 'off', // Not sure why it doesn't work
+    'import/named': 'off', // Not sure why it doesn't work
+    'import/no-cycle': 'off', // Too slow
     'import/no-extraneous-dependencies': 'off', // Missing yarn workspace support
-    'no-console': ['error', { allow: ['warn', 'error'] }], // More strict than airbnb. Allow warn and error for production events
-    'no-param-reassign': 'off', // Less strict than airbnb. It's fine.
-    'react/destructuring-assignment': 'off', // Less strict than airbnb. It's fine.
+    'jsx-a11y/label-has-associated-control': 'off', // doesn't work?
+    'max-classes-per-file': 'off', // just as bad as "max components per file"
+    'no-alert': 'error', // Too much interruptive
+    'no-console': ['error', { allow: ['warn', 'error'] }], // Allow warn and error for production events
+    'no-param-reassign': 'off', // It's fine.
+    'no-restricted-imports': [
+      'error',
+      {
+        patterns: [
+          '@material-ui/*/*/*',
+          '!@material-ui/core/test-utils/*',
+          '!@material-ui/utils/macros/*.macro',
+        ],
+      },
+    ],
+    'prefer-destructuring': 'off', // Destructuring harm grep potential.
+    'react/destructuring-assignment': 'off', // It's fine.
+    'react/jsx-curly-brace-presence': 'off', // broken
+    'react/jsx-filename-extension': ['error', { extensions: ['.js', '.tsx'] }], // airbnb is using .jsx
     'react/jsx-fragments': ['error', 'element'], // Prefer <React.Fragment> over <>.
-    'react/jsx-props-no-spreading': 'off', // Less strict than airbnb. We are a UI library.
+    'react/jsx-props-no-spreading': 'off', // We are a UI library.
+    'react/no-array-index-key': 'off', // This rule is great for raising people awareness of what a key is and how it works.
+    'react/require-default-props': 'off', // Not always relevant
+    'react/static-property-placement': 'off', // No needed
+    'react/forbid-prop-types': 'off', // Too strict, no time for that
+    'react/no-find-dom-node': 'off', // Required for backward compatibility. TODO v5, drop
 
-    // 'consistent-this': ['error', 'self'],
     // 'linebreak-style': 'off', // Doesn't play nicely with Windows
-    // // just as bad as "max components per file"
-    // 'max-classes-per-file': 'off',
-    // 'no-alert': 'error',
     // 'no-constant-condition': 'error',
     // // Airbnb use error
     // 'no-prototype-builtins': 'off',
-    // 'no-restricted-imports': [
-    //   'error',
-    //   {
-    //     patterns: [
-    //       '@material-ui/*/*/*',
-    //       '!@material-ui/core/test-utils/*',
-    //       '!@material-ui/utils/macros/*.macro',
-    //     ],
-    //   },
-    // ],
     // 'nonblock-statement-body-position': 'error',
     // // Airbnb restricts isNaN and isFinite which are necessary for IE 11
     // // we have to be disciplined about the usage and ensure the Number type for its
@@ -60,18 +81,12 @@ module.exports = {
     // 'prefer-arrow-callback': ['error', { allowNamedFunctions: true }],
     // 'prefer-destructuring': 'off', // Destructuring harm grep potential.
 
-    // 'jsx-a11y/label-has-associated-control': 'off',
     // 'jsx-a11y/label-has-for': 'off', // deprecated
     // 'jsx-a11y/no-autofocus': 'off', // We are a library, people do what they want.
 
     // 'material-ui/docgen-ignore-before-comment': 'error',
 
-    // // This rule is great for raising people awareness of what a key is and how it works.
-    // 'react/no-array-index-key': 'off',
     // // It's buggy
-    // 'react/forbid-prop-types': 'off',
-    // 'react/jsx-curly-brace-presence': 'off',
-    // 'react/jsx-filename-extension': ['error', { extensions: ['.js'] }], // airbnb is using .jsx
     // 'react/jsx-handler-names': [
     //   'error',
     //   {
@@ -84,14 +99,10 @@ module.exports = {
     // 'react/no-danger': 'error',
     // // Strict, airbnb is using off
     // 'react/no-direct-mutation-state': 'error',
-    // 'react/no-find-dom-node': 'off',
     // 'react/no-multi-comp': 'off',
-    // 'react/require-default-props': 'off',
     // 'react/sort-prop-types': 'error',
     // // This depends entirely on what you're doing. There's no universal pattern
-    // 'react/state-in-constructor': 'off',
     // // stylistic opinion. For conditional assignment we want it outside, otherwise as static
-    // 'react/static-property-placement': 'off',
     // 'import/namespace': ['error', { allowComputed: true }],
     // 'import/order': [
     //   'error',
@@ -186,14 +197,33 @@ module.exports = {
       },
     },
     {
-      files: ['*.spec.tsx'],
+      files: ['*.tsx'],
+      rules: {
+        'react/prop-types': 'off',
+      },
+    },
+    {
+      files: ['*.spec.tsx', '*.spec.ts'],
       rules: {
         '@typescript-eslint/no-unused-expressions': 'off',
         '@typescript-eslint/no-unused-vars': 'off',
-        'max-classes-per-file': 'off',
+        '@typescript-eslint/no-use-before-define': 'off',
+        'import/prefer-default-export': 'off',
+        'jsx-a11y/anchor-has-content': 'off',
+        'jsx-a11y/anchor-is-valid': 'off',
+        'no-alert': 'off',
+        'no-console': 'off',
+        'no-empty-pattern': 'off',
         'no-lone-blocks': 'off',
+        'no-shadow': 'off',
+        'react/default-props-match-prop-types': 'off',
+        'react/no-access-state-in-setstate': 'off',
+        'react/no-unused-prop-types': 'off',
         'react/prefer-stateless-function': 'off',
         'react/prop-types': 'off',
+        'react/require-default-props': 'off',
+        'react/state-in-constructor': 'off',
+        'react/static-property-placement': 'off',
       },
     },
   ],

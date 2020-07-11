@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import responsiveFontSizes from './responsiveFontSizes';
 import { createMuiTheme } from '@material-ui/core/styles';
+import responsiveFontSizes from './responsiveFontSizes';
 
 describe('responsiveFontSizes', () => {
   it('should support unitless line height', () => {

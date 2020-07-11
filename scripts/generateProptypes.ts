@@ -140,6 +140,8 @@ const getSortLiteralUnions: ttp.InjectOptions['getSortLiteralUnions'] = (compone
   ) {
     return sortBreakpointsLiteralByViewportAscending;
   }
+
+  return undefined;
 };
 
 const tsconfig = ttp.loadConfig(path.resolve(__dirname, '../tsconfig.json'));

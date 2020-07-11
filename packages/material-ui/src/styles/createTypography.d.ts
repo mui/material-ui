@@ -1,5 +1,5 @@
-import { Palette } from './createPalette';
 import * as React from 'react';
+import { Palette } from './createPalette';
 import { CSSProperties } from './withStyles';
 
 export type Variant =

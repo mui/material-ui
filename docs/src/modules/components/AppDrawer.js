@@ -84,7 +84,7 @@ function renderNavItems(options) {
   return (
     <List>
       {pages.reduce(
-        // eslint-disable-next-line no-use-before-define
+        // eslint-disable-next-line @typescript-eslint/no-use-before-define
         (items, page) => reduceChildRoutes({ items, page, ...params }),
         [],
       )}

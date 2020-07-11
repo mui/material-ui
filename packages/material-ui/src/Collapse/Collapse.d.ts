@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { StandardProps } from '..';
-import { Theme } from '../styles/createMuiTheme';
 import { TransitionProps } from '../transitions/transition';
 
 export interface CollapseProps extends StandardProps<TransitionProps, CollapseClassKey, 'timeout'> {

@@ -1,7 +1,6 @@
-import { Theme as DefaultTheme } from './createMuiTheme';
 import { ClassNameMap, Styles, WithStylesOptions } from '@material-ui/styles/withStyles';
-
 import { Omit } from '@material-ui/types';
+import { Theme as DefaultTheme } from './createMuiTheme';
 
 /**
  * `makeStyles` where the passed `styles` do not depend on props

@@ -3,8 +3,8 @@ import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
-import describeConformance from '../test-utils/describeConformance';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
+import describeConformance from '../test-utils/describeConformance';
 import Modal from '../Modal';
 import Dialog from './Dialog';
 

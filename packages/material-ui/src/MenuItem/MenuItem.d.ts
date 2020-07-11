@@ -1,7 +1,7 @@
+import { Omit } from '@material-ui/types';
 import { ListItemTypeMap, ListItemProps } from '../ListItem';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ExtendButtonBase } from '../ButtonBase';
-import { Omit } from '@material-ui/types';
 
 export type MenuItemClassKey = 'root' | 'gutters' | 'selected' | 'dense';
 

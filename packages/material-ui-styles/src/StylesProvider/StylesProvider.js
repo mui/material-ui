@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { exactProp } from '@material-ui/utils';
-import createGenerateClassName from '../createGenerateClassName';
 import { create } from 'jss';
+import createGenerateClassName from '../createGenerateClassName';
 import jssPreset from '../jssPreset';
 
 // Default JSS instance.

@@ -3,12 +3,12 @@ import { expect } from 'chai';
 import { findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { createClientRender } from 'test/utils/createClientRender';
 import describeConformance from '../test-utils/describeConformance';
 import Slide from '../Slide';
 import Paper from '../Paper';
 import Modal from '../Modal';
 import Drawer, { getAnchor, isHorizontal } from './Drawer';
-import { createClientRender } from 'test/utils/createClientRender';
 
 describe('<Drawer />', () => {
   // StrictModeViolation: uses Slide

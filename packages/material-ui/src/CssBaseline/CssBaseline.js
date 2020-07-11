@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import withStyles from '../styles/withStyles';
 import { exactProp } from '@material-ui/utils';
+import withStyles from '../styles/withStyles';
 
 export const html = {
   WebkitFontSmoothing: 'antialiased', // Antialiasing.
@@ -46,9 +46,8 @@ export const styles = (theme) => ({
  * Kickstart an elegant, consistent, and simple baseline to build upon.
  */
 function CssBaseline(props) {
-  /* eslint-disable no-unused-vars */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { children = null, classes } = props;
-  /* eslint-enable no-unused-vars */
   return <React.Fragment>{children}</React.Fragment>;
 }
 

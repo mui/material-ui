@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { StandardProps } from '..';
-import { Orientation } from '../Stepper';
 
 export interface StepProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, StepClasskey> {

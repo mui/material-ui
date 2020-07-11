@@ -4,11 +4,11 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
+import { act, createClientRender, fireEvent } from 'test/utils/createClientRender';
+import * as PropTypes from 'prop-types';
 import describeConformance from '../test-utils/describeConformance';
 import TouchRipple from './TouchRipple';
 import ButtonBase from './ButtonBase';
-import { act, createClientRender, fireEvent } from 'test/utils/createClientRender';
-import * as PropTypes from 'prop-types';
 
 /**
  * @param {HTMLElement} element

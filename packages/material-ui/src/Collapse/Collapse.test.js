@@ -4,14 +4,14 @@ import { spy, stub, useFakeTimers } from 'sinon';
 import { createClientRender } from 'test/utils/createClientRender';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
-import describeConformance from '../test-utils/describeConformance';
-import Collapse from './Collapse';
 import {
   ThemeProvider,
   createMuiTheme,
   unstable_createMuiStrictModeTheme as createMuiStrictModeTheme,
 } from '@material-ui/core/styles';
 import { Transition } from 'react-transition-group';
+import describeConformance from '../test-utils/describeConformance';
+import Collapse from './Collapse';
 
 describe('<Collapse />', () => {
   // StrictModeViolation: uses react-transition-group
