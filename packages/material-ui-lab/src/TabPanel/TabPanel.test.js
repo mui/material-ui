@@ -1,3 +1,4 @@
+// @ts-check
 import * as React from 'react';
 import { expect } from 'chai';
 import { getClasses } from '@material-ui/core/test-utils';
@@ -9,17 +10,24 @@ import TabContext from '../TabContext';
 
 describe('<TabPanel />', () => {
   const mount = createMount();
+  /**
+   * @type {Record<string, string>}
+   */
   let classes;
   const render = createClientRender();
 
   before(() => {
-    classes = getClasses(<TabPanel value={0} />);
+    classes = getClasses(<TabPanel value="0" />);
   });
 
   describeConformance(<TabPanel value="0" />, () => ({
     classes,
     inheritComponent: 'div',
-    mount: (element) => mount(<TabContext value="0">{element}</TabContext>),
+    mount:
+      /**
+       * @param {HTMLElement} element
+       */
+      (element) => mount(<TabContext value="0">{element}</TabContext>),
     refInstanceof: window.HTMLDivElement,
     skip: ['componentProp', 'reactTestRenderer'],
   }));
