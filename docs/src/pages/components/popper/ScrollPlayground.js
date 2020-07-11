@@ -115,7 +115,7 @@ export default function ScrollPlayground() {
     rootBoundary: 'document',
   });
   const [preventOverflow, setPreventOverflow] = React.useState({
-    enabled: false,
+    enabled: true,
     altAxis: true,
     altBoundary: true,
     tether: true,
