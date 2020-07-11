@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function VirtualElementPopper() {
   const [open, setOpen] = React.useState(false);
-  const [anchorEl, setAnchorEl] = React.useState<PopperProps['anchorEl']>(null);
+  const [anchorEl, setAnchorEl] = React.useState<PopperProps.anchorEl>(null);
   const classes = useStyles();
 
   const handleClose = () => {
@@ -40,7 +40,7 @@ export default function VirtualElementPopper() {
     });
   };
 
-  const id = open ? 'faked-reference-popper' : undefined;
+  const id = open ? 'virtual-element-popper' : undefined;
 
   return (
     <div onMouseLeave={handleClose}>
