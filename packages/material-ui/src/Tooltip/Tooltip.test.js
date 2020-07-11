@@ -811,7 +811,7 @@ describe('<Tooltip />', () => {
             popperOptions: {
               modifiers: [
                 {
-                  name: 'foobar',
+                  name: 'arrow',
                   options: {
                     foo: 'bar',
                   },
@@ -826,8 +826,12 @@ describe('<Tooltip />', () => {
         </Tooltip>,
       );
       expect(
-        popperRef.current.state.options.modifiers.find((x) => x.name === 'foobar').options.foo,
+        popperRef.current.state.orderedModifiers.modifiers.find((x) => x.name === 'arrow').options
+          .foo,
       ).to.equal('bar');
+      expect(
+        popperRef.current.state.orderedModifiers.modifiers.find((x) => x.name === 'arrow').enabled,
+      ).to.equal(true);
 
       // TOD: Unclear why not running triggers microtasks but runAll does not trigger microtasks
       // can be removed once Popper#update is sync
