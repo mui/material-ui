@@ -37,7 +37,7 @@ function getAnchorEl(anchorEl) {
 const defaultPopperOptions = {};
 
 /**
- * Poppers rely on the 3rd party library [Popper.js](https://popper.js.org/docs/v1/) for positioning.
+ * Poppers rely on the 3rd party library [Popper.js](https://popper.js.org/docs/v2/) for positioning.
  */
 const Popper = React.forwardRef(function Popper(props, ref) {
   const {
@@ -243,7 +243,7 @@ Popper.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * A HTML element, [referenceObject](https://popper.js.org/docs/v1/#referenceObject),
+   * A HTML element, [virtualElement](https://popper.js.org/docs/v2/virtual-elements/),
    * or a function that returns either.
    * It's used to set the position of the popper.
    * The return value will passed as the reference object of the Popper instance.
@@ -328,9 +328,31 @@ Popper.propTypes = {
    * A modifier is a function that is called each time Popper.js needs to
    * compute the position of the popper.
    * For this reason, modifiers should be very performant to avoid bottlenecks.
-   * To learn how to create a modifier, [read the modifiers documentation](https://popper.js.org/docs/v1/#modifiers).
+   * To learn how to create a modifier, [read the modifiers documentation](https://popper.js.org/docs/v2/modifiers/).
    */
-  modifiers: PropTypes.array,
+  modifiers: PropTypes.arrayOf(
+    PropTypes.shape({
+      data: PropTypes.object,
+      effect: PropTypes.func,
+      enabled: PropTypes.bool,
+      fn: PropTypes.func,
+      name: PropTypes.any.isRequired,
+      options: PropTypes.object,
+      phase: PropTypes.oneOf([
+        'afterMain',
+        'afterRead',
+        'afterWrite',
+        'beforeMain',
+        'beforeRead',
+        'beforeWrite',
+        'main',
+        'read',
+        'write',
+      ]),
+      requires: PropTypes.arrayOf(PropTypes.string),
+      requiresIfExists: PropTypes.arrayOf(PropTypes.string),
+    }),
+  ),
   /**
    * If `true`, the popper is visible.
    */
@@ -354,7 +376,7 @@ Popper.propTypes = {
     'top',
   ]),
   /**
-   * Options provided to the [`popper.js`](https://popper.js.org/docs/v2/) instance.
+   * Options provided to the [`popper.js`](https://popper.js.org/docs/v2/constructors/#options) instance.
    * @default {}
    */
   popperOptions: PropTypes.object,

@@ -1,21 +1,9 @@
 import * as React from 'react';
-import PopperJs, { ReferenceObject } from 'popper.js';
+import { Instance, VirtualElement, ComputedPlacement, Options } from '@popperjs/core';
 import { Omit } from '..';
 import { PortalProps } from '../Portal';
 
-export type PopperPlacementType =
-  | 'bottom-end'
-  | 'bottom-start'
-  | 'bottom'
-  | 'left-end'
-  | 'left-start'
-  | 'left'
-  | 'right-end'
-  | 'right-start'
-  | 'right'
-  | 'top-end'
-  | 'top-start'
-  | 'top';
+export type PopperPlacementType = ComputedPlacement;
 
 export interface PopperProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
   ref?: React.Ref<HTMLDivElement>;
@@ -25,7 +13,7 @@ export interface PopperProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 
    * It's used to set the position of the popper.
    * The return value will passed as the reference object of the Popper instance.
    */
-  anchorEl?: null | ReferenceObject | (() => ReferenceObject);
+  anchorEl?: null | VirtualElement | (() => VirtualElement);
   /**
    * Popper render function or node.
    */
@@ -68,7 +56,7 @@ export interface PopperProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 
    * For this reason, modifiers should be very performant to avoid bottlenecks.
    * To learn how to create a modifier, [read the modifiers documentation](https://popper.js.org/docs/v2/modifiers/).
    */
-  modifiers?: [];
+  modifiers?: Options['modifiers'];
   /**
    * If `true`, the popper is visible.
    */
@@ -86,7 +74,7 @@ export interface PopperProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 
   /**
    * A ref that points to the used popper instance.
    */
-  popperRef?: React.Ref<PopperJs>;
+  popperRef?: React.Ref<Instance>;
   /**
    * Help supporting a react-transition-group/Transition component.
    * @default false
