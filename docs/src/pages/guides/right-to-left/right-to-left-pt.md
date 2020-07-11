@@ -1,6 +1,6 @@
 # Da direita para a esquerda
 
-<p class="description">Idiomas direita-para-esquerda como árabe, persa ou hebraico são suportados. Para alterar a direção dos componentes de Material-UI, você deve seguir as etapas a seguir.</p>
+<p class="description">Idiomas da direita para esquerda como árabe, persa ou hebraico são suportados. Para alterar a direção dos componentes de Material-UI, você deve seguir as etapas a seguir.</p>
 
 ## Passos
 
@@ -24,7 +24,7 @@ const theme = createMuiTheme({
 
 ### 3. jss-rtl
 
-Você precisa deste plugin JSS para mudar os estilos: [jss-rtl](https://github.com/alitaheri/jss-rtl).
+Você precisa deste plugin JSS para inverter os estilos: [jss-rtl](https://github.com/alitaheri/jss-rtl).
 
 ```sh
 npm install jss-rtl

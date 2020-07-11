@@ -73,7 +73,7 @@ Você pode aprender mais na página [useMediaQuery](/components/use-media-query/
 import withWidth from '@material-ui/core/withWidth';
 
 function MyComponent(props) {
-  return <div>{`Current width: ${props.width}`}</div>;
+  return <div>{`Largura atual: ${props.width}`}</div>;
 }
 
 export default withWidth()(MyComponent);

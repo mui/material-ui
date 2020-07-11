@@ -5,11 +5,11 @@ components: TreeView, TreeItem
 
 # Visualização em árvore
 
-<p class="description">Um widget de exibição em árvore apresentando uma lista hierárquica.</p>
+<p class="description">Um modo de visualização em árvore apresentando uma lista hierárquica.</p>
 
-As visualizações em árvore podem ser usadas para representar um navegador do sistema de arquivos que exibe pastas e arquivos, um item que representa uma pasta pode ser expandido para revelar o conteúdo da pasta, que pode ser arquivos, pastas ou ambos.
+As visualizações em árvore podem ser usadas para representar um navegação no sistema de arquivos para exibir pastas e arquivos, um item representando uma pasta pode ser expandido para revelar o conteúdo da pasta, que pode ser arquivos, pastas ou ambos.
 
-## Modo básico de exibição de árvore
+## Modo básico de visualização em árvore
 
 {{"demo": "pages/components/tree-view/FileSystemNavigator.js"}}
 
@@ -21,13 +21,13 @@ Visualizações de árvore também suportam seleção múltipla.
 
 ### Visualização em árvore controlada
 
-A visualização em árvore também oferece uma API controlada.
+A visualização em árvore também oferece uma API para controle.
 
 {{"demo": "pages/components/tree-view/ControlledTreeView.js"}}
 
-## Objeto rico
+## Objeto complexo
 
-Enquanto o componente `TreeView`/`TreeItem` maximiza a flexibilidade, um passo extra é necessário para lidar com um objeto rico.
+Enquanto o componente `TreeView`/`TreeItem` maximiza a flexibilidade, um passo extra é necessário para lidar com um objetos complexos.
 
 Vamos considerar uma variável de dados com a seguinte estrutura, a recursão pode ser usada para lidar com este cenário.
 

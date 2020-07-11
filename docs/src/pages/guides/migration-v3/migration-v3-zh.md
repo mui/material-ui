@@ -1,18 +1,18 @@
-# 从v3版本迁移到v4版本
+# 从 v3 迁移到 v4 版本
 
-<p class="description">是的，我们已经发布了v4版本！</p>
+<p class="description">是的，我们已经发布了 v4 版本！</p>
 
-您在找v3版本的文档吗？ [您可以在这里找到它们](https://material-ui.com/versions/) 。
+您还在找 v3 版本的文档吗？ [您可以在这里找到它们](https://material-ui.com/versions/) 。
 
 > 此文档尚未完成。 您是否已经升级了站点并且遇到了一些并没有在此涉及的问题？ [请在 GitHub 添加您的更改](https://github.com/mui-org/material-ui/blob/master/docs/src/pages/guides/migration-v3/migration-v3.md)。
 
 ## 简介
 
-当您将站点从 Material-UI 的v3版本升级到v4版本时，此篇会给您提供一些参考。 您可能不会将这里所有覆盖的内容运用到你的站点上。 我们会尽我们最大的努力让文档简单易懂，并尽可能有序地介绍，这样您可以迅速对v4版本游刃有余。
+当您将站点从 Material-UI 的 v3 版本升级到 v4 版本时，此篇会给您提供一些参考。 您可能不会将这里所有涵盖的内容运用到你的站点上。 我们会尽我们最大的努力让文档简单易懂，并尽可能有序地介绍，这样您可以迅速对 v4 版本游刃有余。
 
-## 为什么您需要迁移
+## 为什么您需要迁移呢
 
-此文档介绍了*h如何*从v3版本迁移到v4版本。 关于迁移的*原因*，我们则在 [Medium上发布了一篇博客](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701)来详细解说。
+此文档介绍了*如何*从 v3 版本迁移到 v4 版本。 关于迁移的*原因*，我们则在 [Medium上发布了一篇博客](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701)来详细解说。
 
 ## 更新您的依赖包
 
@@ -44,7 +44,7 @@ yarn add @material-ui/core
 
 ### 更新 Material-UI Styles 的版本
 
-若您以前使用v3版本的 `@material-ui/styles`，您则需要更新 `package.json`，这样才能使用最新版本的 Material-UI Styles。
+若您以前使用 v3 版本的 `@material-ui/styles`，您则需要更新 `package.json`，这样才能使用最新版本的 Material-UI Styles。
 
 ```json
 "dependencies": {
@@ -66,28 +66,28 @@ yarn add @material-ui/styles
 
 ### Core
 
-- 每个组件会提供他们的 ref。 这是通过使用 `React.forwardRef()` 实现的。 这回影响到内部的组件树和显示的名称，进而会使得 shallow 或者 snapshot 测试崩溃。 `innerRef` 不再返回一个实例的 ref（或者当内部组件是一个函数组件时，什么都不返回），而是返回一个它根组件的 ref。 相应的 API 文档在根组件中列出了。
+- 每个组件会提供他们的 ref。 这是通过使用 `React.forwardRef()` 实现的。 这回影响到内部的组件树和显示的名称，进而会使得 shallow 或者 snapshot 测试崩溃。 `innerRef` 不再返回一个实例的 ref（或者当内部组件是一个函数组件时，什么都不返回），而是返回一个它根组件的 ref。 我们已经将相应的 API 文档在根组件中列出。
 
 ### Styles（样式表单）
 
-- ⚠️ Material-UI 依赖于 JSS v10版本。 JSS v10版本与v9版本不向后兼容。 请保证您的开发环境中未安装 JSS v9版本。 （在您的 `package.json` 中删除 `react-jss` 会有所帮助）。 StylesProvider 组件替代了 JssProvider 组件。
-- 请移除 `withTheme()` 中的第一个可选的参数。 （第一个参数是从未出现的可能会是未来选项的占位符。）
+- ⚠️ Material-UI 依赖于 JSS 的 v10 版本。 JSS v10 版本与 v9 版本不向后兼容。 请保证您的开发环境中未安装 JSS v9 版本。 （在您的 `package.json` 中删除 `react-jss` 会有所帮助）。 StylesProvider 组件替代了 JssProvider 组件。
+- 请移除 `withTheme()` 中的第一个可选的参数。 （第一个参数是为从未出现的可能的未来选项的一个占位符。）
   
-    它与[emotion 的 API](https://emotion.sh/docs/introduction) 以及 [styled-components 的 API ](https://www.styled-components.com) 相匹配。
+    它与 [emotion 的 API](https://emotion.sh/docs/introduction) 以及 [styled-components 的 API ](https://www.styled-components.com) 相匹配。
 
 ```diff
   -const DeepChild = withTheme()(DeepChildRaw);
   +const DeepChild = withTheme(DeepChildRaw);
   ```
 
-- Rename `convertHexToRGB` to `hexToRgb`.
+- 将 `convertHexToRGB` 重命名为 `hexToRgb`。
 
   ```diff
   -import { convertHexToRgb } from '@material-ui/core/styles/colorManipulator';
   +import { hexToRgb } from '@material-ui/core/styles';
   ```
 
-- Scope the [keyframes API](https://cssinjs.org/jss-syntax/#keyframes-animation). 您应该在您的代码中做出以下改变。
+- 限制其范围 [keyframes API] (https://cssinjs.org/jss-syntax/#keyframes-animation)。 您应该在您的代码中做出以下改变。
   这对分离动画的逻辑有所帮助：
 
   ```diff
@@ -105,7 +105,7 @@ yarn add @material-ui/styles
       },
     },
   ```
-  若想要正确地使用它，您必须使用返回值。
+  若想要正确地使用它，您必须使用其返回值。
 
   ```diff
   -const background = { main: color };
@@ -125,15 +125,15 @@ yarn add @material-ui/styles
 
 —我们已经不再使用`theme.spacing.unit`，请参照新的 API：
 
-  您可以在项目中使用 [迁移小帮手](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api)来让您的迁移流程更加顺畅。
+  您可以在项目中使用 [迁移小帮手](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api) 来让您的迁移流程更加顺畅。
 
 ### Layout（布局）
 
-- [Grid] 本着支持任意间距值并且摈弃心理上一直需要在8的基础上计数的目的，我们改变了 spacing 的 API: 
+- [Grid] 本着支持任意间距值，并且摈弃心理上一直需要在 8 的基础上作计数的目的，我们改变了 spacing 的 API: 
 
   ```diff
     /**
-     * 在类别为`item` 组件之间定义间距。
+     * 在类别为 `item` 的组件之间定义间距。
      * 它只能用于类型为 `container` 的组件。
      */
   -  spacing: PropTypes.oneOf([0, 8, 16, 24, 32, 40]),
@@ -151,8 +151,7 @@ yarn add @material-ui/styles
 
 #### `value` 类型 
 
-将 input 组件的 `value` 属性的类型正常化，这样可以使用 `unknown`了。 这会影响
-`InputBase`，`NativeSelect`，`OutlinedInput`，`Radio`，`RadioGroup`，`Select`，`SelectInput`，`TextArea` 和 `TextField`。
+将 input 组件的 `value` 属性的类型正常化，这样可以使用 `unknown`了。 这会影响 `InputBase`，`NativeSelect`，`OutlinedInput`，`Radio`，`RadioGroup`，`Select`，`SelectInput`，`TextArea` 和 `TextField`。
 
 ```diff
 function MySelect({ children }) {
@@ -165,7 +164,7 @@ function MySelect({ children }) {
 }
 ```
 
-[TypeScript 指南](/guides/typescript/#handling-value-and-event-handlers) 中对此更改进行了更详细的说明
+我们在 [TypeScript 指南中](/guides/typescript/#handling-value-and-event-handlers)更详细地解释了此变更。
 
 ### Buttons（按钮）
 
@@ -195,9 +194,9 @@ function MySelect({ children }) {
   +<Fab variant="extended" />
   ```
 
-- [ButtonBase] 传递给`组件`的属性的组件需要能接受一个 ref。 [组合指南](/guides/composition/#caveat-with-refs)解释了迁移的策略。
+- [ButtonBase] 传递给`组件`的属性的组件需要能接受一个 ref。 我们在 [组合指南](/guides/composition/#caveat-with-refs) 中解释了迁移的策略。
   
-    在 `BottomNavigationAction`，`Button`，`CardActionArea`，`Checkbox`，`ExpansionPanelSummary`，`Fab`，`IconButton`，`MenuItem`，`Radio`，`StepButton`，`Tab`，`TableSortLabel` 以及 `ListItem` 上，若它们的 `button` 属性是 true，则也适用。
+    当 `button` 属性设置为 true 时，这也适用于 `BottomNavigationAction`，`Button`，`CardActionArea`，`Checkbox`，`ExpansionPanelSummary`，`Fab`，`IconButton`，`MenuItem`，`Radio`，`StepButton`，`Tab`，`TableSortLabel` 以及 `ListItem`。
 
 ### Cards（卡片）
 
@@ -214,7 +213,7 @@ function MySelect({ children }) {
 - [DialogActions] 将 `disableActionSpacing` 属性重命名为 `disableSpacing`。
 - [DialogActions] 将CSS类 `action` 重命名为 `spacing`。
 - [DialogContentText] 不使用文字铸排变体 `subtitle1`，而使用 `body1`。
-- [Dialog] 子组件能够接受一个 ref。 [组合指南](/guides/composition/#caveat-with-refs)解释了迁移的策略。
+- [Dialog] 子组件能够接受一个 ref。 我们在 [组合指南](/guides/composition/#caveat-with-refs) 中解释了迁移的策略。
 
 ### Dividers（分隔线）
 
@@ -391,7 +390,7 @@ function MySelect({ children }) {
   +<Typography variantMapping={variantMapping}>
   ```
 
-- [Typography] 将默认的字体从 `body2` 换成 `body1`。 默认为16px的字体大小比默认为14px好。 Bootstrap，material.io，甚至本文档都使用的是 16px 作为默认字体大小。 像 Ant Design 一样使用14px是可以理解的，因为中国的用户使用了不同的字母表。 建议将 12px 作为日语的默认字体大小。
+- [Typography] 将默认的字体从 `body2` 换成 `body1`。 默认为16px的字体大小比默认为14px好。 Bootstrap，material.io，甚至本文档都使用的是 16px 作为默认字体大小。 像 Ant Design 一样使用14px是可以理解的，因为中国的用户使用了不同的字母表。 我们建议将 12px 作为日语的默认字体大小。
 - [Typography] 移除了铸排变体的默认颜色。 大多数情况下，字体颜色应该是继承而来的。 这是网站的默认行为。
 - [Typography] 按照 [该讨论](https://github.com/mui-org/material-ui/issues/13028) 的逻辑，我们将 `color="default"` 重命名为 `color="initial"`。 您不应该再使用 *default*，它缺少明确的语义。
 

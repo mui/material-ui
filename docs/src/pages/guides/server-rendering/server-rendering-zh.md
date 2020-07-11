@@ -2,16 +2,16 @@
 
 <p class="description">服务器端呈现的最常见用例是在用户（或搜索引擎爬虫）首次请求您的应用时处理初次渲染。</p>
 
-当服务器收到请求时，它会将所需的组件呈现为 HTML 字符串，然后将其作为响应发送给客户端。 从那时起，客户将接管渲染的职责。
+当服务器收到请求时，它会将所需的组件呈现为 HTML 字符串，然后将其作为响应发送给客户端。 从那时起，客户端将接管渲染的职责。
 
 ## 在服务器端的 Material-UI
 
-Material-UI 最初设计受到了在服务器端渲染的约束，但是您可以完全负责它的正确整合。 为页面提供所需的 CSS 是至关重要的，否则页面只会渲染 HTML 而等待客户端注入 CSS, 从而导致浏览器样式闪烁（FOUC）。 若想将样式注入客户端，我们需要：
+Material-UI 最初设计受到了在服务器端渲染的约束，但是您可以完全负责它的正确整合。 为页面提供所需的 CSS 是至关重要的，否则页面只会渲染 HTML 而等待客户端注入 CSS，从而导致浏览器样式闪烁（FOUC）。 若想将样式注入客户端，我们需要：
 
 1. 在每个请求上创建一个全新的 [`ServerStyleSheets`](/styles/api/#serverstylesheets) 实例。
 2. 用服务端收集器渲染 React 树组件。
-3. 拉出 CSS。
-4. 将CSS传递给客户端。
+3. 将 CSS 单独拿出。
+4. 将 CSS 传递给客户端。
 
 在删除服务器端注入的 CSS 之前，客户端将第二次注入 CSS。
 
@@ -21,7 +21,7 @@ Material-UI 最初设计受到了在服务器端渲染的约束，但是您可�
 
 ### 主题
 
-创建一个客户端和服务端之间共享的主题。
+创建一个在客户端和服务端之间共享的主题：
 
 `theme.js`
 
@@ -46,18 +46,20 @@ const theme = createMuiTheme({
     },
   },
 });
+
+export default theme;
 ```
 
 ### 服务器端
 
-以下是服务端渲染的概要。 我们将使用 [app.use](https://expressjs.com/en/api.html) 建立一个 [Express 中间件](https://expressjs.com/en/guide/using-middleware.html) 来处理所有进入服务器的请求。 如果您不熟悉 Express 或中间件的概念，那么只需要知道每次服务器收到请求时都会调用 handleRender 函数就可以了。
+下面的大纲可以大致展现一下服务器端。 我们将使用 [app.use](https://expressjs.com/en/api.html) 建立一个 [Express 中间件](https://expressjs.com/en/guide/using-middleware.html) 来处理所有进入服务器的请求。 如果您不熟悉 Express 或中间件（middleware）的概念，那么只需要知道每次服务器收到请求时都会调用 handleRender 函数就可以了。
 
 `server.js`
 
 ```js
 import express from 'express';
 
-// 我们将在章节中填写这些内容来遵守。
+// 我们将在章节中填写这些需要遵守的内容。
 function renderFullPage(html, css) {
   /* ... */
 }
@@ -79,11 +81,11 @@ app.listen(port);
 
 对于每次请求，我们首先需要做的是创建一个 `ServerStyleSheets`。
 
-当渲染时，我们将把根组件 `App` 包裹在 [`StylesProvider`](/styles/api/#stylesprovider) 和 [`ThemeProvider`](/styles/api/#themeprovider) 中，以使样式配置和 `主题` 对组件树中的所有组件都可用。
+当渲染时，我们将把根组件 `App` 包裹在 [`StylesProvider`](/styles/api/#stylesprovider) 和 [`ThemeProvider`](/styles/api/#themeprovider) 中，这样组件树中的所有组件都可以使用样式配置和 `theme`。
 
-服务端渲染的关键步骤是在我们将组件的初始 HTML 发送到客户端**之前**就开始进行渲染。 我们用 [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html) 来实现此操作。
+服务端渲染的关键步骤是，在将组件的初始 HTML 发送到客户端**之前**，就开始进行渲染。 我们用 [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html) 来实现此操作。
 
-然后我们就可以使用 `sheets.toString()` 方法从 `sheets` 中获取 CSS。 我们将看到这是如何在 `renderFullPage` 函数中传递这些信息的。
+然后我们就可以使用 `sheets.toString()` 方法从`表单（sheets）`中获取 CSS。 我们将看到在 `renderFullPage` 函数中，是如何传递这些信息的。
 
 ```jsx
 import express from 'express';
@@ -108,7 +110,7 @@ function handleRender(req, res) {
   // 从 sheet 中抓取 CSS。
   const css = sheets.toString();
 
-  // 将渲染的页面送回到客户端。
+  // 将渲染的页面发送回客户端。
   res.send(renderFullPage(html, css));
 }
 
@@ -125,7 +127,7 @@ app.listen(port);
 
 ### 注入组件的初始 HTML 和 CSS
 
-服务端渲染的最后一步是将初始组件的 HTML 和 CSS 注入到客户端要渲染的模板中。
+服务端渲染的最后一步，则是将初始组件的 HTML 和 CSS 注入到客户端要渲染的模板当中。
 
 ```js
 function renderFullPage(html, css) {

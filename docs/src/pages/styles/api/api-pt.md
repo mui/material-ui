@@ -11,7 +11,7 @@ Uma função que retorna [uma função geradora de nome de classe](https://cssin
 1. `options` (*Object* [opcional]): 
   - `options.disableGlobal` (*Boolean* [opcional]): Padrão `false`. Desabilita a geração de nomes de classes determinísticas.
   - `options.productionPrefix` (*String* [opcional]): Padrão `'jss'`. A string usada para prefixar os nomes de classes em produção.
-  - `options.seed` (*String* [opcional]): Padrão `''`. A string u usada unicamente para identificar o gerador. Ela pode ser usada para evitar colisões de nomes de classes ao usar vários geradores no mesmo documento.
+  - `options.seed` (*String* [opcional]): Padrão `''`. A string usada unicamente para identificar o gerador. Ela pode ser usada para evitar colisões de nomes de classes ao usar vários geradores no mesmo documento.
 
 ### Retornos
 
@@ -36,7 +36,7 @@ export default function App() {
 
 ## `createStyles(styles) => styles`
 
-Esta função realmente não "faz nada" em tempo de execução, é apenas uma função de identidade. Sua única finalidade é prevenir a ampliação de tipos do **TypeScript**, ao fornecer regras de estilo para `makeStyles`/`withStyles` que são uma função do `Tema`.
+Esta função realmente não "faz nada" em tempo de execução, é apenas uma função de identidade. Sua única finalidade é lidar com a ampliação de tipos do **TypeScript**, ao fornecer regras de estilo para `makeStyles`/`withStyles` que são uma função do `tema`.
 
 ### Argumentos
 
@@ -101,7 +101,7 @@ export default function MyComponent(props) {
 
 ## `ServerStyleSheets`
 
-Esta é uma classe auxiliar para manipular a renderização do lado do servidor. [Você pode seguir este guia para uma abordagem prática](/guides/server-rendering/).
+Esta é uma classe utilitária para manipular a renderização do lado do servidor. [Você pode seguir este guia para uma abordagem prática](/guides/server-rendering/).
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';
@@ -130,7 +130,7 @@ A instanciação aceita um objeto de opções como primeiro argumento.
 
 ### `sheets.collect(node) => Elemento React`
 
-O método envolve seu nó React em um elemento provider. Ele coleta as folhas de estilo durante a renderização para que elas possam ser enviadas posteriormente ao cliente.
+O método envolve seu nó React em um elemento provedor. Ele coleta as folhas de estilo durante a renderização para que elas possam ser enviadas posteriormente ao cliente.
 
 ### `sheets.toString() => CSS string`
 
@@ -194,7 +194,7 @@ Este componente permite que você altere o comportamento da solução de estilo.
 
 Deve preferencialmente ser usado na **raiz da sua árvore de componentes**.
 
-### Props
+### Propriedades
 
 | Nome              | Tipo   | Padrão | Descrição                                                                                                                                                                                                                                                                                                                                               |
 |:----------------- |:------ |:------ |:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -225,7 +225,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 Este componente tem uma propriedade `theme`, e se torna disponível pela árvore React graças ao contexto. Deve preferencialmente ser usado na **raiz da sua árvore de componentes**.
 
-### Props
+### Propriedades
 
 | Nome            | Tipo                                     | Padrão | Descrição                                                                     |
 |:--------------- |:---------------------------------------- |:------ |:----------------------------------------------------------------------------- |
@@ -253,7 +253,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 ## `useTheme() => theme`
 
-Este hook retorna o objeto `theme`, para que possa ser usado dentro de um componente retornado por função.
+Este hook retorna o objeto `theme`, para que possa ser usado dentro de um componente de função.
 
 ### Retornos
 
@@ -274,21 +274,21 @@ export default function MyComponent() {
 
 ## `withStyles(styles, [options]) => higher-order component`
 
-Vincula uma folha de estilos com um componente usando o padrão de **higher-order component**. Ele não modifica o componente passados para ele; em vez disso, ele retorna um novo componente, com a propriedade `classes`. Este objeto `classes` contém o nome das classes inseridas no DOM.
+Vincula uma folha de estilos com um componente usando o padrão de **higher-order component**. Ele não modifica o componente passado para ele; em vez disso, ele retorna um novo componente, com a propriedade `classes`. Este objeto `classes` contém o nome das classes inseridas no DOM.
 
 Alguns detalhes de implementação que podem ser interessantes para estar ciente:
 
 - Adiciona uma propriedade `classes`, assim você pode substituir, a partir do exterior, os nomes de classe previamente injectados.
-- Ele encaminha refs para o componente interno.
+- Ela encaminha refs para o componente interno.
 - A propriedade `innerRef` está descontinuada. Em vez disso, use `ref`.
-- Ele **não** faz copia sobre estáticos. Por exemplo, pode ser usado para definir um método estático (next.js) `getInitialProps()`.
+- Ela **não** faz copia sobre estáticos. Por exemplo, pode ser usado para definir um método estático (next.js) `getInitialProps()`.
 
 ### Argumentos
 
 1. `styles` (*Function | Object*): Uma função que gera os estilos ou um objeto de estilos. Ela será vinculada ao componente. Use a assinatura da função se você precisar ter acesso ao tema. É fornecido como o primeiro argumento.
 2. `options` (*Object* [opcional]): 
   - `options.defaultTheme` (*Object* [opcional]): O tema padrão a ser usado se um tema não for fornecido por meio de um provedor de temas.
-  - `options.withTheme` (*Boolean* [opcional]): Padrão `false`. Fornecer o objeto `theme` para o componente como uma propriedade.
+  - `options.withTheme` (*Boolean* [opcional]): Padrão `false`. Fornece o objeto `theme` para o componente como uma propriedade.
   - `options.name` (*String* [opcional]): O nome da folha de estilo. Útil para depuração. Se o valor não for fornecido, ele tentará usar o nome do componente.
   - `options.flip` (*Boolean* [opcional]): Quando definido como `false`, está folha irá cancelar a transformação `rtl`. Quando definido para `true`, os estilos são invertidos. Quando definido para `null`, segue `theme.direction`.
   - As outras chaves são encaminhadas para o argumento de opções do [jss.createStyleSheet ([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet).
@@ -316,7 +316,7 @@ function MyComponent(props) {
 export default withStyles(styles)(MyComponent);
 ```
 
-Além disso, você pode usar como [decoradores](https://babeljs.io/docs/en/babel-plugin-proposal-decorators) dessa forma:
+Além disso, você pode usar com [decoradores](https://babeljs.io/docs/en/babel-plugin-proposal-decorators) dessa forma:
 
 ```jsx
 import React from 'react';

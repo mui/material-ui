@@ -1,14 +1,14 @@
 # Minimizando o tamanho do pacote
 
-<p class="description">Saiba mais sobre as ferramentas que você pode aproveitar para reduzir o tamanho do pacote.</p>
+<p class="description">Saiba mais sobre as ferramentas que você pode usar para reduzir o tamanho do pacote.</p>
 
 ## Tamanho do pacote importa
 
-O tamanho do pacote de Material-UI é levado muito a sério. Fotos contendo o tamanho do pacote são feitas em cada commit e partes críticas dos pacotes([veja a última foto](/size-snapshot)). Combinado com [dangerJS](https://danger.systems/js/) podemos inspecionar [alterações detalhadas no tamanho do pacote](https://github.com/mui-org/material-ui/pull/14638#issuecomment-466658459) em cada solicitação de Pull Request.
+O tamanho do pacote do Material-UI é levado muito a sério. Fotos contendo o tamanho do pacote são feitas em cada commit e partes críticas dos pacotes([veja a última foto](/size-snapshot)). Combinado com [dangerJS](https://danger.systems/js/) podemos inspecionar [alterações detalhadas no tamanho do pacote](https://github.com/mui-org/material-ui/pull/14638#issuecomment-466658459) em cada solicitação de Pull Request.
 
 ## Quando e como usar tree-shaking?
 
-Tree-shaking no Material-UI funciona de uma forma moderna. Material-UI expõe sua API completa na importação do nível superior `material-ui`. Se você estiver usando módulos ES6 e um bundler que suporta tree-shaking ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` com uma propriedade definida](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) você pode usar com segurança importações nomeadas e ainda assim, obter automaticamente um tamanho otimizado do pacote:
+Tree-shaking no Material-UI funciona de uma forma moderna. Material-UI expõe sua API completa na importação de nível superior `material-ui`. Se você estiver usando módulos ES6 e um bundler que suporta tree-shaking ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` com uma propriedade definida](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) você pode usar com segurança importações nomeadas e ainda assim, obter automaticamente um tamanho otimizado do pacote:
 
 ```js
 import { Button, TextField } from '@material-ui/core';
@@ -40,7 +40,7 @@ import { Button, TextField } from '@material-ui/core';
 
 Esta é a opção que apresentamos em todas as demonstrações, pois não exige qualquer configuração. É o mais recomendável para autores de biblioteca que estendem os componentes. Vá até [Opção 2](#option-2) para uma abordagem que produz uma melhor DX e UX.
 
-Ao importar diretamente dessa maneira, não utiliza as exportações em [`@material-ui/core/index.js`](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/index.js), esse arquivo pode servir como uma referência útil para quais módulos são públicos.
+Ao importar diretamente dessa maneira acima, não utiliza as exportações em [`@material-ui/core/index.js`](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/index.js), esse arquivo pode servir como uma referência útil para quais módulos são públicos.
 
 Esteja ciente de que apenas damos suporte para as importações de primeiro e segundo nível. Qualquer coisa em níveis mais profundos é considerado privado e pode causar problemas, como a duplicação de módulos em seu pacote.
 
@@ -201,7 +201,7 @@ Se você estiver usando Create React App, você precisará usar alguns projetos 
 
 #### 2. Converta todas as suas importações
 
-Finalmeny, você pode converter sua base de código existente com esse modificador de código [top-level-imports](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-codemod/README.md#top-level-imports). Ele executará as seguintes alterações:
+Finalmente, você pode converter sua base de código existente com esse modificador de código [top-level-imports](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-codemod/README.md#top-level-imports). Ele executará as seguintes alterações:
 
 ```diff
 -import Button from '@material-ui/core/Button';
@@ -213,6 +213,6 @@ Finalmeny, você pode converter sua base de código existente com esse modificad
 
 O pacote publicado no npm é **transpilado** com [Babel](https://github.com/babel/babel), para levar em consideração as [plataformas suportadas](/getting-started/supported-platforms/).
 
-Uma segunda versão dos componentes é também publicada, essa versão pode ser encontrada na [pasta `/es`](https://unpkg.com/@material-ui/core/es/). Toda a sintaxe não oficial é transpilada para o padrão [ECMA-262](https://www.ecma-international.org/publications/standards/Ecma-262.htm), nada mais. Isso pode ser usado para criar pacotes separados visando diferentes navegadores. Os navegadores mais antigos exigem mais recursos JavaScript para serem transpilados, o que aumenta o tamanho do pacote. Nenhum polyfill está incluído para os recursos de tempo de execução do ES2015. IE11+ e navegadores evergreen suportam todos os recursos necessários. Se você precisar de suporte para outros navegadores, considere usar [`@babel/polyfill`](https://www.npmjs.com/package/@babel/polyfill).
+Uma segunda versão dos componentes é também publicada, essa versão pode ser encontrada na [pasta `/es`](https://unpkg.com/@material-ui/core/es/). Toda a sintaxe não oficial é transpilada para o [padrão ECMA-262](https://www.ecma-international.org/publications/standards/Ecma-262.htm), nada mais. Isso pode ser usado para criar pacotes separados visando diferentes navegadores. Os navegadores mais antigos exigem mais recursos JavaScript para serem transpilados, o que aumenta o tamanho do pacote. Nenhum polyfill está incluído para os recursos de tempo de execução do ES2015. IE11+ e navegadores evergreen suportam todos os recursos necessários. Se você precisar de suporte para outros navegadores, considere usar [`@babel/polyfill`](https://www.npmjs.com/package/@babel/polyfill).
 
 ⚠️ Para minimizar a duplicação de código nos pacotes de usuários, autores de bibliotecas são **fortemente desencorajados** de usar a pasta `/es`.

@@ -29,7 +29,7 @@ Se você quer começar com um exemplo mais completo e do mundo real, você pode 
   - Criado com o Create React App
   - Script customizado de Create React App para iniciar um novo projeto com somente um único comando CLI
   - Construído para Firebase incluindo autenticação usando a oficial Firebase Web Auth UI
-  - Roteamento com React Router, incluindo manipulação de erros (404) e carregamento preguiçoso
+  - Roteamento com React Router, incluindo manipulação de erros (404) e carregamento tardio
   - Todos os recursos PWA incluídos (SW, Notificações, prompt de instalação diferido e muito mais)
   - Desempenho otimizado e escalável (todos ~100 pontos em Lighthouse)
 - [RMUIF](https://github.com/phoqe/rmuif):

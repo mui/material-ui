@@ -11,17 +11,17 @@ components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 
 > **Note:** Expansion panels are no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support them. It was formerly known as the "expansion panel".
 
-## Простая Accordion
+## Простой аккордеон
 
 {{"demo": "pages/components/accordion/SimpleAccordion.js", "bg": true}}
 
-## Контролируемый "Аккордеон"
+## Контролируемый аккордеон
 
 Используя компонент `Accordion`, расширив его поведение по умолчанию, можно получить "аккордеон".
 
 {{"demo": "pages/components/accordion/ControlledAccordions.js", "bg": true}}
 
-## Customized accordions
+## Настраиваемый аккоредон
 
 Ниже находится пример кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
 

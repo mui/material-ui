@@ -4,7 +4,7 @@
 
 ## Font family
 
-您可以使用 `theme.gypography.fontFamily` 属性来更改 font family。
+您可以使用 `theme.typography.fontFamily` 属性来更改 font family。
 
 例如，此演示使用了系统的字体而不是默认的 Roboto 字体：
 

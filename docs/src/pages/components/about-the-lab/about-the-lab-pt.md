@@ -30,10 +30,10 @@ yarn add @material-ui/lab
 O lab tem dependências com os componentes do core. Se você ainda não está utilizando o Material-UI em seu projeto, poderá instalá-lo com:
 
 ```sh
-// usando npm
+// utilizando o npm
 npm install @material-ui/core
 
-// usando yarn
+// utilizando o yarn
 yarn add @material-ui/core
 ```
 

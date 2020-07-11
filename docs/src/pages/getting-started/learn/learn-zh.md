@@ -22,32 +22,34 @@
 
 ### 免费的资源
 
-- **Introduction to Material-UI**：涵盖所有重要的 Material-UI 组件的一个视频集。 
-  - 📹 [视频](https://www.youtube.com/watch?v=pHclLuRolzE&list=PLQg6GaokU5CwiVmsZ0d_9Zsg_DnIP_xwr)
-- **Meet Material-UI — your new favorite user interface library**: 一篇博客文章，它指导您如何构建 Todo MVC，并涵盖了 Material-UI 的一些重要概念。 
-  - 📝 [博文](https://medium.freecodecamp.org/meet-your-material-ui-your-new-favorite-user-interface-library-6349a1c88a8c)
-- **Learn React & Material-UI**：涵盖所有重要的 Material-UI 组件的一个视频集。 
-  - 📹 [视频](https://www.youtube.com/watch?v=xm4LX5fJKZ8&list=PLcCp4mjO-z98WAu4sd0eVha1g-NMfzHZk)
-- **Getting Started With Material-UI For React**：一篇指导您构建简单的卡片列表的博文。 
-  - 📝 [博文](https://medium.com/codingthesmartway-com-blog/getting-started-with-material-ui-for-react-material-design-for-react-364b2688b555)
-  - 📹 [视频](https://www.youtube.com/watch?v=PWadEeOuv5o)
-- **Elegant UX in React with Material-UI**：一篇涵盖一些重要的 Material-UI 概念的博文。 
-  - 📝 [博文](https://alligator.io/react/material-ui/)
+- **Introduction to Material-UI**: a series of videos covering all the important Material-UI components. 
+  - 📹 [The videos](https://www.youtube.com/watch?v=pHclLuRolzE&list=PLQg6GaokU5CwiVmsZ0d_9Zsg_DnIP_xwr)
+- **Customize Material-UI for your project**: a look at how you can customize Material-UI to align with your company identity (design system) and products 
+  - 📹 [The videos](https://www.youtube.com/watch?v=bDkB3LoQKxs)
+- **Meet Material-UI — your new favorite user interface library**: a blog post that guides you in building a Todo MVC while covering some important concepts of Material-UI. 
+  - 📝 [The blog post](https://medium.freecodecamp.org/meet-your-material-ui-your-new-favorite-user-interface-library-6349a1c88a8c)
+- **Learn React & Material-UI**: a series of videos covering all the important Material-UI components. 
+  - 📹 [The videos](https://www.youtube.com/watch?v=xm4LX5fJKZ8&list=PLcCp4mjO-z98WAu4sd0eVha1g-NMfzHZk)
+- **Getting Started With Material-UI For React**: a blog post that guides you in building a simple card list. 
+  - 📝 [The blog post](https://medium.com/codingthesmartway-com-blog/getting-started-with-material-ui-for-react-material-design-for-react-364b2688b555)
+  - 📹 [The video](https://www.youtube.com/watch?v=PWadEeOuv5o)
+- **Elegant UX in React with Material-UI**: a blog post covering some important Material-UI concepts. 
+  - 📝 [The blog post](https://alligator.io/react/material-ui/)
 
 ### 付费的资源
 
-- **Apply Google Material Design**：此教程涵盖了 Google Material Design 的基础内容，并且教授了如何使用 Material-UI 和 React 来搭建一个点对点的航班搜寻和预定程序。
+- **Implement high fidelity designs**: Bridge the gap between Design & Development. Break down detailed designs and bring them to life with Material-UI and React.
   
-  - 📹 [观看视频的预告片](https://www.youtube.com/watch?v=hhZ6yFvCWho)
-  - 💻 [课程](https://bonsaiilabs.com/courseDetail/material-ui-with-react)
-- **Implement high fidelity designs**：弥合设计与开发之间的差距。 将详细的设计一点点分解，并使用 Material-UI 和 React 来将其在现实生活中实现。
+  - 💻 [The Course](https://click.linksynergy.com/deeplink?id=IVuPfk1F/Ow&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Fcourse%2Fimplement-high-fidelity-designs-with-material-ui-and-reactjs%2F)
+- **Apply Google Material Design**: This course teaches the fundamentals of Google Material Design and how to develop an end-to-end flight search and booking application using Material-UI and React.
   
-  - 💻 [课程](https://click.linksynergy.com/deeplink?id=IVuPfk1F/Ow&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Fcourse%2Fimplement-high-fidelity-designs-with-material-ui-and-reactjs%2F)
-- **Cookbook**：使用 Material-UI， 在 React 中实现 Material Design 的原则，来构建当代的应用程序。
+  - 📹 [Watch Course Trailer](https://www.youtube.com/watch?v=hhZ6yFvCWho)
+  - 💻 [The Course](https://bonsaiilabs.com/courseDetail/material-ui-with-react)
+- **Cookbook**: Build modern-day applications by implementing Material Design principles in React, using Material-UI.
   
-  - 📘 [书](https://www.amazon.com/gp/product/1789615224/)
+  - 📘 [The book](https://www.amazon.com/gp/product/1789615224/)
 
 [![参考手册](/static/blog/material-ui-v4-is-out/cookbook.png)](https://www.amazon.com/gp/product/1789615224/)
 
-- **Builder Book**：学习如何使用现代 JavaScript 堆栈计数和 Material-UI，来从头开始创建一个全栈 JavaScript Web 应用程序。 
-  - 📘 [书](https://builderbook.org/book)
+- **Builder Book**: Learn how to build a full-stack JavaScript web application from scratch, using a Modern JavaScript stack and Material-UI. 
+  - 📘 [The book](https://builderbook.org/book)

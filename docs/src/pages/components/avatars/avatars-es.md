@@ -9,23 +9,23 @@ components: Avatar, AvatarGroup, Badge
 
 ## Avatares de Imágenes
 
-Image avatars can be created by passing standard `img` props `src` or `srcSet` to the component.
+Las imágenes de avatar pueden ser creadas pasándoles las propiedades estándar de `img`, `src` o `srcSet` al componente.
 
 {{"demo": "pages/components/avatars/ImageAvatars.js"}}
 
 ## Avatares de Letras
 
-Avatars containing simple characters can be created by passing a string as `children`.
+Los avatares que contengan carácteres simples pueden ser creados pasándoles un string como `children`.
 
 {{"demo": "pages/components/avatars/LetterAvatars.js"}}
 
 ## Tamaños
 
-You can change the size of the avatar with the `height` and `width` CSS properties.
+Puedes cambiar el tamaño del avatar con las propiedades de CSS `height` y `width`.
 
 {{"demo": "pages/components/avatars/SizeAvatars.js"}}
 
-## Avatares de íconos
+## Avatares de iconos
 
 Los avatares de íconos son creados pasando un ícono como `children`.
 

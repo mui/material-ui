@@ -7,7 +7,7 @@ components: Badge
 
 <p class="description">Emblema gera um pequeno emblema para o canto superior direito do seu filho(s).</p>
 
-## Basic badges
+## Badges Basique
 
 Exemples de badges contenant du texte, utilisant les couleurs primaires et secondaires. Le badge est appliqué aux enfants.
 

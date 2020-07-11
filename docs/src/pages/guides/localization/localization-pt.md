@@ -54,7 +54,7 @@ const theme = createMuiTheme({
 | Persa                   | fa-IR                     | `faIR`             |
 | Polonês                 | pl-PL                     | `plPL`             |
 | Português (Brasil)      | pt-BR                     | `ptBR`             |
-| Português               | pt-PT                     | `ptPT`             |
+| Português (Europeu)     | pt-PT                     | `ptPT`             |
 | Romeno                  | ro-RO                     | `roRO`             |
 | Russo                   | ru-RU                     | `ruRU`             |
 | Eslovaco                | sk-SK                     | `skSK`             |
@@ -66,10 +66,10 @@ const theme = createMuiTheme({
 
 Você pode [encontrar o fonte](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/locale/index.ts) no repositório do GitHub.
 
-Para criar sua própria tradução, ou para personalizar o texto em Inglês. copie este arquivo para o seu projeto, faça as alterações necessárias e importe a localidade de lá.
+Para criar sua própria tradução, ou para personalizar o texto em inglês, copie este arquivo para o seu projeto, faça as alterações necessárias e importe a localidade de lá.
 
-Por favor, considere contribuir com novas traduções de volta para o Material-UI abrindo uma pull request. No entanto, o Material-UI visa suportar as [100 localidades mais populares](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers), nós podemos não aceitar contribuições para localidades que não são frequentemente usadas, por exemplo `gl-ES` que tem "apenas" 2. milhões de falantes nativos.
+Por favor, considere contribuir com novas traduções de volta para o Material-UI abrindo uma pull request. No entanto, o Material-UI visa suportar as [100 localidades mais populares](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers), nós podemos não aceitar contribuições para localidades que não são frequentemente usadas, por exemplo `gl-ES` que tem "apenas" 2.5 milhões de falantes nativos.
 
 ## Suporte RTL
 
-Idiomas direita-para-esquerda como árabe, persa ou hebraico são suportados. Siga [este guia](/guides/right-to-left/) para usá-los.
+Idiomas da direita para esquerda como árabe, persa ou hebraico são suportados. Siga [este guia](/guides/right-to-left/) para usá-los.

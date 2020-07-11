@@ -116,7 +116,7 @@ Como regra geral, use apenas o estilo em linha para propriedades de estilo dinâ
 
 - prefixação automática
 - melhor depuração
-- consultas de mídia (media queries)
+- consultas de mídia
 - keyframes
 
 ## Como usar react-router?
@@ -125,7 +125,7 @@ Detalhamos a [integração com bibliotecas de roteamento de terceiros](/guides/c
 
 ## Como posso acessar o elemento DOM?
 
-Todos os componentes do Material-UI que devem renderizar algo no DOM possuem referencia para o componente DOM subjacente. Isso significa que você pode obter elementos DOM lendo o ref anexado aos componentes do Material-UI:
+Todos os componentes do Material-UI que devem renderizar algo no DOM possuem referência para o componente DOM subjacente. Isso significa que você pode obter elementos DOM lendo o ref anexado aos componentes do Material-UI:
 
 ```jsx
 // uma função setter ref
@@ -136,7 +136,7 @@ const ref = React.createRef();
 const element = ref.current;
 ```
 
-Se você não tem certeza se o componente do Material-UI em questão encaminha sua ref, você pode verificar a documentação da API em "Props" por exemplo, a API [Button API](/api/button/#props)
+Se você não tem certeza se o componente do Material-UI em questão encaminha seu ref, você pode verificar a documentação da API em "Props" por exemplo, a API [Button API](/api/button/#props)
 
 > O ref é encaminhado para o elemento raiz.
 
@@ -153,12 +153,12 @@ Se você está vendo uma mensagem de aviso no console como a abaixo, você prova
 Existem várias razões comuns para isso acontecer:
 
 - Você tem outra biblioteca `@material-ui/styles` em algum lugar das suas dependências.
-- Você tem uma estrutura "monorepo" para seu projeto (e.g, lerna, yarn workspaces) e o módulo `@material-ui/styles` é uma dependência em mais de um pacote (este é mais ou menos o mesmo que o anterior).
+- Você tem uma estrutura "monorepo" para seu projeto (por exemplo, lerna, yarn workspaces) e o módulo `@material-ui/styles` é uma dependência em mais de um pacote (este é mais ou menos o mesmo que o anterior).
 - Você tem várias aplicações que estão usando `@material-ui/styles` executando na mesma página (por exemplo, vários pontos de entrada no webpack são carregados na mesma página).
 
 ### Módulo duplicado em node_modules
 
-Você pode usar os comandos `npm ls @material-ui/styles`, `yarn list @material-ui/styles` ou `find -L ./node_modules | grep /@material-ui/styles/package.json` na pasta da sua aplicação. Se você acha que o problema pode estar na duplicação do módulo @material-ui/styles em algum lugar de suas dependências, há várias maneiras de verificar isto.
+Se você acha que o problema pode estar na duplicação do módulo @material-ui/styles em algum lugar de suas dependências, há várias maneiras de verificar isto. Você pode usar os comandos `npm ls @material-ui/styles`, `yarn list @material-ui/styles` ou `find -L ./node_modules | grep /@material-ui/styles/package.json` na pasta da sua aplicação.
 
 Se nenhum desses comandos identificou a duplicação, tente analisar seu pacote para encontrar instâncias duplicadas do @material-ui/styles. Você pode somente checar em fontes do seu pacote, ou usar uma ferramenta como [source-map-explorer](https://github.com/danvk/source-map-explorer) ou [webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer).
 
@@ -226,7 +226,7 @@ Se você tiver várias aplicações em execução em uma página, considere o us
   }
 ```
 
-## Minha aplicaçao não é renderizada corretamente no servidor
+## Minha aplicação não é renderizada corretamente no servidor
 
 Se isso não funcionar, em 99% dos casos é um problema de configuração. Uma propriedade ausente, uma ordem de chamada errada ou um componente ausente – a renderização do lado do servidor é rigorosa sobre configuração, e a melhor maneira de descobrir o que há de errado é comparar seu projeto com uma configuração já em funcionamento. Confira as [implementações de referência](/guides/server-rendering/#reference-implementations), pouco a pouco.
 
@@ -236,11 +236,12 @@ O CSS é gerado apenas no primeiro carregamento da página. Em seguida, o CSS n�
 
 #### Ação a tomar
 
-A solução de estilo depende de um cache, o *sheets manager*, para injetar apenas o CSS uma vez por tipo de componente (se você usar dois botões, você só precisa do CSS do botão uma vez). Você precisa criar **uma nova instância de `sheets` para cada requisição **.
+A solução de estilo depende de um cache, o *sheets manager*, para injetar apenas o CSS uma vez por tipo de componente (se você usar dois botões, você só precisa do CSS do botão uma vez). Você precisa criar **uma nova instância de `sheets` para cada requisição**.
 
 *exemplo de correção:*
 
 ```diff
+-// Crie uma instância de sheets.
 -const sheets = new ServerStyleSheets();
 
 function handleRender(req, res) {
@@ -251,8 +252,7 @@ function handleRender(req, res) {
   //…
 
   // Renderize o componente para uma string.
-const html = ReactDOMServer.renderToString(
-  -// Crie uma instância de sheets.
+  const html = ReactDOMServer.renderToString(
 ```
 
 ### React incompatibilidade de nome de classes na hidratação (React Hydrate)
@@ -268,21 +268,21 @@ O valor de nomes de classe depende da lógica empregada pelo [gerador de nome de
 *exemplo de correção:*
 
 ```diff
-- // Cria um novo gerador de nome de classe.
+- // Crie um novo gerador de nome de classe.
 -const generateClassName = createGenerateClassName();
 
 function handleRender(req, res) {
 
-+ // Cria um novo gerador de nome de classe.
++ // Crie um novo gerador de nome de classe.
 + const generateClassName = createGenerateClassName();
 
   //…
 
   // Renderize o componente para uma string.
-  -// Crie uma instância de sheets.
+  const html = ReactDOMServer.renderToString(
 ```
 
-- Você precisa verificar se seu cliente e servidor estão executando o **exatamente a mesma versão** do Material-UI. É possível que uma incompatibilidade de versões menores possa causar problemas de estilo. Para verificar números de versão, execute `npm list @material-ui/core` no ambiente em que você cria sua aplicação e também em seu ambiente de implementação.
+- Você precisa verificar se seu cliente e servidor estão executando **exatamente a mesma versão** do Material-UI. É possível que uma incompatibilidade de versões menores possa causar problemas de estilo. Para verificar números de versão, execute `npm list @material-ui/core` no ambiente em que você cria sua aplicação e também em seu ambiente de implementação.
   
     Você também pode garantir a mesma versão em diferentes ambientes, definindo uma versão específica do MUI nas dependências do seu package.json.
 
@@ -298,15 +298,15 @@ function handleRender(req, res) {
   },
 ```
 
-- Você precisa ter certeza de que o servidor e o cliente compartilham o mesmo valor de `process.env.NODE_ENV`.
+- Você precisa ter certeza de que o servidor e o cliente compartilhem o mesmo valor de `process.env.NODE_ENV`.
 
-## Por que as cores que estou vendo são diferentes do que vejo aqui?
+## Por que as cores que estou vendo são diferentes das que vejo aqui?
 
 O site de documentação está usando um tema customizado. Assim, a paleta de cores é diferente do tema padrão que é fornecido pelo Material-UI. Por favor, consulte [esta página](/customization/theming/) para aprender sobre customização de temas.
 
-## Por que o componente X requer um nó DOM em um prop em vez de um objeto ref?
+## Por que o componente X requer um nó DOM em uma propriedade em vez de um objeto ref?
 
-Componentes como [Portal](/api/portal/#props) ou [Popper](/api/popper/#props) requer um nó DOM na propriedade `container` ou `anchorEl` respectivamente. Parece conveniente simplesmente passar um objeto ref nessas propriedades e deixar o Material-UI acessar o valor atual. Isso funciona em um cenário simples:
+Componentes como [Portal](/api/portal/#props) ou [Popper](/api/popper/#props) requerem um nó DOM na propriedade `container` ou `anchorEl` respectivamente. Parece conveniente simplesmente passar um objeto ref nessas propriedades e deixar o Material-UI acessar o valor atual. Isso funciona em um cenário simples:
 
 ```jsx
 function App() {
@@ -315,7 +315,7 @@ function App() {
   return (
     <div className="App">
       <Portal container={container}>
-        <span>portaled children</span>
+        <span>Componente filho portado</span>
       </Portal>
       <div ref={container} />
     </div>
@@ -323,7 +323,7 @@ function App() {
 }
 ```
 
-onde `Portal` só montaria os filhos no container quando `container.current` estiver disponível. Aqui está uma implementação ingênua do Portal:
+onde `Portal` só montaria os filhos no container quando `container.current` estiver disponível. Aqui está uma implementação simplória do Portal:
 
 ```jsx
 function Portal({ children, container }) {
@@ -340,7 +340,7 @@ function Portal({ children, container }) {
 }
 ```
 
-Com esta simples heurística `Portal` pode renderizar novamente depois de montado porque os refs estão atualizados antes de qualquer efeito ser executado. No entanto, só porque um ref está atualizado não significa que ele aponta para uma instância definida. Se o ref estiver anexado a um componente de encaminhamento de ref não estará claro quando o nó DOM estará disponível. No exemplo acima, o `Portal` executaria o efeito uma vez, mas pode não renderizar novamente porque `ref. urrent` ainda é `null`. Isso é especialmente aparente para componentes React.lazy em Suspense. A implementação acima também não poderia explicar uma alteração no nó DOM.
+Com esta simples heurística `Portal` pode renderizar novamente depois de montado porque os refs estão atualizados antes de qualquer efeito ser executado. No entanto, só porque um ref está atualizado não significa que ele aponta para uma instância definida. Se o ref estiver anexado a um componente de encaminhamento de ref não estará claro quando o nó DOM estará disponível. No exemplo acima, o `Portal` executaria o efeito uma vez, mas pode não renderizar novamente porque `ref.current` ainda é `null`. Isso é especialmente aparente para componentes React.lazy em Suspense. A implementação acima também não poderia explicar uma alteração no nó DOM.
 
 É por isso que precisamos de uma propriedade com o nó DOM real para que o React possa tomar cuidado ao determinar quando o `Portal` deve renderizar novamente:
 

@@ -17,7 +17,7 @@ components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 
 ## Acordeão controlado
 
-Estenda o comportamento padrão do painel para criar um acordeão com o componente `Accordion`.
+Estenda o comportamento padrão para criar um acordeão customizado com o componente `Accordion`.
 
 {{"demo": "pages/components/accordion/ControlledAccordions.js", "bg": true}}
 

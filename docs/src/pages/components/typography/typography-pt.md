@@ -12,9 +12,9 @@ O uso de diferentes tamanhos e estilos de uma só vez pode estragar qualquer lei
 
 A fonte *Roboto* **não** será carregada automaticamente pelo Material-UI. O desenvolvedor é responsável por carregar todas as fontes usadas em sua aplicação. A fonte Roboto possui algumas maneiras fáceis de ser carregada. Para uma abordagem mais avançada, dê uma olhada na [seção de customização de temas](/customization/typography/).
 
-## CDN da fonte Roboto
+## Fonte Roboto via CDN
 
-Temos abaixo um exemplo de markup de link usado para carregar a fonte Roboto de um CDN:
+Temos abaixo um exemplo de markup de link usado para carregar a fonte Roboto de uma CDN:
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
@@ -34,7 +34,7 @@ import 'fontsource-roboto';
 
 Para maiores informações, confira em [Fontsource](https://github.com/DecliningLotus/fontsource/blob/master/packages/roboto/README.md).
 
-⚠️ Tome cuidado ao usar essa abordagem. Certifique-se de que seu bundler não carregue ansiosamente todas as variações da fonte (100/300/400/500/700/900, itálico/regular, SVG/woff). Fontsource pode ser configurado para carregar subconjuntos, pesos e estilos específicos. Colocar todos os arquivos de fonte em linha pode aumentar o tamanho do seu pacote significativamente. A configuração de tipografia padrão do Material-UI depende apenas dos pesos de fonte de 300, 400, 500 e 700.
+⚠️ Tome cuidado ao usar essa abordagem. Certifique-se de que seu bundler não carregue ansiosamente todas as variações da fonte (100/300/400/500/700/900, italic/regular, SVG/woff). Fontsource pode ser configurado para carregar subconjuntos, pesos e estilos específicos. Carregar todos os arquivos de fonte pode aumentar o tamanho do seu pacote significativamente. A configuração de tipografia padrão do Material-UI depende apenas dos pesos de fonte de 300, 400, 500 e 700.
 
 ## Componente
 
@@ -42,7 +42,7 @@ Para maiores informações, confira em [Fontsource](https://github.com/Declining
 
 ## Tema
 
-Em algumas situações, talvez você não consiga usar o componente `Typography`. Felizmente, você pode tirar vantagem das chaves de [`tipografia`](/customization/default-theme/?expand-path=$.typography) do tema.
+Em algumas situações, talvez você não consiga usar o componente `Typography`. Felizmente, você pode tirar vantagem com o uso das chaves de [`tipografia`](/customization/default-theme/?expand-path=$.typography) do tema.
 
 {{"demo": "pages/components/typography/TypographyTheme.js"}}
 
@@ -50,7 +50,7 @@ Em algumas situações, talvez você não consiga usar o componente `Typography`
 
 O componente de Tipografia (Typography) usa a propriedade `variantMapping` para associar a variação da UI com um elemento semântico. É importante ressaltar que o estilo de uma tipografia é independente do elemento semântico por baixo dela.
 
-- Você pode alterar o elemento subjacente para uma ocasião única com a propriedade `component`:
+- Você pode alterar o elemento subjacente para uma ocasião em específico com a propriedade `component`:
 
 ```jsx
 {/ * Já existe um h1 na página, não vamos duplicá-lo. */}

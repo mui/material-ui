@@ -96,7 +96,7 @@ Isto irá aplicar a seguinte mudança:
 <AddIcon />
 ```
 
-### Botão liso
+### Botão flat
 
 ```diff
 -import FlatButton from 'material-ui/FlatButton';
@@ -187,4 +187,4 @@ Caminho de atualização do RaisedButton:
 
 ### Continua…
 
-Você migrou sua aplicação com sucesso e deseja ajudar a comunidade? Existe um problema em aberto para concluir este guia de migração [#7195](https://github.com/mui-org/material-ui/issues/7195). Qualquer pull request é bem-vindo 😊.
+Você migrou sua aplicação com sucesso, e que tal ajudar a comunidade? Existe um problema em aberto para concluir este guia de migração [#7195](https://github.com/mui-org/material-ui/issues/7195). Qualquer pull request é bem-vindo 😊.
