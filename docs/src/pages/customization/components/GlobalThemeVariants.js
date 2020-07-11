@@ -14,25 +14,26 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const theme = outerTheme => createMuiTheme({
-  variants: {
-    MuiButton: [
-      {
-        matcher: { variant: 'dashed' },
-        styles: {
-          padding: '5px 15px',
-          border: `5px dashed ${outerTheme.palette.primary.main}`,
+const theme = (outerTheme) =>
+  createMuiTheme({
+    variants: {
+      MuiButton: [
+        {
+          matcher: { variant: 'dashed' },
+          styles: {
+            padding: '5px 15px',
+            border: `5px dashed ${outerTheme.palette.primary.main}`,
+          },
         },
-      },
-      {
-        matcher: { variant: 'dashed', color: 'secondary' },
-        styles: {
-          border: `5px dashed ${outerTheme.palette.secondary.main}`,
+        {
+          matcher: { variant: 'dashed', color: 'secondary' },
+          styles: {
+            border: `5px dashed ${outerTheme.palette.secondary.main}`,
+          },
         },
-      },
-    ],
-  },
-});
+      ],
+    },
+  });
 
 export default function GlobalThemeVariants() {
   const classes = useStyles();
