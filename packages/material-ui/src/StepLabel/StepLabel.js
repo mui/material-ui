@@ -161,11 +161,6 @@ StepLabel.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Mark the step as disabled, will also disable the button if
-   * `StepLabelButton` is a child of `StepLabel`. Is passed to child components.
-   */
-  disabled: PropTypes.bool,
-  /**
    * Mark the step as failed.
    */
   error: PropTypes.bool,

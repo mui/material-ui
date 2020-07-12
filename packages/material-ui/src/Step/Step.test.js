@@ -73,22 +73,6 @@ describe('<Step />', () => {
     skip: ['componentProp'],
   }));
 
-  it('merges styles and other props into the root node', () => {
-    const { getByTestId } = render(
-      <Step
-        index={1}
-        style={{ paddingRight: 200, color: 'purple', border: '1px solid tomato' }}
-        data-testid="root"
-        orientation="horizontal"
-      />,
-    );
-
-    const rootNode = getByTestId('root');
-    expect(rootNode.style).to.have.property('paddingRight', '200px');
-    expect(rootNode.style).to.have.property('color', 'purple');
-    expect(rootNode.style).to.have.property('border', '1px solid tomato');
-  });
-
   describe('rendering children', () => {
     it('renders children', () => {
       const { getByTestId } = render(
@@ -98,32 +82,6 @@ describe('<Step />', () => {
       );
 
       expect(within(getByTestId('root')).getByTestId('child')).not.to.equal(null);
-    });
-
-    it('renders children with all props passed through', () => {
-      const { getAllByTestId } = render(
-        <Step active={false} completed disabled index={0} orientation="horizontal">
-          <PropsAsDataset />
-          <PropsAsDataset />
-        </Step>,
-      );
-      getAllByTestId('props').forEach((child) => {
-        // HTMLElement.dataset is a DOMStringMap which fails deep.equal
-        const datasetAsObject = { ...child.dataset };
-        expect(datasetAsObject).to.deep.equal({
-          // props passed from Step
-          active: 'false',
-          alternativeLabel: 'undefined',
-          completed: 'true',
-          disabled: 'true',
-          expanded: 'false',
-          last: 'undefined',
-          icon: '1',
-          orientation: 'horizontal',
-          // test impl details
-          testid: 'props',
-        });
-      });
     });
 
     it('honours children overriding props passed through', () => {

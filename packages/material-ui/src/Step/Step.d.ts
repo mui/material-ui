@@ -25,6 +25,14 @@ export interface StepProps
    * Expand the step.
    */
   expanded?: boolean;
+  /**
+   * The position of the step.
+   */
+  index?: number;
+  /**
+   * If `true`, the Step will be displayed as rendered last.
+   */
+  last?: boolean;
 }
 
 export type StepClasskey = 'root' | 'horizontal' | 'vertical' | 'alternativeLabel' | 'completed';

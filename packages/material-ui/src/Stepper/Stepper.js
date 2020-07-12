@@ -56,22 +56,24 @@ const Stepper = React.forwardRef(function Stepper(props, ref) {
   );
 
   return (
-    <Paper
-      square
-      elevation={0}
-      className={clsx(
-        classes.root,
-        classes[orientation],
-        {
-          [classes.alternativeLabel]: alternativeLabel,
-        },
-        className,
-      )}
-      ref={ref}
-      {...other}
-    >
-      <StepperContext.Provider value={contextValue}>{steps}</StepperContext.Provider>
-    </Paper>
+    <StepperContext.Provider value={contextValue}>
+      <Paper
+        square
+        elevation={0}
+        className={clsx(
+          classes.root,
+          classes[orientation],
+          {
+            [classes.alternativeLabel]: alternativeLabel,
+          },
+          className,
+        )}
+        ref={ref}
+        {...other}
+      >
+        {steps}
+      </Paper>
+    </StepperContext.Provider>
   );
 });
 

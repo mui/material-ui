@@ -80,15 +80,6 @@ StepButton.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * For non-linear Steppers you need to manually set which steps are completed.
-   * Otherwise the Stepper determines if a step is completed.
-   */
-  completed: PropTypes.bool,
-  /**
-   * @ignore This prop is ignored. You should disable the whole `Step`.
-   */
-  disabled: PropTypes.bool,
-  /**
    * The icon displayed by the step label.
    */
   icon: PropTypes.node,

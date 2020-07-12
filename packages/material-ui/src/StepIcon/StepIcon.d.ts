@@ -4,6 +4,14 @@ import { StandardProps } from '..';
 export interface StepIconProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, StepIconClasskey, 'children'> {
   /**
+   * Whether this step is active.
+   */
+  active?: boolean;
+  /**
+   * Mark the step as completed. Is passed to child components.
+   */
+  completed?: boolean;
+  /**
    * Mark the step as failed.
    */
   error?: boolean;

@@ -10,58 +10,31 @@ import Step from '../Step';
 import StepContent from './StepContent';
 
 describe('<StepContent />', () => {
-  let stepContentClasses;
+  let classes;
   let collapseClasses;
   // StrictModeViolation: uses Collapse
   const mount = createMount({ strict: false });
   const render = createClientRender({ strict: false });
 
   before(() => {
-    stepContentClasses = getClasses(<StepContent />);
+    classes = getClasses(<StepContent />);
     collapseClasses = getClasses(<Collapse />);
   });
 
-  // describeConformance(
-  //   <Stepper orientation="vertical">
-  //     <Step>
-  //       <StepContent />
-  //     </Step>
-  //   </Stepper>,
-  //   () => ({
-  //     classes: stepContentClasses,
-  //     inheritComponent: 'div',
-  //     mount,
-  //     refInstanceof: window.HTMLDivElement,
-  //     skip: ['componentProp'],
-  //   }),
-  // );
-
-  // describeConformance(<StepContent />, () => ({
-  //   classes: stepContentClasses,
-  //   inheritComponent: 'div',
-  //   mount,
-  //   refInstanceof: window.HTMLDivElement,
-  //   skip: ['componentProp'],
-  // }));
-
-  it('merges styles and other props into the root node', () => {
-    const { container } = render(
-      <Stepper orientation="vertical">
-        <Step>
-          <StepContent style={{ paddingRight: 200, color: 'purple', border: '1px solid tomato' }}>
-            Lorem ipsum
-          </StepContent>
-        </Step>
-      </Stepper>,
-    );
-
-    const root = container.querySelector(`.${stepContentClasses.root}`);
-    const styles = window.getComputedStyle(root);
-
-    expect(styles['padding-right']).to.equal('200px');
-    expect(styles.color).to.equal('purple');
-    expect(styles.border).to.equal('1px solid tomato');
-  });
+  describeConformance(<StepContent />, () => ({
+    classes,
+    inheritComponent: 'div',
+    mount: (node) => {
+      const wrapper = mount(
+        <Stepper orientation="vertical">
+          <Step>{node}</Step>
+        </Stepper>,
+      );
+      return wrapper.find(Step).childAt(0).childAt(0).childAt(0);
+    },
+    refInstanceof: window.HTMLDivElement,
+    skip: ['componentProp', 'reactTestRenderer', 'refForwarding'],
+  }));
 
   it('renders children inside an Collapse component', () => {
     const { container, getByText } = render(

@@ -42,6 +42,7 @@ const Step = React.forwardRef(function Step(props, ref) {
   const { activeStep, connector, alternativeLabel, orientation, nonLinear } = React.useContext(
     StepperContext,
   );
+
   let [active = false, completed = false, disabled = false] = [
     activeProp,
     completedProp,
@@ -53,7 +54,7 @@ const Step = React.forwardRef(function Step(props, ref) {
   } else if (!nonLinear && activeStep > index) {
     completed = completedProp !== undefined ? completedProp : true;
   } else if (!nonLinear && activeStep < index) {
-    disabled = disabledProp !== disabledProp ? disabledProp : true;
+    disabled = disabledProp !== undefined ? disabledProp : true;
   }
 
   const contextValue = React.useMemo(
@@ -149,6 +150,14 @@ Step.propTypes = {
    * Expand the step.
    */
   expanded: PropTypes.bool,
+  /**
+   * The position of the step.
+   */
+  index: PropTypes.number,
+  /**
+   * If `true`, the Step will be displayed as rendered last.
+   */
+  last: PropTypes.bool,
 };
 
 export default withStyles(styles, { name: 'MuiStep' })(Step);

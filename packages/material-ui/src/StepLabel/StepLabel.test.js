@@ -11,43 +11,25 @@ import StepIcon from '../StepIcon';
 import StepLabel from './StepLabel';
 
 describe('<StepLabel />', () => {
-  let labelClasses;
+  let classes;
   let iconClasses;
   let typographyClasses;
-  const mount = createMount();
-  const render = createClientRender({ strict: false });
+  const mount = createMount({ strict: true });
+  const render = createClientRender();
 
   before(() => {
-    labelClasses = getClasses(<StepLabel />);
+    classes = getClasses(<StepLabel />);
     iconClasses = getClasses(<StepIcon />);
     typographyClasses = getClasses(<Typography />);
   });
 
   describeConformance(<StepLabel />, () => ({
-    classes: labelClasses,
+    classes,
     inheritComponent: 'span',
     mount,
     refInstanceof: window.HTMLSpanElement,
     skip: ['componentProp'],
   }));
-
-  it('merges styles into the root node', () => {
-    const { container } = render(
-      <StepLabel
-        orientation="horizontal"
-        style={{ paddingRight: 200, color: 'purple', border: '1px solid tomato' }}
-      >
-        My Label
-      </StepLabel>,
-    );
-
-    const root = container.querySelector(`.${labelClasses.root}`);
-    const styles = window.getComputedStyle(root);
-
-    expect(styles['padding-right']).to.equal('200px');
-    expect(styles.color).to.equal('purple');
-    expect(styles.border).to.equal('1px solid tomato');
-  });
 
   describe('label content', () => {
     it('renders the label from children', () => {
@@ -81,14 +63,14 @@ describe('<StepLabel />', () => {
         </Step>,
       );
 
-      const icon = container.querySelector(`.${labelClasses.iconContainer}`);
-      const label = container.querySelector(`.${labelClasses.label}`);
+      const icon = container.querySelector(`.${classes.iconContainer}`);
+      const label = container.querySelector(`.${classes.label}`);
 
       getByTestId('custom-icon');
       expect(icon).to.not.equal(null);
       expect(icon).to.not.have.attribute('data-mui-test').equal('CheckCircleIcon');
-      expect(label).to.have.class(labelClasses.active);
-      expect(label).to.have.class(labelClasses.completed);
+      expect(label).to.have.class(classes.active);
+      expect(label).to.have.class(classes.completed);
     });
 
     it('should not render', () => {
@@ -112,7 +94,7 @@ describe('<StepLabel />', () => {
       );
 
       const typography = container.querySelector(`.${typographyClasses.root}`);
-      expect(typography).to.have.class(labelClasses.active);
+      expect(typography).to.have.class(classes.active);
     });
 
     it('renders <StepIcon> with the <Step /> prop active set to true', () => {
@@ -136,7 +118,7 @@ describe('<StepLabel />', () => {
       );
 
       const typography = container.querySelector(`.${typographyClasses.root}`);
-      expect(typography).to.not.have.class(labelClasses.active);
+      expect(typography).to.not.have.class(classes.active);
     });
   });
 
@@ -149,7 +131,7 @@ describe('<StepLabel />', () => {
       );
 
       const typography = container.querySelector(`.${typographyClasses.root}`);
-      expect(typography).to.have.class(labelClasses.active);
+      expect(typography).to.have.class(classes.active);
     });
 
     it('renders <StepIcon> with the prop completed set to true', () => {
@@ -171,7 +153,7 @@ describe('<StepLabel />', () => {
       const { container } = render(<StepLabel error>Step One</StepLabel>);
 
       const typography = container.querySelector(`.${typographyClasses.root}`);
-      expect(typography).to.have.class(labelClasses.error);
+      expect(typography).to.have.class(classes.error);
     });
 
     it('renders <StepIcon> with the prop error set to true', () => {
@@ -184,7 +166,7 @@ describe('<StepLabel />', () => {
       );
 
       const icon = container.querySelector(`.${iconClasses.root}`);
-      expect(icon).to.have.class(labelClasses.error);
+      expect(icon).to.have.class(classes.error);
     });
   });
 
@@ -196,8 +178,8 @@ describe('<StepLabel />', () => {
         </Step>,
       );
 
-      const label = container.querySelector(`.${labelClasses.root}`);
-      expect(label).to.have.class(labelClasses.disabled);
+      const label = container.querySelector(`.${classes.root}`);
+      expect(label).to.have.class(classes.disabled);
     });
   });
 
