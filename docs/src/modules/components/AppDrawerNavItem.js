@@ -67,6 +67,7 @@ export default function AppDrawerNavItem(props) {
     return (
       <ListItem className={classes.itemLeaf} disableGutters {...other}>
         <Button
+          color="inherit"
           component={Link}
           naked
           activeClassName={`drawer-active ${classes.active}`}
@@ -86,6 +87,7 @@ export default function AppDrawerNavItem(props) {
   return (
     <ListItem className={classes.item} disableGutters {...other}>
       <Button
+        color="inherit"
         classes={{
           root: classes.button,
           label: topLevel ? 'algolia-lvl0' : '',
