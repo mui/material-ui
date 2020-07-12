@@ -107,7 +107,9 @@ describe('<Popper />', () => {
         </ThemeProvider>,
       );
       expect(renderSpy.args).to.deep.equal([['bottom'], ['bottom']]);
-      await popperRef.current.setOptions({ placement: 'top' });
+      await act(() => {
+        return popperRef.current.setOptions({ placement: 'top' });
+      });
       expect(renderSpy.args).to.deep.equal([
         ['bottom'],
         ['bottom'],
@@ -116,6 +118,9 @@ describe('<Popper />', () => {
         ['top'],
         ['top'],
       ]);
+
+      // FIXME: Unclear why we need this to fix "missing act()"-warning
+      unmount();
     });
   });
 
@@ -138,16 +143,21 @@ describe('<Popper />', () => {
   });
 
   describe('prop: popperOptions', () => {
-    it('should pass all popperOptions to popperjs', (done) => {
-      const popperOptions = {
-        onCreate: (data) => {
-          data.instance.update({ placement: 'left' });
-        },
-        onUpdate: () => {
-          done();
-        },
-      };
-      render(<Popper {...defaultProps} popperOptions={popperOptions} placement="top" open />);
+    it('should pass all popperOptions to popperjs', () => {
+      const popperRef = React.createRef();
+      const { setProps } = render(
+        <Popper {...defaultProps} popperRef={popperRef} placement="top" open />,
+      );
+
+      act(() => {
+        setProps({
+          popperOptions: {
+            placement: 'bottom',
+          },
+        });
+      });
+
+      expect(popperRef.current.state.placement).to.equal('bottom');
     });
   });
 

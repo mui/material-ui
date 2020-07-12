@@ -4,7 +4,6 @@ import { createPopper } from '@popperjs/core';
 import { chainPropTypes, refType, HTMLElementType } from '@material-ui/utils';
 import { useTheme } from '@material-ui/styles';
 import Portal from '../Portal';
-import createChainedFunction from '../utils/createChainedFunction';
 import setRef from '../utils/setRef';
 import useForkRef from '../utils/useForkRef';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
@@ -138,7 +137,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
         enabled: true,
         phase: 'afterWrite',
         fn({ state }) {
-          createChainedFunction(handlePopperUpdate, popperOptions.onUpdate)(state);
+          handlePopperUpdate(state);
         },
       },
     ];
@@ -154,9 +153,6 @@ const Popper = React.forwardRef(function Popper(props, ref) {
       placement: rtlPlacement,
       ...popperOptions,
       modifiers: popperModifiers,
-      // We could have been using a custom modifier like react-popper is doing.
-      // But it seems this is the best public API for this use case.
-      onFirstUpdate: createChainedFunction(handlePopperUpdate, popperOptions.onFirstUpdate),
     });
 
     handlePopperRefRef.current(popper);
