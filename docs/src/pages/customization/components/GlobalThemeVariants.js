@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const theme = (outerTheme) =>
+const inputTheme = (outerTheme) =>
   createMuiTheme({
     variants: {
       MuiButton: [
@@ -39,7 +39,7 @@ export default function GlobalThemeVariants() {
   const classes = useStyles();
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={inputTheme}>
       <div className={classes.root}>
         <Button variant="dashed">Dashed</Button>
         <Button variant="dashed" color="secondary">
