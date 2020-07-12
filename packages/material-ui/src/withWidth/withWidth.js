@@ -4,7 +4,7 @@ import { getDisplayName } from '@material-ui/utils';
 import { getThemeProps } from '@material-ui/styles';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import useTheme from '../styles/useTheme';
-import { keys as breakpointKeys } from '../styles/createBreakpoints';
+import { breakpointKeys } from '../styles/createBreakpoints';
 import useMediaQuery from '../useMediaQuery';
 
 // By default, returns true if screen width is the same or greater than the given breakpoint.
