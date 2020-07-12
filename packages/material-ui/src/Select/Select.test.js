@@ -1048,4 +1048,90 @@ describe('<Select />', () => {
     fireEvent.click(container.querySelector('button[type=submit]'));
     expect(handleSubmit.callCount).to.equal(1);
   });
+
+  describe('range multiple selection using shift key', () => {
+    function ControlledWrapper({ onChange, initialValue = [] }) {
+      const [value, setValue] = React.useState(initialValue);
+
+      return (
+        <Select
+          open
+          multiple
+          value={value}
+          onChange={({ target }) => {
+            onChange(target.value);
+            setValue(target.value);
+          }}
+        >
+          <MenuItem value="france">France</MenuItem>
+          <MenuItem value="germany">Germany</MenuItem>
+          <MenuItem value="china">China</MenuItem>
+          <MenuItem value="israel">Israel</MenuItem>
+          <MenuItem value="italy">Italy</MenuItem>
+        </Select>
+      );
+    }
+
+    it('should select range of values', () => {
+      const handleChange = spy();
+      const { getAllByRole } = render(<ControlledWrapper onChange={handleChange} />);
+
+      fireEvent.click(getAllByRole('option')[0]);
+      fireEvent.click(getAllByRole('option')[3], { shiftKey: true });
+
+      expect(handleChange.args[1][0]).to.deep.equal(['france', 'germany', 'china', 'israel']);
+    });
+
+    it('should select range of values in reverse direction', () => {
+      const handleChange = spy();
+      const { getAllByRole } = render(<ControlledWrapper onChange={handleChange} />);
+
+      fireEvent.click(getAllByRole('option')[3]);
+      fireEvent.click(getAllByRole('option')[0], { shiftKey: true });
+
+      expect(handleChange.args[1][0]).to.deep.equal(['israel', 'france', 'germany', 'china']);
+    });
+
+    it('should select range of values and keep uniqueness', () => {
+      const handleChange = spy();
+      const { getAllByRole } = render(
+        <ControlledWrapper onChange={handleChange} initialValue={['germany']} />,
+      );
+
+      fireEvent.click(getAllByRole('option')[0]);
+      fireEvent.click(getAllByRole('option')[3], { shiftKey: true });
+
+      expect(handleChange.args[1][0]).to.deep.equal(['germany', 'france', 'china', 'israel']);
+    });
+
+    it('should deselect range of values', () => {
+      const handleChange = spy();
+      const { getAllByRole } = render(
+        <ControlledWrapper
+          onChange={handleChange}
+          initialValue={['france', 'germany', 'china', 'israel', 'italy']}
+        />,
+      );
+
+      fireEvent.click(getAllByRole('option')[1]);
+      fireEvent.click(getAllByRole('option')[3], { shiftKey: true });
+
+      expect(handleChange.args[1][0]).to.deep.equal(['france', 'italy']);
+    });
+
+    it('should deselect range of values in reverse direction', () => {
+      const handleChange = spy();
+      const { getAllByRole } = render(
+        <ControlledWrapper
+          onChange={handleChange}
+          initialValue={['france', 'germany', 'china', 'israel', 'italy']}
+        />,
+      );
+
+      fireEvent.click(getAllByRole('option')[3]);
+      fireEvent.click(getAllByRole('option')[1], { shiftKey: true });
+
+      expect(handleChange.args[1][0]).to.deep.equal(['france', 'italy']);
+    });
+  });
 });
