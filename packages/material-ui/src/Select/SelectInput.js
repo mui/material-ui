@@ -67,7 +67,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   });
 
   const inputRef = React.useRef(null);
-  const lastSelectedItemValue = React.useRef(null);
+  const lastSelectedItem = React.useRef(null);
   const [displayNode, setDisplayNode] = React.useState(null);
   const { current: isOpenControlled } = React.useRef(openProp != null);
   const [menuMinWidthState, setMenuMinWidthState] = React.useState();
@@ -172,29 +172,32 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       const itemIndex = value.indexOf(child.props.value);
       if (
         event.shiftKey &&
-        lastSelectedItemValue.current &&
-        lastSelectedItemValue.current !== child.props.value &&
-        value.indexOf(lastSelectedItemValue.current) > -1
+        lastSelectedItem.current &&
+        !areEqualValues(lastSelectedItem.current[1], child.props.value)
       ) {
         const optionValues = React.Children.map(children, (c) => c.props.value);
-        const startOptionIndex = optionValues.indexOf(lastSelectedItemValue.current);
+        const startOptionIndex = optionValues.indexOf(lastSelectedItem.current[1]);
         const endOptionIndex = optionValues.indexOf(child.props.value);
 
         if (startOptionIndex > -1 && endOptionIndex > -1) {
-          let range = [];
-          if (endOptionIndex > startOptionIndex) {
-            range = optionValues.slice(startOptionIndex, endOptionIndex + 1);
+          const range =
+            endOptionIndex > startOptionIndex
+              ? optionValues.slice(startOptionIndex, endOptionIndex + 1)
+              : optionValues.slice(endOptionIndex, startOptionIndex + 1);
+
+          if (lastSelectedItem.current[0]) {
+            // In case of multiple value selection, make sure to set unique values in the `newValue`.
+            newValue.push(...range.filter((v) => !value.some((vv) => areEqualValues(v, vv))));
           } else {
-            range = optionValues.slice(endOptionIndex, startOptionIndex + 1);
+            newValue = newValue.filter((v) => !range.some((vv) => areEqualValues(v, vv)));
           }
-          // Selected range could contain selected values so we filter them out if they exists.
-          newValue.push(...range.filter((v) => !value.some((vv) => areEqualValues(v, vv))));
         }
       } else if (itemIndex === -1) {
         newValue.push(child.props.value);
-        lastSelectedItemValue.current = child.props.value;
+        lastSelectedItem.current = [true, child.props.value];
       } else {
         newValue.splice(itemIndex, 1);
+        lastSelectedItem.current = [false, child.props.value];
       }
     } else {
       newValue = child.props.value;
