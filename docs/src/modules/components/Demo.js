@@ -686,7 +686,7 @@ const useStyles = makeStyles(
         overflow: 'auto',
         lineHeight: 1.5,
         margin: '0 !important',
-        maxHeight: 1000,
+        maxHeight: 'min(68vh, 1000px)',
       },
     },
     anchorLink: {
