@@ -6,14 +6,9 @@ import { Variant } from '../styles/createTypography';
 
 export interface TypographyPropsColorOverrides {}
 export type ColorDefaults = Record<
-  | 'initial'
-  | 'inherit'
-  | 'primary'
-  | 'secondary'
-  | 'textPrimary'
-  | 'textSecondary'
-  | 'error', true>;
-
+  'initial' | 'inherit' | 'primary' | 'secondary' | 'textPrimary' | 'textSecondary' | 'error',
+  true
+>;
 
 export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P & {

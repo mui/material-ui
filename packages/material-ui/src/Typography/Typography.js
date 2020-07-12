@@ -115,10 +115,10 @@ const defaultVariantMapping = {
 
 const colorClassesCache = {};
 
-const useColorStyles = makeStyles(theme => ({
+const useColorStyles = makeStyles((theme) => ({
   color: {
-    color: props => theme.palette[props.color] ? theme.palette[props.color].main : 'inherit',
-  }
+    color: (props) => (theme.palette[props.color] ? theme.palette[props.color].main : 'inherit'),
+  },
 }));
 
 const Typography = React.forwardRef(function Typography(props, ref) {
@@ -137,11 +137,19 @@ const Typography = React.forwardRef(function Typography(props, ref) {
     ...other
   } = props;
 
-  const supportedColors = ['primary', 'secondary', 'initial', 'inherit', 'textPrimary', 'textSecondary', 'error'];
+  const supportedColors = [
+    'primary',
+    'secondary',
+    'initial',
+    'inherit',
+    'textPrimary',
+    'textSecondary',
+    'error',
+  ];
   const supportedColor = supportedColors.indexOf(color) >= 0;
 
-  if(!supportedColor) {
-    if(!colorClassesCache[color]) {
+  if (!supportedColor) {
+    if (!colorClassesCache[color]) {
       colorClassesCache[color] = useColorStyles({ color }).color;
     }
   }
@@ -198,15 +206,18 @@ Typography.propTypes = {
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color: PropTypes.oneOfType([PropTypes.oneOf([
-    'error',
-    'inherit',
-    'initial',
-    'primary',
-    'secondary',
-    'textPrimary',
-    'textSecondary',
-  ]), PropTypes.string]),
+  color: PropTypes.oneOfType([
+    PropTypes.oneOf([
+      'error',
+      'inherit',
+      'initial',
+      'primary',
+      'secondary',
+      'textPrimary',
+      'textSecondary',
+    ]),
+    PropTypes.string,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.

@@ -1,13 +1,17 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import {
+  makeStyles,
+  createMuiTheme,
+  ThemeProvider,
+} from '@material-ui/core/styles';
 import { deepOrange, deepPurple } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
       margin: 10,
-    }
+    },
   },
 }));
 
@@ -18,8 +22,8 @@ const theme = createMuiTheme({
     },
     sell: {
       main: deepOrange[500],
-    }
-  }
+    },
+  },
 });
 
 export default function TypographyTheme() {
@@ -28,8 +32,8 @@ export default function TypographyTheme() {
   return (
     <ThemeProvider theme={theme}>
       <div className={classes.root}>
-      <Typography color="brand">Brand color</Typography>
-      <Typography color="sell">Sell color</Typography>
+        <Typography color="brand">Brand color</Typography>
+        <Typography color="sell">Sell color</Typography>
       </div>
     </ThemeProvider>
   );

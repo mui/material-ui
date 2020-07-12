@@ -1,6 +1,10 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import {
+  makeStyles,
+  createMuiTheme,
+  ThemeProvider,
+} from '@material-ui/core/styles';
 import { deepOrange, deepPurple } from '@material-ui/core/colors';
 
 declare module '@material-ui/core/Typography/Typography' {
@@ -21,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
       margin: 10,
-    }
+    },
   },
 }));
 
@@ -32,8 +36,8 @@ const theme = createMuiTheme({
     },
     sell: {
       main: deepOrange[500],
-    }
-  }
+    },
+  },
 });
 
 export default function TypographyTheme() {

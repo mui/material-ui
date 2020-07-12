@@ -289,12 +289,12 @@ const theme = createMuiTheme({
     },
     sell: {
       main: deepOrange[500],
-    }
-  }
+    },
+  },
 });
 
 // Usage example
-<Typography coloe="sell">Sell</Typography>
+<Typography coloe="sell">Sell</Typography>;
 ```
 
 {{"demo": "pages/customization/components/ThemeColors.js"}}
