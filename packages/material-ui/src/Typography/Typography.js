@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import capitalize from '../utils/capitalize';
+import makeStyles from '../styles/makeStyles';
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
@@ -112,6 +113,14 @@ const defaultVariantMapping = {
   body2: 'p',
 };
 
+const colorCache = {};
+
+const useColorStyles = makeStyles(theme => ({
+  color: {
+    color: props => theme.palette[props.color] ? theme.palette[props.color].main : 'inherit',
+  }
+}));
+
 const Typography = React.forwardRef(function Typography(props, ref) {
   const {
     align = 'inherit',
@@ -128,6 +137,16 @@ const Typography = React.forwardRef(function Typography(props, ref) {
     ...other
   } = props;
 
+  const supportedColors = ['primary', 'secondary', 'initial', 'inherit', 'textPrimary', 'textSecondary', 'error'];
+
+  const supportedColor = supportedColors.indexOf(color) >= 0;
+
+  if(!supportedColor) {
+    if(!colorCache[color]) {
+      colorCache[color] = useColorStyles({ color }).color;
+    }
+  }
+
   const Component =
     component ||
     (paragraph ? 'p' : variantMapping[variant] || defaultVariantMapping[variant]) ||
@@ -139,7 +158,8 @@ const Typography = React.forwardRef(function Typography(props, ref) {
         classes.root,
         {
           [classes[variant]]: variant !== 'inherit',
-          [classes[`color${capitalize(color)}`]]: color !== 'initial',
+          [classes[`color${capitalize(color)}`]]: supportedColor && color !== 'initial',
+          [colorCache[color]]: !supportedColor,
           [classes.noWrap]: noWrap,
           [classes.gutterBottom]: gutterBottom,
           [classes.paragraph]: paragraph,
@@ -179,7 +199,7 @@ Typography.propTypes = {
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color: PropTypes.oneOf([
+  color: PropTypes.oneOfType([PropTypes.oneOf([
     'error',
     'inherit',
     'initial',
@@ -187,7 +207,7 @@ Typography.propTypes = {
     'secondary',
     'textPrimary',
     'textSecondary',
-  ]),
+  ]), PropTypes.string]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
