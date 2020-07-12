@@ -113,7 +113,7 @@ const defaultVariantMapping = {
   body2: 'p',
 };
 
-const colorCache = {};
+const colorClassesCache = {};
 
 const useColorStyles = makeStyles(theme => ({
   color: {
@@ -138,12 +138,11 @@ const Typography = React.forwardRef(function Typography(props, ref) {
   } = props;
 
   const supportedColors = ['primary', 'secondary', 'initial', 'inherit', 'textPrimary', 'textSecondary', 'error'];
-
   const supportedColor = supportedColors.indexOf(color) >= 0;
 
   if(!supportedColor) {
-    if(!colorCache[color]) {
-      colorCache[color] = useColorStyles({ color }).color;
+    if(!colorClassesCache[color]) {
+      colorClassesCache[color] = useColorStyles({ color }).color;
     }
   }
 
@@ -159,7 +158,7 @@ const Typography = React.forwardRef(function Typography(props, ref) {
         {
           [classes[variant]]: variant !== 'inherit',
           [classes[`color${capitalize(color)}`]]: supportedColor && color !== 'initial',
-          [colorCache[color]]: !supportedColor,
+          [colorClassesCache[color]]: !supportedColor,
           [classes.noWrap]: noWrap,
           [classes.gutterBottom]: gutterBottom,
           [classes.paragraph]: paragraph,

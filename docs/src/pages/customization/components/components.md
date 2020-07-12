@@ -277,6 +277,28 @@ const theme = createMuiTheme({
 
 {{"demo": "pages/customization/components/ThemeVariables.js"}}
 
+### Theme colors
+
+You can add custom colors to the theme palette and use them with the color property on the core compoennts.
+
+```jsx
+const theme = createMuiTheme({
+  palette: {
+    brand: {
+      main: deepPurple[500],
+    },
+    sell: {
+      main: deepOrange[500],
+    }
+  }
+});
+
+// Usage example
+<Typography coloe="sell">Sell</Typography>
+```
+
+{{"demo": "pages/customization/components/ThemeColors.js"}}
+
 ### Global CSS override
 
 You can also customize all instances of a component with CSS.

@@ -1,7 +1,19 @@
 import * as React from 'react';
+import { OverridableStringUnion } from '@material-ui/types';
 import { StandardProps, PropTypes } from '..';
 import { OverrideProps, OverridableTypeMap, OverridableComponent } from '../OverridableComponent';
 import { Variant } from '../styles/createTypography';
+
+export interface TypographyPropsColorOverrides {}
+export type ColorDefaults = Record<
+  | 'initial'
+  | 'inherit'
+  | 'primary'
+  | 'secondary'
+  | 'textPrimary'
+  | 'textSecondary'
+  | 'error', true>;
+
 
 export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P & {
@@ -16,14 +28,7 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
      */
-    color?:
-      | 'initial'
-      | 'inherit'
-      | 'primary'
-      | 'secondary'
-      | 'textPrimary'
-      | 'textSecondary'
-      | 'error';
+    color?: OverridableStringUnion<ColorDefaults, TypographyPropsColorOverrides>;
     /**
      * Controls the display type
      */

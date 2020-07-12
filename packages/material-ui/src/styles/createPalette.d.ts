@@ -101,7 +101,9 @@ export interface Palette {
 
 export type PartialTypeObject = { [P in keyof TypeObject]?: Partial<TypeObject[P]> };
 
-export interface PaletteOptions {
+export interface PaletteOptionsOverrides {}
+
+export interface PaletteOptions extends PaletteOptionsOverrides {
   primary?: PaletteColorOptions;
   secondary?: PaletteColorOptions;
   error?: PaletteColorOptions;
