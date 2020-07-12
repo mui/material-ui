@@ -45,11 +45,11 @@ describe('<Snackbar />', () => {
   describe('Consecutive messages', () => {
     let clock;
 
-    before(() => {
+    beforeEach(() => {
       clock = useFakeTimers();
     });
 
-    after(() => {
+    afterEach(() => {
       clock.restore();
     });
 
@@ -100,11 +100,11 @@ describe('<Snackbar />', () => {
   describe('prop: autoHideDuration', () => {
     let clock;
 
-    before(() => {
+    beforeEach(() => {
       clock = useFakeTimers();
     });
 
-    after(() => {
+    afterEach(() => {
       clock.restore();
     });
 
@@ -242,11 +242,11 @@ describe('<Snackbar />', () => {
   describe('prop: resumeHideDuration', () => {
     let clock;
 
-    before(() => {
+    beforeEach(() => {
       clock = useFakeTimers();
     });
 
-    after(() => {
+    afterEach(() => {
       clock.restore();
     });
 
@@ -324,11 +324,11 @@ describe('<Snackbar />', () => {
   describe('prop: disableWindowBlurListener', () => {
     let clock;
 
-    before(() => {
+    beforeEach(() => {
       clock = useFakeTimers();
     });
 
-    after(() => {
+    afterEach(() => {
       clock.restore();
     });
 

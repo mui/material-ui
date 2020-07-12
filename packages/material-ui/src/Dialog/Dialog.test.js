@@ -34,6 +34,14 @@ function clickBackdrop(container) {
 
 describe('<Dialog />', () => {
   let clock;
+  beforeEach(() => {
+    clock = useFakeTimers();
+  });
+
+  afterEach(() => {
+    clock.restore();
+  });
+
   // StrictModeViolation: uses Fade
   const mount = createMount({ strict: false });
   let classes;
@@ -41,14 +49,6 @@ describe('<Dialog />', () => {
 
   before(() => {
     classes = getClasses(<Dialog>foo</Dialog>);
-  });
-
-  beforeEach(() => {
-    clock = useFakeTimers();
-  });
-
-  afterEach(() => {
-    clock.restore();
   });
 
   describeConformance(<Dialog open>foo</Dialog>, () => ({

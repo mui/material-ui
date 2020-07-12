@@ -97,7 +97,20 @@ function clientRender(element, options = {}) {
 export function createClientRender(globalOptions = {}) {
   const { strict: globalStrict } = globalOptions;
 
+  // save stack to re-use in async afterEach
+  const { stack: createClientRenderStack } = new Error();
   afterEach(async () => {
+    if (setTimeout.hasOwnProperty('clock')) {
+      const error = Error(
+        "Can't cleanup before fake timers are restored.\n" +
+          'Be sure to:\n' +
+          '  1. Restore the clock in `afterEach` instead of `after`.\n' +
+          '  2. Move the test hook to restore the clock before the call to `createClientRender()`.',
+      );
+      // Use saved stack otherwise the stack trace will not include the test location.
+      error.stack = createClientRenderStack;
+      throw error;
+    }
     // If this issues an act() warning you probably didn't
     // wait for an async event in your test (or didn't wrap it in act() at all).
     // please wait for every update in your test and make appropriate assertions

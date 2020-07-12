@@ -201,16 +201,16 @@ describe('<Popper />', () => {
 
   describe('prop: transition', () => {
     let clock;
-    const looseRender = createClientRender({ strict: false });
-
-    before(() => {
+    beforeEach(() => {
       clock = useFakeTimers();
       // StrictModeViolation: uses Grow
     });
 
-    after(() => {
+    afterEach(() => {
       clock.restore();
     });
+
+    const looseRender = createClientRender({ strict: false });
 
     it('should work', () => {
       const { queryByRole, getByRole, setProps } = looseRender(

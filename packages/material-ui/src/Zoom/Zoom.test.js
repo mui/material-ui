@@ -34,11 +34,11 @@ describe('<Zoom />', () => {
   describe('transition lifecycle', () => {
     let clock;
 
-    before(() => {
+    beforeEach(() => {
       clock = useFakeTimers();
     });
 
-    after(() => {
+    afterEach(() => {
       clock.restore();
     });
 

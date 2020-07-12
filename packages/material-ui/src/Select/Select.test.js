@@ -617,11 +617,11 @@ describe('<Select />', () => {
   describe('prop: open (controlled)', () => {
     let clock;
 
-    before(() => {
+    beforeEach(() => {
       clock = useFakeTimers();
     });
 
-    after(() => {
+    afterEach(() => {
       clock.restore();
     });
 
