@@ -138,11 +138,11 @@ describe('transitions', () => {
 
     it('should return NaN when passed a negative number', () => {
       const zeroHeightDurationNegativeOne = transitions.getAutoHeightDuration(-1);
-      expect(isNaN(zeroHeightDurationNegativeOne)).to.equal(true);
+      expect(Number.isNaN(zeroHeightDurationNegativeOne)).to.equal(true);
       const zeroHeightDurationSmallNegative = transitions.getAutoHeightDuration(-0.000001);
-      expect(isNaN(zeroHeightDurationSmallNegative)).to.equal(true);
+      expect(Number.isNaN(zeroHeightDurationSmallNegative)).to.equal(true);
       const zeroHeightDurationBigNegative = transitions.getAutoHeightDuration(-100000);
-      expect(isNaN(zeroHeightDurationBigNegative)).to.equal(true);
+      expect(Number.isNaN(zeroHeightDurationBigNegative)).to.equal(true);
     });
 
     it('should return values for pre-calculated positive examples', () => {

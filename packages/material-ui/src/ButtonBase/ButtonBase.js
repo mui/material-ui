@@ -289,6 +289,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
   const enableTouchRipple = mountedState && !disableRipple && !disabled;
 
   if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
       if (enableTouchRipple && !rippleRef.current) {
         console.error(

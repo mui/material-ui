@@ -197,6 +197,8 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
       [size]: tabMeta ? tabMeta[size] : 0,
     };
 
+    // IE 11 support, replace with Number.isNaN
+    // eslint-disable-next-line no-restricted-globals
     if (isNaN(indicatorStyle[start]) || isNaN(indicatorStyle[size])) {
       setIndicatorStyle(newIndicatorStyle);
     } else {

@@ -6,8 +6,8 @@ import {
   createMuiTheme,
 } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { Breakpoint } from '@material-ui/core/styles/createBreakpoints';
 
+type Breakpoint = number | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 type BreakpointOrNull = Breakpoint | null;
 
 /**
@@ -20,6 +20,7 @@ function useWidth() {
   const keys: Breakpoint[] = [...theme.breakpoints.keys].reverse();
   return (
     keys.reduce((output: BreakpointOrNull, key: Breakpoint) => {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
       const matches = useMediaQuery(theme.breakpoints.up(key));
       return !output && matches ? key : output;
     }, null) || 'xs'

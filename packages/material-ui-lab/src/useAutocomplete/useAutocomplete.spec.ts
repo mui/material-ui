@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { useAutocomplete, FilterOptionsState } from '@material-ui/lab';
 import { expectType } from '@material-ui/types';
 

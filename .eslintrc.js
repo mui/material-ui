@@ -1,4 +1,4 @@
-const confusingBrowserGlobals = require('confusing-browser-globals');
+
 const path = require('path');
 
 module.exports = {
@@ -42,6 +42,7 @@ module.exports = {
     'import/no-cycle': 'off', // Too slow
     'import/no-extraneous-dependencies': 'off', // Missing yarn workspace support
     'jsx-a11y/label-has-associated-control': 'off', // doesn't work?
+    'jsx-a11y/no-autofocus': 'off', // We are a library, we need to support it too
     'max-classes-per-file': 'off', // just as bad as "max components per file"
     'no-alert': 'error', // Too much interruptive
     'no-console': ['error', { allow: ['warn', 'error'] }], // Allow warn and error for production events
@@ -56,64 +57,29 @@ module.exports = {
         ],
       },
     ],
+    'material-ui/docgen-ignore-before-comment': 'error',
+    'no-constant-condition': 'error',
+    'no-prototype-builtins': 'off', // Use the proptype inheritance chain
+    'no-underscore-dangle': 'error',
+    'nonblock-statement-body-position': 'error',
+    'prefer-arrow-callback': ['error', { allowNamedFunctions: true }],
     'prefer-destructuring': 'off', // Destructuring harm grep potential.
+    'react-hooks/exhaustive-deps': ['error', { additionalHooks: 'useEnhancedEffect' }],
+    'react-hooks/rules-of-hooks': 'error',
     'react/destructuring-assignment': 'off', // It's fine.
+    'react/forbid-prop-types': 'off', // Too strict, no time for that
     'react/jsx-curly-brace-presence': 'off', // broken
     'react/jsx-filename-extension': ['error', { extensions: ['.js', '.tsx'] }], // airbnb is using .jsx
     'react/jsx-fragments': ['error', 'element'], // Prefer <React.Fragment> over <>.
     'react/jsx-props-no-spreading': 'off', // We are a UI library.
     'react/no-array-index-key': 'off', // This rule is great for raising people awareness of what a key is and how it works.
-    'react/require-default-props': 'off', // Not always relevant
-    'react/static-property-placement': 'off', // No needed
-    'react/forbid-prop-types': 'off', // Too strict, no time for that
+    'react/no-danger': 'error',
+    'react/no-direct-mutation-state': 'error',
     'react/no-find-dom-node': 'off', // Required for backward compatibility. TODO v5, drop
-
-    // 'linebreak-style': 'off', // Doesn't play nicely with Windows
-    // 'no-constant-condition': 'error',
-    // // Airbnb use error
-    // 'no-prototype-builtins': 'off',
-    // 'nonblock-statement-body-position': 'error',
-    // // Airbnb restricts isNaN and isFinite which are necessary for IE 11
-    // // we have to be disciplined about the usage and ensure the Number type for its
-    // // arguments
-    // 'no-restricted-globals': ['error'].concat(confusingBrowserGlobals),
-    // 'no-underscore-dangle': 'error',
-    // 'prefer-arrow-callback': ['error', { allowNamedFunctions: true }],
-    // 'prefer-destructuring': 'off', // Destructuring harm grep potential.
-
-    // 'jsx-a11y/label-has-for': 'off', // deprecated
-    // 'jsx-a11y/no-autofocus': 'off', // We are a library, people do what they want.
-
-    // 'material-ui/docgen-ignore-before-comment': 'error',
-
-    // // It's buggy
-    // 'react/jsx-handler-names': [
-    //   'error',
-    //   {
-    //     // airbnb is disabling this rule
-    //     eventHandlerPrefix: 'handle',
-    //     eventHandlerPropPrefix: 'on',
-    //   },
-    // ],
-    // // not a good rule for components close to the DOM
-    // 'react/no-danger': 'error',
-    // // Strict, airbnb is using off
-    // 'react/no-direct-mutation-state': 'error',
-    // 'react/no-multi-comp': 'off',
-    // 'react/sort-prop-types': 'error',
-    // // This depends entirely on what you're doing. There's no universal pattern
-    // // stylistic opinion. For conditional assignment we want it outside, otherwise as static
-    // 'import/namespace': ['error', { allowComputed: true }],
-    // 'import/order': [
-    //   'error',
-    //   {
-    //     groups: [['index', 'sibling', 'parent', 'internal', 'external', 'builtin']],
-    //     'newlines-between': 'never',
-    //   },
-    // ],
-
-    // 'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': ['error', { additionalHooks: 'useEnhancedEffect' }],
+    'react/require-default-props': 'off', // Not always relevant
+    'react/sort-prop-types': 'error',
+    'react/state-in-constructor': 'off', // Too strict, no time for that
+    'react/static-property-placement': 'off', // No needed
   },
   overrides: [
     {
@@ -224,6 +190,13 @@ module.exports = {
         'react/require-default-props': 'off',
         'react/state-in-constructor': 'off',
         'react/static-property-placement': 'off',
+      },
+    },
+    {
+      files: ['packages/material-ui-icons/custom/**/*.js'],
+      rules: {
+          'import/no-unresolved': 'off',
+          'import/extensions': 'off',
       },
     },
   ],

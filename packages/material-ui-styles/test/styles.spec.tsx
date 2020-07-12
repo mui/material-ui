@@ -402,7 +402,7 @@ withStyles((theme) =>
   }
 }
 
-function forwardRefTest() {
+function ForwardRefTest() {
   const styles = createStyles({
     root: { color: 'red' },
   });
@@ -452,6 +452,7 @@ function forwardRefTest() {
     }),
   }));
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const styles = useStyles({ foo: true });
   expectType<Record<'root' | 'root2', string>, typeof styles>(styles);
 }

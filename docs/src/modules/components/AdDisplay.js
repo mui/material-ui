@@ -34,7 +34,7 @@ export default function AdDisplay(props) {
     classes = autoShapeStyles();
   }
 
-  /* eslint-disable material-ui/no-hardcoded-labels, react/no-danger */
+  /* eslint-disable react/no-danger */
   return (
     <span className={clsx(classes.root, 'ad-display', className)}>
       <a href={ad.link} target="_blank" rel="noopener sponsored">
@@ -49,7 +49,7 @@ export default function AdDisplay(props) {
       <span className={classes.poweredby}>ad by {ad.poweredby}</span>
     </span>
   );
-  /* eslint-enable material-ui/no-hardcoded-labels, react/no-danger */
+  /* eslint-enable react/no-danger */
 }
 
 AdDisplay.propTypes = {

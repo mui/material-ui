@@ -3,8 +3,8 @@ import { expect } from 'chai';
 import { getClasses, findOutermostIntrinsic } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
 import Icon from '@material-ui/core/Icon';
-import SpeedDialIcon from './SpeedDialIcon';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
+import SpeedDialIcon from './SpeedDialIcon';
 
 describe('<SpeedDialIcon />', () => {
   const mount = createMount();

@@ -241,7 +241,7 @@ function DisablePortal(props) {
 }
 
 const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
-  /* eslint-disable no-unused-vars */
+  /* eslint-disable @typescript-eslint/no-unused-vars */
   const {
     autoComplete = false,
     autoHighlight = false,
@@ -305,7 +305,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     value: valueProp,
     ...other
   } = props;
-  /* eslint-enable no-unused-vars */
+  /* eslint-enable @typescript-eslint/no-unused-vars */
 
   const PopperComponent = disablePortal ? DisablePortal : PopperComponentProp;
 

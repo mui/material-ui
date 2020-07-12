@@ -15,13 +15,19 @@ module.exports = {
       Literal(node) {
         const canLabelComponent =
           node.parent.type === 'JSXElement' ||
+          node.parent.type === 'JSXExpressionContainer' ||
           (node.parent.type === 'JSXAttribute' && ['aria-label'].includes(node.parent.name.name));
 
         const sanitizedValue = typeof node.value === 'string' ? node.value.trim() : node.value;
         const hasTranslateableContent = sanitizedValue !== '' && !emojiRegex.test(sanitizedValue);
 
-        if (canLabelComponent && hasTranslateableContent && !allow.includes(sanitizedValue)) {
-          context.report({ messageId: 'literal-label', node });
+        if (
+          canLabelComponent &&
+          hasTranslateableContent &&
+          !allow.includes(sanitizedValue) &&
+          typeof sanitizedValue === 'string'
+        ) {
+          context.report({ messageId: 'literal-label', node: node.parent });
         }
       },
     };

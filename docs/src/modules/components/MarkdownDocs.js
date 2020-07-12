@@ -156,7 +156,9 @@ function MarkdownDocs(props) {
                 return (
                   <div key={index}>
                     {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
-                    {warnIcon} Missing demo `{name}` {warnIcon}
+                    {warnIcon}
+                    {' Missing demo '}
+                    {name} {warnIcon}
                   </div>
                 );
               }

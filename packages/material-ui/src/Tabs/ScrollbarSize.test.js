@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers, stub } from 'sinon';
-import ScrollbarSize from './ScrollbarSize';
 import { createClientRender } from 'test/utils/createClientRender';
+import ScrollbarSize from './ScrollbarSize';
 
 describe('<ScrollbarSize />', () => {
   let clock;

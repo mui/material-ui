@@ -1,6 +1,6 @@
 import { dirname } from 'path';
-import getJSExports from '../util/getJSExports';
 import addImports from 'jscodeshift-add-imports';
+import getJSExports from '../util/getJSExports';
 
 // istanbul ignore next
 if (process.env.NODE_ENV === 'test') {

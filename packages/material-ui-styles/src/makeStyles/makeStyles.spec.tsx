@@ -129,6 +129,7 @@ import { createStyles, makeStyles } from '@material-ui/styles';
       },
     }));
 
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const classes = useStyles();
 
     // This doesn't fail, because inferrence is broken

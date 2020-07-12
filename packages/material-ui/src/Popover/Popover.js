@@ -7,8 +7,8 @@ import {
   refType,
   HTMLElementType,
 } from '@material-ui/utils';
-import debounce from '../utils/debounce';
 import clsx from 'clsx';
+import debounce from '../utils/debounce';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
 import createChainedFunction from '../utils/createChainedFunction';
