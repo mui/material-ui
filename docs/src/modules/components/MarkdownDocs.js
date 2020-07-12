@@ -1,3 +1,4 @@
+/* eslint-disable material-ui/no-hardcoded-labels */
 import React from 'react';
 import * as PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -155,7 +156,6 @@ function MarkdownDocs(props) {
                 );
                 return (
                   <div key={index}>
-                    {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
                     {warnIcon}
                     {' Missing demo '}
                     {name} {warnIcon}

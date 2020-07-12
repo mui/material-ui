@@ -2,7 +2,7 @@ import React from 'react';
 import withWidth from '@material-ui/core/withWidth';
 import Typography from '@material-ui/core/Typography';
 
-type Breakpoint = number | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 type TagName = 'em' | 'u' | 'del';
 
 const components: Partial<Record<Breakpoint, TagName>> = {
