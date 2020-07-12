@@ -16,7 +16,7 @@ export interface StylesOptions {
 export const StylesContext: React.Context<StylesOptions>;
 
 export interface StylesProviderProps extends StylesOptions {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 declare const StylesProvider: React.ComponentType<StylesProviderProps>;

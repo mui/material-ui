@@ -1,4 +1,3 @@
-// *https://www.registers.service.gov.uk/registers/country/use-the-api*
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
@@ -27,6 +26,7 @@ export default function Asynchronous() {
     }
 
     (async () => {
+      // https://www.registers.service.gov.uk/registers/country/use-the-api
       const response = await fetch(
         'https://country.register.gov.uk/records.json?page-size=5000',
       );

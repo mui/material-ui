@@ -6,7 +6,7 @@ import Switch from '@material-ui/core/Switch';
 
 interface Styles {
   color: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   [key: string]: any;
 }
 

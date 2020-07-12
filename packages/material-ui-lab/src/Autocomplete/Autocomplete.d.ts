@@ -27,7 +27,7 @@ export type AutocompleteGetTagProps = ({ index }: { index: number }) => {};
 export interface AutocompleteRenderGroupParams {
   key: string;
   group: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 export interface AutocompleteRenderInputParams {
