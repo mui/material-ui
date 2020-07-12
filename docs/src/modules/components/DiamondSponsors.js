@@ -53,7 +53,7 @@ export default function DiamondSponsors(props) {
       <Typography variant="caption" color="textSecondary" display="block" gutterBottom>
         {t('diamondSponsors')}
       </Typography>
-      {randomSencha < 0.25 ? (
+      {randomSencha < 0.01 ? (
         <a
           data-ga-event-category="sponsor"
           data-ga-event-action={spot}
