@@ -1,4 +1,3 @@
-
 const path = require('path');
 
 module.exports = {
@@ -31,17 +30,12 @@ module.exports = {
       },
     },
   },
-  // Sorted alphanumerically
+  /**
+   * Sorted alphanumerically within each group. built-in and each plugin form
+   * their own groups.
+   */
   rules: {
-    '@typescript-eslint/dot-notation': 'off', // Too slow
-    '@typescript-eslint/no-implied-eval': 'off', // Too slow
-    '@typescript-eslint/no-throw-literal': 'off', // Too slow
     'consistent-this': ['error', 'self'],
-    'import/named': 'off', // Not sure why it doesn't work
-    'import/no-cycle': 'off', // Too slow
-    'import/no-extraneous-dependencies': 'off', // Missing yarn workspace support
-    'jsx-a11y/label-has-associated-control': 'off', // doesn't work?
-    'jsx-a11y/no-autofocus': 'off', // We are a library, we need to support it too
     'max-classes-per-file': 'off', // just as bad as "max components per file"
     'no-alert': 'error', // Too much interruptive
     'no-console': ['error', { allow: ['warn', 'error'] }], // Allow warn and error for production events
@@ -56,13 +50,21 @@ module.exports = {
         ],
       },
     ],
-    'material-ui/docgen-ignore-before-comment': 'error',
     'no-constant-condition': 'error',
     'no-prototype-builtins': 'off', // Use the proptype inheritance chain
     'no-underscore-dangle': 'error',
     'nonblock-statement-body-position': 'error',
     'prefer-arrow-callback': ['error', { allowNamedFunctions: true }],
     'prefer-destructuring': 'off', // Destructuring harm grep potential.
+    '@typescript-eslint/dot-notation': 'off', // Too slow
+    '@typescript-eslint/no-implied-eval': 'off', // Too slow
+    '@typescript-eslint/no-throw-literal': 'off', // Too slow
+    'import/named': 'off', // Not sure why it doesn't work
+    'import/no-cycle': 'off', // Too slow
+    'import/no-extraneous-dependencies': 'off', // Missing yarn workspace support
+    'jsx-a11y/label-has-associated-control': 'off', // doesn't work?
+    'jsx-a11y/no-autofocus': 'off', // We are a library, we need to support it too
+    'material-ui/docgen-ignore-before-comment': 'error',
     'react-hooks/exhaustive-deps': ['error', { additionalHooks: 'useEnhancedEffect' }],
     'react-hooks/rules-of-hooks': 'error',
     'react/destructuring-assignment': 'off', // It's fine.
