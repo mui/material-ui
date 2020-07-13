@@ -1,18 +1,16 @@
 import React from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    formControl: {
-      margin: theme.spacing(1),
-      minWidth: 120,
-      maxWidth: 300,
-    },
-  }),
-);
+const useStyles = makeStyles((theme) => ({
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+    maxWidth: 300,
+  },
+}));
 
 const names = [
   'Oliver Hansen',
@@ -29,10 +27,10 @@ const names = [
 
 export default function MultipleSelect() {
   const classes = useStyles();
-  const [personName, setPersonName] = React.useState<string[]>([]);
-  const handleChangeMultiple = (event: React.ChangeEvent<{ value: unknown }>) => {
-    const { options } = event.target as HTMLSelectElement;
-    const value: string[] = [];
+  const [personName, setPersonName] = React.useState([]);
+  const handleChangeMultiple = (event) => {
+    const { options } = event.target;
+    const value = [];
     for (let i = 0, l = options.length; i < l; i += 1) {
       if (options[i].selected) {
         value.push(options[i].value);
