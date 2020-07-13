@@ -294,7 +294,7 @@ const theme = createMuiTheme({
 });
 
 // Usage example
-<Typography coloe="sell">Sell</Typography>;
+<Typography color="sell">Sell</Typography>;
 ```
 
 {{"demo": "pages/customization/components/ThemeColors.js"}}
