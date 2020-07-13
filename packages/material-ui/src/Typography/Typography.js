@@ -127,13 +127,13 @@ const isSupportedColor = (color) => {
   return supportedColors.indexOf(color) >= 0;
 }
 
-const useDynamicTypographyColor = ({ color }) => {
-  const useColorStyles = makeStyles((theme) => ({
-    color: {
-      color: (props) => (theme.palette[props.color] ? theme.palette[props.color].main : 'inherit'),
-    },
-  }));
+const useColorStyles = makeStyles((theme) => ({
+  color: {
+    color: (props) => (theme.palette[props.color] ? theme.palette[props.color].main : 'inherit'),
+  },
+}));
 
+const useDynamicTypographyColor = ({ color }) => {
   if (!isSupportedColor(color)) {
     return useColorStyles({ color }).color;
   }
