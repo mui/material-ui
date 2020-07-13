@@ -82,6 +82,22 @@ Like with the single selection, you can pull out the new value by accessing `eve
 
 {{"demo": "pages/components/selects/MultipleSelect.js"}}
 
+### Checkmarks
+
+{{"demo": "pages/components/selects/MultipleSelectCheckmarks.js"}}
+
+### Chip
+
+{{"demo": "pages/components/selects/MultipleSelectChip.js"}}
+
+### Placeholder
+
+{{"demo": "pages/components/selects/MultipleSelectPlaceholder.js"}}
+
+### Native
+
+{{"demo": "pages/components/selects/MultipleSelectNative.js"}}
+
 ## Controlled Open Select
 
 {{"demo": "pages/components/selects/ControlledOpenSelect.js"}}
