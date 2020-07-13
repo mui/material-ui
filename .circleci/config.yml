@@ -50,7 +50,7 @@ jobs:
           at: .
       - run:
           name: Eslint
-          command: yarn lint
+          command: yarn lint:ci
       - run:
           name: Ensure prettier was run
           command: yarn prettier --check './**/*.{ts,tsx,js,jsx,json,md,mdx,html,css}'
