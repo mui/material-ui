@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import * as React from 'react';
 import { styled } from '@material-ui/core/styles';
 import { DesktopDatePicker } from '@material-ui/pickers';
 
@@ -7,14 +7,14 @@ const InputContainer = styled('div')({
   alignItems: 'center',
 });
 
-function CustomInput() {
-  const [selectedDate, handleDateChange] = useState(new Date());
+export default function CustomInput() {
+  const [value, setValue] = React.useState(new Date());
 
   return (
     <DesktopDatePicker
       label="Advanced keyboard"
-      value={selectedDate}
-      onChange={date => handleDateChange(date)}
+      value={value}
+      onChange={newValue => setValue(newValue)}
       renderInput={({ inputRef, inputProps, InputProps }) => (
         <InputContainer>
           <input ref={inputRef} {...inputProps} />
@@ -24,5 +24,3 @@ function CustomInput() {
     />
   );
 }
-
-export default CustomInput;

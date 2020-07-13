@@ -1,5 +1,5 @@
+import * as React from 'react';
 import clsx from 'clsx';
-import React, { useState } from 'react';
 import isSameDay from 'date-fns/isSameDay';
 import endOfWeek from 'date-fns/endOfWeek';
 import startOfWeek from 'date-fns/startOfWeek';
@@ -29,13 +29,13 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function WeekPicker(props) {
-  const classes = useStyles(props);
-  const [selectedDate, handleDateChange] = useState(new Date());
+export default function CustomDay(props) {
+  const classes = useStyles();
+  const [selectedDate, handleDateChange] = React.useState(new Date());
 
   const renderWeekPickerDay = (date, selectedDates, DayComponentProps) => {
-    let dateClone = makeJSDateObject(date);
-    let selectedDateClone = makeJSDateObject(selectedDate);
+    const dateClone = makeJSDateObject(date);
+    const selectedDateClone = makeJSDateObject(selectedDate);
 
     const start = startOfWeek(selectedDateClone);
     const end = endOfWeek(selectedDateClone);
@@ -72,5 +72,3 @@ function WeekPicker(props) {
     />
   );
 }
-
-export default WeekPicker;

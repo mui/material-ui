@@ -1,12 +1,12 @@
-import React, { Fragment, useState } from 'react';
+import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { DatePicker, MobileDatePicker } from '@material-ui/pickers';
 
-function YearMonthPicker() {
-  const [selectedDate, handleDateChange] = useState(new Date());
+export default function YearDatePicker() {
+  const [selectedDate, handleDateChange] = React.useState(new Date());
 
   return (
-    <Fragment>
+    <React.Fragment>
       <DatePicker
         views={['year']}
         label="Year only"
@@ -33,8 +33,6 @@ function YearMonthPicker() {
         onChange={date => handleDateChange(date)}
         renderInput={props => <TextField {...props} helperText="Start from year selection" />}
       />
-    </Fragment>
+    </React.Fragment>
   );
 }
-
-export default YearMonthPicker;

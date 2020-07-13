@@ -10,24 +10,24 @@ function disableWeekends(date) {
 }
 
 export default function StaticDatePickerExample() {
-  const [date, handleDateChange] = React.useState(new Date());
+  const [value, setValue] = React.useState(new Date());
 
   return (
     <React.Fragment>
       <StaticDatePicker
         displayStaticWrapperAs="desktop"
         openTo="year"
-        value={date}
-        onChange={date => handleDateChange(date)}
+        value={value}
+        onChange={newValue => setValue(newValue)}
         renderInput={props => <TextField {...props} />}
       />
 
       <StaticDatePicker
         orientation="landscape"
         openTo="date"
-        value={date}
+        value={value}
         shouldDisableDate={disableWeekends}
-        onChange={date => handleDateChange(date)}
+        onChange={newValue => setValue(newValue)}
         renderInput={props => <TextField {...props} />}
       />
     </React.Fragment>

@@ -1,12 +1,12 @@
-import React, { Fragment, useState } from 'react';
+import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { MobileDatePicker, DesktopDatePicker, DatePicker } from '@material-ui/pickers';
 
-function DatePickersVariants(props) {
-  const [selectedDate, handleDateChange] = useState(new Date());
+export default function DatePickersVariants(props) {
+  const [selectedDate, handleDateChange] = React.useState(new Date());
 
   return (
-    <Fragment>
+    <React.Fragment>
       <MobileDatePicker
         clearable
         label="For mobile"
@@ -37,8 +37,6 @@ function DatePickersVariants(props) {
         onChange={date => handleDateChange(date)}
         renderInput={props => <TextField {...props} />}
       />
-    </Fragment>
+    </React.Fragment>
   );
 }
-
-export default DatePickersVariants;
