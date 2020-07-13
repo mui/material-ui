@@ -80,7 +80,13 @@ It's enabled with the `multiple` property.
 
 Like with the single selection, you can pull out the new value by accessing `event.target.value` in the `onChange` callback. It's always an array.
 
+### Default
+
 {{"demo": "pages/components/selects/MultipleSelect.js"}}
+
+### Default with placeholder
+
+{{"demo": "pages/components/selects/MultipleSelectPlaceholder.js"}}
 
 ### Checkmarks
 
