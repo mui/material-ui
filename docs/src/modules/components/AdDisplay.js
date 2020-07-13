@@ -34,7 +34,7 @@ export default function AdDisplay(props) {
     classes = autoShapeStyles();
   }
 
-  /* eslint-disable react/no-danger */
+  /* eslint-disable material-ui/no-hardcoded-labels, react/no-danger */
   return (
     <span className={clsx(classes.root, 'ad-display', className)}>
       <a href={ad.link} target="_blank" rel="noopener sponsored">

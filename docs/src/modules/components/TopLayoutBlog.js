@@ -1,4 +1,3 @@
-/* eslint-disable material-ui/no-hardcoded-labels */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -59,6 +58,7 @@ function TopLayoutBlog(props) {
             color="textSecondary"
             className={classes.back}
           >
+            {/* eslint-disable-next-line material-ui/no-hardcoded-labels -- TODO: should be translated */}
             {'< Back to blog'}
           </Link>
           {rendered.map((chunk, index) => {

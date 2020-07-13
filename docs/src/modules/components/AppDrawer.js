@@ -158,6 +158,7 @@ function AppDrawer(props) {
               href={`https://material-ui.com${languagePrefix}/versions/`}
               onClick={onClose}
             >
+              {/* eslint-disable-next-line material-ui/no-hardcoded-labels -- version string is untranslatable */}
               {`v${process.env.LIB_VERSION}`}
             </Link>
           ) : null}

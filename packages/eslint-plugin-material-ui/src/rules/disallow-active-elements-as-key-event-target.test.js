@@ -1,7 +1,10 @@
 const eslint = require('eslint');
 const rule = require('./disallow-active-element-as-key-event-target');
 
-const ruleTester = new eslint.RuleTester({ parser: require.resolve('babel-eslint') });
+const ruleTester = new eslint.RuleTester({
+  parser: require.resolve('@typescript-eslint/parser'),
+  parserOptions: { sourceType: 'module' },
+});
 ruleTester.run('disallow-active-element-as-key-event-target', rule, {
   valid: [
     "import { fireEvent } from 'test/utils/createClientRender';\nfireEvent.keyDown(getByRole('button'), { key: ' ' })",
