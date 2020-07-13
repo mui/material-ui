@@ -10,7 +10,7 @@ import StepLabel from '../StepLabel';
 import StepButton from '../StepButton';
 
 describe('<Step />', () => {
-  let stepClasses;
+  let classes;
   let stepButtonClasses;
   let stepLabelClasses;
   const mount = createMount();
@@ -18,13 +18,13 @@ describe('<Step />', () => {
   const render = createClientRender();
 
   before(() => {
-    stepClasses = getClasses(<Step />);
+    classes = getClasses(<Step />);
     stepButtonClasses = getClasses(<StepButton />);
     stepLabelClasses = getClasses(<StepLabel />);
   });
 
   describeConformance(<Step />, () => ({
-    classes: stepClasses,
+    classes,
     inheritComponent: 'div',
     mount,
     refInstanceof: window.HTMLDivElement,

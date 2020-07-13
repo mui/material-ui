@@ -12,12 +12,12 @@ import ButtonBase from '../ButtonBase';
 import { fireEvent } from '@testing-library/dom';
 
 describe('<StepButton />', () => {
-  let buttonClasses;
+  let classes;
   let stepLabelClasses;
   const render = createClientRender();
 
   before(() => {
-    buttonClasses = getClasses(<StepButton />);
+    classes = getClasses(<StepButton />);
     stepLabelClasses = getClasses(<StepLabel />);
   });
 
@@ -25,7 +25,7 @@ describe('<StepButton />', () => {
     const mount = createMount();
 
     describeConformance(<StepButton />, () => ({
-      classes: buttonClasses,
+      classes,
       inheritComponent: ButtonBase,
       mount,
       refInstanceof: window.HTMLButtonElement,
