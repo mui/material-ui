@@ -13,6 +13,35 @@ Menus are positioned over their emitting elements such that the currently select
 
 {{"demo": "pages/components/selects/SimpleSelect.js"}}
 
+### Filled and Outlined Variants
+
+{{"demo": "pages/components/selects/SelectVariants.js"}}
+
+### Labels and helper text
+
+{{"demo": "pages/components/selects/SelectLabels.js"}}
+
+### Disabled
+
+{{"demo": "pages/components/selects/SelectDisabled.js"}}
+
+### Required
+
+{{"demo": "pages/components/selects/SelectRequired.js"}}
+
+### Read only
+
+{{"demo": "pages/components/selects/SelectReadOnly.js"}}
+
+### Error
+
+{{"demo": "pages/components/selects/SelectError.js"}}
+
+### Auto width
+
+{{"demo": "pages/components/selects/SelectAutoWidth.js"}}
+
+
 ## Advanced features
 
 The Select component is meant to be interchangeable with a native `<select>` element.
