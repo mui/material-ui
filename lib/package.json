@@ -60,6 +60,7 @@
     "test": "jest",
     "test:typescript": "rimraf src/__tests__/dist && tsc -p src/__tests__/tsconfig.json",
     "test:date-fns": "UTILS=date-fns yarn test",
+    "test:dayjs": "UTILS=datejs yarn test",
     "test:luxon": "UTILS=luxon yarn test",
     "test:moment": "UTILS=moment yarn test",
     "start": "rollup --config rollup.config.dev.js --watch & npx tsc --watch",

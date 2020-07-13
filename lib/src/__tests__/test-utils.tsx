@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as enzyme from 'enzyme';
+import DayjsUtils from '@date-io/dayjs';
 import LuxonUtils from '@date-io/luxon';
 import MomentUtils from '@date-io/moment';
 import DateFnsUtils from '@date-io/date-fns';
@@ -54,12 +55,14 @@ interface WithUtilsProps {
 
 const getUtilClass = () => {
   switch (process.env.UTILS) {
-    case 'moment':
-      return MomentUtils;
     case 'date-fns':
       return DateFnsUtils;
+    case 'dayjs':
+      return DayjsUtils;
     case 'luxon':
       return LuxonUtils;
+    case 'moment':
+      return MomentUtils;
     default:
       return DateFnsUtils;
   }
