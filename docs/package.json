@@ -71,7 +71,7 @@
     "safe-json-stringify": "^1.2.0",
     "sinon": "^9.0.2",
     "styled-jsx": "^3.3.0",
-    "typescript": "^3.8.3",
+    "typescript": "^3.9.6",
     "yup": "^0.29.1"
   },
   "devDependencies": {
