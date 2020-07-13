@@ -113,13 +113,33 @@ const defaultVariantMapping = {
   body2: 'p',
 };
 
-const colorClassesCache = {};
+const isSupportedColor = (color) => {
+  const supportedColors = [
+    'primary',
+    'secondary',
+    'initial',
+    'inherit',
+    'textPrimary',
+    'textSecondary',
+    'error',
+  ];
 
-const useColorStyles = makeStyles((theme) => ({
-  color: {
-    color: (props) => (theme.palette[props.color] ? theme.palette[props.color].main : 'inherit'),
-  },
-}));
+  return supportedColors.indexOf(color) >= 0;
+}
+
+const useDynamicTypographyColor = ({ color }) => {
+  const useColorStyles = makeStyles((theme) => ({
+    color: {
+      color: (props) => (theme.palette[props.color] ? theme.palette[props.color].main : 'inherit'),
+    },
+  }));
+
+  if (!isSupportedColor(color)) {
+    return useColorStyles({ color }).color;
+  }
+
+  return undefined;
+}
 
 const Typography = React.forwardRef(function Typography(props, ref) {
   const {
@@ -137,22 +157,7 @@ const Typography = React.forwardRef(function Typography(props, ref) {
     ...other
   } = props;
 
-  const supportedColors = [
-    'primary',
-    'secondary',
-    'initial',
-    'inherit',
-    'textPrimary',
-    'textSecondary',
-    'error',
-  ];
-  const supportedColor = supportedColors.indexOf(color) >= 0;
-
-  if (!supportedColor) {
-    if (!colorClassesCache[color]) {
-      colorClassesCache[color] = useColorStyles({ color }).color;
-    }
-  }
+  const dynamicColorClasses = useDynamicTypographyColor({ color });
 
   const Component =
     component ||
@@ -165,8 +170,8 @@ const Typography = React.forwardRef(function Typography(props, ref) {
         classes.root,
         {
           [classes[variant]]: variant !== 'inherit',
-          [classes[`color${capitalize(color)}`]]: supportedColor && color !== 'initial',
-          [colorClassesCache[color]]: !supportedColor,
+          [classes[`color${capitalize(color)}`]]: !dynamicColorClasses && color !== 'initial',
+          [dynamicColorClasses]: dynamicColorClasses,
           [classes.noWrap]: noWrap,
           [classes.gutterBottom]: gutterBottom,
           [classes.paragraph]: paragraph,
