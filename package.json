@@ -15,8 +15,8 @@
     "node": ">=8.0.0"
   },
   "scripts": {
-    "start": "yarn dev",
-    "dev": "yarn workspace docs dev",
+    "start": "yarn docs:dev",
+    "docs:dev": "yarn workspace docs dev",
     "e2e:run": "cypress run",
     "e2e:open": "cypress open",
     "docgen": "node docs/scripts/docgen.js",

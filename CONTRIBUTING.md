@@ -32,7 +32,7 @@ We are using yarn for development and linking, so you need to make
 
 ```sh
 yarn
-yarn dev
+yarn docs:dev
 ```
 
 to start the development environment and to be sure the `lib` folder is linked properly to the `docs` and your changes will be applied to the docs website.
