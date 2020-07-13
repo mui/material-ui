@@ -13,7 +13,16 @@ Menus are positioned over their emitting elements such that the currently select
 
 {{"demo": "pages/components/selects/SimpleSelect.js"}}
 
-### Filled and Outlined Variants
+## Advanced features
+
+The Select component is meant to be interchangeable with a native `<select>` element.
+
+If you are looking for more advanced features, like combobox, multiselect, autocomplete, async or creatable support, head to the [`Autocomplete` component](/components/autocomplete/).
+It's meant to be an improved version of the "react-select" and "downshift" packages.
+
+## Props
+
+### Filled and outlined variants
 
 {{"demo": "pages/components/selects/SelectVariants.js"}}
 
@@ -21,33 +30,14 @@ Menus are positioned over their emitting elements such that the currently select
 
 {{"demo": "pages/components/selects/SelectLabels.js"}}
 
-### Disabled
-
-{{"demo": "pages/components/selects/SelectDisabled.js"}}
-
-### Required
-
-{{"demo": "pages/components/selects/SelectRequired.js"}}
-
-### Read only
-
-{{"demo": "pages/components/selects/SelectReadOnly.js"}}
-
-### Error
-
-{{"demo": "pages/components/selects/SelectError.js"}}
-
 ### Auto width
 
 {{"demo": "pages/components/selects/SelectAutoWidth.js"}}
 
+### Disabled, error, required and read only
 
-## Advanced features
+{{"demo": "pages/components/selects/SelectOtherProps.js"}}
 
-The Select component is meant to be interchangeable with a native `<select>` element.
-
-If you are looking for more advanced features, like combobox, multiselect, autocomplete, async or creatable support, head to the [`Autocomplete` component](/components/autocomplete/).
-It's meant to be an improved version of the "react-select" and "downshift" packages.
 
 ## Native Select
 
