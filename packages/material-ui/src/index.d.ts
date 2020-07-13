@@ -1,4 +1,3 @@
-/* eslint-disable import/first */
 import * as React from 'react';
 import { Omit } from '@material-ui/types';
 import { StyledComponentProps } from './styles';
@@ -53,6 +52,7 @@ export namespace PropTypes {
 }
 
 // From index.js
+// eslint-disable-next-line import/first
 import * as colors from './colors';
 
 export { colors };

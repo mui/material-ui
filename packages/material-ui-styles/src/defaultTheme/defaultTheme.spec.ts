@@ -8,8 +8,7 @@ declare module '@material-ui/styles' {
   }
 }
 
-{
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+function Component() {
   const value = useTheme().myProperty;
   expectType<string, typeof value>(value);
 }

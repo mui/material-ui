@@ -37,7 +37,6 @@ module.exports = {
     '@typescript-eslint/no-implied-eval': 'off', // Too slow
     '@typescript-eslint/no-throw-literal': 'off', // Too slow
     'consistent-this': ['error', 'self'],
-    'import/export': 'off', // Not sure why it doesn't work
     'import/named': 'off', // Not sure why it doesn't work
     'import/no-cycle': 'off', // Too slow
     'import/no-extraneous-dependencies': 'off', // Missing yarn workspace support
@@ -95,7 +94,6 @@ module.exports = {
       rules: {
         // does not work with wildcard imports. Mistakes will throw at runtime anyway
         'import/named': 'off',
-        //
         'no-restricted-imports': [
           'error',
           {
@@ -163,6 +161,12 @@ module.exports = {
       },
     },
     {
+      files: ['*.d.ts'],
+      rules: {
+        'import/export': 'off', // Not sure why it doesn't work
+      },
+    },
+    {
       files: ['*.tsx'],
       rules: {
         'react/prop-types': 'off',
@@ -174,9 +178,11 @@ module.exports = {
         '@typescript-eslint/no-unused-expressions': 'off',
         '@typescript-eslint/no-unused-vars': 'off',
         '@typescript-eslint/no-use-before-define': 'off',
+        'import/export': 'off', // Not sure why it doesn't work
         'import/prefer-default-export': 'off',
         'jsx-a11y/anchor-has-content': 'off',
         'jsx-a11y/anchor-is-valid': 'off',
+        'jsx-a11y/tabindex-no-positive': 'off',
         'no-alert': 'off',
         'no-console': 'off',
         'no-empty-pattern': 'off',

@@ -22,7 +22,7 @@ const ButtonTest = () => (
     <Button variant="outlined" aria-label="add">
       Outlined
     </Button>
-    <Button tabIndex={-1} title="some button">
+    <Button tabIndex={1} title="some button">
       Title
     </Button>
     <Button component="a">Simple Link</Button>
@@ -35,6 +35,7 @@ const ButtonTest = () => (
       Link
     </Button>
     <Button href="/open-collective">Link</Button>
+    {/* By default the underlying component is a button element */}
     <Button
       ref={(elem) => {
         expectType<HTMLButtonElement | null, typeof elem>(elem);
@@ -46,6 +47,7 @@ const ButtonTest = () => (
     >
       Button
     </Button>
+    {/* If an href is provided, an anchor is used */}
     <Button
       href="/open-collective"
       ref={(elem) => {
@@ -58,6 +60,7 @@ const ButtonTest = () => (
     >
       Link
     </Button>
+    {/* If a component prop is specified, use that: */}
     <Button<'div'>
       component="div"
       ref={(elem) => {
