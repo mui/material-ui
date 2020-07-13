@@ -5,6 +5,7 @@ import withStyles from '../styles/withStyles';
 import { fade } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
+import makeStyles from '../styles/makeStyles';
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
@@ -106,16 +107,17 @@ export const styles = (theme) => ({
   },
   /* Styles applied to the root element if `variant="contained"`. */
   contained: {
-    color: theme.palette.getContrastText(theme.palette.grey[300]),
-    backgroundColor: theme.palette.grey[300],
+    // TODO: these are overriting the new dynamic color rules
+    // color: theme.palette.getContrastText(theme.palette.grey[300]),
+    // backgroundColor: theme.palette.grey[300],
     boxShadow: theme.shadows[2],
     '&:hover': {
-      backgroundColor: theme.palette.grey.A100,
+      // backgroundColor: theme.palette.grey.A100,
       boxShadow: theme.shadows[4],
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         boxShadow: theme.shadows[2],
-        backgroundColor: theme.palette.grey[300],
+        // backgroundColor: theme.palette.grey[300],
       },
       '&$disabled': {
         backgroundColor: theme.palette.action.disabledBackground,
@@ -258,6 +260,63 @@ export const styles = (theme) => ({
   },
 });
 
+const isSupportedColor = (color) => {
+  const supportedColors = [
+    'primary',
+    'secondary',
+    'inherit',
+  ];
+
+  return supportedColors.indexOf(color) >= 0;
+}
+
+const useColorStyles = makeStyles((theme) => ({
+  containedColor: {
+    color: ({ color }) => theme.palette[color].contrastText,
+    backgroundColor: ({ color }) => theme.palette[color].main,
+    '&:hover': {
+      backgroundColor: ({ color }) => theme.palette[color].dark,
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: ({color}) => theme.palette[color].main,
+      },
+    },
+  },
+  textColor: { 
+    color: ({ color }) => theme.palette[color].main,
+    '&:hover': {
+      backgroundColor: ({ color }) => fade(theme.palette[color].main, theme.palette.action.hoverOpacity),
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
+    },
+  },
+  outlinedColor: {
+    color: ({ color }) => theme.palette[color].main,
+    border: ({ color }) => `1px solid ${fade(theme.palette[color].main, 0.5)}`,
+    '&:hover': {
+      border: ({ color }) => `1px solid ${theme.palette[color].main}`,
+      backgroundColor: ({ color }) => fade(theme.palette[color].main, theme.palette.action.hoverOpacity),
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
+    },
+  }
+}));
+
+const useDynamicButtonColor = ({ color, variant }) => {
+  if (!isSupportedColor(color)) {
+    console.log(`${variant}Color`);
+    console.log(useColorStyles({ color }));
+    return useColorStyles({ color })[`${variant}Color`];
+  }
+
+  return undefined;
+}
+
+
 const Button = React.forwardRef(function Button(props, ref) {
   const {
     children,
@@ -290,6 +349,8 @@ const Button = React.forwardRef(function Button(props, ref) {
     </span>
   );
 
+  const dynamicButtonClasses = useDynamicButtonColor({ color, variant });
+
   return (
     <ButtonBase
       className={clsx(
@@ -303,6 +364,7 @@ const Button = React.forwardRef(function Button(props, ref) {
           [classes.disabled]: disabled,
           [classes.fullWidth]: fullWidth,
           [classes.colorInherit]: color === 'inherit',
+          [dynamicButtonClasses]: dynamicButtonClasses,
         },
         className,
       )}
