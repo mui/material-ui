@@ -7,7 +7,7 @@ components: Select, NativeSelect
 
 <p class="description">Select components are used for collecting user provided information from a list of options.</p>
 
-## Simple Select
+## Simple select
 
 Menus are positioned over their emitting elements such that the currently selected menu item appears on top of the emitting element.
 
@@ -34,19 +34,19 @@ It's meant to be an improved version of the "react-select" and "downshift" packa
 
 {{"demo": "pages/components/selects/SelectAutoWidth.js"}}
 
-### Disabled, error, required and read only
+### Other properties
 
 {{"demo": "pages/components/selects/SelectOtherProps.js"}}
 
 
-## Native Select
+## Native select
 
 As the user experience can be improved on mobile using the native select of the platform,
 we allow such pattern.
 
 {{"demo": "pages/components/selects/NativeSelects.js"}}
 
-## Text Fields
+## Text fields
 
 The `TextField` wrapper component is a complete form control including a label, input and help text.
 You can find an example with the select mode [in this section](/components/text-fields/#select).
@@ -63,7 +63,7 @@ Once it's styled, you can either use it directly as a text field or provide it t
 
 🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/select).
 
-## Multiple Select
+## Multiple select
 
 The `Select` component can handle multiple selections.
 It's enabled with the `multiple` property.
@@ -94,11 +94,11 @@ Like with the single selection, you can pull out the new value by accessing `eve
 
 {{"demo": "pages/components/selects/MultipleSelectNative.js"}}
 
-## Controlled Open Select
+## Controlled open select
 
 {{"demo": "pages/components/selects/ControlledOpenSelect.js"}}
 
-## With a Dialog
+## With a dialog
 
 While it's discouraged by the Material Design specification, you can use a select inside a dialog.
 
