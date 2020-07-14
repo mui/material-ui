@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SimpleSelect() {
+export default function SelectVariants() {
   const classes = useStyles();
   const [age, setAge] = React.useState('');
 
