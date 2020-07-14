@@ -38,7 +38,7 @@ describe('DateTimePicker', () => {
   it('Should change internal state on update', () => {
     component.find('input').simulate('click');
     component
-      .find('Day button')
+      .find('[data-mui-test="day"]')
       .at(3)
       .simulate('click');
 

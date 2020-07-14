@@ -17,7 +17,7 @@ export interface MonthSelectionProps {
 
 export const useStyles = makeStyles(
   {
-    container: {
+    root: {
       width: 310,
       display: 'flex',
       flexWrap: 'wrap',
@@ -72,7 +72,7 @@ export const MonthSelection: React.FC<MonthSelectionProps> = ({
   );
 
   return (
-    <div className={classes.container}>
+    <div className={classes.root}>
       {utils.getMonthArray(date).map(month => {
         const monthNumber = utils.getMonth(month);
         const monthText = utils.format(month, 'monthShort');

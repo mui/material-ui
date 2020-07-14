@@ -5,7 +5,7 @@ import { WrapperVariantContext, IsStaticVariantContext } from './WrapperVariantC
 
 const useStyles = makeStyles(
   theme => ({
-    staticWrapperRoot: {
+    root: {
       overflow: 'hidden',
       minWidth: DIALOG_WIDTH,
       display: 'flex',
@@ -33,7 +33,7 @@ export const StaticWrapper: React.FC<StaticWrapperProps> = ({
   return (
     <IsStaticVariantContext.Provider value={true}>
       <WrapperVariantContext.Provider value={displayStaticWrapperAs}>
-        <div className={classes.staticWrapperRoot} children={children} />
+        <div className={classes.root} children={children} />
       </WrapperVariantContext.Provider>
     </IsStaticVariantContext.Provider>
   );

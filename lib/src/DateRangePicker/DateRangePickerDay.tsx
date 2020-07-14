@@ -26,7 +26,7 @@ const startBorderStyle = {
 
 const useStyles = makeStyles(
   theme => ({
-    rangeIntervalDay: {
+    root: {
       '&:first-child $rangeIntervalDayPreview': {
         ...startBorderStyle,
         borderLeftColor: theme.palette.divider,
@@ -121,7 +121,7 @@ export const PureDateRangeDay = ({
   return (
     <div
       data-mui-test={shouldRenderHighlight ? 'DateRangeHighlight' : undefined}
-      className={clsx(classes.rangeIntervalDay, {
+      className={clsx(classes.root, {
         [classes.rangeIntervalDayHighlight]: shouldRenderHighlight,
         [classes.rangeIntervalDayHighlightEnd]: isEndOfHighlighting || isEndOfMonth,
         [classes.rangeIntervalDayHighlightStart]: isStartOfHighlighting || isStartOfMonth,

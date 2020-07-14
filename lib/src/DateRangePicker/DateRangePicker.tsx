@@ -164,23 +164,17 @@ export const DateRangePicker = makeRangePicker(
 export type DateRangePickerProps = React.ComponentProps<typeof DateRangePicker>;
 
 export const DesktopDateRangePicker = makeRangePicker(
-  'MuiPickersDesktopDateRangePicker',
+  'MuiDesktopDateRangePicker',
   DesktopTooltipWrapper
 );
 
 export type DesktopDateRangePickerProps = React.ComponentProps<typeof DesktopDateRangePicker>;
 
-export const MobileDateRangePicker = makeRangePicker(
-  'MuiPickersMobileDateRangePicker',
-  MobileWrapper
-);
+export const MobileDateRangePicker = makeRangePicker('MuiMobileDateRangePicker', MobileWrapper);
 
 export type MobileDateRangePickerProps = React.ComponentProps<typeof MobileDateRangePicker>;
 
-export const StaticDateRangePicker = makeRangePicker(
-  'MuiPickersStaticDateRangePicker',
-  StaticWrapper
-);
+export const StaticDateRangePicker = makeRangePicker('MuiStaticDateRangePicker', StaticWrapper);
 
 export type StaticDateRangePickerProps = React.ComponentProps<typeof StaticDateRangePicker>;
 

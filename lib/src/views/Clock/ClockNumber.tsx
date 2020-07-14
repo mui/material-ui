@@ -51,7 +51,7 @@ export const useStyles = makeStyles(
       theme.palette.type === 'light' ? theme.palette.text.primary : theme.palette.text.secondary;
 
     return {
-      clockNumber: {
+      root: {
         outline: 0,
         width: size,
         height: size,
@@ -91,7 +91,7 @@ export const ClockNumber: React.FC<ClockNumberProps> = ({
   const classes = useStyles();
   const canAutoFocus = useCanAutoFocus();
   const ref = React.useRef<HTMLSpanElement>(null);
-  const className = clsx(classes.clockNumber, {
+  const className = clsx(classes.root, {
     [classes.clockNumberSelected]: selected,
     [classes.clockNumberDisabled]: disabled,
   });

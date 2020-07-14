@@ -1,11 +1,11 @@
 import React from 'react';
 import { IUtils } from '@date-io/core/IUtils';
-import { Day, DayProps } from '@material-ui/pickers';
+import { PickersDay, PickersDayProps } from '@material-ui/pickers';
 
 export const createRegressionDay = (utils: IUtils<any>) => (
   day: any,
   selectedDate: any,
-  dayProps: DayProps
+  dayProps: PickersDayProps
 ) => {
-  return <Day {...dayProps} data-day={utils.formatByString(day, 'dd/MM/yyyy')} />;
+  return <PickersDay {...dayProps} data-day={utils.formatByString(day, 'dd/MM/yyyy')} />;
 };

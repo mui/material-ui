@@ -58,7 +58,7 @@ const muiComponentConfig = { name: 'MuiPickersCalendar' };
 export const useStyles = makeStyles(theme => {
   const weeksContainerHeight = (DAY_SIZE + DAY_MARGIN * 4) * 6;
   return {
-    calendarContainer: {
+    root: {
       minHeight: weeksContainerHeight,
     },
     loadingContainer: {
@@ -180,7 +180,7 @@ export const Calendar: React.FC<CalendarProps> = withDefaultProps(
             onExited={onMonthSwitchingAnimationEnd}
             reduceAnimations={reduceAnimations}
             slideDirection={slideDirection}
-            className={clsx(classes.calendarContainer, className)}
+            className={clsx(classes.root, className)}
             {...TransitionProps}
           >
             <div role="grid" className={classes.weekContainer}>

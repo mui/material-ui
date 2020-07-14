@@ -6,7 +6,7 @@ import { InnerDesktopWrapperProps } from './DesktopWrapper';
 import { WrapperVariantContext } from './WrapperVariantContext';
 import { KeyboardDateInput } from '../_shared/KeyboardDateInput';
 import { executeInTheNextEventLoopTick } from '../_helpers/utils';
-import { ExportedPickerPopperProps, PickerPopper } from '../_shared/PickerPopper';
+import { ExportedPickerPopperProps, PickersPopper } from '../_shared/PickersPopper';
 import { CanAutoFocusContext, useAutoFocusControl } from '../_shared/hooks/useCanAutoFocus';
 
 export interface InnerDesktopTooltipWrapperProps extends ExportedPickerPopperProps {}
@@ -51,7 +51,7 @@ export const DesktopTooltipWrapper: React.FC<DesktopTooltipWrapperProps> = ({
           onBlur={handleBlur}
         />
 
-        <PickerPopper
+        <PickersPopper
           role="tooltip"
           open={open}
           innerRef={popperRef}
@@ -63,7 +63,7 @@ export const DesktopTooltipWrapper: React.FC<DesktopTooltipWrapperProps> = ({
           onOpen={onOpen}
         >
           {children}
-        </PickerPopper>
+        </PickersPopper>
       </CanAutoFocusContext.Provider>
     </WrapperVariantContext.Provider>
   );

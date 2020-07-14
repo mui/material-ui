@@ -6,7 +6,7 @@ import { PureDateInput } from '../_shared/PureDateInput';
 import { InnerDesktopWrapperProps } from './DesktopWrapper';
 import { WrapperVariantContext } from './WrapperVariantContext';
 import { DialogProps as MuiDialogProps } from '@material-ui/core/Dialog';
-import { PickerModalDialog, ExportedPickerModalProps } from '../_shared/PickerModalDialog';
+import { PickersModalDialog, ExportedPickerModalProps } from '../_shared/PickersModalDialog';
 
 export interface InnerMobileWrapperProps extends ExportedPickerModalProps {
   /**
@@ -48,7 +48,7 @@ export const MobileWrapper: React.FC<MobileWrapperProps> = ({
     <WrapperVariantContext.Provider value="mobile">
       <PureDateInputComponent {...other} {...DateInputProps} />
 
-      <PickerModalDialog
+      <PickersModalDialog
         wider={wider}
         showTabs={showTabs}
         open={open}

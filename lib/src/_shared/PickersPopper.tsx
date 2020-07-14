@@ -51,7 +51,7 @@ export const useStyles = makeStyles(
   { name: 'MuiPickersPopper' }
 );
 
-export const PickerPopper: React.FC<PickerPopperProps> = ({
+export const PickersPopper: React.FC<PickerPopperProps> = ({
   anchorEl,
   children,
   innerRef = null,

@@ -14,17 +14,17 @@ export * from './DateRangePicker/DateRangePicker';
 
 export { DateRangePickerToolbar } from './DateRangePicker/DateRangePickerToolbar';
 
-export { Calendar } from './views/Calendar/Calendar';
+export { Calendar as PickersCalendar } from './views/Calendar/Calendar';
 
-export { CalendarView } from './views/Calendar/CalendarView';
+export { CalendarView as PickersCalendarView } from './views/Calendar/CalendarView';
 
-export { Day } from './views/Calendar/Day';
+export { Day as PickersDay } from './views/Calendar/Day';
 
-export { ClockView } from './views/Clock/ClockView';
+export { ClockView as PickersClockView } from './views/Clock/ClockView';
 
-export { Clock } from './views/Clock/Clock';
+export { Clock as PickersView } from './views/Clock/Clock';
 
-export { default as Picker } from './Picker/Picker';
+export { default as PickersBasePickers } from './Picker/Picker';
 
 export { useUtils } from './_shared/hooks/useUtils';
 
@@ -39,13 +39,13 @@ export {
 
 // TODO replace the following syntax with new ts export type { } syntax when will be supported by rollup
 
-export type CalendarProps = import('./views/Calendar/Calendar').CalendarProps;
-export type CalendarViewProps = import('./views/Calendar/CalendarView').CalendarViewProps;
-export type DayProps = import('./views/Calendar/Day').DayProps;
-export type ClockViewProps = import('./views/Clock/ClockView').ClockViewProps;
-export type ClockProps = import('./views/Clock/Clock').ClockProps;
+export type PickersCalendarProps = import('./views/Calendar/Calendar').CalendarProps;
+export type PickersCalendarViewProps = import('./views/Calendar/CalendarView').CalendarViewProps;
+export type PickersDayProps = import('./views/Calendar/Day').DayProps;
+export type PickersClockViewProps = import('./views/Clock/ClockView').ClockViewProps;
+export type PickersClockProps = import('./views/Clock/Clock').ClockProps;
 export type ToolbarComponentProps = import('./Picker/SharedPickerProps').ToolbarComponentProps;
 export type DateRangeDelimiterProps = import('./DateRangePicker/DateRangeDelimiter').DateRangeDelimiterProps;
 export type LocalizationProviderProps = import('./LocalizationProvider').LocalizationProviderProps;
 export type DateRange<T> = import('./DateRangePicker/RangeTypes').DateRange<T>;
-export type RangeInput = import('./DateRangePicker/RangeTypes').RangeInput;
+export type RangeInput<T> = import('./DateRangePicker/RangeTypes').RangeInput<T>;

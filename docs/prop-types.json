@@ -20,7 +20,7 @@
       "description": "\"OK\" button text.",
       "name": "okText",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersModalDialog.tsx",
         "name": "ExportedPickerModalProps"
       },
       "required": false,
@@ -35,7 +35,7 @@
       "description": "\"CANCEL\" Text message",
       "name": "cancelText",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersModalDialog.tsx",
         "name": "ExportedPickerModalProps"
       },
       "required": false,
@@ -50,7 +50,7 @@
       "description": "\"CLEAR\" Text message",
       "name": "clearText",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersModalDialog.tsx",
         "name": "ExportedPickerModalProps"
       },
       "required": false,
@@ -65,7 +65,7 @@
       "description": "\"TODAY\" Text message",
       "name": "todayText",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersModalDialog.tsx",
         "name": "ExportedPickerModalProps"
       },
       "required": false,
@@ -80,7 +80,7 @@
       "description": "If `true`, it shows the clear action in the picker dialog.",
       "name": "clearable",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersModalDialog.tsx",
         "name": "ExportedPickerModalProps"
       },
       "required": false,
@@ -95,7 +95,7 @@
       "description": "If `true`, the today button will be displayed. **Note** that `showClearButton` has a higher priority.",
       "name": "showTodayButton",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersModalDialog.tsx",
         "name": "ExportedPickerModalProps"
       },
       "required": false,
@@ -108,7 +108,7 @@
       "description": "Popper props passed down to [Popper](https://material-ui.com/api/popper/) component.",
       "name": "PopperProps",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerPopper.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersPopper.tsx",
         "name": "ExportedPickerPopperProps"
       },
       "required": false,
@@ -121,7 +121,7 @@
       "description": "Custom component for [Transition](https://material-ui.com/components/transitions/#transitioncomponent-prop).",
       "name": "TransitionComponent",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerPopper.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersPopper.tsx",
         "name": "ExportedPickerPopperProps"
       },
       "required": false,
@@ -151,7 +151,7 @@
       "description": "Popper props passed down to [Popper](https://material-ui.com/api/popper/) component.",
       "name": "PopperProps",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerPopper.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersPopper.tsx",
         "name": "ExportedPickerPopperProps"
       },
       "required": false,
@@ -164,7 +164,7 @@
       "description": "Custom component for [Transition](https://material-ui.com/components/transitions/#transitioncomponent-prop).",
       "name": "TransitionComponent",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerPopper.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersPopper.tsx",
         "name": "ExportedPickerPopperProps"
       },
       "required": false,
@@ -192,7 +192,7 @@
       "description": "\"OK\" button text.",
       "name": "okText",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersModalDialog.tsx",
         "name": "ExportedPickerModalProps"
       },
       "required": false,
@@ -207,7 +207,7 @@
       "description": "\"CANCEL\" Text message",
       "name": "cancelText",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersModalDialog.tsx",
         "name": "ExportedPickerModalProps"
       },
       "required": false,
@@ -222,7 +222,7 @@
       "description": "\"CLEAR\" Text message",
       "name": "clearText",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersModalDialog.tsx",
         "name": "ExportedPickerModalProps"
       },
       "required": false,
@@ -237,7 +237,7 @@
       "description": "\"TODAY\" Text message",
       "name": "todayText",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersModalDialog.tsx",
         "name": "ExportedPickerModalProps"
       },
       "required": false,
@@ -252,7 +252,7 @@
       "description": "If `true`, it shows the clear action in the picker dialog.",
       "name": "clearable",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersModalDialog.tsx",
         "name": "ExportedPickerModalProps"
       },
       "required": false,
@@ -267,7 +267,7 @@
       "description": "If `true`, the today button will be displayed. **Note** that `showClearButton` has a higher priority.",
       "name": "showTodayButton",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersModalDialog.tsx",
         "name": "ExportedPickerModalProps"
       },
       "required": false,
@@ -657,7 +657,7 @@
       "description": "\"OK\" button text.",
       "name": "okText",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersModalDialog.tsx",
         "name": "ExportedPickerModalProps"
       },
       "required": false,
@@ -672,7 +672,7 @@
       "description": "\"CANCEL\" Text message",
       "name": "cancelText",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersModalDialog.tsx",
         "name": "ExportedPickerModalProps"
       },
       "required": false,
@@ -687,7 +687,7 @@
       "description": "\"CLEAR\" Text message",
       "name": "clearText",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersModalDialog.tsx",
         "name": "ExportedPickerModalProps"
       },
       "required": false,
@@ -702,7 +702,7 @@
       "description": "\"TODAY\" Text message",
       "name": "todayText",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersModalDialog.tsx",
         "name": "ExportedPickerModalProps"
       },
       "required": false,
@@ -717,7 +717,7 @@
       "description": "If `true`, it shows the clear action in the picker dialog.",
       "name": "clearable",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersModalDialog.tsx",
         "name": "ExportedPickerModalProps"
       },
       "required": false,
@@ -732,7 +732,7 @@
       "description": "If `true`, the today button will be displayed. **Note** that `showClearButton` has a higher priority.",
       "name": "showTodayButton",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersModalDialog.tsx",
         "name": "ExportedPickerModalProps"
       },
       "required": false,
@@ -745,7 +745,7 @@
       "description": "Popper props passed down to [Popper](https://material-ui.com/api/popper/) component.",
       "name": "PopperProps",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerPopper.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersPopper.tsx",
         "name": "ExportedPickerPopperProps"
       },
       "required": false,
@@ -758,7 +758,7 @@
       "description": "Custom component for [Transition](https://material-ui.com/components/transitions/#transitioncomponent-prop).",
       "name": "TransitionComponent",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerPopper.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersPopper.tsx",
         "name": "ExportedPickerPopperProps"
       },
       "required": false,
@@ -1349,7 +1349,7 @@
       "description": "\"OK\" button text.",
       "name": "okText",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersModalDialog.tsx",
         "name": "ExportedPickerModalProps"
       },
       "required": false,
@@ -1364,7 +1364,7 @@
       "description": "\"CANCEL\" Text message",
       "name": "cancelText",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersModalDialog.tsx",
         "name": "ExportedPickerModalProps"
       },
       "required": false,
@@ -1379,7 +1379,7 @@
       "description": "\"CLEAR\" Text message",
       "name": "clearText",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersModalDialog.tsx",
         "name": "ExportedPickerModalProps"
       },
       "required": false,
@@ -1394,7 +1394,7 @@
       "description": "\"TODAY\" Text message",
       "name": "todayText",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersModalDialog.tsx",
         "name": "ExportedPickerModalProps"
       },
       "required": false,
@@ -1409,7 +1409,7 @@
       "description": "If `true`, it shows the clear action in the picker dialog.",
       "name": "clearable",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersModalDialog.tsx",
         "name": "ExportedPickerModalProps"
       },
       "required": false,
@@ -1424,7 +1424,7 @@
       "description": "If `true`, the today button will be displayed. **Note** that `showClearButton` has a higher priority.",
       "name": "showTodayButton",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersModalDialog.tsx",
         "name": "ExportedPickerModalProps"
       },
       "required": false,
@@ -1437,7 +1437,7 @@
       "description": "Popper props passed down to [Popper](https://material-ui.com/api/popper/) component.",
       "name": "PopperProps",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerPopper.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersPopper.tsx",
         "name": "ExportedPickerPopperProps"
       },
       "required": false,
@@ -1450,7 +1450,7 @@
       "description": "Custom component for [Transition](https://material-ui.com/components/transitions/#transitioncomponent-prop).",
       "name": "TransitionComponent",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerPopper.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersPopper.tsx",
         "name": "ExportedPickerPopperProps"
       },
       "required": false,
@@ -2410,7 +2410,7 @@
       "description": "\"OK\" button text.",
       "name": "okText",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersModalDialog.tsx",
         "name": "ExportedPickerModalProps"
       },
       "required": false,
@@ -2425,7 +2425,7 @@
       "description": "\"CANCEL\" Text message",
       "name": "cancelText",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersModalDialog.tsx",
         "name": "ExportedPickerModalProps"
       },
       "required": false,
@@ -2440,7 +2440,7 @@
       "description": "\"CLEAR\" Text message",
       "name": "clearText",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersModalDialog.tsx",
         "name": "ExportedPickerModalProps"
       },
       "required": false,
@@ -2455,7 +2455,7 @@
       "description": "\"TODAY\" Text message",
       "name": "todayText",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersModalDialog.tsx",
         "name": "ExportedPickerModalProps"
       },
       "required": false,
@@ -2470,7 +2470,7 @@
       "description": "If `true`, it shows the clear action in the picker dialog.",
       "name": "clearable",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersModalDialog.tsx",
         "name": "ExportedPickerModalProps"
       },
       "required": false,
@@ -2485,7 +2485,7 @@
       "description": "If `true`, the today button will be displayed. **Note** that `showClearButton` has a higher priority.",
       "name": "showTodayButton",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersModalDialog.tsx",
         "name": "ExportedPickerModalProps"
       },
       "required": false,
@@ -2498,7 +2498,7 @@
       "description": "Popper props passed down to [Popper](https://material-ui.com/api/popper/) component.",
       "name": "PopperProps",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerPopper.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersPopper.tsx",
         "name": "ExportedPickerPopperProps"
       },
       "required": false,
@@ -2511,7 +2511,7 @@
       "description": "Custom component for [Transition](https://material-ui.com/components/transitions/#transitioncomponent-prop).",
       "name": "TransitionComponent",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerPopper.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersPopper.tsx",
         "name": "ExportedPickerPopperProps"
       },
       "required": false,
@@ -3501,7 +3501,7 @@
       "description": "Popper props passed down to [Popper](https://material-ui.com/api/popper/) component.",
       "name": "PopperProps",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerPopper.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersPopper.tsx",
         "name": "ExportedPickerPopperProps"
       },
       "required": false,
@@ -3514,7 +3514,7 @@
       "description": "Custom component for [Transition](https://material-ui.com/components/transitions/#transitioncomponent-prop).",
       "name": "TransitionComponent",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerPopper.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersPopper.tsx",
         "name": "ExportedPickerPopperProps"
       },
       "required": false,
@@ -3557,7 +3557,7 @@
       "description": "\"OK\" button text.",
       "name": "okText",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersModalDialog.tsx",
         "name": "ExportedPickerModalProps"
       },
       "required": false,
@@ -3572,7 +3572,7 @@
       "description": "\"CANCEL\" Text message",
       "name": "cancelText",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersModalDialog.tsx",
         "name": "ExportedPickerModalProps"
       },
       "required": false,
@@ -3587,7 +3587,7 @@
       "description": "\"CLEAR\" Text message",
       "name": "clearText",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersModalDialog.tsx",
         "name": "ExportedPickerModalProps"
       },
       "required": false,
@@ -3602,7 +3602,7 @@
       "description": "\"TODAY\" Text message",
       "name": "todayText",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersModalDialog.tsx",
         "name": "ExportedPickerModalProps"
       },
       "required": false,
@@ -3617,7 +3617,7 @@
       "description": "If `true`, it shows the clear action in the picker dialog.",
       "name": "clearable",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersModalDialog.tsx",
         "name": "ExportedPickerModalProps"
       },
       "required": false,
@@ -3632,7 +3632,7 @@
       "description": "If `true`, the today button will be displayed. **Note** that `showClearButton` has a higher priority.",
       "name": "showTodayButton",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/PickerModalDialog.tsx",
+        "fileName": "material-ui-pickers/lib/src/_shared/PickersModalDialog.tsx",
         "name": "ExportedPickerModalProps"
       },
       "required": false,

@@ -4,7 +4,7 @@ import { getByMuiTest } from './test-utils';
 import { screen, waitFor } from '@testing-library/react';
 import { utilsToUse, FakeTransitionComponent } from './test-utils';
 import { createClientRender, fireEvent } from './createClientRender';
-import { DatePicker, MobileDatePicker, DesktopDatePicker } from '@material-ui/pickers';
+import { DatePicker, MobileDatePicker, DesktopDatePicker } from '../index';
 
 describe('<DatePicker />', () => {
   const render = createClientRender({ strict: false });

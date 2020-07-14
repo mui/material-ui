@@ -1,8 +1,8 @@
 import * as React from 'react';
 import Badge from '@material-ui/core/Badge';
 import TextField from '@material-ui/core/TextField';
-import { DatePicker, Day } from '@material-ui/pickers';
 import { makeJSDateObject } from '../../../utils/helpers';
+import { DatePicker, PickersDay } from '@material-ui/pickers';
 import { CalendarSkeleton } from '@material-ui/pickers/CalendarSkeleton';
 
 export default function ServerRequest() {
@@ -55,7 +55,7 @@ export default function ServerRequest() {
             overlap="circle"
             badgeContent={isSelected ? '🌚' : undefined}
           >
-            <Day {...DayComponentProps} />
+            <PickersDay {...DayComponentProps} />
           </Badge>
         );
       }}

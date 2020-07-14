@@ -14,7 +14,7 @@ const animationDuration = 500;
 export const useStyles = makeStyles(
   theme => {
     return {
-      transitionContainer: {
+      root: {
         display: 'block',
         position: 'relative',
       },
@@ -62,7 +62,7 @@ export const FadeTransitionGroup: React.FC<FadeTransitionProps> = ({
 
   return (
     <TransitionGroup
-      className={clsx(classes.transitionContainer, className)}
+      className={clsx(classes.root, className)}
       childFactory={element =>
         React.cloneElement(element, {
           classNames: transitionClasses,

@@ -17,13 +17,14 @@ export const useStyles = makeStyles(
         : theme.palette.getContrastText(theme.palette.background.default);
 
     return {
-      toolbarTxt: {
+      root: {
         transition: theme.transitions.create('color'),
         color: fade(textColor, 0.54),
+        '&$selected': {
+          color: textColor,
+        },
       },
-      toolbarBtnSelected: {
-        color: textColor,
-      },
+      selected: {},
     };
   },
   { name: 'MuiPickersToolbarText' }
@@ -39,8 +40,8 @@ const ToolbarText: React.FC<ToolbarTextProps> = ({
   return (
     <Typography
       children={label}
-      className={clsx(classes.toolbarTxt, className, {
-        [classes.toolbarBtnSelected]: selected,
+      className={clsx(classes.root, className, {
+        [classes.selected]: selected,
       })}
       {...other}
     />

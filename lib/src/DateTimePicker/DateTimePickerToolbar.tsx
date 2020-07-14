@@ -10,11 +10,11 @@ import { withDefaultProps } from '../_shared/withDefaultProps';
 import { ToolbarComponentProps } from '../Picker/SharedPickerProps';
 import { WrapperVariantContext } from '../wrappers/WrapperVariantContext';
 
-const muiComponentConfig = { name: 'MuiPickersDateTimePickerToolbar' };
+const muiComponentConfig = { name: 'MuiDateTimePickerToolbar' };
 
 export const useStyles = makeStyles(
   {
-    toolbar: {
+    root: {
       paddingLeft: 16,
       paddingRight: 16,
       justifyContent: 'space-around',
@@ -88,7 +88,7 @@ export const DateTimePickerToolbar: React.FC<ToolbarComponentProps> = withDefaul
           <PickerToolbar
             toolbarTitle={toolbarTitle}
             penIconClassName={classes.penIcon}
-            className={classes.toolbar}
+            className={classes.root}
             isMobileKeyboardViewOpen={isMobileKeyboardViewOpen}
             toggleMobileKeyboardView={toggleMobileKeyboardView}
             {...other}

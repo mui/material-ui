@@ -12,7 +12,7 @@ import { DateInputProps, MuiTextFieldProps } from '../_shared/PureDateInput';
 
 export const useStyles = makeStyles(
   theme => ({
-    rangeInputsContainer: {
+    root: {
       display: 'flex',
       alignItems: 'baseline',
       [theme.breakpoints.down('xs')]: {
@@ -178,11 +178,7 @@ export const DateRangePickerInput: React.FC<DateRangeInputProps> = ({
   });
 
   return (
-    <div
-      onBlur={onBlur}
-      className={classes.rangeInputsContainer}
-      ref={mergeRefs([containerRef, forwardedRef])}
-    >
+    <div onBlur={onBlur} className={classes.root} ref={mergeRefs([containerRef, forwardedRef])}>
       {renderInput(startInputProps, endInputProps)}
     </div>
   );

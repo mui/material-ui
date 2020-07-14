@@ -15,7 +15,7 @@ const muiComponentConfig = { name: 'MuiPickersDay' };
 
 export const useStyles = makeStyles(
   theme => ({
-    day: {
+    root: {
       ...theme.typography.caption,
       width: DAY_SIZE,
       height: DAY_SIZE,
@@ -29,10 +29,25 @@ export const useStyles = makeStyles(
       },
       '&:focus': {
         backgroundColor: fade(theme.palette.action.active, theme.palette.action.hoverOpacity),
-        '&$daySelected': {
+        '&$selected': {
           willChange: 'background-color',
           backgroundColor: theme.palette.primary.dark,
         },
+      },
+      '&$selected': {
+        color: theme.palette.primary.contrastText,
+        backgroundColor: theme.palette.primary.main,
+        fontWeight: theme.typography.fontWeightMedium,
+        transition: theme.transitions.create('background-color', {
+          duration: theme.transitions.duration.short,
+        }),
+        '&:hover': {
+          willChange: 'background-color',
+          backgroundColor: theme.palette.primary.dark,
+        },
+      },
+      '&$disabled': {
+        color: theme.palette.text.secondary,
       },
     },
     dayWithMargin: {
@@ -45,29 +60,15 @@ export const useStyles = makeStyles(
       visibility: 'hidden',
     },
     today: {
-      '&:not($daySelected)': {
+      '&:not($selected)': {
         border: `1px solid ${theme.palette.text.secondary}`,
       },
-    },
-    daySelected: {
-      color: theme.palette.primary.contrastText,
-      backgroundColor: theme.palette.primary.main,
-      fontWeight: theme.typography.fontWeightMedium,
-      transition: theme.transitions.create('background-color', {
-        duration: theme.transitions.duration.short,
-      }),
-      '&:hover': {
-        willChange: 'background-color',
-        backgroundColor: theme.palette.primary.dark,
-      },
-    },
-    dayDisabled: {
-      pointerEvents: 'none',
-      color: theme.palette.text.secondary,
     },
     dayLabel: {
       // need for overrides
     },
+    selected: {},
+    disabled: {},
   }),
   muiComponentConfig
 );
@@ -195,10 +196,9 @@ const PureDay: React.FC<DayProps> = ({
   }, onKeyDown);
 
   const dayClassName = clsx(
-    classes.day,
+    classes.root,
     {
-      [classes.daySelected]: selected,
-      [classes.dayDisabled]: disabled,
+      [classes.selected]: selected,
       [classes.dayWithMargin]: !disableMargin,
       [classes.today]: !disableHighlightToday && isToday,
       [classes.dayOutsideMonth]: !isInCurrentMonth && showDaysOutsideCurrentMonth,
@@ -216,6 +216,7 @@ const PureDay: React.FC<DayProps> = ({
       ref={ref}
       centerRipple
       data-mui-test="day"
+      disabled={disabled}
       aria-label={utils.format(day, 'fullDate')}
       tabIndex={focused || focusable ? 0 : -1}
       className={dayClassName}
@@ -249,7 +250,7 @@ export const areDayPropsEqual = (prevProps: DayProps, nextProps: DayProps) => {
 
 export const Day = withDefaultProps(muiComponentConfig, React.memo(PureDay, areDayPropsEqual));
 
-PureDay.displayName = 'Day';
+PureDay.displayName = 'PickersDay';
 
 PureDay.propTypes = {
   today: PropTypes.bool,

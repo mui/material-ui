@@ -40,7 +40,8 @@ export const useStyles = makeStyles(
         : theme.palette.background.default;
 
     return {
-      container: {
+      root: {},
+      modeDesktop: {
         order: 1,
       },
       tabs: {
@@ -49,7 +50,7 @@ export const useStyles = makeStyles(
       },
     };
   },
-  { name: 'MuiPickerDTTabs' }
+  { name: 'MuiDateTimePickerTabs' }
 );
 
 export const DateTimePickerTabs: React.FC<DateTimePickerTabsProps> = ({
@@ -70,7 +71,7 @@ export const DateTimePickerTabs: React.FC<DateTimePickerTabsProps> = ({
   };
 
   return (
-    <Paper className={clsx({ [classes.container]: wrapperVariant === 'desktop' })}>
+    <Paper className={clsx(classes.root, { [classes.modeDesktop]: wrapperVariant === 'desktop' })}>
       <Tabs
         variant="fullWidth"
         value={viewToTabIndex(view)}

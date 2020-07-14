@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import isWeekend from 'date-fns/isWeekend';
 import TextField from '@material-ui/core/TextField';
 import lightBlue from '@material-ui/core/colors/lightBlue';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
@@ -7,25 +8,25 @@ import { DatePicker, DatePickerProps } from '@material-ui/pickers';
 const materialTheme = createMuiTheme({
   overrides: {
     MuiPickersToolbar: {
-      toolbar: {
+      root: {
         backgroundColor: lightBlue.A200,
       },
     },
     MuiPickersCalendarHeader: {
-      switchHeader: {
+      root: {
         // backgroundColor: lightBlue.A200,
         // color: 'white',
       },
     },
     MuiPickersDay: {
-      day: {
+      root: {
         color: lightBlue.A700,
-      },
-      daySelected: {
-        backgroundColor: lightBlue['400'],
-      },
-      dayDisabled: {
-        color: lightBlue['100'],
+        '&$disabled': {
+          color: lightBlue['100'],
+        },
+        '&$selected': {
+          backgroundColor: lightBlue['400'],
+        },
       },
       today: {
         color: lightBlue['900'],
@@ -45,12 +46,12 @@ function CssOverrides() {
   return (
     <ThemeProvider theme={materialTheme}>
       <DatePicker
-        renderInput={props => <TextField {...props} />}
         label="Light blue picker"
         value={selectedDate}
         onChange={date => handleDateChange(date)}
+        renderInput={props => <TextField {...props} />}
         // @ts-ignore
-        shouldDisableDate={day => day && day.getDay() === 0}
+        shouldDisableDate={isWeekend}
       />
     </ThemeProvider>
   );

@@ -11,6 +11,7 @@ import { DateRange, CurrentlySelectingRangeEndProps } from './RangeTypes';
 const muiComponentConfig = { name: 'MuiPickersDateRangePickerToolbarProps' };
 export const useStyles = makeStyles(
   {
+    root: {},
     penIcon: {
       position: 'relative',
       top: 4,
@@ -61,6 +62,7 @@ export const DateRangePickerToolbar: React.FC<DateRangePickerToolbarProps> = wit
 
     return (
       <PickerToolbar
+        className={classes.root}
         toolbarTitle={toolbarTitle}
         isMobileKeyboardViewOpen={isMobileKeyboardViewOpen}
         toggleMobileKeyboardView={toggleMobileKeyboardView}

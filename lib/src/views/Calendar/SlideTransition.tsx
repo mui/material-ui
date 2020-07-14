@@ -22,7 +22,7 @@ export const useStyles = makeStyles(
     });
 
     return {
-      transitionContainer: {
+      root: {
         display: 'block',
         position: 'relative',
         overflowX: 'hidden',
@@ -91,7 +91,7 @@ export const SlideTransition: React.SFC<SlideTransitionProps> = ({
 
   return (
     <TransitionGroup
-      className={clsx(classes.transitionContainer, className)}
+      className={clsx(classes.root, className)}
       childFactory={element =>
         React.cloneElement(element, {
           classNames: transitionClasses,

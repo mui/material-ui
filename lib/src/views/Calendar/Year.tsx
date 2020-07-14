@@ -24,8 +24,18 @@ export const useStyles = makeStyles(
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
+      '&$disabled': {
+        color: theme.palette.text.secondary,
+      },
+      '&$selected': {
+        color: theme.palette.getContrastText(theme.palette.primary.main),
+        backgroundColor: theme.palette.primary.main,
+        '&:focus, &:hover': {
+          backgroundColor: theme.palette.primary.dark,
+        },
+      },
     },
-    yearButtonDesktop: {
+    modeDesktop: {
       flexBasis: '25%',
     },
     yearButton: {
@@ -43,17 +53,8 @@ export const useStyles = makeStyles(
         backgroundColor: fade(theme.palette.action.active, theme.palette.action.hoverOpacity),
       },
     },
-    yearSelected: {
-      color: theme.palette.getContrastText(theme.palette.primary.main),
-      backgroundColor: theme.palette.primary.main,
-      '&:focus, &:hover': {
-        backgroundColor: theme.palette.primary.dark,
-      },
-    },
-    yearDisabled: {
-      pointerEvents: 'none',
-      color: theme.palette.text.secondary,
-    },
+    disabled: {},
+    selected: {},
   }),
   { name: 'MuiPickersYear' }
 );
@@ -83,7 +84,9 @@ export const Year: React.FC<YearProps> = ({
   return (
     <div
       data-mui-test="year"
-      className={clsx(classes.root, { [classes.yearButtonDesktop]: wrapperVariant === 'desktop' })}
+      className={clsx(classes.root, {
+        [classes.modeDesktop]: wrapperVariant === 'desktop',
+      })}
     >
       <button
         ref={refHandle}
@@ -93,8 +96,8 @@ export const Year: React.FC<YearProps> = ({
         onClick={() => onSelect(value)}
         onKeyDown={onSpaceOrEnter(() => onSelect(value))}
         className={clsx(classes.yearButton, {
-          [classes.yearSelected]: selected,
-          [classes.yearDisabled]: disabled,
+          [classes.disabled]: disabled,
+          [classes.selected]: selected,
         })}
       >
         {children}

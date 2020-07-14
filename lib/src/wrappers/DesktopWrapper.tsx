@@ -6,7 +6,7 @@ import { InnerMobileWrapperProps } from './MobileWrapper';
 import { WrapperVariantContext } from './WrapperVariantContext';
 import { KeyboardDateInput } from '../_shared/KeyboardDateInput';
 import { InnerDesktopTooltipWrapperProps } from './DesktopTooltipWrapper';
-import { PickerPopper, ExportedPickerPopperProps } from '../_shared/PickerPopper';
+import { PickersPopper, ExportedPickerPopperProps } from '../_shared/PickersPopper';
 import { CanAutoFocusContext, useAutoFocusControl } from '../_shared/hooks/useCanAutoFocus';
 
 export interface InnerDesktopWrapperProps extends ExportedPickerPopperProps {}
@@ -33,7 +33,7 @@ export const DesktopWrapper: React.FC<DesktopWrapperProps> = ({
       <CanAutoFocusContext.Provider value={canAutoFocus}>
         <KeyboardDateInputComponent {...DateInputProps} inputRef={inputRef} />
 
-        <PickerPopper
+        <PickersPopper
           role="dialog"
           open={open}
           anchorEl={inputRef.current}
@@ -43,7 +43,7 @@ export const DesktopWrapper: React.FC<DesktopWrapperProps> = ({
           onOpen={onOpen}
         >
           {children}
-        </PickerPopper>
+        </PickersPopper>
       </CanAutoFocusContext.Provider>
     </WrapperVariantContext.Provider>
   );

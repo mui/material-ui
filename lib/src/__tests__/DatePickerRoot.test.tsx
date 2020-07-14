@@ -27,12 +27,12 @@ describe('e2e - DatePicker', () => {
   });
 
   it('Should render proper count of days', () => {
-    expect(component.find('Day').length).toBe(35);
+    expect(component.find('button[data-mui-test="day"]').length).toBe(31);
   });
 
   it('Should dispatch onChange on day click', () => {
     component
-      .find('Day button')
+      .find('button[data-mui-test="day"]')
       .at(2)
       .simulate('click');
     expect(onChangeMock).toHaveBeenCalled();

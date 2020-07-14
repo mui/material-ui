@@ -16,7 +16,7 @@ export interface ToolbarButtonProps extends ExtendMui<ButtonProps, 'value' | 'va
 
 export const useStyles = makeStyles(
   {
-    toolbarBtn: {
+    root: {
       padding: 0,
       minWidth: '16px',
       textTransform: 'none',
@@ -40,7 +40,7 @@ export const ToolbarButton: React.FunctionComponent<ToolbarButtonProps> = ({
     <Button
       data-mui-test="toolbar-button"
       variant="text"
-      className={clsx(classes.toolbarBtn, className)}
+      className={clsx(classes.root, className)}
       {...other}
     >
       <ToolbarText

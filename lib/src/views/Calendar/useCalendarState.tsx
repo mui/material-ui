@@ -45,7 +45,6 @@ export const createCalendarStateReducer = (
       };
     }
     case 'changeFocusedDay': {
-      // action.focusedDay = action.focusedDay || utils.date()
       const needMonthSwitch =
         Boolean(action.focusedDay) &&
         !disableSwitchToMonthOnDayFocus &&

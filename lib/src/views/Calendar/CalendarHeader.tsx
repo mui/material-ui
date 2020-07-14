@@ -36,7 +36,7 @@ export interface CalendarHeaderProps
 
 export const useStyles = makeStyles(
   theme => ({
-    switchHeader: {
+    root: {
       display: 'flex',
       alignItems: 'center',
       marginTop: 16,
@@ -125,7 +125,7 @@ export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
 
   return (
     <React.Fragment>
-      <div className={classes.switchHeader}>
+      <div className={classes.root}>
         <div className={classes.monthTitleContainer} onClick={toggleView}>
           <FadeTransitionGroup
             reduceAnimations={reduceAnimations}
@@ -189,7 +189,7 @@ export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
   );
 };
 
-CalendarHeader.displayName = 'CalendarHeader';
+CalendarHeader.displayName = 'PickersCalendarHeader';
 
 CalendarHeader.propTypes = {
   leftArrowIcon: PropTypes.node,

@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { DesktopDateRangePicker } from '../';
+import { isWeekend } from 'date-fns';
 import { screen, waitFor } from '@testing-library/react';
 import { utilsToUse, getAllByMuiTest } from './test-utils';
 import { TextField, TextFieldProps } from '@material-ui/core';
+import { DesktopDateRangePicker, StaticDateRangePicker } from '../';
 import { createClientRender, fireEvent } from './createClientRender';
 
 const defaultRangeRenderInput = (startProps: TextFieldProps, endProps: TextFieldProps) => (
@@ -14,6 +15,25 @@ const defaultRangeRenderInput = (startProps: TextFieldProps, endProps: TextField
 
 describe('<DateRangePicker />', () => {
   const render = createClientRender({ strict: false });
+
+  it('allows disabling dates', () => {
+    render(
+      <StaticDateRangePicker
+        renderInput={defaultRangeRenderInput}
+        minDate={new Date('2005-01-01')}
+        shouldDisableDate={date => isWeekend(utilsToUse.toJsDate(date))}
+        onChange={jest.fn()}
+        value={[
+          utilsToUse.date('2018-01-01T00:00:00.000'),
+          utilsToUse.date('2018-01-31T00:00:00.000'),
+        ]}
+      />
+    );
+
+    expect(
+      getAllByMuiTest('DateRangeDay').filter(day => day.getAttribute('disabled') !== undefined)
+    ).toHaveLength(31);
+  });
 
   it(`doesn't crashes if opening picker with invalid date input`, async () => {
     render(

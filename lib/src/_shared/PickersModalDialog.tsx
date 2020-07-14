@@ -86,7 +86,7 @@ export const useStyles = makeStyles(
   { name: 'MuiPickersModalDialog' }
 );
 
-export const PickerModalDialog: React.FC<PickerModalDialogProps> = ({
+export const PickersModalDialog: React.FC<PickerModalDialogProps> = ({
   cancelText = 'Cancel',
   children,
   classes: MuiDialogClasses,
