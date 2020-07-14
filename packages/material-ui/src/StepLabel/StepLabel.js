@@ -4,6 +4,8 @@ import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 import StepIcon from '../StepIcon';
+import StepperContext from '../Stepper/StepperContext';
+import StepContext from '../Step/StepContext';
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
@@ -69,29 +71,18 @@ export const styles = (theme) => ({
 
 const StepLabel = React.forwardRef(function StepLabel(props, ref) {
   const {
-    // eslint-disable-next-line react/prop-types
-    active = false,
-    // eslint-disable-next-line react/prop-types
-    alternativeLabel = false,
     children,
     classes,
     className,
-    // eslint-disable-next-line react/prop-types
-    completed = false,
-    disabled = false,
     error = false,
-    // eslint-disable-next-line react/prop-types
-    expanded,
-    icon,
-    // eslint-disable-next-line react/prop-types
-    last,
     optional,
-    // eslint-disable-next-line react/prop-types
-    orientation = 'horizontal',
     StepIconComponent: StepIconComponentProp,
     StepIconProps,
     ...other
   } = props;
+
+  const { alternativeLabel, orientation } = React.useContext(StepperContext);
+  const { active, disabled, completed, icon } = React.useContext(StepContext);
 
   let StepIconComponent = StepIconComponentProp;
 
@@ -169,11 +160,6 @@ StepLabel.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
-  /**
-   * Mark the step as disabled, will also disable the button if
-   * `StepLabelButton` is a child of `StepLabel`. Is passed to child components.
-   */
-  disabled: PropTypes.bool,
   /**
    * Mark the step as failed.
    */

@@ -15,15 +15,6 @@ export type StepButtonTypeMap<P, D extends React.ElementType> = ExtendButtonBase
      */
     children?: React.ReactNode;
     /**
-     * For non-linear Steppers you need to manually set which steps are completed.
-     * Otherwise the Stepper determines if a step is completed.
-     */
-    completed?: boolean;
-    /**
-     * @ignore This prop is ignored. You should disable the whole `Step`.
-     */
-    disabled?: boolean;
-    /**
      * The icon displayed by the step label.
      */
     icon?: React.ReactNode;

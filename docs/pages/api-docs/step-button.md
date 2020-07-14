@@ -30,7 +30,6 @@ The `MuiStepButton` name can be used for providing [default props](/customizatio
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | Can be a `StepLabel` or a node to place inside `StepLabel` as children. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">completed</span> | <span class="prop-type">bool</span> |  | For non-linear Steppers you need to manually set which steps are completed. Otherwise the Stepper determines if a step is completed. |
 | <span class="prop-name">icon</span> | <span class="prop-type">node</span> |  | The icon displayed by the step label. |
 | <span class="prop-name">optional</span> | <span class="prop-type">node</span> |  | The optional node to display. |
 

@@ -30,7 +30,6 @@ The `MuiStepLabel` name can be used for providing [default props](/customization
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | In most cases will simply be a string containing a title for the label. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Mark the step as disabled, will also disable the button if `StepLabelButton` is a child of `StepLabel`. Is passed to child components. |
 | <span class="prop-name">error</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Mark the step as failed. |
 | <span class="prop-name">icon</span> | <span class="prop-type">node</span> |  | Override the default label of the step icon. |
 | <span class="prop-name">optional</span> | <span class="prop-type">node</span> |  | The optional node to display. |

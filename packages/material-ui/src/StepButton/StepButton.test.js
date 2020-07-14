@@ -13,10 +13,12 @@ import { fireEvent } from '@testing-library/dom';
 
 describe('<StepButton />', () => {
   let classes;
+  let stepLabelClasses;
   const render = createClientRender();
 
   before(() => {
     classes = getClasses(<StepButton />);
+    stepLabelClasses = getClasses(<StepLabel />);
   });
 
   describe('internals', () => {
@@ -32,12 +34,10 @@ describe('<StepButton />', () => {
 
     it('passes active, completed, disabled to StepLabel', () => {
       const { container, getByText } = render(
-        <StepButton active completed disabled>
-          Step One
-        </StepButton>,
+        <Step active completed disabled>
+          <StepButton>Step One</StepButton>
+        </Step>,
       );
-
-      const stepLabelClasses = getClasses(<StepLabel />);
 
       const stepLabelRoot = container.querySelector(`.${stepLabelClasses.root}`);
       const stepLabel = container.querySelector(`.${stepLabelClasses.label}`);
@@ -50,12 +50,12 @@ describe('<StepButton />', () => {
 
     it('should pass props to a provided StepLabel', () => {
       const { container, getByText } = render(
-        <StepButton active completed disabled label="Step One">
-          <StepLabel>Step One</StepLabel>
-        </StepButton>,
+        <Step active completed disabled>
+          <StepButton label="Step One">
+            <StepLabel>Step One</StepLabel>
+          </StepButton>
+        </Step>,
       );
-
-      const stepLabelClasses = getClasses(<StepLabel />);
 
       const stepLabelRoot = container.querySelector(`.${stepLabelClasses.root}`);
       const stepLabel = container.querySelector(`.${stepLabelClasses.label}`);
