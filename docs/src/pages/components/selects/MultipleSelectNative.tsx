@@ -27,7 +27,7 @@ const names = [
   'Kelly Snyder',
 ];
 
-export default function MultipleSelect() {
+export default function MultipleSelectNative() {
   const classes = useStyles();
   const [personName, setPersonName] = React.useState<string[]>([]);
   const handleChangeMultiple = (
