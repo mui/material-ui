@@ -85,12 +85,8 @@ export default function DialogSelect() {
           </form>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={handleClose} color="primary">
-            Ok
-          </Button>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={handleClose}>Ok</Button>
         </DialogActions>
       </Dialog>
     </div>

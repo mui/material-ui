@@ -40,7 +40,7 @@ const names = [
   'Kelly Snyder',
 ];
 
-export default function MultipleSelect() {
+export default function MultipleSelectCheckmarks() {
   const classes = useStyles();
   const [personName, setPersonName] = React.useState([]);
 

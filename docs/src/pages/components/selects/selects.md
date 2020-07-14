@@ -7,11 +7,11 @@ components: Select, NativeSelect
 
 <p class="description">Select components are used for collecting user provided information from a list of options.</p>
 
-## Simple select
+## Basic select
 
 Menus are positioned over their emitting elements such that the currently selected menu item appears on top of the emitting element.
 
-{{"demo": "pages/components/selects/SimpleSelect.js"}}
+{{"demo": "pages/components/selects/BasicSelect.js"}}
 
 ## Advanced features
 
@@ -34,7 +34,7 @@ It's meant to be an improved version of the "react-select" and "downshift" packa
 
 {{"demo": "pages/components/selects/SelectAutoWidth.js"}}
 
-### Other properties
+### Other props
 
 {{"demo": "pages/components/selects/SelectOtherProps.js"}}
 
@@ -43,9 +43,9 @@ It's meant to be an improved version of the "react-select" and "downshift" packa
 As the user experience can be improved on mobile using the native select of the platform,
 we allow such pattern.
 
-{{"demo": "pages/components/selects/NativeSelects.js"}}
+{{"demo": "pages/components/selects/NativeSelect.js"}}
 
-## Text fields
+## TextField
 
 The `TextField` wrapper component is a complete form control including a label, input and help text.
 You can find an example with the select mode [in this section](/components/text-fields/#select).
@@ -72,10 +72,6 @@ Like with the single selection, you can pull out the new value by accessing `eve
 ### Default
 
 {{"demo": "pages/components/selects/MultipleSelect.js"}}
-
-### Default with placeholder
-
-{{"demo": "pages/components/selects/MultipleSelectPlaceholder.js"}}
 
 ### Checkmarks
 
