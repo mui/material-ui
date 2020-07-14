@@ -6,8 +6,8 @@ import {
   createMuiTheme,
 } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { Breakpoint } from '@material-ui/core/styles/createBreakpoints';
 
-type Breakpoint = number | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 type BreakpointOrNull = Breakpoint | null;
 
 /**

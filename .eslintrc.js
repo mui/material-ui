@@ -171,12 +171,27 @@ module.exports = {
     {
       files: ['*.tsx'],
       rules: {
+        'no-restricted-imports': [
+          'error',
+          {
+            patterns: [
+              '@material-ui/*/*/*/*',
+              '!@material-ui/core/test-utils/*',
+              '!@material-ui/utils/macros/*.macro',
+            ],
+          },
+        ], // Allow deeper imports for TypeScript types. TODO?
         'react/prop-types': 'off',
       },
     },
     {
       files: ['*.spec.tsx', '*.spec.ts'],
       rules: {
+        'no-alert': 'off',
+        'no-console': 'off',
+        'no-empty-pattern': 'off',
+        'no-lone-blocks': 'off',
+        'no-shadow': 'off',
         '@typescript-eslint/no-unused-expressions': 'off',
         '@typescript-eslint/no-unused-vars': 'off',
         '@typescript-eslint/no-use-before-define': 'off',
@@ -185,11 +200,6 @@ module.exports = {
         'jsx-a11y/anchor-has-content': 'off',
         'jsx-a11y/anchor-is-valid': 'off',
         'jsx-a11y/tabindex-no-positive': 'off',
-        'no-alert': 'off',
-        'no-console': 'off',
-        'no-empty-pattern': 'off',
-        'no-lone-blocks': 'off',
-        'no-shadow': 'off',
         'react/default-props-match-prop-types': 'off',
         'react/no-access-state-in-setstate': 'off',
         'react/no-unused-prop-types': 'off',
@@ -198,13 +208,6 @@ module.exports = {
         'react/require-default-props': 'off',
         'react/state-in-constructor': 'off',
         'react/static-property-placement': 'off',
-      },
-    },
-    {
-      files: ['packages/material-ui-icons/custom/**/*.js'],
-      rules: {
-          'import/no-unresolved': 'off',
-          'import/extensions': 'off',
       },
     },
   ],

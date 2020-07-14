@@ -49,7 +49,7 @@ export default function AdDisplay(props) {
       <span className={classes.poweredby}>ad by {ad.poweredby}</span>
     </span>
   );
-  /* eslint-enable react/no-danger */
+  /* eslint-enable material-ui/no-hardcoded-labels, react/no-danger */
 }
 
 AdDisplay.propTypes = {

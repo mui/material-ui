@@ -58,7 +58,7 @@ function TopLayoutBlog(props) {
             color="textSecondary"
             className={classes.back}
           >
-            {/* eslint-disable-next-line material-ui/no-hardcoded-labels -- TODO: should be translated */}
+            {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
             {'< Back to blog'}
           </Link>
           {rendered.map((chunk, index) => {

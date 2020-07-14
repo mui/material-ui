@@ -389,13 +389,13 @@ describe('makeStyles', () => {
 
       const StyledComponent = () => {
         // Simulate react-hot-loader behavior
+        /* eslint-disable react-hooks/rules-of-hooks */
         if (hmr) {
-          // eslint-disable-next-line react-hooks/rules-of-hooks
           useStyles2();
         } else {
-          // eslint-disable-next-line react-hooks/rules-of-hooks
           useStyles1();
         }
+        /* eslint-enable react-hooks/rules-of-hooks */
 
         return <div />;
       };
