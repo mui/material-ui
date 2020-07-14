@@ -105,7 +105,6 @@ There are two options to design the API for the variations of a component: with 
     }
     ```
     
-    This API is more verbose: `<Button>`, `<Button variant="contained">`, `<Button variant="fab">`.
     
     This API is more verbose: `<Button>`, `<Button variant="contained">`, `<Button variant="fab">`.
 
@@ -122,7 +121,6 @@ The `ref` is forwarded to the root element. This means that, without changing th
 
 ## Словарь
 
-- **host element**: DOM-нода в контексте `react-dom`, т.е. экземляр `window.HTMLDivElement`.
 - **host element**: DOM-нода в контексте `react-dom`, т.е. экземляр `window.HTMLDivElement`.
 - **outermost**: The first component when reading the component tree from top to bottom i.e. breadth-first search.
 - **root component**: the outermost component that renders a host component.
