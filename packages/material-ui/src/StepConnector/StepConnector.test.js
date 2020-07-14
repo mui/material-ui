@@ -1,17 +1,19 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import { createClientRender } from 'test/utils/createClientRender';
 import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
+import Stepper from '../Stepper';
+import Step from '../Step';
 import StepConnector from './StepConnector';
 
 describe('<StepConnector />', () => {
-  let shallow;
   let classes;
   const mount = createMount();
+  const render = createClientRender({ strict: false });
 
   before(() => {
-    shallow = createShallow({ dive: true });
     classes = getClasses(<StepConnector />);
   });
 
@@ -25,34 +27,71 @@ describe('<StepConnector />', () => {
 
   describe('rendering', () => {
     it('renders a div containing a span', () => {
-      const wrapper = shallow(<StepConnector orientation="horizontal" />);
-      expect(wrapper.type()).to.equal('div');
-      expect(wrapper.find('span').length).to.equal(1);
+      const { container } = render(<StepConnector />);
+
+      const stepConnector = container.querySelector(`.${classes.root}`);
+      const span = stepConnector.querySelector('span');
+      expect(stepConnector).to.not.equal(null);
+      expect(span).to.not.equal(null);
     });
 
     it('has the class when horizontal', () => {
-      const wrapper = shallow(<StepConnector orientation="horizontal" />);
-      expect(wrapper.find('span').props().className).to.include(classes.lineHorizontal);
+      const { container } = render(
+        <Stepper orientation="horizontal">
+          <Step>
+            <StepConnector />
+          </Step>
+        </Stepper>,
+      );
+
+      const stepConnectorLine = container.querySelector(`.${classes.line}`);
+      expect(stepConnectorLine).to.have.class(classes.lineHorizontal);
     });
 
     it('has the class when vertical', () => {
-      const wrapper = shallow(<StepConnector orientation="vertical" />);
-      expect(wrapper.find('span').props().className).to.include(classes.lineVertical);
+      const { container } = render(
+        <Stepper orientation="vertical">
+          <Step>
+            <StepConnector />
+          </Step>
+        </Stepper>,
+      );
+
+      const stepConnectorLine = container.querySelector(`.${classes.line}`);
+      expect(stepConnectorLine).to.have.class(classes.lineVertical);
     });
 
     it('has the class when active', () => {
-      const wrapper = shallow(<StepConnector active />);
-      expect(wrapper.props().className).to.include(classes.active);
+      const { container } = render(
+        <Step active>
+          <StepConnector />
+        </Step>,
+      );
+
+      const stepConnector = container.querySelector(`.${classes.root}`);
+      expect(stepConnector).to.have.class(classes.active);
     });
 
     it('has the class when completed', () => {
-      const wrapper = shallow(<StepConnector completed />);
-      expect(wrapper.props().className).to.include(classes.completed);
+      const { container } = render(
+        <Step completed>
+          <StepConnector />
+        </Step>,
+      );
+
+      const stepConnector = container.querySelector(`.${classes.root}`);
+      expect(stepConnector).to.have.class(classes.completed);
     });
 
     it('has the class when disabled', () => {
-      const wrapper = shallow(<StepConnector disabled />);
-      expect(wrapper.props().className).to.include(classes.disabled);
+      const { container } = render(
+        <Step disabled>
+          <StepConnector />
+        </Step>,
+      );
+
+      const stepConnector = container.querySelector(`.${classes.root}`);
+      expect(stepConnector).to.have.class(classes.disabled);
     });
   });
 });

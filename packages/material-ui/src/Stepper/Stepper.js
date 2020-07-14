@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import Paper from '../Paper';
 import StepConnector from '../StepConnector';
+import StepperContext from './StepperContext';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -35,59 +36,44 @@ const Stepper = React.forwardRef(function Stepper(props, ref) {
     children,
     classes,
     className,
-    connector: connectorProp = defaultConnector,
+    connector = defaultConnector,
     nonLinear = false,
     orientation = 'horizontal',
     ...other
   } = props;
 
-  const connector = React.isValidElement(connectorProp)
-    ? React.cloneElement(connectorProp, { orientation })
-    : null;
   const childrenArray = React.Children.toArray(children);
   const steps = childrenArray.map((step, index) => {
-    const state = {
-      index,
-      active: false,
-      completed: false,
-      disabled: false,
-    };
-
-    if (activeStep === index) {
-      state.active = true;
-    } else if (!nonLinear && activeStep > index) {
-      state.completed = true;
-    } else if (!nonLinear && activeStep < index) {
-      state.disabled = true;
-    }
-
     return React.cloneElement(step, {
-      alternativeLabel,
-      connector,
+      index,
       last: index + 1 === childrenArray.length,
-      orientation,
-      ...state,
       ...step.props,
     });
   });
+  const contextValue = React.useMemo(
+    () => ({ activeStep, alternativeLabel, connector, nonLinear, orientation }),
+    [activeStep, alternativeLabel, connector, nonLinear, orientation],
+  );
 
   return (
-    <Paper
-      square
-      elevation={0}
-      className={clsx(
-        classes.root,
-        classes[orientation],
-        {
-          [classes.alternativeLabel]: alternativeLabel,
-        },
-        className,
-      )}
-      ref={ref}
-      {...other}
-    >
-      {steps}
-    </Paper>
+    <StepperContext.Provider value={contextValue}>
+      <Paper
+        square
+        elevation={0}
+        className={clsx(
+          classes.root,
+          classes[orientation],
+          {
+            [classes.alternativeLabel]: alternativeLabel,
+          },
+          className,
+        )}
+        ref={ref}
+        {...other}
+      >
+        {steps}
+      </Paper>
+    </StepperContext.Provider>
   );
 });
 

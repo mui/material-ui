@@ -1,68 +1,26 @@
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
-import { createClientRender, within } from 'test/utils/createClientRender';
+import { createClientRender } from 'test/utils/createClientRender';
 import Step from './Step';
-
-/**
- * Exposes props stringified in the dataset of the `[data-testid="props"]`
- */
-function PropsAsDataset(props) {
-  const elementRef = React.useRef();
-  React.useEffect(() => {
-    const { current: element } = elementRef;
-
-    Object.keys(props).forEach((key) => {
-      // converted to strings internally. writing it out for readability
-      element.dataset[key] = String(props[key]);
-    });
-  });
-
-  return <span data-testid="props" ref={elementRef} />;
-}
-
-/**
- * A component that can be used as a child of `Step`.
- * It passes through all unrelated props to the underlying `div`
- * The props passed from `Step` are intercepted
- */
-function StepChildDiv(props) {
-  const {
-    active,
-    alternativeLabel,
-    completed,
-    disabled,
-    expanded,
-    icon,
-    last,
-    orientation,
-    ...other
-  } = props;
-
-  return <div {...other} />;
-}
-StepChildDiv.propTypes = {
-  active: PropTypes.bool,
-  alternativeLabel: PropTypes.bool,
-  completed: PropTypes.bool,
-  disabled: PropTypes.bool,
-  expanded: PropTypes.bool,
-  icon: PropTypes.node,
-  last: PropTypes.bool,
-  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
-};
+import Stepper from '../Stepper';
+import StepLabel from '../StepLabel';
+import StepButton from '../StepButton';
 
 describe('<Step />', () => {
   let classes;
+  let stepButtonClasses;
+  let stepLabelClasses;
   const mount = createMount();
 
   const render = createClientRender();
 
   before(() => {
     classes = getClasses(<Step />);
+    stepButtonClasses = getClasses(<StepButton />);
+    stepLabelClasses = getClasses(<StepLabel />);
   });
 
   describeConformance(<Step />, () => ({
@@ -91,60 +49,88 @@ describe('<Step />', () => {
 
   describe('rendering children', () => {
     it('renders children', () => {
-      const { getByTestId } = render(
-        <Step data-testid="root" label="Step One" index={1} orientation="horizontal">
-          <StepChildDiv data-testid="child">Hello World</StepChildDiv>
+      const { container } = render(
+        <Step>
+          <StepButton />
+          <StepLabel />
         </Step>,
       );
 
-      expect(within(getByTestId('root')).getByTestId('child')).not.to.equal(null);
-    });
-
-    it('renders children with all props passed through', () => {
-      const { getAllByTestId } = render(
-        <Step active={false} completed disabled index={0} orientation="horizontal">
-          <PropsAsDataset />
-          <PropsAsDataset />
-        </Step>,
-      );
-      getAllByTestId('props').forEach((child) => {
-        // HTMLElement.dataset is a DOMStringMap which fails deep.equal
-        const datasetAsObject = { ...child.dataset };
-        expect(datasetAsObject).to.deep.equal({
-          // props passed from Step
-          active: 'false',
-          alternativeLabel: 'undefined',
-          completed: 'true',
-          disabled: 'true',
-          expanded: 'false',
-          last: 'undefined',
-          icon: '1',
-          orientation: 'horizontal',
-          // test impl details
-          testid: 'props',
-        });
-      });
-    });
-
-    it('honours children overriding props passed through', () => {
-      const { getByTestId } = render(
-        <Step active label="Step One" orientation="horizontal" index={0}>
-          <PropsAsDataset active={false} />
-        </Step>,
-      );
-
-      expect(getByTestId('props').dataset).to.have.property('active', 'false');
+      const stepLabel = container.querySelector(`.${stepLabelClasses.root}`);
+      const stepButton = container.querySelector(`.${stepButtonClasses.root}`);
+      expect(stepLabel).not.to.equal(null);
+      expect(stepButton).not.to.equal(null);
     });
 
     it('should handle null children', () => {
-      const { getByTestId } = render(
-        <Step label="Step One" index={1} orientation="horizontal">
-          <StepChildDiv data-testid="child">Hello World</StepChildDiv>
+      const { container } = render(
+        <Step>
+          <StepButton />
           {null}
         </Step>,
       );
 
-      expect(getByTestId('child')).not.to.equal(null);
+      const stepButton = container.querySelector(`.${stepButtonClasses.root}`);
+      expect(stepButton).not.to.equal(null);
+    });
+  });
+
+  describe('overriding context props', () => {
+    it('overrides "active" context value', () => {
+      const { getByText } = render(
+        <Stepper activeStep={1}>
+          <Step>
+            <StepLabel>Step 1</StepLabel>
+          </Step>
+          <Step>
+            <StepLabel>Step 2</StepLabel>
+          </Step>
+          <Step active>
+            <StepLabel>Step 3</StepLabel>
+          </Step>
+        </Stepper>,
+      );
+
+      const stepLabel = getByText('Step 3');
+      expect(stepLabel).to.have.class(stepLabelClasses.active);
+    });
+
+    it('overrides "completed" context value', () => {
+      const { getByText } = render(
+        <Stepper activeStep={1}>
+          <Step>
+            <StepLabel>Step 1</StepLabel>
+          </Step>
+          <Step>
+            <StepLabel>Step 2</StepLabel>
+          </Step>
+          <Step completed>
+            <StepLabel>Step 3</StepLabel>
+          </Step>
+        </Stepper>,
+      );
+
+      const stepLabel = getByText('Step 3');
+      expect(stepLabel).to.have.class(stepLabelClasses.completed);
+    });
+
+    it('overrides "disabled" context value', () => {
+      const { container } = render(
+        <Stepper activeStep={1}>
+          <Step>
+            <StepLabel>Step 1</StepLabel>
+          </Step>
+          <Step disabled>
+            <StepLabel>Step 2</StepLabel>
+          </Step>
+          <Step>
+            <StepLabel>Step 3</StepLabel>
+          </Step>
+        </Stepper>,
+      );
+
+      const stepLabels = container.querySelectorAll(`.${stepLabelClasses.root}`);
+      expect(stepLabels[1]).to.have.class(stepLabelClasses.disabled);
     });
   });
 });

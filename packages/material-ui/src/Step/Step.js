@@ -3,6 +3,8 @@ import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
+import StepperContext from '../Stepper/StepperContext';
+import StepContext from './StepContext';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -25,36 +27,40 @@ export const styles = {
 
 const Step = React.forwardRef(function Step(props, ref) {
   const {
-    active = false,
-    // eslint-disable-next-line react/prop-types
-    alternativeLabel,
+    active: activeProp,
     children,
     classes,
     className,
-    completed = false,
-    // eslint-disable-next-line react/prop-types
-    connector: connectorProp,
-    disabled = false,
+    completed: completedProp,
+    disabled: disabledProp,
     expanded = false,
-    // eslint-disable-next-line react/prop-types
     index,
-    // eslint-disable-next-line react/prop-types
     last,
-    // eslint-disable-next-line react/prop-types
-    orientation,
     ...other
   } = props;
 
-  const connector = connectorProp
-    ? React.cloneElement(connectorProp, {
-        orientation,
-        alternativeLabel,
-        index,
-        active,
-        completed,
-        disabled,
-      })
-    : null;
+  const { activeStep, connector, alternativeLabel, orientation, nonLinear } = React.useContext(
+    StepperContext,
+  );
+
+  let [active = false, completed = false, disabled = false] = [
+    activeProp,
+    completedProp,
+    disabledProp,
+  ];
+
+  if (activeStep === index) {
+    active = activeProp !== undefined ? activeProp : true;
+  } else if (!nonLinear && activeStep > index) {
+    completed = completedProp !== undefined ? completedProp : true;
+  } else if (!nonLinear && activeStep < index) {
+    disabled = disabledProp !== undefined ? disabledProp : true;
+  }
+
+  const contextValue = React.useMemo(
+    () => ({ index, last, expanded, icon: index + 1, active, completed, disabled }),
+    [index, last, expanded, active, completed, disabled],
+  );
 
   const newChildren = (
     <div
@@ -89,29 +95,24 @@ const Step = React.forwardRef(function Step(props, ref) {
         }
 
         return React.cloneElement(child, {
-          active,
-          alternativeLabel,
-          completed,
-          disabled,
-          expanded,
-          last,
-          icon: index + 1,
-          orientation,
           ...child.props,
         });
       })}
     </div>
   );
 
-  if (connector && !alternativeLabel && index !== 0) {
-    return (
-      <React.Fragment>
-        {connector}
-        {newChildren}
-      </React.Fragment>
-    );
-  }
-  return newChildren;
+  return (
+    <StepContext.Provider value={contextValue}>
+      {connector && !alternativeLabel && index !== 0 ? (
+        <React.Fragment>
+          {connector}
+          {newChildren}
+        </React.Fragment>
+      ) : (
+        newChildren
+      )}
+    </StepContext.Provider>
+  );
 });
 
 Step.propTypes = {
@@ -149,6 +150,14 @@ Step.propTypes = {
    * Expand the step.
    */
   expanded: PropTypes.bool,
+  /**
+   * The position of the step.
+   */
+  index: PropTypes.number,
+  /**
+   * If `true`, the Step will be displayed as rendered last.
+   */
+  last: PropTypes.bool,
 };
 
 export default withStyles(styles, { name: 'MuiStep' })(Step);

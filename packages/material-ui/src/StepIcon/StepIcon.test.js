@@ -16,7 +16,8 @@ describe('<StepIcon />', () => {
   }));
 
   it('renders <CheckCircle> when completed', () => {
-    const { container } = render(<StepIcon icon={1} completed />);
+    const { container } = render(<StepIcon completed icon={1} />);
+
     expect(container.querySelectorAll('svg[data-mui-test="CheckCircleIcon"]')).to.have.length(1);
   });
 

@@ -13,10 +13,12 @@ import { fireEvent } from '@testing-library/dom';
 
 describe('<StepButton />', () => {
   let classes;
+  let stepLabelClasses;
   const render = createClientRender();
 
   before(() => {
     classes = getClasses(<StepButton />);
+    stepLabelClasses = getClasses(<StepLabel />);
   });
 
   describe('internals', () => {
@@ -31,31 +33,37 @@ describe('<StepButton />', () => {
     }));
 
     it('passes active, completed, disabled to StepLabel', () => {
-      const wrapper = mount(
-        <StepButton active completed disabled>
-          Step One
-        </StepButton>,
+      const { container, getByText } = render(
+        <Step active completed disabled>
+          <StepButton>Step One</StepButton>
+        </Step>,
       );
 
-      const stepLabel = wrapper.find(StepLabel);
-      expect(stepLabel.props()).to.have.property('active', true);
-      expect(stepLabel.props()).to.have.property('completed', true);
-      expect(stepLabel.props()).to.have.property('disabled', true);
-      expect(stepLabel.props()).to.have.property('children', 'Step One');
+      const stepLabelRoot = container.querySelector(`.${stepLabelClasses.root}`);
+      const stepLabel = container.querySelector(`.${stepLabelClasses.label}`);
+
+      expect(stepLabelRoot).to.have.class(stepLabelClasses.disabled);
+      expect(stepLabel).to.have.class(stepLabelClasses.active);
+      expect(stepLabel).to.have.class(stepLabelClasses.completed);
+      getByText('Step One');
     });
 
     it('should pass props to a provided StepLabel', () => {
-      const wrapper = mount(
-        <StepButton active completed disabled label="Step One">
-          <StepLabel>Step One</StepLabel>
-        </StepButton>,
+      const { container, getByText } = render(
+        <Step active completed disabled>
+          <StepButton label="Step One">
+            <StepLabel>Step One</StepLabel>
+          </StepButton>
+        </Step>,
       );
 
-      const stepLabel = wrapper.find(StepLabel);
-      expect(stepLabel.props()).to.have.property('active', true);
-      expect(stepLabel.props()).to.have.property('completed', true);
-      expect(stepLabel.props()).to.have.property('disabled', true);
-      expect(stepLabel.props()).to.have.property('children', 'Step One');
+      const stepLabelRoot = container.querySelector(`.${stepLabelClasses.root}`);
+      const stepLabel = container.querySelector(`.${stepLabelClasses.label}`);
+
+      expect(stepLabelRoot).to.have.class(stepLabelClasses.disabled);
+      expect(stepLabel).to.have.class(stepLabelClasses.active);
+      expect(stepLabel).to.have.class(stepLabelClasses.completed);
+      getByText('Step One');
     });
   });
 
