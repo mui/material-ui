@@ -38,6 +38,14 @@ export default function App() {
       ))}
       <div className="d-inline mr-1">Inline</div>
       <div className="d-inline d-print-none">Not visible when printed</div>
+      <div className="position-relative p-4 mb-16">
+        <div className="position-absolute p-4 top-4 left-0 grey-700 common-white--text">
+          Positioned
+        </div>
+        <div className="position-absolute p-4 top-14 left-5 zIndex-tooltip primary-light common-white--text">
+          zIndex tooltip
+        </div>
+      </div>
     </div>
   );
 }

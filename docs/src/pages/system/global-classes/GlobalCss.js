@@ -3,6 +3,7 @@ import spacings from './spacings';
 import colors from './colors';
 import elevations from './elevations';
 import texts from './texts';
+import positions from './positions';
 import {
   displays,
   overflows,
@@ -18,6 +19,7 @@ const GlobalCss = withStyles((theme) => {
       ...colors(theme),
       ...elevations(theme),
       ...texts(theme),
+      ...positions(theme),
       ...displays,
       ...overflows,
       ...textOverflows,
