@@ -1,10 +1,17 @@
 import { withStyles } from '@material-ui/styles';
+
 import Button from '@material-ui/core/Button';
 import spacings from './spacings';
 import colors from './colors';
 import elevations from './elevations';
 import texts from './texts';
-import { displays, overflows, textOverflows, visibilities, whiteSpaces } from './displays';
+import {
+  displays,
+  overflows,
+  textOverflows,
+  visibilities,
+  whiteSpaces,
+} from './displays';
 
 const GlobalCss = withStyles((theme) => {
   return {
@@ -26,10 +33,7 @@ export default function App() {
   return (
     <div>
       <GlobalCss />
-      <Button
-        variant="contained"
-        className="m-4 py-5"
-      >
+      <Button variant="contained" className="m-4 py-5">
         Spacings
       </Button>
       <Button
@@ -43,6 +47,7 @@ export default function App() {
           Elevation {val}
         </Button>
       ))}
+
       {[
         'h1',
         'h2',
@@ -60,6 +65,7 @@ export default function App() {
       ].map((val) => (
         <div className={`m2 p-1 text-${val}`}>Text {val}</div>
       ))}
+
       <div className="d-inline mr-1">Inline</div>
       <div className="d-inline d-print-none">Not visible when printed</div>
     </div>

@@ -5,7 +5,13 @@ import spacings from './spacings';
 import colors from './colors';
 import elevations from './elevations';
 import texts from './texts';
-import { displays, overflows, textOverflows, visibilities, whiteSpaces } from './displays';
+import {
+  displays,
+  overflows,
+  textOverflows,
+  visibilities,
+  whiteSpaces,
+} from './displays';
 
 const GlobalCss = withStyles((theme: Theme) => {
   return {
@@ -27,10 +33,7 @@ export default function App() {
   return (
     <div>
       <GlobalCss />
-      <Button
-        variant="contained"
-        className="m-4 py-5"
-      >
+      <Button variant="contained" className="m-4 py-5">
         Spacings
       </Button>
       <Button
