@@ -104,7 +104,6 @@ export function usePickerState<TInput, TDateValue>(
         selectionState: PickerSelectionState = 'partial'
       ) => {
         setPickerDate(newDate);
-
         if (selectionState === 'partial') {
           acceptDate(newDate, false);
         }

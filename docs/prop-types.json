@@ -320,7 +320,7 @@
     },
     "onError": {
       "defaultValue": null,
-      "description": "Callback that fired when input value or new `value` prop validation returns **new** validation error (or value is valid after error).\nIn case of validation error detected `reason` prop return non-null value and `TextField` must be displayed in `error` state.\nThis can be used to render appropriate form error.\n\n[Read the guide](https://next.material-ui-pickers.dev/guides/forms) about form integration and error displaying.\n@DateIOType",
+      "description": "Callback that fired when input value or new `value` prop validation returns **new** validation error (or value is valid after error).\nIn case of validation error detected `reason` prop return non-null value and `TextField` must be displayed in `error` state.\r\nThis can be used to render appropriate form error.\r\n\r\n[Read the guide](https://next.material-ui-pickers.dev/guides/forms) about form integration and error displaying.\n@DateIOType",
       "name": "onError",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/hooks/useValidation.ts",
@@ -1292,7 +1292,7 @@
     },
     "onError": {
       "defaultValue": null,
-      "description": "Callback that fired when input value or new `value` prop validation returns **new** validation error (or value is valid after error).\nIn case of validation error detected `reason` prop return non-null value and `TextField` must be displayed in `error` state.\nThis can be used to render appropriate form error.\n\n[Read the guide](https://next.material-ui-pickers.dev/guides/forms) about form integration and error displaying.\n@DateIOType",
+      "description": "Callback that fired when input value or new `value` prop validation returns **new** validation error (or value is valid after error).\nIn case of validation error detected `reason` prop return non-null value and `TextField` must be displayed in `error` state.\r\nThis can be used to render appropriate form error.\r\n\r\n[Read the guide](https://next.material-ui-pickers.dev/guides/forms) about form integration and error displaying.\n@DateIOType",
       "name": "onError",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/hooks/useValidation.ts",
@@ -1974,7 +1974,7 @@
     },
     "onError": {
       "defaultValue": null,
-      "description": "Callback that fired when input value or new `value` prop validation returns **new** validation error (or value is valid after error).\nIn case of validation error detected `reason` prop return non-null value and `TextField` must be displayed in `error` state.\nThis can be used to render appropriate form error.\n\n[Read the guide](https://next.material-ui-pickers.dev/guides/forms) about form integration and error displaying.\n@DateIOType",
+      "description": "Callback that fired when input value or new `value` prop validation returns **new** validation error (or value is valid after error).\nIn case of validation error detected `reason` prop return non-null value and `TextField` must be displayed in `error` state.\r\nThis can be used to render appropriate form error.\r\n\r\n[Read the guide](https://next.material-ui-pickers.dev/guides/forms) about form integration and error displaying.\n@DateIOType",
       "name": "onError",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/hooks/useValidation.ts",
@@ -3472,7 +3472,7 @@
     },
     "onError": {
       "defaultValue": null,
-      "description": "Callback that fired when input value or new `value` prop validation returns **new** validation error (or value is valid after error).\nIn case of validation error detected `reason` prop return non-null value and `TextField` must be displayed in `error` state.\nThis can be used to render appropriate form error.\n\n[Read the guide](https://next.material-ui-pickers.dev/guides/forms) about form integration and error displaying.\n@DateIOType",
+      "description": "Callback that fired when input value or new `value` prop validation returns **new** validation error (or value is valid after error).\nIn case of validation error detected `reason` prop return non-null value and `TextField` must be displayed in `error` state.\r\nThis can be used to render appropriate form error.\r\n\r\n[Read the guide](https://next.material-ui-pickers.dev/guides/forms) about form integration and error displaying.\n@DateIOType",
       "name": "onError",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/hooks/useValidation.ts",
@@ -4102,6 +4102,21 @@
       },
       "description": "Disable highlighting today date with a circle.",
       "name": "disableHighlightToday",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/Day.tsx",
+        "name": "DayProps"
+      },
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    },
+    "allowSameDateSelection": {
+      "defaultValue": {
+        "value": false
+      },
+      "description": "Allow selecting the same date (fire onChange even if same date is selected).",
+      "name": "allowSameDateSelection",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/views/Calendar/Day.tsx",
         "name": "DayProps"

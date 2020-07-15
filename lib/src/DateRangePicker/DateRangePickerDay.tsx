@@ -141,6 +141,7 @@ export const PureDateRangeDay = ({
           {...other}
           day={day}
           selected={selected}
+          allowSameDateSelection={true}
           inCurrentMonth={inCurrentMonth}
           data-mui-test="DateRangeDay"
           className={clsx(
