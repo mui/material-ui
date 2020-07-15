@@ -53,6 +53,17 @@ export const displays = {
   '.d-print-none': { '@media print': { display: 'none' } },
   '.d-print-initial': { '@media print': { display: 'initial' } },
   '.d-print-inherit': { '@media print': { display: 'inherit' } },
+  '.d-sr-only': {
+    border: 0,
+    clip: 'rect(0 0 0 0)',
+    height: 1,
+    margin: -1,
+    overflow: 'hidden',
+    padding: 0,
+    position: 'absolute',
+    whiteSpace: 'nowrap',
+    width: 1,
+  }
 };
 
 export const overflows = {
