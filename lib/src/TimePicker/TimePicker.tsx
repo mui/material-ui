@@ -27,7 +27,6 @@ export function getTextFieldAriaText(value: ParsableDate, utils: MuiPickersAdapt
 function useInterceptProps({
   ampm,
   inputFormat,
-  mask,
   maxTime: __maxTime,
   minTime: __minTime,
   openTo = 'hours',
@@ -47,10 +46,11 @@ function useInterceptProps({
     maxTime,
     ampm: willUseAmPm,
     acceptRegex: willUseAmPm ? /[\dapAP]/gi : /\d/gi,
-    mask: mask || (willUseAmPm ? '__:__ _M' : '__:__'),
+    mask: '__:__',
+    disableMaskedInput: willUseAmPm,
     getOpenDialogAriaText: getTextFieldAriaText,
     openPickerIcon: <ClockIcon />,
-    inputFormat: pick12hOr24hFormat(inputFormat, ampm, {
+    inputFormat: pick12hOr24hFormat(inputFormat, willUseAmPm, {
       localized: utils.formats.fullTime,
       '12h': utils.formats.fullTime12h,
       '24h': utils.formats.fullTime24h,

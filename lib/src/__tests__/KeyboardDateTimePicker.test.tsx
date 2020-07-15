@@ -19,6 +19,7 @@ describe('e2e - DesktopDateTimePicker', () => {
         onChange={onChangeMock}
         onClose={onCloseMock}
         onOpen={onOpenMock}
+        disableMaskedInput
         inputFormat={format}
         OpenPickerButtonProps={{ id: 'keyboard-button' }}
         renderInput={props => <TextField {...props} />}

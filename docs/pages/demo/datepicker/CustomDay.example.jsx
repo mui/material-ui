@@ -59,6 +59,7 @@ export default function CustomDay(props) {
 
   return (
     <DatePicker
+      disableMaskedInput
       showDaysOutsideCurrentMonth
       label="Week picker"
       value={selectedDate}

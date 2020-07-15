@@ -48,7 +48,6 @@ export interface BaseDateTimePickerProps
 function useInterceptProps({
   ampm,
   inputFormat,
-  mask,
   maxDate: __maxDate = defaultMaxDate,
   maxDateTime: __maxDateTime,
   maxTime: __maxTime,
@@ -87,8 +86,9 @@ function useInterceptProps({
     maxTime: maxDateTime || maxTime,
     disableIgnoringDatePartForTimeValidation: Boolean(minDateTime || maxDateTime),
     acceptRegex: willUseAmPm ? /[\dap]/gi : /\d/gi,
-    mask: mask || (willUseAmPm ? '__/__/____ __:__ _M' : '__/__/____ __:__'),
-    inputFormat: pick12hOr24hFormat(inputFormat, ampm, {
+    mask: '__/__/____ __:__',
+    disableMaskedInput: willUseAmPm,
+    inputFormat: pick12hOr24hFormat(inputFormat, willUseAmPm, {
       localized: utils.formats.keyboardDateTime,
       '12h': utils.formats.keyboardDateTime12h,
       '24h': utils.formats.keyboardDateTime24h,

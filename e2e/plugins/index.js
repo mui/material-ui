@@ -11,11 +11,6 @@ module.exports = (on, config) => {
       },
       module: {
         rules: [
-          // {
-          //   test: /\.(ts|tsx)?$/,
-          //   loader: 'ts-loader',
-          //   options: { transpileOnly: true },
-          // },
           {
             test: /\.(ts|tsx)?$/,
             loader: 'babel-loader',
@@ -28,7 +23,6 @@ module.exports = (on, config) => {
 
   on('file:preprocessor', wp(options));
   on('task', percyHealthCheck);
-  // require('cypress-react-unit-test/plugins/react-scripts')(on, config);
 
   return config;
 };

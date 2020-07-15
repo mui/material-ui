@@ -23,18 +23,18 @@ describe('<DateTimePicker />', () => {
 
     // Year
     cy.findByText('2015').click();
-    cy.get('input').should('have.value', '10/07/2015 7:36 PM');
+    cy.get('input').should('have.value', '10/07/2015 07:36 PM');
 
     // Date
     cy.findByLabelText('next month')
       .click()
       .click();
     cy.findByLabelText('Dec 22, 2015').click();
-    cy.get('input').should('have.value', '12/22/2015 7:36 PM');
+    cy.get('input').should('have.value', '12/22/2015 07:36 PM');
 
     // Hour
     cy.findByRole('menu').trigger('mouseup', { buttons: 1, offsetX: 66, offsetY: 157 });
-    cy.get('input').should('have.value', '12/22/2015 8:36 PM');
+    cy.get('input').should('have.value', '12/22/2015 08:36 PM');
 
     // Minute
     cy.findByRole('menu').trigger('mouseup', {
@@ -43,6 +43,6 @@ describe('<DateTimePicker />', () => {
       offsetY: 180,
     });
 
-    cy.get('input').should('have.value', '12/22/2015 8:20 PM');
+    cy.get('input').should('have.value', '12/22/2015 08:20 PM');
   });
 });

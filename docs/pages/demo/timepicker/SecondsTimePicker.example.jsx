@@ -13,6 +13,7 @@ function SecondsTimePicker() {
         openTo="hours"
         views={['hours', 'minutes', 'seconds']}
         inputFormat="HH:mm:ss"
+        mask="__:__:__"
         label="With seconds"
         value={selectedDate}
         onChange={date => handleDateChange(date)}
@@ -24,6 +25,7 @@ function SecondsTimePicker() {
         openTo="minutes"
         views={['minutes', 'seconds']}
         inputFormat="mm:ss"
+        mask="__:__"
         label="Minutes and seconds"
         value={selectedDate}
         onChange={date => handleDateChange(date)}

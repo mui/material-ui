@@ -7,8 +7,8 @@ import { ExportedCalendarViewProps } from '../views/Calendar/CalendarView';
 import { MobileWrapper, DesktopWrapper, StaticWrapper } from '../wrappers/Wrapper';
 import { makeValidationHook, ValidationProps } from '../_shared/hooks/useValidation';
 import { ParsableDate, defaultMinDate, defaultMaxDate } from '../constants/prop-types';
-import { getFormatByViews, validateDate, DateValidationError } from '../_helpers/date-utils';
 import { makePickerWithStateAndWrapper, AllPickerProps } from '../Picker/makePickerWithState';
+import { getFormatAndMaskByViews, validateDate, DateValidationError } from '../_helpers/date-utils';
 
 export type DatePickerView = 'year' | 'date' | 'month';
 
@@ -38,8 +38,7 @@ const datePickerConfig = {
       openTo,
       minDate,
       maxDate,
-      mask: '__/__/____',
-      inputFormat: getFormatByViews(views, utils),
+      ...getFormatAndMaskByViews(views, utils),
       ...other,
     };
   },

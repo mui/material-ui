@@ -31,11 +31,11 @@ function DateTimePickerDemo(props) {
         value={selectedDate}
         onChange={handleDateChange}
         onError={console.log}
+        disableMaskedInput
         inputFormat={props.__willBeReplacedGetFormatString({
           moment: 'YYYY/MM/DD HH:mm',
           dateFns: 'yyyy/MM/dd HH:mm',
         })}
-        mask="___/__/__ __:__"
       />
     </React.Fragment>
   );

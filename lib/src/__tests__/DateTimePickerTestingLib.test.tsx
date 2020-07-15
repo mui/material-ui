@@ -12,6 +12,8 @@ describe('<DateTimePicker />', () => {
     render(
       <DesktopDateTimePicker
         renderInput={props => <TextField autoFocus {...props} />}
+        ampm={false}
+        inputFormat={utilsToUse.moment ? 'MM.DD.YYYY HH:mm' : 'mm.dd.yyyy hh:mm'}
         mask="__.__.____ __:__"
         onChange={() => {}}
         value={null}
@@ -25,7 +27,7 @@ describe('<DateTimePicker />', () => {
       },
     });
 
-    expect(textbox.value).toBe('12');
+    expect(textbox.value).toBe('12.');
   });
 
   it('prop: maxDateTime – minutes is disabled by date part', async () => {
@@ -33,7 +35,6 @@ describe('<DateTimePicker />', () => {
       <DesktopDateTimePicker
         open
         openTo="minutes"
-        mask="__.__.____ __:__"
         onChange={() => {}}
         renderInput={props => <TextField {...props} />}
         value={utilsToUse.date('2018-01-01T12:00:00.000Z')}

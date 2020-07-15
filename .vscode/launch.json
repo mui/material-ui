@@ -21,6 +21,9 @@
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
       "disableOptimisticBPs": true,
+      "env": {
+        "UTILS": "date-fns"
+      },
       "windows": {
         "program": "${workspaceFolder}/lib/node_modules/jest/bin/jest"
       }

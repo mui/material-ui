@@ -82,16 +82,28 @@ export const isYearOnlyView = (views: readonly DatePickerView[]) =>
 export const isYearAndMonthViews = (views: readonly DatePickerView[]) =>
   views.length === 2 && arrayIncludes(views, 'month') && arrayIncludes(views, 'year');
 
-export const getFormatByViews = (views: readonly DatePickerView[], utils: MuiPickersAdapter) => {
+export const getFormatAndMaskByViews = (
+  views: readonly DatePickerView[],
+  utils: MuiPickersAdapter
+) => {
   if (isYearOnlyView(views)) {
-    return utils.formats.year;
+    return {
+      mask: '____',
+      inputFormat: utils.formats.year,
+    };
   }
 
   if (isYearAndMonthViews(views)) {
-    return utils.formats.monthAndYear;
+    return {
+      disableMaskedInput: true,
+      inputFormat: utils.formats.monthAndYear,
+    };
   }
 
-  return utils.formats.keyboardDate;
+  return {
+    mask: '__/__/____',
+    inputFormat: utils.formats.keyboardDate,
+  };
 };
 
 export function parsePickerInputValue(

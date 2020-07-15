@@ -128,3 +128,5 @@ export const toHaveBeenCalledExceptMoment = (mock: jest.Mock<any, any>, params: 
 
   return expect(mock).toHaveBeenCalledWith(...params);
 };
+
+export const itOnlyIf = (condition: boolean) => condition ? it : it.skip

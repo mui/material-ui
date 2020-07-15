@@ -54,6 +54,7 @@ describe('test-field-helper', () => {
   `(
     'checkMaskIsValidFormat returns $expected for mask $mask and format $format',
     ({ format, mask, expected }) => {
+      console.warn = jest.fn();
       const formatForCurrentLib =
         typeof format === 'string'
           ? format
