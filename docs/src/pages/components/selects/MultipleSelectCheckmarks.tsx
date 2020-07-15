@@ -1,18 +1,22 @@
 import React from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
+import ListItemText from '@material-ui/core/ListItemText';
 import Select from '@material-ui/core/Select';
+import Checkbox from '@material-ui/core/Checkbox';
 
-const useStyles = makeStyles((theme) => ({
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-    maxWidth: 300,
-  },
-}));
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    formControl: {
+      margin: theme.spacing(1),
+      minWidth: 120,
+      maxWidth: 300,
+    },
+  }),
+);
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -38,44 +42,32 @@ const names = [
   'Kelly Snyder',
 ];
 
-function getStyles(name, personName, theme) {
-  return {
-    fontWeight:
-      personName.indexOf(name) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
-  };
-}
-
-export default function MultipleSelect() {
+export default function MultipleSelectCheckmarks() {
   const classes = useStyles();
-  const theme = useTheme();
-  const [personName, setPersonName] = React.useState([]);
+  const [personName, setPersonName] = React.useState<string[]>([]);
 
-  const handleChange = (event) => {
-    setPersonName(event.target.value);
+  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    setPersonName(event.target.value as string[]);
   };
 
   return (
     <div>
       <FormControl className={classes.formControl}>
-        <InputLabel id="demo-mutiple-name-label">Name</InputLabel>
+        <InputLabel id="demo-mutiple-checkbox-label">Tag</InputLabel>
         <Select
-          labelId="demo-mutiple-name-label"
-          id="demo-mutiple-name"
+          labelId="demo-mutiple-checkbox-label"
+          id="demo-mutiple-checkbox"
           multiple
           value={personName}
           onChange={handleChange}
           input={<Input />}
+          renderValue={(selected) => (selected as string[]).join(', ')}
           MenuProps={MenuProps}
         >
           {names.map((name) => (
-            <MenuItem
-              key={name}
-              value={name}
-              style={getStyles(name, personName, theme)}
-            >
-              {name}
+            <MenuItem key={name} value={name}>
+              <Checkbox checked={personName.indexOf(name) > -1} />
+              <ListItemText primary={name} />
             </MenuItem>
           ))}
         </Select>

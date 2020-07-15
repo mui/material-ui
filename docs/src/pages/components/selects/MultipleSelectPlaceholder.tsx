@@ -1,18 +1,28 @@
 import React from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import clsx from 'clsx';
+import {
+  createStyles,
+  makeStyles,
+  Theme,
+  useTheme,
+} from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
-const useStyles = makeStyles((theme) => ({
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-    maxWidth: 300,
-  },
-}));
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    formControl: {
+      margin: theme.spacing(1),
+      minWidth: 120,
+      maxWidth: 300,
+    },
+    noLabel: {
+      marginTop: theme.spacing(3),
+    },
+  }),
+);
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -38,7 +48,7 @@ const names = [
   'Kelly Snyder',
 ];
 
-function getStyles(name, personName, theme) {
+function getStyles(name: string, personName: string[], theme: Theme) {
   return {
     fontWeight:
       personName.indexOf(name) === -1
@@ -47,28 +57,37 @@ function getStyles(name, personName, theme) {
   };
 }
 
-export default function MultipleSelect() {
+export default function MultipleSelectPlaceholder() {
   const classes = useStyles();
   const theme = useTheme();
-  const [personName, setPersonName] = React.useState([]);
+  const [personName, setPersonName] = React.useState<string[]>([]);
 
-  const handleChange = (event) => {
-    setPersonName(event.target.value);
+  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    setPersonName(event.target.value as string[]);
   };
 
   return (
     <div>
-      <FormControl className={classes.formControl}>
-        <InputLabel id="demo-mutiple-name-label">Name</InputLabel>
+      <FormControl className={clsx(classes.formControl, classes.noLabel)}>
         <Select
-          labelId="demo-mutiple-name-label"
-          id="demo-mutiple-name"
           multiple
+          displayEmpty
           value={personName}
           onChange={handleChange}
           input={<Input />}
+          renderValue={(selected) => {
+            if ((selected as string[]).length === 0) {
+              return <em>Placeholder</em>;
+            }
+
+            return (selected as string[]).join(', ');
+          }}
           MenuProps={MenuProps}
+          inputProps={{ 'aria-label': 'Without label' }}
         >
+          <MenuItem disabled value="">
+            <em>Placeholder</em>
+          </MenuItem>
           {names.map((name) => (
             <MenuItem
               key={name}

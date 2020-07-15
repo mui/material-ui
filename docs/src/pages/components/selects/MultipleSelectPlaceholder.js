@@ -1,7 +1,7 @@
 import React from 'react';
+import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
@@ -11,6 +11,9 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     minWidth: 120,
     maxWidth: 300,
+  },
+  noLabel: {
+    marginTop: theme.spacing(3),
   },
 }));
 
@@ -47,7 +50,7 @@ function getStyles(name, personName, theme) {
   };
 }
 
-export default function MultipleSelect() {
+export default function MultipleSelectPlaceholder() {
   const classes = useStyles();
   const theme = useTheme();
   const [personName, setPersonName] = React.useState([]);
@@ -58,17 +61,26 @@ export default function MultipleSelect() {
 
   return (
     <div>
-      <FormControl className={classes.formControl}>
-        <InputLabel id="demo-mutiple-name-label">Name</InputLabel>
+      <FormControl className={clsx(classes.formControl, classes.noLabel)}>
         <Select
-          labelId="demo-mutiple-name-label"
-          id="demo-mutiple-name"
           multiple
+          displayEmpty
           value={personName}
           onChange={handleChange}
           input={<Input />}
+          renderValue={(selected) => {
+            if (selected.length === 0) {
+              return <em>Placeholder</em>;
+            }
+
+            return selected.join(', ');
+          }}
           MenuProps={MenuProps}
+          inputProps={{ 'aria-label': 'Without label' }}
         >
+          <MenuItem disabled value="">
+            <em>Placeholder</em>
+          </MenuItem>
           {names.map((name) => (
             <MenuItem
               key={name}

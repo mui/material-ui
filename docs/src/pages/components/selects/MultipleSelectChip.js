@@ -5,12 +5,20 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import Chip from '@material-ui/core/Chip';
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
     maxWidth: 300,
+  },
+  chips: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  chip: {
+    margin: 2,
   },
 }));
 
@@ -47,7 +55,7 @@ function getStyles(name, personName, theme) {
   };
 }
 
-export default function MultipleSelect() {
+export default function MultipleSelectChip() {
   const classes = useStyles();
   const theme = useTheme();
   const [personName, setPersonName] = React.useState([]);
@@ -59,14 +67,21 @@ export default function MultipleSelect() {
   return (
     <div>
       <FormControl className={classes.formControl}>
-        <InputLabel id="demo-mutiple-name-label">Name</InputLabel>
+        <InputLabel id="demo-mutiple-chip-label">Chip</InputLabel>
         <Select
-          labelId="demo-mutiple-name-label"
-          id="demo-mutiple-name"
+          labelId="demo-mutiple-chip-label"
+          id="demo-mutiple-chip"
           multiple
           value={personName}
           onChange={handleChange}
-          input={<Input />}
+          input={<Input id="select-multiple-chip" />}
+          renderValue={(selected) => (
+            <div className={classes.chips}>
+              {selected.map((value) => (
+                <Chip key={value} label={value} className={classes.chip} />
+              ))}
+            </div>
+          )}
           MenuProps={MenuProps}
         >
           {names.map((name) => (
