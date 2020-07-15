@@ -19,9 +19,6 @@ module.exports = {
     'prettier/@typescript-eslint',
   ],
   parser: '@typescript-eslint/parser',
-  parserOptions: {
-    // project: './tsconfig.json',
-  },
   plugins: ['material-ui', 'react-hooks', '@typescript-eslint'],
   settings: {
     'import/resolver': {
@@ -36,7 +33,8 @@ module.exports = {
    */
   rules: {
     'consistent-this': ['error', 'self'],
-    'max-classes-per-file': 'off', // just as bad as "max components per file"
+    // just as bad as "max components per file"
+    'max-classes-per-file': 'off',
     'no-alert': 'error', // Too much interruptive
     'no-console': ['error', { allow: ['warn', 'error'] }], // Allow warn and error for production events
     'no-param-reassign': 'off', // It's fine.
@@ -56,11 +54,11 @@ module.exports = {
     'nonblock-statement-body-position': 'error',
     'prefer-arrow-callback': ['error', { allowNamedFunctions: true }],
     'prefer-destructuring': 'off', // Destructuring harm grep potential.
-    '@typescript-eslint/dot-notation': 'off', // Too slow
-    '@typescript-eslint/no-implied-eval': 'off', // Too slow
-    '@typescript-eslint/no-throw-literal': 'off', // Too slow
+    '@typescript-eslint/dot-notation': 'off', // TODO performance consideration
+    '@typescript-eslint/no-implied-eval': 'off', // TODO performance consideration
+    '@typescript-eslint/no-throw-literal': 'off', // TODO performance consideration
     'import/named': 'off', // Not sure why it doesn't work
-    'import/no-cycle': 'off', // Too slow
+    'import/no-cycle': 'off', // TODO performance consideration
     'import/no-extraneous-dependencies': 'off', // Missing yarn workspace support
     'jsx-a11y/label-has-associated-control': 'off', // doesn't work?
     'jsx-a11y/no-autofocus': 'off', // We are a library, we need to support it too
@@ -79,8 +77,10 @@ module.exports = {
     'react/no-find-dom-node': 'off', // Required for backward compatibility. TODO v5, drop
     'react/require-default-props': 'off', // Not always relevant
     'react/sort-prop-types': 'error',
-    'react/state-in-constructor': 'off', // Too strict, no time for that
-    'react/static-property-placement': 'off', // No needed
+    // This depends entirely on what you're doing. There's no universal pattern
+    'react/state-in-constructor': 'off',
+    // stylistic opinion. For conditional assignment we want it outside, otherwise as static
+    'react/static-property-placement': 'off',
   },
   overrides: [
     {
