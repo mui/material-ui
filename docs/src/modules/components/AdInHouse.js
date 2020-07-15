@@ -6,7 +6,7 @@ import AdDisplay from 'docs/src/modules/components/AdDisplay';
 export default function AdInHouse(props) {
   const { ad } = props;
 
-  return <AdDisplay ad={{ poweredby: 'Material-UI', ...ad }} />;
+  return <AdDisplay ad={{ poweredby: 'Material-UI', label: `in-house-${ad.name}`, ...ad }} />;
 }
 
 AdInHouse.propTypes = {

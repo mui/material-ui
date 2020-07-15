@@ -135,7 +135,7 @@ function Ad(props) {
   } else if (carbonOut) {
     children = <AdInHouse ad={inHouseAds[Math.floor(inHouseAds.length * randomInHouse)]} />;
     label = 'in-house-carbon';
-  } else if (randomSplit < 0.95) {
+  } else if (randomSplit < 0.9) {
     children = <AdCarbon />;
     label = 'carbon';
   } else {
@@ -153,7 +153,7 @@ function Ad(props) {
       if (
         document.querySelector('.ea-placement') ||
         document.querySelector('#carbonads') ||
-        document.querySelector('.ad-display') ||
+        document.querySelector('.carbonads') ||
         carbonOut
       ) {
         if (
