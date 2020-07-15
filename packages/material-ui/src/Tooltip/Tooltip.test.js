@@ -45,7 +45,6 @@ describe('<Tooltip />', () => {
   });
 
   afterEach(() => {
-    clock.tick(800); // cleanup the hystersis timer
     clock.restore();
   });
 
