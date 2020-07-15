@@ -24,6 +24,9 @@ function simulatePointerDevice() {
 }
 
 describe('<Tooltip />', () => {
+  /**
+   * @type {ReturnType<typeof useFakeTimers>}
+   */
   let clock;
   beforeEach(() => {
     testReset();
@@ -32,9 +35,8 @@ describe('<Tooltip />', () => {
 
   afterEach(() => {
     act(() => {
-      clock.tick(800); // cleanup the hystersis timer
+      clock.restore();
     });
-    clock.restore();
   });
 
   // StrictModeViolation: uses Grow and tests a lot of impl details
@@ -76,7 +78,8 @@ describe('<Tooltip />', () => {
 
     expect(getByRole('tooltip')).to.have.class(classes.popper);
 
-    // FIXME: Unclear why we need this to fix "missing act()"-warning
+    // TODO: Unclear why not running triggers microtasks but runAll does not trigger microtasks
+    // can be removed once Popper#update is sync
     clock.runAll();
   });
 
@@ -104,7 +107,8 @@ describe('<Tooltip />', () => {
 
       expect(getByRole('tooltip')).toBeVisible();
 
-      // FIXME: Unclear why we need this to fix "missing act()"-warning
+      // TODO: Unclear why not running triggers microtasks but runAll does not trigger microtasks
+      // can be removed once Popper#update is sync
       clock.runAll();
     });
 
@@ -151,9 +155,15 @@ describe('<Tooltip />', () => {
     });
   });
 
-  it.skip('should respond to external events', () => {
+  it('should respond to external events', () => {
+    const transitionTimeout = 10;
+    const enterDelay = 100;
     const { queryByRole, getByRole } = render(
-      <Tooltip enterDelay={100} title="Hello World" TransitionProps={{ timeout: 10 }}>
+      <Tooltip
+        enterDelay={enterDelay}
+        title="Hello World"
+        TransitionProps={{ timeout: transitionTimeout }}
+      >
         <button id="testChild" type="submit">
           Hello World
         </button>
@@ -163,14 +173,18 @@ describe('<Tooltip />', () => {
 
     fireEvent.mouseOver(getByRole('button'));
     act(() => {
-      clock.tick(100);
+      clock.tick(enterDelay);
     });
 
     expect(getByRole('tooltip')).toBeVisible();
 
     act(() => {
       fireEvent.mouseLeave(getByRole('button'));
-      clock.tick(10 + 1);
+      // Tooltip schedules timeout even with no delay
+      clock.tick(0);
+    });
+    act(() => {
+      clock.tick(transitionTimeout);
     });
 
     expect(queryByRole('tooltip')).to.equal(null);
@@ -213,7 +227,8 @@ describe('<Tooltip />', () => {
     expect(handleRequestOpen.callCount).to.equal(1);
     expect(handleClose.callCount).to.equal(1);
 
-    // FIXME: Unclear why we need this to fix "missing act()"-warning
+    // TODO: Unclear why not running triggers microtasks but runAll does not trigger microtasks
+    // can be removed once Popper#update is sync
     clock.runAll();
   });
 
@@ -231,15 +246,18 @@ describe('<Tooltip />', () => {
       expect(queryByRole('tooltip')).to.equal(null);
     });
 
-    // FIXME: debug
-    it.skip('should open on long press', () => {
+    it('should open on long press', () => {
+      const enterTouchDelay = 700;
+      const enterDelay = 100;
+      const leaveTouchDelay = 1500;
+      const transitionTimeout = 10;
       const { getByRole, queryByRole } = render(
         <Tooltip
-          enterTouchDelay={700}
-          enterDelay={100}
-          leaveTouchDelay={1500}
+          enterTouchDelay={enterTouchDelay}
+          enterDelay={enterDelay}
+          leaveTouchDelay={leaveTouchDelay}
           title="Hello World"
-          TransitionProps={{ timeout: 10 }}
+          TransitionProps={{ timeout: transitionTimeout }}
         >
           <button id="testChild" type="submit">
             Hello World
@@ -248,7 +266,7 @@ describe('<Tooltip />', () => {
       );
       act(() => {
         fireEvent.touchStart(getByRole('button'));
-        clock.tick(700 + 100);
+        clock.tick(enterTouchDelay + enterDelay);
       });
 
       expect(getByRole('tooltip')).toBeVisible();
@@ -256,9 +274,10 @@ describe('<Tooltip />', () => {
       fireEvent.touchEnd(getByRole('button'));
       act(() => {
         getByRole('button').blur();
+        clock.tick(leaveTouchDelay);
       });
       act(() => {
-        clock.tick(1500 + 10 + 1);
+        clock.tick(transitionTimeout);
       });
 
       expect(queryByRole('tooltip')).to.equal(null);
@@ -289,7 +308,8 @@ describe('<Tooltip />', () => {
         </Tooltip>,
       );
 
-      // FIXME: Unclear why we need this to fix "missing act()"-warning
+      // TODO: Unclear why not running triggers microtasks but runAll does not trigger microtasks
+      // can be removed once Popper#update is sync
       clock.runAll();
     });
 
@@ -313,13 +333,14 @@ describe('<Tooltip />', () => {
 
       expect(getByRole('tooltip')).toBeVisible();
 
-      // FIXME: Unclear why we need this to fix "missing act()"-warning
+      // TODO: Unclear why not running triggers microtasks but runAll does not trigger microtasks
+      // can be removed once Popper#update is sync
       clock.runAll();
     });
   });
 
   describe('prop: delay', () => {
-    it('should take the enterDelay into account', () => {
+    it('should take the enterDelay into account', async () => {
       const { queryByRole, getByRole } = render(
         <Tooltip title="Hello World" enterDelay={111}>
           <button id="testChild" type="submit">
@@ -338,7 +359,8 @@ describe('<Tooltip />', () => {
 
       expect(getByRole('tooltip')).toBeVisible();
 
-      // FIXME: Unclear why we need this to fix "missing act()"-warning
+      // TOD: Unclear why not running triggers microtasks but runAll does not trigger microtasks
+      // can be removed once Popper#update is sync
       clock.runAll();
     });
 
@@ -389,14 +411,22 @@ describe('<Tooltip />', () => {
 
       expect(getByRole('tooltip')).toBeVisible();
 
-      // FIXME: Unclear why we need this to fix "missing act()"-warning
+      // TOD: Unclear why not running triggers microtasks but runAll does not trigger microtasks
+      // can be removed once Popper#update is sync
       clock.runAll();
     });
 
-    // FIXME: debug
-    it.skip('should take the leaveDelay into account', () => {
+    it('should take the leaveDelay into account', () => {
+      const leaveDelay = 111;
+      const enterDelay = 0;
+      const transitionTimeout = 10;
       const { getByRole, queryByRole } = render(
-        <Tooltip leaveDelay={111} enterDelay={0} title="tooltip" TransitionProps={{ timeout: 10 }}>
+        <Tooltip
+          leaveDelay={leaveDelay}
+          enterDelay={enterDelay}
+          title="tooltip"
+          TransitionProps={{ timeout: transitionTimeout }}
+        >
           <button id="testChild" type="submit">
             Hello World
           </button>
@@ -406,7 +436,7 @@ describe('<Tooltip />', () => {
 
       focusVisible(getByRole('button'));
       act(() => {
-        clock.tick(0);
+        clock.tick(enterDelay);
       });
 
       expect(getByRole('tooltip')).toBeVisible();
@@ -418,7 +448,10 @@ describe('<Tooltip />', () => {
       expect(getByRole('tooltip')).toBeVisible();
 
       act(() => {
-        clock.tick(111 + 10);
+        clock.tick(leaveDelay);
+      });
+      act(() => {
+        clock.tick(transitionTimeout);
       });
 
       expect(queryByRole('tooltip')).to.equal(null);
@@ -464,7 +497,8 @@ describe('<Tooltip />', () => {
 
       expect(handleMouseOver.callCount).to.equal(0);
 
-      // FIXME: Unclear why we need this to fix "missing act()"-warning
+      // TOD: Unclear why not running triggers microtasks but runAll does not trigger microtasks
+      // can be removed once Popper#update is sync
       clock.runAll();
     });
   });
@@ -481,7 +515,8 @@ describe('<Tooltip />', () => {
         );
       }).not.toErrorDev();
 
-      // FIXME: Unclear why we need this to fix "missing act()"-warning
+      // TOD: Unclear why not running triggers microtasks but runAll does not trigger microtasks
+      // can be removed once Popper#update is sync
       clock.runAll();
     });
 
@@ -510,7 +545,8 @@ describe('<Tooltip />', () => {
         );
       }).not.toErrorDev();
 
-      // FIXME: Unclear why we need this to fix "missing act()"-warning
+      // TOD: Unclear why not running triggers microtasks but runAll does not trigger microtasks
+      // can be removed once Popper#update is sync
       clock.runAll();
     });
   });
@@ -573,7 +609,8 @@ describe('<Tooltip />', () => {
 
       expect(getByRole('tooltip')).toBeVisible();
 
-      // FIXME: Unclear why we need this to fix "missing act()"-warning
+      // TOD: Unclear why not running triggers microtasks but runAll does not trigger microtasks
+      // can be removed once Popper#update is sync
       clock.runAll();
     });
   });
@@ -590,7 +627,8 @@ describe('<Tooltip />', () => {
 
       expect(getByTestId('popper')).not.to.equal(null);
 
-      // FIXME: Unclear why we need this to fix "missing act()"-warning
+      // TOD: Unclear why not running triggers microtasks but runAll does not trigger microtasks
+      // can be removed once Popper#update is sync
       clock.runAll();
     });
 
@@ -619,7 +657,8 @@ describe('<Tooltip />', () => {
       );
       expect(popperRef.current.modifiers.find((x) => x.name === 'arrow').foo).to.equal('bar');
 
-      // FIXME: Unclear why we need this to fix "missing act()"-warning
+      // TOD: Unclear why not running triggers microtasks but runAll does not trigger microtasks
+      // can be removed once Popper#update is sync
       clock.runAll();
     });
   });
@@ -677,7 +716,8 @@ describe('<Tooltip />', () => {
 
       expect(getByRole('tooltip')).toBeVisible();
 
-      // FIXME: Unclear why we need this to fix "missing act()"-warning
+      // TOD: Unclear why not running triggers microtasks but runAll does not trigger microtasks
+      // can be removed once Popper#update is sync
       clock.runAll();
     });
 
