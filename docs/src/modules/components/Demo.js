@@ -25,6 +25,7 @@ import RefreshIcon from '@material-ui/icons/Refresh';
 import ResetFocusIcon from '@material-ui/icons/CenterFocusWeak';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import DemoSandboxed from 'docs/src/modules/components/DemoSandboxed';
+import { AdCarbonInline } from 'docs/src/modules/components/AdCarbon';
 import getDemoConfig from 'docs/src/modules/utils/getDemoConfig';
 import getJsxPreview from 'docs/src/modules/utils/getJsxPreview';
 import { getCookie } from 'docs/src/modules/utils/helpers';
@@ -763,6 +764,8 @@ function Demo(props) {
 
   const initialFocusRef = React.useRef(null);
 
+  const [showAd, setShowAd] = React.useState(false);
+
   return (
     <div className={classes.root}>
       <div
@@ -805,20 +808,26 @@ function Demo(props) {
           demoOptions={demoOptions}
           demoSourceId={demoSourceId}
           initialFocusRef={initialFocusRef}
-          onCodeOpenChange={() => setCodeOpen((open) => !open)}
+          onCodeOpenChange={() => {
+            setCodeOpen((open) => !open);
+            setShowAd(true);
+          }}
           onResetDemoClick={resetDemo}
           openDemoSource={openDemoSource}
           showPreview={showPreview}
         />
       )}
       <Collapse in={openDemoSource} unmountOnExit>
-        <HighlightedCode
-          className={classes.code}
-          id={demoSourceId}
-          code={showPreview && !codeOpen ? jsx : demoData.raw}
-          language={demoData.sourceLanguage}
-        />
+        <div>
+          <HighlightedCode
+            className={classes.code}
+            id={demoSourceId}
+            code={showPreview && !codeOpen ? jsx : demoData.raw}
+            language={demoData.sourceLanguage}
+          />
+        </div>
       </Collapse>
+      {showAd ? <AdCarbonInline /> : null}
     </div>
   );
 }
