@@ -1,8 +1,8 @@
 diff --git a/packages/material-ui-lab/src/Autocomplete/Autocomplete.test.js b/packages/material-ui-lab/src/Autocomplete/Autocomplete.test.js
-index 1fd4bad8b..20d22063b 100644
+index af7e296af..144de6de4 100644
 --- a/packages/material-ui-lab/src/Autocomplete/Autocomplete.test.js
 +++ b/packages/material-ui-lab/src/Autocomplete/Autocomplete.test.js
-@@ -1038,8 +1038,6 @@ describe('<Autocomplete />', () => {
+@@ -1109,8 +1109,6 @@ describe('<Autocomplete />', () => {
          fireEvent.change(textbox, { target: { value: 'a' } });
          fireEvent.keyDown(textbox, { key: 'Enter' });
        }).toErrorDev([
@@ -11,7 +11,7 @@ index 1fd4bad8b..20d22063b 100644
          'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
          'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
          'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
-@@ -1094,9 +1092,6 @@ describe('<Autocomplete />', () => {
+@@ -1165,9 +1163,6 @@ describe('<Autocomplete />', () => {
            />,
          );
        }).toWarnDev([
@@ -21,7 +21,7 @@ index 1fd4bad8b..20d22063b 100644
          'None of the options match with `"not a good value"`',
          'None of the options match with `"not a good value"`',
        ]);
-@@ -1122,11 +1117,7 @@ describe('<Autocomplete />', () => {
+@@ -1193,11 +1188,7 @@ describe('<Autocomplete />', () => {
              groupBy={(option) => option.group}
            />,
          );
@@ -34,28 +34,6 @@ index 1fd4bad8b..20d22063b 100644
        const options = screen.getAllByRole('option').map((el) => el.textContent);
        expect(options).to.have.length(7);
        expect(options).to.deep.equal(['A', 'D', 'E', 'B', 'G', 'F', 'C']);
-diff --git a/packages/material-ui-lab/src/TreeView/TreeView.test.js b/packages/material-ui-lab/src/TreeView/TreeView.test.js
-index 056a9fcbc..21eeee2cf 100644
---- a/packages/material-ui-lab/src/TreeView/TreeView.test.js
-+++ b/packages/material-ui-lab/src/TreeView/TreeView.test.js
-@@ -8,6 +8,7 @@ import { getClasses } from '@material-ui/core/test-utils';
- import createMount from 'test/utils/createMount';
- import TreeView from './TreeView';
- import TreeItem from '../TreeItem';
-+import { act } from 'react-test-renderer';
- 
- describe('<TreeView />', () => {
-   let classes;
-@@ -58,7 +59,8 @@ describe('<TreeView />', () => {
- 
-     // should not throw eventually or with a better error message
-     // FIXME: https://github.com/mui-org/material-ui/issues/20832
--    it('crashes when unmounting with duplicate ids', () => {
-+    // FIXME: unclear what is happening in react@next
-+    it.skip('crashes when unmounting with duplicate ids', () => {
-       const CustomTreeItem = () => {
-         return <TreeItem nodeId="iojerogj" />;
-       };
 diff --git a/packages/material-ui-styles/src/ThemeProvider/ThemeProvider.test.js b/packages/material-ui-styles/src/ThemeProvider/ThemeProvider.test.js
 index 46238825d..bcf275893 100644
 --- a/packages/material-ui-styles/src/ThemeProvider/ThemeProvider.test.js
@@ -99,19 +77,6 @@ index cce608f6b..19cab2d18 100644
      });
  
      it('should work when depending on a theme', () => {
-diff --git a/packages/material-ui-styles/src/withStyles/withStyles.test.js b/packages/material-ui-styles/src/withStyles/withStyles.test.js
-index d2a231d03..f247918fa 100644
---- a/packages/material-ui-styles/src/withStyles/withStyles.test.js
-+++ b/packages/material-ui-styles/src/withStyles/withStyles.test.js
-@@ -110,7 +110,7 @@ describe('withStyles', () => {
-       expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'Empty-root-2' });
- 
-       wrapper.unmount();
--      expect(sheetsRegistry.registry.length).to.equal(0);
-+      expect(sheetsRegistry.registry.length).to.equal(1);
-     });
- 
-     it('should supply correct props to jss callbacks', () => {
 diff --git a/packages/material-ui/src/Breadcrumbs/Breadcrumbs.test.js b/packages/material-ui/src/Breadcrumbs/Breadcrumbs.test.js
 index f5c603b45..2f18cca5c 100644
 --- a/packages/material-ui/src/Breadcrumbs/Breadcrumbs.test.js
@@ -125,7 +90,7 @@ index f5c603b45..2f18cca5c 100644
      expect(screen.getAllByRole('listitem', { hidden: false })).to.have.length(4);
      expect(screen.getByRole('list')).to.have.text('first/second/third/fourth');
 diff --git a/packages/material-ui/src/Tabs/Tabs.test.js b/packages/material-ui/src/Tabs/Tabs.test.js
-index d5cd9ab15..d9affd078 100644
+index 733b29a97..37b52ab4d 100644
 --- a/packages/material-ui/src/Tabs/Tabs.test.js
 +++ b/packages/material-ui/src/Tabs/Tabs.test.js
 @@ -85,9 +85,6 @@ describe('<Tabs />', () => {
@@ -139,7 +104,7 @@ index d5cd9ab15..d9affd078 100644
          'Material-UI: You can not use the `centered={true}` and `variant="scrollable"`',
        ]);
 diff --git a/packages/material-ui/src/TextareaAutosize/TextareaAutosize.test.js b/packages/material-ui/src/TextareaAutosize/TextareaAutosize.test.js
-index ef6533f4b..bd5633dc4 100644
+index e22016776..03db8933d 100644
 --- a/packages/material-ui/src/TextareaAutosize/TextareaAutosize.test.js
 +++ b/packages/material-ui/src/TextareaAutosize/TextareaAutosize.test.js
 @@ -253,12 +253,7 @@ describe('<TextareaAutosize />', () => {
@@ -156,6 +121,25 @@ index ef6533f4b..bd5633dc4 100644
        });
      });
    });
+diff --git a/packages/material-ui/src/Unstable_TrapFocus/Unstable_TrapFocus.js b/packages/material-ui/src/Unstable_TrapFocus/Unstable_TrapFocus.js
+index 97fac726d..bd6b758db 100644
+--- a/packages/material-ui/src/Unstable_TrapFocus/Unstable_TrapFocus.js
++++ b/packages/material-ui/src/Unstable_TrapFocus/Unstable_TrapFocus.js
+@@ -163,7 +163,13 @@ function Unstable_TrapFocus(props) {
+         // in nodeToRestore.current being null.
+         // Not all elements in IE 11 have a focus method.
+         // Once IE 11 support is dropped the focus() call can be unconditional.
+-        if (nodeToRestore.current && nodeToRestore.current.focus) {
++        if (
++          nodeToRestore.current &&
++          nodeToRestore.current.focus &&
++          // TODO: Can be removed after https://github.com/jsdom/jsdom/pull/3005 is released.
++          // We technically only want a WeakRef to nodeToRestore anyway.
++          nodeToRestore.current.isConnected
++        ) {
+           nodeToRestore.current.focus();
+         }
+ 
 diff --git a/packages/material-ui/src/internal/SwitchBase.test.js b/packages/material-ui/src/internal/SwitchBase.test.js
 index 27b143abf..7c321b14a 100644
 --- a/packages/material-ui/src/internal/SwitchBase.test.js
@@ -195,3 +179,22 @@ index e5733f826..61333a172 100644
      });
    });
  });
+diff --git a/test/utils/createClientRender.js b/test/utils/createClientRender.js
+index 2b6184ff9..cc38b14ab 100644
+--- a/test/utils/createClientRender.js
++++ b/test/utils/createClientRender.js
+@@ -87,6 +87,14 @@ function clientRender(element, options = {}) {
+     return result;
+   };
+ 
++  // TODO: Remove once we switch to `@testing-library/react@10.4.7`
++  const testingLibraryUnmount = result.unmount;
++  result.unmount = function unmountActing() {
++    act(() => {
++      testingLibraryUnmount();
++    });
++  };
++
+   return result;
+ }
+ 
