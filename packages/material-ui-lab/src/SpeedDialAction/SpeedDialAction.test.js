@@ -58,8 +58,8 @@ describe('<SpeedDialAction />', () => {
 
     expect(getByText('placeholder')).to.have.class('bar');
 
-    // FIXME: Unclear what timer is dangling here and what it does.
-    // Not running all timers triggers "missing act()"-warning
+    // TODO: Unclear why not running triggers microtasks but runAll does not trigger microtasks
+    // can be removed once Popper#update is sync
     clock.runAll();
   });
 
