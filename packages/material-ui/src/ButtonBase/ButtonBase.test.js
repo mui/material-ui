@@ -16,7 +16,7 @@ import * as PropTypes from 'prop-types';
 function focusVisible(element) {
   act(() => {
     element.blur();
-    fireEvent.keyDown(document.activeElement || document.body, { key: 'Tab' });
+    fireEvent.keyDown(document.body, { key: 'Tab' });
     element.focus();
   });
 }
@@ -685,14 +685,14 @@ describe('<ButtonBase />', () => {
 
       act(() => {
         button.focus();
-        fireEvent.keyDown(document.activeElement || document.body, { key: 'Enter' });
+        fireEvent.keyDown(button, { key: 'Enter' });
       });
 
       expect(container.querySelectorAll('.ripple-visible')).to.have.lengthOf(1);
 
       // technically the second keydown should be fire with repeat: true
       // but that isn't implemented in IE 11 so we shouldn't mock it here either
-      fireEvent.keyDown(document.activeElement || document.body, { key: 'Enter' });
+      fireEvent.keyDown(button, { key: 'Enter' });
 
       expect(container.querySelectorAll('.ripple-visible')).to.have.lengthOf(1);
     });
@@ -759,7 +759,7 @@ describe('<ButtonBase />', () => {
 
         act(() => {
           button.focus();
-          fireEvent.keyDown(document.activeElement || document.body, {
+          fireEvent.keyDown(button, {
             key: ' ',
           });
         });
@@ -780,7 +780,7 @@ describe('<ButtonBase />', () => {
 
         act(() => {
           button.focus();
-          fireEvent.keyUp(document.activeElement || document.body, {
+          fireEvent.keyUp(button, {
             key: ' ',
           });
         });
@@ -810,7 +810,7 @@ describe('<ButtonBase />', () => {
 
         act(() => {
           button.focus();
-          fireEvent.keyUp(document.activeElement || document.body, {
+          fireEvent.keyUp(button, {
             key: ' ',
           });
         });
@@ -829,7 +829,7 @@ describe('<ButtonBase />', () => {
 
         act(() => {
           button.focus();
-          fireEvent.keyDown(document.activeElement || document.body, {
+          fireEvent.keyDown(button, {
             key: 'Enter',
           });
         });
@@ -884,7 +884,7 @@ describe('<ButtonBase />', () => {
 
         act(() => {
           button.focus();
-          fireEvent.keyDown(document.activeElement || document.body, { key: 'Enter' });
+          fireEvent.keyDown(button, { key: 'Enter' });
         });
 
         expect(onClickSpy.calledOnce).to.equal(true);
@@ -904,7 +904,7 @@ describe('<ButtonBase />', () => {
 
         act(() => {
           button.focus();
-          fireEvent.keyDown(document.activeElement || document.body, {
+          fireEvent.keyDown(button, {
             key: 'Enter',
           });
         });
