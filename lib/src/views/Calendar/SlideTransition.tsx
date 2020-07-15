@@ -77,7 +77,7 @@ export const SlideTransition: React.SFC<SlideTransitionProps> = ({
 }) => {
   const classes = useStyles();
   if (reduceAnimations) {
-    return <div className={className}>{children}</div>;
+    return <div className={clsx(classes.root, className)}>{children}</div>;
   }
 
   const transitionClasses = {
