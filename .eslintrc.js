@@ -19,6 +19,9 @@ module.exports = {
     'prettier/@typescript-eslint',
   ],
   parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 7,
+  },
   plugins: ['material-ui', 'react-hooks', '@typescript-eslint'],
   settings: {
     'import/resolver': {
