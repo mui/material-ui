@@ -18,6 +18,5 @@ const r = (val, accumulator, colors) => {
 export default function colors(theme) {
   const colors = {};
   r(theme.palette, '.', colors);
-  console.log(colors);
   return colors;
 }
