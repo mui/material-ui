@@ -29,7 +29,6 @@ describe('useControlled', () => {
     );
     expect(valueState).to.equal(1);
 
-    // TODO: Check against https://github.com/facebook/react/pull/19319
     act(() => {
       setValueState(2);
     });
