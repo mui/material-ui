@@ -61,7 +61,6 @@ module.exports = {
     '@typescript-eslint/no-implied-eval': 'off', // TODO performance consideration
     '@typescript-eslint/no-throw-literal': 'off', // TODO performance consideration
     'import/named': 'off', // Not sure why it doesn't work
-    'import/no-cycle': 'off', // TODO performance consideration
     'import/no-extraneous-dependencies': 'off', // Missing yarn workspace support
     'jsx-a11y/label-has-associated-control': 'off', // doesn't work?
     'jsx-a11y/no-autofocus': 'off', // We are a library, we need to support it too
