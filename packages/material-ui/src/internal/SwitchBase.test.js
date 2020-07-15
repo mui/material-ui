@@ -4,7 +4,7 @@ import { spy } from 'sinon';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
-import { createClientRender } from 'test/utils/createClientRender';
+import { act, createClientRender } from 'test/utils/createClientRender';
 import SwitchBase from './SwitchBase';
 import FormControl, { useFormControl } from '../FormControl';
 import IconButton from '../IconButton';
@@ -162,13 +162,17 @@ describe('<SwitchBase />', () => {
     expect(checkbox).to.have.property('checked', true);
     expect(getByTestId('checked-icon')).not.to.equal(null);
 
-    checkbox.click();
+    act(() => {
+      checkbox.click();
+    });
 
     expect(container.firstChild).not.to.have.class(classes.checked);
     expect(checkbox).to.have.property('checked', false);
     expect(getByTestId('unchecked-icon')).not.to.equal(null);
 
-    checkbox.click();
+    act(() => {
+      checkbox.click();
+    });
 
     expect(container.firstChild).to.have.class(classes.checked);
     expect(checkbox).to.have.property('checked', true);
@@ -187,7 +191,9 @@ describe('<SwitchBase />', () => {
         />,
       );
 
-      getByRole('checkbox').click();
+      act(() => {
+        getByRole('checkbox').click();
+      });
 
       expect(handleChange.callCount).to.equal(1);
       // event.target.check is true
@@ -332,12 +338,16 @@ describe('<SwitchBase />', () => {
       );
       const checkbox = getByRole('checkbox');
 
-      checkbox.focus();
+      act(() => {
+        checkbox.focus();
+      });
 
       expect(getByTestId('focus-monitor')).to.have.text('focused: true');
       expect(handleFocus.callCount).to.equal(1);
 
-      checkbox.blur();
+      act(() => {
+        checkbox.blur();
+      });
 
       expect(getByTestId('focus-monitor')).to.have.text('focused: false');
       expect(handleBlur.callCount).to.equal(1);

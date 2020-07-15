@@ -5,7 +5,7 @@ import CheckBox from '../internal/svg-icons/CheckBox';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
-import { createClientRender, fireEvent } from 'test/utils/createClientRender';
+import { act, createClientRender, fireEvent } from 'test/utils/createClientRender';
 import Avatar from '../Avatar';
 import Chip from './Chip';
 
@@ -310,7 +310,9 @@ describe('<Chip />', () => {
       const handleKeydown = stub().callsFake((event) => event.key);
       const { getByRole } = render(<Chip onClick={() => {}} onKeyDown={handleKeydown} />);
       const chip = getByRole('button');
-      chip.focus();
+      act(() => {
+        chip.focus();
+      });
 
       fireEvent.keyDown(chip, { key: 'p' });
 
@@ -325,7 +327,9 @@ describe('<Chip />', () => {
         <Chip onBlur={handleBlur} onClick={() => {}} onKeyDown={handleKeydown} />,
       );
       const chip = getByRole('button');
-      chip.focus();
+      act(() => {
+        chip.focus();
+      });
 
       fireEvent.keyUp(chip, { key: 'Escape' });
 
@@ -337,7 +341,9 @@ describe('<Chip />', () => {
       const handleClick = spy();
       const { getByRole } = render(<Chip onClick={handleClick} />);
       const chip = getByRole('button');
-      chip.focus();
+      act(() => {
+        chip.focus();
+      });
 
       fireEvent.keyUp(chip, { key: ' ' });
 
@@ -348,7 +354,9 @@ describe('<Chip />', () => {
       const handleClick = spy();
       const { getByRole } = render(<Chip onClick={handleClick} />);
       const chip = getByRole('button');
-      chip.focus();
+      act(() => {
+        chip.focus();
+      });
 
       fireEvent.keyDown(chip, { key: 'Enter' });
 
@@ -364,7 +372,9 @@ describe('<Chip />', () => {
             <Chip onClick={() => {}} onKeyDown={handleKeyDown} onDelete={handleDelete} />,
           );
           const chip = getAllByRole('button')[0];
-          chip.focus();
+          act(() => {
+            chip.focus();
+          });
 
           fireEvent.keyDown(chip, { key });
 

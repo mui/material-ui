@@ -37,10 +37,17 @@ describe('<Autocomplete />', () => {
         <Autocomplete {...defaultProps} renderInput={(params) => <TextField {...params} />} />,
       );
       const input = getByRole('textbox');
-      input.focus();
-      fireEvent.change(document.activeElement, { target: { value: 'a' } });
+
+      act(() => {
+        input.focus();
+        fireEvent.change(document.activeElement, { target: { value: 'a' } });
+      });
+
       expect(input.value).to.equal('a');
-      document.activeElement.blur();
+
+      act(() => {
+        document.activeElement.blur();
+      });
       expect(input.value).to.equal('');
     });
 
@@ -218,7 +225,9 @@ describe('<Autocomplete />', () => {
       // include hidden clear button because JSDOM thinks it's visible
       expect(getAllByRole('button', { hidden: true })).to.have.lengthOf(4);
 
-      getByRole('textbox').focus();
+      act(() => {
+        getByRole('textbox').focus();
+      });
       expect(container.textContent).to.equal('onetwothree');
       expect(getAllByRole('button', { hidden: false })).to.have.lengthOf(5);
     });
@@ -239,7 +248,9 @@ describe('<Autocomplete />', () => {
       // include hidden clear button because JSDOM thinks it's visible
       expect(getAllByRole('button', { hidden: true })).to.have.lengthOf(2);
 
-      getByRole('textbox').focus();
+      act(() => {
+        getByRole('textbox').focus();
+      });
       expect(container.textContent).to.equal('onetwothree');
       expect(getAllByRole('button', { hidden: false })).to.have.lengthOf(5);
     });
@@ -292,7 +303,9 @@ describe('<Autocomplete />', () => {
       fireEvent.change(textbox, { target: { value: 'o' } });
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       fireEvent.change(textbox, { target: { value: 'oo' } });
-      textbox.blur();
+      act(() => {
+        textbox.blur();
+      });
 
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.deep.equal('oo');
@@ -314,9 +327,11 @@ describe('<Autocomplete />', () => {
       );
       const textbox = screen.getByRole('textbox');
 
-      fireEvent.change(textbox, { target: { value: 't' } });
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      textbox.blur();
+      act(() => {
+        fireEvent.change(textbox, { target: { value: 't' } });
+        fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+        textbox.blur();
+      });
 
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.deep.equal(options);
@@ -334,8 +349,12 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
+
       fireEvent.change(document.activeElement, { target: { value: 'a' } });
-      document.activeElement.blur();
+      act(() => {
+        document.activeElement.blur();
+      });
+
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.deep.equal(['a']);
     });
@@ -351,9 +370,12 @@ describe('<Autocomplete />', () => {
         />,
       );
       const input = getByRole('textbox');
-      input.focus();
-      document.activeElement.blur();
-      input.focus();
+
+      act(() => {
+        input.focus();
+        document.activeElement.blur();
+        input.focus();
+      });
     });
 
     it('should remove the last option', () => {
@@ -861,7 +883,10 @@ describe('<Autocomplete />', () => {
       fireEvent.click(textbox);
       expect(combobox).to.have.attribute('aria-expanded', 'false');
 
-      document.activeElement.blur();
+      act(() => {
+        document.activeElement.blur();
+      });
+
       expect(combobox).to.have.attribute('aria-expanded', 'false');
       expect(textbox).not.toHaveFocus();
 
@@ -1373,9 +1398,12 @@ describe('<Autocomplete />', () => {
       const textbox = getByRole('textbox');
       fireEvent.click(textbox);
       expect(textbox).toHaveFocus();
-      textbox.blur();
 
+      act(() => {
+        textbox.blur();
+      });
       fireEvent.click(queryByTitle('Open'));
+
       expect(textbox).toHaveFocus();
     });
 
@@ -1693,7 +1721,9 @@ describe('<Autocomplete />', () => {
 
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      textbox.blur();
+      act(() => {
+        textbox.blur();
+      });
 
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.equal(options[0]);

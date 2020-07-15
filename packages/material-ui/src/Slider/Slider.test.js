@@ -6,7 +6,7 @@ import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { createClientRender, fireEvent } from 'test/utils/createClientRender';
+import { act, createClientRender, fireEvent } from 'test/utils/createClientRender';
 import Slider from './Slider';
 
 function createTouches(touches) {
@@ -133,16 +133,22 @@ describe('<Slider />', () => {
       const { getAllByRole } = render(<Slider defaultValue={[20, 30]} />);
       const [thumb1, thumb2] = getAllByRole('slider');
 
-      thumb1.focus();
-      fireEvent.keyDown(thumb1, {
-        key: 'ArrowRight',
+      act(() => {
+        thumb1.focus();
+        fireEvent.keyDown(thumb1, {
+          key: 'ArrowRight',
+        });
       });
+
       expect(thumb1.getAttribute('aria-valuenow')).to.equal('21');
 
-      thumb2.focus();
-      fireEvent.keyDown(thumb2, {
-        key: 'ArrowLeft',
+      act(() => {
+        thumb2.focus();
+        fireEvent.keyDown(thumb2, {
+          key: 'ArrowLeft',
+        });
       });
+
       expect(thumb2.getAttribute('aria-valuenow')).to.equal('29');
     });
 
@@ -262,7 +268,9 @@ describe('<Slider />', () => {
     it('should handle all the keys', () => {
       const { getByRole } = render(<Slider defaultValue={50} />);
       const thumb = getByRole('slider');
-      thumb.focus();
+      act(() => {
+        thumb.focus();
+      });
 
       fireEvent.keyDown(thumb, {
         key: 'Home',
@@ -300,7 +308,9 @@ describe('<Slider />', () => {
     it('should use min as the step origin', () => {
       const { getByRole } = render(<Slider defaultValue={150} step={100} max={750} min={150} />);
       const thumb = getByRole('slider');
-      thumb.focus();
+      act(() => {
+        thumb.focus();
+      });
 
       fireEvent.keyDown(thumb, moveRightEvent);
       expect(thumb).to.have.attribute('aria-valuenow', '250');
@@ -312,7 +322,9 @@ describe('<Slider />', () => {
     it('should reach right edge value', () => {
       const { getByRole } = render(<Slider defaultValue={90} min={6} max={108} step={10} />);
       const thumb = getByRole('slider');
-      thumb.focus();
+      act(() => {
+        thumb.focus();
+      });
 
       fireEvent.keyDown(thumb, moveRightEvent);
       expect(thumb).to.have.attribute('aria-valuenow', '96');
@@ -333,7 +345,9 @@ describe('<Slider />', () => {
     it('should reach left edge value', () => {
       const { getByRole } = render(<Slider defaultValue={20} min={6} max={108} step={10} />);
       const thumb = getByRole('slider');
-      thumb.focus();
+      act(() => {
+        thumb.focus();
+      });
 
       fireEvent.keyDown(thumb, moveLeftEvent);
       expect(thumb).to.have.attribute('aria-valuenow', '6');
@@ -348,7 +362,9 @@ describe('<Slider />', () => {
     it('should round value to step precision', () => {
       const { getByRole } = render(<Slider defaultValue={0.2} min={0} max={1} step={0.1} />);
       const thumb = getByRole('slider');
-      thumb.focus();
+      act(() => {
+        thumb.focus();
+      });
 
       fireEvent.keyDown(thumb, moveRightEvent);
       expect(thumb).to.have.attribute('aria-valuenow', '0.3');
@@ -359,7 +375,9 @@ describe('<Slider />', () => {
         <Slider defaultValue={0.00000002} min={0} max={0.00000005} step={0.00000001} />,
       );
       const thumb = getByRole('slider');
-      thumb.focus();
+      act(() => {
+        thumb.focus();
+      });
 
       fireEvent.keyDown(thumb, moveRightEvent);
       expect(thumb).to.have.attribute('aria-valuenow', '3e-8');
@@ -370,7 +388,9 @@ describe('<Slider />', () => {
         <Slider defaultValue={-0.00000002} min={-0.00000005} max={0} step={0.00000001} />,
       );
       const thumb = getByRole('slider');
-      thumb.focus();
+      act(() => {
+        thumb.focus();
+      });
 
       fireEvent.keyDown(thumb, moveLeftEvent);
       expect(thumb).to.have.attribute('aria-valuenow', '-3e-8');
@@ -387,7 +407,9 @@ describe('<Slider />', () => {
         </ThemeProvider>,
       );
       const thumb = getByRole('slider');
-      thumb.focus();
+      act(() => {
+        thumb.focus();
+      });
 
       fireEvent.keyDown(thumb, moveLeftEvent);
       expect(thumb).to.have.attribute('aria-valuenow', '31');

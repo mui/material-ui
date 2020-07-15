@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender } from 'test/utils/createClientRender';
+import { act, createClientRender } from 'test/utils/createClientRender';
 import useControlled from './useControlled';
 
 const TestComponent = ({ value: valueProp, defaultValue, children }) => {
@@ -28,7 +28,11 @@ describe('useControlled', () => {
       </TestComponent>,
     );
     expect(valueState).to.equal(1);
-    setValueState(2);
+
+    act(() => {
+      setValueState(2);
+    });
+
     expect(valueState).to.equal(2);
   });
 

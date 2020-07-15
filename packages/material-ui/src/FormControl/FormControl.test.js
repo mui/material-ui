@@ -260,10 +260,16 @@ describe('<FormControl />', () => {
 
           expect(formControlRef.current).to.have.property('filled', false);
 
-          formControlRef.current.onFilled();
+          act(() => {
+            formControlRef.current.onFilled();
+          });
+
           expect(formControlRef.current).to.have.property('filled', true);
 
-          formControlRef.current.onFilled();
+          act(() => {
+            formControlRef.current.onFilled();
+          });
+
           expect(formControlRef.current).to.have.property('filled', true);
         });
       });
@@ -273,13 +279,22 @@ describe('<FormControl />', () => {
           const formControlRef = React.createRef();
           render(<FormControlled ref={formControlRef} />);
 
-          formControlRef.current.onFilled();
+          act(() => {
+            formControlRef.current.onFilled();
+          });
+
           expect(formControlRef.current).to.have.property('filled', true);
 
-          formControlRef.current.onEmpty();
+          act(() => {
+            formControlRef.current.onEmpty();
+          });
+
           expect(formControlRef.current).to.have.property('filled', false);
 
-          formControlRef.current.onEmpty();
+          act(() => {
+            formControlRef.current.onEmpty();
+          });
+
           expect(formControlRef.current).to.have.property('filled', false);
         });
       });
@@ -290,10 +305,16 @@ describe('<FormControl />', () => {
           render(<FormControlled ref={formControlRef} />);
           expect(formControlRef.current).to.have.property('focused', false);
 
-          formControlRef.current.onFocus();
+          act(() => {
+            formControlRef.current.onFocus();
+          });
+
           expect(formControlRef.current).to.have.property('focused', true);
 
-          formControlRef.current.onFocus();
+          act(() => {
+            formControlRef.current.onFocus();
+          });
+
           expect(formControlRef.current).to.have.property('focused', true);
         });
       });
@@ -304,13 +325,22 @@ describe('<FormControl />', () => {
           render(<FormControlled ref={formControlRef} />);
           expect(formControlRef.current).to.have.property('focused', false);
 
-          formControlRef.current.onFocus();
+          act(() => {
+            formControlRef.current.onFocus();
+          });
+
           expect(formControlRef.current).to.have.property('focused', true);
 
-          formControlRef.current.onBlur();
+          act(() => {
+            formControlRef.current.onBlur();
+          });
+
           expect(formControlRef.current).to.have.property('focused', false);
 
-          formControlRef.current.onBlur();
+          act(() => {
+            formControlRef.current.onBlur();
+          });
+
           expect(formControlRef.current).to.have.property('focused', false);
         });
       });

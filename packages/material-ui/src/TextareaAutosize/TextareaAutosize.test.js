@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import sinon, { spy, stub, useFakeTimers } from 'sinon';
 import createMount from 'test/utils/createMount';
-import { createClientRender, fireEvent } from 'test/utils/createClientRender';
+import { act, createClientRender, fireEvent } from 'test/utils/createClientRender';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import TextareaAutosize from './TextareaAutosize';
 
@@ -75,7 +75,11 @@ describe('<TextareaAutosize />', () => {
           lineHeight: 15,
         });
         window.dispatchEvent(new window.Event('resize', {}));
-        clock.tick(166);
+
+        act(() => {
+          clock.tick(166);
+        });
+
         expect(input.style).to.have.property('height', '30px');
         expect(input.style).to.have.property('overflow', 'hidden');
       });

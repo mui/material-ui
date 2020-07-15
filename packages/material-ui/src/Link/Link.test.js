@@ -3,14 +3,17 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createShallow, getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
+import { act } from 'test/utils/createClientRender';
 import describeConformance from '../test-utils/describeConformance';
 import Link from './Link';
 import Typography from '../Typography';
 
 function focusVisible(element) {
-  element.blur();
-  document.dispatchEvent(new window.Event('keydown'));
-  element.focus();
+  act(() => {
+    element.blur();
+    document.dispatchEvent(new window.Event('keydown'));
+    element.focus();
+  });
 }
 
 describe('<Link />', () => {
@@ -74,9 +77,15 @@ describe('<Link />', () => {
       const anchor = wrapper.find('a').instance();
 
       expect(anchor.classList.contains(classes.focusVisible)).to.equal(false);
+
       focusVisible(anchor);
+
       expect(anchor.classList.contains(classes.focusVisible)).to.equal(true);
-      anchor.blur();
+
+      act(() => {
+        anchor.blur();
+      });
+
       expect(anchor.classList.contains(classes.focusVisible)).to.equal(false);
     });
   });
