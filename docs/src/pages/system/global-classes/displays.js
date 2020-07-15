@@ -63,7 +63,7 @@ export const displays = {
     position: 'absolute',
     whiteSpace: 'nowrap',
     width: 1,
-  }
+  },
 };
 
 export const overflows = {
