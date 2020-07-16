@@ -16,6 +16,9 @@
 /packages/material-ui-icons/legacy
 /packages/material-ui-icons/src
 /packages/material-ui-icons/templateSvgIcon.js
+# TODO
+/packages/typescript-to-proptypes/
+/framer/
 # Ignore fixtures
 /packages/typescript-to-proptypes/test/**/*.js
 /tmp

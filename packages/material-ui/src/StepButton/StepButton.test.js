@@ -3,13 +3,13 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
-import describeConformance from '../test-utils/describeConformance';
 import { createClientRender } from 'test/utils/createClientRender';
+import { fireEvent } from '@testing-library/dom';
+import describeConformance from '../test-utils/describeConformance';
 import StepButton from './StepButton';
 import Step from '../Step';
 import StepLabel from '../StepLabel';
 import ButtonBase from '../ButtonBase';
-import { fireEvent } from '@testing-library/dom';
 
 describe('<StepButton />', () => {
   let classes;

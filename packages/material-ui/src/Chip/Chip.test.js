@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
-import CheckBox from '../internal/svg-icons/CheckBox';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
-import describeConformance from '../test-utils/describeConformance';
 import { act, createClientRender, fireEvent } from 'test/utils/createClientRender';
+import CheckBox from '../internal/svg-icons/CheckBox';
+import describeConformance from '../test-utils/describeConformance';
 import Avatar from '../Avatar';
 import Chip from './Chip';
 

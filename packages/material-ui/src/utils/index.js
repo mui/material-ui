@@ -12,6 +12,5 @@ export { default as unsupportedProp } from './unsupportedProp';
 export { default as useControlled } from './useControlled';
 export { default as useEventCallback } from './useEventCallback';
 export { default as useForkRef } from './useForkRef';
-// eslint-disable-next-line camelcase
 export { default as unstable_useId } from './unstable_useId';
 export { default as useIsFocusVisible } from './useIsFocusVisible';

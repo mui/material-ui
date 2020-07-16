@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import * as React from 'react';
 import {
   createStyles,
@@ -164,7 +165,7 @@ const t5 = createMuiTheme().spacing(1, 2, 3, 4, 5);
 function OverridesTheme() {
   return (
     <ThemeProvider theme={theme}>
-      <Button>{'Overrides'}</Button>
+      <Button>Overrides</Button>
     </ThemeProvider>
   );
 }
@@ -488,7 +489,7 @@ withStyles((theme) =>
 {
   // https://github.com/mui-org/material-ui/pull/15546
   // Update type definition to let CSS properties be functions
-  interface testProps {
+  interface TestProps {
     foo: boolean;
   }
 
@@ -496,10 +497,10 @@ withStyles((theme) =>
   {
     const useStyles = makeStyles({
       root: {
-        width: (prop: testProps) => (prop.foo ? 100 : 0),
+        width: (prop: TestProps) => (prop.foo ? 100 : 0),
       },
-      root2: (prop2: testProps) => ({
-        width: (prop: testProps) => (prop.foo && prop2.foo ? 100 : 0),
+      root2: (prop2: TestProps) => ({
+        width: (prop: TestProps) => (prop.foo && prop2.foo ? 100 : 0),
       }),
     });
 
@@ -511,10 +512,10 @@ withStyles((theme) =>
   {
     const useStyles = makeStyles((theme) => ({
       root: {
-        width: (prop: testProps) => (prop.foo ? 100 : 0),
+        width: (prop: TestProps) => (prop.foo ? 100 : 0),
       },
-      root2: (prop2: testProps) => ({
-        width: (prop: testProps) => (prop.foo && prop2.foo ? 100 : 0),
+      root2: (prop2: TestProps) => ({
+        width: (prop: TestProps) => (prop.foo && prop2.foo ? 100 : 0),
         margin: theme.spacing(1),
       }),
     }));
@@ -527,10 +528,10 @@ withStyles((theme) =>
   {
     const styles = createStyles({
       root: {
-        width: (prop: testProps) => (prop.foo ? 100 : 0),
+        width: (prop: TestProps) => (prop.foo ? 100 : 0),
       },
-      root2: (prop2: testProps) => ({
-        width: (prop: testProps) => (prop.foo && prop2.foo ? 100 : 0),
+      root2: (prop2: TestProps) => ({
+        width: (prop: TestProps) => (prop.foo && prop2.foo ? 100 : 0),
       }),
     });
 
@@ -542,10 +543,10 @@ withStyles((theme) =>
   {
     withStyles({
       root: {
-        width: (prop: testProps) => (prop.foo ? 100 : 0),
+        width: (prop: TestProps) => (prop.foo ? 100 : 0),
       },
-      root2: (prop2: testProps) => ({
-        width: (prop: testProps) => (prop.foo && prop2.foo ? 100 : 0),
+      root2: (prop2: TestProps) => ({
+        width: (prop: TestProps) => (prop.foo && prop2.foo ? 100 : 0),
         margin: 8,
       }),
     });
@@ -555,10 +556,10 @@ withStyles((theme) =>
   {
     withStyles((theme) => ({
       root: {
-        width: (prop: testProps) => (prop.foo ? 100 : 0),
+        width: (prop: TestProps) => (prop.foo ? 100 : 0),
       },
-      root2: (prop2: testProps) => ({
-        width: (prop: testProps) => (prop.foo && prop2.foo ? 100 : 0),
+      root2: (prop2: TestProps) => ({
+        width: (prop: TestProps) => (prop.foo && prop2.foo ? 100 : 0),
         height: theme.spacing(1),
       }),
     }));
@@ -618,18 +619,18 @@ withStyles((theme) =>
     return { padding: theme.spacing(1) };
   });
 
-  interface myProps {
+  interface MyProps {
     testValue: boolean;
   }
 
   // Type of props follow all the way to css properties
-  styled(Button)<Theme, myProps>(({ theme, testValue }) => {
+  styled(Button)<Theme, MyProps>(({ theme, testValue }) => {
     expectType<Theme, typeof theme>(theme);
     expectType<boolean, typeof testValue>(testValue);
 
     return {
       padding: (props) => {
-        expectType<myProps, typeof props>(props);
+        expectType<MyProps, typeof props>(props);
 
         expectType<boolean, typeof props.testValue>(props.testValue);
         return theme.spacing(1);

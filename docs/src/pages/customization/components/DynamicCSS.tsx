@@ -16,10 +16,6 @@ interface ColorsMapping {
   [key: string]: any;
 }
 
-interface ButtonStyles extends WithStyles<typeof styles> {
-  color: string;
-}
-
 // Like https://github.com/brunobertolini/styled-by
 const styledBy = (property: string, mapping: ColorsMapping) => (
   props: Styles,
@@ -42,6 +38,10 @@ const styles = {
     }),
   },
 };
+
+interface ButtonStyles extends WithStyles<typeof styles> {
+  color: string;
+}
 
 const StyledButton = withStyles(
   styles,

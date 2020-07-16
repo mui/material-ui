@@ -3,13 +3,13 @@ import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
-import Grow from './Grow';
 import {
   createMuiTheme,
   ThemeProvider,
   unstable_createMuiStrictModeTheme as createMuiStrictModeTheme,
 } from '@material-ui/core/styles';
 import { Transition } from 'react-transition-group';
+import Grow from './Grow';
 import useForkRef from '../utils/useForkRef';
 
 describe('<Grow />', () => {

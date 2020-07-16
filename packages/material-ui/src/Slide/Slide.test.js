@@ -3,13 +3,13 @@ import { expect } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
 import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
-import Slide, { setTranslateValue } from './Slide';
 import {
   createMuiTheme,
   ThemeProvider,
   unstable_createMuiStrictModeTheme as createMuiStrictModeTheme,
 } from '@material-ui/core/styles';
 import { Transition } from 'react-transition-group';
+import Slide, { setTranslateValue } from './Slide';
 import { useForkRef } from '../utils';
 
 describe('<Slide />', () => {

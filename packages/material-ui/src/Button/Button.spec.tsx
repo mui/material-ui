@@ -35,7 +35,7 @@ const ButtonTest = () => (
       Link
     </Button>
     <Button href="/open-collective">Link</Button>
-    // By default the underlying component is a button element:
+    {/* By default the underlying component is a button element */}
     <Button
       ref={(elem) => {
         expectType<HTMLButtonElement | null, typeof elem>(elem);
@@ -47,7 +47,7 @@ const ButtonTest = () => (
     >
       Button
     </Button>
-    // If an href is provided, an anchor is used:
+    {/* If an href is provided, an anchor is used */}
     <Button
       href="/open-collective"
       ref={(elem) => {
@@ -60,7 +60,7 @@ const ButtonTest = () => (
     >
       Link
     </Button>
-    // If a component prop is specified, use that:
+    {/* If a component prop is specified, use that: */}
     <Button<'div'>
       component="div"
       ref={(elem) => {

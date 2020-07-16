@@ -3,11 +3,11 @@ import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
+import { Transition } from 'react-transition-group';
 import {
   unstable_createMuiStrictModeTheme as createMuiStrictModeTheme,
   ThemeProvider,
 } from '../styles';
-import { Transition } from 'react-transition-group';
 import Zoom from './Zoom';
 
 describe('<Zoom />', () => {

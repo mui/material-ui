@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Theme } from '../styles/createMuiTheme';
 import { TransitionProps } from '../transitions/transition';
 
 export interface ZoomProps extends TransitionProps {

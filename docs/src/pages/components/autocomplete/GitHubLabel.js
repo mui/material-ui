@@ -1,4 +1,4 @@
-/* eslint-disable no-use-before-define */
+/* eslint-disable @typescript-eslint/no-use-before-define */
 import React from 'react';
 import { useTheme, fade, makeStyles } from '@material-ui/core/styles';
 import Popper from '@material-ui/core/Popper';

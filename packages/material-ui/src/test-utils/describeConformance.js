@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import * as React from 'react';
-import findOutermostIntrinsic from './findOutermostIntrinsic';
 import ReactTestRenderer from 'react-test-renderer';
+import findOutermostIntrinsic from './findOutermostIntrinsic';
 import testRef from './testRef';
 
 /**

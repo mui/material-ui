@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useFakeTimers } from 'sinon';
 import { expect } from 'chai';
-import TrapFocus from './Unstable_TrapFocus';
 import { createClientRender, fireEvent, screen } from 'test/utils/createClientRender';
+import TrapFocus from './Unstable_TrapFocus';
 import Portal from '../Portal';
 
 describe('<TrapFocus />', () => {

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { PropTypes } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'> {

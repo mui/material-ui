@@ -5,8 +5,8 @@ import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import { createClientRender } from 'test/utils/createClientRender';
-import Pagination from './Pagination';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import Pagination from './Pagination';
 
 describe('<Pagination />', () => {
   let classes;

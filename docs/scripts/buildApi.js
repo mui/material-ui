@@ -2,7 +2,6 @@
 import * as babel from '@babel/core';
 import traverse from '@babel/traverse';
 import { mkdirSync, readFileSync, writeFileSync } from 'fs';
-import { getLineFeed } from './helpers';
 import { rewriteUrlForNextExport } from 'next/dist/next-server/lib/router/rewrite-url-for-export';
 import path from 'path';
 import kebabCase from 'lodash/kebabCase';
@@ -11,6 +10,7 @@ import { defaultHandlers, parse as docgenParse } from 'react-docgen';
 import remark from 'remark';
 import remarkVisit from 'unist-util-visit';
 import * as yargs from 'yargs';
+import { getLineFeed } from './helpers';
 import muiDefaultPropsHandler from '../src/modules/utils/defaultPropsHandler';
 import generateMarkdown from '../src/modules/utils/generateMarkdown';
 import { findPagesMarkdown, findComponents } from '../src/modules/utils/find';

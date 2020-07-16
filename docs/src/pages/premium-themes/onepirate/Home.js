@@ -1,3 +1,4 @@
+/* eslint-disable import/order */
 import withRoot from './modules/withRoot';
 // --- Post bootstrap -----
 import React from 'react';

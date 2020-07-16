@@ -1,8 +1,8 @@
-const listChangedFiles = require('./listChangedFiles');
 const fs = require('fs');
 const rimraf = require('rimraf');
 const { promisify } = require('util');
 const { expect } = require('chai');
+const listChangedFiles = require('./listChangedFiles');
 
 const writeFileAsync = promisify(fs.writeFile);
 const rimrafAsync = promisify(rimraf);

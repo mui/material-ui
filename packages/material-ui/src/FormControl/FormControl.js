@@ -119,8 +119,8 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
     return initialFilled;
   });
 
-  const [_focused, setFocused] = React.useState(false);
-  const focused = visuallyFocused !== undefined ? visuallyFocused : _focused;
+  const [focusedState, setFocused] = React.useState(false);
+  const focused = visuallyFocused !== undefined ? visuallyFocused : focusedState;
 
   if (disabled && focused) {
     setFocused(false);

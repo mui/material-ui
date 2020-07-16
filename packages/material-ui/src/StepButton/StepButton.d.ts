@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Orientation } from '../Stepper';
 import { ButtonBaseTypeMap, ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 

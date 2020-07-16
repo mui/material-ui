@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
@@ -7,7 +8,6 @@ import ButtonBase from '../ButtonBase';
 import isMuiElement from '../utils/isMuiElement';
 import useForkRef from '../utils/useForkRef';
 import ListContext from '../List/ListContext';
-import * as ReactDOM from 'react-dom';
 
 export const styles = (theme) => ({
   /* Styles applied to the (normally root) `component` element. May be wrapped by a `container`. */

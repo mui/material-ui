@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { StandardProps } from '..';
-import { Orientation } from '../Stepper';
 import { TransitionProps } from '../transitions/transition';
 
 export interface StepContentProps

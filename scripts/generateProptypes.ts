@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import * as path from 'path';
 import * as fse from 'fs-extra';
 import * as ttp from 'typescript-to-proptypes';
@@ -139,6 +140,8 @@ const getSortLiteralUnions: ttp.InjectOptions['getSortLiteralUnions'] = (compone
   ) {
     return sortBreakpointsLiteralByViewportAscending;
   }
+
+  return undefined;
 };
 
 const tsconfig = ttp.loadConfig(path.resolve(__dirname, '../tsconfig.json'));

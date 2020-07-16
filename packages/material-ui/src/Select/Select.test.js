@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import { spy, stub, useFakeTimers } from 'sinon';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
@@ -9,7 +10,6 @@ import MenuItem from '../MenuItem';
 import Input from '../Input';
 import InputLabel from '../InputLabel';
 import Select from './Select';
-import { spy, stub, useFakeTimers } from 'sinon';
 
 describe('<Select />', () => {
   let classes;

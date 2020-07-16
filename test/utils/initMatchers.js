@@ -148,7 +148,7 @@ chai.use((chaiAPI, utils) => {
    * Correct name for `to.be.visible`
    */
   chai.Assertion.addMethod('toBeVisible', function toBeVisible() {
-    // eslint-disable-next-line no-underscore-dangle, no-unused-expressions
+    // eslint-disable-next-line no-underscore-dangle, @typescript-eslint/no-unused-expressions
     new chai.Assertion(this._obj).to.be.visible;
   });
 });

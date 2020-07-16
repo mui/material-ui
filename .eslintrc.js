@@ -1,4 +1,3 @@
-const confusingBrowserGlobals = require('confusing-browser-globals');
 const path = require('path');
 
 module.exports = {
@@ -11,13 +10,19 @@ module.exports = {
     browser: true,
     node: true,
   },
-  extends: ['plugin:import/recommended', 'airbnb', 'prettier', 'prettier/react'],
-  parser: 'babel-eslint',
+  extends: [
+    'plugin:import/recommended',
+    'plugin:import/typescript',
+    'airbnb-typescript',
+    'prettier',
+    'prettier/react',
+    'prettier/@typescript-eslint',
+  ],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 7,
-    sourceType: 'module',
   },
-  plugins: ['babel', 'material-ui', 'react-hooks'],
+  plugins: ['material-ui', 'react-hooks', '@typescript-eslint'],
   settings: {
     'import/resolver': {
       webpack: {
@@ -31,16 +36,11 @@ module.exports = {
    */
   rules: {
     'consistent-this': ['error', 'self'],
-    'linebreak-style': 'off', // Doesn't play nicely with Windows
     // just as bad as "max components per file"
     'max-classes-per-file': 'off',
-    'no-alert': 'error',
-    // Strict, airbnb is using warn; allow warn and error for dev environments
-    'no-console': ['error', { allow: ['warn', 'error'] }],
-    'no-constant-condition': 'error',
-    // Airbnb use error
-    'no-param-reassign': 'off',
-    'no-prototype-builtins': 'off',
+    'no-alert': 'error', // Too much interruptive
+    'no-console': ['error', { allow: ['warn', 'error'] }], // Allow warn and error for production events
+    'no-param-reassign': 'off', // It's fine.
     'no-restricted-imports': [
       'error',
       {
@@ -51,64 +51,38 @@ module.exports = {
         ],
       },
     ],
-    'nonblock-statement-body-position': 'error',
-    // Airbnb restricts isNaN and isFinite which are necessary for IE 11
-    // we have to be disciplined about the usage and ensure the Number type for its
-    // arguments
-    'no-restricted-globals': ['error'].concat(confusingBrowserGlobals),
+    'no-constant-condition': 'error',
+    'no-prototype-builtins': 'off', // Use the proptype inheritance chain
     'no-underscore-dangle': 'error',
+    'nonblock-statement-body-position': 'error',
     'prefer-arrow-callback': ['error', { allowNamedFunctions: true }],
     'prefer-destructuring': 'off', // Destructuring harm grep potential.
-
-    'jsx-a11y/label-has-associated-control': 'off',
-    'jsx-a11y/label-has-for': 'off', // deprecated
-    'jsx-a11y/no-autofocus': 'off', // We are a library, people do what they want.
-
+    '@typescript-eslint/dot-notation': 'off', // TODO performance consideration
+    '@typescript-eslint/no-implied-eval': 'off', // TODO performance consideration
+    '@typescript-eslint/no-throw-literal': 'off', // TODO performance consideration
+    'import/named': 'off', // Not sure why it doesn't work
+    'import/no-extraneous-dependencies': 'off', // Missing yarn workspace support
+    'jsx-a11y/label-has-associated-control': 'off', // doesn't work?
+    'jsx-a11y/no-autofocus': 'off', // We are a library, we need to support it too
     'material-ui/docgen-ignore-before-comment': 'error',
-
-    // This rule is great for raising people awareness of what a key is and how it works.
-    'react/no-array-index-key': 'off',
-    'react/destructuring-assignment': 'off',
-    // It's buggy
-    'react/forbid-prop-types': 'off',
-    'react/jsx-curly-brace-presence': 'off',
-    // prefer <React.Fragment> over <>. The former allows `key` while the latter doesn't
-    'react/jsx-fragments': ['error', 'element'],
-    'react/jsx-filename-extension': ['error', { extensions: ['.js'] }], // airbnb is using .jsx
-    'react/jsx-handler-names': [
-      'error',
-      {
-        // airbnb is disabling this rule
-        eventHandlerPrefix: 'handle',
-        eventHandlerPropPrefix: 'on',
-      },
-    ],
-    // not a good rule for components close to the DOM
-    'react/jsx-props-no-spreading': 'off',
+    'react-hooks/exhaustive-deps': ['error', { additionalHooks: 'useEnhancedEffect' }],
+    'react-hooks/rules-of-hooks': 'error',
+    'react/destructuring-assignment': 'off', // It's fine.
+    'react/forbid-prop-types': 'off', // Too strict, no time for that
+    'react/jsx-curly-brace-presence': 'off', // broken
+    'react/jsx-filename-extension': ['error', { extensions: ['.js', '.tsx'] }], // airbnb is using .jsx
+    'react/jsx-fragments': ['error', 'element'], // Prefer <React.Fragment> over <>.
+    'react/jsx-props-no-spreading': 'off', // We are a UI library.
+    'react/no-array-index-key': 'off', // This rule is great for raising people awareness of what a key is and how it works.
     'react/no-danger': 'error',
-    // Strict, airbnb is using off
     'react/no-direct-mutation-state': 'error',
-    'react/no-find-dom-node': 'off',
-    'react/no-multi-comp': 'off',
-    'react/require-default-props': 'off',
+    'react/no-find-dom-node': 'off', // Required for backward compatibility. TODO v5, drop
+    'react/require-default-props': 'off', // Not always relevant
     'react/sort-prop-types': 'error',
     // This depends entirely on what you're doing. There's no universal pattern
     'react/state-in-constructor': 'off',
     // stylistic opinion. For conditional assignment we want it outside, otherwise as static
     'react/static-property-placement': 'off',
-
-    'import/no-extraneous-dependencies': 'off', // It would be better to enable this rule.
-    'import/namespace': ['error', { allowComputed: true }],
-    'import/order': [
-      'error',
-      {
-        groups: [['index', 'sibling', 'parent', 'internal', 'external', 'builtin']],
-        'newlines-between': 'never',
-      },
-    ],
-
-    'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': ['error', { additionalHooks: 'useEnhancedEffect' }],
   },
   overrides: [
     {
@@ -124,7 +98,6 @@ module.exports = {
       rules: {
         // does not work with wildcard imports. Mistakes will throw at runtime anyway
         'import/named': 'off',
-        //
         'no-restricted-imports': [
           'error',
           {
@@ -189,6 +162,54 @@ module.exports = {
       files: ['docs/pages/**/*.js'],
       rules: {
         'react/prop-types': 'off',
+      },
+    },
+    {
+      files: ['*.d.ts'],
+      rules: {
+        'import/export': 'off', // Not sure why it doesn't work
+      },
+    },
+    {
+      files: ['*.tsx'],
+      rules: {
+        'no-restricted-imports': [
+          'error',
+          {
+            patterns: [
+              '@material-ui/*/*/*/*',
+              '!@material-ui/core/test-utils/*',
+              '!@material-ui/utils/macros/*.macro',
+            ],
+          },
+        ], // Allow deeper imports for TypeScript types. TODO?
+        'react/prop-types': 'off',
+      },
+    },
+    {
+      files: ['*.spec.tsx', '*.spec.ts'],
+      rules: {
+        'no-alert': 'off',
+        'no-console': 'off',
+        'no-empty-pattern': 'off',
+        'no-lone-blocks': 'off',
+        'no-shadow': 'off',
+        '@typescript-eslint/no-unused-expressions': 'off',
+        '@typescript-eslint/no-unused-vars': 'off',
+        '@typescript-eslint/no-use-before-define': 'off',
+        'import/export': 'off', // Not sure why it doesn't work
+        'import/prefer-default-export': 'off',
+        'jsx-a11y/anchor-has-content': 'off',
+        'jsx-a11y/anchor-is-valid': 'off',
+        'jsx-a11y/tabindex-no-positive': 'off',
+        'react/default-props-match-prop-types': 'off',
+        'react/no-access-state-in-setstate': 'off',
+        'react/no-unused-prop-types': 'off',
+        'react/prefer-stateless-function': 'off',
+        'react/prop-types': 'off',
+        'react/require-default-props': 'off',
+        'react/state-in-constructor': 'off',
+        'react/static-property-placement': 'off',
       },
     },
   ],

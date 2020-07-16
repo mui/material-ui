@@ -1,10 +1,10 @@
-/* eslint-disable consistent-return, jsx-a11y/no-noninteractive-tabindex, camelcase */
+/* eslint-disable @typescript-eslint/naming-convention, consistent-return, jsx-a11y/no-noninteractive-tabindex */
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import { exactProp } from '@material-ui/utils';
 import ownerDocument from '../utils/ownerDocument';
 import useForkRef from '../utils/useForkRef';
-import { exactProp } from '@material-ui/utils';
 
 /**
  * Utility component that locks focus inside the component.

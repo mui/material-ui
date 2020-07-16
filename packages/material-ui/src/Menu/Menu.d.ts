@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { PopoverProps } from '../Popover';
 import { MenuListProps } from '../MenuList';
-import { PaperProps } from '../Paper';
 import { StandardProps } from '..';
 import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
 

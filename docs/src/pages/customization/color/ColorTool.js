@@ -11,8 +11,8 @@ import Button from '@material-ui/core/Button';
 import CheckIcon from '@material-ui/icons/Check';
 import Slider from '@material-ui/core/Slider';
 import { capitalize } from '@material-ui/core/utils';
-import ColorDemo from './ColorDemo';
 import { DispatchContext } from 'docs/src/modules/components/ThemeContext';
+import ColorDemo from './ColorDemo';
 
 const defaults = {
   primary: '#2196f3',

@@ -47,7 +47,7 @@ export default function DynamicClassName() {
           [classes.buttonBlue]: color === 'blue',
         })}
       >
-        {'Class name branch'}
+        Class name branch
       </Button>
     </React.Fragment>
   );

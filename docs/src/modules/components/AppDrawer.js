@@ -84,7 +84,7 @@ function renderNavItems(options) {
   return (
     <List>
       {pages.reduce(
-        // eslint-disable-next-line no-use-before-define
+        // eslint-disable-next-line @typescript-eslint/no-use-before-define
         (items, page) => reduceChildRoutes({ items, page, ...params }),
         [],
       )}
@@ -158,6 +158,7 @@ function AppDrawer(props) {
               href={`https://material-ui.com${languagePrefix}/versions/`}
               onClick={onClose}
             >
+              {/* eslint-disable-next-line material-ui/no-hardcoded-labels -- version string is untranslatable */}
               {`v${process.env.LIB_VERSION}`}
             </Link>
           ) : null}

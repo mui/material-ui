@@ -1,5 +1,5 @@
-import deepmerge from './deepmerge';
 import { expect } from 'chai';
+import deepmerge from './deepmerge';
 
 describe('deepmerge', () => {
   // https://snyk.io/blog/after-three-years-of-silence-a-new-jquery-prototype-pollution-vulnerability-emerges-once-again/

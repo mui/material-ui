@@ -2,9 +2,9 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
+import { act, createClientRender, screen } from 'test/utils/createClientRender';
 import describeConformance from '../test-utils/describeConformance';
 import Breadcrumbs from './Breadcrumbs';
-import { act, createClientRender, screen } from 'test/utils/createClientRender';
 
 describe('<Breadcrumbs />', () => {
   const mount = createMount();

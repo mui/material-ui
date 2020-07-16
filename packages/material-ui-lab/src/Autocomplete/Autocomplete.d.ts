@@ -9,6 +9,7 @@ import {
   createFilterOptions,
   UseAutocompleteProps,
 } from '../useAutocomplete';
+
 export {
   AutocompleteChangeDetails,
   AutocompleteChangeReason,

@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "@types/eslint": "^7.2.0",
-    "babel-eslint": "^10.1.0"
+    "@typescript-eslint/parser": "^3.6.0"
   },
   "scripts": {
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/eslint-plugin-material-ui/**/*.test.js' --exclude '**/node_modules/**'"

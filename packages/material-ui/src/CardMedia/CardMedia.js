@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
 import { chainPropTypes } from '@material-ui/utils';
+import withStyles from '../styles/withStyles';
 
 export const styles = {
   /* Styles applied to the root element. */
