@@ -59,7 +59,7 @@ If you want the guarantee that the wrapped component's style will be overridden,
 ## API
 
 ```jsx
-import Box from '@material-ui/core/Box';
+import Box from '@material-ui/core';
 ```
 
 | Name | Type | Default | Description |
