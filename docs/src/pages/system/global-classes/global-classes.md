@@ -37,3 +37,9 @@ You can use each of the theme's shadows for applying different eleavtion to your
 You can use different positioning on the components, as well as different zIndexs which are available via the theme.
 
 {{"demo": "pages/system/global-classes/PositionsExample.js"}}
+
+## Displays
+
+You can set different values for the display property, as well as specify different display values when the page is printed.
+
+{{"demo": "pages/system/global-classes/DisplaysExample.js"}}
