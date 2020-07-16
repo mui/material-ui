@@ -1,4 +1,5 @@
 const formatUtil = require('format-util');
+const Mocha = require('mocha');
 const createDOM = require('./createDOM');
 
 process.browser = true;
@@ -17,6 +18,7 @@ const mochaHooks = {
 
 function throwOnUnexpectedConsoleMessages(methodName, expectedMatcher) {
   const unexpectedCalls = [];
+  const stackTraceFilter = Mocha.utils.stackTraceFilter();
 
   function logUnexpectedConsoleCalls(format, ...args) {
     const message = formatUtil(format, ...args);
@@ -27,7 +29,7 @@ function throwOnUnexpectedConsoleMessages(methodName, expectedMatcher) {
       // first line includes the (empty) error message
       // i.e. Remove the `Error:` line
       // second line is this frame
-      stack.split('\n').slice(2).join('\n'),
+      stackTraceFilter(stack.split('\n').slice(2).join('\n')),
       message,
     ]);
   }
@@ -49,12 +51,23 @@ function throwOnUnexpectedConsoleMessages(methodName, expectedMatcher) {
     }
     if (hadUnexpectedCalls) {
       const location = this.currentTest.file;
+      const testPath = `"${this.currentTest.parent
+        .titlePath()
+        .concat(this.currentTest.title)
+        .join('" -> "')}"`;
       const message =
         `Expected test not to call console.${methodName}()\n\n` +
         'If the warning is expected, test for it explicitly by ' +
         `using the ${expectedMatcher}() matcher.`;
 
-      throw new Error(`${location}: ${message}\n\n${formattedCalls.join('\n\n')}`);
+      const error = new Error(
+        `${location}: ${message}\n\n${formattedCalls.join('\n\n')}\n\n` +
+          `in ${testPath} (${location})`,
+      );
+      // The stack of `flushUnexpectedCalls` is irrelevant.
+      // It includes no clue where the test was triggered
+      error.stack = '';
+      throw error;
     }
   });
 }
