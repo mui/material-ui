@@ -37,13 +37,13 @@ If you want to start with a more complete and real-world example, you could take
   - All PWA features included (SW, Notifications, deferred installation prompt and more)
   - Optimized and scalable performance (all ~100 points on Lighthouse)
 
-- [RMUIF](https://github.com/phoqe/rmuif):
+- [RMUIF](https://github.com/rmuif/web):
 
-  - Bootstrapped with Create React App, the same tooling works from the get-go
-  - Built on top of Firebase with all their products for the web included
-  - Robust routing with React Router including protected routes and error handling
-  - Extensive mobile support with full-screen dialogs and react-swipeable-views for tabs
-  - Cross-platform application monitoring with a focus on error reporting with Sentry
+  - Bootstrapped with Create React App
+  - Firebase back-end with most of their products for the web included, e.g., Authentication and Cloud Firestore
+  - Routing with React Router, including protected routes and error handling
+  - Extensive and well-tested mobile support with full-screen dialogs and swipeable tabs
+  - Cross-platform application monitoring with Sentry
 
 - [Material Sense](https://github.com/alexanmtz/material-sense):
 
