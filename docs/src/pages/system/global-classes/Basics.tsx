@@ -34,7 +34,7 @@ export default function App() {
         'caption',
         'overline',
       ].map((val) => (
-        <div className={`m2 p-1 text-${val}`}>Text {val}</div>
+        <div className={`m-2 p-1 text-${val}`}>Text {val}</div>
       ))}
       <div className="d-inline mr-1">Inline</div>
       <div className="d-inline d-print-none">Not visible when printed</div>
