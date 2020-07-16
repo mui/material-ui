@@ -133,67 +133,7 @@ Generates a theme that reduces the amount of warnings inside [`React.StrictMode`
 
 #### Requirements
 
-Using `unstable_createMuiStrictModeTheme` restricts the usage of some of our components.
-
-##### `component` prop
-
-The component used in the `component` prop of the following components need to forward their ref:
-
-- [`Collapse`](/api/collapse/)
-
-Otherwise you'll encounter `Error: Function component cannot be given refs`.
-See also: [Composition: Caveat with refs](/guides/composition/#caveat-with-refs).
-
-##### `children` prop
-
-The `children` of the following components need to forward their ref:
-
-- [`Fade`](/api/fade/)
-- [`Grow`](/api/grow/)
-- [`Zoom`](/api/zoom/)
-
-```diff
--function TabPanel(props) {
-+const TabPanel = React.forwardRef(function TabPanel(props, ref) {
-  return <div role="tabpanel" {...props} ref={ref} />;
--}
-+});
-
-function Tabs() {
-  return <Fade><TabPanel>...</TabPanel></Fade>;
-}
-```
-
-Otherwise the component will not animate properly and you'll encounter the warning that `Function components cannot be given refs`.
-
-#### Disable StrictMode compatibility partially
-
-If you still see `Error: Function component cannot be given refs` then you're probably using a third-party component for which the previously mentioned fixes aren't applicable.
-You can fix this by applying `disableStrictModeCompat`. You'll see deprecation warnings again but these are only warnings while
-`Function component cannot be given refs` actually breaks the documented behavior of our components.
-
-```diff
-import { unstable_createMuiStrictModeTheme } from '@material-ui/core/styles';
-
-function ThirdPartyTabPanel(props) {
-  return <div {...props} role="tabpanel">
-}
-
-const theme = unstable_createMuiStrictModeTheme();
-
-function Fade() {
-  return (
-    <React.StrictMode>
-      <ThemeProvider theme={theme}>
--        <Fade>
-+        <Fade disableStrictModeCompat>
-          <ThirdPartyTabPanel />
-        </Fade>
-      </ThemeProvider>
-    </React.StrictMode>
-  );
-}
-```
+Currently `unstable_createMuiStrictModeTheme` adds no additional requirements.
 
 #### Arguments
 

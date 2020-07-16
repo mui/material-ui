@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -120,8 +119,7 @@ const Menu = React.forwardRef(function Menu(props, ref) {
     if (index === activeItemIndex) {
       return React.cloneElement(child, {
         ref: (instance) => {
-          // #StrictMode ready
-          contentAnchorRef.current = ReactDOM.findDOMNode(instance);
+          contentAnchorRef.current = instance;
           setRef(child.ref, instance);
         },
       });

@@ -6,9 +6,7 @@ import setRef from '../utils/setRef';
 import useForkRef from '../utils/useForkRef';
 
 function getContainer(container) {
-  container = typeof container === 'function' ? container() : container;
-  // #StrictMode ready
-  return ReactDOM.findDOMNode(container);
+  return typeof container === 'function' ? container() : container;
 }
 
 const useEnhancedEffect = typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;

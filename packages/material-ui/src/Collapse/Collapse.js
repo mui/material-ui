@@ -66,7 +66,6 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
     className,
     collapsedSize: collapsedSizeProp = '0px',
     component: Component = 'div',
-    disableStrictModeCompat = false,
     in: inProp,
     onEnter,
     onEntered,
@@ -96,21 +95,18 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
     };
   }, []);
 
-  const enableStrictModeCompat = theme.unstable_strictMode && !disableStrictModeCompat;
   const nodeRef = React.useRef(null);
-  const handleRef = useForkRef(ref, enableStrictModeCompat ? nodeRef : undefined);
+  const handleRef = useForkRef(ref, nodeRef);
 
-  const normalizedTransitionCallback = (callback) => (nodeOrAppearing, maybeAppearing) => {
+  const normalizedTransitionCallback = (callback) => (maybeIsAppearing) => {
     if (callback) {
-      const [node, isAppearing] = enableStrictModeCompat
-        ? [nodeRef.current, nodeOrAppearing]
-        : [nodeOrAppearing, maybeAppearing];
+      const node = nodeRef.current;
 
       // onEnterXxx and onExitXxx callbacks have a different arguments.length value.
-      if (isAppearing === undefined) {
+      if (maybeIsAppearing === undefined) {
         callback(node);
       } else {
-        callback(node, isAppearing);
+        callback(node, maybeIsAppearing);
       }
     }
   };
@@ -206,8 +202,7 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
     }
   });
 
-  const addEndListener = (nodeOrNext, maybeNext) => {
-    const next = enableStrictModeCompat ? nodeOrNext : maybeNext;
+  const addEndListener = (next) => {
     if (timeout === 'auto') {
       timer.current = setTimeout(next, autoTransitionDuration.current || 0);
     }
@@ -223,7 +218,7 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
       onExited={handleExited}
       onExiting={handleExiting}
       addEndListener={addEndListener}
-      nodeRef={enableStrictModeCompat ? nodeRef : undefined}
+      nodeRef={nodeRef}
       timeout={timeout === 'auto' ? null : timeout}
       {...other}
     >
@@ -292,12 +287,6 @@ Collapse.propTypes = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
-  /**
-   * Enable this prop if you encounter 'Function components cannot be given refs',
-   * use `unstable_createStrictModeTheme`,
-   * and can't forward the ref in the passed `Component`.
-   */
-  disableStrictModeCompat: PropTypes.bool,
   /**
    * If `true`, the component will transition in.
    */

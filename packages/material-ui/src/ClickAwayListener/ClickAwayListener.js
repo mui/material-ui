@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { elementAcceptingRef, exactProp } from '@material-ui/utils';
 import ownerDocument from '../utils/ownerDocument';
@@ -41,12 +40,7 @@ function ClickAwayListener(props) {
     };
   }, []);
 
-  // can be removed once we drop support for non ref forwarding class components
-  const handleOwnRef = React.useCallback((instance) => {
-    // #StrictMode ready
-    nodeRef.current = ReactDOM.findDOMNode(instance);
-  }, []);
-  const handleRef = useForkRef(children.ref, handleOwnRef);
+  const handleRef = useForkRef(children.ref, nodeRef);
 
   // The handler doesn't take event.defaultPrevented into account:
   //

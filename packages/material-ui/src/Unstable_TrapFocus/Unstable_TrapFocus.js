@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention, consistent-return, jsx-a11y/no-noninteractive-tabindex */
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { exactProp } from '@material-ui/utils';
 import ownerDocument from '../utils/ownerDocument';
@@ -29,12 +28,7 @@ function Unstable_TrapFocus(props) {
   const activated = React.useRef(false);
 
   const rootRef = React.useRef(null);
-  // can be removed once we drop support for non ref forwarding class components
-  const handleOwnRef = React.useCallback((instance) => {
-    // #StrictMode ready
-    rootRef.current = ReactDOM.findDOMNode(instance);
-  }, []);
-  const handleRef = useForkRef(children.ref, handleOwnRef);
+  const handleRef = useForkRef(children.ref, rootRef);
 
   const prevOpenRef = React.useRef();
   React.useEffect(() => {
