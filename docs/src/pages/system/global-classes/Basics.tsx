@@ -10,7 +10,7 @@ export default function App() {
       </Button>
       <Button
         variant="contained"
-        className="m-1 py-3 warning-light warning-dark--hover warning-contrastText--text"
+        className="m-1 py-3 bg-warning-light hover-bg-warning-dark text-warning-contrastText"
       >
         Colors
       </Button>
@@ -34,15 +34,15 @@ export default function App() {
         'caption',
         'overline',
       ].map((val) => (
-        <div className={`m-2 p-1 text-${val}`}>Text {val}</div>
+        <div className={`m-2 p-1 text-${val}`} key={val}>Text {val}</div>
       ))}
       <div className="d-inline mr-1">Inline</div>
       <div className="d-inline d-print-none">Not visible when printed</div>
-      <div className="position-relative p-4 mb-16">
-        <div className="position-absolute p-4 top-4 left-0 grey-700 common-white--text">
+      <div className="position-relative p-4 mb-12">
+        <div className="position-absolute p-4 top-4 left-0 bg-grey-700 text-common-white">
           Positioned
         </div>
-        <div className="position-absolute p-4 top-14 left-5 zIndex-tooltip primary-light common-white--text">
+        <div className="position-absolute p-4 top-10 left-5 zIndex-tooltip bg-primary-light text-common-white">
           zIndex tooltip
         </div>
       </div>

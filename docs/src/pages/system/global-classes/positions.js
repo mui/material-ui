@@ -1,4 +1,4 @@
-const values = Array.from(Array(17).keys()); // 0..16
+const values = [0, 0.5, 1, 1.5, 2, 2.5, 3, 4, 5, 6, 7, 8, 9, 11, 13, 15, 17];
 
 export default function positions(theme) {
   const positions = {
@@ -11,18 +11,18 @@ export default function positions(theme) {
     '.position-inherit': { position: 'inherit' },
   };
 
-  values.forEach((val) => {
-    positions[`.top-${val}`] = {
-      top: theme.spacing(val / 2),
+  values.forEach((val, idx) => {
+    positions[`.top-${idx}`] = {
+      top: theme.spacing(val),
     };
-    positions[`.bottom-${val}`] = {
-      bottom: theme.spacing(val / 2),
+    positions[`.bottom-${idx}`] = {
+      bottom: theme.spacing(val),
     };
-    positions[`.right-${val}`] = {
-      right: theme.spacing(val / 2),
+    positions[`.right-${idx}`] = {
+      right: theme.spacing(val),
     };
-    positions[`.left-${val}`] = {
-      left: theme.spacing(val / 2),
+    positions[`.left-${idx}`] = {
+      left: theme.spacing(val),
     };
   });
 

@@ -1,14 +1,14 @@
 const r = (val, accumulator, colors) => {
   if (typeof val === 'string') {
-    colors[accumulator] = { backgroundColor: val };
-    colors[`${accumulator}--text`] = { color: val };
-    colors[`${accumulator}--hover`] = { '&:hover': { backgroundColor: val } };
-    colors[`${accumulator}--text--hover`] = { '&:hover': { color: val } };
+    colors[`.bg-${accumulator}`] = { backgroundColor: val };
+    colors[`.text-${accumulator}`] = { color: val };
+    colors[`.hover-bg-${accumulator}`] = { '&:hover': { backgroundColor: val } };
+    colors[`.hover-text-${accumulator}`] = { '&:hover': { color: val } };
   } else if (typeof val === 'object' && val !== null) {
     Object.keys(val).forEach((key) => {
       r(
         val[key],
-        `${accumulator}${accumulator.length > 1 ? '-' : ''}${key}`,
+        `${accumulator}${accumulator.length > 0 ? '-' : ''}${key}`,
         colors,
       );
     });
@@ -17,6 +17,6 @@ const r = (val, accumulator, colors) => {
 
 export default function colors(theme) {
   const colors = {};
-  r(theme.palette, '.', colors);
+  r(theme.palette, '', colors);
   return colors;
 }

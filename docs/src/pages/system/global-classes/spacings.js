@@ -14,31 +14,31 @@ const directions = {
   y: ['Top', 'Bottom'],
 };
 
-const values = Array.from(Array(17).keys()); // 0..16
+const values = [0, 0.5, 1, 1.5, 2, 2.5, 3, 4, 5, 6, 7, 8, 9, 11, 13, 15, 17];
 
 export default function spacings(theme) {
   const spacings = {};
 
   Object.keys(properties).forEach((property) => {
-    values.forEach((val) => {
-      spacings[`.${property}-${val}`] = {
-        [`${properties[property]}`]: theme.spacing(val / 2),
+    values.forEach((val, idx) => {
+      spacings[`.${property}-${idx}`] = {
+        [`${properties[property]}`]: theme.spacing(val),
       };
     });
 
     Object.keys(directions).forEach((direction) => {
-      values.forEach((val) => {
+      values.forEach((val, idx) => {
         const cssProperties =
           direction !== 'x' && direction !== 'y'
             ? [directions[direction]]
             : directions[direction];
 
-        const cssKey = `.${property}${direction}-${val}`;
+        const cssKey = `.${property}${direction}-${idx}`;
         spacings[cssKey] = {};
         cssProperties.forEach((cssProperty) => {
           spacings[cssKey][
             `${properties[property]}${cssProperty}`
-          ] = theme.spacing(val / 2);
+          ] = theme.spacing(val);
         });
       });
     });
