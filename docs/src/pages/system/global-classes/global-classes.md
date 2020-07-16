@@ -31,3 +31,9 @@ You can apply different text styles in your components using the text classes.
 You can use each of the theme's shadows for applying different eleavtion to your components.
 
 {{"demo": "pages/system/global-classes/ElevationsExample.js"}}
+
+## Positions
+
+You can use different positioning on the components, as well as different zIndexs which are available via the theme.
+
+{{"demo": "pages/system/global-classes/PositionsExample.js"}}
