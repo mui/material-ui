@@ -20,11 +20,11 @@ You can access all colors available in the palette, for both the background or t
 
 {{"demo": "pages/system/global-classes/ColorsExample.js"}}
 
-## Text/Typography
+## Typography
 
-You can apply different text styles in your components using the text classes.
+You can apply different typography styles in your components using the typography classes.
 
-{{"demo": "pages/system/global-classes/TextsExample.js"}}
+{{"demo": "pages/system/global-classes/TypographyExample.js"}}
 
 ## Elevations
 

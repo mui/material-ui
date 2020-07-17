@@ -1,5 +1,3 @@
-export const displays: object;
-export const overflows: object;
-export const textOverflows: object;
-export const visibilities: object;
-export const whiteSpaces: object;
+import { Theme } from '@material-ui/core/styles';
+
+export default function (theme: Theme): object;

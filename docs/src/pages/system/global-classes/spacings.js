@@ -1,5 +1,5 @@
-// TODO: add breakpoints
-// vuetifty has breakpoints in the utility classes names
+import combineWithBreakpoints from './combineWithBreakpoints';
+
 const properties = {
   m: 'margin',
   p: 'padding',
@@ -21,7 +21,7 @@ export default function spacings(theme) {
 
   Object.keys(properties).forEach((property) => {
     values.forEach((val, idx) => {
-      spacings[`.${property}-${idx}`] = {
+      spacings[`${property}-${idx}`] = {
         [`${properties[property]}`]: theme.spacing(val),
       };
     });
@@ -33,7 +33,7 @@ export default function spacings(theme) {
             ? [directions[direction]]
             : directions[direction];
 
-        const cssKey = `.${property}${direction}-${idx}`;
+        const cssKey = `${property}${direction}-${idx}`;
         spacings[cssKey] = {};
         cssProperties.forEach((cssProperty) => {
           spacings[cssKey][
@@ -44,5 +44,5 @@ export default function spacings(theme) {
     });
   });
 
-  return spacings;
+  return combineWithBreakpoints(theme, spacings);
 }

@@ -1,11 +1,13 @@
+import combineWithBreakpoints from './combineWithBreakpoints';
+
 const r = (val, accumulator, colors) => {
   if (typeof val === 'string') {
-    colors[`.bg-${accumulator}`] = { backgroundColor: val };
-    colors[`.text-${accumulator}`] = { color: val };
-    colors[`.hover-bg-${accumulator}`] = {
+    colors[`bg-${accumulator}`] = { backgroundColor: val };
+    colors[`text-${accumulator}`] = { color: val };
+    colors[`hover\\:bg-${accumulator}`] = {
       '&:hover': { backgroundColor: val },
     };
-    colors[`.hover-text-${accumulator}`] = { '&:hover': { color: val } };
+    colors[`hover\\:text-${accumulator}`] = { '&:hover': { color: val } };
   } else if (typeof val === 'object' && val !== null) {
     Object.keys(val).forEach((key) => {
       r(
@@ -20,5 +22,5 @@ const r = (val, accumulator, colors) => {
 export default function colors(theme) {
   const colors = {};
   r(theme.palette, '', colors);
-  return colors;
+  return combineWithBreakpoints(theme, colors);
 }

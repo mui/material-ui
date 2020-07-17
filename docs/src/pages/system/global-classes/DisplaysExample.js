@@ -14,7 +14,7 @@ export default function App() {
   return (
     <div className={classes.debug}>
       <div className="d-inline mr-1 p-2">div.d-inline</div>
-      <div className="d-inline d-print-none p-2">Hidden when printed</div>
+      <div className="d-inline print:d-none p-2">Hidden when printed</div>
     </div>
   );
 }
