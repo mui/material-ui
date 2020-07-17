@@ -12,7 +12,7 @@ const MENU_LIST_HEIGHT = 100;
 
 describe('<Menu />', () => {
   let classes;
-  // StrictModeViolation: uses Popover
+  // StrictModeViolation: Not using act(), prefer using createClientRender from test/utils
   const mount = createMount({ strict: false });
   const defaultProps = {
     open: false,

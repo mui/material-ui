@@ -13,8 +13,8 @@ import Select from './Select';
 
 describe('<Select />', () => {
   let classes;
-  // StrictModeViolation: uses Menu
-  const mount = createMount({ strict: false });
+  const mount = createMount({ strict: true });
+  // StrictModeViolation: triggers "not wrapped in act()" warnings from timers.
   const render = createClientRender({ strict: false });
 
   before(() => {

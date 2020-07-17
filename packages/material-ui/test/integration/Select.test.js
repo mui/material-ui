@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { useFakeTimers } from 'sinon';
-import { createClientRender, fireEvent } from 'test/utils/createClientRender';
+import { act, createClientRender, fireEvent } from 'test/utils/createClientRender';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Dialog from '@material-ui/core/Dialog';
@@ -9,8 +9,7 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 
 describe('<Select> integration', () => {
-  // StrictModeViolation: uses Fade
-  const render = createClientRender({ strict: false });
+  const render = createClientRender();
 
   describe('with Dialog', () => {
     function SelectAndDialog() {
@@ -64,8 +63,12 @@ describe('<Select> integration', () => {
       expect(options[1]).toHaveFocus();
 
       // Now, let's close the select component
-      getByTestId('select-backdrop').click();
-      clock.tick(0);
+      act(() => {
+        getByTestId('select-backdrop').click();
+      });
+      act(() => {
+        clock.tick(0);
+      });
 
       expect(queryByRole('listbox')).to.equal(null);
       expect(trigger).toHaveFocus();
@@ -84,8 +87,12 @@ describe('<Select> integration', () => {
       expect(options[1]).toHaveFocus();
 
       // Now, let's close the select component
-      options[2].click();
-      clock.tick(0);
+      act(() => {
+        options[2].click();
+      });
+      act(() => {
+        clock.tick(0);
+      });
 
       expect(queryByRole('listbox')).to.equal(null);
       expect(trigger).toHaveFocus();
@@ -123,11 +130,15 @@ describe('<Select> integration', () => {
             <MenuItem value={10}>Ten</MenuItem>
           </Select>
         </FormControl>,
+        // StrictModeViolation: Requires fake timers + act
+        { strict: false },
       );
 
-      const trigger = getByRole('button');
-      trigger.focus();
-      fireEvent.keyDown(trigger, { key: 'Enter' });
+      act(() => {
+        const trigger = getByRole('button');
+        trigger.focus();
+        fireEvent.keyDown(trigger, { key: 'Enter' });
+      });
 
       expect(getByTestId('label')).to.have.class('focused-label');
     });
@@ -149,7 +160,9 @@ describe('<Select> integration', () => {
       );
       const trigger = getByRole('button');
 
-      trigger.focus();
+      act(() => {
+        trigger.focus();
+      });
 
       expect(container.querySelector('[for="age-simple"]')).to.have.class('focused-label');
 
@@ -157,7 +170,9 @@ describe('<Select> integration', () => {
 
       expect(container.querySelector('[for="age-simple"]')).to.have.class('focused-label');
 
-      trigger.blur();
+      act(() => {
+        trigger.blur();
+      });
 
       expect(container.querySelector('[for="age-simple"]')).not.to.have.class('focused-label');
     });

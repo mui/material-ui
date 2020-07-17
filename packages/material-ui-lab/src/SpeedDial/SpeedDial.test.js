@@ -14,7 +14,7 @@ import SpeedDial from './SpeedDial';
 import SpeedDialAction from '../SpeedDialAction';
 
 describe('<SpeedDial />', () => {
-  // StrictModeViolation: uses Zoom
+  // StrictModeViolation: not using act(), prefer test/utils/createClientRender
   const mount = createMount({ strict: false });
   let classes;
 

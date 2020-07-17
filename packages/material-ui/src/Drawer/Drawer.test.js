@@ -11,10 +11,9 @@ import Modal from '../Modal';
 import Drawer, { getAnchor, isHorizontal } from './Drawer';
 
 describe('<Drawer />', () => {
-  // StrictModeViolation: uses Slide
-  const mount = createMount({ strict: false });
+  const mount = createMount({ strict: true });
   let classes;
-  const render = createClientRender({ strict: false });
+  const render = createClientRender();
 
   before(() => {
     classes = getClasses(

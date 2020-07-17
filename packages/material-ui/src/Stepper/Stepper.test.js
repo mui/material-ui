@@ -15,9 +15,8 @@ describe('<Stepper />', () => {
   let classes;
   let stepClasses;
   let stepConnectorClasses;
-  // StrictModeViolation: test uses StepContent
-  const mount = createMount({ strict: false });
-  const render = createClientRender({ strict: false });
+  const mount = createMount({ strict: true });
+  const render = createClientRender();
 
   before(() => {
     classes = getClasses(<Stepper />);

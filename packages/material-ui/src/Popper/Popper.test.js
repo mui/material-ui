@@ -11,7 +11,7 @@ import Grow from '../Grow';
 import Popper from './Popper';
 
 describe('<Popper />', () => {
-  const mount = createMount();
+  const mount = createMount({ strict: true });
   let rtlTheme;
   const render = createClientRender();
   const defaultProps = {
@@ -210,7 +210,6 @@ describe('<Popper />', () => {
     let clock;
     beforeEach(() => {
       clock = useFakeTimers();
-      // StrictModeViolation: uses Grow
     });
 
     afterEach(() => {
@@ -226,11 +225,15 @@ describe('<Popper />', () => {
             </Grow>
           )}
         </Popper>,
-        { strict: false },
       );
+
       expect(getByRole('tooltip')).to.have.text('Hello World');
+
       setProps({ anchorEl: null, open: false });
-      clock.tick(0);
+      act(() => {
+        clock.tick(0);
+      });
+
       expect(queryByRole('tooltip')).to.equal(null);
     });
   });

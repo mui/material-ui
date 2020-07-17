@@ -39,10 +39,9 @@ describe('<Tooltip />', () => {
     });
   });
 
-  // StrictModeViolation: uses Grow and tests a lot of impl details
-  const mount = createMount({ strict: null });
+  const mount = createMount({ strict: true });
   let classes;
-  const render = createClientRender({ strict: false });
+  const render = createClientRender();
 
   before(() => {
     classes = getClasses(
@@ -740,7 +739,9 @@ describe('<Tooltip />', () => {
       );
       const input = getByRole('textbox');
 
-      input.focus();
+      act(() => {
+        input.focus();
+      });
 
       // return value is event.currentTarget
       expect(handleFocus.callCount).to.equal(1);

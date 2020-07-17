@@ -12,9 +12,8 @@ import StepContent from './StepContent';
 describe('<StepContent />', () => {
   let classes;
   let collapseClasses;
-  // StrictModeViolation: uses Collapse
-  const mount = createMount({ strict: false });
-  const render = createClientRender({ strict: false });
+  const mount = createMount({ strict: true });
+  const render = createClientRender();
 
   before(() => {
     classes = getClasses(<StepContent />);
