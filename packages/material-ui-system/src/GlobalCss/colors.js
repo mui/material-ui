@@ -10,11 +10,7 @@ const r = (val, accumulator, colors) => {
     colors[`hover\\:text-${accumulator}`] = { '&:hover': { color: `${val} !important` } };
   } else if (typeof val === 'object' && val !== null) {
     Object.keys(val).forEach((key) => {
-      r(
-        val[key],
-        `${accumulator}${accumulator.length > 0 ? '-' : ''}${key}`,
-        colors,
-      );
+      r(val[key], `${accumulator}${accumulator.length > 0 ? '-' : ''}${key}`, colors);
     });
   }
 };

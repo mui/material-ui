@@ -14,28 +14,7 @@ const directions = {
   y: ['Top', 'Bottom'],
 };
 
-const values = [
-  0,
-  0.5,
-  1,
-  1.5,
-  2,
-  2.5,
-  3,
-  4,
-  5,
-  6,
-  7,
-  8,
-  9,
-  10,
-  11,
-  12,
-  13,
-  14,
-  15,
-  16,
-];
+const values = [0, 0.5, 1, 1.5, 2, 2.5, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 
 export default function spacings(theme) {
   const spacings = {};
@@ -50,18 +29,12 @@ export default function spacings(theme) {
     Object.keys(directions).forEach((direction) => {
       values.forEach((val) => {
         const cssProperties =
-          direction !== 'x' && direction !== 'y'
-            ? [directions[direction]]
-            : directions[direction];
+          direction !== 'x' && direction !== 'y' ? [directions[direction]] : directions[direction];
 
-        const cssKey = `${property}${direction}-${val
-          .toString()
-          .replace('.', '-')}`;
+        const cssKey = `${property}${direction}-${val.toString().replace('.', '-')}`;
         spacings[cssKey] = {};
         cssProperties.forEach((cssProperty) => {
-          spacings[cssKey][
-            `${properties[property]}${cssProperty}`
-          ] = theme.spacing(val);
+          spacings[cssKey][`${properties[property]}${cssProperty}`] = theme.spacing(val);
         });
       });
     });
