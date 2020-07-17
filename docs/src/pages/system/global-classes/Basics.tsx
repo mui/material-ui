@@ -17,7 +17,7 @@ export default function App() {
     <div className={classes.debug}>
       <GlobalCss />
       <div className="m-2 p-1-5">
-        <div className="m-4 p-2"></div>
+        <div className="m-4 p-2" />
       </div>
     </div>
   );

@@ -1,11 +1,11 @@
 import combineWithBreakpoints from './combineWithBreakpoints';
 
 export default function elevations(theme) {
-  const elevations = {};
+  const elevationsSelectors = {};
 
   theme.shadows.forEach((shadow, idx) => {
-    elevations[`elevation-${idx}`] = { boxShadow: `${shadow} !important` };
+    elevationsSelectors[`elevation-${idx}`] = { boxShadow: `${shadow} !important` };
   });
 
-  return combineWithBreakpoints(theme, elevations);
+  return combineWithBreakpoints(theme, elevationsSelectors);
 }

@@ -13,7 +13,7 @@ export default function App() {
   return (
     <div className={classes.debug}>
       <div className="m-4 p-4">
-        <div className="px-10 py-4"></div>
+        <div className="px-10 py-4" />
       </div>
     </div>
   );

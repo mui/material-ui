@@ -1,22 +1,22 @@
 import combineWithBreakpoints from './combineWithBreakpoints';
 
-const r = (val, accumulator, colors) => {
+const r = (val, accumulator, colorsSelectors) => {
   if (typeof val === 'string') {
-    colors[`bg-${accumulator}`] = { backgroundColor: `${val} !important` };
-    colors[`text-${accumulator}`] = { color: `${val} !important` };
-    colors[`hover\\:bg-${accumulator}`] = {
+    colorsSelectors[`bg-${accumulator}`] = { backgroundColor: `${val} !important` };
+    colorsSelectors[`text-${accumulator}`] = { color: `${val} !important` };
+    colorsSelectors[`hover\\:bg-${accumulator}`] = {
       '&:hover': { backgroundColor: `${val} !important` },
     };
-    colors[`hover\\:text-${accumulator}`] = { '&:hover': { color: `${val} !important` } };
+    colorsSelectors[`hover\\:text-${accumulator}`] = { '&:hover': { color: `${val} !important` } };
   } else if (typeof val === 'object' && val !== null) {
     Object.keys(val).forEach((key) => {
-      r(val[key], `${accumulator}${accumulator.length > 0 ? '-' : ''}${key}`, colors);
+      r(val[key], `${accumulator}${accumulator.length > 0 ? '-' : ''}${key}`, colorsSelectors);
     });
   }
 };
 
 export default function colors(theme) {
-  const colors = {};
-  r(theme.palette, '', colors);
-  return combineWithBreakpoints(theme, colors);
+  const colorsSelectors = {};
+  r(theme.palette, '', colorsSelectors);
+  return combineWithBreakpoints(theme, colorsSelectors);
 }
