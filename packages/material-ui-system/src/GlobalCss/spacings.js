@@ -34,7 +34,9 @@ export default function spacings(theme) {
         const cssKey = `${property}${direction}-${val.toString().replace('.', '-')}`;
         spacingsSelectors[cssKey] = {};
         cssProperties.forEach((cssProperty) => {
-          spacingsSelectors[cssKey][`${properties[property]}${cssProperty}`] = `${theme.spacing(val)}px !important`;
+          spacingsSelectors[cssKey][`${properties[property]}${cssProperty}`] = `${theme.spacing(
+            val,
+          )}px !important`;
         });
       });
     });

@@ -18,7 +18,7 @@ export default function App() {
         'caption',
         'overline',
       ].map((val) => (
-        <div className={`m-2 p-1 typography-${val}`} key={val}>
+        <div className={`m-0-5 p-1 typography-${val}`} key={val}>
           Text {val}
         </div>
       ))}
