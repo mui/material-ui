@@ -6,7 +6,7 @@
 
 You can add the `<GlobalCss />` provider in your application tree and use all utility classes available.
 
-{{"demo": "pages/system/global-classes/Basics.js", "defaultCodeOpen": false}}
+{{"demo": "pages/system/global-classes/Basics.js"}}
 
 ## Spacing
 
