@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import * as ReactDOM from 'react-dom';
 import {
   chainPropTypes,
   elementTypeAcceptingRef,
@@ -338,11 +337,6 @@ const Popover = React.forwardRef(function Popover(props, ref) {
     setPositioningStyles();
   };
 
-  const handlePaperRef = React.useCallback((instance) => {
-    // #StrictMode ready
-    paperRef.current = ReactDOM.findDOMNode(instance);
-  }, []);
-
   React.useEffect(() => {
     if (open) {
       setPositioningStyles();
@@ -414,7 +408,7 @@ const Popover = React.forwardRef(function Popover(props, ref) {
         <Paper
           data-mui-test="Popover"
           elevation={elevation}
-          ref={handlePaperRef}
+          ref={paperRef}
           {...PaperProps}
           className={clsx(classes.paper, PaperProps.className)}
         >

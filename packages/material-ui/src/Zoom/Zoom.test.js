@@ -4,15 +4,10 @@ import { spy, useFakeTimers } from 'sinon';
 import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import { Transition } from 'react-transition-group';
-import {
-  unstable_createMuiStrictModeTheme as createMuiStrictModeTheme,
-  ThemeProvider,
-} from '../styles';
 import Zoom from './Zoom';
 
 describe('<Zoom />', () => {
-  // StrictModeViolation: uses react-transition-group
-  const mount = createMount({ strict: false });
+  const mount = createMount({ strict: true });
 
   describeConformance(
     <Zoom in>
@@ -121,28 +116,5 @@ describe('<Zoom />', () => {
         visibility: 'hidden',
       });
     });
-  });
-
-  it('has no StrictMode warnings in a StrictMode theme', () => {
-    mount(
-      <React.StrictMode>
-        <ThemeProvider theme={createMuiStrictModeTheme()}>
-          <Zoom appear in>
-            <div />
-          </Zoom>
-        </ThemeProvider>
-      </React.StrictMode>,
-    );
-  });
-
-  it('can fallback to findDOMNode in a StrictMode theme', () => {
-    const Div = () => <div />;
-    mount(
-      <ThemeProvider theme={createMuiStrictModeTheme()}>
-        <Zoom appear in disableStrictModeCompat>
-          <Div />
-        </Zoom>
-      </ThemeProvider>,
-    );
   });
 });

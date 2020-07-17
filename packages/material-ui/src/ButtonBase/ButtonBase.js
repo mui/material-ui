@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import * as ReactDOM from 'react-dom';
 import clsx from 'clsx';
 import { elementTypeAcceptingRef, refType } from '@material-ui/utils';
 import useForkRef from '../utils/useForkRef';
@@ -88,10 +87,6 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
   } = props;
 
   const buttonRef = React.useRef(null);
-  function getButtonNode() {
-    // #StrictMode ready
-    return ReactDOM.findDOMNode(buttonRef.current);
-  }
 
   const rippleRef = React.useRef(null);
 
@@ -181,7 +176,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
   });
 
   const isNonNativeButton = () => {
-    const button = getButtonNode();
+    const button = buttonRef.current;
     return component && component !== 'button' && !(button.tagName === 'A' && button.href);
   };
 

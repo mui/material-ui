@@ -1,20 +1,17 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
+// use act from test/utils/createClientRender once we drop createMount from this test
 import createMount from 'test/utils/createMount';
+import { act } from 'react-dom/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
-import {
-  createMuiTheme,
-  ThemeProvider,
-  unstable_createMuiStrictModeTheme as createMuiStrictModeTheme,
-} from '@material-ui/core/styles';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { Transition } from 'react-transition-group';
 import Grow from './Grow';
 import useForkRef from '../utils/useForkRef';
 
 describe('<Grow />', () => {
-  // StrictModeViolation: uses react-transition-group
-  const mount = createMount({ strict: false });
+  const mount = createMount({ strict: true });
   const defaultProps = {
     in: true,
     children: <div />,
@@ -182,10 +179,19 @@ describe('<Grow />', () => {
         wrapper.setProps({
           in: true,
         });
+
         expect(handleEntered.callCount).to.equal(0);
-        clock.tick(0);
+
+        act(() => {
+          clock.tick(0);
+        });
+
         expect(handleEntered.callCount).to.equal(0);
-        clock.tick(autoTransitionDuration);
+
+        act(() => {
+          clock.tick(autoTransitionDuration);
+        });
+
         expect(handleEntered.callCount).to.equal(1);
 
         const handleEntered2 = spy();
@@ -196,18 +202,32 @@ describe('<Grow />', () => {
         );
 
         expect(handleEntered2.callCount).to.equal(0);
-        clock.tick(0);
+
+        act(() => {
+          clock.tick(0);
+        });
+
         expect(handleEntered2.callCount).to.equal(1);
       });
 
       it('should use timeout as delay when timeout is number', () => {
         const timeout = 10;
         const handleEntered = spy();
+
         mount(<Grow {...defaultProps} timeout={timeout} onEntered={handleEntered} />);
+
         expect(handleEntered.callCount).to.equal(0);
-        clock.tick(0);
+
+        act(() => {
+          clock.tick(0);
+        });
+
         expect(handleEntered.callCount).to.equal(0);
-        clock.tick(timeout);
+
+        act(() => {
+          clock.tick(timeout);
+        });
+
         expect(handleEntered.callCount).to.equal(1);
       });
     });
@@ -269,28 +289,5 @@ describe('<Grow />', () => {
         expect(handleExit.args[0][0].style.transition).to.match(new RegExp(`${leaveDuration}ms`));
       });
     });
-  });
-
-  it('has no StrictMode warnings in a StrictMode theme', () => {
-    mount(
-      <React.StrictMode>
-        <ThemeProvider theme={createMuiStrictModeTheme()}>
-          <Grow appear in>
-            <div />
-          </Grow>
-        </ThemeProvider>
-      </React.StrictMode>,
-    );
-  });
-
-  it('can fallback to findDOMNode in a StrictMode theme', () => {
-    const Div = () => <div />;
-    mount(
-      <ThemeProvider theme={createMuiStrictModeTheme()}>
-        <Grow appear in disableStrictModeCompat>
-          <Div />
-        </Grow>
-      </ThemeProvider>,
-    );
   });
 });

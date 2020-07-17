@@ -3,17 +3,13 @@ import { expect } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
 import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
-import {
-  createMuiTheme,
-  ThemeProvider,
-  unstable_createMuiStrictModeTheme as createMuiStrictModeTheme,
-} from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
 import { Transition } from 'react-transition-group';
 import Slide, { setTranslateValue } from './Slide';
 import { useForkRef } from '../utils';
 
 describe('<Slide />', () => {
-  const mount = createMount();
+  const mount = createMount({ strict: true });
   const defaultProps = {
     in: true,
     children: <div id="testChild" />,
@@ -494,17 +490,5 @@ describe('<Slide />', () => {
       );
       expect(wrapper.find('#with-slide').props().style.visibility).to.equal('hidden');
     });
-  });
-
-  it('has no StrictMode warnings in a StrictMode theme', () => {
-    mount(
-      <React.StrictMode>
-        <ThemeProvider theme={createMuiStrictModeTheme()}>
-          <Slide appear in>
-            <div />
-          </Slide>
-        </ThemeProvider>
-      </React.StrictMode>,
-    );
   });
 });

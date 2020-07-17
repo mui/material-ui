@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { deepmerge, elementAcceptingRef } from '@material-ui/utils';
@@ -10,7 +9,6 @@ import Grow from '../Grow';
 import Popper from '../Popper';
 import useForkRef from '../utils/useForkRef';
 import useId from '../utils/unstable_useId';
-import setRef from '../utils/setRef';
 import useIsFocusVisible from '../utils/useIsFocusVisible';
 import useControlled from '../utils/useControlled';
 import useTheme from '../styles/useTheme';
@@ -399,16 +397,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
 
   const handleUseRef = useForkRef(setChildNode, ref);
   const handleFocusRef = useForkRef(focusVisibleRef, handleUseRef);
-  // can be removed once we drop support for non ref forwarding class components
-  const handleOwnRef = React.useCallback(
-    (instance) => {
-      // #StrictMode ready
-      setRef(handleFocusRef, ReactDOM.findDOMNode(instance));
-    },
-    [handleFocusRef],
-  );
-
-  const handleRef = useForkRef(children.ref, handleOwnRef);
+  const handleRef = useForkRef(children.ref, handleFocusRef);
 
   // There is no point in displaying an empty tooltip.
   if (title === '') {

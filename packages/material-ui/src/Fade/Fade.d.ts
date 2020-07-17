@@ -8,12 +8,6 @@ export interface FadeProps extends Omit<TransitionProps, 'children'> {
    */
   children?: React.ReactElement<any, any>;
   /**
-   * Enable this prop if you encounter 'Function components cannot be given refs',
-   * use `unstable_createStrictModeTheme`,
-   * and can't forward the ref in the child component.
-   */
-  disableStrictModeCompat?: boolean;
-  /**
    * If `true`, the component will transition in.
    */
   in?: boolean;

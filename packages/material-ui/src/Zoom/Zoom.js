@@ -28,7 +28,6 @@ const defaultTimeout = {
 const Zoom = React.forwardRef(function Zoom(props, ref) {
   const {
     children,
-    disableStrictModeCompat = false,
     in: inProp,
     onEnter,
     onEntered,
@@ -45,22 +44,19 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
 
   const theme = useTheme();
 
-  const enableStrictModeCompat = theme.unstable_strictMode && !disableStrictModeCompat;
   const nodeRef = React.useRef(null);
   const foreignRef = useForkRef(children.ref, ref);
-  const handleRef = useForkRef(enableStrictModeCompat ? nodeRef : undefined, foreignRef);
+  const handleRef = useForkRef(nodeRef, foreignRef);
 
-  const normalizedTransitionCallback = (callback) => (nodeOrAppearing, maybeAppearing) => {
+  const normalizedTransitionCallback = (callback) => (maybeIsAppearing) => {
     if (callback) {
-      const [node, isAppearing] = enableStrictModeCompat
-        ? [nodeRef.current, nodeOrAppearing]
-        : [nodeOrAppearing, maybeAppearing];
+      const node = nodeRef.current;
 
       // onEnterXxx and onExitXxx callbacks have a different arguments.length value.
-      if (isAppearing === undefined) {
+      if (maybeIsAppearing === undefined) {
         callback(node);
       } else {
-        callback(node, isAppearing);
+        callback(node, maybeIsAppearing);
       }
     }
   };
@@ -111,7 +107,7 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
     <TransitionComponent
       appear
       in={inProp}
-      nodeRef={enableStrictModeCompat ? nodeRef : undefined}
+      nodeRef={nodeRef}
       onEnter={handleEnter}
       onEntered={handleEntered}
       onEntering={handleEntering}
@@ -147,12 +143,6 @@ Zoom.propTypes = {
    * A single child content element.
    */
   children: PropTypes.element,
-  /**
-   * Enable this prop if you encounter 'Function components cannot be given refs',
-   * use `unstable_createStrictModeTheme`,
-   * and can't forward the ref in the child component.
-   */
-  disableStrictModeCompat: PropTypes.bool,
   /**
    * If `true`, the component will transition in.
    */

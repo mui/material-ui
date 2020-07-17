@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import PropTypes from 'prop-types';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
-import { act, createClientRender, fireEvent, queries, screen } from 'test/utils/createClientRender';
+import { act, createClientRender, fireEvent, queries } from 'test/utils/createClientRender';
 import describeConformance from '../test-utils/describeConformance';
 import ListItemText from '../ListItemText';
 import ListItemSecondaryAction from '../ListItemSecondaryAction';
@@ -15,7 +15,7 @@ const NoContent = React.forwardRef(() => {
 });
 
 describe('<ListItem />', () => {
-  const mount = createMount();
+  const mount = createMount({ strict: true });
   const render = createClientRender();
   let classes;
 
@@ -180,31 +180,6 @@ describe('<ListItem />', () => {
         }).toErrorDev(
           'Material-UI: Unable to set focus to a ListItem whose component has not been rendered.',
         );
-      });
-
-      // StrictMode compatible usage is illustrated in "can autofocus a custom ContainerComponent"
-      it('warns in StrictMode if the custom ContainerComponent is a class component', () => {
-        // eslint-disable-next-line react/prefer-stateless-function
-        class CustomListItemContainer extends React.Component {
-          // React dedupes the findDOMNode deprecation warning by displayName
-          // since we can't reset modules in watchmode we implement cache busting
-          // by creating a random display name
-          static displayName = `CustomListItemContainer-#${Math.random()}`;
-
-          render() {
-            return <div role="listitem" tabIndex={-1} {...this.props} />;
-          }
-        }
-        expect(() => {
-          render(
-            <ListItem autoFocus ContainerComponent={CustomListItemContainer}>
-              <ListItemText primary="primary" />
-              <ListItemSecondaryAction />
-            </ListItem>,
-          );
-        }).toErrorDev('findDOMNode is deprecated in StrictMode');
-
-        expect(screen.getByRole('listitem')).toHaveFocus();
       });
     });
   });

@@ -1,18 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import {
-  ThemeProvider,
-  unstable_createMuiStrictModeTheme as createMuiStrictModeTheme,
-} from '@material-ui/core/styles';
 import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import { Transition } from 'react-transition-group';
 import Fade from './Fade';
 
 describe('<Fade />', () => {
-  // StrictModeViolation: uses react-transition-group
-  const mount = createMount({ strict: false });
+  const mount = createMount({ strict: true });
 
   const defaultProps = {
     in: true,
@@ -26,6 +21,7 @@ describe('<Fade />', () => {
     refInstanceof: window.HTMLDivElement,
     skip: [
       'componentProp',
+      // TODO: really?
       // react-transition-group issue
       'reactTestRenderer',
     ],
@@ -121,28 +117,5 @@ describe('<Fade />', () => {
         visibility: 'hidden',
       });
     });
-  });
-
-  it('has no StrictMode warnings in a StrictMode theme', () => {
-    mount(
-      <React.StrictMode>
-        <ThemeProvider theme={createMuiStrictModeTheme()}>
-          <Fade appear in>
-            <div />
-          </Fade>
-        </ThemeProvider>
-      </React.StrictMode>,
-    );
-  });
-
-  it('can fallback to findDOMNode in a StrictMode theme', () => {
-    const Div = () => <div />;
-    mount(
-      <ThemeProvider theme={createMuiStrictModeTheme()}>
-        <Fade appear in disableStrictModeCompat>
-          <Div />
-        </Fade>
-      </ThemeProvider>,
-    );
   });
 });
