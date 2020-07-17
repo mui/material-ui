@@ -7,7 +7,7 @@ import { Transition } from 'react-transition-group';
 import Fade from './Fade';
 
 describe('<Fade />', () => {
-  const mount = createMount();
+  const mount = createMount({ strict: true });
 
   const defaultProps = {
     in: true,

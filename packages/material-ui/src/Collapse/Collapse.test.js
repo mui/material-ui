@@ -10,7 +10,7 @@ import describeConformance from '../test-utils/describeConformance';
 import Collapse from './Collapse';
 
 describe('<Collapse />', () => {
-  const mount = createMount();
+  const mount = createMount({ strict: true });
   let classes;
   const defaultProps = {
     in: true,

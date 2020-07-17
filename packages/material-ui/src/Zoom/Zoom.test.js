@@ -7,7 +7,7 @@ import { Transition } from 'react-transition-group';
 import Zoom from './Zoom';
 
 describe('<Zoom />', () => {
-  const mount = createMount();
+  const mount = createMount({ strict: true });
 
   describeConformance(
     <Zoom in>

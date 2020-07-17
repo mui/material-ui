@@ -9,7 +9,7 @@ import Slide, { setTranslateValue } from './Slide';
 import { useForkRef } from '../utils';
 
 describe('<Slide />', () => {
-  const mount = createMount();
+  const mount = createMount({ strict: true });
   const defaultProps = {
     in: true,
     children: <div id="testChild" />,

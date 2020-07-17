@@ -15,7 +15,7 @@ const NoContent = React.forwardRef(() => {
 });
 
 describe('<ListItem />', () => {
-  const mount = createMount();
+  const mount = createMount({ strict: true });
   const render = createClientRender();
   let classes;
 
