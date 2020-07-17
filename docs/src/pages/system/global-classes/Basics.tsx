@@ -1,5 +1,5 @@
 import * as React from 'react';
-import GlobalCss from './GlobalCss';
+import { GlobalCss } from '@material-ui/system';
 import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles({

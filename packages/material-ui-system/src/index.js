@@ -21,3 +21,4 @@ export { default as style } from './style';
 export { default as typography } from './typography';
 export * from './typography';
 export { default as visuallyHidden } from './visuallyHidden';
+export { default as GlobalCss } from './GlobalCss/GlobalCss';
