@@ -131,8 +131,7 @@ function handleBlurVisible() {
 }
 
 export default function useIsFocusVisible() {
-  const ref = React.useCallback((instance) => {
-    const node = instance;
+  const ref = React.useCallback((node) => {
     if (node != null) {
       prepare(node.ownerDocument);
     }
