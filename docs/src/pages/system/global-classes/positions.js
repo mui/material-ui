@@ -1,6 +1,27 @@
 import combineWithBreakpoints from './combineWithBreakpoints';
 
-const values = [0, 0.5, 1, 1.5, 2, 2.5, 3, 4, 5, 6, 7, 8, 9, 11, 13, 15, 17];
+const values = [
+  0,
+  0.5,
+  1,
+  1.5,
+  2,
+  2.5,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15,
+  16,
+];
 
 export default function positions(theme) {
   const positions = {
@@ -13,17 +34,17 @@ export default function positions(theme) {
     'position-inherit': { position: 'inherit' },
   };
 
-  values.forEach((val, idx) => {
-    positions[`top-${idx}`] = {
+  values.forEach((val) => {
+    positions[`top-${val.toString().replace('.', '-')}`] = {
       top: theme.spacing(val),
     };
-    positions[`bottom-${idx}`] = {
+    positions[`bottom-${val.toString().replace('.', '-')}`] = {
       bottom: theme.spacing(val),
     };
-    positions[`right-${idx}`] = {
+    positions[`right-${val.toString().replace('.', '-')}`] = {
       right: theme.spacing(val),
     };
-    positions[`left-${idx}`] = {
+    positions[`left-${val.toString().replace('.', '-')}`] = {
       left: theme.spacing(val),
     };
   });

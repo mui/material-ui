@@ -16,7 +16,7 @@ export default function App() {
   return (
     <div className={classes.debug}>
       <GlobalCss />
-      <div className="m-2 p-4">
+      <div className="m-2 p-1-5">
         <div className="m-4 p-2"></div>
       </div>
     </div>
