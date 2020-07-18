@@ -11,7 +11,7 @@ export function capitalize(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-const isEmpty = (string) => {
+function isEmpty(string) {
   return string.length === 0;
 };
 
