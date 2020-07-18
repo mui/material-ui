@@ -1,5 +1,5 @@
-import { ComponentsPropsList } from './props';
 import { CSSProperties, CreateCSSProperties, PropsFunc } from '@material-ui/styles/withStyles';
+import { ComponentsPropsList } from './props';
 
 export type Variants = {
   [Name in keyof ComponentsPropsList]?: Array<{
