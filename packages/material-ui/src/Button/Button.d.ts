@@ -1,4 +1,3 @@
-import { PropTypes } from '..';
 import { OverridableStringUnion } from '@material-ui/types';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps, OverridableComponent, OverridableTypeMap } from '../OverridableComponent';

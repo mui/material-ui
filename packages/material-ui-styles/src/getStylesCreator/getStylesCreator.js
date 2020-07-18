@@ -13,7 +13,7 @@ export function capitalize(string) {
 
 function isEmpty(string) {
   return string.length === 0;
-};
+}
 
 const propsToClassKey = (matcher) => {
   const { variant, ...rest } = matcher;
