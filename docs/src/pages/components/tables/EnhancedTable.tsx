@@ -141,6 +141,23 @@ const headCells: HeadCell[] = [
   },
 ];
 
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      width: '100%',
+    },
+    paper: {
+      width: '100%',
+      marginBottom: theme.spacing(2),
+    },
+    table: {
+      minWidth: 750,
+    },
+    // TODO fix #20379.
+    sortSpan: visuallyHidden as CSSProperties,
+  }),
+);
+
 interface EnhancedTableProps {
   classes: ReturnType<typeof useStyles>;
   numSelected: number;
@@ -280,23 +297,6 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
     </Toolbar>
   );
 };
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: '100%',
-    },
-    paper: {
-      width: '100%',
-      marginBottom: theme.spacing(2),
-    },
-    table: {
-      minWidth: 750,
-    },
-    // TODO fix #20379.
-    sortSpan: visuallyHidden as CSSProperties,
-  }),
-);
 
 export default function EnhancedTable() {
   const classes = useStyles();

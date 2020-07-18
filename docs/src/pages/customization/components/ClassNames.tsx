@@ -3,11 +3,6 @@ import clsx from 'clsx';
 import Button from '@material-ui/core/Button';
 import { withStyles, WithStyles } from '@material-ui/core/styles';
 
-interface Props extends WithStyles<typeof styles> {
-  children?: React.ReactNode;
-  className?: string;
-}
-
 // We can inject some CSS into the DOM.
 const styles = {
   root: {
@@ -20,6 +15,11 @@ const styles = {
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
   },
 };
+
+interface Props extends WithStyles<typeof styles> {
+  children?: React.ReactNode;
+  className?: string;
+}
 
 function ClassNames(props: Props) {
   const { classes, children, className, ...other } = props;

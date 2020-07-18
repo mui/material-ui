@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { stub } from 'sinon';
 import { SheetsRegistry } from 'jss';
 import { Input } from '@material-ui/core';
-import createMount from 'test/utils/createMount';
+import { createClientRender, screen } from 'test/utils/createClientRender';
 import { isMuiElement } from '@material-ui/core/utils';
 import { createMuiTheme } from '@material-ui/core/styles';
 import StylesProvider from '../StylesProvider';
@@ -14,12 +14,7 @@ import withStyles from './withStyles';
 
 describe('withStyles', () => {
   // StrictModeViolation: uses makeStyles
-  const mount = createMount({ strict: false });
-  let generateClassName;
-
-  beforeEach(() => {
-    generateClassName = createGenerateClassName();
-  });
+  const render = createClientRender({ strict: false });
 
   it('hoist statics', () => {
     const Test = () => null;
@@ -45,9 +40,10 @@ describe('withStyles', () => {
         }
       }
       const StyledTarget = withStyles({})(TargetComponent);
-
       const ref = React.createRef();
-      mount(<StyledTarget ref={ref} />);
+
+      render(<StyledTarget ref={ref} />);
+
       expect(ref.current).to.be.instanceof(TargetComponent);
     });
 
@@ -55,9 +51,10 @@ describe('withStyles', () => {
       const StyledTarget = withStyles({})(
         React.forwardRef((props, ref) => <div {...props} ref={ref} />),
       );
-
       const ref = React.createRef();
-      mount(<StyledTarget ref={ref} />);
+
+      render(<StyledTarget ref={ref} />);
+
       expect(ref.current.nodeName).to.equal('DIV');
     });
   });
@@ -68,8 +65,10 @@ describe('withStyles', () => {
       foo: PropTypes.any,
     };
     const StyledComponent = withStyles({})(Test);
-    const wrapper = mount(<StyledComponent foo="bar" />);
-    expect(wrapper.text()).to.equal('bar');
+
+    const { container } = render(<StyledComponent foo="bar" />);
+
+    expect(container).to.have.text('bar');
   });
 
   it('should work with no theme', () => {
@@ -78,38 +77,44 @@ describe('withStyles', () => {
       foo: PropTypes.any,
     };
     const StyledComponent = withStyles({}, { name: 'Foo' })(Test);
-    const wrapper = mount(<StyledComponent foo="bar" />);
-    expect(wrapper.text()).to.equal('bar');
+
+    const { container } = render(<StyledComponent foo="bar" />);
+
+    expect(container).to.have.text('bar');
   });
 
   describe('integration', () => {
-    let sheetsRegistry;
-    const Empty = () => <div />;
-
-    beforeEach(() => {
-      sheetsRegistry = new SheetsRegistry();
-    });
-
     it('should run lifecycles with no theme', () => {
       const styles = { root: { display: 'flex' } };
-      const StyledComponent = withStyles(styles)(Empty);
-      const wrapper = mount(
+      const StyledComponent = withStyles(styles)(function Empty() {
+        return <div />;
+      });
+      const generateClassName = createGenerateClassName();
+      const sheetsRegistry = new SheetsRegistry();
+
+      const { setProps, unmount } = render(
         <ThemeProvider theme={createMuiTheme()}>
           <StylesProvider sheetsRegistry={sheetsRegistry} generateClassName={generateClassName}>
             <StyledComponent />
           </StylesProvider>
         </ThemeProvider>,
       );
+
       expect(sheetsRegistry.registry.length).to.equal(1);
       expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'Empty-root-1' });
-      wrapper.update();
+
+      setProps({});
+
       expect(sheetsRegistry.registry.length).to.equal(1);
       expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'Empty-root-1' });
-      wrapper.setProps({ theme: createMuiTheme() });
+
+      setProps({ theme: createMuiTheme() });
+
       expect(sheetsRegistry.registry.length).to.equal(1);
       expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'Empty-root-2' });
 
-      wrapper.unmount();
+      unmount();
+
       expect(sheetsRegistry.registry.length).to.equal(0);
     });
 
@@ -122,7 +127,7 @@ describe('withStyles', () => {
       const jssCallbackStub = stub().returns({});
       const styles = { root: jssCallbackStub };
       const StyledComponent = withStyles(styles)(MyComp);
-      mount(<StyledComponent mySuppliedProp={222} />);
+      render(<StyledComponent mySuppliedProp={222} />);
 
       expect(
         jssCallbackStub.calledWith({
@@ -134,9 +139,9 @@ describe('withStyles', () => {
 
     it('should support theme.props', () => {
       const styles = { root: { display: 'flex' } };
-      const StyledComponent = withStyles(styles, { name: 'MuiFoo' })(Empty);
+      const StyledComponent = withStyles(styles, { name: 'MuiFoo' })(({ foo }) => foo);
 
-      const wrapper = mount(
+      const { container } = render(
         <ThemeProvider
           theme={createMuiTheme({
             props: {
@@ -150,12 +155,11 @@ describe('withStyles', () => {
         </ThemeProvider>,
       );
 
-      expect(wrapper.find(Empty).props().foo).to.equal('bar');
-      wrapper.unmount();
+      expect(container).to.have.text('bar');
     });
 
     it('should use theme.props instead of defaultProps', () => {
-      const MuiFoo = () => <div />;
+      const MuiFoo = ({ foo }) => foo;
       MuiFoo.defaultProps = {
         foo: 'foo',
       };
@@ -163,7 +167,7 @@ describe('withStyles', () => {
       const styles = { root: { display: 'flex' } };
       const StyledComponent = withStyles(styles, { name: 'MuiFoo' })(MuiFoo);
 
-      const wrapper = mount(
+      const { container } = render(
         <ThemeProvider
           theme={createMuiTheme({
             props: {
@@ -177,33 +181,39 @@ describe('withStyles', () => {
         </ThemeProvider>,
       );
 
-      expect(wrapper.find(MuiFoo).props().foo).to.equal('bar');
-      wrapper.unmount();
+      expect(container).to.have.text('bar');
     });
 
     it('should work when depending on a theme', () => {
       const styles = (theme) => ({ root: { padding: theme.spacing(1) } });
-      const StyledComponent = withStyles(styles, { name: 'MuiTextField' })(Empty);
+      const StyledComponent = withStyles(styles, { name: 'MuiTextField' })(() => <div />);
+      const generateClassName = createGenerateClassName();
+      const sheetsRegistry = new SheetsRegistry();
 
-      const wrapper = mount(
+      const { setProps } = render(
         <ThemeProvider theme={createMuiTheme()}>
           <StylesProvider sheetsRegistry={sheetsRegistry} generateClassName={generateClassName}>
             <StyledComponent />
           </StylesProvider>
         </ThemeProvider>,
       );
+
       expect(sheetsRegistry.registry.length).to.equal(1);
       expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'MuiTextField-root' });
-      wrapper.setProps({ theme: createMuiTheme({ foo: 'bar' }) });
+
+      setProps({ theme: createMuiTheme({ foo: 'bar' }) });
+
       expect(sheetsRegistry.registry.length).to.equal(1);
       expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'MuiTextField-root' });
     });
 
     it('should support the overrides key', () => {
       const styles = { root: { padding: 8 } };
-      const StyledComponent = withStyles(styles, { name: 'MuiTextField' })(Empty);
+      const StyledComponent = withStyles(styles, { name: 'MuiTextField' })(() => <div />);
+      const generateClassName = createGenerateClassName();
+      const sheetsRegistry = new SheetsRegistry();
 
-      mount(
+      render(
         <ThemeProvider
           theme={createMuiTheme({
             overrides: {
@@ -228,16 +238,22 @@ describe('withStyles', () => {
     describe('options: disableGeneration', () => {
       it('should not generate the styles', () => {
         const styles = { root: { display: 'flex' } };
-        const StyledComponent = withStyles(styles)(Empty);
+        const StyledComponent = withStyles(styles)(({ classes }) => (
+          <div className={classes.root} data-testid="component" />
+        ));
+        const sheetsRegistry = new SheetsRegistry();
 
-        const wrapper = mount(
+        const { unmount } = render(
           <StylesProvider sheetsRegistry={sheetsRegistry} disableGeneration>
             <StyledComponent />
           </StylesProvider>,
         );
+
         expect(sheetsRegistry.registry.length).to.equal(0);
-        expect(wrapper.find(Empty).props().classes).to.deep.equal({});
-        wrapper.unmount();
+        expect(screen.getByTestId('component')).not.to.have.attribute('className');
+
+        unmount();
+
         expect(sheetsRegistry.registry.length).to.equal(0);
       });
     });
@@ -247,27 +263,29 @@ describe('withStyles', () => {
     it('should use the displayName', () => {
       const sheetsRegistry = new SheetsRegistry();
       // Uglified
-      const a = () => <div />;
+      const a = ({ classes }) => <div className={classes.root} data-testid="a" />;
       const StyledComponent1 = withStyles({ root: { padding: 1 } })(a);
-      const fooo = () => <div />;
+      const fooo = ({ classes }) => <div className={classes.root} data-testid="fooo" />;
       const StyledComponent2 = withStyles({ root: { padding: 1 } })(fooo);
-      const AppFrame = () => <div />;
+      const AppFrame = ({ classes }) => <div className={classes.root} data-testid="AppFrame" />;
       AppFrame.displayName = 'AppLayout';
       const StyledComponent3 = withStyles({ root: { padding: 1 } })(AppFrame);
 
-      mount(
+      function generateClassName(rule, sheet) {
+        return `name:${sheet.options.name},prefix:${sheet.options.classNamePrefix}`;
+      }
+
+      render(
         <StylesProvider sheetsRegistry={sheetsRegistry} generateClassName={generateClassName}>
           <StyledComponent1 />
           <StyledComponent2 />
           <StyledComponent3 />
         </StylesProvider>,
       );
-      expect(sheetsRegistry.registry[0].options.classNamePrefix).to.equal('a');
-      expect(sheetsRegistry.registry[0].options.name).to.equal(undefined);
-      expect(sheetsRegistry.registry[1].options.classNamePrefix).to.equal('fooo');
-      expect(sheetsRegistry.registry[1].options.name).to.equal(undefined);
-      expect(sheetsRegistry.registry[2].options.classNamePrefix).to.equal('AppLayout');
-      expect(sheetsRegistry.registry[2].options.name).to.equal('AppLayout');
+
+      expect(screen.getByTestId('a')).to.have.class('name:undefined,prefix:a');
+      expect(screen.getByTestId('fooo')).to.have.class('name:undefined,prefix:fooo');
+      expect(screen.getByTestId('AppFrame')).to.have.class('name:AppLayout,prefix:AppLayout');
     });
   });
 
@@ -280,16 +298,18 @@ describe('withStyles', () => {
   describe('option: withTheme', () => {
     it('should inject the theme', () => {
       const styles = { root: { padding: 1 } };
-      const StyledComponent = withStyles(styles, { withTheme: true })((props) => (
-        <option theme={props.theme}>themed</option>
-      ));
+      let propsTheme;
+      const StyledComponent = withStyles(styles, { withTheme: true })((props) => {
+        propsTheme = props.theme;
+        return null;
+      });
       const theme = {};
-      const wrapper = mount(
+      render(
         <ThemeProvider theme={theme}>
           <StyledComponent />
         </ThemeProvider>,
       );
-      expect(wrapper.find('option').props().theme).to.equal(theme);
+      expect(propsTheme).to.equal(theme);
     });
   });
 });

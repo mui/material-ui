@@ -75,6 +75,7 @@ const ToggleButton = React.forwardRef(function ToggleButton(props, ref) {
     onChange,
     onClick,
     selected,
+    // eslint-disable-next-line react/prop-types
     size = 'medium',
     value,
     ...other
@@ -119,15 +120,19 @@ const ToggleButton = React.forwardRef(function ToggleButton(props, ref) {
 });
 
 ToggleButton.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * The content of the button.
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -142,6 +147,9 @@ ToggleButton.propTypes = {
   disableFocusRipple: PropTypes.bool,
   /**
    * If `true`, the ripple effect will be disabled.
+   *
+   * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
+   * to highlight the element by applying separate styles with the `focusVisibleClassName`.
    */
   disableRipple: PropTypes.bool,
   /**
@@ -156,10 +164,6 @@ ToggleButton.propTypes = {
    * If `true`, the button will be rendered in an active state.
    */
   selected: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
   /**
    * The value to associate with the button when selected in a
    * ToggleButtonGroup.

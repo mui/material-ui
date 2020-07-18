@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { StandardProps } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface ListSubheaderTypeMap<P = {}, D extends React.ElementType = 'li'> {

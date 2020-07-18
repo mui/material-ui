@@ -6,7 +6,6 @@ import { HTMLElementType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import Popover from '../Popover';
 import MenuList from '../MenuList';
-import * as ReactDOM from 'react-dom';
 import setRef from '../utils/setRef';
 import useTheme from '../styles/useTheme';
 
@@ -120,8 +119,7 @@ const Menu = React.forwardRef(function Menu(props, ref) {
     if (index === activeItemIndex) {
       return React.cloneElement(child, {
         ref: (instance) => {
-          // #StrictMode ready
-          contentAnchorRef.current = ReactDOM.findDOMNode(instance);
+          contentAnchorRef.current = instance;
           setRef(child.ref, instance);
         },
       });

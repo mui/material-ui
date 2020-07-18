@@ -3,7 +3,17 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface ToolbarTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
+    /**
+     * Toolbar children, usually a mixture of `IconButton`, `Button` and `Typography`.
+     */
+    children?: React.ReactNode;
+    /**
+     * If `true`, disables gutter padding.
+     */
     disableGutters?: boolean;
+    /**
+     * The variant to use.
+     */
     variant?: 'regular' | 'dense';
   };
   defaultComponent: D;

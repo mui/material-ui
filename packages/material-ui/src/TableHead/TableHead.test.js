@@ -2,8 +2,8 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
-import describeConformance from '../test-utils/describeConformance';
 import { createClientRender } from 'test/utils/createClientRender';
+import describeConformance from '../test-utils/describeConformance';
 import TableHead from './TableHead';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 

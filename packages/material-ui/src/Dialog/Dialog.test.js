@@ -3,8 +3,8 @@ import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
-import describeConformance from '../test-utils/describeConformance';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
+import describeConformance from '../test-utils/describeConformance';
 import Modal from '../Modal';
 import Dialog from './Dialog';
 
@@ -34,6 +34,14 @@ function clickBackdrop(container) {
 
 describe('<Dialog />', () => {
   let clock;
+  beforeEach(() => {
+    clock = useFakeTimers();
+  });
+
+  afterEach(() => {
+    clock.restore();
+  });
+
   // StrictModeViolation: uses Fade
   const mount = createMount({ strict: false });
   let classes;
@@ -41,14 +49,6 @@ describe('<Dialog />', () => {
 
   before(() => {
     classes = getClasses(<Dialog>foo</Dialog>);
-  });
-
-  beforeEach(() => {
-    clock = useFakeTimers();
-  });
-
-  afterEach(() => {
-    clock.restore();
   });
 
   describeConformance(<Dialog open>foo</Dialog>, () => ({

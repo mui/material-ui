@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Collapse from '../Collapse';
 import withStyles from '../styles/withStyles';
+import StepperContext from '../Stepper/StepperContext';
+import StepContext from '../Step/StepContext';
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
@@ -25,28 +27,17 @@ export const styles = (theme) => ({
 
 const StepContent = React.forwardRef(function StepContent(props, ref) {
   const {
-    // eslint-disable-next-line react/prop-types
-    active,
-    // eslint-disable-next-line react/prop-types
-    alternativeLabel,
     children,
     classes,
     className,
-    // eslint-disable-next-line react/prop-types
-    completed,
-    // eslint-disable-next-line react/prop-types
-    expanded,
-    // eslint-disable-next-line react/prop-types
-    last,
-    // eslint-disable-next-line react/prop-types
-    optional,
-    // eslint-disable-next-line react/prop-types
-    orientation,
     TransitionComponent = Collapse,
     transitionDuration: transitionDurationProp = 'auto',
     TransitionProps,
     ...other
   } = props;
+
+  const { orientation } = React.useContext(StepperContext);
+  const { active, last, expanded } = React.useContext(StepContext);
 
   if (process.env.NODE_ENV !== 'production') {
     if (orientation !== 'vertical') {

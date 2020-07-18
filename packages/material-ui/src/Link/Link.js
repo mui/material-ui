@@ -1,9 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { elementTypeAcceptingRef } from '@material-ui/utils';
 import capitalize from '../utils/capitalize';
 import withStyles from '../styles/withStyles';
-import { elementTypeAcceptingRef } from '@material-ui/utils';
 import useIsFocusVisible from '../utils/useIsFocusVisible';
 import useForkRef from '../utils/useForkRef';
 import Typography from '../Typography';

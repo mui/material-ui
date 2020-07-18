@@ -7,7 +7,6 @@ import ButtonBase from '../ButtonBase';
 import isMuiElement from '../utils/isMuiElement';
 import useForkRef from '../utils/useForkRef';
 import ListContext from '../List/ListContext';
-import * as ReactDOM from 'react-dom';
 
 export const styles = (theme) => ({
   /* Styles applied to the (normally root) `component` element. May be wrapped by a `container`. */
@@ -112,6 +111,7 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
   const childContext = {
     dense: dense || context.dense || false,
     alignItems,
+    disableGutters,
   };
 
   const listItemRef = React.useRef(null);
@@ -131,11 +131,7 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
   const hasSecondaryAction =
     children.length && isMuiElement(children[children.length - 1], ['ListItemSecondaryAction']);
 
-  const handleOwnRef = React.useCallback((instance) => {
-    // #StrictMode ready
-    listItemRef.current = ReactDOM.findDOMNode(instance);
-  }, []);
-  const handleRef = useForkRef(handleOwnRef, ref);
+  const handleRef = useForkRef(listItemRef, ref);
 
   const componentProps = {
     className: clsx(

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import * as path from 'path';
 import * as fse from 'fs-extra';
 import * as ttp from 'typescript-to-proptypes';
@@ -18,22 +19,10 @@ enum GenerateResult {
   TODO,
 }
 
-const todoComponents = [
-  // lab
-  'PaginationItem',
-  'Skeleton',
-  'TabList',
-  'ToggleButton',
-  // core
-  'RootRef',
-  'Slider',
-  'StepButton',
-  'SvgIcon',
-  'SwipeableDrawer',
-  'Tab',
-  'Toolbar',
-  'Typography',
-];
+/**
+ * Includes component names for which we can't generate .propTypes from the TypeScript types.
+ */
+const todoComponents: string[] = [];
 
 const useExternalPropsFromInputBase = [
   'autoComplete',
@@ -92,6 +81,16 @@ const useExternalDocumentation: Record<string, string[]> = {
     'required',
     'value',
   ],
+  SwipeableDrawer: [
+    'anchor',
+    'hideBackdrop',
+    'ModalProps',
+    'PaperProps',
+    'transitionDuration',
+    'variant',
+  ],
+  Tab: ['disableRipple'],
+  ToggleButton: ['disableRipple'],
 };
 const transitionCallbacks = [
   'onEnter',
@@ -122,6 +121,7 @@ const ignoreExternalDocumentation: Record<string, string[]> = {
   Menu: ['PaperProps'],
   MenuItem: ['button', 'disabled', 'selected'],
   Slide: transitionCallbacks,
+  SwipeableDrawer: ['anchor', 'hideBackdrop', 'ModalProps', 'PaperProps', 'variant'],
   TextField: ['hiddenLabel'],
   Zoom: transitionCallbacks,
 };
@@ -140,6 +140,8 @@ const getSortLiteralUnions: ttp.InjectOptions['getSortLiteralUnions'] = (compone
   ) {
     return sortBreakpointsLiteralByViewportAscending;
   }
+
+  return undefined;
 };
 
 const tsconfig = ttp.loadConfig(path.resolve(__dirname, '../tsconfig.json'));
@@ -207,24 +209,18 @@ async function generateProptypes(
 
       return generated;
     },
-    shouldInclude: ({ component, prop, usedProps }) => {
+    shouldInclude: ({ component, prop }) => {
       if (prop.name === 'children') {
         return true;
       }
       let shouldDocument;
 
-      const documentRegExp = new RegExp(/\r?\n?@document/);
-      if (prop.jsDoc && documentRegExp.test(prop.jsDoc)) {
-        prop.jsDoc = prop.jsDoc.replace(documentRegExp, '');
-        shouldDocument = true;
-      } else {
-        prop.filenames.forEach((filename) => {
-          const isExternal = filename !== tsFile;
-          if (!isExternal) {
-            shouldDocument = true;
-          }
-        });
-      }
+      prop.filenames.forEach((filename) => {
+        const isExternal = filename !== tsFile;
+        if (!isExternal) {
+          shouldDocument = true;
+        }
+      });
 
       const { name: componentName } = component;
       if (

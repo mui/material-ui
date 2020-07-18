@@ -98,15 +98,20 @@ const Tab = React.forwardRef(function Tab(props, ref) {
     className,
     disabled = false,
     disableFocusRipple = false,
+    // eslint-disable-next-line react/prop-types
     fullWidth,
     icon,
+    // eslint-disable-next-line react/prop-types
     indicator,
     label,
     onChange,
     onClick,
     onFocus,
+    // eslint-disable-next-line react/prop-types
     selected,
+    // eslint-disable-next-line react/prop-types
     selectionFollowsFocus,
+    // eslint-disable-next-line react/prop-types
     textColor = 'inherit',
     value,
     wrapped = false,
@@ -167,6 +172,10 @@ const Tab = React.forwardRef(function Tab(props, ref) {
 });
 
 Tab.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * This prop isn't supported.
    * Use the `component` prop if you need to change the children structure.
@@ -176,7 +185,7 @@ Tab.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -191,22 +200,15 @@ Tab.propTypes = {
   disableFocusRipple: PropTypes.bool,
   /**
    * If `true`, the ripple effect will be disabled.
+   *
+   * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
+   * to highlight the element by applying separate styles with the `focusVisibleClassName`.
    */
   disableRipple: PropTypes.bool,
   /**
-   * @ignore
-   */
-  fullWidth: PropTypes.bool,
-  /**
    * The icon element.
    */
-  icon: PropTypes.node,
-  /**
-   * @ignore
-   * For server-side rendering consideration, we let the selected tab
-   * render the indicator.
-   */
-  indicator: PropTypes.node,
+  icon: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
   /**
    * The label element.
    */
@@ -223,18 +225,6 @@ Tab.propTypes = {
    * @ignore
    */
   onFocus: PropTypes.func,
-  /**
-   * @ignore
-   */
-  selected: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  selectionFollowsFocus: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  textColor: PropTypes.oneOf(['secondary', 'primary', 'inherit']),
   /**
    * You can provide your own value. Otherwise, we fallback to the child position index.
    */

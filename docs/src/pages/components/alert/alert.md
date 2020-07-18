@@ -43,7 +43,7 @@ This will override the default icon for the specified severity.
 
 You can change the default severity to icon mapping with the `iconMapping` prop. This can be defined globally using [theme customization](/customization/globals/#default-props).
 
-Setting the icon prop to false will remove the icon altogether.
+Setting the icon prop to `false` will remove the icon altogether.
 
 {{"demo": "pages/components/alert/IconAlerts.js"}}
 

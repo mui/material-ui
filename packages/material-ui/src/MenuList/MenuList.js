@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
-import * as ReactDOM from 'react-dom';
 import ownerDocument from '../utils/ownerDocument';
 import List from '../List';
 import getScrollbarSize from '../utils/getScrollbarSize';
@@ -200,11 +199,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     }
   };
 
-  const handleOwnRef = React.useCallback((instance) => {
-    // #StrictMode ready
-    listRef.current = ReactDOM.findDOMNode(instance);
-  }, []);
-  const handleRef = useForkRef(handleOwnRef, ref);
+  const handleRef = useForkRef(listRef, ref);
 
   /**
    * the index of the item should receive focus

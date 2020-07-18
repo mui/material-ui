@@ -26,7 +26,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">children</span> | <span class="prop-type">Array&lt;element&gt;</span> |  |  |
+| <span class="prop-name">children</span> | <span class="prop-type">Array&lt;element&gt;</span> |  | A list of `<Tab />` elements. |
 
 The `ref` is forwarded to the root element.
 

@@ -1,20 +1,21 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers, stub } from 'sinon';
-import ScrollbarSize from './ScrollbarSize';
 import { createClientRender } from 'test/utils/createClientRender';
+import ScrollbarSize from './ScrollbarSize';
 
 describe('<ScrollbarSize />', () => {
-  const render = createClientRender();
   let clock;
 
-  before(() => {
+  beforeEach(() => {
     clock = useFakeTimers();
   });
 
-  after(() => {
+  afterEach(() => {
     clock.restore();
   });
+
+  const render = createClientRender();
 
   describe('mount', () => {
     it('should call on initial load', () => {

@@ -273,7 +273,7 @@ function AppFrame(props) {
                 hrefLang="en"
                 onClick={handleLanguageMenuClose}
               >
-                {`${t('helpToTranslate')}`}
+                {t('helpToTranslate')}
               </MenuItem>
             </Menu>
           </NoSsr>

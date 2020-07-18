@@ -4,7 +4,7 @@ import { spy } from 'sinon';
 import MenuList from '@material-ui/core/MenuList';
 import MenuItem from '@material-ui/core/MenuItem';
 import Divider from '@material-ui/core/Divider';
-import { createClientRender, fireEvent, screen } from 'test/utils/createClientRender';
+import { act, createClientRender, fireEvent, screen } from 'test/utils/createClientRender';
 
 describe('<MenuList> integration', () => {
   const render = createClientRender();
@@ -121,9 +121,12 @@ describe('<MenuList> integration', () => {
       );
 
       expect(document.activeElement).not.to.equal(null);
-      document.activeElement.blur();
-      const menuitems = getAllByRole('menuitem');
 
+      act(() => {
+        document.activeElement.blur();
+      });
+
+      const menuitems = getAllByRole('menuitem');
       expect(handleBlur.callCount).to.equal(1);
       expect(menuitems[0]).to.have.property('tabIndex', 0);
       expect(menuitems[1]).to.have.property('tabIndex', -1);
@@ -445,7 +448,9 @@ describe('<MenuList> integration', () => {
           <MenuItem>Arcansas</MenuItem>
         </MenuList>,
       );
-      getByText('Arizona').focus();
+      act(() => {
+        getByText('Arizona').focus();
+      });
 
       fireEvent.keyDown(getByText('Arizona'), { key: 'a' });
 
@@ -509,7 +514,9 @@ describe('<MenuList> integration', () => {
         </MenuList>,
       );
       const button = getByText('Focusable Descendant');
-      button.focus();
+      act(() => {
+        button.focus();
+      });
 
       fireEvent.keyDown(button, { key: 'z' });
 

@@ -1,5 +1,5 @@
-import { getDependencies } from './helpers';
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
+import { getDependencies } from './helpers';
 
 function jsDemo(demoData) {
   return {

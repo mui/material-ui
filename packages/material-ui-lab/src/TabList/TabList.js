@@ -25,6 +25,13 @@ const TabList = React.forwardRef(function TabList(props, ref) {
 });
 
 TabList.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
+  /**
+   * A list of `<Tab />` elements.
+   */
   children: PropTypes.arrayOf(PropTypes.element),
 };
 

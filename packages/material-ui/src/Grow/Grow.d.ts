@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Omit } from '@material-ui/types';
-import { Theme } from '../styles/createMuiTheme';
 import { TransitionProps } from '../transitions/transition';
 
 export interface GrowProps extends Omit<TransitionProps, 'timeout'> {
@@ -8,12 +7,6 @@ export interface GrowProps extends Omit<TransitionProps, 'timeout'> {
    * A single child content element.
    */
   children?: React.ReactElement<any, any>;
-  /**
-   * Enable this prop if you encounter 'Function components cannot be given refs',
-   * use `unstable_createStrictModeTheme`,
-   * and can't forward the ref in the child component.
-   */
-  disableStrictModeCompat?: boolean;
   /**
    * If `true`, show the component; triggers the enter or exit animation.
    */

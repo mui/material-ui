@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import * as React from 'react';
-import findOutermostIntrinsic from './findOutermostIntrinsic';
 import ReactTestRenderer from 'react-test-renderer';
+import findOutermostIntrinsic from './findOutermostIntrinsic';
 import testRef from './testRef';
 
 /**
@@ -178,9 +178,9 @@ const fullSuite = {
  * @property {Record<string, string>} classes - `classes` of the component provided by `@material-ui/styles`
  * @property {import('react').ElementType} inheritComponent - The element type that receives spread props.
  * @property {function} mount - Should be a return value from createMount
- * @property {(keyof typeof fullSuite)[]} [only] - If specified only run the tests listed
+ * @property {Array<keyof typeof fullSuite>} [only] - If specified only run the tests listed
  * @property {any} refInstanceof - `ref` will be an instanceof this constructor.
- * @property {keyof typeof fullSuite[]} [skip] - Skip the specified tests
+ * @property {Array<keyof typeof fullSuite>} [skip] - Skip the specified tests
  * @property {string} [testComponentPropWith] - The host component that should be rendered instead.
  */
 

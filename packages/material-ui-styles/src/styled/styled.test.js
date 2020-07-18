@@ -1,10 +1,10 @@
 import React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import styled from './styled';
 import { SheetsRegistry } from 'jss';
 import createMount from 'test/utils/createMount';
 import { createGenerateClassName } from '@material-ui/styles';
+import styled from './styled';
 import StylesProvider from '../StylesProvider';
 
 describe('styled', () => {

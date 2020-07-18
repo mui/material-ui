@@ -28,17 +28,29 @@ const [queryDescriptionOf, , getDescriptionOf, , findDescriptionOf] = buildQueri
 const customQueries = { queryDescriptionOf, getDescriptionOf, findDescriptionOf };
 
 /**
+ * @typedef {object} RenderOptions
+ * @property {HTMLElement} [options.baseElement] - https://testing-library.com/docs/react-testing-library/api#baseelement-1
+ * @property {HTMLElement} [options.container] - https://testing-library.com/docs/react-testing-library/api#container
+ * @property {boolean} [options.disableUnnmount] - if true does not cleanup before mount
+ * @property {boolean} [options.hydrate] - https://testing-library.com/docs/react-testing-library/api#hydrate
+ * @property {boolean} [options.strict] - wrap in React.StrictMode?
+ */
+
+/**
  *
  * @param {React.ReactElement} element
- * @param {object} [options]
- * @param {boolean} [options.baseElement] - https://testing-library.com/docs/react-testing-library/api#baseelement-1
- * @param {boolean} [options.disableUnnmount] - if true does not cleanup before mount
- * @param {boolean} [options.strict] - wrap in React.StrictMode?
+ * @param {RenderOptions} [options]
  * @returns {import('@testing-library/react').RenderResult<typeof queries & typeof customQueries> & { setProps(props: object): void}}
  * TODO: type return RenderResult in setProps
  */
 function clientRender(element, options = {}) {
-  const { baseElement, strict = true, wrapper: InnerWrapper = React.Fragment } = options;
+  const {
+    baseElement,
+    container,
+    hydrate,
+    strict = true,
+    wrapper: InnerWrapper = React.Fragment,
+  } = options;
 
   const Mode = strict ? React.StrictMode : React.Fragment;
   function Wrapper({ children }) {
@@ -52,6 +64,8 @@ function clientRender(element, options = {}) {
 
   const result = testingLibraryRender(element, {
     baseElement,
+    container,
+    hydrate,
     queries: { ...queries, ...customQueries },
     wrapper: Wrapper,
   });
@@ -76,10 +90,27 @@ function clientRender(element, options = {}) {
   return result;
 }
 
+/**
+ * @param {RenderOptions} globalOptions
+ * @returns {clientRender}
+ */
 export function createClientRender(globalOptions = {}) {
   const { strict: globalStrict } = globalOptions;
 
+  // save stack to re-use in async afterEach
+  const { stack: createClientRenderStack } = new Error();
   afterEach(async () => {
+    if (setTimeout.hasOwnProperty('clock')) {
+      const error = Error(
+        "Can't cleanup before fake timers are restored.\n" +
+          'Be sure to:\n' +
+          '  1. Restore the clock in `afterEach` instead of `after`.\n' +
+          '  2. Move the test hook to restore the clock before the call to `createClientRender()`.',
+      );
+      // Use saved stack otherwise the stack trace will not include the test location.
+      error.stack = createClientRenderStack;
+      throw error;
+    }
     // If this issues an act() warning you probably didn't
     // wait for an async event in your test (or didn't wrap it in act() at all).
     // please wait for every update in your test and make appropriate assertions

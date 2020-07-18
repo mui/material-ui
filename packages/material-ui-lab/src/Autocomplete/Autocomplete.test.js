@@ -5,10 +5,10 @@ import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import { spy } from 'sinon';
 import { act, createClientRender, fireEvent, screen } from 'test/utils/createClientRender';
-import { createFilterOptions } from '../useAutocomplete/useAutocomplete';
-import Autocomplete from './Autocomplete';
 import TextField from '@material-ui/core/TextField';
 import Chip from '@material-ui/core/Chip';
+import { createFilterOptions } from '../useAutocomplete/useAutocomplete';
+import Autocomplete from './Autocomplete';
 
 describe('<Autocomplete />', () => {
   const mount = createMount();
@@ -37,10 +37,17 @@ describe('<Autocomplete />', () => {
         <Autocomplete {...defaultProps} renderInput={(params) => <TextField {...params} />} />,
       );
       const input = getByRole('textbox');
-      input.focus();
-      fireEvent.change(document.activeElement, { target: { value: 'a' } });
+
+      act(() => {
+        input.focus();
+        fireEvent.change(document.activeElement, { target: { value: 'a' } });
+      });
+
       expect(input.value).to.equal('a');
-      document.activeElement.blur();
+
+      act(() => {
+        document.activeElement.blur();
+      });
       expect(input.value).to.equal('');
     });
 
@@ -215,11 +222,14 @@ describe('<Autocomplete />', () => {
       );
 
       expect(container.textContent).to.equal('onetwo+1');
-      expect(getAllByRole('button')).to.have.lengthOf(4);
+      // include hidden clear button because JSDOM thinks it's visible
+      expect(getAllByRole('button', { hidden: true })).to.have.lengthOf(4);
 
-      getByRole('textbox').focus();
+      act(() => {
+        getByRole('textbox').focus();
+      });
       expect(container.textContent).to.equal('onetwothree');
-      expect(getAllByRole('button')).to.have.lengthOf(5);
+      expect(getAllByRole('button', { hidden: false })).to.have.lengthOf(5);
     });
 
     it('show 0 item on close when set 0 to limitTags', () => {
@@ -235,11 +245,14 @@ describe('<Autocomplete />', () => {
       );
 
       expect(container.textContent).to.equal('+3');
-      expect(getAllByRole('button')).to.have.lengthOf(2);
+      // include hidden clear button because JSDOM thinks it's visible
+      expect(getAllByRole('button', { hidden: true })).to.have.lengthOf(2);
 
-      getByRole('textbox').focus();
+      act(() => {
+        getByRole('textbox').focus();
+      });
       expect(container.textContent).to.equal('onetwothree');
-      expect(getAllByRole('button')).to.have.lengthOf(5);
+      expect(getAllByRole('button', { hidden: false })).to.have.lengthOf(5);
     });
   });
 
@@ -290,7 +303,9 @@ describe('<Autocomplete />', () => {
       fireEvent.change(textbox, { target: { value: 'o' } });
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       fireEvent.change(textbox, { target: { value: 'oo' } });
-      textbox.blur();
+      act(() => {
+        textbox.blur();
+      });
 
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.deep.equal('oo');
@@ -312,9 +327,11 @@ describe('<Autocomplete />', () => {
       );
       const textbox = screen.getByRole('textbox');
 
-      fireEvent.change(textbox, { target: { value: 't' } });
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      textbox.blur();
+      act(() => {
+        fireEvent.change(textbox, { target: { value: 't' } });
+        fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+        textbox.blur();
+      });
 
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.deep.equal(options);
@@ -332,8 +349,12 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
+
       fireEvent.change(document.activeElement, { target: { value: 'a' } });
-      document.activeElement.blur();
+      act(() => {
+        document.activeElement.blur();
+      });
+
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.deep.equal(['a']);
     });
@@ -349,9 +370,12 @@ describe('<Autocomplete />', () => {
         />,
       );
       const input = getByRole('textbox');
-      input.focus();
-      document.activeElement.blur();
-      input.focus();
+
+      act(() => {
+        input.focus();
+        document.activeElement.blur();
+        input.focus();
+      });
     });
 
     it('should remove the last option', () => {
@@ -428,6 +452,69 @@ describe('<Autocomplete />', () => {
 
       fireEvent.keyDown(firstSelectedValue, { key: 'ArrowRight' });
       expect(textbox).toHaveFocus();
+    });
+
+    it('has no textbox value', () => {
+      render(
+        <Autocomplete
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
+          multiple
+          value={['one', 'two']}
+        />,
+      );
+
+      expect(screen.getByRole('textbox')).to.have.property('value', '');
+    });
+
+    it('should fail validation if a required field has no value', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // Enable once https://github.com/jsdom/jsdom/issues/2898 is resolved
+        this.skip();
+      }
+
+      const handleSubmit = spy((event) => event.preventDefault());
+      render(
+        <form onSubmit={handleSubmit}>
+          <Autocomplete
+            multiple
+            options={['one', 'two']}
+            renderInput={(params) => <TextField {...params} required />}
+            value={[]}
+          />
+          <button type="submit">Submit</button>
+        </form>,
+      );
+
+      screen.getByRole('button', { name: 'Submit' }).click();
+
+      expect(handleSubmit.callCount).to.equal(0);
+    });
+
+    it('should fail validation if a required field has a value', function test() {
+      // Unclear how native Constraint validation can be enabled for `multiple`
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // Enable once https://github.com/jsdom/jsdom/issues/2898 is resolved
+        // The test is passing in JSDOM but form validation is buggy in JSDOM so we rather skip than have false confidence
+        this.skip();
+      }
+
+      const handleSubmit = spy((event) => event.preventDefault());
+      render(
+        <form onSubmit={handleSubmit}>
+          <Autocomplete
+            multiple
+            options={['one', 'two']}
+            renderInput={(params) => <TextField {...params} required />}
+            value={['one']}
+          />
+          <button type="submit">Submit</button>
+        </form>,
+      );
+
+      screen.getByRole('button', { name: 'Submit' }).click();
+
+      expect(handleSubmit.callCount).to.equal(0);
     });
   });
 
@@ -544,12 +631,17 @@ describe('<Autocomplete />', () => {
       const listbox = queryByRole('listbox', { hidden: true });
       expect(listbox).to.equal(null);
 
-      const buttons = getAllByRole('button');
-      expect(buttons).to.have.length(2);
-      expect(buttons[0]).toHaveAccessibleName('Clear');
-      expect(buttons[0]).to.have.attribute('title', 'Clear');
+      const buttons = getAllByRole('button', { hidden: true });
+      if (!/jsdom/.test(window.navigator.userAgent)) {
+        expect(buttons[0]).toBeInaccessible();
+      } else {
+        // JSDOM thinks the "Clear"-button has `visibility: visible`
+        // Leaving this to be notified once the JSDOM is fixed.
+        expect(buttons[0]).not.toBeInaccessible();
+      }
       expect(buttons[1]).toHaveAccessibleName('Open');
       expect(buttons[1]).to.have.attribute('title', 'Open');
+      expect(buttons).to.have.length(2);
       buttons.forEach((button) => {
         expect(button, 'button is not in tab order').to.have.property('tabIndex', -1);
       });
@@ -586,12 +678,13 @@ describe('<Autocomplete />', () => {
         expect(listbox).to.contain(option);
       });
 
-      const buttons = getAllByRole('button');
-      expect(buttons).to.have.length(2);
-      expect(buttons[0]).toHaveAccessibleName('Clear');
-      expect(buttons[0]).to.have.attribute('title', 'Clear');
+      const buttons = getAllByRole('button', { hidden: true });
+      if (!/jsdom/.test(window.navigator.userAgent)) {
+        expect(buttons[0]).toBeInaccessible();
+      }
       expect(buttons[1]).toHaveAccessibleName('Close');
       expect(buttons[1]).to.have.attribute('title', 'Close');
+      expect(buttons).to.have.length(2);
       buttons.forEach((button) => {
         expect(button, 'button is not in tab order').to.have.property('tabIndex', -1);
       });
@@ -790,7 +883,10 @@ describe('<Autocomplete />', () => {
       fireEvent.click(textbox);
       expect(combobox).to.have.attribute('aria-expanded', 'false');
 
-      document.activeElement.blur();
+      act(() => {
+        document.activeElement.blur();
+      });
+
       expect(combobox).to.have.attribute('aria-expanded', 'false');
       expect(textbox).not.toHaveFocus();
 
@@ -1302,9 +1398,12 @@ describe('<Autocomplete />', () => {
       const textbox = getByRole('textbox');
       fireEvent.click(textbox);
       expect(textbox).toHaveFocus();
-      textbox.blur();
 
+      act(() => {
+        textbox.blur();
+      });
       fireEvent.click(queryByTitle('Open'));
+
       expect(textbox).toHaveFocus();
     });
 
@@ -1622,7 +1721,9 @@ describe('<Autocomplete />', () => {
 
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      textbox.blur();
+      act(() => {
+        textbox.blur();
+      });
 
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.equal(options[0]);

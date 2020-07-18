@@ -119,19 +119,19 @@ import { createStyles, makeStyles } from '@material-ui/styles';
       color: theme.palette.primary.main,
     }),
   }));
+}
 
-  {
-    // If any generic is provided, inferrence breaks.
-    // If the proposal https://github.com/Microsoft/TypeScript/issues/26242 goes through, we can fix this.
-    const useStyles = makeStyles<Theme>((theme) => ({
-      root: {
-        background: 'blue',
-      },
-    }));
+function MyComponent() {
+  // If any generic is provided, inferrence breaks.
+  // If the proposal https://github.com/Microsoft/TypeScript/issues/26242 goes through, we can fix this.
+  const useStyles = makeStyles<Theme>((theme) => ({
+    root: {
+      background: 'blue',
+    },
+  }));
 
-    const classes = useStyles();
+  const classes = useStyles();
 
-    // This doesn't fail, because inferrence is broken
-    classes.other;
-  }
+  // This doesn't fail, because inferrence is broken
+  classes.other;
 }

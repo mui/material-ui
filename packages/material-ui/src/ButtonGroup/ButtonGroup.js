@@ -8,7 +8,7 @@ import withStyles from '../styles/withStyles';
 import Button from '../Button';
 
 // Force a side effect so we don't have any override priority issue.
-// eslint-disable-next-line no-unused-expressions
+// eslint-disable-next-line @typescript-eslint/no-unused-expressions
 Button.styles;
 
 export const styles = (theme) => ({

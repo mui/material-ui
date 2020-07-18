@@ -6,7 +6,7 @@ import Switch from '@material-ui/core/Switch';
 
 interface Styles {
   color: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   [key: string]: any;
 }
 
@@ -14,10 +14,6 @@ interface ColorsMapping {
   default: string;
   blue: string;
   [key: string]: any;
-}
-
-interface ButtonStyles extends WithStyles<typeof styles> {
-  color: string;
 }
 
 // Like https://github.com/brunobertolini/styled-by
@@ -42,6 +38,10 @@ const styles = {
     }),
   },
 };
+
+interface ButtonStyles extends WithStyles<typeof styles> {
+  color: string;
+}
 
 const StyledButton = withStyles(
   styles,

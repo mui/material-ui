@@ -10,5 +10,8 @@ const integrationContext = require.context(
 );
 integrationContext.keys().forEach(integrationContext);
 
-const unitContext = require.context('../packages/material-ui/src/', true, /\.test\.js$/);
-unitContext.keys().forEach(unitContext);
+const coreUnitContext = require.context('../packages/material-ui/src/', true, /\.test\.js$/);
+coreUnitContext.keys().forEach(coreUnitContext);
+
+const labUnitContext = require.context('../packages/material-ui-lab/src/', true, /\.test\.js$/);
+labUnitContext.keys().forEach(labUnitContext);

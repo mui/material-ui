@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Orientation } from '../Stepper';
 import { ButtonBaseTypeMap, ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 
@@ -10,17 +9,22 @@ export type StepButtonIcon = React.ReactNode;
 
 export type StepButtonTypeMap<P, D extends React.ElementType> = ExtendButtonBaseTypeMap<{
   props: P & {
-    active?: boolean;
-    alternativeLabel?: boolean;
-    completed?: boolean;
-    disabled?: boolean;
+    /**
+     * Can be a `StepLabel` or a node to place inside `StepLabel` as children.
+     */
+    children?: React.ReactNode;
+    /**
+     * The icon displayed by the step label.
+     */
     icon?: React.ReactNode;
-    last?: boolean;
+    /**
+     * The optional node to display.
+     */
     optional?: React.ReactNode;
-    orientation?: Orientation;
   };
   defaultComponent: D;
   classKey: StepButtonClasskey;
+  ignoredProps: 'disabled';
 }>;
 
 /**

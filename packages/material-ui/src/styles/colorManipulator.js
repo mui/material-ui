@@ -1,5 +1,5 @@
 import MuiError from '@material-ui/utils/macros/MuiError.macro';
-/* eslint-disable no-use-before-define */
+/* eslint-disable @typescript-eslint/no-use-before-define */
 
 /**
  * Returns a number whose value is limited to the given range.

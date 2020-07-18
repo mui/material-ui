@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { PopoverProps } from '../Popover';
 import { MenuListProps } from '../MenuList';
-import { PaperProps } from '../Paper';
 import { StandardProps } from '..';
 import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
 
@@ -10,7 +9,6 @@ export interface MenuProps
   /**
    * A HTML element, or a function that returns it.
    * It's used to set the position of the menu.
-   * @document
    */
   anchorEl?: PopoverProps['anchorEl'];
   /**
@@ -44,32 +42,26 @@ export interface MenuProps
   onClose?: PopoverProps['onClose'];
   /**
    * Callback fired before the Menu enters.
-   * @document
    */
   onEnter?: PopoverProps['onEnter'];
   /**
    * Callback fired when the Menu has entered.
-   * @document
    */
   onEntered?: PopoverProps['onEntered'];
   /**
    * Callback fired when the Menu is entering.
-   * @document
    */
   onEntering?: PopoverProps['onEntering'];
   /**
    * Callback fired before the Menu exits.
-   * @document
    */
   onExit?: PopoverProps['onExit'];
   /**
    * Callback fired when the Menu has exited.
-   * @document
    */
   onExited?: PopoverProps['onExited'];
   /**
    * Callback fired when the Menu is exiting.
-   * @document
    */
   onExiting?: PopoverProps['onExiting'];
   /**

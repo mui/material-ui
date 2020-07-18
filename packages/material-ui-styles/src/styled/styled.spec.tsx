@@ -75,6 +75,7 @@ function acceptanceTest() {
     static defaultProps = {
       defaulted: 'Hello, World!',
     };
+
     render() {
       const { className, defaulted } = this.props;
       return <div className={className}>Greeted?: {defaulted.startsWith('Hello')}</div>;

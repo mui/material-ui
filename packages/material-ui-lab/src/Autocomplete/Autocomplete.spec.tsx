@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { Autocomplete, AutocompleteProps } from '@material-ui/lab';
 import { expectType } from '@material-ui/types';
 

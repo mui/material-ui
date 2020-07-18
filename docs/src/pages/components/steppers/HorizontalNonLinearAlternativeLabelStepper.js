@@ -151,12 +151,8 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
             stepProps.completed = false;
           }
           return (
-            <Step key={label} {...stepProps}>
-              <StepButton
-                onClick={handleStep(index)}
-                completed={isStepComplete(index)}
-                {...buttonProps}
-              >
+            <Step key={label} completed={isStepComplete(index)} {...stepProps}>
+              <StepButton onClick={handleStep(index)} {...buttonProps}>
                 {label}
               </StepButton>
             </Step>

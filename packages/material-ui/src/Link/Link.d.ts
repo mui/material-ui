@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { Omit } from '@material-ui/types';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { TypographyProps } from '../Typography';
 
 export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {

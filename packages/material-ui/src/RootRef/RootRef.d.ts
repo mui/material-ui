@@ -1,6 +1,13 @@
 import * as React from 'react';
 
 export interface RootRefProps<T = any> {
+  /**
+   * The wrapped element.
+   */
+  children: React.ReactElement;
+  /**
+   * A ref that points to the first DOM node of the wrapped element.
+   */
   rootRef?: ((instance: T | null) => void) | React.RefObject<T>;
 }
 

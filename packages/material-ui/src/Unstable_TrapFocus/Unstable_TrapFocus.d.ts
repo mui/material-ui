@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import * as React from 'react';
 
 export interface TrapFocusProps {
@@ -18,7 +19,7 @@ export interface TrapFocusProps {
   /**
    * A single child content element.
    */
-  children: React.ReactNode;
+  children?: React.ReactNode;
   /**
    * If `true`, the trap focus will not automatically shift focus to itself when it opens, and
    * replace it to the last focused element when it closes.

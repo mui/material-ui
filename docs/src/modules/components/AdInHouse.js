@@ -1,50 +1,12 @@
 /* eslint react/jsx-no-target-blank: ["error", { allowReferrer: true }] */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import adStyles from 'docs/src/modules/components/ad.styles';
-
-const useStyles = makeStyles((theme) => {
-  const styles = adStyles(theme);
-  return {
-    root: {
-      ...styles.root,
-      '& img': styles.img,
-      '& a, & a:hover': styles.a,
-    },
-    imageWrapper: styles.imgWrapper,
-    description: styles.description,
-    poweredby: styles.poweredby,
-  };
-});
+import AdDisplay from 'docs/src/modules/components/AdDisplay';
 
 export default function AdInHouse(props) {
   const { ad } = props;
-  const classes = useStyles();
 
-  /* eslint-disable material-ui/no-hardcoded-labels, react/no-danger */
-  return (
-    <span className={classes.root}>
-      <a
-        href={ad.link}
-        target="_blank"
-        rel="noopener sponsored"
-        data-ga-event-category="in-house-ad"
-        data-ga-event-action="click"
-        data-ga-event-label={ad.name}
-      >
-        <span className={classes.imageWrapper}>
-          <img height="100" width="130" className={classes.image} src={ad.img} alt={ad.name} />
-        </span>
-        <span
-          className={classes.description}
-          dangerouslySetInnerHTML={{ __html: ad.description }}
-        />
-      </a>
-      <span className={classes.poweredby}>ad by Material-UI</span>
-    </span>
-  );
-  /* eslint-enable material-ui/no-hardcoded-labels, react/no-danger */
+  return <AdDisplay ad={{ poweredby: 'Material-UI', ...ad }} />;
 }
 
 AdInHouse.propTypes = {

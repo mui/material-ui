@@ -4,8 +4,8 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
-import describeConformance from '../test-utils/describeConformance';
 import { act, createClientRender, fireEvent } from 'test/utils/createClientRender';
+import describeConformance from '../test-utils/describeConformance';
 import FormControl, { useFormControl } from '../FormControl';
 import InputAdornment from '../InputAdornment';
 import TextareaAutosize from '../TextareaAutosize';
@@ -395,10 +395,16 @@ describe('<InputBase />', () => {
         });
         expect(getByTestId('root')).to.have.class(classes.focused);
 
-        controlRef.current.onBlur();
+        act(() => {
+          controlRef.current.onBlur();
+        });
+
         expect(getByTestId('root')).not.to.have.class(classes.focused);
 
-        controlRef.current.onFocus();
+        act(() => {
+          controlRef.current.onFocus();
+        });
+
         expect(getByTestId('root')).to.have.class(classes.focused);
       });
 

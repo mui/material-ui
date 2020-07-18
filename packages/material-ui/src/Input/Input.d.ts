@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { StandardProps } from '..';
 import { InputBaseProps } from '../InputBase';
 

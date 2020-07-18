@@ -374,4 +374,29 @@ describe('<TablePagination />', () => {
       );
     });
   });
+
+  describe('prop: SelectProps', () => {
+    it('does allow manual label ids', () => {
+      const { getAllByRole } = render(
+        <table>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                count={1}
+                page={0}
+                onChangePage={noop}
+                onChangeRowsPerPage={noop}
+                rowsPerPage={10}
+                SelectProps={{ id: 'foo', labelId: 'bar' }}
+              />
+            </TableRow>
+          </TableFooter>
+        </table>,
+      );
+
+      // will be `getByRole('combobox')` in aria 1.2
+      const [combobox] = getAllByRole('button');
+      expect(combobox).toHaveAccessibleName('Rows per page: 10');
+    });
+  });
 });

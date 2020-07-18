@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createClientRender } from 'test/utils/createClientRender';
+import { act, createClientRender } from 'test/utils/createClientRender';
 import Container from '../Container';
 import Box from '../Box';
 import useScrollTrigger from './useScrollTrigger';
@@ -89,8 +89,10 @@ describe('useScrollTrigger', () => {
     }
 
     function dispatchScroll(offset, element = window) {
-      element.pageYOffset = offset;
-      element.dispatchEvent(new window.Event('scroll', {}));
+      act(() => {
+        element.pageYOffset = offset;
+        element.dispatchEvent(new window.Event('scroll', {}));
+      });
     }
 
     it('scroll container should render with ref', () => {

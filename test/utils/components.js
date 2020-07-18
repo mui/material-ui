@@ -13,7 +13,9 @@ export class ErrorBoundary extends React.Component {
     children: PropTypes.node.isRequired,
   };
 
-  state = { error: null };
+  state = {
+    error: null,
+  };
 
   /**
    * @public

@@ -2,8 +2,8 @@ import { parse as parseDoctrine } from 'doctrine';
 import * as recast from 'recast';
 import { parse as docgenParse } from 'react-docgen';
 import { rewriteUrlForNextExport } from 'next/dist/next-server/lib/router/rewrite-url-for-export';
-import { pageToTitle } from './helpers';
 import { SOURCE_CODE_ROOT_URL, LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
+import { pageToTitle } from './helpers';
 
 const PATH_REPLACE_REGEX = /\\/g;
 const PATH_SEPARATOR = '/';
@@ -251,18 +251,6 @@ function generatePropType(type) {
   }
 }
 
-function getProp(props, key) {
-  switch (key) {
-    case 'classes':
-      return {
-        ...props[key],
-        required: false,
-      };
-    default:
-      return props[key];
-  }
-}
-
 function generateName(reactAPI) {
   if (!reactAPI.styles.classes.length) {
     return '\n';
@@ -287,7 +275,7 @@ function generateProps(reactAPI) {
 |:-----|:-----|:--------|:------------|\n`;
 
   text = Object.keys(reactAPI.props).reduce((textProps, propRaw) => {
-    const prop = getProp(reactAPI.props, propRaw);
+    const prop = reactAPI.props[propRaw];
 
     if (typeof prop.description === 'undefined') {
       throw new Error(`The "${propRaw}" prop is missing a description`);

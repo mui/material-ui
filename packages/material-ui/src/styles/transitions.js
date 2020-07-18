@@ -53,6 +53,8 @@ export default {
 
     if (process.env.NODE_ENV !== 'production') {
       const isString = (value) => typeof value === 'string';
+      // IE 11 support, replace with Number.isNaN
+      // eslint-disable-next-line no-restricted-globals
       const isNumber = (value) => !isNaN(parseFloat(value));
       if (!isString(props) && !Array.isArray(props)) {
         console.error('Material-UI: Argument "props" must be a string or Array.');

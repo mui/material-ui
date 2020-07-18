@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { StandardProps } from '..';
-import { Theme } from '../styles/createMuiTheme';
 import { TransitionProps } from '../transitions/transition';
 
 export interface CollapseProps extends StandardProps<TransitionProps, CollapseClassKey, 'timeout'> {
@@ -17,12 +16,6 @@ export interface CollapseProps extends StandardProps<TransitionProps, CollapseCl
    * Either a string to use a HTML element or a component.
    */
   component?: React.ElementType<TransitionProps>;
-  /**
-   * Enable this prop if you encounter 'Function components cannot be given refs',
-   * use `unstable_createStrictModeTheme`,
-   * and can't forward the ref in the passed `Component`.
-   */
-  disableStrictModeCompat?: boolean;
   /**
    * If `true`, the component will transition in.
    */

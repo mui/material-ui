@@ -1,7 +1,7 @@
 const eslint = require('eslint');
 const rule = require('./docgen-ignore-before-comment');
 
-const ruleTester = new eslint.RuleTester();
+const ruleTester = new eslint.RuleTester({ parser: require.resolve('@typescript-eslint/parser') });
 ruleTester.run('ignore-before-comment', rule, {
   valid: [
     '\n/**\n * @ignore\n */\n',

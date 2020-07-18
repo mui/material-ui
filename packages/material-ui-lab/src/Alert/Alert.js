@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { withStyles, lighten, darken } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
+import IconButton from '@material-ui/core/IconButton';
+import { capitalize } from '@material-ui/core/utils';
 import SuccessOutlinedIcon from '../internal/svg-icons/SuccessOutlined';
 import ReportProblemOutlinedIcon from '../internal/svg-icons/ReportProblemOutlined';
 import ErrorOutlineIcon from '../internal/svg-icons/ErrorOutline';
 import InfoOutlinedIcon from '../internal/svg-icons/InfoOutlined';
 import CloseIcon from '../internal/svg-icons/Close';
-import IconButton from '@material-ui/core/IconButton';
-import { capitalize } from '@material-ui/core/utils';
 
 export const styles = (theme) => {
   const getColor = theme.palette.type === 'light' ? darken : lighten;
