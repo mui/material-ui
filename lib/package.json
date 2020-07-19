@@ -92,7 +92,7 @@
     "@testing-library/jest-dom": "^5.11.0",
     "@types/enzyme": "^3.10.5",
     "@types/enzyme-adapter-react-16": "^1.0.3",
-    "@types/fs-extra": "^8.1.0",
+    "@types/fs-extra": "^9.0.1",
     "@types/jest": "^25.2.1",
     "@types/luxon": "^1.11.0",
     "@types/prop-types": "^15.5.8",
