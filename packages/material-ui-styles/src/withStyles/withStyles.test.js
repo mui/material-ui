@@ -235,6 +235,36 @@ describe('withStyles', () => {
       expect(sheetsRegistry.registry[0].rules.raw).to.deep.equal({ root: { padding: 9 } });
     });
 
+    it('should support the variants key', () => {
+      const styles = {};
+      const StyledComponent = withStyles(styles, { name: 'MuiButton' })(() => <div />);
+      const generateClassName = createGenerateClassName();
+      const sheetsRegistry = new SheetsRegistry();
+
+      render(
+        <ThemeProvider
+          theme={createMuiTheme({
+            variants: {
+              MuiButton: [{
+                matcher: { variant: 'test' },
+                styles: { padding: 9 },
+              }, {
+                matcher: { variant: 'test', size: 'large' },
+                styles: { fontSize: 20 },
+              }],
+            },
+          })}
+        >
+          <StylesProvider sheetsRegistry={sheetsRegistry} generateClassName={generateClassName}>
+            <StyledComponent />
+          </StylesProvider>
+        </ThemeProvider>,
+      );
+
+      expect(sheetsRegistry.registry.length).to.equal(1);
+      expect(sheetsRegistry.registry[0].rules.raw).to.deep.equal({ test: { padding: 9 }, testSizeLarge: { fontSize: 20 } });
+    });
+
     describe('options: disableGeneration', () => {
       it('should not generate the styles', () => {
         const styles = { root: { display: 'flex' } };
