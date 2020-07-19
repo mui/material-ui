@@ -37,7 +37,7 @@
     "@percy/cypress": "^2.3.1",
     "@testing-library/cypress": "^6.0.0",
     "@testing-library/dom": "^7.18.1",
-    "@testing-library/react": "^10.0.4",
+    "@testing-library/react": "^10.4.7",
     "@typescript-eslint/eslint-plugin": "^1.6.0",
     "@typescript-eslint/parser": "^1.6.0",
     "babel-loader": "^8.1.0",
