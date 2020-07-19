@@ -16925,9 +16925,9 @@ yargs@^15.0.1, yargs@^15.0.2, yargs@^15.1.0, yargs@^15.2.0, yargs@^15.3.1:
     yargs-parser "^18.1.2"
 
 yarn-deduplicate@^2.0.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/yarn-deduplicate/-/yarn-deduplicate-2.1.0.tgz#05e0d2e56acdaf05133b585b15b94aa285224885"
-  integrity sha512-MHkm8wGdrw0RWcc2VlNjgV861w1oCf8k1A8eT2xHpN3BUy97zdtSTkWq0QsJFyps6momIwt6zFo1oboFw7Kpig==
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/yarn-deduplicate/-/yarn-deduplicate-2.1.1.tgz#500a3010e4bdee3c3250936e210910c7cae3d75d"
+  integrity sha512-lbFJGOMnqG/ncGjNBUt+JG4qfAGqeh8o9i4i5LXqNBdQ8ov8av6T1jizWQqr+zLPLCOqp/BYBZz8FymPQSR4RA==
   dependencies:
     "@yarnpkg/lockfile" "^1.1.0"
     commander "^5.1.0"
