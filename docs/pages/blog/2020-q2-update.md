@@ -24,11 +24,15 @@ You can find the documentation for the next version at http://next.material-ui.c
 
   <a href="https://material-ui.com/store/items/figma-react/"><img src="/static/blog/2020-q1-update/figma.png" alt="figma" style="max-width: 160px; margin-bottom: 24px;" /></a>
 
-Adobe XD and Framer support are also up for consideration if they attract a significant audience, but not until we've polished the Sketch and Figma assets.
+  Adobe XD and Framer support are also up for consideration if they attract a significant audience, but not until we've polished the Sketch and Figma assets.
 
 - 🔄 `LoadingButton` – [a new component in the lab](https://next.material-ui.com/components/buttons/#loading-buttons). This work is influenced by the [concurrent UI patterns](https://reactjs.org/docs/concurrent-mode-patterns.html) presented by the React team.
 
   <img src="/static/blog/2020-q2-update/loading.gif" alt="loading" style="margin-bottom: 24px;" />
+
+- ⚛️ We have made **all** component props available in IntelliSense. This is complementary with the `propTypes` and API pages in the documentation.
+
+  ![props](/static/blog/2020-q1-update/props.png)
 
 - ⏰ A new [`Timeline` component](/components/timeline/) joins the lab.
 
@@ -83,10 +87,6 @@ Adobe XD and Framer support are also up for consideration if they attract a sign
 We'll do our best, no guarantee!
 
 - ⚙️ To make significant progress with the v5 roadmap.
-
-- ⚛️ Make **all** component props available in IntelliSense. Most of them have already been migrated. If you want to give us a hand, you can check this [pull request](https://github.com/mui-org/material-ui/pull/21655) as a starting point.
-
-  ![props](/static/blog/2020-q1-update/props.png)
 
 - 🌏 Translate the API pages, for instance, the [Alert API](https://material-ui.com/api/alert/) can only be consumed in English.
 
