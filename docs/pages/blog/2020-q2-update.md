@@ -34,7 +34,7 @@ You can find the documentation for the next version at http://next.material-ui.c
 
   <img src="/static/blog/2020-q2-update/timeline.png" alt="timeline" style="max-width: 244px; margin-bottom: 24px;" />
 
-- 📣 We have analyzed and publish the results of the "Material-UI Developer Survey 2020". If you haven't read it yet, you can follow this link to [read it in detail](/blog/2020-developer-survey-results/). It contains a lot of interesting insights that will shape the future of the library and company. Thanks for the contributions! ❤️
+- 📣 We have analyzed and published the results of the "Material-UI Developer Survey 2020". If you haven't read it yet, you can follow this link to [read it in detail](/blog/2020-developer-survey-results/). It contains a lot of interesting insights that will shape the future of the library and company. Thanks for the contributions! ❤️
 - 🇨🇳🇧🇷 We have translated 100% of the documentation to Chinese thanks to the collaboration of [Danica Shen](https://github.com/DDDDDanica) and [Yan Lee](https://github.com/AGDholo), two native speakers from the community 🙏.
 
   <img src="/static/blog/2020-q2-update/chinese.png" alt="chinese" style="max-width: 146px; padding-right: 3px; box-sizing: content-box;" />
