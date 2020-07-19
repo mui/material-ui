@@ -320,7 +320,7 @@ const theme = createMuiTheme({
 
 {{"demo": "pages/customization/components/GlobalThemeOverride.js"}}
 
-### Adding new theme variants
+### Adding new component variants
 
 You can take advantage of the `variants` key of the `theme` to add new variants to Material-UI components.
 
