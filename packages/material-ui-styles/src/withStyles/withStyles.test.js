@@ -245,13 +245,16 @@ describe('withStyles', () => {
         <ThemeProvider
           theme={createMuiTheme({
             variants: {
-              MuiButton: [{
-                matcher: { variant: 'test' },
-                styles: { padding: 9 },
-              }, {
-                matcher: { variant: 'test', size: 'large' },
-                styles: { fontSize: 20 },
-              }],
+              MuiButton: [
+                {
+                  matcher: { variant: 'test' },
+                  styles: { padding: 9 },
+                },
+                {
+                  matcher: { variant: 'test', size: 'large' },
+                  styles: { fontSize: 20 },
+                },
+              ],
             },
           })}
         >
@@ -262,7 +265,10 @@ describe('withStyles', () => {
       );
 
       expect(sheetsRegistry.registry.length).to.equal(1);
-      expect(sheetsRegistry.registry[0].rules.raw).to.deep.equal({ test: { padding: 9 }, testSizeLarge: { fontSize: 20 } });
+      expect(sheetsRegistry.registry[0].rules.raw).to.deep.equal({
+        test: { padding: 9 },
+        testSizeLarge: { fontSize: 20 },
+      });
     });
 
     describe('options: disableGeneration', () => {
