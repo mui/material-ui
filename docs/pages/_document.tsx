@@ -14,7 +14,7 @@ class MyDocument extends Document<{ theme?: ThemeType }> {
     let pageContext: PageContext | undefined;
 
     const { theme } = cookies(ctx as any);
-    const page = ctx.renderPage(Component => {
+    const page = ctx.renderPage((Component) => {
       const WrappedComponent = (props: any) => {
         pageContext = props.pageContext;
         return <Component {...props} />;

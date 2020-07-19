@@ -59,7 +59,7 @@ export function mountPickerWithState(
   function PickerWithState() {
     const [value, setDate] = React.useState<any>(momentInTime);
 
-    return createPicker({ ...mockRequiredProps, value, onChange: date => setDate(date) });
+    return createPicker({ ...mockRequiredProps, value, onChange: (date) => setDate(date) });
   }
 
   mountPicker(() => <PickerWithState />);

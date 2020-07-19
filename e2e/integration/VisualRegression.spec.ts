@@ -65,7 +65,7 @@ describe('Visual Regression', () => {
     },
   ];
 
-  pages.forEach(page => {
+  pages.forEach((page) => {
     context(page.name, () => {
       beforeEach(() => {
         const now = new Date('2019-01-01T09:41:00.000Z');

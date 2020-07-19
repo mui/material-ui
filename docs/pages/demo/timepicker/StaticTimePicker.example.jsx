@@ -10,8 +10,8 @@ export default function StaticTimePickerExample() {
       <StaticTimePicker
         openTo="hours"
         value={date}
-        onChange={date => handleDateChange(date)}
-        renderInput={props => <TextField {...props} />}
+        onChange={(date) => handleDateChange(date)}
+        renderInput={(props) => <TextField {...props} />}
       />
 
       <StaticTimePicker
@@ -19,8 +19,8 @@ export default function StaticTimePickerExample() {
         orientation="landscape"
         openTo="minutes"
         value={date}
-        onChange={date => handleDateChange(date)}
-        renderInput={props => <TextField {...props} />}
+        onChange={(date) => handleDateChange(date)}
+        renderInput={(props) => <TextField {...props} />}
       />
     </React.Fragment>
   );

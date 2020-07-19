@@ -15,7 +15,7 @@ export interface SlideTransitionProps extends Omit<CSSTransitionProps, 'timeout'
 
 export const slideAnimationDuration = 350;
 export const useStyles = makeStyles(
-  theme => {
+  (theme) => {
     const slideTransition = theme.transitions.create('transform', {
       duration: slideAnimationDuration,
       easing: 'cubic-bezier(0.35, 0.8, 0.4, 1)',
@@ -92,7 +92,7 @@ export const SlideTransition: React.SFC<SlideTransitionProps> = ({
   return (
     <TransitionGroup
       className={clsx(classes.root, className)}
-      childFactory={element =>
+      childFactory={(element) =>
         React.cloneElement(element, {
           classNames: transitionClasses,
         })

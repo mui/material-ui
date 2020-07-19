@@ -16,7 +16,7 @@ export default function CssThemeExample() {
   return (
     <ThemeProvider theme={defaultMaterialTheme}>
       <DateTimePicker
-        renderInput={props => <TextField {...props} />}
+        renderInput={(props) => <TextField {...props} />}
         label="Lime DateTimePicker"
         value={selectedDate}
         onChange={handleDateChange}

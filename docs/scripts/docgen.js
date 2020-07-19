@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const removeExternalDeps = propItem =>
+const removeExternalDeps = (propItem) =>
   propItem.description && (!propItem.parent || !propItem.parent.fileName.includes('@types'));
 
 const removeWrapperProps = (propItem, Component) => {
@@ -70,11 +70,11 @@ function processProp(prop) {
   prop.type.name = prop.type.name.replace(' | undefined', '');
 }
 
-components.forEach(filePart => {
+components.forEach((filePart) => {
   const file = path.join(srcPath, filePart);
   const parsedDocs = parser.parse(file);
 
-  parsedDocs.forEach(parsedDoc => {
+  parsedDocs.forEach((parsedDoc) => {
     if (
       parsedDoc.displayName.match(/^(Mobile|Desktop|Static)/) &&
       !parsedDoc.displayName.endsWith('Wrapper')

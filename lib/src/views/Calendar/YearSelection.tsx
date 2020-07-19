@@ -132,7 +132,7 @@ export const YearSelection: React.FC<YearSelectionProps> = ({
 
   return (
     <div className={classes.root}>
-      {utils.getYearRange(minDate, maxDate).map(year => {
+      {utils.getYearRange(minDate, maxDate).map((year) => {
         const yearNumber = utils.getYear(year);
         const selected = yearNumber === currentYear;
 

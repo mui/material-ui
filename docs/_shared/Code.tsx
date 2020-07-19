@@ -3,7 +3,7 @@ import React from 'react';
 import { highlight } from '../utils/prism';
 import { makeStyles } from '@material-ui/core';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     margin: 0,
     fontFamily: theme.typography.fontFamily,

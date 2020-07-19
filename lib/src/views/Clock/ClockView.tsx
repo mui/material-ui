@@ -146,17 +146,17 @@ const _ClockView: React.FC<ClockViewProps> = ({
           const hoursWithMeridiem = convertValueToMeridiem(rawValue, meridiemMode, Boolean(ampm));
           return validateTimeValue((when: 'start' | 'end') =>
             pipe(
-              currentDate => utils.setHours(currentDate, hoursWithMeridiem),
-              dateWithHours => utils.setMinutes(dateWithHours, when === 'start' ? 0 : 59),
-              dateWithMinutes => utils.setSeconds(dateWithMinutes, when === 'start' ? 0 : 59)
+              (currentDate) => utils.setHours(currentDate, hoursWithMeridiem),
+              (dateWithHours) => utils.setMinutes(dateWithHours, when === 'start' ? 0 : 59),
+              (dateWithMinutes) => utils.setSeconds(dateWithMinutes, when === 'start' ? 0 : 59)
             )(date)
           );
 
         case 'minutes':
           return validateTimeValue((when: 'start' | 'end') =>
             pipe(
-              currentDate => utils.setMinutes(currentDate, rawValue),
-              dateWithMinutes => utils.setSeconds(dateWithMinutes, when === 'start' ? 0 : 59)
+              (currentDate) => utils.setMinutes(currentDate, rawValue),
+              (dateWithMinutes) => utils.setSeconds(dateWithMinutes, when === 'start' ? 0 : 59)
             )(date)
           );
 
@@ -194,7 +194,7 @@ const _ClockView: React.FC<ClockViewProps> = ({
             ampm: Boolean(ampm),
             onChange: handleHoursChange,
             getClockNumberText: getHoursClockNumberText,
-            isDisabled: value => isTimeDisabled(value, 'hours'),
+            isDisabled: (value) => isTimeDisabled(value, 'hours'),
           }),
         };
 
@@ -212,7 +212,7 @@ const _ClockView: React.FC<ClockViewProps> = ({
             value: minutesValue,
             onChange: handleMinutesChange,
             getClockNumberText: getMinutesClockNumberText,
-            isDisabled: value => isTimeDisabled(value, 'minutes'),
+            isDisabled: (value) => isTimeDisabled(value, 'minutes'),
           }),
         };
 
@@ -230,7 +230,7 @@ const _ClockView: React.FC<ClockViewProps> = ({
             value: secondsValue,
             onChange: handleSecondsChange,
             getClockNumberText: getSecondsClockNumberText,
-            isDisabled: value => isTimeDisabled(value, 'seconds'),
+            isDisabled: (value) => isTimeDisabled(value, 'seconds'),
           }),
         };
 

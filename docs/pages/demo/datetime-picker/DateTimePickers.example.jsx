@@ -12,7 +12,7 @@ function DateTimePickerDemo(props) {
         value={selectedDate}
         onChange={handleDateChange}
         label="24h clock"
-        renderInput={props => <TextField variant="outlined" {...props} />}
+        renderInput={(props) => <TextField variant="outlined" {...props} />}
       />
 
       <DesktopDateTimePicker
@@ -21,11 +21,11 @@ function DateTimePickerDemo(props) {
         ampmInClock
         value={selectedDate}
         onChange={handleDateChange}
-        renderInput={props => <TextField variant="outlined" {...props} />}
+        renderInput={(props) => <TextField variant="outlined" {...props} />}
       />
 
       <DateTimePicker
-        renderInput={props => <TextField {...props} />}
+        renderInput={(props) => <TextField {...props} />}
         ampm={false}
         disablePast
         value={selectedDate}

@@ -7,7 +7,7 @@ export interface PageContext {
   sheetsRegistry: SheetsRegistry;
 }
 
-export default function(): PageContext {
+export default function (): PageContext {
   return {
     // This is needed in order to deduplicate the injection of CSS in the page.
     sheetsManager: new Map(),

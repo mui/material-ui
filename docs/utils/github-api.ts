@@ -20,7 +20,7 @@ export function fetchGithubData<T extends keyof CacheType>(
       Authorization: 'token 14ef125b9fbcf138ff9042b45f89f8b3c28f510a',
     },
   })
-    .then(res => {
+    .then((res) => {
       cacheRemaining = Number(res.headers.get('X-RateLimit-Reset')) * 1000;
       if (res.status > 400) {
         // We cannot update the cache on this step

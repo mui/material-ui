@@ -10,7 +10,7 @@ import { makeStyles } from '@material-ui/core';
 import { makeJSDateObject } from '../../../utils/helpers';
 import { DatePicker, PickersDay } from '@material-ui/pickers';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   highlight: {
     borderRadius: 0,
     backgroundColor: theme.palette.primary.main,
@@ -65,7 +65,7 @@ export default function CustomDay(props) {
       value={selectedDate}
       onChange={handleDateChange}
       renderDay={renderWeekPickerDay}
-      renderInput={props => <TextField {...props} />}
+      renderInput={(props) => <TextField {...props} />}
       inputFormat={props.__willBeReplacedGetFormatString({
         moment: `[Week of] MMM D`,
         dateFns: "'Week of' MMM d",

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { loadScript } from 'utils/helpers';
 import { Grid, makeStyles } from '@material-ui/core';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   '@global': {
     '#carbonads': {
       fontFamily: theme.typography.fontFamily,

@@ -19,7 +19,7 @@ describe('<DatePicker />', () => {
         openTo="year"
         minDate={new Date('2000-01-01')}
         maxDate={new Date('2010-01-01')}
-        renderInput={props => <TextField {...props} />}
+        renderInput={(props) => <TextField {...props} />}
       />
     );
 
@@ -32,7 +32,7 @@ describe('<DatePicker />', () => {
       <MobileDatePicker
         value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
         onChange={jest.fn()}
-        renderInput={props => <TextField {...props} />}
+        renderInput={(props) => <TextField {...props} />}
       />
     );
 
@@ -48,7 +48,7 @@ describe('<DatePicker />', () => {
         TransitionComponent={FakeTransitionComponent}
         value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
         onChange={jest.fn()}
-        renderInput={props => <TextField {...props} />}
+        renderInput={(props) => <TextField {...props} />}
       />
     );
 
@@ -67,7 +67,7 @@ describe('<DatePicker />', () => {
         disableCloseOnSelect
         value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
         onChange={jest.fn()}
-        renderInput={props => <TextField {...props} />}
+        renderInput={(props) => <TextField {...props} />}
       />
     );
 
@@ -87,7 +87,7 @@ describe('<DatePicker />', () => {
         TransitionComponent={FakeTransitionComponent}
         value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
         onChange={onChangeMock}
-        renderInput={props => <TextField {...props} />}
+        renderInput={(props) => <TextField {...props} />}
       />
     );
 

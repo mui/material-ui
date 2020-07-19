@@ -25,7 +25,7 @@ const startBorderStyle = {
 };
 
 const useStyles = makeStyles(
-  theme => ({
+  (theme) => ({
     root: {
       '&:first-child $rangeIntervalDayPreview': {
         ...startBorderStyle,

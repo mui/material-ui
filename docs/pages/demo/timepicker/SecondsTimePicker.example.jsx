@@ -8,7 +8,7 @@ function SecondsTimePicker() {
   return (
     <Fragment>
       <TimePicker
-        renderInput={props => <TextField {...props} />}
+        renderInput={(props) => <TextField {...props} />}
         ampm={false}
         openTo="hours"
         views={['hours', 'minutes', 'seconds']}
@@ -16,11 +16,11 @@ function SecondsTimePicker() {
         mask="__:__:__"
         label="With seconds"
         value={selectedDate}
-        onChange={date => handleDateChange(date)}
+        onChange={(date) => handleDateChange(date)}
       />
 
       <TimePicker
-        renderInput={props => <TextField {...props} />}
+        renderInput={(props) => <TextField {...props} />}
         ampmInClock
         openTo="minutes"
         views={['minutes', 'seconds']}
@@ -28,7 +28,7 @@ function SecondsTimePicker() {
         mask="__:__"
         label="Minutes and seconds"
         value={selectedDate}
-        onChange={date => handleDateChange(date)}
+        onChange={(date) => handleDateChange(date)}
       />
     </Fragment>
   );

@@ -5,7 +5,7 @@ import { StaticDateTimePicker, MobileDateTimePicker } from '@material-ui/pickers
 
 describe('<DateTimePicker />', () => {
   it('Renders and show todays date', () => {
-    mountStaticPicker(defaultProps => <StaticDateTimePicker {...defaultProps} />);
+    mountStaticPicker((defaultProps) => <StaticDateTimePicker {...defaultProps} />);
 
     cy.contains('2017');
     cy.contains('Oct 7');
@@ -17,7 +17,9 @@ describe('<DateTimePicker />', () => {
   });
 
   it('Proper flow for date & time picking', () => {
-    mountPickerWithState(defaultProps => <MobileDateTimePicker openTo="year" {...defaultProps} />);
+    mountPickerWithState((defaultProps) => (
+      <MobileDateTimePicker openTo="year" {...defaultProps} />
+    ));
 
     cy.get('input').click();
 
@@ -26,9 +28,7 @@ describe('<DateTimePicker />', () => {
     cy.get('input').should('have.value', '10/07/2015 07:36 PM');
 
     // Date
-    cy.findByLabelText('next month')
-      .click()
-      .click();
+    cy.findByLabelText('next month').click().click();
     cy.findByLabelText('Dec 22, 2015').click();
     cy.get('input').should('have.value', '12/22/2015 07:36 PM');
 

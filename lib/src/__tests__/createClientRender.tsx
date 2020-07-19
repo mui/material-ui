@@ -110,7 +110,7 @@ const fireEvent = Object.assign(rtlFireEvent, {
       error.stack = error.stack
         ? error.stack
             .split('\n')
-            .filter(line => !/at Function.key/.test(line))
+            .filter((line) => !/at Function.key/.test(line))
             .join('\n')
         : '';
       throw error;
@@ -149,7 +149,7 @@ const fireEvent = Object.assign(rtlFireEvent, {
       error.stack = error.stack
         ? error.stack
             .split('\n')
-            .filter(line => !/at Function.key/.test(line))
+            .filter((line) => !/at Function.key/.test(line))
             .join('\n')
         : '';
       throw error;

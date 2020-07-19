@@ -3,7 +3,7 @@ import * as React from 'react';
 /* Use it instead of .includes method for IE support */
 export function arrayIncludes<T>(array: T[] | readonly T[], itemOrItems: T | T[]) {
   if (Array.isArray(itemOrItems)) {
-    return itemOrItems.every(item => array.indexOf(item) !== -1);
+    return itemOrItems.every((item) => array.indexOf(item) !== -1);
   }
 
   return array.indexOf(itemOrItems) !== -1;
@@ -30,7 +30,7 @@ export const onSpaceOrEnter = (
 export const pipe = (...fns: ((...args: any[]) => any)[]) =>
   fns.reduceRight(
     (prevFn, nextFn) => (...args) => nextFn(prevFn(...args)),
-    value => value
+    (value) => value
   );
 
 export const executeInTheNextEventLoopTick = (fn: () => void) => {
@@ -52,7 +52,7 @@ export function createDelegatedEventHandler<TEvent>(
 
 export function mergeRefs<T>(refs: (React.Ref<T | null> | undefined)[]) {
   return (value: T) => {
-    refs.forEach(ref => {
+    refs.forEach((ref) => {
       if (typeof ref === 'function') {
         ref(value);
       } else if (typeof ref === 'object' && ref != null) {

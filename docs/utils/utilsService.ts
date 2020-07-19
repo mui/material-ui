@@ -52,8 +52,8 @@ function replaceGetFormatInvocation(sourceToProcess: string, lib: UtilsLib) {
 
   const formatsMap = getFormatStringInvocation
     .split('\n')
-    .filter(str => libRegex.test(str))
-    .map(formatLine => {
+    .filter((str) => libRegex.test(str))
+    .map((formatLine) => {
       const libMatchResult = formatLine.match(libRegex);
       if (!libMatchResult) {
         return [];

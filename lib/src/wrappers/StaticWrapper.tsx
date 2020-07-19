@@ -4,7 +4,7 @@ import { DIALOG_WIDTH } from '../constants/dimensions';
 import { WrapperVariantContext, IsStaticVariantContext } from './WrapperVariantContext';
 
 const useStyles = makeStyles(
-  theme => ({
+  (theme) => ({
     root: {
       overflow: 'hidden',
       minWidth: DIALOG_WIDTH,

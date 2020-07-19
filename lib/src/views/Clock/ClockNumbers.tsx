@@ -96,7 +96,7 @@ export const getMinutesNumbers = ({
       index={index + 1}
       disabled={isDisabled(numberValue)}
       selected={numberValue === value}
-      onSelect={isFinish => onChange(numberValue, isFinish)}
+      onSelect={(isFinish) => onChange(numberValue, isFinish)}
       getClockNumberText={getClockNumberText}
     />
   ));

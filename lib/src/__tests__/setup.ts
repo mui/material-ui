@@ -16,7 +16,7 @@ function logAndThrowArgs(...args: any[]) {
   } else {
     // combine multi args into a string
     const message = args
-      .map(value => {
+      .map((value) => {
         if (typeof value === 'object') {
           return JSON.stringify(value);
         } else {

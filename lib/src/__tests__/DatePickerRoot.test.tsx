@@ -13,7 +13,7 @@ describe('e2e - DatePicker', () => {
     jest.clearAllMocks();
     component = mount(
       <DatePicker
-        renderInput={props => <TextField {...props} />}
+        renderInput={(props) => <TextField {...props} />}
         open
         openTo="date"
         value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
@@ -31,10 +31,7 @@ describe('e2e - DatePicker', () => {
   });
 
   it('Should dispatch onChange on day click', () => {
-    component
-      .find('button[data-mui-test="day"]')
-      .at(2)
-      .simulate('click');
+    component.find('button[data-mui-test="day"]').at(2).simulate('click');
     expect(onChangeMock).toHaveBeenCalled();
   });
 
@@ -43,10 +40,7 @@ describe('e2e - DatePicker', () => {
 
     expect(component.find('[data-mui-test="year"]').length).toBe(200);
 
-    component
-      .find('[data-mui-test="year"] button')
-      .at(1)
-      .simulate('click');
+    component.find('[data-mui-test="year"] button').at(1).simulate('click');
 
     clickOKButton(component);
     expect(onChangeMock).toHaveBeenCalled();
@@ -62,7 +56,7 @@ describe('e2e -- DatePicker views year', () => {
   beforeEach(() => {
     component = mount(
       <DatePicker
-        renderInput={props => <TextField {...props} />}
+        renderInput={(props) => <TextField {...props} />}
         open
         value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
         onChange={onChangeMock}
@@ -75,10 +69,7 @@ describe('e2e -- DatePicker views year', () => {
   it('Should render year selection and select year', () => {
     expect(component.find('[data-mui-test="year"]').length).toBe(200);
 
-    component
-      .find('[data-mui-test="year"] button')
-      .at(1)
-      .simulate('click');
+    component.find('[data-mui-test="year"] button').at(1).simulate('click');
 
     clickOKButton(component);
     expect(onYearChangeMock).toHaveBeenCalled();
@@ -94,7 +85,7 @@ describe('e2e -- DatePicker views year and month', () => {
   beforeEach(() => {
     component = mount(
       <DatePicker
-        renderInput={props => <TextField {...props} />}
+        renderInput={(props) => <TextField {...props} />}
         open
         value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
         onChange={onChangeMock}
@@ -107,10 +98,7 @@ describe('e2e -- DatePicker views year and month', () => {
 
   it('Should select month', () => {
     expect(component.find('Month').length).toBe(12);
-    component
-      .find('div[data-mui-test="month"]')
-      .first()
-      .simulate('click');
+    component.find('div[data-mui-test="month"]').first().simulate('click');
 
     expect(onMonthChangeMock).toHaveBeenCalled();
   });
@@ -133,7 +121,7 @@ describe('e2e -- DatePicker views year and month open from year', () => {
   beforeEach(() => {
     component = mount(
       <DatePicker
-        renderInput={props => <TextField {...props} />}
+        renderInput={(props) => <TextField {...props} />}
         open
         value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
         onChange={onChangeMock}

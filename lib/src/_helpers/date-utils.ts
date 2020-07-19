@@ -119,7 +119,7 @@ export function parseRangeInputValue(
   utils: MuiPickersAdapter,
   { value = [null, null] }: BasePickerProps<RangeInput, DateRange>
 ) {
-  return value.map(date =>
+  return value.map((date) =>
     !utils.isValid(date) || date === null ? null : utils.startOfDay(utils.date(date))
   ) as DateRange;
 }

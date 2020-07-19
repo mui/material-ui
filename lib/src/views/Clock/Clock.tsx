@@ -36,7 +36,7 @@ const muiComponentConfig = {
 };
 
 export const useStyles = makeStyles(
-  theme => ({
+  (theme) => ({
     root: {
       display: 'flex',
       justifyContent: 'center',

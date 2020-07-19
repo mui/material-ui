@@ -34,9 +34,7 @@ export const KeyboardDateInput: React.FC<DateInputProps & DateInputRefs> = ({
     ...textFieldProps,
     InputProps: {
       ...InputProps,
-      [`${adornmentPosition}Adornment`]: hideOpenPickerButton ? (
-        undefined
-      ) : (
+      [`${adornmentPosition}Adornment`]: hideOpenPickerButton ? undefined : (
         <InputAdornment position={adornmentPosition} {...InputAdornmentProps}>
           <IconButton
             edge={adornmentPosition}

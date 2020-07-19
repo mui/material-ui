@@ -13,7 +13,7 @@ function CssThemeExample() {
   return (
     <ThemeProvider theme={muiTheme}>
       <DateTimePicker
-        renderInput={props => <TextField {...props} />}
+        renderInput={(props) => <TextField {...props} />}
         label="2px spacing"
         value={selectedDate}
         onChange={handleDateChange}

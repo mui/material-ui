@@ -46,7 +46,7 @@ interface ArrowSwitcherProps extends ExportedArrowSwitcherProps, React.HTMLProps
 }
 
 export const useStyles = makeStyles(
-  theme => ({
+  (theme) => ({
     root: {},
     iconButton: {
       zIndex: 1,

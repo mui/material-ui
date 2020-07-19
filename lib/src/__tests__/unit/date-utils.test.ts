@@ -99,7 +99,7 @@ describe('findClosestEnabledDate', () => {
       minDate: utilsToUse.date('1900-01-01'),
       maxDate: utilsToUse.date('2100-01-01'),
       utils: utilsToUse,
-      shouldDisableDate: date => utilsToUse.isSameDay(date, today),
+      shouldDisableDate: (date) => utilsToUse.isSameDay(date, today),
       disableFuture: true,
       disablePast: true,
     });

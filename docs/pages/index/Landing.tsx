@@ -12,7 +12,7 @@ import { GITHUB_URL } from '_constants';
 import { LandingProperty } from './LandingProperty';
 import { Button, Paper, Typography, Toolbar, Grid, makeStyles } from '@material-ui/core';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   logoContainer: {
     width: 228,
     backgroundColor: 'white',

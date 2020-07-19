@@ -31,7 +31,7 @@ function StaticPickers() {
           ampm={false}
           onMinutesChange={() => {}}
           onSecondsChange={() => {}}
-          onHourChange={date => handleDateChange(date)}
+          onHourChange={(date) => handleDateChange(date)}
         />
       </div>
     </React.Fragment>

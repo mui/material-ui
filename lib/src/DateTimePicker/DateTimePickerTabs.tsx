@@ -33,7 +33,7 @@ export interface DateTimePickerTabsProps {
 }
 
 export const useStyles = makeStyles(
-  theme => {
+  (theme) => {
     const tabsBackground =
       theme.palette.type === 'light'
         ? theme.palette.primary.main

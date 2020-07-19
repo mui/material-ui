@@ -26,7 +26,7 @@ export default function MomentLocalizationExample() {
   const [locale, setLocale] = useState('fr');
   const [selectedDate, handleDateChange] = useState(new Date());
 
-  const selectLocale = useCallback(newLocale => {
+  const selectLocale = useCallback((newLocale) => {
     moment.locale(newLocale);
 
     setLocale(newLocale);
@@ -35,14 +35,14 @@ export default function MomentLocalizationExample() {
   return (
     <LocalizationProvider dateLibInstance={moment} dateAdapter={MomentAdapter} locale={locale}>
       <DatePicker
-        renderInput={props => <TextField {...props} />}
+        renderInput={(props) => <TextField {...props} />}
         mask={maskMap[locale]}
         value={selectedDate}
-        onChange={date => handleDateChange(date)}
+        onChange={(date) => handleDateChange(date)}
       />
 
       <ButtonGroup>
-        {Object.keys(localeMap).map(localeItem => (
+        {Object.keys(localeMap).map((localeItem) => (
           <Button key={localeItem} onClick={() => selectLocale(localeItem)}>
             {localeItem}
           </Button>

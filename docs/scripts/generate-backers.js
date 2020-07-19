@@ -13,7 +13,7 @@ function processPatreonPledges(rawJson) {
       .reverse()
       .map(({ relationships }) => {
         const patronId = relationships.patron.data.id;
-        const user = rawJson.included.find(entity => entity.id === patronId);
+        const user = rawJson.included.find((entity) => entity.id === patronId);
 
         return user.attributes;
       })

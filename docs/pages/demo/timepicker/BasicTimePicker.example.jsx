@@ -8,18 +8,18 @@ function BasicTimePicker() {
   return (
     <Fragment>
       <TimePicker
-        renderInput={props => <TextField {...props} />}
+        renderInput={(props) => <TextField {...props} />}
         label="12 hours"
         value={selectedDate}
-        onChange={date => handleDateChange(date)}
+        onChange={(date) => handleDateChange(date)}
       />
 
       <TimePicker
-        renderInput={props => <TextField {...props} />}
+        renderInput={(props) => <TextField {...props} />}
         ampm={false} // This is not needed if you are using localization
         label="24 hours"
         value={selectedDate}
-        onChange={date => handleDateChange(date)}
+        onChange={(date) => handleDateChange(date)}
       />
     </Fragment>
   );

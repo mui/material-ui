@@ -18,7 +18,7 @@ function CustomDateTimePicker(props) {
         todayText="now"
         openTo="hours"
         value={selectedDate}
-        onChange={date => handleDateChange(date)}
+        onChange={(date) => handleDateChange(date)}
         minDate={new Date('2018-01-01')}
         leftArrowIcon={<AlarmIcon />}
         rightArrowIcon={<SnoozeIcon />}
@@ -27,14 +27,14 @@ function CustomDateTimePicker(props) {
         openPickerIcon={<ClockIcon />}
         minTime={new Date(0, 0, 0, 9)}
         maxTime={new Date(0, 0, 0, 20)}
-        renderInput={props => (
+        renderInput={(props) => (
           <TextField {...props} variant="outlined" helperText="Hardcoded helper text" />
         )}
       />
 
       <MobileDateTimePicker
         value={selectedDate}
-        onChange={date => handleDateChange(date)}
+        onChange={(date) => handleDateChange(date)}
         label="With error handler"
         onError={console.log}
         minDate={new Date('2018-01-01T00:00')}
@@ -43,14 +43,14 @@ function CustomDateTimePicker(props) {
           dateFns: 'yyyy/MM/dd hh:mm a',
         })}
         mask="___/__/__ __:__ _M"
-        renderInput={props => <TextField variant="outlined" {...props} />}
+        renderInput={(props) => <TextField variant="outlined" {...props} />}
       />
 
       <DateTimePicker
         clearable
         value={clearedDate}
         onChange={handleClearedDateChange}
-        renderInput={props => <TextField {...props} helperText="Clear Initial State" />}
+        renderInput={(props) => <TextField {...props} helperText="Clear Initial State" />}
       />
     </React.Fragment>
   );

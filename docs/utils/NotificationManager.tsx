@@ -32,7 +32,7 @@ export function useNotification() {
     );
 
     const notificationToShow = (notifications as Notification[]).find(
-      notification => !viewedNotifications.some(viewedId => viewedId === notification.id)
+      (notification) => !viewedNotifications.some((viewedId) => viewedId === notification.id)
     );
 
     if (notificationToShow) {

@@ -8,15 +8,15 @@ function TimePickers() {
   return (
     <Fragment>
       <MobileTimePicker
-        renderInput={props => <TextField {...props} />}
+        renderInput={(props) => <TextField {...props} />}
         ampmInClock
         label="For mobile"
         value={selectedDate}
-        onChange={date => handleDateChange(date)}
+        onChange={(date) => handleDateChange(date)}
       />
 
       <DesktopTimePicker
-        renderInput={props => <TextField {...props} />}
+        renderInput={(props) => <TextField {...props} />}
         clearable
         ampm={false}
         label="For desktop"
@@ -26,7 +26,7 @@ function TimePickers() {
 
       {/* Alternative way to show am/pm */}
       <TimePicker
-        renderInput={props => <TextField {...props} />}
+        renderInput={(props) => <TextField {...props} />}
         ampm
         ampmInClock
         showTodayButton

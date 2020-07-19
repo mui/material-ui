@@ -9,7 +9,7 @@ interface LinkedComponentsProps {
 const LinkedComponents: React.FunctionComponent<LinkedComponentsProps> = ({ components }) => {
   return (
     <ul>
-      {components.map(component => (
+      {components.map((component) => (
         <li key={component}>
           <Link prefetch href={`/api/props?component=${component}`} as={`/api/${component}`}>
             <a>

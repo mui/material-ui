@@ -23,9 +23,7 @@ describe('DatePicker', () => {
     });
 
     it('Should close datepicker and accept value', () => {
-      cy.get('button')
-        .contains('OK')
-        .click();
+      cy.get('button').contains('OK').click();
 
       cy.get(`input${ids.basic}`).should('have.value', '01/21/2019');
       cy.get(`input${ids.clearable}`).should('have.value', '01/21/2019');
@@ -34,18 +32,14 @@ describe('DatePicker', () => {
     it('Should clear the input by clear button', () => {
       cy.get(ids.clearable).click({ force: true });
 
-      cy.get('button')
-        .contains('Clear')
-        .click();
+      cy.get('button').contains('Clear').click();
       cy.get(`input${ids.clearable}`).should('have.value', '');
     });
   });
 
   context('Desktop DatePicker', () => {
     it('Should not accept invalid date format', () => {
-      cy.get(ids.maskedKeyboard)
-        .clear()
-        .type('01');
+      cy.get(ids.maskedKeyboard).clear().type('01');
       cy.get(`${ids.maskedKeyboard}`).should('have.attr', 'aria-invalid', 'true');
 
       cy.get(ids.maskedKeyboard).clear();
@@ -65,25 +59,20 @@ describe('DatePicker', () => {
     });
 
     it('Should accept date entered from keyboard', () => {
-      cy.get(ids.maskedKeyboard)
-        .clear()
-        .type('04/01/2019')
-        .blur();
+      cy.get(ids.maskedKeyboard).clear().type('04/01/2019').blur();
 
       cy.get(`input${ids.basic}`).should('have.value', '04/01/2019');
     });
 
     it('Should open calendar by the keyboard icon', () => {
-      cy.get('[data-mui-test="open-picker-from-keyboard"]')
-        .first()
-        .click();
+      cy.get('[data-mui-test="open-picker-from-keyboard"]').first().click();
       cy.get(`[data-day="19/01/2019"]`).click();
 
       cy.get(ids.maskedKeyboard).should('have.value', '01/19/2019');
     });
 
     it('Should not open disabled and readonly datepickers', () => {
-      ['#disabled', '#readonly'].forEach(id => {
+      ['#disabled', '#readonly'].forEach((id) => {
         cy.get(id).click({ force: true });
         cy.get('div[role=dialog]').should('not.be.visible');
       });
@@ -92,39 +81,26 @@ describe('DatePicker', () => {
 
   context('Input mask', () => {
     it('Correctly input value to the masked input', () => {
-      cy.get(ids.maskedKeyboard)
-        .clear()
-        .should('have.value', '');
+      cy.get(ids.maskedKeyboard).clear().should('have.value', '');
       cy.get(`${ids.maskedKeyboard}-helper-text`).should('have.text', 'mm/dd/yyyy');
-      cy.get(ids.maskedKeyboard)
-        .type('011')
-        .should('have.value', '01/1');
+      cy.get(ids.maskedKeyboard).type('011').should('have.value', '01/1');
 
-      cy.get(ids.maskedKeyboard)
-        .type('02019')
-        .should('have.value', '01/10/2019');
+      cy.get(ids.maskedKeyboard).type('02019').should('have.value', '01/10/2019');
     });
 
     it('Shows placeholder if no mask provided', () => {
       cy.get(ids.maskedKeyboard).clear();
-      cy.get(ids.maskedKeyboard)
-        .invoke('attr', 'placeholder')
-        .should('contain', 'mm/dd/yyyy');
+      cy.get(ids.maskedKeyboard).invoke('attr', 'placeholder').should('contain', 'mm/dd/yyyy');
     });
 
     it('Allows to enter anything to the not masked input', () => {
-      cy.get(ids.notMaskedKeyboard)
-        .clear()
-        .type('any text')
-        .should('have.value', 'any text');
+      cy.get(ids.notMaskedKeyboard).clear().type('any text').should('have.value', 'any text');
 
       cy.get(ids.notMaskedKeyboard).should('have.attr', 'aria-invalid', 'true');
     });
 
     it('Correctly parses date string in not masked input', () => {
-      cy.get(ids.notMaskedKeyboard)
-        .clear()
-        .type('01/10/2019');
+      cy.get(ids.notMaskedKeyboard).clear().type('01/10/2019');
 
       cy.get(ids.notMaskedKeyboard).should('have.attr', 'aria-invalid', 'false');
     });

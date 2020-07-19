@@ -28,7 +28,7 @@ describe('DatePicker validation', () => {
     }
 
     const onErrorMock = jest.fn();
-    const component = mountPickerWithState(utilsToUse.date(), stateProps => (
+    const component = mountPickerWithState(utilsToUse.date(), (stateProps) => (
       <DesktopDatePicker {...stateProps} {...props} onError={onErrorMock} />
     ));
 
@@ -47,7 +47,7 @@ describe('DatePicker validation', () => {
     }
 
     const onErrorMock = jest.fn();
-    const component = mountPickerWithState(utilsToUse.date(), stateProps => (
+    const component = mountPickerWithState(utilsToUse.date(), (stateProps) => (
       <DesktopDatePicker {...stateProps} disablePast onError={onErrorMock} />
     ));
 
@@ -84,7 +84,7 @@ describe('TimePicker validation', () => {
     ${{ shouldDisableTime }}            | ${'00:10'}       | ${'shouldDisableTime-minutes'}
   `('TimePicker should dispatch onError $expectedError', ({ props, input, expectedError }) => {
     const onErrorMock = jest.fn();
-    const component = mountPickerWithState(utilsToUse.date(), stateProps => (
+    const component = mountPickerWithState(utilsToUse.date(), (stateProps) => (
       <DesktopTimePicker ampm={false} {...stateProps} {...props} onError={onErrorMock} />
     ));
 
@@ -116,7 +116,7 @@ describe('DateRangePicker validation', () => {
 
     const onErrorMock = jest.fn();
 
-    const component = mountPickerWithState([null, null], stateProps => (
+    const component = mountPickerWithState([null, null], (stateProps) => (
       <DesktopDateRangePicker
         {...stateProps}
         {...props}

@@ -10,7 +10,7 @@ function StaticDateRangePickerExample() {
       <StaticDateRangePicker
         displayStaticWrapperAs="desktop"
         value={selectedDate}
-        onChange={date => handleDateChange(date)}
+        onChange={(date) => handleDateChange(date)}
         renderInput={(startProps, endProps) => (
           <React.Fragment>
             <TextField {...startProps} />
@@ -23,7 +23,7 @@ function StaticDateRangePickerExample() {
       <StaticDateRangePicker
         displayStaticWrapperAs="mobile"
         value={selectedDate}
-        onChange={date => handleDateChange(date)}
+        onChange={(date) => handleDateChange(date)}
         renderInput={(startProps, endProps) => (
           <React.Fragment>
             <TextField {...startProps} />

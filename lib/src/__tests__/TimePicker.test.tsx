@@ -31,7 +31,7 @@ describe('e2e - TimePicker', () => {
     jest.clearAllMocks();
     component = mount(
       <MobileTimePicker
-        renderInput={props => <TextField variant="outlined" {...props} />}
+        renderInput={(props) => <TextField variant="outlined" {...props} />}
         ampm
         open
         value={utilsToUse.date('2018-01-01T00:00:00.000')}
@@ -48,19 +48,11 @@ describe('e2e - TimePicker', () => {
     component.find('div[role="menu"]').simulate('mouseMove', fakeTouchEvent);
     component.find('div[role="menu"]').simulate('mouseUp', fakeTouchEvent);
 
-    expect(
-      component
-        .find('ToolbarButton')
-        .at(0)
-        .text()
-    ).toBe('11');
+    expect(component.find('ToolbarButton').at(0).text()).toBe('11');
   });
 
   it('Should change minutes (touch)', () => {
-    component
-      .find('ToolbarButton')
-      .at(1)
-      .simulate('click');
+    component.find('ToolbarButton').at(1).simulate('click');
 
     component.find('div[role="menu"]').simulate('touchMove', {
       buttons: 1,
@@ -72,19 +64,11 @@ describe('e2e - TimePicker', () => {
       ],
     });
 
-    expect(
-      component
-        .find('ToolbarButton')
-        .at(1)
-        .text()
-    ).toBe('53');
+    expect(component.find('ToolbarButton').at(1).text()).toBe('53');
   });
 
   it('Should change meridiem mode', () => {
-    component
-      .find('ToolbarButton')
-      .at(3)
-      .simulate('click');
+    component.find('ToolbarButton').at(3).simulate('click');
 
     clickOKButton(component);
     toHaveBeenCalledExceptMoment(onChangeMock, [utilsToUse.date('2018-01-01T12:00:00.000')]);
@@ -99,7 +83,7 @@ describe('e2e - TimePicker with seconds', () => {
     jest.clearAllMocks();
     component = mount(
       <TimePicker
-        renderInput={props => <TextField {...props} />}
+        renderInput={(props) => <TextField {...props} />}
         open
         views={['hours', 'minutes', 'seconds']}
         value={utilsToUse.date('2018-01-01T00:00:12.000')}
@@ -109,19 +93,11 @@ describe('e2e - TimePicker with seconds', () => {
   });
 
   it('Should show seconds number', () => {
-    expect(
-      component
-        .find('ToolbarButton')
-        .at(2)
-        .text()
-    ).toBe('12');
+    expect(component.find('ToolbarButton').at(2).text()).toBe('12');
   });
 
   it('Should change seconds', () => {
-    component
-      .find('ToolbarButton')
-      .at(2)
-      .simulate('click');
+    component.find('ToolbarButton').at(2).simulate('click');
 
     component.find('div[role="menu"]').simulate('touchMove', {
       buttons: 1,
@@ -145,7 +121,7 @@ describe.skip('e2e - Timepicker view navigation', () => {
   beforeEach(() => {
     component = mount(
       <DesktopTimePicker
-        renderInput={props => <TextField variant="outlined" {...props} />}
+        renderInput={(props) => <TextField variant="outlined" {...props} />}
         views={['hours', 'minutes', 'seconds']}
         onChange={jest.fn()}
         value={utilsToUse.date('2018-01-01T00:00:12.000')}
@@ -204,7 +180,7 @@ describe('e2e - TimePicker time validation', () => {
     jest.clearAllMocks();
     component = mount(
       <TimePicker
-        renderInput={props => <TextField {...props} />}
+        renderInput={(props) => <TextField {...props} />}
         open
         ampm={false}
         onChange={onChangeMock}
@@ -259,7 +235,7 @@ describe('e2e - TimePicker time validation', () => {
 });
 
 it('e2e - TimePicker empty date', () => {
-  const component = mountPickerWithState(null, props => <TimePicker open {...props} />);
+  const component = mountPickerWithState(null, (props) => <TimePicker open {...props} />);
 
   expect(component.find('button[data-mui-test="hours"]').text()).toBe('--');
   expect(component.find('button[data-mui-test="minutes"]').text()).toBe('--');

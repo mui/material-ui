@@ -18,8 +18,8 @@ export default function StaticDatePickerExample() {
         displayStaticWrapperAs="desktop"
         openTo="year"
         value={value}
-        onChange={newValue => setValue(newValue)}
-        renderInput={props => <TextField {...props} />}
+        onChange={(newValue) => setValue(newValue)}
+        renderInput={(props) => <TextField {...props} />}
       />
 
       <StaticDatePicker
@@ -27,8 +27,8 @@ export default function StaticDatePickerExample() {
         openTo="date"
         value={value}
         shouldDisableDate={disableWeekends}
-        onChange={newValue => setValue(newValue)}
-        renderInput={props => <TextField {...props} />}
+        onChange={(newValue) => setValue(newValue)}
+        renderInput={(props) => <TextField {...props} />}
       />
     </React.Fragment>
   );

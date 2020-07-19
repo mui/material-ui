@@ -24,7 +24,7 @@ module.exports = withBundleAnalyzer(
       withTypescript(
         withMDX(
           withTM({
-            webpack: config => {
+            webpack: (config) => {
               if (config.optimization.splitChunks.cacheGroups) {
                 // split all date libs to separate chunk
                 config.optimization.splitChunks.cacheGroups.dateLibs = {

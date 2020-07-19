@@ -19,7 +19,7 @@ describe('e2e - DatePicker default year format', () => {
     jest.clearAllMocks();
     component = mount(
       <DatePicker
-        renderInput={props => <TextField {...props} />}
+        renderInput={(props) => <TextField {...props} />}
         desktopModeMediaQuery="(min-width:720px)"
         value={utilsToUse.date('2018-01-01T00:00:00.000')}
         onChange={onChangeMock}
@@ -41,7 +41,7 @@ describe('e2e - DatePicker default year month format', () => {
   beforeEach(() => {
     component = mount(
       <MobileDatePicker
-        renderInput={props => <TextField {...props} />}
+        renderInput={(props) => <TextField {...props} />}
         onChange={onChangeMock}
         value={date}
         views={['year', 'month']}
@@ -62,7 +62,7 @@ describe('e2e - DatePicker default year month day format', () => {
   beforeEach(() => {
     component = mount(
       <MobileDatePicker
-        renderInput={props => <TextField {...props} />}
+        renderInput={(props) => <TextField {...props} />}
         onChange={onChangeMock}
         value={date}
         views={['year', 'month', 'date']}
@@ -84,7 +84,7 @@ describe('e2e - DatePicker onMonthChange', () => {
   beforeEach(() => {
     component = mount(
       <MobileDatePicker
-        renderInput={props => <TextField {...props} />}
+        renderInput={(props) => <TextField {...props} />}
         open
         onChange={onChangeMock}
         onMonthChange={onMonthChangeMock}
@@ -94,10 +94,7 @@ describe('e2e - DatePicker onMonthChange', () => {
   });
 
   it('Should dispatch onMonthChange on month switches', () => {
-    component
-      .find('button[data-mui-test="previous-arrow-button"]')
-      .first()
-      .simulate('click');
+    component.find('button[data-mui-test="previous-arrow-button"]').first().simulate('click');
 
     expect(onMonthChangeMock).toBeCalled();
   });
@@ -109,7 +106,7 @@ describe('e2e - DatePicker loading prop', () => {
       <MobileDatePicker
         open
         loading
-        renderInput={props => <TextField {...props} />}
+        renderInput={(props) => <TextField {...props} />}
         onChange={jest.fn()}
         value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
       />
@@ -124,7 +121,7 @@ describe('e2e - DatePicker loading prop', () => {
       <MobileDatePicker
         open
         loading
-        renderInput={props => <TextField {...props} />}
+        renderInput={(props) => <TextField {...props} />}
         onChange={jest.fn()}
         renderLoading={() => <CalendarSkeleton data-mui-test="custom-loading" />}
         value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
@@ -139,7 +136,7 @@ describe('e2e - DatePicker loading prop', () => {
 it('Custom toolbar component', () => {
   const component = mount(
     <MobileDatePicker
-      renderInput={props => <TextField {...props} />}
+      renderInput={(props) => <TextField {...props} />}
       open
       disableHighlightToday
       value={new Date()}
@@ -154,7 +151,7 @@ it('Custom toolbar component', () => {
 it('Selected date is disabled', () => {
   const component = mount(
     <MobileDatePicker
-      renderInput={props => <TextField {...props} />}
+      renderInput={(props) => <TextField {...props} />}
       open
       value={utilsToUse.date('01-01-2019')}
       maxDate={utilsToUse.date('01-01-2018')}
@@ -162,31 +159,18 @@ it('Selected date is disabled', () => {
     />
   );
 
-  expect(
-    component
-      .find('[data-mui-test="calendar-year-text"]')
-      .first()
-      .text()
-  ).toBe('2018');
-  expect(
-    component
-      .find('[data-mui-test="calendar-month-text"]')
-      .first()
-      .text()
-  ).toBe('January');
+  expect(component.find('[data-mui-test="calendar-year-text"]').first().text()).toBe('2018');
+  expect(component.find('[data-mui-test="calendar-month-text"]').first().text()).toBe('January');
 });
 
 it('Should not add to loading queue when synchronous', () => {
-  const component = mountPickerWithState(null, props => (
+  const component = mountPickerWithState(null, (props) => (
     <StaticDatePicker toolbarPlaceholder="Enter Date" {...props} />
   ));
 
   expect(component.find('h4[data-mui-test="datepicker-toolbar-date"]').text()).toBe('Enter Date');
 
-  component
-    .find('button[data-mui-test="day"]')
-    .at(0)
-    .simulate('click');
+  component.find('button[data-mui-test="day"]').at(0).simulate('click');
 
   expect(component.find('h4[data-mui-test="datepicker-toolbar-date"]').text()).not.toBe(
     'Enter Date'

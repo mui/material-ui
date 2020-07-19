@@ -16,16 +16,16 @@ export default function DatePickersVariants(props) {
         })}
         toolbarPlaceholder="Enter Date"
         value={selectedDate}
-        onChange={date => handleDateChange(date)}
-        renderInput={props => <TextField {...props} />}
+        onChange={(date) => handleDateChange(date)}
+        renderInput={(props) => <TextField {...props} />}
       />
 
       <DesktopDatePicker
         label="For desktop"
         minDate={new Date('2017-01-01')}
         value={selectedDate}
-        onChange={date => handleDateChange(date)}
-        renderInput={props => <TextField {...props} />}
+        onChange={(date) => handleDateChange(date)}
+        renderInput={(props) => <TextField {...props} />}
       />
 
       <DatePicker
@@ -34,8 +34,8 @@ export default function DatePickersVariants(props) {
         openTo="year"
         views={['year', 'month', 'date']}
         value={selectedDate}
-        onChange={date => handleDateChange(date)}
-        renderInput={props => <TextField {...props} />}
+        onChange={(date) => handleDateChange(date)}
+        renderInput={(props) => <TextField {...props} />}
       />
     </React.Fragment>
   );

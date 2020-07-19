@@ -42,7 +42,7 @@ interface DesktopDateRangeCalendarProps
 }
 
 export const useStyles = makeStyles(
-  theme => ({
+  (theme) => ({
     root: {
       display: 'flex',
       flexDirection: 'row',

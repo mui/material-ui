@@ -13,7 +13,7 @@ export interface MonthProps {
 }
 
 export const useStyles = makeStyles(
-  theme => ({
+  (theme) => ({
     root: {
       flex: '1 0 33.33%',
       display: 'flex',

@@ -35,7 +35,7 @@ export interface CalendarHeaderProps
 }
 
 export const useStyles = makeStyles(
-  theme => ({
+  (theme) => ({
     root: {
       display: 'flex',
       alignItems: 'center',
@@ -115,7 +115,7 @@ export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
     }
 
     if (views.length === 2) {
-      changeView(views.find(view => view !== currentView) || views[0]);
+      changeView(views.find((view) => view !== currentView) || views[0]);
     } else {
       // switching only between first 2
       const nextIndexToOpen = views.indexOf(currentView) !== 0 ? 0 : 1;

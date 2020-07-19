@@ -23,8 +23,8 @@ function inject(node, id) {
   ];
 }
 
-module.exports = () => tree => {
-  visit(tree, 'heading', node => {
+module.exports = () => (tree) => {
+  visit(tree, 'heading', (node) => {
     const { data } = node;
     const id = data && data.hProperties && data.hProperties.id;
 

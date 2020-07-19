@@ -10,23 +10,23 @@ import { DateRangePicker } from '../../DateRangePicker/DateRangePicker';
 // Allows to set date type right with generic JSX syntax
 <DatePicker<Date>
   value={new Date()}
-  onChange={date => date?.getDate()}
-  renderInput={props => <TextField {...props} />}
+  onChange={(date) => date?.getDate()}
+  renderInput={(props) => <TextField {...props} />}
 />;
 
 // Also works for DateRangePicker
 <DateRangePicker<DateTime>
   value={[new DateTime(), new DateTime()]}
-  onChange={date => date[0]?.set({ second: 15 })}
-  renderInput={props => <TextField {...props} />}
+  onChange={(date) => date[0]?.set({ second: 15 })}
+  renderInput={(props) => <TextField {...props} />}
 />;
 
 // Throws error if passed value is invalid
 <DatePicker<Date>
   // @ts-expect-error Value is invalid
   value={new DateTime()}
-  onChange={date => date?.getDate()}
-  renderInput={props => <TextField {...props} />}
+  onChange={(date) => date?.getDate()}
+  renderInput={(props) => <TextField {...props} />}
 />;
 
 // Inference from the state
@@ -36,8 +36,8 @@ const InferTest = () => {
   return (
     <DatePicker
       value={date}
-      onChange={date => setDate(date)}
-      renderInput={props => <TextField {...props} />}
+      onChange={(date) => setDate(date)}
+      renderInput={(props) => <TextField {...props} />}
     />
   );
 };
@@ -45,16 +45,16 @@ const InferTest = () => {
 // Infer value type from the dateAdapter
 <DatePicker
   value={new DateTime()}
-  onChange={date => console.log(date)}
-  renderInput={props => <TextField {...props} />}
+  onChange={(date) => console.log(date)}
+  renderInput={(props) => <TextField {...props} />}
   dateAdapter={new LuxonAdapter()}
 />;
 
 // Conflict between value type and date adapter causes error
 <DatePicker
   value={moment()}
-  onChange={date => console.log(date)}
-  renderInput={props => <TextField {...props} />}
+  onChange={(date) => console.log(date)}
+  renderInput={(props) => <TextField {...props} />}
   // @ts-expect-error
   dateAdapter={new LuxonAdapter()}
 />;
@@ -62,8 +62,8 @@ const InferTest = () => {
 // Conflict between explicit generic type and date adapter causes error
 <DatePicker<Moment>
   value={moment()}
-  onChange={date => console.log(date)}
-  renderInput={props => <TextField {...props} />}
+  onChange={(date) => console.log(date)}
+  renderInput={(props) => <TextField {...props} />}
   // @ts-expect-error
   dateAdapter={new LuxonAdapter()}
 />;
@@ -74,6 +74,6 @@ const InferTest = () => {
 <DatePicker
   value={null}
   // @ts-expect-error `Property 'getDate' does not exist on type 'never'.`
-  onChange={date => date?.getDate()}
-  renderInput={props => <TextField {...props} />}
+  onChange={(date) => date?.getDate()}
+  renderInput={(props) => <TextField {...props} />}
 />;

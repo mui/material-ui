@@ -11,7 +11,7 @@ import { mergeRefs, executeInTheNextEventLoopTick } from '../_helpers/utils';
 import { DateInputProps, MuiTextFieldProps } from '../_shared/PureDateInput';
 
 export const useStyles = makeStyles(
-  theme => ({
+  (theme) => ({
     root: {
       display: 'flex',
       alignItems: 'baseline',

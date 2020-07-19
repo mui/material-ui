@@ -7,7 +7,7 @@ function BasicDateTimePicker() {
   return (
     <Fragment>
       <DateTimePicker
-        renderInput={props => <TextField variant="outlined" {...props} />}
+        renderInput={(props) => <TextField variant="outlined" {...props} />}
         label="DateTimePicker"
         value={selectedDate}
         onChange={handleDateChange}

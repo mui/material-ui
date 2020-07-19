@@ -9,8 +9,8 @@ function BasicDatePicker() {
     <DatePicker
       label="Accessible"
       value={selectedDate}
-      onChange={date => handleDateChange(date)}
-      renderInput={props => <TextField {...props} />}
+      onChange={(date) => handleDateChange(date)}
+      renderInput={(props) => <TextField {...props} />}
     />
   );
 }

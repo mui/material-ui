@@ -26,19 +26,19 @@ describe('Keyboard navigation', () => {
     }
 
     it('Modal calendar allows to change date with keyboard', () => {
-      mountPicker(props => <MobileDatePicker {...props} open />);
+      mountPicker((props) => <MobileDatePicker {...props} open />);
 
       testCalendarKeyboardNavigation();
     });
 
     it('Popover calendar allows to change date with keyboard', () => {
-      mountPicker(props => <DesktopDatePicker {...props} open />);
+      mountPicker((props) => <DesktopDatePicker {...props} open />);
 
       testCalendarKeyboardNavigation();
     });
 
     it('Allows to select full date with only keyboard', () => {
-      mountPickerWithState(props => <DesktopDatePicker {...props} />);
+      mountPickerWithState((props) => <DesktopDatePicker {...props} />);
 
       cy.findByLabelText('Choose date, selected date is Oct 7, 2017').click();
 
@@ -54,11 +54,9 @@ describe('Keyboard navigation', () => {
     });
 
     it("Doesn't allow to select disabled date from keyboard", () => {
-      mountPickerWithState(props => <DesktopDatePicker {...props} />);
+      mountPickerWithState((props) => <DesktopDatePicker {...props} />);
 
-      cy.get('input')
-        .clear()
-        .type('01/02/1900');
+      cy.get('input').clear().type('01/02/1900');
 
       cy.findByLabelText('Choose date, selected date is Jan 2, 1900').click();
       cy.get('body').type('{leftarrow}');
@@ -75,7 +73,7 @@ describe('Keyboard navigation', () => {
   // TODO fix on CI
   context.skip('TimePicker', () => {
     it('Allows keyboard control on hours view', () => {
-      mountPickerWithState(props => <TimePicker {...props} open />);
+      mountPickerWithState((props) => <TimePicker {...props} open />);
 
       cy.get('body').type('{uparrow}{downarrow}{uparrow}{uparrow}{uparrow}');
 
@@ -84,18 +82,13 @@ describe('Keyboard navigation', () => {
     });
 
     it('Allows keyboard control on minutes view', () => {
-      mountPickerWithState(props => <TimePicker {...props} />);
+      mountPickerWithState((props) => <TimePicker {...props} />);
       cy.findByLabelText('Choose time, selected time is 10:36 PM').click();
 
       cy.focused().type('{enter}', { force: true });
       cy.findByLabelText('Selected time 10:36 PM').should('exist');
 
-      cy.focused().type(
-        Array(15)
-          .fill('{downarrow}')
-          .join(''),
-        { force: true }
-      );
+      cy.focused().type(Array(15).fill('{downarrow}').join(''), { force: true });
 
       cy.get('body').type('{enter}');
       cy.get('input').should('have.value', '10:25 PM');

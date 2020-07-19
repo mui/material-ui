@@ -12,7 +12,7 @@ function CalendarsDateRangePicker() {
       <DateRangePicker
         calendars={1}
         value={selectedDate}
-        onChange={date => handleDateChange(date)}
+        onChange={(date) => handleDateChange(date)}
         renderInput={(startProps, endProps) => (
           <React.Fragment>
             <TextField {...startProps} />
@@ -26,7 +26,7 @@ function CalendarsDateRangePicker() {
       <DateRangePicker
         calendars={2}
         value={selectedDate}
-        onChange={date => handleDateChange(date)}
+        onChange={(date) => handleDateChange(date)}
         renderInput={(startProps, endProps) => (
           <React.Fragment>
             <TextField {...startProps} />
@@ -40,7 +40,7 @@ function CalendarsDateRangePicker() {
       <DateRangePicker
         calendars={3}
         value={selectedDate}
-        onChange={date => handleDateChange(date)}
+        onChange={(date) => handleDateChange(date)}
         renderInput={(startProps, endProps) => (
           <React.Fragment>
             <TextField {...startProps} />

@@ -11,7 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { ToolbarComponentProps } from '../Picker/SharedPickerProps';
 
 export const useStyles = makeStyles(
-  theme => {
+  (theme) => {
     const toolbarBackground =
       theme.palette.type === 'light'
         ? theme.palette.primary.main

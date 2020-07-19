@@ -11,7 +11,7 @@ describe('e2e -- DatePicker keyboard input', () => {
   beforeEach(() => {
     component = mount(
       <DesktopDatePicker
-        renderInput={props => (
+        renderInput={(props) => (
           <TextField
             placeholder="10/10/2018"
             InputLabelProps={{

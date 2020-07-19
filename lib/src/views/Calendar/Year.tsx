@@ -18,7 +18,7 @@ export interface YearProps {
 }
 
 export const useStyles = makeStyles(
-  theme => ({
+  (theme) => ({
     root: {
       flexBasis: '33.3%',
       display: 'flex',

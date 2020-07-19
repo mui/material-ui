@@ -18,10 +18,10 @@ function DateFnsLocalizationExample() {
       <DatePicker
         clearable
         value={selectedDate}
-        onChange={date => handleDateChange(date)}
+        onChange={(date) => handleDateChange(date)}
         clearText="vider"
         cancelText="annuler"
-        renderInput={props => <TextField helperText="Localization done right" {...props} />}
+        renderInput={(props) => <TextField helperText="Localization done right" {...props} />}
       />
     </LocalizationProvider>
   );

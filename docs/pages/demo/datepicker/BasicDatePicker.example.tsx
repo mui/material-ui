@@ -9,8 +9,8 @@ export default function BasicDatePicker() {
     <DatePicker
       label="Basic example"
       value={value}
-      onChange={newValue => setValue(newValue)}
-      renderInput={props => <TextField {...props} />}
+      onChange={(newValue) => setValue(newValue)}
+      renderInput={(props) => <TextField {...props} />}
     />
   );
 }

@@ -27,8 +27,8 @@ function DatePickerField({
       maxDate={maxDate}
       value={field.value}
       // Make sure that your 3d param is set to `true` in order to run validation
-      onChange={date => form.setFieldValue(field.name, date, true)}
-      renderInput={props => (
+      onChange={(date) => form.setFieldValue(field.name, date, true)}
+      renderInput={(props) => (
         <TextField
           name={field.name}
           {...props}
@@ -44,10 +44,7 @@ function DatePickerField({
 }
 
 const schema = object({
-  date: date()
-    .required()
-    .min(new Date())
-    .max(new Date('2100-10-10')),
+  date: date().required().min(new Date()).max(new Date('2100-10-10')),
 });
 
 export default function FormikValidationSchemaExample() {

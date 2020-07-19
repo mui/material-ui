@@ -24,21 +24,21 @@ function DateFnsLocalizationExample() {
   const [locale, setLocale] = React.useState('ru');
   const [selectedDate, handleDateChange] = React.useState(new Date());
 
-  const selectLocale = React.useCallback(newLocale => {
+  const selectLocale = React.useCallback((newLocale) => {
     setLocale(newLocale);
   }, []);
 
   return (
     <LocalizationProvider dateAdapter={DateFnsAdapter} locale={localeMap[locale]}>
       <DatePicker
-        renderInput={props => <TextField {...props} />}
+        renderInput={(props) => <TextField {...props} />}
         mask={maskMap[locale]}
         value={selectedDate}
         onChange={handleDateChange}
       />
 
       <ButtonGroup>
-        {Object.keys(localeMap).map(localeItem => (
+        {Object.keys(localeMap).map((localeItem) => (
           <Button key={localeItem} onClick={() => selectLocale(localeItem)}>
             {localeItem}
           </Button>

@@ -17,7 +17,7 @@ interface ExampleProps {
   source: { raw: string; relativePath: string; default: React.FC<any> };
 }
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   exampleTitle: {
     marginBottom: 8,
     '@media(max-width: 600px)': {

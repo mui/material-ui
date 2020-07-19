@@ -19,7 +19,7 @@ describe('MonthSelection', () => {
   });
 
   it('Should render disabled months before min date and after max date', () => {
-    expect(component.find(Month).map(month => month.prop('disabled'))).toEqual([
+    expect(component.find(Month).map((month) => month.prop('disabled'))).toEqual([
       true,
       true,
       false,

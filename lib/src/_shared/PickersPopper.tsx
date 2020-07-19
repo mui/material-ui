@@ -32,7 +32,7 @@ export interface PickerPopperProps extends ExportedPickerPopperProps, PaperProps
 }
 
 export const useStyles = makeStyles(
-  theme => ({
+  (theme) => ({
     root: {
       zIndex: theme.zIndex.modal,
     },

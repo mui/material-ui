@@ -73,7 +73,7 @@ export const MonthSelection: React.FC<MonthSelectionProps> = ({
 
   return (
     <div className={classes.root}>
-      {utils.getMonthArray(date).map(month => {
+      {utils.getMonthArray(date).map((month) => {
         const monthNumber = utils.getMonth(month);
         const monthText = utils.format(month, 'monthShort');
 

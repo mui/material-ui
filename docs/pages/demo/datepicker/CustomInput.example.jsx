@@ -14,7 +14,7 @@ export default function CustomInput() {
     <DesktopDatePicker
       label="Advanced keyboard"
       value={value}
-      onChange={newValue => setValue(newValue)}
+      onChange={(newValue) => setValue(newValue)}
       renderInput={({ inputRef, inputProps, InputProps }) => (
         <InputContainer>
           <input ref={inputRef} {...inputProps} />

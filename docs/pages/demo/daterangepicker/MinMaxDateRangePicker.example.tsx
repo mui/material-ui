@@ -21,7 +21,7 @@ function MinMaxDateRangePicker() {
       value={selectedRange}
       // @ts-ignore
       maxDate={getWeeksAfter(selectedRange[0], 4)}
-      onChange={date => handleDateChange(date)}
+      onChange={(date) => handleDateChange(date)}
       renderInput={(startProps, endProps) => (
         <React.Fragment>
           <TextField {...startProps} />

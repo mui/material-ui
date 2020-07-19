@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'next/router';
 import { ListItem, withStyles, Collapse, Button } from '@material-ui/core';
 
-const styles = theme => ({
+const styles = (theme) => ({
   listItem: {
     display: 'block',
     paddingTop: 0,
@@ -39,7 +39,7 @@ class NavItem extends React.Component {
     };
   }
 
-  handleClick = e => {
+  handleClick = (e) => {
     if (this.props.depth === 0) {
       e.stopPropagation();
     }

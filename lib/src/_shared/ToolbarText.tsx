@@ -10,7 +10,7 @@ export interface ToolbarTextProps extends ExtendMui<TypographyProps> {
 }
 
 export const useStyles = makeStyles(
-  theme => {
+  (theme) => {
     const textColor =
       theme.palette.type === 'light'
         ? theme.palette.primary.contrastText

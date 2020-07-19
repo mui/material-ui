@@ -92,8 +92,8 @@ function createPickerWithState<TValue>(defaultValue: TValue, renderFn: RenderPic
 
     return renderFn({
       value,
-      onChange: date => setDate(date),
-      renderInput: props => <TextField {...props} />,
+      onChange: (date) => setDate(date),
+      renderInput: (props) => <TextField {...props} />,
     });
   };
 
@@ -129,4 +129,4 @@ export const toHaveBeenCalledExceptMoment = (mock: jest.Mock<any, any>, params: 
   return expect(mock).toHaveBeenCalledWith(...params);
 };
 
-export const itOnlyIf = (condition: boolean) => condition ? it : it.skip
+export const itOnlyIf = (condition: boolean) => (condition ? it : it.skip);

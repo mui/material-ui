@@ -15,7 +15,7 @@ export default function ServerRequest() {
     return () => requestAbortController.current?.abort();
   }, []);
 
-  const handleMonthChange = date => {
+  const handleMonthChange = (date) => {
     if (requestAbortController.current) {
       // make sure that you are aborting useless requests
       // because it is possible to switch between months pretty quickly
@@ -28,7 +28,7 @@ export default function ServerRequest() {
     fetch(`/fakeApi/randomDate?month=${date.toString()}`, {
       signal: controller.signal,
     })
-      .then(res => res.json())
+      .then((res) => res.json())
       .then(({ daysToHighlight }) => setHighlightedDays(daysToHighlight))
       .catch(() => console.log('Wow, you are switching months too quickly 🐕'));
 
@@ -39,10 +39,10 @@ export default function ServerRequest() {
     <DatePicker
       value={selectedDate}
       loading={highlightedDays === null}
-      onChange={date => handleDateChange(date)}
+      onChange={(date) => handleDateChange(date)}
       onMonthChange={handleMonthChange}
       // loading
-      renderInput={props => <TextField {...props} />}
+      renderInput={(props) => <TextField {...props} />}
       renderLoading={() => <CalendarSkeleton />}
       renderDay={(day, selectedDate, DayComponentProps) => {
         const date = makeJSDateObject(day); // skip this step, it is required to support date libs

@@ -14,7 +14,7 @@ import { PickerSelectionState } from '../../_shared/hooks/usePickerState';
 const muiComponentConfig = { name: 'MuiPickersDay' };
 
 export const useStyles = makeStyles(
-  theme => ({
+  (theme) => ({
     root: {
       ...theme.typography.caption,
       width: DAY_SIZE,

@@ -84,7 +84,7 @@ const Releases: NextFC<ReleasesProps> = ({ tags }) => {
               <TableCell>Latest stable published release</TableCell>
             </TableRow>
 
-            {tags.map(version => {
+            {tags.map((version) => {
               const docsLink = `https://${version.replace(/\./g, '-')}.${DOMAIN}`;
               const releaseNotesLink = `${GITHUB_URL}/releases/tag/${version}`;
 
@@ -118,8 +118,8 @@ const Releases: NextFC<ReleasesProps> = ({ tags }) => {
 };
 
 Releases.getInitialProps = () => {
-  return fetchGithubData('tags').then(data => ({
-    tags: data.map(tagObject => tagObject.name).filter(tag => Number(tag.charAt(1)) > 2),
+  return fetchGithubData('tags').then((data) => ({
+    tags: data.map((tagObject) => tagObject.name).filter((tag) => Number(tag.charAt(1)) > 2),
   }));
 };
 

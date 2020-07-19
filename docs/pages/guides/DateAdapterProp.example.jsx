@@ -18,17 +18,17 @@ export default function UsingDateAdapterProp() {
   return (
     <React.Fragment>
       <DatePicker
-        renderInput={props => <TextField {...props} />}
+        renderInput={(props) => <TextField {...props} />}
         value={selectedDate}
-        onChange={date => handleDateChange(date)}
+        onChange={(date) => handleDateChange(date)}
         dateAdapter={staticDateAdapter}
       />
 
       <DatePicker
         value={selectedDate}
-        onChange={date => handleDateChange(date)}
+        onChange={(date) => handleDateChange(date)}
         dateAdapter={memoizedDateAdapter}
-        renderInput={props => (
+        renderInput={(props) => (
           <TextField helperText="In case you need to generate adapter from state" {...props} />
         )}
       />

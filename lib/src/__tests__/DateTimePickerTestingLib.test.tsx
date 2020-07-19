@@ -11,7 +11,7 @@ describe('<DateTimePicker />', () => {
   it('prop: mask – should take the mask prop into account', () => {
     render(
       <DesktopDateTimePicker
-        renderInput={props => <TextField autoFocus {...props} />}
+        renderInput={(props) => <TextField autoFocus {...props} />}
         ampm={false}
         inputFormat={utilsToUse.moment ? 'MM.DD.YYYY HH:mm' : 'mm.dd.yyyy hh:mm'}
         mask="__.__.____ __:__"
@@ -36,7 +36,7 @@ describe('<DateTimePicker />', () => {
         open
         openTo="minutes"
         onChange={() => {}}
-        renderInput={props => <TextField {...props} />}
+        renderInput={(props) => <TextField {...props} />}
         value={utilsToUse.date('2018-01-01T12:00:00.000Z')}
         minDateTime={utilsToUse.date('2018-01-01T12:30:00.000Z')}
       />
@@ -55,7 +55,7 @@ describe('<DateTimePicker />', () => {
         openTo="hours"
         onChange={() => {}}
         ampm={false}
-        renderInput={props => <TextField {...props} />}
+        renderInput={(props) => <TextField {...props} />}
         value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
         minDateTime={utilsToUse.date('2018-01-01T12:30:00.000Z')}
       />
@@ -71,7 +71,7 @@ describe('<DateTimePicker />', () => {
         open
         openTo="hours"
         onChange={() => {}}
-        renderInput={props => <TextField {...props} />}
+        renderInput={(props) => <TextField {...props} />}
         value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
       />
     );
@@ -86,7 +86,7 @@ describe('<DateTimePicker />', () => {
         open
         openTo="hours"
         onChange={() => {}}
-        renderInput={props => <TextField {...props} />}
+        renderInput={(props) => <TextField {...props} />}
         value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
       />
     );

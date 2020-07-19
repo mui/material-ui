@@ -15,7 +15,7 @@ function ResponsiveDateRangePicker() {
       <MobileDateRangePicker
         startText="Mobile start"
         value={selectedDate}
-        onChange={date => handleDateChange(date)}
+        onChange={(date) => handleDateChange(date)}
         renderInput={(startProps, endProps) => (
           <React.Fragment>
             <TextField {...startProps} />
@@ -28,7 +28,7 @@ function ResponsiveDateRangePicker() {
       <DesktopDateRangePicker
         startText="Desktop start"
         value={selectedDate}
-        onChange={date => handleDateChange(date)}
+        onChange={(date) => handleDateChange(date)}
         renderInput={(startProps, endProps) => (
           <React.Fragment>
             <TextField {...startProps} />

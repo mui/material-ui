@@ -83,7 +83,7 @@ class Layout extends Component<LayoutProps> {
   state = {
     anchorEl: null,
     drawerOpen: false,
-    selectedIndex: Object.keys(utilsMap).findIndex(lib => lib === 'date-fns'),
+    selectedIndex: Object.keys(utilsMap).findIndex((lib) => lib === 'date-fns'),
   };
 
   handleDrawerToggle = () => {

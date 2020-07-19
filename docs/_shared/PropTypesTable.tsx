@@ -17,7 +17,7 @@ import {
   Grid,
 } from '@material-ui/core';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   header: {
     marginTop: 24,
   },
@@ -117,7 +117,7 @@ const PropTypesTableLazy: React.FC<PropTypesTableProps> = ({ disableHeader, src 
           </TableHead>
 
           <TableBody>
-            {propsToShow.map(prop => (
+            {propsToShow.map((prop) => (
               <TableRow key={prop.name}>
                 <TableCell
                   className={clsx({

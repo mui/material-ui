@@ -20,7 +20,7 @@ function ControllingProgrammaticallyExample() {
       <Button onClick={() => setIsOpen(true)}> Open picker </Button>
 
       <DatePicker
-        renderInput={props => <TextField {...props} />}
+        renderInput={(props) => <TextField {...props} />}
         open={isOpen}
         onOpen={() => setIsOpen(true)}
         onClose={() => setIsOpen(false)}

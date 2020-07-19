@@ -23,8 +23,8 @@ function MyComponent() {
   return (
     <DatePicker
       value={value}
-      onChange={newValue => setValue(newValue)}
-      renderInput={props => <TextField {...props} />}
+      onChange={(newValue) => setValue(newValue)}
+      renderInput={(props) => <TextField {...props} />}
     />
   );
 }
@@ -39,7 +39,7 @@ It means that it will try to infer the `value` and `onChange` type from the pass
 <DatePicker
   value={new Date()}
   // date will be inferred as `Date | null`
-  onChange={newValue => newValue?.getDate()}
+  onChange={(newValue) => newValue?.getDate()}
 />
 ```
 
@@ -49,7 +49,7 @@ It also means that you can manually set value type thanks to the generic JSX syt
 <DatePicker<Date>
   // You can pass any value right here that can be parsed
   value={new Date()}
-  onChange={newValue => newValue?.getDate()}
+  onChange={(newValue) => newValue?.getDate()}
 />
 ```
 
@@ -61,7 +61,7 @@ If you are passing not typed value to the picker (such like `null`) we cannot pr
 <DatePicker
   value={null}
   // @ts-expect-error `Property 'getDate' does not exist on type 'never'.`
-  onChange={newValue => newValue?.getDate()}
+  onChange={(newValue) => newValue?.getDate()}
 />
 ```
 

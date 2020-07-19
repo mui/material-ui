@@ -21,7 +21,7 @@ describe('<DateRangePicker />', () => {
       <StaticDateRangePicker
         renderInput={defaultRangeRenderInput}
         minDate={new Date('2005-01-01')}
-        shouldDisableDate={date => isWeekend(utilsToUse.toJsDate(date))}
+        shouldDisableDate={(date) => isWeekend(utilsToUse.toJsDate(date))}
         onChange={jest.fn()}
         value={[
           utilsToUse.date('2018-01-01T00:00:00.000'),
@@ -31,7 +31,7 @@ describe('<DateRangePicker />', () => {
     );
 
     expect(
-      getAllByMuiTest('DateRangeDay').filter(day => day.getAttribute('disabled') !== undefined)
+      getAllByMuiTest('DateRangeDay').filter((day) => day.getAttribute('disabled') !== undefined)
     ).toHaveLength(31);
   });
 
@@ -58,7 +58,7 @@ describe('<DateRangePicker />', () => {
         open
         renderInput={defaultRangeRenderInput}
         onChange={jest.fn()}
-        renderDay={day => <div key={String(day)} data-mui-test="renderDayCalled" />}
+        renderDay={(day) => <div key={String(day)} data-mui-test="renderDayCalled" />}
         value={[null, null]}
       />
     );

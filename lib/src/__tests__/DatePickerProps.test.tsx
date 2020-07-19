@@ -7,7 +7,7 @@ describe('DatePicker - different props', () => {
   it('Should not render toolbar if onlyCalendar = true', () => {
     const component = mount(
       <DatePicker
-        renderInput={props => <TextField {...props} />}
+        renderInput={(props) => <TextField {...props} />}
         open
         showToolbar
         onChange={jest.fn()}
@@ -21,7 +21,7 @@ describe('DatePicker - different props', () => {
   it('toolbarTitle – should render value from prop', () => {
     const component = mount(
       <MobileDatePicker
-        renderInput={props => <TextField {...props} />}
+        renderInput={(props) => <TextField {...props} />}
         open
         toolbarTitle="test"
         label="something"
@@ -39,7 +39,7 @@ describe('DatePicker - different props', () => {
         open
         label="Default label"
         onChange={jest.fn()}
-        renderInput={props => <TextField {...props} />}
+        renderInput={(props) => <TextField {...props} />}
         value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
       />
     );
@@ -52,7 +52,7 @@ describe('DatePicker - different props', () => {
   it('toolbarFormat – should format toolbar according to passed format', () => {
     const component = mount(
       <MobileDatePicker
-        renderInput={props => <TextField {...props} />}
+        renderInput={(props) => <TextField {...props} />}
         open
         onChange={jest.fn()}
         toolbarFormat="MMMM"
@@ -68,7 +68,7 @@ describe('DatePicker - different props', () => {
     const onChangeMock = jest.fn();
     const component = mount(
       <MobileDatePicker
-        renderInput={props => <TextField {...props} />}
+        renderInput={(props) => <TextField {...props} />}
         showTodayButton
         cancelText="stream"
         onClose={onCloseMock}
@@ -103,7 +103,7 @@ describe('DatePicker - different props', () => {
             ref={ref}
             value={null}
             onChange={jest.fn()}
-            renderInput={props => <TextField id="focusing-picker" {...props} />}
+            renderInput={(props) => <TextField id="focusing-picker" {...props} />}
           />
 
           <button id="focus-picker" onClick={focusPicker} />
@@ -119,11 +119,11 @@ describe('DatePicker - different props', () => {
     const onChangeMock = jest.fn();
     const component = mount(
       <StaticDatePicker
-        renderInput={props => <TextField {...props} />}
+        renderInput={(props) => <TextField {...props} />}
         openTo="year"
         onChange={onChangeMock}
         value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
-        shouldDisableYear={year => utilsToUse.getYear(year) === 2030}
+        shouldDisableYear={(year) => utilsToUse.getYear(year) === 2030}
       />
     );
 

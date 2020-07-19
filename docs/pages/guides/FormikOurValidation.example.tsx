@@ -58,8 +58,8 @@ function DatePickerField({
         }
       }}
       // Make sure that your 3d param is set to `false` on order to not clear errors
-      onChange={date => form.setFieldValue(name, date, false)}
-      renderInput={props => (
+      onChange={(date) => form.setFieldValue(name, date, false)}
+      renderInput={(props) => (
         <TextField
           {...props}
           name={name}

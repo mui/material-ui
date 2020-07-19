@@ -6,7 +6,7 @@ describe('App navigation', () => {
     cy.visit('/getting-started/installation');
   });
 
-  navItems.forEach(navItem => {
+  navItems.forEach((navItem) => {
     context(navItem.title, () => {
       beforeEach(() => {
         cy.get(`[data-nav=${stringToTestId(navItem.title)}]`).as('nav-group');

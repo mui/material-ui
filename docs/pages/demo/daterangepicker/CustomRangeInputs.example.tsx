@@ -8,7 +8,7 @@ function CustomRangeInputs() {
     <DateRangePicker
       label="Advanced keyboard"
       value={selectedDate}
-      onChange={date => handleDateChange(date)}
+      onChange={(date) => handleDateChange(date)}
       renderInput={(startProps, endProps) => (
         <React.Fragment>
           <input ref={startProps.ref as React.Ref<HTMLInputElement>} {...startProps.inputProps} />

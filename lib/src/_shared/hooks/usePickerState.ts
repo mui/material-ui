@@ -45,7 +45,7 @@ export function usePickerState<TInput, TDateValue>(
 
   React.useEffect(() => {
     const parsedDateValue = valueManager.parseInput(utils, props);
-    setPickerDate(currentPickerDate => {
+    setPickerDate((currentPickerDate) => {
       if (!valueManager.areValuesEqual(utils, currentPickerDate, parsedDateValue)) {
         return parsedDateValue;
       }

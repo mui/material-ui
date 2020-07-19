@@ -12,7 +12,7 @@ interface FadeTransitionProps {
 
 const animationDuration = 500;
 export const useStyles = makeStyles(
-  theme => {
+  (theme) => {
     return {
       root: {
         display: 'block',
@@ -63,7 +63,7 @@ export const FadeTransitionGroup: React.FC<FadeTransitionProps> = ({
   return (
     <TransitionGroup
       className={clsx(classes.root, className)}
-      childFactory={element =>
+      childFactory={(element) =>
         React.cloneElement(element, {
           classNames: transitionClasses,
         })

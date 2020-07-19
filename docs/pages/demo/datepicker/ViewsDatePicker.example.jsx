@@ -11,8 +11,8 @@ export default function YearDatePicker() {
         views={['year']}
         label="Year only"
         value={selectedDate}
-        onChange={date => handleDateChange(date)}
-        renderInput={props => <TextField {...props} />}
+        onChange={(date) => handleDateChange(date)}
+        renderInput={(props) => <TextField {...props} />}
       />
 
       <MobileDatePicker
@@ -21,8 +21,8 @@ export default function YearDatePicker() {
         minDate={new Date('2012-03-01')}
         maxDate={new Date('2023-06-01')}
         value={selectedDate}
-        onChange={date => handleDateChange(date)}
-        renderInput={props => <TextField {...props} helperText="With min and max" />}
+        onChange={(date) => handleDateChange(date)}
+        renderInput={(props) => <TextField {...props} helperText="With min and max" />}
       />
 
       <DatePicker
@@ -30,8 +30,8 @@ export default function YearDatePicker() {
         views={['year', 'month']}
         label="Year and Month"
         value={selectedDate}
-        onChange={date => handleDateChange(date)}
-        renderInput={props => <TextField {...props} helperText="Start from year selection" />}
+        onChange={(date) => handleDateChange(date)}
+        renderInput={(props) => <TextField {...props} helperText="Start from year selection" />}
       />
     </React.Fragment>
   );

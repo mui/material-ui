@@ -48,8 +48,8 @@ function CssOverrides() {
       <DatePicker
         label="Light blue picker"
         value={selectedDate}
-        onChange={date => handleDateChange(date)}
-        renderInput={props => <TextField {...props} />}
+        onChange={(date) => handleDateChange(date)}
+        renderInput={(props) => <TextField {...props} />}
         // @ts-ignore
         shouldDisableDate={isWeekend}
       />

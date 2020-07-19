@@ -29,8 +29,8 @@ export const navItems = [
   {
     title: 'Components API',
     children: Object.keys(PropTypesDoc)
-      .filter(component => !component.match(/^(Mobile|Desktop|Static)/))
-      .map(component => ({
+      .filter((component) => !component.match(/^(Mobile|Desktop|Static)/))
+      .map((component) => ({
         title: component,
         as: `/api/${component}`,
         href: `/api/props?component=${component}`,

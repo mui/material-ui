@@ -15,7 +15,7 @@ export default function DateFnsLocalizationExample() {
   return (
     <LocalizationProvider dateAdapter={OverriddenAdapter}>
       <DatePicker
-        renderInput={props => <TextField {...props} />}
+        renderInput={(props) => <TextField {...props} />}
         openTo="year"
         value={selectedDate}
         onChange={handleDateChange}
