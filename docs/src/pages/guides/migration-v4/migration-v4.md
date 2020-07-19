@@ -189,3 +189,12 @@ This change affects almost all components where you're using the `component` pro
   -<Accordion onChange={(event: React.ChangeEvent<{}>, expanded: boolean) => {}} />
   +<Accordion onChange={(event: React.SyntheticEvent, expanded: boolean) => {}} />
   ```
+
+  ## Grid
+
+  - Rename `justify` prop with `justifyContent` to allow consistency with the system API naming.
+
+  ```diff
+  -<Grid justify="center">
+  +<Grid justifyContent="center">
+  ```
