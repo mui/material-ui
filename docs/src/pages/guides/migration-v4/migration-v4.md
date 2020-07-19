@@ -193,7 +193,7 @@ This change affects almost all components where you're using the `component` pro
 
   ## Grid
 
-  - Rename `justify` prop with `justifyContent` to allow consistency with the system API naming.
+  - Rename `justify` prop with `justifyContent` to be aligned with the CSS property name.
 
   ```diff
   -<Grid justify="center">
