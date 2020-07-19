@@ -72,7 +72,7 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">align-content-xs-flex-end</span> | <span class="prop-name">.MuiGrid-align-content-xs-flex-end</span> | 
 | <span class="prop-name">align-content-xs-space-between</span> | <span class="prop-name">.MuiGrid-align-content-xs-space-between</span> | 
 | <span class="prop-name">align-content-xs-space-around</span> | <span class="prop-name">.MuiGrid-align-content-xs-space-around</span> | 
-| <span class="prop-name">justifyContent-xs-center</span> | <span class="prop-name">.MuiGrid-justifyContent-xs-center</span> | 
+| <span class="prop-name">justify-content-xs-center</span> | <span class="prop-name">.MuiGrid-justify-content-xs-center</span> | 
 | <span class="prop-name">justify-content-xs-flex-end</span> | <span class="prop-name">.MuiGrid-justify-content-xs-flex-end</span> | 
 | <span class="prop-name">justify-content-xs-space-between</span> | <span class="prop-name">.MuiGrid-justify-content-xs-space-between</span> | 
 | <span class="prop-name">justify-content-xs-space-around</span> | <span class="prop-name">.MuiGrid-justify-content-xs-space-around</span> | 

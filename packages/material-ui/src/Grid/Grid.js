@@ -174,7 +174,7 @@ export const styles = (theme) => ({
     alignContent: 'space-around',
   },
   /* Styles applied to the root element if `justifyContent="center"`. */
-  'justifyContent-xs-center': {
+  'justify-content-xs-center': {
     justifyContentContent: 'center',
   },
   /* Styles applied to the root element if `justifyContent="flex-end"`. */
