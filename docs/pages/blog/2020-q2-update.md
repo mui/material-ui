@@ -18,11 +18,11 @@ You can find the documentation for the next version at http://next.material-ui.c
 
 - 📍 The icons package has been updated with changes made by Google, leading to [200+ new icons](https://next.material-ui.com/components/material-icons/).
 
-  <img src="/static/blog/2020-q2-update/icons.png" alt="icons" style="max-width: 615px; margin-bottom: 24px;" />
+  <img src="/static/blog/2020-q2-update/icons.png" alt="icons" style="width: 615px; margin-bottom: 24px;" />
 
-- 🎨 [Figma assets](https://material-ui.com/store/items/figma-react/) for Material-UI extend the support for design tools beyound Sketch.
+- 🎨 [Figma assets](https://material-ui.com/store/items/figma-react/) for Material-UI extend the support for design tools beyond Sketch.
 
-  <a href="https://material-ui.com/store/items/figma-react/"><img src="/static/blog/2020-q1-update/figma.png" alt="figma" style="max-width: 160px; margin-bottom: 24px;" /></a>
+  <a href="https://material-ui.com/store/items/figma-react/"><img src="/static/blog/2020-q1-update/figma.png" alt="figma" style="width: 160px; margin-bottom: 24px;" /></a>
 
   Adobe XD and Framer support are also up for consideration if they attract a significant audience, but not until we've polished the Sketch and Figma assets.
 
@@ -30,38 +30,38 @@ You can find the documentation for the next version at http://next.material-ui.c
 
   <img src="/static/blog/2020-q2-update/loading.gif" alt="loading" style="margin-bottom: 24px;" />
 
-- ⚛️ We have made **all** component props available in IntelliSense. This is complementary with the `propTypes` and API pages in the documentation.
+- ⚛️ We have made **all** component props available in IntelliSense. This is complementary to the `propTypes` and API pages in the documentation.
 
   ![props](/static/blog/2020-q1-update/props.png)
 
 - ⏰ A new [`Timeline` component](/components/timeline/) joins the lab.
 
-  <img src="/static/blog/2020-q2-update/timeline.png" alt="timeline" style="max-width: 244px; margin-bottom: 24px;" />
+  <img src="/static/blog/2020-q2-update/timeline.png" alt="timeline" style="width: 244px; margin-bottom: 24px;" />
 
 - 📣 We have analyzed and published the results of the "Material-UI Developer Survey 2020". If you haven't read it yet, you can follow this link to [read it in detail](/blog/2020-developer-survey-results/). It contains a lot of interesting insights that will shape the future of the library and company. Thanks for the contributions! ❤️
 - 🇨🇳🇧🇷 The non-API documentation has been fully translated to Chinese and Brazilian, thanks to the collaboration of [Danica Shen](https://github.com/DDDDDanica), [Yan Lee](https://github.com/AGDholo), and [Jairon Alves Lima](https://github.com/jaironalves), native speakers from the community 🙏.
 
-  <img src="/static/blog/2020-q2-update/chinese.png" alt="chinese" style="max-width: 146px; padding-right: 3px; box-sizing: content-box;" />
+  <img src="/static/blog/2020-q2-update/chinese.png" alt="chinese" style="width: 146px; padding-right: 3px; box-sizing: content-box;" />
 
-  <img src="/static/blog/2020-q2-update/brazilian.png" alt="brazilian" style="max-width: 152px; margin-bottom: 24px;" />
+  <img src="/static/blog/2020-q2-update/brazilian.png" alt="brazilian" style="width: 152px; margin-bottom: 24px;" />
 
   After English, Chinese, and Brazilian, the languages that would benefit the most from translation are **Russian** and **Spanish**.<br />
   Feel free to [get stuck into](https://translate.material-ui.com/) if you are a native speaker and able to give a hand with either of these two languages.
 
 - 🗂 A new extension of the Tab API [in the lab](/components/tabs/#experimental-api) implements accessible tabs following [WAI-ARIA](https://www.w3.org/TR/wai-aria-practices/#tabpanel) authoring practices.
 
-  ```jsx
-  <TabContext value={value}>
-    <TabList onChange={handleChange} aria-label="simple tabs example">
-      <Tab label="Item One" value="1" />
-      <Tab label="Item Two" value="2" />
-      <Tab label="Item Three" value="3" />
-    </TabList>
-    <TabPanel value="1">Item One</TabPanel>
-    <TabPanel value="2">Item Two</TabPanel>
-    <TabPanel value="3">Item Three</TabPanel>
-  </TabContext>
-  ```
+```jsx
+<TabContext value={value}>
+  <TabList onChange={handleChange} aria-label="simple tabs example">
+    <Tab label="Item One" value="1" />
+    <Tab label="Item Two" value="2" />
+    <Tab label="Item Three" value="3" />
+  </TabList>
+  <TabPanel value="1">Item One</TabPanel>
+  <TabPanel value="2">Item Two</TabPanel>
+  <TabPanel value="3">Item Three</TabPanel>
+</TabContext>
+```
 
 - 📆 On the [date picker](https://next.material-ui-pickers.dev/):
 
