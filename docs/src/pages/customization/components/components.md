@@ -322,7 +322,7 @@ const theme = createMuiTheme({
 
 ### Adding new theme variants
 
-You can take advantage of the `variants` key of the `theme` to potentially add new variants for the Material-UI components.
+You can take advantage of the `variants` key of the `theme` to add new variants to Material-UI components.
 
 ```jsx
 const theme = createMuiTheme({
