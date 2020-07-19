@@ -35,7 +35,9 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function InteractiveGrid() {
   const classes = useStyles();
   const [direction, setDirection] = React.useState<GridDirection>('row');
-  const [justifyContent, setJustifyContent] = React.useState<GridJustification>('center');
+  const [justifyContent, setJustifyContent] = React.useState<GridJustification>(
+    'center',
+  );
   const [alignItems, setAlignItems] = React.useState<GridItemsAlignment>(
     'center',
   );
