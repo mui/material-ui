@@ -17,6 +17,6 @@ const GlobalCss = withStyles((theme) => {
       ...displays(theme),
     },
   };
-})(() => null);
+}, { index: 0 })(() => null);
 
 export default GlobalCss;

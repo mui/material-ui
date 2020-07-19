@@ -22,7 +22,7 @@ export default function spacings(theme) {
   Object.keys(properties).forEach((property) => {
     values.forEach((val) => {
       spacingsSelectors[`${property}-${val.toString().replace('.', '-')}`] = {
-        [`${properties[property]}`]: `${theme.spacing(val)}px !important`,
+        [`${properties[property]}`]: theme.spacing(val),
       };
     });
 
@@ -34,9 +34,7 @@ export default function spacings(theme) {
         const cssKey = `${property}${direction}-${val.toString().replace('.', '-')}`;
         spacingsSelectors[cssKey] = {};
         cssProperties.forEach((cssProperty) => {
-          spacingsSelectors[cssKey][`${properties[property]}${cssProperty}`] = `${theme.spacing(
-            val,
-          )}px !important`;
+          spacingsSelectors[cssKey][`${properties[property]}${cssProperty}`] = theme.spacing(val);
         });
       });
     });

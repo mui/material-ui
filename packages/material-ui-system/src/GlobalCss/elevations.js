@@ -4,7 +4,7 @@ export default function elevations(theme) {
   const elevationsSelectors = {};
 
   theme.shadows.forEach((shadow, idx) => {
-    elevationsSelectors[`elevation-${idx}`] = { boxShadow: `${shadow} !important` };
+    elevationsSelectors[`elevation-${idx}`] = { boxShadow: shadow };
   });
 
   return combineWithBreakpoints(theme, elevationsSelectors);
