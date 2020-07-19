@@ -2,7 +2,7 @@ import { deepmerge } from '@material-ui/utils';
 import MuiError from '@material-ui/utils/macros/MuiError.macro';
 import noopTheme from './noopTheme';
 
-// TODO: remove this once the capiitalize is moved to the @material-ui/utils package
+// TODO: remove this once the capitalize method is moved to the @material-ui/utils package
 export function capitalize(string) {
   if (typeof string !== 'string') {
     throw new MuiError('Material-UI: capitalize(string) expects a string argument.');
