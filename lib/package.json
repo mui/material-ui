@@ -102,7 +102,7 @@
     "@typescript-eslint/eslint-plugin": "^1.6.0",
     "@typescript-eslint/parser": "^1.6.0",
     "babel-loader": "^8.1.0",
-    "babel-plugin-optimize-clsx": "^2.6.0",
+    "babel-plugin-optimize-clsx": "^2.6.1",
     "babel-plugin-react-remove-properties": "^0.3.0",
     "codecov": "^3.6.5",
     "cross-env": "^7.0.2",
