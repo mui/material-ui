@@ -346,7 +346,7 @@ const theme = createMuiTheme({
 });
 ```
 
-If you are using typescript, you will need to specify your new variants/colors, using module augmentation.
+If you are using TypeScript, you will need to specify your new variants/colors, using module augmentation.
 
 ```tsx
 declare module '@material-ui/core/Button/Button' {
