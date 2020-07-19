@@ -27,7 +27,6 @@
     "jsonlint": "node scripts/jsonlint.js",
     "lint": "eslint . --cache --report-unused-disable-directives --ext .js,.ts,.tsx",
     "lint:ci": "eslint . --report-unused-disable-directives --ext .js,.ts,.tsx",
-    "lint:fix": "eslint . --cache --fix --ext .js,.ts,.tsx",
     "prettier": "node ./scripts/prettier.js",
     "prettier:all": "node ./scripts/prettier.js write",
     "size:snapshot": "node scripts/sizeSnapshot/create",
