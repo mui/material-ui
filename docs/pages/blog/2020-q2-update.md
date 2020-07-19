@@ -6,7 +6,7 @@ description: An update on our mission for Q2 2020.
 
 Olivier Tassinari. July 17, 2020.
 
-This is an update on our mission. It covers what happens over the last 3 months and what we aim to achieve in the 3 coming months.
+This is an update on our mission. It covers what has happened over the last 3 months and what we aim to achieve in the 3 coming months.
 
 ## Product
 
