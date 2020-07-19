@@ -86,7 +86,8 @@ export default function getStylesCreator(stylesOrCreator) {
               [
                 'Material-UI: You are trying to override a style that does not exist.',
                 `Fix the \`${key}\` key of \`theme.overrides.${name}\`.`,
-                'If you intentionally wanted to add new key, please use the theme.variants option',
+                '',
+                'If you intentionally wanted to add a new key, please use the theme.variants option.',
               ].join('\n'),
             );
           }
