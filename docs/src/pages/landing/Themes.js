@@ -66,7 +66,7 @@ export default function Themes() {
               />
             </NoSsr>
           </Link>
-          <Grid container justify="center">
+          <Grid container justifyContent="center">
             <Button
               variant="outlined"
               data-ga-event-category="store"

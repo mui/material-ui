@@ -46,11 +46,11 @@ export type GridClassKey =
   | 'align-content-xs-flex-end'
   | 'align-content-xs-space-between'
   | 'align-content-xs-space-around'
-  | 'justify-xs-center'
-  | 'justify-xs-flex-end'
-  | 'justify-xs-space-between'
-  | 'justify-xs-space-around'
-  | 'justify-xs-space-evenly'
+  | 'justify-content-xs-center'
+  | 'justify-content-xs-flex-end'
+  | 'justify-content-xs-space-between'
+  | 'justify-content-xs-space-around'
+  | 'justify-content-xs-space-evenly'
   | 'spacing-xs-1'
   | 'spacing-xs-2'
   | 'spacing-xs-3'
@@ -111,7 +111,7 @@ export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * Defines the `justify-content` style property.
      * It is applied for all screen sizes.
      */
-    justify?: GridJustification;
+    justifyContent?: GridJustification;
     /**
      * Defines the number of grids the component is going to use.
      * It's applied for the `lg` breakpoint and wider screens if not overridden.

@@ -137,7 +137,7 @@ export default function Users() {
             <Typography variant="body1" align="center" gutterBottom>
               {t('joinThese')}
             </Typography>
-            <Grid container justify="center" className={classes.grid}>
+            <Grid container justifyContent="center" className={classes.grid}>
               {users.map((user) => (
                 <img
                   key={user.caption}
@@ -153,7 +153,7 @@ export default function Users() {
             <Typography variant="body1" align="center" gutterBottom>
               {t('usingMui')}
             </Typography>
-            <Grid container justify="center">
+            <Grid container justifyContent="center">
               <Button
                 variant="outlined"
                 href="https://spectrum.chat/material-ui/general/whos-using-material-ui~00e6687a-9b2d-454f-97a6-950d9fde71cf"
