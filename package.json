@@ -66,7 +66,7 @@
     "@types/glob": "^7.1.1",
     "@types/jsdom": "^16.1.0",
     "@types/lodash": "^4.14.138",
-    "@types/mocha": "^7.0.1",
+    "@types/mocha": "^8.0.0",
     "@types/prettier": "^2.0.0",
     "@types/react": "^16.9.3",
     "@types/sinon": "^9.0.0",
