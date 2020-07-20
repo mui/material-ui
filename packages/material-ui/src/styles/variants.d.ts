@@ -3,7 +3,7 @@ import { ComponentsPropsList } from './props';
 
 export type Variants = {
   [Name in keyof ComponentsPropsList]?: Array<{
-    matcher: Partial<ComponentsPropsList[Name]>;
+    props: Partial<ComponentsPropsList[Name]>;
     styles: // JSS property bag
     | CSSProperties
       // JSS property bag where values are based on props

@@ -27,14 +27,14 @@ const inputTheme = createMuiTheme({
   variants: {
     MuiButton: [
       {
-        matcher: { variant: 'dashed' },
+        props: { variant: 'dashed' },
         styles: {
           padding: '5px 15px',
           border: `5px dashed ${defaultTheme.palette.primary.main}`,
         },
       },
       {
-        matcher: { variant: 'dashed', color: 'secondary' },
+        props: { variant: 'dashed', color: 'secondary' },
         styles: {
           border: `5px dashed ${defaultTheme.palette.secondary.main}`,
         },

@@ -329,14 +329,14 @@ const theme = createMuiTheme({
   variants: {
     MuiButton: [
       {
-        matcher: { variant: 'dashed' },
+        props: { variant: 'dashed' },
         styles: {
           padding: '5px 15px',
           border: `5px dashed grey${blue[500]}`,
         },
       },
       {
-        matcher: { variant: 'dashed', color: 'secondary' },
+        props: { variant: 'dashed', color: 'secondary' },
         styles: {
           border: `5px dashed ${red[500]}`,
         },

@@ -15,18 +15,18 @@ function isEmpty(string) {
   return string.length === 0;
 }
 
-const propsToClassKey = (matcher) => {
-  const { variant, ...rest } = matcher;
+const propsToClassKey = (props) => {
+  const { variant, ...rest } = props;
 
-  let classKey = matcher.variant ? matcher.variant : '';
+  let classKey = variant || '';
 
   Object.keys(rest)
     .sort()
     .forEach((key) => {
       if (key === 'color') {
-        classKey += isEmpty(classKey) ? matcher[key] : capitalize(matcher[key]);
+        classKey += isEmpty(classKey) ? props[key] : capitalize(props[key]);
       } else {
-        classKey += `${isEmpty(classKey) ? key : capitalize(key)}${capitalize(matcher[key])}`;
+        classKey += `${isEmpty(classKey) ? key : capitalize(key)}${capitalize(props[key])}`;
       }
     });
 
@@ -97,7 +97,7 @@ export default function getStylesCreator(stylesOrCreator) {
       });
 
       variants.forEach((definition) => {
-        const classKey = propsToClassKey(definition.matcher);
+        const classKey = propsToClassKey(definition.props);
         stylesWithOverrides[classKey] = deepmerge(
           stylesWithOverrides[classKey] || {},
           definition.styles,

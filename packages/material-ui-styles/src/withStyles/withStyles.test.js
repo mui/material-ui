@@ -247,12 +247,16 @@ describe('withStyles', () => {
             variants: {
               MuiButton: [
                 {
-                  matcher: { variant: 'test' },
+                  props: { variant: 'test' },
                   styles: { padding: 9 },
                 },
                 {
-                  matcher: { variant: 'test', size: 'large' },
+                  props: { variant: 'test', size: 'large' },
                   styles: { fontSize: 20 },
+                },
+                {
+                  props: { size: 'largest' },
+                  styles: { fontSize: 22 },
                 },
               ],
             },
@@ -268,6 +272,7 @@ describe('withStyles', () => {
       expect(sheetsRegistry.registry[0].rules.raw).to.deep.equal({
         test: { padding: 9 },
         testSizeLarge: { fontSize: 20 },
+        sizeLargest: { fontSize: 22 },
       });
     });
 
