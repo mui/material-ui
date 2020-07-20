@@ -1,10 +1,7 @@
 // @ts-check
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses } from 'test/utils';
-import createMount from 'test/utils/createMount';
-import { createClientRender } from 'test/utils/createClientRender';
-import describeConformance from 'test/utils/describeConformance';
+import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
 import TabPanel from './TabPanel';
 import TabContext from '../TabContext';
 

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses } from 'test/utils';
-import { createClientRender } from 'test/utils/createClientRender';
+import { getClasses, createClientRender } from 'test/utils';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import NotchedOutline from './NotchedOutline';
 

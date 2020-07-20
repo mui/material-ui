@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import createMount from 'test/utils/createMount';
+import { createMount } from 'test/utils';
 import CssBaseline from './CssBaseline';
 
 describe('<CssBaseline />', () => {

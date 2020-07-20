@@ -1,9 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { findOutermostIntrinsic, getClasses, wrapsIntrinsicElement } from 'test/utils';
-import createMount from 'test/utils/createMount';
-import describeConformance from 'test/utils/describeConformance';
+import {
+  findOutermostIntrinsic,
+  getClasses,
+  wrapsIntrinsicElement,
+  createMount,
+  describeConformance,
+} from 'test/utils';
 import Icon from '@material-ui/core/Icon';
 import Fab from '@material-ui/core/Fab';
 import SpeedDial from './SpeedDial';

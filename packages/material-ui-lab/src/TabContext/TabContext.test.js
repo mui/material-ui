@@ -2,7 +2,7 @@
 import * as React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { expect } from 'chai';
-import { createClientRender } from 'test/utils/createClientRender';
+import { createClientRender } from 'test/utils';
 import TabContext, { getPanelId, getTabId, useTabContext } from './TabContext';
 
 describe('<TabContext />', () => {

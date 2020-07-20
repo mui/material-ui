@@ -1,10 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
-import { getClasses } from 'test/utils';
-import createMount from 'test/utils/createMount';
-import { act, createClientRender, fireEvent } from 'test/utils/createClientRender';
-import describeConformance from 'test/utils/describeConformance';
+import {
+  getClasses,
+  createMount,
+  describeConformance,
+  act,
+  createClientRender,
+  fireEvent,
+} from 'test/utils';
 import CheckBox from '../internal/svg-icons/CheckBox';
 import Avatar from '../Avatar';
 import Chip from './Chip';

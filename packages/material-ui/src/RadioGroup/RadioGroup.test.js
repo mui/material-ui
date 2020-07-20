@@ -2,10 +2,13 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import * as PropTypes from 'prop-types';
-import { findOutermostIntrinsic } from 'test/utils';
-import createMount from 'test/utils/createMount';
-import { act, createClientRender } from 'test/utils/createClientRender';
-import describeConformance from 'test/utils/describeConformance';
+import {
+  findOutermostIntrinsic,
+  createMount,
+  describeConformance,
+  act,
+  createClientRender,
+} from 'test/utils';
 import FormGroup from '../FormGroup';
 import Radio from '../Radio';
 import RadioGroup from './RadioGroup';

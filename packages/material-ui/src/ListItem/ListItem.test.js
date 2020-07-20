@@ -1,10 +1,15 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import { getClasses } from 'test/utils';
-import createMount from 'test/utils/createMount';
-import { act, createClientRender, fireEvent, queries } from 'test/utils/createClientRender';
-import describeConformance from 'test/utils/describeConformance';
+import {
+  getClasses,
+  createMount,
+  describeConformance,
+  act,
+  createClientRender,
+  fireEvent,
+  queries,
+} from 'test/utils';
 import ListItemText from '../ListItemText';
 import ListItemSecondaryAction from '../ListItemSecondaryAction';
 import ListItem from './ListItem';

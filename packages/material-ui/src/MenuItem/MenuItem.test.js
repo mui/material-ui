@@ -2,10 +2,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { getClasses } from 'test/utils';
-import { createClientRender, fireEvent, screen } from 'test/utils/createClientRender';
-import createMount from 'test/utils/createMount';
-import describeConformance from 'test/utils/describeConformance';
+import {
+  getClasses,
+  createMount,
+  describeConformance,
+  createClientRender,
+  fireEvent,
+  screen,
+} from 'test/utils';
 import ListItem from '../ListItem';
 import ListItemSecondaryAction from '../ListItemSecondaryAction';
 import MenuItem from './MenuItem';

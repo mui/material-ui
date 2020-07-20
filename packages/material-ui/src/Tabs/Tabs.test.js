@@ -1,11 +1,16 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { getClasses } from 'test/utils';
-import createMount from 'test/utils/createMount';
-import { act, createClientRender, fireEvent, screen } from 'test/utils/createClientRender';
-import createServerRender from 'test/utils/createServerRender';
-import describeConformance from 'test/utils/describeConformance';
+import {
+  getClasses,
+  createMount,
+  describeConformance,
+  act,
+  createClientRender,
+  fireEvent,
+  screen,
+  createServerRender,
+} from 'test/utils';
 import capitalize from '../utils/capitalize';
 import Tab from '../Tab';
 import Tabs from './Tabs';

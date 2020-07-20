@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, findOutermostIntrinsic } from 'test/utils';
-import createMount from 'test/utils/createMount';
-import describeConformance from 'test/utils/describeConformance';
+import { getClasses, findOutermostIntrinsic, createMount, describeConformance } from 'test/utils';
 import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
 import Paper from '../Paper';

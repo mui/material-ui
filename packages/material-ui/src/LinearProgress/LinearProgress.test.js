@@ -1,9 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses } from 'test/utils';
-import { createClientRender, screen } from 'test/utils/createClientRender';
-import createMount from 'test/utils/createMount';
-import describeConformance from 'test/utils/describeConformance';
+import {
+  getClasses,
+  createMount,
+  describeConformance,
+  createClientRender,
+  screen,
+} from 'test/utils';
 import LinearProgress from './LinearProgress';
 
 describe('<LinearProgress />', () => {

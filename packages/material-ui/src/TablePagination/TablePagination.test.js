@@ -2,10 +2,13 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
-import { getClasses } from 'test/utils';
-import createMount from 'test/utils/createMount';
-import { fireEvent, createClientRender } from 'test/utils/createClientRender';
-import describeConformance from 'test/utils/describeConformance';
+import {
+  getClasses,
+  createMount,
+  describeConformance,
+  fireEvent,
+  createClientRender,
+} from 'test/utils';
 import TableFooter from '../TableFooter';
 import TableCell from '../TableCell';
 import TableRow from '../TableRow';

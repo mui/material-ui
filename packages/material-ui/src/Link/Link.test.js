@@ -1,10 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createShallow, getClasses } from 'test/utils';
-import createMount from 'test/utils/createMount';
-import { act } from 'test/utils/createClientRender';
-import describeConformance from 'test/utils/describeConformance';
+import { createShallow, getClasses, createMount, describeConformance, act } from 'test/utils';
 import Link from './Link';
 import Typography from '../Typography';
 

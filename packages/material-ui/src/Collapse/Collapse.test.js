@@ -1,12 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
-import { createClientRender } from 'test/utils/createClientRender';
-import { getClasses } from 'test/utils';
-import createMount from 'test/utils/createMount';
+import { createClientRender, getClasses, createMount, describeConformance } from 'test/utils';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { Transition } from 'react-transition-group';
-import describeConformance from 'test/utils/describeConformance';
 import Collapse from './Collapse';
 
 describe('<Collapse />', () => {

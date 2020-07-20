@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { expect } from 'chai';
 import { create, SheetsRegistry } from 'jss';
-import createMount from 'test/utils/createMount';
+import { createMount } from 'test/utils';
 import StylesProvider, { StylesContext } from './StylesProvider';
 import makeStyles from '../makeStyles';
 import createGenerateClassName from '../createGenerateClassName';

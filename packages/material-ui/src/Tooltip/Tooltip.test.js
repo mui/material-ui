@@ -1,11 +1,15 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { getClasses } from 'test/utils';
-import createMount from 'test/utils/createMount';
+import {
+  getClasses,
+  createMount,
+  describeConformance,
+  act,
+  createClientRender,
+  fireEvent,
+} from 'test/utils';
 import { camelCase } from 'lodash/string';
-import { act, createClientRender, fireEvent } from 'test/utils/createClientRender';
-import describeConformance from 'test/utils/describeConformance';
 import Tooltip, { testReset } from './Tooltip';
 import Input from '../Input';
 

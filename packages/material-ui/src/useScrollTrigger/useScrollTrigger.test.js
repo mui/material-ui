@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createClientRender } from 'test/utils/createClientRender';
+import { act, createClientRender } from 'test/utils';
 import Container from '../Container';
 import Box from '../Box';
 import useScrollTrigger from './useScrollTrigger';

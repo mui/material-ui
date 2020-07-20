@@ -1,10 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { findOutermostIntrinsic, getClasses } from 'test/utils';
-import createMount from 'test/utils/createMount';
+import {
+  findOutermostIntrinsic,
+  getClasses,
+  createMount,
+  createClientRender,
+  describeConformance,
+} from 'test/utils';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { createClientRender } from 'test/utils/createClientRender';
-import describeConformance from 'test/utils/describeConformance';
 import Slide from '../Slide';
 import Paper from '../Paper';
 import Modal from '../Modal';

@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, findOutermostIntrinsic } from 'test/utils';
-import createMount from 'test/utils/createMount';
+import { getClasses, findOutermostIntrinsic, createMount, describeConformance } from 'test/utils';
 import Icon from '@material-ui/core/Icon';
-import describeConformance from 'test/utils/describeConformance';
 import SpeedDialIcon from './SpeedDialIcon';
 
 describe('<SpeedDialIcon />', () => {

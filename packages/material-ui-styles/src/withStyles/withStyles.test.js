@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { stub } from 'sinon';
 import { SheetsRegistry } from 'jss';
 import { Input } from '@material-ui/core';
-import { createClientRender, screen } from 'test/utils/createClientRender';
+import { createClientRender, screen } from 'test/utils';
 import { isMuiElement } from '@material-ui/core/utils';
 import { createMuiTheme } from '@material-ui/core/styles';
 import StylesProvider from '../StylesProvider';
