@@ -115,9 +115,11 @@ describe('<AccordionSummary />', () => {
     const handleBlur = spy();
     const { getByRole } = render(<AccordionSummary onBlur={handleBlur} />);
 
-    const button = getByRole('button');
-    button.focus();
-    button.blur();
+    act(() => {
+      const button = getByRole('button');
+      button.focus();
+      button.blur();
+    });
 
     expect(handleBlur.callCount).to.equal(1);
   });
