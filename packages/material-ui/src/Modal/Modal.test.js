@@ -7,7 +7,7 @@ import { act, createClientRender, fireEvent, within } from 'test/utils/createCli
 import { createMuiTheme } from '@material-ui/core/styles';
 import createMount from 'test/utils/createMount';
 import { ThemeProvider } from '@material-ui/styles';
-import describeConformance from '../test-utils/describeConformance';
+import describeConformance from 'test/utils/describeConformance';
 import Fade from '../Fade';
 import Backdrop from '../Backdrop';
 import Modal from './Modal';

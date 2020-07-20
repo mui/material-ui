@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { getClasses } from '@material-ui/core/test-utils';
-import createMount from 'test/utils/createMount';
-import describeConformance from '../test-utils/describeConformance';
+import { getClasses, createMount, describeConformance } from 'test/utils';
+
 import AccordionActions from './AccordionActions';
 
 describe('<AccordionActions />', () => {

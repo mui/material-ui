@@ -1,10 +1,10 @@
 // @ts-check
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from 'test/utils';
 import { createClientRender } from 'test/utils/createClientRender';
 import createMount from 'test/utils/createMount';
-import describeConformance from '../test-utils/describeConformance';
+import describeConformance from 'test/utils/describeConformance';
 import Typography from './Typography';
 
 describe('<Typography />', () => {

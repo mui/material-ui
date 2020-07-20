@@ -4,7 +4,7 @@ import { spy, useFakeTimers } from 'sinon';
 // use act from test/utils/createClientRender once we drop createMount from this test
 import createMount from 'test/utils/createMount';
 import { act } from 'react-dom/test-utils';
-import describeConformance from '@material-ui/core/test-utils/describeConformance';
+import describeConformance from 'test/utils/describeConformance';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { Transition } from 'react-transition-group';
 import Grow from './Grow';

@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
-import { findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import { findOutermostIntrinsic, getClasses } from 'test/utils';
 import createMount from 'test/utils/createMount';
 import * as PropTypes from 'prop-types';
-import describeConformance from '../test-utils/describeConformance';
+import describeConformance from 'test/utils/describeConformance';
 import Grow from '../Grow';
 import Modal from '../Modal';
 import Paper from '../Paper';

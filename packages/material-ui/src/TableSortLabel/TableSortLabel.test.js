@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender } from 'test/utils/createClientRender';
-import { getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from 'test/utils';
 import createMount from 'test/utils/createMount';
 import Sort from '@material-ui/icons/Sort';
-import describeConformance from '../test-utils/describeConformance';
+import describeConformance from 'test/utils/describeConformance';
 import TableSortLabel from './TableSortLabel';
 import ButtonBase from '../ButtonBase';
 
