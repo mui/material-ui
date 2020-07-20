@@ -1,13 +1,17 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses } from '@material-ui/core/test-utils';
+import {
+  getClasses,
+  createMount,
+  describeConformance,
+  act,
+  createClientRender,
+  fireEvent,
+} from 'test/utils';
 import { useFakeTimers } from 'sinon';
-import createMount from 'test/utils/createMount';
-import { act, createClientRender, fireEvent } from 'test/utils/createClientRender';
 import Icon from '@material-ui/core/Icon';
 import Tooltip from '@material-ui/core/Tooltip';
 import Fab from '@material-ui/core/Fab';
-import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import SpeedDialAction from './SpeedDialAction';
 
 describe('<SpeedDialAction />', () => {
@@ -20,9 +24,8 @@ describe('<SpeedDialAction />', () => {
     clock.restore();
   });
 
-  // StrictModeViolation: uses Tooltip
-  const mount = createMount({ strict: false });
-  const render = createClientRender({ strict: false });
+  const mount = createMount({ strict: true });
+  const render = createClientRender();
   let classes;
   const fabClasses = getClasses(<Fab>Fab</Fab>);
 

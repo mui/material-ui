@@ -2,17 +2,14 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { getClasses, findOutermostIntrinsic } from '@material-ui/core/test-utils';
-import createMount from 'test/utils/createMount';
-import describeConformance from '../test-utils/describeConformance';
+import { createMount, describeConformance, getClasses, findOutermostIntrinsic } from 'test/utils';
 import Paper from '../Paper';
 import Accordion from './Accordion';
 import AccordionSummary from '../AccordionSummary';
 import Collapse from '../Collapse';
 
 describe('<Accordion />', () => {
-  // StrictModeViolation: uses Collapse
-  const mount = createMount({ strict: false });
+  const mount = createMount({ strict: true });
   let classes;
   const minimalChildren = [<AccordionSummary key="header" />];
 

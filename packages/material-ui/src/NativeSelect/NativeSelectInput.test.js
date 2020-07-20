@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createShallow } from '@material-ui/core/test-utils';
-import createMount from 'test/utils/createMount';
-import describeConformance from '@material-ui/core/test-utils/describeConformance';
+import { createShallow, createMount, describeConformance } from 'test/utils';
 import NativeSelectInput from './NativeSelectInput';
 
 describe('<NativeSelectInput />', () => {

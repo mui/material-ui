@@ -1,19 +1,22 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createClientRender, fireEvent, screen } from 'test/utils/createClientRender';
-import { ErrorBoundary } from 'test/utils/components';
-import describeConformance from '@material-ui/core/test-utils/describeConformance';
-import { getClasses } from '@material-ui/core/test-utils';
-import createMount from 'test/utils/createMount';
+import {
+  createClientRender,
+  ErrorBoundary,
+  fireEvent,
+  screen,
+  describeConformance,
+  getClasses,
+  createMount,
+} from 'test/utils';
 import TreeView from './TreeView';
 import TreeItem from '../TreeItem';
 
 describe('<TreeView />', () => {
   let classes;
-  const mount = createMount();
-  // StrictModeViolation: test uses TreeItem
-  const render = createClientRender({ strict: false });
+  const mount = createMount({ strict: true });
+  const render = createClientRender();
 
   before(() => {
     classes = getClasses(<TreeView />);

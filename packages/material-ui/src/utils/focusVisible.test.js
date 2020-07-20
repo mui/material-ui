@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import createMount from 'test/utils/createMount';
+import { createMount } from 'test/utils';
 import useIsFocusVisible, { teardown as teardownFocusVisible } from './useIsFocusVisible';
 import useForkRef from './useForkRef';
 

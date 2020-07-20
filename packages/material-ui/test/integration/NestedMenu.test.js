@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, within } from 'test/utils/createClientRender';
+import { createClientRender, within } from 'test/utils';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
@@ -37,7 +37,7 @@ function NestedMenu(props) {
 }
 
 describe('<NestedMenu> integration', () => {
-  // StrictModeViolation: uses Popover
+  // StrictModeViolation: Requries fake timers + act()
   const render = createClientRender({ strict: false });
 
   it('should not be open', () => {

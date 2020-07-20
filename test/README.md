@@ -46,7 +46,8 @@ By default our test suite fails if any test recorded `console.error` or `console
 ![unexpected console.error call](./unexpected-console-error-call.png)
 
 The failure message includes the name of the test.
-The logged error is prefixed with the test file so that you can find the failing test faster (test file + test name).
+The logged error is prefixed with the test file as well as suffixed with the full test name and test file.
+This should help locating the test in case the top of the stack can't be read due to excessive error messages.
 The error includes the logged message as well as the stacktrace of that message.
 Unfortunately the stacktrace is currently duplicated due to `chai`.
 
