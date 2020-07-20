@@ -9,7 +9,6 @@ import {
   createClientRender,
   fireEvent,
 } from 'test/utils';
-
 import Snackbar from './Snackbar';
 
 describe('<Snackbar />', () => {

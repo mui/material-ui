@@ -2,7 +2,6 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { createMount, describeConformance } from 'test/utils';
-
 import { Transition } from 'react-transition-group';
 import Zoom from './Zoom';
 

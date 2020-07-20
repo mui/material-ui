@@ -2,7 +2,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { getClasses, createClientRender, createMount, describeConformance } from 'test/utils';
-
 import Typography from './Typography';
 
 describe('<Typography />', () => {

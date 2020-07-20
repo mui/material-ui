@@ -8,7 +8,6 @@ import {
   createClientRender,
   fireEvent,
 } from 'test/utils';
-
 import Rating from './Rating';
 
 describe('<Rating />', () => {

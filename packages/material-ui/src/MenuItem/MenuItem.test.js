@@ -10,7 +10,6 @@ import {
   fireEvent,
   screen,
 } from 'test/utils';
-
 import ListItem from '../ListItem';
 import ListItemSecondaryAction from '../ListItemSecondaryAction';
 import MenuItem from './MenuItem';

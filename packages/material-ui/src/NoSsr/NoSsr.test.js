@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createMount, createServerRender } from 'test/utils';
-
 import NoSsr from './NoSsr';
 
 describe('<NoSsr />', () => {

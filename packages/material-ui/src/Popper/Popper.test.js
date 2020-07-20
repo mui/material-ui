@@ -4,7 +4,6 @@ import { spy, useFakeTimers } from 'sinon';
 import PropTypes from 'prop-types';
 import { createMount, describeConformance, act, createClientRender, fireEvent } from 'test/utils';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-
 import PopperJs from 'popper.js';
 import Grow from '../Grow';
 import Popper from './Popper';

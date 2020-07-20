@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { getClasses, createMount, describeConformance, createClientRender } from 'test/utils';
-
 import Avatar from '@material-ui/core/Avatar';
 import AvatarGroup from './AvatarGroup';
 

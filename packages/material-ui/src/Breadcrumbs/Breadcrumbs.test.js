@@ -8,7 +8,6 @@ import {
   createClientRender,
   screen,
 } from 'test/utils';
-
 import Breadcrumbs from './Breadcrumbs';
 
 describe('<Breadcrumbs />', () => {

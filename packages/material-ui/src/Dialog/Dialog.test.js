@@ -9,7 +9,6 @@ import {
   createClientRender,
   fireEvent,
 } from 'test/utils';
-
 import Modal from '../Modal';
 import Dialog from './Dialog';
 

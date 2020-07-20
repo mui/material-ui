@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
-
 import Step from './Step';
 import Stepper from '../Stepper';
 import StepLabel from '../StepLabel';

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { getClasses, createMount, describeConformance } from 'test/utils';
-
 import Paper from '@material-ui/core/Paper';
 import Alert from './Alert';
 

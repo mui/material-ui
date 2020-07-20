@@ -9,9 +9,7 @@ import {
   fireEvent,
   screen,
 } from 'test/utils';
-
 import { spy } from 'sinon';
-
 import TextField from '@material-ui/core/TextField';
 import Chip from '@material-ui/core/Chip';
 import { createFilterOptions } from '../useAutocomplete/useAutocomplete';

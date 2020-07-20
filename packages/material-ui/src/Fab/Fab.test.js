@@ -7,7 +7,6 @@ import {
   createMount,
   createServerRender,
 } from 'test/utils';
-
 import Fab from './Fab';
 import ButtonBase from '../ButtonBase';
 import Icon from '../Icon';

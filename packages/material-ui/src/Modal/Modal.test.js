@@ -12,9 +12,7 @@ import {
   describeConformance,
 } from 'test/utils';
 import { createMuiTheme } from '@material-ui/core/styles';
-
 import { ThemeProvider } from '@material-ui/styles';
-
 import Fade from '../Fade';
 import Backdrop from '../Backdrop';
 import Modal from './Modal';

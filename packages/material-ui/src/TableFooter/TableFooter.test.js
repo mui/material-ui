@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
-
 import TableFooter from './TableFooter';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 

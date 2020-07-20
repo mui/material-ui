@@ -9,9 +9,7 @@ import {
   createClientRender,
   fireEvent,
 } from 'test/utils';
-
 import { camelCase } from 'lodash/string';
-
 import Tooltip, { testReset } from './Tooltip';
 import Input from '../Input';
 

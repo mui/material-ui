@@ -2,9 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
-
 import { fireEvent } from '@testing-library/dom';
-
 import StepButton from './StepButton';
 import Step from '../Step';
 import StepLabel from '../StepLabel';

@@ -10,9 +10,7 @@ import {
   createClientRender,
   fireEvent,
 } from 'test/utils';
-
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-
 import Slider from './Slider';
 
 function createTouches(touches) {

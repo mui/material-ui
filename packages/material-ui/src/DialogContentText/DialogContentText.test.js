@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createShallow, getClasses, describeConformance, createMount } from 'test/utils';
-
 import DialogContentText from './DialogContentText';
 import Typography from '../Typography';
 

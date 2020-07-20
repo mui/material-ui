@@ -2,7 +2,6 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { getClasses, createMount, describeConformance, act, createClientRender } from 'test/utils';
-
 import Input from '../Input';
 import Select from '../Select';
 import FormControl from './FormControl';

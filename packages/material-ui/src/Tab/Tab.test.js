@@ -9,7 +9,6 @@ import {
   createClientRender,
   fireEvent,
 } from 'test/utils';
-
 import Tab from './Tab';
 import ButtonBase from '../ButtonBase';
 

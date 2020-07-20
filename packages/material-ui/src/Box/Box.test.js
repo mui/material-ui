@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender, createMount, describeConformance } from 'test/utils';
-
 import Box from './Box';
 
 describe('<Box />', () => {

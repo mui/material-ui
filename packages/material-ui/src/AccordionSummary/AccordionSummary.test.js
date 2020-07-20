@@ -9,7 +9,6 @@ import {
   createClientRender,
   fireEvent,
 } from 'test/utils';
-
 import Accordion from '../Accordion';
 import AccordionSummary from './AccordionSummary';
 import ButtonBase from '../ButtonBase';

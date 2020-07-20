@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender, getClasses, createMount, describeConformance } from 'test/utils';
-
 import Sort from '@material-ui/icons/Sort';
-
 import TableSortLabel from './TableSortLabel';
 import ButtonBase from '../ButtonBase';
 

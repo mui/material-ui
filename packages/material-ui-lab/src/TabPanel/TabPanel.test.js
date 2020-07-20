@@ -2,7 +2,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
-
 import TabPanel from './TabPanel';
 import TabContext from '../TabContext';
 

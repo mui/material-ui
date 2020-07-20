@@ -3,7 +3,6 @@ import { act } from 'react-dom/test-utils';
 import { expect } from 'chai';
 import { stub } from 'sinon';
 import { createShallow, createMount } from 'test/utils';
-
 import mediaQuery from 'css-mediaquery';
 import withWidth, { isWidthDown, isWidthUp } from './withWidth';
 import createMuiTheme from '../styles/createMuiTheme';

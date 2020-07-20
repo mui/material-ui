@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { findOutermostIntrinsic, getClasses, createMount, describeConformance } from 'test/utils';
-
 import Container from './Container';
 
 describe('<Container />', () => {

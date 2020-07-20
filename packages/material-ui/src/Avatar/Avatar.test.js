@@ -7,9 +7,7 @@ import {
   createMount,
   describeConformance,
 } from 'test/utils';
-
 import { spy } from 'sinon';
-
 import CancelIcon from '../internal/svg-icons/Cancel';
 import Avatar from './Avatar';
 

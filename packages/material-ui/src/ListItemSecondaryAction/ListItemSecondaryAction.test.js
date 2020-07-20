@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
-
 import ListItemSecondaryAction from './ListItemSecondaryAction';
 import ListItem from '../ListItem';
 

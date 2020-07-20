@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { getClasses, createMount, describeConformance } from 'test/utils';
-
 import ScopedCssBaseline from './ScopedCssBaseline';
 
 describe('<ScopedCssBaseline />', () => {

@@ -2,7 +2,6 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { stub } from 'sinon';
 import { createMount, describeConformance, createClientRender } from 'test/utils';
-
 import MenuList from './MenuList';
 import getScrollbarSize from '../utils/getScrollbarSize';
 import List from '../List';

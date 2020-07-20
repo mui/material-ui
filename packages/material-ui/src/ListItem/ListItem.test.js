@@ -10,7 +10,6 @@ import {
   fireEvent,
   queries,
 } from 'test/utils';
-
 import ListItemText from '../ListItemText';
 import ListItemSecondaryAction from '../ListItemSecondaryAction';
 import ListItem from './ListItem';

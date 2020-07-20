@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { findOutermostIntrinsic, getClasses, createMount, createClientRender } from 'test/utils';
-
 import TableCell from '@material-ui/core/TableCell';
 import TableFooter from '@material-ui/core/TableFooter';
 import TableHead from '@material-ui/core/TableHead';

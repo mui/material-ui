@@ -7,9 +7,7 @@ import {
   createClientRender,
   describeConformance,
 } from 'test/utils';
-
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-
 import Slide from '../Slide';
 import Paper from '../Paper';
 import Modal from '../Modal';

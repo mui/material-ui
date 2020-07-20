@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { getClasses, createMount, describeConformance } from 'test/utils';
-
 import Backdrop from './Backdrop';
 import Fade from '../Fade';
 

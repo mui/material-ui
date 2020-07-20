@@ -9,7 +9,6 @@ import {
   fireEvent,
   createClientRender,
 } from 'test/utils';
-
 import TableFooter from '../TableFooter';
 import TableCell from '../TableCell';
 import TableRow from '../TableRow';

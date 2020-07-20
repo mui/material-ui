@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { getClasses, createMount, describeConformance } from 'test/utils';
-
 import Button from '@material-ui/core/Button';
 import LoadingButton from './LoadingButton';
 

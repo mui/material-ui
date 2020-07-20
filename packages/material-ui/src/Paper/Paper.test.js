@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createShallow, getClasses, createMount, describeConformance } from 'test/utils';
-
 import * as PropTypes from 'prop-types';
-
 import Paper from './Paper';
 import { createMuiTheme, ThemeProvider } from '../styles';
 

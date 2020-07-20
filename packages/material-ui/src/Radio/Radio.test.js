@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { getClasses, createMount, describeConformance, createClientRender } from 'test/utils';
-
 import FormControl from '../FormControl';
 import IconButton from '../IconButton';
 import Radio from './Radio';

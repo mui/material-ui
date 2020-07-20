@@ -2,7 +2,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { getClasses, createMount, describeConformance, act, createClientRender } from 'test/utils';
-
 import FormLabel from './FormLabel';
 import FormControl, { useFormControl } from '../FormControl';
 

@@ -10,9 +10,7 @@ import {
   createClientRender,
   fireEvent,
 } from 'test/utils';
-
 import * as PropTypes from 'prop-types';
-
 import TouchRipple from './TouchRipple';
 import ButtonBase from './ButtonBase';
 

@@ -9,7 +9,6 @@ import {
   fireEvent,
   createServerRender,
 } from 'test/utils';
-
 import Button from './Button';
 import ButtonBase from '../ButtonBase';
 

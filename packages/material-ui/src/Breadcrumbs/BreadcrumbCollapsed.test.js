@@ -2,7 +2,6 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { getClasses, act, fireEvent, createClientRender } from 'test/utils';
-
 import BreadcrumbCollapsed from './BreadcrumbCollapsed';
 
 describe('<BreadcrumbCollapsed />', () => {

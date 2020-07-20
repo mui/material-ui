@@ -8,7 +8,6 @@ import {
   createClientRender,
   within,
 } from 'test/utils';
-
 import ButtonBase from '../ButtonBase';
 import BottomNavigationAction from './BottomNavigationAction';
 

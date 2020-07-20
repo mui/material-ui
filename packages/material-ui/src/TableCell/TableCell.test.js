@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender, getClasses, createMount, describeConformance } from 'test/utils';
-
 import TableCell from './TableCell';
 
 describe('<TableCell />', () => {

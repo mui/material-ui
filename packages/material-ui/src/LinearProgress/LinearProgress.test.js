@@ -7,7 +7,6 @@ import {
   createClientRender,
   screen,
 } from 'test/utils';
-
 import LinearProgress from './LinearProgress';
 
 describe('<LinearProgress />', () => {

@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createShallow, getClasses, createMount, describeConformance } from 'test/utils';
-
 import { createMuiTheme } from '@material-ui/core/styles';
-
 import Grid, { styles } from './Grid';
 
 describe('<Grid />', () => {

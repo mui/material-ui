@@ -9,7 +9,6 @@ import {
   createClientRender,
   fireEvent,
 } from 'test/utils';
-
 import CheckBox from '../internal/svg-icons/CheckBox';
 import Avatar from '../Avatar';
 import Chip from './Chip';

@@ -9,7 +9,6 @@ import {
   act,
   createClientRender,
 } from 'test/utils';
-
 import FormGroup from '../FormGroup';
 import Radio from '../Radio';
 import RadioGroup from './RadioGroup';

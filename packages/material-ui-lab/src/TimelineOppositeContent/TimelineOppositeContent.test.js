@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { getClasses, createMount, describeConformance } from 'test/utils';
-
 import Typography from '@material-ui/core/Typography';
 import TimelineOppositeContent from './TimelineOppositeContent';
 

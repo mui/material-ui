@@ -2,7 +2,6 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createShallow, createMount, describeConformance } from 'test/utils';
-
 import NativeSelectInput from './NativeSelectInput';
 
 describe('<NativeSelectInput />', () => {

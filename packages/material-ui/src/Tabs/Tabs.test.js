@@ -11,7 +11,6 @@ import {
   screen,
   createServerRender,
 } from 'test/utils';
-
 import capitalize from '../utils/capitalize';
 import Tab from '../Tab';
 import Tabs from './Tabs';

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createShallow, getClasses, createMount, describeConformance } from 'test/utils';
-
 import FormGroup from './FormGroup';
 
 describe('<FormGroup />', () => {

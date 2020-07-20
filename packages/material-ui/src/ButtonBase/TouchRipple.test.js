@@ -2,7 +2,6 @@ import * as React from 'react';
 import { useFakeTimers } from 'sinon';
 import { expect } from 'chai';
 import { getClasses, createMount, describeConformance, act, createClientRender } from 'test/utils';
-
 import TouchRipple, { DELAY_RIPPLE } from './TouchRipple';
 
 const cb = () => {};

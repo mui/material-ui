@@ -8,7 +8,6 @@ import {
   createClientRender,
   fireEvent,
 } from 'test/utils';
-
 import BottomNavigationAction from '../BottomNavigationAction';
 import Icon from '../Icon';
 import BottomNavigation from './BottomNavigation';

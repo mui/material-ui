@@ -2,7 +2,6 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { getClasses, createClientRender } from 'test/utils';
-
 import TouchRipple from './TouchRipple';
 import Ripple from './Ripple';
 

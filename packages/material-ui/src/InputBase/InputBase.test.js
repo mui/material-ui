@@ -10,7 +10,6 @@ import {
   createClientRender,
   fireEvent,
 } from 'test/utils';
-
 import FormControl, { useFormControl } from '../FormControl';
 import InputAdornment from '../InputAdornment';
 import TextareaAutosize from '../TextareaAutosize';

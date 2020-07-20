@@ -11,7 +11,6 @@ import {
   fireEvent,
   screen,
 } from 'test/utils';
-
 import TreeItem from './TreeItem';
 import TreeView from '../TreeView';
 

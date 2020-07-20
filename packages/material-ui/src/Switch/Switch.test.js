@@ -8,7 +8,6 @@ import {
   createClientRender,
   fireEvent,
 } from 'test/utils';
-
 import FormControl from '../FormControl';
 import Switch from './Switch';
 
