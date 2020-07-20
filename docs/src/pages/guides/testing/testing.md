@@ -2,14 +2,17 @@
 
 <p class="description">Write tests to prevent regressions and write better code.</p>
 
-Examples in this guide use [global methods from Mocha](https://mochajs.org/api/global.html), not [Jest](https://jestjs.io/docs/en/api).
-
 ## Userspace
 
-What about writing tests in userspace? The Material-UI styling infrastructure uses some helper functions built on top of [enzyme](https://github.com/airbnb/enzyme) to make the process easier, which we are exposing. You can take advantage of them if you so choose.
-We use almost exclusively full DOM rendering APIs. We encourage you to do the same especially
-if your components rely on custom themes. Tests using shallow rendering APIs become more brittle
-with the amount of provider components they require.
+We recommend testing your application without tying the tests too close to Material-UI.
+This is how we test our components internally.
+A library that has a first-class API for this approach is [`@testing-library/react`](https://testing-library.com/docs/react-testing-library/intro).
+
+For example, when rendering a `TextField` your test should not need to query for the specific Material-UI instance of the `TextField` but rather for the `input`, or the `[role="textbox"]`.
+
+By not relying on the React component tree you make your test more robust against internal changes in Material-UI or, if you need snapshot testing, adding additional wrapper components such as context providers.
+Though we don't recommend snapshot testing.
+["Effective snapshot testing" by Kent C. Dodds](https://kentcdodds.com/blog/effective-snapshot-testing) goes into more details why snapshot testing might be misleading for React component tests.
 
 ## Internal
 
