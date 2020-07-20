@@ -2,12 +2,25 @@ import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
+import { stub } from 'sinon';
 import until from './until';
 
 const Div = () => <div />;
 const hoc = (Component) => () => <Component />;
 
 describe('until', () => {
+  before(() => {
+    // Trigger deprecation warning.
+    try {
+      stub(console, 'warn');
+      until();
+    } catch (error) {
+      // ignore
+    } finally {
+      console.warn.restore();
+    }
+  });
+
   it('shallow renders the current wrapper one level deep', () => {
     const EnhancedDiv = hoc(Div);
     const wrapper = until.call(shallow(<EnhancedDiv />), 'Div');

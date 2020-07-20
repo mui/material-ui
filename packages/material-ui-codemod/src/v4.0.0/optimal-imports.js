@@ -38,7 +38,7 @@ export default function transformer(fileInfo, api, options) {
 
     const subpath = match[1].replace(/\/$/, '');
 
-    if (/^(internal|test-utils)/.test(subpath)) return;
+    if (/^(internal)/.test(subpath)) return;
     const targetImportPath = `${targetModule}/${subpath}`;
 
     const whitelist = getJSExports(

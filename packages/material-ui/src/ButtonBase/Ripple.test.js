@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from 'test/utils';
 import { createClientRender } from 'test/utils/createClientRender';
 import TouchRipple from './TouchRipple';
 import Ripple from './Ripple';
