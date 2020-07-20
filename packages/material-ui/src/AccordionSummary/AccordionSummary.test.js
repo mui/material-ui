@@ -56,6 +56,19 @@ describe('<AccordionSummary />', () => {
     expect(container.querySelector(`.${classes.expandIcon}`)).to.have.class(classes.expanded);
   });
 
+  it('when expanded adds both the expanded class and the className provided with `IconButtonProps` to the expandIcon', () => {
+    const iconButtonProps = { className: 'icon' };
+    const { container } = render(
+      <Accordion expanded TransitionComponent={({ children }) => children}>
+        <AccordionSummary expandIcon="expand" IconButtonProps={iconButtonProps} />
+      </Accordion>,
+    );
+
+    const expandIcon = container.querySelector(`.${classes.expandIcon}`);
+    expect(expandIcon).to.have.class(classes.expanded);
+    expect(expandIcon).to.have.class(iconButtonProps.className);
+  });
+
   it('should render with an inaccessible expand icon and have the expandIcon class', () => {
     const { container } = render(<AccordionSummary expandIcon={<div>Icon</div>} />);
 
@@ -97,6 +110,17 @@ describe('<AccordionSummary />', () => {
 
     expect(button).not.toHaveFocus();
     expect(button).not.to.have.class(classes.focused);
+  });
+
+  it('should fire onBlur when the button blurs', () => {
+    const handleBlur = spy();
+    const { getByRole } = render(<AccordionSummary onBlur={handleBlur} />);
+
+    const button = getByRole('button');
+    button.focus();
+    button.blur();
+
+    expect(handleBlur.callCount).to.equal(1);
   });
 
   it('should fire onClick callbacks', () => {
