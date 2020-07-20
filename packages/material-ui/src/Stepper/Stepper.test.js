@@ -1,9 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses } from '@material-ui/core/test-utils';
-import createMount from 'test/utils/createMount';
-import { createClientRender } from 'test/utils/createClientRender';
-import describeConformance from '../test-utils/describeConformance';
+import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
 import Paper from '../Paper';
 import Step from '../Step';
 import StepLabel from '../StepLabel';
@@ -15,9 +12,8 @@ describe('<Stepper />', () => {
   let classes;
   let stepClasses;
   let stepConnectorClasses;
-  // StrictModeViolation: test uses StepContent
-  const mount = createMount({ strict: false });
-  const render = createClientRender({ strict: false });
+  const mount = createMount({ strict: true });
+  const render = createClientRender();
 
   before(() => {
     classes = getClasses(<Stepper />);

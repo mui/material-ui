@@ -1,9 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses } from '@material-ui/core/test-utils';
-import createMount from 'test/utils/createMount';
-import describeConformance from '@material-ui/core/test-utils/describeConformance';
-import { createClientRender } from 'test/utils/createClientRender';
+import { getClasses, createMount, describeConformance, createClientRender } from 'test/utils';
 import PaginationItem from './PaginationItem';
 
 describe('<PaginationItem />', () => {

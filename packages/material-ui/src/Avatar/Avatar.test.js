@@ -1,11 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, fireEvent } from 'test/utils/createClientRender';
-import { getClasses } from '@material-ui/core/test-utils';
-import createMount from 'test/utils/createMount';
+import {
+  createClientRender,
+  fireEvent,
+  getClasses,
+  createMount,
+  describeConformance,
+} from 'test/utils';
 import { spy } from 'sinon';
 import CancelIcon from '../internal/svg-icons/Cancel';
-import describeConformance from '../test-utils/describeConformance';
 import Avatar from './Avatar';
 
 describe('<Avatar />', () => {

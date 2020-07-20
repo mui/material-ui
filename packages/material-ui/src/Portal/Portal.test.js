@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import createServerRender from 'test/utils/createServerRender';
-import { createClientRender } from 'test/utils/createClientRender';
+import { createServerRender, createClientRender } from 'test/utils';
 import Portal from './Portal';
 
 describe('<Portal />', () => {

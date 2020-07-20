@@ -1,10 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
-import { findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
-import createMount from 'test/utils/createMount';
+import { findOutermostIntrinsic, getClasses, createMount, describeConformance } from 'test/utils';
 import * as PropTypes from 'prop-types';
-import describeConformance from '../test-utils/describeConformance';
 import Grow from '../Grow';
 import Modal from '../Modal';
 import Paper from '../Paper';
@@ -49,7 +47,7 @@ const FakePaper = React.forwardRef(function FakeWidthPaper(props, ref) {
 });
 
 describe('<Popover />', () => {
-  // StrictModeViolation: uses Grow
+  // StrictModeViolation: Not using act(), prefer using createClientRender from test/utils
   const mount = createMount({ strict: false });
   let classes;
   const defaultProps = {

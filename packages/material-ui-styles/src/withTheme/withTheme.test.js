@@ -1,6 +1,6 @@
 import React from 'react';
 import { expect } from 'chai';
-import createMount from 'test/utils/createMount';
+import { createMount } from 'test/utils';
 import { Input } from '@material-ui/core';
 import { isMuiElement } from '@material-ui/core/utils';
 import PropTypes from 'prop-types';

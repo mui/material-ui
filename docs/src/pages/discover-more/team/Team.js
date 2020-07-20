@@ -117,6 +117,16 @@ const partners = [
     github: 'DDDDDanica',
     flag: '🇨🇳 Chinese docs',
   },
+  {
+    name: 'Yan Lee',
+    github: 'AGDholo',
+    flag: '🇨🇳 Chinese docs',
+  },
+  {
+    name: 'Jairon Alves Lima',
+    github: 'jaironalves',
+    flag: '🇧🇷 Brazilian docs',
+  },
 ];
 
 const styles = (theme) => ({
