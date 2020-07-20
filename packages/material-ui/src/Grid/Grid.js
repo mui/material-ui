@@ -179,7 +179,7 @@ export const styles = (theme) => ({
   },
   /* Styles applied to the root element if `justifyContent="flex-end"`. */
   'justify-content-xs-flex-end': {
-    justifyContentContent: 'flex-end',
+    justifyContent: 'flex-end',
   },
   /* Styles applied to the root element if `justifyContent="space-between"`. */
   'justify-content-xs-space-between': {
