@@ -1,6 +1,6 @@
 import React from 'react';
 import { expect } from 'chai';
-import { createClientRender } from 'test/utils/createClientRender';
+import { createClientRender } from 'test/utils';
 import makeStyles from '../makeStyles';
 import useTheme from '../useTheme';
 import ThemeProvider from './ThemeProvider';

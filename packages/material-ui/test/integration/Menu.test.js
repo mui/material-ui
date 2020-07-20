@@ -5,7 +5,7 @@ import { useFakeTimers } from 'sinon';
 import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import { act, createClientRender, fireEvent, screen } from 'test/utils/createClientRender';
+import { act, createClientRender, fireEvent, screen } from 'test/utils';
 
 const options = [
   'Show some love to Material-UI',
