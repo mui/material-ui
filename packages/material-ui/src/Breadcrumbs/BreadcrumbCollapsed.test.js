@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from 'test/utils';
 import { act, fireEvent, createClientRender } from 'test/utils/createClientRender';
 import BreadcrumbCollapsed from './BreadcrumbCollapsed';
 

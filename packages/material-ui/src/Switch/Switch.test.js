@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from 'test/utils';
 import createMount from 'test/utils/createMount';
 import { act, createClientRender, fireEvent } from 'test/utils/createClientRender';
-import describeConformance from '../test-utils/describeConformance';
+import describeConformance from 'test/utils/describeConformance';
 import FormControl from '../FormControl';
 import Switch from './Switch';
 

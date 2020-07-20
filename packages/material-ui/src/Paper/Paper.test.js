@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import { createShallow, getClasses } from 'test/utils';
 import createMount from 'test/utils/createMount';
 import * as PropTypes from 'prop-types';
-import describeConformance from '../test-utils/describeConformance';
+import describeConformance from 'test/utils/describeConformance';
 import Paper from './Paper';
 import { createMuiTheme, ThemeProvider } from '../styles';
 

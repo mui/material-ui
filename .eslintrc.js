@@ -44,11 +44,7 @@ module.exports = {
     'no-restricted-imports': [
       'error',
       {
-        patterns: [
-          '@material-ui/*/*/*',
-          '!@material-ui/core/test-utils/*',
-          '!@material-ui/utils/macros/*.macro',
-        ],
+        patterns: ['@material-ui/*/*/*', '!@material-ui/utils/macros/*.macro'],
       },
     ],
     'no-constant-condition': 'error',
@@ -87,7 +83,6 @@ module.exports = {
   overrides: [
     {
       files: [
-        '**/test-utils/**/*.js',
         // matching the pattern of the test runner
         '*.test.js',
       ],
@@ -98,19 +93,6 @@ module.exports = {
       rules: {
         // does not work with wildcard imports. Mistakes will throw at runtime anyway
         'import/named': 'off',
-        'no-restricted-imports': [
-          'error',
-          {
-            paths: [
-              {
-                name: '@material-ui/core/test-utils',
-                importNames: ['createMount'],
-                message:
-                  "Please use `import createMount from 'test/utils/createMount'` instead. `createMount` from /core has cleanup issues that require breaking changes.",
-              },
-            ],
-          },
-        ],
 
         'material-ui/disallow-active-element-as-key-event-target': 'error',
 
@@ -176,11 +158,7 @@ module.exports = {
         'no-restricted-imports': [
           'error',
           {
-            patterns: [
-              '@material-ui/*/*/*/*',
-              '!@material-ui/core/test-utils/*',
-              '!@material-ui/utils/macros/*.macro',
-            ],
+            patterns: ['@material-ui/*/*/*/*', '!@material-ui/utils/macros/*.macro'],
           },
         ], // Allow deeper imports for TypeScript types. TODO?
         'react/prop-types': 'off',

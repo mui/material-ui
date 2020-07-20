@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from 'test/utils';
 import createMount from 'test/utils/createMount';
 import { camelCase } from 'lodash/string';
 import { act, createClientRender, fireEvent } from 'test/utils/createClientRender';
-import describeConformance from '../test-utils/describeConformance';
+import describeConformance from 'test/utils/describeConformance';
 import Tooltip, { testReset } from './Tooltip';
 import Input from '../Input';
 

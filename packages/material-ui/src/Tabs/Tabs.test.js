@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from 'test/utils';
 import createMount from 'test/utils/createMount';
 import { act, createClientRender, fireEvent, screen } from 'test/utils/createClientRender';
 import createServerRender from 'test/utils/createServerRender';
-import describeConformance from '../test-utils/describeConformance';
+import describeConformance from 'test/utils/describeConformance';
 import capitalize from '../utils/capitalize';
 import Tab from '../Tab';
 import Tabs from './Tabs';
