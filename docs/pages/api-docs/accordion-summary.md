@@ -31,7 +31,7 @@ The `MuiAccordionSummary` name can be used for providing [default props](/custom
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the accordion summary. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">expandIcon</span> | <span class="prop-type">node</span> |  | The icon to display as the expand indicator. |
-| <span class="prop-name">IconButtonProps</span> | <span class="prop-type">object</span> |  | Props applied to the `IconButton` element wrapping the expand icon. |
+| <span class="prop-name">IconButtonProps</span> | <span class="prop-type">object</span> | <span class="prop-default">{}</span> | Props applied to the `IconButton` element wrapping the expand icon. |
 
 The `ref` is forwarded to the root element.
 

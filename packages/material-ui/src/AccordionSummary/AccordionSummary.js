@@ -71,7 +71,7 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(props, ref) 
     classes,
     className,
     expandIcon,
-    IconButtonProps,
+    IconButtonProps = {},
     onBlur,
     onClick,
     onFocusVisible,
@@ -129,15 +129,19 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(props, ref) 
       <div className={clsx(classes.content, { [classes.expanded]: expanded })}>{children}</div>
       {expandIcon && (
         <IconButton
-          className={clsx(classes.expandIcon, {
-            [classes.expanded]: expanded,
-          })}
           edge="end"
           component="div"
           tabIndex={null}
           role={null}
           aria-hidden
           {...IconButtonProps}
+          className={clsx(
+            classes.expandIcon,
+            {
+              [classes.expanded]: expanded,
+            },
+            IconButtonProps.className,
+          )}
         >
           {expandIcon}
         </IconButton>
