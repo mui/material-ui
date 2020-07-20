@@ -3,15 +3,14 @@ import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
-import { createClientRender, fireEvent } from 'test/utils/createClientRender';
+import { act, createClientRender, fireEvent } from 'test/utils/createClientRender';
 import describeConformance from '../test-utils/describeConformance';
 import Snackbar from './Snackbar';
 
 describe('<Snackbar />', () => {
-  // StrictModeViolation: uses Slide
-  const mount = createMount({ strict: false });
+  const mount = createMount({ strict: true });
   let classes;
-  const render = createClientRender({ strict: false });
+  const render = createClientRender();
 
   before(() => {
     classes = getClasses(<Snackbar open />);
@@ -79,19 +78,36 @@ describe('<Snackbar />', () => {
           transitionDuration={duration / 2}
         />,
       );
+
       expect(handleCloseSpy.callCount).to.equal(0);
       expect(handleExitedSpy.callCount).to.equal(0);
+
       view.setProps({ open: true });
-      clock.tick(duration);
+      act(() => {
+        clock.tick(duration);
+      });
+
       expect(handleCloseSpy.callCount).to.equal(1);
       expect(handleExitedSpy.callCount).to.equal(0);
-      clock.tick(duration / 2);
+
+      act(() => {
+        clock.tick(duration / 2);
+      });
+
       expect(handleCloseSpy.callCount).to.equal(1);
       expect(handleExitedSpy.callCount).to.equal(1);
-      clock.tick(duration);
+
+      act(() => {
+        clock.tick(duration);
+      });
+
       expect(handleCloseSpy.callCount).to.equal(messageCount);
       expect(handleExitedSpy.callCount).to.equal(1);
-      clock.tick(duration / 2);
+
+      act(() => {
+        clock.tick(duration / 2);
+      });
+
       expect(handleCloseSpy.callCount).to.equal(messageCount);
       expect(handleExitedSpy.callCount).to.equal(messageCount);
     });
@@ -121,8 +137,13 @@ describe('<Snackbar />', () => {
       );
 
       setProps({ open: true });
+
       expect(handleClose.callCount).to.equal(0);
-      clock.tick(autoHideDuration);
+
+      act(() => {
+        clock.tick(autoHideDuration);
+      });
+
       expect(handleClose.callCount).to.equal(1);
       expect(handleClose.args[0]).to.deep.equal([null, 'timeout']);
     });
@@ -141,9 +162,14 @@ describe('<Snackbar />', () => {
       );
 
       setProps({ open: true });
-      clock.tick(autoHideDuration / 2);
+      act(() => {
+        clock.tick(autoHideDuration / 2);
+      });
       setProps({ open: true, onClose: handleClose2 });
-      clock.tick(autoHideDuration / 2);
+      act(() => {
+        clock.tick(autoHideDuration / 2);
+      });
+
       expect(handleClose1.callCount).to.equal(0);
       expect(handleClose2.callCount).to.equal(1);
     });
@@ -161,10 +187,17 @@ describe('<Snackbar />', () => {
       );
 
       setProps({ open: true });
+
       expect(handleClose.callCount).to.equal(0);
-      clock.tick(autoHideDuration / 2);
+
+      act(() => {
+        clock.tick(autoHideDuration / 2);
+      });
       setProps({ autoHideDuration: undefined });
-      clock.tick(autoHideDuration / 2);
+      act(() => {
+        clock.tick(autoHideDuration / 2);
+      });
+
       expect(handleClose.callCount).to.equal(0);
     });
 
@@ -173,6 +206,7 @@ describe('<Snackbar />', () => {
       const handleMouseLeave = spy();
       const handleClose = spy();
       const autoHideDuration = 2e3;
+
       const { container } = render(
         <Snackbar
           open
@@ -185,14 +219,26 @@ describe('<Snackbar />', () => {
       );
 
       expect(handleClose.callCount).to.equal(0);
-      clock.tick(autoHideDuration / 2);
-      fireEvent.mouseEnter(container.querySelector('div'));
+
+      act(() => {
+        clock.tick(autoHideDuration / 2);
+        fireEvent.mouseEnter(container.querySelector('div'));
+      });
+
       expect(handleMouseEnter.callCount).to.equal(1);
-      clock.tick(autoHideDuration / 2);
-      fireEvent.mouseLeave(container.querySelector('div'));
+
+      act(() => {
+        clock.tick(autoHideDuration / 2);
+        fireEvent.mouseLeave(container.querySelector('div'));
+      });
+
       expect(handleMouseLeave.callCount).to.equal(1);
       expect(handleClose.callCount).to.equal(0);
-      clock.tick(2e3);
+
+      act(() => {
+        clock.tick(2e3);
+      });
+
       expect(handleClose.callCount).to.equal(1);
       expect(handleClose.args[0]).to.deep.equal([null, 'timeout']);
     });
@@ -205,23 +251,33 @@ describe('<Snackbar />', () => {
       );
 
       expect(handleClose.callCount).to.equal(0);
-      clock.tick(autoHideDuration);
+
+      act(() => {
+        clock.tick(autoHideDuration);
+      });
+
       expect(handleClose.callCount).to.equal(0);
     });
 
     it('should not call onClose if autoHideDuration is null', () => {
       const handleClose = spy();
       const autoHideDuration = 2e3;
+
       render(<Snackbar open onClose={handleClose} message="message" autoHideDuration={null} />);
 
       expect(handleClose.callCount).to.equal(0);
-      clock.tick(autoHideDuration);
+
+      act(() => {
+        clock.tick(autoHideDuration);
+      });
+
       expect(handleClose.callCount).to.equal(0);
     });
 
     it('should not call onClose when closed', () => {
       const handleClose = spy();
       const autoHideDuration = 2e3;
+
       const { setProps } = render(
         <Snackbar
           open
@@ -232,9 +288,15 @@ describe('<Snackbar />', () => {
       );
 
       expect(handleClose.callCount).to.equal(0);
-      clock.tick(autoHideDuration / 2);
+
+      act(() => {
+        clock.tick(autoHideDuration / 2);
+      });
       setProps({ open: false });
-      clock.tick(autoHideDuration / 2);
+      act(() => {
+        clock.tick(autoHideDuration / 2);
+      });
+
       expect(handleClose.callCount).to.equal(0);
     });
   });
@@ -254,6 +316,7 @@ describe('<Snackbar />', () => {
       const handleClose = spy();
       const autoHideDuration = 2e3;
       const resumeHideDuration = 3e3;
+
       const { container } = render(
         <Snackbar
           open
@@ -263,13 +326,24 @@ describe('<Snackbar />', () => {
           resumeHideDuration={resumeHideDuration}
         />,
       );
+
       expect(handleClose.callCount).to.equal(0);
-      clock.tick(autoHideDuration / 2);
+
+      act(() => {
+        clock.tick(autoHideDuration / 2);
+      });
       fireEvent.mouseEnter(container.querySelector('div'));
-      clock.tick(autoHideDuration / 2);
+      act(() => {
+        clock.tick(autoHideDuration / 2);
+      });
       fireEvent.mouseLeave(container.querySelector('div'));
+
       expect(handleClose.callCount).to.equal(0);
-      clock.tick(2e3);
+
+      act(() => {
+        clock.tick(2e3);
+      });
+
       expect(handleClose.callCount).to.equal(0);
     });
 
@@ -277,6 +351,7 @@ describe('<Snackbar />', () => {
       const handleClose = spy();
       const autoHideDuration = 2e3;
       const resumeHideDuration = 3e3;
+
       const { container } = render(
         <Snackbar
           open
@@ -286,13 +361,24 @@ describe('<Snackbar />', () => {
           resumeHideDuration={resumeHideDuration}
         />,
       );
+
       expect(handleClose.callCount).to.equal(0);
-      clock.tick(autoHideDuration / 2);
+
+      act(() => {
+        clock.tick(autoHideDuration / 2);
+      });
       fireEvent.mouseEnter(container.querySelector('div'));
-      clock.tick(autoHideDuration / 2);
+      act(() => {
+        clock.tick(autoHideDuration / 2);
+      });
       fireEvent.mouseLeave(container.querySelector('div'));
+
       expect(handleClose.callCount).to.equal(0);
-      clock.tick(resumeHideDuration);
+
+      act(() => {
+        clock.tick(resumeHideDuration);
+      });
+
       expect(handleClose.callCount).to.equal(1);
       expect(handleClose.args[0]).to.deep.equal([null, 'timeout']);
     });
@@ -310,12 +396,18 @@ describe('<Snackbar />', () => {
           resumeHideDuration={resumeHideDuration}
         />,
       );
+
       setProps({ open: true });
+
       expect(handleClose.callCount).to.equal(0);
-      fireEvent.mouseEnter(container.querySelector('div'));
-      clock.tick(100);
-      fireEvent.mouseLeave(container.querySelector('div'));
-      clock.tick(resumeHideDuration);
+
+      act(() => {
+        fireEvent.mouseEnter(container.querySelector('div'));
+        clock.tick(100);
+        fireEvent.mouseLeave(container.querySelector('div'));
+        clock.tick(resumeHideDuration);
+      });
+
       expect(handleClose.callCount).to.equal(1);
       expect(handleClose.args[0]).to.deep.equal([null, 'timeout']);
     });
@@ -345,18 +437,38 @@ describe('<Snackbar />', () => {
         />,
       );
 
-      const bEvent = new window.Event('blur', { view: window, bubbles: false, cancelable: false });
-      window.dispatchEvent(bEvent);
+      act(() => {
+        const bEvent = new window.Event('blur', {
+          view: window,
+          bubbles: false,
+          cancelable: false,
+        });
+        window.dispatchEvent(bEvent);
+      });
 
       expect(handleClose.callCount).to.equal(0);
-      clock.tick(autoHideDuration);
+
+      act(() => {
+        clock.tick(autoHideDuration);
+      });
+
       expect(handleClose.callCount).to.equal(0);
 
-      const fEvent = new window.Event('focus', { view: window, bubbles: false, cancelable: false });
-      window.dispatchEvent(fEvent);
+      act(() => {
+        const fEvent = new window.Event('focus', {
+          view: window,
+          bubbles: false,
+          cancelable: false,
+        });
+        window.dispatchEvent(fEvent);
+      });
 
       expect(handleClose.callCount).to.equal(0);
-      clock.tick(autoHideDuration);
+
+      act(() => {
+        clock.tick(autoHideDuration);
+      });
+
       expect(handleClose.callCount).to.equal(1);
       expect(handleClose.args[0]).to.deep.equal([null, 'timeout']);
     });
@@ -374,11 +486,17 @@ describe('<Snackbar />', () => {
         />,
       );
 
-      const event = new window.Event('blur', { view: window, bubbles: false, cancelable: false });
-      window.dispatchEvent(event);
+      act(() => {
+        const event = new window.Event('blur', { view: window, bubbles: false, cancelable: false });
+        window.dispatchEvent(event);
+      });
 
       expect(handleClose.callCount).to.equal(0);
-      clock.tick(autoHideDuration);
+
+      act(() => {
+        clock.tick(autoHideDuration);
+      });
+
       expect(handleClose.callCount).to.equal(1);
       expect(handleClose.args[0]).to.deep.equal([null, 'timeout']);
     });

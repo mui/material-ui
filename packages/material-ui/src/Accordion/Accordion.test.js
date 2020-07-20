@@ -11,8 +11,7 @@ import AccordionSummary from '../AccordionSummary';
 import Collapse from '../Collapse';
 
 describe('<Accordion />', () => {
-  // StrictModeViolation: uses Collapse
-  const mount = createMount({ strict: false });
+  const mount = createMount({ strict: true });
   let classes;
   const minimalChildren = [<AccordionSummary key="header" />];
 

@@ -5,7 +5,7 @@ import { useFakeTimers } from 'sinon';
 import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import { createClientRender, fireEvent, screen } from 'test/utils/createClientRender';
+import { act, createClientRender, fireEvent, screen } from 'test/utils/createClientRender';
 
 const options = [
   'Show some love to Material-UI',
@@ -81,8 +81,7 @@ describe('<Menu /> integration', () => {
     clock.restore();
   });
 
-  // StrictModeViolation: uses Popover
-  const render = createClientRender({ strict: false });
+  const render = createClientRender();
 
   it('is part of the DOM by default but hidden', () => {
     const { getByRole } = render(<ButtonMenu />);
@@ -100,8 +99,10 @@ describe('<Menu /> integration', () => {
     const { getByLabelText, getAllByRole } = render(<ButtonMenu />);
 
     const button = getByLabelText('open menu');
-    button.focus();
-    button.click();
+    act(() => {
+      button.focus();
+      button.click();
+    });
 
     expect(getAllByRole('menuitem')[0]).toHaveFocus();
   });
@@ -110,8 +111,10 @@ describe('<Menu /> integration', () => {
     const { getAllByRole, getByLabelText } = render(<ButtonMenu />);
 
     const button = getByLabelText('open menu');
-    button.focus();
-    button.click();
+    act(() => {
+      button.focus();
+      button.click();
+    });
     const menuitems = getAllByRole('menuitem');
 
     fireEvent.keyDown(menuitems[0], { key: 'ArrowDown' });
@@ -137,8 +140,10 @@ describe('<Menu /> integration', () => {
     const { getAllByRole, getByLabelText } = render(<ButtonMenu selectedIndex={2} />);
 
     const button = getByLabelText('open menu');
-    button.focus();
-    button.click();
+    act(() => {
+      button.focus();
+      button.click();
+    });
 
     expect(getAllByRole('menuitem')[2]).toHaveFocus();
   });
@@ -301,8 +306,10 @@ describe('<Menu /> integration', () => {
           <ButtonMenu selectedIndex={1} variant="selectedMenu" />,
         );
 
-        getByRole('button').focus();
-        getByRole('button').click();
+        act(() => {
+          getByRole('button').focus();
+          getByRole('button').click();
+        });
         const menuitems = getAllByRole('menuitem');
 
         expect(menuitems[1]).toHaveFocus();
@@ -317,12 +324,16 @@ describe('<Menu /> integration', () => {
     render(<ButtonMenu />);
 
     const trigger = screen.getByRole('button');
-    trigger.focus();
-    trigger.click();
+    act(() => {
+      trigger.focus();
+      trigger.click();
+    });
 
-    fireEvent.keyDown(screen.getAllByRole('menuitem')[0], { key: 'Tab' });
     // react-transition-group uses one commit per state transition so we need to wait a bit
-    clock.tick(0);
+    act(() => {
+      fireEvent.keyDown(screen.getAllByRole('menuitem')[0], { key: 'Tab' });
+      clock.tick(0);
+    });
 
     expect(screen.getByRole('menu', { hidden: true })).toBeInaccessible();
   });
@@ -330,12 +341,15 @@ describe('<Menu /> integration', () => {
   it('closes the menu when the backdrop is clicked', () => {
     const { getByRole } = render(<ButtonMenu />);
     const button = getByRole('button');
+    act(() => {
+      button.focus();
+      button.click();
+    });
 
-    button.focus();
-    button.click();
-
-    document.querySelector('[data-mui-test="Backdrop"]').click();
-    clock.tick(0);
+    act(() => {
+      document.querySelector('[data-mui-test="Backdrop"]').click();
+      clock.tick(0);
+    });
 
     expect(getByRole('menu', { hidden: true })).toBeInaccessible();
   });

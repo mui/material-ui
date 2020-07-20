@@ -49,7 +49,7 @@ const FakePaper = React.forwardRef(function FakeWidthPaper(props, ref) {
 });
 
 describe('<Popover />', () => {
-  // StrictModeViolation: uses Grow
+  // StrictModeViolation: Not using act(), prefer using createClientRender from test/utils
   const mount = createMount({ strict: false });
   let classes;
   const defaultProps = {

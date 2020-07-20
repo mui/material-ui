@@ -7,8 +7,7 @@ import Backdrop from './Backdrop';
 import Fade from '../Fade';
 
 describe('<Backdrop />', () => {
-  // StrictModeViolation: uses Fade
-  const mount = createMount({ strict: false });
+  const mount = createMount({ strict: true });
   let classes;
 
   before(() => {

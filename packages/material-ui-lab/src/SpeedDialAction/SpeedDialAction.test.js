@@ -20,9 +20,8 @@ describe('<SpeedDialAction />', () => {
     clock.restore();
   });
 
-  // StrictModeViolation: uses Tooltip
-  const mount = createMount({ strict: false });
-  const render = createClientRender({ strict: false });
+  const mount = createMount({ strict: true });
+  const render = createClientRender();
   let classes;
   const fabClasses = getClasses(<Fab>Fab</Fab>);
 

@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom';
 import { expect } from 'chai';
 import { useFakeTimers, spy } from 'sinon';
 import PropTypes from 'prop-types';
-import { createClientRender, fireEvent, within } from 'test/utils/createClientRender';
+import { act, createClientRender, fireEvent, within } from 'test/utils/createClientRender';
 import { createMuiTheme } from '@material-ui/core/styles';
 import createMount from 'test/utils/createMount';
 import { ThemeProvider } from '@material-ui/styles';
@@ -13,9 +13,8 @@ import Backdrop from '../Backdrop';
 import Modal from './Modal';
 
 describe('<Modal />', () => {
-  // StrictModeViolation: uses Backdrop
-  const mount = createMount({ strict: false });
-  const render = createClientRender({ strict: false });
+  const mount = createMount({ strict: true });
+  const render = createClientRender();
   let savedBodyStyle;
 
   before(() => {
@@ -375,7 +374,9 @@ describe('<Modal />', () => {
       const { queryByTestId, getByRole } = render(<OpenClose />);
       expect(queryByTestId('children')).to.equal(null);
 
-      getByRole('button').click();
+      act(() => {
+        getByRole('button').click();
+      });
 
       expect(queryByTestId('children')).to.equal(null);
     });
@@ -514,9 +515,11 @@ describe('<Modal />', () => {
           </React.Fragment>,
         );
 
-        getByTestId('foreign-input').focus();
-        // wait for the `contain` interval check to kick in.
-        clock.tick(500);
+        act(() => {
+          getByTestId('foreign-input').focus();
+          // wait for the `contain` interval check to kick in.
+          clock.tick(500);
+        });
 
         expect(getByTestId('foreign-input')).toHaveFocus();
       });
@@ -538,6 +541,17 @@ describe('<Modal />', () => {
   });
 
   describe('two modal at the same time', () => {
+    /**
+     * @type {ReturnType<typeof useFakeTimers>}
+     */
+    let clock;
+    beforeEach(() => {
+      clock = useFakeTimers();
+    });
+    afterEach(() => {
+      clock.restore();
+    });
+
     it('should open and close', () => {
       const TestCase = (props) => (
         <React.Fragment>
@@ -566,7 +580,7 @@ describe('<Modal />', () => {
       expect(document.body.style).to.have.property('overflow', '');
     });
 
-    it('should open and close with Transitions', (done) => {
+    it('should open and close with Transitions', () => {
       const TestCase = (props) => (
         <React.Fragment>
           <Modal open={props.open}>
@@ -580,28 +594,31 @@ describe('<Modal />', () => {
         </React.Fragment>
       );
 
-      TestCase.propTypes = {
-        onEntered: PropTypes.func,
-        onExited: PropTypes.func,
-        open: PropTypes.bool,
-      };
-
-      let wrapper;
-      const onEntered = () => {
-        expect(document.body.style).to.have.property('overflow', 'hidden');
-        wrapper.setProps({ open: false });
-      };
-
-      const onExited = () => {
-        expect(document.body.style).to.have.property('overflow', '');
-        done();
-      };
-
-      wrapper = mount(<TestCase onEntered={onEntered} onExited={onExited} open={false} />);
+      const handleEntered = spy();
+      const handleExited = spy();
+      const { setProps } = render(
+        <TestCase onEntered={handleEntered} onExited={handleExited} open={false} />,
+      );
 
       expect(document.body.style).to.have.property('overflow', '');
 
-      wrapper.setProps({ open: true });
+      setProps({ open: true });
+      act(() => {
+        clock.runToLast();
+      });
+
+      expect(handleEntered.callCount).to.equal(1);
+      expect(handleExited.callCount).to.equal(0);
+      expect(document.body.style).to.have.property('overflow', 'hidden');
+
+      setProps({ open: false });
+      act(() => {
+        clock.runToLast();
+      });
+
+      expect(handleEntered.callCount).to.equal(1);
+      expect(handleExited.callCount).to.equal(1);
+      expect(document.body.style).to.have.property('overflow', '');
     });
   });
 
@@ -625,11 +642,22 @@ describe('<Modal />', () => {
         );
       }
     }
-    mount(<TestCase />);
+    render(<TestCase />);
   });
 
   describe('prop: closeAfterTransition', () => {
-    it('when true it should close after Transition has finished', (done) => {
+    /**
+     * @type {ReturnType<typeof useFakeTimers>}
+     */
+    let clock;
+    beforeEach(() => {
+      clock = useFakeTimers();
+    });
+    afterEach(() => {
+      clock.restore();
+    });
+
+    it('when true it should close after Transition has finished', () => {
       const TestCase = (props) => (
         <Modal open={props.open} closeAfterTransition>
           <Fade
@@ -642,39 +670,52 @@ describe('<Modal />', () => {
           </Fade>
         </Modal>
       );
+      const handleEntered = spy();
+      const handleExiting = spy();
+      const handleExited = spy();
 
-      TestCase.propTypes = {
-        onEntered: PropTypes.func,
-        onExited: PropTypes.func,
-        onExiting: PropTypes.func,
-        open: PropTypes.bool,
-      };
+      const { setProps } = render(
+        <TestCase
+          onEntered={handleEntered}
+          onExiting={handleExiting}
+          onExited={handleExited}
+          open={false}
+        />,
+      );
 
-      let setProps;
-      const onEntered = () => {
-        expect(document.body.style).to.have.property('overflow', 'hidden');
-        setProps({ open: false });
-      };
-
-      const onExited = () => {
-        expect(document.body.style).to.have.property('overflow', '');
-        done();
-      };
-
-      const onExiting = () => {
-        expect(document.body.style).to.have.property('overflow', 'hidden');
-      };
-
-      ({ setProps } = render(
-        <TestCase onEntered={onEntered} onExiting={onExiting} onExited={onExited} open={false} />,
-      ));
-
+      expect(handleEntered.callCount).to.equal(0);
+      expect(handleExiting.callCount).to.equal(0);
+      expect(handleExited.callCount).to.equal(0);
       expect(document.body.style).to.have.property('overflow', '');
 
       setProps({ open: true });
+      act(() => {
+        clock.runToLast();
+      });
+
+      expect(handleEntered.callCount).to.equal(1);
+      expect(handleExiting.callCount).to.equal(0);
+      expect(handleExited.callCount).to.equal(0);
+      expect(document.body.style).to.have.property('overflow', 'hidden');
+
+      setProps({ open: false });
+
+      expect(handleEntered.callCount).to.equal(1);
+      expect(handleExiting.callCount).to.equal(1);
+      expect(handleExited.callCount).to.equal(0);
+      expect(document.body.style).to.have.property('overflow', 'hidden');
+
+      act(() => {
+        clock.runToLast();
+      });
+
+      expect(handleEntered.callCount).to.equal(1);
+      expect(handleExiting.callCount).to.equal(1);
+      expect(handleExited.callCount).to.equal(1);
+      expect(document.body.style).to.have.property('overflow', '');
     });
 
-    it('when false it should close before Transition has finished', (done) => {
+    it('when false it should close before Transition has finished', () => {
       const TestCase = (props) => (
         <Modal open={props.open} closeAfterTransition={false}>
           <Fade
@@ -687,36 +728,49 @@ describe('<Modal />', () => {
           </Fade>
         </Modal>
       );
+      const handleEntered = spy();
+      const handleExiting = spy();
+      const handleExited = spy();
 
-      TestCase.propTypes = {
-        onEntered: PropTypes.func,
-        onExited: PropTypes.func,
-        onExiting: PropTypes.func,
-        open: PropTypes.bool,
-      };
+      const { setProps } = render(
+        <TestCase
+          onEntered={handleEntered}
+          onExiting={handleExiting}
+          onExited={handleExited}
+          open={false}
+        />,
+      );
 
-      let setProps;
-      const onEntered = () => {
-        expect(document.body.style).to.have.property('overflow', 'hidden');
-        setProps({ open: false });
-      };
-
-      const onExited = () => {
-        expect(document.body.style).to.have.property('overflow', '');
-        done();
-      };
-
-      const onExiting = () => {
-        expect(document.body.style).to.have.property('overflow', '');
-      };
-
-      ({ setProps } = render(
-        <TestCase onEntered={onEntered} onExiting={onExiting} onExited={onExited} open={false} />,
-      ));
-
+      expect(handleEntered.callCount).to.equal(0);
+      expect(handleExiting.callCount).to.equal(0);
+      expect(handleExited.callCount).to.equal(0);
       expect(document.body.style).to.have.property('overflow', '');
 
       setProps({ open: true });
+      act(() => {
+        clock.runToLast();
+      });
+
+      expect(handleEntered.callCount).to.equal(1);
+      expect(handleExiting.callCount).to.equal(0);
+      expect(handleExited.callCount).to.equal(0);
+      expect(document.body.style).to.have.property('overflow', 'hidden');
+
+      setProps({ open: false });
+
+      expect(handleEntered.callCount).to.equal(1);
+      expect(handleExiting.callCount).to.equal(1);
+      expect(handleExited.callCount).to.equal(0);
+      expect(document.body.style).to.have.property('overflow', '');
+
+      act(() => {
+        clock.runToLast();
+      });
+
+      expect(handleEntered.callCount).to.equal(1);
+      expect(handleExiting.callCount).to.equal(1);
+      expect(handleExited.callCount).to.equal(1);
+      expect(document.body.style).to.have.property('overflow', '');
     });
   });
 
