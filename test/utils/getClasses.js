@@ -3,7 +3,11 @@ import createShallow from './createShallow';
 
 const shallow = createShallow();
 
-// Helper function to extract the classes from a styleSheet.
+/**
+ * Extracts the available classes for the `classes` prop of the given component
+ * @param {React.ReactElement} element - An element created from a Material-UI component that implements the `classes` prop.
+ * @returns {Record<string, string>}
+ */
 export default function getClasses(element) {
   const { useStyles } = element.type;
 

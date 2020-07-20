@@ -1,11 +1,15 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses } from '@material-ui/core/test-utils';
-import createMount from 'test/utils/createMount';
-import { act, createClientRender, fireEvent } from 'test/utils/createClientRender';
-import createServerRender from 'test/utils/createServerRender';
+import {
+  getClasses,
+  createMount,
+  describeConformance,
+  act,
+  createClientRender,
+  fireEvent,
+  createServerRender,
+} from 'test/utils';
 import Button from './Button';
-import describeConformance from '../test-utils/describeConformance';
 import ButtonBase from '../ButtonBase';
 
 describe('<Button />', () => {
