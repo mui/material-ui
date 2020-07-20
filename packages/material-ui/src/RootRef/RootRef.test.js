@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import createMount from 'test/utils/createMount';
+import { createMount } from 'test/utils';
 import RootRef from './RootRef';
 
 const Fn = () => <div />;

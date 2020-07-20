@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createShallow } from '@material-ui/core/test-utils';
+import { createShallow } from 'test/utils';
 import Hidden from './Hidden';
 import HiddenJs from './HiddenJs';
 import HiddenCss from './HiddenCss';

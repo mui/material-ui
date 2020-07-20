@@ -96,7 +96,8 @@ const inHouseAds = [
     link:
       'https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-sketch',
     img: '/static/in-house/sketch.png',
-    description: '<b>For Sketch</b>. A large UI kit with over 600 handcrafted Material-UI symbols 💎.',
+    description:
+      '<b>For Sketch</b>. A large UI kit with over 600 handcrafted Material-UI symbols 💎.',
   },
   {
     name: 'figma',

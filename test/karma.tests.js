@@ -1,6 +1,5 @@
 // https://github.com/airbnb/enzyme/issues/1792
 import 'core-js/modules/es6.array.from';
-
 import './utils/init';
 
 const integrationContext = require.context(
