@@ -1,0 +1,20 @@
+name: contributor-twitter
+on:
+  issues:
+    types: [labeled]
+jobs:
+  tweet:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: hmarr/debug-action@master
+      - uses: ethomson/send-tweet-action@v1
+        if: ${{ github.event.label.name == 'good first issue' && github.event.issue.state == 'open' }}
+        with:
+          status: >
+            A new issue on the @materialui repository has been marked as a "good first issue". Any help resolving this issue would be greatly appreciated. 
+            Before starting the work make sure the issue is not assigned to anybody. 
+            ${{ github.event.issue.html_url }}"
+          consumer-key: ${{ secrets.TWITTER_CONSUMER_API_KEY }}
+          consumer-secret: ${{ secrets.TWITTER_CONSUMER_API_SECRET }}
+          access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          access-token-secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
