@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
 import MuiRadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import MuiFormLabel from '@material-ui/core/FormLabel';
 import { Radio } from './Radio';
 

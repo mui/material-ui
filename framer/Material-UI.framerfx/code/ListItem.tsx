@@ -3,7 +3,7 @@ import { addPropertyControls, ControlType } from 'framer';
 import MuiListItem from '@material-ui/core/ListItem';
 import MuiListItemIcon from '@material-ui/core/ListItemIcon';
 import MuiListItemAvatar from '@material-ui/core/ListItemAvatar';
-import MuiListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+// import MuiListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import MuiListItemText from '@material-ui/core/ListItemText';
 import { Avatar } from './Avatar';
 import MuiCheckbox from '@material-ui/core/Checkbox';

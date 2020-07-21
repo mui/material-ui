@@ -22,10 +22,6 @@ const defaultProps: Props = {
 
 export function CircularProgress(props: Props): JSX.Element {
   const { width, height, ...other } = props;
-  const style: React.CSSProperties = {
-    width: 'width',
-    height: 'height',
-  };
 
   return <MuiCircularProgress size={width} {...other} />;
 }

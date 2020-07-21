@@ -10,6 +10,7 @@
     "resolveJsonModule": true,
     "noImplicitAny": false,
     "noEmit": true,
+    "noUnusedLocals": true,
     "skipLibCheck": true,
     "types": ["react"]
   },
