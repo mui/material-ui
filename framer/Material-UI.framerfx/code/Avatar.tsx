@@ -1,7 +1,5 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import MuiAvatar from '@material-ui/core/Avatar';
 import { Icon } from './Icon';
 

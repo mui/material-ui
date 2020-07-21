@@ -1,7 +1,5 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import MuiFab from '@material-ui/core/Fab';
 import { Icon } from './Icon';
 
@@ -37,8 +35,6 @@ export const Fab: React.SFC<Props> = (props: Props) => {
       <Icon
         icon={icon}
         theme={iconTheme}
-        // tslint:disable-next-line: ban-ts-ignore
-        // @ts-ignore
         style={variant === 'extended' ? { marginRight: 8 } : {}}
       />
       {variant === 'extended' ? label : null}

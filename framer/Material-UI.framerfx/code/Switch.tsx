@@ -1,17 +1,11 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import MuiSwitch from '@material-ui/core/Switch';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 export function Switch(props) {
   const { checked: checkedProp, label, onChange, size, ...other } = props;
-  // tslint:disable-next-line: ban-ts-ignore
-  // @ts-ignore
-
+    
   const [checked, setChecked] = React.useState(false);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,9 +15,7 @@ export function Switch(props) {
     setChecked((event.target as HTMLInputElement).checked);
   };
 
-  // tslint:disable-next-line: ban-ts-ignore
-  // @ts-ignore
-  React.useEffect(() => {
+      React.useEffect(() => {
     setChecked(checkedProp);
   }, [checkedProp]);
 

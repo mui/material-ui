@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { pascal } from 'naming-style';
 import { addPropertyControls, ControlType } from 'framer';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import * as Icons from '@material-ui/icons';
 
 interface Props {
@@ -24,8 +22,6 @@ const defaultProps: Props = {
 export const Icon: React.SFC<Props> = (props: Props) => {
   const { height, icon: iconProp, theme, width, ...other } = props;
   const iconName = `${iconProp && pascal(iconProp)}${theme === 'Filled' ? '' : theme}`;
-  // tslint:disable-next-line: ban-ts-ignore
-  // @ts-ignore
   const Icon = Object.keys(Icons).includes(iconName) ? Icons[iconName] : undefined;
 
   return Icon ? <Icon style={{ width, height }} {...other} /> : null;

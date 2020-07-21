@@ -1,10 +1,6 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import MuiBottomNavigation from '@material-ui/core/BottomNavigation';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import MuiBottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import { Icon } from './Icon';
 
@@ -27,8 +23,6 @@ const defaultProps: Props = {
 export const BottomNavigation: React.SFC<Props> = (props: Props) => {
   const { labels, icons, ...other } = props;
 
-  // tslint:disable-next-line: ban-ts-ignore
-  // @ts-ignore
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, value) => {

@@ -8,7 +8,10 @@
     "sourceMap": false,
     "declaration": false,
     "resolveJsonModule": true,
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "noEmit": true,
+    "types": ["react"]
   },
-  "exclude": ["node_modules", "build"]
+  "exclude": ["node_modules", "build"],
+  "include": ["code"]
 }

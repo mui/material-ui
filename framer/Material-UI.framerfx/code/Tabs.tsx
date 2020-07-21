@@ -1,13 +1,7 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import MuiAppBar from '@material-ui/core/AppBar';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import MuiTabs from '@material-ui/core/Tabs';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import MuiTab from '@material-ui/core/Tab';
 import { Icon } from './Icon';
 
@@ -40,9 +34,7 @@ const defaultProps: Props = {
 export const Tabs: React.SFC<Props> = (props: Props) => {
   const { appBarColor, labels, icons, width, height, ...other } = props;
 
-  // tslint:disable-next-line: ban-ts-ignore
-  // @ts-ignore
-  const [value, setValue] = React.useState(0);
+      const [value, setValue] = React.useState(0);
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);

@@ -1,10 +1,6 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import MuiSnackbarContent from '@material-ui/core/SnackbarContent';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import MuiButton from '@material-ui/core/Button';
 
 interface Props {

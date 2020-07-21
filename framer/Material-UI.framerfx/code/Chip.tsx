@@ -1,7 +1,5 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import MuiChip from '@material-ui/core/Chip';
 import { Icon } from './Icon';
 import { Avatar } from './Avatar';

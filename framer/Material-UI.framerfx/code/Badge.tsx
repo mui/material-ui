@@ -1,7 +1,5 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import MuiBadge from '@material-ui/core/Badge';
 import { Icon } from './Icon';
 
@@ -41,7 +39,6 @@ export const Badge: React.SFC<Props> = (props: Props) => {
     icon === '' ? (
       badgeContent
     ) : (
-      // @ts-ignore
       <Icon icon={icon} theme={theme} style={{ width: '75%', height: '75%' }} />
     );
 

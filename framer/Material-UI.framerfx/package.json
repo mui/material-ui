@@ -13,9 +13,6 @@
   "bugs": {
     "url": "https://github.com/mui-org/material-ui/issues"
   },
-  "devDependencies": {
-    "@types/react": "^16.8"
-  },
   "dependencies": {
     "@material-ui/core": "^5.0.0-alpha.4",
     "@material-ui/icons": "^5.0.0-alpha.4",
@@ -31,6 +28,19 @@
     "@types/react": {
       "optional": true
     }
+  },
+  "devDependencies": {
+    "@types/draft-js": "^0.10.43",
+    "@types/react": "^16.8.24",
+    "framer": "^1.2.5",
+    "framer-motion": "^2.1.0",
+    "immutable": "^4.0.0-rc.12",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "typescript": "^3.9.3"
+  },
+  "scripts": {
+    "typescript": "tsc -p tsconfig.json"
   },
   "framer": {
     "displayName": "Material-UI",

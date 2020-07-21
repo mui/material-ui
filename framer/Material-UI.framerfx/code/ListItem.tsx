@@ -1,26 +1,12 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import MuiListItem from '@material-ui/core/ListItem';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import MuiListItemIcon from '@material-ui/core/ListItemIcon';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import MuiListItemAvatar from '@material-ui/core/ListItemAvatar';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import MuiListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import MuiListItemText from '@material-ui/core/ListItemText';
 import { Avatar } from './Avatar';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import MuiCheckbox from '@material-ui/core/Checkbox';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import MuiSwitch from '@material-ui/core/Switch';
 import { Icon } from './Icon';
 import { IconButton } from './IconButton';

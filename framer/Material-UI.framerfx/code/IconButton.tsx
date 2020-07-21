@@ -1,10 +1,6 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import MuiIconButton from '@material-ui/core/IconButton';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import MuiBadge from '@material-ui/core/Badge';
 import { Icon } from './Icon';
 
