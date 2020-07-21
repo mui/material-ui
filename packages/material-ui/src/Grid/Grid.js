@@ -97,7 +97,7 @@ function generateGutter(theme, breakpoint) {
 // flexDirection: 'row',
 // alignItems: 'flex-start',
 // flexWrap: 'nowrap',
-// justifyContentContent: 'flex-start',
+// justifyContent: 'flex-start',
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {},
@@ -175,7 +175,7 @@ export const styles = (theme) => ({
   },
   /* Styles applied to the root element if `justifyContent="center"`. */
   'justify-content-xs-center': {
-    justifyContentContent: 'center',
+    justifyContent: 'center',
   },
   /* Styles applied to the root element if `justifyContent="flex-end"`. */
   'justify-content-xs-flex-end': {
@@ -183,15 +183,15 @@ export const styles = (theme) => ({
   },
   /* Styles applied to the root element if `justifyContent="space-between"`. */
   'justify-content-xs-space-between': {
-    justifyContentContent: 'space-between',
+    justifyContent: 'space-between',
   },
   /* Styles applied to the root element if `justifyContent="space-around"`. */
   'justify-content-xs-space-around': {
-    justifyContentContent: 'space-around',
+    justifyContent: 'space-around',
   },
   /* Styles applied to the root element if `justifyContent="space-evenly"`. */
   'justify-content-xs-space-evenly': {
-    justifyContentContent: 'space-evenly',
+    justifyContent: 'space-evenly',
   },
   ...generateGutter(theme, 'xs'),
   ...theme.breakpoints.keys.reduce((accumulator, key) => {
