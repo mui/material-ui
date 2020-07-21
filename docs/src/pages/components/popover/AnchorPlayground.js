@@ -148,7 +148,7 @@ function AnchorPlayground(props) {
 
   return (
     <div>
-      <Grid container justify="center">
+      <Grid container justifyContent="center">
         <Grid item className={classes.buttonWrapper}>
           <Button
             ref={anchorRef}

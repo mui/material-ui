@@ -173,24 +173,24 @@ export const styles = (theme) => ({
   'align-content-xs-space-around': {
     alignContent: 'space-around',
   },
-  /* Styles applied to the root element if `justify="center"`. */
-  'justify-xs-center': {
+  /* Styles applied to the root element if `justifyContent="center"`. */
+  'justify-content-xs-center': {
     justifyContent: 'center',
   },
-  /* Styles applied to the root element if `justify="flex-end"`. */
-  'justify-xs-flex-end': {
+  /* Styles applied to the root element if `justifyContent="flex-end"`. */
+  'justify-content-xs-flex-end': {
     justifyContent: 'flex-end',
   },
-  /* Styles applied to the root element if `justify="space-between"`. */
-  'justify-xs-space-between': {
+  /* Styles applied to the root element if `justifyContent="space-between"`. */
+  'justify-content-xs-space-between': {
     justifyContent: 'space-between',
   },
-  /* Styles applied to the root element if `justify="space-around"`. */
-  'justify-xs-space-around': {
+  /* Styles applied to the root element if `justifyContent="space-around"`. */
+  'justify-content-xs-space-around': {
     justifyContent: 'space-around',
   },
-  /* Styles applied to the root element if `justify="space-evenly"`. */
-  'justify-xs-space-evenly': {
+  /* Styles applied to the root element if `justifyContent="space-evenly"`. */
+  'justify-content-xs-space-evenly': {
     justifyContent: 'space-evenly',
   },
   ...generateGutter(theme, 'xs'),
@@ -211,7 +211,7 @@ const Grid = React.forwardRef(function Grid(props, ref) {
     container = false,
     direction = 'row',
     item = false,
-    justify = 'flex-start',
+    justifyContent = 'flex-start',
     lg = false,
     md = false,
     sm = false,
@@ -234,7 +234,7 @@ const Grid = React.forwardRef(function Grid(props, ref) {
       [classes[`wrap-xs-${String(wrap)}`]]: wrap !== 'wrap',
       [classes[`align-items-xs-${String(alignItems)}`]]: alignItems !== 'stretch',
       [classes[`align-content-xs-${String(alignContent)}`]]: alignContent !== 'stretch',
-      [classes[`justify-xs-${String(justify)}`]]: justify !== 'flex-start',
+      [classes[`justify-content-xs-${String(justifyContent)}`]]: justifyContent !== 'flex-start',
       [classes[`grid-xs-${String(xs)}`]]: xs !== false,
       [classes[`grid-sm-${String(sm)}`]]: sm !== false,
       [classes[`grid-md-${String(md)}`]]: md !== false,
@@ -306,7 +306,7 @@ Grid.propTypes = {
    * Defines the `justify-content` style property.
    * It is applied for all screen sizes.
    */
-  justify: PropTypes.oneOf([
+  justifyContent: PropTypes.oneOf([
     'center',
     'flex-end',
     'flex-start',
@@ -380,7 +380,7 @@ if (process.env.NODE_ENV !== 'production') {
     alignContent: requireProp('container'),
     alignItems: requireProp('container'),
     direction: requireProp('container'),
-    justify: requireProp('container'),
+    justifyContent: requireProp('container'),
     lg: requireProp('item'),
     md: requireProp('item'),
     sm: requireProp('item'),

@@ -20,7 +20,7 @@ export default function MaterialUIPickers() {
 
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      <Grid container justify="space-around">
+      <Grid container justifyContent="space-around">
         <KeyboardDatePicker
           disableToolbar
           variant="inline"

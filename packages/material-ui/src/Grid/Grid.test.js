@@ -74,10 +74,10 @@ describe('<Grid />', () => {
     });
   });
 
-  describe('prop: justify', () => {
-    it('should apply the justify class', () => {
-      const wrapper = shallow(<Grid justify="space-evenly" container />);
-      expect(wrapper.hasClass(classes['justify-xs-space-evenly'])).to.equal(true);
+  describe('prop: justifyContent', () => {
+    it('should apply the justify-content class', () => {
+      const wrapper = shallow(<Grid justifyContent="space-evenly" container />);
+      expect(wrapper.hasClass(classes['justify-content-xs-space-evenly'])).to.equal(true);
     });
   });
 
