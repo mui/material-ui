@@ -6,6 +6,7 @@ import { act, createClientRender, fireEvent } from 'test/utils/createClientRende
 import createServerRender from 'test/utils/createServerRender';
 import Button from './Button';
 import describeConformance from '../test-utils/describeConformance';
+import describeCustomVariantsConformance from '../test-utils/describeCustomVariantsConformance';
 import ButtonBase from '../ButtonBase';
 
 describe('<Button />', () => {
@@ -24,6 +25,8 @@ describe('<Button />', () => {
     refInstanceof: window.HTMLButtonElement,
     skip: ['componentProp'],
   }));
+
+  describeCustomVariantsConformance(Button, 'MuiButton');
 
   it('should render with the root, text, and textPrimary classes but no others', () => {
     const { getByRole } = render(<Button>Hello World</Button>);
