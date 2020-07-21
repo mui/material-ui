@@ -1,10 +1,7 @@
 import { expect } from 'chai';
 import * as React from 'react';
 import { createClientRender, screen } from 'test/utils/createClientRender';
-import {
-  createMuiTheme,
-  ThemeProvider,
-} from '../styles';
+import { createMuiTheme, ThemeProvider } from '../styles';
 
 /**
  * Tests whether the custom variants defined in the theme work as expected.
@@ -18,8 +15,14 @@ export default function describeCustomVariantsConformance(Component, name) {
     const render = createClientRender();
 
     const WrappedComponent = ({ theme, ...props }) => {
-      return <ThemeProvider theme={theme}><Component data-testid="component" {...props}>Content</Component></ThemeProvider>
-    }
+      return (
+        <ThemeProvider theme={theme}>
+          <Component data-testid="component" {...props}>
+            Content
+          </Component>
+        </ThemeProvider>
+      );
+    };
 
     it('should map the variant classkey to the component', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
@@ -33,8 +36,8 @@ export default function describeCustomVariantsConformance(Component, name) {
             {
               props: { variant: 'test' },
               styles: { backgroundColor: 'rgb(255, 0, 0)' },
-            }
-          ]
+            },
+          ],
         },
       });
 
@@ -49,7 +52,7 @@ export default function describeCustomVariantsConformance(Component, name) {
         // see https://github.com/jsdom/jsdom/issues/2953
         this.skip();
       }
-      
+
       const theme = createMuiTheme({
         variants: {
           [name]: [
@@ -60,8 +63,8 @@ export default function describeCustomVariantsConformance(Component, name) {
             {
               props: { variant: 'test', size: 'large' },
               styles: { backgroundColor: 'rgb(0, 255, 0)' },
-            }
-          ]
+            },
+          ],
         },
       });
 
@@ -76,7 +79,7 @@ export default function describeCustomVariantsConformance(Component, name) {
         // see https://github.com/jsdom/jsdom/issues/2953
         this.skip();
       }
-      
+
       const theme = createMuiTheme({
         variants: {
           [name]: [
@@ -87,8 +90,8 @@ export default function describeCustomVariantsConformance(Component, name) {
             {
               props: { variant: 'test', size: 'large' },
               styles: { backgroundColor: 'rgb(0, 255, 0)' },
-            }
-          ]
+            },
+          ],
         },
       });
 
