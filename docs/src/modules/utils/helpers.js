@@ -98,7 +98,7 @@ function getDependencies(raw, options = {}) {
   const versions = {
     'react-dom': reactVersion,
     react: reactVersion,
-    // TODO: change next to latests once next is merged in master
+    // TODO: change 'next' to 'latest' once next is merged into master
     '@material-ui/core': 'next',
     '@material-ui/icons': 'next',
     '@material-ui/lab': 'next',
