@@ -6,6 +6,7 @@ jobs:
   tweet:
     runs-on: ubuntu-latest
     steps:
+      # This has essentially zero costs and helps debugging if the workflow fails.
       - uses: hmarr/debug-action@master
       - uses: ethomson/send-tweet-action@v1
         if: ${{ github.event.label.name == 'good first issue' && github.event.issue.state == 'open' }}
