@@ -180,6 +180,8 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     inputProps: inputPropsProp = {},
     inputRef: inputRefProp,
     margin,
+    maxRows,
+    minRows,
     multiline = false,
     name,
     onBlur,
@@ -192,8 +194,6 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     readOnly,
     renderSuffix,
     rows,
-    rowsMax,
-    rowsMin,
     startAdornment,
     type = 'text',
     value: valueProp,
@@ -374,16 +374,16 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     if (rows) {
       InputComponent = 'textarea';
       if (process.env.NODE_ENV !== 'production') {
-        if (rowsMin || rowsMax) {
+        if (minRows || maxRows) {
           console.warn(
-            'Material-UI: You can not use the `rowsMin` or `rowsMax` props when the input `rows` prop is set.',
+            'Material-UI: You can not use the `minRows` or `maxRows` props when the input `rows` prop is set.',
           );
         }
       }
     } else {
       inputProps = {
-        rowsMax,
-        rowsMin,
+        maxRows,
+        minRows,
         ...inputProps,
       };
 
@@ -554,6 +554,14 @@ InputBase.propTypes = {
    */
   margin: PropTypes.oneOf(['dense', 'none']),
   /**
+   * Maximum number of rows to display when multiline option is set to true.
+   */
+  maxRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
+   * Minimum number of rows to display when multiline option is set to true.
+   */
+  minRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
    * If `true`, a textarea element will be rendered.
    */
   multiline: PropTypes.bool,
@@ -611,14 +619,6 @@ InputBase.propTypes = {
    * Number of rows to display when multiline option is set to true.
    */
   rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  /**
-   * Maximum number of rows to display when multiline option is set to true.
-   */
-  rowsMax: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  /**
-   * Minimum number of rows to display when multiline option is set to true.
-   */
-  rowsMin: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * Start `InputAdornment` for this component.
    */
