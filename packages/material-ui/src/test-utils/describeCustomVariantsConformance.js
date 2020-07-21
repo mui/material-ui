@@ -15,16 +15,15 @@ import {
  */
 export default function describeCustomVariantsConformance(Component, name) {
   describe('Material-UI custom variants', () => {
-    const isJSDOM = navigator.userAgent === 'node.js';
-
     const render = createClientRender();
 
     const WrappedComponent = ({ theme, ...props }) => {
       return <ThemeProvider theme={theme}><Component data-testid="component" {...props}>Content</Component></ThemeProvider>
     }
 
-    it('should map the variant classkey to the component', () => {
-      if (isJSDOM) {
+    it('should map the variant classkey to the component', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // see https://github.com/jsdom/jsdom/issues/2953
         this.skip();
       }
 
@@ -45,8 +44,9 @@ export default function describeCustomVariantsConformance(Component, name) {
       expect(style.getPropertyValue('background-color')).to.equal('rgb(255, 0, 0)');
     });
 
-    it('should map the latest props combination classkey to the component', () => {
-      if (isJSDOM) {
+    it('should map the latest props combination classkey to the component', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // see https://github.com/jsdom/jsdom/issues/2953
         this.skip();
       }
       
@@ -71,8 +71,9 @@ export default function describeCustomVariantsConformance(Component, name) {
       expect(style.getPropertyValue('background-color')).to.equal('rgb(0, 255, 0)');
     });
 
-    it('should not add classKey if all props are not a match', () => {
-      if (isJSDOM) {
+    it('should not add classKey if all props are not a match', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // see https://github.com/jsdom/jsdom/issues/2953
         this.skip();
       }
       
