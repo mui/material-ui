@@ -1,5 +1,5 @@
-import * as t from './types';
 import _ from 'lodash';
+import * as t from './types';
 
 export interface GenerateOptions {
   /**
@@ -111,23 +111,25 @@ export function generate(node: t.Node | t.PropTypeNode[], options: GenerateOptio
     sortLiteralUnions = defaultSortLiteralUnions,
   } = options;
 
-  function jsDoc(node: t.PropTypeNode | t.LiteralNode) {
-    if (!includeJSDoc || !node.jsDoc) {
+  function jsDoc(documentedNode: t.PropTypeNode | t.LiteralNode) {
+    if (!includeJSDoc || !documentedNode.jsDoc) {
       return '';
     }
-    return `/**\n* ${node.jsDoc.split(/\r?\n/).reduce((prev, curr) => `${prev}\n* ${curr}`)}\n*/\n`;
+    return `/**\n* ${documentedNode.jsDoc
+      .split(/\r?\n/)
+      .reduce((prev, curr) => `${prev}\n* ${curr}`)}\n*/\n`;
   }
 
   if (Array.isArray(node)) {
-    let propTypes = node;
+    const propTypes = node.slice();
 
     if (typeof sortProptypes === 'function') {
-      propTypes = propTypes.sort(sortProptypes);
+      propTypes.sort(sortProptypes);
     } else if (sortProptypes === true) {
-      propTypes = propTypes.sort((a, b) => a.name.localeCompare(b.name));
+      propTypes.sort((a, b) => a.name.localeCompare(b.name));
     }
 
-    let filteredNodes = node;
+    let filteredNodes = propTypes;
     if (shouldInclude) {
       filteredNodes = filteredNodes.filter((x) => shouldInclude(x));
     }
@@ -157,7 +159,7 @@ export function generate(node: t.Node | t.PropTypeNode[], options: GenerateOptio
       options.comment &&
       `// ${options.comment.split(/\r?\n/gm).reduce((prev, curr) => `${prev}\n// ${curr}`)}\n`;
 
-    return `${node.name}.propTypes = {\n${comment ? comment : ''}${generated}\n}`;
+    return `${node.name}.propTypes = {\n${comment !== undefined ? comment : ''}${generated}\n}`;
   }
 
   if (component === undefined) {
@@ -269,7 +271,8 @@ export function generate(node: t.Node | t.PropTypeNode[], options: GenerateOptio
     const nodeToStringName = (obj: t.Node): string => {
       if (t.isInstanceOfNode(obj)) {
         return `${obj.type}.${obj.instance}`;
-      } else if (t.isInterfaceNode(obj)) {
+      }
+      if (t.isInterfaceNode(obj)) {
         // An interface is PropTypes.shape
         // Use `ShapeNode` to get it sorted in the correct order
         return `ShapeNode`;
@@ -300,7 +303,7 @@ export function generate(node: t.Node | t.PropTypeNode[], options: GenerateOptio
       return generate(rest[0], options);
     }
 
-    return `${importedName}.oneOfType([${literalProps ? literalProps + ', ' : ''}${rest
+    return `${importedName}.oneOfType([${literalProps ? `${literalProps}, ` : ''}${rest
       .map((x) => generate(x, options))
       .reduce((prev, curr) => `${prev},${curr}`)}])`;
   }

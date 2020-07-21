@@ -1,8 +1,8 @@
 import * as babel from '@babel/core';
 import * as babelTypes from '@babel/types';
+import { v4 as uuid } from 'uuid';
 import * as t from './types/index';
 import { generate, GenerateOptions } from './generator';
-import { v4 as uuid } from 'uuid';
 
 export type InjectOptions = {
   /**
@@ -49,49 +49,69 @@ export type InjectOptions = {
 } & Pick<GenerateOptions, 'sortProptypes' | 'includeJSDoc' | 'comment' | 'reconcilePropTypes'>;
 
 /**
- * Injects the PropTypes from `parse` into the provided JavaScript code
- * @param propTypes Result from `parse` to inject into the JavaScript code
- * @param target The JavaScript code to add the PropTypes to
- * @param options Options controlling the final result
+ * Gets used props from path
+ * @param rootPath The path to search for uses of rootNode
+ * @param rootNode The node to start the search, if undefined searches for `this.props`
  */
-export function inject(
-  propTypes: t.ProgramNode,
-  target: string,
-  options: InjectOptions = {},
-): string | null {
-  if (propTypes.body.length === 0) {
-    return target;
+function getUsedProps(
+  rootPath: babel.NodePath,
+  rootNode: babelTypes.ObjectPattern | babelTypes.Identifier | undefined,
+) {
+  const usedProps: string[] = [];
+
+  function getUsedPropsInternal(
+    node: babelTypes.ObjectPattern | babelTypes.Identifier | undefined,
+  ) {
+    if (node && babelTypes.isObjectPattern(node)) {
+      node.properties.forEach((x) => {
+        if (babelTypes.isObjectProperty(x)) {
+          if (babelTypes.isStringLiteral(x.key)) {
+            usedProps.push(x.key.value);
+          } else if (babelTypes.isIdentifier(x.key)) {
+            usedProps.push(x.key.name);
+          } else {
+            console.warn(
+              'Possibly used prop missed because object property key was not an Identifier or StringLiteral.',
+            );
+          }
+        } else if (babelTypes.isIdentifier(x.argument)) {
+          getUsedPropsInternal(x.argument);
+        }
+      });
+    } else {
+      rootPath.traverse({
+        VariableDeclarator(path) {
+          const init = path.node.init;
+          if (
+            (node
+              ? babelTypes.isIdentifier(init, { name: node.name })
+              : babelTypes.isMemberExpression(init) &&
+                babelTypes.isThisExpression(init.object) &&
+                babelTypes.isIdentifier(init.property, { name: 'props' })) &&
+            babelTypes.isObjectPattern(path.node.id)
+          ) {
+            getUsedPropsInternal(path.node.id);
+          }
+        },
+        MemberExpression(path) {
+          if (
+            (node
+              ? babelTypes.isIdentifier(path.node.object, { name: node.name })
+              : babelTypes.isMemberExpression(path.node.object) &&
+                babelTypes.isMemberExpression(path.node.object.object) &&
+                babelTypes.isThisExpression(path.node.object.object.object) &&
+                babelTypes.isIdentifier(path.node.object.object.property, { name: 'props' })) &&
+            babelTypes.isIdentifier(path.node.property)
+          ) {
+            usedProps.push(path.node.property.name);
+          }
+        },
+      });
+    }
   }
 
-  const propTypesToInject = new Map<string, string>();
-
-  const { plugins: babelPlugins = [], ...babelOptions } = options.babelOptions || {};
-
-  const result = babel.transformSync(target, {
-    plugins: [
-      require.resolve('@babel/plugin-syntax-class-properties'),
-      require.resolve('@babel/plugin-syntax-jsx'),
-      plugin(propTypes, options, propTypesToInject),
-      ...(babelPlugins || []),
-    ],
-    configFile: false,
-    babelrc: false,
-    retainLines: true,
-    ...babelOptions,
-  });
-
-  let code = result && result.code;
-  if (!code) {
-    return null;
-  }
-
-  // Replace the placeholders with the generated prop-types
-  // Workaround for issues with comments getting removed and malformed
-  propTypesToInject.forEach((value, key) => {
-    code = code!.replace(key, `\n\n${value}\n\n`);
-  });
-
-  return code;
+  getUsedPropsInternal(rootNode);
+  return usedProps;
 }
 
 function plugin(
@@ -126,6 +146,47 @@ function plugin(
   let originalPropTypesPath: null | babel.NodePath = null;
   const previousPropTypesSource = new Map<string, string>();
 
+  function injectPropTypes(injectOptions: {
+    path: babel.NodePath;
+    usedProps: string[];
+    props: t.ComponentNode;
+    nodeName: string;
+  }) {
+    const { path, props, usedProps, nodeName } = injectOptions;
+
+    const source = generate(props, {
+      ...otherOptions,
+      importedName: importName,
+      previousPropTypesSource,
+      reconcilePropTypes,
+      shouldInclude: (prop) => shouldInclude({ component: props, prop, usedProps }),
+    });
+
+    if (source.length === 0) {
+      return;
+    }
+
+    needImport = true;
+
+    const placeholder = `const a${uuid().replace(/-/g, '_')} = null;`;
+
+    mapOfPropTypes.set(placeholder, source);
+
+    if (removeExistingPropTypes && originalPropTypesPath !== null) {
+      originalPropTypesPath.replaceWith(babel.template.ast(placeholder) as babelTypes.Statement);
+    } else if (babelTypes.isExportNamedDeclaration(path.parent)) {
+      path.insertAfter(babel.template.ast(`export { ${nodeName} };`));
+      path.insertAfter(babel.template.ast(placeholder));
+      path.parentPath.replaceWith(path.node);
+    } else if (babelTypes.isExportDefaultDeclaration(path.parent)) {
+      path.insertAfter(babel.template.ast(`export default ${nodeName};`));
+      path.insertAfter(babel.template.ast(placeholder));
+      path.parentPath.replaceWith(path.node);
+    } else {
+      path.insertAfter(babel.template.ast(placeholder));
+    }
+  }
+
   return {
     visitor: {
       Program: {
@@ -141,6 +202,7 @@ function plugin(
                 alreadyImported = true;
                 return true;
               }
+              return false;
             })
           ) {
             importName = 'PropTypes';
@@ -239,19 +301,6 @@ function plugin(
         const props = propTypes.body.find((prop) => prop.name === nodeName);
         if (!props) return;
 
-        if (
-          babelTypes.isArrowFunctionExpression(node.init) ||
-          babelTypes.isFunctionExpression(node.init)
-        ) {
-          getFromProp(node.init.params[0]);
-        } else if (babelTypes.isCallExpression(node.init)) {
-          // x = react.memo(props => <div/>)
-          const arg = node.init.arguments[0];
-          if (babelTypes.isArrowFunctionExpression(arg) || babelTypes.isFunctionExpression(arg)) {
-            getFromProp(arg.params[0]);
-          }
-        }
-
         function getFromProp(prop: babelTypes.Node) {
           // Prevent visiting again
           (node as any).hasBeenVisited = true;
@@ -266,6 +315,19 @@ function plugin(
             props: props!,
             nodeName,
           });
+        }
+
+        if (
+          babelTypes.isArrowFunctionExpression(node.init) ||
+          babelTypes.isFunctionExpression(node.init)
+        ) {
+          getFromProp(node.init.params[0]);
+        } else if (babelTypes.isCallExpression(node.init)) {
+          // x = react.memo(props => <div/>)
+          const arg = node.init.arguments[0];
+          if (babelTypes.isArrowFunctionExpression(arg) || babelTypes.isFunctionExpression(arg)) {
+            getFromProp(arg.params[0]);
+          }
         }
       },
       ClassDeclaration(path) {
@@ -296,110 +358,50 @@ function plugin(
       },
     },
   };
-
-  function injectPropTypes(options: {
-    path: babel.NodePath;
-    usedProps: string[];
-    props: t.ComponentNode;
-    nodeName: string;
-  }) {
-    const { path, props, usedProps, nodeName } = options;
-
-    const source = generate(props, {
-      ...otherOptions,
-      importedName: importName,
-      previousPropTypesSource,
-      reconcilePropTypes,
-      shouldInclude: (prop) => shouldInclude({ component: props, prop, usedProps }),
-    });
-
-    if (source.length === 0) {
-      return;
-    }
-
-    needImport = true;
-
-    const placeholder = `const a${uuid().replace(/\-/g, '_')} = null;`;
-
-    mapOfPropTypes.set(placeholder, source);
-
-    if (removeExistingPropTypes && originalPropTypesPath !== null) {
-      originalPropTypesPath.replaceWith(babel.template.ast(placeholder) as babelTypes.Statement);
-    } else if (babelTypes.isExportNamedDeclaration(path.parent)) {
-      path.insertAfter(babel.template.ast(`export { ${nodeName} };`));
-      path.insertAfter(babel.template.ast(placeholder));
-      path.parentPath.replaceWith(path.node);
-    } else if (babelTypes.isExportDefaultDeclaration(path.parent)) {
-      path.insertAfter(babel.template.ast(`export default ${nodeName};`));
-      path.insertAfter(babel.template.ast(placeholder));
-      path.parentPath.replaceWith(path.node);
-    } else {
-      path.insertAfter(babel.template.ast(placeholder));
-    }
-  }
 }
 
 /**
- * Gets used props from path
- * @param rootPath The path to search for uses of rootNode
- * @param rootNode The node to start the search, if undefined searches for `this.props`
+ * Injects the PropTypes from `parse` into the provided JavaScript code
+ * @param propTypes Result from `parse` to inject into the JavaScript code
+ * @param target The JavaScript code to add the PropTypes to
+ * @param options Options controlling the final result
  */
-function getUsedProps(
-  rootPath: babel.NodePath,
-  rootNode: babelTypes.ObjectPattern | babelTypes.Identifier | undefined,
-) {
-  const usedProps: string[] = [];
-  getUsedPropsInternal(rootNode);
-  return usedProps;
-
-  function getUsedPropsInternal(
-    node: babelTypes.ObjectPattern | babelTypes.Identifier | undefined,
-  ) {
-    if (node && babelTypes.isObjectPattern(node)) {
-      node.properties.forEach((x) => {
-        if (babelTypes.isObjectProperty(x)) {
-          if (babelTypes.isStringLiteral(x.key)) {
-            usedProps.push(x.key.value);
-          } else if (babelTypes.isIdentifier(x.key)) {
-            usedProps.push(x.key.name);
-          } else {
-            console.warn(
-              'Possibly used prop missed because object property key was not an Identifier or StringLiteral.',
-            );
-          }
-        } else if (babelTypes.isIdentifier(x.argument)) {
-          getUsedPropsInternal(x.argument);
-        }
-      });
-    } else {
-      rootPath.traverse({
-        VariableDeclarator(path) {
-          const init = path.node.init;
-          if (
-            (node
-              ? babelTypes.isIdentifier(init, { name: node.name })
-              : babelTypes.isMemberExpression(init) &&
-                babelTypes.isThisExpression(init.object) &&
-                babelTypes.isIdentifier(init.property, { name: 'props' })) &&
-            babelTypes.isObjectPattern(path.node.id)
-          ) {
-            getUsedPropsInternal(path.node.id);
-          }
-        },
-        MemberExpression(path) {
-          if (
-            (node
-              ? babelTypes.isIdentifier(path.node.object, { name: node.name })
-              : babelTypes.isMemberExpression(path.node.object) &&
-                babelTypes.isMemberExpression(path.node.object.object) &&
-                babelTypes.isThisExpression(path.node.object.object.object) &&
-                babelTypes.isIdentifier(path.node.object.object.property, { name: 'props' })) &&
-            babelTypes.isIdentifier(path.node.property)
-          ) {
-            usedProps.push(path.node.property.name);
-          }
-        },
-      });
-    }
+export function inject(
+  propTypes: t.ProgramNode,
+  target: string,
+  options: InjectOptions = {},
+): string | null {
+  if (propTypes.body.length === 0) {
+    return target;
   }
+
+  const propTypesToInject = new Map<string, string>();
+
+  const { plugins: babelPlugins = [], ...babelOptions } = options.babelOptions || {};
+
+  const result = babel.transformSync(target, {
+    plugins: [
+      require.resolve('@babel/plugin-syntax-class-properties'),
+      require.resolve('@babel/plugin-syntax-jsx'),
+      plugin(propTypes, options, propTypesToInject),
+      ...(babelPlugins || []),
+    ],
+    configFile: false,
+    babelrc: false,
+    retainLines: true,
+    ...babelOptions,
+  });
+
+  let code = result && result.code;
+  if (!code) {
+    return null;
+  }
+
+  // Replace the placeholders with the generated prop-types
+  // Workaround for issues with comments getting removed and malformed
+  propTypesToInject.forEach((value, key) => {
+    code = code!.replace(key, `\n\n${value}\n\n`);
+  });
+
+  return code;
 }
