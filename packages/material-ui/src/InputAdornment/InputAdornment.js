@@ -119,7 +119,7 @@ InputAdornment.propTypes = {
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
-  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
+  component: PropTypes.elementType,
   /**
    * Disable pointer events on the root.
    * This allows for the content of the adornment to focus the input on click.
