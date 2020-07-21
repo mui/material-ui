@@ -22,7 +22,7 @@ const defaultProps: Props = {
 
 export function LinearProgress(props: Props): JSX.Element {
   const { width, height, ...other } = props;
-  const style: React.CSSProperties = {};
+  const style: React.CSSProperties = { height, width };
 
   return <MuiLinearProgress style={style} {...other} />;
 }
