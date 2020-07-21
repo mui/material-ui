@@ -57,8 +57,6 @@ export function List(props: Props): JSX.Element {
       </Frame>
     </Scroll>
   );
-
-  return <ListItem {...other} />;
 }
 
 List.defaultProps = defaultProps;

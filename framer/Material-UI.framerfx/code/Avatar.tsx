@@ -73,14 +73,14 @@ addPropertyControls(Avatar, {
     type: ControlType.Image,
     title: 'Image File',
     hidden: function hidden(props) {
-      return props.primaryAction && props.primaryAction !== 'avatar';
+      return false;
     },
   },
   imageUrl: {
     type: ControlType.String,
     title: 'Image URL',
     hidden: function hidden(props) {
-      return props.imageFile !== '' || (props.primaryAction && props.primaryAction !== 'avatar');
+      return props.imageFile !== '';
     },
   },
   label: {

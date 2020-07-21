@@ -5,7 +5,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 export function Switch(props) {
   const { checked: checkedProp, label, onChange, size, ...other } = props;
-    
+
   const [checked, setChecked] = React.useState(false);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

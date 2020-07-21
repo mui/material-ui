@@ -4,6 +4,7 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { parseColor } from './utils/parseColor';
 
 interface Props {
+  children?: React.ReactNode;
   paletteType?: 'dark' | 'light';
   primary?: string;
   secondary?: string;
