@@ -19,13 +19,13 @@ const defaultProps: Props = {
   height: 24,
 };
 
-export const Icon: React.SFC<Props> = (props: Props) => {
+export function Icon(props: Props): JSX.Element {
   const { height, icon: iconProp, theme, width, ...other } = props;
   const iconName = `${iconProp && pascal(iconProp)}${theme === 'Filled' ? '' : theme}`;
   const Icon = Object.keys(Icons).includes(iconName) ? Icons[iconName] : undefined;
 
   return Icon ? <Icon style={{ width, height }} {...other} /> : null;
-};
+}
 
 Icon.defaultProps = defaultProps;
 

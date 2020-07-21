@@ -23,7 +23,7 @@ const defaultProps: Props = {
   success: '#4caf4f',
 };
 
-export const Theme: React.SFC<Props> = (props: Props) => {
+export function Theme(props: Props): JSX.Element {
   const {
     children,
     error,
@@ -53,7 +53,7 @@ export const Theme: React.SFC<Props> = (props: Props) => {
       {children}
     </MuiThemeProvider>
   );
-};
+}
 
 Theme.defaultProps = defaultProps;
 

@@ -33,7 +33,7 @@ const style: React.CSSProperties = {
   justifyContent: 'center',
 };
 
-export const Badge: React.SFC<Props> = (props: Props) => {
+export function Badge(props: Props): JSX.Element {
   const { badgeColor: color, badgeContent, icon, theme, width, height, ...other } = props;
   const content =
     icon === '' ? (
@@ -43,7 +43,7 @@ export const Badge: React.SFC<Props> = (props: Props) => {
     );
 
   return <MuiBadge badgeContent={content} color={color} style={style} {...other} />;
-};
+}
 
 Badge.defaultProps = defaultProps;
 

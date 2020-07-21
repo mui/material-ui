@@ -28,7 +28,7 @@ const defaultProps: Props = {
   height: 56,
 };
 
-export const Fab: React.SFC<Props> = (props: Props) => {
+export function Fab(props: Props): JSX.Element {
   const { height, icon, label, iconTheme, variant, width, ...other } = props;
   return (
     <MuiFab variant={variant} {...other}>
@@ -40,7 +40,7 @@ export const Fab: React.SFC<Props> = (props: Props) => {
       {variant === 'extended' ? label : null}
     </MuiFab>
   );
-};
+}
 
 Fab.defaultProps = defaultProps;
 

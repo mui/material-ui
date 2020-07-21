@@ -43,10 +43,10 @@ const defaultProps: Props = {
   height: 38,
 };
 
-export const Typography: React.SFC<Props> = (props: Props) => {
+export function Typography(props: Props): JSX.Element {
   const { height, label, width, ...other } = props;
   return <MuiTypography {...other}>{label}</MuiTypography>;
-};
+}
 
 Typography.defaultProps = defaultProps;
 

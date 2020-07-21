@@ -31,10 +31,10 @@ const defaultProps: Props = {
   height: 64,
 };
 
-export const Tabs: React.SFC<Props> = (props: Props) => {
+export function Tabs(props: Props): JSX.Element {
   const { appBarColor, labels, icons, width, height, ...other } = props;
 
-      const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(0);
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
@@ -61,7 +61,7 @@ export const Tabs: React.SFC<Props> = (props: Props) => {
       </MuiAppBar>
     </div>
   );
-};
+}
 
 Tabs.defaultProps = defaultProps;
 

@@ -20,12 +20,12 @@ const defaultProps: Props = {
   height: 5,
 };
 
-export const LinearProgress: React.SFC<Props> = (props: Props) => {
+export function LinearProgress(props: Props): JSX.Element {
   const { width, height, ...other } = props;
   const style: React.CSSProperties = {};
 
   return <MuiLinearProgress style={style} {...other} />;
-};
+}
 
 LinearProgress.defaultProps = defaultProps;
 

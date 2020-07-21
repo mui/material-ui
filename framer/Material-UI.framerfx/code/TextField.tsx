@@ -34,12 +34,12 @@ const defaultProps: Props = {
   height: 56,
 };
 
-export const TextField: React.SFC<Props> = (props: Props) => {
+export function TextField(props: Props): JSX.Element {
   const { width, height, ...other } = props;
   const style: React.CSSProperties = {};
 
   return <MuiTextField style={style} {...other} />;
-};
+}
 
 TextField.defaultProps = defaultProps;
 

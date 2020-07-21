@@ -45,7 +45,7 @@ const defaultProps: Props = {
   secondaryIcon: '',
 };
 
-export const List: React.SFC<Props> = (props: Props) => {
+export function List(props: Props): JSX.Element {
   const { height, labels, secondaryLabels, width, ...other } = props;
 
   return (
@@ -59,7 +59,7 @@ export const List: React.SFC<Props> = (props: Props) => {
   );
 
   return <ListItem {...other} />;
-};
+}
 
 List.defaultProps = defaultProps;
 

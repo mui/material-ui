@@ -54,7 +54,7 @@ const defaultProps: Props = {
   secondaryIcon: '',
 };
 
-export const ListItem: React.SFC<Props> = (props: Props) => {
+export function ListItem(props: Props): JSX.Element {
   const {
     height,
     imageFile,
@@ -123,7 +123,7 @@ export const ListItem: React.SFC<Props> = (props: Props) => {
       {/* </MuiListItemSecondaryAction> */}
     </MuiListItem>
   );
-};
+}
 
 ListItem.defaultProps = defaultProps;
 

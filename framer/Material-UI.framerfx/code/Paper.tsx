@@ -18,11 +18,11 @@ const defaultProps: Props = {
   height: 100,
 };
 
-export const Paper: React.SFC<Props> = (props: Props) => {
+export function Paper(props: Props): JSX.Element {
   const { width, height, ...other } = props;
 
   return <MuiPaper style={{ width, height }} {...other} />;
-};
+}
 
 Paper.defaultProps = defaultProps;
 

@@ -20,7 +20,7 @@ const defaultProps: Props = {
   height: 56,
 };
 
-export const BottomNavigation: React.SFC<Props> = (props: Props) => {
+export function BottomNavigation(props: Props): JSX.Element {
   const { labels, icons, ...other } = props;
 
   const [value, setValue] = React.useState(0);
@@ -46,7 +46,7 @@ export const BottomNavigation: React.SFC<Props> = (props: Props) => {
       )}
     </MuiBottomNavigation>
   );
-};
+}
 
 BottomNavigation.defaultProps = defaultProps;
 

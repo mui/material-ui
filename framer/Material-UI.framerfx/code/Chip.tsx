@@ -38,7 +38,7 @@ const defaultProps: Props = {
   height: 32,
 };
 
-export const Chip: React.SFC<Props> = (props: Props) => {
+export function Chip(props: Props): JSX.Element {
   const {
     avatarImageFile,
     avatarImageUrl,
@@ -64,7 +64,7 @@ export const Chip: React.SFC<Props> = (props: Props) => {
       {...other}
     />
   );
-};
+}
 
 Chip.defaultProps = defaultProps;
 

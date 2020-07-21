@@ -28,7 +28,7 @@ const defaultProps: Props = {
   height: 48,
 };
 
-export const IconButton: React.SFC<Props> = (props: Props) => {
+export function IconButton(props: Props): JSX.Element {
   const { badgeColor, badgeContent, height, icon, iconTheme, width, ...other } = props;
   const IconBadge =
     badgeContent === '' ? (
@@ -40,7 +40,7 @@ export const IconButton: React.SFC<Props> = (props: Props) => {
     );
 
   return <MuiIconButton {...other}>{IconBadge}</MuiIconButton>;
-};
+}
 
 IconButton.defaultProps = defaultProps;
 

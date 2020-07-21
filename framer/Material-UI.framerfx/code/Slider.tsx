@@ -28,10 +28,10 @@ const defaultProps: Props = {
   height: 24,
 };
 
-export const Slider: React.SFC<Props> = (props: Props) => {
+export function Slider(props: Props): JSX.Element {
   const { width, height, ...other } = props;
   return <MuiSlider {...other} />;
-};
+}
 
 Slider.defaultProps = defaultProps;
 

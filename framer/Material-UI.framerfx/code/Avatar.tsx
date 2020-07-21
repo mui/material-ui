@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-import MuiAvatar from '@material-ui/core/Avatar';
+import MuiAvatar, { AvatarProps } from '@material-ui/core/Avatar';
 import { Icon } from './Icon';
 
 interface Props {
@@ -27,7 +27,7 @@ const defaultProps: Props = {
   height: 40,
 };
 
-export const Avatar: React.SFC<Props> = (props: Props) => {
+export function Avatar(props: Props): JSX.Element {
   const {
     backgroundColor,
     height,
@@ -47,7 +47,7 @@ export const Avatar: React.SFC<Props> = (props: Props) => {
       {icon === '' ? label : <Icon icon={icon} />}
     </MuiAvatar>
   );
-};
+}
 
 Avatar.defaultProps = defaultProps;
 

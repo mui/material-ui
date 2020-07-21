@@ -17,7 +17,7 @@ const defaultProps: Props = {
   label: 'Nom nom nom',
 };
 
-export const SnackbarContent: React.SFC<Props> = (props: Props) => {
+export function SnackbarContent(props: Props): JSX.Element {
   const { height, label, width, ...other } = props;
   const action =
     label !== '' ? (
@@ -27,7 +27,7 @@ export const SnackbarContent: React.SFC<Props> = (props: Props) => {
     ) : undefined;
 
   return <MuiSnackbarContent action={action} {...other} />;
-};
+}
 
 SnackbarContent.defaultProps = defaultProps;
 

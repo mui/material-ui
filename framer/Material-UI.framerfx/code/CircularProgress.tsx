@@ -20,7 +20,7 @@ const defaultProps: Props = {
   height: 44,
 };
 
-export const CircularProgress: React.SFC<Props> = (props: Props) => {
+export function CircularProgress(props: Props): JSX.Element {
   const { width, height, ...other } = props;
   const style: React.CSSProperties = {
     width: 'width',
@@ -28,7 +28,7 @@ export const CircularProgress: React.SFC<Props> = (props: Props) => {
   };
 
   return <MuiCircularProgress size={width} {...other} />;
-};
+}
 
 CircularProgress.defaultProps = defaultProps;
 

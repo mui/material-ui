@@ -36,7 +36,7 @@ const defaultProps: Props = {
   variant: 'text',
 };
 
-export const Button: React.SFC<Props> = (props: Props) => {
+export function Button(props: Props): JSX.Element {
   const {
     endIcon,
     endIconTheme,
@@ -59,7 +59,7 @@ export const Button: React.SFC<Props> = (props: Props) => {
       </MuiButton>
     </div>
   );
-};
+}
 
 Button.defaultProps = defaultProps;
 
