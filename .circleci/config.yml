@@ -169,6 +169,9 @@ jobs:
           command: yarn typescript
       - run:
           name: Type-check Material-UI.framerfx
+          environment:
+            # to allow parsing of .npmrc
+            FRAMER_TOKEN: 'empty'
           command: |
             # latest commit
             LATEST_COMMIT=$(git rev-parse HEAD)
