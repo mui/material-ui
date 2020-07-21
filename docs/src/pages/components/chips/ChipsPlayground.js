@@ -104,7 +104,7 @@ function ChipsPlayground(props) {
   return (
     <Grid container className={classes.root}>
       <Grid item xs={12}>
-        <Grid container justify="center" alignItems="center">
+        <Grid container justifyContent="center" alignItems="center">
           <Grid item className={classes.chipWrapper}>
             <Chip
               label="Chip Component"

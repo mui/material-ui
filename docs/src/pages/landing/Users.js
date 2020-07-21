@@ -137,7 +137,7 @@ export default function Users() {
             <Typography variant="body1" align="center" gutterBottom>
               {t('joinThese')}
             </Typography>
-            <Grid container justify="center" className={classes.grid}>
+            <Grid container justifyContent="center" className={classes.grid}>
               {users.map((user) => (
                 <img
                   key={user.caption}
@@ -153,7 +153,7 @@ export default function Users() {
             <Typography variant="body1" align="center" gutterBottom>
               {t('usingMui')}
             </Typography>
-            <Grid container justify="center">
+            <Grid container justifyContent="center">
               <Button
                 variant="outlined"
                 href="https://github.com/mui-org/material-ui/issues/22426"
