@@ -202,6 +202,19 @@ async function generateProptypes(
       const ignoreGenerated =
         previous !== undefined &&
         previous.startsWith('PropTypes /* @typescript-to-proptypes-ignore */');
+
+      if (
+        ignoreGenerated &&
+        // `ignoreGenerated` implies that `previous !== undefined`
+        previous!
+          .replace('PropTypes /* @typescript-to-proptypes-ignore */', 'PropTypes')
+          .replace(/\s/g, '') === generated.replace(/\s/g, '')
+      ) {
+        throw new Error(
+          `Unused \`@typescript-to-proptypes-ignore\` directive for prop '${prop.name}'.`,
+        );
+      }
+
       if (usedCustomValidator || ignoreGenerated) {
         // `usedCustomValidator` and `ignoreGenerated` narrow `previous` to `string`
         return previous!;
