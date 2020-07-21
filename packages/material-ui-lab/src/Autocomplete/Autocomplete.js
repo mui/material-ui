@@ -590,7 +590,7 @@ Autocomplete.propTypes = {
   /**
    * If `true`, the input can't be cleared.
    */
-  disableClearable: PropTypes /* @typescript-to-proptypes-ignore */.bool,
+  disableClearable: PropTypes.bool,
   /**
    * If `true`, the popup won't close when a value is selected.
    */
@@ -630,7 +630,7 @@ Autocomplete.propTypes = {
   /**
    * If `true`, the Autocomplete is free solo, meaning that the user input is not bound to provided options.
    */
-  freeSolo: PropTypes /* @typescript-to-proptypes-ignore */.bool,
+  freeSolo: PropTypes.bool,
   /**
    * If `true`, the input will take up the full width of its container.
    */
@@ -718,7 +718,7 @@ Autocomplete.propTypes = {
   /**
    * If `true`, `value` must be an array and the menu will support multiple selections.
    */
-  multiple: PropTypes /* @typescript-to-proptypes-ignore */.bool,
+  multiple: PropTypes.bool,
   /**
    * Text to display when there are no options.
    *
