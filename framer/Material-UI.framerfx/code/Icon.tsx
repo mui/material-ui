@@ -9,6 +9,7 @@ interface Props {
   theme?: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
   width?: number;
   height?: number;
+  style?: React.CSSProperties;
 }
 
 const defaultProps: Props = {
@@ -22,7 +23,7 @@ const defaultProps: Props = {
 export function Icon(props: Props): JSX.Element {
   const { height, icon: iconProp, theme, width, ...other } = props;
   const iconName = `${iconProp && pascal(iconProp)}${theme === 'Filled' ? '' : theme}`;
-  const Icon = Object.keys(Icons).includes(iconName) ? Icons[iconName] : undefined;
+  const Icon = Object.keys(Icons).indexOf(iconName) !== -1 ? Icons[iconName] : undefined;
 
   return Icon ? <Icon style={{ width, height }} {...other} /> : null;
 }

@@ -5,6 +5,7 @@ import { Icon } from './Icon';
 
 interface Props {
   badgeContent?: string;
+  children: React.ReactNode;
   max?: number;
   showZero?: boolean;
   variant?: 'dot' | 'standard';
@@ -17,6 +18,7 @@ interface Props {
 
 const defaultProps: Props = {
   badgeContent: '8',
+  children: undefined,
   max: 99,
   showZero: false,
   variant: 'standard',

@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-import MuiIconButton from '@material-ui/core/IconButton';
+import MuiIconButton, { IconButtonProps } from '@material-ui/core/IconButton';
 import MuiBadge from '@material-ui/core/Badge';
 import { Icon } from './Icon';
 
 interface Props {
   color?: 'default' | 'inherit' | 'primary' | 'secondary';
   disabled?: boolean;
+  edge?: IconButtonProps['edge'];
   size?: 'medium' | 'small';
   icon?: string;
   iconTheme?: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
@@ -14,6 +15,7 @@ interface Props {
   badgeColor?: 'default' | 'primary' | 'secondary' | 'error';
   width?: number;
   height?: number;
+  style?: React.CSSProperties;
 }
 
 const defaultProps: Props = {

@@ -29,7 +29,7 @@ interface Props {
   primaryIcon?: string;
   imageFile?: string;
   imageUrl?: string;
-  secondaryAction?: 'none' | 'iconButton' | 'checkbox' | 'switch';
+  secondaryAction?: 'none' | 'icon' | 'iconButton' | 'checkbox' | 'switch';
   secondaryIcon?: string;
 }
 
@@ -56,6 +56,7 @@ const defaultProps: Props = {
 
 export function ListItem(props: Props): JSX.Element {
   const {
+    button,
     height,
     imageFile,
     imageUrl,
@@ -110,7 +111,7 @@ export function ListItem(props: Props): JSX.Element {
   }
 
   return (
-    <MuiListItem {...other}>
+    <MuiListItem button={button as any} {...other}>
       {primary}
       <MuiListItemText
         inset={inset}

@@ -35,10 +35,10 @@ const defaultProps: Props = {
 };
 
 export function TextField(props: Props): JSX.Element {
-  const { width, height, ...other } = props;
+  const { width, height, variant, ...other } = props;
   const style: React.CSSProperties = {};
 
-  return <MuiTextField style={style} {...other} />;
+  return <MuiTextField style={style} variant={variant} {...other} />;
 }
 
 TextField.defaultProps = defaultProps;
