@@ -160,10 +160,6 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   };
 
   const handleItemClick = (child) => (event) => {
-    if (!multiple) {
-      update(false, event);
-    }
-
     let newValue;
 
     if (multiple) {
@@ -193,6 +189,10 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       // Preact support, target is read only property on a native event.
       Object.defineProperty(event, 'target', { writable: true, value: { value: newValue, name } });
       onChange(event, child);
+    }
+
+    if (!multiple) {
+      update(false, event);
     }
   };
 

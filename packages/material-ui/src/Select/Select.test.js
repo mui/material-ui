@@ -121,7 +121,7 @@ describe('<Select />', () => {
     });
 
     expect(handleBlur.callCount).to.equal(0);
-    expect(queryByRole('listbox', { hidden: false })).to.equal(null);
+    expect(queryByRole('listbox', { hidden: false })).not.to.equal(null);
   });
 
   it('options should have a data-value attribute', () => {
@@ -230,6 +230,24 @@ describe('<Select />', () => {
       expect(onChangeHandler.calledOnce).to.equal(true);
       const selected = onChangeHandler.args[0][1];
       expect(React.isValidElement(selected)).to.equal(true);
+    });
+
+    it('should call onChange before onClose', () => {
+      const eventLog = [];
+      const onChangeHandler = spy(() => eventLog.push('CHANGE_EVENT'));
+      const onCloseHandler = spy(() => eventLog.push('CLOSE_EVENT'));
+      const { getAllByRole, getByRole } = render(
+        <Select onChange={onChangeHandler} onClose={onCloseHandler} value="0">
+          <MenuItem value="0" />
+          <MenuItem value="1" />
+        </Select>,
+      );
+
+      fireEvent.mouseDown(getByRole('button'));
+      getAllByRole('option')[1].click();
+
+      expect(eventLog[0]).to.equal('CHANGE_EVENT');
+      expect(eventLog[1]).to.equal('CLOSE_EVENT');
     });
 
     it('should not be called if selected element has the current value (value did not change)', () => {
