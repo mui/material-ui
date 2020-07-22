@@ -103,30 +103,37 @@ function getTemplateStrings(reactAPI) {
      */
     const propTypeTS = { ...prop.type };
 
-    // TODO: Refactor as switch?
-    if (propTypeTS.name === 'bool') {
-      propTypeTS.name = 'boolean';
-    }
-    if (propTypeTS.name === 'color') {
-      propTypeTS.name = 'string';
-    }
-    if (propTypeTS.name === 'file') {
-      propTypeTS.name = 'string';
-    }
-    if (propTypeTS.name === 'image') {
-      propTypeTS.name = 'string';
-    }
-    if (propTypeTS.name === 'node') {
-      propTypeTS.name = 'React.ReactNode';
-    }
-    if (propTypeTS.name === 'element') {
-      propTypeTS.name = 'React.ReactElement<any>';
-    }
-    if (propTypeTS.name === 'func') {
-      propTypeTS.name = '() => void';
-    }
-    if (propTypeTS.name === 'array') {
-      propTypeTS.name = 'string[]';
+    //  Refactored as switch
+
+    switch (propTypeTS.name) {
+      case 'bool':
+        propTypeTS.name = 'boolean';
+        break;
+
+      case 'color':
+      case 'file':
+      case 'image':
+        propTypeTS.name = 'string';
+        break;
+
+      case 'node':
+        propTypeTS.name = 'React.ReactNode';
+        break;
+
+      case 'element':
+        propTypeTS.name = 'React.ReactElement<any>';
+        break;
+
+      case 'func':
+        propTypeTS.name = '() => void';
+        break;
+
+      case 'array':
+        propTypeTS.name = 'string[]';
+        break;
+
+      default:
+        break;
     }
 
     tsInterface += `  ${propName}${propTypeTS.required ? '' : '?'}: ${
