@@ -1,10 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, fireEvent } from 'test/utils/createClientRender';
-import { getClasses } from 'test/utils';
-import createMount from 'test/utils/createMount';
+import {
+  createClientRender,
+  fireEvent,
+  getClasses,
+  createMount,
+  describeConformance,
+} from 'test/utils';
 import { spy } from 'sinon';
-import describeConformance from 'test/utils/describeConformance';
 import CancelIcon from '../internal/svg-icons/Cancel';
 import Avatar from './Avatar';
 

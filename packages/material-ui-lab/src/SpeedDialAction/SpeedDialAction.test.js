@@ -1,13 +1,17 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses } from 'test/utils';
+import {
+  getClasses,
+  createMount,
+  describeConformance,
+  act,
+  createClientRender,
+  fireEvent,
+} from 'test/utils';
 import { useFakeTimers } from 'sinon';
-import createMount from 'test/utils/createMount';
-import { act, createClientRender, fireEvent } from 'test/utils/createClientRender';
 import Icon from '@material-ui/core/Icon';
 import Tooltip from '@material-ui/core/Tooltip';
 import Fab from '@material-ui/core/Fab';
-import describeConformance from 'test/utils/describeConformance';
 import SpeedDialAction from './SpeedDialAction';
 
 describe('<SpeedDialAction />', () => {

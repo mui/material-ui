@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender } from 'test/utils/createClientRender';
-import createMount from 'test/utils/createMount';
-import describeConformance from 'test/utils/describeConformance';
+import { createClientRender, createMount, describeConformance } from 'test/utils';
 import Box from './Box';
 
 describe('<Box />', () => {

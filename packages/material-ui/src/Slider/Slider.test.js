@@ -2,11 +2,15 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { spy, stub } from 'sinon';
 import { expect } from 'chai';
-import { getClasses } from 'test/utils';
-import createMount from 'test/utils/createMount';
-import describeConformance from 'test/utils/describeConformance';
+import {
+  getClasses,
+  createMount,
+  describeConformance,
+  act,
+  createClientRender,
+  fireEvent,
+} from 'test/utils';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { act, createClientRender, fireEvent } from 'test/utils/createClientRender';
 import Slider from './Slider';
 
 function createTouches(touches) {

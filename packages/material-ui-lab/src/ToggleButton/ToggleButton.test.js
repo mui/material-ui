@@ -1,11 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createClientRender } from 'test/utils/createClientRender';
-import createServerRender from 'test/utils/createServerRender';
-import { getClasses } from 'test/utils';
-import createMount from 'test/utils/createMount';
-import describeConformance from 'test/utils/describeConformance';
+import {
+  createClientRender,
+  getClasses,
+  createMount,
+  describeConformance,
+  createServerRender,
+} from 'test/utils';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import ToggleButton from './ToggleButton';
 

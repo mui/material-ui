@@ -1,10 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { stub, spy } from 'sinon';
-import { getClasses } from 'test/utils';
-import createMount from 'test/utils/createMount';
-import describeConformance from 'test/utils/describeConformance';
-import { createClientRender, fireEvent } from 'test/utils/createClientRender';
+import {
+  getClasses,
+  createMount,
+  describeConformance,
+  createClientRender,
+  fireEvent,
+} from 'test/utils';
 import Rating from './Rating';
 
 describe('<Rating />', () => {

@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import sinon, { spy, stub, useFakeTimers } from 'sinon';
-import createMount from 'test/utils/createMount';
-import { act, createClientRender, fireEvent } from 'test/utils/createClientRender';
-import describeConformance from 'test/utils/describeConformance';
+import { createMount, describeConformance, act, createClientRender, fireEvent } from 'test/utils';
 import TextareaAutosize from './TextareaAutosize';
 
 describe('<TextareaAutosize />', () => {

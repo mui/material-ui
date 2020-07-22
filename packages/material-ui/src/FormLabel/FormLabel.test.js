@@ -1,10 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
-import { getClasses } from 'test/utils';
-import createMount from 'test/utils/createMount';
-import { act, createClientRender } from 'test/utils/createClientRender';
-import describeConformance from 'test/utils/describeConformance';
+import { getClasses, createMount, describeConformance, act, createClientRender } from 'test/utils';
 import FormLabel from './FormLabel';
 import FormControl, { useFormControl } from '../FormControl';
 

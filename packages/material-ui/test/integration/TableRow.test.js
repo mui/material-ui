@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses } from 'test/utils';
-import createMount from 'test/utils/createMount';
+import { getClasses, createMount } from 'test/utils';
 import TableFooter from '@material-ui/core/TableFooter';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';

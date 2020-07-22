@@ -1,10 +1,15 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses } from 'test/utils';
-import createMount from 'test/utils/createMount';
-import describeConformance from 'test/utils/describeConformance';
+import {
+  getClasses,
+  createMount,
+  describeConformance,
+  act,
+  createClientRender,
+  fireEvent,
+  screen,
+} from 'test/utils';
 import { spy } from 'sinon';
-import { act, createClientRender, fireEvent, screen } from 'test/utils/createClientRender';
 import TextField from '@material-ui/core/TextField';
 import Chip from '@material-ui/core/Chip';
 import { createFilterOptions } from '../useAutocomplete/useAutocomplete';

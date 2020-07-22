@@ -185,7 +185,17 @@ This change affects almost all components where you're using the `component` pro
   ```
 
 - typescript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
+
   ```diff
   -<Accordion onChange={(event: React.ChangeEvent<{}>, expanded: boolean) => {}} />
   +<Accordion onChange={(event: React.SyntheticEvent, expanded: boolean) => {}} />
+  ```
+
+  ## Grid
+
+  - Rename `justify` prop with `justifyContent` to be aligned with the CSS property name.
+
+  ```diff
+  -<Grid justify="center">
+  +<Grid justifyContent="center">
   ```

@@ -179,7 +179,7 @@ Avatar.propTypes = {
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
-  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
+  component: PropTypes.elementType,
   /**
    * Attributes applied to the `img` element if the component is used to display an image.
    * It can be used to listen for the loading error event.

@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { getClasses } from 'test/utils';
-import createMount from 'test/utils/createMount';
-import describeConformance from 'test/utils/describeConformance';
+import { getClasses, createMount, describeConformance } from 'test/utils';
 import GridListTile from './GridListTile';
 
 describe('<GridListTile />', () => {

@@ -1,16 +1,16 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { getClasses } from 'test/utils';
-import createMount from 'test/utils/createMount';
-import describeConformance from 'test/utils/describeConformance';
 import {
+  getClasses,
+  createMount,
+  describeConformance,
   act,
   createEvent,
   createClientRender,
   fireEvent,
   screen,
-} from 'test/utils/createClientRender';
+} from 'test/utils';
 import TreeItem from './TreeItem';
 import TreeView from '../TreeView';
 

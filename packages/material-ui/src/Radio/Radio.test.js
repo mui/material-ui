@@ -1,9 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses } from 'test/utils';
-import createMount from 'test/utils/createMount';
-import describeConformance from 'test/utils/describeConformance';
-import { createClientRender } from 'test/utils/createClientRender';
+import { getClasses, createMount, describeConformance, createClientRender } from 'test/utils';
 import FormControl from '../FormControl';
 import IconButton from '../IconButton';
 import Radio from './Radio';

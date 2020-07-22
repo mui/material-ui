@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers, stub } from 'sinon';
-import { createClientRender } from 'test/utils/createClientRender';
+import { createClientRender } from 'test/utils';
 import ScrollbarSize from './ScrollbarSize';
 
 describe('<ScrollbarSize />', () => {

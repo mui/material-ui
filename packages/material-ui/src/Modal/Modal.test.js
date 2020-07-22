@@ -3,11 +3,16 @@ import * as ReactDOM from 'react-dom';
 import { expect } from 'chai';
 import { useFakeTimers, spy } from 'sinon';
 import PropTypes from 'prop-types';
-import { act, createClientRender, fireEvent, within } from 'test/utils/createClientRender';
+import {
+  act,
+  createClientRender,
+  fireEvent,
+  within,
+  createMount,
+  describeConformance,
+} from 'test/utils';
 import { createMuiTheme } from '@material-ui/core/styles';
-import createMount from 'test/utils/createMount';
 import { ThemeProvider } from '@material-ui/styles';
-import describeConformance from 'test/utils/describeConformance';
 import Fade from '../Fade';
 import Backdrop from '../Backdrop';
 import Modal from './Modal';

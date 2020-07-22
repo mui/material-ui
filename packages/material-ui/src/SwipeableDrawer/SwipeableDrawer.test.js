@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act } from 'test/utils/createClientRender';
-import createMount from 'test/utils/createMount';
-import describeConformance from 'test/utils/describeConformance';
+import { act, createMount, describeConformance } from 'test/utils';
 import PropTypes, { checkPropTypes } from 'prop-types';
 import Drawer from '../Drawer';
 import SwipeableDrawer, { reset } from './SwipeableDrawer';

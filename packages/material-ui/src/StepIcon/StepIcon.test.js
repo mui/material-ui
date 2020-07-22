@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import createMount from 'test/utils/createMount';
-import describeConformance from 'test/utils/describeConformance';
-import { createClientRender } from 'test/utils/createClientRender';
+import { createMount, describeConformance, createClientRender } from 'test/utils';
 import StepIcon from './StepIcon';
 
 describe('<StepIcon />', () => {
