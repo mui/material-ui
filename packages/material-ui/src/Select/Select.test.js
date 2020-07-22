@@ -267,8 +267,7 @@ describe('<Select />', () => {
       fireEvent.mouseDown(getByRole('button'));
       getAllByRole('option')[1].click();
 
-      expect(eventLog[0]).to.equal('CHANGE_EVENT');
-      expect(eventLog[1]).to.equal('CLOSE_EVENT');
+      expect(eventLog).to.deep.equal(['CHANGE_EVENT', 'CLOSE_EVENT']);
     });
 
     it('should not be called if selected element has the current value (value did not change)', () => {
