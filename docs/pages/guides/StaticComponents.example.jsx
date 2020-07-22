@@ -6,7 +6,7 @@ import { useStaticState, ClockView, Calendar } from '@material-ui/pickers';
 function StaticPickers() {
   const [value, handleDateChange] = useState(new Date());
 
-  // you can past mostly all available props, like minDate, maxDate, autoOk and so on
+  // You can past mostly all available props, like minDate, maxDate, and so on
   const { pickerProps, wrapperProps } = useStaticState({
     value,
     onChange: handleDateChange,
