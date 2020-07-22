@@ -98,7 +98,7 @@ describe('<DateTimePicker />', () => {
   });
 
   it('allows to select the same day and move to the next view', () => {
-    const onChangeMock = jest.fn()
+    const onChangeMock = jest.fn();
     render(
       <StaticDateTimePicker
         onChange={onChangeMock}
@@ -107,9 +107,9 @@ describe('<DateTimePicker />', () => {
       />
     );
 
-    fireEvent.click(screen.getByLabelText("Jan 1, 2018"))
-    expect(onChangeMock).toHaveBeenCalled()
+    fireEvent.click(screen.getByLabelText('Jan 1, 2018'));
+    expect(onChangeMock).toHaveBeenCalled();
 
-    expect(screen.getByLabelText(/Selected time/)).toBeInTheDocument()
-  })
+    expect(screen.getByLabelText(/Selected time/)).toBeInTheDocument();
+  });
 });

@@ -23,6 +23,7 @@
     "lint": "eslint . --cache --report-unused-disable-directives --ext .js,.ts,.tsx,.jsx",
     "lint:ci": "eslint . --report-unused-disable-directives --ext .js,.ts,.tsx,.jsx",
     "prettier": "prettier --write './{lib,docs,e2e}/**/*.{js,jsx,ts,tsx,json,css,md,mdx}'",
+    "prettier:check": "prettier --check './{lib,docs,e2e}/**/*.{js,jsx,ts,tsx,json,css,md,mdx}'",
     "build": "yarn workspaces run build & yarn workspaces run build:typescript",
     "release": "yarn workspace @material-ui/pickers release && git push && git push --tags"
   },
