@@ -2,6 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
+  act,
   createClientRender,
   ErrorBoundary,
   fireEvent,
@@ -10,6 +11,7 @@ import {
   getClasses,
   createMount,
 } from 'test/utils';
+import Portal from '@material-ui/core/Portal';
 import TreeView from './TreeView';
 import TreeItem from '../TreeItem';
 
@@ -94,6 +96,56 @@ describe('<TreeView />', () => {
     });
   });
 
+  it('should call onKeyDown when a key is pressed', () => {
+    const handleKeyDown = spy();
+
+    const { getByRole } = render(
+      <TreeView onKeyDown={handleKeyDown}>
+        <TreeItem nodeId="test" label="test" data-testid="test" />
+      </TreeView>,
+    );
+    act(() => {
+      getByRole('tree').focus();
+    });
+
+    fireEvent.keyDown(getByRole('tree'), { key: 'Enter' });
+    fireEvent.keyDown(getByRole('tree'), { key: 'A' });
+    fireEvent.keyDown(getByRole('tree'), { key: ']' });
+
+    expect(handleKeyDown.callCount).to.equal(3);
+  });
+
+  it('should call onFocus when tree is focused', () => {
+    const handleFocus = spy();
+    const { getByRole } = render(
+      <TreeView onFocus={handleFocus}>
+        <TreeItem nodeId="test" label="test" data-testid="test" />
+      </TreeView>,
+    );
+
+    act(() => {
+      getByRole('tree').focus();
+    });
+
+    expect(handleFocus.callCount).to.equal(1);
+  });
+
+  it('should call onBlur when tree is blurred', () => {
+    const handleBlur = spy();
+    const { getByRole } = render(
+      <TreeView onBlur={handleBlur}>
+        <TreeItem nodeId="test" label="test" data-testid="test" />
+      </TreeView>,
+    );
+
+    act(() => {
+      getByRole('tree').focus();
+      getByRole('tree').blur();
+    });
+
+    expect(handleBlur.callCount).to.equal(1);
+  });
+
   it('should be able to be controlled with the expanded prop', () => {
     function MyComponent() {
       const [expandedState, setExpandedState] = React.useState([]);
@@ -109,14 +161,23 @@ describe('<TreeView />', () => {
       );
     }
 
-    const { getByTestId, getByText } = render(<MyComponent />);
+    const { getByRole, getByTestId, getByText } = render(<MyComponent />);
 
     expect(getByTestId('one')).to.have.attribute('aria-expanded', 'false');
+
     fireEvent.click(getByText('one'));
+    act(() => {
+      getByRole('tree').focus();
+    });
+
     expect(getByTestId('one')).to.have.attribute('aria-expanded', 'true');
+
     fireEvent.click(getByText('one'));
+
     expect(getByTestId('one')).to.have.attribute('aria-expanded', 'false');
-    fireEvent.keyDown(getByTestId('one'), { key: '*' });
+
+    fireEvent.keyDown(getByRole('tree'), { key: '*' });
+
     expect(getByTestId('one')).to.have.attribute('aria-expanded', 'true');
   });
 
@@ -138,10 +199,14 @@ describe('<TreeView />', () => {
 
     expect(getByTestId('one')).to.not.have.attribute('aria-selected');
     expect(getByTestId('two')).to.not.have.attribute('aria-selected');
+
     fireEvent.click(getByText('one'));
+
     expect(getByTestId('one')).to.have.attribute('aria-selected', 'true');
     expect(getByTestId('two')).to.not.have.attribute('aria-selected');
+
     fireEvent.click(getByText('two'));
+
     expect(getByTestId('one')).to.not.have.attribute('aria-selected');
     expect(getByTestId('two')).to.have.attribute('aria-selected', 'true');
   });
@@ -164,10 +229,14 @@ describe('<TreeView />', () => {
 
     expect(getByTestId('one')).to.have.attribute('aria-selected', 'false');
     expect(getByTestId('two')).to.have.attribute('aria-selected', 'false');
+
     fireEvent.click(getByText('one'));
+
     expect(getByTestId('one')).to.have.attribute('aria-selected', 'true');
     expect(getByTestId('two')).to.have.attribute('aria-selected', 'false');
+
     fireEvent.click(getByText('two'), { ctrlKey: true });
+
     expect(getByTestId('one')).to.have.attribute('aria-selected', 'true');
     expect(getByTestId('two')).to.have.attribute('aria-selected', 'true');
   });
@@ -177,31 +246,40 @@ describe('<TreeView />', () => {
       const [, setState] = React.useState(1);
 
       return (
-        <TreeView>
-          <TreeItem
-            nodeId="one"
-            label="one"
-            data-testid="one"
-            onFocus={() => {
-              setState(Math.random);
-            }}
-          >
+        <TreeView
+          onFocus={() => {
+            setState(Math.random);
+          }}
+          id="tree"
+        >
+          <TreeItem nodeId="one" label="one" data-testid="one">
             <TreeItem nodeId="two" label="two" data-testid="two" />
           </TreeItem>
         </TreeView>
       );
     }
 
-    const { getByText, getByTestId } = render(<MyComponent />);
+    const { getByRole, getByText, getByTestId } = render(<MyComponent />);
 
     fireEvent.click(getByText('one'));
-    expect(getByTestId('one')).toHaveFocus();
-    fireEvent.keyDown(getByTestId('one'), { key: 'ArrowDown' });
-    expect(getByTestId('two')).toHaveFocus();
-    fireEvent.keyDown(getByTestId('two'), { key: 'ArrowUp' });
-    expect(getByTestId('one')).toHaveFocus();
-    fireEvent.keyDown(getByTestId('one'), { key: 'ArrowDown' });
-    expect(getByTestId('two')).toHaveFocus();
+    // Clicks would normally focus tree
+    act(() => {
+      getByRole('tree').focus();
+    });
+
+    expect(getByTestId('one')).toHaveVirtualFocus();
+
+    fireEvent.keyDown(getByRole('tree'), { key: 'ArrowDown' });
+
+    expect(getByTestId('two')).toHaveVirtualFocus();
+
+    fireEvent.keyDown(getByRole('tree'), { key: 'ArrowUp' });
+
+    expect(getByTestId('one')).toHaveVirtualFocus();
+
+    fireEvent.keyDown(getByRole('tree'), { key: 'ArrowDown' });
+
+    expect(getByTestId('two')).toHaveVirtualFocus();
   });
 
   it('should support conditional rendered tree items', () => {
@@ -223,6 +301,53 @@ describe('<TreeView />', () => {
     expect(getByText('test')).not.to.equal(null);
     fireEvent.click(getByText('Hide'));
     expect(queryByText('test')).to.equal(null);
+  });
+
+  it('should work in a portal', () => {
+    const { getByRole, getByTestId } = render(
+      <Portal>
+        <TreeView id="tree">
+          <TreeItem nodeId="one" label="one" data-testid="one" />
+          <TreeItem nodeId="two" label="two" data-testid="two" />
+          <TreeItem nodeId="three" label="three" data-testid="three" />
+          <TreeItem nodeId="four" label="four" data-testid="four" />
+        </TreeView>
+      </Portal>,
+    );
+
+    act(() => {
+      getByRole('tree').focus();
+    });
+    fireEvent.keyDown(getByRole('tree'), { key: 'ArrowDown' });
+
+    expect(getByTestId('two')).toHaveVirtualFocus();
+
+    fireEvent.keyDown(getByRole('tree'), { key: 'ArrowDown' });
+
+    expect(getByTestId('three')).toHaveVirtualFocus();
+
+    fireEvent.keyDown(getByRole('tree'), { key: 'ArrowDown' });
+
+    expect(getByTestId('four')).toHaveVirtualFocus();
+  });
+
+  describe('onNodeFocus', () => {
+    it('should be called when node is focused', () => {
+      const focusSpy = spy();
+      const { getByRole } = render(
+        <TreeView onNodeFocus={focusSpy}>
+          <TreeItem nodeId="1" label="one" />
+        </TreeView>,
+      );
+
+      // First node receives focus when tree focused
+      act(() => {
+        getByRole('tree').focus();
+      });
+
+      expect(focusSpy.callCount).to.equal(1);
+      expect(focusSpy.args[0][1]).to.equal('1');
+    });
   });
 
   describe('onNodeToggle', () => {

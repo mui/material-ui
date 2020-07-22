@@ -1,13 +1,12 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions  */
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import Collapse from '@material-ui/core/Collapse';
-import { fade, withStyles, useTheme } from '@material-ui/core/styles';
-import { useForkRef } from '@material-ui/core/utils';
+import { fade, withStyles } from '@material-ui/core/styles';
+import { ownerDocument, useForkRef, unsupportedProp } from '@material-ui/core/utils';
 import TreeViewContext from '../TreeView/TreeViewContext';
-import { DescendantProvider, useDescendant, useDescendantsInit } from '../TreeView/descendants';
+import { DescendantProvider, useDescendant } from '../TreeView/descendants';
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
@@ -86,10 +85,6 @@ export const styles = (theme) => ({
   },
 });
 
-const isPrintableCharacter = (str) => {
-  return str && str.length === 1 && str.match(/\S/);
-};
-
 const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   const {
     children,
@@ -99,13 +94,12 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     endIcon,
     expandIcon,
     icon: iconProp,
+    id: idProp,
     label,
     nodeId,
     onClick,
     onLabelClick,
     onIconClick,
-    onFocus,
-    onKeyDown,
     onMouseDown,
     TransitionComponent = Collapse,
     TransitionProps,
@@ -115,49 +109,49 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   const {
     icons: contextIcons,
     focus,
-    focusFirstNode,
-    focusLastNode,
-    focusNextNode,
-    focusPreviousNode,
-    focusByFirstCharacter,
     selectNode,
     selectRange,
-    selectNextNode,
-    selectPreviousNode,
-    rangeSelectToFirst,
-    rangeSelectToLast,
-    selectAllNodes,
-    expandAllSiblings,
     toggleExpansion,
     isExpanded,
     isFocused,
     isSelected,
-    isTabbable,
     multiSelect,
-    getParent,
     mapFirstChar,
+    unMapFirstChar,
     registerNode,
     unregisterNode,
+    treeId,
   } = React.useContext(TreeViewContext);
 
-  const nodeRef = React.useRef(null);
-  const contentRef = React.useRef(null);
-  const handleRef = useForkRef(nodeRef, ref);
+  let id = null;
 
-  const { index, parentId } = useDescendant({
-    element: nodeRef.current,
-    id: nodeId,
-  });
+  if (idProp != null) {
+    id = idProp;
+  } else if (treeId && nodeId) {
+    id = `${treeId}-${nodeId}`;
+  }
+
+  const [nodeRef, setNodeRef] = React.useState(null);
+  const contentRef = React.useRef(null);
+  const handleRef = useForkRef(setNodeRef, ref);
+
+  const descendant = React.useMemo(
+    () => ({
+      element: nodeRef,
+      id: nodeId,
+    }),
+    [nodeId, nodeRef],
+  );
+
+  const { index, parentId } = useDescendant(descendant);
 
   let icon = iconProp;
 
   const expandable = Boolean(Array.isArray(children) ? children.length : children);
   const expanded = isExpanded ? isExpanded(nodeId) : false;
   const focused = isFocused ? isFocused(nodeId) : false;
-  const tabbable = isTabbable ? isTabbable(nodeId) : false;
   const selected = isSelected ? isSelected(nodeId) : false;
   const icons = contextIcons || {};
-  const theme = useTheme();
 
   if (!icon) {
     if (expandable) {
@@ -177,7 +171,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
 
   const handleClick = (event) => {
     if (!focused) {
-      focus(nodeId);
+      focus(event, nodeId);
     }
 
     const multiple = multiSelect && (event.shiftKey || event.ctrlKey || event.metaKey);
@@ -213,140 +207,12 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     }
   };
 
-  const handleNextArrow = (event) => {
-    if (expandable) {
-      if (expanded) {
-        focusNextNode(nodeId);
-      } else {
-        toggleExpansion(event);
-      }
-    }
-    return true;
-  };
-
-  const handlePreviousArrow = (event) => {
-    if (expanded) {
-      toggleExpansion(event, nodeId);
-      return true;
-    }
-
-    const parent = getParent(nodeId);
-    if (parent) {
-      focus(parent);
-      return true;
-    }
-    return false;
-  };
-
-  const handleKeyDown = (event) => {
-    let flag = false;
-    const key = event.key;
-
-    if (event.altKey || event.currentTarget !== event.target) {
-      return;
-    }
-
-    const ctrlPressed = event.ctrlKey || event.metaKey;
-
-    switch (key) {
-      case ' ':
-        if (nodeRef.current === event.currentTarget) {
-          if (multiSelect && event.shiftKey) {
-            flag = selectRange(event, { end: nodeId });
-          } else if (multiSelect) {
-            flag = selectNode(event, nodeId, true);
-          } else {
-            flag = selectNode(event, nodeId);
-          }
-        }
-        event.stopPropagation();
-        break;
-      case 'Enter':
-        if (nodeRef.current === event.currentTarget && expandable) {
-          toggleExpansion(event);
-          flag = true;
-        }
-        event.stopPropagation();
-        break;
-      case 'ArrowDown':
-        if (multiSelect && event.shiftKey) {
-          selectNextNode(event, nodeId);
-        }
-        focusNextNode(nodeId);
-        flag = true;
-        break;
-      case 'ArrowUp':
-        if (multiSelect && event.shiftKey) {
-          selectPreviousNode(event, nodeId);
-        }
-        focusPreviousNode(nodeId);
-        flag = true;
-        break;
-      case 'ArrowRight':
-        if (theme.direction === 'rtl') {
-          flag = handlePreviousArrow(event);
-        } else {
-          flag = handleNextArrow(event);
-        }
-        break;
-      case 'ArrowLeft':
-        if (theme.direction === 'rtl') {
-          flag = handleNextArrow(event);
-        } else {
-          flag = handlePreviousArrow(event);
-        }
-        break;
-      case 'Home':
-        if (multiSelect && ctrlPressed && event.shiftKey) {
-          rangeSelectToFirst(event, nodeId);
-        }
-        focusFirstNode();
-        flag = true;
-        break;
-      case 'End':
-        if (multiSelect && ctrlPressed && event.shiftKey) {
-          rangeSelectToLast(event, nodeId);
-        }
-        focusLastNode();
-        flag = true;
-        break;
-      default:
-        if (key === '*') {
-          expandAllSiblings(event, nodeId);
-          flag = true;
-        } else if (multiSelect && ctrlPressed && key.toLowerCase() === 'a') {
-          flag = selectAllNodes(event);
-        } else if (!ctrlPressed && !event.shiftKey && isPrintableCharacter(key)) {
-          focusByFirstCharacter(nodeId, key);
-          flag = true;
-        }
-    }
-
-    if (flag) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-
-    if (onKeyDown) {
-      onKeyDown(event);
-    }
-  };
-
-  const handleFocus = (event) => {
-    if (!focused && event.currentTarget === event.target) {
-      focus(nodeId);
-    }
-
-    if (onFocus) {
-      onFocus(event);
-    }
-  };
-
   React.useEffect(() => {
     // On the first render a node's index will be -1. We want to wait for the real index.
     if (registerNode && unregisterNode && index !== -1) {
       registerNode({
         id: nodeId,
+        idAttribute: id,
         index,
         parentId,
         expandable,
@@ -358,19 +224,18 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     }
 
     return undefined;
-  }, [registerNode, unregisterNode, parentId, index, nodeId, expandable]);
+  }, [registerNode, unregisterNode, parentId, index, nodeId, expandable, id]);
 
   React.useEffect(() => {
-    if (mapFirstChar && label) {
+    if (mapFirstChar && unMapFirstChar && label) {
       mapFirstChar(nodeId, contentRef.current.textContent.substring(0, 1).toLowerCase());
-    }
-  }, [mapFirstChar, nodeId, label]);
 
-  React.useEffect(() => {
-    if (focused) {
-      nodeRef.current.focus();
+      return () => {
+        unMapFirstChar(nodeId);
+      };
     }
-  }, [focused]);
+    return undefined;
+  }, [mapFirstChar, unMapFirstChar, nodeId, label]);
 
   let ariaSelected;
   if (multiSelect) {
@@ -385,20 +250,46 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     ariaSelected = true;
   }
 
-  const [descendants, setDescendants] = useDescendantsInit();
+  React.useEffect(() => {
+    if (nodeRef && treeId) {
+      const handleFocusIn = (event) => {
+        event.preventDefault();
+        const tree = ownerDocument(nodeRef).getElementById(treeId);
+
+        // Some browsers don't focus the tree when using active-descendant.
+        // Probably can remove when we drop IE11 support.
+        if (ownerDocument(nodeRef).activeElement !== tree) {
+          tree.focus();
+        }
+
+        if (!focused && event.currentTarget === event.target) {
+          focus(event, nodeId);
+        }
+      };
+
+      // Using focusin to avoid blurring the tree.
+      nodeRef.addEventListener('focusin', handleFocusIn);
+
+      return () => {
+        nodeRef.removeEventListener('focusin', handleFocusIn);
+      };
+    }
+    return undefined;
+  }, [focus, focused, nodeId, nodeRef, treeId]);
 
   return (
     <li
       className={clsx(classes.root, className)}
       role="treeitem"
-      onKeyDown={handleKeyDown}
-      onFocus={handleFocus}
       aria-expanded={expandable ? expanded : null}
       aria-selected={ariaSelected}
       ref={handleRef}
-      tabIndex={tabbable ? 0 : -1}
+      id={id}
+      tabIndex="-1"
       {...other}
     >
+      {/* Key event is handled by the TreeView */}
+      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
       <div
         className={clsx(classes.content, {
           [classes.expanded]: expanded,
@@ -409,6 +300,8 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
         onMouseDown={handleMouseDown}
         ref={contentRef}
       >
+        {/* Key event is handled by the TreeView */}
+        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
         <div onClick={onIconClick} className={classes.iconContainer}>
           {icon}
         </div>
@@ -417,7 +310,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
         </Typography>
       </div>
       {children && (
-        <DescendantProvider items={descendants} set={setDescendants} id={nodeId}>
+        <DescendantProvider id={nodeId}>
           <TransitionComponent
             unmountOnExit
             className={classes.group}
@@ -469,6 +362,10 @@ TreeItem.propTypes = {
    */
   icon: PropTypes.node,
   /**
+   * @ignore
+   */
+  id: PropTypes.string,
+  /**
    * The tree node label.
    */
   label: PropTypes.node,
@@ -481,17 +378,14 @@ TreeItem.propTypes = {
    */
   onClick: PropTypes.func,
   /**
-   * @ignore
+   * This prop isn't supported.
+   * Use the `onNodeFocus` callback on the tree if you need to monitor a node's focus.
    */
-  onFocus: PropTypes.func,
+  onFocus: unsupportedProp,
   /**
    * `onClick` handler for the icon container. Call `event.preventDefault()` to prevent `onNodeToggle` from being called.
    */
   onIconClick: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onKeyDown: PropTypes.func,
   /**
    * `onClick` handler for the label container. Call `event.preventDefault()` to prevent `onNodeToggle` from being called.
    */

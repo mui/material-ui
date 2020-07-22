@@ -1,10 +1,15 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import { useControlled } from '@material-ui/core/utils';
+import { useTheme, withStyles } from '@material-ui/core/styles';
+import {
+  useControlled,
+  useForkRef,
+  ownerDocument,
+  unstable_useId as useId,
+} from '@material-ui/core/utils';
 import TreeViewContext from './TreeViewContext';
-import { DescendantProvider, useDescendantsInit } from './descendants';
+import { DescendantProvider } from './descendants';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -12,7 +17,12 @@ export const styles = {
     padding: 0,
     margin: 0,
     listStyle: 'none',
+    outline: 'none',
   },
+};
+
+const isPrintableCharacter = (str) => {
+  return str && str.length === 1 && str.match(/\S/);
 };
 
 const findNextFirstChar = (firstChars, startIndex, char) => {
@@ -22,6 +32,10 @@ const findNextFirstChar = (firstChars, startIndex, char) => {
     }
   }
   return -1;
+};
+
+const noopSelection = () => {
+  return false;
 };
 
 const defaultExpandedDefault = [];
@@ -39,16 +53,27 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     defaultParentIcon,
     defaultSelected = defaultSelectedDefault,
     disableSelection = false,
+    id: idProp,
     multiSelect = false,
     expanded: expandedProp,
+    onBlur,
+    onFocus,
+    onNodeFocus,
     onNodeSelect,
     onNodeToggle,
+    onKeyDown,
     selected: selectedProp,
     ...other
   } = props;
-  const [tabbable, setTabbable] = React.useState(null);
+
+  const treeId = useId(idProp);
+
+  const treeRef = React.useRef(null);
+  const handleRef = useForkRef(treeRef, ref);
+
   const [focusedNodeId, setFocusedNodeId] = React.useState(null);
-  const [descendants, setDescendants] = useDescendantsInit();
+
+  const theme = useTheme();
 
   const nodeMap = React.useRef({});
 
@@ -92,7 +117,6 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     [selected],
   );
 
-  const isTabbable = (id) => tabbable === id;
   const isFocused = (id) => focusedNodeId === id;
 
   /*
@@ -239,19 +263,22 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
    * Focus Helpers
    */
 
-  const focus = (id) => {
+  const focus = (event, id) => {
     if (id) {
-      setTabbable(id);
       setFocusedNodeId(id);
+
+      if (onNodeFocus) {
+        onNodeFocus(event, id);
+      }
     }
   };
 
-  const focusNextNode = (id) => focus(getNextNode(id));
-  const focusPreviousNode = (id) => focus(getPreviousNode(id));
-  const focusFirstNode = () => focus(getFirstNode());
-  const focusLastNode = () => focus(getLastNode());
+  const focusNextNode = (event, id) => focus(event, getNextNode(id));
+  const focusPreviousNode = (event, id) => focus(event, getPreviousNode(id));
+  const focusFirstNode = (event) => focus(event, getFirstNode());
+  const focusLastNode = (event) => focus(event, getLastNode());
 
-  const focusByFirstCharacter = (id, char) => {
+  const focusByFirstCharacter = (event, id, char) => {
     let start;
     let index;
     const lowercaseChar = char.toLowerCase();
@@ -272,7 +299,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
 
     // Get start index for search based on position of currentItem
     start = firstCharIds.indexOf(id) + 1;
-    if (start === nodeMap.current.length) {
+    if (start >= firstCharIds.length) {
       start = 0;
     }
 
@@ -286,7 +313,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
 
     // If match was found...
     if (index > -1) {
-      focus(firstCharIds[index]);
+      focus(event, firstCharIds[index]);
     }
   };
 
@@ -299,13 +326,6 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
 
     if (expanded.indexOf(value) !== -1) {
       newExpanded = expanded.filter((id) => id !== value);
-      setTabbable((oldTabbable) => {
-        const map = nodeMap.current[oldTabbable];
-        if (oldTabbable && map?.parentId === value) {
-          return value;
-        }
-        return oldTabbable;
-      });
     } else {
       newExpanded = [value].concat(expanded);
     }
@@ -501,113 +521,212 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
    * Mapping Helpers
    */
   const registerNode = React.useCallback((node) => {
-    const { id, index, parentId, expandable } = node;
+    const { id, index, parentId, expandable, idAttribute } = node;
 
-    nodeMap.current[id] = { id, index, parentId, expandable };
+    nodeMap.current[id] = { id, index, parentId, expandable, idAttribute };
   }, []);
 
-  const getNodesToRemove = React.useCallback((id) => {
-    const map = nodeMap.current[id];
-    const nodes = [];
-    if (map) {
-      nodes.push(id);
-      const childNodes = getChildrenIds(id);
-      if (childNodes.length > 0) {
-        nodes.concat(childNodes);
-        childNodes.forEach((node) => {
-          nodes.concat(getNodesToRemove(node));
-        });
+  const unregisterNode = React.useCallback((id) => {
+    const newMap = { ...nodeMap.current };
+    delete newMap[id];
+    nodeMap.current = newMap;
+
+    setFocusedNodeId((oldFocusedNodeId) => {
+      if (
+        oldFocusedNodeId === id &&
+        treeRef.current === ownerDocument(treeRef.current).activeElement
+      ) {
+        return getChildrenIds(null)[0];
       }
-    }
-    return nodes;
+      return oldFocusedNodeId;
+    });
   }, []);
 
-  const cleanUpFirstCharMap = React.useCallback((nodes) => {
+  const mapFirstChar = React.useCallback((id, firstChar) => {
+    firstCharMap.current[id] = firstChar;
+  }, []);
+
+  const unMapFirstChar = React.useCallback((id) => {
     const newMap = { ...firstCharMap.current };
-    nodes.forEach((node) => {
-      delete newMap[node];
-    });
+    delete newMap[id];
     firstCharMap.current = newMap;
   }, []);
 
-  const cleanUpNodeMap = React.useCallback((nodes) => {
-    const newMap = { ...nodeMap.current };
-    nodes.forEach((node) => {
-      delete newMap[node];
-    });
-    nodeMap.current = newMap;
-  }, []);
+  /**
+   * Event handlers and Navigation
+   */
 
-  const unregisterNode = React.useCallback(
-    (id) => {
-      const nodes = getNodesToRemove(id);
-      cleanUpFirstCharMap(nodes);
-      cleanUpNodeMap(nodes);
-
-      setFocusedNodeId((oldFocusedNodeId) => {
-        if (nodeMap.current[oldFocusedNodeId] === undefined) {
-          return null;
-        }
-        return oldFocusedNodeId;
-      });
-    },
-    [getNodesToRemove, cleanUpFirstCharMap, cleanUpNodeMap],
-  );
-
-  const mapFirstChar = (id, firstChar) => {
-    firstCharMap.current[id] = firstChar;
+  const handleNextArrow = (event) => {
+    if (nodeMap.current[focusedNodeId].expandable) {
+      if (isExpanded(focusedNodeId)) {
+        focusNextNode(event, focusedNodeId);
+      } else {
+        toggleExpansion(event);
+      }
+    }
+    return true;
   };
 
-  React.useEffect(() => {
-    setTabbable((oldTabbable) => {
-      if (!oldTabbable) {
-        return descendants[0]?.id;
-      }
+  const handlePreviousArrow = (event) => {
+    if (isExpanded(focusedNodeId)) {
+      toggleExpansion(event, focusedNodeId);
+      return true;
+    }
 
-      return oldTabbable;
-    });
-  }, [descendants]);
-
-  const noopSelection = () => {
+    const parent = getParent(focusedNodeId);
+    if (parent) {
+      focus(event, parent);
+      return true;
+    }
     return false;
   };
+
+  const handleKeyDown = (event) => {
+    let flag = false;
+    const key = event.key;
+
+    if (event.altKey || event.currentTarget !== event.target) {
+      return;
+    }
+
+    const ctrlPressed = event.ctrlKey || event.metaKey;
+
+    switch (key) {
+      case ' ':
+        if (!disableSelection) {
+          if (multiSelect && event.shiftKey) {
+            flag = selectRange(event, { end: focusedNodeId });
+          } else if (multiSelect) {
+            flag = selectNode(event, focusedNodeId, true);
+          } else {
+            flag = selectNode(event, focusedNodeId);
+          }
+        }
+        event.stopPropagation();
+        break;
+      case 'Enter':
+        if (nodeMap.current[focusedNodeId].expandable) {
+          toggleExpansion(event);
+          flag = true;
+        }
+        event.stopPropagation();
+        break;
+      case 'ArrowDown':
+        if (multiSelect && event.shiftKey && !disableSelection) {
+          selectNextNode(event, focusedNodeId);
+        }
+        focusNextNode(event, focusedNodeId);
+        flag = true;
+        break;
+      case 'ArrowUp':
+        if (multiSelect && event.shiftKey && !disableSelection) {
+          selectPreviousNode(event, focusedNodeId);
+        }
+        focusPreviousNode(event, focusedNodeId);
+        flag = true;
+        break;
+      case 'ArrowRight':
+        if (theme.direction === 'rtl') {
+          flag = handlePreviousArrow(event);
+        } else {
+          flag = handleNextArrow(event);
+        }
+        break;
+      case 'ArrowLeft':
+        if (theme.direction === 'rtl') {
+          flag = handleNextArrow(event);
+        } else {
+          flag = handlePreviousArrow(event);
+        }
+        break;
+      case 'Home':
+        if (multiSelect && ctrlPressed && event.shiftKey && !disableSelection) {
+          rangeSelectToFirst(event, focusedNodeId);
+        }
+        focusFirstNode(event);
+        flag = true;
+        break;
+      case 'End':
+        if (multiSelect && ctrlPressed && event.shiftKey && !disableSelection) {
+          rangeSelectToLast(event, focusedNodeId);
+        }
+        focusLastNode(event);
+        flag = true;
+        break;
+      default:
+        if (key === '*') {
+          expandAllSiblings(event, focusedNodeId);
+          flag = true;
+        } else if (multiSelect && ctrlPressed && key.toLowerCase() === 'a' && !disableSelection) {
+          flag = selectAllNodes(event);
+        } else if (!ctrlPressed && !event.shiftKey && isPrintableCharacter(key)) {
+          focusByFirstCharacter(event, focusedNodeId, key);
+          flag = true;
+        }
+    }
+
+    if (flag) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    if (onKeyDown) {
+      onKeyDown(event);
+    }
+  };
+
+  const handleFocus = (event) => {
+    const firstSelected = Array.isArray(selected) ? selected[0] : selected;
+    focus(event, firstSelected || getChildrenIds(null)[0]);
+
+    if (onFocus) {
+      onFocus(event);
+    }
+  };
+
+  const handleBlur = (event) => {
+    setFocusedNodeId(null);
+
+    if (onBlur) {
+      onBlur(event);
+    }
+  };
+
+  const activeDescendant = nodeMap.current[focusedNodeId]
+    ? nodeMap.current[focusedNodeId].idAttribute
+    : null;
 
   return (
     <TreeViewContext.Provider
       value={{
         icons: { defaultCollapseIcon, defaultExpandIcon, defaultParentIcon, defaultEndIcon },
         focus,
-        focusFirstNode,
-        focusLastNode,
-        focusNextNode,
-        focusPreviousNode,
-        focusByFirstCharacter,
-        expandAllSiblings,
         toggleExpansion,
         isExpanded,
         isFocused,
         isSelected,
         selectNode: disableSelection ? noopSelection : selectNode,
         selectRange: disableSelection ? noopSelection : selectRange,
-        selectNextNode: disableSelection ? noopSelection : selectNextNode,
-        selectPreviousNode: disableSelection ? noopSelection : selectPreviousNode,
-        rangeSelectToFirst: disableSelection ? noopSelection : rangeSelectToFirst,
-        rangeSelectToLast: disableSelection ? noopSelection : rangeSelectToLast,
-        selectAllNodes: disableSelection ? noopSelection : selectAllNodes,
-        isTabbable,
         multiSelect,
-        getParent,
         mapFirstChar,
+        unMapFirstChar,
         registerNode,
         unregisterNode,
+        treeId,
       }}
     >
-      <DescendantProvider items={descendants} set={setDescendants}>
+      <DescendantProvider>
         <ul
           role="tree"
+          id={treeId}
+          aria-activedescendant={activeDescendant}
           aria-multiselectable={multiSelect}
           className={clsx(classes.root, className)}
-          ref={ref}
+          ref={handleRef}
+          tabIndex={0}
+          onKeyDown={handleKeyDown}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
           {...other}
         >
           {children}
@@ -671,9 +790,33 @@ TreeView.propTypes = {
    */
   expanded: PropTypes.arrayOf(PropTypes.string),
   /**
+   * This prop is used to help implement the accessibility logic.
+   * If you don't provide this prop. It falls back to a randomly generated id.
+   */
+  id: PropTypes.string,
+  /**
    * If true `ctrl` and `shift` will trigger multiselect.
    */
   multiSelect: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  onBlur: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onFocus: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onKeyDown: PropTypes.func,
+  /**
+   * Callback fired when tree items are focused.
+   *
+   * @param {object} event The event source of the callback
+   * @param {string} value of the focused node.
+   */
+  onNodeFocus: PropTypes.func,
   /**
    * Callback fired when tree items are selected/unselected.
    *
