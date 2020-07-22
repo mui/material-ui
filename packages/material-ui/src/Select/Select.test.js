@@ -97,7 +97,7 @@ describe('<Select />', () => {
     // mousedown calls focus while click opens moving the focus to an item
     // this means the trigger is blurred immediately
     const handleBlur = spy();
-    const { getByRole, getAllByRole } = render(
+    const { getByRole, getAllByRole, queryByRole } = render(
       <Select
         onBlur={handleBlur}
         value=""
@@ -126,7 +126,7 @@ describe('<Select />', () => {
     });
 
     expect(handleBlur.callCount).to.equal(0);
-    expect(getByRole('listbox', { hidden: true })).toBeInaccessible();
+    expect(queryByRole('listbox', { hidden: false })).to.equal(null);
   });
 
   it('options should have a data-value attribute', () => {
