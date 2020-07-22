@@ -125,7 +125,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
 
   let id = null;
 
-  if (idProp) {
+  if (idProp != null) {
     id = idProp;
   } else if (treeId && nodeId) {
     id = `${treeId}-${nodeId}`;
