@@ -41,7 +41,7 @@ export default function DynamicThemeNesting() {
       />
       <ThemeProvider theme={theme}>
         <Button variant="contained" color="secondary">
-          {'Theme nesting'}
+          Theme nesting
         </Button>
       </ThemeProvider>
     </React.Fragment>

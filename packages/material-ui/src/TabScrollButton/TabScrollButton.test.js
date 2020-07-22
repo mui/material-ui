@@ -1,10 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses } from '@material-ui/core/test-utils';
-import createMount from 'test/utils/createMount';
-import { createClientRender } from 'test/utils/createClientRender';
+import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
 import TabScrollButton from './TabScrollButton';
-import describeConformance from '../test-utils/describeConformance';
 
 describe('<TabScrollButton />', () => {
   const defaultProps = {

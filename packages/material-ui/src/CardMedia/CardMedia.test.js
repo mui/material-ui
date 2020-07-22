@@ -1,11 +1,8 @@
 import * as React from 'react';
-import { expect } from 'chai';
-import { getClasses } from '@material-ui/core/test-utils';
-import createMount from 'test/utils/createMount';
-import { createClientRender } from 'test/utils/createClientRender';
-import describeConformance from '../test-utils/describeConformance';
-import CardMedia from './CardMedia';
 import PropTypes from 'prop-types';
+import { expect } from 'chai';
+import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
+import CardMedia from './CardMedia';
 
 describe('<CardMedia />', () => {
   const mount = createMount();

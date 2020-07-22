@@ -1,12 +1,4 @@
-import {
-  compose,
-  css,
-  palette,
-  StyleFunction,
-  spacing,
-  style,
-  breakpoints,
-} from '@material-ui/system';
+import { compose, css, palette, spacing, style, breakpoints } from '@material-ui/system';
 import * as React from 'react';
 import styled from 'styled-components';
 

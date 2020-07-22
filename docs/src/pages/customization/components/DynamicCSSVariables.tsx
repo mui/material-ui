@@ -51,7 +51,7 @@ export default function DynamicCSSVariables() {
         label="Blue"
       />
       <Button className={classes.button} style={color}>
-        {'CSS variables'}
+        CSS variables
       </Button>
     </React.Fragment>
   );

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
-import { SvgIconProps } from '../SvgIcon';
 import { OverrideProps } from '../OverridableComponent';
 
 export type TableSortLabelTypeMap<

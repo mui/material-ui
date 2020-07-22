@@ -1,10 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
-import { getClasses } from '@material-ui/core/test-utils';
-import createMount from 'test/utils/createMount';
-import describeConformance from '../test-utils/describeConformance';
-import { createClientRender } from 'test/utils/createClientRender';
+import { getClasses, createMount, describeConformance, act, createClientRender } from 'test/utils';
 import FormControl from '../FormControl';
 import Input from '../Input';
 import InputLabel from './InputLabel';
@@ -102,7 +99,9 @@ describe('<InputLabel />', () => {
         const { container, getByTestId, setProps } = render(<InputLabel data-testid="root" />, {
           wrapper: Wrapper,
         });
-        container.querySelector('input').focus();
+        act(() => {
+          container.querySelector('input').focus();
+        });
 
         expect(getByTestId('root')).to.have.class(classes.shrink);
 

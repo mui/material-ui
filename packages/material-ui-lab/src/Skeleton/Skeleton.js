@@ -97,6 +97,7 @@ const Skeleton = React.forwardRef(function Skeleton(props, ref) {
     className,
     component: Component = 'span',
     height,
+    style,
     variant = 'text',
     width,
     ...other
@@ -122,13 +123,17 @@ const Skeleton = React.forwardRef(function Skeleton(props, ref) {
       style={{
         width,
         height,
-        ...other.style,
+        ...style,
       }}
     />
   );
 });
 
 Skeleton.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * The animation.
    * If `false` the animation effect is disabled.
@@ -142,7 +147,7 @@ Skeleton.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -151,16 +156,20 @@ Skeleton.propTypes = {
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
-  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
+  component: PropTypes.elementType,
   /**
    * Height of the skeleton.
    * Useful when you don't want to adapt the skeleton to a text element but for instance a card.
    */
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
+   * @ignore
+   */
+  style: PropTypes.object,
+  /**
    * The type of content that will be rendered.
    */
-  variant: PropTypes.oneOf(['text', 'rect', 'circle']),
+  variant: PropTypes.oneOf(['circle', 'rect', 'text']),
   /**
    * Width of the skeleton.
    * Useful when the skeleton is inside an inline element with no width of its own.

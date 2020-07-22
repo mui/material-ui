@@ -11,7 +11,6 @@ There are examples for the following styling solutions:
 - [Styled Components](#styled-components)
 - [CSS Modules](#css-modules)
 - [Emotion](#emotion)
-- [React JSS](#react-jss)
 
 ## Plain CSS
 

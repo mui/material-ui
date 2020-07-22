@@ -1,5 +1,10 @@
 import React from 'react';
-import { withStyles, Theme, createStyles } from '@material-ui/core/styles';
+import {
+  fade,
+  withStyles,
+  Theme,
+  createStyles,
+} from '@material-ui/core/styles';
 import { purple } from '@material-ui/core/colors';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -15,19 +20,24 @@ interface Props extends SwitchProps {
   classes: Styles;
 }
 
-const PurpleSwitch = withStyles({
-  switchBase: {
-    color: purple[300],
-    '&$checked': {
-      color: purple[500],
+const PurpleSwitch = withStyles((theme: Theme) =>
+  createStyles({
+    switchBase: {
+      color: purple[300],
+      '&$checked': {
+        color: purple[500],
+        '&:hover': {
+          backgroundColor: fade(purple[500], theme.palette.action.hoverOpacity),
+        },
+      },
+      '&$checked + $track': {
+        backgroundColor: purple[500],
+      },
     },
-    '&$checked + $track': {
-      backgroundColor: purple[500],
-    },
-  },
-  checked: {},
-  track: {},
-})(Switch);
+    checked: {},
+    track: {},
+  }),
+)(Switch);
 
 const IOSSwitch = withStyles((theme: Theme) =>
   createStyles({

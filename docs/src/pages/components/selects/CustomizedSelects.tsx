@@ -2,8 +2,8 @@ import React from 'react';
 import {
   createStyles,
   makeStyles,
-  withStyles,
   Theme,
+  withStyles,
 } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';

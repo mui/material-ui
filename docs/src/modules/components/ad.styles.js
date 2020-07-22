@@ -43,7 +43,9 @@ const adBodyInlineStyles = (theme) => {
 
   return {
     ...baseline,
-    root: {},
+    root: {
+      display: 'block',
+    },
     imgWrapper: {
       display: 'none',
     },
@@ -71,6 +73,7 @@ const adBodyInlineStyles = (theme) => {
     },
     poweredby: {
       ...baseline.poweredby,
+      marginTop: 2,
       marginLeft: 0,
     },
     link: {

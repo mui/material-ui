@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '../';
+import { StandardProps } from '..';
 
 export type NamedMuiComponent = React.ComponentType & { muiName: string };
 

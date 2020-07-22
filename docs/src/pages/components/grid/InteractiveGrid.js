@@ -29,14 +29,15 @@ const useStyles = makeStyles((theme) => ({
 export default function InteractiveGrid() {
   const classes = useStyles();
   const [direction, setDirection] = React.useState('row');
-  const [justify, setJustify] = React.useState('center');
+  const [justifyContent, setJustifyContent] = React.useState('center');
+
   const [alignItems, setAlignItems] = React.useState('center');
 
   const jsx = `
 <Grid
   container
   direction="${direction}"
-  justify="${justify}"
+  justifyContent="${justifyContent}"
   alignItems="${alignItems}"
 >
 `;
@@ -50,7 +51,7 @@ export default function InteractiveGrid() {
           className={classes.demo}
           alignItems={alignItems}
           direction={direction}
-          justify={justify}
+          justifyContent={justifyContent}
         >
           {[0, 1, 2].map((value) => (
             <Grid key={value} item>
@@ -107,14 +108,14 @@ export default function InteractiveGrid() {
             </Grid>
             <Grid item xs={12}>
               <FormControl component="fieldset">
-                <FormLabel>justify</FormLabel>
+                <FormLabel>justifyContent</FormLabel>
                 <RadioGroup
                   row
-                  name="justify"
-                  aria-label="justify"
-                  value={justify}
+                  name="justifyContent"
+                  aria-label="justifyContent"
+                  value={justifyContent}
                   onChange={(event) => {
-                    setJustify(event.target.value);
+                    setJustifyContent(event.target.value);
                   }}
                 >
                   <FormControlLabel

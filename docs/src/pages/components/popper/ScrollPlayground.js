@@ -158,7 +158,7 @@ export default function ScrollPlayground() {
           className={classes.scroll}
           container
           alignItems="center"
-          justify="center"
+          justifyContent="center"
           ref={centerScroll}
         >
           <div>

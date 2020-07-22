@@ -3,10 +3,28 @@ import { OverridableComponent, OverrideProps } from '@material-ui/core/Overridab
 
 export interface SkeletonTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P & {
+    /**
+     * The animation.
+     * If `false` the animation effect is disabled.
+     */
     animation?: 'pulse' | 'wave' | false;
+    /**
+     * Optional children to infer width and height from.
+     */
     children?: React.ReactNode;
+    /**
+     * Height of the skeleton.
+     * Useful when you don't want to adapt the skeleton to a text element but for instance a card.
+     */
     height?: number | string;
+    /**
+     * The type of content that will be rendered.
+     */
     variant?: 'text' | 'rect' | 'circle';
+    /**
+     * Width of the skeleton.
+     * Useful when the skeleton is inside an inline element with no width of its own.
+     */
     width?: number | string;
   };
   defaultComponent: 'div';

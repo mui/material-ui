@@ -1,17 +1,20 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { getClasses } from '@material-ui/core/test-utils';
-import createMount from 'test/utils/createMount';
-import describeConformance from '../test-utils/describeConformance';
-import { act, createClientRender, fireEvent } from 'test/utils/createClientRender';
+import {
+  getClasses,
+  createMount,
+  describeConformance,
+  act,
+  createClientRender,
+  fireEvent,
+} from 'test/utils';
 import Tab from './Tab';
 import ButtonBase from '../ButtonBase';
 
-const render = createClientRender();
-
 describe('<Tab />', () => {
   const mount = createMount();
+  const render = createClientRender();
   let classes;
 
   before(() => {

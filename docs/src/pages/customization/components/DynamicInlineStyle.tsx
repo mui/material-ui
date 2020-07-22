@@ -45,7 +45,7 @@ export default function DynamicInlineStyle() {
           ...(color === 'blue' ? styles.buttonBlue : {}),
         }}
       >
-        {'dynamic inline-style'}
+        dynamic inline-style
       </Button>
     </React.Fragment>
   );

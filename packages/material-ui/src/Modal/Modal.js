@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { getThemeProps, useTheme } from '@material-ui/styles';
 import { elementAcceptingRef, HTMLElementType } from '@material-ui/utils';
@@ -14,8 +13,7 @@ import TrapFocus from '../Unstable_TrapFocus';
 import SimpleBackdrop from './SimpleBackdrop';
 
 function getContainer(container) {
-  container = typeof container === 'function' ? container() : container;
-  return ReactDOM.findDOMNode(container);
+  return typeof container === 'function' ? container() : container;
 }
 
 function getHasTransition(props) {

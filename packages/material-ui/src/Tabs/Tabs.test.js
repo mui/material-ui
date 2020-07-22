@@ -1,11 +1,16 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { getClasses } from '@material-ui/core/test-utils';
-import createMount from 'test/utils/createMount';
-import { createClientRender, fireEvent, screen } from 'test/utils/createClientRender';
-import createServerRender from 'test/utils/createServerRender';
-import describeConformance from '../test-utils/describeConformance';
+import {
+  getClasses,
+  createMount,
+  describeConformance,
+  act,
+  createClientRender,
+  fireEvent,
+  screen,
+  createServerRender,
+} from 'test/utils';
 import capitalize from '../utils/capitalize';
 import Tab from '../Tab';
 import Tabs from './Tabs';
@@ -300,7 +305,9 @@ describe('<Tabs />', () => {
       );
       const [, lastTab] = getAllByRole('tab');
 
-      lastTab.focus();
+      act(() => {
+        lastTab.focus();
+      });
 
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.firstCall.returnValue).to.equal(1);
@@ -316,7 +323,9 @@ describe('<Tabs />', () => {
       );
       const [firstTab] = getAllByRole('tab');
 
-      firstTab.focus();
+      act(() => {
+        firstTab.focus();
+      });
 
       expect(handleChange.callCount).to.equal(0);
     });
@@ -332,11 +341,11 @@ describe('<Tabs />', () => {
       </Tabs>
     );
 
-    before(() => {
+    beforeEach(() => {
       clock = useFakeTimers();
     });
 
-    after(() => {
+    afterEach(() => {
       clock.restore();
     });
 
@@ -409,11 +418,11 @@ describe('<Tabs />', () => {
   describe('prop: scrollButtons', () => {
     let clock;
 
-    before(() => {
+    beforeEach(() => {
       clock = useFakeTimers();
     });
 
-    after(() => {
+    afterEach(() => {
       clock.restore();
     });
 
@@ -543,11 +552,11 @@ describe('<Tabs />', () => {
   describe('scroll button behavior', () => {
     let clock;
 
-    before(() => {
+    beforeEach(() => {
       clock = useFakeTimers();
     });
 
-    after(() => {
+    afterEach(() => {
       clock.restore();
     });
 
@@ -584,11 +593,11 @@ describe('<Tabs />', () => {
   describe('scroll into view behavior', () => {
     let clock;
 
-    before(() => {
+    beforeEach(() => {
       clock = useFakeTimers();
     });
 
-    after(() => {
+    afterEach(() => {
       clock.restore();
     });
 
@@ -730,7 +739,9 @@ describe('<Tabs />', () => {
               { wrapper },
             );
             const [firstTab, , lastTab] = getAllByRole('tab');
-            firstTab.focus();
+            act(() => {
+              firstTab.focus();
+            });
 
             fireEvent.keyDown(firstTab, { key: previousItemKey });
 
@@ -757,7 +768,9 @@ describe('<Tabs />', () => {
               { wrapper },
             );
             const [firstTab, , lastTab] = getAllByRole('tab');
-            firstTab.focus();
+            act(() => {
+              firstTab.focus();
+            });
 
             fireEvent.keyDown(firstTab, { key: previousItemKey });
 
@@ -784,7 +797,9 @@ describe('<Tabs />', () => {
               { wrapper },
             );
             const [firstTab, secondTab] = getAllByRole('tab');
-            secondTab.focus();
+            act(() => {
+              secondTab.focus();
+            });
 
             fireEvent.keyDown(secondTab, { key: previousItemKey });
 
@@ -811,7 +826,9 @@ describe('<Tabs />', () => {
               { wrapper },
             );
             const [firstTab, secondTab] = getAllByRole('tab');
-            secondTab.focus();
+            act(() => {
+              secondTab.focus();
+            });
 
             fireEvent.keyDown(secondTab, { key: previousItemKey });
 
@@ -840,7 +857,9 @@ describe('<Tabs />', () => {
               { wrapper },
             );
             const [firstTab, , lastTab] = getAllByRole('tab');
-            lastTab.focus();
+            act(() => {
+              lastTab.focus();
+            });
 
             fireEvent.keyDown(lastTab, { key: nextItemKey });
 
@@ -867,7 +886,9 @@ describe('<Tabs />', () => {
               { wrapper },
             );
             const [firstTab, , lastTab] = getAllByRole('tab');
-            lastTab.focus();
+            act(() => {
+              lastTab.focus();
+            });
 
             fireEvent.keyDown(lastTab, { key: nextItemKey });
 
@@ -894,7 +915,9 @@ describe('<Tabs />', () => {
               { wrapper },
             );
             const [, secondTab, lastTab] = getAllByRole('tab');
-            secondTab.focus();
+            act(() => {
+              secondTab.focus();
+            });
 
             fireEvent.keyDown(secondTab, { key: nextItemKey });
 
@@ -921,7 +944,9 @@ describe('<Tabs />', () => {
               { wrapper },
             );
             const [, secondTab, lastTab] = getAllByRole('tab');
-            secondTab.focus();
+            act(() => {
+              secondTab.focus();
+            });
 
             fireEvent.keyDown(secondTab, { key: nextItemKey });
 
@@ -947,7 +972,9 @@ describe('<Tabs />', () => {
             </Tabs>,
           );
           const [firstTab, , lastTab] = getAllByRole('tab');
-          lastTab.focus();
+          act(() => {
+            lastTab.focus();
+          });
 
           fireEvent.keyDown(lastTab, { key: 'Home' });
 
@@ -967,7 +994,9 @@ describe('<Tabs />', () => {
             </Tabs>,
           );
           const [firstTab, , lastTab] = getAllByRole('tab');
-          lastTab.focus();
+          act(() => {
+            lastTab.focus();
+          });
 
           fireEvent.keyDown(lastTab, { key: 'Home' });
 
@@ -990,7 +1019,9 @@ describe('<Tabs />', () => {
             </Tabs>,
           );
           const [firstTab, , lastTab] = getAllByRole('tab');
-          firstTab.focus();
+          act(() => {
+            firstTab.focus();
+          });
 
           fireEvent.keyDown(firstTab, { key: 'End' });
 
@@ -1010,7 +1041,9 @@ describe('<Tabs />', () => {
             </Tabs>,
           );
           const [firstTab, , lastTab] = getAllByRole('tab');
-          firstTab.focus();
+          act(() => {
+            firstTab.focus();
+          });
 
           fireEvent.keyDown(firstTab, { key: 'End' });
 

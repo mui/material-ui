@@ -119,8 +119,8 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
     return initialFilled;
   });
 
-  const [_focused, setFocused] = React.useState(false);
-  const focused = visuallyFocused !== undefined ? visuallyFocused : _focused;
+  const [focusedState, setFocused] = React.useState(false);
+  const focused = visuallyFocused !== undefined ? visuallyFocused : focusedState;
 
   if (disabled && focused) {
     setFocused(false);
@@ -226,7 +226,7 @@ FormControl.propTypes = {
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
-  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
+  component: PropTypes.elementType,
   /**
    * If `true`, the label, input and helper text should be displayed in a disabled state.
    */

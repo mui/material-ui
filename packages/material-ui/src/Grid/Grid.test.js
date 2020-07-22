@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createShallow, getClasses } from '@material-ui/core/test-utils';
-import createMount from 'test/utils/createMount';
+import { createShallow, getClasses, createMount, describeConformance } from 'test/utils';
 import { createMuiTheme } from '@material-ui/core/styles';
-import describeConformance from '../test-utils/describeConformance';
 import Grid, { styles } from './Grid';
 
 describe('<Grid />', () => {
@@ -76,10 +74,10 @@ describe('<Grid />', () => {
     });
   });
 
-  describe('prop: justify', () => {
-    it('should apply the justify class', () => {
-      const wrapper = shallow(<Grid justify="space-evenly" container />);
-      expect(wrapper.hasClass(classes['justify-xs-space-evenly'])).to.equal(true);
+  describe('prop: justifyContent', () => {
+    it('should apply the justify-content class', () => {
+      const wrapper = shallow(<Grid justifyContent="space-evenly" container />);
+      expect(wrapper.hasClass(classes['justify-content-xs-space-evenly'])).to.equal(true);
     });
   });
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import * as path from 'path';
 import * as fse from 'fs-extra';
 import * as ttp from 'typescript-to-proptypes';
@@ -18,13 +19,10 @@ enum GenerateResult {
   TODO,
 }
 
-const todoComponents = [
-  // lab
-  'PaginationItem',
-  'Skeleton',
-  'TabList',
-  'ToggleButton',
-];
+/**
+ * Includes component names for which we can't generate .propTypes from the TypeScript types.
+ */
+const todoComponents: string[] = [];
 
 const useExternalPropsFromInputBase = [
   'autoComplete',
@@ -92,6 +90,7 @@ const useExternalDocumentation: Record<string, string[]> = {
     'variant',
   ],
   Tab: ['disableRipple'],
+  ToggleButton: ['disableRipple'],
 };
 const transitionCallbacks = [
   'onEnter',
@@ -141,6 +140,8 @@ const getSortLiteralUnions: ttp.InjectOptions['getSortLiteralUnions'] = (compone
   ) {
     return sortBreakpointsLiteralByViewportAscending;
   }
+
+  return undefined;
 };
 
 const tsconfig = ttp.loadConfig(path.resolve(__dirname, '../tsconfig.json'));
@@ -201,6 +202,19 @@ async function generateProptypes(
       const ignoreGenerated =
         previous !== undefined &&
         previous.startsWith('PropTypes /* @typescript-to-proptypes-ignore */');
+
+      if (
+        ignoreGenerated &&
+        // `ignoreGenerated` implies that `previous !== undefined`
+        previous!
+          .replace('PropTypes /* @typescript-to-proptypes-ignore */', 'PropTypes')
+          .replace(/\s/g, '') === generated.replace(/\s/g, '')
+      ) {
+        throw new Error(
+          `Unused \`@typescript-to-proptypes-ignore\` directive for prop '${prop.name}'.`,
+        );
+      }
+
       if (usedCustomValidator || ignoreGenerated) {
         // `usedCustomValidator` and `ignoreGenerated` narrow `previous` to `string`
         return previous!;

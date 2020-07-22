@@ -1,6 +1,5 @@
 export * from './colorManipulator';
 export { default as createMuiTheme } from './createMuiTheme';
-// eslint-disable-next-line camelcase
 export { default as unstable_createMuiStrictModeTheme } from './createMuiStrictModeTheme';
 export { default as createStyles } from './createStyles';
 export { default as makeStyles } from './makeStyles';

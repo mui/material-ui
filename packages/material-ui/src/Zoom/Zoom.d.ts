@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Theme } from '../styles/createMuiTheme';
 import { TransitionProps } from '../transitions/transition';
 
 export interface ZoomProps extends TransitionProps {
@@ -7,12 +6,6 @@ export interface ZoomProps extends TransitionProps {
    * A single child content element.
    */
   children?: React.ReactElement<any, any>;
-  /**
-   * Enable this prop if you encounter 'Function components cannot be given refs',
-   * use `unstable_createStrictModeTheme`,
-   * and can't forward the ref in the child component.
-   */
-  disableStrictModeCompat?: boolean;
   /**
    * If `true`, the component will transition in.
    */

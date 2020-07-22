@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { spy } from 'sinon';
 import { expect } from 'chai';
-import { getClasses } from '@material-ui/core/test-utils';
-import createMount from 'test/utils/createMount';
-import describeConformance from '../test-utils/describeConformance';
+import { getClasses, createMount, describeConformance } from 'test/utils';
 import Popover from '../Popover';
 import Menu from './Menu';
 import MenuList from '../MenuList';
@@ -12,7 +10,7 @@ const MENU_LIST_HEIGHT = 100;
 
 describe('<Menu />', () => {
   let classes;
-  // StrictModeViolation: uses Popover
+  // StrictModeViolation: Not using act(), prefer using createClientRender from test/utils
   const mount = createMount({ strict: false });
   const defaultProps = {
     open: false,

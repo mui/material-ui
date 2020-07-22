@@ -1,6 +1,6 @@
 import React from 'react';
 import { expect } from 'chai';
-import createMount from 'test/utils/createMount';
+import { createMount } from 'test/utils';
 import useTheme from './useTheme';
 import ThemeProvider from '../ThemeProvider';
 

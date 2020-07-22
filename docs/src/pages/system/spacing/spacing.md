@@ -54,7 +54,7 @@ const theme = {
 
 ```jsx
 const theme = {
-  spacing: value => value ** 2,
+  spacing: value => value * 2,
 }
 
 <Box m={0} /> // margin: 0px;

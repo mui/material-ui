@@ -97,7 +97,7 @@ MenuItem.propTypes = {
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
-  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
+  component: PropTypes.elementType,
   /**
    * If `true`, compact vertical padding designed for keyboard and mouse input will be used.
    */

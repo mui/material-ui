@@ -54,7 +54,7 @@ Here is an example of customizing the component. You can learn more about this i
 
 ### Custom pagination options
 
-It's possible to customise the options shown in the "Rows per page" select using the `rowsPerPageOptions` prop.
+It's possible to customize the options shown in the "Rows per page" select using the `rowsPerPageOptions` prop.
 You should either provide an array of:
 
 - **numbers**, each number will be used for the option's label and value.

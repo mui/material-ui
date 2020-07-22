@@ -8,7 +8,7 @@ declare module '@material-ui/styles' {
   }
 }
 
-{
+function MyComponent() {
   const value = useTheme().myProperty;
   expectType<string, typeof value>(value);
 }

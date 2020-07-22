@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Orientation } from '../Stepper';
 import { ButtonBaseTypeMap, ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 
@@ -14,15 +13,6 @@ export type StepButtonTypeMap<P, D extends React.ElementType> = ExtendButtonBase
      * Can be a `StepLabel` or a node to place inside `StepLabel` as children.
      */
     children?: React.ReactNode;
-    /**
-     * For non-linear Steppers you need to manually set which steps are completed.
-     * Otherwise the Stepper determines if a step is completed.
-     */
-    completed?: boolean;
-    /**
-     * @ignore This prop is ignored. You should disable the whole `Step`.
-     */
-    disabled?: boolean;
     /**
      * The icon displayed by the step label.
      */

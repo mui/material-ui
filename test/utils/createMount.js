@@ -4,9 +4,6 @@ import * as ReactDOM from 'react-dom';
 import * as PropTypes from 'prop-types';
 import { mount as enzymeMount } from 'enzyme';
 
-// fork of `@material-ui/core/test-utils`
-// with strict isolation of DOM between tests
-
 /**
  * Can't just mount <React.Fragment>{node}</React.Fragment>
  * because that swallows wrapper.setProps
@@ -28,6 +25,7 @@ class Mode extends React.Component {
 
   render() {
     // Excess props will come from e.g. enzyme setProps
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     const { __element, __strict, ...other } = this.props;
     const Component = __strict ? React.StrictMode : React.Fragment;
 

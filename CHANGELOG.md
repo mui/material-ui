@@ -1,5 +1,96 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 5.0.0-alpha.4
+
+###### _July 19, 2020_
+
+Big thanks to the 11 contributors who made this release possible.
+
+### `@material-ui/core@v5.0.0-alpha.4`
+
+#### Breaking changes
+
+- [core] Drop support for non-ref-forwarding class components (#21811) @eps1lon
+  Support for non-ref-forwarding class components in the `component` prop or as an immediate `children` has been dropped. If you were using `unstable_createStrictModeTheme` or didn't see any warnings related to `findDOMNode` in `React.StrictMode` then you don't need to do anything.
+  Otherwise check out the ["Caveat with refs" section in our composition guide](/guides/composition/#caveat-with-refs) to find out how to migrate.
+  This change affects almost all components where you're using the `component` prop or passing `children` to components that require `children` to be elements (e.g. `<MenuList><CustomMenuItem /></MenuList>`)
+- [Stepper] Use context API (#21613) @baterson
+  Rely on the context over the `React.cloneElement()` API.
+  This change makes composition easier.
+
+### `@material-ui/icons@v5.0.0-alpha.4`
+
+- [icons] Add Google brand icon (#21807) @bmg02
+
+### Docs
+
+- [docs] Break up Select demos (#21792) @cjoecker
+- [docs] Change RMUIF info to new version (#21812) @phoqe
+- [docs] Fix Spanish translation (#21800) @adamsr123
+- [docs] Fix nav color (#21780) @mbrookes
+- [docs] Update advanced-de.md (#21786) @jasonericdavis
+
+### Core
+
+- [core] Allow dist tag as argv in use-react-dist-tag (#21810) @eps1lon
+- [core] Drop support for non-ref-forwarding class components (#21811) @eps1lon
+- [core] Lint with typescript-eslint parser (#21758) @oliviertassinari
+- [core] One label is enough @oliviertassinari
+- [core] Remove lint:fix command @oliviertassinari
+- [test] Enable "missing act()"-warnings (#21802) @eps1lon
+- [test] Improve stack trace for unexpected errors (#21818) @eps1lon
+- [test] Update react next patch (#21746) @eps1lon
+- [test] Use testing-library in withStyles (#21804) @eps1lon
+
+## 5.0.0-alpha.3
+
+###### _July 12, 2020_
+
+Big thanks to the 14 contributors who made this release possible.
+
+### `@material-ui/core@v5.0.0-alpha.3`
+
+- [Avatar] Avoid usage of z-index (#21685) @nvdai2401
+- [GridList] Fix crash when loading images (#21741) @paradoxxxzero
+- [List] Fix secondary action position when disableGutters={true} (#21732) @kgregory
+- [TablePagination] Fix broken labelling if SelectProps provided ids (#21703) @eps1lon
+- [theme] Fix custom breakpoint in CSS Media Queries (#21759) @nkrivous
+- [TrapFocus] Fix disableAutoFocus prop (#21612) @oliviertassinari
+
+### `@material-ui/lab@v5.0.0-alpha.3`
+
+- [lab] Fix TypeScript theme overrides support (#21724) @cjoecker
+- [Autocomplete] Fail form validation if required is filled when `multiple` (#21692, #21670) @weslenng, @eps1lon
+
+### Docs
+
+- [examples] Include troubleshooting for next.js (#21683) @ocavue
+- [docs] Add ethicalads.io (#21752) @oliviertassinari
+- [docs] Apply small fixes (#21754) @jaironalves
+- [docs] Batch small changes (#21669) @oliviertassinari
+- [docs] Bump next to 9.4.4 (#21690) @eps1lon
+- [docs] Fix custom switch ripple color (#21729) @xanderoku
+- [docs] Fix text from showcase (#21755) @cjoecker
+- [docs] Improve customized timeline demo (#21739) @mageprincess
+- [docs] Move more prop docs into IntelliSense (#21659) @eps1lon
+- [docs] Move more prop docs into IntelliSense (#21687) @eps1lon
+- [docs] Recommend default branch (#21719) @eps1lon
+- [docs] Remove `@document` directive from IntelliSense (#21688) @eps1lon
+- [docs] Track web-vitals (#21702) @eps1lon
+
+### Core
+
+- [test] Allow container + hydrate in render (#21747) @eps1lon
+- [test] Bump url-loader (#21689) @eps1lon
+- [test] Restore clock between each test (#21760) @eps1lon
+- [test] Run lab unit tests in browser (#21691) @eps1lon
+- [core] Allow generating markdown api docs for subset of components (#21731) @eps1lon
+- [core] Batch small changes (#21756) @oliviertassinari
+- [core] Don't bail out early if docs:api fails (#21726) @eps1lon
+- [core] Remove dead code from docs:api (#21730) @eps1lon
+- [core] Simplify debounce (#21666) @NMinhNguyen
+- [core] Use common yarn version (#21779) @eps1lon
+
 ## 5.0.0-alpha.2
 
 ###### _July 4, 2020_

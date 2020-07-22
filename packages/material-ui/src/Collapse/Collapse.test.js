@@ -1,27 +1,19 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
-import { createClientRender } from 'test/utils/createClientRender';
-import { getClasses } from '@material-ui/core/test-utils';
-import createMount from 'test/utils/createMount';
-import describeConformance from '../test-utils/describeConformance';
-import Collapse from './Collapse';
-import {
-  ThemeProvider,
-  createMuiTheme,
-  unstable_createMuiStrictModeTheme as createMuiStrictModeTheme,
-} from '@material-ui/core/styles';
+import { createClientRender, getClasses, createMount, describeConformance } from 'test/utils';
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { Transition } from 'react-transition-group';
+import Collapse from './Collapse';
 
 describe('<Collapse />', () => {
-  // StrictModeViolation: uses react-transition-group
-  const mount = createMount({ strict: false });
+  const mount = createMount({ strict: true });
   let classes;
   const defaultProps = {
     in: true,
     children: <div />,
   };
-  const render = createClientRender({ strict: false });
+  const render = createClientRender();
 
   before(() => {
     classes = getClasses(<Collapse {...defaultProps} />);
@@ -143,11 +135,11 @@ describe('<Collapse />', () => {
   describe('prop: timeout', () => {
     let clock;
 
-    before(() => {
+    beforeEach(() => {
       clock = useFakeTimers();
     });
 
-    after(() => {
+    afterEach(() => {
       clock.restore();
     });
 
@@ -269,28 +261,5 @@ describe('<Collapse />', () => {
 
       expect(handleExiting.args[0][0].style.height).to.equal(collapsedSize);
     });
-  });
-
-  it('has no StrictMode warnings in a StrictMode theme', () => {
-    mount(
-      <React.StrictMode>
-        <ThemeProvider theme={createMuiStrictModeTheme()}>
-          <Collapse appear in>
-            Hello, Dave!
-          </Collapse>
-        </ThemeProvider>
-      </React.StrictMode>,
-    );
-  });
-
-  it('can fallback to findDOMNode in a StrictMode theme', () => {
-    const Div = () => <div />;
-    mount(
-      <ThemeProvider theme={createMuiStrictModeTheme()}>
-        <Collapse appear component={Div} in disableStrictModeCompat>
-          Hello, Dave!
-        </Collapse>
-      </ThemeProvider>,
-    );
   });
 });

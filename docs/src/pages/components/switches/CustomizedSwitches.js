@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { fade, withStyles } from '@material-ui/core/styles';
 import { purple } from '@material-ui/core/colors';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -7,11 +7,14 @@ import Switch from '@material-ui/core/Switch';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
-const PurpleSwitch = withStyles({
+const PurpleSwitch = withStyles((theme) => ({
   switchBase: {
     color: purple[300],
     '&$checked': {
       color: purple[500],
+      '&:hover': {
+        backgroundColor: fade(purple[500], theme.palette.action.hoverOpacity),
+      },
     },
     '&$checked + $track': {
       backgroundColor: purple[500],
@@ -19,7 +22,7 @@ const PurpleSwitch = withStyles({
   },
   checked: {},
   track: {},
-})(Switch);
+}))(Switch);
 
 const IOSSwitch = withStyles((theme) => ({
   root: {

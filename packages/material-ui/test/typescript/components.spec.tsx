@@ -215,8 +215,7 @@ const CardTest = () => (
       <Typography variant="body1">adjective</Typography>
       <Typography component="p">
         well meaning and kindly.
-        <br />
-        {'"a benevolent smile"'}
+        <br />a benevolent smile
       </Typography>
     </CardContent>
     <CardActions>
@@ -233,7 +232,7 @@ const CardMediaTest = () => (
       subheader="September 14, 2016"
     />
     <CardMedia image="src.png" component="div">
-      <img src={'image/src.png'} alt="Contemplative Reptile" />
+      <img src="image/src.png" alt="Contemplative Reptile" />
     </CardMedia>
     <CardContent>
       <Typography component="p">
@@ -252,7 +251,7 @@ const CardMediaTest = () => (
         <FakeIcon />
       </IconButton>
     </CardActions>
-    <Collapse in={true} timeout="auto" unmountOnExit>
+    <Collapse in timeout="auto" unmountOnExit>
       <CardContent>
         <Typography paragraph variant="body2">
           Method:
@@ -288,7 +287,7 @@ const ChipsTest = () => (
   <div>
     <Chip label="Basic Chip" />
     <Chip avatar={<Avatar>M</Avatar>} label="Clickable Chip" onClick={(e) => log(e)} />
-    <Chip avatar={<Avatar src={'image.bmp'} />} label="Deletable Chip" onDelete={(e) => log(e)} />
+    <Chip avatar={<Avatar src="image.bmp" />} label="Deletable Chip" onDelete={(e) => log(e)} />
     <Chip
       avatar={
         <Avatar>
@@ -305,7 +304,7 @@ const ChipsTest = () => (
 const DialogTest = () => {
   const emails = ['username@gmail.com', 'user02@gmail.com'];
   return (
-    <Dialog onClose={(e) => log(e)} open>
+    <Dialog onClose={(event) => log(event)} open>
       <DialogTitle>Set backup account</DialogTitle>
       <div>
         <List>
@@ -399,14 +398,19 @@ const DrawerTest = () => {
   };
   return (
     <div>
-      <Drawer variant="persistent" open={open.left} onClose={(e) => log(e)} onClick={(e) => log(e)}>
+      <Drawer
+        variant="persistent"
+        open={open.left}
+        onClose={(event) => log(event)}
+        onClick={(e) => log(e)}
+      >
         List
       </Drawer>
       <Drawer
         variant="temporary"
         anchor="top"
         open={open.top}
-        onClose={(e) => log(e)}
+        onClose={(event) => log(event)}
         onClick={(e) => log(e)}
         ModalProps={{
           hideBackdrop: true,
@@ -418,7 +422,7 @@ const DrawerTest = () => {
         anchor="bottom"
         variant="temporary"
         open={open.bottom}
-        onClose={(e) => log(e)}
+        onClose={(event) => log(event)}
         onClick={(e) => log(e)}
       >
         List
@@ -427,7 +431,7 @@ const DrawerTest = () => {
         variant="persistent"
         anchor="right"
         open={open.right}
-        onClose={(e) => log(e)}
+        onClose={(event) => log(event)}
         onClick={(e) => log(e)}
       >
         List
@@ -447,7 +451,7 @@ const SwipeableDrawerTest = () => {
     <div>
       <SwipeableDrawer
         open={open.left}
-        onClose={(e) => log(e)}
+        onClose={(event) => log(event)}
         onClick={(e) => log(e)}
         onOpen={(e) => log(e)}
       >
@@ -456,7 +460,7 @@ const SwipeableDrawerTest = () => {
       <SwipeableDrawer
         anchor="top"
         open={open.top}
-        onClose={(e) => log(e)}
+        onClose={(event) => log(event)}
         onClick={(e) => log(e)}
         onOpen={(e) => log(e)}
         ModalProps={{
@@ -468,7 +472,7 @@ const SwipeableDrawerTest = () => {
       <SwipeableDrawer
         anchor="bottom"
         open={open.bottom}
-        onClose={(e) => log(e)}
+        onClose={(event) => log(event)}
         onClick={(e) => log(e)}
         onOpen={(e) => log(e)}
       >
@@ -478,7 +482,7 @@ const SwipeableDrawerTest = () => {
         variant="temporary"
         anchor="right"
         open={open.right}
-        onClose={(e) => log(e)}
+        onClose={(event) => log(event)}
         onClick={(e) => log(e)}
         onOpen={(e) => log(e)}
       >
@@ -516,7 +520,7 @@ const GridTest = () => (
     <Grid item sm={12}>
       ...
     </Grid>
-    <Grid item xl={true}>
+    <Grid item xl>
       ...
     </Grid>
     <Grid item style={{ color: 'red' }}>
@@ -538,7 +542,7 @@ const ListTest = () => (
   <List>
     {[0, 1, 2, 3].map((value) => (
       <ListItem dense button selected={false} key={value} onClick={(e) => log(e)}>
-        <Checkbox checked={true} tabIndex={-1} disableRipple />
+        <Checkbox checked tabIndex={-1} disableRipple />
         <ListItemText primary={`Line item ${value + 1}`} />
         <ListItemSecondaryAction>
           <IconButton aria-label="comments">
@@ -566,8 +570,8 @@ const MenuTest = () => {
     <Menu
       id="lock-menu"
       anchorEl={anchorEl}
-      open={true}
-      onClose={(e) => log(e)}
+      open
+      onClose={(event) => log(event)}
       PopoverClasses={{ paper: 'foo' }}
     >
       {options.map((option, index) => (
@@ -691,9 +695,7 @@ const SelectionControlTest = () => {
         label="Indeterminate"
       />
       <FormControlLabel
-        control={
-          <Checkbox checked={true} onChange={handleChange} name="checkedF" value="checkedF" />
-        }
+        control={<Checkbox checked onChange={handleChange} name="checkedF" value="checkedF" />}
         label="Custom color"
       />
     </FormGroup>
@@ -744,9 +746,9 @@ const SnackbarTest = () => (
         vertical: 'bottom',
         horizontal: 'left',
       }}
-      open={true}
+      open
       autoHideDuration={6000}
-      onClose={(e) => log(e)}
+      onClose={(event) => log(event)}
       ContentProps={
         {
           // 'aria-describedby': 'message-id',
@@ -942,9 +944,9 @@ const TabsTest = () => {
               <Tab label="Item Three" />
             </Tabs>
           </AppBar>
-          {this.state.value === 0 && <TabContainer>{'Item One'}</TabContainer>}
-          {this.state.value === 1 && <TabContainer>{'Item Two'}</TabContainer>}
-          {this.state.value === 2 && <TabContainer>{'Item Three'}</TabContainer>}
+          {this.state.value === 0 && <TabContainer>Item One</TabContainer>}
+          {this.state.value === 1 && <TabContainer>Item Two</TabContainer>}
+          {this.state.value === 2 && <TabContainer>Item Three</TabContainer>}
         </div>
       );
     }
@@ -955,15 +957,15 @@ const TabsTest = () => {
 
 const TextFieldTest = () => (
   <div>
-    <TextField id="name" label="Name" value={'Alice'} />
-    <TextField id="name" label={<strong>Name</strong>} value={'Alice'} />
+    <TextField id="name" label="Name" value="Alice" />
+    <TextField id="name" label={<strong>Name</strong>} value="Alice" />
     <TextField
       id="name"
       label="Name"
-      value={'Alice'}
+      value="Alice"
       onChange={(event) => log({ name: event.currentTarget.value })}
     />
-    <TextField id="name" label="Name" value={'Alice'} InputProps={{ classes: { root: 'foo' } }} />
+    <TextField id="name" label="Name" value="Alice" InputProps={{ classes: { root: 'foo' } }} />
     <TextField
       type="number"
       inputProps={{
@@ -1047,15 +1049,15 @@ const InputLabelTest = () => (
 );
 
 const LinkTest = () => {
-  const dudUrl = 'javascript:;';
+  const dudUrl = 'javascript';
   return (
     <Typography>
       <Link href={dudUrl}>Link</Link>
       <Link href={dudUrl} color="inherit">
-        {'color="inherit"'}
+        inherit
       </Link>
       <Link href={dudUrl} variant="body1">
-        {'variant="body1"'}
+        body1
       </Link>
     </Typography>
   );

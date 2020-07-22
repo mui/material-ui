@@ -36,7 +36,7 @@ The `MuiGrid` name can be used for providing [default props](/customization/glob
 | <span class="prop-name">container</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the component will have the flex *container* behavior. You should be wrapping *items* with a *container*. |
 | <span class="prop-name">direction</span> | <span class="prop-type">'column-reverse'<br>&#124;&nbsp;'column'<br>&#124;&nbsp;'row-reverse'<br>&#124;&nbsp;'row'</span> | <span class="prop-default">'row'</span> | Defines the `flex-direction` style property. It is applied for all screen sizes. |
 | <span class="prop-name">item</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the component will have the flex *item* behavior. You should be wrapping *items* with a *container*. |
-| <span class="prop-name">justify</span> | <span class="prop-type">'center'<br>&#124;&nbsp;'flex-end'<br>&#124;&nbsp;'flex-start'<br>&#124;&nbsp;'space-around'<br>&#124;&nbsp;'space-between'<br>&#124;&nbsp;'space-evenly'</span> | <span class="prop-default">'flex-start'</span> | Defines the `justify-content` style property. It is applied for all screen sizes. |
+| <span class="prop-name">justifyContent</span> | <span class="prop-type">'center'<br>&#124;&nbsp;'flex-end'<br>&#124;&nbsp;'flex-start'<br>&#124;&nbsp;'space-around'<br>&#124;&nbsp;'space-between'<br>&#124;&nbsp;'space-evenly'</span> | <span class="prop-default">'flex-start'</span> | Defines the `justify-content` style property. It is applied for all screen sizes. |
 | <span class="prop-name">lg</span> | <span class="prop-type">'auto'<br>&#124;&nbsp;1<br>&#124;&nbsp;2<br>&#124;&nbsp;3<br>&#124;&nbsp;4<br>&#124;&nbsp;5<br>&#124;&nbsp;6<br>&#124;&nbsp;7<br>&#124;&nbsp;8<br>&#124;&nbsp;9<br>&#124;&nbsp;10<br>&#124;&nbsp;11<br>&#124;&nbsp;12<br>&#124;&nbsp;bool</span> | <span class="prop-default">false</span> | Defines the number of grids the component is going to use. It's applied for the `lg` breakpoint and wider screens if not overridden. |
 | <span class="prop-name">md</span> | <span class="prop-type">'auto'<br>&#124;&nbsp;1<br>&#124;&nbsp;2<br>&#124;&nbsp;3<br>&#124;&nbsp;4<br>&#124;&nbsp;5<br>&#124;&nbsp;6<br>&#124;&nbsp;7<br>&#124;&nbsp;8<br>&#124;&nbsp;9<br>&#124;&nbsp;10<br>&#124;&nbsp;11<br>&#124;&nbsp;12<br>&#124;&nbsp;bool</span> | <span class="prop-default">false</span> | Defines the number of grids the component is going to use. It's applied for the `md` breakpoint and wider screens if not overridden. |
 | <span class="prop-name">sm</span> | <span class="prop-type">'auto'<br>&#124;&nbsp;1<br>&#124;&nbsp;2<br>&#124;&nbsp;3<br>&#124;&nbsp;4<br>&#124;&nbsp;5<br>&#124;&nbsp;6<br>&#124;&nbsp;7<br>&#124;&nbsp;8<br>&#124;&nbsp;9<br>&#124;&nbsp;10<br>&#124;&nbsp;11<br>&#124;&nbsp;12<br>&#124;&nbsp;bool</span> | <span class="prop-default">false</span> | Defines the number of grids the component is going to use. It's applied for the `sm` breakpoint and wider screens if not overridden. |
@@ -72,11 +72,11 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">align-content-xs-flex-end</span> | <span class="prop-name">.MuiGrid-align-content-xs-flex-end</span> | 
 | <span class="prop-name">align-content-xs-space-between</span> | <span class="prop-name">.MuiGrid-align-content-xs-space-between</span> | 
 | <span class="prop-name">align-content-xs-space-around</span> | <span class="prop-name">.MuiGrid-align-content-xs-space-around</span> | 
-| <span class="prop-name">justify-xs-center</span> | <span class="prop-name">.MuiGrid-justify-xs-center</span> | 
-| <span class="prop-name">justify-xs-flex-end</span> | <span class="prop-name">.MuiGrid-justify-xs-flex-end</span> | 
-| <span class="prop-name">justify-xs-space-between</span> | <span class="prop-name">.MuiGrid-justify-xs-space-between</span> | 
-| <span class="prop-name">justify-xs-space-around</span> | <span class="prop-name">.MuiGrid-justify-xs-space-around</span> | 
-| <span class="prop-name">justify-xs-space-evenly</span> | <span class="prop-name">.MuiGrid-justify-xs-space-evenly</span> | 
+| <span class="prop-name">justify-content-xs-center</span> | <span class="prop-name">.MuiGrid-justify-content-xs-center</span> | 
+| <span class="prop-name">justify-content-xs-flex-end</span> | <span class="prop-name">.MuiGrid-justify-content-xs-flex-end</span> | 
+| <span class="prop-name">justify-content-xs-space-between</span> | <span class="prop-name">.MuiGrid-justify-content-xs-space-between</span> | 
+| <span class="prop-name">justify-content-xs-space-around</span> | <span class="prop-name">.MuiGrid-justify-content-xs-space-around</span> | 
+| <span class="prop-name">justify-content-xs-space-evenly</span> | <span class="prop-name">.MuiGrid-justify-content-xs-space-evenly</span> | 
 | <span class="prop-name">spacing-xs-1</span> | <span class="prop-name">.MuiGrid-spacing-xs-1</span> | 
 | <span class="prop-name">spacing-xs-2</span> | <span class="prop-name">.MuiGrid-spacing-xs-2</span> | 
 | <span class="prop-name">spacing-xs-3</span> | <span class="prop-name">.MuiGrid-spacing-xs-3</span> | 

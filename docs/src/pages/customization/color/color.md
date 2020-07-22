@@ -83,7 +83,7 @@ These color palettes, originally created by Material Design in 2014, are compris
 
 - **Palette**: A palette is a collection of colors, i.e. hues and their shades. Material-UI provides all colors from the Material Design guidelines.
   [This color palette](#color-palette) has been designed with colors that work harmoniously with each other.
-- **Hue" & "Shade**: A single color within the palette is made up of a hue such as "red", and shade, such as "500".
+- **Hue & Shade**: A single color within the palette is made up of a hue such as "red", and shade, such as "500".
   "red 50" is the lightest shade of red (_pink!_), while "red 900" is the darkest.
   In addition, most hues come with "accent" shades, prefixed with an `A`.
 

@@ -2,16 +2,14 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import PropTypes from 'prop-types';
-import createMount from 'test/utils/createMount';
+import { createMount, describeConformance, act, createClientRender, fireEvent } from 'test/utils';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import describeConformance from '@material-ui/core/test-utils/describeConformance';
-import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 import PopperJs from 'popper.js';
 import Grow from '../Grow';
 import Popper from './Popper';
 
 describe('<Popper />', () => {
-  const mount = createMount();
+  const mount = createMount({ strict: true });
   let rtlTheme;
   const render = createClientRender();
   const defaultProps = {
@@ -98,7 +96,7 @@ describe('<Popper />', () => {
     it('should flip placement when edge is reached', () => {
       const renderSpy = spy();
       const popperRef = React.createRef();
-      render(
+      const { unmount } = render(
         <ThemeProvider theme={rtlTheme}>
           <Popper popperRef={popperRef} {...defaultProps} placement="bottom">
             {({ placement }) => {
@@ -110,10 +108,17 @@ describe('<Popper />', () => {
         </ThemeProvider>,
       );
       expect(renderSpy.args).to.deep.equal([['bottom'], ['bottom']]);
-      popperRef.current.options.onUpdate({
-        placement: 'top',
+
+      act(() => {
+        popperRef.current.options.onUpdate({
+          placement: 'top',
+        });
       });
+
       expect(renderSpy.args).to.deep.equal([['bottom'], ['bottom'], ['top'], ['top']]);
+
+      // FIXME: Unclear why we need this to fix "missing act()"-warning
+      unmount();
     });
   });
 
@@ -201,19 +206,16 @@ describe('<Popper />', () => {
 
   describe('prop: transition', () => {
     let clock;
-    const looseRender = createClientRender({ strict: false });
-
-    before(() => {
+    beforeEach(() => {
       clock = useFakeTimers();
-      // StrictModeViolation: uses Grow
     });
 
-    after(() => {
+    afterEach(() => {
       clock.restore();
     });
 
     it('should work', () => {
-      const { queryByRole, getByRole, setProps } = looseRender(
+      const { queryByRole, getByRole, setProps } = render(
         <Popper {...defaultProps} transition>
           {({ TransitionProps }) => (
             <Grow {...TransitionProps}>
@@ -222,9 +224,14 @@ describe('<Popper />', () => {
           )}
         </Popper>,
       );
+
       expect(getByRole('tooltip')).to.have.text('Hello World');
+
       setProps({ anchorEl: null, open: false });
-      clock.tick(0);
+      act(() => {
+        clock.tick(0);
+      });
+
       expect(queryByRole('tooltip')).to.equal(null);
     });
   });

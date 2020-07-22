@@ -2,10 +2,13 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
-import { getClasses } from '@material-ui/core/test-utils';
-import createMount from 'test/utils/createMount';
-import { fireEvent, createClientRender } from 'test/utils/createClientRender';
-import describeConformance from '../test-utils/describeConformance';
+import {
+  getClasses,
+  createMount,
+  describeConformance,
+  fireEvent,
+  createClientRender,
+} from 'test/utils';
 import TableFooter from '../TableFooter';
 import TableCell from '../TableCell';
 import TableRow from '../TableRow';
@@ -372,6 +375,31 @@ describe('<TablePagination />', () => {
       }).toErrorDev(
         'Material-UI: The page prop of a TablePagination is out of range (0 to 1, but page is 2).',
       );
+    });
+  });
+
+  describe('prop: SelectProps', () => {
+    it('does allow manual label ids', () => {
+      const { getAllByRole } = render(
+        <table>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                count={1}
+                page={0}
+                onChangePage={noop}
+                onChangeRowsPerPage={noop}
+                rowsPerPage={10}
+                SelectProps={{ id: 'foo', labelId: 'bar' }}
+              />
+            </TableRow>
+          </TableFooter>
+        </table>,
+      );
+
+      // will be `getByRole('combobox')` in aria 1.2
+      const [combobox] = getAllByRole('button');
+      expect(combobox).toHaveAccessibleName('Rows per page: 10');
     });
   });
 });

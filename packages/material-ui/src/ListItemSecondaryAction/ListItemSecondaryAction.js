@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import ListContext from '../List/ListContext';
 import withStyles from '../styles/withStyles';
 
 export const styles = {
@@ -11,6 +12,10 @@ export const styles = {
     top: '50%',
     transform: 'translateY(-50%)',
   },
+  /* Styles applied to the root element when the parent `ListItem` has `disableGutters={true}`. */
+  disableGutters: {
+    right: 0,
+  },
 };
 
 /**
@@ -18,8 +23,19 @@ export const styles = {
  */
 const ListItemSecondaryAction = React.forwardRef(function ListItemSecondaryAction(props, ref) {
   const { classes, className, ...other } = props;
+  const context = React.useContext(ListContext);
 
-  return <div className={clsx(classes.root, className)} ref={ref} {...other} />;
+  return (
+    <div
+      className={clsx(
+        classes.root,
+        { [classes.disableGutters]: context.disableGutters },
+        className,
+      )}
+      ref={ref}
+      {...other}
+    />
+  );
 });
 
 ListItemSecondaryAction.propTypes = {

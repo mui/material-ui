@@ -2,6 +2,8 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import loadScript from 'docs/src/modules/utils/loadScript';
 import adStyles from 'docs/src/modules/components/ad.styles';
+import AdDisplay from 'docs/src/modules/components/AdDisplay';
+import { adShape } from 'docs/src/modules/components/AdManager';
 
 const useStyles = makeStyles((theme) => {
   const styles = adStyles(theme);
@@ -20,7 +22,7 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
-export default function AdCarbon() {
+function AdCarbonImage() {
   useStyles();
   const ref = React.useRef(null);
 
@@ -33,4 +35,80 @@ export default function AdCarbon() {
   }, []);
 
   return <span ref={ref} />;
+}
+
+export function AdCarbonInline(props) {
+  const [ad, setAd] = React.useState(null);
+
+  React.useEffect(() => {
+    let active = true;
+    let attempt = 0;
+
+    (async () => {
+      async function tryFetch() {
+        if (attempt >= 10 || !active) {
+          return null;
+        }
+
+        attempt += 1;
+        const request = await fetch('https://srv.buysellads.com/ads/CE7DC23W.json');
+        const data = await request.json();
+        // Inspired by https://github.com/Semantic-Org/Semantic-UI-React/blob/2c7134128925dd831de85011e3eb0ec382ba7f73/docs/src/components/CarbonAd/CarbonAdNative.js#L9
+        const sanitizedAd = data.ads
+          .filter((item) => Object.keys(item).length > 0)
+          .filter((item) => item.statlink)
+          .filter(Boolean)[0];
+
+        if (!sanitizedAd) {
+          return tryFetch();
+        }
+
+        return sanitizedAd;
+      }
+      const sanitizedAd = await tryFetch();
+      if (active) {
+        setAd(sanitizedAd);
+      }
+    })();
+
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  return ad ? (
+    <React.Fragment>
+      {/* Impression */}
+      <img src={ad.statimp} alt="" style={{ display: 'none' }} />
+      {/* Pixel */}
+      {ad.pixel &&
+        ad.pixel
+          .split('||')
+          .map((pixel, i) => (
+            <img
+              key={i}
+              src={`${pixel.replace('[timestamp]', ad.timestamp)}`}
+              style={{ display: 'none' }}
+              alt=""
+            />
+          ))}
+      <AdDisplay
+        {...props}
+        shape="inline"
+        ad={{
+          link: ad.statlink,
+          img: ad.image,
+          name: ad.company,
+          description: `<strong>${ad.company}</strong> - ${ad.description}`,
+          poweredby: 'Carbon',
+        }}
+      />
+    </React.Fragment>
+  ) : (
+    <div {...props} style={{ minHeight: 45 }} />
+  );
+}
+
+export default function AdCarbon() {
+  return adShape === 'image' ? <AdCarbonImage /> : <AdCarbonInline />;
 }

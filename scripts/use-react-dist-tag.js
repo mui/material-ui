@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 /**
- * Given an environment variable called `REACT_DIST_TAG` fetch the corresponding
+ * Given the dist tag fetch the corresponding
  * version and make sure this version is used throughout the repository.
  *
  * If you work on this file:
@@ -18,7 +18,8 @@ const exec = promisify(childProcess.exec);
 // packages published from the react monorepo using the same version
 const reactPackageNames = ['react', 'react-dom', 'react-is', 'react-test-renderer', 'scheduler'];
 
-async function main(distTag) {
+async function main(options) {
+  const { distTag } = options;
   if (typeof distTag !== 'string') {
     throw new TypeError(`expected distTag: string but got '${distTag}'`);
   }
@@ -54,7 +55,8 @@ async function main(distTag) {
   await exec(`git apply ${path.resolve(__dirname, `./react-${distTag}.diff`)}`);
 }
 
-main(process.env.REACT_DIST_TAG).catch((error) => {
+const [distTag = process.env.REACT_DIST_TAG] = process.argv.slice(2);
+main({ distTag }).catch((error) => {
   console.error(error);
   process.exit(1);
 });

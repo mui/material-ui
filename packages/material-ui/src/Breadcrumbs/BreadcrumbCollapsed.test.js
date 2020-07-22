@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { getClasses } from '@material-ui/core/test-utils';
+import { getClasses, act, fireEvent, createClientRender } from 'test/utils';
 import BreadcrumbCollapsed from './BreadcrumbCollapsed';
-import { fireEvent, createClientRender } from 'test/utils/createClientRender';
 
 describe('<BreadcrumbCollapsed />', () => {
   let classes;
@@ -25,8 +24,12 @@ describe('<BreadcrumbCollapsed />', () => {
       const handleClick = spy();
       const { container } = render(<BreadcrumbCollapsed onClick={handleClick} />);
       const expand = container.firstChild;
-      expand.focus();
-      fireEvent.keyDown(expand, { key: 'Enter' });
+
+      act(() => {
+        expand.focus();
+        fireEvent.keyDown(expand, { key: 'Enter' });
+      });
+
       expect(handleClick.callCount).to.equal(1);
     });
 
@@ -34,8 +37,12 @@ describe('<BreadcrumbCollapsed />', () => {
       const handleClick = spy();
       const { container } = render(<BreadcrumbCollapsed onClick={handleClick} />);
       const expand = container.firstChild;
-      expand.focus();
-      fireEvent.keyUp(expand, { key: ' ' });
+
+      act(() => {
+        expand.focus();
+        fireEvent.keyUp(expand, { key: ' ' });
+      });
+
       expect(handleClick.callCount).to.equal(1);
     });
   });

@@ -15,12 +15,13 @@ export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     display: 'flex',
+    flexDirection: 'row-reverse',
   },
   /* Styles applied to the avatar elements. */
   avatar: {
     border: `2px solid ${theme.palette.background.default}`,
     marginLeft: -8,
-    '&:first-child': {
+    '&:last-child': {
       marginLeft: 0,
     },
   },
@@ -58,27 +59,28 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(props, ref) {
 
   return (
     <div className={clsx(classes.root, className)} ref={ref} {...other}>
-      {children.slice(0, children.length - extraAvatars).map((child, index) => {
-        return React.cloneElement(child, {
-          className: clsx(child.props.className, classes.avatar),
-          style: {
-            zIndex: children.length - index,
-            marginLeft: index === 0 ? undefined : marginLeft,
-            ...child.props.style,
-          },
-        });
-      })}
       {extraAvatars ? (
         <Avatar
           className={classes.avatar}
           style={{
-            zIndex: 0,
             marginLeft,
           }}
         >
           +{extraAvatars}
         </Avatar>
       ) : null}
+      {children
+        .slice(0, children.length - extraAvatars)
+        .reverse()
+        .map((child) => {
+          return React.cloneElement(child, {
+            className: clsx(child.props.className, classes.avatar),
+            style: {
+              marginLeft,
+              ...child.props.style,
+            },
+          });
+        })}
     </div>
   );
 });

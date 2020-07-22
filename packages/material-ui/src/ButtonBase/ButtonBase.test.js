@@ -2,13 +2,17 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { getClasses } from '@material-ui/core/test-utils';
-import createMount from 'test/utils/createMount';
-import describeConformance from '../test-utils/describeConformance';
+import {
+  getClasses,
+  createMount,
+  describeConformance,
+  act,
+  createClientRender,
+  fireEvent,
+} from 'test/utils';
+import * as PropTypes from 'prop-types';
 import TouchRipple from './TouchRipple';
 import ButtonBase from './ButtonBase';
-import { act, createClientRender, fireEvent } from 'test/utils/createClientRender';
-import * as PropTypes from 'prop-types';
 
 /**
  * @param {HTMLElement} element
@@ -16,7 +20,7 @@ import * as PropTypes from 'prop-types';
 function focusVisible(element) {
   act(() => {
     element.blur();
-    fireEvent.keyDown(document.activeElement || document.body, { key: 'Tab' });
+    fireEvent.keyDown(document.body, { key: 'Tab' });
     element.focus();
   });
 }
@@ -630,7 +634,9 @@ describe('<ButtonBase />', () => {
         </ButtonBase>,
       );
 
-      getByRole('button').focus();
+      act(() => {
+        getByRole('button').focus();
+      });
 
       expect(onFocusSpy.callCount).to.equal(1);
     });
@@ -681,14 +687,16 @@ describe('<ButtonBase />', () => {
 
       const button = getByText('Hello');
 
-      button.focus();
-      fireEvent.keyDown(document.activeElement || document.body, { key: 'Enter' });
+      act(() => {
+        button.focus();
+        fireEvent.keyDown(button, { key: 'Enter' });
+      });
 
       expect(container.querySelectorAll('.ripple-visible')).to.have.lengthOf(1);
 
       // technically the second keydown should be fire with repeat: true
       // but that isn't implemented in IE 11 so we shouldn't mock it here either
-      fireEvent.keyDown(document.activeElement || document.body, { key: 'Enter' });
+      fireEvent.keyDown(button, { key: 'Enter' });
 
       expect(container.querySelectorAll('.ripple-visible')).to.have.lengthOf(1);
     });
@@ -752,10 +760,12 @@ describe('<ButtonBase />', () => {
           </ButtonBase>,
         );
         const button = getByRole('button');
-        button.focus();
 
-        fireEvent.keyDown(document.activeElement || document.body, {
-          key: ' ',
+        act(() => {
+          button.focus();
+          fireEvent.keyDown(button, {
+            key: ' ',
+          });
         });
 
         expect(onClickSpy.callCount).to.equal(0);
@@ -771,10 +781,12 @@ describe('<ButtonBase />', () => {
           </ButtonBase>,
         );
         const button = getByRole('button');
-        button.focus();
 
-        fireEvent.keyUp(document.activeElement || document.body, {
-          key: ' ',
+        act(() => {
+          button.focus();
+          fireEvent.keyUp(button, {
+            key: ' ',
+          });
         });
 
         expect(onClickSpy.callCount).to.equal(1);
@@ -799,10 +811,12 @@ describe('<ButtonBase />', () => {
           </ButtonBase>,
         );
         const button = getByRole('button');
-        button.focus();
 
-        fireEvent.keyUp(document.activeElement || document.body, {
-          key: ' ',
+        act(() => {
+          button.focus();
+          fireEvent.keyUp(button, {
+            key: ' ',
+          });
         });
 
         expect(onClickSpy.callCount).to.equal(0);
@@ -816,10 +830,12 @@ describe('<ButtonBase />', () => {
           </ButtonBase>,
         );
         const button = getByRole('button');
-        button.focus();
 
-        fireEvent.keyDown(document.activeElement || document.body, {
-          key: 'Enter',
+        act(() => {
+          button.focus();
+          fireEvent.keyDown(button, {
+            key: 'Enter',
+          });
         });
 
         expect(onClickSpy.calledOnce).to.equal(true);
@@ -868,10 +884,12 @@ describe('<ButtonBase />', () => {
             Hello
           </ButtonBase>,
         );
-
         const button = getByRole('button');
-        button.focus();
-        fireEvent.keyDown(document.activeElement || document.body, { key: 'Enter' });
+
+        act(() => {
+          button.focus();
+          fireEvent.keyDown(button, { key: 'Enter' });
+        });
 
         expect(onClickSpy.calledOnce).to.equal(true);
         // defaultPrevented?
@@ -887,9 +905,12 @@ describe('<ButtonBase />', () => {
           </ButtonBase>,
         );
         const button = getByText('Hello');
-        button.focus();
-        fireEvent.keyDown(document.activeElement || document.body, {
-          key: 'Enter',
+
+        act(() => {
+          button.focus();
+          fireEvent.keyDown(button, {
+            key: 'Enter',
+          });
         });
 
         expect(onClick.calledOnce).to.equal(false);
@@ -913,8 +934,12 @@ describe('<ButtonBase />', () => {
 
       // @ts-ignore
       expect(typeof buttonActionsRef.current.focusVisible).to.equal('function');
-      // @ts-ignore
-      buttonActionsRef.current.focusVisible();
+
+      act(() => {
+        // @ts-ignore
+        buttonActionsRef.current.focusVisible();
+      });
+
       expect(getByText('Hello')).toHaveFocus();
       expect(getByText('Hello')).to.match('.focusVisible');
     });

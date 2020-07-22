@@ -1,20 +1,25 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses } from '@material-ui/core/test-utils';
-import createMount from 'test/utils/createMount';
-import describeConformance from '@material-ui/core/test-utils/describeConformance';
-import { act, createClientRender, fireEvent, screen } from 'test/utils/createClientRender';
-import { ErrorBoundary } from 'test/utils/components';
+import { spy, stub, useFakeTimers } from 'sinon';
+import {
+  getClasses,
+  createMount,
+  describeConformance,
+  ErrorBoundary,
+  act,
+  createClientRender,
+  fireEvent,
+  screen,
+} from 'test/utils';
 import MenuItem from '../MenuItem';
 import Input from '../Input';
 import InputLabel from '../InputLabel';
 import Select from './Select';
-import { spy, stub, useFakeTimers } from 'sinon';
 
 describe('<Select />', () => {
   let classes;
-  // StrictModeViolation: uses Menu
-  const mount = createMount({ strict: false });
+  const mount = createMount({ strict: true });
+  // StrictModeViolation: triggers "not wrapped in act()" warnings from timers.
   const render = createClientRender({ strict: false });
 
   before(() => {
@@ -617,11 +622,11 @@ describe('<Select />', () => {
   describe('prop: open (controlled)', () => {
     let clock;
 
-    before(() => {
+    beforeEach(() => {
       clock = useFakeTimers();
     });
 
-    after(() => {
+    afterEach(() => {
       clock.restore();
     });
 

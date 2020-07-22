@@ -1,33 +1,36 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses } from '@material-ui/core/test-utils';
+import {
+  getClasses,
+  createMount,
+  describeConformance,
+  act,
+  createClientRender,
+  fireEvent,
+} from 'test/utils';
 import { useFakeTimers } from 'sinon';
-import createMount from 'test/utils/createMount';
-import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 import Icon from '@material-ui/core/Icon';
 import Tooltip from '@material-ui/core/Tooltip';
 import Fab from '@material-ui/core/Fab';
 import SpeedDialAction from './SpeedDialAction';
-import describeConformance from '@material-ui/core/test-utils/describeConformance';
 
 describe('<SpeedDialAction />', () => {
-  // StrictModeViolation: uses Tooltip
-  const mount = createMount({ strict: false });
-  const render = createClientRender({ strict: false });
-  let classes;
-  const fabClasses = getClasses(<Fab>Fab</Fab>);
   let clock;
-
-  before(() => {
-    classes = getClasses(<SpeedDialAction icon={<Icon>add</Icon>} tooltipTitle="placeholder" />);
-  });
-
   beforeEach(() => {
     clock = useFakeTimers();
   });
 
   afterEach(() => {
     clock.restore();
+  });
+
+  const mount = createMount({ strict: true });
+  const render = createClientRender();
+  let classes;
+  const fabClasses = getClasses(<Fab>Fab</Fab>);
+
+  before(() => {
+    classes = getClasses(<SpeedDialAction icon={<Icon>add</Icon>} tooltipTitle="placeholder" />);
   });
 
   describeConformance(
@@ -52,8 +55,15 @@ describe('<SpeedDialAction />', () => {
     );
 
     fireEvent.mouseOver(container.querySelector('button'));
-    clock.tick(100);
+    act(() => {
+      clock.tick(100);
+    });
+
     expect(getByText('placeholder')).to.have.class('bar');
+
+    // TODO: Unclear why not running triggers microtasks but runAll does not trigger microtasks
+    // can be removed once Popper#update is sync
+    clock.runAll();
   });
 
   it('should render a Fab', () => {

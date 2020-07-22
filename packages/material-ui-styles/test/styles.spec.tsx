@@ -402,7 +402,7 @@ withStyles((theme) =>
   }
 }
 
-function forwardRefTest() {
+function ForwardRefTest() {
   const styles = createStyles({
     root: { color: 'red' },
   });
@@ -439,19 +439,20 @@ function forwardRefTest() {
 {
   // https://github.com/mui-org/material-ui/pull/15546
   // Update type definition to let CSS properties be functions
-  interface testProps {
+  interface TestProps {
     foo: boolean;
   }
   const useStyles = makeStyles((theme: Theme) => ({
     root: {
-      width: (prop: testProps) => (prop.foo ? 100 : 0),
+      width: (prop: TestProps) => (prop.foo ? 100 : 0),
     },
-    root2: (prop2: testProps) => ({
-      width: (prop: testProps) => (prop.foo && prop2.foo ? 100 : 0),
+    root2: (prop2: TestProps) => ({
+      width: (prop: TestProps) => (prop.foo && prop2.foo ? 100 : 0),
       height: 100,
     }),
   }));
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const styles = useStyles({ foo: true });
   expectType<Record<'root' | 'root2', string>, typeof styles>(styles);
 }
@@ -480,12 +481,12 @@ function forwardRefTest() {
     typeof styles2
   >(styles2);
 
-  interface testProps {
+  interface TestProps {
     foo: boolean;
   }
 
   const styles3 = createStyles({
-    root: (props: testProps) => ({
+    root: (props: TestProps) => ({
       width: 1,
     }),
   });
@@ -493,8 +494,8 @@ function forwardRefTest() {
     Record<
       'root',
       | CSSProperties
-      | CreateCSSProperties<testProps>
-      | PropsFunc<testProps, CreateCSSProperties<testProps>>
+      | CreateCSSProperties<TestProps>
+      | PropsFunc<TestProps, CreateCSSProperties<TestProps>>
     >,
     typeof styles3
   >(styles3);

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
 import { chainPropTypes } from '@material-ui/utils';
+import withStyles from '../styles/withStyles';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -90,7 +90,7 @@ CardMedia.propTypes = {
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
-  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
+  component: PropTypes.elementType,
   /**
    * Image to be displayed as a background image.
    * Either `image` or `src` prop must be specified.

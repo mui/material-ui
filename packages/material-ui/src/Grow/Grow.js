@@ -28,7 +28,6 @@ const styles = {
 const Grow = React.forwardRef(function Grow(props, ref) {
   const {
     children,
-    disableStrictModeCompat = false,
     in: inProp,
     onEnter,
     onEntered,
@@ -46,22 +45,19 @@ const Grow = React.forwardRef(function Grow(props, ref) {
   const autoTimeout = React.useRef();
   const theme = useTheme();
 
-  const enableStrictModeCompat = theme.unstable_strictMode && !disableStrictModeCompat;
   const nodeRef = React.useRef(null);
   const foreignRef = useForkRef(children.ref, ref);
-  const handleRef = useForkRef(enableStrictModeCompat ? nodeRef : undefined, foreignRef);
+  const handleRef = useForkRef(nodeRef, foreignRef);
 
-  const normalizedTransitionCallback = (callback) => (nodeOrAppearing, maybeAppearing) => {
+  const normalizedTransitionCallback = (callback) => (maybeIsAppearing) => {
     if (callback) {
-      const [node, isAppearing] = enableStrictModeCompat
-        ? [nodeRef.current, nodeOrAppearing]
-        : [nodeOrAppearing, maybeAppearing];
+      const node = nodeRef.current;
 
       // onEnterXxx and onExitXxx callbacks have a different arguments.length value.
-      if (isAppearing === undefined) {
+      if (maybeIsAppearing === undefined) {
         callback(node);
       } else {
-        callback(node, isAppearing);
+        callback(node, maybeIsAppearing);
       }
     }
   };
@@ -143,8 +139,7 @@ const Grow = React.forwardRef(function Grow(props, ref) {
 
   const handleExited = normalizedTransitionCallback(onExited);
 
-  const addEndListener = (nodeOrNext, maybeNext) => {
-    const next = enableStrictModeCompat ? nodeOrNext : maybeNext;
+  const addEndListener = (next) => {
     if (timeout === 'auto') {
       timer.current = setTimeout(next, autoTimeout.current || 0);
     }
@@ -160,7 +155,7 @@ const Grow = React.forwardRef(function Grow(props, ref) {
     <TransitionComponent
       appear
       in={inProp}
-      nodeRef={enableStrictModeCompat ? nodeRef : undefined}
+      nodeRef={nodeRef}
       onEnter={handleEnter}
       onEntered={handleEntered}
       onEntering={handleEntering}
@@ -198,12 +193,6 @@ Grow.propTypes = {
    * A single child content element.
    */
   children: PropTypes.element,
-  /**
-   * Enable this prop if you encounter 'Function components cannot be given refs',
-   * use `unstable_createStrictModeTheme`,
-   * and can't forward the ref in the child component.
-   */
-  disableStrictModeCompat: PropTypes.bool,
   /**
    * If `true`, show the component; triggers the enter or exit animation.
    */

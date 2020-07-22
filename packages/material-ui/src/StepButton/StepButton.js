@@ -5,6 +5,8 @@ import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 import StepLabel from '../StepLabel';
 import isMuiElement from '../utils/isMuiElement';
+import StepperContext from '../Stepper/StepperContext';
+import StepContext from '../Step/StepContext';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -29,35 +31,14 @@ export const styles = {
 };
 
 const StepButton = React.forwardRef(function StepButton(props, ref) {
-  const {
-    // eslint-disable-next-line react/prop-types
-    active,
-    // eslint-disable-next-line react/prop-types
-    alternativeLabel,
-    children,
-    classes,
-    className,
-    completed,
-    disabled,
-    // eslint-disable-next-line react/prop-types
-    expanded,
-    icon,
-    // eslint-disable-next-line react/prop-types
-    last,
-    optional,
-    // eslint-disable-next-line react/prop-types
-    orientation,
-    ...other
-  } = props;
+  const { children, classes, className, icon, optional, ...other } = props;
+
+  const { disabled } = React.useContext(StepContext);
+  const { orientation } = React.useContext(StepperContext);
 
   const childProps = {
-    active,
-    alternativeLabel,
-    completed,
-    disabled,
     icon,
     optional,
-    orientation,
   };
 
   const child = isMuiElement(children, ['StepLabel']) ? (
@@ -98,15 +79,6 @@ StepButton.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
-  /**
-   * For non-linear Steppers you need to manually set which steps are completed.
-   * Otherwise the Stepper determines if a step is completed.
-   */
-  completed: PropTypes.bool,
-  /**
-   * @ignore This prop is ignored. You should disable the whole `Step`.
-   */
-  disabled: PropTypes.bool,
   /**
    * The icon displayed by the step label.
    */

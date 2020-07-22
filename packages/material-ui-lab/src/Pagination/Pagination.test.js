@@ -1,12 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { getClasses } from '@material-ui/core/test-utils';
-import createMount from 'test/utils/createMount';
-import describeConformance from '@material-ui/core/test-utils/describeConformance';
-import { createClientRender } from 'test/utils/createClientRender';
-import Pagination from './Pagination';
+import { getClasses, createMount, describeConformance, createClientRender } from 'test/utils';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import Pagination from './Pagination';
 
 describe('<Pagination />', () => {
   let classes;

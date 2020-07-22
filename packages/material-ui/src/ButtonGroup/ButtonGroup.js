@@ -8,7 +8,7 @@ import withStyles from '../styles/withStyles';
 import Button from '../Button';
 
 // Force a side effect so we don't have any override priority issue.
-// eslint-disable-next-line no-unused-expressions
+// eslint-disable-next-line @typescript-eslint/no-unused-expressions
 Button.styles;
 
 export const styles = (theme) => ({
@@ -265,7 +265,7 @@ ButtonGroup.propTypes = {
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
-  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
+  component: PropTypes.elementType,
   /**
    * If `true`, the buttons will be disabled.
    */

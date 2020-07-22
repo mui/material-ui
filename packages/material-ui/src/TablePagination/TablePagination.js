@@ -107,8 +107,8 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
     colSpan = colSpanProp || 1000; // col-span over everything
   }
 
-  const selectId = useId();
-  const labelId = useId();
+  const selectId = useId(SelectProps.id);
+  const labelId = useId(SelectProps.labelId);
   const MenuItemComponent = SelectProps.native ? 'option' : MenuItem;
 
   return (
@@ -202,7 +202,7 @@ TablePagination.propTypes = {
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
-  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
+  component: PropTypes.elementType,
   /**
    * The total number of rows.
    *
