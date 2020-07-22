@@ -97,7 +97,7 @@ describe('<Select />', () => {
     // mousedown calls focus while click opens moving the focus to an item
     // this means the trigger is blurred immediately
     const handleBlur = spy();
-    const { getByRole, getAllByRole, queryByRole } = render(
+    const { getByRole, getAllByRole } = render(
       <Select
         onBlur={handleBlur}
         value=""
@@ -126,7 +126,7 @@ describe('<Select />', () => {
     });
 
     expect(handleBlur.callCount).to.equal(0);
-    expect(queryByRole('listbox', { hidden: false })).not.to.equal(null);
+    expect(getByRole('listbox', { hidden: true })).toBeInaccessible();
   });
 
   it('options should have a data-value attribute', () => {
@@ -194,6 +194,22 @@ describe('<Select />', () => {
       getByTestId('backdrop').click();
     });
 
+    expect(handleClose.callCount).to.equal(1);
+  });
+
+  it('should call onClose when the same option is selected', () => {
+    const handleChange = spy();
+    const handleClose = spy();
+    render(
+      <Select open onChange={handleChange} onClose={handleClose} value="second">
+        <MenuItem value="first" />
+        <MenuItem value="second" />
+      </Select>,
+    );
+
+    screen.getByRole('option', { selected: true }).click();
+
+    expect(handleChange.callCount).to.equal(0);
     expect(handleClose.callCount).to.equal(1);
   });
 
