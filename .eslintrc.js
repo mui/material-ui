@@ -198,5 +198,12 @@ module.exports = {
         'react/static-property-placement': 'off',
       },
     },
+    {
+      files: ['packages/typescript-to-proptypes/src/**/*.ts'],
+      rules: {
+        // Working with flags is common in TypeScript compiler
+        'no-bitwise': 'off',
+      },
+    },
   ],
 };

@@ -1,5 +1,4 @@
-import { Node, DefinitionHolder } from './baseNodes';
-import { PropTypeNode } from './proptype';
+import { Node, DefinitionHolder, PropTypeNode } from './baseNodes';
 
 const typeString = 'ComponentNode';
 
@@ -15,7 +14,7 @@ export function componentNode(
 ): ComponentNode {
   return {
     type: typeString,
-    name: name,
+    name,
     types: types || [],
     propsFilename,
   };

@@ -1,5 +1,4 @@
-import { Node, DefinitionHolder } from '../nodes/baseNodes';
-import { PropTypeNode } from '../nodes/proptype';
+import { Node, DefinitionHolder, PropTypeNode } from '../nodes/baseNodes';
 
 const typeString = 'InterfaceNode';
 
