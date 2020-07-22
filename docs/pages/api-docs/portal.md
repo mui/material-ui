@@ -28,7 +28,7 @@ that exists outside the DOM hierarchy of the parent component.
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The children to render into the `container`. |
-| <span class="prop-name">container</span> | <span class="prop-type">HTML element<br>&#124;&nbsp;React.Component<br>&#124;&nbsp;func</span> |  | A HTML element, component instance, or function that returns either. The `container` will have the portal children appended to it.<br>By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time. |
+| <span class="prop-name">container</span> | <span class="prop-type">HTML element<br>&#124;&nbsp;func</span> |  | A HTML element or function that returns one. The `container` will have the portal children appended to it.<br>By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time. |
 | <span class="prop-name">disablePortal</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | The `children` will be inside the DOM hierarchy of the parent component. |
 | <span class="prop-name">onRendered</span> | <span class="prop-type">func</span> |  | Callback fired once the children has been mounted into the `container`.<br>This prop will be deprecated and removed in v5, the ref can be used instead. |
 
