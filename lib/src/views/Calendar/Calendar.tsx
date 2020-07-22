@@ -13,7 +13,10 @@ import { useGlobalKeyDown, keycode } from '../../_shared/hooks/useKeyDown';
 import { SlideTransition, SlideDirection, SlideTransitionProps } from './SlideTransition';
 
 export interface ExportedCalendarProps
-  extends Pick<DayProps, 'disableHighlightToday' | 'showDaysOutsideCurrentMonth'> {
+  extends Pick<
+    DayProps,
+    'disableHighlightToday' | 'showDaysOutsideCurrentMonth' | 'allowSameDateSelection'
+  > {
   /**
    * Calendar onChange.
    */
@@ -55,7 +58,7 @@ export interface CalendarProps extends ExportedCalendarProps {
 }
 
 const muiComponentConfig = { name: 'MuiPickersCalendar' };
-export const useStyles = makeStyles((theme) => {
+export const useStyles = makeStyles(theme => {
   const weeksContainerHeight = (DAY_SIZE + DAY_MARGIN * 4) * 6;
   return {
     root: {
@@ -119,6 +122,7 @@ export const Calendar: React.FC<CalendarProps> = withDefaultProps(
     showDaysOutsideCurrentMonth,
     className,
     loading,
+    allowSameDateSelection,
     renderLoading = () => <span data-mui-test="loading-progress">...</span>,
     TransitionProps,
   }) => {
@@ -156,7 +160,7 @@ export const Calendar: React.FC<CalendarProps> = withDefaultProps(
     const currentMonthNumber = utils.getMonth(currentMonth);
     const selectedDates = (Array.isArray(date) ? date : [date])
       .filter(Boolean)
-      .map((selectedDateItem) => utils.startOfDay(selectedDateItem));
+      .map(selectedDateItem => utils.startOfDay(selectedDateItem));
 
     return (
       <React.Fragment>
@@ -184,9 +188,9 @@ export const Calendar: React.FC<CalendarProps> = withDefaultProps(
             {...TransitionProps}
           >
             <div role="grid" className={classes.weekContainer}>
-              {utils.getWeekArray(currentMonth).map((week) => (
+              {utils.getWeekArray(currentMonth).map(week => (
                 <div role="row" key={`week-${week[0]}`} className={classes.week}>
-                  {week.map((day) => {
+                  {week.map(day => {
                     const disabled = isDateDisabled(day);
                     const isDayInCurrentMonth = utils.getMonth(day) === currentMonthNumber;
 
@@ -196,14 +200,15 @@ export const Calendar: React.FC<CalendarProps> = withDefaultProps(
                       role: 'cell',
                       isAnimating: isMonthSwitchingAnimating,
                       disabled: disabled,
-                      allowKeyboardControl: allowKeyboardControl,
+                      allowKeyboardControl,
+                      allowSameDateSelection,
                       focused:
                         allowKeyboardControl &&
                         Boolean(focusedDay) &&
                         utils.isSameDay(day, focusedDay),
                       today: utils.isSameDay(day, now),
                       inCurrentMonth: isDayInCurrentMonth,
-                      selected: selectedDates.some((selectedDate) =>
+                      selected: selectedDates.some(selectedDate =>
                         utils.isSameDay(selectedDate, day)
                       ),
                       disableHighlightToday,

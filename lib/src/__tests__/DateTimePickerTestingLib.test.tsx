@@ -2,7 +2,7 @@ import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { utilsToUse } from './test-utils';
 import { createClientRender } from './createClientRender';
-import { DesktopDateTimePicker } from '../DateTimePicker';
+import { DesktopDateTimePicker, StaticDateTimePicker } from '../DateTimePicker';
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 
 describe('<DateTimePicker />', () => {
@@ -96,4 +96,20 @@ describe('<DateTimePicker />', () => {
     fireEvent.click(screen.getByLabelText('open next view'));
     expect(screen.getByLabelText('open next view')).toBeDisabled();
   });
+
+  it('allows to select the same day and move to the next view', () => {
+    const onChangeMock = jest.fn()
+    render(
+      <StaticDateTimePicker
+        onChange={onChangeMock}
+        renderInput={(props) => <TextField {...props} />}
+        value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
+      />
+    );
+
+    fireEvent.click(screen.getByLabelText("Jan 1, 2018"))
+    expect(onChangeMock).toHaveBeenCalled()
+
+    expect(screen.getByLabelText(/Selected time/)).toBeInTheDocument()
+  })
 });

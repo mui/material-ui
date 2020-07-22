@@ -80,6 +80,7 @@ function useInterceptProps({
     orientation,
     showToolbar: true,
     showTabs: true,
+    allowSameDateSelection: true,
     minDate: minDateTime || minDate,
     minTime: minDateTime || minTime,
     maxDate: maxDateTime || maxDate,

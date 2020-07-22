@@ -136,12 +136,12 @@ export const PureDateRangeDay = ({
         })}
       >
         <Day
-          allowKeyboardControl={false}
-          disableMargin
           {...other}
+          disableMargin
+          allowSameDateSelection
+          allowKeyboardControl={false}
           day={day}
           selected={selected}
-          allowSameDateSelection={true}
           inCurrentMonth={inCurrentMonth}
           data-mui-test="DateRangeDay"
           className={clsx(
