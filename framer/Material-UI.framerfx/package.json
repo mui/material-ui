@@ -30,16 +30,6 @@
       "optional": true
     }
   },
-  "devDependencies": {
-    "@types/draft-js": "^0.10.43",
-    "@types/react": "^16.8.24",
-    "framer": "^1.2.5",
-    "framer-motion": "^2.1.0",
-    "immutable": "^4.0.0-rc.12",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "typescript": "^3.9.3"
-  },
   "framer": {
     "displayName": "Material-UI",
     "id": "ee255265-d0d6-4999-a685-9461c1248b6a"

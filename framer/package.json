@@ -7,9 +7,13 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
+    "@types/draft-js": "^0.10.43",
+    "@types/react": "^16.8.24",
     "case": "1.6.3",
     "deepmerge": "^4.0.0",
     "docs": "^4.0.0",
+    "framer": "^1.2.5",
+    "framer-motion": "^2.1.0",
     "mustache": "^4.0.0",
     "react-docgen": "^5.0.0-beta.1"
   },
