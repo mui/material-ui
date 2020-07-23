@@ -14,6 +14,11 @@ export interface TooltipProps
    */
   children: React.ReactElement<any, any>;
   /**
+   * Set to `true` if the `title` acts as an accessible description.
+   * By default the `title` acts as an accessible label for the child.
+   */
+  describeChild?: boolean;
+  /**
    * Do not respond to focus events.
    */
   disableFocusListener?: boolean;

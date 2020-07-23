@@ -31,6 +31,7 @@ The `MuiTooltip` name can be used for providing [default props](/customization/g
 | <span class="prop-name">arrow</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, adds an arrow to the tooltip. |
 | <span class="prop-name required">children<abbr title="required">*</abbr></span> | <span class="prop-type">element</span> |  | Tooltip reference element.<br>⚠️ [Needs to be able to hold a ref](/guides/composition/#caveat-with-refs). |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span class="prop-name">describeChild</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Set to `true` if the `title` acts as an accessible description. By default the `title` acts as an accessible label for the child. |
 | <span class="prop-name">disableFocusListener</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Do not respond to focus events. |
 | <span class="prop-name">disableHoverListener</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Do not respond to hover events. |
 | <span class="prop-name">disableTouchListener</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Do not respond to long press touch events. |

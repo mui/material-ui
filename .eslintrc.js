@@ -132,6 +132,8 @@ module.exports = {
         'jsx-a11y/no-static-element-interactions': 'off',
         'jsx-a11y/tabindex-no-positive': 'off',
 
+        // same rationale as for eslint-plugin-jsx-a11y
+        'react/button-has-type': 'off',
         // They are accessed to test custom validator implementation with PropTypes.checkPropTypes
         'react/forbid-foreign-prop-types': 'off',
         // components that are defined in test are isolated enough
