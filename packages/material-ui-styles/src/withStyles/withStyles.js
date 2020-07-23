@@ -5,7 +5,7 @@ import { chainPropTypes, getDisplayName } from '@material-ui/utils';
 import makeStyles from '../makeStyles';
 import getThemeProps from '../getThemeProps';
 import useTheme from '../useTheme';
-import propsToClassKey from '../propsToClassKeys';
+import propsToClassKey from '../propsToClassKey';
 
 // Link a style sheet with a component.
 // It does not modify the component passed to it;

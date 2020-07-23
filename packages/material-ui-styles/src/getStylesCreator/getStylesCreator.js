@@ -1,5 +1,5 @@
 import { deepmerge } from '@material-ui/utils';
-import propsToClassKey from '../propsToClassKeys';
+import propsToClassKey from '../propsToClassKey';
 import noopTheme from './noopTheme';
 
 export default function getStylesCreator(stylesOrCreator) {
