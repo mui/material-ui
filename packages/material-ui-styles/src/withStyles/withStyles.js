@@ -85,7 +85,7 @@ const withStyles = (stylesOrCreator, options = {}) => (Component) => {
           }
         });
 
-        classes = { ...classes, root: `${classes.root} ${variantsClasses}` };
+        classes = { ...classes, root: `${classes.root}${variantsClasses}` };
       }
     }
 

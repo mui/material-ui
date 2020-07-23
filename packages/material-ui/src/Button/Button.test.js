@@ -372,10 +372,11 @@ describe('<Button />', () => {
   });
 
   describe('custom theme variants', () => {
-    const WrappedComponent = ({ theme, ...props }) => {
+    const WrappedComponent = (props) => {
+      const { theme, ...other } = props;
       return (
         <ThemeProvider theme={theme}>
-          <Button data-testid="component" {...props}>
+          <Button data-testid="component" {...other}>
             Content
           </Button>
         </ThemeProvider>

@@ -23,32 +23,34 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const defaultTheme = createMuiTheme();
 
-const inputTheme = createMuiTheme({
+const theme = createMuiTheme({
   variants: {
     MuiButton: [
       {
         props: { variant: 'dashed' },
         styles: {
-          padding: '5px 15px',
-          border: `3px dashed ${defaultTheme.palette.primary.main}`,
+          textTransform: 'none',
+          border: `2px dashed ${defaultTheme.palette.primary.main}`,
+          color: defaultTheme.palette.primary.main,
         },
       },
       {
         props: { variant: 'dashed', color: 'secondary' },
         styles: {
-          border: `3px dashed ${defaultTheme.palette.secondary.main}`,
+          border: `2px dashed ${defaultTheme.palette.secondary.main}`,
+          color: defaultTheme.palette.secondary.main,
         },
       },
       {
         props: { variant: 'dashed', size: 'large' },
         styles: {
-          borderWidth: 5,
+          borderWidth: 4,
         },
       },
       {
-        props: { variant: 'dashed', color: 'primary', size: 'large' },
+        props: { variant: 'dashed', color: 'secondary', size: 'large' },
         styles: {
-          fontWeight: 600,
+          fontSize: 18,
         },
       },
     ],
@@ -60,19 +62,16 @@ export default function GlobalThemeVariants() {
 
   return (
     <div className={classes.root}>
-      <ThemeProvider theme={inputTheme}>
-        <Button variant="dashed">Default</Button>
+      <ThemeProvider theme={theme}>
+        <Button variant="dashed">Dashed</Button>
         <Button variant="dashed" color="secondary">
           Secondary
         </Button>
-        <Button variant="dashed" color="primary">
-          Primary
+        <Button variant="dashed" size="large">
+          Large
         </Button>
         <Button variant="dashed" color="secondary" size="large">
           Secondary large
-        </Button>
-        <Button variant="dashed" color="primary" size="large">
-          Primary large
         </Button>
       </ThemeProvider>
     </div>

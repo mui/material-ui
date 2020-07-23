@@ -333,14 +333,14 @@ const theme = createMuiTheme({
       {
         props: { variant: 'dashed' },
         styles: {
-          padding: '5px 15px',
-          border: `5px dashed grey${blue[500]}`,
+          textTransform: 'none',
+          border: `2px dashed grey${blue[500]}`,
         },
       },
       {
         props: { variant: 'dashed', color: 'secondary' },
         styles: {
-          border: `5px dashed ${red[500]}`,
+          border: `4px dashed ${red[500]}`,
         },
       },
     ],
