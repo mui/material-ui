@@ -1,5 +1,47 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 5.0.0-alpha.4
+
+###### _July 19, 2020_
+
+Big thanks to the 11 contributors who made this release possible.
+
+### `@material-ui/core@v5.0.0-alpha.4`
+
+#### Breaking changes
+
+- [core] Drop support for non-ref-forwarding class components (#21811) @eps1lon
+  Support for non-ref-forwarding class components in the `component` prop or as an immediate `children` has been dropped. If you were using `unstable_createStrictModeTheme` or didn't see any warnings related to `findDOMNode` in `React.StrictMode` then you don't need to do anything.
+  Otherwise check out the ["Caveat with refs" section in our composition guide](/guides/composition/#caveat-with-refs) to find out how to migrate.
+  This change affects almost all components where you're using the `component` prop or passing `children` to components that require `children` to be elements (e.g. `<MenuList><CustomMenuItem /></MenuList>`)
+- [Stepper] Use context API (#21613) @baterson
+  Rely on the context over the `React.cloneElement()` API.
+  This change makes composition easier.
+
+### `@material-ui/icons@v5.0.0-alpha.4`
+
+- [icons] Add Google brand icon (#21807) @bmg02
+
+### Docs
+
+- [docs] Break up Select demos (#21792) @cjoecker
+- [docs] Change RMUIF info to new version (#21812) @phoqe
+- [docs] Fix Spanish translation (#21800) @adamsr123
+- [docs] Fix nav color (#21780) @mbrookes
+- [docs] Update advanced-de.md (#21786) @jasonericdavis
+
+### Core
+
+- [core] Allow dist tag as argv in use-react-dist-tag (#21810) @eps1lon
+- [core] Drop support for non-ref-forwarding class components (#21811) @eps1lon
+- [core] Lint with typescript-eslint parser (#21758) @oliviertassinari
+- [core] One label is enough @oliviertassinari
+- [core] Remove lint:fix command @oliviertassinari
+- [test] Enable "missing act()"-warnings (#21802) @eps1lon
+- [test] Improve stack trace for unexpected errors (#21818) @eps1lon
+- [test] Update react next patch (#21746) @eps1lon
+- [test] Use testing-library in withStyles (#21804) @eps1lon
+
 ## 5.0.0-alpha.3
 
 ###### _July 12, 2020_

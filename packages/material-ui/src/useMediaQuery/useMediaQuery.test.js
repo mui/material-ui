@@ -1,8 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from '@material-ui/styles';
-import { act, createClientRender } from 'test/utils/createClientRender';
-import createServerRender from 'test/utils/createServerRender';
+import { act, createClientRender, createServerRender } from 'test/utils';
 import mediaQuery from 'css-mediaquery';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';

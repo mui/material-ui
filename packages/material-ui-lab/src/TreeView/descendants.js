@@ -16,6 +16,28 @@ function findIndex(array, comp) {
   return -1;
 }
 
+function binaryFindElement(array, element) {
+  let start = 0;
+  let end = array.length - 1;
+
+  while (start <= end) {
+    const middle = Math.floor((start + end) / 2);
+
+    if (array[middle].element === element) {
+      return middle;
+    }
+
+    // eslint-disable-next-line no-bitwise
+    if (array[middle].element.compareDocumentPosition(element) & Node.DOCUMENT_POSITION_PRECEDING) {
+      end = middle - 1;
+    } else {
+      start = middle + 1;
+    }
+  }
+
+  return start;
+}
+
 const useEnhancedEffect = typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
 
 const DescendantContext = React.createContext({});
@@ -77,119 +99,90 @@ export function useDescendant(descendant) {
   // feels a little off, but checking in render and using the result in the
   // effect's dependency array works well enough.
   const someDescendantsHaveChanged = descendants.some((newDescendant, position) => {
-    return newDescendant.element !== previousDescendants?.[position]?.element;
+    return (
+      previousDescendants &&
+      previousDescendants[position] &&
+      previousDescendants[position].element !== newDescendant.element
+    );
   });
 
   // Prevent any flashing
   useEnhancedEffect(() => {
-    if (!descendant.element) {
-      forceUpdate({});
+    if (descendant.element) {
+      registerDescendant({
+        ...descendant,
+        index,
+      });
+      return () => {
+        unregisterDescendant(descendant.element);
+      };
     }
-    registerDescendant({
-      ...descendant,
-      index,
-    });
-    return () => {
-      unregisterDescendant(descendant.element);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    registerDescendant,
-    unregisterDescendant,
-    index,
-    someDescendantsHaveChanged,
-    // re-run effect if `descendant` is not equal shallowly
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    ...Object.keys(descendant).map((key) => descendant[key]),
-  ]);
+    forceUpdate({});
+
+    return undefined;
+  }, [registerDescendant, unregisterDescendant, index, someDescendantsHaveChanged, descendant]);
 
   return { parentId, index };
 }
 
-export function useDescendantsInit() {
-  return React.useState([]);
-}
-
 export function DescendantProvider(props) {
-  const { children, items, set, id } = props;
+  const { children, id } = props;
 
-  const registerDescendant = React.useCallback(
-    ({ element, ...rest }) => {
-      if (!element) {
-        return;
-      }
+  const [items, set] = React.useState([]);
 
-      set((oldItems) => {
-        let newItems;
-        if (oldItems.length === 0) {
-          // If there are no items, register at index 0 and bail.
-          newItems = [
-            ...oldItems,
-            {
-              ...rest,
-              element,
-              index: 0,
-            },
-          ];
-        } else if (oldItems.find((item) => item.element === element)) {
-          // If the element is already registered, just use the same array
-          newItems = oldItems;
-        } else {
-          // When registering a descendant, we need to make sure we insert in
-          // into the array in the same order that it appears in the DOM. So as
-          // new descendants are added or maybe some are removed, we always know
-          // that the array is up-to-date and correct.
-          //
-          // So here we look at our registered descendants and see if the new
-          // element we are adding appears earlier than an existing descendant's
-          // DOM node via `node.compareDocumentPosition`. If it does, we insert
-          // the new element at this index. Because `registerDescendant` will be
-          // called in an effect every time the descendants state value changes,
-          // we should be sure that this index is accurate when descendent
-          // elements come or go from our component.
-          const index = findIndex(oldItems, (item) => {
-            if (!item.element || !element) {
-              return false;
-            }
-            // Does this element's DOM node appear before another item in the
-            // array in our DOM tree? If so, return true to grab the index at
-            // this point in the array so we know where to insert the new
-            // element.
-            return Boolean(
-              // eslint-disable-next-line no-bitwise
-              item.element.compareDocumentPosition(element) & Node.DOCUMENT_POSITION_PRECEDING,
-            );
-          });
-
-          const newItem = {
+  const registerDescendant = React.useCallback(({ element, ...rest }) => {
+    set((oldItems) => {
+      let newItems;
+      if (oldItems.length === 0) {
+        // If there are no items, register at index 0 and bail.
+        return [
+          {
             ...rest,
             element,
-            index,
-          };
-
-          // If an index is not found we will push the element to the end.
-          if (index === -1) {
-            newItems = [...oldItems, newItem];
-          } else {
-            newItems = [...oldItems.slice(0, index), newItem, ...oldItems.slice(index)];
-          }
-        }
-        return newItems.map((item, index) => ({ ...item, index }));
-      });
-    },
-    [set],
-  );
-
-  const unregisterDescendant = React.useCallback(
-    (element) => {
-      if (!element) {
-        return;
+            index: 0,
+          },
+        ];
       }
 
-      set((oldItems) => oldItems.filter((item) => element !== item.element));
-    },
-    [set],
-  );
+      const index = binaryFindElement(oldItems, element);
+
+      if (oldItems[index] && oldItems[index].element === element) {
+        // If the element is already registered, just use the same array
+        newItems = oldItems;
+      } else {
+        // When registering a descendant, we need to make sure we insert in
+        // into the array in the same order that it appears in the DOM. So as
+        // new descendants are added or maybe some are removed, we always know
+        // that the array is up-to-date and correct.
+        //
+        // So here we look at our registered descendants and see if the new
+        // element we are adding appears earlier than an existing descendant's
+        // DOM node via `node.compareDocumentPosition`. If it does, we insert
+        // the new element at this index. Because `registerDescendant` will be
+        // called in an effect every time the descendants state value changes,
+        // we should be sure that this index is accurate when descendent
+        // elements come or go from our component.
+
+        const newItem = {
+          ...rest,
+          element,
+          index,
+        };
+
+        // If an index is not found we will push the element to the end.
+        newItems = oldItems.slice();
+        newItems.splice(index, 0, newItem);
+      }
+      newItems.forEach((item, position) => {
+        item.index = position;
+      });
+      return newItems;
+    });
+  }, []);
+
+  const unregisterDescendant = React.useCallback((element) => {
+    set((oldItems) => oldItems.filter((item) => element !== item.element));
+  }, []);
 
   const value = React.useMemo(
     () => ({
@@ -207,6 +200,4 @@ export function DescendantProvider(props) {
 DescendantProvider.propTypes = {
   children: PropTypes.node,
   id: PropTypes.string,
-  items: PropTypes.array,
-  set: PropTypes.func,
 };

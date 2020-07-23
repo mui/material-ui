@@ -36,6 +36,7 @@ The `MuiTreeItem` name can be used for providing [default props](/customization/
 | <span class="prop-name">icon</span> | <span class="prop-type">node</span> |  | The icon to display next to the tree node's label. |
 | <span class="prop-name">label</span> | <span class="prop-type">node</span> |  | The tree node label. |
 | <span class="prop-name required">nodeId<abbr title="required">*</abbr></span> | <span class="prop-type">string</span> |  | The id of the node. |
+| <span class="prop-name">onFocus</span> | <span class="prop-type">unsupportedProp</span> |  | This prop isn't supported. Use the `onNodeFocus` callback on the tree if you need to monitor a node's focus. |
 | <span class="prop-name">onIconClick</span> | <span class="prop-type">func</span> |  | `onClick` handler for the icon container. Call `event.preventDefault()` to prevent `onNodeToggle` from being called. |
 | <span class="prop-name">onLabelClick</span> | <span class="prop-type">func</span> |  | `onClick` handler for the label container. Call `event.preventDefault()` to prevent `onNodeToggle` from being called. |
 | <span class="prop-name">TransitionComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">Collapse</span> | The component used for the transition. [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component. |

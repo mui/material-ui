@@ -6,7 +6,7 @@ import path from 'path';
  * Loads and parses a `tsconfig` file and returns a `ts.CompilerOptions` object
  * @param tsConfigPath The location for a `tsconfig.json` file
  */
-export function loadConfig(tsConfigPath: string) {
+export default function loadConfig(tsConfigPath: string) {
   const { config, error } = ts.readConfigFile(tsConfigPath, (filePath) =>
     fs.readFileSync(filePath).toString(),
   );

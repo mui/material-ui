@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { act, createClientRender } from 'test/utils/createClientRender';
+import { act, createClientRender } from 'test/utils';
 import useControlled from './useControlled';
 
 const TestComponent = ({ value: valueProp, defaultValue, children }) => {

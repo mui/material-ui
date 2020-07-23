@@ -98,12 +98,13 @@ function getDependencies(raw, options = {}) {
   const versions = {
     'react-dom': reactVersion,
     react: reactVersion,
-    '@material-ui/core': 'latest',
-    '@material-ui/icons': 'latest',
-    '@material-ui/lab': 'latest',
-    '@material-ui/styles': 'latest',
-    '@material-ui/system': 'latest',
-    '@material-ui/utils': 'latest',
+    // TODO: change 'next' to 'latest' once next is merged into master.
+    '@material-ui/core': 'next',
+    '@material-ui/icons': 'next',
+    '@material-ui/lab': 'next',
+    '@material-ui/styles': 'next',
+    '@material-ui/system': 'next',
+    '@material-ui/utils': 'next',
     // TODO: remove once @material-ui/pickers v4 is released.
     '@date-io/date-fns': 'v1',
   };

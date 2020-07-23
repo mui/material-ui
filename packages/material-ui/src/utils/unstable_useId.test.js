@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
-import { createClientRender } from 'test/utils/createClientRender';
+import { createClientRender } from 'test/utils';
 import useId from './unstable_useId';
 
 const TestComponent = ({ id: idProp }) => {

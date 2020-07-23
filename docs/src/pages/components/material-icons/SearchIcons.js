@@ -221,12 +221,12 @@ let DialogDetails = (props) => {
           <DialogContent>
             <Grid container className={classes.container}>
               <Grid item xs={12} sm="auto">
-                <Grid container justify="center">
+                <Grid container justifyContent="center">
                   <selectedIcon.Icon className={classes.canvas} />
                 </Grid>
               </Grid>
               <Grid item xs>
-                <Grid container alignItems="flex-end" justify="center">
+                <Grid container alignItems="flex-end" justifyContent="center">
                   <Grid item>
                     <Tooltip title="fontSize small">
                       <selectedIcon.Icon
@@ -249,7 +249,7 @@ let DialogDetails = (props) => {
                     </Tooltip>
                   </Grid>
                 </Grid>
-                <Grid container justify="center">
+                <Grid container justifyContent="center">
                   <selectedIcon.Icon
                     className={clsx(classes.context, classes.contextPrimary)}
                   />
@@ -260,7 +260,7 @@ let DialogDetails = (props) => {
                     )}
                   />
                 </Grid>
-                <Grid container justify="center">
+                <Grid container justifyContent="center">
                   <selectedIcon.Icon
                     className={clsx(
                       classes.context,
@@ -274,7 +274,7 @@ let DialogDetails = (props) => {
                     )}
                   />
                 </Grid>
-                <Grid container justify="center">
+                <Grid container justifyContent="center">
                   <selectedIcon.Icon
                     className={clsx(
                       classes.context,

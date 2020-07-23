@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { withStyles } from '@material-ui/core/styles';
+import withStyles from '../styles/withStyles';
 import { html, body } from '../CssBaseline/CssBaseline';
 
 export const styles = (theme) => ({

@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { StandardProps } from '@material-ui/core';
 import { TransitionProps } from '@material-ui/core/transitions';
+import { Omit } from '@material-ui/types';
 
 export interface TreeItemProps
-  extends StandardProps<React.HTMLAttributes<HTMLLIElement>, TreeItemClassKey> {
+  extends StandardProps<Omit<React.HTMLAttributes<HTMLLIElement>, 'onFocus'>, TreeItemClassKey> {
   /**
    * The content of the component.
    */
@@ -24,6 +25,11 @@ export interface TreeItemProps
    * The icon to display next to the tree node's label.
    */
   icon?: React.ReactNode;
+  /**
+   * This prop isn't supported.
+   * Use the `onNodeFocus` callback on the tree if you need to monitor a node's focus.
+   */
+  onFocus?: null;
   /**
    * `onClick` handler for the icon container. Call `event.preventDefault()` to prevent `onNodeToggle` from being called.
    */

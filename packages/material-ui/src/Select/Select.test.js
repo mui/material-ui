@@ -1,11 +1,16 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
-import { getClasses } from '@material-ui/core/test-utils';
-import createMount from 'test/utils/createMount';
-import describeConformance from '@material-ui/core/test-utils/describeConformance';
-import { act, createClientRender, fireEvent, screen } from 'test/utils/createClientRender';
-import { ErrorBoundary } from 'test/utils/components';
+import {
+  getClasses,
+  createMount,
+  describeConformance,
+  ErrorBoundary,
+  act,
+  createClientRender,
+  fireEvent,
+  screen,
+} from 'test/utils';
 import MenuItem from '../MenuItem';
 import Input from '../Input';
 import InputLabel from '../InputLabel';
@@ -13,8 +18,8 @@ import Select from './Select';
 
 describe('<Select />', () => {
   let classes;
-  // StrictModeViolation: uses Menu
-  const mount = createMount({ strict: false });
+  const mount = createMount({ strict: true });
+  // StrictModeViolation: triggers "not wrapped in act()" warnings from timers.
   const render = createClientRender({ strict: false });
 
   before(() => {
@@ -192,6 +197,22 @@ describe('<Select />', () => {
     expect(handleClose.callCount).to.equal(1);
   });
 
+  it('should call onClose when the same option is selected', () => {
+    const handleChange = spy();
+    const handleClose = spy();
+    render(
+      <Select open onChange={handleChange} onClose={handleClose} value="second">
+        <MenuItem value="first" />
+        <MenuItem value="second" />
+      </Select>,
+    );
+
+    screen.getByRole('option', { selected: true }).click();
+
+    expect(handleChange.callCount).to.equal(0);
+    expect(handleClose.callCount).to.equal(1);
+  });
+
   it('should focus select when its label is clicked', () => {
     const { getByRole, getByTestId } = render(
       <React.Fragment>
@@ -230,6 +251,23 @@ describe('<Select />', () => {
       expect(onChangeHandler.calledOnce).to.equal(true);
       const selected = onChangeHandler.args[0][1];
       expect(React.isValidElement(selected)).to.equal(true);
+    });
+
+    it('should call onChange before onClose', () => {
+      const eventLog = [];
+      const onChangeHandler = spy(() => eventLog.push('CHANGE_EVENT'));
+      const onCloseHandler = spy(() => eventLog.push('CLOSE_EVENT'));
+      const { getAllByRole, getByRole } = render(
+        <Select onChange={onChangeHandler} onClose={onCloseHandler} value="0">
+          <MenuItem value="0" />
+          <MenuItem value="1" />
+        </Select>,
+      );
+
+      fireEvent.mouseDown(getByRole('button'));
+      getAllByRole('option')[1].click();
+
+      expect(eventLog).to.deep.equal(['CHANGE_EVENT', 'CLOSE_EVENT']);
     });
 
     it('should not be called if selected element has the current value (value did not change)', () => {

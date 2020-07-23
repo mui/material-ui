@@ -1,7 +1,6 @@
 export * from './nodes/baseNodes';
 export * from './nodes/program';
 export * from './nodes/component';
-export * from './nodes/proptype';
 
 export * from './props/function';
 export * from './props/interface';

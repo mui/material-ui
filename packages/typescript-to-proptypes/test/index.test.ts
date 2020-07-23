@@ -16,6 +16,7 @@ const program = ttp.createProgram(
   ttp.loadConfig(path.resolve(__dirname, '../tsconfig.json')),
 );
 
+// eslint-disable-next-line no-restricted-syntax
 for (const testCase of testCases) {
   const dirname = path.dirname(testCase);
   const testName = dirname.substr(__dirname.length + 1);
@@ -24,6 +25,7 @@ for (const testCase of testCases) {
   const inputJS = path.join(dirname, 'input.js');
 
   it(testName, () => {
+    // eslint-disable-next-line import/no-dynamic-require, global-require -- TODO
     const options: TestOptions = fs.existsSync(optionsPath) ? require(optionsPath).default : {};
 
     const ast = ttp.parseFromProgram(testCase, program, options.parser);

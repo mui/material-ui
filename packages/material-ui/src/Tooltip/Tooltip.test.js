@@ -1,11 +1,15 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { getClasses } from '@material-ui/core/test-utils';
-import createMount from 'test/utils/createMount';
+import {
+  getClasses,
+  createMount,
+  describeConformance,
+  act,
+  createClientRender,
+  fireEvent,
+} from 'test/utils';
 import { camelCase } from 'lodash/string';
-import { act, createClientRender, fireEvent } from 'test/utils/createClientRender';
-import describeConformance from '../test-utils/describeConformance';
 import Tooltip, { testReset } from './Tooltip';
 import Input from '../Input';
 
@@ -39,10 +43,9 @@ describe('<Tooltip />', () => {
     });
   });
 
-  // StrictModeViolation: uses Grow and tests a lot of impl details
-  const mount = createMount({ strict: null });
+  const mount = createMount({ strict: true });
   let classes;
-  const render = createClientRender({ strict: false });
+  const render = createClientRender();
 
   before(() => {
     classes = getClasses(
@@ -740,7 +743,9 @@ describe('<Tooltip />', () => {
       );
       const input = getByRole('textbox');
 
-      input.focus();
+      act(() => {
+        input.focus();
+      });
 
       // return value is event.currentTarget
       expect(handleFocus.callCount).to.equal(1);

@@ -1,8 +1,6 @@
 import * as React from 'react';
-import { getClasses } from '@material-ui/core/test-utils';
-import createMount from 'test/utils/createMount';
+import { getClasses, createMount, describeConformance } from 'test/utils';
 import ScopedCssBaseline from './ScopedCssBaseline';
-import describeConformance from '../test-utils/describeConformance';
 
 describe('<ScopedCssBaseline />', () => {
   const mount = createMount();
