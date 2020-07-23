@@ -463,7 +463,6 @@ describe('<Button />', () => {
       expect(style.getPropertyValue('background-color')).not.to.equal('rgb(0, 255, 0)');
     });
 
-
     it('should warn if the used variant is not defined in the theme', function test() {
       const theme = createMuiTheme({
         variants: {
