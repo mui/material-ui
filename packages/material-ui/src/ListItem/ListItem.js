@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes } from '@material-ui/utils';
+import { chainPropTypes, elementTypeAcceptingRef } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 import isMuiElement from '../utils/isMuiElement';
@@ -260,7 +260,7 @@ ListItem.propTypes = {
   /**
    * The container component used when a `ListItemSecondaryAction` is the last child.
    */
-  ContainerComponent: PropTypes.elementType,
+  ContainerComponent: elementTypeAcceptingRef,
   /**
    * Props applied to the container component if used.
    */

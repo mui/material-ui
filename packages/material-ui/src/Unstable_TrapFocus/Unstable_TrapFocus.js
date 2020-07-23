@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention, consistent-return, jsx-a11y/no-noninteractive-tabindex */
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { exactProp } from '@material-ui/utils';
+import { exactProp, elementAcceptingRef } from '@material-ui/utils';
 import ownerDocument from '../utils/ownerDocument';
 import useForkRef from '../utils/useForkRef';
 
@@ -193,7 +193,7 @@ Unstable_TrapFocus.propTypes = {
   /**
    * A single child content element.
    */
-  children: PropTypes.node,
+  children: elementAcceptingRef,
   /**
    * If `true`, the trap focus will not automatically shift focus to itself when it opens, and
    * replace it to the last focused element when it closes.

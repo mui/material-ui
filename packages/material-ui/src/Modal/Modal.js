@@ -280,7 +280,7 @@ Modal.propTypes = {
    */
   closeAfterTransition: PropTypes.bool,
   /**
-   * A HTML element, component instance, or function that returns either.
+   * A HTML element or function that returns one.
    * The `container` will have the portal children appended to it.
    *
    * By default, it uses the body of the top-level document object,
@@ -288,7 +288,6 @@ Modal.propTypes = {
    */
   container: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     HTMLElementType,
-    PropTypes.instanceOf(React.Component),
     PropTypes.func,
   ]),
   /**

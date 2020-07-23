@@ -2,6 +2,7 @@ import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
+import { elementTypeAcceptingRef } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';
 import { getTransitionProps } from '../transitions/utils';
@@ -286,7 +287,7 @@ Collapse.propTypes = {
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
-  component: PropTypes.elementType,
+  component: elementTypeAcceptingRef,
   /**
    * If `true`, the component will transition in.
    */

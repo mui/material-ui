@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { elementAcceptingRef } from '@material-ui/utils';
 import { Transition } from 'react-transition-group';
 import useTheme from '../styles/useTheme';
 import { reflow, getTransitionProps } from '../transitions/utils';
@@ -192,7 +193,7 @@ Grow.propTypes = {
   /**
    * A single child content element.
    */
-  children: PropTypes.element,
+  children: elementAcceptingRef,
   /**
    * If `true`, show the component; triggers the enter or exit animation.
    */
