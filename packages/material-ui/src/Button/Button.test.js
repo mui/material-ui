@@ -476,13 +476,14 @@ describe('<Button />', () => {
       });
 
       expect(() => mount(<WrappedComponent theme={theme} variant="test" />)).toErrorDev([
+        // strict mode renders twice
         [
-          `Material-UI: You are using a variant value [test] for which you didn't define styles.`,
-          `Please use the \`theme.variants.MuiButton\` to define a new entry for this variant.`,
+          `Material-UI: You are using a variant value \`test\` for which you didn't define styles.`,
+          `Please create a new variant matcher in your theme for this variant. To learn more about matchers visit https://material-ui.com/customization/components/#adding-new-component-variants.`,
         ].join('\n'),
         [
-          `Material-UI: You are using a variant value [test] for which you didn't define styles.`,
-          `Please use the \`theme.variants.MuiButton\` to define a new entry for this variant.`,
+          `Material-UI: You are using a variant value \`test\` for which you didn't define styles.`,
+          `Please create a new variant matcher in your theme for this variant. To learn more about matchers visit https://material-ui.com/customization/components/#adding-new-component-variants.`,
         ].join('\n'),
       ]);
     });
