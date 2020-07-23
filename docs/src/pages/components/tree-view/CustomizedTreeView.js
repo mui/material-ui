@@ -93,6 +93,7 @@ export default function CustomizedTreeView() {
 
   return (
     <TreeView
+      aria-label="Customized TreeView"
       className={classes.root}
       defaultExpanded={['1']}
       defaultCollapseIcon={<MinusSquare />}

@@ -47,6 +47,7 @@ export default function RecursiveTreeView() {
 
   return (
     <TreeView
+      aria-label="Recursive TreeView"
       className={classes.root}
       defaultCollapseIcon={<ExpandMoreIcon />}
       defaultExpanded={['root']}

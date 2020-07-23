@@ -62,3 +62,7 @@ const data = {
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#TreeView)
 
 The component follows the WAI-ARIA authoring practices.
+
+### Best Practices
+
+- You should use `aria-labelledby` or `aria-label` to reference or provide a label on the TreeView.

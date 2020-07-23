@@ -18,6 +18,7 @@ export default function FileSystemNavigator() {
 
   return (
     <TreeView
+      aria-label="File System Navigator"
       className={classes.root}
       defaultCollapseIcon={<ExpandMoreIcon />}
       defaultExpandIcon={<ChevronRightIcon />}
