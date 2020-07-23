@@ -18,9 +18,9 @@ const backers = [
     title: 'Bitsrc — The fastest way to share code',
   },
   {
-    href: 'https://www.call-em-all.com',
-    alt: 'callemall',
-    title: 'Call-Em-All - The easy way to message your group',
+    href: 'https://www.text-em-all.com',
+    alt: 'textemall',
+    title: 'Text-Em-All - Mass Text Messaging & Automated Calling',
   },
   {
     href:
