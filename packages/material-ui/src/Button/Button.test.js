@@ -436,7 +436,7 @@ describe('<Button />', () => {
       expect(style.getPropertyValue('background-color')).to.equal('rgb(0, 255, 0)');
     });
 
-    it('should not add classKey if all props are not a match', function test() {
+    it('should not add classKey if not all props match', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         // see https://github.com/jsdom/jsdom/issues/2953
         this.skip();
