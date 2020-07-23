@@ -1,15 +1,17 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import {
   getClasses,
   createMount,
   describeConformance,
-  describeCustomVariantsConformance,
   act,
   createClientRender,
+  screen,
   fireEvent,
   createServerRender,
 } from 'test/utils';
+import { ThemeProvider, createMuiTheme } from '../styles';
 import Button from './Button';
 import ButtonBase from '../ButtonBase';
 
@@ -29,8 +31,6 @@ describe('<Button />', () => {
     refInstanceof: window.HTMLButtonElement,
     skip: ['componentProp'],
   }));
-
-  describeCustomVariantsConformance(Button, 'MuiButton');
 
   it('should render with the root, text, and textPrimary classes but no others', () => {
     const { getByRole } = render(<Button>Hello World</Button>);
@@ -368,6 +368,124 @@ describe('<Button />', () => {
     it('should server-side render', () => {
       const markup = serverRender(<Button>Hello World</Button>);
       expect(markup.text()).to.equal('Hello World');
+    });
+  });
+
+  describe('custom theme variants', () => {
+    const WrappedComponent = ({ theme, ...props }) => {
+      return (
+        <ThemeProvider theme={theme}>
+          <Button data-testid="component" {...props}>
+            Content
+          </Button>
+        </ThemeProvider>
+      );
+    };
+
+    WrappedComponent.propTypes = {
+      theme: PropTypes.object,
+    };
+
+    it('should map the variant classkey to the component', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // see https://github.com/jsdom/jsdom/issues/2953
+        this.skip();
+      }
+
+      const theme = createMuiTheme({
+        variants: {
+          MuiButton: [
+            {
+              props: { variant: 'test' },
+              styles: { backgroundColor: 'rgb(255, 0, 0)' },
+            },
+          ],
+        },
+      });
+
+      render(<WrappedComponent theme={theme} variant="test" />);
+
+      const style = window.getComputedStyle(screen.getByTestId('component'));
+      expect(style.getPropertyValue('background-color')).to.equal('rgb(255, 0, 0)');
+    });
+
+    it('should map the latest props combination classkey to the component', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // see https://github.com/jsdom/jsdom/issues/2953
+        this.skip();
+      }
+
+      const theme = createMuiTheme({
+        variants: {
+          MuiButton: [
+            {
+              props: { variant: 'test' },
+              styles: { backgroundColor: 'rgb(255, 0, 0)' },
+            },
+            {
+              props: { variant: 'test', size: 'large' },
+              styles: { backgroundColor: 'rgb(0, 255, 0)' },
+            },
+          ],
+        },
+      });
+
+      render(<WrappedComponent theme={theme} variant="test" size="large" />);
+
+      const style = window.getComputedStyle(screen.getByTestId('component'));
+      expect(style.getPropertyValue('background-color')).to.equal('rgb(0, 255, 0)');
+    });
+
+    it('should not add classKey if all props are not a match', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // see https://github.com/jsdom/jsdom/issues/2953
+        this.skip();
+      }
+
+      const theme = createMuiTheme({
+        variants: {
+          MuiButton: [
+            {
+              props: { variant: 'test' },
+              styles: { backgroundColor: 'rgb(255, 0, 0)' },
+            },
+            {
+              props: { variant: 'test', size: 'large' },
+              styles: { backgroundColor: 'rgb(0, 255, 0)' },
+            },
+          ],
+        },
+      });
+
+      render(<WrappedComponent theme={theme} size="large" />);
+
+      const style = window.getComputedStyle(screen.getByTestId('component'));
+      expect(style.getPropertyValue('background-color')).not.to.equal('rgb(0, 255, 0)');
+    });
+
+
+    it('should warn if the used variant is not defined in the theme', function test() {
+      const theme = createMuiTheme({
+        variants: {
+          MuiButton: [
+            {
+              props: { variant: 'test1' },
+              styles: { backgroundColor: 'rgb(255, 0, 0)' },
+            },
+          ],
+        },
+      });
+
+      expect(() => mount(<WrappedComponent theme={theme} variant="test" />)).toErrorDev([
+        [
+          `Material-UI: You are using a variant value [test] for which you didn't define styles.`,
+          `Please use the \`theme.variants.MuiButton\` to define a new entry for this variant.`,
+        ].join('\n'),
+        [
+          `Material-UI: You are using a variant value [test] for which you didn't define styles.`,
+          `Please use the \`theme.variants.MuiButton\` to define a new entry for this variant.`,
+        ].join('\n'),
+      ]);
     });
   });
 });

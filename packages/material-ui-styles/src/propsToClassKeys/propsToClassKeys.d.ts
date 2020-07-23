@@ -1,1 +1,1 @@
-export default function (props: object): string;
+export default function propsToClassKeys(props: object): string;

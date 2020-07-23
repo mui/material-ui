@@ -250,7 +250,7 @@ export default function makeStyles(stylesOrCreator, options = {}) {
         props.variant &&
         !classes[props.variant]
       ) {
-        console.warn(
+        console.error(
           [
             `Material-UI: You are using a variant value [${props.variant}] for which you didn't define styles.`,
             `Please use the \`theme.variants.${name}\` to define a new entry for this variant.`,
