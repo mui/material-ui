@@ -167,26 +167,6 @@ jobs:
       - run:
           name: Tests TypeScript definitions
           command: yarn typescript
-      - run:
-          name: Type-check Material-UI.framerfx
-          environment:
-            # to allow parsing of .npmrc
-            FRAMER_TOKEN: 'empty'
-          command: |
-            # latest commit
-            LATEST_COMMIT=$(git rev-parse HEAD)
-
-            # latest commit where packageframer/Material-UI.framerfx was changed
-            FOLDER_COMMIT=$(git log -1 --format=format:%H --full-diff framer/Material-UI.framerfx)
-
-            if [ $FOLDER_COMMIT = $LATEST_COMMIT ]; then
-              echo "changes, let's run the tests"
-              cd framer/Material-UI.framerfx
-              yarn
-              yarn typescript
-            else
-              echo "no changes"
-            fi
   test_types_next:
     <<: *defaults
     steps:
