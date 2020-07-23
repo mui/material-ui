@@ -23,13 +23,25 @@ const inputTheme = createMuiTheme({
         props: { variant: 'dashed' },
         styles: {
           padding: '5px 15px',
-          border: `5px dashed ${defaultTheme.palette.primary.main}`,
+          border: `3px dashed ${defaultTheme.palette.primary.main}`,
         },
       },
       {
         props: { variant: 'dashed', color: 'secondary' },
         styles: {
-          border: `5px dashed ${defaultTheme.palette.secondary.main}`,
+          border: `3px dashed ${defaultTheme.palette.secondary.main}`,
+        },
+      },
+      {
+        props: { variant: 'dashed', size: 'large' },
+        styles: {
+          borderWidth: 5,
+        },
+      },
+      {
+        props: { variant: 'dashed', color: 'primary', size: 'large' },
+        styles: {
+          fontWeight: 600,
         },
       },
     ],
@@ -42,9 +54,18 @@ export default function GlobalThemeVariants() {
   return (
     <div className={classes.root}>
       <ThemeProvider theme={inputTheme}>
-        <Button variant="dashed">Dashed</Button>
+        <Button variant="dashed">Default</Button>
         <Button variant="dashed" color="secondary">
-          Dashed secondary
+          Secondary
+        </Button>
+        <Button variant="dashed" color="primary">
+          Primary
+        </Button>
+        <Button variant="dashed" color="secondary" size="large">
+          Secondary large
+        </Button>
+        <Button variant="dashed" color="primary" size="large">
+          Primary large
         </Button>
       </ThemeProvider>
     </div>
