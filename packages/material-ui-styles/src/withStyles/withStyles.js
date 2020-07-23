@@ -6,6 +6,11 @@ import makeStyles from '../makeStyles';
 import getThemeProps from '../getThemeProps';
 import useTheme from '../useTheme';
 
+import createCache from '@emotion/cache';
+import { serializeStyles } from '@emotion/serialize';
+import { insertStyles } from '@emotion/utils';
+import getStylesCreator from '../getStylesCreator';
+
 // Link a style sheet with a component.
 // It does not modify the component passed to it;
 // instead, it returns a new component, with a `classes` property.
@@ -43,12 +48,41 @@ const withStyles = (stylesOrCreator, options = {}) => (Component) => {
     ...stylesOptions,
   });
 
+  const stylesCreator = getStylesCreator(stylesOrCreator);
+
+  const cache = createCache({
+    key: 'mui',
+    stylisPlugins: [],
+    speedy: true,
+  });
+
+  const addStyle = (styles) => {
+    if (Object.keys(styles).length === 0) {
+      return '';
+    }
+
+    const serialized = serializeStyles([styles], cache.registered, undefined);
+    insertStyles(cache, serialized, true);
+
+    return `${cache.key}-${serialized.name}`;
+  };
+
   const WithStyles = React.forwardRef(function WithStyles(props, ref) {
     const { classes: classesProp, innerRef, ...other } = props;
     // The wrapper receives only user supplied props, which could be a subset of
     // the actual props Component might receive due to merging with defaultProps.
     // So copying it here would give us the same result in the wrapper as well.
-    const classes = useStyles({ ...Component.defaultProps, ...props });
+    let classes = useStyles({ ...Component.defaultProps, ...props });
+    
+    const theme1 = useTheme() || defaultTheme;
+
+    if(name === 'MuiButton') {
+      const styles = stylesCreator.create(theme1, name, {...Component.defaultProps, ...props});
+      classes = {};
+      for(let style in styles) {
+        classes[style] = addStyle(styles[style]);
+      }
+    }
 
     let theme;
     let more = other;

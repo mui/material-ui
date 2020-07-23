@@ -6,7 +6,7 @@ import { fade } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 
-export const styles = (theme) => ({
+export const styles = (theme, { color } = {}) => ({
   /* Styles applied to the root element. */
   root: {
     ...theme.typography.button,
@@ -133,30 +133,21 @@ export const styles = (theme) => ({
       backgroundColor: theme.palette.action.disabledBackground,
     },
   },
-  /* Styles applied to the root element if `variant="contained"` and `color="primary"`. */
-  containedPrimary: {
-    color: theme.palette.primary.contrastText,
-    backgroundColor: theme.palette.primary.main,
-    '&:hover': {
-      backgroundColor: theme.palette.primary.dark,
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: theme.palette.primary.main,
+  // dynamic color
+  ...(color && theme.palette[color] && theme.palette[color].main && {
+    /* Styles applied to the root element if `variant="contained"` and `color="primary"`. */
+    [`contained${capitalize(color)}`]: {
+      color: theme.palette[color].contrastText,
+      backgroundColor: theme.palette[color].main,
+      '&:hover': {
+        backgroundColor: theme.palette[color].dark,
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: theme.palette[color].main,
+        },
       },
     },
-  },
-  /* Styles applied to the root element if `variant="contained"` and `color="secondary"`. */
-  containedSecondary: {
-    color: theme.palette.secondary.contrastText,
-    backgroundColor: theme.palette.secondary.main,
-    '&:hover': {
-      backgroundColor: theme.palette.secondary.dark,
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: theme.palette.secondary.main,
-      },
-    },
-  },
+  }),
   /* Styles applied to the root element if `disableElevation={true}`. */
   disableElevation: {
     boxShadow: 'none',

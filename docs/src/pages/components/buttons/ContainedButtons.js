@@ -15,7 +15,7 @@ export default function ContainedButtons() {
 
   return (
     <div className={classes.root}>
-      <Button variant="contained">Primary</Button>
+      <Button variant="contained" color="primary">Primary</Button>
       <Button variant="contained" color="secondary">
         Secondary
       </Button>

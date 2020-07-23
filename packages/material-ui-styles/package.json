@@ -49,7 +49,11 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.4.4",
+    "@emotion/cache": "^10.0.29",
     "@emotion/hash": "^0.8.0",
+    "@emotion/serialize": "^0.11.16",
+    "@emotion/sheet": "^0.9.4",
+    "@emotion/utils": "^0.11.3",
     "@material-ui/types": "^5.1.0",
     "@material-ui/utils": "^5.0.0-alpha.1",
     "clsx": "^1.0.4",

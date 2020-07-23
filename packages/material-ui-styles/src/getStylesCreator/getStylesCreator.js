@@ -16,10 +16,10 @@ export default function getStylesCreator(stylesOrCreator) {
   }
 
   return {
-    create: (theme, name) => {
+    create: (theme, name, props) => {
       let styles;
       try {
-        styles = themingEnabled ? stylesOrCreator(theme) : stylesOrCreator;
+        styles = themingEnabled ? stylesOrCreator(theme, props) : stylesOrCreator;
       } catch (err) {
         if (process.env.NODE_ENV !== 'production') {
           if (themingEnabled === true && theme === noopTheme) {
