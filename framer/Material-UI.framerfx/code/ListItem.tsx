@@ -26,7 +26,7 @@ import { Icon } from './Icon';
 import { IconButton } from './IconButton';
 
 interface Props {
-  alignItems?: 'flex-start' | 'center';
+  alignItems?: 'center' | 'flex-start';
   autoFocus?: boolean;
   button?: boolean;
   dense?: boolean;
@@ -145,7 +145,7 @@ addPropertyControls(ListItem, {
   alignItems: {
     type: ControlType.Enum,
     title: 'Align items',
-    options: ['flex-start', 'center'],
+    options: ['center', 'flex-start'],
   },
   autoFocus: {
     type: ControlType.Boolean,

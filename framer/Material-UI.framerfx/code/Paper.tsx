@@ -32,6 +32,17 @@ addPropertyControls(Paper, {
   elevation: {
     type: ControlType.Number,
     title: 'Elevation',
+    raw: chainPropTypes(PropTypes.number, (props) => {
+      const { classes, elevation } = props;
+      // in case `withStyles` fails to inject we don't need this warning
+      if (classes === undefined) {
+        return null;
+      }
+      if (elevation != null && classes[`elevation${elevation}`] === undefined) {
+        return new Error(`Material-UI: This elevation \`${elevation}\` is not implemented.`);
+      }
+      return null;
+    }),
     min: 0,
     max: 24,
   },

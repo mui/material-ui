@@ -8,7 +8,7 @@ interface Props {
   color?: 'primary' | 'secondary';
   value?: number;
   valueBuffer?: number;
-  variant?: 'determinate' | 'indeterminate' | 'buffer' | 'query';
+  variant?: 'buffer' | 'determinate' | 'indeterminate' | 'query';
   width?: number;
   height?: number;
 }
@@ -54,6 +54,6 @@ addPropertyControls(LinearProgress, {
   variant: {
     type: ControlType.Enum,
     title: 'Variant',
-    options: ['determinate', 'indeterminate', 'buffer', 'query'],
+    options: ['buffer', 'determinate', 'indeterminate', 'query'],
   },
 });

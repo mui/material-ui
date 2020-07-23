@@ -13,7 +13,7 @@ interface Props {
   disabled?: boolean;
   icon?: string;
   label?: string;
-  size?: 'small' | 'medium';
+  size?: 'medium' | 'small';
   variant?: 'default' | 'outlined';
   avatarImageFile?: string;
   avatarImageUrl?: string;
@@ -99,7 +99,7 @@ addPropertyControls(Chip, {
   size: {
     type: ControlType.Enum,
     title: 'Size',
-    options: ['small', 'medium'],
+    options: ['medium', 'small'],
   },
   variant: {
     type: ControlType.Enum,

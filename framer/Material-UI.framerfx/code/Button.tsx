@@ -6,15 +6,15 @@ import MuiButton from '@material-ui/core/Button';
 import { Icon } from './Icon';
 
 interface Props {
-  color?: 'default' | 'inherit' | 'primary' | 'secondary';
+  color?: 'inherit' | 'primary' | 'secondary';
   disabled?: boolean;
   disableElevation?: boolean;
   endIcon?: string;
   fullWidth?: boolean;
   href?: string;
-  size?: 'small' | 'medium' | 'large';
+  size?: 'large' | 'medium' | 'small';
   startIcon?: string;
-  variant?: 'text' | 'outlined' | 'contained';
+  variant?: 'contained' | 'outlined' | 'text';
   startIconTheme?: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
   endIconTheme?: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
   label?: string;
@@ -23,7 +23,7 @@ interface Props {
 }
 
 const defaultProps: Props = {
-  color: 'default',
+  color: 'primary',
   disabled: false,
   disableElevation: false,
   endIcon: undefined,
@@ -69,7 +69,7 @@ addPropertyControls(Button, {
   color: {
     type: ControlType.Enum,
     title: 'Color',
-    options: ['default', 'inherit', 'primary', 'secondary'],
+    options: ['inherit', 'primary', 'secondary'],
   },
   disabled: {
     type: ControlType.Boolean,
@@ -94,7 +94,7 @@ addPropertyControls(Button, {
   size: {
     type: ControlType.Enum,
     title: 'Size',
-    options: ['small', 'medium', 'large'],
+    options: ['large', 'medium', 'small'],
   },
   startIcon: {
     type: ControlType.String,
@@ -103,7 +103,7 @@ addPropertyControls(Button, {
   variant: {
     type: ControlType.Enum,
     title: 'Variant',
-    options: ['text', 'outlined', 'contained'],
+    options: ['contained', 'outlined', 'text'],
   },
   startIconTheme: {
     type: ControlType.Enum,

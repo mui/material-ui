@@ -50,7 +50,7 @@ addPropertyControls(Checkbox, {
   color: {
     type: ControlType.Enum,
     title: 'Color',
-    options: ['primary', 'secondary', 'default'],
+    options: ['default', 'primary', 'secondary'],
   },
   disabled: {
     type: ControlType.Boolean,
@@ -59,7 +59,7 @@ addPropertyControls(Checkbox, {
   size: {
     type: ControlType.Enum,
     title: 'Size',
-    options: ['small', 'medium'],
+    options: ['medium', 'small'],
   },
   label: {
     type: ControlType.String,
