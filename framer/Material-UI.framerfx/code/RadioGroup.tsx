@@ -1,10 +1,18 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
 import MuiRadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import MuiFormLabel from '@material-ui/core/FormLabel';
 import { Radio } from './Radio';
 
-export function RadioGroup(props) {
+interface Props {
+  labels: string[];
+  label: string;
+  width: number | string;
+  height: number;
+}
+
+export function RadioGroup(props: Props): JSX.Element {
   const { label, labels, ...other } = props;
 
   return (

@@ -4,36 +4,24 @@ import MuiAvatar from '@material-ui/core/Avatar';
 import { Icon } from './Icon';
 
 interface Props {
-  variant?: 'circle' | 'rounded' | 'square';
-  backgroundColor?: string;
-  textColor?: string;
-  icon?: string;
-  imageFile?: string;
-  imageUrl?: string;
-  label?: string;
-  width?: number;
-  height?: number;
+  variant: 'circle' | 'rounded' | 'square';
+  backgroundColor: string;
+  textColor: string;
+  icon: string;
+  avatarImageFile: string;
+  avatarImageUrl: string;
+  label: string;
+  width: number | string;
+  height: number;
 }
-
-const defaultProps: Props = {
-  variant: 'circle',
-  backgroundColor: '#4154af',
-  textColor: undefined,
-  icon: 'face',
-  imageFile: '',
-  imageUrl: 'https://i.pravatar.cc/300',
-  label: 'MB',
-  width: 40,
-  height: 40,
-};
 
 export function Avatar(props: Props): JSX.Element {
   const {
     backgroundColor,
     height,
     icon,
-    imageFile,
-    imageUrl,
+    avatarImageFile: imageFile,
+    avatarImageUrl: imageUrl,
     label,
     textColor,
     width,
@@ -49,7 +37,17 @@ export function Avatar(props: Props): JSX.Element {
   );
 }
 
-Avatar.defaultProps = defaultProps;
+Avatar.defaultProps = {
+  variant: 'circle' as 'circle',
+  backgroundColor: '#4154af',
+  textColor: undefined,
+  icon: 'face',
+  avatarImageFile: '',
+  avatarImageUrl: 'https://i.pravatar.cc/300',
+  label: 'MB',
+  width: 40,
+  height: 40,
+};
 
 addPropertyControls(Avatar, {
   variant: {
@@ -69,18 +67,15 @@ addPropertyControls(Avatar, {
     type: ControlType.String,
     title: 'Icon',
   },
-  imageFile: {
+  avatarImageFile: {
     type: ControlType.Image,
-    title: 'Image File',
-    hidden: function hidden(props) {
-      return false;
-    },
+    title: 'Avatar Image File',
   },
-  imageUrl: {
+  avatarImageUrl: {
     type: ControlType.String,
-    title: 'Image URL',
+    title: 'Avatar Image URL',
     hidden: function hidden(props) {
-      return props.imageFile !== '';
+      return props.avatarImageFile !== '';
     },
   },
   label: {

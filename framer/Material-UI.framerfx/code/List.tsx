@@ -3,47 +3,25 @@ import { addPropertyControls, ControlType, Frame, Scroll } from 'framer';
 import { ListItem } from './ListItem';
 
 interface Props {
-  alignItems?: 'flex-start' | 'center';
-  autoFocus?: boolean;
-  dense?: boolean;
-  disabled?: boolean;
-  disableGutters?: boolean;
-  divider?: boolean;
-  width?: number;
-  height?: number;
-  inset?: boolean;
-  labels?: string[];
-  secondaryLabels?: string[];
-  primaryAction?: 'none' | 'icon' | 'avatar' | 'checkbox';
-  primaryIcon?: string;
-  imageFile?: string;
-  imageUrl?: string;
-  secondaryAction?: 'none' | 'icon' | 'iconButton' | 'checkbox' | 'switch';
-  secondaryIcon?: string;
+  alignItems: 'flex-start' | 'center';
+  autoFocus: boolean;
+  children?: React.ReactNode;
+  dense: boolean;
+  disabled: boolean;
+  disableGutters: boolean;
+  divider: boolean;
+  width: number;
+  height: number;
+  inset: boolean;
+  labels: string[];
+  secondaryLabels: string[];
+  primaryAction: 'none' | 'icon' | 'avatar' | 'checkbox';
+  primaryIcon: string;
+  imageFile: string;
+  imageUrl: string;
+  secondaryAction: 'none' | 'iconButton' | 'checkbox' | 'switch';
+  secondaryIcon: string;
 }
-
-const defaultProps: Props = {
-  alignItems: 'center',
-  autoFocus: false,
-  dense: false,
-  disabled: false,
-  disableGutters: false,
-  divider: false,
-  width: 568,
-  height: 300,
-  inset: false,
-  labels: ['Brunch this weekend?', 'Summer BBQ', 'Oui Oui'],
-  secondaryLabels: [
-    "I'll be in your neighborhood doing errands this…",
-    "Wish I could come, but I'm out of town this…",
-    'Do you have Paris recommendations? Have you ever…',
-  ],
-  primaryAction: 'icon',
-  primaryIcon: 'star',
-  imageFile: '',
-  imageUrl: '',
-  secondaryIcon: '',
-};
 
 export function List(props: Props): JSX.Element {
   const { height, labels, secondaryLabels, width, ...other } = props;
@@ -59,7 +37,28 @@ export function List(props: Props): JSX.Element {
   );
 }
 
-List.defaultProps = defaultProps;
+List.defaultProps = {
+  alignItems: 'center' as 'center',
+  autoFocus: false,
+  dense: false,
+  disabled: false,
+  disableGutters: false,
+  divider: false,
+  width: 568,
+  height: 300,
+  inset: false,
+  labels: ['Brunch this weekend?', 'Summer BBQ', 'Oui Oui'],
+  secondaryLabels: [
+    "I'll be in your neighborhood doing errands this…",
+    "Wish I could come, but I'm out of town this…",
+    'Do you have Paris recommendations? Have you ever…',
+  ],
+  primaryAction: 'icon' as 'icon',
+  primaryIcon: 'star' as 'star',
+  imageFile: '',
+  imageUrl: '',
+  secondaryIcon: '',
+};
 
 addPropertyControls(List, {
   alignItems: {
@@ -111,14 +110,17 @@ addPropertyControls(List, {
     type: ControlType.Image,
     title: 'Image File',
     hidden: function hidden(props) {
-      return props.primaryAction && props.primaryAction !== 'avatar';
+      return props.primaryAction !== undefined && props.primaryAction !== 'avatar';
     },
   },
   imageUrl: {
     type: ControlType.String,
     title: 'Image URL',
     hidden: function hidden(props) {
-      return props.imageFile !== '' || (props.primaryAction && props.primaryAction !== 'avatar');
+      return (
+        props.imageFile !== '' ||
+        (props.primaryAction !== undefined && props.primaryAction !== 'avatar')
+      );
     },
   },
   secondaryAction: {
@@ -130,7 +132,7 @@ addPropertyControls(List, {
     type: ControlType.String,
     title: 'Secondary icon',
     hidden: function hidden(props) {
-      return props.secondaryAction !== 'icon' && props.secondaryAction !== 'iconButton';
+      return props.secondaryAction !== 'iconButton';
     },
   },
   labels: {

@@ -1,30 +1,27 @@
 {{=« »=}}
 import * as React from 'react';
-import { pascal } from 'naming-style';
 import { addPropertyControls, ControlType } from 'framer';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import * as Icons from '@material-ui/icons';
+import { SvgIconProps } from '@material-ui/core/SvgIcon';
+import { pascalCase } from './utils';
 
-interface Props {
+interface Props extends SvgIconProps {
 «& tsInterface»
 }
 
-const defaultProps: Props =  {
-«& defaultProps»
-};
-
-export const «componentName»: React.SFC<Props> = (props: Props) => {
+export function «componentName»(props: Props): JSX.Element | null {
   const { height, icon: iconProp, theme, width, ...other } = props;
-  const iconName = `${iconProp && pascal(iconProp)}${theme === 'Filled' ? '' : theme}`;
-  // tslint:disable-next-line: ban-ts-ignore
-  // @ts-ignore
-  const Icon = Object.keys(Icons).includes(iconName) ? Icons[iconName] : undefined;
+  const iconName = `${iconProp && pascalCase(iconProp)}${
+    theme === 'Filled' ? '' : theme
+  }` as keyof typeof Icons;
+  const Icon = Object.keys(Icons).indexOf(iconName) !== -1 ? Icons[iconName] : undefined;
 
   return Icon ? <Icon style={{ width, height}} {...other} /> : null;
 };
 
-«componentName».defaultProps = defaultProps;
+«componentName».defaultProps = {
+«& defaultProps»
+};
 
 addPropertyControls(«componentName», {
 «& propertyControls»

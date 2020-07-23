@@ -4,37 +4,21 @@ import MuiButton from '@material-ui/core/Button';
 import { Icon } from './Icon';
 
 interface Props {
-  color?: 'inherit' | 'primary' | 'secondary';
-  disabled?: boolean;
-  disableElevation?: boolean;
-  endIcon?: string;
-  fullWidth?: boolean;
+  color: 'inherit' | 'primary' | 'secondary';
+  disabled: boolean;
+  disableElevation: boolean;
+  endIcon: string;
+  fullWidth: boolean;
   href?: string;
-  size?: 'large' | 'medium' | 'small';
-  startIcon?: string;
-  startIconTheme?: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
-  endIconTheme?: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
-  label?: string;
-  width?: number;
-  height?: number;
-  variant?: 'contained' | 'outlined' | 'text';
+  size: 'large' | 'medium' | 'small';
+  startIcon: string;
+  startIconTheme: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
+  endIconTheme: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
+  label: string;
+  width: number | string;
+  height: number;
+  variant: 'contained' | 'outlined' | 'text';
 }
-
-const defaultProps: Props = {
-  color: 'primary',
-  disabled: false,
-  disableElevation: false,
-  endIcon: undefined,
-  fullWidth: false,
-  size: 'medium',
-  startIcon: undefined,
-  startIconTheme: 'Filled',
-  endIconTheme: 'Filled',
-  label: 'Button',
-  width: 100,
-  height: 38,
-  variant: 'text',
-};
 
 export function Button(props: Props): JSX.Element {
   const {
@@ -61,7 +45,21 @@ export function Button(props: Props): JSX.Element {
   );
 }
 
-Button.defaultProps = defaultProps;
+Button.defaultProps = {
+  color: 'primary' as 'primary',
+  disabled: false,
+  disableElevation: false,
+  endIcon: undefined,
+  fullWidth: false,
+  size: 'medium' as 'medium',
+  startIcon: undefined,
+  startIconTheme: 'Filled' as 'Filled',
+  endIconTheme: 'Filled' as 'Filled',
+  label: 'Button',
+  width: 100,
+  height: 38,
+  variant: 'text' as 'text',
+};
 
 addPropertyControls(Button, {
   color: {

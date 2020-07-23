@@ -1,34 +1,34 @@
 import * as React from 'react';
-import { pascal } from 'naming-style';
 import { addPropertyControls, ControlType } from 'framer';
 import * as Icons from '@material-ui/icons';
+import { SvgIconProps } from '@material-ui/core/SvgIcon';
+import { pascalCase } from './utils';
 
-interface Props {
-  color?: 'action' | 'disabled' | 'error' | 'inherit' | 'primary' | 'secondary';
-  icon?: string;
-  theme?: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
-  width?: number;
-  height?: number;
-  style?: React.CSSProperties;
+interface Props extends SvgIconProps {
+  color: 'action' | 'disabled' | 'error' | 'inherit' | 'primary' | 'secondary';
+  icon: string;
+  theme: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
+  width: number | string;
+  height: number;
 }
 
-const defaultProps: Props = {
-  color: 'inherit',
-  icon: 'add',
-  theme: 'Filled',
-  width: 24,
-  height: 24,
-};
-
-export function Icon(props: Props): JSX.Element {
+export function Icon(props: Props): JSX.Element | null {
   const { height, icon: iconProp, theme, width, ...other } = props;
-  const iconName = `${iconProp && pascal(iconProp)}${theme === 'Filled' ? '' : theme}`;
+  const iconName = `${iconProp && pascalCase(iconProp)}${
+    theme === 'Filled' ? '' : theme
+  }` as keyof typeof Icons;
   const Icon = Object.keys(Icons).indexOf(iconName) !== -1 ? Icons[iconName] : undefined;
 
   return Icon ? <Icon style={{ width, height }} {...other} /> : null;
 }
 
-Icon.defaultProps = defaultProps;
+Icon.defaultProps = {
+  color: 'inherit' as 'inherit',
+  icon: 'add',
+  theme: 'Filled' as 'Filled',
+  width: 24,
+  height: 24,
+};
 
 addPropertyControls(Icon, {
   color: {

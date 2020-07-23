@@ -12,47 +12,26 @@ import { Icon } from './Icon';
 import { IconButton } from './IconButton';
 
 interface Props {
-  alignItems?: 'center' | 'flex-start';
-  autoFocus?: boolean;
-  button?: boolean;
-  dense?: boolean;
-  disabled?: boolean;
-  disableGutters?: boolean;
-  divider?: boolean;
-  selected?: boolean;
-  width?: number;
-  height?: number;
-  inset?: boolean;
-  label?: string;
-  secondaryLabel?: string;
-  primaryAction?: 'none' | 'icon' | 'avatar' | 'checkbox';
-  primaryIcon?: string;
-  imageFile?: string;
-  imageUrl?: string;
-  secondaryAction?: 'none' | 'icon' | 'iconButton' | 'checkbox' | 'switch';
-  secondaryIcon?: string;
+  alignItems: 'center' | 'flex-start';
+  autoFocus: boolean;
+  button: boolean;
+  dense: boolean;
+  disabled: boolean;
+  disableGutters: boolean;
+  divider: boolean;
+  selected: boolean;
+  width: number | string;
+  height: number;
+  inset: boolean;
+  label: string;
+  secondaryLabel: string;
+  primaryAction: 'none' | 'icon' | 'avatar' | 'checkbox';
+  primaryIcon: string;
+  imageFile: string;
+  imageUrl: string;
+  secondaryAction?: 'none' | 'iconButton' | 'checkbox' | 'switch';
+  secondaryIcon: string;
 }
-
-const defaultProps: Props = {
-  alignItems: 'center',
-  autoFocus: false,
-  button: false,
-  dense: false,
-  disabled: false,
-  disableGutters: false,
-  divider: false,
-  selected: false,
-  width: 568,
-  height: 48,
-  inset: false,
-  label: 'Primary label',
-  secondaryLabel: '',
-  primaryAction: 'icon',
-  primaryIcon: 'star',
-  imageFile: '',
-  imageUrl: '',
-  secondaryIcon: '',
-};
 
 export function ListItem(props: Props): JSX.Element {
   const {
@@ -85,7 +64,7 @@ export function ListItem(props: Props): JSX.Element {
     case 'avatar':
       primary = (
         <MuiListItemAvatar>
-          <Avatar icon={primaryIcon} imageFile={imageFile} imageUrl={imageUrl} />
+          <Avatar icon={primaryIcon} avatarImageFile={imageFile} avatarImageUrl={imageUrl} />
         </MuiListItemAvatar>
       );
       break;
@@ -126,7 +105,26 @@ export function ListItem(props: Props): JSX.Element {
   );
 }
 
-ListItem.defaultProps = defaultProps;
+ListItem.defaultProps = {
+  alignItems: 'center' as 'center',
+  autoFocus: false,
+  button: false,
+  dense: false,
+  disabled: false,
+  disableGutters: false,
+  divider: false,
+  selected: false,
+  width: 568,
+  height: 48,
+  inset: false,
+  label: 'Primary label',
+  secondaryLabel: '',
+  primaryAction: 'icon' as 'icon',
+  primaryIcon: 'star',
+  imageFile: '',
+  imageUrl: '',
+  secondaryIcon: '',
+};
 
 addPropertyControls(ListItem, {
   alignItems: {
@@ -194,14 +192,17 @@ addPropertyControls(ListItem, {
     type: ControlType.Image,
     title: 'Image File',
     hidden: function hidden(props) {
-      return props.primaryAction && props.primaryAction !== 'avatar';
+      return props.primaryAction !== undefined && props.primaryAction !== 'avatar';
     },
   },
   imageUrl: {
     type: ControlType.String,
     title: 'Image URL',
     hidden: function hidden(props) {
-      return props.imageFile !== '' || (props.primaryAction && props.primaryAction !== 'avatar');
+      return (
+        props.imageFile !== '' ||
+        (props.primaryAction !== undefined && props.primaryAction !== 'avatar')
+      );
     },
   },
   secondaryAction: {
@@ -213,7 +214,7 @@ addPropertyControls(ListItem, {
     type: ControlType.String,
     title: 'Secondary icon',
     hidden: function hidden(props) {
-      return props.secondaryAction !== 'icon' && props.secondaryAction !== 'iconButton';
+      return props.secondaryAction !== 'iconButton';
     },
   },
 });

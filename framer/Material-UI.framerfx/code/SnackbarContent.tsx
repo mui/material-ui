@@ -4,18 +4,11 @@ import MuiSnackbarContent from '@material-ui/core/SnackbarContent';
 import MuiButton from '@material-ui/core/Button';
 
 interface Props {
-  message?: string;
-  width?: number;
-  height?: number;
-  label?: string;
+  message: string;
+  width: number | string;
+  height: number;
+  label: string;
 }
-
-const defaultProps: Props = {
-  message: 'I love candy. I love cookies. I love cupcakes.',
-  width: 568,
-  height: 48,
-  label: 'Nom nom nom',
-};
 
 export function SnackbarContent(props: Props): JSX.Element {
   const { height, label, width, ...other } = props;
@@ -29,7 +22,12 @@ export function SnackbarContent(props: Props): JSX.Element {
   return <MuiSnackbarContent action={action} {...other} />;
 }
 
-SnackbarContent.defaultProps = defaultProps;
+SnackbarContent.defaultProps = {
+  message: 'I love candy. I love cookies. I love cupcakes.',
+  width: 568,
+  height: 48,
+  label: 'Nom nom nom',
+};
 
 addPropertyControls(SnackbarContent, {
   message: {

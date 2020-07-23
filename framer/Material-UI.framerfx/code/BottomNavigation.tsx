@@ -5,27 +5,19 @@ import MuiBottomNavigationAction from '@material-ui/core/BottomNavigationAction'
 import { Icon } from './Icon';
 
 interface Props {
-  showLabels?: boolean;
-  icons?: string[];
-  labels?: string[];
-  width?: number;
-  height?: number;
+  showLabels: boolean;
+  icons: string[];
+  labels: string[];
+  width: number | string;
+  height: number;
 }
-
-const defaultProps: Props = {
-  showLabels: false,
-  icons: ['restore', 'favorite', 'location_on', 'folder'],
-  labels: ['Recents', 'Favorites', 'Nearby', 'Saved'],
-  width: 500,
-  height: 56,
-};
 
 export function BottomNavigation(props: Props): JSX.Element {
   const { labels, icons, ...other } = props;
 
   const [value, setValue] = React.useState(0);
 
-  const handleChange = (event, value) => {
+  const handleChange = (event: React.SyntheticEvent, value: any) => {
     setValue(value);
   };
 
@@ -48,7 +40,13 @@ export function BottomNavigation(props: Props): JSX.Element {
   );
 }
 
-BottomNavigation.defaultProps = defaultProps;
+BottomNavigation.defaultProps = {
+  showLabels: false,
+  icons: ['restore', 'favorite', 'location_on', 'folder'],
+  labels: ['Recents', 'Favorites', 'Nearby', 'Saved'],
+  width: 500,
+  height: 56,
+};
 
 addPropertyControls(BottomNavigation, {
   showLabels: {

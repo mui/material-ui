@@ -1,4 +1,4 @@
-const colorTokenRegex = /var\((--[a-zA-Z0-9-_]+),? ?([a-zA-Z0-9 ()%#.,-]+)?\)/;
+import camelCase from 'lodash/camelCase';
 
 /**
  * Checks if the color string is a Framer Shared Color token and extracts
@@ -12,7 +12,13 @@ const colorTokenRegex = /var\((--[a-zA-Z0-9-_]+),? ?([a-zA-Z0-9 ()%#.,-]+)?\)/;
  *
  */
 export function parseColor(color: string): string {
+  const colorTokenRegex = /var\((--[a-zA-Z0-9-_]+),? ?([a-zA-Z0-9 ()%#.,-]+)?\)/;
+
   const colorToken = color.match(colorTokenRegex);
 
   return colorToken ? colorToken[2] : color;
+}
+
+export function pascalCase(s: string): string {
+  return s.charAt(0).toUpperCase() + camelCase(s).slice(1);
 }

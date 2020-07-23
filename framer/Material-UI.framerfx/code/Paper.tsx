@@ -3,20 +3,12 @@ import { addPropertyControls, ControlType } from 'framer';
 import MuiPaper from '@material-ui/core/Paper';
 
 interface Props {
-  elevation?: number;
-  square?: boolean;
-  variant?: 'elevation' | 'outlined';
-  width?: number;
-  height?: number;
+  elevation: number;
+  square: boolean;
+  variant: 'elevation' | 'outlined';
+  width: number | string;
+  height: number;
 }
-
-const defaultProps: Props = {
-  elevation: 2,
-  square: false,
-  variant: 'elevation',
-  width: 100,
-  height: 100,
-};
 
 export function Paper(props: Props): JSX.Element {
   const { width, height, ...other } = props;
@@ -24,7 +16,13 @@ export function Paper(props: Props): JSX.Element {
   return <MuiPaper style={{ width, height }} {...other} />;
 }
 
-Paper.defaultProps = defaultProps;
+Paper.defaultProps = {
+  elevation: 2,
+  square: false,
+  variant: 'elevation' as 'elevation',
+  width: 100,
+  height: 100,
+};
 
 addPropertyControls(Paper, {
   elevation: {

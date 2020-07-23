@@ -1,27 +1,13 @@
 {{=« »=}}
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import MuiListItem from '@material-ui/core/ListItem';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import MuiListItemIcon from '@material-ui/core/ListItemIcon';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import MuiListItemAvatar from '@material-ui/core/ListItemAvatar';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
-import MuiListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
+// import MuiListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import MuiListItemText from '@material-ui/core/ListItemText';
 import { Avatar } from './Avatar';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import MuiCheckbox from '@material-ui/core/Checkbox';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import MuiSwitch from '@material-ui/core/Switch';
 import { Icon } from './Icon';
 import { IconButton } from './IconButton';
@@ -30,12 +16,9 @@ interface Props {
 «& tsInterface»
 }
 
-const defaultProps: Props =  {
-«& defaultProps»
-};
-
-export const «componentName»: React.SFC<Props> = (props: Props) => {
+export function «componentName»(props: Props): JSX.Element {
   const {
+    button,
     height,
     imageFile,
     imageUrl,
@@ -64,7 +47,7 @@ export const «componentName»: React.SFC<Props> = (props: Props) => {
     case 'avatar':
       primary = (
         <MuiListItemAvatar>
-          <Avatar icon={primaryIcon} imageFile={imageFile} imageUrl={imageUrl} />
+          <Avatar icon={primaryIcon} avatarImageFile={imageFile} avatarImageUrl={imageUrl} />
         </MuiListItemAvatar>
       );
       break;
@@ -90,7 +73,7 @@ export const «componentName»: React.SFC<Props> = (props: Props) => {
   }
 
   return (
-    <MuiListItem {...other}>
+    <MuiListItem button={button as any} {...other}>
       {primary}
       <MuiListItemText
         inset={inset}
@@ -105,7 +88,9 @@ export const «componentName»: React.SFC<Props> = (props: Props) => {
   );
 };
 
-«componentName».defaultProps = defaultProps;
+«componentName».defaultProps = {
+«& defaultProps»
+};
 
 addPropertyControls(«componentName», {
 «& propertyControls»

@@ -3,30 +3,32 @@ import { addPropertyControls, ControlType } from 'framer';
 import MuiCircularProgress from '@material-ui/core/CircularProgress';
 
 interface Props {
-  color?: 'inherit' | 'primary' | 'secondary';
-  thickness?: number;
-  value?: number;
-  variant?: 'determinate' | 'indeterminate' | 'static';
-  width?: number;
-  height?: number;
+  color: 'inherit' | 'primary' | 'secondary';
+  thickness: number;
+  value: number;
+  variant: 'determinate' | 'indeterminate' | 'static';
+  width: number | string;
+  height: number;
 }
-
-const defaultProps: Props = {
-  color: 'primary',
-  thickness: 4,
-  value: 75,
-  variant: 'static',
-  width: 44,
-  height: 44,
-};
 
 export function CircularProgress(props: Props): JSX.Element {
   const { width, height, ...other } = props;
+  const style: React.CSSProperties = {
+    width: 'width',
+    height: 'height',
+  };
 
   return <MuiCircularProgress size={width} {...other} />;
 }
 
-CircularProgress.defaultProps = defaultProps;
+CircularProgress.defaultProps = {
+  color: 'primary' as 'primary',
+  thickness: 4,
+  value: 75,
+  variant: 'static' as 'static',
+  width: 44,
+  height: 44,
+};
 
 addPropertyControls(CircularProgress, {
   color: {

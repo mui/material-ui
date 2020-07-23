@@ -3,9 +3,25 @@ import { addPropertyControls, ControlType } from 'framer';
 import MuiSwitch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
-export function Switch(props) {
-  const { checked: checkedProp, label, onChange, size, ...other } = props;
+interface Props {
+  checked: boolean;
+  color: 'default' | 'primary' | 'secondary';
+  disabled: boolean;
+  size: 'medium' | 'small';
+  label: string;
+  width: number | string;
+  height: number;
+}
 
+export function Switch(props: Props) {
+  const {
+    checked: checkedProp,
+    label,
+    // @ts-ignore -- untyped
+    onChange,
+    size,
+    ...other
+  } = props;
   const [checked, setChecked] = React.useState(false);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -15,7 +31,7 @@ export function Switch(props) {
     setChecked((event.target as HTMLInputElement).checked);
   };
 
-      React.useEffect(() => {
+  React.useEffect(() => {
     setChecked(checkedProp);
   }, [checkedProp]);
 
@@ -26,9 +42,9 @@ export function Switch(props) {
 
 Switch.defaultProps = {
   checked: false,
-  color: 'secondary',
+  color: 'secondary' as 'secondary',
   disabled: false,
-  size: 'medium',
+  size: 'medium' as 'medium',
   label: 'Switch',
   width: 100,
   height: 38,

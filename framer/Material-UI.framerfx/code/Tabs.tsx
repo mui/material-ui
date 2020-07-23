@@ -6,30 +6,18 @@ import MuiTab from '@material-ui/core/Tab';
 import { Icon } from './Icon';
 
 interface Props {
-  centered?: boolean;
-  indicatorColor?: 'primary' | 'secondary';
-  scrollButtons?: 'auto' | 'desktop' | 'off' | 'on';
+  centered: boolean;
+  indicatorColor: 'primary' | 'secondary';
+  scrollButtons: 'auto' | 'desktop' | 'off' | 'on';
   selectionFollowsFocus?: boolean;
-  textColor?: 'inherit' | 'primary' | 'secondary';
-  variant?: 'fullWidth' | 'scrollable' | 'standard';
+  textColor: 'inherit' | 'primary' | 'secondary';
+  variant: 'fullWidth' | 'scrollable' | 'standard';
   appBarColor?: 'default' | 'primary' | 'secondary' | 'inherit';
-  icons?: string[];
-  labels?: string[];
-  width?: number;
-  height?: number;
+  icons: string[];
+  labels: string[];
+  width: number | string;
+  height: number;
 }
-
-const defaultProps: Props = {
-  centered: false,
-  indicatorColor: 'secondary',
-  scrollButtons: 'auto',
-  textColor: 'inherit',
-  variant: 'standard',
-  icons: ['phone', 'favorite', 'person_pin'],
-  labels: ['Tab 1', 'Tab 2', 'Tab 3'],
-  width: 500,
-  height: 64,
-};
 
 export function Tabs(props: Props): JSX.Element {
   const { appBarColor, labels, icons, width, height, ...other } = props;
@@ -63,7 +51,17 @@ export function Tabs(props: Props): JSX.Element {
   );
 }
 
-Tabs.defaultProps = defaultProps;
+Tabs.defaultProps = {
+  centered: false,
+  indicatorColor: 'secondary' as 'secondary',
+  scrollButtons: 'auto' as 'auto',
+  textColor: 'inherit' as 'inherit',
+  variant: 'standard' as 'standard',
+  icons: ['phone', 'favorite', 'person_pin'],
+  labels: ['Tab 1', 'Tab 2', 'Tab 3'],
+  width: 500,
+  height: 64,
+};
 
 addPropertyControls(Tabs, {
   centered: {

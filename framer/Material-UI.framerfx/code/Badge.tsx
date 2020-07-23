@@ -4,30 +4,16 @@ import MuiBadge from '@material-ui/core/Badge';
 import { Icon } from './Icon';
 
 interface Props {
-  badgeContent?: string;
-  children: React.ReactNode;
-  max?: number;
-  showZero?: boolean;
-  variant?: 'dot' | 'standard';
-  icon?: string;
-  theme?: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
-  badgeColor?: 'default' | 'primary' | 'secondary' | 'error';
-  width?: number;
-  height?: number;
+  badgeContent: string;
+  max: number;
+  showZero: boolean;
+  variant: 'dot' | 'standard';
+  icon: string;
+  theme: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
+  badgeColor: 'default' | 'primary' | 'secondary' | 'error';
+  width: number | string;
+  height: number;
 }
-
-const defaultProps: Props = {
-  badgeContent: '8',
-  children: undefined,
-  max: 99,
-  showZero: false,
-  variant: 'standard',
-  icon: '',
-  theme: 'Filled',
-  badgeColor: 'primary',
-  width: 22,
-  height: 22,
-};
 
 const style: React.CSSProperties = {
   display: 'flex',
@@ -47,7 +33,17 @@ export function Badge(props: Props): JSX.Element {
   return <MuiBadge badgeContent={content} color={color} style={style} {...other} />;
 }
 
-Badge.defaultProps = defaultProps;
+Badge.defaultProps = {
+  badgeContent: '8',
+  max: 99,
+  showZero: false,
+  variant: 'standard' as 'standard',
+  icon: '',
+  theme: 'Filled' as 'Filled',
+  badgeColor: 'primary' as 'primary',
+  width: 22,
+  height: 22,
+};
 
 addPropertyControls(Badge, {
   badgeContent: {
