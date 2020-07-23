@@ -423,14 +423,14 @@ describe('<Button />', () => {
               styles: { backgroundColor: 'rgb(255, 0, 0)' },
             },
             {
-              props: { variant: 'test', size: 'large' },
+              props: { variant: 'test', size: 'large', color: 'primary' },
               styles: { backgroundColor: 'rgb(0, 255, 0)' },
             },
           ],
         },
       });
 
-      render(<WrappedComponent theme={theme} variant="test" size="large" />);
+      render(<WrappedComponent theme={theme} variant="test" size="large" color="primary" />);
 
       const style = window.getComputedStyle(screen.getByTestId('component'));
       expect(style.getPropertyValue('background-color')).to.equal('rgb(0, 255, 0)');
