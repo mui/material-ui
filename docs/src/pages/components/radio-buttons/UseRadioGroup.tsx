@@ -1,22 +1,21 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 import RadioGroup, { useRadioGroup } from '@material-ui/core/RadioGroup';
 import FormControlLabel, {
   FormControlLabelProps,
 } from '@material-ui/core/FormControlLabel';
 import Radio from '@material-ui/core/Radio';
 
-const useStyles = makeStyles((theme) => ({
-  labelChecked: {
-    color: theme.palette.secondary.main,
-    fontWeight: 'bold',
-    textDecoration: 'underline',
-  },
-}));
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    labelChecked: {
+      color: theme.palette.secondary.main,
+    },
+  }),
+);
 
-const MyFormControlLabel = (props: FormControlLabelProps) => {
+function MyFormControlLabel(props: FormControlLabelProps) {
   const classes = useStyles();
-
   const radioGroup = useRadioGroup();
 
   let checked = false;
@@ -33,13 +32,12 @@ const MyFormControlLabel = (props: FormControlLabelProps) => {
       {...props}
     />
   );
-};
+}
 
 export default function UseRadioGroup() {
   return (
-    <RadioGroup defaultValue="first">
+    <RadioGroup name="use-radio-group" defaultValue="first">
       <MyFormControlLabel value="first" label="First" control={<Radio />} />
-
       <MyFormControlLabel value="second" label="Second" control={<Radio />} />
     </RadioGroup>
   );
