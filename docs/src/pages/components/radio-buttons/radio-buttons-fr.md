@@ -43,6 +43,16 @@ Voici un exemple de personnalisation du composant. Vous pouvez en savoir plus da
 
 {{"demo": "pages/components/radio-buttons/CustomizedRadios.js"}}
 
+## `useRadioGroup`
+
+For advanced customization use cases, we expose a `useRadioGroup()` hook.
+It returns the context value of RadioGroupContext.
+The Radio component uses this hook internally.
+
+```jsx
+import { useRadioGroup } from '@material-ui/core/RadioGroup';
+```
+
 ## Quand les utiliser
 
 - [Checkboxes vs. Cases d’option](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)

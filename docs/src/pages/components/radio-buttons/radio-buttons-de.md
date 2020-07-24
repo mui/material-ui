@@ -43,6 +43,16 @@ Hier ist ein Beispiel zum Anpassen der Komponente. Mehr dazu erfahren Sie auf de
 
 {{"demo": "pages/components/radio-buttons/CustomizedRadios.js"}}
 
+## `useRadioGroup`
+
+For advanced customization use cases, we expose a `useRadioGroup()` hook.
+It returns the context value of RadioGroupContext.
+The Radio component uses this hook internally.
+
+```jsx
+import { useRadioGroup } from '@material-ui/core/RadioGroup';
+```
+
 ## When to use
 
 - [Kontrollkästchen vs. Optionsfeld (Radio Buttons)](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
