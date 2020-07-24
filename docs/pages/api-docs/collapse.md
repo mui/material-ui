@@ -46,10 +46,10 @@ Any other props supplied will be provided to the root element ([Transition](http
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">container</span> | <span class="prop-name">.MuiCollapse-container</span> | Styles applied to the container element.
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiCollapse-root</span> | Styles applied to the root element.
 | <span class="prop-name">horizontal</span> | <span class="prop-name">.MuiCollapse-horizontal</span> | Pseudo-class applied to the root element if `orientation="horizontal"`.
-| <span class="prop-name">entered</span> | <span class="prop-name">.MuiCollapse-entered</span> | Styles applied to the container element when the transition has entered.
-| <span class="prop-name">hidden</span> | <span class="prop-name">.MuiCollapse-hidden</span> | Styles applied to the container element when the transition has exited and `collapsedSize` != 0px.
+| <span class="prop-name">entered</span> | <span class="prop-name">.MuiCollapse-entered</span> | Styles applied to the root element when the transition has entered.
+| <span class="prop-name">hidden</span> | <span class="prop-name">.MuiCollapse-hidden</span> | Styles applied to the root element when the transition has exited and `collapsedSize` != 0px.
 | <span class="prop-name">wrapper</span> | <span class="prop-name">.MuiCollapse-wrapper</span> | Styles applied to the outer wrapper element.
 | <span class="prop-name">wrapperInner</span> | <span class="prop-name">.MuiCollapse-wrapperInner</span> | Styles applied to the inner wrapper element.
 

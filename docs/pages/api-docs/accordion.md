@@ -50,6 +50,7 @@ Any other props supplied will be provided to the root element ([Paper](/api/pape
 | <span class="prop-name">rounded</span> | <span class="prop-name">.MuiAccordion-rounded</span> | Styles applied to the root element if `square={false}`.
 | <span class="prop-name">expanded</span> | <span class="prop-name">.Mui-expanded</span> | Styles applied to the root element if `expanded={true}`.
 | <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Styles applied to the root element if `disabled={true}`.
+| <span class="prop-name">region</span> | <span class="prop-name">.MuiAccordion-region</span> | Styles applied to the region element, the container of the children
 
 You can override the style of the component thanks to one of these customization points:
 
