@@ -464,6 +464,33 @@ describe('<Button />', () => {
       expect(style.getPropertyValue('background-color')).not.to.equal('rgb(0, 255, 0)');
     });
 
+    it('should consider default props when matching the props', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // see https://github.com/jsdom/jsdom/issues/2953
+        this.skip();
+      }
+
+      const theme = createMuiTheme({
+        variants: {
+          MuiButton: [
+            {
+              props: { variant: 'test' },
+              styles: { backgroundColor: 'rgb(0, 0, 0)'},
+            },
+            {
+              props: { variant: 'test', color: 'primary', size: 'large' },
+              styles: { backgroundColor: 'rgb(255, 0, 0)' },
+            },
+          ],
+        },
+      });
+
+      render(<WrappedComponent theme={theme} variant="test" size="large" />);
+
+      const style = window.getComputedStyle(screen.getByTestId('component'));
+      expect(style.getPropertyValue('background-color')).to.equal('rgb(255, 0, 0)');
+    });
+
     it('should warn if the used variant is not defined in the theme', function test() {
       const theme = createMuiTheme({
         variants: {

@@ -5,7 +5,6 @@ import { chainPropTypes, getDisplayName } from '@material-ui/utils';
 import makeStyles from '../makeStyles';
 import getThemeProps from '../getThemeProps';
 import useTheme from '../useTheme';
-import propsToClassKey from '../propsToClassKey';
 
 // Link a style sheet with a component.
 // It does not modify the component passed to it;
@@ -67,25 +66,6 @@ const withStyles = (stylesOrCreator, options = {}) => (Component) => {
       // So we don't have to use the `withTheme()` Higher-order Component.
       if (withTheme && !more.theme) {
         more.theme = theme;
-      }
-
-      if (theme && theme.variants && theme.variants[name]) {
-        let variantsClasses = '';
-        const themeVariants = theme.variants[name];
-
-        themeVariants.forEach((themeVariant) => {
-          let isMatch = true;
-          Object.keys(themeVariant.props).forEach((key) => {
-            if (more[key] !== themeVariant.props[key]) {
-              isMatch = false;
-            }
-          });
-          if (isMatch) {
-            variantsClasses = `${variantsClasses} ${classes[propsToClassKey(themeVariant.props)]}`;
-          }
-        });
-
-        classes = { ...classes, root: `${classes.root}${variantsClasses}` };
       }
     }
 
