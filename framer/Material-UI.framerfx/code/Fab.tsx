@@ -8,7 +8,7 @@ interface Props {
   disabled: boolean;
   href?: string;
   size: 'large' | 'medium' | 'small';
-  variant: 'extended' | 'round';
+  variant: 'extended' | 'circle';
   icon: string;
   iconTheme: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
   label: string;
@@ -34,7 +34,7 @@ Fab.defaultProps = {
   color: 'default' as 'default',
   disabled: false,
   size: 'large' as 'large',
-  variant: 'round' as 'round',
+  variant: 'circle' as 'circle',
   icon: 'add',
   iconTheme: 'Filled' as 'Filled',
   label: 'extended',
@@ -64,7 +64,7 @@ addPropertyControls(Fab, {
   variant: {
     type: ControlType.Enum,
     title: 'Variant',
-    options: ['extended', 'round'],
+    options: ['extended', 'circle'],
   },
   icon: {
     type: ControlType.String,
