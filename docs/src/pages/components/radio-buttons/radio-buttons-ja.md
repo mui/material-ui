@@ -43,16 +43,6 @@ In general, radio buttons should have a value selected by default. If this is no
 
 {{"demo": "pages/components/radio-buttons/CustomizedRadios.js"}}
 
-## `useRadioGroup`
-
-発展的な利用の為に、`useRadioGroup()` が用意されています。
-RadioGroupContextのvalueを返り値です。
-Radioコンポーネントが内部的にこれを使用しています。
-
-```jsx
-import { useRadioGroup } from '@material-ui/core/RadioGroup';
-```
-
 ## When to use
 
 - [Checkboxと Radio Buttons](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)

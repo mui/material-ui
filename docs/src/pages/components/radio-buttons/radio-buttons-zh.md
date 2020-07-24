@@ -43,16 +43,6 @@ components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
 
 {{"demo": "pages/components/radio-buttons/CustomizedRadios.js"}}
 
-## `useRadioGroup`
-
-For advanced customization use cases, we expose a `useRadioGroup()` hook.
-It returns the context value of RadioGroupContext.
-The Radio component uses this hook internally.
-
-```jsx
-import { useRadioGroup } from '@material-ui/core/RadioGroup';
-```
-
 ## 什么时候使用
 
 - [复选框 对比 单选按钮](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
