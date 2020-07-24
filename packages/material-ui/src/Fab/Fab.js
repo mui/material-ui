@@ -216,7 +216,7 @@ Fab.propTypes = {
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['extended', 'circle']),
+  variant: PropTypes.oneOf(['circle', 'extended']),
 };
 
 export default withStyles(styles, { name: 'MuiFab' })(Fab);
