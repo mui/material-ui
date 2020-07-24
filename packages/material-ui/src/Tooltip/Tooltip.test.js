@@ -161,6 +161,9 @@ describe('<Tooltip />', () => {
       const target = screen.getByTestId('target');
       expect(target).toHaveAccessibleName('the title');
       expect(target).not.to.have.attribute('title');
+
+      // TODO: can be removed with popper@2.x
+      clock.runAll();
     });
 
     it('should label the child when open with an exotic title', () => {
@@ -173,6 +176,9 @@ describe('<Tooltip />', () => {
       const target = screen.getByTestId('target');
       expect(target).toHaveAccessibleName('the title');
       expect(target).not.to.have.attribute('title');
+
+      // TODO: can be removed with popper@2.x
+      clock.runAll();
     });
 
     it('can describe the child when closed', () => {
@@ -218,6 +224,9 @@ describe('<Tooltip />', () => {
       expect(target).toHaveAccessibleName('the label');
       expect(target).toHaveAccessibleDescription('the title');
       expect(target).not.to.have.attribute('title');
+
+      // TODO: can be removed with popper@2.x
+      clock.runAll();
     });
 
     it('can describe the child when open with an exotic title', () => {
@@ -233,6 +242,9 @@ describe('<Tooltip />', () => {
       expect(target).toHaveAccessibleName('the label');
       expect(target).toHaveAccessibleDescription('the title');
       expect(target).not.to.have.attribute('title');
+
+      // TODO: can be removed with popper@2.x
+      clock.runAll();
     });
   });
 
