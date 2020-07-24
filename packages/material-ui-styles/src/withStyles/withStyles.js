@@ -48,7 +48,7 @@ const withStyles = (stylesOrCreator, options = {}) => (Component) => {
     // The wrapper receives only user supplied props, which could be a subset of
     // the actual props Component might receive due to merging with defaultProps.
     // So copying it here would give us the same result in the wrapper as well.
-    let classes = useStyles({ ...Component.defaultProps, ...props });
+    const classes = useStyles({ ...Component.defaultProps, ...props });
 
     let theme;
     let more = other;
