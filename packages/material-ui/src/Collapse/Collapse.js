@@ -10,8 +10,8 @@ import useTheme from '../styles/useTheme';
 import { useForkRef } from '../utils';
 
 export const styles = (theme) => ({
-  /* Styles applied to the container element. */
-  container: {
+  /* Styles applied to the root element. */
+  root: {
     height: 0,
     overflow: 'hidden',
     transition: theme.transitions.create('height'),
@@ -23,7 +23,7 @@ export const styles = (theme) => ({
   },
   /* Pseudo-class applied to the root element if `orientation="horizontal"`. */
   horizontal: {},
-  /* Styles applied to the container element when the transition has entered. */
+  /* Styles applied to the root element when the transition has entered. */
   entered: {
     height: 'auto',
     overflow: 'visible',
@@ -31,7 +31,7 @@ export const styles = (theme) => ({
       width: 'auto',
     },
   },
-  /* Styles applied to the container element when the transition has exited and `collapsedSize` != 0px. */
+  /* Styles applied to the root element when the transition has exited and `collapsedSize` != 0px. */
   hidden: {
     visibility: 'hidden',
   },
@@ -226,7 +226,7 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
       {(state, childProps) => (
         <Component
           className={clsx(
-            classes.container,
+            classes.root,
             {
               [classes.horizontal]: isHorizontal,
               [classes.entered]: state === 'entered',
