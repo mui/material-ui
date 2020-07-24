@@ -63,6 +63,6 @@ const data = {
 
 The component follows the WAI-ARIA authoring practices.
 
-### Requirements
+To have an accessible tree view:
 
 - You must use `aria-labelledby` or `aria-label` to reference or provide a label on the TreeView.
