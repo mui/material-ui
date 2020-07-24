@@ -257,3 +257,11 @@ This change affects almost all components where you're using the `component` pro
   -<Typography variant="srOnly">Create a user</Typography>
   +<Span>Create a user</Span>
   ```
+  ## Fab
+
+  - Rename `round` to `circle` for consistency:
+
+  ```diff
+  -<Fab variant="round">
+  +<Fab variant="circle">
+  ```
