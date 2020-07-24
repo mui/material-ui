@@ -279,18 +279,21 @@ const Button = React.forwardRef(function Button(props, ref) {
     ...other
   } = props;
 
-  const themeVariantsClasses = useThemeVariants({
-    color, 
-    component,
-    disabled,
-    disableElevation,
-    disableFocusRipple,
-    fullWidth,
-    size,
-    type,
-    variant,
-    ...props
-  }, 'MuiButton');
+  const themeVariantsClasses = useThemeVariants(
+    {
+      color,
+      component,
+      disabled,
+      disableElevation,
+      disableFocusRipple,
+      fullWidth,
+      size,
+      type,
+      variant,
+      ...props,
+    },
+    'MuiButton',
+  );
 
   const startIcon = startIconProp && (
     <span className={clsx(classes.startIcon, classes[`iconSize${capitalize(size)}`])}>

@@ -475,7 +475,7 @@ describe('<Button />', () => {
           MuiButton: [
             {
               props: { variant: 'test' },
-              styles: { backgroundColor: 'rgb(0, 0, 0)'},
+              styles: { backgroundColor: 'rgb(0, 0, 0)' },
             },
             {
               props: { variant: 'test', color: 'primary', size: 'large' },

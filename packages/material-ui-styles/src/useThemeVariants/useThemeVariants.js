@@ -7,7 +7,6 @@ const useThemeVariants = (props, name) => {
 
   let variantsClasses = '';
   if (theme && theme.variants && theme.variants[name]) {
-
     const themeVariants = theme.variants[name];
 
     themeVariants.forEach((themeVariant) => {
@@ -24,6 +23,6 @@ const useThemeVariants = (props, name) => {
   }
 
   return variantsClasses;
-}
+};
 
 export default useThemeVariants;
