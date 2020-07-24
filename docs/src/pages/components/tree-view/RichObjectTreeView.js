@@ -34,7 +34,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function RecursiveTreeView() {
+export default function RichObjectTreeView() {
   const classes = useStyles();
 
   const renderTree = (nodes) => (
@@ -47,7 +47,7 @@ export default function RecursiveTreeView() {
 
   return (
     <TreeView
-      aria-label="Recursive TreeView"
+      aria-label="rich object"
       className={classes.root}
       defaultCollapseIcon={<ExpandMoreIcon />}
       defaultExpanded={['root']}

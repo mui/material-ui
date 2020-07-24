@@ -45,7 +45,7 @@ const data = {
 };
 ```
 
-{{"demo": "pages/components/tree-view/RecursiveTreeView.js", "defaultCodeOpen": false}}
+{{"demo": "pages/components/tree-view/RichObjectTreeView.js", "defaultCodeOpen": false}}
 
 ## Customized tree view
 
@@ -63,6 +63,6 @@ const data = {
 
 The component follows the WAI-ARIA authoring practices.
 
-### Best Practices
+### Requirements
 
-- You should use `aria-labelledby` or `aria-label` to reference or provide a label on the TreeView.
+- You must use `aria-labelledby` or `aria-label` to reference or provide a label on the TreeView.

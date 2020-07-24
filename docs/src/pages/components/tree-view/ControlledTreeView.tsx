@@ -57,7 +57,7 @@ export default function ControlledTreeView() {
         </Button>
       </div>
       <TreeView
-        aria-label="Controlled TreeView"
+        aria-label="controlled"
         defaultCollapseIcon={<ExpandMoreIcon />}
         defaultExpandIcon={<ChevronRightIcon />}
         expanded={expanded}
