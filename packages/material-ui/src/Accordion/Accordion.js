@@ -77,7 +77,7 @@ export const styles = (theme) => {
     expanded: {},
     /* Styles applied to the root element if `disabled={true}`. */
     disabled: {},
-    /* Styles applied to the region element, the container of the children */
+    /* Styles applied to the region element, the container of the children. */
     region: {},
   };
 };
