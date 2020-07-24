@@ -118,9 +118,6 @@ describe('<Popper />', () => {
         ['top'],
         ['top'],
       ]);
-
-      // FIXME: Unclear why we need this to fix "missing act()"-warning
-      unmount();
     });
   });
 
@@ -149,12 +146,10 @@ describe('<Popper />', () => {
         <Popper {...defaultProps} popperRef={popperRef} placement="top" open />,
       );
 
-      act(() => {
-        setProps({
-          popperOptions: {
-            placement: 'bottom',
-          },
-        });
+      setProps({
+        popperOptions: {
+          placement: 'bottom',
+        },
       });
 
       expect(popperRef.current.state.placement).to.equal('bottom');

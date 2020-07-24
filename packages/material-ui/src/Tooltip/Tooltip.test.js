@@ -83,10 +83,6 @@ describe('<Tooltip />', () => {
     );
 
     expect(getByRole('tooltip')).to.have.class(classes.popper);
-
-    // TODO: Unclear why not running triggers microtasks but runAll does not trigger microtasks
-    // can be removed once Popper#update is sync
-    clock.runAll();
   });
 
   describe('prop: disableHoverListener', () => {
@@ -112,10 +108,6 @@ describe('<Tooltip />', () => {
       );
 
       expect(getByRole('tooltip')).toBeVisible();
-
-      // TODO: Unclear why not running triggers microtasks but runAll does not trigger microtasks
-      // can be removed once Popper#update is sync
-      clock.runAll();
     });
 
     it('should not display if the title is an empty string', () => {
@@ -448,10 +440,6 @@ describe('<Tooltip />', () => {
           </button>
         </Tooltip>,
       );
-
-      // TODO: Unclear why not running triggers microtasks but runAll does not trigger microtasks
-      // can be removed once Popper#update is sync
-      clock.runAll();
     });
 
     it('should handle autoFocus + onFocus forwarding', () => {
@@ -473,10 +461,6 @@ describe('<Tooltip />', () => {
       });
 
       expect(getByRole('tooltip')).toBeVisible();
-
-      // TODO: Unclear why not running triggers microtasks but runAll does not trigger microtasks
-      // can be removed once Popper#update is sync
-      clock.runAll();
     });
   });
 
@@ -499,10 +483,6 @@ describe('<Tooltip />', () => {
       });
 
       expect(getByRole('tooltip')).toBeVisible();
-
-      // TOD: Unclear why not running triggers microtasks but runAll does not trigger microtasks
-      // can be removed once Popper#update is sync
-      clock.runAll();
     });
 
     it('should use hysteresis with the enterDelay', () => {
@@ -551,10 +531,6 @@ describe('<Tooltip />', () => {
       });
 
       expect(getByRole('tooltip')).toBeVisible();
-
-      // TOD: Unclear why not running triggers microtasks but runAll does not trigger microtasks
-      // can be removed once Popper#update is sync
-      clock.runAll();
     });
 
     it('should take the leaveDelay into account', () => {
@@ -663,10 +639,6 @@ describe('<Tooltip />', () => {
       fireEvent.mouseOver(getByRole('tooltip'));
 
       expect(handleMouseOver.callCount).to.equal(0);
-
-      // TOD: Unclear why not running triggers microtasks but runAll does not trigger microtasks
-      // can be removed once Popper#update is sync
-      clock.runAll();
     });
   });
 
@@ -681,10 +653,6 @@ describe('<Tooltip />', () => {
           </Tooltip>,
         );
       }).not.toErrorDev();
-
-      // TOD: Unclear why not running triggers microtasks but runAll does not trigger microtasks
-      // can be removed once Popper#update is sync
-      clock.runAll();
     });
 
     it('should raise a warning when we are uncontrolled and can not listen to events', () => {
@@ -711,10 +679,6 @@ describe('<Tooltip />', () => {
           </Tooltip>,
         );
       }).not.toErrorDev();
-
-      // TOD: Unclear why not running triggers microtasks but runAll does not trigger microtasks
-      // can be removed once Popper#update is sync
-      clock.runAll();
     });
   });
 
@@ -793,10 +757,6 @@ describe('<Tooltip />', () => {
       );
 
       expect(getByTestId('popper')).not.to.equal(null);
-
-      // TOD: Unclear why not running triggers microtasks but runAll does not trigger microtasks
-      // can be removed once Popper#update is sync
-      clock.runAll();
     });
 
     it('should merge popperOptions with arrow modifier', () => {
@@ -831,10 +791,6 @@ describe('<Tooltip />', () => {
       expect(
         popperRef.current.state.orderedModifiers.find((x) => x.name === 'arrow').enabled,
       ).to.equal(true);
-
-      // TOD: Unclear why not running triggers microtasks but runAll does not trigger microtasks
-      // can be removed once Popper#update is sync
-      clock.runAll();
     });
   });
 
@@ -893,6 +849,7 @@ describe('<Tooltip />', () => {
       focusVisible(getByRole('button'));
 
       expect(getByRole('tooltip')).toBeVisible();
+<<<<<<< HEAD
       expect(eventLog).to.deep.equal(['focus', 'open']);
 
       // TODO: Can be removed once Popper#update is sync.
@@ -931,6 +888,8 @@ describe('<Tooltip />', () => {
       act(() => {
         clock.runAll();
       });
+=======
+>>>>>>> Simplify tests
     });
 
     // https://github.com/mui-org/material-ui/issues/19883
