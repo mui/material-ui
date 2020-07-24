@@ -17,7 +17,7 @@ const useThemeVariants = (props, name) => {
         }
       });
       if (isMatch) {
-        variantsClasses = `${variantsClasses} ${classes[propsToClassKey(themeVariant.props)]}`;
+        variantsClasses = `${variantsClasses}${classes[propsToClassKey(themeVariant.props)]} `;
       }
     });
   }

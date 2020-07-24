@@ -9,11 +9,11 @@ import withStyles from '../withStyles';
 describe('useThemeVariants', () => {
   const render = createClientRender();
 
-  const ComponentInternal = props => {
+  const ComponentInternal = (props) => {
     const { className, ...other } = props;
     const themeVariantsClasses = useThemeVariants(props, 'Test');
-    return <div className={`${themeVariantsClasses} ${className}`} {...other} />
-  }
+    return <div className={`${themeVariantsClasses} ${className}`} {...other} />;
+  };
 
   const Component = withStyles({}, { name: 'Test' })(ComponentInternal);
 
@@ -23,13 +23,19 @@ describe('useThemeVariants', () => {
         Test: [
           {
             props: { variant: 'test' },
-            styles: { backgroundColor: 'rgb(255, 0, 0)'}
-          }
-        ]
-      }
+            styles: { backgroundColor: 'rgb(255, 0, 0)' },
+          },
+        ],
+      },
     });
 
-    render(<ThemeProvider theme={theme}><Component data-testid="component" variant="test">Test</Component></ThemeProvider>);
+    render(
+      <ThemeProvider theme={theme}>
+        <Component data-testid="component" variant="test">
+          Test
+        </Component>
+      </ThemeProvider>,
+    );
 
     const style = window.getComputedStyle(screen.getByTestId('component'));
     expect(style.getPropertyValue('background-color')).to.equal('rgb(255, 0, 0)');
@@ -41,13 +47,17 @@ describe('useThemeVariants', () => {
         Test: [
           {
             props: { variant: 'test' },
-            styles: { backgroundColor: 'rgb(255, 0, 0)'}
-          }
-        ]
-      }
+            styles: { backgroundColor: 'rgb(255, 0, 0)' },
+          },
+        ],
+      },
     });
 
-    render(<ThemeProvider theme={theme}><Component data-testid="component">Test</Component></ThemeProvider>);
+    render(
+      <ThemeProvider theme={theme}>
+        <Component data-testid="component">Test</Component>
+      </ThemeProvider>,
+    );
 
     const style = window.getComputedStyle(screen.getByTestId('component'));
     expect(style.getPropertyValue('background-color')).not.to.equal('rgb(255, 0, 0)');
@@ -59,21 +69,27 @@ describe('useThemeVariants', () => {
         Test: [
           {
             props: { variant: 'test' },
-            styles: { backgroundColor: 'rgb(255, 0, 0)'}
+            styles: { backgroundColor: 'rgb(255, 0, 0)' },
           },
           {
             props: { variant: 'test', color: 'primary' },
-            styles: { backgroundColor: 'rgb(255, 255, 0)'}
+            styles: { backgroundColor: 'rgb(255, 255, 0)' },
           },
           {
             props: { variant: 'test', color: 'secondary' },
-            styles: { backgroundColor: 'rgb(0, 0, 255)'}
-          }
-        ]
-      }
+            styles: { backgroundColor: 'rgb(0, 0, 255)' },
+          },
+        ],
+      },
     });
 
-    render(<ThemeProvider theme={theme}><Component data-testid="component" variant="test" color="primary">Test</Component></ThemeProvider>);
+    render(
+      <ThemeProvider theme={theme}>
+        <Component data-testid="component" variant="test" color="primary">
+          Test
+        </Component>
+      </ThemeProvider>,
+    );
 
     const style = window.getComputedStyle(screen.getByTestId('component'));
     expect(style.getPropertyValue('background-color')).not.to.equal('rgb(0, 255, 0)');
