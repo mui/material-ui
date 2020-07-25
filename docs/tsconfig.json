@@ -1,24 +1,27 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
-    "jsx": "preserve",
+    "allowUmdGlobalAccess": true,
+    "baseUrl": ".",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react",
     "lib": ["dom", "es2017"],
     "module": "esnext",
     "moduleResolution": "node",
     "noEmit": true,
+    "noImplicitAny": true,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "preserveConstEnums": true,
     "removeComments": false,
+    "resolveJsonModule": true,
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
-    "esModuleInterop": true,
-    "rootDir": ".",
-    "target": "esnext",
-    "resolveJsonModule": true
+    "suppressImplicitAnyIndexErrors": true,
+    "target": "esnext"
   },
-  "include": ["./typings.d.ts", "../docs/**/*.ts*"]
+  "include": ["./**/*.ts*", "./typings.d.ts"]
 }

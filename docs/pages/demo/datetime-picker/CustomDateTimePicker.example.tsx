@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import * as React from 'react';
 import AlarmIcon from '@material-ui/icons/Alarm';
 import SnoozeIcon from '@material-ui/icons/Snooze';
 import TextField from '@material-ui/core/TextField';
 import ClockIcon from '@material-ui/icons/AccessTime';
 import { DateTimePicker, MobileDateTimePicker } from '@material-ui/pickers';
 
-function CustomDateTimePicker(props) {
-  const [clearedDate, handleClearedDateChange] = useState(null);
-  const [selectedDate, handleDateChange] = useState(new Date('2019-01-01T18:54'));
+export default function CustomDateTimePicker(props: any) {
+  const [clearedDate, handleClearedDateChange] = React.useState<Date | null>(null);
+  const [selectedDate, handleDateChange] = React.useState<Date | null>(
+    new Date('2019-01-01T18:54')
+  );
 
   return (
     <React.Fragment>
@@ -55,5 +57,3 @@ function CustomDateTimePicker(props) {
     </React.Fragment>
   );
 }
-
-export default CustomDateTimePicker;

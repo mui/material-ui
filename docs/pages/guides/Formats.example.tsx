@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import * as React from 'react';
 import frLocale from 'date-fns/locale/fr';
 import TextField from '@material-ui/core/TextField';
 import DateFnsAdapter from '@material-ui/pickers/adapter/date-fns';
@@ -10,8 +10,8 @@ const formats = {
   keyboardDate: 'd MMM yyy',
 };
 
-function DateFnsLocalizationExample() {
-  const [selectedDate, handleDateChange] = useState(new Date());
+export default function DateFnsLocalizationExample() {
+  const [selectedDate, handleDateChange] = React.useState<Date | null>(new Date());
 
   return (
     <LocalizationProvider dateAdapter={DateFnsAdapter} locale={frLocale} dateFormats={formats}>
@@ -26,5 +26,3 @@ function DateFnsLocalizationExample() {
     </LocalizationProvider>
   );
 }
-
-export default DateFnsLocalizationExample;

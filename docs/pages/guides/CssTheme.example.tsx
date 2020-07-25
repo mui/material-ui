@@ -1,25 +1,26 @@
-import React, { useState } from 'react';
+import * as React from 'react';
+import lime from '@material-ui/core/colors/lime';
 import TextField from '@material-ui/core/TextField';
 import { DateTimePicker } from '@material-ui/pickers';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
-const muiTheme = createMuiTheme({
-  spacing: 2,
+const defaultMaterialTheme = createMuiTheme({
+  palette: {
+    primary: lime,
+  },
 });
 
-function CssThemeExample() {
-  const [selectedDate, handleDateChange] = useState(new Date());
+export default function CssThemeExample() {
+  const [selectedDate, handleDateChange] = React.useState<Date | null>(new Date());
 
   return (
-    <ThemeProvider theme={muiTheme}>
+    <ThemeProvider theme={defaultMaterialTheme}>
       <DateTimePicker
         renderInput={(props) => <TextField {...props} />}
-        label="2px spacing"
+        label="Lime DateTimePicker"
         value={selectedDate}
         onChange={handleDateChange}
       />
     </ThemeProvider>
   );
 }
-
-export default CssThemeExample;

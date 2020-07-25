@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import { Typography, TextField } from '@material-ui/core';
 import { DateRangePicker, DateRangeDelimiter, DateRange } from '@material-ui/pickers';
 
-function CalendarsDateRangePicker() {
+export default function CalendarsDateRangePicker() {
   const [selectedDate, handleDateChange] = React.useState<DateRange<Date>>([null, null]);
 
   return (
@@ -52,5 +52,3 @@ function CalendarsDateRangePicker() {
     </Grid>
   );
 }
-
-export default CalendarsDateRangePicker;

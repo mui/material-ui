@@ -1,12 +1,14 @@
-import React, { Fragment, useState } from 'react';
+import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { TimePicker } from '@material-ui/pickers';
 
-function TimeValidation() {
-  const [selectedDate, handleDateChange] = useState(new Date('2020-01-01 12:00'));
+export default function TimeValidation() {
+  const [selectedDate, handleDateChange] = React.useState<Date | null>(
+    new Date('2020-01-01 12:00')
+  );
 
   return (
-    <Fragment>
+    <React.Fragment>
       <TimePicker
         renderInput={(props) => <TextField {...props} />}
         value={selectedDate}
@@ -39,8 +41,6 @@ function TimeValidation() {
           return false;
         }}
       />
-    </Fragment>
+    </React.Fragment>
   );
 }
-
-export default TimeValidation;

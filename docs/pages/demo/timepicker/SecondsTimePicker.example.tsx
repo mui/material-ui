@@ -1,12 +1,12 @@
-import React, { Fragment, useState } from 'react';
+import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { TimePicker } from '@material-ui/pickers';
 
-function SecondsTimePicker() {
-  const [selectedDate, handleDateChange] = useState(new Date());
+export default function SecondsTimePicker() {
+  const [selectedDate, handleDateChange] = React.useState<Date | null>(new Date());
 
   return (
-    <Fragment>
+    <React.Fragment>
       <TimePicker
         renderInput={(props) => <TextField {...props} />}
         ampm={false}
@@ -30,8 +30,6 @@ function SecondsTimePicker() {
         value={selectedDate}
         onChange={(date) => handleDateChange(date)}
       />
-    </Fragment>
+    </React.Fragment>
   );
 }
-
-export default SecondsTimePicker;

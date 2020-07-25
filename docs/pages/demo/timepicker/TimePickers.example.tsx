@@ -1,32 +1,33 @@
-import React, { Fragment, useState } from 'react';
+import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { TimePicker, MobileTimePicker, DesktopTimePicker } from '@material-ui/pickers';
 
-function TimePickers() {
-  const [selectedDate, handleDateChange] = useState(new Date('2018-01-01T00:00:00.000Z'));
+export default function TimePickers() {
+  const [selectedDate, handleDateChange] = React.useState<Date | null>(
+    new Date('2018-01-01T00:00:00.000Z')
+  );
 
   return (
-    <Fragment>
+    <React.Fragment>
       <MobileTimePicker
-        renderInput={(props) => <TextField {...props} />}
         ampmInClock
         label="For mobile"
         value={selectedDate}
         onChange={(date) => handleDateChange(date)}
+        renderInput={(props) => <TextField {...props} />}
       />
 
       <DesktopTimePicker
-        renderInput={(props) => <TextField {...props} />}
         clearable
         ampm={false}
         label="For desktop"
         value={selectedDate}
-        onChange={handleDateChange}
+        onChange={(date) => handleDateChange(date)}
+        renderInput={(props) => <TextField {...props} />}
       />
 
       {/* Alternative way to show am/pm */}
       <TimePicker
-        renderInput={(props) => <TextField {...props} />}
         ampm
         ampmInClock
         showTodayButton
@@ -35,9 +36,8 @@ function TimePickers() {
         value={selectedDate}
         minutesStep={5}
         onChange={handleDateChange}
+        renderInput={(props) => <TextField {...props} />}
       />
-    </Fragment>
+    </React.Fragment>
   );
 }
-
-export default TimePickers;

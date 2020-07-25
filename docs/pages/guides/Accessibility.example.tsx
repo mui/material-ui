@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { DatePicker } from '@material-ui/pickers';
 
-function BasicDatePicker() {
-  const [selectedDate, handleDateChange] = useState(new Date());
+export default function BasicDatePicker() {
+  const [selectedDate, handleDateChange] = React.useState<Date | null>(new Date());
 
   return (
     <DatePicker
@@ -14,5 +14,3 @@ function BasicDatePicker() {
     />
   );
 }
-
-export default BasicDatePicker;

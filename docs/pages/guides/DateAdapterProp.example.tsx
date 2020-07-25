@@ -9,7 +9,7 @@ const staticDateAdapter = new DateFnsAdapter({ locale: ruLocale });
 
 export default function UsingDateAdapterProp() {
   const [locale] = React.useState(deLocale);
-  const [selectedDate, handleDateChange] = React.useState(new Date());
+  const [selectedDate, handleDateChange] = React.useState<Date | null>(new Date());
 
   const memoizedDateAdapter = React.useMemo(() => {
     return new DateFnsAdapter({ locale });

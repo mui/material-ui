@@ -22,7 +22,7 @@ export { Day as PickersDay } from './views/Calendar/Day';
 
 export { ClockView as PickersClockView } from './views/Clock/ClockView';
 
-export { Clock as PickersView } from './views/Clock/Clock';
+export { Clock as PickersClock } from './views/Clock/Clock';
 
 export { default as PickersBasePickers } from './Picker/Picker';
 

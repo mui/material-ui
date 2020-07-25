@@ -2,8 +2,8 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { MobileDatePicker, DesktopDatePicker, DatePicker } from '@material-ui/pickers';
 
-export default function DatePickersVariants(props) {
-  const [selectedDate, handleDateChange] = React.useState(new Date());
+export default function DatePickersVariants(props: any) {
+  const [selectedDate, handleDateChange] = React.useState<Date | null>(new Date());
 
   return (
     <React.Fragment>
@@ -22,8 +22,8 @@ export default function DatePickersVariants(props) {
 
       <DesktopDatePicker
         label="For desktop"
-        minDate={new Date('2017-01-01')}
         value={selectedDate}
+        minDate={new Date('2017-01-01')}
         onChange={(date) => handleDateChange(date)}
         renderInput={(props) => <TextField {...props} />}
       />

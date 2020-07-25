@@ -8,7 +8,7 @@ const InputContainer = styled('div')({
 });
 
 export default function CustomInput() {
-  const [value, setValue] = React.useState(new Date());
+  const [value, setValue] = React.useState<Date | null>(new Date());
 
   return (
     <DesktopDatePicker

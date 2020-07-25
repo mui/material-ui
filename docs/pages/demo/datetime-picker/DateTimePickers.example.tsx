@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { MobileDateTimePicker, DesktopDateTimePicker, DateTimePicker } from '@material-ui/pickers';
 
-function DateTimePickerDemo(props) {
-  const [selectedDate, handleDateChange] = useState(new Date('2018-01-01T00:00:00.000Z'));
+export default function DateTimePickerDemo(props: any) {
+  const [selectedDate, handleDateChange] = React.useState<Date | null>(
+    new Date('2018-01-01T00:00:00.000Z')
+  );
 
   return (
     <React.Fragment>
@@ -40,5 +42,3 @@ function DateTimePickerDemo(props) {
     </React.Fragment>
   );
 }
-
-export default DateTimePickerDemo;

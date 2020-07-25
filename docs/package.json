@@ -30,6 +30,7 @@
     "@types/isomorphic-fetch": "^0.0.35",
     "@types/jss": "^10.0.0",
     "@types/luxon": "^1.11.0",
+    "@types/moment-jalaali": "^0.7.4",
     "@types/next": "^8.0.1",
     "@types/prismjs": "^1.16.1",
     "@types/react": "^16.9.35",

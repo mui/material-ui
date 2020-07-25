@@ -2376,6 +2376,13 @@
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
   integrity sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA==
 
+"@types/moment-jalaali@^0.7.4":
+  version "0.7.4"
+  resolved "https://registry.yarnpkg.com/@types/moment-jalaali/-/moment-jalaali-0.7.4.tgz#03bf13f5bef12cfa5d90a3b43ed440f8dc217ba6"
+  integrity sha512-xuwc+he5jcujrn/dlLwTQc4JBoIkYJHbW1xjvbUxzUYqKrwdUWzYth2NeY0J/v6TxEkmJUTV0WEbxarcOQn8wQ==
+  dependencies:
+    moment ">=2.14.0"
+
 "@types/next-server@*":
   version "8.1.2"
   resolved "https://registry.yarnpkg.com/@types/next-server/-/next-server-8.1.2.tgz#64c64c74ff9975338447ea0174ca430165895bab"
@@ -9447,7 +9454,7 @@ moment@2.26.0:
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.26.0.tgz#5e1f82c6bafca6e83e808b30c8705eed0dcbd39a"
   integrity sha512-oIixUO+OamkUkwjhAVE18rAMfRJNsNe/Stid/gwHSOfHrOtw9EhAY2AHvdKZ/k/MggcYELFCJz/Sn2pL8b8JMw==
 
-moment@2.27.0, "moment@>= 2.9.0", moment@^2.22.2, moment@^2.24.0, moment@^2.27.0:
+moment@2.27.0, "moment@>= 2.9.0", moment@>=2.14.0, moment@^2.22.2, moment@^2.24.0, moment@^2.27.0:
   version "2.27.0"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.27.0.tgz#8bff4e3e26a236220dfe3e36de756b6ebaa0105d"
   integrity sha512-al0MUK7cpIcglMv3YF13qSgdAIqxHTO7brRtaz3DlSULbqfazqkc5kEjNrLDOM7fsjshoFIihnU8snrP7zUvhQ==

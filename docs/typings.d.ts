@@ -3,6 +3,11 @@ import {
   MuiPickersComponentsPropsList,
 } from '@material-ui/pickers/src/typings';
 
+declare module 'moment-jalaali' {
+  const value: any;
+  export default value;
+}
+
 declare module '@material-ui/core/styles/overrides' {
   export interface ComponentNameToClassKey extends MuiPickersComponentsToClassName {}
 }
@@ -22,8 +27,4 @@ interface Navigator extends NavigatorClipboard {}
 declare module '*.mdx' {
   const value: React.ComponentType;
   export default value;
-}
-
-declare module '@date-io/type' {
-  export type DateType = any;
 }

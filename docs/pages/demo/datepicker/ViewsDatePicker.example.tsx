@@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import { DatePicker, MobileDatePicker } from '@material-ui/pickers';
 
 export default function YearDatePicker() {
-  const [selectedDate, handleDateChange] = React.useState(new Date());
+  const [selectedDate, handleDateChange] = React.useState<Date | null>(new Date());
 
   return (
     <React.Fragment>

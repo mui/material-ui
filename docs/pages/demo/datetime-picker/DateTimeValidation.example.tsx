@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { DateTimePicker } from '@material-ui/pickers';
 
-function DateTimePickerValidation() {
-  const [selectedDate, handleDateChange] = useState(new Date());
+export default function DateTimePickerValidation() {
+  const [selectedDate, handleDateChange] = React.useState<Date | null>(new Date());
 
   return (
     <React.Fragment>
@@ -27,5 +27,3 @@ function DateTimePickerValidation() {
     </React.Fragment>
   );
 }
-
-export default DateTimePickerValidation;

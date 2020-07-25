@@ -12,7 +12,7 @@ function getWeeksAfter(date: Moment | DateTime | Dayjs | Date, amount: number) {
   return date ? addWeeks(makeJSDateObject(date), amount) : undefined;
 }
 
-function MinMaxDateRangePicker() {
+export default function MinMaxDateRangePicker() {
   const [selectedRange, handleDateChange] = React.useState<DateRange<Date>>([null, null]);
 
   return (
@@ -32,5 +32,3 @@ function MinMaxDateRangePicker() {
     />
   );
 }
-
-export default MinMaxDateRangePicker;

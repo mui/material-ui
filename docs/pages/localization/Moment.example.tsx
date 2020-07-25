@@ -1,6 +1,6 @@
 import 'moment/locale/fr';
 import 'moment/locale/ru';
-import moment from 'moment';
+import moment, { Moment } from 'moment';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import React, { useState, useCallback } from 'react';
@@ -23,8 +23,8 @@ const maskMap = {
 };
 
 export default function MomentLocalizationExample() {
-  const [locale, setLocale] = useState('fr');
-  const [selectedDate, handleDateChange] = useState(new Date());
+  const [locale, setLocale] = useState<keyof typeof maskMap>('fr');
+  const [selectedDate, handleDateChange] = useState<Moment | null>(moment());
 
   const selectLocale = useCallback((newLocale) => {
     moment.locale(newLocale);

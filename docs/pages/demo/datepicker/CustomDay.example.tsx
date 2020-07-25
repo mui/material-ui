@@ -8,7 +8,7 @@ import isWithinInterval from 'date-fns/isWithinInterval';
 import { makeStyles } from '@material-ui/core';
 // this guy required only on the docs site to work with dynamic date library
 import { makeJSDateObject } from '../../../utils/helpers';
-import { DatePicker, PickersDay } from '@material-ui/pickers';
+import { DatePicker, PickersDay, PickersDayProps } from '@material-ui/pickers';
 
 const useStyles = makeStyles((theme) => ({
   highlight: {
@@ -29,13 +29,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CustomDay(props) {
+export default function CustomDay(props: any) {
   const classes = useStyles();
-  const [selectedDate, handleDateChange] = React.useState(new Date());
+  const [selectedDate, handleDateChange] = React.useState<Date | null>(new Date());
 
-  const renderWeekPickerDay = (date, selectedDates, DayComponentProps) => {
+  const renderWeekPickerDay = (
+    date: Date,
+    _selectedDates: Date[],
+    DayComponentProps: PickersDayProps
+  ) => {
     const dateClone = makeJSDateObject(date);
-    const selectedDateClone = makeJSDateObject(selectedDate);
+    const selectedDateClone = makeJSDateObject(selectedDate ?? new Date());
 
     const start = startOfWeek(selectedDateClone);
     const end = endOfWeek(selectedDateClone);
@@ -64,7 +68,7 @@ export default function CustomDay(props) {
       label="Week picker"
       value={selectedDate}
       onChange={handleDateChange}
-      renderDay={renderWeekPickerDay}
+      renderDay={renderWeekPickerDay as any}
       renderInput={(props) => <TextField {...props} />}
       inputFormat={props.__willBeReplacedGetFormatString({
         moment: `[Week of] MMM D`,

@@ -1,3 +1,4 @@
+import * as React from 'react';
 import Head from 'next/head';
 import { LOGO_URL, HOST_URL } from '_constants';
 import { withRouter, WithRouterProps } from 'next/router';

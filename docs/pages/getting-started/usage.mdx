@@ -16,12 +16,12 @@ import { CODESANDBOX_EXAMPLE_ID } from '_constants';
 **Note** `onChange` has a second parameter. So if you will not do `onChange={date => handleDateChange(date)}` you will get the console warning that [useState hook does not accept a second callback argument.](https://github.com/facebook/react/issues/14174)
 
 ```jsx
-import React, { useState } from 'react';
+import * as React from 'react';
 import DateFnsAdapter from '@material-ui/pickers/adapter/date-fns'; // choose your lib
 import { DatePicker, TimePicker, DateTimePicker, LocalizationProvider } from '@material-ui/pickers';
 
 function App() {
-  const [selectedDate, handleDateChange] = useState(new Date());
+  const [selectedDate, handleDateChange] = React.useState(new Date());
 
   return (
     <LocalizationProvider dateAdapter={DateFnsUtils}>
