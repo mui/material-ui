@@ -73,10 +73,12 @@ export const styles = (theme) => {
         },
       },
     },
-    /* Styles applied to the root element if `expanded={true}`. */
+    /* Pseudo-class applied to the root element if `expanded={true}`. */
     expanded: {},
-    /* Styles applied to the root element if `disabled={true}`. */
+    /* Pseudo-class applied to the root element if `disabled={true}`. */
     disabled: {},
+    /* Styles applied to the region element, the container of the children. */
+    region: {},
   };
 };
 
@@ -137,7 +139,12 @@ const Accordion = React.forwardRef(function Accordion(props, ref) {
     >
       <AccordionContext.Provider value={contextValue}>{summary}</AccordionContext.Provider>
       <TransitionComponent in={expanded} timeout="auto" {...TransitionProps}>
-        <div aria-labelledby={summary.props.id} id={summary.props['aria-controls']} role="region">
+        <div
+          aria-labelledby={summary.props.id}
+          id={summary.props['aria-controls']}
+          role="region"
+          className={classes.region}
+        >
           {children}
         </div>
       </TransitionComponent>
