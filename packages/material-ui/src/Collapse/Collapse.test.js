@@ -29,11 +29,11 @@ describe('<Collapse />', () => {
 
   it('should render a container around the wrapper', () => {
     const { container } = render(
-      <Collapse {...defaultProps} classes={{ container: 'woofCollapse1' }} />,
+      <Collapse {...defaultProps} classes={{ root: 'woofCollapse1' }} />,
     );
     const collapse = container.firstChild;
     expect(collapse.tagName).to.equal('DIV');
-    expect(collapse).to.have.class(classes.container);
+    expect(collapse).to.have.class(classes.root);
     expect(collapse).to.have.class('woofCollapse1');
   });
 

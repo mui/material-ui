@@ -43,7 +43,7 @@ describe('<StepContent />', () => {
       </Stepper>,
     );
 
-    const collapse = container.querySelector(`.${collapseClasses.container}`);
+    const collapse = container.querySelector(`.${collapseClasses.root}`);
     const innerDiv = container.querySelector(`.test-content`);
 
     expect(collapse).to.not.equal(null);
@@ -63,7 +63,7 @@ describe('<StepContent />', () => {
         </Stepper>,
       );
 
-      const collapse = container.querySelector(`.${collapseClasses.container}`);
+      const collapse = container.querySelector(`.${collapseClasses.root}`);
       expect(collapse).to.not.equal(null);
     });
 
