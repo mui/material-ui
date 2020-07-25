@@ -7,7 +7,7 @@ import TreeItem from '@material-ui/lab/TreeItem';
 import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles({
-  root: {
+  tree: {
     height: 216,
     flexGrow: 1,
     maxWidth: 400,
@@ -42,7 +42,7 @@ export default function ControlledTreeView() {
         <Button onClick={selectAll}>Select All</Button>
       </div>
       <TreeView
-        className={classes.root}
+        className={classes.tree}
         defaultCollapseIcon={<ExpandMoreIcon />}
         defaultExpandIcon={<ChevronRightIcon />}
         expanded={expanded}
