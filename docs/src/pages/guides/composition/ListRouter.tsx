@@ -17,9 +17,9 @@ import {
 import { Omit } from '@material-ui/types';
 
 interface ListItemLinkProps {
-  to: string;
-  primary: string;
   icon?: React.ReactElement;
+  primary: string;
+  to: string;
 }
 
 function ListItemLink(props: ListItemLinkProps) {
