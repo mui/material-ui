@@ -48,7 +48,7 @@ Here are the top priorities:
 
 Here are the components we will work on being supported in the Material-UI ecosystem, no matter if they are part of the [community edition](https://github.com/mui-org/material-ui) (MIT license) or [Material-UI X](https://github.com/mui-org/material-ui-x), a paid extension for enterprises:
 
-- 🧪 Close to become stable, already released as unstable
+- 🧪 Close to becoming stable, already released as unstable
 - 🛠 Work in progress, will or already released as unstable
 - ⏳ Planning to build
 - ⭐️ We will make some of the features available in [Material-UI X](https://github.com/mui-org/material-ui-x) (non-MIT)
