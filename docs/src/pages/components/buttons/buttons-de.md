@@ -3,9 +3,9 @@ title: Button React Komponente
 components: Button, IconButton, ButtonBase
 ---
 
-# Button (schaltfläche)
+# Button (Schaltfläche)
 
-<p class="description">Mit den Schaltflächen können Benutzer mit einem einzigen Tastendruck Aktionen ausführen und Entscheidungen treffen.</p>
+<p class="description">Buttons erlauben es dem Benutzer, mit einem einzigen Fingertipp Aktionen auszuführen und Entscheidungen zu treffen.</p>
 
 [Buttons](https://material.io/design/components/buttons.html) (Schaltflächen / Knöpfe) geben Aktionen an, die ein Nutzer ausführen kann. Sie werden an verschiedenen Orten in Anwendungen verwendet, zum Beispiel:
 
@@ -15,32 +15,32 @@ components: Button, IconButton, ButtonBase
 - Cards
 - Toolbars
 
-## Contained Buttons
+## Eigenständige Buttons
 
-[Contained buttons](https://material.io/design/components/buttons.html#contained-button) sind hervorgehoben und unterscheiden sich durch die Verwendung von Höhe und Füllung. Sie enthalten Aktionen, die für Ihre App vorrangig sind.
+[Eigenständige Buttons](https://material.io/design/components/buttons.html#contained-button) sind hervorgehoben und unterscheiden sich durch die Verwendung von Höhe und Füllung. Sie enthalten primäre Aktionen einer Anwendung.
 
 {{"demo": "pages/components/buttons/ContainedButtons.js"}}
 
-You can remove the elevation with the `disableElevation` prop.
+Die Erhöhung kann mit der `disableElevation`-Prop deaktiviert werden.
 
 {{"demo": "pages/components/buttons/DisableElevation.js"}}
 
-## Text Buttons
+## Text-Buttons
 
-[Text buttons](https://material.io/design/components/buttons.html#text-button) werden normalerweise für weniger ausgeprägte Aktionen verwendet, darunter auch solche, die Folgendes enthalten:
+[Text-Buttons](https://material.io/design/components/buttons.html#text-button) werden normalerweise für weniger ausgeprägte Aktionen verwendet, als Beispiel solche, die in den folgenden Komponenten enthalten sind:
 
 - In Dialogen
 - In Karten
 
-In Karten helfen Text Buttons dabei, den Karteninhalt hervorzuheben.
+In Karten helfen Text-Buttons dabei, den Karteninhalt zu betonen.
 
 {{"demo": "pages/components/buttons/TextButtons.js"}}
 
-## Outlined Buttons
+## Umrandete Buttons
 
-[Outlined Buttons](https://material.io/design/components/buttons.html#outlined-button) sind Buttons mit mittlerer Betonung. Sie enthalten wichtige Aktionen, aber nicht die primäre Aktion in einer App.
+[Umrandete Buttons](https://material.io/design/components/buttons.html#outlined-button) sind Buttons mit mittlerer Betonung. Sie enthalten wichtige Aktionen, aber nicht die primäre Aktion einer Anwendung.
 
-Outlined Buttons sind auch eine Alternative mit geringerer Betonung als Contained Buttons, oder eine Alternative mit höherer Betonung als Text Buttons.
+Umrandete Buttons haben eine geringere Betonung als eigenständige Buttons, aber eine stärkere als Text-Buttons.
 
 {{"demo": "pages/components/buttons/OutlinedButtons.js"}}
 

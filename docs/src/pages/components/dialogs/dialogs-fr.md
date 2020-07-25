@@ -13,7 +13,7 @@ Les dialogues sont délibérément interruptifs, ils doivent donc être utilisé
 
 ## Dialogues simples
 
-Simple dialogs can provide additional details or actions about a list item. For example, they can display avatars, icons, clarifying subtext, or orthogonal actions (such as adding an account).
+Des bites de dialogues simples peuvent fournir des détails supplémentaires ou des actions sur un élément de liste. Par exemple, ils peuvent afficher des avatars, icônes, sous titre clarifié, ou des actions orthogonales (comme l'ajout d'un compte).
 
 Mécanique tactile:
 
@@ -26,12 +26,12 @@ Mécanique tactile:
 
 Les alertes sont des interruptions urgentes, nécessitant un acquittement, qui informent l'utilisateur de la situation.
 
-Most alerts don't need titles. They summarize a decision in a sentence or two by either:
+La plupart des alertes n'ont pas besoin de titres. Ils résument une décision en une ou deux phrase par:
 
 - Poser une question (par exemple "Supprimer cette conversation?")
 - Faire une déclaration relative aux boutons d'action
 
-Use title bar alerts only for high-risk situations, such as the potential loss of connectivity. Users should be able to understand the choices based on the title and button text alone.
+N'utiliser les alertes de la barre de titre que pour les situations à haut risque, telles que la potentielle perte de connectivité. Les utilisateurs doivent être capables de comprendre les choix basés uniquement sur le titre et le texte du bouton.
 
 Si un titre est requis:
 
@@ -52,11 +52,11 @@ Les boîtes de dialogue de formulaire permettent aux utilisateurs de remplir des
 
 {{"demo": "pages/components/dialogs/FormDialog.js"}}
 
-## Customized dialogs
+## Dialogues personnalisés
 
 Voici un exemple de personnalisation du composant. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/components/).
 
-The dialog has a close button added to aide usability.
+La boîte de dialogue a un bouton de fermeture ajouté pour faciliter l'utilisation.
 
 {{"demo": "pages/components/dialogs/CustomizedDialogs.js"}}
 
@@ -70,9 +70,9 @@ Vous pouvez définir une largeur maximale dans la boîte de dialogue à l’aide
 
 {{"demo": "pages/components/dialogs/MaxWidthDialog.js"}}
 
-## Responsive full-screen
+## Responsive plein écran
 
-You may make a dialog responsively full screen using [`useMediaQuery`](/components/use-media-query/#usemediaquery).
+Vous pouvez créer une boîte de dialogue en plein écran en utilisant [`useMediaQuery`](/components/use-media-query/#usemediaquery).
 
 ```jsx
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -114,7 +114,7 @@ Essayez la démo ci-dessous pour voir ce que nous voulons dire:
 
 ## Limites
 
-Follow the [Modal limitations section](/components/modal/#limitations).
+Suivez la [Section des limitations modales](/components/modal/#limitations).
 
 ## Accessibilité
 

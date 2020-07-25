@@ -15,13 +15,13 @@ Si vous avez plusieurs options dans une liste, vous pouvez conserver de l'espace
 
 {{"demo": "pages/components/checkboxes/Checkboxes.js"}}
 
-## Checkbox with FormControlLabel
+## Checkbox avec FormControlLabel
 
-`Checkbox` can be provided with a label thanks to the `FormControlLabel` component.
+`La case à cocher` peut être fournie avec une étiquette grâce au composant `FormControlLabel`.
 
 {{"demo": "pages/components/checkboxes/CheckboxLabels.js"}}
 
-## Cases à cocher avec FormGroup
+## Checkbox avec FormGroup
 
 `FormGroup` est un wrapper utile utilisé pour regrouper les composants de contrôles de sélection et qui fournit une API plus simple.
 
@@ -33,18 +33,18 @@ Vous pouvez changer l'emplacement du label:
 
 {{"demo": "pages/components/checkboxes/FormControlLabelPosition.js"}}
 
-## Case à cocher personnalisée
+## Checkbox personnalisée
 
 Voici un exemple de personnalisation du composant. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/components/).
 
 {{"demo": "pages/components/checkboxes/CustomizedCheckbox.js", "defaultCodeOpen": false}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/checkbox).
+🎨 Si vous cherchez de l'inspiration, vous pouvez consulter les [exemples de personnalisation de MUI Treasury](https://mui-treasury.com/styles/checkbox).
 
 ## Quand les utiliser
 
-- [Cases à cocher vs. Radio Buttons](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
-- [Cases à cocher vs. Switches (interrupteurs)](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)
+- [Checkbox vs. Radio Buttons](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
+- [Checkbox vs. Switches (interrupteurs)](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)
 
 ## Accessibilité
 

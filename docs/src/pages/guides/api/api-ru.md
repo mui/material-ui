@@ -107,7 +107,7 @@ There are two options to design the API for the variations of a component: with 
     
     This API is more verbose: `<Button>`, `<Button variant="contained">`, `<Button variant="fab">`.
     
-    This API is more verbose: `<Button>`, `<Button variant="contained">`, `<Button variant="fab">`.
+    However it prevents an invalid combination from being used, bounds the number of properties exposed, and can easily support new values in the future.
 
 The Material-UI components use a combination of the two approaches according to the following rules:
 
@@ -122,7 +122,7 @@ The `ref` is forwarded to the root element. This means that, without changing th
 
 ## Словарь
 
-- **host element**: DOM-нода в контексте `react-dom`, т.е. экземляр `window.HTMLDivElement`.
+- **host component**: a DOM node type in the context of `react-dom`, e.g. a `'div'`. См. также [React Implementation Notes:](https://reactjs.org/docs/implementation-notes.html#mounting-host-elements).
 - **host element**: DOM-нода в контексте `react-dom`, т.е. экземляр `window.HTMLDivElement`.
 - **outermost**: The first component when reading the component tree from top to bottom i.e. breadth-first search.
 - **root component**: the outermost component that renders a host component.

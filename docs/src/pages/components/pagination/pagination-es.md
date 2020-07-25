@@ -5,31 +5,31 @@ components: Pagination, PaginationItem
 
 # Pagination
 
-<p class="description">The Pagination component enables the user to select a specific page from a range of pages.</p>
+<p class="description">El componente de paginación permite al usuario seleccionar una página específica de un rango de páginas.</p>
 
-## Basic pagination
+## Paginación básica
 
 {{"demo": "pages/components/pagination/BasicPagination.js"}}
 
-## Outlined pagination
+## Paginación delineada
 
 {{"demo": "pages/components/pagination/PaginationOutlined.js"}}
 
-## Rounded pagination
+## Paginación redondeada
 
 {{"demo": "pages/components/pagination/PaginationRounded.js"}}
 
-## Pagination size
+## Tamaño de paginación
 
 {{"demo": "pages/components/pagination/PaginationSize.js"}}
 
 ## Botones
 
-You can optionally enable first-page and last-page buttons, or disable the previous-page and next-page buttons.
+Opcionalmente puede activar los botones de primera página y última página, o desactivar los botones de página anterior y página siguiente.
 
 {{"demo": "pages/components/pagination/PaginationButtons.js"}}
 
-## Pagination ranges
+## Rangos de paginación
 
 You can specify how many digits to display either side of current page with the `siblingRange` prop, and adjacent to the start and end page number with the `boundaryRange` prop.
 

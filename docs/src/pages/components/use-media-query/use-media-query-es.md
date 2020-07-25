@@ -8,7 +8,7 @@ title: Media queries in React for responsive design
 
 Some of the key features:
 
-- ⚛️ It has an idiomatic React API.
+- ⚛ Tiene una API de React idiomática.
 - 🚀 It's performant, it observes the document to detect when its media queries change, instead of polling the values periodically.
 - 📦 [1 kB comprimido](/size-snapshot).
 - 🤖 It supports server-side rendering.
@@ -53,7 +53,7 @@ function MyComponent() {
 
 ⚠️ There is **no default** theme support, you have to inject it in a parent theme provider.
 
-## Using JavaScript syntax
+## Utilizando sintaxis de JavaScript
 
 You can use [json2mq](https://github.com/akiran/json2mq) to generate media query string from a JavaScript object.
 
@@ -61,9 +61,9 @@ You can use [json2mq](https://github.com/akiran/json2mq) to generate media query
 
 ## Pruebas
 
-You need an implementation of [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) in your test environment.
+Necesitas una implementación de [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) en tu entorno de pruebas.
 
-For instance, [jsdom doesn't support it yet](https://github.com/jsdom/jsdom/blob/master/test/web-platform-tests/to-upstream/html/browsers/the-window-object/window-properties-dont-upstream.html). You should polyfill it. Using [css-mediaquery](https://github.com/ericf/css-mediaquery) to emulate it is recommended.
+Por ejemplo, [jsdom aún no lo soporta](https://github.com/jsdom/jsdom/blob/master/test/web-platform-tests/to-upstream/html/browsers/the-window-object/window-properties-dont-upstream.html). You should polyfill it. Using [css-mediaquery](https://github.com/ericf/css-mediaquery) to emulate it is recommended.
 
 ```js
 import mediaQuery from 'css-mediaquery';
@@ -76,7 +76,7 @@ function createMatchMedia(width) {
   });
 }
 
-describe('MyTests', () => {
+describe('MisTests', () => {
   beforeAll(() => {
     window.matchMedia = createMatchMedia(window.innerWidth);
   });
@@ -140,7 +140,7 @@ function handleRender(req, res) {
 
 Make sure you provide the same custom match media implementation to the client-side to guarantee a hydration match.
 
-## Migrating from `withWidth()`
+## Migración de `withWidth()`
 
 The `withWidth()` higher-order component injects the screen width of the page. You can reproduce the same behavior with a `useWidth` hook:
 

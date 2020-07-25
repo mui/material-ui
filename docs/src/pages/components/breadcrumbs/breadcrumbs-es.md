@@ -33,7 +33,7 @@ En los siguientes ejemplos, estamos usando dos cadenas como separadores, y un í
 
 ## Migas de pan personalizadas
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+He aquí un ejemplo de personalización del componente. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/breadcrumbs/CustomizedBreadcrumbs.js"}}
 

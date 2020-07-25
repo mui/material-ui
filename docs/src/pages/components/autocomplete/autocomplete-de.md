@@ -9,8 +9,8 @@ components: TextField, Popper, Autocomplete
 
 Das Widget ist nützlich, um den Wert eines einzeiligen Textfeldes in einem von zwei Arten von Szenarien zu setzen:
 
-1. The value for the textbox must be chosen from a predefined set of allowed values, e.g., a location field must contain a valid location name: [combo box](#combo-box).
-2. The textbox may contain any arbitrary value, but it is advantageous to suggest possible values to the user, e.g., a search field may suggest similar or previous searches to save the user time: [free solo](#free-solo).
+1. Der Wert für das Textfeld muss aus einer vordefinierten Menge zulässiger Werte ausgewählt werden, z. B. ein Standortfeld, welches einen gültigen Standortnamen enthalten muss: [Combo Box](#combo-box).
+2. Das Textfeld kann beliebige Werte enthalten, aber es ist vorteilhaft, dem Benutzer mögliche Werte vorzuschlagen, z. B ein Suchfeld, welches ähnliche oder frühere Suchen vorschlägt, um den Suchvorgang für den Benutzer zu beschleunigen: [free solo](#free-solo).
 
 It's meant to be an improved version of the "react-select" and "downshift" packages.
 

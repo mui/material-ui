@@ -4,20 +4,20 @@ components: Link
 
 # Enlaces
 
-<p class="description">El componente Link permite personalizar fácilmente el elemento de enlace con los colores de su Theme y estilos de tipografía.</p>
+<p class="description">Los Enlaces permiten personalizar fácilmente los enlaces con los colores de su Tema y estilos de tipografía.</p>
 
 ## Enlaces simples
 
-The Link component is built on top of the [Typography](/api/typography/) component. You can leverage its properties.
+Los enlaces estan contruidos sobre el componente [Tipografia](/api/typography/). Puedes aprovechar sus propiedades.
 
 {{"demo": "pages/components/links/Links.js"}}
 
-However, the Link component has different default properties than the Typography component:
+Sin embargo, los Enlaces tienen propiedades por defecto distintas a las de las Tipografias:
 
 - `color="primary"` as the link needs to stand out.
 - `variant="inherit"` as the link will, most of the time, be used as a child of a Typography component.
 
-## Security
+## Seguridad
 
 When you use `target="_blank"` with Links, it is [recommended](https://developers.google.com/web/tools/lighthouse/audits/noopener) to always set `rel="noopener"` or `rel="noreferrer"` when linking to third party content.
 
@@ -26,7 +26,7 @@ When you use `target="_blank"` with Links, it is [recommended](https://developer
 
 ## Librería externa de routing
 
-One common use case is to perform navigation on the client only, without an HTTP round-trip to the server. The `Link` component provides a property to handle this use case: `component`.
+Un uso comun es realizar la navegacion solo en el cliente, sin realizar el viaje HTTP Ida-Vuelta al servidor. El componente `Link` contiene la propiedad para manejar este uso: `component`.
 
 Here is an [integration example with react-router](/guides/composition/#link).
 
@@ -34,8 +34,8 @@ Here is an [integration example with react-router](/guides/composition/#link).
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#link)
 
-- When providing the content for the link, avoid generic descriptions like "click here" or "go to". Instead, use [specific descriptions](https://developers.google.com/web/tools/lighthouse/audits/descriptive-link-text).
-- For the best user experience, links should stand out from the text on the page.
-- If a link doesn't have a meaningful href, [it should be rendered using a `<button>` element](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/anchor-is-valid.md).
+- Al proporcionar el contenido del enlace, evitar descripciones genéricas como "haga clic aquí" o "ir a". En su lugar, utilice [descripciones específicas](https://developers.google.com/web/tools/lighthouse/audits/descriptive-link-text).
+- Para una mejor experiencia de usuario, los enlaces deben sobresalir del texto en la página.
+- Si un enlace no tiene un significativo href, [se debe representarse mediante un `<button>` elemento](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/anchor-is-valid.md).
 
 {{"demo": "pages/components/links/ButtonLink.js"}}

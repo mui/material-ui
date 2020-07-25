@@ -14,7 +14,7 @@ Die Style-Funktion der [Palette](/system/palette/).
 
 ## Material-UI-Komponenten überschreiben
 
-Die Box-Komponente umschließt Ihre Komponente. Es erstellt ein neues DOM-Element, welches &ndash; sofern nicht anders im `component`-Attribut angegeben &ndash; ein `<div>`-Element ist. Angenommen, Sie möchten stattdessen ein `<span>` verwenden:
+Die Box-Komponente umschließt Ihre Komponente. Es erstellt ein neues DOM-Element, welches &ndash; sofern nicht anders im `component`-Attribut angegeben &ndash; ein `<div>`-Element ist. Angenommen, stattdessen soll ein `<span>`-Element verwendet werden:
 
 ```jsx
 <Box component="span" m={1}>
@@ -22,7 +22,7 @@ Die Box-Komponente umschließt Ihre Komponente. Es erstellt ein neues DOM-Elemen
 </Box>
 ```
 
-Dies funktioniert hervorragend, wenn die Änderungen für ein neues DOM-Element isoliert werden können. Zum Beispiel können Sie den Rand auf diese Weise ändern.
+Dies funktioniert hervorragend, wenn die Änderungen für ein neues DOM-Element isoliert werden können. Zum Beispiel kann der Rand auf diese Weise verändert werden.
 
 Manchmal müssen Sie jedoch das zugrunde liegende DOM-Element als Ziel festlegen. Sie möchten beispielsweise die Textfarbe des Buttons ändern. Die Button-Komponente definiert ihre eigene Farbe. CSS-Vererbung hilft hier nicht. Um das Problem zu umgehen, haben Sie zwei Möglichkeiten:
 

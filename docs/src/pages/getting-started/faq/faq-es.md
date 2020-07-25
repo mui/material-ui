@@ -1,34 +1,34 @@
 # Preguntas frecuentes
 
-<p class="description">¿Atrapado en un problema en particular? Check some of these common gotchas first in the FAQ.</p>
+<p class="description">¿Atrapado en un problema en particular? Chequea primero algunos de los problemas más comunes en la sección de preguntas frecuentes.</p>
 
-If you still can't find what you're looking for, you can refer to our [support page](/getting-started/support/).
+Si aún no puede encontrar lo que está buscando, puede consultar nuestra [página de soporte](/getting-started/support/).
 
-## Material-UI is awesome. How can I support the project?
+## Material-UI es impresionante. ¿Cómo puedo apoyar el proyecto?
 
-There are many ways to support Material-UI:
+Hay muchas maneras de apoyar a Material-UI:
 
-- **Spread the word**. Evangelize Material-UI by [linking to material-ui.com](https://material-ui.com/) on your website, every backlink matters. Follow us on [Twitter](https://twitter.com/MaterialUI), like and retweet the important news. Or just talk about us with your friends.
+- **Difunde la palabra**. Evangelize Material-UI by [linking to material-ui.com](https://material-ui.com/) on your website, every backlink matters. Follow us on [Twitter](https://twitter.com/MaterialUI), like and retweet the important news. Or just talk about us with your friends.
 - **Give us feedback**. Tell us what we're doing well or where we can improve. Please upvote (👍) the issues that you are the most interested in seeing solved.
-- **Help new users**. You can answer questions on [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui).
-- **Make changes happen**. 
+- **Ayuda a nuevos usuarios**. Puedes responder preguntas en [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui).
+- **Haz que los cambios sucedan**. 
   - Edit the documentation. Every page has an "EDIT THIS PAGE" link in the top right.
   - Report bugs or missing features by [creating an issue](https://github.com/mui-org/material-ui/issues/new).
   - Review and comment on existing [pull requests](https://github.com/mui-org/material-ui/pulls) and [issues](https://github.com/mui-org/material-ui/issues).
   - Help [translate](https://translate.material-ui.com) the documentation.
   - [Improve our documentation](https://github.com/mui-org/material-ui/tree/master/docs), fix bugs, or add features by [submitting a pull request](https://github.com/mui-org/material-ui/pulls).
-- **Support us financially on [OpenCollective](https://opencollective.com/material-ui)**. If you use Material-UI in a commercial project and would like to support its continued development by becoming a Sponsor, or in a side or hobby project and would like to become a Backer, you can do so through OpenCollective. All funds donated are managed transparently, and Sponsors receive recognition in the README and on the Material-UI home page.
+- **Apóyanos financieramente en [OpenCollective](https://opencollective.com/material-ui)**. If you use Material-UI in a commercial project and would like to support its continued development by becoming a Sponsor, or in a side or hobby project and would like to become a Backer, you can do so through OpenCollective. All funds donated are managed transparently, and Sponsors receive recognition in the README and on the Material-UI home page.
 
 ## ¿Por qué mis componentes no se están renderizando correctamente en las compilaciones de producción?
 
 But you shouldn't share a `createGenerateClassName()` between different requests: You need to provide a new class name generator for each request.
 
-To correct this issue, all components on the page need to be initialized such that there is only ever **one class name generator** among them.
+Para corregir este problema, todos los componentes de la página deben inicializarse de forma que sólo haya **un generador de nombre de clase** entre ellos.
 
 Usted podría terminar usando accidentalmente dos generadores de nombre de clase en una variedad de escenarios:
 
 - Usted accidentalmente **ata** dos versiones de Material-UI. Es posible que usted tenga una dependencia que no establece correctamente Material-UI como una dependencia en par.
-- You are using `StylesProvider` for a **subset** of your React tree.
+- Estás usando `StylesProvider` para un **subconjunto** de tu árbol React.
 - Usted está utilizando un agrupador que está dividiendo el código en una manera que crea múltiples instancias de generador de nombre de clase.
 
 > If you are using webpack with the [SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/), try configuring the [`runtimeChunk` setting under `optimizations`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk).
@@ -39,7 +39,7 @@ Overall, it's simple to recover from this problem by wrapping each Material-UI a
 
 Scrolling is blocked as soon as a modal is opened. This prevents interacting with the background when the modal should be the only interactive content. However, removing the scrollbar can make your **fixed positioned elements** move. In this situation, you can apply a global `.mui-fixed` class name to tell Material-UI to handle those elements.
 
-## How can I disable the ripple effect globally?
+## ¿Cómo puedo desactivar el efecto de ripple globalmente?
 
 The ripple effect is exclusively coming from the `BaseButton` component. You can disable the ripple effect globally by providing the following in your theme:
 
@@ -57,7 +57,7 @@ const theme = createMuiTheme({
 });
 ```
 
-## How can I disable transitions globally?
+## ¿Cómo puedo desactivar las transiciones globalmente?
 
 Material-UI uses the same theme helper for creating all its transitions. Therefore you can disable all transitions by overriding the helper in your theme:
 
@@ -104,7 +104,7 @@ Notice that the usage of `CssBaseline` is required for the above approach to wor
 }
 ```
 
-## Do I have to use JSS to style my app?
+## ¿Tengo que usar JSS para dar estilo a mi aplicación?
 
 No, it's not required. But this dependency comes built in, so carries no additional bundle size overhead.
 
@@ -119,11 +119,11 @@ As a rule of thumb, only use inline-style for dynamic style properties. The CSS 
 - media queries
 - keyframes
 
-## How do I use react-router?
+## ¿Cómo uso react-router?
 
 We detail the [integration with third-party routing libraries](/guides/composition/#routing-libraries) like react-router, Gatsby or Next.js in our guide.
 
-## How can I access the DOM element?
+## ¿Cómo puedo acceder al elemento DOM?
 
 All Material-UI components that should render something in the DOM forward their ref to the underlying DOM component. This means that you can get DOM elements by reading the ref attached to Material-UI components:
 
@@ -226,7 +226,7 @@ If you have several applications running on one page, consider using one @materi
   }
 ```
 
-## My App doesn't render correctly on the server
+## Mi aplicación no se procesa correctamente en el servidor
 
 If it doesn't work, in 99% of cases it's a configuration issue. A missing property, a wrong call order, or a missing component – server-side rendering is strict about configuration, and the best way to find out what's wrong is to compare your project to an already working setup. Check out the [reference implementations](/guides/server-rendering/#reference-implementations), bit by bit.
 
@@ -300,7 +300,7 @@ function handleRender(req, res) {
 
 - You need to make sure that the server and the client share the same `process.env.NODE_ENV` value.
 
-## Why are the colors I am seeing different from what I see here?
+## ¿Por qué los colores que veo son diferentes de lo que veo aquí?
 
 The documentation site is using a custom theme. Hence, the color palette is different from the default theme that Material-UI ships. Please refer to [this page](/customization/theming/) to learn about theme customization.
 
@@ -360,7 +360,7 @@ function App() {
 }
 ```
 
-## What's the clsx dependency for?
+## ¿Para qué sirve la dependencia de clsx?
 
 [clsx](https://github.com/lukeed/clsx) is a tiny utility for constructing `className` strings conditionally, out of an object with keys being the class strings, and values being booleans.
 

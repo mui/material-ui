@@ -1,17 +1,17 @@
 ---
-title: Composant React Panneau d'expansion
+title: Accordéon Composant React
 components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 ---
 
-# Accordion (Panneau d'extension)
+# Accordéon (Panneau d'extension)
 
-<p class="description">Les panneaux d’extension contiennent des flux de création et permettent une édition légère d’un élément.</p>
+<p class="description">L'accordéon contient le flux de création et permet la modification légère de ses éléments.</p>
 
-[Un panneau d'extension](https://material.io/archive/guidelines/components/expansion-panels.html) est un conteneur léger pouvant être autonome ou connecté à une surface plus grande, telle qu'une carte.
+[Un accordéonn](https://material.io/archive/guidelines/components/expansion-panels.html) est un conteneur léger pouvant être autonome ou connecté à une surface plus grande, telle qu'une carte.
 
-> **Note:** Expansion panels are no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support them. It was formerly known as the "expansion panel".
+> **Note:** Le panneau d'expansion n'est plus documenté dans le [Material Design guidelines](https://material.io/), mais Material-UI continue le support. Il était précédemment connus sous le nom de panneau d'expansion.
 
-## Panneau d'extension simple
+## Accordéon simple
 
 {{"demo": "pages/components/accordion/SimpleAccordion.js", "bg": true}}
 
@@ -21,31 +21,31 @@ components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 
 {{"demo": "pages/components/accordion/ControlledAccordions.js", "bg": true}}
 
-## Customized accordions
+## Customiser l'accordéon
 
 Voici un exemple de personnalisation du composant. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/components/).
 
 {{"demo": "pages/components/accordion/CustomizedAccordions.js"}}
 
-## Additional actions
+## Actions supplémentaires
 
-In order to put an action such as a `Checkbox` or a button inside of the `AccordionSummary`, you need to stop the propagation of the focus and click events to prevent the panel from expanding/collapsing when using the action. You should also provide an `aria-label` for the action, otherwise the label of the nested action will be included in the label of the parent button that controls the accordion expansion.
+Pour pouvoir exécuter une action comme une  `Checkbox`  ou un bouton à l'intérieur du `AccordionSummary`, vous aurez besoin d'arrêter la propagation du focus et de l'évènement de clique sur l'accordéon à partir de l'expansion/réduction au moment de son utilisation. Vous devriez également fournir un `aria-label` pour l'action, autrement le label de l'action imbriquer sera inclus dans le label du bouton parent qui contrôle l'expansion de l'accordéon.
 
 {{"demo": "pages/components/accordion/ActionsInAccordionSummary.js", "bg": true}}
 
 ## Performances
 
-The content of Accordions is mounted by default even if the panel is not expanded. This default behavior has server-side rendering and SEO in mind. If you render expensive component trees inside your panels or simply render many panels it might be a good idea to change this default behavior by enabling the `unmountOnExit` in `TransitionProps`:
+Le contenu de l'accordéon est monter par défaut et se même si l'accordéon n'est pas ouvert. Se comportement à le "server-side rendrering" et le SEO comme objectif. Si vous devez rendre un lourd composant au niveau des détails de l'accordéon ou simplement rendre plusieurs accordéons, il serait une bonne idée de changer le comportement par défaut en activant le `unmountOnExit` dans le prop `TransitionProps`:
 
 ```jsx
 <Accordion TransitionProps={{ unmountOnExit: true }} />
 ```
 
-As with any performance optimization this is not a silver bullet. Be sure to identify bottlenecks first and then try out these optimization strategies.
+Se n'est tout de même pas une solution miracle. Soyez sure de d'abord identifier les goulot d'étranglement et ensuite de considérer ses stratégies d'optimisation.
 
-## En-tête et colonnes secondaires
+## Titres et colonnes secondaire
 
-Plusieurs colonnes peuvent être utilisées pour structurer le contenu et un texte d'assistance peut être ajouté au panneau pour aider l'utilisateur.
+Plusieurs colonnes peuvent être utilisées pour structurer le contenu et un texte d'assistance peut être ajouté a l'accordéon pour aider l'utilisateur.
 
 {{"demo": "pages/components/accordion/DetailedAccordion.js", "bg": true}}
 
@@ -53,4 +53,4 @@ Plusieurs colonnes peuvent être utilisées pour structurer le contenu et un tex
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#accordion)
 
-For optimal accessibility we recommend setting `id` and `aria-controls` on the `AccordionSummary`. The `Accordion` will derive the necessary `aria-labelledby` and `id` for the content region of the panel.
+Pour une accessibilité optimal nous recommandons le paramètre `id` et `aria-controls` sur le `AccordionsSummary`.  `Accordion` générera les nécessaires `aria-labelledby` et `id` pour le contenu régional de l'accordéon.

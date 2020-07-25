@@ -175,8 +175,8 @@ Nicht alle Plugins sind standardmäßig in der Material-UI verfügbar. Folgende 
 - [jss-plugin-nested](https://cssinjs.org/jss-plugin-nested/)
 - [jss-plugin-camel-case](https://cssinjs.org/jss-plugin-camel-case/)
 - [jss-plugin-default-unit](https://cssinjs.org/jss-plugin-default-unit/)
-- [jss-plugin-vendor-prefixer](https://cssinjs.org/jss-plugin-default-unit/)
-- [jss-plugin-props-sort](https://cssinjs.org/jss-plugin-vendor-prefixer/)
+- [jss-plugin-vendor-prefixer](https://cssinjs.org/jss-plugin-vendor-prefixer/)
+- [jss-plugin-props-sort](https://cssinjs.org/jss-plugin-props-sort/)
 
 Selbstverständlich können Sie weitere Plugins benutzen. Hier ist ein Beispiel mit dem [ jss-rtl ](https://github.com/alitaheri/jss-rtl) Plugin.
 

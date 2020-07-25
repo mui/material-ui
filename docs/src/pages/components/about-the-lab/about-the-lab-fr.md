@@ -2,18 +2,18 @@
 
 <p class="description">Ce package contient des composants en incubation (en développement) qui ne sont pas encore prêts à être ajoutés au package principal.</p>
 
-La principale différence entre le laboratoire et le noyau est la façon dont les composants sont versionnés. Le fait de disposer d'un paquet de laboratoire séparé nous permet de publier les modifications de rupture si nécessaire, tandis que le paquet de base suit une [politique plus lente](https://material-ui.com/versions/#release-frequency).
+La principale différence entre le laboratoire et le noyau est la façon dont les composants sont versionnés. Avoir un paquet laboratoire séparer nous permets de pouvoir effectuer des changements ou d'intégrer de nouvelles fonctionnalités tandis que le noyau suit une [politique plus lente](https://material-ui.com/versions/#release-frequency).
 
-As developers use and test the components and report issues, the maintainers learn more about shortcomings of the components: missing features, accessibility issues, bugs, API design, etc. The older and more used a component is, the less likely it is that new issues will be found and subsequently need to introduce breaking changes.
+Lorsque les développeur utilise et test les composant en signalant les éventuels problèmes, les contributeurs en apprennent plus sur se que le composant pourrait manquer, fonctionnalité manquante, problème d'accessibilité, bugs, API design, etc. Plus un composant est âgé, plus il est utilisé, moins il y aura de chances de trouver de nouveaux problèmes et par conséquent de devoir subir d'important changement.
 
-For a component to be ready to move to the core, the following criteria are considered:
+Pour qu'un composant soit prêt à être déplacer dans le noyau, les critères suivant doivent être remplis:
 
-* It needs to be **used**. The Material-UI team uses Google Analytics stats among other metrics to evaluate the usage of each component. A lab component with low usage either means that it isn't fully working yet or that there is a low demand for it.
-* It needs to match the **code quality** of the core components. It doesn't have to be perfect to be a part of the core, but the component should be reliable enough that developers can depend on it. 
-    * Each component needs **type definitions**. It is not currently required that a lab component is typed, but it would need to be typed to move to the core.
-    * Requires good **test coverage**. Some of the lab components don't currently have comprehensive tests.
-* Can it be used as **leverage** to incentivize users to upgrade to the latest major release? The less fragmented the community is, the better.
-* It needs to have a low probability of a **breaking change** in the short/medium future. For instance, if it needs a new feature that will likely require a breaking change, it may be preferable to delay its promotion to the core.
+* Il doit être **utilisé**. L'équipe Material-ui utilise les données de Google Analytics et d'autres données, pour évaluer l'utilisation de chaque composant. Un composant du laboratoire avec très peu d'utilisation, veux soit dire qu'il n'est pas entièrement opérationnel, ou qu'il ni a pas suffisamment de demande.
+* Il doit satisfaire a un **code de qualité** équivalent au composants du noyau. Sa ne doit pas être parfait pour faire par du noyau, mais le composant doit être suffisamment fiable pour que les développeur puisse en dépendre. 
+    * Chaque composant a besoin de **définitions de type**. Il n'est pas nécessaire qu'un composant du laboratoire soit typés mais pour être déplacer dans le noyau il devra l'être.
+    * Requiert de bon **test**. Certains composant du laboratoire n'ont actuellement aucun tests.
+* Est-ce qu'il peut être utiliser comme **levier** pour inciter les utilisateurs mettre à jours vers la dernières mise à jour majeur ? Moins la communauté est divisé mieux s'est.
+* Il doit y avoir une faible probabilité de **changement majeur** dans un un proche/moyen futur. Par exemple, si il y a besoin d'intégrer de nouvelle fonctionnalité induisant d'important changement, alors il serait préférable de retarder son déplacement vers le noyau.
 
 ## Installation
 
@@ -39,7 +39,7 @@ yarn add @material-ui/core
 
 ## TypeScript
 
-In order to benefit from the [CSS overrides](/customization/globals/#css) and [default prop customization](/customization/globals/#default-props) with the theme, TypeScript users need to import the following types. Internally, it uses [module augmentation](/guides/typescript/#customization-of-theme) to extend the default theme structure with the extension components available in the lab.
+De manière à pouvoir [ outrepasser le CSS ](/customization/globals/#css) et [ à customiser les props par défaut ](/customization/globals/#default-props) avec le theme, les utilisateurs de TypeScript devront importés les types suivant. En interne, il utilise [le module d'augmentation](/guides/typescript/#customization-of-theme) pour étendre la structure du thème par défaut avec l'extension de composant disponible dans le laboratoire.
 
 ```tsx
 import type '@material-ui/lab/themeAugmentation';
