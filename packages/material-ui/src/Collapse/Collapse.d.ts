@@ -36,7 +36,7 @@ export interface CollapseProps extends StandardProps<TransitionProps, CollapseCl
   timeout?: TransitionProps['timeout'] | 'auto';
 }
 
-export type CollapseClassKey = 'container' | 'entered' | 'hidden' | 'wrapper' | 'wrapperInner';
+export type CollapseClassKey = 'root' | 'entered' | 'hidden' | 'wrapper' | 'wrapperInner';
 
 /**
  * The Collapse transition is used by the
