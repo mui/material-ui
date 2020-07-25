@@ -1,17 +1,17 @@
 ---
-title: Container React component
+title: Composant React Container
 components: Container (Conteneur)
 ---
 
 # Container (Conteneur)
 
-<p class="description">The container centers your content horizontally. It's the most basic layout element.</p>
+<p class="description">Le conteneur centralise votre contenu horizontalement. C'est l'élément de mise en page le plus basique.</p>
 
-While containers can be nested, most layouts do not require a nested container.
+Bien que les conteneurs puissent être imbriqués, la plupart des mises en page ne nécessitent pas de conteneur imbriqué.
 
 ## Fluid
 
-A fluid container width is bounded by the `maxWidth` property value.
+Une largeur de conteneur fluide est limitée par la valeur de propriété `maxWidth`.
 
 {{"demo": "pages/components/container/SimpleContainer.js", "iframe": true, "defaultCodeOpen": false}}
 
@@ -19,9 +19,9 @@ A fluid container width is bounded by the `maxWidth` property value.
 <Container maxWidth="sm">
 ```
 
-## Fixed
+## Fixe
 
-If you prefer to design for a fixed set of sizes instead of trying to accommodate a fully fluid viewport, you can set the `fixed` property. The max-width matches the min-width of the current breakpoint.
+Si vous préférez concevoir pour un ensemble fixe de tailles au lieu d'essayer de s'adapter à une vue entièrement fluide, vous pouvez définir la propriété `fixe`. La largeur maximale correspond à la largeur minimale du point d'arrêt actuel.
 
 {{"demo": "pages/components/container/FixedContainer.js", "iframe": true, "defaultCodeOpen": false}}
 

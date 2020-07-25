@@ -11,7 +11,7 @@ components: Alert, AlertTitle
 
 ## Einfache Hinweise
 
-Der Hinweis bietet vier Schweregrade an welche je ein eigenes Icon und eine eigene Farbe besitzen.
+Der Hinweis bietet vier Schweregrade an, welche je ein eigenes Icon und eine eigene Farbe besitzen.
 
 {{"demo": "pages/components/alert/SimpleAlerts.js"}}
 
@@ -47,7 +47,7 @@ Setting the icon prop to false will remove the icon altogether.
 
 ## Varianten
 
-Two additional variants are available – outlined, and filled:
+Zwei weitere Varianten sind verfügbar – umrandet und ausgefüllt:
 
 ### Umrandung
 

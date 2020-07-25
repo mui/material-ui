@@ -15,7 +15,7 @@ Ejemplos de insignias que contienen texto, utilizando colores primarios y secund
 
 ## Placas personalizadas
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+He aquí un ejemplo de personalización del componente. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/badges/CustomizedBadges.js"}}
 

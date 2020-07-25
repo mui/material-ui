@@ -31,28 +31,28 @@ Los avatares de íconos son creados pasando un ícono como `children`.
 
 {{"demo": "pages/components/avatars/IconAvatars.js"}}
 
-## Variants
+## Variantes
 
-If you need square or rounded avatars, use the `variant` prop.
+Si necesitas avatares cuadrados o redondeados, utiliza la prop `variant`.
 
 {{"demo": "pages/components/avatars/VariantAvatars.js"}}
 
 ## Fallbacks
 
-If there is an error loading the avatar image, the component falls back to an alternative in the following order:
+Si hay un error cargando la imagen del avatar, el componente recurre a una alternativa en el siguiente orden:
 
-- the provided children
-- the first letter of the `alt` text
-- a generic avatar icon
+- los componentes hijos proporcionados
+- la primera letra del texto `alt`
+- una imagen de avatar generica
 
 {{"demo": "pages/components/avatars/FallbackAvatars.js"}}
 
 ## Agrupado
 
-`AvatarGroup` renders its children as a stack.
+`AvatarGroup` renderiza sus componentes hijos como una pila.
 
 {{"demo": "pages/components/avatars/GroupAvatars.js"}}
 
-## With badge
+## Con Badge
 
 {{"demo": "pages/components/avatars/BadgeAvatars.js"}}

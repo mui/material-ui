@@ -5,21 +5,21 @@ components: TreeView, TreeItem
 
 # Vista de arbol
 
-<p class="description">A tree view widget presents a hierarchical list.</p>
+<p class="description">Un widget de vista de árbol presenta una lista jerárquica.</p>
 
 Tree views can be used to represent a file system navigator displaying folders and files, an item representing a folder can be expanded to reveal the contents of the folder, which may be files, folders, or both.
 
-## Basic tree view
+## Vista básica de árbol
 
 {{"demo": "pages/components/tree-view/FileSystemNavigator.js"}}
 
-## Multi selection
+## Selección múltiple
 
 Tree views also support multi selection.
 
 {{"demo": "pages/components/tree-view/MultiSelectTreeView.js"}}
 
-### Controlled tree view
+### Vista de árbol controlada
 
 The tree view also offers a controlled API.
 
@@ -47,13 +47,13 @@ const data = {
 
 {{"demo": "pages/components/tree-view/RecursiveTreeView.js", "defaultCodeOpen": false}}
 
-## Customized tree view
+## Vista de árbol personalizada
 
-### Custom icons, border and animation
+### Iconos personalizados, bordes y animación
 
 {{"demo": "pages/components/tree-view/CustomizedTreeView.js"}}
 
-### Gmail clone
+### Clon de Gmail
 
 {{"demo": "pages/components/tree-view/GmailTreeView.js"}}
 
@@ -61,4 +61,4 @@ const data = {
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#TreeView)
 
-The component follows the WAI-ARIA authoring practices.
+El componente sigue las prácticas de creación de WAI-ARIA.

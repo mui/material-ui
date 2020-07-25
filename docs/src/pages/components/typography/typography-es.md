@@ -10,7 +10,7 @@ Too many type sizes and styles at once can spoil any layout. A [typographic scal
 
 ## General
 
-The *Roboto* font will **not** be automatically loaded by Material-UI. The developer is responsible for loading all fonts used in their application. Roboto Font has a few easy ways to get started. For more advanced configuration, check out [the theme customization section](/customization/typography/).
+La fuente *Roboto* **no** será cargada automáticamente por Material-UI. El desarrollador es responsable de cargar todas las fuentes utilizadas en su aplicación. Roboto tiene algunas maneras fáciles de empezar. For more advanced configuration, check out [the theme customization section](/customization/typography/).
 
 ## Roboto Font CDN
 
@@ -20,23 +20,23 @@ Shown below is a sample link markup used to load the Roboto font from a CDN:
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
 ```
 
-## Install with npm
+## Instalar con npm
 
-You can [install it](https://www.npmjs.com/package/fontsource-roboto) by typing the below command in your terminal:
+Puede [instalarlo](https://www.npmjs.com/package/fontsource-roboto) escribiendo el siguiente comando en su terminal:
 
 `npm install fontsource-roboto`
 
-Then, you can import it in your entry-point.
+Entonces, puede importarlo en su punto de entrada.
 
 ```js
 import 'fontsource-roboto';
 ```
 
-For more info check out [Fontsource](https://github.com/DecliningLotus/fontsource/blob/master/packages/roboto/README.md).
+Para obtener más información, consulte [Fuente](https://github.com/DecliningLotus/fontsource/blob/master/packages/roboto/README.md).
 
-⚠️ Be careful when using this approach. Make sure your bundler doesn't eager load all the font variations (100/300/400/500/700/900, italic/regular, SVG/woff). Fontsource can be configured to load specific subsets, weights and styles. Inlining all the font files can significantly increase the size of your bundle. Material-UI default typography configuration only relies on 300, 400, 500, and 700 font weights.
+⚠️ Tener cuidado cuando se utiliza este enfoque. Make sure your bundler doesn't eager load all the font variations (100/300/400/500/700/900, italic/regular, SVG/woff). Fontsource can be configured to load specific subsets, weights and styles. Inlining all the font files can significantly increase the size of your bundle. Material-UI default typography configuration only relies on 300, 400, 500, and 700 font weights.
 
-## Component
+## Componente
 
 {{"demo": "pages/components/typography/Types.js"}}
 
@@ -46,7 +46,7 @@ In some situations you might not be able to use the `Typography` component. Hope
 
 {{"demo": "pages/components/typography/TypographyTheme.js"}}
 
-## Changing the semantic element
+## Cambiando el elemento semántico
 
 The Typography component uses the `variantMapping` property to associate a UI variant with a semantic element. It’s important to realize that the style of a typography is independent from the semantic underlying element.
 

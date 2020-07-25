@@ -45,7 +45,7 @@ Al establecer la propiedad `icono` a falso, el icono se removerá completamente.
 
 {{"demo": "pages/components/alert/IconAlerts.js"}}
 
-## Variants
+## Variantes
 
 Dos variantes adicionales están disponibles – delineada y rellena:
 

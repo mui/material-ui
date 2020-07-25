@@ -39,7 +39,7 @@ Por defecto usamos una combinacion de un `<div>` y una *imagen de fondo* para mo
 
 {{"demo": "pages/components/cards/ImgMediaCard.js", "bg": true}}
 
-> ⚠️ When `component="img"`, CardMedia relies on `object-fit` for centering the image. It's not supported by IE 11.
+> ⚠ Cuando `component="img"`, CardMedia depende de `object-fit` para centrar la imagen. No es compatible con IE 11.
 
 ## Controles de IU
 
@@ -51,4 +51,4 @@ Acá un ejemplo de una tarjeta con control multimedia.
 
 ## Personalización
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/card).
+🎨 Si estás buscando inspiración, puedes revisar [los ejemplos de MUI Treasury](https://mui-treasury.com/components/card).

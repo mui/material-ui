@@ -39,11 +39,11 @@ In general, radio buttons should have a value selected by default. If this is no
 
 ## Customized radios
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+He aquí un ejemplo de personalización del componente. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/radio-buttons/CustomizedRadios.js"}}
 
-## When to use
+## Cuándo usarlo
 
 - [Checkboxes vs. Botones de selección](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
 

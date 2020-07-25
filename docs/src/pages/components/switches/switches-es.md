@@ -45,7 +45,7 @@ Puede cambiar la ubicación de la etiqueta:
 
 {{"demo": "pages/components/switches/FormControlLabelPosition.js"}}
 
-## When to use
+## Cuándo usarlo
 
 - [Checkboxes vs. Interruptores](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)
 

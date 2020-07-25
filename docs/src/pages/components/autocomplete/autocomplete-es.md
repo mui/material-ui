@@ -136,7 +136,7 @@ Fancy smaller inputs? Use the `size` prop.
 
 {{"demo": "pages/components/autocomplete/Sizes.js"}}
 
-## Customizations
+## Personalizaciones
 
 ### Custom input
 
@@ -144,7 +144,7 @@ The `renderInput` prop allows you to customize the rendered input. The first arg
 
 {{"demo": "pages/components/autocomplete/CustomInputAutocomplete.js"}}
 
-### GitHub's picker
+### Selector de GitHub
 
 Esta demo reproduce el selector de etiquetas de GitHub:
 

@@ -5,11 +5,11 @@ components: Skeleton
 
 # Esqueleto
 
-<p class="description">Display a placeholder preview of your content before the data gets loaded to reduce load-time frustration.</p>
+<p class="description">Mostrar una vista previa de su contenido antes de que se carguen los datos para reducir la frustración en tiempo de carga.</p>
 
-The data for your components might not be immediately available. You can increase the perceived performance for users by using skeletons. It feels like things are happening immediately, then the information is incrementally displayed on the screen (Cf. [Avoid The Spinner](https://www.lukew.com/ff/entry.asp?1797)).
+Es posible que los datos de sus componentes no estén disponibles inmediatamente. Puede aumentar el rendimiento percibido por los usuarios usando esqueletos. Parece que las cosas están sucediendo inmediatamente, entonces la información se muestra incrementalmente en la pantalla (Cf. [Evitar el Spinner](https://www.lukew.com/ff/entry.asp?1797)).
 
-The component is designed to be used **directly in your components**. Por ejemplo:
+El componente está diseñado para ser utilizado **directamente en sus componentes**. Por ejemplo:
 
 ```jsx
 {item ? (
@@ -19,13 +19,13 @@ The component is designed to be used **directly in your components**. Por ejempl
 )}
 ```
 
-## Variants
+## Variantes
 
-The component supports 3 shape variants.
+El componente soporta 3 variantes de forma.
 
 {{"demo": "pages/components/skeleton/Variants.js"}}
 
-## Animations
+## Animaciones
 
 By default, the skeleton pulsate, but you can change the animation for a wave or disable it entirely.
 
@@ -35,11 +35,11 @@ By default, the skeleton pulsate, but you can change the animation for a wave or
 
 {{"demo": "pages/components/skeleton/YouTube.js", "defaultCodeOpen": false}}
 
-### Wave example
+### Ejemplo de onda
 
 {{"demo": "pages/components/skeleton/Facebook.js", "defaultCodeOpen": false, "bg": true}}
 
-## Inferring dimensions
+## Dimensiones inferentes
 
 In addition to accepting `width` and `height` props, the component can also infer the dimensions.
 

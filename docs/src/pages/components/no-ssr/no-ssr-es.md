@@ -5,24 +5,24 @@ components: NoSsr
 
 # No SSR
 
-<p class="description">NoSsr purposely removes components from the subject of Server Side Rendering (SSR).</p>
+<p class="description">NoSsr quita a proposito los componentes de la materia de procesamiento del Lado del Servidor (SSR).</p>
 
-This component can be useful in a variety of situations:
+Este componente puede ser útil en una variedad de situaciones:
 
 - Escape hatch for broken dependencies not supporting SSR.
 - Improve the time-to-first paint on the client by only rendering above the fold.
-- Reduce the rendering time on the server.
-- Under too heavy server load, you can turn on service degradation.
+- Reducir el tiempo de procesamiento en el servidor.
+- Bajo demasiado pesada carga del servidor, puede activar la degradación del servicio.
 - Improve the time-to-interactive by only rendering what's important (with the `defer` property).
 
-## Client side deferring
+## Aplazamiento del lado del cliente
 
 {{"demo": "pages/components/no-ssr/SimpleNoSsr.js"}}
 
-## Frame deferring
+## Aplazar fotograma
 
-In it's core, the NoSsr component purpose is to **defer rendering**. As it's illustrated in the previous demo, you can use it to defer the rendering from the server to the client.
+En su núcleo, el propósito del componente NoSsr es **diferer renderizado**. Como se ilustra en la demo anterior, puede utilizarla para diferir el renderizado del servidor al cliente.
 
-But you can also use it to defer the rendering within the client itself. You can **wait a screen frame** with the `defer` property to render the children. React does [2 commits](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects) instead of 1.
+Pero también se puede utilizar para aplazar la representación dentro del propio cliente. Puedes **esperar un marco de pantalla** con la propiedad `diferir` para renderizar los hijos. React hace [2 commits](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects) en lugar de 1.
 
 {{"demo": "pages/components/no-ssr/FrameDeferring.js"}}
