@@ -73,9 +73,9 @@ export const styles = (theme) => {
         },
       },
     },
-    /* Styles applied to the root element if `expanded={true}`. */
+    /* Pseudo-class applied to the root element if `expanded={true}`. */
     expanded: {},
-    /* Styles applied to the root element if `disabled={true}`. */
+    /* Pseudo-class applied to the root element if `disabled={true}`. */
     disabled: {},
     /* Styles applied to the region element, the container of the children. */
     region: {},
