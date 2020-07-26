@@ -25,7 +25,7 @@
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.54",
     "@material-ui/pickers": "^4.0.0-alpha.1",
-    "@now/node": "^1.6.1",
+    "@now/node": "^1.7.3",
     "@types/fuzzy-search": "^2.1.0",
     "@types/isomorphic-fetch": "^0.0.35",
     "@types/jss": "^10.0.0",
