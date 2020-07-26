@@ -60,7 +60,6 @@ export const styles = (theme) => ({
       },
     },
     '&$disabled': {
-      color: theme.palette.action.disabled,
       opacity: theme.palette.action.disabledOpacity,
     },
   },
