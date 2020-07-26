@@ -37,7 +37,7 @@
     "@cypress/webpack-preprocessor": "^4.1.0",
     "@percy/cypress": "^2.3.1",
     "@testing-library/cypress": "^6.0.0",
-    "@testing-library/dom": "^7.18.1",
+    "@testing-library/dom": "^7.21.5",
     "@testing-library/react": "^10.4.7",
     "@typescript-eslint/eslint-plugin": "^1.6.0",
     "@typescript-eslint/parser": "^1.6.0",
