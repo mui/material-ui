@@ -70,7 +70,7 @@ export const styles = (theme) => ({
   selected: {},
   /* Pseudo-class applied to the content element when focused. */
   focused: {},
-  /* Styles applied to the element when disabled */
+  /* Pseudo-class applied to the element when disabled. */
   disabled: {},
   /* Styles applied to the tree node icon and collapse/expand icon. */
   iconContainer: {
