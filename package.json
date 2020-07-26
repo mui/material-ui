@@ -94,7 +94,7 @@
     "dtslint": "^3.2.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "enzyme": "^3.9.0",
-    "eslint-config-airbnb-typescript": "^8.0.2",
+    "eslint-config-airbnb-typescript": "^9.0.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-import-resolver-webpack": "^0.12.2",
     "eslint-plugin-babel": "^5.3.1",
