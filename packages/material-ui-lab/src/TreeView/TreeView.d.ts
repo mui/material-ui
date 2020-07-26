@@ -30,6 +30,10 @@ export interface TreeViewPropsBase
    */
   defaultParentIcon?: React.ReactNode;
   /**
+   * If `true`, will allow focus on disabled items.
+   */
+  disabledItemsFocusable?: boolean;
+  /**
    * If `true` selection is disabled.
    */
   disableSelection?: boolean;

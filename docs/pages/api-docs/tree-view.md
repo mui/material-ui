@@ -36,6 +36,7 @@ The `MuiTreeView` name can be used for providing [default props](/customization/
 | <span class="prop-name">defaultExpandIcon</span> | <span class="prop-type">node</span> |  | The default icon used to expand the node. |
 | <span class="prop-name">defaultParentIcon</span> | <span class="prop-type">node</span> |  | The default icon displayed next to a parent node. This is applied to all parent nodes and can be overridden by the TreeItem `icon` prop. |
 | <span class="prop-name">defaultSelected</span> | <span class="prop-type">Array&lt;string&gt;<br>&#124;&nbsp;string</span> | <span class="prop-default">[]</span> | Selected node ids. (Uncontrolled) When `multiSelect` is true this takes an array of strings; when false (default) a string. |
+| <span class="prop-name">disabledItemsFocusable</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, will allow focus on disabled items. |
 | <span class="prop-name">disableSelection</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true` selection is disabled. |
 | <span class="prop-name">expanded</span> | <span class="prop-type">Array&lt;string&gt;</span> |  | Expanded node ids. (Controlled) |
 | <span class="prop-name">id</span> | <span class="prop-type">string</span> |  | This prop is used to help implement the accessibility logic. If you don't provide this prop. It falls back to a randomly generated id. |

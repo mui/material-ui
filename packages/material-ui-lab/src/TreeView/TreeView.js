@@ -49,6 +49,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     defaultExpandIcon,
     defaultParentIcon,
     defaultSelected = [],
+    disabledItemsFocusable = false,
     disableSelection = false,
     expanded: expandedProp,
     id: idProp,
@@ -90,15 +91,6 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     state: 'selected',
   });
 
-  // Using Object.keys -> .map to mimic Object.values we should replace with Object.values() once we stop IE 11 support.
-  const getChildrenIds = (id) =>
-    Object.keys(nodeMap.current)
-      .map((key) => {
-        return nodeMap.current[key];
-      })
-      .filter((node) => node.parentId === id)
-      .sort((a, b) => a.index - b.index)
-      .map((child) => child.id);
   /*
    * Status Helpers
    */
@@ -139,18 +131,41 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   const isFocused = (id) => focusedNodeId === id;
 
   /*
+   * Child Helpers
+   */
+
+  // Using Object.keys -> .map to mimic Object.values we should replace with Object.values() once we stop IE 11 support.
+  const getChildrenIds = (id) =>
+    Object.keys(nodeMap.current)
+      .map((key) => {
+        return nodeMap.current[key];
+      })
+      .filter((node) => node.parentId === id)
+      .sort((a, b) => a.index - b.index)
+      .map((child) => child.id);
+
+  const getNavigableChildrenIds = (id) => {
+    let childrenIds = getChildrenIds(id);
+
+    if (!disabledItemsFocusable) {
+      childrenIds = childrenIds.filter((node) => !isDisabled(node));
+    }
+    return childrenIds;
+  };
+
+  /*
    * Node Helpers
    */
 
   const getNextNode = (id) => {
     // If expanded get first child
-    if (isExpanded(id) && getChildrenIds(id).length > 0) {
-      return getChildrenIds(id)[0];
+    if (isExpanded(id) && getNavigableChildrenIds(id).length > 0) {
+      return getNavigableChildrenIds(id)[0];
     }
 
     // Try to get next sibling
     const node = nodeMap.current[id];
-    const siblings = getChildrenIds(node.parentId);
+    const siblings = getNavigableChildrenIds(node.parentId);
 
     const nextSibling = siblings[siblings.indexOf(id) + 1];
 
@@ -161,7 +176,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     // try to get parent's next sibling
     const parent = nodeMap.current[node.parentId];
     if (parent) {
-      const parentSiblings = getChildrenIds(parent.parentId);
+      const parentSiblings = getNavigableChildrenIds(parent.parentId);
       return parentSiblings[parentSiblings.indexOf(parent.id) + 1];
     }
     return null;
@@ -169,7 +184,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
 
   const getPreviousNode = (id) => {
     const node = nodeMap.current[id];
-    const siblings = getChildrenIds(node.parentId);
+    const siblings = getNavigableChildrenIds(node.parentId);
     const nodeIndex = siblings.indexOf(id);
 
     if (nodeIndex === 0) {
@@ -177,22 +192,22 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     }
 
     let currentNode = siblings[nodeIndex - 1];
-    while (isExpanded(currentNode) && getChildrenIds(currentNode).length > 0) {
-      currentNode = getChildrenIds(currentNode).pop();
+    while (isExpanded(currentNode) && getNavigableChildrenIds(currentNode).length > 0) {
+      currentNode = getNavigableChildrenIds(currentNode).pop();
     }
 
     return currentNode;
   };
 
   const getLastNode = () => {
-    let lastNode = getChildrenIds(null).pop();
+    let lastNode = getNavigableChildrenIds(null).pop();
 
     while (isExpanded(lastNode)) {
-      lastNode = getChildrenIds(lastNode).pop();
+      lastNode = getNavigableChildrenIds(lastNode).pop();
     }
     return lastNode;
   };
-  const getFirstNode = () => getChildrenIds(null)[0];
+  const getFirstNode = () => getNavigableChildrenIds(null)[0];
   const getParent = (id) => nodeMap.current[id].parentId;
 
   /**
@@ -309,8 +324,9 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       const firstChar = firstCharMap.current[nodeId];
       const map = nodeMap.current[nodeId];
       const visible = map.parentId ? isExpanded(map.parentId) : true;
+      const shouldBeSkipped = disabledItemsFocusable ? false : isDisabled(nodeId);
 
-      if (visible) {
+      if (visible && !shouldBeSkipped) {
         firstCharIds.push(nodeId);
         firstChars.push(firstChar);
       }
@@ -719,7 +735,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
 
   const handleFocus = (event) => {
     const firstSelected = Array.isArray(selected) ? selected[0] : selected;
-    focus(event, firstSelected || getChildrenIds(null)[0]);
+    focus(event, firstSelected || getNavigableChildrenIds(null)[0]);
 
     if (onFocus) {
       onFocus(event);
@@ -824,6 +840,10 @@ TreeView.propTypes = {
    * When `multiSelect` is true this takes an array of strings; when false (default) a string.
    */
   defaultSelected: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]),
+  /**
+   * If `true`, will allow focus on disabled items.
+   */
+  disabledItemsFocusable: PropTypes.bool,
   /**
    * If `true` selection is disabled.
    */

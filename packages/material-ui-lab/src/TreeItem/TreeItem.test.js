@@ -1604,22 +1604,6 @@ describe('<TreeItem />', () => {
           expect(getByTestId('two')).toHaveVirtualFocus();
         });
 
-        it('should prevent range selection by keyboard + arrow down', () => {
-          const { getByRole, getByTestId } = render(
-            <TreeView multiSelect>
-              <TreeItem nodeId="one" label="one" data-testid="one" />
-              <TreeItem nodeId="two" label="two" disabled data-testid="two" />
-            </TreeView>,
-          );
-
-          fireEvent.focusIn(getByTestId('one'));
-          expect(getByTestId('one')).toHaveVirtualFocus();
-          fireEvent.keyDown(getByRole('tree'), { key: 'ArrowDown', shiftKey: true });
-          expect(getByTestId('one')).to.have.attribute('aria-selected', 'false');
-          expect(getByTestId('two')).to.have.attribute('aria-selected', 'false');
-          expect(getByTestId('two')).toHaveVirtualFocus();
-        });
-
         it('should prevent range selection by keyboard + space', () => {
           const { getByRole, getByTestId, getByText } = render(
             <TreeView multiSelect>
@@ -1720,53 +1704,177 @@ describe('<TreeItem />', () => {
           expect(getByTestId('four')).to.have.attribute('aria-selected', 'true');
           expect(getByTestId('five')).to.have.attribute('aria-selected', 'true');
         });
+
+        specify(
+          'if `disabledItemsFocusable=true` should prevent range selection by keyboard + arrow down',
+          () => {
+            const { getByRole, getByTestId } = render(
+              <TreeView multiSelect disabledItemsFocusable>
+                <TreeItem nodeId="one" label="one" data-testid="one" />
+                <TreeItem nodeId="two" label="two" disabled data-testid="two" />
+              </TreeView>,
+            );
+
+            fireEvent.focusIn(getByTestId('one'));
+            expect(getByTestId('one')).toHaveVirtualFocus();
+            fireEvent.keyDown(getByRole('tree'), { key: 'ArrowDown', shiftKey: true });
+            expect(getByTestId('one')).to.have.attribute('aria-selected', 'false');
+            expect(getByTestId('two')).to.have.attribute('aria-selected', 'false');
+            expect(getByTestId('two')).toHaveVirtualFocus();
+          },
+        );
+
+        specify(
+          'if `disabledItemsFocusable=false` should select the next non disabled node by keyboard + arrow down',
+          () => {
+            const { getByRole, getByTestId } = render(
+              <TreeView multiSelect>
+                <TreeItem nodeId="one" label="one" data-testid="one" />
+                <TreeItem nodeId="two" label="two" disabled data-testid="two" />
+                <TreeItem nodeId="three" label="three" data-testid="three" />
+              </TreeView>,
+            );
+
+            fireEvent.focusIn(getByTestId('one'));
+            expect(getByTestId('one')).toHaveVirtualFocus();
+            fireEvent.keyDown(getByRole('tree'), { key: 'ArrowDown', shiftKey: true });
+            expect(getByTestId('one')).to.have.attribute('aria-selected', 'false');
+            expect(getByTestId('two')).to.have.attribute('aria-selected', 'false');
+            expect(getByTestId('three')).toHaveVirtualFocus();
+            expect(getByTestId('one')).to.have.attribute('aria-selected', 'false');
+            expect(getByTestId('two')).to.have.attribute('aria-selected', 'false');
+            expect(getByTestId('three')).to.have.attribute('aria-selected', 'true');
+          },
+        );
       });
     });
 
     describe('focus', () => {
-      it('should prevent focus by mouse', () => {
-        const { getByText, getByTestId } = render(
-          <TreeView>
-            <TreeItem nodeId="one" label="one" data-testid="one" />
-            <TreeItem nodeId="two" label="two" data-test-id="two" />
-          </TreeView>,
-        );
+      describe('`disabledItemsFocusable=true`', () => {
+        it('should prevent focus by mouse', () => {
+          const { getByText, getByTestId } = render(
+            <TreeView disabledItemsFocusable>
+              <TreeItem nodeId="one" label="one" data-testid="one" />
+              <TreeItem nodeId="two" label="two" data-testid="two" />
+            </TreeView>,
+          );
 
-        fireEvent.click(getByText('one'));
-        expect(getByTestId('one')).not.toHaveVirtualFocus();
-      });
-
-      it('should not prevent focus by keyboard', () => {
-        const { getByRole, getByTestId } = render(
-          <TreeView>
-            <TreeItem nodeId="one" label="one" data-testid="one" />
-            <TreeItem nodeId="two" label="two" disabled data-testid="two" />
-          </TreeView>,
-        );
-
-        act(() => {
-          getByRole('tree').focus();
+          fireEvent.click(getByText('one'));
+          expect(getByTestId('one')).not.toHaveVirtualFocus();
         });
 
-        expect(getByTestId('one')).toHaveVirtualFocus();
+        it('should not prevent focus by type-ahead', () => {
+          const { getByRole, getByTestId } = render(
+            <TreeView disabledItemsFocusable>
+              <TreeItem nodeId="one" label="one" data-testid="one" />
+              <TreeItem nodeId="two" label="two" disabled data-testid="two" />
+            </TreeView>,
+          );
 
-        fireEvent.keyDown(getByRole('tree'), { key: 'ArrowDown' });
-        expect(getByTestId('two')).toHaveVirtualFocus();
-      });
-
-      it('should be focused on tree focus', () => {
-        const { getByRole, getByTestId } = render(
-          <TreeView>
-            <TreeItem nodeId="one" label="one" disabled data-testid="one" />
-            <TreeItem nodeId="two" label="two" data-testid="two" />
-          </TreeView>,
-        );
-
-        act(() => {
-          getByRole('tree').focus();
+          act(() => {
+            getByRole('tree').focus();
+          });
+          expect(getByTestId('one')).toHaveVirtualFocus();
+          fireEvent.keyDown(getByRole('tree'), { key: 't' });
+          expect(getByTestId('two')).toHaveVirtualFocus();
         });
 
-        expect(getByTestId('one')).toHaveVirtualFocus();
+        it('should not prevent focus by arrow keys', () => {
+          const { getByRole, getByTestId } = render(
+            <TreeView disabledItemsFocusable>
+              <TreeItem nodeId="one" label="one" data-testid="one" />
+              <TreeItem nodeId="two" label="two" disabled data-testid="two" />
+            </TreeView>,
+          );
+
+          act(() => {
+            getByRole('tree').focus();
+          });
+
+          expect(getByTestId('one')).toHaveVirtualFocus();
+
+          fireEvent.keyDown(getByRole('tree'), { key: 'ArrowDown' });
+          expect(getByTestId('two')).toHaveVirtualFocus();
+        });
+
+        it('should be focused on tree focus', () => {
+          const { getByRole, getByTestId } = render(
+            <TreeView disabledItemsFocusable>
+              <TreeItem nodeId="one" label="one" disabled data-testid="one" />
+              <TreeItem nodeId="two" label="two" data-testid="two" />
+            </TreeView>,
+          );
+
+          act(() => {
+            getByRole('tree').focus();
+          });
+
+          expect(getByTestId('one')).toHaveVirtualFocus();
+        });
+      });
+
+      describe('`disabledItemsFocusable=false`', () => {
+        it('should prevent focus by mouse', () => {
+          const { getByText, getByTestId } = render(
+            <TreeView>
+              <TreeItem nodeId="one" label="one" data-testid="one" />
+              <TreeItem nodeId="two" label="two" data-testid="two" />
+            </TreeView>,
+          );
+
+          fireEvent.click(getByText('one'));
+          expect(getByTestId('one')).not.toHaveVirtualFocus();
+        });
+
+        it('should prevent focus by type-ahead', () => {
+          const { getByRole, getByTestId } = render(
+            <TreeView>
+              <TreeItem nodeId="one" label="one" data-testid="one" />
+              <TreeItem nodeId="two" label="two" disabled data-testid="two" />
+            </TreeView>,
+          );
+
+          act(() => {
+            getByRole('tree').focus();
+          });
+          expect(getByTestId('one')).toHaveVirtualFocus();
+          fireEvent.keyDown(getByRole('tree'), { key: 't' });
+          expect(getByTestId('one')).toHaveVirtualFocus();
+        });
+
+        it('should be skipped on navigation with arrow keys', () => {
+          const { getByRole, getByTestId } = render(
+            <TreeView>
+              <TreeItem nodeId="one" label="one" data-testid="one" />
+              <TreeItem nodeId="two" label="two" disabled data-testid="two" />
+              <TreeItem nodeId="three" label="three" data-testid="three" />
+            </TreeView>,
+          );
+
+          act(() => {
+            getByRole('tree').focus();
+          });
+
+          expect(getByTestId('one')).toHaveVirtualFocus();
+
+          fireEvent.keyDown(getByRole('tree'), { key: 'ArrowDown' });
+          expect(getByTestId('three')).toHaveVirtualFocus();
+        });
+
+        it('should not be focused on tree focus', () => {
+          const { getByRole, getByTestId } = render(
+            <TreeView>
+              <TreeItem nodeId="one" label="one" disabled data-testid="one" />
+              <TreeItem nodeId="two" label="two" data-testid="two" />
+            </TreeView>,
+          );
+
+          act(() => {
+            getByRole('tree').focus();
+          });
+
+          expect(getByTestId('two')).toHaveVirtualFocus();
+        });
       });
     });
 
