@@ -105,7 +105,7 @@ If the logic is fetching new options at each keystroke,
 using the current value of the textbox to filter on the server,
 you need to disable the built-in filtering of the autocomplete component:
 
-```
+```jsx
 <Autocomplete filterOptions={(x) => x} />
 ```
 
