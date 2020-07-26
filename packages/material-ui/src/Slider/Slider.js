@@ -743,7 +743,6 @@ const Slider = React.forwardRef(function Slider(props, ref) {
         return (
           <ValueLabelComponent
             key={index}
-            valueLabelFormat={valueLabelFormat}
             valueLabelDisplay={valueLabelDisplay}
             className={classes.valueLabel}
             value={
