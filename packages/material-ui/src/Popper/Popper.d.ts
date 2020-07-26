@@ -29,7 +29,7 @@ export interface PopperProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 
   /**
    * Popper render function or node.
    */
-  children:
+  children?:
     | React.ReactNode
     | ((props: {
         placement: PopperPlacementType;

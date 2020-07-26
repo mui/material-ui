@@ -280,7 +280,7 @@ Popper.propTypes = {
   children: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.node,
     PropTypes.func,
-  ]).isRequired,
+  ]),
   /**
    * A HTML element or function that returns one.
    * The `container` will have the portal children appended to it.
