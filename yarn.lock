@@ -6141,10 +6141,10 @@ detect-libc@^1.0.2, detect-libc@^1.0.3:
   resolved "https://registry.yarnpkg.com/detect-libc/-/detect-libc-1.0.3.tgz#fa137c4bd698edf55cd5cd02ac559f91a4c4ba9b"
   integrity sha1-+hN8S9aY7fVc1c0CrFWfkaTEups=
 
-devtools-protocol@0.0.767361:
-  version "0.0.767361"
-  resolved "https://registry.yarnpkg.com/devtools-protocol/-/devtools-protocol-0.0.767361.tgz#5977f2558b84f9df36f62501bdddb82f3ae7b66b"
-  integrity sha512-ziRTdhEVQ9jEwedaUaXZ7kl9w9TF/7A3SXQ0XuqrJB+hMS62POHZUWTbumDN2ehRTfvWqTPc2Jw4gUl/jggmHA==
+devtools-protocol@0.0.781568:
+  version "0.0.781568"
+  resolved "https://registry.yarnpkg.com/devtools-protocol/-/devtools-protocol-0.0.781568.tgz#4cdca90a952d2c77831096ff6cd32695d8715a04"
+  integrity sha512-9Uqnzy6m6zEStluH9iyJ3iHyaQziFnMnLeC8vK0eN6smiJmIx7+yB64d67C2lH/LZra+5cGscJAJsNXO+MdPMg==
 
 dezalgo@^1.0.0:
   version "1.0.3"
@@ -12919,12 +12919,12 @@ pupa@^2.0.1:
     escape-goat "^2.0.0"
 
 puppeteer@^5.0.0:
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/puppeteer/-/puppeteer-5.2.0.tgz#c37bf605e6ec103428c872d820f30f2617bf38ad"
-  integrity sha512-Hru70mFT+dts5W3l1MVg46EfJiWE63qjmXlDvC2kkCeEzLgt6KrwEkDJcJKKzERTvy9xXhOvjyGNx36fd78mVQ==
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/puppeteer/-/puppeteer-5.2.1.tgz#7f0564f0a5384f352a38c8cc42af875cd87f4ea6"
+  integrity sha512-PZoZG7u+T6N1GFWBQmGVG162Ak5MAy8nYSVpeeQrwJK2oYUlDWpHEJPcd/zopyuEMTv7DiztS1blgny1txR2qw==
   dependencies:
     debug "^4.1.0"
-    devtools-protocol "0.0.767361"
+    devtools-protocol "0.0.781568"
     extract-zip "^2.0.0"
     https-proxy-agent "^4.0.0"
     mime "^2.0.3"
