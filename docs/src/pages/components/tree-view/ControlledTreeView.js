@@ -1,18 +1,21 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import TreeView from '@material-ui/lab/TreeView';
+import Button from '@material-ui/core/Button';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import TreeView from '@material-ui/lab/TreeView';
 import TreeItem from '@material-ui/lab/TreeItem';
-import Button from '@material-ui/core/Button';
 
-const useStyles = makeStyles({
-  tree: {
-    height: 216,
+const useStyles = makeStyles((theme) => ({
+  root: {
+    height: 270,
     flexGrow: 1,
     maxWidth: 400,
   },
-});
+  actions: {
+    marginBottom: theme.spacing(1),
+  },
+}));
 
 export default function ControlledTreeView() {
   const classes = useStyles();
@@ -27,22 +30,29 @@ export default function ControlledTreeView() {
     setSelected(nodeIds);
   };
 
-  const expandAll = () => {
-    setExpanded(['1', '5', '6', '7']);
+  const handleExpandClick = () => {
+    setExpanded(expanded.length === 0 ? ['1', '5', '6', '7'] : []);
   };
 
-  const selectAll = () => {
-    setSelected(['1', '2', '3', '4', '5', '6', '7', '8', '9']);
+  const handleSelectClick = () => {
+    setSelected(
+      selected.length === 0
+        ? ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+        : [],
+    );
   };
 
   return (
-    <div>
-      <div>
-        <Button onClick={expandAll}>Expand All</Button>
-        <Button onClick={selectAll}>Select All</Button>
+    <div className={classes.root}>
+      <div className={classes.actions}>
+        <Button onClick={handleExpandClick}>
+          {expanded.length === 0 ? 'Expand all' : 'Collapse all'}
+        </Button>
+        <Button onClick={handleSelectClick}>
+          {selected.length === 0 ? 'Select all' : 'Unselect all'}
+        </Button>
       </div>
       <TreeView
-        className={classes.tree}
         defaultCollapseIcon={<ExpandMoreIcon />}
         defaultExpandIcon={<ChevronRightIcon />}
         expanded={expanded}
