@@ -61,10 +61,10 @@ jobs:
       - attach_workspace:
           at: .
       - run:
-          name: Typescript
+          name: TypeScript
           command: yarn workspaces run build:typescript
       - run:
-          name: Run typescript tests
+          name: Run TypeScript tests
           command: yarn workspace @material-ui/pickers run test:typescript
       - run:
           name: Build and analyze bundlesize
