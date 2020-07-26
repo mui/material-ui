@@ -61,6 +61,9 @@ export const styles = (theme) => ({
     },
     '&$disabled': {
       opacity: theme.palette.action.disabledOpacity,
+      '&:hover': {
+        backgroundColor: 'transparent',
+      },
     },
   },
   /* Pseudo-class applied to the content element when expanded. */
