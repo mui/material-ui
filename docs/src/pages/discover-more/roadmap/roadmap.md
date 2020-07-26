@@ -4,7 +4,7 @@
 
 ## Methodology
 
-Material-UI is community-driven – issues that resonate most with the community get the most attention.
+Material-UI is community driven – issues that resonate most with the community get the most attention.
 Please **upvote** (👍) on GitHub the issues you are most interested in.
 Thank you for participating [in the developer survey](https://material-ui.com/blog/2020-developer-survey-results/).
 
@@ -99,4 +99,4 @@ Here are the components we will work on being supported in the Material-UI ecosy
 | Gantt Chart                | ⏳⭐️  |
 | Color Picker               | ⏳⭐️  |
 
-> ⚠️ **Disclaimer**: We operate in a dynamic environment, and things are subject to change. The information provided is intended to outline the general framework direction. It's intended for informational purposes only. We may decide to add/remove new items at any time depending on our capability to deliver while meeting our quality standards. The development, releases and timing of any features or functionality of Material-UI remains at the sole discretion of Material-UI. The roadmap does not represent a commitment, obligation or promise to deliver at any time.
+> ⚠️ **Forward looking statement.** We operate in a dynamic environment, and things are subject to change. The information provided here is intended to outline the general framework direction. It's intended for informational purposes only. We may decide to add/remove new items at any time depending on our capability to deliver while meeting our quality standards. The development, releases and timing of any features or functionality of Material-UI remains at the sole discretion of Material-UI. The roadmap does not represent a commitment, obligation or promise to deliver at any time. You should not depend on the roadmap when making technology decisions.
