@@ -32,7 +32,7 @@
     "@types/doctrine": "^0.0.3",
     "@types/glob": "^7.1.1",
     "@types/lodash": "^4.14.136",
-    "@types/node": "^12.6.2",
+    "@types/node": "^14.0.26",
     "@types/prettier": "^2.0.1",
     "@types/react": "^16.8.23",
     "@types/uuid": "^8.0.0",

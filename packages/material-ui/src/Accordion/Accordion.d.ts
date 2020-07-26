@@ -41,7 +41,7 @@ export interface AccordionProps extends StandardProps<PaperProps, AccordionClass
   TransitionProps?: TransitionProps;
 }
 
-export type AccordionClassKey = 'root' | 'rounded' | 'expanded' | 'disabled';
+export type AccordionClassKey = 'root' | 'rounded' | 'expanded' | 'disabled' | 'region';
 
 /**
  *

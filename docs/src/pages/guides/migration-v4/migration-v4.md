@@ -79,6 +79,13 @@ This change affects almost all components where you're using the `component` pro
   +<Collapse collapsedSize={40}>
   ```
 
+- The `classes.container` key was changed to match the convention of the other components.
+
+  ```diff
+  -<Collapse classes={{ container: 'collapse' }}>
+  +<Collapse classes={{ root: 'collapse' }}>
+  ```
+
 ### Divider
 
 - Use border instead of background color. It prevents inconsistent height on scaled screens. For people customizing the color of the border, the change requires changing the override CSS property:
