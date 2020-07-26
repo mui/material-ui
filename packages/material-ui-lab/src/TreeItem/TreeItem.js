@@ -59,10 +59,9 @@ export const styles = (theme) => ({
         ),
       },
     },
-    '&$disabled, &$disabled:hover, &$disabled$focused': {
+    '&$disabled': {
       color: theme.palette.action.disabled,
       opacity: theme.palette.action.disabledOpacity,
-      backgroundColor: 'transparent',
     },
   },
   /* Pseudo-class applied to the content element when expanded. */
@@ -180,29 +179,27 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   }
 
   const handleClick = (event) => {
-    if (disabled) {
-      return;
-    }
-
-    if (!focused) {
-      focus(event, nodeId);
-    }
-
-    const multiple = multiSelect && (event.shiftKey || event.ctrlKey || event.metaKey);
-
-    // If already expanded and trying to toggle selection don't close
-    if (expandable && !event.defaultPrevented && !(multiple && isExpanded(nodeId))) {
-      toggleExpansion(event, nodeId);
-    }
-
-    if (multiple) {
-      if (event.shiftKey) {
-        selectRange(event, { end: nodeId });
-      } else {
-        selectNode(event, nodeId, true);
+    if (!disabled) {
+      if (!focused) {
+        focus(event, nodeId);
       }
-    } else {
-      selectNode(event, nodeId);
+
+      const multiple = multiSelect && (event.shiftKey || event.ctrlKey || event.metaKey);
+
+      // If already expanded and trying to toggle selection don't close
+      if (expandable && !event.defaultPrevented && !(multiple && isExpanded(nodeId))) {
+        toggleExpansion(event, nodeId);
+      }
+
+      if (multiple) {
+        if (event.shiftKey) {
+          selectRange(event, { end: nodeId });
+        } else {
+          selectNode(event, nodeId, true);
+        }
+      } else {
+        selectNode(event, nodeId);
+      }
     }
 
     if (onClick) {
@@ -230,6 +227,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
         index,
         parentId,
         expandable,
+        disabled: disabledProp,
       });
 
       return () => {
@@ -238,7 +236,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     }
 
     return undefined;
-  }, [registerNode, unregisterNode, parentId, index, nodeId, expandable, id]);
+  }, [registerNode, unregisterNode, parentId, index, nodeId, expandable, disabledProp, id]);
 
   React.useEffect(() => {
     if (mapFirstChar && unMapFirstChar && label) {
@@ -297,7 +295,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
       role="treeitem"
       aria-expanded={expandable ? expanded : null}
       aria-selected={ariaSelected}
-      aria-disabled={disabled}
+      aria-disabled={disabled || null}
       ref={handleRef}
       id={id}
       tabIndex={-1}

@@ -38,9 +38,6 @@ function noopSelection() {
   return false;
 }
 
-const defaultExpandedDefault = [];
-const defaultSelectedDefault = [];
-
 const TreeView = React.forwardRef(function TreeView(props, ref) {
   const {
     children,
@@ -48,10 +45,10 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     className,
     defaultCollapseIcon,
     defaultEndIcon,
-    defaultExpanded = defaultExpandedDefault,
+    defaultExpanded = [],
     defaultExpandIcon,
     defaultParentIcon,
-    defaultSelected = defaultSelectedDefault,
+    defaultSelected = [],
     disableSelection = false,
     expanded: expandedProp,
     id: idProp,
@@ -117,22 +114,27 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     [selected],
   );
 
-  const isDisabled = (id) => {
+  const isDisabled = React.useCallback((id) => {
     let node = nodeMap.current[id];
+
+    // This can be called before the node has been added to the node map.
+    if (!node) {
+      return false;
+    }
 
     if (node.disabled) {
       return true;
     }
 
     while (node.parentId != null) {
+      node = nodeMap.current[node.parentId];
       if (node.disabled) {
         return true;
       }
-      node = nodeMap.current[node.parentId];
     }
 
     return false;
-  };
+  }, []);
 
   const isFocused = (id) => focusedNodeId === id;
 
@@ -421,7 +423,8 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       base = selected.filter((id) => currentRangeSelection.current.indexOf(id) === -1);
     }
 
-    const range = getNodesInRange(start, end);
+    let range = getNodesInRange(start, end);
+    range = range.filter((node) => !isDisabled(node));
     currentRangeSelection.current = range;
     let newSelected = base.concat(range);
     newSelected = newSelected.filter((id, i) => newSelected.indexOf(id) === i);
@@ -476,14 +479,12 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
 
   const selectRange = (event, nodes, stacked = false) => {
     const { start = lastSelectedNode.current, end, current } = nodes;
-    if (start != null && end != null) {
-      if (stacked) {
-        handleRangeArrowSelect(event, { start, next: end, current });
-      } else {
-        handleRangeSelect(event, { start, end });
-      }
-      lastSelectionWasRange.current = true;
+    if (stacked) {
+      handleRangeArrowSelect(event, { start, next: end, current });
+    } else if (start != null && end != null) {
+      handleRangeSelect(event, { start, end });
     }
+    lastSelectionWasRange.current = true;
   };
 
   const rangeSelectToFirst = (event, id) => {
@@ -513,25 +514,29 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   };
 
   const selectNextNode = (event, id) => {
-    selectRange(
-      event,
-      {
-        end: getNextNode(id),
-        current: id,
-      },
-      true,
-    );
+    if (!isDisabled(getNextNode(id))) {
+      selectRange(
+        event,
+        {
+          end: getNextNode(id),
+          current: id,
+        },
+        true,
+      );
+    }
   };
 
   const selectPreviousNode = (event, id) => {
-    selectRange(
-      event,
-      {
-        end: getPreviousNode(id),
-        current: id,
-      },
-      true,
-    );
+    if (!isDisabled(getPreviousNode(id))) {
+      selectRange(
+        event,
+        {
+          end: getPreviousNode(id),
+          current: id,
+        },
+        true,
+      );
+    }
   };
 
   const selectAllNodes = (event) => {
@@ -542,9 +547,9 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
    * Mapping Helpers
    */
   const registerNode = React.useCallback((node) => {
-    const { id, index, parentId, expandable, idAttribute } = node;
+    const { id, index, parentId, expandable, idAttribute, disabled } = node;
 
-    nodeMap.current[id] = { id, index, parentId, expandable, idAttribute };
+    nodeMap.current[id] = { id, index, parentId, expandable, idAttribute, disabled };
   }, []);
 
   const unregisterNode = React.useCallback((id) => {
@@ -581,7 +586,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     if (nodeMap.current[focusedNodeId].expandable) {
       if (isExpanded(focusedNodeId)) {
         focusNextNode(event, focusedNodeId);
-      } else {
+      } else if (!isDisabled(focusedNodeId)) {
         toggleExpansion(event);
       }
     }
@@ -589,7 +594,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   };
 
   const handlePreviousArrow = (event) => {
-    if (isExpanded(focusedNodeId)) {
+    if (isExpanded(focusedNodeId) && !isDisabled(focusedNodeId)) {
       toggleExpansion(event, focusedNodeId);
       return true;
     }
@@ -606,15 +611,15 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     let flag = false;
     const key = event.key;
 
-    if (event.altKey || event.currentTarget !== event.target || isDisabled(focusedNodeId)) {
+    // If the tree is empty there will be no focused node
+    if (event.altKey || event.currentTarget !== event.target || !focusedNodeId) {
       return;
     }
 
     const ctrlPressed = event.ctrlKey || event.metaKey;
-
     switch (key) {
       case ' ':
-        if (!disableSelection) {
+        if (!disableSelection && !isDisabled(focusedNodeId)) {
           if (multiSelect && event.shiftKey) {
             selectRange(event, { end: focusedNodeId });
             flag = true;
@@ -627,9 +632,11 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
         event.stopPropagation();
         break;
       case 'Enter':
-        if (nodeMap.current[focusedNodeId].expandable) {
-          toggleExpansion(event);
-          flag = true;
+        if (!isDisabled(focusedNodeId)) {
+          if (nodeMap.current[focusedNodeId].expandable) {
+            toggleExpansion(event);
+            flag = true;
+          }
         }
         event.stopPropagation();
         break;
@@ -662,14 +669,26 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
         }
         break;
       case 'Home':
-        if (multiSelect && ctrlPressed && event.shiftKey && !disableSelection) {
+        if (
+          multiSelect &&
+          ctrlPressed &&
+          event.shiftKey &&
+          !disableSelection &&
+          !isDisabled(focusedNodeId)
+        ) {
           rangeSelectToFirst(event, focusedNodeId);
         }
         focusFirstNode(event);
         flag = true;
         break;
       case 'End':
-        if (multiSelect && ctrlPressed && event.shiftKey && !disableSelection) {
+        if (
+          multiSelect &&
+          ctrlPressed &&
+          event.shiftKey &&
+          !disableSelection &&
+          !isDisabled(focusedNodeId)
+        ) {
           rangeSelectToLast(event, focusedNodeId);
         }
         focusLastNode(event);
