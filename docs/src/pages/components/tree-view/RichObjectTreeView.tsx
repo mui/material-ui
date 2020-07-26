@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
 import TreeView from '@material-ui/lab/TreeView';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -32,13 +32,15 @@ const data: RenderTree = {
   ],
 };
 
-const useStyles = makeStyles({
-  root: {
-    height: 110,
-    flexGrow: 1,
-    maxWidth: 400,
-  },
-});
+const useStyles = makeStyles(
+  createStyles({
+    root: {
+      height: 110,
+      flexGrow: 1,
+      maxWidth: 400,
+    },
+  }),
+);
 
 export default function RichObjectTreeView() {
   const classes = useStyles();

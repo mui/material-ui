@@ -57,6 +57,30 @@ const data = {
 
 {{"demo": "pages/components/tree-view/GmailTreeView.js"}}
 
+## Disabled tree items
+
+{{"demo": "pages/components/tree-view/DisabledTreeItems.js"}}
+
+The behaviour of disabled tree items depends on the `disabledItemsFocusable` prop. 
+
+If it is false:
+
+- Mouse clicks will not focus disabled items.
+- Arrow keys will focus disabled items and, the next non-disabled item will be focused.
+- Typing the first character of a disabled item's label will not focus the item.
+- Mouse or keyboard interaction will not expand/collapse disabled items.
+- Mouse or keyboard interaction will not select disabled items.
+- Shift + arrow keys will skip disabled items and, the next non-disabled item will be selected.
+
+If it is true:
+
+- Mouse clicks will not focus disabled items.
+- Arrow keys will focus disabled items.
+- Typing the first character of a disabled item's label will focus the item.
+- Mouse or keyboard interaction will not expand/collapse disabled items.
+- Mouse or keyboard interaction will not select disabled items.
+- Shift + arrow keys will not skip disabled items but, the disabled item will not be selected.
+
 ## Accessibility
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#TreeView)
