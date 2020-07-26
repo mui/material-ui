@@ -2366,10 +2366,10 @@
   dependencies:
     jss "*"
 
-"@types/luxon@^1.11.0":
-  version "1.22.0"
-  resolved "https://registry.yarnpkg.com/@types/luxon/-/luxon-1.22.0.tgz#dbdf2cc7ba3dfce98c57a3f0e003791122cba009"
-  integrity sha512-riAvdx85rU7OXCrjW3f7dIf7fuJDrxck2Dkjd0weh6ul7q+wumrwe6+/tD8v7yOKnZAuEnTFF4FU7b+5W/I3bw==
+"@types/luxon@^1.24.3":
+  version "1.24.3"
+  resolved "https://registry.yarnpkg.com/@types/luxon/-/luxon-1.24.3.tgz#2e360e02b081898f993c52901192224e1f3d6daa"
+  integrity sha512-8lkeHb0Hkpyqmj0lYrZItakKM73jaKTUe4/PMl2e8o96oxTUzagbbz2DUOMn0NpjSovmZQTJvoCheFeI2bwS4g==
 
 "@types/minimatch@*":
   version "3.0.3"

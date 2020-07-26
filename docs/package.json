@@ -29,7 +29,7 @@
     "@types/fuzzy-search": "^2.1.0",
     "@types/isomorphic-fetch": "^0.0.35",
     "@types/jss": "^10.0.0",
-    "@types/luxon": "^1.11.0",
+    "@types/luxon": "^1.24.3",
     "@types/moment-jalaali": "^0.7.4",
     "@types/next": "^8.0.1",
     "@types/prismjs": "^1.16.1",
