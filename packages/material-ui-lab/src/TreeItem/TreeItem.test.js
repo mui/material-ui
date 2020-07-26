@@ -1476,8 +1476,8 @@ describe('<TreeItem />', () => {
 
         act(() => {
           getByRole('tree').focus();
-          fireEvent.keyDown(getByRole('tree'), { key: 'a', ctrlKey: true });
         });
+        fireEvent.keyDown(getByRole('tree'), { key: 'a', ctrlKey: true });
 
         expect(queryAllByRole('treeitem', { selected: true })).to.have.length(5);
       });
@@ -1495,8 +1495,8 @@ describe('<TreeItem />', () => {
 
         act(() => {
           getByRole('tree').focus();
-          fireEvent.keyDown(getByRole('tree'), { key: 'a', ctrlKey: true });
         });
+        fireEvent.keyDown(getByRole('tree'), { key: 'a', ctrlKey: true });
 
         expect(queryAllByRole('treeitem', { selected: true })).to.have.length(0);
       });
@@ -1661,9 +1661,9 @@ describe('<TreeItem />', () => {
 
           act(() => {
             getByRole('tree').focus();
-            fireEvent.keyDown(getByRole('tree'), { key: 'a', ctrlKey: true });
           });
 
+          fireEvent.keyDown(getByRole('tree'), { key: 'a', ctrlKey: true });
           expect(queryAllByRole('treeitem', { selected: true })).to.have.length(4);
         });
 
