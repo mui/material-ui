@@ -66,7 +66,7 @@ The behaviour of disabled tree items depends on the `disabledItemsFocusable` pro
 If it is false:
 
 - Mouse clicks will not focus disabled items.
-- Arrow keys will focus disabled items and, the next non-disabled item will be focused.
+- Arrow keys will not focus disabled items and, the next non-disabled item will be focused.
 - Typing the first character of a disabled item's label will not focus the item.
 - Mouse or keyboard interaction will not expand/collapse disabled items.
 - Mouse or keyboard interaction will not select disabled items.

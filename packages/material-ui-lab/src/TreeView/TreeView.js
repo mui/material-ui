@@ -767,6 +767,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
         selectNode: disableSelection ? noopSelection : selectNode,
         selectRange: disableSelection ? noopSelection : selectRange,
         multiSelect,
+        disabledItemsFocusable,
         mapFirstChar,
         unMapFirstChar,
         registerNode,

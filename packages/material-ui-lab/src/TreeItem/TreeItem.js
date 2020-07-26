@@ -37,6 +37,10 @@ export const styles = (theme) => ({
         backgroundColor: 'transparent',
       },
     },
+    '&$disabled': {
+      opacity: theme.palette.action.disabledOpacity,
+      backgroundColor: 'transparent',
+    },
     '&$focused': {
       backgroundColor: theme.palette.action.focus,
     },
@@ -57,12 +61,6 @@ export const styles = (theme) => ({
           theme.palette.primary.main,
           theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
         ),
-      },
-    },
-    '&$disabled': {
-      opacity: theme.palette.action.disabledOpacity,
-      '&:hover': {
-        backgroundColor: 'transparent',
       },
     },
   },
@@ -126,6 +124,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     isSelected,
     isDisabled,
     multiSelect,
+    disabledItemsFocusable,
     mapFirstChar,
     unMapFirstChar,
     registerNode,
@@ -209,7 +208,9 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     }
   };
 
+  const wasClick = React.useRef(false);
   const handleMouseDown = (event) => {
+    wasClick.current = true;
     if (event.shiftKey || event.ctrlKey || event.metaKey) {
       // Prevent text selection
       event.preventDefault();
@@ -276,9 +277,11 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
           tree.focus();
         }
 
-        if (!focused && event.currentTarget === event.target) {
+        const unfocusable = !disabledItemsFocusable && disabled;
+        if (!wasClick.current && !focused && event.currentTarget === event.target && !unfocusable) {
           focus(event, nodeId);
         }
+        wasClick.current = false;
       };
 
       // Using focusin to avoid blurring the tree.
@@ -289,7 +292,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
       };
     }
     return undefined;
-  }, [focus, focused, nodeId, nodeRef, treeId]);
+  }, [focus, focused, nodeId, nodeRef, treeId, disabledItemsFocusable, disabled]);
 
   return (
     <li
