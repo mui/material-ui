@@ -7,6 +7,7 @@ export interface Mark {
 }
 
 export interface ValueLabelProps extends React.HTMLAttributes<HTMLSpanElement> {
+  index: number;
   value: number;
   open: boolean;
   children: React.ReactElement;
