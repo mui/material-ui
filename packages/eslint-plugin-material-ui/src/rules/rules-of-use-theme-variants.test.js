@@ -57,11 +57,11 @@ ruleTester.run('rules-of-use-theme-variants', rule, {
   `,
       errors: [
         {
-          message: 'Prop is not passed to `useThemeVariant` props.',
-          line: 3,
-          column: 11,
-          endLine: 3,
-          endColumn: 27,
+          message: 'Prop `disabled` is not passed to `useThemeVariant` props.',
+          line: 4,
+          column: 20,
+          endLine: 4,
+          endColumn: 31,
         },
       ],
     },
@@ -74,11 +74,11 @@ ruleTester.run('rules-of-use-theme-variants', rule, {
   `,
       errors: [
         {
-          message: 'Prop is not passed to `useThemeVariant` props.',
-          line: 3,
-          column: 29,
-          endLine: 3,
-          endColumn: 45,
+          message: 'Prop `variant` is not passed to `useThemeVariant` props.',
+          line: 4,
+          column: 20,
+          endLine: 4,
+          endColumn: 42,
         },
       ],
     },

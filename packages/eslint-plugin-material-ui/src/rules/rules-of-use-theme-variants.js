@@ -96,8 +96,8 @@ module.exports = {
               }) !== undefined;
             if (!isPassedToVariantProps) {
               context.report({
-                node: componentProp,
-                message: 'Prop is not passed to `useThemeVariant` props.',
+                node: variantProps,
+                message: `Prop \`${componentProp.key.name}\` is not passed to \`useThemeVariant\` props.`,
               });
             }
           });
