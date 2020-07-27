@@ -195,7 +195,7 @@ describe('<Button />', () => {
 
   it('should render a contained success button', () => {
     const { getByRole } = render(
-      <Button variant="contained" color="secondary">
+      <Button variant="contained" color="success">
         Hello World
       </Button>,
     );

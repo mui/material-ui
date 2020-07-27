@@ -187,7 +187,7 @@ export const styles = (theme) => ({
   },
   /* Styles applied to the root element if `variant="contained"` and `color="success"`. */
   containedSuccess: {
-    color: theme.palette.secondary.contrastText, // secondary because success.contrastText is black color
+    color: theme.palette.secondary.contrastText, // secondary because success.contrastText is black
     backgroundColor: theme.palette.success.main,
     '&:hover': {
       backgroundColor: theme.palette.success.dark,

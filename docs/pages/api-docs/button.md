@@ -30,7 +30,7 @@ The `MuiButton` name can be used for providing [default props](/customization/gl
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">node</span> |  | The content of the button. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">color</span> | <span class="prop-type">'default'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'</span> | <span class="prop-default">'default'</span> | The color of the component. It supports those theme colors that make sense for this component. |
+| <span class="prop-name">color</span> | <span class="prop-type">'default'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'success'</span> | <span class="prop-default">'default'</span> | The color of the component. It supports those theme colors that make sense for this component. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'button'</span> | The component used for the root node. Either a string to use a HTML element or a component. |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the button will be disabled. |
 | <span class="prop-name">disableElevation</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, no elevation is used. |
@@ -56,12 +56,15 @@ Any other props supplied will be provided to the root element ([ButtonBase](/api
 | <span class="prop-name">text</span> | <span class="prop-name">.MuiButton-text</span> | Styles applied to the root element if `variant="text"`.
 | <span class="prop-name">textPrimary</span> | <span class="prop-name">.MuiButton-textPrimary</span> | Styles applied to the root element if `variant="text"` and `color="primary"`.
 | <span class="prop-name">textSecondary</span> | <span class="prop-name">.MuiButton-textSecondary</span> | Styles applied to the root element if `variant="text"` and `color="secondary"`.
+| <span class="prop-name">textSuccess</span> | <span class="prop-name">.MuiButton-textSuccess</span> | Styles applied to the root element if `variant="text"` and `color="success"`.
 | <span class="prop-name">outlined</span> | <span class="prop-name">.MuiButton-outlined</span> | Styles applied to the root element if `variant="outlined"`.
 | <span class="prop-name">outlinedPrimary</span> | <span class="prop-name">.MuiButton-outlinedPrimary</span> | Styles applied to the root element if `variant="outlined"` and `color="primary"`.
 | <span class="prop-name">outlinedSecondary</span> | <span class="prop-name">.MuiButton-outlinedSecondary</span> | Styles applied to the root element if `variant="outlined"` and `color="secondary"`.
+| <span class="prop-name">outlinedSuccess</span> | <span class="prop-name">.MuiButton-outlinedSuccess</span> | Styles applied to the root element if `variant="outlined"` and `color="success"`.
 | <span class="prop-name">contained</span> | <span class="prop-name">.MuiButton-contained</span> | Styles applied to the root element if `variant="contained"`.
 | <span class="prop-name">containedPrimary</span> | <span class="prop-name">.MuiButton-containedPrimary</span> | Styles applied to the root element if `variant="contained"` and `color="primary"`.
 | <span class="prop-name">containedSecondary</span> | <span class="prop-name">.MuiButton-containedSecondary</span> | Styles applied to the root element if `variant="contained"` and `color="secondary"`.
+| <span class="prop-name">containedSuccess</span> | <span class="prop-name">.MuiButton-containedSuccess</span> | Styles applied to the root element if `variant="contained"` and `color="success"`.
 | <span class="prop-name">disableElevation</span> | <span class="prop-name">.MuiButton-disableElevation</span> | Styles applied to the root element if `disableElevation={true}`.
 | <span class="prop-name">focusVisible</span> | <span class="prop-name">.Mui-focusVisible</span> | Pseudo-class applied to the ButtonBase root element if the button is keyboard focused.
 | <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
