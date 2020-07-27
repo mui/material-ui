@@ -208,10 +208,8 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     }
   };
 
-  const wasClick = React.useRef(false);
   const handleMouseDown = (event) => {
-    wasClick.current = true;
-    if (event.shiftKey || event.ctrlKey || event.metaKey) {
+    if (event.shiftKey || event.ctrlKey || event.metaKey || disabled) {
       // Prevent text selection
       event.preventDefault();
     }
@@ -278,10 +276,9 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
         }
 
         const unfocusable = !disabledItemsFocusable && disabled;
-        if (!wasClick.current && !focused && event.currentTarget === event.target && !unfocusable) {
+        if (!focused && event.currentTarget === event.target && !unfocusable) {
           focus(event, nodeId);
         }
-        wasClick.current = false;
       };
 
       // Using focusin to avoid blurring the tree.

@@ -65,21 +65,21 @@ The behaviour of disabled tree items depends on the `disabledItemsFocusable` pro
 
 If it is false:
 
-- Mouse clicks will not focus disabled items.
 - Arrow keys will not focus disabled items and, the next non-disabled item will be focused.
 - Typing the first character of a disabled item's label will not focus the item.
 - Mouse or keyboard interaction will not expand/collapse disabled items.
 - Mouse or keyboard interaction will not select disabled items.
 - Shift + arrow keys will skip disabled items and, the next non-disabled item will be selected.
+- Programmatic focus will not focus disabled items.
 
 If it is true:
 
-- Mouse clicks will not focus disabled items.
 - Arrow keys will focus disabled items.
 - Typing the first character of a disabled item's label will focus the item.
 - Mouse or keyboard interaction will not expand/collapse disabled items.
 - Mouse or keyboard interaction will not select disabled items.
 - Shift + arrow keys will not skip disabled items but, the disabled item will not be selected.
+- Programmatic focus will focus disabled items.
 
 ## Accessibility
 

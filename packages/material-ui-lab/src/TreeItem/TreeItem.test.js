@@ -1750,18 +1750,16 @@ describe('<TreeItem />', () => {
     describe('focus', () => {
       describe('`disabledItemsFocusable=true`', () => {
         it('should prevent focus by mouse', () => {
-          const { getByRole, getByText, getByTestId } = render(
-            <TreeView disabledItemsFocusable>
+          const focusSpy = spy();
+          const { getByText } = render(
+            <TreeView disabledItemsFocusable onNodeFocus={focusSpy}>
               <TreeItem nodeId="one" label="one" data-testid="one" />
               <TreeItem nodeId="two" label="two" disabled data-testid="two" />
             </TreeView>,
           );
 
           fireEvent.click(getByText('two'));
-          act(() => {
-            getByRole('tree').focus();
-          });
-          expect(getByTestId('two')).not.toHaveVirtualFocus();
+          expect(focusSpy.callCount).to.equal(0);
         });
 
         it('should not prevent programmatic focus', () => {
@@ -1828,18 +1826,16 @@ describe('<TreeItem />', () => {
 
       describe('`disabledItemsFocusable=false`', () => {
         it('should prevent focus by mouse', () => {
-          const { getByRole, getByText, getByTestId } = render(
-            <TreeView>
-              <TreeItem nodeId="one" label="one" disabled data-testid="one" />
-              <TreeItem nodeId="two" label="two" data-testid="two" />
+          const focusSpy = spy();
+          const { getByText } = render(
+            <TreeView onNodeFocus={focusSpy}>
+              <TreeItem nodeId="one" label="one" data-testid="one" />
+              <TreeItem nodeId="two" label="two" disabled data-testid="two" />
             </TreeView>,
           );
 
-          fireEvent.click(getByText('one'));
-          act(() => {
-            getByRole('tree').focus();
-          });
-          expect(getByTestId('one')).not.toHaveVirtualFocus();
+          fireEvent.click(getByText('two'));
+          expect(focusSpy.callCount).to.equal(0);
         });
 
         it('should prevent programmatic focus', () => {
