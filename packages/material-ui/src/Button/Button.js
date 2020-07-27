@@ -284,7 +284,6 @@ const Button = React.forwardRef(function Button(props, ref) {
       ...props,
       color,
       component,
-      disabled,
       disableElevation,
       disableFocusRipple,
       fullWidth,
