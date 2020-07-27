@@ -11,8 +11,11 @@ export default function CustomRangeInputs() {
       onChange={(date) => handleDateChange(date)}
       renderInput={(startProps, endProps) => (
         <React.Fragment>
-          <input ref={startProps.ref as React.Ref<HTMLInputElement>} {...startProps.inputProps} />
-          <input ref={endProps.ref as React.Ref<HTMLInputElement>} {...endProps.inputProps} />
+          <input
+            ref={startProps.inputRef as React.Ref<HTMLInputElement>}
+            {...startProps.inputProps}
+          />
+          <input ref={endProps.inputRef as React.Ref<HTMLInputElement>} {...endProps.inputProps} />
         </React.Fragment>
       )}
     />
