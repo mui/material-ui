@@ -83,7 +83,7 @@ module.exports = {
             context.report({
               node: variantPropsRestNode,
               message:
-                'The props spread must come first in the `useThemeVariant` props. Otherwise destructured props with default values could be overridden.',
+                'The props spread must come first in the `useThemeVariants` props. Otherwise destructured props with default values could be overridden.',
             });
           }
 
@@ -97,7 +97,7 @@ module.exports = {
             if (!isPassedToVariantProps) {
               context.report({
                 node: variantProps,
-                message: `Prop \`${componentProp.key.name}\` is not passed to \`useThemeVariant\` props.`,
+                message: `Prop \`${componentProp.key.name}\` is not passed to \`useThemeVariants\` props.`,
               });
             }
           });

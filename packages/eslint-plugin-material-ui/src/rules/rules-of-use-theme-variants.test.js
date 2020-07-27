@@ -57,7 +57,7 @@ ruleTester.run('rules-of-use-theme-variants', rule, {
   `,
       errors: [
         {
-          message: 'Prop `disabled` is not passed to `useThemeVariant` props.',
+          message: 'Prop `disabled` is not passed to `useThemeVariants` props.',
           line: 4,
           column: 20,
           endLine: 4,
@@ -74,7 +74,7 @@ ruleTester.run('rules-of-use-theme-variants', rule, {
   `,
       errors: [
         {
-          message: 'Prop `variant` is not passed to `useThemeVariant` props.',
+          message: 'Prop `variant` is not passed to `useThemeVariants` props.',
           line: 4,
           column: 20,
           endLine: 4,
@@ -92,7 +92,7 @@ ruleTester.run('rules-of-use-theme-variants', rule, {
       errors: [
         {
           message:
-            'The props spread must come first in the `useThemeVariant` props. Otherwise destructured props with default values could be overridden.',
+            'The props spread must come first in the `useThemeVariants` props. Otherwise destructured props with default values could be overridden.',
           line: 4,
           column: 32,
           endLine: 4,
