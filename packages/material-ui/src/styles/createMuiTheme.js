@@ -36,7 +36,7 @@ function createMuiTheme(options = {}, ...args) {
       spacing,
       shape,
       transitions,
-      variants: {},
+      variants,
       zIndex,
     },
     other,
