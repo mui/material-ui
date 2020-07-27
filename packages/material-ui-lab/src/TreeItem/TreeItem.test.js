@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import * as PropTypes from 'prop-types';
 import { spy } from 'sinon';
 import {
   getClasses,
@@ -32,6 +33,10 @@ describe('<TreeItem />', () => {
   }));
 
   describe('warnings', () => {
+    beforeEach(() => {
+      PropTypes.resetWarningCache();
+    });
+
     it('should warn if an onFocus callback is supplied', () => {
       expect(() => {
         render(
@@ -345,7 +350,7 @@ describe('<TreeItem />', () => {
           return <TreeItem {...props} />;
         }
 
-        const { getByTestId, getByText } = render(
+        const { getByRole, getByTestId, getByText } = render(
           <TreeView defaultExpanded={['parent']}>
             <TreeItem nodeId="parent" label="parent" data-testid="parent">
               <TreeItem nodeId="1" label="one" data-testid="one" />
@@ -353,11 +358,17 @@ describe('<TreeItem />', () => {
             </TreeItem>
           </TreeView>,
         );
-        expect(getByTestId('parent')).to.have.attribute('tabindex', '0');
+        const tree = getByRole('tree');
+
+        act(() => {
+          tree.focus();
+        });
+
+        expect(getByTestId('parent')).toHaveVirtualFocus();
 
         fireEvent.click(getByText('two'));
 
-        expect(getByTestId('two')).to.have.attribute('tabindex', '0');
+        expect(getByTestId('two')).toHaveVirtualFocus();
 
         // generic action that removes an item.
         // Could be promise based, or timeout, or another user interaction
@@ -365,7 +376,7 @@ describe('<TreeItem />', () => {
           removeActiveItem();
         });
 
-        expect(getByTestId('parent')).to.have.attribute('tabindex', '0');
+        expect(getByTestId('parent')).toHaveVirtualFocus();
       });
     });
 
