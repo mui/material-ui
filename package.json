@@ -19,6 +19,7 @@
     "docs:dev": "yarn workspace docs dev",
     "e2e:run": "cypress run",
     "e2e:open": "cypress open",
+    "deduplicate": "node scripts/deduplicate.js",
     "docgen": "node docs/scripts/docgen.js",
     "lint": "eslint . --cache --report-unused-disable-directives --ext .js,.ts,.tsx,.jsx",
     "lint:ci": "eslint . --report-unused-disable-directives --ext .js,.ts,.tsx,.jsx",
@@ -53,7 +54,8 @@
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
     "prettier": "^2.0.5",
-    "wait-on": "^5.1.0"
+    "wait-on": "^5.1.0",
+    "yarn-deduplicate": "^2.1.1"
   },
   "husky": {
     "hooks": {
