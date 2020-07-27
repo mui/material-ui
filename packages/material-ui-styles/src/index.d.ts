@@ -31,6 +31,9 @@ export * from './ThemeProvider';
 export { default as useTheme } from './useTheme';
 export * from './useTheme';
 
+export { default as useThemeVariants } from './useThemeVariants';
+export * from './useThemeVariants';
+
 export { default as withStyles } from './withStyles';
 export * from './withStyles';
 
