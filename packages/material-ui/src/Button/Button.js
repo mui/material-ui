@@ -281,6 +281,7 @@ const Button = React.forwardRef(function Button(props, ref) {
 
   const themeVariantsClasses = useThemeVariants(
     {
+      ...props,
       color,
       component,
       disabled,
@@ -290,7 +291,6 @@ const Button = React.forwardRef(function Button(props, ref) {
       size,
       type,
       variant,
-      ...other,
     },
     'MuiButton',
   );
