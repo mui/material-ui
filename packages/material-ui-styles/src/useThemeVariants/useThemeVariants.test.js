@@ -17,7 +17,7 @@ describe('useThemeVariants', () => {
 
   const Component = withStyles({}, { name: 'Test' })(ComponentInternal);
 
-  it('returns variants classes if props are match', () => {
+  it('returns variants classes if props do match', () => {
     const theme = createMuiTheme({
       variants: {
         Test: [
