@@ -40,3 +40,8 @@ Removed in favor of [`no-restricted-imports`](https://eslint.org/docs/rules/no-r
   }
 }
 ```
+
+### rules-of-use-theme-variants
+
+Ensures correct usage of `useThemeVariants` so that all props are passed as well
+as their resolved default values.
