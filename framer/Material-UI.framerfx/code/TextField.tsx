@@ -15,8 +15,8 @@ interface Props {
   multiline?: boolean;
   placeholder?: string;
   required?: boolean;
-  size?: 'small' | 'medium';
-  variant?: 'standard' | 'outlined' | 'filled';
+  size?: 'medium' | 'small';
+  variant?: 'filled' | 'outlined' | 'standard';
   width?: number;
   height?: number;
 }
@@ -90,11 +90,11 @@ addPropertyControls(TextField, {
   size: {
     type: ControlType.Enum,
     title: 'Size',
-    options: ['small', 'medium'],
+    options: ['medium', 'small'],
   },
   variant: {
     type: ControlType.Enum,
     title: 'Variant',
-    options: ['standard', 'outlined', 'filled'],
+    options: ['filled', 'outlined', 'standard'],
   },
 });

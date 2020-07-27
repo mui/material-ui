@@ -11,7 +11,7 @@ import { Icon } from './Icon';
 interface Props {
   color?: 'default' | 'inherit' | 'primary' | 'secondary';
   disabled?: boolean;
-  size?: 'small' | 'medium';
+  size?: 'medium' | 'small';
   icon?: string;
   iconTheme?: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
   badgeContent?: string;
@@ -61,7 +61,7 @@ addPropertyControls(IconButton, {
   size: {
     type: ControlType.Enum,
     title: 'Size',
-    options: ['small', 'medium'],
+    options: ['medium', 'small'],
   },
   icon: {
     type: ControlType.String,

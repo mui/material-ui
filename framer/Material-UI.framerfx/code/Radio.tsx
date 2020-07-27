@@ -8,9 +8,9 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import MuiRadio from '@material-ui/core/Radio';
 
 interface Props {
-  color?: 'primary' | 'secondary' | 'default';
+  color?: 'default' | 'primary' | 'secondary';
   disabled?: boolean;
-  size?: 'small' | 'medium';
+  size?: 'medium' | 'small';
   label?: string;
   width?: number;
   height?: number;
@@ -35,7 +35,7 @@ addPropertyControls(Radio, {
   color: {
     type: ControlType.Enum,
     title: 'Color',
-    options: ['primary', 'secondary', 'default'],
+    options: ['default', 'primary', 'secondary'],
   },
   disabled: {
     type: ControlType.Boolean,
@@ -44,7 +44,7 @@ addPropertyControls(Radio, {
   size: {
     type: ControlType.Enum,
     title: 'Size',
-    options: ['small', 'medium'],
+    options: ['medium', 'small'],
   },
   label: {
     type: ControlType.String,

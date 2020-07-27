@@ -13,10 +13,11 @@ import { Icon } from './Icon';
 
 interface Props {
   centered?: boolean;
-  indicatorColor?: 'secondary' | 'primary';
-  scrollButtons?: 'auto' | 'desktop' | 'on' | 'off';
-  textColor?: 'secondary' | 'primary' | 'inherit';
-  variant?: 'standard' | 'scrollable' | 'fullWidth';
+  indicatorColor?: 'primary' | 'secondary';
+  scrollButtons?: 'auto' | 'desktop' | 'off' | 'on';
+  selectionFollowsFocus?: boolean;
+  textColor?: 'inherit' | 'primary' | 'secondary';
+  variant?: 'fullWidth' | 'scrollable' | 'standard';
   appBarColor?: 'default' | 'primary' | 'secondary' | 'inherit';
   icons?: string[];
   labels?: string[];
@@ -80,22 +81,26 @@ addPropertyControls(Tabs, {
   indicatorColor: {
     type: ControlType.Enum,
     title: 'Indicator color',
-    options: ['secondary', 'primary'],
+    options: ['primary', 'secondary'],
   },
   scrollButtons: {
     type: ControlType.Enum,
     title: 'Scroll buttons',
-    options: ['auto', 'desktop', 'on', 'off'],
+    options: ['auto', 'desktop', 'off', 'on'],
+  },
+  selectionFollowsFocus: {
+    type: ControlType.Boolean,
+    title: 'Selection follows focus',
   },
   textColor: {
     type: ControlType.Enum,
     title: 'Text color',
-    options: ['secondary', 'primary', 'inherit'],
+    options: ['inherit', 'primary', 'secondary'],
   },
   variant: {
     type: ControlType.Enum,
     title: 'Variant',
-    options: ['standard', 'scrollable', 'fullWidth'],
+    options: ['fullWidth', 'scrollable', 'standard'],
   },
   appBarColor: {
     type: ControlType.Enum,

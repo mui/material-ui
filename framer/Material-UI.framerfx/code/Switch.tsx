@@ -50,7 +50,7 @@ addPropertyControls(Switch, {
   color: {
     type: ControlType.Enum,
     title: 'Color',
-    options: ['primary', 'secondary', 'default'],
+    options: ['default', 'primary', 'secondary'],
   },
   disabled: {
     type: ControlType.Boolean,
@@ -59,7 +59,7 @@ addPropertyControls(Switch, {
   size: {
     type: ControlType.Enum,
     title: 'Size',
-    options: ['small', 'medium'],
+    options: ['medium', 'small'],
   },
   label: {
     type: ControlType.String,

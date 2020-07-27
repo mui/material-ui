@@ -3,12 +3,12 @@
   "author": "Material-UI Team",
   "description": "Material-UI Framer components",
   "version": "1.1.0",
-  "main": "dist/index.js",
   "license": "MIT",
   "homepage": "http://material-ui.com/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui-org/material-ui.git"
+    "url": "https://github.com/mui-org/material-ui.git",
+    "directory": "framer/Material-UI.framerfx"
   },
   "bugs": {
     "url": "https://github.com/mui-org/material-ui/issues"
@@ -17,8 +17,8 @@
     "@types/react": "^16.8"
   },
   "dependencies": {
-    "@material-ui/core": "^4.9.3",
-    "@material-ui/icons": "^4.9.1",
+    "@material-ui/core": "^5.0.0-alpha.4",
+    "@material-ui/icons": "^5.0.0-alpha.4",
     "naming-style": "^1.0.0"
   },
   "peerDependencies": {

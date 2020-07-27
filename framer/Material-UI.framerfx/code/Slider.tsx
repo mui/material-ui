@@ -11,8 +11,8 @@ interface Props {
   min?: number;
   orientation?: 'horizontal' | 'vertical';
   step?: number;
-  track?: 'normal' | false | 'inverted';
-  valueLabelDisplay?: 'on' | 'auto' | 'off';
+  track?: 'inverted' | 'normal' | false;
+  valueLabelDisplay?: 'auto' | 'off' | 'on';
   width?: number;
   height?: number;
 }
@@ -67,11 +67,11 @@ addPropertyControls(Slider, {
   track: {
     type: ControlType.Enum,
     title: 'Track',
-    options: ['normal', false, 'inverted'],
+    options: ['inverted', 'normal', false],
   },
   valueLabelDisplay: {
     type: ControlType.Enum,
     title: 'Value label display',
-    options: ['on', 'auto', 'off'],
+    options: ['auto', 'off', 'on'],
   },
 });

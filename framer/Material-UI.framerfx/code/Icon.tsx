@@ -6,7 +6,7 @@ import { addPropertyControls, ControlType } from 'framer';
 import * as Icons from '@material-ui/icons';
 
 interface Props {
-  color?: 'inherit' | 'primary' | 'secondary' | 'action' | 'error' | 'disabled';
+  color?: 'action' | 'disabled' | 'error' | 'inherit' | 'primary' | 'secondary';
   icon?: string;
   theme?: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
   width?: number;
@@ -37,7 +37,7 @@ addPropertyControls(Icon, {
   color: {
     type: ControlType.Enum,
     title: 'Color',
-    options: ['inherit', 'primary', 'secondary', 'action', 'error', 'disabled'],
+    options: ['action', 'disabled', 'error', 'inherit', 'primary', 'secondary'],
   },
   icon: {
     type: ControlType.String,

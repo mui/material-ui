@@ -5,31 +5,31 @@ import { addPropertyControls, ControlType } from 'framer';
 import MuiTypography from '@material-ui/core/Typography';
 
 interface Props {
-  align?: 'inherit' | 'left' | 'center' | 'right' | 'justify';
+  align?: 'center' | 'inherit' | 'justify' | 'left' | 'right';
   color?:
-    | 'initial'
+    | 'error'
     | 'inherit'
+    | 'initial'
     | 'primary'
     | 'secondary'
     | 'textPrimary'
-    | 'textSecondary'
-    | 'error';
+    | 'textSecondary';
   noWrap?: boolean;
   variant?:
+    | 'body1'
+    | 'body2'
+    | 'button'
+    | 'caption'
     | 'h1'
     | 'h2'
     | 'h3'
     | 'h4'
     | 'h5'
     | 'h6'
-    | 'subtitle1'
-    | 'subtitle2'
-    | 'body1'
-    | 'body2'
-    | 'caption'
-    | 'button'
+    | 'inherit'
     | 'overline'
-    | 'inherit';
+    | 'subtitle1'
+    | 'subtitle2';
   label?: string;
   width?: number;
   height?: number;
@@ -56,19 +56,19 @@ addPropertyControls(Typography, {
   align: {
     type: ControlType.Enum,
     title: 'Align',
-    options: ['inherit', 'left', 'center', 'right', 'justify'],
+    options: ['center', 'inherit', 'justify', 'left', 'right'],
   },
   color: {
     type: ControlType.Enum,
     title: 'Color',
     options: [
-      'initial',
+      'error',
       'inherit',
+      'initial',
       'primary',
       'secondary',
       'textPrimary',
       'textSecondary',
-      'error',
     ],
   },
   noWrap: {
@@ -79,20 +79,20 @@ addPropertyControls(Typography, {
     type: ControlType.Enum,
     title: 'Variant',
     options: [
+      'body1',
+      'body2',
+      'button',
+      'caption',
       'h1',
       'h2',
       'h3',
       'h4',
       'h5',
       'h6',
+      'inherit',
+      'overline',
       'subtitle1',
       'subtitle2',
-      'body1',
-      'body2',
-      'caption',
-      'button',
-      'overline',
-      'inherit',
     ],
   },
   label: {

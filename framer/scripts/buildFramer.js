@@ -156,7 +156,7 @@ function getTemplateStrings(reactAPI) {
       propTypeControls.name = 'boolean';
     }
 
-    const { name, value, hidden, title, ...other } = propTypeControls;
+    const { name, value, hidden, raw, title, ...other } = propTypeControls;
 
     if (!ignoredControls.includes(prop.name)) {
       controls += `

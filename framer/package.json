@@ -2,7 +2,6 @@
   "name": "framer",
   "version": "1.0.0",
   "description": "Builds Material-UI for Framer X",
-  "main": "index.js",
   "repository": "https://github.com/mui-org/material-ui",
   "author": "Material-UI Team",
   "license": "MIT",
@@ -18,6 +17,6 @@
     "build": "yarn build:core && yarn build:styles && yarn prettier",
     "build:core": "cross-env BABEL_ENV=test babel-node --config-file ../babel.config.js ./scripts/buildFramer.js ../packages/material-ui/src ./Material-UI.framerfx/code",
     "build:styles": "cross-env BABEL_ENV=test babel-node --config-file ../babel.config.js ./scripts/buildFramer.js ../packages/material-ui-styles/src ./Material-UI.framerfx/code",
-    "prettier": "prettier --write --config ../prettier.config.js' './**/*.{js,tsx}'"
+    "prettier": "prettier --write --config ../prettier.config.js './**/*.{js,tsx}'"
   }
 }

@@ -137,6 +137,12 @@ jobs:
           name: '`yarn docs:api` changes committed?'
           command: git diff --exit-code
       - run:
+          name: Generate the framer components
+          command: yarn workspace framer build
+      - run:
+          name: '`yarn workspace framer build` changes committed?'
+          command: git diff --exit-code
+      - run:
           name: Lint
           command: yarn lint:ci
       - run:

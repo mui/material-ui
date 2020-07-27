@@ -5,7 +5,7 @@ import { addPropertyControls, ControlType } from 'framer';
 import MuiCircularProgress from '@material-ui/core/CircularProgress';
 
 interface Props {
-  color?: 'primary' | 'secondary' | 'inherit';
+  color?: 'inherit' | 'primary' | 'secondary';
   thickness?: number;
   value?: number;
   variant?: 'determinate' | 'indeterminate' | 'static';
@@ -38,7 +38,7 @@ addPropertyControls(CircularProgress, {
   color: {
     type: ControlType.Enum,
     title: 'Color',
-    options: ['primary', 'secondary', 'inherit'],
+    options: ['inherit', 'primary', 'secondary'],
   },
   thickness: {
     type: ControlType.Number,

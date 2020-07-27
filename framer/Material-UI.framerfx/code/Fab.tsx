@@ -9,8 +9,8 @@ interface Props {
   color?: 'default' | 'inherit' | 'primary' | 'secondary';
   disabled?: boolean;
   href?: string;
-  size?: 'small' | 'medium' | 'large';
-  variant?: 'round' | 'extended';
+  size?: 'large' | 'medium' | 'small';
+  variant?: 'extended' | 'round';
   icon?: string;
   iconTheme?: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
   label?: string;
@@ -65,12 +65,12 @@ addPropertyControls(Fab, {
   size: {
     type: ControlType.Enum,
     title: 'Size',
-    options: ['small', 'medium', 'large'],
+    options: ['large', 'medium', 'small'],
   },
   variant: {
     type: ControlType.Enum,
     title: 'Variant',
-    options: ['round', 'extended'],
+    options: ['extended', 'round'],
   },
   icon: {
     type: ControlType.String,
