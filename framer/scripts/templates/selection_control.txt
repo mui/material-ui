@@ -5,14 +5,7 @@ import Mui«componentName», { «componentName»Props as Mui«componentName»Pro
 import FormControlLabel, { FormControlLabelProps } from '@material-ui/core/FormControlLabel';
 
 interface Props {
-  checked: boolean;
-  color: FormControlLabelProps['color'];
-  disabled: boolean;
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
-  size: Mui«componentName»Props['size'];
-  label: string;
-  width: number | string;
-  height: number | string;
+«& tsInterface»
 }
 
 export function «componentName»(props: Props): JSX.Element {

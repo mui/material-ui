@@ -5,13 +5,12 @@ import FormControlLabel, { FormControlLabelProps } from '@material-ui/core/FormC
 
 interface Props {
   checked: boolean;
-  color: FormControlLabelProps['color'];
+  color: 'default' | 'primary' | 'secondary';
   disabled: boolean;
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
-  size: MuiCheckboxProps['size'];
+  size: 'medium' | 'small';
   label: string;
   width: number | string;
-  height: number | string;
+  height: number;
 }
 
 export function Checkbox(props: Props): JSX.Element {
