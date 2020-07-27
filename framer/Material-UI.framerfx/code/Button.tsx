@@ -14,12 +14,12 @@ interface Props {
   href?: string;
   size?: 'large' | 'medium' | 'small';
   startIcon?: string;
-  variant?: 'contained' | 'outlined' | 'text';
   startIconTheme?: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
   endIconTheme?: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
   label?: string;
   width?: number;
   height?: number;
+  variant?: 'contained' | 'outlined' | 'text';
 }
 
 const defaultProps: Props = {
@@ -30,12 +30,12 @@ const defaultProps: Props = {
   fullWidth: false,
   size: 'medium',
   startIcon: undefined,
-  variant: 'text',
   startIconTheme: 'Filled',
   endIconTheme: 'Filled',
   label: 'Button',
   width: 100,
   height: 38,
+  variant: 'text',
 };
 
 export const Button: React.SFC<Props> = (props: Props) => {
@@ -100,11 +100,6 @@ addPropertyControls(Button, {
     type: ControlType.String,
     title: 'Start icon',
   },
-  variant: {
-    type: ControlType.Enum,
-    title: 'Variant',
-    options: ['contained', 'outlined', 'text'],
-  },
   startIconTheme: {
     type: ControlType.Enum,
     title: 'Start icon theme',
@@ -118,5 +113,10 @@ addPropertyControls(Button, {
   label: {
     type: ControlType.String,
     title: 'Label',
+  },
+  variant: {
+    type: ControlType.Enum,
+    title: 'Variant',
+    options: ['contained', 'outlined', 'text'],
   },
 });

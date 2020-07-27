@@ -66,7 +66,13 @@ export const componentSettings = {
     template: 'bottom_navigation.txt',
   },
   Button: {
-    ignoredProps: ['children', 'disableFocusRipple'],
+    ignoredProps: [
+      'children',
+      'disableFocusRipple',
+      // union not supported by framer ControlType
+      // interface, control types and default value need to be hardcoded
+      'variant',
+    ],
     propValues: {
       startIcon: "''",
       startIconTheme: 'Filled',

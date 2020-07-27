@@ -8,10 +8,12 @@ import { Icon } from './Icon';
 
 interface Props {
 «& tsInterface»
+  variant?: 'contained' | 'outlined' | 'text';
 }
 
 const defaultProps: Props =  {
 «& defaultProps»
+  variant: 'text',
 };
 
 export const «componentName»: React.SFC<Props> = (props: Props) => {
@@ -43,4 +45,9 @@ export const «componentName»: React.SFC<Props> = (props: Props) => {
 
 addPropertyControls(«componentName», {
 «& propertyControls»
+  variant: {
+    type: ControlType.Enum,
+    title: 'Variant',
+    options: ['contained', 'outlined', 'text'],
+  },
 });
