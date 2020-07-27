@@ -66,6 +66,17 @@ export const styles = (theme) => ({
       },
     },
   },
+  /* Styles applied to the root element if `variant="text"` and `color="success"`. */
+  textSuccess: {
+    color: theme.palette.success.main,
+    '&:hover': {
+      backgroundColor: fade(theme.palette.success.main, theme.palette.action.hoverOpacity),
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
+    },
+  },
   /* Styles applied to the root element if `variant="outlined"`. */
   outlined: {
     padding: '5px 15px',
@@ -96,6 +107,22 @@ export const styles = (theme) => ({
     '&:hover': {
       border: `1px solid ${theme.palette.secondary.main}`,
       backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
+    },
+    '&$disabled': {
+      border: `1px solid ${theme.palette.action.disabled}`,
+    },
+  },
+  /* Styles applied to the root element if `variant="outlined"` and `color="success"`. */
+  outlinedSuccess: {
+    color: theme.palette.success.main,
+    border: `1px solid ${fade(theme.palette.success.main, 0.5)}`,
+    '&:hover': {
+      border: `1px solid ${theme.palette.success.main}`,
+      backgroundColor: fade(theme.palette.success.main, theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent',
@@ -155,6 +182,18 @@ export const styles = (theme) => ({
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: theme.palette.secondary.main,
+      },
+    },
+  },
+  /* Styles applied to the root element if `variant="contained"` and `color="success"`. */
+  containedSuccess: {
+    color: theme.palette.secondary.contrastText, // secondary because success.contrastText is black color
+    backgroundColor: theme.palette.success.main,
+    '&:hover': {
+      backgroundColor: theme.palette.success.dark,
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: theme.palette.success.main,
       },
     },
   },
@@ -346,7 +385,7 @@ Button.propTypes = {
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary']),
+  color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary', 'success']),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.

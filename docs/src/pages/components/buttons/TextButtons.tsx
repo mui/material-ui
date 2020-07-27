@@ -20,6 +20,7 @@ export default function TextButtons() {
       <Button>Default</Button>
       <Button color="primary">Primary</Button>
       <Button color="secondary">Secondary</Button>
+      <Button color="success">Success</Button>
       <Button disabled>Disabled</Button>
       <Button href="#text-buttons" color="primary">
         Link

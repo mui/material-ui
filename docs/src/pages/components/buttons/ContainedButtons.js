@@ -22,6 +22,9 @@ export default function ContainedButtons() {
       <Button variant="contained" color="secondary">
         Secondary
       </Button>
+      <Button variant="contained" color="success">
+        Success
+      </Button>
       <Button variant="contained" disabled>
         Disabled
       </Button>

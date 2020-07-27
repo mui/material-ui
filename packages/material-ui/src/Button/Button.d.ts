@@ -1,4 +1,3 @@
-import { PropTypes } from '..';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 
@@ -7,7 +6,7 @@ export type ButtonTypeMap<
   D extends React.ElementType = 'button'
 > = ExtendButtonBaseTypeMap<{
   props: P & {
-    color?: PropTypes.Color;
+    color?: 'inherit' | 'primary' | 'secondary' | 'default' | 'success';
     disableElevation?: boolean;
     disableFocusRipple?: boolean;
     endIcon?: React.ReactNode;

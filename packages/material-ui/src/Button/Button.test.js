@@ -67,6 +67,16 @@ describe('<Button />', () => {
     expect(button).to.have.class(classes.textSecondary);
   });
 
+  it('should render a text success button', () => {
+    const { getByRole } = render(<Button color="success">Hello World</Button>);
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).not.to.have.class(classes.contained);
+    expect(button).not.to.have.class(classes.textPrimary);
+    expect(button).to.have.class(classes.textSuccess);
+  });
+
   it('should render an outlined button', () => {
     const { getByRole } = render(<Button variant="outlined">Hello World</Button>);
     const button = getByRole('button');
@@ -106,6 +116,22 @@ describe('<Button />', () => {
     expect(button).to.have.class(classes.outlinedSecondary);
     expect(button).not.to.have.class(classes.text);
     expect(button).not.to.have.class(classes.textSecondary);
+    expect(button).not.to.have.class(classes.contained);
+  });
+
+  it('should render a success outlined button', () => {
+    const { getByRole } = render(
+      <Button variant="outlined" color="success">
+        Hello World
+      </Button>,
+    );
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).to.have.class(classes.outlined);
+    expect(button).to.have.class(classes.outlinedSuccess);
+    expect(button).not.to.have.class(classes.text);
+    expect(button).not.to.have.class(classes.textSuccess);
     expect(button).not.to.have.class(classes.contained);
   });
 
@@ -149,6 +175,7 @@ describe('<Button />', () => {
     expect(button).to.have.class(classes.contained);
     expect(button).to.have.class(classes.containedPrimary);
     expect(button).not.to.have.class(classes.containedSecondary);
+    expect(button).not.to.have.class(classes.containedSuccess);
   });
 
   it('should render a contained secondary button', () => {
@@ -164,6 +191,21 @@ describe('<Button />', () => {
     expect(button).to.have.class(classes.contained);
     expect(button).not.to.have.class(classes.containedPrimary);
     expect(button).to.have.class(classes.containedSecondary);
+  });
+
+  it('should render a contained success button', () => {
+    const { getByRole } = render(
+      <Button variant="contained" color="secondary">
+        Hello World
+      </Button>,
+    );
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).not.to.have.class(classes.text);
+    expect(button).to.have.class(classes.contained);
+    expect(button).not.to.have.class(classes.containedPrimary);
+    expect(button).to.have.class(classes.containedSuccess);
   });
 
   it('should render a small text button', () => {

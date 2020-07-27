@@ -24,6 +24,9 @@ export default function OutlinedButtons() {
       <Button variant="outlined" color="secondary">
         Secondary
       </Button>
+      <Button variant="outlined" color="success">
+        Success
+      </Button>
       <Button variant="outlined" disabled>
         Disabled
       </Button>
