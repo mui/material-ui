@@ -1,5 +1,64 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 5.0.0-alpha.5
+
+###### _July 28, 2020_
+
+Big thanks to the 18 contributors who made this release possible.
+
+### `@material-ui/core@v5.0.0-alpha.5`
+
+- [Accordion] Add new classes key (#21920) @natac13
+- [Accordion] Fix IconButtonProps spreading logic (#21850) @kgregory
+- [Avatar] Fix group size (#21896) @natac13
+- [Button] Custom variant (#21648) @mnajdova
+- [CssBaseline] Export ScopedCssBaseline from barrel index (#21869) @mherczeg
+- [Dialog] Fix body scrollbar close behavior (#21951) @maksimgm
+- [Grid] Rename justify prop to justifyContent (#21845) @mnajdova
+- [Icon] Hide name placeholder while "Material Icons" font is loading (#21950) @maksimgm
+- [Select] Ensure that onChange is called before onClose (#21878) @DanailH
+- [Slider] Make `index` public in the ValueLabel props (#21932) @govardhan-srinivas
+
+### `@material-ui/lab@v5.0.0-alpha.5`
+
+- [TreeView] Change focus management to aria-activedescendant (#21695) @joshwooding
+- [TreeView] Fix crash when shift clicking a clean tree (#21899) @joshwooding
+
+### Framer
+
+- [framer] Refactor as switch (#21885) @mhkasif
+- [framer] Update with latest sources (#21888) @eps1lon
+
+### Docs
+
+- [blog] Q2 2020 Update (#21822) @oliviertassinari
+- [docs] Add expand all and select all to controlled tree demo (#21929) @joshwooding
+- [docs] Add useRadioGroup section (#21910) @kodai3
+- [docs] Autocomplete is not showing options even though they exist (#21949) @maksimgm
+- [docs] Change the destination branch for PRs (#21870) @DanailH
+- [docs] Fix Skeleton inline example (#21918) @ppecheux
+- [docs] Fix custom Snackbar width on mobile (#21948) @ruhci28
+- [docs] Fix the type of the second argument of 'createMuiTheme' function (#21859) @DanailH
+- [docs] Improve ad display @oliviertassinari
+- [docs] Improve documentation of theme.breakpoints (#21922) @ruhci28
+- [docs] Link react-hook-form (#21886) @jeffshek
+- [docs] Mention @MuiContrib in CONTRIBUTING (#21891) @eps1lon
+- [docs] Replace latests tags with next in the codesandbox (#21851) @mnajdova
+- [docs] Update gold sponsor to Text-Em-All (formerly Call-Em-All) (#21897) @jonmiller0
+- [docs] Update testing guide (#21863) @eps1lon
+
+### Core
+
+- [test] Enable more StrictMode tests (#21817) @eps1lon
+- [test] Lint internal typescript-to-proptypes fork (#21876) @eps1lon
+- [test] Pass didWarnControlledToUncontrolled between tests (#21875) @eps1lon
+- [test] Unify import to `test/utils (#21856) @eps1lon
+- [core] Add warnings where ref-forwarding components/elements are required (#21883) @eps1lon
+- [core] Automatically tweet about good first issues (#21879) @eps1lon
+- [core] Batch small changes (#21928) @oliviertassinari
+- [core] Remove /test-utils (#21855) @eps1lon
+- [core] Throw on unused `typescript-to-proptypes-ignore` directives (#21867) @eps1lon
+
 ## 5.0.0-alpha.4
 
 ###### _July 19, 2020_
