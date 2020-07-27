@@ -41,7 +41,7 @@ describe('useThemeVariants', () => {
     expect(style.getPropertyValue('background-color')).to.equal('rgb(255, 0, 0)');
   });
 
-  it('does not return variants classes if props are match', () => {
+  it('does not return variants classes if props do not match', () => {
     const theme = createMuiTheme({
       variants: {
         Test: [
