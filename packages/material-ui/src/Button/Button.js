@@ -290,7 +290,7 @@ const Button = React.forwardRef(function Button(props, ref) {
       size,
       type,
       variant,
-      ...props,
+      ...other,
     },
     'MuiButton',
   );
