@@ -92,6 +92,6 @@ describe('useThemeVariants', () => {
     );
 
     const style = window.getComputedStyle(screen.getByTestId('component'));
-    expect(style.getPropertyValue('background-color')).not.to.equal('rgb(0, 255, 0)');
+    expect(style.getPropertyValue('background-color')).to.equal('rgb(255, 255, 0)');
   });
 });
