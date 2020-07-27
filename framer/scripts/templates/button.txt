@@ -36,7 +36,7 @@ export function «componentName»(props: Props): JSX.Element {
 
 «componentName».defaultProps = {
 «& defaultProps»
-  variant: 'text',
+  variant: 'text' as 'text',
 };
 
 addPropertyControls(«componentName», {

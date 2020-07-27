@@ -17,7 +17,7 @@ interface Props {
   label: string;
   width: number | string;
   height: number;
-  variant: 'contained' | 'outlined' | 'text';
+  variant?: 'contained' | 'outlined' | 'text';
 }
 
 export function Button(props: Props): JSX.Element {

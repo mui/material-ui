@@ -11,6 +11,7 @@ interface Props {
   label: string;
   width: number | string;
   height: number;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }
 
 export function Checkbox(props: Props): JSX.Element {
@@ -21,7 +22,7 @@ export function Checkbox(props: Props): JSX.Element {
     if (onChange) {
       onChange(event);
     }
-    setChecked((event.target as HTMLInputElement).checked);
+    setChecked(event.target.checked);
   };
 
   React.useEffect(() => {

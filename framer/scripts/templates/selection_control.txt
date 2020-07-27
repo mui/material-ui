@@ -6,6 +6,7 @@ import FormControlLabel, { FormControlLabelProps } from '@material-ui/core/FormC
 
 interface Props {
 «& tsInterface»
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }
 
 export function «componentName»(props: Props): JSX.Element {
@@ -16,7 +17,7 @@ export function «componentName»(props: Props): JSX.Element {
     if (onChange) {
       onChange(event);
     }
-    setChecked((event.target as HTMLInputElement).checked);
+    setChecked(event.target.checked);
   };
 
   React.useEffect(() => {
