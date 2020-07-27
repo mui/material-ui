@@ -154,7 +154,7 @@ declare module '@material-ui/core/styles/createBreakpoints' {
 
 #### Returns
 
-`media query`: A media query string ready to be used with most styling solutions, which matches screen widths greater than and including the screen size given by the breakpoint key.
+`media query`: A media query string ready to be used with most styling solutions, which matches screen widths greater than the screen size given by the breakpoint key (inclusive).
 
 #### Examples
 
@@ -179,7 +179,7 @@ const styles = (theme) => ({
 
 #### Returns
 
-`media query`: A media query string ready to be used with most styling solutions, which matches screen widths less than and including the screen size given by the breakpoint key.
+`media query`: A media query string ready to be used with most styling solutions, which matches screen widths less than the screen size given by the breakpoint key (exclusive).
 
 #### Examples
 
@@ -205,7 +205,7 @@ const styles = (theme) => ({
 
 #### Returns
 
-`media query`: A media query string ready to be used with most styling solutions, which matches screen widths including the screen size given by the breakpoint key.
+`media query`: A media query string ready to be used with most styling solutions, which matches screen widths starting from the screen size given by the breakpoint key (inclusive) and stopping at the screen size given by the next breakpoint key (exclusive).
 
 #### Examples
 
@@ -232,7 +232,7 @@ const styles = (theme) => ({
 
 #### Returns
 
-`media query`: A media query string ready to be used with most styling solutions, which matches screen widths greater than the screen size given by the breakpoint key in the first argument and less than the screen size given by the breakpoint key in the second argument.
+`media query`: A media query string ready to be used with most styling solutions, which matches screen widths greater than the screen size given by the breakpoint key in the first argument (inclusive) and less than the screen size given by the breakpoint key in the second argument (exclusive).
 
 #### Examples
 
@@ -242,7 +242,7 @@ const styles = (theme) => ({
     backgroundColor: 'blue',
     // Match [sm, md + 1)
     //       [sm, lg)
-    //       [600px, 1280px[
+    //       [600px, 1280px)
     [theme.breakpoints.between('sm', 'md')]: {
       backgroundColor: 'red',
     },

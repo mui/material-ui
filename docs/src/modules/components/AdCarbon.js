@@ -1,12 +1,11 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import loadScript from 'docs/src/modules/utils/loadScript';
-import adStyles from 'docs/src/modules/components/ad.styles';
 import AdDisplay from 'docs/src/modules/components/AdDisplay';
-import { adShape } from 'docs/src/modules/components/AdManager';
+import { adStylesObject } from 'docs/src/modules/components/ad.styles';
 
 const useStyles = makeStyles((theme) => {
-  const styles = adStyles(theme);
+  const styles = adStylesObject['body-image'](theme);
 
   return {
     '@global': {
@@ -94,6 +93,7 @@ export function AdCarbonInline(props) {
           ))}
       <AdDisplay
         {...props}
+        className="carbonads"
         shape="inline"
         ad={{
           link: ad.statlink,
@@ -110,5 +110,5 @@ export function AdCarbonInline(props) {
 }
 
 export default function AdCarbon() {
-  return adShape === 'image' ? <AdCarbonImage /> : <AdCarbonInline />;
+  return <AdCarbonImage />;
 }

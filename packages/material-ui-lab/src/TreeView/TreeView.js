@@ -459,12 +459,14 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
 
   const selectRange = (event, nodes, stacked = false) => {
     const { start = lastSelectedNode.current, end, current } = nodes;
-    if (stacked) {
-      handleRangeArrowSelect(event, { start, next: end, current });
-    } else {
-      handleRangeSelect(event, { start, end });
+    if (start != null && end != null) {
+      if (stacked) {
+        handleRangeArrowSelect(event, { start, next: end, current });
+      } else {
+        handleRangeSelect(event, { start, end });
+      }
+      lastSelectionWasRange.current = true;
     }
-    lastSelectionWasRange.current = true;
     return true;
   };
 

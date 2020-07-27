@@ -67,7 +67,7 @@ infer its width and height from them.
 
 ```jsx
 loading ? (
-  <Skeleton>
+  <Skeleton variant="circle">
     <Avatar />
   </Skeleton>
 ) : (

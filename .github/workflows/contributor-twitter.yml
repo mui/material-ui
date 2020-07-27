@@ -1,0 +1,21 @@
+name: contributor-twitter
+on:
+  issues:
+    types: [labeled]
+jobs:
+  tweet:
+    runs-on: ubuntu-latest
+    steps:
+      # This has essentially zero costs and helps debugging if the workflow fails.
+      - uses: hmarr/debug-action@master
+      - uses: ethomson/send-tweet-action@v1
+        if: ${{ github.event.label.name == 'good first issue' && github.event.issue.state == 'open' }}
+        with:
+          status: >
+            A new issue in the @materialui repository has been labelled as a good first issue. If you haven't contributed before, now's your chance!
+            (Just check that it hasn't already been assigned to anyone before starting.)
+            ${{ github.event.issue.html_url }}"
+          consumer-key: ${{ secrets.TWITTER_CONSUMER_API_KEY }}
+          consumer-secret: ${{ secrets.TWITTER_CONSUMER_API_SECRET }}
+          access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          access-token-secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}

@@ -521,7 +521,6 @@ Popover.propTypes = {
    */
   container: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     HTMLElementType,
-    PropTypes.instanceOf(React.Component),
     PropTypes.func,
   ]),
   /**

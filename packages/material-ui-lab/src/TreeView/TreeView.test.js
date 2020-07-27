@@ -61,6 +61,17 @@ describe('<TreeView />', () => {
       );
     });
 
+    it('should not crash when shift clicking a clean tree', () => {
+      render(
+        <TreeView multiSelect>
+          <TreeItem nodeId="one" label="one" />
+          <TreeItem nodeId="two" label="two" />
+        </TreeView>,
+      );
+
+      fireEvent.click(screen.getByText('one'), { shiftKey: true });
+    });
+
     it('should not crash when unmounting with duplicate ids', () => {
       const CustomTreeItem = () => {
         return <TreeItem nodeId="iojerogj" />;

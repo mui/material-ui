@@ -101,6 +101,14 @@ Head to the [customization](#customization) section for an example with the `Aut
 
 {{"demo": "pages/components/autocomplete/Asynchronous.js"}}
 
+If your logic is fetching new options on each keystroke and,
+using the current value of the textbox to filter on the server,
+you need to disable the built-in filtering of the autocomplete component:
+
+```jsx
+<Autocomplete filterOptions={(x) => x} />
+```
+
 ### Google Maps place
 
 A customized UI for Google Maps Places Autocomplete.

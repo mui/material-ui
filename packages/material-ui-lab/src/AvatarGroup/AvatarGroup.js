@@ -20,6 +20,7 @@ export const styles = (theme) => ({
   /* Styles applied to the avatar elements. */
   avatar: {
     border: `2px solid ${theme.palette.background.default}`,
+    boxSizing: 'content-box',
     marginLeft: -8,
     '&:last-child': {
       marginLeft: 0,
