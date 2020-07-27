@@ -18,6 +18,7 @@ You didn't find the design assets your team is looking for? [Let us know!](mailt
 
 - [Unsplash](https://unsplash.com): 📷 A great resource for finding beautiful, high-resolution, free photos that you can use in your projects.
 - [unDraw](https://undraw.co/): 📐 Like Unsplash but for amazing vector illustrations.
+- [Simple Icons](https://simpleicons.org/): Over 1000 Free SVG icons for popular brands.
 
 ## IDE Tools
 
