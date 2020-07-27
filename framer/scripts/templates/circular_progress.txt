@@ -9,12 +9,9 @@ interface Props {
 
 export function «componentName»(props: Props): JSX.Element {
   const { width, height, ...other } = props;
-  const style: React.CSSProperties = {
-«& style»
-  };
 
   return (
-    <Mui«componentName» size={width} {...other} />
+    <Mui«componentName» size={width} style={{ width, height }} {...other} />
   )
 }
 

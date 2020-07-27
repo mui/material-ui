@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-import MuiCheckbox, { CheckboxProps as MuiCheckboxProps } from '@material-ui/core/Checkbox';
-import FormControlLabel, { FormControlLabelProps } from '@material-ui/core/FormControlLabel';
+import MuiCheckbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 interface Props {
   checked: boolean;
