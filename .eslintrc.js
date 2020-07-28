@@ -61,6 +61,7 @@ module.exports = {
     'jsx-a11y/label-has-associated-control': 'off', // doesn't work?
     'jsx-a11y/no-autofocus': 'off', // We are a library, we need to support it too
     'material-ui/docgen-ignore-before-comment': 'error',
+    'material-ui/rules-of-use-theme-variants': 'error',
     'react-hooks/exhaustive-deps': ['error', { additionalHooks: 'useEnhancedEffect' }],
     'react-hooks/rules-of-hooks': 'error',
     'react/destructuring-assignment': 'off', // It's fine.
