@@ -9,7 +9,7 @@ const ruleTester = new eslint.RuleTester({
 });
 ruleTester.run('rules-of-use-theme-variants', rule, {
   valid: [
-    // allowed bug dangerous
+    // allowed but dangerous
     `
 {
   const useCustomThemeVariants = props => useThemeVariants(props);
