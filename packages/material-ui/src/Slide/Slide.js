@@ -208,31 +208,33 @@ const Slide = React.forwardRef(function Slide(props, ref) {
   }, [inProp, updatePosition]);
 
   return (
-    <TransitionComponent
-      nodeRef={childrenRef}
-      onEnter={handleEnter}
-      onEntered={handleEntered}
-      onEntering={handleEntering}
-      onExit={handleExit}
-      onExited={handleExited}
-      onExiting={handleExiting}
-      appear
-      in={inProp}
-      timeout={timeout}
-      {...other}
-    >
-      {(state, childProps) => {
-        return React.cloneElement(children, {
-          ref: handleRef,
-          style: {
-            visibility: state === 'exited' && !inProp ? 'hidden' : undefined,
-            ...style,
-            ...children.props.style,
-          },
-          ...childProps,
-        });
-      }}
-    </TransitionComponent>
+    <div style={{ overflow: 'hidden' }}>
+      <TransitionComponent
+        nodeRef={childrenRef}
+        onEnter={handleEnter}
+        onEntered={handleEntered}
+        onEntering={handleEntering}
+        onExit={handleExit}
+        onExited={handleExited}
+        onExiting={handleExiting}
+        appear
+        in={inProp}
+        timeout={timeout}
+        {...other}
+      >
+        {(state, childProps) => {
+          return React.cloneElement(children, {
+            ref: handleRef,
+            style: {
+              visibility: state === 'exited' && !inProp ? 'hidden' : undefined,
+              ...style,
+              ...children.props.style,
+            },
+            ...childProps,
+          });
+        }}
+      </TransitionComponent>
+    </div>
   );
 });
 
