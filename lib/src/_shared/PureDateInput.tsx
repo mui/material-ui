@@ -1,11 +1,11 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import { onSpaceOrEnter } from '../_helpers/utils';
-import { ParsableDate } from '../constants/prop-types';
 import { TextFieldProps } from '@material-ui/core/TextField';
 import { IconButtonProps } from '@material-ui/core/IconButton';
-import { useUtils, MuiPickersAdapter } from './hooks/useUtils';
 import { InputAdornmentProps } from '@material-ui/core/InputAdornment';
+import { onSpaceOrEnter } from '../_helpers/utils';
+import { ParsableDate } from '../constants/prop-types';
+import { useUtils, MuiPickersAdapter } from './hooks/useUtils';
 import { getDisplayDate, getTextFieldAriaText } from '../_helpers/text-field-helper';
 
 export type MuiTextFieldProps = TextFieldProps | Omit<TextFieldProps, 'variant'>;
@@ -37,24 +37,27 @@ export interface DateInputProps<TInputValue = ParsableDate<unknown>, TDateValue 
   renderInput: (props: MuiTextFieldProps) => React.ReactElement;
   /**
    * Icon displaying for open picker button.
-   * */
+   */
   openPickerIcon?: React.ReactNode;
   /**
    * Custom mask. Can be used to override generate from format. (e.g. __/__/____ __:__ or __/__/____ __:__ _M)
    */
   mask?: string;
   /**
-   *Regular expression to detect "accepted" symbols.
+   * Regular expression to detect "accepted" symbols.
+   *
    * @default /\dap/gi
    */
   acceptRegex?: RegExp;
   /**
    * Props to pass to keyboard input adornment.
+   *
    * @type {Partial<InputAdornmentProps>}
    */
   InputAdornmentProps?: Partial<InputAdornmentProps>;
   /**
    * Props to pass to keyboard adornment button.
+   *
    * @type {Partial<IconButtonProps>}
    */
   OpenPickerButtonProps?: Partial<IconButtonProps>;
@@ -64,16 +67,19 @@ export interface DateInputProps<TInputValue = ParsableDate<unknown>, TDateValue 
   rifmFormatter?: (str: string) => string;
   /**
    * Do not render open picker button (renders only text field with validation).
+   *
    * @default false
    */
   disableOpenPicker?: boolean;
   /**
    * Disable mask on the keyboard, this should be used rarely. Consider passing proper mask for your format.
+   *
    * @default false
    */
   disableMaskedInput?: boolean;
   /**
    * Get aria-label text for control that opens picker dialog. Aria-label text must include selected date. @DateIOType
+   *
    * @default (value, utils) => `Choose date, selected date is ${utils.format(utils.date(value), 'fullDate')}`
    */
   getOpenDialogAriaText?: (value: ParsableDate, utils: MuiPickersAdapter) => string;

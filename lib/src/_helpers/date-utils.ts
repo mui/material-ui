@@ -146,11 +146,13 @@ export const isEndOfRange = (utils: MuiPickersAdapter, day: unknown, range: Date
 export interface DateValidationProps {
   /**
    * Min selectable date. @DateIOType
+   *
    * @default Date(1900-01-01)
    */
   minDate?: unknown;
   /**
    * Max selectable date. @DateIOType
+   *
    * @default Date(2099-31-12)
    */
   maxDate?: unknown;
@@ -160,11 +162,13 @@ export interface DateValidationProps {
   shouldDisableDate?: (day: unknown) => boolean;
   /**
    * Disable past dates.
+   *
    * @default false
    */
   disablePast?: boolean;
   /**
    * Disable future dates.
+   *
    * @default false
    */
   disableFuture?: boolean;

@@ -1,14 +1,14 @@
 // Note that most of use cases are covered in cypress tests e2e/integration/DateRange.spec.ts
 import * as React from 'react';
+import TextField, { TextFieldProps } from '@material-ui/core/TextField';
 import { mount, utilsToUse } from './test-utils';
-import { TextField, TextFieldProps } from '@material-ui/core';
 import { DesktopDateRangePicker } from '../DateRangePicker/DateRangePicker';
 
 const defaultRangeRenderInput = (startProps: TextFieldProps, endProps: TextFieldProps) => (
-  <>
+  <React.Fragment>
     <TextField {...startProps} />
     <TextField {...endProps} />
-  </>
+  </React.Fragment>
 );
 
 describe('DateRangePicker', () => {

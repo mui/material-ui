@@ -1,8 +1,8 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import Typography, { TypographyProps } from '@material-ui/core/Typography';
-import { ExtendMui } from '../typings/helpers';
 import { makeStyles, fade } from '@material-ui/core/styles';
+import { ExtendMui } from '../typings/helpers';
 
 export interface ToolbarTextProps extends ExtendMui<TypographyProps> {
   selected?: boolean;
@@ -30,21 +30,18 @@ export const useStyles = makeStyles(
   { name: 'MuiPickersToolbarText' }
 );
 
-const ToolbarText: React.FC<ToolbarTextProps> = ({
-  className,
-  selected,
-  value: label,
-  ...other
-}) => {
+const ToolbarText: React.FC<ToolbarTextProps> = (props) => {
+  const { className, selected, value, ...other } = props;
   const classes = useStyles();
   return (
     <Typography
-      children={label}
       className={clsx(classes.root, className, {
         [classes.selected]: selected,
       })}
       {...other}
-    />
+    >
+      {value}
+    </Typography>
   );
 };
 

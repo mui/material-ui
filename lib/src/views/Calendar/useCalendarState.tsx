@@ -30,20 +30,20 @@ export const createCalendarStateReducer = (
     | ReducerAction<'changeFocusedDay', { focusedDay: unknown }>
 ): CalendarState => {
   switch (action.type) {
-    case 'changeMonth': {
+    case 'changeMonth':
       return {
         ...state,
         slideDirection: action.direction,
         currentMonth: action.newMonth,
         isMonthSwitchingAnimating: !reduceAnimations,
       };
-    }
-    case 'finishMonthSwitchingAnimation': {
+
+    case 'finishMonthSwitchingAnimation':
       return {
         ...state,
         isMonthSwitchingAnimating: false,
       };
-    }
+
     case 'changeFocusedDay': {
       const needMonthSwitch =
         Boolean(action.focusedDay) &&
@@ -58,6 +58,9 @@ export const createCalendarStateReducer = (
         slideDirection: utils.isAfterDay(action.focusedDay, state.currentMonth) ? 'left' : 'right',
       };
     }
+
+    default:
+      throw new Error('missing support');
   }
 };
 

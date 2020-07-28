@@ -40,41 +40,35 @@
     "@testing-library/cypress": "^6.0.0",
     "@testing-library/dom": "^7.21.5",
     "@testing-library/react": "^10.4.7",
-    "@typescript-eslint/eslint-plugin": "^1.6.0",
-    "@typescript-eslint/parser": "^1.6.0",
+    "@typescript-eslint/eslint-plugin": "^3.6.1",
+    "@typescript-eslint/parser": "^3.6.1",
     "babel-loader": "^8.1.0",
     "cypress": "4.11.0",
     "cypress-plugin-tab": "^1.0.5",
     "cypress-react-unit-test": "^4.7.2",
-    "eslint": "^5.16.0",
+    "eslint": "^7.4.0",
+    "eslint-config-airbnb-typescript": "^8.0.2",
     "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-pretty-imports": "^1.1.3",
-    "eslint-plugin-react": "^7.19.0",
-    "eslint-plugin-react-hooks": "^4.0.5",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-mocha": "^7.0.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.3",
+    "eslint-plugin-react-hooks": "^4.0.8",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
     "prettier": "^2.0.5",
     "wait-on": "^5.1.0",
     "yarn-deduplicate": "^2.1.1"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "lib/src/**/*.{ts,tsx}": [
-      "yarn docgen",
-      "git add docs/prop-types.json"
-    ],
-    "*.{js,jsx,ts,tsx,json,css,md,mdx}": [
-      "prettier --write"
-    ]
-  },
   "eslintIgnore": [
     "**/node_modules",
     "**/coverage",
     "videos/",
+    "/docs/layout",
+    "/docs/pages/index",
+    "/docs/_shared",
+    "/e2e/",
     "**/build"
   ]
 }

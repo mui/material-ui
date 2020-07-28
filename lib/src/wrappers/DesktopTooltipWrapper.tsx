@@ -16,15 +16,16 @@ export interface DesktopTooltipWrapperProps
     WrapperProps,
     Partial<InnerMobileWrapperProps & StaticWrapperProps & InnerDesktopWrapperProps> {}
 
-export const DesktopTooltipWrapper: React.FC<DesktopTooltipWrapperProps> = ({
-  open,
-  children,
-  PopperProps,
-  onDismiss,
-  DateInputProps,
-  TransitionComponent,
-  KeyboardDateInputComponent = KeyboardDateInput,
-}) => {
+export const DesktopTooltipWrapper: React.FC<DesktopTooltipWrapperProps> = (props) => {
+  const {
+    open,
+    children,
+    PopperProps,
+    onDismiss,
+    DateInputProps,
+    TransitionComponent,
+    KeyboardDateInputComponent = KeyboardDateInput,
+  } = props;
   const inputRef = React.useRef<HTMLDivElement>(null);
   const popperRef = React.useRef<HTMLElement>(null);
   const { canAutoFocus, onOpen } = useAutoFocusControl(open);
@@ -50,7 +51,6 @@ export const DesktopTooltipWrapper: React.FC<DesktopTooltipWrapperProps> = ({
           containerRef={inputRef}
           onBlur={handleBlur}
         />
-
         <PickersPopper
           role="tooltip"
           open={open}

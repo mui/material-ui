@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { arrayIncludes } from '../../_helpers/utils';
 import { PickerSelectionState } from './usePickerState';
-
 import { AnyPickerView } from '../../Picker/SharedPickerProps';
 
 export type PickerOnChangeFn<TDate = unknown> = (
@@ -22,17 +21,17 @@ export function useViews({
   isMobileKeyboardViewOpen: boolean;
   toggleMobileKeyboardView: () => void;
 }) {
-  const [openView, _setOpenView] = React.useState(
+  const [openView, setOpenView] = React.useState(
     openTo && arrayIncludes(views, openTo) ? openTo : views[0]
   );
 
-  const setOpenView = React.useCallback(
-    (...args: Parameters<typeof _setOpenView>) => {
+  const setOpenViewEnhanced = React.useCallback(
+    (...args: Parameters<typeof setOpenView>) => {
       if (isMobileKeyboardViewOpen) {
         toggleMobileKeyboardView();
       }
 
-      _setOpenView(...args);
+      setOpenView(...args);
     },
     [isMobileKeyboardViewOpen, toggleMobileKeyboardView]
   );
@@ -42,9 +41,9 @@ export function useViews({
 
   const openNext = React.useCallback(() => {
     if (nextView) {
-      setOpenView(nextView);
+      setOpenViewEnhanced(nextView);
     }
-  }, [nextView, setOpenView]);
+  }, [nextView, setOpenViewEnhanced]);
 
   const handleChangeAndOpenNext = React.useCallback(
     (date: unknown, currentViewSelectionState?: PickerSelectionState) => {
@@ -68,6 +67,6 @@ export function useViews({
     openNext,
     handleChangeAndOpenNext,
     openView,
-    setOpenView,
+    setOpenView: setOpenViewEnhanced,
   };
 }

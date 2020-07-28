@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle, no-console */
 import * as React from 'react';
 import AlarmIcon from '@material-ui/icons/Alarm';
 import SnoozeIcon from '@material-ui/icons/Snooze';
@@ -5,11 +6,9 @@ import TextField from '@material-ui/core/TextField';
 import ClockIcon from '@material-ui/icons/AccessTime';
 import { DateTimePicker, MobileDateTimePicker } from '@material-ui/pickers';
 
-export default function CustomDateTimePicker(props: any) {
-  const [clearedDate, handleClearedDateChange] = React.useState<Date | null>(null);
-  const [selectedDate, handleDateChange] = React.useState<Date | null>(
-    new Date('2019-01-01T18:54')
-  );
+export default function CustomDateTimePicker(demoProps: any) {
+  const [clearedDate, setClearedDate] = React.useState<Date | null>(null);
+  const [value, setValue] = React.useState<Date | null>(new Date('2019-01-01T18:54'));
 
   return (
     <React.Fragment>
@@ -19,8 +18,8 @@ export default function CustomDateTimePicker(props: any) {
         showTodayButton
         todayText="now"
         openTo="hours"
-        value={selectedDate}
-        onChange={(date) => handleDateChange(date)}
+        value={value}
+        onChange={(newValue) => setValue(newValue)}
         minDate={new Date('2018-01-01')}
         leftArrowIcon={<AlarmIcon />}
         rightArrowIcon={<SnoozeIcon />}
@@ -33,25 +32,23 @@ export default function CustomDateTimePicker(props: any) {
           <TextField {...props} variant="outlined" helperText="Hardcoded helper text" />
         )}
       />
-
       <MobileDateTimePicker
-        value={selectedDate}
-        onChange={(date) => handleDateChange(date)}
+        value={value}
+        onChange={(newValue) => setValue(newValue)}
         label="With error handler"
         onError={console.log}
         minDate={new Date('2018-01-01T00:00')}
-        inputFormat={props.__willBeReplacedGetFormatString({
+        inputFormat={demoProps.__willBeReplacedGetFormatString({
           moment: 'YYYY/MM/DD hh:mm A',
           dateFns: 'yyyy/MM/dd hh:mm a',
         })}
         mask="___/__/__ __:__ _M"
         renderInput={(props) => <TextField variant="outlined" {...props} />}
       />
-
       <DateTimePicker
         clearable
         value={clearedDate}
-        onChange={handleClearedDateChange}
+        onChange={(newValue) => setClearedDate(newValue)}
         renderInput={(props) => <TextField {...props} helperText="Clear Initial State" />}
       />
     </React.Fragment>

@@ -5,7 +5,8 @@ function getRandomNumber(min: number, max: number) {
   return Math.round(Math.random() * (max - min) + min);
 }
 
-export default function (req: NowRequest, res: NowResponse) {
+// eslint-disable-next-line consistent-return
+export default function randomDate(req: NowRequest, res: NowResponse) {
   const { month } = req.query;
 
   if (!month || typeof month !== 'string') {
@@ -25,7 +26,7 @@ export default function (req: NowRequest, res: NowResponse) {
 
   setTimeout(() => {
     const daysInMonth = getDaysInMonth(date);
-    const daysToHighlight = [1, 2, 3].map((_) => getRandomNumber(1, daysInMonth));
+    const daysToHighlight = [1, 2, 3].map(() => getRandomNumber(1, daysInMonth));
 
     res.json({ daysToHighlight });
   }, 500); // fake some long work

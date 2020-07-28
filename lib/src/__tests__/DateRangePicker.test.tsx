@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { isWeekend } from 'date-fns';
 import { screen, waitFor } from '@testing-library/react';
+import TextField, { TextFieldProps } from '@material-ui/core/TextField';
 import { utilsToUse, getAllByMuiTest } from './test-utils';
-import { TextField, TextFieldProps } from '@material-ui/core';
-import { DesktopDateRangePicker, StaticDateRangePicker } from '../';
+import { DesktopDateRangePicker, StaticDateRangePicker } from '..';
 import { createClientRender, fireEvent } from './createClientRender';
 
 const defaultRangeRenderInput = (startProps: TextFieldProps, endProps: TextFieldProps) => (

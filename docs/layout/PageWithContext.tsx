@@ -1,6 +1,6 @@
+import * as React from 'react';
 import rtl from 'jss-rtl';
 import Layout from './Layout';
-import React, { useState, useCallback } from 'react';
 import orange from '@material-ui/core/colors/deepOrange';
 import { create } from 'jss';
 import { SnackbarProvider } from 'notistack';
@@ -77,18 +77,18 @@ export const PageWithContexts: React.SFC<Props> = ({
 `);
   }, []);
 
-  const [lib, setLib] = useState<UtilsLib>('date-fns');
-  const [theme, setTheme] = useState<ThemeType>(initialTheme);
-  const [direction, setDirection] = useState<Direction>('ltr');
+  const [lib, setLib] = React.useState<UtilsLib>('date-fns');
+  const [theme, setTheme] = React.useState<ThemeType>(initialTheme);
+  const [direction, setDirection] = React.useState<Direction>('ltr');
 
-  const setBodyDirection = useCallback(() => {
+  const setBodyDirection = React.useCallback(() => {
     const newDirection = direction === 'ltr' ? 'rtl' : 'ltr';
     document.body.dir = newDirection;
 
     setDirection(newDirection);
   }, [direction]);
 
-  const toggleTheme = useCallback(() => {
+  const toggleTheme = React.useCallback(() => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
 
     setTheme(newTheme);
@@ -112,7 +112,6 @@ export const PageWithContexts: React.SFC<Props> = ({
               <UtilsContext.Provider value={createUtilsService(lib)}>
                 <CssBaseline />
                 <NotificationManager />
-
                 <Layout
                   children={children}
                   onChangeUtils={setLib}

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 // @ts-nocheck
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
@@ -10,14 +11,15 @@ interface DatePickerFieldProps extends FieldProps, BaseDatePickerProps {
   getShouldDisableDateError: (date: Date) => string;
 }
 
-function DatePickerField({
-  field,
-  form,
-  maxDate = new Date('2099-12-31'),
-  minDate = new Date('1900-01-01'),
-  getShouldDisableDateError,
-  ...other
-}: DatePickerFieldProps) {
+function DatePickerField(props: DatePickerFieldProps) {
+  const {
+    field,
+    form,
+    getShouldDisableDateError,
+    maxDate = new Date('2099-12-31'),
+    minDate = new Date('1900-01-01'),
+    ...other
+  } = props;
   const currentError = form.errors[field.name];
 
   return (
@@ -27,15 +29,15 @@ function DatePickerField({
       maxDate={maxDate}
       value={field.value}
       // Make sure that your 3d param is set to `true` in order to run validation
-      onChange={(date) => form.setFieldValue(field.name, date, true)}
-      renderInput={(props) => (
+      onChange={(newValue) => form.setFieldValue(field.name, newValue, true)}
+      renderInput={(inputProps) => (
         <TextField
           name={field.name}
-          {...props}
+          {...inputProps}
           error={Boolean(currentError)}
-          helperText={currentError ?? props.helperText}
+          helperText={currentError ?? inputProps.helperText}
           // Make sure that your 3d param is set to `true` in order to run validation
-          onBlur={() => form.setFieldTouched(name, true, true)}
+          onBlur={() => form.setFieldTouched(field.name, true, true)}
         />
       )}
       {...other}
@@ -56,7 +58,6 @@ export default function FormikValidationSchemaExample() {
             <Grid item container justify="center" xs={12}>
               <Field name="date" disablePast component={DatePickerField} />
             </Grid>
-
             <Grid item xs={12} sm={12} style={{ margin: '24px' }}>
               <pre>
                 <code>{JSON.stringify({ errors, values }, null, 2)}</code>

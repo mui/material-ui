@@ -1,3 +1,5 @@
+// eslint-disable-next-line no-restricted-imports
+import { StyleRules, StyleRulesCallback } from '@material-ui/core/styles/withStyles';
 import { useStyles as DayStyles } from '../views/Calendar/Day';
 import { useStyles as ClockStyles } from '../views/Clock/Clock';
 import { useStyles as MuiBasePickerStyles } from '../Picker/Picker';
@@ -12,7 +14,6 @@ import { useStyles as CalendarViewStyles } from '../views/Calendar/CalendarView'
 import { useStyles as MuiPickersToolbarTextStyles } from '../_shared/ToolbarText';
 import { useStyles as DatePickerRootStyles } from '../DatePicker/DatePickerToolbar';
 import { useStyles as CalendarHeaderStyles } from '../views/Calendar/CalendarHeader';
-import { StyleRules, StyleRulesCallback } from '@material-ui/core/styles/withStyles';
 import { useStyles as TimePickerToolbarStyles } from '../TimePicker/TimePickerToolbar';
 import { useStyles as SlideTransitionStyles } from '../views/Calendar/SlideTransition';
 import { useStyles as MuiPickersYearSelectionStyles } from '../views/Calendar/YearSelection';

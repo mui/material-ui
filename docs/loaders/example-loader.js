@@ -1,3 +1,4 @@
+/* eslint-disable */
 const path = require('path');
 const safeJsonStringify = require('safe-json-stringify');
 

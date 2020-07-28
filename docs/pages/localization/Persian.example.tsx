@@ -22,7 +22,6 @@ function PersianExample() {
         value={selectedDate}
         onChange={(date) => handleDateChange(date)}
       />
-
       <TimePicker
         renderInput={(props) => <TextField {...props} />}
         clearable
@@ -33,7 +32,6 @@ function PersianExample() {
         value={selectedDate}
         onChange={(date) => handleDateChange(date)}
       />
-
       <DateTimePicker
         renderInput={(props) => <TextField {...props} />}
         okText="تأیید"

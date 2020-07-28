@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ClockNumber from './ClockNumber';
+import { ClockNumber } from './ClockNumber';
 import { MuiPickersAdapter } from '../../_shared/hooks/useUtils';
 import { PickerSelectionState } from '../../_shared/hooks/usePickerState';
 

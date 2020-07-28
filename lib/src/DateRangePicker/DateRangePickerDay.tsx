@@ -1,8 +1,8 @@
 import * as React from 'react';
 import clsx from 'clsx';
+import { makeStyles, fade } from '@material-ui/core/styles';
 import { DAY_MARGIN } from '../constants/dimensions';
 import { useUtils } from '../_shared/hooks/useUtils';
-import { makeStyles, fade } from '@material-ui/core/styles';
 import { Day, DayProps, areDayPropsEqual } from '../views/Calendar/Day';
 
 export interface DateRangeDayProps extends DayProps {
@@ -96,19 +96,20 @@ const useStyles = makeStyles(
   { name: 'MuiPickersDateRangeDay' }
 );
 
-export const PureDateRangeDay = ({
-  className,
-  day,
-  inCurrentMonth,
-  isEndOfHighlighting,
-  isEndOfPreviewing,
-  isHighlighting,
-  isPreviewing,
-  isStartOfHighlighting,
-  isStartOfPreviewing,
-  selected,
-  ...other
-}: DateRangeDayProps) => {
+export const PureDateRangeDay = (props: DateRangeDayProps) => {
+  const {
+    className,
+    day,
+    inCurrentMonth,
+    isEndOfHighlighting,
+    isEndOfPreviewing,
+    isHighlighting,
+    isPreviewing,
+    isStartOfHighlighting,
+    isStartOfPreviewing,
+    selected,
+    ...other
+  } = props;
   const utils = useUtils();
   const classes = useStyles();
 

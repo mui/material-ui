@@ -1,5 +1,4 @@
 import * as React from 'react';
-import CalendarSkeleton from '../CalendarSkeleton';
 import TextField from '@material-ui/core/TextField';
 import { ReactWrapper } from 'enzyme';
 import { mount, utilsToUse, mountPickerWithState } from './test-utils';
@@ -9,6 +8,7 @@ import {
   DatePickerProps,
   StaticDatePicker,
 } from '../DatePicker/DatePicker';
+import { CalendarSkeleton } from '../CalendarSkeleton';
 
 describe('e2e - DatePicker default year format', () => {
   let component: ReactWrapper<DatePickerProps>;

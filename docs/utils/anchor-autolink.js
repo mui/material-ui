@@ -18,7 +18,7 @@ function inject(node, id) {
       type: 'element',
       tagName: 'a',
       children: [{ type: 'text', value: '#' }],
-      properties: { href: '#' + id, className: ['anchor-link-style'] },
+      properties: { href: `#${id}`, className: ['anchor-link-style'] },
     },
   ];
 }

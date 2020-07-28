@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import KawaiiIcon from '_shared/svgIcons/KawaiiIcon';
 import { styled } from '@material-ui/core/styles';

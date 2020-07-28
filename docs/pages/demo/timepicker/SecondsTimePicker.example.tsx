@@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import { TimePicker } from '@material-ui/pickers';
 
 export default function SecondsTimePicker() {
-  const [selectedDate, handleDateChange] = React.useState<Date | null>(new Date());
+  const [value, setValue] = React.useState<Date | null>(new Date());
 
   return (
     <React.Fragment>
@@ -15,10 +15,9 @@ export default function SecondsTimePicker() {
         inputFormat="HH:mm:ss"
         mask="__:__:__"
         label="With seconds"
-        value={selectedDate}
-        onChange={(date) => handleDateChange(date)}
+        value={value}
+        onChange={(newValue) => setValue(newValue)}
       />
-
       <TimePicker
         renderInput={(props) => <TextField {...props} />}
         ampmInClock
@@ -27,8 +26,8 @@ export default function SecondsTimePicker() {
         inputFormat="mm:ss"
         mask="__:__"
         label="Minutes and seconds"
-        value={selectedDate}
-        onChange={(date) => handleDateChange(date)}
+        value={value}
+        onChange={(newValue) => setValue(newValue)}
       />
     </React.Fragment>
   );

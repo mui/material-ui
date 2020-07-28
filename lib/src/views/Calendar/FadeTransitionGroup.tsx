@@ -75,8 +75,9 @@ export const FadeTransitionGroup: React.FC<FadeTransitionProps> = ({
         key={transKey}
         timeout={{ appear: animationDuration, enter: animationDuration / 2, exit: 0 }}
         classNames={transitionClasses}
-        children={children}
-      />
+      >
+        {children}
+      </CSSTransition>
     </TransitionGroup>
   );
 };

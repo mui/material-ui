@@ -1,14 +1,12 @@
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
 import clsx from 'clsx';
-import ClockPointer from './ClockPointer';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import ClockPointer from './ClockPointer';
 import { useUtils } from '../../_shared/hooks/useUtils';
 import { VIEW_HEIGHT } from '../../constants/dimensions';
 import { ClockViewType } from '../../constants/ClockType';
-
 import { PickerOnChangeFn } from '../../_shared/hooks/useViews';
 import { getHours, getMinutes } from '../../_helpers/time-utils';
 import { withDefaultProps } from '../../_shared/withDefaultProps';
@@ -97,9 +95,8 @@ export const useStyles = makeStyles(
   muiComponentConfig
 );
 
-export const Clock: React.FC<ClockProps> = withDefaultProps(
-  muiComponentConfig,
-  ({
+export const Clock: React.FC<ClockProps> = withDefaultProps(muiComponentConfig, (props) => {
+  const {
     allowKeyboardControl,
     ampm,
     ampmInClock = false,
@@ -112,157 +109,147 @@ export const Clock: React.FC<ClockProps> = withDefaultProps(
     onChange,
     type,
     value,
-  }) => {
-    const utils = useUtils();
-    const classes = useStyles();
-    const wrapperVariant = React.useContext(WrapperVariantContext);
-    const isMoving = React.useRef(false);
+  } = props;
+  const utils = useUtils();
+  const classes = useStyles();
+  const wrapperVariant = React.useContext(WrapperVariantContext);
+  const isMoving = React.useRef(false);
 
-    const isSelectedTimeDisabled = isTimeDisabled(value, type);
-    const isPointerInner = !ampm && type === 'hours' && (value < 1 || value > 12);
+  const isSelectedTimeDisabled = isTimeDisabled(value, type);
+  const isPointerInner = !ampm && type === 'hours' && (value < 1 || value > 12);
 
-    const handleValueChange = (newValue: number, isFinish: PickerSelectionState) => {
-      if (isTimeDisabled(newValue, type)) {
-        return;
-      }
+  const handleValueChange = (newValue: number, isFinish: PickerSelectionState) => {
+    if (isTimeDisabled(newValue, type)) {
+      return;
+    }
 
-      onChange(newValue, isFinish);
-    };
+    onChange(newValue, isFinish);
+  };
 
-    const setTime = (e: any, isFinish: PickerSelectionState) => {
-      let { offsetX, offsetY } = e;
+  const setTime = (e: any, isFinish: PickerSelectionState) => {
+    let { offsetX, offsetY } = e;
 
-      if (typeof offsetX === 'undefined') {
-        const rect = e.target.getBoundingClientRect();
+    if (typeof offsetX === 'undefined') {
+      const rect = e.target.getBoundingClientRect();
 
-        offsetX = e.changedTouches[0].clientX - rect.left;
-        offsetY = e.changedTouches[0].clientY - rect.top;
-      }
+      offsetX = e.changedTouches[0].clientX - rect.left;
+      offsetY = e.changedTouches[0].clientY - rect.top;
+    }
 
-      const value =
-        type === 'seconds' || type === 'minutes'
-          ? getMinutes(offsetX, offsetY, minutesStep)
-          : getHours(offsetX, offsetY, Boolean(ampm));
+    const value =
+      type === 'seconds' || type === 'minutes'
+        ? getMinutes(offsetX, offsetY, minutesStep)
+        : getHours(offsetX, offsetY, Boolean(ampm));
 
-      handleValueChange(value, isFinish);
-    };
+    handleValueChange(value, isFinish);
+  };
 
-    const handleTouchMove = (e: React.TouchEvent) => {
-      isMoving.current = true;
-      setTime(e, 'shallow');
-    };
+  const handleTouchMove = (e: React.TouchEvent) => {
+    isMoving.current = true;
+    setTime(e, 'shallow');
+  };
 
-    const handleTouchEnd = (e: React.TouchEvent) => {
-      if (isMoving.current) {
-        setTime(e, 'finish');
-        isMoving.current = false;
-      }
-    };
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (isMoving.current) {
+      setTime(e, 'finish');
+      isMoving.current = false;
+    }
+  };
 
-    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-      e.preventDefault();
-      e.stopPropagation();
-      // MouseEvent.which is deprecated, but MouseEvent.buttons is not supported in Safari
-      const isButtonPressed =
-        typeof e.buttons === 'undefined' ? e.nativeEvent.which === 1 : e.buttons === 1;
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    // MouseEvent.which is deprecated, but MouseEvent.buttons is not supported in Safari
+    const isButtonPressed =
+      typeof e.buttons === 'undefined' ? e.nativeEvent.which === 1 : e.buttons === 1;
 
-      if (isButtonPressed) {
-        setTime(e.nativeEvent, 'shallow');
-      }
-    };
+    if (isButtonPressed) {
+      setTime(e.nativeEvent, 'shallow');
+    }
+  };
 
-    const handleMouseUp = (e: React.MouseEvent) => {
-      if (isMoving.current) {
-        isMoving.current = false;
-      }
+  const handleMouseUp = (e: React.MouseEvent) => {
+    if (isMoving.current) {
+      isMoving.current = false;
+    }
 
-      setTime(e.nativeEvent, 'finish');
-    };
+    setTime(e.nativeEvent, 'finish');
+  };
 
-    const hasSelected = React.useMemo(() => {
-      if (type === 'hours') {
-        return true;
-      }
+  const hasSelected = React.useMemo(() => {
+    if (type === 'hours') {
+      return true;
+    }
 
-      return value % 5 === 0;
-    }, [type, value]);
+    return value % 5 === 0;
+  }, [type, value]);
 
-    const keyboardControlStep = type === 'minutes' ? minutesStep : 1;
-    useGlobalKeyDown(
-      Boolean(allowKeyboardControl ?? wrapperVariant !== 'static') && !isMoving.current,
-      {
-        [keycode.Home]: () => handleValueChange(0, 'partial'), // annulate both hours and minutes
-        [keycode.End]: () => handleValueChange(type === 'minutes' ? 59 : 23, 'partial'),
-        [keycode.ArrowUp]: () => handleValueChange(value + keyboardControlStep, 'partial'),
-        [keycode.ArrowDown]: () => handleValueChange(value - keyboardControlStep, 'partial'),
-      }
-    );
+  const keyboardControlStep = type === 'minutes' ? minutesStep : 1;
+  useGlobalKeyDown(
+    Boolean(allowKeyboardControl ?? wrapperVariant !== 'static') && !isMoving.current,
+    {
+      [keycode.Home]: () => handleValueChange(0, 'partial'), // annulate both hours and minutes
+      [keycode.End]: () => handleValueChange(type === 'minutes' ? 59 : 23, 'partial'),
+      [keycode.ArrowUp]: () => handleValueChange(value + keyboardControlStep, 'partial'),
+      [keycode.ArrowDown]: () => handleValueChange(value - keyboardControlStep, 'partial'),
+    }
+  );
 
-    return (
-      <div className={classes.root}>
-        <div className={classes.clock}>
-          <div
-            role="menu"
-            tabIndex={-1}
-            className={classes.squareMask}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
-            onMouseUp={handleMouseUp}
-            onMouseMove={handleMouseMove}
-          />
-
-          {!isSelectedTimeDisabled && (
-            <React.Fragment>
-              <div className={classes.pin} />
-
-              {date && (
-                <ClockPointer
-                  type={type}
-                  value={value}
-                  isInner={isPointerInner}
-                  hasSelected={hasSelected}
-                  aria-live="polite"
-                  aria-label={`Selected time ${utils.format(date, 'fullTime')}`}
-                />
-              )}
-            </React.Fragment>
-          )}
-
-          {numbersElementsArray}
-        </div>
-
-        {ampm && (wrapperVariant === 'desktop' || ampmInClock) && (
+  return (
+    <div className={classes.root}>
+      <div className={classes.clock}>
+        <div
+          role="menu"
+          tabIndex={-1}
+          className={classes.squareMask}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          onMouseUp={handleMouseUp}
+          onMouseMove={handleMouseMove}
+        />
+        {!isSelectedTimeDisabled && (
           <React.Fragment>
-            <IconButton
-              data-mui-test="in-clock-am-btn"
-              onClick={() => handleMeridiemChange('am')}
-              disabled={meridiemMode === null}
-              className={clsx(classes.amButton, {
-                [classes.meridiemButtonSelected]: meridiemMode === 'am',
-              })}
-            >
-              <Typography variant="caption">AM</Typography>
-            </IconButton>
-            <IconButton
-              disabled={meridiemMode === null}
-              data-mui-test="in-clock-pm-btn"
-              onClick={() => handleMeridiemChange('pm')}
-              className={clsx(classes.pmButton, {
-                [classes.meridiemButtonSelected]: meridiemMode === 'pm',
-              })}
-            >
-              <Typography variant="caption">PM</Typography>
-            </IconButton>
+            <div className={classes.pin} />
+            {date && (
+              <ClockPointer
+                type={type}
+                value={value}
+                isInner={isPointerInner}
+                hasSelected={hasSelected}
+                aria-live="polite"
+                aria-label={`Selected time ${utils.format(date, 'fullTime')}`}
+              />
+            )}
           </React.Fragment>
         )}
+        {numbersElementsArray}
       </div>
-    );
-  }
-);
-
-Clock.defaultProps = {
-  ampm: PropTypes.bool,
-  minutesStep: PropTypes.number,
-} as any;
+      {ampm && (wrapperVariant === 'desktop' || ampmInClock) && (
+        <React.Fragment>
+          <IconButton
+            data-mui-test="in-clock-am-btn"
+            onClick={() => handleMeridiemChange('am')}
+            disabled={meridiemMode === null}
+            className={clsx(classes.amButton, {
+              [classes.meridiemButtonSelected]: meridiemMode === 'am',
+            })}
+          >
+            <Typography variant="caption">AM</Typography>
+          </IconButton>
+          <IconButton
+            disabled={meridiemMode === null}
+            data-mui-test="in-clock-pm-btn"
+            onClick={() => handleMeridiemChange('pm')}
+            className={clsx(classes.pmButton, {
+              [classes.meridiemButtonSelected]: meridiemMode === 'pm',
+            })}
+          >
+            <Typography variant="caption">PM</Typography>
+          </IconButton>
+        </React.Fragment>
+      )}
+    </div>
+  );
+});
 
 Clock.displayName = 'Clock';

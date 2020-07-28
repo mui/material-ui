@@ -1,8 +1,8 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { useForkRef } from '@material-ui/core/utils';
-import { onSpaceOrEnter } from '../../_helpers/utils';
 import { makeStyles, fade } from '@material-ui/core/styles';
+import { onSpaceOrEnter } from '../../_helpers/utils';
 import { useCanAutoFocus } from '../../_shared/hooks/useCanAutoFocus';
 import { WrapperVariantContext } from '../../wrappers/WrapperVariantContext';
 
@@ -59,16 +59,17 @@ export const useStyles = makeStyles(
   { name: 'MuiPickersYear' }
 );
 
-export const Year: React.FC<YearProps> = ({
-  allowKeyboardControl,
-  children,
-  disabled,
-  focused,
-  forwardedRef,
-  onSelect,
-  selected,
-  value,
-}) => {
+export const Year: React.FC<YearProps> = (props) => {
+  const {
+    allowKeyboardControl,
+    children,
+    disabled,
+    focused,
+    forwardedRef,
+    onSelect,
+    selected,
+    value,
+  } = props;
   const classes = useStyles();
   const ref = React.useRef<HTMLButtonElement>(null);
   const refHandle = useForkRef(ref, forwardedRef as React.Ref<HTMLButtonElement>);
@@ -91,6 +92,7 @@ export const Year: React.FC<YearProps> = ({
       <button
         ref={refHandle}
         disabled={disabled}
+        type="button"
         data-mui-test={`year-${children}`}
         tabIndex={selected ? 0 : -1}
         onClick={() => onSelect(value)}

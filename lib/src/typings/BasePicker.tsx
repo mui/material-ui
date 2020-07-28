@@ -12,6 +12,7 @@ export interface BasePickerProps<TInputValue = ParsableDate, TDateValue = unknow
   onChange: (date: TDateValue, keyboardInputValue?: string) => void;
   /**
    * If `true` picker will immediately close after submitting full date.
+   *
    * @default `true` for Desktop, `false` for Mobile (based on the chosen wrapper and `desktopModeMediaQuery` prop).
    */
   disableCloseOnSelect?: boolean;
@@ -57,11 +58,13 @@ export interface BasePickerProps<TInputValue = ParsableDate, TDateValue = unknow
   ToolbarComponent?: React.ComponentType<ToolbarComponentProps>;
   /**
    * Mobile picker title, displaying in the toolbar.
+   *
    * @default "SELECT DATE"
    */
   toolbarTitle?: React.ReactNode;
   /**
    * Mobile picker date value placeholder, displaying if `value` === `null`.
+   *
    * @default "–"
    */
   toolbarPlaceholder?: React.ReactNode;

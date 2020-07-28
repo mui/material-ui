@@ -1,5 +1,5 @@
 import * as React from 'react';
-import CalendarHeader from '../views/Calendar/CalendarHeader';
+import { CalendarHeader } from '../views/Calendar/CalendarHeader';
 import { DateRange } from './RangeTypes';
 import { DateRangeDay } from './DateRangePickerDay';
 import { useUtils } from '../_shared/hooks/useUtils';
@@ -64,7 +64,6 @@ export const DateRangePickerViewMobile: React.FC<DesktopDateRangeCalendarProps> 
         maxDate={maxDate}
         {...other}
       />
-
       <Calendar
         {...other}
         date={date}

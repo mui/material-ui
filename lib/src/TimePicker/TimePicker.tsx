@@ -1,5 +1,5 @@
 import React from 'react';
-import ClockIcon from '../_shared/icons/ClockIcon';
+import { ClockIcon } from '../_shared/icons/Clock';
 import { ParsableDate } from '../constants/prop-types';
 import { TimePickerToolbar } from './TimePickerToolbar';
 import { ExportedClockViewProps } from '../views/Clock/ClockView';

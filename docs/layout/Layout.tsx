@@ -1,5 +1,5 @@
+import * as React from 'react';
 import clsx from 'clsx';
-import React, { Component } from 'react';
 import MenuIcon from '@material-ui/icons/Menu';
 import DrawerMenu from './components/DrawerMenu';
 import Github from '../_shared/svgIcons/GithubIcon';
@@ -79,7 +79,7 @@ const styles = (theme: Theme) =>
     },
   });
 
-class Layout extends Component<LayoutProps> {
+class Layout extends React.Component<LayoutProps> {
   state = {
     anchorEl: null,
     drawerOpen: false,
@@ -133,9 +133,7 @@ class Layout extends Component<LayoutProps> {
             >
               <MenuIcon />
             </IconButton>
-
             <div className={classes.flex} />
-
             <Tooltip title="Change the peer library for date management">
               <IconButton color="inherit" onClick={this.handleUtilsMenuOpen}>
                 <SettingsIcon />
@@ -158,7 +156,6 @@ class Layout extends Component<LayoutProps> {
                 </MenuItem>
               ))}
             </Menu>
-
             <Tooltip title="Toggle light/dark theme" enterDelay={300}>
               <IconButton
                 data-mui-test="toggle-theme-btn"
@@ -168,13 +165,11 @@ class Layout extends Component<LayoutProps> {
                 <LightbulbOutlineIcon />
               </IconButton>
             </Tooltip>
-
             <Tooltip title="Toggle direction" enterDelay={300}>
               <IconButton color="inherit" onClick={toggleDirection}>
                 {theme.direction === 'rtl' ? <TextDirectionLtrIcon /> : <TextDirectionRtLIcon />}
               </IconButton>
             </Tooltip>
-
             <Tooltip title="Github" enterDelay={300}>
               <IconButton color="inherit" component="a" href={GITHUB_URL}>
                 <Github color="inherit" />
@@ -182,7 +177,6 @@ class Layout extends Component<LayoutProps> {
             </Tooltip>
           </Toolbar>
         </AppBar>
-
         <Hidden mdUp>
           <Drawer
             variant="temporary"
@@ -197,7 +191,6 @@ class Layout extends Component<LayoutProps> {
             <DrawerMenu />
           </Drawer>
         </Hidden>
-
         <Hidden smDown implementation="css">
           <Drawer
             variant={isLanding ? 'temporary' : 'permanent'}
@@ -207,7 +200,6 @@ class Layout extends Component<LayoutProps> {
             <DrawerMenu />
           </Drawer>
         </Hidden>
-
         <main
           className={clsx(classes.main, {
             [classes.landingMain]: isLanding,

@@ -19,9 +19,9 @@ function logAndThrowArgs(...args: any[]) {
       .map((value) => {
         if (typeof value === 'object') {
           return JSON.stringify(value);
-        } else {
-          return value;
         }
+
+        return value;
       })
       .join(' ');
     throw new Error(message);

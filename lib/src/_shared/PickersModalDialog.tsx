@@ -10,31 +10,37 @@ import { DIALOG_WIDTH, DIALOG_WIDTH_WIDER } from '../constants/dimensions';
 export interface ExportedPickerModalProps {
   /**
    * "OK" button text.
+   *
    * @default "OK"
    */
   okText?: React.ReactNode;
   /**
    * "CANCEL" Text message
+   *
    * @default "CANCEL"
    */
   cancelText?: React.ReactNode;
   /**
    * "CLEAR" Text message
+   *
    * @default "CLEAR"
    */
   clearText?: React.ReactNode;
   /**
    * "TODAY" Text message
+   *
    * @default "TODAY"
    */
   todayText?: React.ReactNode;
   /**
    * If `true`, it shows the clear action in the picker dialog.
+   *
    * @default false
    */
   clearable?: boolean;
   /**
    * If `true`, the today button will be displayed. **Note** that `showClearButton` has a higher priority.
+   *
    * @default false
    */
   showTodayButton?: boolean;
@@ -86,24 +92,26 @@ export const useStyles = makeStyles(
   { name: 'MuiPickersModalDialog' }
 );
 
-export const PickersModalDialog: React.FC<PickerModalDialogProps> = ({
-  cancelText = 'Cancel',
-  children,
-  classes: MuiDialogClasses,
-  clearable = false,
-  clearText = 'Clear',
-  okText = 'OK',
-  onAccept,
-  onClear,
-  onDismiss,
-  onSetToday,
-  showTabs,
-  showTodayButton = false,
-  todayText = 'Today',
-  wider,
-  ...other
-}) => {
+const PickersModalDialog: React.FC<PickerModalDialogProps> = (props) => {
+  const {
+    cancelText = 'Cancel',
+    children,
+    classes: MuiDialogClasses,
+    clearable = false,
+    clearText = 'Clear',
+    okText = 'OK',
+    onAccept,
+    onClear,
+    onDismiss,
+    onSetToday,
+    showTabs,
+    showTodayButton = false,
+    todayText = 'Today',
+    wider,
+    ...other
+  } = props;
   const classes = useStyles();
+
   return (
     <Dialog
       onClose={onDismiss}
@@ -116,8 +124,7 @@ export const PickersModalDialog: React.FC<PickerModalDialogProps> = ({
       }}
       {...other}
     >
-      <DialogContent children={children} className={classes.dialog} />
-
+      <DialogContent className={classes.dialog}>{children}</DialogContent>
       <DialogActions
         className={clsx(classes.dialogAction, {
           [classes.withAdditionalAction]: clearable || showTodayButton,
@@ -128,19 +135,16 @@ export const PickersModalDialog: React.FC<PickerModalDialogProps> = ({
             {clearText}
           </Button>
         )}
-
         {showTodayButton && (
           <Button data-mui-test="today-action-button" color="primary" onClick={onSetToday}>
             {todayText}
           </Button>
         )}
-
         {cancelText && (
           <Button color="primary" onClick={onDismiss}>
             {cancelText}
           </Button>
         )}
-
         {okText && (
           <Button color="primary" onClick={onAccept}>
             {okText}
@@ -150,3 +154,5 @@ export const PickersModalDialog: React.FC<PickerModalDialogProps> = ({
     </Dialog>
   );
 };
+
+export default PickersModalDialog;

@@ -1,5 +1,6 @@
+/* eslint-disable no-console */
 // @ts-nocheck
-import React from 'react';
+import * as React from 'react';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import { Formik, Form, Field, FieldProps } from 'formik';
@@ -101,7 +102,6 @@ export default function FormikExample() {
                 getShouldDisableDateError={validateDatePickerValue}
               />
             </Grid>
-
             <Grid item xs={12} sm={12} style={{ margin: '24px' }}>
               <pre>
                 <code>{JSON.stringify({ errors, values }, null, 2)}</code>

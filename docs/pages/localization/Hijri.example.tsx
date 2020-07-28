@@ -22,7 +22,6 @@ export default function HijriExample() {
         minDate={moment('1937-03-14')}
         maxDate={moment('2076-11-26')}
       />
-
       <TimePicker
         clearable
         renderInput={(props) => <TextField {...props} />}
@@ -33,7 +32,6 @@ export default function HijriExample() {
         value={selectedDate}
         onChange={(date) => handleDateChange(date)}
       />
-
       <DateTimePicker
         renderInput={(props) => <TextField {...props} />}
         okText="موافق"

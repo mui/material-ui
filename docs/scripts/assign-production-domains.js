@@ -1,5 +1,5 @@
-const { version } = require('../../lib/package.json');
 const { execSync } = require('child_process');
+const { version } = require('../../lib/package.json');
 
 // dev.material-ui-pickers.dev is the automatically deployed for the `next` branch
 

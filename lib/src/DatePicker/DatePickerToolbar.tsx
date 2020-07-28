@@ -1,10 +1,10 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import PickerToolbar from '../_shared/PickerToolbar';
 import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import PickerToolbar from '../_shared/PickerToolbar';
 import { DatePickerView } from './DatePicker';
 import { useUtils } from '../_shared/hooks/useUtils';
-import { makeStyles } from '@material-ui/core/styles';
 import { withDefaultProps } from '../_shared/withDefaultProps';
 import { ToolbarComponentProps } from '../Picker/SharedPickerProps';
 import { isYearAndMonthViews, isYearOnlyView } from '../_helpers/date-utils';
@@ -79,11 +79,12 @@ export const DatePickerToolbar: React.FC<ToolbarComponentProps> = withDefaultPro
       >
         <Typography
           variant="h4"
-          children={dateText}
           data-mui-test="datepicker-toolbar-date"
           align={isLandscape ? 'left' : 'center'}
           className={clsx({ [classes.dateTitleLandscape]: isLandscape })}
-        />
+        >
+          {dateText}
+        </Typography>
       </PickerToolbar>
     );
   }

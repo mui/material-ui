@@ -84,9 +84,9 @@ export const SlideTransition: React.SFC<SlideTransitionProps> = ({
     exit: classes.slideExit,
     enterActive: classes.slideEnterActive,
     // @ts-ignore
-    enter: classes['slideEnter-' + slideDirection],
+    enter: classes[`slideEnter-${slideDirection}`],
     // @ts-ignore
-    exitActive: classes['slideExitActiveLeft-' + slideDirection],
+    exitActive: classes[`slideExitActiveLeft-${slideDirection}`],
   };
 
   return (
@@ -104,9 +104,10 @@ export const SlideTransition: React.SFC<SlideTransitionProps> = ({
         key={transKey}
         timeout={slideAnimationDuration}
         classNames={transitionClasses}
-        children={children}
         {...other}
-      />
+      >
+        {children}
+      </CSSTransition>
     </TransitionGroup>
   );
 };

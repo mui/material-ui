@@ -1,7 +1,7 @@
-import { createContext } from 'react';
+import * as React from 'react';
 import { WrapperVariant } from './Wrapper';
 
 // consider getting rid from wrapper variant
-export const WrapperVariantContext = createContext<WrapperVariant | null>(null);
+export const WrapperVariantContext = React.createContext<WrapperVariant | null>(null);
 
-export const IsStaticVariantContext = createContext(false);
+export const IsStaticVariantContext = React.createContext(false);

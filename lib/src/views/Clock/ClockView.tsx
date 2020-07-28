@@ -1,9 +1,8 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/core/styles';
 import { Clock } from './Clock';
 import { pipe } from '../../_helpers/utils';
-import { makeStyles } from '@material-ui/core/styles';
-
 import { useUtils, useNow } from '../../_shared/hooks/useUtils';
 import { PickerOnChangeFn } from '../../_shared/hooks/useViews';
 import { withDefaultProps } from '../../_shared/withDefaultProps';
@@ -19,22 +18,26 @@ import {
 
 export interface ExportedClockViewProps extends TimeValidationProps {
   /**
-   * 12h/24h view for hour selection clock
+   * 12h/24h view for hour selection clock.
+   *
    * @default true
    */
   ampm?: boolean;
   /**
-   * Step over minutes
+   * Step over minutes.
+   *
    * @default 1
    */
   minutesStep?: number;
   /**
-   * Display ampm controls under the clock (instead of in the toolbar)
+   * Display ampm controls under the clock (instead of in the toolbar).
+   *
    * @default false
    */
   ampmInClock?: boolean;
   /**
-   * Enables keyboard listener for moving between days in calendar
+   * Enables keyboard listener for moving between days in calendar.
+   *
    * @default currentWrapper !== 'static'
    */
   allowKeyboardControl?: boolean;
@@ -89,38 +92,47 @@ export const useStyles = makeStyles(
   muiPickersComponentConfig
 );
 
-const getMinutesAriaText = (minute: string) => `${minute} minutes`;
-const getHoursAriaText = (hour: string) => `${hour} hours`;
-const getSecondsAriaText = (seconds: string) => `${seconds} seconds`;
+function getMinutesAriaText(minute: string) {
+  return `${minute} minutes`;
+}
 
-const _ClockView: React.FC<ClockViewProps> = ({
-  type,
-  onDateChange,
-  onChange,
-  ampm,
-  date,
-  minutesStep = 1,
-  ampmInClock,
-  minTime,
-  maxTime,
-  allowKeyboardControl,
-  shouldDisableTime,
-  getHoursClockNumberText = getHoursAriaText,
-  getMinutesClockNumberText = getMinutesAriaText,
-  getSecondsClockNumberText = getSecondsAriaText,
-  leftArrowButtonProps,
-  rightArrowButtonProps,
-  leftArrowIcon,
-  rightArrowIcon,
-  leftArrowButtonText = 'open previous view',
-  rightArrowButtonText = 'open next view',
-  openNextView,
-  openPreviousView,
-  nextViewAvailable,
-  showViewSwitcher,
-  previousViewAvailable,
-  disableIgnoringDatePartForTimeValidation,
-}) => {
+function getHoursAriaText(hour: string) {
+  return `${hour} hours`;
+}
+
+function getSecondsAriaText(seconds: string) {
+  return `${seconds} seconds`;
+}
+
+function ClockViewRaw(props: ClockViewProps) {
+  const {
+    allowKeyboardControl,
+    ampm,
+    ampmInClock,
+    date,
+    disableIgnoringDatePartForTimeValidation,
+    getHoursClockNumberText = getHoursAriaText,
+    getMinutesClockNumberText = getMinutesAriaText,
+    getSecondsClockNumberText = getSecondsAriaText,
+    leftArrowButtonProps,
+    leftArrowButtonText = 'open previous view',
+    leftArrowIcon,
+    maxTime,
+    minTime,
+    minutesStep = 1,
+    nextViewAvailable,
+    onChange,
+    onDateChange,
+    openNextView,
+    openPreviousView,
+    previousViewAvailable,
+    rightArrowButtonProps,
+    rightArrowButtonText = 'open next view',
+    rightArrowIcon,
+    shouldDisableTime,
+    showViewSwitcher,
+    type,
+  } = props;
   const now = useNow();
   const utils = useUtils();
   const classes = useStyles();
@@ -142,7 +154,7 @@ const _ClockView: React.FC<ClockViewProps> = ({
       };
 
       switch (type) {
-        case 'hours':
+        case 'hours': {
           const hoursWithMeridiem = convertValueToMeridiem(rawValue, meridiemMode, Boolean(ampm));
           return validateTimeValue((when: 'start' | 'end') =>
             pipe(
@@ -151,6 +163,7 @@ const _ClockView: React.FC<ClockViewProps> = ({
               (dateWithMinutes) => utils.setSeconds(dateWithMinutes, when === 'start' ? 0 : 59)
             )(date)
           );
+        }
 
         case 'minutes':
           return validateTimeValue((when: 'start' | 'end') =>
@@ -162,6 +175,9 @@ const _ClockView: React.FC<ClockViewProps> = ({
 
         case 'seconds':
           return validateTimeValue(() => utils.setSeconds(date, rawValue));
+
+        default:
+          throw new Error('not supported');
       }
     },
     [
@@ -179,7 +195,7 @@ const _ClockView: React.FC<ClockViewProps> = ({
   const dateOrNow = date || now;
   const viewProps = React.useMemo(() => {
     switch (type) {
-      case 'hours':
+      case 'hours': {
         const handleHoursChange = (value: number, isFinish?: PickerSelectionState) => {
           const valueWithMeridiem = convertValueToMeridiem(value, meridiemMode, Boolean(ampm));
           onChange(utils.setHours(dateOrNow, valueWithMeridiem), isFinish);
@@ -197,8 +213,9 @@ const _ClockView: React.FC<ClockViewProps> = ({
             isDisabled: (value) => isTimeDisabled(value, 'hours'),
           }),
         };
+      }
 
-      case 'minutes':
+      case 'minutes': {
         const minutesValue = utils.getMinutes(dateOrNow);
         const handleMinutesChange = (value: number, isFinish?: PickerSelectionState) => {
           onChange(utils.setMinutes(dateOrNow, value), isFinish);
@@ -215,8 +232,9 @@ const _ClockView: React.FC<ClockViewProps> = ({
             isDisabled: (value) => isTimeDisabled(value, 'minutes'),
           }),
         };
+      }
 
-      case 'seconds':
+      case 'seconds': {
         const secondsValue = utils.getSeconds(dateOrNow);
         const handleSecondsChange = (value: number, isFinish?: PickerSelectionState) => {
           onChange(utils.setSeconds(dateOrNow, value), isFinish);
@@ -233,6 +251,7 @@ const _ClockView: React.FC<ClockViewProps> = ({
             isDisabled: (value) => isTimeDisabled(value, 'seconds'),
           }),
         };
+      }
 
       default:
         throw new Error('You must provide the type for ClockView');
@@ -252,7 +271,7 @@ const _ClockView: React.FC<ClockViewProps> = ({
   ]);
 
   return (
-    <>
+    <React.Fragment>
       {showViewSwitcher && (
         <ArrowSwitcher
           className={classes.arrowSwitcher}
@@ -268,7 +287,6 @@ const _ClockView: React.FC<ClockViewProps> = ({
           isRightDisabled={nextViewAvailable}
         />
       )}
-
       <Clock
         date={date}
         ampmInClock={ampmInClock}
@@ -282,11 +300,11 @@ const _ClockView: React.FC<ClockViewProps> = ({
         handleMeridiemChange={handleMeridiemChange}
         {...viewProps}
       />
-    </>
+    </React.Fragment>
   );
-};
+}
 
-export const ClockView = withDefaultProps(muiPickersComponentConfig, _ClockView);
+export const ClockView = withDefaultProps(muiPickersComponentConfig, ClockViewRaw);
 
 ClockView.propTypes = {
   ampm: PropTypes.bool,

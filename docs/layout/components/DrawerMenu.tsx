@@ -35,14 +35,12 @@ const DrawerMenu: React.SFC<WithStyles<typeof styles>> = ({ classes }) => (
           Material-UI pickers
         </Typography>
       </Link>
-
       <Link href="/releases">
         <Typography variant="caption" color="textPrimary" className={classes.headerLink}>
           v{version}
         </Typography>
       </Link>
     </Toolbar>
-
     <Divider />
     <NavigationMenu />
   </div>

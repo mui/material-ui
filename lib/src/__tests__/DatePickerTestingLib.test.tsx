@@ -1,8 +1,7 @@
 import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
-import { getByMuiTest } from './test-utils';
 import { screen, waitFor } from '@testing-library/react';
-import { utilsToUse, FakeTransitionComponent } from './test-utils';
+import { getByMuiTest, utilsToUse, FakeTransitionComponent } from './test-utils';
 import { createClientRender, fireEvent } from './createClientRender';
 import { DatePicker, MobileDatePicker, DesktopDatePicker } from '../index';
 

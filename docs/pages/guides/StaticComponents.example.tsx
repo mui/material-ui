@@ -19,12 +19,10 @@ export default function StaticPickers() {
             onChange={handleDateChange as any}
           />
         </Paper>
-
         <Button fullWidth onClick={() => handleDateChange(null)}>
           Clear date ({date && date.toJSON()})
         </Button>
       </div>
-
       <div>
         <PickersClockView
           type="hours"

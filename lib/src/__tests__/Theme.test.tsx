@@ -1,9 +1,8 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { mount } from './test-utils';
 import { DatePicker } from '../DatePicker';
-import { ThemeProvider } from '@material-ui/core/styles';
-import { createMuiTheme } from '@material-ui/core/styles';
 import { DateTimePicker } from '../DateTimePicker/DateTimePicker';
 
 const theme = createMuiTheme({

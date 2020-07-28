@@ -2,8 +2,8 @@ import * as React from 'react';
 import clsx from 'clsx';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
-import { onSpaceOrEnter } from '../../_helpers/utils';
 import { makeStyles, fade } from '@material-ui/core/styles';
+import { onSpaceOrEnter } from '../../_helpers/utils';
 import { useCanAutoFocus } from '../../_shared/hooks/useCanAutoFocus';
 import { PickerSelectionState } from '../../_shared/hooks/usePickerState';
 
@@ -79,15 +79,8 @@ export const useStyles = makeStyles(
   { name: 'MuiPickersClockNumber' }
 );
 
-export const ClockNumber: React.FC<ClockNumberProps> = ({
-  disabled,
-  getClockNumberText,
-  index,
-  isInner,
-  label,
-  onSelect,
-  selected,
-}) => {
+export const ClockNumber: React.FC<ClockNumberProps> = (props) => {
+  const { disabled, getClockNumberText, index, isInner, label, onSelect, selected } = props;
   const classes = useStyles();
   const canAutoFocus = useCanAutoFocus();
   const ref = React.useRef<HTMLSpanElement>(null);

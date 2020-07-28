@@ -1,5 +1,4 @@
 // Related: ../../__tests__/typings.d.ts
-
 import { createMuiTheme } from '@material-ui/core';
 
 createMuiTheme({

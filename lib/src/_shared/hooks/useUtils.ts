@@ -1,4 +1,4 @@
-import { useContext, useRef } from 'react';
+import * as React from 'react';
 import { IUtils } from '@date-io/core/IUtils';
 import { MuiPickersAdapterContext } from '../../LocalizationProvider';
 
@@ -14,7 +14,7 @@ function checkUtils(utils: MuiPickersAdapter | null) /* :asserts utils is MuiPic
 }
 
 export function useUtils(): MuiPickersAdapter {
-  const utils = useContext(MuiPickersAdapterContext);
+  const utils = React.useContext(MuiPickersAdapterContext);
   checkUtils(utils);
 
   return utils!;
@@ -22,7 +22,7 @@ export function useUtils(): MuiPickersAdapter {
 
 export function useNow() {
   const utils = useUtils();
-  const now = useRef(utils.date());
+  const now = React.useRef(utils.date());
 
   return now.current;
 }

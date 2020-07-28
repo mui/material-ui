@@ -45,6 +45,8 @@ export function useGlobalKeyDown(active: boolean, keyHandlers: KeyHandlers) {
         window.removeEventListener('keydown', handleKeyDown);
       };
     }
+
+    return undefined;
   }, [active]);
 }
 

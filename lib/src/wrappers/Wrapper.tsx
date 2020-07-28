@@ -50,13 +50,15 @@ export type ExtendWrapper<TWrapper extends SomeWrapper> = TWrapper extends typeo
 export function getWrapperVariant(wrapper: SomeWrapper) {
   if (wrapper === DesktopWrapper) {
     return 'desktop';
-  } else if (wrapper === StaticWrapper) {
-    return 'static';
-  } else if (wrapper === MobileWrapper) {
-    return 'mobile';
-  } else {
-    return null;
   }
+  if (wrapper === StaticWrapper) {
+    return 'static';
+  }
+  if (wrapper === MobileWrapper) {
+    return 'mobile';
+  }
+
+  return null;
 }
 
 export type WrapperVariant = ReturnType<typeof getWrapperVariant>;

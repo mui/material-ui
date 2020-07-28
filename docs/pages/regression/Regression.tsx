@@ -1,25 +1,28 @@
-import React, { useState, useContext } from 'react';
+import * as React from 'react';
 import LeftArrowIcon from '@material-ui/icons/KeyboardArrowLeft';
 import RightArrowIcon from '@material-ui/icons/KeyboardArrowRight';
-import { Grid, Typography } from '@material-ui/core';
-import { TextField, TextFieldProps } from '@material-ui/core';
-import { createRegressionDay as createRegressionDayRenderer } from './RegressionDay';
-import { MuiPickersContext, DateRangePicker, DateRangeDelimiter } from '@material-ui/pickers';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import TextField, { TextFieldProps } from '@material-ui/core/TextField';
 import {
+  MuiPickersContext,
+  DateRangePicker,
+  DateRangeDelimiter,
   MobileDatePicker,
   DesktopDatePicker,
   MobileTimePicker,
   DesktopTimePicker,
 } from '@material-ui/pickers';
+import { createRegressionDay as createRegressionDayRenderer } from './RegressionDay';
 
 const makeRenderInputProp = (overrideProps: Omit<Partial<TextFieldProps>, 'variant'>) => ({
   renderInput: (props: TextFieldProps) => <TextField {...props} {...overrideProps} />,
 });
 
 function Regression() {
-  const utils = useContext(MuiPickersContext);
-  const [range, changeRange] = useState<any>([new Date('2019-01-01T00:00:00.000'), null]);
-  const [date, changeDate] = useState<any>(new Date('2019-01-01T00:00:00.000'));
+  const utils = React.useContext(MuiPickersContext);
+  const [range, changeRange] = React.useState<any>([new Date('2019-01-01T00:00:00.000'), null]);
+  const [date, changeDate] = React.useState<any>(new Date('2019-01-01T00:00:00.000'));
 
   const sharedProps = {
     value: date,
@@ -35,11 +38,9 @@ function Regression() {
       <Typography align="center" variant="h5" gutterBottom>
         This page is using for the automate regression of @material-ui/pickers.
       </Typography>
-
       <Typography align="center" variant="h4" component="span" gutterBottom>
         DatePicker
       </Typography>
-
       <Grid container justify="center" wrap="wrap">
         <MobileDatePicker {...makeRenderInputProp({ id: 'basic-datepicker' })} {...sharedProps} />
         <MobileDatePicker
@@ -60,11 +61,9 @@ function Regression() {
         <MobileDatePicker disabled {...makeRenderInputProp({ id: 'disabled' })} {...sharedProps} />
         <MobileDatePicker readOnly {...makeRenderInputProp({ id: 'readonly' })} {...sharedProps} />
       </Grid>
-
       <Typography align="center" variant="h4" component="span" gutterBottom>
         TimePicker
       </Typography>
-
       <Grid container justify="center" wrap="wrap">
         <MobileTimePicker
           {...makeRenderInputProp({ id: 'mobile-timepicker' })}
@@ -77,11 +76,9 @@ function Regression() {
           onChange={changeDate}
         />
       </Grid>
-
       <Typography align="center" variant="h4" component="span" gutterBottom>
         DateRangePicker
       </Typography>
-
       <DateRangePicker
         value={range}
         onChange={changeRange}

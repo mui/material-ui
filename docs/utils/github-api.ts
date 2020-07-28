@@ -14,7 +14,7 @@ export function fetchGithubData<T extends keyof CacheType>(
     return Promise.resolve(cache[path] || ([] as any));
   }
 
-  return fetch('https://api.github.com/repos/mui-org/material-ui-pickers/' + path, {
+  return fetch(`https://api.github.com/repos/mui-org/material-ui-pickers/${path}`, {
     headers: {
       // just a super basic readonly token, that makes api rate limit = 5000/hour
       Authorization: 'token 14ef125b9fbcf138ff9042b45f89f8b3c28f510a',

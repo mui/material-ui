@@ -4,8 +4,9 @@ import TextField from '@material-ui/core/TextField';
 import { Dayjs } from 'dayjs';
 import { Moment } from 'moment';
 import { DateTime } from 'luxon';
-import { makeJSDateObject } from '../../../utils/helpers';
 import { DateRangePicker, DateRangeDelimiter, DateRange } from '@material-ui/pickers';
+// TODO remove relative import
+import { makeJSDateObject } from '../../../utils/helpers';
 
 function getWeeksAfter(date: Moment | DateTime | Dayjs | Date, amount: number) {
   // TODO: replace with implementation for your date library
@@ -13,15 +14,15 @@ function getWeeksAfter(date: Moment | DateTime | Dayjs | Date, amount: number) {
 }
 
 export default function MinMaxDateRangePicker() {
-  const [selectedRange, handleDateChange] = React.useState<DateRange<Date>>([null, null]);
+  const [value, setValue] = React.useState<DateRange<Date>>([null, null]);
 
   return (
     <DateRangePicker
       disablePast
-      value={selectedRange}
+      value={value}
       // @ts-ignore
-      maxDate={getWeeksAfter(selectedRange[0], 4)}
-      onChange={(date) => handleDateChange(date)}
+      maxDate={getWeeksAfter(value[0], 4)}
+      onChange={(newValue) => setValue(newValue)}
       renderInput={(startProps, endProps) => (
         <React.Fragment>
           <TextField {...startProps} />

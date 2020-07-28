@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import * as React from 'react';
 import clsx from 'clsx';
 import isSameDay from 'date-fns/isSameDay';
@@ -7,8 +8,9 @@ import TextField from '@material-ui/core/TextField';
 import isWithinInterval from 'date-fns/isWithinInterval';
 import { makeStyles } from '@material-ui/core';
 // this guy required only on the docs site to work with dynamic date library
-import { makeJSDateObject } from '../../../utils/helpers';
 import { DatePicker, PickersDay, PickersDayProps } from '@material-ui/pickers';
+// TODO remove relative import
+import { makeJSDateObject } from '../../../utils/helpers';
 
 const useStyles = makeStyles((theme) => ({
   highlight: {
@@ -29,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CustomDay(props: any) {
+export default function CustomDay(demoProps: any) {
   const classes = useStyles();
   const [selectedDate, handleDateChange] = React.useState<Date | null>(new Date());
 
@@ -70,7 +72,7 @@ export default function CustomDay(props: any) {
       onChange={handleDateChange}
       renderDay={renderWeekPickerDay as any}
       renderInput={(props) => <TextField {...props} />}
-      inputFormat={props.__willBeReplacedGetFormatString({
+      inputFormat={demoProps.__willBeReplacedGetFormatString({
         moment: `[Week of] MMM D`,
         dateFns: "'Week of' MMM d",
       })}

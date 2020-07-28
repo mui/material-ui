@@ -1,7 +1,36 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { ClockViewType } from '../../constants/ClockType';
 import { withStyles, createStyles, Theme, WithStyles } from '@material-ui/core/styles';
+import { ClockViewType } from '../../constants/ClockType';
+
+export const styles = (theme: Theme) =>
+  createStyles({
+    pointer: {
+      width: 2,
+      backgroundColor: theme.palette.primary.main,
+      position: 'absolute',
+      left: 'calc(50% - 1px)',
+      bottom: '50%',
+      transformOrigin: 'center bottom 0px',
+    },
+    animateTransform: {
+      transition: theme.transitions.create(['transform', 'height']),
+    },
+    thumb: {
+      width: 4,
+      height: 4,
+      backgroundColor: theme.palette.primary.contrastText,
+      borderRadius: '100%',
+      position: 'absolute',
+      top: -21,
+      left: -15,
+      border: `14px solid ${theme.palette.primary.main}`,
+      boxSizing: 'content-box',
+    },
+    noPoint: {
+      backgroundColor: theme.palette.primary.main,
+    },
+  });
 
 export interface ClockPointerProps
   extends React.HTMLProps<HTMLDivElement>,
@@ -12,7 +41,7 @@ export interface ClockPointerProps
   type: ClockViewType;
 }
 
-export class ClockPointer extends React.Component<ClockPointerProps> {
+class ClockPointer extends React.Component<ClockPointerProps> {
   public static getDerivedStateFromProps = (
     nextProps: ClockPointerProps,
     state: ClockPointer['state']
@@ -32,6 +61,7 @@ export class ClockPointer extends React.Component<ClockPointerProps> {
 
   public state = {
     toAnimateTransform: false,
+    // eslint-disable-next-line react/no-unused-state
     previousType: undefined,
   };
 
@@ -71,35 +101,6 @@ export class ClockPointer extends React.Component<ClockPointerProps> {
     );
   }
 }
-
-export const styles = (theme: Theme) =>
-  createStyles({
-    pointer: {
-      width: 2,
-      backgroundColor: theme.palette.primary.main,
-      position: 'absolute',
-      left: 'calc(50% - 1px)',
-      bottom: '50%',
-      transformOrigin: 'center bottom 0px',
-    },
-    animateTransform: {
-      transition: theme.transitions.create(['transform', 'height']),
-    },
-    thumb: {
-      width: 4,
-      height: 4,
-      backgroundColor: theme.palette.primary.contrastText,
-      borderRadius: '100%',
-      position: 'absolute',
-      top: -21,
-      left: -15,
-      border: `14px solid ${theme.palette.primary.main}`,
-      boxSizing: 'content-box',
-    },
-    noPoint: {
-      backgroundColor: theme.palette.primary.main,
-    },
-  });
 
 export default withStyles(styles, {
   name: 'MuiPickersClockPointer',

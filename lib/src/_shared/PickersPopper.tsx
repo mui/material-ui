@@ -6,10 +6,10 @@ import Popper, { PopperProps } from '@material-ui/core/Popper';
 import TrapFocus, { TrapFocusProps } from '@material-ui/core/Unstable_TrapFocus';
 import { useForkRef } from '@material-ui/core/utils';
 import { makeStyles } from '@material-ui/core/styles';
+import { TransitionProps } from '@material-ui/core/transitions';
 import { useGlobalKeyDown, keycode } from './hooks/useKeyDown';
 import { IS_TOUCH_DEVICE_MEDIA } from '../constants/dimensions';
 import { executeInTheNextEventLoopTick } from '../_helpers/utils';
-import { TransitionProps } from '@material-ui/core/transitions/transition';
 
 export interface ExportedPickerPopperProps {
   /**
@@ -51,18 +51,19 @@ export const useStyles = makeStyles(
   { name: 'MuiPickersPopper' }
 );
 
-export const PickersPopper: React.FC<PickerPopperProps> = ({
-  anchorEl,
-  children,
-  innerRef = null,
-  onClose,
-  onOpen,
-  open,
-  PopperProps,
-  role,
-  TransitionComponent = Grow,
-  TrapFocusProps,
-}) => {
+export const PickersPopper: React.FC<PickerPopperProps> = (props) => {
+  const {
+    anchorEl,
+    children,
+    innerRef = null,
+    onClose,
+    onOpen,
+    open,
+    PopperProps,
+    role,
+    TransitionComponent = Grow,
+    TrapFocusProps,
+  } = props;
   const classes = useStyles();
   const paperRef = React.useRef<HTMLElement>(null);
   const handlePopperRef = useForkRef(paperRef, innerRef);

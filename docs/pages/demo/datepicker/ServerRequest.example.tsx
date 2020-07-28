@@ -1,15 +1,17 @@
+/* eslint-disable no-console */
 import * as React from 'react';
 import Badge from '@material-ui/core/Badge';
 import TextField from '@material-ui/core/TextField';
-import { makeJSDateObject } from '../../../utils/helpers';
 import { DatePicker, PickersDay } from '@material-ui/pickers';
 // @ts-ignore
 import { CalendarSkeleton } from '@material-ui/pickers/CalendarSkeleton';
+// TODO remove relative import
+import { makeJSDateObject } from '../../../utils/helpers';
 
 export default function ServerRequest() {
   const requestAbortController = React.useRef<AbortController | null>(null);
   const [highlightedDays, setHighlightedDays] = React.useState([1, 2, 15]);
-  const [selectedDate, handleDateChange] = React.useState<Date | null>(new Date());
+  const [value, setValue] = React.useState<Date | null>(new Date());
 
   React.useEffect(() => {
     // abort request on unmount
@@ -38,15 +40,15 @@ export default function ServerRequest() {
 
   return (
     <DatePicker
-      value={selectedDate}
+      value={value}
       loading={highlightedDays === null}
-      onChange={(date) => handleDateChange(date)}
+      onChange={(newValue) => setValue(newValue)}
       // @ts-expect-error fix typings of components
       onMonthChange={handleMonthChange}
       // loading
       renderInput={(props) => <TextField {...props} />}
       renderLoading={() => <CalendarSkeleton />}
-      renderDay={(day, selectedDate, DayComponentProps) => {
+      renderDay={(day, value, DayComponentProps) => {
         // @ts-expect-error fix typings of components
         const date = makeJSDateObject(day ?? new Date()); // skip this step, it is required to support date libs
         const isSelected =

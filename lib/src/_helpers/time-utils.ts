@@ -58,7 +58,7 @@ const getAngleValue = (step: number, offsetX: number, offsetY: number) => {
   deg %= 360;
 
   const value = Math.floor(deg / step) || 0;
-  const delta = Math.pow(x, 2) + Math.pow(y, 2);
+  const delta = x ** 2 + y ** 2;
   const distance = Math.sqrt(delta);
 
   return { value, distance };
@@ -73,19 +73,19 @@ export const getMinutes = (offsetX: number, offsetY: number, step = 1) => {
 };
 
 export const getHours = (offsetX: number, offsetY: number, ampm: boolean) => {
-  let { value, distance } = getAngleValue(30, offsetX, offsetY);
-  value = value || 12;
+  const { value, distance } = getAngleValue(30, offsetX, offsetY);
+  let hour = value || 12;
 
   if (!ampm) {
     if (distance < 90) {
-      value += 12;
-      value %= 24;
+      hour += 12;
+      hour %= 24;
     }
   } else {
-    value %= 12;
+    hour %= 12;
   }
 
-  return value;
+  return hour;
 };
 
 export function getSecondsInDay(date: unknown, utils: MuiPickersAdapter) {
@@ -121,6 +121,7 @@ export interface TimeValidationProps {
   shouldDisableTime?: (timeValue: number, clockType: 'hours' | 'minutes' | 'seconds') => boolean;
   /**
    * Do not ignore date part when validating min/max time.
+   *
    * @default false
    */
   disableIgnoringDatePartForTimeValidation?: boolean;

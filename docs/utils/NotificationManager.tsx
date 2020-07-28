@@ -1,8 +1,8 @@
 import * as React from 'react';
 import ReactMarkdown from 'react-markdown';
-import notifications from '../notifications.json';
 import { useSnackbar } from 'notistack';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import notifications from '../notifications.json';
 
 interface Notification {
   id: string;

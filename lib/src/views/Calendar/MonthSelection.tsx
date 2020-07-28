@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Month from './Month';
 import { makeStyles } from '@material-ui/core/styles';
+import { Month } from './Month';
 import { useUtils } from '../../_shared/hooks/useUtils';
 import { ParsableDate } from '../../constants/prop-types';
 import { PickerOnChangeFn } from '../../_shared/hooks/useViews';

@@ -41,18 +41,12 @@ export const useStyles = makeStyles(
   { name: 'MuiPickersMonth' }
 );
 
-export const Month: React.FC<MonthProps> = ({
-  children,
-  disabled,
-  onSelect,
-  selected,
-  value,
-  ...other
-}) => {
+export const Month: React.FC<MonthProps> = (props) => {
+  const { disabled, onSelect, selected, value, ...other } = props;
   const classes = useStyles();
-  const handleSelection = React.useCallback(() => {
+  const handleSelection = () => {
     onSelect(value);
-  }, [onSelect, value]);
+  };
 
   return (
     <Typography
@@ -67,7 +61,6 @@ export const Month: React.FC<MonthProps> = ({
       onKeyDown={onSpaceOrEnter(handleSelection)}
       color={selected ? 'primary' : undefined}
       variant={selected ? 'h5' : 'subtitle1'}
-      children={children}
       {...other}
     />
   );

@@ -12,8 +12,8 @@
 // You can read more here:
 // https://on.cypress.io/configuration
 // ***********************************************************
-
 import { configure } from '@testing-library/cypress';
+
 configure({ testIdAttribute: 'data-mui-test' });
 
 require('./commands');

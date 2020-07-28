@@ -1,4 +1,4 @@
-import { MuiPickersComponentsToClassName, MuiPickersComponentsPropsList } from '../../src/typings';
+import { MuiPickersComponentsToClassName, MuiPickersComponentsPropsList } from '../typings';
 
 declare module '@material-ui/core/styles/overrides' {
   export interface ComponentNameToClassKey extends MuiPickersComponentsToClassName {}

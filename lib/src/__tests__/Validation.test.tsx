@@ -70,8 +70,8 @@ describe('DatePicker validation', () => {
 });
 
 describe('TimePicker validation', () => {
-  const createTime = (time: string) => new Date('01/01/2000 ' + time);
-  const shouldDisableTime: TimePickerProps['shouldDisableTime'] = (value, _clockType) => {
+  const createTime = (time: string) => new Date(`01/01/2000 ${time}`);
+  const shouldDisableTime: TimePickerProps['shouldDisableTime'] = (value) => {
     return value === 10;
   };
 

@@ -1,10 +1,9 @@
 import * as React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import { MonthSelection } from './MonthSelection';
 import { DatePickerView } from '../../DatePicker';
 import { useCalendarState } from './useCalendarState';
-import { makeStyles } from '@material-ui/core/styles';
 import { useUtils } from '../../_shared/hooks/useUtils';
-
 import { FadeTransitionGroup } from './FadeTransitionGroup';
 import { Calendar, ExportedCalendarProps } from './Calendar';
 import { PickerOnChangeFn } from '../../_shared/hooks/useViews';
@@ -39,6 +38,7 @@ export interface CalendarViewProps
   onChange: PickerOnChangeFn;
   /**
    * Disable heavy animations.
+   *
    * @default /(android)/i.test(window.navigator.userAgent).
    */
   reduceAnimations?: boolean;
@@ -77,31 +77,32 @@ export const defaultReduceAnimations =
 
 export const CalendarView: React.FC<CalendarViewProps> = withDefaultProps(
   muiComponentConfig,
-  ({
-    allowKeyboardControl: __allowKeyboardControlProp,
-    changeView,
-    date,
-    disableFuture,
-    disablePast,
-    loading,
-    maxDate: __maxDate,
-    minDate: __minDate,
-    onChange,
-    onMonthChange,
-    reduceAnimations = defaultReduceAnimations,
-    renderLoading,
-    shouldDisableDate,
-    shouldDisableYear,
-    view,
-    ...other
-  }) => {
+  (props) => {
+    const {
+      allowKeyboardControl: allowKeyboardControlProp,
+      changeView,
+      date,
+      disableFuture,
+      disablePast,
+      loading,
+      maxDate: maxDateProp,
+      minDate: minDateProp,
+      onChange,
+      onMonthChange,
+      reduceAnimations = defaultReduceAnimations,
+      renderLoading,
+      shouldDisableDate,
+      shouldDisableYear,
+      view,
+      ...other
+    } = props;
     const utils = useUtils();
     const classes = useStyles();
     const isStatic = React.useContext(IsStaticVariantContext);
-    const allowKeyboardControl = __allowKeyboardControlProp ?? !isStatic;
+    const allowKeyboardControl = allowKeyboardControlProp ?? !isStatic;
 
-    const minDate = __minDate || utils.date(defaultMinDate);
-    const maxDate = __maxDate || utils.date(defaultMaxDate);
+    const minDate = minDateProp || utils.date(defaultMinDate);
+    const maxDate = maxDateProp || utils.date(defaultMaxDate);
 
     const {
       calendarState,
@@ -157,7 +158,6 @@ export const CalendarView: React.FC<CalendarViewProps> = withDefaultProps(
           disableFuture={disableFuture}
           reduceAnimations={reduceAnimations}
         />
-
         <FadeTransitionGroup
           reduceAnimations={reduceAnimations}
           className={classes.viewTransitionContainer}
@@ -179,7 +179,6 @@ export const CalendarView: React.FC<CalendarViewProps> = withDefaultProps(
                 changeFocusedDay={changeFocusedDay}
               />
             )}
-
             {view === 'month' && (
               <MonthSelection
                 {...other}
@@ -190,7 +189,6 @@ export const CalendarView: React.FC<CalendarViewProps> = withDefaultProps(
                 onMonthChange={onMonthChange}
               />
             )}
-
             {view === 'date' && (
               <Calendar
                 {...other}

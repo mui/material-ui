@@ -1,3 +1,4 @@
+/* eslint-disable */
 import * as React from 'react';
 import { NextFC } from 'next';
 import { PageMeta } from '_shared/PageMeta';
@@ -41,7 +42,6 @@ const Releases: NextFC<ReleasesProps> = ({ tags }) => {
         title="Releases - @material-ui/pickers"
         description="List of @material-ui/pickers releases with a link to per-release documentation site."
       />
-
       <Typography variant="h2" gutterBottom>
         Releases
       </Typography>
@@ -50,7 +50,6 @@ const Releases: NextFC<ReleasesProps> = ({ tags }) => {
         of previous material-ui-picker's releases. Please note that our versions are not synced with
         @material-ui/core
       </Typography>
-
       <Paper className={classes.scrollableTable}>
         <Table>
           <TableHead>
@@ -60,7 +59,6 @@ const Releases: NextFC<ReleasesProps> = ({ tags }) => {
               <TableCell>Release notes</TableCell>
             </TableRow>
           </TableHead>
-
           <TableBody>
             <TableRow>
               <TableCell>
@@ -73,7 +71,6 @@ const Releases: NextFC<ReleasesProps> = ({ tags }) => {
                 This is unpublished <b> future in-development </b> version.
               </TableCell>
             </TableRow>
-
             <TableRow>
               <TableCell>
                 <strong> Latest </strong>
@@ -83,7 +80,6 @@ const Releases: NextFC<ReleasesProps> = ({ tags }) => {
               </TableCell>
               <TableCell>Latest stable published release</TableCell>
             </TableRow>
-
             {tags.map((version) => {
               const docsLink = `https://${version.replace(/\./g, '-')}.${DOMAIN}`;
               const releaseNotesLink = `${GITHUB_URL}/releases/tag/${version}`;
@@ -100,7 +96,6 @@ const Releases: NextFC<ReleasesProps> = ({ tags }) => {
                 </TableRow>
               );
             })}
-
             <TableRow>
               <TableCell>v2</TableCell>
               <TableCell>

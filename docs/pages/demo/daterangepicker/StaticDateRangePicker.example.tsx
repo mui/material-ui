@@ -3,14 +3,14 @@ import TextField from '@material-ui/core/TextField';
 import { StaticDateRangePicker, DateRangeDelimiter, DateRange } from '@material-ui/pickers';
 
 export default function StaticDateRangePickerExample() {
-  const [selectedDate, handleDateChange] = React.useState<DateRange<Date>>([null, null]);
+  const [value, setValue] = React.useState<DateRange<Date>>([null, null]);
 
   return (
     <React.Fragment>
       <StaticDateRangePicker
         displayStaticWrapperAs="desktop"
-        value={selectedDate}
-        onChange={(date) => handleDateChange(date)}
+        value={value}
+        onChange={(newValue) => setValue(newValue)}
         renderInput={(startProps, endProps) => (
           <React.Fragment>
             <TextField {...startProps} />
@@ -19,11 +19,10 @@ export default function StaticDateRangePickerExample() {
           </React.Fragment>
         )}
       />
-
       <StaticDateRangePicker
         displayStaticWrapperAs="mobile"
-        value={selectedDate}
-        onChange={(date) => handleDateChange(date)}
+        value={value}
+        onChange={(newValue) => setValue(newValue)}
         renderInput={(startProps, endProps) => (
           <React.Fragment>
             <TextField {...startProps} />

@@ -28,6 +28,7 @@ export interface ExportedDateRangePickerViewProps
     Omit<BasePickerProps, 'value' | 'onChange'> {
   /**
    * if `true` after selecting `start` date  calendar will not automatically switch to the month of `end` date
+   *
    * @default false
    */
   disableAutoMonthSwitching?: boolean;
@@ -223,6 +224,6 @@ export const DateRangePickerView = <TDate extends unknown>({
 };
 
 DateRangePickerView.propTypes = {
-  disableAutoMonthSwitching: PropTypes.bool,
   calendars: PropTypes.oneOf([1, 2, 3]),
+  disableAutoMonthSwitching: PropTypes.bool,
 };

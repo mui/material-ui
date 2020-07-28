@@ -1,10 +1,8 @@
+import * as React from 'react';
 import clsx from 'clsx';
-import Code from './Code';
 import FuzzySearch from 'fuzzy-search';
 import ReactMarkdown from 'react-markdown';
-import PropTypesDoc from '../prop-types.json';
 import SearchBar from 'material-ui-search-bar';
-import React, { useMemo, useState } from 'react';
 import {
   Table,
   Paper,
@@ -16,6 +14,8 @@ import {
   Typography,
   Grid,
 } from '@material-ui/core';
+import PropTypesDoc from '../prop-types.json';
+import Code from './Code';
 
 const useStyles = makeStyles((theme) => ({
   header: {
@@ -60,7 +60,7 @@ interface PropTypesTableProps {
 
 const PropTypesTableLazy: React.FC<PropTypesTableProps> = ({ disableHeader, src }) => {
   const classes = useStyles();
-  const [searchString, setSearchString] = useState('');
+  const [searchString, setSearchString] = React.useState('');
   const propsDoc = Object.values(PropTypesDoc[src]).sort((a, b) => {
     if (a.required && !b.required) {
       return -1;
@@ -73,7 +73,7 @@ const PropTypesTableLazy: React.FC<PropTypesTableProps> = ({ disableHeader, src 
     return a.name.localeCompare(b.name);
   });
 
-  const searcher = useMemo(
+  const searcher = React.useMemo(
     () =>
       new FuzzySearch(propsDoc, ['name', 'defaultValue', 'description', 'type.name'], {
         sort: true,
@@ -82,7 +82,7 @@ const PropTypesTableLazy: React.FC<PropTypesTableProps> = ({ disableHeader, src 
     [propsDoc]
   );
 
-  const propsToShow = useMemo(() => {
+  const propsToShow = React.useMemo(() => {
     return searcher.search(searchString.trim());
   }, [searchString, searcher]);
 
@@ -104,7 +104,6 @@ const PropTypesTableLazy: React.FC<PropTypesTableProps> = ({ disableHeader, src 
           </Grid>
         </Grid>
       )}
-
       <Paper className={classes.tableWrapper}>
         <Table>
           <TableHead>
@@ -115,7 +114,6 @@ const PropTypesTableLazy: React.FC<PropTypesTableProps> = ({ disableHeader, src 
               <TableCell> Description </TableCell>
             </TableRow>
           </TableHead>
-
           <TableBody>
             {propsToShow.map((prop) => (
               <TableRow key={prop.name}>
@@ -128,19 +126,16 @@ const PropTypesTableLazy: React.FC<PropTypesTableProps> = ({ disableHeader, src 
                     {prop.required ? `${prop.name} *` : prop.name}{' '}
                   </Typography>
                 </TableCell>
-
                 <TableCell>
                   <Code inline language="typescript">
                     {prop.type.name}
                   </Code>
                 </TableCell>
-
                 <TableCell className={classes.defaultValue}>
                   <Typography align="center" variant="body1" component="span">
                     {prop.defaultValue && prop.defaultValue.value}
                   </Typography>
                 </TableCell>
-
                 <TableCell className={classes.description}>
                   <ReactMarkdown source={prop.description} />
                 </TableCell>

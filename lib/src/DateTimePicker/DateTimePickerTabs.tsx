@@ -3,10 +3,10 @@ import clsx from 'clsx';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import Paper from '@material-ui/core/Paper';
-import { TimeIcon } from '../_shared/icons/TimeIcon';
-import { DateTimePickerView } from './DateTimePicker';
-import { DateRangeIcon } from '../_shared/icons/DateRangeIcon';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { TimeIcon } from '../_shared/icons/Time';
+import { DateTimePickerView } from './DateTimePicker';
+import { DateRangeIcon } from '../_shared/icons/DateRange';
 import { WrapperVariantContext } from '../wrappers/WrapperVariantContext';
 
 const viewToTabIndex = (openView: DateTimePickerView) => {
@@ -53,12 +53,8 @@ export const useStyles = makeStyles(
   { name: 'MuiDateTimePickerTabs' }
 );
 
-export const DateTimePickerTabs: React.FC<DateTimePickerTabsProps> = ({
-  dateRangeIcon = <DateRangeIcon />,
-  onChange,
-  timeIcon = <TimeIcon />,
-  view,
-}) => {
+const DateTimePickerTabs: React.FC<DateTimePickerTabsProps> = (props) => {
+  const { dateRangeIcon = <DateRangeIcon />, onChange, timeIcon = <TimeIcon />, view } = props;
   const classes = useStyles();
   const theme = useTheme();
   const wrapperVariant = React.useContext(WrapperVariantContext);

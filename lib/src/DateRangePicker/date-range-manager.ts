@@ -20,11 +20,11 @@ export function calculateRangeChange({
     return Boolean(end) && utils.isAfter(selectedDate, end)
       ? { nextSelection: 'end', newRange: [selectedDate, null] }
       : { nextSelection: 'end', newRange: [selectedDate, end] };
-  } else {
-    return Boolean(start) && utils.isBefore(selectedDate, start)
-      ? { nextSelection: 'end', newRange: [selectedDate, null] }
-      : { nextSelection: 'start', newRange: [start, selectedDate] };
   }
+
+  return Boolean(start) && utils.isBefore(selectedDate, start)
+    ? { nextSelection: 'end', newRange: [selectedDate, null] }
+    : { nextSelection: 'start', newRange: [start, selectedDate] };
 }
 
 export function calculateRangePreview(options: CalculateRangeChangeOptions): DateRange {

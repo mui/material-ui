@@ -3,7 +3,7 @@ import moment, { Moment } from 'moment';
 import { DateTime } from 'luxon';
 
 export function stringToTestId(string: string) {
-  return string.replace(/[&\/\\#,+()$~%.'":*?<>{}\s]/g, '');
+  return string.replace(/[&/\\#,+()$~%.'":*?<>{}\s]/g, '');
 }
 
 export function makeJSDateObject(date: Date | Moment | DateTime | Dayjs) {
@@ -33,6 +33,7 @@ export function copy(text: string) {
 export function loadScript(src: string, position: Element) {
   const script = document.createElement('script');
   script.setAttribute('async', '');
+  // eslint-disable-next-line no-console
   script.onerror = console.log;
   script.src = src;
   position.appendChild(script);

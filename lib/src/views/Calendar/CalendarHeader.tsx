@@ -2,15 +2,15 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Fade from '@material-ui/core/Fade';
+import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import { DatePickerView } from '../../DatePicker';
 import { SlideDirection } from './SlideTransition';
-import { makeStyles } from '@material-ui/core/styles';
 import { useUtils } from '../../_shared/hooks/useUtils';
 import { FadeTransitionGroup } from './FadeTransitionGroup';
 import { DateValidationProps } from '../../_helpers/date-utils';
-import { ArrowDropDownIcon } from '../../_shared/icons/ArrowDropDownIcon';
+import { ArrowDropDownIcon } from '../../_shared/icons/ArrowDropDown';
 import { ArrowSwitcher, ExportedArrowSwitcherProps } from '../../_shared/ArrowSwitcher';
 import {
   usePreviousMonthDisabled,
@@ -137,8 +137,9 @@ export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
               align="center"
               variant="subtitle1"
               className={classes.monthText}
-              children={utils.format(month, 'month')}
-            />
+            >
+              {utils.format(month, 'month')}
+            </Typography>
           </FadeTransitionGroup>
           <FadeTransitionGroup
             reduceAnimations={reduceAnimations}
@@ -149,10 +150,10 @@ export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
               data-mui-test="calendar-year-text"
               align="center"
               variant="subtitle1"
-              children={utils.format(month, 'year')}
-            />
+            >
+              {utils.format(month, 'year')}
+            </Typography>
           </FadeTransitionGroup>
-
           {views.length > 1 && (
             <IconButton
               size="small"
@@ -169,7 +170,6 @@ export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
             </IconButton>
           )}
         </div>
-
         <Fade in={currentView === 'date'}>
           <ArrowSwitcher
             leftArrowButtonProps={leftArrowButtonProps}
@@ -192,10 +192,10 @@ export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
 CalendarHeader.displayName = 'PickersCalendarHeader';
 
 CalendarHeader.propTypes = {
-  leftArrowIcon: PropTypes.node,
-  rightArrowIcon: PropTypes.node,
   leftArrowButtonText: PropTypes.string,
+  leftArrowIcon: PropTypes.node,
   rightArrowButtonText: PropTypes.string,
+  rightArrowIcon: PropTypes.node,
 };
 
 export default CalendarHeader;

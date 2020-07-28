@@ -1,9 +1,8 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import { RangeInput, DateRange } from './RangeTypes';
-import { useUtils } from '../_shared/hooks/useUtils';
 import { makeStyles } from '@material-ui/core/styles';
-import { CurrentlySelectingRangeEndProps } from './RangeTypes';
+import { useUtils } from '../_shared/hooks/useUtils';
+import { RangeInput, DateRange, CurrentlySelectingRangeEndProps } from './RangeTypes';
 import { useMaskedInput } from '../_shared/hooks/useMaskedInput';
 import { DateRangeValidationError } from '../_helpers/date-utils';
 import { WrapperVariantContext } from '../wrappers/WrapperVariantContext';

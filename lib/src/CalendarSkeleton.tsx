@@ -37,7 +37,8 @@ const monthMap = [
 
 export const CalendarSkeleton: React.FC<CalendarSkeletonProps> = withDefaultProps(
   muiComponentConfig,
-  ({ className, ...other }) => {
+  (props) => {
+    const { className, ...other } = props;
     const classes = useStyles();
     const calendarClasses = useCalendarStyles();
 
@@ -45,9 +46,9 @@ export const CalendarSkeleton: React.FC<CalendarSkeletonProps> = withDefaultProp
       <div className={clsx(classes.root, className)} {...other}>
         {monthMap.map((week, index) => (
           <div key={index} className={calendarClasses.week}>
-            {week.map((day, index) => (
+            {week.map((day, index2) => (
               <Skeleton
-                key={index}
+                key={index2}
                 variant="circle"
                 width={DAY_SIZE}
                 height={DAY_SIZE}

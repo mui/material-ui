@@ -84,7 +84,6 @@ class NavItem extends React.Component {
         >
           {title}
         </Button>
-
         <Collapse in={this.state.open} unmountOnExit component="ul" className={classes.collapse}>
           {children}
         </Collapse>

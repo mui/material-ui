@@ -21,7 +21,6 @@ export default function StaticDatePickerExample() {
         onChange={(newValue) => setValue(newValue)}
         renderInput={(props) => <TextField {...props} />}
       />
-
       <StaticDatePicker
         orientation="landscape"
         openTo="date"

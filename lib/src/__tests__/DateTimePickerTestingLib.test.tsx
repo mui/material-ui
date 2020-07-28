@@ -1,9 +1,9 @@
 import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
 import { utilsToUse } from './test-utils';
 import { createClientRender } from './createClientRender';
 import { DesktopDateTimePicker, StaticDateTimePicker } from '../DateTimePicker';
-import { fireEvent, screen, waitFor } from '@testing-library/react';
 
 describe('<DateTimePicker />', () => {
   const render = createClientRender({ strict: false });

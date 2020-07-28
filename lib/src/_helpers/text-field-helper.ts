@@ -94,9 +94,9 @@ export const maskedDateFormatter = (mask: string, acceptRegexp: RegExp) => (valu
       if (i === value.length - 1 && nextMaskChar && nextMaskChar !== MASK_USER_INPUT_SYMBOL) {
         // when cursor at the end of mask part (e.g. month) prerender next symbol "21" -> "21/"
         return formattedChar ? formattedChar + nextMaskChar : '';
-      } else {
-        return formattedChar;
       }
+
+      return formattedChar;
     })
     .join('');
 };

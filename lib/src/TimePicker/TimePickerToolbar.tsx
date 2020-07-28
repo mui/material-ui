@@ -1,13 +1,13 @@
 import * as React from 'react';
 import clsx from 'clsx';
+import { useTheme, makeStyles } from '@material-ui/core/styles';
 import ToolbarText from '../_shared/ToolbarText';
-import ToolbarButton from '../_shared/ToolbarButton';
+import { ToolbarButton } from '../_shared/ToolbarButton';
 import PickerToolbar from '../_shared/PickerToolbar';
 import { arrayIncludes } from '../_helpers/utils';
 import { useUtils } from '../_shared/hooks/useUtils';
 import { PickerOnChangeFn } from '../_shared/hooks/useViews';
 import { withDefaultProps } from '../_shared/withDefaultProps';
-import { useTheme, makeStyles } from '@material-ui/core/styles';
 import { ToolbarComponentProps } from '../Picker/SharedPickerProps';
 import { convertToMeridiem, getMeridiem } from '../_helpers/time-utils';
 
@@ -135,9 +135,7 @@ export const TimePickerToolbar: React.FC<ToolbarComponentProps> = withDefaultPro
               value={date ? formatHours(date) : '--'}
             />
           )}
-
           {arrayIncludes(views, ['hours', 'minutes']) && separator}
-
           {arrayIncludes(views, 'minutes') && (
             <ToolbarButton
               data-mui-test="minutes"
@@ -148,9 +146,7 @@ export const TimePickerToolbar: React.FC<ToolbarComponentProps> = withDefaultPro
               value={date ? utils.format(date, 'minutes') : '--'}
             />
           )}
-
           {arrayIncludes(views, ['minutes', 'seconds']) && separator}
-
           {arrayIncludes(views, 'seconds') && (
             <ToolbarButton
               data-mui-test="seconds"
@@ -161,7 +157,6 @@ export const TimePickerToolbar: React.FC<ToolbarComponentProps> = withDefaultPro
             />
           )}
         </div>
-
         {showAmPmControl && (
           <div
             className={clsx(classes.ampmSelection, {
@@ -177,7 +172,6 @@ export const TimePickerToolbar: React.FC<ToolbarComponentProps> = withDefaultPro
               value={utils.getMeridiemText('am')}
               onClick={() => handleMeridiemChange('am')}
             />
-
             <ToolbarButton
               disableRipple
               variant="subtitle2"

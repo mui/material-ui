@@ -113,11 +113,12 @@ export function useMaskedInput({
       readOnly,
       type: shouldUseMaskedInput ? 'tel' : 'text',
       ...inputProps,
-      onFocus: createDelegatedEventHandler(
-        () => (isFocusedRef.current = true),
-        inputProps?.onFocus
-      ),
-      onBlur: createDelegatedEventHandler(() => (isFocusedRef.current = false), inputProps?.onBlur),
+      onFocus: createDelegatedEventHandler(() => {
+        isFocusedRef.current = true;
+      }, inputProps?.onFocus),
+      onBlur: createDelegatedEventHandler(() => {
+        isFocusedRef.current = false;
+      }, inputProps?.onBlur),
     },
     ...TextFieldProps,
   };

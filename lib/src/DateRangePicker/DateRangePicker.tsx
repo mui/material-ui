@@ -1,22 +1,24 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import { date } from '../constants/prop-types';
 import { useUtils } from '../_shared/hooks/useUtils';
 import { MobileWrapper } from '../wrappers/MobileWrapper';
-import { DateRangeInputProps } from './DateRangePickerInput';
 import { withDefaultProps } from '../_shared/withDefaultProps';
 import { useParsedDate } from '../_shared/hooks/date-helpers-hooks';
 import { withDateAdapterProp } from '../_shared/withDateAdapterProp';
 import { makeWrapperComponent } from '../wrappers/makeWrapperComponent';
 import { ResponsiveTooltipWrapper } from '../wrappers/ResponsiveWrapper';
-import { defaultMinDate, defaultMaxDate } from '../constants/prop-types';
+import { defaultMinDate, defaultMaxDate, date } from '../constants/prop-types';
 import { DesktopTooltipWrapper } from '../wrappers/DesktopTooltipWrapper';
 import { SomeWrapper, ExtendWrapper, StaticWrapper } from '../wrappers/Wrapper';
 import { RangeInput, AllSharedDateRangePickerProps, DateRange } from './RangeTypes';
 import { makeValidationHook, ValidationProps } from '../_shared/hooks/useValidation';
 import { usePickerState, PickerStateValueManager } from '../_shared/hooks/usePickerState';
 import { DateRangePickerView, ExportedDateRangePickerViewProps } from './DateRangePickerView';
-import { DateRangePickerInput, ExportedDateRangePickerInputProps } from './DateRangePickerInput';
+import {
+  DateRangePickerInput,
+  ExportedDateRangePickerInputProps,
+  DateRangeInputProps,
+} from './DateRangePickerInput';
 import {
   parseRangeInputValue,
   validateDateRange,
@@ -29,11 +31,13 @@ export interface BaseDateRangePickerProps
     ExportedDateRangePickerInputProps {
   /**
    * Text for start input label and toolbar placeholder
+   *
    * @default "Start"
    */
   startText?: React.ReactNode;
   /**
    * Text for end input label and toolbar placeholder
+   *
    * @default "end"
    */
   endText?: React.ReactNode;

@@ -1,11 +1,11 @@
 import * as React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import ToolbarText from '../_shared/ToolbarText';
 import PickerToolbar from '../_shared/PickerToolbar';
-import ToolbarButton from '../_shared/ToolbarButton';
+import { ToolbarButton } from '../_shared/ToolbarButton';
 import DateTimePickerTabs from './DateTimePickerTabs';
 import { useUtils } from '../_shared/hooks/useUtils';
 import { DateTimePickerView } from './DateTimePicker';
-import { makeStyles } from '@material-ui/core/styles';
 import { withDefaultProps } from '../_shared/withDefaultProps';
 import { ToolbarComponentProps } from '../Picker/SharedPickerProps';
 import { WrapperVariantContext } from '../wrappers/WrapperVariantContext';
@@ -43,22 +43,23 @@ export const useStyles = makeStyles(
 
 export const DateTimePickerToolbar: React.FC<ToolbarComponentProps> = withDefaultProps(
   muiComponentConfig,
-  ({
-    ampm,
-    date,
-    dateRangeIcon,
-    hideTabs,
-    isMobileKeyboardViewOpen,
-    openView,
-    setOpenView,
-    timeIcon,
-    onChange,
-    toggleMobileKeyboardView,
-    toolbarFormat,
-    toolbarPlaceholder = '––',
-    toolbarTitle = 'SELECT DATE & TIME',
-    ...other
-  }) => {
+  (props) => {
+    const {
+      ampm,
+      date,
+      dateRangeIcon,
+      hideTabs,
+      isMobileKeyboardViewOpen,
+      onChange,
+      openView,
+      setOpenView,
+      timeIcon,
+      toggleMobileKeyboardView,
+      toolbarFormat,
+      toolbarPlaceholder = '––',
+      toolbarTitle = 'SELECT DATE & TIME',
+      ...other
+    } = props;
     const utils = useUtils();
     const classes = useStyles();
     const wrapperVariant = React.useContext(WrapperVariantContext);
@@ -102,7 +103,6 @@ export const DateTimePickerToolbar: React.FC<ToolbarComponentProps> = withDefaul
                 selected={openView === 'year'}
                 value={date ? utils.format(date, 'year') : '–'}
               />
-
               <ToolbarButton
                 tabIndex={-1}
                 variant="h4"
@@ -112,7 +112,6 @@ export const DateTimePickerToolbar: React.FC<ToolbarComponentProps> = withDefaul
                 value={dateText}
               />
             </div>
-
             <div className={classes.timeContainer}>
               <ToolbarButton
                 tabIndex={-1}
@@ -123,9 +122,7 @@ export const DateTimePickerToolbar: React.FC<ToolbarComponentProps> = withDefaul
                 value={date ? formatHours(date) : '--'}
                 typographyClassName={classes.timeTypography}
               />
-
               <ToolbarText variant="h3" value=":" className={classes.separator} />
-
               <ToolbarButton
                 tabIndex={-1}
                 variant="h3"
@@ -138,7 +135,6 @@ export const DateTimePickerToolbar: React.FC<ToolbarComponentProps> = withDefaul
             </div>
           </PickerToolbar>
         )}
-
         {showTabs && (
           <DateTimePickerTabs
             dateRangeIcon={dateRangeIcon}

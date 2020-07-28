@@ -2,31 +2,27 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import { DateIOFormats } from '@date-io/core/IUtils';
 import { MuiPickersAdapter } from './_shared/hooks/useUtils';
-import { withDefaultProps } from './_shared/withDefaultProps';
 
 export const MuiPickersAdapterContext = React.createContext<MuiPickersAdapter | null>(null);
 
 export interface LocalizationProviderProps {
+  children?: React.ReactNode;
   dateAdapter: new (...args: any) => MuiPickersAdapter;
-  children: React.ReactNode;
-  locale?: any;
-  dateLibInstance?: any;
   dateFormats?: Partial<DateIOFormats>;
+  dateLibInstance?: any;
+  locale?: any;
 }
 
-export const LocalizationProvider: React.FC<LocalizationProviderProps> = ({
-  dateAdapter: Utils,
-  children,
-  locale,
-  dateFormats: libFormats,
-  dateLibInstance: libInstance,
-}) => {
+const LocalizationProvider: React.FC<LocalizationProviderProps> = (props) => {
+  const { children, dateAdapter: Utils, dateFormats, dateLibInstance, locale } = props;
   const utils = React.useMemo(
-    () => new Utils({ locale, formats: libFormats, instance: libInstance }),
-    [Utils, locale, libFormats, libInstance]
+    () => new Utils({ locale, formats: dateFormats, instance: dateLibInstance }),
+    [Utils, locale, dateFormats, dateLibInstance]
   );
 
-  return <MuiPickersAdapterContext.Provider value={utils} children={children} />;
+  return (
+    <MuiPickersAdapterContext.Provider value={utils}>{children}</MuiPickersAdapterContext.Provider>
+  );
 };
 
 LocalizationProvider.propTypes = {
@@ -35,7 +31,7 @@ LocalizationProvider.propTypes = {
   /**
    * Your component tree.
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
 } as any;
 
-export default withDefaultProps({ name: 'MuiPickersLocalizationProvider' }, LocalizationProvider);
+export default LocalizationProvider;
