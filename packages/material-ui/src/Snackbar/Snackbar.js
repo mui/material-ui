@@ -9,6 +9,8 @@ import capitalize from '../utils/capitalize';
 import createChainedFunction from '../utils/createChainedFunction';
 import Grow from '../Grow';
 import SnackbarContent from '../SnackbarContent';
+import useTheme from '../styles/useTheme';
+import useMediaQuery from '../useMediaQuery';
 
 export const styles = (theme) => {
   const top1 = { top: 8 };
@@ -98,7 +100,7 @@ export const styles = (theme) => {
 const Snackbar = React.forwardRef(function Snackbar(props, ref) {
   const {
     action,
-    anchorOrigin: { vertical, horizontal } = { vertical: 'bottom', horizontal: 'center' },
+    anchorOrigin: anchorOriginProp,
     autoHideDuration = null,
     children,
     classes,
@@ -127,8 +129,12 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
     ...other
   } = props;
 
+  const theme = useTheme();
   const timerAutoHide = React.useRef();
   const [exited, setExited] = React.useState(true);
+
+  const desktop = useMediaQuery(theme.breakpoints.up('sm'));
+  const { vertical = 'bottom', horizontal = desktop ? 'left' : 'center' } = anchorOriginProp;
 
   const handleClose = useEventCallback((...args) => {
     if (onClose) {
@@ -262,6 +268,7 @@ Snackbar.propTypes = {
   action: PropTypes.node,
   /**
    * The anchor of the `Snackbar`.
+   * The `Snackbar` is placed by default bottom center on Mobile and bottom left on Desktop
    */
   anchorOrigin: PropTypes.shape({
     horizontal: PropTypes.oneOf(['center', 'left', 'right']).isRequired,
