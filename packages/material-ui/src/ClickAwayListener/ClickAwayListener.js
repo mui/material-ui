@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { elementAcceptingRef, exactProp } from '@material-ui/utils';
 import ownerDocument from '../utils/ownerDocument';
@@ -10,10 +9,10 @@ function mapEventPropToEvent(eventProp) {
   return eventProp.substring(2).toLowerCase();
 }
 
-function clickedRootScrollbar(event) {
+function clickedRootScrollbar(event, doc) {
   return (
-    document.documentElement.clientWidth < event.clientX ||
-    document.documentElement.clientHeight < event.clientY
+    doc.documentElement.clientWidth < event.clientX ||
+    doc.documentElement.clientHeight < event.clientY
   );
 }
 
@@ -41,12 +40,7 @@ function ClickAwayListener(props) {
     };
   }, []);
 
-  // can be removed once we drop support for non ref forwarding class components
-  const handleOwnRef = React.useCallback((instance) => {
-    // #StrictMode ready
-    nodeRef.current = ReactDOM.findDOMNode(instance);
-  }, []);
-  const handleRef = useForkRef(children.ref, handleOwnRef);
+  const handleRef = useForkRef(children.ref, nodeRef);
 
   // The handler doesn't take event.defaultPrevented into account:
   //
@@ -60,10 +54,12 @@ function ClickAwayListener(props) {
     const insideReactTree = syntheticEventRef.current;
     syntheticEventRef.current = false;
 
+    const doc = ownerDocument(nodeRef.current);
+
     // 1. IE 11 support, which trigger the handleClickAway even after the unbind
     // 2. The child might render null.
     // 3. Behave like a blur listener.
-    if (!mountedRef.current || !nodeRef.current || clickedRootScrollbar(event)) {
+    if (!mountedRef.current || !nodeRef.current || clickedRootScrollbar(event, doc)) {
       return;
     }
 
@@ -79,8 +75,6 @@ function ClickAwayListener(props) {
     if (event.composedPath) {
       insideDOM = event.composedPath().indexOf(nodeRef.current) > -1;
     } else {
-      // TODO v6 remove dead logic https://caniuse.com/#search=composedPath.
-      const doc = ownerDocument(nodeRef.current);
       insideDOM =
         !doc.documentElement.contains(event.target) || nodeRef.current.contains(event.target);
     }

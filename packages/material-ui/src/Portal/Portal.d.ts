@@ -6,13 +6,13 @@ export interface PortalProps {
    */
   children?: React.ReactNode;
   /**
-   * A HTML element, component instance, or function that returns either.
+   * A HTML element or function that returns one.
    * The `container` will have the portal children appended to it.
    *
    * By default, it uses the body of the top-level document object,
    * so it's simply `document.body` most of the time.
    */
-  container?: React.ReactInstance | (() => React.ReactInstance | null) | null;
+  container?: Element | (() => Element | null) | null;
   /**
    * The `children` will be inside the DOM hierarchy of the parent component.
    */

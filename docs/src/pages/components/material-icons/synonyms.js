@@ -332,6 +332,7 @@ const synonyms = {
   GitHub: 'brand code',
   GolfCourse: 'flag',
   GpsFixed: 'location',
+  Google: 'brand logo',
   Grade: 'likes rated rating shape star',
   GraphicEq: 'audio equalizer',
   GridOn: 'sheet',

@@ -26,7 +26,7 @@ Utility component that locks focus inside the component.
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | A single child content element. |
+| <span class="prop-name">children</span> | <span class="prop-type">element</span> |  | A single child content element.<br>⚠️ [Needs to be able to hold a ref](/guides/composition/#caveat-with-refs). |
 | <span class="prop-name">disableAutoFocus</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the trap focus will not automatically shift focus to itself when it opens, and replace it to the last focused element when it closes. This also works correctly with any trap focus children that have the `disableAutoFocus` prop.<br>Generally this should never be set to `true` as it makes the trap focus less accessible to assistive technologies, like screen readers. |
 | <span class="prop-name">disableEnforceFocus</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the trap focus will not prevent focus from leaving the trap focus while open.<br>Generally this should never be set to `true` as it makes the trap focus less accessible to assistive technologies, like screen readers. |
 | <span class="prop-name">disableRestoreFocus</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the trap focus will not restore focus to previously focused element once trap focus is hidden. |

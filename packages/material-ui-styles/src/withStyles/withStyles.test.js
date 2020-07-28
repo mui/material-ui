@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { stub } from 'sinon';
 import { SheetsRegistry } from 'jss';
 import { Input } from '@material-ui/core';
-import { createClientRender, screen } from 'test/utils/createClientRender';
+import { createClientRender, screen } from 'test/utils';
 import { isMuiElement } from '@material-ui/core/utils';
 import { createMuiTheme } from '@material-ui/core/styles';
 import StylesProvider from '../StylesProvider';
@@ -233,6 +233,47 @@ describe('withStyles', () => {
 
       expect(sheetsRegistry.registry.length).to.equal(1);
       expect(sheetsRegistry.registry[0].rules.raw).to.deep.equal({ root: { padding: 9 } });
+    });
+
+    it('should support the variants key', () => {
+      const styles = {};
+      const StyledComponent = withStyles(styles, { name: 'MuiButton' })(() => <div />);
+      const generateClassName = createGenerateClassName();
+      const sheetsRegistry = new SheetsRegistry();
+
+      render(
+        <ThemeProvider
+          theme={createMuiTheme({
+            variants: {
+              MuiButton: [
+                {
+                  props: { variant: 'test' },
+                  styles: { padding: 9 },
+                },
+                {
+                  props: { variant: 'test', size: 'large' },
+                  styles: { fontSize: 20 },
+                },
+                {
+                  props: { size: 'largest' },
+                  styles: { fontSize: 22 },
+                },
+              ],
+            },
+          })}
+        >
+          <StylesProvider sheetsRegistry={sheetsRegistry} generateClassName={generateClassName}>
+            <StyledComponent />
+          </StylesProvider>
+        </ThemeProvider>,
+      );
+
+      expect(sheetsRegistry.registry.length).to.equal(1);
+      expect(sheetsRegistry.registry[0].rules.raw).to.deep.equal({
+        test: { padding: 9 },
+        testSizeLarge: { fontSize: 20 },
+        sizeLargest: { fontSize: 22 },
+      });
     });
 
     describe('options: disableGeneration', () => {

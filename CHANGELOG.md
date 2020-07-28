@@ -1,5 +1,106 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 5.0.0-alpha.5
+
+###### _July 28, 2020_
+
+Big thanks to the 18 contributors who made this release possible.
+
+### `@material-ui/core@v5.0.0-alpha.5`
+
+- [Accordion] Add new classes key (#21920) @natac13
+- [Accordion] Fix IconButtonProps spreading logic (#21850) @kgregory
+- [Avatar] Fix group size (#21896) @natac13
+- [Button] Custom variant (#21648) @mnajdova
+- [CssBaseline] Export ScopedCssBaseline from barrel index (#21869) @mherczeg
+- [Dialog] Fix body scrollbar close behavior (#21951) @maksimgm
+- [Grid] Rename justify prop to justifyContent (#21845) @mnajdova
+- [Icon] Hide name placeholder while "Material Icons" font is loading (#21950) @maksimgm
+- [Select] Ensure that onChange is called before onClose (#21878) @DanailH
+- [Slider] Make `index` public in the ValueLabel props (#21932) @govardhan-srinivas
+
+### `@material-ui/lab@v5.0.0-alpha.5`
+
+- [TreeView] Change focus management to aria-activedescendant (#21695) @joshwooding
+- [TreeView] Fix crash when shift clicking a clean tree (#21899) @joshwooding
+
+### Framer
+
+- [framer] Refactor as switch (#21885) @mhkasif
+- [framer] Update with latest sources (#21888) @eps1lon
+
+### Docs
+
+- [blog] Q2 2020 Update (#21822) @oliviertassinari
+- [docs] Add expand all and select all to controlled tree demo (#21929) @joshwooding
+- [docs] Add useRadioGroup section (#21910) @kodai3
+- [docs] Autocomplete is not showing options even though they exist (#21949) @maksimgm
+- [docs] Change the destination branch for PRs (#21870) @DanailH
+- [docs] Fix Skeleton inline example (#21918) @ppecheux
+- [docs] Fix custom Snackbar width on mobile (#21948) @ruhci28
+- [docs] Fix the type of the second argument of 'createMuiTheme' function (#21859) @DanailH
+- [docs] Improve ad display @oliviertassinari
+- [docs] Improve documentation of theme.breakpoints (#21922) @ruhci28
+- [docs] Link react-hook-form (#21886) @jeffshek
+- [docs] Mention @MuiContrib in CONTRIBUTING (#21891) @eps1lon
+- [docs] Replace latests tags with next in the codesandbox (#21851) @mnajdova
+- [docs] Update gold sponsor to Text-Em-All (formerly Call-Em-All) (#21897) @jonmiller0
+- [docs] Update testing guide (#21863) @eps1lon
+
+### Core
+
+- [test] Enable more StrictMode tests (#21817) @eps1lon
+- [test] Lint internal typescript-to-proptypes fork (#21876) @eps1lon
+- [test] Pass didWarnControlledToUncontrolled between tests (#21875) @eps1lon
+- [test] Unify import to `test/utils (#21856) @eps1lon
+- [core] Add warnings where ref-forwarding components/elements are required (#21883) @eps1lon
+- [core] Automatically tweet about good first issues (#21879) @eps1lon
+- [core] Batch small changes (#21928) @oliviertassinari
+- [core] Remove /test-utils (#21855) @eps1lon
+- [core] Throw on unused `typescript-to-proptypes-ignore` directives (#21867) @eps1lon
+
+## 5.0.0-alpha.4
+
+###### _July 19, 2020_
+
+Big thanks to the 11 contributors who made this release possible.
+
+### `@material-ui/core@v5.0.0-alpha.4`
+
+#### Breaking changes
+
+- [core] Drop support for non-ref-forwarding class components (#21811) @eps1lon
+  Support for non-ref-forwarding class components in the `component` prop or as an immediate `children` has been dropped. If you were using `unstable_createStrictModeTheme` or didn't see any warnings related to `findDOMNode` in `React.StrictMode` then you don't need to do anything.
+  Otherwise check out the ["Caveat with refs" section in our composition guide](/guides/composition/#caveat-with-refs) to find out how to migrate.
+  This change affects almost all components where you're using the `component` prop or passing `children` to components that require `children` to be elements (e.g. `<MenuList><CustomMenuItem /></MenuList>`)
+- [Stepper] Use context API (#21613) @baterson
+  Rely on the context over the `React.cloneElement()` API.
+  This change makes composition easier.
+
+### `@material-ui/icons@v5.0.0-alpha.4`
+
+- [icons] Add Google brand icon (#21807) @bmg02
+
+### Docs
+
+- [docs] Break up Select demos (#21792) @cjoecker
+- [docs] Change RMUIF info to new version (#21812) @phoqe
+- [docs] Fix Spanish translation (#21800) @adamsr123
+- [docs] Fix nav color (#21780) @mbrookes
+- [docs] Update advanced-de.md (#21786) @jasonericdavis
+
+### Core
+
+- [core] Allow dist tag as argv in use-react-dist-tag (#21810) @eps1lon
+- [core] Drop support for non-ref-forwarding class components (#21811) @eps1lon
+- [core] Lint with typescript-eslint parser (#21758) @oliviertassinari
+- [core] One label is enough @oliviertassinari
+- [core] Remove lint:fix command @oliviertassinari
+- [test] Enable "missing act()"-warnings (#21802) @eps1lon
+- [test] Improve stack trace for unexpected errors (#21818) @eps1lon
+- [test] Update react next patch (#21746) @eps1lon
+- [test] Use testing-library in withStyles (#21804) @eps1lon
+
 ## 5.0.0-alpha.3
 
 ###### _July 12, 2020_

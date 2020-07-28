@@ -2,6 +2,7 @@ import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
+import { elementTypeAcceptingRef } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';
 import { getTransitionProps } from '../transitions/utils';
@@ -9,8 +10,8 @@ import useTheme from '../styles/useTheme';
 import { useForkRef } from '../utils';
 
 export const styles = (theme) => ({
-  /* Styles applied to the container element. */
-  container: {
+  /* Styles applied to the root element. */
+  root: {
     height: 0,
     overflow: 'hidden',
     transition: theme.transitions.create('height'),
@@ -22,7 +23,7 @@ export const styles = (theme) => ({
   },
   /* Pseudo-class applied to the root element if `orientation="horizontal"`. */
   horizontal: {},
-  /* Styles applied to the container element when the transition has entered. */
+  /* Styles applied to the root element when the transition has entered. */
   entered: {
     height: 'auto',
     overflow: 'visible',
@@ -30,7 +31,7 @@ export const styles = (theme) => ({
       width: 'auto',
     },
   },
-  /* Styles applied to the container element when the transition has exited and `collapsedSize` != 0px. */
+  /* Styles applied to the root element when the transition has exited and `collapsedSize` != 0px. */
   hidden: {
     visibility: 'hidden',
   },
@@ -66,7 +67,6 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
     className,
     collapsedSize: collapsedSizeProp = '0px',
     component: Component = 'div',
-    disableStrictModeCompat = false,
     in: inProp,
     onEnter,
     onEntered,
@@ -96,21 +96,18 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
     };
   }, []);
 
-  const enableStrictModeCompat = theme.unstable_strictMode && !disableStrictModeCompat;
   const nodeRef = React.useRef(null);
-  const handleRef = useForkRef(ref, enableStrictModeCompat ? nodeRef : undefined);
+  const handleRef = useForkRef(ref, nodeRef);
 
-  const normalizedTransitionCallback = (callback) => (nodeOrAppearing, maybeAppearing) => {
+  const normalizedTransitionCallback = (callback) => (maybeIsAppearing) => {
     if (callback) {
-      const [node, isAppearing] = enableStrictModeCompat
-        ? [nodeRef.current, nodeOrAppearing]
-        : [nodeOrAppearing, maybeAppearing];
+      const node = nodeRef.current;
 
       // onEnterXxx and onExitXxx callbacks have a different arguments.length value.
-      if (isAppearing === undefined) {
+      if (maybeIsAppearing === undefined) {
         callback(node);
       } else {
-        callback(node, isAppearing);
+        callback(node, maybeIsAppearing);
       }
     }
   };
@@ -206,8 +203,7 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
     }
   });
 
-  const addEndListener = (nodeOrNext, maybeNext) => {
-    const next = enableStrictModeCompat ? nodeOrNext : maybeNext;
+  const addEndListener = (next) => {
     if (timeout === 'auto') {
       timer.current = setTimeout(next, autoTransitionDuration.current || 0);
     }
@@ -223,14 +219,14 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
       onExited={handleExited}
       onExiting={handleExiting}
       addEndListener={addEndListener}
-      nodeRef={enableStrictModeCompat ? nodeRef : undefined}
+      nodeRef={nodeRef}
       timeout={timeout === 'auto' ? null : timeout}
       {...other}
     >
       {(state, childProps) => (
         <Component
           className={clsx(
-            classes.container,
+            classes.root,
             {
               [classes.horizontal]: isHorizontal,
               [classes.entered]: state === 'entered',
@@ -291,13 +287,7 @@ Collapse.propTypes = {
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
-  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
-  /**
-   * Enable this prop if you encounter 'Function components cannot be given refs',
-   * use `unstable_createStrictModeTheme`,
-   * and can't forward the ref in the passed `Component`.
-   */
-  disableStrictModeCompat: PropTypes.bool,
+  component: elementTypeAcceptingRef,
   /**
    * If `true`, the component will transition in.
    */

@@ -6,9 +6,7 @@ import setRef from '../utils/setRef';
 import useForkRef from '../utils/useForkRef';
 
 function getContainer(container) {
-  container = typeof container === 'function' ? container() : container;
-  // #StrictMode ready
-  return ReactDOM.findDOMNode(container);
+  return typeof container === 'function' ? container() : container;
 }
 
 const useEnhancedEffect = typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
@@ -67,7 +65,7 @@ Portal.propTypes = {
    */
   children: PropTypes.node,
   /**
-   * A HTML element, component instance, or function that returns either.
+   * A HTML element or function that returns one.
    * The `container` will have the portal children appended to it.
    *
    * By default, it uses the body of the top-level document object,
@@ -75,7 +73,6 @@ Portal.propTypes = {
    */
   container: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     HTMLElementType,
-    PropTypes.instanceOf(React.Component),
     PropTypes.func,
   ]),
   /**

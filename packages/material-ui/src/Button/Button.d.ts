@@ -1,5 +1,9 @@
+import { OverridableStringUnion } from '@material-ui/types';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps, OverridableComponent, OverridableTypeMap } from '../OverridableComponent';
+
+export interface ButtonPropsVariantOverrides {}
+export type VariantDefaults = Record<'text' | 'outlined' | 'contained', true>;
 
 export type ButtonTypeMap<
   P = {},
@@ -51,7 +55,7 @@ export type ButtonTypeMap<
     /**
      * The variant to use.
      */
-    variant?: 'text' | 'outlined' | 'contained';
+    variant?: OverridableStringUnion<VariantDefaults, ButtonPropsVariantOverrides>;
   };
   defaultComponent: D;
   classKey: ButtonClassKey;

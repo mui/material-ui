@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
+import { elementAcceptingRef } from '@material-ui/utils';
 import { duration } from '../styles/transitions';
 import useTheme from '../styles/useTheme';
 import { reflow, getTransitionProps } from '../transitions/utils';
@@ -27,7 +28,6 @@ const defaultTimeout = {
 const Fade = React.forwardRef(function Fade(props, ref) {
   const {
     children,
-    disableStrictModeCompat = false,
     in: inProp,
     onEnter,
     onEntered,
@@ -43,22 +43,20 @@ const Fade = React.forwardRef(function Fade(props, ref) {
   } = props;
   const theme = useTheme();
 
-  const enableStrictModeCompat = theme.unstable_strictMode && !disableStrictModeCompat;
+  const enableStrictModeCompat = true;
   const nodeRef = React.useRef(null);
   const foreignRef = useForkRef(children.ref, ref);
-  const handleRef = useForkRef(enableStrictModeCompat ? nodeRef : undefined, foreignRef);
+  const handleRef = useForkRef(nodeRef, foreignRef);
 
-  const normalizedTransitionCallback = (callback) => (nodeOrAppearing, maybeAppearing) => {
+  const normalizedTransitionCallback = (callback) => (maybeIsAppearing) => {
     if (callback) {
-      const [node, isAppearing] = enableStrictModeCompat
-        ? [nodeRef.current, nodeOrAppearing]
-        : [nodeOrAppearing, maybeAppearing];
+      const node = nodeRef.current;
 
       // onEnterXxx and onExitXxx callbacks have a different arguments.length value.
-      if (isAppearing === undefined) {
+      if (maybeIsAppearing === undefined) {
         callback(node);
       } else {
-        callback(node, isAppearing);
+        callback(node, maybeIsAppearing);
       }
     }
   };
@@ -144,13 +142,7 @@ Fade.propTypes = {
   /**
    * A single child content element.
    */
-  children: PropTypes.element,
-  /**
-   * Enable this prop if you encounter 'Function components cannot be given refs',
-   * use `unstable_createStrictModeTheme`,
-   * and can't forward the ref in the child component.
-   */
-  disableStrictModeCompat: PropTypes.bool,
+  children: elementAcceptingRef,
   /**
    * If `true`, the component will transition in.
    */

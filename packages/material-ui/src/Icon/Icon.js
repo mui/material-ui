@@ -14,6 +14,7 @@ export const styles = (theme) => ({
     // Chrome fix for https://bugs.chromium.org/p/chromium/issues/detail?id=820541
     // To remove at some point.
     overflow: 'hidden',
+    display: 'inline-block', // allow overflow hidden to take action
     flexShrink: 0,
   },
   /* Styles applied to the root element if `color="primary"`. */
@@ -104,7 +105,7 @@ Icon.propTypes = {
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
-  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
+  component: PropTypes.elementType,
   /**
    * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
    */

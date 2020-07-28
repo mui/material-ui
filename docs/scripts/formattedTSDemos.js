@@ -174,7 +174,7 @@ async function main(argv) {
 yargs
   .command({
     command: '$0',
-    description: 'transpile typescript demos',
+    description: 'transpile TypeScript demos',
     builder: (command) => {
       return command
         .option('watch', {

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import * as ReactDOM from 'react-dom';
 import { Transition } from 'react-transition-group';
 import { elementAcceptingRef } from '@material-ui/utils';
 import debounce from '../utils/debounce';
@@ -89,14 +88,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
 
   const theme = useTheme();
   const childrenRef = React.useRef(null);
-  /**
-   * used in cloneElement(children, { ref: handleRef })
-   */
-  const handleOwnRef = React.useCallback((instance) => {
-    // #StrictMode ready
-    childrenRef.current = ReactDOM.findDOMNode(instance);
-  }, []);
-  const handleRefIntermediary = useForkRef(children.ref, handleOwnRef);
+  const handleRefIntermediary = useForkRef(children.ref, childrenRef);
   const handleRef = useForkRef(handleRefIntermediary, ref);
 
   const normalizedTransitionCallback = (callback) => (isAppearing) => {

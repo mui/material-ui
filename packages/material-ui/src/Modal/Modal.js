@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { getThemeProps, useTheme } from '@material-ui/styles';
 import { elementAcceptingRef, HTMLElementType } from '@material-ui/utils';
@@ -14,8 +13,7 @@ import TrapFocus from '../Unstable_TrapFocus';
 import SimpleBackdrop from './SimpleBackdrop';
 
 function getContainer(container) {
-  container = typeof container === 'function' ? container() : container;
-  return ReactDOM.findDOMNode(container);
+  return typeof container === 'function' ? container() : container;
 }
 
 function getHasTransition(props) {
@@ -282,7 +280,7 @@ Modal.propTypes = {
    */
   closeAfterTransition: PropTypes.bool,
   /**
-   * A HTML element, component instance, or function that returns either.
+   * A HTML element or function that returns one.
    * The `container` will have the portal children appended to it.
    *
    * By default, it uses the body of the top-level document object,
@@ -290,7 +288,6 @@ Modal.propTypes = {
    */
   container: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     HTMLElementType,
-    PropTypes.instanceOf(React.Component),
     PropTypes.func,
   ]),
   /**

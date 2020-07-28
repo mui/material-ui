@@ -45,6 +45,30 @@ Here is an example of customizing the component. You can learn more about this i
 
 {{"demo": "pages/components/radio-buttons/CustomizedRadios.js"}}
 
+## `useRadioGroup`
+
+For advanced customization use cases, a `useRadioGroup()` hook is exposed.
+It returns the context value of the parent radio group.
+The Radio component uses this hook internally.
+
+### API
+
+```jsx
+import { useRadioGroup } from '@material-ui/core/RadioGroup';
+```
+
+#### Returns
+
+`value` (_Object_):
+
+- `value.name` (_String_ [optional]): The name used to reference the value of the control.
+- `value.onChange` (_Void_ [optional]): Callback fired when a radio button is selected.
+- `value.value` (_Any_ [optional]): Value of the selected radio button.
+
+#### Example
+
+{{"demo": "pages/components/radio-buttons/UseRadioGroup.js"}}
+
 ## When to use
 
 - [Checkboxes vs. Radio Buttons](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)

@@ -8,12 +8,6 @@ export interface GrowProps extends Omit<TransitionProps, 'timeout'> {
    */
   children?: React.ReactElement<any, any>;
   /**
-   * Enable this prop if you encounter 'Function components cannot be given refs',
-   * use `unstable_createStrictModeTheme`,
-   * and can't forward the ref in the child component.
-   */
-  disableStrictModeCompat?: boolean;
-  /**
    * If `true`, show the component; triggers the enter or exit animation.
    */
   in?: boolean;

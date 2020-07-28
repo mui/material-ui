@@ -23,7 +23,7 @@ const styles = theme => ({
   it('should handle @ dependencies', () => {
     expect(getDependencies(s1)).to.deep.equal({
       '@foo-bar/bip': 'latest',
-      '@material-ui/core': 'latest',
+      '@material-ui/core': 'next',
       'prop-types': 'latest',
       'react-dom': 'latest',
       react: 'latest',
@@ -46,7 +46,7 @@ const suggestions = [
 `;
 
     expect(getDependencies(source)).to.deep.equal({
-      '@material-ui/core': 'latest',
+      '@material-ui/core': 'next',
       '@unexisting/thing': 'latest',
       'autosuggest-highlight': 'latest',
       'prop-types': 'latest',
@@ -59,7 +59,7 @@ const suggestions = [
   it('should support next dependencies', () => {
     expect(getDependencies(s1, { reactVersion: 'next' })).to.deep.equal({
       '@foo-bar/bip': 'latest',
-      '@material-ui/core': 'latest',
+      '@material-ui/core': 'next',
       'prop-types': 'latest',
       'react-dom': 'next',
       react: 'next',
@@ -81,7 +81,7 @@ import { MuiPickersUtilsProvider, TimePicker, DatePicker } from '@material-ui/pi
       'date-fns': 'latest',
       '@date-io/date-fns': 'v1',
       '@material-ui/pickers': 'latest',
-      '@material-ui/core': 'latest',
+      '@material-ui/core': 'next',
       'prop-types': 'latest',
       'react-dom': 'latest',
       react: 'latest',
@@ -91,7 +91,7 @@ import { MuiPickersUtilsProvider, TimePicker, DatePicker } from '@material-ui/pi
   it('can collect required @types packages', () => {
     expect(getDependencies(s1, { codeLanguage: 'TS' })).to.deep.equal({
       '@foo-bar/bip': 'latest',
-      '@material-ui/core': 'latest',
+      '@material-ui/core': 'next',
       'prop-types': 'latest',
       'react-dom': 'latest',
       react: 'latest',
@@ -128,8 +128,8 @@ import lab from '@material-ui/lab';
     `;
 
     expect(getDependencies(source)).to.deep.equal({
-      '@material-ui/core': 'latest',
-      '@material-ui/lab': 'latest',
+      '@material-ui/core': 'next',
+      '@material-ui/lab': 'next',
       react: 'latest',
       'react-dom': 'latest',
     });

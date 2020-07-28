@@ -62,4 +62,3 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import TableContext from '@material-ui/core/Table/TableContext';
 import TabScrollButton from '@material-ui/core/Tabs/TabScrollButton';
 import SwitchBase from '@material-ui/core/internal/SwitchBase';
-import createMount from '@material-ui/core/test-utils/createMount';

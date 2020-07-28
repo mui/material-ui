@@ -96,7 +96,8 @@ const inHouseAds = [
     link:
       'https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-sketch',
     img: '/static/in-house/sketch.png',
-    description: '<b>For Sketch</b>. A large UI kit with over 600 handcrafted Material-UI symbols 💎.',
+    description:
+      '<b>For Sketch</b>. A large UI kit with over 600 handcrafted Material-UI symbols 💎.',
   },
   {
     name: 'figma',
@@ -134,7 +135,7 @@ function Ad(props) {
   } else if (carbonOut) {
     children = <AdInHouse ad={inHouseAds[Math.floor(inHouseAds.length * randomInHouse)]} />;
     label = 'in-house-carbon';
-  } else if (randomSplit < 0.95) {
+  } else if (randomSplit < 0.9) {
     children = <AdCarbon />;
     label = 'carbon';
   } else {
@@ -152,7 +153,7 @@ function Ad(props) {
       if (
         document.querySelector('.ea-placement') ||
         document.querySelector('#carbonads') ||
-        document.querySelector('.ad-display') ||
+        document.querySelector('.carbonads') ||
         carbonOut
       ) {
         if (

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import * as ReactDOM from 'react-dom';
 import { elementTypeAcceptingRef } from '@material-ui/utils';
 import { getThemeProps } from '@material-ui/styles';
 import Drawer, { getAnchor, isHorizontal } from '../Drawer/Drawer';
@@ -502,11 +501,6 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     }
   }, [open]);
 
-  const handleBackdropRef = React.useCallback((instance) => {
-    // #StrictMode ready
-    backdropRef.current = ReactDOM.findDOMNode(instance);
-  }, []);
-
   return (
     <React.Fragment>
       <Drawer
@@ -515,7 +509,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
         ModalProps={{
           BackdropProps: {
             ...BackdropProps,
-            ref: handleBackdropRef,
+            ref: backdropRef,
           },
           ...ModalPropsProp,
         }}

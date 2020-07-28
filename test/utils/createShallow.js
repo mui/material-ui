@@ -1,7 +1,20 @@
 import { shallow as enzymeShallow } from 'enzyme';
 import until from './until';
 
-// Generate an enhanced shallow function.
+/**
+ * @typedef {object} ExtendedShallowOptions
+ * @property {typeof import('enzyme').shallow} shallow;
+ * @property {boolean} dive
+ * @property {import('enzyme').EnzymeSelector} untilSelector
+ *
+ * @typedef {import('enzyme').ShallowRendererProps & ExtendedShallowOptions} ShallowOptions
+ */
+
+/**
+ * Generate an enhanced shallow function.
+ * @param {Partial<ShallowOptions>} [options1]
+ * @returns {typeof import('enzyme').shallow}
+ */
 export default function createShallow(options1 = {}) {
   const { shallow = enzymeShallow, dive = false, untilSelector = false, ...other1 } = options1;
 

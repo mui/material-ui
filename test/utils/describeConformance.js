@@ -1,8 +1,27 @@
+/* eslint-env mocha */
 import { expect } from 'chai';
 import * as React from 'react';
 import ReactTestRenderer from 'react-test-renderer';
 import findOutermostIntrinsic from './findOutermostIntrinsic';
-import testRef from './testRef';
+
+function assertDOMNode(node) {
+  // duck typing a DOM node
+  expect(typeof node.nodeName).to.equal('string');
+}
+
+/**
+ * Utility method to make assertions about the ref on an element
+ * @param {React.ReactElement} element - The element should have a component wrapped
+ *                                       in withStyles as the root
+ * @param {function} mount - Should be returnvalue of createMount
+ * @param {function} onRef - Callback, first arg is the ref.
+ *                           Assert that the ref is a DOM node by default
+ */
+function testRef(element, mount, onRef = assertDOMNode) {
+  const ref = React.createRef();
+  const wrapper = mount(<React.Fragment>{React.cloneElement(element, { ref })}</React.Fragment>);
+  onRef(ref.current, wrapper);
+}
 
 /**
  * Glossary

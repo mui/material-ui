@@ -5,16 +5,16 @@ import {
   findOutermostIntrinsic,
   getClasses,
   wrapsIntrinsicElement,
-} from '@material-ui/core/test-utils';
-import createMount from 'test/utils/createMount';
-import describeConformance from '@material-ui/core/test-utils/describeConformance';
+  createMount,
+  describeConformance,
+} from 'test/utils';
 import Icon from '@material-ui/core/Icon';
 import Fab from '@material-ui/core/Fab';
 import SpeedDial from './SpeedDial';
 import SpeedDialAction from '../SpeedDialAction';
 
 describe('<SpeedDial />', () => {
-  // StrictModeViolation: uses Zoom
+  // StrictModeViolation: not using act(), prefer test/utils/createClientRender
   const mount = createMount({ strict: false });
   let classes;
 

@@ -243,6 +243,9 @@ export * from './RadioGroup';
 export { default as RootRef } from './RootRef';
 export * from './RootRef';
 
+export { default as ScopedCssBaseline } from './ScopedCssBaseline';
+export * from './ScopedCssBaseline';
+
 export { default as Select } from './Select';
 export * from './Select';
 

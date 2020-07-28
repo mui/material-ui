@@ -8,7 +8,6 @@ update_configs:
     version_requirement_updates: 'auto'
     default_labels:
       - 'dependencies'
-      - 'worktree'
     ignored_updates:
       - match:
           # These should be grouped. Maintainer advise: Watch https://github.com/babel/babel

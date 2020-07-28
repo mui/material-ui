@@ -34,7 +34,7 @@ The `MuiListItem` name can be used for providing [default props](/customization/
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the component. If a `ListItemSecondaryAction` is used it must be the last child. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> |  | The component used for the root node. Either a string to use a HTML element or a component. |
-| <span class="prop-name">ContainerComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'li'</span> | The container component used when a `ListItemSecondaryAction` is the last child. |
+| <span class="prop-name">ContainerComponent</span> | <span class="prop-type">element type</span> | <span class="prop-default">'li'</span> | The container component used when a `ListItemSecondaryAction` is the last child.<br>⚠️ [Needs to be able to hold a ref](/guides/composition/#caveat-with-refs). |
 | <span class="prop-name">ContainerProps</span> | <span class="prop-type">object</span> | <span class="prop-default">{}</span> | Props applied to the container component if used. |
 | <span class="prop-name">dense</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, compact vertical padding designed for keyboard and mouse input will be used. |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the list item will be disabled. |

@@ -18,6 +18,7 @@ Working on your first Pull Request? You can learn how from this free video serie
 [How to Contribute to an Open Source Project on GitHub](https://egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github)
 
 To help you get your feet wet and get you familiar with our contribution process, we have a list of [good first issues](https://github.com/mui-org/material-ui/issues?q=is:open+is:issue+label:"good+first+issue") that contain changes that have a relatively limited scope. This label means that there is already a working solution to the issue in the discussion section. Therefore, it is a great place to get started.
+If you didn't find a suitable issue you can also follow [@MuiContrib](https://twitter.com/MuiContrib) which automatically tweets new good first issues.
 
 We also have a list of [good to take issues](https://github.com/mui-org/material-ui/issues?q=is:open+is:issue+label:"good+to+take"). This label is set when there has been already some discussion about the solution and it is clear in which direction to go. These issues are good for developers that want to reduce the chance of going down a rabbit hole.
 
@@ -79,13 +80,13 @@ the results. If any of them fail, refer to [Checks and how to fix them](#checks-
 
 Make sure the following is true:
 
-- The branch is targeted at `master` for ongoing development. We do our best to keep `master` in good shape, with all tests passing. Code that lands in `master` must be compatible with the latest stable release. It may contain additional features, but no breaking changes. We should be able to release a new minor version from the tip of `master` at any time.
+- The branch is targeted at `next` for ongoing development. We do our best to keep `next` in good shape, with all tests passing. Code that lands in `next` must be compatible with the latest stable release. It may contain additional features, but no breaking changes. We should be able to release a new minor version from the tip of `next` at any time.
 - If a feature is being added:
   - If the result was already achievable with the core library, explain why this feature needs to be added to the core.
   - If this is a common use case, consider adding an example to the documentation.
 - When adding new features or modifying existing, please include tests to confirm the new behavior. You can read more about our test setup in our test [README](https://github.com/mui-org/material-ui/blob/next/test/README.md).
 - If props were added or prop types were changed, the TypeScript declarations were updated.
-- When submitting a new component, please add it to the [lab](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-lab).
+- When submitting a new component, please add it to the [lab](https://github.com/mui-org/material-ui/tree/next/packages/material-ui-lab).
 - The branch is not behind its target.
 
 Because we will only merge a Pull Request for which all tests pass. The following items need is true. We will provide assistance if not:
@@ -200,10 +201,12 @@ Tests can be run with `yarn test`.
 
 ### Updating the component API documentation
 
-To update the component API documentation (auto-generated from component PropTypes comments), run:
+The component API in the component `propTypes` and under `docs/pages/api-docs` is auto-generated from the JSDOC in the TypeScript declarations.
+Be sure to update the documentation in the corresponding `.d.ts` files (e.g. `packages/material-ui/src/Button/Button.d.ts` for `<Button>`) and the run:
 
 ```sh
-yarn docs:api
+$ yarn proptypes
+$ yarn docs:api
 ```
 
 ### Coding style

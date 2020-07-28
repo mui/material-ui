@@ -1,8 +1,6 @@
 {{=« »=}}
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import Mui«componentName» from '@material-ui/core/«componentName»';
 import { Icon } from './Icon';
 import { Avatar } from './Avatar';
@@ -11,11 +9,7 @@ interface Props {
 «& tsInterface»
 }
 
-const defaultProps: Props =  {
-«& defaultProps»
-};
-
-export const «componentName»: React.SFC<Props> = (props: Props) => {
+export function «componentName»(props: Props): JSX.Element {
   const {
     avatarImageFile,
     avatarImageUrl,
@@ -32,7 +26,7 @@ export const «componentName»: React.SFC<Props> = (props: Props) => {
     <Mui«componentName»
       avatar={
         avatarImageFile || avatarImageUrl ? (
-          <Avatar imageFile={avatarImageFile} imageUrl={avatarImageUrl} />
+          <Avatar avatarImageFile={avatarImageFile} avatarImageUrl={avatarImageUrl} />
         ) : (
           undefined
         )
@@ -45,7 +39,9 @@ export const «componentName»: React.SFC<Props> = (props: Props) => {
   );
 }
 
-«componentName».defaultProps = defaultProps;
+«componentName».defaultProps = {
+«& defaultProps»
+};
 
 addPropertyControls(«componentName», {
 «& propertyControls»

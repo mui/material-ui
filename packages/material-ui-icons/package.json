@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/icons",
-  "version": "5.0.0-alpha.1",
+  "version": "5.0.0-alpha.4",
   "private": false,
   "author": "Material-UI Team",
   "description": "Material Design Svg Icons converted to Material-UI React components.",

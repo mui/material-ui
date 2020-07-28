@@ -1,31 +1,20 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { parseColor } from './utils/parseColor';
+import { parseColor } from './utils';
 
 interface Props {
-  paletteType?: 'dark' | 'light';
-  primary?: string;
-  secondary?: string;
-  error?: string;
-  info?: string;
-  warning?: string;
-  success?: string;
+  children?: React.ReactNode;
+  paletteType: 'dark' | 'light';
+  primary: string;
+  secondary: string;
+  error: string;
+  info: string;
+  warning: string;
+  success: string;
 }
 
-const defaultProps: Props = {
-  paletteType: 'light',
-  primary: '#3f51b5',
-  secondary: '#f50057',
-  error: '#f44336',
-  info: '#2196f3',
-  warning: '#ff9800',
-  success: '#4caf4f',
-};
-
-export const Theme: React.SFC<Props> = (props: Props) => {
+export function Theme(props: Props): JSX.Element {
   const {
     children,
     error,
@@ -55,9 +44,17 @@ export const Theme: React.SFC<Props> = (props: Props) => {
       {children}
     </MuiThemeProvider>
   );
-};
+}
 
-Theme.defaultProps = defaultProps;
+Theme.defaultProps = {
+  paletteType: 'light' as const,
+  primary: '#3f51b5',
+  secondary: '#f50057',
+  error: '#f44336',
+  info: '#2196f3',
+  warning: '#ff9800',
+  success: '#4caf4f',
+};
 
 addPropertyControls(Theme, {
   paletteType: {

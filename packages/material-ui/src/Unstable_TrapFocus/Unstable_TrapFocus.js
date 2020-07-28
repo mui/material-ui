@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention, consistent-return, jsx-a11y/no-noninteractive-tabindex */
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { exactProp } from '@material-ui/utils';
+import { exactProp, elementAcceptingRef } from '@material-ui/utils';
 import ownerDocument from '../utils/ownerDocument';
 import useForkRef from '../utils/useForkRef';
 
@@ -36,13 +35,7 @@ function Unstable_TrapFocus(props) {
   const rootRef = React.useRef(null);
   const sentinelEnd = React.useRef(null);
   const sentinelStart = React.useRef(null);
-
-  // can be removed once we drop support for non ref forwarding class components
-  const handleOwnRef = React.useCallback((instance) => {
-    // #StrictMode ready
-    rootRef.current = ReactDOM.findDOMNode(instance);
-  }, []);
-  const handleRef = useForkRef(children.ref, handleOwnRef);
+  const handleRef = useForkRef(children.ref, rootRef);
 
   const onFocusStart = React.useCallback((e) => {
     const isShiftTab = Boolean(lastEvent.current?.shiftKey && lastEvent.current?.keyCode === 9);
@@ -172,7 +165,7 @@ Unstable_TrapFocus.propTypes = {
   /**
    * A single child content element.
    */
-  children: PropTypes.node,
+  children: elementAcceptingRef,
   /**
    * If `true`, the trap focus will not automatically shift focus to itself when it opens, and
    * replace it to the last focused element when it closes.

@@ -2576,6 +2576,7 @@ export { default as GolfCourseOutlined } from './GolfCourseOutlined';
 export { default as GolfCourseRounded } from './GolfCourseRounded';
 export { default as GolfCourseSharp } from './GolfCourseSharp';
 export { default as GolfCourseTwoTone } from './GolfCourseTwoTone';
+export { default as Google } from './Google';
 export { default as GpsFixed } from './GpsFixed';
 export { default as GpsFixedOutlined } from './GpsFixedOutlined';
 export { default as GpsFixedRounded } from './GpsFixedRounded';

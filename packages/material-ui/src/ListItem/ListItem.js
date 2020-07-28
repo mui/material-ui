@@ -1,8 +1,7 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes } from '@material-ui/utils';
+import { chainPropTypes, elementTypeAcceptingRef } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 import isMuiElement from '../utils/isMuiElement';
@@ -132,11 +131,7 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
   const hasSecondaryAction =
     children.length && isMuiElement(children[children.length - 1], ['ListItemSecondaryAction']);
 
-  const handleOwnRef = React.useCallback((instance) => {
-    // #StrictMode ready
-    listItemRef.current = ReactDOM.findDOMNode(instance);
-  }, []);
-  const handleRef = useForkRef(handleOwnRef, ref);
+  const handleRef = useForkRef(listItemRef, ref);
 
   const componentProps = {
     className: clsx(
@@ -261,11 +256,11 @@ ListItem.propTypes = {
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
-  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
+  component: PropTypes.elementType,
   /**
    * The container component used when a `ListItemSecondaryAction` is the last child.
    */
-  ContainerComponent: PropTypes.elementType,
+  ContainerComponent: elementTypeAcceptingRef,
   /**
    * Props applied to the container component if used.
    */
