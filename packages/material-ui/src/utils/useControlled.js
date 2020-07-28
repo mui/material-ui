@@ -42,7 +42,7 @@ export default function useControlled({ controlled, default: defaultProp, name, 
     if (!isControlled) {
       setValue(newValue);
     }
-  }, []);
+  }, [isControlled]);
 
   return [value, setValueIfUncontrolled];
 }
