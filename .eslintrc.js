@@ -72,7 +72,14 @@ module.exports = {
     'import/no-extraneous-dependencies': 'off',
 
     // doesn't work?
-    'jsx-a11y/label-has-associated-control': 'off',
+    'jsx-a11y/label-has-associated-control': [
+      'error',
+      {
+        // airbnb uses 'both' which requires nesting i.e. <label><input /></label>
+        // 'either' allows `htmlFor`
+        assert: 'either',
+      },
+    ],
     // We are a library, we need to support it too
     'jsx-a11y/no-autofocus': 'off',
 
