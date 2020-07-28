@@ -118,8 +118,8 @@ This change affects almost all components where you're using the `component` pro
   ```diff
   -<RootRef rootRef={ref}>
   -  <Button />
-  +<Button ref={ref} />
   -</RootRef>
+  +<Button ref={ref} />
   ```
 
 ### Slider
