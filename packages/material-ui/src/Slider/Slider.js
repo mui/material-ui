@@ -123,6 +123,10 @@ const axisProps = {
   },
 };
 
+// This value is closed to what browsers are using internally to
+// trigger a native scroll.
+const UNCERTAINTY_THRESHOLD = 3; // px
+
 const Identity = (x) => x;
 
 export const styles = (theme) => ({
@@ -135,7 +139,7 @@ export const styles = (theme) => ({
     display: 'inline-block',
     position: 'relative',
     cursor: 'pointer',
-    touchAction: 'none',
+    touchAction: 'pan-y',
     color: theme.palette.primary.main,
     WebkitTapHighlightColor: 'transparent',
     '&$disabled': {
@@ -144,6 +148,7 @@ export const styles = (theme) => ({
       color: theme.palette.grey[400],
     },
     '&$vertical': {
+      touchAction: 'pan-x',
       width: 2,
       height: '100%',
       padding: '0 13px',
@@ -561,9 +566,34 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   const handleTouchMove = useEventCallback((nativeEvent) => {
     const finger = trackFinger(nativeEvent, touchId);
 
-    if (!finger) {
-      return;
+    if (!finger) return;
+
+    if (instanceRef.current.isSwiping === null) {
+      const dx = Math.abs(finger.x - instanceRef.current.startFinger.x);
+      const dy = Math.abs(finger.y - instanceRef.current.startFinger.y);
+      console.log({ dx, dy });
+      // We are likely to be swiping, let's prevent the scroll event on iOS.
+      if (orientation === 'horizontal' ? dx > dy : dy < dx) {
+        if (event.cancelable) {
+          console.log('preventDefault');
+          event.preventDefault();
+        }
+      }
+
+      const definitelySwiping =
+        orientation === 'horizontal'
+          ? dx > dy && dx > UNCERTAINTY_THRESHOLD
+          : dy > dx && dy > UNCERTAINTY_THRESHOLD;
+
+      if (
+        definitelySwiping === true ||
+        (orientation === 'horizontal' ? dy > UNCERTAINTY_THRESHOLD : dx > UNCERTAINTY_THRESHOLD)
+      ) {
+        instanceRef.current.isSwiping = definitelySwiping;
+      }
     }
+
+    if (!instanceRef.current.isSwiping) return;
 
     const { newValue, activeIndex } = getFingerNewValue({
       finger,
@@ -603,13 +633,13 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     const doc = ownerDocument(sliderRef.current);
     doc.removeEventListener('mousemove', handleTouchMove);
     doc.removeEventListener('mouseup', handleTouchEnd);
-    doc.removeEventListener('touchmove', handleTouchMove);
+    doc.removeEventListener('touchmove', handleTouchMove, { passive: false });
     doc.removeEventListener('touchend', handleTouchEnd);
   });
 
   const handleTouchStart = useEventCallback((event) => {
     // Workaround as Safari has partial support for touchAction: 'none'.
-    event.preventDefault();
+    // event.preventDefault();
     const touch = event.changedTouches[0];
     if (touch != null) {
       // A number that uniquely identifies the current finger in the touch session.
@@ -618,6 +648,11 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     const finger = trackFinger(event, touchId);
     const { newValue, activeIndex } = getFingerNewValue({ finger, values, source: valueDerived });
     focusThumb({ sliderRef, activeIndex, setActive });
+
+    instanceRef.current = {
+      startFinger: finger,
+      isSwiping: null,
+    };
 
     setValueState(newValue);
 
