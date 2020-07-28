@@ -72,7 +72,6 @@ module.exports = {
     'react/no-array-index-key': 'off', // This rule is great for raising people awareness of what a key is and how it works.
     'react/no-danger': 'error',
     'react/no-direct-mutation-state': 'error',
-    'react/no-find-dom-node': 'off', // Required for backward compatibility. TODO v5, drop
     'react/require-default-props': 'off', // Not always relevant
     'react/sort-prop-types': 'error',
     // This depends entirely on what you're doing. There's no universal pattern

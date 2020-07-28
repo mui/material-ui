@@ -110,6 +110,18 @@ This change affects almost all components where you're using the `component` pro
   />
   ```
 
+### RootRef
+
+- This component was removed.
+  You can get a reference to the underlying DOM node of our components via `ref` prop.
+
+  ```diff
+  -<RootRef rootRef={ref}>
+  -  <Button />
+  +<Button ref={ref} />
+  -</RootRef>
+  ```
+
 ### Slider
 
 - typescript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
