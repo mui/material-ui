@@ -118,6 +118,14 @@ This change affects almost all components where you're using the `component` pro
   +<Slider onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
   ```
 
+### Snackbar
+
+- The default value of `anchorOrigin` on Desktop is changed from `bottom center` to `bottom left`
+  ```diff
+  -<Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} />
+  +<Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: desktop ? 'left' : 'center' }} />
+  ```
+
 ### TablePagination
 
 - The customization of the table pagination's actions labels must be done with the `getItemAriaLabel` prop. This increases consistency with the `Pagination` component.
