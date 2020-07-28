@@ -201,10 +201,12 @@ Tests can be run with `yarn test`.
 
 ### Updating the component API documentation
 
-To update the component API documentation (auto-generated from component PropTypes comments), run:
+The component API in the component `propTypes` and under `docs/pages/api-docs` is auto-generated from the JSDOC in the TypeScript declarations.
+Be sure to update the documentation in the corresponding `.d.ts` files (e.g. `packages/material-ui/src/Button/Button.d.ts` for `<Button>`) and the run:
 
 ```sh
-yarn docs:api
+$ yarn proptypes
+$ yarn docs:api
 ```
 
 ### Coding style
