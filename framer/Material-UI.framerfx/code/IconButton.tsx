@@ -1,38 +1,22 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
-import MuiIconButton from '@material-ui/core/IconButton';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
+import MuiIconButton, { IconButtonProps as MuiIconButtonProps } from '@material-ui/core/IconButton';
 import MuiBadge from '@material-ui/core/Badge';
 import { Icon } from './Icon';
 
-interface Props {
-  color?: 'default' | 'inherit' | 'primary' | 'secondary';
-  disabled?: boolean;
-  size?: 'medium' | 'small';
-  icon?: string;
-  iconTheme?: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
-  badgeContent?: string;
-  badgeColor?: 'default' | 'primary' | 'secondary' | 'error';
-  width?: number;
-  height?: number;
+interface Props extends MuiIconButtonProps {
+  color: 'default' | 'inherit' | 'primary' | 'secondary';
+  disabled: boolean;
+  size: 'medium' | 'small';
+  icon: string;
+  iconTheme: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
+  badgeContent: string;
+  badgeColor: 'default' | 'primary' | 'secondary' | 'error';
+  width: number | string;
+  height: number;
 }
 
-const defaultProps: Props = {
-  color: 'default',
-  disabled: false,
-  size: 'medium',
-  icon: 'favorite',
-  iconTheme: 'Filled',
-  badgeContent: '',
-  badgeColor: 'default',
-  width: 48,
-  height: 48,
-};
-
-export const IconButton: React.SFC<Props> = (props: Props) => {
+export function IconButton(props: Props): JSX.Element {
   const { badgeColor, badgeContent, height, icon, iconTheme, width, ...other } = props;
   const IconBadge =
     badgeContent === '' ? (
@@ -44,9 +28,19 @@ export const IconButton: React.SFC<Props> = (props: Props) => {
     );
 
   return <MuiIconButton {...other}>{IconBadge}</MuiIconButton>;
-};
+}
 
-IconButton.defaultProps = defaultProps;
+IconButton.defaultProps = {
+  color: 'default' as 'default',
+  disabled: false,
+  size: 'medium' as 'medium',
+  icon: 'favorite',
+  iconTheme: 'Filled' as 'Filled',
+  badgeContent: '',
+  badgeColor: 'default' as 'default',
+  width: 48,
+  height: 48,
+};
 
 addPropertyControls(IconButton, {
   color: {

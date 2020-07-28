@@ -5,7 +5,7 @@ import path from 'path';
 import { defaultHandlers, parse as docgenParse } from 'react-docgen';
 import muiDefaultPropsHandler from 'docs/src/modules/utils/defaultPropsHandler';
 import Mustache from 'mustache';
-import Case from 'case';
+import Case, { type } from 'case';
 import deepmerge from 'deepmerge';
 import { findComponents } from 'docs/src/modules/utils/find';
 import { componentSettings, ignoredControls } from './framerConfig';
@@ -92,6 +92,9 @@ function getTemplateStrings(reactAPI) {
 
   reactAPI.propNames.forEach((propName) => {
     const prop = reactAPI.props[propName];
+    if (prop === undefined) {
+      throw new TypeError(`Prop '${propName}' does not exist in component '${reactAPI.name}'.`);
+    }
     prop.name = propName;
 
     if (ignore(reactAPI, prop)) {
@@ -136,15 +139,18 @@ function getTemplateStrings(reactAPI) {
         break;
     }
 
-    tsInterface += `  ${propName}${propTypeTS.required ? '' : '?'}: ${
-      propTypeTS.value ? `${options(propTypeTS, ' | ')}` : `${propTypeTS.name}`
-    };\n`;
+    tsInterface += `  ${propName}${
+      propTypeTS.required || prop.defaultValue !== undefined ? '' : '?'
+    }: ${propTypeTS.value ? `${options(propTypeTS, ' | ')}` : `${propTypeTS.name}`};\n`;
 
+    const preventTypeWidening = propTypeTS.name === 'enum';
     /**
      * Default values
      */
     if (prop.defaultValue) {
-      defaults += `  ${propName}: ${prop.defaultValue.value},\n`;
+      defaults += `  ${propName}: ${prop.defaultValue.value}${
+        preventTypeWidening ? ` as ${prop.defaultValue.value}` : ''
+      },\n`;
     }
 
     /**

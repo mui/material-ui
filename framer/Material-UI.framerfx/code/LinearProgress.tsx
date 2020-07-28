@@ -1,35 +1,31 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import MuiLinearProgress from '@material-ui/core/LinearProgress';
 
 interface Props {
-  color?: 'primary' | 'secondary';
-  value?: number;
-  valueBuffer?: number;
-  variant?: 'buffer' | 'determinate' | 'indeterminate' | 'query';
-  width?: number;
-  height?: number;
+  color: 'primary' | 'secondary';
+  value: number;
+  valueBuffer: number;
+  variant: 'buffer' | 'determinate' | 'indeterminate' | 'query';
+  width: number | string;
+  height: number;
 }
 
-const defaultProps: Props = {
-  color: 'primary',
-  value: 75,
-  valueBuffer: 75,
-  variant: 'determinate',
-  width: 200,
-  height: 5,
-};
-
-export const LinearProgress: React.SFC<Props> = (props: Props) => {
+export function LinearProgress(props: Props): JSX.Element {
   const { width, height, ...other } = props;
   const style: React.CSSProperties = {};
 
   return <MuiLinearProgress style={style} {...other} />;
-};
+}
 
-LinearProgress.defaultProps = defaultProps;
+LinearProgress.defaultProps = {
+  color: 'primary' as 'primary',
+  value: 75,
+  valueBuffer: 75,
+  variant: 'determinate' as 'determinate',
+  width: 200,
+  height: 5,
+};
 
 addPropertyControls(LinearProgress, {
   color: {
@@ -41,7 +37,7 @@ addPropertyControls(LinearProgress, {
     type: ControlType.Number,
     title: 'Value',
     hidden: function hidden(props) {
-      return props.variant === 'indeterminate' || props.variant === 'query';
+      return props.variant === 'indeterminate';
     },
   },
   valueBuffer: {

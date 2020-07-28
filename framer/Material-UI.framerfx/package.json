@@ -13,13 +13,11 @@
   "bugs": {
     "url": "https://github.com/mui-org/material-ui/issues"
   },
-  "devDependencies": {
-    "@types/react": "^16.8"
-  },
   "dependencies": {
     "@material-ui/core": "^5.0.0-alpha.4",
     "@material-ui/icons": "^5.0.0-alpha.4",
-    "naming-style": "^1.0.0"
+    "@material-ui/utils": "^5.0.0-alpha.1",
+    "lodash": "^4.17.19"
   },
   "peerDependencies": {
     "@types/react": "^16.8.6",

@@ -1,38 +1,30 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import MuiCircularProgress from '@material-ui/core/CircularProgress';
 
 interface Props {
-  color?: 'inherit' | 'primary' | 'secondary';
-  thickness?: number;
-  value?: number;
-  variant?: 'determinate' | 'indeterminate' | 'static';
-  width?: number;
-  height?: number;
+  color: 'inherit' | 'primary' | 'secondary';
+  thickness: number;
+  value: number;
+  variant: 'determinate' | 'indeterminate' | 'static';
+  width: number | string;
+  height: number;
 }
 
-const defaultProps: Props = {
-  color: 'primary',
+export function CircularProgress(props: Props): JSX.Element {
+  const { width, height, ...other } = props;
+
+  return <MuiCircularProgress size={width} style={{ width, height }} {...other} />;
+}
+
+CircularProgress.defaultProps = {
+  color: 'primary' as 'primary',
   thickness: 4,
   value: 75,
-  variant: 'static',
+  variant: 'static' as 'static',
   width: 44,
   height: 44,
 };
-
-export const CircularProgress: React.SFC<Props> = (props: Props) => {
-  const { width, height, ...other } = props;
-  const style: React.CSSProperties = {
-    width: 'width',
-    height: 'height',
-  };
-
-  return <MuiCircularProgress size={width} {...other} />;
-};
-
-CircularProgress.defaultProps = defaultProps;
 
 addPropertyControls(CircularProgress, {
   color: {
@@ -50,7 +42,7 @@ addPropertyControls(CircularProgress, {
     type: ControlType.Number,
     title: 'Value',
     hidden: function hidden(props) {
-      return props.variant === 'indeterminate' || props.variant === 'query';
+      return props.variant === 'indeterminate';
     },
   },
   variant: {

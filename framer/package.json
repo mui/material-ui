@@ -7,9 +7,13 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
+    "@types/draft-js": "^0.10.43",
+    "@types/react": "^16.8.24",
     "case": "1.6.3",
     "deepmerge": "^4.0.0",
     "docs": "^4.0.0",
+    "framer": "^1.2.5",
+    "framer-motion": "^2.1.0",
     "mustache": "^4.0.0",
     "react-docgen": "^5.0.0-beta.1"
   },
@@ -17,6 +21,7 @@
     "build": "yarn build:core && yarn build:styles && yarn prettier",
     "build:core": "cross-env BABEL_ENV=test babel-node --config-file ../babel.config.js ./scripts/buildFramer.js ../packages/material-ui/src ./Material-UI.framerfx/code",
     "build:styles": "cross-env BABEL_ENV=test babel-node --config-file ../babel.config.js ./scripts/buildFramer.js ../packages/material-ui-styles/src ./Material-UI.framerfx/code",
-    "prettier": "prettier --write --config ../prettier.config.js './**/*.{js,tsx}'"
+    "prettier": "prettier --write --config ../prettier.config.js './**/*.{js,tsx}'",
+    "typescript": "tsc -p tsconfig.json"
   }
 }

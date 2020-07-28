@@ -1,31 +1,27 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
+import FormControlLabel, { FormControlLabelProps } from '@material-ui/core/FormControlLabel';
 import MuiRadio from '@material-ui/core/Radio';
 
-interface Props {
-  color?: 'default' | 'primary' | 'secondary';
-  disabled?: boolean;
-  size?: 'medium' | 'small';
-  label?: string;
-  width?: number;
-  height?: number;
+interface Props extends Omit<FormControlLabelProps, 'control'> {
+  color: 'default' | 'primary' | 'secondary';
+  disabled: boolean;
+  size: 'medium' | 'small';
+  label: string;
+  width: number | string;
+  height: number;
 }
 
-export function Radio(props) {
+export function Radio(props: Props): JSX.Element {
   const { label, size, ...other } = props;
 
   return <FormControlLabel control={<MuiRadio size={size} />} label={label} {...other} />;
 }
 
 Radio.defaultProps = {
-  color: 'secondary',
+  color: 'secondary' as 'secondary',
   disabled: false,
-  size: 'medium',
+  size: 'medium' as 'medium',
   label: 'Radio',
   width: '100%',
   height: 42,

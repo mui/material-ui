@@ -1,28 +1,30 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import MuiCheckbox from '@material-ui/core/Checkbox';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
-export function Checkbox(props) {
-  const { checked: checkedProp, label, onChange, size, ...other } = props;
-  // tslint:disable-next-line: ban-ts-ignore
-  // @ts-ignore
+interface Props {
+  checked: boolean;
+  color: 'default' | 'primary' | 'secondary';
+  disabled: boolean;
+  size: 'medium' | 'small';
+  label: string;
+  width: number | string;
+  height: number;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+}
 
+export function Checkbox(props: Props): JSX.Element {
+  const { checked: checkedProp, label, onChange, size, ...other } = props;
   const [checked, setChecked] = React.useState(false);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (onChange) {
       onChange(event);
     }
-    setChecked((event.target as HTMLInputElement).checked);
+    setChecked(event.target.checked);
   };
 
-  // tslint:disable-next-line: ban-ts-ignore
-  // @ts-ignore
   React.useEffect(() => {
     setChecked(checkedProp);
   }, [checkedProp]);
@@ -34,9 +36,9 @@ export function Checkbox(props) {
 
 Checkbox.defaultProps = {
   checked: false,
-  color: 'secondary',
+  color: 'secondary' as 'secondary',
   disabled: false,
-  size: 'medium',
+  size: 'medium' as 'medium',
   label: 'Checkbox',
   width: 100,
   height: 42,

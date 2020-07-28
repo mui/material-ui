@@ -1,46 +1,27 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import MuiChip from '@material-ui/core/Chip';
 import { Icon } from './Icon';
 import { Avatar } from './Avatar';
 
 interface Props {
-  clickable?: boolean;
-  color?: 'default' | 'primary' | 'secondary';
-  deleteIcon?: string;
-  disabled?: boolean;
-  icon?: string;
-  label?: string;
-  size?: 'medium' | 'small';
-  variant?: 'default' | 'outlined';
-  avatarImageFile?: string;
-  avatarImageUrl?: string;
-  deletable?: boolean;
-  iconTheme?: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
-  width?: number;
-  height?: number;
+  clickable: boolean;
+  color: 'default' | 'primary' | 'secondary';
+  deleteIcon: string;
+  disabled: boolean;
+  icon: string;
+  label: string;
+  size: 'medium' | 'small';
+  variant: 'default' | 'outlined';
+  avatarImageFile: string;
+  avatarImageUrl: string;
+  deletable: boolean;
+  iconTheme: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
+  width: number | string;
+  height: number;
 }
 
-const defaultProps: Props = {
-  clickable: true,
-  color: 'default',
-  deleteIcon: '',
-  disabled: false,
-  icon: 'star',
-  label: 'Chip',
-  size: 'medium',
-  variant: 'default',
-  avatarImageFile: '',
-  avatarImageUrl: '',
-  deletable: false,
-  iconTheme: 'Filled',
-  width: 100,
-  height: 32,
-};
-
-export const Chip: React.SFC<Props> = (props: Props) => {
+export function Chip(props: Props): JSX.Element {
   const {
     avatarImageFile,
     avatarImageUrl,
@@ -57,7 +38,7 @@ export const Chip: React.SFC<Props> = (props: Props) => {
     <MuiChip
       avatar={
         avatarImageFile || avatarImageUrl ? (
-          <Avatar imageFile={avatarImageFile} imageUrl={avatarImageUrl} />
+          <Avatar avatarImageFile={avatarImageFile} avatarImageUrl={avatarImageUrl} />
         ) : undefined
       }
       icon={<Icon icon={icon} theme={iconTheme} />}
@@ -66,9 +47,24 @@ export const Chip: React.SFC<Props> = (props: Props) => {
       {...other}
     />
   );
-};
+}
 
-Chip.defaultProps = defaultProps;
+Chip.defaultProps = {
+  clickable: true,
+  color: 'default' as 'default',
+  deleteIcon: '',
+  disabled: false,
+  icon: 'star',
+  label: 'Chip',
+  size: 'medium' as 'medium',
+  variant: 'default' as 'default',
+  avatarImageFile: '',
+  avatarImageUrl: '',
+  deletable: false,
+  iconTheme: 'Filled' as 'Filled',
+  width: 100,
+  height: 32,
+};
 
 addPropertyControls(Chip, {
   clickable: {
