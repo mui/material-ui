@@ -366,6 +366,8 @@ Snackbar.propTypes = {
   resumeHideDuration: PropTypes.number,
   /**
    * The component used for the transition.
+   * The component should implement [react-transition-group](https://reactcommunity.org/react-transition-group/transition)'s API.
+   * See the [documentation for more details](/components/modal/#transitions).
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    */
   TransitionComponent: PropTypes.elementType,
@@ -383,6 +385,7 @@ Snackbar.propTypes = {
   ]),
   /**
    * Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.
+   * By default, the element is based on [react-transition-group](https://reactcommunity.org/react-transition-group/transition#Transition-props).
    */
   TransitionProps: PropTypes.object,
 };

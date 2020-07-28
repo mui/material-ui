@@ -215,6 +215,7 @@ Accordion.propTypes = {
   TransitionComponent: PropTypes.elementType,
   /**
    * Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.
+   * By default, the element is based on [react-transition-group](https://reactcommunity.org/react-transition-group/transition#Transition-props).
    */
   TransitionProps: PropTypes.object,
 };
