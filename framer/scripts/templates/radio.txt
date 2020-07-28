@@ -1,18 +1,14 @@
 {{=« »=}}
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
+import FormControlLabel, { FormControlLabelProps } from '@material-ui/core/FormControlLabel';
 import Mui«componentName» from '@material-ui/core/«componentName»';
 
-interface Props {
+interface Props extends Omit<FormControlLabelProps, 'control'> {
 «& tsInterface»
 }
 
-export function «componentName»(props) {
+export function «componentName»(props: Props): JSX.Element {
   const { label, size, ...other } = props;
 
   return (

@@ -14,6 +14,7 @@ export const styles = (theme) => ({
     // Chrome fix for https://bugs.chromium.org/p/chromium/issues/detail?id=820541
     // To remove at some point.
     overflow: 'hidden',
+    display: 'inline-block', // allow overflow hidden to take action
     flexShrink: 0,
   },
   /* Styles applied to the root element if `color="primary"`. */

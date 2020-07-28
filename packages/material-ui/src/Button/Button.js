@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { useThemeVariants } from '@material-ui/styles';
 import withStyles from '../styles/withStyles';
 import { fade } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
@@ -278,6 +279,22 @@ const Button = React.forwardRef(function Button(props, ref) {
     ...other
   } = props;
 
+  const themeVariantsClasses = useThemeVariants(
+    {
+      ...props,
+      color,
+      component,
+      disabled,
+      disableElevation,
+      disableFocusRipple,
+      fullWidth,
+      size,
+      type,
+      variant,
+    },
+    'MuiButton',
+  );
+
   const startIcon = startIconProp && (
     <span className={clsx(classes.startIcon, classes[`iconSize${capitalize(size)}`])}>
       {startIconProp}
@@ -304,6 +321,7 @@ const Button = React.forwardRef(function Button(props, ref) {
           [classes.fullWidth]: fullWidth,
           [classes.colorInherit]: color === 'inherit',
         },
+        themeVariantsClasses,
         className,
       )}
       component={component}
@@ -408,7 +426,10 @@ Button.propTypes = {
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['contained', 'outlined', 'text']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['contained', 'outlined', 'text']),
+    PropTypes.string,
+  ]),
 };
 
 export default withStyles(styles, { name: 'MuiButton' })(Button);

@@ -45,7 +45,7 @@ const data = {
 };
 ```
 
-{{"demo": "pages/components/tree-view/RecursiveTreeView.js", "defaultCodeOpen": false}}
+{{"demo": "pages/components/tree-view/RichObjectTreeView.js", "defaultCodeOpen": false}}
 
 ## Customized tree view
 
@@ -62,3 +62,5 @@ const data = {
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#TreeView)
 
 The component follows the WAI-ARIA authoring practices.
+
+To have an accessible tree view you must use `aria-labelledby` or `aria-label` to reference or provide a label on the TreeView, otherwise screen readers will announce it as "tree", making it hard to understand the context of a specific tree item.

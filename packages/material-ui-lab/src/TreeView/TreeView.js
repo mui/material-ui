@@ -21,22 +21,22 @@ export const styles = {
   },
 };
 
-const isPrintableCharacter = (str) => {
-  return str && str.length === 1 && str.match(/\S/);
-};
+function isPrintableCharacter(string) {
+  return string && string.length === 1 && string.match(/\S/);
+}
 
-const findNextFirstChar = (firstChars, startIndex, char) => {
+function findNextFirstChar(firstChars, startIndex, char) {
   for (let i = startIndex; i < firstChars.length; i += 1) {
     if (char === firstChars[i]) {
       return i;
     }
   }
   return -1;
-};
+}
 
-const noopSelection = () => {
+function noopSelection() {
   return false;
-};
+}
 
 const defaultExpandedDefault = [];
 const defaultSelectedDefault = [];
@@ -53,15 +53,15 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     defaultParentIcon,
     defaultSelected = defaultSelectedDefault,
     disableSelection = false,
+    expanded: expandedProp,
     id: idProp,
     multiSelect = false,
-    expanded: expandedProp,
     onBlur,
     onFocus,
+    onKeyDown,
     onNodeFocus,
     onNodeSelect,
     onNodeToggle,
-    onKeyDown,
     selected: selectedProp,
     ...other
   } = props;
@@ -467,7 +467,6 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       }
       lastSelectionWasRange.current = true;
     }
-    return true;
   };
 
   const rangeSelectToFirst = (event, id) => {
@@ -477,7 +476,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
 
     const start = lastSelectionWasRange.current ? lastSelectedNode.current : id;
 
-    return selectRange(event, {
+    selectRange(event, {
       start,
       end: getFirstNode(),
     });
@@ -490,13 +489,13 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
 
     const start = lastSelectionWasRange.current ? lastSelectedNode.current : id;
 
-    return selectRange(event, {
+    selectRange(event, {
       start,
       end: getLastNode(),
     });
   };
 
-  const selectNextNode = (event, id) =>
+  const selectNextNode = (event, id) => {
     selectRange(
       event,
       {
@@ -505,8 +504,9 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       },
       true,
     );
+  };
 
-  const selectPreviousNode = (event, id) =>
+  const selectPreviousNode = (event, id) => {
     selectRange(
       event,
       {
@@ -515,9 +515,11 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       },
       true,
     );
+  };
 
-  const selectAllNodes = (event) =>
+  const selectAllNodes = (event) => {
     selectRange(event, { start: getFirstNode(), end: getLastNode() });
+  };
 
   /*
    * Mapping Helpers
@@ -597,7 +599,8 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       case ' ':
         if (!disableSelection) {
           if (multiSelect && event.shiftKey) {
-            flag = selectRange(event, { end: focusedNodeId });
+            selectRange(event, { end: focusedNodeId });
+            flag = true;
           } else if (multiSelect) {
             flag = selectNode(event, focusedNodeId, true);
           } else {
@@ -660,7 +663,8 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
           expandAllSiblings(event, focusedNodeId);
           flag = true;
         } else if (multiSelect && ctrlPressed && key.toLowerCase() === 'a' && !disableSelection) {
-          flag = selectAllNodes(event);
+          selectAllNodes(event);
+          flag = true;
         } else if (!ctrlPressed && !event.shiftKey && isPrintableCharacter(key)) {
           focusByFirstCharacter(event, focusedNodeId, key);
           flag = true;
