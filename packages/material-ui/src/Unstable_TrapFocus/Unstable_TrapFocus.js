@@ -29,16 +29,14 @@ function Unstable_TrapFocus(props) {
     isEnabled,
     open,
   } = props;
-  const ignoreNextEnforceFocus = React.useRef();
-  const sentinelStart = React.useRef(null);
-  const sentinelEnd = React.useRef(null);
-  const nodeToRestore = React.useRef();
-  const reactFocusEventTarget = React.useRef(null);
-  // This variable is useful when disableAutoFocus is true.
-  // It waits for the active element to move into the component to activate.
-  const activated = React.useRef(false);
 
+  const lastEvent = React.useRef(null);
+  const nodeToRestore = React.useRef();
+  const prevOpenRef = React.useRef();
   const rootRef = React.useRef(null);
+  const sentinelEnd = React.useRef(null);
+  const sentinelStart = React.useRef(null);
+
   // can be removed once we drop support for non ref forwarding class components
   const handleOwnRef = React.useCallback((instance) => {
     // #StrictMode ready
@@ -46,12 +44,58 @@ function Unstable_TrapFocus(props) {
   }, []);
   const handleRef = useForkRef(children.ref, handleOwnRef);
 
-  const prevOpenRef = React.useRef();
+  const onFocusStart = React.useCallback((e) => {
+    const isShiftTab = Boolean(lastEvent.current?.shiftKey && lastEvent.current?.keyCode === 9);
+    const radios = rootRef.current.querySelectorAll('input:checked');
+    const tabbables = rootRef.current.querySelectorAll(tabbableElements.join(', '));
+    const tabbableStart = tabbables[0].type === 'radio' ? radios[0] : tabbables[0];
+    const tabbableEnd =
+      tabbables[tabbables.length - 1].type === 'radio'
+        ? radios[0]
+        : tabbables[tabbables.length - 1];
+    if (tabbables.length) {
+      if (isShiftTab) {
+        return tabbableEnd.focus();
+      }
+      return tabbableStart.focus();
+    }
+    return rootRef.focus();
+  }, []);
+
+  const onFocusEnd = React.useCallback((e) => {
+    const isShiftTab = Boolean(lastEvent.current?.shiftKey && lastEvent.current?.keyCode === 9);
+    const radios = rootRef.current.querySelectorAll('input:checked');
+    const tabbables = rootRef.current.querySelectorAll(tabbableElements.join(', '));
+    const tabbableStart = tabbables[0].type === 'radio' ? radios[0] : tabbables[0];
+    const tabbableEnd =
+      tabbables[tabbables.length - 1].type === 'radio'
+        ? radios[0]
+        : tabbables[tabbables.length - 1];
+    if (tabbables.length) {
+      if (isShiftTab) {
+        return tabbableEnd.focus();
+      }
+      return tabbableStart.focus();
+    }
+    return rootRef.focus();
+  }, []);
+
+  const onKeydown = React.useCallback((e) => {
+    lastEvent.current = e;
+  }, []);
+
+  React.useEffect(() => {
+    document.addEventListener('keydown', onKeydown, true);
+    return () => {
+      document.removeEventListener('keyDown', onKeydown, true);
+    };
+  }, [onKeydown]);
+
   React.useEffect(() => {
     prevOpenRef.current = open;
   }, [open]);
 
-  if (!prevOpenRef.current && open && typeof window !== 'undefined' && !disableAutoFocus) {
+  if (!prevOpenRef.current && open && typeof window !== 'undefined') {
     // WARNING: Potentially unsafe in concurrent mode.
     // The way the read on `nodeToRestore` is setup could make this actually safe.
     // Say we render `open={false}` -> `open={true}` but never commit.
@@ -63,34 +107,12 @@ function Unstable_TrapFocus(props) {
     nodeToRestore.current = getDoc().activeElement;
   }
 
-  const onFocusStart = React.useCallback(() => {
-    const radios = rootRef.current.querySelectorAll('input:checked');
-    const tabbables = rootRef.current.querySelectorAll(tabbableElements.join(', '));
-    const tabbableEnd =
-      tabbables[tabbables.length - 1].type === 'radio'
-        ? radios[0]
-        : tabbables[tabbables.length - 1];
-    if (tabbables.length) {
-      tabbableEnd.focus();
-    }
-  }, []);
-
-  const onFocusEnd = React.useCallback(() => {
-    const radios = rootRef.current.querySelectorAll('input:checked');
-    const tabbables = rootRef.current.querySelectorAll(tabbableElements.join(', '));
-    const tabbableStart = tabbables[0].type === 'radio' ? radios[0] : tabbables[0];
-    if (tabbables.length) {
-      tabbableStart.focus();
-    }
-  }, []);
-
   React.useEffect(() => {
     // We might render an empty child.
     if (!open || !rootRef.current) {
       return;
     }
 
-    activated.current = !disableAutoFocus;
     const doc = ownerDocument(rootRef.current);
 
     if (!rootRef.current.contains(doc.activeElement)) {
@@ -106,86 +128,9 @@ function Unstable_TrapFocus(props) {
         }
         rootRef.current.setAttribute('tabIndex', -1);
       }
-
-      if (activated.current) {
-        rootRef.current.focus();
-      }
     }
 
-    // const contain = (nativeEvent) => {
-    //   if (
-    //     !doc.hasFocus() ||
-    //     disableEnforceFocus ||
-    //     !isEnabled() ||
-    //     ignoreNextEnforceFocus.current
-    //   ) {
-    //     ignoreNextEnforceFocus.current = false;
-    //     return;
-    //   }
-
-    //   if (!activated.current) {
-    //     nodeToRestore.current = doc.activeElement;
-    //   }
-
-    //   if (!rootRef.current.contains(doc.activeElement)) {
-    //     // if the focus event is not coming from inside the children's react tree, reset the refs
-    //     if (
-    //       (nativeEvent && reactFocusEventTarget.current !== nativeEvent.target) ||
-    //       doc.activeElement !== reactFocusEventTarget.current
-    //     ) {
-    //       reactFocusEventTarget.current = null;
-    //     } else if (reactFocusEventTarget.current !== null) {
-    //       return;
-    //     }
-
-    //     if (!activated.current) {
-    //       return;
-    //     }
-    //     rootRef.current.focus();
-    //   } else {
-    //     activated.current = true;
-    //   }
-    // };
-
-    // const loopFocus = (nativeEvent) => {
-    //   // 9 = Tab
-    //   if (disableEnforceFocus || !isEnabled() || nativeEvent.keyCode !== 9) {
-    //     return;
-    //   }
-
-    //   const { shiftKey, target } = nativeEvent;
-
-    //   if (shiftKey) {
-    //     if (target === tabbableStart) {
-    //       const timeout1 = setTimeout(() => tabbableEnd.focus());
-    //     }
-    //   } else if (target === tabbableEnd) {
-    //     const timeout2 = setTimeout(() => tabbableStart.focus());
-    //   }
-    // };
-
-    // doc.addEventListener('focus', contain, true);
-    // doc.addEventListener('keydown', loopFocus, true);
-
-    // With Edge, Safari and Firefox, no focus related events are fired when the focused area stops being a focused area.
-    // e.g. https://bugzilla.mozilla.org/show_bug.cgi?id=559561.
-    // Instead, we can look if the active element was restored on the BODY element.
-    //
-    // The whatwg spec defines how the browser should behave but does not explicitly mention any events:
-    // https://html.spec.whatwg.org/multipage/interaction.html#focus-fixup-rule.
-    // const interval = setInterval(() => {
-    //   if (doc.activeElement.tagName === 'BODY') {
-    //     contain();
-    //   }
-    // }, 50);
-
     return () => {
-      // clearInterval(interval);
-
-      // doc.removeEventListener('focus', contain, true);
-      // doc.removeEventListener('keydown', loopFocus, true);
-
-      // restoreLastFocus()
       if (!disableRestoreFocus) {
         // In IE 11 it is possible for document.activeElement to be null resulting
         // in nodeToRestore.current being null.
@@ -200,21 +145,21 @@ function Unstable_TrapFocus(props) {
     };
   }, [disableAutoFocus, disableEnforceFocus, disableRestoreFocus, isEnabled, open]);
 
-  const onFocus = (event) => {
-    activated.current = true;
-    reactFocusEventTarget.current = event.target;
-
-    const childrenPropsHandler = children.props.onFocus;
-    if (childrenPropsHandler) {
-      childrenPropsHandler(event);
-    }
-  };
-
   return (
     <React.Fragment>
-      <div tabIndex={0} ref={sentinelStart} data-test="sentinelStart" onFocus={onFocusStart} />
-      {React.cloneElement(children, { ref: handleRef, onFocus })}
-      <div tabIndex={0} ref={sentinelEnd} data-test="sentinelEnd" onFocus={onFocusEnd} />
+      <div
+        tabIndex={open && isEnabled ? 0 : -1}
+        ref={sentinelStart}
+        data-test="sentinelStart"
+        onFocus={onFocusStart}
+      />
+      {React.cloneElement(children, { ref: handleRef })}
+      <div
+        tabIndex={open && isEnabled ? 0 : -1}
+        ref={sentinelEnd}
+        data-test="sentinelEnd"
+        onFocus={onFocusEnd}
+      />
     </React.Fragment>
   );
 }

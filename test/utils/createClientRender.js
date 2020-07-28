@@ -11,6 +11,7 @@ import {
   render as testingLibraryRender,
   prettyDOM,
 } from '@testing-library/react/pure';
+import userEvent from '@testing-library/user-event';
 
 // holes are *All* selectors which aren't necessary for id selectors
 const [queryDescriptionOf, , getDescriptionOf, , findDescriptionOf] = buildQueries(
@@ -204,7 +205,7 @@ const fireEvent = Object.assign(rtlFireEvent, {
 });
 
 export * from '@testing-library/react/pure';
-export { act, cleanup, fireEvent };
+export { act, cleanup, fireEvent, userEvent };
 
 export function render() {
   throw new Error(
