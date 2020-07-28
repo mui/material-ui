@@ -38,8 +38,10 @@ module.exports = {
     'consistent-this': ['error', 'self'],
     // just as bad as "max components per file"
     'max-classes-per-file': 'off',
-    'no-alert': 'error', // Too much interruptive
-    'no-console': ['error', { allow: ['warn', 'error'] }], // Allow warn and error for production events
+    // Too interruptive
+    'no-alert': 'error',
+    // Allow warn and error for dev environments
+    'no-console': ['error', { allow: ['warn', 'error'] }],
     'no-param-reassign': 'off', // It's fine.
     'no-restricted-imports': [
       'error',
@@ -48,33 +50,62 @@ module.exports = {
       },
     ],
     'no-constant-condition': 'error',
-    'no-prototype-builtins': 'off', // Use the proptype inheritance chain
+    // Use the proptype inheritance chain
+    'no-prototype-builtins': 'off',
     'no-underscore-dangle': 'error',
     'nonblock-statement-body-position': 'error',
     'prefer-arrow-callback': ['error', { allowNamedFunctions: true }],
-    'prefer-destructuring': 'off', // Destructuring harm grep potential.
-    '@typescript-eslint/dot-notation': 'off', // TODO performance consideration
-    '@typescript-eslint/no-implied-eval': 'off', // TODO performance consideration
-    '@typescript-eslint/no-throw-literal': 'off', // TODO performance consideration
-    'import/named': 'off', // Not sure why it doesn't work
-    'import/no-extraneous-dependencies': 'off', // Missing yarn workspace support
-    'jsx-a11y/label-has-associated-control': 'off', // doesn't work?
-    'jsx-a11y/no-autofocus': 'off', // We are a library, we need to support it too
+    // Destructuring harm grep potential.
+    'prefer-destructuring': 'off',
+
+    // TODO performance consideration
+    '@typescript-eslint/dot-notation': 'off',
+    // TODO performance consideration
+    '@typescript-eslint/no-implied-eval': 'off',
+    // TODO performance consideration
+    '@typescript-eslint/no-throw-literal': 'off',
+
+    // Not sure why it doesn't work
+    'import/named': 'off',
+    // Missing yarn workspace support
+    'import/no-extraneous-dependencies': 'off',
+
+    // doesn't work?
+    'jsx-a11y/label-has-associated-control': [
+      'error',
+      {
+        // airbnb uses 'both' which requires nesting i.e. <label><input /></label>
+        // 'either' allows `htmlFor`
+        assert: 'either',
+      },
+    ],
+    // We are a library, we need to support it too
+    'jsx-a11y/no-autofocus': 'off',
+
     'material-ui/docgen-ignore-before-comment': 'error',
     'material-ui/rules-of-use-theme-variants': 'error',
+
     'react-hooks/exhaustive-deps': ['error', { additionalHooks: 'useEnhancedEffect' }],
     'react-hooks/rules-of-hooks': 'error',
-    'react/destructuring-assignment': 'off', // It's fine.
+    // Can add verbosity to small functions making them harder to grok.
+    // Though we have to manually enforce it for function components with default values.
+    'react/destructuring-assignment': 'off',
     'react/forbid-prop-types': 'off', // Too strict, no time for that
     'react/jsx-curly-brace-presence': 'off', // broken
-    'react/jsx-filename-extension': ['error', { extensions: ['.js', '.tsx'] }], // airbnb is using .jsx
-    'react/jsx-fragments': ['error', 'element'], // Prefer <React.Fragment> over <>.
-    'react/jsx-props-no-spreading': 'off', // We are a UI library.
-    'react/no-array-index-key': 'off', // This rule is great for raising people awareness of what a key is and how it works.
+    // airbnb is using .jsx
+    'react/jsx-filename-extension': ['error', { extensions: ['.js', '.tsx'] }],
+    // Prefer <React.Fragment> over <>.
+    'react/jsx-fragments': ['error', 'element'],
+    // We are a UI library.
+    'react/jsx-props-no-spreading': 'off',
+    // This rule is great for raising people awareness of what a key is and how it works.
+    'react/no-array-index-key': 'off',
     'react/no-danger': 'error',
     'react/no-direct-mutation-state': 'error',
-    'react/no-find-dom-node': 'off', // Required for backward compatibility. TODO v5, drop
-    'react/require-default-props': 'off', // Not always relevant
+    // Required for backward compatibility. TODO v5, drop
+    'react/no-find-dom-node': 'off',
+    // Not always relevant
+    'react/require-default-props': 'off',
     'react/sort-prop-types': 'error',
     // This depends entirely on what you're doing. There's no universal pattern
     'react/state-in-constructor': 'off',
@@ -167,9 +198,10 @@ module.exports = {
         'no-restricted-imports': [
           'error',
           {
+            // Allow deeper imports for TypeScript types. TODO?
             patterns: ['@material-ui/*/*/*/*', '!@material-ui/utils/macros/*.macro'],
           },
-        ], // Allow deeper imports for TypeScript types. TODO?
+        ],
         'react/prop-types': 'off',
       },
     },
@@ -181,14 +213,19 @@ module.exports = {
         'no-empty-pattern': 'off',
         'no-lone-blocks': 'off',
         'no-shadow': 'off',
+
         '@typescript-eslint/no-unused-expressions': 'off',
         '@typescript-eslint/no-unused-vars': 'off',
         '@typescript-eslint/no-use-before-define': 'off',
-        'import/export': 'off', // Not sure why it doesn't work
+
+        // Not sure why it doesn't work
+        'import/export': 'off',
         'import/prefer-default-export': 'off',
+
         'jsx-a11y/anchor-has-content': 'off',
         'jsx-a11y/anchor-is-valid': 'off',
         'jsx-a11y/tabindex-no-positive': 'off',
+
         'react/default-props-match-prop-types': 'off',
         'react/no-access-state-in-setstate': 'off',
         'react/no-unused-prop-types': 'off',
