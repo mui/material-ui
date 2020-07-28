@@ -60,7 +60,6 @@ module.exports = {
 
     // TODO performance consideration
     '@typescript-eslint/dot-notation': 'off',
-
     // TODO performance consideration
     '@typescript-eslint/no-implied-eval': 'off',
     // TODO performance consideration
