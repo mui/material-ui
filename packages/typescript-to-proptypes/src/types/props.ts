@@ -96,10 +96,10 @@ export function createInstanceOfType(instance: string): InstanceOfType {
 
 export interface InterfaceType {
   type: 'InterfaceNode';
-  types: PropType[];
+  types: Array<[string, PropType]>;
 }
 
-export function createInterfaceType(types: PropType[] = []): InterfaceType {
+export function createInterfaceType(types: Array<[string, PropType]> = []): InterfaceType {
   return {
     type: 'InterfaceNode',
     types,

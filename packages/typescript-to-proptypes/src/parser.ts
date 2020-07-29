@@ -265,7 +265,7 @@ export function parseFromProgram(
                 // eslint-disable-next-line @typescript-eslint/no-use-before-define -- TODO dependency cycle between checkSymbol and checkType
                 const definition = checkSymbol(x, [...typeStack, (type as any).id]);
 
-                return definition.propType;
+                return [definition.name, definition.propType];
               }),
             );
           }

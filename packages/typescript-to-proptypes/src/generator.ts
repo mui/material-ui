@@ -119,8 +119,15 @@ export function generate(component: t.Component, options: GenerateOptions = {}):
   ): string {
     if (propType.type === 'InterfaceNode') {
       return `${importedName}.shape({\n${propType.types
-        .map((type) => generatePropType(type, context))
-        .join('\n')}\n})`;
+        .slice()
+        .sort((a, b) => a[0].localeCompare(b[0]))
+        .map(
+          ([name, type]) =>
+            `"${name}": ${generatePropType(type, context)}${
+              type.type !== 'UnionNode' && type.type !== 'DOMElementNode' ? '.isRequired' : ''
+            }`,
+        )
+        .join(',\n')}\n})`;
     }
 
     if (propType.type === 'FunctionNode') {
