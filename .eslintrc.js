@@ -102,8 +102,6 @@ module.exports = {
     'react/no-array-index-key': 'off',
     'react/no-danger': 'error',
     'react/no-direct-mutation-state': 'error',
-    // Required for backward compatibility. TODO v5, drop
-    'react/no-find-dom-node': 'off',
     // Not always relevant
     'react/require-default-props': 'off',
     'react/sort-prop-types': 'error',
