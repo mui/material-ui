@@ -355,7 +355,9 @@ describe('<TreeItem />', () => {
 
         expect(getByTestId('one')).toHaveVirtualFocus();
 
-        fireEvent.focusIn(getByTestId('two'));
+        act(() => {
+          getByTestId('two').focus();
+        });
         expect(getByTestId('two')).toHaveVirtualFocus();
       });
 
@@ -1017,7 +1019,9 @@ describe('<TreeItem />', () => {
           );
 
           fireEvent.click(getByText('one'));
-          getByRole('tree').focus();
+          act(() => {
+            getByRole('tree').focus();
+          });
 
           expect(getByTestId('one')).to.have.attribute('aria-expanded', 'true');
 
@@ -1581,7 +1585,9 @@ describe('<TreeItem />', () => {
               </TreeView>,
             );
 
-            fireEvent.focusIn(getByTestId('one'));
+            act(() => {
+              getByTestId('one').focus();
+            });
             expect(getByTestId('one')).toHaveVirtualFocus();
             fireEvent.keyDown(getByRole('tree'), { key: ' ' });
             expect(getByTestId('one')).not.to.have.attribute('aria-selected');
@@ -1597,7 +1603,9 @@ describe('<TreeItem />', () => {
               </TreeView>,
             );
 
-            fireEvent.focusIn(getByTestId('one'));
+            act(() => {
+              getByTestId('one').focus();
+            });
             expect(getByTestId('one')).toHaveVirtualFocus();
             fireEvent.keyDown(getByRole('tree'), { key: 'ArrowDown', shiftKey: true });
             expect(getByTestId('one')).to.have.attribute('aria-selected', 'false');
@@ -1613,7 +1621,9 @@ describe('<TreeItem />', () => {
               </TreeView>,
             );
 
-            fireEvent.focusIn(getByTestId('one'));
+            act(() => {
+              getByTestId('one').focus();
+            });
             expect(getByTestId('one')).toHaveVirtualFocus();
             fireEvent.keyDown(getByRole('tree'), { key: 'ArrowDown', shiftKey: true });
             expect(getByTestId('one')).to.have.attribute('aria-selected', 'false');
@@ -1632,7 +1642,9 @@ describe('<TreeItem />', () => {
               </TreeView>,
             );
 
-            fireEvent.focusIn(getByTestId('one'));
+            act(() => {
+              getByTestId('one').focus();
+            });
             expect(getByTestId('one')).toHaveVirtualFocus();
             fireEvent.keyDown(getByRole('tree'), { key: 'ArrowDown', shiftKey: true });
             expect(getByTestId('one')).to.have.attribute('aria-selected', 'false');
@@ -1730,7 +1742,9 @@ describe('<TreeItem />', () => {
             </TreeView>,
           );
 
-          fireEvent.focusIn(getByTestId('five'));
+          act(() => {
+            getByTestId('five').focus();
+          });
           expect(getByTestId('five')).toHaveVirtualFocus();
           fireEvent.keyDown(getByRole('tree'), {
             key: 'Home',
@@ -1763,14 +1777,16 @@ describe('<TreeItem />', () => {
         });
 
         it('should not prevent programmatic focus', () => {
-          const { getByText, getByTestId } = render(
+          const { getByTestId } = render(
             <TreeView disabledItemsFocusable>
               <TreeItem nodeId="one" label="one" disabled data-testid="one" />
               <TreeItem nodeId="two" label="two" data-testid="two" />
             </TreeView>,
           );
 
-          fireEvent.focusIn(getByText('one'));
+          act(() => {
+            getByTestId('one').focus();
+          });
           expect(getByTestId('one')).toHaveVirtualFocus();
         });
 
@@ -1839,14 +1855,16 @@ describe('<TreeItem />', () => {
         });
 
         it('should prevent programmatic focus', () => {
-          const { getByText, getByTestId } = render(
+          const { getByTestId } = render(
             <TreeView>
               <TreeItem nodeId="one" label="one" disabled data-testid="one" />
               <TreeItem nodeId="two" label="two" data-testid="two" />
             </TreeView>,
           );
 
-          fireEvent.focusIn(getByText('one'));
+          act(() => {
+            getByTestId('one').focus();
+          });
           expect(getByTestId('one')).not.toHaveVirtualFocus();
         });
 
@@ -1914,7 +1932,9 @@ describe('<TreeItem />', () => {
             </TreeView>,
           );
 
-          fireEvent.focusIn(getByTestId('two'));
+          act(() => {
+            getByTestId('two').focus();
+          });
           expect(getByTestId('two')).toHaveVirtualFocus();
           expect(getByTestId('two')).to.have.attribute('aria-expanded', 'false');
           fireEvent.keyDown(getByRole('tree'), { key: 'Enter' });
@@ -1931,7 +1951,9 @@ describe('<TreeItem />', () => {
             </TreeView>,
           );
 
-          fireEvent.focusIn(getByTestId('two'));
+          act(() => {
+            getByTestId('two').focus();
+          });
           expect(getByTestId('two')).toHaveVirtualFocus();
           expect(getByTestId('two')).to.have.attribute('aria-expanded', 'false');
           fireEvent.keyDown(getByRole('tree'), { key: 'ArrowRight' });
@@ -1948,7 +1970,9 @@ describe('<TreeItem />', () => {
             </TreeView>,
           );
 
-          fireEvent.focusIn(getByTestId('two'));
+          act(() => {
+            getByTestId('two').focus();
+          });
           expect(getByTestId('two')).toHaveVirtualFocus();
           expect(getByTestId('two')).to.have.attribute('aria-expanded', 'true');
           fireEvent.keyDown(getByRole('tree'), { key: 'ArrowLeft' });
