@@ -198,9 +198,6 @@ export function ThemeProvider(props) {
             main: paletteType === 'light' ? darken(pink.A400, 0.1) : pink[200],
           },
           type: paletteType,
-          background: {
-            default: paletteType === 'light' ? '#fff' : '#121212',
-          },
           ...paletteColors,
         },
         spacing,

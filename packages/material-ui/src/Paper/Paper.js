@@ -28,7 +28,15 @@ export const styles = (theme) => {
   const overlays = {};
   theme.shadows.forEach((_, index) => {
     overlays[`overlay${index}`] = {
-      backgroundColor: fade(theme.palette.background.paper, calculateAlpha(index)),
+      '&:before': {
+        content: '""',
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+        background: fade('#fff', calculateAlpha(index)),
+      },
     };
   });
 
@@ -38,6 +46,7 @@ export const styles = (theme) => {
       backgroundColor: theme.palette.background.paper,
       color: theme.palette.text.primary,
       transition: theme.transitions.create('box-shadow'),
+      position: 'relative',
     },
     /* Styles applied to the root element if `square={false}`. */
     rounded: {

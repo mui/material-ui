@@ -28,7 +28,7 @@ export const light = {
   // Consistency between these values is important.
   background: {
     paper: common.white,
-    default: grey[50],
+    default: common.white,
   },
   // The colors used to style the action elements.
   action: {
@@ -61,8 +61,8 @@ export const dark = {
   },
   divider: 'rgba(255, 255, 255, 0.12)',
   background: {
-    paper: grey[800],
-    default: '#303030',
+    paper: '#121212',
+    default: '#121212',
   },
   action: {
     active: common.white,
