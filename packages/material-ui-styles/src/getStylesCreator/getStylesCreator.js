@@ -1,4 +1,5 @@
 import { deepmerge } from '@material-ui/utils';
+import propsToClassKey from '../propsToClassKey';
 import noopTheme from './noopTheme';
 
 export default function getStylesCreator(stylesOrCreator) {
@@ -36,11 +37,15 @@ export default function getStylesCreator(stylesOrCreator) {
         throw err;
       }
 
-      if (!name || !theme.overrides || !theme.overrides[name]) {
+      if (
+        !name ||
+        ((!theme.overrides || !theme.overrides[name]) && (!theme.variants || !theme.variants[name]))
+      ) {
         return styles;
       }
 
-      const overrides = theme.overrides[name];
+      const overrides = (theme.overrides && theme.overrides[name]) || {};
+      const variants = (theme.variants && theme.variants[name]) || [];
       const stylesWithOverrides = { ...styles };
 
       Object.keys(overrides).forEach((key) => {
@@ -50,12 +55,22 @@ export default function getStylesCreator(stylesOrCreator) {
               [
                 'Material-UI: You are trying to override a style that does not exist.',
                 `Fix the \`${key}\` key of \`theme.overrides.${name}\`.`,
+                '',
+                'If you intentionally wanted to add a new key, please use the theme.variants option.',
               ].join('\n'),
             );
           }
         }
 
-        stylesWithOverrides[key] = deepmerge(stylesWithOverrides[key], overrides[key]);
+        stylesWithOverrides[key] = deepmerge(stylesWithOverrides[key] || {}, overrides[key]);
+      });
+
+      variants.forEach((definition) => {
+        const classKey = propsToClassKey(definition.props);
+        stylesWithOverrides[classKey] = deepmerge(
+          stylesWithOverrides[classKey] || {},
+          definition.styles,
+        );
       });
 
       return stylesWithOverrides;

@@ -152,7 +152,7 @@ const additionalProps = (component) => {
         name: 'image',
         title: "'Image File'",
         hidden(props) {
-          return props.primaryAction && props.primaryAction !== 'avatar';
+          return props.primaryAction !== undefined && props.primaryAction !== 'avatar';
         },
       },
       defaultValue: { value: componentSettings[component].propValues.imageFile },
@@ -163,7 +163,8 @@ const additionalProps = (component) => {
         title: "'Image URL'",
         hidden(props) {
           return (
-            props.imageFile !== '' || (props.primaryAction && props.primaryAction !== 'avatar')
+            props.imageFile !== '' ||
+            (props.primaryAction !== undefined && props.primaryAction !== 'avatar')
           );
         },
       },
@@ -233,7 +234,7 @@ const additionalProps = (component) => {
       type: {
         name: 'number',
         hidden(props) {
-          return props.variant === 'indeterminate' || props.variant === 'query';
+          return props.variant === 'indeterminate';
         },
       },
       defaultValue: { value: componentSettings[component].propValues.progressValue },
@@ -253,7 +254,7 @@ const additionalProps = (component) => {
       type: {
         name: 'string',
         hidden(props) {
-          return props.secondaryAction !== 'icon' && props.secondaryAction !== 'iconButton';
+          return props.secondaryAction !== 'iconButton';
         },
       },
       defaultValue: { value: componentSettings[component].propValues.secondaryIcon },
@@ -314,7 +315,7 @@ const additionalProps = (component) => {
       defaultValue: { value: componentSettings[component].propValues.variant },
     },
     width: {
-      type: { name: 'number' },
+      type: { name: 'union', value: [{ name: 'number' }, { name: 'string' }] },
       defaultValue: { value: componentSettings[component].propValues.width },
     },
   };

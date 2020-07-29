@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import * as PropTypes from 'prop-types';
 import { spy } from 'sinon';
 import {
   getClasses,
@@ -32,6 +33,10 @@ describe('<TreeItem />', () => {
   }));
 
   describe('warnings', () => {
+    beforeEach(() => {
+      PropTypes.resetWarningCache();
+    });
+
     it('should warn if an onFocus callback is supplied', () => {
       expect(() => {
         render(
@@ -330,6 +335,48 @@ describe('<TreeItem />', () => {
 
         fireEvent.focusIn(getByTestId('two'));
         expect(getByTestId('two')).toHaveVirtualFocus();
+      });
+
+      it('should work when focused node is removed', () => {
+        let removeActiveItem;
+        // a TreeItem which can remove from the tree by calling `removeActiveItem`
+        function ControlledTreeItem(props) {
+          const [mounted, setMounted] = React.useReducer(() => false, true);
+          removeActiveItem = setMounted;
+
+          if (!mounted) {
+            return null;
+          }
+          return <TreeItem {...props} />;
+        }
+
+        const { getByRole, getByTestId, getByText } = render(
+          <TreeView defaultExpanded={['parent']}>
+            <TreeItem nodeId="parent" label="parent" data-testid="parent">
+              <TreeItem nodeId="1" label="one" data-testid="one" />
+              <ControlledTreeItem nodeId="2" label="two" data-testid="two" />
+            </TreeItem>
+          </TreeView>,
+        );
+        const tree = getByRole('tree');
+
+        act(() => {
+          tree.focus();
+        });
+
+        expect(getByTestId('parent')).toHaveVirtualFocus();
+
+        fireEvent.click(getByText('two'));
+
+        expect(getByTestId('two')).toHaveVirtualFocus();
+
+        // generic action that removes an item.
+        // Could be promise based, or timeout, or another user interaction
+        act(() => {
+          removeActiveItem();
+        });
+
+        expect(getByTestId('parent')).toHaveVirtualFocus();
       });
     });
 

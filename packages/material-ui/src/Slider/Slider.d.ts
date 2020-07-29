@@ -7,9 +7,10 @@ export interface Mark {
 }
 
 export interface ValueLabelProps extends React.HTMLAttributes<HTMLSpanElement> {
-  value: number;
-  open: boolean;
   children: React.ReactElement;
+  index: number;
+  open: boolean;
+  value: number;
 }
 
 export interface SliderTypeMap<P = {}, D extends React.ElementType = 'span'> {

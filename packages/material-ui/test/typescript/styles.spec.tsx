@@ -264,7 +264,7 @@ withStyles((theme) =>
   // allow top level media queries
   // https://github.com/mui-org/material-ui/issues/12277
 
-  // typescript thinks `content` is the CSS property not a classname
+  // TypeScript thinks `content` is the CSS property not a classname
   const ambiguousStyles = createStyles({
     content: {
       minHeight: '100vh',

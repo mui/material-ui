@@ -1,44 +1,26 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import MuiButton from '@material-ui/core/Button';
 import { Icon } from './Icon';
 
 interface Props {
-  color?: 'default' | 'inherit' | 'primary' | 'secondary';
-  disabled?: boolean;
-  disableElevation?: boolean;
-  endIcon?: string;
-  fullWidth?: boolean;
+  color: 'inherit' | 'primary' | 'secondary';
+  disabled: boolean;
+  disableElevation: boolean;
+  endIcon: string;
+  fullWidth: boolean;
   href?: string;
-  size?: 'small' | 'medium' | 'large';
-  startIcon?: string;
-  variant?: 'text' | 'outlined' | 'contained';
-  startIconTheme?: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
-  endIconTheme?: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
-  label?: string;
-  width?: number;
-  height?: number;
+  size: 'large' | 'medium' | 'small';
+  startIcon: string;
+  startIconTheme: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
+  endIconTheme: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
+  label: string;
+  width: number | string;
+  height: number;
+  variant?: 'contained' | 'outlined' | 'text';
 }
 
-const defaultProps: Props = {
-  color: 'default',
-  disabled: false,
-  disableElevation: false,
-  endIcon: undefined,
-  fullWidth: false,
-  size: 'medium',
-  startIcon: undefined,
-  variant: 'text',
-  startIconTheme: 'Filled',
-  endIconTheme: 'Filled',
-  label: 'Button',
-  width: 100,
-  height: 38,
-};
-
-export const Button: React.SFC<Props> = (props: Props) => {
+export function Button(props: Props): JSX.Element {
   const {
     endIcon,
     endIconTheme,
@@ -61,15 +43,29 @@ export const Button: React.SFC<Props> = (props: Props) => {
       </MuiButton>
     </div>
   );
-};
+}
 
-Button.defaultProps = defaultProps;
+Button.defaultProps = {
+  color: 'primary' as 'primary',
+  disabled: false,
+  disableElevation: false,
+  endIcon: undefined,
+  fullWidth: false,
+  size: 'medium' as 'medium',
+  startIcon: undefined,
+  startIconTheme: 'Filled' as 'Filled',
+  endIconTheme: 'Filled' as 'Filled',
+  label: 'Button',
+  width: 100,
+  height: 38,
+  variant: 'text' as 'text',
+};
 
 addPropertyControls(Button, {
   color: {
     type: ControlType.Enum,
     title: 'Color',
-    options: ['default', 'inherit', 'primary', 'secondary'],
+    options: ['inherit', 'primary', 'secondary'],
   },
   disabled: {
     type: ControlType.Boolean,
@@ -94,16 +90,11 @@ addPropertyControls(Button, {
   size: {
     type: ControlType.Enum,
     title: 'Size',
-    options: ['small', 'medium', 'large'],
+    options: ['large', 'medium', 'small'],
   },
   startIcon: {
     type: ControlType.String,
     title: 'Start icon',
-  },
-  variant: {
-    type: ControlType.Enum,
-    title: 'Variant',
-    options: ['text', 'outlined', 'contained'],
   },
   startIconTheme: {
     type: ControlType.Enum,
@@ -118,5 +109,10 @@ addPropertyControls(Button, {
   label: {
     type: ControlType.String,
     title: 'Label',
+  },
+  variant: {
+    type: ControlType.Enum,
+    title: 'Variant',
+    options: ['contained', 'outlined', 'text'],
   },
 });

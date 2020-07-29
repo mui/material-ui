@@ -98,8 +98,8 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     label,
     nodeId,
     onClick,
-    onLabelClick,
     onIconClick,
+    onLabelClick,
     onMouseDown,
     TransitionComponent = Collapse,
     TransitionProps,
@@ -285,7 +285,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
       aria-selected={ariaSelected}
       ref={handleRef}
       id={id}
-      tabIndex="-1"
+      tabIndex={-1}
       {...other}
     >
       {/* Key event is handled by the TreeView */}

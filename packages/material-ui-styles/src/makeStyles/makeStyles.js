@@ -241,6 +241,23 @@ export default function makeStyles(stylesOrCreator, options = {}) {
       // eslint-disable-next-line react-hooks/rules-of-hooks
       React.useDebugValue(classes);
     }
+    if (process.env.NODE_ENV !== 'production') {
+      const whitelistedComponents = ['MuiButton'];
+
+      if (
+        name &&
+        whitelistedComponents.indexOf(name) >= 0 &&
+        props.variant &&
+        !classes[props.variant]
+      ) {
+        console.error(
+          [
+            `Material-UI: You are using a variant value \`${props.variant}\` for which you didn't define styles.`,
+            `Please create a new variant matcher in your theme for this variant. To learn more about matchers visit https://material-ui.com/customization/components/#adding-new-component-variants.`,
+          ].join('\n'),
+        );
+      }
+    }
 
     return classes;
   };

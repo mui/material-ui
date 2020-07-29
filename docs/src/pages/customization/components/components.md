@@ -319,3 +319,43 @@ const theme = createMuiTheme({
 ```
 
 {{"demo": "pages/customization/components/GlobalThemeOverride.js"}}
+
+### Adding new component variants
+
+You can take advantage of the `variants` key of the `theme` to add new variants to Material-UI components. These new variants, can specify which styles the component should have, if specific properties are defined together.
+
+The definitions are specified in an array, under the component's name. For every one of them a class is added in the head. The order is **important**, so make sure that the styles that should win will be specified lastly.
+
+```jsx
+const theme = createMuiTheme({
+  variants: {
+    MuiButton: [
+      {
+        props: { variant: 'dashed' },
+        styles: {
+          textTransform: 'none',
+          border: `2px dashed grey${blue[500]}`,
+        },
+      },
+      {
+        props: { variant: 'dashed', color: 'secondary' },
+        styles: {
+          border: `4px dashed ${red[500]}`,
+        },
+      },
+    ],
+  },
+});
+```
+
+If you are using TypeScript, you will need to specify your new variants/colors, using module augmentation.
+
+```tsx
+declare module '@material-ui/core/Button/Button' {
+  interface ButtonPropsVariantOverrides {
+    dashed: true;
+  }
+}
+```
+
+{{"demo": "pages/customization/components/GlobalThemeVariants.js"}}

@@ -3,27 +3,42 @@ import { addPropertyControls, ControlType, Frame, Scroll } from 'framer';
 import { ListItem } from './ListItem';
 
 interface Props {
-  alignItems?: 'flex-start' | 'center';
-  autoFocus?: boolean;
-  dense?: boolean;
-  disabled?: boolean;
-  disableGutters?: boolean;
-  divider?: boolean;
-  width?: number;
-  height?: number;
-  inset?: boolean;
-  labels?: string[];
-  secondaryLabels?: string[];
-  primaryAction?: 'none' | 'icon' | 'avatar' | 'checkbox';
-  primaryIcon?: string;
-  imageFile?: string;
-  imageUrl?: string;
-  secondaryAction?: 'none' | 'icon' | 'iconButton' | 'checkbox' | 'switch';
-  secondaryIcon?: string;
+  alignItems: 'flex-start' | 'center';
+  autoFocus: boolean;
+  children?: React.ReactNode;
+  dense: boolean;
+  disabled: boolean;
+  disableGutters: boolean;
+  divider: boolean;
+  width: number;
+  height: number;
+  inset: boolean;
+  labels: string[];
+  secondaryLabels: string[];
+  primaryAction: 'none' | 'icon' | 'avatar' | 'checkbox';
+  primaryIcon: string;
+  imageFile: string;
+  imageUrl: string;
+  secondaryAction: 'none' | 'iconButton' | 'checkbox' | 'switch';
+  secondaryIcon: string;
 }
 
-const defaultProps: Props = {
-  alignItems: 'center',
+export function List(props: Props): JSX.Element {
+  const { height, labels, secondaryLabels, width, ...other } = props;
+
+  return (
+    <Scroll width={width} height={height}>
+      <Frame background="white" height="100%">
+        {labels.map((label, index) => (
+          <ListItem key={label} label={label} secondaryLabel={secondaryLabels[index]} {...other} />
+        ))}
+      </Frame>
+    </Scroll>
+  );
+}
+
+List.defaultProps = {
+  alignItems: 'center' as 'center',
   autoFocus: false,
   dense: false,
   disabled: false,
@@ -38,30 +53,12 @@ const defaultProps: Props = {
     "Wish I could come, but I'm out of town this…",
     'Do you have Paris recommendations? Have you ever…',
   ],
-  primaryAction: 'icon',
-  primaryIcon: 'star',
+  primaryAction: 'icon' as 'icon',
+  primaryIcon: 'star' as 'star',
   imageFile: '',
   imageUrl: '',
   secondaryIcon: '',
 };
-
-export const List: React.SFC<Props> = (props: Props) => {
-  const { height, labels, secondaryLabels, width, ...other } = props;
-
-  return (
-    <Scroll width={width} height={height}>
-      <Frame background="white" height="100%">
-        {labels.map((label, index) => (
-          <ListItem key={label} label={label} secondaryLabel={secondaryLabels[index]} {...other} />
-        ))}
-      </Frame>
-    </Scroll>
-  );
-
-  return <ListItem {...other} />;
-};
-
-List.defaultProps = defaultProps;
 
 addPropertyControls(List, {
   alignItems: {
@@ -113,14 +110,17 @@ addPropertyControls(List, {
     type: ControlType.Image,
     title: 'Image File',
     hidden: function hidden(props) {
-      return props.primaryAction && props.primaryAction !== 'avatar';
+      return props.primaryAction !== undefined && props.primaryAction !== 'avatar';
     },
   },
   imageUrl: {
     type: ControlType.String,
     title: 'Image URL',
     hidden: function hidden(props) {
-      return props.imageFile !== '' || (props.primaryAction && props.primaryAction !== 'avatar');
+      return (
+        props.imageFile !== '' ||
+        (props.primaryAction !== undefined && props.primaryAction !== 'avatar')
+      );
     },
   },
   secondaryAction: {
@@ -132,7 +132,7 @@ addPropertyControls(List, {
     type: ControlType.String,
     title: 'Secondary icon',
     hidden: function hidden(props) {
-      return props.secondaryAction !== 'icon' && props.secondaryAction !== 'iconButton';
+      return props.secondaryAction !== 'iconButton';
     },
   },
   labels: {

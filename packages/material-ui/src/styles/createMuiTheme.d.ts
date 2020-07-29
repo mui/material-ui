@@ -8,6 +8,7 @@ import { Spacing, SpacingOptions } from './createSpacing';
 import { Transitions, TransitionsOptions } from './transitions';
 import { ZIndex, ZIndexOptions } from './zIndex';
 import { Overrides } from './overrides';
+import { Variants } from './variants';
 import { ComponentsProps } from './props';
 
 export type Direction = 'ltr' | 'rtl';
@@ -24,6 +25,7 @@ export interface ThemeOptions {
   spacing?: SpacingOptions;
   transitions?: TransitionsOptions;
   typography?: TypographyOptions | ((palette: Palette) => TypographyOptions);
+  variants?: Variants;
   zIndex?: ZIndexOptions;
   unstable_strictMode?: boolean;
 }
@@ -40,6 +42,7 @@ export interface Theme {
   spacing: Spacing;
   transitions: Transitions;
   typography: Typography;
+  variants?: Variants;
   zIndex: ZIndex;
   unstable_strictMode?: boolean;
 }

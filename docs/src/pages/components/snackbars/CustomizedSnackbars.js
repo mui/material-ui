@@ -15,6 +15,9 @@ const useStyles = makeStyles((theme) => ({
       marginTop: theme.spacing(2),
     },
   },
+  alert: {
+    width: '100%',
+  },
 }));
 
 export default function CustomizedSnackbars() {
@@ -39,7 +42,11 @@ export default function CustomizedSnackbars() {
         Open success snackbar
       </Button>
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="success">
+        <Alert
+          onClose={handleClose}
+          severity="success"
+          className={classes.alert}
+        >
           This is a success message!
         </Alert>
       </Snackbar>

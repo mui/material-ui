@@ -1,25 +1,11 @@
 import * as React from 'react';
 import { PropertyControls, ControlType } from 'framer';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import Card from '@material-ui/core/Card';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import CardActionArea from '@material-ui/core/CardActionArea';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import CardActions from '@material-ui/core/CardActions';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import CardContent from '@material-ui/core/CardContent';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import CardMedia from '@material-ui/core/CardMedia';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import MuiButton from '@material-ui/core/Button';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import MuiTypography from '@material-ui/core/Typography';
 import { IconButton } from './IconButton';
 

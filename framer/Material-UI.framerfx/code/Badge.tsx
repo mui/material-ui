@@ -1,33 +1,19 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import MuiBadge from '@material-ui/core/Badge';
 import { Icon } from './Icon';
 
 interface Props {
-  badgeContent?: string;
-  max?: number;
-  showZero?: boolean;
-  variant?: 'dot' | 'standard';
-  icon?: string;
-  theme?: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
-  badgeColor?: 'default' | 'primary' | 'secondary' | 'error';
-  width?: number;
-  height?: number;
+  badgeContent: string;
+  max: number;
+  showZero: boolean;
+  variant: 'dot' | 'standard';
+  icon: string;
+  theme: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
+  badgeColor: 'default' | 'primary' | 'secondary' | 'error';
+  width: number | string;
+  height: number;
 }
-
-const defaultProps: Props = {
-  badgeContent: '8',
-  max: 99,
-  showZero: false,
-  variant: 'standard',
-  icon: '',
-  theme: 'Filled',
-  badgeColor: 'primary',
-  width: 22,
-  height: 22,
-};
 
 const style: React.CSSProperties = {
   display: 'flex',
@@ -35,20 +21,29 @@ const style: React.CSSProperties = {
   justifyContent: 'center',
 };
 
-export const Badge: React.SFC<Props> = (props: Props) => {
+export function Badge(props: Props): JSX.Element {
   const { badgeColor: color, badgeContent, icon, theme, width, height, ...other } = props;
   const content =
     icon === '' ? (
       badgeContent
     ) : (
-      // @ts-ignore
       <Icon icon={icon} theme={theme} style={{ width: '75%', height: '75%' }} />
     );
 
   return <MuiBadge badgeContent={content} color={color} style={style} {...other} />;
-};
+}
 
-Badge.defaultProps = defaultProps;
+Badge.defaultProps = {
+  badgeContent: '8',
+  max: 99,
+  showZero: false,
+  variant: 'standard' as 'standard',
+  icon: '',
+  theme: 'Filled' as 'Filled',
+  badgeColor: 'primary' as 'primary',
+  width: 22,
+  height: 22,
+};
 
 addPropertyControls(Badge, {
   badgeContent: {

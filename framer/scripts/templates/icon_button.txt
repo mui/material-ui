@@ -1,23 +1,15 @@
 {{=« »=}}
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
-import Mui«componentName» from '@material-ui/core/«componentName»';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
+import MuiIconButton, { IconButtonProps as MuiIconButtonProps } from '@material-ui/core/IconButton';
 import MuiBadge from '@material-ui/core/Badge';
 import { Icon } from './Icon';
 
-interface Props {
+interface Props extends MuiIconButtonProps {
 «& tsInterface»
 }
 
-const defaultProps: Props =  {
-«& defaultProps»
-};
-
-export const «componentName»: React.SFC<Props> = (props: Props) => {
+export function «componentName»(props: Props): JSX.Element {
   const { badgeColor, badgeContent, height, icon, iconTheme, width, ...other } = props;
   const IconBadge =
   badgeContent === '' ? (
@@ -33,7 +25,9 @@ export const «componentName»: React.SFC<Props> = (props: Props) => {
   );
 }
 
-«componentName».defaultProps = defaultProps;
+«componentName».defaultProps = {
+«& defaultProps»
+};
 
 addPropertyControls(«componentName», {
 «& propertyControls»

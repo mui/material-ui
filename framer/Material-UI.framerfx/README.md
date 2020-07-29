@@ -2,6 +2,9 @@
 
 This is the official resource for Material-UI React components in Framer.
 
+[Material-UI](https://material-ui.com/) is a library of React components for faster and easier web development.
+You can build your own design system, or start with Material Design.
+
 ## Supported components
 
 The following components are currently supported:
@@ -55,7 +58,7 @@ If multiple options are supplied, they take the following priority:
 ## Resources
 
 - [Material-UI documentation](https://material-ui.com/)
-- [GitHub repo](https://github.com/mui-org/material-ui/tree/master/framer)
+- [GitHub repository](https://github.com/mui-org/material-ui/tree/master/framer)
 
 ## Releases
 

@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/lab",
-  "version": "5.0.0-alpha.3",
+  "version": "5.0.0-alpha.5",
   "private": false,
   "author": "Material-UI Team",
   "description": "Material-UI Lab - Incubator for Material-UI React components.",

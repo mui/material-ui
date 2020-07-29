@@ -1,52 +1,46 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
 import MuiFab from '@material-ui/core/Fab';
 import { Icon } from './Icon';
 
 interface Props {
-  color?: 'default' | 'inherit' | 'primary' | 'secondary';
-  disabled?: boolean;
+  color: 'default' | 'inherit' | 'primary' | 'secondary';
+  disabled: boolean;
   href?: string;
-  size?: 'small' | 'medium' | 'large';
-  variant?: 'round' | 'extended';
-  icon?: string;
-  iconTheme?: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
-  label?: string;
-  width?: number;
-  height?: number;
+  size: 'large' | 'medium' | 'small';
+  variant: 'extended' | 'round';
+  icon: string;
+  iconTheme: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
+  label: string;
+  width: number | string;
+  height: number;
 }
 
-const defaultProps: Props = {
-  color: 'default',
-  disabled: false,
-  size: 'large',
-  variant: 'round',
-  icon: 'add',
-  iconTheme: 'Filled',
-  label: 'extended',
-  width: 56,
-  height: 56,
-};
-
-export const Fab: React.SFC<Props> = (props: Props) => {
+export function Fab(props: Props): JSX.Element {
   const { height, icon, label, iconTheme, variant, width, ...other } = props;
   return (
     <MuiFab variant={variant} {...other}>
       <Icon
         icon={icon}
         theme={iconTheme}
-        // tslint:disable-next-line: ban-ts-ignore
-        // @ts-ignore
         style={variant === 'extended' ? { marginRight: 8 } : {}}
       />
       {variant === 'extended' ? label : null}
     </MuiFab>
   );
-};
+}
 
-Fab.defaultProps = defaultProps;
+Fab.defaultProps = {
+  color: 'default' as 'default',
+  disabled: false,
+  size: 'large' as 'large',
+  variant: 'round' as 'round',
+  icon: 'add',
+  iconTheme: 'Filled' as 'Filled',
+  label: 'extended',
+  width: 56,
+  height: 56,
+};
 
 addPropertyControls(Fab, {
   color: {
@@ -65,12 +59,12 @@ addPropertyControls(Fab, {
   size: {
     type: ControlType.Enum,
     title: 'Size',
-    options: ['small', 'medium', 'large'],
+    options: ['large', 'medium', 'small'],
   },
   variant: {
     type: ControlType.Enum,
     title: 'Variant',
-    options: ['round', 'extended'],
+    options: ['extended', 'round'],
   },
   icon: {
     type: ControlType.String,
