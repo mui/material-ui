@@ -18,6 +18,7 @@ export default function MultiSelectTreeView() {
 
   return (
     <TreeView
+      aria-label="multi-select"
       className={classes.root}
       defaultCollapseIcon={<ExpandMoreIcon />}
       defaultExpandIcon={<ChevronRightIcon />}

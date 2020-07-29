@@ -51,6 +51,7 @@ export default function UseAutocomplete() {
   return (
     <div>
       <div {...getRootProps()}>
+        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control -- props getter set htmlFor */}
         <label className={classes.label} {...getInputLabelProps()}>
           useAutocomplete
         </label>

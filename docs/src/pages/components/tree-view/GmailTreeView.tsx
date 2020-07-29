@@ -136,6 +136,7 @@ export default function GmailTreeView() {
 
   return (
     <TreeView
+      aria-label="gmail"
       className={classes.root}
       defaultExpanded={['3']}
       defaultCollapseIcon={<ArrowDropDownIcon />}

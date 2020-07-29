@@ -50,9 +50,6 @@ module.exports = {
       );
     }
 
-    config.resolve.alias['react-dom$'] = 'react-dom/profiling';
-    config.resolve.alias['scheduler/tracing'] = 'scheduler/tracing-profiling';
-
     // next includes node_modules in webpack externals. Some of those have dependencies
     // on the aliases defined above. If a module is an external those aliases won't be used.
     // We need tell webpack to not consider those packages as externals.
@@ -171,13 +168,13 @@ module.exports = {
     return map;
   },
   experimental: {
-    async rewrites() {
-      return [
-        { source: `/:lang(${LANGUAGES.join('|')})?/:rest`, destination: '/:rest' },
-        { source: '/api/:rest*', destination: '/api-docs/:rest*' },
-      ];
-    },
     reactMode: reactMode.startsWith('legacy') ? 'legacy' : reactMode,
   },
   reactStrictMode: reactMode === 'legacy-strict',
+  async rewrites() {
+    return [
+      { source: `/:lang(${LANGUAGES.join('|')})?/:rest*`, destination: '/:rest*' },
+      { source: '/api/:rest*', destination: '/api-docs/:rest*' },
+    ];
+  },
 };
