@@ -182,8 +182,20 @@ export function generate(component: t.Component, options: GenerateOptions = {}):
     }
 
     if (propType.type === 'UnionNode') {
+      const uniqueTypes = t.uniqueUnionTypes(propType).types;
+      const isOptional = uniqueTypes.some((type) => type.type === 'UndefinedNode');
+      const nonNullishUniqueTypes = uniqueTypes.filter((type) => {
+        return (
+          type.type !== 'UndefinedNode' && !(type.type === 'LiteralNode' && type.value === 'null')
+        );
+      });
+
+      if (uniqueTypes.length === 2 && uniqueTypes.some((type) => type.type === 'DOMElementNode')) {
+        return generatePropType(t.createDOMElementType(isOptional), context);
+      }
+
       let [literals, rest] = _.partition(
-        t.uniqueUnionTypes(propType).types,
+        isOptional ? nonNullishUniqueTypes : uniqueTypes,
         (type): type is t.LiteralType => type.type === 'LiteralNode',
       );
 
@@ -220,18 +232,18 @@ export function generate(component: t.Component, options: GenerateOptions = {}):
           : '';
 
       if (rest.length === 0) {
-        return literalProps;
+        return `${literalProps}${isOptional ? '' : '.isRequired'}`;
       }
 
       if (literals.length === 0 && rest.length === 1) {
-        return generatePropType(rest[0], context);
+        return `${generatePropType(rest[0], context)}${isOptional ? '' : '.isRequired'}`;
       }
 
       return `${importedName}.oneOfType([${
         literalProps ? `${literalProps}, ` : ''
       }${rest
         .map((type) => generatePropType(type, context))
-        .reduce((prev, curr) => `${prev},${curr}`)}])`;
+        .reduce((prev, curr) => `${prev},${curr}`)}])${isOptional ? '' : '.isRequired'}`;
     }
 
     throw new Error(
@@ -243,37 +255,23 @@ export function generate(component: t.Component, options: GenerateOptions = {}):
     propTypeDefinition: t.PropTypeDefinition,
     context: { component: t.Component },
   ): string {
-    let isOptional = false;
-    let propType = { ...propTypeDefinition.propType };
+    let isRequired: boolean | undefined = true;
 
-    if (
-      propType.type === 'UnionNode' &&
-      propType.types.some((type) => type.type === 'UndefinedNode')
-    ) {
-      isOptional = true;
-      propType.types = propType.types.filter(
-        (type) =>
-          type.type !== 'UndefinedNode' && !(type.type === 'LiteralNode' && type.value === 'null'),
-      );
-      if (propType.types.length === 1 && propType.types[0].type !== 'LiteralNode') {
-        propType = propType.types[0];
-      }
-    }
-
-    console.log(isOptional, propTypeDefinition);
-
-    if (propType.type === 'DOMElementNode') {
-      propType.optional = isOptional;
-      // Handled internally in the validate function
-      isOptional = true;
+    if (propTypeDefinition.propType.type === 'DOMElementNode') {
+      // DOMElement generator decides
+      isRequired = undefined;
+    } else if (propTypeDefinition.propType.type === 'UnionNode') {
+      // union generator decides
+      isRequired = undefined;
     }
 
     const validatorSource = reconcilePropTypes(
       propTypeDefinition,
       previousPropTypesSource.get(propTypeDefinition.name),
-      `${generatePropType(propType, { component: context.component, propTypeDefinition })}${
-        isOptional ? '' : '.isRequired'
-      }`,
+      `${generatePropType(propTypeDefinition.propType, {
+        component: context.component,
+        propTypeDefinition,
+      })}${isRequired === true ? '.isRequired' : ''}`,
     );
 
     return `${jsDoc(propTypeDefinition)}"${propTypeDefinition.name}": ${validatorSource},`;
