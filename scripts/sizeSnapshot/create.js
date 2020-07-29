@@ -104,13 +104,13 @@ async function getNextPagesSize() {
     // used to be tracked with custom logic hence the different ids
     if (pageUrl === '/') {
       snapshotId = 'docs.landing';
-    } else if (pageUrl === 'static/pages/_app.js') {
-      snapshotId = 'docs.main';
       // chunks contain a content hash that makes the names
       // unsuitable for tracking. Using stable name instead:
-    } else if (/^runtime\/main\.(.+)\.js$/.test(pageUrl)) {
+    } else if (/^chunks\/pages\/_app\.(.+)\.js$/.test(pageUrl)) {
+      snapshotId = 'docs.main';
+    } else if (/^chunks\/main\.(.+)\.js$/.test(pageUrl)) {
       snapshotId = 'docs:shared:runtime/main';
-    } else if (/^runtime\/webpack\.(.+)\.js$/.test(pageUrl)) {
+    } else if (/^chunks\/webpack\.(.+)\.js$/.test(pageUrl)) {
       snapshotId = 'docs:shared:runtime/webpack';
     } else if (/^chunks\/commons\.(.+)\.js$/.test(pageUrl)) {
       snapshotId = 'docs:shared:chunk/commons';
