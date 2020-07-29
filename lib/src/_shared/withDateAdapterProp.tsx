@@ -4,7 +4,7 @@ import { MuiPickersAdapterContext } from '../LocalizationProvider';
 
 export interface WithDateAdapterProps<TDate> {
   /**
-   * Allows to pass configured date-io adapter directly. More info [here](https://material-ui-pickers.dev/guides/date-adapter-passing)
+   * Allows to pass configured date-io adapter directly. More info [here](https://next.material-ui-pickers.dev/guides/date-adapter-passing)
    * ```jsx
    * dateAdapter={new DateFnsAdapter({ locale: ruLocale })}
    * ```
