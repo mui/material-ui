@@ -25,7 +25,39 @@ const [queryDescriptionOf, , getDescriptionOf, , findDescriptionOf] = buildQueri
   },
 );
 
-const customQueries = { queryDescriptionOf, getDescriptionOf, findDescriptionOf };
+// https://github.com/testing-library/dom-testing-library/issues/723
+// hide ByLabelText queries since they only support firefox >= 56, not IE 1:
+// - HTMLInputElement.prototype.labels https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/labels
+const [
+  queryByLabelText,
+  queryAllByLabelText,
+  getByLabelText,
+  getAllByLabelText,
+  findByLabelText,
+] = buildQueries(
+  function queryAllDescriptionsOf(container, label) {
+    throw new Error(
+      `*ByLabelText() relies on features that are not available in older browsers. Prefer \`*ByRole(someRole, { name: '${label}' })\` `,
+    );
+  },
+  function getMultipleError() {
+    throw new Error('not implemented');
+  },
+  function getMissingError() {
+    throw new Error('not implemented');
+  },
+);
+
+const customQueries = {
+  queryDescriptionOf,
+  getDescriptionOf,
+  findDescriptionOf,
+  queryByLabelText,
+  queryAllByLabelText,
+  getByLabelText,
+  getAllByLabelText,
+  findByLabelText,
+};
 
 /**
  * @typedef {object} RenderOptions
