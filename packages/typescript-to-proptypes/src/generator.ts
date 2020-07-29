@@ -234,7 +234,9 @@ export function generate(component: t.Component, options: GenerateOptions = {}):
         .reduce((prev, curr) => `${prev},${curr}`)}])`;
     }
 
-    throw new Error(`Nothing to handle node of type "${propType.type}"`);
+    throw new Error(
+      `Nothing to handle node of type "${propType.type}" in "${context.propTypeDefinition.name}"`,
+    );
   }
 
   function generatePropTypeDefinition(
@@ -253,10 +255,12 @@ export function generate(component: t.Component, options: GenerateOptions = {}):
         (type) =>
           type.type !== 'UndefinedNode' && !(type.type === 'LiteralNode' && type.value === 'null'),
       );
-      if (propType.types.length === 1 && propType.types[0].type !== 'UndefinedNode') {
+      if (propType.types.length === 1 && propType.types[0].type !== 'LiteralNode') {
         propType = propType.types[0];
       }
     }
+
+    console.log(isOptional, propTypeDefinition);
 
     if (propType.type === 'DOMElementNode') {
       propType.optional = isOptional;
