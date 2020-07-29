@@ -11,7 +11,7 @@ const prettierConfig = prettier.resolveConfig.sync(path.join(__dirname, '../.pre
 const testCases = glob.sync('**/input.{d.ts,ts,tsx}', { absolute: true, cwd: __dirname });
 
 // Create program for all files to speed up tests
-const program = ttp.createProgram(
+const program = ttp.createTSProgram(
   testCases,
   ttp.loadConfig(path.resolve(__dirname, '../tsconfig.json')),
 );
@@ -49,7 +49,11 @@ for (const testCase of testCases) {
     let result = '';
     // For d.ts files we just generate the AST
     if (!inputSource) {
-      result = ttp.generate(ast, options.generator);
+      result = ast.body
+        .map((component) => {
+          return ttp.generate(component, options.generator);
+        })
+        .join('\n');
     } else {
       // For .tsx? files we transpile them and inject the proptypesu
       const injected = ttp.inject(ast, inputSource, options.injector);
