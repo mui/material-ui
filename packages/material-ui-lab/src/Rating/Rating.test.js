@@ -38,13 +38,12 @@ describe('<Rating />', () => {
   });
 
   it('should round the value to the provided precision', () => {
-    const { container, getByRole } = render(
-      <Rating {...defaultProps} value={3.9} precision={0.2} />,
+    const { container } = render(<Rating {...defaultProps} value={3.9} precision={0.2} />);
+
+    expect(container.querySelector('input[name="rating-test"]:checked')).to.have.property(
+      'value',
+      '4',
     );
-    const input = getByRole('radio', { name: '4 Stars' });
-    const checked = container.querySelector('input[name="rating-test"]:checked');
-    expect(input).to.equal(checked);
-    expect(input.value).to.equal('4');
   });
 
   it('should handle mouse hover correctly', () => {
