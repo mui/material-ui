@@ -114,6 +114,7 @@ This change affects almost all components where you're using the `component` pro
 
 - This component was removed.
   You can get a reference to the underlying DOM node of our components via `ref` prop.
+  The component relied on [`ReactDOM.findDOMNode`](https://reactjs.org/docs/react-dom.html#finddomnode) which is [deprecated in `React.StrictMode`](https://reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage).
 
   ```diff
   -<RootRef rootRef={ref}>
