@@ -8,7 +8,7 @@ interface Props {
   disabled: boolean;
   href?: string;
   size: 'large' | 'medium' | 'small';
-  variant: 'extended' | 'circle';
+  variant: 'circle' | 'extended';
   icon: string;
   iconTheme: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
   label: string;
