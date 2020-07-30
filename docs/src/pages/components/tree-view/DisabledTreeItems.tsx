@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) =>
   }),
 );
 
-export default function FileSystemNavigator() {
+export default function DisabledTreeItems() {
   const classes = useStyles();
   const [focusDisabledItems, setFocusDisabledItems] = React.useState(false);
   const handleToggle = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -42,6 +42,7 @@ export default function FileSystemNavigator() {
         />
       </div>
       <TreeView
+        aria-label="disabled items"
         defaultCollapseIcon={<ExpandMoreIcon />}
         defaultExpandIcon={<ChevronRightIcon />}
         disabledItemsFocusable={focusDisabledItems}
