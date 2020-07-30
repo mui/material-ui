@@ -274,7 +274,7 @@ Snackbar.propTypes = {
    * The `Snackbar` is placed by default bottom center on Mobile and bottom left on Desktop
    */
   anchorOrigin: PropTypes.shape({
-    horizontal: PropTypes.oneOf(['center', 'left', 'right', 'default']).isRequired,
+    horizontal: PropTypes.oneOf(['center', 'default', 'left', 'right']).isRequired,
     vertical: PropTypes.oneOf(['bottom', 'top']).isRequired,
   }),
   /**

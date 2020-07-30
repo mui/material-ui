@@ -6,7 +6,7 @@ import { ClickAwayListenerProps } from '../ClickAwayListener';
 
 export interface SnackbarOrigin {
   vertical: 'top' | 'bottom';
-  horizontal: 'left' | 'center' | 'right';
+  horizontal: 'left' | 'center' | 'right' | 'default';
 }
 
 export type SnackbarCloseReason = 'timeout' | 'clickaway';
