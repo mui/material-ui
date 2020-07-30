@@ -7,7 +7,10 @@ import { DefaultTheme } from '../defaultTheme';
 // Disable automatic export
 export {};
 
-type JSSFontface = CSS.FontFace & { fallbacks?: CSS.FontFace[] };
+// Unpack union autocomplete hack values (https://github.com/microsoft/TypeScript/issues/29729#issuecomment-554927299)
+export type PropertyValue<T> = CSS.PropertyValue<T>;
+
+type JSSFontface = CSS.AtRule.FontFace & { fallbacks?: CSS.AtRule.FontFace[] };
 
 export type PropsFunc<Props extends object, T> = (props: Props) => T;
 

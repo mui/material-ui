@@ -1,5 +1,6 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 import { expectType } from '@material-ui/types';
+import { PropertyValue } from '@material-ui/styles';
 
 {
   // properties of the variants can be "unset"
@@ -12,5 +13,5 @@ import { expectType } from '@material-ui/types';
   });
 
   const maybeFontStyle = theme.typography.body1.fontStyle;
-  expectType<string | undefined, typeof maybeFontStyle>(maybeFontStyle);
+  expectType<string | undefined, PropertyValue<typeof maybeFontStyle>>(maybeFontStyle);
 }
