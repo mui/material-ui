@@ -1,7 +1,7 @@
 import * as babel from '@babel/core';
 import * as babelTypes from '@babel/types';
 import { v4 as uuid } from 'uuid';
-import * as t from './types/index';
+import * as t from './types';
 import { generate, GenerateOptions } from './generator';
 
 export type InjectOptions = {
@@ -22,8 +22,8 @@ export type InjectOptions = {
    * @default includeUnusedProps ? true : data.usedProps.includes(data.prop.name)
    */
   shouldInclude?(data: {
-    component: t.ComponentNode;
-    prop: t.PropTypeNode;
+    component: t.Component;
+    prop: t.PropTypeDefinition;
     usedProps: string[];
   }): boolean | undefined;
 
@@ -38,9 +38,9 @@ export type InjectOptions = {
    * By always returning 0 from the sort function you keep the order the type checker dictates.
    */
   getSortLiteralUnions?: (
-    component: t.ComponentNode,
-    propType: t.PropTypeNode,
-  ) => ((a: t.LiteralNode, b: t.LiteralNode) => number) | undefined;
+    component: t.Component,
+    propType: t.PropTypeDefinition,
+  ) => ((a: t.LiteralType, b: t.LiteralType) => number) | undefined;
 
   /**
    * Options passed to babel.transformSync
@@ -115,14 +115,14 @@ function getUsedProps(
 }
 
 function plugin(
-  propTypes: t.ProgramNode,
+  propTypes: t.Program,
   options: InjectOptions = {},
   mapOfPropTypes: Map<string, string>,
 ): babel.PluginObj {
   const {
     includeUnusedProps = false,
     reconcilePropTypes = (
-      _prop: t.PropTypeNode,
+      _prop: t.PropTypeDefinition,
       _previous: string | undefined,
       generated: string,
     ) => generated,
@@ -149,7 +149,7 @@ function plugin(
   function injectPropTypes(injectOptions: {
     path: babel.NodePath;
     usedProps: string[];
-    props: t.ComponentNode;
+    props: t.Component;
     nodeName: string;
   }) {
     const { path, props, usedProps, nodeName } = injectOptions;
@@ -367,7 +367,7 @@ function plugin(
  * @param options Options controlling the final result
  */
 export function inject(
-  propTypes: t.ProgramNode,
+  propTypes: t.Program,
   target: string,
   options: InjectOptions = {},
 ): string | null {

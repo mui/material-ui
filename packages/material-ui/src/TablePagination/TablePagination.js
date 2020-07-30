@@ -282,7 +282,7 @@ TablePagination.propTypes = {
         label: PropTypes.string.isRequired,
         value: PropTypes.number.isRequired,
       }),
-    ]),
+    ]).isRequired,
   ),
   /**
    * Props applied to the rows per page [`Select`](/api/select/) element.

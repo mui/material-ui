@@ -17,7 +17,7 @@ Hidden.propTypes = {
    */
   only: PropTypes.oneOfType([
     PropTypes.oneOf(['xl', 'md', 'xs']),
-    PropTypes.arrayOf(PropTypes.oneOf(['xl', 'md', 'xs'])),
+    PropTypes.arrayOf(PropTypes.oneOf(['xl', 'md', 'xs']).isRequired),
   ]),
 };
 
