@@ -27,9 +27,9 @@ describe('<ToggleButtonGroup />', () => {
   }));
 
   it('renders a `group`', () => {
-    const { getByLabelText } = render(<ToggleButtonGroup aria-label="my group" />);
+    const { queryByRole } = render(<ToggleButtonGroup aria-label="my group" />);
 
-    expect(getByLabelText('my group')).to.have.attribute('role', 'group');
+    expect(queryByRole('group', { name: 'my group' })).not.to.equal(null);
   });
 
   it('can render group orientation vertically', () => {
