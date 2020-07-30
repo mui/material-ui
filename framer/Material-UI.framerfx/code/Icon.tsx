@@ -17,9 +17,9 @@ export function Icon(props: Props): JSX.Element | null {
   const iconName = `${iconProp && pascalCase(iconProp)}${
     theme === 'Filled' ? '' : theme
   }` as keyof typeof Icons;
-  const Icon = Object.keys(Icons).indexOf(iconName) !== -1 ? Icons[iconName] : undefined;
+  const MuiIcon = Object.keys(Icons).indexOf(iconName) !== -1 ? Icons[iconName] : undefined;
 
-  return Icon ? <Icon style={{ width, height }} {...other} /> : null;
+  return MuiIcon ? <MuiIcon style={{ width, height }} {...other} /> : null;
 }
 
 Icon.defaultProps = {

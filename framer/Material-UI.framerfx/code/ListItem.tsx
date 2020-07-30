@@ -5,9 +5,9 @@ import MuiListItemIcon from '@material-ui/core/ListItemIcon';
 import MuiListItemAvatar from '@material-ui/core/ListItemAvatar';
 // import MuiListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import MuiListItemText from '@material-ui/core/ListItemText';
-import { Avatar } from './Avatar';
 import MuiCheckbox from '@material-ui/core/Checkbox';
 import MuiSwitch from '@material-ui/core/Switch';
+import { Avatar } from './Avatar';
 import { Icon } from './Icon';
 import { IconButton } from './IconButton';
 
@@ -75,6 +75,9 @@ export function ListItem(props: Props): JSX.Element {
         </MuiListItemIcon>
       );
       break;
+    default:
+      primary = null;
+      break;
   }
 
   switch (secondaryAction) {
@@ -87,6 +90,9 @@ export function ListItem(props: Props): JSX.Element {
     case 'switch':
       secondary = <MuiSwitch edge="end" />;
       break;
+    default:
+      secondary = null;
+      break;
   }
 
   return (
@@ -95,7 +101,7 @@ export function ListItem(props: Props): JSX.Element {
       <MuiListItemText
         inset={inset}
         primary={label}
-        secondary={secondaryLabel ? secondaryLabel : undefined}
+        secondary={secondaryLabel.length > 0 ? secondaryLabel : undefined}
       />
       {/* MuiListItemSecondaryAction causes the text to have a bullet. No idea why! */}
       {/* <MuiListItemSecondaryAction> */}
