@@ -38,6 +38,9 @@ function noopSelection() {
   return false;
 }
 
+const defaultDefaultExpanded = [];
+const defaultDefaultSelected = [];
+
 const TreeView = React.forwardRef(function TreeView(props, ref) {
   const {
     children,
@@ -45,10 +48,10 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     className,
     defaultCollapseIcon,
     defaultEndIcon,
-    defaultExpanded = [],
+    defaultExpanded = defaultDefaultExpanded,
     defaultExpandIcon,
     defaultParentIcon,
-    defaultSelected = [],
+    defaultSelected = defaultDefaultSelected,
     disabledItemsFocusable = false,
     disableSelection = false,
     expanded: expandedProp,
@@ -398,7 +401,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   const currentRangeSelection = React.useRef([]);
 
   const handleRangeArrowSelect = (event, nodes) => {
-    let base = selected;
+    let base = [...selected];
     const { start, next, current } = nodes;
 
     if (!next || !current) {
@@ -432,11 +435,11 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   };
 
   const handleRangeSelect = (event, nodes) => {
-    let base = selected;
+    let base = [...selected];
     const { start, end } = nodes;
     // If last selection was a range selection ignore nodes that were selected.
     if (lastSelectionWasRange.current) {
-      base = selected.filter((id) => currentRangeSelection.current.indexOf(id) === -1);
+      base = base.filter((id) => currentRangeSelection.current.indexOf(id) === -1);
     }
 
     let range = getNodesInRange(start, end);
