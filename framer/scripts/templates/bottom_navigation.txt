@@ -14,8 +14,8 @@ export function «componentName»(props: Props): JSX.Element {
 
   const [value, setValue] =React.useState(0)
 
-  const handleChange = (event: React.SyntheticEvent, value: any) => {
-    setValue(value);
+  const handleChange = (event: React.SyntheticEvent, newValue: any) => {
+    setValue(newValue);
   };
 
   const items = icons.length > labels.length ? icons : labels;

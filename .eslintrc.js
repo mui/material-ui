@@ -87,6 +87,17 @@ module.exports = {
 
     'react-hooks/exhaustive-deps': ['error', { additionalHooks: 'useEnhancedEffect' }],
     'react-hooks/rules-of-hooks': 'error',
+
+    'react/default-props-match-prop-types': [
+      'error',
+      {
+        // Otherwise the rule thinks inner props = outer props
+        // But in TypeScript we want to know that a certain prop is defined during render
+        // while it can be ommitted from the callsite.
+        // Then defaultProps (or default values) will make sure the the prop is defined during render
+        allowRequiredDefaults: true,
+      },
+    ],
     // Can add verbosity to small functions making them harder to grok.
     // Though we have to manually enforce it for function components with default values.
     'react/destructuring-assignment': 'off',
@@ -232,6 +243,13 @@ module.exports = {
         'react/require-default-props': 'off',
         'react/state-in-constructor': 'off',
         'react/static-property-placement': 'off',
+      },
+    },
+    {
+      files: ['framer/Material-UI.framerfx/code/**/*.tsx'],
+      rules: {
+        // framer requires named exports
+        'import/prefer-default-export': 'off',
       },
     },
     {
