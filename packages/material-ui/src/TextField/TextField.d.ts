@@ -92,13 +92,6 @@ export interface BaseTextFieldProps
    */
   name?: string;
   onBlur?: InputBaseProps['onBlur'];
-  /**
-   * Callback fired when the value is changed.
-   *
-   * @param {object} event The event source of the callback.
-   * You can pull out the new value by accessing `event.target.value` (string).
-   */
-  onChange?: InputBaseProps['onChange'];
   onFocus?: StandardInputProps['onFocus'];
   /**
    * The short hint displayed in the input before the user enters a value.
@@ -141,6 +134,13 @@ export interface BaseTextFieldProps
 
 export interface StandardTextFieldProps extends BaseTextFieldProps {
   /**
+   * Callback fired when the value is changed.
+   *
+   * @param {object} event The event source of the callback.
+   * You can pull out the new value by accessing `event.target.value` (string).
+   */
+  onChange?: StandardInputProps['onChange'];
+  /**
    * The variant to use.
    */
   variant?: 'standard';
@@ -155,6 +155,13 @@ export interface StandardTextFieldProps extends BaseTextFieldProps {
 
 export interface FilledTextFieldProps extends BaseTextFieldProps {
   /**
+   * Callback fired when the value is changed.
+   *
+   * @param {object} event The event source of the callback.
+   * You can pull out the new value by accessing `event.target.value` (string).
+   */
+  onChange?: FilledInputProps['onChange'];
+  /**
    * The variant to use.
    */
   variant: 'filled';
@@ -168,6 +175,13 @@ export interface FilledTextFieldProps extends BaseTextFieldProps {
 }
 
 export interface OutlinedTextFieldProps extends BaseTextFieldProps {
+  /**
+   * Callback fired when the value is changed.
+   *
+   * @param {object} event The event source of the callback.
+   * You can pull out the new value by accessing `event.target.value` (string).
+   */
+  onChange?: OutlinedInputProps['onChange'];
   /**
    * The variant to use.
    */
