@@ -113,7 +113,7 @@ const defaultVariantMapping = {
   subtitle2: 'h6',
   body1: 'p',
   body2: 'p',
-  inherit: 'inherit',
+  inherit: 'p',
 };
 
 const Typography = React.forwardRef(function Typography(props, ref) {
