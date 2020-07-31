@@ -209,13 +209,13 @@ Accordion.propTypes = {
    */
   square: PropTypes.bool,
   /**
-   * The component used for the collapse effect.
+   * The component used for the transition.
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    */
   TransitionComponent: PropTypes.elementType,
   /**
-   * Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.
-   * By default, the element is based on [react-transition-group](https://reactcommunity.org/react-transition-group/transition#Transition-props).
+   * Props applied to the transition element.
+   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition) component.
    */
   TransitionProps: PropTypes.object,
 };

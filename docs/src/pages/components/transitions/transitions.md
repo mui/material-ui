@@ -90,4 +90,11 @@ It should respect the following conditions:
 - Call the `onExited` callback prop when the exit transition is completed.
   These two callbacks allow to unmount the children when in a closed state and fully transitioned.
 
-For more information on creating a custom transition, visit the [React Transition Group Transition docs](http://reactcommunity.org/react-transition-group/transition).
+For more information on creating a custom transition, visit the _react-transition-group_ [Transition docs](http://reactcommunity.org/react-transition-group/transition).
+You can also visit the dedicated sections of some of the components:
+
+- [Modal](/components/modal/#transitions)
+- [Dialog](/components/dialogs/#transitions)
+- [Popper](/components/popper/#transitions)
+- [Snackbar](/components/snackbars/#transitions)
+- [Tooltip](/components/tooltips/#transitions)
