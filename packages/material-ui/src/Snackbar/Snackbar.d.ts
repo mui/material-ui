@@ -93,8 +93,6 @@ export interface SnackbarProps
    * Callback fired when the transition is exiting.
    */
   onExiting?: TransitionHandlerProps['onExiting'];
-  onMouseEnter?: React.MouseEventHandler<any>;
-  onMouseLeave?: React.MouseEventHandler<any>;
   /**
    * If `true`, `Snackbar` is open.
    */

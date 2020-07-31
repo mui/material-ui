@@ -2,6 +2,7 @@ import * as React from 'react';
 import { StandardProps, PropTypes } from '..';
 import { FormControlProps } from '../FormControl';
 import { FormHelperTextProps } from '../FormHelperText';
+import { InputBaseProps } from '../InputBase';
 import { InputProps as StandardInputProps } from '../Input';
 import { FilledInputProps } from '../FilledInput';
 import { OutlinedInputProps } from '../OutlinedInput';
@@ -67,6 +68,10 @@ export interface BaseTextFieldProps
    */
   InputLabelProps?: Partial<InputLabelProps>;
   /**
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
+   */
+  inputProps?: InputBaseProps['inputProps'];
+  /**
    * Pass a ref to the `input` element.
    */
   inputRef?: React.Ref<any>;
@@ -86,6 +91,8 @@ export interface BaseTextFieldProps
    * Name attribute of the `input` element.
    */
   name?: string;
+  onBlur?: InputBaseProps['onBlur'];
+  onFocus?: StandardInputProps['onFocus'];
   /**
    * The short hint displayed in the input before the user enters a value.
    */
@@ -126,7 +133,6 @@ export interface BaseTextFieldProps
 }
 
 export interface StandardTextFieldProps extends BaseTextFieldProps {
-  onBlur?: StandardInputProps['onBlur'];
   /**
    * Callback fired when the value is changed.
    *
@@ -134,7 +140,6 @@ export interface StandardTextFieldProps extends BaseTextFieldProps {
    * You can pull out the new value by accessing `event.target.value` (string).
    */
   onChange?: StandardInputProps['onChange'];
-  onFocus?: StandardInputProps['onFocus'];
   /**
    * The variant to use.
    */
@@ -146,14 +151,9 @@ export interface StandardTextFieldProps extends BaseTextFieldProps {
    * component depending on the `variant` prop value.
    */
   InputProps?: Partial<StandardInputProps>;
-  /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
-   */
-  inputProps?: StandardInputProps['inputProps'];
 }
 
 export interface FilledTextFieldProps extends BaseTextFieldProps {
-  onBlur?: FilledInputProps['onBlur'];
   /**
    * Callback fired when the value is changed.
    *
@@ -161,7 +161,6 @@ export interface FilledTextFieldProps extends BaseTextFieldProps {
    * You can pull out the new value by accessing `event.target.value` (string).
    */
   onChange?: FilledInputProps['onChange'];
-  onFocus?: FilledInputProps['onFocus'];
   /**
    * The variant to use.
    */
@@ -173,14 +172,9 @@ export interface FilledTextFieldProps extends BaseTextFieldProps {
    * component depending on the `variant` prop value.
    */
   InputProps?: Partial<FilledInputProps>;
-  /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
-   */
-  inputProps?: FilledInputProps['inputProps'];
 }
 
 export interface OutlinedTextFieldProps extends BaseTextFieldProps {
-  onBlur?: OutlinedInputProps['onBlur'];
   /**
    * Callback fired when the value is changed.
    *
@@ -188,7 +182,6 @@ export interface OutlinedTextFieldProps extends BaseTextFieldProps {
    * You can pull out the new value by accessing `event.target.value` (string).
    */
   onChange?: OutlinedInputProps['onChange'];
-  onFocus?: OutlinedInputProps['onFocus'];
   /**
    * The variant to use.
    */
@@ -200,10 +193,6 @@ export interface OutlinedTextFieldProps extends BaseTextFieldProps {
    * component depending on the `variant` prop value.
    */
   InputProps?: Partial<OutlinedInputProps>;
-  /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
-   */
-  inputProps?: OutlinedInputProps['inputProps'];
 }
 
 export type TextFieldProps = StandardTextFieldProps | FilledTextFieldProps | OutlinedTextFieldProps;
