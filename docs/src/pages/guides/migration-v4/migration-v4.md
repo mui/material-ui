@@ -120,10 +120,13 @@ This change affects almost all components where you're using the `component` pro
 
 ### Snackbar
 
-- The default value of `anchorOrigin` on Desktop is changed from `bottom center` to `bottom left`
+- The notification now displays at the bottom left on large screens.
+  It better matches the behavior of Gmail, Google Keep, material.io, etc.
+  You can restore the previous behavior with:
+
   ```diff
-  -<Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} />
-  +<Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: desktop ? 'left' : 'center' }} />
+  -<Snackbar />
+  +<Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} />
   ```
 
 ### TablePagination

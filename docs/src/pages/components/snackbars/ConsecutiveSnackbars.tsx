@@ -68,10 +68,6 @@ export default function ConsecutiveSnackbars() {
       <Button onClick={handleClick('Message B')}>Show message B</Button>
       <Snackbar
         key={messageInfo ? messageInfo.key : undefined}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }}
         open={open}
         autoHideDuration={6000}
         onClose={handleClose}

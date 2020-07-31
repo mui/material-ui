@@ -35,12 +35,6 @@ export const styles = (theme) => {
       right: 8,
       justifyContent: 'center',
       alignItems: 'center',
-      /* default ancohrOrigin */
-      ...bottom1,
-      [theme.breakpoints.up('sm')]: {
-        ...bottom3,
-        ...left3,
-      },
     },
     /* Styles applied to the root element if `anchorOrigin={{ 'top', 'center' }}`. */
     anchorOriginTopCenter: {
@@ -104,7 +98,7 @@ export const styles = (theme) => {
 const Snackbar = React.forwardRef(function Snackbar(props, ref) {
   const {
     action,
-    anchorOrigin: { vertical, horizontal } = { vertical: 'bottom', horizontal: 'default' },
+    anchorOrigin: { vertical, horizontal } = { vertical: 'bottom', horizontal: 'left' },
     autoHideDuration = null,
     children,
     classes,
@@ -229,10 +223,7 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
       <div
         className={clsx(
           classes.root,
-          {
-            [classes[`anchorOrigin${capitalize(vertical)}${capitalize(horizontal)}`]]:
-              horizontal !== 'default',
-          },
+          classes[`anchorOrigin${capitalize(vertical)}${capitalize(horizontal)}`],
           className,
         )}
         onMouseEnter={handleMouseEnter}
@@ -271,10 +262,9 @@ Snackbar.propTypes = {
   action: PropTypes.node,
   /**
    * The anchor of the `Snackbar`.
-   * The `Snackbar` is placed by default bottom center on Mobile and bottom left on Desktop
    */
   anchorOrigin: PropTypes.shape({
-    horizontal: PropTypes.oneOf(['center', 'default', 'left', 'right']).isRequired,
+    horizontal: PropTypes.oneOf(['center', 'left', 'right']).isRequired,
     vertical: PropTypes.oneOf(['bottom', 'top']).isRequired,
   }),
   /**

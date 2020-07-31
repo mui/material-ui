@@ -6,7 +6,7 @@ import { ClickAwayListenerProps } from '../ClickAwayListener';
 
 export interface SnackbarOrigin {
   vertical: 'top' | 'bottom';
-  horizontal: 'left' | 'center' | 'right' | 'default';
+  horizontal: 'left' | 'center' | 'right';
 }
 
 export type SnackbarCloseReason = 'timeout' | 'clickaway';
@@ -22,7 +22,6 @@ export interface SnackbarProps
   action?: SnackbarContentProps['action'];
   /**
    * The anchor of the `Snackbar`.
-   * The `Snackbar` is placed by default bottom center on Mobile and bottom left on Desktop
    */
   anchorOrigin?: SnackbarOrigin;
   /**
