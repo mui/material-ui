@@ -95,42 +95,47 @@ describe('useThemeVariants', () => {
     expect(style.getPropertyValue('background-color')).to.equal('rgb(255, 255, 0)');
   });
 
-  it('should warn if the used variant is not defined in the theme', function test() {	
+  it('should warn if the used variant is not defined in the theme', function test() {
     // Warnings are added for whitelisted components, so we need to
     // test with some name that is in the list, for example MuiButtton
-    const Button = withStyles({}, { name: 'MuiButton' })((props) => {
+    const Button = withStyles(
+      {},
+      { name: 'MuiButton' },
+    )((props) => {
       const { className, ...other } = props;
       const themeVariantsClasses = useThemeVariants(props, 'MuiButton');
       return <div className={`${themeVariantsClasses} ${className}`} {...other} />;
     });
 
-    const theme = createMuiTheme({	
-      variants: {	
-        MuiButton: [	
-          {	
-            props: { variant: 'test1' },	
-            styles: { backgroundColor: 'rgb(255, 0, 0)' },	
-          },	
-        ],	
-      },	
-    });	
+    const theme = createMuiTheme({
+      variants: {
+        MuiButton: [
+          {
+            props: { variant: 'test1' },
+            styles: { backgroundColor: 'rgb(255, 0, 0)' },
+          },
+        ],
+      },
+    });
 
-    expect(() => render(
-      <ThemeProvider theme={theme}>
-        <Button data-testid="component" variant="test">
-          Test
-        </Button>
-      </ThemeProvider>,
-    )).toErrorDev([	
-      // strict mode renders twice	
-      [	
-        `Material-UI: You are using a variant value \`test\` for which you didn't define styles.`,	
-        `Please create a new variant matcher in your theme for this variant. To learn more about matchers visit https://material-ui.com/customization/components/#adding-new-component-variants.`,	
-      ].join('\n'),	
-      [	
-        `Material-UI: You are using a variant value \`test\` for which you didn't define styles.`,	
-        `Please create a new variant matcher in your theme for this variant. To learn more about matchers visit https://material-ui.com/customization/components/#adding-new-component-variants.`,	
-      ].join('\n'),	
-    ]);	
+    expect(() =>
+      render(
+        <ThemeProvider theme={theme}>
+          <Button data-testid="component" variant="test">
+            Test
+          </Button>
+        </ThemeProvider>,
+      ),
+    ).toErrorDev([
+      // strict mode renders twice
+      [
+        `Material-UI: You are using a variant value \`test\` for which you didn't define styles.`,
+        `Please create a new variant matcher in your theme for this variant. To learn more about matchers visit https://material-ui.com/customization/components/#adding-new-component-variants.`,
+      ].join('\n'),
+      [
+        `Material-UI: You are using a variant value \`test\` for which you didn't define styles.`,
+        `Please create a new variant matcher in your theme for this variant. To learn more about matchers visit https://material-ui.com/customization/components/#adding-new-component-variants.`,
+      ].join('\n'),
+    ]);
   });
 });
