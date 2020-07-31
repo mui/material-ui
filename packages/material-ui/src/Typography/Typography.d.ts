@@ -57,7 +57,7 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
      * If you wish to change that mapping, you can provide your own.
      * Alternatively, you can use the `component` prop.
      */
-    variantMapping?: Partial<Record<Variant, string>>;
+    variantMapping?: Partial<Record<OverridableStringUnion<TypographyVariantDefaults, TypographyPropsVariantOverrides>, string>>;
   };
   defaultComponent: D;
   classKey: TypographyClassKey;

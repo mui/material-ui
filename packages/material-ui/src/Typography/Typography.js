@@ -271,6 +271,7 @@ Typography.propTypes = {
     h4: PropTypes.string,
     h5: PropTypes.string,
     h6: PropTypes.string,
+    inherit: PropTypes.string,
     overline: PropTypes.string,
     subtitle1: PropTypes.string,
     subtitle2: PropTypes.string,
