@@ -10,7 +10,6 @@ import acceptLanguage from 'accept-language';
 import { create } from 'jss';
 import rtl from 'jss-rtl';
 import { useRouter } from 'next/router';
-import { rewriteUrlForNextExport } from 'next/dist/next-server/lib/router/rewrite-url-for-export';
 import { StylesProvider, jssPreset } from '@material-ui/styles';
 import pages from 'docs/src/pages';
 import initRedux from 'docs/src/modules/redux/initRedux';
@@ -44,9 +43,7 @@ function LanguageNegotiation() {
   const userLanguage = useSelector((state) => state.options.userLanguage);
 
   React.useEffect(() => {
-    const { userLanguage: userLanguageUrl, canonical } = pathnameToLanguage(
-      rewriteUrlForNextExport(router.asPath),
-    );
+    const { userLanguage: userLanguageUrl, canonical } = pathnameToLanguage(router.asPath);
     const preferedLanguage =
       getCookie('userLanguage') !== 'noDefault' && userLanguage === 'en'
         ? acceptLanguage.get(navigator.language)
