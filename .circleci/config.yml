@@ -157,6 +157,12 @@ workflows:
             - 'Build and analyze bundlesize'
 
       - jest_tests:
+          name: 'Dayjs jest tests'
+          lib: dayjs
+          requires:
+            - 'Build and analyze bundlesize'
+
+      - jest_tests:
           name: 'Moment jest tests'
           lib: moment
           requires:
