@@ -150,6 +150,26 @@ This change affects almost all components where you're using the `component` pro
   +<Tabs onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
   ```
 
+### TextField
+
+- Better isolate the fixed textarea height behavior to the dynamic one.
+  You need to use the `rowsMin` prop in the following case:
+
+  ```diff
+  -<TextField rows={2} rowsMax={5} />
+  +<TextField rowsMin={2} rowsMax={5} />
+  ```
+
+### TextareaAutosize
+
+- Remove the `rows` prop, use the `rowsMin` prop instead.
+  This change aims to clarify the behavior of the prop.
+
+  ```diff
+  -<TextareaAutosize rows={2} />
+  +<TextareaAutosize rowsMin={2} />
+  ```
+
 ### Typography
 
 - Replace the `srOnly` prop so as to not duplicate the capabilities of [System](https://material-ui.com/system/basics/):
