@@ -117,6 +117,7 @@ const ignoreExternalDocumentation: Record<string, string[]> = {
   Fab: ['focusVisibleClassName'],
   Fade: transitionCallbacks,
   Grow: transitionCallbacks,
+  ListItem: ['focusVisibleClassName'],
   InputBase: ['aria-describedby'],
   Menu: ['PaperProps'],
   MenuItem: ['button', 'disabled', 'selected'],
