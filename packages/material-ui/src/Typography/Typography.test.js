@@ -1,15 +1,12 @@
 // @ts-check
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import {
   getClasses,
   createClientRender,
   createMount,
   describeConformance,
-  screen,
 } from 'test/utils';
-import { ThemeProvider, createMuiTheme } from '../styles';
 import Typography from './Typography';
 
 describe('<Typography />', () => {

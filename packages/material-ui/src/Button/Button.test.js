@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import {
   getClasses,
@@ -7,11 +6,9 @@ import {
   describeConformance,
   act,
   createClientRender,
-  screen,
   fireEvent,
   createServerRender,
 } from 'test/utils';
-import { ThemeProvider, createMuiTheme } from '../styles';
 import Button from './Button';
 import ButtonBase from '../ButtonBase';
 
