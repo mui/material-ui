@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { useThemeVariants } from '@material-ui/styles';
 import withStyles from '../styles/withStyles';
 import capitalize from '../utils/capitalize';
 
@@ -35,6 +36,8 @@ export const styles = (theme) => ({
   subtitle2: theme.typography.subtitle2,
   /* Styles applied to the root element if `variant="overline"`. */
   overline: theme.typography.overline,
+  /* Styles applied to the root element if `variant="inherit"`. */
+  inherit: {},
   /* Styles applied to the root element if `align="left"`. */
   alignLeft: {
     textAlign: 'left',
@@ -110,6 +113,7 @@ const defaultVariantMapping = {
   subtitle2: 'h6',
   body1: 'p',
   body2: 'p',
+  inherit: 'inherit',
 };
 
 const Typography = React.forwardRef(function Typography(props, ref) {
@@ -128,6 +132,21 @@ const Typography = React.forwardRef(function Typography(props, ref) {
     ...other
   } = props;
 
+  const themeVariantsClasses = useThemeVariants(
+    {
+      ...props,
+      align,
+      color,
+      display,
+      gutterBottom,
+      noWrap,
+      paragraph,
+      variant,
+      variantMapping,
+    },
+    'MuiTypography',
+  );
+
   const Component =
     component ||
     (paragraph ? 'p' : variantMapping[variant] || defaultVariantMapping[variant]) ||
@@ -137,8 +156,8 @@ const Typography = React.forwardRef(function Typography(props, ref) {
     <Component
       className={clsx(
         classes.root,
+        classes[variant],
         {
-          [classes[variant]]: variant !== 'inherit',
           [classes[`color${capitalize(color)}`]]: color !== 'initial',
           [classes.noWrap]: noWrap,
           [classes.gutterBottom]: gutterBottom,
@@ -146,6 +165,7 @@ const Typography = React.forwardRef(function Typography(props, ref) {
           [classes[`align${capitalize(align)}`]]: align !== 'inherit',
           [classes[`display${capitalize(display)}`]]: display !== 'initial',
         },
+        themeVariantsClasses,
         className,
       )}
       ref={ref}
@@ -215,21 +235,24 @@ Typography.propTypes = {
   /**
    * Applies the theme typography styles.
    */
-  variant: PropTypes.oneOf([
-    'body1',
-    'body2',
-    'button',
-    'caption',
-    'h1',
-    'h2',
-    'h3',
-    'h4',
-    'h5',
-    'h6',
-    'inherit',
-    'overline',
-    'subtitle1',
-    'subtitle2',
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf([
+      'body1',
+      'body2',
+      'button',
+      'caption',
+      'h1',
+      'h2',
+      'h3',
+      'h4',
+      'h5',
+      'h6',
+      'inherit',
+      'overline',
+      'subtitle1',
+      'subtitle2',
+    ]),
+    PropTypes.string,
   ]),
   /**
    * The component maps the variant prop to a range of different HTML element types.
