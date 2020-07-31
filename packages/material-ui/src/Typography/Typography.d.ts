@@ -96,6 +96,7 @@ export type TypographyClassKey =
   | 'caption'
   | 'button'
   | 'overline'
+  | 'inherit'
   | 'alignLeft'
   | 'alignCenter'
   | 'alignRight'
