@@ -167,6 +167,7 @@
     "**/@babel/runtime": "^7.10.2",
     "**/@babel/types": "^7.10.2",
     "**/cross-fetch": "^3.0.5",
+    "**/dot-prop": "^5.2.0",
     "**/hoist-non-react-statics": "^3.3.2",
     "**/terser": "^4.1.2"
   },
