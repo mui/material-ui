@@ -13,7 +13,6 @@ interface Props {
   multiline: boolean;
   placeholder?: string;
   required: boolean;
-  rowsMin?: number | string;
   size?: 'medium' | 'small';
   variant: 'filled' | 'outlined' | 'standard';
   width: number | string;
@@ -83,11 +82,6 @@ addPropertyControls(TextField, {
   required: {
     type: ControlType.Boolean,
     title: 'Required',
-  },
-  rowsMin: {
-    type: ControlType.Union,
-    title: 'Rows min',
-    options: [number, string],
   },
   size: {
     type: ControlType.Enum,
