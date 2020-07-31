@@ -242,7 +242,7 @@ export default function makeStyles(stylesOrCreator, options = {}) {
       React.useDebugValue(classes);
     }
     if (process.env.NODE_ENV !== 'production') {
-      const whitelistedComponents = ['MuiButton'];
+      const whitelistedComponents = ['MuiButton', 'MuiTypography'];
 
       if (
         name &&
