@@ -110,6 +110,10 @@ export interface BaseTextFieldProps
    */
   rowsMax?: string | number;
   /**
+   * Minimum number of rows to display when multiline option is set to true.
+   */
+  rowsMin?: string | number;
+  /**
    * Render a [`Select`](/api/select/) element while passing the Input element to `Select` as `input` parameter.
    * If this option is set you must pass the options of the select as children.
    */

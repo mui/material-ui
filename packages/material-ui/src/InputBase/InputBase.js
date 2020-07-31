@@ -371,12 +371,19 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
       ref: null,
     };
   } else if (multiline) {
-    if (rows && !rowsMax && !rowsMin) {
+    if (rows) {
       InputComponent = 'textarea';
+      if (process.env.NODE_ENV !== 'production') {
+        if (rowsMin || rowsMax) {
+          console.warn(
+            'Material-UI: You can not use the `rowsMin` or `rowsMax` props when the input `rows` prop is set.',
+          );
+        }
+      }
     } else {
       inputProps = {
-        rows,
         rowsMax,
+        rowsMin,
         ...inputProps,
       };
 

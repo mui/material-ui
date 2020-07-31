@@ -27,9 +27,7 @@ const styles = {
 };
 
 const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) {
-  const { onChange, rows, rowsMax, rowsMin: rowsMinProp = 1, style, value, ...other } = props;
-
-  const rowsMin = rows || rowsMinProp;
+  const { onChange, rowsMax, rowsMin = 1, style, value, ...other } = props;
 
   const { current: isControlled } = React.useRef(value != null);
   const inputRef = React.useRef(null);
@@ -191,12 +189,6 @@ TextareaAutosize.propTypes = {
    * @ignore
    */
   placeholder: PropTypes.string,
-  /**
-   * Use `rowsMin` instead. The prop will be removed in v5.
-   *
-   * @deprecated
-   */
-  rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * Maximum number of rows to display.
    */
