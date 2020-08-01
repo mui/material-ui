@@ -246,7 +246,7 @@ export default function makeStyles(stylesOrCreator, options = {}) {
 
       if (
         name &&
-        whitelistedComponents.indexOf(name) >= 0 &&
+        allowlistedComponents.indexOf(name) >= 0 &&
         props.variant &&
         !classes[props.variant]
       ) {
