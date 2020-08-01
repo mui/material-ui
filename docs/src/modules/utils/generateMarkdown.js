@@ -341,9 +341,7 @@ function generateProps(reactAPI) {
     text = `${text}
 Any other props supplied will be provided to the root element (${
       reactAPI.inheritance
-        ? `[${reactAPI.inheritance.component}](${rewriteUrlForNextExport(
-            reactAPI.inheritance.pathname,
-          )})`
+        ? `[${reactAPI.inheritance.component}](${reactAPI.inheritance.pathname})`
         : 'native element'
     }).`;
   }
@@ -419,9 +417,7 @@ function generateInheritance(reactAPI) {
 
   return `## Inheritance
 
-The props of the [${inheritance.component}](${rewriteUrlForNextExport(
-    inheritance.pathname,
-  )}) component${suffix} are also available.
+The props of the [${inheritance.component}](${inheritance.pathname}) component${suffix} are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 `;
@@ -442,9 +438,7 @@ function generateDemos(reactAPI) {
 
   return `## Demos
 
-${pagesMarkdown
-  .map((page) => `- [${pageToTitle(page)}](${rewriteUrlForNextExport(page.pathname)})`)
-  .join('\n')}
+${pagesMarkdown.map((page) => `- [${pageToTitle(page)}](${page.pathname}/)`).join('\n')}
 
 `;
 }

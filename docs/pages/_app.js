@@ -295,18 +295,10 @@ function AppWrapper(props) {
     }
   }, []);
 
-  let pathname = router.pathname;
-  // Add support for leading / in development mode.
-  if (pathname !== '/') {
-    // The leading / is only added to support static hosting (resolve /index.html).
-    // We remove it to normalize the pathname.
-    // See `rewriteUrlForNextExport` on Next.js side.
-    pathname = pathname.replace(/\/$/, '');
-  }
-  const activePage = findActivePage(pages, pathname);
+  const activePage = findActivePage(pages, router.pathname);
 
   let fonts = ['https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap'];
-  if (pathname.match(/onepirate/)) {
+  if (router.pathname.match(/onepirate/)) {
     fonts = [
       'https://fonts.googleapis.com/css?family=Roboto+Condensed:700|Work+Sans:300,400&display=swap',
     ];
