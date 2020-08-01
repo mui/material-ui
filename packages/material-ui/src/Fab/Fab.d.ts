@@ -37,7 +37,7 @@ export type FabTypeMap<P = {}, D extends React.ElementType = 'button'> = ExtendB
     /**
      * The variant to use.
      */
-    variant?: 'circle' | 'extended';
+    variant?: 'circular' | 'extended';
   };
   defaultComponent: D;
   classKey: FabClassKey;

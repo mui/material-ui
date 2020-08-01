@@ -260,9 +260,9 @@ This change affects almost all components where you're using the `component` pro
 
   ## Fab
 
-  - Rename `round` to `circle` for consistency:
+  - Rename `round` to `circular` for consistency:
 
   ```diff
   -<Fab variant="round">
-  +<Fab variant="circle">
+  +<Fab variant="circular">
   ```

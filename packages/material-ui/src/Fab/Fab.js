@@ -130,7 +130,7 @@ const Fab = React.forwardRef(function Fab(props, ref) {
     disableFocusRipple = false,
     focusVisibleClassName,
     size = 'large',
-    variant = 'circle',
+    variant = 'circular',
     ...other
   } = props;
 
@@ -216,7 +216,7 @@ Fab.propTypes = {
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['circle', 'extended']),
+  variant: PropTypes.oneOf(['circular', 'extended']),
 };
 
 export default withStyles(styles, { name: 'MuiFab' })(Fab);
