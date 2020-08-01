@@ -13,7 +13,7 @@ export const styles = (theme) => ({
     textAlign: 'center',
     flex: '0 0 auto',
     fontSize: theme.typography.pxToRem(24),
-    padding: 12,
+    padding: (theme.density(48, 0) - 24) / 2,
     borderRadius: '50%',
     overflow: 'visible', // Explicitly set the default value to solve a bug on IE 11.
     color: theme.palette.action.active,
@@ -34,16 +34,28 @@ export const styles = (theme) => ({
   },
   /* Styles applied to the root element if `edge="start"`. */
   edgeStart: {
-    marginLeft: -12,
-    '$sizeSmall&': {
-      marginLeft: -3,
+    marginLeft: -(theme.density(48, 0) - 18) / 2,
+    '&$sizeSmall': {
+      marginLeft: -(theme.density(30, 0) - 18) / 2,
+    },
+    '&$sizeSmall$mediumDensity': {
+      marginLeft: -(theme.density(30, -1) - 18) / 2,
+    },
+    '&$sizeSmall$highDensity': {
+      marginLeft: -(theme.density(30, -2) - 18) / 2,
     },
   },
   /* Styles applied to the root element if `edge="end"`. */
   edgeEnd: {
-    marginRight: -12,
-    '$sizeSmall&': {
-      marginRight: -3,
+    marginRight: -(theme.density(48, 0) - 18) / 2,
+    '&$sizeSmall': {
+      marginRight: -(theme.density(30, -1) - 18) / 2,
+    },
+    '&$sizeSmall$mediumDensity': {
+      marginRight: -(theme.density(30, -1) - 18) / 2,
+    },
+    '&$sizeSmall$highDensity': {
+      marginRight: -(theme.density(30, -2) - 18) / 2,
     },
   },
   /* Styles applied to the root element if `color="inherit"`. */
@@ -76,8 +88,22 @@ export const styles = (theme) => ({
   disabled: {},
   /* Styles applied to the root element if `size="small"`. */
   sizeSmall: {
-    padding: 3,
+    padding: (theme.density(30, 0) - 18) / 2,
     fontSize: theme.typography.pxToRem(18),
+    '&$densityMedium': {
+      padding: (theme.density(30, -1) - 18) / 2,
+    },
+    '&$densityHigh': {
+      padding: (theme.density(30, -2) - 18) / 2,
+    },
+  },
+  /* Styles applied to the root element if `density="comfortable"`. */
+  densityMedium: {
+    padding: (theme.density(48, -3) - 24) / 2,
+  },
+  /* Styles applied to the root element if `density="compact"`. */
+  densityHigh: {
+    padding: (theme.density(48, -5) - 24) / 2,
   },
   /* Styles applied to the children container element. */
   label: {
@@ -99,6 +125,7 @@ const IconButton = React.forwardRef(function IconButton(props, ref) {
     classes,
     className,
     color = 'default',
+    density = 'low',
     disabled = false,
     disableFocusRipple = false,
     size = 'medium',
@@ -113,6 +140,7 @@ const IconButton = React.forwardRef(function IconButton(props, ref) {
           [classes[`color${capitalize(color)}`]]: color !== 'default',
           [classes.disabled]: disabled,
           [classes[`size${capitalize(size)}`]]: size !== 'medium',
+          [classes[`density${capitalize(density)}`]]: density !== 'low',
           [classes.edgeStart]: edge === 'start',
           [classes.edgeEnd]: edge === 'end',
         },
@@ -170,6 +198,10 @@ IconButton.propTypes = {
    */
   color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary']),
   /**
+   * The density of the button.
+   */
+  density: PropTypes.oneOf(['high', 'medium', 'low']),
+  /**
    * If `true`, the button will be disabled.
    */
   disabled: PropTypes.bool,
@@ -193,7 +225,6 @@ IconButton.propTypes = {
   edge: PropTypes.oneOf(['end', 'start', false]),
   /**
    * The size of the button.
-   * `small` is equivalent to the dense button styling.
    */
   size: PropTypes.oneOf(['medium', 'small']),
 };

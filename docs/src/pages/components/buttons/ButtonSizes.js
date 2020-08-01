@@ -57,22 +57,22 @@ export default function ButtonSizes() {
         Large
         </Button>
         </div>
+          <div>
+            <IconButton aria-label="delete" className={classes.margin} size="small" density={density}>
+              <ArrowDownwardIcon fontSize="inherit" />
+            </IconButton>
+            <IconButton aria-label="delete" className={classes.margin} density={density}>
+              <DeleteIcon fontSize="small" />
+            </IconButton>
+            <IconButton aria-label="delete" className={classes.margin} density={density}>
+              <DeleteIcon />
+            </IconButton>
+            <IconButton aria-label="delete" className={classes.margin} density={density}>
+              <DeleteIcon fontSize="large" />
+            </IconButton>
+          </div>
         </div>
       ))}
-        <div>
-          <IconButton aria-label="delete" className={classes.margin} size="small">
-            <ArrowDownwardIcon fontSize="inherit" />
-          </IconButton>
-          <IconButton aria-label="delete" className={classes.margin}>
-            <DeleteIcon fontSize="small" />
-          </IconButton>
-          <IconButton aria-label="delete" className={classes.margin}>
-            <DeleteIcon />
-          </IconButton>
-          <IconButton aria-label="delete" className={classes.margin}>
-            <DeleteIcon fontSize="large" />
-          </IconButton>
-        </div>
       </div>
   );
 }

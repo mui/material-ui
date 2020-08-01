@@ -16,6 +16,10 @@ export type IconButtonTypeMap<
      */
     color?: PropTypes.Color;
     /**
+     * The density of the button.
+     */
+    density?: 'low' | 'medium' | 'high';
+    /**
      * If `true`, the button will be disabled.
      */
     disabled?: boolean;
