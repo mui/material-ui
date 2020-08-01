@@ -260,22 +260,7 @@ Typography.propTypes = {
    * If you wish to change that mapping, you can provide your own.
    * Alternatively, you can use the `component` prop.
    */
-  variantMapping: PropTypes.shape({
-    body1: PropTypes.string,
-    body2: PropTypes.string,
-    button: PropTypes.string,
-    caption: PropTypes.string,
-    h1: PropTypes.string,
-    h2: PropTypes.string,
-    h3: PropTypes.string,
-    h4: PropTypes.string,
-    h5: PropTypes.string,
-    h6: PropTypes.string,
-    inherit: PropTypes.string,
-    overline: PropTypes.string,
-    subtitle1: PropTypes.string,
-    subtitle2: PropTypes.string,
-  }),
+  variantMapping: PropTypes /* @typescript-to-proptypes-ignore */.object,
 };
 
 export default withStyles(styles, { name: 'MuiTypography' })(Typography);
