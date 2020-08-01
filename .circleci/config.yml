@@ -143,8 +143,8 @@ jobs:
           name: '`yarn workspace framer build` changes committed?'
           command: git diff --exit-code
       - run:
-          name: Lint
-          command: yarn lint:ci
+          name: Eslint
+          command: yarn eslint:ci
       - run:
           name: '`yarn extract-error-codes` changes committed?'
           command: |
@@ -152,7 +152,7 @@ jobs:
             git diff --exit-code
       - run:
           name: Lint JSON
-          command: yarn --silent jsonlint
+          command: yarn jsonlint
   test_types:
     <<: *defaults
     steps:
