@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/pickers",
-  "version": "4.0.0-alpha.10",
+  "version": "4.0.0-alpha.11",
   "private": true,
   "description": "React components, that implements material design pickers for material-ui v4",
   "main": "./src/index.ts",
@@ -70,7 +70,7 @@
     "build:typescript": "tsc --project tsconfig.json && tsc -p tsconfig.adapters.json",
     "build": "yarn build:typescript && yarn build:bundle && yarn build:prepare-files",
     "build:analyze": "yarn build",
-    "release": "yarn test && yarn version && yarn build && yarn publish --non-interactive --tag next build"
+    "release": "yarn build && yarn publish --non-interactive --tag next build"
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",
