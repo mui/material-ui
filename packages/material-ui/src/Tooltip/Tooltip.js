@@ -182,7 +182,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     placement = 'bottom',
     PopperComponent = Popper,
     PopperProps,
-    title,
+    title = '',
     TransitionComponent = Grow,
     TransitionProps,
     ...other
