@@ -239,3 +239,21 @@ This change affects almost all components where you're using the `component` pro
   -<Grid justify="center">
   +<Grid justifyContent="center">
   ```
+
+  ## Pagination
+
+  - Rename `round` to `circular` for consistency:
+
+  ```diff
+  -<Pagination shape="round">
+  +<Pagination shape="circular">
+  ```
+
+  ## PaginationItem
+
+  - Rename `round` to `circular` for consistency:
+
+  ```diff
+  -<PaginationItem shape="round">
+  +<PaginationItem shape="circular">
+  ```
