@@ -104,6 +104,7 @@ import { LocalizationProvider as MuiPickersLocalizationProvider, KeyboardTimePic
   it('should handle multilines', () => {
     const source = `
 import React from 'react';
+import DateFnsAdapter from '@material-ui/pickers/adapter/date-fns';
 import {
   LocalizationProvider as MuiPickersLocalizationProvider,
   KeyboardTimePicker,
