@@ -40,7 +40,7 @@ The `MuiTreeItem` name can be used for providing [default props](/customization/
 | <span class="prop-name">onIconClick</span> | <span class="prop-type">func</span> |  | `onClick` handler for the icon container. Call `event.preventDefault()` to prevent `onNodeToggle` from being called. |
 | <span class="prop-name">onLabelClick</span> | <span class="prop-type">func</span> |  | `onClick` handler for the label container. Call `event.preventDefault()` to prevent `onNodeToggle` from being called. |
 | <span class="prop-name">TransitionComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">Collapse</span> | The component used for the transition. [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component. |
-| <span class="prop-name">TransitionProps</span> | <span class="prop-type">object</span> |  | Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element. |
+| <span class="prop-name">TransitionProps</span> | <span class="prop-type">object</span> |  | Props applied to the transition element. By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition) component. |
 
 The `ref` is forwarded to the root element.
 
