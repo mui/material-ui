@@ -127,7 +127,7 @@ module.exports = {
       },
     };
   },
-  exportTrailingSlash: true,
+  // exportTrailingSlash: true,
   trailingSlash: true,
   // Next.js provides a `defaultPathMap` argument, we could simplify the logic.
   // However, we don't in order to prevent any regression in the `findPages()` method.
