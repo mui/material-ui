@@ -6,6 +6,7 @@ import createTypography from './createTypography';
 import shadows from './shadows';
 import shape from './shape';
 import createSpacing from './createSpacing';
+import createDensity from './createDensity';
 import transitions from './transitions';
 import zIndex from './zIndex';
 
@@ -22,6 +23,7 @@ function createMuiTheme(options = {}, ...args) {
   const palette = createPalette(paletteInput);
   const breakpoints = createBreakpoints(breakpointsInput);
   const spacing = createSpacing(spacingInput);
+  const density = createDensity();
 
   let muiTheme = deepmerge(
     {
@@ -34,6 +36,7 @@ function createMuiTheme(options = {}, ...args) {
       shadows,
       typography: createTypography(palette, typographyInput),
       spacing,
+      density,
       shape,
       transitions,
       variants: {},
