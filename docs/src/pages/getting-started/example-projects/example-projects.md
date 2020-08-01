@@ -6,7 +6,7 @@
 
 You can find some example projects in the [GitHub repository](https://github.com/mui-org/material-ui) under the [`/examples`](https://github.com/mui-org/material-ui/tree/master/examples) folder:
 
-- [Create React App](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app)
+- [Create React App](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app) ([Typescript version](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript))
 - [Gatsby](https://github.com/mui-org/material-ui/tree/master/examples/gatsby)
 - [Next.js](https://github.com/mui-org/material-ui/tree/master/examples/nextjs)
 - [Preact](https://github.com/mui-org/material-ui/tree/master/examples/preact)
