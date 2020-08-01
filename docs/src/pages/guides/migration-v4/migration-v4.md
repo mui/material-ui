@@ -242,7 +242,7 @@ This change affects almost all components where you're using the `component` pro
 
   ## Pagination
 
-  - Rename `round` to `circular` for consistency:
+  - Rename `round` to `circular` for consistency. The possible values should be adjectives, not nouns:
 
   ```diff
   -<Pagination shape="round">
@@ -251,7 +251,7 @@ This change affects almost all components where you're using the `component` pro
 
   ## PaginationItem
 
-  - Rename `round` to `circular` for consistency:
+  - Rename `round` to `circular` for consistency. The possible values should be adjectives, not nouns:
 
   ```diff
   -<PaginationItem shape="round">
