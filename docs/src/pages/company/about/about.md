@@ -10,7 +10,7 @@ We're proud not only of the products we make, but also the community and partner
 
 ## Our Vision
 
-Our vision is to provide React components for faster and easier web development. [Read more](/discover-more/vision/).
+Our vision is to provide React components for faster and simpler web development. [Read more](/discover-more/vision/).
 
 ## Our Values
 
