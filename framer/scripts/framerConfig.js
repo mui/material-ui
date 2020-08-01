@@ -315,6 +315,7 @@ export const componentSettings = {
       'gutterBottom',
       'internalDeprecatedVariant',
       'paragraph',
+      // FIXME: `Union`
       'variant',
       'variantMapping',
     ],
