@@ -20,7 +20,7 @@
     "lodash": "^4.17.19"
   },
   "peerDependencies": {
-    "@types/react": "^16.8.6",
+    "@types/react": "^16.9.44",
     "framer": "^1.0.0",
     "react": "^16.8.0",
     "react-dom": "^16.8.0"
