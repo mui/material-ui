@@ -13,7 +13,8 @@ export const styles = (theme) => ({
     ...theme.typography.button,
     boxSizing: 'border-box',
     minWidth: 64,
-    padding: '6px 16px',
+    padding: '0px 16px',
+    minHeight: theme.density(36, 0),
     borderRadius: theme.shape.borderRadius,
     transition: theme.transitions.create(['background-color', 'box-shadow', 'border'], {
       duration: theme.transitions.duration.short,
@@ -42,7 +43,7 @@ export const styles = (theme) => ({
   },
   /* Styles applied to the root element if `variant="text"`. */
   text: {
-    padding: '6px 8px',
+    padding: '0px 8px',
   },
   /* Styles applied to the root element if `variant="text"` and `color="primary"`. */
   textPrimary: {
@@ -68,7 +69,7 @@ export const styles = (theme) => ({
   },
   /* Styles applied to the root element if `variant="outlined"`. */
   outlined: {
-    padding: '5px 15px',
+    padding: '0px 15px',
     border: `1px solid ${
       theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
     }`,
@@ -183,40 +184,60 @@ export const styles = (theme) => ({
     color: 'inherit',
     borderColor: 'currentColor',
   },
+  /* Styles applied to the root element if `density="comfortable"`. */
+  densityMedium: {
+    minHeight: theme.density(36, -2),
+  },
+  /* Styles applied to the root element if `density="compact"`. */
+  densityHigh: {
+    minHeight: theme.density(36, -3),
+  },
   /* Styles applied to the root element if `size="small"` and `variant="text"`. */
   textSizeSmall: {
-    padding: '4px 5px',
-    fontSize: theme.typography.pxToRem(13),
+    padding: '0px 5px',
   },
   /* Styles applied to the root element if `size="large"` and `variant="text"`. */
   textSizeLarge: {
-    padding: '8px 11px',
-    fontSize: theme.typography.pxToRem(15),
+    padding: '0px 11px',
   },
   /* Styles applied to the root element if `size="small"` and `variant="outlined"`. */
   outlinedSizeSmall: {
-    padding: '3px 9px',
-    fontSize: theme.typography.pxToRem(13),
+    padding: '0px 9px',
   },
   /* Styles applied to the root element if `size="large"` and `variant="outlined"`. */
   outlinedSizeLarge: {
-    padding: '7px 21px',
-    fontSize: theme.typography.pxToRem(15),
+    padding: '0px 21px',
   },
   /* Styles applied to the root element if `size="small"` and `variant="contained"`. */
   containedSizeSmall: {
-    padding: '4px 10px',
-    fontSize: theme.typography.pxToRem(13),
+    padding: '0px 10px',
   },
   /* Styles applied to the root element if `size="large"` and `variant="contained"`. */
   containedSizeLarge: {
-    padding: '8px 22px',
-    fontSize: theme.typography.pxToRem(15),
+    padding: '0px 22px',
   },
   /* Styles applied to the root element if `size="small"`. */
-  sizeSmall: {},
+  sizeSmall: {
+    minHeight: theme.density(30, 0),
+    fontSize: theme.typography.pxToRem(13),
+    '&$densityMedium': {
+      minHeight: theme.density(30, -2),
+    },
+    '&$densityHigh': {
+      minHeight: theme.density(30, -3),
+    },
+  },
   /* Styles applied to the root element if `size="large"`. */
-  sizeLarge: {},
+  sizeLarge: {
+    minHeight: theme.density(42, 0),
+    fontSize: theme.typography.pxToRem(15),
+    '&$densityMedium': {
+      minHeight: theme.density(42, -2),
+    },
+    '&$densityHigh': {
+      minHeight: theme.density(42, -3),
+    },
+  },
   /* Styles applied to the root element if `fullWidth={true}`. */
   fullWidth: {
     width: '100%',
@@ -266,6 +287,7 @@ const Button = React.forwardRef(function Button(props, ref) {
     className,
     color = 'primary',
     component = 'button',
+    density = 'low',
     disabled = false,
     disableElevation = false,
     disableFocusRipple = false,
@@ -288,6 +310,7 @@ const Button = React.forwardRef(function Button(props, ref) {
       disableElevation,
       disableFocusRipple,
       fullWidth,
+      density,
       size,
       type,
       variant,
@@ -316,6 +339,7 @@ const Button = React.forwardRef(function Button(props, ref) {
           [classes[`${variant}${capitalize(color)}`]]: color !== 'inherit',
           [classes[`${variant}Size${capitalize(size)}`]]: size !== 'medium',
           [classes[`size${capitalize(size)}`]]: size !== 'medium',
+          [classes[`density${capitalize(density)}`]]: density !== 'low',
           [classes.disableElevation]: disableElevation,
           [classes.disabled]: disabled,
           [classes.fullWidth]: fullWidth,
@@ -375,6 +399,10 @@ Button.propTypes = {
    */
   component: PropTypes.elementType,
   /**
+   * The density of the button.
+   */
+  density: PropTypes.oneOf(['high', 'medium', 'low']),
+  /**
    * If `true`, the button will be disabled.
    */
   disabled: PropTypes.bool,
@@ -412,7 +440,6 @@ Button.propTypes = {
   href: PropTypes.string,
   /**
    * The size of the button.
-   * `small` is equivalent to the dense button styling.
    */
   size: PropTypes.oneOf(['large', 'medium', 'small']),
   /**

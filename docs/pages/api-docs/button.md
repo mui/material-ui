@@ -32,6 +32,7 @@ The `MuiButton` name can be used for providing [default props](/customization/gl
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">color</span> | <span class="prop-type">'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'</span> | <span class="prop-default">'primary'</span> | The color of the component. It supports those theme colors that make sense for this component. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'button'</span> | The component used for the root node. Either a string to use a HTML element or a component. |
+| <span class="prop-name">density</span> | <span class="prop-type">'high'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'low'</span> | <span class="prop-default">'low'</span> | The density of the button. |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the button will be disabled. |
 | <span class="prop-name">disableElevation</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, no elevation is used. |
 | <span class="prop-name">disableFocusRipple</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the  keyboard focus ripple will be disabled. |
@@ -39,7 +40,7 @@ The `MuiButton` name can be used for providing [default props](/customization/gl
 | <span class="prop-name">endIcon</span> | <span class="prop-type">node</span> |  | Element placed after the children. |
 | <span class="prop-name">fullWidth</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the button will take up the full width of its container. |
 | <span class="prop-name">href</span> | <span class="prop-type">string</span> |  | The URL to link to when the button is clicked. If defined, an `a` element will be used as the root node. |
-| <span class="prop-name">size</span> | <span class="prop-type">'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'</span> | <span class="prop-default">'medium'</span> | The size of the button. `small` is equivalent to the dense button styling. |
+| <span class="prop-name">size</span> | <span class="prop-type">'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'</span> | <span class="prop-default">'medium'</span> | The size of the button. |
 | <span class="prop-name">startIcon</span> | <span class="prop-type">node</span> |  | Element placed before the children. |
 | <span class="prop-name">variant</span> | <span class="prop-type">'contained'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'text'<br>&#124;&nbsp;string</span> | <span class="prop-default">'text'</span> | The variant to use. |
 
@@ -66,6 +67,8 @@ Any other props supplied will be provided to the root element ([ButtonBase](/api
 | <span class="prop-name">focusVisible</span> | <span class="prop-name">.Mui-focusVisible</span> | Pseudo-class applied to the ButtonBase root element if the button is keyboard focused.
 | <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
 | <span class="prop-name">colorInherit</span> | <span class="prop-name">.MuiButton-colorInherit</span> | Styles applied to the root element if `color="inherit"`.
+| <span class="prop-name">densityMedium</span> | <span class="prop-name">.MuiButton-densityMedium</span> | Styles applied to the root element if `density="comfortable"`.
+| <span class="prop-name">densityHigh</span> | <span class="prop-name">.MuiButton-densityHigh</span> | Styles applied to the root element if `density="compact"`.
 | <span class="prop-name">textSizeSmall</span> | <span class="prop-name">.MuiButton-textSizeSmall</span> | Styles applied to the root element if `size="small"` and `variant="text"`.
 | <span class="prop-name">textSizeLarge</span> | <span class="prop-name">.MuiButton-textSizeLarge</span> | Styles applied to the root element if `size="large"` and `variant="text"`.
 | <span class="prop-name">outlinedSizeSmall</span> | <span class="prop-name">.MuiButton-outlinedSizeSmall</span> | Styles applied to the root element if `size="small"` and `variant="outlined"`.

@@ -14,58 +14,65 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const densities = ['low', 'medium', 'high'];
+
 export default function ButtonSizes() {
   const classes = useStyles();
 
   return (
     <div>
-      <div>
-        <Button size="small" className={classes.margin}>
-          Small
+      {densities.map(density => (
+        <div>
+          {density}
+        <div>
+        <Button density={density} size="small" className={classes.margin}>
+        Small
         </Button>
-        <Button size="medium" className={classes.margin}>
-          Medium
+        <Button density={density} size="medium" className={classes.margin}>
+        Medium
         </Button>
-        <Button size="large" className={classes.margin}>
-          Large
+        <Button density={density} size="large" className={classes.margin}>
+        Large
         </Button>
+        </div>
+        <div>
+        <Button density={density} variant="outlined" size="small" className={classes.margin}>
+        Small
+        </Button>
+        <Button density={density} variant="outlined" size="medium" className={classes.margin}>
+        Medium
+        </Button>
+        <Button density={density} variant="outlined" size="large" className={classes.margin}>
+        Large
+        </Button>
+        </div>
+        <div>
+        <Button density={density} variant="contained" size="small" className={classes.margin}>
+        Small
+        </Button>
+        <Button density={density} variant="contained" size="medium" className={classes.margin}>
+        Medium
+        </Button>
+        <Button density={density} variant="contained" size="large" className={classes.margin}>
+        Large
+        </Button>
+        </div>
+        </div>
+      ))}
+        <div>
+          <IconButton aria-label="delete" className={classes.margin} size="small">
+            <ArrowDownwardIcon fontSize="inherit" />
+          </IconButton>
+          <IconButton aria-label="delete" className={classes.margin}>
+            <DeleteIcon fontSize="small" />
+          </IconButton>
+          <IconButton aria-label="delete" className={classes.margin}>
+            <DeleteIcon />
+          </IconButton>
+          <IconButton aria-label="delete" className={classes.margin}>
+            <DeleteIcon fontSize="large" />
+          </IconButton>
+        </div>
       </div>
-      <div>
-        <Button variant="outlined" size="small" className={classes.margin}>
-          Small
-        </Button>
-        <Button variant="outlined" size="medium" className={classes.margin}>
-          Medium
-        </Button>
-        <Button variant="outlined" size="large" className={classes.margin}>
-          Large
-        </Button>
-      </div>
-      <div>
-        <Button variant="contained" size="small" className={classes.margin}>
-          Small
-        </Button>
-        <Button variant="contained" size="medium" className={classes.margin}>
-          Medium
-        </Button>
-        <Button variant="contained" size="large" className={classes.margin}>
-          Large
-        </Button>
-      </div>
-      <div>
-        <IconButton aria-label="delete" className={classes.margin} size="small">
-          <ArrowDownwardIcon fontSize="inherit" />
-        </IconButton>
-        <IconButton aria-label="delete" className={classes.margin}>
-          <DeleteIcon fontSize="small" />
-        </IconButton>
-        <IconButton aria-label="delete" className={classes.margin}>
-          <DeleteIcon />
-        </IconButton>
-        <IconButton aria-label="delete" className={classes.margin}>
-          <DeleteIcon fontSize="large" />
-        </IconButton>
-      </div>
-    </div>
   );
 }

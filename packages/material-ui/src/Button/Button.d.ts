@@ -44,8 +44,11 @@ export type ButtonTypeMap<
      */
     href?: string;
     /**
+     * The density of the button.
+     */
+    density?: 'low' | 'medium' | 'high';
+    /**
      * The size of the button.
-     * `small` is equivalent to the dense button styling.
      */
     size?: 'small' | 'medium' | 'large';
     /**
@@ -125,6 +128,8 @@ export type ButtonClassKey =
   | 'endIcon'
   | 'iconSizeSmall'
   | 'iconSizeMedium'
-  | 'iconSizeLarge';
+  | 'iconSizeLarge'
+  | 'densityMedium'
+  | 'densityHigh';
 
 export default Button;
