@@ -35,6 +35,10 @@
     "@material-ui/core": "^5.0.0-alpha.5",
     "@material-ui/lab": "^5.0.0-alpha.5",
     "@types/react": "^16.8.6",
+    "date-fns": "^2.0.0",
+    "dayjs": "^1.8.17",
+    "luxon": "^1.21.3",
+    "moment": "^2.24.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4"
   },
@@ -43,6 +47,18 @@
       "optional": true
     },
     "@material-ui/lab": {
+      "optional": true
+    },
+    "date-fns": {
+      "optional": true
+    },
+    "dayjs": {
+      "optional": true
+    },
+    "luxon": {
+      "optional": true
+    },
+    "moment": {
       "optional": true
     }
   },
