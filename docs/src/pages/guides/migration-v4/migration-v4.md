@@ -97,6 +97,7 @@ This change affects almost all components where you're using the `component` pro
   }
   ```
 
+<<<<<<< HEAD
 ### Expansion Panel
 
 - Rename the `ExpansionPanel` components with `Accordion` to use a more common naming convention:
@@ -162,12 +163,20 @@ This change affects almost all components where you're using the `component` pro
   ```
 
 ### PaginationItem
+=======
+### Fab
+>>>>>>> Update migration-v4.md
 
 - Rename `round` to `circular` for consistency. The possible values should be adjectives, not nouns:
 
   ```diff
+<<<<<<< HEAD
   -<PaginationItem shape="round">
   +<PaginationItem shape="circular">
+=======
+  -<Fab variant="round">
+  +<Fab variant="circular">
+>>>>>>> Update migration-v4.md
   ```
 
 ### Rating
@@ -258,6 +267,7 @@ This change affects almost all components where you're using the `component` pro
   +<Span>Create a user</Span>
   ```
 
+<<<<<<< HEAD
   ## Fab
 
   - Rename `round` to `circular` for consistency:
@@ -265,4 +275,59 @@ This change affects almost all components where you're using the `component` pro
   ```diff
   -<Fab variant="round">
   +<Fab variant="circular">
+=======
+### Expansion Panel
+
+- Rename the `ExpansionPanel` components with `Accordion` to use a more common naming convention:
+
+  ```diff
+  -import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+  -import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+  -import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+  -import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
+  +import Accordion from '@material-ui/core/Accordion';
+  +import AccordionSummary from '@material-ui/core/AccordionSummary';
+  +import AccordionDetails from '@material-ui/core/AccordionDetails';
+  +import AccordionActions from '@material-ui/core/AccordionActions';
+
+  -<ExpansionPanel>
+  +<Accordion>
+  -  <ExpansionPanelSummary>
+  +  <AccordionSummary>
+       <Typography>Location</Typography>
+       <Typography>Select trip destination</Typography>
+  -  </ExpansionPanelSummary>
+  +  </AccordionSummary>
+  -  <ExpansionPanelDetails>
+  +  <AccordionDetails>
+       <Chip label="Barbados" onDelete={() => {}} />
+       <Typography variant="caption">Select your destination of choice</Typography>
+  -  </ExpansionPanelDetails>
+  +  </AccordionDetails>
+     <Divider />
+  -  <ExpansionPanelActions>
+  +  <AccordionActions>
+       <Button size="small">Cancel</Button>
+       <Button size="small">Save</Button>
+  -  </ExpansionPanelActions>
+  +  </AccordionActions>
+  -</ExpansionPanel>
+  +</Accordion>
+  ```
+
+- typescript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
+
+  ```diff
+  -<Accordion onChange={(event: React.ChangeEvent<{}>, expanded: boolean) => {}} />
+  +<Accordion onChange={(event: React.SyntheticEvent, expanded: boolean) => {}} />
+  ```
+
+  ## Grid
+
+  - Rename `justify` prop with `justifyContent` to be aligned with the CSS property name.
+
+  ```diff
+  -<Grid justify="center">
+  +<Grid justifyContent="center">
+>>>>>>> Update migration-v4.md
   ```
