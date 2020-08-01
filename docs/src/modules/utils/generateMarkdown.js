@@ -1,7 +1,6 @@
 import { parse as parseDoctrine } from 'doctrine';
 import * as recast from 'recast';
 import { parse as docgenParse } from 'react-docgen';
-import { rewriteUrlForNextExport } from 'next/dist/next-server/lib/router/rewrite-url-for-export';
 import { SOURCE_CODE_ROOT_URL, LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
 import { pageToTitle } from './helpers';
 
