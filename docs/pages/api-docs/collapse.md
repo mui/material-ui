@@ -40,7 +40,7 @@ The `MuiCollapse` name can be used for providing [default props](/customization/
 
 The `ref` is forwarded to the root element.
 
-Any other props supplied will be provided to the root element ([Transition](https://reactcommunity.org/react-transition-group/transition/#Transition-props)).
+Any other props supplied will be provided to the root element ([Transition](https://reactcommunity.org/react-transition-group/transition#Transition-props)).
 
 ## CSS
 
@@ -63,7 +63,7 @@ If that's not sufficient, you can check the [implementation of the component](ht
 
 ## Inheritance
 
-The props of the [Transition](https://reactcommunity.org/react-transition-group/transition/#Transition-props) component, from react-transition-group, are also available.
+The props of the [Transition](https://reactcommunity.org/react-transition-group/transition#Transition-props) component, from react-transition-group, are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Demos
