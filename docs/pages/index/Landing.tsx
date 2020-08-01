@@ -106,8 +106,8 @@ function Landing() {
         description="Accessible, customizable, delightful date & time pickers for @material-ui/core"
       />
       <Toolbar color="primary" className={classes.appToolbar}>
-        <Grid container justify="space-between" className={classes.landing}>
-          <Grid item container justify="center" md={4} xs={12}>
+        <Grid container justifyContent="space-between" className={classes.landing}>
+          <Grid item container justifyContent="center" md={4} xs={12}>
             <Paper elevation={8} className={classes.logoContainer}>
               <div className={classes.logo}>
                 <Logo />
@@ -139,7 +139,7 @@ function Landing() {
             </Grid>
           </Grid>
         </Grid>
-        <Grid container wrap="wrap" justify="center" className={classes.papersContainer}>
+        <Grid container wrap="wrap" justifyContent="center" className={classes.papersContainer}>
           <Grid item className={classes.paper} md={4} sm={6} xs={12}>
             <LandingProperty
               icon={Code}

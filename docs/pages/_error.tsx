@@ -23,9 +23,9 @@ class Error extends React.Component<{ statusCode: number }> {
     const { statusCode } = this.props;
 
     return (
-      <CenteredGrid container direction="row" alignItems="center" justify="center">
+      <CenteredGrid container direction="row" alignItems="center" justifyContent="center">
         <NoSsr>
-          <Grid item container xs={12} justify="center">
+          <Grid item container xs={12} justifyContent="center">
             <KawaiiIconWithMargin mood={Math.random() > 0.33 ? 'sad' : 'shocked'} />
           </Grid>
           <Grid item xs={12}>

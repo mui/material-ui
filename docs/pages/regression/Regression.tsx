@@ -41,7 +41,7 @@ function Regression() {
       <Typography align="center" variant="h4" component="span" gutterBottom>
         DatePicker
       </Typography>
-      <Grid container justify="center" wrap="wrap">
+      <Grid container justifyContent="center" wrap="wrap">
         <MobileDatePicker {...makeRenderInputProp({ id: 'basic-datepicker' })} {...sharedProps} />
         <MobileDatePicker
           {...makeRenderInputProp({ id: 'clearable-datepicker' })}
@@ -64,7 +64,7 @@ function Regression() {
       <Typography align="center" variant="h4" component="span" gutterBottom>
         TimePicker
       </Typography>
-      <Grid container justify="center" wrap="wrap">
+      <Grid container justifyContent="center" wrap="wrap">
         <MobileTimePicker
           {...makeRenderInputProp({ id: 'mobile-timepicker' })}
           value={date}

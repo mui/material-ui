@@ -45,7 +45,12 @@ export function getByMuiTest(...args: Parameters<typeof getAllByMuiTest>): Eleme
 
 export const FakeTransitionComponent = React.forwardRef<HTMLDivElement, TransitionProps>(
   function FakeTransitionComponent({ children }, ref) {
-    return <div ref={ref}>{children}</div>;
+    // set tabIndex in case it is used as a child of <TrapFocus />
+    return (
+      <div ref={ref} tabIndex={-1}>
+        {children}
+      </div>
+    );
   }
 );
 

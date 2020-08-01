@@ -62,7 +62,7 @@ export const useStyles = makeStyles(
   { name: 'MuiPickersArrowSwitcher' }
 );
 
-const PureArrowSwitcher: React.FC<ArrowSwitcherProps> = (props) => {
+const PureArrowSwitcher = React.forwardRef<HTMLDivElement, ArrowSwitcherProps>((props, ref) => {
   const {
     className,
     isLeftDisabled,
@@ -85,7 +85,7 @@ const PureArrowSwitcher: React.FC<ArrowSwitcherProps> = (props) => {
   const isRtl = theme.direction === 'rtl';
 
   return (
-    <div className={clsx(classes.root, className)} {...other}>
+    <div className={clsx(classes.root, className)} ref={ref} {...other}>
       <IconButton
         data-mui-test="previous-arrow-button"
         size="small"
@@ -120,7 +120,7 @@ const PureArrowSwitcher: React.FC<ArrowSwitcherProps> = (props) => {
       </IconButton>
     </div>
   );
-};
+});
 
 PureArrowSwitcher.displayName = 'ArrowSwitcher';
 

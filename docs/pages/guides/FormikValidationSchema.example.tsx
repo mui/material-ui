@@ -55,7 +55,7 @@ export default function FormikValidationSchemaExample() {
       {({ values, errors }) => (
         <Form>
           <Grid container>
-            <Grid item container justify="center" xs={12}>
+            <Grid item container justifyContent="center" xs={12}>
               <Field name="date" disablePast component={DatePickerField} />
             </Grid>
             <Grid item xs={12} sm={12} style={{ margin: '24px' }}>

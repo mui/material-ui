@@ -93,7 +93,7 @@ export default function FormikExample() {
       {({ values, errors }) => (
         <Form>
           <Grid container>
-            <Grid item container justify="center" xs={12}>
+            <Grid item container justifyContent="center" xs={12}>
               <Field
                 name="date"
                 disablePast

@@ -29,13 +29,13 @@ const Docs: React.FC<WithRouterProps> = ({ router }) => {
   return (
     <React.Fragment>
       <PageMeta title={title} description={description} />
-      <Grid container justify="space-between" alignItems="center">
+      <Grid container justifyContent="space-between" alignItems="center">
         <Grid item md={6} className={classes.title}>
           <h3>{title}</h3>
           <p>{description}</p>
           <Ad />
         </Grid>
-        <Grid item md={6} container alignItems="flex-end" justify="center">
+        <Grid item md={6} container alignItems="flex-end" justifyContent="center">
           <KawaiiIcon className={classes.kawaiiIcon} size={220} />
         </Grid>
       </Grid>

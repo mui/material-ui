@@ -85,7 +85,7 @@ const PickerToolbar: React.SFC<PickerToolbarProps> = ({
       </Typography>
       <Grid
         container
-        justify="space-between"
+        justifyContent="space-between"
         className={classes.dateTitleContainer}
         direction={isLandscape ? landscapeDirection : 'row'}
         alignItems={isLandscape ? 'flex-start' : 'flex-end'}
