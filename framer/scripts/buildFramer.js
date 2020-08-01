@@ -5,7 +5,7 @@ import path from 'path';
 import { defaultHandlers, parse as docgenParse } from 'react-docgen';
 import muiDefaultPropsHandler from 'docs/src/modules/utils/defaultPropsHandler';
 import Mustache from 'mustache';
-import Case, { type } from 'case';
+import Case from 'case';
 import deepmerge from 'deepmerge';
 import { findComponents } from 'docs/src/modules/utils/find';
 import { componentSettings, ignoredControls } from './framerConfig';

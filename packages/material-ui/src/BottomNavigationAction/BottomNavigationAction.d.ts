@@ -20,8 +20,6 @@ export type BottomNavigationActionTypeMap<
      * The label element.
      */
     label?: React.ReactNode;
-    onClick?: React.ReactEventHandler<any>;
-    selected?: boolean;
     /**
      * If `true`, the `BottomNavigationAction` will show its label.
      * By default, only the selected `BottomNavigationAction`

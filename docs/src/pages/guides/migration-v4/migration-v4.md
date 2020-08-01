@@ -97,61 +97,6 @@ This change affects almost all components where you're using the `component` pro
   }
   ```
 
-### Rating
-
-- Rename `visuallyhidden` to `visuallyHidden` for consistency:
-
-  ```diff
-  <Rating
-    classes={{
-  -    visuallyhidden: 'custom-visually-hidden-classname',
-  +    visuallyHidden: 'custom-visually-hidden-classname',
-    }}
-  />
-  ```
-
-### Slider
-
-- typescript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
-  ```diff
-  -<Slider onChange={(event: React.ChangeEvent<{}>, value: unknown) => {}} />
-  +<Slider onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
-  ```
-
-### TablePagination
-
-- The customization of the table pagination's actions labels must be done with the `getItemAriaLabel` prop. This increases consistency with the `Pagination` component.
-
-  ```diff
-  <TablePagination
-  - backIconButtonText="Avant"
-  - nextIconButtonText="Après
-  + getItemAriaLabel={…}
-  ```
-
-### Tabs
-
-- typescript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
-  ```diff
-  -<Tabs onChange={(event: React.ChangeEvent<{}>, value: unknown) => {}} />
-  +<Tabs onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
-  ```
-
-### Typography
-
-- Replace the `srOnly` prop so as to not duplicate the capabilities of [System](https://material-ui.com/system/basics/):
-
-  ```diff
-  -import Typography from '@material-ui/core/Typography';
-  +import { visuallyHidden } from '@material-ui/system';
-  +import styled from 'styled-component';
-
-  +const Span = styled('span')(visuallyHidden);
-
-  -<Typography variant="srOnly">Create a user</Typography>
-  +<Span>Create a user</Span>
-  ```
-
 ### Expansion Panel
 
 - Rename the `ExpansionPanel` components with `Accordion` to use a more common naming convention:
@@ -198,11 +143,126 @@ This change affects almost all components where you're using the `component` pro
   +<Accordion onChange={(event: React.SyntheticEvent, expanded: boolean) => {}} />
   ```
 
-  ## Grid
+### Fab
 
-  - Rename `justify` prop with `justifyContent` to be aligned with the CSS property name.
+- Rename `round` to `circular` for consistency. The possible values should be adjectives, not nouns:
+
+  ```diff
+  -<Fab variant="round">
+  +<Fab variant="circular">
+  ```
+
+### Grid
+
+- Rename `justify` prop with `justifyContent` to be aligned with the CSS property name.
 
   ```diff
   -<Grid justify="center">
   +<Grid justifyContent="center">
+  ```
+
+### Pagination
+
+- Rename `round` to `circular` for consistency. The possible values should be adjectives, not nouns:
+
+  ```diff
+  -<Pagination shape="round">
+  +<Pagination shape="circular">
+  ```
+
+### PaginationItem
+
+- Rename `round` to `circular` for consistency. The possible values should be adjectives, not nouns:
+
+  ```diff
+  -<PaginationItem shape="round">
+  +<PaginationItem shape="circular">
+  ```
+
+### Rating
+
+- Rename `visuallyhidden` to `visuallyHidden` for consistency:
+
+  ```diff
+  <Rating
+    classes={{
+  -    visuallyhidden: 'custom-visually-hidden-classname',
+  +    visuallyHidden: 'custom-visually-hidden-classname',
+    }}
+  />
+  ```
+
+### RootRef
+
+- This component was removed.
+  You can get a reference to the underlying DOM node of our components via `ref` prop.
+  The component relied on [`ReactDOM.findDOMNode`](https://reactjs.org/docs/react-dom.html#finddomnode) which is [deprecated in `React.StrictMode`](https://reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage).
+
+  ```diff
+  -<RootRef rootRef={ref}>
+  -  <Button />
+  -</RootRef>
+  +<Button ref={ref} />
+  ```
+
+### Slider
+
+- typescript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
+  ```diff
+  -<Slider onChange={(event: React.ChangeEvent<{}>, value: unknown) => {}} />
+  +<Slider onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
+  ```
+
+### TablePagination
+
+- The customization of the table pagination's actions labels must be done with the `getItemAriaLabel` prop. This increases consistency with the `Pagination` component.
+
+  ```diff
+  <TablePagination
+  - backIconButtonText="Avant"
+  - nextIconButtonText="Après
+  + getItemAriaLabel={…}
+  ```
+
+### Tabs
+
+- typescript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
+  ```diff
+  -<Tabs onChange={(event: React.ChangeEvent<{}>, value: unknown) => {}} />
+  +<Tabs onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
+  ```
+
+### TextField
+
+- Better isolate the fixed textarea height behavior to the dynamic one.
+  You need to use the `rowsMin` prop in the following case:
+
+  ```diff
+  -<TextField rows={2} rowsMax={5} />
+  +<TextField rowsMin={2} rowsMax={5} />
+  ```
+
+### TextareaAutosize
+
+- Remove the `rows` prop, use the `rowsMin` prop instead.
+  This change aims to clarify the behavior of the prop.
+
+  ```diff
+  -<TextareaAutosize rows={2} />
+  +<TextareaAutosize rowsMin={2} />
+  ```
+
+### Typography
+
+- Replace the `srOnly` prop so as to not duplicate the capabilities of [System](https://material-ui.com/system/basics/):
+
+  ```diff
+  -import Typography from '@material-ui/core/Typography';
+  +import { visuallyHidden } from '@material-ui/system';
+  +import styled from 'styled-component';
+
+  +const Span = styled('span')(visuallyHidden);
+
+  -<Typography variant="srOnly">Create a user</Typography>
+  +<Span>Create a user</Span>
   ```

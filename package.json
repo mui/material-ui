@@ -91,7 +91,7 @@
     "core-js": "^2.6.11",
     "cross-env": "^7.0.0",
     "danger": "^10.0.0",
-    "dom-accessibility-api": "^0.4.3",
+    "dom-accessibility-api": "^0.4.7",
     "dtslint": "^3.2.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.14.0",
@@ -167,6 +167,8 @@
     "**/@babel/preset-typescript": "^7.10.4",
     "**/@babel/runtime": "^7.10.2",
     "**/@babel/types": "^7.10.2",
+    "**/cross-fetch": "^3.0.5",
+    "**/dot-prop": "^5.2.0",
     "**/hoist-non-react-statics": "^3.3.2",
     "**/terser": "^4.1.2"
   },

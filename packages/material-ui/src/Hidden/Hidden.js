@@ -104,7 +104,7 @@ Hidden.propTypes = {
    */
   only: PropTypes.oneOfType([
     PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
-    PropTypes.arrayOf(PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl'])),
+    PropTypes.arrayOf(PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']).isRequired),
   ]),
   /**
    * If `true`, screens this size and down will be hidden.

@@ -117,6 +117,7 @@ const ignoreExternalDocumentation: Record<string, string[]> = {
   Fab: ['focusVisibleClassName'],
   Fade: transitionCallbacks,
   Grow: transitionCallbacks,
+  ListItem: ['focusVisibleClassName'],
   InputBase: ['aria-describedby'],
   Menu: ['PaperProps'],
   MenuItem: ['button', 'disabled', 'selected'],
@@ -126,7 +127,7 @@ const ignoreExternalDocumentation: Record<string, string[]> = {
   Zoom: transitionCallbacks,
 };
 
-function sortBreakpointsLiteralByViewportAscending(a: ttp.LiteralNode, b: ttp.LiteralNode) {
+function sortBreakpointsLiteralByViewportAscending(a: ttp.LiteralType, b: ttp.LiteralType) {
   // default breakpoints ordered by their size ascending
   const breakpointOrder: unknown[] = ['"xs"', '"sm"', '"md"', '"lg"', '"xl"'];
 
@@ -298,7 +299,7 @@ async function run(argv: HandlerArgv) {
     .filter((filePath) => {
       return filePattern.test(filePath);
     });
-  const program = ttp.createProgram(files, tsconfig);
+  const program = ttp.createTSProgram(files, tsconfig);
 
   const promises = files.map<Promise<GenerateResult>>(async (tsFile) => {
     const jsFile = tsFile.replace('.d.ts', '.js');

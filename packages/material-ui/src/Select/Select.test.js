@@ -992,14 +992,14 @@ describe('<Select />', () => {
     });
 
     it('can be labelled with a <label />', () => {
-      const { getByLabelText } = render(
+      const { getByRole } = render(
         <React.Fragment>
           <label htmlFor="select">A select</label>
           <Select id="select" native />
         </React.Fragment>,
       );
 
-      expect(getByLabelText('A select')).to.have.property('tagName', 'SELECT');
+      expect(getByRole('combobox', { name: 'A select' })).to.have.property('tagName', 'SELECT');
     });
   });
 

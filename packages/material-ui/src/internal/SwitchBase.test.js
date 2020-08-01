@@ -216,7 +216,7 @@ describe('<SwitchBase />', () => {
 
     describe('prop: inputProps', () => {
       it('should be able to add aria', () => {
-        const { getByLabelText } = render(
+        const { getByRole } = render(
           <SwitchBase
             icon="unchecked"
             checkedIcon="checked"
@@ -225,7 +225,7 @@ describe('<SwitchBase />', () => {
           />,
         );
 
-        expect(getByLabelText('foo')).to.have.property('type', 'checkbox');
+        expect(getByRole('checkbox', { name: 'foo' })).to.have.property('type', 'checkbox');
       });
     });
 

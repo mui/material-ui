@@ -114,7 +114,7 @@ async function main(argv) {
 
   const tsxFiles = await getFiles(path.join(workspaceRoot, 'docs/src/pages'));
 
-  const program = typescriptToProptypes.createProgram(tsxFiles, tsConfig);
+  const program = typescriptToProptypes.createTSProgram(tsxFiles, tsConfig);
 
   let successful = 0;
   let failed = 0;

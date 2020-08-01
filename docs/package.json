@@ -5,7 +5,7 @@
   "author": "Material-UI Team",
   "license": "MIT",
   "scripts": {
-    "build": "cross-env NODE_ENV=production next build",
+    "build": "cross-env NODE_ENV=production next build --profile",
     "build:clean": "rimraf .next && yarn build",
     "build-sw": "node ./scripts/buildServiceWorker.js",
     "dev": "rimraf ./node_modules/.cache/babel-loader && next dev",
@@ -61,7 +61,6 @@
     "clsx": "^1.0.4",
     "core-js": "^2.6.11",
     "cross-env": "^7.0.0",
-    "css-loader": "^3.1.0",
     "css-mediaquery": "^0.1.2",
     "date-fns": "2.15.0",
     "docsearch.js": "^2.6.3",
@@ -81,7 +80,7 @@
     "marked": "^1.0.0",
     "material-table": "^1.50.0",
     "material-ui-popup-state": "^1.4.1",
-    "next": "^9.4.4",
+    "next": "^9.5.0",
     "notistack": "^0.9.3",
     "nprogress": "^0.2.0",
     "postcss": "^7.0.18",
@@ -118,6 +117,7 @@
     "@babel/preset-typescript": "^7.7.4",
     "babel-plugin-unwrap-createstyles": "^4.1.0",
     "cpy-cli": "^3.0.0",
+    "cross-fetch": "^3.0.5",
     "gm": "^1.23.0"
   }
 }

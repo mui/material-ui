@@ -96,9 +96,9 @@ describe('<Menu /> integration', () => {
   });
 
   it('should focus the first item on open', () => {
-    const { getByLabelText, getAllByRole } = render(<ButtonMenu />);
+    const { getByRole, getAllByRole } = render(<ButtonMenu />);
 
-    const button = getByLabelText('open menu');
+    const button = getByRole('button', { name: 'open menu' });
     act(() => {
       button.focus();
       button.click();
@@ -108,9 +108,9 @@ describe('<Menu /> integration', () => {
   });
 
   it('changes focus according to keyboard navigation', () => {
-    const { getAllByRole, getByLabelText } = render(<ButtonMenu />);
+    const { getAllByRole, getByRole } = render(<ButtonMenu />);
 
-    const button = getByLabelText('open menu');
+    const button = getByRole('button', { name: 'open menu' });
     act(() => {
       button.focus();
       button.click();
@@ -137,9 +137,9 @@ describe('<Menu /> integration', () => {
   });
 
   it('focuses the selected item when opening', () => {
-    const { getAllByRole, getByLabelText } = render(<ButtonMenu selectedIndex={2} />);
+    const { getAllByRole, getByRole } = render(<ButtonMenu selectedIndex={2} />);
 
-    const button = getByLabelText('open menu');
+    const button = getByRole('button', { name: 'open menu' });
     act(() => {
       button.focus();
       button.click();

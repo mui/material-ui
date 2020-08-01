@@ -46,9 +46,9 @@ describe('<TextField />', () => {
 
   describe('with a label', () => {
     it('label the input', () => {
-      const { getByLabelText } = render(<TextField id="labelled" label="Foo bar" />);
+      const { getByRole } = render(<TextField id="labelled" label="Foo bar" />);
 
-      expect(getByLabelText('Foo bar')).not.to.equal(null);
+      expect(getByRole('textbox', { name: 'Foo bar' })).not.to.equal(null);
     });
 
     it('should apply the className to the label', () => {
@@ -153,7 +153,7 @@ describe('<TextField />', () => {
     });
 
     it('associates the label with the <select /> when `native={true}` and `id`', () => {
-      const { getByLabelText } = render(
+      const { getByRole } = render(
         <TextField
           label="Currency:"
           id="labelled-select"
@@ -165,7 +165,7 @@ describe('<TextField />', () => {
         </TextField>,
       );
 
-      expect(getByLabelText('Currency:')).to.have.property('value', 'dollar');
+      expect(getByRole('combobox', { name: 'Currency:' })).to.have.property('value', 'dollar');
     });
 
     it('renders a combobox with the appropriate accessible name', () => {

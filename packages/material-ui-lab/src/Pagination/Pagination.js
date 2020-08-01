@@ -41,7 +41,7 @@ const Pagination = React.forwardRef(function Pagination(props, ref) {
     onChange,
     page,
     renderItem = (item) => <PaginationItem {...item} />,
-    shape = 'round',
+    shape = 'circular',
     showFirstButton,
     showLastButton,
     siblingCount,
@@ -159,7 +159,7 @@ Pagination.propTypes = {
   /**
    * The shape of the pagination items.
    */
-  shape: PropTypes.oneOf(['round', 'rounded']),
+  shape: PropTypes.oneOf(['circular', 'rounded']),
   /**
    * If `true`, show the first-page button.
    * @default false

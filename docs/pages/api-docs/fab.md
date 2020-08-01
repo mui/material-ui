@@ -37,7 +37,7 @@ The `MuiFab` name can be used for providing [default props](/customization/globa
 | <span class="prop-name">disableRipple</span> | <span class="prop-type">bool</span> |  | If `true`, the ripple effect will be disabled. |
 | <span class="prop-name">href</span> | <span class="prop-type">string</span> |  | The URL to link to when the button is clicked. If defined, an `a` element will be used as the root node. |
 | <span class="prop-name">size</span> | <span class="prop-type">'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'</span> | <span class="prop-default">'large'</span> | The size of the button. `small` is equivalent to the dense button styling. |
-| <span class="prop-name">variant</span> | <span class="prop-type">'extended'<br>&#124;&nbsp;'round'</span> | <span class="prop-default">'round'</span> | The variant to use. |
+| <span class="prop-name">variant</span> | <span class="prop-type">'circular'<br>&#124;&nbsp;'extended'</span> | <span class="prop-default">'circular'</span> | The variant to use. |
 
 The `ref` is forwarded to the root element.
 

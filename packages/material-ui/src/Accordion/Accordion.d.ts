@@ -29,14 +29,15 @@ export interface AccordionProps extends StandardProps<PaperProps, AccordionClass
    */
   onChange?: (event: React.SyntheticEvent, expanded: boolean) => void;
   /**
-   * The component used for the collapse effect.
+   * The component used for the transition.
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    */
   TransitionComponent?: React.ComponentType<
     TransitionProps & { children?: React.ReactElement<any, any> }
   >;
   /**
-   * Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.
+   * Props applied to the transition element.
+   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition) component.
    */
   TransitionProps?: TransitionProps;
 }

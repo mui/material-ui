@@ -109,7 +109,8 @@ export interface TooltipProps
     TransitionProps & { children?: React.ReactElement<any, any> }
   >;
   /**
-   * Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.
+   * Props applied to the transition element.
+   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition) component.
    */
   TransitionProps?: TransitionProps;
 }
