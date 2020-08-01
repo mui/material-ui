@@ -105,8 +105,8 @@ function getDependencies(raw, options = {}) {
     '@material-ui/styles': 'next',
     '@material-ui/system': 'next',
     '@material-ui/utils': 'next',
-    // TODO: remove once @material-ui/pickers v4 is released.
-    '@date-io/date-fns': 'v1',
+    // TODO: Remove once v4 is stable
+    '@material-ui/pickers': 'next',
   };
 
   const re = /^import\s'([^']+)'|import\s[\s\S]*?\sfrom\s+'([^']+)/gm;
