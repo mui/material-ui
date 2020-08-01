@@ -143,6 +143,15 @@ This change affects almost all components where you're using the `component` pro
   +<Accordion onChange={(event: React.SyntheticEvent, expanded: boolean) => {}} />
   ```
 
+### Fab
+
+- Rename `round` to `circular` for consistency. The possible values should be adjectives, not nouns:
+
+  ```diff
+  -<Fab variant="round">
+  +<Fab variant="circular">
+  ```
+
 ### Grid
 
 - Rename `justify` prop with `justifyContent` to be aligned with the CSS property name.
