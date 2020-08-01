@@ -22,12 +22,6 @@ const backers = [
     alt: 'callemall',
     title: 'Call-Em-All - The easy way to message your group',
   },
-  {
-    href:
-      'https://www.sencha.com/products/extreact/extreact-for-material-ui/?utm_source=materialui&utm_medium=referral&utm_content=product-200429-extreactmaterialui',
-    alt: 'sencha',
-    title: 'Sencha - UI Components for Productive Dev Teams',
-  },
 ];
 
 const useStyles = makeStyles(
