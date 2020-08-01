@@ -192,6 +192,7 @@ We host different reference implementations which you can find in the [GitHub re
 - [The reference implementation of this tutorial](https://github.com/mui-org/material-ui/tree/master/examples/ssr)
 - [Gatsby](https://github.com/mui-org/material-ui/tree/master/examples/gatsby)
 - [Next.js](https://github.com/mui-org/material-ui/tree/master/examples/nextjs)
+- [Next.js using Typescript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript)
 
 ## Troubleshooting
 
