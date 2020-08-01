@@ -17,7 +17,7 @@ export type InjectOptions = {
   removeExistingPropTypes?: boolean;
   /**
    * Used to control which props are includes in the result
-   * @return true to include the prop, false to skip it, or undefined to
+   * @returns true to include the prop, false to skip it, or undefined to
    * use the default behaviour
    * @default includeUnusedProps ? true : data.usedProps.includes(data.prop.name)
    */

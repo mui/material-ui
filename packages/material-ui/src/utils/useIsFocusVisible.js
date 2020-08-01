@@ -26,7 +26,7 @@ const inputTypesWhitelist = {
  * `focus-visible` class being added, i.e. whether it should always match
  * `:focus-visible` when focused.
  * @param {Element} node
- * @return {boolean}
+ * @returns {boolean}
  */
 function focusTriggersKeyboardModality(node) {
   const { type, tagName } = node;
