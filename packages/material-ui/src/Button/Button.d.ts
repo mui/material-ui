@@ -3,7 +3,7 @@ import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps, OverridableComponent, OverridableTypeMap } from '../OverridableComponent';
 
 export interface ButtonPropsVariantOverrides {}
-export type ButtonVariantDefaults = Record<'text' | 'outlined' | 'contained', true>;
+export type VariantDefaults = Record<'text' | 'outlined' | 'contained', true>;
 
 export type ButtonTypeMap<
   P = {},
@@ -55,7 +55,7 @@ export type ButtonTypeMap<
     /**
      * The variant to use.
      */
-    variant?: OverridableStringUnion<ButtonVariantDefaults, ButtonPropsVariantOverrides>;
+    variant?: OverridableStringUnion<VariantDefaults, ButtonPropsVariantOverrides>;
   };
   defaultComponent: D;
   classKey: ButtonClassKey;
