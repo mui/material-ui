@@ -94,7 +94,7 @@ module.exports = {
           },
           // transpile 3rd party packages with dependencies in this repository
           {
-            test: /\.(js|mjs|jsx)$/,
+            test: /\.(js|mjs)$/,
             include: /node_modules(\/|\\)(material-table|notistack|@material-ui(\/|\\)pickers)/,
             use: {
               loader: 'babel-loader',
