@@ -72,6 +72,16 @@ describe('<TreeView />', () => {
       fireEvent.click(screen.getByText('one'), { shiftKey: true });
     });
 
+    it('should not crash on keydown on an empty tree', () => {
+      render(<TreeView />);
+
+      act(() => {
+        screen.getByRole('tree').focus();
+      });
+
+      fireEvent.keyDown(screen.getByRole('tree'), { key: ' ' });
+    });
+
     it('should not crash when unmounting with duplicate ids', () => {
       const CustomTreeItem = () => {
         return <TreeItem nodeId="iojerogj" />;
