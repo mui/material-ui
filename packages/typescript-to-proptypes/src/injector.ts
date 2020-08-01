@@ -26,7 +26,6 @@ export type InjectOptions = {
     prop: t.PropTypeDefinition;
     usedProps: string[];
   }): boolean | undefined;
-
   /**
    * You can override the order of literals in unions based on the proptype.
    *
@@ -41,7 +40,6 @@ export type InjectOptions = {
     component: t.Component,
     propType: t.PropTypeDefinition,
   ) => ((a: t.LiteralType, b: t.LiteralType) => number) | undefined;
-
   /**
    * Options passed to babel.transformSync
    */

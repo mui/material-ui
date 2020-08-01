@@ -7,24 +7,20 @@ export interface GenerateOptions {
    * @default true
    */
   sortProptypes?: boolean | ((a: t.PropTypeDefinition, b: t.PropTypeDefinition) => 0 | -1 | 1);
-
   /**
    * The name used when importing prop-types
    * @default 'PropTypes'
    */
   importedName?: string;
-
   /**
    * Enable/disable including JSDoc comments
    * @default true
    */
   includeJSDoc?: boolean;
-
   /**
    * Previous source code of the validator for each prop type
    */
   previousPropTypesSource?: Map<string, string>;
-
   /**
    * Given the `prop`, the `previous` source of the validator and the `generated` source:
    * What source should be injected? `previous` is `undefined` if the validator
@@ -36,13 +32,11 @@ export interface GenerateOptions {
     previous: string | undefined,
     generated: string,
   ): string;
-
   /**
    * Control which PropTypes are included in the final result
    * @param proptype The current PropType about to be converted to text
    */
   shouldInclude?(proptype: t.PropTypeDefinition): boolean | undefined;
-
   /**
    * A comment that will be added to the start of the PropTypes code block
    * @example
@@ -51,7 +45,6 @@ export interface GenerateOptions {
    * }
    */
   comment?: string;
-
   /**
    * Overrides the given `sortLiteralUnions` based on the proptype.
    * If `undefined` is returned the default `sortLiteralUnions` will be used.
@@ -60,7 +53,6 @@ export interface GenerateOptions {
     component: t.Component,
     propType: t.PropTypeDefinition,
   ) => ((a: t.LiteralType, b: t.LiteralType) => number) | undefined;
-
   /**
    * By default literals in unions are sorted by:
    * - numbers last, ascending
