@@ -58,7 +58,7 @@ If multiple options are supplied, they take the following priority:
 ## Resources
 
 - [Material-UI documentation](https://material-ui.com/)
-- [GitHub repository](https://github.com/mui-org/material-ui/tree/master/framer)
+- [GitHub repository](https://github.com/mui-org/material-ui/tree/next/framer)
 
 ## Releases
 

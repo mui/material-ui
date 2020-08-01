@@ -19,7 +19,7 @@ function pascalize(iconName) {
  * Update all `svg-icons` import references to use `@material-ui/icons` package.
  * Find and replace string literal AST nodes to ensure all svg-icon paths get updated, regardless
  * of being in an import declaration, or a require() call, etc.
- * https://github.com/mui-org/material-ui/tree/master/packages/@material-ui/icons
+ * https://github.com/mui-org/material-ui/tree/next/packages/@material-ui/icons
  * @param {jscodeshift_api_object} j
  * @param {jscodeshift_ast_object} root
  */

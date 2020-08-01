@@ -24,7 +24,7 @@
     "directory": "packages/material-ui-codemod"
   },
   "license": "MIT",
-  "homepage": "https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod",
+  "homepage": "https://github.com/mui-org/material-ui/tree/next/packages/material-ui-codemod",
   "dependencies": {
     "@babel/core": "^7.4.5",
     "@babel/traverse": "^7.6.2",

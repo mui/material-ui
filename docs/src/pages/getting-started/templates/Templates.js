@@ -37,7 +37,7 @@ function layouts(t) {
       src: '/static/images/templates/dashboard.png',
       href: '/getting-started/templates/dashboard/',
       source:
-        'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/dashboard',
+        'https://github.com/mui-org/material-ui/tree/next/docs/src/pages/getting-started/templates/dashboard',
     },
     {
       title: t('signInTitle'),
@@ -45,7 +45,7 @@ function layouts(t) {
       src: '/static/images/templates/sign-in.png',
       href: '/getting-started/templates/sign-in/',
       source:
-        'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/sign-in',
+        'https://github.com/mui-org/material-ui/tree/next/docs/src/pages/getting-started/templates/sign-in',
     },
     {
       title: t('signInSideTitle'),
@@ -53,7 +53,7 @@ function layouts(t) {
       src: '/static/images/templates/sign-in-side.png',
       href: '/getting-started/templates/sign-in-side/',
       source:
-        'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/sign-in-side',
+        'https://github.com/mui-org/material-ui/tree/next/docs/src/pages/getting-started/templates/sign-in-side',
     },
     {
       title: t('signUpTitle'),
@@ -61,7 +61,7 @@ function layouts(t) {
       src: '/static/images/templates/sign-up.png',
       href: '/getting-started/templates/sign-up/',
       source:
-        'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/sign-up',
+        'https://github.com/mui-org/material-ui/tree/next/docs/src/pages/getting-started/templates/sign-up',
     },
     {
       title: t('blogTitle'),
@@ -69,7 +69,7 @@ function layouts(t) {
       src: '/static/images/templates/blog.png',
       href: '/getting-started/templates/blog/',
       source:
-        'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/blog',
+        'https://github.com/mui-org/material-ui/tree/next/docs/src/pages/getting-started/templates/blog',
     },
     {
       title: t('checkoutTitle'),
@@ -77,7 +77,7 @@ function layouts(t) {
       src: '/static/images/templates/checkout.png',
       href: '/getting-started/templates/checkout/',
       source:
-        'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/checkout',
+        'https://github.com/mui-org/material-ui/tree/next/docs/src/pages/getting-started/templates/checkout',
     },
     {
       title: t('albumTitle'),
@@ -85,7 +85,7 @@ function layouts(t) {
       src: '/static/images/templates/album.png',
       href: '/getting-started/templates/album/',
       source:
-        'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/album',
+        'https://github.com/mui-org/material-ui/tree/next/docs/src/pages/getting-started/templates/album',
     },
     {
       title: t('pricingTitle'),
@@ -93,7 +93,7 @@ function layouts(t) {
       src: '/static/images/templates/pricing.png',
       href: '/getting-started/templates/pricing/',
       source:
-        'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/pricing',
+        'https://github.com/mui-org/material-ui/tree/next/docs/src/pages/getting-started/templates/pricing',
     },
     {
       title: t('stickyFooterTitle'),
@@ -101,7 +101,7 @@ function layouts(t) {
       src: '/static/images/templates/sticky-footer.png',
       href: '/getting-started/templates/sticky-footer/',
       source:
-        'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/sticky-footer',
+        'https://github.com/mui-org/material-ui/tree/next/docs/src/pages/getting-started/templates/sticky-footer',
     },
   ];
 }
