@@ -25,6 +25,7 @@ https://material-ui.dev/* https://material-ui.com/:splat 301!
 /r/input-component-ref-interface /components/text-fields/#integration-with-3rd-party-input-libraries 302
 /r/issue-template https://codesandbox.io/s/material-ui-issue-dh2yh
 /r/ts-issue-template https://www.typescriptlang.org/play/#code/JYWwDg9gTgLgBAKjgQwM5wEoFNkGN4BmUEIcA5FDvmQNwBQokscA3nXHAPSdwwAWWOLhKQAdllEx0ATwgBXOHNRYAJnQC+cIiXIABEMhhYowZABsAtHOCdhlMnToE5o-MAii4AESwgIACgBKVnYuHgBNeSghCBUsDSA 302
+/r/custom-component-variants /customization/components/#adding-new-component-variants
 
 /store/* https://material-ui-store.netlify.app/:splat 200
 /store-staging/* https://master--material-ui-store.netlify.app/:splat 200
