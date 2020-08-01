@@ -34,7 +34,7 @@ The `MuiPaginationItem` name can be used for providing [default props](/customiz
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the item will be disabled. |
 | <span class="prop-name">page</span> | <span class="prop-type">number</span> |  | The current page number. |
 | <span class="prop-name">selected</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true` the pagination item is selected. |
-| <span class="prop-name">shape</span> | <span class="prop-type">'round'<br>&#124;&nbsp;'rounded'</span> | <span class="prop-default">'round'</span> | The shape of the pagination item. |
+| <span class="prop-name">shape</span> | <span class="prop-type">'circular'<br>&#124;&nbsp;'rounded'</span> | <span class="prop-default">'circular'</span> | The shape of the pagination item. |
 | <span class="prop-name">size</span> | <span class="prop-type">'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'</span> | <span class="prop-default">'medium'</span> | The size of the pagination item. |
 | <span class="prop-name">type</span> | <span class="prop-type">'end-ellipsis'<br>&#124;&nbsp;'first'<br>&#124;&nbsp;'last'<br>&#124;&nbsp;'next'<br>&#124;&nbsp;'page'<br>&#124;&nbsp;'previous'<br>&#124;&nbsp;'start-ellipsis'</span> | <span class="prop-default">'page'</span> | The type of pagination item. |
 | <span class="prop-name">variant</span> | <span class="prop-type">'outlined'<br>&#124;&nbsp;'text'</span> | <span class="prop-default">'text'</span> | The pagination item variant. |

@@ -40,7 +40,7 @@ The `MuiPagination` name can be used for providing [default props](/customizatio
 | <span class="prop-name">onChange</span> | <span class="prop-type">func</span> |  | Callback fired when the page is changed.<br><br>**Signature:**<br>`function(event: object, page: number) => void`<br>*event:* The event source of the callback.<br>*page:* The page selected. |
 | <span class="prop-name">page</span> | <span class="prop-type">number</span> |  | The current page. |
 | <span class="prop-name">renderItem</span> | <span class="prop-type">func</span> | <span class="prop-default">(item) => &lt;PaginationItem {...item} /></span> | Render the item.<br><br>**Signature:**<br>`function(params: PaginationRenderItemParams) => ReactNode`<br>*params:* The props to spread on a PaginationItem. |
-| <span class="prop-name">shape</span> | <span class="prop-type">'round'<br>&#124;&nbsp;'rounded'</span> | <span class="prop-default">'round'</span> | The shape of the pagination items. |
+| <span class="prop-name">shape</span> | <span class="prop-type">'circular'<br>&#124;&nbsp;'rounded'</span> | <span class="prop-default">'circular'</span> | The shape of the pagination items. |
 | <span class="prop-name">showFirstButton</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, show the first-page button. |
 | <span class="prop-name">showLastButton</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, show the last-page button. |
 | <span class="prop-name">siblingCount</span> | <span class="prop-type">number</span> | <span class="prop-default">1</span> | Number of always visible pages before and after the current page. |
