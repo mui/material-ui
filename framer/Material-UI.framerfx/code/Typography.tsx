@@ -13,21 +13,6 @@ interface Props {
     | 'textPrimary'
     | 'textSecondary';
   noWrap: boolean;
-  variant:
-    | 'body1'
-    | 'body2'
-    | 'button'
-    | 'caption'
-    | 'h1'
-    | 'h2'
-    | 'h3'
-    | 'h4'
-    | 'h5'
-    | 'h6'
-    | 'inherit'
-    | 'overline'
-    | 'subtitle1'
-    | 'subtitle2';
   label: string;
   width: number | string;
   height: number;
@@ -42,7 +27,6 @@ Typography.defaultProps = {
   align: 'inherit' as 'inherit',
   color: 'initial' as 'initial',
   noWrap: false,
-  variant: 'body1' as 'body1',
   label: 'Typography',
   width: 100,
   height: 38,
@@ -70,26 +54,6 @@ addPropertyControls(Typography, {
   noWrap: {
     type: ControlType.Boolean,
     title: 'No wrap',
-  },
-  variant: {
-    type: ControlType.Enum,
-    title: 'Variant',
-    options: [
-      'body1',
-      'body2',
-      'button',
-      'caption',
-      'h1',
-      'h2',
-      'h3',
-      'h4',
-      'h5',
-      'h6',
-      'inherit',
-      'overline',
-      'subtitle1',
-      'subtitle2',
-    ],
   },
   label: {
     type: ControlType.String,

@@ -314,6 +314,7 @@ export const componentSettings = {
       'gutterBottom',
       'internalDeprecatedVariant',
       'paragraph',
+      'varaint',
       'variantMapping',
     ],
     propValues: {
