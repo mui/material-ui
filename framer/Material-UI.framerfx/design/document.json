@@ -3331,7 +3331,7 @@
               "iconTheme" : "Filled",
               "label" : "extended",
               "size" : "large",
-              "variant" : "circle"
+              "variant" : "round"
             },
             "codeOverrideEnabled" : false,
             "constraintsLocked" : false,
@@ -3392,7 +3392,7 @@
               "iconTheme" : "Filled",
               "label" : "extended",
               "size" : "medium",
-              "variant" : "circle"
+              "variant" : "round"
             },
             "codeOverrideEnabled" : false,
             "constraintsLocked" : false,
@@ -3453,7 +3453,7 @@
               "iconTheme" : "Filled",
               "label" : "extended",
               "size" : "small",
-              "variant" : "circle"
+              "variant" : "round"
             },
             "codeOverrideEnabled" : false,
             "constraintsLocked" : false,
@@ -5556,7 +5556,7 @@
               "iconTheme" : "Filled",
               "label" : "extended",
               "size" : "large",
-              "variant" : "circle"
+              "variant" : "round"
             },
             "codeOverrideEnabled" : false,
             "constraintsLocked" : false,
