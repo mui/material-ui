@@ -32,7 +32,7 @@ The `MuiStepContent` name can be used for providing [default props](/customizati
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">TransitionComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">Collapse</span> | The component used for the transition. [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component. |
 | <span class="prop-name">transitionDuration</span> | <span class="prop-type">'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }</span> | <span class="prop-default">'auto'</span> | Adjust the duration of the content expand transition. Passed as a prop to the transition component.<br>Set to 'auto' to automatically calculate transition time based on height. |
-| <span class="prop-name">TransitionProps</span> | <span class="prop-type">object</span> |  | Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element. |
+| <span class="prop-name">TransitionProps</span> | <span class="prop-type">object</span> |  | Props applied to the transition element. By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition) component. |
 
 The `ref` is forwarded to the root element.
 

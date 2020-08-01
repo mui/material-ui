@@ -41,7 +41,7 @@ The `MuiSpeedDial` name can be used for providing [default props](/customization
 | <span class="prop-name">openIcon</span> | <span class="prop-type">node</span> |  | The icon to display in the SpeedDial Fab when the SpeedDial is open. |
 | <span class="prop-name">TransitionComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">Zoom</span> | The component used for the transition. [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component. |
 | <span class="prop-name">transitionDuration</span> | <span class="prop-type">number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }</span> | <span class="prop-default">{  enter: duration.enteringScreen,  exit: duration.leavingScreen,}</span> | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
-| <span class="prop-name">TransitionProps</span> | <span class="prop-type">object</span> |  | Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element. |
+| <span class="prop-name">TransitionProps</span> | <span class="prop-type">object</span> |  | Props applied to the transition element. By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition) component. |
 
 The `ref` is forwarded to the root element.
 

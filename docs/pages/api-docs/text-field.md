@@ -81,6 +81,7 @@ The `MuiTextField` name can be used for providing [default props](/customization
 | <span class="prop-name">required</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the label is displayed as required and the `input` element will be required. |
 | <span class="prop-name">rows</span> | <span class="prop-type">number<br>&#124;&nbsp;string</span> |  | Number of rows to display when multiline option is set to true. |
 | <span class="prop-name">rowsMax</span> | <span class="prop-type">number<br>&#124;&nbsp;string</span> |  | Maximum number of rows to display when multiline option is set to true. |
+| <span class="prop-name">rowsMin</span> | <span class="prop-type">number<br>&#124;&nbsp;string</span> |  | Minimum number of rows to display when multiline option is set to true. |
 | <span class="prop-name">select</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Render a [`Select`](/api/select/) element while passing the Input element to `Select` as `input` parameter. If this option is set you must pass the options of the select as children. |
 | <span class="prop-name">SelectProps</span> | <span class="prop-type">object</span> |  | Props applied to the [`Select`](/api/select/) element. |
 | <span class="prop-name">size</span> | <span class="prop-type">'medium'<br>&#124;&nbsp;'small'</span> |  | The size of the text field. |

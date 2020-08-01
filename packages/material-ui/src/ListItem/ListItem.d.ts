@@ -47,7 +47,6 @@ export interface ListItemTypeMap<P, D extends React.ElementType> {
      * If `true`, a 1px light border is added to the bottom of the list item.
      */
     divider?: boolean;
-    focusVisibleClassName?: string;
     /**
      * Use to apply selected styling.
      */

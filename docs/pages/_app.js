@@ -10,7 +10,6 @@ import acceptLanguage from 'accept-language';
 import { create } from 'jss';
 import rtl from 'jss-rtl';
 import { useRouter } from 'next/router';
-import { rewriteUrlForNextExport } from 'next/dist/next-server/lib/router/rewrite-url-for-export';
 import { StylesProvider, jssPreset } from '@material-ui/styles';
 import pages from 'docs/src/pages';
 import initRedux from 'docs/src/modules/redux/initRedux';
@@ -44,9 +43,7 @@ function LanguageNegotiation() {
   const userLanguage = useSelector((state) => state.options.userLanguage);
 
   React.useEffect(() => {
-    const { userLanguage: userLanguageUrl, canonical } = pathnameToLanguage(
-      rewriteUrlForNextExport(router.asPath),
-    );
+    const { userLanguage: userLanguageUrl, canonical } = pathnameToLanguage(router.asPath);
     const preferedLanguage =
       getCookie('userLanguage') !== 'noDefault' && userLanguage === 'en'
         ? acceptLanguage.get(navigator.language)
@@ -298,18 +295,10 @@ function AppWrapper(props) {
     }
   }, []);
 
-  let pathname = router.pathname;
-  // Add support for leading / in development mode.
-  if (pathname !== '/') {
-    // The leading / is only added to support static hosting (resolve /index.html).
-    // We remove it to normalize the pathname.
-    // See `rewriteUrlForNextExport` on Next.js side.
-    pathname = pathname.replace(/\/$/, '');
-  }
-  const activePage = findActivePage(pages, pathname);
+  const activePage = findActivePage(pages, router.pathname);
 
   let fonts = ['https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap'];
-  if (pathname.match(/onepirate/)) {
+  if (router.pathname.match(/onepirate/)) {
     fonts = [
       'https://fonts.googleapis.com/css?family=Roboto+Condensed:700|Work+Sans:300,400&display=swap',
     ];

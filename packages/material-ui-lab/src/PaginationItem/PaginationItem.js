@@ -207,7 +207,7 @@ const PaginationItem = React.forwardRef(function PaginationItem(props, ref) {
     disabled = false,
     page,
     selected = false,
-    shape = 'round',
+    shape = 'circular',
     size = 'medium',
     type = 'page',
     variant = 'text',
@@ -312,7 +312,7 @@ PaginationItem.propTypes = {
   /**
    * The shape of the pagination item.
    */
-  shape: PropTypes.oneOf(['round', 'rounded']),
+  shape: PropTypes.oneOf(['circular', 'rounded']),
   /**
    * The size of the pagination item.
    */

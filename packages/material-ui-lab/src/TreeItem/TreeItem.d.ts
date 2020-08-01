@@ -14,6 +14,10 @@ export interface TreeItemProps
    */
   collapseIcon?: React.ReactNode;
   /**
+   * If `true`, the node will be disabled.
+   */
+  disabled?: boolean;
+  /**
    * The icon displayed next to a end node.
    */
   endIcon?: React.ReactNode;
@@ -52,7 +56,8 @@ export interface TreeItemProps
    */
   TransitionComponent?: React.ComponentType<TransitionProps>;
   /**
-   * Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.
+   * Props applied to the transition element.
+   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition) component.
    */
   TransitionProps?: TransitionProps;
 }
@@ -62,6 +67,7 @@ export type TreeItemClassKey =
   | 'expanded'
   | 'selected'
   | 'focused'
+  | 'disabled'
   | 'group'
   | 'content'
   | 'iconContainer'

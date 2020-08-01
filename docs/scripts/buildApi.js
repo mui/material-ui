@@ -2,7 +2,6 @@
 import * as babel from '@babel/core';
 import traverse from '@babel/traverse';
 import { mkdirSync, readFileSync, writeFileSync } from 'fs';
-import { rewriteUrlForNextExport } from 'next/dist/next-server/lib/router/rewrite-url-for-export';
 import path from 'path';
 import kebabCase from 'lodash/kebabCase';
 import uniqBy from 'lodash/uniqBy';
@@ -56,7 +55,7 @@ function getInheritance(testInfo, src) {
       break;
 
     default:
-      pathname = `/api/${kebabCase(inheritedComponentName)}`;
+      pathname = `/api/${kebabCase(inheritedComponentName)}/`;
       break;
   }
 
@@ -153,7 +152,7 @@ async function annotateComponentDefinition(component, api) {
   let inheritanceAPILink = null;
   if (api.inheritance !== null) {
     const url = api.inheritance.pathname.startsWith('/')
-      ? `${HOST}${rewriteUrlForNextExport(api.inheritance.pathname)}`
+      ? `${HOST}${api.inheritance.pathname}`
       : api.inheritance.pathname;
 
     inheritanceAPILink = `[${api.inheritance.component} API](${url})`;
@@ -164,9 +163,7 @@ async function annotateComponentDefinition(component, api) {
     markdownLines.push(
       'Demos:',
       '',
-      ...demos.map(
-        (page) => `- [${pageToTitle(page)}](${HOST}${rewriteUrlForNextExport(page.pathname)})`,
-      ),
+      ...demos.map((page) => `- [${pageToTitle(page)}](${HOST}${page.pathname}/)`),
       '',
     );
   }
