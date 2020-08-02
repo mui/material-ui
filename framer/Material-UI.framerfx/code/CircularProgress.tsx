@@ -56,6 +56,6 @@ addPropertyControls(CircularProgress, {
   variant: {
     type: ControlType.Enum,
     title: 'Variant',
-    options: ['determinate', 'indeterminate', 'static'],
+    options: ['determinate', 'indeterminate'],
   },
 });

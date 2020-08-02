@@ -37,8 +37,8 @@ The `MuiCircularProgress` name can be used for providing [default props](/custom
 | <span class="prop-name">disableShrink</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the shrink animation is disabled. This only works if variant is `indeterminate`. |
 | <span class="prop-name">size</span> | <span class="prop-type">number<br>&#124;&nbsp;string</span> | <span class="prop-default">40</span> | The size of the circle. If using a number, the pixel unit is assumed. If using a string, you need to provide the CSS unit, e.g '3rem'. |
 | <span class="prop-name">thickness</span> | <span class="prop-type">number</span> | <span class="prop-default">3.6</span> | The thickness of the circle. |
-| <span class="prop-name">value</span> | <span class="prop-type">number</span> | <span class="prop-default">0</span> | The value of the progress indicator for the determinate and static variants. Value between 0 and 100. |
-| <span class="prop-name">variant</span> | <span class="prop-type">'determinate'<br>&#124;&nbsp;'indeterminate'<br>&#124;&nbsp;'static'</span> | <span class="prop-default">'indeterminate'</span> | The variant to use. Use indeterminate when there is no progress value. |
+| <span class="prop-name">value</span> | <span class="prop-type">number</span> | <span class="prop-default">0</span> | The value of the progress indicator for the determinate variant. Value between 0 and 100. |
+| <span class="prop-name">variant</span> | <span class="prop-type">'determinate'<br>&#124;&nbsp;'indeterminate'</span> | <span class="prop-default">'indeterminate'</span> | The variant to use. Use indeterminate when there is no progress value. |
 
 The `ref` is forwarded to the root element.
 
@@ -49,13 +49,13 @@ Any other props supplied will be provided to the root element (native element).
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
 | <span class="prop-name">root</span> | <span class="prop-name">.MuiCircularProgress-root</span> | Styles applied to the root element.
-| <span class="prop-name">static</span> | <span class="prop-name">.MuiCircularProgress-static</span> | Styles applied to the root element if `variant="static"`.
+| <span class="prop-name">determinate</span> | <span class="prop-name">.MuiCircularProgress-determinate</span> | Styles applied to the root element if `variant="determinate"`.
 | <span class="prop-name">indeterminate</span> | <span class="prop-name">.MuiCircularProgress-indeterminate</span> | Styles applied to the root element if `variant="indeterminate"`.
 | <span class="prop-name">colorPrimary</span> | <span class="prop-name">.MuiCircularProgress-colorPrimary</span> | Styles applied to the root element if `color="primary"`.
 | <span class="prop-name">colorSecondary</span> | <span class="prop-name">.MuiCircularProgress-colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
 | <span class="prop-name">svg</span> | <span class="prop-name">.MuiCircularProgress-svg</span> | Styles applied to the `svg` element.
 | <span class="prop-name">circle</span> | <span class="prop-name">.MuiCircularProgress-circle</span> | Styles applied to the `circle` svg path.
-| <span class="prop-name">circleStatic</span> | <span class="prop-name">.MuiCircularProgress-circleStatic</span> | Styles applied to the `circle` svg path if `variant="static"`.
+| <span class="prop-name">circleDeterminate</span> | <span class="prop-name">.MuiCircularProgress-circleDeterminate</span> | Styles applied to the `circle` svg path if `variant="determinate"`.
 | <span class="prop-name">circleIndeterminate</span> | <span class="prop-name">.MuiCircularProgress-circleIndeterminate</span> | Styles applied to the `circle` svg path if `variant="indeterminate"`.
 | <span class="prop-name">circleDisableShrink</span> | <span class="prop-name">.MuiCircularProgress-circleDisableShrink</span> | Styles applied to the `circle` svg path if `disableShrink={true}`.
 
