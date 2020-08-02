@@ -531,8 +531,10 @@ describe('<TreeItem />', () => {
 
           expect(screen.getByTestId('one')).to.have.attribute('aria-expanded', 'true');
 
-          // move focus to node two
-          fireEvent.focusIn(screen.getByTestId('two'));
+          act(() => {
+            screen.getByTestId('two').focus();
+          });
+
           expect(screen.getByTestId('two')).toHaveVirtualFocus();
 
           fireEvent.keyDown(screen.getByRole('tree'), { key: 'ArrowLeft' });
@@ -1366,8 +1368,10 @@ describe('<TreeItem />', () => {
             </TreeView>,
           );
 
-          // Focus node five
-          fireEvent.focusIn(getByTestId('five'));
+          act(() => {
+            getByTestId('five').focus();
+          });
+
           fireEvent.keyDown(getByRole('tree'), {
             key: 'End',
             shiftKey: true,
