@@ -70,6 +70,22 @@ This change affects almost all components where you're using the `component` pro
   +<Button />
   ```
 
+### Badge
+
+- Rename `circle` to `circular` for consistency. The possible values should be adjectives, not nouns:
+
+  ```diff
+  -<Badge overlap="circle">
+  +<Badge overlap="circular">
+  ```
+
+- Rename `rectangle` to `rectangular` for consistency. The possible values should be adjectives, not nouns:
+
+  ```diff
+  -<Badge overlap="rectangle">
+  +<Badge overlap="rectangular">
+  ```
+
 ### Collapse
 
 - The `collapsedHeight` prop was renamed `collapsedSize` to support the horizontal direction.
