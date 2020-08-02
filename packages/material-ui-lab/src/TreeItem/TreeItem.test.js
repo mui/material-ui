@@ -531,14 +531,11 @@ describe('<TreeItem />', () => {
 
           expect(screen.getByTestId('one')).to.have.attribute('aria-expanded', 'true');
 
-          // move focus to node two
-          fireEvent.click(screen.getByText('two'));
-          fireEvent.click(screen.getByText('two'));
           act(() => {
-            screen.getByRole('tree').focus();
+            screen.getByTestId('two').focus();
           });
 
-          expect(screen.getByTestId('two')).to.have.attribute('aria-expanded', 'false');
+          expect(screen.getByTestId('two')).toHaveVirtualFocus();
 
           fireEvent.keyDown(screen.getByRole('tree'), { key: 'ArrowLeft' });
 
@@ -1052,6 +1049,25 @@ describe('<TreeItem />', () => {
           expect(getByTestId('one')).to.have.attribute('aria-selected', 'true');
         });
 
+        it('should not deselect a node when space is pressed on a selected node', () => {
+          const { getByRole, getByTestId } = render(
+            <TreeView defaultSelected="one">
+              <TreeItem nodeId="one" label="one" data-testid="one" />
+            </TreeView>,
+          );
+
+          act(() => {
+            getByRole('tree').focus();
+          });
+
+          expect(getByTestId('one')).toHaveVirtualFocus();
+          expect(getByTestId('one')).to.have.attribute('aria-selected', 'true');
+
+          fireEvent.keyDown(getByRole('tree'), { key: ' ' });
+
+          expect(getByTestId('one')).to.have.attribute('aria-selected', 'true');
+        });
+
         it('should not select a node when space is pressed and disableSelection', () => {
           const { getByRole, getByTestId } = render(
             <TreeView disableSelection>
@@ -1081,6 +1097,18 @@ describe('<TreeItem />', () => {
           expect(getByTestId('one')).to.have.attribute('aria-selected', 'true');
         });
 
+        it('should not deselect a node when clicking a selected node', () => {
+          const { getByText, getByTestId } = render(
+            <TreeView defaultSelected="one">
+              <TreeItem nodeId="one" label="one" data-testid="one" />
+            </TreeView>,
+          );
+
+          expect(getByTestId('one')).to.have.attribute('aria-selected', 'true');
+          fireEvent.click(getByText('one'));
+          expect(getByTestId('one')).to.have.attribute('aria-selected', 'true');
+        });
+
         it('should not select a node when click and disableSelection', () => {
           const { getByText, getByTestId } = render(
             <TreeView disableSelection>
@@ -1095,6 +1123,74 @@ describe('<TreeItem />', () => {
     });
 
     describe('Multi Selection', () => {
+      describe('deselection', () => {
+        describe('mouse behaviour when multiple nodes are selected', () => {
+          specify('clicking a selected node holding ctrl should deselect the node', () => {
+            const { getByText, getByTestId } = render(
+              <TreeView multiSelect defaultSelected={['one', 'two']}>
+                <TreeItem nodeId="one" label="one" data-testid="one" />
+                <TreeItem nodeId="two" label="two" data-testid="two" />
+              </TreeView>,
+            );
+
+            expect(getByTestId('one')).to.have.attribute('aria-selected', 'true');
+            expect(getByTestId('two')).to.have.attribute('aria-selected', 'true');
+            fireEvent.click(getByText('one'), { ctrlKey: true });
+            expect(getByTestId('one')).to.have.attribute('aria-selected', 'false');
+            expect(getByTestId('two')).to.have.attribute('aria-selected', 'true');
+          });
+
+          specify('clicking a selected node holding meta should deselect the node', () => {
+            const { getByText, getByTestId } = render(
+              <TreeView multiSelect defaultSelected={['one', 'two']}>
+                <TreeItem nodeId="one" label="one" data-testid="one" />
+                <TreeItem nodeId="two" label="two" data-testid="two" />
+              </TreeView>,
+            );
+
+            expect(getByTestId('one')).to.have.attribute('aria-selected', 'true');
+            expect(getByTestId('two')).to.have.attribute('aria-selected', 'true');
+            fireEvent.click(getByText('one'), { metaKey: true });
+            expect(getByTestId('one')).to.have.attribute('aria-selected', 'false');
+            expect(getByTestId('two')).to.have.attribute('aria-selected', 'true');
+          });
+        });
+
+        describe('mouse behaviour when one node is selected', () => {
+          it('clicking a selected node shout not deselect the node', () => {
+            const { getByText, getByTestId } = render(
+              <TreeView multiSelect defaultSelected={['one']}>
+                <TreeItem nodeId="one" label="one" data-testid="one" />
+                <TreeItem nodeId="two" label="two" data-testid="two" />
+              </TreeView>,
+            );
+
+            expect(getByTestId('one')).to.have.attribute('aria-selected', 'true');
+            expect(getByTestId('two')).to.have.attribute('aria-selected', 'false');
+            fireEvent.click(getByText('one'));
+            expect(getByTestId('one')).to.have.attribute('aria-selected', 'true');
+            expect(getByTestId('two')).to.have.attribute('aria-selected', 'false');
+          });
+        });
+
+        it('should deselect the node when pressing space on a selected node', () => {
+          const { getByTestId, getByRole } = render(
+            <TreeView multiSelect defaultSelected={['one']}>
+              <TreeItem nodeId="one" label="one" data-testid="one" />
+            </TreeView>,
+          );
+
+          act(() => {
+            getByRole('tree').focus();
+          });
+
+          expect(getByTestId('one')).toHaveVirtualFocus();
+          expect(getByTestId('one')).to.have.attribute('aria-selected', 'true');
+          fireEvent.keyDown(getByRole('tree'), { key: ' ' });
+          expect(getByTestId('one')).to.have.attribute('aria-selected', 'false');
+        });
+      });
+
       describe('range selection', () => {
         specify('keyboard arrow', () => {
           const { getByRole, getByTestId, getByText, queryAllByRole } = render(
@@ -1256,7 +1352,7 @@ describe('<TreeItem />', () => {
         });
 
         specify('keyboard home and end', () => {
-          const { getByRole, getByTestId, getByText } = render(
+          const { getByRole, getByTestId } = render(
             <TreeView multiSelect defaultExpanded={['two', 'five']}>
               <TreeItem nodeId="one" label="one" data-testid="one" />
               <TreeItem nodeId="two" label="two" data-testid="two">
@@ -1272,12 +1368,10 @@ describe('<TreeItem />', () => {
             </TreeView>,
           );
 
-          // Focus node five
-          fireEvent.click(getByText('five'));
-          fireEvent.click(getByText('five'));
           act(() => {
-            getByRole('tree').focus();
+            getByTestId('five').focus();
           });
+
           fireEvent.keyDown(getByRole('tree'), {
             key: 'End',
             shiftKey: true,
@@ -1379,6 +1473,39 @@ describe('<TreeItem />', () => {
           expect(getByTestId('five')).to.have.attribute('aria-selected', 'true');
         });
 
+        it('mouse behaviour after deselection', () => {
+          const { getByTestId, getByText } = render(
+            <TreeView multiSelect>
+              <TreeItem nodeId="one" label="one" data-testid="one" />
+              <TreeItem nodeId="two" label="two" data-testid="two" />
+              <TreeItem nodeId="three" label="three" data-testid="three" />
+              <TreeItem nodeId="four" label="four" data-testid="four" />
+              <TreeItem nodeId="five" label="five" data-testid="five" />
+            </TreeView>,
+          );
+
+          fireEvent.click(getByText('one'));
+          fireEvent.click(getByText('two'), { ctrlKey: true });
+          expect(getByTestId('one')).to.have.attribute('aria-selected', 'true');
+          expect(getByTestId('two')).to.have.attribute('aria-selected', 'true');
+          fireEvent.click(getByText('two'), { ctrlKey: true });
+          expect(getByTestId('one')).to.have.attribute('aria-selected', 'true');
+          expect(getByTestId('two')).to.have.attribute('aria-selected', 'false');
+
+          fireEvent.click(getByText('five'), { shiftKey: true });
+          expect(getByTestId('one')).to.have.attribute('aria-selected', 'true');
+          expect(getByTestId('two')).to.have.attribute('aria-selected', 'true');
+          expect(getByTestId('three')).to.have.attribute('aria-selected', 'true');
+          expect(getByTestId('four')).to.have.attribute('aria-selected', 'true');
+          expect(getByTestId('five')).to.have.attribute('aria-selected', 'true');
+          fireEvent.click(getByText('one'), { shiftKey: true });
+          expect(getByTestId('one')).to.have.attribute('aria-selected', 'true');
+          expect(getByTestId('two')).to.have.attribute('aria-selected', 'true');
+          expect(getByTestId('three')).to.have.attribute('aria-selected', 'false');
+          expect(getByTestId('four')).to.have.attribute('aria-selected', 'false');
+          expect(getByTestId('five')).to.have.attribute('aria-selected', 'false');
+        });
+
         specify('mouse does not range select when selectionDisabled', () => {
           const { getByText, queryAllByRole } = render(
             <TreeView disableSelection multiSelect defaultExpanded={['two']}>
@@ -1424,9 +1551,58 @@ describe('<TreeItem />', () => {
           expect(getByTestId('two')).to.have.attribute('aria-selected', 'false');
 
           fireEvent.keyDown(getByRole('tree'), { key: 'ArrowDown' });
+          fireEvent.keyDown(getByRole('tree'), { key: ' ' });
+
+          expect(getByTestId('one')).to.have.attribute('aria-selected', 'true');
+          expect(getByTestId('two')).to.have.attribute('aria-selected', 'true');
+        });
+
+        specify('keyboard holding ctrl', () => {
+          const { getByRole, getByTestId } = render(
+            <TreeView multiSelect>
+              <TreeItem nodeId="one" label="one" data-testid="one" />
+              <TreeItem nodeId="two" label="two" data-testid="two" />
+            </TreeView>,
+          );
+
+          act(() => {
+            getByRole('tree').focus();
+          });
+
+          expect(getByTestId('one')).to.have.attribute('aria-selected', 'false');
+          expect(getByTestId('two')).to.have.attribute('aria-selected', 'false');
+
+          fireEvent.keyDown(getByRole('tree'), { key: ' ' });
+
+          expect(getByTestId('one')).to.have.attribute('aria-selected', 'true');
+          expect(getByTestId('two')).to.have.attribute('aria-selected', 'false');
+
+          fireEvent.keyDown(getByRole('tree'), { key: 'ArrowDown' });
           fireEvent.keyDown(getByRole('tree'), { key: ' ', ctrlKey: true });
 
           expect(getByTestId('one')).to.have.attribute('aria-selected', 'true');
+          expect(getByTestId('two')).to.have.attribute('aria-selected', 'true');
+        });
+
+        specify('mouse', () => {
+          const { getByText, getByTestId } = render(
+            <TreeView multiSelect>
+              <TreeItem nodeId="one" label="one" data-testid="one" />
+              <TreeItem nodeId="two" label="two" data-testid="two" />
+            </TreeView>,
+          );
+
+          expect(getByTestId('one')).to.have.attribute('aria-selected', 'false');
+          expect(getByTestId('two')).to.have.attribute('aria-selected', 'false');
+
+          fireEvent.click(getByText('one'));
+
+          expect(getByTestId('one')).to.have.attribute('aria-selected', 'true');
+          expect(getByTestId('two')).to.have.attribute('aria-selected', 'false');
+
+          fireEvent.click(getByText('two'));
+
+          expect(getByTestId('one')).to.have.attribute('aria-selected', 'false');
           expect(getByTestId('two')).to.have.attribute('aria-selected', 'true');
         });
 
