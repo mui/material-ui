@@ -223,6 +223,10 @@ OutlinedInput.propTypes = {
    */
   maxRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
+   * Minimum number of rows to display when multiline option is set to true.
+   */
+  minRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
    * If `true`, a textarea element will be rendered.
    */
   multiline: PropTypes.bool,
