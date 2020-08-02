@@ -121,7 +121,7 @@
     "babel-loader": "^8.1.0",
     "babel-plugin-optimize-clsx": "^2.6.1",
     "babel-plugin-react-remove-properties": "^0.3.0",
-    "codecov": "^3.7.1",
+    "codecov": "^3.7.2",
     "cross-env": "^7.0.2",
     "date-fns": "^2.12.0",
     "enzyme": "^3.11.0",
