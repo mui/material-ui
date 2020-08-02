@@ -56,7 +56,7 @@ This change affects almost all components where you're using the `component` pro
 - Rename `circle` to `circular` for consistency. The possible values should be adjectives, not nouns:
 
   ```diff
-  -<Avatar variant="round">
+  -<Avatar variant="circle">
   +<Avatar variant="circular">
   ```
 
