@@ -41,6 +41,10 @@ export interface TrapFocusProps {
    * trap focus is hidden.
    */
   disableRestoreFocus?: boolean;
+  /**
+   * Array of selectors to add to the components focusable elements
+   */
+  focusSelectors?: string[];
 }
 
 /**
