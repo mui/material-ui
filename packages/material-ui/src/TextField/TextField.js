@@ -292,6 +292,10 @@ TextField.propTypes = {
    */
   maxRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
+   * Minimum number of rows to display when multiline option is set to true.
+   */
+  minRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
    * If `true`, a textarea element will be rendered instead of an input.
    */
   multiline: PropTypes.bool,
@@ -326,14 +330,6 @@ TextField.propTypes = {
    * Number of rows to display when multiline option is set to true.
    */
   rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  /**
-   * Maximum number of rows to display when multiline option is set to true.
-   */
-  maxRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  /**
-   * Minimum number of rows to display when multiline option is set to true.
-   */
-  minRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * Render a [`Select`](/api/select/) element while passing the Input element to `Select` as `input` parameter.
    * If this option is set you must pass the options of the select as children.
