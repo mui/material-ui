@@ -51,7 +51,6 @@ This should help locating the test in case the top of the stack can't be read du
 The error includes the logged message as well as the stacktrace of that message.
 Unfortunately the stacktrace is currently duplicated due to `chai`.
 
-However, in watchmode (`yarn test:unit --watch`) unexpected calls are ignored (see https://github.com/mochajs/mocha/issues/4347).
 You can explicitly [expect no console calls](#writing-a-test-for-consoleerror-or-consolewarn) for when you're adding a regression test.
 This makes the test more readable and properly fails the test in watchmode if the test had unexpected `console` calls.
 
