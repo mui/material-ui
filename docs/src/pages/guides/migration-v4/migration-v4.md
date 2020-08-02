@@ -53,17 +53,12 @@ This change affects almost all components where you're using the `component` pro
 
 ### Badge
 
-- Rename `circle` to `circular` for consistency. The possible values should be adjectives, not nouns:
+- Rename `circle` to `circular` and `rectangle` to `rectangular` for consistency. The possible values should be adjectives, not nouns:
 
   ```diff
   -<Badge overlap="circle">
-  +<Badge overlap="circular">
-  ```
-
-- Rename `rectangle` to `rectangular` for consistency. The possible values should be adjectives, not nouns:
-
-  ```diff
   -<Badge overlap="rectangle">
+  +<Badge overlap="circular">
   +<Badge overlap="rectangular">
   ```
 
