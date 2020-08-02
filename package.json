@@ -68,7 +68,7 @@
     "@types/lodash": "^4.14.138",
     "@types/mocha": "^8.0.0",
     "@types/prettier": "^2.0.0",
-    "@types/react": "^16.9.3",
+    "@types/react": "^16.9.44",
     "@types/sinon": "^9.0.0",
     "@typescript-eslint/eslint-plugin": "^3.6.0",
     "@typescript-eslint/parser": "^3.6.0",
