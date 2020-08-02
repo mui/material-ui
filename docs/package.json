@@ -17,6 +17,8 @@
     "node": ">=8.0.0"
   },
   "dependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.8.3",
     "@babel/plugin-proposal-optional-chaining": "^7.9.0",
     "@date-io/hijri": "^2.6.0",
     "@date-io/jalaali": "^2.6.0",
@@ -25,6 +27,7 @@
     "@material-ui/icons": "^5.0.0-alpha.4",
     "@material-ui/lab": "^5.0.0-alpha.5",
     "@material-ui/pickers": "^4.0.0-alpha.1",
+    "@mdx-js/mdx": "^0.15.7",
     "@now/node": "^1.7.3",
     "@types/fuzzy-search": "^2.1.0",
     "@types/isomorphic-fetch": "^0.0.35",
@@ -73,6 +76,7 @@
     "sinon": "^9.0.2",
     "styled-jsx": "^3.3.0",
     "typescript": "^3.9.6",
+    "webpack": "^4.43.0",
     "yup": "^0.29.1"
   },
   "devDependencies": {

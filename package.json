@@ -33,9 +33,10 @@
     "url": "git+https://github.com/mui-org/material-ui-pickers.git"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.8.3",
+    "@babel/preset-env": "^7.9.6",
     "@babel/runtime": "^7.8.4",
     "@cypress/webpack-preprocessor": "^4.1.0",
+    "@material-ui/core": "^4.11.0",
     "@percy/cypress": "^2.3.1",
     "@testing-library/cypress": "^6.0.0",
     "@testing-library/dom": "^7.21.5",
@@ -58,6 +59,9 @@
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
     "prettier": "^2.0.5",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "typescript": "^3.9.6",
     "wait-on": "^5.1.0",
     "yarn-deduplicate": "^2.1.1"
   },
@@ -70,5 +74,9 @@
     "/docs/_shared",
     "/e2e/",
     "**/build"
-  ]
+  ],
+  "resolutions": {
+    "**/@babel/core": "^7.9.6",
+    "**/webpack": "^4.43.0"
+  }
 }
