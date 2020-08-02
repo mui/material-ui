@@ -57,7 +57,7 @@
     "moment-jalaali": "^0.9.2",
     "next": "8.0.4",
     "next-cookies": "2.0.3",
-    "next-images": "^1.4.0",
+    "next-images": "^1.4.1",
     "next-transpile-modules": "^2.0.0",
     "notistack": "^0.9.17",
     "now": "^19.1.1",
