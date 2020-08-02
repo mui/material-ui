@@ -6,7 +6,7 @@ interface Props {
   color: 'inherit' | 'primary' | 'secondary';
   thickness: number;
   value: number;
-  variant: 'determinate' | 'indeterminate' | 'static';
+  variant: 'determinate' | 'indeterminate';
   width: number | string;
   height: number;
 }
@@ -21,7 +21,7 @@ CircularProgress.defaultProps = {
   color: 'primary' as 'primary',
   thickness: 4,
   value: 75,
-  variant: 'static' as 'static',
+  variant: 'determinate' as 'determinate',
   width: 44,
   height: 44,
 };
@@ -48,6 +48,6 @@ addPropertyControls(CircularProgress, {
   variant: {
     type: ControlType.Enum,
     title: 'Variant',
-    options: ['determinate', 'indeterminate', 'static'],
+    options: ['determinate', 'indeterminate'],
   },
 });

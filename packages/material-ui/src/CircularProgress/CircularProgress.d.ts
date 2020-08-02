@@ -27,7 +27,7 @@ export interface CircularProgressProps
    */
   thickness?: number;
   /**
-   * The value of the progress indicator for the determinate and static variants.
+   * The value of the progress indicator for the determinate variant.
    * Value between 0 and 100.
    */
   value?: number;
@@ -35,18 +35,18 @@ export interface CircularProgressProps
    * The variant to use.
    * Use indeterminate when there is no progress value.
    */
-  variant?: 'determinate' | 'indeterminate' | 'static';
+  variant?: 'determinate' | 'indeterminate';
 }
 
 export type CircularProgressClassKey =
   | 'root'
-  | 'static'
+  | 'determinate'
   | 'indeterminate'
   | 'colorPrimary'
   | 'colorSecondary'
   | 'svg'
   | 'circle'
-  | 'circleStatic'
+  | 'circleDeterminate'
   | 'circleIndeterminate'
   | 'circleDisableShrink';
 

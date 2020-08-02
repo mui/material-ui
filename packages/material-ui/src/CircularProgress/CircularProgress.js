@@ -7,28 +7,13 @@ import capitalize from '../utils/capitalize';
 
 const SIZE = 44;
 
-function getRelativeValue(value, min, max) {
-  return (Math.min(Math.max(min, value), max) - min) / (max - min);
-}
-
-function easeOut(t) {
-  t = getRelativeValue(t, 0, 1);
-  // https://gist.github.com/gre/1650294
-  t = (t -= 1) * t * t + 1;
-  return t;
-}
-
-function easeIn(t) {
-  return t * t;
-}
-
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     display: 'inline-block',
   },
-  /* Styles applied to the root element if `variant="static"`. */
-  static: {
+  /* Styles applied to the root element if `variant="determinate"`. */
+  determinate: {
     transition: theme.transitions.create('transform'),
   },
   /* Styles applied to the root element if `variant="indeterminate"`. */
@@ -53,8 +38,8 @@ export const styles = (theme) => ({
     // Use butt to follow the specification, by chance, it's already the default CSS value.
     // strokeLinecap: 'butt',
   },
-  /* Styles applied to the `circle` svg path if `variant="static"`. */
-  circleStatic: {
+  /* Styles applied to the `circle` svg path if `variant="determinate"`. */
+  circleDeterminate: {
     transition: theme.transitions.create('stroke-dashoffset'),
   },
   /* Styles applied to the `circle` svg path if `variant="indeterminate"`. */
@@ -118,20 +103,12 @@ const CircularProgress = React.forwardRef(function CircularProgress(props, ref) 
   const rootStyle = {};
   const rootProps = {};
 
-  if (variant === 'determinate' || variant === 'static') {
+  if (variant === 'determinate') {
     const circumference = 2 * Math.PI * ((SIZE - thickness) / 2);
     circleStyle.strokeDasharray = circumference.toFixed(3);
     rootProps['aria-valuenow'] = Math.round(value);
-
-    if (variant === 'static') {
-      circleStyle.strokeDashoffset = `${(((100 - value) / 100) * circumference).toFixed(3)}px`;
-      rootStyle.transform = 'rotate(-90deg)';
-    } else {
-      circleStyle.strokeDashoffset = `${(easeIn((100 - value) / 100) * circumference).toFixed(
-        3,
-      )}px`;
-      rootStyle.transform = `rotate(${(easeOut(value / 70) * 270).toFixed(3)}deg)`;
-    }
+    circleStyle.strokeDashoffset = `${(((100 - value) / 100) * circumference).toFixed(3)}px`;
+    rootStyle.transform = 'rotate(-90deg)';
   }
 
   return (
@@ -140,8 +117,8 @@ const CircularProgress = React.forwardRef(function CircularProgress(props, ref) 
         classes.root,
         {
           [classes[`color${capitalize(color)}`]]: color !== 'inherit',
+          [classes.determinate]: variant === 'determinate',
           [classes.indeterminate]: variant === 'indeterminate',
-          [classes.static]: variant === 'static',
         },
         className,
       )}
@@ -154,8 +131,8 @@ const CircularProgress = React.forwardRef(function CircularProgress(props, ref) 
       <svg className={classes.svg} viewBox={`${SIZE / 2} ${SIZE / 2} ${SIZE} ${SIZE}`}>
         <circle
           className={clsx(classes.circle, {
+            [classes.circleDeterminate]: variant === 'determinate',
             [classes.circleIndeterminate]: variant === 'indeterminate',
-            [classes.circleStatic]: variant === 'static',
             [classes.circleDisableShrink]: disableShrink,
           })}
           style={circleStyle}
@@ -217,7 +194,7 @@ CircularProgress.propTypes = {
    */
   thickness: PropTypes.number,
   /**
-   * The value of the progress indicator for the determinate and static variants.
+   * The value of the progress indicator for the determinate variant.
    * Value between 0 and 100.
    */
   value: PropTypes.number,
@@ -225,7 +202,7 @@ CircularProgress.propTypes = {
    * The variant to use.
    * Use indeterminate when there is no progress value.
    */
-  variant: PropTypes.oneOf(['determinate', 'indeterminate', 'static']),
+  variant: PropTypes.oneOf(['determinate', 'indeterminate']),
 };
 
 export default withStyles(styles, { name: 'MuiCircularProgress', flip: false })(CircularProgress);
