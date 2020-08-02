@@ -262,6 +262,8 @@ Snackbar.propTypes = {
   action: PropTypes.node,
   /**
    * The anchor of the `Snackbar`.
+   * On smaller screens, the component grows to occupy all the available width,
+   * the horizontal alignment is ignored.
    */
   anchorOrigin: PropTypes.shape({
     horizontal: PropTypes.oneOf(['center', 'left', 'right']).isRequired,
