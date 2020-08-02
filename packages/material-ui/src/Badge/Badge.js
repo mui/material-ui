@@ -102,8 +102,8 @@ export const styles = (theme) => ({
       transform: 'scale(0) translate(-50%, 50%)',
     },
   },
-  /* Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }} overlap="circle"`. */
-  anchorOriginTopRightCircle: {
+  /* Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }} overlap="circular"`. */
+  anchorOriginTopRightCircular: {
     top: '14%',
     right: '14%',
     transform: 'scale(1) translate(50%, -50%)',
@@ -112,8 +112,8 @@ export const styles = (theme) => ({
       transform: 'scale(0) translate(50%, -50%)',
     },
   },
-  /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }} overlap="circle"`. */
-  anchorOriginBottomRightCircle: {
+  /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }} overlap="circular"`. */
+  anchorOriginBottomRightCircular: {
     bottom: '14%',
     right: '14%',
     transform: 'scale(1) translate(50%, 50%)',
@@ -122,8 +122,8 @@ export const styles = (theme) => ({
       transform: 'scale(0) translate(50%, 50%)',
     },
   },
-  /* Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }} overlap="circle"`. */
-  anchorOriginTopLeftCircle: {
+  /* Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }} overlap="circular"`. */
+  anchorOriginTopLeftCircular: {
     top: '14%',
     left: '14%',
     transform: 'scale(1) translate(-50%, -50%)',
@@ -132,8 +132,8 @@ export const styles = (theme) => ({
       transform: 'scale(0) translate(-50%, -50%)',
     },
   },
-  /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }} overlap="circle"`. */
-  anchorOriginBottomLeftCircle: {
+  /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }} overlap="circular"`. */
+  anchorOriginBottomLeftCircular: {
     bottom: '14%',
     left: '14%',
     transform: 'scale(1) translate(-50%, 50%)',
@@ -285,7 +285,7 @@ Badge.propTypes = {
   /**
    * Wrapped shape the badge should overlap.
    */
-  overlap: PropTypes.oneOf(['circle', 'rectangle']),
+  overlap: PropTypes.oneOf(['circular', 'rectangle']),
   /**
    * Controls whether the badge is hidden when `badgeContent` is zero.
    */
