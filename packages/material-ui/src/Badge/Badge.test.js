@@ -175,7 +175,7 @@ describe('<Badge />', () => {
       badgeContent: 0,
       color: 'primary',
       variant: 'standard',
-      overlap: 'circle',
+      overlap: 'circular',
       anchorOrigin: {
         vertical: 'bottom',
         horizontal: 'left',
