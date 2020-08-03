@@ -60,6 +60,7 @@ class NavItem extends React.Component {
         <ListItem disableGutters className={classes.listItem} {...props}>
           <Link prefetch as={as} href={href}>
             <Button
+              color="inherit"
               onClick={this.handleClick}
               style={style}
               className={clsx(classes.button, {
@@ -76,6 +77,7 @@ class NavItem extends React.Component {
     return (
       <ListItem disableGutters className={classes.listItem} {...props}>
         <Button
+          color="inherit"
           onClick={this.handleClick}
           style={style}
           classes={{
