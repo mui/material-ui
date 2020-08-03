@@ -14,8 +14,8 @@ import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import { SvgIconProps } from '@material-ui/core/SvgIcon';
 
-declare module 'csstype' {
-  interface Properties {
+declare module 'react' {
+  interface CSSProperties {
     '--tree-view-color'?: string;
     '--tree-view-bg-color'?: string;
   }
