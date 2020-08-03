@@ -58,7 +58,7 @@ This change affects almost all components where you're using the `component` pro
   ```diff
   -<Avatar variant="circle">
   +<Avatar variant="circular">
-    ```
+  ```
 
 ### Badge
 
