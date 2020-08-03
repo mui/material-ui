@@ -69,8 +69,26 @@ This change affects almost all components where you're using the `component` pro
   ```diff
   -<Badge overlap="circle">
   -<Badge overlap="rectangle">
+  -<Badge classes={{
+    anchorOriginTopRightRectangle: 'custom-top-right-rect-className'
+    anchorOriginBottomRightRectangle: 'custom-bottom-right-rect-className'
+    anchorOriginTopLeftRectangle: 'custom-top-left-rect-className'
+    anchorOriginBottomLeftRectangle: 'custom-bottom-left-rect-className'
+    anchorOriginTopRightCircle: 'custom-top-right-circle-className'
+    anchorOriginBottomRightCircle: 'custom-bottom-right-circle-className'
+    anchorOriginTopLeftCircle: 'custom-top-right-circle-className'
+  }}>
   +<Badge overlap="circular">
   +<Badge overlap="rectangular">
+  -<Badge classes={{
+    anchorOriginTopRightRectangular: 'custom-top-right-rect-className'
+    anchorOriginBottomRightRectangular: 'custom-bottom-right-rect-className'
+    anchorOriginTopLeftRectangular: 'custom-top-left-rect-className'
+    anchorOriginBottomLeftRectangular: 'custom-bottom-left-rect-className'
+    anchorOriginTopRightCircular: 'custom-top-right-circle-className'
+    anchorOriginBottomRightCircular: 'custom-bottom-right-circle-className'
+    anchorOriginTopLeftCircular: 'custom-top-right-circle-className'
+  }}>
   ```
 
 ### BottomNavigation
