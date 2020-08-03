@@ -68,19 +68,17 @@ const suggestions = [
 
   it('should support direct import', () => {
     const source = `
-import 'date-fns';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
-import DateFnsUtils from '@date-io/date-fns';
-import { MuiPickersUtilsProvider, TimePicker, DatePicker } from '@material-ui/pickers';
+import DateFnsAdapter from "@material-ui/pickers/adapter/date-fns";
+import { LocalizationProvider as MuiPickersLocalizationProvider, KeyboardTimePicker, KeyboardDatePicker } from '@material-ui/pickers';
 `;
 
     expect(getDependencies(source)).to.deep.equal({
       'date-fns': 'latest',
-      '@date-io/date-fns': 'v1',
-      '@material-ui/pickers': 'latest',
+      '@material-ui/pickers': 'next',
       '@material-ui/core': 'next',
       'prop-types': 'latest',
       'react-dom': 'latest',
@@ -105,10 +103,10 @@ import { MuiPickersUtilsProvider, TimePicker, DatePicker } from '@material-ui/pi
 
   it('should handle multilines', () => {
     const source = `
-import 'date-fns';
 import React from 'react';
+import DateFnsAdapter from '@material-ui/pickers/adapter/date-fns';
 import {
-  MuiPickersUtilsProvider,
+  LocalizationProvider as MuiPickersLocalizationProvider,
   KeyboardTimePicker,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
@@ -116,7 +114,7 @@ import {
 
     expect(getDependencies(source)).to.deep.equal({
       'date-fns': 'latest',
-      '@material-ui/pickers': 'latest',
+      '@material-ui/pickers': 'next',
       react: 'latest',
       'react-dom': 'latest',
     });

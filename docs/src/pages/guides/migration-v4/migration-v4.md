@@ -58,6 +58,17 @@ This change affects almost all components where you're using the `component` pro
   ```diff
   -<Avatar variant="circle">
   +<Avatar variant="circular">
+    ```
+
+### Badge
+
+- Rename `circle` to `circular` and `rectangle` to `rectangular` for consistency. The possible values should be adjectives, not nouns:
+
+  ```diff
+  -<Badge overlap="circle">
+  -<Badge overlap="rectangle">
+  +<Badge overlap="circular">
+  +<Badge overlap="rectangular">
   ```
 
 ### BottomNavigation

@@ -34,6 +34,7 @@ The `MuiToggleButton` name can be used for providing [default props](/customizat
 | <span class="prop-name">disableFocusRipple</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the  keyboard focus ripple will be disabled. |
 | <span class="prop-name">disableRipple</span> | <span class="prop-type">bool</span> |  | If `true`, the ripple effect will be disabled.<br>⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure to highlight the element by applying separate styles with the `focusVisibleClassName`. |
 | <span class="prop-name">selected</span> | <span class="prop-type">bool</span> |  | If `true`, the button will be rendered in an active state. |
+| <span class="prop-name">size</span> | <span class="prop-type">'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'</span> | <span class="prop-default">'medium'</span> | The size of the button. The prop defaults to the value injected by the parent ToggleButtonGroup component. |
 | <span class="prop-name required">value<abbr title="required">*</abbr></span> | <span class="prop-type">any</span> |  | The value to associate with the button when selected in a ToggleButtonGroup. |
 
 The `ref` is forwarded to the root element.

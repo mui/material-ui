@@ -37,6 +37,10 @@ export const styles = (theme) => ({
         backgroundColor: 'transparent',
       },
     },
+    '&$disabled': {
+      opacity: theme.palette.action.disabledOpacity,
+      backgroundColor: 'transparent',
+    },
     '&$focused': {
       backgroundColor: theme.palette.action.focus,
     },
@@ -66,6 +70,8 @@ export const styles = (theme) => ({
   selected: {},
   /* Pseudo-class applied to the content element when focused. */
   focused: {},
+  /* Pseudo-class applied to the element when disabled. */
+  disabled: {},
   /* Styles applied to the tree node icon and collapse/expand icon. */
   iconContainer: {
     marginRight: 4,
@@ -93,6 +99,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     collapseIcon,
     endIcon,
     expandIcon,
+    disabled: disabledProp,
     icon: iconProp,
     id: idProp,
     label,
@@ -115,7 +122,9 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     isExpanded,
     isFocused,
     isSelected,
+    isDisabled,
     multiSelect,
+    disabledItemsFocusable,
     mapFirstChar,
     unMapFirstChar,
     registerNode,
@@ -151,6 +160,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   const expanded = isExpanded ? isExpanded(nodeId) : false;
   const focused = isFocused ? isFocused(nodeId) : false;
   const selected = isSelected ? isSelected(nodeId) : false;
+  const disabled = isDisabled ? isDisabled(nodeId) : false;
   const icons = contextIcons || {};
 
   if (!icon) {
@@ -170,25 +180,27 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   }
 
   const handleClick = (event) => {
-    if (!focused) {
-      focus(event, nodeId);
-    }
-
-    const multiple = multiSelect && (event.shiftKey || event.ctrlKey || event.metaKey);
-
-    // If already expanded and trying to toggle selection don't close
-    if (expandable && !event.defaultPrevented && !(multiple && isExpanded(nodeId))) {
-      toggleExpansion(event, nodeId);
-    }
-
-    if (multiple) {
-      if (event.shiftKey) {
-        selectRange(event, { end: nodeId });
-      } else {
-        selectNode(event, nodeId, true);
+    if (!disabled) {
+      if (!focused) {
+        focus(event, nodeId);
       }
-    } else {
-      selectNode(event, nodeId);
+
+      const multiple = multiSelect && (event.shiftKey || event.ctrlKey || event.metaKey);
+
+      // If already expanded and trying to toggle selection don't close
+      if (expandable && !event.defaultPrevented && !(multiple && isExpanded(nodeId))) {
+        toggleExpansion(event, nodeId);
+      }
+
+      if (multiple) {
+        if (event.shiftKey) {
+          selectRange(event, { end: nodeId });
+        } else {
+          selectNode(event, nodeId, true);
+        }
+      } else {
+        selectNode(event, nodeId);
+      }
     }
 
     if (onClick) {
@@ -197,7 +209,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   };
 
   const handleMouseDown = (event) => {
-    if (event.shiftKey || event.ctrlKey || event.metaKey) {
+    if (event.shiftKey || event.ctrlKey || event.metaKey || disabled) {
       // Prevent text selection
       event.preventDefault();
     }
@@ -216,6 +228,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
         index,
         parentId,
         expandable,
+        disabled: disabledProp,
       });
 
       return () => {
@@ -224,7 +237,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     }
 
     return undefined;
-  }, [registerNode, unregisterNode, parentId, index, nodeId, expandable, id]);
+  }, [registerNode, unregisterNode, parentId, index, nodeId, expandable, disabledProp, id]);
 
   React.useEffect(() => {
     if (mapFirstChar && unMapFirstChar && label) {
@@ -262,7 +275,8 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
           tree.focus();
         }
 
-        if (!focused && event.currentTarget === event.target) {
+        const unfocusable = !disabledItemsFocusable && disabled;
+        if (!focused && event.currentTarget === event.target && !unfocusable) {
           focus(event, nodeId);
         }
       };
@@ -275,7 +289,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
       };
     }
     return undefined;
-  }, [focus, focused, nodeId, nodeRef, treeId]);
+  }, [focus, focused, nodeId, nodeRef, treeId, disabledItemsFocusable, disabled]);
 
   return (
     <li
@@ -283,6 +297,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
       role="treeitem"
       aria-expanded={expandable ? expanded : null}
       aria-selected={ariaSelected}
+      aria-disabled={disabled || null}
       ref={handleRef}
       id={id}
       tabIndex={-1}
@@ -295,6 +310,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
           [classes.expanded]: expanded,
           [classes.selected]: selected,
           [classes.focused]: focused,
+          [classes.disabled]: disabled,
         })}
         onClick={handleClick}
         onMouseDown={handleMouseDown}
@@ -349,6 +365,10 @@ TreeItem.propTypes = {
    * The icon used to collapse the node.
    */
   collapseIcon: PropTypes.node,
+  /**
+   * If `true`, the node will be disabled.
+   */
+  disabled: PropTypes.bool,
   /**
    * The icon displayed next to a end node.
    */

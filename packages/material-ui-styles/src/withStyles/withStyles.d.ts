@@ -7,14 +7,16 @@ import { DefaultTheme } from '../defaultTheme';
 // Disable automatic export
 export {};
 
-type JSSFontface = CSS.FontFace & { fallbacks?: CSS.FontFace[] };
+// private JSS type that should be public
+type JSSNormalCssProperties = CSS.Properties<number | string>;
+type JSSFontface = CSS.AtRule.FontFace & { fallbacks?: CSS.AtRule.FontFace[] };
 
 export type PropsFunc<Props extends object, T> = (props: Props) => T;
 
 /**
  * Allows the user to augment the properties available
  */
-export interface BaseCSSProperties extends CSS.Properties<number | string> {
+export interface BaseCSSProperties extends JSSNormalCssProperties {
   '@font-face'?: JSSFontface | JSSFontface[];
 }
 

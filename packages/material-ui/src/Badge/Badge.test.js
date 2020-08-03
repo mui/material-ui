@@ -175,7 +175,7 @@ describe('<Badge />', () => {
       badgeContent: 0,
       color: 'primary',
       variant: 'standard',
-      overlap: 'circle',
+      overlap: 'circular',
       anchorOrigin: {
         vertical: 'bottom',
         horizontal: 'left',
@@ -185,6 +185,6 @@ describe('<Badge />', () => {
     expect(findBadge(wrapper.container)).to.have.text('');
     expect(findBadge(wrapper.container)).to.have.class(classes.colorSecondary);
     expect(findBadge(wrapper.container)).to.have.class(classes.dot);
-    expect(findBadge(wrapper.container)).to.have.class(classes.anchorOriginTopRightRectangle);
+    expect(findBadge(wrapper.container)).to.have.class(classes.anchorOriginTopRightRectangular);
   });
 });

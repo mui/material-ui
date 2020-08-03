@@ -1,11 +1,12 @@
-import 'date-fns';
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import DateFnsUtils from '@date-io/date-fns';
+import TextField from '@material-ui/core/TextField';
+import DateFnsAdapter from '@material-ui/pickers/adapter/date-fns';
 import {
-  MuiPickersUtilsProvider,
-  KeyboardTimePicker,
-  KeyboardDatePicker,
+  LocalizationProvider as MuiPickersLocalizationProvider,
+  TimePicker,
+  DesktopDatePicker,
+  MobileDatePicker,
 } from '@material-ui/pickers';
 
 export default function MaterialUIPickers() {
@@ -19,43 +20,42 @@ export default function MaterialUIPickers() {
   };
 
   return (
-    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+    <MuiPickersLocalizationProvider dateAdapter={DateFnsAdapter}>
       <Grid container justifyContent="space-around">
-        <KeyboardDatePicker
-          disableToolbar
-          variant="inline"
-          format="MM/dd/yyyy"
-          margin="normal"
-          id="date-picker-inline"
-          label="Date picker inline"
+        <DesktopDatePicker
+          inputFormat="MM/dd/yyyy"
+          label="Date picker desktop"
           value={selectedDate}
           onChange={handleDateChange}
-          KeyboardButtonProps={{
+          renderInput={(props) => (
+            <TextField id="date-picker-desktop" margin="normal" {...props} />
+          )}
+          OpenPickerButtonProps={{
             'aria-label': 'change date',
           }}
         />
-        <KeyboardDatePicker
-          margin="normal"
-          id="date-picker-dialog"
-          label="Date picker dialog"
-          format="MM/dd/yyyy"
+        <MobileDatePicker
+          label="Date picker mobile"
+          inputFormat="MM/dd/yyyy"
           value={selectedDate}
           onChange={handleDateChange}
-          KeyboardButtonProps={{
+          renderInput={(props) => (
+            <TextField id="date-picker-mobile" margin="normal" {...props} />
+          )}
+          OpenPickerButtonProps={{
             'aria-label': 'change date',
           }}
         />
-        <KeyboardTimePicker
-          margin="normal"
-          id="time-picker"
+        <TimePicker
           label="Time picker"
           value={selectedDate}
           onChange={handleDateChange}
-          KeyboardButtonProps={{
+          renderInput={(props) => <TextField margin="normal" {...props} />}
+          OpenPickerButtonProps={{
             'aria-label': 'change time',
           }}
         />
       </Grid>
-    </MuiPickersUtilsProvider>
+    </MuiPickersLocalizationProvider>
   );
 }
