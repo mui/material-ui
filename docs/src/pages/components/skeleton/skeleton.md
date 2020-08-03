@@ -24,7 +24,7 @@ For instance:
       src={item.src}
     />
   ) : (
-    <Skeleton variant="rect" width={210} height={118} />
+    <Skeleton variant="rectangular" width={210} height={118} />
   );
 }
 ```
@@ -67,7 +67,7 @@ infer its width and height from them.
 
 ```jsx
 loading ? (
-  <Skeleton variant="circle">
+  <Skeleton variant="circular">
     <Avatar />
   </Skeleton>
 ) : (
