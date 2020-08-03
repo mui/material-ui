@@ -32,7 +32,11 @@ export default function CircularDeterminate() {
   return (
     <div className={classes.root}>
       <CircularProgress variant="determinate" value={progress} />
-      <CircularProgress variant="determinate" value={progress} color="secondary" />
+      <CircularProgress
+        variant="determinate"
+        value={progress}
+        color="secondary"
+      />
     </div>
   );
 }
