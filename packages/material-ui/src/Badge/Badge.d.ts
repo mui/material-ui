@@ -15,7 +15,7 @@ export interface BadgeTypeMap<P = {}, D extends React.ElementType = 'div'> {
     /**
      * Wrapped shape the badge should overlap.
      */
-    overlap?: 'rectangle' | 'circle';
+    overlap?: 'rectangular' | 'circular';
     /**
      * The content rendered within the badge.
      */
@@ -56,13 +56,13 @@ export type BadgeClassKey =
   | 'colorSecondary'
   | 'colorError'
   | 'dot'
-  | 'anchorOriginTopRightRectangle'
-  | 'anchorOriginBottomRightRectangle'
-  | 'anchorOriginTopLeftRectangle'
-  | 'anchorOriginBottomLeftRectangle'
-  | 'anchorOriginTopRightCircle'
-  | 'anchorOriginBottomRightCircle'
-  | 'anchorOriginTopLeftCircle'
+  | 'anchorOriginTopRightRectangular'
+  | 'anchorOriginBottomRightRectangular'
+  | 'anchorOriginTopLeftRectangular'
+  | 'anchorOriginBottomLeftRectangular'
+  | 'anchorOriginTopRightCircular'
+  | 'anchorOriginBottomRightCircular'
+  | 'anchorOriginTopLeftCircular'
   | 'invisible';
 /**
  *
