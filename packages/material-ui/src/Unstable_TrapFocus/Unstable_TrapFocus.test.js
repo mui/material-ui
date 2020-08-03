@@ -4,7 +4,6 @@ import { expect } from 'chai';
 import { createClientRender, fireEvent, screen, userEvent } from 'test/utils';
 import TrapFocus from './Unstable_TrapFocus';
 import Portal from '../Portal';
-import { jssPreset } from '../styles';
 
 describe('<TrapFocus />', () => {
   const render = createClientRender();
