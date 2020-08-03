@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes, elementTypeAcceptingRef } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
+import { fade } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
 import isMuiElement from '../utils/isMuiElement';
 import useForkRef from '../utils/useForkRef';
@@ -22,13 +23,19 @@ export const styles = (theme) => ({
     paddingTop: 8,
     paddingBottom: 8,
     '&$focusVisible': {
-      backgroundColor: theme.palette.action.selected,
+      backgroundColor: theme.palette.action.focus,
     },
-    '&$selected, &$selected:hover': {
-      backgroundColor: theme.palette.action.selected,
+    '&$selected': {
+      backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+      '&$focusVisible': {
+        backgroundColor: fade(
+          theme.palette.primary.main,
+          theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+        ),
+      },
     },
     '&$disabled': {
-      opacity: 0.5,
+      opacity: theme.palette.action.disabledOpacity,
     },
   },
   /* Styles applied to the `container` element if `children` includes `ListItemSecondaryAction`. */
@@ -69,6 +76,16 @@ export const styles = (theme) => ({
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent',
+      },
+    },
+    '&$selected:hover': {
+      backgroundColor: fade(
+        theme.palette.primary.main,
+        theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+      ),
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
       },
     },
   },
