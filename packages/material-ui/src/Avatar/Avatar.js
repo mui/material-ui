@@ -27,8 +27,8 @@ export const styles = (theme) => ({
     backgroundColor:
       theme.palette.type === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
   },
-  /* Styles applied to the root element if `variant="circle"`. */
-  circle: {},
+  /* Styles applied to the root element if `variant="circular"`. */
+  circular: {},
   /* Styles applied to the root element if `variant="rounded"`. */
   rounded: {
     borderRadius: theme.shape.borderRadius,
@@ -102,7 +102,7 @@ const Avatar = React.forwardRef(function Avatar(props, ref) {
     sizes,
     src,
     srcSet,
-    variant = 'circle',
+    variant = 'circular',
     ...other
   } = props;
 
@@ -201,7 +201,7 @@ Avatar.propTypes = {
   /**
    * The shape of the avatar.
    */
-  variant: PropTypes.oneOf(['circle', 'rounded', 'square']),
+  variant: PropTypes.oneOf(['circular', 'rounded', 'square']),
 };
 
 export default withStyles(styles, { name: 'MuiAvatar' })(Avatar);
