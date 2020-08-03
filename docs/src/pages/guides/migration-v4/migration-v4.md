@@ -237,6 +237,17 @@ This change affects almost all components where you're using the `component` pro
   +<Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} />
   ```
 
+  ### Skeleton
+
+- Rename `circle` to `circular` and `rect` to `rectangular` for consistency. The possible values should be adjectives, not nouns:
+
+  ```diff
+  -<Skeleton variant="circle">
+  -<Skeleton variant="rect">
+  +<Skeleton variant="circular">
+  +<Skeleton variant="rectangular">
+  ```
+
 ### TablePagination
 
 - The customization of the table pagination's actions labels must be done with the `getItemAriaLabel` prop. This increases consistency with the `Pagination` component.
