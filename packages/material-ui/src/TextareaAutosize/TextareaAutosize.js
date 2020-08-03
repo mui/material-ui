@@ -27,7 +27,7 @@ const styles = {
 };
 
 const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) {
-  const { onChange, rowsMax, rowsMin = 1, style, value, ...other } = props;
+  const { onChange, maxRows, minRows = 1, style, value, ...other } = props;
 
   const { current: isControlled } = React.useRef(value != null);
   const inputRef = React.useRef(null);
@@ -67,11 +67,11 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
     // The height of the outer content
     let outerHeight = innerHeight;
 
-    if (rowsMin) {
-      outerHeight = Math.max(Number(rowsMin) * singleRowHeight, outerHeight);
+    if (minRows) {
+      outerHeight = Math.max(Number(minRows) * singleRowHeight, outerHeight);
     }
-    if (rowsMax) {
-      outerHeight = Math.min(Number(rowsMax) * singleRowHeight, outerHeight);
+    if (maxRows) {
+      outerHeight = Math.min(Number(maxRows) * singleRowHeight, outerHeight);
     }
     outerHeight = Math.max(outerHeight, singleRowHeight);
 
@@ -108,7 +108,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
 
       return prevState;
     });
-  }, [rowsMax, rowsMin, props.placeholder]);
+  }, [maxRows, minRows, props.placeholder]);
 
   React.useEffect(() => {
     const handleResize = debounce(() => {
@@ -150,7 +150,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
         onChange={handleChange}
         ref={handleRef}
         // Apply the rows prop to get a "correct" first SSR paint
-        rows={rowsMin}
+        rows={minRows}
         style={{
           height: state.outerHeightStyle,
           // Need a large enough difference to allow scrolling.
@@ -182,6 +182,14 @@ TextareaAutosize.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * Maximum number of rows to display.
+   */
+  maxRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
+   * Minimum number of rows to display.
+   */
+  minRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
    * @ignore
    */
   onChange: PropTypes.func,
@@ -189,14 +197,6 @@ TextareaAutosize.propTypes = {
    * @ignore
    */
   placeholder: PropTypes.string,
-  /**
-   * Maximum number of rows to display.
-   */
-  rowsMax: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  /**
-   * Minimum number of rows to display.
-   */
-  rowsMin: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * @ignore
    */

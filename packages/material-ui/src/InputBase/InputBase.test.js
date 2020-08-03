@@ -54,7 +54,7 @@ describe('<InputBase />', () => {
     });
 
     it('should forward the value to the TextareaAutosize', () => {
-      const wrapper = mount(<InputBase multiline rowsMax={4} value="" />);
+      const wrapper = mount(<InputBase multiline maxRows={4} value="" />);
       expect(wrapper.find(TextareaAutosize).props()).to.have.property('value', '');
     });
   });

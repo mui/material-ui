@@ -36,14 +36,14 @@ const useExternalPropsFromInputBase = [
   'inputProps',
   'inputRef',
   'margin',
+  'maxRows',
+  'minRows',
   'name',
   'onChange',
   'placeholder',
   'readOnly',
   'required',
   'rows',
-  'rowsMax',
-  // TODO: why no rowsMin?
   'startAdornment',
   'value',
 ];
