@@ -29,7 +29,7 @@ The `MuiSnackbar` name can be used for providing [default props](/customization/
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">action</span> | <span class="prop-type">node</span> |  | The action to display. It renders after the message, at the end of the snackbar. |
-| <span class="prop-name">anchorOrigin</span> | <span class="prop-type">{ horizontal: 'center'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right', vertical: 'bottom'<br>&#124;&nbsp;'top' }</span> | <span class="prop-default">{ vertical: 'bottom', horizontal: 'center' }</span> | The anchor of the `Snackbar`. |
+| <span class="prop-name">anchorOrigin</span> | <span class="prop-type">{ horizontal: 'center'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right', vertical: 'bottom'<br>&#124;&nbsp;'top' }</span> | <span class="prop-default">{ vertical: 'bottom', horizontal: 'left' }</span> | The anchor of the `Snackbar`. On smaller screens, the component grows to occupy all the available width, the horizontal alignment is ignored. |
 | <span class="prop-name">autoHideDuration</span> | <span class="prop-type">number</span> | <span class="prop-default">null</span> | The number of milliseconds to wait before automatically calling the `onClose` function. `onClose` should then set the state of the `open` prop to hide the Snackbar. This behavior is disabled by default with the `null` value. |
 | <span class="prop-name">children</span> | <span class="prop-type">element</span> |  | Replace the `SnackbarContent` component. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |

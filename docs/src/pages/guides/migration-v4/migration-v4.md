@@ -226,6 +226,17 @@ This change affects almost all components where you're using the `component` pro
   +<Slider onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
   ```
 
+### Snackbar
+
+- The notification now displays at the bottom left on large screens.
+  It better matches the behavior of Gmail, Google Keep, material.io, etc.
+  You can restore the previous behavior with:
+
+  ```diff
+  -<Snackbar />
+  +<Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} />
+  ```
+
 ### TablePagination
 
 - The customization of the table pagination's actions labels must be done with the `getItemAriaLabel` prop. This increases consistency with the `Pagination` component.
