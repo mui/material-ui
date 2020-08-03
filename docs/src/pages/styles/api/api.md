@@ -21,7 +21,7 @@ A function which returns [a class name generator function](https://cssinjs.org/j
 ### Examples
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import {
   StylesProvider,
   createGenerateClassName,
@@ -94,7 +94,7 @@ the style sheet.
 ### Examples
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
@@ -182,7 +182,7 @@ Link a style sheet with a function component using the **styled components** pat
 ### Examples
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import { styled } from '@material-ui/core/styles';
 
 const MyComponent = styled('div')({
@@ -221,7 +221,7 @@ It should preferably be used at **the root of your component tree**.
 ### Examples
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import { StylesProvider } from '@material-ui/core/styles';
 
@@ -247,7 +247,7 @@ It should preferably be used at **the root of your component tree**.
 ### Examples
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import { ThemeProvider } from '@material-ui/core/styles';
 
@@ -271,7 +271,7 @@ This hook returns the `theme` object so it can be used inside a function compone
 ### Examples
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import { useTheme } from '@material-ui/core/styles';
 
 export default function MyComponent() {
@@ -316,7 +316,7 @@ Some implementation details that might be interesting to being aware of:
 ### Examples
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
@@ -335,7 +335,7 @@ export default withStyles(styles)(MyComponent);
 Also, you can use as [decorators](https://babeljs.io/docs/en/babel-plugin-proposal-decorators) like so:
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
@@ -370,7 +370,7 @@ in the render method.
 ### Examples
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import { withTheme } from '@material-ui/core/styles';
 
 function MyComponent(props) {

@@ -65,7 +65,7 @@ It's preferable to have a predetermined set of padding and color values.
 Import the theme provider of your styling solution.
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import { ThemeProvider } from 'styled-components';
 
 const theme = {

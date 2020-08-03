@@ -168,7 +168,7 @@ Nota: Você pode alterar as opções padrão usando [`default props`](/customiza
 #### Exemplos
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 export default function SimpleMediaQuery() {

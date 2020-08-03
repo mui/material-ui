@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 export default function SimpleMediaQuery() {

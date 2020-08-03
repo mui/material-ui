@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import loadScript from 'docs/src/modules/utils/loadScript';
 import AdDisplay from 'docs/src/modules/components/AdDisplay';

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Accordion from '@material-ui/core/Accordion';

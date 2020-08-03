@@ -190,7 +190,7 @@ You can leverage this preference dynamically with the [useMediaQuery](/component
 Например, можно включить темный режим автоматически:
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';

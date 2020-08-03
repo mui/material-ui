@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Fade from '@material-ui/core/Fade';
 import Button from '@material-ui/core/Button';

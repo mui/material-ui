@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { fade, withStyles } from '@material-ui/core/styles';
 import { purple } from '@material-ui/core/colors';
 import FormGroup from '@material-ui/core/FormGroup';

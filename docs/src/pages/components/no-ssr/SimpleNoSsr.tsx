@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import NoSsr from '@material-ui/core/NoSsr';
 import Box from '@material-ui/core/Box';
 

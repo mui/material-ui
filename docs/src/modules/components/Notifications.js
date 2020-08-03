@@ -1,5 +1,5 @@
 /* eslint-disable react/no-danger, react-hooks/exhaustive-deps */
-import React from 'react';
+import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import NotificationsIcon from '@material-ui/icons/Notifications';

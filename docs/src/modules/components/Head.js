@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import NextHead from 'next/head';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';

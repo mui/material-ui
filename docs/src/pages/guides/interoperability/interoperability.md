@@ -37,7 +37,7 @@ Nothing fancy, just plain CSS.
 **PlainCssButton.js**
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import './PlainCssButton.css';
 
@@ -92,7 +92,7 @@ The following example overrides the `label` style of `Button` in addition to the
 **PlainCssButtonDeep.js**
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import './PlainCssButtonDeep.css';
 
@@ -139,7 +139,7 @@ Explicitly providing the class names to the component is too much effort?
 **GlobalCssButton.js**
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import './GlobalCssButton.css';
 
@@ -171,7 +171,7 @@ The `styled()` method works perfectly on all of the components.
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/styled-components-r1fsr)
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 
@@ -222,7 +222,7 @@ It also works around [this styled-components issue](https://github.com/styled-co
 {{"demo": "pages/guides/interoperability/StyledComponentsDeep.js"}}
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 
@@ -251,7 +251,7 @@ export default function StyledComponentsDeep() {
 The above demo relies on the [default `classes` values](/styles/advanced/#with-material-ui-core) but you can provide your own class name: `.label`.
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 
@@ -317,7 +317,7 @@ you will need to pass along the `className` property to the element being render
 The following example shows a workaround:
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import styled from 'styled-components';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -365,7 +365,7 @@ bundling solution people are using.
 **CssModulesButton.js**
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 // webpack, parcel or else will inject the CSS into the page
 import styles from './CssModulesButton.css';
 import Button from '@material-ui/core/Button';
@@ -421,7 +421,7 @@ The following example overrides the `label` style of `Button` in addition to the
 **CssModulesButtonDeep.js**
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 // webpack, parcel or else will inject the CSS into the page
 import styles from './CssModulesButtonDeep.css';
 import Button from '@material-ui/core/Button';

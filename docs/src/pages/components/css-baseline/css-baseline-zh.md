@@ -11,7 +11,7 @@ components: CssBaseline, ScopedCssBaseline
 您可能对 [normailize.css](https://github.com/necolas/normalize.css)比较熟悉，而这是一个 HTML 元素和样式规范化的属性的集合。
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 export default function MyApp() {
@@ -29,7 +29,7 @@ export default function MyApp() {
 然而，您可能正在逐步将一个网站迁移到Material-UI，如果使用全局重置可能不是一个妥善的选项。 通过使用 `ScopedCsseline` 组件可以将基线只应用于某些子节点。
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import ScopedCssBaseline from '@material-ui/core/ScopedCssBaseline';
 import MyApp from './MyApp';
 

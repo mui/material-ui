@@ -96,7 +96,7 @@ We will see how this is passed along in the `renderFullPage` function.
 
 ```jsx
 import express from 'express';
-import React from 'react';
+import * as React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { ServerStyleSheets, ThemeProvider } from '@material-ui/core/styles';
 import App from './App';
@@ -161,7 +161,7 @@ Let's take a look at the client file:
 `client.js`
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import { ThemeProvider } from '@material-ui/core/styles';
 import App from './App';

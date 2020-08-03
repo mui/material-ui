@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
-import React from 'react';
+import * as React from 'react';
 import {
   useTheme,
   fade,

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import CheckIcon from '@material-ui/icons/Check';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 

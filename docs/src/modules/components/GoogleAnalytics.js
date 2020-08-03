@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 
 // So we can write code like:

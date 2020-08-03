@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { styled } from '@material-ui/core/styles';
 import { compose, spacing, palette } from '@material-ui/system';
 

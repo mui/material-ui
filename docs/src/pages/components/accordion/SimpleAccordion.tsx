@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';

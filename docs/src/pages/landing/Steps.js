@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import clsx from 'clsx';
 import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
@@ -146,7 +146,7 @@ function HomeSteps() {
             </Typography>
             <HighlightedCode
               code={`
-import React from 'react';
+import * as React from 'react';
 import { Button } from '@material-ui/core';
 
 function App() {

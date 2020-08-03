@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import TablePagination from '@material-ui/core/TablePagination';
 import Pagination from '@material-ui/lab/Pagination';
 import Rating from '@material-ui/lab/Rating';

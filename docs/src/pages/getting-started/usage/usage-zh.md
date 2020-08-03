@@ -11,7 +11,7 @@ Material-UI 组件是独立工作的。 **它们是自我支持的**，只需注
 下面是来帮助您入门的一个快速示例，**而您仅需这些操作**：
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import Button from '@material-ui/core/Button';
 

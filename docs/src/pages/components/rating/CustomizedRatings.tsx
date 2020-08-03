@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Rating, { IconContainerProps } from '@material-ui/lab/Rating';
 import StarBorderIcon from '@material-ui/icons/StarBorder';

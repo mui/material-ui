@@ -37,7 +37,7 @@ yarn add @material-ui/styles
 ### Hook API
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
@@ -66,7 +66,7 @@ export default function Hook() {
 Примечание: это относится только к синтаксису вызова. Для определения стилей по-прежнему используется объект JSS. Вы можете [ изменить это поведение ](/styles/advanced/#string-templates) (с некоторыми ограничениями).
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import { styled } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
@@ -90,7 +90,7 @@ export default function StyledComponents() {
 ### Higher-order component API
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';

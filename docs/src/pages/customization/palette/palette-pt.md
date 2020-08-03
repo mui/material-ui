@@ -190,7 +190,7 @@ Você pode utilizar essa preferência dinamicamente com o hook [useMediaQuery](/
 Por exemplo, você pode ativar o modo escuro automaticamente:
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';

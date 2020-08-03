@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { typography, breakpoints } from '@material-ui/system';
 import styled from 'styled-components';
 

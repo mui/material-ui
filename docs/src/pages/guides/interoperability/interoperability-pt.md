@@ -36,7 +36,7 @@ Nada extravagante, apenas CSS.
 **PlainCssButton.js**
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import './PlainCssButton.css';
 
@@ -90,7 +90,7 @@ O exemplo a seguir sobrescreve o estilo de `label` e `Button`, além dos estilos
 **PlainCssButtonDeep.js**
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import './PlainCssButtonDeep.css';
 
@@ -131,7 +131,7 @@ Fornecer explicitamente os nomes das classes ao componente é um esforço excess
 **GlobalCssButton.js**
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import './GlobalCssButton.css';
 
@@ -164,7 +164,7 @@ O método `styled()` funciona perfeitamente em todos os componentes.
 [![Botão editar](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/styled-components-r1fsr)
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 
@@ -213,7 +213,7 @@ O exemplo a seguir sobrescreve o estilo de `label` e `Button`, além dos estilos
 {{"demo": "pages/guides/interoperability/StyledComponentsDeep.js"}}
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 
@@ -242,7 +242,7 @@ export default function StyledComponentsDeep() {
 A demonstração acima depende [doa valores padrão de `classes`](/styles/advanced/#with-material-ui-core), mas você pode fornecer seu próprio nome de classe: `.label`.
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 
@@ -304,7 +304,7 @@ O [Portal](/components/portal/) fornece uma maneira de primeira classe para rend
 Por exemplo, se você tentar estilizar o [Menu](/components/menus/) de um componente [Select](/components/selects/) usando a propriedade `MenuProps`, você precisará passar a propriedade `className` para o elemento que está sendo renderizado fora de sua hierarquia DOM. O exemplo a seguir mostra uma solução alternativa:
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import styled from 'styled-components';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -351,7 +351,7 @@ const StyledMenu = styled(({ className, ...props }) => (
 **CssModulesButton.js**
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 // webpack, parcel ou qualquer outro irá injetar o CSS na página
 import styles from './CssModulesButton.css';
 import Button from '@material-ui/core/Button';
@@ -406,7 +406,7 @@ O exemplo a seguir sobrescreve o estilo de `label` e `Button`, além dos estilos
 **CssModulesButtonDeep.js**
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 // webpack, parcel ou qualquer outro irá injetar o CSS na página
 import styles from './CssModulesButtonDeep.css';
 import Button from '@material-ui/core/Button';

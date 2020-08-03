@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import RadioGroup, { useRadioGroup } from '@material-ui/core/RadioGroup';
 import FormControlLabel, {

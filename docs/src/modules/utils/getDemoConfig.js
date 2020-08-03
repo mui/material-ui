@@ -7,7 +7,7 @@ function jsDemo(demoData) {
     files: {
       'demo.js': demoData.raw,
       'index.js': `
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import Demo from './demo';
 
@@ -23,7 +23,7 @@ function tsDemo(demoData) {
     files: {
       'demo.tsx': demoData.raw,
       'index.tsx': `
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import Demo from './demo';
 

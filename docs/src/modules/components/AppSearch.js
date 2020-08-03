@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import url from 'url';
 import { useSelector } from 'react-redux';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 import Button from '@material-ui/core/Button';

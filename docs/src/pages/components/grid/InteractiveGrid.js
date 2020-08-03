@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import Grid from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';

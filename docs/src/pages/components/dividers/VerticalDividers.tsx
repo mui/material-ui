@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import FormatAlignLeftIcon from '@material-ui/icons/FormatAlignLeft';
 import FormatAlignCenterIcon from '@material-ui/icons/FormatAlignCenter';

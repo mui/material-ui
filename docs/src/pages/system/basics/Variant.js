@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import NoSsr from '@material-ui/core/NoSsr';
 import { style, typography } from '@material-ui/system';

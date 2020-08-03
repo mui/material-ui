@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { emphasize, withStyles } from '@material-ui/core/styles';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Chip from '@material-ui/core/Chip';

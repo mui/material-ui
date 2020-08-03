@@ -20,7 +20,7 @@ Eine Funktion, die eine [Klassennamengeneratorfunktion](https://cssinjs.org/jss-
 ### Beispiele
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import { StylesProvider, createGenerateClassName } from '@material-ui/core/styles';
 
 const generateClassName = createGenerateClassName({
@@ -83,7 +83,7 @@ Verknüpfen Sie ein Stylesheet mit einer Funktionskomponente mit dem **Hook** Mu
 ### Beispiele
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
@@ -166,7 +166,7 @@ Verknüpfen Sie ein Stylesheet mit einer Funktionskomponente mit dem **styled co
 ### Beispiele
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import { styled } from '@material-ui/core/styles';
 
 const MyComponent = styled('div')({
@@ -208,7 +208,7 @@ Es sollte vorzugsweise an der **Wurzel Ihres Komponentenbaums** verwendet werden
 ### Beispiele
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import { StylesProvider } from '@material-ui/core/styles';
 
@@ -236,7 +236,7 @@ Diese Komponente hat eine `Theme` Eigenschaft. Diese wird durch den Kontext in d
 ### Beispiele
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import { ThemeProvider } from '@material-ui/core/styles';
 
@@ -262,7 +262,7 @@ Dieser Hook gibt das `Theme`-Objekt zurück, so dass es innerhalb einer Funktion
 ### Beispiele
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import { useTheme } from '@material-ui/core/styles';
 
 export default function MyComponent() {
@@ -300,7 +300,7 @@ Einige Implementierungsdetails, die interessant sein könnten:
 ### Beispiele
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
@@ -319,7 +319,7 @@ export default withStyles(styles)(MyComponent);
 Sie können auch so als [Dekorateur](https://babeljs.io/docs/en/babel-plugin-proposal-decorators) verwenden:
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
@@ -353,7 +353,7 @@ Geben Sie das `Theme`-Objekt als Eigenschaft der Eingabekomponente weiter, sodas
 ### Beispiele
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import { withTheme } from '@material-ui/core/styles';
 
 function MyComponent(props) {

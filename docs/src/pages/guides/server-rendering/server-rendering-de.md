@@ -89,7 +89,7 @@ We then get the CSS from the `sheets` using `sheets.toString()`. We will see how
 
 ```jsx
 import express from 'express';
-import React from 'react';
+import * as React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { ServerStyleSheets, ThemeProvider } from '@material-ui/core/styles';
 import App from './App';
@@ -153,7 +153,7 @@ Die Client-Seite ist unkompliziert. Wir müssen nur das serverseitig erzeugte CS
 `client.js`
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import { ThemeProvider } from '@material-ui/core/styles';
 import App from './App';

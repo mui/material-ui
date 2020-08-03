@@ -20,7 +20,7 @@
 ### 例子
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import { StylesProvider, createGenerateClassName } from '@material-ui/core/styles';
 
 const generateClassName = createGenerateClassName({
@@ -83,7 +83,7 @@ export default function MyComponent {
 ### 例子
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
@@ -166,7 +166,7 @@ The method is an alternative to `.toString()` when you are rendering the whole p
 ### 例子
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import { styled } from '@material-ui/core/styles';
 
 const MyComponent = styled('div')({
@@ -208,7 +208,7 @@ export default function StyledComponents() {
 ### 例子
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import { StylesProvider } from '@material-ui/core/styles';
 
@@ -236,7 +236,7 @@ This component takes a `theme` property, and makes it available down the React t
 ### 例子
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import { ThemeProvider } from '@material-ui/core/styles';
 
@@ -262,7 +262,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 ### 例子
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import { useTheme } from '@material-ui/core/styles';
 
 export default function MyComponent() {
@@ -300,7 +300,7 @@ export default function MyComponent() {
 ### 例子
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
@@ -319,7 +319,7 @@ export default withStyles(styles)(MyComponent);
 此外, 还可以像这样使用 [修饰器](https://babeljs.io/docs/en/babel-plugin-proposal-decorators):
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
@@ -353,7 +353,7 @@ export default MyComponent
 ### 例子
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import { withTheme } from '@material-ui/core/styles';
 
 function MyComponent(props) {

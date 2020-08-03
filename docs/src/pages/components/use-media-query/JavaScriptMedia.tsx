@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import json2mq from 'json2mq';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 

@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react';
+import * as React from 'react';
 import { MemoryRouter as Router } from 'react-router';
 import {
   Link as RouterLink,

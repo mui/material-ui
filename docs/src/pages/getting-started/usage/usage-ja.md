@@ -11,7 +11,7 @@ Material-UIコンポーネントは独立して機能します。 **They are sel
 以下に簡単な例を示します。**文字通り必要なものすべてです**:
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import Button from '@material-ui/core/Button';
 
