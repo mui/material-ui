@@ -124,6 +124,7 @@ const pages = [
           { pathname: '/components/speed-dial' },
           { pathname: '/components/timeline' },
           { pathname: '/components/toggle-button' },
+          { pathname: '/components/trap-focus' },
           { pathname: '/components/tree-view' },
         ],
       },
