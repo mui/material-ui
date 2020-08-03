@@ -13,7 +13,7 @@
     "export": "rimraf docs/export && next export --threads=3 -o export && yarn build-sw",
     "icons": "rimraf public/static/icons/* && node ./scripts/buildIcons.js",
     "start": "next start",
-    "typescript": "tsc -p tsconfig.json",
+    "typescript": "tsc -p tsconfig.json && tsc -p scripts/tsconfig.json",
     "typescript:transpile": "node scripts/formattedTSDemos",
     "typescript:transpile:dev": "node scripts/formattedTSDemos --watch"
   },
