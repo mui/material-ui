@@ -55,7 +55,7 @@ export default function BadgeAvatars() {
   return (
     <div className={classes.root}>
       <StyledBadge
-        overlap="circle"
+        overlap="circular"
         anchorOrigin={{
           vertical: 'bottom',
           horizontal: 'right',
@@ -65,7 +65,7 @@ export default function BadgeAvatars() {
         <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
       </StyledBadge>
       <Badge
-        overlap="circle"
+        overlap="circular"
         anchorOrigin={{
           vertical: 'bottom',
           horizontal: 'right',

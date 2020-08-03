@@ -51,9 +51,21 @@ Support for non-ref-forwarding class components in the `component` prop or as an
 Otherwise check out the ["Caveat with refs" section in our composition guide](/guides/composition/#caveat-with-refs) to find out how to migrate.
 This change affects almost all components where you're using the `component` prop or passing `children` to components that require `children` to be elements (e.g. `<MenuList><CustomMenuItem /></MenuList>`)
 
+### Badge
+
+- Rename `circle` to `circular` and `rectangle` to `rectangular` for consistency. The possible values should be adjectives, not nouns:
+
+  ```diff
+  -<Badge overlap="circle">
+  -<Badge overlap="rectangle">
+  +<Badge overlap="circular">
+  +<Badge overlap="rectangular">
+  ```
+
 ### BottomNavigation
 
-- typescript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
+- TypeScript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
+
   ```diff
   -<BottomNavigation onChange={(event: React.ChangeEvent<{}>) => {}} />
   +<BottomNavigation onChange={(event: React.SyntheticEvent) => {}} />
@@ -136,7 +148,7 @@ This change affects almost all components where you're using the `component` pro
   +</Accordion>
   ```
 
-- typescript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
+- TypeScript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
 
   ```diff
   -<Accordion onChange={(event: React.ChangeEvent<{}>, expanded: boolean) => {}} />
@@ -207,10 +219,22 @@ This change affects almost all components where you're using the `component` pro
 
 ### Slider
 
-- typescript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
+- TypeScript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
+
   ```diff
   -<Slider onChange={(event: React.ChangeEvent<{}>, value: unknown) => {}} />
   +<Slider onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
+  ```
+
+### Snackbar
+
+- The notification now displays at the bottom left on large screens.
+  It better matches the behavior of Gmail, Google Keep, material.io, etc.
+  You can restore the previous behavior with:
+
+  ```diff
+  -<Snackbar />
+  +<Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} />
   ```
 
 ### TablePagination
@@ -226,7 +250,7 @@ This change affects almost all components where you're using the `component` pro
 
 ### Tabs
 
-- typescript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
+- TypeScript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
   ```diff
   -<Tabs onChange={(event: React.ChangeEvent<{}>, value: unknown) => {}} />
   +<Tabs onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
@@ -235,21 +259,42 @@ This change affects almost all components where you're using the `component` pro
 ### TextField
 
 - Better isolate the fixed textarea height behavior to the dynamic one.
-  You need to use the `rowsMin` prop in the following case:
+  You need to use the `minRows` prop in the following case:
 
   ```diff
-  -<TextField rows={2} rowsMax={5} />
-  +<TextField rowsMin={2} rowsMax={5} />
+  -<TextField rows={2} maxRows={5} />
+  +<TextField minRows={2} maxRows={5} />
+  ```
+
+- Rename `rowsMax` prop with `maxRows` for consistency with HTML attributes.
+
+  ```diff
+  -<TextField rowsMax={6}>
+  +<TextField maxRows={6}>
   ```
 
 ### TextareaAutosize
 
-- Remove the `rows` prop, use the `rowsMin` prop instead.
+- Remove the `rows` prop, use the `minRows` prop instead.
   This change aims to clarify the behavior of the prop.
 
   ```diff
   -<TextareaAutosize rows={2} />
-  +<TextareaAutosize rowsMin={2} />
+  +<TextareaAutosize minRows={2} />
+  ```
+
+- Rename `rowsMax` prop with `maxRows` for consistency with HTML attributes.
+
+  ```diff
+  -<TextareAutosize rowsMax={6}>
+  +<TextareAutosize maxRows={6}>
+  ```
+
+- Rename `rowsMin` prop with `minRows` for consistency with HTML attributes.
+
+  ```diff
+  -<TextareAutosize rowsMin={1}>
+  +<TextareAutosize minRows={1}>
   ```
 
 ### Typography

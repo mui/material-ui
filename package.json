@@ -69,7 +69,7 @@
     "@types/lodash": "^4.14.138",
     "@types/mocha": "^8.0.0",
     "@types/prettier": "^2.0.0",
-    "@types/react": "^16.9.3",
+    "@types/react": "^16.9.44",
     "@types/sinon": "^9.0.0",
     "@typescript-eslint/eslint-plugin": "^3.6.0",
     "@typescript-eslint/parser": "^3.6.0",
@@ -170,6 +170,7 @@
     "**/cross-fetch": "^3.0.5",
     "**/dot-prop": "^5.2.0",
     "**/hoist-non-react-statics": "^3.3.2",
+    "**/webpack": "^4.44.1",
     "**/terser": "^4.1.2"
   },
   "nyc": {

@@ -50,7 +50,6 @@
   "dependencies": {
     "@babel/runtime": "^7.4.4",
     "@material-ui/utils": "^5.0.0-alpha.1",
-    "csstype": "^2.5.2",
     "prop-types": "^15.7.2"
   },
   "devDependencies": {},

@@ -1,7 +1,6 @@
 import marked from 'marked/lib/marked';
 import { LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
 import kebabCase from 'lodash/kebabCase';
-import { rewriteUrlForNextExport } from 'next/dist/next-server/lib/router/rewrite-url-for-export';
 import textToHash from 'docs/src/modules/utils/textToHash';
 import prism from 'docs/src/modules/utils/prism';
 
@@ -163,10 +162,7 @@ export function prepareMarkdown(config) {
 ## API
 
 ${headers.components
-  .map(
-    (component) =>
-      `- [\`<${component} />\`](${rewriteUrlForNextExport(`/api/${kebabCase(component)}`)})`,
-  )
+  .map((component) => `- [\`<${component} />\`](/api/${kebabCase(component)}/)`)
   .join('\n')}
   `);
       }

@@ -75,7 +75,6 @@ const ToggleButton = React.forwardRef(function ToggleButton(props, ref) {
     onChange,
     onClick,
     selected,
-    // eslint-disable-next-line react/prop-types
     size = 'medium',
     value,
     ...other
@@ -164,6 +163,11 @@ ToggleButton.propTypes = {
    * If `true`, the button will be rendered in an active state.
    */
   selected: PropTypes.bool,
+  /**
+   * The size of the button.
+   * The prop defaults to the value injected by the parent ToggleButtonGroup component.
+   */
+  size: PropTypes.oneOf(['large', 'medium', 'small']),
   /**
    * The value to associate with the button when selected in a
    * ToggleButtonGroup.

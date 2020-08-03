@@ -82,6 +82,9 @@ function includePeerDependencies(deps, versions) {
   if (deps['@material-ui/lab'] && !deps['@material-ui/core']) {
     deps['@material-ui/core'] = versions['@material-ui/core'];
   }
+  if (deps['@material-ui/pickers'] && !deps['date-fns']) {
+    deps['date-fns'] = 'latest';
+  }
 }
 
 /**
@@ -105,8 +108,8 @@ function getDependencies(raw, options = {}) {
     '@material-ui/styles': 'next',
     '@material-ui/system': 'next',
     '@material-ui/utils': 'next',
-    // TODO: remove once @material-ui/pickers v4 is released.
-    '@date-io/date-fns': 'v1',
+    // TODO: Remove once v4 is stable
+    '@material-ui/pickers': 'next',
   };
 
   const re = /^import\s'([^']+)'|import\s[\s\S]*?\sfrom\s+'([^']+)/gm;

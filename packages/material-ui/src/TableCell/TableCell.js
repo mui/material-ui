@@ -42,17 +42,10 @@ export const styles = (theme) => ({
   },
   /* Styles applied to the root element if `size="small"`. */
   sizeSmall: {
-    padding: '6px 24px 6px 16px',
-    '&:last-child': {
-      paddingRight: 16,
-    },
+    padding: '6px 16px',
     '&$paddingCheckbox': {
       width: 24, // prevent the checkbox column from growing
       padding: '0 12px 0 16px',
-      '&:last-child': {
-        paddingLeft: 12,
-        paddingRight: 16,
-      },
       '& > *': {
         padding: 0,
       },
@@ -62,17 +55,10 @@ export const styles = (theme) => ({
   paddingCheckbox: {
     width: 48, // prevent the checkbox column from growing
     padding: '0 0 0 4px',
-    '&:last-child': {
-      paddingLeft: 0,
-      paddingRight: 4,
-    },
   },
   /* Styles applied to the root element if `padding="none"`. */
   paddingNone: {
     padding: 0,
-    '&:last-child': {
-      padding: 0,
-    },
   },
   /* Styles applied to the root element if `align="left"`. */
   alignLeft: {

@@ -14,6 +14,10 @@ export interface TreeItemProps
    */
   collapseIcon?: React.ReactNode;
   /**
+   * If `true`, the node will be disabled.
+   */
+  disabled?: boolean;
+  /**
    * The icon displayed next to a end node.
    */
   endIcon?: React.ReactNode;
@@ -63,6 +67,7 @@ export type TreeItemClassKey =
   | 'expanded'
   | 'selected'
   | 'focused'
+  | 'disabled'
   | 'group'
   | 'content'
   | 'iconContainer'

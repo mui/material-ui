@@ -1,4 +1,4 @@
-import * as CSS from 'csstype';
+import * as React from 'react';
 // disable automatic export
 export {};
 
@@ -170,7 +170,7 @@ export type SpacingProps = PropsFor<typeof spacing>;
 
 // style.js
 export interface StyleOptions<PropKey, Theme extends object> {
-  cssProperty?: PropKey | keyof CSS.Properties | false;
+  cssProperty?: PropKey | keyof React.CSSProperties | false;
   prop: PropKey;
   /**
    * dot access in `Theme`
@@ -201,7 +201,7 @@ export const typography: SimpleStyleFunction<
 >;
 export type TypographyProps = PropsFor<typeof typography>;
 
-export const visuallyHidden: CSS.Properties;
+export const visuallyHidden: React.CSSProperties;
 
 // utils
 type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;

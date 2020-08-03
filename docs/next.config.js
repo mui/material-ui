@@ -107,7 +107,14 @@ module.exports = {
                     'babel-plugin-module-resolver',
                     {
                       alias: {
+                        // all packages in this monorepo
                         '@material-ui/core': '../packages/material-ui/src',
+                        '@material-ui/docs': '../packages/material-ui-docs/src',
+                        '@material-ui/icons': '../packages/material-ui-icons/src',
+                        '@material-ui/lab': '../packages/material-ui-lab/src',
+                        '@material-ui/styles': '../packages/material-ui-styles/src',
+                        '@material-ui/system': '../packages/material-ui-system/src',
+                        '@material-ui/utils': '../packages/material-ui-utils/src',
                       },
                       transformFunctions: ['require'],
                     },
@@ -128,6 +135,7 @@ module.exports = {
     };
   },
   exportTrailingSlash: true,
+  trailingSlash: true,
   // Next.js provides a `defaultPathMap` argument, we could simplify the logic.
   // However, we don't in order to prevent any regression in the `findPages()` method.
   exportPathMap: () => {

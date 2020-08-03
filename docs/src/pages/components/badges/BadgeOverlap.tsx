@@ -35,10 +35,15 @@ export default function BadgeOverlap() {
       <Badge color="secondary" badgeContent=" " variant="dot">
         {rectangle}
       </Badge>
-      <Badge color="secondary" overlap="circle" badgeContent=" ">
+      <Badge color="secondary" overlap="circular" badgeContent=" ">
         {circle}
       </Badge>
-      <Badge color="secondary" overlap="circle" badgeContent=" " variant="dot">
+      <Badge
+        color="secondary"
+        overlap="circular"
+        badgeContent=" "
+        variant="dot"
+      >
         {circle}
       </Badge>
     </div>

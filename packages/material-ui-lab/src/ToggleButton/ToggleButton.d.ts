@@ -23,6 +23,11 @@ export type ToggleButtonTypeMap<
      */
     selected?: boolean;
     /**
+     * The size of the button.
+     * The prop defaults to the value injected by the parent ToggleButtonGroup component.
+     */
+    size?: 'small' | 'medium' | 'large';
+    /**
      * The value to associate with the button when selected in a
      * ToggleButtonGroup.
      */

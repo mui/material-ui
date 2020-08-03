@@ -98,7 +98,7 @@ export const styles = (theme) => {
 const Snackbar = React.forwardRef(function Snackbar(props, ref) {
   const {
     action,
-    anchorOrigin: { vertical, horizontal } = { vertical: 'bottom', horizontal: 'center' },
+    anchorOrigin: { vertical, horizontal } = { vertical: 'bottom', horizontal: 'left' },
     autoHideDuration = null,
     children,
     classes,
@@ -262,6 +262,8 @@ Snackbar.propTypes = {
   action: PropTypes.node,
   /**
    * The anchor of the `Snackbar`.
+   * On smaller screens, the component grows to occupy all the available width,
+   * the horizontal alignment is ignored.
    */
   anchorOrigin: PropTypes.shape({
     horizontal: PropTypes.oneOf(['center', 'left', 'right']).isRequired,

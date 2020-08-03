@@ -33,7 +33,7 @@ export default function DraggableDialog() {
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
-        Open form dialog
+        Open draggable dialog
       </Button>
       <Dialog
         open={open}

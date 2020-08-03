@@ -12,5 +12,17 @@ import { expectType } from '@material-ui/types';
   });
 
   const maybeFontStyle = theme.typography.body1.fontStyle;
-  expectType<string | undefined, typeof maybeFontStyle>(maybeFontStyle);
+  expectType<
+    | '-moz-initial'
+    | 'inherit'
+    | 'initial'
+    | 'revert'
+    | 'unset'
+    | 'italic'
+    | 'normal'
+    | 'oblique'
+    | (string & {})
+    | undefined,
+    typeof maybeFontStyle
+  >(maybeFontStyle);
 }

@@ -62,8 +62,8 @@ export const styles = (theme) => ({
     minWidth: RADIUS_DOT * 2,
     padding: 0,
   },
-  /* Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }} overlap="rectangle"`. */
-  anchorOriginTopRightRectangle: {
+  /* Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }} overlap="rectangular"`. */
+  anchorOriginTopRightRectangular: {
     top: 0,
     right: 0,
     transform: 'scale(1) translate(50%, -50%)',
@@ -72,8 +72,8 @@ export const styles = (theme) => ({
       transform: 'scale(0) translate(50%, -50%)',
     },
   },
-  /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }} overlap="rectangle"`. */
-  anchorOriginBottomRightRectangle: {
+  /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }} overlap="rectangular"`. */
+  anchorOriginBottomRightRectangular: {
     bottom: 0,
     right: 0,
     transform: 'scale(1) translate(50%, 50%)',
@@ -82,8 +82,8 @@ export const styles = (theme) => ({
       transform: 'scale(0) translate(50%, 50%)',
     },
   },
-  /* Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }} overlap="rectangle"`. */
-  anchorOriginTopLeftRectangle: {
+  /* Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }} overlap="rectangular"`. */
+  anchorOriginTopLeftRectangular: {
     top: 0,
     left: 0,
     transform: 'scale(1) translate(-50%, -50%)',
@@ -92,8 +92,8 @@ export const styles = (theme) => ({
       transform: 'scale(0) translate(-50%, -50%)',
     },
   },
-  /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }} overlap="rectangle"`. */
-  anchorOriginBottomLeftRectangle: {
+  /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }} overlap="rectangular"`. */
+  anchorOriginBottomLeftRectangular: {
     bottom: 0,
     left: 0,
     transform: 'scale(1) translate(-50%, 50%)',
@@ -102,8 +102,8 @@ export const styles = (theme) => ({
       transform: 'scale(0) translate(-50%, 50%)',
     },
   },
-  /* Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }} overlap="circle"`. */
-  anchorOriginTopRightCircle: {
+  /* Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }} overlap="circular"`. */
+  anchorOriginTopRightCircular: {
     top: '14%',
     right: '14%',
     transform: 'scale(1) translate(50%, -50%)',
@@ -112,8 +112,8 @@ export const styles = (theme) => ({
       transform: 'scale(0) translate(50%, -50%)',
     },
   },
-  /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }} overlap="circle"`. */
-  anchorOriginBottomRightCircle: {
+  /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }} overlap="circular"`. */
+  anchorOriginBottomRightCircular: {
     bottom: '14%',
     right: '14%',
     transform: 'scale(1) translate(50%, 50%)',
@@ -122,8 +122,8 @@ export const styles = (theme) => ({
       transform: 'scale(0) translate(50%, 50%)',
     },
   },
-  /* Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }} overlap="circle"`. */
-  anchorOriginTopLeftCircle: {
+  /* Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }} overlap="circular"`. */
+  anchorOriginTopLeftCircular: {
     top: '14%',
     left: '14%',
     transform: 'scale(1) translate(-50%, -50%)',
@@ -132,8 +132,8 @@ export const styles = (theme) => ({
       transform: 'scale(0) translate(-50%, -50%)',
     },
   },
-  /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }} overlap="circle"`. */
-  anchorOriginBottomLeftCircle: {
+  /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }} overlap="circular"`. */
+  anchorOriginBottomLeftCircular: {
     bottom: '14%',
     left: '14%',
     transform: 'scale(1) translate(-50%, 50%)',
@@ -173,7 +173,7 @@ const Badge = React.forwardRef(function Badge(props, ref) {
     component: ComponentProp = 'span',
     invisible: invisibleProp,
     max: maxProp = 99,
-    overlap: overlapProp = 'rectangle',
+    overlap: overlapProp = 'rectangular',
     showZero = false,
     variant: variantProp = 'standard',
     ...other
@@ -285,7 +285,7 @@ Badge.propTypes = {
   /**
    * Wrapped shape the badge should overlap.
    */
-  overlap: PropTypes.oneOf(['circle', 'rectangle']),
+  overlap: PropTypes.oneOf(['circular', 'rectangular']),
   /**
    * Controls whether the badge is hidden when `badgeContent` is zero.
    */
