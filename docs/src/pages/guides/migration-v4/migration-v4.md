@@ -51,6 +51,15 @@ Support for non-ref-forwarding class components in the `component` prop or as an
 Otherwise check out the ["Caveat with refs" section in our composition guide](/guides/composition/#caveat-with-refs) to find out how to migrate.
 This change affects almost all components where you're using the `component` prop or passing `children` to components that require `children` to be elements (e.g. `<MenuList><CustomMenuItem /></MenuList>`)
 
+### Avatar
+
+- Rename `circle` to `circular` for consistency. The possible values should be adjectives, not nouns:
+
+  ```diff
+  -<Avatar variant="circle">
+  +<Avatar variant="circular">
+  ```
+
 ### Badge
 
 - Rename `circle` to `circular` and `rectangle` to `rectangular` for consistency. The possible values should be adjectives, not nouns:

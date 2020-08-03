@@ -34,7 +34,7 @@ export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
     /**
      * The shape of the avatar.
      */
-    variant?: 'circle' | 'rounded' | 'square';
+    variant?: 'circular' | 'rounded' | 'square';
   };
   defaultComponent: D;
   classKey: AvatarClassKey;
@@ -55,7 +55,7 @@ declare const Avatar: OverridableComponent<AvatarTypeMap>;
 export type AvatarClassKey =
   | 'root'
   | 'colorDefault'
-  | 'circle'
+  | 'circular'
   | 'rounded'
   | 'square'
   | 'img'
