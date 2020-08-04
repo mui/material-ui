@@ -167,34 +167,37 @@ describe('<TrapFocus />', () => {
         <TrapFocus {...defaultProps} open>
           <div tabIndex={-1} data-testid="modal">
             <div>Title</div>
-            <label>
+            <label htmlFor="one">
               one
               <input
+                checked={value === 'one'}
+                id="one"
+                name="one"
                 onChange={onChange}
                 type="radio"
-                name="one"
                 value="one"
-                checked={value === 'one'}
               />
             </label>
-            <label>
+            <label htmlFor="two">
               two
               <input
+                checked={value === 'two'}
+                id="two"
+                name="two"
                 onChange={onChange}
                 type="radio"
-                name="two"
                 value="two"
-                checked={value === 'two'}
               />
             </label>
-            <label>
+            <label htmlFor="three">
               three
               <input
+                checked={value === 'three'}
+                id="three"
+                name="three"
                 onChange={onChange}
                 type="radio"
-                name="three"
                 value="three"
-                checked={value === 'three'}
               />
             </label>
           </div>
