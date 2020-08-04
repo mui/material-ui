@@ -257,7 +257,7 @@ function generatePropType(type: PropTypeDescriptor): string | undefined {
           // Display one value per line as it's better for visibility.
           .join('<br>&#124;&nbsp;')
       );
-    case 'enum': {
+    case 'enum':
       return (
         type.value
           .map((type2) => {
@@ -266,7 +266,6 @@ function generatePropType(type: PropTypeDescriptor): string | undefined {
           // Display one value per line as it's better for visibility.
           .join('<br>&#124;&nbsp;')
       );
-    }
 
     case 'arrayOf': {
       return `Array&lt;${generatePropType(type.value)}&gt;`;
