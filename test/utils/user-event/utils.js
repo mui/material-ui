@@ -51,7 +51,7 @@ function convertMouseButtons(event, init, property, mapping) {
     return mapping[BUTTON_TO_NAMES[init.button]] || 0;
   }
 
-  return property != 'button' && isMousePressEvent(event) ? 1 : 0;
+  return property !== 'button' && isMousePressEvent(event) ? 1 : 0;
 }
 
 function getMouseEventOptions(event, init, clickCount = 0) {
