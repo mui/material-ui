@@ -377,17 +377,19 @@ function run(argv: { componentDirectories?: string[]; grep?: string; outputDirec
     // use Promise.allSettled once we switch to node 12
     return buildDocs({ component, outputDirectory, pagesMarkdown, theme, workspaceRoot })
       .then((value) => {
-        return { status: 'fulfilled', reason: undefined, value };
+        return { status: 'fulfilled' as const, value };
       })
       .catch((error) => {
         error.message = `with component ${component.filename}: ${error.message}`;
 
-        return { status: 'rejected', reason: error };
+        return { status: 'rejected' as const, reason: error };
       });
   });
 
   Promise.all(componentBuilds).then((builds) => {
-    const fails = builds.filter(({ status }) => status === 'rejected');
+    const fails = builds.filter(
+      (promise): promise is { status: 'rejected'; reason: string } => promise.status === 'rejected',
+    );
 
     fails.forEach((build) => {
       console.error(build.reason);
