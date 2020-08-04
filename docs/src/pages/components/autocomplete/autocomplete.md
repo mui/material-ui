@@ -95,6 +95,10 @@ You could also display a dialog when the user wants to add a new value.
 
 ## Grouped
 
+You can group the options with the `groupBy` prop.
+If you do so, make sure that the options are also sorted with the same dimension that they are grouped by,
+otherwise you will notice duplicate headers.
+
 {{"demo": "pages/components/autocomplete/Grouped.js"}}
 
 ## Disabled options
