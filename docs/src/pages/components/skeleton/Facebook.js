@@ -32,7 +32,7 @@ function Media(props) {
           loading ? (
             <Skeleton
               animation="wave"
-              variant="circle"
+              variant="circular"
               width={40}
               height={40}
             />
@@ -71,7 +71,11 @@ function Media(props) {
         }
       />
       {loading ? (
-        <Skeleton animation="wave" variant="rect" className={classes.media} />
+        <Skeleton
+          animation="wave"
+          variant="rectangular"
+          className={classes.media}
+        />
       ) : (
         <CardMedia
           className={classes.media}

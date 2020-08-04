@@ -20,7 +20,7 @@ export interface SkeletonTypeMap<P = {}, D extends React.ElementType = 'span'> {
     /**
      * The type of content that will be rendered.
      */
-    variant?: 'text' | 'rect' | 'circle';
+    variant?: 'text' | 'rectangular' | 'circular';
     /**
      * Width of the skeleton.
      * Useful when the skeleton is inside an inline element with no width of its own.
@@ -46,8 +46,8 @@ declare const Skeleton: OverridableComponent<SkeletonTypeMap>;
 export type SkeletonClassKey =
   | 'root'
   | 'text'
-  | 'rect'
-  | 'circle'
+  | 'rectangular'
+  | 'circular'
   | 'pulse'
   | 'wave'
   | 'withChildren'

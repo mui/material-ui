@@ -10,7 +10,7 @@ export default function SkeletonChildren() {
       <CssBaseline />
       <div style={{ alignItems: 'center', display: 'flex', width: '200px' }}>
         <div style={{ margin: '8px' }}>
-          <Skeleton variant="circle">
+          <Skeleton variant="circular">
             <Avatar />
           </Skeleton>
         </div>

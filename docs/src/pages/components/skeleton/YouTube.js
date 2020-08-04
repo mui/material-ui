@@ -46,7 +46,7 @@ function Media(props) {
               src={item.src}
             />
           ) : (
-            <Skeleton variant="rect" width={210} height={118} />
+            <Skeleton variant="rectangular" width={210} height={118} />
           )}
 
           {item ? (

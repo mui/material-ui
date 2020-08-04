@@ -25,10 +25,10 @@ export const styles = (theme) => ({
       content: '"\\00a0"',
     },
   },
-  /* Styles applied to the root element if `variant="rect"`. */
-  rect: {},
-  /* Styles applied to the root element if `variant="circle"`. */
-  circle: {
+  /* Styles applied to the root element if `variant="rectangular"`. */
+  rectangular: {},
+  /* Styles applied to the root element if `variant="circular"`. */
+  circular: {
     borderRadius: '50%',
   },
   /* Styles applied to the root element if `animation="pulse"`. */
@@ -169,7 +169,7 @@ Skeleton.propTypes = {
   /**
    * The type of content that will be rendered.
    */
-  variant: PropTypes.oneOf(['circle', 'rect', 'text']),
+  variant: PropTypes.oneOf(['circular', 'rectangular', 'text']),
   /**
    * Width of the skeleton.
    * Useful when the skeleton is inside an inline element with no width of its own.
