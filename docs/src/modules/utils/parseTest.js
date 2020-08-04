@@ -92,7 +92,7 @@ function getInheritComponentName(valueNode) {
  * @returns {ParseResult}
  *
  * @typedef {object} ParseResult
- * @property {import('@babel/core').Node | undefined} forwardsRefTo
+ * @property {string | undefined} forwardsRefTo
  * @property {string | undefined} inheritComponent
  */
 export default async function parseTest(componentFilename) {

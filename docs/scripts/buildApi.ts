@@ -11,7 +11,7 @@ import remarkVisit from 'unist-util-visit';
 import * as yargs from 'yargs';
 import { getLineFeed } from './helpers';
 import muiDefaultPropsHandler from '../src/modules/utils/defaultPropsHandler';
-import generateMarkdown from '../src/modules/utils/generateMarkdown';
+import generateMarkdown, { ReactApi } from '../src/modules/utils/generateMarkdown';
 import { findPagesMarkdown, findComponents } from '../src/modules/utils/find';
 import { getHeaders } from '../src/modules/utils/parseMarkdown';
 import parseTest from '../src/modules/utils/parseTest';
@@ -188,24 +188,6 @@ async function annotateComponentDefinition(component: { filename: string }, api:
   writeFileSync(typesFilename, typesSourceNew, { encoding: 'utf8' });
 }
 
-interface ReactApi {
-  description: string;
-  EOL: string;
-  filename: string;
-  forwardsRefTo: babel.Node | undefined;
-  inheritance: { component: string; pathname: string } | null;
-  name: string;
-  pagesMarkdown: Array<{ components: string[]; filename: string; pathname: string }>;
-  spread: boolean;
-  src: string;
-  styles: {
-    classes: string[];
-    globalClasses?: Record<string, string>;
-    name: string | null;
-    descriptions: Record<string, string>;
-  };
-}
-
 async function buildDocs(options: {
   component: { filename: string };
   pagesMarkdown: Array<{ components: string[]; filename: string; pathname: string }>;
@@ -236,6 +218,7 @@ async function buildDocs(options: {
     classes: [],
     name: null,
     descriptions: {},
+    globalClasses: {},
   };
 
   if (component.styles && component.default.options) {
