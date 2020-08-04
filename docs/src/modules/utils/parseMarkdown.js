@@ -185,9 +185,12 @@ ${headers.components
         return render(content, {
           highlight: prism,
           heading: (headingHtml, level) => {
-            // Small title. No need for an anchor.
-            // It's reducing the risk of duplicated id and it's fewer elements in the DOM.
-            if (level >= 4) {
+            // Main title, no need for an anchor.
+            // It adds noises to the URL.
+            //
+            // Small title, no need for an anchor.
+            // It reduces the risk of duplicated id and it's fewer elements in the DOM.
+            if (level === 1 || level >= 4) {
               return `<h${level}>${headingHtml}</h${level}>`;
             }
 

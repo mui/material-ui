@@ -13,7 +13,7 @@ import path from 'path';
  *   innerPath is path/to/svg
  *
  * @param {object} options
- * @return {string} output file dest relative to outputDir
+ * @returns {string} output file dest relative to outputDir
  */
 function defaultDestRewriter(svgPathObj, innerPath, options) {
   let fileName = svgPathObj.base;

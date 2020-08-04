@@ -54,7 +54,7 @@ export default function createSpacing(spacingInput = 8) {
               'It will be removed in v5.',
               'You can replace `theme.spacing.unit * y` with `theme.spacing(y)`.',
               '',
-              'You can use the `https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api` migration helper to make the process smoother.',
+              'You can use the `https://github.com/mui-org/material-ui/tree/next/packages/material-ui-codemod/README.md#theme-spacing-api` migration helper to make the process smoother.',
             ].join('\n'),
           );
         }

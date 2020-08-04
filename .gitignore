@@ -3,12 +3,12 @@
 .idea
 .vscode
 
-*.log
 .DS_STORE
+*.log
 /.eslintcache
-/docs/.next
 /.nyc_output
 /coverage
+/docs/.next
 /docs/export
 /examples/**/.cache
 /packages/material-ui-codemod/lib

@@ -18,7 +18,7 @@ There are many ways to support Material-UI:
   - Report bugs or missing features by [creating an issue](https://github.com/mui-org/material-ui/issues/new).
   - Review and comment on existing [pull requests](https://github.com/mui-org/material-ui/pulls) and [issues](https://github.com/mui-org/material-ui/issues).
   - Help [translate](https://translate.material-ui.com) the documentation.
-  - [Improve our documentation](https://github.com/mui-org/material-ui/tree/master/docs), fix bugs, or add features by [submitting a pull request](https://github.com/mui-org/material-ui/pulls).
+  - [Improve our documentation](https://github.com/mui-org/material-ui/tree/next/docs), fix bugs, or add features by [submitting a pull request](https://github.com/mui-org/material-ui/pulls).
 - **Support us financially on [OpenCollective](https://opencollective.com/material-ui)**.
   If you use Material-UI in a commercial project and would like to support its continued development by becoming a Sponsor, or in a side or hobby project and would like to become a Backer, you can do so through OpenCollective.
   All funds donated are managed transparently, and Sponsors receive recognition in the README and on the Material-UI home page.

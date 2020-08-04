@@ -6,7 +6,7 @@
 
 <div align="center">
 
-[React](https://reactjs.org/) components for faster and easier web development. Build your own design system, or start with [Material Design](https://material.io/design/introduction/).
+[React](https://reactjs.org/) components for faster and simpler web development. Build your own design system, or start with [Material Design](https://material.io/design/introduction/).
 
 [![npm package](https://img.shields.io/npm/v/@material-ui/core/latest.svg)](https://www.npmjs.com/package/@material-ui/core)
 [![npm downloads](https://img.shields.io/npm/dm/@material-ui/core.svg)](https://www.npmjs.com/package/@material-ui/core)
@@ -58,10 +58,6 @@ Please note that `@next` will only point to pre-releases; to get the latest stab
 ## Who sponsors Material-UI?
 
 ### Diamond 💎
-
-<p style="display: flex; justify-content: center;">
-  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="sencha" href="https://www.sencha.com/products/extreact/extreact-for-material-ui/?utm_source=materialui&utm_medium=referral&utm_content=product-200429-extreactmaterialui" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="128" width="128" src="https://material-ui.com/static/in-house/sencha-256x256.png" alt="sencha" title="UI Components for Productive Dev Teams" loading="lazy" /></a>
-</p>
 
 Diamond Sponsors are those who have pledged \$1,500/month or more to Material-UI.
 

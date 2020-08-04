@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/mui-org/material-ui/issues"
   },
-  "homepage": "https://github.com/mui-org/material-ui/tree/master/packages/material-ui-utils",
+  "homepage": "https://github.com/mui-org/material-ui/tree/next/packages/material-ui-utils",
   "scripts": {
     "build": "yarn build:cjs && yarn build:esm && yarn build:es && yarn build:copy-files",
     "build:cjs": "node ../../scripts/build cjs",

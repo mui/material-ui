@@ -1,4 +1,4 @@
-import { Context } from 'react';
+import * as React from 'react';
 import { Padding, Size } from './Table';
 
 interface TableContextProps {
@@ -6,6 +6,6 @@ interface TableContextProps {
   size: Size;
 }
 
-declare const TableContext: Context<TableContextProps | undefined>;
+declare const TableContext: React.Context<TableContextProps | undefined>;
 
 export default TableContext;

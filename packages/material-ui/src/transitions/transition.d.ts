@@ -2,7 +2,7 @@ import {
   TransitionProps as _TransitionProps,
   TransitionActions,
 } from 'react-transition-group/Transition';
-import { CSSProperties } from 'react';
+import * as React from 'react';
 
 export type TransitionHandlerKeys =
   | 'onEnter'
@@ -23,5 +23,5 @@ export type TransitionKeys =
 export interface TransitionProps
   extends TransitionActions,
     Partial<Pick<_TransitionProps, TransitionKeys>> {
-  style?: CSSProperties;
+  style?: React.CSSProperties;
 }

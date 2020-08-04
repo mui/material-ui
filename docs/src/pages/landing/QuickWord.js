@@ -22,12 +22,6 @@ const backers = [
     alt: 'textemall',
     title: 'Text-Em-All - Mass Text Messaging & Automated Calling',
   },
-  {
-    href:
-      'https://www.sencha.com/products/extreact/extreact-for-material-ui/?utm_source=materialui&utm_medium=referral&utm_content=product-200429-extreactmaterialui',
-    alt: 'sencha',
-    title: 'Sencha - UI Components for Productive Dev Teams',
-  },
 ];
 
 const useStyles = makeStyles(

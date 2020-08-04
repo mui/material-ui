@@ -4,11 +4,7 @@ The continued development and maintenance of Material-UI is made possible by the
 
 ### Diamond 💎
 
-<p style="display: flex; justify-content: center;">
-  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="sencha" href="https://www.sencha.com/products/extreact/extreact-for-material-ui/?utm_source=materialui&utm_medium=referral&utm_content=product-200429-extreactmaterialui" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="128" width="128" src="/static/in-house/sencha-256x256.png" alt="sencha" title="UI Components for Productive Dev Teams" loading="lazy" /></a>
-</p>
-
-_2/3 slots available_
+_3/3 slots available_
 
 ### Gold 🏆
 

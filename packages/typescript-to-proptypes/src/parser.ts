@@ -8,14 +8,14 @@ import * as t from './types';
 export interface ParserOptions {
   /**
    * Called before a PropType is added to a component/object
-   * @return true to include the PropType, false to skip it, or undefined to
+   * @returns true to include the PropType, false to skip it, or undefined to
    * use the default behaviour
    * @default name !== 'ref'
    */
   shouldInclude: (data: { name: string; depth: number }) => boolean | undefined;
   /**
    * Called before the shape of an object is resolved
-   * @return true to resolve the shape of the object, false to just use a object, or undefined to
+   * @returns true to resolve the shape of the object, false to just use a object, or undefined to
    * use the default behaviour
    * @default propertyCount <= 50 && depth <= 3
    */
