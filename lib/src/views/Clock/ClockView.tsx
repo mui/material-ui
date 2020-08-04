@@ -5,7 +5,7 @@ import { Clock } from './Clock';
 import { pipe } from '../../_helpers/utils';
 import { useUtils, useNow } from '../../_shared/hooks/useUtils';
 import { PickerOnChangeFn } from '../../_shared/hooks/useViews';
-import { withDefaultProps } from '../../_shared/withDefaultProps';
+import { useDefaultProps } from '../../_shared/withDefaultProps';
 import { getHourNumbers, getMinutesNumbers } from './ClockNumbers';
 import { useMeridiemMode } from '../../TimePicker/TimePickerToolbar';
 import { PickerSelectionState } from '../../_shared/hooks/usePickerState';
@@ -16,7 +16,7 @@ import {
   TimeValidationProps,
 } from '../../_helpers/time-utils';
 
-export interface ExportedClockViewProps extends TimeValidationProps {
+export interface ExportedClockViewProps<TDate> extends TimeValidationProps<TDate> {
   /**
    * 12h/24h view for hour selection clock.
    *
@@ -43,11 +43,13 @@ export interface ExportedClockViewProps extends TimeValidationProps {
   allowKeyboardControl?: boolean;
 }
 
-export interface ClockViewProps extends ExportedClockViewProps, ExportedArrowSwitcherProps {
+export interface ClockViewProps<TDate>
+  extends ExportedClockViewProps<TDate>,
+    ExportedArrowSwitcherProps {
   /**
    * Selected date @DateIOType.
    */
-  date: unknown;
+  date: TDate | null;
   /**
    * Clock type.
    */
@@ -55,11 +57,11 @@ export interface ClockViewProps extends ExportedClockViewProps, ExportedArrowSwi
   /**
    * On change date without moving between views @DateIOType.
    */
-  onDateChange: PickerOnChangeFn;
+  onDateChange: PickerOnChangeFn<TDate>;
   /**
    * On change callback @DateIOType.
    */
-  onChange: PickerOnChangeFn;
+  onChange: PickerOnChangeFn<TDate>;
   /**
    * Get clock number aria-text for hours.
    */
@@ -96,15 +98,11 @@ function getMinutesAriaText(minute: string) {
   return `${minute} minutes`;
 }
 
-function getHoursAriaText(hour: string) {
-  return `${hour} hours`;
-}
+const getHoursAriaText = (hour: string) => `${hour} hours`;
 
-function getSecondsAriaText(seconds: string) {
-  return `${seconds} seconds`;
-}
+const getSecondsAriaText = (seconds: string) => `${seconds} seconds`;
 
-function ClockViewRaw(props: ClockViewProps) {
+export function ClockView<TDate>(props: ClockViewProps<TDate>) {
   const {
     allowKeyboardControl,
     ampm,
@@ -132,15 +130,26 @@ function ClockViewRaw(props: ClockViewProps) {
     shouldDisableTime,
     showViewSwitcher,
     type,
-  } = props;
-  const now = useNow();
-  const utils = useUtils();
+  } = useDefaultProps(props, muiPickersComponentConfig);
+
+  const now = useNow<TDate>();
+  const utils = useUtils<TDate>();
   const classes = useStyles();
-  const { meridiemMode, handleMeridiemChange } = useMeridiemMode(date, ampm, onDateChange);
+  const dateOrNow = date || now;
+
+  const { meridiemMode, handleMeridiemChange } = useMeridiemMode<TDate>(
+    dateOrNow,
+    ampm,
+    onDateChange
+  );
 
   const isTimeDisabled = React.useCallback(
     (rawValue: number, type: 'hours' | 'minutes' | 'seconds') => {
-      const validateTimeValue = (getRequestedTimePoint: (when: 'start' | 'end') => unknown) => {
+      if (date === null) {
+        return false;
+      }
+
+      const validateTimeValue = (getRequestedTimePoint: (when: 'start' | 'end') => TDate) => {
         const isAfterComparingFn = createIsAfterIgnoreDatePart(
           Boolean(disableIgnoringDatePartForTimeValidation),
           utils
@@ -192,7 +201,6 @@ function ClockViewRaw(props: ClockViewProps) {
     ]
   );
 
-  const dateOrNow = date || now;
   const viewProps = React.useMemo(() => {
     switch (type) {
       case 'hours': {
@@ -287,9 +295,11 @@ function ClockViewRaw(props: ClockViewProps) {
           isRightDisabled={nextViewAvailable}
         />
       )}
+
       <Clock
         date={date}
         ampmInClock={ampmInClock}
+        // @ts-expect-error FIX ME
         onDateChange={onDateChange}
         type={type}
         ampm={ampm}
@@ -303,8 +313,6 @@ function ClockViewRaw(props: ClockViewProps) {
     </React.Fragment>
   );
 }
-
-export const ClockView = withDefaultProps(muiPickersComponentConfig, ClockViewRaw);
 
 ClockView.propTypes = {
   ampm: PropTypes.bool,

@@ -1,8 +1,17 @@
 import * as React from 'react';
 import { useUtils } from './useUtils';
+import { ParsableDate } from '../../constants/prop-types';
 
-export function useParsedDate(possiblyUnparsedValue: any): unknown | undefined {
-  const utils = useUtils();
+export type OverrideParsableDateProps<TDate, TProps, TKey extends keyof TProps> = Omit<
+  TProps,
+  TKey
+> &
+  Partial<Record<TKey, ParsableDate<TDate>>>;
+
+export function useParsedDate<TDate>(
+  possiblyUnparsedValue: ParsableDate<TDate>
+): TDate | undefined {
+  const utils = useUtils<TDate>();
   return React.useMemo(
     () =>
       typeof possiblyUnparsedValue === 'undefined' ? undefined : utils.date(possiblyUnparsedValue)!,

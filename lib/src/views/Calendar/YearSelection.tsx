@@ -9,7 +9,7 @@ import { PickerSelectionState } from '../../_shared/hooks/usePickerState';
 import { WrapperVariantContext } from '../../wrappers/WrapperVariantContext';
 import { useGlobalKeyDown, keycode as keys } from '../../_shared/hooks/useKeyDown';
 
-export interface ExportedYearSelectionProps {
+export interface ExportedYearSelectionProps<TDate> {
   /**
    * Callback firing on year change @DateIOType.
    */
@@ -21,16 +21,16 @@ export interface ExportedYearSelectionProps {
   shouldDisableYear?: (day: unknown) => boolean;
 }
 
-export interface YearSelectionProps extends ExportedYearSelectionProps {
+export interface YearSelectionProps<TDate> extends ExportedYearSelectionProps<TDate> {
   allowKeyboardControl?: boolean;
-  changeFocusedDay: (day: unknown) => void;
-  date: unknown;
+  changeFocusedDay: (day: TDate) => void;
+  date: TDate;
   disableFuture?: boolean | null | undefined;
   disablePast?: boolean | null | undefined;
-  isDateDisabled: (day: unknown) => boolean;
-  maxDate: unknown;
-  minDate: unknown;
-  onChange: PickerOnChangeFn;
+  isDateDisabled: (day: TDate) => boolean;
+  maxDate: TDate;
+  minDate: TDate;
+  onChange: PickerOnChangeFn<TDate>;
 }
 
 export const useStyles = makeStyles(
@@ -47,7 +47,7 @@ export const useStyles = makeStyles(
   { name: 'MuiPickersYearSelection' }
 );
 
-export const YearSelection: React.FC<YearSelectionProps> = ({
+export function YearSelection<TDate>({
   allowKeyboardControl,
   changeFocusedDay,
   date: __dateOrNull,
@@ -59,10 +59,10 @@ export const YearSelection: React.FC<YearSelectionProps> = ({
   onChange,
   onYearChange,
   shouldDisableYear,
-}) => {
-  const now = useNow();
+}: YearSelectionProps<TDate>) {
+  const now = useNow<TDate>();
   const theme = useTheme();
-  const utils = useUtils();
+  const utils = useUtils<TDate>();
   const classes = useStyles();
 
   const selectedDate = __dateOrNull || now;
@@ -73,9 +73,9 @@ export const YearSelection: React.FC<YearSelectionProps> = ({
 
   const handleYearSelection = React.useCallback(
     (year: number, isFinish: PickerSelectionState = 'finish') => {
-      const submitDate = (newDate: unknown) => {
+      const submitDate = (newDate: TDate | null) => {
         onChange(newDate, isFinish);
-        changeFocusedDay(newDate);
+        changeFocusedDay(newDate || now);
 
         if (onYearChange) {
           onYearChange(newDate);
@@ -101,6 +101,7 @@ export const YearSelection: React.FC<YearSelectionProps> = ({
     },
     [
       utils,
+      now,
       selectedDate,
       isDateDisabled,
       onChange,
@@ -158,4 +159,4 @@ export const YearSelection: React.FC<YearSelectionProps> = ({
       })}
     </div>
   );
-};
+}

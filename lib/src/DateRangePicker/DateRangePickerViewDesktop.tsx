@@ -18,7 +18,7 @@ import {
   DateValidationProps,
 } from '../_helpers/date-utils';
 
-export interface ExportedDesktopDateRangeCalendarProps {
+export interface ExportedDesktopDateRangeCalendarProps<TDate> {
   /**
    * How many calendars render on **desktop** DateRangePicker.
    *
@@ -29,16 +29,16 @@ export interface ExportedDesktopDateRangeCalendarProps {
    * Custom renderer for `<DateRangePicker />` days. @DateIOType
    * @example (date, DateRangeDayProps) => <DateRangePickerDay {...DateRangeDayProps} />
    */
-  renderDay?: (date: unknown, DateRangeDayProps: DateRangeDayProps) => JSX.Element;
+  renderDay?: (date: TDate, DateRangeDayProps: DateRangeDayProps<TDate>) => JSX.Element;
 }
 
-interface DesktopDateRangeCalendarProps
-  extends ExportedDesktopDateRangeCalendarProps,
-    Omit<CalendarProps, 'renderDay'>,
-    DateValidationProps,
+interface DesktopDateRangeCalendarProps<TDate>
+  extends ExportedDesktopDateRangeCalendarProps<TDate>,
+    Omit<CalendarProps<TDate>, 'renderDay'>,
+    DateValidationProps<TDate>,
     ExportedArrowSwitcherProps {
-  date: DateRange;
-  changeMonth: (date: unknown) => void;
+  date: DateRange<TDate | null>;
+  changeMonth: (date: TDate) => void;
   currentlySelectingRangeEnd: 'start' | 'end';
 }
 
@@ -67,7 +67,7 @@ export const useStyles = makeStyles(
   { name: 'MuiPickersDesktopDateRangeCalendar' }
 );
 
-function getCalendarsArray(calendars: ExportedDesktopDateRangeCalendarProps['calendars']) {
+function getCalendarsArray(calendars: ExportedDesktopDateRangeCalendarProps<unknown>['calendars']) {
   switch (calendars) {
     case 1:
       return [0];
@@ -81,32 +81,36 @@ function getCalendarsArray(calendars: ExportedDesktopDateRangeCalendarProps['cal
   }
 }
 
-export const DateRangePickerViewDesktop: React.FC<DesktopDateRangeCalendarProps> = ({
-  date,
-  calendars = 2,
-  changeMonth,
-  leftArrowButtonProps,
-  leftArrowButtonText,
-  leftArrowIcon,
-  rightArrowButtonProps,
-  rightArrowButtonText,
-  rightArrowIcon,
-  onChange,
-  disableFuture,
-  disablePast,
-  minDate: __minDate,
-  maxDate: __maxDate,
-  currentlySelectingRangeEnd,
-  currentMonth,
-  renderDay = (_, props) => <DateRangeDay {...props} />,
-  ...other
-}) => {
-  const utils = useUtils();
+export function DateRangePickerViewDesktop<TDate>(props: DesktopDateRangeCalendarProps<TDate>) {
+  const {
+    date,
+    calendars = 2,
+    changeMonth,
+    leftArrowButtonProps,
+    leftArrowButtonText,
+    leftArrowIcon,
+    rightArrowButtonProps,
+    rightArrowButtonText,
+    rightArrowIcon,
+    onChange,
+    disableFuture,
+    disablePast,
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    minDate: __minDate,
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    maxDate: __maxDate,
+    currentlySelectingRangeEnd,
+    currentMonth,
+    renderDay = (_, dateRangeProps) => <DateRangeDay {...dateRangeProps} />,
+    ...other
+  } = props;
+
+  const utils = useUtils<TDate>();
   const classes = useStyles();
   const minDate = __minDate || utils.date(defaultMinDate);
   const maxDate = __maxDate || utils.date(defaultMaxDate);
 
-  const [rangePreviewDay, setRangePreviewDay] = React.useState<unknown>(null);
+  const [rangePreviewDay, setRangePreviewDay] = React.useState<TDate | null>(null);
 
   const isNextMonthDisabled = useNextMonthDisabled(currentMonth, { disableFuture, maxDate });
   const isPreviousMonthDisabled = usePreviousMonthDisabled(currentMonth, { disablePast, minDate });
@@ -119,14 +123,14 @@ export const DateRangePickerViewDesktop: React.FC<DesktopDateRangeCalendarProps>
   });
 
   const handleDayChange = React.useCallback(
-    (day: unknown) => {
+    (day: TDate | null) => {
       setRangePreviewDay(null);
       onChange(day);
     },
     [onChange]
   );
 
-  const handlePreviewDayChange = (newPreviewRequest: unknown) => {
+  const handlePreviewDayChange = (newPreviewRequest: TDate) => {
     if (!isWithinRange(utils, newPreviewRequest, date)) {
       setRangePreviewDay(newPreviewRequest);
     } else {
@@ -172,7 +176,7 @@ export const DateRangePickerViewDesktop: React.FC<DesktopDateRangeCalendarProps>
               rightArrowIcon={rightArrowIcon}
               text={utils.format(monthOnIteration, 'monthAndYear')}
             />
-            <Calendar
+            <Calendar<TDate>
               {...other}
               key={index}
               date={date}
@@ -198,4 +202,4 @@ export const DateRangePickerViewDesktop: React.FC<DesktopDateRangeCalendarProps>
       })}
     </div>
   );
-};
+}

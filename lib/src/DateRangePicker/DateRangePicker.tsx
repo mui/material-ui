@@ -25,9 +25,9 @@ import {
   DateRangeValidationError,
 } from '../_helpers/date-utils';
 
-export interface BaseDateRangePickerProps
-  extends ExportedDateRangePickerViewProps,
-    ValidationProps<DateRangeValidationError, RangeInput>,
+export interface BaseDateRangePickerProps<TDate>
+  extends ExportedDateRangePickerViewProps<TDate>,
+    ValidationProps<DateRangeValidationError, RangeInput<TDate>>,
     ExportedDateRangePickerInputProps {
   /**
    * Text for start input label and toolbar placeholder
@@ -44,7 +44,7 @@ export interface BaseDateRangePickerProps
 }
 
 type RangePickerComponent<TWrapper extends SomeWrapper> = <TDate>(
-  props: BaseDateRangePickerProps &
+  props: BaseDateRangePickerProps<TDate> &
     ExtendWrapper<TWrapper> &
     AllSharedDateRangePickerProps<TDate> &
     React.RefAttributes<HTMLDivElement>
@@ -53,7 +53,7 @@ type RangePickerComponent<TWrapper extends SomeWrapper> = <TDate>(
 export const useDateRangeValidation = makeValidationHook<
   DateRangeValidationError,
   RangeInput,
-  BaseDateRangePickerProps
+  BaseDateRangePickerProps<any>
 >(validateDateRange, {
   defaultValidationError: [null, null],
   isSameError: (a, b) => a[1] === b[1] && a[0] === b[0],
@@ -82,10 +82,12 @@ export function makeRangePicker<TWrapper extends SomeWrapper>(
     startText = 'Start',
     endText = 'End',
     inputFormat: passedInputFormat,
-    minDate: __minDate = defaultMinDate,
-    maxDate: __maxDate = defaultMaxDate,
+    minDate: __minDate = defaultMinDate as TDate,
+    maxDate: __maxDate = defaultMaxDate as TDate,
     ...other
-  }: BaseDateRangePickerProps & AllSharedDateRangePickerProps<TDate> & ExtendWrapper<TWrapper>) {
+  }: BaseDateRangePickerProps<TDate> &
+    AllSharedDateRangePickerProps<TDate> &
+    ExtendWrapper<TWrapper>) {
     const utils = useUtils();
     const minDate = useParsedDate(__minDate);
     const maxDate = useParsedDate(__maxDate);
@@ -126,7 +128,7 @@ export function makeRangePicker<TWrapper extends SomeWrapper>(
 
     return (
       <WrapperComponent wrapperProps={wrapperProps} DateInputProps={DateInputProps} {...restProps}>
-        <DateRangePickerView
+        <DateRangePickerView<any>
           open={wrapperProps.open}
           DateInputProps={DateInputProps}
           calendars={calendars}

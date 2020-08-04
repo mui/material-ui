@@ -7,7 +7,7 @@ import { ExtendMui } from '../../typings/helpers';
 import { onSpaceOrEnter } from '../../_helpers/utils';
 import { useUtils } from '../../_shared/hooks/useUtils';
 import { DAY_SIZE, DAY_MARGIN } from '../../constants/dimensions';
-import { withDefaultProps } from '../../_shared/withDefaultProps';
+import { useDefaultProps } from '../../_shared/withDefaultProps';
 import { useCanAutoFocus } from '../../_shared/hooks/useCanAutoFocus';
 import { PickerSelectionState } from '../../_shared/hooks/usePickerState';
 
@@ -73,11 +73,11 @@ export const useStyles = makeStyles(
   muiComponentConfig
 );
 
-export interface DayProps extends ExtendMui<ButtonBaseProps> {
+export interface DayProps<TDate> extends ExtendMui<ButtonBaseProps> {
   /**
    * The date to show.
    */
-  day: unknown;
+  day: TDate;
   /**
    * Is focused by keyboard navigation.
    */
@@ -132,11 +132,11 @@ export interface DayProps extends ExtendMui<ButtonBaseProps> {
    * @default false
    */
   allowSameDateSelection?: boolean;
-  onDayFocus: (day: unknown) => void;
-  onDaySelect: (day: unknown, isFinish: PickerSelectionState) => void;
+  onDayFocus?: (day: TDate) => void;
+  onDaySelect: (day: TDate, isFinish: PickerSelectionState) => void;
 }
 
-const PureDay: React.FC<DayProps> = (props) => {
+function PureDay<TDate>(props: DayProps<TDate>) {
   const {
     allowKeyboardControl,
     allowSameDateSelection = false,
@@ -159,7 +159,8 @@ const PureDay: React.FC<DayProps> = (props) => {
     showDaysOutsideCurrentMonth = false,
     today: isToday = false,
     ...other
-  } = props;
+  } = useDefaultProps(props, muiComponentConfig);
+
   const utils = useUtils();
   const classes = useStyles();
   const canAutoFocus = useCanAutoFocus();
@@ -180,7 +181,7 @@ const PureDay: React.FC<DayProps> = (props) => {
   }, [allowKeyboardControl, canAutoFocus, disabled, focused, isAnimating, isInCurrentMonth]);
 
   const handleFocus = (event: React.FocusEvent<HTMLButtonElement>) => {
-    if (!focused) {
+    if (!focused && onDayFocus) {
       onDayFocus(day);
     }
 
@@ -240,9 +241,9 @@ const PureDay: React.FC<DayProps> = (props) => {
       <span className={classes.dayLabel}>{utils.format(day, 'dayOfMonth')}</span>
     </ButtonBase>
   );
-};
+}
 
-export const areDayPropsEqual = (prevProps: DayProps, nextProps: DayProps) => {
+export const areDayPropsEqual = (prevProps: DayProps<any>, nextProps: DayProps<any>) => {
   return (
     prevProps.focused === nextProps.focused &&
     prevProps.focusable === nextProps.focusable &&
@@ -269,4 +270,5 @@ PureDay.propTypes = {
   today: PropTypes.bool,
 };
 
-export const Day = withDefaultProps(muiComponentConfig, React.memo(PureDay, areDayPropsEqual));
+// keep typings of original component and not loose generic
+export const Day = (React.memo(PureDay, areDayPropsEqual) as unknown) as typeof PureDay;

@@ -2,20 +2,25 @@ import * as React from 'react';
 import getThemeProps from '@material-ui/styles/getThemeProps';
 import { useTheme } from '@material-ui/core/styles';
 
+export function useDefaultProps<T>(props: T, { name }: { name: string }) {
+  const theme = useTheme();
+
+  return getThemeProps<any, T, string>({
+    props,
+    theme,
+    name,
+  });
+}
+
 export function withDefaultProps<T>(
-  { name }: { name: string },
+  componentConfig: { name: string },
   Component: React.ComponentType<T>
 ): React.FC<T> {
-  const componentName = name.replace('Mui', '');
-  const WithDefaultProps = (props: T) => {
-    const theme = useTheme();
-    const propsWithDefault = getThemeProps<any, T, string>({
-      props,
-      theme,
-      name,
-    });
+  const componentName = componentConfig.name.replace('Mui', '');
 
+  const WithDefaultProps = (props: T) => {
     Component.displayName = componentName;
+    const propsWithDefault = useDefaultProps(props, componentConfig);
 
     return <Component {...propsWithDefault} />;
   };

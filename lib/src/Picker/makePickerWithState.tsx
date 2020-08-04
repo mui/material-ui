@@ -38,15 +38,14 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
   areValuesEqual: (utils: MuiPickersAdapter, a: unknown, b: unknown) => utils.isEqual(a, b),
 };
 
+export type SharedPickerProps<TDate, TWrapper extends SomeWrapper> = ExtendWrapper<TWrapper> &
+  AllSharedPickerProps<ParsableDate<TDate>, TDate | null> &
+  React.RefAttributes<HTMLInputElement>;
+
 type PickerComponent<
   TViewProps extends AllAvailableForOverrideProps,
   TWrapper extends SomeWrapper
-> = <TDate>(
-  props: TViewProps &
-    ExtendWrapper<TWrapper> &
-    AllSharedPickerProps<ParsableDate<TDate>, TDate | null> &
-    React.RefAttributes<HTMLInputElement>
-) => JSX.Element;
+> = <TDate>(props: TViewProps & SharedPickerProps<TDate, TWrapper>) => JSX.Element;
 
 export function makePickerWithStateAndWrapper<
   T extends AllAvailableForOverrideProps,

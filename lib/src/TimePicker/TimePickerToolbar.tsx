@@ -53,17 +53,17 @@ export const useStyles = makeStyles(
   muiComponentConfig
 );
 
-export function useMeridiemMode(
-  date: unknown,
+export function useMeridiemMode<TDate>(
+  date: TDate,
   ampm: boolean | undefined,
-  onChange: PickerOnChangeFn
+  onChange: PickerOnChangeFn<TDate>
 ) {
-  const utils = useUtils();
+  const utils = useUtils<TDate>();
   const meridiemMode = getMeridiem(date, utils);
 
   const handleMeridiemChange = React.useCallback(
     (mode: 'am' | 'pm') => {
-      const timeWithMeridiem = convertToMeridiem(date, mode, Boolean(ampm), utils);
+      const timeWithMeridiem = convertToMeridiem<TDate>(date, mode, Boolean(ampm), utils);
       onChange(timeWithMeridiem, 'partial');
     },
     [ampm, date, onChange, utils]

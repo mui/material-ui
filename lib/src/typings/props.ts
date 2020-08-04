@@ -28,8 +28,8 @@ import {
 } from '..';
 
 export interface MuiPickersComponentsPropsList {
-  MuiPickersDay: PickersDayProps;
-  MuiPickersCalendarView: PickersCalendarViewProps;
+  MuiPickersDay: PickersDayProps<unknown>;
+  MuiPickersCalendarView: PickersCalendarViewProps<unknown>;
   MuiPickersDatePicker: DatePickerProps;
   MuiPickersMobileDatePicker: MobileDatePickerProps;
   MuiPickersDesktopDatePicker: DesktopDatePickerProps;
@@ -42,9 +42,9 @@ export interface MuiPickersComponentsPropsList {
   MuiPickersMobileDateTimePicker: MobileDateTimePickerProps;
   MuiPickersDesktopDateTimePicker: DesktopDateTimePickerProps;
   MuiPickersStaticDateTimePicker: StaticDateTimePickerProps;
-  MuiPickersCalendar: PickersCalendarProps;
-  MuiPickersClockView: PickersClockViewProps;
-  MuiPickersClock: PickersClockProps;
+  MuiPickersCalendar: PickersCalendarProps<unknown>;
+  MuiPickersClockView: PickersClockViewProps<unknown>;
+  MuiPickersClock: PickersClockProps<unknown>;
   MuiPickersBasePicker: PickerProps<any, any, any>;
   MuiPickersLocalizationProvider: LocalizationProviderProps;
   MuiPickersTimePickerToolbar: ToolbarComponentProps;

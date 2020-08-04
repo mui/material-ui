@@ -5,7 +5,7 @@ import { DAY_MARGIN } from '../constants/dimensions';
 import { useUtils } from '../_shared/hooks/useUtils';
 import { Day, DayProps, areDayPropsEqual } from '../views/Calendar/Day';
 
-export interface DateRangeDayProps extends DayProps {
+export interface DateRangeDayProps<TDate> extends DayProps<TDate> {
   isHighlighting: boolean;
   isEndOfHighlighting: boolean;
   isStartOfHighlighting: boolean;
@@ -96,7 +96,7 @@ const useStyles = makeStyles(
   { name: 'MuiPickersDateRangeDay' }
 );
 
-export const PureDateRangeDay = (props: DateRangeDayProps) => {
+export function PureDateRangeDay<TDate>(props: DateRangeDayProps<TDate>) {
   const {
     className,
     day,
@@ -136,7 +136,7 @@ export const PureDateRangeDay = (props: DateRangeDayProps) => {
           [classes.rangeIntervalDayPreviewStart]: isStartOfPreviewing || isStartOfMonth,
         })}
       >
-        <Day
+        <Day<any>
           {...other}
           disableMargin
           allowSameDateSelection
@@ -158,7 +158,7 @@ export const PureDateRangeDay = (props: DateRangeDayProps) => {
       </div>
     </div>
   );
-};
+}
 
 PureDateRangeDay.displayName = 'DateRangeDay';
 
@@ -172,4 +172,4 @@ export const DateRangeDay = React.memo(PureDateRangeDay, (prevProps, nextProps) 
     prevProps.isStartOfPreviewing === nextProps.isStartOfPreviewing &&
     areDayPropsEqual(prevProps, nextProps)
   );
-});
+}) as typeof PureDateRangeDay;

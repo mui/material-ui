@@ -17,21 +17,30 @@ import {
   useNextMonthDisabled,
 } from '../../_shared/hooks/date-helpers-hooks';
 
-export interface CalendarHeaderProps
+export type ExportedCalendarHeaderProps<TDate> = Pick<
+  CalendarHeaderProps<TDate>,
+  | 'leftArrowIcon'
+  | 'rightArrowIcon'
+  | 'leftArrowButtonProps'
+  | 'rightArrowButtonProps'
+  | 'leftArrowButtonText'
+  | 'rightArrowButtonText'
+  | 'getViewSwitchingButtonText'
+>;
+
+export interface CalendarHeaderProps<TDate>
   extends ExportedArrowSwitcherProps,
-    Omit<DateValidationProps, 'shouldDisableDate'> {
+    Omit<DateValidationProps<TDate>, 'shouldDisableDate'> {
   view: DatePickerView;
   views: DatePickerView[];
-  currentMonth: unknown;
+  currentMonth: TDate;
   /**
    * Get aria-label text for switching between views button.
    */
   getViewSwitchingButtonText?: (currentView: DatePickerView) => string;
   reduceAnimations: boolean;
   changeView: (view: DatePickerView) => void;
-  minDate: unknown;
-  maxDate: unknown;
-  onMonthChange: (date: unknown, slideDirection: SlideDirection) => void;
+  onMonthChange: (date: TDate, slideDirection: SlideDirection) => void;
 }
 
 export const useStyles = makeStyles(
@@ -81,26 +90,28 @@ function getSwitchingViewAriaText(view: DatePickerView) {
     : 'calendar view is open, switch to year view';
 }
 
-export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
-  view: currentView,
-  views,
-  currentMonth: month,
-  changeView,
-  minDate,
-  maxDate,
-  disablePast,
-  disableFuture,
-  onMonthChange,
-  reduceAnimations,
-  leftArrowButtonProps,
-  rightArrowButtonProps,
-  leftArrowIcon,
-  rightArrowIcon,
-  leftArrowButtonText = 'previous month',
-  rightArrowButtonText = 'next month',
-  getViewSwitchingButtonText = getSwitchingViewAriaText,
-}) => {
-  const utils = useUtils();
+export function CalendarHeader<TDate>(props: CalendarHeaderProps<TDate>) {
+  const {
+    view: currentView,
+    views,
+    currentMonth: month,
+    changeView,
+    minDate,
+    maxDate,
+    disablePast,
+    disableFuture,
+    onMonthChange,
+    reduceAnimations,
+    leftArrowButtonProps,
+    rightArrowButtonProps,
+    leftArrowIcon,
+    rightArrowIcon,
+    leftArrowButtonText = 'previous month',
+    rightArrowButtonText = 'next month',
+    getViewSwitchingButtonText = getSwitchingViewAriaText,
+  } = props;
+
+  const utils = useUtils<TDate>();
   const classes = useStyles();
 
   const selectNextMonth = () => onMonthChange(utils.getNextMonth(month), 'left');
@@ -187,7 +198,7 @@ export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
       </div>
     </React.Fragment>
   );
-};
+}
 
 CalendarHeader.displayName = 'PickersCalendarHeader';
 

@@ -5,13 +5,13 @@ import { mount, utilsToUse } from '../test-utils';
 import { MonthSelection, MonthSelectionProps } from '../../views/Calendar/MonthSelection';
 
 describe('MonthSelection', () => {
-  let component: ReactWrapper<MonthSelectionProps>;
+  let component: ReactWrapper<MonthSelectionProps<any>>;
 
   beforeEach(() => {
     component = mount(
       <MonthSelection
-        minDate={new Date('03-01-2017')}
-        maxDate={new Date('05-01-2017')}
+        minDate={utilsToUse.date('03-01-2017')}
+        maxDate={utilsToUse.date('05-01-2017')}
         date={utilsToUse.date('04-01-2017')}
         onChange={jest.fn()}
       />

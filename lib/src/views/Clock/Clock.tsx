@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import clsx from 'clsx';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
@@ -9,19 +10,19 @@ import { VIEW_HEIGHT } from '../../constants/dimensions';
 import { ClockViewType } from '../../constants/ClockType';
 import { PickerOnChangeFn } from '../../_shared/hooks/useViews';
 import { getHours, getMinutes } from '../../_helpers/time-utils';
-import { withDefaultProps } from '../../_shared/withDefaultProps';
+import { useDefaultProps } from '../../_shared/withDefaultProps';
 import { useMeridiemMode } from '../../TimePicker/TimePickerToolbar';
 import { PickerSelectionState } from '../../_shared/hooks/usePickerState';
 import { useGlobalKeyDown, keycode } from '../../_shared/hooks/useKeyDown';
 import { WrapperVariantContext } from '../../wrappers/WrapperVariantContext';
 
-export interface ClockProps extends ReturnType<typeof useMeridiemMode> {
-  date: unknown;
+export interface ClockProps<TDate> extends ReturnType<typeof useMeridiemMode> {
+  date: TDate | null;
   type: ClockViewType;
   value: number;
   isTimeDisabled: (timeValue: number, type: ClockViewType) => boolean;
   children: React.ReactElement<any>[];
-  onDateChange: PickerOnChangeFn;
+  onDateChange: PickerOnChangeFn<TDate>;
   onChange: (value: number, isFinish?: PickerSelectionState) => void;
   ampm?: boolean;
   minutesStep?: number;
@@ -95,7 +96,7 @@ export const useStyles = makeStyles(
   muiComponentConfig
 );
 
-export const Clock: React.FC<ClockProps> = withDefaultProps(muiComponentConfig, (props) => {
+export function Clock<TDate>(props: ClockProps<TDate>) {
   const {
     allowKeyboardControl,
     ampm,
@@ -109,7 +110,8 @@ export const Clock: React.FC<ClockProps> = withDefaultProps(muiComponentConfig, 
     onChange,
     type,
     value,
-  } = props;
+  } = useDefaultProps(props, muiComponentConfig);
+
   const utils = useUtils();
   const classes = useStyles();
   const wrapperVariant = React.useContext(WrapperVariantContext);
@@ -250,6 +252,11 @@ export const Clock: React.FC<ClockProps> = withDefaultProps(muiComponentConfig, 
       )}
     </div>
   );
-});
+}
+
+Clock.propTypes = {
+  ampm: PropTypes.bool,
+  minutesStep: PropTypes.number,
+} as any;
 
 Clock.displayName = 'Clock';

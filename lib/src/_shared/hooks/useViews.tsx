@@ -3,8 +3,8 @@ import { arrayIncludes } from '../../_helpers/utils';
 import { PickerSelectionState } from './usePickerState';
 import { AnyPickerView } from '../../Picker/SharedPickerProps';
 
-export type PickerOnChangeFn<TDate = unknown> = (
-  date: TDate,
+export type PickerOnChangeFn<TDate> = (
+  date: TDate | null,
   selectionState?: PickerSelectionState
 ) => void;
 
@@ -17,7 +17,7 @@ export function useViews({
 }: {
   views: AnyPickerView[];
   openTo: AnyPickerView;
-  onChange: PickerOnChangeFn;
+  onChange: PickerOnChangeFn<unknown>;
   isMobileKeyboardViewOpen: boolean;
   toggleMobileKeyboardView: () => void;
 }) {

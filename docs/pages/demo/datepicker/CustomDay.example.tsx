@@ -38,7 +38,7 @@ export default function CustomDay(demoProps: any) {
   const renderWeekPickerDay = (
     date: Date,
     _selectedDates: Date[],
-    DayComponentProps: PickersDayProps
+    DayComponentProps: PickersDayProps<Date>
   ) => {
     const dateClone = makeJSDateObject(date);
     const selectedDateClone = makeJSDateObject(selectedDate ?? new Date());

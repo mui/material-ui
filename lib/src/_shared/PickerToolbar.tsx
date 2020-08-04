@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Toolbar, { ToolbarProps } from '@material-ui/core/Toolbar';
 import { ExtendMui } from '../typings/helpers';
 import { PenIcon } from './icons/Pen';
-import { CalendarIcon } from './icons/Calendar';
+import { CalendarIcon } from './icons/CalendarIcon';
 import { ToolbarComponentProps } from '../Picker/SharedPickerProps';
 
 export const useStyles = makeStyles(

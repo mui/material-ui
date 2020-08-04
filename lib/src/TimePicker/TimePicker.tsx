@@ -5,18 +5,18 @@ import { TimePickerToolbar } from './TimePickerToolbar';
 import { ExportedClockViewProps } from '../views/Clock/ClockView';
 import { ResponsiveWrapper } from '../wrappers/ResponsiveWrapper';
 import { pick12hOr24hFormat } from '../_helpers/text-field-helper';
-import { useParsedDate } from '../_shared/hooks/date-helpers-hooks';
+import { useParsedDate, OverrideParsableDateProps } from '../_shared/hooks/date-helpers-hooks';
 import { useUtils, MuiPickersAdapter } from '../_shared/hooks/useUtils';
 import { validateTime, TimeValidationError } from '../_helpers/time-utils';
-import { makePickerWithStateAndWrapper } from '../Picker/makePickerWithState';
-import { MobileWrapper, DesktopWrapper, StaticWrapper } from '../wrappers/Wrapper';
 import { WithViewsProps, AllSharedPickerProps } from '../Picker/SharedPickerProps';
 import { ValidationProps, makeValidationHook } from '../_shared/hooks/useValidation';
+import { MobileWrapper, DesktopWrapper, StaticWrapper, SomeWrapper } from '../wrappers/Wrapper';
+import { SharedPickerProps, makePickerWithStateAndWrapper } from '../Picker/makePickerWithState';
 
-export interface BaseTimePickerProps
-  extends ExportedClockViewProps,
-    ValidationProps<TimeValidationError, ParsableDate>,
-    WithViewsProps<'hours' | 'minutes' | 'seconds'> {}
+export interface BaseTimePickerProps<TDate = unknown>
+  extends ValidationProps<TimeValidationError, ParsableDate<TDate>>,
+    WithViewsProps<'hours' | 'minutes' | 'seconds'>,
+    OverrideParsableDateProps<TDate, ExportedClockViewProps<TDate>, 'minTime' | 'maxTime'> {}
 
 export function getTextFieldAriaText(value: ParsableDate, utils: MuiPickersAdapter) {
   return value && utils.isValid(utils.date(value))
@@ -61,16 +61,22 @@ function useInterceptProps({
 
 const timePickerConfig = {
   useInterceptProps,
-  useValidation: makeValidationHook<TimeValidationError, ParsableDate, BaseTimePickerProps>(
-    validateTime
-  ),
+  useValidation: makeValidationHook<
+    TimeValidationError,
+    ParsableDate,
+    BaseTimePickerProps<unknown>
+  >(validateTime),
   DefaultToolbarComponent: TimePickerToolbar,
 };
+
+type TimePickerComponent<TWrapper extends SomeWrapper> = <TDate>(
+  props: BaseTimePickerProps<TDate> & SharedPickerProps<TDate, TWrapper>
+) => JSX.Element;
 
 export const TimePicker = makePickerWithStateAndWrapper<BaseTimePickerProps>(ResponsiveWrapper, {
   name: 'MuiTimePicker',
   ...timePickerConfig,
-});
+}) as TimePickerComponent<typeof ResponsiveWrapper>;
 
 export type TimePickerProps = React.ComponentProps<typeof TimePicker>;
 
@@ -80,14 +86,14 @@ export const DesktopTimePicker = makePickerWithStateAndWrapper<BaseTimePickerPro
     name: 'MuiDesktopTimePicker',
     ...timePickerConfig,
   }
-);
+) as TimePickerComponent<typeof DesktopWrapper>;
 
 export type DesktopTimePickerProps = React.ComponentProps<typeof DesktopTimePicker>;
 
 export const MobileTimePicker = makePickerWithStateAndWrapper<BaseTimePickerProps>(MobileWrapper, {
   name: 'MuiMobileTimePicker',
   ...timePickerConfig,
-});
+}) as TimePickerComponent<typeof MobileWrapper>;
 
 export type MobileTimePickerProps = React.ComponentProps<typeof MobileTimePicker>;
 

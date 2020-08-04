@@ -39,11 +39,13 @@ export {
 
 // TODO replace the following syntax with new ts export type { } syntax when will be supported by rollup
 
-export type PickersCalendarProps = import('./views/Calendar/Calendar').CalendarProps;
-export type PickersCalendarViewProps = import('./views/Calendar/CalendarView').CalendarViewProps;
-export type PickersDayProps = import('./views/Calendar/Day').DayProps;
-export type PickersClockViewProps = import('./views/Clock/ClockView').ClockViewProps;
-export type PickersClockProps = import('./views/Clock/Clock').ClockProps;
+export type PickersCalendarProps<TDate> = import('./views/Calendar/Calendar').CalendarProps<TDate>;
+export type PickersCalendarViewProps<
+  TDate
+> = import('./views/Calendar/CalendarView').CalendarViewProps<TDate>;
+export type PickersDayProps<TDate> = import('./views/Calendar/Day').DayProps<TDate>;
+export type PickersClockViewProps<TDate> = import('./views/Clock/ClockView').ClockViewProps<TDate>;
+export type PickersClockProps<TDate> = import('./views/Clock/Clock').ClockProps<TDate>;
 export type ToolbarComponentProps = import('./Picker/SharedPickerProps').ToolbarComponentProps;
 export type DateRangeDelimiterProps = import('./DateRangePicker/DateRangeDelimiter').DateRangeDelimiterProps;
 export type LocalizationProviderProps = import('./LocalizationProvider').LocalizationProviderProps;

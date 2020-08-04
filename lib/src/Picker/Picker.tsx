@@ -23,7 +23,7 @@ import {
 
 export interface ExportedPickerProps<TView extends AnyPickerView>
   extends Omit<BasePickerProps, 'value' | 'onChange'>,
-    CalendarAndClockProps,
+    CalendarAndClockProps<unknown>,
     WithViewsProps<TView> {
   // TODO move out, cause it is DateTimePickerOnly
   hideTabs?: boolean;

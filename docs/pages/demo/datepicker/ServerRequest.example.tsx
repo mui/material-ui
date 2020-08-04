@@ -43,13 +43,11 @@ export default function ServerRequest() {
       value={value}
       loading={highlightedDays === null}
       onChange={(newValue) => setValue(newValue)}
-      // @ts-expect-error fix typings of components
       onMonthChange={handleMonthChange}
       // loading
       renderInput={(props) => <TextField {...props} />}
       renderLoading={() => <CalendarSkeleton />}
       renderDay={(day, value, DayComponentProps) => {
-        // @ts-expect-error fix typings of components
         const date = makeJSDateObject(day ?? new Date()); // skip this step, it is required to support date libs
         const isSelected =
           DayComponentProps.inCurrentMonth && highlightedDays.includes(date.getDate());

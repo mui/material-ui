@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { CalendarHeader } from '../views/Calendar/CalendarHeader';
+import { CalendarHeader, ExportedCalendarHeaderProps } from '../views/Calendar/CalendarHeader';
 import { DateRange } from './RangeTypes';
 import { DateRangeDay } from './DateRangePickerDay';
 import { useUtils } from '../_shared/hooks/useUtils';
 import { Calendar, CalendarProps } from '../views/Calendar/Calendar';
-import { ExportedArrowSwitcherProps } from '../_shared/ArrowSwitcher';
 import { defaultMinDate, defaultMaxDate } from '../constants/prop-types';
 import { ExportedDesktopDateRangeCalendarProps } from './DateRangePickerViewDesktop';
 import {
@@ -14,35 +13,39 @@ import {
   DateValidationProps,
 } from '../_helpers/date-utils';
 
-export interface ExportedMobileDateRangeCalendarProps
-  extends Pick<ExportedDesktopDateRangeCalendarProps, 'renderDay'> {}
+export interface ExportedMobileDateRangeCalendarProps<TDate>
+  extends Pick<ExportedDesktopDateRangeCalendarProps<TDate>, 'renderDay'> {}
 
-interface DesktopDateRangeCalendarProps
-  extends ExportedMobileDateRangeCalendarProps,
-    Omit<CalendarProps, 'renderDay'>,
-    DateValidationProps,
-    ExportedArrowSwitcherProps {
-  date: DateRange;
-  changeMonth: (date: unknown) => void;
+interface DesktopDateRangeCalendarProps<TDate>
+  extends ExportedMobileDateRangeCalendarProps<TDate>,
+    Omit<CalendarProps<TDate>, 'date' | 'renderDay'>,
+    DateValidationProps<TDate>,
+    ExportedCalendarHeaderProps<TDate> {
+  date: DateRange<TDate>;
+  changeMonth: (date: TDate) => void;
 }
 
 const onlyDateView = ['date'] as ['date'];
 
-export const DateRangePickerViewMobile: React.FC<DesktopDateRangeCalendarProps> = ({
-  changeMonth,
-  date,
-  leftArrowButtonProps,
-  leftArrowButtonText,
-  leftArrowIcon,
-  maxDate: __maxDate,
-  minDate: __minDate,
-  onChange,
-  rightArrowButtonProps,
-  rightArrowButtonText,
-  rightArrowIcon,
-  renderDay = (_, props) => <DateRangeDay {...props} />,
-  ...other
-}) => {
+export function DateRangePickerViewMobile<TDate>(props: DesktopDateRangeCalendarProps<TDate>) {
+  const {
+    changeMonth,
+    date,
+    leftArrowButtonProps,
+    leftArrowButtonText,
+    leftArrowIcon,
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    minDate: __minDate,
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    maxDate: __maxDate,
+    onChange,
+    rightArrowButtonProps,
+    rightArrowButtonText,
+    rightArrowIcon,
+    renderDay = (_, props) => <DateRangeDay<TDate> {...props} />,
+    ...other
+  } = props;
+
   const utils = useUtils();
   const minDate = __minDate || utils.date(defaultMinDate);
   const maxDate = __maxDate || utils.date(defaultMaxDate);
@@ -53,9 +56,9 @@ export const DateRangePickerViewMobile: React.FC<DesktopDateRangeCalendarProps> 
         view="date"
         views={onlyDateView}
         changeView={() => ({})}
-        onMonthChange={changeMonth}
-        leftArrowButtonProps={leftArrowButtonProps}
+        onMonthChange={changeMonth as any}
         leftArrowButtonText={leftArrowButtonText}
+        leftArrowButtonProps={leftArrowButtonProps}
         leftArrowIcon={leftArrowIcon}
         rightArrowButtonProps={rightArrowButtonProps}
         rightArrowButtonText={rightArrowButtonText}
@@ -64,7 +67,7 @@ export const DateRangePickerViewMobile: React.FC<DesktopDateRangeCalendarProps> 
         maxDate={maxDate}
         {...other}
       />
-      <Calendar
+      <Calendar<TDate>
         {...other}
         date={date}
         onChange={onChange}
@@ -82,4 +85,4 @@ export const DateRangePickerViewMobile: React.FC<DesktopDateRangeCalendarProps> 
       />
     </React.Fragment>
   );
-};
+}
