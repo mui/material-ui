@@ -5,15 +5,25 @@ import { exactProp, elementAcceptingRef } from '@material-ui/utils';
 import ownerDocument from '../utils/ownerDocument';
 import useForkRef from '../utils/useForkRef';
 
-const focusSelectorsRoot = [
-  '[contenteditable=true]',
+const focusSelectors = [
+  '[contenteditable]:not([contenteditable="false"])',
   '[role="button"]',
-  'a',
+  '[tabindex]',
+  'a[href]',
+  'audio[controls]',
   'button',
   'input',
   'select',
   'textarea',
-];
+  'video[controls]',
+  'div[inert]',
+]
+  .map((selector) =>
+    selector.concat(
+      ':not([disabled]):not([display="none"]):not([hidden]):not([inert="true"]):not([tabindex="-1"]):not([visibility="hidden"])',
+    ),
+  )
+  .join(', ');
 
 /**
  * Utility component that locks focus inside the component.
@@ -26,7 +36,6 @@ function Unstable_TrapFocus(props) {
     disableRestoreFocus = false,
     getDoc,
     isEnabled,
-    focusSelectors = [],
     open,
   } = props;
   const ignoreNextEnforceFocus = React.useRef();
@@ -60,12 +69,11 @@ function Unstable_TrapFocus(props) {
   }
 
   const onSentinelFocus = React.useCallback(() => {
+    // check for radios.  If we have radios buttons as the first focusable element let's use a checked one if present
     const focusRadios = rootRef.current.querySelectorAll('input:checked');
     const isShiftTab = Boolean(lastEvent.current?.shiftKey && lastEvent.current?.keyCode === 9);
-    const selectors = [...focusSelectorsRoot, ...focusSelectors].filter(Boolean);
-    const focusChildren = rootRef.current.querySelectorAll(selectors.join(', '));
-    const isFocusChildren = Boolean(focusChildren?.length);
-    if (!isFocusChildren) return rootRef.current.focus();
+    const focusChildren = rootRef.current.querySelectorAll(focusSelectors);
+    if (!focusChildren?.length) return rootRef.current.focus();
     const focusStart = focusChildren[0].type === 'radio' ? focusRadios[0] : focusChildren[0];
     const focusEnd =
       focusChildren[focusChildren.length - 1].type === 'radio'
@@ -75,7 +83,7 @@ function Unstable_TrapFocus(props) {
       return focusEnd.focus();
     }
     return focusStart.focus();
-  }, [focusSelectors]);
+  }, []);
 
   React.useEffect(() => {
     // We might render an empty child.
@@ -246,10 +254,6 @@ Unstable_TrapFocus.propTypes = {
    * trap focus is hidden.
    */
   disableRestoreFocus: PropTypes.bool,
-  /**
-   * Array of selectors to add to the components focusable elements
-   */
-  focusSelectors: PropTypes.arrayOf(PropTypes.string),
   /**
    * Return the document to consider.
    * We use it to implement the restore focus between different browser documents.

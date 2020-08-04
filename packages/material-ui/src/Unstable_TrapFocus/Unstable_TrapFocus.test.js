@@ -137,7 +137,9 @@ describe('<TrapFocus />', () => {
       keyCode: 9, // Tab
     });
     userEvent.tab();
+    expect(screen.getByText('cancel')).toHaveFocus();
     userEvent.tab();
+    expect(screen.getByText('ok')).toHaveFocus();
     userEvent.tab();
     expect(screen.getByText('x')).toHaveFocus();
   });

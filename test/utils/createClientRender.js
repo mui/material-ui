@@ -11,7 +11,8 @@ import {
   render as testingLibraryRender,
   prettyDOM,
 } from '@testing-library/react/pure';
-import userEvent from '@testing-library/user-event';
+
+import userEvent from './user-event';
 
 // holes are *All* selectors which aren't necessary for id selectors
 const [queryDescriptionOf, , getDescriptionOf, , findDescriptionOf] = buildQueries(
