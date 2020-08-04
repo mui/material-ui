@@ -86,7 +86,7 @@
     "build:typescript": "tsc --project tsconfig.json && tsc -p tsconfig.adapters.json",
     "build": "yarn build:typescript && yarn build:bundle && yarn build:prepare-files",
     "build:analyze": "yarn build",
-    "release": "yarn build && yarn publish --non-interactive --tag next build"
+    "release": "yarn build && yarn publish --tag -f next build"
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",
