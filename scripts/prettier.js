@@ -23,9 +23,18 @@ function runPrettier(options) {
   let didWarn = false;
   let didError = false;
 
+  const eslintIgnorePath = path.join(
+    process.env.ROOT_PATH || path.join(__dirname, '..'),
+    '.eslintignore',
+  );
+  const prettierConfigPath = path.join(
+    process.env.ROOT_PATH || path.join(__dirname, '..'),
+    'prettier.config.js',
+  );
+
   const warnedFiles = [];
   const ignoredFiles = fs
-    .readFileSync('.eslintignore', 'utf-8')
+    .readFileSync(eslintIgnorePath, 'utf-8')
     .split(/\r*\n/)
     .filter((notEmpty) => notEmpty);
 
@@ -50,8 +59,6 @@ function runPrettier(options) {
   if (!files.length) {
     return;
   }
-
-  const prettierConfigPath = path.join(__dirname, '../prettier.config.js');
 
   files.forEach((file) => {
     const prettierOptions = prettier.resolveConfig.sync(file, {
