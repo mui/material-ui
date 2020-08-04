@@ -270,7 +270,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     fullWidth = false,
     getLimitTagsText = (more) => `+${more}`,
     getOptionDisabled,
-    getOptionLabel = (x) => x,
+    getOptionLabel = (option) => option.label ?? option,
     getOptionSelected,
     groupBy,
     handleHomeEndKeys = !props.freeSolo,

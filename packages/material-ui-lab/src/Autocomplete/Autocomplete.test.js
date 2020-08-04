@@ -1260,7 +1260,7 @@ describe('<Autocomplete />', () => {
       checkHighlightIs('two');
     });
 
-    it('should not select undefined ', () => {
+    it('should not select undefined', () => {
       const handleChange = spy();
       const { getByRole } = render(
         <Autocomplete
@@ -1278,6 +1278,31 @@ describe('<Autocomplete />', () => {
       fireEvent.click(firstOption);
 
       expect(handleChange.args[0][1]).to.equal('one');
+    });
+
+    it('should work if options are the default data structure', () => {
+      const options = [
+        {
+          label: 'one',
+        },
+      ];
+      const handleChange = spy();
+      const { getByRole } = render(
+        <Autocomplete
+          {...defaultProps}
+          onChange={handleChange}
+          options={options}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      const input = getByRole('textbox');
+      fireEvent.click(input);
+
+      const listbox = getByRole('listbox');
+      const htmlOptions = listbox.querySelectorAll('li');
+
+      expect(htmlOptions[0].innerHTML).to.equal('one');
     });
   });
 

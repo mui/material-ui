@@ -20,6 +20,31 @@ The value must be chosen from a predefined set of allowed values.
 
 {{"demo": "pages/components/autocomplete/ComboBox.js"}}
 
+### Options structure
+
+By default, the component accepts the following options structures:
+
+```ts
+interface AutocompleteOption {
+  label: string;
+}
+// or
+type AutocompleteOption = string;
+```
+
+for instance:
+
+```js
+const options = [
+  { label: 'The Godfather', id: 1 },
+  { label: 'Pulp Fiction', id: 2 },
+];
+// or
+const options = ['The Godfather', 'Pulp Fiction'];
+```
+
+However, you can use different structures by providing a `getOptionLabel` prop.
+
 ### Playground
 
 Each of the following examples demonstrate one feature of the Autocomplete component.
