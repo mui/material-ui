@@ -167,39 +167,33 @@ describe('<TrapFocus />', () => {
         <TrapFocus {...defaultProps} open>
           <div tabIndex={-1} data-testid="modal">
             <div>Title</div>
-            <label htmlFor="one">
-              one
-              <input
-                checked={value === 'one'}
-                id="one"
-                name="one"
-                onChange={onChange}
-                type="radio"
-                value="one"
-              />
-            </label>
-            <label htmlFor="two">
-              two
-              <input
-                checked={value === 'two'}
-                id="two"
-                name="two"
-                onChange={onChange}
-                type="radio"
-                value="two"
-              />
-            </label>
-            <label htmlFor="three">
-              three
-              <input
-                checked={value === 'three'}
-                id="three"
-                name="three"
-                onChange={onChange}
-                type="radio"
-                value="three"
-              />
-            </label>
+            <input
+              aria-label="one"
+              checked={value === 'one'}
+              id="one"
+              name="one"
+              onChange={onChange}
+              type="radio"
+              value="one"
+            />
+            <input
+              aria-label="two"
+              checked={value === 'two'}
+              id="two"
+              name="two"
+              onChange={onChange}
+              type="radio"
+              value="two"
+            />
+            <input
+              aria-label="three"
+              checked={value === 'three'}
+              id="three"
+              name="three"
+              onChange={onChange}
+              type="radio"
+              value="three"
+            />
           </div>
         </TrapFocus>
       );
