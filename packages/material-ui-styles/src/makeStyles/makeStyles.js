@@ -242,11 +242,11 @@ export default function makeStyles(stylesOrCreator, options = {}) {
       React.useDebugValue(classes);
     }
     if (process.env.NODE_ENV !== 'production') {
-      const whitelistedComponents = ['MuiButton'];
+      const allowlistedComponents = ['MuiButton', 'MuiTypography'];
 
       if (
         name &&
-        whitelistedComponents.indexOf(name) >= 0 &&
+        allowlistedComponents.indexOf(name) >= 0 &&
         props.variant &&
         !classes[props.variant]
       ) {

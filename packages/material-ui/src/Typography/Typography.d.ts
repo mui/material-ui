@@ -1,7 +1,11 @@
 import * as React from 'react';
+import { OverridableStringUnion } from '@material-ui/types';
 import { PropTypes } from '..';
 import { OverrideProps, OverridableComponent } from '../OverridableComponent';
 import { Variant } from '../styles/createTypography';
+
+export interface TypographyPropsVariantOverrides {}
+export type TypographyVariantDefaults = Record<Variant | 'inherit', true>;
 
 export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P & {
@@ -46,14 +50,19 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
     /**
      * Applies the theme typography styles.
      */
-    variant?: Variant | 'inherit';
+    variant?: OverridableStringUnion<TypographyVariantDefaults, TypographyPropsVariantOverrides>;
     /**
      * The component maps the variant prop to a range of different HTML element types.
      * For instance, subtitle1 to `<h6>`.
      * If you wish to change that mapping, you can provide your own.
      * Alternatively, you can use the `component` prop.
      */
-    variantMapping?: Partial<Record<Variant, string>>;
+    variantMapping?: Partial<
+      Record<
+        OverridableStringUnion<TypographyVariantDefaults, TypographyPropsVariantOverrides>,
+        string
+      >
+    >;
   };
   defaultComponent: D;
   classKey: TypographyClassKey;
@@ -92,6 +101,7 @@ export type TypographyClassKey =
   | 'caption'
   | 'button'
   | 'overline'
+  | 'inherit'
   | 'alignLeft'
   | 'alignCenter'
   | 'alignRight'
