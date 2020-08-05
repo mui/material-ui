@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import capitalize from '../utils/capitalize';
 
@@ -315,7 +316,30 @@ Badge.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object,
+  classes: chainPropTypes(PropTypes.object, (props) => {
+    const { classes } = props;
+    if (classes == null) {
+      return null;
+    }
+
+    [
+      ['anchorOriginTopRightRectangle', 'anchorOriginTopRightRectangular'],
+      ['anchorOriginBottomRightRectangle', 'anchorOriginBottomRightRectangular'],
+      ['anchorOriginTopLeftRectangle', 'anchorOriginTopLeftRectangular'],
+      ['anchorOriginBottomLeftRectangle', 'anchorOriginBottomLeftRectangular'],
+      ['anchorOriginTopRightCircle', 'anchorOriginTopRightCircular'],
+      ['anchorOriginBottomRightCircle', 'anchorOriginBottomRightCircular'],
+      ['anchorOriginTopLeftCircle', 'anchorOriginTopLeftCircular'],
+    ].forEach(([deprecatedClassKey, newClassKey]) => {
+      if (classes[deprecatedClassKey] != null) {
+        throw new Error(
+          `Material-UI: The \`${deprecatedClassKey}\` class was deprecated. Use \`${newClassKey}\` instead.`,
+        );
+      }
+    });
+
+    return null;
+  }),
   /**
    * @ignore
    */
@@ -340,45 +364,7 @@ Badge.propTypes = {
   /**
    * Wrapped shape the badge should overlap.
    */
-  overlap: PropTypes.oneOf(['circular', 'rectangular']),
-  /**
-   * Controls whether the badge is hidden when `badgeContent` is zero.
-   */
-  showZero: PropTypes.bool,
-  /**
-   * The variant to use.
-   */
-  variant: PropTypes.oneOf(['dot', 'standard']),
-};
-
-const MuiBadge = withStyles(styles, { name: 'MuiBadge' })(Badge);
-
-MuiBadge.propTypes = {
-  classes: (props) => {
-    const { classes } = props;
-    if (classes == null) {
-      return null;
-    }
-
-    [
-      ['anchorOriginTopRightRectangle', 'anchorOriginTopRightRectangular'],
-      ['anchorOriginBottomRightRectangle', 'anchorOriginBottomRightRectangular'],
-      ['anchorOriginTopLeftRectangle', 'anchorOriginTopLeftRectangular'],
-      ['anchorOriginBottomLeftRectangle', 'anchorOriginBottomLeftRectangular'],
-      ['anchorOriginTopRightCircle', 'anchorOriginTopRightCircular'],
-      ['anchorOriginBottomRightCircle', 'anchorOriginBottomRightCircular'],
-      ['anchorOriginTopLeftCircle', 'anchorOriginTopLeftCircular'],
-    ].forEach(([deprecatedClassKey, newClassKey]) => {
-      if (classes[deprecatedClassKey] != null) {
-        throw new Error(
-          `Material-UI: The \`${deprecatedClassKey}\` class was deprecated. Use \`${newClassKey}\` instead.`,
-        );
-      }
-    });
-
-    return null;
-  },
-  overlap: (props) => {
+  overlap: chainPropTypes(PropTypes.oneOf(['circular', 'rectangular']), (props) => {
     const { overlap } = props;
 
     if (overlap === 'rectangle') {
@@ -394,7 +380,15 @@ MuiBadge.propTypes = {
     }
 
     return null;
-  },
+  }),
+  /**
+   * Controls whether the badge is hidden when `badgeContent` is zero.
+   */
+  showZero: PropTypes.bool,
+  /**
+   * The variant to use.
+   */
+  variant: PropTypes.oneOf(['dot', 'standard']),
 };
 
-export default MuiBadge;
+export default withStyles(styles, { name: 'MuiBadge' })(Badge);
