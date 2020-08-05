@@ -331,7 +331,10 @@ Badge.propTypes = {
       ['anchorOriginBottomRightCircle', 'anchorOriginBottomRightCircular'],
       ['anchorOriginTopLeftCircle', 'anchorOriginTopLeftCircular'],
     ].forEach(([deprecatedClassKey, newClassKey]) => {
-      if (classes[deprecatedClassKey] != null) {
+      if (
+        classes[deprecatedClassKey] != null &&
+        classes[deprecatedClassKey].split(' ').length > 1
+      ) {
         throw new Error(
           `Material-UI: The \`${deprecatedClassKey}\` class was deprecated. Use \`${newClassKey}\` instead.`,
         );
@@ -364,23 +367,26 @@ Badge.propTypes = {
   /**
    * Wrapped shape the badge should overlap.
    */
-  overlap: chainPropTypes(PropTypes.oneOf(['circular', 'rectangular']), (props) => {
-    const { overlap } = props;
+  overlap: chainPropTypes(
+    PropTypes.oneOf(['circle', 'rectangle', 'circular', 'rectangular']),
+    (props) => {
+      const { overlap } = props;
 
-    if (overlap === 'rectangle') {
-      throw new Error(
-        'Material-UI: `overlap="rectangle"` was deprecated. Use `overlap="rectangular"` instead.',
-      );
-    }
+      if (overlap === 'rectangle') {
+        throw new Error(
+          'Material-UI: `overlap="rectangle"` was deprecated. Use `overlap="rectangular"` instead.',
+        );
+      }
 
-    if (overlap === 'circle') {
-      throw new Error(
-        'Material-UI: `overlap="circle"` was deprecated. Use `overlap="circular"` instead.',
-      );
-    }
+      if (overlap === 'circle') {
+        throw new Error(
+          'Material-UI: `overlap="circle"` was deprecated. Use `overlap="circular"` instead.',
+        );
+      }
 
-    return null;
-  }),
+      return null;
+    },
+  ),
   /**
    * Controls whether the badge is hidden when `badgeContent` is zero.
    */

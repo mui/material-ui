@@ -185,7 +185,7 @@ describe('<Badge />', () => {
 
     it('issues a warning for overlap="circle"', () => {
       PropTypes.checkPropTypes(
-        Badge.propTypes,
+        Badge.Naked.propTypes,
         {
           overlap: 'circle',
         },
@@ -201,7 +201,7 @@ describe('<Badge />', () => {
 
     it('issues a warning for overlap="rectangle"', () => {
       PropTypes.checkPropTypes(
-        Badge.propTypes,
+        Badge.Naked.propTypes,
         {
           overlap: 'rectangle',
         },
@@ -217,9 +217,9 @@ describe('<Badge />', () => {
 
     it('issues a warning for the `anchorOriginTopRightRectangle` class', () => {
       PropTypes.checkPropTypes(
-        Badge.propTypes,
+        Badge.Naked.propTypes,
         {
-          classes: { anchorOriginTopRightRectangle: 'my-class' },
+          classes: { anchorOriginTopRightRectangle: 'mui-class my-class' },
         },
         'props',
         'Badge',
@@ -233,9 +233,9 @@ describe('<Badge />', () => {
 
     it('issues a warning for the `anchorOriginBottomRightRectangle` class', () => {
       PropTypes.checkPropTypes(
-        Badge.propTypes,
+        Badge.Naked.propTypes,
         {
-          classes: { anchorOriginBottomRightRectangle: 'my-class' },
+          classes: { anchorOriginBottomRightRectangle: 'mui-class my-class' },
         },
         'props',
         'Badge',
@@ -249,9 +249,9 @@ describe('<Badge />', () => {
 
     it('issues a warning for the `anchorOriginTopLeftRectangle` class', () => {
       PropTypes.checkPropTypes(
-        Badge.propTypes,
+        Badge.Naked.propTypes,
         {
-          classes: { anchorOriginTopLeftRectangle: 'my-class' },
+          classes: { anchorOriginTopLeftRectangle: 'mui-class my-class' },
         },
         'props',
         'Badge',
@@ -265,9 +265,9 @@ describe('<Badge />', () => {
 
     it('issues a warning for the `anchorOriginBottomLeftRectangle` class', () => {
       PropTypes.checkPropTypes(
-        Badge.propTypes,
+        Badge.Naked.propTypes,
         {
-          classes: { anchorOriginBottomLeftRectangle: 'my-class' },
+          classes: { anchorOriginBottomLeftRectangle: 'mui-class my-class' },
         },
         'props',
         'Badge',
@@ -281,9 +281,9 @@ describe('<Badge />', () => {
 
     it('issues a warning for the `anchorOriginTopRightCircle` class', () => {
       PropTypes.checkPropTypes(
-        Badge.propTypes,
+        Badge.Naked.propTypes,
         {
-          classes: { anchorOriginTopRightCircle: 'my-class' },
+          classes: { anchorOriginTopRightCircle: 'mui-class my-class' },
         },
         'props',
         'Badge',
@@ -297,9 +297,9 @@ describe('<Badge />', () => {
 
     it('issues a warning for the `anchorOriginBottomRightCircle` class', () => {
       PropTypes.checkPropTypes(
-        Badge.propTypes,
+        Badge.Naked.propTypes,
         {
-          classes: { anchorOriginBottomRightCircle: 'my-class' },
+          classes: { anchorOriginBottomRightCircle: 'mui-class my-class' },
         },
         'props',
         'Badge',
@@ -313,9 +313,9 @@ describe('<Badge />', () => {
 
     it('issues a warning for the `anchorOriginTopLeftCircle` class', () => {
       PropTypes.checkPropTypes(
-        Badge.propTypes,
+        Badge.Naked.propTypes,
         {
-          classes: { anchorOriginTopLeftCircle: 'my-class' },
+          classes: { anchorOriginTopLeftCircle: 'mui-class my-class' },
         },
         'props',
         'Badge',
