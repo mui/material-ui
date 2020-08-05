@@ -1,22 +1,44 @@
-import { parse as parseDoctrine } from 'doctrine';
+import * as doctrine from 'doctrine';
 import * as recast from 'recast';
-import { parse as docgenParse } from 'react-docgen';
+import {
+  parse as docgenParse,
+  PropDescriptor,
+  PropTypeDescriptor,
+  ReactDocgenApi,
+} from 'react-docgen';
 import { SOURCE_CODE_ROOT_URL, LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
 import { pageToTitle } from './helpers';
+
+export interface ReactApi extends ReactDocgenApi {
+  EOL: string;
+  filename: string;
+  forwardsRefTo: string | undefined;
+  inheritance: { component: string; pathname: string } | null;
+  name: string;
+  pagesMarkdown: Array<{ components: string[]; filename: string; pathname: string }>;
+  spread: boolean;
+  src: string;
+  styles: {
+    classes: string[];
+    globalClasses: Record<string, string>;
+    name: string | null;
+    descriptions: Record<string, string>;
+  };
+}
 
 const PATH_REPLACE_REGEX = /\\/g;
 const PATH_SEPARATOR = '/';
 const DEMO_IGNORE = LANGUAGES_IN_PROGRESS.map((language) => `-${language}.md`);
 
-function normalizePath(path) {
+function normalizePath(path: string): string {
   return path.replace(PATH_REPLACE_REGEX, PATH_SEPARATOR);
 }
 
-function generateHeader(reactAPI) {
+function generateHeader(reactAPI: ReactApi) {
   return ['---', `filename: ${normalizePath(reactAPI.filename)}`, '---'].join('\n');
 }
 
-function getDeprecatedInfo(type) {
+function getDeprecatedInfo(type: PropTypeDescriptor) {
   const marker = /deprecatedPropType\((\r*\n)*\s*PropTypes\./g;
   const match = type.raw.match(marker);
   const startIndex = type.raw.search(marker);
@@ -32,7 +54,7 @@ function getDeprecatedInfo(type) {
   return false;
 }
 
-function getChained(type) {
+function getChained(type: PropTypeDescriptor) {
   if (type.raw) {
     const marker = 'chainPropTypes';
     const indexStart = type.raw.indexOf(marker);
@@ -62,24 +84,24 @@ function getChained(type) {
   return false;
 }
 
-function escapeCell(value) {
+function escapeCell(value: string): string {
   // As the pipe is use for the table structure
   return value.replace(/</g, '&lt;').replace(/`&lt;/g, '`<').replace(/\|/g, '\\|');
 }
 
-function isElementTypeAcceptingRefProp(type) {
+function isElementTypeAcceptingRefProp(type: PropTypeDescriptor): boolean {
   return type.raw === 'elementTypeAcceptingRef';
 }
 
-function isRefType(type) {
+function isRefType(type: PropTypeDescriptor): boolean {
   return type.raw === 'refType';
 }
 
-function isElementAcceptingRefProp(type) {
+function isElementAcceptingRefProp(type: PropTypeDescriptor): boolean {
   return /^elementAcceptingRef/.test(type.raw);
 }
 
-function resolveType(type) {
+function resolveType(type: NonNullable<doctrine.Tag['type']>): string {
   if (type.type === 'AllLiteral') {
     return 'any';
   }
@@ -93,16 +115,15 @@ function resolveType(type) {
     return type.elements.map((t) => resolveType(t)).join(' \\| ');
   }
 
-  if (type.type === 'StringLiteralType') {
-    return type.value;
+  if ('name' in type) {
+    return type.name;
   }
-
-  return type.name;
+  throw new TypeError(`resolveType for '${type.type}' not implemented`);
 }
 
-function generatePropDescription(prop) {
+function generatePropDescription(prop: PropDescriptor) {
   const { description } = prop;
-  const type = prop.flowType || prop.type;
+  const type = prop.type;
   let deprecated = '';
 
   if (type.name === 'custom') {
@@ -112,7 +133,10 @@ function generatePropDescription(prop) {
     }
   }
 
-  const parsed = parseDoctrine(description, {
+  if (description === undefined) {
+    throw new Error('wrong doctrine#parse type');
+  }
+  const parsed = doctrine.parse(description, {
     sloppy: true,
   });
 
@@ -139,34 +163,40 @@ function generatePropDescription(prop) {
     // Split up the parsed tags into 'arguments' and 'returns' parsed objects. If there's no
     // 'returns' parsed object (i.e., one with title being 'returns'), make one of type 'void'.
     const parsedLength = parsed.tags.length;
-    let parsedArgs = [];
-    let parsedReturns;
+    let parsedArgs: doctrine.Tag[] = [];
+    let parsedReturns: doctrine.Tag;
 
     if (parsed.tags[parsedLength - 1].title === 'returns') {
       parsedArgs = parsed.tags.slice(0, parsedLength - 1);
       parsedReturns = parsed.tags[parsedLength - 1];
     } else {
       parsedArgs = parsed.tags;
+      // @ts-expect-error
       parsedReturns = { type: { name: 'void' } };
     }
 
     signature += '<br><br>**Signature:**<br>`function(';
     signature += parsedArgs
       .map((tag) => {
-        if (tag.type.type === 'OptionalType') {
-          return `${tag.name}?: ${tag.type.expression.name}`;
+        if (tag.type != null && tag.type.type === 'OptionalType') {
+          return `${tag.name}?: ${(tag.type.expression as any).name}`;
         }
 
-        return `${tag.name}: ${resolveType(tag.type)}`;
+        if (tag.type === undefined) {
+          throw new TypeError('Tag has no type');
+        }
+        return `${tag.name}: ${resolveType(tag.type!)}`;
       })
       .join(', ');
-    signature += `) => ${parsedReturns.type.name}\`<br>`;
+    // @ts-expect-error
+    signature += `) => ${parsedReturns.type!.name}\`<br>`;
     signature += parsedArgs
       .filter((tag) => tag.description)
       .map((tag) => `*${tag.name}:* ${tag.description}`)
       .join('<br>');
     if (parsedReturns.description) {
-      signature += `<br> *returns* (${parsedReturns.type.name}): ${parsedReturns.description}`;
+      // @ts-expect-error
+      signature += `<br> *returns* (${parsedReturns.type!.name}): ${parsedReturns.description}`;
     }
   }
 
@@ -178,7 +208,7 @@ function generatePropDescription(prop) {
   return `${deprecated}${jsDocText}${signature}${notes}`;
 }
 
-function generatePropType(type) {
+function generatePropType(type: PropTypeDescriptor): string | undefined {
   switch (type.name) {
     case 'custom': {
       if (isElementTypeAcceptingRefProp(type)) {
@@ -199,7 +229,7 @@ function generatePropType(type) {
         return generatePropType({
           // eslint-disable-next-line react/forbid-foreign-prop-types
           name: deprecatedInfo.propTypes,
-        });
+        } as any);
       }
 
       const chained = getChained(type);
@@ -219,20 +249,23 @@ function generatePropType(type) {
         .join(', ')} }`;
 
     case 'union':
-    case 'enum': {
       return (
         type.value
           .map((type2) => {
-            if (type.name === 'enum') {
-              return escapeCell(type2.value);
-            }
-
             return generatePropType(type2);
           })
           // Display one value per line as it's better for visibility.
           .join('<br>&#124;&nbsp;')
       );
-    }
+    case 'enum':
+      return (
+        type.value
+          .map((type2) => {
+            return escapeCell(type2.value);
+          })
+          // Display one value per line as it's better for visibility.
+          .join('<br>&#124;&nbsp;')
+      );
 
     case 'arrayOf': {
       return `Array&lt;${generatePropType(type.value)}&gt;`;
@@ -240,7 +273,7 @@ function generatePropType(type) {
 
     case 'instanceOf': {
       if (type.value.startsWith('typeof')) {
-        return /typeof (.*) ===/.exec(type.value)[1];
+        return /typeof (.*) ===/.exec(type.value)![1];
       }
       return type.value;
     }
@@ -250,7 +283,7 @@ function generatePropType(type) {
   }
 }
 
-function generateName(reactAPI) {
+function generateName(reactAPI: ReactApi) {
   if (!reactAPI.styles.classes.length) {
     return '\n';
   }
@@ -265,7 +298,7 @@ The \`${reactAPI.styles.name}\` name can be used for providing [default props](/
 `;
 }
 
-function generateProps(reactAPI) {
+function generateProps(reactAPI: ReactApi) {
   const header = '## Props';
 
   let text = `${header}
@@ -273,7 +306,7 @@ function generateProps(reactAPI) {
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|\n`;
 
-  text = Object.keys(reactAPI.props).reduce((textProps, propRaw) => {
+  Object.keys(reactAPI.props).forEach((propRaw) => {
     const prop = reactAPI.props[propRaw];
 
     if (typeof prop.description === 'undefined') {
@@ -283,14 +316,14 @@ function generateProps(reactAPI) {
     const description = generatePropDescription(prop);
 
     if (description === null) {
-      return textProps;
+      return;
     }
 
     let defaultValue = '';
 
     if (prop.defaultValue) {
       defaultValue = `<span class="prop-default">${escapeCell(
-        prop.defaultValue.value.replace(/\r*\n/g, ''),
+        (prop.defaultValue as any).value.replace(/\r*\n/g, ''),
       )}</span>`;
     }
 
@@ -317,12 +350,10 @@ function generateProps(reactAPI) {
       }
     }
 
-    textProps += `| ${propRaw} | <span class="prop-type">${generatePropType(
+    text += `| ${propRaw} | <span class="prop-type">${generatePropType(
       prop.type,
     )}</span> | ${defaultValue} | ${description} |\n`;
-
-    return textProps;
-  }, text);
+  });
 
   let refHint = 'The `ref` is forwarded to the root element.';
   if (reactAPI.forwardsRefTo == null) {
@@ -348,7 +379,7 @@ Any other props supplied will be provided to the root element (${
   return text;
 }
 
-function generateClasses(reactAPI) {
+function generateClasses(reactAPI: ReactApi) {
   if (!reactAPI.styles.classes.length) {
     return '';
   }
@@ -396,7 +427,7 @@ If that's not sufficient, you can check the [implementation of the component](${
 `;
 }
 
-function generateInheritance(reactAPI) {
+function generateInheritance(reactAPI: ReactApi): string {
   const { inheritance } = reactAPI;
 
   if (!inheritance) {
@@ -422,14 +453,12 @@ You can take advantage of this behavior to [target nested components](/guides/ap
 `;
 }
 
-function generateDemos(reactAPI) {
-  const pagesMarkdown = reactAPI.pagesMarkdown.reduce((accumulator, page) => {
-    if (!DEMO_IGNORE.includes(page.filename.slice(-6)) && page.components.includes(reactAPI.name)) {
-      accumulator.push(page);
-    }
-
-    return accumulator;
-  }, []);
+function generateDemos(reactAPI: ReactApi): string {
+  const pagesMarkdown = reactAPI.pagesMarkdown.filter((page) => {
+    return (
+      !DEMO_IGNORE.includes(page.filename.slice(-6)) && page.components.includes(reactAPI.name)
+    );
+  });
 
   if (pagesMarkdown.length === 0) {
     return '';
@@ -442,7 +471,7 @@ ${pagesMarkdown.map((page) => `- [${pageToTitle(page)}](${page.pathname}/)`).joi
 `;
 }
 
-function generateImportStatement(reactAPI) {
+function generateImportStatement(reactAPI: ReactApi): string {
   const source = normalizePath(reactAPI.filename)
     // determine the published package name
     .replace(
@@ -462,7 +491,7 @@ import { ${reactAPI.name} } from '${source}';
 You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).`;
 }
 
-export default function generateMarkdown(reactAPI) {
+export default function generateMarkdown(reactAPI: ReactApi) {
   return [
     generateHeader(reactAPI),
     '',

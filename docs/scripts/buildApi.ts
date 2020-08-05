@@ -11,7 +11,7 @@ import remarkVisit from 'unist-util-visit';
 import * as yargs from 'yargs';
 import { getLineFeed } from './helpers';
 import muiDefaultPropsHandler from '../src/modules/utils/defaultPropsHandler';
-import generateMarkdown from '../src/modules/utils/generateMarkdown';
+import generateMarkdown, { ReactApi } from '../src/modules/utils/generateMarkdown';
 import { findPagesMarkdown, findComponents } from '../src/modules/utils/find';
 import { getHeaders } from '../src/modules/utils/parseMarkdown';
 import parseTest from '../src/modules/utils/parseTest';
@@ -28,12 +28,16 @@ const inheritedComponentRegexp = /\/\/ @inheritedComponent (.*)/;
  * Receives a component's test information and source code and return's an object
  * containing the inherited component's name and pathname
  *
- * @param {object} testInfo Information retrieved from the component's describeConformance() in its test.js file
- * @param {string} testInfo.forwardsRefTo The name of the element the ref is forwarded to
- * @param {(string | undefined)} testInfo.inheritComponent The name of the component functionality is inherited from
- * @param {string} src The component's source code
+ * @param testInfo Information retrieved from the component's describeConformance() in its test.js file
+ * @param src The component's source code
  */
-function getInheritance(testInfo, src) {
+function getInheritance(
+  testInfo: {
+    /** The name of the component functionality is inherited from */
+    inheritComponent: string | undefined;
+  },
+  src: string,
+) {
   let inheritedComponentName = testInfo.inheritComponent;
 
   if (inheritedComponentName == null) {
@@ -71,18 +75,15 @@ function getInheritance(testInfo, src) {
  * By default we assume that the markdown is hosted on material-ui.com which is
  * why the source includes relative url. We transform them to absolute urls with
  * this method.
- *
- * @param {object} api
- * @param {object} options
  */
-function computeApiDescription(api, options) {
+function computeApiDescription(api: ReactApi, options: { host: string }): Promise<string> {
   const { host } = options;
   return new Promise((resolve, reject) => {
     remark()
       .use(function docsLinksAttacher() {
         return function transformer(tree) {
           remarkVisit(tree, 'link', (linkNode) => {
-            if (linkNode.url.startsWith('/')) {
+            if ((linkNode.url as string).startsWith('/')) {
               linkNode.url = `${host}${linkNode.url}`;
             }
           });
@@ -91,12 +92,12 @@ function computeApiDescription(api, options) {
       .process(api.description, (error, file) => {
         if (error) reject(error);
 
-        resolve(file.contents.trim());
+        resolve(file.contents.toString('utf-8').trim());
       });
   });
 }
 
-async function annotateComponentDefinition(component, api) {
+async function annotateComponentDefinition(component: { filename: string }, api: ReactApi) {
   const HOST = 'https://material-ui.com';
 
   const typesFilename = component.filename.replace(/\.js$/, '.d.ts');
@@ -106,30 +107,37 @@ async function annotateComponentDefinition(component, api) {
     filename: typesFilename,
     presets: [require.resolve('@babel/preset-typescript')],
   });
+  if (typesAST === null) {
+    throw new Error('No AST returned from babel.');
+  }
 
-  let start = null;
+  let start = 0;
   let end = null;
   traverse(typesAST, {
     ExportDefaultDeclaration(babelPath) {
-      // export default function Menu() {}
-      let node = babelPath.node;
+      /**
+       * export default function Menu() {}
+       */
+      let node: babel.Node = babelPath.node;
       if (node.declaration.type === 'Identifier') {
         // declare const Menu: {};
         // export default Menu;
-        const bindingId = babelPath.node.declaration.name;
-        const binding = babelPath.scope.bindings[bindingId];
-        node = binding.path.parentPath.node;
+        if (babel.types.isIdentifier(babelPath.node.declaration)) {
+          const bindingId = babelPath.node.declaration.name;
+          const binding = babelPath.scope.bindings[bindingId];
+          node = binding.path.parentPath.node;
+        }
       }
 
-      const { leadingComments = [] } = node;
-      const [jsdocBlock, ...rest] = leadingComments;
-      if (rest.length > 0) {
+      const { leadingComments } = node;
+      const jsdocBlock = leadingComments !== null ? leadingComments[0] : null;
+      if (leadingComments !== null && leadingComments.length > 1) {
         throw new Error('Should only have a single leading jsdoc block');
       }
-      if (jsdocBlock !== undefined) {
+      if (jsdocBlock != null) {
         start = jsdocBlock.start;
         end = jsdocBlock.end;
-      } else {
+      } else if (node.start !== null) {
         start = node.start - 1;
         end = start;
       }
@@ -142,7 +150,7 @@ async function annotateComponentDefinition(component, api) {
     );
   }
 
-  const demos = uniqBy(
+  const demos = uniqBy<ReactApi['pagesMarkdown'][0]>(
     api.pagesMarkdown.filter((page) => {
       return page.components.includes(api.name);
     }, []),
@@ -180,7 +188,13 @@ async function annotateComponentDefinition(component, api) {
   writeFileSync(typesFilename, typesSourceNew, { encoding: 'utf8' });
 }
 
-async function buildDocs(options) {
+async function buildDocs(options: {
+  component: { filename: string };
+  pagesMarkdown: Array<{ components: string[]; filename: string; pathname: string }>;
+  outputDirectory: string;
+  theme: object;
+  workspaceRoot: string;
+}) {
   const {
     component: componentObject,
     outputDirectory,
@@ -199,10 +213,12 @@ async function buildDocs(options) {
   // eslint-disable-next-line global-require, import/no-dynamic-require
   const component = require(componentObject.filename);
   const name = path.parse(componentObject.filename).name;
-  const styles = {
+
+  const styles: ReactApi['styles'] = {
     classes: [],
     name: null,
     descriptions: {},
+    globalClasses: {},
   };
 
   if (component.styles && component.default.options) {
@@ -213,6 +229,7 @@ async function buildDocs(options) {
     styles.name = component.default.options.name;
     styles.globalClasses = styles.classes.reduce((acc, key) => {
       acc[key] = generateClassName(
+        // @ts-expect-error
         {
           key,
         },
@@ -224,7 +241,7 @@ async function buildDocs(options) {
         },
       );
       return acc;
-    }, {});
+    }, {} as Record<string, string>);
 
     let styleSrc = src;
     // Exception for Select where the classes are imported from NativeSelect
@@ -248,13 +265,14 @@ async function buildDocs(options) {
 
     if (stylesSrc) {
       // Extract individual classes and descriptions
-      stylesSrc[0].replace(styleRegexp, (match, desc, key) => {
+      stylesSrc[0].replace(styleRegexp, (match: string, desc: string, key: string) => {
         styles.descriptions[key] = desc;
+        return match;
       });
     }
   }
 
-  let reactAPI;
+  let reactAPI: ReactApi;
   try {
     reactAPI = docgenParse(src, null, defaultHandlers.concat(muiDefaultPropsHandler), {
       filename: componentObject.filename,
@@ -320,12 +338,15 @@ Page.getInitialProps = () => {
   await annotateComponentDefinition(componentObject, reactAPI);
 }
 
-function run(argv) {
+function run(argv: { componentDirectories?: string[]; grep?: string; outputDirectory?: string }) {
   const workspaceRoot = path.resolve(__dirname, '../../');
-  const componentDirectories = argv.componentDirectories.map((componentDirectory) => {
+  /**
+   * @type {string[]}
+   */
+  const componentDirectories = argv.componentDirectories!.map((componentDirectory) => {
     return path.resolve(componentDirectory);
   });
-  const outputDirectory = path.resolve(argv.outputDirectory);
+  const outputDirectory = path.resolve(argv.outputDirectory!);
   const grep = argv.grep == null ? null : new RegExp(argv.grep);
 
   mkdirSync(outputDirectory, { mode: 0o777, recursive: true });
@@ -344,7 +365,7 @@ function run(argv) {
   const components = componentDirectories
     .reduce((directories, componentDirectory) => {
       return directories.concat(findComponents(componentDirectory));
-    }, [])
+    }, [] as Array<{ filename: string }>)
     .filter((component) => {
       if (grep === null) {
         return true;
@@ -356,17 +377,19 @@ function run(argv) {
     // use Promise.allSettled once we switch to node 12
     return buildDocs({ component, outputDirectory, pagesMarkdown, theme, workspaceRoot })
       .then((value) => {
-        return { status: 'fulfilled', value };
+        return { status: 'fulfilled' as const, value };
       })
       .catch((error) => {
         error.message = `with component ${component.filename}: ${error.message}`;
 
-        return { status: 'rejected', reason: error };
+        return { status: 'rejected' as const, reason: error };
       });
   });
 
   Promise.all(componentBuilds).then((builds) => {
-    const fails = builds.filter(({ status }) => status === 'rejected');
+    const fails = builds.filter(
+      (promise): promise is { status: 'rejected'; reason: string } => promise.status === 'rejected',
+    );
 
     fails.forEach((build) => {
       console.error(build.reason);
@@ -380,7 +403,7 @@ function run(argv) {
 yargs
   .command({
     command: '$0 <outputDirectory> [componentDirectories...]',
-    description: 'formats codebase',
+    describe: 'formats codebase',
     builder: (command) => {
       return command
         .positional('outputDirectory', {
@@ -388,6 +411,7 @@ yargs
           type: 'string',
         })
         .positional('componentDirectories', {
+          array: true,
           description: 'Directories to component sources',
           type: 'string',
         })
