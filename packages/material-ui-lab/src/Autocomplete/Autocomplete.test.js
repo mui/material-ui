@@ -478,8 +478,6 @@ describe('<Autocomplete />', () => {
         this.skip();
       }
 
-      console.error('oops');
-
       const handleSubmit = spy((event) => event.preventDefault());
       render(
         <form onSubmit={handleSubmit}>
