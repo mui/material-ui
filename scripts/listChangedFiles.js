@@ -23,9 +23,8 @@ async function execGitCmd(args) {
   return gitResults.trim().toString().split('\n');
 }
 
-async function listChangedFiles() {
-  const baselineBranch = process.env.BASELINE_BRANCH || 'next';
-  const comparedBranch = process.env.CIRCLECI ? `origin/${baselineBranch}` : baselineBranch;
+async function listChangedFiles({ branch }) {
+  const comparedBranch = process.env.CIRCLECI ? `origin/${branch}` : branch;
   const mergeBase = await execGitCmd(['rev-parse', comparedBranch]);
   const gitDiff = await execGitCmd(['diff', '--name-only', mergeBase]);
   const gitLs = await execGitCmd(['ls-files', '--others', '--exclude-standard']);

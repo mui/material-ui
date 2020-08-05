@@ -23,18 +23,9 @@ function runPrettier(options) {
   let didWarn = false;
   let didError = false;
 
-  const eslintIgnorePath = path.join(
-    process.env.ROOT_PATH || path.join(__dirname, '..'),
-    '.eslintignore',
-  );
-  const prettierConfigPath = path.join(
-    process.env.ROOT_PATH || path.join(__dirname, '..'),
-    'prettier.config.js',
-  );
-
   const warnedFiles = [];
   const ignoredFiles = fs
-    .readFileSync(eslintIgnorePath, 'utf-8')
+    .readFileSync(path.join(process.cwd(), '.eslintignore'), 'utf-8')
     .split(/\r*\n/)
     .filter((notEmpty) => notEmpty);
 
@@ -59,6 +50,8 @@ function runPrettier(options) {
   if (!files.length) {
     return;
   }
+
+  const prettierConfigPath = path.join(process.cwd(), 'prettier.config.js');
 
   files.forEach((file) => {
     const prettierOptions = prettier.resolveConfig.sync(file, {
@@ -102,16 +95,16 @@ function runPrettier(options) {
 }
 
 async function run(argv) {
-  const { mode } = argv;
+  const { mode, branch } = argv;
   const shouldWrite = mode === 'write' || mode === 'write-changed';
   const onlyChanged = mode === 'check-changed' || mode === 'write-changed';
 
   let changedFiles;
   if (onlyChanged) {
-    changedFiles = await listChangedFiles();
+    changedFiles = await listChangedFiles({ branch });
   }
 
-  runPrettier({ changedFiles, shouldWrite });
+  runPrettier({ changedFiles, shouldWrite, branch });
 }
 
 yargs
@@ -119,11 +112,17 @@ yargs
     command: '$0 [mode]',
     description: 'formats codebase',
     builder: (command) => {
-      return command.positional('mode', {
-        description: '"write" | "check-changed" | "write-changed"',
-        type: 'string',
-        default: 'write-changed',
-      });
+      return command
+        .positional('mode', {
+          description: '"write" | "check-changed" | "write-changed"',
+          type: 'string',
+          default: 'write-changed',
+        })
+        .option('branch', {
+          default: 'next',
+          describe: 'The branch to diff against',
+          type: 'string',
+        });
     },
     handler: run,
   })
