@@ -57,9 +57,9 @@ This change affects almost all components where you're using the `component` pro
 
   ```diff
   -<Avatar variant="circle">
-  -<Avatar classes={{ circle: 'classname' }}>
+  -<Avatar classes={{ circle: 'className' }}>
   +<Avatar variant="circular">
-  +<Avatar classes={{ circular: 'classname' }}>
+  +<Avatar classes={{ circular: 'className' }}>
   ```
 
 ### Badge
