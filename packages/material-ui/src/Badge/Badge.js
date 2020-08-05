@@ -333,6 +333,7 @@ Badge.propTypes = {
     ].forEach(([deprecatedClassKey, newClassKey]) => {
       if (
         classes[deprecatedClassKey] != null &&
+        // 2 classnames? one from withStyles the other must be custom
         classes[deprecatedClassKey].split(' ').length > 1
       ) {
         throw new Error(
