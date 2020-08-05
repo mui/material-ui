@@ -57,7 +57,9 @@ This change affects almost all components where you're using the `component` pro
 
   ```diff
   -<Avatar variant="circle">
+  -<Avatar classes={{ circle: 'className' }}>
   +<Avatar variant="circular">
+  +<Avatar classes={{ circular: 'className' }}>
   ```
 
 ### Badge
@@ -69,6 +71,22 @@ This change affects almost all components where you're using the `component` pro
   -<Badge overlap="rectangle">
   +<Badge overlap="circular">
   +<Badge overlap="rectangular">
+  <Badge classes={{
+  - anchorOriginTopRightRectangle: 'className'
+  - anchorOriginBottomRightRectangle: 'className'
+  - anchorOriginTopLeftRectangle: 'className'
+  - anchorOriginBottomLeftRectangle: 'className'
+  - anchorOriginTopRightCircle: 'className'
+  - anchorOriginBottomRightCircle: 'className'
+  - anchorOriginTopLeftCircle: 'className'
+  + anchorOriginTopRightRectangular: 'className'
+  + anchorOriginBottomRightRectangular: 'className'
+  + anchorOriginTopLeftRectangular: 'className'
+  + anchorOriginBottomLeftRectangular: 'className'
+  + anchorOriginTopRightCircular: 'className'
+  + anchorOriginBottomRightCircular: 'className'
+  + anchorOriginTopLeftCircular: 'className'
+  }}>
   ```
 
 ### BottomNavigation
