@@ -1,6 +1,9 @@
 // https://github.com/airbnb/enzyme/issues/1792
 import 'core-js/modules/es6.array.from';
 import './utils/init';
+// import consoleError from './utils/consoleError';
+
+// consoleError();
 
 const integrationContext = require.context(
   '../packages/material-ui/test/integration',
