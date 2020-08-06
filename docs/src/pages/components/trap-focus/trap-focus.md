@@ -7,6 +7,8 @@ components: Unstable_TrapFocus
 
 <p class="description">Trap focus within a DOM node.</p>
 
+> ⚠️ The component is experimental and unstable.
+
 `TrapFocus` is a utility component that manages focus for its descendants.
 This is useful when implementing overlays such as modal dialogs, which should not allow focus to escape while open.
 
