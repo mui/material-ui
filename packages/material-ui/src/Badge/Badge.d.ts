@@ -63,6 +63,7 @@ export type BadgeClassKey =
   | 'anchorOriginTopRightCircular'
   | 'anchorOriginBottomRightCircular'
   | 'anchorOriginTopLeftCircular'
+  | 'anchorOriginBottomLeftCircular'
   | 'invisible';
 /**
  *
