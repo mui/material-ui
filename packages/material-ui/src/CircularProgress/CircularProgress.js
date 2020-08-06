@@ -98,7 +98,7 @@ const CircularProgress = React.forwardRef(function CircularProgress(props, ref) 
     variant: variantProp = 'indeterminate',
     ...other
   } = props;
-  
+
   const variant = variantProp === 'static' ? 'determinate' : variantProp;
 
   const circleStyle = {};
@@ -204,20 +204,17 @@ CircularProgress.propTypes = {
    * The variant to use.
    * Use indeterminate when there is no progress value.
    */
-  variant: chainPropTypes(
-    PropTypes.oneOf(['determinate', 'indeterminate', 'static']),
-    (props) => {
-      const { variant } = props;
+  variant: chainPropTypes(PropTypes.oneOf(['determinate', 'indeterminate', 'static']), (props) => {
+    const { variant } = props;
 
-      if (variant === 'static') {
-        throw new Error(
-          'Material-UI: `variant="static"` was deprecated. Use `variant="determinate"` instead.',
-        );
-      }
+    if (variant === 'static') {
+      throw new Error(
+        'Material-UI: `variant="static"` was deprecated. Use `variant="determinate"` instead.',
+      );
+    }
 
-      return null;
-    },
-  ),
+    return null;
+  }),
 };
 
 export default withStyles(styles, { name: 'MuiCircularProgress', flip: false })(CircularProgress);
