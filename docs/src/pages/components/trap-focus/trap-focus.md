@@ -8,7 +8,7 @@ components: Unstable_TrapFocus
 <p class="description">Trap focus within a DOM node.</p>
 
 `TrapFocus` is a utility component that manages focus for its descendants.
-This is useful when implementing overlays like modal dialogs, which should not allow focus to escape while open.
+This is useful when implementing overlays such as modal dialogs, which should not allow focus to escape while open.
 
 When `open={true}` the trap is enabled, and pressing <kbd>Tab</kbd> or <kbd>Shift+Tab</kbd> will rotate focus within the inner focusable elements of the component.
 
@@ -23,7 +23,7 @@ When `open={true}` the trap is enabled, and pressing <kbd>Tab</kbd> or <kbd>Shif
 
 Clicks within the focus trap behave normally; but clicks outside the focus trap are blocked.
 
-You can disable the behavior with the `disableEnforceFocus` prop.
+You can disable this behavior with the `disableEnforceFocus` prop.
 
 {{"demo": "pages/components/trap-focus/DisableEnforceFocus.js"}}
 
@@ -45,6 +45,6 @@ You can disable this behavior and make it lazy with the `disableAutoFocus` prop.
 
 ## Portal
 
-The following demo uses [`Portal`](/components/portal/) to render a part of the trap focus into a new "subtree" outside of the current DOM hierarchy.
+The following demo uses the [`Portal`](/components/portal/) component to render a subset of the trap focus children into a new "subtree" outside of the current DOM hierarchy, so that they no longer form part of the focus loop.
 
 {{"demo": "pages/components/trap-focus/PortalTrapFocus.js"}}
