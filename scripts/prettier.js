@@ -25,7 +25,7 @@ function runPrettier(options) {
 
   const warnedFiles = [];
   const ignoredFiles = fs
-    .readFileSync('.eslintignore', 'utf-8')
+    .readFileSync(path.join(process.cwd(), '.eslintignore'), 'utf-8')
     .split(/\r*\n/)
     .filter((notEmpty) => notEmpty);
 
@@ -51,7 +51,7 @@ function runPrettier(options) {
     return;
   }
 
-  const prettierConfigPath = path.join(__dirname, '../prettier.config.js');
+  const prettierConfigPath = path.join(process.cwd(), 'prettier.config.js');
 
   files.forEach((file) => {
     const prettierOptions = prettier.resolveConfig.sync(file, {
@@ -95,16 +95,16 @@ function runPrettier(options) {
 }
 
 async function run(argv) {
-  const { mode } = argv;
+  const { mode, branch } = argv;
   const shouldWrite = mode === 'write' || mode === 'write-changed';
   const onlyChanged = mode === 'check-changed' || mode === 'write-changed';
 
   let changedFiles;
   if (onlyChanged) {
-    changedFiles = await listChangedFiles();
+    changedFiles = await listChangedFiles({ branch });
   }
 
-  runPrettier({ changedFiles, shouldWrite });
+  runPrettier({ changedFiles, shouldWrite, branch });
 }
 
 yargs
@@ -112,11 +112,17 @@ yargs
     command: '$0 [mode]',
     description: 'formats codebase',
     builder: (command) => {
-      return command.positional('mode', {
-        description: '"write" | "check-changed" | "write-changed"',
-        type: 'string',
-        default: 'write-changed',
-      });
+      return command
+        .positional('mode', {
+          description: '"write" | "check-changed" | "write-changed"',
+          type: 'string',
+          default: 'write-changed',
+        })
+        .option('branch', {
+          default: 'next',
+          describe: 'The branch to diff against',
+          type: 'string',
+        });
     },
     handler: run,
   })
