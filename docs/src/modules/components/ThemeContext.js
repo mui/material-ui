@@ -208,6 +208,9 @@ export function ThemeProvider(props) {
           MuiBadge: {
             overlap: 'rectangular',
           },
+          MuiAvatar: {
+            variant: 'circular',
+          },
         },
         spacing,
       },
