@@ -18,8 +18,8 @@ export default function LazyTrapFocus() {
         >
           <div tabIndex={-1}>
             <h3>Quick form</h3>
-            <input aria-label="First name" placeholder="First name" />
-            <input aria-label="Last name" placeholder="Last name" />
+            <input aria-label="first name" placeholder="First name" />
+            <input aria-label="last name" placeholder="Last name" />
             <button type="button" onClick={() => setOpen(false)}>
               Close
             </button>
