@@ -195,22 +195,3 @@ index 3fba3ffab7..532c206595 100644
      });
    });
  });
-diff --git a/test/utils/createClientRender.js b/test/utils/createClientRender.js
-index 2257649b35..e63fa6a416 100644
---- a/test/utils/createClientRender.js
-+++ b/test/utils/createClientRender.js
-@@ -122,6 +122,14 @@ function clientRender(element, options = {}) {
-     return result;
-   };
- 
-+  // TODO: Remove once we switch to `@testing-library/react@10.4.7`
-+  const testingLibraryUnmount = result.unmount;
-+  result.unmount = function unmountActing() {
-+    act(() => {
-+      testingLibraryUnmount();
-+    });
-+  };
-+
-   return result;
- }
- 
