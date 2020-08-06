@@ -1,12 +1,13 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
+import { elementTypeAcceptingRef } from '@material-ui/utils';
 import Collapse from '@material-ui/core/Collapse';
 import { fade, withStyles } from '@material-ui/core/styles';
 import { ownerDocument, useForkRef, unsupportedProp } from '@material-ui/core/utils';
 import TreeViewContext from '../TreeView/TreeViewContext';
 import { DescendantProvider, useDescendant } from '../TreeView/descendants';
+import TreeItemContent from './TreeItemContent';
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
@@ -22,7 +23,7 @@ export const styles = (theme) => ({
     padding: 0,
     marginLeft: 17,
   },
-  /* Styles applied to the tree node content. */
+  /* Styles applied to the content element. */
   content: {
     padding: '0 8px',
     width: '100%',
@@ -72,7 +73,7 @@ export const styles = (theme) => ({
   focused: {},
   /* Pseudo-class applied to the element when disabled. */
   disabled: {},
-  /* Styles applied to the tree node icon and collapse/expand icon. */
+  /* Styles applied to the tree node icon. */
   iconContainer: {
     marginRight: 4,
     width: 15,
@@ -97,16 +98,16 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     classes,
     className,
     collapseIcon,
+    ContentComponent = TreeItemContent,
+    ContentProps,
     endIcon,
     expandIcon,
     disabled: disabledProp,
-    icon: iconProp,
+    icon,
     id: idProp,
     label,
     nodeId,
     onClick,
-    onIconClick,
-    onLabelClick,
     onMouseDown,
     TransitionComponent = Collapse,
     TransitionProps,
@@ -114,11 +115,8 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   } = props;
 
   const {
-    icons: contextIcons,
+    icons: contextIcons = {},
     focus,
-    selectNode,
-    selectRange,
-    toggleExpansion,
     isExpanded,
     isFocused,
     isSelected,
@@ -154,70 +152,28 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
 
   const { index, parentId } = useDescendant(descendant);
 
-  let icon = iconProp;
-
   const expandable = Boolean(Array.isArray(children) ? children.length : children);
   const expanded = isExpanded ? isExpanded(nodeId) : false;
   const focused = isFocused ? isFocused(nodeId) : false;
   const selected = isSelected ? isSelected(nodeId) : false;
   const disabled = isDisabled ? isDisabled(nodeId) : false;
-  const icons = contextIcons || {};
 
-  if (!icon) {
-    if (expandable) {
-      if (!expanded) {
-        icon = expandIcon || icons.defaultExpandIcon;
-      } else {
-        icon = collapseIcon || icons.defaultCollapseIcon;
-      }
+  let displayIcon;
+  let expansionIcon;
 
-      if (!icon) {
-        icon = icons.defaultParentIcon;
-      }
+  if (expandable) {
+    if (!expanded) {
+      expansionIcon = expandIcon || contextIcons.defaultExpandIcon;
     } else {
-      icon = endIcon || icons.defaultEndIcon;
+      expansionIcon = collapseIcon || contextIcons.defaultCollapseIcon;
     }
   }
 
-  const handleClick = (event) => {
-    if (!disabled) {
-      if (!focused) {
-        focus(event, nodeId);
-      }
-
-      const multiple = multiSelect && (event.shiftKey || event.ctrlKey || event.metaKey);
-
-      // If already expanded and trying to toggle selection don't close
-      if (expandable && !event.defaultPrevented && !(multiple && isExpanded(nodeId))) {
-        toggleExpansion(event, nodeId);
-      }
-
-      if (multiple) {
-        if (event.shiftKey) {
-          selectRange(event, { end: nodeId });
-        } else {
-          selectNode(event, nodeId, true);
-        }
-      } else {
-        selectNode(event, nodeId);
-      }
-    }
-
-    if (onClick) {
-      onClick(event);
-    }
-  };
-
-  const handleMouseDown = (event) => {
-    if (event.shiftKey || event.ctrlKey || event.metaKey || disabled) {
-      // Prevent text selection
-      event.preventDefault();
-    }
-
-    if (onMouseDown) {
-      onMouseDown(event);
-    }
-  };
+  if (expandable) {
+    displayIcon = contextIcons.defaultParentIcon;
+  } else {
+    displayIcon = endIcon || contextIcons.defaultEndIcon;
+  }
 
   React.useEffect(() => {
     // On the first render a node's index will be -1. We want to wait for the real index.
@@ -288,28 +244,26 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
       {...other}
       onFocus={handleFocus}
     >
-      {/* Key event is handled by the TreeView */}
-      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
-      <div
-        className={clsx(classes.content, {
-          [classes.expanded]: expanded,
-          [classes.selected]: selected,
-          [classes.focused]: focused,
-          [classes.disabled]: disabled,
-        })}
-        onClick={handleClick}
-        onMouseDown={handleMouseDown}
+      <ContentComponent
         ref={contentRef}
-      >
-        {/* Key event is handled by the TreeView */}
-        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
-        <div onClick={onIconClick} className={classes.iconContainer}>
-          {icon}
-        </div>
-        <Typography onClick={onLabelClick} component="div" className={classes.label}>
-          {label}
-        </Typography>
-      </div>
+        classes={{
+          root: classes.content,
+          expanded: classes.expanded,
+          selected: classes.selected,
+          focused: classes.focused,
+          disabled: classes.disabled,
+          iconContainer: classes.iconContainer,
+          label: classes.label,
+        }}
+        label={label}
+        nodeId={nodeId}
+        onClick={onClick}
+        onMouseDown={onMouseDown}
+        icon={icon}
+        expansionIcon={expansionIcon}
+        displayIcon={displayIcon}
+        {...ContentProps}
+      />
       {children && (
         <DescendantProvider id={nodeId}>
           <TransitionComponent
@@ -350,6 +304,14 @@ TreeItem.propTypes = {
    */
   collapseIcon: PropTypes.node,
   /**
+   * The component used for the content node.
+   */
+  ContentComponent: elementTypeAcceptingRef,
+  /**
+   * Props applied to ContentComponent
+   */
+  ContentProps: PropTypes.object,
+  /**
    * If `true`, the node will be disabled.
    */
   disabled: PropTypes.bool,
@@ -386,14 +348,6 @@ TreeItem.propTypes = {
    * Use the `onNodeFocus` callback on the tree if you need to monitor a node's focus.
    */
   onFocus: unsupportedProp,
-  /**
-   * `onClick` handler for the icon container. Call `event.preventDefault()` to prevent `onNodeToggle` from being called.
-   */
-  onIconClick: PropTypes.func,
-  /**
-   * `onClick` handler for the label container. Call `event.preventDefault()` to prevent `onNodeToggle` from being called.
-   */
-  onLabelClick: PropTypes.func,
   /**
    * @ignore
    */

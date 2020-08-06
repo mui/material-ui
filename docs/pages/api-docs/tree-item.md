@@ -31,6 +31,8 @@ The `MuiTreeItem` name can be used for providing [default props](/customization/
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the component. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">collapseIcon</span> | <span class="prop-type">node</span> |  | The icon used to collapse the node. |
+| <span class="prop-name">ContentComponent</span> | <span class="prop-type">element type</span> | <span class="prop-default">TreeItemContent</span> | The component used for the content node.<br>⚠️ [Needs to be able to hold a ref](/guides/composition/#caveat-with-refs). |
+| <span class="prop-name">ContentProps</span> | <span class="prop-type">object</span> |  | Props applied to ContentComponent |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> |  | If `true`, the node will be disabled. |
 | <span class="prop-name">endIcon</span> | <span class="prop-type">node</span> |  | The icon displayed next to a end node. |
 | <span class="prop-name">expandIcon</span> | <span class="prop-type">node</span> |  | The icon used to expand the node. |
@@ -38,8 +40,6 @@ The `MuiTreeItem` name can be used for providing [default props](/customization/
 | <span class="prop-name">label</span> | <span class="prop-type">node</span> |  | The tree node label. |
 | <span class="prop-name required">nodeId<abbr title="required">*</abbr></span> | <span class="prop-type">string</span> |  | The id of the node. |
 | <span class="prop-name">onFocus</span> | <span class="prop-type">unsupportedProp</span> |  | This prop isn't supported. Use the `onNodeFocus` callback on the tree if you need to monitor a node's focus. |
-| <span class="prop-name">onIconClick</span> | <span class="prop-type">func</span> |  | `onClick` handler for the icon container. Call `event.preventDefault()` to prevent `onNodeToggle` from being called. |
-| <span class="prop-name">onLabelClick</span> | <span class="prop-type">func</span> |  | `onClick` handler for the label container. Call `event.preventDefault()` to prevent `onNodeToggle` from being called. |
 | <span class="prop-name">TransitionComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">Collapse</span> | The component used for the transition. [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component. |
 | <span class="prop-name">TransitionProps</span> | <span class="prop-type">object</span> |  | Props applied to the transition element. By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition) component. |
 
@@ -53,12 +53,12 @@ Any other props supplied will be provided to the root element (native element).
 |:-----|:-------------|:------------|
 | <span class="prop-name">root</span> | <span class="prop-name">.MuiTreeItem-root</span> | Styles applied to the root element.
 | <span class="prop-name">group</span> | <span class="prop-name">.MuiTreeItem-group</span> | Styles applied to the `role="group"` element.
-| <span class="prop-name">content</span> | <span class="prop-name">.MuiTreeItem-content</span> | Styles applied to the tree node content.
+| <span class="prop-name">content</span> | <span class="prop-name">.MuiTreeItem-content</span> | Styles applied to the content element.
 | <span class="prop-name">expanded</span> | <span class="prop-name">.Mui-expanded</span> | Pseudo-class applied to the content element when expanded.
 | <span class="prop-name">selected</span> | <span class="prop-name">.Mui-selected</span> | Pseudo-class applied to the content element when selected.
 | <span class="prop-name">focused</span> | <span class="prop-name">.Mui-focused</span> | Pseudo-class applied to the content element when focused.
 | <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the element when disabled.
-| <span class="prop-name">iconContainer</span> | <span class="prop-name">.MuiTreeItem-iconContainer</span> | Styles applied to the tree node icon and collapse/expand icon.
+| <span class="prop-name">iconContainer</span> | <span class="prop-name">.MuiTreeItem-iconContainer</span> | Styles applied to the tree node icon.
 | <span class="prop-name">label</span> | <span class="prop-name">.MuiTreeItem-label</span> | Styles applied to the label element.
 
 You can override the style of the component thanks to one of these customization points:

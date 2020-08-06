@@ -52,6 +52,15 @@ const data = {
 
 {{"demo": "pages/components/tree-view/RichObjectTreeView.js", "defaultCodeOpen": false}}
 
+## ContentComponent
+
+You can use the `ContentComponent` prop to further customize the behaviour of the TreeItem
+e.g. limiting expansion to clicking the icon or increasing the width of the state indicator.
+
+{{"demo": "pages/components/tree-view/IconExpansionTreeView.js", "defaultCodeOpen": false}}
+
+{{"demo": "pages/components/tree-view/BarTreeView.js", "defaultCodeOpen": false}}
+
 ## Customized tree view
 
 ### Custom icons, border and animation
