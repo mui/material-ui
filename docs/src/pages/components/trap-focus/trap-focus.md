@@ -7,10 +7,10 @@ components: Unstable_TrapFocus
 
 <p class="description">Trap focus within a DOM node.</p>
 
-`TrapFocus` is a utility component that manage focus for its descendants.
-This is useful when implementing overlays like modal dialogs, which should not allow focus to escape them while open.
+`TrapFocus` is a utility component that manages focus for its descendants.
+This is useful when implementing overlays like modal dialogs, which should not allow focus to escape while open.
 
-When `open={true}` the trap enables, pressing <kbd>Tab</kbd> or <kbd>Shift+Tab</kbd> will circle focus within the inner focusable elements of the component.
+When `open={true}` the trap is enabled, and pressing <kbd>Tab</kbd> or <kbd>Shift+Tab</kbd> will rotate focus within the inner focusable elements of the component.
 
 - 📦 [1.5 kB gzipped](https://material-ui.com/size-snapshot).
 - ⚛️ Support portals
@@ -29,7 +29,7 @@ You can disable the behavior with the `disableEnforceFocus` prop.
 
 ## Disable restore focus
 
-The component restores the focus back to the previously focused element when it deactivates, for example, back to a button which opened a dialog.
+The component restores the focus back to the previously focused element when it deactivates, for example back to the button which opened a dialog.
 
 You can disable this behavior with the `disableRestoreFocus` prop.
 
@@ -37,14 +37,14 @@ You can disable this behavior with the `disableRestoreFocus` prop.
 
 ## Lazy activation
 
-By default, the component moves the focus to its descendants as soon as it opens, `open={true}`.
+By default, the component moves the focus to its descendants as soon as it opens: `open={true}`.
 
-You can disale this behavior, and make it lazy, with the `disableAutoFocus` prop.
+You can disable this behavior and make it lazy with the `disableAutoFocus` prop.
 
 {{"demo": "pages/components/trap-focus/LazyTrapFocus.js"}}
 
 ## Portal
 
-The following demo uses [`Portal`](/components/portal/) to render a part of the trap focus into a new "subtree" outside of current DOM hierarchy.
+The following demo uses [`Portal`](/components/portal/) to render a part of the trap focus into a new "subtree" outside of the current DOM hierarchy.
 
 {{"demo": "pages/components/trap-focus/PortalTrapFocus.js"}}
