@@ -11,7 +11,7 @@ components: CssBaseline, ScopedCssBaseline
 Você já deve estar familiarizado com [normalize.css](https://github.com/necolas/normalize.css), uma coleção de elementos HTML e normas de atributos de estilo.
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 export default function MyApp() {
@@ -29,7 +29,7 @@ export default function MyApp() {
 No entanto, você pode estar migrando progressivamente um site para Material-UI, usar um reset global pode não ser uma opção. É possível aplicar a baseline apenas aos filhos usando o componente `ScopedCssBaseline`.
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import ScopedCssBaseline from '@material-ui/core/ScopedCssBaseline';
 import MyApp from './MyApp';
 

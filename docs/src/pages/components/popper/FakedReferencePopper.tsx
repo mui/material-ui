@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Popper, { PopperProps } from '@material-ui/core/Popper';
 import Typography from '@material-ui/core/Typography';

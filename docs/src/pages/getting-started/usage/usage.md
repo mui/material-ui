@@ -14,7 +14,7 @@ Please refer to each component's [demo page](/components/buttons/) to see how th
 Here's a quick example to get you started, **it's literally all you need**:
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import Button from '@material-ui/core/Button';
 

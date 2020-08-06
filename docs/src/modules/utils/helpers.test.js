@@ -3,7 +3,7 @@ import { getDependencies } from './helpers';
 
 describe('docs getDependencies helpers', () => {
   const s1 = `
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
@@ -32,7 +32,7 @@ const styles = theme => ({
 
   it('should handle * dependencies', () => {
     const source = `
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import * as _ from '@unexisting/thing';
 import Draggable from 'react-draggable';
@@ -68,7 +68,7 @@ const suggestions = [
 
   it('should support direct import', () => {
     const source = `
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
@@ -103,7 +103,7 @@ import { LocalizationProvider as MuiPickersLocalizationProvider, KeyboardTimePic
 
   it('should handle multilines', () => {
     const source = `
-import React from 'react';
+import * as React from 'react';
 import DateFnsAdapter from '@material-ui/pickers/adapter/date-fns';
 import {
   LocalizationProvider as MuiPickersLocalizationProvider,

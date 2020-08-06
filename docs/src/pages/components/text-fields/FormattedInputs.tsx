@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import MaskedInput from 'react-text-mask';
 import NumberFormat from 'react-number-format';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';

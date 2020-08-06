@@ -1,5 +1,5 @@
 /* eslint react/jsx-no-target-blank: ["error", { allowReferrer: true }] */
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import AdDisplay from 'docs/src/modules/components/AdDisplay';
 

@@ -11,7 +11,7 @@
 Вот краткий пример для начала, **это буквально все что вам нужно**:
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import Button from '@material-ui/core/Button';
 

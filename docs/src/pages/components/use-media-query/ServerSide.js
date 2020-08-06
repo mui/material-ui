@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import mediaQuery from 'css-mediaquery';
 import { ThemeProvider } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';

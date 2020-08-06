@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import clsx from 'clsx';
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 import Badge from '@material-ui/core/Badge';

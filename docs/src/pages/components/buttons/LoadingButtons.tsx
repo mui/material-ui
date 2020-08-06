@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import LoadingButton from '@material-ui/lab/LoadingButton';
 import SaveIcon from '@material-ui/icons/Save';

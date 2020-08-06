@@ -6,7 +6,7 @@ describe('getJsxPreview', () => {
     expect(
       getJsxPreview(
         `
-import React from 'react';
+import * as React from 'react';
 import Rating from '@material-ui/lab/Rating';
 
 export default function HalfRating() {

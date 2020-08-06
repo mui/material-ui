@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 // import of a small, pure module in a private demo
 // bundle size and module duplication is negligible
 /* eslint-disable-next-line no-restricted-imports */

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { usePagination } from '@material-ui/lab/Pagination';
 import { makeStyles } from '@material-ui/core/styles';
 

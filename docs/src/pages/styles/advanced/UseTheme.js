@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { ThemeProvider, useTheme } from '@material-ui/core/styles';
 
 function DeepChild() {

@@ -11,7 +11,7 @@ Você pode usar qualquer um dos componentes conforme demonstrado na documentaç�
 Aqui está um exemplo rápido para você começar, **é literalmente tudo que você precisa**:
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import Button from '@material-ui/core/Button';
 

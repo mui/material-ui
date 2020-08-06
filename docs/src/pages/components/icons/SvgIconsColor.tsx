@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { green } from '@material-ui/core/colors';
 import SvgIcon, { SvgIconProps } from '@material-ui/core/SvgIcon';

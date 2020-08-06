@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import Typography, { TypographyProps } from '@material-ui/core/Typography';
 import Skeleton from '@material-ui/lab/Skeleton';
 import Grid from '@material-ui/core/Grid';

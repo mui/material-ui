@@ -36,7 +36,7 @@ This guide aims to document the most popular alternatives, but you should find t
 **PlainCssButton.js**
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import './PlainCssButton.css';
 
@@ -90,7 +90,7 @@ import { StylesProvider } from '@material-ui/core/styles';
 **PlainCssButtonDeep.js**
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import './PlainCssButtonDeep.css';
 
@@ -131,7 +131,7 @@ export default function PlainCssButtonDeep() {
 **GlobalCssButton.js**
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import './GlobalCssButton.css';
 
@@ -164,7 +164,7 @@ The `styled()` method works perfectly on all of the components.
 [![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/styled-components-r1fsr)
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 
@@ -213,7 +213,7 @@ import { StylesProvider } from '@material-ui/core/styles';
 {{"demo": "pages/guides/interoperability/StyledComponentsDeep.js"}}
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 
@@ -242,7 +242,7 @@ export default function StyledComponentsDeep() {
 以上的例子依赖于[默认的`类`的值](/styles/advanced/#with-material-ui-core)，但是您也可以提供自定义的类名：`.label`。
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 
@@ -304,7 +304,7 @@ const StyledButton = styled(Button)`
 例如，若您尝试用 `MenuProps` 属性来样式化 [Select](/components/selects/) 组件的 [Menu](/components/menus/)，您将需要将 `className` 属性传递到它的 DOM 层次结构之外渲染的元素当中。 下面的示例演示了一个变通办法：
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import styled from 'styled-components';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -351,7 +351,7 @@ const StyledMenu = styled(({ className, ...props }) => (
 **CssModulesButton.js**
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 // webpack, parcel or else will inject the CSS into the page
 import styles from './CssModulesButton.css';
 import Button from '@material-ui/core/Button';
@@ -406,7 +406,7 @@ import { StylesProvider } from '@material-ui/core/styles';
 **CssModulesButtonDeep.js**
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 // webpack, parcel or else will inject the CSS into the page
 import styles from './CssModulesButtonDeep.css';
 import Button from '@material-ui/core/Button';

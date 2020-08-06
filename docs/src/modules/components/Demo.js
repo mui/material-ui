@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import LZString from 'lz-string';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';

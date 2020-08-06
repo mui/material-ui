@@ -47,7 +47,7 @@ Material-UI foi iniciado [4 anos atrás](https://github.com/mui-org/material-ui/
 3. `MuiThemeProvider` é opcional para v1.x., mas se você tem um tema customizado, você é livre para usar as versões v0.x e v1.x do componente, ao mesmo tempo, como neste exemplo:
 
   ```jsx
-  import React from 'react';
+  import * as React from 'react';
   import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'; // v1.x
   import { MuiThemeProvider as V0MuiThemeProvider} from 'material-ui';
   import getMuiTheme from 'material-ui/styles/getMuiTheme';

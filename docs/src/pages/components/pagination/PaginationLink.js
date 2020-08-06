@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { MemoryRouter, Route } from 'react-router';
 import { Link } from 'react-router-dom';
 import Pagination from '@material-ui/lab/Pagination';

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import Badge from '@material-ui/core/Badge';
 import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
