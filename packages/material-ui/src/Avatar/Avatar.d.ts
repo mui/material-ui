@@ -55,6 +55,7 @@ declare const Avatar: OverridableComponent<AvatarTypeMap>;
 export type AvatarClassKey =
   | 'root'
   | 'colorDefault'
+  | 'circle'
   | 'circular'
   | 'rounded'
   | 'square'
