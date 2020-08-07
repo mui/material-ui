@@ -263,32 +263,17 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     ariaSelected = true;
   }
 
-  React.useEffect(() => {
-    if (treeitemElement && treeId) {
-      const handleFocusIn = (event) => {
-        const tree = ownerDocument(treeitemElement).getElementById(treeId);
-
-        // Some browsers don't focus the tree when using active-descendant.
-        // Probably can remove when we drop IE11 support.
-        if (ownerDocument(treeitemElement).activeElement !== tree) {
-          tree.focus();
-        }
-
-        const unfocusable = !disabledItemsFocusable && disabled;
-        if (!focused && event.currentTarget === event.target && !unfocusable) {
-          focus(event, nodeId);
-        }
-      };
-
-      // Using focusin to avoid blurring the tree.
-      treeitemElement.addEventListener('focusin', handleFocusIn);
-
-      return () => {
-        treeitemElement.removeEventListener('focusin', handleFocusIn);
-      };
+  function handleFocus(event) {
+    // DOM focus stays on the tree which manages focus with aria-activedescendant
+    if (event.target === event.currentTarget) {
+      ownerDocument(event.target).getElementById(treeId).focus();
     }
-    return undefined;
-  }, [focus, focused, nodeId, treeitemElement, treeId, disabledItemsFocusable, disabled]);
+
+    const unfocusable = !disabledItemsFocusable && disabled;
+    if (!focused && event.currentTarget === event.target && !unfocusable) {
+      focus(event, nodeId);
+    }
+  }
 
   return (
     <li
@@ -301,6 +286,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
       id={id}
       tabIndex={-1}
       {...other}
+      onFocus={handleFocus}
     >
       {/* Key event is handled by the TreeView */}
       {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}

@@ -737,8 +737,11 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   };
 
   const handleFocus = (event) => {
-    const firstSelected = Array.isArray(selected) ? selected[0] : selected;
-    focus(event, firstSelected || getNavigableChildrenIds(null)[0]);
+    // if the event bubbled (which is React specific) we don't want to steal focus
+    if (event.target === event.currentTarget) {
+      const firstSelected = Array.isArray(selected) ? selected[0] : selected;
+      focus(event, firstSelected || getNavigableChildrenIds(null)[0]);
+    }
 
     if (onFocus) {
       onFocus(event);
