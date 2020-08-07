@@ -653,6 +653,37 @@ describe('<ButtonBase />', () => {
       expect(button).to.have.class(classes.focusVisible);
     });
 
+    it('removes foucs-visible if focus is re-targetted', () => {
+      const eventLog = [];
+      function Test() {
+        const focusRetargetRef = React.useRef(null);
+        return (
+          <div onFocus={() => focusRetargetRef.current.focus()}>
+            <button ref={focusRetargetRef} type="button">
+              you cannot escape me
+            </button>
+            <ButtonBase
+              onBlur={() => eventLog.push('blur')}
+              onFocus={() => eventLog.push('focus')}
+              onFocusVisible={() => eventLog.push('focus-visible')}
+            >
+              Hello
+            </ButtonBase>
+          </div>
+        );
+      }
+      const { getByText } = render(<Test />);
+      const buttonBase = getByText('Hello');
+      const focusRetarget = getByText('you cannot escape me');
+      simulatePointerDevice();
+
+      focusVisible(buttonBase);
+
+      expect(focusRetarget).toHaveFocus();
+      expect(eventLog).to.deep.equal(['focus-visible', 'focus', 'blur']);
+      expect(buttonBase).not.to.have.class(classes.focusVisible);
+    });
+
     it('onFocusVisibleHandler() should propagate call to onFocusVisible prop', () => {
       const onFocusVisibleSpy = spy();
       const { getByRole } = render(
