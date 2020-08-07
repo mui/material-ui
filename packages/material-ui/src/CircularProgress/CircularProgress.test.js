@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import {stub } from 'sinon';
+import { stub } from 'sinon';
 import { createClientRender } from 'test/utils/createClientRender';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
