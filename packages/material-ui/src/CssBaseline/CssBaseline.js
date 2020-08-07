@@ -9,6 +9,8 @@ export const html = {
   // Change from `box-sizing: content-box` so that `width`
   // is not affected by `padding` or `border`.
   boxSizing: 'border-box',
+  // Fix font resize problem in iOS
+  WebkitTextSizeAdjust: '100%',
 };
 
 export const body = (theme) => ({
