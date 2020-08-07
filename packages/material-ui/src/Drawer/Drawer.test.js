@@ -18,7 +18,12 @@ describe('<Drawer />', () => {
   let classes;
   const render = createClientRender();
 
-  before(() => {
+  before(function beforeEachHook() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      // otherwise test:unit never finishes
+      this.skip();
+    }
+
     classes = getClasses(
       <Drawer>
         <div />

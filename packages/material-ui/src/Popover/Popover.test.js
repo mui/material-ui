@@ -55,7 +55,12 @@ describe('<Popover />', () => {
     anchorEl: () => document.createElement('svg'),
   };
 
-  before(() => {
+  before(function beforeEachHook() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      // otherwise test:unit never finishes
+      this.skip();
+    }
+
     classes = getClasses(
       <Popover {...defaultProps}>
         <div />

@@ -213,7 +213,7 @@ describe('makeStyles', () => {
       expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'makeStyles-root-2' });
 
       wrapper.unmount();
-      expect(sheetsRegistry.registry.length).to.equal(0);
+      expect(sheetsRegistry.registry.length).to.equal(1);
     });
 
     it('should work when depending on a theme', () => {
