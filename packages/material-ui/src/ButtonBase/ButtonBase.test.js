@@ -654,11 +654,25 @@ describe('<ButtonBase />', () => {
     });
 
     it('removes foucs-visible if focus is re-targetted', () => {
+      /**
+       * @type {string[]}
+       */
       const eventLog = [];
       function Test() {
+        /**
+         * @type {React.Ref<HTMLButtonElement>}
+         */
         const focusRetargetRef = React.useRef(null);
         return (
-          <div onFocus={() => focusRetargetRef.current.focus()}>
+          <div
+            onFocus={() => {
+              const { current: focusRetarget } = focusRetargetRef;
+              if (focusRetarget === null) {
+                throw new TypeError('Nothing to focous. Test cannot work.');
+              }
+              focusRetarget.focus();
+            }}
+          >
             <button ref={focusRetargetRef} type="button">
               you cannot escape me
             </button>
