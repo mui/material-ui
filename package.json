@@ -114,7 +114,6 @@
     "karma-browserstack-launcher": "~1.4.0",
     "karma-chrome-launcher": "^3.0.0",
     "karma-mocha": "^2.0.0",
-    "karma-mocha-reporter": "^2.2.5",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^4.0.2",
     "lerna": "^3.16.4",

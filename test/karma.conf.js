@@ -26,13 +26,7 @@ module.exports = function setKarmaConfig(config) {
         included: true,
       },
     ],
-    plugins: [
-      'karma-mocha',
-      'karma-chrome-launcher',
-      'karma-sourcemap-loader',
-      'karma-webpack',
-      'karma-mocha-reporter',
-    ],
+    plugins: ['karma-mocha', 'karma-chrome-launcher', 'karma-sourcemap-loader', 'karma-webpack'],
     /**
      * possible values:
      * - config.LOG_DISABLE

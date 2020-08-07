@@ -5,10 +5,14 @@ import { prettyDOM } from '@testing-library/react/pure';
 import { computeAccessibleName } from 'dom-accessibility-api';
 import formatUtil from 'format-util';
 
+function isInKarma() {
+  return !/jsdom/.test(window.navigator.userAgent);
+}
+
 // chai#utils.elToString that looks like stringified elements in testing-library
 function elementToString(element) {
   if (typeof element?.nodeType === 'number') {
-    return prettyDOM(element, undefined, { highlight: true, maxDepth: 1 });
+    return prettyDOM(element, undefined, { highlight: !isInKarma(), maxDepth: 1 });
   }
   return String(element);
 }
@@ -21,7 +25,8 @@ chai.use((chaiAPI, utils) => {
 
     this.assert(
       element === document.activeElement,
-      'expected element to have focus',
+      // karma does not show the diff like mocha does
+      `expected element to have focus${isInKarma() ? '\nexpected #{exp}\nactual: #{act}' : ''}`,
       `expected element to NOT have focus \n${elementToString(element)}`,
       elementToString(element),
       elementToString(document.activeElement),
@@ -36,10 +41,12 @@ chai.use((chaiAPI, utils) => {
 
     this.assert(
       virutallyFocusedElement === id,
-      'expected element to be virtually focused',
+      `expected element to be virtually focused${
+        isInKarma() ? '\nexpected #{exp}\nactual: #{act}' : ''
+      }`,
       'expected element to NOT to be virtually focused',
-      id,
-      virutallyFocusedElement,
+      elementToString(document.getElementById(id)),
+      elementToString(virutallyFocusedElement),
     );
   });
 

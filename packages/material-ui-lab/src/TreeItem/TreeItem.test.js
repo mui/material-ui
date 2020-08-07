@@ -39,10 +39,11 @@ describe('<TreeItem />', () => {
 
     it('should warn if an onFocus callback is supplied', () => {
       expect(() => {
-        render(
-          <TreeView>
-            <TreeItem onFocus={() => {}} nodeId="1" label="one" />
-          </TreeView>,
+        PropTypes.checkPropTypes(
+          TreeItem.Naked.propTypes,
+          { nodeId: 'one', onFocus: () => {} },
+          'prop',
+          'TreeItem',
         );
       }).toErrorDev('Failed prop type: The prop `onFocus` is not supported.');
     });
