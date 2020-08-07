@@ -244,10 +244,23 @@ index 9cd267a0c0..7323483c87 100644
      });
    });
 diff --git a/packages/material-ui/src/Unstable_TrapFocus/Unstable_TrapFocus.js b/packages/material-ui/src/Unstable_TrapFocus/Unstable_TrapFocus.js
-index 5fbc86b1ba..2109da947f 100644
+index 5fbc86b1ba..e7b33b024b 100644
 --- a/packages/material-ui/src/Unstable_TrapFocus/Unstable_TrapFocus.js
 +++ b/packages/material-ui/src/Unstable_TrapFocus/Unstable_TrapFocus.js
-@@ -157,7 +157,13 @@ function Unstable_TrapFocus(props) {
+@@ -76,6 +76,12 @@ function Unstable_TrapFocus(props) {
+     }
+ 
+     const contain = (nativeEvent) => {
++      // Contain can be called between the component being unmounted and its cleanup function being run.
++      // Cleanup functions are executed lazily in react@next
++      if (rootRef.current === null) {
++        return;
++      }
++
+       if (
+         !doc.hasFocus() ||
+         disableEnforceFocus ||
+@@ -157,7 +163,13 @@ function Unstable_TrapFocus(props) {
          // in nodeToRestore.current being null.
          // Not all elements in IE 11 have a focus method.
          // Once IE 11 support is dropped the focus() call can be unconditional.
