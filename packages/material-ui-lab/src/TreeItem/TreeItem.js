@@ -140,16 +140,16 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     id = `${treeId}-${nodeId}`;
   }
 
-  const [nodeRef, setNodeRef] = React.useState(null);
+  const [treeitemElement, setTreeitemElement] = React.useState(null);
   const contentRef = React.useRef(null);
-  const handleRef = useForkRef(setNodeRef, ref);
+  const handleRef = useForkRef(setTreeitemElement, ref);
 
   const descendant = React.useMemo(
     () => ({
-      element: nodeRef,
+      element: treeitemElement,
       id: nodeId,
     }),
-    [nodeId, nodeRef],
+    [nodeId, treeitemElement],
   );
 
   const { index, parentId } = useDescendant(descendant);
@@ -264,13 +264,13 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   }
 
   React.useEffect(() => {
-    if (nodeRef && treeId) {
+    if (treeitemElement && treeId) {
       const handleFocusIn = (event) => {
-        const tree = ownerDocument(nodeRef).getElementById(treeId);
+        const tree = ownerDocument(treeitemElement).getElementById(treeId);
 
         // Some browsers don't focus the tree when using active-descendant.
         // Probably can remove when we drop IE11 support.
-        if (ownerDocument(nodeRef).activeElement !== tree) {
+        if (ownerDocument(treeitemElement).activeElement !== tree) {
           tree.focus();
         }
 
@@ -281,14 +281,14 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
       };
 
       // Using focusin to avoid blurring the tree.
-      nodeRef.addEventListener('focusin', handleFocusIn);
+      treeitemElement.addEventListener('focusin', handleFocusIn);
 
       return () => {
-        nodeRef.removeEventListener('focusin', handleFocusIn);
+        treeitemElement.removeEventListener('focusin', handleFocusIn);
       };
     }
     return undefined;
-  }, [focus, focused, nodeId, nodeRef, treeId, disabledItemsFocusable, disabled]);
+  }, [focus, focused, nodeId, treeitemElement, treeId, disabledItemsFocusable, disabled]);
 
   return (
     <li
