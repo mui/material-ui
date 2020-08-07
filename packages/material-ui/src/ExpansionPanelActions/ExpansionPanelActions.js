@@ -19,7 +19,28 @@ export const styles = {
   },
 };
 
+let warnedOnce = false;
+
+/**
+ * ⚠️ The ExpansionPanelActions component was renamed to AccordionActions to use a more common naming convention.
+ *
+ * You should use `import { AccordionActions } from '@material-ui/core'`
+ * or `import AccordionActions from '@material-ui/core/AccordionActions'`.
+ */
 const ExpansionPanelActions = React.forwardRef(function ExpansionPanelActions(props, ref) {
+  if (process.env.NODE_ENV !== 'production') {
+    if (!warnedOnce) {
+      warnedOnce = true;
+      console.error(
+        [
+          'Material-UI: the ExpansionPanelActions component was renamed to AccordionActions to use a more common naming convention.',
+          '',
+          "You should use `import { AccordionActions } from '@material-ui/core'`",
+          "or `import AccordionActions from '@material-ui/core/AccordionActions'`",
+        ].join('\n'),
+      );
+    }
+  }
   const { classes, className, disableSpacing = false, ...other } = props;
 
   return (
@@ -32,15 +53,19 @@ const ExpansionPanelActions = React.forwardRef(function ExpansionPanelActions(pr
 });
 
 ExpansionPanelActions.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * The content of the component.
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */

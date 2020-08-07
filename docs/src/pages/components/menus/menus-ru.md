@@ -41,6 +41,8 @@ The primary responsibility of the `MenuList` component is to handle the focus.
 
 The `MenuItem` is a wrapper around `ListItem` with some additional styles. You can use the same list composition features with the `MenuItem` component:
 
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/menu).
+
 ## Меню с максимальной высотой
 
 Если высота меню препятствует отображению всех пунктов меню, меню можно прокручивать внутри.

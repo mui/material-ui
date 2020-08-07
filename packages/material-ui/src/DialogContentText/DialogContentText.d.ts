@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { StandardProps } from '..';
 import { TypographyTypeMap } from '../Typography';
-import { OverrideProps, OverridableTypeMap, OverridableComponent } from '../OverridableComponent';
+import { OverrideProps, OverridableComponent } from '../OverridableComponent';
 
 export interface DialogContentTextTypeMap<
   P = {},
@@ -14,6 +13,17 @@ export interface DialogContentTextTypeMap<
 
 export type DialogContentTextClassKey = 'root';
 
+/**
+ *
+ * Demos:
+ *
+ * - [Dialogs](https://material-ui.com/components/dialogs/)
+ *
+ * API:
+ *
+ * - [DialogContentText API](https://material-ui.com/api/dialog-content-text/)
+ * - inherits [Typography API](https://material-ui.com/api/typography/)
+ */
 declare const DialogContentText: OverridableComponent<DialogContentTextTypeMap>;
 
 export type DialogContentTextProps<

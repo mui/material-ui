@@ -1,0 +1,114 @@
+diff --git a/packages/material-ui-lab/src/Autocomplete/Autocomplete.test.js b/packages/material-ui-lab/src/Autocomplete/Autocomplete.test.js
+index 2f3ea31dc..4ad337e85 100644
+--- a/packages/material-ui-lab/src/Autocomplete/Autocomplete.test.js
++++ b/packages/material-ui-lab/src/Autocomplete/Autocomplete.test.js
+@@ -1018,7 +1018,7 @@ describe('<Autocomplete />', () => {
+       fireEvent.keyDown(textbox, { key: 'Enter' });
+       expect(handleChange.callCount).to.equal(1);
+       expect(handleChange.args[0][1]).to.equal('a');
+-      expect(consoleErrorMock.callCount()).to.equal(4); // strict mode renders twice
++      expect(consoleErrorMock.callCount()).to.equal(3);
+       expect(consoleErrorMock.messages()[0]).to.include(
+         'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
+       );
+@@ -1070,7 +1070,7 @@ describe('<Autocomplete />', () => {
+         />,
+       );
+ 
+-      expect(consoleWarnMock.callCount()).to.equal(4); // strict mode renders twice
++      expect(consoleWarnMock.callCount()).to.equal(2);
+       expect(consoleWarnMock.messages()[0]).to.include(
+         'None of the options match with `"not a good value"`',
+       );
+@@ -1099,7 +1099,7 @@ describe('<Autocomplete />', () => {
+       const options = getAllByRole('option').map((el) => el.textContent);
+       expect(options).to.have.length(7);
+       expect(options).to.deep.equal(['A', 'D', 'E', 'B', 'G', 'F', 'C']);
+-      expect(consoleWarnMock.callCount()).to.equal(2); // strict mode renders twice
++      expect(consoleWarnMock.callCount()).to.equal(1);
+       expect(consoleWarnMock.messages()[0]).to.include('returns duplicated headers');
+     });
+   });
+diff --git a/packages/material-ui-styles/src/ThemeProvider/ThemeProvider.test.js b/packages/material-ui-styles/src/ThemeProvider/ThemeProvider.test.js
+index 9013d9095..7f0862466 100644
+--- a/packages/material-ui-styles/src/ThemeProvider/ThemeProvider.test.js
++++ b/packages/material-ui-styles/src/ThemeProvider/ThemeProvider.test.js
+@@ -135,7 +135,7 @@ describe('ThemeProvider', () => {
+           <div />
+         </ThemeProvider>,
+       );
+-      expect(consoleErrorMock.callCount()).to.equal(2); // strict mode renders twice
++      expect(consoleErrorMock.callCount()).to.equal(1);
+       expect(consoleErrorMock.messages()[0]).to.include('However, no outer theme is present.');
+     });
+ 
+@@ -148,7 +148,7 @@ describe('ThemeProvider', () => {
+           ,
+         </ThemeProvider>,
+       );
+-      expect(consoleErrorMock.callCount()).to.equal(2); // strict mode renders twice
++      expect(consoleErrorMock.callCount()).to.equal(1);
+       expect(consoleErrorMock.messages()[0]).to.include(
+         'Material-UI: You should return an object from your theme function',
+       );
+diff --git a/packages/material-ui/src/Breadcrumbs/Breadcrumbs.test.js b/packages/material-ui/src/Breadcrumbs/Breadcrumbs.test.js
+index ed0e37f21..49d8ea9b0 100644
+--- a/packages/material-ui/src/Breadcrumbs/Breadcrumbs.test.js
++++ b/packages/material-ui/src/Breadcrumbs/Breadcrumbs.test.js
+@@ -102,7 +102,7 @@ describe('<Breadcrumbs />', () => {
+       );
+       expect(getAllByRole('listitem', { hidden: false })).to.have.length(4);
+       expect(getByRole('list')).to.have.text('first/second/third/fourth');
+-      expect(consoleErrorMock.callCount()).to.equal(2); // strict mode renders twice
++      expect(consoleErrorMock.callCount()).to.equal(1);
+       expect(consoleErrorMock.messages()[0]).to.include(
+         'Material-UI: You have provided an invalid combination of props to the Breadcrumbs.\nitemsAfterCollapse={2} + itemsBeforeCollapse={2} >= maxItems={3}',
+       );
+diff --git a/packages/material-ui/src/TextareaAutosize/TextareaAutosize.test.js b/packages/material-ui/src/TextareaAutosize/TextareaAutosize.test.js
+index 09daadd96..1eaf80628 100644
+--- a/packages/material-ui/src/TextareaAutosize/TextareaAutosize.test.js
++++ b/packages/material-ui/src/TextareaAutosize/TextareaAutosize.test.js
+@@ -261,7 +261,7 @@ describe('<TextareaAutosize />', () => {
+         });
+         forceUpdate();
+ 
+-        expect(consoleErrorMock.callCount()).to.equal(3); // strict mode renders twice
++        expect(consoleErrorMock.callCount()).to.equal(1);
+         expect(consoleErrorMock.messages()[0]).to.include('Material-UI: Too many re-renders.');
+       });
+     });
+diff --git a/packages/material-ui/src/internal/SwitchBase.test.js b/packages/material-ui/src/internal/SwitchBase.test.js
+index 41a38bc07..c9397fd13 100644
+--- a/packages/material-ui/src/internal/SwitchBase.test.js
++++ b/packages/material-ui/src/internal/SwitchBase.test.js
+@@ -373,7 +373,7 @@ describe('<SwitchBase />', () => {
+         wrapper.setProps({ checked: true });
+         expect(consoleErrorMock.callCount()).to.equal(2);
+         expect(consoleErrorMock.messages()[0]).to.include(
+-          'Warning: A component is changing an uncontrolled input of type checkbox to be controlled.',
++          'Warning: A component is changing an uncontrolled input to be controlled.',
+         );
+         expect(consoleErrorMock.messages()[1]).to.include(
+           'Material-UI: A component is changing the uncontrolled checked state of SwitchBase to be controlled.',
+@@ -392,7 +392,7 @@ describe('<SwitchBase />', () => {
+         setProps({ checked: undefined });
+         expect(consoleErrorMock.callCount()).to.equal(2);
+         expect(consoleErrorMock.messages()[0]).to.include(
+-          'Warning: A component is changing a controlled input of type checkbox to be uncontrolled.',
++          'Warning: A component is changing a controlled input to be uncontrolled.',
+         );
+         expect(consoleErrorMock.messages()[1]).to.include(
+           'Material-UI: A component is changing the controlled checked state of SwitchBase to be uncontrolled.',
+diff --git a/packages/material-ui/src/useMediaQuery/useMediaQuery.test.js b/packages/material-ui/src/useMediaQuery/useMediaQuery.test.js
+index ba9977d1a..b5ca0ca4b 100644
+--- a/packages/material-ui/src/useMediaQuery/useMediaQuery.test.js
++++ b/packages/material-ui/src/useMediaQuery/useMediaQuery.test.js
+@@ -285,7 +285,7 @@ describe('useMediaQuery', () => {
+ 
+       render(<MyComponent />);
+       // logs warning twice in StrictMode
+-      expect(consoleErrorMock.callCount()).to.equal(2); // strict mode renders twice
++      expect(consoleErrorMock.callCount()).to.equal(1);
+       expect(consoleErrorMock.messages()[0]).to.include(
+         'Material-UI: The `query` argument provided is invalid',
+       );

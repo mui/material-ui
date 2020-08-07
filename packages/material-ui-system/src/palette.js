@@ -12,9 +12,6 @@ export const bgcolor = style({
   themeKey: 'palette',
 });
 
-const palette = compose(
-  color,
-  bgcolor,
-);
+const palette = compose(color, bgcolor);
 
 export default palette;

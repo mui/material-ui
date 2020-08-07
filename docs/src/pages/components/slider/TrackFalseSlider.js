@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: 250,
   },
@@ -51,8 +51,8 @@ export default function TrackFalseSlider() {
         marks={marks}
       />
       <div className={classes.margin} />
-      <Typography id="track-false-multi-values-slider" gutterBottom>
-        Removed track multi-values
+      <Typography id="track-false-range-slider" gutterBottom>
+        Removed track range slider
       </Typography>
       <Slider
         track={false}

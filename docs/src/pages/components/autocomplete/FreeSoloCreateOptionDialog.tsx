@@ -9,7 +9,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete';
 
-const filter = createFilterOptions();
+const filter = createFilterOptions<FilmOptionType>();
 
 export default function FreeSoloCreateOptionDialog() {
   const [value, setValue] = React.useState<FilmOptionType | null>(null);
@@ -41,7 +41,7 @@ export default function FreeSoloCreateOptionDialog() {
     <React.Fragment>
       <Autocomplete
         value={value}
-        onChange={(event: any, newValue: FilmOptionType | null) => {
+        onChange={(event, newValue) => {
           if (typeof newValue === 'string') {
             // timeout to avoid instant validation of the dialog's form.
             setTimeout(() => {
@@ -51,19 +51,15 @@ export default function FreeSoloCreateOptionDialog() {
                 year: '',
               });
             });
-            return;
-          }
-
-          if (newValue && newValue.inputValue) {
+          } else if (newValue && newValue.inputValue) {
             toggleOpen(true);
             setDialogValue({
               title: newValue.inputValue,
               year: '',
             });
-            return;
+          } else {
+            setValue(newValue);
           }
-
-          setValue(newValue);
         }}
         filterOptions={(options, params) => {
           const filtered = filter(options, params) as FilmOptionType[];
@@ -79,7 +75,7 @@ export default function FreeSoloCreateOptionDialog() {
         }}
         id="free-solo-dialog-demo"
         options={top100Films}
-        getOptionLabel={option => {
+        getOptionLabel={(option) => {
           // e.g value selected with enter, right from the input
           if (typeof option === 'string') {
             return option;
@@ -89,10 +85,13 @@ export default function FreeSoloCreateOptionDialog() {
           }
           return option.title;
         }}
-        renderOption={option => option.title}
+        selectOnFocus
+        clearOnBlur
+        handleHomeEndKeys
+        renderOption={(option) => option.title}
         style={{ width: 300 }}
         freeSolo
-        renderInput={params => (
+        renderInput={(params) => (
           <TextField {...params} label="Free solo dialog" variant="outlined" />
         )}
       />
@@ -108,7 +107,7 @@ export default function FreeSoloCreateOptionDialog() {
               margin="dense"
               id="name"
               value={dialogValue.title}
-              onChange={event => setDialogValue({ ...dialogValue, title: event.target.value })}
+              onChange={(event) => setDialogValue({ ...dialogValue, title: event.target.value })}
               label="title"
               type="text"
             />
@@ -116,7 +115,7 @@ export default function FreeSoloCreateOptionDialog() {
               margin="dense"
               id="name"
               value={dialogValue.year}
-              onChange={event => setDialogValue({ ...dialogValue, year: event.target.value })}
+              onChange={(event) => setDialogValue({ ...dialogValue, year: event.target.value })}
               label="year"
               type="number"
             />
@@ -142,7 +141,7 @@ interface FilmOptionType {
 }
 
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
-const top100Films = [
+const top100Films: FilmOptionType[] = [
   { title: 'The Shawshank Redemption', year: 1994 },
   { title: 'The Godfather', year: 1972 },
   { title: 'The Godfather: Part II', year: 1974 },

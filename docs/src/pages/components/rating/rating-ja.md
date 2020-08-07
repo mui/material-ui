@@ -5,7 +5,7 @@ components: レート
 
 # レート （Rating）
 
-<p class="description">評価は、他の人の意見や製品に関する経験に関する洞察を提供します。 ユーザーは購入した製品を評価することもできます。</p>
+<p class="description">評価は、他の人の意見や製品に関する経験に関する洞察を提供します。 ユーザーは購入した製品を評価することもできます。 ユーザーは購入した製品を評価することもできます。</p>
 
 ## 簡単な評価
 
@@ -13,19 +13,19 @@ components: レート
 
 ## カスタマイズされた評価
 
-コンポーネントのカスタマイズの例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+コンポーネントのカスタマイズの例を次に示します。 コンポーネントのカスタマイズの例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/rating/CustomizedRatings.js"}}
 
 ## ホバーのフィードバック
 
-ユーザーが正しい評価値を選択するのに役立つように、ホバーにラベルを表示できます。 The demo uses the `onChangeActive` prop.
+大きな評価ボタンと小さな評価ボタンがありますか? `size`propを使用します。
 
 {{"demo": "pages/components/rating/HoverRating.js"}}
 
 ## 半分の評価
 
-評価は`value`propを持つ任意の浮動小数点数を表示できます。 `precision` prop を使用して、許可される最小増分値の変更を定義します。
+大きな評価ボタンと小さな評価ボタンがありますか? `size`propを使用します。
 
 {{"demo": "pages/components/rating/HalfRating.js"}}
 

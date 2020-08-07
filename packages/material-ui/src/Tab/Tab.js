@@ -6,7 +6,7 @@ import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 import unsupportedProp from '../utils/unsupportedProp';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     ...theme.typography.button,
@@ -104,20 +104,32 @@ const Tab = React.forwardRef(function Tab(props, ref) {
     label,
     onChange,
     onClick,
+    onFocus,
     selected,
+    selectionFollowsFocus,
     textColor = 'inherit',
     value,
     wrapped = false,
     ...other
   } = props;
 
-  const handleChange = event => {
+  const handleClick = (event) => {
     if (onChange) {
       onChange(event, value);
     }
 
     if (onClick) {
       onClick(event);
+    }
+  };
+
+  const handleFocus = (event) => {
+    if (selectionFollowsFocus && !selected && onChange) {
+      onChange(event, value);
+    }
+
+    if (onFocus) {
+      onFocus(event);
     }
   };
 
@@ -140,7 +152,9 @@ const Tab = React.forwardRef(function Tab(props, ref) {
       role="tab"
       aria-selected={selected}
       disabled={disabled}
-      onClick={handleChange}
+      onClick={handleClick}
+      onFocus={handleFocus}
+      tabIndex={selected ? 0 : -1}
       {...other}
     >
       <span className={classes.wrapper}>
@@ -173,7 +187,6 @@ Tab.propTypes = {
   disabled: PropTypes.bool,
   /**
    * If `true`, the  keyboard focus ripple will be disabled.
-   * `disableRipple` must also be true.
    */
   disableFocusRipple: PropTypes.bool,
   /**
@@ -209,7 +222,15 @@ Tab.propTypes = {
   /**
    * @ignore
    */
+  onFocus: PropTypes.func,
+  /**
+   * @ignore
+   */
   selected: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  selectionFollowsFocus: PropTypes.bool,
   /**
    * @ignore
    */

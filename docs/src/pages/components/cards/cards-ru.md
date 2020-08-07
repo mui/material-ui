@@ -25,7 +25,7 @@ Set `variant="outlined"` to render an outlined card.
 
 ## Сложное взаимодействие
 
-В варианте для десктопа контент карточки может раздвигаться.
+В варианте для десктопа контент карточки может расширяться.
 
 {{"demo": "pages/components/cards/RecipeReviewCard.js", "bg": true}}
 
@@ -51,4 +51,4 @@ Set `variant="outlined"` to render an outlined card.
 
 ## Кастомизация
 
-👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/card).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/card).

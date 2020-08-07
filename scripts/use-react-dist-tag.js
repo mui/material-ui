@@ -29,7 +29,7 @@ async function main(distTag) {
   }
 
   const { stdout: versions } = await exec(`npm dist-tag ls react ${distTag}`);
-  const tagMapping = versions.split('\n').find(mapping => {
+  const tagMapping = versions.split('\n').find((mapping) => {
     return mapping.startsWith(`${distTag}: `);
   });
   if (tagMapping === undefined) {
@@ -41,15 +41,20 @@ async function main(distTag) {
   const packageJsonPath = path.resolve(__dirname, '../package.json');
   const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, { encoding: 'utf8' }));
 
-  reactPackageNames.forEach(reactPackageName => {
+  reactPackageNames.forEach((reactPackageName) => {
     packageJson.resolutions[reactPackageName] = version;
   });
 
-  // CircleCI seemingly times out if it has a newline diff at the end
+  // https://github.com/enzymejs/enzyme/issues/2358
+  packageJson.devDependencies['enzyme-adapter-react-16'] = 'npm:@eps1lon/enzyme-adapter-react-next';
+
+  // add newline for clean diff
   fs.writeFileSync(packageJsonPath, `${JSON.stringify(packageJson, null, 2)}${os.EOL}`);
+
+  await exec(`git apply ${path.resolve(__dirname, `./react-${distTag}.diff`)}`);
 }
 
-main(process.env.REACT_DIST_TAG).catch(error => {
+main(process.env.REACT_DIST_TAG).catch((error) => {
   console.error(error);
   process.exit(1);
 });

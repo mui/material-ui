@@ -20,6 +20,10 @@ const CardContent = React.forwardRef(function CardContent(props, ref) {
 });
 
 CardContent.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * The content of the component.
    */
@@ -28,16 +32,16 @@ CardContent.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
   className: PropTypes.string,
   /**
    * The component used for the root node.
-   * Either a string to use a DOM element or a component.
+   * Either a string to use a HTML element or a component.
    */
-  component: PropTypes.elementType,
+  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
 };
 
 export default withStyles(styles, { name: 'MuiCardContent' })(CardContent);

@@ -1,4 +1,9 @@
-export type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+import { OverridableStringUnion } from '@material-ui/types';
+
+export type BreakpointDefaults = Record<'xs' | 'sm' | 'md' | 'lg' | 'xl', true>;
+export interface BreakpointOverrides {}
+
+export type Breakpoint = OverridableStringUnion<BreakpointDefaults, BreakpointOverrides>;
 export type BreakpointValues = { [key in Breakpoint]: number };
 export const keys: Breakpoint[];
 

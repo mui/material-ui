@@ -11,7 +11,7 @@ import Button from '../Button';
 // eslint-disable-next-line no-unused-expressions
 Button.styles;
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     display: 'inline-flex',
@@ -20,6 +20,10 @@ export const styles = theme => ({
   /* Styles applied to the root element if `variant="contained"`. */
   contained: {
     boxShadow: theme.shadows[2],
+  },
+  /* Styles applied to the root element if `disableElevation={true}`. */
+  disableElevation: {
+    boxShadow: 'none',
   },
   /* Pseudo-class applied to child elements if `disabled={true}`. */
   disabled: {},
@@ -132,7 +136,6 @@ export const styles = theme => ({
       },
     },
   },
-
   /* Styles applied to the children if `variant="contained"` and `orientation="vertical"`. */
   groupedContainedVertical: {
     '&:not(:last-child)': {
@@ -164,6 +167,7 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(props, ref) {
     color = 'default',
     component: Component = 'div',
     disabled = false,
+    disableElevation = false,
     disableFocusRipple = false,
     disableRipple = false,
     fullWidth = false,
@@ -193,13 +197,14 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(props, ref) {
           [classes.contained]: variant === 'contained',
           [classes.vertical]: orientation === 'vertical',
           [classes.fullWidth]: fullWidth,
+          [classes.disableElevation]: disableElevation,
         },
         className,
       )}
       ref={ref}
       {...other}
     >
-      {React.Children.map(children, child => {
+      {React.Children.map(children, (child) => {
         if (!React.isValidElement(child)) {
           return null;
         }
@@ -208,7 +213,7 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(props, ref) {
           if (isFragment(child)) {
             console.error(
               [
-                "Material-UI: the ButtonGroup component doesn't accept a Fragment as a child.",
+                "Material-UI: The ButtonGroup component doesn't accept a Fragment as a child.",
                 'Consider providing an array instead.',
               ].join('\n'),
             );
@@ -217,8 +222,9 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(props, ref) {
 
         return React.cloneElement(child, {
           className: clsx(buttonClassName, child.props.className),
-          disabled: child.props.disabled || disabled,
           color: child.props.color || color,
+          disabled: child.props.disabled || disabled,
+          disableElevation: child.props.disableElevation || disableElevation,
           disableFocusRipple,
           disableRipple,
           fullWidth,
@@ -231,15 +237,19 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(props, ref) {
 });
 
 ButtonGroup.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * The content of the button group.
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -250,16 +260,19 @@ ButtonGroup.propTypes = {
   color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary']),
   /**
    * The component used for the root node.
-   * Either a string to use a DOM element or a component.
+   * Either a string to use a HTML element or a component.
    */
-  component: PropTypes.elementType,
+  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
    * If `true`, the buttons will be disabled.
    */
   disabled: PropTypes.bool,
   /**
+   * If `true`, no elevation is used.
+   */
+  disableElevation: PropTypes.bool,
+  /**
    * If `true`, the button keyboard focus ripple will be disabled.
-   * `disableRipple` must also be true.
    */
   disableFocusRipple: PropTypes.bool,
   /**
@@ -271,18 +284,18 @@ ButtonGroup.propTypes = {
    */
   fullWidth: PropTypes.bool,
   /**
-   * The group orientation.
+   * The group orientation (layout flow direction).
    */
-  orientation: PropTypes.oneOf(['vertical', 'horizontal']),
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
    * The size of the button.
    * `small` is equivalent to the dense button styling.
    */
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  size: PropTypes.oneOf(['large', 'medium', 'small']),
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['text', 'outlined', 'contained']),
+  variant: PropTypes.oneOf(['contained', 'outlined', 'text']),
 };
 
 export default withStyles(styles, { name: 'MuiButtonGroup' })(ButtonGroup);

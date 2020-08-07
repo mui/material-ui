@@ -24,7 +24,7 @@ function Textarea() {
   );
   const classes = useStyles();
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     setValue(event.target.value);
   };
 
@@ -48,13 +48,13 @@ function Textarea() {
           input: classes.input2,
         }}
       />
-      <Input className={classes.input} multiline placeholder="rows" rows="3" />
+      <Input className={classes.input} multiline placeholder="rows" rows={3} />
       <Input
         className={classes.input}
         multiline
         value={value}
         onChange={handleChange}
-        rowsMax="4"
+        rowsMax={4}
       />
       <Input className={classes.input} multiline placeholder="long placeholder long placeholder" />
       <Input

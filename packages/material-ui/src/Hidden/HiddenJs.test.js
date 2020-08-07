@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { createShallow } from '@material-ui/core/test-utils';
 import HiddenJs from './HiddenJs';
 
@@ -19,7 +19,7 @@ describe('<HiddenJs />', () => {
   }
 
   function isHidden(hiddenBreakpoints, upDownOnly, width) {
-    hiddenBreakpoints.forEach(breakpoint => {
+    hiddenBreakpoints.forEach((breakpoint) => {
       const prop = resolvePropName(upDownOnly, breakpoint);
       const descriptions = {
         Up: `${prop} is hidden for width: ${width} >= ${breakpoint}`,
@@ -34,13 +34,13 @@ describe('<HiddenJs />', () => {
             <div>foo</div>
           </HiddenJs>,
         );
-        assert.strictEqual(wrapper.type(), null, 'should render null');
+        expect(wrapper.type()).to.equal(null);
       });
     });
   }
 
   function isVisible(visibleBreakpoints, upDownOnly, width) {
-    visibleBreakpoints.forEach(breakpoint => {
+    visibleBreakpoints.forEach((breakpoint) => {
       const prop = resolvePropName(upDownOnly, breakpoint);
       const descriptions = {
         Up: `${prop} is visible for width: ${width} < ${breakpoint}`,
@@ -55,9 +55,9 @@ describe('<HiddenJs />', () => {
             <div>foo</div>
           </HiddenJs>,
         );
-        assert.isNotNull(wrapper.type(), 'should render');
-        assert.strictEqual(wrapper.name(), 'div');
-        assert.strictEqual(wrapper.first().text(), 'foo', 'should render children');
+        expect(wrapper.type()).to.not.equal(null);
+        expect(wrapper.name()).to.equal('div');
+        expect(wrapper.first().text()).to.equal('foo');
       });
     });
   }

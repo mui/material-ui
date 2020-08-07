@@ -1,16 +1,19 @@
 import React from 'react';
+import * as PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
-import HomeSteps from 'docs/src/modules/components/HomeSteps';
-import HomeThemes from 'docs/src/modules/components/HomeThemes';
-import HomeQuickWord from 'docs/src/modules/components/HomeQuickWord';
-import HomeSponsors from 'docs/src/modules/components/HomeSponsors';
-import HomeUsers from 'docs/src/modules/components/HomeUsers';
-import HomeQuotes from 'docs/src/modules/components/HomeQuotes';
-import HomePro from 'docs/src/modules/components/HomePro';
+import Steps from 'docs/src/pages/landing/Steps';
+import Themes from 'docs/src/pages/landing/Themes';
+import QuickWord from 'docs/src/pages/landing/QuickWord';
+import Sponsors, {
+  getInitialProps as getInitialSponsorsProps,
+} from 'docs/src/pages/landing/Sponsors';
+import Users from 'docs/src/pages/landing/Users';
+import Quotes from 'docs/src/pages/landing/Quotes';
+import Pro from 'docs/src/pages/landing/Pro';
 import AppFooter from 'docs/src/modules/components/AppFooter';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import Link from 'docs/src/modules/components/Link';
@@ -30,83 +33,93 @@ function loadDependencies() {
   loadScript('https://platform.twitter.com/widgets.js', document.querySelector('head'));
 }
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    flex: '1 0 100%',
-  },
-  hero: {
-    paddingTop: theme.spacing(8),
-    color: theme.palette.primary.main,
-  },
-  content: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    textAlign: 'center',
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(8),
-    [theme.breakpoints.up('md')]: {
-      paddingTop: theme.spacing(16),
-      paddingBottom: theme.spacing(16),
-      flexDirection: 'row',
-      alignItems: 'flex-start',
-      textAlign: 'left',
+const useStyles = makeStyles(
+  (theme) => ({
+    root: {
+      flex: '1 0 100%',
     },
-  },
-  title: {
-    marginLeft: -12,
-    whiteSpace: 'nowrap',
-    letterSpacing: '.7rem',
-    textIndent: '.7rem',
-    fontWeight: theme.typography.fontWeightLight,
-    [theme.breakpoints.only('xs')]: {
-      fontSize: 28,
+    hero: {
+      paddingTop: theme.spacing(8),
+      color: theme.palette.primary.main,
     },
-  },
-  logo: {
-    flexShrink: 0,
-    width: 120,
-    height: 120,
-    marginBottom: theme.spacing(2),
-    [theme.breakpoints.up('md')]: {
-      marginRight: theme.spacing(8),
-      width: 195,
-      height: 175,
-    },
-  },
-  button: {
-    marginTop: theme.spacing(4),
-  },
-  social: {
-    padding: theme.spacing(2, 0),
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    minHeight: 21,
-    boxSizing: 'content-box',
-    '& span': {
+    content: {
       display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      textAlign: 'center',
+      paddingTop: theme.spacing(4),
+      paddingBottom: theme.spacing(8),
+      [theme.breakpoints.up('md')]: {
+        paddingTop: theme.spacing(16),
+        paddingBottom: theme.spacing(16),
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        textAlign: 'left',
+      },
+    },
+    title: {
+      marginLeft: -12,
+      whiteSpace: 'nowrap',
+      letterSpacing: '.7rem',
+      textIndent: '.7rem',
+      fontWeight: theme.typography.fontWeightLight,
+      [theme.breakpoints.only('xs')]: {
+        fontSize: 28,
+      },
+    },
+    logo: {
+      flexShrink: 0,
+      width: 120,
+      height: 120,
+      marginBottom: theme.spacing(2),
+      [theme.breakpoints.up('md')]: {
+        marginRight: theme.spacing(8),
+        width: 195,
+        height: 175,
+      },
+    },
+    button: {
+      marginTop: theme.spacing(4),
+    },
+    social: {
+      padding: theme.spacing(2, 0),
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      minHeight: 21,
+      boxSizing: 'content-box',
+      '& a': {
+        color: theme.palette.background.paper,
+      },
+    },
+    github: {
+      width: 105,
+      display: 'flex',
+      justifyContent: 'flex-end',
       marginRight: theme.spacing(1),
+      '& span': {
+        display: 'flex',
+      },
     },
-    '& a': {
-      color: theme.palette.background.paper,
+    twitter: {
+      width: 160,
+      display: 'flex',
     },
-  },
-}));
+  }),
+  { name: 'LandingPage' },
+);
 
 const GettingStartedLink = React.forwardRef((props, ref) => {
-  return <Link href="/getting-started/installation" naked prefetch ref={ref} {...props} />;
+  return <Link href="/getting-started/installation" naked ref={ref} {...props} />;
 });
 
-export default function HomePage() {
-  React.useEffect(() => {
-    if (window.location.hash !== '' && window.location.hash !== '#main=content') {
-      window.location.replace(`https://v0.material-ui.com/${window.location.hash}`);
-    }
+export default function LandingPage(props) {
+  const { sponsorsProps } = props;
 
+  React.useEffect(() => {
     loadDependencies();
   }, []);
-  const t = useSelector(state => state.options.t);
+  const t = useSelector((state) => state.options.t);
   const classes = useStyles();
 
   return (
@@ -127,7 +140,7 @@ export default function HomePage() {
                 >
                   {'MATERIAL-UI'}
                 </Typography>
-                <Typography variant="h5" component="h2" color="inherit">
+                <Typography variant="h5" component="p" color="inherit">
                   {t('strapline')}
                 </Typography>
                 <Button
@@ -142,29 +155,33 @@ export default function HomePage() {
             </Container>
           </div>
           <div className={classes.social}>
-            <a
-              className="github-button"
-              href="https://github.com/mui-org/material-ui"
-              data-icon="octicon-star"
-              data-show-count="true"
-            >
-              Star
-            </a>
-            <a
-              className="twitter-follow-button"
-              href="https://twitter.com/@materialui"
-              data-show-screen-name="false"
-            >
-              Follow
-            </a>
+            <div className={classes.github}>
+              <a
+                className="github-button"
+                href="https://github.com/mui-org/material-ui"
+                data-icon="octicon-star"
+                data-show-count="true"
+              >
+                Star
+              </a>
+            </div>
+            <div className={classes.twitter}>
+              <a
+                className="twitter-follow-button"
+                href="https://twitter.com/@materialui"
+                data-show-screen-name="false"
+              >
+                Follow
+              </a>
+            </div>
           </div>
-          <HomePro />
-          <HomeQuickWord />
-          <HomeSteps />
-          <HomeThemes />
-          <HomeSponsors />
-          <HomeQuotes />
-          <HomeUsers />
+          <Pro />
+          <QuickWord />
+          <Steps />
+          <Themes />
+          <Sponsors {...sponsorsProps} />
+          <Quotes />
+          <Users />
         </main>
         <AppFooter />
       </div>
@@ -191,3 +208,13 @@ export default function HomePage() {
     </AppFrame>
   );
 }
+
+LandingPage.propTypes = {
+  sponsorsProps: PropTypes.object.isRequired,
+};
+
+LandingPage.getInitialProps = async () => {
+  return {
+    sponsorsProps: await getInitialSponsorsProps(),
+  };
+};

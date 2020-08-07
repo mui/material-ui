@@ -1,23 +1,19 @@
 import * as React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import { createClientRender, screen } from 'test/utils/createClientRender';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import LinearProgress from './LinearProgress';
 
 describe('<LinearProgress />', () => {
-  let mount;
-  let shallow;
+  const mount = createMount();
+  const render = createClientRender();
   let classes;
 
   before(() => {
-    mount = createMount({ strict: true });
-    shallow = createShallow({ dive: true });
     classes = getClasses(<LinearProgress />);
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<LinearProgress />, () => ({
@@ -29,142 +25,129 @@ describe('<LinearProgress />', () => {
   }));
 
   it('should render indeterminate variant by default', () => {
-    const wrapper = shallow(<LinearProgress />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.indeterminate), true);
-    assert.strictEqual(wrapper.childAt(0).hasClass(classes.barColorPrimary), true);
-    assert.strictEqual(wrapper.childAt(0).hasClass(classes.bar1Indeterminate), true);
-    assert.strictEqual(wrapper.childAt(1).hasClass(classes.barColorPrimary), true);
-    assert.strictEqual(wrapper.childAt(1).hasClass(classes.bar2Indeterminate), true);
+    render(<LinearProgress />);
+    const progressbar = screen.getByRole('progressbar');
+
+    expect(progressbar).to.have.class(classes.root);
+    expect(progressbar).to.have.class(classes.indeterminate);
+    expect(progressbar.children[0]).to.have.class(classes.bar1Indeterminate);
+    expect(progressbar.children[1]).to.have.class(classes.bar2Indeterminate);
   });
 
-  it('should render for the primary color', () => {
-    const wrapper = shallow(<LinearProgress color="primary" />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.childAt(0).hasClass(classes.barColorPrimary), true);
-    assert.strictEqual(wrapper.childAt(1).hasClass(classes.barColorPrimary), true);
+  it('should render for the primary color by default', () => {
+    render(<LinearProgress />);
+    const progressbar = screen.getByRole('progressbar');
+
+    expect(progressbar.children[0]).to.have.class(classes.barColorPrimary);
+    expect(progressbar.children[1]).to.have.class(classes.barColorPrimary);
   });
 
   it('should render for the secondary color', () => {
-    const wrapper = shallow(<LinearProgress color="secondary" />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.childAt(0).hasClass(classes.barColorSecondary), true);
-    assert.strictEqual(wrapper.childAt(1).hasClass(classes.barColorSecondary), true);
+    render(<LinearProgress color="secondary" />);
+    const progressbar = screen.getByRole('progressbar');
+
+    expect(progressbar.children[0]).to.have.class(classes.barColorSecondary);
+    expect(progressbar.children[1]).to.have.class(classes.barColorSecondary);
   });
 
   it('should render with determinate classes for the primary color by default', () => {
-    const wrapper = shallow(<LinearProgress value={1} variant="determinate" />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.determinate), true);
-    assert.strictEqual(wrapper.childAt(0).hasClass(classes.barColorPrimary), true);
-    assert.strictEqual(wrapper.childAt(0).hasClass(classes.bar1Determinate), true);
+    render(<LinearProgress value={1} variant="determinate" />);
+    const progressbar = screen.getByRole('progressbar');
+
+    expect(progressbar).to.have.class(classes.determinate);
+    expect(progressbar.children[0]).to.have.class(classes.barColorPrimary);
+    expect(progressbar.children[0]).to.have.class(classes.bar1Determinate);
   });
 
   it('should render with determinate classes for the primary color', () => {
-    const wrapper = shallow(<LinearProgress color="primary" value={1} variant="determinate" />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.determinate), true);
-    assert.strictEqual(wrapper.childAt(0).hasClass(classes.barColorPrimary), true);
-    assert.strictEqual(wrapper.childAt(0).hasClass(classes.bar1Determinate), true);
+    render(<LinearProgress color="primary" value={1} variant="determinate" />);
+    const progressbar = screen.getByRole('progressbar');
+
+    expect(progressbar).to.have.class(classes.determinate);
+    expect(progressbar.children[0]).to.have.class(classes.barColorPrimary);
+    expect(progressbar.children[0]).to.have.class(classes.bar1Determinate);
   });
 
   it('should render with determinate classes for the secondary color', () => {
-    const wrapper = shallow(<LinearProgress color="secondary" value={1} variant="determinate" />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.determinate), true);
-    assert.strictEqual(wrapper.childAt(0).hasClass(classes.barColorSecondary), true);
-    assert.strictEqual(wrapper.childAt(0).hasClass(classes.bar1Determinate), true);
+    render(<LinearProgress color="secondary" value={1} variant="determinate" />);
+    const progressbar = screen.getByRole('progressbar');
+
+    expect(progressbar).to.have.class(classes.determinate);
+    expect(progressbar.children[0]).to.have.class(classes.barColorSecondary);
+    expect(progressbar.children[0]).to.have.class(classes.bar1Determinate);
   });
 
   it('should set width of bar1 on determinate variant', () => {
-    const wrapper = shallow(<LinearProgress variant="determinate" value={77} />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.determinate), true);
-    assert.strictEqual(
-      wrapper.childAt(0).props().style.transform,
-      'translateX(-23%)',
-      'should have width set',
-    );
-    assert.strictEqual(wrapper.props()['aria-valuenow'], 77);
+    render(<LinearProgress variant="determinate" value={77} />);
+    const progressbar = screen.getByRole('progressbar');
+
+    expect(progressbar.children[0]).to.have.nested.property('style.transform', 'translateX(-23%)');
   });
 
   it('should render with buffer classes for the primary color by default', () => {
-    const wrapper = shallow(<LinearProgress value={1} valueBuffer={1} variant="buffer" />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(
-      wrapper.childAt(0).hasClass(classes.dashedColorPrimary),
-      true,
-      'should have the dashedColorPrimary class',
-    );
-    assert.strictEqual(
-      wrapper.childAt(1).hasClass(classes.barColorPrimary),
-      true,
-      'should have the barColorPrimary class',
-    );
-    assert.strictEqual(
-      wrapper.childAt(1).hasClass(classes.bar1Buffer),
-      true,
-      'should have the bar1Buffer class',
-    );
-    assert.strictEqual(
-      wrapper.childAt(2).hasClass(classes.colorPrimary),
-      true,
-      'should have the colorPrimary class',
-    );
-    assert.strictEqual(
-      wrapper.childAt(2).hasClass(classes.bar2Buffer),
-      true,
-      'should have the bar2Buffer class',
-    );
+    render(<LinearProgress value={1} valueBuffer={1} variant="buffer" />);
+    const progressbar = screen.getByRole('progressbar');
+
+    expect(progressbar.children[0]).to.have.class(classes.dashedColorPrimary);
+    expect(progressbar.children[1]).to.have.class(classes.barColorPrimary);
+    expect(progressbar.children[1]).to.have.class(classes.bar1Buffer);
+    expect(progressbar.children[2]).to.have.class(classes.colorPrimary);
+    expect(progressbar.children[2]).to.have.class(classes.bar2Buffer);
   });
 
   it('should render with buffer classes for the primary color', () => {
-    const wrapper = shallow(
-      <LinearProgress value={1} valueBuffer={1} color="primary" variant="buffer" />,
-    );
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.childAt(0).hasClass(classes.dashedColorPrimary), true);
-    assert.strictEqual(wrapper.childAt(1).hasClass(classes.barColorPrimary), true);
-    assert.strictEqual(wrapper.childAt(1).hasClass(classes.bar1Buffer), true);
-    assert.strictEqual(wrapper.childAt(2).hasClass(classes.colorPrimary), true);
-    assert.strictEqual(wrapper.childAt(2).hasClass(classes.bar2Buffer), true);
+    render(<LinearProgress value={1} valueBuffer={1} color="primary" variant="buffer" />);
+    const progressbar = screen.getByRole('progressbar');
+
+    expect(progressbar.children[0]).to.have.class(classes.dashedColorPrimary);
+    expect(progressbar.children[1]).to.have.class(classes.barColorPrimary);
+    expect(progressbar.children[1]).to.have.class(classes.bar1Buffer);
+    expect(progressbar.children[2]).to.have.class(classes.colorPrimary);
+    expect(progressbar.children[2]).to.have.class(classes.bar2Buffer);
   });
 
   it('should render with buffer classes for the secondary color', () => {
-    const wrapper = shallow(
-      <LinearProgress value={1} valueBuffer={1} color="secondary" variant="buffer" />,
-    );
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.childAt(0).hasClass(classes.dashedColorSecondary), true);
-    assert.strictEqual(wrapper.childAt(1).hasClass(classes.barColorSecondary), true);
-    assert.strictEqual(wrapper.childAt(1).hasClass(classes.bar1Buffer), true);
-    assert.strictEqual(wrapper.childAt(2).hasClass(classes.colorSecondary), true);
-    assert.strictEqual(wrapper.childAt(2).hasClass(classes.bar2Buffer), true);
+    render(<LinearProgress value={1} valueBuffer={1} color="secondary" variant="buffer" />);
+    const progressbar = screen.getByRole('progressbar');
+
+    expect(progressbar.children[0]).to.have.class(classes.dashedColorSecondary);
+    expect(progressbar.children[1]).to.have.class(classes.barColorSecondary);
+    expect(progressbar.children[1]).to.have.class(classes.bar1Buffer);
+    expect(progressbar.children[2]).to.have.class(classes.colorSecondary);
+    expect(progressbar.children[2]).to.have.class(classes.bar2Buffer);
   });
 
   it('should set width of bar1 and bar2 on buffer variant', () => {
-    const wrapper = shallow(<LinearProgress variant="buffer" value={77} valueBuffer={85} />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(
-      wrapper.childAt(1).props().style.transform,
+    render(<LinearProgress variant="buffer" value={77} valueBuffer={85} />);
+
+    expect(document.querySelector(`.${classes.bar1Buffer}`)).to.have.nested.property(
+      'style.transform',
       'translateX(-23%)',
-      'should have width set',
     );
-    assert.strictEqual(
-      wrapper.childAt(2).props().style.transform,
+    expect(document.querySelector(`.${classes.bar2Buffer}`)).to.have.nested.property(
+      'style.transform',
       'translateX(-15%)',
-      'should have width set',
     );
   });
 
   it('should render with query classes', () => {
-    const wrapper = shallow(<LinearProgress variant="query" />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.query), true);
-    assert.strictEqual(wrapper.childAt(0).hasClass(classes.barColorPrimary), true);
-    assert.strictEqual(wrapper.childAt(0).hasClass(classes.bar1Indeterminate), true);
-    assert.strictEqual(wrapper.childAt(1).hasClass(classes.barColorPrimary), true);
-    assert.strictEqual(wrapper.childAt(1).hasClass(classes.bar2Indeterminate), true);
+    render(<LinearProgress variant="query" />);
+    const progressbar = screen.getByRole('progressbar');
+
+    expect(progressbar).to.have.class(classes.query);
+    expect(progressbar.children[0]).to.have.class(classes.barColorPrimary);
+    expect(progressbar.children[0]).to.have.class(classes.barColorPrimary);
+    expect(progressbar.children[1]).to.have.class(classes.barColorPrimary);
+    expect(progressbar.children[1]).to.have.class(classes.bar2Indeterminate);
+  });
+
+  it('exposes the current, min and max value to screen readers when determinate', () => {
+    render(<LinearProgress variant="determinate" value={77} />);
+    const progressbar = screen.getByRole('progressbar');
+
+    expect(progressbar).to.have.attribute('aria-valuenow', '77');
+    expect(progressbar).to.have.attribute('aria-valuemin', '0');
+    expect(progressbar).to.have.attribute('aria-valuemax', '100');
   });
 
   describe('prop: value', () => {
@@ -177,15 +160,21 @@ describe('<LinearProgress />', () => {
     });
 
     it('should warn when not used as expected', () => {
-      shallow(<LinearProgress variant="determinate" value={undefined} />);
-      assert.strictEqual(consoleErrorMock.callCount(), 1);
-      assert.match(consoleErrorMock.args()[0][0], /Material-UI: you need to provide a value prop/);
-      shallow(<LinearProgress variant="buffer" value={undefined} />);
-      assert.strictEqual(consoleErrorMock.callCount(), 3);
-      assert.match(consoleErrorMock.args()[1][0], /Material-UI: you need to provide a value prop/);
-      assert.match(
-        consoleErrorMock.args()[2][0],
-        /Material-UI: you need to provide a valueBuffer prop/,
+      const { rerender } = render(<LinearProgress variant="determinate" value={undefined} />);
+
+      expect(consoleErrorMock.callCount()).to.equal(1);
+      expect(consoleErrorMock.messages()[0]).to.match(
+        /Material-UI: You need to provide a value prop/,
+      );
+
+      rerender(<LinearProgress variant="buffer" value={undefined} />);
+
+      expect(consoleErrorMock.callCount()).to.equal(3);
+      expect(consoleErrorMock.messages()[1]).to.match(
+        /Material-UI: You need to provide a value prop/,
+      );
+      expect(consoleErrorMock.messages()[2]).to.match(
+        /Material-UI: You need to provide a valueBuffer prop/,
       );
     });
   });

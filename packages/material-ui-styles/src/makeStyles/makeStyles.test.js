@@ -1,9 +1,9 @@
-import { assert } from 'chai';
+import { expect } from 'chai';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { SheetsRegistry } from 'jss';
 import { act } from 'react-dom/test-utils';
-import { createMount } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import { createMuiTheme } from '@material-ui/core/styles';
 import createGenerateClassName from '../createGenerateClassName';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
@@ -13,7 +13,7 @@ import StylesProvider from '../StylesProvider';
 import ThemeProvider from '../ThemeProvider';
 
 describe('makeStyles', () => {
-  let mount;
+  const mount = createMount({ strict: null });
 
   /**
    * returns a function that given the props for the styles object will return
@@ -38,16 +38,8 @@ describe('makeStyles', () => {
 
   let generateClassName;
 
-  before(() => {
-    mount = createMount({ strict: undefined });
-  });
-
   beforeEach(() => {
     generateClassName = createGenerateClassName();
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   it('should accept a classes prop', () => {
@@ -59,7 +51,7 @@ describe('makeStyles', () => {
       classes: { root: 'h1' },
     });
     const extendedClasses = output.classes;
-    assert.strictEqual(extendedClasses.root, `${baseClasses.root} h1`);
+    expect(extendedClasses.root).to.equal(`${baseClasses.root} h1`);
   });
 
   it('should ignore undefined prop', () => {
@@ -71,7 +63,7 @@ describe('makeStyles', () => {
       classes: { root: undefined },
     });
     const extendedClasses = output.classes;
-    assert.strictEqual(extendedClasses.root, baseClasses.root);
+    expect(extendedClasses.root).to.equal(baseClasses.root);
   });
 
   describe('warnings', () => {
@@ -90,21 +82,19 @@ describe('makeStyles', () => {
       const baseClasses = output.classes;
       output.wrapper.setProps({ classes: { bar: 'foo' } });
       const extendedClasses = output.classes;
-      assert.deepEqual(extendedClasses, { root: baseClasses.root, bar: 'undefined foo' });
-      assert.strictEqual(consoleErrorMock.callCount(), 1);
-      assert.include(
-        consoleErrorMock.args()[0][0],
-        'Material-UI: the key `bar` provided to the classes prop is not implemented',
+      expect(extendedClasses).to.deep.equal({ root: baseClasses.root, bar: 'undefined foo' });
+      expect(consoleErrorMock.callCount()).to.equal(1);
+      expect(consoleErrorMock.messages()[0]).to.include(
+        'Material-UI: The key `bar` provided to the classes prop is not implemented',
       );
     });
 
     it('should warn if providing a string', () => {
       const output = mountWithProps();
       output.wrapper.setProps({ classes: 'foo' });
-      assert.strictEqual(consoleErrorMock.callCount() >= 1, true);
-      const args = consoleErrorMock.args();
-      assert.include(
-        consoleErrorMock.args()[args.length - 1][0],
+      expect(consoleErrorMock.callCount() >= 1).to.equal(true);
+      const messages = consoleErrorMock.messages();
+      expect(messages[messages.length - 1]).to.include(
         'You might want to use the className prop instead',
       );
     });
@@ -114,22 +104,23 @@ describe('makeStyles', () => {
       const baseClasses = output.classes;
       output.wrapper.setProps({ classes: { root: {} } });
       const extendedClasses = output.classes;
-      assert.deepEqual(extendedClasses, { root: `${baseClasses.root} [object Object]` });
-      assert.strictEqual(consoleErrorMock.callCount(), 1);
-      assert.include(
-        consoleErrorMock.args()[0][0],
-        'Material-UI: the key `root` provided to the classes prop is not valid',
+      expect(extendedClasses).to.deep.equal({ root: `${baseClasses.root} [object Object]` });
+      expect(consoleErrorMock.callCount()).to.equal(1);
+      expect(consoleErrorMock.messages()[0]).to.include(
+        'Material-UI: The key `root` provided to the classes prop is not valid',
       );
     });
 
     it('should warn if missing theme', () => {
-      const styles = theme => ({ root: { padding: theme.spacing(2) } });
+      const styles = (theme) => ({ root: { padding: theme.spacing(2) } });
       const mountWithProps2 = createGetClasses(styles);
-      assert.throw(() => {
+      expect(() => {
         mountWithProps2({});
-      });
-      assert.strictEqual(consoleErrorMock.callCount(), 4);
-      assert.include(consoleErrorMock.args()[1][0], 'the `styles` argument provided is invalid');
+      }).to.throw();
+      expect(consoleErrorMock.callCount()).to.equal(4);
+      expect(consoleErrorMock.messages()[1]).to.include(
+        'Material-UI: The `styles` argument provided is invalid',
+      );
     });
   });
 
@@ -146,7 +137,7 @@ describe('makeStyles', () => {
       const classes1 = output.classes;
       output.wrapper.update();
       const classes2 = output.classes;
-      assert.strictEqual(classes1, classes2);
+      expect(classes1).to.equal(classes2);
     });
 
     it('should recycle even when a classes prop is provided', () => {
@@ -157,7 +148,7 @@ describe('makeStyles', () => {
         classes: inputClasses,
       });
       const classes2 = output.classes;
-      assert.strictEqual(classes1, classes2);
+      expect(classes1).to.equal(classes2);
     });
 
     it('should invalidate the cache', () => {
@@ -165,15 +156,16 @@ describe('makeStyles', () => {
       const classes = output.classes;
       output.wrapper.setProps({ classes: { root: 'foo' } });
       const classes1 = output.classes;
-      assert.deepEqual(classes1, {
+      expect(classes1).to.deep.equal({
         root: `${classes.root} foo`,
       });
+
       output.wrapper.setProps({
         classes: { root: 'bar' },
       });
       const classes2 = output.classes;
-      assert.notStrictEqual(classes1, classes2);
-      assert.deepEqual(classes2, {
+      expect(classes1).to.not.equal(classes2);
+      expect(classes2).to.deep.equal({
         root: `${classes.root} bar`,
       });
     });
@@ -204,21 +196,21 @@ describe('makeStyles', () => {
           </StylesProvider>
         </ThemeProvider>,
       );
-      assert.strictEqual(sheetsRegistry.registry.length, 1);
-      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'makeStyles-root-1' });
+      expect(sheetsRegistry.registry.length).to.equal(1);
+      expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'makeStyles-root-1' });
       wrapper.update();
-      assert.strictEqual(sheetsRegistry.registry.length, 1);
-      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'makeStyles-root-1' });
+      expect(sheetsRegistry.registry.length).to.equal(1);
+      expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'makeStyles-root-1' });
       wrapper.setProps({ theme: createMuiTheme() });
-      assert.strictEqual(sheetsRegistry.registry.length, 1);
-      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'makeStyles-root-2' });
+      expect(sheetsRegistry.registry.length).to.equal(1);
+      expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'makeStyles-root-2' });
 
       wrapper.unmount();
-      assert.strictEqual(sheetsRegistry.registry.length, 0);
+      expect(sheetsRegistry.registry.length).to.equal(0);
     });
 
     it('should work when depending on a theme', () => {
-      const useStyles = makeStyles(theme => ({ root: { padding: theme.spacing(1) } }), {
+      const useStyles = makeStyles((theme) => ({ root: { padding: theme.spacing(1) } }), {
         name: 'MuiTextField',
       });
       const StyledComponent = () => {
@@ -237,11 +229,12 @@ describe('makeStyles', () => {
           </StylesProvider>
         </ThemeProvider>,
       );
-      assert.strictEqual(sheetsRegistry.registry.length, 1);
-      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'MuiTextField-root' });
+      expect(sheetsRegistry.registry.length).to.equal(1);
+      expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'MuiTextField-root' });
+
       wrapper.setProps({ theme: createMuiTheme({ foo: 'bar' }) });
-      assert.strictEqual(sheetsRegistry.registry.length, 1);
-      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'MuiTextField-root' });
+      expect(sheetsRegistry.registry.length).to.equal(1);
+      expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'MuiTextField-root' });
     });
 
     describe('overrides', () => {
@@ -280,9 +273,8 @@ describe('makeStyles', () => {
             </StylesProvider>
           </ThemeProvider>,
         );
-
-        assert.strictEqual(sheetsRegistry.registry.length, 1);
-        assert.deepEqual(sheetsRegistry.registry[0].rules.raw, {
+        expect(sheetsRegistry.registry.length).to.equal(1);
+        expect(sheetsRegistry.registry[0].rules.raw).to.deep.equal({
           root: { padding: 9, margin: [2, 2, 3] },
         });
       });
@@ -313,9 +305,8 @@ describe('makeStyles', () => {
         );
 
         const div = wrapper.find('div').instance();
-
-        assert.strictEqual(sheetsRegistry.registry.length, 1);
-        assert.deepEqual(sheetsRegistry.registry[0].rules.raw, {
+        expect(sheetsRegistry.registry.length).to.equal(1);
+        expect(sheetsRegistry.registry[0].rules.raw).to.deep.equal({
           root: { margin: null, padding: 3 },
         });
       });
@@ -323,14 +314,14 @@ describe('makeStyles', () => {
 
     it('should handle dynamic props', () => {
       const useStyles = makeStyles({
-        root: props => ({ margin: 8, padding: props.padding || 8 }),
+        root: (props) => ({ margin: 8, padding: props.padding || 8 }),
       });
-      const StyledComponent = props => {
+      const StyledComponent = (props) => {
         const classes = useStyles(props);
         return <div className={classes.root} />;
       };
 
-      const Test = props => (
+      const Test = (props) => (
         <StylesProvider
           sheetsRegistry={sheetsRegistry}
           sheetsCache={new Map()}
@@ -341,18 +332,19 @@ describe('makeStyles', () => {
       );
 
       const wrapper = mount(<Test />);
-      assert.strictEqual(sheetsRegistry.registry.length, 2);
-      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'makeStyles-root-1' });
-      assert.deepEqual(sheetsRegistry.registry[1].classes, { root: 'makeStyles-root-2' });
-      assert.deepEqual(sheetsRegistry.registry[1].rules.map.root.style, {
+      expect(sheetsRegistry.registry.length).to.equal(2);
+      expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'makeStyles-root-1' });
+      expect(sheetsRegistry.registry[1].classes).to.deep.equal({ root: 'makeStyles-root-2' });
+      expect(sheetsRegistry.registry[1].rules.map.root.style).to.deep.equal({
         margin: '8px',
         padding: '8px',
       });
+
       wrapper.setProps({ padding: 4 });
-      assert.strictEqual(sheetsRegistry.registry.length, 2);
-      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'makeStyles-root-1' });
-      assert.deepEqual(sheetsRegistry.registry[1].classes, { root: 'makeStyles-root-2' });
-      assert.deepEqual(sheetsRegistry.registry[1].rules.map.root.style, {
+      expect(sheetsRegistry.registry.length).to.equal(2);
+      expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'makeStyles-root-1' });
+      expect(sheetsRegistry.registry[1].classes).to.deep.equal({ root: 'makeStyles-root-2' });
+      expect(sheetsRegistry.registry[1].rules.map.root.style).to.deep.equal({
         margin: '8px',
         padding: '4px',
       });
@@ -374,10 +366,10 @@ describe('makeStyles', () => {
           <StyledComponent />
         </StylesProvider>,
       );
-      assert.strictEqual(sheetsRegistry.registry.length, 0);
-      assert.deepEqual(wrapper.find(Empty).props().classes, {});
+      expect(sheetsRegistry.registry.length).to.equal(0);
+      expect(wrapper.find(Empty).props().classes).to.deep.equal({});
       wrapper.unmount();
-      assert.strictEqual(sheetsRegistry.registry.length, 0);
+      expect(sheetsRegistry.registry.length).to.equal(0);
     });
   });
 
@@ -407,16 +399,15 @@ describe('makeStyles', () => {
           <StyledComponent />
         </StylesProvider>,
       );
-
-      assert.strictEqual(sheetsRegistry.registry.length, 1);
-      assert.deepEqual(sheetsRegistry.registry[0].rules.raw, {
+      expect(sheetsRegistry.registry.length).to.equal(1);
+      expect(sheetsRegistry.registry[0].rules.raw).to.deep.equal({
         root: { padding: 8 },
       });
 
       hmr = true;
       wrapper.setProps({});
-      assert.strictEqual(sheetsRegistry.registry.length, 1);
-      assert.deepEqual(sheetsRegistry.registry[0].rules.raw, {
+      expect(sheetsRegistry.registry.length).to.equal(1);
+      expect(sheetsRegistry.registry[0].rules.raw).to.deep.equal({
         root: { padding: 4 },
       });
     });
@@ -448,10 +439,10 @@ describe('makeStyles', () => {
           <StyledComponent2 />
         </StylesProvider>,
       );
-      assert.strictEqual(sheetsRegistry.registry[0].options.classNamePrefix, 'makeStyles');
-      assert.strictEqual(sheetsRegistry.registry[0].options.name, undefined);
-      assert.strictEqual(sheetsRegistry.registry[1].options.classNamePrefix, 'Fooo');
-      assert.strictEqual(sheetsRegistry.registry[1].options.name, 'Fooo');
+      expect(sheetsRegistry.registry[0].options.classNamePrefix).to.equal('makeStyles');
+      expect(sheetsRegistry.registry[0].options.name).to.equal(undefined);
+      expect(sheetsRegistry.registry[1].options.classNamePrefix).to.equal('Fooo');
+      expect(sheetsRegistry.registry[1].options.name).to.equal('Fooo');
     });
   });
 
@@ -459,14 +450,14 @@ describe('makeStyles', () => {
     let StressTest;
 
     before(() => {
-      const useStyles = makeStyles(theme => ({
-        root: props => ({
+      const useStyles = makeStyles((theme) => ({
+        root: (props) => ({
           backgroundColor: props.backgroundColor,
           color: theme.color,
         }),
       }));
 
-      const Component = React.memo(props => {
+      const Component = React.memo((props) => {
         const classes = useStyles(props);
         const theme = useTheme();
 
@@ -492,12 +483,12 @@ describe('makeStyles', () => {
 
       StressTest = () => {
         const [backgroundColor, setBackgroundColor] = React.useState('black');
-        const handleBackgroundColorChange = event => {
+        const handleBackgroundColorChange = (event) => {
           setBackgroundColor(event.target.value);
         };
 
         const [color, setColor] = React.useState('white');
-        const handleColorChange = event => {
+        const handleColorChange = (event) => {
           setColor(event.target.value);
         };
 
@@ -534,20 +525,16 @@ describe('makeStyles', () => {
           <StressTest />
         </StylesProvider>,
       );
-      assert.strictEqual(sheetsRegistry.registry.length, 2);
-      assert.strictEqual(
-        sheetsRegistry.toString(),
-        `.makeStyles-root-2 {
+      expect(sheetsRegistry.registry.length).to.equal(2);
+      expect(sheetsRegistry.toString()).to.equal(`.makeStyles-root-2 {
   color: white;
   background-color: black;
-}`,
-      );
+}`);
 
       act(() => {
         wrapper.find('#color').simulate('change', { target: { value: 'blue' } });
       });
-      assert.strictEqual(
-        sheetsRegistry.toString(),
+      expect(sheetsRegistry.toString()).to.equal(
         `.makeStyles-root-4 {
   color: blue;
   background-color: black;
@@ -556,8 +543,7 @@ describe('makeStyles', () => {
       act(() => {
         wrapper.find('#background-color').simulate('change', { target: { value: 'green' } });
       });
-      assert.strictEqual(
-        sheetsRegistry.toString(),
+      expect(sheetsRegistry.toString()).to.equal(
         `.makeStyles-root-4 {
   color: blue;
   background-color: green;

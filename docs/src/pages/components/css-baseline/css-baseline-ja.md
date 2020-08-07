@@ -31,32 +31,40 @@ However, you might be progressively migrating a website to Material-UI, using a 
 ```jsx
 import React from 'react';
 import ScopedCssBaseline from '@material-ui/core/ScopedCssBaseline';
+import MyApp from './MyApp';
 
 export default function MyApp() {
   return (
     <ScopedCssBaseline>
       {/* The rest of your application */}
+      <MyApp />
     </ScopedCssBaseline>
   );
 }
 ```
 
-## Approach
+⚠️ Make sure you import `ScopedCssBaseline` first to avoid box-sizing conflicts as in the above example.
+
+## アプローチ
 
 ### ページ
 
-The `<html>` and `<body>` elements are updated to provide better page-wide defaults. More specifically:
+`<html>` および `<body>` 要素は、ページ全体のデフォルトが改善されるように更新されています。 具体的には: 具体的には:
 
 - すべてのブラウザの余白が削除されています。
-- デフォルトのマテリアルデザインの背景色が適用されます。 It's using [`theme.palette.background.default`](/customization/default-theme/?expand-path=$.palette.background) for standard devices and a white background for print devices.
+- デフォルトのマテリアルデザインの背景色が適用されます。 デフォルトのマテリアルデザインの背景色が適用されます。 標準のデバイスや、白背景に印刷されたデバイスの為に[`theme.palette.background.default`](/customization/default-theme/?expand-path=$.palette.background) が使われています。
 
 ### レイアウト
 
-- `ボックスサイズ` は、 `<html>` 要素で `border-box`グローバルに設定されます。 すべての要素（ `*:: before` および `*:: after` を含む）は、このプロパティを継承するように宣言されています は、要素の宣言された幅がパディングまたは境界のために超過しないことを保証されます。
+- `ボックスサイズ` は、 `<html>` 要素で `border-box`グローバルに設定されます。 `ボックスサイズ` は、 `<html>` 要素で `border-box`グローバルに設定されます。 すべての要素（ `*:: before` および `*:: after` を含む）は、このプロパティを継承するように宣言されています は、要素の宣言された幅がパディングまたは境界のために超過しないことを保証されます。
 
 ### タイポグラフィ
 
-- `<html>`には基本フォントサイズは宣言されていませんが、16pxが想定されています（ブラウザのデフォルト）。 デフォルトのフォントサイズの`<html>`を変更した場合の影響については、ここをクリックしてください。[the theme documentation](/customization/typography/#typography-html-font-size)
+- `<html>`には基本フォントサイズは宣言されていませんが、16pxが想定されています（ブラウザのデフォルト）。 `<html>`には基本フォントサイズは宣言されていませんが、16pxが想定されています（ブラウザのデフォルト）。 デフォルトのフォントサイズの`<html>`を変更した場合の影響については、ここをクリックしてください。[the theme documentation](/customization/typography/#typography-html-font-size)
 - `<body>` 要素に `theme.typography.body2` スタイルを設定します。
 - Set the font-weight to `theme.typography.fontWeightBold` for the `<b>` and `<strong>` elements.
-- Robotoフォントを見やすくするために、フォントのアンチエイリアスが有効になります。
+- Custom font-smoothing is enabled for better display of the Roboto font.
+
+## カスタマイズ
+
+Head to the [global customization](/customization/globals/#global-css) section of the documentation to change the output of these components.

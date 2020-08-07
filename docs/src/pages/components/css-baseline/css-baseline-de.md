@@ -31,32 +31,40 @@ However, you might be progressively migrating a website to Material-UI, using a 
 ```jsx
 import React from 'react';
 import ScopedCssBaseline from '@material-ui/core/ScopedCssBaseline';
+import MyApp from './MyApp';
 
 export default function MyApp() {
   return (
     <ScopedCssBaseline>
       {/* The rest of your application */}
+      <MyApp />
     </ScopedCssBaseline>
   );
 }
 ```
 
-## Approach
+⚠️ Make sure you import `ScopedCssBaseline` first to avoid box-sizing conflicts as in the above example.
+
+## Ansatz
 
 ### Seite
 
-The `<html>` and `<body>` elements are updated to provide better page-wide defaults. More specifically:
+The `<html>` and `<body>` elements are updated to provide better page-wide defaults. Genauer gesagt:
 
 - Der Rand in allen Browsern wird entfernt.
 - Die Standardhintergrundfarbe des Materialdesigns wird angewendet. Es verwendet [`theme.palette.background.default`](/customization/default-theme/?expand-path=$.palette.background) für normale Geräte und einen weißen Hintergrund für Drucker.
 
 ### Layout
 
-- `box-sizing` wird global auf dem `<html>` Element auf `border-box` gesetzt. Jedes Element, einschließlich `*::before` und `*::after` erbt dieser Eigenschaft. Dadurch wird sichergestellt, dass die deklarierte Breite des Elements niemals durch Auffüllung oder Rand überschritten wird.
+- Für das `<html>`-Element wird keine Basisschriftgröße deklariert, es wird jedoch von 16px ausgegangen (Standardeinstellung des Browsers). Sie können mehr über die Auswirkungen lernen von den sich ändernden `<html>` Standard - Schriftgröße auf [der Theme Dokumentation](/customization/typography/#typography-html-font-size) Seite.
 
 ### Typografie
 
 - Für das `<html>`-Element wird keine Basisschriftgröße deklariert, es wird jedoch von 16px ausgegangen (Standardeinstellung des Browsers). Sie können mehr über die Auswirkungen lernen von den sich ändernden `<html>` Standard - Schriftgröße auf [der Theme Dokumentation](/customization/typography/#typography-html-font-size) Seite.
 - Set the `theme.typography.body2` style on the `<body>` element.
 - Set the font-weight to `theme.typography.fontWeightBold` for the `<b>` and `<strong>` elements.
-- Das Antialiasing von Schriftarten ist aktiviert, um die Roboto-Schrift besser anzuzeigen.
+- Custom font-smoothing is enabled for better display of the Roboto font.
+
+## Individuelle Anpassung
+
+Head to the [global customization](/customization/globals/#global-css) section of the documentation to change the output of these components.

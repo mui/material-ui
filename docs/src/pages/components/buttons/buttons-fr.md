@@ -7,7 +7,7 @@ components: Button, IconButton, ButtonBase
 
 <p class="description">Les boutons permettent aux utilisateurs d'effectuer une action et de faire des choix en un seul clic.</p>
 
-[Buttons](https://material.io/design/components/buttons.html) communicate actions that users can take. They are typically placed throughout your UI, in places like:
+[Boutons](https://material. io/design/components/buttons. html) communiquent les actions que les utilisateurs peuvent faire. Ils sont généralement placés à travers votre interface utilisateur, dans des endroits tels que :
 
 - Dialogues
 - Fenêtres modales
@@ -27,24 +27,34 @@ You can remove the elevation with the `disableElevation` prop.
 
 ## Boutons de texte
 
-[Text buttons](https://material.io/design/components/buttons.html#text-button) are typically used for less-pronounced actions, including those located:
+[Les boutons de texte](https://material.io/design/components/buttons.html#text-button) sont généralement utilisés pour les actions moins prononcées, y compris celles situées:
 
 - Dans les dialogues
 - Dans les cartes
 
-In cards, text buttons help maintain an emphasis on card content.
+Dans les cartes, les boutons de texte aident à maintenir l’accent sur le contenu des cartes.
 
 {{"demo": "pages/components/buttons/TextButtons.js"}}
 
 ## Boutons en surbrillance
 
-[Outlined buttons](https://material.io/design/components/buttons.html#outlined-button) are medium-emphasis buttons. They contain actions that are important, but aren’t the primary action in an app.
+[boutons en surbrillance](https://material.io/design/components/buttons.html#outlined-button) sont des boutons à accent moyen. Ils contiennent des actions importantes mais qui ne sont pas l'action principale d'une application.
 
-Outlined buttons are also a lower emphasis alternative to contained buttons, or a higher emphasis alternative to text buttons.
+Les boutons surbrillance sont également une alternative moins importante que les boutons contenus, ou une alternative plus importante aux boutons de texte.
 
 {{"demo": "pages/components/buttons/OutlinedButtons.js"}}
 
-## Upload button
+## Gestion des clics
+
+Tous les composants acceptent un gestionnaire `onClick` qui est appliqué à l'élément DOM racine.
+
+```jsx
+<Button onClick={() => { alert('cliqué') }}>Cliquez moi</Button>
+```
+
+Notez que la documentation [évite](/guides/api/#native-properties) de mentionner les props natifs (il y en a beaucoup) dans la section API des composants.
+
+## Bouton de téléchargement
 
 {{"demo": "pages/components/buttons/UploadButtons.js"}}
 
@@ -54,49 +64,49 @@ Fancy larger or smaller buttons? Use the `size` property.
 
 {{"demo": "pages/components/buttons/ButtonSizes.js"}}
 
-## Buttons with icons and label
+## Boutons avec icônes et libellés
 
-Sometimes you might want to have icons for certain button to enhance the UX of the application as we recognize logos more easily than plain text. For example, if you have a delete button you can label it with a dustbin icon.
+Parfois, vous pouvez avoir des icônes pour certains boutons pour améliorer l'UX de l'application car nous reconnaissons les logos plus facilement que le texte brut. Par exemple, si vous avez un bouton de suppression, vous pouvez l’étiqueter avec une icône de poubelle.
 
 {{"demo": "pages/components/buttons/IconLabelButtons.js"}}
 
-## Icon Buttons
+## Boutons avec icône
 
-Icon buttons are commonly found in app bars and toolbars.
+Les boutons d'icônes se trouvent généralement dans les barres d'applications et les barres d'outils.
 
-Icons are also appropriate for toggle buttons that allow a single choice to be selected or deselected, such as adding or removing a star to an item.
+Les icônes sont également appropriées pour les boutons de bascule qui permettent à un seul choix d'être sélectionné ou désélectionné, comme l'ajout ou la suppression d'une étoile à un objet.
 
 {{"demo": "pages/components/buttons/IconButtons.js"}}
 
-## Customized buttons
+## Boutons personnalisés
 
 Here are some examples of customizing the component. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/components/).
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js", "defaultCodeOpen": false}}
 
-👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/button).
+🎨 Si vous cherchez de l'inspiration, vous pouvez consulter les [exemples de personnalisation de MUI Treasury](https://mui-treasury.com/styles/button).
 
-## Complex Buttons
+## Boutons complexes
 
-The Text Buttons, Contained Buttons, Floating Action Buttons and Icon Buttons are built on top of the same component: the `ButtonBase`. You can take advantage of this lower level component to build custom interactions.
+Les boutons texte, les boutons contained, les bouton d'action flottante et les boutons icône sont tous basés sur le composant `ButtonBase`. Vous pouvez tirer parti de ce composant de niveau inférieur pour créer des interactions personnalisées.
 
 {{"demo": "pages/components/buttons/ButtonBase.js"}}
 
 ## Bibliothèque de routage tierce
 
-One common use case is to use the button to trigger navigation to a new page. The `ButtonBase` component provides a property to handle this use case: `component`. However for certain focus polyfills `ButtonBase` requires the DOM node of the provided component. This is achieved by attaching a ref to the component and expecting that the component forwards this ref to the underlying DOM node. Given that many of the interactive components rely on `ButtonBase`, you should be able to take advantage of it everywhere.
+Un cas d'utilisation courant est d'utiliser le bouton pour déclencher la navigation vers une nouvelle page. Le composant `ButtonBase` fournit une propriété pour traiter ce cas d'utilisation: `composant`. Cependant, pour certains focus polyfills `ButtonBase` requiert le nœud DOM du composant fourni. Pour ce faire, associez une référence au composant et attendez-vous à ce que le composant transmette cette référence au noeud DOM sous-jacent. Given that many of the interactive components rely on `ButtonBase`, you should be able to take advantage of it everywhere.
 
-Here is an [integration example with react-router](/guides/composition/#button).
+Voici un exemple d'intégration [avec react-router](/guides/composition/#button).
 
 ## Limites
 
-### Cursor not-allowed
+### Curseur non autorisé
 
-The ButtonBase component sets `pointer-events: none;` on disabled buttons, which prevents the appearance of a disabled cursor.
+Le composant ButtonBase définit `pointer-événements : none;` sur les boutons désactivés, ce qui empêche l'apparence d'un curseur désactivé.
 
-If you wish to use `not-allowed`, you have two options:
+Si vous souhaitez utiliser `non-autorisé`, vous avez deux options :
 
-1. **CSS only**. You can remove the pointer events style on the disabled state of the `<button>` element:
+1. **CSS seulement**. Vous pouvez supprimer le style d'événements du pointeur sur l'état désactivé de l'élément `<button>`:
 
   ```css
   .MuiButtonBase-root:disabled {
@@ -105,12 +115,12 @@ If you wish to use `not-allowed`, you have two options:
   }
   ```
 
-However:
+Toutefois :
 
-- You should add `pointer-events: none;` back when you need to display [tooltips on disabled elements](/components/tooltips/#disabled-elements)
-- The cursor won't change if you render something other than a button element, for instance, a link `<a>` element.
+- Vous devez ajouter `pointer-events : none;` de retour lorsque vous avez besoin d'afficher [tooltips sur les éléments désactivés](/components/tooltips/#disabled-elements).
+- Le curseur ne changera pas si vous rendez quelque chose d'autre qu'un élément de bouton, par exemple, un élément de lien `<a>`.
 
-2. **DOM change**. You can wrap the button:
+2. **DOM changement**. Tu peux envelopper le bouton:
 
   ```jsx
   <span style={{ cursor: 'not-allowed' }}>
@@ -120,4 +130,4 @@ However:
   </span>
   ```
 
-This has the advantage of supporting any element, for instance, a link `<a>` element.
+Ceci a l'avantage de supporter n'importe quel élément, par exemple, un élément de lien `<a>`.

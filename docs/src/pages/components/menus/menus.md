@@ -48,6 +48,8 @@ Here is an example of customizing the component. You can learn more about this i
 The `MenuItem` is a wrapper around `ListItem` with some additional styles.
 You can use the same list composition features with the `MenuItem` component:
 
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/menu).
+
 ## Max height menus
 
 If the height of a menu prevents all menu items from being displayed, the menu can scroll internally.

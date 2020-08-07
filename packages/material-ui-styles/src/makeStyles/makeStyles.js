@@ -201,7 +201,7 @@ export default function makeStyles(stylesOrCreator, options = {}) {
     classNamePrefix,
   };
 
-  return (props = {}) => {
+  const useStyles = (props = {}) => {
     const theme = useTheme() || defaultTheme;
     const stylesOptions = {
       ...React.useContext(StylesContext),
@@ -236,6 +236,14 @@ export default function makeStyles(stylesOrCreator, options = {}) {
       shouldUpdate.current = true;
     });
 
-    return getClasses(instance.current, props.classes, Component);
+    const classes = getClasses(instance.current, props.classes, Component);
+    if (process.env.NODE_ENV !== 'production') {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      React.useDebugValue(classes);
+    }
+
+    return classes;
   };
+
+  return useStyles;
 }

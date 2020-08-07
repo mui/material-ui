@@ -31,24 +31,28 @@ However, you might be progressively migrating a website to Material-UI, using a 
 ```jsx
 import React from 'react';
 import ScopedCssBaseline from '@material-ui/core/ScopedCssBaseline';
+import MyApp from './MyApp';
 
 export default function MyApp() {
   return (
     <ScopedCssBaseline>
       {/* The rest of your application */}
+      <MyApp />
     </ScopedCssBaseline>
   );
 }
 ```
 
-## Approach
+⚠️ Make sure you import `ScopedCssBaseline` first to avoid box-sizing conflicts as in the above example.
+
+## Enfoque
 
 ### Página
 
 The `<html>` and `<body>` elements are updated to provide better page-wide defaults. More specifically:
 
 - Se elimina el margen en todos los navegadores.
-- Se aplica el color de fondo predeterminado de Material Design. It's using [`theme.palette.background.default`](/customization/default-theme/?expand-path=$.palette.background) for standard devices and a white background for print devices.
+- Se aplica el color de fondo predeterminado de Material Design. Utiliza [`theme.palette.background.default`](/customization/default-theme/?expand-path=$.palette.background) para dispositivos estándares y un fondo blanco para dispositivos de impresión.
 
 ### Disposición
 
@@ -59,4 +63,8 @@ The `<html>` and `<body>` elements are updated to provide better page-wide defau
 - No se declara ningún tamaño de fuente de base en el elemento `<html>`, pero se asume 16px (el valor predeterminado del navegador). Puedes aprender más acerca de las implicaciones de cambiar el tamaño de fuente predeterminado de `<html>`, en la página [de documentación del tema](/customization/typography/#typography-html-font-size).
 - Set the `theme.typography.body2` style on the `<body>` element.
 - Set the font-weight to `theme.typography.fontWeightBold` for the `<b>` and `<strong>` elements.
-- El antialiasing de fuentes está habilitado para una mejor visualización de la fuente Roboto.
+- Custom font-smoothing is enabled for better display of the Roboto font.
+
+## Personalización
+
+Head to the [global customization](/customization/globals/#global-css) section of the documentation to change the output of these components.

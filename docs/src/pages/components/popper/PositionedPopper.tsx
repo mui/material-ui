@@ -28,7 +28,7 @@ export default function PositionedPopper() {
     event: React.MouseEvent<HTMLButtonElement>,
   ) => {
     setAnchorEl(event.currentTarget);
-    setOpen(prev => placement !== newPlacement || !prev);
+    setOpen((prev) => placement !== newPlacement || !prev);
     setPlacement(newPlacement);
   };
 

@@ -1,4 +1,4 @@
-import { assert } from 'chai';
+import { expect } from 'chai';
 import style from './style';
 
 describe('style', () => {
@@ -13,7 +13,7 @@ describe('style', () => {
       theme: {},
       bgcolor: 'blue',
     });
-    assert.deepEqual(output, {
+    expect(output).to.deep.equal({
       backgroundColor: 'blue',
     });
   });
@@ -23,7 +23,7 @@ describe('style', () => {
       theme: {},
       bgcolor: ['blue', 'red'],
     });
-    assert.deepEqual(output1, {
+    expect(output1).to.deep.equal({
       '@media (min-width:0px)': {
         backgroundColor: 'blue',
       },
@@ -39,7 +39,7 @@ describe('style', () => {
         sm: 'red',
       },
     });
-    assert.deepEqual(output2, {
+    expect(output2).to.deep.equal({
       '@media (min-width:0px)': {
         backgroundColor: 'blue',
       },
@@ -47,20 +47,6 @@ describe('style', () => {
         backgroundColor: 'red',
       },
     });
-
-    // const output3 = bgcolor({
-    //   theme: {},
-    //   bgcolor: 'blue',
-    //   sm: {
-    //     bgcolor: 'red',
-    //   },
-    // });
-    // assert.deepEqual(output3, {
-    //   backgroundColor: 'blue',
-    //   '@media (min-width:600px)': {
-    //     backgroundColor: 'red',
-    //   },
-    // });
   });
 
   const boxShadow = style({
@@ -76,7 +62,7 @@ describe('style', () => {
       boxShadow: 1,
     });
 
-    assert.deepEqual(output, {
+    expect(output).to.deep.equal({
       boxShadow: '0px 1px 3px 0px rgba(0, 0, 0, 0.2)',
     });
   });
@@ -89,7 +75,7 @@ describe('style', () => {
       boxShadow: '0px 1px 3px 0px rgba(0, 0, 0, 0.2)',
     });
 
-    assert.deepEqual(output, {
+    expect(output).to.deep.equal({
       boxShadow: '0px 1px 3px 0px rgba(0, 0, 0, 0.2)',
     });
   });
@@ -97,7 +83,7 @@ describe('style', () => {
   const border = style({
     prop: 'border',
     themeKey: 'borders',
-    transform: value => (typeof value === 'number' && value > 0 ? `${value}px solid` : value),
+    transform: (value) => (typeof value === 'number' && value > 0 ? `${value}px solid` : value),
   });
 
   it('should transform the prop correctly', () => {
@@ -105,7 +91,7 @@ describe('style', () => {
       theme: {},
       border: 1,
     });
-    assert.deepEqual(output1, {
+    expect(output1).to.deep.equal({
       border: '1px solid',
     });
 
@@ -117,17 +103,17 @@ describe('style', () => {
       },
       border: 'small',
     });
-    assert.deepEqual(output2, {
+    expect(output2).to.deep.equal({
       border: '2px solid',
     });
 
     const output3 = border({
       theme: {
-        borders: value => `${value ** 2}px solid`,
+        borders: (value) => `${value ** 2}px solid`,
       },
       border: 2,
     });
-    assert.deepEqual(output3, {
+    expect(output3).to.deep.equal({
       border: '4px solid',
     });
   });

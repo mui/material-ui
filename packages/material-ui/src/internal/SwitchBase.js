@@ -58,11 +58,12 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
     controlled: checkedProp,
     default: Boolean(defaultChecked),
     name: 'SwitchBase',
+    state: 'checked',
   });
 
   const muiFormControl = useFormControl();
 
-  const handleFocus = event => {
+  const handleFocus = (event) => {
     if (onFocus) {
       onFocus(event);
     }
@@ -72,7 +73,7 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
     }
   };
 
-  const handleBlur = event => {
+  const handleBlur = (event) => {
     if (onBlur) {
       onBlur(event);
     }
@@ -82,12 +83,13 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
     }
   };
 
-  const handleInputChange = event => {
+  const handleInputChange = (event) => {
     const newChecked = event.target.checked;
 
     setCheckedState(newChecked);
 
     if (onChange) {
+      // TODO v5: remove the second argument.
       onChange(event, newChecked);
     }
   };

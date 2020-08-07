@@ -9,7 +9,7 @@ import TextField from '../components/TextField';
 import Snackbar from '../components/Snackbar';
 import Button from '../components/Button';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     marginTop: theme.spacing(10),
     marginBottom: 0,
@@ -62,7 +62,7 @@ function ProductCTA(props) {
   const { classes } = props;
   const [open, setOpen] = React.useState(false);
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     setOpen(true);
   };

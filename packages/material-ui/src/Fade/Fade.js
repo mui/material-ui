@@ -27,17 +27,45 @@ const defaultTimeout = {
 const Fade = React.forwardRef(function Fade(props, ref) {
   const {
     children,
+    disableStrictModeCompat = false,
     in: inProp,
     onEnter,
+    onEntered,
+    onEntering,
     onExit,
+    onExited,
+    onExiting,
     style,
+    // eslint-disable-next-line react/prop-types
+    TransitionComponent = Transition,
     timeout = defaultTimeout,
     ...other
   } = props;
   const theme = useTheme();
-  const handleRef = useForkRef(children.ref, ref);
 
-  const handleEnter = (node, isAppearing) => {
+  const enableStrictModeCompat = theme.unstable_strictMode && !disableStrictModeCompat;
+  const nodeRef = React.useRef(null);
+  const foreignRef = useForkRef(children.ref, ref);
+  const handleRef = useForkRef(enableStrictModeCompat ? nodeRef : undefined, foreignRef);
+
+  const normalizedTransitionCallback = (callback) => (nodeOrAppearing, maybeAppearing) => {
+    if (callback) {
+      const [node, isAppearing] = enableStrictModeCompat
+        ? [nodeRef.current, nodeOrAppearing]
+        : [nodeOrAppearing, maybeAppearing];
+
+      // onEnterXxx and onExitXxx callbacks have a different arguments.length value.
+      if (isAppearing === undefined) {
+        callback(node);
+      } else {
+        callback(node, isAppearing);
+      }
+    }
+  };
+
+  const handleEntering = normalizedTransitionCallback(onEntering);
+
+  const handleEnter = normalizedTransitionCallback((node, isAppearing) => {
     reflow(node); // So the animation always start from the start.
 
     const transitionProps = getTransitionProps(
@@ -46,35 +74,48 @@ const Fade = React.forwardRef(function Fade(props, ref) {
         mode: 'enter',
       },
     );
+
     node.style.webkitTransition = theme.transitions.create('opacity', transitionProps);
     node.style.transition = theme.transitions.create('opacity', transitionProps);
 
     if (onEnter) {
       onEnter(node, isAppearing);
     }
-  };
+  });
 
-  const handleExit = node => {
+  const handleEntered = normalizedTransitionCallback(onEntered);
+
+  const handleExiting = normalizedTransitionCallback(onExiting);
+
+  const handleExit = normalizedTransitionCallback((node) => {
     const transitionProps = getTransitionProps(
       { style, timeout },
       {
         mode: 'exit',
       },
     );
+
     node.style.webkitTransition = theme.transitions.create('opacity', transitionProps);
     node.style.transition = theme.transitions.create('opacity', transitionProps);
 
     if (onExit) {
       onExit(node);
     }
-  };
+  });
+
+  const handleExited = normalizedTransitionCallback(onExited);
 
   return (
-    <Transition
+    <TransitionComponent
       appear
       in={inProp}
+      nodeRef={enableStrictModeCompat ? nodeRef : undefined}
       onEnter={handleEnter}
+      onEntered={handleEntered}
+      onEntering={handleEntering}
       onExit={handleExit}
+      onExited={handleExited}
+      onExiting={handleExiting}
       timeout={timeout}
       {...other}
     >
@@ -91,15 +132,25 @@ const Fade = React.forwardRef(function Fade(props, ref) {
           ...childProps,
         });
       }}
-    </Transition>
+    </TransitionComponent>
   );
 });
 
 Fade.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * A single child content element.
    */
   children: PropTypes.element,
+  /**
+   * Enable this prop if you encounter 'Function components cannot be given refs',
+   * use `unstable_createStrictModeTheme`,
+   * and can't forward the ref in the child component.
+   */
+  disableStrictModeCompat: PropTypes.bool,
   /**
    * If `true`, the component will transition in.
    */
@@ -111,7 +162,23 @@ Fade.propTypes = {
   /**
    * @ignore
    */
+  onEntered: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onEntering: PropTypes.func,
+  /**
+   * @ignore
+   */
   onExit: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onExited: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onExiting: PropTypes.func,
   /**
    * @ignore
    */
@@ -122,7 +189,11 @@ Fade.propTypes = {
    */
   timeout: PropTypes.oneOfType([
     PropTypes.number,
-    PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
+    PropTypes.shape({
+      appear: PropTypes.number,
+      enter: PropTypes.number,
+      exit: PropTypes.number,
+    }),
   ]),
 };
 

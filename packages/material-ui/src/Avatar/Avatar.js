@@ -1,10 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import Person from '../internal/svg-icons/Person';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     position: 'relative',
@@ -29,6 +30,8 @@ export const styles = theme => ({
   },
   /* Styles applied to the root element if `variant="circle"`. */
   circle: {},
+  /* Styles applied to the root element if `variant="circular"`. */
+  circular: {},
   /* Styles applied to the root element if `variant="rounded"`. */
   rounded: {
     borderRadius: theme.shape.borderRadius,
@@ -152,6 +155,10 @@ const Avatar = React.forwardRef(function Avatar(props, ref) {
 });
 
 Avatar.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * Used in combination with `src` or `srcSet` to
    * provide an alt attribute for the rendered `img` element.
@@ -166,16 +173,33 @@ Avatar.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: chainPropTypes(PropTypes.object, (props) => {
+    const { classes } = props;
+    if (classes == null) {
+      return null;
+    }
+
+    if (
+      classes.circle != null &&
+      // 2 classnames? one from withStyles the other must be custom
+      classes.circle.split(' ').length > 1
+    ) {
+      throw new Error(
+        `Material-UI: The \`circle\` class was deprecated. Use \`circular\` instead.`,
+      );
+    }
+
+    return null;
+  }),
   /**
    * @ignore
    */
   className: PropTypes.string,
   /**
    * The component used for the root node.
-   * Either a string to use a DOM element or a component.
+   * Either a string to use a HTML element or a component.
    */
-  component: PropTypes.elementType,
+  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
    * Attributes applied to the `img` element if the component is used to display an image.
    * It can be used to listen for the loading error event.
@@ -197,7 +221,17 @@ Avatar.propTypes = {
   /**
    * The shape of the avatar.
    */
-  variant: PropTypes.oneOf(['circle', 'rounded', 'square']),
+  variant: chainPropTypes(PropTypes.oneOf(['circle', 'circular', 'rounded', 'square']), (props) => {
+    const { variant } = props;
+
+    if (variant === 'circle') {
+      throw new Error(
+        'Material-UI: `variant="circle"` was deprecated. Use `variant="circular"` instead.',
+      );
+    }
+
+    return null;
+  }),
 };
 
 export default withStyles(styles, { name: 'MuiAvatar' })(Avatar);

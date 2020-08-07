@@ -1,26 +1,32 @@
 ---
-title: ButtonGroup React component
+title: React-компонент ButtonGroup
 components: Button, ButtonGroup
 ---
 
-# Button group
+# Группа кнопок
 
-<p class="description">The ButtonGroup component can be used to group related buttons.</p>
+<p class="description">Компонент ButtonGroup можно использовать для группирования связанных кнопок.</p>
 
-## Basic button group
+## Базовые свойства кнопок
 
 {{"demo": "pages/components/button-group/BasicButtonGroup.js"}}
 
-### Group sizes and colors
+## Sizes and colors
 
 {{"demo": "pages/components/button-group/GroupSizesColors.js"}}
 
-### Group orientation
+## Vertical group
 
 {{"demo": "pages/components/button-group/GroupOrientation.js"}}
 
-### Split Button
+## Split button
 
-ButtonGroup can also be used to create a split button. The dropdown can change the button action (as in this example), or be used to immediately trigger a related action.
+`ButtonGroup` can also be used to create a split button. Выпадающий список может изменить действие кнопки (как в этом примере), или использоваться для немедленного вызова действия.
 
 {{"demo": "pages/components/button-group/SplitButton.js"}}
+
+## Disabled elevation
+
+Вы можете убрать эффект "всплытия" с помощью пропа `disableElevation`.
+
+{{"demo": "pages/components/button-group/DisableElevation.js"}}

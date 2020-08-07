@@ -16,6 +16,7 @@ module.exports = {
       '@material-ui/utils': path.resolve(__dirname, '../packages/material-ui-utils/src'),
       docs: path.resolve(__dirname, '../docs'),
     },
+    extensions: ['.js', '.ts'],
   },
   output: {
     path: path.join(__dirname, 'build'),
@@ -25,7 +26,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|ts)$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
         query: {

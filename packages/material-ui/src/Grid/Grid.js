@@ -21,7 +21,7 @@ const GRID_SIZES = ['auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 function generateGrid(globalStyles, theme, breakpoint) {
   const styles = {};
 
-  GRID_SIZES.forEach(size => {
+  GRID_SIZES.forEach((size) => {
     const key = `grid-${breakpoint}-${size}`;
 
     if (size === true) {
@@ -71,7 +71,7 @@ function getOffset(val, div = 1) {
 function generateGutter(theme, breakpoint) {
   const styles = {};
 
-  SPACINGS.forEach(spacing => {
+  SPACINGS.forEach((spacing) => {
     const themeSpacing = theme.spacing(spacing);
 
     if (themeSpacing === 0) {
@@ -96,8 +96,8 @@ function generateGutter(theme, breakpoint) {
 // alignItems: 'flex-start',
 // flexWrap: 'nowrap',
 // justifyContent: 'flex-start',
-export const styles = theme => ({
-  /* Styles applied to the root element */
+export const styles = (theme) => ({
+  /* Styles applied to the root element. */
   root: {},
   /* Styles applied to the root element if `container={true}`. */
   container: {
@@ -123,7 +123,7 @@ export const styles = theme => ({
   'direction-xs-column-reverse': {
     flexDirection: 'column-reverse',
   },
-  /* Styles applied to the root element if `direction="rwo-reverse"`. */
+  /* Styles applied to the root element if `direction="row-reverse"`. */
   'direction-xs-row-reverse': {
     flexDirection: 'row-reverse',
   },
@@ -278,9 +278,9 @@ Grid.propTypes = {
   className: PropTypes.string,
   /**
    * The component used for the root node.
-   * Either a string to use a DOM element or a component.
+   * Either a string to use a HTML element or a component.
    */
-  component: PropTypes.elementType,
+  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
    * If `true`, the component will have the flex *container* behavior.
    * You should be wrapping *items* with a *container*.

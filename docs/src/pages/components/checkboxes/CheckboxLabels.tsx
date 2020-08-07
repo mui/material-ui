@@ -27,55 +27,47 @@ export default function CheckboxLabels() {
     checkedG: true,
   });
 
-  const handleChange = (name: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
-    setState({ ...state, [name]: event.target.checked });
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setState({ ...state, [event.target.name]: event.target.checked });
   };
 
   return (
     <FormGroup row>
       <FormControlLabel
-        control={
-          <Checkbox checked={state.checkedA} onChange={handleChange('checkedA')} value="checkedA" />
-        }
+        control={<Checkbox checked={state.checkedA} onChange={handleChange} name="checkedA" />}
         label="Secondary"
       />
       <FormControlLabel
         control={
           <Checkbox
             checked={state.checkedB}
-            onChange={handleChange('checkedB')}
-            value="checkedB"
+            onChange={handleChange}
+            name="checkedB"
             color="primary"
           />
         }
         label="Primary"
       />
-      <FormControlLabel control={<Checkbox value="checkedC" />} label="Uncontrolled" />
-      <FormControlLabel disabled control={<Checkbox value="checkedD" />} label="Disabled" />
-      <FormControlLabel disabled control={<Checkbox checked value="checkedE" />} label="Disabled" />
+      <FormControlLabel control={<Checkbox name="checkedC" />} label="Uncontrolled" />
+      <FormControlLabel disabled control={<Checkbox name="checkedD" />} label="Disabled" />
+      <FormControlLabel disabled control={<Checkbox checked name="checkedE" />} label="Disabled" />
       <FormControlLabel
         control={
           <Checkbox
             checked={state.checkedF}
-            onChange={handleChange('checkedF')}
-            value="checkedF"
+            onChange={handleChange}
+            name="checkedF"
             indeterminate
           />
         }
         label="Indeterminate"
       />
       <FormControlLabel
-        control={
-          <GreenCheckbox
-            checked={state.checkedG}
-            onChange={handleChange('checkedG')}
-            value="checkedG"
-          />
-        }
+        control={<GreenCheckbox checked={state.checkedG} onChange={handleChange} name="checkedG" />}
         label="Custom color"
       />
       <FormControlLabel
-        control={<Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite />} value="checkedH" />}
+        control={<Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite />} name="checkedH" />}
         label="Custom icon"
       />
       <FormControlLabel
@@ -83,7 +75,7 @@ export default function CheckboxLabels() {
           <Checkbox
             icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
             checkedIcon={<CheckBoxIcon fontSize="small" />}
-            value="checkedI"
+            name="checkedI"
           />
         }
         label="Custom size"

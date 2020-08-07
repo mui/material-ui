@@ -1,23 +1,24 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
-import { act, createClientRender, fireEvent } from 'test/utils/createClientRender';
+import { act, createClientRender, fireEvent, screen } from 'test/utils/createClientRender';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import MenuItem from '../MenuItem';
 import Input from '../Input';
+import InputLabel from '../InputLabel';
 import Select from './Select';
 import { spy, stub, useFakeTimers } from 'sinon';
 
 describe('<Select />', () => {
   let classes;
-  let mount;
+  // StrictModeViolation: uses Menu
+  const mount = createMount({ strict: false });
   const render = createClientRender({ strict: false });
 
   before(() => {
     classes = getClasses(<Select />);
-    // StrictModeViolation: uses Menu
-    mount = createMount({ strict: false });
   });
 
   describeConformance(<Select value="" />, () => ({
@@ -26,7 +27,6 @@ describe('<Select />', () => {
     mount,
     refInstanceof: window.HTMLDivElement,
     skip: ['componentProp', 'rootClass'],
-    after: () => mount.cleanUp(),
   }));
 
   describe('prop: inputProps', () => {
@@ -78,14 +78,14 @@ describe('<Select />', () => {
     );
   });
 
-  it('should have an input with [type="hidden"] by default', () => {
+  it('should have an input with [aria-hidden] by default', () => {
     const { container } = render(
       <Select value="10">
         <MenuItem value="10">Ten</MenuItem>
       </Select>,
     );
 
-    expect(container.querySelector('input')).to.have.property('type', 'hidden');
+    expect(container.querySelector('input')).to.have.attribute('aria-hidden', 'true');
   });
 
   it('should ignore onBlur when the menu opens', () => {
@@ -96,7 +96,7 @@ describe('<Select />', () => {
       <Select
         onBlur={handleBlur}
         value=""
-        onMouseDown={event => {
+        onMouseDown={(event) => {
           // simulating certain platforms that focus on mousedown
           if (event.defaultPrevented === false) {
             event.currentTarget.focus();
@@ -112,7 +112,7 @@ describe('<Select />', () => {
     fireEvent.mouseDown(trigger);
 
     expect(handleBlur.callCount).to.equal(0);
-    expect(getByRole('listbox')).to.be.ok;
+    expect(getByRole('listbox')).not.to.equal(null);
 
     act(() => {
       const options = getAllByRole('option');
@@ -121,7 +121,7 @@ describe('<Select />', () => {
     });
 
     expect(handleBlur.callCount).to.equal(0);
-    expect(queryByRole('listbox', { hidden: false })).to.be.null;
+    expect(queryByRole('listbox', { hidden: false })).to.equal(null);
   });
 
   it('options should have a data-value attribute', () => {
@@ -138,25 +138,26 @@ describe('<Select />', () => {
     expect(options[1]).to.have.attribute('data-value', '20');
   });
 
-  [' ', 'ArrowUp', 'ArrowDown', 'Enter'].forEach(key => {
+  [' ', 'ArrowUp', 'ArrowDown', 'Enter'].forEach((key) => {
     it(`should open menu when pressed ${key} key on select`, () => {
-      const { getByRole } = render(
+      render(
         <Select value="">
           <MenuItem value="">none</MenuItem>
         </Select>,
       );
-      getByRole('button').focus();
+      const trigger = screen.getByRole('button');
+      trigger.focus();
 
-      fireEvent.keyDown(document.activeElement, { key });
-      expect(getByRole('listbox', { hidden: false })).to.be.ok;
+      fireEvent.keyDown(trigger, { key });
+      expect(screen.getByRole('listbox', { hidden: false })).not.to.equal(null);
 
-      fireEvent.keyUp(document.activeElement, { key });
-      expect(getByRole('listbox', { hidden: false })).to.be.ok;
+      fireEvent.keyUp(screen.getAllByRole('option')[0], { key });
+      expect(screen.getByRole('listbox', { hidden: false })).not.to.equal(null);
     });
   });
 
   it('should pass "name" as part of the event.target for onBlur', () => {
-    const handleBlur = stub().callsFake(event => event.target.name);
+    const handleBlur = stub().callsFake((event) => event.target.name);
     const { getByRole } = render(
       <Select onBlur={handleBlur} name="blur-testing" value="">
         <MenuItem value="">none</MenuItem>
@@ -191,27 +192,47 @@ describe('<Select />', () => {
     expect(handleClose.callCount).to.equal(1);
   });
 
+  it('should focus select when its label is clicked', () => {
+    const { getByRole, getByTestId } = render(
+      <React.Fragment>
+        <InputLabel id="my$label" data-testid="label" />
+        <Select value="" labelId="my$label" />
+      </React.Fragment>,
+    );
+
+    fireEvent.click(getByTestId('label'));
+
+    expect(getByRole('button')).toHaveFocus();
+  });
+
   it('should focus list if no selection', () => {
     const { getByRole } = render(<Select value="" autoFocus />);
 
     fireEvent.mouseDown(getByRole('button'));
 
     // TODO not matching WAI-ARIA authoring practices. It should focus the first (or selected) item.
-    expect(getByRole('listbox')).to.have.focus;
+    expect(getByRole('listbox')).toHaveFocus();
   });
 
   describe('prop: onChange', () => {
-    let clock;
-
-    before(() => {
-      clock = useFakeTimers();
-    });
-
-    after(() => {
-      clock.restore();
-    });
-
     it('should get selected element from arguments', () => {
+      const onChangeHandler = spy();
+      const { getAllByRole, getByRole } = render(
+        <Select onChange={onChangeHandler} value="0">
+          <MenuItem value="0" />
+          <MenuItem value="1" />
+          <MenuItem value="2" />
+        </Select>,
+      );
+      fireEvent.mouseDown(getByRole('button'));
+      getAllByRole('option')[1].click();
+
+      expect(onChangeHandler.calledOnce).to.equal(true);
+      const selected = onChangeHandler.args[0][1];
+      expect(React.isValidElement(selected)).to.equal(true);
+    });
+
+    it('should not be called if selected element has the current value (value did not change)', () => {
       const onChangeHandler = spy();
       const { getAllByRole, getByRole } = render(
         <Select onChange={onChangeHandler} value="1">
@@ -223,9 +244,7 @@ describe('<Select />', () => {
       fireEvent.mouseDown(getByRole('button'));
       getAllByRole('option')[1].click();
 
-      expect(onChangeHandler.calledOnce).to.be.true;
-      const selected = onChangeHandler.args[0][1];
-      expect(React.isValidElement(selected)).to.equal(true);
+      expect(onChangeHandler.callCount).to.equal(0);
     });
   });
 
@@ -314,9 +333,9 @@ describe('<Select />', () => {
             <MenuItem value={30}>Thirty</MenuItem>
           </Select>,
         );
-        expect(console.warn.callCount).to.equal(1);
+        expect(console.warn.callCount).to.equal(2); // strict mode renders twice
         expect(console.warn.args[0][0]).to.include(
-          'Material-UI: you have provided an out-of-range value `20` for the select component.',
+          'Material-UI: You have provided an out-of-range value `20` for the select component.',
         );
       });
     });
@@ -331,7 +350,7 @@ describe('<Select />', () => {
           <option value={2}>Two</option>
         </Select>,
       );
-      expect(container.querySelector('svg')).to.be.null;
+      expect(container.querySelector('svg')).to.equal(null);
     });
 
     it('should present an SVG icon', () => {
@@ -342,7 +361,7 @@ describe('<Select />', () => {
           <option value={2}>Two</option>
         </Select>,
       );
-      expect(container.querySelector('svg')).to.be.visible;
+      expect(container.querySelector('svg')).toBeVisible();
     });
   });
 
@@ -361,6 +380,18 @@ describe('<Select />', () => {
       expect(getByRole('button')).not.to.have.attribute('aria-expanded');
     });
 
+    it('sets aria-disabled="true" when component is disabled', () => {
+      const { getByRole } = render(<Select disabled value="" />);
+
+      expect(getByRole('button')).to.have.attribute('aria-disabled', 'true');
+    });
+
+    specify('aria-disabled is not present if component is not disabled', () => {
+      const { getByRole } = render(<Select disabled={false} value="" />);
+
+      expect(getByRole('button')).not.to.have.attribute('aria-disabled');
+    });
+
     it('indicates that activating the button displays a listbox', () => {
       const { getByRole } = render(<Select value="" />);
 
@@ -370,7 +401,7 @@ describe('<Select />', () => {
     it('renders an element with listbox behavior', () => {
       const { getByRole } = render(<Select open value="" />);
 
-      expect(getByRole('listbox')).to.be.visible;
+      expect(getByRole('listbox')).toBeVisible();
     });
 
     specify('the listbox is focusable', () => {
@@ -378,7 +409,7 @@ describe('<Select />', () => {
 
       getByRole('listbox').focus();
 
-      expect(getByRole('listbox')).to.have.focus;
+      expect(getByRole('listbox')).toHaveFocus();
     });
 
     it('identifies each selectable element containing an option', () => {
@@ -409,7 +440,7 @@ describe('<Select />', () => {
       const { getByRole } = render(<Select value="" />);
 
       // TODO what is the accessible name actually?
-      expect(getByRole('button')).to.have.attribute('aria-labelledby', ' ');
+      expect(getByRole('button')).to.not.have.attribute('aria-labelledby');
     });
 
     it('is labelled by itself when it has a name', () => {
@@ -417,7 +448,7 @@ describe('<Select />', () => {
 
       expect(getByRole('button')).to.have.attribute(
         'aria-labelledby',
-        ` ${getByRole('button').getAttribute('id')}`,
+        getByRole('button').getAttribute('id'),
       );
     });
 
@@ -477,20 +508,21 @@ describe('<Select />', () => {
 
   describe('prop: readOnly', () => {
     it('should not trigger any event with readOnly', () => {
-      const { getByRole, queryByRole } = render(
+      render(
         <Select readOnly value="10">
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
         </Select>,
         { baseElement: document.body },
       );
-      getByRole('button').focus();
+      const trigger = screen.getByRole('button');
+      trigger.focus();
 
-      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-      expect(queryByRole('listbox')).not.to.be.ok;
+      fireEvent.keyDown(trigger, { key: 'ArrowDown' });
+      expect(screen.queryByRole('listbox')).to.equal(null);
 
-      fireEvent.keyUp(document.activeElement, { key: 'ArrowDown' });
-      expect(queryByRole('listbox')).not.to.be.ok;
+      fireEvent.keyUp(trigger, { key: 'ArrowDown' });
+      expect(screen.queryByRole('listbox')).to.equal(null);
     });
   });
 
@@ -570,7 +602,7 @@ describe('<Select />', () => {
 
   describe('prop: renderValue', () => {
     it('should use the prop to render the value', () => {
-      const renderValue = x => `0b${x.toString(2)}`;
+      const renderValue = (x) => `0b${x.toString(2)}`;
       const { getByRole } = render(
         <Select renderValue={renderValue} value={4}>
           <MenuItem value={2}>2</MenuItem>
@@ -619,11 +651,11 @@ describe('<Select />', () => {
       fireEvent.click(openSelect);
 
       const option = getByRole('option');
-      expect(option).to.have.focus;
+      expect(option).toHaveFocus();
       fireEvent.click(option);
 
       expect(container.querySelectorAll('.Mui-focused').length).to.equal(0);
-      expect(openSelect).to.have.focus;
+      expect(openSelect).toHaveFocus();
     });
 
     it('should allow to control closing by passing onClose props', () => {
@@ -645,7 +677,7 @@ describe('<Select />', () => {
       const { getByRole, queryByRole } = render(<ControlledWrapper />);
 
       fireEvent.mouseDown(getByRole('button'));
-      expect(getByRole('listbox')).to.be.ok;
+      expect(getByRole('listbox')).not.to.equal(null);
 
       act(() => {
         getByRole('option').click();
@@ -654,12 +686,12 @@ describe('<Select />', () => {
       // it from the DOM. but it's at least immediately inaccessible.
       // It's desired that this fails one day. The additional tick required to remove
       // this from the DOM is not a feature
-      expect(getByRole('listbox', { hidden: true })).to.be.inaccessible;
+      expect(getByRole('listbox', { hidden: true })).toBeInaccessible();
       act(() => {
         clock.tick(0);
       });
 
-      expect(queryByRole('listbox', { hidden: true })).to.be.null;
+      expect(queryByRole('listbox', { hidden: true })).to.equal(null);
     });
 
     it('should be open when initially true', () => {
@@ -669,7 +701,7 @@ describe('<Select />', () => {
         </Select>,
       );
 
-      expect(getByRole('listbox')).to.be.ok;
+      expect(getByRole('listbox')).not.to.equal(null);
     });
 
     it('open only with the left mouse button click', () => {
@@ -690,10 +722,10 @@ describe('<Select />', () => {
 
       // If clicked by the right/middle mouse button, no options list should be opened
       fireEvent.mouseDown(trigger, { button: 1 });
-      expect(queryByRole('listbox')).to.not.exist;
+      expect(queryByRole('listbox')).to.equal(null);
 
       fireEvent.mouseDown(trigger, { button: 2 });
-      expect(queryByRole('listbox')).to.not.exist;
+      expect(queryByRole('listbox')).to.equal(null);
     });
   });
 
@@ -799,25 +831,24 @@ describe('<Select />', () => {
               <MenuItem value="30">Thirty</MenuItem>
             </Select>,
           );
-        }).to.throw(/the `value` prop must be an array/);
+        }).to.throw(/Material-UI: The `value` prop must be an array/);
       });
     });
 
     describe('prop: onChange', () => {
       it('should call onChange when clicking an item', () => {
         function ControlledSelectInput(props) {
-          // eslint-disable-next-line react/prop-types
           const { onChange } = props;
           const [values, clickedValue] = React.useReducer((currentValues, valueClicked) => {
             if (currentValues.indexOf(valueClicked) === -1) {
               return currentValues.concat(valueClicked);
             }
-            return currentValues.filter(value => {
+            return currentValues.filter((value) => {
               return value !== valueClicked;
             });
           }, []);
 
-          const handleChange = event => {
+          const handleChange = (event) => {
             onChange(event);
             clickedValue(event.target.value);
           };
@@ -830,7 +861,7 @@ describe('<Select />', () => {
             </Select>
           );
         }
-        const onChange = stub().callsFake(event => {
+        const onChange = stub().callsFake((event) => {
           return {
             name: event.target.name,
             value: event.target.value,
@@ -859,7 +890,7 @@ describe('<Select />', () => {
     it('should focus select after Select did mount', () => {
       const { getByRole } = render(<Select value="" autoFocus />);
 
-      expect(getByRole('button')).to.have.focus;
+      expect(getByRole('button')).toHaveFocus();
     });
   });
 
@@ -893,7 +924,7 @@ describe('<Select />', () => {
         ref.current.focus();
       });
 
-      expect(getByRole('button')).to.have.focus;
+      expect(getByRole('button')).toHaveFocus();
     });
   });
 
@@ -915,7 +946,7 @@ describe('<Select />', () => {
     it('renders a <select />', () => {
       const { container } = render(<Select native />);
 
-      expect(container.querySelector('select')).not.to.be.null;
+      expect(container.querySelector('select')).not.to.equal(null);
     });
 
     it('can be labelled with a <label />', () => {
@@ -931,7 +962,7 @@ describe('<Select />', () => {
   });
 
   it('prevents the default when releasing Space on the children', () => {
-    const keyUpSpy = spy(event => event.defaultPrevented);
+    const keyUpSpy = spy((event) => event.defaultPrevented);
     render(
       <Select value="one" open>
         <MenuItem onKeyUp={keyUpSpy} value="one">
@@ -940,9 +971,77 @@ describe('<Select />', () => {
       </Select>,
     );
 
-    fireEvent.keyUp(document.activeElement, { key: ' ' });
+    fireEvent.keyUp(screen.getAllByRole('option')[0], { key: ' ' });
 
     expect(keyUpSpy.callCount).to.equal(1);
     expect(keyUpSpy.returnValues[0]).to.equal(true);
+  });
+
+  it('should pass onClick prop to MenuItem', () => {
+    const onClick = spy();
+    const { getAllByRole } = render(
+      <Select open value="30">
+        <MenuItem onClick={onClick} value={30}>
+          Thirty
+        </MenuItem>
+      </Select>,
+    );
+
+    const options = getAllByRole('option');
+    fireEvent.click(options[0]);
+
+    expect(onClick.callCount).to.equal(1);
+  });
+
+  // https://github.com/testing-library/react-testing-library/issues/322
+  // https://twitter.com/devongovett/status/1248306411508916224
+  it('should handle the browser autofill event and simple testing-library API', () => {
+    const onChangeHandler = spy();
+    const { container, getByRole } = render(
+      <Select onChange={onChangeHandler} defaultValue="germany" name="country">
+        <MenuItem value="france">France</MenuItem>
+        <MenuItem value="germany">Germany</MenuItem>
+        <MenuItem value="china">China</MenuItem>
+      </Select>,
+    );
+    fireEvent.change(container.querySelector('input[name="country"]'), {
+      target: {
+        value: 'france',
+      },
+    });
+
+    expect(onChangeHandler.calledOnce).to.equal(true);
+    expect(getByRole('button')).to.have.text('France');
+  });
+
+  it('should support native form validation', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      // see https://github.com/jsdom/jsdom/issues/123
+      this.skip();
+    }
+
+    const handleSubmit = spy((event) => {
+      // avoid karma reload.
+      event.preventDefault();
+    });
+    const Form = (props) => (
+      <form onSubmit={handleSubmit}>
+        <Select required name="country" {...props}>
+          <MenuItem value="" />
+          <MenuItem value="france">France</MenuItem>
+          <MenuItem value="germany">Germany</MenuItem>
+          <MenuItem value="china">China</MenuItem>
+        </Select>
+        <button type="submit" />
+      </form>
+    );
+    const { container, setProps } = render(<Form value="" />);
+
+    fireEvent.click(container.querySelector('button[type=submit]'));
+    expect(handleSubmit.callCount).to.equal(0, 'the select is empty it should disallow submit');
+
+    setProps({ value: 'france' });
+    fireEvent.click(container.querySelector('button[type=submit]'));
+    expect(handleSubmit.callCount).to.equal(1);
   });
 });

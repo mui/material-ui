@@ -1,36 +1,43 @@
 import * as React from 'react';
-import { assert } from 'chai';
-import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import { expect } from 'chai';
+import { createClientRender } from 'test/utils/createClientRender';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import TableCell from './TableCell';
 
 describe('<TableCell />', () => {
-  let mount;
+  const mount = createMount();
   let classes;
-  function mountInTable(node) {
-    const wrapper = mount(
+  const render = createClientRender();
+  function renderInTable(node) {
+    return render(
       <table>
         <tbody>
           <tr>{node}</tr>
         </tbody>
       </table>,
     );
-    return wrapper.find('tr').childAt(0);
   }
 
   before(() => {
-    mount = createMount({ strict: true });
     classes = getClasses(<TableCell />);
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<TableCell />, () => ({
     classes,
     inheritComponent: 'td',
-    mount: mountInTable,
+    mount: (node) => {
+      const wrapper = mount(
+        <table>
+          <tbody>
+            <tr>{node}</tr>
+          </tbody>
+        </table>,
+      );
+      return wrapper.find('tr').childAt(0);
+    },
+
     refInstanceof: window.HTMLTableCellElement,
     // invalid nesting otherwise
     testComponentPropWith: 'td',
@@ -38,44 +45,44 @@ describe('<TableCell />', () => {
 
   describe('prop: padding', () => {
     it('doesn not have a class for padding by default', () => {
-      const wrapper = mountInTable(<TableCell padding="default" />);
-      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.paddingDefault), false);
+      const { container } = renderInTable(<TableCell padding="default" />);
+      expect(container.querySelector('td')).to.not.have.class(classes.paddingDefault);
     });
 
     it('has a class when `none`', () => {
-      const wrapper = mountInTable(<TableCell className="woofTableCell" padding="none" />);
-      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.paddingNone), true);
+      const { container } = renderInTable(<TableCell padding="none" />);
+      expect(container.querySelector('td')).to.have.class(classes.paddingNone);
     });
 
     it('has a class when `checkbox`', () => {
-      const wrapper = mountInTable(<TableCell className="woofTableCell" padding="checkbox" />);
-      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.paddingCheckbox), true);
+      const { container } = renderInTable(<TableCell padding="checkbox" />);
+      expect(container.querySelector('td')).to.have.class(classes.paddingCheckbox);
     });
   });
 
   it('has a class when `size="small"`', () => {
-    const wrapper = mountInTable(<TableCell className="woofTableCell" size="small" />);
-    assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.sizeSmall), true);
+    const { container } = renderInTable(<TableCell size="small" />);
+    expect(container.querySelector('td')).to.have.class(classes.sizeSmall);
   });
 
   it('should render children', () => {
-    const children = <p className="test">Hello</p>;
-    const wrapper = mountInTable(<TableCell>{children}</TableCell>);
-    assert.strictEqual(wrapper.contains(children), true);
+    const children = <p data-testid="hello">Hello</p>;
+    const { getByTestId } = renderInTable(<TableCell>{children}</TableCell>);
+    expect(getByTestId('hello')).to.not.equal(null);
   });
 
   it('should render aria-sort="ascending" when prop sortDirection="asc" provided', () => {
-    const wrapper = mountInTable(<TableCell sortDirection="asc" />);
-    assert.strictEqual(wrapper.find('td').props()['aria-sort'], 'ascending');
+    const { container } = renderInTable(<TableCell sortDirection="asc" />);
+    expect(container.querySelector('td')).to.have.attribute('aria-sort', 'ascending');
   });
 
   it('should render aria-sort="descending" when prop sortDirection="desc" provided', () => {
-    const wrapper = mountInTable(<TableCell sortDirection="desc" />);
-    assert.strictEqual(wrapper.find('td').props()['aria-sort'], 'descending');
+    const { container } = renderInTable(<TableCell sortDirection="desc" />);
+    expect(container.querySelector('td')).to.have.attribute('aria-sort', 'descending');
   });
 
   it('should center content', () => {
-    const wrapper = mountInTable(<TableCell align="center" />);
-    assert.strictEqual(wrapper.find('td').hasClass(classes.alignCenter), true);
+    const { container } = renderInTable(<TableCell align="center" />);
+    expect(container.querySelector('td')).to.have.class(classes.alignCenter);
   });
 });

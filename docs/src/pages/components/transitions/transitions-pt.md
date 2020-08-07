@@ -1,18 +1,18 @@
 ---
-title: Componentes de Transição React
+title: Componentes React para Transição
 components: Collapse, Fade, Grow, Slide, Zoom
 ---
 
 # Transições
 
-<p class="description">Transições ajudam a fazer a INTERFACE expressiva e fácil de usar.</p>
+<p class="description">Transições ajudam a deixar a interface expressiva e fácil de usar.</p>
 
-Material-UI provê um número de transições que podem ser usadas para introduzir algumas [animações](https://material.io/design/motion/) básicas para os componentes de sua aplicação.
+Material-UI provê um número de transições que podem ser usadas para introduzir alguns [movimentos](https://material.io/design/motion/) básicos para os componentes de sua aplicação.
 
-Para um melhor suporte ao server rendering Material-UI provê uma propriedade de `estilo` para o filho de alguns componentes de transição (Fade, Grow, Zoom, Slide). A propriedade `style` deve ser aplicada ao DOM para que a animação funcione conforme esperada.
+Para um melhor suporte a renderização no servidor, Material-UI provê uma propriedade `style` para o filho de alguns componentes de transição (Fade, Grow, Zoom, Slide). A propriedade `style` deve ser aplicada ao DOM para que a animação funcione conforme esperado.
 
 ```jsx
-// O objeto `props` contém uma propriedade` style`.
+// O objeto `props` contém uma propriedade `style`.
 // Você precisa fornecê-lo ao elemento `div` como mostrado aqui.
 function MyComponent(props) {
   return (
@@ -39,7 +39,7 @@ Expanda verticalmente a partir do topo do elemento filho. A propriedade `collaps
 
 ## Fade
 
-Fade in de transparente para opaco.
+Esmaecer de transparente para opaco.
 
 {{"demo": "pages/components/transitions/SimpleFade.js", "bg": true}}
 
@@ -55,7 +55,7 @@ O segundo exemplo demonstra como alterar `transform-origin` e condicionalmente a
 
 Deslize a partir da borda da tela. A propriedade `direction` controla em qual borda da tela a transição começa.
 
-The Transition component's `mountOnEnter` property prevents the child component from being mounted until `in` is `true`. Isso evita que o componente relativamente posicionado role para a visão a partir da posição fora da tela. Da mesma forma, a propriedade `unmountOnExit` remove o componente do DOM após a transição ter sido exibida (`in` = `false`).
+A propriedade `mountOnEnter` do componente de transição impede que o componente filho seja montado até que `in` seja `true`. Isso evita que o componente relativamente posicionado role para a visão a partir da posição de fora da tela. Da mesma forma, a propriedade `unmountOnExit` remove o componente do DOM após a transição ter sido exibida para fora da tela.
 
 {{"demo": "pages/components/transitions/SimpleSlide.js", "bg": true}}
 
@@ -67,10 +67,12 @@ Este exemplo também demonstra como atrasar a transição de entrada.
 
 {{"demo": "pages/components/transitions/SimpleZoom.js", "bg": true}}
 
-## TransitionComponent prop
+## Propriedade TransitionComponent
 
-The components accept a `TransitionComponent` prop to customize the default transitions. You can use any of the above components or your own. It should respect the following conditions:
+Os componentes aceitam uma propriedade `TransitionComponent` para customizar as transições padrão. Você pode usar qualquer um dos componentes acima ou seu próprio componente. Ele deve respeitar as seguintes condições:
 
-- Accepts an `in` prop. This corresponds to the open/close state.
+- Aceitar uma propriedade `in`. Isso corresponde ao estado de aberto/fechado.
 - Chamar a propriedade de callback `onEnter` quando a transição de entrada iniciar.
-- Chamar a propriedade de callback `onExited` quando a transição de saída for concluída. These two callbacks allow to unmount the children when in a closed state and fully transitioned.
+- Chamar a propriedade de callback `onExited` quando a transição de saída for concluída. Esses dois callbacks permitem desmontar os elementos filhos quando em estado fechado e totalmente transitados.
+
+Para obter maiores informações sobre como criar transações customizadas, visite a [documentação de transições do React Transition Group](http://reactcommunity.org/react-transition-group/transition).

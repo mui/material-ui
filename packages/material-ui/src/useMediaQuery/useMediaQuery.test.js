@@ -11,15 +11,15 @@ import useMediaQuery from './useMediaQuery';
 
 function createMatchMedia(width, ref) {
   const listeners = [];
-  return query => {
+  return (query) => {
     const instance = {
       matches: mediaQuery.match(query, {
         width,
       }),
-      addListener: listener => {
+      addListener: (listener) => {
         listeners.push(listener);
       },
-      removeListener: listener => {
+      removeListener: (listener) => {
         const index = listeners.indexOf(listener);
         if (index > -1) {
           listeners.splice(index, 1);
@@ -193,7 +193,7 @@ describe('useMediaQuery', () => {
     it('should be able to change the query dynamically', () => {
       const ref = React.createRef();
       const text = () => ref.current.textContent;
-      const Test = props => {
+      const Test = (props) => {
         const matches = useMediaQuery(props.query, {
           defaultMatches: true,
         });
@@ -215,7 +215,7 @@ describe('useMediaQuery', () => {
     it('should observe the media query', () => {
       const ref = React.createRef();
       const text = () => ref.current.textContent;
-      const Test = props => {
+      const Test = (props) => {
         const matches = useMediaQuery(props.query);
         React.useEffect(() => values(matches));
         return <span ref={ref}>{`${matches}`}</span>;
@@ -249,7 +249,7 @@ describe('useMediaQuery', () => {
       }
 
       const Test = () => {
-        const ssrMatchMedia = query => ({
+        const ssrMatchMedia = (query) => ({
           matches: mediaQuery.match(query, {
             width: 3000,
           }),
@@ -275,7 +275,6 @@ describe('useMediaQuery', () => {
 
     afterEach(() => {
       consoleErrorMock.reset();
-      PropTypes.resetWarningCache();
     });
 
     it('warns on invalid `query` argument', () => {
@@ -285,7 +284,11 @@ describe('useMediaQuery', () => {
       }
 
       render(<MyComponent />);
-      expect(consoleErrorMock.args()[0][0]).to.include('the `query` argument provided is invalid');
+      // logs warning twice in StrictMode
+      expect(consoleErrorMock.callCount()).to.equal(2); // strict mode renders twice
+      expect(consoleErrorMock.messages()[0]).to.include(
+        'Material-UI: The `query` argument provided is invalid',
+      );
     });
   });
 });

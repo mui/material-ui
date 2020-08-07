@@ -1,20 +1,20 @@
 /* tslint:disable:unified-signatures */
 
-export type SpacingArgument = number;
+export type SpacingArgument = number | string;
 
 export interface Spacing {
   (): number;
-  (value1: SpacingArgument): number;
-  (value1: SpacingArgument, value2: SpacingArgument): string;
-  (value1: SpacingArgument, value2: SpacingArgument, value3: SpacingArgument): string;
+  (value: number): number;
+  (topBottom: SpacingArgument, rightLeft: SpacingArgument): string;
+  (top: SpacingArgument, rightLeft: SpacingArgument, bottom: SpacingArgument): string;
   (
-    value1: SpacingArgument,
-    value2: SpacingArgument,
-    value3: SpacingArgument,
-    value4: SpacingArgument,
+    top: SpacingArgument,
+    right: SpacingArgument,
+    bottom: SpacingArgument,
+    left: SpacingArgument
   ): string;
 }
 
-export type SpacingOptions = number | ((factor: number) => string | number);
+export type SpacingOptions = number | ((factor: number) => string | number) | number[];
 
 export default function createSpacing(spacing: SpacingOptions): Spacing;

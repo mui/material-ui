@@ -3,7 +3,7 @@ title: Componente React para Dicas
 components: Tooltip
 ---
 
-# Tooltip (dica)
+# Dica
 
 <p class="description">Dicas exibem texto informativo quando os usuários passam o mouse, focalizam ou tocam em um elemento.</p>
 
@@ -15,7 +15,7 @@ Quando ativada, [dicas](https://material.io/design/components/tooltips.html) exi
 
 ## Posicionamento de dicas
 
-O `Tooltip` tem 12 **posicionamentos** para ser escolhido. Eles não têm setas direcionais; em vez disso, eles dependem do movimento que emana da fonte para transmitir direção.
+O componente `Tooltip` tem 12 **posicionamentos** para ser escolhido. Eles não têm setas direcionais; em vez disso, eles dependem do movimento que emana da fonte para transmitir direção.
 
 {{"demo": "pages/components/tooltips/PositionedTooltips.js"}}
 
@@ -25,19 +25,19 @@ Aqui estão alguns exemplos de customização do componente. Você pode aprender
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 
-## Arrow Tooltips
+## Dicas com seta
 
-You can use the `arrow` prop to give your tooltip an arrow indicating which element it refers to.
+Você pode usar a propriedade `arrow` para dar à sua dica uma seta indicando a qual elemento se refere.
 
 {{"demo": "pages/components/tooltips/ArrowTooltips.js"}}
 
 ## Elemento filho customizado
 
-A dica precisa aplicar ouvintes de evento DOM ao seu elemento filho. Se o filho for um elemento React personalizado, você precisará garantir que ele repasse suas propriedades para o elemento DOM subjacente.
+A dica precisa aplicar eventos DOM ao seu elemento filho. Se o filho for um elemento React customizado, você precisará garantir que ele repasse suas propriedades para o elemento DOM subjacente.
 
 ```jsx
 const MyComponent = React.forwardRef(function MyComponent(props, ref) {
-  //  Spread the props to the underlying DOM element.
+  //  Distribua as propriedades para o elemento DOM subjacente.
   return <div {...props} ref={ref}>Bin</div>
 });
 
@@ -48,7 +48,7 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 </Tooltip>
 ```
 
-Você pode encontrar um conceito similar no guia de [componentes de encapsulamento](/guides/composition/#wrapping-components).
+Você pode encontrar um conceito similar no guia [encapaulando componentes](/guides/composition/#wrapping-components).
 
 ## Gatilhos
 
@@ -74,15 +74,15 @@ Uma dica pode ser interativa. Ela não será fechada quando o usuário passar po
 
 {{"demo": "pages/components/tooltips/InteractiveTooltips.js"}}
 
-## Elementos Desativados
+## Elementos Desabilitados
 
-Por padrão os elementos desativados como `<button>` não disparam interações do usuário, então uma `Tooltip` não será ativada em eventos normais, omo passar o mouse. To accommodate disabled elements, add a simple wrapper element, such as a `span`.
+Por padrão os elementos desabilitados como `<button>` não disparam interações do usuário, então uma `Tooltip` não será ativada em eventos normais, como passar o mouse. Para acomodar elementos desabilitados, adicione um elemento encapsulador simples, como um `span`.
 
-> ⚠️ In order to work with Safari, you need at least one display block or flex item below the tooltip wrapper.
+> ⚠️ Para trabalhar com o Safari, você precisa de pelo menos um display block ou flex item abaixo do elemento que encapsula a dica.
 
 {{"demo": "pages/components/tooltips/DisabledTooltips.js"}}
 
-> Se você não estiver manipulando com um componente Material-UI que herde de `ButtonBase`, por exemplo, um elemento `<button>` nativo, você também deve adicionar a propriedade CSS *pointer-events: none;* ao seu elemento quando desativado:
+> Se você não estiver manipulando com um componente Material-UI que herde de `ButtonBase`, por exemplo, um elemento `<button>` nativo, você também deve adicionar a propriedade CSS *pointer-events: none;* ao seu elemento quando desabilitado:
 
 ```jsx
 <Tooltip title="Você não tem permissão para esta tarefa">
@@ -100,9 +100,9 @@ Use uma transição diferente.
 
 {{"demo": "pages/components/tooltips/TransitionsTooltips.js"}}
 
-## Mostrando e ocultando
+## Exibindo e ocultando
 
-A dica normalmente é mostrada imediatamente quando o mouse do usuário passa sobre o elemento e se oculta imediatamente quando o mouse do usuário sai. Um atraso na exibição ou ocultação da dica pode ser adicionado por meio das propriedades `enterDelay` e `leaveDelay`, conforme mostrado na demonstração de dicas controladas acima.
+A dica normalmente é exibida imediatamente quando o mouse do usuário passa sobre o elemento e se oculta imediatamente quando o mouse do usuário sai. Um atraso na exibição ou ocultação da dica pode ser adicionado por meio das propriedades `enterDelay` e `leaveDelay`, conforme mostrado na demonstração de dicas controladas acima.
 
 No celular, a dica é exibida quando o usuário pressiona longamente o elemento e oculta após um atraso de 1500 ms. Você pode desativar esse recurso com a propriedade `disableTouchListener`.
 

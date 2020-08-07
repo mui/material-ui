@@ -10,7 +10,7 @@ import IndeterminateCheckBoxIcon from '../internal/svg-icons/IndeterminateCheckB
 import capitalize from '../utils/capitalize';
 import withStyles from '../styles/withStyles';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     color: theme.palette.text.secondary,
@@ -64,13 +64,16 @@ const Checkbox = React.forwardRef(function Checkbox(props, ref) {
     checkedIcon = defaultCheckedIcon,
     classes,
     color = 'secondary',
-    icon = defaultIcon,
+    icon: iconProp = defaultIcon,
     indeterminate = false,
-    indeterminateIcon = defaultIndeterminateIcon,
+    indeterminateIcon: indeterminateIconProp = defaultIndeterminateIcon,
     inputProps,
     size = 'medium',
     ...other
   } = props;
+
+  const icon = indeterminate ? indeterminateIconProp : iconProp;
+  const indeterminateIcon = indeterminate ? indeterminateIconProp : checkedIcon;
 
   return (
     <SwitchBase
@@ -87,11 +90,15 @@ const Checkbox = React.forwardRef(function Checkbox(props, ref) {
         'data-indeterminate': indeterminate,
         ...inputProps,
       }}
-      icon={React.cloneElement(indeterminate ? indeterminateIcon : icon, {
-        fontSize: size === 'small' ? 'small' : 'default',
+      icon={React.cloneElement(icon, {
+        fontSize:
+          icon.props.fontSize === undefined && size !== 'medium' ? size : icon.props.fontSize,
       })}
-      checkedIcon={React.cloneElement(indeterminate ? indeterminateIcon : checkedIcon, {
-        fontSize: size === 'small' ? 'small' : 'default',
+      checkedIcon={React.cloneElement(indeterminateIcon, {
+        fontSize:
+          indeterminateIcon.props.fontSize === undefined && size !== 'medium'
+            ? size
+            : indeterminateIcon.props.fontSize,
       })}
       ref={ref}
       {...other}
@@ -100,6 +107,10 @@ const Checkbox = React.forwardRef(function Checkbox(props, ref) {
 });
 
 Checkbox.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * If `true`, the component is checked.
    */
@@ -112,11 +123,11 @@ Checkbox.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color: PropTypes.oneOf(['primary', 'secondary', 'default']),
+  color: PropTypes.oneOf(['default', 'primary', 'secondary']),
   /**
    * If `true`, the checkbox will be disabled.
    */
@@ -167,13 +178,10 @@ Checkbox.propTypes = {
    * The size of the checkbox.
    * `small` is equivalent to the dense checkbox styling.
    */
-  size: PropTypes.oneOf(['small', 'medium']),
-  /**
-   * The input component prop `type`.
-   */
-  type: PropTypes.string,
+  size: PropTypes.oneOf(['medium', 'small']),
   /**
    * The value of the component. The DOM API casts this to a string.
+   * The browser uses "on" as the default value.
    */
   value: PropTypes.any,
 };

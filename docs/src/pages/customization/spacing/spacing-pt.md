@@ -34,11 +34,11 @@ const theme = createMuiTheme({
 theme.spacing(2); // = 0.25 * 2rem = 0.5rem = 8px
 ```
 
-- um vetor
+- uma matriz
 
 ```js
 const theme = createMuiTheme({
-  spacing: factor => [0, 4, 8, 16, 32, 64][factor],
+  spacing: [0, 4, 8, 16, 32, 64],
 });
 
 theme.spacing(2); // = 8
@@ -46,14 +46,15 @@ theme.spacing(2); // = 8
 
 ## Aridade múltipla
 
-O auxiliar ` theme.spacing()` aceita até 4 argumentos. Você pode usar os argumentos para reduzir o trabalho. Em vez de fazer:
+O auxiliar `theme.spacing()` aceita até 4 argumentos. Você pode usar os argumentos para reduzir o trabalho.
 
-```js
-padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`, // '8px 16px'
+```diff
+-padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`, // '8px 16px'
++padding: theme.spacing(1, 2), // '8px 16px'
 ```
 
-você pode fazer:
+A mistura com valores texto também é suportada:
 
 ```js
-padding: theme.spacing(1, 2), // '8px 16px'
+margin: theme.spacing(1, 'auto'), // '8px auto'
 ```

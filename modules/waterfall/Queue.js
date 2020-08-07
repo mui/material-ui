@@ -12,7 +12,7 @@ class Queue {
     this.concurrency = options.concurrency || 1;
   }
 
-  push = entries => {
+  push = (entries) => {
     this.pendingEntries = this.pendingEntries.concat(entries);
     this.process();
   };
@@ -20,7 +20,7 @@ class Queue {
   process = () => {
     const scheduled = this.pendingEntries.splice(0, this.concurrency - this.inFlight);
     this.inFlight += scheduled.length;
-    scheduled.forEach(async task => {
+    scheduled.forEach(async (task) => {
       try {
         await this.worker(task);
       } catch (err) {

@@ -2,7 +2,7 @@
 
 ### Customização de tema
 
-You can augment the default theme type to avoid having to set the theme type every time you use `makeStyles`, `useTheme`, or `styled`.
+Você pode sobrecarregar a definição do tema padrão para evitar de ter que redefinir a cada vez que você for usar `makeStyles`, `useTheme`, ou `styled`.
 
 ```typescript
 declare module '@material-ui/core/styles' {

@@ -43,7 +43,7 @@ function colorImportPath(colorPalette) {
  */
 function transformMemberExpressions(identifier, j, root) {
   // replace all expressions using `identifier` to access color palettes
-  root.find(j.MemberExpression).forEach(path => {
+  root.find(j.MemberExpression).forEach((path) => {
     if (path.node.object.name !== identifier) {
       return;
     }
@@ -73,23 +73,23 @@ function transformMemberExpressions(identifier, j, root) {
  */
 function transformMemberImports(j, root, importPath, targetPath) {
   // find member imports
-  root.find(j.ImportDeclaration, { source: { value: importPath } }).forEach(importDeclaration => {
+  root.find(j.ImportDeclaration, { source: { value: importPath } }).forEach((importDeclaration) => {
     const memberImportSpecifiers = importDeclaration.node.specifiers.filter(
-      specifier => specifier.type === 'ImportSpecifier',
+      (specifier) => specifier.type === 'ImportSpecifier',
     );
     if (memberImportSpecifiers.length) {
       j(importDeclaration).replaceWith(() => {
         const importDeclarations = [];
         const assignmentExpressions = [];
 
-        memberImportSpecifiers.forEach(memberSpecifier => {
+        memberImportSpecifiers.forEach((memberSpecifier) => {
           const { palette, hue } = colorAccent(memberSpecifier.imported.name);
           const colorModuleName = colorImportPath(palette);
           const modulePath = `${targetPath}/${colorModuleName}`;
           const colorIdentifier = j.identifier(colorModuleName);
 
           // import color module (if not already imported)
-          if (importDeclarations.map(p => p.source.value).indexOf(modulePath) === -1) {
+          if (importDeclarations.map((p) => p.source.value).indexOf(modulePath) === -1) {
             importDeclarations.push(
               j.importDeclaration(
                 [j.importDefaultSpecifier(colorIdentifier)],
@@ -131,9 +131,9 @@ function transformMemberImports(j, root, importPath, targetPath) {
  */
 function transformNamespaceImports(j, root, importPath, targetPath) {
   // find namespace imports
-  root.find(j.ImportDeclaration, { source: { value: importPath } }).forEach(importDeclaration => {
+  root.find(j.ImportDeclaration, { source: { value: importPath } }).forEach((importDeclaration) => {
     const namespaceImportSpecifier = importDeclaration.node.specifiers.find(
-      specifier => specifier.type === 'ImportNamespaceSpecifier',
+      (specifier) => specifier.type === 'ImportNamespaceSpecifier',
     );
     if (namespaceImportSpecifier) {
       j(importDeclaration).replaceWith(

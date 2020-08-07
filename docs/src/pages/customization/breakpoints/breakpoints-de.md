@@ -4,6 +4,10 @@
 
 Für eine optimale Benutzererfahrung müssen Materialdesign-Schnittstellen in der Lage sein, ihr Layout an verschiedenen Haltepunkten anzupassen. Material-UI verwendet eine **vereinfachte** Implementierung der ursprünglichen [Spezifikation](https://material.io/design/layout/responsive-layout-grid.html#breakpoints).
 
+Die Haltepunkte werden intern in verschiedenen Komponenten verwendet, um sie ansprechbar zu machen, Sie können sie jedoch auch benutzten, um das Layout Ihrer Anwendung über das [Grid](/components/grid/) zu steuern und für [Hidden](/components/hidden/) Komponenten.
+
+## Default breakpoints
+
 Jeder Haltepunkt (ein Schlüssel) stimmt mit einer *festen* Bildschirmbreite (ein Wert) überein:
 
 - ** xs, ** extraklein: 0px
@@ -12,7 +16,7 @@ Jeder Haltepunkt (ein Schlüssel) stimmt mit einer *festen* Bildschirmbreite (ei
 - ** lg, ** groß: 1280px
 - ** xl ** extra groß: 1920px
 
-These [breakpoint values](/customization/default-theme/?expand-path=$.breakpoints.values) are used to determine breakpoint ranges. Ein Bereich beginnt mit dem Haltepunktwert einschließlich bis zum nächsten Haltepunktwert:
+These breakpoint values are used to determine breakpoint ranges. Ein Bereich beginnt mit dem Haltepunktwert einschließlich bis zum nächsten Haltepunktwert:
 
 ```js
 Wert          |0px     600px    960px    1280px   1920px
@@ -21,9 +25,7 @@ Breite        |--------|--------|--------|--------|-------->
 Bereich       |   xs   |   sm   |   md   |   lg   |   xl
 ```
 
-Diese Werte können immer angepasst werden. You will find them in the theme, in the [`breakpoints.values`](/customization/default-theme/?expand-path=$.breakpoints.values) object.
-
-Die Haltepunkte werden intern in verschiedenen Komponenten verwendet, um sie ansprechbar zu machen, Sie können sie jedoch auch benutzten, um das Layout Ihrer Anwendung über das [Grid](/components/grid/) zu steuern und für [Hidden](/components/hidden/) Komponenten.
+These values can be [customized](#custom-breakpoints).
 
 ## CSS-Medienabfragen
 
@@ -81,6 +83,61 @@ In der folgenden Demo ändern wir das gerenderte DOM-Element (* em*, <u> u</u>, 
 
 {{"demo": "pages/customization/breakpoints/WithWidth.js"}}
 
+## Custom breakpoints
+
+You define your project's breakpoints in the `theme.breakpoints` section of your theme.
+
+- [`theme.breakpoints.values`](/customization/default-theme/?expand-path=$.breakpoints.values): Default to the [above values](#default-breakpoints). The keys are your screen names, and the values are the min-width where that breakpoint should start.
+- `theme.breakpoints.unit`: Default to `px`. The unit used for the breakpoint's values.
+- `theme.breakpoints.step`: Default to 5 (`0.05px`). The increment used to implement exclusive breakpoints.
+
+If you change the default breakpoints's values, you need to provide them all:
+
+```jsx
+const theme = createMuiTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 960,
+      lg: 1280,
+      xl: 1920,
+    },
+  },
+})
+```
+
+Feel free to have as few or as many breakpoints as you want, naming them in whatever way you'd prefer for your project.
+
+```js
+const theme = createMuiTheme({
+  breakpoints: {
+    values: {
+      tablet: 640,
+      laptop: 1024,
+      desktop: 1280,
+    },
+  },
+});
+```
+
+If you are using TypeScript, you would also need to use [module augmentation](/guides/typescript/#customization-of-theme) for the theme to accept the above values.
+
+```ts
+declare module "@material-ui/core/styles/createBreakpoints" {
+  interface BreakpointOverrides {
+    xs: false; // removes the `xs` breakpoint
+    sm: false;
+    md: false;
+    lg: false;
+    xl: false;
+    tablet: true; // adds the `tablet` breakpoint
+    laptop: true;
+    desktop: true;
+  }
+}
+```
+
 ## API
 
 ### `theme.breakpoints.up(key) => media query`
@@ -99,8 +156,8 @@ In der folgenden Demo ändern wir das gerenderte DOM-Element (* em*, <u> u</u>, 
 const styles = theme => ({
   root: {
     backgroundColor: 'blue',
-    // Entspricht [md, ∞[
-    //       [960px, ∞[
+    // Match [md, ∞)
+    //       [960px, ∞)
     [theme.breakpoints.up('md')]: {
       backgroundColor: 'red',
     },
@@ -124,9 +181,9 @@ const styles = theme => ({
 const styles = theme => ({
   root: {
     backgroundColor: 'blue',
-    // Entspricht [0, md + 1[
-    //       [0, lg[
-    //       [0, 1280px[
+    // Match [0, md + 1)
+    //       [0, lg)
+    //       [0, 1280px)
     [theme.breakpoints.down('md')]: {
       backgroundColor: 'red',
     },
@@ -150,9 +207,9 @@ const styles = theme => ({
 const styles = theme => ({
   root: {
     backgroundColor: 'blue',
-    // Entspricht [md, md + 1[
-    //       [md, lg[
-    //       [960px, 1280px[
+    // Match [md, md + 1)
+    //       [md, lg)
+    //       [960px, 1280px)
     [theme.breakpoints.only('md')]: {
       backgroundColor: 'red',
     },
@@ -177,8 +234,8 @@ const styles = theme => ({
 const styles = theme => ({
   root: {
     backgroundColor: 'blue',
-    // Entspricht [sm, md + 1[
-    //       [sm, lg[
+    // Match [sm, md + 1)
+    //       [sm, lg)
     //       [600px, 1280px[
     [theme.breakpoints.between('sm', 'md')]: {
       backgroundColor: 'red',
@@ -202,9 +259,9 @@ Einige Implementierungsdetails, die interessant sein könnten:
 #### Argumente
 
 1. `options` (*Object* [optional]): 
-  - `options.withTheme ` (*Boolean* [optional]): Standardeinstellung ist `false`. Übergeben Sie das `Theme` Objekt als Eigenschaft an die Komponente.
-  - `options.noSSR ` (*Boolean* [optional]): Standardeinstellung ist `false`. Um den serverseitigen Renderingabgleich durchzuführen, muss er zweimal gerendert werden. Ein erstes Mal mit nichts und ein zweites Mal mit den Kind-Elementen. Dieser Zyklus mit zwei Durchgängen ist mit einem Nachteil verbunden. Die Benutzeroberfläche blinkt möglicherweise. Sie können dieses Flag auf ` true` setzen, wenn Sie kein serverseitiges Rendering durchführen.
-  - ` options.initialWidth ` (*Breakpoint* [optional]): Da ` window.innerWidth ` auf dem Server nicht verfügbar ist, wird eine leere Komponente während der ersten Mounts standardmäßig gerendert. Vielleicht mögen Sie eine Heuristik verwenden, um annähernd die Bildschirmbreite des Client-Browsers zu bestimmen. Sie könnten beispielsweise den Benutzeragenten oder die Client-Hinweise verwenden. Mit https://caniuse.com/#search=client%20hint, können wir die anfängliche Breite global festlegen, indem Sie die [`benutzerdefinierten Eigenschaften`](/customization/globals/#default-props) zum Theme verwenden. Um die Anfangsbreite festzulegen, müssen wir eine benutzerdefinierte Eigenschaft mit dieser Form übergeben:
+  - `options.withTheme` (*Boolean* [optional]): Standardeinstellung ist `false`. Übergeben Sie das `Theme` Objekt als Eigenschaft an die Komponente.
+  - `options.noSSR` (*Boolean* [optional]): Standardeinstellung ist `false`. Um den serverseitigen Renderingabgleich durchzuführen, muss er zweimal gerendert werden. Ein erstes Mal mit nichts und ein zweites Mal mit den Kind-Elementen. Dieser Zyklus mit zwei Durchgängen ist mit einem Nachteil verbunden. Die Benutzeroberfläche blinkt möglicherweise. Sie können dieses Flag auf `true` setzen, wenn Sie kein serverseitiges Rendering durchführen.
+  - `options.initialWidth` (*Breakpoint* [optional]): Da `window.innerWidth` auf dem Server nicht verfügbar ist, wird eine leere Komponente während der ersten Mounts standardmäßig gerendert. Vielleicht mögen Sie eine Heuristik verwenden, um annähernd die Bildschirmbreite des Client-Browsers zu bestimmen. Sie könnten beispielsweise den Benutzeragenten oder die Client-Hinweise verwenden. Mit https://caniuse.com/#search=client%20hint, können wir die anfängliche Breite global festlegen, indem Sie die [`benutzerdefinierten Eigenschaften`](/customization/globals/#default-props) zum Theme verwenden. Um die Anfangsbreite festzulegen, müssen wir eine benutzerdefinierte Eigenschaft mit dieser Form übergeben:
 
 ```js
 const theme = createMuiTheme({

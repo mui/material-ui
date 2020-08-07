@@ -47,7 +47,7 @@ export default function UseAutocomplete() {
   } = useAutocomplete({
     id: 'use-autocomplete-demo',
     options: top100Films,
-    getOptionLabel: option => option.title,
+    getOptionLabel: (option) => option.title,
   });
 
   return (

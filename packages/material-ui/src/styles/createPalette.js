@@ -1,4 +1,5 @@
 import { deepmerge } from '@material-ui/utils';
+import MuiError from '@material-ui/utils/macros/MuiError.macro';
 import common from '../colors/common';
 import grey from '../colors/grey';
 import indigo from '../colors/indigo';
@@ -79,13 +80,16 @@ export const dark = {
 };
 
 function addLightOrDark(intent, direction, shade, tonalOffset) {
+  const tonalOffsetLight = tonalOffset.light || tonalOffset;
+  const tonalOffsetDark = tonalOffset.dark || tonalOffset * 1.5;
+
   if (!intent[direction]) {
     if (intent.hasOwnProperty(shade)) {
       intent[direction] = intent[shade];
     } else if (direction === 'light') {
-      intent.light = lighten(intent.main, tonalOffset);
+      intent.light = lighten(intent.main, tonalOffsetLight);
     } else if (direction === 'dark') {
-      intent.dark = darken(intent.main, tonalOffset * 1.5);
+      intent.dark = darken(intent.main, tonalOffsetDark);
     }
   }
 }
@@ -132,12 +136,6 @@ export default function createPalette(palette) {
   // Bootstrap: https://github.com/twbs/bootstrap/blob/1d6e3710dd447de1a200f29e8fa521f8a0908f70/scss/_functions.scss#L59
   // and material-components-web https://github.com/material-components/material-components-web/blob/ac46b8863c4dab9fc22c4c662dc6bd1b65dd652f/packages/mdc-theme/_functions.scss#L54
   function getContrastText(background) {
-    if (!background) {
-      throw new TypeError(
-        `Material-UI: missing background argument in getContrastText(${background}).`,
-      );
-    }
-
     const contrastText =
       getContrastRatio(background, dark.text.primary) >= contrastThreshold
         ? dark.text.primary
@@ -148,7 +146,7 @@ export default function createPalette(palette) {
       if (contrast < 3) {
         console.error(
           [
-            `Material-UI: the contrast ratio of ${contrast}:1 for ${contrastText} on ${background}`,
+            `Material-UI: The contrast ratio of ${contrast}:1 for ${contrastText} on ${background}`,
             'falls below the WCAG recommended absolute minimum contrast ratio of 3:1.',
             'https://www.w3.org/TR/2008/REC-WCAG20-20081211/#visual-audio-contrast-contrast',
           ].join('\n'),
@@ -159,21 +157,34 @@ export default function createPalette(palette) {
     return contrastText;
   }
 
-  function augmentColor(color, mainShade = 500, lightShade = 300, darkShade = 700) {
+  const augmentColor = (color, mainShade = 500, lightShade = 300, darkShade = 700) => {
     color = { ...color };
     if (!color.main && color[mainShade]) {
       color.main = color[mainShade];
     }
 
-    if (process.env.NODE_ENV !== 'production') {
-      if (!color.main) {
-        throw new Error(
-          [
-            'Material-UI: the color provided to augmentColor(color) is invalid.',
-            `The color object needs to have a \`main\` property or a \`${mainShade}\` property.`,
-          ].join('\n'),
-        );
-      }
+    if (!color.main) {
+      throw new MuiError(
+        'Material-UI: The color provided to augmentColor(color) is invalid.\n' +
+          'The color object needs to have a `main` property or a `%s` property.',
+        mainShade,
+      );
+    }
+
+    if (typeof color.main !== 'string') {
+      throw new MuiError(
+        'Material-UI: The color provided to augmentColor(color) is invalid.\n' +
+          '`color.main` should be a string, but `%s` was provided instead.\n\n' +
+          'Did you intend to use one of the following approaches?\n\n' +
+          'import { green } from "@material-ui/core/colors";\n\n' +
+          'const theme1 = createMuiTheme({ palette: {\n' +
+          '  primary: green,\n' +
+          '} });\n\n' +
+          'const theme2 = createMuiTheme({ palette: {\n' +
+          '  primary: { main: green[500] },\n' +
+          '} });',
+        JSON.stringify(color.main),
+      );
     }
 
     addLightOrDark(color, 'light', lightShade, tonalOffset);
@@ -183,13 +194,13 @@ export default function createPalette(palette) {
     }
 
     return color;
-  }
+  };
 
   const types = { dark, light };
 
   if (process.env.NODE_ENV !== 'production') {
     if (!types[type]) {
-      console.error(`Material-UI: the palette type \`${type}\` is not supported.`);
+      console.error(`Material-UI: The palette type \`${type}\` is not supported.`);
     }
   }
 

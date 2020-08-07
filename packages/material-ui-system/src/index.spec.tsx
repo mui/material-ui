@@ -1,4 +1,12 @@
-import { compose, css, palette, StyleFunction, spacing, style } from '@material-ui/system';
+import {
+  compose,
+  css,
+  palette,
+  StyleFunction,
+  spacing,
+  style,
+  breakpoints,
+} from '@material-ui/system';
 import * as React from 'react';
 import styled from 'styled-components';
 
@@ -11,14 +19,11 @@ function composeTest() {
     return {};
   }
 
-  const styler = compose(
-    first,
-    second,
-  );
-  // missing `spacing`
-  styler({ color: 'test' }); // $ExpectError
-  // missing `color`
-  styler({ spacing: 1 }); // $ExpectError
+  const styler = compose(first, second);
+  // @ts-expect-error missing `spacing`
+  styler({ color: 'test' });
+  // @ts-expect-error missing `color`
+  styler({ spacing: 1 });
   styler({ color: 'test', spacing: 1 });
 }
 
@@ -51,9 +56,11 @@ function cssRequiredTest() {
   const style = css(styleRequiredFunction);
   style({
     color: 'red',
-    css: {}, // $ExpectError
+    // @ts-expect-error
+    css: {},
   });
-  style({ css: { color: 'red' } }); // $ExpectError
+  // @ts-expect-error
+  style({ css: { color: 'red' } });
   style({ color: 'blue', css: { color: 'red' } });
 }
 
@@ -68,4 +75,14 @@ function interopTest() {
     ${mixin}
   `;
   <SystemSpacingBox m={2} />;
+}
+
+function breakpointsTest() {
+  function styleFunction(props: { color?: string }) {
+    return {};
+  }
+
+  const styler = breakpoints(styleFunction);
+  // Allows styleFunction props
+  styler({ color: 'red' });
 }

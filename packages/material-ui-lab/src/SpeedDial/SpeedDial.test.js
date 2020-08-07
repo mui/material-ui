@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
-  createMount,
   findOutermostIntrinsic,
   getClasses,
   wrapsIntrinsicElement,
 } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import Icon from '@material-ui/core/Icon';
 import Fab from '@material-ui/core/Fab';
@@ -14,7 +14,8 @@ import SpeedDial from './SpeedDial';
 import SpeedDialAction from '../SpeedDialAction';
 
 describe('<SpeedDial />', () => {
-  let mount;
+  // StrictModeViolation: uses Zoom
+  const mount = createMount({ strict: false });
   let classes;
 
   const icon = <Icon>font_icon</Icon>;
@@ -26,17 +27,11 @@ describe('<SpeedDial />', () => {
   };
 
   before(() => {
-    // StrictModeViolation: uses Zoom
-    mount = createMount({ strict: false });
     classes = getClasses(
       <SpeedDial {...defaultProps}>
         <div />
       </SpeedDial>,
     );
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<SpeedDial {...defaultProps} />, () => ({
@@ -56,7 +51,7 @@ describe('<SpeedDial />', () => {
         <FakeAction />
       </SpeedDial>,
     );
-    assert.strictEqual(findOutermostIntrinsic(wrapper).type(), 'div');
+    expect(findOutermostIntrinsic(wrapper).type()).to.equal('div');
   });
 
   it('should render a Fab', () => {
@@ -66,7 +61,7 @@ describe('<SpeedDial />', () => {
       </SpeedDial>,
     );
     const buttonWrapper = wrapper.find('[aria-expanded]').first();
-    assert.strictEqual(buttonWrapper.type(), Fab);
+    expect(buttonWrapper.type()).to.equal(Fab);
   });
 
   it('should render with a null child', () => {
@@ -77,7 +72,7 @@ describe('<SpeedDial />', () => {
         <SpeedDialAction icon={icon} tooltipTitle="Three" />
       </SpeedDial>,
     );
-    assert.strictEqual(wrapper.find(SpeedDialAction).length, 2);
+    expect(wrapper.find(SpeedDialAction).length).to.equal(2);
   });
 
   it('should pass the open prop to its children', () => {
@@ -89,7 +84,7 @@ describe('<SpeedDial />', () => {
       </SpeedDial>,
     );
     const actions = wrapper.find('[role="menuitem"]').filterWhere(wrapsIntrinsicElement);
-    assert.strictEqual(actions.some('.is-closed'), false);
+    expect(actions.some('.is-closed')).to.equal(false);
   });
 
   describe('prop: onKeyDown', () => {
@@ -106,28 +101,27 @@ describe('<SpeedDial />', () => {
         key: ' ',
         eventMock,
       });
-      assert.strictEqual(handleKeyDown.callCount, 1);
-      assert.strictEqual(handleKeyDown.calledWithMatch({ eventMock }), true);
+      expect(handleKeyDown.callCount).to.equal(1);
+      expect(handleKeyDown.calledWithMatch({ eventMock })).to.equal(true);
     });
   });
 
   describe('prop: direction', () => {
-    const testDirection = direction => {
-      const className = `direction${direction}`;
-      const wrapper = mount(
-        <SpeedDial {...defaultProps} direction={direction.toLowerCase()}>
-          <SpeedDialAction icon={icon} tooltipTitle="action1" />
-          <SpeedDialAction icon={icon} tooltipTitle="action2" />
-        </SpeedDial>,
-      );
-      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes[className]), true);
-    };
-
-    it('should place actions in correct position', () => {
-      testDirection('Up');
-      testDirection('Down');
-      testDirection('Left');
-      testDirection('Right');
+    [
+      ['up', 'directionUp'],
+      ['down', 'directionDown'],
+      ['left', 'directionLeft'],
+      ['right', 'directionRight'],
+    ].forEach(([direction, className]) => {
+      it(`should place actions in the correct position when direction=${direction}`, () => {
+        const wrapper = mount(
+          <SpeedDial {...defaultProps} direction={direction.toLowerCase()}>
+            <SpeedDialAction icon={icon} tooltipTitle="action1" />
+            <SpeedDialAction icon={icon} tooltipTitle="action2" />
+          </SpeedDial>,
+        );
+        expect(findOutermostIntrinsic(wrapper).hasClass(classes[className])).to.equal(true);
+      });
     });
   });
 
@@ -146,7 +140,7 @@ describe('<SpeedDial />', () => {
         <SpeedDial
           {...defaultProps}
           FabProps={{
-            ref: ref => {
+            ref: (ref) => {
               dialButtonRef = ref;
             },
           }}
@@ -157,7 +151,7 @@ describe('<SpeedDial />', () => {
             <SpeedDialAction
               key={i}
               FabProps={{
-                ref: ref => {
+                ref: (ref) => {
                   actionRefs[i] = ref;
                 },
               }}
@@ -179,24 +173,21 @@ describe('<SpeedDial />', () => {
      * @param actionIndex
      * @returns the button of the nth SpeedDialAction or the Fab if -1
      */
-    const getActionButton = actionIndex => {
+    const getActionButton = (actionIndex) => {
       if (actionIndex === -1) {
         return getDialButton();
       }
-      return wrapper
-        .find(SpeedDialAction)
-        .at(actionIndex)
-        .find(Fab);
+      return wrapper.find(SpeedDialAction).at(actionIndex).find(Fab);
     };
     /**
      * @returns true if the button of the nth action is focused
      */
-    const isActionFocused = index => {
+    const isActionFocused = (index) => {
       const expectedFocusedElement = index === -1 ? dialButtonRef : actionRefs[index];
       return expectedFocusedElement === window.document.activeElement;
     };
 
-    const resetDialToOpen = direction => {
+    const resetDialToOpen = (direction) => {
       if (wrapper && wrapper.exists()) {
         wrapper.unmount();
       }
@@ -207,25 +198,25 @@ describe('<SpeedDial />', () => {
 
     it('displays the actions on focus gain', () => {
       resetDialToOpen();
-      assert.strictEqual(wrapper.find(SpeedDial).props().open, true);
+      expect(wrapper.find(SpeedDial).props().open).to.equal(true);
     });
 
     describe('first item selection', () => {
       it('considers arrow keys with the same initial orientation', () => {
         resetDialToOpen();
         getDialButton().simulate('keydown', { key: 'left' });
-        assert.strictEqual(isActionFocused(0), true);
+        expect(isActionFocused(0)).to.equal(true);
         getDialButton().simulate('keydown', { key: 'up' });
-        assert.strictEqual(isActionFocused(0), true);
+        expect(isActionFocused(0)).to.equal(true);
         getDialButton().simulate('keydown', { key: 'left' });
-        assert.strictEqual(isActionFocused(1), true);
+        expect(isActionFocused(1)).to.equal(true);
         getDialButton().simulate('keydown', { key: 'right' });
-        assert.strictEqual(isActionFocused(0), true);
+        expect(isActionFocused(0)).to.equal(true);
       });
     });
 
     // eslint-disable-next-line func-names
-    describe('actions navigation', function() {
+    describe('actions navigation', function () {
       this.timeout(5000); // These tests are really slow.
 
       /**
@@ -239,8 +230,7 @@ describe('<SpeedDial />', () => {
         resetDialToOpen(dialDirection);
 
         getDialButton().simulate('keydown', { key: firstKey });
-        assert.strictEqual(
-          isActionFocused(firstFocusedAction),
+        expect(isActionFocused(firstFocusedAction)).to.equal(
           true,
           `focused action initial ${firstKey} should be ${firstFocusedAction}`,
         );
@@ -253,8 +243,7 @@ describe('<SpeedDial />', () => {
           getActionButton(previousFocusedAction).simulate('keydown', {
             key: arrowKey,
           });
-          assert.strictEqual(
-            isActionFocused(expectedFocusedAction),
+          expect(isActionFocused(expectedFocusedAction)).to.equal(
             true,
             `focused action after ${combinationUntilNot.join(
               ',',

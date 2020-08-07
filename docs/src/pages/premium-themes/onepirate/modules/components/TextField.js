@@ -5,7 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import MuiTextField from '@material-ui/core/TextField';
 import { capitalize } from '@material-ui/core/utils';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     padding: 0,
     'label + &': {
@@ -62,16 +62,18 @@ const styles = theme => ({
 function TextField(props) {
   const {
     classes,
-    InputProps: {
-      classes: { input: InputPropsClassesInput, ...InputPropsClassesOther } = {},
-      ...InputPropsOther
-    } = {},
+    InputProps = {},
     InputLabelProps,
     noBorder = false,
     size = 'medium',
     SelectProps,
     ...other
   } = props;
+
+  const {
+    classes: { input: InputPropsClassesInput, ...InputPropsClassesOther } = {},
+    ...InputPropsOther
+  } = InputProps;
 
   return (
     <MuiTextField

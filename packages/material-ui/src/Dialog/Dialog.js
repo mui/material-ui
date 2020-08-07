@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -10,7 +9,7 @@ import Fade from '../Fade';
 import { duration } from '../styles/transitions';
 import Paper from '../Paper';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     '@media print': {
@@ -173,10 +172,10 @@ const Dialog = React.forwardRef(function Dialog(props, ref) {
   } = props;
 
   const mouseDownTarget = React.useRef();
-  const handleMouseDown = event => {
+  const handleMouseDown = (event) => {
     mouseDownTarget.current = event.target;
   };
-  const handleBackdropClick = event => {
+  const handleBackdropClick = (event) => {
     // Ignore the events not coming from the "backdrop"
     // We don't want to close the dialog when clicking the dialog content.
     if (event.target !== event.currentTarget) {
@@ -234,7 +233,7 @@ const Dialog = React.forwardRef(function Dialog(props, ref) {
         {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
         <div
           className={clsx(classes.container, classes[`scroll${capitalize(scroll)}`])}
-          onClick={handleBackdropClick}
+          onMouseUp={handleBackdropClick}
           onMouseDown={handleMouseDown}
           data-mui-test="FakeBackdrop"
         >
@@ -264,6 +263,10 @@ const Dialog = React.forwardRef(function Dialog(props, ref) {
 });
 
 Dialog.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * The id(s) of the element(s) that describe the dialog.
    */
@@ -279,12 +282,12 @@ Dialog.propTypes = {
   /**
    * Dialog children, usually the included sub-components.
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -312,7 +315,7 @@ Dialog.propTypes = {
    * The dialog width grows with the size of the screen.
    * Set to `false` to disable `maxWidth`.
    */
-  maxWidth: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl', false]),
+  maxWidth: PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs', false]),
   /**
    * Callback fired when the backdrop is clicked.
    */
@@ -380,7 +383,11 @@ Dialog.propTypes = {
    */
   transitionDuration: PropTypes.oneOfType([
     PropTypes.number,
-    PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
+    PropTypes.shape({
+      appear: PropTypes.number,
+      enter: PropTypes.number,
+      exit: PropTypes.number,
+    }),
   ]),
   /**
    * Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.

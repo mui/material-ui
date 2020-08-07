@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { getThemeProps, useTheme } from '@material-ui/styles';
-import { elementAcceptingRef } from '@material-ui/utils';
+import { elementAcceptingRef, HTMLElementType } from '@material-ui/utils';
 import ownerDocument from '../utils/ownerDocument';
 import Portal from '../Portal';
 import createChainedFunction from '../utils/createChainedFunction';
@@ -10,7 +10,7 @@ import useForkRef from '../utils/useForkRef';
 import useEventCallback from '../utils/useEventCallback';
 import zIndex from '../styles/zIndex';
 import ModalManager, { ariaHidden } from './ModalManager';
-import TrapFocus from './TrapFocus';
+import TrapFocus from '../Unstable_TrapFocus';
 import SimpleBackdrop from './SimpleBackdrop';
 
 function getContainer(container) {
@@ -26,7 +26,7 @@ function getHasTransition(props) {
 // Modals don't open on the server so this won't conflict with concurrent requests.
 const defaultManager = new ModalManager();
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     position: 'fixed',
@@ -116,7 +116,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
 
   const isTopModal = React.useCallback(() => manager.isTopModal(getModal()), [manager]);
 
-  const handlePortalRef = useEventCallback(node => {
+  const handlePortalRef = useEventCallback((node) => {
     mountNodeRef.current = node;
 
     if (!node) {
@@ -168,7 +168,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     }
   };
 
-  const handleBackdropClick = event => {
+  const handleBackdropClick = (event) => {
     if (event.target !== event.currentTarget) {
       return;
     }
@@ -182,7 +182,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     }
   };
 
-  const handleKeyDown = event => {
+  const handleKeyDown = (event) => {
     // The handler doesn't take event.defaultPrevented into account:
     //
     // event.preventDefault() is meant to stop default behaviours like
@@ -193,15 +193,17 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
       return;
     }
 
-    // Swallow the event, in case someone is listening for the escape key on the body.
-    event.stopPropagation();
-
     if (onEscapeKeyDown) {
       onEscapeKeyDown(event);
     }
 
-    if (!disableEscapeKeyDown && onClose) {
-      onClose(event, 'escapeKeyDown');
+    if (!disableEscapeKeyDown) {
+      // Swallow the event, in case someone is listening for the escape key on the body.
+      event.stopPropagation();
+
+      if (onClose) {
+        onClose(event, 'escapeKeyDown');
+      }
     }
   };
 
@@ -273,10 +275,17 @@ Modal.propTypes = {
    */
   closeAfterTransition: PropTypes.bool,
   /**
-   * A node, component instance, or function that returns either.
+   * A HTML element, component instance, or function that returns either.
    * The `container` will have the portal children appended to it.
+   *
+   * By default, it uses the body of the top-level document object,
+   * so it's simply `document.body` most of the time.
    */
-  container: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
+  container: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    HTMLElementType,
+    PropTypes.instanceOf(React.Component),
+    PropTypes.func,
+  ]),
   /**
    * If `true`, the modal will not automatically shift focus to itself when it opens, and
    * replace it to the last focused element when it closes.
@@ -287,7 +296,7 @@ Modal.propTypes = {
    */
   disableAutoFocus: PropTypes.bool,
   /**
-   * If `true`, clicking the backdrop will not fire any callback.
+   * If `true`, clicking the backdrop will not fire `onClose`.
    */
   disableBackdropClick: PropTypes.bool,
   /**
@@ -298,7 +307,7 @@ Modal.propTypes = {
    */
   disableEnforceFocus: PropTypes.bool,
   /**
-   * If `true`, hitting escape will not fire any callback.
+   * If `true`, hitting escape will not fire `onClose`.
    */
   disableEscapeKeyDown: PropTypes.bool,
   /**

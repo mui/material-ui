@@ -1,28 +1,24 @@
 import * as React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
-import { createMount } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import Slide, { setTranslateValue } from './Slide';
-import createMuiTheme from '../styles/createMuiTheme';
+import {
+  createMuiTheme,
+  ThemeProvider,
+  unstable_createMuiStrictModeTheme as createMuiStrictModeTheme,
+} from '@material-ui/core/styles';
 import { Transition } from 'react-transition-group';
+import { useForkRef } from '../utils';
 
 describe('<Slide />', () => {
-  let mount;
+  const mount = createMount();
   const defaultProps = {
     in: true,
     children: <div id="testChild" />,
     direction: 'down',
   };
-
-  before(() => {
-    // StrictModeViolation: uses react-transition-group
-    mount = createMount({ strict: false });
-  });
-
-  after(() => {
-    mount.cleanUp();
-  });
 
   describeConformance(
     <Slide in>
@@ -51,7 +47,7 @@ describe('<Slide />', () => {
         <div id="with-slide" style={{ color: 'blue' }} />
       </Slide>,
     );
-    assert.deepEqual(wrapper.find('#with-slide').props().style, {
+    expect(wrapper.find('#with-slide').props().style).to.deep.equal({
       backgroundColor: 'yellow',
       color: 'blue',
       visibility: undefined,
@@ -59,19 +55,26 @@ describe('<Slide />', () => {
   });
 
   describe('transition lifecycle', () => {
-    let wrapper;
     let clock;
-    let child;
-
-    const handleEnter = spy();
-    const handleEntering = spy();
-    const handleEntered = spy();
-    const handleExit = spy();
-    const handleExiting = spy();
-    const handleExited = spy();
 
     before(() => {
-      wrapper = mount(
+      clock = useFakeTimers();
+    });
+
+    after(() => {
+      clock.restore();
+    });
+
+    it('tests', () => {
+      const handleEnter = spy();
+      const handleEntering = spy();
+      const handleEntered = spy();
+      const handleExit = spy();
+      const handleExiting = spy();
+      const handleExited = spy();
+
+      let child;
+      const wrapper = mount(
         <Slide
           onEnter={handleEnter}
           onEntering={handleEntering}
@@ -81,112 +84,74 @@ describe('<Slide />', () => {
           onExited={handleExited}
         >
           <div
-            ref={ref => {
+            ref={(ref) => {
               child = ref;
             }}
           />
         </Slide>,
       );
-      clock = useFakeTimers();
-    });
 
-    after(() => {
-      clock.restore();
-    });
+      wrapper.setProps({ in: true });
 
-    describe('in', () => {
-      before(() => {
-        wrapper.setProps({ in: true });
-      });
+      expect(handleEntering.callCount).to.equal(1);
+      expect(handleEntering.args[0][0]).to.equal(child);
 
-      describe('handleEnter()', () => {
-        it('should call handleEnter', () => {
-          assert.strictEqual(handleEntering.callCount, 1);
-          assert.strictEqual(handleEntering.args[0][0], child);
-        });
-      });
+      expect(handleEntering.args[0][0].style.transform).to.match(/none/);
 
-      describe('handleEntering()', () => {
-        it('should reset the translate3d', () => {
-          assert.match(handleEntering.args[0][0].style.transform, /none/);
-        });
+      expect(handleEntering.callCount).to.equal(1);
+      expect(handleEntering.args[0][0]).to.equal(child);
 
-        it('should call handleEntering', () => {
-          assert.strictEqual(handleEntering.callCount, 1);
-          assert.strictEqual(handleEntering.args[0][0], child);
-        });
-      });
+      clock.tick(1000);
+      expect(handleEntered.callCount).to.equal(1);
 
-      describe('handleEntered()', () => {
-        it('should have called onEntered', () => {
-          clock.tick(1000);
-          assert.strictEqual(handleEntered.callCount, 1);
-        });
-      });
-    });
+      wrapper.setProps({ in: false });
 
-    describe('out', () => {
-      before(() => {
-        wrapper.setProps({ in: true });
-        wrapper.setProps({ in: false });
-      });
+      expect(handleExiting.callCount).to.equal(1);
+      expect(handleExiting.args[0][0]).to.equal(child);
 
-      describe('handleExit()', () => {
-        it('should call handleExit', () => {
-          assert.strictEqual(handleExiting.callCount, 1);
-          assert.strictEqual(handleExiting.args[0][0], child);
-        });
-      });
+      expect(handleExiting.callCount).to.equal(1);
+      expect(handleExiting.args[0][0]).to.equal(child);
 
-      describe('handleExiting()', () => {
-        it('should call onExiting', () => {
-          assert.strictEqual(handleExiting.callCount, 1);
-          assert.strictEqual(handleExiting.args[0][0], child);
-        });
-      });
-
-      describe('handleExited()', () => {
-        it('should call onExited', () => {
-          clock.tick(1000);
-          assert.strictEqual(handleExited.callCount, 1);
-          assert.strictEqual(handleExited.args[0][0], child);
-        });
-      });
+      clock.tick(1000);
+      expect(handleExited.callCount).to.equal(1);
+      expect(handleExited.args[0][0]).to.equal(child);
     });
   });
 
   describe('prop: timeout', () => {
-    let wrapper;
-    const enterDuration = 556;
-    const leaveDuration = 446;
-    const handleEntering = spy();
-    const handleExit = spy();
+    it('should create proper easeOut animation onEntering', () => {
+      const handleEntering = spy();
 
-    beforeEach(() => {
-      wrapper = mount(
+      mount(
         <Slide
           {...defaultProps}
           timeout={{
-            enter: enterDuration,
-            exit: leaveDuration,
+            enter: 556,
           }}
           onEntering={handleEntering}
-          onExit={handleExit}
         />,
       );
-    });
 
-    it('should create proper easeOut animation onEntering', () => {
-      assert.match(
-        handleEntering.args[0][0].style.transition,
+      expect(handleEntering.args[0][0].style.transition).to.match(
         /transform 556ms cubic-bezier\(0(.0)?, 0, 0.2, 1\)( 0ms)?/,
       );
     });
 
     it('should create proper sharp animation onExit', () => {
+      const handleExit = spy();
+      const wrapper = mount(
+        <Slide
+          {...defaultProps}
+          timeout={{
+            exit: 446,
+          }}
+          onExit={handleExit}
+        />,
+      );
+
       wrapper.setProps({ in: false });
-      assert.match(
-        handleExit.args[0][0].style.transition,
+
+      expect(handleExit.args[0][0].style.transition).to.match(
         /transform 446ms cubic-bezier\(0.4, 0, 0.6, 1\)( 0ms)?/,
       );
     });
@@ -203,134 +168,253 @@ describe('<Slide />', () => {
       });
 
       const transition2 = child.style.transform;
-      assert.notStrictEqual(transition1, transition2);
+      expect(transition1).to.not.equal(transition2);
     });
   });
 
   describe('transform styling', () => {
-    let wrapper;
-    let child;
-    const handleEnter = spy();
-    let nodeEnterTransformStyle;
-    const handleEnterWrapper = (...args) => {
-      handleEnter(...args);
-      nodeEnterTransformStyle = args[0].style.transform;
-    };
-    const handleExiting = spy();
-    let nodeExitingTransformStyle;
-    const handleExitingWrapper = (...args) => {
-      handleExiting(...args);
-      nodeExitingTransformStyle = args[0].style.transform;
-    };
-
-    before(() => {
-      wrapper = mount(
-        <Slide onEnter={handleEnterWrapper} onExiting={handleExitingWrapper}>
-          <div
-            ref={ref => {
-              child = ref;
-            }}
-          />
-        </Slide>,
-      );
-
-      child.fakeTransform = 'none';
-      stub(child, 'getBoundingClientRect').callsFake(() => ({
-        width: 500,
-        height: 300,
-        left: 300,
-        right: 800,
-        top: 200,
-        bottom: 500,
-      }));
+    const FakeDiv = React.forwardRef((props, ref) => {
+      const stubBoundingClientRect = (element) => {
+        if (element !== null) {
+          element.fakeTransform = 'none';
+          try {
+            stub(element, 'getBoundingClientRect').callsFake(() => ({
+              width: 500,
+              height: 300,
+              left: 300,
+              right: 800,
+              top: 200,
+              bottom: 500,
+              ...props.rect,
+            }));
+          } catch (error) {
+            // already stubbed
+          }
+        }
+      };
+      const handleRef = useForkRef(ref, stubBoundingClientRect);
+      return <div {...props} ref={handleRef} />;
     });
 
     describe('handleEnter()', () => {
-      afterEach(() => {
-        wrapper.setProps({
-          in: false,
-        });
-      });
-
       it('should set element transform and transition in the `left` direction', () => {
-        wrapper.setProps({ direction: 'left' });
+        let nodeEnterTransformStyle;
+        const wrapper = mount(
+          <Slide
+            direction="left"
+            onEnter={(node) => {
+              nodeEnterTransformStyle = node.style.transform;
+            }}
+          >
+            <FakeDiv />
+          </Slide>,
+        );
+
         wrapper.setProps({ in: true });
-        assert.strictEqual(
-          nodeEnterTransformStyle,
+
+        expect(nodeEnterTransformStyle).to.equal(
           `translateX(${global.innerWidth}px) translateX(-300px)`,
         );
       });
 
       it('should set element transform and transition in the `right` direction', () => {
-        wrapper.setProps({ direction: 'right' });
+        let nodeEnterTransformStyle;
+        const wrapper = mount(
+          <Slide
+            direction="right"
+            onEnter={(node) => {
+              nodeEnterTransformStyle = node.style.transform;
+            }}
+          >
+            <FakeDiv />
+          </Slide>,
+        );
+
         wrapper.setProps({ in: true });
-        assert.strictEqual(nodeEnterTransformStyle, 'translateX(-800px)');
+
+        expect(nodeEnterTransformStyle).to.equal('translateX(-800px)');
       });
 
       it('should set element transform and transition in the `up` direction', () => {
-        wrapper.setProps({ direction: 'up' });
+        let nodeEnterTransformStyle;
+        const wrapper = mount(
+          <Slide
+            direction="up"
+            onEnter={(node) => {
+              nodeEnterTransformStyle = node.style.transform;
+            }}
+          >
+            <FakeDiv />
+          </Slide>,
+        );
+
         wrapper.setProps({ in: true });
-        assert.strictEqual(
-          nodeEnterTransformStyle,
+
+        expect(nodeEnterTransformStyle).to.equal(
           `translateY(${global.innerHeight}px) translateY(-200px)`,
         );
       });
 
       it('should set element transform and transition in the `down` direction', () => {
-        wrapper.setProps({ direction: 'down' });
+        let nodeEnterTransformStyle;
+        const wrapper = mount(
+          <Slide
+            direction="down"
+            onEnter={(node) => {
+              nodeEnterTransformStyle = node.style.transform;
+            }}
+          >
+            <FakeDiv />
+          </Slide>,
+        );
+
         wrapper.setProps({ in: true });
-        assert.strictEqual(nodeEnterTransformStyle, 'translateY(-500px)');
+
+        expect(nodeEnterTransformStyle).to.equal('translateY(-500px)');
       });
 
       it('should reset the previous transition if needed', () => {
-        child.style.transform = 'translateX(-800px)';
-        wrapper.setProps({ direction: 'right' });
+        const childRef = React.createRef();
+        let nodeEnterTransformStyle;
+        const wrapper = mount(
+          <Slide
+            direction="right"
+            onEnter={(node) => {
+              nodeEnterTransformStyle = node.style.transform;
+            }}
+          >
+            <FakeDiv ref={childRef} />
+          </Slide>,
+        );
+
+        childRef.current.style.transform = 'translateX(-800px)';
         wrapper.setProps({ in: true });
-        assert.strictEqual(nodeEnterTransformStyle, 'translateX(-800px)');
+
+        expect(nodeEnterTransformStyle).to.equal('translateX(-800px)');
+      });
+
+      it('should set element transform in the `up` direction when element is offscreen', () => {
+        const childRef = React.createRef();
+        let nodeEnterTransformStyle;
+        const wrapper = mount(
+          <Slide
+            direction="up"
+            onEnter={(node) => {
+              nodeEnterTransformStyle = node.style.transform;
+            }}
+          >
+            <FakeDiv rect={{ top: -100 }} ref={childRef} />
+          </Slide>,
+        );
+
+        wrapper.setProps({ in: true });
+
+        expect(nodeEnterTransformStyle).to.equal(
+          `translateY(${global.innerHeight}px) translateY(100px)`,
+        );
+      });
+
+      it('should set element transform in the `left` direction when element is offscreen', () => {
+        const childRef = React.createRef();
+        let nodeEnterTransformStyle;
+        const wrapper = mount(
+          <Slide
+            direction="left"
+            onEnter={(node) => {
+              nodeEnterTransformStyle = node.style.transform;
+            }}
+          >
+            <FakeDiv rect={{ left: -100 }} ref={childRef} />
+          </Slide>,
+        );
+
+        wrapper.setProps({ in: true });
+
+        expect(nodeEnterTransformStyle).to.equal(
+          `translateX(${global.innerWidth}px) translateX(100px)`,
+        );
       });
     });
 
     describe('handleExiting()', () => {
-      before(() => {
-        wrapper.setProps({
-          in: true,
-        });
-      });
-
-      afterEach(() => {
-        wrapper.setProps({
-          in: true,
-        });
-      });
-
       it('should set element transform and transition in the `left` direction', () => {
-        wrapper.setProps({ direction: 'left' });
+        let nodeExitingTransformStyle;
+        const wrapper = mount(
+          <Slide
+            direction="left"
+            in
+            onExit={(node) => {
+              nodeExitingTransformStyle = node.style.transform;
+            }}
+          >
+            <FakeDiv />
+          </Slide>,
+        );
+
         wrapper.setProps({ in: false });
-        assert.strictEqual(
-          nodeExitingTransformStyle,
+
+        expect(nodeExitingTransformStyle).to.equal(
           `translateX(${global.innerWidth}px) translateX(-300px)`,
         );
       });
 
       it('should set element transform and transition in the `right` direction', () => {
-        wrapper.setProps({ direction: 'right' });
+        let nodeExitingTransformStyle;
+        const wrapper = mount(
+          <Slide
+            direction="right"
+            in
+            onExit={(node) => {
+              nodeExitingTransformStyle = node.style.transform;
+            }}
+          >
+            <FakeDiv />
+          </Slide>,
+        );
+
         wrapper.setProps({ in: false });
-        assert.strictEqual(nodeExitingTransformStyle, 'translateX(-800px)');
+
+        expect(nodeExitingTransformStyle).to.equal('translateX(-800px)');
       });
 
       it('should set element transform and transition in the `up` direction', () => {
-        wrapper.setProps({ direction: 'up' });
+        let nodeExitingTransformStyle;
+        const wrapper = mount(
+          <Slide
+            direction="up"
+            in
+            onExit={(node) => {
+              nodeExitingTransformStyle = node.style.transform;
+            }}
+          >
+            <FakeDiv />
+          </Slide>,
+        );
+
         wrapper.setProps({ in: false });
-        assert.strictEqual(
-          nodeExitingTransformStyle,
+
+        expect(nodeExitingTransformStyle).to.equal(
           `translateY(${global.innerHeight}px) translateY(-200px)`,
         );
       });
 
       it('should set element transform and transition in the `down` direction', () => {
-        wrapper.setProps({ direction: 'down' });
+        let nodeExitingTransformStyle;
+        const wrapper = mount(
+          <Slide
+            direction="down"
+            in
+            onExit={(node) => {
+              nodeExitingTransformStyle = node.style.transform;
+            }}
+          >
+            <FakeDiv />
+          </Slide>,
+        );
+
         wrapper.setProps({ in: false });
-        assert.strictEqual(nodeExitingTransformStyle, 'translateY(-500px)');
+
+        expect(nodeExitingTransformStyle).to.equal('translateY(-500px)');
       });
     });
   });
@@ -345,8 +429,8 @@ describe('<Slide />', () => {
       );
       const transition = childRef.current;
 
-      assert.strictEqual(transition.style.visibility, 'hidden');
-      assert.notStrictEqual(transition.style.transform, undefined);
+      expect(transition.style.visibility).to.equal('hidden');
+      expect(transition.style.transform).to.not.equal(undefined);
     });
   });
 
@@ -372,7 +456,7 @@ describe('<Slide />', () => {
       clock.tick(166);
       const child = wrapper.find('#testChild').instance();
 
-      assert.notStrictEqual(child.style.transform, undefined);
+      expect(child.style.transform).to.not.equal(undefined);
     });
 
     it('should take existing transform into account', () => {
@@ -389,8 +473,7 @@ describe('<Slide />', () => {
         style: {},
       };
       setTranslateValue('up', element);
-      assert.strictEqual(
-        element.style.transform,
+      expect(element.style.transform).to.equal(
         `translateY(${global.innerHeight}px) translateY(-780px)`,
       );
     });
@@ -409,7 +492,19 @@ describe('<Slide />', () => {
           <div id="with-slide" />
         </Slide>,
       );
-      assert.strictEqual(wrapper.find('#with-slide').props().style.visibility, 'hidden');
+      expect(wrapper.find('#with-slide').props().style.visibility).to.equal('hidden');
     });
+  });
+
+  it('has no StrictMode warnings in a StrictMode theme', () => {
+    mount(
+      <React.StrictMode>
+        <ThemeProvider theme={createMuiStrictModeTheme()}>
+          <Slide appear in>
+            <div />
+          </Slide>
+        </ThemeProvider>
+      </React.StrictMode>,
+    );
   });
 });

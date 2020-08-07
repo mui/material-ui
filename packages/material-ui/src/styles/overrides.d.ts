@@ -1,5 +1,4 @@
-import { StyleRules } from './withStyles';
-
+import { CSSProperties, StyleRules } from './withStyles';
 import { AppBarClassKey } from '../AppBar';
 import { AvatarClassKey } from '../Avatar';
 import { BackdropClassKey } from '../Backdrop';
@@ -21,7 +20,6 @@ import { ChipClassKey } from '../Chip';
 import { CircularProgressClassKey } from '../CircularProgress';
 import { CollapseClassKey } from '../Collapse';
 import { ContainerClassKey } from '../Container';
-import { CssBaselineClassKey } from '../CssBaseline';
 import { DialogActionsClassKey } from '../DialogActions';
 import { DialogClassKey } from '../Dialog';
 import { DialogContentClassKey } from '../DialogContent';
@@ -29,6 +27,10 @@ import { DialogContentTextClassKey } from '../DialogContentText';
 import { DialogTitleClassKey } from '../DialogTitle';
 import { DividerClassKey } from '../Divider';
 import { DrawerClassKey } from '../Drawer';
+import { AccordionActionsClassKey } from '../AccordionActions';
+import { AccordionClassKey } from '../Accordion';
+import { AccordionDetailsClassKey } from '../AccordionDetails';
+import { AccordionSummaryClassKey } from '../AccordionSummary';
 import { ExpansionPanelActionsClassKey } from '../ExpansionPanelActions';
 import { ExpansionPanelClassKey } from '../ExpansionPanel';
 import { ExpansionPanelDetailsClassKey } from '../ExpansionPanelDetails';
@@ -67,6 +69,7 @@ import { OutlinedInputClassKey } from '../OutlinedInput';
 import { PaperClassKey } from '../Paper';
 import { PopoverClassKey } from '../Popover';
 import { RadioClassKey } from '../Radio';
+import { ScopedCssBaselineClassKey } from '../ScopedCssBaseline';
 import { SelectClassKey } from '../Select';
 import { SliderClassKey } from '../Slider';
 import { SnackbarClassKey } from '../Snackbar';
@@ -83,8 +86,8 @@ import { SwitchClassKey } from '../Switch';
 import { TabClassKey } from '../Tab';
 import { TableBodyClassKey } from '../TableBody';
 import { TableCellClassKey } from '../TableCell';
-import { TableContainerClassKey } from '../TableContainer';
 import { TableClassKey } from '../Table';
+import { TableContainerClassKey } from '../TableContainer';
 import { TableFooterClassKey } from '../TableFooter';
 import { TableHeadClassKey } from '../TableHead';
 import { TablePaginationClassKey } from '../TablePagination';
@@ -98,7 +101,13 @@ import { TouchRippleClassKey } from '../ButtonBase/TouchRipple';
 import { TypographyClassKey } from '../Typography';
 
 export type Overrides = {
-  [Name in keyof ComponentNameToClassKey]?: Partial<StyleRules<ComponentNameToClassKey[Name]>>
+  [Name in keyof ComponentNameToClassKey]?: Partial<StyleRules<ComponentNameToClassKey[Name]>>;
+} & {
+  MuiCssBaseline?: {
+    '@global'?: {
+      '@font-face'?: CSSProperties['@font-face'];
+    } & Record<string, CSSProperties['@font-face'] | CSSProperties>; // allow arbitrary selectors
+  };
 };
 
 export interface ComponentNameToClassKey {
@@ -123,7 +132,10 @@ export interface ComponentNameToClassKey {
   MuiCircularProgress: CircularProgressClassKey;
   MuiCollapse: CollapseClassKey;
   MuiContainer: ContainerClassKey;
-  MuiCssBaseline: CssBaselineClassKey;
+  /**
+   * @deprecated See CssBaseline.d.ts
+   */
+  MuiCssBaseline: '@global';
   MuiDialog: DialogClassKey;
   MuiDialogActions: DialogActionsClassKey;
   MuiDialogContent: DialogContentClassKey;
@@ -131,6 +143,10 @@ export interface ComponentNameToClassKey {
   MuiDialogTitle: DialogTitleClassKey;
   MuiDivider: DividerClassKey;
   MuiDrawer: DrawerClassKey;
+  MuiAccordion: AccordionClassKey;
+  MuiAccordionActions: AccordionActionsClassKey;
+  MuiAccordionDetails: AccordionDetailsClassKey;
+  MuiAccordionSummary: AccordionSummaryClassKey;
   MuiExpansionPanel: ExpansionPanelClassKey;
   MuiExpansionPanelActions: ExpansionPanelActionsClassKey;
   MuiExpansionPanelDetails: ExpansionPanelDetailsClassKey;
@@ -169,6 +185,7 @@ export interface ComponentNameToClassKey {
   MuiPaper: PaperClassKey;
   MuiPopover: PopoverClassKey;
   MuiRadio: RadioClassKey;
+  MuiScopedCssBaseline: ScopedCssBaselineClassKey;
   MuiSelect: SelectClassKey;
   MuiSlider: SliderClassKey;
   MuiSnackbar: SnackbarClassKey;

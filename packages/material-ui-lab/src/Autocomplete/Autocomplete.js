@@ -13,12 +13,22 @@ import useAutocomplete, { createFilterOptions } from '../useAutocomplete';
 
 export { createFilterOptions };
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
-    '&:hover $clearIndicatorDirty, &$focused $clearIndicatorDirty': {
+    '&$focused $clearIndicatorDirty': {
       visibility: 'visible',
     },
+    /* Avoid double tap issue on iOS */
+    '@media (pointer: fine)': {
+      '&:hover $clearIndicatorDirty': {
+        visibility: 'visible',
+      },
+    },
+  },
+  /* Styles applied to the root element if `fullWidth={true}`. */
+  fullWidth: {
+    width: '100%',
   },
   /* Pseudo-class applied to the root element if focused. */
   focused: {},
@@ -134,7 +144,6 @@ export const styles = theme => ({
   clearIndicator: {
     marginRight: -2,
     padding: 4,
-    color: theme.palette.action.active,
     visibility: 'hidden',
   },
   /* Styles applied to the clear indicator if the input is dirty. */
@@ -143,7 +152,6 @@ export const styles = theme => ({
   popupIndicator: {
     padding: 2,
     marginRight: -2,
-    color: theme.palette.action.active,
   },
   /* Styles applied to the popup indicator if the popup is open. */
   popupIndicatorOpen: {
@@ -162,17 +170,14 @@ export const styles = theme => ({
     ...theme.typography.body1,
     overflow: 'hidden',
     margin: '4px 0',
-    '& > ul': {
-      maxHeight: '40vh',
-      overflow: 'auto',
-    },
   },
   /* Styles applied to the `listbox` component. */
   listbox: {
     listStyle: 'none',
     margin: 0,
-    padding: '8px 0px',
-    position: 'relative',
+    padding: '8px 0',
+    maxHeight: '40vh',
+    overflow: 'auto',
   },
   /* Styles applied to the loading wrapper. */
   loading: {
@@ -223,6 +228,9 @@ export const styles = theme => ({
   /* Styles applied to the group's ul elements. */
   groupUl: {
     padding: 0,
+    '& $option': {
+      paddingLeft: 24,
+    },
   },
 });
 
@@ -242,6 +250,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     ChipProps,
     classes,
     className,
+    clearOnBlur = !props.freeSolo,
     clearOnEscape = false,
     clearText = 'Clear',
     closeIcon = <CloseIcon fontSize="small" />,
@@ -251,19 +260,24 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     disableClearable = false,
     disableCloseOnSelect = false,
     disabled = false,
+    disabledItemsFocusable = false,
     disableListWrap = false,
     disablePortal = false,
     filterOptions,
     filterSelectedOptions = false,
     forcePopupIcon = 'auto',
     freeSolo = false,
+    fullWidth = false,
+    getLimitTagsText = (more) => `+${more}`,
     getOptionDisabled,
-    getOptionLabel = x => x,
+    getOptionLabel = (x) => x,
     getOptionSelected,
     groupBy,
+    handleHomeEndKeys = !props.freeSolo,
     id: idProp,
     includeInputInList = false,
     inputValue: inputValueProp,
+    limitTags = -1,
     ListboxComponent = 'ul',
     ListboxProps,
     loading = false,
@@ -272,6 +286,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     noOptionsText = 'No options',
     onChange,
     onClose,
+    onHighlightChange,
     onInputChange,
     onOpen,
     open,
@@ -318,7 +333,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
   let startAdornment;
 
   if (multiple && value.length > 0) {
-    const getCustomizedTagProps = params => ({
+    const getCustomizedTagProps = (params) => ({
       className: clsx(classes.tag, {
         [classes.tagSizeSmall]: size === 'small',
       }),
@@ -340,10 +355,22 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     }
   }
 
-  const defaultRenderGroup = params => (
+  if (limitTags > -1 && Array.isArray(startAdornment)) {
+    const more = startAdornment.length - limitTags;
+    if (!focused && more > 0) {
+      startAdornment = startAdornment.splice(0, limitTags);
+      startAdornment.push(
+        <span className={classes.tag} key={startAdornment.length}>
+          {getLimitTagsText(more)}
+        </span>,
+      );
+    }
+  }
+
+  const defaultRenderGroup = (params) => (
     <li key={params.key}>
       <ListSubheader className={classes.groupLabel} component="div">
-        {params.key}
+        {params.group}
       </ListSubheader>
       <ul className={classes.groupUl}>{params.children}</ul>
     </li>
@@ -376,6 +403,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
           classes.root,
           {
             [classes.focused]: focused,
+            [classes.fullWidth]: fullWidth,
             [classes.hasClearIcon]: hasClearIcon,
             [classes.hasPopupIcon]: hasPopupIcon,
           },
@@ -462,6 +490,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
                   if (groupBy) {
                     return renderGroup({
                       key: option.key,
+                      group: option.group,
                       children: option.options.map((option2, index2) =>
                         renderListOption(option2, option.index + index2),
                       ),
@@ -522,6 +551,13 @@ Autocomplete.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * If `true`, the input's text will be cleared on blur if no value is selected.
+   *
+   * Set to `true` if you want to help the user enter a new value.
+   * Set to `false` if you want to help the user resume his search.
+   */
+  clearOnBlur: PropTypes.bool,
+  /**
    * If `true`, clear all values when the user presses escape and the popup is closed.
    */
   clearOnEscape: PropTypes.bool,
@@ -542,7 +578,7 @@ Autocomplete.propTypes = {
    */
   closeText: PropTypes.string,
   /**
-   * If `true`, the popup will ignore the blur event if the input if filled.
+   * If `true`, the popup will ignore the blur event if the input is filled.
    * You can inspect the popup markup with your browser tools.
    * Consider this option when you need to customize the component.
    */
@@ -550,11 +586,11 @@ Autocomplete.propTypes = {
   /**
    * The default input value. Use when the component is not controlled.
    */
-  defaultValue: PropTypes.oneOfType([PropTypes.any, PropTypes.array]),
+  defaultValue: PropTypes.any,
   /**
    * If `true`, the input can't be cleared.
    */
-  disableClearable: PropTypes.bool,
+  disableClearable: PropTypes /* @typescript-to-proptypes-ignore */.bool,
   /**
    * If `true`, the popup won't close when a value is selected.
    */
@@ -563,6 +599,10 @@ Autocomplete.propTypes = {
    * If `true`, the input will be disabled.
    */
   disabled: PropTypes.bool,
+  /**
+   * If `true`, will allow focus on disabled items.
+   */
+  disabledItemsFocusable: PropTypes.bool,
   /**
    * If `true`, the list box in the popup will not wrap focus.
    */
@@ -591,29 +631,55 @@ Autocomplete.propTypes = {
   /**
    * If `true`, the Autocomplete is free solo, meaning that the user input is not bound to provided options.
    */
-  freeSolo: PropTypes.bool,
+  freeSolo: PropTypes /* @typescript-to-proptypes-ignore */.bool,
+  /**
+   * If `true`, the input will take up the full width of its container.
+   */
+  fullWidth: PropTypes.bool,
+  /**
+   * The label to display when the tags are truncated (`limitTags`).
+   *
+   * @param {number} more The number of truncated tags.
+   * @returns {ReactNode}
+   */
+  getLimitTagsText: PropTypes.func,
   /**
    * Used to determine the disabled state for a given option.
+   *
+   * @param {T} option The option to test.
+   * @returns {boolean}
    */
   getOptionDisabled: PropTypes.func,
   /**
    * Used to determine the string value for a given option.
    * It's used to fill the input (and the list box options if `renderOption` is not provided).
+   *
+   * @param {T} option
+   * @returns {string}
    */
   getOptionLabel: PropTypes.func,
   /**
-   * Used to determine if an option is selected.
+   * Used to determine if an option is selected, considering the current value.
    * Uses strict equality by default.
+   *
+   * @param {T} option The option to test.
+   * @param {T} value The value to test against.
+   * @returns {boolean}
    */
   getOptionSelected: PropTypes.func,
   /**
    * If provided, the options will be grouped under the returned string.
    * The groupBy value is also used as the text for group headings when `renderGroup` is not provided.
    *
-   * @param {T} options The option to group.
+   * @param {T} options The options to group.
    * @returns {string}
    */
   groupBy: PropTypes.func,
+  /**
+   * If `true`, the component handles the "Home" and "End" keys when the popup is open.
+   * It should move focus to the first option and last option, respectively.
+   */
+  handleHomeEndKeys: PropTypes.bool,
   /**
    * This prop is used to help implement the accessibility logic.
    * If you don't provide this prop. It falls back to a randomly generated id.
@@ -627,6 +693,11 @@ Autocomplete.propTypes = {
    * The input value.
    */
   inputValue: PropTypes.string,
+  /**
+   * The maximum number of tags that will be visible when not focused.
+   * Set `-1` to disable the limit.
+   */
+  limitTags: PropTypes.number,
   /**
    * The component used to render the listbox.
    */
@@ -648,7 +719,7 @@ Autocomplete.propTypes = {
   /**
    * If `true`, `value` must be an array and the menu will support multiple selections.
    */
-  multiple: PropTypes.bool,
+  multiple: PropTypes /* @typescript-to-proptypes-ignore */.bool,
   /**
    * Text to display when there are no options.
    *
@@ -659,7 +730,8 @@ Autocomplete.propTypes = {
    * Callback fired when the value changes.
    *
    * @param {object} event The event source of the callback.
-   * @param {T} value
+   * @param {T|T[]} value The new value of the component.
+   * @param {string} reason One of "create-option", "select-option", "remove-option", "blur" or "clear".
    */
   onChange: PropTypes.func,
   /**
@@ -667,8 +739,17 @@ Autocomplete.propTypes = {
    * Use in controlled mode (see open).
    *
    * @param {object} event The event source of the callback.
+   * @param {string} reason Can be: `"toggleInput"`, `"escape"`, `"select-option"`, `"blur"`.
    */
   onClose: PropTypes.func,
+  /**
+   * Callback fired when the highlight option changes.
+   *
+   * @param {object} event The event source of the callback.
+   * @param {T} option The highlighted option.
+   * @param {string} reason Can be: `"keyboard"`, `"auto"`, `"mouse"`.
+   */
+  onHighlightChange: PropTypes.func,
   /**
    * Callback fired when the input value changes.
    *
@@ -759,7 +840,7 @@ Autocomplete.propTypes = {
    * The value must have reference equality with the option in order to be selected.
    * You can customize the equality behavior with the `getOptionSelected` prop.
    */
-  value: PropTypes.oneOfType([PropTypes.any, PropTypes.array]),
+  value: PropTypes.any,
 };
 
 export default withStyles(styles, { name: 'MuiAutocomplete' })(Autocomplete);

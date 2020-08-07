@@ -17,7 +17,7 @@ Thanks for writing tests! Here's a quick run-down on our current setup.
 - [mocha](https://mochajs.org/)
 - [karma](https://karma-runner.github.io/latest/index.html)
 - [enzyme](https://airbnb.io/enzyme/) (old tests only)
-- [vrtest](https://github.com/nathanmarks/vrtest)
+- [vrtest-mui](https://github.com/mui-org/vrtest-mui)
 - [docker](https://docs.docker.com/)
 - [jsdom](https://github.com/jsdom/jsdom)
 

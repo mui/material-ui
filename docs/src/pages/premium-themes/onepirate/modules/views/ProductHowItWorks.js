@@ -6,7 +6,7 @@ import Container from '@material-ui/core/Container';
 import Button from '../components/Button';
 import Typography from '../components/Typography';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     display: 'flex',
     backgroundColor: theme.palette.secondary.light,

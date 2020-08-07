@@ -1,26 +1,51 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useSelector } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
-import Portal from '@material-ui/core/Portal';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import Head from 'docs/src/modules/components/Head';
-import useMarkdownDocs from 'docs/src/modules/components/useMarkdownDocs';
 import AppFrame from 'docs/src/modules/components/AppFrame';
-import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
-import Ad from 'docs/src/modules/components/Ad';
 import EditPage from 'docs/src/modules/components/EditPage';
 import AppContainer from 'docs/src/modules/components/AppContainer';
 import PageContext from 'docs/src/modules/components/PageContext';
-import { getHeaders, getTitle, getDescription } from 'docs/src/modules/utils/parseMarkdown';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import Link from 'docs/src/modules/components/Link';
+import { exactProp } from '@material-ui/utils';
+import { SOURCE_CODE_ROOT_URL } from 'docs/src/modules/constants';
+import Demo from 'docs/src/modules/components/Demo';
+import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
+import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import Ad from 'docs/src/modules/components/Ad';
+import AdManager from 'docs/src/modules/components/AdManager';
+import AdGuest from 'docs/src/modules/components/AdGuest';
 
-const styles = theme => ({
+function flattenPages(pages, current = []) {
+  return pages.reduce((items, item) => {
+    if (item.children && item.children.length > 1) {
+      items = flattenPages(item.children, items);
+    } else {
+      items.push(item.children && item.children.length === 1 ? item.children[0] : item);
+    }
+    return items;
+  }, current);
+}
+
+// To replace with .findIndex() once we stop IE 11 support.
+function findIndex(array, comp) {
+  for (let i = 0; i < array.length; i += 1) {
+    if (comp(array[i])) {
+      return i;
+    }
+  }
+
+  return -1;
+}
+
+const styles = (theme) => ({
   root: {
     width: '100%',
   },
@@ -36,7 +61,7 @@ const styles = theme => ({
   },
   ad: {
     '& .description': {
-      marginBottom: 196,
+      marginBottom: 198,
     },
     '& .description.ad': {
       marginBottom: 40,
@@ -64,142 +89,149 @@ const styles = theme => ({
   },
 });
 
-function flattenPages(pages, current = []) {
-  return pages.reduce((items, item) => {
-    if (item.children && item.children.length > 1) {
-      items = flattenPages(item.children, items);
-    } else {
-      items.push(item.children && item.children.length === 1 ? item.children[0] : item);
-    }
-    return items;
-  }, current);
-}
-
-// To replace with .findIndex() once we stop IE 11 support.
-function findIndex(array, comp) {
-  for (let i = 0; i < array.length; i += 1) {
-    if (comp(array[i])) {
-      return i;
-    }
-  }
-
-  return -1;
-}
-
 function MarkdownDocs(props) {
-  const {
-    classes,
-    disableAd = false,
-    disableToc = false,
-    markdown: markdownProp,
-    markdownLocation: markdownLocationProp,
-    req,
-    reqPrefix,
-    reqSource,
-  } = props;
+  const { classes, disableAd = false, disableToc = false, demos = {}, docs, requireDemo } = props;
 
-  const t = useSelector(state => state.options.t);
-
-  const markdownDocs = useMarkdownDocs({
-    markdown: markdownProp,
-    markdownLocation: markdownLocationProp,
-    req,
-    reqPrefix,
-    reqSource,
-  });
-
-  const headers = getHeaders(markdownDocs.markdown);
+  const t = useSelector((state) => state.options.t);
+  const userLanguage = useSelector((state) => state.options.userLanguage);
+  const { description, location, rendered, title, toc } = docs[userLanguage] || docs.en;
+  if (description === undefined) {
+    throw new Error('Missing description in the page');
+  }
 
   const { activePage, pages } = React.useContext(PageContext);
   const pageList = flattenPages(pages);
-  const currentPageNum = findIndex(pageList, page => page.pathname === activePage.pathname);
+  const currentPageNum = findIndex(pageList, (page) => page.pathname === activePage?.pathname);
   const currentPage = pageList[currentPageNum];
   const prevPage = pageList[currentPageNum - 1];
   const nextPage = pageList[currentPageNum + 1];
 
   return (
     <AppFrame>
-      <Head
-        title={`${headers.title || getTitle(markdownDocs.markdown)} - Material-UI`}
-        description={headers.description || getDescription(markdownDocs.markdown)}
-      />
-      {disableAd ? null : (
-        <Portal
-          container={() => {
-            const container = document.querySelector('.description');
-            container.classList.add('ad');
-            return container;
-          }}
+      <AdManager>
+        <Head title={`${title} - Material-UI`} description={description} />
+        {disableAd ? null : (
+          <AdGuest>
+            <Ad placement="body" />
+          </AdGuest>
+        )}
+        <div
+          className={clsx(classes.root, {
+            [classes.ad]: !disableAd,
+            [classes.toc]: !disableToc,
+          })}
         >
-          <Ad />
-        </Portal>
-      )}
-      <div
-        className={clsx(classes.root, {
-          [classes.ad]: !disableAd,
-          [classes.toc]: !disableToc,
-        })}
-      >
-        <AppContainer className={classes.container}>
-          <div className={classes.actions}>
-            <EditPage markdownLocation={markdownDocs.location} />
-          </div>
-          {markdownDocs.element}
-          <footer className={classes.footer}>
-            {!currentPage ||
-            currentPage.displayNav === false ||
-            (nextPage.displayNav === false && !prevPage) ? null : (
-              <React.Fragment>
-                <Divider />
-                <div className={classes.pagination}>
-                  {prevPage ? (
-                    <Button
-                      component={Link}
-                      naked
-                      href={prevPage.pathname}
-                      size="large"
-                      className={classes.pageLinkButton}
-                      startIcon={<ChevronLeftIcon />}
-                    >
-                      {pageToTitleI18n(prevPage, t)}
-                    </Button>
-                  ) : (
-                    <div />
-                  )}
-                  {nextPage.displayNav === false ? null : (
-                    <Button
-                      component={Link}
-                      naked
-                      href={nextPage.pathname}
-                      size="large"
-                      className={classes.pageLinkButton}
-                      endIcon={<ChevronRightIcon />}
-                    >
-                      {pageToTitleI18n(nextPage, t)}
-                    </Button>
-                  )}
-                </div>
-              </React.Fragment>
-            )}
-          </footer>
-        </AppContainer>
-      </div>
-      {disableToc ? null : <AppTableOfContents contents={markdownDocs.contents} />}
+          <AppContainer className={classes.container}>
+            <div className={classes.actions}>
+              <EditPage markdownLocation={location} />
+            </div>
+            {rendered.map((renderedMarkdownOrDemo, index) => {
+              if (typeof renderedMarkdownOrDemo === 'string') {
+                const renderedMarkdown = renderedMarkdownOrDemo;
+                return <MarkdownElement key={index} renderedMarkdown={renderedMarkdown} />;
+              }
+
+              const demoOptions = renderedMarkdownOrDemo;
+              const name = demoOptions.demo;
+              const demo = demos?.[name];
+              if (demo === undefined) {
+                const errorMessage = [
+                  `Missing demo: ${name}. You can use one of the following:`,
+                  Object.keys(demos),
+                ].join('\n');
+
+                if (userLanguage === 'en') {
+                  throw new Error(errorMessage);
+                }
+
+                if (process.env.NODE_ENV !== 'production') {
+                  console.error(errorMessage);
+                }
+
+                const warnIcon = (
+                  <span role="img" aria-label={t('emojiWarning')}>
+                    ⚠️
+                  </span>
+                );
+                return (
+                  <div key={index}>
+                    {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
+                    {warnIcon} Missing demo `{name}` {warnIcon}
+                  </div>
+                );
+              }
+
+              return (
+                <React.Fragment key={index}>
+                  <Demo
+                    demo={{
+                      raw: demo.raw,
+                      js: requireDemo(demo.module).default,
+                      rawTS: demo.rawTS,
+                      tsx: demo.moduleTS ? requireDemo(demo.moduleTS).default : null,
+                    }}
+                    demoOptions={demoOptions}
+                    githubLocation={`${SOURCE_CODE_ROOT_URL}/docs/src/${name}`}
+                  />
+                </React.Fragment>
+              );
+            })}
+            <footer className={classes.footer}>
+              {!currentPage ||
+              currentPage.displayNav === false ||
+              (nextPage.displayNav === false && !prevPage) ? null : (
+                <React.Fragment>
+                  <Divider />
+                  <div className={classes.pagination}>
+                    {prevPage ? (
+                      <Button
+                        component={Link}
+                        naked
+                        href={prevPage.pathname}
+                        size="large"
+                        className={classes.pageLinkButton}
+                        startIcon={<ChevronLeftIcon />}
+                      >
+                        {pageToTitleI18n(prevPage, t)}
+                      </Button>
+                    ) : (
+                      <div />
+                    )}
+                    {nextPage.displayNav === false ? null : (
+                      <Button
+                        component={Link}
+                        naked
+                        href={nextPage.pathname}
+                        size="large"
+                        className={classes.pageLinkButton}
+                        endIcon={<ChevronRightIcon />}
+                      >
+                        {pageToTitleI18n(nextPage, t)}
+                      </Button>
+                    )}
+                  </div>
+                </React.Fragment>
+              )}
+            </footer>
+          </AppContainer>
+        </div>
+        {disableToc ? null : <AppTableOfContents items={toc} />}
+      </AdManager>
     </AppFrame>
   );
 }
 
 MarkdownDocs.propTypes = {
   classes: PropTypes.object.isRequired,
+  demos: PropTypes.object,
   disableAd: PropTypes.bool,
   disableToc: PropTypes.bool,
-  markdown: PropTypes.string,
-  // You can define the direction location of the markdown file.
-  // Otherwise, we try to determine it with an heuristic.
-  markdownLocation: PropTypes.string,
-  req: PropTypes.func,
-  reqPrefix: PropTypes.string,
-  reqSource: PropTypes.func,
+  docs: PropTypes.object.isRequired,
+  requireDemo: PropTypes.func,
 };
+
+if (process.env.NODE_ENV !== 'production') {
+  MarkdownDocs.propTypes = exactProp(MarkdownDocs.propTypes);
+}
 
 export default withStyles(styles)(MarkdownDocs);

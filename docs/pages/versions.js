@@ -1,15 +1,23 @@
 import React from 'react';
-import orderBy from 'lodash/orderBy';
 import sortedUniqBy from 'lodash/sortedUniqBy';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import fetch from 'cross-fetch';
+import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
-const req = require.context('docs/src/pages/versions', false, /\.(md|js|tsx)$/);
-const reqSource = require.context('!raw-loader!../src/pages/versions', false, /\.(js|tsx)$/);
-const reqPrefix = 'pages/versions';
+const pageFilename = 'versions';
+const requireDemo = require.context('docs/src/pages/versions/', false, /\.(js|tsx)$/);
+const requireRaw = require.context('!raw-loader!../src/pages/versions', false, /\.(js|md|tsx)$/);
 
-export default function Page() {
-  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
+export default function Page({ demos, docs }) {
+  return <MarkdownDocs demos={demos} docs={docs} requireDemo={requireDemo} />;
+}
+
+function formatVersion(version) {
+  return version
+    .replace('v', '')
+    .split('.')
+    .map((n) => +n + 1000)
+    .join('.');
 }
 
 async function getBranches() {
@@ -28,9 +36,9 @@ Page.getInitialProps = async () => {
   const FILTERED_BRANCHES = ['latest', 'staging', 'l10n', 'next'];
 
   const branches = await getBranches();
-  let versions = branches.map(n => n.name);
-  versions = versions.filter(value => FILTERED_BRANCHES.indexOf(value) === -1);
-  versions = versions.map(version => ({
+  let versions = branches.map((n) => n.name);
+  versions = versions.filter((value) => FILTERED_BRANCHES.indexOf(value) === -1);
+  versions = versions.map((version) => ({
     version,
     // Replace dot with dashes for Netlify branch subdomains
     url: `https://${version.replace(/\./g, '-')}.material-ui.com`,
@@ -45,8 +53,12 @@ Page.getInitialProps = async () => {
     version: 'v0',
     url: 'https://v0.material-ui.com',
   });
-  versions = orderBy(versions, 'version', 'desc');
+  versions = versions.sort((a, b) =>
+    formatVersion(b.version).localeCompare(formatVersion(a.version)),
+  );
   versions = sortedUniqBy(versions, 'version');
 
-  return { versions };
+  const { demos, docs } = prepareMarkdown({ pageFilename, requireRaw });
+
+  return { demos, docs, versions };
 };

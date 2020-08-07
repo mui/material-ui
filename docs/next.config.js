@@ -1,19 +1,31 @@
 const webpack = require('webpack');
 const path = require('path');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const withTypescript = require('@zeit/next-typescript');
 const pkg = require('../package.json');
 const { findPages } = require('./src/modules/utils/find');
-const { LANGUAGES_SSR } = require('./src/modules/constants');
+const { LANGUAGES, LANGUAGES_SSR } = require('./src/modules/constants');
 
 const workspaceRoot = path.join(__dirname, '../');
 
 /**
- * @type {'legacy' | 'sync' | 'concurrent'}
+ * https://github.com/zeit/next.js/blob/287961ed9142a53f8e9a23bafb2f31257339ea98/packages/next/next-server/server/config.ts#L10
+ * @typedef {'legacy' | 'blocking' | 'concurrent'} ReactRenderMode
+ * legacy - ReactDOM.render(<App />)
+ * legacy-strict - ReactDOM.render(<React.StrictMode><App /></React.StrictMode>, Element)
+ * blocking - ReactDOM.createSyncRoot(Element).render(<App />)
+ * concurrent - ReactDOM.createRoot(Element).render(<App />)
+ * @type {ReactRenderMode | 'legacy-strict'}
  */
 const reactMode = 'legacy';
+// eslint-disable-next-line no-console
+console.log(`Using React '${reactMode}' mode.`);
 
-module.exports = withTypescript({
+module.exports = {
+  typescript: {
+    // Motivated by https://github.com/zeit/next.js/issues/7687
+    ignoreDevErrors: true,
+    ignoreBuildErrors: true,
+  },
   webpack: (config, options) => {
     const plugins = config.plugins.concat([
       new webpack.DefinePlugin({
@@ -40,10 +52,6 @@ module.exports = withTypescript({
 
     config.resolve.alias['react-dom$'] = 'react-dom/profiling';
     config.resolve.alias['scheduler/tracing'] = 'scheduler/tracing-profiling';
-
-    if (reactMode !== 'legacy') {
-      config.resolve.alias['react-transition-group'] = '@material-ui/react-transition-group';
-    }
 
     // next includes node_modules in webpack externals. Some of those have dependencies
     // on the aliases defined above. If a module is an external those aliases won't be used.
@@ -73,22 +81,18 @@ module.exports = withTypescript({
       ];
     }
 
-    return Object.assign({}, config, {
+    return {
+      ...config,
       plugins,
       node: {
         fs: 'empty',
       },
-      module: Object.assign({}, config.module, {
+      module: {
+        ...config.module,
         rules: config.module.rules.concat([
+          // used in some /getting-started/templates
           {
-            test: /\.(css|md)$/,
-            loader: 'emit-file-loader',
-            options: {
-              name: 'dist/[path][name].[ext]',
-            },
-          },
-          {
-            test: /\.(css|md)$/,
+            test: /\.md$/,
             loader: 'raw-loader',
           },
           // transpile 3rd party packages with dependencies in this repository
@@ -117,14 +121,14 @@ module.exports = withTypescript({
           },
           // required to transpile ../packages/
           {
-            test: /\.(js|mjs|jsx)$/,
+            test: /\.(js|mjs|jsx|ts)$/,
             include: [workspaceRoot],
             exclude: /node_modules/,
             use: options.defaultLoaders.babel,
           },
         ]),
-      }),
-    });
+      },
+    };
   },
   exportTrailingSlash: true,
   // Next.js provides a `defaultPathMap` argument, we could simplify the logic.
@@ -136,9 +140,9 @@ module.exports = withTypescript({
     function traverse(pages2, userLanguage) {
       const prefix = userLanguage === 'en' ? '' : `/${userLanguage}`;
 
-      pages2.forEach(page => {
+      pages2.forEach((page) => {
         if (!page.children) {
-          map[`${prefix}${page.pathname}`] = {
+          map[`${prefix}${page.pathname.replace(/^\/api-docs\/(.*)/, '/api/$1')}`] = {
             page: page.pathname,
             query: {
               userLanguage,
@@ -153,19 +157,27 @@ module.exports = withTypescript({
 
     // We want to speed-up the build of pull requests.
     if (process.env.PULL_REQUEST === 'true') {
+      // eslint-disable-next-line no-console
+      console.log('Considering only English for SSR');
       traverse(pages, 'en');
     } else {
-      LANGUAGES_SSR.forEach(userLanguage => {
+      // eslint-disable-next-line no-console
+      console.log('Considering various locales for SSR');
+      LANGUAGES_SSR.forEach((userLanguage) => {
         traverse(pages, userLanguage);
       });
     }
 
     return map;
   },
-  onDemandEntries: {
-    // Period (in ms) where the server will keep pages in the buffer
-    maxInactiveAge: 120 * 1e3, // default 25s
-    // Number of pages that should be kept simultaneously without being disposed
-    pagesBufferLength: 3, // default 2
+  experimental: {
+    async rewrites() {
+      return [
+        { source: `/:lang(${LANGUAGES.join('|')})?/:rest`, destination: '/:rest' },
+        { source: '/api/:rest*', destination: '/api-docs/:rest*' },
+      ];
+    },
+    reactMode: reactMode.startsWith('legacy') ? 'legacy' : reactMode,
   },
-});
+  reactStrictMode: reactMode === 'legacy-strict',
+};

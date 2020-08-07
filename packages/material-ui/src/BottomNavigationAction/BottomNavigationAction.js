@@ -5,7 +5,7 @@ import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 import unsupportedProp from '../utils/unsupportedProp';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     transition: theme.transitions.create(['color', 'padding-top'], {
@@ -67,7 +67,7 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
     ...other
   } = props;
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     if (onChange) {
       onChange(event, value);
     }
@@ -108,6 +108,10 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
 });
 
 BottomNavigationAction.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * This prop isn't supported.
    * Use the `component` prop if you need to change the children structure.
@@ -117,7 +121,7 @@ BottomNavigationAction.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */

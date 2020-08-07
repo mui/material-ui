@@ -23,7 +23,7 @@ Una tabla de datos contiene una cabecera en la parte superior con los nombres de
 
 Un checkbox debe acompañar a cada fila por si el usuario necesita seleccionar o manipular datos.
 
-Para facilitar la accesibilidad, la primera columna es un elemento `<th>`, con un `scope` de `"row"`. Esto permite a los lectores de pantalla identificar el valor de una celda por el nombre de su fila y columna.
+Utiliza el componente `TableSortLabel` para ayudar a dar estilo a las cabeceras de las columnas. Esto permite a los lectores de pantalla identificar el valor de una celda por el nombre de su fila y columna.
 
 ## Tabla Sencilla
 
@@ -41,13 +41,13 @@ Un Ejemplo de una tabla densa sin florituras.
 
 Este ejemplo demuestra el uso del `Checkbox` y las filas cliqueables para seleccionar, con una `Toolbar` personalizado. Utiliza el componente `TableSortLabel` para ayudar a dar estilo a las cabeceras de las columnas.
 
-La Tabla tiene un ancho fijo para demostrar el desplazamiento horizontal. Para evitar que se desplacen los controles de paginación, el componente TablePagination se usa fuera de la Tabla. (El [ejemplo de la 'Acción de paginación de tabla personalizado'](#custom-table-pagination-action) de abajo demuestra la paginación dentro del TableFooter.)
+La Tabla tiene un ancho fijo para demostrar el desplazamiento horizontal. Para evitar que se desplacen los controles de paginación, el componente TablePagination se usa fuera de la Tabla. (El [ejemplo de la 'Acción de paginación de tabla personalizado'](#custom-pagination-actions) de abajo demuestra la paginación dentro del TableFooter.)
 
 {{"demo": "pages/components/tables/EnhancedTable.js", "bg": true}}
 
 ## Tablas personalizadas
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+La siguiente tabla muestra un ejemplo de personalización del componente. Puedes aprender más sobre esto en la [sección Personalizando Componentes de la documentación](/customization/components/).
 
 {{"demo": "pages/components/tables/CustomizedTables.js", "bg": true}}
 
@@ -69,7 +69,7 @@ Es posible personalizar las opciones en el item "Filas por página" usando la pr
 
 ### Custom pagination actions
 
-El atributo `Action`del componente `TablePagination` permite implementar acciones personalizadas.
+The `ActionsComponent` prop of the `TablePagination` component allows the implementation of custom actions.
 
 {{"demo": "pages/components/tables/CustomPaginationActionsTable.js", "bg": true}}
 
@@ -78,6 +78,12 @@ El atributo `Action`del componente `TablePagination` permite implementar accione
 An example of a table with scrollable rows and fixed column headers. It leverages the `stickyHeader` prop (⚠️ no IE 11 support).
 
 {{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
+
+## Collapsible table
+
+An example of a table with expandable rows, revealing more information. It utilizes the [`Collapse`](/api/collapse/) component.
+
+{{"demo": "pages/components/tables/CollapsibleTable.js", "bg": true}}
 
 ## Tabla Expandible
 

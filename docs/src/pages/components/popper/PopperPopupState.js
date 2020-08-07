@@ -7,7 +7,7 @@ import PopupState, { bindToggle, bindPopper } from 'material-ui-popup-state';
 import Fade from '@material-ui/core/Fade';
 import Paper from '@material-ui/core/Paper';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   typography: {
     padding: theme.spacing(2),
   },
@@ -18,7 +18,7 @@ export default function PopperPopupState() {
 
   return (
     <PopupState variant="popper" popupId="demo-popup-popper">
-      {popupState => (
+      {(popupState) => (
         <div>
           <Button variant="contained" color="primary" {...bindToggle(popupState)}>
             Toggle Popper

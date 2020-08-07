@@ -50,6 +50,16 @@ or a higher emphasis alternative to text buttons.
 
 {{"demo": "pages/components/buttons/OutlinedButtons.js"}}
 
+## Handling clicks
+
+All components accept an `onClick` handler that is applied to the root DOM element.
+
+```jsx
+<Button onClick={() => { alert('clicked') }}>Click me</Button>
+```
+
+Note that the documentation [avoids](/guides/api/#native-properties) mentioning native props (there are a lot) in the API section of the components.
+
 ## Upload button
 
 {{"demo": "pages/components/buttons/UploadButtons.js"}}
@@ -82,7 +92,7 @@ Here are some examples of customizing the component. You can learn more about th
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js", "defaultCodeOpen": false}}
 
-👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/button).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/button).
 
 ## Complex Buttons
 
@@ -122,7 +132,7 @@ If you wish to use `not-allowed`, you have two options:
 
   However:
 
-  - You should add `pointer-events: none;` back when you need to display [tooltips on disabled elements](/components/tooltips/#disabled-elements)
+  - You should add `pointer-events: none;` back when you need to display [tooltips on disabled elements](/components/tooltips/#disabled-elements).
   - The cursor won't change if you render something other than a button element, for instance, a link `<a>` element.
 
 2. **DOM change**. You can wrap the button:

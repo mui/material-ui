@@ -27,10 +27,10 @@ export default function SplitButton() {
   };
 
   const handleToggle = () => {
-    setOpen(prevOpen => !prevOpen);
+    setOpen((prevOpen) => !prevOpen);
   };
 
-  const handleClose = event => {
+  const handleClose = (event) => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
@@ -71,7 +71,7 @@ export default function SplitButton() {
                         key={option}
                         disabled={index === 2}
                         selected={index === selectedIndex}
-                        onClick={event => handleMenuItemClick(event, index)}
+                        onClick={(event) => handleMenuItemClick(event, index)}
                       >
                         {option}
                       </MenuItem>

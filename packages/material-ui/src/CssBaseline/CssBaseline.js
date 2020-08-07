@@ -11,7 +11,7 @@ export const html = {
   boxSizing: 'border-box',
 };
 
-export const body = theme => ({
+export const body = (theme) => ({
   color: theme.palette.text.primary,
   ...theme.typography.body2,
   backgroundColor: theme.palette.background.default,
@@ -21,7 +21,7 @@ export const body = theme => ({
   },
 });
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   '@global': {
     html,
     '*, *::before, *::after': {
@@ -53,6 +53,10 @@ function CssBaseline(props) {
 }
 
 CssBaseline.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * You can wrap a node.
    */

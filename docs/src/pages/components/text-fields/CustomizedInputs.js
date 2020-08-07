@@ -34,7 +34,7 @@ const CssTextField = withStyles({
   },
 })(TextField);
 
-const BootstrapInput = withStyles(theme => ({
+const BootstrapInput = withStyles((theme) => ({
   root: {
     'label + &': {
       marginTop: theme.spacing(3),
@@ -69,7 +69,7 @@ const BootstrapInput = withStyles(theme => ({
   },
 }))(InputBase);
 
-const useStylesReddit = makeStyles(theme => ({
+const useStylesReddit = makeStyles((theme) => ({
   root: {
     border: '1px solid #e2e2e1',
     overflow: 'hidden',
@@ -94,7 +94,7 @@ function RedditTextField(props) {
   return <TextField InputProps={{ classes, disableUnderline: true }} {...props} />;
 }
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',

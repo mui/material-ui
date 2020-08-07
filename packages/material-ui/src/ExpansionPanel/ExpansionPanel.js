@@ -9,7 +9,7 @@ import withStyles from '../styles/withStyles';
 import ExpansionPanelContext from './ExpansionPanelContext';
 import useControlled from '../utils/useControlled';
 
-export const styles = theme => {
+export const styles = (theme) => {
   const transition = {
     duration: theme.transitions.duration.shortest,
   };
@@ -80,7 +80,29 @@ export const styles = theme => {
   };
 };
 
+let warnedOnce = false;
+
+/**
+ * ⚠️ The ExpansionPanel component was renamed to Accordion to use a more common naming convention.
+ *
+ * You should use `import { Accordion } from '@material-ui/core'`
+ * or `import Accordion from '@material-ui/core/Accordion'`.
+ */
 const ExpansionPanel = React.forwardRef(function ExpansionPanel(props, ref) {
+  if (process.env.NODE_ENV !== 'production') {
+    if (!warnedOnce) {
+      warnedOnce = true;
+      console.error(
+        [
+          'Material-UI: the ExpansionPanel component was renamed to Accordion to use a more common naming convention.',
+          '',
+          "You should use `import { Accordion } from '@material-ui/core'`",
+          "or `import Accordion from '@material-ui/core/Accordion'`",
+        ].join('\n'),
+      );
+    }
+  }
+
   const {
     children: childrenProp,
     classes,
@@ -99,10 +121,11 @@ const ExpansionPanel = React.forwardRef(function ExpansionPanel(props, ref) {
     controlled: expandedProp,
     default: defaultExpanded,
     name: 'ExpansionPanel',
+    state: 'expanded',
   });
 
   const handleChange = React.useCallback(
-    event => {
+    (event) => {
       setExpandedState(!expanded);
 
       if (onChange) {
@@ -147,21 +170,25 @@ const ExpansionPanel = React.forwardRef(function ExpansionPanel(props, ref) {
 });
 
 ExpansionPanel.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * The content of the expansion panel.
    */
-  children: chainPropTypes(PropTypes.node.isRequired, props => {
+  children: chainPropTypes(PropTypes.node.isRequired, (props) => {
     const summary = React.Children.toArray(props.children)[0];
     if (isFragment(summary)) {
       return new Error(
-        "Material-UI: the ExpansionPanel doesn't accept a Fragment as a child. " +
+        "Material-UI: The ExpansionPanel doesn't accept a Fragment as a child. " +
           'Consider providing an array instead.',
       );
     }
 
     if (!React.isValidElement(summary)) {
       return new Error(
-        'Material-UI: expected the first child of ExpansionPanel to be a valid element.',
+        'Material-UI: Expected the first child of ExpansionPanel to be a valid element.',
       );
     }
 
@@ -171,7 +198,7 @@ ExpansionPanel.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -197,7 +224,7 @@ ExpansionPanel.propTypes = {
    */
   onChange: PropTypes.func,
   /**
-   * @ignore
+   * If `true`, rounded corners are disabled.
    */
   square: PropTypes.bool,
   /**

@@ -2,23 +2,23 @@
 
 <p class="description">Você pode usar a solução de estilo do Material-UI na sua aplicação, esteja ou não usando componentes de Material-UI.</p>
 
-Material-UI, tem como objetivo fornecer uma base sólida para a criação de interfaces de usuário dinâmicas. Por uma questão de simplicidade, **expomos a solução de estilo usada nos componentes de Material-UI** como pacote, `@material-ui/styles`. Você pode usá-lo, mas você não precisa, já que Material-UI também é [ interoperável com](/guides/interoperability/) todas as outras soluções de estilo principais.
+Material-UI visa fornecer uma base sólida para a criação de interfaces de usuário dinâmicas. Por uma questão de simplicidade, **expomos a solução de estilo usada nos componentes do Material-UI** como pacote, `@material-ui/styles`. Você pode usá-la, mas você não é obrigado, já que Material-UI também é [ interoperável com](/guides/interoperability/) todas as outras soluções de estilo principais.
 
 ## Por que usar a solução de estilo do Material-UI?
 
-Nas versões anteriores, o Material-UI usava o LESS, e em seguida, uma solução customizada no estilo inline para escrever os estilos dos componentes, mas essas abordagens provaram ser limitadas. [Uma solução *CSS-em-JS*](https://github.com/oliviertassinari/a-journey-toward-better-style) supera muitas destas limitações, e ** libera excelentes funcionalidades** (aninhamento de temas, estilos dinâmicos, auto-suporte etc.).
+Nas versões anteriores, o Material-UI usava o LESS, e em seguida, uma solução customizada no estilo em linha para escrever os estilos dos componentes, mas essas abordagens provaram ser limitadas. [Uma solução *CSS-em-JS*](https://github.com/oliviertassinari/a-journey-toward-better-style) supera muitas destas limitações, e **libera excelentes funcionalidades**(aninhamento de temas, estilos dinâmicos, auto-suporte etc.).
 
 A solução de estilo do Material-UI é inspirada em muitas outras bibliotecas de estilo, como [styled-components](https://www.styled-components.com/) e [emotion](https://emotion.sh/).
 
 - 💅 Você pode esperar [as mesmas vantagens](https://www.styled-components.com/docs/basics#motivation) que styled-components.
-- 🚀 Está [super rápida](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-benchmark/README.md#material-uistyles).
+- 🚀 Ela é [super rápida](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-benchmark/README.md#material-uistyles).
 - 🧩 É extensível através de uma API de [plugin](https://github.com/cssinjs/jss/blob/master/docs/plugins.md).
 - ⚡️Ela usa [JSS](https://github.com/cssinjs/jss) em seu núcleo – um [alto desempenho](https://github.com/cssinjs/jss/blob/master/docs/performance.md) JavaScript para o compilador CSS, que funciona em tempo de execução e no lado do servidor.
 - 📦 Menor que [15 KB gzipped](https://bundlephobia.com/result?p=@material-ui/styles); e nenhum aumento no tamanho do pacote se usado juntamente com o Material-UI.
 
 ## Instalação
 
-> `@material-ui/styles` is re-exported as `@material-ui/core/styles` - you only need to install it if you wish to use it independently from Material-UI.
+> `@material-ui/styles` é re-exportada como `@material-ui/core/styles` - você só precisa instalá-la se desejar usá-la independentemente do Material-UI.
 
 Para instalar e salvar em suas dependências do `package.json`, execute:
 
@@ -32,7 +32,7 @@ yarn add @material-ui/styles
 
 ## Primeiros passos
 
-There are 3 possible APIs you can use to generate and apply styles, however they all share the same underlying logic.
+Existem 3 APIs possíveis que você pode usar para gerar e aplicar estilos, no entanto, todas elas compartilham a mesma lógica subjacente.
 
 ### Hook API
 
@@ -63,7 +63,7 @@ export default function Hook() {
 
 ### Styled components API
 
-Nota: isso se aplica somente para a sintaxe de chamada – definições de estilo de ainda usam um objeto JSS. Você também pode [alterar esse comportamento](/styles/advanced/#string-templates), com algumas limitações.
+Nota: isso se aplica somente para a sintaxe de chamada – definições de estilo ainda usam um objeto JSS. Você também pode [alterar esse comportamento](/styles/advanced/#string-templates), com algumas limitações.
 
 ```jsx
 import React from 'react';
@@ -143,7 +143,7 @@ const useStyles = makeStyles({
 
 ## Adaptando com base em propriedades
 
-Você pode passar uma função para `makeStyles` ("interpolação") a fim de adaptar o valor gerado com base nas propriedades do componente. A função pode ser fornecida no nível de regra de estilo ou no nível da propriedade CSS:
+Você pode passar uma função para `makeStyles` ("interpolação") a fim de adaptar o valor gerado com base nas propriedades do componente. A função pode ser fornecida no nível da regra de estilo ou no nível da propriedade CSS:
 
 ```jsx
 const useStyles = makeStyles({
@@ -198,18 +198,18 @@ const useStyles = makeStyles(theme => ({
 
 ## @material-ui/core/styles vs @material-ui/styles
 
-Material-UI's styles are powered by the [@material-ui/styles](https://www.npmjs.com/package/@material-ui/styles) package, (built with JSS). This solution is [isolated](https://bundlephobia.com/result?p=@material-ui/styles). It doesn't have a default theme, and can be used to style React applications that are not using Material-UI components.
+Os estilos do Material-UI são disponibilizados no pacote [@material-ui/styles](https://www.npmjs.com/package/@material-ui/styles) (construído com JSS). Esta solução está [isolada](https://bundlephobia.com/result?p=@material-ui/styles). Ela não tem um tema padrão e pode ser usada para estilizar aplicações React que não estão usando componentes Material-UI.
 
-To reduce the number of packages to install when using Material-UI, and to simplify the imports, `@material-ui/styles` modules are re-exported from `@material-ui/core/styles`.
+Para reduzir o número de pacotes a instalar, quando usando o Material-UI, e para simplificar as importações, os módulos de `@material-ui/styles` são reexportados em `@material-ui/core/styles`.
 
-To remove the need to systematically supply a theme, the default Material-UI theme is applied to the re-exported `makeStyles`, `styled`, `withTheme`, `useTheme`, and `withStyles` modules.
+Para remover a necessidade de fornecer sistematicamente um tema, o tema padrão do Material-UI é aplicado aos módulos reexportados `makeStyles`, `styled`, `withTheme`, `useTheme`, e `withStyles`.
 
 Por exemplo:
 
 ```js
-// Re-export with a default theme
+// Reexportação com um tema padrão
 import { makeStyles } from '@material-ui/core/styles';
 
-// Original module with no default theme
+// Módulo original sem um tema padrão
 import { makeStyles } from '@material-ui/styles';
 ```

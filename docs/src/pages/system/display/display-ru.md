@@ -1,6 +1,6 @@
-# Display
+# Дисплей
 
-<p class="description">Quickly and responsively toggle the display value of components and more with the display utilities. Includes support for some of the more common values, as well as some extras for controlling display when printing.</p>
+<p class="description">Быстро и адаптивно изменяйте видимость компонент и многое другое с помощью наших утилит управления видимостью. Включает поддержку некоторых из наиболее распространенных значений, а также некоторые дополнительные возможности для управления отображением при печати.</p>
 
 ## Примеры
 

@@ -5,7 +5,7 @@ import withStyles from '../styles/withStyles';
 import capitalize from '../utils/capitalize';
 import Paper from '../Paper';
 
-export const styles = theme => {
+export const styles = (theme) => {
   const backgroundColorDefault =
     theme.palette.type === 'light' ? theme.palette.grey[100] : theme.palette.grey[900];
 
@@ -48,7 +48,6 @@ export const styles = theme => {
     /* Styles applied to the root element if `position="static"`. */
     positionStatic: {
       position: 'static',
-      transform: 'translateZ(0)', // Make sure we can see the elevation.
     },
     /* Styles applied to the root element if `position="relative"`. */
     positionRelative: {

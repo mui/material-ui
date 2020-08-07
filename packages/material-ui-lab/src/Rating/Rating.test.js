@@ -1,13 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { stub, spy } from 'sinon';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 import Rating from './Rating';
 
 describe('<Rating />', () => {
-  let mount;
+  const mount = createMount();
   const render = createClientRender();
   let classes;
   const defaultProps = {
@@ -16,12 +17,7 @@ describe('<Rating />', () => {
   };
 
   before(() => {
-    mount = createMount({ strict: true });
     classes = getClasses(<Rating {...defaultProps} />);
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<Rating {...defaultProps} />, () => ({

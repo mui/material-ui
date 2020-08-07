@@ -8,4 +8,4 @@ Voulez-vous ajouter votre application? Vous avez trouvé une application qui ne 
 - High traffic
 - Open source
 
-{{"demo": "pages/discover-more/showcase/Showcase.js", "hideHeader": true, "bg": "inline"}}
+{{"demo": "pages/discover-more/showcase/Showcase.js", "hideToolbar": true, "bg": "inline"}}

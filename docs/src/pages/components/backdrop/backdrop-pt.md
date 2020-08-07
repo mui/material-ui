@@ -1,12 +1,12 @@
 ---
-title: Overlay React component
+title: Componente React para Pano de Fundo
 components: Backdrop
 ---
 
 # Backdrop
 
-<p class="description">The backdrop component is used to provide emphasis on a particular element or parts of it.</p>
+<p class="description">O componente backdrop (pano de fundo) é usado para fornecer ênfase em um elemento específico ou partes dele.</p>
 
-The overlay signals to the user of a state change within the application and can be used for creating loaders, dialogs and more. In its simplest form, the backdrop component will add a dimmed layer over your application.
+O backdrop sinaliza para o usuário uma mudança de estado dentro do aplicativo e pode ser usado para criar progressos, diálogos e muito mais. Em seu formato mais simples, o componente backdrop irá adicionar uma camada escurecida sobre seu aplicativo.
 
 {{"demo": "pages/components/backdrop/SimpleBackdrop.js"}}

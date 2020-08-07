@@ -11,9 +11,13 @@ components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 
 Если у вас есть несколько опций, отображаемых в списке, вы можете сохранить пространство, используя чекбоксы вместо переключателей. Если у вас есть только один вариант, лучше не использовать чекбокс, вместо него используйте переключатель включения / выключения.
 
+## Basic checkboxes
+
 {{"demo": "pages/components/checkboxes/Checkboxes.js"}}
 
-`Чекбокс` также можно использовать с описанием метки благодаря компоненту `FormControlLabel`.
+## Checkbox with FormControlLabel
+
+`Checkbox` can be provided with a label thanks to the `FormControlLabel` component.
 
 {{"demo": "pages/components/checkboxes/CheckboxLabels.js"}}
 
@@ -34,6 +38,8 @@ components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 Ниже находится пример кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/checkboxes/CustomizedCheckbox.js", "defaultCodeOpen": false}}
+
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/checkbox).
 
 ## Бесплатно
 

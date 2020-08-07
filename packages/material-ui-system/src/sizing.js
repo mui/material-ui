@@ -51,14 +51,6 @@ export const boxSizing = style({
   prop: 'boxSizing',
 });
 
-const sizing = compose(
-  width,
-  maxWidth,
-  minWidth,
-  height,
-  maxHeight,
-  minHeight,
-  boxSizing,
-);
+const sizing = compose(width, maxWidth, minWidth, height, maxHeight, minHeight, boxSizing);
 
 export default sizing;

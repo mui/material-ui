@@ -1,5 +1,5 @@
 ---
-title: Checkbox React component
+title: Componente Checkbox de React
 components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 ---
 
@@ -11,9 +11,13 @@ components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 
 Si tienes varias opciones en una lista, puedes ahorrar espacio usando checkboxes en lugar de utilizar interruptores de encendedido/apagado. Si tienes una única opción, evita usar un checkbox y utiliza un interruptor de encendido/apagado en su lugar.
 
+## Checkboxes básicos
+
 {{"demo": "pages/components/checkboxes/Checkboxes.js"}}
 
-El `Checkbox` también puede ser usado con una etiqueta de descripción gracias al componente `FormControlLabel`.
+## Checkbox con FormControlLabel
+
+`Checkbox` puede ser provisto de una etiqueta gracias al componente `FormControlLabel`.
 
 {{"demo": "pages/components/checkboxes/CheckboxLabels.js"}}
 
@@ -31,11 +35,13 @@ Puede cambiar la ubicación de la etiqueta:
 
 ## Customized checkbox
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+He aquí un ejemplo de personalización del componente. Puedes aprender más sobre esto en la [sección Personalizando Componentes de la documentación](/customization/components/).
 
 {{"demo": "pages/components/checkboxes/CustomizedCheckbox.js", "defaultCodeOpen": false}}
 
-## When to use
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/checkbox).
+
+## Cuándo usarlo
 
 - [Checkboxes vs. Botones de selección](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
 - [Checkboxes vs. Interruptores](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)

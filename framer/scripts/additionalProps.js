@@ -1,6 +1,6 @@
 import { componentSettings } from './framerConfig';
 
-const additionalProps = component => {
+const additionalProps = (component) => {
   const templates = {
     appBarColor: {
       type: {

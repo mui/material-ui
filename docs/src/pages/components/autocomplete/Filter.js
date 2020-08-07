@@ -5,7 +5,7 @@ import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete
 
 const filterOptions = createFilterOptions({
   matchFrom: 'start',
-  stringify: option => option.title,
+  stringify: (option) => option.title,
 });
 
 export default function Filter() {
@@ -13,10 +13,10 @@ export default function Filter() {
     <Autocomplete
       id="filter-demo"
       options={top100Films}
-      getOptionLabel={option => option.title}
+      getOptionLabel={(option) => option.title}
       filterOptions={filterOptions}
       style={{ width: 300 }}
-      renderInput={params => <TextField {...params} label="Custom filter" variant="outlined" />}
+      renderInput={(params) => <TextField {...params} label="Custom filter" variant="outlined" />}
     />
   );
 }

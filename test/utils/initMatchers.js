@@ -4,23 +4,30 @@ import { isInaccessible } from '@testing-library/dom';
 import { prettyDOM } from '@testing-library/react/pure';
 import { computeAccessibleName } from 'dom-accessibility-api';
 
+// chai#utils.elToString that looks like stringified elements in testing-library
+function elementToString(element) {
+  if (typeof element?.nodeType === 'number') {
+    return prettyDOM(element, undefined, { highlight: true, maxDepth: 1 });
+  }
+  return String(element);
+}
+
 chai.use(chaiDom);
 chai.use((chaiAPI, utils) => {
   // better diff view for expect(element).to.equal(document.activeElement)
-  // use as `.to.have.focus` to match `toHaveFocus` from `jest-dom`
-  chai.Assertion.addProperty('focus', function elementIsFocused() {
+  chai.Assertion.addMethod('toHaveFocus', function elementIsFocused() {
     const element = utils.flag(this, 'object');
 
     this.assert(
       element === document.activeElement,
-      'focus expected #{exp}, but #{act} was instead',
-      'unexpected focus on #{exp}',
-      element == null ? String(element) : prettyDOM(element),
-      prettyDOM(document.activeElement),
+      'expected element to have focus',
+      `expected element to NOT have focus \n${elementToString(element)}`,
+      elementToString(element),
+      elementToString(document.activeElement),
     );
   });
 
-  chai.Assertion.addProperty('ariaHidden', function elementIsAccessible() {
+  chai.Assertion.addMethod('toBeAriaHidden', function elementIsAccessible() {
     const element = utils.flag(this, 'object');
 
     // used for debugging failed assertions, will either point to the top most node
@@ -45,26 +52,26 @@ chai.use((chaiAPI, utils) => {
 
     this.assert(
       ariaHidden === true,
-      `expected ${utils.elToString(element)} to be aria-hidden\n${prettyDOM(previousNode)}`,
-      `expected ${utils.elToString(element)} to not be aria-hidden, but ${utils.elToString(
+      `expected \n${elementToString(element)} to be aria-hidden`,
+      `expected \n${elementToString(element)} to not be aria-hidden, but \n${elementToString(
         previousNode,
-      )} had aria-hidden="true" instead\n${prettyDOM(previousNode)}`,
+      )} had aria-hidden="true" instead`,
     );
   });
 
-  chai.Assertion.addProperty('inaccessible', function elementIsAccessible() {
+  chai.Assertion.addMethod('toBeInaccessible', function elementIsAccessible() {
     const element = utils.flag(this, 'object');
 
     const inaccessible = isInaccessible(element);
 
     this.assert(
       inaccessible === true,
-      `expected ${utils.elToString(element)} to be inaccessible but it was accessible`,
-      `expected ${utils.elToString(element)} to be accessible but it was inaccessible`,
+      `expected \n${elementToString(element)} to be inaccessible but it was accessible`,
+      `expected \n${elementToString(element)} to be accessible but it was inaccessible`,
     );
   });
 
-  chai.Assertion.addMethod('accessibleName', function hasAccessibleName(expectedName) {
+  chai.Assertion.addMethod('toHaveAccessibleName', function hasAccessibleName(expectedName) {
     const root = utils.flag(this, 'object');
     // make sure it's an Element
     new chai.Assertion(root.nodeType, `Expected an Element but got '${String(root)}'`).to.equal(1);
@@ -129,10 +136,18 @@ chai.use((chaiAPI, utils) => {
 
     this.assert(
       actualName === expectedName,
-      `expected ${utils.elToString(
-        root,
-      )} to have accessible name '${expectedName}' but got '${actualName}' instead.`,
-      `expected ${utils.elToString(root)} not to have accessible name '${expectedName}'.`,
+      `expected \n${elementToString(root)} to have accessible name #{exp} but got #{act} instead.`,
+      `expected \n${elementToString(root)} not to have accessible name #{exp}.`,
+      expectedName,
+      actualName,
     );
+  });
+
+  /**
+   * Correct name for `to.be.visible`
+   */
+  chai.Assertion.addMethod('toBeVisible', function toBeVisible() {
+    // eslint-disable-next-line no-underscore-dangle, no-unused-expressions
+    new chai.Assertion(this._obj).to.be.visible;
   });
 });

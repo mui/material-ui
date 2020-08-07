@@ -1,19 +1,24 @@
 import * as React from 'react';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import ExpansionPanelActions from './ExpansionPanelActions';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
 
 describe('<ExpansionPanelActions />', () => {
-  let mount;
+  const mount = createMount();
   let classes;
 
   before(() => {
-    mount = createMount({ strict: true });
     classes = getClasses(<ExpansionPanelActions>foo</ExpansionPanelActions>);
   });
 
-  after(() => {
-    mount.cleanUp();
+  beforeEach(() => {
+    consoleErrorMock.spy();
+  });
+
+  afterEach(() => {
+    consoleErrorMock.reset();
   });
 
   describeConformance(<ExpansionPanelActions>Conformance</ExpansionPanelActions>, () => ({

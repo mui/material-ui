@@ -2,7 +2,9 @@
 
 <p class="description">Vous pouvez ajouter du typage statique à JavaScript pour améliorer la productivité des développeurs et la qualité du code grâce à TypeScript.</p>
 
-Have a look at the [Create React App with TypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript) example. Une version minimale de TypeScript 2.8 est requise.
+Material-UI requires a minimum version of TypeScript 3.2.
+
+Have a look at the [Create React App with TypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript) example.
 
 In order for types to work, you have to at least have the following options enabled in your `tsconfig.json`:
 
@@ -144,8 +146,8 @@ const ambiguousStyles = createStyles({
 Since a component decorated with `withStyles(styles)` gets a special `classes` prop injected, you will want to define its props accordingly:
 
 ```ts
-const styles = (theme: Theme) => createStyles({
-  root: { /* ... */ },
+*/ },
+  button: { /* ... */ },
   paper: { /* ... */ },
   button: { /* ... */ },
 });
@@ -172,12 +174,7 @@ const styles = (theme: Theme) => createStyles({
   root: { /* ... */ },
   paper: { /* ... */ },
   button: { /* ... */ },
-});
-
-interface Props extends WithStyles<typeof styles> {
-  foo: number;
-  bar: boolean;
-}
+  paper: { /* ...
 ```
 
 ### Decorating components
@@ -239,8 +236,7 @@ And a custom theme factory with additional defaulted options:
 **./styles/createMyTheme**:
 
 ```ts
-import { createMuiTheme } from '@material-ui/core/styles';
-import { ThemeOptions } from '@material-ui/core/styles/createMuiTheme';
+import { createMuiTheme, ThemeOptions } from '@material-ui/core/styles';
 
 export default function createMyTheme(options: ThemeOptions) {
   return createMuiTheme({

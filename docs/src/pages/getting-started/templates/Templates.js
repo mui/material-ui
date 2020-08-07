@@ -108,11 +108,11 @@ function layouts(t) {
 
 function Templates(props) {
   const { classes } = props;
-  const t = useSelector(state => state.options.t);
+  const t = useSelector((state) => state.options.t);
 
   return (
     <Grid container spacing={2}>
-      {layouts(t).map(layout => (
+      {layouts(t).map((layout) => (
         <Grid item sm={6} md={4} className={classes.item} key={layout.title}>
           <Card className={classes.card}>
             <CardMedia

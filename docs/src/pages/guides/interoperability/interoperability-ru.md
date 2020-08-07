@@ -2,7 +2,7 @@
 
 <p class="description">While you can use the JSS based styling solution provided by Material-UI to style your application, you can also use the one you already know and love (from plain CSS to styled-components).</p>
 
-This guide aims to document the most popular alternatives, but you should find that the principals applied here can be adapted to other libraries. There are examples for the following styling solutions:
+This guide aims to document the most popular alternatives, but you should find that the principles applied here can be adapted to other libraries. There are examples for the following styling solutions:
 
 - [Plain CSS](#plain-css)
 - [Глобальный CSS](#global-css)
@@ -15,7 +15,7 @@ This guide aims to document the most popular alternatives, but you should find t
 
 Nothing fancy, just plain CSS.
 
-{{"demo": "pages/guides/interoperability/StyledComponents.js", "hideHeader": true}}
+{{"demo": "pages/guides/interoperability/StyledComponents.js", "hideToolbar": true}}
 
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/plain-css-mtzri)
 
@@ -38,6 +38,7 @@ Nothing fancy, just plain CSS.
 ```jsx
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import './PlainCssButton.css';
 
 export default function PlainCssButton() {
   return (
@@ -54,12 +55,9 @@ export default function PlainCssButton() {
 **Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/styles/advanced/#css-injection-order), as in the demo:
 
 ```jsx
-import { StylesProvider } from '@material-ui/core/styles';
-
-<StylesProvider injectFirst>
-  {/* Your component tree.
-      Now, you can override Material-UI's styles. */}
+*/}
 </StylesProvider>
+      Now, you can override Material-UI's styles. Styled components can override Material-UI's styles.
 ```
 
 ### Deeper elements
@@ -68,7 +66,7 @@ If you attempt to style a Drawer with variant permanent, you will likely need to
 
 The following example overrides the `label` style of `Button` in addition to the custom styles on the button itself.
 
-{{"demo": "pages/guides/interoperability/StyledComponents.js", "hideHeader": true}}
+{{"demo": "pages/guides/interoperability/StyledComponents.js", "hideToolbar": true}}
 
 **PlainCssButtonDeep.css**
 
@@ -91,6 +89,7 @@ The following example overrides the `label` style of `Button` in addition to the
 ```jsx
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import './PlainCssButtonDeep.css';
 
 export default function PlainCssButtonDeep() {
   return (
@@ -131,6 +130,7 @@ Explicitly providing the class names to the component is too much effort? [You c
 ```jsx
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import './GlobalCssButton.css';
 
 export default function GlobalCssButton() {
   return <Button>Customized</Button>;
@@ -142,12 +142,9 @@ export default function GlobalCssButton() {
 **Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/styles/advanced/#css-injection-order), as in the demo:
 
 ```jsx
-import { StylesProvider } from '@material-ui/core/styles';
-
-<StylesProvider injectFirst>
-  {/* Your component tree.
-      Now, you can override Material-UI's styles. */}
+*/}
 </StylesProvider>
+      Now, you can override Material-UI's styles. Styled components can override Material-UI's styles.
 ```
 
 ## Styled Components
@@ -156,7 +153,7 @@ import { StylesProvider } from '@material-ui/core/styles';
 
 The `styled()` method works perfectly on all of the components.
 
-{{"demo": "pages/guides/interoperability/StyledComponents.js", "hideHeader": true}}
+{{"demo": "pages/guides/interoperability/StyledComponents.js", "hideToolbar": true}}
 
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/styled-components-r1fsr)
 
@@ -191,12 +188,9 @@ export default function StyledComponents() {
 **Note:** Both styled-components and JSS inject their styles at the bottom of the `<head>`. The best approach to ensuring styled-components styles are loaded last is to change [the CSS injection order](/styles/advanced/#css-injection-order), as in the demo:
 
 ```jsx
-import { StylesProvider } from '@material-ui/core/styles';
-
-<StylesProvider injectFirst>
-  {/* Your component tree.
-      Now, you can override Material-UI's styles. */}
+*/}
 </StylesProvider>
+      Now, you can override Material-UI's styles. Styled components can override Material-UI's styles.
 ```
 
 Another approach is to use the `&&` characters in styled-components to [bump up specificity](https://www.styled-components.com/docs/advanced#issues-with-specificity) by repeating the class name. Avoid the usage of `!important`.
@@ -327,7 +321,7 @@ const StyledMenu = styled(({ className, ...props }) => (
 
 It's hard to know the market share of [this styling solution](https://github.com/css-modules/css-modules) as it's dependent on the bundling solution people are using.
 
-{{"demo": "pages/guides/interoperability/StyledComponents.js", "hideHeader": true}}
+{{"demo": "pages/guides/interoperability/StyledComponents.js", "hideToolbar": true}}
 
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/css-modules-3j29h)
 
@@ -368,12 +362,9 @@ export default function CssModulesButton() {
 **Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/styles/advanced/#css-injection-order), as in the demo:
 
 ```jsx
-import { StylesProvider } from '@material-ui/core/styles';
-
-<StylesProvider injectFirst>
-  {/* Your component tree.
-      Now, you can override Material-UI's styles. */}
+*/}
 </StylesProvider>
+      Now, you can override Material-UI's styles. Styled components can override Material-UI's styles.
 ```
 
 ### Deeper elements
@@ -382,7 +373,7 @@ If you attempt to style a Drawer with variant permanent, you will likely need to
 
 The following example overrides the `label` style of `Button` in addition to the custom styles on the button itself.
 
-{{"demo": "pages/guides/interoperability/StyledComponents.js", "hideHeader": true}}
+{{"demo": "pages/guides/interoperability/StyledComponents.js", "hideToolbar": true}}
 
 **CssModulesButtonDeep.css**
 
@@ -426,7 +417,7 @@ export default function CssModulesButtonDeep() {
 
 Emotion's **css()** method works seamlessly with Material-UI.
 
-{{"demo": "pages/guides/interoperability/EmotionCSS.js", "hideHeader": true}}
+{{"demo": "pages/guides/interoperability/EmotionCSS.js", "hideToolbar": true}}
 
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/emotion-bgfxj)
 
@@ -462,12 +453,9 @@ export default function EmotionCSS() {
 **Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/styles/advanced/#css-injection-order), as in the demo:
 
 ```jsx
-import { StylesProvider } from '@material-ui/core/styles';
-
-<StylesProvider injectFirst>
-  {/* Your component tree.
-      Now, you can override Material-UI's styles. */}
+*/}
 </StylesProvider>
+      Now, you can override Material-UI's styles. Styled components can override Material-UI's styles.
 ```
 
 ### Theme

@@ -15,5 +15,5 @@ export interface MixinsOptions extends Partial<Mixins> {
 export default function createMixins(
   breakpoints: Breakpoints,
   spacing: Spacing,
-  mixins: MixinsOptions,
+  mixins: MixinsOptions
 ): Mixins;

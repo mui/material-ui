@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
       margin: theme.spacing(1),
@@ -29,28 +29,6 @@ export default function UploadButtons() {
       />
       <label htmlFor="contained-button-file">
         <Button variant="contained" color="primary" component="span">
-          Upload
-        </Button>
-      </label>
-      <input
-        accept="image/*"
-        className={classes.input}
-        id="text-button-file"
-        multiple
-        type="file"
-      />
-      <label htmlFor="text-button-file">
-        <Button component="span">Upload</Button>
-      </label>
-      <input
-        accept="image/*"
-        className={classes.input}
-        id="outlined-button-file"
-        multiple
-        type="file"
-      />
-      <label htmlFor="outlined-button-file">
-        <Button variant="outlined" component="span">
           Upload
         </Button>
       </label>

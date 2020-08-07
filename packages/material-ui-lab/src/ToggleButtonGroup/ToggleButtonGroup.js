@@ -6,16 +6,20 @@ import isValueSelected from './isValueSelected';
 import { withStyles } from '@material-ui/core/styles';
 import { capitalize } from '@material-ui/core/utils';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
-    backgroundColor: theme.palette.background.paper,
-    borderRadius: theme.shape.borderRadius,
     display: 'inline-flex',
+    borderRadius: theme.shape.borderRadius,
+  },
+  /* Styles applied to the root element if `orientation="vertical"`. */
+  vertical: {
+    flexDirection: 'column',
   },
   /* Styles applied to the children. */
-  grouped: {
-    padding: '0px 11px 0px 12px',
+  grouped: {},
+  /* Styles applied to the children if `orientation="horizontal"`. */
+  groupedHorizontal: {
     '&:not(:first-child)': {
       marginLeft: -1,
       borderLeft: '1px solid transparent',
@@ -27,13 +31,18 @@ export const styles = theme => ({
       borderBottomRightRadius: 0,
     },
   },
-  /* Styles applied to the children if `size="small"`. */
-  groupedSizeSmall: {
-    padding: '0px 7px 0px 8px',
-  },
-  /* Styles applied to the children if `size="large"`. */
-  groupedSizeLarge: {
-    padding: '0px 15px 0px 16px',
+  /* Styles applied to the children if `orientation="vertical"`. */
+  groupedVertical: {
+    '&:not(:first-child)': {
+      marginTop: -1,
+      borderTop: '1px solid transparent',
+      borderTopLeftRadius: 0,
+      borderTopRightRadius: 0,
+    },
+    '&:not(:last-child)': {
+      borderBottomLeftRadius: 0,
+      borderBottomRightRadius: 0,
+    },
   },
 });
 
@@ -44,6 +53,7 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButton(props, ref) {
     className,
     exclusive = false,
     onChange,
+    orientation = 'horizontal',
     size = 'medium',
     value,
     ...other
@@ -58,10 +68,10 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButton(props, ref) {
     let newValue;
 
     if (value && index >= 0) {
-      newValue = [...value];
+      newValue = value.slice();
       newValue.splice(index, 1);
     } else {
-      newValue = value ? [...value, buttonValue] : [buttonValue];
+      newValue = value ? value.concat(buttonValue) : [buttonValue];
     }
 
     onChange(event, newValue);
@@ -76,8 +86,19 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButton(props, ref) {
   };
 
   return (
-    <div className={clsx(classes.root, className)} ref={ref} role="group" {...other}>
-      {React.Children.map(children, child => {
+    <div
+      role="group"
+      className={clsx(
+        classes.root,
+        {
+          [classes.vertical]: orientation === 'vertical',
+        },
+        className,
+      )}
+      ref={ref}
+      {...other}
+    >
+      {React.Children.map(children, (child) => {
         if (!React.isValidElement(child)) {
           return null;
         }
@@ -86,28 +107,25 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButton(props, ref) {
           if (isFragment(child)) {
             console.error(
               [
-                "Material-UI: the ToggleButtonGroup component doesn't accept a Fragment as a child.",
+                "Material-UI: The ToggleButtonGroup component doesn't accept a Fragment as a child.",
                 'Consider providing an array instead.',
               ].join('\n'),
             );
           }
         }
 
-        const { selected: buttonSelected, value: buttonValue } = child.props;
-        const selected =
-          buttonSelected === undefined ? isValueSelected(buttonValue, value) : buttonSelected;
-
         return React.cloneElement(child, {
           className: clsx(
             classes.grouped,
-            {
-              [classes[`groupedSize${capitalize(size)}`]]: size !== 'medium',
-            },
+            classes[`grouped${capitalize(orientation)}`],
             child.props.className,
           ),
-          selected,
           onChange: exclusive ? handleExclusiveChange : handleChange,
-          size,
+          selected:
+            child.props.selected === undefined
+              ? isValueSelected(child.props.value, value)
+              : child.props.selected,
+          size: child.props.size || size,
         });
       })}
     </div>
@@ -146,12 +164,18 @@ ToggleButtonGroup.propTypes = {
    */
   onChange: PropTypes.func,
   /**
+   * The group orientation (layout flow direction).
+   */
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  /**
    * The size of the buttons.
    */
   size: PropTypes.oneOf(['large', 'medium', 'small']),
   /**
    * The currently selected value within the group or an array of selected
    * values when `exclusive` is false.
+   *
+   * The value must have reference equality with the option in order to be selected.
    */
   value: PropTypes.any,
 };

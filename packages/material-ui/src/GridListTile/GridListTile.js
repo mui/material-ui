@@ -100,7 +100,7 @@ const GridListTile = React.forwardRef(function GridListTile(props, ref) {
   return (
     <Component className={clsx(classes.root, className)} ref={ref} {...other}>
       <div className={classes.tile}>
-        {React.Children.map(children, child => {
+        {React.Children.map(children, (child) => {
           if (!React.isValidElement(child)) {
             return null;
           }
@@ -140,9 +140,9 @@ GridListTile.propTypes = {
   cols: PropTypes.number,
   /**
    * The component used for the root node.
-   * Either a string to use a DOM element or a component.
+   * Either a string to use a HTML element or a component.
    */
-  component: PropTypes.elementType,
+  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
    * Height of the tile in number of grid cells.
    */

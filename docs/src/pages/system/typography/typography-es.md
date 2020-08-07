@@ -44,7 +44,7 @@
 <Box fontStyle="oblique">…
 ```
 
-## Font family
+## Familia de fuente
 
 {{"demo": "pages/system/typography/FontFamily.js", "defaultCodeOpen": false}}
 

@@ -4,6 +4,10 @@ import { StandardProps } from '@material-ui/core';
 export interface TreeViewPropsBase
   extends StandardProps<React.HTMLAttributes<HTMLUListElement>, TreeViewClassKey> {
   /**
+   * The content of the component.
+   */
+  children?: React.ReactNode;
+  /**
    * The default icon used to collapse the node.
    */
   defaultCollapseIcon?: React.ReactNode;
@@ -96,4 +100,14 @@ export type TreeViewProps = SingleSelectTreeViewProps | MultiSelectTreeViewProps
 
 export type TreeViewClassKey = 'root';
 
+/**
+ *
+ * Demos:
+ *
+ * - [Tree View](https://material-ui.com/components/tree-view/)
+ *
+ * API:
+ *
+ * - [TreeView API](https://material-ui.com/api/tree-view/)
+ */
 export default function TreeView(props: TreeViewProps): JSX.Element;

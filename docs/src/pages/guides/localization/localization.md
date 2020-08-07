@@ -23,6 +23,10 @@ const theme = createMuiTheme({
 </ThemeProvider>
 ```
 
+### Example
+
+{{"demo": "pages/guides/localization/Locales.js", "defaultCodeOpen": false}}
+
 ### Supported locales
 
 | Locale | BCP 47 language tag | Import name
@@ -38,8 +42,9 @@ const theme = createMuiTheme({
 | Estonian | et-EE | `etEE` |
 | Finnish | fi-FI | `fiFI` |
 | French | fr-FR | `frFR` |
-| German | de-DE |  `deDE` |
+| German | de-DE | `deDE` |
 | Hebrew | he-IL | `heIL` |
+| Hindi | hi-IN | `hiIN` |
 | Hungarian | hu-HU | `huHU` |
 | Icelandic | is-IS | `isIS` |
 | Indonesian | id-ID | `idID` |
@@ -59,13 +64,12 @@ const theme = createMuiTheme({
 | Ukrainian | uk-UA | `ukUA` |
 | Vietnamese | vi-VN | `viVN` |
 
-You can [find the source](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/locale/index.js) in the GitHub repository.
+You can [find the source](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/locale/index.ts) in the GitHub repository.
 
-To create your own translation, or to customise the English text, copy this file to your project, make any changes needed and import the locale from there. (Please do consider contributing new translations back to Material-UI by opening a pull request.)
+To create your own translation, or to customise the English text, copy this file to your project, make any changes needed and import the locale from there.
 
-### Example
-
-{{"demo": "pages/guides/localization/Locales.js", "defaultCodeOpen": false}}
+Please do consider contributing new translations back to Material-UI by opening a pull request.
+However, Material-UI aims to support the [100 most popular locales](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers), we might not accept contributions for locales that are not frequently used, for instance `gl-ES` that has "only" 2.5 million native speakers.
 
 ## RTL Support
 

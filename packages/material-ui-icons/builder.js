@@ -77,7 +77,7 @@ export function getComponentName(destPath) {
   const parts = destPath
     .replace('.js', '')
     .split(splitregex)
-    .map(part => part.charAt(0).toUpperCase() + part.substring(1));
+    .map((part) => part.charAt(0).toUpperCase() + part.substring(1));
 
   return parts.join('');
 }
@@ -85,7 +85,7 @@ export function getComponentName(destPath) {
 async function generateIndex(options) {
   const files = await globAsync(path.join(options.outputDir, '*.js'));
   const index = files
-    .map(file => {
+    .map((file) => {
       const typename = path.basename(file).replace('.js', '');
       return `export { default as ${typename} } from './${typename}';\n`;
     })
@@ -226,7 +226,7 @@ export async function main(options) {
     ]);
 
     const queue = new Queue(
-      svgPath =>
+      (svgPath) =>
         worker({
           svgPath,
           options,
@@ -240,9 +240,9 @@ export async function main(options) {
     await queue.wait({ empty: true });
 
     let legacyFiles = await globAsync(path.join(__dirname, '/legacy', '*.js'));
-    legacyFiles = legacyFiles.map(file => path.basename(file));
+    legacyFiles = legacyFiles.map((file) => path.basename(file));
     let generatedFiles = await globAsync(path.join(options.outputDir, '*.js'));
-    generatedFiles = generatedFiles.map(file => path.basename(file));
+    generatedFiles = generatedFiles.map((file) => path.basename(file));
 
     if (intersection(legacyFiles, generatedFiles).length > 0) {
       console.warn(intersection(legacyFiles, generatedFiles));

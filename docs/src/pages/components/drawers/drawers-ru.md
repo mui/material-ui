@@ -19,7 +19,7 @@ The Drawer can be cancelled by clicking the overlay or pressing the Esc key. It 
 
 {{"demo": "pages/components/drawers/TemporaryDrawer.js"}}
 
-## Скользящая скрытая панель
+### Swipeable
 
 Вы можете сделать панель скользящей используя компонент `SwipeableDrawer`.
 

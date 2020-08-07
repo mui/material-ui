@@ -23,7 +23,7 @@ Data tableの上部には、列名をリストするヘッダー行があり、�
 
 ユーザーがデータを選択または操作する必要がある場合は、チェックボックスを各行に付ける必要があります。
 
-アクセシビリティのために、最初の列は `<th>` 要素に設定され、 `スコープ` は `"row"`です。 これにより、スクリーンリーダーは行と列の名前でセルの値を識別できます。
+It utilizes the [`Collapse`](/api/collapse/) component. An example of a table with expandable rows, revealing more information.
 
 ## Simple Table
 
@@ -39,15 +39,15 @@ Data tableの上部には、列名をリストするヘッダー行があり、�
 
 ## Sorting & Selecting
 
-この例では、カスタム ` Toolbar `使用して、 ` Checkbox ` とクリック可能な行を選択に使用する方法を示します。 列見出しのスタイル設定に役立つように `TableSortLabel` コンポーネントを使用します。
+An example of a table with expandable rows, revealing more information. It utilizes the [`Collapse`](/api/collapse/) component.
 
-テーブルは水平スクロールを示すために固定幅が与えられています。 ページ付けコントロールがスクロールするのを防ぐために、TablePaginationコンポーネントはTableの外側で使用されます。 （下記の ['カスタムテーブルページネーションアクション'の例](#custom-table-pagination-action) は、TableFooter内のページネーションを示しています。）
+テーブルは水平スクロールを示すために固定幅が与えられています。 テーブルは水平スクロールを示すために固定幅が与えられています。 ページ付けコントロールがスクロールするのを防ぐために、TablePaginationコンポーネントはTableの外側で使用されます。 （下記の ['カスタムテーブルページネーションアクション'の例](#custom-pagination-actions) は、TableFooter内のページネーションを示しています。） テーブルは水平スクロールを示すために固定幅が与えられています。 ページ付けコントロールがスクロールするのを防ぐために、TablePaginationコンポーネントはTableの外側で使用されます。 （下記の ['カスタムテーブルページネーションアクション'の例](#custom-pagination-actions) は、TableFooter内のページネーションを示しています。）
 
 {{"demo": "pages/components/tables/EnhancedTable.js", "bg": true}}
 
 ## Customized tables
 
-コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+An example of a table with expandable rows, revealing more information. It utilizes the [`Collapse`](/api/collapse/) component.
 
 {{"demo": "pages/components/tables/CustomizedTables.js", "bg": true}}
 
@@ -69,7 +69,7 @@ It's possible to customise the options shown in the "Rows per page" select using
 
 ### Custom pagination actions
 
-`TablePagination` コンポーネントの `Action` プロパティにより、 カスタムアクションを実装することができます。
+The `ActionsComponent` prop of the `TablePagination` component allows the implementation of custom actions.
 
 {{"demo": "pages/components/tables/CustomPaginationActionsTable.js", "bg": true}}
 
@@ -79,6 +79,12 @@ An example of a table with scrollable rows and fixed column headers. It leverage
 
 {{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
 
+## Collapsible table
+
+An example of a table with expandable rows, revealing more information. It utilizes the [`Collapse`](/api/collapse/) component.
+
+{{"demo": "pages/components/tables/CollapsibleTable.js", "bg": true}}
+
 ## Spanning Table
 
 行 & 列にまたがる単純な例です。
@@ -87,7 +93,7 @@ An example of a table with scrollable rows and fixed column headers. It leverage
 
 ## Virtualized Table
 
-次の例では、 ` Table ` コンポーネントで [react-virtualized](https://github.com/bvaughn/react-virtualized) を使用する方法を示します。 これは200行をレンダリングし、より多くを簡単に処理できます。 仮想化はパフォーマンスの問題に役立ちます。
+次の例では、 `Table` コンポーネントで [react-virtualized](https://github.com/bvaughn/react-virtualized) を使用する方法を示します。 これは200行をレンダリングし、より多くを簡単に処理できます。 仮想化はパフォーマンスの問題に役立ちます。 これは200行をレンダリングし、より多くを簡単に処理できます。 仮想化はパフォーマンスの問題に役立ちます。
 
 {{"demo": "pages/components/tables/ReactVirtualizedTable.js", "bg": true}}
 
@@ -99,7 +105,7 @@ An example of a table with scrollable rows and fixed column headers. It leverage
 
 ![Stars](https://img.shields.io/github/stars/mbrn/material-table.svg?style=social&label=Stars) ![npmダウンロード](https://img.shields.io/npm/dm/material-table.svg)
 
-[material-table](https://github.com/mbrn/material-table) は、いくつかの追加機能を備えたMaterial-UI Tableを基にしたシンプルで強力なReact用データテーブルです。 それらは多くの異なるユースケース（編集可能、フィルタリング、グループ化、ソート、選択、i18n、ツリーデータなど）をサポートします。 参照するといいでしょう。
+[material-table](https://github.com/mbrn/material-table) は、いくつかの追加機能を備えたMaterial-UI Tableを基にしたシンプルで強力なReact用データテーブルです。 それらは多くの異なるユースケース（編集可能、フィルタリング、グループ化、ソート、選択、i18n、ツリーデータなど）をサポートします。 参照するといいでしょう。 それらは多くの異なるユースケース（編集可能、フィルタリング、グループ化、ソート、選択、i18n、ツリーデータなど）をサポートします。 参照するといいでしょう。
 
 {{"demo": "pages/components/tables/MaterialTableDemo.js", "bg": true}}
 

@@ -1,14 +1,9 @@
 import * as React from 'react';
 
-export interface NativeSelectInputProps {
+export interface NativeSelectInputProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   disabled?: boolean;
   IconComponent?: React.ElementType;
-  inputRef?: (
-    ref: HTMLSelectElement | { node: HTMLInputElement; value: NativeSelectInputProps['value'] },
-  ) => void;
-  name?: string;
-  onChange?: (event: React.ChangeEvent<HTMLSelectElement>, child: React.ReactNode) => void;
-  value?: unknown;
+  inputRef?: React.Ref<HTMLSelectElement>;
   variant?: 'standard' | 'outlined' | 'filled';
 }
 

@@ -1,5 +1,5 @@
 ---
-title: React Transition（过渡动画）组件
+title: React 过渡动画组件
 components: Collapse, Fade, Grow, Slide, Zoom
 ---
 
@@ -7,13 +7,13 @@ components: Collapse, Fade, Grow, Slide, Zoom
 
 <p class="description">过渡动画使 UI 更富有表现力并且易于使用。</p>
 
-Material-UI提供了一系列的过渡效果, 你可以将一些基本的 [动作](https://material.io/design/motion/) 添加到你的应用的组件中.
+Material-UI 提供了一系列的过渡效果，你可以将一些基本的[动作](https://material.io/design/motion/)添加到你的应用的组件中。
 
-为了更好地支持服务端渲染, Material-UI 为某些过渡组件 (Fade, Grow, Zoom, Slide) 的子级提供了 `style` 属性。 为了让动画如期实现, 必须将 `style` 属性应用到DOM上.
+为了更好地支持服务端渲染，Material-UI 为某些过渡组件 (Fade, Grow, Zoom, Slide) 的子级提供了 `style` 属性。 为了让动画如期实现，您必须将 `style` 属性应用到DOM上。
 
 ```jsx
-// 'props'对象包含一个'style'属性。
-// 你需要将这个属性提供给 "div" 元素，如下所示。
+// `props` 对象包含一个 `style` 属性。
+// 你需要将这个属性提供给 `div` 元素，如下所示。
 function MyComponent(props) {
   return (
     <div {...props}>
@@ -31,19 +31,19 @@ export default Main() {
 }
 ```
 
-## Collapse（折叠）
+## Collapse 折叠
 
-Expand vertically from the top of the child element. The `collapsedHeight` property can be used to set the minimum height when not expanded.
+从子元素的顶部垂直扩展开来。 使用 `collapsedHeight` 属性可以用于设置未扩展时的最小高度值。
 
 {{"demo": "pages/components/transitions/SimpleCollapse.js", "bg": true}}
 
-## Fade（淡入淡出）
+## Fade 淡入淡出
 
 从透明淡入至不透明。
 
 {{"demo": "pages/components/transitions/SimpleFade.js", "bg": true}}
 
-## Grow（扩展）
+## Grow 扩展
 
 从子元素的中心向外扩展，同时从透明淡入至不透明。
 
@@ -51,15 +51,15 @@ Expand vertically from the top of the child element. The `collapsedHeight` prope
 
 {{"demo": "pages/components/transitions/SimpleGrow.js", "bg": true}}
 
-## Slide（滑动）
+## Slide 滑动
 
-Slide in from the edge of the screen. The `direction` property controls which edge of the screen the transition starts from.
+从屏幕边缘滑入。 使用 `direction` 属性能够控制从屏幕的哪一个边缘开始过渡。
 
-The Transition component's `mountOnEnter` property prevents the child component from being mounted until `in` is `true`. 这可以保证相对上定位好的组件不会从屏幕外面的位置滚动到视图中。 同样的， 在组件从屏幕中过渡完后，`unmountOnExit` 属性将次组件从 DOM 中移除。
+过渡组件的 `mountOnEnter` 属性，保证了只有 `in` 是`true`时，子组件才会被渲染。 这可以保证相对上定位好的组件不会从屏幕外面的位置滚动到视图中。 同样的， 在组件从屏幕中过渡完后，`unmountOnExit` 属性将次组件从 DOM 中移除。
 
 {{"demo": "pages/components/transitions/SimpleSlide.js", "bg": true}}
 
-## Zoom（放大）
+## Zoom 放大
 
 从子元素的中心向外扩展。
 
@@ -67,10 +67,12 @@ The Transition component's `mountOnEnter` property prevents the child component 
 
 {{"demo": "pages/components/transitions/SimpleZoom.js", "bg": true}}
 
-## TransitionComponent prop
+## TransitionComponent 属性
 
-The components accept a `TransitionComponent` prop to customize the default transitions. You can use any of the above components or your own. It should respect the following conditions:
+这些组件接收 `TransitionComponent` 属性来自定义默认的过渡动画。 您可以使用上述的任何组件或者是您自己的组件。 它应遵守以下条件：
 
-- Accepts an `in` prop. This corresponds to the open/close state.
-- Call the `onEnter` callback prop when the enter transition starts.
-- Call the `onExited` callback prop when the exit transition is completed. These two callbacks allow to unmount the children when in a closed state and fully transitioned.
+- 接受一个 `in` 属性。 这对应于打开/关闭的状态。
+- 当进入过渡时调用 `onEnter` 回调属性。
+- 当退出过渡完成后应该调用 `onExited` 回调属性。 这两个回调属性保证了当在一个关闭的状态并展示完过渡动画时，才会移除子内容。
+
+欲了解更多关于创建自定义过渡的信息，请访问 [React Transition Group Transition docs](http://reactcommunity.org/react-transition-group/transition)。

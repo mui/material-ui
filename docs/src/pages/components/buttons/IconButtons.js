@@ -5,7 +5,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import AlarmIcon from '@material-ui/icons/Alarm';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
       margin: theme.spacing(1),

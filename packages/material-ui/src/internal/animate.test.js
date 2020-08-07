@@ -1,4 +1,4 @@
-import { assert } from 'chai';
+import { expect } from 'chai';
 import animate from './animate';
 
 describe('animate', () => {
@@ -11,7 +11,7 @@ describe('animate', () => {
       // The test fails on Safari with just:
       //
       // container.scrollLeft = 200;
-      // assert.strictEqual(container.scrollLeft, 200); 💥
+      // expect(container.scrollLeft).to.equal(200); 💥
 
       // in JSDOM the test prevents mocha from exiting
       this.skip();
@@ -36,32 +36,32 @@ describe('animate', () => {
     }
   });
 
-  it('should work', done => {
+  it('should work', (done) => {
     container.scrollLeft = 200;
-    assert.strictEqual(container.scrollLeft, 200);
-    animate('scrollLeft', container, 300, {}, err => {
-      assert.strictEqual(err, null);
-      assert.strictEqual(container.scrollLeft, 300);
+    expect(container.scrollLeft).to.equal(200);
+    animate('scrollLeft', container, 300, {}, (err) => {
+      expect(err).to.equal(null);
+      expect(container.scrollLeft).to.equal(300);
       done();
     });
   });
 
-  it('should work when asking for the current value', done => {
+  it('should work when asking for the current value', (done) => {
     container.scrollLeft = 200;
-    assert.strictEqual(container.scrollLeft, 200);
-    animate('scrollLeft', container, 200, {}, err => {
-      assert.strictEqual(err.message, 'Element already at target position');
-      assert.strictEqual(container.scrollLeft, 200);
+    expect(container.scrollLeft).to.equal(200);
+    animate('scrollLeft', container, 200, {}, (err) => {
+      expect(err.message).to.equal('Element already at target position');
+      expect(container.scrollLeft).to.equal(200);
       done();
     });
   });
 
-  it('should be able to cancel the animation', done => {
+  it('should be able to cancel the animation', (done) => {
     container.scrollLeft = 200;
-    assert.strictEqual(container.scrollLeft, 200);
-    const cancel = animate('scrollLeft', container, 300, {}, err => {
-      assert.strictEqual(err.message, 'Animation cancelled');
-      assert.strictEqual(container.scrollLeft, 200);
+    expect(container.scrollLeft).to.equal(200);
+    const cancel = animate('scrollLeft', container, 300, {}, (err) => {
+      expect(err.message).to.equal('Animation cancelled');
+      expect(container.scrollLeft).to.equal(200);
       done();
     });
     cancel();

@@ -1,5 +1,5 @@
 ---
-title: 'Компонент React: Скелет'
+title: React-компонент Скелет
 components: Skeleton
 ---
 
@@ -31,10 +31,40 @@ components: Skeleton
 
 {{"demo": "pages/components/skeleton/Animations.js"}}
 
-## Пример в качестве YouTube
+### Pulsate example
 
 {{"demo": "pages/components/skeleton/YouTube.js", "defaultCodeOpen": false}}
 
-## Пример в качестве Facebook
+### Wave example
 
 {{"demo": "pages/components/skeleton/Facebook.js", "defaultCodeOpen": false, "bg": true}}
+
+## Inferring dimensions
+
+In addition to accepting `width` and `height` props, the component can also infer the dimensions.
+
+It works well when it comes to typography as its height is set using `em` units.
+
+```jsx
+<Typography variant="h1">
+  {loading ? <Skeleton /> : 'h1'}
+</Typography>
+```
+
+{{"demo": "pages/components/skeleton/SkeletonTypography.js", "defaultCodeOpen": false}}
+
+But when it comes to other components, you may not want to repeat the width and height. In these instances, you can pass `children` and it will infer its width and height from them.
+
+```jsx
+loading
+  ? <Skeleton><Avatar /></Skeleton>
+  : <Avatar src={data.avatar} />
+```
+
+{{"demo": "pages/components/skeleton/SkeletonChildren.js", "defaultCodeOpen": false}}
+
+## Доступность
+
+Skeleton screens provide an alternative to the traditional spinner methods. Rather than showing an abstract widget, skeleton screens create anticipation of what is to come and reduce cognitive load.
+
+The background color of the skeleton uses the least amount of luminance to be visible in good conditions (good ambient light, good screen, no visual impairments).

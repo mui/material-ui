@@ -20,7 +20,7 @@ Wissenswertes zur Verwendung der Komponente `Popover`:
 
 Verwenden Sie die Optionsfelder, um die Positionen des `AnkerOrigin` und des `TransformationOrigin` anzupassen. Sie können auch die `anchorReference` auf `anchorPosition` oder `anchorEl` setzen. Wenn `anchorPosition` ausgewählt ist, wird die Komponente, anstatt an `anchorEl`, am `anchorPosition` prop gerendert.
 
-{{"demo": "pages/components/popover/AnchorPlayground.js", "hideHeader": true}}
+{{"demo": "pages/components/popover/AnchorPlayground.js", "hideToolbar": true}}
 
 ## Maus Interaktionen
 

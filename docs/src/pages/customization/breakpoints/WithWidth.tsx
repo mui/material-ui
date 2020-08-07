@@ -16,7 +16,7 @@ function WithWidth(props: { width: Breakpoint }) {
   const Component = components[width] || 'span';
 
   return (
-    <Typography variant="subtitle1">
+    <Typography>
       <Component>{`Current width: ${width}`}</Component>
     </Typography>
   );

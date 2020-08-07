@@ -9,7 +9,7 @@ import { fade } from '../styles/colorManipulator';
 import capitalize from '../utils/capitalize';
 import SwitchBase from '../internal/SwitchBase';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     display: 'inline-flex',
@@ -22,6 +22,9 @@ export const styles = theme => ({
     flexShrink: 0,
     zIndex: 0, // Reset the stacking context.
     verticalAlign: 'middle', // For correct alignment with the text.
+    '@media print': {
+      colorAdjust: 'exact',
+    },
   },
   /* Styles applied to the root element if `edge="start"`. */
   edgeStart: {
@@ -189,6 +192,10 @@ const Switch = React.forwardRef(function Switch(props, ref) {
 });
 
 Switch.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * If `true`, the component is checked.
    */
@@ -201,7 +208,7 @@ Switch.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -209,7 +216,7 @@ Switch.propTypes = {
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color: PropTypes.oneOf(['primary', 'secondary', 'default']),
+  color: PropTypes.oneOf(['default', 'primary', 'secondary']),
   /**
    * @ignore
    */
@@ -228,7 +235,7 @@ Switch.propTypes = {
    * side of the icon with content above or below, without ruining the border
    * size and shape).
    */
-  edge: PropTypes.oneOf(['start', 'end', false]),
+  edge: PropTypes.oneOf(['end', 'start', false]),
   /**
    * The icon to display when the component is unchecked.
    */
@@ -249,6 +256,7 @@ Switch.propTypes = {
    * Callback fired when the state is changed.
    *
    * @param {object} event The event source of the callback.
+   * You can pull out the new value by accessing `event.target.value` (string).
    * You can pull out the new checked state by accessing `event.target.checked` (boolean).
    */
   onChange: PropTypes.func,
@@ -260,13 +268,10 @@ Switch.propTypes = {
    * The size of the switch.
    * `small` is equivalent to the dense switch styling.
    */
-  size: PropTypes.oneOf(['small', 'medium']),
-  /**
-   * The input component prop `type`.
-   */
-  type: PropTypes.string,
+  size: PropTypes.oneOf(['medium', 'small']),
   /**
    * The value of the component. The DOM API casts this to a string.
+   * The browser uses "on" as the default value.
    */
   value: PropTypes.any,
 };

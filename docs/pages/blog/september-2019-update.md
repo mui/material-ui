@@ -46,7 +46,7 @@ But this summary is just scratching the surface. We have accepted 199 commits fr
 
 *(We'll do our best, no guarantee!)*
 
-- 🔍 We will provide a ready to use autocomplete, combo box, and multi-select components in the lab. You can already [preview it](https://deploy-preview-17037--material-ui.netlify.com/components/autocomplete/).
+- 🔍 We will provide a ready to use autocomplete, combo box, and multi-select components in the lab. You can already [preview it](https://deploy-preview-17037--material-ui.netlify.app/components/autocomplete/).
 
   ![combobox](/static/blog/september-2019-update/combobox.png)
   <p class="blog-description">Combo box (limited options)</p>

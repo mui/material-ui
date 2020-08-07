@@ -19,7 +19,7 @@ export default function TransitionsSnackbar() {
     Transition: Fade,
   });
 
-  const handleClick = Transition => () => {
+  const handleClick = (Transition) => () => {
     setState({
       open: true,
       Transition,
@@ -43,6 +43,7 @@ export default function TransitionsSnackbar() {
         onClose={handleClose}
         TransitionComponent={state.Transition}
         message="I love snacks"
+        key={state.Transition.name}
       />
     </div>
   );

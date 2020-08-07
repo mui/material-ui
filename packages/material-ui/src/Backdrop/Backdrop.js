@@ -34,11 +34,13 @@ const Backdrop = React.forwardRef(function Backdrop(props, ref) {
     invisible = false,
     open,
     transitionDuration,
+    // eslint-disable-next-line react/prop-types
+    TransitionComponent = Fade,
     ...other
   } = props;
 
   return (
-    <Fade in={open} timeout={transitionDuration} {...other}>
+    <TransitionComponent in={open} timeout={transitionDuration} {...other}>
       <div
         data-mui-test="Backdrop"
         className={clsx(
@@ -53,7 +55,7 @@ const Backdrop = React.forwardRef(function Backdrop(props, ref) {
       >
         {children}
       </div>
-    </Fade>
+    </TransitionComponent>
   );
 });
 

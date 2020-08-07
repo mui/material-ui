@@ -2,7 +2,11 @@
 
 <p class="description">API que permite o uso de pontos de quebra em uma ampla variedade de contextos.</p>
 
-Para uma experiência de usuário ideal, as interfaces do material design precisam adaptar seu layout em vários pontos de quebra. Material-UI usa uma implementação **simplificada** da [especificação](https://material.io/design/layout/responsive-layout-grid.html#breakpoints) original.
+Para uma experiência de usuário ideal, as interfaces do material design precisam adaptar seu leiaute em vários pontos de quebra. Material-UI usa uma implementação **simplificada** da [especificação](https://material.io/design/layout/responsive-layout-grid.html#breakpoints) original.
+
+Os pontos de quebra são usados internamente em vários componentes para torná-los responsivos, mas você também pode tirar proveito deles para controlar o leiaute da sua aplicação através do componente [Grade](/components/grid/) e [Hidden](/components/hidden/).
+
+## Pontos de quebra padrão
 
 Cada ponto de quebra (uma chave) corresponde a uma largura de tela *fixa* (um valor):
 
@@ -12,22 +16,20 @@ Cada ponto de quebra (uma chave) corresponde a uma largura de tela *fixa* (um va
 - **lg,** grande: 1280px
 - **xl,** extra-grande: 1920px
 
-These [breakpoint values](/customization/default-theme/?expand-path=$.breakpoints.values) are used to determine breakpoint ranges. Um intervalo inicia a partir do valor do ponto de quebra, incluindo seu valor inicial, até o próximo valor de ponto de quebra menos um:
+Esses valores de ponto de quebra são usados para determinar intervalos de pontos de quebra. Um intervalo inicia a partir do valor do ponto de quebra, incluindo seu valor inicial, até o próximo valor de ponto de quebra menos um:
 
 ```js
-valor           |0px     600px    960px    1280px   1920px
-chave           |xs      sm       md       lg       xl
-largura da tela |--------|--------|--------|--------|-------->
-intervalo       |   xs   |   sm   |   md   |   lg   |   xl
+value         |0px     600px    960px    1280px   1920px
+key           |xs      sm       md       lg       xl
+screen width  |--------|--------|--------|--------|-------->
+range         |   xs   |   sm   |   md   |   lg   |   xl
 ```
 
-Esses valores sempre podem ser customizados. You will find them in the theme, in the [`breakpoints.values`](/customization/default-theme/?expand-path=$.breakpoints.values) object.
-
-Os pontos de quebra são usados internamente em vários componentes para torná-los responsivos, mas você também pode tirar proveito deles para controlar o leiaute da sua aplicação através do componente [Grade](/components/grid/) e [Hidden](/components/hidden/).
+Esses valores podem ser [customizados](#custom-breakpoints).
 
 ## Consultas de Mídia CSS
 
-Consultas de mídia CSS são a abordagem idiomática para tornar sua interface de usuário responsiva. O tema fornece quatro estilos auxiliares para fazer isso:
+Consultas de mídia CSS são a abordagem idiomática para tornar sua interface de usuário responsiva. O tema fornece quatro formas que auxiliam a fazer isso:
 
 - [theme.breakpoints.up(key)](#theme-breakpoints-up-key-media-query)
 - [theme.breakpoints.down(key)](#theme-breakpoints-down-key-media-query)
@@ -71,7 +73,7 @@ Você pode aprender mais na página [useMediaQuery](/components/use-media-query/
 import withWidth from '@material-ui/core/withWidth';
 
 function MyComponent(props) {
-  return <div>{`Current width: ${props.width}`}</div>;
+  return <div>{`Largura atual: ${props.width}`}</div>;
 }
 
 export default withWidth()(MyComponent);
@@ -80,6 +82,61 @@ export default withWidth()(MyComponent);
 Na demonstração a seguir, alteramos o elemento DOM renderizado (*em*, <u>u</u>, ~~del~~ & span) com base na largura da tela.
 
 {{"demo": "pages/customization/breakpoints/WithWidth.js"}}
+
+## Pontos de quebra customizados
+
+Você define os pontos de quebra do seu projeto na seção `theme.breakpoints` do seu tema.
+
+- [`theme.breakpoints.values`](/customization/default-theme/?expand-path=$.breakpoints.values): Padrão são [os valores acima](#default-breakpoints). As chaves são seus nomes de tela e os valores são a largura mínima onde esse ponto de quebra deve iniciar.
+- `theme.breakpoints.unit`: Padrão é `px`. A unidade usada para os valores do ponto de quebra.
+- `theme.breakpoints.step`: Padrão é 5 (`0.05px`). O incremento usado para implementar os pontos de quebra exclusivos.
+
+Se você alterar os valores dos pontos de quebra padrão, você precisará fornecer novos conforme descreveremos:
+
+```jsx
+const theme = createMuiTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 960,
+      lg: 1280,
+      xl: 1920,
+    },
+  },
+})
+```
+
+Sinta-se à vontade para ter quantos pontos de quebra você quiser, nomeando-os da maneira que preferir para o seu projeto.
+
+```js
+const theme = createMuiTheme({
+  breakpoints: {
+    values: {
+      tablet: 640,
+      laptop: 1024,
+      desktop: 1280,
+    },
+  },
+});
+```
+
+Se você estiver usando TypeScript, você também deverá usar a [extensão de módulos](/guides/typescript/#customization-of-theme) para que o tema aceite os valores acima.
+
+```ts
+declare module "@material-ui/core/styles/createBreakpoints" {
+  interface BreakpointOverrides {
+    xs: false; // remove o ponto de quebra `xs`
+    sm: false;
+    md: false;
+    lg: false;
+    xl: false;
+    tablet: true; // adiciona o ponto de quebra `tablet`
+    laptop: true;
+    desktop: true;
+  }
+}
+```
 
 ## API
 
@@ -91,7 +148,7 @@ Na demonstração a seguir, alteramos o elemento DOM renderizado (*em*, <u>u</u>
 
 #### Retornos
 
-`media query`: A media query string ready to be used with most styling solutions, which matches screen widths greater than and including the screen size given by the breakpoint key.
+`media query`: Uma string de consulta de mídia pronta para ser usada com a maioria das soluções de estilo, na qual corresponde à largura da tela maior que, e incluindo o tamanho de tela fornecido pela chave do ponto de quebra.
 
 #### Exemplos
 
@@ -99,8 +156,8 @@ Na demonstração a seguir, alteramos o elemento DOM renderizado (*em*, <u>u</u>
 const styles = theme => ({
   root: {
     backgroundColor: 'blue',
-    // Corresponde [md, ∞[
-    //             [960px, ∞[
+    // Match [md, ∞)
+    //       [960px, ∞)
     [theme.breakpoints.up('md')]: {
       backgroundColor: 'red',
     },
@@ -116,7 +173,7 @@ const styles = theme => ({
 
 #### Retornos
 
-`media query`: A media query string ready to be used with most styling solutions, which matches screen widths less than and including the screen size given by the breakpoint key.
+`media query`: Uma string de consulta de mídia pronta para ser usada com a maioria das soluções de estilo, na qual corresponde à largura da tela menor que, e incluindo o tamanho de tela fornecido pela chave do ponto de quebra.
 
 #### Exemplos
 
@@ -124,9 +181,9 @@ const styles = theme => ({
 const styles = theme => ({
   root: {
     backgroundColor: 'blue',
-    // Corresponde [0, md + 1[
-    //             [0, lg[
-    //             [0, 1280px[
+    // Match [0, md + 1)
+    //       [0, lg)
+    //       [0, 1280px)
     [theme.breakpoints.down('md')]: {
       backgroundColor: 'red',
     },
@@ -142,7 +199,7 @@ const styles = theme => ({
 
 #### Retornos
 
-`media query`: A media query string ready to be used with most styling solutions, which matches screen widths including the screen size given by the breakpoint key.
+`media query`: Uma string de consulta de mídia pronta para ser usada com a maioria das soluções de estilo, na qual corresponde à largura da tela incluindo o tamanho de tela fornecido pela chave do ponto de quebra.
 
 #### Exemplos
 
@@ -150,9 +207,9 @@ const styles = theme => ({
 const styles = theme => ({
   root: {
     backgroundColor: 'blue',
-    // Corresponde [md, md + 1[
-    //             [md, lg[
-    //             [960px, 1280px[
+    // Match [md, md + 1)
+    //       [md, lg)
+    //       [960px, 1280px)
     [theme.breakpoints.only('md')]: {
       backgroundColor: 'red',
     },
@@ -164,12 +221,12 @@ const styles = theme => ({
 
 #### Argumentos
 
-1. `start` (*String*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
-2. `end` (*String*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
+1. `start` (*String*): Uma chave de ponto de quebra (`xs`, `sm`, etc.) ou um número de largura de tela em pixels.
+2. `end` (*String*): Uma chave de ponto de quebra (`xs`, `sm`, etc.) ou um número de largura de tela em pixels.
 
 #### Retornos
 
-`media query`: A media query string ready to be used with most styling solutions, which matches screen widths greater than the screen size given by the breakpoint key in the first argument and less than the the screen size given by the breakpoint key in the second argument.
+`media query`: Uma string de consulta de mídia pronta para ser usada com a maioria das soluções de estilo, na qual corresponde a larguras de telas maiores que o tamanho da tela fornecido na chave de ponto de quebra no primeiro argumento e menor que o tamanho de tela fornecido pela chave de ponto de quebra no segundo argumento.
 
 #### Exemplos
 
@@ -177,9 +234,9 @@ const styles = theme => ({
 const styles = theme => ({
   root: {
     backgroundColor: 'blue',
-    // Corresponde [sm, md + 1[
-    //             [sm, lg[
-    //             [600px, 1280px[
+    // Match [sm, md + 1)
+    //       [sm, lg)
+    //       [600px, 1280px[
     [theme.breakpoints.between('sm', 'md')]: {
       backgroundColor: 'red',
     },
@@ -242,4 +299,4 @@ export default withWidth()(MyComponent);
 
 ## Valores padrão
 
-You can explore the default values of the breakpoints using [the theme explorer](/customization/default-theme/?expand-path=$.breakpoints) or by opening the dev tools console on this page (`window.theme.breakpoints`).
+Você pode explorar os valores padrão dos pontos de quebra usando [o explorador de tema](/customization/default-theme/?expand-path=$.breakpoints) ou abrindo o console das ferramentas de desenvolvimento nesta página (`window.theme.breakpoints`).

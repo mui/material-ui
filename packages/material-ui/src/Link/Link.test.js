@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
+import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import Link from './Link';
 import Typography from '../Typography';
@@ -13,18 +14,13 @@ function focusVisible(element) {
 }
 
 describe('<Link />', () => {
-  let mount;
+  const mount = createMount();
   let shallow;
   let classes;
 
   before(() => {
-    mount = createMount({ strict: true });
     shallow = createShallow({ dive: true });
     classes = getClasses(<Link href="/">Home</Link>);
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<Link href="/">Home</Link>, () => ({
@@ -36,7 +32,7 @@ describe('<Link />', () => {
 
   it('should render children', () => {
     const wrapper = mount(<Link href="/">Home</Link>);
-    assert.strictEqual(wrapper.contains('Home'), true);
+    expect(wrapper.contains('Home')).to.equal(true);
   });
 
   it('should pass props to the <Typography> component', () => {
@@ -46,7 +42,7 @@ describe('<Link />', () => {
       </Link>,
     );
     const typography = wrapper.find(Typography);
-    assert.strictEqual(typography.props().color, 'primary');
+    expect(typography.props().color).to.equal('primary');
   });
 
   describe('event callbacks', () => {
@@ -64,10 +60,10 @@ describe('<Link />', () => {
         </Link>,
       );
 
-      events.forEach(n => {
+      events.forEach((n) => {
         const event = n.charAt(2).toLowerCase() + n.slice(3);
         wrapper.simulate(event, { target: { tagName: 'a' } });
-        assert.strictEqual(handlers[n].callCount, 1, `should have called the ${n} handler`);
+        expect(handlers[n].callCount).to.equal(1);
       });
     });
   });
@@ -77,11 +73,11 @@ describe('<Link />', () => {
       const wrapper = mount(<Link href="/">Home</Link>);
       const anchor = wrapper.find('a').instance();
 
-      assert.strictEqual(anchor.classList.contains(classes.focusVisible), false);
+      expect(anchor.classList.contains(classes.focusVisible)).to.equal(false);
       focusVisible(anchor);
-      assert.strictEqual(anchor.classList.contains(classes.focusVisible), true);
+      expect(anchor.classList.contains(classes.focusVisible)).to.equal(true);
       anchor.blur();
-      assert.strictEqual(anchor.classList.contains(classes.focusVisible), false);
+      expect(anchor.classList.contains(classes.focusVisible)).to.equal(false);
     });
   });
 });

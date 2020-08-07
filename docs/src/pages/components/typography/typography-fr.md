@@ -22,19 +22,19 @@ Afficher ci-dessous est un exemple de balisage de lien utilisé pour charger la 
 
 ## Installer via npm
 
-Vous pouvez [l'installer](https://www.npmjs.com/package/typeface-roboto) en tapant la commande ci-dessous dans votre terminal :
+Vous pouvez [l'installer](https://www.npmjs.com/package/fontsource-roboto) en tapant la commande ci-dessous dans votre terminal :
 
-`npm install typeface-roboto --save`
+`npm install fontsource-roboto`
 
 Ensuite, vous pouvez l'importer dans votre point d'entrée.
 
 ```js
-import 'typeface-roboto';
+import 'fontsource-roboto';
 ```
 
-Pour plus d'informations, consultez le projet [police de caractère](https://github.com/KyleAMathews/typefaces/tree/master/packages/roboto).
+For more info check out [Fontsource](https://github.com/DecliningLotus/fontsource/blob/master/packages/roboto/README.md).
 
-⚠️ Soyez prudent lorsque vous utilisez cette approche. Make sure your bundler doesn't eager load all the font variations (100/300/400/500/700/900, italic/regular, SVG/woff). Inlining all the font files can significantly increase the size of your bundle. Material-UI default typography configuration only relies on 300, 400, 500, and 700 font weights.
+⚠️ Soyez prudent lorsque vous utilisez cette approche. Make sure your bundler doesn't eager load all the font variations (100/300/400/500/700/900, italic/regular, SVG/woff). Fontsource can be configured to load specific subsets, weights and styles. Inlining all the font files can significantly increase the size of your bundle. Material-UI default typography configuration only relies on 300, 400, 500, and 700 font weights.
 
 ## Composant
 
@@ -53,10 +53,10 @@ The Typography component uses the `variantMapping` property to associate a UI va
 - You can change the underlying element for a one time occasion with the `component` property:
 
 ```jsx
-{/* There is already an h1 in the page, let's not duplicate it. */}
+Heading
+</Typography> {/* There is already an h1 in the page, let's not duplicate it. */}
 <Typography variant="h1" component="h2">
-  h1. Heading
-</Typography>
+  h1.
 ```
 
 - You can change the mapping [globally using the theme](/customization/globals/#default-props):

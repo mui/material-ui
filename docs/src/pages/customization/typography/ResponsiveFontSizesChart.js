@@ -1,5 +1,7 @@
-/* eslint-disable material-ui/restricted-path-imports */
 import React from 'react';
+// import of a small, pure module in a private demo
+// bundle size and module duplication is negligible
+/* eslint-disable-next-line no-restricted-imports */
 import { convertLength } from '@material-ui/core/styles/cssUtils';
 import { makeStyles, createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
 import {
@@ -30,9 +32,9 @@ const useStyles = makeStyles({
 export default function ResponsiveFontSizes() {
   const classes = useStyles();
   const convert = convertLength(theme.typography.htmlFontSize);
-  const toPx = rem => parseFloat(convert(rem, 'px'));
+  const toPx = (rem) => parseFloat(convert(rem, 'px'));
 
-  const series = variants.map(variantName => {
+  const series = variants.map((variantName) => {
     const variant = theme.typography[variantName];
     const data = [];
 
@@ -41,7 +43,7 @@ export default function ResponsiveFontSizes() {
       fontSize: toPx(variant.fontSize),
     });
 
-    theme.breakpoints.keys.forEach(key => {
+    theme.breakpoints.keys.forEach((key) => {
       const viewport = theme.breakpoints.values[key];
       const value = theme.breakpoints.up(key);
 
@@ -86,7 +88,7 @@ export default function ResponsiveFontSizes() {
           </XAxis>
           <YAxis dataKey="fontSize" type="number">
             <Label position="top" offset={20}>
-              font-size (px)
+              font-size (rem)
             </Label>
           </YAxis>
           <Tooltip />

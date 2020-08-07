@@ -1,4 +1,4 @@
-import { assert } from 'chai';
+import { expect } from 'chai';
 import merge from './merge';
 
 describe('merge', () => {
@@ -17,7 +17,7 @@ describe('merge', () => {
         },
       },
     );
-    assert.deepEqual(output, {
+    expect(output).to.deep.equal({
       '@media (min-width:600px)': {
         margin: 16,
         padding: 8,
@@ -40,7 +40,7 @@ describe('merge', () => {
         },
       },
     );
-    assert.deepEqual(output, {
+    expect(output).to.deep.equal({
       '@media (min-width:600px)': {
         padding: 8,
       },

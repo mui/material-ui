@@ -16,5 +16,5 @@ export interface WithMobileDialog extends WithWidth {
 export interface InjectedProps extends WithMobileDialog {}
 
 export default function withMobileDialog<P = {}>(
-  options?: WithMobileDialogOptions,
+  options?: WithMobileDialogOptions
 ): PropInjector<WithMobileDialog, Partial<WithMobileDialog>>;

@@ -11,16 +11,22 @@ components: Button, ButtonGroup
 
 {{"demo": "pages/components/button-group/BasicButtonGroup.js"}}
 
-### Group sizes and colors
+## Sizes and colors
 
 {{"demo": "pages/components/button-group/GroupSizesColors.js"}}
 
-### Group orientation
+## Vertical group
 
 {{"demo": "pages/components/button-group/GroupOrientation.js"}}
 
-### Split Button
+## Split button
 
-ButtonGroup can also be used to create a split button. The dropdown can change the button action (as in this example), or be used to immediately trigger a related action.
+`ButtonGroup` can also be used to create a split button. The dropdown can change the button action (as in this example), or be used to immediately trigger a related action.
 
 {{"demo": "pages/components/button-group/SplitButton.js"}}
+
+## Disabled elevation
+
+You can remove the elevation with the `disableElevation` prop.
+
+{{"demo": "pages/components/button-group/DisableElevation.js"}}

@@ -8,7 +8,7 @@ import Divider from '@material-ui/core/Divider';
 import InboxIcon from '@material-ui/icons/Inbox';
 import DraftsIcon from '@material-ui/icons/Drafts';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
     maxWidth: 360,
@@ -30,7 +30,7 @@ export default function SelectedListItem() {
         <ListItem
           button
           selected={selectedIndex === 0}
-          onClick={event => handleListItemClick(event, 0)}
+          onClick={(event) => handleListItemClick(event, 0)}
         >
           <ListItemIcon>
             <InboxIcon />
@@ -40,7 +40,7 @@ export default function SelectedListItem() {
         <ListItem
           button
           selected={selectedIndex === 1}
-          onClick={event => handleListItemClick(event, 1)}
+          onClick={(event) => handleListItemClick(event, 1)}
         >
           <ListItemIcon>
             <DraftsIcon />
@@ -53,14 +53,14 @@ export default function SelectedListItem() {
         <ListItem
           button
           selected={selectedIndex === 2}
-          onClick={event => handleListItemClick(event, 2)}
+          onClick={(event) => handleListItemClick(event, 2)}
         >
           <ListItemText primary="Trash" />
         </ListItem>
         <ListItem
           button
           selected={selectedIndex === 3}
-          onClick={event => handleListItemClick(event, 3)}
+          onClick={(event) => handleListItemClick(event, 3)}
         >
           <ListItemText primary="Spam" />
         </ListItem>

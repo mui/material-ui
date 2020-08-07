@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { assert, expect } from 'chai';
-import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import { expect } from 'chai';
+import { findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import describeConformance from '../test-utils/describeConformance';
 import Slide from '../Slide';
@@ -10,22 +11,17 @@ import Drawer, { getAnchor, isHorizontal } from './Drawer';
 import { createClientRender } from 'test/utils/createClientRender';
 
 describe('<Drawer />', () => {
-  let mount;
+  // StrictModeViolation: uses Slide
+  const mount = createMount({ strict: false });
   let classes;
   const render = createClientRender({ strict: false });
 
   before(() => {
-    // StrictModeViolation: uses Slide
-    mount = createMount({ strict: false });
     classes = getClasses(
       <Drawer>
         <div />
       </Drawer>,
     );
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(
@@ -52,7 +48,7 @@ describe('<Drawer />', () => {
           <div />
         </Drawer>,
       );
-      assert.strictEqual(wrapper.find(Modal).exists(), true);
+      expect(wrapper.find(Modal).exists()).to.equal(true);
     });
 
     it('should render Slide > Paper inside the Modal', () => {
@@ -64,11 +60,11 @@ describe('<Drawer />', () => {
       const modal = wrapper.find(Modal);
 
       const slide = modal.find(Slide);
-      assert.strictEqual(slide.exists(), true);
+      expect(slide.exists()).to.equal(true);
 
       const paper = slide.find(Paper);
-      assert.strictEqual(paper.exists(), true);
-      assert.strictEqual(paper.hasClass(classes.paper), true);
+      expect(paper.exists()).to.equal(true);
+      expect(paper.hasClass(classes.paper)).to.equal(true);
     });
 
     describe('transitionDuration property', () => {
@@ -83,7 +79,7 @@ describe('<Drawer />', () => {
             <div />
           </Drawer>,
         );
-        assert.strictEqual(wrapper.find(Slide).props().timeout, transitionDuration);
+        expect(wrapper.find(Slide).props().timeout).to.equal(transitionDuration);
       });
 
       it("should be passed to to Modal's BackdropTransitionDuration when open=true", () => {
@@ -92,8 +88,7 @@ describe('<Drawer />', () => {
             <div />
           </Drawer>,
         );
-        assert.strictEqual(
-          wrapper.find(Modal).props().BackdropProps.transitionDuration,
+        expect(wrapper.find(Modal).props().BackdropProps.transitionDuration).to.equal(
           transitionDuration,
         );
       });
@@ -106,7 +101,7 @@ describe('<Drawer />', () => {
           <div />
         </Drawer>,
       );
-      assert.strictEqual(wrapper.find(Modal).props().BackdropTransitionDuration, testDuration);
+      expect(wrapper.find(Modal).props().BackdropTransitionDuration).to.equal(testDuration);
     });
 
     it('should set the custom className for Modal when variant is temporary', () => {
@@ -118,7 +113,7 @@ describe('<Drawer />', () => {
 
       const modal = wrapper.find(Modal);
 
-      assert.strictEqual(modal.hasClass('woofDrawer'), true);
+      expect(modal.hasClass('woofDrawer')).to.equal(true);
     });
 
     it('should set the Paper className', () => {
@@ -128,8 +123,8 @@ describe('<Drawer />', () => {
         </Drawer>,
       );
       const paper = wrapper.find(Paper);
-      assert.strictEqual(paper.hasClass(classes.paper), true);
-      assert.strictEqual(paper.hasClass('woofDrawer'), true);
+      expect(paper.hasClass(classes.paper)).to.equal(true);
+      expect(paper.hasClass('woofDrawer')).to.equal(true);
     });
 
     it('should be closed by default', () => {
@@ -141,7 +136,7 @@ describe('<Drawer />', () => {
 
       const modal = wrapper.find(Modal);
 
-      assert.strictEqual(modal.props().open, false);
+      expect(modal.props().open).to.equal(false);
     });
 
     describe('opening and closing', () => {
@@ -153,7 +148,7 @@ describe('<Drawer />', () => {
 
       it('should start closed', () => {
         const wrapper = mount(drawerElement);
-        assert.strictEqual(wrapper.find(Modal).props().open, false);
+        expect(wrapper.find(Modal).props().open).to.equal(false);
       });
 
       it('should open and close', () => {
@@ -161,11 +156,11 @@ describe('<Drawer />', () => {
 
         wrapper.setProps({ open: true });
         wrapper.update();
-        assert.strictEqual(wrapper.find(Slide).props().in, true);
+        expect(wrapper.find(Slide).props().in).to.equal(true);
 
         wrapper.setProps({ open: false });
         wrapper.update();
-        assert.strictEqual(wrapper.find(Slide).props().in, false);
+        expect(wrapper.find(Slide).props().in).to.equal(false);
       });
     });
   });
@@ -180,20 +175,20 @@ describe('<Drawer />', () => {
     it('should render a div instead of a Modal when persistent', () => {
       const wrapper = mount(drawerElement);
       const root = findOutermostIntrinsic(wrapper);
-      assert.strictEqual(root.type(), 'div');
-      assert.strictEqual(root.hasClass(classes.docked), true);
+      expect(root.type()).to.equal('div');
+      expect(root.hasClass(classes.docked)).to.equal(true);
     });
 
     it('should render Slide > Paper inside the div', () => {
       const wrapper = mount(drawerElement);
       const div = wrapper.find('div').first();
       const slide = div.childAt(0);
-      assert.strictEqual(slide.length, 1);
-      assert.strictEqual(slide.type(), Slide);
+      expect(slide.length).to.equal(1);
+      expect(slide.type()).to.equal(Slide);
 
       const paper = findOutermostIntrinsic(slide);
-      assert.strictEqual(paper.exists(), true);
-      assert.strictEqual(paper.hasClass(classes.paper), true);
+      expect(paper.exists()).to.equal(true);
+      expect(paper.hasClass(classes.paper)).to.equal(true);
     });
   });
 
@@ -207,15 +202,15 @@ describe('<Drawer />', () => {
     it('should render a div instead of a Modal when permanent', () => {
       const wrapper = mount(drawerElement);
       const root = wrapper.find(`.${classes.root}`);
-      assert.strictEqual(root.type(), 'div');
-      assert.strictEqual(root.hasClass(classes.docked), true);
+      expect(root.type()).to.equal('div');
+      expect(root.hasClass(classes.docked)).to.equal(true);
     });
 
     it('should render div > Paper inside the div', () => {
       const wrapper = mount(drawerElement);
 
       const root = wrapper.find(`div.${classes.root}`);
-      assert.strictEqual(root.exists(), true);
+      expect(root.exists()).to.equal(true);
     });
   });
 
@@ -239,16 +234,16 @@ describe('<Drawer />', () => {
       );
 
       wrapper.setProps({ anchor: 'left' });
-      assert.strictEqual(wrapper.find(Slide).props().direction, 'right');
+      expect(wrapper.find(Slide).props().direction).to.equal('right');
 
       wrapper.setProps({ anchor: 'right' });
-      assert.strictEqual(wrapper.find(Slide).props().direction, 'left');
+      expect(wrapper.find(Slide).props().direction).to.equal('left');
 
       wrapper.setProps({ anchor: 'top' });
-      assert.strictEqual(wrapper.find(Slide).props().direction, 'down');
+      expect(wrapper.find(Slide).props().direction).to.equal('down');
 
       wrapper.setProps({ anchor: 'bottom' });
-      assert.strictEqual(wrapper.find(Slide).props().direction, 'up');
+      expect(wrapper.find(Slide).props().direction).to.equal('up');
     });
   });
 
@@ -265,7 +260,7 @@ describe('<Drawer />', () => {
         </ThemeProvider>,
       );
       // slide direction for left is right, if left is switched to right, we should get left
-      assert.strictEqual(wrapper1.find(Slide).props().direction, 'left');
+      expect(wrapper1.find(Slide).props().direction).to.equal('left');
 
       const wrapper2 = mount(
         <ThemeProvider theme={theme}>
@@ -275,16 +270,16 @@ describe('<Drawer />', () => {
         </ThemeProvider>,
       );
       // slide direction for right is left, if right is switched to left, we should get right
-      assert.strictEqual(wrapper2.find(Slide).props().direction, 'right');
+      expect(wrapper2.find(Slide).props().direction).to.equal('right');
     });
   });
 
   describe('isHorizontal', () => {
     it('should recognize left and right as horizontal swiping directions', () => {
-      assert.strictEqual(isHorizontal('left'), true);
-      assert.strictEqual(isHorizontal('right'), true);
-      assert.strictEqual(isHorizontal('top'), false);
-      assert.strictEqual(isHorizontal('bottom'), false);
+      expect(isHorizontal('left')).to.equal(true);
+      expect(isHorizontal('right')).to.equal(true);
+      expect(isHorizontal('top')).to.equal(false);
+      expect(isHorizontal('bottom')).to.equal(false);
     });
   });
 
@@ -292,17 +287,17 @@ describe('<Drawer />', () => {
     it('should return the anchor', () => {
       const theme = { direction: 'ltr' };
 
-      assert.strictEqual(getAnchor(theme, 'left'), 'left');
-      assert.strictEqual(getAnchor(theme, 'right'), 'right');
-      assert.strictEqual(getAnchor(theme, 'top'), 'top');
-      assert.strictEqual(getAnchor(theme, 'bottom'), 'bottom');
+      expect(getAnchor(theme, 'left')).to.equal('left');
+      expect(getAnchor(theme, 'right')).to.equal('right');
+      expect(getAnchor(theme, 'top')).to.equal('top');
+      expect(getAnchor(theme, 'bottom')).to.equal('bottom');
     });
 
     it('should switch left/right if RTL is enabled', () => {
       const theme = { direction: 'rtl' };
 
-      assert.strictEqual(getAnchor(theme, 'left'), 'right');
-      assert.strictEqual(getAnchor(theme, 'right'), 'left');
+      expect(getAnchor(theme, 'left')).to.equal('right');
+      expect(getAnchor(theme, 'right')).to.equal('left');
     });
   });
 });

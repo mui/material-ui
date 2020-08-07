@@ -1,4 +1,4 @@
-import { assert } from 'chai';
+import { expect } from 'chai';
 import createMixins from './createMixins';
 import createMuiTheme from './createMuiTheme';
 
@@ -13,7 +13,7 @@ describe('createMixins', () => {
         paddingLeft: 1,
       },
     });
-    assert.deepEqual(mixin, {
+    expect(mixin).to.deep.equal({
       '@media (min-width:600px)': {
         paddingLeft: 1,
         paddingRight: 24,

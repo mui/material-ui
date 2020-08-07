@@ -2,7 +2,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { spy, stub } from 'sinon';
 import { expect } from 'chai';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
@@ -12,7 +13,7 @@ import Slider from './Slider';
 function createTouches(touches) {
   return {
     changedTouches: touches.map(
-      touch =>
+      (touch) =>
         new Touch({
           target: document.body,
           ...touch,
@@ -27,13 +28,12 @@ describe('<Slider />', () => {
     return;
   }
 
-  let mount;
+  const mount = createMount();
   let classes;
   const render = createClientRender();
 
   before(() => {
     classes = getClasses(<Slider value={0} />);
-    mount = createMount({ strict: true });
   });
 
   describeConformance(<Slider value={0} />, () => ({
@@ -42,7 +42,6 @@ describe('<Slider />', () => {
     mount,
     refInstanceof: window.HTMLSpanElement,
     testComponentPropWith: 'span',
-    after: () => mount.cleanUp(),
   }));
 
   it('should call handlers', () => {
@@ -52,6 +51,7 @@ describe('<Slider />', () => {
     const { container, getByRole } = render(
       <Slider onChange={handleChange} onChangeCommitted={handleChangeCommitted} value={0} />,
     );
+    const slider = getByRole('slider');
 
     fireEvent.mouseDown(container.firstChild);
     fireEvent.mouseUp(document.body);
@@ -59,8 +59,8 @@ describe('<Slider />', () => {
     expect(handleChange.callCount).to.equal(1);
     expect(handleChangeCommitted.callCount).to.equal(1);
 
-    getByRole('slider').focus();
-    fireEvent.keyDown(document.activeElement, {
+    slider.focus();
+    fireEvent.keyDown(slider, {
       key: 'Home',
     });
     expect(handleChange.callCount).to.equal(2);
@@ -129,55 +129,29 @@ describe('<Slider />', () => {
     });
   });
 
-  // TODO: use fireEvent for all the events.
-  // describe.skip('when mouse reenters window', () => {
-  //   it('should update if mouse is still clicked', () => {
-  //     const handleChange = spy();
-  //     const { container } = render(<Slider onChange={handleChange} value={50} />);
-
-  //     fireEvent.mouseDown(container.firstChild);
-  //     document.body.dispatchEvent(new window.MouseEvent('mouseleave'));
-  //     const mouseEnter = new window.Event('mouseenter');
-  //     mouseEnter.buttons = 1;
-  //     document.body.dispatchEvent(mouseEnter);
-  //     expect(handleChange.callCount).to.equal(1);
-
-  //     document.body.dispatchEvent(new window.MouseEvent('mousemove'));
-  //     expect(handleChange.callCount).to.equal(2);
-  //   });
-
-  //   it('should not update if mouse is not clicked', () => {
-  //     const handleChange = spy();
-  //     const { container } = render(<Slider onChange={handleChange} value={50} />);
-
-  //     fireEvent.mouseDown(container.firstChild);
-  //     document.body.dispatchEvent(new window.MouseEvent('mouseleave'));
-  //     const mouseEnter = new window.Event('mouseenter');
-  //     mouseEnter.buttons = 0;
-  //     document.body.dispatchEvent(mouseEnter);
-  //     expect(handleChange.callCount).to.equal(1);
-
-  //     document.body.dispatchEvent(new window.MouseEvent('mousemove'));
-  //     expect(handleChange.callCount).to.equal(1);
-  //   });
-  // });
-
   describe('range', () => {
     it('should support keyboard', () => {
       const { getAllByRole } = render(<Slider defaultValue={[20, 30]} />);
       const [thumb1, thumb2] = getAllByRole('slider');
 
       thumb1.focus();
-      fireEvent.keyDown(document.activeElement, {
+      fireEvent.keyDown(thumb1, {
         key: 'ArrowRight',
       });
       expect(thumb1.getAttribute('aria-valuenow')).to.equal('21');
 
       thumb2.focus();
-      fireEvent.keyDown(document.activeElement, {
+      fireEvent.keyDown(thumb2, {
         key: 'ArrowLeft',
       });
       expect(thumb2.getAttribute('aria-valuenow')).to.equal('29');
+    });
+
+    it('should focus the slider when dragging', () => {
+      const { getByRole } = render(<Slider defaultValue={30} step={10} marks />);
+      const thumb = getByRole('slider');
+      fireEvent.mouseDown(thumb);
+      expect(document.activeElement).to.equal(thumb);
     });
 
     it('should support mouse events', () => {
@@ -235,12 +209,12 @@ describe('<Slider />', () => {
       expect(thumb).to.have.attribute('aria-valuenow', '20');
 
       thumb.focus();
-      fireEvent.keyDown(document.activeElement, {
+      fireEvent.keyDown(thumb, {
         key: 'ArrowUp',
       });
       expect(thumb).to.have.attribute('aria-valuenow', '30');
 
-      fireEvent.keyDown(document.activeElement, {
+      fireEvent.keyDown(thumb, {
         key: 'ArrowDown',
       });
       expect(thumb).to.have.attribute('aria-valuenow', '20');
@@ -273,27 +247,27 @@ describe('<Slider />', () => {
       const thumb = getByRole('slider');
       thumb.focus();
 
-      fireEvent.keyDown(document.activeElement, {
+      fireEvent.keyDown(thumb, {
         key: 'Home',
       });
       expect(thumb).to.have.attribute('aria-valuenow', '0');
 
-      fireEvent.keyDown(document.activeElement, {
+      fireEvent.keyDown(thumb, {
         key: 'End',
       });
       expect(thumb).to.have.attribute('aria-valuenow', '100');
 
-      fireEvent.keyDown(document.activeElement, {
+      fireEvent.keyDown(thumb, {
         key: 'PageDown',
       });
       expect(thumb).to.have.attribute('aria-valuenow', '90');
 
-      fireEvent.keyDown(document.activeElement, {
+      fireEvent.keyDown(thumb, {
         key: 'Escape',
       });
       expect(thumb).to.have.attribute('aria-valuenow', '90');
 
-      fireEvent.keyDown(document.activeElement, {
+      fireEvent.keyDown(thumb, {
         key: 'PageUp',
       });
       expect(thumb).to.have.attribute('aria-valuenow', '100');
@@ -311,10 +285,10 @@ describe('<Slider />', () => {
       const thumb = getByRole('slider');
       thumb.focus();
 
-      fireEvent.keyDown(document.activeElement, moveRightEvent);
+      fireEvent.keyDown(thumb, moveRightEvent);
       expect(thumb).to.have.attribute('aria-valuenow', '250');
 
-      fireEvent.keyDown(document.activeElement, moveLeftEvent);
+      fireEvent.keyDown(thumb, moveLeftEvent);
       expect(thumb).to.have.attribute('aria-valuenow', '150');
     });
 
@@ -323,19 +297,19 @@ describe('<Slider />', () => {
       const thumb = getByRole('slider');
       thumb.focus();
 
-      fireEvent.keyDown(document.activeElement, moveRightEvent);
+      fireEvent.keyDown(thumb, moveRightEvent);
       expect(thumb).to.have.attribute('aria-valuenow', '96');
 
-      fireEvent.keyDown(document.activeElement, moveRightEvent);
+      fireEvent.keyDown(thumb, moveRightEvent);
       expect(thumb).to.have.attribute('aria-valuenow', '106');
 
-      fireEvent.keyDown(document.activeElement, moveRightEvent);
+      fireEvent.keyDown(thumb, moveRightEvent);
       expect(thumb).to.have.attribute('aria-valuenow', '108');
 
-      fireEvent.keyDown(document.activeElement, moveLeftEvent);
+      fireEvent.keyDown(thumb, moveLeftEvent);
       expect(thumb).to.have.attribute('aria-valuenow', '96');
 
-      fireEvent.keyDown(document.activeElement, moveLeftEvent);
+      fireEvent.keyDown(thumb, moveLeftEvent);
       expect(thumb).to.have.attribute('aria-valuenow', '86');
     });
 
@@ -344,13 +318,13 @@ describe('<Slider />', () => {
       const thumb = getByRole('slider');
       thumb.focus();
 
-      fireEvent.keyDown(document.activeElement, moveLeftEvent);
+      fireEvent.keyDown(thumb, moveLeftEvent);
       expect(thumb).to.have.attribute('aria-valuenow', '6');
 
-      fireEvent.keyDown(document.activeElement, moveRightEvent);
+      fireEvent.keyDown(thumb, moveRightEvent);
       expect(thumb).to.have.attribute('aria-valuenow', '16');
 
-      fireEvent.keyDown(document.activeElement, moveRightEvent);
+      fireEvent.keyDown(thumb, moveRightEvent);
       expect(thumb).to.have.attribute('aria-valuenow', '26');
     });
 
@@ -359,7 +333,7 @@ describe('<Slider />', () => {
       const thumb = getByRole('slider');
       thumb.focus();
 
-      fireEvent.keyDown(document.activeElement, moveRightEvent);
+      fireEvent.keyDown(thumb, moveRightEvent);
       expect(thumb).to.have.attribute('aria-valuenow', '0.3');
     });
 
@@ -370,7 +344,7 @@ describe('<Slider />', () => {
       const thumb = getByRole('slider');
       thumb.focus();
 
-      fireEvent.keyDown(document.activeElement, moveRightEvent);
+      fireEvent.keyDown(thumb, moveRightEvent);
       expect(thumb).to.have.attribute('aria-valuenow', '3e-8');
     });
 
@@ -381,8 +355,27 @@ describe('<Slider />', () => {
       const thumb = getByRole('slider');
       thumb.focus();
 
-      fireEvent.keyDown(document.activeElement, moveLeftEvent);
+      fireEvent.keyDown(thumb, moveLeftEvent);
       expect(thumb).to.have.attribute('aria-valuenow', '-3e-8');
+    });
+
+    it('should handle RTL', () => {
+      const { getByRole } = render(
+        <ThemeProvider
+          theme={createMuiTheme({
+            direction: 'rtl',
+          })}
+        >
+          <Slider defaultValue={30} />
+        </ThemeProvider>,
+      );
+      const thumb = getByRole('slider');
+      thumb.focus();
+
+      fireEvent.keyDown(thumb, moveLeftEvent);
+      expect(thumb).to.have.attribute('aria-valuenow', '31');
+      fireEvent.keyDown(thumb, moveRightEvent);
+      expect(thumb).to.have.attribute('aria-valuenow', '30');
     });
   });
 
@@ -400,8 +393,8 @@ describe('<Slider />', () => {
 
   describe('markActive state', () => {
     function getActives(container) {
-      return Array.from(container.querySelectorAll(`.${classes.markLabel}`)).map(node =>
-        node.classList.contains(classes.markLabelActive),
+      return Array.from(container.querySelectorAll(`.${classes.mark}`)).map((node) =>
+        node.classList.contains(classes.markActive),
       );
     }
 
@@ -489,24 +482,38 @@ describe('<Slider />', () => {
   describe('warnings', () => {
     beforeEach(() => {
       consoleErrorMock.spy();
+      PropTypes.resetWarningCache();
     });
 
     afterEach(() => {
       consoleErrorMock.reset();
-      PropTypes.resetWarningCache();
     });
 
     it('should warn if aria-valuetext is provided', () => {
-      render(<Slider value={[20, 50]} aria-valuetext="hot" />);
-      expect(consoleErrorMock.args()[0][0]).to.include(
-        'you need to use the `getAriaValueText` prop instead of',
+      PropTypes.checkPropTypes(
+        Slider.Naked.propTypes,
+        { classes: {}, value: [20, 50], 'aria-valuetext': 'hot' },
+        'prop',
+        'MockedSlider',
+      );
+
+      expect(consoleErrorMock.callCount()).to.equal(1);
+      expect(consoleErrorMock.messages()[0]).to.include(
+        'Material-UI: You need to use the `getAriaValueText` prop instead of',
       );
     });
 
     it('should warn if aria-label is provided', () => {
-      render(<Slider value={[20, 50]} aria-label="hot" />);
-      expect(consoleErrorMock.args()[0][0]).to.include(
-        'you need to use the `getAriaLabel` prop instead of',
+      PropTypes.checkPropTypes(
+        Slider.Naked.propTypes,
+        { classes: {}, value: [20, 50], 'aria-label': 'hot' },
+        'prop',
+        'MockedSlider',
+      );
+
+      expect(consoleErrorMock.callCount()).to.equal(1);
+      expect(consoleErrorMock.messages()[0]).to.include(
+        'Material-UI: You need to use the `getAriaLabel` prop instead of',
       );
     });
 
@@ -514,8 +521,8 @@ describe('<Slider />', () => {
       const { setProps } = render(<Slider value={[20, 50]} />);
 
       setProps({ value: undefined });
-      expect(consoleErrorMock.args()[0][0]).to.include(
-        'A component is changing a controlled Slider to be uncontrolled.',
+      expect(consoleErrorMock.messages()[0]).to.include(
+        'Material-UI: A component is changing the controlled value state of Slider to be uncontrolled.',
       );
     });
 
@@ -523,14 +530,14 @@ describe('<Slider />', () => {
       const { setProps } = render(<Slider />);
 
       setProps({ value: [20, 50] });
-      expect(consoleErrorMock.args()[0][0]).to.include(
-        'A component is changing an uncontrolled Slider to be controlled.',
+      expect(consoleErrorMock.messages()[0]).to.include(
+        'Material-UI: A component is changing the uncontrolled value state of Slider to be controlled.',
       );
     });
   });
 
   it('should support getAriaValueText', () => {
-    const getAriaValueText = value => `${value}°C`;
+    const getAriaValueText = (value) => `${value}°C`;
     const { getAllByRole } = render(
       <Slider value={[20, 50]} getAriaValueText={getAriaValueText} />,
     );
@@ -541,12 +548,29 @@ describe('<Slider />', () => {
   });
 
   it('should support getAriaLabel', () => {
-    const getAriaLabel = index => `Label ${index}`;
+    const getAriaLabel = (index) => `Label ${index}`;
     const { getAllByRole } = render(<Slider value={[20, 50]} getAriaLabel={getAriaLabel} />);
     const sliders = getAllByRole('slider');
 
     expect(sliders[0]).to.have.attribute('aria-label', 'Label 0');
     expect(sliders[1]).to.have.attribute('aria-label', 'Label 1');
+  });
+
+  it('should allow customization of the marks', () => {
+    const { container } = render(
+      <Slider
+        marks={[
+          { value: 0, label: 0 },
+          { value: 20, label: 20 },
+          { value: 30, label: 30 },
+        ]}
+        defaultValue={0}
+      />,
+    );
+    expect(container.querySelectorAll(`.${classes.markLabel}`).length).to.equal(3);
+    expect(container.querySelectorAll(`.${classes.mark}`).length).to.equal(3);
+    expect(container.querySelectorAll(`.${classes.markLabel}[data-index="2"]`).length).to.equal(1);
+    expect(container.querySelectorAll(`.${classes.mark}[data-index="2"]`).length).to.equal(1);
   });
 
   describe('prop: ValueLabelComponent', () => {
@@ -562,7 +586,7 @@ describe('<Slider />', () => {
           value={10}
           ValueLabelComponent={ValueLabelComponent}
           valueLabelDisplay="on"
-          valueLabelFormat={n => n.toString(2)}
+          valueLabelFormat={(n) => n.toString(2)}
         />,
       );
 

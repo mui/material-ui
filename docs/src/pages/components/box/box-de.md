@@ -6,7 +6,7 @@ title: Box React Komponente
 
 <p class="description">Die Box-Komponente dient als Wrapper-Komponente für die meisten Anforderungen des CSS-Dienstprogramms.</p>
 
-Die Box-Komponenten packt [alle Stilfunktionen](/system/basics/#all-inclusive), die in `@material-ui/system` verfügbar sind. Es wird mit der [`styled()`](/styles/api/#styled-style-function-component) function aus `@material-ui/core/styles` erstellt.
+Die Box-Komponente kombiniert [alle Stilfunktionen](/system/basics/#all-inclusive), die in `@material-ui/system` verfügbar sind. Es wird mit der [`styled()`](/styles/api/#styled-style-function-component) function aus `@material-ui/core/styles` erstellt.
 
 ## Beispiel
 
@@ -14,7 +14,7 @@ Die Style-Funktion der [Palette](/system/palette/).
 
 ## Material-UI-Komponenten überschreiben
 
-Die Box-Komponente umschließt Ihre Komponente. Es erstellt ein neues DOM-Element, standardmäßig `<div>`, das mit der Eigenschaft `component` geändert werden kann. Angenommen, Sie möchten stattdessen ein `<span>` verwenden:
+Die Box-Komponente umschließt Ihre Komponente. Es erstellt ein neues DOM-Element, welches &ndash; sofern nicht anders im `component`-Attribut angegeben &ndash; ein `<div>`-Element ist. Angenommen, stattdessen soll ein `<span>`-Element verwendet werden:
 
 ```jsx
 <Box component="span" m={1}>
@@ -22,7 +22,7 @@ Die Box-Komponente umschließt Ihre Komponente. Es erstellt ein neues DOM-Elemen
 </Box>
 ```
 
-Dies funktioniert hervorragend, wenn die Änderungen für ein neues DOM-Element isoliert werden können. Zum Beispiel können Sie den Rand auf diese Weise ändern.
+Dies funktioniert hervorragend, wenn die Änderungen für ein neues DOM-Element isoliert werden können. Zum Beispiel kann der Rand auf diese Weise verändert werden.
 
 Manchmal müssen Sie jedoch das zugrunde liegende DOM-Element als Ziel festlegen. Sie möchten beispielsweise die Textfarbe des Buttons ändern. Die Button-Komponente definiert ihre eigene Farbe. CSS-Vererbung hilft hier nicht. Um das Problem zu umgehen, haben Sie zwei Möglichkeiten:
 

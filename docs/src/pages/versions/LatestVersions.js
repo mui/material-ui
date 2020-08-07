@@ -30,7 +30,7 @@ function LatestVersions(props) {
                 variant="body2"
                 color="secondary"
                 rel="nofollow"
-                href="https://material-ui.netlify.com/"
+                href="https://material-ui.netlify.app/"
               >
                 Documentation
               </Link>
@@ -54,7 +54,7 @@ function LatestVersions(props) {
                 variant="body2"
                 color="secondary"
                 rel="nofollow"
-                href="https://next--material-ui.netlify.com/"
+                href="https://next--material-ui.netlify.app/"
               >
                 Documentation
               </Link>

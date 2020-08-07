@@ -8,7 +8,7 @@ import Fab from '@material-ui/core/Fab';
 import Tooltip from '@material-ui/core/Tooltip';
 import { capitalize } from '@material-ui/core/utils';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the Fab component. */
   fab: {
     margin: 8,
@@ -54,6 +54,7 @@ export const styles = theme => ({
     boxShadow: theme.shadows[1],
     color: theme.palette.text.secondary,
     padding: '4px 16px',
+    wordBreak: 'keep-all',
   },
   /* Styles applied to the root if `tooltipOpen={true}` and `tooltipPlacement="left"`` */
   tooltipPlacementLeft: {
@@ -184,15 +185,16 @@ SpeedDialAction.propTypes = {
    */
   icon: PropTypes.node,
   /**
-   * @ignore
+   * This prop is used to help implement the accessibility logic.
+   * If you don't provide this prop. It falls back to a randomly generated id.
    */
   id: PropTypes.string,
   /**
-   * @ignore
+   * If `true`, the tooltip is shown.
    */
   open: PropTypes.bool,
   /**
-   * Classes applied to the [`Tooltip`](/api/tooltip/) element.
+   * `classes` prop applied to the [`Tooltip`](/api/tooltip/) element.
    */
   TooltipClasses: PropTypes.object,
   /**

@@ -5,11 +5,11 @@ import Head from 'docs/src/modules/components/Head';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import AppContainer from 'docs/src/modules/components/AppContainer';
 import Link from '@material-ui/core/Link';
-import useMarkdownDocs from 'docs/src/modules/components/useMarkdownDocs';
-import { getHeaders, getTitle, getDescription } from 'docs/src/modules/utils/parseMarkdown';
 import AppFooter from 'docs/src/modules/components/AppFooter';
+import { exactProp } from '@material-ui/utils';
+import MarkdownElement from './MarkdownElement';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     flexGrow: 1,
   },
@@ -21,47 +21,35 @@ const styles = theme => ({
     marginBottom: theme.spacing(20),
     maxWidth: 680 + theme.spacing(8 + 4),
     '& .markdownElement': {
-      paddingRight: theme.spacing(4),
       fontSize: 18,
       lineHeight: 1.7,
+      [theme.breakpoints.up('md')]: {
+        paddingRight: theme.spacing(4),
+      },
     },
-    '& img': {
+    '& img, & video': {
       display: 'block',
       margin: 'auto',
     },
     '& .blog-description': {
       fontSize: theme.typography.pxToRem(14),
       textAlign: 'center',
+      color: theme.palette.text.secondary,
+      '& a': {
+        color: theme.palette.text.secondary,
+        textDecoration: 'underline',
+      },
     },
   },
 });
 
-function TopLayoutCompany(props) {
-  const {
-    classes,
-    markdown: markdownProp,
-    markdownLocation: markdownLocationProp,
-    req,
-    reqPrefix,
-    reqSource,
-  } = props;
-
-  const markdownDocs = useMarkdownDocs({
-    markdown: markdownProp,
-    markdownLocation: markdownLocationProp,
-    req,
-    reqPrefix,
-    reqSource,
-  });
-
-  const headers = getHeaders(markdownDocs.markdown);
+function TopLayoutBlog(props) {
+  const { classes, docs } = props;
+  const { description, rendered, title } = docs.en;
 
   return (
-    <AppFrame>
-      <Head
-        title={`${headers.title || getTitle(markdownDocs.markdown)} - Material-UI`}
-        description={headers.description || getDescription(markdownDocs.markdown)}
-      />
+    <AppFrame disableDrawer>
+      <Head title={`${title} - Material-UI`} description={description} />
       <div className={classes.root}>
         <AppContainer className={classes.container}>
           <Link
@@ -72,7 +60,9 @@ function TopLayoutCompany(props) {
           >
             {'< Back to blog'}
           </Link>
-          {markdownDocs.element}
+          {rendered.map((chunk, index) => {
+            return <MarkdownElement key={index} renderedMarkdown={chunk} />;
+          })}
         </AppContainer>
         <AppFooter />
       </div>
@@ -80,15 +70,13 @@ function TopLayoutCompany(props) {
   );
 }
 
-TopLayoutCompany.propTypes = {
+TopLayoutBlog.propTypes = {
   classes: PropTypes.object.isRequired,
-  markdown: PropTypes.string,
-  // You can define the direction location of the markdown file.
-  // Otherwise, we try to determine it with an heuristic.
-  markdownLocation: PropTypes.string,
-  req: PropTypes.func,
-  reqPrefix: PropTypes.string,
-  reqSource: PropTypes.func,
+  docs: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(TopLayoutCompany);
+if (process.env.NODE_ENV !== 'production') {
+  TopLayoutBlog.propTypes = exactProp(TopLayoutBlog.propTypes);
+}
+
+export default withStyles(styles)(TopLayoutBlog);

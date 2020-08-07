@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/docs",
-  "version": "4.0.0-beta.2",
+  "version": "4.0.0-beta.3",
   "private": false,
   "author": "Material-UI Team",
   "description": "Material-UI Docs - Documentation building blocks.",
@@ -24,15 +24,15 @@
   "homepage": "https://github.com/mui-org/material-ui/tree/master/packages/material-ui-lab",
   "scripts": {
     "build": "yarn build:cjs && yarn build:esm && yarn build:copy-files",
-    "build:cjs": "cross-env NODE_ENV=production BABEL_ENV=cjs babel --config-file ../../babel.config.js ./src --out-dir ./build --ignore \"**/*.test.js\"",
-    "build:esm": "cross-env NODE_ENV=production BABEL_ENV=esm babel --config-file ../../babel.config.js ./src --out-dir ./build/esm --ignore \"**/*.test.js\"",
+    "build:cjs": "node ../../scripts/build cjs",
+    "build:esm": "node ../../scripts/build esm",
     "build:copy-files": "node ../../scripts/copy-files.js",
     "prebuild": "rimraf build",
     "release": "yarn build && npm publish build --tag latest",
     "test": "exit 0"
   },
   "peerDependencies": {
-    "@material-ui/core": "^4.0.1",
+    "@material-ui/core": "^4.0.0",
     "@types/react": "^16.8.6",
     "react": "^16.8.0",
     "react-dom": "^16.8.0"
@@ -44,11 +44,8 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.4.4",
-    "@material-ui/utils": "^4.1.0",
-    "clsx": "^1.0.4",
-    "marked": "^0.8.0",
-    "nprogress": "^0.2.0",
-    "prismjs": "^1.17.1"
+    "@material-ui/utils": "^4.9.6",
+    "nprogress": "^0.2.0"
   },
   "devDependencies": {},
   "publishConfig": {

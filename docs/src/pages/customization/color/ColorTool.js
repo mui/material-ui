@@ -18,7 +18,7 @@ const defaults = { primary: '#2196f3', secondary: '#f50057' };
 const hues = Object.keys(colors).slice(1, 17);
 const shades = [900, 800, 700, 600, 500, 400, 300, 200, 100, 50, 'A700', 'A400', 'A200', 'A100'];
 
-const styles = theme => ({
+const styles = (theme) => ({
   radio: {
     padding: 0,
   },
@@ -79,16 +79,16 @@ function ColorTool(props) {
     secondaryShade: 11,
   });
 
-  const handleChangeColor = name => event => {
-    const isRgb = string => /rgb\([0-9]{1,3}\s*,\s*[0-9]{1,3}\s*,\s*[0-9]{1,3}\)/i.test(string);
+  const handleChangeColor = (name) => (event) => {
+    const isRgb = (string) => /rgb\([0-9]{1,3}\s*,\s*[0-9]{1,3}\s*,\s*[0-9]{1,3}\)/i.test(string);
 
-    const isHex = string => /^#?([0-9a-f]{3})$|^#?([0-9a-f]){6}$/i.test(string);
+    const isHex = (string) => /^#?([0-9a-f]{3})$|^#?([0-9a-f]){6}$/i.test(string);
 
     let {
       target: { value: color },
     } = event;
 
-    setState(prevState => ({
+    setState((prevState) => ({
       ...prevState,
       [`${name}Input`]: color,
     }));
@@ -105,17 +105,15 @@ function ColorTool(props) {
     }
 
     if (isValidColor) {
-      setState(prevState => ({
+      setState((prevState) => ({
         ...prevState,
         [name]: color,
       }));
     }
   };
 
-  const handleChangeHue = name => event => {
-    const {
-      target: { value: hue },
-    } = event;
+  const handleChangeHue = (name) => (event) => {
+    const hue = event.target.value;
     const color = colors[hue][shades[state[`${name}Shade`]]];
 
     setState({
@@ -126,7 +124,7 @@ function ColorTool(props) {
     });
   };
 
-  const handleChangeShade = name => (event, shade) => {
+  const handleChangeShade = (name) => (event, shade) => {
     const color = colors[state[`${name}Hue`]][shades[shade]];
     setState({
       ...state,
@@ -156,12 +154,12 @@ function ColorTool(props) {
     document.cookie = 'paletteColors=;path=/;max-age=0';
   };
 
-  const colorBar = color => {
+  const colorBar = (color) => {
     const background = theme.palette.augmentColor({ main: color });
 
     return (
       <Grid container className={classes.colorBar}>
-        {['dark', 'main', 'light'].map(key => (
+        {['dark', 'main', 'light'].map((key) => (
           <div
             className={classes.colorSquare}
             style={{ backgroundColor: background[key] }}
@@ -179,25 +177,17 @@ function ColorTool(props) {
     );
   };
 
-  const colorPicker = intent => {
+  const colorPicker = (intent) => {
     const intentInput = state[`${intent}Input`];
     const intentShade = state[`${intent}Shade`];
     const color = state[`${intent}`];
 
     return (
       <Grid item xs={12} sm={6} md={4}>
-        <Typography gutterBottom variant="h6">
+        <Typography component="label" gutterBottom htmlFor={intent} variant="h6">
           {capitalize(intent)}
         </Typography>
-        <Input
-          id={intent}
-          value={intentInput}
-          onChange={handleChangeColor(intent)}
-          inputProps={{
-            'aria-label': `${capitalize(intent)} color`,
-          }}
-          fullWidth
-        />
+        <Input id={intent} value={intentInput} onChange={handleChangeColor(intent)} fullWidth />
         <div className={classes.sliderContainer}>
           <Typography id={`${intent}ShadeSliderLabel`}>Shade:</Typography>
           <Slider
@@ -212,7 +202,7 @@ function ColorTool(props) {
           <Typography>{shades[intentShade]}</Typography>
         </div>
         <div className={classes.swatch}>
-          {hues.map(hue => {
+          {hues.map((hue) => {
             const shade =
               intent === 'primary' ? shades[state.primaryShade] : shades[state.secondaryShade];
             const backgroundColor = colors[hue][shade];

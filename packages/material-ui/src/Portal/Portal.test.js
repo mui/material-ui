@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
@@ -197,7 +196,7 @@ describe('<Portal />', () => {
 
   it('should call ref after child effect', () => {
     const callOrder = [];
-    const handleRef = node => {
+    const handleRef = (node) => {
       if (node) {
         callOrder.push('ref');
       }

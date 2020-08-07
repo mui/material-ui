@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Button, { ButtonProps } from '@material-ui/core/Button';
 import { Link as ReactRouterLink, LinkProps } from 'react-router-dom';
+import { expectType } from '@material-ui/types';
 
 const log = console.log;
 
@@ -25,7 +26,7 @@ const ButtonTest = () => (
       Title
     </Button>
     <Button component="a">Simple Link</Button>
-    <Button component={props => <a {...props} />}>Complex Link</Button>
+    <Button component={(props) => <a {...props} />}>Complex Link</Button>
     <Button component={ReactRouterLink} to="/open-collective">
       Link
     </Button>
@@ -36,11 +37,11 @@ const ButtonTest = () => (
     <Button href="/open-collective">Link</Button>
     // By default the underlying component is a button element:
     <Button
-      ref={elem => {
-        elem; // $ExpectType HTMLButtonElement | null
+      ref={(elem) => {
+        expectType<HTMLButtonElement | null, typeof elem>(elem);
       }}
-      onClick={e => {
-        e; // $ExpectType MouseEvent<HTMLButtonElement, MouseEvent>
+      onClick={(e) => {
+        expectType<React.MouseEvent<HTMLButtonElement, MouseEvent>, typeof e>(e);
         log(e);
       }}
     >
@@ -49,11 +50,11 @@ const ButtonTest = () => (
     // If an href is provided, an anchor is used:
     <Button
       href="/open-collective"
-      ref={elem => {
-        elem; // $ExpectType HTMLAnchorElement | null
+      ref={(elem) => {
+        expectType<HTMLAnchorElement | null, typeof elem>(elem);
       }}
-      onClick={e => {
-        e; // $ExpectType MouseEvent<HTMLAnchorElement, MouseEvent>
+      onClick={(e) => {
+        expectType<React.MouseEvent<HTMLAnchorElement, MouseEvent>, typeof e>(e);
         log(e);
       }}
     >
@@ -62,11 +63,11 @@ const ButtonTest = () => (
     // If a component prop is specified, use that:
     <Button<'div'>
       component="div"
-      ref={elem => {
-        elem; // $ExpectType HTMLDivElement | null
+      ref={(elem) => {
+        expectType<HTMLDivElement | null, typeof elem>(elem);
       }}
-      onClick={e => {
-        e; // $ExpectType MouseEvent<HTMLDivElement, MouseEvent>
+      onClick={(e) => {
+        expectType<React.MouseEvent<HTMLDivElement, MouseEvent>, typeof e>(e);
         log(e);
       }}
     >
@@ -74,7 +75,7 @@ const ButtonTest = () => (
     </Button>
     {
       // Can't have an onClick handler if the overriding component doesn't specify one:
-      // $ExpectError
+      // @ts-expect-error
       <Button<typeof TestOverride> component={TestOverride} onClick={log}>
         TestOverride
       </Button>

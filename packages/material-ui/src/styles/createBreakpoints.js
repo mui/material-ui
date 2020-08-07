@@ -48,10 +48,12 @@ export default function createBreakpoints(breakpoints) {
       `@media (min-width:${
         typeof values[start] === 'number' ? values[start] : start
       }${unit}) and ` +
-      `(max-width:${(endIndex !== -1 && typeof values[keys[endIndex + 1]] === 'number'
-        ? values[keys[endIndex + 1]]
-        : end) -
-        step / 100}${unit})`
+      `(max-width:${
+        (endIndex !== -1 && typeof values[keys[endIndex + 1]] === 'number'
+          ? values[keys[endIndex + 1]]
+          : end) -
+        step / 100
+      }${unit})`
     );
   }
 

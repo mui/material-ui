@@ -6,8 +6,9 @@ export interface PortalProps {
    */
   children?: React.ReactNode;
   /**
-   * A node, component instance, or function that returns either.
+   * A HTML element, component instance, or function that returns either.
    * The `container` will have the portal children appended to it.
+   *
    * By default, it uses the body of the top-level document object,
    * so it's simply `document.body` most of the time.
    */
@@ -25,4 +26,15 @@ export interface PortalProps {
   onRendered?: () => void;
 }
 
+/**
+ * Portals provide a first-class way to render children into a DOM node
+ * that exists outside the DOM hierarchy of the parent component.
+ * Demos:
+ *
+ * - [Portal](https://material-ui.com/components/portal/)
+ *
+ * API:
+ *
+ * - [Portal API](https://material-ui.com/api/portal/)
+ */
 export default function Portal(props: PortalProps): JSX.Element;

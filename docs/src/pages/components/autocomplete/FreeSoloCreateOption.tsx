@@ -3,7 +3,7 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete';
 
-const filter = createFilterOptions();
+const filter = createFilterOptions<FilmOptionType>();
 
 export default function FreeSoloCreateOption() {
   const [value, setValue] = React.useState<FilmOptionType | null>(null);
@@ -11,19 +11,24 @@ export default function FreeSoloCreateOption() {
   return (
     <Autocomplete
       value={value}
-      onChange={(event: any, newValue: FilmOptionType | null) => {
-        if (newValue && newValue.inputValue) {
+      onChange={(event, newValue) => {
+        if (typeof newValue === 'string') {
+          setValue({
+            title: newValue,
+          });
+        } else if (newValue && newValue.inputValue) {
+          // Create a new value from the user input
           setValue({
             title: newValue.inputValue,
           });
-          return;
+        } else {
+          setValue(newValue);
         }
-
-        setValue(newValue);
       }}
       filterOptions={(options, params) => {
-        const filtered = filter(options, params) as FilmOptionType[];
+        const filtered = filter(options, params);
 
+        // Suggest the creation of a new value
         if (params.inputValue !== '') {
           filtered.push({
             inputValue: params.inputValue,
@@ -33,22 +38,27 @@ export default function FreeSoloCreateOption() {
 
         return filtered;
       }}
+      selectOnFocus
+      clearOnBlur
+      handleHomeEndKeys
       id="free-solo-with-text-demo"
-      options={top100Films as FilmOptionType[]}
-      getOptionLabel={option => {
-        // e.g value selected with enter, right from the input
+      options={top100Films}
+      getOptionLabel={(option) => {
+        // Value selected with enter, right from the input
         if (typeof option === 'string') {
           return option;
         }
+        // Add "xxx" option created dynamically
         if (option.inputValue) {
           return option.inputValue;
         }
+        // Regular option
         return option.title;
       }}
-      renderOption={option => option.title}
+      renderOption={(option) => option.title}
       style={{ width: 300 }}
       freeSolo
-      renderInput={params => (
+      renderInput={(params) => (
         <TextField {...params} label="Free solo with text demo" variant="outlined" />
       )}
     />
@@ -62,7 +72,7 @@ interface FilmOptionType {
 }
 
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
-const top100Films = [
+const top100Films: FilmOptionType[] = [
   { title: 'The Shawshank Redemption', year: 1994 },
   { title: 'The Godfather', year: 1972 },
   { title: 'The Godfather: Part II', year: 1974 },

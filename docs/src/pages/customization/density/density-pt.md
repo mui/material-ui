@@ -92,4 +92,4 @@ const theme = createMuiTheme({
 });
 ```
 
-{{"demo": "pages/customization/density/DensityTool.js", "hideHeader": true}}
+{{"demo": "pages/customization/density/DensityTool.js", "hideToolbar": true}}

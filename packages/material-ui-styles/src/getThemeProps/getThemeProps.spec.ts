@@ -22,8 +22,8 @@ function Text(props: TextProps) {
 
 function Button(props: ButtonProps) {
   const { size } = getThemeProps({ name: 'Button', props });
-  // no theme provided
-  const { sigil } = getThemeProps({ name: 'Button', props }); // $ExpectError
+  // @ts-expect-error no theme provided
+  const { sigil } = getThemeProps({ name: 'Button', props });
 }
 
 function ThemedButton(props: ButtonProps) {

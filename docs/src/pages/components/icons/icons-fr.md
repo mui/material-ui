@@ -13,13 +13,37 @@ Material-UI provides icons support in three ways:
 1. With the [SvgIcon](#svgicon) component, a React wrapper for custom SVG icons.
 1. With the [Icon](#icon-font-icons) component, a React wrapper for custom font icons.
 
-## Icônes Material Ui
+## Icônes Material
 
 Material Design has standardized over 1,100 official icons, each in five different "themes" (see below). For each SVG icon, we export the respective React component from the @material-ui/icons package. You can [search the full list of these icons](/components/material-icons/).
 
+### Installation
+
+Installez le package dans votre répertoire de projet avec:
+
+```sh
+// with npm
+npm install @material-ui/icons
+
+// with yarn
+yarn add @material-ui/icons
+```
+
+These components use the Material-UI SvgIcon component to render the SVG path for each icon, and so they have a peer-dependency on the next release of Material-UI.
+
+If you are not already using Material-UI in your project, you can add it with:
+
+```sh
+// avec npm
+npm install @material-ui/core
+
+// avec yarn
+yarn add @material-ui/core
+```
+
 ### Utilisation
 
-Install `@material-ui/icons`. Import icons using one of these two options:
+Import icons using one of these two options:
 
 - Option 1:
 
@@ -76,18 +100,32 @@ function HomeIcon(props) {
 
 ### Component prop
 
-You can use the `SvgIcon` wrapper even if your icons are saved the `.svg` format. [svgr](https://github.com/smooth-code/svgr) has loaders to import svg files and use them as React components. For instance, with webpack:
+You can use the `SvgIcon` wrapper even if your icons are saved in the `.svg` format. [svgr](https://github.com/smooth-code/svgr) has loaders to import SVG files and use them as React components. For example, with webpack:
 
-**webpack.config.js**
-```js
+```jsx
+// webpack.config.js
 {
   test: /\.svg$/,
   use: ['@svgr/webpack'],
 }
+
+// ---
+import StarIcon from './star.svg';
+
+<SvgIcon component={StarIcon} viewBox="0 0 600 476.6" />
 ```
 
+It's also possible to use it with "url-loader" or "file-loader". It's the approach used by Create React App.
+
 ```jsx
-import StarIcon from './star.svg';
+// webpack.config.js
+{
+  test: /\.svg$/,
+  use: ['@svgr/webpack', 'url-loader'],
+}
+
+// ---
+import { ReactComponent as StarIcon } from './star.svg';
 
 <SvgIcon component={StarIcon} viewBox="0 0 600 476.6" />
 ```
@@ -162,11 +200,10 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 
 // ...
 
-<IconButton aria-label="delete">
-  <SvgIcon>
-    <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z" />
-  </SvgIcon>
-</IconButton>
+import IconButton from '@material-ui/core/IconButton';
+import SvgIcon from '@material-ui/core/SvgIcon';
+
+// ...
 ```
 
 ### Icônes de polices décoratives
@@ -183,8 +220,10 @@ import Typography from '@material-ui/core/Typography';
 
 // ...
 
-<Icon>add_circle</Icon>
-<Typography variant="srOnly">Créez un utilisateur</Typography>
+import Icon from '@material-ui/core/Icon';
+import Typography from '@material-ui/core/Typography';
+
+// ...
 ```
 
 ### Référence

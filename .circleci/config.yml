@@ -34,7 +34,7 @@ commands:
           command: |
             node scripts/use-react-dist-tag
             # log a patch for maintainers who want to check out this change
-            git diff HEAD
+            git --no-pager diff HEAD
       - restore_cache:
           keys:
             - v2-yarn-sha-{{ checksum "yarn.lock" }}
@@ -107,23 +107,28 @@ jobs:
       - checkout
       - install_js
       - run:
+          name: '`yarn prettier` changes committed?'
+          command: yarn prettier check-changed
+      - run:
           name: Generate PropTypes
           command: yarn proptypes --disable-cache
       - run:
           name: '`yarn proptypes` changes committed?'
           command: git diff --exit-code
       - run:
-          name: Can we generate the documentation?
+          name: Generate the documentation
           command: yarn docs:api
       - run:
           name: '`yarn docs:api` changes committed?'
           command: git diff --exit-code
       - run:
-          name: Check if yarn prettier was run
-          command: yarn prettier check-changed
-      - run:
           name: Lint
           command: yarn lint:ci
+      - run:
+          name: '`yarn extract-error-codes` changes committed?'
+          command: |
+            yarn extract-error-codes
+            git diff --exit-code
       - run:
           name: Lint JSON
           command: yarn --silent jsonlint
@@ -134,9 +139,9 @@ jobs:
       - install_js
       - run:
           name: Transpile TypeScript demos
-          command: yarn workspace docs typescript:transpile --disable-cache
+          command: yarn docs:typescript:formatted --disable-cache
       - run:
-          name: Are the compiled TypeScript demos equivalent to the JavaScript demos?
+          name: '`yarn docs:typescript:formatted` changes committed?'
           command: git add -A && git diff --exit-code --staged
       - run:
           name: Tests TypeScript definitions
@@ -152,13 +157,19 @@ jobs:
           command: |
             node scripts/use-typescript-dist-tag
             # log a patch for maintainers who want to check out this change
-            git diff HEAD
+            git --no-pager diff HEAD
       - install_js
       - run:
           name: Tests TypeScript definitions
-          # we want to see errors in all packages.
-          # without --no-bail we only see at most a single failing package
-          command: yarn typescript --no-bail
+          command: |
+            # ignore build failures
+            # it's expected that typescript@next fails since the lines of the errors
+            # change frequently. This build is monitored regardless of its status
+            set +e
+            # we want to see errors in all packages.
+            # without --no-bail we only see at most a single failing package
+            yarn typescript --no-bail
+            exit 0
   test_browser:
     <<: *defaults
     steps:
@@ -168,6 +179,10 @@ jobs:
       - run:
           name: Tests real browsers
           command: yarn test:karma
+      - store_artifacts:
+          # hardcoded in karma-webpack
+          path: /tmp/_karma_webpack_
+          destination: artifact-file
       - run:
           name: Can we generate the @material-ui/core umd build?
           command: yarn workspace @material-ui/core build:umd

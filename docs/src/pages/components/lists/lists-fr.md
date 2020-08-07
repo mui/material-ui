@@ -1,5 +1,5 @@
 ---
-title: Composant React Liste
+title: Liste des composants React
 components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
 ---
 
@@ -53,13 +53,13 @@ Vous devez modifier l'alignement des éléments de la liste lorsque vous affiche
 
 {{"demo": "pages/components/lists/AlignItemsList.js", "bg": true}}
 
-## Liste et contrôles
+## Controles de liste
 
 ### Case à cocher
 
 Une case à cocher peut être une action principale ou secondaire.
 
-The checkbox is the primary action and the state indicator for the list item. The comment button is a secondary action and a separate target.
+La case a cocher est l'action primaire et l'indicateur d'état pour l'élément liste. Le bouton comment est une action secondaire et une cible séparée.
 
 {{"demo": "pages/components/lists/CheckboxList.js", "bg": true}}
 
@@ -91,8 +91,8 @@ Dans l'exemple suivant, nous montrons comment utiliser [react-virtualized](https
 
 {{"demo": "pages/components/lists/VirtualizedList.js", "bg": true}}
 
-The use of [react-window](https://github.com/bvaughn/react-window) when possible is encouraged. If this library doesn't cover your use case, you should consider using [react-virtualized](https://github.com/bvaughn/react-virtualized), then alternatives like [react-virtuoso](https://github.com/petyosi/react-virtuoso).
+If this library doesn't cover your use case, you should consider using [react-virtualized](https://github.com/bvaughn/react-virtualized), then alternatives like [react-virtuoso](https://github.com/petyosi/react-virtuoso). The use of [react-window](https://github.com/bvaughn/react-window) when possible is encouraged.
 
 ## Personnalisation
 
-👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/menu-list).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/list-item).

@@ -12,7 +12,7 @@ Um die Konsistenz zwischen Apps zu erhöhen, stehen helle und dunkle Themenarten
 
 Wenn Sie das Design anpassen möchten, müssen Sie die `ThemeProvider` Komponente verwenden, um ein Theme in Ihre Anwendung einzufügen. Dies ist jedoch optional. Material-UI-Komponenten werden mit einem Standarddesign geliefert.
 
-`ThemeProvider` stützt sich auf die Kontext - Funktion von React um das Theme an die Komponenten zu übergeben. Deswegen müssen Sie den `ThemeProvider` als ein übergeordnetes Element der Komponenten, die Sie anpassen möchten, setzen. Mehr darüber erfahren Sie im [API](/styles/api/#themeprovider) Abschnitt.
+Mehr darüber erfahren Sie im [API](/styles/api/#themeprovider) Abschnitt. `ThemeProvider` relies on the [context feature of React](https://reactjs.org/docs/context.html) to pass the theme down to the components, so you need to make sure that `ThemeProvider` is a parent of the components you are trying to customize.
 
 ## Theme-Konfigurationsvariablen
 
@@ -29,7 +29,7 @@ Sie können den [Standard-Themenbereich](/customization/default-theme/) auscheck
 
 ### Benutzerdefinierte Variablen
 
-When using Material-UI's theme with the [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider). kann praktisch sein, dem Theme weitere Variablen hinzuzufügen, damit Sie sie überall verwenden können. Zum Beispiel:
+When using Material-UI's theme with the [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider), it can be convenient to add additional variables to the theme so you can use them everywhere. Zum Beispiel:
 
 {{"demo": "pages/customization/theming/CustomStyles.js"}}
 
@@ -78,11 +78,12 @@ import green from '@material-ui/core/colors/green';
 
 const theme = createMuiTheme({
   palette: {
-    primary: purple,
-    secondary: green,
-  },
-  status: {
-    danger: 'orange',
+    primary: {
+      main: purple[500],
+    },
+    secondary: {
+      main: green[500],
+    },
   },
 });
 ```
@@ -96,7 +97,7 @@ Generieren Sie responsive Typografieeinstellungen basierend auf den erhaltenen O
 1. `theme` (*Object*): Das zu verbessernde Themeobjekt.
 2. `options` (*Object* [optional]):
 
-- `breakpoints` (*Array\<String\>* [optional]): Default to `['sm', 'md', 'lg']`. Array von [Haltepunkten](/customization/breakpoints/) (Bezeichner).
+- Array von [Haltepunkten](/customization/breakpoints/) (Bezeichner). Array von [Haltepunkten](/customization/breakpoints/) (Bezeichner).
 - `disableAlign` (*Boolean* [optional]): Standardmäßig auf `false`. Ob sich die Schriftgrößen geringfügig ändern, um die Höhen der Linie beizubehalten und an das 4px-Linienhöhenraster von Material Design anzupassent. Dies erfordert eine einheitlose Zeilenhöhe in den Stilen des Designs.
 - `factor` (*Nummer* [optional]): Standardmäßig auf `2`. Dieser Wert bestimmt die Stärke der Größenänderung der Schriftgröße. Je höher der Wert, desto geringer ist der Unterschied zwischen den Schriftgrößen auf kleinen Bildschirmen. Je niedriger der Wert, desto größer die Schriftgröße für kleine Bildschirme. The value must be greater than 1.
 - `variants` (*Array\<String\>* [optional]): Default to all. Die zu behandelnden Typografie-Varianten.
@@ -112,4 +113,99 @@ import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
 
 let theme = createMuiTheme();
 theme = responsiveFontSizes(theme);
+```
+
+### `unstable_createMuiStrictModeTheme(options, ...args) => theme`
+
+**WARNING**: Do not use this method in production.
+
+Generates a theme that reduces the amount of warnings inside [`React.StrictMode`](https://reactjs.org/docs/strict-mode.html) like `Warning: findDOMNode is deprecated in StrictMode`.
+
+#### Requirements
+
+Using `unstable_createMuiStrictModeTheme` restricts the usage of some of our components.
+
+##### `component` prop
+
+The component used in the `component` prop of the following components need to forward their ref:
+
+- [`Collapse`](/api/collapse/)
+
+Otherwise you'll encounter `Error: Function component cannot be given refs`. See also: [Composition: Caveat with refs](/guides/composition/#caveat-with-refs).
+
+##### `children` prop
+
+The `children` of the following components need to forward their ref:
+
+- [`Fade`](/api/fade/)
+- [`Grow`](/api/grow/)
+- [`Zoom`](/api/zoom/)
+
+```diff
+-function TabPanel(props) {
++const TabPanel = React.forwardRef(function TabPanel(props, ref) {
+  return <div role="tabpanel" {...props} ref={ref} />;
+-}
++});
+
+function Tabs() {
+  return <Fade><TabPanel>...</TabPanel></Fade>;
+}
+```
+
+Otherwise the component will not animate properly and you'll encounter the warning that `Function components cannot be given refs`.
+
+#### Disable StrictMode compatibility partially
+
+If you still see `Error: Function component cannot be given refs` then you're probably using a third-party component for which the previously mentioned fixes aren't applicable. You can fix this by applying `disableStrictModeCompat`. You'll see deprecation warnings again but these are only warnings while `Function component cannot be given refs` actually breaks the documented behavior of our components.
+
+```diff
+import { unstable_createMuiStrictModeTheme } from '@material-ui/core/styles';
+
+function ThirdPartyTabPanel(props) {
+  return <div {...props} role="tabpanel">
+}
+
+const theme = unstable_createMuiStrictModeTheme();
+
+function Fade() {
+  return (
+    <React.StrictMode>
+      <ThemeProvider theme={theme}>
+
+-        <Fade>
++        <Fade disableStrictModeCompat>
+          <ThirdPartyTabPanel />
+        </Fade>
+      </ThemeProvider>
+    </React.StrictMode>,
+  );
+}
+```
+
+#### Parameter
+
+1. `options` (*Object*): Nimmt ein unvollständiges Themeobjekt auf und fügt die fehlenden Teile hinzu.
+2. `...args` (*Array*): Deep merge the arguments with the about to be returned theme.
+
+#### Rückgabewerte
+
+`theme` (*Object*): Ein vollständiges, gebrauchsfertiges Themeobjekt.
+
+#### Beispiele
+
+```js
+import { unstable_createMuiStrictModeTheme } from '@material-ui/core/styles';
+
+const theme = unstable_createMuiStrictModeTheme();
+
+function App() {
+  return (
+    <React.StrictMode>
+      <ThemeProvider theme={theme}>
+        <LandingPage />
+      </ThemeProvider>
+    </React.StrictMode>,
+  );
+}
 ```

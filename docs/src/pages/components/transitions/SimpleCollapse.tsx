@@ -33,7 +33,7 @@ export default function SimpleCollapse() {
   const [checked, setChecked] = React.useState(false);
 
   const handleChange = () => {
-    setChecked(prev => !prev);
+    setChecked((prev) => !prev);
   };
 
   return (

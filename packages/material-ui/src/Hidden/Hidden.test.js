@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { createShallow } from '@material-ui/core/test-utils';
 import Hidden from './Hidden';
 import HiddenJs from './HiddenJs';
@@ -15,12 +15,12 @@ describe('<Hidden />', () => {
   describe('prop: implementation', () => {
     it('should use HiddenJs by default', () => {
       const wrapper = shallow(<Hidden>Hello</Hidden>);
-      assert.strictEqual(wrapper.find(HiddenJs).length, 1);
+      expect(wrapper.find(HiddenJs).length).to.equal(1);
     });
 
     it('should change the implementation', () => {
       const wrapper = shallow(<Hidden implementation="css">Hello</Hidden>);
-      assert.strictEqual(wrapper.find(HiddenCss).length, 1);
+      expect(wrapper.find(HiddenCss).length).to.equal(1);
     });
   });
 });

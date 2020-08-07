@@ -11,7 +11,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     margin: 'auto',
   },
@@ -30,11 +30,11 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function not(a, b) {
-  return a.filter(value => b.indexOf(value) === -1);
+  return a.filter((value) => b.indexOf(value) === -1);
 }
 
 function intersection(a, b) {
-  return a.filter(value => b.indexOf(value) !== -1);
+  return a.filter((value) => b.indexOf(value) !== -1);
 }
 
 function union(a, b) {
@@ -50,7 +50,7 @@ export default function TransferList() {
   const leftChecked = intersection(checked, left);
   const rightChecked = intersection(checked, right);
 
-  const handleToggle = value => () => {
+  const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
 
@@ -63,9 +63,9 @@ export default function TransferList() {
     setChecked(newChecked);
   };
 
-  const numberOfChecked = items => intersection(checked, items).length;
+  const numberOfChecked = (items) => intersection(checked, items).length;
 
-  const handleToggleAll = items => () => {
+  const handleToggleAll = (items) => () => {
     if (numberOfChecked(items) === items.length) {
       setChecked(not(checked, items));
     } else {
@@ -103,7 +103,7 @@ export default function TransferList() {
       />
       <Divider />
       <List className={classes.list} dense component="div" role="list">
-        {items.map(value => {
+        {items.map((value) => {
           const labelId = `transfer-list-all-item-${value}-label`;
 
           return (

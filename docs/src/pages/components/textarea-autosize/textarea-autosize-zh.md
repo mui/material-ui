@@ -1,17 +1,17 @@
 ---
-title: Textarea Autosize React component
+title: React 自适应文本框组件
 components: TextareaAutosize
 ---
 
-# Textarea 自动调整大小
+# Textarea Autosize 自适应文本框
 
-<p class="description">A textarea component for React which grows with content.</p>
+<p class="description">一个自适应内容大小的 React 文本框组件。</p>
 
-- 📦 [2.1kB 已压缩的包](/size-snapshot)
+- 📦 [2.1kB 的压缩包](/size-snapshot)
 
-The `TextareaAutosize` component automatically adjust the textarea height on keyboard and window resize events.
+当触发键盘和窗口大小事件的时候，`TextareaAutosize` 组件将自动调整的文本框的高度。
 
-## 空白
+## 空白的文本框
 
 {{"demo": "pages/components/textarea-autosize/EmptyTextarea.js"}}
 

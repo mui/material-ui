@@ -8,7 +8,7 @@ import Switch from '@material-ui/core/Switch';
 export default function DynamicThemeNesting() {
   const [color, setColor] = React.useState('default');
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     setColor(event.target.checked ? 'blue' : 'default');
   };
 

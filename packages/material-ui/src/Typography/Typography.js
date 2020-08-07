@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import capitalize from '../utils/capitalize';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     margin: 0,
@@ -193,10 +193,10 @@ Typography.propTypes = {
   ]),
   /**
    * The component used for the root node.
-   * Either a string to use a DOM element or a component.
+   * Either a string to use a HTML element or a component.
    * Overrides the behavior of the `variantMapping` prop.
    */
-  component: PropTypes.elementType,
+  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
    * Controls the display type
    */
@@ -237,7 +237,7 @@ Typography.propTypes = {
     'inherit',
   ]),
   /**
-   * The component maps the variant prop to a range of different DOM element types.
+   * The component maps the variant prop to a range of different HTML element types.
    * For instance, subtitle1 to `<h6>`.
    * If you wish to change that mapping, you can provide your own.
    * Alternatively, you can use the `component` prop.

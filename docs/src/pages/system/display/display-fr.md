@@ -1,6 +1,6 @@
 # Display (Affichage)
 
-<p class="description">Quickly and responsively toggle the display value of components and more with the display utilities. Includes support for some of the more common values, as well as some extras for controlling display when printing.</p>
+<p class="description">Includes support for some of the more common values, as well as some extras for controlling display when printing. Quickly and responsively toggle the display value of components and more with the display utilities.</p>
 
 ## Exemples
 
@@ -123,11 +123,11 @@ For faster mobile-friendly development, use responsive display classes for showi
 import { display } from '@material-ui/system';
 ```
 
-| Import name    | Prop           | CSS property    | Theme key |
-|:-------------- |:-------------- |:--------------- |:--------- |
-| `displayPrint` | `displayPrint` | `display`       | none      |
-| `displayRaw`   | `display`      | `display`       | none      |
-| `overflow`     | `overflow`     | `overflow`      | none      |
-| `textOverflow` | `textOverflow` | `text-overflow` | none      |
-| `visibility`   | `visibility`   | `visibility`    | none      |
-| `whiteSpace`   | `whiteSpace`   | `white-space`   | none      |
+| Import name    | Prop           | Propriété CSS   | Clé du thème |
+|:-------------- |:-------------- |:--------------- |:------------ |
+| `displayPrint` | `displayPrint` | `display`       | none         |
+| `displayRaw`   | `display`      | `display`       | none         |
+| `overflow`     | `overflow`     | `overflow`      | none         |
+| `textOverflow` | `textOverflow` | `text-overflow` | none         |
+| `visibility`   | `visibility`   | `visibility`    | none         |
+| `whiteSpace`   | `whiteSpace`   | `white-space`   | none         |

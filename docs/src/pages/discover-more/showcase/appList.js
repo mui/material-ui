@@ -322,12 +322,12 @@ const appList = [
   {
     title: 'Builder Book',
     description:
-      'An open source web app to write and host documentation or sell books. ' +
-      'Built with React, Material-UI, Next, Express, Mongoose, MongoDB.',
+      'Books to learn how to build full-stack, production-ready JavaScript web applications from scratch. ' +
+      'Learn React, Material-UI, Next, Express, Mongoose, MongoDB, third party APIs, and more.',
     image: 'builderbook.jpg',
     link: 'https://builderbook.org/',
     source: 'https://github.com/builderbook/builderbook',
-    stars: 1576,
+    stars: 1837,
     dateAdded: '2018-01-05',
   },
   {
@@ -608,6 +608,17 @@ const appList = [
     source: 'https://github.com/georgesimos/cinema-plus',
     stars: 4,
     dateAdded: '2020-01-31',
+  },
+  {
+    title: 'A Clone of Google Keep',
+    description:
+      'A twin-looking Google Keep clone with light/dark Material theme as adapted exactly in Google Keep,' +
+      ' with a GraphQL backend written in Golang',
+    image: 'googlekeepclone.jpg',
+    link: 'http://googlekeep-anselm94.herokuapp.com/',
+    source: 'https://github.com/anselm94/googlekeepclone',
+    stars: 14,
+    dateAdded: '2020-03-25',
   },
 ];
 

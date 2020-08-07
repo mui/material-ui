@@ -15,7 +15,9 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       justifyContent: 'center',
       flexWrap: 'wrap',
+      listStyle: 'none',
       padding: theme.spacing(0.5),
+      margin: 0,
     },
     chip: {
       margin: theme.spacing(0.5),
@@ -34,12 +36,12 @@ export default function ChipsArray() {
   ]);
 
   const handleDelete = (chipToDelete: ChipData) => () => {
-    setChipData(chips => chips.filter(chip => chip.key !== chipToDelete.key));
+    setChipData((chips) => chips.filter((chip) => chip.key !== chipToDelete.key));
   };
 
   return (
-    <Paper className={classes.root}>
-      {chipData.map(data => {
+    <Paper component="ul" className={classes.root}>
+      {chipData.map((data) => {
         let icon;
 
         if (data.label === 'React') {
@@ -47,13 +49,14 @@ export default function ChipsArray() {
         }
 
         return (
-          <Chip
-            key={data.key}
-            icon={icon}
-            label={data.label}
-            onDelete={data.label === 'React' ? undefined : handleDelete(data)}
-            className={classes.chip}
-          />
+          <li key={data.key}>
+            <Chip
+              icon={icon}
+              label={data.label}
+              onDelete={data.label === 'React' ? undefined : handleDelete(data)}
+              className={classes.chip}
+            />
+          </li>
         );
       })}
     </Paper>

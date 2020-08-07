@@ -22,12 +22,6 @@ export default function SimpleSelect() {
   const classes = useStyles();
   const [age, setAge] = React.useState('');
 
-  const inputLabel = React.useRef<HTMLLabelElement>(null);
-  const [labelWidth, setLabelWidth] = React.useState(0);
-  React.useEffect(() => {
-    setLabelWidth(inputLabel.current!.offsetWidth);
-  }, []);
-
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setAge(event.target.value as string);
   };
@@ -65,7 +59,13 @@ export default function SimpleSelect() {
         <FormHelperText>Some important helper text</FormHelperText>
       </FormControl>
       <FormControl className={classes.formControl}>
-        <Select value={age} onChange={handleChange} displayEmpty className={classes.selectEmpty}>
+        <Select
+          value={age}
+          onChange={handleChange}
+          displayEmpty
+          className={classes.selectEmpty}
+          inputProps={{ 'aria-label': 'Without label' }}
+        >
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
@@ -120,7 +120,7 @@ export default function SimpleSelect() {
           id="demo-simple-select-error"
           value={age}
           onChange={handleChange}
-          renderValue={value => `⚠️  - ${value}`}
+          renderValue={(value) => `⚠️  - ${value}`}
         >
           <MenuItem value="">
             <em>None</em>
@@ -168,7 +168,13 @@ export default function SimpleSelect() {
         <FormHelperText>Auto width</FormHelperText>
       </FormControl>
       <FormControl className={classes.formControl}>
-        <Select value={age} onChange={handleChange} displayEmpty className={classes.selectEmpty}>
+        <Select
+          value={age}
+          onChange={handleChange}
+          displayEmpty
+          className={classes.selectEmpty}
+          inputProps={{ 'aria-label': 'Without label' }}
+        >
           <MenuItem value="" disabled>
             Placeholder
           </MenuItem>
@@ -197,15 +203,13 @@ export default function SimpleSelect() {
         <FormHelperText>Required</FormHelperText>
       </FormControl>
       <FormControl variant="outlined" className={classes.formControl}>
-        <InputLabel ref={inputLabel} id="demo-simple-select-outlined-label">
-          Age
-        </InputLabel>
+        <InputLabel id="demo-simple-select-outlined-label">Age</InputLabel>
         <Select
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"
           value={age}
           onChange={handleChange}
-          labelWidth={labelWidth}
+          label="Age"
         >
           <MenuItem value="">
             <em>None</em>

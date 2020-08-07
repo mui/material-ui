@@ -23,4 +23,4 @@ export interface FormControlState extends Pick<FormControlProps, ContextFromProp
   onFocus: () => void;
 }
 
-export default function useFormControl(): FormControlState;
+export default function useFormControl(): FormControlState | undefined;

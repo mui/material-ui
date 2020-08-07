@@ -19,7 +19,7 @@ The Drawer can be cancelled by clicking the overlay or pressing the Esc key. It 
 
 {{"demo": "pages/components/drawers/TemporaryDrawer.js"}}
 
-## Swipeable Temporary drawer
+### Swipeable
 
 You can make the drawer swipeable with the `SwipeableDrawer` component.
 
@@ -29,7 +29,7 @@ This component comes with a 2 kB gzipped payload overhead. Some low-end mobile d
 
 The following properties are used in this documentation website for optimal usability of the component:
 
-- iOS is hosted on high-end devices. The backdrop transition can be enabled without dropping frames. The performance will be good enough.
+- iOS is hosted on high-end devices. The performance will be good enough. The backdrop transition can be enabled without dropping frames.
 - iOS has a "swipe to go back" feature that interferes with the discovery feature, so discovery has to be disabled.
 
 ```jsx

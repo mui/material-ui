@@ -7,7 +7,7 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
       margin: theme.spacing(1),
@@ -19,7 +19,7 @@ export default function ComposedTextField() {
   const [name, setName] = React.useState('Composed TextField');
   const classes = useStyles();
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     setName(event.target.value);
   };
 

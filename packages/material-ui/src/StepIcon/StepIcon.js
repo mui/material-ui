@@ -6,7 +6,7 @@ import Warning from '../internal/svg-icons/Warning';
 import withStyles from '../styles/withStyles';
 import SvgIcon from '../SvgIcon';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     display: 'block',
@@ -67,6 +67,10 @@ const StepIcon = React.forwardRef(function StepIcon(props, ref) {
 });
 
 StepIcon.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * Whether this step is active.
    */
@@ -75,7 +79,7 @@ StepIcon.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * Mark the step as completed. Is passed to child components.
    */
@@ -87,7 +91,7 @@ StepIcon.propTypes = {
   /**
    * The label displayed in the step icon.
    */
-  icon: PropTypes.node.isRequired,
+  icon: PropTypes.node,
 };
 
 export default withStyles(styles, { name: 'MuiStepIcon' })(StepIcon);

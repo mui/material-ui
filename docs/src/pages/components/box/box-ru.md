@@ -4,7 +4,7 @@ title: React-компонент Box
 
 # Box
 
-<p class="description">Box компонент используется как обертка компонента для большинства CSS utility.</p>
+<p class="description">Box компонент используется как обертка компонента для большинства используемых CSS свойств.</p>
 
 The Box component packages [all the style functions](/system/basics/#all-inclusive) that are exposed in `@material-ui/system`. It's created using the [`styled()`](/styles/api/#styled-style-function-component) function of `@material-ui/core/styles`.
 
@@ -14,7 +14,7 @@ The Box component packages [all the style functions](/system/basics/#all-inclusi
 
 ## Переопределение Material-UI компонентов
 
-Box компонент оборачивает ваш компонент. Создает новый DOM элемент, `<div>` по умолчанию, но может быть изменен `component` свойством. Давайте предположим вы хотите использовать`<span>` взамен:
+Box компонент оборачивает ваш компонент. Он создает новый DOM элемент, это `<div>` по умолчанию, хотя это можно изменить свойством `component`. Например если вы хотите использовать`<span>` взамен:
 
 ```jsx
 <Box component="span" m={1}>

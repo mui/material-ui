@@ -7,17 +7,18 @@ import IconButton from '../IconButton';
 import withStyles from '../styles/withStyles';
 import ExpansionPanelContext from '../ExpansionPanel/ExpansionPanelContext';
 
-export const styles = theme => {
+export const styles = (theme) => {
   const transition = {
     duration: theme.transitions.duration.shortest,
   };
+
   return {
     /* Styles applied to the root element. */
     root: {
       display: 'flex',
       minHeight: 8 * 6,
       transition: theme.transitions.create(['min-height', 'background-color'], transition),
-      padding: '0 24px 0 24px',
+      padding: theme.spacing(0, 2),
       '&:hover:not($disabled)': {
         cursor: 'pointer',
       },
@@ -25,10 +26,10 @@ export const styles = theme => {
         minHeight: 64,
       },
       '&$focused': {
-        backgroundColor: theme.palette.grey[300],
+        backgroundColor: theme.palette.action.focus,
       },
       '&$disabled': {
-        opacity: 0.38,
+        opacity: theme.palette.action.disabledOpacity,
       },
     },
     /* Pseudo-class applied to the root element, children wrapper element and `IconButton` component if `expanded={true}`. */
@@ -64,7 +65,28 @@ export const styles = theme => {
   };
 };
 
+let warnedOnce = false;
+
+/**
+ * ⚠️ The ExpansionPanelSummary component was renamed to AccordionSummary to use a more common naming convention.
+ *
+ * You should use `import { AccordionSummary } from '@material-ui/core'`
+ * or `import AccordionSummary from '@material-ui/core/AccordionSummary'`.
+ */
 const ExpansionPanelSummary = React.forwardRef(function ExpansionPanelSummary(props, ref) {
+  if (process.env.NODE_ENV !== 'production') {
+    if (!warnedOnce) {
+      warnedOnce = true;
+      console.error(
+        [
+          'Material-UI: the ExpansionPanelSummary component was renamed to AccordionSummary to use a more common naming convention.',
+          '',
+          "You should use `import { AccordionSummary } from '@material-ui/core'`",
+          "or `import AccordionSummary from '@material-ui/core/AccordionSummary'`",
+        ].join('\n'),
+      );
+    }
+  }
   const {
     children,
     classes,
@@ -78,14 +100,14 @@ const ExpansionPanelSummary = React.forwardRef(function ExpansionPanelSummary(pr
   } = props;
 
   const [focusedState, setFocusedState] = React.useState(false);
-  const handleFocusVisible = event => {
+  const handleFocusVisible = (event) => {
     setFocusedState(true);
 
     if (onFocusVisible) {
       onFocusVisible(event);
     }
   };
-  const handleBlur = event => {
+  const handleBlur = (event) => {
     setFocusedState(false);
 
     if (onBlur) {
@@ -94,7 +116,7 @@ const ExpansionPanelSummary = React.forwardRef(function ExpansionPanelSummary(pr
   };
 
   const { disabled = false, expanded, toggle } = React.useContext(ExpansionPanelContext);
-  const handleChange = event => {
+  const handleChange = (event) => {
     if (toggle) {
       toggle(event);
     }
@@ -146,6 +168,10 @@ const ExpansionPanelSummary = React.forwardRef(function ExpansionPanelSummary(pr
 });
 
 ExpansionPanelSummary.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * The content of the expansion panel summary.
    */
@@ -154,7 +180,7 @@ ExpansionPanelSummary.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -176,7 +202,8 @@ ExpansionPanelSummary.propTypes = {
    */
   onClick: PropTypes.func,
   /**
-   * @ignore
+   * Callback fired when the component is focused with a keyboard.
+   * We trigger a `onFocus` callback too.
    */
   onFocusVisible: PropTypes.func,
 };

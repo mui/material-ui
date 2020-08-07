@@ -9,8 +9,6 @@ import Menu from '@material-ui/core/Menu';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      width: '100%',
-      maxWidth: 360,
       backgroundColor: theme.palette.background.paper,
     },
   }),
@@ -66,7 +64,7 @@ export default function SimpleListMenu() {
             key={option}
             disabled={index === 0}
             selected={index === selectedIndex}
-            onClick={event => handleMenuItemClick(event, index)}
+            onClick={(event) => handleMenuItemClick(event, index)}
           >
             {option}
           </MenuItem>

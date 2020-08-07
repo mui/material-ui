@@ -1,7 +1,7 @@
 import React from 'react';
 import { ThemeProvider, makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     background: theme.background,
     border: 0,

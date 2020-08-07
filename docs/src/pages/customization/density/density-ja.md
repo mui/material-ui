@@ -4,17 +4,17 @@
 
 ## 密度を適用する
 
-This section explains how to apply density. It doesn't cover petential use cases, or considerations for using density in your application. Material design ガイドラインには、これらのトピックの詳細を説明した[comprehensive guide](https://material.io/design/layout/applying-density.html#typographic-density) があります。
+This section explains how to apply density. Material design ガイドラインには、これらのトピックの詳細を説明した[comprehensive guide](https://material.io/design/layout/applying-density.html#typographic-density) があります。 It doesn't cover potential use cases, or considerations for using density in your application.
 
 ## 実装密度
 
-一部のコンポーネントには、propsを使用して高密度を適用できます。 コンポーネントページ は、より高い密度が適用されたそれぞれのコンポーネントを使用した少なくとも1つの例があります。
+一部のコンポーネントには、propsを使用して高密度を適用できます。 コンポーネントページ は、より高い密度が適用されたそれぞれのコンポーネントを使用した少なくとも1つの例があります。 一部のコンポーネントには、propsを使用して高密度を適用できます。 コンポーネントページ は、より高い密度が適用されたそれぞれのコンポーネントを使用した少なくとも1つの例があります。
 
 コンポーネントに応じて、密度は間隔を小さくするか、単純に サイズを縮小します。
 
 次のコンポーネントには、高密度を適用する propsがあります。
 
-- [Button](/api/button/)
+- [Button (ボタン)](/api/button/)
 - [Fab](/api/fab/)
 - [FilledInput](/api/filled-input/)
 - [FormControl](/api/form-control/)
@@ -30,7 +30,7 @@ This section explains how to apply density. It doesn't cover petential use cases
 
 ## テーマ密度を調べる
 
-このツールを使用すると、間隔とコンポーネントpropsによって密度を適用できます。 これがMaterial-UIコンポーネントの全体的な感触にどのように適用されるかを参照できます。
+このツールを使用すると、間隔とコンポーネントpropsによって密度を適用できます。 これがMaterial-UIコンポーネントの全体的な感触にどのように適用されるかを参照できます。 このツールを使用すると、間隔とコンポーネントpropsによって密度を適用できます。 これがMaterial-UIコンポーネントの全体的な感触にどのように適用されるかを参照できます。
 
 高密度を有効にすると、カスタムテーマがドキュメントに適用されます。 このテーマは、デモンストレーションの目的でのみ です。 あなたはこのテーマをアプリケーション全体に適用 *すべきではありません* 。ユーザーエクスペリエンスに悪影響を及ぼす可能性があります。 密度を適用しない場合の[Material designガイドライン例](https://material.io/design/layout/applying-density.html#typographic-density) があります。
 
@@ -92,4 +92,4 @@ const theme = createMuiTheme({
 });
 ```
 
-{{"demo": "pages/customization/density/DensityTool.js", "hideHeader": true}}
+{{"demo": "pages/customization/density/DensityTool.js", "hideToolbar": true}}

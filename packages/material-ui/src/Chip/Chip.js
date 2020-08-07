@@ -9,7 +9,7 @@ import unsupportedProp from '../utils/unsupportedProp';
 import capitalize from '../utils/capitalize';
 import ButtonBase from '../ButtonBase';
 
-export const styles = theme => {
+export const styles = (theme) => {
   const backgroundColor =
     theme.palette.type === 'light' ? theme.palette.grey[300] : theme.palette.grey[700];
   const deleteIconColor = fade(theme.palette.text.primary, 0.26);
@@ -260,6 +260,10 @@ export const styles = theme => {
   };
 };
 
+function isDeleteKeyboardEvent(keyboardEvent) {
+  return keyboardEvent.key === 'Backspace' || keyboardEvent.key === 'Delete';
+}
+
 /**
  * Chips represent complex entities in small blocks, such as a contact.
  */
@@ -277,6 +281,7 @@ const Chip = React.forwardRef(function Chip(props, ref) {
     label,
     onClick,
     onDelete,
+    onKeyDown,
     onKeyUp,
     size = 'medium',
     variant = 'default',
@@ -286,7 +291,7 @@ const Chip = React.forwardRef(function Chip(props, ref) {
   const chipRef = React.useRef(null);
   const handleRef = useForkRef(chipRef, ref);
 
-  const handleDeleteIconClick = event => {
+  const handleDeleteIconClick = (event) => {
     // Stop the event from bubbling up to the `Chip`
     event.stopPropagation();
     if (onDelete) {
@@ -294,21 +299,31 @@ const Chip = React.forwardRef(function Chip(props, ref) {
     }
   };
 
-  const handleKeyUp = event => {
+  const handleKeyDown = (event) => {
+    // Ignore events from children of `Chip`.
+    if (event.currentTarget === event.target && isDeleteKeyboardEvent(event)) {
+      // will be handled in keyUp, otherwise some browsers
+      // might init navigation
+      event.preventDefault();
+    }
+
+    if (onKeyDown) {
+      onKeyDown(event);
+    }
+  };
+
+  const handleKeyUp = (event) => {
+    // Ignore events from children of `Chip`.
+    if (event.currentTarget === event.target) {
+      if (onDelete && isDeleteKeyboardEvent(event)) {
+        onDelete(event);
+      } else if (event.key === 'Escape' && chipRef.current) {
+        chipRef.current.blur();
+      }
+    }
+
     if (onKeyUp) {
       onKeyUp(event);
-    }
-
-    // Ignore events from children of `Chip`.
-    if (event.currentTarget !== event.target) {
-      return;
-    }
-
-    const key = event.key;
-    if (onDelete && (key === 'Backspace' || key === 'Delete')) {
-      onDelete(event);
-    } else if (key === 'Escape' && chipRef.current) {
-      chipRef.current.blur();
     }
   };
 
@@ -365,7 +380,7 @@ const Chip = React.forwardRef(function Chip(props, ref) {
   if (process.env.NODE_ENV !== 'production') {
     if (avatar && icon) {
       console.error(
-        'Material-UI: the Chip component can not handle the avatar ' +
+        'Material-UI: The Chip component can not handle the avatar ' +
           'and the icon prop at the same time. Pick one.',
       );
     }
@@ -393,6 +408,7 @@ const Chip = React.forwardRef(function Chip(props, ref) {
       aria-disabled={disabled ? true : undefined}
       tabIndex={clickable || onDelete ? 0 : undefined}
       onClick={onClick}
+      onKeyDown={handleKeyDown}
       onKeyUp={handleKeyUp}
       ref={handleRef}
       {...moreProps}
@@ -412,6 +428,10 @@ const Chip = React.forwardRef(function Chip(props, ref) {
 });
 
 Chip.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * Avatar element.
    */
@@ -425,7 +445,7 @@ Chip.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -444,9 +464,9 @@ Chip.propTypes = {
   color: PropTypes.oneOf(['default', 'primary', 'secondary']),
   /**
    * The component used for the root node.
-   * Either a string to use a DOM element or a component.
+   * Either a string to use a HTML element or a component.
    */
-  component: PropTypes.elementType,
+  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
    * Override the default delete icon element. Shown only if `onDelete` is set.
    */
@@ -483,7 +503,7 @@ Chip.propTypes = {
   /**
    * The size of the chip.
    */
-  size: PropTypes.oneOf(['small', 'medium']),
+  size: PropTypes.oneOf(['medium', 'small']),
   /**
    * The variant to use.
    */

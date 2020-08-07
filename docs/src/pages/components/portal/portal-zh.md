@@ -1,15 +1,15 @@
 ---
-title: React Portal 组件
+title: React 传送门组件
 components: Portal
 ---
 
 # Portal 传送门
 
-<p class="description">Portal 组件将其子节点渲染到当前组件层次结构之外的新 "子树" 中。</p>
+<p class="description">传送门组件将其子节点渲染到当前 DOM 结构之外的新 "子类树" 当中。</p>
 
 - 📦 [1.3kB 已压缩的包](/size-snapshot)
 
-Portal 组件的子节点将被添加到指定的 `容器` 中。 The component is used internally by the [`Modal`](/components/modal/) and [`Popper`](/components/popper/) components.
+传送门组件的子节点将被添加到指定的 `container` 中。 [`Modal`](/components/modal/) 和 [`Popper`](/components/popper/) 组件内部都是用了该组件。
 
 ## 示例
 
@@ -17,4 +17,4 @@ Portal 组件的子节点将被添加到指定的 `容器` 中。 The component 
 
 ## 服务器端
 
-React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://reactjs.org/docs/portals.html) API on the server. You have to wait for the client-side hydration to see the children.
+React [不支持](https://github.com/facebook/react/issues/13097)服务端渲染的 [`createPortal()`](https://reactjs.org/docs/portals.html) API。 您必须等到客户端的注水渲染（hydration）之后才能见到子节点。

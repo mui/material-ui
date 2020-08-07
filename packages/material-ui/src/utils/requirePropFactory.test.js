@@ -1,4 +1,4 @@
-import { assert } from 'chai';
+import { expect } from 'chai';
 import requirePropFactory from './requirePropFactory';
 
 describe('requirePropFactory', () => {
@@ -10,8 +10,8 @@ describe('requirePropFactory', () => {
   });
 
   it('should have the right shape', () => {
-    assert.strictEqual(typeof requirePropFactory, 'function');
-    assert.strictEqual(typeof requireProp, 'function');
+    expect(typeof requirePropFactory).to.equal('function');
+    expect(typeof requireProp).to.equal('function');
   });
 
   describe('requireProp()', () => {
@@ -24,7 +24,7 @@ describe('requirePropFactory', () => {
     });
 
     it('should return a function', () => {
-      assert.strictEqual(typeof requirePropValidator, 'function');
+      expect(typeof requirePropValidator).to.equal('function');
     });
 
     describe('requirePropValidator', () => {
@@ -35,7 +35,7 @@ describe('requirePropFactory', () => {
         propName = 'propName';
         props = {};
         const result = requirePropValidator(props, propName, undefined, undefined, undefined);
-        assert.strictEqual(result, null);
+        expect(result).to.equal(null);
       });
 
       it('should return null for propName and requiredProp in props', () => {
@@ -44,7 +44,7 @@ describe('requirePropFactory', () => {
         props[propName] = true;
         props[requiredPropName] = true;
         const result = requirePropValidator(props, propName, undefined, undefined, undefined);
-        assert.strictEqual(result, null);
+        expect(result).to.equal(null);
       });
 
       describe('propName is in props and requiredProp not in props', () => {
@@ -59,12 +59,12 @@ describe('requirePropFactory', () => {
         });
 
         it('should return Error', () => {
-          assert.property(result, 'name');
-          assert.strictEqual(result.name, 'Error');
-          assert.property(result, 'message');
-          assert.strictEqual(result.message.indexOf(propName) > -1, true);
-          assert.strictEqual(result.message.indexOf(requiredPropName) > -1, true);
-          assert.strictEqual(result.message.indexOf(componentNameInError) > -1, true);
+          expect(result).to.have.property('name');
+          expect(result.name).to.equal('Error');
+          expect(result).to.have.property('message');
+          expect(result.message.indexOf(propName) > -1).to.equal(true);
+          expect(result.message.indexOf(requiredPropName) > -1).to.equal(true);
+          expect(result.message.indexOf(componentNameInError) > -1).to.equal(true);
         });
 
         describe('propFullName given to validator', () => {
@@ -75,11 +75,11 @@ describe('requirePropFactory', () => {
           });
 
           it('returned error message should have propFullName', () => {
-            assert.strictEqual(result.message.indexOf(propFullName) > -1, true);
+            expect(result.message.indexOf(propFullName) > -1).to.equal(true);
           });
 
           it('returned error message should not have propName', () => {
-            assert.strictEqual(result.message.indexOf(propName), -1);
+            expect(result.message.indexOf(propName)).to.equal(-1);
           });
         });
       });

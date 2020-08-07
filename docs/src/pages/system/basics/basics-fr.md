@@ -53,7 +53,7 @@ This Box component now supports new [spacing properties](/system/spacing/#api) a
 
 The component can be styled providing any valid CSS values.
 
-### Theming
+### Thématisation
 
 But most of the time, you want to rely on a theme's values to increase the UI consistency. It's preferable to have a predetermined set of padding and color values. Import the theme provider of your styling solution.
 
@@ -312,9 +312,9 @@ The `style()` helper can also be used to maps properties to style objects in a t
 
 {{"demo": "pages/system/basics/Variant.js", "defaultCodeOpen": true}}
 
-## CSS property
+## Propriété CSS
 
-If you want to support custom CSS values, you can use the `css()` helper. It will process the `css` property.
+It will process the `css` property. If you want to support custom CSS values, you can use the `css()` helper.
 
 {{"demo": "pages/system/basics/CssProp.js", "defaultCodeOpen": true}}
 

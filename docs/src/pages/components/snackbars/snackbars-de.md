@@ -23,13 +23,13 @@ Eine einfache Snackbar, die das Verhalten der Snackbar von Google Keep reproduzi
 
 ## Benutzerdefinierte Snackbars
 
-Hier sind einige Beispiele, wie man die Komponente anpassen kann. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
+Hier einige Beispiele zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
 
 {{"demo": "pages/components/snackbars/CustomizedSnackbars.js"}}
 
 ## Positionierte Snackbars
 
-Es kann Situationen geben, in denen die Anordnung der Snackbar flexibler sein muss.
+In wide layouts, snackbars can be left-aligned or center-aligned if they are consistently placed on the same spot at the bottom of the screen, however there may be circumstances where the placement of the snackbar needs to be more flexible. You can control the position of the snackbar by specifying the `anchorOrigin` prop.
 
 {{"demo": "pages/components/snackbars/PositionedSnackbar.js"}}
 

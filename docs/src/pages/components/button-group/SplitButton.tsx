@@ -30,7 +30,7 @@ export default function SplitButton() {
   };
 
   const handleToggle = () => {
-    setOpen(prevOpen => !prevOpen);
+    setOpen((prevOpen) => !prevOpen);
   };
 
   const handleClose = (event: React.MouseEvent<Document, MouseEvent>) => {
@@ -74,7 +74,7 @@ export default function SplitButton() {
                         key={option}
                         disabled={index === 2}
                         selected={index === selectedIndex}
-                        onClick={event => handleMenuItemClick(event, index)}
+                        onClick={(event) => handleMenuItemClick(event, index)}
                       >
                         {option}
                       </MenuItem>

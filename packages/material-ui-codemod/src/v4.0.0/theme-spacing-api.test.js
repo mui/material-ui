@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { EOL } from 'os';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import jscodeshift from 'jscodeshift';
 import transform from './theme-spacing-api';
 
@@ -23,12 +23,7 @@ describe('@material-ui/codemod', () => {
         );
 
         const expected = read('./theme-spacing-api.test/expected.js');
-
-        assert.strictEqual(
-          trim(actual),
-          trim(expected),
-          'The transformed version should be correct',
-        );
+        expect(trim(actual)).to.equal(trim(expected), 'The transformed version should be correct');
       });
 
       it('update theme spacing API for destructured', () => {
@@ -38,12 +33,7 @@ describe('@material-ui/codemod', () => {
         );
 
         const expected = read('./theme-spacing-api.test/expected_destructured.js');
-
-        assert.strictEqual(
-          trim(actual),
-          trim(expected),
-          'The transformed version should be correct',
-        );
+        expect(trim(actual)).to.equal(trim(expected), 'The transformed version should be correct');
       });
     });
   });

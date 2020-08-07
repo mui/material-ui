@@ -6,8 +6,8 @@ import { SOURCE_CODE_ROOT_URL } from 'docs/src/modules/constants';
 
 export default function EditPage(props) {
   const { markdownLocation } = props;
-  const t = useSelector(state => state.options.t);
-  const userLanguage = useSelector(state => state.options.userLanguage);
+  const t = useSelector((state) => state.options.t);
+  const userLanguage = useSelector((state) => state.options.userLanguage);
   const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
   const CROWDIN_ROOT_URL = 'https://translate.material-ui.com/project/material-ui-docs/';
   const crowdInLocale = LOCALES[userLanguage] || userLanguage;

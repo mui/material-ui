@@ -1,6 +1,6 @@
 # Instalação
 
-<p class="description">Instale o Material-UI, o framework React UI mais popular do mundo.</p>
+<p class="description">Instale o Material-UI, a biblioteca de componentes React UI mais popular do mundo.</p>
 
 O Material-UI está disponível como um [pacote do npm](https://www.npmjs.com/package/@material-ui/core).
 
@@ -20,7 +20,7 @@ Note que o pacote possui 2 dependências obrigatórias: [react](https://www.npmj
 
 ## Fonte Roboto
 
-O Material-UI foi desenvolvido com base na fonte [Roboto](https://fonts.google.com/specimen/Roboto). Portanto, certifique-se de seguir as [instruções](/components/typography/#general) para obtê-la. Por exemplo, instale-a através do Google Web Fonts:
+O Material-UI foi desenvolvido com base na fonte [Roboto](https://fonts.google.com/specimen/Roboto). Portanto, certifique-se de seguir [estas instruções](/components/typography/#general) para carregá-la. Como alternativa, carregue através do Google Web Fonts:
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
@@ -28,7 +28,7 @@ O Material-UI foi desenvolvido com base na fonte [Roboto](https://fonts.google.c
 
 ## Ícones
 
-In order to use the font `Icon` component, you must first add the [Material icons](https://material.io/tools/icons/) font. Aqui estão [ algumas instruções ](/components/icons/#font-icons) sobre como fazer isso. Por exemplo, instale-a através do Google Web Fonts:
+Para utilizar o componente de fonte `Icon`, você deve primeiro adicionar a fonte [Material icons](https://material.io/tools/icons/). Aqui estão [ algumas instruções ](/components/icons/#font-icons) sobre como fazer isso. Como alternativa, carregue através do Google Web Fonts:
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
@@ -39,10 +39,10 @@ In order to use the font `Icon` component, you must first add the [Material icon
 Para usar os ícones SVG pré-definidos do Material, como os encontrados na [demonstração de ícones](/components/icons/) você deve primeiro instalar o pacote [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons):
 
 ```sh
-// utilizando o npm
+// usando npm
 npm install @material-ui/icons
 
-// utilizando o yarn
+// usando yarn
 yarn add @material-ui/icons
 ```
 
@@ -50,13 +50,13 @@ yarn add @material-ui/icons
 
 Você pode começar a utilizar o Material-UI com o mínimo de infraestrutura de frontend, o que é bom para prototipação.
 
-Two Universal Module Definition (**UMD**) files are provided:
+Dois arquivos Universal Module Definition (**UMD**) são fornecidos:
 
 - um para desenvolvimento: https://unpkg.com/@material-ui/core@latest/umd/material-ui.development.js
-- um para a produção: https://unpkg.com/@material-ui/core@latest/umd/material-ui.production.min.js
+- um para produção: https://unpkg.com/@material-ui/core@latest/umd/material-ui.production.min.js
 
-Você pode seguir [esse exemplo de CDN](https://github.com/mui-org/material-ui/tree/master/examples/cdn) para rapidamente começar.
+Você pode seguir [esse exemplo de CDN](https://github.com/mui-org/material-ui/tree/master/examples/cdn) para dar um pontapé inicial.
 
-⚠️ Using this approach in **production** is **discouraged** though - the client has to download the entire library, regardless of which components are actually used, affecting performance and bandwidth utilization.
+⚠️ Usar essa abordagem em **produção** não é **recomendada** devido que - o cliente tem que baixar toda a biblioteca, independentemente de quais os componentes que são realmente utilizados, o que afeta o desempenho e a utilização da largura de banda.
 
-⚠️ Os links UMD estão usando a `última` tag para apontar para a versão mais recente da biblioteca. Dessa forma aponta para uma versão **instável**, muda a medida que lançamos novas versões. You should consider pointing to a specific version, such as [v4.4.0](https://unpkg.com/@material-ui/core@4.4.0/umd/material-ui.development.js).
+⚠️ Os links UMD estão usando a tag `latest` para apontar para a versão mais recente da biblioteca. Dessa forma aponta para uma versão **instável**, muda a medida que lançamos novas versões. Você deve considerar apontar para uma versão específica, como [v4.4.0](https://unpkg.com/@material-ui/core@4.4.0/umd/material-ui.development.js).

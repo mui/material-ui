@@ -11,7 +11,7 @@ Alle Elemente sind sichtbar, außer **sie explizit versteckt**. To ease integrat
 
 ## So funktioniert es
 
-Hidden funktioniert mit einem Bereich von Haltepunkten, z. B. `xsUp` oder `mdDown`, oder einem oder mehreren Haltepunkten, z. B. `only='sm'` oder `only {['md','xl']}`. Bereiche und individuelle Haltepunkte können gleichzeitig verwendet werden, um ein sehr benutzerdefiniertes Verhalten zu erreichen. Die Bereiche enthalten die angegebenen Haltepunkte.
+Hidden funktioniert mit einem Bereich von Haltepunkten, z. `xsUp` oder `mdDown`, oder einem oder mehreren Haltepunkten, z. `only='sm'` oder `only {['md','xl']}`. Bereiche und individuelle Haltepunkte können gleichzeitig verwendet werden, um ein sehr benutzerdefiniertes Verhalten zu erreichen. Die Bereiche enthalten die angegebenen Haltepunkte.
 
 ```js
 innerWidth  |xs      sm       md       lg       xl

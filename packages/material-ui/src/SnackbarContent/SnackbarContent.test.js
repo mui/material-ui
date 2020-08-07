@@ -1,18 +1,18 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender } from 'test/utils/createClientRender';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import Paper from '../Paper';
 import SnackbarContent from './SnackbarContent';
 
 describe('<SnackbarContent />', () => {
-  let mount;
+  const mount = createMount();
   let classes;
   const render = createClientRender();
 
   before(() => {
-    mount = createMount({ strict: true });
     classes = getClasses(<SnackbarContent message="message" />);
   });
 
@@ -22,7 +22,6 @@ describe('<SnackbarContent />', () => {
     mount,
     refInstanceof: window.HTMLDivElement,
     skip: ['componentProp'],
-    after: () => mount.cleanUp(),
   }));
 
   describe('prop: action', () => {
@@ -41,8 +40,8 @@ describe('<SnackbarContent />', () => {
       const { getByText } = render(
         <SnackbarContent message="message" action={[action0, action1]} />,
       );
-      expect(getByText('action0')).to.not.be.null;
-      expect(getByText('action1')).to.not.be.null;
+      expect(getByText('action0')).not.to.equal(null);
+      expect(getByText('action1')).not.to.equal(null);
     });
   });
 

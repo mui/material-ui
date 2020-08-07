@@ -3,7 +3,7 @@ title: Componente React para Botão
 components: Button, IconButton, ButtonBase
 ---
 
-# Button (botão)
+# Botão
 
 <p class="description">Botões permitem que os usuários tomem ações e decisões com um simples toque.</p>
 
@@ -21,30 +21,40 @@ components: Button, IconButton, ButtonBase
 
 {{"demo": "pages/components/buttons/ContainedButtons.js"}}
 
-You can remove the elevation with the `disableElevation` prop.
+Você pode remover a elevação com a propriedade `disableElevation`.
 
 {{"demo": "pages/components/buttons/DisableElevation.js"}}
 
 ## Botões de Texto
 
-[Text buttons](https://material.io/design/components/buttons.html#text-button) are typically used for less-pronounced actions, including those located:
+[Botões de texto](https://material.io/design/components/buttons.html#text-button) são utilizados tipicamente para ações menos significativas, incluindo aquelas localizadas em:
 
 - Caixas de diálogo
 - Cartões
 
-In cards, text buttons help maintain an emphasis on card content.
+Em cartões, os botões de texto ajudam a manter a ênfase no conteúdo do cartão.
 
 {{"demo": "pages/components/buttons/TextButtons.js"}}
 
 ## Botões Delineados
 
-[Outlined buttons](https://material.io/design/components/buttons.html#outlined-button) are medium-emphasis buttons. They contain actions that are important, but aren’t the primary action in an app.
+[Botões delineados](https://material.io/design/components/buttons.html#outlined-button) são botões com ênfase média. Eles contém ações que são importantes, mas não são as ações primárias de um aplicativo.
 
-Outlined buttons are also a lower emphasis alternative to contained buttons, or a higher emphasis alternative to text buttons.
+Botões delineados são uma alternativa de menor ênfase comparado com botões contidos, ou uma uma alternativa de maior ênfase comparado com botões de texto.
 
 {{"demo": "pages/components/buttons/OutlinedButtons.js"}}
 
-## Upload button
+## Manipulando cliques
+
+Todos os componentes aceitam um método manipulador `onClick` que é aplicado ao elemento DOM raiz.
+
+```jsx
+<Button onClick={() => { alert('clicado') }}>Clique aqui</Button>
+```
+
+Note que a documentação [evita](/guides/api/#native-properties) mencionar as propriedades nativas (existem várias) na seção de API dos componentes.
+
+## Botão de upload
 
 {{"demo": "pages/components/buttons/UploadButtons.js"}}
 
@@ -54,49 +64,49 @@ Gosta de botões maiores ou menores? Use a propriedade `size`.
 
 {{"demo": "pages/components/buttons/ButtonSizes.js"}}
 
-## Buttons with icons and label
+## Botões com ícones e rótulo
 
-Sometimes you might want to have icons for certain button to enhance the UX of the application as we recognize logos more easily than plain text. For example, if you have a delete button you can label it with a dustbin icon.
+Às vezes você pode querer ter ícones para determinado botão para melhorar o UX do aplicativo, reconhecemos logotipos mais facilmente do que o texto puro. Por exemplo, se você tem um botão com a ação de "deletar", você pode rotulá-lo com o ícone de lata de lixo.
 
 {{"demo": "pages/components/buttons/IconLabelButtons.js"}}
 
-## Icon Buttons
+## Botões de Ícone
 
-Icon buttons are commonly found in app bars and toolbars.
+Botões de ícones são comumente encontrados em barras de aplicativos e barras de ferramentas.
 
-Icons are also appropriate for toggle buttons that allow a single choice to be selected or deselected, such as adding or removing a star to an item.
+Ícones são também adequados para botões de alternância que permitem uma escolha única para ser selecionado ou desmarcado, como adicionar ou remover uma estrela para um item.
 
 {{"demo": "pages/components/buttons/IconButtons.js"}}
 
-## Customized buttons
+## Botões customizados
 
 Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js", "defaultCodeOpen": false}}
 
-👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/button).
+🎨 Se você está procurando inspiração, você pode verificar [os exemplos de customização de MUI Treasury](https://mui-treasury.com/styles/button).
 
-## Complex Buttons
+## Botões complexos
 
-The Text Buttons, Contained Buttons, Floating Action Buttons and Icon Buttons are built on top of the same component: the `ButtonBase`. You can take advantage of this lower level component to build custom interactions.
+Os botões de texto, botões contidos, botões de ação flutuante e botões de ícone são construídos com base no mesmo componente: O componente `ButtonBase`. Você pode tirar vantagem deste componente de nível mais abstrato para construir interações customizadas.
 
 {{"demo": "pages/components/buttons/ButtonBase.js"}}
 
 ## Biblioteca de roteamento de terceiros
 
-One common use case is to use the button to trigger navigation to a new page. The `ButtonBase` component provides a property to handle this use case: `component`. However for certain focus polyfills `ButtonBase` requires the DOM node of the provided component. This is achieved by attaching a ref to the component and expecting that the component forwards this ref to the underlying DOM node. Given that many of the interactive components rely on `ButtonBase`, you should be able to take advantage of it everywhere.
+Um caso de uso comum é usar o botão para acionar uma navegação para uma nova página. O componente `ButtonBase` fornece uma propriedade para lidar com este caso de uso: `component`. No entanto, para alguns polyfills de foco, `ButtonBase` requer o nó DOM do componente fornecido. Isso é obtido anexando-se uma referência ao componente e esperando que o componente envie essa referência para o nó DOM subjacente. Dado que muitos dos componentes interativos dependem do `ButtonBase`, você deve ser capaz de tirar proveito em todos os lugares.
 
-Here is an [integration example with react-router](/guides/composition/#button).
+Aqui está um [exemplo de integração com react-router](/guides/composition/#button).
 
 ## Limitações
 
-### Cursor not-allowed
+### Propriedade CSS Cursor not-allowed
 
-The ButtonBase component sets `pointer-events: none;` on disabled buttons, which prevents the appearance of a disabled cursor.
+O componente ButtonBase define `pointer-events: none;` ao desabilitar os botões, o que previne que o cursor desabilitado seja exibido.
 
-If you wish to use `not-allowed`, you have two options:
+Se você deseja usar `not-allowed`, você tem duas opções:
 
-1. ** apenas CSS**. Você pode remover o estilo dos eventos do ponteiro no estado "desabilitado" do elemento `<button>` :
+1. **Apenas com CSS**. Você pode modificar os estilos aplicados no seletor de estado disabled do elemento `<button>`:
 
   ```css
   .MuiButtonBase-root:disabled {
@@ -105,20 +115,19 @@ If you wish to use `not-allowed`, you have two options:
   }
   ```
 
-Contudo:
+Então:
 
-- Você deve adicionar `eventos-ponteiro: nenhum;` novamente quando você precisa exibir dicas [ ferramentas em elementos desabilitados](/components/tooltips/#disabled-elements)</li> 
-    
-    - O cursor não muda se você renderizar algum outro elemento de botão, por exemplo, um elemento link `<a>`.</ul> 
-    
-    2. ** Alteração no DOM** Você pode encapsular o botão:
-    
-      ```jsx
-      <span style={{ cursor: 'not-allowed' }}>
-        <Button component={Link} disabled>
-          disabled
-        </Button>
-      </span>
-      ```
-    
-    This has the advantage of supporting any element, for instance, a link `<a>` element.
+- Você deve adicionar `pointer-events: none;` de volta quando você precisar exibir [dicas em elementos desabilitados](/components/tooltips/#disabled-elements).
+- O cursor não irá mudar se você renderizar algum outro elemento que não seja um botão, por exemplo, um elemento link `<a>`.
+
+2. **Alteração no DOM**. Você pode encapsular o botão:
+
+  ```jsx
+  <span style={{ cursor: 'not-allowed' }}>
+    <Button component={Link} disabled>
+      disabled
+    </Button>
+  </span>
+  ```
+
+Isso tem a vantagem de suportar qualquer elemento, por exemplo, um elemento de link `<a>`.

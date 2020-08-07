@@ -26,20 +26,37 @@ export interface ToggleButtonGroupProps
    */
   onChange?: (event: React.MouseEvent<HTMLElement>, value: any) => void;
   /**
+   * The group orientation (layout flow direction).
+   */
+  orientation?: 'horizontal' | 'vertical';
+  /**
    * The size of the buttons.
    */
   size?: 'small' | 'medium' | 'large';
   /**
    * The currently selected value within the group or an array of selected
    * values when `exclusive` is false.
+   *
+   * The value must have reference equality with the option in order to be selected.
    */
   value?: any;
 }
 
 export type ToggleButtonGroupClassKey =
   | 'root'
+  | 'vertical'
   | 'grouped'
-  | 'groupedSizeSmall'
-  | 'groupedSizeLarge';
+  | 'groupedHorizontal'
+  | 'groupedVertical';
 
+/**
+ *
+ * Demos:
+ *
+ * - [Toggle Button](https://material-ui.com/components/toggle-button/)
+ *
+ * API:
+ *
+ * - [ToggleButtonGroup API](https://material-ui.com/api/toggle-button-group/)
+ */
 export default function ToggleButtonGroup(props: ToggleButtonGroupProps): JSX.Element;

@@ -1,5 +1,5 @@
 ---
-title: React Chip（纸片）组件
+title: React 纸片组件
 components: Chip
 ---
 
@@ -11,12 +11,12 @@ components: Chip
 
 在这里，虽然我们将纸片组件归类为一个独立的组件，但更常见的作法是用在表单中作为输入框，因此本篇演示的内容并不会在上下文中显示。
 
-## Chip（纸片组件）
+## 纸片组件
 
 以下是纸片组件的一个例子，它使用了图片，SVG 图标，“字母” 和（带有字符串的）头像。
 
-- 定义了`onClick` 属性的纸片组件会在获得焦点、鼠标悬浮、单击时有外观的变化。
-- 定义了`onDelete` 属性的纸片组件将显示一个删除图标，并在鼠标悬浮时有外观的变化。
+- 定义了 `onClick` 属性的纸片组件会在获得焦点、鼠标悬浮、单击时有外观的变化。
+- 定义了 `onDelete` 属性的纸片组件将显示一个删除图标，并在鼠标悬浮时有外观的变化。
 
 {{"demo": "pages/components/chips/Chips.js"}}
 
@@ -46,8 +46,8 @@ components: Chip
 
 ## 在线编译纸片组件
 
-{{"demo": "pages/components/chips/ChipsPlayground.js", "hideHeader": true}}
+{{"demo": "pages/components/chips/ChipsPlayground.js", "hideToolbar": true}}
 
-## 可访问性
+## 无障碍设计
 
-If the Chip is deletable or clickable then it is a button in tab order. When the Chip is focused (e.g. when tabbing) releasing (`keyup` event) `Backspace` or `Delete` will call the `onDelete` handler while releasing `Escape` will blur the Chip.
+如果 Chip 是可删除或可点击的，它则应该是一个安装标签顺序排列的按钮。 当纸片被聚焦时（例如在制表符时），释放（`keyup` 事件） `Backspace` 或 `Delete` 将调用 `onDelete` 处理程序，从而通过释放 `Escape` 来模糊纸片组件。

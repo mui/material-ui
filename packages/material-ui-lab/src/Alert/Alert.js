@@ -11,7 +11,7 @@ import CloseIcon from '../internal/svg-icons/Close';
 import IconButton from '@material-ui/core/IconButton';
 import { capitalize } from '@material-ui/core/utils';
 
-export const styles = theme => {
+export const styles = (theme) => {
   const getColor = theme.palette.type === 'light' ? darken : lighten;
   const getBackgroundColor = theme.palette.type === 'light' ? lighten : darken;
 
@@ -123,9 +123,6 @@ export const styles = theme => {
     /* Styles applied to the message wrapper element. */
     message: {
       padding: '8px 0',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
     },
     /* Styles applied to the action wrapper element if `action` is provided. */
     action: {

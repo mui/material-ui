@@ -67,7 +67,7 @@ const messages = [
   },
 ];
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   text: {
     padding: theme.spacing(2, 2, 0),
   },

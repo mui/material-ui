@@ -8,7 +8,7 @@ import Ripple from './Ripple';
 const DURATION = 550;
 export const DELAY_RIPPLE = 80;
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     overflow: 'hidden',
@@ -123,10 +123,10 @@ const TouchRipple = React.forwardRef(function TouchRipple(props, ref) {
   }, []);
 
   const startCommit = React.useCallback(
-    params => {
+    (params) => {
       const { pulsate, rippleX, rippleY, rippleSize, cb } = params;
 
-      setRipples(oldRipples => [
+      setRipples((oldRipples) => [
         ...oldRipples,
         <Ripple
           key={nextKey.current}
@@ -184,8 +184,7 @@ const TouchRipple = React.forwardRef(function TouchRipple(props, ref) {
         rippleX = Math.round(rect.width / 2);
         rippleY = Math.round(rect.height / 2);
       } else {
-        const clientX = event.clientX ? event.clientX : event.touches[0].clientX;
-        const clientY = event.clientY ? event.clientY : event.touches[0].clientY;
+        const { clientX, clientY } = event.touches ? event.touches[0] : event;
         rippleX = Math.round(clientX - rect.left);
         rippleY = Math.round(clientY - rect.top);
       }
@@ -251,7 +250,7 @@ const TouchRipple = React.forwardRef(function TouchRipple(props, ref) {
 
     startTimerCommit.current = null;
 
-    setRipples(oldRipples => {
+    setRipples((oldRipples) => {
       if (oldRipples.length > 0) {
         return oldRipples.slice(1);
       }

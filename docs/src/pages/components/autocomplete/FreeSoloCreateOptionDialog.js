@@ -29,7 +29,7 @@ export default function FreeSoloCreateOptionDialog() {
     year: '',
   });
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     setValue({
       title: dialogValue.title,
@@ -53,20 +53,15 @@ export default function FreeSoloCreateOptionDialog() {
                 year: '',
               });
             });
-            return;
-          }
-
-          if (newValue && newValue.inputValue) {
+          } else if (newValue && newValue.inputValue) {
             toggleOpen(true);
             setDialogValue({
               title: newValue.inputValue,
               year: '',
             });
-
-            return;
+          } else {
+            setValue(newValue);
           }
-
-          setValue(newValue);
         }}
         filterOptions={(options, params) => {
           const filtered = filter(options, params);
@@ -82,7 +77,7 @@ export default function FreeSoloCreateOptionDialog() {
         }}
         id="free-solo-dialog-demo"
         options={top100Films}
-        getOptionLabel={option => {
+        getOptionLabel={(option) => {
           // e.g value selected with enter, right from the input
           if (typeof option === 'string') {
             return option;
@@ -92,10 +87,13 @@ export default function FreeSoloCreateOptionDialog() {
           }
           return option.title;
         }}
-        renderOption={option => option.title}
+        selectOnFocus
+        clearOnBlur
+        handleHomeEndKeys
+        renderOption={(option) => option.title}
         style={{ width: 300 }}
         freeSolo
-        renderInput={params => (
+        renderInput={(params) => (
           <TextField {...params} label="Free solo dialog" variant="outlined" />
         )}
       />
@@ -111,7 +109,7 @@ export default function FreeSoloCreateOptionDialog() {
               margin="dense"
               id="name"
               value={dialogValue.title}
-              onChange={event => setDialogValue({ ...dialogValue, title: event.target.value })}
+              onChange={(event) => setDialogValue({ ...dialogValue, title: event.target.value })}
               label="title"
               type="text"
             />
@@ -119,7 +117,7 @@ export default function FreeSoloCreateOptionDialog() {
               margin="dense"
               id="name"
               value={dialogValue.year}
-              onChange={event => setDialogValue({ ...dialogValue, year: event.target.value })}
+              onChange={(event) => setDialogValue({ ...dialogValue, year: event.target.value })}
               label="year"
               type="number"
             />

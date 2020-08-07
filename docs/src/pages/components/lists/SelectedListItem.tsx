@@ -35,7 +35,7 @@ export default function SelectedListItem() {
         <ListItem
           button
           selected={selectedIndex === 0}
-          onClick={event => handleListItemClick(event, 0)}
+          onClick={(event) => handleListItemClick(event, 0)}
         >
           <ListItemIcon>
             <InboxIcon />
@@ -45,7 +45,7 @@ export default function SelectedListItem() {
         <ListItem
           button
           selected={selectedIndex === 1}
-          onClick={event => handleListItemClick(event, 1)}
+          onClick={(event) => handleListItemClick(event, 1)}
         >
           <ListItemIcon>
             <DraftsIcon />
@@ -58,14 +58,14 @@ export default function SelectedListItem() {
         <ListItem
           button
           selected={selectedIndex === 2}
-          onClick={event => handleListItemClick(event, 2)}
+          onClick={(event) => handleListItemClick(event, 2)}
         >
           <ListItemText primary="Trash" />
         </ListItem>
         <ListItem
           button
           selected={selectedIndex === 3}
-          onClick={event => handleListItemClick(event, 3)}
+          onClick={(event) => handleListItemClick(event, 3)}
         >
           <ListItemText primary="Spam" />
         </ListItem>

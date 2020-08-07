@@ -1,6 +1,5 @@
 import React from 'react';
-import { assert, expect } from 'chai';
-import { createMount } from '@material-ui/core/test-utils';
+import { expect } from 'chai';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { createClientRender } from 'test/utils/createClientRender';
 import makeStyles from '../makeStyles';
@@ -8,16 +7,7 @@ import useTheme from '../useTheme';
 import ThemeProvider from './ThemeProvider';
 
 describe('ThemeProvider', () => {
-  let mount;
   const render = createClientRender();
-
-  before(() => {
-    mount = createMount({ strict: true });
-  });
-
-  after(() => {
-    mount.cleanUp();
-  });
 
   it('should provide the theme', () => {
     const ref = React.createRef();
@@ -28,12 +18,12 @@ describe('ThemeProvider', () => {
       return <span ref={ref}>{theme.foo}</span>;
     }
 
-    mount(
+    render(
       <ThemeProvider theme={{ foo: 'foo' }}>
         <Test />
       </ThemeProvider>,
     );
-    assert.strictEqual(text(), 'foo');
+    expect(text()).to.equal('foo');
   });
 
   it('should merge the themes', () => {
@@ -50,14 +40,14 @@ describe('ThemeProvider', () => {
       );
     }
 
-    mount(
+    render(
       <ThemeProvider theme={{ bar: 'bar' }}>
         <ThemeProvider theme={{ foo: 'foo' }}>
           <Test />
         </ThemeProvider>
       </ThemeProvider>,
     );
-    assert.strictEqual(text(), 'foobar');
+    expect(text()).to.equal('foobar');
   });
 
   it('should memoize the merged output', () => {
@@ -67,7 +57,9 @@ describe('ThemeProvider', () => {
     const text = () => ref.current.textContent;
     function Test() {
       const theme = useTheme();
-      themes.push(theme);
+      React.useEffect(() => {
+        themes.push(theme);
+      });
 
       return (
         <span ref={ref}>
@@ -91,11 +83,11 @@ describe('ThemeProvider', () => {
       );
     }
 
-    const wrapper = mount(<Container />);
-    assert.strictEqual(text(), 'foobar');
-    wrapper.setProps({});
-    assert.strictEqual(text(), 'foobar');
-    assert.strictEqual(themes.length, 1);
+    const { setProps } = render(<Container />);
+    expect(text()).to.equal('foobar');
+    setProps({});
+    expect(text()).to.equal('foobar');
+    expect(themes).to.have.length(1);
   });
 
   it('does not allow setting mui.nested manually', () => {
@@ -138,17 +130,17 @@ describe('ThemeProvider', () => {
     });
 
     it('should warn about missing provider', () => {
-      mount(
-        <ThemeProvider theme={theme => theme}>
+      render(
+        <ThemeProvider theme={(theme) => theme}>
           <div />
         </ThemeProvider>,
       );
-      assert.strictEqual(consoleErrorMock.callCount(), 2); // twice in strict mode
-      assert.include(consoleErrorMock.args()[0][0], 'However, no outer theme is present.');
+      expect(consoleErrorMock.callCount()).to.equal(2); // strict mode renders twice
+      expect(consoleErrorMock.messages()[0]).to.include('However, no outer theme is present.');
     });
 
     it('should warn about wrong theme function', () => {
-      mount(
+      render(
         <ThemeProvider theme={{ bar: 'bar' }}>
           <ThemeProvider theme={() => {}}>
             <div />
@@ -156,10 +148,9 @@ describe('ThemeProvider', () => {
           ,
         </ThemeProvider>,
       );
-      assert.strictEqual(consoleErrorMock.callCount(), 2);
-      assert.include(
-        consoleErrorMock.args()[0][0],
-        'you should return an object from your theme function',
+      expect(consoleErrorMock.callCount()).to.equal(2); // strict mode renders twice
+      expect(consoleErrorMock.messages()[0]).to.include(
+        'Material-UI: You should return an object from your theme function',
       );
     });
   });

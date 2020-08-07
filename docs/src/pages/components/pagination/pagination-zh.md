@@ -1,53 +1,51 @@
 ---
-title: Pagination React component
+title: React 分页组件
 components: Pagination, PaginationItem
 ---
 
-# Pagination
+# 分页组件 Pagination 
 
-<p class="description">The Pagination component enables the user to select a specific page from a range of pages.</p>
+<p class="description">使用分页组件，用户可以从一系列页面中选择某个特定的页面。</p>
 
-## Basic pagination
+## 基础分页
 
 {{"demo": "pages/components/pagination/BasicPagination.js"}}
 
-## Outlined pagination
+## 描边分页
 
 {{"demo": "pages/components/pagination/PaginationOutlined.js"}}
 
-## Rounded pagination
+## 圆形分页
 
 {{"demo": "pages/components/pagination/PaginationRounded.js"}}
 
-## Pagination size
+## 分页大小
 
 {{"demo": "pages/components/pagination/PaginationSize.js"}}
 
-## Buttons
+## 按钮
 
-You can optionally enable first-page and last-page buttons, or disable the previous-page and next-page buttons.
+你可以有选择地启用首尾页的按钮，或这禁用上一页和下一页的按钮。
 
 {{"demo": "pages/components/pagination/PaginationButtons.js"}}
 
-## Pagination ranges
+## 分页范围
 
-You can specify how many digits to display either side of current page with the `siblingRange` prop, and adjacent to the start and end page number with the `boundaryRange` prop.
+你可以使用 `siblingRange` 属性来指定当前页面两侧显示的数字多少，并使用`boundaryRange`属性来调整在起始和结束页码旁边显示的位数。
 
 {{"demo": "pages/components/pagination/PaginationRanges.js"}}
 
-## Controlled pagination
+## 可控制的分页
 
 {{"demo": "pages/components/pagination/PaginationControlled.js"}}
 
-## Router integration
-
-Pagination supports two approaches for Router integration, the `renderItem` prop:
+## 与 Router 整合
 
 {{"demo": "pages/components/pagination/PaginationLink.js"}}
 
 ## `usePagination`
 
-For advanced customization use cases, we expose a `usePagination()` hook. It accepts almost the same options as the Pagination component minus all the props related to the rendering of JSX. The Pagination component uses this hook internally.
+针对高级定制的用例，我们提供了一个 `usePagination()` hook。 它支持的选项与分页组件大致相同，但不包括与 JSX 渲染有关的所有属性。 分页组件内部也使用此 hook。
 
 ```jsx
 import { usePagination } from '@material-ui/lab/Pagination';
@@ -55,12 +53,22 @@ import { usePagination } from '@material-ui/lab/Pagination';
 
 {{"demo": "pages/components/pagination/UsePagination.js"}}
 
-## 可访问性
+## 表格分页
+
+`Pagination` 组件的设计是为了在不使用无限加载的情况下，将任意数量的项目进行分页。 比如说博客这样重视 SEO 的环境下，它是首选。
+
+对于大型表格数据的分页，应该使用 `TablePagination` 组件。
+
+{{"demo": "pages/components/pagination/TablePagination.js"}}
+
+您可以在文档的 [表格部分](/components/tables/#custom-pagination-options) 中了解更多关于此用例的信息。
+
+## 无障碍设计
 
 ### ARIA
 
-The root node has a role of "navigation" and aria-label "pagination navigation" by default. The page items have an aria-label that identifies the purpose of the item ("go to first page", "go to previous page", "go to page 1" etc.). You can override these using the `getItemAriaLabel` prop.
+默认情况下，根节点具有 "导航（navigation）" 和 aria-label 的“分页导航” 的作用。 页面的项目带有一个 aria-label，用于标识项目的用途（“转到首页”，“转到上一页”，“转到第一页”等）。 你可以使用 `getItemAriaLabel` 属性来覆盖它们。
 
-### Keyboard
+### 键盘输入
 
-The pagination items are in tab order, with a tabindex of "0".
+分页项目按标签顺序排列，标签索引为“0”。

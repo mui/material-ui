@@ -22,7 +22,7 @@ const styles = {
 export default function DynamicInlineStyle() {
   const [color, setColor] = React.useState('default');
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     setColor(event.target.checked ? 'blue' : 'default');
   };
 

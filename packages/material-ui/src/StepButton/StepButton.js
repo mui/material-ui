@@ -62,6 +62,7 @@ const StepButton = React.forwardRef(function StepButton(props, ref) {
 
   return (
     <ButtonBase
+      focusRipple
       disabled={disabled}
       TouchRippleProps={{ className: classes.touchRipple }}
       className={clsx(classes.root, classes[orientation], className)}

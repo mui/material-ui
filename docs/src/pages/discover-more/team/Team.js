@@ -45,6 +45,13 @@ const activeCore = [
     flag: 'Core focus: pickers',
     city: 'Kharkiv, Ukraine',
   },
+  {
+    name: 'Damien Rassone',
+    github: 'dtassone',
+    twitter: 'madKakoO',
+    flag: 'Enterprise product designer',
+    city: 'Barcelona, Spain',
+  },
 ];
 
 const emeriti = [
@@ -105,9 +112,24 @@ const partners = [
     flag: 'JSS',
     city: 'Berlin, Germany',
   },
+  {
+    name: 'Danica Shen',
+    github: 'DDDDDanica',
+    flag: '🇨🇳 Chinese docs',
+  },
+  {
+    name: 'Yan Lee',
+    github: 'AGDholo',
+    flag: '🇨🇳 Chinese docs',
+  },
+  {
+    name: 'Jairon Alves Lima',
+    github: 'jaironalves',
+    flag: '🇧🇷 Brazilian docs',
+  },
 ];
 
-const styles = theme => ({
+const styles = (theme) => ({
   details: {
     margin: theme.spacing(1, 1, 1, 0),
   },
@@ -137,7 +159,7 @@ function Group(props) {
       </Typography>
       <Typography>{description}</Typography>
       <Grid container spacing={2} className={classes.container}>
-        {members.map(member => (
+        {members.map((member) => (
           <Grid key={member.name} item xs={12} md={6}>
             <Paper variant="outlined">
               <Grid container wrap="nowrap">
@@ -211,18 +233,18 @@ some of whom have chosen to be featured below.`}
         {...props}
       />
       <Group
+        title="Community Partners"
+        description={`Some members of the community have so enriched it,
+      that they deserve special mention.`}
+        members={partners}
+        {...props}
+      />
+      <Group
         title="Core Team Emeriti"
         description={`We honor some no-longer-active core team members who have made
 valuable contributions in the past.
 They advise us from time-to-time.`}
         members={emeriti}
-        {...props}
-      />
-      <Group
-        title="Community Partners"
-        description={`Some members of the community have so enriched it,
-that they deserve special mention.`}
-        members={partners}
         {...props}
       />
     </div>

@@ -1,27 +1,27 @@
 # Renderização no servidor
 
-<p class="description">O caso de uso mais comum para a renderização do lado do servidor, é manipular a renderização inicial quando um usuário (ou rastreador do mecanismo de pesquisa) solicita sua aplicação.</p>
+<p class="description">A situação de uso mais comum para a renderização do lado do servidor, é manipular a renderização inicial quando um usuário (ou rastreador de mecanismo de pesquisa) solicita sua aplicação.</p>
 
-Quando o servidor recebe a solicitação, ele renderiza o componente(s) requerido em uma cadeia HTML e o envia como uma resposta ao cliente. A partir desse momento, o cliente assume as funções de renderização.
+Quando o servidor recebe a solicitação, ele renderiza o(s) componente(s) requerido(s) em uma cadeia HTML e o envia como uma resposta ao cliente. A partir desse momento, o cliente assume as funções de renderização.
 
 ## Material-UI no servidor
 
-O Material-UI foi desenhado da base com as limitações de renderizar no servidor, mas você pode se certificar que será integrado corretamente. É importante fornecer a página com o CSS necessário, caso contrário a página irá renderizar somente o HTML até o CSS ser injetado pelo cliente, causando uma tremulação (FOUC). Para injetar o estilo no cliente, precisamos:
+O Material-UI foi projetado em base com garantias de renderização no servidor, mas cabe a você certificar-se de que ele será integrado corretamente. É importante fornecer a página com o CSS necessário, caso contrário a página irá renderizar somente o HTML até o CSS ser injetado pelo cliente, causando uma tremulação (FOUC). Para injetar o estilo no cliente, precisamos:
 
-1. Cria uma instância nova e fresca do [`ServerStyleSheets`](/styles/api/#serverstylesheets) em cada requisição.
+1. Crie uma instância nova do [`ServerStyleSheets`](/styles/api/#serverstylesheets) em cada requisição.
 2. Renderize a árvore React com o coletor do lado do servidor.
-3. Puxe o CSS para fora.
+3. Capture o CSS.
 4. Passe o CSS junto ao cliente.
 
 No lado do cliente, o CSS será injetado uma segunda vez antes de remover o CSS injetado no lado do servidor.
 
 ## Configurando
 
-Na receita a seguir, vamos ver como configurar a renderização do lado do servidor.
+No passo a passo a seguir, vamos ver como configurar a renderização do lado do servidor.
 
 ### O tema
 
-Create a theme that will be shared between the client and the server:
+Crie um tema que será compartilhado entre o cliente e o servidor:
 
 `theme.js`
 
@@ -52,7 +52,7 @@ export default theme;
 
 ### O lado do servidor
 
-The following is the outline for what the server-side is going to look like. We are going to set up an [Express middleware](https://expressjs.com/en/guide/using-middleware.html) using [app.use](https://expressjs.com/en/api.html) to handle all requests that come in to the server. If you're unfamiliar with Express or middleware, just know that the handleRender function will be called every time the server receives a request.
+A seguir um esboço para o aspecto do que o servidor deve lidar. Vamos montar um [middleware Express](https://expressjs.com/en/guide/using-middleware.html) usando [app.use](https://expressjs.com/en/api.html) para lidar com todas as requisições que chegam ao servidor. Se você não estiver familiarizado com o Express ou middleware, saiba apenas, que a função handleRender será chamada toda vez que o servidor receber uma requisição.
 
 `server.js`
 
@@ -81,11 +81,11 @@ app.listen(port);
 
 A primeira coisa que precisamos fazer em cada solicitação é criar um novo `ServerStyleSheets`.
 
-When rendering, we will wrap `App`, the root component, inside a [`StylesProvider`](/styles/api/#stylesprovider) and [`ThemeProvider`](/styles/api/#themeprovider) to make the style configuration and the `theme` available to all components in the component tree.
+Quando renderizando, vamos encapsular `App`, o componente raiz, dentro de um [`StylesProvider`](/styles/api/#stylesprovider) e [`ThemeProvider`](/styles/api/#themeprovider) para tornar a configuração de estilo e o `theme` disponíveis para todos os componentes na árvore de componentes.
 
-The key step in server-side rendering is to render the initial HTML of the component **before** we send it to the client side. Para fazer isso, usamos [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html).
+A etapa principal na renderização do lado do servidor, é renderizar o HTML inicial do componente **antes** de enviarmos para o lado do cliente. Para fazer isso, usamos [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html).
 
-We then get the CSS from the `sheets` using `sheets.toString()`. We will see how this is passed along in the `renderFullPage` function.
+Em seguida, obtemos o CSS das `folhas` usando `sheets.toString()`. Vamos ver como isso é passado na função `renderFullPage`.
 
 ```jsx
 import express from 'express';
@@ -98,7 +98,7 @@ import theme from './theme';
 function handleRender(req, res) {
   const sheets = new ServerStyleSheets();
 
-  // Render the component to a string.
+  // Renderiza o componente para string.
   const html = ReactDOMServer.renderToString(
     sheets.collect(
       <ThemeProvider theme={theme}>
@@ -107,7 +107,7 @@ function handleRender(req, res) {
     ),
   );
 
-  // Grab the CSS from the sheets.
+  // Pega o CSS das folhas de estilo.
   const css = sheets.toString();
 
   // Envia a página renderizada de volta ao cliente.
@@ -127,7 +127,7 @@ app.listen(port);
 
 ### Injetar Componente Inicial HTML e CSS
 
-The final step on the server-side is to inject the initial component HTML and CSS into a template to be rendered on the client side.
+A etapa final no lado do servidor é injetar o componente HTML e CSS inicial em um modelo a ser renderizado no lado do cliente.
 
 ```js
 function renderFullPage(html, css) {
@@ -148,7 +148,7 @@ function renderFullPage(html, css) {
 
 ### O lado do cliente
 
-O lado do cliente é direto. Tudo o que precisamos fazer é remover o CSS gerado no lado do servidor. Let's take a look at the client file:
+O lado do cliente é simples. Tudo o que precisamos fazer é remover o CSS gerado no lado do servidor. Vamos dar uma olhada no arquivo do cliente:
 
 `client.js`
 
@@ -187,4 +187,4 @@ Nós hospedamos diferentes implementações de referência que você pode encont
 
 ## Resolução de problemas
 
-Check out the FAQ answer: [My App doesn't render correctly on the server](/getting-started/faq/#my-app-doesnt-render-correctly-on-the-server).
+Confira a resposta no FAQ: [Minha aplicação não é renderizada corretamente no servidor](/getting-started/faq/#my-app-doesnt-render-correctly-on-the-server).

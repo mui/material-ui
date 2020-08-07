@@ -94,7 +94,7 @@ function findNativeHandler({ domTreeShapes, start, current, anchor }) {
     },
   };
 
-  return domTreeShapes.some(shape => {
+  return domTreeShapes.some((shape) => {
     // Determine if we are going backward or forward.
     let goingForward = current >= start;
     if (anchor === 'top' || anchor === 'left') {
@@ -116,8 +116,7 @@ function findNativeHandler({ domTreeShapes, start, current, anchor }) {
   });
 }
 
-const disableSwipeToOpenDefault =
-  typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
+const iOS = typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
 const transitionDurationDefault = { enter: duration.enteringScreen, exit: duration.leavingScreen };
 
 const useEnhancedEffect = typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
@@ -129,7 +128,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     anchor = 'left',
     disableBackdropTransition = false,
     disableDiscovery = false,
-    disableSwipeToOpen = disableSwipeToOpenDefault,
+    disableSwipeToOpen = iOS,
     hideBackdrop,
     hysteresis = 0.52,
     minFlingVelocity = 450,
@@ -212,7 +211,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     [anchor, disableBackdropTransition, hideBackdrop, theme, transitionDuration],
   );
 
-  const handleBodyTouchEnd = useEventCallback(event => {
+  const handleBodyTouchEnd = useEventCallback((event) => {
     if (!touchDetected.current) {
       return;
     }
@@ -271,7 +270,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     }
   });
 
-  const handleBodyTouchMove = useEventCallback(event => {
+  const handleBodyTouchMove = useEventCallback((event) => {
     // the ref may be null when a parent component updates while swiping
     if (!paperRef.current || !touchDetected.current) {
       return;
@@ -403,7 +402,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     setPosition(translate);
   });
 
-  const handleBodyTouchStart = useEventCallback(event => {
+  const handleBodyTouchStart = useEventCallback((event) => {
     // We are not supposed to handle this touch move.
     // Example of use case: ignore the event if there is a Slider.
     if (event.defaultPrevented) {
@@ -501,7 +500,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     }
   }, [open]);
 
-  const handleBackdropRef = React.useCallback(instance => {
+  const handleBackdropRef = React.useCallback((instance) => {
     // #StrictMode ready
     backdropRef.current = ReactDOM.findDOMNode(instance);
   }, []);

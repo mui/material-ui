@@ -5,7 +5,7 @@ components: Portal
 
 # Portal
 
-<p class="description">Die Portalkomponente rendert ihre untergeordneten Elemente in eine neue "Unterstruktur" außerhalb der aktuellen Komponentenhierarchie.</p>
+<p class="description">The portal component renders its children into a new "subtree" outside of current DOM hierarchy.</p>
 
 - 📦 [1.3 kB gzipped](/size-snapshot)
 

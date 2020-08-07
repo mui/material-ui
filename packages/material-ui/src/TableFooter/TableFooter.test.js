@@ -1,54 +1,67 @@
 import * as React from 'react';
-import { assert } from 'chai';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { expect } from 'chai';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
+import { createClientRender } from 'test/utils/createClientRender';
 import TableFooter from './TableFooter';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 
 describe('<TableFooter />', () => {
-  let mount;
+  const mount = createMount();
   let classes;
+  const render = createClientRender();
 
-  function mountInTable(node) {
-    const wrapper = mount(<table>{node}</table>);
-    return wrapper.find('table').childAt(0);
+  function renderInTable(node) {
+    return render(<table>{node}</table>);
   }
 
   before(() => {
-    mount = createMount({ strict: true });
     classes = getClasses(<TableFooter />);
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<TableFooter />, () => ({
     classes,
     inheritComponent: 'tfoot',
-    mount: mountInTable,
+    mount: (node) => {
+      const wrapper = mount(<table>{node}</table>);
+      return wrapper.find('table').childAt(0);
+    },
+
     refInstanceof: window.HTMLTableSectionElement,
     testComponentPropWith: 'thead',
   }));
 
   it('should render children', () => {
-    const children = <tr className="test" />;
-    const wrapper = mountInTable(<TableFooter>{children}</TableFooter>);
-    assert.strictEqual(wrapper.contains(children), true);
+    const children = <tr data-testid="test" />;
+    const { getByTestId } = renderInTable(<TableFooter>{children}</TableFooter>);
+    getByTestId('test');
   });
 
   it('should define table.footer in the child context', () => {
     let context;
     // TODO test integration with TableCell
-    mountInTable(
+    renderInTable(
       <TableFooter>
         <Tablelvl2Context.Consumer>
-          {value => {
+          {(value) => {
             context = value;
           }}
         </Tablelvl2Context.Consumer>
       </TableFooter>,
     );
-    assert.strictEqual(context.variant, 'footer');
+    expect(context.variant).to.equal('footer');
+  });
+
+  describe('prop: component', () => {
+    it('can render a different component', () => {
+      const { container } = render(<TableFooter component="div" />);
+      expect(container.firstChild).to.have.property('nodeName', 'DIV');
+    });
+
+    it('sets role="rowgroup"', () => {
+      const { container } = render(<TableFooter component="div" />);
+      expect(container.firstChild).to.have.attribute('role', 'rowgroup');
+    });
   });
 });

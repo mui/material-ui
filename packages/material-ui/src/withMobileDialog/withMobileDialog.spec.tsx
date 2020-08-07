@@ -21,8 +21,8 @@ Component.defaultProps = {
   note: 'nothing special',
 };
 
-// Missing fullscreen, width
-<Component title="Not responsive yet!" />; // $ExpectError
+// @ts-expect-error Missing fullscreen, width
+<Component title="Not responsive yet!" />;
 
 const ResponsiveComponent = withMobileDialog()(Component);
 

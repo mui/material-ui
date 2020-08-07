@@ -31,7 +31,8 @@ Here are some examples of customizing the component. You can learn more about th
 
 ## Positioned snackbars
 
-There may be circumstances when the placement of the snackbar needs to be more flexible.
+In wide layouts, snackbars can be left-aligned or center-aligned if they are consistently placed on the same spot at the bottom of the screen, however there may be circumstances where the placement of the snackbar needs to be more flexible.
+You can control the position of the snackbar by specifying the `anchorOrigin` prop.
 
 {{"demo": "pages/components/snackbars/PositionedSnackbar.js"}}
 

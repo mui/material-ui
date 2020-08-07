@@ -7,8 +7,8 @@ function BooleanButtonTest() {
 
   function EditableItemFail(props: { editable: boolean }) {
     const { editable } = props;
-    // 'boolean' is not assignable to type 'true'
-    return <ListItem button={editable}>Editable? {editable}</ListItem>; // $ExpectError
+    // @ts-expect-error 'boolean' is not assignable to type 'true'
+    return <ListItem button={editable}>Editable? {editable}</ListItem>;
   }
 
   function EditableItemValid(props: { editable: boolean }) {
@@ -18,4 +18,15 @@ function BooleanButtonTest() {
     }
     return <ListItem>Editable? No</ListItem>;
   }
+}
+
+// verify that https://github.com/mui-org/material-ui/issues/19756 already worked.
+function MouseEnterTest() {
+  function handleMouseEnter(event: React.MouseEvent<HTMLLIElement>) {}
+  <ListItem onMouseEnter={handleMouseEnter} />;
+
+  function handleMouseEnterButton(event: React.MouseEvent<HTMLDivElement>) {}
+  // @ts-expect-error
+  <ListItem onMouseEnter={handleMouseEnterButton} />; // desired: missing property button
+  <ListItem button onMouseEnter={handleMouseEnterButton} />;
 }

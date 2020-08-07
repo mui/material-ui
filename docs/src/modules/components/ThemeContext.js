@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   ThemeProvider as MuiThemeProvider,
-  createMuiTheme,
+  createMuiTheme as createLegacyModeTheme,
+  unstable_createMuiStrictModeTheme as createStrictModeTheme,
   darken,
 } from '@material-ui/core/styles';
 import { useSelector } from 'react-redux';
@@ -10,7 +11,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { enUS, zhCN, faIR, ruRU, ptBR, esES, frFR, deDE, jaJP } from '@material-ui/core/locale';
 import { blue, pink } from '@material-ui/core/colors';
 import { getCookie } from 'docs/src/modules/utils/helpers';
-import { darkTheme, setPrismTheme } from 'docs/src/modules/components/prism';
+import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 
 const languageMap = {
   en: enUS,
@@ -97,6 +98,13 @@ if (process.env.NODE_ENV !== 'production') {
 
 const useEnhancedEffect = typeof window === 'undefined' ? React.useEffect : React.useLayoutEffect;
 
+let createMuiTheme;
+if (process.env.REACT_MODE === 'legacy') {
+  createMuiTheme = createLegacyModeTheme;
+} else {
+  createMuiTheme = createStrictModeTheme;
+}
+
 export function ThemeProvider(props) {
   const { children } = props;
 
@@ -147,14 +155,12 @@ export function ThemeProvider(props) {
     }
   }, themeInitialOptions);
 
-  const userLanguage = useSelector(state => state.options.userLanguage);
+  const userLanguage = useSelector((state) => state.options.userLanguage);
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const preferredType = prefersDarkMode ? 'dark' : 'light';
   const { dense, direction, paletteColors, paletteType = preferredType, spacing } = themeOptions;
 
-  React.useEffect(() => {
-    setPrismTheme(darkTheme);
-  }, []);
+  useLazyCSS('/static/styles/prism-okaidia.css', '#prismjs');
 
   React.useEffect(() => {
     if (process.browser) {
@@ -197,6 +203,15 @@ export function ThemeProvider(props) {
           },
           ...paletteColors,
         },
+        // v5 migration
+        props: {
+          MuiBadge: {
+            overlap: 'rectangular',
+          },
+          MuiAvatar: {
+            variant: 'circular',
+          },
+        },
         spacing,
       },
       dense ? highDensity : null,
@@ -235,5 +250,5 @@ ThemeProvider.propTypes = {
  */
 export function useChangeTheme() {
   const dispatch = React.useContext(DispatchContext);
-  return React.useCallback(options => dispatch({ type: 'CHANGE', payload: options }), [dispatch]);
+  return React.useCallback((options) => dispatch({ type: 'CHANGE', payload: options }), [dispatch]);
 }

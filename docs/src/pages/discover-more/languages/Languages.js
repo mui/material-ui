@@ -22,7 +22,7 @@ export default function Languages() {
     <Paper className={classes.root}>
       <Table>
         <TableBody>
-          {LANGUAGES_LABEL.map(language => (
+          {LANGUAGES_LABEL.map((language) => (
             <TableRow key={language.code}>
               <TableCell>
                 <Typography variant="body2">{language.text}</Typography>

@@ -1,12 +1,27 @@
 import * as React from 'react';
-import { StandardProps, PropTypes } from '..';
+import { PropTypes } from '..';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
-export interface IconProps
-  extends StandardProps<React.HTMLAttributes<HTMLSpanElement>, IconClassKey> {
-  color?: PropTypes.Color | 'action' | 'disabled' | 'error';
-  component?: React.ElementType<React.HTMLAttributes<HTMLSpanElement>>;
-  fontSize?: 'inherit' | 'default' | 'small' | 'large';
+export interface IconTypeMap<P = {}, D extends React.ElementType = 'span'> {
+  props: P & {
+    color?: PropTypes.Color | 'action' | 'disabled' | 'error';
+    fontSize?: 'inherit' | 'default' | 'small' | 'large';
+  };
+  defaultComponent: D;
+  classKey: IconClassKey;
 }
+/**
+ *
+ * Demos:
+ *
+ * - [Icons](https://material-ui.com/components/icons/)
+ * - [Material Icons](https://material-ui.com/components/material-icons/)
+ *
+ * API:
+ *
+ * - [Icon API](https://material-ui.com/api/icon/)
+ */
+declare const Icon: OverridableComponent<IconTypeMap>;
 
 export type IconClassKey =
   | 'root'
@@ -19,6 +34,9 @@ export type IconClassKey =
   | 'fontSizeSmall'
   | 'fontSizeLarge';
 
-declare const Icon: React.ComponentType<IconProps>;
+export type IconProps<
+  D extends React.ElementType = IconTypeMap['defaultComponent'],
+  P = {}
+> = OverrideProps<IconTypeMap<P, D>, D>;
 
 export default Icon;

@@ -70,7 +70,7 @@ export default function CustomizedRatings() {
         <StyledRating
           name="customized-color"
           defaultValue={2}
-          getLabelText={value => `${value} Heart${value !== 1 ? 's' : ''}`}
+          getLabelText={(value) => `${value} Heart${value !== 1 ? 's' : ''}`}
           precision={0.5}
           icon={<FavoriteIcon fontSize="inherit" />}
         />
@@ -84,7 +84,7 @@ export default function CustomizedRatings() {
         <Rating
           name="customized-icons"
           defaultValue={2}
-          getLabelText={value => customIcons[value].label}
+          getLabelText={(value) => customIcons[value].label}
           IconContainerComponent={IconContainer}
         />
       </Box>

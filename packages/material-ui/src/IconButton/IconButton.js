@@ -7,7 +7,7 @@ import { fade } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     textAlign: 'center',
@@ -133,15 +133,15 @@ IconButton.propTypes = {
   /**
    * The icon element.
    */
-  children: chainPropTypes(PropTypes.node, props => {
+  children: chainPropTypes(PropTypes.node, (props) => {
     const found = React.Children.toArray(props.children).some(
-      child => React.isValidElement(child) && child.props.onClick,
+      (child) => React.isValidElement(child) && child.props.onClick,
     );
 
     if (found) {
       return new Error(
         [
-          'Material-UI: you are providing an onClick event listener ' +
+          'Material-UI: You are providing an onClick event listener ' +
             'to a child of a button element.',
           'Firefox will never trigger the event.',
           'You should move the onClick listener to the parent button element.',
@@ -171,7 +171,6 @@ IconButton.propTypes = {
   disabled: PropTypes.bool,
   /**
    * If `true`, the  keyboard focus ripple will be disabled.
-   * `disableRipple` must also be true.
    */
   disableFocusRipple: PropTypes.bool,
   /**

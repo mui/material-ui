@@ -31,7 +31,7 @@ The badge auto hides with badgeContent is zero. You can override this with the `
 
 ## Maximaler Wert
 
-You can use the `max` property to cap the value of the badge content.
+Sie können die Eigenschaft `max` verwenden, um den Wert des Badge-Inhalts zu begrenzen.
 
 {{"demo": "pages/components/badges/BadgeMax.js"}}
 
@@ -51,4 +51,4 @@ You can use the `overlap` property to place the badge relative to the corner of 
 
 You can use the `anchorOrigin` prop to move the badge to any corner of the wrapped element.
 
-{{"demo": "pages/components/badges/BadgeAlignment.js", "hideHeader": true}}
+{{"demo": "pages/components/badges/BadgeAlignment.js", "hideToolbar": true}}

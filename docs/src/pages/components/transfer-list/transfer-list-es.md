@@ -5,16 +5,16 @@ components: List, ListItem, Checkbox, Switch
 
 # Lista de transferencia
 
-<p class="description">A transfer list (or "shuttle") enables the user to move one or more list items between lists.</p>
+<p class="description">Una lista de transferencia (o "shuttle") permite al usuario mover uno o más elementos de la lista entre listas.</p>
 
-## Simple Transfer List
+## Lista de transferencias simple
 
-For completeness, this example includes buttons for "move all", but not every transfer list needs these.
+Para su integridad, este ejemplo incluye botones para "mover todos", pero no todas las listas de transferencias las necesitan.
 
 {{"demo": "pages/components/transfer-list/TransferList.js", "bg": true}}
 
-## Enhanced Transfer List
+## Lista de transferencias mejorada
 
-This example exchanges the "move all" buttons for a "select all / select none" checkbox, and adds a counter.
+Este ejemplo cambia los botones "Mover todos" por una casilla "Seleccionar todo/seleccionar ninguna" y añade un contador.
 
 {{"demo": "pages/components/transfer-list/SelectAllTransferList.js", "bg": true}}

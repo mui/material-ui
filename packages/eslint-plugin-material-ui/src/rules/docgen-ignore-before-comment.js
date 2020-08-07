@@ -1,6 +1,6 @@
 module.exports = {
-  create: context => {
-    context.getAllComments().forEach(comment => {
+  create: (context) => {
+    context.getAllComments().forEach((comment) => {
       if (comment.type !== 'Block') {
         return;
       }

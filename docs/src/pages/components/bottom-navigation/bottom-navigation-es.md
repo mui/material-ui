@@ -1,5 +1,5 @@
 ---
-title: Componente de React para navegación a pie de página
+title: Componente para navegación a pie de página
 components: BottomNavigation, BottomNavigationAction
 ---
 

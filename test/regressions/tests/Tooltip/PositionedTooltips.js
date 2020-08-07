@@ -20,44 +20,44 @@ function PositionedTooltips(props) {
     <div className={classes.root}>
       <Grid container justify="center">
         <Grid item>
-          <Tooltip open title="Add" placement="top-start">
+          <Tooltip open arrow title="Add" placement="top-start">
             <Button className={classes.fab}>top-start</Button>
           </Tooltip>
-          <Tooltip open title="Add" placement="top">
+          <Tooltip open arrow title="Add" placement="top">
             <Button className={classes.fab}>top</Button>
           </Tooltip>
-          <Tooltip open title="Add" placement="top-end">
+          <Tooltip open arrow title="Add" placement="top-end">
             <Button className={classes.fab}>top-end</Button>
           </Tooltip>
         </Grid>
       </Grid>
       <Grid container justify="center">
         <Grid item xs={6}>
-          <Tooltip open title="Add" placement="left-start">
+          <Tooltip open arrow title="Add" placement="left-start">
             <Button className={classes.fab}>left-start</Button>
           </Tooltip>
           <br />
-          <Tooltip open title="Add" placement="left">
+          <Tooltip open arrow title="Add" placement="left">
             <Button className={classes.fab}>left</Button>
           </Tooltip>
           <br />
-          <Tooltip open title="Add" placement="left-end">
+          <Tooltip open arrow title="Add" placement="left-end">
             <Button className={classes.fab}>left-end</Button>
           </Tooltip>
         </Grid>
         <Grid item container xs={6} alignItems="flex-end" direction="column">
           <Grid item>
-            <Tooltip open title="Add" placement="right-start">
+            <Tooltip open arrow title="Add" placement="right-start">
               <Button className={classes.fab}>right-start</Button>
             </Tooltip>
           </Grid>
           <Grid item>
-            <Tooltip open title="Add" placement="right">
+            <Tooltip open arrow title="Add" placement="right">
               <Button className={classes.fab}>right</Button>
             </Tooltip>
           </Grid>
           <Grid item>
-            <Tooltip open title="Add" placement="right-end">
+            <Tooltip open arrow title="Add" placement="right-end">
               <Button className={classes.fab}>right-end</Button>
             </Tooltip>
           </Grid>
@@ -65,13 +65,13 @@ function PositionedTooltips(props) {
       </Grid>
       <Grid container justify="center">
         <Grid item>
-          <Tooltip open title="Add" placement="bottom-start">
+          <Tooltip open arrow title="Add" placement="bottom-start">
             <Button className={classes.fab}>bottom-start</Button>
           </Tooltip>
-          <Tooltip open title="Add" placement="bottom">
+          <Tooltip open arrow title="Add" placement="bottom">
             <Button className={classes.fab}>bottom</Button>
           </Tooltip>
-          <Tooltip open title="Add" placement="bottom-end">
+          <Tooltip open arrow title="Add" placement="bottom-end">
             <Button className={classes.fab}>bottom-end</Button>
           </Tooltip>
         </Grid>

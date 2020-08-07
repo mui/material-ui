@@ -27,7 +27,7 @@ const styles = (theme: Theme) =>
       // https://github.com/bvaughn/react-virtualized/issues/454
       '& .ReactVirtualized__Table__headerRow': {
         flip: false,
-        paddingRight: theme.direction === 'rtl' ? '0px !important' : undefined,
+        paddingRight: theme.direction === 'rtl' ? '0 !important' : undefined,
       },
     },
     tableRow: {
@@ -134,7 +134,7 @@ class MuiVirtualizedTable extends React.PureComponent<MuiVirtualizedTableProps> 
               return (
                 <Column
                   key={dataKey}
-                  headerRenderer={headerProps =>
+                  headerRenderer={(headerProps) =>
                     this.headerRenderer({
                       ...headerProps,
                       columnIndex: index,

@@ -53,7 +53,7 @@ Some columns have multiple widths defined, causing the layout to change at the d
 
 Below is an interactive demo that lets you explore the visual results of the different settings:
 
-{{"demo": "pages/components/grid/InteractiveGrid.js", "hideHeader": true, "bg": true}}
+{{"demo": "pages/components/grid/InteractiveGrid.js", "hideToolbar": true, "bg": true}}
 
 ## Auto-layout
 

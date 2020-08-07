@@ -2,7 +2,8 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
 import CheckBox from '../internal/svg-icons/CheckBox';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 import Avatar from '../Avatar';
@@ -10,12 +11,11 @@ import Chip from './Chip';
 
 describe('<Chip />', () => {
   let classes;
-  let mount;
+  const mount = createMount();
   const render = createClientRender();
 
   before(() => {
     classes = getClasses(<Chip />);
-    mount = createMount({ strict: true });
   });
 
   describeConformance(<Chip />, () => ({
@@ -24,7 +24,6 @@ describe('<Chip />', () => {
     mount,
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
-    after: () => mount.cleanUp(),
   }));
 
   describe('text only', () => {
@@ -75,11 +74,10 @@ describe('<Chip />', () => {
 
       const button = getByRole('button');
       expect(button).to.have.property('tabIndex', 0);
-      expect(button).to.have.accessibleName('My Chip');
+      expect(button).toHaveAccessibleName('My Chip');
     });
 
     it('should apply user value of tabIndex', () => {
-      // eslint-disable-next-line jsx-a11y/tabindex-no-positive
       const { getByRole } = render(<Chip label="My Chip" onClick={() => {}} tabIndex={5} />);
 
       expect(getByRole('button')).to.have.property('tabIndex', 5);
@@ -141,7 +139,7 @@ describe('<Chip />', () => {
       );
 
       expect(getByRole('button')).to.have.property('tabIndex', 0);
-      expect(container.querySelector('#avatar')).to.be.ok;
+      expect(container.querySelector('#avatar')).not.to.equal(null);
     });
 
     it('should apply user value of tabIndex', () => {
@@ -150,14 +148,13 @@ describe('<Chip />', () => {
           avatar={<Avatar id="avatar">MB</Avatar>}
           label="Text Avatar Chip"
           onDelete={() => {}}
-          // eslint-disable-next-line jsx-a11y/tabindex-no-positive
           tabIndex={5}
         />,
       );
 
       expect(getByRole('button')).to.have.property('tabIndex', 5);
       const elementsInTabOrder = Array.from(container.querySelectorAll('[tabIndex]')).filter(
-        element => element.tabIndex >= 0,
+        (element) => element.tabIndex >= 0,
       );
       expect(elementsInTabOrder).to.have.length(1);
     });
@@ -310,12 +307,12 @@ describe('<Chip />', () => {
 
   describe('reacts to keyboard chip', () => {
     it('should call onKeyDown when a key is pressed', () => {
-      const handleKeydown = stub().callsFake(event => event.key);
+      const handleKeydown = stub().callsFake((event) => event.key);
       const { getByRole } = render(<Chip onClick={() => {}} onKeyDown={handleKeydown} />);
       const chip = getByRole('button');
       chip.focus();
 
-      fireEvent.keyDown(document.activeElement, { key: 'p' });
+      fireEvent.keyDown(chip, { key: 'p' });
 
       expect(handleKeydown.callCount).to.equal(1);
       expect(handleKeydown.firstCall.returnValue).to.equal('p');
@@ -330,10 +327,10 @@ describe('<Chip />', () => {
       const chip = getByRole('button');
       chip.focus();
 
-      fireEvent.keyUp(document.activeElement, { key: 'Escape' });
+      fireEvent.keyUp(chip, { key: 'Escape' });
 
       expect(handleBlur.callCount).to.equal(1);
-      expect(chip).not.to.to.have.focus;
+      expect(chip).not.toHaveFocus();
     });
 
     it('should call onClick when `space` is released ', () => {
@@ -342,7 +339,7 @@ describe('<Chip />', () => {
       const chip = getByRole('button');
       chip.focus();
 
-      fireEvent.keyUp(document.activeElement, { key: ' ' });
+      fireEvent.keyUp(chip, { key: ' ' });
 
       expect(handleClick.callCount).to.equal(1);
     });
@@ -353,28 +350,48 @@ describe('<Chip />', () => {
       const chip = getByRole('button');
       chip.focus();
 
-      fireEvent.keyDown(document.activeElement, { key: 'Enter' });
+      fireEvent.keyDown(chip, { key: 'Enter' });
 
       expect(handleClick.callCount).to.equal(1);
     });
 
     describe('prop: onDelete', () => {
-      ['Backspace', 'Delete'].forEach(key => {
+      ['Backspace', 'Delete'].forEach((key) => {
         it(`should call onDelete '${key}' is released`, () => {
           const handleDelete = spy();
-          const { getAllByRole } = render(<Chip onClick={() => {}} onDelete={handleDelete} />);
+          const handleKeyDown = spy((event) => event.defaultPrevented);
+          const { getAllByRole } = render(
+            <Chip onClick={() => {}} onKeyDown={handleKeyDown} onDelete={handleDelete} />,
+          );
           const chip = getAllByRole('button')[0];
           chip.focus();
 
-          fireEvent.keyUp(document.activeElement, { key });
+          fireEvent.keyDown(chip, { key });
+
+          // defaultPrevented?
+          expect(handleKeyDown.returnValues[0]).to.equal(true);
+          expect(handleDelete.callCount).to.equal(0);
+
+          fireEvent.keyUp(chip, { key });
 
           expect(handleDelete.callCount).to.equal(1);
         });
       });
+
+      it('should not prevent default on input', () => {
+        const handleKeyDown = spy((event) => event.defaultPrevented);
+        const { container } = render(<Chip label={<input />} onKeyDown={handleKeyDown} />);
+        const input = container.querySelector('input');
+        input.focus();
+        fireEvent.keyDown(input, { key: 'Backspace' });
+
+        // defaultPrevented?
+        expect(handleKeyDown.returnValues[0]).to.equal(false);
+      });
     });
 
     describe('with children that generate events', () => {
-      ['Backspace', 'Delete'].forEach(key => {
+      ['Backspace', 'Delete'].forEach((key) => {
         it(`should not call onDelete for child keyup event when '${key}' is released`, () => {
           const handleDelete = spy();
           const handleKeyUp = spy();
@@ -385,7 +402,8 @@ describe('<Chip />', () => {
             />,
           );
 
-          fireEvent.keyUp(document.activeElement, { key });
+          fireEvent.keyUp(document.querySelector('input'), { key });
+
           expect(handleKeyUp.callCount).to.equal(1);
           expect(handleDelete.callCount).to.equal(0);
         });
@@ -401,7 +419,7 @@ describe('<Chip />', () => {
           />,
         );
 
-        fireEvent.keyUp(document.activeElement, { key: ' ' });
+        fireEvent.keyUp(document.querySelector('input'), { key: ' ' });
         expect(handleKeyUp.callCount).to.equal(1);
         expect(handleClick.callCount).to.equal(0);
       });
@@ -416,7 +434,7 @@ describe('<Chip />', () => {
           />,
         );
 
-        fireEvent.keyDown(document.activeElement, { key: 'Enter' });
+        fireEvent.keyDown(document.querySelector('input'), { key: 'Enter' });
         expect(handleKeyDown.callCount).to.equal(1);
         expect(handleClick.callCount).to.equal(0);
       });
@@ -431,7 +449,7 @@ describe('<Chip />', () => {
           />,
         );
 
-        fireEvent.keyUp(document.activeElement, { key: ' ' });
+        fireEvent.keyUp(document.querySelector('input'), { key: ' ' });
 
         expect(handleClick.callCount).to.equal(0);
         expect(handleKeyUp.callCount).to.equal(1);
@@ -447,7 +465,7 @@ describe('<Chip />', () => {
           />,
         );
 
-        fireEvent.keyDown(document.activeElement, { key: 'Enter' });
+        fireEvent.keyDown(document.querySelector('input'), { key: 'Enter' });
 
         expect(handleClick.callCount).to.equal(0);
         expect(handleKeyDown.callCount).to.equal(1);

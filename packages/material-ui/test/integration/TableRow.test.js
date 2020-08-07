@@ -1,21 +1,17 @@
 import * as React from 'react';
-import { assert } from 'chai';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { expect } from 'chai';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import TableFooter from '@material-ui/core/TableFooter';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 
 describe('<TableRow> integration', () => {
   let classes;
-  let mount;
+  const mount = createMount();
 
   before(() => {
     classes = getClasses(<TableRow />);
-    mount = createMount({ strict: true });
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   it('should render with the head class when in the context of a table head', () => {
@@ -26,8 +22,8 @@ describe('<TableRow> integration', () => {
         </TableHead>
       </table>,
     );
-    assert.strictEqual(wrapper.find('tr').hasClass(classes.root), true);
-    assert.strictEqual(wrapper.find('tr').hasClass(classes.head), true);
+    expect(wrapper.find('tr').hasClass(classes.root)).to.equal(true);
+    expect(wrapper.find('tr').hasClass(classes.head)).to.equal(true);
   });
 
   it('should render with the footer class when in the context of a table footer', () => {
@@ -38,7 +34,7 @@ describe('<TableRow> integration', () => {
         </TableFooter>
       </table>,
     );
-    assert.strictEqual(wrapper.find('tr').hasClass(classes.root), true);
-    assert.strictEqual(wrapper.find('tr').hasClass(classes.footer), true);
+    expect(wrapper.find('tr').hasClass(classes.root)).to.equal(true);
+    expect(wrapper.find('tr').hasClass(classes.footer)).to.equal(true);
   });
 });

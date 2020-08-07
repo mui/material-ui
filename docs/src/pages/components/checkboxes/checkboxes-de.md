@@ -11,9 +11,13 @@ components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 
 Wenn in einer Liste mehrere Optionen erscheinen, können Sie durch Kontrollkästchen die Abstände erhalten statt Ein- / Aus - Schalter zu verwenden. Wenn Sie nur eine Option haben, vermeiden Sie die Verwendung eines Kontrollkästchens und verwenden Sie stattdessen einen Ein- / Ausschalter.
 
+## Basic checkboxes
+
 {{"demo": "pages/components/checkboxes/Checkboxes.js"}}
 
-Die `Checkbox` kann dank der `FormControlLabel` Komponente auch mit einer Etikettenbeschreibung verwendet werden.
+## Checkbox with FormControlLabel
+
+`Checkbox` can be provided with a label thanks to the `FormControlLabel` component.
 
 {{"demo": "pages/components/checkboxes/CheckboxLabels.js"}}
 
@@ -34,6 +38,8 @@ Sie können die Platzierung des Etiketts ändern:
 Hier ist ein Beispiel zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
 
 {{"demo": "pages/components/checkboxes/CustomizedCheckbox.js", "defaultCodeOpen": false}}
+
+🎨 Wenn Sie nach Inspiration suchen, sehen sie sich [MUI Treasury's Anpassungs-Beispiele](https://mui-treasury.com/styles/checkbox) an.
 
 ## When to use
 

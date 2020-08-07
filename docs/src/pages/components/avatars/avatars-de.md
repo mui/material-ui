@@ -7,13 +7,13 @@ components: Avatar, AvatarGroup, Badge
 
 <p class="description">Avatare sind im gesamten Material Design zu finden und werden in allen Bereichen von Tabellen bis hin zu Dialogmenüs verwendet.</p>
 
-## Bild Avatare
+## Bild-Avatare
 
 Bild-Avatare können erstellt werden, indem reguläre `img` props `src` oder `srcSet` an die Komponente übergeben werden.
 
 {{"demo": "pages/components/avatars/ImageAvatars.js"}}
 
-## Buchstaben Avatare
+## Buchstaben-Avatare
 
 Avatars containing simple characters can be created by passing a string as `children`.
 
@@ -21,13 +21,13 @@ Avatars containing simple characters can be created by passing a string as `chil
 
 ## Größen
 
-You can change the size of the avatar with the `height` and `width` CSS properties.
+Die Größe des Avatars kann mit den `height`- und `width`-CSS-Eigenschaften verändert werden.
 
 {{"demo": "pages/components/avatars/SizeAvatars.js"}}
 
-## Icon Avatare
+## Icon-Avatare
 
-Icon Avatare werden erstellt, indem man ein Icon als `children` übergibt.
+Icon-Avatare werden erstellt, indem man ein Icon als `children` übergibt.
 
 {{"demo": "pages/components/avatars/IconAvatars.js"}}
 
@@ -41,8 +41,8 @@ If you need square or rounded avatars, use the `variant` prop.
 
 If there is an error loading the avatar image, the component falls back to an alternative in the following order:
 
-- the provided children
-- the first letter of the `alt` text
+- die mitgegebenen children
+- den ersten Buchstaben des `alt`-Textes
 - ein generisches Avatar-Symbol
 
 {{"demo": "pages/components/avatars/FallbackAvatars.js"}}

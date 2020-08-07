@@ -2,7 +2,7 @@ import React from 'react';
 import Portal from '@material-ui/core/Portal';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   alert: {
     padding: theme.spacing(1),
     margin: theme.spacing(1, 0),

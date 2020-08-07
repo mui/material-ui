@@ -3,7 +3,10 @@ import { Orientation } from '../Stepper';
 import { ButtonBaseTypeMap, ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 
-export type StepButtonIcon = React.ReactElement | string | number | null;
+/**
+ * @deprecated use `StepButtonProps['icon']` instead
+ */
+export type StepButtonIcon = React.ReactNode;
 
 export type StepButtonTypeMap<P, D extends React.ElementType> = ExtendButtonBaseTypeMap<{
   props: P & {
@@ -11,7 +14,7 @@ export type StepButtonTypeMap<P, D extends React.ElementType> = ExtendButtonBase
     alternativeLabel?: boolean;
     completed?: boolean;
     disabled?: boolean;
-    icon?: StepButtonIcon;
+    icon?: React.ReactNode;
     last?: boolean;
     optional?: React.ReactNode;
     orientation?: Orientation;
@@ -20,9 +23,21 @@ export type StepButtonTypeMap<P, D extends React.ElementType> = ExtendButtonBase
   classKey: StepButtonClasskey;
 }>;
 
-declare const StepButton: ExtendButtonBase<
-  StepButtonTypeMap<{}, ButtonBaseTypeMap['defaultComponent']>
->;
+/**
+ *
+ * Demos:
+ *
+ * - [Steppers](https://material-ui.com/components/steppers/)
+ *
+ * API:
+ *
+ * - [StepButton API](https://material-ui.com/api/step-button/)
+ * - inherits [ButtonBase API](https://material-ui.com/api/button-base/)
+ */
+declare const StepButton: ExtendButtonBase<StepButtonTypeMap<
+  {},
+  ButtonBaseTypeMap['defaultComponent']
+>>;
 
 export type StepButtonClasskey = 'root' | 'vertical' | 'touchRipple';
 

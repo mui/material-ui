@@ -3,7 +3,7 @@ title: Componente React para Seleção
 components: Select, NativeSelect
 ---
 
-# Select
+# Seleção
 
 <p class="description">Os componentes de seleção são usados para coletar informações fornecidas pelo usuário em uma lista de opções.</p>
 
@@ -13,57 +13,59 @@ Os menus são posicionados sobre seus elementos emissores, de modo que o item de
 
 {{"demo": "pages/components/selects/SimpleSelect.js"}}
 
-## Advanced features
+## Recursos avançados
 
-The Select component is meant to be interchangeable with a native `<select>` element.
+O componente `Select` é pensado para ser intercambiável com um elemento nativo `<select>`.
 
-If you are looking for more advanced features, like combobox, multiselect, autocomplete, async or creatable support, head to the [`Autocomplete` component](/components/autocomplete/). It's also meant to be an improved version of the "react-select" package.
+Se você estiver procurando por recursos mais avançados, como combobox, seleção múltipla, autocompletar, uso assíncrono ou com suporte de adição, vá para o [ componente `Autocomplete`](/components/autocomplete/). A ideia dessa ferramenta é ser uma versão melhorada das bibliotecas "react-select" e "downshift".
 
-## Native Select
+## Seleção Nativa
 
-As the user experience can be improved on mobile using the native select of the platform, we allow such pattern.
+Como a experiência do usuário pode ser melhorada em dispositivos móveis usando a seleção nativa da plataforma, permitimos esse padrão.
 
 {{"demo": "pages/components/selects/NativeSelects.js"}}
 
-## Text Fields
+## Campos de Texto
 
-O componente wrapper `TextField` é um controle de formulário completo, incluindo um rótulo, entrada e texto de ajuda. You can find an example with the select mode [in this section](/components/text-fields/#select).
+O componente wrapper `TextField` é um controle de formulário completo, incluindo um rótulo, entrada e texto de ajuda. Você pode encontrar um exemplo de seleção [nesta seção](/components/text-fields/#select).
 
-## Customized selects
+## Seleções customizadas
 
 Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
-The first step is to style the `InputBase` component. Once it's styled, you can either use it directly as a text field or provide it to the select `input` property to have a `select` field.
+O primeiro passo é estilizar o componente `InputBase`. Uma vez estilizado, você pode usá-lo diretamente como um campo de texto ou fornecê-lo à propriedade `input` da seleção para ter um campo `select`.
 
 {{"demo": "pages/components/selects/CustomizedSelects.js"}}
 
-## Multiple Select
+🎨 Se você está procurando inspiração, você pode verificar [os exemplos de customização de MUI Treasury](https://mui-treasury.com/styles/select).
 
-The `Select` component can handle multiple selections. It's enabled with the `multiple` property.
+## Seleção Múltipla
 
-Like with the single selection, you can pull out the new value by accessing `event.target.value` in the `onChange` callback. It's always an array.
+O componente `Select` pode lidar com múltiplas seleções. É ativado com a propriedade `multiple`.
+
+Como na seleção única, você pode extrair o novo valor acessando `event.target.value` na chamada `onChange`. É sempre uma matriz.
 
 {{"demo": "pages/components/selects/MultipleSelect.js"}}
 
-## Controlled Open Select
+## Seleção - Controladando abertura
 
 {{"demo": "pages/components/selects/ControlledOpenSelect.js"}}
 
-## With a Dialog
+## Com um diálogo
 
-While it's discouraged by the Material Design specification, you can use a select inside a dialog.
+Embora não seja recomendado pela especificação do Material Design, você pode usar uma seleção dentro de um diálogo.
 
 {{"demo": "pages/components/selects/DialogSelect.js"}}
 
-## Grouping
+## Agrupando
 
-Display categories with the `ListSubheader` component or the native `<optgroup>` element.
+Exiba categorias com o componente `ListSubheader` ou com o elemento nativo `<optgroup>`.
 
 {{"demo": "pages/components/selects/GroupedSelect.js"}}
 
 ## Acessibilidade
 
-To properly label your `Select` input you need an extra element with an `id` that contains a label. That `id` needs to match the `labelId` of the `Select` e.g.
+Para rotular corretamente seu campo `Select` você precisa de um elemento extra com um `id` que contenha o rótulo desejado. Esse `id` precisa coincidir com o `labelId` do `Select`, por exemplo.
 
 ```jsx
 <InputLabel id="label">Age</InputLabel>
@@ -73,11 +75,21 @@ To properly label your `Select` input you need an extra element with an `id` tha
 </Select>
 ```
 
-Alternatively a `TextField` with an `id` and `label` creates the proper markup and ids for you:
+Alternativamente, um `TextField` com `id` e `label` cria a marcação adequada e ids para você:
 
 ```jsx
-<TextField id="select" label="Age" value="20">
+<TextField id="select" label="Age" value="20" select>
   <MenuItem value="10">Ten</MenuItem>
   <MenuItem value="20">Twenty</MenuItem>
 </TextField>
+```
+
+Para uma [seleção nativa](#native-select), você deve utilizar um rótulo fornecendo o atributo `id` do elemento de seleção para o atributo `htmlFor` do `InputLabel`:
+
+```jsx
+<InputLabel htmlFor="select">Age</InputLabel>
+<NativeSelect id="select">
+  <option value="10">Ten</option>
+  <option value="20">Twenty</option>
+</NativeSelect>
 ```

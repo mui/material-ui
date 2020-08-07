@@ -55,7 +55,7 @@ function ConfirmationDialogRaw(props) {
     onClose(value);
   };
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     setValue(event.target.value);
   };
 
@@ -78,7 +78,7 @@ function ConfirmationDialogRaw(props) {
           value={value}
           onChange={handleChange}
         >
-          {options.map(option => (
+          {options.map((option) => (
             <FormControlLabel value={option} key={option} control={<Radio />} label={option} />
           ))}
         </RadioGroup>
@@ -101,7 +101,7 @@ ConfirmationDialogRaw.propTypes = {
   value: PropTypes.string.isRequired,
 };
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
     maxWidth: 360,
@@ -122,7 +122,7 @@ export default function ConfirmationDialog() {
     setOpen(true);
   };
 
-  const handleClose = newValue => {
+  const handleClose = (newValue) => {
     setOpen(false);
 
     if (newValue) {

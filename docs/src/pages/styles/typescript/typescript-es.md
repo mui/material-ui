@@ -1,8 +1,8 @@
 # TypeScript
 
-### Customization of `Theme`
+### Personalización de `Tema`
 
-You can augment the default theme type to avoid having to set the theme type every time you use `makeStyles`, `useTheme`, or `styled`.
+Puedes aumentar el tipo de tema predeterminado para evitar tener que configurar el tipo de tema cada vez que utilices `makeStyles`, `useTheme`, o `styled`.
 
 ```typescript
 declare module '@material-ui/core/styles' {

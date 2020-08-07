@@ -9,7 +9,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     margin: 'auto',
   },
@@ -24,11 +24,11 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function not(a, b) {
-  return a.filter(value => b.indexOf(value) === -1);
+  return a.filter((value) => b.indexOf(value) === -1);
 }
 
 function intersection(a, b) {
-  return a.filter(value => b.indexOf(value) !== -1);
+  return a.filter((value) => b.indexOf(value) !== -1);
 }
 
 export default function TransferList() {
@@ -40,7 +40,7 @@ export default function TransferList() {
   const leftChecked = intersection(checked, left);
   const rightChecked = intersection(checked, right);
 
-  const handleToggle = value => () => {
+  const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
 
@@ -75,10 +75,10 @@ export default function TransferList() {
     setRight([]);
   };
 
-  const customList = items => (
+  const customList = (items) => (
     <Paper className={classes.paper}>
       <List dense component="div" role="list">
-        {items.map(value => {
+        {items.map((value) => {
           const labelId = `transfer-list-item-${value}-label`;
 
           return (

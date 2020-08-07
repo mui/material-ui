@@ -31,7 +31,7 @@ const theme = createMuiTheme({
 
 セルフホストフォントを作成するには、`ttf`、`woff`、または`woff2`形式のフォントファイルをダウンロードし、コードに読み込みます。
 
-⚠️これには、ビルドプロセスに`ttf`、` woff ` 、および ` woff2 `の読み込みを処理できるプラグインまたはローダーが必要です。 フォントはバンドルに*埋め込まれません*。 それらは、 CDNの代わりにWebサーバーからロードされます。
+⚠️これには、ビルドプロセスに`ttf`、`woff` 、および `woff2`の読み込みを処理できるプラグインまたはローダーが必要です。 フォントはバンドルに*埋め込まれません*。 それらは、 CDNの代わりにWebサーバーからロードされます。 フォントはバンドルに*埋め込まれません*。 それらは、 CDNの代わりにWebサーバーからロードされます。
 
 ```js
 import RalewayWoff2 from './fonts/Raleway-Regular.woff2';
@@ -78,9 +78,9 @@ return (
 
 ## フォントサイズ
 
-Material-UIでは、フォントサイズに`rem`単位を使用します。 The browser `<html>` element default font size is `16px`, but browsers have an option to change this value, so `rem` units allow us to accommodate the user's settings, resulting in a better accessibility support. ユーザーは、視力の低下から最適な設定の選択まで、さまざまな理由でフォントサイズの設定を変更できます。サイズや表示距離が大幅に異なるデバイスにも対応できます。
+⚠️ Changing the font size can harm accessibility ♿️. Most browsers agreed on the default size of 16 pixels, but the user can change it. For instance, someone with an impaired vision could have set their browser’s default font size to something larger.
 
-Material-UIのフォントサイズを変更するには、` fontSize `プロパティを。 デフォルト値は` 14pxです` 。
+An `htmlFontSize` theme property is provided for this use case, which tells Material-UI what the font-size on the `<html>` element is. This is used to adjust the `rem` value so the calculated font-size always match the specification.
 
 ```js
 const theme = createMuiTheme({
@@ -94,13 +94,56 @@ const theme = createMuiTheme({
 
 ブラウザで計算されるフォントサイズは、次の数式に従います。
 
-![フォント サイズ](/static/images/font-size.gif)
+![font-size](/static/images/font-size.gif)
 
 <!-- https://latex.codecogs.com/gif.latex?computed&space;=&space;specification&space;\frac{typography.fontSize}{14}&space;\frac{html&space;font&space;size}{typography.htmlFontSize} -->
 
+### レスポンシブフォントサイズ
+
+Typographyバリアント型プロパティは、生成されたCSSに直接マップされます。 [media queries](/customization/breakpoints/#api) を使用できます： Typographyバリアント型プロパティは、生成されたCSSに直接マップされます。 [media queries](/customization/breakpoints/#api) を使用できます：
+
+```js
+const theme = createMuiTheme();
+
+theme.typography.h3 = {
+  fontSize: '1.2rem',
+  '@media (min-width:600px)': {
+    fontSize: '1.5rem',
+  },
+  [theme.breakpoints.up('md')]: {
+    fontSize: '2.4rem',
+  },
+};
+```
+
+{{"demo": "pages/customization/typography/CustomResponsiveFontSizes.js"}}
+
+この設定を自動化するには、[`responsiveFontSizes()`](/customization/theming/#responsivefontsizes-theme-options-theme)ヘルパーを使用して、テーマのタイポグラフィフォントサイズを応答可能にします。
+
+{{"demo": "pages/customization/typography/ResponsiveFontSizesChart.js", "hideToolbar": true}}
+
+以下の例で実際にこれを見ることができます。 以下の例で実際にこれを見ることができます。 ブラウザのウィンドウサイズを調整し、幅が異なる[ブレークポイント](/customization/breakpoints/)を横切るときにフォントサイズがどのように変化するかを確認します。
+
+```js
+import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
+
+let theme = createMuiTheme();
+theme = responsiveFontSizes(theme);
+```
+
+{{"demo": "pages/customization/typography/ResponsiveFontSizes.js"}}
+
+### 滑らかなフォントサイズ
+
+完了予定：[＃15251 ](https://github.com/mui-org/material-ui/issues/15251) 。
+
 ### HTMLフォントサイズ
 
-`<html>`要素のデフォルトのフォントサイズを変更することもできます。 たとえば、[ 10pxの単純化を使用する場合](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/) 。 An `htmlFontSize` theme property is provided for this use case, which tells Material-UI what the font-size on the `<html>` element is. This is used to adjust the `rem` value so the calculated font-size always match the specification.
+An `htmlFontSize` theme property is provided for this use case, which tells Material-UI what the font-size on the `<html>` element is. This is used to adjust the `rem` value so the calculated font-size always match the specification.
+
+> ⚠️ Changing the font size can harm accessibility ♿️. Most browsers agreed on the default size of 16 pixels, but the user can change it. For instance, someone with an impaired vision could have set their browser’s default font size to something larger.
+
+An `htmlFontSize` theme property is provided for this use case, which tells Material-UI what the font-size on the `<html>` element is. This is used to adjust the `rem` value so the calculated font-size always match the specification.
 
 ```js
 const theme = createMuiTheme({
@@ -121,45 +164,6 @@ html {
 
 {{"demo": "pages/customization/typography/FontSizeTheme.js"}}
 
-### レスポンシブフォントサイズ
-
-Typographyバリアント型プロパティは、生成されたCSSに直接マップされます。 [media queries](/customization/breakpoints/#api) を使用できます：
-
-```js
-const theme = createMuiTheme();
-
-theme.typography.h3 = {
-  fontSize: '1.2rem',
-  '@media (min-width:600px)': {
-    fontSize: '1.5rem',
-  },
-  [theme.breakpoints.up('md')]: {
-    fontSize: '2.4rem',
-  },
-};
-```
-
-{{"demo": "pages/customization/typography/CustomResponsiveFontSizes.js"}}
-
-To automate this setup, you can use the [`responsiveFontSizes()`](/customization/theming/#responsivefontsizes-theme-options-theme) helper to make Typography font sizes in the theme responsive.
-
-{{"demo": "pages/customization/typography/ResponsiveFontSizesChart.js", "hideHeader": true}}
-
-You can see this in action in the example below. adjust your browser's window size, and notice how the font size changes as the width crosses the different [breakpoints](/customization/breakpoints/):
-
-```js
-import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
-
-let theme = createMuiTheme();
-theme = responsiveFontSizes(theme);
-```
-
-{{"demo": "pages/customization/typography/ResponsiveFontSizes.js"}}
-
-### 滑らかなフォントサイズ
-
-To be done: [#15251](https://github.com/mui-org/material-ui/issues/15251).
-
 ## バリアント
 
 The typography object comes with [13 variants](/components/typography/#component) by default:
@@ -178,7 +182,7 @@ The typography object comes with [13 variants](/components/typography/#component
 - キャプション
 - オーバーライン
 
-Each of these variants can be customized individually:
+これらのバリアントは各々個別にカスタマイズ可能です。
 
 ```js
 const theme = createMuiTheme({

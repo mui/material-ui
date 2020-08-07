@@ -1,15 +1,28 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
-export interface TableContainerProps
-  extends StandardProps<TableContainerBaseProps, TableContainerClassKey> {
-  component?: React.ElementType<TableContainerBaseProps>;
+export interface TableContainerTypeMap<P = {}, D extends React.ElementType = 'div'> {
+  props: P;
+  defaultComponent: D;
+  classKey: TableContainerClassKey;
 }
-
-export type TableContainerBaseProps = React.HTMLAttributes<HTMLDivElement>;
+/**
+ *
+ * Demos:
+ *
+ * - [Tables](https://material-ui.com/components/tables/)
+ *
+ * API:
+ *
+ * - [TableContainer API](https://material-ui.com/api/table-container/)
+ */
+declare const TableContainer: OverridableComponent<TableContainerTypeMap>;
 
 export type TableContainerClassKey = 'root';
 
-declare const TableContainer: React.ComponentType<TableContainerProps>;
+export type TableContainerProps<
+  D extends React.ElementType = TableContainerTypeMap['defaultComponent'],
+  P = {}
+> = OverrideProps<TableContainerTypeMap<P, D>, D>;
 
 export default TableContainer;

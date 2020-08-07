@@ -19,7 +19,7 @@ El Drawer puede ser cancelado, haciendo click sobre el Overlay o presionando la 
 
 {{"demo": "pages/components/drawers/TemporaryDrawer.js"}}
 
-## Drawer temporal deslizable
+### Swipeable
 
 Puedes hacer que el Drawer sea deslizable con el componente `SwipeableDrawer`.
 

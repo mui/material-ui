@@ -35,7 +35,7 @@ But this summary is just scratching the surface. We have accepted 146 commits fr
 
 - 🔍 We will work on providing ready to use autocomplete, combo box, and multi-select components.
 
-- 🦴 We will continue to work on a new Skeleton component. You can already [preview it](https://deploy-preview-16786--material-ui.netlify.com/components/skeleton/).
+- 🦴 We will continue to work on a new Skeleton component. You can already [preview it](https://deploy-preview-16786--material-ui.netlify.app/components/skeleton/).
 
   ![Skeleton](/static/blog/july-2019-update/skeleton.png)
 

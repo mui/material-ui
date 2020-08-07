@@ -4,7 +4,7 @@ import compose from './compose';
 export const displayPrint = style({
   prop: 'displayPrint',
   cssProperty: false,
-  transform: value => ({
+  transform: (value) => ({
     '@media print': {
       display: value,
     },
@@ -31,11 +31,4 @@ export const whiteSpace = style({
   prop: 'whiteSpace',
 });
 
-export default compose(
-  displayPrint,
-  displayRaw,
-  overflow,
-  textOverflow,
-  visibility,
-  whiteSpace,
-);
+export default compose(displayPrint, displayRaw, overflow, textOverflow, visibility, whiteSpace);

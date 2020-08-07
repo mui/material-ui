@@ -97,6 +97,10 @@ const Select = React.forwardRef(function Select(props, ref) {
 });
 
 Select.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * If `true`, the width of the popover will automatically be set according to the items inside the
    * menu, otherwise it will be at least the width of the select input.
@@ -113,7 +117,7 @@ Select.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * The default element value. Use when the component is not controlled.
    */
@@ -130,7 +134,7 @@ Select.propTypes = {
    */
   IconComponent: PropTypes.elementType,
   /**
-   * @ignore
+   * The `id` of the wrapper element or the `select` element when `native`.
    */
   id: PropTypes.string,
   /**
@@ -143,7 +147,7 @@ Select.propTypes = {
    */
   inputProps: PropTypes.object,
   /**
-   * See [OutlinedLabel#label](/api/outlined-input/#props)
+   * See [OutlinedInput#label](/api/outlined-input/#props)
    */
   label: PropTypes.node,
   /**
@@ -152,7 +156,7 @@ Select.propTypes = {
    */
   labelId: PropTypes.string,
   /**
-   * See OutlinedLabel#label
+   * See [OutlinedInput#label](/api/outlined-input/#props)
    */
   labelWidth: PropTypes.number,
   /**
@@ -218,7 +222,7 @@ Select.propTypes = {
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
+  variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
 };
 
 Select.muiName = 'Select';

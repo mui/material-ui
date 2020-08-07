@@ -5,7 +5,7 @@ import withStyles from '../styles/withStyles';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 import { fade } from '../styles/colorManipulator';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     color: 'inherit',
@@ -16,7 +16,7 @@ export const styles = theme => ({
     '&$hover:hover': {
       backgroundColor: theme.palette.action.hover,
     },
-    '&$selected,&$selected:hover': {
+    '&$selected, &$selected:hover': {
       backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.selectedOpacity),
     },
   },
@@ -30,6 +30,7 @@ export const styles = theme => ({
   footer: {},
 });
 
+const defaultComponent = 'tr';
 /**
  * Will automatically set dynamic row height
  * based on the material table element parent (head, body, etc).
@@ -38,7 +39,7 @@ const TableRow = React.forwardRef(function TableRow(props, ref) {
   const {
     classes,
     className,
-    component: Component = 'tr',
+    component: Component = defaultComponent,
     hover = false,
     selected = false,
     ...other
@@ -58,6 +59,7 @@ const TableRow = React.forwardRef(function TableRow(props, ref) {
         },
         className,
       )}
+      role={Component === defaultComponent ? null : 'row'}
       {...other}
     />
   );
@@ -79,9 +81,9 @@ TableRow.propTypes = {
   className: PropTypes.string,
   /**
    * The component used for the root node.
-   * Either a string to use a DOM element or a component.
+   * Either a string to use a HTML element or a component.
    */
-  component: PropTypes.elementType,
+  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
    * If `true`, the table row will shade on hover.
    */

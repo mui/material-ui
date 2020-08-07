@@ -4,7 +4,7 @@
 
 Procurando pelos documentos da v3? [Encontre-os aqui](https://material-ui.com/versions/).
 
-> Este documento é um trabalho em progresso. Você atualizou seu site e encontrou algo que não é abordado aqui? [Adicione suas alterações no GitHub](https://github.com/mui-org/material-ui/blob/master/docs/src/pages/guides/migration-v3/migration-v3.md).
+> Este documento está em constante evolução. Você atualizou seu site e encontrou algo que não é abordado aqui? [Adicione suas alterações no GitHub](https://github.com/mui-org/material-ui/blob/master/docs/src/pages/guides/migration-v3/migration-v3.md).
 
 ## Introdução
 
@@ -12,7 +12,7 @@ Esta é uma referência para atualizar seu site de Material-UI v3 para v4. Embor
 
 ## Por que você deve migrar
 
-Esta página de documentação cobre o *como* migrar da v3 para a v4. O *por que* é abordado na [postagem no blog do Medium](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701).
+Esta página de documentação cobre o *como* migrar da v3 para a v4. O *porque* é abordado na [postagem no blog do Medium](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701).
 
 ## Atualizando suas dependências
 
@@ -40,7 +40,7 @@ yarn add @material-ui/core
 
 ### Atualize a versão do React
 
-A versão miníma necessária do React foi incrementada de `react@^16.3.0` para `react@^16.8.0`. Isso nos permite a utilizar [Hooks](https://reactjs.org/docs/hooks-intro.html) (não usamos mais a API class).
+A versão miníma necessária do React foi incrementada de `react@^16.3.0` para `react@^16.8.0`. Isso nos permite a utilizar [Hooks](https://pt-br.reactjs.org/docs/hooks-intro.html) (não usamos mais a API class).
 
 ### Atualize a versão do Material-UI Styles
 
@@ -70,8 +70,8 @@ yarn add @material-ui/styles
 
 ### Estilos
 
-- ⚠️ Material-UI depende do JSS v10. JSS v10 não é compatível com o v9. Certifique-se de que o JSS v9 não esteja instalado em seu ambiente. (Remover `react-jss` do seu `package.json` pode ajudar). O componente StylesProvider substitui o componente JssProvider.
-- Remova a primeira opção de argumento do `withTheme()`. (The first argument was a placeholder for a potential future option that never arose.)
+- ⚠️ Material-UI depende do JSS v10. JSS v10 não é compatível com a v9. Certifique-se de que o JSS v9 não esteja instalado em seu ambiente. (Remover `react-jss` do seu `package.json` pode ajudar). O componente StylesProvider substitui o componente JssProvider.
+- Remova a primeira opção de argumento do `withTheme()`. (O primeiro argumento é um espaço reservado para uma opção futura potencial que nunca existiu.)
   
     Corresponde à [emotion API](https://emotion.sh/docs/introduction) e [styled-components API](https://www.styled-components.com).
 
@@ -80,15 +80,15 @@ yarn add @material-ui/styles
   +const DeepChild = withTheme(DeepChildRaw);
   ```
 
-- Rename `convertHexToRGB` to `hexToRgb`.
+- Renomeie `convertHexToRGB` para `hexToRgb`.
 
   ```diff
   -import { convertHexToRgb } from '@material-ui/core/styles/colorManipulator';
   +import { hexToRgb } from '@material-ui/core/styles';
   ```
 
-- Scope the [keyframes API](https://cssinjs.org/jss-syntax/#keyframes-animation). You should apply the following changes in your codebase.
-  It helps isolating the animation logic:
+- Escopo da [keyframes API](https://cssinjs.org/jss-syntax/#keyframes-animation). Você deve aplicar as seguintes alterações na sua base de código.
+  Ela ajuda a isolar a lógica da animação:
 
   ```diff
     rippleVisible: {
@@ -106,10 +106,10 @@ yarn add @material-ui/styles
     },
   ```
 
-### Theme
+### Tema
 
-- The `theme.palette.augmentColor()` method no longer performs a side effect on its input color.
-  To use it correctly, you have to use the returned value.
+- O método` theme.palette.augmentColor() `não produz mais um efeito colateral em sua cor de entrada.
+  Para usá-lo corretamente, agora você precisa usar o valor retornado.
 
   ```diff
   -const background = { main: color };
@@ -119,7 +119,7 @@ yarn add @material-ui/styles
   console.log({ background });
   ```
 
-- You can safely remove the next variant from the theme creation:
+- Você pode remover com segurança a próxima variante na criação do tema:
 
   ```diff
   typography: {
@@ -127,7 +127,7 @@ yarn add @material-ui/styles
   },
   ```
 
-- `theme.spacing.unit` usage is deprecated, you can use the new API:
+- `theme.spacing.unit` está com o uso obsoleto, você pode usar a nova API:
 
   ```diff
   label: {
@@ -138,24 +138,24 @@ yarn add @material-ui/styles
   }
   ```
 
-  *Tip: you can provide more than 1 argument: `theme.spacing(1, 2) // = '8px 16px'`*.
+  *Dica: você pode fornecer mais de 1 argumento: `theme.spacing(1, 2) // = '8px 16px'`*.
 
-  You can use [the migration helper](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api) on your project to make this smoother.
+  Você pode usar o [utilitário de migração](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api) em seu projeto para tornar isso mais suave.
 
-### Layout
+### Leiaute
 
-- [Grid] In order to support arbitrary spacing values and to remove the need to mentally count by 8, we are changing the spacing API:
+- [Grid] Para suportar valores de espaçamento arbitrários e para remover a necessidade de contar mentalmente por 8, estamos mudando a API de espaçamento:
 
   ```diff
     /**
-     * Defines the space between the type `item` component.
-     * It can only be used on a type `container` component.
+     * Define o espaço entre o componente do tipo `item`.
+     * Só pode ser usado em um componente do tipo `container`.
      */
   -  spacing: PropTypes.oneOf([0, 8, 16, 24, 32, 40]),
   +  spacing: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
   ```
-  Going forward, you can use the theme to implement [a custom Grid spacing transformation function](https://material-ui.com/system/spacing/#transformation).
-- [Container] Moved from `@material-ui/lab` to `@material-ui/core`.
+  Indo adiante, você pode usar o tema para implementar [uma função de transformação de espaçamento de grade customizada](https://material-ui.com/system/spacing/#transformation).
+- [Container] Movido de `@material-ui/lab` to `@material-ui/core`.
 
   ```diff
   -import Container from '@material-ui/lab/Container';
@@ -166,21 +166,21 @@ yarn add @material-ui/styles
 
 #### `value` type
 
-Normalized `value` prop type for input components to use `unknown`. This affects
-`InputBase`, `NativeSelect`, `OutlinedInput`, `Radio`, `RadioGroup`, `Select`, `SelectInput`, `Switch`, `TextArea`,  and `TextField`.
+Tipo da propriedade `value` normalizado para os componentes de entrada utilizarem `unknown`. Isso afeta
+`InputBase`, `NativeSelect`, `OutlinedInput`, `Radio`, `RadioGroup`, `Select`, `SelectInput`, `Switch`, `TextArea`, e `TextField`.
 
 ```diff
 function MySelect({ children }) {
 - const handleChange = (event: any, value: string) => {
 + const handleChange = (event: any, value: unknown) => {
-    // handle value
+    // valor manipulado
   };
 
   return <Select onChange={handleChange}>{children}</Select>
 }
 ```
 
-This change is explained in more detail in the [TypeScript guide](/guides/typescript/#handling-value-and-event-handlers)
+Esta alteração é explicada em mais detalhes no [guia TypeScript](/guides/typescript/#handling-value-and-event-handlers)
 
 ### Botão
 
@@ -224,14 +224,14 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
 
 - [ClickAwayListener] Esconda propriedades react-event-listener.
 
-### Dialog
+### Diálogo
 
 - [DialogActions] Renomeie a propriedade `disableActionSpacing` para `disableSpacing`.
 - [DialogActions] Renomeie a classe CSS `action` para `spacing`.
-- [DialogContentText] Use a varante de tipografia `body1` em vez de `subtitle1`.
+- [DialogContentText] Use a variante de tipografia `body1` em vez de `subtitle1`.
 - [Dialog] O elemento filho precisa ser capaz de lidar com ref. O [guia de composição](/guides/composition/#caveat-with-refs) explica a estratégia de migração.
 
-### Divider
+### Divisor
 
 - [Divider] Remova a propriedade obsoleta `inset`.
   
@@ -243,8 +243,8 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
 ### Painel de expansão
 
 - [ExpansionPanelActions] Renomeie a classe CSS `action` para `spacing`.
-- [ExpansionPanel] Increase the CSS specificity of the `disabled` and `expanded` style rules.
-- [ExpansionPanel] Rename the `CollapseProps` prop to `TransitionProps`.
+- [ExpansionPanel] Aumente a especificidade CSS das regras de estilo `disabled` e `expanded`.
+- [ExpansionPanel] Renomeie a propriedade `CollapseProps` para `TransitionProps`.
 
 ### Lista
 
@@ -253,7 +253,7 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
   - O componente `ListItemAvatar` é necessário ao usar um avatar.
   - O componente `ListItemIcon` é necessário ao usar uma caixa de seleção à esquerda.
   - A propriedade `edge` deve ser definida para botões de ícone.
-- [List] `dense` no longer reduces the top and bottom padding of the `List` element.
+- [List] `dense` não reduz mais o espaçamento superior e inferior do elemento `List`.
 
 - [ListItem] Aumente a especificidade CSS das regras de estilo `disabled` e `focusVisible`.
 
@@ -299,7 +299,7 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
   +import Slider from '@material-ui/core/Slider'
   ```
 
-### Seletor
+### Interruptor
 
 - [Switch] Refatore a implementação para torná-la mais fácil de sobrescrever os estilos. Renomeie os nomes das classes para corresponder ao texto da especificação:
   
@@ -312,25 +312,25 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
 
 ### Snackbar
 
-- [Snackbar] Coincide a nova especificação.
+- [Snackbar] Coincide com a nova especificação.
   
   - Modificado as dimensões
   - Modificado a transição padrão de `Slide` para `Grow`.
 
-### Ícones SVG
+### SvgIcon
 
-- [SvgIcon] Renomeie nativeColor -> htmlColor. React resolveu o mesmo problema com o atributo HTML `for`, eles decidiram chamar um propriedade `htmlFor`. Essa mudança segue o mesmo raciocínio.
+- [SvgIcon] Renomeie nativeColor -> htmlColor. React resolveu o mesmo problema com o atributo HTML `for`, eles decidiram chamar a propriedade de `htmlFor`. Essa mudança segue o mesmo raciocínio.
   
   ```diff
   -<AddIcon nativeColor="#fff" />
   +<AddIcon htmlColor="#fff" />
   ```
 
-### Guias
+### Abas
 
 - [Tab] Remova as chaves de classe `labelContainer`, `label` e `labelWrapped` para simplificar. Isso nos permitiu remover 2 elementos DOM intermediários. Você deve conseguir mover os estilos customizados para chave de classe `root`.
   
-    ![Uma estrutura DOM de item de guia mais simples](https://user-images.githubusercontent.com/3165635/53287870-53a35500-3782-11e9-9431-2d1a14a41be0.png)
+    ![Uma estrutura DOM de item de aba mais simples](https://user-images.githubusercontent.com/3165635/53287870-53a35500-3782-11e9-9431-2d1a14a41be0.png)
 
 - [Tabs] Remova as propriedades descontinuadas fullWidth e scrollable:
   
@@ -339,7 +339,7 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
   +<Tabs variant="scrollable" />
   ```
 
-### Table
+### Tabela
 
 - [TableCell] Remova a propriedade descontinuada `numeric`:
   
@@ -358,7 +358,7 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
 
 - [TablePagination] O componente já não tenta corrigir as combinações de propriedades inválidas (`page`, `count`, `rowsPerPage`). Em vez disso, emite um aviso.
 
-### TextField
+### Campo de texto
 
 - [InputLabel] Você deve conseguir sobrescrever todos os estilos do componente FormLabel usando a API CSS do componente InputLabel. A propriedade `FormLabelClasses` foi removida.
   
@@ -381,12 +381,12 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
 
 - [InputBase] Remova a classe `inputType` do `InputBase`.
 
-### Tooltip
+### Dica
 
 - [Tooltip] O elemento filho precisa ser capaz de lidar com ref. O [guia de composição](/guides/composition/#caveat-with-refs) explica a estratégia de migração.
 - [Tooltip] Aparece somente após o foco ser "focus-visible" em vez de qualquer foco.
 
-### Typography
+### Tipografia
 
 - [Typography] Remova as variantes de tipografia descontinuadas. Você pode atualizar executando as seguintes substituições: 
   - display4 => h1
@@ -406,7 +406,7 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
   +<Typography variantMapping={variantMapping}>
   ```
 
-- [Typography] Modifique a variante padrão de `body2` para `body1`. Um tamanho de fonte de 16px é um padrão melhor que 14px. Bootstrap, material.io, and even the documentation use 16px as a default font size. 14px como o Ant Design usa, é compreensível, já que os usuários chineses têm um alfabeto diferente. 12px is recommended as the default font size for Japanese.
+- [Typography] Modifique a variante padrão de `body2` para `body1`. Um tamanho de fonte de 16px é um padrão melhor que 14px. Bootstrap, material.io e até a documentação usam 16px como tamanho de fonte padrão. 14px como o Ant Design usa, é compreensível, já que os usuários chineses têm um alfabeto diferente. Recomenda-se 12px como o tamanho de fonte padrão para japonês.
 - [Typography] Remova a cor padrão das variantes de tipografia. A cor deve herdar a maior parte do tempo. É o comportamento padrão da web.
 - [Typography] Renomeie `color="default"` para `color="initial"` seguindo a lógica [desta discussão](https://github.com/mui-org/material-ui/issues/13028). O uso de *default* deve ser evitado, isso perde semântica.
 
@@ -426,7 +426,7 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
   +} = MaterialUI;
   ```
   
-    É consistente com outros projetos do React:
+    É consistente com outros projetos React:
   
   - material-ui => MaterialUI
   - react-dom => ReactDOM

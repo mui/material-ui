@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import { act, createClientRender, fireEvent } from 'test/utils/createClientRender';
 import Tab from './Tab';
@@ -10,11 +11,10 @@ import ButtonBase from '../ButtonBase';
 const render = createClientRender();
 
 describe('<Tab />', () => {
-  let mount;
+  const mount = createMount();
   let classes;
 
   before(() => {
-    mount = createMount({ strict: true });
     classes = getClasses(<Tab textColor="inherit" />);
   });
 
@@ -23,13 +23,12 @@ describe('<Tab />', () => {
     inheritComponent: ButtonBase,
     mount,
     refInstanceof: window.HTMLButtonElement,
-    after: () => mount.cleanUp(),
   }));
 
   it('should have a ripple by default', () => {
     const { container } = render(<Tab TouchRippleProps={{ className: 'touch-ripple' }} />);
 
-    expect(container.querySelector('.touch-ripple')).to.be.ok;
+    expect(container.querySelector('.touch-ripple')).not.to.equal(null);
   });
 
   it('can disable the ripple', () => {
@@ -37,7 +36,7 @@ describe('<Tab />', () => {
       <Tab disableRipple TouchRippleProps={{ className: 'touch-ripple' }} />,
     );
 
-    expect(container.querySelector('.touch-ripple')).to.be.null;
+    expect(container.querySelector('.touch-ripple')).to.equal(null);
   });
 
   it('should have a focusRipple by default', () => {
@@ -48,12 +47,12 @@ describe('<Tab />', () => {
     fireEvent.pointerDown(document.body);
 
     act(() => {
-      fireEvent.keyDown(document.activeElement, { key: 'Tab' });
+      fireEvent.keyDown(document.body, { key: 'Tab' });
       // jsdom doesn't actually support tab focus, we need to do it manually
       getByRole('tab').focus();
     });
 
-    expect(container.querySelector('.focus-ripple')).to.be.ok;
+    expect(container.querySelector('.focus-ripple')).not.to.equal(null);
   });
 
   it('can disable the focusRipple', () => {
@@ -64,12 +63,12 @@ describe('<Tab />', () => {
     fireEvent.pointerDown(document.body);
 
     act(() => {
-      fireEvent.keyDown(document.activeElement, { key: 'Tab' });
+      fireEvent.keyDown(document.body, { key: 'Tab' });
       // jsdom doesn't actually support tab focus, we need to do it manually
       getByRole('tab').focus();
     });
 
-    expect(container.querySelector('.focus-ripple')).to.be.null;
+    expect(container.querySelector('.focus-ripple')).to.equal(null);
   });
 
   describe('prop: selected', () => {
@@ -126,7 +125,7 @@ describe('<Tab />', () => {
     it('should render icon element', () => {
       const { getByTestId } = render(<Tab icon={<div data-testid="icon" />} />);
 
-      expect(getByTestId('icon')).to.be.ok;
+      expect(getByTestId('icon')).not.to.equal(null);
     });
   });
 

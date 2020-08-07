@@ -23,7 +23,7 @@ export default function DirectionSnackbar() {
   const [open, setOpen] = React.useState(false);
   const [transition, setTransition] = React.useState(undefined);
 
-  const handleClick = Transition => () => {
+  const handleClick = (Transition) => () => {
     setTransition(() => Transition);
     setOpen(true);
   };
@@ -43,6 +43,7 @@ export default function DirectionSnackbar() {
         onClose={handleClose}
         TransitionComponent={transition}
         message="I love snacks"
+        key={transition ? transition.name : ''}
       />
     </div>
   );

@@ -17,11 +17,13 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
   props: P &
     TablePaginationBaseProps & {
       ActionsComponent?: React.ElementType<TablePaginationActionsProps>;
+      backIconButtonText?: string;
       backIconButtonProps?: Partial<IconButtonProps>;
       count: number;
       labelDisplayedRows?: (paginationInfo: LabelDisplayedRowsArgs) => React.ReactNode;
       labelRowsPerPage?: React.ReactNode;
       nextIconButtonProps?: Partial<IconButtonProps>;
+      nextIconButtonText?: string;
       onChangePage: (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void;
       onChangeRowsPerPage?: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
       page: number;
@@ -33,9 +35,21 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
   classKey: TablePaginationClassKey;
 }
 
-declare const TablePagination: OverridableComponent<
-  TablePaginationTypeMap<{}, React.ComponentType<TablePaginationBaseProps>>
->;
+/**
+ * A `TableCell` based component for placing inside `TableFooter` for pagination.
+ * Demos:
+ *
+ * - [Tables](https://material-ui.com/components/tables/)
+ *
+ * API:
+ *
+ * - [TablePagination API](https://material-ui.com/api/table-pagination/)
+ * - inherits [TableCell API](https://material-ui.com/api/table-cell/)
+ */
+declare const TablePagination: OverridableComponent<TablePaginationTypeMap<
+  {},
+  React.ComponentType<TablePaginationBaseProps>
+>>;
 
 export type TablePaginationClassKey =
   | 'root'

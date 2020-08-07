@@ -1,6 +1,6 @@
 # Senior Software Engineer
 
-<p class="description">We are looking for a software engineer to help support our open source team, assist the Material-UI community and grow our premium products. Join us in our mission to make React application development fun by making it simple.</p>
+<p class="description">We are looking for a software engineer to help support our open source team, assist the Material-UI community and grow our premium products. Join us in our mission to make React application development fun and simple.</p>
 
 ## About Us
 
@@ -15,13 +15,13 @@ Material-UI started back in 2014 to unify React and Material Design. Today, Mate
 - Type of work: Contractor (long mission, full-time, convertible to an employee position in the future).
 - Start date: Immediately.
 - Location: Remote (preference for UTC-5 to UTC+4).
-- Level: [Senior Engineer or above](https://open.buffer.com/engineering-career-framework/).
+- Level: [Senior Engineer or above](https://docs.google.com/spreadsheets/d/1dDdPD-flNXlgZ0E3ZxVvCDx27RFuhVWJrcfcjNu_I8k/edit?usp=sharing).
 - We're a remote company, we prefer asynchronous communication over meetings.
 - We work independently, the rest of us won't know what you're doing day-to-day unless you tell us.
 
 ## Why we’re hiring
 
-Both our open source products and community, and our premium products are [growing fast](https://www.rank2traffic.com/material-ui.com) and we need talented engineers to keep that going!
+Both our open source products and community, and our premium products are [growing fast](https://www.similarweb.com/website/material-ui.com) and we need talented engineers to keep that going!
 
 We need help to continue to improve the health of Material-UI open source: make the library easier to use, make it support more use cases, improve performance, make it more accessible, and make it easier to customize to support [in-house design systems](https://medium.com/google-design/state-of-design-systems-2019-ff5f26ada71). We also need help keeping up with the community, guiding developers to answers, and just generally being a positive presence in the open source community.
 
@@ -85,7 +85,7 @@ The work you would be doing is somewhat unique and idiosyncratic. You probably h
 
 ## Benefits for you
 
-- Competitive compensation of up to $120k/year, depending on the profile. Could go higher in the case of an extraordinary match.
+- Competitive compensation of up to $140k/year, depending on the profile. Could go higher in the case of an extraordinary match.
 - Flexible workplace & hours.
 
 ## Apply

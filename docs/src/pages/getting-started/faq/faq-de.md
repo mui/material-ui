@@ -12,31 +12,32 @@ Es gibt viele Möglichkeiten, die Material-UI zu unterstützen:
 - **Give us feedback**. Tell us what we're doing well or where we can improve. Please upvote (👍) the issues that you are the most interested in seeing solved.
 - **Help new users**. You can answer questions on [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui).
 - **Make changes happen**. 
+  - Edit the documentation. Every page has an "EDIT THIS PAGE" link in the top right.
   - Report bugs or missing features by [creating an issue](https://github.com/mui-org/material-ui/issues/new).
-  - Reviewing and commenting on existing [pull requests](https://github.com/mui-org/material-ui/pulls) and [issues](https://github.com/mui-org/material-ui/issues).
+  - Review and comment on existing [pull requests](https://github.com/mui-org/material-ui/pulls) and [issues](https://github.com/mui-org/material-ui/issues).
   - Help [translate](https://translate.material-ui.com) the documentation.
-  - Fixing bugs, adding features, and [improving our documentation](https://github.com/mui-org/material-ui/tree/master/docs) by [submitting a pull request](https://github.com/mui-org/material-ui/pulls).
+  - [Improve our documentation](https://github.com/mui-org/material-ui/tree/master/docs), fix bugs, or add features by [submitting a pull request](https://github.com/mui-org/material-ui/pulls).
 - **Support us financially on [OpenCollective](https://opencollective.com/material-ui)**. If you use Material-UI in a commercial project and would like to support its continued development by becoming a Sponsor, or in a side or hobby project and would like to become a Backer, you can do so through OpenCollective. All funds donated are managed transparently, and Sponsors receive recognition in the README and on the Material-UI home page.
 
 ## Warum werden meine Komponenten in Produktions-Builds nicht richtig gerendert?
 
-Dies ist wahrscheinlich ein Problem, das aufgrund von Klassennamenskonflikten auftritt, wenn sich Ihr Code in einem Produktionspaket befindet. Damit die Material-UI funktioniert, muss der `Klassenname` die Werte aller Komponenten auf einer Seite von einer einzigen Instanz des [Klassennamensgenerators](/styles/advanced/#class-names) generiert werden.
+Sie sollten jedoch nicht eine `createGenerateClassName()` Funktion zwischen verschiedenen Anfragen teilen: Sie müssen für jede Anforderung einen neuen Klassennamengenerator bereitstellen.
 
-Um dieses Problem zu beheben, müssen alle Komponenten auf der Seite so initialisiert werden, dass es immer nur **einen Klassennamensgenerator gibt**.
+To correct this issue, all components on the page need to be initialized such that there is only ever **one class name generator** among them.
 
 In einer Reihe von Szenarien könnten Sie versehentlich zwei Klassennamengeneratoren verwenden:
 
 - Sie **bündeln**versehentlich zwei Versionen von Material-UI. Möglicherweise hat eine Abhängigkeit die Material-UI nicht korrekt als Peer-Abhängigkeit.
-- Sie verwenden den `StylesProvider` für eine **Teilmenge** von deinem React Tree.
+- You are using `StylesProvider` for a **subset** of your React tree.
 - Sie verwenden einen Bundler und der Code wird so aufgeteilt, dass mehrere Klassennamengenerator-Instanzen erstellt werden.
 
 > Wenn Sie Webpack mit dem [SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/) verwenden, versuchen Sie, den [`RuntimeChunk` Einstellung unter `Optimierungen`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk) zu konfigurieren.
 
-Im Allgemeinen ist es einfach, dieses Problem zu beheben, indem jede Material-UI-Anwendung mit [` StylesProvider`](/styles/api/#stylesprovider) Komponenten oben in ihren Komponentenbäumen verpackt wird **und verwenden einen einzigen Klassennamengenerator, der von ihnen genutzt wird **.
+Overall, it's simple to recover from this problem by wrapping each Material-UI application with [`StylesProvider`](/styles/api/#stylesprovider) components at the top of their component trees **and using a single class name generator shared among them**.
 
 ## Warum bewegen sich die fest positionierten Elemente, wenn ein Modal geöffnet wird?
 
-Scrolling is blocked as soon as a modal is opened. Dies verhindert die Interaktion mit dem Hintergrund, wenn der Modal der einzige interaktive Inhalt sein sollte. Wenn Sie jedoch die Bildlaufleiste entfernen, können Sie Ihre **fest positionierten Elemente ** bewegen. In dieser Situation können Sie einen globalen `.mui-fixed` Klassennamen anwenden, damit Material-UI mit diesen Elementen umgehen kann.
+Scrolling is blocked as soon as a modal is opened. This prevents interacting with the background when the modal should be the only interactive content. However, removing the scrollbar can make your **fixed positioned elements** move. In dieser Situation können Sie einen globalen `.mui-fixed` Klassennamen anwenden, damit Material-UI mit diesen Elementen umgehen kann.
 
 ## Wie kann ich den Ripple-Effekt global deaktivieren?
 
@@ -58,7 +59,7 @@ const theme = createMuiTheme({
 
 ## Wie kann ich Übergänge global deaktivieren?
 
-Material-UI uses the same theme helper for creating all its transitions. So you can disable all the transitions by overriding the helper in your theme:
+Material-UI uses the same theme helper for creating all its transitions. Therefore you can disable all transitions by overriding the helper in your theme:
 
 ```js
 import { createMuiTheme } from '@material-ui/core';
@@ -73,7 +74,7 @@ const theme = createMuiTheme({
 
 It can be useful to disable transitions during visual testing or to improve performance on low-end devices.
 
-You can go one step further by disabling all the transitions and animations effect:
+You can go one step further by disabling all transitions and animations effects:
 
 ```js
 import { createMuiTheme } from '@material-ui/core';
@@ -107,7 +108,7 @@ Notice that the usage of `CssBaseline` is required for the above approach to wor
 
 No, it's not required. But this dependency comes built in, so carries no additional bundle size overhead.
 
-Perhaps, however, you're adding some Material-UI components to an app that already uses another styling solution, or are already familiar with a different API, and don't want to learn a new one? In diesem Fall gehen Sie zum [Zusammenführen von Style Libraries](/guides/interoperability/) Abschnitt in dem wir zeigen, wie einfach es ist, Material-UI-Komponenten mit alternativen Stilbibliotheken umzustrukturieren.
+In diesem Fall gehen Sie zum [Zusammenführen von Style Libraries](/guides/interoperability/) Abschnitt in dem wir zeigen, wie einfach es ist, Material-UI-Komponenten mit alternativen Stilbibliotheken umzustrukturieren. Perhaps, however, you're adding some Material-UI components to an app that already uses another styling solution, or are already familiar with a different API, and don't want to learn a new one?
 
 ## Wann verwende ich inline-style vs CSS?
 
@@ -152,12 +153,12 @@ Wenn in der Konsole eine Warnmeldung wie die folgende angezeigt wird, haben Sie 
 Dafür gibt es mehrere häufige Gründe:
 
 - Sie haben eine andere `@material-ui/styles` Bibliothek irgendwo in Ihren Abhängigkeiten.
-- Sie haben eine Monorepo-Struktur für Ihr Projekt (z. B. Lerna, yarn workspaces) und das `@material-ui/styles` Modul ist eine Abhängigkeit in mehr als einem Paket (dieses ist mehr oder weniger dasselbe wie das vorherige).
-- Sie haben mehrere Anwendungen, die `@material-ui/styles` verwenden, und auf derselben Seite ausgeführt werden (z. B. werden mehrere Einstiegspunkte im Webpack auf derselben Seite geladen).
+- One possible fix to get @material-ui/styles to run in a Lerna monorepo across packages is to [hoist](https://github.com/lerna/lerna/blob/master/doc/hoist.md) shared dependencies to the root of your monorepo file.
+- Wenn Sie mehrere Anwendungen auf einer Seite ausführen, sollten Sie ein @material-ui/styles-Modul für alle verwenden.
 
 ### Dupliziertes Modul in node_modules
 
-If you think that the issue may be in the duplication of the @material-ui/styles module somewhere in your dependencies, there are several ways to check this. Sie können die `npm ls @material-ui/styles`, `yarn list @material-ui/styles` oder `find -L ./node_modules | grep /@material-ui/styles/package.json` Befehle in Ihrem Anwendungsordner ausführen.
+Sie können die `npm ls @material-ui/styles`, `yarn list @material-ui/styles` oder `find -L ./node_modules | grep /@material-ui/styles/package.json` Befehle in Ihrem Anwendungsordner ausführen. If you think that the issue may be in the duplication of the @material-ui/styles module somewhere in your dependencies, there are several ways to check this.
 
 Wenn keiner dieser Befehle die Duplizierung identifiziert, analysieren Sie Ihr Bundle auf mehrere Instanzen von @material-ui/styles. Sie können einfach Ihre Bundle-Quelle überprüfen oder ein Tool wie [source-map-explorer verwenden](https://github.com/danvk/source-map-explorer) oder [Webpack-Bundle-Analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer).
 
@@ -207,7 +208,7 @@ Beispiel für eine package.json-Datei in einem Lerna-Stammverzeichnis
 
 ### Mehrere Anwendungen auf einer Seite ausführen
 
-Wenn Sie mehrere Anwendungen auf einer Seite ausführen, sollten Sie ein @material-ui/styles-Modul für alle verwenden. Wenn Sie Webpack verwenden, können Sie das [CommonsChunkPlugin](https://webpack.js.org/plugins/commons-chunk-plugin/) verwenden. So erstellen Sie einen expliziten [vendor chunk](https://webpack.js.org/plugins/commons-chunk-plugin/#explicit-vendor-chunk), das das Modul @ material-ui/styles enthält:
+Sie haben mehrere Anwendungen, die `@material-ui/styles` verwenden, und auf derselben Seite ausgeführt werden (z. Wenn Sie Webpack verwenden, können Sie das [CommonsChunkPlugin](https://webpack.js.org/plugins/commons-chunk-plugin/) verwenden. So erstellen Sie einen expliziten [vendor chunk](https://webpack.js.org/plugins/commons-chunk-plugin/#explicit-vendor-chunk), das das Modul @ material-ui/styles enthält:
 
 ```diff
   module.exports = {
@@ -235,12 +236,11 @@ Das CSS wird nur beim ersten Laden der Seite generiert. Auf dem Server fehlt dan
 
 #### Zu ergreifende Maßnahmen
 
-The styling solution relies on a cache, the *sheets manager*, to only inject the CSS once per component type (if you use two buttons, you only need the CSS of the button one time). Sie müssen **eine neue ` sheets `Instanze für jede Anfrage** erstellen.
+The styling solution relies on a cache, the *sheets manager*, to only inject the CSS once per component type (if you use two buttons, you only need the CSS of the button one time). Sie müssen **eine neue `sheets`Instanze für jede Anfrage** erstellen.
 
 *beispiel für fix:*
 
 ```diff
-- // Eine Sheet Instanz erstellen.
 -const sheets = new ServerStyleSheets();
 
 function handleRender(req, res) {
@@ -251,7 +251,8 @@ function handleRender(req, res) {
   //…
 
   // Rendern des Komponenten als String.
-  const html = ReactDOMServer.renderToString(
+const html = ReactDOMServer.renderToString(
+  - // Eine Sheet Instanz erstellen.
 ```
 
 ### React Klassenname Hydratation Nichtübereinstimmung
@@ -278,7 +279,7 @@ function handleRender(req, res) {
   //…
 
   // Render der Komponente als String.
-  const html = ReactDOMServer.renderToString(
+  - // Eine Sheet Instanz erstellen.
 ```
 
 - Sie müssen sicherstellen, dass auf Ihrem Client und Server die **exakt dieselbe Version** von Material-UI ausführen. Es kann vorkommen, dass eine Nichtübereinstimmung von selbst kleinerer Versionen zu Stilproblemen führen kann. Um die Versionsnummern zu überprüfen, führen Sie `npm list@material-ui/core` in der Umgebung aus, in der Sie Ihre Anwendung erstellen, und in Ihrer Implementierungsumgebung.
@@ -339,7 +340,7 @@ function Portal({ children, container }) {
 }
 ```
 
-Mit diesem einfaches heuristischen `Portal` wird es nach dem Einhängen möglicherweise erneut gerendert, da die Refs vor der Ausführung von Effekten auf dem neuesten Stand sind. Nur weil ein Ref aktuell ist, bedeutet das nicht, dass er auf eine definierte Instanz verweist. Wenn der ref an eine ref-Weiterleitungskomponente angehängt ist, ist nicht klar, wann der DOM-Knoten verfügbar ist. In the example above, the `Portal` would run an effect once, but might not re-render because `ref.current` is still `null`. This is especially apparent for React.lazy components in Suspense. Die obige Implementierung könnte auch keine Änderung im DOM-Knoten berücksichtigen.
+Mit diesem einfaches heuristischen `Portal` wird es nach dem Einhängen möglicherweise erneut gerendert, da die Refs vor der Ausführung von Effekten auf dem neuesten Stand sind. Nur weil ein Ref aktuell ist, bedeutet das nicht, dass er auf eine definierte Instanz verweist. Wenn der ref an eine ref-Weiterleitungskomponente angehängt ist, ist nicht klar, wann der DOM-Knoten verfügbar ist. This is especially apparent for React.lazy components in Suspense. Die obige Implementierung könnte auch keine Änderung im DOM-Knoten berücksichtigen. In the example above, the `Portal` would run an effect once, but might not re-render because `ref.current` is still `null`.
 
 Aus diesem Grund benötigen wir eine Eigenschaft mit dem eigentlichen DOM-Knoten, damit React ermitteln kann, wann das `Portal` neu gerendert werden soll:
 
@@ -361,16 +362,20 @@ function App() {
 
 ## What's the clsx dependency for?
 
-[clsx](https://github.com/lukeed/clsx) is a tiny utility for constructing `className` strings conditionally.
+[clsx](https://github.com/lukeed/clsx) is a tiny utility for constructing `className` strings conditionally, out of an object with keys being the class strings, and values being booleans.
 
 Instead of writing:
 
 ```jsx
+// let disabled = false, selected = true;
+
 return (
   <div
-    className={`MuiButton-root ${disabled ? 'Mui-disabled' : ''} ${selected ? 'Mui-selected' : ''}`}
-  />
-);
+    className={`MuiButton-root ${disabled ? // let disabled = false, selected = true;
+
+return (
+  <div
+    className={`MuiButton-root ${disabled ? 'Mui-disabled' : ''} ${selected ?
 ```
 
 you can do:

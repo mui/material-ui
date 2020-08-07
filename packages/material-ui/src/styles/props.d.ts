@@ -27,6 +27,10 @@ import { DialogProps } from '../Dialog';
 import { DialogTitleProps } from '../DialogTitle';
 import { DividerProps } from '../Divider';
 import { DrawerProps } from '../Drawer';
+import { AccordionActionsProps } from '../AccordionActions';
+import { AccordionDetailsProps } from '../AccordionDetails';
+import { AccordionProps } from '../Accordion';
+import { AccordionSummaryProps } from '../AccordionSummary';
 import { ExpansionPanelActionsProps } from '../ExpansionPanelActions';
 import { ExpansionPanelDetailsProps } from '../ExpansionPanelDetails';
 import { ExpansionPanelProps } from '../ExpansionPanel';
@@ -101,7 +105,7 @@ import { TypographyProps } from '../Typography';
 import { WithWidthOptions } from '../withWidth';
 
 export type ComponentsProps = {
-  [Name in keyof ComponentsPropsList]?: Partial<ComponentsPropsList[Name]>
+  [Name in keyof ComponentsPropsList]?: Partial<ComponentsPropsList[Name]>;
 };
 
 export interface ComponentsPropsList {
@@ -134,6 +138,10 @@ export interface ComponentsPropsList {
   MuiDialogTitle: DialogTitleProps;
   MuiDivider: DividerProps;
   MuiDrawer: DrawerProps;
+  MuiAccordion: AccordionProps;
+  MuiAccordionActions: AccordionActionsProps;
+  MuiAccordionDetails: AccordionDetailsProps;
+  MuiAccordionSummary: AccordionSummaryProps;
   MuiExpansionPanel: ExpansionPanelProps;
   MuiExpansionPanelActions: ExpansionPanelActionsProps;
   MuiExpansionPanelDetails: ExpansionPanelDetailsProps;

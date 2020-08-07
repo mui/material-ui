@@ -1,4 +1,4 @@
-import { assert } from 'chai';
+import { expect } from 'chai';
 import getThemeProps from './getThemeProps';
 
 describe('getThemeProps', () => {
@@ -8,7 +8,7 @@ describe('getThemeProps', () => {
       name: 'MuiFoo',
       props: {},
     });
-    assert.deepEqual(props, {});
+    expect(props).to.deep.equal({});
   });
 
   it('should ignore different component', () => {
@@ -23,7 +23,7 @@ describe('getThemeProps', () => {
       name: 'MuiFoo',
       props: {},
     });
-    assert.deepEqual(props, {});
+    expect(props).to.deep.equal({});
   });
 
   it('should return the props', () => {
@@ -38,7 +38,7 @@ describe('getThemeProps', () => {
       name: 'MuiFoo',
       props: {},
     });
-    assert.deepEqual(props, {
+    expect(props).to.deep.equal({
       disableRipple: true,
     });
   });

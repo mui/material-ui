@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { StandardProps } from '@material-ui/core';
 import { FabProps } from '@material-ui/core/Fab';
-import { TransitionProps } from 'react-transition-group/Transition';
-import { TransitionHandlerProps } from '@material-ui/core/transitions';
+import { TransitionHandlerProps, TransitionProps } from '@material-ui/core/transitions';
 
 export type CloseReason = 'toggle' | 'blur' | 'mouseLeave' | 'escapeKeyDown';
 export type OpenReason = 'toggle' | 'focus' | 'mouseEnter';
@@ -87,4 +86,14 @@ export type SpeedDialClassKey =
   | 'actions'
   | 'actionsClosed';
 
+/**
+ *
+ * Demos:
+ *
+ * - [Speed Dial](https://material-ui.com/components/speed-dial/)
+ *
+ * API:
+ *
+ * - [SpeedDial API](https://material-ui.com/api/speed-dial/)
+ */
 export default function SpeedDial(props: SpeedDialProps): JSX.Element;

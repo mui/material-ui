@@ -4,7 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     width: 400,
     backgroundColor: theme.palette.secondary.main,

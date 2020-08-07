@@ -1,13 +1,14 @@
 import * as React from 'react';
-import { assert } from 'chai';
-import { getClasses, createMount } from '@material-ui/core/test-utils';
+import { expect } from 'chai';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import Input from '../Input';
 import NativeSelect from './NativeSelect';
 
 describe('<NativeSelect />', () => {
   let classes;
-  let mount;
+  const mount = createMount();
   const defaultProps = {
     input: <Input />,
     children: [
@@ -22,11 +23,6 @@ describe('<NativeSelect />', () => {
 
   before(() => {
     classes = getClasses(<NativeSelect {...defaultProps} />);
-    mount = createMount({ strict: true });
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<NativeSelect {...defaultProps} />, () => ({
@@ -39,18 +35,18 @@ describe('<NativeSelect />', () => {
 
   it('should provide the classes to the input component', () => {
     const wrapper = mount(<NativeSelect {...defaultProps} />);
-    assert.deepEqual(wrapper.find(Input).props().inputProps.classes, classes);
+    expect(wrapper.find(Input).props().inputProps.classes).to.deep.equal(classes);
   });
 
   it('should be able to mount the component', () => {
     const wrapper = mount(
       <NativeSelect {...defaultProps} value={10}>
-        <option value="" />
+        <option value="">empty</option>
         <option value={10}>Ten</option>
         <option value={20}>Twenty</option>
         <option value={30}>Thirty</option>
       </NativeSelect>,
     );
-    assert.strictEqual(wrapper.find('select').props().value, 10);
+    expect(wrapper.find('select').props().value).to.equal(10);
   });
 });

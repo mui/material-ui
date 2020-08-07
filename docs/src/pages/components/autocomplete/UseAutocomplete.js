@@ -3,7 +3,7 @@ import React from 'react';
 import useAutocomplete from '@material-ui/lab/useAutocomplete';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   label: {
     display: 'block',
   },
@@ -45,7 +45,7 @@ export default function UseAutocomplete() {
   } = useAutocomplete({
     id: 'use-autocomplete-demo',
     options: top100Films,
-    getOptionLabel: option => option.title,
+    getOptionLabel: (option) => option.title,
   });
 
   return (

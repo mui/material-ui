@@ -19,7 +19,7 @@ const StyledMenu = styled(({ className, ...props }) => (
 export default function StyledComponentsPortal() {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const handleClick = event => {
+  const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
 

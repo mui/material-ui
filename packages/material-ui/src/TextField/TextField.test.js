@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import { createClientRender } from 'test/utils/createClientRender';
 import FormControl from '../FormControl';
@@ -11,12 +12,11 @@ import MenuItem from '../MenuItem';
 
 describe('<TextField />', () => {
   let classes;
-  let mount;
+  const mount = createMount();
   const render = createClientRender();
 
   before(() => {
     classes = getClasses(<TextField />);
-    mount = createMount({ strict: true });
   });
 
   describeConformance(<TextField />, () => ({
@@ -25,7 +25,6 @@ describe('<TextField />', () => {
     mount,
     refInstanceof: window.HTMLDivElement,
     skip: ['componentProp'],
-    after: () => mount.cleanUp(),
   }));
 
   describe('structure', () => {
@@ -52,7 +51,7 @@ describe('<TextField />', () => {
     it('label the input', () => {
       const { getByLabelText } = render(<TextField id="labelled" label="Foo bar" />);
 
-      expect(getByLabelText('Foo bar')).to.be.ok;
+      expect(getByLabelText('Foo bar')).not.to.equal(null);
     });
 
     it('should apply the className to the label', () => {
@@ -63,11 +62,11 @@ describe('<TextField />', () => {
       expect(container.querySelector('label')).to.have.class('foo');
     });
 
-    ['', undefined].forEach(label => {
+    ['', undefined].forEach((label) => {
       it(`should not render empty (${label}) label element`, () => {
         const { container } = render(<TextField id="labelled" label={label} />);
 
-        expect(container.querySelector('label')).to.be.null;
+        expect(container.querySelector('label')).to.equal(null);
       });
     });
   });
@@ -130,17 +129,20 @@ describe('<TextField />', () => {
         <TextField InputProps={{ 'data-testid': 'InputComponent' }} />,
       );
 
-      expect(getByTestId('InputComponent')).to.be.ok;
+      expect(getByTestId('InputComponent')).not.to.equal(null);
     });
   });
 
   describe('prop: select', () => {
     it('can render a <select /> when `native`', () => {
-      const currencies = [{ value: 'USD', label: '$' }, { value: 'BTC', label: '฿' }];
+      const currencies = [
+        { value: 'USD', label: '$' },
+        { value: 'BTC', label: '฿' },
+      ];
 
       const { container } = render(
         <TextField select SelectProps={{ native: true }}>
-          {currencies.map(option => (
+          {currencies.map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}
             </option>
@@ -149,7 +151,7 @@ describe('<TextField />', () => {
       );
 
       const select = container.querySelector('select');
-      expect(select).to.be.ok;
+      expect(select).not.to.equal(null);
       expect(select.options).to.have.lengthOf(2);
     });
 
@@ -178,7 +180,7 @@ describe('<TextField />', () => {
         </TextField>,
       );
 
-      expect(getByRole('button')).to.have.accessibleName('Release: Stable');
+      expect(getByRole('button')).toHaveAccessibleName('Release: Stable');
     });
 
     it('creates an input[hidden] that has no accessible properties', () => {
@@ -188,7 +190,7 @@ describe('<TextField />', () => {
         </TextField>,
       );
 
-      const input = container.querySelector('input[type="hidden"]');
+      const input = container.querySelector('input[aria-hidden]');
       expect(input).not.to.have.attribute('id');
       expect(input).not.to.have.attribute('aria-describedby');
     });

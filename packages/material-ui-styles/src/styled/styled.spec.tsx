@@ -18,15 +18,16 @@ function themeTest() {
   // prop 'theme' must not be required
   <ComponentStyled value={1} />;
   <ComponentStyledWithTheme value={1} />;
-  // error: property 'palette' is missing in type {}
-  <ComponentStyledWithTheme value={1} theme={{}} />; // $ExpectError
-  // error: property 'theme' is missing in type ... (because the component requires it)
-  <ComponentWithThemeStyled value={1} />; // $ExpectError
-  <ComponentWithThemeStyledWithTheme value={1} />; // $ExpectError
-  // error: property 'zIndex' is missing in type ...
-  <ComponentWithThemeStyledWithTheme value={1} theme={{ palette: { primary: '#333' } }} />; // $ExpectError
-  // error: property 'palette' is missing in type ...
-  <ComponentWithThemeStyledWithTheme value={1} theme={{ zIndex: { appBar: 500 } }} />; // $ExpectError
+  // @ts-expect-error property 'palette' is missing in type {}
+  <ComponentStyledWithTheme value={1} theme={{}} />;
+  // @ts-expect-error property 'theme' is missing in type ... (because the component requires it)
+  <ComponentWithThemeStyled value={1} />;
+  // @ts-expect-error property 'theme' is missing in
+  <ComponentWithThemeStyledWithTheme value={1} />;
+  // @ts-expect-error property 'zIndex' is missing in type ...
+  <ComponentWithThemeStyledWithTheme value={1} theme={{ palette: { primary: '#333' } }} />;
+  // @ts-expect-error property 'palette' is missing in type ...
+  <ComponentWithThemeStyledWithTheme value={1} theme={{ zIndex: { appBar: 500 } }} />;
   <ComponentWithThemeStyledWithTheme
     value={1}
     theme={{ zIndex: { appBar: 500 }, palette: { primary: '#333' } }}
@@ -41,10 +42,10 @@ function themeTest() {
 
   // prop 'theme' must not be required
   <ComponentWithOptionalThemeStyledWithTheme value={1} />;
-  // error: property 'palette' is missing in type {}
-  <ComponentWithOptionalThemeStyledWithTheme value={1} theme={{}} />; // $ExpectError
-  // error: property 'zIndex' is missing in type ...
-  <ComponentWithOptionalThemeStyledWithTheme value={1} theme={{ palette: { primary: '#333' } }} />; // $ExpectError
+  // @ts-expect-error error: property 'palette' is missing in type {}
+  <ComponentWithOptionalThemeStyledWithTheme value={1} theme={{}} />;
+  // @ts-expect-error error: property 'zIndex' is missing in type ...
+  <ComponentWithOptionalThemeStyledWithTheme value={1} theme={{ palette: { primary: '#333' } }} />;
 }
 
 function acceptanceTest() {
@@ -58,7 +59,7 @@ function acceptanceTest() {
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
   });
   const renderedStyledButton = <StyledButton classes={{ root: 'additional-root-class' }} />;
-  // $ExpectError
+  // @ts-expect-error
   const nonExistingClassKey = <StyledButton classes={{ notRoot: 'additional-root-class' }} />;
 
   interface MyTheme {
@@ -67,7 +68,6 @@ function acceptanceTest() {
   const MyThemeInstance: MyTheme = {
     fontFamily: 'monospace',
   };
-  // tslint:disable-next-line: no-empty-interface
   interface MyComponentProps extends StyledProps {
     defaulted: string;
   }
@@ -85,10 +85,14 @@ function acceptanceTest() {
       fontFamily: theme.fontFamily,
     }),
   );
+  const StyledInferedPropsMyComponent = styled(MyComponent)(({ defaulted }) => ({
+    content: defaulted,
+  }));
   const renderedMyComponent = (
     <React.Fragment>
       <MyComponent className="test" />
       <StyledMyComponent theme={MyThemeInstance} />
+      <StyledInferedPropsMyComponent defaulted="Hi!" />
     </React.Fragment>
   );
 }

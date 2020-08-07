@@ -15,12 +15,19 @@ const tablelvl2 = {
   variant: 'body',
 };
 
+const defaultComponent = 'tbody';
+
 const TableBody = React.forwardRef(function TableBody(props, ref) {
-  const { classes, className, component: Component = 'tbody', ...other } = props;
+  const { classes, className, component: Component = defaultComponent, ...other } = props;
 
   return (
     <Tablelvl2Context.Provider value={tablelvl2}>
-      <Component className={clsx(classes.root, className)} ref={ref} {...other} />
+      <Component
+        className={clsx(classes.root, className)}
+        ref={ref}
+        role={Component === defaultComponent ? null : 'rowgroup'}
+        {...other}
+      />
     </Tablelvl2Context.Provider>
   );
 });
@@ -41,9 +48,9 @@ TableBody.propTypes = {
   className: PropTypes.string,
   /**
    * The component used for the root node.
-   * Either a string to use a DOM element or a component.
+   * Either a string to use a HTML element or a component.
    */
-  component: PropTypes.elementType,
+  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
 };
 
 export default withStyles(styles, { name: 'MuiTableBody' })(TableBody);

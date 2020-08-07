@@ -13,7 +13,7 @@ const host = '0.0.0.0';
 function startServer(app) {
   return new Promise((resolve, reject) => {
     const server = http.createServer(app);
-    server.listen(port, host, err => {
+    server.listen(port, host, (err) => {
       if (err) {
         reject(err);
         return;
@@ -34,7 +34,7 @@ function startServer(app) {
           msg: 'server is stopping',
         });
         return new Promise((resolve2, reject2) => {
-          server.close(err => {
+          server.close((err) => {
             if (err) {
               reject2(err);
               return;
@@ -108,7 +108,7 @@ async function startBrowser() {
     ],
   });
   const page = await browser.newPage();
-  page.on('pageerror', err => {
+  page.on('pageerror', (err) => {
     throw err;
   });
 

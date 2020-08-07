@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { assert, expect } from 'chai';
+import { expect } from 'chai';
 import { spy } from 'sinon';
 import * as PropTypes from 'prop-types';
-import { createMount, findOutermostIntrinsic } from '@material-ui/core/test-utils';
+import { findOutermostIntrinsic } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import { createClientRender } from 'test/utils/createClientRender';
 import FormGroup from '../FormGroup';
@@ -12,17 +13,9 @@ import consoleErrorMock from 'test/utils/consoleErrorMock';
 import useRadioGroup from './useRadioGroup';
 
 describe('<RadioGroup />', () => {
-  let mount;
+  // StrictModeViolation: test uses #simulate
+  const mount = createMount({ strict: false });
   const render = createClientRender({ strict: true });
-
-  before(() => {
-    // StrictModeViolation: test uses #simulate
-    mount = createMount({ strict: false });
-  });
-
-  after(() => {
-    mount.cleanUp();
-  });
 
   function findRadio(wrapper, value) {
     return wrapper.find(`input[value="${value}"]`).first();
@@ -38,7 +31,7 @@ describe('<RadioGroup />', () => {
 
   it('the root component has the radiogroup role', () => {
     const wrapper = mount(<RadioGroup value="" />);
-    assert.strictEqual(findOutermostIntrinsic(wrapper).props().role, 'radiogroup');
+    expect(findOutermostIntrinsic(wrapper).props().role).to.equal('radiogroup');
   });
 
   it('should fire the onBlur callback', () => {
@@ -47,8 +40,8 @@ describe('<RadioGroup />', () => {
 
     const eventMock = 'something-to-match';
     wrapper.simulate('blur', { eventMock });
-    assert.strictEqual(handleBlur.callCount, 1);
-    assert.strictEqual(handleBlur.calledWithMatch({ eventMock }), true);
+    expect(handleBlur.callCount).to.equal(1);
+    expect(handleBlur.calledWithMatch({ eventMock })).to.equal(true);
   });
 
   it('should fire the onKeyDown callback', () => {
@@ -57,8 +50,8 @@ describe('<RadioGroup />', () => {
 
     const eventMock = 'something-to-match';
     wrapper.simulate('keyDown', { eventMock });
-    assert.strictEqual(handleKeyDown.callCount, 1);
-    assert.strictEqual(handleKeyDown.calledWithMatch({ eventMock }), true);
+    expect(handleKeyDown.callCount).to.equal(1);
+    expect(handleKeyDown.calledWithMatch({ eventMock })).to.equal(true);
   });
 
   it('should support uncontrolled mode', () => {
@@ -69,7 +62,7 @@ describe('<RadioGroup />', () => {
     );
 
     findRadio(wrapper, 'one').simulate('change');
-    assert.strictEqual(findRadio(wrapper, 'one').props().checked, true);
+    expect(findRadio(wrapper, 'one').props().checked).to.equal(true);
   });
 
   it('should support default value in uncontrolled mode', () => {
@@ -80,9 +73,9 @@ describe('<RadioGroup />', () => {
       </RadioGroup>,
     );
 
-    assert.strictEqual(findRadio(wrapper, 'zero').props().checked, true);
+    expect(findRadio(wrapper, 'zero').props().checked).to.equal(true);
     findRadio(wrapper, 'one').simulate('change');
-    assert.strictEqual(findRadio(wrapper, 'one').props().checked, true);
+    expect(findRadio(wrapper, 'one').props().checked).to.equal(true);
   });
 
   it('should have a default name', () => {
@@ -93,8 +86,8 @@ describe('<RadioGroup />', () => {
       </RadioGroup>,
     );
 
-    assert.match(findRadio(wrapper, 'zero').props().name, /^mui-radiogroup-[0-9]+/);
-    assert.match(findRadio(wrapper, 'one').props().name, /^mui-radiogroup-[0-9]+/);
+    expect(findRadio(wrapper, 'zero').props().name).to.match(/^mui-[0-9]+/);
+    expect(findRadio(wrapper, 'one').props().name).to.match(/^mui-[0-9]+/);
   });
 
   describe('imperative focus()', () => {
@@ -111,7 +104,7 @@ describe('<RadioGroup />', () => {
       );
 
       actionsRef.current.focus();
-      assert.strictEqual(oneRadioOnFocus.callCount, 1);
+      expect(oneRadioOnFocus.callCount).to.equal(1);
     });
 
     it('should not focus any radios if all are disabled', () => {
@@ -130,9 +123,9 @@ describe('<RadioGroup />', () => {
 
       actionsRef.current.focus();
 
-      assert.strictEqual(zeroRadioOnFocus.callCount, 0);
-      assert.strictEqual(oneRadioOnFocus.callCount, 0);
-      assert.strictEqual(twoRadioOnFocus.callCount, 0);
+      expect(zeroRadioOnFocus.callCount).to.equal(0);
+      expect(oneRadioOnFocus.callCount).to.equal(0);
+      expect(twoRadioOnFocus.callCount).to.equal(0);
     });
 
     it('should focus the selected radio', () => {
@@ -149,7 +142,7 @@ describe('<RadioGroup />', () => {
       );
 
       actionsRef.current.focus();
-      assert.strictEqual(twoRadioOnFocus.callCount, 1);
+      expect(twoRadioOnFocus.callCount).to.equal(1);
     });
 
     it('should focus the non-disabled radio rather than the disabled selected radio', () => {
@@ -166,7 +159,7 @@ describe('<RadioGroup />', () => {
       );
 
       actionsRef.current.focus();
-      assert.strictEqual(threeRadioOnFocus.callCount, 1);
+      expect(threeRadioOnFocus.callCount).to.equal(1);
     });
 
     it('should be able to focus with no radios', () => {
@@ -198,8 +191,8 @@ describe('<RadioGroup />', () => {
 
       const eventMock = 'something-to-match';
       findRadio(wrapper, 'woofRadioGroup').simulate('change', { eventMock });
-      assert.strictEqual(handleChange.callCount, 1);
-      assert.strictEqual(handleChange.calledWithMatch({ eventMock }), true);
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.calledWithMatch({ eventMock })).to.equal(true);
     });
 
     it('should chain the onChange property', () => {
@@ -213,8 +206,8 @@ describe('<RadioGroup />', () => {
       );
 
       findRadio(wrapper, 'woofRadioGroup').simulate('change');
-      assert.strictEqual(handleChange1.callCount, 1);
-      assert.strictEqual(handleChange2.callCount, 1);
+      expect(handleChange1.callCount).to.equal(1);
+      expect(handleChange2.callCount).to.equal(1);
     });
 
     describe('with non-string values', () => {
@@ -229,22 +222,16 @@ describe('<RadioGroup />', () => {
 
       it('passes the value of the selected Radio as a string', () => {
         function selectNth(wrapper, n) {
-          return wrapper
-            .find('input[type="radio"]')
-            .at(n)
-            .simulate('change');
+          return wrapper.find('input[type="radio"]').at(n).simulate('change');
         }
         function isNthChecked(wrapper, n) {
-          return wrapper
-            .find('input[type="radio"]')
-            .at(n)
-            .is('[checked=true]');
+          return wrapper.find('input[type="radio"]').at(n).is('[checked=true]');
         }
         function Test(props) {
           const { values, ...other } = props;
           return (
             <RadioGroup {...other}>
-              {values.map(value => {
+              {values.map((value) => {
                 return <Radio key={value.id} value={value} />;
               })}
             </RadioGroup>
@@ -259,15 +246,15 @@ describe('<RadioGroup />', () => {
 
         const wrapper = mount(<Test onChange={handleChange} value={values[1]} values={values} />);
         // on the initial mount it works because we compare to the `value` prop
-        assert.strictEqual(isNthChecked(wrapper, 0), false);
-        assert.strictEqual(isNthChecked(wrapper, 1), true);
+        expect(isNthChecked(wrapper, 0)).to.equal(false);
+        expect(isNthChecked(wrapper, 1)).to.equal(true);
 
         selectNth(wrapper, 0);
         // on updates, however, we compare against event.target.value
         // object information is lost on stringification.
-        assert.strictEqual(isNthChecked(wrapper, 0), false);
-        assert.strictEqual(isNthChecked(wrapper, 1), true);
-        assert.strictEqual(handleChange.firstCall.args[1], '[object Object]');
+        expect(isNthChecked(wrapper, 0)).to.equal(false);
+        expect(isNthChecked(wrapper, 1)).to.equal(true);
+        expect(handleChange.firstCall.args[1]).to.equal('[object Object]');
       });
     });
   });
@@ -312,7 +299,7 @@ describe('<RadioGroup />', () => {
         const radioGroupRef = React.createRef();
         const { setProps } = render(<RadioGroupControlled ref={radioGroupRef} />);
 
-        expect(radioGroupRef.current.name).to.match(/^mui-radiogroup-[0-9]+/);
+        expect(radioGroupRef.current.name).to.match(/^mui-[0-9]+/);
 
         setProps({ name: 'anotherGroup' });
         expect(radioGroupRef.current).to.have.property('name', 'anotherGroup');
@@ -354,9 +341,8 @@ describe('<RadioGroup />', () => {
       );
 
       wrapper.setProps({ value: undefined });
-      assert.include(
-        consoleErrorMock.args()[0][0],
-        'A component is changing a controlled RadioGroup to be uncontrolled.',
+      expect(consoleErrorMock.messages()[0]).to.include(
+        'Material-UI: A component is changing the controlled value state of RadioGroup to be uncontrolled.',
       );
     });
 
@@ -368,9 +354,8 @@ describe('<RadioGroup />', () => {
       );
 
       wrapper.setProps({ value: 'foo' });
-      assert.include(
-        consoleErrorMock.args()[0][0],
-        'A component is changing an uncontrolled RadioGroup to be controlled.',
+      expect(consoleErrorMock.messages()[0]).to.include(
+        'Material-UI: A component is changing the uncontrolled value state of RadioGroup to be controlled.',
       );
     });
   });

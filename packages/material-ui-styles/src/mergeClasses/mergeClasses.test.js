@@ -1,4 +1,4 @@
-import { assert } from 'chai';
+import { expect } from 'chai';
 import mergeClasses from './mergeClasses';
 
 describe('mergeClasses', () => {
@@ -11,7 +11,7 @@ describe('mergeClasses', () => {
         root: 'bar',
       },
     });
-    assert.deepEqual(output, {
+    expect(output).to.deep.equal({
       root: 'foo bar',
     });
   });

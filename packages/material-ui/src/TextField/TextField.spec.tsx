@@ -1,5 +1,6 @@
 import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
+import { expectType } from '@material-ui/types';
 
 {
   // https://github.com/mui-org/material-ui/issues/12999
@@ -16,7 +17,7 @@ import TextField from '@material-ui/core/TextField';
         {
           // notchedOutline is only used with variant "outlined"
           // FIXME this no longer generates an error in TS 3.2, see https://github.com/Microsoft/TypeScript/issues/28926
-          // classes: { inputTypeSearch: 'search-input', notchedOutline: 'notched-outline' }, // $ExpectError
+          // classes: { inputTypeSearch: 'search-input', notchedOutline: 'notched-outline' }, // @ts-expect-error
         }
       }
     />
@@ -26,9 +27,10 @@ import TextField from '@material-ui/core/TextField';
     <TextField
       variant="filled"
       InputProps={{ classes: { inputAdornedStart: 'adorned-start' } }}
-      onChange={event => {
+      onChange={(event) => {
         // type inference for event still works?
-        const value = event.target.value; // $ExpectType string
+        const value = event.target.value;
+        expectType<string, typeof value>(value);
       }}
     />
   );

@@ -1,0 +1,9 @@
+{
+  "1": "Material-UI: Expected valid input target. Did you use a custom `inputComponent` and forget to forward refs? See https://material-ui.com/r/input-component-ref-interface for more info.",
+  "2": "Material-UI: The `value` prop must be an array when using the `Select` component with `multiple`.",
+  "3": "Material-UI: Unsupported `%s` color.\nWe support the following formats: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla().",
+  "4": "Material-UI: The color provided to augmentColor(color) is invalid.\nThe color object needs to have a `main` property or a `%s` property.",
+  "5": "Material-UI: The color provided to augmentColor(color) is invalid.\n`color.main` should be a string, but `%s` was provided instead.\n\nDid you intend to use one of the following approaches?\n\nimport { green } from \"@material-ui/core/colors\";\n\nconst theme1 = createMuiTheme({ palette: {\n  primary: green,\n} });\n\nconst theme2 = createMuiTheme({ palette: {\n  primary: { main: green[500] },\n} });",
+  "6": "Material-UI: Unsupported non-unitless line height with grid alignment.\nUse unitless line heights instead.",
+  "7": "Material-UI: capitalize(string) expects a string argument."
+}

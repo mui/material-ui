@@ -8,7 +8,7 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Checkbox from '@material-ui/core/Checkbox';
 import Avatar from '@material-ui/core/Avatar';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
     maxWidth: 360,
@@ -20,7 +20,7 @@ export default function CheckboxListSecondary() {
   const classes = useStyles();
   const [checked, setChecked] = React.useState([1]);
 
-  const handleToggle = value => () => {
+  const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
 
@@ -35,7 +35,7 @@ export default function CheckboxListSecondary() {
 
   return (
     <List dense className={classes.root}>
-      {[0, 1, 2, 3].map(value => {
+      {[0, 1, 2, 3].map((value) => {
         const labelId = `checkbox-list-secondary-label-${value}`;
         return (
           <ListItem key={value} button>

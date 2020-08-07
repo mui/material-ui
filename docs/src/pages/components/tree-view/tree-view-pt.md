@@ -5,23 +5,31 @@ components: TreeView, TreeItem
 
 # Visualização em árvore
 
-<p class="description">Um widget de exibição em árvore apresentando uma lista hierárquica.</p>
+<p class="description">Um modo de visualização em árvore apresentando uma lista hierárquica.</p>
 
-As visualizações em árvore podem ser usadas para representar um navegador do sistema de arquivos que exibe pastas e arquivos, um item que representa uma pasta pode ser expandido para revelar o conteúdo da pasta, que pode ser arquivos, pastas ou ambos.
+As visualizações em árvore podem ser usadas para representar um navegação no sistema de arquivos para exibir pastas e arquivos, um item representando uma pasta pode ser expandido para revelar o conteúdo da pasta, que pode ser arquivos, pastas ou ambos.
+
+## Modo básico de visualização em árvore
 
 {{"demo": "pages/components/tree-view/FileSystemNavigator.js"}}
 
-## Controlled
+## Seleção múltipla
 
-The tree view also offers a controlled API.
+Visualizações de árvore também suportam seleção múltipla.
+
+{{"demo": "pages/components/tree-view/MultiSelectTreeView.js"}}
+
+### Visualização em árvore controlada
+
+A visualização em árvore também oferece uma API para controle.
 
 {{"demo": "pages/components/tree-view/ControlledTreeView.js"}}
 
-## Rich object
+## Objeto complexo
 
-While the `TreeView`/`TreeItem` component API maximizes flexibility, an extra step is needed to handle a rich object.
+Enquanto o componente `TreeView`/`TreeItem` maximiza a flexibilidade, um passo extra é necessário para lidar com um objetos complexos.
 
-Let's consider a data variable with the following shape, recursion can be used to handle it.
+Vamos considerar uma variável de dados com a seguinte estrutura, a recursão pode ser usada para lidar com este cenário.
 
 ```js
 const data = {
@@ -39,7 +47,7 @@ const data = {
 
 {{"demo": "pages/components/tree-view/RecursiveTreeView.js", "defaultCodeOpen": false}}
 
-## Customized tree view
+## Visualização em árvore customizada
 
 ### Ícones customizados, borda e animação
 
@@ -53,4 +61,4 @@ const data = {
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#TreeView)
 
-The component follows the WAI-ARIA authoring practices.
+O componente segue as práticas de autoria da WAI-ARIA.

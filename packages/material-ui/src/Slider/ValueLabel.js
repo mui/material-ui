@@ -2,7 +2,7 @@ import * as React from 'react';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 
-const styles = theme => ({
+const styles = (theme) => ({
   thumb: {
     '&$open': {
       '& $offset': {

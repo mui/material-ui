@@ -87,7 +87,7 @@ function App() {
 
 ## Scrollen
 
-Sie können den Hook `useScrollTrigger ()`, um auf Bildlauf Aktionen zu reagieren.
+Der Hook `useScrollTrigger()` kann verwendet werden, um auf Scrollen des Benutzers zu reagieren.
 
 ### App-Bar verstecken
 
@@ -113,7 +113,7 @@ Beim Scrollen erscheint ein schwebender Button, um einfach wieder zum Seitenanfa
 
 1. `options` (*Object* [optional]):
 
-- `options.disableHysteresis ` (*Boolean* [optional]): Standardeinstellung ist `false`. Hysterese deaktivieren. Die Bildlaufrichtung wird beim Bestimmen des `trigger`-Werts ignoriert.
+- `options.disableHysteresis` (*Boolean* [optional]): Standardeinstellung ist `false`. Hysterese deaktivieren. Die Bildlaufrichtung wird beim Bestimmen des `trigger`-Werts ignoriert.
 - `options.target` (*Node* [optional]): Standardwert `window`.
 - `options.threshold` (*Number* [optional]): Defaults to `100`. Change the `trigger` value when the vertical scroll strictly crosses this threshold (exclusive).
 

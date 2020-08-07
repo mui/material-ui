@@ -7,7 +7,7 @@ export interface SelectInputProps {
   disabled?: boolean;
   IconComponent?: React.ElementType;
   inputRef?: (
-    ref: HTMLSelectElement | { node: HTMLInputElement; value: SelectInputProps['value'] },
+    ref: HTMLSelectElement | { node: HTMLInputElement; value: SelectInputProps['value'] }
   ) => void;
   MenuProps?: Partial<MenuProps>;
   multiple: boolean;
@@ -16,7 +16,7 @@ export interface SelectInputProps {
   onBlur?: React.FocusEventHandler<any>;
   onChange?: (
     event: React.ChangeEvent<{ name?: string; value: unknown }>,
-    child: React.ReactNode,
+    child: React.ReactNode
   ) => void;
   onClose?: (event: React.ChangeEvent<{}>) => void;
   onFocus?: React.FocusEventHandler<any>;

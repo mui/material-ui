@@ -5,7 +5,7 @@ import { refType } from '@material-ui/utils';
 import InputBase from '../InputBase';
 import withStyles from '../styles/withStyles';
 
-export const styles = theme => {
+export const styles = (theme) => {
   const light = theme.palette.type === 'light';
   const bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
   const backgroundColor = light ? 'rgba(0, 0, 0, 0.09)' : 'rgba(255, 255, 255, 0.09)';
@@ -113,8 +113,9 @@ export const styles = theme => {
     input: {
       padding: '27px 12px 10px',
       '&:-webkit-autofill': {
-        WebkitBoxShadow: theme.palette.type === 'dark' ? '0 0 0 100px #266798 inset' : null,
-        WebkitTextFillColor: theme.palette.type === 'dark' ? '#fff' : null,
+        WebkitBoxShadow: theme.palette.type === 'light' ? null : '0 0 0 100px #266798 inset',
+        WebkitTextFillColor: theme.palette.type === 'light' ? null : '#fff',
+        caretColor: theme.palette.type === 'light' ? null : '#fff',
         borderTopLeftRadius: 'inherit',
         borderTopRightRadius: 'inherit',
       },
@@ -179,6 +180,10 @@ const FilledInput = React.forwardRef(function FilledInput(props, ref) {
 });
 
 FilledInput.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * This prop helps users to fill forms faster, especially on mobile devices.
    * The name can be confusing, as it's more like an autofill.
@@ -193,11 +198,7 @@ FilledInput.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
-  /**
-   * The CSS class name of the wrapper element.
-   */
-  className: PropTypes.string,
+  classes: PropTypes.object,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
@@ -232,8 +233,8 @@ FilledInput.propTypes = {
    */
   id: PropTypes.string,
   /**
-   * The component used for the native input.
-   * Either a string to use a DOM element or a component.
+   * The component used for the `input` element.
+   * Either a string to use a HTML element or a component.
    */
   inputComponent: PropTypes.elementType,
   /**
@@ -280,11 +281,11 @@ FilledInput.propTypes = {
   /**
    * Number of rows to display when multiline option is set to true.
    */
-  rows: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * Maximum number of rows to display when multiline option is set to true.
    */
-  rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  rowsMax: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * Start `InputAdornment` for this component.
    */

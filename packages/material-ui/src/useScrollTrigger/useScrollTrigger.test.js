@@ -1,35 +1,27 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createMount } from '@material-ui/core/test-utils';
+import { createClientRender } from 'test/utils/createClientRender';
 import Container from '../Container';
 import Box from '../Box';
 import useScrollTrigger from './useScrollTrigger';
 
 describe('useScrollTrigger', () => {
-  let mount;
+  const render = createClientRender();
   let values;
-
-  before(() => {
-    mount = createMount({ strict: true });
-  });
 
   beforeEach(() => {
     values = spy();
   });
 
-  after(() => {
-    mount.cleanUp();
-  });
-
   const triggerRef = React.createRef();
   const containerRef = React.createRef(); // Get the scroll container's parent
   const getContainer = () => containerRef.current.children[0]; // Get the scroll container
-  const text = () => triggerRef.current.textContent; // Retrieve the trigger value
+  const getTriggerValue = () => triggerRef.current.textContent; // Retrieve the trigger value
 
   function Test(props) {
-    const { useContainerRef, ...other } = props;
+    const { customContainer, ...other } = props;
     const [container, setContainer] = React.useState();
     const trigger = useScrollTrigger({ ...other, target: container });
 
@@ -41,8 +33,8 @@ describe('useScrollTrigger', () => {
       <React.Fragment>
         <span ref={triggerRef}>{`${trigger}`}</span>
         <div ref={containerRef}>
-          <Container ref={useContainerRef ? setContainer : null}>
-            <Box my={2}>some text here</Box>
+          <Container ref={customContainer ? setContainer : null}>
+            <Box my={2}>Custom container</Box>
           </Container>
         </div>
       </React.Fragment>
@@ -50,7 +42,7 @@ describe('useScrollTrigger', () => {
   }
 
   Test.propTypes = {
-    useContainerRef: PropTypes.bool,
+    customContainer: PropTypes.bool,
   };
 
   describe('defaultTrigger', () => {
@@ -63,9 +55,9 @@ describe('useScrollTrigger', () => {
         return <span ref={triggerRef}>{`${trigger}`}</span>;
       };
 
-      mount(<TestDefault />);
-      assert.strictEqual(text(), 'false');
-      assert.strictEqual(values.callCount, 1);
+      render(<TestDefault />);
+      expect(getTriggerValue()).to.equal('false');
+      expect(values.callCount).to.equal(1);
     });
 
     it('should be false by default when using ref', () => {
@@ -84,9 +76,9 @@ describe('useScrollTrigger', () => {
           </React.Fragment>
         );
       };
-      mount(<TestDefaultWithRef />);
-      assert.strictEqual(text(), 'false');
-      assert.strictEqual(values.callCount, 2);
+      render(<TestDefaultWithRef />);
+      expect(getTriggerValue()).to.equal('false');
+      expect(values.callCount).to.equal(2);
     });
   });
 
@@ -102,27 +94,26 @@ describe('useScrollTrigger', () => {
     }
 
     it('scroll container should render with ref', () => {
-      const wrapper = mount(<Test useContainerRef />);
-      const container = wrapper.find(Container);
-      assert.strictEqual(container.exists(), true);
+      const { container } = render(<Test customContainer />);
+      expect(container.textContent).to.include('Custom container');
     });
 
     it('should not trigger from window scroll events with ref', () => {
-      mount(<Test useContainerRef />);
+      render(<Test customContainer />);
       [101, 200, 300, -10, 100, 101, 99, 200, 199, 0, 1, -1, 150].forEach((offset, i) => {
         dispatchScroll(offset);
-        assert.strictEqual(text(), 'false', `Index: ${i} Offset: ${offset}`);
+        expect(getTriggerValue()).to.equal('false', `Index: ${i} Offset: ${offset}`);
       });
     });
 
     it('should trigger above default threshold with ref', () => {
-      mount(<Test useContainerRef />);
+      render(<Test customContainer />);
       dispatchScroll(300, getContainer());
-      assert.strictEqual(text(), 'true');
+      expect(getTriggerValue()).to.equal('true');
     });
 
     it('should have correct hysteresis triggering threshold with ref', () => {
-      mount(<Test useContainerRef />);
+      render(<Test customContainer />);
       [
         { offset: 100, result: 'false' },
         { offset: 101, result: 'true' },
@@ -143,12 +134,12 @@ describe('useScrollTrigger', () => {
         { offset: 102, result: 'false' },
       ].forEach((test, index) => {
         dispatchScroll(test.offset, getContainer());
-        assert.strictEqual(text(), test.result, `Index: ${index} ${JSON.stringify(test)}`);
+        expect(getTriggerValue()).to.equal(test.result, `Index: ${index} ${JSON.stringify(test)}`);
       });
     });
 
     it('should have correct hysteresis triggering with default threshold with ref', () => {
-      mount(<Test useContainerRef disableHysteresis />);
+      render(<Test customContainer disableHysteresis />);
       [
         { offset: 100, result: 'false' },
         { offset: 101, result: 'true' },
@@ -168,12 +159,12 @@ describe('useScrollTrigger', () => {
         { offset: 103, result: 'true' },
       ].forEach((test, index) => {
         dispatchScroll(test.offset, getContainer());
-        assert.strictEqual(text(), test.result, `Index: ${index} ${JSON.stringify(test)}`);
+        expect(getTriggerValue()).to.equal(test.result, `Index: ${index} ${JSON.stringify(test)}`);
       });
     });
 
     it('should have correct hysteresis triggering with custom threshold with ref', () => {
-      mount(<Test useContainerRef disableHysteresis threshold={50} />);
+      render(<Test customContainer disableHysteresis threshold={50} />);
       [
         { offset: 100, result: 'true' },
         { offset: 101, result: 'true' },
@@ -191,12 +182,12 @@ describe('useScrollTrigger', () => {
         { offset: 51, result: 'true' },
       ].forEach((test, index) => {
         dispatchScroll(test.offset, getContainer());
-        assert.strictEqual(text(), test.result, `Index: ${index} ${JSON.stringify(test)}`);
+        expect(getTriggerValue()).to.equal(test.result, `Index: ${index} ${JSON.stringify(test)}`);
       });
     });
 
     it('should not trigger at exact threshold value with ref', () => {
-      mount(<Test useContainerRef threshold={100} />);
+      render(<Test customContainer threshold={100} />);
       [
         { offset: 100, result: 'false' },
         { offset: 99, result: 'false' },
@@ -207,12 +198,12 @@ describe('useScrollTrigger', () => {
         { offset: 100, result: 'false' },
       ].forEach((test, index) => {
         dispatchScroll(test.offset, getContainer());
-        assert.strictEqual(text(), test.result, `Index: ${index} ${JSON.stringify(test)}`);
+        expect(getTriggerValue()).to.equal(test.result, `Index: ${index} ${JSON.stringify(test)}`);
       });
     });
 
     it('should not trigger at exact threshold value with hysteresis disabled with ref', () => {
-      mount(<Test useContainerRef disableHysteresis threshold={100} />);
+      render(<Test customContainer disableHysteresis threshold={100} />);
       [
         { offset: 100, result: 'false' },
         { offset: 99, result: 'false' },
@@ -222,12 +213,12 @@ describe('useScrollTrigger', () => {
         { offset: 99, result: 'false' },
       ].forEach((test, index) => {
         dispatchScroll(test.offset, getContainer());
-        assert.strictEqual(text(), test.result, `Index: ${index} ${JSON.stringify(test)}`);
+        expect(getTriggerValue()).to.equal(test.result, `Index: ${index} ${JSON.stringify(test)}`);
       });
     });
 
     it('should correctly evaluate sequential scroll events with identical scrollY offsets with ref', () => {
-      mount(<Test useContainerRef threshold={199} />);
+      render(<Test customContainer threshold={199} />);
       [
         { offset: 200, result: 'true' },
         { offset: 200, result: 'true' },
@@ -239,12 +230,12 @@ describe('useScrollTrigger', () => {
         { offset: 200, result: 'true' },
       ].forEach((test, index) => {
         dispatchScroll(test.offset, getContainer());
-        assert.strictEqual(text(), test.result, `Index: ${index} ${JSON.stringify(test)}`);
+        expect(getTriggerValue()).to.equal(test.result, `Index: ${index} ${JSON.stringify(test)}`);
       });
     });
 
     it('should correctly evaluate sequential scroll events with identical scrollY offsets and hysteresis disabled with ref', () => {
-      mount(<Test useContainerRef disableHysteresis threshold={199} />);
+      render(<Test customContainer disableHysteresis threshold={199} />);
       [
         { offset: 200, result: 'true' },
         { offset: 200, result: 'true' },
@@ -256,7 +247,18 @@ describe('useScrollTrigger', () => {
         { offset: 200, result: 'true' },
       ].forEach((test, index) => {
         dispatchScroll(test.offset, getContainer());
-        assert.strictEqual(text(), test.result, `Index: ${index} ${JSON.stringify(test)}`);
+        expect(getTriggerValue()).to.equal(test.result, `Index: ${index} ${JSON.stringify(test)}`);
+      });
+    });
+
+    it('should correctly evaluate scroll events on page first load', () => {
+      [
+        { offset: 101, result: 'true' },
+        { offset: 100, result: 'false' },
+      ].forEach((test, index) => {
+        window.pageYOffset = test.offset;
+        render(<Test threshold={100} />);
+        expect(getTriggerValue()).to.equal(test.result, `Index: ${index} ${JSON.stringify(test)}`);
       });
     });
   });

@@ -49,7 +49,7 @@ Plusieurs colonnes ont plusieurs largeurs définies, ce qui entraîne une modifi
 
 Vous trouverez ci-dessous une démo interactive vous permettant d'explorer les résultats visuels des différents paramètres:
 
-{{"demo": "pages/components/grid/InteractiveGrid.js", "hideHeader": true, "bg": true}}
+{{"demo": "pages/components/grid/InteractiveGrid.js", "hideToolbar": true, "bg": true}}
 
 ## Mise en page automatique
 

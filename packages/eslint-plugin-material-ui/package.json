@@ -5,7 +5,11 @@
   "description": "Custom eslint rules for Material-UI.",
   "main": "src/index.js",
   "dependencies": {
-    "emoji-regex": "^8.0.0"
+    "emoji-regex": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/eslint": "^6.8.0",
+    "babel-eslint": "^10.1.0"
   },
   "scripts": {
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/eslint-plugin-material-ui/**/*.test.js' --exclude '**/node_modules/**'"

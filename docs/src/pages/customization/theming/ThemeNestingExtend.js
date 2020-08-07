@@ -16,7 +16,7 @@ export default function ThemeNestingExtend() {
     <ThemeProvider theme={outerTheme}>
       <Checkbox defaultChecked />
       <ThemeProvider
-        theme={theme =>
+        theme={(theme) =>
           createMuiTheme({
             ...theme,
             palette: {

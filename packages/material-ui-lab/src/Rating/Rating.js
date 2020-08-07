@@ -3,7 +3,13 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
 import { useTheme, withStyles } from '@material-ui/core/styles';
-import { capitalize, useForkRef, useIsFocusVisible } from '@material-ui/core/utils';
+import {
+  capitalize,
+  useForkRef,
+  useIsFocusVisible,
+  useControlled,
+  unstable_useId as useId,
+} from '@material-ui/core/utils';
 import Star from '../internal/svg-icons/Star';
 
 function clamp(value, min, max) {
@@ -30,7 +36,7 @@ function roundValueToPrecision(value, precision) {
   return Number(nearest.toFixed(getDecimalPrecision(precision)));
 }
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     display: 'inline-flex',
@@ -38,6 +44,7 @@ export const styles = theme => ({
     fontSize: theme.typography.pxToRem(24),
     color: '#ffb400',
     cursor: 'pointer',
+    textAlign: 'left',
     WebkitTapHighlightColor: 'transparent',
     '&$disabled': {
       opacity: 0.5,
@@ -159,37 +166,13 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     ...other
   } = props;
 
-  const [defaultName, setDefaultName] = React.useState();
-  const name = nameProp || defaultName;
-  React.useEffect(() => {
-    // Fallback to this default id when possible.
-    // Use the random value for client-side rendering only.
-    // We can't use it server-side.
-    setDefaultName(`mui-rating-${Math.round(Math.random() * 1e5)}`);
-  }, []);
+  const name = useId(nameProp);
 
-  const { current: isControlled } = React.useRef(valueProp !== undefined);
-  const [valueState, setValueState] = React.useState(defaultValue);
-  const valueDerived = isControlled ? valueProp : valueState;
-
-  if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    React.useEffect(() => {
-      if (isControlled !== (valueProp !== undefined)) {
-        console.error(
-          [
-            `Material-UI: A component is changing ${
-              isControlled ? 'a ' : 'an un'
-            }controlled Rating to be ${isControlled ? 'un' : ''}controlled.`,
-            'Elements should not switch from uncontrolled to controlled (or vice versa).',
-            'Decide between using a controlled or uncontrolled Rating ' +
-              'element for the lifetime of the component.',
-            'More info: https://fb.me/react-controlled-components',
-          ].join('\n'),
-        );
-      }
-    }, [valueProp, isControlled]);
-  }
+  const [valueDerived, setValueState] = useControlled({
+    controlled: valueProp,
+    default: defaultValue,
+    name: 'Rating',
+  });
 
   const valueRounded = roundValueToPrecision(valueDerived, precision);
   const theme = useTheme();
@@ -213,7 +196,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
   const handleFocusRef = useForkRef(focusVisibleRef, rootRef);
   const handleRef = useForkRef(handleFocusRef, ref);
 
-  const handleMouseMove = event => {
+  const handleMouseMove = (event) => {
     if (onMouseMove) {
       onMouseMove(event);
     }
@@ -232,7 +215,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     let newHover = roundValueToPrecision(max * percent + precision / 2, precision);
     newHover = clamp(newHover, precision, max);
 
-    setState(prev =>
+    setState((prev) =>
       prev.hover === newHover && prev.focus === newHover
         ? prev
         : {
@@ -248,7 +231,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     }
   };
 
-  const handleMouseLeave = event => {
+  const handleMouseLeave = (event) => {
     if (onMouseLeave) {
       onMouseLeave(event);
     }
@@ -264,19 +247,17 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     }
   };
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     const newValue = parseFloat(event.target.value);
 
-    if (!isControlled) {
-      setValueState(newValue);
-    }
+    setValueState(newValue);
 
     if (onChange) {
       onChange(event, newValue);
     }
   };
 
-  const handleClear = event => {
+  const handleClear = (event) => {
     // Ignore keyboard events
     // https://github.com/facebook/react/issues/7407
     if (event.clientX === 0 && event.clientY === 0) {
@@ -288,22 +269,20 @@ const Rating = React.forwardRef(function Rating(props, ref) {
       focus: -1,
     });
 
-    if (!isControlled) {
-      setValueState(null);
-    }
+    setValueState(null);
 
     if (onChange && parseFloat(event.target.value) === valueRounded) {
       onChange(event, null);
     }
   };
 
-  const handleFocus = event => {
+  const handleFocus = (event) => {
     if (isFocusVisible(event)) {
       setFocusVisible(true);
     }
 
     const newFocus = parseFloat(event.target.value);
-    setState(prev => ({
+    setState((prev) => ({
       hover: prev.hover,
       focus: newFocus,
     }));
@@ -313,7 +292,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     }
   };
 
-  const handleBlur = event => {
+  const handleBlur = (event) => {
     if (hover !== -1) {
       return;
     }
@@ -324,7 +303,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     }
 
     const newFocus = -1;
-    setState(prev => ({
+    setState((prev) => ({
       hover: prev.hover,
       focus: newFocus,
     }));
@@ -477,11 +456,15 @@ const Rating = React.forwardRef(function Rating(props, ref) {
 });
 
 Rating.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -528,11 +511,11 @@ Rating.propTypes = {
    * If `readOnly` is false, the prop is required,
    * this input name`should be unique within the parent form.
    */
-  name: chainPropTypes(PropTypes.string, props => {
+  name: chainPropTypes(PropTypes.string, (props) => {
     if (!props.readOnly && !props.name) {
       return new Error(
         [
-          'Material-UI: the prop `name` is required (when `readOnly` is false).',
+          'Material-UI: The prop `name` is required (when `readOnly` is false).',
           'Additionally, the input name should be unique within the parent form.',
         ].join('\n'),
       );
@@ -564,7 +547,17 @@ Rating.propTypes = {
   /**
    * The minimum increment value change allowed.
    */
-  precision: PropTypes.number,
+  precision: chainPropTypes(PropTypes.number, (props) => {
+    if (props.precision < 0.1) {
+      return new Error(
+        [
+          'Material-UI: The prop `precision` should be above 0.1.',
+          'A value below this limit has an imperceptible impact.',
+        ].join('\n'),
+      );
+    }
+    return null;
+  }),
   /**
    * Removes all hover effects and pointer events.
    */
@@ -572,7 +565,7 @@ Rating.propTypes = {
   /**
    * The size of the rating.
    */
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  size: PropTypes.oneOf(['large', 'medium', 'small']),
   /**
    * The rating value.
    */

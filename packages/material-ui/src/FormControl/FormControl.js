@@ -18,7 +18,6 @@ export const styles = {
     padding: 0,
     margin: 0,
     border: 0,
-    zIndex: 0, // Fix blur label text issue
     verticalAlign: 'top', // Fix alignment issue on Safari.
   },
   /* Styles applied to the root element if `margin="normal"`. */
@@ -70,6 +69,7 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
     disabled = false,
     error = false,
     fullWidth = false,
+    focused: visuallyFocused,
     hiddenLabel = false,
     margin = 'none',
     required = false,
@@ -84,7 +84,7 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
     let initialAdornedStart = false;
 
     if (children) {
-      React.Children.forEach(children, child => {
+      React.Children.forEach(children, (child) => {
         if (!isMuiElement(child, ['Input', 'Select'])) {
           return;
         }
@@ -105,7 +105,7 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
     let initialFilled = false;
 
     if (children) {
-      React.Children.forEach(children, child => {
+      React.Children.forEach(children, (child) => {
         if (!isMuiElement(child, ['Input', 'Select'])) {
           return;
         }
@@ -119,7 +119,8 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
     return initialFilled;
   });
 
-  const [focused, setFocused] = React.useState(false);
+  const [_focused, setFocused] = React.useState(false);
+  const focused = visuallyFocused !== undefined ? visuallyFocused : _focused;
 
   if (disabled && focused) {
     setFocused(false);
@@ -133,7 +134,7 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
       if (registeredInput.current) {
         console.error(
           [
-            'Material-UI: there are multiple InputBase components inside a FormControl.',
+            'Material-UI: There are multiple InputBase components inside a FormControl.',
             'This is not supported. It might cause infinite rendering loops.',
             'Only use one InputBase.',
           ].join('\n'),
@@ -200,6 +201,10 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
 });
 
 FormControl.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * The contents of the form control.
    */
@@ -208,7 +213,7 @@ FormControl.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -219,9 +224,9 @@ FormControl.propTypes = {
   color: PropTypes.oneOf(['primary', 'secondary']),
   /**
    * The component used for the root node.
-   * Either a string to use a DOM element or a component.
+   * Either a string to use a HTML element or a component.
    */
-  component: PropTypes.elementType,
+  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
    * If `true`, the label, input and helper text should be displayed in a disabled state.
    */
@@ -230,6 +235,10 @@ FormControl.propTypes = {
    * If `true`, the label should be displayed in an error state.
    */
   error: PropTypes.bool,
+  /**
+   * If `true`, the component will be displayed in focused state.
+   */
+  focused: PropTypes.bool,
   /**
    * If `true`, the component will take up the full width of its container.
    */
@@ -243,7 +252,7 @@ FormControl.propTypes = {
   /**
    * If `dense` or `normal`, will adjust vertical spacing of this and contained components.
    */
-  margin: PropTypes.oneOf(['none', 'dense', 'normal']),
+  margin: PropTypes.oneOf(['dense', 'none', 'normal']),
   /**
    * If `true`, the label will indicate that the input is required.
    */
@@ -251,11 +260,11 @@ FormControl.propTypes = {
   /**
    * The size of the text field.
    */
-  size: PropTypes.oneOf(['small', 'medium']),
+  size: PropTypes.oneOf(['medium', 'small']),
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
+  variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
 };
 
 export default withStyles(styles, { name: 'MuiFormControl' })(FormControl);

@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Popper from '@material-ui/core/Popper';
 import { useSpring, animated } from 'react-spring/web.cjs'; // web.cjs is required for IE 11 support
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   paper: {
     border: '1px solid',
     padding: theme.spacing(1),
@@ -47,7 +47,7 @@ export default function SpringPopper() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const handleClick = event => {
+  const handleClick = (event) => {
     setAnchorEl(anchorEl ? null : event.currentTarget);
   };
 

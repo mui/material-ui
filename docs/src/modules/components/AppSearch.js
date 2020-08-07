@@ -1,7 +1,7 @@
 import React from 'react';
 import url from 'url';
 import { useSelector } from 'react-redux';
-import { loadCSS } from 'fg-loadcss/src/loadCSS';
+import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { fade, useTheme, makeStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
@@ -10,7 +10,7 @@ import { handleEvent } from 'docs/src/modules/components/MarkdownLinks';
 import docsearch from 'docsearch.js';
 
 const useStyles = makeStyles(
-  theme => ({
+  (theme) => ({
     '@global': {
       '.algolia-autocomplete': {
         '& .ds-dropdown-menu': {
@@ -116,21 +116,13 @@ export default function AppSearch() {
   const classes = useStyles();
   const inputRef = React.useRef(null);
   const theme = useTheme();
-  const userLanguage = useSelector(state => state.options.userLanguage);
+  const userLanguage = useSelector((state) => state.options.userLanguage);
+  const t = useSelector((state) => state.options.t);
+
+  useLazyCSS('https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css', '#app-search');
 
   React.useEffect(() => {
-    const styleNode = loadCSS(
-      'https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css',
-      document.querySelector('#app-search'),
-    );
-
-    return () => {
-      styleNode.parentElement.removeChild(styleNode);
-    };
-  }, []);
-
-  React.useEffect(() => {
-    const handleKeyDown = event => {
+    const handleKeyDown = (event) => {
       // Use event.keyCode to support IE 11
       if (
         [
@@ -178,7 +170,7 @@ export default function AppSearch() {
         // debug: true, // Set debug to true if you want to inspect the dropdown.
       });
 
-      search.autocomplete.on('autocomplete:cursorchanged', event => {
+      search.autocomplete.on('autocomplete:cursorchanged', (event) => {
         const combobox = event.target;
         const selectedOptionNode = document.getElementById(
           combobox.getAttribute('aria-activedescendant'),
@@ -219,9 +211,9 @@ export default function AppSearch() {
       </div>
       <Input
         disableUnderline
-        placeholder="Search…"
+        placeholder={`${t('algoliaSearch')}…`}
         inputProps={{
-          'aria-label': 'Search',
+          'aria-label': t('algoliaSearch'),
         }}
         type="search"
         id="docsearch-input"

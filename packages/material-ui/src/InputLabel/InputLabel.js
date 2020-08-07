@@ -6,7 +6,7 @@ import useFormControl from '../FormControl/useFormControl';
 import withStyles from '../styles/withStyles';
 import FormLabel from '../FormLabel';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     display: 'block',
@@ -134,6 +134,10 @@ const InputLabel = React.forwardRef(function InputLabel(props, ref) {
 });
 
 InputLabel.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * The contents of the `InputLabel`.
    */
@@ -142,7 +146,7 @@ InputLabel.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -183,7 +187,7 @@ InputLabel.propTypes = {
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
+  variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
 };
 
 export default withStyles(styles, { name: 'MuiInputLabel' })(InputLabel);

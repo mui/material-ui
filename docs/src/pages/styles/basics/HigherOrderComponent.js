@@ -15,13 +15,13 @@ const styles = {
   },
 };
 
-function HigherOrderComponent(props) {
+function UnstyledComponent(props) {
   const { classes } = props;
   return <Button className={classes.root}>Styled with HOC API</Button>;
 }
 
-HigherOrderComponent.propTypes = {
+UnstyledComponent.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(HigherOrderComponent);
+export default withStyles(styles)(UnstyledComponent);

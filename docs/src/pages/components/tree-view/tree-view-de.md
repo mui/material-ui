@@ -9,9 +9,17 @@ components: TreeView, TreeItem
 
 Tree views can be used to represent a file system navigator displaying folders and files, an item representing a folder can be expanded to reveal the contents of the folder, which may be files, folders, or both.
 
+## Basic tree view
+
 {{"demo": "pages/components/tree-view/FileSystemNavigator.js"}}
 
-## Controlled
+## Multi selection
+
+Tree views also support multi selection.
+
+{{"demo": "pages/components/tree-view/MultiSelectTreeView.js"}}
+
+### Controlled tree view
 
 The tree view also offers a controlled API.
 

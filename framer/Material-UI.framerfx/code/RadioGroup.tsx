@@ -18,7 +18,7 @@ export function RadioGroup(props) {
     <div style={{ margin: 16 }}>
       <MuiFormLabel component="legend">{label}</MuiFormLabel>
       <MuiRadioGroup defaultValue={labels[0]} style={{ marginTop: '8px' }} {...other}>
-        {labels.map(radioLabel => {
+        {labels.map((radioLabel) => {
           return <Radio key={radioLabel} value={radioLabel} label={radioLabel} />;
         })}
       </MuiRadioGroup>

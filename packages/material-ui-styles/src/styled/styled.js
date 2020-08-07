@@ -8,7 +8,7 @@ import makeStyles from '../makeStyles';
 function omit(input, fields) {
   const output = {};
 
-  Object.keys(input).forEach(prop => {
+  Object.keys(input).forEach((prop) => {
     if (fields.indexOf(prop) === -1) {
       output[prop] = input[prop];
     }
@@ -46,7 +46,7 @@ export default function styled(Component) {
 
     const stylesOrCreator =
       typeof style === 'function'
-        ? theme => ({ root: props => style({ theme, ...props }) })
+        ? (theme) => ({ root: (props) => style({ theme, ...props }) })
         : { root: style };
 
     const useStyles = makeStyles(stylesOrCreator, {
@@ -117,12 +117,12 @@ export default function styled(Component) {
        */
       className: PropTypes.string,
       /**
-       * If `true`, the component will recycle it's children DOM element.
+       * If `true`, the component will recycle it's children HTML element.
        * It's using `React.cloneElement` internally.
        *
        * This prop will be deprecated and removed in v5
        */
-      clone: chainPropTypes(PropTypes.bool, props => {
+      clone: chainPropTypes(PropTypes.bool, (props) => {
         if (props.clone && props.component) {
           return new Error('You can not use the clone and component prop at the same time.');
         }
@@ -130,9 +130,9 @@ export default function styled(Component) {
       }),
       /**
        * The component used for the root node.
-       * Either a string to use a DOM element or a component.
+       * Either a string to use a HTML element or a component.
        */
-      component: PropTypes.elementType,
+      component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
       ...propTypes,
     };
 

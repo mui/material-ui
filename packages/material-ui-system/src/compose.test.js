@@ -1,4 +1,4 @@
-import { assert } from 'chai';
+import { expect } from 'chai';
 import compose from './compose';
 import style from './style';
 
@@ -15,22 +15,18 @@ const bgcolor = style({
 
 describe('compose', () => {
   it('should compose', () => {
-    const palette = compose(
-      textColor,
-      bgcolor,
-    );
+    const palette = compose(textColor, bgcolor);
 
-    assert.strictEqual(palette.filterProps.length, 2);
-    assert.deepEqual(
+    expect(palette.filterProps.length).to.equal(2);
+    expect(
       palette({
         theme: {},
         color: 'red',
         bgcolor: 'gree',
       }),
-      {
-        backgroundColor: 'gree',
-        color: 'red',
-      },
-    );
+    ).to.deep.equal({
+      backgroundColor: 'gree',
+      color: 'red',
+    });
   });
 });

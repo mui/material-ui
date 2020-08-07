@@ -46,7 +46,14 @@ function textCriteriaMatches(nextFocus, textCriteria) {
   return text.indexOf(textCriteria.keys.join('')) === 0;
 }
 
-function moveFocus(list, currentFocus, disableListWrap, traversalFunction, textCriteria) {
+function moveFocus(
+  list,
+  currentFocus,
+  disableListWrap,
+  disabledItemsFocusable,
+  traversalFunction,
+  textCriteria,
+) {
   let wrappedOnce = false;
   let nextFocus = traversalFunction(list, currentFocus, currentFocus ? disableListWrap : false);
 
@@ -54,42 +61,50 @@ function moveFocus(list, currentFocus, disableListWrap, traversalFunction, textC
     // Prevent infinite loop.
     if (nextFocus === list.firstChild) {
       if (wrappedOnce) {
-        return false;
+        return;
       }
       wrappedOnce = true;
     }
-    // Move to the next element.
+
+    // Same logic as useAutocomplete.js
+    const nextFocusDisabled = disabledItemsFocusable
+      ? false
+      : nextFocus.disabled || nextFocus.getAttribute('aria-disabled') === 'true';
+
     if (
       !nextFocus.hasAttribute('tabindex') ||
-      !textCriteriaMatches(nextFocus, textCriteria)
+      !textCriteriaMatches(nextFocus, textCriteria) ||
+      nextFocusDisabled
     ) {
+      // Move to the next element.
       nextFocus = traversalFunction(list, nextFocus, disableListWrap);
     } else {
       nextFocus.focus();
-      return true;
+      return;
     }
   }
-
-  return false;
 }
 
 const useEnhancedEffect = typeof window === 'undefined' ? React.useEffect : React.useLayoutEffect;
 
 /**
- * A permanently displayed menu following https://www.w3.org/TR/wai-aria-practices/#menubutton
+ * A permanently displayed menu following https://www.w3.org/TR/wai-aria-practices/#menubutton.
  * It's exposed to help customization of the [`Menu`](/api/menu/) component. If you
  * use it separately you need to move focus into the component manually. Once
  * the focus is placed inside the component it is fully keyboard accessible.
  */
 const MenuList = React.forwardRef(function MenuList(props, ref) {
   const {
+    // private
+    // eslint-disable-next-line react/prop-types
     actions,
     autoFocus = false,
     autoFocusItem = false,
     children,
     className,
-    onKeyDown,
+    disabledItemsFocusable = false,
     disableListWrap = false,
+    onKeyDown,
     variant = 'selectedMenu',
     ...other
   } = props;
@@ -127,7 +142,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     [],
   );
 
-  const handleKeyDown = event => {
+  const handleKeyDown = (event) => {
     const list = listRef.current;
     const key = event.key;
     /**
@@ -141,16 +156,16 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     if (key === 'ArrowDown') {
       // Prevent scroll of the page
       event.preventDefault();
-      moveFocus(list, currentFocus, disableListWrap, nextItem);
+      moveFocus(list, currentFocus, disableListWrap, disabledItemsFocusable, nextItem);
     } else if (key === 'ArrowUp') {
       event.preventDefault();
-      moveFocus(list, currentFocus, disableListWrap, previousItem);
+      moveFocus(list, currentFocus, disableListWrap, disabledItemsFocusable, previousItem);
     } else if (key === 'Home') {
       event.preventDefault();
-      moveFocus(list, null, disableListWrap, nextItem);
+      moveFocus(list, null, disableListWrap, disabledItemsFocusable, nextItem);
     } else if (key === 'End') {
       event.preventDefault();
-      moveFocus(list, null, disableListWrap, previousItem);
+      moveFocus(list, null, disableListWrap, disabledItemsFocusable, previousItem);
     } else if (key.length === 1) {
       const criteria = textCriteriaRef.current;
       const lowerKey = key.toLowerCase();
@@ -171,7 +186,8 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
         currentFocus && !criteria.repeating && textCriteriaMatches(currentFocus, criteria);
       if (
         criteria.previousKeyMatched &&
-        (keepFocusOnCurrent || moveFocus(list, currentFocus, false, nextItem, criteria))
+        (keepFocusOnCurrent ||
+          moveFocus(list, currentFocus, false, disabledItemsFocusable, nextItem, criteria))
       ) {
         event.preventDefault();
       } else {
@@ -184,7 +200,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     }
   };
 
-  const handleOwnRef = React.useCallback(instance => {
+  const handleOwnRef = React.useCallback((instance) => {
     // #StrictMode ready
     listRef.current = ReactDOM.findDOMNode(instance);
   }, []);
@@ -208,7 +224,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
       if (isFragment(child)) {
         console.error(
           [
-            "Material-UI: the Menu component doesn't accept a Fragment as a child.",
+            "Material-UI: The Menu component doesn't accept a Fragment as a child.",
             'Consider providing an array instead.',
           ].join('\n'),
         );
@@ -234,9 +250,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
         newChildProps.tabIndex = 0;
       }
 
-      if (newChildProps !== null) {
-        return React.cloneElement(child, newChildProps);
-      }
+      return React.cloneElement(child, newChildProps);
     }
 
     return child;
@@ -257,17 +271,17 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
 });
 
 MenuList.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
-   * @ignore
-   */
-  actions: PropTypes.shape({ current: PropTypes.object }),
-  /**
-   * If `true`, will focus the `[role="menu"]` container and move into tab order
+   * If `true`, will focus the `[role="menu"]` container and move into tab order.
    */
   autoFocus: PropTypes.bool,
   /**
    * If `true`, will focus the first menuitem if `variant="menu"` or selected item
-   * if `variant="selectedMenu"`
+   * if `variant="selectedMenu"`.
    */
   autoFocusItem: PropTypes.bool,
   /**
@@ -278,6 +292,10 @@ MenuList.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * If `true`, will allow focus on disabled items.
+   */
+  disabledItemsFocusable: PropTypes.bool,
   /**
    * If `true`, the menu items will not wrap focus.
    */

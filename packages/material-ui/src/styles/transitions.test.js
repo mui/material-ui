@@ -18,46 +18,52 @@ describe('transitions', () => {
       it('should warn when first argument is of bad type', () => {
         transitions.create(5554);
         expect(consoleErrorStub.args[0][0]).to.include(
-          'argument "props" must be a string or Array',
+          'Material-UI: Argument "props" must be a string or Array',
         );
         transitions.create({});
         expect(consoleErrorStub.args[1][0]).to.include(
-          'argument "props" must be a string or Array',
+          'Material-UI: Argument "props" must be a string or Array',
         );
       });
 
       it('should warn when bad "duration" option type', () => {
         transitions.create('font', { duration: null });
         expect(consoleErrorStub.args[0][0]).to.include(
-          'argument "duration" must be a number or a string but found null',
+          'Material-UI: Argument "duration" must be a number or a string but found null',
         );
         transitions.create('font', { duration: {} });
         expect(consoleErrorStub.args[1][0]).to.include(
-          'argument "duration" must be a number or a string but found [object Object]',
+          'Material-UI: Argument "duration" must be a number or a string but found [object Object]',
         );
       });
 
       it('should warn when bad "easing" option type', () => {
         transitions.create('transform', { easing: 123 });
-        expect(consoleErrorStub.args[0][0]).to.include('argument "easing" must be a string');
+        expect(consoleErrorStub.args[0][0]).to.include(
+          'Material-UI: Argument "easing" must be a string',
+        );
         transitions.create('transform', { easing: {} });
-        expect(consoleErrorStub.args[1][0]).to.include('argument "easing" must be a string');
+        expect(consoleErrorStub.args[1][0]).to.include(
+          'Material-UI: Argument "easing" must be a string',
+        );
       });
 
       it('should warn when bad "delay" option type', () => {
         transitions.create('size', { delay: null });
         expect(consoleErrorStub.args[0][0]).to.include(
-          'argument "delay" must be a number or a string',
+          'Material-UI: Argument "delay" must be a number or a string',
         );
         transitions.create('size', { delay: {} });
         expect(consoleErrorStub.args[1][0]).to.include(
-          'argument "delay" must be a number or a string',
+          'Material-UI: Argument "delay" must be a number or a string',
         );
       });
 
       it('should warn when passed unrecognized option', () => {
         transitions.create('size', { fffds: 'value' });
-        expect(consoleErrorStub.args[0][0]).to.include('unrecognized argument(s) [fffds]');
+        expect(consoleErrorStub.args[0][0]).to.include(
+          'Material-UI: Unrecognized argument(s) [fffds]',
+        );
       });
     });
 

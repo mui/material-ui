@@ -15,12 +15,17 @@ function GrowTransition(props: TransitionProps) {
 }
 
 export default function TransitionsSnackbar() {
-  const [state, setState] = React.useState({
+  const [state, setState] = React.useState<{
+    open: boolean;
+    Transition: React.ComponentType<TransitionProps & { children?: React.ReactElement<any, any> }>;
+  }>({
     open: false,
     Transition: Fade,
   });
 
-  const handleClick = (Transition: React.ComponentType<TransitionProps>) => () => {
+  const handleClick = (
+    Transition: React.ComponentType<TransitionProps & { children?: React.ReactElement<any, any> }>,
+  ) => () => {
     setState({
       open: true,
       Transition,
@@ -44,6 +49,7 @@ export default function TransitionsSnackbar() {
         onClose={handleClose}
         TransitionComponent={state.Transition}
         message="I love snacks"
+        key={state.Transition.name}
       />
     </div>
   );

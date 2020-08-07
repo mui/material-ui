@@ -6,9 +6,13 @@ import {
   WithTheme,
   WithStyles,
   makeStyles,
+  CSSProperties,
+  CreateCSSProperties,
+  PropsFunc,
 } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 import { Theme } from '@material-ui/core/styles';
+import { expectType } from '@material-ui/types';
 
 // Example 1
 const styles = ({ palette, spacing }: Theme) => ({
@@ -82,8 +86,8 @@ const StyledComponent = withStyles(styles)(({ theme, classes }: AllTheProps) => 
   <div className={classes.root}>{theme.palette.text.primary}</div>
 ));
 
-// missing prop theme
-<StyledComponent />; // $ExpectError
+// @ts-expect-error missing prop theme
+<StyledComponent />;
 
 const AllTheComposition = withTheme<Theme, typeof StyledComponent>(StyledComponent);
 
@@ -116,11 +120,11 @@ declare const themed: boolean;
   );
   <Foo />;
 
-  const Bar = withStyles(themedStyles, { withTheme: true })(
-    ({ theme }: WithStyles<typeof themedStyles, true>) => (
-      <div style={{ margin: theme.spacing(1) }} />
-    ),
-  );
+  const Bar = withStyles(themedStyles, {
+    withTheme: true,
+  })(({ theme }: WithStyles<typeof themedStyles, true>) => (
+    <div style={{ margin: theme.spacing(1) }} />
+  ));
   <Bar />;
 }
 
@@ -140,7 +144,7 @@ const DecoratedComponent = withStyles(styles)(
 <DecoratedComponent text="foo" />;
 
 // Allow nested pseudo selectors
-withStyles(theme =>
+withStyles((theme) =>
   createStyles({
     guttered: {
       '&:hover': {
@@ -166,7 +170,7 @@ withStyles(theme =>
     },
     '@media (min-width: 960px)': {
       content: {
-        // $ExpectError
+        // @ts-expect-error
         display: 'flex',
       },
     },
@@ -302,25 +306,30 @@ withStyles(theme =>
   }
 
   class Component extends React.Component<Props & WithStyles<typeof styles>> {}
-  // $ExpectError
+  // @ts-expect-error
   const StyledComponent = withStyles(styles)(Component);
 
-  // implicit FunctionComponent
-  withStyles(styles)((props: Props) => null); // $ExpectError
-  withStyles(styles)((props: Props & WithStyles<typeof styles>) => null); // $ExpectError
-  withStyles(styles)((props: Props & { children?: React.ReactNode }) => null); // $ExpectError
+  // @ts-expect-error implicit FunctionComponent
+  withStyles(styles)((props: Props) => null);
+  // @ts-expect-error
+  withStyles(styles)((props: Props & WithStyles<typeof styles>) => null);
+  // @ts-expect-error
+  withStyles(styles)((props: Props & { children?: React.ReactNode }) => null);
   withStyles(styles)(
-    (props: Props & WithStyles<typeof styles> & { children?: React.ReactNode }) => null, // $ExpectError
+    // @ts-expect-error
+    (props: Props & WithStyles<typeof styles> & { children?: React.ReactNode }) => null,
   );
 
   // explicit not but with "Property 'children' is missing in type 'ValidationMap<Props>'".
   // which is not helpful
-  const StatelessComponent: React.FunctionComponent<Props> = props => null;
-  const StatelessComponentWithStyles: React.FunctionComponent<
-    Props & WithStyles<typeof styles>
-  > = props => null;
-  withStyles(styles)(StatelessComponent); // $ExpectError
-  withStyles(styles)(StatelessComponentWithStyles); // $ExpectError
+  const StatelessComponent: React.FunctionComponent<Props> = (props) => null;
+  const StatelessComponentWithStyles: React.FunctionComponent<Props & WithStyles<typeof styles>> = (
+    props,
+  ) => null;
+  // @ts-expect-error
+  withStyles(styles)(StatelessComponent);
+  // @ts-expect-error
+  withStyles(styles)(StatelessComponentWithStyles);
 }
 
 {
@@ -355,8 +364,8 @@ withStyles(theme =>
   const StyledMyButton = withStyles(styles)(MyButton);
 
   const CorrectUsage = () => <StyledMyButton nonDefaulted="2" />;
-  // Property 'nonDefaulted' is missing in type '{}'
-  const MissingPropUsage = () => <StyledMyButton />; // $ExpectError
+  // @ts-expect-error Property 'nonDefaulted' is missing in type '{}'
+  const MissingPropUsage = () => <StyledMyButton />;
 }
 
 {
@@ -387,8 +396,7 @@ withStyles(theme =>
   const StyledMyComponent = withStyles(styles)(MyComponent);
   const renderedStyledMyComponent = <StyledMyComponent message="Hi" />;
 
-  //  number is not assignable to 'blue' | 'red'
-  // $ExpectError
+  // @ts-expect-error number is not assignable to 'blue' | 'red'
   interface InconsistentProps extends WithStyles<typeof styles> {
     color: number;
   }
@@ -407,8 +415,8 @@ function forwardRefTest() {
 
   const anchorRef = React.useRef<HTMLAnchorElement>(null);
   // forwarded to function components which can't hold refs
-  // property 'ref' does not exists
-  <StyledAnchor ref={anchorRef} />; // $ExpectError
+  // @ts-expect-error property 'ref' does not exists
+  <StyledAnchor ref={anchorRef} />;
   <StyledAnchor innerRef={anchorRef} />;
 
   const RefableAnchor = React.forwardRef<HTMLAnchorElement, WithStyles<typeof styles>>(
@@ -421,8 +429,8 @@ function forwardRefTest() {
 
   <StyledRefableAnchor ref={anchorRef} />;
   const buttonRef = React.createRef<HTMLButtonElement>();
-  // HTMLButtonElement is missing properties
-  <StyledRefableAnchor ref={buttonRef} />; // $ExpectError
+  // @ts-expect-error HTMLButtonElement is missing properties
+  <StyledRefableAnchor ref={buttonRef} />;
   // undesired: `innerRef` is currently typed as any but for backwards compat we're keeping it
   // especially since `innerRef` will be removed in v5 and is equivalent to `ref`
   <StyledRefableAnchor innerRef={buttonRef} />;
@@ -445,38 +453,49 @@ function forwardRefTest() {
   }));
 
   const styles = useStyles({ foo: true });
-  // $ExpectType string
-  const root = styles.root;
-  // $ExpectType string
-  const root2 = styles.root2;
+  expectType<Record<'root' | 'root2', string>, typeof styles>(styles);
 }
 
 {
   // If there are no props, use the definition that doesn't accept them
   // https://github.com/mui-org/material-ui/issues/16198
 
-  // $ExpectType Record<"root", CSSProperties | CreateCSSProperties<{}> | ((props: {}) => CreateCSSProperties<{}>)>
   const styles = createStyles({
     root: {
       width: 1,
     },
   });
+  expectType<
+    Record<'root', CSSProperties | CreateCSSProperties | PropsFunc<{}, CreateCSSProperties>>,
+    typeof styles
+  >(styles);
 
-  // $ExpectType Record<"root", CSSProperties | CreateCSSProperties<{}> | ((props: {}) => CreateCSSProperties<{}>)>
   const styles2 = createStyles({
     root: () => ({
       width: 1,
     }),
   });
+  expectType<
+    Record<'root', CSSProperties | CreateCSSProperties | PropsFunc<{}, CreateCSSProperties>>,
+    typeof styles2
+  >(styles2);
 
   interface testProps {
     foo: boolean;
   }
 
-  // $ExpectType Record<"root", CSSProperties | CreateCSSProperties<testProps> | ((props: testProps) => CreateCSSProperties<testProps>)>
   const styles3 = createStyles({
     root: (props: testProps) => ({
       width: 1,
     }),
   });
+  expectType<
+    Record<
+      'root',
+      | CSSProperties
+      | CreateCSSProperties<testProps>
+      | PropsFunc<testProps, CreateCSSProperties<testProps>>
+    >,
+    typeof styles3
+  >(styles3);
 }

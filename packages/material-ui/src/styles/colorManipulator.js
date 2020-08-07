@@ -1,3 +1,4 @@
+import MuiError from '@material-ui/utils/macros/MuiError.macro';
 /* eslint-disable no-use-before-define */
 
 /**
@@ -11,7 +12,7 @@
 function clamp(value, min = 0, max = 1) {
   if (process.env.NODE_ENV !== 'production') {
     if (value < min || value > max) {
-      console.error(`Material-UI: the value provided ${value} is out of range [${min}, ${max}].`);
+      console.error(`Material-UI: The value provided ${value} is out of range [${min}, ${max}].`);
     }
   }
 
@@ -27,14 +28,20 @@ function clamp(value, min = 0, max = 1) {
 export function hexToRgb(color) {
   color = color.substr(1);
 
-  const re = new RegExp(`.{1,${color.length / 3}}`, 'g');
+  const re = new RegExp(`.{1,${color.length >= 6 ? 2 : 1}}`, 'g');
   let colors = color.match(re);
 
   if (colors && colors[0].length === 1) {
-    colors = colors.map(n => n + n);
+    colors = colors.map((n) => n + n);
   }
 
-  return colors ? `rgb(${colors.map(n => parseInt(n, 16)).join(', ')})` : '';
+  return colors
+    ? `rgb${colors.length === 4 ? 'a' : ''}(${colors
+        .map((n, index) => {
+          return index < 3 ? parseInt(n, 16) : Math.round((parseInt(n, 16) / 255) * 1000) / 1000;
+        })
+        .join(', ')})`
+    : '';
 }
 
 function intToHex(int) {
@@ -55,7 +62,7 @@ export function rgbToHex(color) {
   }
 
   const { values } = decomposeColor(color);
-  return `#${values.map(n => intToHex(n)).join('')}`;
+  return `#${values.map((n) => intToHex(n)).join('')}`;
 }
 
 /**
@@ -106,16 +113,15 @@ export function decomposeColor(color) {
   const type = color.substring(0, marker);
 
   if (['rgb', 'rgba', 'hsl', 'hsla'].indexOf(type) === -1) {
-    throw new Error(
-      [
-        `Material-UI: unsupported \`${color}\` color.`,
+    throw new MuiError(
+      'Material-UI: Unsupported `%s` color.\n' +
         'We support the following formats: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla().',
-      ].join('\n'),
+      color,
     );
   }
 
   let values = color.substring(marker + 1, color.length - 1).split(',');
-  values = values.map(value => parseFloat(value));
+  values = values.map((value) => parseFloat(value));
 
   return { type, values };
 }
@@ -171,7 +177,7 @@ export function getLuminance(color) {
   color = decomposeColor(color);
 
   let rgb = color.type === 'hsl' ? decomposeColor(hslToRgb(color)).values : color.values;
-  rgb = rgb.map(val => {
+  rgb = rgb.map((val) => {
     val /= 255; // normalized
     return val <= 0.03928 ? val / 12.92 : ((val + 0.055) / 1.055) ** 2.4;
   });

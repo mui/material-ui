@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import debounce from 'lodash/debounce';
 import Grid from '@material-ui/core/Grid';
 import Dialog from '@material-ui/core/Dialog';
-import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -23,6 +23,14 @@ import Radio from '@material-ui/core/Radio';
 import Link from 'docs/src/modules/components/Link';
 import * as mui from '@material-ui/icons';
 import synonyms from './synonyms';
+
+if (process.env.NODE_ENV !== 'production') {
+  Object.keys(synonyms).forEach((icon) => {
+    if (!mui[icon]) {
+      throw new Error(`The icon ${icon} does no longer exist.`);
+    }
+  });
+}
 
 // Working on the logic? Uncomment these imports.
 // It will be x10 faster than working with all of the icons.
@@ -82,16 +90,16 @@ function selectNode(node) {
   selection.addRange(range);
 }
 
-let Icons = props => {
+let Icons = (props) => {
   const { icons, classes, handleClickOpen } = props;
 
-  const handleClick = event => {
+  const handleClick = (event) => {
     selectNode(event.currentTarget);
   };
 
   return (
     <div>
-      {icons.map(icon => {
+      {icons.map((icon) => {
         return (
           <span key={icon.key} className={clsx('markdown-body', classes.icon)}>
             <icon.Icon
@@ -99,6 +107,9 @@ let Icons = props => {
               onClick={handleClickOpen}
               title={icon.key}
               className={classes.iconSvg}
+              data-ga-event-category="material-icons"
+              data-ga-event-action="click"
+              data-ga-event-label={icon.key}
             />
             {/* eslint-disable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events */}
             <p onClick={handleClick}>{icon.key}</p>
@@ -116,7 +127,7 @@ Icons.propTypes = {
 };
 Icons = React.memo(Icons);
 
-const useDialogStyles = makeStyles(theme => ({
+const useDialogStyles = makeStyles((theme) => ({
   markdown: {
     '& pre': {
       borderRadius: 0,
@@ -136,7 +147,7 @@ const useDialogStyles = makeStyles(theme => ({
     color: theme.palette.primary.dark,
     backgroundSize: '30px 30px',
     backgroundColor: '#fff',
-    backgroundPosition: '0 0, 0 15px, 15px -15px, -15px 0px',
+    backgroundPosition: '0 0, 0 15px, 15px -15px, -15px 0',
     backgroundImage:
       'linear-gradient(45deg, #f4f4f4 25%, transparent 25%), linear-gradient(-45deg, #f4f4f4 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #f4f4f4 75%), linear-gradient(-45deg, transparent 75%, #f4f4f4 75%)',
   },
@@ -172,11 +183,11 @@ const useDialogStyles = makeStyles(theme => ({
   },
 }));
 
-let DialogDetails = props => {
+let DialogDetails = (props) => {
   const classes = useDialogStyles();
   const { open, selectedIcon, handleClose } = props;
 
-  const handleClick = event => {
+  const handleClick = (event) => {
     selectNode(event.currentTarget);
   };
 
@@ -193,12 +204,11 @@ let DialogDetails = props => {
           <DialogTitle id="icon-dialog-title" onClick={handleClick}>
             {selectedIcon.key}
           </DialogTitle>
-          <MarkdownElement
+          <HighlightedCode
             className={classes.markdown}
             onClick={handleClick}
-            text={`\`\`\`js\nimport ${selectedIcon.key}Icon from '@material-ui/icons/${
-              selectedIcon.key
-            }';\n\`\`\``}
+            code={`import ${selectedIcon.key}Icon from '@material-ui/icons/${selectedIcon.key}';`}
+            language="js"
           />
           <Link
             className={classes.import}
@@ -278,7 +288,10 @@ DialogDetails.propTypes = {
 };
 DialogDetails = React.memo(DialogDetails);
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
+  root: {
+    minHeight: 500,
+  },
   form: {
     margin: theme.spacing(2, 0),
   },
@@ -343,7 +356,7 @@ const searchIndex = FlexSearch.create({
 const allIconsMap = {};
 const allIcons = Object.keys(mui)
   .sort()
-  .map(key => {
+  .map((key) => {
     let tag;
     if (key.indexOf('Outlined') !== -1) {
       tag = 'Outlined';
@@ -379,7 +392,7 @@ export default function SearchIcons() {
   const [open, setOpen] = React.useState(false);
   const [selectedIcon, setSelectedIcon] = React.useState(null);
 
-  const handleClickOpen = React.useCallback(event => {
+  const handleClickOpen = React.useCallback((event) => {
     setSelectedIcon(allIconsMap[event.currentTarget.getAttribute('title')]);
     setOpen(true);
   }, []);
@@ -398,7 +411,7 @@ export default function SearchIcons() {
 
   const handleChange = React.useMemo(
     () =>
-      debounce(value => {
+      debounce((value) => {
         if (!isMounted.current) {
           return;
         }
@@ -406,7 +419,7 @@ export default function SearchIcons() {
         if (value === '') {
           setKeys(null);
         } else {
-          searchIndex.search(value).then(results => {
+          searchIndex.search(value).then((results) => {
             setKeys(results);
 
             // Keep track of the no results so we can add synonyms in the future.
@@ -414,8 +427,8 @@ export default function SearchIcons() {
               window.ga('send', {
                 hitType: 'event',
                 eventCategory: 'material-icons',
-                eventAction: value,
-                eventLabel: 'no results',
+                eventAction: 'no-results',
+                eventLabel: value,
               });
             }
           });
@@ -426,18 +439,18 @@ export default function SearchIcons() {
 
   const icons = React.useMemo(
     () =>
-      (keys === null ? allIcons : keys.map(key => allIconsMap[key])).filter(
-        icon => tag === icon.tag,
+      (keys === null ? allIcons : keys.map((key) => allIconsMap[key])).filter(
+        (icon) => tag === icon.tag,
       ),
     [tag, keys],
   );
 
   return (
-    <Grid container>
+    <Grid container className={classes.root}>
       <Grid item xs={12} sm={3}>
         <form className={classes.form}>
           <RadioGroup>
-            {['Filled', 'Outlined', 'Rounded', 'Two tone', 'Sharp'].map(key => {
+            {['Filled', 'Outlined', 'Rounded', 'Two tone', 'Sharp'].map((key) => {
               return (
                 <FormControlLabel
                   key={key}
@@ -456,7 +469,7 @@ export default function SearchIcons() {
           </IconButton>
           <InputBase
             autoFocus
-            onChange={event => {
+            onChange={(event) => {
               handleChange(event.target.value);
             }}
             className={classes.input}

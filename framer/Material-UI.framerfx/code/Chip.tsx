@@ -58,9 +58,7 @@ export const Chip: React.SFC<Props> = (props: Props) => {
       avatar={
         avatarImageFile || avatarImageUrl ? (
           <Avatar imageFile={avatarImageFile} imageUrl={avatarImageUrl} />
-        ) : (
-          undefined
-        )
+        ) : undefined
       }
       icon={<Icon icon={icon} theme={iconTheme} />}
       onDelete={deletable ? () => {} : undefined}

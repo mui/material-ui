@@ -1,22 +1,24 @@
 import * as React from 'react';
-import { assert } from 'chai';
-import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import ExpansionPanelDetails from './ExpansionPanelDetails';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
 
 describe('<ExpansionPanelDetails />', () => {
-  let mount;
-  let shallow;
+  const mount = createMount();
   let classes;
 
   before(() => {
-    mount = createMount({ strict: true });
-    shallow = createShallow({ dive: true });
     classes = getClasses(<ExpansionPanelDetails>foo</ExpansionPanelDetails>);
   });
 
-  after(() => {
-    mount.cleanUp();
+  beforeEach(() => {
+    consoleErrorMock.spy();
+  });
+
+  afterEach(() => {
+    consoleErrorMock.reset();
   });
 
   describeConformance(<ExpansionPanelDetails>Conformance</ExpansionPanelDetails>, () => ({
@@ -26,14 +28,4 @@ describe('<ExpansionPanelDetails />', () => {
     refInstanceof: window.HTMLDivElement,
     skip: ['componentProp'],
   }));
-
-  it('should render a children element', () => {
-    const wrapper = shallow(
-      <ExpansionPanelDetails>
-        <div>Hello</div>
-      </ExpansionPanelDetails>,
-    );
-    const container = wrapper.childAt(0);
-    assert.strictEqual(container.type(), 'div');
-  });
 });

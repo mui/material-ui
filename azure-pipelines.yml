@@ -1,13 +1,22 @@
 trigger:
   branches:
     include:
-    - '*'
+      - '*'
     exclude:
-    - l10n
-    - dependabot/*
+      - l10n
+      - dependabot/*
+
+# https://developercommunity.visualstudio.com/comments/949241/view.html
+pr:
+  branches:
+    include:
+      - '*'
 
 pool:
   vmImage: 'ubuntu-latest'
+
+variables:
+  DOCS_NEXT_CACHE_FOLDER: $(Build.SourcesDirectory)/docs/.next/cache
 
 steps:
   - task: NodeTool@0
@@ -37,7 +46,7 @@ steps:
       globExpressions: '*.tgz'
       targetFolder: 'artifacts/$(Build.SourceBranchName)/$(Build.SourceVersion)'
       filesAcl: 'public-read'
-    displayName: "Upload distributables to S3"
+    displayName: 'Upload distributables to S3'
     condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
     env:
       AWS_ACCESS_KEY_ID: $(AWS_ACCESS_KEY_ID)
@@ -48,9 +57,21 @@ steps:
       artifactName: 'canaries'
       targetPath: 'material-ui-core.tgz'
 
+  - task: Cache@2
+    inputs:
+      key: 'yarn | "$(Agent.OS)" | yarn.lock'
+      restoreKeys: |
+        yarn | "$(Agent.OS)"
+        yarn
+      path: $(DOCS_NEXT_CACHE_FOLDER)
+    displayName: Cache nextjs build
+
   - script: |
-      yarn docs:build
-    displayName: 'build docs'
+      mkdir -p scripts/sizeSnapshot/build	
+      yarn docs:build | tee scripts/sizeSnapshot/build/docs.next
+    displayName: 'build docs for size snapshot'
+    env:
+      NODE_OPTIONS: "--max_old_space_size=4096"
 
   - script: |
       yarn size:snapshot

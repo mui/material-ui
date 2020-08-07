@@ -1,93 +1,88 @@
 import * as React from 'react';
-import { assert } from 'chai';
-import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
+import { expect } from 'chai';
+import { createClientRender } from 'test/utils/createClientRender';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import TableSortLabel from './TableSortLabel';
 import ButtonBase from '../ButtonBase';
 import Sort from '@material-ui/icons/Sort';
 
 describe('<TableSortLabel />', () => {
-  let shallow;
-  let mount;
+  const mount = createMount();
   let classes;
+  const render = createClientRender();
 
   before(() => {
-    shallow = createShallow({ dive: true });
-    mount = createMount({ strict: true });
     classes = getClasses(<TableSortLabel />);
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<TableSortLabel />, () => ({
     classes,
     inheritComponent: ButtonBase,
     mount,
+
     refInstanceof: window.HTMLSpanElement,
     skip: ['componentProp'],
   }));
 
   it('should set the active class when active', () => {
     const activeFlag = true;
-    const wrapper = shallow(<TableSortLabel active={activeFlag} />);
-    assert.strictEqual(wrapper.hasClass(classes.active), true);
+    const { container } = render(<TableSortLabel active={activeFlag} />);
+    expect(container.firstChild).to.have.class(classes.active);
   });
 
   it('should not set the active class when not active', () => {
     const activeFlag = false;
-    const wrapper = shallow(<TableSortLabel active={activeFlag} />);
-    assert.strictEqual(wrapper.hasClass(classes.active), false);
+    const { container } = render(<TableSortLabel active={activeFlag} />);
+    expect(container.firstChild).to.not.have.class(classes.active);
   });
 
   describe('has an icon', () => {
     it('should have one child with the icon class', () => {
-      const wrapper = shallow(<TableSortLabel />);
-      const iconChildren = wrapper.find(`.${classes.icon}`);
-      assert.strictEqual(iconChildren.length, 1);
+      const { container } = render(<TableSortLabel />);
+      const iconChildren = container.querySelectorAll(`.${classes.icon}`);
+      expect(iconChildren.length).to.equal(1);
     });
 
     it('when given direction desc should have desc direction class', () => {
-      const wrapper = shallow(<TableSortLabel direction="desc" />);
-      const icon = wrapper.find(`.${classes.icon}`).first();
-      assert.strictEqual(icon.hasClass(classes.iconDirectionAsc), false);
-      assert.strictEqual(icon.hasClass(classes.iconDirectionDesc), true);
+      const { container } = render(<TableSortLabel direction="desc" />);
+      const icon = container.querySelector(`.${classes.icon}`);
+      expect(icon).to.not.have.class(classes.iconDirectionAsc);
+      expect(icon).to.have.class(classes.iconDirectionDesc);
     });
 
     it('when given direction asc should have asc direction class', () => {
-      const wrapper = shallow(<TableSortLabel direction="asc" />);
-      const icon = wrapper.find(`.${classes.icon}`).first();
-      assert.strictEqual(icon.hasClass(classes.iconDirectionAsc), true);
-      assert.strictEqual(icon.hasClass(classes.iconDirectionDesc), false);
+      const { container } = render(<TableSortLabel direction="asc" />);
+      const icon = container.querySelector(`.${classes.icon}`);
+      expect(icon).to.not.have.class(classes.iconDirectionDesc);
+      expect(icon).to.have.class(classes.iconDirectionAsc);
     });
 
     it('should accept a custom icon for the sort icon', () => {
-      const wrapper = mount(<TableSortLabel IconComponent={Sort} />);
-      assert.strictEqual(
-        wrapper.find(`svg.${classes.icon}[data-mui-test="SortIcon"]`).exists(),
-        true,
-      );
+      const { container } = render(<TableSortLabel IconComponent={Sort} />);
+      const icon = container.querySelector(`svg.${classes.icon}[data-mui-test="SortIcon"]`);
+      expect(icon).to.not.equal(null);
     });
   });
 
   describe('prop: hideSortIcon', () => {
     it('can hide icon when not active', () => {
-      const wrapper = shallow(<TableSortLabel active={false} hideSortIcon />);
-      const iconChildren = wrapper.find(`.${classes.icon}`).first();
-      assert.strictEqual(iconChildren.length, 0);
+      const { container } = render(<TableSortLabel active={false} hideSortIcon />);
+      const iconChildren = container.querySelectorAll(`.${classes.icon}`);
+      expect(iconChildren.length).to.equal(0);
     });
 
     it('does not hide icon by default when not active', () => {
-      const wrapper = shallow(<TableSortLabel active={false} />);
-      const iconChildren = wrapper.find(`.${classes.icon}`).first();
-      assert.strictEqual(iconChildren.length, 1);
+      const { container } = render(<TableSortLabel active={false} />);
+      const iconChildren = container.querySelectorAll(`.${classes.icon}`);
+      expect(iconChildren.length).to.equal(1);
     });
 
     it('does not hide icon when active', () => {
-      const wrapper = shallow(<TableSortLabel active hideSortIcon />);
-      const iconChildren = wrapper.find(`.${classes.icon}`).first();
-      assert.strictEqual(iconChildren.length, 1);
+      const { container } = render(<TableSortLabel active hideSortIcon />);
+      const iconChildren = container.querySelectorAll(`.${classes.icon}`);
+      expect(iconChildren.length).to.equal(1);
     });
   });
 });

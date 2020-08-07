@@ -3,6 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { refType } from '@material-ui/utils';
+import MuiError from '@material-ui/utils/macros/MuiError.macro';
 import formControlState from '../FormControl/formControlState';
 import FormControlContext, { useFormControl } from '../FormControl/FormControlContext';
 import withStyles from '../styles/withStyles';
@@ -11,7 +12,7 @@ import useForkRef from '../utils/useForkRef';
 import TextareaAutosize from '../TextareaAutosize';
 import { isFilled } from './utils';
 
-export const styles = theme => {
+export const styles = (theme) => {
   const light = theme.palette.type === 'light';
   const placeholder = {
     color: 'currentColor',
@@ -20,28 +21,26 @@ export const styles = theme => {
       duration: theme.transitions.duration.shorter,
     }),
   };
+
   const placeholderHidden = {
     opacity: '0 !important',
   };
+
   const placeholderVisible = {
     opacity: light ? 0.42 : 0.5,
   };
 
   return {
     '@global': {
-      '@keyframes mui-auto-fill': {
-        from: {},
-      },
-      '@keyframes mui-auto-fill-cancel': {
-        from: {},
-      },
+      '@keyframes mui-auto-fill': {},
+      '@keyframes mui-auto-fill-cancel': {},
     },
     /* Styles applied to the root element. */
     root: {
       // Mimics the default input display property used by browsers for an input.
       ...theme.typography.body1,
       color: theme.palette.text.primary,
-      lineHeight: '1.1875em', // Reset (19px), match the native input line-height
+      lineHeight: '1.1876em', // Reset (19px), match the native input line-height
       boxSizing: 'border-box', // Prevent padding issue with fullWidth.
       position: 'relative',
       cursor: 'text',
@@ -82,12 +81,13 @@ export const styles = theme => {
     /* Styles applied to the `input` element. */
     input: {
       font: 'inherit',
+      letterSpacing: 'inherit',
       color: 'currentColor',
       padding: `${8 - 2}px 0 ${8 - 1}px`,
       border: 0,
       boxSizing: 'content-box',
       background: 'none',
-      height: '1.1875em', // Reset (19px), match the native input line-height
+      height: '1.1876em', // Reset (19px), match the native input line-height
       margin: 0, // Reset for Safari
       WebkitTapHighlightColor: 'transparent',
       display: 'block',
@@ -95,6 +95,7 @@ export const styles = theme => {
       minWidth: 0,
       width: '100%', // Fix IE 11 width issue
       animationName: 'mui-auto-fill-cancel',
+      animationDuration: '10ms',
       '&::-webkit-input-placeholder': placeholder,
       '&::-moz-placeholder': placeholder, // Firefox 19+
       '&:-ms-input-placeholder': placeholder, // IE 11
@@ -203,12 +204,12 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
   const { current: isControlled } = React.useRef(value != null);
 
   const inputRef = React.useRef();
-  const handleInputRefWarning = React.useCallback(instance => {
+  const handleInputRefWarning = React.useCallback((instance) => {
     if (process.env.NODE_ENV !== 'production') {
-      if (instance && !(instance instanceof HTMLInputElement) && !instance.focus) {
+      if (instance && instance.nodeName !== 'INPUT' && !instance.focus) {
         console.error(
           [
-            'Material-UI: you have provided a `inputComponent` to the input component',
+            'Material-UI: You have provided a `inputComponent` to the input component',
             'that does not correctly handle the `inputRef` prop.',
             'Make sure the `inputRef` prop is called with a HTMLInputElement.',
           ].join('\n'),
@@ -239,6 +240,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     muiFormControl,
     states: ['color', 'disabled', 'error', 'hiddenLabel', 'margin', 'required', 'filled'],
   });
+
   fcs.focused = muiFormControl ? muiFormControl.focused : focused;
 
   // The blur won't fire when the disabled state is set on a focused input.
@@ -256,7 +258,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
   const onEmpty = muiFormControl && muiFormControl.onEmpty;
 
   const checkDirty = React.useCallback(
-    obj => {
+    (obj) => {
       if (isFilled(obj)) {
         if (onFilled) {
           onFilled();
@@ -274,7 +276,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     }
   }, [value, checkDirty, isControlled]);
 
-  const handleFocus = event => {
+  const handleFocus = (event) => {
     // Fix a bug with IE 11 where the focus/blur events are triggered
     // while the input is disabled.
     if (fcs.disabled) {
@@ -296,7 +298,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     }
   };
 
-  const handleBlur = event => {
+  const handleBlur = (event) => {
     if (onBlur) {
       onBlur(event);
     }
@@ -315,7 +317,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     if (!isControlled) {
       const element = event.target || inputRef.current;
       if (element == null) {
-        throw new TypeError(
+        throw new MuiError(
           'Material-UI: Expected valid input target. ' +
             'Did you use a custom `inputComponent` and forget to forward refs? ' +
             'See https://material-ui.com/r/input-component-ref-interface for more info.',
@@ -343,7 +345,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     checkDirty(inputRef.current);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const handleClick = event => {
+  const handleClick = (event) => {
     if (inputRef.current && event.currentTarget === event.target) {
       inputRef.current.focus();
     }
@@ -377,6 +379,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
         rowsMax,
         ...inputProps,
       };
+
       InputComponent = TextareaAutosize;
     }
   } else {
@@ -386,7 +389,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     };
   }
 
-  const handleAutoFill = event => {
+  const handleAutoFill = (event) => {
     // Provide a fake value as Chrome might not let you access it for security reasons.
     checkDirty(event.animationName === 'mui-auto-fill-cancel' ? inputRef.current : { value: 'x' });
   };
@@ -469,6 +472,10 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
 });
 
 InputBase.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * @ignore
    */
@@ -487,9 +494,9 @@ InputBase.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
-   * The CSS class name of the wrapper element.
+   * @ignore
    */
   className: PropTypes.string,
   /**
@@ -523,7 +530,7 @@ InputBase.propTypes = {
   id: PropTypes.string,
   /**
    * The component used for the `input` element.
-   * Either a string to use a DOM element or a component.
+   * Either a string to use a HTML element or a component.
    */
   inputComponent: PropTypes.elementType,
   /**
@@ -596,15 +603,15 @@ InputBase.propTypes = {
   /**
    * Number of rows to display when multiline option is set to true.
    */
-  rows: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * Maximum number of rows to display when multiline option is set to true.
    */
-  rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  rowsMax: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * Minimum number of rows to display when multiline option is set to true.
    */
-  rowsMin: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  rowsMin: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * Start `InputAdornment` for this component.
    */

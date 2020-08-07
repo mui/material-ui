@@ -9,7 +9,7 @@ components: TextareaAutosize
 
 - 📦 [2.1 kB gzipped](/size-snapshot)
 
-The `TextareaAutosize` component automatically adjust the textarea height on keyboard and window resize events.
+O componente `TextareaAutosize` ajusta automaticamente a altura do textarea em eventos de teclado e redimensionamento de janela.
 
 ## Vazio
 

@@ -1,40 +1,31 @@
 import * as React from 'react';
-import { assert } from 'chai';
-import createMount from './createMount';
+import { expect } from 'chai';
+import createMount from 'test/utils/createMount';
 import findOutermostIntrinsic from './findOutermostIntrinsic';
 
 describe('findOutermostIntrinsic', () => {
-  let mount;
-  const assertIntrinsic = (node, expect) => {
+  const mount = createMount({ strict: null });
+  const expectIntrinsic = (node, expected) => {
     const wrapper = mount(node);
     const outermostIntrinsic = findOutermostIntrinsic(wrapper);
 
-    if (expect === null) {
-      assert.strictEqual(outermostIntrinsic.exists(), false);
+    if (expected === null) {
+      expect(outermostIntrinsic.exists()).to.equal(false);
     } else {
-      assert.strictEqual(outermostIntrinsic.type(), expect);
-      assert.strictEqual(
-        outermostIntrinsic.type(),
+      expect(outermostIntrinsic.type()).to.equal(expected);
+      expect(outermostIntrinsic.type()).to.equal(
         outermostIntrinsic.getDOMNode().nodeName.toLowerCase(),
       );
     }
   };
   const Headless = ({ children }) => children;
 
-  before(() => {
-    mount = createMount({ strict: undefined });
-  });
-
-  after(() => {
-    mount.cleanUp();
-  });
-
   it('returns immediate DOM nodes', () => {
-    assertIntrinsic(<div>Hello, World!</div>, 'div');
+    expectIntrinsic(<div>Hello, World!</div>, 'div');
   });
 
   it('only returns the outermost', () => {
-    assertIntrinsic(
+    expectIntrinsic(
       <span>
         <div>Hello, World!</div>
       </span>,
@@ -43,13 +34,13 @@ describe('findOutermostIntrinsic', () => {
   });
 
   it('ignores components', () => {
-    assertIntrinsic(
+    expectIntrinsic(
       <Headless>
         <div>Hello, World!</div>
       </Headless>,
       'div',
     );
-    assertIntrinsic(
+    expectIntrinsic(
       <Headless>
         <Headless>
           <div>Hello, World!</div>
@@ -57,7 +48,7 @@ describe('findOutermostIntrinsic', () => {
       </Headless>,
       'div',
     );
-    assertIntrinsic(
+    expectIntrinsic(
       <Headless>
         <Headless>
           <div>
@@ -72,6 +63,6 @@ describe('findOutermostIntrinsic', () => {
   });
 
   it('can handle that no DOM node is rendered', () => {
-    assertIntrinsic(<Headless>{false && <Headless />}</Headless>, null);
+    expectIntrinsic(<Headless>{false && <Headless />}</Headless>, null);
   });
 });

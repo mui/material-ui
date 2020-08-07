@@ -5,13 +5,13 @@ components: Container
 
 # Container
 
-<p class="description">Der Container zentriert Ihren Inhalt horizontal. Es ist das grundlegendste Layoutelement.</p>
+<p class="description">Der Container zentriert Ihren Inhalt horizontal. Er ist das grundlegendste Layoutelement.</p>
 
-Während Container geschachtelt werden können, benötigen die meisten Layouts keinen verschachtelten Container.
+Container können verschachtelt werden, für die meisten Layouts ist dies aber nicht notwendig.
 
-## Flexibel
+## Flexible Container
 
-Eine Breite des Fluidcontainers wird durch den Wert `maxWidth` begrenzt.
+A fluid container width is bounded by the `maxWidth` property value.
 
 {{"demo": "pages/components/container/SimpleContainer.js", "iframe": true, "defaultCodeOpen": false}}
 

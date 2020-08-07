@@ -1,5 +1,5 @@
 ---
-title: Componente React de avaliação
+title: Componente React para Avaliações
 components: Rating
 ---
 
@@ -13,13 +13,13 @@ components: Rating
 
 ## Avaliações customizadas
 
-Aqui esta um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
+Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
 {{"demo": "pages/components/rating/CustomizedRatings.js"}}
 
-## Feedback ao passar mouse
+## Feedback ao passar o mouse
 
-Você pode exibir um rótulo ao passar o mouse para ajudar os usuários a escolher o valor de avaliação correto. The demo uses the `onChangeActive` prop.
+Você pode exibir um rótulo ao passar o mouse para ajudar os usuários a escolher o valor de avaliação correto. A demonstração usa a propriedade `onChangeActive`.
 
 {{"demo": "pages/components/rating/HoverRating.js"}}
 

@@ -15,6 +15,10 @@ const DialogContentText = React.forwardRef(function DialogContentText(props, ref
 });
 
 DialogContentText.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * The content of the component.
    */
@@ -23,7 +27,7 @@ DialogContentText.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
 };
 
 export default withStyles(styles, { name: 'MuiDialogContentText' })(DialogContentText);

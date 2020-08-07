@@ -6,7 +6,7 @@ components: タイポグラフィ
 
 <p class="description">タイポグラフィを使用して、デザインとコンテンツをできるだけ明確かつ効率的に表現します。</p>
 
-文字サイズとスタイルが多すぎると、レイアウトが損なわれます。 [typographic scale](https://material.io/design/typography/#type-scale) は、レイアウトグリッドとともに適切に機能する限られたタイプサイズのセットがあります。
+**Font size**. Use [relative units (rem)](/customization/typography/#font-size) to accommodate the user's settings.
 
 ## 基本設定
 
@@ -22,19 +22,19 @@ components: タイポグラフィ
 
 ## Install with npm
 
-端末で次のコマンドを入力すると、[インストール](https://www.npmjs.com/package/typeface-roboto)できます。
+端末で次のコマンドを入力すると、[インストール](https://www.npmjs.com/package/fontsource-roboto)できます。
 
-`npm install typeface-roboto --save`
+`npm install fontsource-roboto`
 
 その後、エントリポイントにインポートできます。
 
 ```js
-import 'typeface-roboto';
+import 'fontsource-roboto';
 ```
 
-詳細については、 [typeface](https://github.com/KyleAMathews/typefaces/tree/master/packages/roboto) プロジェクトをご覧ください。
+For more info check out [Fontsource](https://github.com/DecliningLotus/fontsource/blob/master/packages/roboto/README.md).
 
-⚠️このアプローチを使用する場合は注意してください。 バンドラーがすべてのフォントバリエーション（100/300/400/500/700/900、イタリック/レギュラー、SVG / woff）を積極的に読み込まないようにしてください。 すべてのフォントファイルをインライン化すると、バンドルのサイズが大幅に増加する可能性があります。 Material-UIのデフォルトのタイポグラフィ構成は、300、400、500、および700のフォントウェイトのみに依存しています。
+⚠️このアプローチを使用する場合は注意してください。 ⚠️このアプローチを使用する場合は注意してください。 バンドラーがすべてのフォントバリエーション（100/300/400/500/700/900、イタリック/レギュラー、SVG / woff）を積極的に読み込まないようにしてください。 Fontsource can be configured to load specific subsets, weights and styles. Fontsource can be configured to load specific subsets, weights and styles. すべてのフォントファイルをインライン化すると、バンドルのサイズが大幅に増加する可能性があります。 Material-UIのデフォルトのタイポグラフィ構成は、300、400、500、および700のフォントウェイトのみに依存しています。 Material-UIのデフォルトのタイポグラフィ構成は、300、400、500、および700のフォントウェイトのみに依存しています。
 
 ## Component
 
@@ -42,21 +42,21 @@ import 'typeface-roboto';
 
 ## テーマ
 
-状況によっては、 `Typography` コンポーネントを使用できない場合があります。 Hopefully, you might be able to take advantage of the [`typography`](/customization/default-theme/?expand-path=$.typography) keys of the theme.
+状況によっては、 `Typography` コンポーネントを使用できない場合があります。 状況によっては、 `Typography` コンポーネントを使用できない場合があります。 このテーマのe [`typography`](/customization/default-theme/?expand-path=$.typography)キーを活用できることを願っています。
 
 {{"demo": "pages/components/typography/TypographyTheme.js"}}
 
 ## セマンティック要素の変更
 
-Typographyコンポーネントは、 `variantMapping` プロパティを使用して、UIバリアントをセマンティック要素に関連付けます。 It’s important to realize that the style of a typography is independent from the semantic underlying element.
+Typographyコンポーネントは、 `variantMapping` プロパティを使用して、UIバリアントをセマンティック要素に関連付けます。 It’s important to realize that the style of a typography is independent from the semantic underlying element. It’s important to realize that the style of a typography is independent from the semantic underlying element.
 
 - You can change the underlying element for a one time occasion with the `component` property:
 
 ```jsx
-{/* There is already an h1 in the page, let's not duplicate it. */}
+Heading
+</Typography> {/* There is already an h1 in the page, let's not duplicate it. */}
 <Typography variant="h1" component="h2">
-  h1. Heading
-</Typography>
+  h1.
 ```
 
 - 以下のようにテーマ使用して、[マッピング をグローバルに](/customization/globals/#default-props)変更できます。

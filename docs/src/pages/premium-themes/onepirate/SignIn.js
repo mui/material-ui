@@ -13,7 +13,7 @@ import RFTextField from './modules/form/RFTextField';
 import FormButton from './modules/form/FormButton';
 import FormFeedback from './modules/form/FormFeedback';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   form: {
     marginTop: theme.spacing(6),
   },
@@ -30,7 +30,7 @@ function SignIn() {
   const classes = useStyles();
   const [sent, setSent] = React.useState(false);
 
-  const validate = values => {
+  const validate = (values) => {
     const errors = required(['email', 'password'], values);
 
     if (!errors.email) {

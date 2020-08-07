@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import jscodeshift from 'jscodeshift';
 import transform from './top-level-imports';
 
@@ -26,12 +26,7 @@ describe('@material-ui/codemod', () => {
         );
 
         const expected = read('./top-level-imports.test/expected.js');
-
-        assert.strictEqual(
-          trim(actual),
-          trim(expected),
-          'The transformed version should be correct',
-        );
+        expect(trim(actual)).to.equal(trim(expected), 'The transformed version should be correct');
       });
 
       it('should be idempotent', () => {
@@ -45,12 +40,7 @@ describe('@material-ui/codemod', () => {
         );
 
         const expected = read('./top-level-imports.test/expected.js');
-
-        assert.strictEqual(
-          trim(actual),
-          trim(expected),
-          'The transformed version should be correct',
-        );
+        expect(trim(actual)).to.equal(trim(expected), 'The transformed version should be correct');
       });
     });
   });

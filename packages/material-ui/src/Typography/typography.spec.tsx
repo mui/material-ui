@@ -13,26 +13,26 @@ const TypographyTest = () => {
       <Typography align="inherit" color="textPrimary" />
       <Typography align="inherit" color="textSecondary" />
       <Typography align="inherit" color="error" />
-      // $ExpectError
+      {/* @ts-expect-error */}
       <Typography display="incorrectValue" />
       <Typography component="a" href="url" display="block" />
       <Typography component="label" htmlFor="html" display="block" />
-      // $ExpectError
+      {/* @ts-expect-error */}
       <Typography component="a" href="url" display="incorrectValue" />
-      // $ExpectError
+      {/* @ts-expect-error */}
       <Typography component="a" incorrectAttribute="url" />
-      // $ExpectError
+      {/* @ts-expect-error */}
       <Typography component="incorrectComponent" href="url" />
-      // $ExpectError
+      {/* @ts-expect-error */}
       <Typography component="div" href="url" />
-      // $ExpectError
+      {/* @ts-expect-error */}
       <Typography href="url" />
       <Typography component={CustomComponent} prop1="1" prop2={12} />
-      // $ExpectError
+      {/* @ts-expect-error */}
       <Typography component={CustomComponent} prop1="1" prop2={12} id="1" />
-      // $ExpectError
+      {/* @ts-expect-error */}
       <Typography component={CustomComponent} prop1="1" />
-      // $ExpectError
+      {/* @ts-expect-error */}
       <Typography component={CustomComponent} prop1="1" prop2="12" />
     </div>
   );

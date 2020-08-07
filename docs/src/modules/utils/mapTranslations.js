@@ -1,6 +1,6 @@
 export default function mapTranslations(req, ext) {
   const translations = {};
-  req.keys().forEach(filename => {
+  req.keys().forEach((filename) => {
     const match = filename.match(new RegExp(`-([a-z]{2}).${ext}$`));
 
     if (match) {

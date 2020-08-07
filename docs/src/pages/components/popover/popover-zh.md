@@ -1,30 +1,30 @@
 ---
-title: 气泡卡片 React 组件
+title: React 弹出框组件
 components: Grow, Popover
 ---
 
 # Popover 弹出框
 
-<p class="description">弹出框可用于在元素边缘显示某些内容。</p>
+<p class="description">使用弹出框组件，您可在另一个元素之上显示一些内容。</p>
 
-使用 `Popover` 组件时需要了解的事项：
+使用`弹出框`组件时，你需要了解的事项：
 
-- The component is built on top of the [`Modal`](/components/modal/) component.
-- The scroll and click away are blocked unlike with the [`Popper`](/components/popper/) component.
+- 该组件构建在 [`Modal`](/components/modal/) 组件之上。
+- 不同于 [`Popper`](/components/popper/) 组件，滚动（scroll）和 click away 行为是被阻止的。
 
-## 简单的弹出窗口
+## 简单的弹出框
 
 {{"demo": "pages/components/popover/SimplePopover.js" }}
 
-## 锚点播放场
+## 锚点（Anchor）测试
 
-使用单选按钮调整 `anchorOrigin` 和 `transformOrigin` 位置。 您还可以将 `anchorReference` 设置为 `anchorPosition` 或 `anchorEl`。 当它是 `anchorPosition`，该组件将代替 `anchorEl`， 指的是 `anchorPosition` 道具，其可以调整设置 的酥料饼的位置。
+你可以使用单选按钮（radio buttons）调整 `anchorOrigin` 和 `transformOrigin` 的位置。 您还可以将 `anchorReference` 设置为 `anchorPosition` 或 `anchorEl`。 当设置为 `anchorPosition` 时，该组件将指向 `anchorPosition` 属性，用其可以调整设置弹出框的位置，而不是指向`anchorEl`。
 
-{{"demo": "pages/components/popover/AnchorPlayground.js", "hideHeader": true}}
+{{"demo": "pages/components/popover/AnchorPlayground.js", "hideToolbar": true}}
 
-## 鼠标悬停在互动上
+## 鼠标悬停的交互事件
 
-This demonstrates how to use the `Popover` component to implement a popover behavior based on the mouse over event.
+通过以下事件，您可以了解如何使用 `Popover` 组件来实现一个基于 mouseover 事件的弹出窗口行为。
 
 {{"demo": "pages/components/popover/MouseOverPopover.js"}}
 
@@ -34,6 +34,6 @@ This demonstrates how to use the `Popover` component to implement a popover beha
 
 ### PopupState helper
 
-在大多数情况下，一个第三方包 [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) 可以为你处理popper 的 state 。
+在大多数情况下，一个第三方包 [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) 可以为你管理 popper 的状态。
 
 {{"demo": "pages/components/popover/PopoverPopupState.js"}}

@@ -33,7 +33,7 @@ module.exports = async function loadComparison(parrentId, ref) {
   const bundleKeys = Object.keys({ ...currentSnapshot, ...previousSnapshot });
 
   const bundles = lodash.fromPairs(
-    bundleKeys.map(bundle => {
+    bundleKeys.map((bundle) => {
       // if a bundle was added the change should be +inf
       // if a bundle was removed the change should be -100%
       const currentSize = currentSnapshot[bundle] || nullSnapshot;

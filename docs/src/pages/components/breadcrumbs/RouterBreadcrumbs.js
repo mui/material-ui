@@ -41,7 +41,7 @@ ListItemLink.propTypes = {
   to: PropTypes.string.isRequired,
 };
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -56,14 +56,14 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const LinkRouter = props => <Link {...props} component={RouterLink} />;
+const LinkRouter = (props) => <Link {...props} component={RouterLink} />;
 
 export default function RouterBreadcrumbs() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
 
   const handleClick = () => {
-    setOpen(prevOpen => !prevOpen);
+    setOpen((prevOpen) => !prevOpen);
   };
 
   return (
@@ -71,7 +71,7 @@ export default function RouterBreadcrumbs() {
       <div className={classes.root}>
         <Route>
           {({ location }) => {
-            const pathnames = location.pathname.split('/').filter(x => x);
+            const pathnames = location.pathname.split('/').filter((x) => x);
 
             return (
               <Breadcrumbs aria-label="breadcrumb">

@@ -32,11 +32,11 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 function not(a: number[], b: number[]) {
-  return a.filter(value => b.indexOf(value) === -1);
+  return a.filter((value) => b.indexOf(value) === -1);
 }
 
 function intersection(a: number[], b: number[]) {
-  return a.filter(value => b.indexOf(value) !== -1);
+  return a.filter((value) => b.indexOf(value) !== -1);
 }
 
 function union(a: number[], b: number[]) {

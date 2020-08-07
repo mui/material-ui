@@ -1,6 +1,6 @@
 # Rechts nach links
 
-<p class="description">Um die Richtung der Material-UI-Komponenten zu ändern, müssen Sie die folgenden Schritte ausführen. Benutzeroberflächen für Sprachen, die von rechts nach links (RTL) gelesen werden, wie Arabisch und Hebräisch, sollten gespiegelt werden.</p>
+<p class="description">Right-to-left languages such as Arabic, Persian or Hebrew are supported. Um die Richtung der Material-UI-Komponenten zu ändern, müssen Sie die folgenden Schritte ausführen.</p>
 
 ## Schritte
 

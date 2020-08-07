@@ -6,7 +6,7 @@ import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
   },
@@ -42,15 +42,15 @@ export default function HorizontalNonLinearStepperWithError() {
   const [skipped, setSkipped] = React.useState(new Set());
   const steps = getSteps();
 
-  const isStepOptional = step => {
+  const isStepOptional = (step) => {
     return step === 1;
   };
 
-  const isStepFailed = step => {
+  const isStepFailed = (step) => {
     return step === 1;
   };
 
-  const isStepSkipped = step => {
+  const isStepSkipped = (step) => {
     return skipped.has(step);
   };
 
@@ -61,12 +61,12 @@ export default function HorizontalNonLinearStepperWithError() {
       newSkipped.delete(activeStep);
     }
 
-    setActiveStep(prevActiveStep => prevActiveStep + 1);
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
     setSkipped(newSkipped);
   };
 
   const handleBack = () => {
-    setActiveStep(prevActiveStep => prevActiveStep - 1);
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
   const handleSkip = () => {
@@ -76,12 +76,12 @@ export default function HorizontalNonLinearStepperWithError() {
       throw new Error("You can't skip a step that isn't optional.");
     }
 
-    setSkipped(prevSkipped => {
+    setSkipped((prevSkipped) => {
       const newSkipped = new Set(prevSkipped.values());
       newSkipped.add(activeStep);
       return newSkipped;
     });
-    setActiveStep(prevActiveStep => prevActiveStep + 1);
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
   const handleReset = () => {

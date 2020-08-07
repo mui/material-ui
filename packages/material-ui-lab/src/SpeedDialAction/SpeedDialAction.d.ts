@@ -18,7 +18,7 @@ export interface SpeedDialActionProps
    */
   icon?: React.ReactNode;
   /**
-   * Classes applied to the [`Tooltip`](/api/tooltip/) element.
+   * `classes` prop applied to the [`Tooltip`](/api/tooltip/) element.
    */
   TooltipClasses?: TooltipProps['classes'];
   /**
@@ -43,4 +43,15 @@ export type SpeedDialActionClassKey =
   | 'staticTooltipLabel'
   | 'tooltipPlacementLeft';
 
+/**
+ *
+ * Demos:
+ *
+ * - [Speed Dial](https://material-ui.com/components/speed-dial/)
+ *
+ * API:
+ *
+ * - [SpeedDialAction API](https://material-ui.com/api/speed-dial-action/)
+ * - inherits [Tooltip API](https://material-ui.com/api/tooltip/)
+ */
 export default function SpeedDialAction(props: SpeedDialActionProps): JSX.Element;

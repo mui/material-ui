@@ -1,13 +1,13 @@
 import { parse as parseDoctrine } from 'doctrine';
 import * as recast from 'recast';
 import { parse as docgenParse } from 'react-docgen';
-import { Router as Router2 } from 'next/router';
+import { rewriteUrlForNextExport } from 'next/dist/next-server/lib/router/rewrite-url-for-export';
 import { pageToTitle } from './helpers';
 import { SOURCE_CODE_ROOT_URL, LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
 
 const PATH_REPLACE_REGEX = /\\/g;
 const PATH_SEPARATOR = '/';
-const DEMO_IGNORE = LANGUAGES_IN_PROGRESS.map(language => `-${language}.md`);
+const DEMO_IGNORE = LANGUAGES_IN_PROGRESS.map((language) => `-${language}.md`);
 
 function normalizePath(path) {
   return path.replace(PATH_REPLACE_REGEX, PATH_SEPARATOR);
@@ -65,10 +65,7 @@ function getChained(type) {
 
 function escapeCell(value) {
   // As the pipe is use for the table structure
-  return value
-    .replace(/</g, '&lt;')
-    .replace(/`&lt;/g, '`<')
-    .replace(/\|/g, '\\|');
+  return value.replace(/</g, '&lt;').replace(/`&lt;/g, '`<').replace(/\|/g, '\\|');
 }
 
 function isElementTypeAcceptingRefProp(type) {
@@ -94,7 +91,11 @@ function resolveType(type) {
   }
 
   if (type.type === 'UnionType') {
-    return type.elements.map(t => resolveType(t)).join(' \\| ');
+    return type.elements.map((t) => resolveType(t)).join(' \\| ');
+  }
+
+  if (type.type === 'StringLiteralType') {
+    return type.value;
   }
 
   return type.name;
@@ -122,7 +123,7 @@ function generatePropDescription(prop) {
     .replace(/(\r?\n){2}/g, '<br>')
     .replace(/\r?\n/g, ' ');
 
-  if (parsed.tags.some(tag => tag.title === 'ignore')) {
+  if (parsed.tags.some((tag) => tag.title === 'ignore')) {
     return null;
   }
 
@@ -130,7 +131,7 @@ function generatePropDescription(prop) {
 
   if (type.name === 'func' && parsed.tags.length > 0) {
     // Remove new lines from tag descriptions to avoid markdown errors.
-    parsed.tags.forEach(tag => {
+    parsed.tags.forEach((tag) => {
       if (tag.description) {
         tag.description = tag.description.replace(/\r*\n/g, ' ');
       }
@@ -152,7 +153,7 @@ function generatePropDescription(prop) {
 
     signature += '<br><br>**Signature:**<br>`function(';
     signature += parsedArgs
-      .map(tag => {
+      .map((tag) => {
         if (tag.type.type === 'OptionalType') {
           return `${tag.name}?: ${tag.type.expression.name}`;
         }
@@ -161,7 +162,10 @@ function generatePropDescription(prop) {
       })
       .join(', ');
     signature += `) => ${parsedReturns.type.name}\`<br>`;
-    signature += parsedArgs.map(tag => `*${tag.name}:* ${tag.description}`).join('<br>');
+    signature += parsedArgs
+      .filter((tag) => tag.description)
+      .map((tag) => `*${tag.name}:* ${tag.description}`)
+      .join('<br>');
     if (parsedReturns.description) {
       signature += `<br> *returns* (${parsedReturns.type.name}): ${parsedReturns.description}`;
     }
@@ -187,6 +191,9 @@ function generatePropType(type) {
       if (isRefType(type)) {
         return `ref`;
       }
+      if (type.raw === 'HTMLElementType') {
+        return `HTML element`;
+      }
 
       const deprecatedInfo = getDeprecatedInfo(type);
       if (deprecatedInfo !== false) {
@@ -206,7 +213,7 @@ function generatePropType(type) {
 
     case 'shape':
       return `{ ${Object.keys(type.value)
-        .map(subValue => {
+        .map((subValue) => {
           const subType = type.value[subValue];
           return `${subValue}${subType.required ? '' : '?'}: ${generatePropType(subType)}`;
         })
@@ -216,7 +223,7 @@ function generatePropType(type) {
     case 'enum': {
       return (
         type.value
-          .map(type2 => {
+          .map((type2) => {
             if (type.name === 'enum') {
               return escapeCell(type2.value);
             }
@@ -254,6 +261,21 @@ function getProp(props, key) {
     default:
       return props[key];
   }
+}
+
+function generateName(reactAPI) {
+  if (!reactAPI.styles.classes.length) {
+    return '\n';
+  }
+
+  if (!reactAPI.styles.name) {
+    throw new Error(`Missing styles name on ${reactAPI.name} component`);
+  }
+
+  return `## Component name
+
+The \`${reactAPI.styles.name}\` name can be used for providing [default props](/customization/globals/#default-props) or [style overrides](/customization/globals/#css) at the theme level.
+`;
 }
 
 function generateProps(reactAPI) {
@@ -297,7 +319,7 @@ function generateProps(reactAPI) {
       /\.isRequired/.test(prop.type.raw) ||
       (chainedPropType !== false && chainedPropType.required)
     ) {
-      propRaw = `<span class="prop-name required">${propRaw}&nbsp;*</span>`;
+      propRaw = `<span class="prop-name required">${propRaw}<abbr title="required">*</abbr></span>`;
     } else {
       propRaw = `<span class="prop-name">${propRaw}</span>`;
     }
@@ -331,7 +353,7 @@ function generateProps(reactAPI) {
     text = `${text}
 Any other props supplied will be provided to the root element (${
       reactAPI.inheritance
-        ? `[${reactAPI.inheritance.component}](${Router2._rewriteUrlForNextExport(
+        ? `[${reactAPI.inheritance.component}](${rewriteUrlForNextExport(
             reactAPI.inheritance.pathname,
           )})`
         : 'native element'
@@ -355,7 +377,7 @@ function generateClasses(reactAPI) {
   text = `| Rule name | Global class | Description |
 |:-----|:-------------|:------------|\n`;
   text += reactAPI.styles.classes
-    .map(styleRule => {
+    .map((styleRule) => {
       if (styleRule === '@global') {
         return '| <span class="prop-name">@global</span> | | Apply global styles.';
       }
@@ -373,9 +395,6 @@ function generateClasses(reactAPI) {
     .join('\n');
 
   return `## CSS
-
-- Style sheet name: \`${reactAPI.styles.name}\`.
-- Style sheet details:
 
 ${text}
 
@@ -412,7 +431,7 @@ function generateInheritance(reactAPI) {
 
   return `## Inheritance
 
-The props of the [${inheritance.component}](${Router2._rewriteUrlForNextExport(
+The props of the [${inheritance.component}](${rewriteUrlForNextExport(
     inheritance.pathname,
   )}) component${suffix} are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
@@ -436,7 +455,7 @@ function generateDemos(reactAPI) {
   return `## Demos
 
 ${pagesMarkdown
-  .map(page => `- [${pageToTitle(page)}](${Router2._rewriteUrlForNextExport(page.pathname)})`)
+  .map((page) => `- [${pageToTitle(page)}](${rewriteUrlForNextExport(page.pathname)})`)
   .join('\n')}
 
 `;
@@ -477,6 +496,7 @@ export default function generateMarkdown(reactAPI) {
     '',
     reactAPI.description,
     '',
+    generateName(reactAPI),
     generateProps(reactAPI),
     '',
     `${generateClasses(reactAPI)}${generateInheritance(reactAPI)}${generateDemos(reactAPI)}`,

@@ -15,7 +15,7 @@
   "scripts": {
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/material-ui-codemod/**/*.test.js'",
     "prebuild": "rimraf lib",
-    "build": "cross-env NODE_ENV=production BABEL_ENV=cjs babel --config-file ../../babel.config.js ./src --out-dir ./lib --ignore **/*.test.js",
+    "build": "node ../../scripts/build cjs --out-dir ./lib",
     "release": "yarn build && npm publish"
   },
   "repository": {
@@ -31,7 +31,7 @@
     "jscodeshift-add-imports": "^1.0.1"
   },
   "devDependencies": {
-    "jscodeshift": "^0.7.0"
+    "jscodeshift": "^0.10.0"
   },
   "sideEffects": false,
   "publishConfig": {

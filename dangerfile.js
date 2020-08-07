@@ -43,7 +43,7 @@ async function cleanup() {
  * @param {number} gzipThreshold
  */
 function createComparisonFilter(parsedThreshold, gzipThreshold) {
-  return comparisonEntry => {
+  return (comparisonEntry) => {
     const [, snapshot] = comparisonEntry;
     return (
       Math.abs(snapshot.parsed.absoluteDiff) >= parsedThreshold ||
@@ -90,16 +90,6 @@ function formatDiff(absoluteChange, relativeChange) {
   )})`;
 }
 
-function computeBundleLabel(bundleId) {
-  if (bundleId === 'packages/material-ui/build/umd/material-ui.production.min.js') {
-    return '@material-ui/core[umd]';
-  }
-  if (bundleId === '@material-ui/core/Textarea') {
-    return 'TextareaAutosize';
-  }
-  return bundleId.replace(/^@material-ui\/core\//, '').replace(/\.esm$/, '');
-}
-
 /**
  * Generates a Markdown table
  * @param {{ label: string, align: 'left' | 'center' | 'right'}[]} headers
@@ -107,8 +97,8 @@ function computeBundleLabel(bundleId) {
  * @returns {string}
  */
 function generateMDTable(headers, body) {
-  const headerRow = headers.map(header => header.label);
-  const alignmentRow = headers.map(header => {
+  const headerRow = headers.map((header) => header.label);
+  const alignmentRow = headers.map((header) => {
     if (header.align === 'right') {
       return ' ---:';
     }
@@ -118,7 +108,7 @@ function generateMDTable(headers, body) {
     return ' --- ';
   });
 
-  return [headerRow, alignmentRow, ...body].map(row => row.join(' | ')).join('\n');
+  return [headerRow, alignmentRow, ...body].map((row) => row.join(' | ')).join('\n');
 }
 
 function generateEmphasizedChange([bundle, { parsed, gzip }]) {
@@ -127,6 +117,74 @@ function generateEmphasizedChange([bundle, { parsed, gzip }]) {
   const changeGzip = addPercent(gzip.relativeDiff, ':heart_eyes:', '');
 
   return `**${bundle}**: parsed: ${changeParsed}, gzip: ${changeGzip}`;
+}
+
+/**
+ *
+ * @param {[string, object][]} entries
+ * @param {object} options
+ * @param {function (string): string} options.computeBundleLabel
+ */
+function createComparisonTable(entries, options) {
+  const { computeBundleLabel } = options;
+
+  return generateMDTable(
+    [
+      { label: 'bundle' },
+      { label: 'Size Change', align: 'right' },
+      { label: 'Size', align: 'right' },
+      { label: 'Gzip Change', align: 'right' },
+      { label: 'Gzip', align: 'right' },
+    ],
+    entries
+      .map(([bundleId, size]) => [computeBundleLabel(bundleId), size])
+      // orderBy(|parsedDiff| DESC, |gzipDiff| DESC, name ASC)
+      .sort(([labelA, statsA], [labelB, statsB]) => {
+        const compareParsedDiff =
+          Math.abs(statsB.parsed.absoluteDiff) - Math.abs(statsA.parsed.absoluteDiff);
+        const compareGzipDiff =
+          Math.abs(statsB.gzip.absoluteDiff) - Math.abs(statsA.gzip.absoluteDiff);
+        const compareName = labelA.localeCompare(labelB);
+
+        if (compareParsedDiff === 0 && compareGzipDiff === 0) {
+          return compareName;
+        }
+        if (compareParsedDiff === 0) {
+          return compareGzipDiff;
+        }
+        return compareParsedDiff;
+      })
+      .map(([label, { parsed, gzip }]) => {
+        return [
+          label,
+          formatDiff(parsed.absoluteDiff, parsed.relativeDiff),
+          prettyBytes(parsed.current),
+          formatDiff(gzip.absoluteDiff, gzip.relativeDiff),
+          prettyBytes(gzip.current),
+        ];
+      }),
+  );
+}
+
+/**
+ * Puts results in different buckets wh
+ * @param {*} results
+ */
+function sieveResults(results) {
+  const main = [];
+  const pages = [];
+
+  results.forEach((entry) => {
+    const [bundleId] = entry;
+
+    if (bundleId.startsWith('docs:')) {
+      pages.push(entry);
+    } else {
+      main.push(entry);
+    }
+  });
+
+  return { all: results, main, pages };
 }
 
 async function run() {
@@ -145,11 +203,14 @@ async function run() {
   const commitRange = `${mergeBaseCommit}...${danger.github.pr.head.sha}`;
 
   const comparison = await loadComparison(mergeBaseCommit, upstreamRef);
-  const results = Object.entries(comparison.bundles);
-  const anyResultsChanges = results.filter(createComparisonFilter(1, 1));
+
+  const { all: allResults, main: mainResults, pages: pageResults } = sieveResults(
+    Object.entries(comparison.bundles),
+  );
+  const anyResultsChanges = allResults.filter(createComparisonFilter(1, 1));
 
   if (anyResultsChanges.length > 0) {
-    const importantChanges = results
+    const importantChanges = mainResults
       .filter(createComparisonFilter(parsedSizeChangeThreshold, gzipSizeChangeThreshold))
       .filter(isPackageComparison)
       .map(generateEmphasizedChange);
@@ -159,42 +220,36 @@ async function run() {
       markdown(importantChanges.join('\n'));
     }
 
-    const detailsTable = generateMDTable(
-      [
-        { label: 'bundle' },
-        { label: 'Size Change', align: 'right' },
-        { label: 'Size', align: 'right' },
-        { label: 'Gzip Change', align: 'right' },
-        { label: 'Gzip', align: 'right' },
-      ],
-      results
-        .map(([bundleId, size]) => [computeBundleLabel(bundleId), size])
-        // orderBy(|parsedDiff| DESC, |gzipDiff| DESC, name ASC)
-        .sort(([labelA, statsA], [labelB, statsB]) => {
-          const compareParsedDiff =
-            Math.abs(statsB.parsed.absoluteDiff) - Math.abs(statsA.parsed.absoluteDiff);
-          const compareGzipDiff =
-            Math.abs(statsB.gzip.absoluteDiff) - Math.abs(statsA.gzip.absoluteDiff);
-          const compareName = labelA.localeCompare(labelB);
+    const mainDetailsTable = createComparisonTable(mainResults, {
+      computeBundleLabel: (bundleId) => {
+        if (bundleId === 'packages/material-ui/build/umd/material-ui.production.min.js') {
+          return '@material-ui/core[umd]';
+        }
+        if (bundleId === '@material-ui/core/Textarea') {
+          return 'TextareaAutosize';
+        }
+        if (bundleId === 'docs.main') {
+          return 'docs:/_app';
+        }
+        if (bundleId === 'docs.landing') {
+          return 'docs:/';
+        }
+        return bundleId.replace(/^@material-ui\/core\//, '').replace(/\.esm$/, '');
+      },
+    });
+    const pageDetailsTable = createComparisonTable(pageResults, {
+      computeBundleLabel: (bundleId) => {
+        // a page
+        if (bundleId.startsWith('docs:/')) {
+          const host = `https://deploy-preview-${danger.github.pr.number}--material-ui.netlify.app`;
+          const page = bundleId.replace(/^docs:/, '');
+          return `[${page}](${host}${page})`;
+        }
 
-          if (compareParsedDiff === 0 && compareGzipDiff === 0) {
-            return compareName;
-          }
-          if (compareParsedDiff === 0) {
-            return compareGzipDiff;
-          }
-          return compareParsedDiff;
-        })
-        .map(([label, { parsed, gzip }]) => {
-          return [
-            label,
-            formatDiff(parsed.absoluteDiff, parsed.relativeDiff),
-            prettyBytes(parsed.current),
-            formatDiff(gzip.absoluteDiff, gzip.relativeDiff),
-            prettyBytes(gzip.current),
-          ];
-        }),
-    );
+        // shared
+        return bundleId;
+      },
+    });
 
     const details = `
   <details>
@@ -202,7 +257,13 @@ async function run() {
 
   <p>Comparing: ${commitRange}</p>
 
-  ${detailsTable}
+  <details>
+  <summary>Details of page changes</summary>
+
+  ${pageDetailsTable}
+  </details>
+
+  ${mainDetailsTable}
 
   </details>`;
 

@@ -9,7 +9,7 @@ import useForkRef from '../utils/useForkRef';
 import ListContext from '../List/ListContext';
 import * as ReactDOM from 'react-dom';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the (normally root) `component` element. May be wrapped by a `container`. */
   root: {
     display: 'flex',
@@ -120,7 +120,7 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
         listItemRef.current.focus();
       } else if (process.env.NODE_ENV !== 'production') {
         console.error(
-          'Material-UI: unable to set focus to a ListItem whose component has not been rendered.',
+          'Material-UI: Unable to set focus to a ListItem whose component has not been rendered.',
         );
       }
     }
@@ -130,7 +130,7 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
   const hasSecondaryAction =
     children.length && isMuiElement(children[children.length - 1], ['ListItemSecondaryAction']);
 
-  const handleOwnRef = React.useCallback(instance => {
+  const handleOwnRef = React.useCallback((instance) => {
     // #StrictMode ready
     listItemRef.current = ReactDOM.findDOMNode(instance);
   }, []);
@@ -217,7 +217,7 @@ ListItem.propTypes = {
    * The content of the component. If a `ListItemSecondaryAction` is used it must
    * be the last child.
    */
-  children: chainPropTypes(PropTypes.node, props => {
+  children: chainPropTypes(PropTypes.node, (props) => {
     const children = React.Children.toArray(props.children);
 
     // React.Children.toArray(props.children).findLastIndex(isListItemSecondaryAction)
@@ -233,7 +233,7 @@ ListItem.propTypes = {
     //  is ListItemSecondaryAction the last child of ListItem
     if (secondaryActionIndex !== -1 && secondaryActionIndex !== children.length - 1) {
       return new Error(
-        'Material-UI: you used an element after ListItemSecondaryAction. ' +
+        'Material-UI: You used an element after ListItemSecondaryAction. ' +
           'For ListItem to detect that it has a secondary action ' +
           'you must pass it as the last child to ListItem.',
       );
@@ -252,10 +252,10 @@ ListItem.propTypes = {
   className: PropTypes.string,
   /**
    * The component used for the root node.
-   * Either a string to use a DOM element or a component.
+   * Either a string to use a HTML element or a component.
    * By default, it's a `li` when `button` is `false` and a `div` when `button` is `true`.
    */
-  component: PropTypes.elementType,
+  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
    * The container component used when a `ListItemSecondaryAction` is the last child.
    */

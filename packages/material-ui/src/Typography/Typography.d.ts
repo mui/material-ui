@@ -8,6 +8,10 @@ type Variant = ThemeVariant | 'srOnly';
 export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P & {
     align?: PropTypes.Alignment;
+    /**
+     * The content of the component.
+     */
+    children?: React.ReactNode;
     color?:
       | 'initial'
       | 'inherit'
@@ -27,6 +31,17 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
   classKey: TypographyClassKey;
 }
 
+/**
+ *
+ * Demos:
+ *
+ * - [Breadcrumbs](https://material-ui.com/components/breadcrumbs/)
+ * - [Typography](https://material-ui.com/components/typography/)
+ *
+ * API:
+ *
+ * - [Typography API](https://material-ui.com/api/typography/)
+ */
 declare const Typography: OverridableComponent<TypographyTypeMap>;
 
 export type TypographyProps<

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     position: 'absolute',
@@ -118,6 +118,10 @@ const GridListTileBar = React.forwardRef(function GridListTileBar(props, ref) {
 });
 
 GridListTileBar.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * An IconButton element to be used as secondary action target
    * (primary action target is the tile itself).
@@ -131,7 +135,7 @@ GridListTileBar.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -147,7 +151,7 @@ GridListTileBar.propTypes = {
   /**
    * Position of the title bar.
    */
-  titlePosition: PropTypes.oneOf(['top', 'bottom']),
+  titlePosition: PropTypes.oneOf(['bottom', 'top']),
 };
 
 export default withStyles(styles, { name: 'MuiGridListTileBar' })(GridListTileBar);

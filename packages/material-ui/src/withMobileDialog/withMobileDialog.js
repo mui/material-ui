@@ -7,7 +7,7 @@ import withWidth, { isWidthDown } from '../withWidth';
  * (defaults to 'sm' for mobile devices).
  * Notice that this Higher-order Component is incompatible with server-side rendering.
  */
-const withMobileDialog = (options = {}) => Component => {
+const withMobileDialog = (options = {}) => (Component) => {
   const { breakpoint = 'sm' } = options;
 
   function WithMobileDialog(props) {

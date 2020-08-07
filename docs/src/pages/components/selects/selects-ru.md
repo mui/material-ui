@@ -7,63 +7,65 @@ components: Select, NativeSelect
 
 <p class="description">Компонент Select используются для сбора информации, предоставленной пользователем, из списка параметров.</p>
 
-## Simple Select
+## Простой список
 
-Menus are positioned over their emitting elements such that the currently selected menu item appears on top of the emitting element.
+Меню располагаются над вызвавшими их элементами таким образом, чтобы элемент меню, выбранный в данный момент, перекрывал вызывающий элемент.
 
 {{"demo": "pages/components/selects/SimpleSelect.js"}}
 
-## Advanced features
+## Расширенные возможности
 
-The Select component is meant to be interchangeable with a native `<select>` element.
+Компонент Select взаимозаменяем с нативным элементом `<select>`.
 
-If you are looking for more advanced features, like combobox, multiselect, autocomplete, async or creatable support, head to the [`Autocomplete` component](/components/autocomplete/). It's also meant to be an improved version of the "react-select" package.
+Для более продвинутых опций, таких как Комбинированные Списки, Множественный Выбор, Автодополнения, а также поддержки async или Creatable, воспользуйтесь компонентом [`Autocomplete`](/components/autocomplete/). It's meant to be an improved version of the "react-select" and "downshift" packages.
 
-## Native Select
+## Нативный список
 
-As the user experience can be improved on mobile using the native select of the platform, we allow such pattern.
+Мы допускаем этот подход, так как использование нативных списков на мобильных платформах улучшает опыт пользователя (User Experience).
 
 {{"demo": "pages/components/selects/NativeSelects.js"}}
 
-## Text Fields
+## Текстовые поля
 
-`TextField` представляет собой полноценный элемент управления формы, включая метку (label), само поле ввода и вспомогательный текст. You can find an example with the select mode [in this section](/components/text-fields/#select).
+`TextField` представляет собой полноценный элемент управления формы, включая метку (label), само поле ввода и вспомогательный текст. Чтобы правильно подписать ваш элемент `Select`, вам потребуется дополнительный элемент со свойством `id`.
 
-## Customized selects
+## Кастомизированные списки
 
 Ниже находятся примеры кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
 
-The first step is to style the `InputBase` component. Once it's styled, you can either use it directly as a text field or provide it to the select `input` property to have a `select` field.
+Чтобы правильно подписать ваш элемент `Select`, вам потребуется дополнительный элемент со свойством `id`. Значение `id` должно совпадать со значением свойства `labelId` компонента `Select`, например
 
 {{"demo": "pages/components/selects/CustomizedSelects.js"}}
 
-## Multiple Select
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/select).
 
-The `Select` component can handle multiple selections. It's enabled with the `multiple` property.
+## Список с множественным выбором
 
-Like with the single selection, you can pull out the new value by accessing `event.target.value` in the `onChange` callback. It's always an array.
+Компонент `Select` поддерживает множественный выбор. Он управляется свойством `multiple`.
+
+Как и с одиночным списком, новое значение может быть получено из поля `event.target.value`, в коллбеке `onChange`. Это значение всегда является массивом.
 
 {{"demo": "pages/components/selects/MultipleSelect.js"}}
 
-## Controlled Open Select
+## Контроль открытия/закрытия
 
 {{"demo": "pages/components/selects/ControlledOpenSelect.js"}}
 
-## With a Dialog
+## Внутри диалогового окна
 
-While it's discouraged by the Material Design specification, you can use a select inside a dialog.
+Хоть это и не приветствуется спецификацией Material Design, вы можете использовать список внутри диалогового окна.
 
 {{"demo": "pages/components/selects/DialogSelect.js"}}
 
-## Grouping
+## Группировка
 
-Display categories with the `ListSubheader` component or the native `<optgroup>` element.
+Используйте компонент `ListSubheader` или нативный элемент `<optgroup>` для отображения категорий.
 
 {{"demo": "pages/components/selects/GroupedSelect.js"}}
 
 ## Доступность
 
-To properly label your `Select` input you need an extra element with an `id` that contains a label. That `id` needs to match the `labelId` of the `Select` e.g.
+Чтобы правильно подписать ваш элемент `Select`, вам потребуется дополнительный элемент со свойством `id`. Значение `id` должно совпадать со значением свойства `labelId` компонента `Select`, например
 
 ```jsx
 <InputLabel id="label">Age</InputLabel>
@@ -73,11 +75,21 @@ To properly label your `Select` input you need an extra element with an `id` tha
 </Select>
 ```
 
-Alternatively a `TextField` with an `id` and `label` creates the proper markup and ids for you:
+В качестве альтернативы, компонент `TextField` со свойствами `id` и `label` создадут подходящую разметку:
 
 ```jsx
-<TextField id="select" label="Age" value="20">
+<TextField id="select" label="Age" value="20" select>
   <MenuItem value="10">Ten</MenuItem>
   <MenuItem value="20">Twenty</MenuItem>
 </TextField>
+```
+
+For a [native select](#native-select), you should mention a label by giving the value of the `id` attribute of the select element to the `InputLabel`'s `htmlFor` attribute:
+
+```jsx
+<InputLabel htmlFor="select">Age</InputLabel>
+<NativeSelect id="select">
+  <option value="10">Ten</option>
+  <option value="20">Twenty</option>
+</NativeSelect>
 ```

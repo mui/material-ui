@@ -1,4 +1,3 @@
-const fse = require('fs-extra');
 const globCallback = require('glob');
 const path = require('path');
 const CompressionPlugin = require('compression-webpack-plugin');
@@ -9,20 +8,8 @@ const glob = promisify(globCallback);
 const workspaceRoot = path.join(__dirname, '..', '..');
 
 async function getSizeLimitBundles() {
-  const nextDir = path.join(workspaceRoot, 'docs/.next');
-  const buildId = await fse.readFile(path.join(nextDir, 'BUILD_ID'), 'utf8');
-
-  const dirname = path.join(nextDir, 'static/chunks');
-  const [main] = (await fse.readdir(dirname)).reduce((result, filename) => {
-    if (filename.length === 31) {
-      return [...result, { path: `${dirname}/${filename}` }];
-    }
-
-    return result;
-  }, []);
-
   const corePackagePath = path.join(workspaceRoot, 'packages/material-ui/build/esm');
-  const coreComponents = (await glob(path.join(corePackagePath, '[A-Z]*'))).map(componentPath => {
+  const coreComponents = (await glob(path.join(corePackagePath, '[A-Z]*'))).map((componentPath) => {
     const componentName = path.basename(componentPath);
     let entryName = componentName;
     // adjust for legacy names
@@ -42,7 +29,7 @@ async function getSizeLimitBundles() {
   });
 
   const labPackagePath = path.join(workspaceRoot, 'packages/material-ui-lab/build/esm');
-  const labComponents = (await glob(path.join(labPackagePath, '[A-Z]*'))).map(componentPath => {
+  const labComponents = (await glob(path.join(labPackagePath, '[A-Z]*'))).map((componentPath) => {
     const componentName = path.basename(componentPath);
 
     return {
@@ -96,14 +83,14 @@ async function getSizeLimitBundles() {
       path: 'packages/material-ui/build/esm/useMediaQuery/index.js',
     },
     {
-      name: 'docs.main',
-      webpack: false,
-      path: path.relative(workspaceRoot, main.path),
+      name: '@material-ui/core/useScrollTrigger',
+      webpack: true,
+      path: 'packages/material-ui/build/esm/useScrollTrigger/index.js',
     },
     {
-      name: 'docs.landing',
-      webpack: false,
-      path: path.relative(workspaceRoot, path.join(nextDir, `static/${buildId}/pages/index.js`)),
+      name: '@material-ui/utils',
+      webpack: true,
+      path: 'packages/material-ui-utils/build/esm/index.js',
     },
   ];
 }

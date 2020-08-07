@@ -1,7 +1,8 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import { expect } from 'chai';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import { createClientRender, within } from 'test/utils/createClientRender';
 import Step from './Step';
@@ -14,7 +15,7 @@ function PropsAsDataset(props) {
   React.useEffect(() => {
     const { current: element } = elementRef;
 
-    Object.keys(props).forEach(key => {
+    Object.keys(props).forEach((key) => {
       // converted to strings internally. writing it out for readability
       element.dataset[key] = String(props[key]);
     });
@@ -56,13 +57,12 @@ StepChildDiv.propTypes = {
 
 describe('<Step />', () => {
   let classes;
-  let mount;
+  const mount = createMount();
 
   const render = createClientRender();
 
   before(() => {
     classes = getClasses(<Step />);
-    mount = createMount({ strict: true });
   });
 
   describeConformance(<Step />, () => ({
@@ -71,7 +71,6 @@ describe('<Step />', () => {
     mount,
     refInstanceof: window.HTMLDivElement,
     skip: ['componentProp'],
-    after: () => mount.cleanUp(),
   }));
 
   it('merges styles and other props into the root node', () => {
@@ -98,7 +97,7 @@ describe('<Step />', () => {
         </Step>,
       );
 
-      expect(within(getByTestId('root')).getByTestId('child')).to.be.ok;
+      expect(within(getByTestId('root')).getByTestId('child')).not.to.equal(null);
     });
 
     it('renders children with all props passed through', () => {
@@ -108,7 +107,7 @@ describe('<Step />', () => {
           <PropsAsDataset />
         </Step>,
       );
-      getAllByTestId('props').forEach(child => {
+      getAllByTestId('props').forEach((child) => {
         // HTMLElement.dataset is a DOMStringMap which fails deep.equal
         const datasetAsObject = { ...child.dataset };
         expect(datasetAsObject).to.deep.equal({
@@ -145,7 +144,7 @@ describe('<Step />', () => {
         </Step>,
       );
 
-      expect(getByTestId('child')).to.be.ok;
+      expect(getByTestId('child')).not.to.equal(null);
     });
   });
 });

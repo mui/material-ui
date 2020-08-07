@@ -1,19 +1,15 @@
 import * as React from 'react';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import CardContent from './CardContent';
 
 describe('<CardContent />', () => {
-  let mount;
+  const mount = createMount();
   let classes;
 
   before(() => {
-    mount = createMount({ strict: true });
     classes = getClasses(<CardContent />);
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<CardContent />, () => ({

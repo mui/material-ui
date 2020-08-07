@@ -1,5 +1,5 @@
 ---
-title: React Select（选择器）组件
+title: React 选择器组件
 components: Select, NativeSelect
 ---
 
@@ -9,75 +9,87 @@ components: Select, NativeSelect
 
 ## 简单的选择器
 
-菜单位于其所点击的元素上，这样能够保证当前选定的菜单项在点击元素之上显示。
+我们通常将菜单（Menus）放置在其所点击的元素上，这样的话能够确保当前选定的菜单项显示在点击的元素之上。
 
 {{"demo": "pages/components/selects/SimpleSelect.js"}}
 
-## Advanced features
+## 高级功能
 
-The Select component is meant to be interchangeable with a native `<select>` element.
+Select 组件的设计原理是和一个原生的 `<select>` 元素能够互相替代。
 
-If you are looking for more advanced features, like combobox, multiselect, autocomplete, async or creatable support, head to the [`Autocomplete` component](/components/autocomplete/). It's also meant to be an improved version of the "react-select" package.
+若您需要一个更优雅的功能，譬如 combobox，multiselect，autocomplete，async 或者 creatable support，请查看 [`Autocomplete` 组件](/components/autocomplete/)。 此组件旨在改进 “react-select” 和 “downshift” 这两个包。
 
-## Native Select
+## Native Select 原生的选择器
 
-As the user experience can be improved on mobile using the native select of the platform, we allow such pattern.
+为了提高用户体验，对于在移动设备上使用平台的原生选择器这样的模式，我们是支持的。
 
 {{"demo": "pages/components/selects/NativeSelects.js"}}
 
-## Text Fields
+## Text Fields 文本输入框
 
-`TextField` wrapper 组件是一个完整的表单控件，包括标签，输入和帮助文本。 You can find an example with the select mode [in this section](/components/text-fields/#select).
+`TextField` wrapper 组件是一个完整的表单控件，它包括了标签，输入和帮助文本。 您可以在 [在此章节中](/components/text-fields/#select) 查看使用 select 模式的示例。
 
-## Customized selects
+## 自定义选择器
 
-以下是自定义组件的一些例子。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
+你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/components/) 中了解更多有关此内容的信息。
 
-The first step is to style the `InputBase` component. Once it's styled, you can either use it directly as a text field or provide it to the select `input` property to have a `select` field.
+首先，需要设置 `InputBase` 组件的样式。 一旦设置好了样式，您就可以直接将其用作文本字段，也可以将其作为一个 `select` 字段提供给 select 组件的 `input` 属性。
 
 {{"demo": "pages/components/selects/CustomizedSelects.js"}}
 
-## Multiple Select
+🎨 如果您还在寻找灵感，您可以看看 [MUI Treasury 特别定制的一些例子](https://mui-treasury.com/styles/select)。
 
-The `Select` component can handle multiple selections. It's enabled with the `multiple` property.
+## 多重选择
 
-Like with the single selection, you can pull out the new value by accessing `event.target.value` in the `onChange` callback. It's always an array.
+`Select` 组件也支持多项选择。 使用 `multiple` 属性，就能启用多选功能。
+
+与单项选择一样，您可以通过访问 `onChange` 的回调函数中的 `event.target.value ` 来提取新的值。 它总是以一个数组的形式出现。
 
 {{"demo": "pages/components/selects/MultipleSelect.js"}}
 
-## Controlled Open Select
+## 控制选择器的打开
 
 {{"demo": "pages/components/selects/ControlledOpenSelect.js"}}
 
-## With a Dialog
+## 与对话框组件（Dialog）一起使用
 
-While it's discouraged by the Material Design specification, you can use a select inside a dialog.
+虽然 Material Design 的规范不鼓励这样做，但您还是可以在对话框组件中使用选择器。
 
 {{"demo": "pages/components/selects/DialogSelect.js"}}
 
-## Grouping
+## 联动
 
-Display categories with the `ListSubheader` component or the native `<optgroup>` element.
+可以和 `ListSubheader` 组件一起罗列分类，或者和原生的 `<optgroup>` 元素一起使用。
 
 {{"demo": "pages/components/selects/GroupedSelect.js"}}
 
-## 可访问性
+## 无障碍设计
 
-To properly label your `Select` input you need an extra element with an `id` that contains a label. That `id` needs to match the `labelId` of the `Select` e.g.
+若想正确的给 `Select` 加上标签，你的 input 控件需要一个额外的带有 label 的 `id` 属性。 `id` 的内容需要和 `Select` 的 `labelId` 值相同，例如：
 
 ```jsx
-<InputLabel id="label">Age</InputLabel>
+<InputLabel id="label">年龄</InputLabel>
 <Select labelId="label" id="select" value="20">
-  <MenuItem value="10">Ten</MenuItem>
-  <MenuItem value="20">Twenty</MenuItem>
+  <MenuItem value="10">10</MenuItem>
+  <MenuItem value="20">20</MenuItem>
 </Select>
 ```
 
-Alternatively a `TextField` with an `id` and `label` creates the proper markup and ids for you:
+或者，您也可以使用一个带有 `id` 和 `label` 的 `TextField` 组件来创建合适的标记和 id：
 
 ```jsx
-<TextField id="select" label="Age" value="20">
+<TextField id="select" label="Age" value="20" select>
   <MenuItem value="10">Ten</MenuItem>
   <MenuItem value="20">Twenty</MenuItem>
 </TextField>
+```
+
+对于一个 [原生选择器](#native-select)，你应该通过将选择元素的 `id` 属性的值赋给 `InputLabel` 的 `htmlFor` 属性来提及标签。
+
+```jsx
+<InputLabel htmlFor="select">Age</InputLabel>
+<NativeSelect id="select">
+  <option value="10">Ten</option>
+  <option value="20">Twenty</option>
+</NativeSelect>
 ```

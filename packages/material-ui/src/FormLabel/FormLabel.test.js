@@ -1,19 +1,19 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
 import { createClientRender } from 'test/utils/createClientRender';
 import FormLabel from './FormLabel';
 import FormControl, { useFormControl } from '../FormControl';
 
 describe('<FormLabel />', () => {
-  let mount;
+  const mount = createMount();
   const render = createClientRender();
   let classes;
 
   before(() => {
-    mount = createMount({ strict: true });
     classes = getClasses(<FormLabel />);
   });
 
@@ -23,15 +23,15 @@ describe('<FormLabel />', () => {
     mount,
     refInstanceof: window.HTMLLabelElement,
     testComponentPropWith: 'div',
-    after: () => mount.cleanUp(),
   }));
 
   describe('prop: required', () => {
-    it('should show an asterisk if required is set', () => {
+    it('should visually show an asterisk but not include it in the a11y tree', () => {
       const { container } = render(<FormLabel required>name</FormLabel>);
 
       expect(container.querySelector('label')).to.have.text('name\u2009*');
       expect(container.querySelectorAll(`.${classes.asterisk}`)).to.have.lengthOf(1);
+      expect(container.querySelectorAll(`.${classes.asterisk}`)[0]).toBeAriaHidden();
     });
 
     it('should not show an asterisk by default', () => {
@@ -48,6 +48,7 @@ describe('<FormLabel />', () => {
 
       expect(container.querySelectorAll(`.${classes.asterisk}`)).to.have.lengthOf(1);
       expect(container.querySelector(`.${classes.asterisk}`)).to.have.class(classes.error);
+      expect(container.querySelectorAll(`.${classes.asterisk}`)[0]).toBeAriaHidden();
       expect(container.firstChild).to.have.class(classes.error);
     });
   });
@@ -142,7 +143,7 @@ describe('<FormLabel />', () => {
 
       it('should be overridden by props', () => {
         const { container, setProps } = render(<FormLabel required={false}>name</FormLabel>, {
-          wrapper: props => <FormControl required {...props} />,
+          wrapper: (props) => <FormControl required {...props} />,
         });
 
         expect(container).to.have.text('name');

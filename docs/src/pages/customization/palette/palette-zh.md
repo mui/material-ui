@@ -1,34 +1,45 @@
-# Palette（调色）
+# Palette 调色板
 
-<p class="description">The palette enables you to modify the color of the components to suit your brand.</p>
+<p class="description">使用调色板，您可以修改组件的颜色以迎合您的品牌形象。</p>
 
-## Intentions
+## 调色板的颜色
 
-A color intention is a mapping of a palette to a given intention within your application. The theme exposes the following color intentions:
+一个颜色图谱是在您的应用程序中，将一个调色板的颜色映射给一个特定意向。 主题提供了以下这些调色板的颜色（在 `theme.palette.` 中获取）：
 
-- primary - 用来表示用户界面的主要元素
-- secondary - used to represent secondary interface elements for a user.
-- error - used to represent interface elements that the user should be made aware of.
-- warning - used to represent potentially dangerous actions or important messages.
-- info - used to present information to the user that is neutral and not necessarily important.
-- success - used to indicate the successful completion of an action that user triggered.
+- *primary* - 用于展示一个给用户的主要界面元素。 它是在您的应用屏幕和组件中显示最频繁的一个颜色。
+- *secondary* - 用于展示一个给用户的次要界面元素。 它给予了更多的方法来强调和区分您的产品。 此颜色是可选的。
+- *error* - 用于表示用户应该注意到的界面元素。
+- *warning* - 用于呈现潜在的一些危险的操作或者重要的信息。
+- *info* - 用于向用户呈现一些中立的且不一定重要的信息。
+- *success* - 用于暗示一个用户触发的操作的成功完成。
 
-The default palette uses the shades prefixed with `A` (`A200`, etc.) for the secondary intention, and the un-prefixed shades for the other intentions.
+如果想要了解更多关于色彩的知识，您可以查看 [色彩章节](/customization/color/)。
 
-If you want to learn more about color, you can check out [the color section](/customization/color/).
+## 默认值
 
-{{"demo": "pages/customization/palette/Intentions.js", "bg": "inline", "hideHeader": true}}
+通过[主题资源管理器](/customization/default-theme/?expand-path=$.palette)或通过打开此页面上的开发工具控制台（dev tools console）（`window.theme.palette`），您可以浏览调色板的默认值。
 
-### 个性化
+{{"demo": "pages/customization/palette/Intentions.js", "bg": "inline", "hideToolbar": true}}
 
-您可以通过在主题中包含 palette 对象来覆盖默认调色板值。
+调色板的默认值是表现次要的图谱时，使用带有前缀 `A` （`A200` 等等）的阴影，而对于其他图谱则使用无前缀的阴影。
 
-If any of the [`palette.primary`](/customization/default-theme/?expand-path=$.palette.primary), [`palette.secondary`](/customization/default-theme/?expand-path=$.palette.secondary), [`palette.error`](/customization/default-theme/?expand-path=$.palette.error), [`palette.warning`](/customization/default-theme/?expand-path=$.palette.warning), [`palette.info`](/customization/default-theme/?expand-path=$.palette.info) or [`palette.successs`](/customization/default-theme/?expand-path=$.palette.successs) 'intention' objects are provided, they will replace the defaults.
+## Customization 个性化
 
-意图值可以是一个[color](/customization/color/) 对象，也可以是通过下面的TypeScript接口指定的包含一个或多个键的对象
+您可以通过将一个调色板对象（palette object）作为主题的一部分来覆盖默认的调色板值。 如果存在以下任何情况：
+
+- [`palette.primary`](/customization/default-theme/?expand-path=$.palette.primary)
+- [`palette.secondary`](/customization/default-theme/?expand-path=$.palette.secondary)
+- [`palette.error`](/customization/default-theme/?expand-path=$.palette.error)
+- [`palette.warning`](/customization/default-theme/?expand-path=$.palette.warning)
+- [`palette.info`](/customization/default-theme/?expand-path=$.palette.info)
+- [`palette.success`](/customization/default-theme/?expand-path=$.palette.success)
+
+若您提供了这些调色板颜色对象，它们将取代默认值。
+
+调色板颜色值可以是[颜色（color）](/customization/color/#2014-material-design-color-palettes)对象，也可以是具有以下 TypeScript 接口指定的一个或多个键（key）的对象：
 
 ```ts
-interface PaletteIntention {
+interface PaletteColor {
   light?: string;
   main: string;
   dark?: string;
@@ -36,9 +47,9 @@ interface PaletteIntention {
 }
 ```
 
-**使用颜色对象**
+### 使用一个颜色对象
 
-The simplest way to customize an intention is to import one or more of the provided colors and apply them to a palette intention:
+定制一个颜色图谱的最简单方法是导入其提供的一种或多种颜色，并将它们应用于调色板上：
 
 ```js
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -51,9 +62,9 @@ const theme = createMuiTheme({
 });
 ```
 
-**Providing the colors directly**
+### 直接提供颜色
 
-If you wish to provide more customized colors, you can either create your own color object, or directly supply colors to some or all of the intention's keys:
+如果您希望提供更多的定制颜色，您也可以创建自己的颜色对象，或者直接为部分或全部的图谱使用的键（key）提供颜色。
 
 ```js
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -61,48 +72,102 @@ import { createMuiTheme } from '@material-ui/core/styles';
 const theme = createMuiTheme({
   palette: {
     primary: {
-      // light: will be calculated from palette.primary.main,
+      // light: 这将从 palette.primary.main 中进行计算，
       main: '#ff4400',
-      // dark: will be calculated from palette.primary.main,
-      // contrastText: will be calculated to contrast with palette.primary.main
+      // dark: 这将从 palette.primary.main 中进行计算，
+      // contrastText: 这将计算与 palette.primary.main 的对比度
     },
     secondary: {
       light: '#0066ff',
       main: '#0044ff',
-      // dark: will be calculated from palette.secondary.main,
+      // dark: 这将从 palette.secondary.main 中进行计算，
       contrastText: '#ffcc00',
     },
-    // Used by `getContrastText()` to maximize the contrast between
-    // the background and the text.
+    // 使用 `getContrastText()` 来最大化
+    // 背景和文本的对比度
     contrastThreshold: 3,
-    // Used by the functions below to shift a color's luminance by approximately
-    // two indexes within its tonal palette.
-    // E.g., shift from Red 500 to Red 300 or Red 700.
+    // 使用下面的函数用于将颜色的亮度在其调色板中
+    // 移动大约两个指数。
+    // 例如，从红色 500（Red 500）切换到 红色 300（Red 300）或 红色 700（Red 700）。
     tonalOffset: 0.2,
   },
 });
 ```
 
-As in the example above, if the intention object contains custom colors using any of the "main", "light", "dark" or "contrastText" keys, these map as follows:
+如上面的例子一样，如果想要设置对象为使用包含"main"， “light”， “dark” 或 “contrastText” 这些键的定制颜色，则这些映射如下所示：
 
-- If the "dark" and / or "light" keys are omitted, their value(s) will be calculated from "main", according to the "tonalOffset" value.
-- If "contrastText" is omitted, its value will be calculated to contrast with "main", according to the "contrastThreshold" value.
+- 如果没有设置 “dark” 和 / 或 “light” 键，那么这将从 "main" 中根据 “色调偏移（tonalOffset）” 值来进行计算。
+- 如果没有设置 “对比度文本（contrastText）”，那么这将根据 “对比度阈值（contrastThreshold）” 来计算出与 "main" 的对比度。
 
-Both the "tonalOffset" and "contrastThreshold" values may be customized as needed. A higher value for "tonalOffset" will make calculated values for "light" lighter, and "dark" darker. A higher value for "contrastThreshold" increases the point at which a background color is considered light, and given a dark "contrastText".
+“色调偏移（tonalOffset）” 和 “对比度阈值（contrastThreshold）” 这两个值都可以根据需要进行定制。 “色调偏移（tonalOffset）” 值可以是一个 0 和 1 之间的数字，它将适用于亮色变量和暗色变量，或者是由以下 TypeScript 类型（type）指定的具有明暗变量的对象：
 
-Note that "contrastThreshold" follows a non-linear curve.
+```ts
+type PaletteTonalOffset = number | {
+  light: number;
+  dark: number;
+};
+```
+
+“色调偏移（tonalOffset）” 的值越高，那么计算后的“light” 值就会变得更浅，“dark” 的值会变得更暗。 “对比度阈值（contrastThreshold）” 的值越高，那么背景色越会被认为是浅色的，这就会赋予一个深色的 “对比度文本（contrastText）”。
+
+请注意，“对比度阈值（contrastThreshold）” 遵循的是一条非线性曲线。
 
 ### 示例
 
-{{"demo": "pages/customization/palette/Palette.js"}}
+{{"demo": "pages/customization/palette/Palette.js", "defaultCodeOpen": true}}
 
-## 颜色工具
+### 添加新的颜色
 
-Need inspiration? The Material Design team has built an awesome [palette configuration tool](/customization/color/#color-tool) to help you.
+您可以在主题的调色板内外添加新的颜色，如下所示：
 
-## Dark mode
+```js
+import { createMuiTheme } from '@material-ui/core/styles';
 
-Material-UI comes with two palette types, light (the default) and dark. You can make the theme dark by setting `type: 'dark'`. While it's only a single property value change, internally it modifies several palette values.
+const theme = createMuiTheme({
+  status: {
+    danger: '#e53e3e',
+  },
+  palette: {
+    neutral: {
+      main: '#5c6ac4',
+    },
+  },
+});
+```
+
+如果您正在使用 TypeScript，您也需要使用[module augmentation](/guides/typescript/#customization-of-theme) 来接受上述值。
+
+```ts
+declare module '@material-ui/core/styles/createMuiTheme' {
+  interface Theme {
+    status: {
+      danger: React.CSSProperties['color'],
+    }
+  }
+  interface ThemeOptions {
+    status: {
+      danger: React.CSSProperties['color']
+    }
+  }
+}
+
+declare module "@material-ui/core/styles/createPalette" {
+  interface Palette {
+    neutral: Palette['primary'];
+  }
+  interface PaletteOptions {
+    neutral: PaletteOptions['primary'];
+  }
+}
+```
+
+## 选取颜色
+
+需要灵感吗？ Material Design 团队已经建立了一个[调色板配置工具](/customization/color/#picking-colors)来帮助您选择颜色。
+
+## 暗色模式
+
+材质界面有两种调色板的类型，亮色（light）（默认值）和 暗色（dark）模式。 您可以通过设置 `type: 'dark'` 来运用暗色主题。 虽然它只是一个单一属性值的变化，但是在内部修改了些许调色板值。
 
 ```js
 const darkTheme = createMuiTheme({
@@ -112,22 +177,23 @@ const darkTheme = createMuiTheme({
 });
 ```
 
-The colors modified by the palette type are the following:
+调色板的类型的调整，修改了如下的颜色：
 
-{{"demo": "pages/customization/palette/DarkTheme.js", "bg": "inline", "hideHeader": true}}
+{{"demo": "pages/customization/palette/DarkTheme.js", "bg": "inline", "hideToolbar": true}}
 
-### User preference
+### 用户偏好
 
-Users might have specified a preference for a light or dark theme. The method by which the user expresses their preference can vary. It might be a system-wide setting exposed by the Operating System, or a setting controlled by the User Agent.
+用户可能已经指定了一个亮色或者暗色主题的偏好。 用户表达其偏好的方法可以有所不同。 它可能是操作系统曝光的覆盖整个系统的设置，或由用户代理控制的设置。
 
-You can leverage this preference dynamically with the [useMediaQuery](/components/use-media-query/) hook and the [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) media query.
+您可以通过 [useMediaQuery](/components/use-media-query/) hook 和 [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) 的媒体查询来动态地利用此偏好设置。
 
-For instance, you can enable the dark mode automatically:
+例如，您可以自动启用暗色模式：
 
 ```jsx
 import React from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 function App() {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
@@ -144,12 +210,9 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
+      <CssBaseline/>
       <Routes />
     </ThemeProvider>
   );
 }
 ```
-
-## 默认值
-
-You can explore the default values of the palette using [the theme explorer](/customization/default-theme/?expand-path=$.palette) or by opening the dev tools console on this page (`window.theme.palette`).

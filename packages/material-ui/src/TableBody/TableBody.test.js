@@ -1,56 +1,68 @@
 import * as React from 'react';
-import { assert } from 'chai';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { expect } from 'chai';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
+import { createClientRender } from 'test/utils/createClientRender';
 import TableBody from './TableBody';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 
 describe('<TableBody />', () => {
-  let mount;
+  const mount = createMount();
   let classes;
+  const render = createClientRender();
 
-  function mountInTable(node) {
-    const wrapper = mount(<table>{node}</table>);
-    return wrapper.find('table').childAt(0);
+  function renderInTable(node) {
+    return render(<table>{node}</table>);
   }
 
   before(() => {
-    mount = createMount({ strict: true });
-
     classes = getClasses(<TableBody />);
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<TableBody />, () => ({
     classes,
     inheritComponent: 'tbody',
-    mount: mountInTable,
+    mount: (node) => {
+      const wrapper = mount(<table>{node}</table>);
+      return wrapper.find('table').childAt(0);
+    },
+
     refInstanceof: window.HTMLTableSectionElement,
-    // can't test with custom `component` with `mountInTable`
+    // can't test with custom `component` with `renderInTable`
     testComponentPropWith: 'tbody',
   }));
 
   it('should render children', () => {
-    const children = <tr className="test" />;
-    const wrapper = mountInTable(<TableBody>{children}</TableBody>);
-    assert.strictEqual(wrapper.contains(children), true);
+    const children = <tr data-testid="test" />;
+    const { getByTestId } = renderInTable(<TableBody>{children}</TableBody>);
+    getByTestId('test');
   });
 
   it('should define table.body in the child context', () => {
     let context;
     // TODO test integration with TableCell
-    mountInTable(
+    renderInTable(
       <TableBody>
         <Tablelvl2Context.Consumer>
-          {value => {
+          {(value) => {
             context = value;
           }}
         </Tablelvl2Context.Consumer>
       </TableBody>,
     );
-    assert.strictEqual(context.variant, 'body');
+    expect(context.variant).to.equal('body');
+  });
+
+  describe('prop: component', () => {
+    it('can render a different component', () => {
+      const { container } = render(<TableBody component="div" />);
+      expect(container.firstChild).to.have.property('nodeName', 'DIV');
+    });
+
+    it('sets role="rowgroup"', () => {
+      const { container } = render(<TableBody component="div" />);
+      expect(container.firstChild).to.have.attribute('role', 'rowgroup');
+    });
   });
 });

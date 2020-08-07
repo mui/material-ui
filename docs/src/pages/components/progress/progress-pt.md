@@ -1,5 +1,5 @@
 ---
-title: Componente React Circular Progress, Linear Progress
+title: Componentes React para progresso circular, linear
 components: CircularProgress, LinearProgress
 ---
 
@@ -7,58 +7,48 @@ components: CircularProgress, LinearProgress
 
 <p class="description">Indicadores de progresso comumente conhecidos como spinners, expressam um tempo de espera não especificado ou exibem a duração de um processo. A animação funciona com CSS, não com JavaScript.</p>
 
-[Indicadores de progresso](https://material.io/design/components/progress-indicators.html) informam aos usuários sobre o estado de processos em progresso, como o carregamento de um aplicativo, envio de um formulário, ou atualizações. Eles comunicam o estado do aplicativo e indicam ações disponíveis, tal como, se o usuário pode sair da página atual.
+Os [indicadores de progresso](https://material.io/design/components/progress-indicators.html) informam aos usuários sobre o estado de processos em progresso, como o carregamento de um aplicativo, envio de um formulário, ou atualizações. Eles comunicam o estado do aplicativo e indicam ações disponíveis, tal como, se o usuário pode sair da página atual.
 
-Indicador **determinado** mostra quanto tempo uma operação vai demorar.
+- Indicador **determinado** mostra quanto tempo uma operação vai demorar.
+- Indicador **indeterminado** demonstra um tempo de espera não especificado.
 
-Indicador **indeterminado** demonstra um tempo de espera não especificado.
-
-#### Conjunto de progressos
-
-Ao exibir o progresso de uma seqüência de processos, indique o progresso geral em vez do progresso de cada atividade.
+Ao exibir o progresso de uma sequência de processos, indique o progresso geral em vez do progresso de cada atividade.
 
 ## Circular
 
-[Progresso circular](https://material.io/design/components/progress-indicators.html#circular-progress-indicators) suporta ambos, processos determinados e indeterminados.
-
-- O indicador circular **determinado** preenche a faixa circular invisível com cor, a medida que o indicador se move de 0 a 360 graus.
-- O indicador circular **indeterminado** crescem e diminuem em tamanho enquanto se movem de forma circular na faixa invisível.
-
-### Circular Indeterminado
+### Circular indeterminado
 
 {{"demo": "pages/components/progress/CircularIndeterminate.js"}}
 
-### Integração Interativa
-
-{{"demo": "pages/components/progress/CircularIntegration.js"}}
-
-### Circular Determinado
-
-{{"demo": "pages/components/progress/CircularDeterminate.js"}}
-
-### Circular estático
+### Circular determinado
 
 {{"demo": "pages/components/progress/CircularStatic.js"}}
 
+### Integração interativa
+
+{{"demo": "pages/components/progress/CircularIntegration.js"}}
+
+### Circular com rótulo
+
+{{"demo": "pages/components/progress/CircularWithValueLabel.js"}}
+
 ## Linear
 
-Indicadores de [progresso linear](https://material.io/design/components/progress-indicators.html#linear-progress-indicators).
-
-### Linear Indeterminado
+### Linear indeterminado
 
 {{"demo": "pages/components/progress/LinearIndeterminate.js"}}
 
-### Linear Determinado
+### Linear determinado
 
 {{"demo": "pages/components/progress/LinearDeterminate.js"}}
 
-### Buffer Linear
+### Linear bufferizado
 
 {{"demo": "pages/components/progress/LinearBuffer.js"}}
 
-### Consulta Linear
+### Linear com rótulo
 
-{{"demo": "pages/components/progress/LinearQuery.js"}}
+{{"demo": "pages/components/progress/LinearWithValueLabel.js"}}
 
 ## Intervalo não-padrão
 
@@ -81,7 +71,7 @@ function Progress(props) {
 }
 ```
 
-## Barra de progresso customizada
+## Progresso customizado
 
 Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
@@ -89,7 +79,7 @@ Aqui estão alguns exemplos de customização do componente. Você pode aprender
 
 ## Aparência atrasada
 
-Existem [3 limites importantes](https://www.nngroup.com/articles/response-times-3-important-limits/) para saber sobre o tempo de resposta. O efeito cascata do componente `ButtonBase` garante que o usuário experimente um sistema de feedback em tempo real. Normalmente, nenhum feedback é necessário durante atrasos de mais de 0,1 segundos e menos de 1,0 segundos. Mas após 1,0 segundo, você pode exibir um carregador para garantir que o fluxo de pensamento do usuário não seja interrompido.
+Existem [3 limites importantes](https://www.nngroup.com/articles/response-times-3-important-limits/) para saber sobre tempo de resposta. O efeito cascata do componente `ButtonBase` garante que o usuário experimente um sistema de feedback em tempo real. Normalmente, nenhum feedback é necessário durante atrasos de mais de 0,1 segundos e menos de 1,0 segundos. Mas após 1,0 segundo, você pode exibir um carregador para garantir que o fluxo de pensamento do usuário não seja interrompido.
 
 {{"demo": "pages/components/progress/DelayingAppearance.js"}}
 

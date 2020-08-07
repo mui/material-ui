@@ -2,7 +2,6 @@
 import 'docs/src/modules/components/bootstrap';
 // --- Post bootstrap -----
 import React from 'react';
-import App, { Container } from 'next/app';
 import find from 'lodash/find';
 import { Provider as ReduxProvider, useDispatch, useSelector } from 'react-redux';
 import { loadCSS } from 'fg-loadcss/src/loadCSS';
@@ -11,7 +10,8 @@ import PropTypes from 'prop-types';
 import acceptLanguage from 'accept-language';
 import { create } from 'jss';
 import rtl from 'jss-rtl';
-import { Router as Router2, useRouter } from 'next/router';
+import { useRouter } from 'next/router';
+import { rewriteUrlForNextExport } from 'next/dist/next-server/lib/router/rewrite-url-for-export';
 import { StylesProvider, jssPreset } from '@material-ui/styles';
 import pages from 'docs/src/pages';
 import initRedux from 'docs/src/modules/redux/initRedux';
@@ -37,7 +37,7 @@ function useFirstRender() {
   return firstRenderRef.current;
 }
 
-acceptLanguage.languages(['en', 'zh']);
+acceptLanguage.languages(['en', 'zh', 'pt', 'ru']);
 
 function loadCrowdin() {
   window._jipt = [];
@@ -48,7 +48,7 @@ function loadCrowdin() {
 function LanguageNegotiation() {
   const dispatch = useDispatch();
   const router = useRouter();
-  const userLanguage = useSelector(state => state.options.userLanguage);
+  const userLanguage = useSelector((state) => state.options.userLanguage);
 
   React.useEffect(() => {
     if (userLanguage === 'aa') {
@@ -58,7 +58,7 @@ function LanguageNegotiation() {
 
   React.useEffect(() => {
     const { userLanguage: userLanguageUrl, canonical } = pathnameToLanguage(
-      Router2._rewriteUrlForNextExport(router.asPath),
+      rewriteUrlForNextExport(router.asPath),
     );
     const preferedLanguage =
       getCookie('userLanguage') !== 'noDefault' && userLanguage === 'en'
@@ -77,11 +77,15 @@ function LanguageNegotiation() {
 
 /**
  * Priority: on first render: navigated value, persisted value; otherwise initial value, 'JS'
- * @param {string} initialCodeVariant
- * @param {(nextCodeVariant: string) => void} codeVariantChanged
+ *
  * @returns {string} - The persisted variant if the initial value is undefined
  */
-function usePersistCodeVariant(initialCodeVariant = CODE_VARIANTS.JS, codeVariantChanged) {
+function usePersistCodeVariant() {
+  const dispatch = useDispatch();
+  const { codeVariant: initialCodeVariant = CODE_VARIANTS.JS } = useSelector(
+    (state) => state.options,
+  );
+
   const isFirstRender = useFirstRender();
 
   const navigatedCodeVariant = React.useMemo(() => {
@@ -113,7 +117,7 @@ function usePersistCodeVariant(initialCodeVariant = CODE_VARIANTS.JS, codeVarian
 
   React.useEffect(() => {
     if (codeVariant !== initialCodeVariant) {
-      codeVariantChanged(codeVariant);
+      dispatch({ type: ACTION_TYPES.OPTIONS_CHANGE, payload: { codeVariant } });
     }
   });
 
@@ -124,14 +128,19 @@ function usePersistCodeVariant(initialCodeVariant = CODE_VARIANTS.JS, codeVarian
   return codeVariant;
 }
 
-function PersistState() {
-  const dispatch = useDispatch();
-  const options = useSelector(state => state.options);
+/**
+ * basically just a `useAnalytics` hook.
+ * However, it needs the redux store which is created
+ * in the same component this "hook" is used.
+ */
+function Analytics() {
+  React.useEffect(() => {
+    loadScript('https://www.google-analytics.com/analytics.js', document.querySelector('head'));
+  }, []);
 
-  const codeVariant = usePersistCodeVariant(options.codeVariant, nextCodeVariant =>
-    dispatch({ type: ACTION_TYPES.OPTIONS_CHANGE, payload: { codeVariant: nextCodeVariant } }),
-  );
+  const options = useSelector((state) => state.options);
 
+  const codeVariant = usePersistCodeVariant();
   React.useEffect(() => {
     window.ga('set', 'dimension1', codeVariant);
   }, [codeVariant]);
@@ -139,6 +148,33 @@ function PersistState() {
   React.useEffect(() => {
     window.ga('set', 'dimension2', options.userLanguage);
   }, [options.userLanguage]);
+
+  React.useEffect(() => {
+    /**
+     * @type {null | MediaQueryList}
+     */
+    let matchMedia = null;
+
+    /**
+     * Based on https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio#Monitoring_screen_resolution_or_zoom_level_changes
+     * Adjusted to track 3 or more different ratios
+     */
+    function trackDevicePixelRation() {
+      window.ga('set', 'dimension3', Math.round(window.devicePixelRatio * 10) / 10);
+
+      matchMedia = window.matchMedia(`(resolution: ${window.devicePixelRatio}dppx)`);
+      // Need to setup again.
+      // Otherwise we track only changes from the initial ratio to another.
+      // It would not track 3 or more different monitors/zoom stages
+      matchMedia.addListener(trackDevicePixelRation);
+    }
+
+    trackDevicePixelRation();
+
+    return () => {
+      matchMedia = null;
+    };
+  }, []);
 
   return null;
 }
@@ -163,7 +199,7 @@ function forcePageReload(registration) {
   }
 
   function listenInstalledStateChange() {
-    registration.installing.addEventListener('statechange', event => {
+    registration.installing.addEventListener('statechange', (event) => {
       // console.log('statechange', event.target.state);
       if (event.target.state === 'installed' && registration.waiting) {
         // A new service worker is available, inform the user
@@ -198,16 +234,6 @@ async function registerServiceWorker() {
   }
 }
 
-// Add the strict mode back once the number of warnings is manageable.
-// We might miss important warnings by keeping the strict mode 🌊🌊🌊.
-const ReactMode =
-  {
-    // createSyncRoot compatible
-    sync: React.StrictMode,
-    // partial createRoot, ConcurrentMode is deprecated
-    concurrent: React.unstable_ConcurrentMode,
-  }[process.env.REACT_MODE] || React.Fragment;
-
 let dependenciesLoaded = false;
 
 function loadDependencies() {
@@ -221,7 +247,6 @@ function loadDependencies() {
     'https://fonts.googleapis.com/icon?family=Material+Icons',
     document.querySelector('#material-icon-font'),
   );
-  loadScript('https://www.google-analytics.com/analytics.js', document.querySelector('head'));
 }
 
 if (process.browser && process.env.NODE_ENV === 'production') {
@@ -243,7 +268,7 @@ Tip: you can access the documentation \`theme\` object directly in the console.
 }
 
 function findActivePage(currentPages, pathname) {
-  const activePage = find(currentPages, page => {
+  const activePage = find(currentPages, (page) => {
     if (page.children) {
       if (pathname.indexOf(`${page.pathname}/`) === 0) {
         // Check if one of the children matches (for /components)
@@ -271,7 +296,9 @@ function AppWrapper(props) {
   const { children, pageProps } = props;
 
   const router = useRouter();
-  const [redux] = React.useState(() => initRedux(pageProps.reduxServerState));
+  const [redux] = React.useState(() =>
+    initRedux({ options: { userLanguage: pageProps.userLanguage } }),
+  );
 
   React.useEffect(() => {
     loadDependencies();
@@ -289,10 +316,9 @@ function AppWrapper(props) {
   if (pathname !== '/') {
     // The leading / is only added to support static hosting (resolve /index.html).
     // We remove it to normalize the pathname.
-    // See `_rewriteUrlForNextExport` on Next.js side.
+    // See `rewriteUrlForNextExport` on Next.js side.
     pathname = pathname.replace(/\/$/, '');
   }
-  // console.log(pages, { ...router, pathname })
   const activePage = findActivePage(pages, pathname);
 
   let fonts = ['https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap'];
@@ -303,25 +329,23 @@ function AppWrapper(props) {
   }
 
   return (
-    <ReactMode>
-      <Container>
-        <NextHead>
-          {fonts.map(font => (
-            <link rel="stylesheet" href={font} key={font} />
-          ))}
-        </NextHead>
-        <ReduxProvider store={redux}>
-          <PageContext.Provider value={{ activePage, pages, versions: pageProps.versions }}>
-            <StylesProvider jss={jss}>
-              <ThemeProvider>{children}</ThemeProvider>
-            </StylesProvider>
-          </PageContext.Provider>
-          <PersistState />
-          <LanguageNegotiation />
-        </ReduxProvider>
-      </Container>
+    <React.Fragment>
+      <NextHead>
+        {fonts.map((font) => (
+          <link rel="stylesheet" href={font} key={font} />
+        ))}
+      </NextHead>
+      <ReduxProvider store={redux}>
+        <PageContext.Provider value={{ activePage, pages, versions: pageProps.versions }}>
+          <StylesProvider jss={jss}>
+            <ThemeProvider>{children}</ThemeProvider>
+          </StylesProvider>
+        </PageContext.Provider>
+        <LanguageNegotiation />
+        <Analytics />
+      </ReduxProvider>
       <GoogleAnalytics key={router.route} />
-    </ReactMode>
+    </React.Fragment>
   );
 }
 
@@ -330,17 +354,20 @@ AppWrapper.propTypes = {
   pageProps: PropTypes.object.isRequired,
 };
 
-export default class MyApp extends App {
-  render() {
-    const { Component, pageProps } = this.props;
+export default function MyApp(props) {
+  const { Component, pageProps } = props;
 
-    return (
-      <AppWrapper pageProps={pageProps}>
-        <Component {...pageProps} />
-      </AppWrapper>
-    );
-  }
+  return (
+    <AppWrapper pageProps={pageProps}>
+      <Component {...pageProps} />
+    </AppWrapper>
+  );
 }
+
+MyApp.propTypes = {
+  Component: PropTypes.elementType.isRequired,
+  pageProps: PropTypes.object.isRequired,
+};
 
 MyApp.getInitialProps = async ({ ctx, Component }) => {
   let pageProps = {};
@@ -349,21 +376,10 @@ MyApp.getInitialProps = async ({ ctx, Component }) => {
     pageProps = await Component.getInitialProps(ctx);
   }
 
-  if (!process.browser) {
-    const redux = initRedux({
-      options: {
-        userLanguage: ctx.query.userLanguage,
-      },
-    });
-    pageProps = {
-      ...pageProps,
-      // No need to include other initial Redux state because when it
-      // initialises on the client-side it'll create it again anyway
-      reduxServerState: redux.getState(),
-    };
-  }
-
   return {
-    pageProps,
+    pageProps: {
+      userLanguage: ctx.query.userLanguage || 'en',
+      ...pageProps,
+    },
   };
 };

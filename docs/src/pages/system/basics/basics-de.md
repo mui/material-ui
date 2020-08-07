@@ -34,7 +34,7 @@ yarn add @material-ui/system
 
 ### Komponent erstellen
 
-Um die `Box` Komponente zu verwenden, müssen Sie diese zuerst erstellen. Fügen Sie zunächst eine `Abstand` und eine `Palette ` Funktion zum Stilargument hinzu.
+Um die `Box` Komponente zu verwenden, müssen Sie diese zuerst erstellen. Fügen Sie zunächst eine `Abstand` und eine `Palette` Funktion zum Stilargument hinzu.
 
 ```jsx
 import styled from 'styled-components';
@@ -188,7 +188,7 @@ const theme = {
 
 ### Kollokation
 
-If you want to group the breakpoint values, you can use the `breakpoints()` helper.
+Wenn Sie möchten, die Gruppe der breakpoint-Werte verwenden, können Sie die `breakpoints()` helfer.
 
 ```jsx
 import { compose, spacing, palette, breakpoints } from '@material-ui/system';
@@ -235,8 +235,8 @@ Not all CSS properties are supported. Möglicherweise möchten Sie neue unterst�
 #### Argumente
 
 1. `options` (*Object*): 
-  - `options.pro ` (*String*): Die Eigenschaft, für die die Style-Funktion ausgelöst wird.
-  - `options.cssProperty ` (*String|Boolean* [optional]): Standardeinstellung ist `options.prop`. Die verwendete CSS-Eigenschaft. Sie können diese Option deaktivieren, indem Sie `false` angeben. Wenn diese Eigenschaft deaktiviert ist, wird der Eigenschaftswert als eigenes Stilobjekt behandelt. Es kann für [Rendering-Varianten](#variants) verwendet werden.
+  - `options.pro` (*String*): Die Eigenschaft, für die die Style-Funktion ausgelöst wird.
+  - `options.cssProperty` (*String|Boolean* [optional]): Standardeinstellung ist `options.prop`. Die verwendete CSS-Eigenschaft. Sie können diese Option deaktivieren, indem Sie `false` angeben. Wenn diese Eigenschaft deaktiviert ist, wird der Eigenschaftswert als eigenes Stilobjekt behandelt. Es kann für [Rendering-Varianten](#variants) verwendet werden.
   - `options.themeKey` (*String* [optional]): Der Themepfadpräfix.
   - `options.transform` (*Function* [optional]): Wenden Sie eine Umwandlung an, bevor Sie einen CSS-Wert ausgeben.
 
@@ -308,13 +308,13 @@ const palette = compose(textColor, bgcolor);
 
 ## Varianten
 
-Der `style()` Helfer kann auch verwendet werden, um Eigenschaften Stilobjekten in einem Theme zuzuordnen. In diesem Beispiel unterstützt die `variant` Eigenschaft alle in ` theme.typography` vorhandenen Schlüssel.
+Der `style()` Helfer kann auch verwendet werden, um Eigenschaften Stilobjekten in einem Theme zuzuordnen. In diesem Beispiel unterstützt die `variant` Eigenschaft alle in `theme.typography` vorhandenen Schlüssel.
 
 {{"demo": "pages/system/basics/Variant.js", "defaultCodeOpen": true}}
 
 ## CSS-Eigenschaft
 
-If you want to support custom CSS values, you can use the `css()` helper. Dieser verarbeitet die `css ` Eigenshaften.
+Dieser verarbeitet die `css` Eigenshaften. If you want to support custom CSS values, you can use the `css()` helper.
 
 {{"demo": "pages/system/basics/CssProp.js", "defaultCodeOpen": true}}
 

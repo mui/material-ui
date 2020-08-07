@@ -11,8 +11,8 @@ const BootstrapButton = withStyles({
     padding: '6px 12px',
     border: '1px solid',
     lineHeight: 1.5,
-    backgroundColor: '#007bff',
-    borderColor: '#007bff',
+    backgroundColor: '#0063cc',
+    borderColor: '#0063cc',
     fontFamily: [
       '-apple-system',
       'BlinkMacSystemFont',
@@ -41,7 +41,7 @@ const BootstrapButton = withStyles({
   },
 })(Button);
 
-const ColorButton = withStyles(theme => ({
+const ColorButton = withStyles((theme) => ({
   root: {
     color: theme.palette.getContrastText(purple[500]),
     backgroundColor: purple[500],
@@ -51,7 +51,7 @@ const ColorButton = withStyles(theme => ({
   },
 }))(Button);
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   margin: {
     margin: theme.spacing(1),
   },

@@ -21,7 +21,7 @@ const images = [
   },
 ];
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -99,7 +99,7 @@ export default function ButtonBases() {
 
   return (
     <div className={classes.root}>
-      {images.map(image => (
+      {images.map((image) => (
         <ButtonBase
           focusRipple
           key={image.title}

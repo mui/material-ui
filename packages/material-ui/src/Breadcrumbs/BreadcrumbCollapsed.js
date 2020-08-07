@@ -5,7 +5,7 @@ import { emphasize } from '../styles/colorManipulator';
 import MoreHorizIcon from '../internal/svg-icons/MoreHoriz';
 import ButtonBase from '../ButtonBase';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     display: 'flex',
     marginLeft: theme.spacing(0.5),

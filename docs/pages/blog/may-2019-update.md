@@ -18,11 +18,11 @@ But this summary is just scratching the surface. We have accepted 206 commits fr
 
 *(We'll do our best, no guarantee!)*
 
-- We will release an improved Slider component with range support. You can already [preview it](https://deploy-preview-15703--material-ui.netlify.com/components/slider/).
+- We will release an improved Slider component with range support. You can already [preview it](https://deploy-preview-15703--material-ui.netlify.app/components/slider/).
 
 ![Slider](/static/blog/may-2019-update/slider.png)
 
-- We will work on a new Tree View component. You can already [preview it](https://deploy-preview-14827--material-ui.netlify.com/components/tree-view/).
+- We will work on a new Tree View component. You can already [preview it](https://deploy-preview-14827--material-ui.netlify.app/components/tree-view/).
 
 ![Tree View](/static/blog/may-2019-update/tree-view.png)
 

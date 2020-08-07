@@ -1,4 +1,4 @@
-import { assert } from 'chai';
+import { expect } from 'chai';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import createGenerateClassNameHash from './createGenerateClassNameHash';
 
@@ -8,7 +8,7 @@ describe('createGenerateClassNameHash', () => {
 
   describe('dangerouslyUseGlobalCSS', () => {
     it('should have a stable classname', () => {
-      assert.strictEqual(
+      expect(
         generateClassNameGlobal(
           {
             key: 'key',
@@ -19,9 +19,8 @@ describe('createGenerateClassNameHash', () => {
             },
           },
         ),
-        'MuiGrid-key',
-      );
-      assert.strictEqual(
+      ).to.equal('MuiGrid-key');
+      expect(
         generateClassNameGlobal(
           {
             key: 'key',
@@ -38,13 +37,12 @@ describe('createGenerateClassNameHash', () => {
             },
           },
         ),
-        'classNamePrefix-key-1',
-      );
+      ).to.equal('classNamePrefix-key-1');
     });
   });
 
   it('should generate a class name', () => {
-    assert.strictEqual(
+    expect(
       generateClassName(
         {
           key: 'key',
@@ -63,12 +61,11 @@ describe('createGenerateClassNameHash', () => {
           },
         },
       ),
-      'classNamePrefix-key-1mx1qso',
-    );
+    ).to.equal('classNamePrefix-key-1mx1qso');
   });
 
   it('should increase the counter only when needed', () => {
-    assert.strictEqual(
+    expect(
       generateClassName(
         {
           key: 'key',
@@ -87,9 +84,8 @@ describe('createGenerateClassNameHash', () => {
           },
         },
       ),
-      'classNamePrefix-key-1mx1qso',
-    );
-    assert.strictEqual(
+    ).to.equal('classNamePrefix-key-1mx1qso');
+    expect(
       generateClassName(
         {
           key: 'key',
@@ -106,9 +102,8 @@ describe('createGenerateClassNameHash', () => {
           },
         },
       ),
-      'classNamePrefix-key-1',
-    );
-    assert.strictEqual(
+    ).to.equal('classNamePrefix-key-1');
+    expect(
       generateClassName(
         {
           key: 'key',
@@ -125,12 +120,11 @@ describe('createGenerateClassNameHash', () => {
           },
         },
       ),
-      'classNamePrefix-key-2',
-    );
+    ).to.equal('classNamePrefix-key-2');
   });
 
   it('should use the theme object, rule key and the style raw', () => {
-    assert.strictEqual(
+    expect(
       generateClassName(
         {
           key: 'key1',
@@ -149,9 +143,8 @@ describe('createGenerateClassNameHash', () => {
           },
         },
       ),
-      'classNamePrefix-key1-1s3krrz',
-    );
-    assert.strictEqual(
+    ).to.equal('classNamePrefix-key1-1s3krrz');
+    expect(
       generateClassName(
         {
           key: 'key2',
@@ -170,9 +163,8 @@ describe('createGenerateClassNameHash', () => {
           },
         },
       ),
-      'classNamePrefix-key2-l5j9wx',
-    );
-    assert.strictEqual(
+    ).to.equal('classNamePrefix-key2-l5j9wx');
+    expect(
       generateClassName(
         {
           key: 'key2',
@@ -191,9 +183,8 @@ describe('createGenerateClassNameHash', () => {
           },
         },
       ),
-      'classNamePrefix-key2-1q3ldtd',
-    );
-    assert.strictEqual(
+    ).to.equal('classNamePrefix-key2-1q3ldtd');
+    expect(
       generateClassName(
         {
           key: 'key2',
@@ -214,8 +205,7 @@ describe('createGenerateClassNameHash', () => {
           },
         },
       ),
-      'classNamePrefix-key2-b6l15m',
-    );
+    ).to.equal('classNamePrefix-key2-b6l15m');
   });
 
   describe('classNamePrefix', () => {
@@ -226,7 +216,7 @@ describe('createGenerateClassNameHash', () => {
         options: {},
       };
       const generateClassName2 = createGenerateClassNameHash();
-      assert.strictEqual(generateClassName2(rule, styleSheet), 'root-11u5x61');
+      expect(generateClassName2(rule, styleSheet)).to.equal('root-11u5x61');
     });
   });
 
@@ -257,7 +247,7 @@ describe('createGenerateClassNameHash', () => {
         options: {},
       };
       const generateClassName2 = createGenerateClassNameHash();
-      assert.strictEqual(generateClassName2(rule, styleSheet), 'jss11u5x61');
+      expect(generateClassName2(rule, styleSheet)).to.equal('jss11u5x61');
     });
   });
 });

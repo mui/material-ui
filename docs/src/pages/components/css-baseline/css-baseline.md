@@ -32,15 +32,19 @@ It's possible to apply the baseline only to the children by using the `ScopedCss
 ```jsx
 import React from 'react';
 import ScopedCssBaseline from '@material-ui/core/ScopedCssBaseline';
+import MyApp from './MyApp';
 
 export default function MyApp() {
   return (
     <ScopedCssBaseline>
       {/* The rest of your application */}
+      <MyApp />
     </ScopedCssBaseline>
   );
 }
 ```
+
+⚠️ Make sure you import `ScopedCssBaseline` first to avoid box-sizing conflicts as in the above example.
 
 ## Approach
 
@@ -64,4 +68,8 @@ which ensures that the declared width of the element is never exceeded due to pa
 You can learn more about the implications of changing the `<html>` default font size in [the theme documentation](/customization/typography/#typography-html-font-size) page.
 - Set the `theme.typography.body2` style on the `<body>` element.
 - Set the font-weight to `theme.typography.fontWeightBold` for the `<b>` and `<strong>` elements.
-- Font antialiasing is enabled for better display of the Roboto font.
+- Custom font-smoothing is enabled for better display of the Roboto font.
+
+## Customization
+
+Head to the [global customization](/customization/globals/#global-css) section of the documentation to change the output of these components.

@@ -5,7 +5,7 @@ import Box from '@material-ui/core/Box';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '../components/Paper';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     display: 'flex',
     backgroundImage: 'url(/static/onepirate/appCurvyLines.png)',

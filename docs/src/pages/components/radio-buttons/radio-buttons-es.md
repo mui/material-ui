@@ -11,29 +11,39 @@ Usa [botones de radio](https://material.io/design/components/selection-controls.
 
 Radio buttons should have the most commonly used option selected by default.
 
+## RadioGroup
+
 `RadioGroup` is a helpful wrapper used to group `Radio` components that provides an easier API, and proper keyboard accessibility to the group.
 
 {{"demo": "pages/components/radio-buttons/RadioButtonsGroup.js"}}
 
-## Standalone Radio Buttons
+Para poner los botones de forma horizontal, establezca el `fila` prop: `<RadioGroup row />`.
 
-`Radio` can also be used standalone, without the wrapper.
+## Standalone radio buttons
+
+`Radio` también puede ser utilizado de forma independiente, sin el contenedor RadioGroup.
 
 {{"demo": "pages/components/radio-buttons/RadioButtons.js"}}
 
 ## Ubicación de Etiqueta
 
-Puede cambiar la ubicación de la etiqueta:
+Usted puede cambiar la ubicación de la etiqueta con el `FormControlLabel` del componente `labelPlacement` prop:
 
-{{"demo": "pages/components/radio-buttons/FormControlLabelPosition.js"}}
+{{"demo": "pages/components/radio-buttons/FormControlLabelPlacement.js"}}
+
+## Show error
+
+In general, radio buttons should have a value selected by default. If this is not the case, you can display an error if no value is selected when the form is submitted:
+
+{{"demo": "pages/components/radio-buttons/ErrorRadios.js"}}
 
 ## Customized radios
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+He aquí un ejemplo de personalización del componente. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/radio-buttons/CustomizedRadios.js"}}
 
-## When to use
+## Cuándo usarlo
 
 - [Checkboxes vs. Botones de selección](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
 

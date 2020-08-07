@@ -15,13 +15,13 @@ const defaultBreakpoints = {
   // Sorted ASC by size. That's important.
   // It can't be configured as it's used statically for propTypes.
   keys: ['xs', 'sm', 'md', 'lg', 'xl'],
-  up: key => `@media (min-width:${values[key]}px)`,
+  up: (key) => `@media (min-width:${values[key]}px)`,
 };
 
 export function handleBreakpoints(props, propValue, styleFromPropValue) {
   if (process.env.NODE_ENV !== 'production') {
     if (!props.theme) {
-      console.error('@material-ui/system: you are calling a style function without a theme value.');
+      console.error('Material-UI: You are calling a style function without a theme value.');
     }
   }
 
@@ -47,7 +47,7 @@ export function handleBreakpoints(props, propValue, styleFromPropValue) {
 }
 
 function breakpoints(styleFunction) {
-  const newStyleFunction = props => {
+  const newStyleFunction = (props) => {
     const base = styleFunction(props);
     const themeBreakpoints = props.theme.breakpoints || defaultBreakpoints;
 

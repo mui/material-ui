@@ -6,7 +6,7 @@
 
 Add a `ThemeProvider` to the top level of your app to pass a theme down the React component tree. Then, you can access the theme object in style functions.
 
-> This example creates a new theme. See the [theming section](/customization/theming/) for how to customize the default Material-UI theme.
+> Este ejemplo crea un objeto de tema para componentes construidos a medida. Si pretende utilizar algunos de los componentes de Material-UI, necesita proporcionar una estructura de tema más rica utilizando el método `createMuiTheme()`. Dirígete a la sección [temática](/customization/theming/) para aprender cómo construir tu tema personalizado de Material-UI.
 
 ```jsx
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -77,7 +77,7 @@ Usted puedes anidar multiples proveedores de tema. This can be really useful whe
 
 {{"demo": "pages/styles/advanced/ThemeNesting.js"}}
 
-El tema interno **sobreescribirá** el tema exterior. Puede ampliar el tema externo proporcionando una función:
+El tema interno **sobrescribirá** el tema exterior. Puede ampliar el tema externo proporcionando una función:
 
 ```jsx
 <ThemeProvider theme={…} >
@@ -232,12 +232,12 @@ By default, the style tags are injected **last** in the `<head>` element of the 
 The `StylesProvider` component has an `injectFirst` prop to inject the style tags **first** in the head (less priority):
 
 ```jsx
-import { StylesProvider } from '@material-ui/core/styles';
+*/}
+</StylesProvider>
+      import { StylesProvider } from '@material-ui/core/styles';
 
 <StylesProvider injectFirst>
-  {/* Your component tree.
-      Styled components can override Material-UI's styles. */}
-</StylesProvider>
+  {/* Your component tree. Styled components can override Material-UI's styles.
 ```
 
 ### `makeStyles` / `withStyles` / `styled`
@@ -245,32 +245,8 @@ import { StylesProvider } from '@material-ui/core/styles';
 The injection of style tags happens in the **same order** as the `makeStyles` / `withStyles` / `styled` invocations. For instance the color red wins in this case:
 
 ```jsx
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStylesBase = makeStyles({
-  root: {
-    color: 'blue', // 🔵
-  },
-});
-
-const useStyles = makeStyles({
-  root: {
-    color: 'red', // 🔴
-  },
-});
-
-export default function MyComponent() {
-  // Order doesn't matter
-  const classes = useStyles();
-  const classesBase = useStylesBase();
-
-  // Order doesn't matter
-  const className = clsx(classes.root, classesBase.root)
-
-  // color: red 🔴 wins.
-  return <div className={className} />;
-}
+How can a parent component override the style of a nested element?
+  However, the class names are often non-deterministic.
 ```
 
 The hook call order and the class name concatenation order **don't matter**.
@@ -323,12 +299,12 @@ import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 const jss = create({
   ...jssPreset(),
   // Define a custom insertion point that JSS will look for when injecting the styles into the DOM.
-  insertionPoint: document.getElementById('jss-insertion-point'),
-});
+  import { create } from 'jss';
+import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 
-export default function App() {
-  return <StylesProvider jss={jss}>...</StylesProvider>;
-}
+const jss = create({
+  ...jssPreset(),
+  // Define a custom insertion point that JSS will look for when injecting the styles into the DOM.
 ```
 
 #### JS createComment

@@ -11,5 +11,5 @@ export interface ResponsiveFontSizesOptions {
 
 export default function responsiveFontSizes(
   theme: Theme,
-  options?: ResponsiveFontSizesOptions,
+  options?: ResponsiveFontSizesOptions
 ): Theme;

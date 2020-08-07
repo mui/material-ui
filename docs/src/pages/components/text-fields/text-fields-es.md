@@ -21,7 +21,7 @@ It supports standard, outlined and filled styling.
 
 ## Form props
 
-Standard form attributes are supported e.g. `required`, `disabled`, `type`, etc. as well as a `helperText` which is used to give context about a field’s input, such as how the input will be used.
+Para ello, hay que proporcionar una implementación personalizada del elemento `<input>` con el atributo `inputComponent`. Se pueden utilizar librerías externas para formatear un campo de texto.
 
 {{"demo": "pages/components/text-fields/FormPropsTextFields.js"}}
 
@@ -37,7 +37,7 @@ The `multiline` prop transforms the text field into a [textarea](https://develop
 
 {{"demo": "pages/components/text-fields/MultilineTextFields.js"}}
 
-## Select
+## Selección
 
 The `select` prop makes the text field use the [Select](/components/selects/) component internally.
 
@@ -51,7 +51,7 @@ There are multiple ways to display an icon with a text field.
 
 ### Adornos de campos de texto
 
-The main way is with an `InputAdornment`. Este elemento se puede usar para agregar un prefijo, un sufijo o una acción a un campo de texto. Por ejemplo, puedes usar un botón de icono para esconder o revelar una contraseña.
+The main way is with an `InputAdornment`. Por ejemplo, puedes usar un botón de icono para esconder o revelar una contraseña. This can be used to add a prefix, a suffix or an action to an input.
 
 {{"demo": "pages/components/text-fields/InputAdornments.js"}}
 
@@ -63,7 +63,7 @@ Fancy smaller inputs? Use the `size` prop.
 
 ## Disposición
 
-`margin` can be used to alter the vertical spacing of inputs. Using `none` (default) will not apply margins to the `FormControl`, whereas `dense` and `normal` will. `dense` and `normal` alter other styles to meet the specification.
+`dense` and `normal` alter other styles to meet the specification. `margin` prop can be used to alter the vertical spacing of inputs. Using `none` (default) will not apply margins to the `FormControl`, whereas `dense` and `normal` will.
 
 `fullWidth` can be used to make the input take up the full width of its container.
 
@@ -71,7 +71,7 @@ Fancy smaller inputs? Use the `size` prop.
 
 ## Uncontrolled vs Controlled
 
-The component can be controlled or uncontrolled
+The component can be controlled or uncontrolled.
 
 {{"demo": "pages/components/text-fields/StateTextFields.js"}}
 
@@ -103,23 +103,23 @@ La personalización no se limita a usar CSS, también puedes usar una composici�
 
 {{"demo": "pages/components/text-fields/CustomizedInputBase.js", "bg": true}}
 
-👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/text-field).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/text-field).
 
 ## Limitaciones
 
 ### Shrink
 
-The input label "shrink" state isn't always correct. The input label is supposed to shrink as soon as the input is displaying something. In some circumstances, we can't determine the "shrink" state (number input, datetime input, Stripe input). You might notice an overlap.
+El estado "shrink" de la etiqueta del campo de texto no está siempre correcto. La etiqueta debe achicarse al momento que el campo demuestra algun texto. En algunas circunstancias, no se puede determinar el estado "shrink" (campo de números, campo de fecha y hora, campo de Stripe). Tal vez veas una superposición.
 
 ![shrink](/static/images/text-fields/shrink.png)
 
-To workaround the issue, you can force the "shrink" state of the label.
+Para resolver el problema, puedes forzar el estado "shrink" de la etiqueta.
 
 ```jsx
 <TextField InputLabelProps={{ shrink: true }} />
 ```
 
-or
+o
 
 ```jsx
 <InputLabel shrink>Contagem</InputLabel>
@@ -131,13 +131,13 @@ The floating label is absolutely positioned, it won't impact the layout of the p
 
 ## Integration with 3rd party input libraries
 
-You can use third-party libraries to format an input. You have to provide a custom implementation of the `<input>` element with the `inputComponent` property.
+Se pueden utilizar librerías externas para formatear un campo de texto. Para ello, hay que proporcionar una implementación personalizada del elemento `<input>` con el atributo `inputComponent`.
 
-The following demo uses the [react-text-mask](https://github.com/text-mask/text-mask) and [react-number-format](https://github.com/s-yadav/react-number-format) libraries. The same concept could be applied to [e.g. react-stripe-element](https://github.com/mui-org/material-ui/issues/16037).
+El siguiente demo utiliza las librerías [react-text-mask](https://github.com/text-mask/text-mask) y [react-number-format](https://github.com/s-yadav/react-number-format). The same concept could be applied to [e.g. react-stripe-element](https://github.com/mui-org/material-ui/issues/16037).
 
 {{"demo": "pages/components/text-fields/FormattedInputs.js"}}
 
-The provided input component should handle the `inputRef` property. The property should be called with a value that implements the following interface:
+El componente del campo de texto proporcionado debe manejar el atributo `inputRef`. The property should be called with a value that implements the following interface:
 
 ```ts
 interface InputElement {
@@ -173,7 +173,7 @@ function MyInputComponent(props) {
 
 ## Accesibilidad
 
-In order for the text field to be accessible, **the input should be linked to the label and the helper text**. The underlying DOM nodes should have this structure.
+In order for the text field to be accessible, **the input should be linked to the label and the helper text**. The underlying DOM nodes should have this structure:
 
 ```jsx
 <div class="form-control">
@@ -199,5 +199,5 @@ In order for the text field to be accessible, **the input should be linked to th
 Para usos más avanzados tal vez puedas aprovercharte de:
 
 - [formik-material-ui](https://github.com/stackworx/formik-material-ui) Bindings for using Material-UI with [formik](https://jaredpalmer.com/formik).
-- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) Bindings for using Material UI with [Redux Form](https://redux-form.com/).
-- [mui-rff](https://github.com/lookfirst/mui-rff) Bindings for using Material UI with [React Final Form](https://final-form.org/react).
+- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) Bindings for using Material-UI with [Redux Form](https://redux-form.com/).
+- [mui-rff](https://github.com/lookfirst/mui-rff) Bindings for using Material-UI with [React Final Form](https://final-form.org/react).

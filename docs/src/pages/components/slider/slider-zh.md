@@ -1,79 +1,103 @@
 ---
-title: React 滑块组件
+title: React 滑块控件
 components: Slider
 ---
 
-# Slider 滑块
+# Slider 滑块控件
 
-<p class="description">用户可以使用滑块组件从某一范围内选取所需数值。</p>
+<p class="description">用户可以使用滑块控件在某一范围内取值。</p>
 
-[滑块](https://material.io/design/components/sliders.html) 反映了条形图上的一系列值，用户可以从中选择单个值。 滑块组件适用于调节设备音量、调整屏幕亮度，或者改变图像滤镜的强度。
+[滑块控件](https://material.io/design/components/sliders.html) 反映了条形图上的一系列值，用户可以从中选择单个值。 它们通常适用于调节一些设置，譬如调节设备音量、调整屏幕亮度，或者改变图像的滤镜。
 
-- 📦 [22 kB gzipped](/size-snapshot) (but only 8 kB without @material-ui/styles).
+- 📦 [22 kB 压缩大小](/size-snapshot) (但与其他 Material-UI 组件使用时只有+8 kB)。
 
-## 离散值滑块
+## 连续滑块（Continuous sliders）
 
-Discrete sliders can be adjusted to a specific value by referencing its value indicator. By order of demos:
-
-1. 在横轴上标记可选数值的位置：`marks={true}`
-2. You can change the default step increment.
-3. You can have custom marks by providing a rich array to the `marks` prop.
-4. You can restrict the selectable values to those provided with the `marks` prop with `step={null}`.
-5. 数值标签始终可见： `valueLabelDisplay="on"`
-
-{{"demo": "pages/components/slider/DiscreteSlider.js"}}
-
-## 自定义滑块
-
-以下是自定义组件的一些例子。 您可以在[重写文档页面](/customization/components/)中了解更多有关此内容的信息。
-
-{{"demo": "pages/components/slider/CustomizedSlider.js"}}
-
-## 连续值滑块
-
-用户可以使用连续值滑块从给定范围内选择某一数值。
+用户可以使用连续的滑块组件在给定的范围内选择一个值。
 
 {{"demo": "pages/components/slider/ContinuousSlider.js"}}
 
-## 双点滑块
+## 间续滑块（Discrete sliders）
+
+用户可以通过参考其值指示器，来将间续滑块调整为某一特定值。 以下是一些案例：
+
+通过设置 `marks={true}`，你可以针对每个步骤产生一个标记（mark）。
+
+{{"demo": "pages/components/slider/DiscreteSlider.js"}}
+
+### 小的步骤
+
+您可以更改默认的步进增量。
+
+{{"demo": "pages/components/slider/DiscreteSliderSteps.js"}}
+
+### 自定义标记
+
+通过将一个丰富的数组提供给 `marks` 属性，您可以定制标记。
+
+{{"demo": "pages/components/slider/DiscreteSliderMarks.js"}}
+
+### 受限制的值
+
+通过将 `step={null}` 赋予给 `marks` 属性，您可以限制可供选择的值。
+
+{{"demo": "pages/components/slider/DiscreteSliderValues.js"}}
+
+### 标签总是可见
+
+通过设置 `valueLabelDisplay="on"`，您可以强制缩略图的标签始终可见。
+
+{{"demo": "pages/components/slider/DiscreteSliderLabel.js"}}
+
+## 范围滑块
+
+通过提供一个包含值的数组给 `value` 属性，您可以设置滑块的起始和终止值。
 
 {{"demo": "pages/components/slider/RangeSlider.js"}}
 
-## 带有输入框的滑块
+## 带输入框的滑块组件
+
+在这个例子中，我们允许给输入框设置一个离散值。
 
 {{"demo": "pages/components/slider/InputSlider.js"}}
+
+## 自定义滑块
+
+你可以参考以下一些例子来自定义组件。 你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/components/) 中了解更多有关此内容的信息。
+
+{{"demo": "pages/components/slider/CustomizedSlider.js"}}
 
 ## 纵向滑块
 
 {{"demo": "pages/components/slider/VerticalSlider.js"}}
 
-## Track
+## 轨道（Track）
 
-The track shows the range available for user selection.
+轨道显示了允许用户选择的范围。
 
-### Removed track
+### 移除轨道
 
-The track can be turned off with `track={false}`.
+您可以通过设置 `track={false}` 来禁用轨道。
 
 {{"demo": "pages/components/slider/TrackFalseSlider.js"}}
 
-### Inverted track
+### 反转轨道
 
-The track can be inverted with `track="inverted"`.
+你可以通过设置 `track="inverted"` 来反转轨道。
 
 {{"demo": "pages/components/slider/TrackInvertedSlider.js"}}
 
-## Non-linear scale
+## 非线性缩放
 
-You can use the `scale` prop to represent the `value` on a different scale. For instance, in the following demo, the value *x* represents the power of *10^x*.
+你可以使用 `scale` 属性来表示不同范围的`值`。 例如，在下面的例子中，*x* 的值表示 *10^x*。
 
 {{"demo": "pages/components/slider/NonLinearSlider.js"}}
 
-## 可访问性
+## 无障碍设计
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#slider)
 
-The component handles most of the work necessary to make it accessible. However, you need to make sure that:
+该组件处理了大部分必要的工作，使之应用无障碍访问。 但是，你需要确保：
 
-- Each thumb has a user-friendly label (`aria-label`, `aria-labelledby` or `getAriaLabel` prop).
-- Each thumb has a user-friendly text for its current value. 除非数值的含义显而易见。 你可以通过`getAriaValueText` 或者 `aria-valuetext` 更改提示气泡的名称。
+- 每个滑块都带有一个方便用户的标签（`aria-label`、`aria-labelledby` 或 `getAriaLabel` 属性）。
+- 每一个滑块的当前值都有一个方便用户阅读的文字。 如果值与标签的语义相匹配的话，则不需要此操作。 你可以通过`getAriaValueText` 或者 `aria-valuetext` 属性来更改名字。

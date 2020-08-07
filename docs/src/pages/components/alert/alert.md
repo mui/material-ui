@@ -1,6 +1,6 @@
 ---
 title: Alert React component
-components: Alert
+components: Alert, AlertTitle
 ---
 
 # Alert

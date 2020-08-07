@@ -29,7 +29,7 @@ async function main(distTag) {
   }
 
   const { stdout: versions } = await exec(`npm dist-tag ls typescript ${distTag}`);
-  const tagMapping = versions.split('\n').find(mapping => {
+  const tagMapping = versions.split('\n').find((mapping) => {
     return mapping.startsWith(`${distTag}: `);
   });
   if (tagMapping === undefined) {
@@ -44,11 +44,11 @@ async function main(distTag) {
   packageJson.devDependencies.typescript = version;
   packageJson.resolutions['**/dtslint/typescript'] = version;
 
-  // CircleCI seemingly times out if it has a newline diff at the end
+  // add newline for clean diff
   fs.writeFileSync(packageJsonPath, `${JSON.stringify(packageJson, null, 2)}${os.EOL}`);
 }
 
-main(process.env.TYPESCRIPT_DIST_TAG).catch(error => {
+main(process.env.TYPESCRIPT_DIST_TAG).catch((error) => {
   console.error(error);
   process.exit(1);
 });

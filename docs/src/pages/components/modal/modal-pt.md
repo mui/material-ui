@@ -1,5 +1,5 @@
 ---
-title: Componente React Modal
+title: Componente React para Modal
 components: Modal
 ---
 
@@ -10,22 +10,22 @@ components: Modal
 O componente renderiza o conteúdo de seu `children` sobre um componente backdrop. O `Modal` oferece recursos importantes:
 
 - 💄 Gerencia o empilhamento de chamadas quando ter um de cada vez não for suficiente.
-- 🔐 Cria um pano de fundo para desabilitar a interação abaixo do modal.
-- 🔐 Desativa a rolagem do conteúdo da página enquanto estiver aberta.
+- 🔐 Cria um plano de fundo para desabilitar a interação abaixo do modal.
+- 🔐 Desativa a rolagem do conteúdo da página enquanto estiver aberto.
 - ♿️ Gerencia adequadamente o foco; movendo para o conteúdo modal, e mantendo-o lá até que o modal seja fechado.
 - ♿️ Adiciona as funções ARIA apropriadas automaticamente.
-- 📦 [5 kB gzipado](/size-snapshot).
+- 📦 [5 kB gzipped](/size-snapshot).
 
 > **Nota sobre a terminologia**. O termo "modal" algumas vezes é usado com o sentido de "diálogo", mas isto é um equívoco. Uma janela modal descreve partes de uma UI. Um elemento é considerado modal se [ele bloqueia interações com o resto da aplicação](https://en.wikipedia.org/wiki/Modal_window).
 
-Se você está criando um diálogo Modal, você provavelmente quer usar o componente [Dialog](/components/dialogs/) em vez de diretamente um Modal. Modal é uma estrutura de baixo-nível que é alavancada pelos seguintes componentes:
+Se você está criando um diálogo modal, você provavelmente quer usar o componente [Dialog](/components/dialogs/) em vez de diretamente um Modal. Modal é uma estrutura de baixo-nível que é aproveitada pelos seguintes componentes:
 
 - [Dialog](/components/dialogs/)
 - [Drawer](/components/drawers/)
 - [Menu](/components/menus/)
 - [Popover](/components/popover/)
 
-## Modal Simples
+## Modal simples
 
 {{"demo": "pages/components/modal/SimpleModal.js"}}
 
@@ -50,17 +50,17 @@ Como alternativa, você pode usar [react-spring](https://github.com/react-spring
 
 ## Modal do lado do servidor
 
-React [não suporta](https://github.com/facebook/react/issues/13097) a API [`createPortal()`](https://reactjs.org/docs/portals.html) no servidor. Para exibir o modal, você precisa desativar o recurso portal com a propriedade `disablePortal`:
+React [não suporta](https://github.com/facebook/react/issues/13097) a API [`createPortal()`](https://pt-br.reactjs.org/docs/portals.html) no servidor. Para exibir o modal, você precisa desativar o recurso portal com a propriedade `disablePortal`:
 
 {{"demo": "pages/components/modal/ServerModal.js"}}
 
 ## Limitações
 
-### Focus trap
+### Captura do foco
 
-The modal moves the focus back to the body of the component if the focus tries to escape it.
+O modal move o foco de volta para o corpo do componente se o foco tentar escapar dele.
 
-This is done for accessibility purposes, however, it might create issues. In the event the users need to interact with another part of the page, e.g. with a chatbot window, you can disable the behavior:
+No entanto, isso é feito para fins de acessibilidade, e pode criar problemas. No caso de os usuários precisarem interagir com outra parte da página, por exemplo, com uma janela de chatbot, você pode desabilitar o comportamento:
 
 ```jsx
 <Modal disableEnforceFocus />
@@ -78,13 +78,13 @@ This is done for accessibility purposes, however, it might create issues. In the
     aria-describedby="modal-description"
     >
     <h2 id="modal-title">
-      My Title
+      Meu Título
     </h2>
     <p id="modal-description">
-      My Description
+      Minha Descrição
     </p>
     </Modal>
     ```
 
 - O [WAI-ARIA authoring practices ](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) pode ajudá-lo a definir o foco inicial no elemento mais relevante, com base no seu conteúdo modal.
-- Uma janela modal sobrepõe a janela principal ou outra janela modal. As janelas sob um modal são **inertes**. Ou seja, os usuários não podem interagir com o conteúdo fora de uma janela modal ativa.
+- Esteja ciente que uma "janela modal" sobrepõe a janela primária ou qualquer outra janela modal. As janelas sob um modal são **inertes**. Ou seja, os usuários não podem interagir com o conteúdo fora de uma janela modal ativa. Isso pode criar [comportamentos conflitantes](#focus-trap).

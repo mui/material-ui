@@ -26,11 +26,4 @@ export const left = style({
   prop: 'left',
 });
 
-export default compose(
-  position,
-  zIndex,
-  top,
-  right,
-  bottom,
-  left,
-);
+export default compose(position, zIndex, top, right, bottom, left);

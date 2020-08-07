@@ -101,7 +101,7 @@ export default function ButtonBases() {
 
   return (
     <div className={classes.root}>
-      {images.map(image => (
+      {images.map((image) => (
         <ButtonBase
           focusRipple
           key={image.title}

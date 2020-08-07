@@ -5,7 +5,7 @@ components: Bewertung
 
 # Bewertung
 
-<p class="description">Ratings provide insight regarding others’ opinions and experiences with a product. Users can also rate products they’ve purchased.</p>
+<p class="description">Bewertungen geben Einblicke in die Meinungen und Erfahrungen anderer mit einem Produkt. Benutzer können auch Produkte bewerten, die sie gekauft haben.</p>
 
 ## Einfache Bewertungen
 

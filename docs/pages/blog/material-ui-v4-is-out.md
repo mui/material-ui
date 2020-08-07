@@ -45,7 +45,7 @@ The Material Design team at Google has made the customization of their design sy
 
 ![Demo3](/static/blog/material-ui-v4-is-out/demo3.png)
 
-<p class="blog-description"><a href="https://mui-treasury.com/components/button#customized-button">live demo</a></p>
+<p class="blog-description"><a href="https://mui-treasury.com/styles/button">live demo</a></p>
 
 After listening to v3 customization experiences of hundreds of developers, we realized that we could do better. We have found 4 classes of common problems.
 

@@ -27,7 +27,7 @@ function StableVersions(props) {
     <div className={classes.root}>
       <Table>
         <TableBody>
-          {versions.map(doc => (
+          {versions.map((doc) => (
             <TableRow key={doc.version}>
               <TableCell>
                 <Typography variant="body2">
@@ -41,7 +41,7 @@ function StableVersions(props) {
                 </Link>
               </TableCell>
               <TableCell>
-                {doc.version.length === 6 ? (
+                {doc.version.length >= 6 ? (
                   <Link
                     variant="body2"
                     color="secondary"

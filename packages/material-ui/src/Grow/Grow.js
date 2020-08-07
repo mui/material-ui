@@ -26,13 +26,49 @@ const styles = {
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 const Grow = React.forwardRef(function Grow(props, ref) {
-  const { children, in: inProp, onEnter, onExit, style, timeout = 'auto', ...other } = props;
+  const {
+    children,
+    disableStrictModeCompat = false,
+    in: inProp,
+    onEnter,
+    onEntered,
+    onEntering,
+    onExit,
+    onExited,
+    onExiting,
+    style,
+    timeout = 'auto',
+    // eslint-disable-next-line react/prop-types
+    TransitionComponent = Transition,
+    ...other
+  } = props;
   const timer = React.useRef();
   const autoTimeout = React.useRef();
-  const handleRef = useForkRef(children.ref, ref);
   const theme = useTheme();
 
-  const handleEnter = (node, isAppearing) => {
+  const enableStrictModeCompat = theme.unstable_strictMode && !disableStrictModeCompat;
+  const nodeRef = React.useRef(null);
+  const foreignRef = useForkRef(children.ref, ref);
+  const handleRef = useForkRef(enableStrictModeCompat ? nodeRef : undefined, foreignRef);
+
+  const normalizedTransitionCallback = (callback) => (nodeOrAppearing, maybeAppearing) => {
+    if (callback) {
+      const [node, isAppearing] = enableStrictModeCompat
+        ? [nodeRef.current, nodeOrAppearing]
+        : [nodeOrAppearing, maybeAppearing];
+
+      // onEnterXxx and onExitXxx callbacks have a different arguments.length value.
+      if (isAppearing === undefined) {
+        callback(node);
+      } else {
+        callback(node, isAppearing);
+      }
+    }
+  };
+
+  const handleEntering = normalizedTransitionCallback(onEntering);
+
+  const handleEnter = normalizedTransitionCallback((node, isAppearing) => {
     reflow(node); // So the animation always start from the start.
 
     const { duration: transitionDuration, delay } = getTransitionProps(
@@ -64,9 +100,13 @@ const Grow = React.forwardRef(function Grow(props, ref) {
     if (onEnter) {
       onEnter(node, isAppearing);
     }
-  };
+  });
 
-  const handleExit = node => {
+  const handleEntered = normalizedTransitionCallback(onEntered);
+
+  const handleExiting = normalizedTransitionCallback(onExiting);
+
+  const handleExit = normalizedTransitionCallback((node) => {
     const { duration: transitionDuration, delay } = getTransitionProps(
       { style, timeout },
       {
@@ -99,9 +139,12 @@ const Grow = React.forwardRef(function Grow(props, ref) {
     if (onExit) {
       onExit(node);
     }
-  };
+  });
 
-  const addEndListener = (_, next) => {
+  const handleExited = normalizedTransitionCallback(onExited);
+
+  const addEndListener = (nodeOrNext, maybeNext) => {
+    const next = enableStrictModeCompat ? nodeOrNext : maybeNext;
     if (timeout === 'auto') {
       timer.current = setTimeout(next, autoTimeout.current || 0);
     }
@@ -114,11 +157,16 @@ const Grow = React.forwardRef(function Grow(props, ref) {
   }, []);
 
   return (
-    <Transition
+    <TransitionComponent
       appear
       in={inProp}
+      nodeRef={enableStrictModeCompat ? nodeRef : undefined}
       onEnter={handleEnter}
+      onEntered={handleEntered}
+      onEntering={handleEntering}
       onExit={handleExit}
+      onExited={handleExited}
+      onExiting={handleExiting}
       addEndListener={addEndListener}
       timeout={timeout === 'auto' ? null : timeout}
       {...other}
@@ -137,15 +185,25 @@ const Grow = React.forwardRef(function Grow(props, ref) {
           ...childProps,
         });
       }}
-    </Transition>
+    </TransitionComponent>
   );
 });
 
 Grow.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * A single child content element.
    */
   children: PropTypes.element,
+  /**
+   * Enable this prop if you encounter 'Function components cannot be given refs',
+   * use `unstable_createStrictModeTheme`,
+   * and can't forward the ref in the child component.
+   */
+  disableStrictModeCompat: PropTypes.bool,
   /**
    * If `true`, show the component; triggers the enter or exit animation.
    */
@@ -157,7 +215,23 @@ Grow.propTypes = {
   /**
    * @ignore
    */
+  onEntered: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onEntering: PropTypes.func,
+  /**
+   * @ignore
+   */
   onExit: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onExited: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onExiting: PropTypes.func,
   /**
    * @ignore
    */
@@ -169,9 +243,13 @@ Grow.propTypes = {
    * Set to 'auto' to automatically calculate transition time based on height.
    */
   timeout: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
     PropTypes.oneOf(['auto']),
+    PropTypes.number,
+    PropTypes.shape({
+      appear: PropTypes.number,
+      enter: PropTypes.number,
+      exit: PropTypes.number,
+    }),
   ]),
 };
 

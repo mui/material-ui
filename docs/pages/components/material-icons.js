@@ -1,20 +1,24 @@
 import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import Markdown from 'docs/src/pages/components/material-icons/material-icons.md';
-import SearchIcons from 'docs/src/pages/components/material-icons/SearchIcons';
+import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
-const req = name => {
-  const map = {
-    'material-icons.md': Markdown,
-    'SearchIcons.js': {
-      default: SearchIcons,
-    },
-  };
-  return map[name];
-};
-req.keys = () => ['material-icons.md', 'SearchIcons.js'];
-const reqPrefix = 'pages/components/material-icons';
+const pageFilename = 'components/material-icons';
+const requireDemo = require.context(
+  'docs/src/pages/components/material-icons',
+  false,
+  /\.(js|tsx)$/,
+);
+const requireRaw = require.context(
+  '!raw-loader!../../src/pages/components/material-icons',
+  false,
+  /\.(js|md|tsx)$/,
+);
 
-export default function Page() {
-  return <MarkdownDocs disableToc req={req} reqSource={() => {}} reqPrefix={reqPrefix} />;
+export default function Page({ demos, docs }) {
+  return <MarkdownDocs demos={demos} docs={docs} requireDemo={requireDemo} />;
 }
+
+Page.getInitialProps = () => {
+  const { demos, docs } = prepareMarkdown({ pageFilename, requireRaw });
+  return { demos, docs };
+};

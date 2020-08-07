@@ -1,6 +1,6 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
-import Autocomplete, { RenderGroupParams } from '@material-ui/lab/Autocomplete';
+import Autocomplete, { AutocompleteRenderGroupParams } from '@material-ui/lab/Autocomplete';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import { useTheme, makeStyles } from '@material-ui/core/styles';
@@ -26,6 +26,16 @@ const OuterElementType = React.forwardRef<HTMLDivElement>((props, ref) => {
   return <div ref={ref} {...props} {...outerProps} />;
 });
 
+function useResetCache(data: any) {
+  const ref = React.useRef<VariableSizeList>(null);
+  React.useEffect(() => {
+    if (ref.current != null) {
+      ref.current.resetAfterIndex(0, true);
+    }
+  }, [data]);
+  return ref;
+}
+
 // Adapter for react-window
 const ListboxComponent = React.forwardRef<HTMLDivElement>(function ListboxComponent(props, ref) {
   const { children, ...other } = props;
@@ -50,6 +60,8 @@ const ListboxComponent = React.forwardRef<HTMLDivElement>(function ListboxCompon
     return itemData.map(getChildSize).reduce((a, b) => a + b, 0);
   };
 
+  const gridRef = useResetCache(itemCount);
+
   return (
     <div ref={ref}>
       <OuterElementContext.Provider value={other}>
@@ -57,10 +69,10 @@ const ListboxComponent = React.forwardRef<HTMLDivElement>(function ListboxCompon
           itemData={itemData}
           height={getHeight() + 2 * LISTBOX_PADDING}
           width="100%"
-          key={itemCount}
+          ref={gridRef}
           outerElementType={OuterElementType}
           innerElementType="ul"
-          itemSize={index => getChildSize(itemData[index])}
+          itemSize={(index) => getChildSize(itemData[index])}
           overscanCount={5}
           itemCount={itemCount}
         >
@@ -84,6 +96,7 @@ function random(length: number) {
 
 const useStyles = makeStyles({
   listbox: {
+    boxSizing: 'border-box',
     '& ul': {
       padding: 0,
       margin: 0,
@@ -95,9 +108,9 @@ const OPTIONS = Array.from(new Array(10000))
   .map(() => random(10 + Math.ceil(Math.random() * 20)))
   .sort((a: string, b: string) => a.toUpperCase().localeCompare(b.toUpperCase()));
 
-const renderGroup = (params: RenderGroupParams) => [
+const renderGroup = (params: AutocompleteRenderGroupParams) => [
   <ListSubheader key={params.key} component="div">
-    {params.key}
+    {params.group}
   </ListSubheader>,
   params.children,
 ];
@@ -114,9 +127,9 @@ export default function Virtualize() {
       ListboxComponent={ListboxComponent as React.ComponentType<React.HTMLAttributes<HTMLElement>>}
       renderGroup={renderGroup}
       options={OPTIONS}
-      groupBy={option => option[0].toUpperCase()}
-      renderInput={params => <TextField {...params} variant="outlined" label="10,000 options" />}
-      renderOption={option => <Typography noWrap>{option}</Typography>}
+      groupBy={(option) => option[0].toUpperCase()}
+      renderInput={(params) => <TextField {...params} variant="outlined" label="10,000 options" />}
+      renderOption={(option) => <Typography noWrap>{option}</Typography>}
     />
   );
 }

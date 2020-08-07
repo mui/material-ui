@@ -1,32 +1,30 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
-import { createClientRender } from 'test/utils/createClientRender';
+import { act, createClientRender } from 'test/utils/createClientRender';
 import Input from '../Input';
 import Select from '../Select';
 import FormControl from './FormControl';
 import useFormControl from './useFormControl';
 
 describe('<FormControl />', () => {
-  let mount;
+  const mount = createMount();
   const render = createClientRender();
   let classes;
 
   function TestComponent(props) {
     const context = useFormControl();
-    props.contextCallback(context);
+    React.useEffect(() => {
+      props.contextCallback(context);
+    });
     return null;
   }
 
   before(() => {
-    mount = createMount({ strict: true });
     classes = getClasses(<FormControl />);
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<FormControl />, () => ({
@@ -101,11 +99,29 @@ describe('<FormControl />', () => {
       );
       expect(readContext.args[0][0]).to.have.property('focused', false);
 
-      container.querySelector('input').focus();
+      act(() => {
+        container.querySelector('input').focus();
+      });
       expect(readContext.args[1][0]).to.have.property('focused', true);
 
       setProps({ disabled: true });
       expect(readContext.args[2][0]).to.have.property('focused', false);
+    });
+  });
+
+  describe('prop: focused', () => {
+    it('should display input in focused state', () => {
+      const readContext = spy();
+      const { container } = render(
+        <FormControl focused>
+          <Input />
+          <TestComponent contextCallback={readContext} />
+        </FormControl>,
+      );
+
+      expect(readContext.args[0][0]).to.have.property('focused', true);
+      container.querySelector('input').blur();
+      expect(readContext.args[0][0]).to.have.property('focused', true);
     });
   });
 

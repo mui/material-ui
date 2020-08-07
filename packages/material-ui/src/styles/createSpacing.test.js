@@ -11,9 +11,9 @@ describe('createSpacing', () => {
     expect(spacing(1)).to.equal(10);
     spacing = createSpacing([0, 8, 16]);
     expect(spacing(2)).to.equal(16);
-    spacing = createSpacing(factor => factor ** 2);
+    spacing = createSpacing((factor) => factor ** 2);
     expect(spacing(2)).to.equal(4);
-    spacing = createSpacing(factor => `${0.25 * factor}rem`);
+    spacing = createSpacing((factor) => `${0.25 * factor}rem`);
     expect(spacing(2)).to.equal('0.5rem');
   });
 
@@ -26,7 +26,7 @@ describe('createSpacing', () => {
     let spacing;
     spacing = createSpacing();
     expect(spacing()).to.equal(8);
-    spacing = createSpacing(factor => `${0.25 * factor}rem`);
+    spacing = createSpacing((factor) => `${0.25 * factor}rem`);
     expect(spacing()).to.equal('0.25rem');
   });
 
@@ -34,8 +34,16 @@ describe('createSpacing', () => {
     let spacing;
     spacing = createSpacing();
     expect(spacing(1, 2)).to.equal('8px 16px');
-    spacing = createSpacing(factor => `${0.25 * factor}rem`);
+    spacing = createSpacing((factor) => `${0.25 * factor}rem`);
     expect(spacing(1, 2)).to.equal('0.25rem 0.5rem');
+  });
+
+  it('should support string arguments', () => {
+    let spacing;
+    spacing = createSpacing();
+    expect(spacing(1, 'auto')).to.equal('8px auto');
+    spacing = createSpacing((factor) => `${0.25 * factor}rem`);
+    expect(spacing(1, 'auto', 2, 3)).to.equal('0.25rem auto 0.5rem 0.75rem');
   });
 
   describe('warnings', () => {
@@ -52,7 +60,7 @@ describe('createSpacing', () => {
       const spacing = createSpacing(11);
       expect(spacing.unit).to.equal(11);
       expect(consoleErrorMock.callCount()).to.equal(1);
-      expect(consoleErrorMock.args()[0][0]).to.include(
+      expect(consoleErrorMock.messages()[0]).to.include(
         'theme.spacing.unit usage has been deprecated',
       );
     });
@@ -62,8 +70,8 @@ describe('createSpacing', () => {
         unit: 4,
       });
       expect(consoleErrorMock.callCount()).to.equal(1);
-      expect(consoleErrorMock.args()[0][0]).to.include(
-        'the `theme.spacing` value ([object Object]) is invalid',
+      expect(consoleErrorMock.messages()[0]).to.include(
+        'Material-UI: The `theme.spacing` value ([object Object]) is invalid',
       );
     });
   });

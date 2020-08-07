@@ -1,0 +1,141 @@
+# Proxies
+/fr/* /:splat 200
+/de/* /:splat 200
+/ja/* /:splat 200
+/aa/* /:splat 200
+
+# For Google
+/drafts / 301
+/inbox* / 301
+/trash / 301
+/spam / 301
+
+/size-snapshot https://s3.eu-central-1.amazonaws.com/eps1lon-material-ui/artifacts/master/latest/size-snapshot.json 200
+
+# To add when we finish work on v5.
+# https://next.material-ui.com/* https://material-ui.com/:splat 301!
+
+# We like to have multiple domains O:)
+https://material-ui-next.com/* https://material-ui.com/:splat 301!
+https://material-ui.dev/* https://material-ui.com/:splat 301!
+
+# link shortener
+/r/styles-instance-warning /getting-started/faq/#i-have-several-instances-of-styles-on-the-page 302
+/r/caveat-with-refs-guide /guides/composition/#caveat-with-refs 302
+/r/pseudo-classes-guide /customization/components/#pseudo-classes 302
+/r/input-component-ref-interface /components/text-fields/#integration-with-3rd-party-input-libraries 302
+/r/issue-template https://codesandbox.io/s/material-ui-issue-dh2yh
+/r/ts-issue-template https://www.typescriptlang.org/play/#code/JYWwDg9gTgLgBAKjgQwM5wEoFNkGN4BmUEIcA5FDvmQNwBQokscA3nXHAPSdwwAWWOLhKQAdllEx0ATwgBXOHNRYAJnQC+cIiXIABEMhhYowZABsAtHOCdhlMnToE5o-MAii4AESwgIACgBKVnYuHgBNeSghCBUsDSA 302
+
+/store/* https://material-ui-store.netlify.app/:splat 200
+/store-staging/* https://master--material-ui-store.netlify.app/:splat 200
+
+# To remove at some point (2021).
+/css-in-js/* /styles/:splat 301
+/customization/css-in-js/ /styles/basics/ 301
+/customization/overrides/ /customization/components/ 301
+/demos/selection-controls/ /components/radio-buttons/ 301
+/demos/* /components/:splat 301
+/getting-started/page-layout-examples/* /getting-started/templates/:splat 301
+/guides/csp/ /styles/advanced/#what-is-csp-and-why-is-it-useful 301
+/guides/migration-v0.x /guides/migration-v0x/ 301
+/lab/about/ /components/about-the-lab/ 301
+/lab/api/* /api/:splat 301
+/lab/* /components/:splat 301
+/layout/basics/ /guides/responsive-ui/ 301
+/layout/breakpoints/ /customization/breakpoints/ 301
+/layout/css-in-js/ /styles/basics/ 301
+/layout/* /components/:splat 301
+/page-layout-examples/* /getting-started/templates/:splat 301
+/style/color/ /customization/color/ 301
+/style/reboot/ /components/css-baseline/ 301
+/style/typography https://v3.material-ui.com/style/typography/#migration-to-typography-v2 301
+/style/* /components/:splat 301
+/utils/modals/ /components/modal/ 301
+/utils/popovers/ /components/popover/ 301
+/utils/* /components/:splat 301
+/api/mui-theme-provider/ /styles/api/ 301
+/components/expansion-panels/ /components/accordion/ 301
+/:userLanguage/components/expansion-panels/ /:userLanguage/components/accordion/ 301
+/api/expansion-panel/ /api/accordion/ 301
+/api/expansion-panel-actions/ /api/accordion-actions/ 301
+/api/expansion-panel-details/ /api/accordion-details/ 301
+/api/expansion-panel-summary/ /api/accordion-summary/ 301
+
+# To remove at some point (2022).
+/premium-themes* https://material-ui.com/store/ 301
+/customization/themes/ /customization/theming/ 301
+https://v1-5-0.material-ui.com/* https://v1.material-ui.com/:splat 301!
+https://v3-9-0.material-ui.com/* https://v3.material-ui.com/:splat 301!
+
+# Legacy
+/v0.20.0 https://v0.material-ui.com/v0.20.0
+/v0.19.4 https://v0.material-ui.com/v0.19.4
+/v0.19.3 https://v0.material-ui.com/v0.19.3
+/v0.19.2 https://v0.material-ui.com/v0.19.2
+/v0.19.1 https://v0.material-ui.com/v0.19.1
+/v0.19.0 https://v0.material-ui.com/v0.19.0
+/v0.18.7 https://v0.material-ui.com/v0.18.7
+/v0.18.6 https://v0.material-ui.com/v0.18.6
+/v0.18.5 https://v0.material-ui.com/v0.18.5
+/v0.18.4 https://v0.material-ui.com/v0.18.4
+/v0.18.3 https://v0.material-ui.com/v0.18.3
+/v0.18.2 https://v0.material-ui.com/v0.18.2
+/v0.18.1 https://v0.material-ui.com/v0.18.1
+/v0.18.0 https://v0.material-ui.com/v0.18.0
+/v0.17.2 https://v0.material-ui.com/v0.17.2
+/v0.17.1 https://v0.material-ui.com/v0.17.1
+/v0.17.0 https://v0.material-ui.com/v0.17.0
+/v0.16.7 https://v0.material-ui.com/v0.16.7
+/v0.16.6 https://v0.material-ui.com/v0.16.6
+/v0.16.5 https://v0.material-ui.com/v0.16.5
+/v0.16.2 https://v0.material-ui.com/v0.16.2
+/v0.16.1 https://v0.material-ui.com/v0.16.1
+/v0.16.0 https://v0.material-ui.com/v0.16.0
+/v0.15.4 https://v0.material-ui.com/v0.15.4
+/v0.15.3 https://v0.material-ui.com/v0.15.3
+/v0.15.2 https://v0.material-ui.com/v0.15.2
+/v0.15.1 https://v0.material-ui.com/v0.15.1
+/v0.15.0 https://v0.material-ui.com/v0.15.0
+/v0.14.4 https://v0.material-ui.com/v0.14.4
+/v0.14.3 https://v0.material-ui.com/v0.14.3
+/v0.14.2 https://v0.material-ui.com/v0.14.2
+/v0.14.1 https://v0.material-ui.com/v0.14.1
+/v0.14.0 https://v0.material-ui.com/v0.14.0
+/v0.13.4 https://v0.material-ui.com/v0.13.4
+/v0.13.3 https://v0.material-ui.com/v0.13.3
+/v0.13.2 https://v0.material-ui.com/v0.13.2
+/v0.13.1 https://v0.material-ui.com/v0.13.1
+/v0.13.0 https://v0.material-ui.com/v0.13.0
+/v0.12.5 https://v0.material-ui.com/v0.12.5
+/v0.12.4 https://v0.material-ui.com/v0.12.4
+/v0.12.3 https://v0.material-ui.com/v0.12.3
+/v0.12.2 https://v0.material-ui.com/v0.12.2
+/v0.12.1 https://v0.material-ui.com/v0.12.1
+/v0.12.0 https://v0.material-ui.com/v0.12.0
+/v0.11.1 https://v0.material-ui.com/v0.11.1
+/v0.11.0 https://v0.material-ui.com/v0.11.0
+/v0.10.4 https://v0.material-ui.com/v0.10.4
+/v0.10.3 https://v0.material-ui.com/v0.10.3
+/v0.10.2 https://v0.material-ui.com/v0.10.2
+/v0.10.1 https://v0.material-ui.com/v0.10.1
+/v0.10.0 https://v0.material-ui.com/v0.10.0
+/v0.9.2 https://v0.material-ui.com/v0.9.2
+/v0.9.1 https://v0.material-ui.com/v0.9.1
+/v0.9.0 https://v0.material-ui.com/v0.9.0
+/v0.8.0 https://v0.material-ui.com/v0.8.0
+/v0.7.5 https://v0.material-ui.com/v0.7.5
+/v0.7.2 https://v0.material-ui.com/v0.7.2
+/v0.7.1 https://v0.material-ui.com/v0.7.1
+/v0.5.0 https://v0.material-ui.com/v0.5.0
+/v0.7.4 https://v0.material-ui.com/v0.7.4
+/v0.7.3 https://v0.material-ui.com/v0.7.3
+/v0.7.0 https://v0.material-ui.com/v0.7.0
+/v0.6.1 https://v0.material-ui.com/v0.6.1
+/v0.6.0 https://v0.material-ui.com/v0.6.0
+/v0.4.1 https://v0.material-ui.com/v0.4.1
+/v0.4.0 https://v0.material-ui.com/v0.4.0
+/v0.3.3 https://v0.material-ui.com/v0.3.3
+/v0.3.2 https://v0.material-ui.com/v0.3.2
+/v0.3.1 https://v0.material-ui.com/v0.3.1
+/v0.3.0 https://v0.material-ui.com/v0.3.0

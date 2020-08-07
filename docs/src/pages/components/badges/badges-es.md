@@ -11,13 +11,13 @@ components: Badge
 
 Ejemplos de insignias que contienen texto, utilizando colores primarios y secundarios. La insignia se aplica a sus hijos.
 
-{{"demo": "pages/demos/badges/SimpleBadge.js"}}
+{{"demo": "pages/components/badges/SimpleBadge.js"}}
 
 ## Placas personalizadas
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+He aquí un ejemplo de personalización del componente. You can learn more about this in the [overrides documentation page](/customization/components/).
 
-{{"demo": "pages/demos/badges/CustomizedBadge.js"}}
+{{"demo": "pages/components/badges/CustomizedBadges.js"}}
 
 ## Visibilidad del Badge
 
@@ -51,4 +51,4 @@ Usted puede usar la propiedad `overlap` para establecer el Badge relativo a la e
 
 Usted puede usar la propiedad `anchorOrigin` para mover el Badge a cualquier esquina del elemento envuelto.
 
-{{"demo": "pages/components/badges/BadgeAlignment.js", "hideHeader": true}}
+{{"demo": "pages/components/badges/BadgeAlignment.js", "hideToolbar": true}}

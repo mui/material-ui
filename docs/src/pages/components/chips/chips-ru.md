@@ -46,7 +46,7 @@ components: Chip
 
 ## Песочница
 
-{{"demo": "pages/components/chips/ChipsPlayground.js", "hideHeader": true}}
+{{"demo": "pages/components/chips/ChipsPlayground.js", "hideToolbar": true}}
 
 ## Доступность
 

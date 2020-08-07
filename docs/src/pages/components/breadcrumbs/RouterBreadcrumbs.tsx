@@ -70,7 +70,7 @@ export default function RouterBreadcrumbs() {
   const [open, setOpen] = React.useState(true);
 
   const handleClick = () => {
-    setOpen(prevOpen => !prevOpen);
+    setOpen((prevOpen) => !prevOpen);
   };
 
   return (
@@ -78,7 +78,7 @@ export default function RouterBreadcrumbs() {
       <div className={classes.root}>
         <Route>
           {({ location }) => {
-            const pathnames = location.pathname.split('/').filter(x => x);
+            const pathnames = location.pathname.split('/').filter((x) => x);
 
             return (
               <Breadcrumbs aria-label="breadcrumb">

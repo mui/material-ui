@@ -3,7 +3,13 @@ export default function requirePropFactory(componentNameInError) {
     return () => null;
   }
 
-  const requireProp = requiredProp => (props, propName, componentName, location, propFullName) => {
+  const requireProp = (requiredProp) => (
+    props,
+    propName,
+    componentName,
+    location,
+    propFullName,
+  ) => {
     const propFullNameSafe = propFullName || propName;
 
     if (typeof props[propName] !== 'undefined' && !props[requiredProp]) {

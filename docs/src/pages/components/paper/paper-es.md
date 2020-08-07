@@ -11,8 +11,8 @@ El fondo de una aplicación asemeja la textura plana, opaca de una hoja de papel
 
 {{"demo": "pages/components/paper/SimplePaper.js", "bg": true}}
 
-## Variants
+## Variantes
 
-If you need an outlined surface, use the `variant` prop.
+Si necesitas una superficie con bordes, usa la propiedad `variant`.
 
 {{"demo": "pages/components/paper/Variants.js", "bg": "inline"}}

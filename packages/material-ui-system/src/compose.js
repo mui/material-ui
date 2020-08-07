@@ -1,7 +1,7 @@
 import merge from './merge';
 
 function compose(...styles) {
-  const fn = props =>
+  const fn = (props) =>
     styles.reduce((acc, style) => {
       const output = style(props);
 

@@ -35,7 +35,7 @@ export default function DelayingAppearance() {
   );
 
   const handleClickLoading = () => {
-    setLoading(prevLoading => !prevLoading);
+    setLoading((prevLoading) => !prevLoading);
   };
 
   const handleClickQuery = () => {

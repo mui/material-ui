@@ -1,4 +1,4 @@
-# Paleta de Cores
+# Paleta
 
 <p class="description">Transmitir significado através da cor com um punhado de classes de utilitário de cor. Inclui suporte para links de estilo com estados de foco também.</p>
 

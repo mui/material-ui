@@ -24,10 +24,10 @@ import {
   DialogContentText,
   Divider,
   Drawer,
-  ExpansionPanel,
-  ExpansionPanelActions,
-  ExpansionPanelDetails,
-  ExpansionPanelSummary,
+  Accordion,
+  AccordionActions,
+  AccordionDetails,
+  AccordionSummary,
   Fade,
   FormControlLabel,
   FormGroup,
@@ -82,6 +82,7 @@ import { Link as ReactRouterLink, LinkProps as ReactRouterLinkProps } from 'reac
 import { ButtonBaseActions } from '@material-ui/core/ButtonBase';
 import { IconButtonProps } from '@material-ui/core/IconButton';
 import ScopedCssBaseline from '@material-ui/core/ScopedCssBaseline';
+import { expectType } from '@material-ui/types';
 
 const log = console.log;
 const FakeIcon = () => <div>ICON</div>;
@@ -107,11 +108,11 @@ const AppBarTest = () => (
 const AvatarTest = () => (
   <div>
     <Avatar
-      ref={elem => {
-        elem; // $ExpectType HTMLDivElement | null
+      ref={(elem) => {
+        expectType<HTMLDivElement | null, typeof elem>(elem);
       }}
-      onClick={e => {
-        e; // $ExpectType MouseEvent<HTMLDivElement, MouseEvent>
+      onClick={(e) => {
+        expectType<React.MouseEvent<HTMLDivElement, MouseEvent>, typeof e>(e);
         log(e);
       }}
       alt="Image Alt"
@@ -119,11 +120,11 @@ const AvatarTest = () => (
     />
     <Avatar<'button'>
       component="button"
-      ref={elem => {
-        elem; // $ExpectType HTMLButtonElement | null
+      ref={(elem) => {
+        expectType<HTMLButtonElement | null, typeof elem>(elem);
       }}
-      onClick={e => {
-        e; // $ExpectType MouseEvent<HTMLButtonElement, MouseEvent>
+      onClick={(e) => {
+        expectType<React.MouseEvent<HTMLButtonElement, MouseEvent>, typeof e>(e);
         log(e);
       }}
       alt="Image Alt"
@@ -139,15 +140,14 @@ const AvatarTest = () => (
     <Avatar component={TestOverride} x={3} alt="Image Alt" src="example.jpg" />
     <Avatar<typeof TestOverride>
       component={TestOverride}
-      ref={elem => {
-        elem; // $ExpectType HTMLDivElement | null
+      ref={(elem) => {
+        expectType<HTMLDivElement | null, typeof elem>(elem);
       }}
       x={3}
       alt="Image Alt"
       src="example.jpg"
     />
-    // onClick isn't allowed since we're overriding with a component that // doesn't have that prop:
-    // $ExpectError
+    {/* @ts-expect-error onClick isn't allowed since we're overriding with a component that doesn't have that prop: */}
     <Avatar component={TestOverride} onClick={log} />
   </div>
 );
@@ -164,7 +164,7 @@ const BottomNavigationTest = () => {
   const value = 123;
 
   return (
-    <BottomNavigation value={value} onChange={e => log(e)} showLabels>
+    <BottomNavigation value={value} onChange={(e) => log(e)} showLabels>
       <BottomNavigationAction label="Recents" icon={<FakeIcon />} />
       <BottomNavigationAction label="Favorites" />
       <BottomNavigationAction label={<span>Nearby</span>} icon={<FakeIcon />} />
@@ -193,7 +193,7 @@ const IconButtonTest = () => (
       const ForwardedLink = React.forwardRef<HTMLAnchorElement, ReactRouterLinkProps>(
         (props, ref) => <ReactRouterLink {...props} innerRef={ref} />,
       );
-      const ExtendedIconButton: React.FC<IconButtonProps<typeof ForwardedLink>> = props => (
+      const ExtendedIconButton: React.FC<IconButtonProps<typeof ForwardedLink>> = (props) => (
         <IconButton component={ForwardedLink} {...props} />
       );
       return (
@@ -287,8 +287,8 @@ const CardMediaTest = () => (
 const ChipsTest = () => (
   <div>
     <Chip label="Basic Chip" />
-    <Chip avatar={<Avatar>M</Avatar>} label="Clickable Chip" onClick={e => log(e)} />
-    <Chip avatar={<Avatar src={'image.bmp'} />} label="Deletable Chip" onDelete={e => log(e)} />
+    <Chip avatar={<Avatar>M</Avatar>} label="Clickable Chip" onClick={(e) => log(e)} />
+    <Chip avatar={<Avatar src={'image.bmp'} />} label="Deletable Chip" onDelete={(e) => log(e)} />
     <Chip
       avatar={
         <Avatar>
@@ -296,8 +296,8 @@ const ChipsTest = () => (
         </Avatar>
       }
       label="Clickable Deletable Chip"
-      onClick={e => log(e)}
-      onDelete={e => log(e)}
+      onClick={(e) => log(e)}
+      onDelete={(e) => log(e)}
     />
   </div>
 );
@@ -305,12 +305,12 @@ const ChipsTest = () => (
 const DialogTest = () => {
   const emails = ['username@gmail.com', 'user02@gmail.com'];
   return (
-    <Dialog onClose={e => log(e)} open>
+    <Dialog onClose={(e) => log(e)} open>
       <DialogTitle>Set backup account</DialogTitle>
       <div>
         <List>
-          {emails.map(email => (
-            <ListItem button onClick={e => log(e)} key={email}>
+          {emails.map((email) => (
+            <ListItem button onClick={(e) => log(e)} key={email}>
               <ListItemAvatar>
                 <Avatar>
                   <FakeIcon />
@@ -320,11 +320,11 @@ const DialogTest = () => {
             </ListItem>
           ))}
           <ListItem
-            ref={elem => {
-              elem; // $ExpectType HTMLLIElement | null
+            ref={(elem) => {
+              expectType<HTMLLIElement | null, typeof elem>(elem);
             }}
-            onClick={e => {
-              e; // $ExpectType MouseEvent<HTMLLIElement, MouseEvent>
+            onClick={(e) => {
+              expectType<React.MouseEvent<HTMLLIElement, MouseEvent>, typeof e>(e);
               log(e);
             }}
           >
@@ -335,11 +335,11 @@ const DialogTest = () => {
           </ListItem>
           <ListItem
             button
-            ref={elem => {
-              elem; // $ExpectType HTMLDivElement | null
+            ref={(elem) => {
+              expectType<HTMLDivElement | null, typeof elem>(elem);
             }}
-            onClick={e => {
-              e; // $ExpectType MouseEvent<HTMLDivElement, MouseEvent>
+            onClick={(e) => {
+              expectType<React.MouseEvent<HTMLDivElement, MouseEvent>, typeof e>(e);
               log(e);
             }}
           >
@@ -352,11 +352,11 @@ const DialogTest = () => {
           </ListItem>
           <ListItem<'a'>
             component="a"
-            ref={elem => {
-              elem; // $ExpectType HTMLAnchorElement | null
+            ref={(elem) => {
+              expectType<HTMLAnchorElement | null, typeof elem>(elem);
             }}
-            onClick={e => {
-              e; // $ExpectType MouseEvent<HTMLAnchorElement, MouseEvent>
+            onClick={(e) => {
+              expectType<React.MouseEvent<HTMLAnchorElement, MouseEvent>, typeof e>(e);
               log(e);
             }}
             button
@@ -399,15 +399,15 @@ const DrawerTest = () => {
   };
   return (
     <div>
-      <Drawer variant="persistent" open={open.left} onClose={e => log(e)} onClick={e => log(e)}>
+      <Drawer variant="persistent" open={open.left} onClose={(e) => log(e)} onClick={(e) => log(e)}>
         List
       </Drawer>
       <Drawer
         variant="temporary"
         anchor="top"
         open={open.top}
-        onClose={e => log(e)}
-        onClick={e => log(e)}
+        onClose={(e) => log(e)}
+        onClick={(e) => log(e)}
         ModalProps={{
           hideBackdrop: true,
         }}
@@ -418,8 +418,8 @@ const DrawerTest = () => {
         anchor="bottom"
         variant="temporary"
         open={open.bottom}
-        onClose={e => log(e)}
-        onClick={e => log(e)}
+        onClose={(e) => log(e)}
+        onClick={(e) => log(e)}
       >
         List
       </Drawer>
@@ -427,8 +427,8 @@ const DrawerTest = () => {
         variant="persistent"
         anchor="right"
         open={open.right}
-        onClose={e => log(e)}
-        onClick={e => log(e)}
+        onClose={(e) => log(e)}
+        onClick={(e) => log(e)}
       >
         List
       </Drawer>
@@ -447,18 +447,18 @@ const SwipeableDrawerTest = () => {
     <div>
       <SwipeableDrawer
         open={open.left}
-        onClose={e => log(e)}
-        onClick={e => log(e)}
-        onOpen={e => log(e)}
+        onClose={(e) => log(e)}
+        onClick={(e) => log(e)}
+        onOpen={(e) => log(e)}
       >
         List
       </SwipeableDrawer>
       <SwipeableDrawer
         anchor="top"
         open={open.top}
-        onClose={e => log(e)}
-        onClick={e => log(e)}
-        onOpen={e => log(e)}
+        onClose={(e) => log(e)}
+        onClick={(e) => log(e)}
+        onOpen={(e) => log(e)}
         ModalProps={{
           hideBackdrop: true,
         }}
@@ -468,9 +468,9 @@ const SwipeableDrawerTest = () => {
       <SwipeableDrawer
         anchor="bottom"
         open={open.bottom}
-        onClose={e => log(e)}
-        onClick={e => log(e)}
-        onOpen={e => log(e)}
+        onClose={(e) => log(e)}
+        onClick={(e) => log(e)}
+        onOpen={(e) => log(e)}
       >
         List
       </SwipeableDrawer>
@@ -478,9 +478,9 @@ const SwipeableDrawerTest = () => {
         variant="temporary"
         anchor="right"
         open={open.right}
-        onClose={e => log(e)}
-        onClick={e => log(e)}
-        onOpen={e => log(e)}
+        onClose={(e) => log(e)}
+        onClick={(e) => log(e)}
+        onOpen={(e) => log(e)}
       >
         List
       </SwipeableDrawer>
@@ -488,23 +488,23 @@ const SwipeableDrawerTest = () => {
   );
 };
 
-const ExpansionPanelTest = () => (
+const AccordionTest = () => (
   <div>
-    <ExpansionPanel onChange={e => log(e)} expanded disabled>
-      <ExpansionPanelSummary />
-      <ExpansionPanelDetails />
-    </ExpansionPanel>
-    <ExpansionPanel defaultExpanded>
-      <ExpansionPanelSummary expandIcon={<FakeIcon />}>
+    <Accordion onChange={(e) => log(e)} expanded disabled>
+      <AccordionSummary />
+      <AccordionDetails />
+    </Accordion>
+    <Accordion defaultExpanded>
+      <AccordionSummary expandIcon={<FakeIcon />}>
         <Typography>...</Typography>
-      </ExpansionPanelSummary>
-      <ExpansionPanelDetails>
+      </AccordionSummary>
+      <AccordionDetails>
         <Typography>...</Typography>
-      </ExpansionPanelDetails>
-      <ExpansionPanelActions>
+      </AccordionDetails>
+      <AccordionActions>
         <Button size="small">Save</Button>
-      </ExpansionPanelActions>
-    </ExpansionPanel>
+      </AccordionActions>
+    </Accordion>
   </div>
 );
 
@@ -526,8 +526,8 @@ const GridTest = () => (
 );
 
 const GridListTest = () => (
-  <GridList cellHeight={160} cols={3} onClick={e => log(e)}>
-    <GridListTile cols={1} rows={4} onClick={e => log(e)}>
+  <GridList cellHeight={160} cols={3} onClick={(e) => log(e)}>
+    <GridListTile cols={1} rows={4} onClick={(e) => log(e)}>
       <img src="img.png" alt="alt text" />
     </GridListTile>
     ,
@@ -536,8 +536,8 @@ const GridListTest = () => (
 
 const ListTest = () => (
   <List>
-    {[0, 1, 2, 3].map(value => (
-      <ListItem dense button selected={false} key={value} onClick={e => log(e)}>
+    {[0, 1, 2, 3].map((value) => (
+      <ListItem dense button selected={false} key={value} onClick={(e) => log(e)}>
         <Checkbox checked={true} tabIndex={-1} disableRipple />
         <ListItemText primary={`Line item ${value + 1}`} />
         <ListItemSecondaryAction>
@@ -567,18 +567,18 @@ const MenuTest = () => {
       id="lock-menu"
       anchorEl={anchorEl}
       open={true}
-      onClose={e => log(e)}
+      onClose={(e) => log(e)}
       PopoverClasses={{ paper: 'foo' }}
     >
       {options.map((option, index) => (
         <MenuItem
           key={option}
           selected={false}
-          ref={elem => {
-            elem; // $ExpectType HTMLLIElement | null
+          ref={(elem) => {
+            expectType<HTMLLIElement | null, typeof elem>(elem);
           }}
-          onClick={e => {
-            e; // $ExpectType MouseEvent<HTMLLIElement, MouseEvent>
+          onClick={(e) => {
+            expectType<React.MouseEvent<HTMLLIElement, MouseEvent>, typeof e>(e);
             log(e);
           }}
         >
@@ -586,15 +586,15 @@ const MenuTest = () => {
         </MenuItem>
       ))}
       <MenuItem<'a'>
-        action={action => {
+        action={(action) => {
           buttonActionRef.current = action;
         }}
         component="a"
-        ref={elem => {
-          elem; // $ExpectType HTMLAnchorElement | null
+        ref={(elem) => {
+          expectType<HTMLAnchorElement | null, typeof elem>(elem);
         }}
-        onClick={e => {
-          e; // $ExpectType MouseEvent<HTMLAnchorElement, MouseEvent>
+        onClick={(e) => {
+          expectType<React.MouseEvent<HTMLAnchorElement, MouseEvent>, typeof e>(e);
           log(e);
         }}
       >
@@ -602,19 +602,19 @@ const MenuTest = () => {
       </MenuItem>
       <MenuItem
         button={false}
-        ref={elem => {
-          elem; // $ExpectType HTMLLIElement | null
+        ref={(elem) => {
+          expectType<HTMLLIElement | null, typeof elem>(elem);
         }}
       />
       <MenuItem
-        action={action => {
+        action={(action) => {
           buttonActionRef.current = action;
         }}
-        // 'false' is not assignable to true | undefined
-        button={false} // $ExpectError
-        ref={elem => {
+        // @ts-expect-error 'false' is not assignable to true | undefined
+        button={false}
+        ref={(elem) => {
           // inferred from `button={false}` instead of `action`
-          elem; // $ExpectType HTMLLIElement | null
+          expectType<HTMLLIElement | null, typeof elem>(elem);
         }}
       />
     </Menu>
@@ -655,20 +655,30 @@ const SelectionControlTest = () => {
     checkedF: true,
   };
 
-  const handleChange = (name: string) => (event: React.SyntheticEvent<any>, checked: boolean) =>
-    log({ [name]: checked });
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
+    log({ [event.target.name]: event.target.checked });
 
   return (
     <FormGroup row>
       <FormControlLabel
         control={
-          <Checkbox checked={state.checkedA} onChange={handleChange('checkedA')} value="checkedA" />
+          <Checkbox
+            checked={state.checkedA}
+            onChange={handleChange}
+            name="checkedA"
+            value="checkedA"
+          />
         }
         label="Option A"
       />
       <FormControlLabel
         control={
-          <Checkbox checked={state.checkedB} onChange={handleChange('checkedB')} value="checkedB" />
+          <Checkbox
+            checked={state.checkedB}
+            onChange={handleChange}
+            name="checkedB"
+            value="checkedB"
+          />
         }
         label="Option B"
       />
@@ -681,7 +691,9 @@ const SelectionControlTest = () => {
         label="Indeterminate"
       />
       <FormControlLabel
-        control={<Checkbox checked={true} onChange={handleChange('checkedF')} value="checkedF" />}
+        control={
+          <Checkbox checked={true} onChange={handleChange} name="checkedF" value="checkedF" />
+        }
         label="Custom color"
       />
     </FormGroup>
@@ -694,23 +706,39 @@ const SwitchTest = () => {
     checkedB: false,
     checkedE: true,
   };
-  const handleChange = (name: string) => (event: React.SyntheticEvent<any>, checked: boolean) =>
-    log({ [name]: checked });
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
+    log({ [event.target.name]: event.target.checked });
 
   return (
     <div>
-      <Switch checked={state.checkedA} onChange={handleChange('checkedA')} aria-label="checkedA" />
-      <Switch checked={state.checkedB} onChange={handleChange('checkedB')} aria-label="checkedB" />
+      <Switch
+        checked={state.checkedA}
+        onChange={handleChange}
+        name="checkedA"
+        aria-label="checkedA"
+      />
+      <Switch
+        checked={state.checkedB}
+        onChange={handleChange}
+        name="checkedB"
+        aria-label="checkedB"
+      />
       <Switch checked={false} aria-label="checkedC" disabled />
       <Switch checked aria-label="checkedD" disabled />
-      <Switch checked={state.checkedE} onChange={handleChange('checkedE')} aria-label="checkedD" />
+      <Switch
+        checked={state.checkedE}
+        onChange={handleChange}
+        name="checkedE"
+        aria-label="checkedD"
+      />
     </div>
   );
 };
 
 const SnackbarTest = () => (
   <div>
-    <Button onClick={e => log(e)}>Open simple snackbar</Button>
+    <Button onClick={(e) => log(e)}>Open simple snackbar</Button>
     <Snackbar
       anchorOrigin={{
         vertical: 'bottom',
@@ -718,7 +746,7 @@ const SnackbarTest = () => (
       }}
       open={true}
       autoHideDuration={6000}
-      onClose={e => log(e)}
+      onClose={(e) => log(e)}
       ContentProps={
         {
           // 'aria-describedby': 'message-id',
@@ -727,10 +755,10 @@ const SnackbarTest = () => (
       }
       message={<span id="message-id">Note archived</span>}
       action={[
-        <Button key="undo" color="secondary" size="small" onClick={e => log(e)}>
+        <Button key="undo" color="secondary" size="small" onClick={(e) => log(e)}>
           UNDO
         </Button>,
-        <IconButton key="close" aria-label="close" color="inherit" onClick={e => log(e)}>
+        <IconButton key="close" aria-label="close" color="inherit" onClick={(e) => log(e)}>
           <FakeIcon />
         </IconButton>,
       ]}
@@ -848,7 +876,7 @@ const TableTest = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data.map(n => {
+            {data.map((n) => {
               return (
                 <TableRow key={n.id}>
                   <TableCell>{n.name}</TableCell>
@@ -867,7 +895,7 @@ const TableTest = () => {
                 rowsPerPage={2}
                 page={1}
                 onChangePage={() => {}}
-                onChangeRowsPerPage={event => log({ rowsPerPage: event.target.value })}
+                onChangeRowsPerPage={(event) => log({ rowsPerPage: event.target.value })}
               />
             </TableRow>
           </TableFooter>
@@ -880,13 +908,13 @@ const TableTest = () => {
 };
 
 const TabsTest = () => {
-  const TabContainer: React.FunctionComponent = props => (
+  const TabContainer: React.FunctionComponent = (props) => (
     <div style={{ padding: 20 }}>{props.children}</div>
   );
 
   type ClassKey = 'root' | 'button';
 
-  const styles: StyleRulesCallback<Theme, any, ClassKey> = theme => ({
+  const styles: StyleRulesCallback<Theme, any, ClassKey> = (theme) => ({
     root: {
       flexGrow: 1,
       marginTop: theme.spacing(3),
@@ -933,7 +961,7 @@ const TextFieldTest = () => (
       id="name"
       label="Name"
       value={'Alice'}
-      onChange={event => log({ name: event.currentTarget.value })}
+      onChange={(event) => log({ name: event.currentTarget.value })}
     />
     <TextField id="name" label="Name" value={'Alice'} InputProps={{ classes: { root: 'foo' } }} />
     <TextField
@@ -953,7 +981,7 @@ const TextFieldTest = () => (
 );
 
 const SelectTest = () => (
-  <Select input={<Input />} value={10} onChange={e => log(e.currentTarget.value)}>
+  <Select input={<Input />} value={10} onChange={(e) => log(e.currentTarget.value)}>
     <MenuItem value="">
       <em>None</em>
     </MenuItem>
@@ -1042,7 +1070,7 @@ const refTest = () => {
   // recommended: soundness is the responsibility of the dev
   // alternatively use React.useRef<unknown>()  or React.createRef<unknown>()
   <Paper
-    ref={ref => {
+    ref={(ref) => {
       // with runtime overhead, sound usage
       if (ref instanceof HTMLInputElement) {
         const i: number = ref.valueAsNumber;
@@ -1051,8 +1079,7 @@ const refTest = () => {
       const j: number = (ref as HTMLInputElement).valueAsNumber;
       // unsafe casts, unsound usage, no runtime overhead
       const k: number = (ref as any).valueAsNumber;
-      // tslint:disable-next-line ban-ts-ignore
-      // @ts-ignore unsound usage, no runtime overhead, least syntax
+      // @ts-expect-error unsound usage, no runtime overhead, least syntax
       const n: number = ref.valueAsNumber;
     }}
   />;

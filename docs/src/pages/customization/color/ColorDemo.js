@@ -9,7 +9,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Typography from '@material-ui/core/Typography';
 import AddIcon from '@material-ui/icons/Add';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     position: 'relative',
     overflow: 'hidden',
@@ -73,7 +73,7 @@ function ColorDemo(props) {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" color="inherit">
+            <Typography component="div" variant="h6" color="inherit">
               Color
             </Typography>
           </Toolbar>

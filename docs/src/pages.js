@@ -66,7 +66,7 @@ const pages = [
           { pathname: '/components/app-bar' },
           { pathname: '/components/paper' },
           { pathname: '/components/cards' },
-          { pathname: '/components/expansion-panels' },
+          { pathname: '/components/accordion' },
         ],
       },
       {
@@ -122,6 +122,7 @@ const pages = [
           { pathname: '/components/rating' },
           { pathname: '/components/skeleton' },
           { pathname: '/components/speed-dial' },
+          { pathname: '/components/timeline' },
           { pathname: '/components/toggle-button' },
           { pathname: '/components/tree-view' },
         ],
@@ -195,11 +196,11 @@ const pages = [
   },
   {
     pathname: 'https://material-ui.com/store/',
-    title: 'Store',
+    title: 'Premium themes',
     linkProps: {
-      'data-ga-event-category': 'premium-themes',
+      'data-ga-event-category': 'store',
       'data-ga-event-action': 'click',
-      'data-ga-event-label': 'sidenav-link',
+      'data-ga-event-label': 'sidenav',
     },
   },
   {

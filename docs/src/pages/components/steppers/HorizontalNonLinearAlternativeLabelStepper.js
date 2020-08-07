@@ -6,7 +6,7 @@ import StepButton from '@material-ui/core/StepButton';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
   },
@@ -53,7 +53,7 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
     return getSteps().length;
   };
 
-  const isStepOptional = step => {
+  const isStepOptional = (step) => {
     return step === 1;
   };
 
@@ -64,8 +64,8 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
       throw new Error("You can't skip a step that isn't optional.");
     }
 
-    setActiveStep(prevActiveStep => prevActiveStep + 1);
-    setSkipped(prevSkipped => {
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    setSkipped((prevSkipped) => {
       const newSkipped = new Set(prevSkipped.values());
       newSkipped.add(activeStep);
       return newSkipped;
@@ -100,10 +100,10 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
   };
 
   const handleBack = () => {
-    setActiveStep(prevActiveStep => prevActiveStep - 1);
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const handleStep = step => () => {
+  const handleStep = (step) => () => {
     setActiveStep(step);
   };
 
@@ -128,7 +128,7 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
     setSkipped(new Set());
   };
 
-  const isStepSkipped = step => {
+  const isStepSkipped = (step) => {
     return skipped.has(step);
   };
 

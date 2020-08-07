@@ -1,14 +1,24 @@
 import React from 'react';
 import TopLayoutCompany from 'docs/src/modules/components/TopLayoutCompany';
+import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
-const req = require.context('docs/src/pages/company/software-engineer', false, /\.(md|js|tsx)$/);
-const reqSource = require.context(
-  '!raw-loader!../../src/pages/company/software-engineer',
+const pageFilename = 'company/software-engineer';
+const requireDemo = require.context(
+  'docs/src/pages/company/software-engineer',
   false,
   /\.(js|tsx)$/,
 );
-const reqPrefix = 'pages/company/software-engineer';
+const requireRaw = require.context(
+  '!raw-loader!../../src/pages/company/software-engineer',
+  false,
+  /\.(js|md|tsx)$/,
+);
 
-export default function Page() {
-  return <TopLayoutCompany req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
+export default function Page({ demos, docs }) {
+  return <TopLayoutCompany demos={demos} docs={docs} requireDemo={requireDemo} />;
 }
+
+Page.getInitialProps = () => {
+  const { demos, docs } = prepareMarkdown({ pageFilename, requireRaw });
+  return { demos, docs };
+};

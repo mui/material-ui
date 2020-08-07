@@ -25,7 +25,7 @@ const neutralColors = ['Brown', 'Grey', 'Blue Grey'];
 const mainPalette = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
 const altPalette = ['A100', 'A200', 'A400', 'A700'];
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -96,10 +96,10 @@ function getColorGroup(options) {
   const { classes, theme, color, showAltPalette } = options;
   const cssColor = color.replace(' ', '').replace(color.charAt(0), color.charAt(0).toLowerCase());
   let colorsList = [];
-  colorsList = mainPalette.map(mainValue => getColorBlock(classes, theme, cssColor, mainValue));
+  colorsList = mainPalette.map((mainValue) => getColorBlock(classes, theme, cssColor, mainValue));
 
   if (showAltPalette) {
-    altPalette.forEach(altValue => {
+    altPalette.forEach((altValue) => {
       colorsList.push(getColorBlock(classes, theme, cssColor, altValue));
     });
   }
@@ -119,7 +119,7 @@ function Color(props) {
 
   return (
     <div className={classes.root}>
-      {mainColors.map(mainColor =>
+      {mainColors.map((mainColor) =>
         getColorGroup({
           classes,
           theme,
@@ -127,7 +127,7 @@ function Color(props) {
           showAltPalette: true,
         }),
       )}
-      {neutralColors.map(neutralColor =>
+      {neutralColors.map((neutralColor) =>
         getColorGroup({
           classes,
           theme,

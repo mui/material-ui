@@ -18,5 +18,5 @@ export interface Options {
 
 export default function useMediaQuery<Theme = unknown>(
   query: string | ((theme: Theme) => string),
-  options?: Options,
+  options?: Options
 ): boolean;

@@ -54,7 +54,7 @@ TransitionComponent.propTypes = {
   in: PropTypes.bool,
 };
 
-const StyledTreeItem = withStyles(theme => ({
+const StyledTreeItem = withStyles((theme) => ({
   iconContainer: {
     '& .close': {
       opacity: 0.3,
@@ -65,7 +65,7 @@ const StyledTreeItem = withStyles(theme => ({
     paddingLeft: 18,
     borderLeft: `1px dashed ${fade(theme.palette.text.primary, 0.4)}`,
   },
-}))(props => <TreeItem {...props} TransitionComponent={TransitionComponent} />);
+}))((props) => <TreeItem {...props} TransitionComponent={TransitionComponent} />);
 
 const useStyles = makeStyles({
   root: {

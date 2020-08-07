@@ -132,13 +132,17 @@ export default function CustomPaginationActionsTable() {
           {(rowsPerPage > 0
             ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : rows
-          ).map(row => (
+          ).map((row) => (
             <TableRow key={row.name}>
               <TableCell component="th" scope="row">
                 {row.name}
               </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
+              <TableCell style={{ width: 160 }} align="right">
+                {row.calories}
+              </TableCell>
+              <TableCell style={{ width: 160 }} align="right">
+                {row.fat}
+              </TableCell>
             </TableRow>
           ))}
           {emptyRows > 0 && (

@@ -6,7 +6,7 @@ import TableCell from '@material-ui/core/TableCell';
 import Paper from '@material-ui/core/Paper';
 import { AutoSizer, Column, Table } from 'react-virtualized';
 
-const styles = theme => ({
+const styles = (theme) => ({
   flexContainer: {
     display: 'flex',
     alignItems: 'center',
@@ -17,7 +17,7 @@ const styles = theme => ({
     // https://github.com/bvaughn/react-virtualized/issues/454
     '& .ReactVirtualized__Table__headerRow': {
       flip: false,
-      paddingRight: theme.direction === 'rtl' ? '0px !important' : undefined,
+      paddingRight: theme.direction === 'rtl' ? '0 !important' : undefined,
     },
   },
   tableRow: {
@@ -104,7 +104,7 @@ class MuiVirtualizedTable extends React.PureComponent {
               return (
                 <Column
                   key={dataKey}
-                  headerRenderer={headerProps =>
+                  headerRenderer={(headerProps) =>
                     this.headerRenderer({
                       ...headerProps,
                       columnIndex: index,

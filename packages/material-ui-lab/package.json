@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/lab",
-  "version": "4.0.0-alpha.45",
+  "version": "4.0.0-alpha.56",
   "private": false,
   "author": "Material-UI Team",
   "description": "Material-UI Lab - Incubator for Material-UI React components.",
@@ -24,9 +24,9 @@
   "homepage": "https://github.com/mui-org/material-ui/tree/master/packages/material-ui-lab",
   "scripts": {
     "build": "yarn build:cjs && yarn build:esm && yarn build:es && yarn build:copy-files",
-    "build:cjs": "cross-env NODE_ENV=production BABEL_ENV=cjs babel --config-file ../../babel.config.js ./src --out-dir ./build --ignore \"**/*.test.js\"",
-    "build:esm": "cross-env NODE_ENV=production BABEL_ENV=esm babel --config-file ../../babel.config.js ./src --out-dir ./build/esm --ignore \"**/*.test.js\"",
-    "build:es": "cross-env NODE_ENV=production BABEL_ENV=es babel --config-file ../../babel.config.js ./src --out-dir ./build/es --ignore \"**/*.test.js\"",
+    "build:cjs": "node ../../scripts/build cjs",
+    "build:esm": "node ../../scripts/build esm",
+    "build:es": "node ../../scripts/build es",
     "build:copy-files": "node ../../scripts/copy-files.js",
     "prebuild": "rimraf build",
     "release": "yarn build && npm publish build --tag latest",
@@ -34,7 +34,7 @@
     "typescript": "tslint -p tsconfig.json \"src/**/*.{ts,tsx}\""
   },
   "peerDependencies": {
-    "@material-ui/core": "^4.9.0",
+    "@material-ui/core": "^4.9.10",
     "@types/react": "^16.8.6",
     "react": "^16.8.0",
     "react-dom": "^16.8.0"
@@ -46,12 +46,14 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.4.4",
-    "@material-ui/utils": "^4.7.1",
+    "@material-ui/utils": "^4.10.2",
     "clsx": "^1.0.4",
     "prop-types": "^15.7.2",
     "react-is": "^16.8.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@material-ui/types": "^5.1.0"
+  },
   "sideEffects": false,
   "publishConfig": {
     "access": "public"

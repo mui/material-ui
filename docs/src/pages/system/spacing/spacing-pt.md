@@ -6,12 +6,12 @@
 
 O utilitário de espaço converte margens e propriedades de preenchimento para margem e preenchimento de declarações CSS. As propriedades são nomeadas usando o formato `{property}{sides}`.
 
-Onde a *propriedade* é um dos seguintes:
+Onde a *propriedade* é uma das seguintes:
 
 - `m` - para classes que definem *margin*
 - `p` - para classes que definem *padding*
 
-Onde o *sides* é um dos seguintes:
+Onde os *sides* é um dos seguintes:
 
 - `t` - para classes que configuram *margin-top* ou *padding-top*
 - `b` - para classes que configuram *margin-bottom* ou *padding-bottom*
@@ -38,7 +38,7 @@ const theme = {
 <Box m={2} /> // margin: 16px;
 ```
 
-- entrada: `number` & tema: `array`: a propriedade é o valor usado como o índice no array.
+- entrada: `number` & tema: `array`: a propriedade é o valor do índice no array.
 
 ```jsx
 const theme = {
@@ -92,22 +92,22 @@ const theme = {
 import { spacing } from '@material-ui/system';
 ```
 
-| Nome da importação | Prop | Propriedade CSS                 | Chave do tema                                                    |
-|:------------------ |:---- |:------------------------------- |:---------------------------------------------------------------- |
-| `spacing`          | `m`  | `margin`                        | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`          | `mt` | `margin-top`                    | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`          | `mr` | `margin-right`                  | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`          | `mb` | `margin-bottom`                 | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`          | `ml` | `margin-left`                   | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`          | `mx` | `margin-left`, `margin-right`   | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`          | `my` | `margin-top`, `margin-bottom`   | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`          | `p`  | `padding`                       | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`          | `pt` | `padding-top`                   | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`          | `pr` | `padding-right`                 | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`          | `pb` | `padding-bottom`                | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`          | `pl` | `padding-left`                  | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`          | `px` | `padding-left`, `padding-right` | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`          | `py` | `padding-top`, `padding-bottom` | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
+| Nome da importação | Propriedade | Propriedade CSS                 | Chave do tema                                                    |
+|:------------------ |:----------- |:------------------------------- |:---------------------------------------------------------------- |
+| `spacing`          | `m`         | `margin`                        | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
+| `spacing`          | `mt`        | `margin-top`                    | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
+| `spacing`          | `mr`        | `margin-right`                  | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
+| `spacing`          | `mb`        | `margin-bottom`                 | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
+| `spacing`          | `ml`        | `margin-left`                   | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
+| `spacing`          | `mx`        | `margin-left`, `margin-right`   | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
+| `spacing`          | `my`        | `margin-top`, `margin-bottom`   | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
+| `spacing`          | `p`         | `padding`                       | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
+| `spacing`          | `pt`        | `padding-top`                   | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
+| `spacing`          | `pr`        | `padding-right`                 | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
+| `spacing`          | `pb`        | `padding-bottom`                | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
+| `spacing`          | `pl`        | `padding-left`                  | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
+| `spacing`          | `px`        | `padding-left`, `padding-right` | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
+| `spacing`          | `py`        | `padding-top`, `padding-bottom` | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
 
 
 *Algumas pessoas acham a propriedade abreviada confusa, você pode usar a versão completa se preferir:*

@@ -7,17 +7,29 @@ components: ToggleButton, ToggleButtonGroup
 
 <p class="description">Schalter können verwendet werden, um verwandte Optionen zu gruppieren.</p>
 
-Um Gruppen von verwandten [Schaltern](https://material.io/design/components/buttons.html#toggle-button), hervorzuheben, sollte eine Gruppe einen gemeinsamen Container verwenden.
+Um Gruppen von verwandten [Schaltern](https://material.io/components/buttons#toggle-button), hervorzuheben, sollte eine Gruppe einen gemeinsamen Container verwenden. The `ToggleButtonGroup` controls the selected state of its child buttons when given its own `value` prop.
 
-The `ToggleButtonGroup` will control the selected state of its child buttons when given its own `value` prop.
+## Exclusive selection
+
+Text justification toggle buttons present options for left, right, center, full, and justified text with only one item available for selection at a time. Selecting one option deselects any other.
 
 {{"demo": "pages/components/toggle-button/ToggleButtons.js"}}
 
+## Multiple selection
+
+Logically-grouped options, like bold, italic, and underline, allow multiple options to be selected.
+
+{{"demo": "pages/components/toggle-button/ToggleButtonsMultiple.js"}}
+
 ## Größen
 
-Fancy larger or smaller buttons? Verwende die Eigenschaft `size`.
+Fancy larger or smaller buttons? Verwenden Sie die `size` Prop.
 
 {{"demo": "pages/components/toggle-button/ToggleButtonSizes.js"}}
+
+## Vertical buttons
+
+{{"demo": "pages/components/toggle-button/VerticalToggleButtons.js"}}
 
 ## Enforce value set
 
@@ -51,6 +63,5 @@ Hier ist ein Beispiel zum Anpassen der Komponente. Mehr dazu erfahren Sie auf de
 
 ## Barrierefreiheit
 
-ToggleButtonGroup has `role="group"`. You should provide an accessible label with `aria-label="label"`, `aria-labelledby="id"` or `<label>`.
-
-ToggleButton sets `aria-pressed="<bool>"` according to the button state. You should label each button with `aria-label`.
+- ToggleButtonGroup has `role="group"`. You should provide an accessible label with `aria-label="label"`, `aria-labelledby="id"` or `<label>`.
+- ToggleButton sets `aria-pressed="<bool>"` according to the button state. You should label each button with `aria-label`.

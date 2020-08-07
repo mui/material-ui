@@ -13,6 +13,6 @@ O fundo da aplicação simboliza a lisa e opaca textura de uma folha de papel. O
 
 ## Variantes
 
-If you need an outlined surface, use the `variant` prop.
+Se você precisar de uma superfície delineada, use a propriedade `variant`.
 
 {{"demo": "pages/components/paper/Variants.js", "bg": "inline"}}

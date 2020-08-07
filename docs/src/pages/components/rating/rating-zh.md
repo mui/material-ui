@@ -1,45 +1,45 @@
 ---
-title: Rating React component
+title: React 评分组件
 components: Rating
 ---
 
 # Rating 评分
 
-<p class="description">Ratings provide insight regarding others’ opinions and experiences with a product. Users can also rate products they’ve purchased.</p>
+<p class="description">评分组件带我们深入了解他人对产品的意见和体验。 用户还可以对自己购买的产品进行评价。</p>
 
-## Simple ratings
+## 简单的评分组件
 
 {{"demo": "pages/components/rating/SimpleRating.js"}}
 
-## Customized ratings
+## 自定义的评分组件
 
-这是一些自定义样式开关的例子 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
+你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页](/customization/components/) 中了解有关此内容的更多信息。
 
 {{"demo": "pages/components/rating/CustomizedRatings.js"}}
 
-## Hover feedback
+## 悬停反馈
 
-You can display a label on hover to help users pick the correct rating value. The demo uses the `onChangeActive` prop.
+当用户的鼠标悬停在评分组件上时，您可以展示标签以帮助他们选择分值。 以下案例使用了 `onChangeActive` 这一属性。
 
 {{"demo": "pages/components/rating/HoverRating.js"}}
 
-## Half ratings
+## 一半的评分
 
-The rating can display any float number with the `value` prop. Use the `precision` prop to define the minimum increment value change allowed.
+使用 `value` 属性可以让评分组件展示任何的浮点的评分值。 您可以使用 `precision` 属性定义可变化的最小增量值。
 
 {{"demo": "pages/components/rating/HalfRating.js"}}
 
 ## 尺寸
 
-Fancy larger or smaller ratings? Use the `size` prop.
+您想要一个大一点或者小一点的评分组件吗？ 试着使用 `size` 属性吧。
 
 {{"demo": "pages/components/rating/RatingSize.js"}}
 
-## 可访问性
+## 无障碍设计
 
-(WAI tutorial: https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating)
+（WAI 教程：https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating）
 
 这个组件的可访问性依赖于：
 
-- A radio group is used with its fields visually hidden. It contains six radio buttons, one for each star and another for 0 stars, which is checked by default. Make sure you are providing a `name` prop that is unique to the parent form.
-- The labels for the radio buttons contain actual text (“1 Star”, “2 Stars”, …), make sure you provide a `getLabelText` prop when the page language is not English.
+- 在使用单选框组（radio group）时，其字段在视觉上是被隐藏的。 它包含六个单选按钮，其中五个用于每个星，另一个用于 0 星，其默认情况下处于选中状态。 请确保您提供的 `name` 属性在父级表单中是独特的。
+- 单选按钮的标签需要包含一个确切的文本（“一星”，“两星”，.......），并请确认当页面语言不是英语时，您提供了一个 `getLabelText` 属性。

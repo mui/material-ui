@@ -74,7 +74,7 @@ function fastAndSafeJsonStringify(object) {
 }
 
 function logMethod(process, console, type) {
-  return object => {
+  return (object) => {
     const { name, msg, force = false } = object;
     let formatedMsg = msg;
 

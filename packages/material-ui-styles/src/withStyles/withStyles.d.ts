@@ -9,6 +9,8 @@ export {};
 
 type JSSFontface = CSS.FontFace & { fallbacks?: CSS.FontFace[] };
 
+export type PropsFunc<Props extends object, T> = (props: Props) => T;
+
 /**
  * Allows the user to augment the properties available
  */
@@ -29,7 +31,7 @@ export interface CSSProperties extends BaseCSSProperties {
 }
 
 export type BaseCreateCSSProperties<Props extends object = {}> = {
-  [P in keyof BaseCSSProperties]: BaseCSSProperties[P] | ((props: Props) => BaseCSSProperties[P])
+  [P in keyof BaseCSSProperties]: BaseCSSProperties[P] | PropsFunc<Props, BaseCSSProperties[P]>;
 };
 
 export interface CreateCSSProperties<Props extends object = {}>
@@ -55,14 +57,14 @@ export type StyleRules<Props extends object = {}, ClassKey extends string = stri
   // JSS property bag where values are based on props
   | CreateCSSProperties<Props>
   // JSS property bag based on props
-  | ((props: Props) => CreateCSSProperties<Props>)
+  | PropsFunc<Props, CreateCSSProperties<Props>>
 >;
 
 /**
  * @internal
  */
 export type StyleRulesCallback<Theme, Props extends object, ClassKey extends string = string> = (
-  theme: Theme,
+  theme: Theme
 ) => StyleRules<Props, ClassKey>;
 
 export type Styles<Theme, Props extends object, ClassKey extends string = string> =
@@ -121,7 +123,7 @@ export default function withStyles<
   Options extends WithStylesOptions<ThemeOfStyles<StylesType>> = {}
 >(
   style: StylesType,
-  options?: Options,
+  options?: Options
 ): PropInjector<
   WithStyles<StylesType, Options['withTheme']>,
   StyledComponentProps<ClassKeyOfStyles<StylesType>> & PropsOfStyles<StylesType>

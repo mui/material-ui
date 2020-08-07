@@ -22,7 +22,7 @@ function easeIn(t) {
   return t * t;
 }
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     display: 'inline-block',
@@ -65,6 +65,10 @@ export const styles = theme => ({
     strokeDashoffset: '0px', // Add the unit to fix a Edge 16 and below bug.
   },
   '@keyframes circular-rotate': {
+    '0%': {
+      // Fix IE 11 wobbly
+      transformOrigin: '50% 50%',
+    },
     '100%': {
       transform: 'rotate(360deg)',
     },
@@ -167,11 +171,15 @@ const CircularProgress = React.forwardRef(function CircularProgress(props, ref) 
 });
 
 CircularProgress.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -179,15 +187,15 @@ CircularProgress.propTypes = {
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color: PropTypes.oneOf(['primary', 'secondary', 'inherit']),
+  color: PropTypes.oneOf(['inherit', 'primary', 'secondary']),
   /**
    * If `true`, the shrink animation is disabled.
    * This only works if variant is `indeterminate`.
    */
-  disableShrink: chainPropTypes(PropTypes.bool, props => {
+  disableShrink: chainPropTypes(PropTypes.bool, (props) => {
     if (props.disableShrink && props.variant && props.variant !== 'indeterminate') {
       return new Error(
-        'Material-UI: you have provided the `disableShrink` prop ' +
+        'Material-UI: You have provided the `disableShrink` prop ' +
           'with a variant other than `indeterminate`. This will have no effect.',
       );
     }

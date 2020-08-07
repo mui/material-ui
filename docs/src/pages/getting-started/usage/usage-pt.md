@@ -1,12 +1,12 @@
-# Utilização
+# Uso
 
 <p class="description">Comece com React e Material-UI em pouco tempo.</p>
 
-Componentes do Material-UI funcionam isoladamente. **Eles são auto-suficientes**, e só irão injetar os estilos que eles precisam para exibir. Eles não contam com qualquer folha de estilo global como [normalize.css](https://github.com/necolas/normalize.css/).
+Componentes do Material-UI funcionam isoladamente. **Eles são independentes**, e só irão injetar os estilos que eles precisam para exibir. Eles não contam com qualquer folha de estilo global como [normalize.css](https://github.com/necolas/normalize.css/).
 
 Você pode usar qualquer um dos componentes conforme demonstrado na documentação. Por favor, consulte a [página de demonstração](/components/buttons/) de cada componente para ver como eles devem ser importados.
 
-## Inicio rápido
+## Vamos começar!
 
 Aqui está um exemplo rápido para você começar, **é literalmente tudo que você precisa**:
 
@@ -18,7 +18,7 @@ import Button from '@material-ui/core/Button';
 function App() {
   return (
     <Button variant="contained" color="primary">
-      Olá Mundo
+      Hello World
     </Button>
   );
 }
@@ -28,15 +28,15 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 Sim, isso é tudo o que você precisa para começar, como você pode ver nesta demonstração ao vivo e interativa:
 
-{{"demo": "pages/getting-started/usage/Usage.js", "hideHeader": true, "bg": true}}
+{{"demo": "pages/getting-started/usage/Usage.js", "hideToolbar": true, "bg": true}}
 
 ## Globais
 
-A experiência de uso com o Material-UI pode ser melhorada com um punhado de configurações globais importantes, das quais você precisa estar ciente.
+A experiência de uso com o Material-UI pode ser melhorada com algumas configurações globais importantes, das quais você precisa estar ciente.
 
 ### Meta tag para responsividade
 
-Material-UI is developed mobile-first, a strategy in which we first write code for mobile devices, and then scale up components as necessary using CSS media queries. Para garantir a renderização adequada e o zoom de toque para todos os dispositivos, adicione a meta tag de visualização responsiva ao seu elemento `<head>`.
+O Material-UI é desenvolvido com a estratégia mobile-first, uma estratégia na qual primeiro escrevemos código para dispositivos móveis e, em seguida, dimensionamos componentes conforme necessário, usando consultas de mídia CSS. Para garantir a renderização adequada e o zoom de toque para todos os dispositivos, adicione a meta tag de visualização responsiva ao seu elemento `<head>`.
 
 ```html
 <meta
@@ -59,4 +59,4 @@ Agora que você tem uma ideia da configuração básica, é hora de aprender mai
 
 - Como aplicar [a fonte e a tipografia do Material Design](/components/typography/).
 - Como tirar proveito da [solução de tema](/customization/theming/).
-- Como [sobrescrever](/customization/components/) o visual e a aparência dos componentes.
+- Como [customizar](/customization/components/) o visual e a aparência dos componentes.

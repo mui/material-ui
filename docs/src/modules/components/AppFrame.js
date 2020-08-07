@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import Router, { Router as Router2, useRouter } from 'next/router';
+import Router, { useRouter } from 'next/router';
+import { rewriteUrlForNextExport } from 'next/dist/next-server/lib/router/rewrite-url-for-export';
 import { withStyles, useTheme } from '@material-ui/core/styles';
 import NProgress from 'nprogress';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -52,8 +53,6 @@ Router.onRouteChangeError = () => {
 
 const AppSearch = React.lazy(() => import('docs/src/modules/components/AppSearch'));
 function DeferredAppSearch() {
-  const fallback = null;
-
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => {
     setMounted(true);
@@ -67,16 +66,16 @@ function DeferredAppSearch() {
         as="style"
       />
       {/* Suspense isn't supported for SSR yet */}
-      {mounted && (
-        <React.Suspense fallback={fallback}>
+      {mounted ? (
+        <React.Suspense fallback={null}>
           <AppSearch />
         </React.Suspense>
-      )}
+      ) : null}
     </React.Fragment>
   );
 }
 
-const styles = theme => ({
+const styles = (theme) => ({
   '@global': {
     '#main-content': {
       outline: 0,
@@ -112,8 +111,8 @@ const styles = theme => ({
     },
   },
   appBar: {
-    color: theme.palette.type === 'dark' ? '#fff' : null,
-    backgroundColor: theme.palette.type === 'dark' ? theme.palette.background.level2 : null,
+    color: theme.palette.type === 'light' ? null : '#fff',
+    backgroundColor: theme.palette.type === 'light' ? null : theme.palette.background.level2,
     transition: theme.transitions.create('width'),
   },
   language: {
@@ -145,18 +144,18 @@ const styles = theme => ({
 });
 
 function AppFrame(props) {
-  const { children, classes } = props;
+  const { children, classes, disableDrawer = false } = props;
   const theme = useTheme();
-  const t = useSelector(state => state.options.t);
-  const userLanguage = useSelector(state => state.options.userLanguage);
+  const t = useSelector((state) => state.options.t);
+  const userLanguage = useSelector((state) => state.options.userLanguage);
 
   const crowdInLocale = LOCALES[userLanguage] || userLanguage;
 
   const [languageMenu, setLanguageMenu] = React.useState(null);
-  const handleLanguageIconClick = event => {
+  const handleLanguageIconClick = (event) => {
     setLanguageMenu(event.currentTarget);
   };
-  const handleLanguageMenuClose = event => {
+  const handleLanguageMenuClose = (event) => {
     if (event.currentTarget.nodeName === 'A') {
       document.cookie = `userLanguage=noDefault;path=/;max-age=31536000`;
     }
@@ -182,14 +181,14 @@ function AppFrame(props) {
   };
 
   const router = useRouter();
-  const { canonical } = pathnameToLanguage(Router2._rewriteUrlForNextExport(router.asPath));
+  const { canonical } = pathnameToLanguage(rewriteUrlForNextExport(router.asPath));
   const { activePage } = React.useContext(PageContext);
 
   let disablePermanent = false;
   let navIconClassName = '';
   let appBarClassName = classes.appBar;
 
-  if (!activePage || activePage.disableDrawer === true) {
+  if (activePage?.disableDrawer === true || disableDrawer === true) {
     disablePermanent = true;
     appBarClassName += ` ${classes.appBarHome}`;
   } else {
@@ -225,26 +224,26 @@ function AppFrame(props) {
               aria-haspopup="true"
               aria-label={t('changeLanguage')}
               onClick={handleLanguageIconClick}
-              data-ga-event-category="AppBar"
+              data-ga-event-category="header"
               data-ga-event-action="language"
             >
               <LanguageIcon />
               <span className={classes.language}>
                 {userLanguage === 'aa'
                   ? 'Translating'
-                  : LANGUAGES_LABEL.filter(language => language.code === userLanguage)[0].text}
+                  : LANGUAGES_LABEL.filter((language) => language.code === userLanguage)[0].text}
               </span>
               <ExpandMoreIcon fontSize="small" />
             </Button>
           </Tooltip>
-          <NoSsr>
+          <NoSsr defer>
             <Menu
               id="language-menu"
               anchorEl={languageMenu}
               open={Boolean(languageMenu)}
               onClose={handleLanguageMenuClose}
             >
-              {LANGUAGES_LABEL.map(language => (
+              {LANGUAGES_LABEL.map((language) => (
                 <MenuItem
                   component="a"
                   data-no-link="true"
@@ -280,17 +279,30 @@ function AppFrame(props) {
               </MenuItem>
             </Menu>
           </NoSsr>
+          <Notifications />
           <Tooltip title={t('editWebsiteColors')} enterDelay={300}>
             <IconButton
               color="inherit"
               aria-label={t('editWebsiteColors')}
               component={Link}
               naked
-              href="/customization/color/#color-tool"
-              data-ga-event-category="AppBar"
+              href="/customization/color/#playground"
+              data-ga-event-category="header"
               data-ga-event-action="colors"
             >
               <ColorsIcon />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title={t('github')} enterDelay={300}>
+            <IconButton
+              component="a"
+              color="inherit"
+              href="https://github.com/mui-org/material-ui"
+              aria-label={t('github')}
+              data-ga-event-category="header"
+              data-ga-event-action="github"
+            >
+              <GitHubIcon />
             </IconButton>
           </Tooltip>
           <Tooltip title={t('toggleTheme')} enterDelay={300}>
@@ -298,7 +310,7 @@ function AppFrame(props) {
               color="inherit"
               onClick={handleTogglePaletteType}
               aria-label={t('toggleTheme')}
-              data-ga-event-category="AppBar"
+              data-ga-event-category="header"
               data-ga-event-action="dark"
             >
               {theme.palette.type === 'light' ? <Brightness4Icon /> : <Brightness7Icon />}
@@ -306,10 +318,11 @@ function AppFrame(props) {
           </Tooltip>
           <Tooltip title={t('toggleRTL')} key={theme.direction} enterDelay={300}>
             <IconButton
+              edge="end"
               color="inherit"
               onClick={handleToggleDirection}
               aria-label={t('toggleRTL')}
-              data-ga-event-category="AppBar"
+              data-ga-event-category="header"
               data-ga-event-action="rtl"
             >
               {theme.direction === 'rtl' ? (
@@ -317,20 +330,6 @@ function AppFrame(props) {
               ) : (
                 <FormatTextdirectionRToL />
               )}
-            </IconButton>
-          </Tooltip>
-          <Notifications />
-          <Tooltip title={t('github')} enterDelay={300}>
-            <IconButton
-              edge="end"
-              component="a"
-              color="inherit"
-              href="https://github.com/mui-org/material-ui"
-              aria-label={t('github')}
-              data-ga-event-category="AppBar"
-              data-ga-event-action="github"
-            >
-              <GitHubIcon />
             </IconButton>
           </Tooltip>
         </Toolbar>
@@ -350,6 +349,7 @@ function AppFrame(props) {
 AppFrame.propTypes = {
   children: PropTypes.node.isRequired,
   classes: PropTypes.object.isRequired,
+  disableDrawer: PropTypes.node,
 };
 
 export default withStyles(styles)(AppFrame);

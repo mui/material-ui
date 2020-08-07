@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { useFakeTimers } from 'sinon';
 import { expect } from 'chai';
-import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from '@material-ui/core/test-utils';
+import createMount from 'test/utils/createMount';
 import { createClientRender } from 'test/utils/createClientRender';
 import describeConformance from '../test-utils/describeConformance';
 import TouchRipple, { DELAY_RIPPLE } from './TouchRipple';
@@ -10,7 +11,7 @@ const cb = () => {};
 
 describe('<TouchRipple />', () => {
   let classes;
-  let mount;
+  const mount = createMount();
   const render = createClientRender();
 
   /**
@@ -48,11 +49,6 @@ describe('<TouchRipple />', () => {
 
   before(() => {
     classes = getClasses(<TouchRipple />);
-    mount = createMount({ strict: true });
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<TouchRipple />, () => ({

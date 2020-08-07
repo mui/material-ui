@@ -3,7 +3,7 @@
 <p class="description">While you can use the JSS based styling solution provided by Material-UI to style your application, you can also use the one you already know and love (from plain CSS to styled-components).</p>
 
 This guide aims to document the most popular alternatives,
-but you should find that the principals applied here can be adapted to other libraries.
+but you should find that the principles applied here can be adapted to other libraries.
 There are examples for the following styling solutions:
 
 - [Plain CSS](#plain-css)
@@ -17,7 +17,7 @@ There are examples for the following styling solutions:
 
 Nothing fancy, just plain CSS.
 
-{{"demo": "pages/guides/interoperability/StyledComponents.js", "hideHeader": true}}
+{{"demo": "pages/guides/interoperability/StyledComponents.js", "hideToolbar": true}}
 
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/plain-css-mtzri)
 
@@ -38,6 +38,7 @@ Nothing fancy, just plain CSS.
 ```jsx
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import './PlainCssButton.css';
 
 export default function PlainCssButton() {
   return (
@@ -71,7 +72,7 @@ You need to use the [`classes`](/styles/advanced/#overriding-styles-classes-prop
 
 The following example overrides the `label` style of `Button` in addition to the custom styles on the button itself.
 
-{{"demo": "pages/guides/interoperability/StyledComponents.js", "hideHeader": true}}
+{{"demo": "pages/guides/interoperability/StyledComponents.js", "hideToolbar": true}}
 
 **PlainCssButtonDeep.css**
 ```css
@@ -93,6 +94,7 @@ The following example overrides the `label` style of `Button` in addition to the
 ```jsx
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import './PlainCssButtonDeep.css';
 
 export default function PlainCssButtonDeep() {
   return (
@@ -132,6 +134,7 @@ Explicitly providing the class names to the component is too much effort?
 ```jsx
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import './GlobalCssButton.css';
 
 export default function GlobalCssButton() {
   return <Button>Customized</Button>;
@@ -158,7 +161,7 @@ import { StylesProvider } from '@material-ui/core/styles';
 
 The `styled()` method works perfectly on all of the components.
 
-{{"demo": "pages/guides/interoperability/StyledComponents.js", "hideHeader": true}}
+{{"demo": "pages/guides/interoperability/StyledComponents.js", "hideToolbar": true}}
 
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/styled-components-r1fsr)
 
@@ -339,7 +342,7 @@ const StyledMenu = styled(({ className, ...props }) => (
 It's hard to know the market share of [this styling solution](https://github.com/css-modules/css-modules) as it's dependent on the
 bundling solution people are using.
 
-{{"demo": "pages/guides/interoperability/StyledComponents.js", "hideHeader": true}}
+{{"demo": "pages/guides/interoperability/StyledComponents.js", "hideToolbar": true}}
 
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/css-modules-3j29h)
 
@@ -395,7 +398,7 @@ You need to use the [`classes`](/styles/advanced/#overriding-styles-classes-prop
 
 The following example overrides the `label` style of `Button` in addition to the custom styles on the button itself.
 
-{{"demo": "pages/guides/interoperability/StyledComponents.js", "hideHeader": true}}
+{{"demo": "pages/guides/interoperability/StyledComponents.js", "hideToolbar": true}}
 
 **CssModulesButtonDeep.css**
 ```css
@@ -439,7 +442,7 @@ export default function CssModulesButtonDeep() {
 
 Emotion's **css()** method works seamlessly with Material-UI.
 
-{{"demo": "pages/guides/interoperability/EmotionCSS.js", "hideHeader": true}}
+{{"demo": "pages/guides/interoperability/EmotionCSS.js", "hideToolbar": true}}
 
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/emotion-bgfxj)
 

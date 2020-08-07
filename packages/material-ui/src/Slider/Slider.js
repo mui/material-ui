@@ -5,7 +5,7 @@ import { chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import useTheme from '../styles/useTheme';
 import { fade, lighten, darken } from '../styles/colorManipulator';
-import { useIsFocusVisible } from '../utils/focusVisible';
+import useIsFocusVisible from '../utils/useIsFocusVisible';
 import ownerDocument from '../utils/ownerDocument';
 import useEventCallback from '../utils/useEventCallback';
 import useForkRef from '../utils/useForkRef';
@@ -90,7 +90,7 @@ function setValueIndex({ values, source, newValue, index }) {
     return source;
   }
 
-  const output = [...values];
+  const output = values.slice();
   output[index] = newValue;
   return output;
 }
@@ -100,7 +100,7 @@ function focusThumb({ sliderRef, activeIndex, setActive }) {
     !sliderRef.current.contains(document.activeElement) ||
     Number(document.activeElement.getAttribute('data-index')) !== activeIndex
   ) {
-    sliderRef.current.querySelector(`[data-index="${activeIndex}"]`).focus();
+    sliderRef.current.querySelector(`[role="slider"][data-index="${activeIndex}"]`).focus();
   }
 
   if (setActive) {
@@ -110,22 +110,22 @@ function focusThumb({ sliderRef, activeIndex, setActive }) {
 
 const axisProps = {
   horizontal: {
-    offset: percent => ({ left: `${percent}%` }),
-    leap: percent => ({ width: `${percent}%` }),
+    offset: (percent) => ({ left: `${percent}%` }),
+    leap: (percent) => ({ width: `${percent}%` }),
   },
   'horizontal-reverse': {
-    offset: percent => ({ right: `${percent}%` }),
-    leap: percent => ({ width: `${percent}%` }),
+    offset: (percent) => ({ right: `${percent}%` }),
+    leap: (percent) => ({ width: `${percent}%` }),
   },
   vertical: {
-    offset: percent => ({ bottom: `${percent}%` }),
-    leap: percent => ({ height: `${percent}%` }),
+    offset: (percent) => ({ bottom: `${percent}%` }),
+    leap: (percent) => ({ height: `${percent}%` }),
   },
 };
 
-const Identity = x => x;
+const Identity = (x) => x;
 
-export const styles = theme => ({
+export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     height: 2,
@@ -155,6 +155,9 @@ export const styles = theme => ({
       '&$vertical': {
         padding: '0 20px',
       },
+    },
+    '@media print': {
+      colorAdjust: 'exact',
     },
   },
   /* Styles applied to the root element if `color="primary"`. */
@@ -293,7 +296,10 @@ export const styles = theme => ({
   /* Pseudo-class applied to the thumb element if keyboard focused. */
   focusVisible: {},
   /* Styles applied to the thumb label element. */
-  valueLabel: {},
+  valueLabel: {
+    // IE 11 centering bug, to remove from the customization demos once no longer supported
+    left: 'calc(-50% - 4px)',
+  },
   /* Styles applied to the mark element. */
   mark: {
     position: 'absolute',
@@ -379,19 +385,14 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   });
 
   const range = Array.isArray(valueDerived);
-  const instanceRef = React.useRef();
-  let values = range ? [...valueDerived].sort(asc) : [valueDerived];
-  values = values.map(value => clamp(value, min, max));
+  let values = range ? valueDerived.slice().sort(asc) : [valueDerived];
+  values = values.map((value) => clamp(value, min, max));
   const marks =
     marksProp === true && step !== null
       ? [...Array(Math.floor((max - min) / step) + 1)].map((_, index) => ({
           value: min + step * index,
         }))
       : marksProp || [];
-
-  instanceRef.current = {
-    source: valueDerived, // Keep track of the input value to leverage immutable state comparison.
-  };
 
   const { isFocusVisible, onBlurVisible, ref: focusVisibleRef } = useIsFocusVisible();
   const [focusVisible, setFocusVisible] = React.useState(-1);
@@ -400,7 +401,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   const handleFocusRef = useForkRef(focusVisibleRef, sliderRef);
   const handleRef = useForkRef(ref, handleFocusRef);
 
-  const handleFocus = useEventCallback(event => {
+  const handleFocus = useEventCallback((event) => {
     const index = Number(event.currentTarget.getAttribute('data-index'));
     if (isFocusVisible(event)) {
       setFocusVisible(index);
@@ -414,7 +415,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     }
     setOpen(-1);
   });
-  const handleMouseOver = useEventCallback(event => {
+  const handleMouseOver = useEventCallback((event) => {
     const index = Number(event.currentTarget.getAttribute('data-index'));
     setOpen(index);
   });
@@ -422,13 +423,17 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     setOpen(-1);
   });
 
-  const handleKeyDown = useEventCallback(event => {
+  const isRtl = theme.direction === 'rtl';
+
+  const handleKeyDown = useEventCallback((event) => {
     const index = Number(event.currentTarget.getAttribute('data-index'));
     const value = values[index];
     const tenPercents = (max - min) / 10;
-    const marksValues = marks.map(mark => mark.value);
+    const marksValues = marks.map((mark) => mark.value);
     const marksIndex = marksValues.indexOf(value);
     let newValue;
+    const increaseKey = isRtl ? 'ArrowLeft' : 'ArrowRight';
+    const decreaseKey = isRtl ? 'ArrowRight' : 'ArrowLeft';
 
     switch (event.key) {
       case 'Home':
@@ -447,7 +452,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
           newValue = value - tenPercents;
         }
         break;
-      case 'ArrowRight':
+      case increaseKey:
       case 'ArrowUp':
         if (step) {
           newValue = value + step;
@@ -455,7 +460,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
           newValue = marksValues[marksIndex + 1] || marksValues[marksValues.length - 1];
         }
         break;
-      case 'ArrowLeft':
+      case decreaseKey:
       case 'ArrowDown':
         if (step) {
           newValue = value - step;
@@ -500,7 +505,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
 
   const previousIndex = React.useRef();
   let axis = orientation;
-  if (theme.direction === 'rtl' && orientation === 'horizontal') {
+  if (isRtl && orientation === 'horizontal') {
     axis += '-reverse';
   }
 
@@ -524,7 +529,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     if (step) {
       newValue = roundValueToStep(newValue, step, min);
     } else {
-      const marksValues = marks.map(mark => mark.value);
+      const marksValues = marks.map((mark) => mark.value);
       const closestIndex = findClosest(marksValues, newValue);
       newValue = marksValues[closestIndex];
     }
@@ -553,7 +558,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     return { newValue, activeIndex };
   };
 
-  const handleTouchMove = useEventCallback(event => {
+  const handleTouchMove = useEventCallback((event) => {
     const finger = trackFinger(event, touchId);
 
     if (!finger) {
@@ -575,7 +580,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     }
   });
 
-  const handleTouchEnd = useEventCallback(event => {
+  const handleTouchEnd = useEventCallback((event) => {
     const finger = trackFinger(event, touchId);
 
     if (!finger) {
@@ -602,7 +607,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     doc.removeEventListener('touchend', handleTouchEnd);
   });
 
-  const handleTouchStart = useEventCallback(event => {
+  const handleTouchStart = useEventCallback((event) => {
     // Workaround as Safari has partial support for touchAction: 'none'.
     event.preventDefault();
     const touch = event.changedTouches[0];
@@ -639,7 +644,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     };
   }, [handleTouchEnd, handleTouchMove, handleTouchStart]);
 
-  const handleMouseDown = useEventCallback(event => {
+  const handleMouseDown = useEventCallback((event) => {
     if (onMouseDown) {
       onMouseDown(event);
     }
@@ -675,7 +680,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
         classes[`color${capitalize(color)}`],
         {
           [classes.disabled]: disabled,
-          [classes.marked]: marks.length > 0 && marks.some(mark => mark.label),
+          [classes.marked]: marks.length > 0 && marks.some((mark) => mark.label),
           [classes.vertical]: orientation === 'vertical',
           [classes.trackInverted]: track === 'inverted',
           [classes.trackFalse]: track === false,
@@ -688,7 +693,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
       <span className={classes.rail} />
       <span className={classes.track} style={trackStyle} />
       <input value={values.join(',')} name={name} type="hidden" />
-      {marks.map(mark => {
+      {marks.map((mark, index) => {
         const percent = valueToPercent(mark.value, min, max);
         const style = axisProps[axis].offset(percent);
 
@@ -711,19 +716,23 @@ const Slider = React.forwardRef(function Slider(props, ref) {
           <React.Fragment key={mark.value}>
             <span
               style={style}
+              data-index={index}
               className={clsx(classes.mark, {
                 [classes.markActive]: markActive,
               })}
             />
-            <span
-              aria-hidden
-              style={style}
-              className={clsx(classes.markLabel, {
-                [classes.markLabelActive]: markActive,
-              })}
-            >
-              {mark.label}
-            </span>
+            {mark.label != null ? (
+              <span
+                aria-hidden
+                data-index={index}
+                style={style}
+                className={clsx(classes.markLabel, {
+                  [classes.markLabelActive]: markActive,
+                })}
+              >
+                {mark.label}
+              </span>
+            ) : null}
           </React.Fragment>
         );
       })}
@@ -782,12 +791,12 @@ Slider.propTypes = {
   /**
    * The label of the slider.
    */
-  'aria-label': chainPropTypes(PropTypes.string, props => {
+  'aria-label': chainPropTypes(PropTypes.string, (props) => {
     const range = Array.isArray(props.value || props.defaultValue);
 
     if (range && props['aria-label'] != null) {
       return new Error(
-        'Material-UI: you need to use the `getAriaLabel` prop instead of `aria-label` when using a range slider.',
+        'Material-UI: You need to use the `getAriaLabel` prop instead of `aria-label` when using a range slider.',
       );
     }
 
@@ -800,12 +809,12 @@ Slider.propTypes = {
   /**
    * A string value that provides a user-friendly name for the current value of the slider.
    */
-  'aria-valuetext': chainPropTypes(PropTypes.string, props => {
+  'aria-valuetext': chainPropTypes(PropTypes.string, (props) => {
     const range = Array.isArray(props.value || props.defaultValue);
 
     if (range && props['aria-valuetext'] != null) {
       return new Error(
-        'Material-UI: you need to use the `getAriaValueText` prop instead of `aria-valuetext` when using a range slider.',
+        'Material-UI: You need to use the `getAriaValueText` prop instead of `aria-valuetext` when using a range slider.',
       );
     }
 
@@ -826,9 +835,9 @@ Slider.propTypes = {
   color: PropTypes.oneOf(['primary', 'secondary']),
   /**
    * The component used for the root node.
-   * Either a string to use a DOM element or a component.
+   * Either a string to use a HTML element or a component.
    */
-  component: PropTypes.elementType,
+  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
    * The default element value. Use when the component is not controlled.
    */
