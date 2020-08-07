@@ -12,16 +12,16 @@ export const styles = (theme) => ({
   root: {
     display: 'inline-block',
   },
-  /* Styles applied to the root element if `variant="determinate"`. */
-  determinate: {
+  /* Styles applied to the root element if `variant="static"`. */
+  static: {
     transition: theme.transitions.create('transform'),
   },
   /* Styles applied to the root element if `variant="indeterminate"`. */
   indeterminate: {
     animation: '$circular-rotate 1.4s linear infinite',
   },
-  /* Styles applied to the root element if `variant="static"`. */
-  static: {
+  /* Styles applied to the root element if `variant="determinate"`. */
+  determinate: {
     transition: theme.transitions.create('transform'),
   },
   /* Styles applied to the root element if `color="primary"`. */
@@ -42,8 +42,8 @@ export const styles = (theme) => ({
     // Use butt to follow the specification, by chance, it's already the default CSS value.
     // strokeLinecap: 'butt',
   },
-  /* Styles applied to the `circle` svg path if `variant="determinate"`. */
-  circleDeterminate: {
+  /* Styles applied to the `circle` svg path if `variant="static"`. */
+  circleStatic: {
     transition: theme.transitions.create('stroke-dashoffset'),
   },
   /* Styles applied to the `circle` svg path if `variant="indeterminate"`. */
@@ -53,8 +53,8 @@ export const styles = (theme) => ({
     strokeDasharray: '80px, 200px',
     strokeDashoffset: '0px', // Add the unit to fix a Edge 16 and below bug.
   },
-  /* Styles applied to the `circle` svg path if `variant="static"`. */
-  circleStatic: {
+  /* Styles applied to the `circle` svg path if `variant="determinate"`. */
+  circleDeterminate: {
     transition: theme.transitions.create('stroke-dashoffset'),
   },
   '@keyframes circular-rotate': {
@@ -106,7 +106,6 @@ const CircularProgress = React.forwardRef(function CircularProgress(props, ref) 
     variant = 'indeterminate',
     ...other
   } = props;
-
 
   const circleStyle = {};
   const rootStyle = {};

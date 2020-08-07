@@ -40,6 +40,7 @@ export interface CircularProgressProps
 
 export type CircularProgressClassKey =
   | 'root'
+  | 'static'
   | 'determinate'
   | 'indeterminate'
   | 'colorPrimary'
