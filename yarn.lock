@@ -6729,10 +6729,10 @@ envinfo@^7.3.1:
   resolved "https://registry.yarnpkg.com/envinfo/-/envinfo-7.5.0.tgz#91410bb6db262fb4f1409bd506e9ff57e91023f4"
   integrity sha512-jDgnJaF/Btomk+m3PZDTTCb5XIIIX3zYItnCRfF73zVgvinLoRomuhi75Y4su0PtQxWz4v66XnLLckyvyJTOIQ==
 
-enzyme-adapter-react-16@^1.14.0:
-  version "1.15.2"
-  resolved "https://registry.yarnpkg.com/enzyme-adapter-react-16/-/enzyme-adapter-react-16-1.15.2.tgz#b16db2f0ea424d58a808f9df86ab6212895a4501"
-  integrity sha512-SkvDrb8xU3lSxID8Qic9rB8pvevDbLybxPK6D/vW7PrT0s2Cl/zJYuXvsd1EBTz0q4o3iqG3FJhpYz3nUNpM2Q==
+"enzyme-adapter-react-16@npm:@eps1lon/enzyme-adapter-react-next":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@eps1lon/enzyme-adapter-react-next/-/enzyme-adapter-react-next-0.0.1.tgz#e44d436323a00d8065788e3ab4493efed216edce"
+  integrity sha512-oGecpGf84lE3jpsI48HZhT4TtuVeHpKDXYvrsGVYBvLJS7LT3mCB1R4Etrcg5SnCVwxrNLRKiquHo5hXBsKJjg==
   dependencies:
     enzyme-adapter-utils "^1.13.0"
     enzyme-shallow-equal "^1.0.1"
@@ -13215,15 +13215,14 @@ react-docgen@^5.0.0-beta.1:
     node-dir "^0.1.10"
     strip-indent "^3.0.0"
 
-react-dom@^16.13.0:
-  version "16.13.1"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.13.1.tgz#c1bd37331a0486c078ee54c4740720993b2e0e7f"
-  integrity sha512-81PIMmVLnCNLO/fFOQxdQkvEq/+Hfpv24XNJfpyZhTRfO0QcmQIF/PgCa1zCOj2w1hrn12MFLyaJ/G0+Mxtfag==
+react-dom@0.0.0-f77c7b9d7, react-dom@^16.13.0:
+  version "0.0.0-f77c7b9d7"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-0.0.0-f77c7b9d7.tgz#df1ff8d0ceb8e26877e85609364fb0efd7c89396"
+  integrity sha512-NElASDJyDKuXWRGsG92e+mheuNutLNGx+esuQ+GxrJrZptYrHtGneQcrR+emn071vBisjyTpk/VQmCu1GdsO2Q==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
-    prop-types "^15.6.2"
-    scheduler "^0.19.1"
+    scheduler "0.0.0-f77c7b9d7"
 
 react-double-scrollbar@0.0.15:
   version "0.0.15"
@@ -13254,10 +13253,10 @@ react-final-form@^6.3.0:
   dependencies:
     "@babel/runtime" "^7.10.0"
 
-react-is@16.13.1, react-is@^16.12.0, react-is@^16.13.0, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.8.6, react-is@^16.9.0:
-  version "16.13.1"
-  resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
-  integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
+react-is@0.0.0-f77c7b9d7, react-is@16.13.1, react-is@^16.12.0, react-is@^16.13.0, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.8.6, react-is@^16.9.0:
+  version "0.0.0-f77c7b9d7"
+  resolved "https://registry.yarnpkg.com/react-is/-/react-is-0.0.0-f77c7b9d7.tgz#5d9f6bdc410e55aba90227fad668736f814accae"
+  integrity sha512-joNSLfrHXZU2ZJrazaFzhdXZTs77aD3NMplQ2ScF9DfDsndHBjfEsg1lHmiwNcCkEygQ4buyBVv3JsAqX/Mn2w==
 
 react-jss@^10.3.0:
   version "10.3.0"
@@ -13343,6 +13342,14 @@ react-router@5.2.0, react-router@^5.0.0:
     tiny-invariant "^1.0.2"
     tiny-warning "^1.0.0"
 
+react-shallow-renderer@^16.13.1:
+  version "16.13.1"
+  resolved "https://registry.yarnpkg.com/react-shallow-renderer/-/react-shallow-renderer-16.13.1.tgz#4cfd6dc0f05a8d4d261ff7a80e9b88f15491a00a"
+  integrity sha512-hLmExm5/ZnjodLgm/4oxYw4i7fL6LLPhbO9mF/4tmaZUurtLrp2aSeDHZmRk0SVCHXPz0VaEbb3Dqi5J7odz7Q==
+  dependencies:
+    object-assign "^4.1.1"
+    react-is "^16.12.0"
+
 react-smooth@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/react-smooth/-/react-smooth-1.0.5.tgz#94ae161d7951cdd893ccb7099d031d342cb762ad"
@@ -13392,15 +13399,15 @@ react-swipeable-views@^0.13.9:
     react-swipeable-views-utils "^0.13.9"
     warning "^4.0.1"
 
-react-test-renderer@^16.0.0-0, react-test-renderer@^16.13.0:
-  version "16.13.1"
-  resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-16.13.1.tgz#de25ea358d9012606de51e012d9742e7f0deabc1"
-  integrity sha512-Sn2VRyOK2YJJldOqoh8Tn/lWQ+ZiKhyZTPtaO0Q6yNj+QDbmRkVFap6pZPy3YQk8DScRDfyqm/KxKYP9gCMRiQ==
+react-test-renderer@0.0.0-f77c7b9d7, react-test-renderer@^16.0.0-0, react-test-renderer@^16.13.0:
+  version "0.0.0-f77c7b9d7"
+  resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-0.0.0-f77c7b9d7.tgz#a9a9634891cedc020bc7a477e0a184ecf72e47f2"
+  integrity sha512-vSVZICMo/URO7YM23fFV6aZOhyITEH4RxC0TreXyyWefhTVsVZ/fNlLb7yl5WeOpiN+AsKx4532XSoAu4CuFdw==
   dependencies:
     object-assign "^4.1.1"
-    prop-types "^15.6.2"
-    react-is "^16.8.6"
-    scheduler "^0.19.1"
+    react-is "0.0.0-f77c7b9d7"
+    react-shallow-renderer "^16.13.1"
+    scheduler "0.0.0-f77c7b9d7"
 
 react-text-mask@^5.0.2:
   version "5.4.3"
@@ -13449,14 +13456,13 @@ react-window@^1.8.5:
     "@babel/runtime" "^7.0.0"
     memoize-one ">=3.1.1 <6"
 
-react@^16.13.0, react@^16.8.6:
-  version "16.13.1"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.13.1.tgz#2e818822f1a9743122c063d6410d85c1e3afe48e"
-  integrity sha512-YMZQQq32xHLX0bz5Mnibv1/LHb3Sqzngu7xstSM+vrkE5Kzr9xE0yMByK5kMoTK30YVJE61WfbxIFFvfeDKT1w==
+react@0.0.0-f77c7b9d7, react@^16.13.0, react@^16.8.6:
+  version "0.0.0-f77c7b9d7"
+  resolved "https://registry.yarnpkg.com/react/-/react-0.0.0-f77c7b9d7.tgz#c32b16abe6b09eda358c5589432d75f1a8a2b0f9"
+  integrity sha512-EvOW22Jyg1usWCW53mAzWDAob+8OXlIv9ckpZ+fd7HTfnkF0Xhg7C43PWYSZZrZtGYlPxVhyPXzXg5cW/g5N2A==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
-    prop-types "^15.6.2"
 
 read-cmd-shim@^1.0.1:
   version "1.0.1"
@@ -14350,10 +14356,10 @@ saxes@^5.0.0:
   dependencies:
     xmlchars "^2.2.0"
 
-scheduler@^0.19.1:
-  version "0.19.1"
-  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.19.1.tgz#4f3e2ed2c1a7d65681f4c854fa8c5a1ccb40f196"
-  integrity sha512-n/zwRWRYSUj0/3g/otKDRPMh6qv2SYMWNq85IEa8iZyAv8od9zDYpGSnpBEjNgcMNq6Scbu5KfIPxNF72R/2EA==
+scheduler@0.0.0-f77c7b9d7, scheduler@^0.19.1:
+  version "0.0.0-f77c7b9d7"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.0.0-f77c7b9d7.tgz#92a609b913e5e9a261a1899480415399ce59415e"
+  integrity sha512-9VM0zJGxq5oHnjjiKvV8SPQ6jlMMGUCrTYytY6qSYcvVJvEiXWq5SCMod/fxLa1bnQkgGHa+p7xGlDqBPmS30w==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"

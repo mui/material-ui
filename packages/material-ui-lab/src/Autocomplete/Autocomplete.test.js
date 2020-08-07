@@ -1140,8 +1140,6 @@ describe('<Autocomplete />', () => {
         fireEvent.keyDown(textbox, { key: 'Enter' });
       }).toErrorDev([
         'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
-        // strict mode renders twice
-        'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
       ]);
@@ -1196,9 +1194,6 @@ describe('<Autocomplete />', () => {
         );
       }).toWarnDev([
         'None of the options match with `"not a good value"`',
-        // strict mode renders twice
-        'None of the options match with `"not a good value"`',
-        'None of the options match with `"not a good value"`',
         'None of the options match with `"not a good value"`',
       ]);
     });
@@ -1223,11 +1218,7 @@ describe('<Autocomplete />', () => {
             groupBy={(option) => option.group}
           />,
         );
-      }).toWarnDev([
-        // strict mode renders twice
-        'returns duplicated headers',
-        'returns duplicated headers',
-      ]);
+      }).toWarnDev(['returns duplicated headers']);
       const options = screen.getAllByRole('option').map((el) => el.textContent);
       expect(options).to.have.length(7);
       expect(options).to.deep.equal(['A', 'D', 'E', 'B', 'G', 'F', 'C']);

@@ -132,8 +132,7 @@ describe('<ClickAwayListener />', () => {
       expect(handleClickAway.callCount).to.equal(0);
 
       fireEvent.click(getByText('Stop inside a portal'));
-      // True-negative, we don't have enough information to do otherwise.
-      expect(handleClickAway.callCount).to.equal(1);
+      expect(handleClickAway.callCount).to.equal(0);
     });
   });
 

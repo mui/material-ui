@@ -255,12 +255,7 @@ describe('<TextareaAutosize />', () => {
 
         expect(() => {
           forceUpdate();
-        }).toErrorDev([
-          'Material-UI: Too many re-renders.',
-          // strict mode renders twice
-          'Material-UI: Too many re-renders.',
-          'Material-UI: Too many re-renders.',
-        ]);
+        }).toErrorDev(['Material-UI: Too many re-renders.']);
       });
     });
   });
