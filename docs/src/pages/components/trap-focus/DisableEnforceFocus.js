@@ -18,8 +18,14 @@ export default function DisableEnforceFocus() {
         >
           <div tabIndex={-1}>
             <h3>Quick form</h3>
-            <input aria-label="first name" placeholder="First name" />
-            <input aria-label="last name" placeholder="Last name" />
+            <label>
+              First name: <input type="text" />
+            </label>
+            <br />
+            <label>
+              Last name: <input type="text" />
+            </label>
+            <br />
             <button type="button" onClick={() => setOpen(false)}>
               Close
             </button>

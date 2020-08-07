@@ -16,9 +16,15 @@ export default function PortalTrapFocus() {
         <TrapFocus open isEnabled={() => true} getDoc={() => document}>
           <div tabIndex={-1}>
             <h3>Quick form</h3>
-            <input aria-label="first name" placeholder="First name" />
+            <label>
+              First name: <input type="text" />
+            </label>
+            <br />
             <Portal container={container}>
-              <input aria-label="last name" placeholder="Last name" />
+              <label>
+                Last name: <input type="text" />
+              </label>
+              <br />
             </Portal>
             <button type="button" onClick={() => setOpen(false)}>
               Close
