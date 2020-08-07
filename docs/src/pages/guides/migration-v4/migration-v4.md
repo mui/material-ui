@@ -109,6 +109,22 @@ This change affects almost all components where you're using the `component` pro
   +<Button />
   ```
 
+### CircularProgress
+
+- The `static` variant has been merged into the `determinate` variant, with the latter assuming the appearance of the former.
+  The removed variant was rarely useful. It was an exception to Material Design, and was removed from the specification.
+
+  ```diff
+  -<CircularProgress variant="determinate" />
+  ```
+
+  ```diff
+  -<CircularProgress variant="static" classes={{ static: 'className' }} />
+  +<CircularProgress variant="determinate" classes={{ determinate: 'className' }} />
+  ```
+
+> NB: If you had previously customised determinate, your customisations are probably no longer valid. Please remove them.
+
 ### Collapse
 
 - The `collapsedHeight` prop was renamed `collapsedSize` to support the horizontal direction.

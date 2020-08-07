@@ -128,7 +128,7 @@ export const componentSettings = {
       size: 44,
       thickness: 4,
       progressValue: 75,
-      variant: "'static'",
+      variant: "'determinate'",
     },
     style: {
       width: 'width',

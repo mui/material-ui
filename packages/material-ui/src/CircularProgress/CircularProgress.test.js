@@ -73,25 +73,6 @@ describe('<CircularProgress />', () => {
     expect(circle).to.have.attribute('cy', '44');
   });
 
-  describe('prop: variant="static', () => {
-    it('should set strokeDasharray of circle', () => {
-      const { container } = render(<CircularProgress variant="static" value={70} />);
-      const circularProgress = container.firstChild;
-      expect(circularProgress).to.have.class(classes.root);
-      const svg = circularProgress.firstChild;
-      const circle = svg.firstChild;
-      expect(circle.style.strokeDasharray).to.match(
-        /126\.920?(px)?/gm,
-        'should have strokeDasharray set',
-      );
-      expect(circle.style.strokeDashoffset).to.equal(
-        '38.076px',
-        'should have strokeDashoffset set',
-      );
-      expect(circularProgress).to.have.attribute('aria-valuenow', '70');
-    });
-  });
-
   describe('prop: variant="determinate"', () => {
     it('should render with determinate classes', () => {
       const { container } = render(<CircularProgress variant="determinate" />);
@@ -116,7 +97,7 @@ describe('<CircularProgress />', () => {
         'should have strokeDasharray set',
       );
       expect(circle.style.strokeDashoffset).to.equal(
-        '11.423px',
+        '38.076px',
         'should have strokeDashoffset set',
       );
       expect(circularProgress).to.have.attribute('aria-valuenow', '70');
