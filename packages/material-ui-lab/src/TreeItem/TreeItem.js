@@ -266,7 +266,6 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   React.useEffect(() => {
     if (nodeRef && treeId) {
       const handleFocusIn = (event) => {
-        event.preventDefault();
         const tree = ownerDocument(nodeRef).getElementById(treeId);
 
         // Some browsers don't focus the tree when using active-descendant.
