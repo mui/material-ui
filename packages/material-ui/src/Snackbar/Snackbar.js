@@ -108,12 +108,6 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
     disableWindowBlurListener = false,
     message,
     onClose,
-    onEnter,
-    onEntered,
-    onEntering,
-    onExit,
-    onExited,
-    onExiting,
     onMouseEnter,
     onMouseLeave,
     open,
@@ -218,6 +212,13 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
     return null;
   }
 
+  if (TransitionProps !== undefined && TransitionProps.onEnter !== undefined) {
+    TransitionProps.onEnter = createChainedFunction(handleEnter, TransitionProps.onEnter);
+  }
+  if (TransitionProps !== undefined && TransitionProps.onExited !== undefined) {
+    TransitionProps.onExited = createChainedFunction(handleExited, TransitionProps.onExited);
+  }
+
   return (
     <ClickAwayListener onClickAway={handleClickAway} {...ClickAwayListenerProps}>
       <div
@@ -234,12 +235,6 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
         <TransitionComponent
           appear
           in={open}
-          onEnter={createChainedFunction(handleEnter, onEnter)}
-          onEntered={onEntered}
-          onEntering={onEntering}
-          onExit={onExit}
-          onExited={createChainedFunction(handleExited, onExited)}
-          onExiting={onExiting}
           timeout={transitionDuration}
           direction={vertical === 'top' ? 'down' : 'up'}
           {...TransitionProps}
@@ -323,30 +318,6 @@ Snackbar.propTypes = {
    * @param {string} reason Can be: `"timeout"` (`autoHideDuration` expired), `"clickaway"`.
    */
   onClose: PropTypes.func,
-  /**
-   * Callback fired before the transition is entering.
-   */
-  onEnter: PropTypes.func,
-  /**
-   * Callback fired when the transition has entered.
-   */
-  onEntered: PropTypes.func,
-  /**
-   * Callback fired when the transition is entering.
-   */
-  onEntering: PropTypes.func,
-  /**
-   * Callback fired before the transition is exiting.
-   */
-  onExit: PropTypes.func,
-  /**
-   * Callback fired when the transition has exited.
-   */
-  onExited: PropTypes.func,
-  /**
-   * Callback fired when the transition is exiting.
-   */
-  onExiting: PropTypes.func,
   /**
    * @ignore
    */

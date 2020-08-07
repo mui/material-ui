@@ -76,7 +76,7 @@ describe('<Snackbar />', () => {
         <Snackbar
           open={false}
           onClose={handleClose}
-          onExited={handleExited}
+          TransitionProps={{ onExited: handleExited }}
           message="message"
           autoHideDuration={duration}
           transitionDuration={duration / 2}
