@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import capitalize from '../utils/capitalize';
 
@@ -72,8 +73,28 @@ export const styles = (theme) => ({
       transform: 'scale(0) translate(50%, -50%)',
     },
   },
+  /* Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }} overlap="rectangular"`. */
+  anchorOriginTopRightRectangular: {
+    top: 0,
+    right: 0,
+    transform: 'scale(1) translate(50%, -50%)',
+    transformOrigin: '100% 0%',
+    '&$invisible': {
+      transform: 'scale(0) translate(50%, -50%)',
+    },
+  },
   /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }} overlap="rectangle"`. */
   anchorOriginBottomRightRectangle: {
+    bottom: 0,
+    right: 0,
+    transform: 'scale(1) translate(50%, 50%)',
+    transformOrigin: '100% 100%',
+    '&$invisible': {
+      transform: 'scale(0) translate(50%, 50%)',
+    },
+  },
+  /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }} overlap="rectangular"`. */
+  anchorOriginBottomRightRectangular: {
     bottom: 0,
     right: 0,
     transform: 'scale(1) translate(50%, 50%)',
@@ -92,8 +113,28 @@ export const styles = (theme) => ({
       transform: 'scale(0) translate(-50%, -50%)',
     },
   },
+  /* Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }} overlap="rectangular"`. */
+  anchorOriginTopLeftRectangular: {
+    top: 0,
+    left: 0,
+    transform: 'scale(1) translate(-50%, -50%)',
+    transformOrigin: '0% 0%',
+    '&$invisible': {
+      transform: 'scale(0) translate(-50%, -50%)',
+    },
+  },
   /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }} overlap="rectangle"`. */
   anchorOriginBottomLeftRectangle: {
+    bottom: 0,
+    left: 0,
+    transform: 'scale(1) translate(-50%, 50%)',
+    transformOrigin: '0% 100%',
+    '&$invisible': {
+      transform: 'scale(0) translate(-50%, 50%)',
+    },
+  },
+  /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }} overlap="rectangular"`. */
+  anchorOriginBottomLeftRectangular: {
     bottom: 0,
     left: 0,
     transform: 'scale(1) translate(-50%, 50%)',
@@ -112,8 +153,28 @@ export const styles = (theme) => ({
       transform: 'scale(0) translate(50%, -50%)',
     },
   },
+  /* Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }} overlap="circular"`. */
+  anchorOriginTopRightCircular: {
+    top: '14%',
+    right: '14%',
+    transform: 'scale(1) translate(50%, -50%)',
+    transformOrigin: '100% 0%',
+    '&$invisible': {
+      transform: 'scale(0) translate(50%, -50%)',
+    },
+  },
   /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }} overlap="circle"`. */
   anchorOriginBottomRightCircle: {
+    bottom: '14%',
+    right: '14%',
+    transform: 'scale(1) translate(50%, 50%)',
+    transformOrigin: '100% 100%',
+    '&$invisible': {
+      transform: 'scale(0) translate(50%, 50%)',
+    },
+  },
+  /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }} overlap="circular"`. */
+  anchorOriginBottomRightCircular: {
     bottom: '14%',
     right: '14%',
     transform: 'scale(1) translate(50%, 50%)',
@@ -132,8 +193,28 @@ export const styles = (theme) => ({
       transform: 'scale(0) translate(-50%, -50%)',
     },
   },
+  /* Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }} overlap="circular"`. */
+  anchorOriginTopLeftCircular: {
+    top: '14%',
+    left: '14%',
+    transform: 'scale(1) translate(-50%, -50%)',
+    transformOrigin: '0% 0%',
+    '&$invisible': {
+      transform: 'scale(0) translate(-50%, -50%)',
+    },
+  },
   /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }} overlap="circle"`. */
   anchorOriginBottomLeftCircle: {
+    bottom: '14%',
+    left: '14%',
+    transform: 'scale(1) translate(-50%, 50%)',
+    transformOrigin: '0% 100%',
+    '&$invisible': {
+      transform: 'scale(0) translate(-50%, 50%)',
+    },
+  },
+  /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }} overlap="circular"`. */
+  anchorOriginBottomLeftCircular: {
     bottom: '14%',
     left: '14%',
     transform: 'scale(1) translate(-50%, 50%)',
@@ -235,7 +316,34 @@ Badge.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object,
+  classes: chainPropTypes(PropTypes.object, (props) => {
+    const { classes } = props;
+    if (classes == null) {
+      return null;
+    }
+
+    [
+      ['anchorOriginTopRightRectangle', 'anchorOriginTopRightRectangular'],
+      ['anchorOriginBottomRightRectangle', 'anchorOriginBottomRightRectangular'],
+      ['anchorOriginTopLeftRectangle', 'anchorOriginTopLeftRectangular'],
+      ['anchorOriginBottomLeftRectangle', 'anchorOriginBottomLeftRectangular'],
+      ['anchorOriginTopRightCircle', 'anchorOriginTopRightCircular'],
+      ['anchorOriginBottomRightCircle', 'anchorOriginBottomRightCircular'],
+      ['anchorOriginTopLeftCircle', 'anchorOriginTopLeftCircular'],
+    ].forEach(([deprecatedClassKey, newClassKey]) => {
+      if (
+        classes[deprecatedClassKey] != null &&
+        // 2 classnames? one from withStyles the other must be custom
+        classes[deprecatedClassKey].split(' ').length > 1
+      ) {
+        throw new Error(
+          `Material-UI: The \`${deprecatedClassKey}\` class was deprecated. Use \`${newClassKey}\` instead.`,
+        );
+      }
+    });
+
+    return null;
+  }),
   /**
    * @ignore
    */
@@ -260,7 +368,26 @@ Badge.propTypes = {
   /**
    * Wrapped shape the badge should overlap.
    */
-  overlap: PropTypes.oneOf(['circle', 'rectangle']),
+  overlap: chainPropTypes(
+    PropTypes.oneOf(['circle', 'rectangle', 'circular', 'rectangular']),
+    (props) => {
+      const { overlap } = props;
+
+      if (overlap === 'rectangle') {
+        throw new Error(
+          'Material-UI: `overlap="rectangle"` was deprecated. Use `overlap="rectangular"` instead.',
+        );
+      }
+
+      if (overlap === 'circle') {
+        throw new Error(
+          'Material-UI: `overlap="circle"` was deprecated. Use `overlap="circular"` instead.',
+        );
+      }
+
+      return null;
+    },
+  ),
   /**
    * Controls whether the badge is hidden when `badgeContent` is zero.
    */
