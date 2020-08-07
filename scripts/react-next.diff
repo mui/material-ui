@@ -106,47 +106,59 @@ index 55a501a6e6..8cabc24615 100644
      expect(screen.getAllByRole('listitem', { hidden: false })).to.have.length(4);
      expect(screen.getByRole('list')).to.have.text('first/second/third/fourth');
 diff --git a/packages/material-ui/src/Drawer/Drawer.test.js b/packages/material-ui/src/Drawer/Drawer.test.js
-index de32d9ca79..f5e20e73b7 100644
+index de32d9ca79..db44b7585c 100644
 --- a/packages/material-ui/src/Drawer/Drawer.test.js
 +++ b/packages/material-ui/src/Drawer/Drawer.test.js
-@@ -13,7 +13,8 @@ import Paper from '../Paper';
- import Modal from '../Modal';
- import Drawer, { getAnchor, isHorizontal } from './Drawer';
- 
--describe('<Drawer />', () => {
-+// eslint-disable-next-line mocha/no-skipped-tests -- let's yarn test:unit hanging with react@next
-+describe.skip('<Drawer />', () => {
-   const mount = createMount({ strict: true });
+@@ -18,7 +18,12 @@ describe('<Drawer />', () => {
    let classes;
    const render = createClientRender();
+ 
+-  before(() => {
++  before(function beforeEachHook() {
++    if (/jsdom/.test(window.navigator.userAgent)) {
++      // otherwise test:unit never finishes
++      this.skip();
++    }
++
+     classes = getClasses(
+       <Drawer>
+         <div />
 diff --git a/packages/material-ui/src/Modal/Modal.test.js b/packages/material-ui/src/Modal/Modal.test.js
-index 2a41490811..727d743204 100644
+index 2a41490811..137b02a5fc 100644
 --- a/packages/material-ui/src/Modal/Modal.test.js
 +++ b/packages/material-ui/src/Modal/Modal.test.js
-@@ -17,7 +17,8 @@ import Fade from '../Fade';
- import Backdrop from '../Backdrop';
- import Modal from './Modal';
- 
--describe('<Modal />', () => {
-+// eslint-disable-next-line mocha/no-skipped-tests -- let's yarn test:unit hanging with react@next
-+describe.skip('<Modal />', () => {
-   const mount = createMount({ strict: true });
+@@ -22,7 +22,12 @@ describe('<Modal />', () => {
    const render = createClientRender();
    let savedBodyStyle;
+ 
+-  before(() => {
++  before(function beforeEachHook() {
++    if (/jsdom/.test(window.navigator.userAgent)) {
++      // otherwise test:unit never finishes
++      this.skip();
++    }
++
+     savedBodyStyle = document.body.style;
+   });
+ 
 diff --git a/packages/material-ui/src/Popover/Popover.test.js b/packages/material-ui/src/Popover/Popover.test.js
-index 5fe8d1f2ec..ccb826b55b 100644
+index 5fe8d1f2ec..44790f4119 100644
 --- a/packages/material-ui/src/Popover/Popover.test.js
 +++ b/packages/material-ui/src/Popover/Popover.test.js
-@@ -46,7 +46,8 @@ const FakePaper = React.forwardRef(function FakeWidthPaper(props, ref) {
-   );
- });
+@@ -55,7 +55,12 @@ describe('<Popover />', () => {
+     anchorEl: () => document.createElement('svg'),
+   };
  
--describe('<Popover />', () => {
-+// eslint-disable-next-line mocha/no-skipped-tests -- let's yarn test:unit hanging with react@next
-+describe.skip('<Popover />', () => {
-   // StrictModeViolation: Not using act(), prefer using createClientRender from test/utils
-   const mount = createMount({ strict: false });
-   let classes;
+-  before(() => {
++  before(function beforeEachHook() {
++    if (/jsdom/.test(window.navigator.userAgent)) {
++      // otherwise test:unit never finishes
++      this.skip();
++    }
++
+     classes = getClasses(
+       <Popover {...defaultProps}>
+         <div />
 diff --git a/packages/material-ui/src/Tabs/Tabs.test.js b/packages/material-ui/src/Tabs/Tabs.test.js
 index 9c004c515b..648559f279 100644
 --- a/packages/material-ui/src/Tabs/Tabs.test.js
