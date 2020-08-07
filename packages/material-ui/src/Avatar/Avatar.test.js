@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import * as PropTypes from 'prop-types';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
-import { spy } from 'sinon';
+import { spy, stub } from 'sinon';
 import CancelIcon from '../internal/svg-icons/Cancel';
 import describeConformance from '../test-utils/describeConformance';
 import Avatar from './Avatar';
@@ -193,6 +194,49 @@ describe('<Avatar />', () => {
 
     it('should apply the colorDefault class', () => {
       expect(avatar).to.have.class(classes.colorDefault);
+    });
+  });
+
+  describe('v5 deprecations', () => {
+    beforeEach(() => {
+      PropTypes.resetWarningCache();
+      stub(console, 'error');
+    });
+
+    afterEach(() => {
+      console.error.restore();
+    });
+
+    it('issues a warning for variant="circle"', () => {
+      PropTypes.checkPropTypes(
+        Avatar.Naked.propTypes,
+        {
+          variant: 'circle',
+        },
+        'props',
+        'Avatar',
+      );
+
+      expect(console.error.callCount).to.equal(1);
+      expect(console.error.firstCall.args[0]).to.equal(
+        'Warning: Failed props type: Material-UI: `variant="circle"` was deprecated. Use `variant="circular"` instead.',
+      );
+    });
+
+    it('issues a warning for the `circle` class', () => {
+      PropTypes.checkPropTypes(
+        Avatar.Naked.propTypes,
+        {
+          classes: { circle: 'mui-class my-class' },
+        },
+        'props',
+        'Badge',
+      );
+
+      expect(console.error.callCount).to.equal(1);
+      expect(console.error.firstCall.args[0]).to.equal(
+        'Warning: Failed props type: Material-UI: The `circle` class was deprecated. Use `circular` instead.',
+      );
     });
   });
 });
