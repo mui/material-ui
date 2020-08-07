@@ -1,5 +1,7 @@
 import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import { expect } from 'chai';
+import { stub } from 'sinon';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
 import { createClientRender } from 'test/utils/createClientRender';
@@ -168,6 +170,161 @@ describe('<Badge />', () => {
     it('should not cap if badgeContent is lower than max', () => {
       const { container } = render(<Badge {...defaultProps} badgeContent={50} max={1000} />);
       expect(findBadge(container)).to.have.text('50');
+    });
+  });
+
+  describe('v5 deprecations', () => {
+    beforeEach(() => {
+      PropTypes.resetWarningCache();
+      stub(console, 'error');
+    });
+
+    afterEach(() => {
+      console.error.restore();
+    });
+
+    it('issues a warning for overlap="circle"', () => {
+      PropTypes.checkPropTypes(
+        Badge.Naked.propTypes,
+        {
+          overlap: 'circle',
+        },
+        'props',
+        'Badge',
+      );
+
+      expect(console.error.callCount).to.equal(1);
+      expect(console.error.firstCall.args[0]).to.equal(
+        'Warning: Failed props type: Material-UI: `overlap="circle"` was deprecated. Use `overlap="circular"` instead.',
+      );
+    });
+
+    it('issues a warning for overlap="rectangle"', () => {
+      PropTypes.checkPropTypes(
+        Badge.Naked.propTypes,
+        {
+          overlap: 'rectangle',
+        },
+        'props',
+        'Badge',
+      );
+
+      expect(console.error.callCount).to.equal(1);
+      expect(console.error.firstCall.args[0]).to.equal(
+        'Warning: Failed props type: Material-UI: `overlap="rectangle"` was deprecated. Use `overlap="rectangular"` instead.',
+      );
+    });
+
+    it('issues a warning for the `anchorOriginTopRightRectangle` class', () => {
+      PropTypes.checkPropTypes(
+        Badge.Naked.propTypes,
+        {
+          classes: { anchorOriginTopRightRectangle: 'mui-class my-class' },
+        },
+        'props',
+        'Badge',
+      );
+
+      expect(console.error.callCount).to.equal(1);
+      expect(console.error.firstCall.args[0]).to.equal(
+        'Warning: Failed props type: Material-UI: The `anchorOriginTopRightRectangle` class was deprecated. Use `anchorOriginTopRightRectangular` instead.',
+      );
+    });
+
+    it('issues a warning for the `anchorOriginBottomRightRectangle` class', () => {
+      PropTypes.checkPropTypes(
+        Badge.Naked.propTypes,
+        {
+          classes: { anchorOriginBottomRightRectangle: 'mui-class my-class' },
+        },
+        'props',
+        'Badge',
+      );
+
+      expect(console.error.callCount).to.equal(1);
+      expect(console.error.firstCall.args[0]).to.equal(
+        'Warning: Failed props type: Material-UI: The `anchorOriginBottomRightRectangle` class was deprecated. Use `anchorOriginBottomRightRectangular` instead.',
+      );
+    });
+
+    it('issues a warning for the `anchorOriginTopLeftRectangle` class', () => {
+      PropTypes.checkPropTypes(
+        Badge.Naked.propTypes,
+        {
+          classes: { anchorOriginTopLeftRectangle: 'mui-class my-class' },
+        },
+        'props',
+        'Badge',
+      );
+
+      expect(console.error.callCount).to.equal(1);
+      expect(console.error.firstCall.args[0]).to.equal(
+        'Warning: Failed props type: Material-UI: The `anchorOriginTopLeftRectangle` class was deprecated. Use `anchorOriginTopLeftRectangular` instead.',
+      );
+    });
+
+    it('issues a warning for the `anchorOriginBottomLeftRectangle` class', () => {
+      PropTypes.checkPropTypes(
+        Badge.Naked.propTypes,
+        {
+          classes: { anchorOriginBottomLeftRectangle: 'mui-class my-class' },
+        },
+        'props',
+        'Badge',
+      );
+
+      expect(console.error.callCount).to.equal(1);
+      expect(console.error.firstCall.args[0]).to.equal(
+        'Warning: Failed props type: Material-UI: The `anchorOriginBottomLeftRectangle` class was deprecated. Use `anchorOriginBottomLeftRectangular` instead.',
+      );
+    });
+
+    it('issues a warning for the `anchorOriginTopRightCircle` class', () => {
+      PropTypes.checkPropTypes(
+        Badge.Naked.propTypes,
+        {
+          classes: { anchorOriginTopRightCircle: 'mui-class my-class' },
+        },
+        'props',
+        'Badge',
+      );
+
+      expect(console.error.callCount).to.equal(1);
+      expect(console.error.firstCall.args[0]).to.equal(
+        'Warning: Failed props type: Material-UI: The `anchorOriginTopRightCircle` class was deprecated. Use `anchorOriginTopRightCircular` instead.',
+      );
+    });
+
+    it('issues a warning for the `anchorOriginBottomRightCircle` class', () => {
+      PropTypes.checkPropTypes(
+        Badge.Naked.propTypes,
+        {
+          classes: { anchorOriginBottomRightCircle: 'mui-class my-class' },
+        },
+        'props',
+        'Badge',
+      );
+
+      expect(console.error.callCount).to.equal(1);
+      expect(console.error.firstCall.args[0]).to.equal(
+        'Warning: Failed props type: Material-UI: The `anchorOriginBottomRightCircle` class was deprecated. Use `anchorOriginBottomRightCircular` instead.',
+      );
+    });
+
+    it('issues a warning for the `anchorOriginTopLeftCircle` class', () => {
+      PropTypes.checkPropTypes(
+        Badge.Naked.propTypes,
+        {
+          classes: { anchorOriginTopLeftCircle: 'mui-class my-class' },
+        },
+        'props',
+        'Badge',
+      );
+
+      expect(console.error.callCount).to.equal(1);
+      expect(console.error.firstCall.args[0]).to.equal(
+        'Warning: Failed props type: Material-UI: The `anchorOriginTopLeftCircle` class was deprecated. Use `anchorOriginTopLeftCircular` instead.',
+      );
     });
   });
 });
