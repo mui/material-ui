@@ -142,10 +142,18 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
   const handleTouchStart = useRippleHandler('start', onTouchStart);
   const handleTouchEnd = useRippleHandler('stop', onTouchEnd);
   const handleTouchMove = useRippleHandler('stop', onTouchMove);
+
+  const hadFocusVisibleEventRef = React.useRef(false);
   const handleBlur = useRippleHandler(
     'stop',
     (event) => {
-      if (isFocusVisible(event)) {
+      // checking against `focusVisible` does not suffice if we focus and blur syncronously.
+      // React wouldn't have time to trigger a re-render so `focusVisible` would be stale.
+      // Ideally we would adjust `isFocusVisible(event)` to look at `relatedTarget` for blur events.
+      // This doesn't work in IE 11 due to https://github.com/facebook/react/issues/3751
+      // TODO: check again if React releases their internal changes to focus event handling (https://github.com/facebook/react/pull/19186).
+      if (hadFocusVisibleEventRef.current) {
+        hadFocusVisibleEventRef.current = false;
         onBlurVisible(event);
         setFocusVisible(false);
       }
@@ -163,6 +171,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
     }
 
     if (isFocusVisible(event)) {
+      hadFocusVisibleEventRef.current = true;
       setFocusVisible(true);
 
       if (onFocusVisible) {
