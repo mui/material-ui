@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import {stub } from 'sinon';
 import { createClientRender } from 'test/utils/createClientRender';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
@@ -77,6 +78,14 @@ describe('<CircularProgress />', () => {
   });
 
   describe('prop: variant="static', () => {
+    beforeEach(() => {
+      stub(console, 'error');
+    });
+
+    afterEach(() => {
+      console.error.restore();
+    });
+
     it('should set strokeDasharray of circle', () => {
       const { container } = render(<CircularProgress variant="static" value={70} />);
       const circularProgress = container.firstChild;
@@ -92,6 +101,13 @@ describe('<CircularProgress />', () => {
         'should have strokeDashoffset set',
       );
       expect(circularProgress).to.have.attribute('aria-valuenow', '70');
+
+      it('issues a warning for variant="static"', () => {
+        expect(console.error.callCount).to.equal(1);
+        expect(console.error.firstCall.args[0]).to.equal(
+          'Warning: Failed prop type: Material-UI: `variant="static"` was deprecated. Use `variant="determinate"` instead.',
+        );
+      });
     });
   });
 
