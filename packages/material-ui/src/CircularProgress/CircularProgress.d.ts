@@ -46,6 +46,7 @@ export type CircularProgressClassKey =
   | 'colorSecondary'
   | 'svg'
   | 'circle'
+  | 'circleStatic'
   | 'circleDeterminate'
   | 'circleIndeterminate'
   | 'circleDisableShrink';

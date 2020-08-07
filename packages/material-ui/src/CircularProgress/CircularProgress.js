@@ -20,6 +20,10 @@ export const styles = (theme) => ({
   indeterminate: {
     animation: '$circular-rotate 1.4s linear infinite',
   },
+  /* Styles applied to the root element if `variant="static"`. */
+  static: {
+    transition: theme.transitions.create('transform'),
+  },
   /* Styles applied to the root element if `color="primary"`. */
   colorPrimary: {
     color: theme.palette.primary.main,
@@ -48,6 +52,10 @@ export const styles = (theme) => ({
     // Some default value that looks fine waiting for the animation to kicks in.
     strokeDasharray: '80px, 200px',
     strokeDashoffset: '0px', // Add the unit to fix a Edge 16 and below bug.
+  },
+  /* Styles applied to the `circle` svg path if `variant="static"`. */
+  circleStatic: {
+    transition: theme.transitions.create('stroke-dashoffset'),
   },
   '@keyframes circular-rotate': {
     '0%': {
@@ -95,17 +103,16 @@ const CircularProgress = React.forwardRef(function CircularProgress(props, ref) 
     style,
     thickness = 3.6,
     value = 0,
-    variant: variantProp = 'indeterminate',
+    variant = 'indeterminate',
     ...other
   } = props;
 
-  const variant = variantProp === 'static' ? 'determinate' : variantProp;
 
   const circleStyle = {};
   const rootStyle = {};
   const rootProps = {};
 
-  if (variant === 'determinate') {
+  if (variant === 'determinate' || variant === 'static') {
     const circumference = 2 * Math.PI * ((SIZE - thickness) / 2);
     circleStyle.strokeDasharray = circumference.toFixed(3);
     rootProps['aria-valuenow'] = Math.round(value);
@@ -121,6 +128,7 @@ const CircularProgress = React.forwardRef(function CircularProgress(props, ref) 
           [classes[`color${capitalize(color)}`]]: color !== 'inherit',
           [classes.determinate]: variant === 'determinate',
           [classes.indeterminate]: variant === 'indeterminate',
+          [classes.static]: variant === 'static',
         },
         className,
       )}
@@ -135,6 +143,7 @@ const CircularProgress = React.forwardRef(function CircularProgress(props, ref) 
           className={clsx(classes.circle, {
             [classes.circleDeterminate]: variant === 'determinate',
             [classes.circleIndeterminate]: variant === 'indeterminate',
+            [classes.circleStatic]: variant === 'static',
             [classes.circleDisableShrink]: disableShrink,
           })}
           style={circleStyle}
