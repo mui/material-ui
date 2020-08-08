@@ -5,6 +5,17 @@ import { createMount } from 'test/utils';
 import useIsFocusVisible, { teardown as teardownFocusVisible } from './useIsFocusVisible';
 import useForkRef from './useForkRef';
 
+function dispatchFocusVisible(element) {
+  element.ownerDocument.dispatchEvent(new window.Event('keydown'));
+  element.focus();
+}
+
+function simulatePointerDevice() {
+  // first focus on a page triggers focus visible until a pointer event
+  // has been dispatched
+  document.dispatchEvent(new window.Event('pointerdown'));
+}
+
 const SimpleButton = React.forwardRef(function SimpleButton(props, ref) {
   const { isFocusVisible, onBlurVisible, ref: focusVisibleRef } = useIsFocusVisible();
 
@@ -68,20 +79,31 @@ describe('focus-visible polyfill', () => {
 
     it('should set focus state for shadowRoot children', () => {
       const buttonRef = React.createRef();
-      expect(() => {
-        expect(() => {
-          mount(
-            <SimpleButton id="test-button" ref={buttonRef}>
-              Hello
-            </SimpleButton>,
-            {
-              attachTo: rootElement.shadowRoot,
-            },
-          );
-        }).to.throw(
-          'ensureListeningTo(): received a container that was not an element node. This is likely a bug in React.',
-        );
-      }).toErrorDev(['The above error occurred in the <button> component']);
+      mount(
+        <SimpleButton id="test-button" ref={buttonRef}>
+          Hello
+        </SimpleButton>,
+        {
+          attachTo: rootElement.shadowRoot,
+        },
+      );
+      simulatePointerDevice();
+
+      const { current: button } = buttonRef;
+      if (button.nodeName !== 'BUTTON') {
+        throw new Error('missing button');
+      }
+
+      expect(button.classList.contains('focus-visible')).to.equal(false);
+
+      button.focus();
+
+      expect(button.classList.contains('focus-visible')).to.equal(false);
+
+      button.blur();
+      dispatchFocusVisible(button);
+
+      expect(button.classList.contains('focus-visible')).to.equal(true);
     });
   });
 });

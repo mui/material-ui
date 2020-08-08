@@ -76,12 +76,6 @@ function Unstable_TrapFocus(props) {
     }
 
     const contain = (nativeEvent) => {
-      // Contain can be called between the component being unmounted and its cleanup function being run.
-      // Cleanup functions are executed lazily in react@next
-      if (rootRef.current === null) {
-        return;
-      }
-
       if (
         !doc.hasFocus() ||
         disableEnforceFocus ||
@@ -163,13 +157,7 @@ function Unstable_TrapFocus(props) {
         // in nodeToRestore.current being null.
         // Not all elements in IE 11 have a focus method.
         // Once IE 11 support is dropped the focus() call can be unconditional.
-        if (
-          nodeToRestore.current &&
-          nodeToRestore.current.focus &&
-          // TODO: Can be removed after https://github.com/jsdom/jsdom/pull/3005 is released.
-          // We technically only want a WeakRef to nodeToRestore anyway.
-          nodeToRestore.current.isConnected
-        ) {
+        if (nodeToRestore.current && nodeToRestore.current.focus) {
           nodeToRestore.current.focus();
         }
 
