@@ -152,13 +152,7 @@ const Dialog = React.forwardRef(function Dialog(props, ref) {
     maxWidth = 'sm',
     onBackdropClick,
     onClose,
-    onEnter,
-    onEntered,
-    onEntering,
     onEscapeKeyDown,
-    onExit,
-    onExited,
-    onExiting,
     open,
     PaperComponent = Paper,
     PaperProps = {},
@@ -214,12 +208,6 @@ const Dialog = React.forwardRef(function Dialog(props, ref) {
         appear
         in={open}
         timeout={transitionDuration}
-        onEnter={onEnter}
-        onEntering={onEntering}
-        onEntered={onEntered}
-        onExit={onExit}
-        onExiting={onExiting}
-        onExited={onExited}
         role="none presentation"
         {...TransitionProps}
       >
@@ -322,34 +310,10 @@ Dialog.propTypes = {
    */
   onClose: PropTypes.func,
   /**
-   * Callback fired before the dialog enters.
-   */
-  onEnter: PropTypes.func,
-  /**
-   * Callback fired when the dialog has entered.
-   */
-  onEntered: PropTypes.func,
-  /**
-   * Callback fired when the dialog is entering.
-   */
-  onEntering: PropTypes.func,
-  /**
    * Callback fired when the escape key is pressed,
    * `disableKeyboard` is false and the modal is in focus.
    */
   onEscapeKeyDown: PropTypes.func,
-  /**
-   * Callback fired before the dialog exits.
-   */
-  onExit: PropTypes.func,
-  /**
-   * Callback fired when the dialog has exited.
-   */
-  onExited: PropTypes.func,
-  /**
-   * Callback fired when the dialog is exiting.
-   */
-  onExiting: PropTypes.func,
   /**
    * If `true`, the Dialog is open.
    */

@@ -54,34 +54,10 @@ export interface DialogProps
    */
   onClose?: ModalProps['onClose'];
   /**
-   * Callback fired before the dialog enters.
-   */
-  onEnter?: TransitionHandlerProps['onEnter'];
-  /**
-   * Callback fired when the dialog has entered.
-   */
-  onEntered?: TransitionHandlerProps['onEntered'];
-  /**
-   * Callback fired when the dialog is entering.
-   */
-  onEntering?: TransitionHandlerProps['onEntering'];
-  /**
    * Callback fired when the escape key is pressed,
    * `disableKeyboard` is false and the modal is in focus.
    */
   onEscapeKeyDown?: ModalProps['onEscapeKeyDown'];
-  /**
-   * Callback fired before the dialog exits.
-   */
-  onExit?: TransitionHandlerProps['onExit'];
-  /**
-   * Callback fired when the dialog has exited.
-   */
-  onExited?: TransitionHandlerProps['onExited'];
-  /**
-   * Callback fired when the dialog is exiting.
-   */
-  onExiting?: TransitionHandlerProps['onExiting'];
   /**
    * If `true`, the Dialog is open.
    */
