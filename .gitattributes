@@ -1,3 +1,7 @@
 # Set the default behavior, in case people don't have core.autocrlf set.
 * text=auto
+# These files are automatically generated and kept in git so we can
+# review the impact when changing the generation script.
+# This prevent us to use `linguist-generated`.
+# We also generate all the .d.ts manually to be included in the npm archive.
 packages/material-ui-icons/src/*.js linguist-language=TypeScript
