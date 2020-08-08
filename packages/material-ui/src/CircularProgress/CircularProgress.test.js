@@ -101,13 +101,14 @@ describe('<CircularProgress />', () => {
         'should have strokeDashoffset set',
       );
       expect(circularProgress).to.have.attribute('aria-valuenow', '70');
+    });
 
-      it('issues a warning for variant="static"', () => {
-        expect(console.error.callCount).to.equal(1);
-        expect(console.error.firstCall.args[0]).to.equal(
-          'Warning: Failed prop type: Material-UI: `variant="static"` was deprecated. Use `variant="determinate"` instead.',
-        );
-      });
+    it('issues a warning for variant="static"', () => {
+      render(<CircularProgress variant="static" value={70} />);
+      expect(console.error.callCount).to.equal(1);
+      expect(console.error.firstCall.args[0]).to.equal(
+        'Warning: Failed prop type: Material-UI: `variant="static"` was deprecated. Use `variant="determinate"` instead.',
+      );
     });
   });
 
