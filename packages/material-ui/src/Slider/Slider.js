@@ -394,7 +394,12 @@ const Slider = React.forwardRef(function Slider(props, ref) {
         }))
       : marksProp || [];
 
-  const { isFocusVisible, onBlurVisible, ref: focusVisibleRef } = useIsFocusVisible();
+  const {
+    isFocusVisibleRef,
+    onBlur: handleBlurVisible,
+    onFocus: handleFocusVisible,
+    ref: focusVisibleRef,
+  } = useIsFocusVisible();
   const [focusVisible, setFocusVisible] = React.useState(-1);
 
   const sliderRef = React.useRef();
@@ -403,15 +408,16 @@ const Slider = React.forwardRef(function Slider(props, ref) {
 
   const handleFocus = useEventCallback((event) => {
     const index = Number(event.currentTarget.getAttribute('data-index'));
-    if (isFocusVisible(event)) {
+    handleFocusVisible(event);
+    if (isFocusVisibleRef.current === true) {
       setFocusVisible(index);
     }
     setOpen(index);
   });
-  const handleBlur = useEventCallback(() => {
-    if (focusVisible !== -1) {
+  const handleBlur = useEventCallback((event) => {
+    handleBlurVisible(event);
+    if (isFocusVisibleRef.current === false) {
       setFocusVisible(-1);
-      onBlurVisible();
     }
     setOpen(-1);
   });

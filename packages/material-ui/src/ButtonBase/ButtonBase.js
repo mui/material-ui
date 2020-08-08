@@ -90,11 +90,19 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
 
   const rippleRef = React.useRef(null);
 
+  const {
+    isFocusVisibleRef,
+    onFocus: handleFocusVisible,
+    onBlur: handleBlurVisible,
+    ref: focusVisibleRef,
+  } = useIsFocusVisible();
   const [focusVisible, setFocusVisible] = React.useState(false);
   if (disabled && focusVisible) {
     setFocusVisible(false);
   }
-  const { isFocusVisible, onBlurVisible, ref: focusVisibleRef } = useIsFocusVisible();
+  React.useEffect(() => {
+    isFocusVisibleRef.current = focusVisible;
+  }, [focusVisible, isFocusVisibleRef]);
 
   React.useImperativeHandle(
     action,
@@ -143,18 +151,11 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
   const handleTouchEnd = useRippleHandler('stop', onTouchEnd);
   const handleTouchMove = useRippleHandler('stop', onTouchMove);
 
-  const hadFocusVisibleEventRef = React.useRef(false);
   const handleBlur = useRippleHandler(
     'stop',
     (event) => {
-      // checking against `focusVisible` does not suffice if we focus and blur syncronously.
-      // React wouldn't have time to trigger a re-render so `focusVisible` would be stale.
-      // Ideally we would adjust `isFocusVisible(event)` to look at `relatedTarget` for blur events.
-      // This doesn't work in IE 11 due to https://github.com/facebook/react/issues/3751
-      // TODO: check again if React releases their internal changes to focus event handling (https://github.com/facebook/react/pull/19186).
-      if (hadFocusVisibleEventRef.current) {
-        hadFocusVisibleEventRef.current = false;
-        onBlurVisible(event);
+      handleBlurVisible(event);
+      if (isFocusVisibleRef.current === false) {
         setFocusVisible(false);
       }
       if (onBlur) {
@@ -170,8 +171,8 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
       buttonRef.current = event.currentTarget;
     }
 
-    if (isFocusVisible(event)) {
-      hadFocusVisibleEventRef.current = true;
+    handleFocusVisible(event);
+    if (isFocusVisibleRef.current === true) {
       setFocusVisible(true);
 
       if (onFocusVisible) {

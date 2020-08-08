@@ -115,21 +115,6 @@ function isFocusVisible(event) {
   return hadKeyboardEvent || focusTriggersKeyboardModality(target);
 }
 
-/**
- * Should be called if a blur event is fired on a focus-visible element
- */
-function handleBlurVisible() {
-  // To detect a tab/window switch, we look for a blur event followed
-  // rapidly by a visibility change.
-  // If we don't see a visibility change within 100ms, it's probably a
-  // regular focus change.
-  hadFocusVisibleRecently = true;
-  window.clearTimeout(hadFocusVisibleRecentlyTimeout);
-  hadFocusVisibleRecentlyTimeout = window.setTimeout(() => {
-    hadFocusVisibleRecently = false;
-  }, 100);
-}
-
 export default function useIsFocusVisible() {
   const ref = React.useCallback((node) => {
     if (node != null) {
@@ -137,10 +122,46 @@ export default function useIsFocusVisible() {
     }
   }, []);
 
-  if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    React.useDebugValue(isFocusVisible);
+  const isFocusVisibleRef = React.useRef(false);
+
+  /**
+   * Should be called if a blur event is fired
+   */
+  function handleBlurVisible() {
+    // checking against potential state variable does not suffice if we focus and blur syncronously.
+    // React wouldn't have time to trigger a re-render so `focusVisible` would be stale.
+    // Ideally we would adjust `isFocusVisible(event)` to look at `relatedTarget` for blur events.
+    // This doesn't work in IE 11 due to https://github.com/facebook/react/issues/3751
+    // TODO: check again if React releases their internal changes to focus event handling (https://github.com/facebook/react/pull/19186).
+    if (isFocusVisibleRef.current) {
+      // To detect a tab/window switch, we look for a blur event followed
+      // rapidly by a visibility change.
+      // If we don't see a visibility change within 100ms, it's probably a
+      // regular focus change.
+      hadFocusVisibleRecently = true;
+      window.clearTimeout(hadFocusVisibleRecentlyTimeout);
+      hadFocusVisibleRecentlyTimeout = window.setTimeout(() => {
+        hadFocusVisibleRecently = false;
+      }, 100);
+
+      isFocusVisibleRef.current = false;
+
+      return true;
+    }
+
+    return false;
   }
 
-  return { isFocusVisible, onBlurVisible: handleBlurVisible, ref };
+  /**
+   * Should be called if a blur event is fired
+   */
+  function handleFocusVisible(event) {
+    if (isFocusVisible(event)) {
+      isFocusVisibleRef.current = true;
+      return true;
+    }
+    return false;
+  }
+
+  return { isFocusVisibleRef, onFocus: handleFocusVisible, onBlur: handleBlurVisible, ref };
 }

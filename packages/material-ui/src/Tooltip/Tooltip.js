@@ -291,12 +291,19 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     }
   };
 
-  const { isFocusVisible, onBlurVisible, ref: focusVisibleRef } = useIsFocusVisible();
-  const [childIsFocusVisible, setChildIsFocusVisible] = React.useState(false);
-  const handleBlur = () => {
-    if (childIsFocusVisible) {
+  const {
+    isFocusVisibleRef,
+    onBlur: handleBlurVisible,
+    onFocus: handleFocusVisible,
+    ref: focusVisibleRef,
+  } = useIsFocusVisible();
+  // We don't necessarily care about the focusVisible state (which is safe to access via ref anyway).
+  // We just need to re-render the Tooltip if the focus-visible state changes.
+  const [, setChildIsFocusVisible] = React.useState(false);
+  const handleBlur = (event) => {
+    handleBlurVisible(event);
+    if (isFocusVisibleRef.current === false) {
       setChildIsFocusVisible(false);
-      onBlurVisible();
     }
   };
 
@@ -308,7 +315,8 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
       setChildNode(event.currentTarget);
     }
 
-    if (isFocusVisible(event)) {
+    handleFocusVisible(event);
+    if (isFocusVisibleRef.current === true) {
       setChildIsFocusVisible(true);
       handleEnter()(event);
     }
@@ -343,7 +351,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
       if (childrenProps.onBlur && forward) {
         childrenProps.onBlur(event);
       }
-      handleBlur();
+      handleBlur(event);
     }
 
     if (
