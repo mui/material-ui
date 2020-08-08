@@ -16,6 +16,7 @@ const useStyles = makeStyles({
     height: 240,
     flexGrow: 1,
     maxWidth: 400,
+    position: 'relative',
   },
 });
 
@@ -129,11 +130,11 @@ const CustomContent = React.forwardRef(function CustomContent(
   return (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
     <div
-      className={clsx(classes.root, {
-        [classes.expanded]: expanded,
-        [classes.selected]: selected,
-        [classes.focused]: focused,
-        [classes.disabled]: disabled,
+      className={clsx(classes.root, contentClasses.root, {
+        [contentClasses.expanded]: expanded,
+        [contentClasses.selected]: selected,
+        [contentClasses.focused]: focused,
+        [contentClasses.disabled]: disabled,
       })}
       onClick={handleClick}
       onMouseDown={handleMouseDown}
