@@ -266,25 +266,26 @@ This change affects almost all components where you're using the `component` pro
 
 - The onE\* transition props were removed. Use TransitionProps instead.
 
-````diff
-<Snackbar
--  onEnter={onEnter}
--  onEntered={onEntered},
--  onEntering={onEntered},
--  onExit={onEntered},
--  onExited={onEntered},
--  onExiting={onEntered}
-/>
-<Snackbar
-+  TransitionProps={{
-+    onEnter,
-+    onEntered,
-+    onEntering,
-+    onExit,
-+    onExited,
-+    onExiting,
-+ }}
-/>
+  ```diff
+  <Snackbar
+  -  onEnter={onEnter}
+  -  onEntered={onEntered},
+  -  onEntering={onEntered},
+  -  onExit={onEntered},
+  -  onExited={onEntered},
+  -  onExiting={onEntered}
+  />
+  <Snackbar
+  +  TransitionProps={{
+  +    onEnter,
+  +    onEntered,
+  +    onEntering,
+  +    onExit,
+  +    onExited,
+  +    onExiting,
+  +  }}
+  />
+  ```
 
   ### Skeleton
 
@@ -296,8 +297,8 @@ This change affects almost all components where you're using the `component` pro
   -<Skeleton classes={{ circle: 'custom-circle-classname', rect: 'custom-rect-classname',  }} />
   +<Skeleton variant="circular" />
   +<Skeleton variant="rectangular" />
-  -<Skeleton classes={{ circular: 'custom-circle-classname', rectangular: 'custom-rect-classname',  }} />
-````
+  +<Skeleton classes={{ circular: 'custom-circle-classname', rectangular: 'custom-rect-classname',  }} />
+  ```
 
 ### TablePagination
 
@@ -313,6 +314,7 @@ This change affects almost all components where you're using the `component` pro
 ### Tabs
 
 - TypeScript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
+
   ```diff
   -<Tabs onChange={(event: React.ChangeEvent<{}>, value: unknown) => {}} />
   +<Tabs onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
