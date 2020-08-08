@@ -499,8 +499,7 @@ describe('<Tooltip />', () => {
 
       button.blur();
 
-      // FIXME: undesired behavior, should be 1
-      expect(handleBlur.callCount).to.equal(0);
+      expect(handleBlur.callCount).to.equal(1);
       expect(handleFocus.callCount).to.equal(1);
     });
 

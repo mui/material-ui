@@ -59,7 +59,7 @@ describe('<TrapFocus />', () => {
   it('should focus first focusable child in portal', () => {
     const { getByTestId } = render(
       <TrapFocus {...defaultProps} open>
-        <div data-testid="focus-trap-root" tabIndex={-1}>
+        <div tabIndex={-1}>
           <Portal>
             <input autoFocus data-testid="auto-focus" />
           </Portal>
@@ -67,8 +67,7 @@ describe('<TrapFocus />', () => {
       </TrapFocus>,
     );
 
-    // FIXME: should be `auto-focus`
-    expect(getByTestId('focus-trap-root')).toHaveFocus();
+    expect(getByTestId('auto-focus')).toHaveFocus();
   });
 
   it('should warn if the modal content is not focusable', () => {
@@ -203,14 +202,7 @@ describe('<TrapFocus />', () => {
         expect(getByTestId('modal')).toHaveFocus();
       });
 
-      it('should restore the focus', function test() {
-        const isEdge15 = /Edge\/15\.\d+/.test(window.navigator.userAgent);
-        const isChrome49 = /Chrome\/49\.\d+/.test(window.navigator.userAgent);
-        if (isEdge15 || isChrome49) {
-          // FIXME: unknown why it fails
-          this.skip();
-        }
-
+      it('should restore the focus', () => {
         const Test = (props) => (
           <div>
             <input />
@@ -231,10 +223,7 @@ describe('<TrapFocus />', () => {
 
         // restore the focus to the first element before triggering the trap
         setProps({ open: false });
-
-        // FIXME: should be
-        // expect(getByRole('textbox')).toHaveFocus();
-        expect(getByTestId('modal')).toHaveFocus();
+        expect(getByRole('textbox')).toHaveFocus();
       });
     });
   });
