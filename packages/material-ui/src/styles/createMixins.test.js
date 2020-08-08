@@ -3,24 +3,12 @@ import createMixins from './createMixins';
 import createMuiTheme from './createMuiTheme';
 
 describe('createMixins', () => {
-  it('should be able to override the breakpoint', () => {
+  it('should be able add other mixins', () => {
     const theme = createMuiTheme();
-    const mixins = createMixins(theme.breakpoints, theme.spacing, {});
+    const mixins = createMixins(theme.breakpoints, theme.spacing, { test: { display: 'block' } });
 
-    const mixin = mixins.gutters({
-      display: 'flex',
-      [theme.breakpoints.up('sm')]: {
-        paddingLeft: 1,
-      },
-    });
-    expect(mixin).to.deep.equal({
-      '@media (min-width:600px)': {
-        paddingLeft: 1,
-        paddingRight: 24,
-      },
-      display: 'flex',
-      paddingLeft: 16,
-      paddingRight: 16,
+    expect(mixins.test).to.deep.equal({
+      display: 'block',
     });
   });
 });
