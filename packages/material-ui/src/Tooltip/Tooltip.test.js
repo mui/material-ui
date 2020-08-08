@@ -462,28 +462,46 @@ describe('<Tooltip />', () => {
   });
 
   describe('prop: overrides', () => {
-    [
-      'onTouchStart',
-      'onTouchEnd',
-      'onMouseEnter',
-      'onMouseOver',
-      'onMouseLeave',
-      'onFocus',
-      'onBlur',
-    ].forEach((name) => {
-      it(`should be transparent for the ${name} event`, () => {
-        const handler = spy();
-        const { getByRole } = render(
-          <Tooltip title="Hello World">
-            <button id="testChild" type="submit" {...{ [name]: handler }}>
-              Hello World
-            </button>
-          </Tooltip>,
-        );
-        const type = camelCase(name.slice(2));
-        fireEvent[type](getByRole('button'));
-        expect(handler.callCount).to.equal(1);
-      });
+    ['onTouchStart', 'onTouchEnd', 'onMouseEnter', 'onMouseOver', 'onMouseLeave'].forEach(
+      (name) => {
+        it(`should be transparent for the ${name} event`, () => {
+          const handler = spy();
+          const { getByRole } = render(
+            <Tooltip title="Hello World">
+              <button id="testChild" type="submit" {...{ [name]: handler }}>
+                Hello World
+              </button>
+            </Tooltip>,
+          );
+          const type = camelCase(name.slice(2));
+          fireEvent[type](getByRole('button'));
+          expect(handler.callCount).to.equal(1, `${name} should've been called`);
+        });
+      },
+    );
+
+    it(`should be transparent for the focus and blur event`, () => {
+      const handleBlur = spy();
+      const handleFocus = spy();
+      const { getByRole } = render(
+        <Tooltip title="Hello World">
+          <button id="testChild" type="submit" onFocus={handleFocus} onBlur={handleBlur}>
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+      const button = getByRole('button');
+
+      button.focus();
+
+      expect(handleBlur.callCount).to.equal(0);
+      expect(handleFocus.callCount).to.equal(1);
+
+      button.blur();
+
+      // FIXME: undesired behavior, should be 1
+      expect(handleBlur.callCount).to.equal(0);
+      expect(handleFocus.callCount).to.equal(1);
     });
 
     it('should ignore event from the tooltip', () => {

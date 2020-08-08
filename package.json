@@ -93,7 +93,7 @@
     "dom-accessibility-api": "^0.4.7",
     "dtslint": "^3.2.0",
     "enzyme": "^3.9.0",
-    "enzyme-adapter-react-16": "^1.14.0",
+    "enzyme-adapter-react-16": "npm:@eps1lon/enzyme-adapter-react-next",
     "eslint": "^7.4.0",
     "eslint-config-airbnb-typescript": "^9.0.0",
     "eslint-config-prettier": "^6.11.0",
@@ -169,7 +169,12 @@
     "**/dot-prop": "^5.2.0",
     "**/hoist-non-react-statics": "^3.3.2",
     "**/webpack": "^4.44.1",
-    "**/terser": "^4.1.2"
+    "**/terser": "^4.1.2",
+    "react": "0.0.0-f77c7b9d7",
+    "react-dom": "0.0.0-f77c7b9d7",
+    "react-is": "0.0.0-f77c7b9d7",
+    "react-test-renderer": "0.0.0-f77c7b9d7",
+    "scheduler": "0.0.0-f77c7b9d7"
   },
   "nyc": {
     "include": [
