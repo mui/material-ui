@@ -1,15 +1,15 @@
 /* eslint-disable no-console */
+import { css } from '@emotion/core';
+import styledEmotion from '@emotion/styled';
+import Box from '@material-ui/core/Box';
+import { makeStyles, styled as styledMui, StylesProvider, withStyles } from '@material-ui/styles';
 import Benchmark from 'benchmark';
+import { renderStylesToString } from 'emotion-server';
+import jss, { getDynamicStyles } from 'jss';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import styledComponents, { ServerStyleSheet } from 'styled-components';
-import styledEmotion from '@emotion/styled';
-import { css } from '@emotion/core';
-import { renderStylesToString } from 'emotion-server';
 import injectSheet, { JssProvider, SheetsRegistry } from 'react-jss';
-import { styled as styledMui, withStyles, makeStyles, StylesProvider } from '@material-ui/styles';
-import jss, { getDynamicStyles } from 'jss';
-import Box from '@material-ui/core/Box';
+import styledComponents, { ServerStyleSheet } from 'styled-components';
 
 const suite = new Benchmark.Suite('styles', {
   onError: (event) => {
