@@ -55,37 +55,36 @@ const compilerOptions = {
 
 
 suite
-  .add('typography.classname', () => {
-    compile([__dirname + '/types/typographyClassname.tsx'], compilerOptions);
-  })
-  .add('typography.classname.component', () => {
-    compile([__dirname + '/types/typographyClassnameComponent.tsx'], compilerOptions);
-  })
-
   .add('div.classname', () => {
     compile([__dirname + '/types/divClassname.tsx'], compilerOptions);
   })
-  // .add('box.classname', () => {
-  //   compile([__dirname + '/types/boxClassname.tsx'], compilerOptions);
+  .add('typography.classname', () => {
+    compile([__dirname + '/types/typographyClassname.tsx'], compilerOptions);
+  })
+  // .add('typography.classname.component', () => {
+  //   compile([__dirname + '/types/typographyClassnameComponent.tsx'], compilerOptions);
   // })
-  // .add('grid.classname', () => {
-  //   compile([__dirname + '/types/gridClassname.tsx'], compilerOptions);
-  // })
-  // .add('card.classname', () => {
-  //   compile([__dirname + '/types/cardClassname.tsx'], compilerOptions);
-  // })
-  // .add('div.style', () => {
-  //   compile([__dirname + '/types/typographyStyle.tsx'], compilerOptions);
-  // })
-  // .add('typography.style', () => {
-  //   compile([__dirname + '/types/typographyStyle.tsx'], compilerOptions);
-  // })
-  // .add('div.themed', () => {
-  //   compile([__dirname + '/types/divThemed.tsx'], compilerOptions);
-  // })
-  // .add('typography.themed', () => {
-  //   compile([__dirname + '/types/typographyThemed.tsx'], compilerOptions);
-  // })
+  .add('box.classname', () => {
+    compile([__dirname + '/types/boxClassname.tsx'], compilerOptions);
+  })
+  .add('grid.classname', () => {
+    compile([__dirname + '/types/gridClassname.tsx'], compilerOptions);
+  })
+  .add('card.classname', () => {
+    compile([__dirname + '/types/cardClassname.tsx'], compilerOptions);
+  })
+  .add('div.style', () => {
+    compile([__dirname + '/types/typographyStyle.tsx'], compilerOptions);
+  })
+  .add('typography.style', () => {
+    compile([__dirname + '/types/typographyStyle.tsx'], compilerOptions);
+  })
+  .add('div.themed', () => {
+    compile([__dirname + '/types/divThemed.tsx'], compilerOptions);
+  })
+  .add('typography.themed', () => {
+    compile([__dirname + '/types/typographyThemed.tsx'], compilerOptions);
+  })
   .on('cycle', (event) => {
     console.log(String(event.target));
   })
