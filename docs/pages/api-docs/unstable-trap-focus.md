@@ -37,3 +37,7 @@ Utility component that locks focus inside the component.
 The component cannot hold a ref.
 
 
+## Demos
+
+- [Trap Focus](/components/trap-focus/)
+
