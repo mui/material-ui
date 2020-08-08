@@ -6,7 +6,6 @@ import { duration } from '../styles/transitions';
 import ClickAwayListener from '../ClickAwayListener';
 import useEventCallback from '../utils/useEventCallback';
 import capitalize from '../utils/capitalize';
-import createChainedFunction from '../utils/createChainedFunction';
 import Grow from '../Grow';
 import SnackbarContent from '../SnackbarContent';
 
@@ -117,7 +116,7 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
       enter: duration.enteringScreen,
       exit: duration.leavingScreen,
     },
-    TransitionProps,
+    TransitionProps: { onEnter, onExited, ...TransitionProps } = {},
     ...other
   } = props;
 
@@ -185,12 +184,20 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
     }
   };
 
-  const handleExited = () => {
+  const handleExited = (node) => {
     setExited(true);
+
+    if (onExited) {
+      onExited(node);
+    }
   };
 
-  const handleEnter = () => {
+  const handleEnter = (node, isAppearing) => {
     setExited(false);
+
+    if (onEnter) {
+      onEnter(node, isAppearing);
+    }
   };
 
   React.useEffect(() => {
@@ -212,13 +219,6 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
     return null;
   }
 
-  if (TransitionProps !== undefined && TransitionProps.onEnter !== undefined) {
-    TransitionProps.onEnter = createChainedFunction(handleEnter, TransitionProps.onEnter);
-  }
-  if (TransitionProps !== undefined && TransitionProps.onExited !== undefined) {
-    TransitionProps.onExited = createChainedFunction(handleExited, TransitionProps.onExited);
-  }
-
   return (
     <ClickAwayListener onClickAway={handleClickAway} {...ClickAwayListenerProps}>
       <div
@@ -237,6 +237,8 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
           in={open}
           timeout={transitionDuration}
           direction={vertical === 'top' ? 'down' : 'up'}
+          onEnter={handleEnter}
+          onExited={handleExited}
           {...TransitionProps}
         >
           {children || <SnackbarContent message={message} action={action} {...ContentProps} />}
