@@ -2114,9 +2114,9 @@
     rifm "^0.7.0"
 
 "@material-ui/pickers@^4.0.0-alpha.11":
-  version "4.0.0-alpha.11"
-  resolved "https://registry.yarnpkg.com/@material-ui/pickers/-/pickers-4.0.0-alpha.11.tgz#364f77e5b3f3f7928a2cf6f22585995b09336848"
-  integrity sha512-OVNBpO5Oy4unUt7FKue4KFRbC3gsiJMZ5hLXCSkXF9NrlS2oWD2s3+gFUnBCBLeTq+IykT6R/KbY8S4f/bta2w==
+  version "4.0.0-alpha.12"
+  resolved "https://registry.yarnpkg.com/@material-ui/pickers/-/pickers-4.0.0-alpha.12.tgz#44ee222686ef537954f23bae58a713247106a1b8"
+  integrity sha512-Axk+9VDm2JE79mCNxhHnBVk6nEGUvQyckP2GQcbZnMiKrepBxvg9+Xkn7fXgMlBWsgbOtNp03aiyW11dpEMs9A==
   dependencies:
     "@date-io/date-fns" "^2.8.0"
     "@date-io/dayjs" "^2.8.0"
