@@ -14,11 +14,7 @@ import List, {
   ListItemSecondaryAction,
 } from '@material-ui/core/List';
 import Dialog, { DialogTitle } from '@material-ui/core/Dialog';
-import {
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-} from '@material-ui/core/Dialog';
+import { DialogActions, DialogContent, DialogContentText } from '@material-ui/core/Dialog';
 import Slide from '@material-ui/core/transitions/Slide';
 import Radio, { RadioGroup } from '@material-ui/core/Radio';
 import { FormControlLabel } from '@material-ui/core/Form';

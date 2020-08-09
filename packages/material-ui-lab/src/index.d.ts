@@ -10,11 +10,17 @@ export * from './AvatarGroup';
 export { default as LoadingButton } from './LoadingButton';
 export * from './LoadingButton';
 
+export { default as LocalizationProvider } from './LocalizationProvider';
+export * from './LocalizationProvider';
+
 export { default as Pagination } from './Pagination';
 export * from './Pagination';
 
 export { default as PaginationItem } from './PaginationItem';
 export * from './PaginationItem';
+
+export { default as PickersDay } from './PickersDay';
+export * from './PickersDay';
 
 export { default as Rating } from './Rating';
 export * from './Rating';
@@ -78,3 +84,66 @@ export * from './TreeView';
 
 export { default as useAutocomplete } from './useAutocomplete';
 export * from './useAutocomplete';
+
+export { default as DayPicker } from './DayPicker';
+export * from './DayPicker';
+
+export { default as DatePicker } from './DatePicker';
+export * from './DatePicker';
+
+export { default as DesktopDatePicker } from './DesktopDatePicker';
+export * from './DesktopDatePicker';
+
+export { default as MobileDatePicker } from './MobileDatePicker';
+export * from './MobileDatePicker';
+
+export { default as StaticDatePicker } from './StaticDatePicker';
+export * from './StaticDatePicker';
+
+export { default as TimePicker } from './TimePicker';
+export * from './TimePicker';
+
+export { default as YearPicker } from './YearPicker';
+export * from './YearPicker';
+
+export { default as DesktopTimePicker } from './DesktopTimePicker';
+export * from './DesktopTimePicker';
+
+export { default as MobileTimePicker } from './MobileTimePicker';
+export * from './MobileTimePicker';
+
+export { default as StaticTimePicker } from './StaticTimePicker';
+export * from './StaticTimePicker';
+
+export { default as DateTimePicker } from './DateTimePicker';
+export * from './DateTimePicker';
+
+export { default as DesktopDateTimePicker } from './DesktopDateTimePicker';
+export * from './DesktopDateTimePicker';
+
+export { default as MobileDateTimePicker } from './MobileDateTimePicker';
+export * from './MobileDateTimePicker';
+
+export { default as StaticDateTimePicker } from './StaticDateTimePicker';
+export * from './StaticDateTimePicker';
+
+export { default as DateRangePicker } from './DateRangePicker';
+export * from './DateRangePicker';
+
+export {
+  default as DesktopDateRangePicker,
+  DesktopDateRangePickerProps,
+} from './DesktopDateRangePicker';
+
+export {
+  default as MobileDateRangePicker,
+  MobileDateRangePickerProps,
+} from './MobileDateRangePicker';
+
+export {
+  default as StaticDateRangePicker,
+  StaticDateRangePickerProps,
+} from './StaticDateRangePicker';
+
+export { default as ClockPicker } from './ClockPicker';
+export * from './ClockPicker';

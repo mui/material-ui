@@ -72,6 +72,10 @@ declare global {
        */
       toBeInaccessible(): void;
       /**
+       * Matcher with useful error messages if the dates don't match.
+       */
+      toEqualDateTime(expected: Date): void;
+      /**
        * Checks if the accessible name computation (according to `accname` spec)
        * matches the expectation.
        *
@@ -378,6 +382,15 @@ chai.use((chaiAPI, utils) => {
     assertMatchingStyles.call(this, computedStyle, expectedStyleUnnormalized, {
       styleTypeHint: 'computed',
     });
+  });
+
+  chai.Assertion.addMethod('toEqualDateTime', function toEqualDateTime(expectedDate, message) {
+    // eslint-disable-next-line no-underscore-dangle
+    const actualDate = this._obj;
+    const assertion = new chai.Assertion(actualDate.toISOString(), message);
+    // TODO: Investigate if `as any` can be removed after https://github.com/DefinitelyTyped/DefinitelyTyped/issues/48634 is resolved.
+    utils.transferFlags(this as any, assertion, false);
+    assertion.to.equal(expectedDate.toISOString());
   });
 });
 
