@@ -492,12 +492,16 @@ describe('<Tooltip />', () => {
       );
       const button = getByRole('button');
 
-      button.focus();
+      act(() => {
+        button.focus();
+      });
 
       expect(handleBlur.callCount).to.equal(0);
       expect(handleFocus.callCount).to.equal(1);
 
-      button.blur();
+      act(() => {
+        button.blur();
+      });
 
       expect(handleBlur.callCount).to.equal(1);
       expect(handleFocus.callCount).to.equal(1);
