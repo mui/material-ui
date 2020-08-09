@@ -2907,11 +2907,11 @@
     "@types/node" "*"
 
 "@typescript-eslint/eslint-plugin@^3.6.0":
-  version "3.7.1"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-3.7.1.tgz#d144c49a9a0ffe8dd704bb179c243df76c111bc9"
-  integrity sha512-3DB9JDYkMrc8Au00rGFiJLK2Ja9CoMP6Ut0sHsXp3ZtSugjNxvSSHTnKLfo4o+QmjYBJqEznDqsG1zj4F2xnsg==
+  version "3.8.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-3.8.0.tgz#f82947bcdd9a4e42be7ad80dfd61f1dc411dd1df"
+  integrity sha512-lFb4VCDleFSR+eo4Ew+HvrJ37ZH1Y9ZyE+qyP7EiwBpcCVxwmUc5PAqhShCQ8N8U5vqYydm74nss+a0wrrCErw==
   dependencies:
-    "@typescript-eslint/experimental-utils" "3.7.1"
+    "@typescript-eslint/experimental-utils" "3.8.0"
     debug "^4.1.1"
     functional-red-black-tree "^1.0.1"
     regexpp "^3.0.0"
