@@ -8,6 +8,12 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "browserslist": [
+    "defaults",
+    "not IE 11",
+    "not IE_Mob 11",
+    "maintained node versions"
+  ],
   "dependencies": {
     "@material-ui/core": "latest",
     "clsx": "latest",
