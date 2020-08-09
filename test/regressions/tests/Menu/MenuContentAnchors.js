@@ -11,6 +11,19 @@ const useMenuStyles = makeStyles({
     // give the anchor enough space so that the menu can align the selected item
     margin: '80px 0',
   },
+  listItem: {
+    '&$listItemFocusVisible': {
+      border: '3px dashed black',
+    },
+    '&$listItemSelected': {
+      border: '3px dotted black',
+    },
+    '&$listItemFocusVisible$listItemSelected': {
+      border: '3px solid black',
+    },
+  },
+  listItemFocusVisible: {},
+  listItemSelected: {},
 });
 
 /**
@@ -20,6 +33,12 @@ function SimpleMenu({ selectedItem, ...props }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const classes = useMenuStyles();
 
+  const listItemClasses = {
+    root: classes.listItem,
+    focusVisible: classes.listItemFocusVisible,
+    selected: classes.listItemSelected,
+  };
+
   return (
     <Grid item>
       <Button className={classes.anchorEl} ref={setAnchorEl}>
@@ -27,9 +46,13 @@ function SimpleMenu({ selectedItem, ...props }) {
       </Button>
       <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} transitionDuration={0} {...props}>
         {null}
-        <MenuItem selected={selectedItem === 1}>Item 1</MenuItem>
-        <MenuItem selected={selectedItem === 2}>Item 2</MenuItem>
-        <MenuItem>Item 3</MenuItem>
+        <MenuItem ListItemClasses={listItemClasses} selected={selectedItem === 1}>
+          Item 1
+        </MenuItem>
+        <MenuItem ListItemClasses={listItemClasses} selected={selectedItem === 2}>
+          Item 2
+        </MenuItem>
+        <MenuItem ListItemClasses={listItemClasses}>Item 3</MenuItem>
       </Menu>
     </Grid>
   );

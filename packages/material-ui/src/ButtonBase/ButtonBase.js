@@ -90,11 +90,19 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
 
   const rippleRef = React.useRef(null);
 
+  const {
+    isFocusVisibleRef,
+    onFocus: handleFocusVisible,
+    onBlur: handleBlurVisible,
+    ref: focusVisibleRef,
+  } = useIsFocusVisible();
   const [focusVisible, setFocusVisible] = React.useState(false);
   if (disabled && focusVisible) {
     setFocusVisible(false);
   }
-  const { isFocusVisible, onBlurVisible, ref: focusVisibleRef } = useIsFocusVisible();
+  React.useEffect(() => {
+    isFocusVisibleRef.current = focusVisible;
+  }, [focusVisible, isFocusVisibleRef]);
 
   React.useImperativeHandle(
     action,
@@ -142,11 +150,12 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
   const handleTouchStart = useRippleHandler('start', onTouchStart);
   const handleTouchEnd = useRippleHandler('stop', onTouchEnd);
   const handleTouchMove = useRippleHandler('stop', onTouchMove);
+
   const handleBlur = useRippleHandler(
     'stop',
     (event) => {
-      if (focusVisible) {
-        onBlurVisible(event);
+      handleBlurVisible(event);
+      if (isFocusVisibleRef.current === false) {
         setFocusVisible(false);
       }
       if (onBlur) {
@@ -162,7 +171,8 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
       buttonRef.current = event.currentTarget;
     }
 
-    if (isFocusVisible(event)) {
+    handleFocusVisible(event);
+    if (isFocusVisibleRef.current === true) {
       setFocusVisible(true);
 
       if (onFocusVisible) {

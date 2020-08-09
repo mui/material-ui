@@ -179,7 +179,12 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     value = focus;
   }
 
-  const { isFocusVisible, onBlurVisible, ref: focusVisibleRef } = useIsFocusVisible();
+  const {
+    isFocusVisibleRef,
+    onBlur: handleBlurVisible,
+    onFocus: handleFocusVisible,
+    ref: focusVisibleRef,
+  } = useIsFocusVisible();
   const [focusVisible, setFocusVisible] = React.useState(false);
 
   const rootRef = React.useRef();
@@ -267,7 +272,8 @@ const Rating = React.forwardRef(function Rating(props, ref) {
   };
 
   const handleFocus = (event) => {
-    if (isFocusVisible(event)) {
+    handleFocusVisible(event);
+    if (isFocusVisibleRef.current === true) {
       setFocusVisible(true);
     }
 
@@ -287,9 +293,9 @@ const Rating = React.forwardRef(function Rating(props, ref) {
       return;
     }
 
-    if (focusVisible !== false) {
+    handleBlurVisible(event);
+    if (isFocusVisibleRef.current === false) {
       setFocusVisible(false);
-      onBlurVisible();
     }
 
     const newFocus = -1;

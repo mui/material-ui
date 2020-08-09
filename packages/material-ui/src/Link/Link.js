@@ -68,12 +68,17 @@ const Link = React.forwardRef(function Link(props, ref) {
     ...other
   } = props;
 
-  const { isFocusVisible, onBlurVisible, ref: focusVisibleRef } = useIsFocusVisible();
+  const {
+    isFocusVisibleRef,
+    onBlur: handleBlurVisible,
+    onFocus: handleFocusVisible,
+    ref: focusVisibleRef,
+  } = useIsFocusVisible();
   const [focusVisible, setFocusVisible] = React.useState(false);
   const handlerRef = useForkRef(ref, focusVisibleRef);
   const handleBlur = (event) => {
-    if (focusVisible) {
-      onBlurVisible();
+    handleBlurVisible(event);
+    if (isFocusVisibleRef.current === false) {
       setFocusVisible(false);
     }
     if (onBlur) {
@@ -81,7 +86,8 @@ const Link = React.forwardRef(function Link(props, ref) {
     }
   };
   const handleFocus = (event) => {
-    if (isFocusVisible(event)) {
+    handleFocusVisible(event);
+    if (isFocusVisibleRef.current === true) {
       setFocusVisible(true);
     }
     if (onFocus) {
