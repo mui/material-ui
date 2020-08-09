@@ -7,10 +7,11 @@ import ProTip from './ProTip';
 
 const Copyright = () => (
   <Typography variant="body2" color="textSecondary" align="center">
-    Copyright &copy;
+    Copyright &copy;&nbsp;
     <Link color="inherit" href="https://material-ui.com/">
       Your Website
     </Link>
+    &nbsp;
     {new Date().getFullYear()}.
   </Typography>
 );
