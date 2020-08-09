@@ -14,6 +14,11 @@ update_configs:
           # for new releases and file a PR if you got time.
           dependency_name: '@babel/*'
       - match:
+          # Should be grouped with @typescript-eslint/eslint-plugin
+          # They sometimes are mergable independently but create a different dependency when merged leading to a changed yarn.lock
+          # TODO: Revisit once https://github.com/dependabot/dependabot-core/issues/1190 is resolved.
+          dependency_name: '@typescript-eslint/parser'
+      - match:
           # as of 3.x prevaled code is no longer transpiled
           dependency_name: 'babel-plugin-preval'
           version_requirement: '>= 3.0'
