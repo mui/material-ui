@@ -182,7 +182,7 @@ The helper text prop affects the height of the text field. If two text fields, a
 
 Will result in this:
 
-![helper-text-1](/static/images/text-fields/helper-text-1.png)
+{{"demo": "pages/components/text-fields/HelperTextMisaligned.js"}}
 
 This can be fixed by passing a space character to the `helperText` prop:
 
@@ -195,7 +195,7 @@ This can be fixed by passing a space character to the `helperText` prop:
 
 Results in this:
 
-![helper-text-2](/static/images/text-fields/helper-text-2.png)
+{{"demo": "pages/components/text-fields/HelperTextAligned.js"}}
 
 ## Integration with 3rd party input libraries
 
