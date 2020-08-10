@@ -171,7 +171,7 @@ In the future, we might provide a [number input component](https://github.com/mu
 
 ### Helper text
 
-The helper text prop effects the height of the text field. If two text fields, one with a helper text one without, are placed side by side they will be at different heights. For example the following code: 
+The helper text prop affects the height of the text field. If two text fields, are placed side by side, one with a helper text and one without, they will have different heights. For example the following code: 
 
 ```jsx
 <div style={{ display: 'flex', alignItems: 'center' }}>
