@@ -4,6 +4,7 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface AvatarPropsVariantOverrides {}
 export type AvatarVariantDefaults = Record<'circular' | 'rounded' | 'square', true>;
+
 export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
     /**
