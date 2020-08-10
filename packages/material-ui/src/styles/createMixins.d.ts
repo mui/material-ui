@@ -3,7 +3,6 @@ import { Spacing } from './createSpacing';
 import { CSSProperties } from './withStyles';
 
 export interface Mixins {
-  gutters: (styles?: CSSProperties) => CSSProperties;
   toolbar: CSSProperties;
   // ... use interface declaration merging to add custom mixins
 }
