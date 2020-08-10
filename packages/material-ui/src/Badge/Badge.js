@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { useThemeVariants } from '@material-ui/styles';
 import withStyles from '../styles/withStyles';
 import capitalize from '../utils/capitalize';
 
@@ -62,6 +63,8 @@ export const styles = (theme) => ({
     minWidth: RADIUS_DOT * 2,
     padding: 0,
   },
+  /* Styles applied to the root element if `variant="standard"`. */
+  standard: {},
   /* Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }} overlap="rectangular"`. */
   anchorOriginTopRightRectangular: {
     top: 0,
@@ -206,6 +209,22 @@ const Badge = React.forwardRef(function Badge(props, ref) {
     variant = variantProp,
   } = invisible ? prevProps : props;
 
+  const themeVariantsClasses = useThemeVariants(
+    {
+      ...props,
+      anchorOrigin,
+      badgeContent,
+      color,
+      component: ComponentProp,
+      invisible,
+      max,
+      overlap,
+      showZero,
+      variant,
+    },
+    'MuiBadge',
+  );
+
   let displayValue = '';
 
   if (variant !== 'dot') {
@@ -218,6 +237,7 @@ const Badge = React.forwardRef(function Badge(props, ref) {
       <span
         className={clsx(
           classes.badge,
+          classes[variant],
           classes[
             `anchorOrigin${capitalize(anchorOrigin.vertical)}${capitalize(
               anchorOrigin.horizontal,
@@ -226,8 +246,8 @@ const Badge = React.forwardRef(function Badge(props, ref) {
           {
             [classes[`color${capitalize(color)}`]]: color !== 'default',
             [classes.invisible]: invisible,
-            [classes.dot]: variant === 'dot',
           },
+          themeVariantsClasses,
         )}
       >
         {displayValue}
@@ -293,7 +313,10 @@ Badge.propTypes = {
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['dot', 'standard']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['dot', 'standard']),
+    PropTypes.string,
+  ]),
 };
 
 export default withStyles(styles, { name: 'MuiBadge' })(Badge);
