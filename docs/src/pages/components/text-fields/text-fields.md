@@ -168,6 +168,35 @@ For number validation, one viable alternative is to use the default input type="
 
 In the future, we might provide a [number input component](https://github.com/mui-org/material-ui/issues/19154).
 
+
+### Helper text
+
+The helper text prop effects the height of the text field. If two text fields, one with a helper text one without, are placed side by side they will be at different heights. For example the following code: 
+
+```jsx
+<div style={{ display: 'flex', alignItems: 'center' }}>
+	<TextField helperText="Please enter your name" />
+	<TextField />
+</div>
+```
+
+Will result in this:
+
+![helper-text-1](/static/images/text-fields/helper-text-1.png)
+
+This can be fixed by passing a space character as a prop to text fields that do not have helper text:
+
+```jsx
+<div style={{ display: 'flex', alignItems: 'center' }}>
+	<TextField helperText="Please enter your name" />
+	<TextField helperText=' '/>
+</div>
+```
+
+Results in this:
+
+![helper-text-2](/static/images/text-fields/helper-text-2.png)
+
 ## Integration with 3rd party input libraries
 
 You can use third-party libraries to format an input.
