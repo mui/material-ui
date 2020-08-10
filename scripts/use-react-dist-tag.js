@@ -29,22 +29,24 @@ async function main(options) {
     return;
   }
 
-  const { stdout: versions } = await exec(`npm dist-tag ls react ${distTag}`);
-  const tagMapping = versions.split('\n').find((mapping) => {
-    return mapping.startsWith(`${distTag}: `);
-  });
-  if (tagMapping === undefined) {
-    throw new Error(`Could not find '${distTag}' in "${versions}"`);
-  }
-
-  const version = tagMapping.replace(`${distTag}: `, '');
-
   const packageJsonPath = path.resolve(__dirname, '../package.json');
   const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, { encoding: 'utf8' }));
 
-  reactPackageNames.forEach((reactPackageName) => {
-    packageJson.resolutions[reactPackageName] = version;
-  });
+  await Promise.all(
+    reactPackageNames.map(async (reactPackageName) => {
+      const { stdout: versions } = await exec(`npm dist-tag ls ${reactPackageName} ${distTag}`);
+      const tagMapping = versions.split('\n').find((mapping) => {
+        return mapping.startsWith(`${distTag}: `);
+      });
+      if (tagMapping === undefined) {
+        throw new Error(`Could not find '${distTag}' in "${versions}"`);
+      }
+
+      const version = tagMapping.replace(`${distTag}: `, '');
+
+      packageJson.resolutions[reactPackageName] = version;
+    }),
+  );
 
   // https://github.com/enzymejs/enzyme/issues/2358
   packageJson.devDependencies['enzyme-adapter-react-16'] = 'npm:@eps1lon/enzyme-adapter-react-next';
