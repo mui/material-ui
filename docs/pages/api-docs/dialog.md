@@ -39,13 +39,13 @@ The `MuiDialog` name can be used for providing [default props](/customization/gl
 | <span class="prop-name">maxWidth</span> | <span class="prop-type">'lg'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'xl'<br>&#124;&nbsp;'xs'<br>&#124;&nbsp;false</span> | <span class="prop-default">'sm'</span> | Determine the max-width of the dialog. The dialog width grows with the size of the screen. Set to `false` to disable `maxWidth`. |
 | <span class="prop-name">onBackdropClick</span> | <span class="prop-type">func</span> |  | Callback fired when the backdrop is clicked. |
 | <span class="prop-name">onClose</span> | <span class="prop-type">func</span> |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object, reason: string) => void`<br>*event:* The event source of the callback.<br>*reason:* Can be: `"escapeKeyDown"`, `"backdropClick"`. |
-| <span class="prop-name">onEnter</span> | <span class="prop-type">func</span> |  | Callback fired before the dialog enters. |
-| <span class="prop-name">onEntered</span> | <span class="prop-type">func</span> |  | Callback fired when the dialog has entered. |
-| <span class="prop-name">onEntering</span> | <span class="prop-type">func</span> |  | Callback fired when the dialog is entering. |
+| ~~<span class="prop-name">onEnter</span>~~ | <span class="prop-type">func</span> |  | *Deprecated*. Use the `TransitionProps` property instead.<br><br>Callback fired before the dialog enters. |
+| ~~<span class="prop-name">onEntered</span>~~ | <span class="prop-type">func</span> |  | *Deprecated*. Use the `TransitionProps` property instead.<br><br>Callback fired when the dialog has entered. |
+| ~~<span class="prop-name">onEntering</span>~~ | <span class="prop-type">func</span> |  | *Deprecated*. Use the `TransitionProps` property instead.<br><br>Callback fired when the dialog is entering. |
 | <span class="prop-name">onEscapeKeyDown</span> | <span class="prop-type">func</span> |  | Callback fired when the escape key is pressed, `disableKeyboard` is false and the modal is in focus. |
-| <span class="prop-name">onExit</span> | <span class="prop-type">func</span> |  | Callback fired before the dialog exits. |
-| <span class="prop-name">onExited</span> | <span class="prop-type">func</span> |  | Callback fired when the dialog has exited. |
-| <span class="prop-name">onExiting</span> | <span class="prop-type">func</span> |  | Callback fired when the dialog is exiting. |
+| ~~<span class="prop-name">onExit</span>~~ | <span class="prop-type">func</span> |  | *Deprecated*. Use the `TransitionProps` property instead.<br><br>Callback fired before the dialog exits. |
+| ~~<span class="prop-name">onExited</span>~~ | <span class="prop-type">func</span> |  | *Deprecated*. Use the `TransitionProps` property instead.<br><br>Callback fired when the dialog has exited. |
+| ~~<span class="prop-name">onExiting</span>~~ | <span class="prop-type">func</span> |  | *Deprecated*. Use the `TransitionProps` property instead.<br><br>Callback fired when the dialog is exiting. |
 | <span class="prop-name required">open<abbr title="required">*</abbr></span> | <span class="prop-type">bool</span> |  | If `true`, the Dialog is open. |
 | <span class="prop-name">PaperComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">Paper</span> | The component used to render the body of the dialog. |
 | <span class="prop-name">PaperProps</span> | <span class="prop-type">object</span> | <span class="prop-default">{}</span> | Props applied to the [`Paper`](/api/paper/) element. |
