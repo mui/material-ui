@@ -72,30 +72,6 @@ export interface SnackbarProps
    */
   onClose?: (event: React.SyntheticEvent<any>, reason: SnackbarCloseReason) => void;
   /**
-   * Callback fired before the transition is entering.
-   */
-  onEnter?: TransitionHandlerProps['onEnter'];
-  /**
-   * Callback fired when the transition has entered.
-   */
-  onEntered?: TransitionHandlerProps['onEntered'];
-  /**
-   * Callback fired when the transition is entering.
-   */
-  onEntering?: TransitionHandlerProps['onEntering'];
-  /**
-   * Callback fired before the transition is exiting.
-   */
-  onExit?: TransitionHandlerProps['onExit'];
-  /**
-   * Callback fired when the transition has exited.
-   */
-  onExited?: TransitionHandlerProps['onExited'];
-  /**
-   * Callback fired when the transition is exiting.
-   */
-  onExiting?: TransitionHandlerProps['onExiting'];
-  /**
    * If `true`, `Snackbar` is open.
    */
   open?: boolean;
