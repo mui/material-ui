@@ -257,20 +257,20 @@ index 9cd267a0c0..7323483c87 100644
        });
      });
    });
-diff --git a/packages/material-ui/src/Tooltip/Tooltip.test.js b/packages/material-ui/src/Tooltip/Tooltip.test.js
-index 9b95a1b925..eed7236d8b 100644
---- a/packages/material-ui/src/Tooltip/Tooltip.test.js
-+++ b/packages/material-ui/src/Tooltip/Tooltip.test.js
-@@ -499,7 +499,8 @@ describe('<Tooltip />', () => {
+diff --git a/packages/material-ui/src/Tooltip/Tooltip.js b/packages/material-ui/src/Tooltip/Tooltip.js
+index 0dfb45f2e6..1eeb34f94b 100644
+--- a/packages/material-ui/src/Tooltip/Tooltip.js
++++ b/packages/material-ui/src/Tooltip/Tooltip.js
+@@ -347,7 +347,8 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
+   const handleLeave = (forward = true) => (event) => {
+     const childrenProps = children.props;
  
-       button.blur();
- 
--      expect(handleBlur.callCount).to.equal(1);
-+      // FIXME: undesired behavior, should be 1
-+      expect(handleBlur.callCount).to.equal(0);
-       expect(handleFocus.callCount).to.equal(1);
-     });
- 
+-    if (event.type === 'blur') {
++    // TODO Should be `blur` once https://github.com/facebook/react/pull/19561 is released
++    if (event.type === 'focusout') {
+       if (childrenProps.onBlur && forward) {
+         childrenProps.onBlur(event);
+       }
 diff --git a/packages/material-ui/src/Unstable_TrapFocus/Unstable_TrapFocus.js b/packages/material-ui/src/Unstable_TrapFocus/Unstable_TrapFocus.js
 index 5fbc86b1ba..e7b33b024b 100644
 --- a/packages/material-ui/src/Unstable_TrapFocus/Unstable_TrapFocus.js
@@ -393,10 +393,10 @@ index 3fba3ffab7..532c206595 100644
      });
    });
  });
-diff --git a/packages/material-ui/src/utils/focusVisible.test.js b/packages/material-ui/src/utils/focusVisible.test.js
-index 289b048a65..aaec2c066f 100644
---- a/packages/material-ui/src/utils/focusVisible.test.js
-+++ b/packages/material-ui/src/utils/focusVisible.test.js
+diff --git a/packages/material-ui/src/utils/useIsFocusVisible.test.js b/packages/material-ui/src/utils/useIsFocusVisible.test.js
+index fdf6df9a0d..aaa3ad1552 100644
+--- a/packages/material-ui/src/utils/useIsFocusVisible.test.js
++++ b/packages/material-ui/src/utils/useIsFocusVisible.test.js
 @@ -5,17 +5,6 @@ import { createMount } from 'test/utils';
  import useIsFocusVisible, { teardown as teardownFocusVisible } from './useIsFocusVisible';
  import useForkRef from './useForkRef';
@@ -413,9 +413,9 @@ index 289b048a65..aaec2c066f 100644
 -}
 -
  const SimpleButton = React.forwardRef(function SimpleButton(props, ref) {
-   const { isFocusVisible, onBlurVisible, ref: focusVisibleRef } = useIsFocusVisible();
- 
-@@ -79,31 +68,20 @@ describe('focus-visible polyfill', () => {
+   const {
+     isFocusVisibleRef,
+@@ -85,31 +74,20 @@ describe('focus-visible polyfill', () => {
  
      it('should set focus state for shadowRoot children', () => {
        const buttonRef = React.createRef();
