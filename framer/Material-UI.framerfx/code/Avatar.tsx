@@ -4,7 +4,6 @@ import MuiAvatar from '@material-ui/core/Avatar';
 import { Icon } from './Icon';
 
 interface Props {
-  variant: 'circular' | 'rounded' | 'square';
   backgroundColor: string;
   textColor: string;
   icon: string;
@@ -38,7 +37,6 @@ export function Avatar(props: Props): JSX.Element {
 }
 
 Avatar.defaultProps = {
-  variant: 'circular' as 'circular',
   backgroundColor: '#4154af',
   textColor: undefined,
   icon: 'face',
@@ -50,11 +48,6 @@ Avatar.defaultProps = {
 };
 
 addPropertyControls(Avatar, {
-  variant: {
-    type: ControlType.Enum,
-    title: 'Variant',
-    options: ['circular', 'rounded', 'square'],
-  },
   backgroundColor: {
     type: ControlType.Color,
     title: 'Background color',

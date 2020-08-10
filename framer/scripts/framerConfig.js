@@ -17,7 +17,15 @@ export const componentSettings = {
     ],
   },
   Avatar: {
-    ignoredProps: ['alt', 'imgProps', 'sizes', 'src', 'srcSet'],
+    ignoredProps: [
+      'alt',
+      'imgProps',
+      'sizes',
+      'src',
+      'srcSet',
+      // FIXME: `Union`
+      'variant',
+    ],
     propValues: {
       // Note: MUI Avatar doesn't have the normal `color` prop.
       backgroundColor: "'#4154af'",
