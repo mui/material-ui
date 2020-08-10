@@ -38,7 +38,7 @@ The `MuiBadge` name can be used for providing [default props](/customization/glo
 | <span class="prop-name">max</span> | <span class="prop-type">number</span> | <span class="prop-default">99</span> | Max count to show. |
 | <span class="prop-name">overlap</span> | <span class="prop-type">'circular'<br>&#124;&nbsp;'rectangular'</span> | <span class="prop-default">'rectangular'</span> | Wrapped shape the badge should overlap. |
 | <span class="prop-name">showZero</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Controls whether the badge is hidden when `badgeContent` is zero. |
-| <span class="prop-name">variant</span> | <span class="prop-type">'dot'<br>&#124;&nbsp;'standard'</span> | <span class="prop-default">'standard'</span> | The variant to use. |
+| <span class="prop-name">variant</span> | <span class="prop-type">'dot'<br>&#124;&nbsp;'standard'<br>&#124;&nbsp;string</span> | <span class="prop-default">'standard'</span> | The variant to use. |
 
 The `ref` is forwarded to the root element.
 
@@ -54,6 +54,7 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">colorSecondary</span> | <span class="prop-name">.MuiBadge-colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
 | <span class="prop-name">colorError</span> | <span class="prop-name">.MuiBadge-colorError</span> | Styles applied to the root element if `color="error"`.
 | <span class="prop-name">dot</span> | <span class="prop-name">.MuiBadge-dot</span> | Styles applied to the root element if `variant="dot"`.
+| <span class="prop-name">standard</span> | <span class="prop-name">.MuiBadge-standard</span> | Styles applied to the root element if `variant="standard"`.
 | <span class="prop-name">anchorOriginTopRightRectangular</span> | <span class="prop-name">.MuiBadge-anchorOriginTopRightRectangular</span> | Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }} overlap="rectangular"`.
 | <span class="prop-name">anchorOriginBottomRightRectangular</span> | <span class="prop-name">.MuiBadge-anchorOriginBottomRightRectangular</span> | Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }} overlap="rectangular"`.
 | <span class="prop-name">anchorOriginTopLeftRectangular</span> | <span class="prop-name">.MuiBadge-anchorOriginTopLeftRectangular</span> | Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }} overlap="rectangular"`.
