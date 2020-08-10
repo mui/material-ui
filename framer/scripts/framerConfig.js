@@ -47,6 +47,8 @@ export const componentSettings = {
       'disableFocusRipple',
       'invisible',
       'overlap',
+      // FIXME: `Union`
+      'variant',
     ],
     propValues: {
       icon: "''",

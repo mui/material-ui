@@ -7,7 +7,6 @@ interface Props {
   badgeContent: string;
   max: number;
   showZero: boolean;
-  variant: 'dot' | 'standard';
   icon: string;
   theme: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
   badgeColor: 'default' | 'primary' | 'secondary' | 'error';
@@ -37,7 +36,6 @@ Badge.defaultProps = {
   badgeContent: '8',
   max: 99,
   showZero: false,
-  variant: 'standard' as 'standard',
   icon: '',
   theme: 'Filled' as 'Filled',
   badgeColor: 'primary' as 'primary',
@@ -57,11 +55,6 @@ addPropertyControls(Badge, {
   showZero: {
     type: ControlType.Boolean,
     title: 'Show zero',
-  },
-  variant: {
-    type: ControlType.Enum,
-    title: 'Variant',
-    options: ['dot', 'standard'],
   },
   icon: {
     type: ControlType.String,

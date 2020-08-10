@@ -1,10 +1,14 @@
 import * as React from 'react';
+import { OverridableStringUnion } from '@material-ui/types';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface BadgeOrigin {
   vertical: 'top' | 'bottom';
   horizontal: 'left' | 'right';
 }
+
+export interface BadgePropsVariantOverrides {}
+export type BadgeVariantDefaults = Record<'standard' | 'dot', true>;
 
 export interface BadgeTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
@@ -43,7 +47,7 @@ export interface BadgeTypeMap<P = {}, D extends React.ElementType = 'div'> {
     /**
      * The variant to use.
      */
-    variant?: 'standard' | 'dot';
+    variant?: OverridableStringUnion<BadgeVariantDefaults, BadgePropsVariantOverrides>;
   };
   defaultComponent: D;
   classKey: BadgeClassKey;
@@ -56,6 +60,7 @@ export type BadgeClassKey =
   | 'colorSecondary'
   | 'colorError'
   | 'dot'
+  | 'standard'
   | 'anchorOriginTopRightRectangular'
   | 'anchorOriginBottomRightRectangular'
   | 'anchorOriginTopLeftRectangular'
