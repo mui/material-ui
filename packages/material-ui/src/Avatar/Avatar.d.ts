@@ -1,6 +1,9 @@
 import * as React from 'react';
+import { OverridableStringUnion } from '@material-ui/types';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
+export interface AvatarPropsVariantOverrides {}
+export type AvatarVariantDefaults = 'circular' | 'rounded' | 'square';
 export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
     /**
@@ -34,7 +37,7 @@ export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
     /**
      * The shape of the avatar.
      */
-    variant?: 'circular' | 'rounded' | 'square';
+    variant?: OverridableStringUnion<AvatarVariantDefaults, AvatarPropsVariantOverrides>;
   };
   defaultComponent: D;
   classKey: AvatarClassKey;
