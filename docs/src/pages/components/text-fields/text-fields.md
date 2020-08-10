@@ -184,7 +184,7 @@ Will result in this:
 
 ![helper-text-1](/static/images/text-fields/helper-text-1.png)
 
-This can be fixed by passing a space character as a prop to text fields that do not have helper text:
+This can be fixed by passing a space character to the `helperText` prop:
 
 ```jsx
 <div style={{ display: 'flex', alignItems: 'center' }}>
