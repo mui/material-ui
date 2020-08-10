@@ -40,7 +40,6 @@ export const styles = (theme) => {
       // Mimics the default input display property used by browsers for an input.
       ...theme.typography.body1,
       color: theme.palette.text.primary,
-      lineHeight: '1.1876em', // Reset (19px), match the native input line-height
       boxSizing: 'border-box', // Prevent padding issue with fullWidth.
       position: 'relative',
       cursor: 'text',
