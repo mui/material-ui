@@ -212,7 +212,6 @@ Avatar.propTypes = {
   /**
    * The shape of the avatar.
    */
-
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['circular', 'rounded', 'square']),
     PropTypes.string,
