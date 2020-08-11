@@ -232,7 +232,7 @@ describe('<TrapFocus />', () => {
     expect(initialFocus).toHaveFocus();
   });
 
-  it('undesired: enabling restore-focus logic while `open` has no effect', () => {
+  it('undesired: enabling restore-focus logic when closing has no effect', () => {
     function Test(props) {
       return (
         <TrapFocus
@@ -252,6 +252,32 @@ describe('<TrapFocus />', () => {
 
     setProps({ open: false, disableRestoreFocus: false });
 
+    // undesired: should be expect(initialFocus).toHaveFocus();
+    expect(screen.getByTestId('focus-root')).toHaveFocus();
+  });
+
+  it('undesired: setting `disableRestoreFocus` to false before closing has no effect', () => {
+    function Test(props) {
+      return (
+        <TrapFocus
+          getDoc={() => document}
+          isEnabled={() => true}
+          open
+          disableRestoreFocus
+          {...props}
+        >
+          <div data-testid="focus-root" tabIndex={-1}>
+            <input />
+          </div>
+        </TrapFocus>
+      );
+    }
+    const { setProps } = render(<Test />);
+
+    setProps({ disableRestoreFocus: false });
+    setProps({ open: false });
+
+    // undesired: should be expect(initialFocus).toHaveFocus();
     expect(screen.getByTestId('focus-root')).toHaveFocus();
   });
 
