@@ -36,7 +36,7 @@ The `MuiAvatar` name can be used for providing [default props](/customization/gl
 | <span class="prop-name">sizes</span> | <span class="prop-type">string</span> |  | The `sizes` attribute for the `img` element. |
 | <span class="prop-name">src</span> | <span class="prop-type">string</span> |  | The `src` attribute for the `img` element. |
 | <span class="prop-name">srcSet</span> | <span class="prop-type">string</span> |  | The `srcSet` attribute for the `img` element. Use this attribute for responsive image display. |
-| <span class="prop-name">variant</span> | <span class="prop-type">'circular'<br>&#124;&nbsp;'rounded'<br>&#124;&nbsp;'square'</span> | <span class="prop-default">'circular'</span> | The shape of the avatar. |
+| <span class="prop-name">variant</span> | <span class="prop-type">'circular'<br>&#124;&nbsp;'rounded'<br>&#124;&nbsp;'square'<br>&#124;&nbsp;string</span> | <span class="prop-default">'circular'</span> | The shape of the avatar. |
 
 The `ref` is forwarded to the root element.
 
