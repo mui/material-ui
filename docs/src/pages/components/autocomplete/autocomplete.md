@@ -283,6 +283,22 @@ In the event you want the avoid autofill, you can try the following:
   />
   ```
 
+### Complex components
+
+When using the autocomplete component on top of another component such as a `Dialog` or a `Modal`, if the Popper content is not visible, then it is most likely because the content
+appears below the surface of the parent component. In that case you can try the following:
+
+- Override `z-index` of the `Popper`:
+
+  ```jsx
+  const useStyles = makeStyles(theme => ({
+    popper: {
+      zIndex: theme.zIndex.modal,
+    },
+  }));
+  ```
+- Using a `Popover` component instead of the regular `Popper`.
+
 ### iOS VoiceOver
 
 VoiceOver on iOS Safari doesn't support the `aria-owns` attribute very well.
