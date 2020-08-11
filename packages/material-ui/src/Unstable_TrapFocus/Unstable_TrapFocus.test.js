@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { useFakeTimers } from 'sinon';
 import { expect } from 'chai';
-import { createClientRender, fireEvent, screen } from 'test/utils';
+import { act, createClientRender, fireEvent, screen } from 'test/utils';
 import TrapFocus from './Unstable_TrapFocus';
 import Portal from '../Portal';
 
@@ -161,6 +161,36 @@ describe('<TrapFocus />', () => {
     setProps({ isEnabled: () => true });
 
     expect(portaledTextbox).toHaveFocus();
+  });
+
+  it('undesired: lazy root does not get autofocus', () => {
+    let mountDeferredComponent;
+    const DeferredComponent = React.forwardRef(function DeferredComponent(props, ref) {
+      const [mounted, setMounted] = React.useReducer(() => true, false);
+
+      mountDeferredComponent = setMounted;
+
+      if (mounted) {
+        return <div ref={ref} {...props} />;
+      }
+      return null;
+    });
+    render(
+      <TrapFocus getDoc={() => document} isEnabled={() => true} open>
+        <DeferredComponent data-testid="deferred-component" />
+      </TrapFocus>,
+    );
+
+    expect(initialFocus).toHaveFocus();
+
+    act(() => {
+      mountDeferredComponent();
+    });
+
+    // desired
+    // expect(screen.getByTestId('deferred-component')).toHaveFocus();
+    // undesired
+    expect(initialFocus).toHaveFocus();
   });
 
   describe('interval', () => {
