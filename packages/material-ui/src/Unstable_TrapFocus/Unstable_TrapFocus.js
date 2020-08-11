@@ -54,6 +54,14 @@ function Unstable_TrapFocus(props) {
     }
 
     activated.current = !disableAutoFocus;
+  }, [disableAutoFocus, open]);
+
+  React.useEffect(() => {
+    // We might render an empty child.
+    if (!open || !rootRef.current) {
+      return;
+    }
+
     const doc = ownerDocument(rootRef.current);
 
     if (!rootRef.current.contains(doc.activeElement)) {
