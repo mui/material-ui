@@ -242,7 +242,13 @@ export default function makeStyles(stylesOrCreator, options = {}) {
       React.useDebugValue(classes);
     }
     if (process.env.NODE_ENV !== 'production') {
-      const supportedComponents = ['MuiAvatar', 'MuiBadge', 'MuiButton', 'MuiButtonGroup', 'MuiTypography'];
+      const supportedComponents = [
+        'MuiAvatar',
+        'MuiBadge',
+        'MuiButton',
+        'MuiButtonGroup',
+        'MuiTypography',
+      ];
 
       if (
         name &&
