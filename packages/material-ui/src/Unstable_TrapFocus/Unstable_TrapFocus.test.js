@@ -193,6 +193,68 @@ describe('<TrapFocus />', () => {
     expect(initialFocus).toHaveFocus();
   });
 
+  it('does not bounce focus around due to sync focus-restore + focus-contain', () => {
+    const eventLog = [];
+    function Test(props) {
+      return (
+        <div onBlur={() => eventLog.push('blur')}>
+          <TrapFocus getDoc={() => document} isEnabled={() => true} open {...props}>
+            <div data-testid="focus-root" tabIndex={-1}>
+              <input />
+            </div>
+          </TrapFocus>
+        </div>
+      );
+    }
+    const { setProps } = render(<Test />);
+
+    // same behavior, just referential equality changes
+    setProps({ isEnabled: () => true });
+
+    expect(screen.getByTestId('focus-root')).toHaveFocus();
+    expect(eventLog).to.deep.equal([]);
+  });
+
+  it('restores focus when closed', () => {
+    function Test(props) {
+      return (
+        <TrapFocus getDoc={() => document} isEnabled={() => true} open {...props}>
+          <div data-testid="focus-root" tabIndex={-1}>
+            <input />
+          </div>
+        </TrapFocus>
+      );
+    }
+    const { setProps } = render(<Test />);
+
+    setProps({ open: false });
+
+    expect(initialFocus).toHaveFocus();
+  });
+
+  it('undesired: enabling restore-focus logic while `open` has no effect', () => {
+    function Test(props) {
+      return (
+        <TrapFocus
+          getDoc={() => document}
+          isEnabled={() => true}
+          open
+          disableRestoreFocus
+          {...props}
+        >
+          <div data-testid="focus-root" tabIndex={-1}>
+            <input />
+          </div>
+        </TrapFocus>
+      );
+    }
+    const { setProps } = render(<Test />);
+
+    setProps({ open: false, disableRestoreFocus: false });
+
+    expect(screen.getByTestId('focus-root')).toHaveFocus();
+  });
+
   describe('interval', () => {
     let clock;
 
