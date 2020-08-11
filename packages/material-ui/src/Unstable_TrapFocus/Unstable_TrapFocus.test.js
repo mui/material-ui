@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import { useFakeTimers } from 'sinon';
 import { expect } from 'chai';
 import { createClientRender, fireEvent, screen } from 'test/utils';
@@ -120,6 +121,46 @@ describe('<TrapFocus />', () => {
     });
 
     expect(document.querySelector('[data-test="sentinelEnd"]')).toHaveFocus();
+  });
+
+  it('does not steal focus from a portaled element if any prop but open changes', () => {
+    function getDoc() {
+      return document;
+    }
+    function isEnabled() {
+      return true;
+    }
+    function Test(props) {
+      return (
+        <TrapFocus getDoc={getDoc} isEnabled={isEnabled} disableAutoFocus open {...props}>
+          <div data-testid="focus-root" tabIndex={-1}>
+            {ReactDOM.createPortal(<input />, document.body)}
+          </div>
+        </TrapFocus>
+      );
+    }
+    const { setProps } = render(<Test />);
+    const portaledTextbox = screen.getByRole('textbox');
+    portaledTextbox.focus();
+    // sanity check
+    expect(portaledTextbox).toHaveFocus();
+
+    setProps({ disableAutoFocus: false });
+
+    expect(portaledTextbox).toHaveFocus();
+
+    setProps({ disableEnforceFocus: true });
+
+    expect(portaledTextbox).toHaveFocus();
+
+    setProps({ disableRestoreFocus: true });
+
+    expect(portaledTextbox).toHaveFocus();
+
+    // same behavior, just referential equality changes
+    setProps({ isEnabled: () => true });
+
+    expect(portaledTextbox).toHaveFocus();
   });
 
   describe('interval', () => {

@@ -82,6 +82,15 @@ function Unstable_TrapFocus(props) {
         rootRef.current.focus();
       }
     }
+  }, [open]);
+
+  React.useEffect(() => {
+    // We might render an empty child.
+    if (!open || !rootRef.current) {
+      return;
+    }
+
+    const doc = ownerDocument(rootRef.current);
 
     const contain = (nativeEvent) => {
       if (
