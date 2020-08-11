@@ -12,7 +12,6 @@ interface Props {
   icon: string;
   label: string;
   size: 'medium' | 'small';
-  variant: 'default' | 'outlined';
   avatarImageFile: string;
   avatarImageUrl: string;
   deletable: boolean;
@@ -57,7 +56,6 @@ Chip.defaultProps = {
   icon: 'star',
   label: 'Chip',
   size: 'medium' as 'medium',
-  variant: 'default' as 'default',
   avatarImageFile: '',
   avatarImageUrl: '',
   deletable: false,
@@ -96,11 +94,6 @@ addPropertyControls(Chip, {
     type: ControlType.Enum,
     title: 'Size',
     options: ['medium', 'small'],
-  },
-  variant: {
-    type: ControlType.Enum,
-    title: 'Variant',
-    options: ['default', 'outlined'],
   },
   avatarImageFile: {
     type: ControlType.Image,

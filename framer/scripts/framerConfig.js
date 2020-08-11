@@ -115,7 +115,13 @@ export const componentSettings = {
     template: 'selection_control.txt',
   },
   Chip: {
-    ignoredProps: ['avatar', 'children', 'onDelete'],
+    ignoredProps: [
+      'avatar',
+      'children',
+      'onDelete',
+      // FIXME: `Union`
+      'variant',
+    ],
     propValues: {
       avatarImageFile: "''",
       avatarImageUrl: "''",

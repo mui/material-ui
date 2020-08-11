@@ -1,6 +1,10 @@
 import * as React from 'react';
+import { OverridableStringUnion } from '@material-ui/types';
 import { PropTypes } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+
+export interface ChipPropsVariantOverrides {}
+export type ChipVariantDefaults = Record<'default' | 'outlined', true>;
 
 export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
@@ -53,7 +57,7 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
     /**
      * The variant to use.
      */
-    variant?: 'default' | 'outlined';
+    variant?: OverridableStringUnion<ChipVariantDefaults, ChipPropsVariantOverrides>;
   };
   defaultComponent: D;
   classKey: ChipClassKey;
@@ -83,6 +87,7 @@ export type ChipClassKey =
   | 'deletable'
   | 'deletableColorPrimary'
   | 'deletableColorSecondary'
+  | 'default'
   | 'outlined'
   | 'outlinedPrimary'
   | 'outlinedSecondary'
