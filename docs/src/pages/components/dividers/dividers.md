@@ -37,9 +37,22 @@ The examples below show two ways of achieving this.
 
 {{"demo": "pages/components/dividers/MiddleDividers.js", "bg": true}}
 
+## Divider with text
+
+You can also render a divider with content.
+
+{{"demo": "pages/components/dividers/DividerText.js", "bg": true}}
+
 ## Vertical Dividers
 
 You can also render a divider vertically using the `orientation` prop.
 Note the use of the `flexItem` prop to accommodate for the flex container.
 
 {{"demo": "pages/components/dividers/VerticalDividers.js", "bg": true}}
+
+## Vertical divider with text
+
+You can also render a Vertical divider with content.
+Note the use of the `flexItem` prop to accommodate for the flex container.
+
+{{"demo": "pages/components/dividers/VerticalDividerText.js", "bg": true}}

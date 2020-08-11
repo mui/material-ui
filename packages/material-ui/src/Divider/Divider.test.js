@@ -1,15 +1,23 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createShallow, getClasses, createMount, describeConformance } from 'test/utils';
+import {
+  createShallow,
+  getClasses,
+  createMount,
+  describeConformance,
+  createClientRender,
+} from 'test/utils';
 import Divider from './Divider';
 
 describe('<Divider />', () => {
   const mount = createMount();
   let shallow;
+  let render;
   let classes;
 
   before(() => {
     shallow = createShallow({ dive: true });
+    render = createClientRender();
     classes = getClasses(<Divider />);
   });
 
@@ -34,6 +42,58 @@ describe('<Divider />', () => {
   it('should set the flexItem class', () => {
     const wrapper = shallow(<Divider flexItem />);
     expect(wrapper.hasClass(classes.flexItem)).to.equal(true);
+  });
+
+  describe('prop: children', () => {
+    it('should render with the children', () => {
+      const text = 'test content';
+      const { container } = render(<Divider>{text}</Divider>);
+      expect(container.querySelectorAll('span').length).to.equal(1);
+      expect(container.querySelectorAll('span')[0].textContent).to.equal(text);
+    });
+
+    it('should set the default text class', () => {
+      const wrapper = shallow(<Divider>content</Divider>);
+      expect(wrapper.hasClass(classes.text)).to.equal(true);
+    });
+
+    describe('prop: orientation', () => {
+      it('should set the textVertical class', () => {
+        const { container } = render(<Divider orientation="vertical">content</Divider>);
+        expect(container.querySelectorAll(`.${classes.textVertical}`).length).to.equal(1);
+        expect(container.querySelectorAll(`.${classes.spanTextVertical}`).length).to.equal(1);
+      });
+    });
+
+    describe('prop: textAlign', () => {
+      it('should set the textAlignRight class', () => {
+        const { container } = render(<Divider textAlign="right">content</Divider>);
+        expect(container.querySelectorAll(`.${classes.textAlignRight}`).length).to.equal(1);
+      });
+
+      it('should set the textAlignLeft class', () => {
+        const { container } = render(<Divider textAlign="left">content</Divider>);
+        expect(container.querySelectorAll(`.${classes.textAlignLeft}`).length).to.equal(1);
+      });
+
+      it('should not set the textAlignRight class if orientation="vertical"', () => {
+        const { container } = render(
+          <Divider textAlign="right" orientation="vertical">
+            content
+          </Divider>,
+        );
+        expect(container.querySelectorAll(`.${classes.textAlignRight}`).length).to.equal(0);
+      });
+
+      it('should not set the textAlignLeft class if orientation="vertical"', () => {
+        const { container } = render(
+          <Divider textAlign="left" orientation="vertical">
+            content
+          </Divider>,
+        );
+        expect(container.querySelectorAll(`.${classes.textAlignLeft}`).length).to.equal(0);
+      });
+    });
   });
 
   describe('prop: variant', () => {

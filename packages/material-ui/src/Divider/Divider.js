@@ -48,6 +48,69 @@ export const styles = (theme) => ({
     alignSelf: 'stretch',
     height: 'auto',
   },
+  /* Styles applied to the root element if divider have text. */
+  text: {
+    display: 'flex',
+    whiteSpace: 'nowrap',
+    textAlign: 'center',
+    border: 0,
+    '&::before, &::after': {
+      position: 'relative',
+      width: '100%',
+      borderColor: theme.palette.divider,
+      borderTop: 'thin',
+      borderLeft: 0,
+      borderRight: 0,
+      borderBottom: 0,
+      borderStyle: 'solid',
+      top: '50%',
+      content: '""',
+      transform: 'translateY(50%)',
+    },
+  },
+  /* Styles applied to the root element if `orientation="vertical"`. */
+  textVertical: {
+    flexDirection: 'column',
+    '&::before, &::after': {
+      height: '100%',
+      top: '0%',
+      left: '50%',
+      borderColor: theme.palette.divider,
+      borderTop: 0,
+      borderLeft: 'thin',
+      borderStyle: 'solid',
+      transform: 'translateX(0%)',
+    },
+  },
+  /* Styles applied to the root element if `textAlign="right" orientation="horizontal"`. */
+  textAlignRight: {
+    '&::before': {
+      width: '90%',
+    },
+    '&::after': {
+      width: '10%',
+    },
+  },
+  /* Styles applied to the root element if `textAlign="left" orientation="horizontal"`. */
+  textAlignLeft: {
+    '&::before': {
+      width: '10%',
+    },
+    '&::after': {
+      width: '90%',
+    },
+  },
+  /* Styles applied to the span children element if `orientation="horizontal"`. */
+  spanText: {
+    display: 'inline-block',
+    paddingLeft: theme.spacing(1.2),
+    paddingRight: theme.spacing(1.2),
+  },
+  /* Styles applied to the span children element if `orientation="vertical"`. */
+  spanTextVertical: {
+    paddingTop: theme.spacing(1.2),
+    paddingBottom: theme.spacing(1.2),
+  },
 });
 
 const Divider = React.forwardRef(function Divider(props, ref) {
@@ -55,11 +118,13 @@ const Divider = React.forwardRef(function Divider(props, ref) {
     absolute = false,
     classes,
     className,
-    component: Component = 'hr',
+    children,
+    component: Component = children ? 'div' : 'hr',
     flexItem = false,
     light = false,
     orientation = 'horizontal',
     role = Component !== 'hr' ? 'separator' : undefined,
+    textAlign = 'center',
     variant = 'fullWidth',
     ...other
   } = props;
@@ -88,6 +153,10 @@ const Divider = React.forwardRef(function Divider(props, ref) {
           [classes.flexItem]: flexItem,
           [classes.light]: light,
           [classes.vertical]: orientation === 'vertical',
+          [classes.text]: children,
+          [classes.textVertical]: children && orientation === 'vertical',
+          [classes.textAlignRight]: textAlign === 'right' && orientation !== 'vertical',
+          [classes.textAlignLeft]: textAlign === 'left' && orientation !== 'vertical',
         },
         themeVariantsClasses,
         className,
@@ -95,7 +164,17 @@ const Divider = React.forwardRef(function Divider(props, ref) {
       role={role}
       ref={ref}
       {...other}
-    />
+    >
+      {children ? (
+        <span
+          className={clsx(classes.spanText, {
+            [classes.spanTextVertical]: orientation === 'vertical',
+          })}
+        >
+          {children}
+        </span>
+      ) : null}
+    </Component>
   );
 });
 
@@ -109,7 +188,7 @@ Divider.propTypes = {
    */
   absolute: PropTypes.bool,
   /**
-   * @ignore
+   * The content of the component.
    */
   children: PropTypes.node,
   /**
@@ -142,6 +221,10 @@ Divider.propTypes = {
    * @ignore
    */
   role: PropTypes.string,
+  /**
+   * The text alignment.
+   */
+  textAlign: PropTypes.oneOf(['center', 'right', 'left']),
   /**
    * The variant to use.
    */

@@ -1,5 +1,6 @@
 import { OverridableStringUnion } from '@material-ui/types';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { string } from 'prop-types';
 
 export interface DividerPropsVariantOverrides {}
 export type DividerVariantDefaults = Record<'fullWidth' | 'inset' | 'middle', true>;
@@ -10,6 +11,10 @@ export interface DividerTypeMap<P = {}, D extends React.ElementType = 'hr'> {
      * Absolutely position the element.
      */
     absolute?: boolean;
+    /**
+     * The content of the component.
+     */
+    children?: React.ReactNode;
     /**
      * Override or extend the styles applied to the component.
      */
@@ -30,6 +35,18 @@ export interface DividerTypeMap<P = {}, D extends React.ElementType = 'hr'> {
       vertical?: string;
       /** Styles applied to the root element if `flexItem={true}`. */
       flexItem?: string;
+      /** Styles applied to the root element if divider have text. */
+      text?: string;
+      /** Styles applied to the root element if `orientation="vertical"`. */
+      textVertical?: string;
+      /** Styles applied to the root element if `textAlign="right" orientation="horizontal"`. */
+      textAlignRight?: string;
+      /** Styles applied to the root element if `textAlign="left" orientation="horizontal"`. */
+      textAlignLeft?: string;
+      /** Styles applied to the span children element if `orientation="horizontal"`. */
+      spanText?: string;
+      /** Styles applied to the span children element if `orientation="vertical"`. */
+      spanTextVertical?: string;
     };
     /**
      * If `true`, a vertical divider will have the correct height when used in flex container.
@@ -44,6 +61,10 @@ export interface DividerTypeMap<P = {}, D extends React.ElementType = 'hr'> {
      * The divider orientation.
      */
     orientation?: 'horizontal' | 'vertical';
+    /**
+     * The text alignment.
+     */
+    textAlign?: 'center' | 'right' | 'left';
     /**
      * The variant to use.
      */
