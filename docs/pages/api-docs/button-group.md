@@ -39,7 +39,7 @@ The `MuiButtonGroup` name can be used for providing [default props](/customizati
 | <span class="prop-name">fullWidth</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the buttons will take up the full width of its container. |
 | <span class="prop-name">orientation</span> | <span class="prop-type">'horizontal'<br>&#124;&nbsp;'vertical'</span> | <span class="prop-default">'horizontal'</span> | The group orientation (layout flow direction). |
 | <span class="prop-name">size</span> | <span class="prop-type">'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'</span> | <span class="prop-default">'medium'</span> | The size of the button. `small` is equivalent to the dense button styling. |
-| <span class="prop-name">variant</span> | <span class="prop-type">'contained'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'text'</span> | <span class="prop-default">'outlined'</span> | The variant to use. |
+| <span class="prop-name">variant</span> | <span class="prop-type">'contained'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'text'<br>&#124;&nbsp;string</span> | <span class="prop-default">'outlined'</span> | The variant to use. |
 
 The `ref` is forwarded to the root element.
 
@@ -51,6 +51,8 @@ Any other props supplied will be provided to the root element (native element).
 |:-----|:-------------|:------------|
 | <span class="prop-name">root</span> | <span class="prop-name">.MuiButtonGroup-root</span> | Styles applied to the root element.
 | <span class="prop-name">contained</span> | <span class="prop-name">.MuiButtonGroup-contained</span> | Styles applied to the root element if `variant="contained"`.
+| <span class="prop-name">outlined</span> | <span class="prop-name">.MuiButtonGroup-outlined</span> | Styles applied to the root element if `variant="outlined"`.
+| <span class="prop-name">text</span> | <span class="prop-name">.MuiButtonGroup-text</span> | Styles applied to the root element if `variant="text"`.
 | <span class="prop-name">disableElevation</span> | <span class="prop-name">.MuiButtonGroup-disableElevation</span> | Styles applied to the root element if `disableElevation={true}`.
 | <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to child elements if `disabled={true}`.
 | <span class="prop-name">fullWidth</span> | <span class="prop-name">.MuiButtonGroup-fullWidth</span> | Styles applied to the root element if `fullWidth={true}`.

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { useThemeVariants } from '@material-ui/styles';
 import capitalize from '../utils/capitalize';
 import { fade } from '../styles/colorManipulator';
 import withStyles from '../styles/withStyles';
@@ -21,6 +22,10 @@ export const styles = (theme) => ({
   contained: {
     boxShadow: theme.shadows[2],
   },
+  /* Styles applied to the root element if `variant="outlined"`. */
+  outlined: {},
+  /* Styles applied to the root element if `variant="text"`. */
+  text: {},
   /* Styles applied to the root element if `disableElevation={true}`. */
   disableElevation: {
     boxShadow: 'none',
@@ -180,6 +185,23 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(props, ref) {
     ...other
   } = props;
 
+  const themeVariantsClasses = useThemeVariants(
+    {
+      ...props,
+      color,
+      component: Component,
+      disabled,
+      disableElevation,
+      disableFocusRipple,
+      disableRipple,
+      fullWidth,
+      orientation,
+      size,
+      variant,
+    },
+    'MuiButtonGroup',
+  );
+
   const buttonClassName = clsx(
     classes.grouped,
     classes[`grouped${capitalize(orientation)}`],
@@ -202,6 +224,7 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(props, ref) {
           [classes.fullWidth]: fullWidth,
           [classes.disableElevation]: disableElevation,
         },
+        themeVariantsClasses,
         className,
       )}
       ref={ref}
@@ -298,7 +321,10 @@ ButtonGroup.propTypes = {
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['contained', 'outlined', 'text']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['contained', 'outlined', 'text']),
+    PropTypes.string,
+  ]),
 };
 
 export default withStyles(styles, { name: 'MuiButtonGroup' })(ButtonGroup);

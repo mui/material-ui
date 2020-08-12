@@ -1,5 +1,9 @@
 import * as React from 'react';
+import { OverridableStringUnion } from '@material-ui/types';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+
+export interface ButtonGroupPropsVariantOverrides {}
+export type ButtonGroupVariantDefaults = Record<'text' | 'outlined' | 'contained', true>;
 
 export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
@@ -43,7 +47,7 @@ export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'>
     /**
      * The variant to use.
      */
-    variant?: 'text' | 'outlined' | 'contained';
+    variant?: OverridableStringUnion<ButtonGroupVariantDefaults, ButtonGroupPropsVariantOverrides>;
   };
   defaultComponent: D;
   classKey: ButtonGroupClassKey;
@@ -64,6 +68,8 @@ declare const ButtonGroup: OverridableComponent<ButtonGroupTypeMap>;
 export type ButtonGroupClassKey =
   | 'root'
   | 'contained'
+  | 'outlined'
+  | 'text'
   | 'disabled'
   | 'disableElevation'
   | 'fullWidth'
