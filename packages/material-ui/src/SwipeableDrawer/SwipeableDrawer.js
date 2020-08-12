@@ -300,6 +300,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
       event.touches,
       ownerDocument(event.currentTarget),
     );
+
     const currentY = calculateCurrentY(anchorRtl, event.touches, ownerWindow(event.currentTarget));
 
     if (open && paperRef.current.contains(event.target) && nodeThatClaimedTheSwipe == null) {
@@ -447,6 +448,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
       event.touches,
       ownerDocument(event.currentTarget),
     );
+
     const currentY = calculateCurrentY(anchorRtl, event.touches, ownerWindow(event.currentTarget));
 
     if (!open) {
