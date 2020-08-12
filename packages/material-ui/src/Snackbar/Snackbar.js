@@ -201,6 +201,7 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
   };
 
   React.useEffect(() => {
+    // TODO: window global should be refactored here
     if (!disableWindowBlurListener && open) {
       window.addEventListener('focus', handleResume);
       window.addEventListener('blur', handlePause);

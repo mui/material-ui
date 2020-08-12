@@ -2,6 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import debounce from '../utils/debounce';
 import useForkRef from '../utils/useForkRef';
+import { ownerWindow } from '../utils';
 
 function getStyleValue(computedStyle, property) {
   return parseInt(computedStyle[property], 10) || 0;
@@ -38,7 +39,8 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
 
   const syncHeight = React.useCallback(() => {
     const input = inputRef.current;
-    const computedStyle = window.getComputedStyle(input);
+    const containerWindow = ownerWindow(input);
+    const computedStyle = containerWindow.getComputedStyle(input);
 
     const inputShallow = shadowRef.current;
     inputShallow.style.width = computedStyle.width;
@@ -116,10 +118,11 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
       syncHeight();
     });
 
-    window.addEventListener('resize', handleResize);
+    const containerWindow = ownerWindow(inputRef.current);
+    containerWindow.addEventListener('resize', handleResize);
     return () => {
       handleResize.clear();
-      window.removeEventListener('resize', handleResize);
+      containerWindow.removeEventListener('resize', handleResize);
     };
   }, [syncHeight]);
 

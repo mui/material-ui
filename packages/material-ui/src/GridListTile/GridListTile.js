@@ -97,10 +97,11 @@ const GridListTile = React.forwardRef(function GridListTile(props, ref) {
       fit(imgRef.current, classes);
     });
 
-    window.addEventListener('resize', handleResize);
+    const containerWindow = ownerWindow(imgRef.current);
+    containerWindow.addEventListener('resize', handleResize);
     return () => {
       handleResize.clear();
-      window.removeEventListener('resize', handleResize);
+      containerWindow.removeEventListener('resize', handleResize);
     };
   }, [classes]);
 
