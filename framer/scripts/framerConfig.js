@@ -79,6 +79,7 @@ export const componentSettings = {
     ignoredProps: [
       'children',
       'disableFocusRipple',
+      'type',
       // union not supported by framer ControlType
       // interface, control types and default value need to be hardcoded
       'variant',
