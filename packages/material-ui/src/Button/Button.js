@@ -420,7 +420,7 @@ Button.propTypes = {
    */
   startIcon: PropTypes.node,
   /**
-   * @ignore
+   * The HTML `type` attribute, important for form validation.
    */
   type: PropTypes.string,
   /**

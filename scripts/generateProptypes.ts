@@ -108,7 +108,7 @@ const transitionCallbacks = [
  * since they will be fetched dynamically.
  */
 const ignoreExternalDocumentation: Record<string, string[]> = {
-  Button: ['focusVisibleClassName', 'type'],
+  Button: ['focusVisibleClassName'],
   Collapse: transitionCallbacks,
   CardActionArea: ['focusVisibleClassName'],
   AccordionSummary: ['onFocusVisible'],
