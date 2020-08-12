@@ -31,7 +31,9 @@ function calculateCurrentX(anchor, touches, doc) {
 }
 
 function calculateCurrentY(anchor, touches, containerWindow) {
-  return anchor === 'bottom' ? containerWindow.innerHeight - touches[0].clientY : touches[0].clientY;
+  return anchor === 'bottom'
+    ? containerWindow.innerHeight - touches[0].clientY
+    : touches[0].clientY;
 }
 
 function getMaxTranslate(horizontalSwipe, paperInstance) {
@@ -232,9 +234,17 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     const horizontal = isHorizontal(anchor);
     let current;
     if (horizontal) {
-      current = calculateCurrentX(anchorRtl, event.changedTouches, ownerDocument(event.currentTarget));
+      current = calculateCurrentX(
+        anchorRtl,
+        event.changedTouches,
+        ownerDocument(event.currentTarget),
+      );
     } else {
-      current = calculateCurrentY(anchorRtl, event.changedTouches, ownerWindow(event.currentTarget));
+      current = calculateCurrentY(
+        anchorRtl,
+        event.changedTouches,
+        ownerWindow(event.currentTarget),
+      );
     }
 
     const startLocation = horizontal ? swipeInstance.current.startX : swipeInstance.current.startY;
@@ -285,7 +295,11 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     const anchorRtl = getAnchor(theme, anchor);
     const horizontalSwipe = isHorizontal(anchor);
 
-    const currentX = calculateCurrentX(anchorRtl, event.touches, ownerDocument(event.currentTarget));
+    const currentX = calculateCurrentX(
+      anchorRtl,
+      event.touches,
+      ownerDocument(event.currentTarget),
+    );
     const currentY = calculateCurrentY(anchorRtl, event.touches, ownerWindow(event.currentTarget));
 
     if (open && paperRef.current.contains(event.target) && nodeThatClaimedTheSwipe == null) {
@@ -428,7 +442,11 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     const anchorRtl = getAnchor(theme, anchor);
     const horizontalSwipe = isHorizontal(anchor);
 
-    const currentX = calculateCurrentX(anchorRtl, event.touches, ownerDocument(event.currentTarget));
+    const currentX = calculateCurrentX(
+      anchorRtl,
+      event.touches,
+      ownerDocument(event.currentTarget),
+    );
     const currentY = calculateCurrentY(anchorRtl, event.touches, ownerWindow(event.currentTarget));
 
     if (!open) {
