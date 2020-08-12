@@ -1060,22 +1060,21 @@ describe('<ButtonBase />', () => {
       expect(screen.getByRole('button')).to.have.property('type', 'submit');
     });
 
-    it('undesired: is ignored in anchor components', () => {
+    it('is forwarded to anchor components', () => {
       render(<ButtonBase component="a" href="some-recording.ogg" download type="audio/ogg" />);
 
-      expect(screen.getByRole('link')).not.to.have.attribute('type');
-      expect(screen.getByRole('link')).to.have.property('type', '');
+      expect(screen.getByRole('link')).to.have.attribute('type', 'audio/ogg');
+      expect(screen.getByRole('link')).to.have.property('type', 'audio/ogg');
     });
 
-    it('undesired: is ignored in custom components', () => {
+    it('is forwarded to custom components', () => {
       /**
        * @type {React.ForwardRefExoticComponent<React.ButtonHTMLAttributes<HTMLButtonElement>>}
        */
       const CustomButton = React.forwardRef((props, ref) => <button ref={ref} {...props} />);
       render(<ButtonBase component={CustomButton} type="reset" />);
 
-      expect(screen.getByRole('button')).not.to.have.attribute('type');
-      expect(screen.getByRole('button')).to.have.property('type', 'submit');
+      expect(screen.getByRole('button')).to.have.property('type', 'reset');
     });
   });
 });
