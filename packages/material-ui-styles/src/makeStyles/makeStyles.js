@@ -247,6 +247,7 @@ export default function makeStyles(stylesOrCreator, options = {}) {
         'MuiBadge',
         'MuiButton',
         'MuiButtonGroup',
+        'MuiChip',
         'MuiTypography',
       ];
 
