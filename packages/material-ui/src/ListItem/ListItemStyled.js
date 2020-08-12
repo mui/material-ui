@@ -1,10 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import styled from '@emotion/styled';
 import isPropValid from '@emotion/is-prop-valid';
 import { chainPropTypes, elementTypeAcceptingRef } from '@material-ui/utils';
-import withStyles from '../styles/withStyles';
 import { fade } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
 import isMuiElement from '../utils/isMuiElement';
