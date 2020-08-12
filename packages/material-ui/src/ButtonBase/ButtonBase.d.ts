@@ -64,6 +64,10 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
      * Props applied to the `TouchRipple` element.
      */
     TouchRippleProps?: Partial<TouchRippleProps>;
+    /**
+     * The HTML `type` attribute, important for form validation.
+     */
+    type?: string;
   };
   defaultComponent: D;
   classKey: ButtonBaseClassKey;

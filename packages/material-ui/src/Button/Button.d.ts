@@ -53,6 +53,10 @@ export type ButtonTypeMap<
      */
     startIcon?: React.ReactNode;
     /**
+     * The HTML `type` attribute, important for form validation.
+     */
+    type?: string;
+    /**
      * The variant to use.
      */
     variant?: OverridableStringUnion<ButtonVariantDefaults, ButtonPropsVariantOverrides>;

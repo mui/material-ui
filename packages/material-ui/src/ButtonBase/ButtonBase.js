@@ -478,9 +478,9 @@ ButtonBase.propTypes = {
    */
   TouchRippleProps: PropTypes.object,
   /**
-   * @ignore
+   * The HTML `type` attribute, important for form validation.
    */
-  type: PropTypes.oneOfType([PropTypes.oneOf(['button', 'reset', 'submit']), PropTypes.string]),
+  type: PropTypes.string,
 };
 
 export default withStyles(styles, { name: 'MuiButtonBase' })(ButtonBase);
