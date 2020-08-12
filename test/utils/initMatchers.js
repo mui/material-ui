@@ -5,8 +5,12 @@ import { prettyDOM } from '@testing-library/react/pure';
 import { computeAccessibleName } from 'dom-accessibility-api';
 import formatUtil from 'format-util';
 
+function isInJSDOM() {
+  return /jsdom/.test(window.navigator.userAgent);
+}
+
 function isInKarma() {
-  return !/jsdom/.test(window.navigator.userAgent);
+  return !isInJSDOM();
 }
 
 // chai#utils.elToString that looks like stringified elements in testing-library
@@ -152,6 +156,7 @@ chai.use((chaiAPI, utils) => {
     }
 
     const actualName = computeAccessibleName(root, {
+      computedStyleSupportsPseudoElements: !isInJSDOM(),
       // in local development we pretend to be visible. full getComputedStyle is
       // expensive and reserved for CI
       getComputedStyle: process.env.CI ? undefined : pretendVisibleGetComputedStyle,
