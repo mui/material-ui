@@ -1,7 +1,7 @@
 import React from 'react';
 import List from '@material-ui/core/List';
 import {ListItemWrapper as ListItem} from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+import { ListItemTextWrapper as ListItemText } from '@material-ui/core/ListItemText';
 import { ListItemIconWrapper as ListItemIcon } from '@material-ui/core/ListItemIcon';
 import InboxIcon from '@material-ui/icons/Inbox';
 

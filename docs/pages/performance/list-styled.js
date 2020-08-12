@@ -1,7 +1,7 @@
 import React from 'react';
 import List from '@material-ui/core/List';
 import {ListItemStyled as ListItem} from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+import { ListItemTextStyled as ListItemText } from '@material-ui/core/ListItemText';
 import { ListItemIconStyled as ListItemIcon } from '@material-ui/core/ListItemIcon';
 import InboxIcon from '@material-ui/icons/Inbox';
 

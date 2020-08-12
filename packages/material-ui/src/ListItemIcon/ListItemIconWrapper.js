@@ -4,8 +4,7 @@ import styled from '@emotion/styled';
 import isPropValid from '@emotion/is-prop-valid';
 import ListItemIconBase from './ListItemIconUnstyled';
 
-const shouldForwardProp = (prop) =>
-  isPropValid(prop) && prop !== 'disabled';
+const shouldForwardProp = (prop) => isPropValid(prop);
 
 const Root = styled('div', { shouldForwardProp })(props => ({
   minWidth: 56,
