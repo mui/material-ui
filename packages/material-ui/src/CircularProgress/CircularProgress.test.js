@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { stub } from 'sinon';
 import { createClientRender } from 'test/utils/createClientRender';
@@ -79,6 +80,7 @@ describe('<CircularProgress />', () => {
 
   describe('prop: variant="static', () => {
     beforeEach(() => {
+      PropTypes.resetWarningCache();
       stub(console, 'error');
     });
 
@@ -104,10 +106,18 @@ describe('<CircularProgress />', () => {
     });
 
     it('issues a warning for variant="static"', () => {
-      render(<CircularProgress variant="static" value={70} />);
+      PropTypes.checkPropTypes(
+        CircularProgress.Naked.propTypes,
+        {
+          variant: 'static',
+        },
+        'props',
+        'Avatar',
+      );
+
       expect(console.error.callCount).to.equal(1);
       expect(console.error.firstCall.args[0]).to.equal(
-        'Warning: Failed prop type: Material-UI: `variant="static"` was deprecated. Use `variant="determinate"` instead.',
+        'Warning: Failed props type: Material-UI: `variant="static"` was deprecated. Use `variant="determinate"` instead.',
       );
     });
   });
