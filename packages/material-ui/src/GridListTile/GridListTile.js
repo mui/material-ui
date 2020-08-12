@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import debounce from '../utils/debounce';
 import withStyles from '../styles/withStyles';
 import isMuiElement from '../utils/isMuiElement';
+import { ownerWindow } from '../utils';
 
 export const styles = {
   /* Styles applied to the root element. */
