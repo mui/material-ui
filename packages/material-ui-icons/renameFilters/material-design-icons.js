@@ -1,4 +1,4 @@
-function myDestRewriter(svgPathObj) {
+export default function myDestRewriter(svgPathObj) {
   let fileName = svgPathObj.base;
 
   fileName = fileName
@@ -23,5 +23,3 @@ function myDestRewriter(svgPathObj) {
 
   return fileName;
 }
-
-export default myDestRewriter;
