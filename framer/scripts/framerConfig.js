@@ -137,7 +137,12 @@ export const componentSettings = {
     template: 'chip.txt',
   },
   CircularProgress: {
-    ignoredProps: ['disableShrink', 'size'],
+    ignoredProps: [
+      'disableShrink',
+      'size',
+      // FIXME: `Union`
+      'variant',
+    ],
     propValues: {
       width: 44,
       height: 44,
