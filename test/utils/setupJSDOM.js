@@ -1,5 +1,6 @@
 const formatUtil = require('format-util');
 const Mocha = require('mocha');
+const testingLibrary = require('@testing-library/dom');
 const createDOM = require('./createDOM');
 
 process.browser = true;
@@ -10,6 +11,11 @@ global.jest = null;
 
 createDOM();
 require('./init');
+
+testingLibrary.configure({
+  // JSDOM logs errors otherwise on `getComputedStyles(element, pseudoElement)` calls.
+  computedStyleSupportsPseudoElements: false,
+});
 
 const mochaHooks = {
   beforeEach: [],

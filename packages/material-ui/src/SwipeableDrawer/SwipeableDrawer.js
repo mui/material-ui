@@ -4,6 +4,7 @@ import { elementTypeAcceptingRef } from '@material-ui/utils';
 import { getThemeProps } from '@material-ui/styles';
 import Drawer, { getAnchor, isHorizontal } from '../Drawer/Drawer';
 import ownerDocument from '../utils/ownerDocument';
+import ownerWindow from '../utils/ownerWindow';
 import useEventCallback from '../utils/useEventCallback';
 import { duration } from '../styles/transitions';
 import useTheme from '../styles/useTheme';
@@ -25,12 +26,14 @@ export function reset() {
   nodeThatClaimedTheSwipe = null;
 }
 
-function calculateCurrentX(anchor, touches) {
-  return anchor === 'right' ? document.body.offsetWidth - touches[0].pageX : touches[0].pageX;
+function calculateCurrentX(anchor, touches, doc) {
+  return anchor === 'right' ? doc.body.offsetWidth - touches[0].pageX : touches[0].pageX;
 }
 
-function calculateCurrentY(anchor, touches) {
-  return anchor === 'bottom' ? window.innerHeight - touches[0].clientY : touches[0].clientY;
+function calculateCurrentY(anchor, touches, containerWindow) {
+  return anchor === 'bottom'
+    ? containerWindow.innerHeight - touches[0].clientY
+    : touches[0].clientY;
 }
 
 function getMaxTranslate(horizontalSwipe, paperInstance) {
@@ -52,7 +55,7 @@ function getDomTreeShapes(element, rootNode) {
   let domTreeShapes = [];
 
   while (element && element !== rootNode) {
-    const style = window.getComputedStyle(element);
+    const style = ownerWindow(rootNode).getComputedStyle(element);
 
     if (
       // Ignore the scroll children if the element is absolute positioned.
@@ -231,9 +234,17 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     const horizontal = isHorizontal(anchor);
     let current;
     if (horizontal) {
-      current = calculateCurrentX(anchorRtl, event.changedTouches);
+      current = calculateCurrentX(
+        anchorRtl,
+        event.changedTouches,
+        ownerDocument(event.currentTarget),
+      );
     } else {
-      current = calculateCurrentY(anchorRtl, event.changedTouches);
+      current = calculateCurrentY(
+        anchorRtl,
+        event.changedTouches,
+        ownerWindow(event.currentTarget),
+      );
     }
 
     const startLocation = horizontal ? swipeInstance.current.startX : swipeInstance.current.startY;
@@ -284,8 +295,13 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     const anchorRtl = getAnchor(theme, anchor);
     const horizontalSwipe = isHorizontal(anchor);
 
-    const currentX = calculateCurrentX(anchorRtl, event.touches);
-    const currentY = calculateCurrentY(anchorRtl, event.touches);
+    const currentX = calculateCurrentX(
+      anchorRtl,
+      event.touches,
+      ownerDocument(event.currentTarget),
+    );
+
+    const currentY = calculateCurrentY(anchorRtl, event.touches, ownerWindow(event.currentTarget));
 
     if (open && paperRef.current.contains(event.target) && nodeThatClaimedTheSwipe == null) {
       const domTreeShapes = getDomTreeShapes(event.target, paperRef.current);
@@ -427,8 +443,13 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     const anchorRtl = getAnchor(theme, anchor);
     const horizontalSwipe = isHorizontal(anchor);
 
-    const currentX = calculateCurrentX(anchorRtl, event.touches);
-    const currentY = calculateCurrentY(anchorRtl, event.touches);
+    const currentX = calculateCurrentX(
+      anchorRtl,
+      event.touches,
+      ownerDocument(event.currentTarget),
+    );
+
+    const currentY = calculateCurrentY(anchorRtl, event.touches, ownerWindow(event.currentTarget));
 
     if (!open) {
       if (disableSwipeToOpen || event.target !== swipeAreaRef.current) {

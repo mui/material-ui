@@ -10,6 +10,7 @@ import {
   queries,
   render as testingLibraryRender,
   prettyDOM,
+  within,
 } from '@testing-library/react/pure';
 
 // holes are *All* selectors which aren't necessary for id selectors
@@ -240,6 +241,9 @@ const fireEvent = Object.assign(rtlFireEvent, {
 
 export * from '@testing-library/react/pure';
 export { act, cleanup, fireEvent };
+// We import from `@testing-library/react` and `@testing-library/dom` before creating a JSDOM.
+// At this point a global document isn't available yet. Now it is.
+export const screen = within(document.body);
 
 export function render() {
   throw new Error(

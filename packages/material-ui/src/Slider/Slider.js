@@ -96,9 +96,10 @@ function setValueIndex({ values, source, newValue, index }) {
 }
 
 function focusThumb({ sliderRef, activeIndex, setActive }) {
+  const doc = ownerDocument(sliderRef.current);
   if (
-    !sliderRef.current.contains(document.activeElement) ||
-    Number(document.activeElement.getAttribute('data-index')) !== activeIndex
+    !sliderRef.current.contains(doc.activeElement) ||
+    Number(doc.activeElement.getAttribute('data-index')) !== activeIndex
   ) {
     sliderRef.current.querySelector(`[role="slider"][data-index="${activeIndex}"]`).focus();
   }

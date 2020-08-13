@@ -142,3 +142,31 @@ The future plans and high priority features and enhancements can be found in the
 
 This project is licensed under the terms of the
 [MIT license](/LICENSE).
+
+## Sponsoring services
+
+These great services sponsor Material-UI's core infrastructure:
+
+[<img loading="lazy" alt="GitHub" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png" height="25">](https://github.com/)
+
+GitHub allows us to host the Git repository.
+
+[<img loading="lazy" alt="CircleCI" src="https://assets.brandfolder.com/otz6k5-cj8pew-e4rk9u/element.png?v=1501538594" height="32">](https://circleci.com/)
+
+CircleCI allows us to run the test suite.
+
+[<img loading="lazy" alt="Netlify" src="https://cdn.netlify.com/15ecf59b59c9d04b88097c6b5d2c7e8a7d1302d0/1b6d6/img/press/logos/full-logo-light.svg" height="30">](https://www.netlify.com/)
+
+Netlify allows us to distribute the documentation.
+
+[<img loading="lazy" alt="CrowdIn" src="https://support.crowdin.com/assets/logos/crowdin-logo1-small.png" height="30">](https://crowdin.com/)
+
+CrowdIn allows us to translate the documentation.
+
+[<img loading="lazy" alt="BrowserStack" src="https://www.browserstack.com/images/mail/browserstack-logo-footer.png" height="30">](https://www.browserstack.com/)
+
+BrowserStack allows us to test in real browsers.
+
+[<img loading="lazy" alt="CodeCov" src="https://github.com/codecov.png?size=70" width="35" height="35">](https://codecov.io/)
+
+CodeCov allows us to monitor the test coverage.

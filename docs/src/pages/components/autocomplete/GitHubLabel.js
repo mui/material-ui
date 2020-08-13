@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: '0 3px 12px rgba(27,31,35,.15)',
     borderRadius: 3,
     width: 300,
-    zIndex: 1,
+    zIndex: theme.zIndex.modal,
     fontSize: 13,
     color: '#586069',
     backgroundColor: '#f6f8fa',

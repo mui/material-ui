@@ -7,7 +7,7 @@ function isOverflowing(container) {
   const doc = ownerDocument(container);
 
   if (doc.body === container) {
-    return ownerWindow(doc).innerWidth > doc.documentElement.clientWidth;
+    return ownerWindow(container).innerWidth > doc.documentElement.clientWidth;
   }
 
   return container.scrollHeight > container.clientHeight;
@@ -22,7 +22,7 @@ export function ariaHidden(node, show) {
 }
 
 function getPaddingRight(node) {
-  return parseInt(window.getComputedStyle(node)['padding-right'], 10) || 0;
+  return parseInt(ownerWindow(node).getComputedStyle(node)['padding-right'], 10) || 0;
 }
 
 function ariaHiddenSiblings(container, mountNode, currentNode, nodesToExclude = [], show) {
@@ -61,7 +61,7 @@ function handleContainer(containerInfo, props) {
   if (!props.disableScrollLock) {
     if (isOverflowing(container)) {
       // Compute the size before applying overflow hidden to avoid any scroll jumps.
-      const scrollbarSize = getScrollbarSize();
+      const scrollbarSize = getScrollbarSize(ownerDocument(container));
 
       restoreStyle.push({
         value: container.style.paddingRight,
@@ -82,8 +82,10 @@ function handleContainer(containerInfo, props) {
     // Improve Gatsby support
     // https://css-tricks.com/snippets/css/force-vertical-scrollbar/
     const parent = container.parentElement;
+    const containerWindow = ownerWindow(container);
     const scrollContainer =
-      parent.nodeName === 'HTML' && window.getComputedStyle(parent)['overflow-y'] === 'scroll'
+      parent.nodeName === 'HTML' &&
+      containerWindow.getComputedStyle(parent)['overflow-y'] === 'scroll'
         ? parent
         : container;
 
