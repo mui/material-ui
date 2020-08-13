@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { chainPropTypes, elementTypeAcceptingRef } from '@material-ui/utils';
 import ButtonBase from '../ButtonBase';
 import isMuiElement from '../utils/isMuiElement';

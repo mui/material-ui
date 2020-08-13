@@ -9,7 +9,6 @@ import isMuiElement from '../utils/isMuiElement';
 import useForkRef from '../utils/useForkRef';
 import ListContext from '../List/ListContext';
 
-// TODO: update this method
 const shouldForwardProp = (prop) =>
   isPropValid(prop) && prop !== 'disabled';
 
@@ -25,19 +24,19 @@ const Root = styled('li', { shouldForwardProp })(props => ({
   paddingTop: 8,
   paddingBottom: 8,
   ...(props.focusVisible && {
-    backgroundColor: props.theme?.palette?.action?.focus,
+    backgroundColor: props.theme.palette.action.focus,
   }),
   ...(props.selected && {
-    backgroundColor: fade(props.theme?.palette?.primary?.main, props.theme?.palette?.action?.selectedOpacity),
+    backgroundColor: fade(props.theme.palette.primary.main, props.theme.palette.action.selectedOpacity),
     ...(props.focusVisible && {
       backgroundColor: fade(
-        props.theme?.palette?.primary?.main,
-        props.theme?.palette?.action?.selectedOpacity + props.theme?.palette?.action?.focusOpacity,
+        props.theme.palette.primary.main,
+        props.theme.palette.action.selectedOpacity + props.theme.palette.action.focusOpacity,
       ),
     })
   }),
   ...(props.disabled && {
-    opacity: props.theme?.palette?.action?.disabledOpacity,
+    opacity: props.theme.palette.action.disabledOpacity,
   }),
   ...(props.dense && {
     paddingTop: 4,
@@ -47,7 +46,7 @@ const Root = styled('li', { shouldForwardProp })(props => ({
     alignItems: 'flex-start',
   }),
   ...(props.divider && {
-    borderBottom: `1px solid ${props.theme?.palette?.divider}`,
+    borderBottom: `1px solid ${props.theme.palette.divider}`,
     backgroundClip: 'padding-box',
   }),
   ...(!props.disableGutters && {
@@ -55,12 +54,12 @@ const Root = styled('li', { shouldForwardProp })(props => ({
     paddingRight: 16,
   }),
   ...(props.button && {
-    transition: props.theme?.transitions?.create('background-color', {
-      duration: props.theme?.transitions?.duration?.shortest,
+    transition: props.theme.transitions.create('background-color', {
+      duration: props.theme.transitions.duration.shortest,
     }),
     ':hover': {
       textDecoration: 'none',
-      backgroundColor: props.theme?.palette?.action?.hover,
+      backgroundColor: props.theme.palette.action.hover,
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent',
@@ -69,12 +68,12 @@ const Root = styled('li', { shouldForwardProp })(props => ({
     ...(props.selected && {
       ':hover': {
         backgroundColor: fade(
-          props.theme?.palette?.primary?.main,
-          props.theme?.palette?.action?.selectedOpacity + props.theme?.palette?.action?.hoverOpacity,
+          props.theme.palette.primary.main,
+          props.theme.palette.action.selectedOpacity + props.theme.palette.action.hoverOpacity,
         ),
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
-          backgroundColor: fade(props.theme?.palette?.primary?.main, props.theme?.palette?.action?.selectedOpacity),
+          backgroundColor: fade(props.theme.palette.primary.main, props.theme.palette.action.selectedOpacity),
         },
       }
     }),
@@ -90,7 +89,7 @@ const Container = styled('div', { shouldForwardProp })(props => ({
   position: 'relative',
 }));
 
-const useEnhancedEffect = typeof window === 'undefined' ? React.useEffect : React.useLayoutEffect;
+const useEnhancedEffect = typeof window === 'undefined'  React.useEffect : React.useLayoutEffect;
 
 /**
  * Uses an additional container component if `ListItemSecondaryAction` is the last child.
@@ -168,7 +167,7 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
     const ContainerStyled = Container;
 
     // Use div by default.
-    componentProps.as = !componentProps.component && !componentProp ? 'div' : componentProps.as;
+    componentProps.as = !componentProps.component && !componentProp  'div' : componentProps.as;
 
     // Avoid nesting of li > li.
     if (ContainerComponent === 'li') {
