@@ -22,6 +22,11 @@ const backers = [
     alt: 'callemall',
     title: 'Call-Em-All - The easy way to message your group',
   },
+  {
+    href: 'https://octopus.com/?utm_source=materialui&utm_medium=referral',
+    alt: 'octopus',
+    title: 'Octopus - Repeatable, reliable deployments',
+  },
 ];
 
 const useStyles = makeStyles(
