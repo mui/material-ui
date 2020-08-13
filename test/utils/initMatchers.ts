@@ -114,6 +114,7 @@ chai.use((chaiAPI, utils) => {
       'expected element to NOT to be virtually focused',
       id,
       virutallyFocusedElementId,
+      virutallyFocusedElementId !== null,
     );
   });
 
