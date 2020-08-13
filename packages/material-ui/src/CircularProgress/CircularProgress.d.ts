@@ -27,7 +27,7 @@ export interface CircularProgressProps
    */
   thickness?: number;
   /**
-   * The value of the progress indicator for the determinate and static variants.
+   * The value of the progress indicator for the determinate variant.
    * Value between 0 and 100.
    */
   value?: number;
@@ -41,12 +41,14 @@ export interface CircularProgressProps
 export type CircularProgressClassKey =
   | 'root'
   | 'static'
+  | 'determinate'
   | 'indeterminate'
   | 'colorPrimary'
   | 'colorSecondary'
   | 'svg'
   | 'circle'
   | 'circleStatic'
+  | 'circleDeterminate'
   | 'circleIndeterminate'
   | 'circleDisableShrink';
 
