@@ -61,7 +61,7 @@ const data = {
 
 {{"demo": "pages/components/tree-view/DisabledTreeItems.js"}}
 
-The behaviour of disabled tree items depends on the `disabledItemsFocusable` prop.
+The behavior of disabled tree items depends on the `disabledItemsFocusable` prop.
 
 If it is false:
 

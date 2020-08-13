@@ -123,7 +123,7 @@ This change affects almost all components where you're using the `component` pro
   +<CircularProgress variant="determinate" classes={{ determinate: 'className' }} />
   ```
 
-> NB: If you had previously customised determinate, your customisations are probably no longer valid. Please remove them.
+> NB: If you had previously customized determinate, your customizations are probably no longer valid. Please remove them.
 
 ### Collapse
 
