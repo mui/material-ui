@@ -313,8 +313,6 @@ This change affects almost all components where you're using the `component` pro
   -  onExit={onEntered},
   -  onExited={onEntered},
   -  onExiting={onEntered}
-  />
-  <Snackbar
   +  TransitionProps={{
   +    onEnter,
   +    onEntered,
