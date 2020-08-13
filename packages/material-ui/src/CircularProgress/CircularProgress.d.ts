@@ -39,7 +39,10 @@ export interface CircularProgressProps
    * The variant to use.
    * Use indeterminate when there is no progress value.
    */
-  variant?:  OverridableStringUnion<CircularProgressVariantDefaults, CircularProgressPropsVariantOverrides>;
+  variant?: OverridableStringUnion<
+    CircularProgressVariantDefaults,
+    CircularProgressPropsVariantOverrides
+  >;
 }
 
 export type CircularProgressClassKey =

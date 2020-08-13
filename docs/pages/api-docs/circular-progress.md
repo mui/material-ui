@@ -38,7 +38,7 @@ The `MuiCircularProgress` name can be used for providing [default props](/custom
 | <span class="prop-name">size</span> | <span class="prop-type">number<br>&#124;&nbsp;string</span> | <span class="prop-default">40</span> | The size of the circle. If using a number, the pixel unit is assumed. If using a string, you need to provide the CSS unit, e.g '3rem'. |
 | <span class="prop-name">thickness</span> | <span class="prop-type">number</span> | <span class="prop-default">3.6</span> | The thickness of the circle. |
 | <span class="prop-name">value</span> | <span class="prop-type">number</span> | <span class="prop-default">0</span> | The value of the progress indicator for the determinate variant. Value between 0 and 100. |
-| <span class="prop-name">variant</span> | <span class="prop-type">'determinate'<br>&#124;&nbsp;'indeterminate'</span> | <span class="prop-default">'indeterminate'</span> | The variant to use. Use indeterminate when there is no progress value. |
+| <span class="prop-name">variant</span> | <span class="prop-type">'determinate'<br>&#124;&nbsp;'indeterminate'<br>&#124;&nbsp;string</span> | <span class="prop-default">'indeterminate'</span> | The variant to use. Use indeterminate when there is no progress value. |
 
 The `ref` is forwarded to the root element.
 
