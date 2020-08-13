@@ -294,13 +294,25 @@ Big thanks to the 18 contributors who made this release possible.
 
 ### `@material-ui/core@v5.0.0-alpha.5`
 
+#### Breaking changes
+
+- [Grid] Rename justify prop to justifyContent (#21845) @mnajdova
+
+  Rename `justify` prop with `justifyContent` to be aligned with the CSS property name.
+
+  ```diff
+  -<Grid justify="center">
+  +<Grid justifyContent="center">
+  ```
+
+#### Changes
+
 - [Accordion] Add new classes key (#21920) @natac13
 - [Accordion] Fix IconButtonProps spreading logic (#21850) @kgregory
 - [Avatar] Fix group size (#21896) @natac13
 - [Button] Custom variant (#21648) @mnajdova
 - [CssBaseline] Export ScopedCssBaseline from barrel index (#21869) @mherczeg
 - [Dialog] Fix body scrollbar close behavior (#21951) @maksimgm
-- [Grid] Rename justify prop to justifyContent (#21845) @mnajdova
 - [Icon] Hide name placeholder while "Material Icons" font is loading (#21950) @maksimgm
 - [Select] Ensure that onChange is called before onClose (#21878) @DanailH
 - [Slider] Make `index` public in the ValueLabel props (#21932) @govardhan-srinivas
