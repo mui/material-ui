@@ -170,7 +170,7 @@ In the future, we might provide a [number input component](https://github.com/mu
 
 ### Helper text
 
-The helper text prop affects the height of the text field. If two text fields, are placed side by side, one with a helper text and one without, they will have different heights. For example:
+The helper text prop affects the height of the text field. If two text fields are placed side by side, one with a helper text and one without, they will have different heights. For example:
 
 {{"demo": "pages/components/text-fields/HelperTextMisaligned.js"}}
 
