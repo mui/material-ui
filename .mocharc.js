@@ -1,5 +1,8 @@
 module.exports = {
   recursive: true,
   reporter: 'dot',
-  require: [require.resolve('@babel/register'), require.resolve('./test/utils/setupJSDOM')],
+  require: [
+    require.resolve('./test/utils/setupBabel'),
+    require.resolve('./test/utils/setupJSDOM'),
+  ],
 };

@@ -5,6 +5,61 @@ import { prettyDOM } from '@testing-library/react/pure';
 import { computeAccessibleName } from 'dom-accessibility-api';
 import formatUtil from 'format-util';
 
+chai.use(chaiDom);
+
+// https://stackoverflow.com/a/46755166/3406963
+declare global {
+  namespace Chai {
+    interface Assertion {
+      /**
+       * checks if the element in question is considered aria-hidden
+       * Does not replace accessibility check as that requires display/visibility/layout
+       * @deprecated Use `inaccessible` + `visible` instead
+       */
+      toBeAriaHidden(): void;
+      /**
+       * Check if an element is not visually hidden
+       */
+      toBeVisible(): void;
+      /**
+       * checks if the element is inaccessible
+       */
+      toBeInaccessible(): void;
+      /**
+       * checks if the accessible name computation (according to `accname` spec)
+       * matches the expectation.
+       * @see https://www.w3.org/TR/accname-1.2/
+       * @param name
+       */
+      toHaveAccessibleName(name: string): void;
+      /**
+       * checks if the element is focused
+       */
+      toHaveFocus(): void;
+      /**
+       * checks if the element is the active-descendant of the active element.
+       */
+      toHaveVirtualFocus(): void;
+      /**
+       * Matches calls to `console.warn` in the asserted callback.
+       *
+       * @example expect(() => render()).not.toWarnDev()
+       * @example expect(() => render()).toWarnDev('single message')
+       * @example expect(() => render()).toWarnDev(['first warning', 'then the second'])
+       */
+      toWarnDev(messages?: string | string[]): void;
+      /**
+       * Matches calls to `console.error` in the asserted callback.
+       *
+       * @example expect(() => render()).not.toErrorDev()
+       * @example expect(() => render()).toErrorDev('single message')
+       * @example expect(() => render()).toErrorDev(['first warning', 'then the second'])
+       */
+      toErrorDev(messages?: string | string[]): void;
+    }
+  }
+}
+
 function isInJSDOM() {
   return /jsdom/.test(window.navigator.userAgent);
 }
@@ -14,14 +69,12 @@ function isInKarma() {
 }
 
 // chai#utils.elToString that looks like stringified elements in testing-library
-function elementToString(element) {
+function elementToString(element: Element | null | undefined) {
   if (typeof element?.nodeType === 'number') {
     return prettyDOM(element, undefined, { highlight: !isInKarma(), maxDepth: 1 });
   }
   return String(element);
 }
-
-chai.use(chaiDom);
 chai.use((chaiAPI, utils) => {
   // better diff view for expect(element).to.equal(document.activeElement)
   chai.Assertion.addMethod('toHaveFocus', function elementIsFocused() {
@@ -41,16 +94,16 @@ chai.use((chaiAPI, utils) => {
     const element = utils.flag(this, 'object');
     const id = element.getAttribute('id');
 
-    const virutallyFocusedElement = document.activeElement.getAttribute('aria-activedescendant');
+    const virutallyFocusedElementId = document.activeElement!.getAttribute('aria-activedescendant');
 
     this.assert(
-      virutallyFocusedElement === id,
+      virutallyFocusedElementId === id,
       `expected element to be virtually focused${
         isInKarma() ? '\nexpected #{exp}\nactual: #{act}' : ''
       }`,
       'expected element to NOT to be virtually focused',
       elementToString(document.getElementById(id)),
-      elementToString(virutallyFocusedElement),
+      elementToString(document.getElementById(virutallyFocusedElementId!)),
     );
   });
 
@@ -83,6 +136,8 @@ chai.use((chaiAPI, utils) => {
       `expected \n${elementToString(element)} to not be aria-hidden, but \n${elementToString(
         previousNode,
       )} had aria-hidden="true" instead`,
+      // Not interested in a diff but the typings require the 4th parameter.
+      undefined,
     );
   });
 
@@ -95,6 +150,8 @@ chai.use((chaiAPI, utils) => {
       inaccessible === true,
       `expected \n${elementToString(element)} to be inaccessible but it was accessible`,
       `expected \n${elementToString(element)} to be accessible but it was inaccessible`,
+      // Not interested in a diff but the typings require the 4th parameter.
+      undefined,
     );
   });
 
@@ -103,7 +160,7 @@ chai.use((chaiAPI, utils) => {
     // make sure it's an Element
     new chai.Assertion(root.nodeType, `Expected an Element but got '${String(root)}'`).to.equal(1);
 
-    const blockElements = new Set(
+    const blockElements = new Set([
       'html',
       'address',
       'blockquote',
@@ -131,13 +188,9 @@ chai.use((chaiAPI, utils) => {
       'hr',
       'menu',
       'pre',
-    );
-    /**
-     *
-     * @param {Element} element
-     * @returns {CSSStyleDeclaration}
-     */
-    function pretendVisibleGetComputedStyle(element) {
+    ]);
+
+    function pretendVisibleGetComputedStyle(element: Element): CSSStyleDeclaration {
       // `CSSStyleDeclaration` is not constructable
       // https://stackoverflow.com/a/52732909/3406963
       // this is not equivalent to the declaration from `getComputedStyle`
@@ -181,11 +234,11 @@ chai.use((chaiAPI, utils) => {
 });
 
 chai.use((chaiAPI, utils) => {
-  function addConsoleMatcher(matcherName, methodName) {
+  function addConsoleMatcher(matcherName: string, methodName: keyof typeof console) {
     /**
      * @param {string[]} expectedMessages
      */
-    function matcher(expectedMessages = []) {
+    function matcher(this: Chai.AssertionStatic, expectedMessages = []) {
       // documented pattern to get the actual value of the assertion
       // eslint-disable-next-line no-underscore-dangle
       const callback = this._obj;
@@ -193,7 +246,7 @@ chai.use((chaiAPI, utils) => {
       if (process.env.NODE_ENV !== 'production') {
         const remainingMessages =
           typeof expectedMessages === 'string' ? [expectedMessages] : expectedMessages.slice();
-        const unexpectedMessages = [];
+        const unexpectedMessages: Error[] = [];
         let caughtError = null;
 
         this.assert(
@@ -204,12 +257,14 @@ chai.use((chaiAPI, utils) => {
             'Expected no call to console.error but provided messages. ' +
             "If you want to make sure a certain message isn't logged prefer the positive. " +
             'By expecting certain messages you automatically expect that no other messages are logged',
+          // Not interested in a diff but the typings require the 4th parameter.
+          undefined,
         );
 
         // eslint-disable-next-line no-console
         const originalMethod = console[methodName];
 
-        const consoleMatcher = (format, ...args) => {
+        const consoleMatcher = (format: string, ...args: unknown[]) => {
           const actualMessage = formatUtil(format, ...args);
           const expectedMessage = remainingMessages.shift();
 
@@ -224,7 +279,7 @@ chai.use((chaiAPI, utils) => {
             const error = new Error(message);
 
             const { stack: fullStack } = error;
-            const fullStacktrace = fullStack.replace(`Error: ${message}\n`, '').split('\n');
+            const fullStacktrace = fullStack!.replace(`Error: ${message}\n`, '').split('\n');
 
             const usefulStacktrace = fullStacktrace
               //
@@ -254,7 +309,7 @@ chai.use((chaiAPI, utils) => {
             throw caughtError;
           }
 
-          const formatMessages = (messages) => {
+          const formatMessages = (messages: Array<Error | string>) => {
             const formattedMessages = messages.map((message) => {
               if (typeof message === 'string') {
                 return `"${message}"`;
@@ -280,6 +335,8 @@ chai.use((chaiAPI, utils) => {
               !shouldHaveWarned,
               unexpectedMessageRecordedMessage,
               unexpectedMessageRecordedMessage,
+              // Not interested in a diff but the typings require the 4th parameter.
+              undefined,
             );
           }
 
@@ -292,6 +349,8 @@ chai.use((chaiAPI, utils) => {
                 )}`,
               `Impossible state reached in \`expect().${matcherName}()\`. ` +
                 `This is a bug in the matcher.`,
+              // Not interested in a diff but the typings require the 4th parameter.
+              undefined,
             );
           }
         }
