@@ -365,12 +365,13 @@ const Popover = React.forwardRef(function Popover(props, ref) {
       setPositioningStyles();
     });
 
-    window.addEventListener('resize', handleResize);
+    const containerWindow = ownerWindow(anchorEl);
+    containerWindow.addEventListener('resize', handleResize);
     return () => {
       handleResize.clear();
-      window.removeEventListener('resize', handleResize);
+      containerWindow.removeEventListener('resize', handleResize);
     };
-  }, [open, setPositioningStyles]);
+  }, [anchorEl, open, setPositioningStyles]);
 
   let transitionDuration = transitionDurationProp;
 
