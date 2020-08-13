@@ -234,6 +234,31 @@ This change affects almost all components where you're using the `component` pro
   +<PaginationItem shape="circular">
   ```
 
+  ### Popover
+
+- The onE\* transition props were removed. Use TransitionProps instead.
+
+  ```diff
+  <Popover
+  -  onEnter={onEnter}
+  -  onEntered={onEntered},
+  -  onEntering={onEntered},
+  -  onExit={onEntered},
+  -  onExited={onEntered},
+  -  onExiting={onEntered}
+  />
+  <Popover
+  +  TransitionProps={{
+  +    onEnter,
+  +    onEntered,
+  +    onEntering,
+  +    onExit,
+  +    onExited,
+  +    onExiting,
+  +  }}
+  />
+  ```
+
 ### Rating
 
 - Rename `visuallyhidden` to `visuallyHidden` for consistency:
