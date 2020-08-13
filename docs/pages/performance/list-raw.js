@@ -11,9 +11,7 @@ export default function ListRaw() {
       <ul>
         {rows.map((row, index) => (
           <li key={index}>
-            <span>
-             {row.name}
-            </span>
+            <span>{row.name}</span>
             <div>
               <CommentIcon />
             </div>

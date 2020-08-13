@@ -21,7 +21,10 @@ const Root = styled('li', { shouldForwardProp })((props) => ({
     backgroundColor: props.theme.palette.action.focus,
   }),
   ...(props.selected && {
-    backgroundColor: fade(props.theme.palette.primary.main, props.theme.palette.action.selectedOpacity),
+    backgroundColor: fade(
+      props.theme.palette.primary.main,
+      props.theme.palette.action.selectedOpacity,
+    ),
     ...(props.focusVisible && {
       backgroundColor: fade(
         props.theme.palette.primary.main,
@@ -67,7 +70,10 @@ const Root = styled('li', { shouldForwardProp })((props) => ({
         ),
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
-          backgroundColor: fade(props.theme.palette.primary.main, props.theme.palette.action.selectedOpacity),
+          backgroundColor: fade(
+            props.theme.palette.primary.main,
+            props.theme.palette.action.selectedOpacity,
+          ),
         },
       },
     }),
