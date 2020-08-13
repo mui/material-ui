@@ -34,7 +34,7 @@ Here are some highlights ✨:
   }
 
   // Enjoy!
-  <Button variant="dashed" />
+  <Button variant="dashed" />;
   ```
 
   More details in [the documentation](https://material-ui.com/customization/components/#adding-new-component-variants) and [RFC](#21749).
@@ -135,7 +135,7 @@ Here are some highlights ✨:
   It better matches the behavior of Gmail, Google Keep, material.io, etc.
   You can restore the previous behavior with:
 
-   ```diff
+  ```diff
   -<Snackbar />
   +<Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} />
   ```
@@ -262,7 +262,7 @@ Here are some highlights ✨:
 - [docs] Disallow undefined array members at runtime where they're unexpected (#21990) @eps1lon
 - [docs] Improve Autocomplete GitHub demo (#22153) @aquibbaig
 - [docs] Improve draggable dialog demo wording (#22021) @Sanskar95
-- [docs] Improve transition props API descriptions  (#21952) @maksimgm
+- [docs] Improve transition props API descriptions (#21952) @maksimgm
 - [docs] Port buildApi to TypeScript (#22055) @eps1lon
 - [docs] Update build instructions for component API (#21970) @eps1lon
 - [docs] Update grouped instruction of autocomplete (#22056) @yfng96
