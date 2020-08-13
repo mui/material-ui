@@ -12,32 +12,40 @@ declare global {
   namespace Chai {
     interface Assertion {
       /**
-       * checks if the element in question is considered aria-hidden
+       * Checks if the element in question is considered `aria-hidden`.
        * Does not replace accessibility check as that requires display/visibility/layout
        * @deprecated Use `inaccessible` + `visible` instead
        */
       toBeAriaHidden(): void;
       /**
-       * Check if an element is not visually hidden
+       * Check if an element's [`visibility`](https://developer.mozilla.org/en-US/docs/Web/CSS/visibility) is not `hidden` or `collapsed`.
        */
       toBeVisible(): void;
       /**
-       * checks if the element is inaccessible
+       * Checks if the element is inaccessible.
+       *
+       * Elements are considered inaccessible if they either:
+       * - have [`visibility`](https://developer.mozilla.org/en-US/docs/Web/CSS/visibility) `hidden`
+       * - have [`display`](https://developer.mozilla.org/en-US/docs/Web/CSS/display) `none`
+       * - have `aria-hidden` `true` or any of their parents
+       *
+       * @see [Excluding Elements from the Accessibility Tree](https://www.w3.org/TR/wai-aria-1.2/#tree_exclusion)
        */
       toBeInaccessible(): void;
       /**
-       * checks if the accessible name computation (according to `accname` spec)
+       * Checks if the accessible name computation (according to `accname` spec)
        * matches the expectation.
+       *
        * @see https://www.w3.org/TR/accname-1.2/
        * @param name
        */
       toHaveAccessibleName(name: string): void;
       /**
-       * checks if the element is focused
+       * Checks if the element is actually focused i.e. `document.activeElement` is equal to the actual element.
        */
       toHaveFocus(): void;
       /**
-       * checks if the element is the active-descendant of the active element.
+       * Checks if the element is the active-descendant of the active element.
        */
       toHaveVirtualFocus(): void;
       /**
