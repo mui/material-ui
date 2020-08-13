@@ -106,12 +106,14 @@ chai.use((chaiAPI, utils) => {
 
     this.assert(
       virutallyFocusedElementId === id,
-      `expected element to be virtually focused${
-        isInKarma() ? '\nexpected #{exp}\nactual: #{act}' : ''
+      `expected element to be virtually focused\nexpected id #{exp}\n${
+        virutallyFocusedElementId === null
+          ? `activeElement: ${elementToString(document.activeElement)}`
+          : 'actual id: #{act}'
       }`,
       'expected element to NOT to be virtually focused',
-      elementToString(document.getElementById(id)),
-      elementToString(document.getElementById(virutallyFocusedElementId!)),
+      id,
+      virutallyFocusedElementId,
     );
   });
 
