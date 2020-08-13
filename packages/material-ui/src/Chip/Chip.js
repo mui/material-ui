@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { useThemeVariants } from '@material-ui/styles';
 import CancelIcon from '../internal/svg-icons/Cancel';
 import withStyles from '../styles/withStyles';
 import { emphasize, fade } from '../styles/colorManipulator';
@@ -151,6 +152,8 @@ export const styles = (theme) => {
         marginRight: 3,
       },
     },
+    /* Styles applied to the root element if `variant="default"`. */
+    default: {},
     /* Styles applied to the root element if `variant="outlined"` and `color="primary"`. */
     outlinedPrimary: {
       color: theme.palette.primary.main,
@@ -386,11 +389,24 @@ const Chip = React.forwardRef(function Chip(props, ref) {
     }
   }
 
+  const themeVariantsClasses = useThemeVariants(
+    {
+      ...props,
+      clickable,
+      color,
+      disabled,
+      size,
+      variant,
+    },
+    'MuiChip',
+  );
+
   return (
     <Component
       role={clickable || onDelete ? 'button' : undefined}
       className={clsx(
         classes.root,
+        classes[variant],
         {
           [classes.disabled]: disabled,
           [classes.sizeSmall]: small,
@@ -399,10 +415,10 @@ const Chip = React.forwardRef(function Chip(props, ref) {
           [classes[`clickableColor${capitalize(color)}`]]: clickable && color !== 'default',
           [classes.deletable]: onDelete,
           [classes[`deletableColor${capitalize(color)}`]]: onDelete && color !== 'default',
-          [classes.outlined]: variant === 'outlined',
           [classes.outlinedPrimary]: variant === 'outlined' && color === 'primary',
           [classes.outlinedSecondary]: variant === 'outlined' && color === 'secondary',
         },
+        themeVariantsClasses,
         className,
       )}
       aria-disabled={disabled ? true : undefined}

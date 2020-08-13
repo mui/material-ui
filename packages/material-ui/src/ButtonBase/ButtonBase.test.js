@@ -9,6 +9,7 @@ import {
   act,
   createClientRender,
   fireEvent,
+  screen,
 } from 'test/utils';
 import * as PropTypes from 'prop-types';
 import TouchRipple from './TouchRipple';
@@ -1034,6 +1035,46 @@ describe('<ButtonBase />', () => {
       expect(() => {
         render(<ButtonBase component={Component} />);
       }).toErrorDev('Please make sure the children prop is rendered in this custom component.');
+    });
+  });
+
+  describe('prop: type', () => {
+    it('is `button` by default', () => {
+      render(<ButtonBase />);
+
+      expect(screen.getByRole('button')).to.have.property('type', 'button');
+    });
+
+    it('can be changed to other button types', () => {
+      render(<ButtonBase type="submit" />);
+
+      expect(screen.getByRole('button')).to.have.property('type', 'submit');
+    });
+
+    it('allows non-standard values', () => {
+      // @ts-expect-error `@types/react` only lists standard values
+      render(<ButtonBase type="fictional-type" />);
+
+      expect(screen.getByRole('button')).to.have.attribute('type', 'fictional-type');
+      // By spec non-supported types result in the default type for `<button>` which is `submit`
+      expect(screen.getByRole('button')).to.have.property('type', 'submit');
+    });
+
+    it('is forwarded to anchor components', () => {
+      render(<ButtonBase component="a" href="some-recording.ogg" download type="audio/ogg" />);
+
+      expect(screen.getByRole('link')).to.have.attribute('type', 'audio/ogg');
+      expect(screen.getByRole('link')).to.have.property('type', 'audio/ogg');
+    });
+
+    it('is forwarded to custom components', () => {
+      /**
+       * @type {React.ForwardRefExoticComponent<React.ButtonHTMLAttributes<HTMLButtonElement>>}
+       */
+      const CustomButton = React.forwardRef((props, ref) => <button ref={ref} {...props} />);
+      render(<ButtonBase component={CustomButton} type="reset" />);
+
+      expect(screen.getByRole('button')).to.have.property('type', 'reset');
     });
   });
 });

@@ -17,7 +17,15 @@ export const componentSettings = {
     ],
   },
   Avatar: {
-    ignoredProps: ['alt', 'imgProps', 'sizes', 'src', 'srcSet'],
+    ignoredProps: [
+      'alt',
+      'imgProps',
+      'sizes',
+      'src',
+      'srcSet',
+      // FIXME: `Union`
+      'variant',
+    ],
     propValues: {
       // Note: MUI Avatar doesn't have the normal `color` prop.
       backgroundColor: "'#4154af'",
@@ -107,7 +115,13 @@ export const componentSettings = {
     template: 'selection_control.txt',
   },
   Chip: {
-    ignoredProps: ['avatar', 'children', 'onDelete'],
+    ignoredProps: [
+      'avatar',
+      'children',
+      'onDelete',
+      // FIXME: `Union`
+      'variant',
+    ],
     propValues: {
       avatarImageFile: "''",
       avatarImageUrl: "''",
