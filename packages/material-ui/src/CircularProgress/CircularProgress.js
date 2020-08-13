@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { useThemeVariants } from '@material-ui/styles';
 import { chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import capitalize from '../utils/capitalize';
@@ -99,6 +100,19 @@ const CircularProgress = React.forwardRef(function CircularProgress(props, ref) 
     ...other
   } = props;
 
+  const themeVariantsClasses = useThemeVariants(
+    {
+      ...props,
+      color,
+      disableShrink,
+      size,
+      thickness,
+      value,
+      variant,
+    },
+    'MuiCircularProgress',
+  );
+
   const circleStyle = {};
   const rootStyle = {};
   const rootProps = {};
@@ -115,11 +129,11 @@ const CircularProgress = React.forwardRef(function CircularProgress(props, ref) 
     <div
       className={clsx(
         classes.root,
+        classes[variant],
         {
           [classes[`color${capitalize(color)}`]]: color !== 'inherit',
-          [classes.determinate]: variant === 'determinate',
-          [classes.indeterminate]: variant === 'indeterminate',
         },
+        themeVariantsClasses,
         className,
       )}
       style={{ width: size, height: size, ...rootStyle, ...style }}
@@ -202,7 +216,10 @@ CircularProgress.propTypes = {
    * The variant to use.
    * Use indeterminate when there is no progress value.
    */
-  variant: PropTypes.oneOf(['determinate', 'indeterminate']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['determinate', 'indeterminate']),
+    PropTypes.string,
+  ]),
 };
 
 export default withStyles(styles, { name: 'MuiCircularProgress', flip: false })(CircularProgress);

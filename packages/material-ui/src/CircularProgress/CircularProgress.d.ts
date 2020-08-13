@@ -1,5 +1,9 @@
 import * as React from 'react';
+import { OverridableStringUnion } from '@material-ui/types';
 import { StandardProps } from '..';
+
+export interface CircularProgressPropsVariantOverrides {}
+export type CircularProgressVariantDefaults = Record<'determinate' | 'indeterminate', true>;
 
 export interface CircularProgressProps
   extends StandardProps<
@@ -35,7 +39,7 @@ export interface CircularProgressProps
    * The variant to use.
    * Use indeterminate when there is no progress value.
    */
-  variant?: 'determinate' | 'indeterminate';
+  variant?:  OverridableStringUnion<CircularProgressVariantDefaults, CircularProgressPropsVariantOverrides>;
 }
 
 export type CircularProgressClassKey =
