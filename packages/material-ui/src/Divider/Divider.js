@@ -89,6 +89,7 @@ const Divider = React.forwardRef(function Divider(props, ref) {
           [classes.light]: light,
           [classes.vertical]: orientation === 'vertical',
         },
+        themeVariantsClasses,
         className,
       )}
       role={role}
