@@ -91,9 +91,20 @@ function selectNode(node) {
 }
 
 let Icons = (props) => {
-  const { icons, classes, handleClickOpen } = props;
+  const { icons, classes, handleOpenClick } = props;
 
-  const handleClick = (event) => {
+  const handleIconClick = (name) => () => {
+    if (Math.random() < 0.1) {
+      window.ga('send', {
+        hitType: 'event',
+        eventCategory: 'material-icons',
+        eventAction: 'click',
+        eventLabel: name,
+      });
+    }
+  };
+
+  const handleLabelClick = (event) => {
     selectNode(event.currentTarget);
   };
 
@@ -101,18 +112,20 @@ let Icons = (props) => {
     <div>
       {icons.map((icon) => {
         return (
-          <span key={icon.key} className={clsx('markdown-body', classes.icon)}>
+          <span
+            key={icon.key}
+            role="presentation"
+            onClick={handleIconClick(icon.searchable)}
+            className={clsx('markdown-body', classes.icon)}
+          >
             <icon.Icon
               tabIndex={-1}
-              onClick={handleClickOpen}
+              onClick={handleOpenClick}
               title={icon.key}
               className={classes.iconSvg}
-              data-ga-event-category="material-icons"
-              data-ga-event-action="click"
-              data-ga-event-label={icon.key}
             />
             {/* eslint-disable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events */}
-            <p onClick={handleClick}>{icon.key}</p>
+            <p onClick={handleLabelClick}>{icon.key}</p>
           </span>
         );
       })}
@@ -122,7 +135,7 @@ let Icons = (props) => {
 
 Icons.propTypes = {
   classes: PropTypes.object.isRequired,
-  handleClickOpen: PropTypes.func.isRequired,
+  handleOpenClick: PropTypes.func.isRequired,
   icons: PropTypes.array.isRequired,
 };
 Icons = React.memo(Icons);
@@ -400,6 +413,7 @@ const allIcons = Object.keys(mui)
     const icon = {
       key,
       tag,
+      searchable,
       Icon: mui[key],
     };
     allIconsMap[key] = icon;
@@ -413,7 +427,7 @@ export default function SearchIcons() {
   const [open, setOpen] = React.useState(false);
   const [selectedIcon, setSelectedIcon] = React.useState(null);
 
-  const handleClickOpen = React.useCallback((event) => {
+  const handleOpenClick = React.useCallback((event) => {
     setSelectedIcon(allIconsMap[event.currentTarget.getAttribute('title')]);
     setOpen(true);
   }, []);
@@ -512,7 +526,7 @@ export default function SearchIcons() {
         <Icons
           icons={icons}
           classes={classes}
-          handleClickOpen={handleClickOpen}
+          handleOpenClick={handleOpenClick}
         />
       </Grid>
       <DialogDetails
