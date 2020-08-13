@@ -212,7 +212,7 @@ describe('<Popover />', () => {
 
       // transitions towards entered
       const wrapper = mount(
-        <Popover {...defaultProps} open transitionDuration={0} TransitionProps={{...handlers}}>
+        <Popover {...defaultProps} open transitionDuration={0} TransitionProps={{ ...handlers }}>
           <div />
         </Popover>,
       );
@@ -332,10 +332,11 @@ describe('<Popover />', () => {
               anchorEl={anchorEl}
               anchorOrigin={anchorOrigin}
               transitionDuration={0}
-              TransitionProps={{ onEntered: () => {
+              TransitionProps={{
+                onEntered: () => {
                   popoverEl = document.querySelector('[data-mui-test="Popover"]');
                   resolve();
-                }
+                },
               }}
             >
               <div />
@@ -472,10 +473,11 @@ describe('<Popover />', () => {
               anchorPosition={anchorPosition}
               anchorOrigin={anchorOrigin}
               transitionDuration={0}
-              TransitionProps={{ onEntered: () => {
+              TransitionProps={{
+                onEntered: () => {
                   popoverEl = document.querySelector('[data-mui-test="Popover"]');
                   resolve();
-                }
+                },
               }}
             >
               <div />
@@ -517,10 +519,11 @@ describe('<Popover />', () => {
               {...defaultProps}
               anchorReference="none"
               transitionDuration={0}
-              TransitionProps={{ onEntered: () => {
+              TransitionProps={{
+                onEntered: () => {
                   popoverEl = document.querySelector('[data-mui-test="Popover"]');
                   resolve();
-                }
+                },
               }}
               PaperProps={{
                 style: {

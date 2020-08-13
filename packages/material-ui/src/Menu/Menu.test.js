@@ -50,7 +50,7 @@ describe('<Menu />', () => {
                 expect(handleEntering.callCount).to.equal(1);
                 expect(handleEntering.args[0].length).to.equal(2);
                 done();
-              }
+              },
             }}
             {...defaultProps}
           />,
@@ -78,7 +78,7 @@ describe('<Menu />', () => {
                 expect(handleExiting.callCount).to.equal(1);
                 expect(handleExiting.args[0].length).to.equal(1);
                 done();
-              }
+              },
             }}
             {...defaultProps}
             open
@@ -164,7 +164,9 @@ describe('<Menu />', () => {
 
   it('should call onEntering with element if exists', () => {
     const onEnteringSpy = spy();
-    const wrapper = mount(<Menu {...defaultProps} TransitionProps={{ onEntering: onEnteringSpy }} />);
+    const wrapper = mount(
+      <Menu {...defaultProps} TransitionProps={{ onEntering: onEnteringSpy }} />,
+    );
     const popover = wrapper.find(Popover);
 
     const elementForHandleEnter = { clientHeight: MENU_LIST_HEIGHT };
@@ -177,7 +179,11 @@ describe('<Menu />', () => {
   it('should call props.onEntering, disableAutoFocusItem', () => {
     const onEnteringSpy = spy();
     const wrapper = mount(
-      <Menu disableAutoFocusItem {...defaultProps} TransitionProps={{ onEntering: onEnteringSpy }} />,
+      <Menu
+        disableAutoFocusItem
+        {...defaultProps}
+        TransitionProps={{ onEntering: onEnteringSpy }}
+      />,
     );
     const popover = wrapper.find(Popover);
 
