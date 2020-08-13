@@ -9,14 +9,14 @@ export interface ParserOptions {
   /**
    * Called before a PropType is added to a component/object
    * @returns true to include the PropType, false to skip it, or undefined to
-   * use the default behaviour
+   * use the default behavior
    * @default name !== 'ref'
    */
   shouldInclude: (data: { name: string; depth: number }) => boolean | undefined;
   /**
    * Called before the shape of an object is resolved
    * @returns true to resolve the shape of the object, false to just use a object, or undefined to
-   * use the default behaviour
+   * use the default behavior
    * @default propertyCount <= 50 && depth <= 3
    */
   shouldResolveObject: (data: {

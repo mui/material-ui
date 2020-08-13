@@ -51,6 +51,20 @@ Support for non-ref-forwarding class components in the `component` prop or as an
 Otherwise check out the ["Caveat with refs" section in our composition guide](/guides/composition/#caveat-with-refs) to find out how to migrate.
 This change affects almost all components where you're using the `component` prop or passing `children` to components that require `children` to be elements (e.g. `<MenuList><CustomMenuItem /></MenuList>`)
 
+### Theme
+
+- The "gutters" abstraction hasn't proven to be used frequently enough to be valuable.
+
+  ```diff
+  -theme.mixins.gutters(),
+  +paddingLeft: theme.spacing(2),
+  +paddingRight: theme.spacing(2),
+  +[theme.breakpoints.up('sm')]: {
+  +  paddingLeft: theme.spacing(3),
+  +  paddingRight: theme.spacing(3),
+  +},
+  ```
+
 ### Avatar
 
 - Rename `circle` to `circular` for consistency. The possible values should be adjectives, not nouns:
@@ -123,7 +137,7 @@ This change affects almost all components where you're using the `component` pro
   +<CircularProgress variant="determinate" classes={{ determinate: 'className' }} />
   ```
 
-> NB: If you had previously customised determinate, your customisations are probably no longer valid. Please remove them.
+> NB: If you had previously customized determinate, your customizations are probably no longer valid. Please remove them.
 
 ### Collapse
 
@@ -139,6 +153,29 @@ This change affects almost all components where you're using the `component` pro
   ```diff
   -<Collapse classes={{ container: 'collapse' }}>
   +<Collapse classes={{ root: 'collapse' }}>
+  ```
+
+### Dialog
+
+- The onE\* transition props were removed. Use TransitionProps instead.
+
+  ```diff
+  <Dialog
+  -  onEnter={onEnter}
+  -  onEntered={onEntered},
+  -  onEntering={onEntered},
+  -  onExit={onEntered},
+  -  onExited={onEntered},
+  -  onExiting={onEntered}
+  +  TransitionProps={{
+  +    onEnter,
+  +    onEntered,
+  +    onEntering,
+  +    onExit,
+  +    onExited,
+  +    onExiting,
+  +  }}
+  />
   ```
 
 ### Divider
@@ -290,8 +327,6 @@ This change affects almost all components where you're using the `component` pro
   -  onExit={onEntered},
   -  onExited={onEntered},
   -  onExiting={onEntered}
-  />
-  <Snackbar
   +  TransitionProps={{
   +    onEnter,
   +    onEntered,

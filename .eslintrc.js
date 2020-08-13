@@ -22,11 +22,11 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 7,
   },
-  plugins: ['material-ui', 'react-hooks', '@typescript-eslint'],
+  plugins: ['eslint-plugin-material-ui', 'eslint-plugin-react-hooks', '@typescript-eslint/eslint-plugin'],
   settings: {
     'import/resolver': {
       webpack: {
-        config: path.join(__dirname, './docs/webpackBaseConfig.js'),
+        config: path.join(__dirname, './webpackBaseConfig.js'),
       },
     },
   },

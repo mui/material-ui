@@ -18,7 +18,7 @@ export type InjectOptions = {
   /**
    * Used to control which props are includes in the result
    * @returns true to include the prop, false to skip it, or undefined to
-   * use the default behaviour
+   * use the default behavior
    * @default includeUnusedProps ? true : data.usedProps.includes(data.prop.name)
    */
   shouldInclude?(data: {
