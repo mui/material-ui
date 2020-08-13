@@ -3,30 +3,29 @@ import PropTypes from 'prop-types';
 import ListContext from '../List/ListContext';
 
 /**
- * A simple wrapper to apply `List` styles to an `Icon` or `SvgIcon`.
+ * Must be used as the last child of ListItem to function properly.
  */
-const ListItemIcon = React.forwardRef(function ListItemIcon(props, ref) {
-  const { classes, className, components = {}, ...other } = props;
+const ListItemSecondaryAction = React.forwardRef(function ListItemSecondaryAction(props, ref) {
+  const { components = {}, ...other } = props;
   const context = React.useContext(ListContext);
   const Root = components.root || 'div';
+
   return (
     <Root
-      className={className}
-      alignItems={context.alignItems}
+      disabledGutters={context.disableGutters}
       ref={ref}
       {...other}
     />
   );
 });
 
-ListItemIcon.propTypes = {
+ListItemSecondaryAction.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * The content of the component, normally `Icon`, `SvgIcon`,
-   * or a `@material-ui/icons` SVG icon element.
+   * The content of the component, normally an `IconButton` or selection control.
    */
   children: PropTypes.node,
   /**
@@ -38,11 +37,8 @@ ListItemIcon.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  components: PropTypes.shape({ root: PropTypes.component }),
 };
 
-export default ListItemIcon;
+ListItemSecondaryAction.muiName = 'ListItemSecondaryAction';
+
+export default ListItemSecondaryAction;

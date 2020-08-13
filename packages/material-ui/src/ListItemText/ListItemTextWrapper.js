@@ -7,14 +7,19 @@ import ListItemTextBase from './ListItemTextUnstyled';
 const shouldForwardProp = (prop) => isPropValid(prop);
 
 const Root = styled('div', { shouldForwardProp })(props => ({
-  minWidth: 56,
-  color: props.theme.palette.action.active,
-  flexShrink: 0,
-  display: 'inline-flex',
-  ...(props.alignItems === 'flex-start' && {
-    marginTop: 8,
+  flex: '1 1 auto',
+  minWidth: 0,
+  marginTop: 4,
+  marginBottom: 4,
+  ...(props.multiline && {
+    marginTop: 6,
+    marginBottom: 6,
+  }),
+  ...(props.inset && {
+    paddingLeft: 56,
   })
 }))
+
 
 /**
  * A simple wrapper to apply `List` styles to an `Icon` or `SvgIcon`.

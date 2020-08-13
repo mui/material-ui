@@ -97,7 +97,7 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
     return (
       <ListContext.Provider value={childContext}>
         <Container
-          as="ContainerComponent"
+          as={ContainerComponent}
           className={ContainerClassName}
           ref={handleRef}
           {...ContainerProps}
