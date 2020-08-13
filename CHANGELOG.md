@@ -1,5 +1,291 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 5.0.0-alpha.6
+
+###### _Aug 13, 2020_
+
+Big thanks to the 26 contributors who made this release possible.
+Here are some highlights ✨:
+
+- 💅 Introduce a new dynamic variant API (#21648) @mnajdova.
+  This API allows developers to add new variants on the Material-UI's components right from the theme, without having to wrap the components.
+  For instance with the Button:
+
+  ```tsx
+  // Define the style that should be applied, for specific props.
+  const theme = createMuiTheme({
+    variants: {
+      MuiButton: [
+        {
+          props: { variant: 'dashed', color: 'secondary' },
+          styles: {
+            border: `4px dashed ${red[500]}`,
+          },
+        },
+      ],
+    },
+  });
+
+  // Retain type safety.
+  declare module '@material-ui/core/Button/Button' {
+    interface ButtonPropsVariantOverrides {
+      dashed: true;
+    }
+  }
+
+  // Enjoy!
+  <Button variant="dashed" />
+  ```
+
+  More details in [the documentation](https://material-ui.com/customization/components/#adding-new-component-variants) and [RFC](#21749).
+
+- 👮 Add documentation for the [TrapFocus](https://next.material-ui.com/components/trap-focus/) component (#22062) @oliviertassinari.
+- ⚛️ Prepare support for React v17 (#22093, #22105, #22143, #22111) @eps1lon.
+- 🚧 We have undertaken breaking changes.
+
+### `@material-ui/core@v5.0.0-alpha.6`
+
+### Breaking changes
+
+- [Avatar] Rename variant circle -> circular for consistency (#22015) @kodai3
+  Rename `circle` to `circular` for consistency. The possible values should be adjectives, not nouns:
+
+  ```diff
+  -<Avatar variant="circle">
+  +<Avatar variant="circular">
+  ```
+
+- [Badge] Rename overlap circle -> circular and rectangle -> rectangular for consistency (#22050) @kodai3
+  Rename `circle` to `circular` and `rectangle` to `rectangular` for consistency. The possible values should be adjectives, not nouns:
+
+  ```diff
+  -<Badge overlap="circle">
+  -<Badge overlap="rectangle">
+  +<Badge overlap="circular">
+  +<Badge overlap="rectangular">
+  ```
+
+- [CircularProgress] Remove static variant, simplify determinate (#22060) @mbrookes
+  The `static` variant has been merged into the `determinate` variant, with the latter assuming the appearance of the former.
+  The removed variant was rarely useful. It was an exception to Material Design, and was removed from the specification.
+
+  ```diff
+  -<CircularProgress variant="determinate" />
+  ```
+
+  ```diff
+  -<CircularProgress variant="static" classes={{ static: 'className' }} />
+  +<CircularProgress variant="determinate" classes={{ determinate: 'className' }} />
+  ```
+
+- [Dialog] Remove transition onX props (#22113) @mbrookes
+  The onE\* transition props were removed. Use TransitionProps instead.
+
+  ```diff
+  <Dialog
+  -  onEnter={onEnter}
+  -  onEntered={onEntered},
+  -  onEntering={onEntered},
+  -  onExit={onEntered},
+  -  onExited={onEntered},
+  -  onExiting={onEntered}
+  +  TransitionProps={{
+  +    onEnter,
+  +    onEntered,
+  +    onEntering,
+  +    onExit,
+  +    onExited,
+  +    onExiting,
+  +  }}
+  />
+  ```
+
+- [Fab] Rename round -> circular for consistency (#21903) @kodai3
+  Rename `round` to `circular` for consistency. The possible values should be adjectives, not nouns:
+
+  ```diff
+  -<Fab variant="round">
+  +<Fab variant="circular">
+  ```
+
+- [List] Improve hover/select/focus UI display (#21930) @joshwooding
+- [Pagination] Rename round -> circular for consistency (#22009) @kodai3
+  Rename `round` to `circular` for consistency. The possible values should be adjectives, not nouns:
+
+  ```diff
+  -<Pagination shape="round">
+  -<PaginationItem shape="round">
+  +<Pagination shape="circular">
+  +<PaginationItem shape="circular">
+  ```
+
+- [RootRef] Remove component (#21974) @eps1lon
+  This component was removed. You can get a reference to the underlying DOM node of our components via `ref` prop.
+  The component relied on [`ReactDOM.findDOMNode`](https://reactjs.org/docs/react-dom.html#finddomnode) which is [deprecated in `React.StrictMode`](https://reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage).
+
+  ```diff
+  -<RootRef rootRef={ref}>
+  -  <Button />
+  -</RootRef>
+  +<Button ref={ref} />
+  ```
+
+- [Snackbar] Change the default position on desktop (#21980) @kodai3
+  The notification now displays at the bottom left on large screens.
+  It better matches the behavior of Gmail, Google Keep, material.io, etc.
+  You can restore the previous behavior with:
+
+   ```diff
+  -<Snackbar />
+  +<Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} />
+  ```
+
+- [Snackbar] Remove transition onX props (#22107) @mbrookes
+  The onE\* transition props were removed. Use TransitionProps instead.
+
+  ```diff
+  <Snackbar
+  -  onEnter={onEnter}
+  -  onEntered={onEntered},
+  -  onEntering={onEntered},
+  -  onExit={onEntered},
+  -  onExited={onEntered},
+  -  onExiting={onEntered}
+  +  TransitionProps={{
+  +    onEnter,
+  +    onEntered,
+  +    onEntering,
+  +    onExit,
+  +    onExited,
+  +    onExiting,
+  +  }}
+  />
+  ```
+
+- [TextareaAutosize] Rename rowsMax->maxRows & rowsMin->minRows (#21873) @mhayk
+  Rename `rowsMin`/`rowsMax` prop with `mi Rows`/`maxRows` for consistency with HTML attributes.
+
+  ```diff
+  -<TextField rowsMax={6}>
+  -<TextareAutosize rowsMin={1}>
+  -<TextareAutosize rowsMax={6}>
+  +<TextField maxRows={6}>
+  +<TextareAutosize minRows={1}>
+  +<TextareAutosize maxRows={6}>
+  ```
+
+- [TextField] Better isolate static textarea behavior to dynamic one (#21995) @AxartInc
+  Better isolate the fixed textarea height behavior to the dynamic one.
+  You need to use the `rowsMin` prop in the following case:
+
+  ```diff
+  -<TextField rows={2} rowsMax={5} />
+  +<TextField rowsMin={2} rowsMax={5} />
+  ```
+
+  Remove the `rows` prop, use the `rowsMin` prop instead.
+  This change aims to clarify the behavior of the prop.
+
+  ```diff
+  -<TextareaAutosize rows={2} />
+  +<TextareaAutosize rowsMin={2} />
+  ```
+
+- [theme] Remove theme.mixins.gutters (#22109) @joshwooding
+  The abstraction hasn't proven to be used frequently enough to be valuable.
+
+  ```diff
+  -theme.mixins.gutters(),
+  +paddingLeft: theme.spacing(2),
+  +paddingRight: theme.spacing(2),
+  +[theme.breakpoints.up('sm')]: {
+  +  paddingLeft: theme.spacing(3),
+  +  paddingRight: theme.spacing(3),
+  +},
+  ```
+
+### Changes
+
+- [Avatar] Custom variant (#22139) @mnajdova
+- [Badge] Add missing class key (#22095) @kodai3
+- [Badge] Custom variant (#22140) @mnajdova
+- [Button] Improved variant type names & cleanup tests (#22010) @mnajdova
+- [ButtonBase] Forward type to other components than 'button' (#22172) @eps1lon
+- [ButtonGroup] Custom variant (#22160) @mnajdova
+- [Chip] Custom variant (#22161) @mnajdova
+- [CssBaseline] Add text size adjust property (#22089) @Tolsee
+- [l10n] Add Greek (el-GR) locale (#21988) @tmanolat
+- [Table] Cell small's right padding is bigger than medium (#22017) @adamlaurencik
+- [TrapFocus] Add documentation (#22062) @oliviertassinari
+- [Typography] Add custom variants support (#22006) @mnajdova
+- [useIsFocusVisible] Remove focus-visible if focus is re-targetted (#22102) @eps1lon
+- [core] Fix various potential issues with multiple windows (#22159) @scottander
+- [core] Improve hook dependencies in useControlled.js (#21977) @roth1002
+
+### `@material-ui/lab@v5.0.0-alpha.6`
+
+### Breaking changes
+
+- [Skeleton] Rename variant circle -> circular and rect -> rectangular for consistency (#22053) @kodai3
+  Rename `circle` to `circular` and `rect` to `rectangular` for consistency. The possible values should be adjectives, not nouns:
+
+  ```diff
+  -<Skeleton variant="circle">
+  -<Skeleton variant="rect">
+  +<Skeleton variant="circular">
+  +<Skeleton variant="rectangular">
+  ```
+
+### Changes
+
+- [Autocomplete] Add support for "{label: string}" data type as a default for "options" (#21992) @DanailH
+- [TreeView] Add disabled prop (#20133) @netochaves
+- [TreeView] Simplify focus logic (#22098) @eps1lon
+- [TreeView] Test current behavior of active item removal (#21720) @eps1lon
+- [TreeView] Test selection behavior (#21901) @joshwooding
+
+### `@material-ui/system@v5.0.0-alpha.6`
+
+- [core] Bump csstype to 3.0.0 (#22048) @eps1lon
+
+### Docs
+
+- [docs] Add 'size' prop to ToggleButton API docs (#22052) @zenje
+- [docs] Add ClassKeys migration description for Renaming API (#22061) @kodai3
+- [docs] Add a label to the TreeView demos (#21900) @joshwooding
+- [docs] Add missing JSDOC for various props (#22005) @eps1lon
+- [docs] Add the services that support MUI in readme (#22137) @naineet
+- [docs] Add trailingSlash: true (#22008) @oliviertassinari
+- [docs] Add visibility to TypeScript examples (#22013) @esemeniuc
+- [docs] Avoid using any type in Tabs examples (#22091) @tacigar
+- [docs] Bump next to 9.5.0 (#21975) @eps1lon
+- [docs] Disallow undefined array members at runtime where they're unexpected (#21990) @eps1lon
+- [docs] Improve Autocomplete GitHub demo (#22153) @aquibbaig
+- [docs] Improve draggable dialog demo wording (#22021) @Sanskar95
+- [docs] Improve transition props API descriptions  (#21952) @maksimgm
+- [docs] Port buildApi to TypeScript (#22055) @eps1lon
+- [docs] Update build instructions for component API (#21970) @eps1lon
+- [docs] Update grouped instruction of autocomplete (#22056) @yfng96
+- [docs] Use `import * as React from 'react';` (#22058) @mbrookes
+- [docs] Use pickers v4 (#22023) @eps1lon
+
+### Core
+
+- [core] Allow running prettier from material-ui-x (#22071) @oliviertassinari
+- [core] Bump csstype to 3.0.0 (#22048) @eps1lon
+- [core] Fix next and prevent future regressions (#22135) @eps1lon
+- [core] Improve merge-conflict label automation (#22065) @eps1lon
+- [core] Lint cleanup (#21972) @eps1lon
+- [core] Resolve all dot-prop versions to 5.x (#22007) @eps1lon
+- [core] Small changes (#22020) @oliviertassinari
+- [Security] Bump elliptic from 6.5.0 to 6.5.3 (#21997) @dependabot-preview
+- [test] Drop css-loader (#21999) @eps1lon
+- [test] Lint framer workspace (#22002) @eps1lon
+- [test] Lint useThemeVariants with custom rules plugin (#21963) @eps1lon
+- [test] Run same tests in coverage and unit (#22092) @eps1lon
+- [test] Type-check framerx package (#21868) @eps1lon
+- [test] Work on React v17 (#22093, #22105, #22143, #22111) @eps1lon
+
 ## 5.0.0-alpha.5
 
 ###### _July 28, 2020_
