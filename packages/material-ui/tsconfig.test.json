@@ -3,5 +3,5 @@
   "compilerOptions": {
     "types": ["mocha", "node", "react"]
   },
-  "include": ["../../test/utils/createDOM.d.ts", "../../test/utils/init.d.ts", "src/**/*.test.js"]
+  "include": ["../../test/utils/createDOM.d.ts", "src/**/*.test.js"]
 }

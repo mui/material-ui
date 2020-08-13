@@ -62,6 +62,7 @@
     "@types/chai": "^4.2.3",
     "@types/chai-dom": "^0.0.10",
     "@types/enzyme": "^3.10.3",
+    "@types/format-util": "^1.0.1",
     "@types/fs-extra": "^9.0.0",
     "@types/glob": "^7.1.1",
     "@types/jsdom": "^16.1.0",
