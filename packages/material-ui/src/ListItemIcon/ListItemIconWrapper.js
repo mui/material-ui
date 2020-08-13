@@ -6,27 +6,21 @@ import ListItemIconBase from './ListItemIconUnstyled';
 
 const shouldForwardProp = (prop) => isPropValid(prop);
 
-const Root = styled('div', { shouldForwardProp })(props => ({
+const Root = styled('div', { shouldForwardProp })((props) => ({
   minWidth: 56,
   color: props.theme.palette.action.active,
   flexShrink: 0,
   display: 'inline-flex',
   ...(props.alignItems === 'flex-start' && {
     marginTop: 8,
-  })
-}))
+  }),
+}));
 
 /**
  * A simple wrapper to apply `List` styles to an `Icon` or `SvgIcon`.
  */
 const ListItemIcon = React.forwardRef(function ListItemIcon(props, ref) {
-  return (
-    <ListItemIconBase
-      ref={ref}
-      components={{ root: Root }}
-      {...props}
-    />
-  );
+  return <ListItemIconBase ref={ref} components={{ root: Root }} {...props} />;
 });
 
 ListItemIcon.propTypes = {

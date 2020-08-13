@@ -3,10 +3,9 @@ import styled from '@emotion/styled';
 import isPropValid from '@emotion/is-prop-valid';
 import { default as ListItemAvatarBase } from './ListItemAvatarUnstyled';
 
-const shouldForwardProp = (prop) =>
-  isPropValid(prop) && prop !== 'disabled';
+const shouldForwardProp = (prop) => isPropValid(prop) && prop !== 'disabled';
 
-const Root = styled('div', { shouldForwardProp })(props => ({
+const Root = styled('div', { shouldForwardProp })((props) => ({
   minWidth: 56,
   flexShrink: 0,
   ...(props.alignItems === 'flex-start' && {
@@ -14,9 +13,8 @@ const Root = styled('div', { shouldForwardProp })(props => ({
   }),
 }));
 
-
 const ListItem = React.forwardRef(function ListItem(props, ref) {
-  return <ListItemAvatarBase components={{ root: Root }} ref={ref} {...props} />
+  return <ListItemAvatarBase components={{ root: Root }} ref={ref} {...props} />;
 });
 
 export default ListItem;

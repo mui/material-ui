@@ -6,15 +6,15 @@ import ListContext from '../List/ListContext';
 
 const shouldForwardProp = (prop) => isPropValid(prop);
 
-const Root = styled('div', { shouldForwardProp })(props => ({
+const Root = styled('div', { shouldForwardProp })((props) => ({
   minWidth: 56,
   color: props.theme.palette.action.active,
   flexShrink: 0,
   display: 'inline-flex',
   ...(props.alignItems === 'flex-start' && {
     marginTop: 8,
-  })
-}))
+  }),
+}));
 
 /**
  * A simple wrapper to apply `List` styles to an `Icon` or `SvgIcon`.
@@ -23,14 +23,7 @@ const ListItemIcon = React.forwardRef(function ListItemIcon(props, ref) {
   const { classes, className, ...other } = props;
   const context = React.useContext(ListContext);
 
-  return (
-    <Root
-      className={className}
-      alignItems={context.alignItems}
-      ref={ref}
-      {...other}
-    />
-  );
+  return <Root className={className} alignItems={context.alignItems} ref={ref} {...other} />;
 });
 
 ListItemIcon.propTypes = {

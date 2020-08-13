@@ -7,7 +7,7 @@ import ListContext from '../List/ListContext';
 
 const shouldForwardProp = (prop) => isPropValid(prop);
 
-const Root = styled('div', { shouldForwardProp })(props => ({
+const Root = styled('div', { shouldForwardProp })((props) => ({
   flex: '1 1 auto',
   minWidth: 0,
   marginTop: 4,
@@ -18,8 +18,8 @@ const Root = styled('div', { shouldForwardProp })(props => ({
   }),
   ...(props.inset && {
     paddingLeft: 56,
-  })
-}))
+  }),
+}));
 
 const ListItemText = React.forwardRef(function ListItemText(props, ref) {
   const {

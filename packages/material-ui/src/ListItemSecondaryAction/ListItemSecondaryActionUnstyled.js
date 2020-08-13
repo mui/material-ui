@@ -10,13 +10,7 @@ const ListItemSecondaryAction = React.forwardRef(function ListItemSecondaryActio
   const context = React.useContext(ListContext);
   const Root = components.root || 'div';
 
-  return (
-    <Root
-      disabledGutters={context.disableGutters}
-      ref={ref}
-      {...other}
-    />
-  );
+  return <Root disabledGutters={context.disableGutters} ref={ref} {...other} />;
 });
 
 ListItemSecondaryAction.propTypes = {

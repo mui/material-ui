@@ -9,14 +9,7 @@ const ListItemIcon = React.forwardRef(function ListItemIcon(props, ref) {
   const { classes, className, components = {}, ...other } = props;
   const context = React.useContext(ListContext);
   const Root = components.root || 'div';
-  return (
-    <Root
-      className={className}
-      alignItems={context.alignItems}
-      ref={ref}
-      {...other}
-    />
-  );
+  return <Root className={className} alignItems={context.alignItems} ref={ref} {...other} />;
 });
 
 ListItemIcon.propTypes = {
