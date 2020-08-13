@@ -9,10 +9,9 @@ import isMuiElement from '../utils/isMuiElement';
 import useForkRef from '../utils/useForkRef';
 import ListContext from '../List/ListContext';
 
-const shouldForwardProp = (prop) =>
-  isPropValid(prop) && prop !== 'disabled';
+const shouldForwardProp = (prop) => isPropValid(prop) && prop !== 'disabled';
 
-const Root = styled('li', { shouldForwardProp })(props => ({
+const Root = styled('li', { shouldForwardProp })((props) => ({
   display: 'flex',
   justifyContent: 'flex-start',
   alignItems: 'center',
@@ -33,7 +32,7 @@ const Root = styled('li', { shouldForwardProp })(props => ({
         props.theme.palette.primary.main,
         props.theme.palette.action.selectedOpacity + props.theme.palette.action.focusOpacity,
       ),
-    })
+    }),
   }),
   ...(props.disabled && {
     opacity: props.theme.palette.action.disabledOpacity,
@@ -42,7 +41,7 @@ const Root = styled('li', { shouldForwardProp })(props => ({
     paddingTop: 4,
     paddingBottom: 4,
   }),
-  ...(props.alignItems === "flex-start" && {
+  ...(props.alignItems === 'flex-start' && {
     alignItems: 'flex-start',
   }),
   ...(props.divider && {
@@ -75,21 +74,21 @@ const Root = styled('li', { shouldForwardProp })(props => ({
         '@media (hover: none)': {
           backgroundColor: fade(props.theme.palette.primary.main, props.theme.palette.action.selectedOpacity),
         },
-      }
+      },
     }),
   }),
   ...(props.hasSecondaryAction && {
     // Add some space to avoid collision as `ListItemSecondaryAction`
     // is absolutely positioned.
     paddingRight: 48,
-  })
+  }),
 }));
 
-const Container = styled('div', { shouldForwardProp })(props => ({
+const Container = styled('div', { shouldForwardProp })((props) => ({
   position: 'relative',
 }));
 
-const useEnhancedEffect = typeof window === 'undefined'  React.useEffect : React.useLayoutEffect;
+const useEnhancedEffect = typeof window === 'undefined' ? React.useEffect : React.useLayoutEffect;
 
 /**
  * Uses an additional container component if `ListItemSecondaryAction` is the last child.
@@ -159,7 +158,7 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
   if (button) {
     componentProps.focusVisibleClassName = focusVisibleClassName;
     componentProps.as = ButtonBase;
-    componentProps.component = componentProp || 'div'
+    componentProps.component = componentProp || 'div';
   }
 
   if (hasSecondaryAction) {
@@ -167,7 +166,7 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
     const ContainerStyled = Container;
 
     // Use div by default.
-    componentProps.as = !componentProps.component && !componentProp  'div' : componentProps.as;
+    componentProps.as = !componentProps.component && !componentProp ? 'div' : componentProps.as;
 
     // Avoid nesting of li > li.
     if (ContainerComponent === 'li') {

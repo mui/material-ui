@@ -6,7 +6,7 @@ import ListContext from '../List/ListContext';
 
 const shouldForwardProp = (prop) => isPropValid(prop);
 
-const Root = styled('div', { shouldForwardProp })(props => ({
+const Root = styled('div', { shouldForwardProp })((props) => ({
   minWidth: 56,
   flexShrink: 0,
   ...(props.alignItems === 'flex-start' && {
@@ -21,14 +21,7 @@ const ListItemAvatar = React.forwardRef(function ListItemAvatar(props, ref) {
   const { classes, className, ...other } = props;
   const context = React.useContext(ListContext);
 
-  return (
-    <Root
-      className={className}
-      alignItems={context.alignItems}
-      ref={ref}
-      {...other}
-    />
-  );
+  return <Root className={className} alignItems={context.alignItems} ref={ref} {...other} />;
 });
 
 ListItemAvatar.propTypes = {

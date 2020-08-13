@@ -6,7 +6,7 @@ import ListItemTextBase from './ListItemTextUnstyled';
 
 const shouldForwardProp = (prop) => isPropValid(prop);
 
-const Root = styled('div', { shouldForwardProp })(props => ({
+const Root = styled('div', { shouldForwardProp })((props) => ({
   flex: '1 1 auto',
   minWidth: 0,
   marginTop: 4,
@@ -17,21 +17,14 @@ const Root = styled('div', { shouldForwardProp })(props => ({
   }),
   ...(props.inset && {
     paddingLeft: 56,
-  })
-}))
-
+  }),
+}));
 
 /**
  * A simple wrapper to apply `List` styles to an `Icon` or `SvgIcon`.
  */
 const ListItemText = React.forwardRef(function ListItemIcon(props, ref) {
-  return (
-    <ListItemTextBase
-      ref={ref}
-      components={{ root: Root }}
-      {...props}
-    />
-  );
+  return <ListItemTextBase ref={ref} components={{ root: Root }} {...props} />;
 });
 
 ListItemText.propTypes = {

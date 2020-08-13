@@ -11,14 +11,7 @@ const ListItemAvatar = React.forwardRef(function ListItemAvatar(props, ref) {
 
   const Root = components.root || 'div';
 
-  return (
-    <Root
-      className={className}
-      alignItems={context.alignItems}
-      ref={ref}
-      {...other}
-    />
-  );
+  return <Root className={className} alignItems={context.alignItems} ref={ref} {...other} />;
 });
 
 ListItemAvatar.propTypes = {

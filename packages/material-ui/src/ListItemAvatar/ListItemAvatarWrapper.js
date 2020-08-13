@@ -15,7 +15,7 @@ const Root = styled('div', { shouldForwardProp })(props => ({
 
 
 const ListItem = React.forwardRef(function ListItem(props, ref) {
-  return <ListItemAvatarBase components={{ root: Root }} ref={ref} {...props} />
+  return <ListItemAvatarBase components={{ root: Root }} ref={ref} {...props} />;
 });
 
 export default ListItem;

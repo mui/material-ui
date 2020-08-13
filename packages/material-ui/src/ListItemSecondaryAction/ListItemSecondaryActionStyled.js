@@ -6,14 +6,14 @@ import ListContext from '../List/ListContext';
 
 const shouldForwardProp = (prop) => isPropValid(prop);
 
-const Root = styled('div', { shouldForwardProp })(props => ({
+const Root = styled('div', { shouldForwardProp })((props) => ({
   position: 'absolute',
   right: 16,
   top: '50%',
   transform: 'translateY(-50%)',
   ...(props.disableGutters && {
     right: 0,
-  })
+  }),
 }));
 
 /**
@@ -22,13 +22,7 @@ const Root = styled('div', { shouldForwardProp })(props => ({
 const ListItemSecondaryAction = React.forwardRef(function ListItemSecondaryAction(props, ref) {
   const context = React.useContext(ListContext);
 
-  return (
-    <Root
-      disabledGutters={context.disableGutters}
-      ref={ref}
-      {...props}
-    />
-  );
+  return <Root disabledGutters={context.disableGutters} ref={ref} {...props} />;
 });
 
 ListItemSecondaryAction.propTypes = {

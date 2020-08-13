@@ -77,7 +77,7 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
   if (button) {
     componentProps.focusVisibleClassName = focusVisibleClassName;
     componentProps.as = ButtonBase;
-    componentProps.component = componentProp || 'div'
+    componentProps.component = componentProp || 'div';
   }
 
   if (hasSecondaryAction) {

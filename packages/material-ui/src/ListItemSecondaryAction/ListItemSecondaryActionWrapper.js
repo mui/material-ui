@@ -6,27 +6,21 @@ import ListItemSecondaryActionBase from './ListItemSecondaryActionUnstyled';
 
 const shouldForwardProp = (prop) => isPropValid(prop);
 
-const Root = styled('div', { shouldForwardProp })(props => ({
+const Root = styled('div', { shouldForwardProp })((props) => ({
   position: 'absolute',
   right: 16,
   top: '50%',
   transform: 'translateY(-50%)',
   ...(props.disableGutters && {
     right: 0,
-  })
+  }),
 }));
 
 /**
  * Must be used as the last child of ListItem to function properly.
  */
 const ListItemSecondaryAction = React.forwardRef(function ListItemSecondaryAction(props, ref) {
-  return (
-    <ListItemSecondaryActionBase
-      components={{root: Root}}
-      ref={ref}
-      {...props}
-    />
-  );
+  return <ListItemSecondaryActionBase components={{ root: Root }} ref={ref} {...props} />;
 });
 
 ListItemSecondaryAction.propTypes = {
