@@ -33,46 +33,35 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// Persisted for the whole session.
-// The state is used to avoid layout jumps during the session (navigation between different pages).
-const randomSession = Math.random();
-
 export default function DiamondSponsors(props) {
   const classes = useStyles();
   const { spot } = props;
   const theme = useTheme();
   const t = useSelector((state) => state.options.t);
-  const [randomSencha, setRandomSencha] = React.useState(1);
-
-  React.useEffect(() => {
-    setRandomSencha(randomSession);
-  }, []);
 
   return (
     <div className={classes.root}>
       <Typography variant="caption" color="textSecondary" display="block" gutterBottom>
         {t('diamondSponsors')}
       </Typography>
-      {randomSencha < 0.001 ? (
-        <a
-          data-ga-event-category="sponsor"
-          data-ga-event-action={spot}
-          data-ga-event-label="sencha"
-          href="https://www.sencha.com/products/extreact/extreact-for-material-ui/?utm_source=materialui&utm_medium=referral&utm_content=product-200429-extreactmaterialui"
-          rel="noopener noreferrer sponsored"
-          target="_blank"
-          style={{ marginLeft: 8, width: 125, height: 35 }}
-        >
-          <img
-            width="125"
-            height="35"
-            src={`/static/in-house/sencha-125x35-${theme.palette.type}.svg`}
-            alt="sencha"
-            title="UI Components for Productive Dev Teams"
-            loading="lazy"
-          />
-        </a>
-      ) : null}
+      <a
+        data-ga-event-category="sponsor"
+        data-ga-event-action={spot}
+        data-ga-event-label="octopus"
+        href="https://octopus.com/?utm_source=materialui&utm_medium=referral"
+        rel="noopener noreferrer sponsored"
+        target="_blank"
+        style={{ width: 125, height: 35 }}
+      >
+        <img
+          width="125"
+          height="35"
+          src={`/static/in-house/octopus-${theme.palette.type}.png`}
+          alt="octopus"
+          title="Repeatable, reliable deployments"
+          loading="lazy"
+        />
+      </a>
       <a
         style={{ marginTop: 8 }}
         aria-label={t('diamondSponsors')}

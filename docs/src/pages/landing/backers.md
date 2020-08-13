@@ -4,7 +4,11 @@ The continued development and maintenance of Material-UI is made possible by the
 
 ### Diamond 💎
 
-_3/3 slots available_
+<p style="display: flex; justify-content: center;">
+  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="octopus" href="https://octopus.com/?utm_source=materialui&utm_medium=referral" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="128" width="128" src="https://avatars3.githubusercontent.com/u/1287123?s=256" alt="octopus" title="Repeatable, reliable deployments" loading="lazy" /></a>
+</p>
+
+_2/3 slots available_
 
 ### Gold 🏆
 

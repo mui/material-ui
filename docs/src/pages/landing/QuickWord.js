@@ -22,6 +22,11 @@ const backers = [
     alt: 'textemall',
     title: 'Text-Em-All - Mass Text Messaging & Automated Calling',
   },
+  {
+    href: 'https://octopus.com/?utm_source=materialui&utm_medium=referral',
+    alt: 'octopus',
+    title: 'Octopus - Repeatable, reliable deployments',
+  },
 ];
 
 const useStyles = makeStyles(
