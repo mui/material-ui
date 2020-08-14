@@ -7,6 +7,8 @@ import NextLink from 'next/link';
 import MuiLink from '@material-ui/core/Link';
 
 const NextComposed = React.forwardRef(function NextComposed(props, ref) {
+  console.log('props: ', props)
+  console.log('ref: ', ref);
   const { as, href, ...other } = props;
 
   return (
@@ -25,6 +27,7 @@ NextComposed.propTypes = {
 // A styled version of the Next.js Link component:
 // https://nextjs.org/docs/#with-link
 function Link(props) {
+  console.log('entrando en el link')
   const {
     href,
     activeClassName = 'active',
