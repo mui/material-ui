@@ -31,9 +31,11 @@ export const styles = (theme) => ({
   },
   /* Styles applied to the root element if `variant="filled"`. */
   filled: {},
-  /* Styles applied to the root element if `variant="outlined"`. */  
+  /* Styles applied to the root element if `variant="outlined"`. */
+
   outlined: {},
-  /* Styles applied to the root element if `variant="standard"`. */  
+  /* Styles applied to the root element if `variant="standard"`. */
+
   standard: {},
   /* Styles applied to the root element if `variant="filled"` or `variant="outlined"`. */
   contained: {

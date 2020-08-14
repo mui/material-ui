@@ -41,7 +41,10 @@ export interface FormHelperTextTypeMap<P = {}, D extends React.ElementType = 'p'
     /**
      * The variant to use.
      */
-    variant?: OverridableStringUnion<FormHelperTextVariantDefaults, FormHelperTextPropsVariantOverrides>;;
+    variant?: OverridableStringUnion<
+      FormHelperTextVariantDefaults,
+      FormHelperTextPropsVariantOverrides
+    >;
   };
   defaultComponent: D;
   classKey: FormHelperTextClassKey;

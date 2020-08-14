@@ -426,6 +426,7 @@ This change affects almost all components where you're using the `component` pro
   -<Typography variant="srOnly">Create a user</Typography>
   +<Span>Create a user</Span>
   ```
+
 ### FormHelperText
 
 - The `filled` classKey in the FormHelperText was renamed to `controlFilled`, as it is conflicting with the `variant="filled"` classKey.
