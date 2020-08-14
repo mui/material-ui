@@ -27,7 +27,7 @@ let blacklistedIcons = [
   'ExposureZero', // Google product
 ];
 
-blacklistIcons = blacklistIcons.reduce((acc, item) => {
+blacklistedIcons = blacklistedIcons.reduce((acc, item) => {
   acc = acc.concat([item, `${item}Outlined`, `${item}Rounded`, `${item}Sharp`, `${item}TwoTone`]);
 
   return acc;
@@ -200,7 +200,7 @@ async function worker({ svgPath, options, renameFilter, template }) {
 
   const componentName = getComponentName(destPath);
 
-  if (blacklistIcons.indexOf(componentName) !== -1) {
+  if (blacklistedIcons.indexOf(componentName) !== -1) {
     return;
   }
 
