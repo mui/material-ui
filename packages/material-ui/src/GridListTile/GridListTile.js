@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import debounce from '../utils/debounce';
 import withStyles from '../styles/withStyles';
 import isMuiElement from '../utils/isMuiElement';
+import { ownerWindow } from '../utils';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -97,10 +98,11 @@ const GridListTile = React.forwardRef(function GridListTile(props, ref) {
       fit(imgRef.current, classes);
     });
 
-    window.addEventListener('resize', handleResize);
+    const containerWindow = ownerWindow(imgRef.current);
+    containerWindow.addEventListener('resize', handleResize);
     return () => {
       handleResize.clear();
-      window.removeEventListener('resize', handleResize);
+      containerWindow.removeEventListener('resize', handleResize);
     };
   }, [classes]);
 

@@ -129,7 +129,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
         // of the menu.
         const noExplicitWidth = !listRef.current.style.width;
         if (containerElement.clientHeight < listRef.current.clientHeight && noExplicitWidth) {
-          const scrollbarSize = `${getScrollbarSize(true)}px`;
+          const scrollbarSize = `${getScrollbarSize(ownerDocument(containerElement))}px`;
           listRef.current.style[
             theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight'
           ] = scrollbarSize;

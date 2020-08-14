@@ -22,11 +22,11 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 7,
   },
-  plugins: ['material-ui', 'react-hooks', '@typescript-eslint'],
+  plugins: ['eslint-plugin-material-ui', 'eslint-plugin-react-hooks', '@typescript-eslint/eslint-plugin'],
   settings: {
     'import/resolver': {
       webpack: {
-        config: path.join(__dirname, './docs/webpackBaseConfig.js'),
+        config: path.join(__dirname, './webpackBaseConfig.js'),
       },
     },
   },
@@ -178,6 +178,8 @@ module.exports = {
         'jsx-a11y/no-static-element-interactions': 'off',
         'jsx-a11y/tabindex-no-positive': 'off',
 
+        // In tests this is generally intended.
+        'react/button-has-type': 'off',
         // They are accessed to test custom validator implementation with PropTypes.checkPropTypes
         'react/forbid-foreign-prop-types': 'off',
         // components that are defined in test are isolated enough
