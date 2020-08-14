@@ -7,6 +7,8 @@ components: Avatar, AvatarGroup, Badge
 
 <p class="description">Avatars are found throughout material design with uses in everything from tables to dialog menus.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
 ## Image avatars
 
 Image avatars can be created by passing standard `img` props `src` or `srcSet` to the component.

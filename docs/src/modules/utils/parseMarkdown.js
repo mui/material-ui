@@ -56,12 +56,10 @@ export function getHeaders(markdown) {
   return headers;
 }
 
-export const demoRegexp = /^"demo": "(.*)"/;
-
 export function getContents(markdown) {
   return markdown
     .replace(headerRegExp, '') // Remove header information
-    .split(/^{{("demo":[^}]*)}}$/gm) // Split markdown into an array, separating demos
+    .split(/^{{("(?:demo|component)":[^}]*)}}$/gm) // Split markdown into an array, separating demos
     .filter((content) => !emptyRegExp.test(content)); // Remove empty lines
 }
 
@@ -172,7 +170,7 @@ ${headers.components
       let headingIndex = -1;
 
       const rendered = contents.map((content) => {
-        if (demos && demoRegexp.test(content)) {
+        if (/^"(demo|component)": "(.*)"/.test(content)) {
           try {
             return JSON.parse(`{${content}}`);
           } catch (err) {
