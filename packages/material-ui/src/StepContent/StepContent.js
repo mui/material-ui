@@ -9,7 +9,6 @@ import StepContext from '../Step/StepContext';
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
-    marginTop: 8,
     marginLeft: 12, // half icon
     paddingLeft: 8 + 12, // margin + half icon
     paddingRight: 8,

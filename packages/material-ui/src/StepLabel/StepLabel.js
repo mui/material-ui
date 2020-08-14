@@ -24,6 +24,7 @@ export const styles = (theme) => ({
   /* Styles applied to the root element if `orientation="vertical"`. */
   vertical: {
     textAlign: 'left',
+    padding: '8px 0',
   },
   /* Styles applied to the `Typography` component which wraps `children`. */
   label: {
