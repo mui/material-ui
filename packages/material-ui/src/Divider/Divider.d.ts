@@ -1,4 +1,8 @@
+import { OverridableStringUnion } from '@material-ui/types';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+
+export interface DividerPropsVariantOverrides {}
+export type DividerVariantDefaults = Record<'fullWidth' | 'inset' | 'middle', true>;
 
 export interface DividerTypeMap<P = {}, D extends React.ElementType = 'hr'> {
   props: P & {
@@ -22,7 +26,7 @@ export interface DividerTypeMap<P = {}, D extends React.ElementType = 'hr'> {
     /**
      * The variant to use.
      */
-    variant?: 'fullWidth' | 'inset' | 'middle';
+    variant?: OverridableStringUnion<DividerVariantDefaults, DividerPropsVariantOverrides>;
   };
   defaultComponent: D;
   classKey: DividerClassKey;
@@ -41,7 +45,14 @@ export interface DividerTypeMap<P = {}, D extends React.ElementType = 'hr'> {
  */
 declare const Divider: OverridableComponent<DividerTypeMap>;
 
-export type DividerClassKey = 'root' | 'absolute' | 'inset' | 'light' | 'middle' | 'vertical';
+export type DividerClassKey =
+  | 'root'
+  | 'absolute'
+  | 'inset'
+  | 'fullWidth'
+  | 'light'
+  | 'middle'
+  | 'vertical';
 
 export type DividerProps<
   D extends React.ElementType = DividerTypeMap['defaultComponent'],

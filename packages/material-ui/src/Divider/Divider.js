@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { useThemeVariants } from '@material-ui/styles';
 import withStyles from '../styles/withStyles';
 import { fade } from '../styles/colorManipulator';
 
@@ -25,6 +26,8 @@ export const styles = (theme) => ({
   inset: {
     marginLeft: 72,
   },
+  /* Styles applied to the root element if `variant="fullWidth"`. */
+  fullWidth: {},
   /* Styles applied to the root element if `light={true}`. */
   light: {
     borderColor: fade(theme.palette.divider, 0.08),
@@ -61,17 +64,32 @@ const Divider = React.forwardRef(function Divider(props, ref) {
     ...other
   } = props;
 
+  const themeVariantsClasses = useThemeVariants(
+    {
+      ...props,
+      absolute,
+      component: Component,
+      flexItem,
+      light,
+      orientation,
+      role,
+      variant,
+    },
+    'MuiDivider',
+  );
+
   return (
     <Component
       className={clsx(
         classes.root,
+        classes[variant],
         {
-          [classes[variant]]: variant !== 'fullWidth',
           [classes.absolute]: absolute,
           [classes.flexItem]: flexItem,
           [classes.light]: light,
           [classes.vertical]: orientation === 'vertical',
         },
+        themeVariantsClasses,
         className,
       )}
       role={role}
@@ -128,7 +146,10 @@ Divider.propTypes = {
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['fullWidth', 'inset', 'middle']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['fullWidth', 'inset', 'middle']),
+    PropTypes.string,
+  ]),
 };
 
 export default withStyles(styles, { name: 'MuiDivider' })(Divider);
