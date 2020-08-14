@@ -9,7 +9,7 @@ module.exports = {
       componentBlockNode.body.forEach((node) => {
         if (node.type === 'VariableDeclaration') {
           const propsDeclarator = node.declarations.find((declarator) => {
-            return declarator.init.name === 'props';
+            return declarator.init && declarator.init.name === 'props';
           });
           if (propsDeclarator !== undefined) {
             componentPropsDeclarator = propsDeclarator;
