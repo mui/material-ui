@@ -199,7 +199,6 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
       hiddenLabel,
       margin,
       required,
-      variant,
     },
     'MuiFormControl',
   );
