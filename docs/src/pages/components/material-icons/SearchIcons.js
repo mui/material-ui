@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import * as React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -114,7 +116,6 @@ let Icons = (props) => {
         return (
           <span
             key={icon.key}
-            role="presentation"
             onClick={handleIconClick(icon.searchable)}
             className={clsx('markdown-body', classes.icon)}
           >
