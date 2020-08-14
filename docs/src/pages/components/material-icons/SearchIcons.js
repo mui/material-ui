@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import * as React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -113,7 +111,9 @@ let Icons = (props) => {
   return (
     <div>
       {icons.map((icon) => {
+        /* eslint-disable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events */
         return (
+          // eslint-disable-next-line jsx-a11y/no-static-element-interactions
           <span
             key={icon.key}
             onClick={handleIconClick(icon.searchable)}
@@ -125,8 +125,8 @@ let Icons = (props) => {
               title={icon.key}
               className={classes.iconSvg}
             />
-            {/* eslint-disable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events */}
             <p onClick={handleLabelClick}>{icon.key}</p>
+            {/* eslint-enable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events */}
           </span>
         );
       })}
