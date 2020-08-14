@@ -8,7 +8,6 @@ interface Props {
   disabled: boolean;
   href?: string;
   size: 'large' | 'medium' | 'small';
-  variant: 'circular' | 'extended';
   icon: string;
   iconTheme: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
   label: string;
@@ -17,6 +16,7 @@ interface Props {
 }
 
 export function Fab(props: Props): JSX.Element {
+  // @ts-ignore
   const { height, icon, label, iconTheme, variant, width, ...other } = props;
   return (
     <MuiFab variant={variant} {...other}>
@@ -34,7 +34,6 @@ Fab.defaultProps = {
   color: 'default' as 'default',
   disabled: false,
   size: 'large' as 'large',
-  variant: 'circular' as 'circular',
   icon: 'add',
   iconTheme: 'Filled' as 'Filled',
   label: 'extended',
@@ -60,11 +59,6 @@ addPropertyControls(Fab, {
     type: ControlType.Enum,
     title: 'Size',
     options: ['large', 'medium', 'small'],
-  },
-  variant: {
-    type: ControlType.Enum,
-    title: 'Variant',
-    options: ['circular', 'extended'],
   },
   icon: {
     type: ControlType.String,

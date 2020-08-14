@@ -9,6 +9,7 @@ interface Props {
 }
 
 export function «componentName»(props: Props): JSX.Element {
+  // @ts-ignore
   const { height, icon, label, iconTheme, variant, width, ...other } = props;
   return (
     <MuiFab variant={variant} {...other}>

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { useThemeVariants } from '@material-ui/styles';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
@@ -99,6 +100,8 @@ export const styles = (theme) => ({
       height: 40,
     },
   },
+  /* Styles applied to the root element if `variant="circular"`. */
+  circular: {},
   /* Pseudo-class applied to the ButtonBase root element if the button is keyboard focused. */
   focusVisible: {},
   /* Pseudo-class applied to the root element if `disabled={true}`. */
@@ -134,18 +137,32 @@ const Fab = React.forwardRef(function Fab(props, ref) {
     ...other
   } = props;
 
+  const themeVariantsClasses = useThemeVariants(
+    {
+      ...props,
+      color,
+      component,
+      disabled,
+      disableFocusRipple,
+      size,
+      variant,
+    },
+    'MuiFab',
+  );
+
   return (
     <ButtonBase
       className={clsx(
         classes.root,
+        classes[variant],
         {
-          [classes.extended]: variant === 'extended',
           [classes.primary]: color === 'primary',
           [classes.secondary]: color === 'secondary',
           [classes[`size${capitalize(size)}`]]: size !== 'large',
           [classes.disabled]: disabled,
           [classes.colorInherit]: color === 'inherit',
         },
+        themeVariantsClasses,
         className,
       )}
       component={component}
@@ -216,7 +233,10 @@ Fab.propTypes = {
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['circular', 'extended']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['circular', 'extended']),
+    PropTypes.string,
+  ]),
 };
 
 export default withStyles(styles, { name: 'MuiFab' })(Fab);
