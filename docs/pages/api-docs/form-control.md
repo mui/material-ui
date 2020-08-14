@@ -60,7 +60,7 @@ The `MuiFormControl` name can be used for providing [default props](/customizati
 | <span class="prop-name">margin</span> | <span class="prop-type">'dense'<br>&#124;&nbsp;'none'<br>&#124;&nbsp;'normal'</span> | <span class="prop-default">'none'</span> | If `dense` or `normal`, will adjust vertical spacing of this and contained components. |
 | <span class="prop-name">required</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the label will indicate that the input is required. |
 | <span class="prop-name">size</span> | <span class="prop-type">'medium'<br>&#124;&nbsp;'small'</span> |  | The size of the text field. |
-| <span class="prop-name">variant</span> | <span class="prop-type">'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'</span> | <span class="prop-default">'standard'</span> | The variant to use. |
+| <span class="prop-name">variant</span> | <span class="prop-type">'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'<br>&#124;&nbsp;string</span> | <span class="prop-default">'standard'</span> | The variant to use. |
 
 The `ref` is forwarded to the root element.
 
@@ -71,6 +71,9 @@ Any other props supplied will be provided to the root element (native element).
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
 | <span class="prop-name">root</span> | <span class="prop-name">.MuiFormControl-root</span> | Styles applied to the root element.
+| <span class="prop-name">filled</span> | <span class="prop-name">.MuiFormControl-filled</span> | Styles applied to the root element if `variant="filled"`.
+| <span class="prop-name">outlined</span> | <span class="prop-name">.MuiFormControl-outlined</span> | Styles applied to the root element if `variant="outlined"`.
+| <span class="prop-name">standard</span> | <span class="prop-name">.MuiFormControl-standard</span> | Styles applied to the root element if `variant="standard"`.
 | <span class="prop-name">marginNormal</span> | <span class="prop-name">.MuiFormControl-marginNormal</span> | Styles applied to the root element if `margin="normal"`.
 | <span class="prop-name">marginDense</span> | <span class="prop-name">.MuiFormControl-marginDense</span> | Styles applied to the root element if `margin="dense"`.
 | <span class="prop-name">fullWidth</span> | <span class="prop-name">.MuiFormControl-fullWidth</span> | Styles applied to the root element if `fullWidth={true}`.
