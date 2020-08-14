@@ -37,7 +37,7 @@ The `MuiFab` name can be used for providing [default props](/customization/globa
 | <span class="prop-name">disableRipple</span> | <span class="prop-type">bool</span> |  | If `true`, the ripple effect will be disabled. |
 | <span class="prop-name">href</span> | <span class="prop-type">string</span> |  | The URL to link to when the button is clicked. If defined, an `a` element will be used as the root node. |
 | <span class="prop-name">size</span> | <span class="prop-type">'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'</span> | <span class="prop-default">'large'</span> | The size of the button. `small` is equivalent to the dense button styling. |
-| <span class="prop-name">variant</span> | <span class="prop-type">'circular'<br>&#124;&nbsp;'extended'</span> | <span class="prop-default">'circular'</span> | The variant to use. |
+| <span class="prop-name">variant</span> | <span class="prop-type">'circular'<br>&#124;&nbsp;'extended'<br>&#124;&nbsp;string</span> | <span class="prop-default">'circular'</span> | The variant to use. |
 
 The `ref` is forwarded to the root element.
 
@@ -52,6 +52,7 @@ Any other props supplied will be provided to the root element ([ButtonBase](/api
 | <span class="prop-name">primary</span> | <span class="prop-name">.MuiFab-primary</span> | Styles applied to the root element if `color="primary"`.
 | <span class="prop-name">secondary</span> | <span class="prop-name">.MuiFab-secondary</span> | Styles applied to the root element if `color="secondary"`.
 | <span class="prop-name">extended</span> | <span class="prop-name">.MuiFab-extended</span> | Styles applied to the root element if `variant="extended"`.
+| <span class="prop-name">circular</span> | <span class="prop-name">.MuiFab-circular</span> | Styles applied to the root element if `variant="circular"`.
 | <span class="prop-name">focusVisible</span> | <span class="prop-name">.Mui-focusVisible</span> | Pseudo-class applied to the ButtonBase root element if the button is keyboard focused.
 | <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
 | <span class="prop-name">colorInherit</span> | <span class="prop-name">.MuiFab-colorInherit</span> | Styles applied to the root element if `color="inherit"`.

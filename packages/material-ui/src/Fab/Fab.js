@@ -145,7 +145,6 @@ const Fab = React.forwardRef(function Fab(props, ref) {
       disabled,
       disableFocusRipple,
       size,
-      type,
       variant,
     },
     'MuiFab',
