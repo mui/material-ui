@@ -14,7 +14,7 @@ const globAsync = util.promisify(glob);
 export const RENAME_FILTER_DEFAULT = './renameFilters/default';
 export const RENAME_FILTER_MUI = './renameFilters/material-design-icons';
 
-let blacklistIcons = [
+let blacklistedIcons = [
   '6FtApart', // Arbitrary covid related distance
   'MotionPhotosOn', // Google product
   'MotionPhotosPause', // Google product
