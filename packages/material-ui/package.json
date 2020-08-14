@@ -36,7 +36,7 @@
     "prebuild": "rimraf build",
     "release": "yarn build && npm publish build --tag next",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/material-ui/**/*.test.js' --exclude '**/node_modules/**'",
-    "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.test.json && tsc -p tsconfig.build.json"
+    "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json && tsc -p tsconfig.build.json"
   },
   "peerDependencies": {
     "@types/react": "^16.8.6",
