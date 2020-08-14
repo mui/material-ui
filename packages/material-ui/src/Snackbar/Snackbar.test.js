@@ -1,6 +1,7 @@
 import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import { expect } from 'chai';
-import { spy, useFakeTimers } from 'sinon';
+import { spy, stub, useFakeTimers } from 'sinon';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
@@ -73,7 +74,7 @@ describe('<Snackbar />', () => {
         <Snackbar
           open={false}
           onClose={handleClose}
-          onExited={handleExited}
+          TransitionProps={{ onExited: handleExited }}
           message="message"
           autoHideDuration={duration}
           transitionDuration={duration / 2}
@@ -423,6 +424,168 @@ describe('<Snackbar />', () => {
       const Transition = () => <div className="cloned-element-class" ref={transitionRef} />;
       const { container } = render(<Snackbar open TransitionComponent={Transition} />);
       expect(container).to.contain(transitionRef.current);
+    });
+  });
+
+  describe('prop: onEnter', () => {
+    beforeEach(() => {
+      PropTypes.resetWarningCache();
+      stub(console, 'error');
+    });
+
+    afterEach(() => {
+      console.error.restore();
+    });
+
+    it('issues a warning', () => {
+      PropTypes.checkPropTypes(
+        Snackbar.Naked.propTypes,
+        {
+          onEnter: () => [],
+        },
+        'props',
+        'Snackbar',
+      );
+
+      // expect(console.error.callCount).to.equal(1);
+      expect(console.error.firstCall.args[0]).to.equal(
+        'Warning: Failed props type: The props `onEnter` of `Snackbar` is deprecated. Use the `TransitionProps` prop instead.',
+      );
+    });
+  });
+
+  describe('prop: onEntering', () => {
+    beforeEach(() => {
+      PropTypes.resetWarningCache();
+      stub(console, 'error');
+    });
+
+    afterEach(() => {
+      console.error.restore();
+    });
+
+    it('issues a warning', () => {
+      PropTypes.checkPropTypes(
+        Snackbar.Naked.propTypes,
+        {
+          onEntering: () => [],
+        },
+        'props',
+        'Snackbar',
+      );
+
+      // expect(console.error.callCount).to.equal(1);
+      expect(console.error.firstCall.args[0]).to.equal(
+        'Warning: Failed props type: The props `onEntering` of `Snackbar` is deprecated. Use the `TransitionProps` prop instead.',
+      );
+    });
+  });
+
+  describe('prop: onEntered', () => {
+    beforeEach(() => {
+      PropTypes.resetWarningCache();
+      stub(console, 'error');
+    });
+
+    afterEach(() => {
+      console.error.restore();
+    });
+
+    it('issues a warning', () => {
+      PropTypes.checkPropTypes(
+        Snackbar.Naked.propTypes,
+        {
+          onEntered: () => [],
+        },
+        'props',
+        'Snackbar',
+      );
+
+      // expect(console.error.callCount).to.equal(1);
+      expect(console.error.firstCall.args[0]).to.equal(
+        'Warning: Failed props type: The props `onEntered` of `Snackbar` is deprecated. Use the `TransitionProps` prop instead.',
+      );
+    });
+  });
+
+  describe('prop: onExit', () => {
+    beforeEach(() => {
+      PropTypes.resetWarningCache();
+      stub(console, 'error');
+    });
+
+    afterEach(() => {
+      console.error.restore();
+    });
+
+    it('issues a warning', () => {
+      PropTypes.checkPropTypes(
+        Snackbar.Naked.propTypes,
+        {
+          onExit: () => [],
+        },
+        'props',
+        'Snackbar',
+      );
+
+      // expect(console.error.callCount).to.equal(1);
+      expect(console.error.firstCall.args[0]).to.equal(
+        'Warning: Failed props type: The props `onExit` of `Snackbar` is deprecated. Use the `TransitionProps` prop instead.',
+      );
+    });
+  });
+
+  describe('prop: onExiting', () => {
+    beforeEach(() => {
+      PropTypes.resetWarningCache();
+      stub(console, 'error');
+    });
+
+    afterEach(() => {
+      console.error.restore();
+    });
+
+    it('issues a warning', () => {
+      PropTypes.checkPropTypes(
+        Snackbar.Naked.propTypes,
+        {
+          onExiting: () => [],
+        },
+        'props',
+        'Snackbar',
+      );
+
+      // expect(console.error.callCount).to.equal(1);
+      expect(console.error.firstCall.args[0]).to.equal(
+        'Warning: Failed props type: The props `onExiting` of `Snackbar` is deprecated. Use the `TransitionProps` prop instead.',
+      );
+    });
+  });
+
+  describe('prop: onExited', () => {
+    beforeEach(() => {
+      PropTypes.resetWarningCache();
+      stub(console, 'error');
+    });
+
+    afterEach(() => {
+      console.error.restore();
+    });
+
+    it('issues a warning', () => {
+      PropTypes.checkPropTypes(
+        Snackbar.Naked.propTypes,
+        {
+          onExited: () => [],
+        },
+        'props',
+        'Snackbar',
+      );
+
+      // expect(console.error.callCount).to.equal(1);
+      expect(console.error.firstCall.args[0]).to.equal(
+        'Warning: Failed props type: The props `onExited` of `Snackbar` is deprecated. Use the `TransitionProps` prop instead.',
+      );
     });
   });
 });
