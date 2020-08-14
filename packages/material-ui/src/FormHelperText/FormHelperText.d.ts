@@ -1,5 +1,9 @@
 import * as React from 'react';
+import { OverridableStringUnion } from '@material-ui/types';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+
+export interface FormHelperTextPropsVariantOverrides {}
+export type FormHelperTextVariantDefaults = Record<'standard' | 'outlined' | 'filled', true>;
 
 export interface FormHelperTextTypeMap<P = {}, D extends React.ElementType = 'p'> {
   props: P & {
@@ -37,7 +41,7 @@ export interface FormHelperTextTypeMap<P = {}, D extends React.ElementType = 'p'
     /**
      * The variant to use.
      */
-    variant?: 'standard' | 'outlined' | 'filled';
+    variant?: OverridableStringUnion<FormHelperTextVariantDefaults, FormHelperTextPropsVariantOverrides>;;
   };
   defaultComponent: D;
   classKey: FormHelperTextClassKey;
@@ -56,11 +60,14 @@ declare const FormHelperText: OverridableComponent<FormHelperTextTypeMap>;
 
 export type FormHelperTextClassKey =
   | 'root'
+  | 'filled'
+  | 'outlined'
+  | 'standard'
   | 'error'
   | 'disabled'
   | 'marginDense'
   | 'focused'
-  | 'filled'
+  | 'controlFilled'
   | 'contained'
   | 'required';
 

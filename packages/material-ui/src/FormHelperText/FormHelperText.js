@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { useThemeVariants } from '@material-ui/styles';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
 import withStyles from '../styles/withStyles';
@@ -28,6 +29,12 @@ export const styles = (theme) => ({
   marginDense: {
     marginTop: 4,
   },
+  /* Styles applied to the root element if `variant="filled"`. */
+  filled: {},
+  /* Styles applied to the root element if `variant="outlined"`. */  
+  outlined: {},
+  /* Styles applied to the root element if `variant="standard"`. */  
+  standard: {},
   /* Styles applied to the root element if `variant="filled"` or `variant="outlined"`. */
   contained: {
     marginLeft: 14,
@@ -36,7 +43,7 @@ export const styles = (theme) => ({
   /* Pseudo-class applied to the root element if `focused={true}`. */
   focused: {},
   /* Pseudo-class applied to the root element if `filled={true}`. */
-  filled: {},
+  controlFilled: {},
   /* Pseudo-class applied to the root element if `required={true}`. */
   required: {},
 });
@@ -64,19 +71,36 @@ const FormHelperText = React.forwardRef(function FormHelperText(props, ref) {
     states: ['variant', 'margin', 'disabled', 'error', 'filled', 'focused', 'required'],
   });
 
+  const themeVariantsClasses = useThemeVariants(
+    {
+      ...props,
+      component: Component,
+      disabled: fcs.disabled,
+      error: fcs.error,
+      filled: fcs.filled,
+      focused: fcs.focused,
+      margin: fcs.margin,
+      requred: fcs.required,
+      variant: fcs.variant,
+    },
+    'MuiFormHelperText',
+  );
+
   return (
     <Component
       className={clsx(
         classes.root,
+        classes[fcs.variant],
         {
           [classes.contained]: fcs.variant === 'filled' || fcs.variant === 'outlined',
           [classes.marginDense]: fcs.margin === 'dense',
           [classes.disabled]: fcs.disabled,
           [classes.error]: fcs.error,
-          [classes.filled]: fcs.filled,
+          [classes.controlFilled]: fcs.filled,
           [classes.focused]: fcs.focused,
           [classes.required]: fcs.required,
         },
+        themeVariantsClasses,
         className,
       )}
       ref={ref}
@@ -145,7 +169,10 @@ FormHelperText.propTypes = {
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['filled', 'outlined', 'standard']),
+    PropTypes.string,
+  ]),
 };
 
 export default withStyles(styles, { name: 'MuiFormHelperText' })(FormHelperText);
