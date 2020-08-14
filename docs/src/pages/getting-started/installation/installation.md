@@ -83,8 +83,8 @@ You should consider pointing to a specific version, such as [v4.4.0](https://unp
 <a href="https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-sketch" style="margin-left: 8px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-sketch.svg" alt="" /></a>
 <a href="https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-figma" style="margin-left: 32px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-figma.svg" alt="" /></a>
 
-A set of reusable components for design tools are available. These kits are designed to match the React components and help you craft great products:
+A set of reusable components for design tools is available, designed to match the React components and help you craft great products:
 
-- [Sketch](https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-sketch): A large UI kit with over 600 handcrafted Material-UI's symbols 💎.
-- [Figma](https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-figma): A large UI kit with over 600 handcrafted Material-UI's components 🎨.
-- [Framer](https://packages.framer.com/package/material-ui/material-ui): A small MIT UI kit preview of handcrafted Material-UI's component.
+- [Sketch](https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-sketch): A large UI kit with over 600 handcrafted Material-UI symbols.
+- [Figma](https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-figma): A large UI kit with over 600 handcrafted Material-UI components.
+- [Framer](https://packages.framer.com/package/material-ui/material-ui): A small free UI kit of Material-UI components.
