@@ -27,7 +27,7 @@ export function Fab(props: Props): JSX.Element {
       />
       {variant === 'extended' ? label : null}
     </MuiFab>
-    );
+  );
 }
 
 Fab.defaultProps = {
@@ -42,35 +42,35 @@ Fab.defaultProps = {
 };
 
 addPropertyControls(Fab, {
-color: {
-  type: ControlType.Enum,
-  title: 'Color',
-  options: ['default', 'inherit', 'primary', 'secondary'],
-},
-disabled: {
-  type: ControlType.Boolean,
-  title: 'Disabled',
-},
-href: {
-  type: ControlType.String,
-  title: 'Href',
-},
-size: {
-  type: ControlType.Enum,
-  title: 'Size',
-  options: ['large', 'medium', 'small'],
-},
-icon: {
-  type: ControlType.String,
-  title: 'Icon',
-},
-iconTheme: {
-  type: ControlType.Enum,
-  title: 'Icon theme',
-  options: ['Filled', 'Outlined', 'Rounded', 'TwoTone', 'Sharp'],
-},
-label: {
-  type: ControlType.String,
-  title: 'Label',
-},
+  color: {
+    type: ControlType.Enum,
+    title: 'Color',
+    options: ['default', 'inherit', 'primary', 'secondary'],
+  },
+  disabled: {
+    type: ControlType.Boolean,
+    title: 'Disabled',
+  },
+  href: {
+    type: ControlType.String,
+    title: 'Href',
+  },
+  size: {
+    type: ControlType.Enum,
+    title: 'Size',
+    options: ['large', 'medium', 'small'],
+  },
+  icon: {
+    type: ControlType.String,
+    title: 'Icon',
+  },
+  iconTheme: {
+    type: ControlType.Enum,
+    title: 'Icon theme',
+    options: ['Filled', 'Outlined', 'Rounded', 'TwoTone', 'Sharp'],
+  },
+  label: {
+    type: ControlType.String,
+    title: 'Label',
+  },
 });
