@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { useThemeVariants } from '@material-ui/styles';
 import { isFilled, isAdornedStart } from '../InputBase/utils';
 import withStyles from '../styles/withStyles';
 import capitalize from '../utils/capitalize';
@@ -20,6 +21,12 @@ export const styles = {
     border: 0,
     verticalAlign: 'top', // Fix alignment issue on Safari.
   },
+  /* Styles applied to the root element if `variant="filled"`. */
+  filled: {},
+  /* Styles applied to the root element if `variant="outlined"`. */
+  outlined: {},
+  /* Styles applied to the root element if `variant="standard"`. */
+  standard: {},
   /* Styles applied to the root element if `margin="normal"`. */
   marginNormal: {
     marginTop: 16,
@@ -180,15 +187,34 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
     variant,
   };
 
+  const themeVariantsClasses = useThemeVariants(
+    {
+      ...props,
+      color,
+      component: Component,
+      disabled,
+      error,
+      fullWidth,
+      focused,
+      hiddenLabel,
+      margin,
+      required,
+      variant,
+    },
+    'MuiFormControl',
+  );
+
   return (
     <FormControlContext.Provider value={childContext}>
       <Component
         className={clsx(
           classes.root,
+          classes[variant],
           {
             [classes[`margin${capitalize(margin)}`]]: margin !== 'none',
             [classes.fullWidth]: fullWidth,
           },
+          themeVariantsClasses,
           className,
         )}
         ref={ref}
@@ -264,7 +290,10 @@ FormControl.propTypes = {
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['filled', 'outlined', 'standard']),
+    PropTypes.string,
+  ]),
 };
 
 export default withStyles(styles, { name: 'MuiFormControl' })(FormControl);

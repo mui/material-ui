@@ -249,6 +249,7 @@ export default function makeStyles(stylesOrCreator, options = {}) {
         'MuiButtonGroup',
         'MuiChip',
         'MuiDivider',
+        'MuiFormControl',
         'MuiTypography',
       ];
 
