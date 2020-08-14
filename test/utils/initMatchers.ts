@@ -102,19 +102,19 @@ chai.use((chaiAPI, utils) => {
     const element = utils.flag(this, 'object');
     const id = element.getAttribute('id');
 
-    const virutallyFocusedElementId = document.activeElement!.getAttribute('aria-activedescendant');
+    const virtuallyFocusedElementId = document.activeElement!.getAttribute('aria-activedescendant');
 
     this.assert(
-      virutallyFocusedElementId === id,
+      virtuallyFocusedElementId === id,
       `expected element to be virtually focused\nexpected id #{exp}\n${
-        virutallyFocusedElementId === null
+        virtuallyFocusedElementId === null
           ? `activeElement: ${elementToString(document.activeElement)}`
           : 'actual id: #{act}'
       }`,
       'expected element to NOT to be virtually focused',
       id,
-      virutallyFocusedElementId,
-      virutallyFocusedElementId !== null,
+      virtuallyFocusedElementId,
+      virtuallyFocusedElementId !== null,
     );
   });
 
