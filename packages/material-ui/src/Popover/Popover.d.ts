@@ -81,30 +81,6 @@ export interface PopoverProps
   marginThreshold?: number;
   onClose?: ModalProps['onClose'];
   /**
-   * Callback fired before the component is entering.
-   */
-  onEnter?: TransitionHandlerProps['onEnter'];
-  /**
-   * Callback fired when the component has entered.
-   */
-  onEntered?: TransitionHandlerProps['onEntered'];
-  /**
-   * Callback fired when the component is entering.
-   */
-  onEntering?: TransitionHandlerProps['onEntering'];
-  /**
-   * Callback fired before the component is exiting.
-   */
-  onExit?: TransitionHandlerProps['onExit'];
-  /**
-   * Callback fired when the component has exited.
-   */
-  onExited?: TransitionHandlerProps['onExited'];
-  /**
-   * Callback fired when the component is exiting.
-   */
-  onExiting?: TransitionHandlerProps['onExiting'];
-  /**
    * If `true`, the popover is visible.
    */
   open: boolean;

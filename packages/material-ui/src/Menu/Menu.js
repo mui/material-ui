@@ -133,7 +133,7 @@ const Menu = React.forwardRef(function Menu(props, ref) {
       getContentAnchorEl={getContentAnchorEl}
       classes={PopoverClasses}
       onClose={onClose}
-      onEntering={handleEntering}
+      TransitionProps={{ onEntering: handleEntering }}
       anchorOrigin={theme.direction === 'rtl' ? RTL_ORIGIN : LTR_ORIGIN}
       transformOrigin={theme.direction === 'rtl' ? RTL_ORIGIN : LTR_ORIGIN}
       PaperProps={{

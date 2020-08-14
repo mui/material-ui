@@ -10,7 +10,6 @@ import clsx from 'clsx';
 import debounce from '../utils/debounce';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
-import createChainedFunction from '../utils/createChainedFunction';
 import withStyles from '../styles/withStyles';
 import Modal from '../Modal';
 import Grow from '../Grow';
@@ -102,12 +101,6 @@ const Popover = React.forwardRef(function Popover(props, ref) {
     elevation = 8,
     getContentAnchorEl,
     marginThreshold = 16,
-    onEnter,
-    onEntered,
-    onEntering,
-    onExit,
-    onExited,
-    onExiting,
     open,
     PaperProps = {},
     transformOrigin = {
@@ -116,7 +109,7 @@ const Popover = React.forwardRef(function Popover(props, ref) {
     },
     TransitionComponent = Grow,
     transitionDuration: transitionDurationProp = 'auto',
-    TransitionProps = {},
+    TransitionProps: { onEntering, ...TransitionProps } = {},
     ...other
   } = props;
   const paperRef = React.useRef();
@@ -397,14 +390,9 @@ const Popover = React.forwardRef(function Popover(props, ref) {
       <TransitionComponent
         appear
         in={open}
-        onEnter={onEnter}
-        onEntered={onEntered}
-        onExit={onExit}
-        onExited={onExited}
-        onExiting={onExiting}
         timeout={transitionDuration}
+        onEntering={handleEntering}
         {...TransitionProps}
-        onEntering={createChainedFunction(handleEntering, TransitionProps.onEntering)}
       >
         <Paper
           data-mui-test="Popover"
@@ -546,30 +534,6 @@ Popover.propTypes = {
    * The `reason` parameter can optionally be used to control the response to `onClose`.
    */
   onClose: PropTypes.func,
-  /**
-   * Callback fired before the component is entering.
-   */
-  onEnter: PropTypes.func,
-  /**
-   * Callback fired when the component has entered.
-   */
-  onEntered: PropTypes.func,
-  /**
-   * Callback fired when the component is entering.
-   */
-  onEntering: PropTypes.func,
-  /**
-   * Callback fired before the component is exiting.
-   */
-  onExit: PropTypes.func,
-  /**
-   * Callback fired when the component has exited.
-   */
-  onExited: PropTypes.func,
-  /**
-   * Callback fired when the component is exiting.
-   */
-  onExiting: PropTypes.func,
   /**
    * If `true`, the popover is visible.
    */
