@@ -1,13 +1,19 @@
 ---
 title: Tabs React component
 components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
+materialDesign: https://material.io/design/components/tabs.html
+waiAria: https://www.w3.org/TR/wai-aria-practices/#tabpanel
+githubLabel: component: Tabs
+package: @material-ui/core
 ---
 
 # Tabs
 
 <p class="description">Tabs make it easy to explore and switch between different views.</p>
 
-[Tabs](https://material.io/design/components/tabs.html) organize and allow navigation between groups of content that are related and at the same level of hierarchy.
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
+Tabs organize and allow navigation between groups of content that are related and at the same level of hierarchy.
 
 ## Basic tabs
 

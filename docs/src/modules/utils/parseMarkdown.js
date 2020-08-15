@@ -7,7 +7,7 @@ import prism from 'docs/src/modules/utils/prism';
 const headerRegExp = /---[\r\n]([\s\S]*)[\r\n]---/;
 const titleRegExp = /# (.*)[\r\n]/;
 const descriptionRegExp = /<p class="description">(.*)<\/p>[\r\n]/;
-const headerKeyValueRegExp = /(.*): (.*)/g;
+const headerKeyValueRegExp = /(.*?): (.*)/g;
 const emptyRegExp = /^\s*$/;
 const notEnglishMarkdownRegExp = /-([a-z]{2})\.md$/;
 
@@ -285,6 +285,7 @@ ${headers.components
         rendered,
         toc,
         title,
+        headers,
       };
     } else if (filename.indexOf('.tsx') !== -1) {
       const demoName = `pages/${pageFilename}/${filename

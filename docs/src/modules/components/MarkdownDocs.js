@@ -99,7 +99,7 @@ function MarkdownDocs(props) {
 
   const t = useSelector((state) => state.options.t);
   const userLanguage = useSelector((state) => state.options.userLanguage);
-  const { description, location, rendered, title, toc } = docs[userLanguage] || docs.en;
+  const { description, location, rendered, title, toc, headers } = docs[userLanguage] || docs.en;
   if (description === undefined) {
     throw new Error('Missing description in the page');
   }
@@ -137,7 +137,7 @@ function MarkdownDocs(props) {
 
               if (renderedMarkdownOrDemo.component) {
                 const Component = markdownComponents[renderedMarkdownOrDemo.component];
-                return <Component key={index} />;
+                return <Component key={index} headers={headers} options={renderedMarkdownOrDemo} />;
               }
 
               const name = renderedMarkdownOrDemo.demo;
