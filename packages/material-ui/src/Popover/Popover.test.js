@@ -215,7 +215,7 @@ describe('<Popover />', () => {
 
       // transitions towards entered
       const wrapper = mount(
-        <Popover {...defaultProps} open transitionDuration={0} {...handlers}>
+        <Popover {...defaultProps} open transitionDuration={0} TransitionProps={{ ...handlers }}>
           <div />
         </Popover>,
       );
@@ -271,7 +271,7 @@ describe('<Popover />', () => {
       it('should set the inline styles for the enter phase', () => {
         const handleEntering = spy();
         const wrapper = mount(
-          <Popover {...defaultProps} onEntering={handleEntering}>
+          <Popover {...defaultProps} TransitionProps={{ onEntering: handleEntering }}>
             <div />
           </Popover>,
         );
@@ -335,9 +335,11 @@ describe('<Popover />', () => {
               anchorEl={anchorEl}
               anchorOrigin={anchorOrigin}
               transitionDuration={0}
-              onEntered={() => {
-                popoverEl = document.querySelector('[data-mui-test="Popover"]');
-                resolve();
+              TransitionProps={{
+                onEntered: () => {
+                  popoverEl = document.querySelector('[data-mui-test="Popover"]');
+                  resolve();
+                },
               }}
             >
               <div />
@@ -481,9 +483,11 @@ describe('<Popover />', () => {
               anchorPosition={anchorPosition}
               anchorOrigin={anchorOrigin}
               transitionDuration={0}
-              onEntered={() => {
-                popoverEl = document.querySelector('[data-mui-test="Popover"]');
-                resolve();
+              TransitionProps={{
+                onEntered: () => {
+                  popoverEl = document.querySelector('[data-mui-test="Popover"]');
+                  resolve();
+                },
               }}
             >
               <div />
@@ -525,9 +529,11 @@ describe('<Popover />', () => {
               {...defaultProps}
               anchorReference="none"
               transitionDuration={0}
-              onEntered={() => {
-                popoverEl = document.querySelector('[data-mui-test="Popover"]');
-                resolve();
+              TransitionProps={{
+                onEntered: () => {
+                  popoverEl = document.querySelector('[data-mui-test="Popover"]');
+                  resolve();
+                },
               }}
               PaperProps={{
                 style: {
@@ -578,7 +584,7 @@ describe('<Popover />', () => {
         <Popover
           anchorEl={mockedAnchor}
           open
-          onEntering={handleEntering}
+          TransitionProps={{ onEntering: handleEntering }}
           transitionDuration={0}
           marginThreshold={8}
         >
@@ -663,7 +669,7 @@ describe('<Popover />', () => {
           <Popover
             anchorEl={anchorEl}
             open
-            onEntering={handleEntering}
+            TransitionProps={{ onEntering: handleEntering }}
             marginThreshold={marginThreshold}
             PaperProps={{ component: FakePaper }}
           >
@@ -785,7 +791,7 @@ describe('<Popover />', () => {
       mount(
         <Popover
           anchorEl={mockedAnchorEl}
-          onEntering={handleEntering}
+          TransitionProps={{ onEntering: handleEntering }}
           getContentAnchorEl={getContentAnchorEl}
           open
         >
@@ -822,6 +828,15 @@ describe('<Popover />', () => {
   });
 
   describe('prop: TransitionProp', () => {
+    beforeEach(() => {
+      PropTypes.resetWarningCache();
+      stub(console, 'error');
+    });
+
+    afterEach(() => {
+      console.error.restore();
+    });
+
     it('chains onEntering with the apparent onEntering prop', () => {
       const apparentHandler = spy();
       const transitionHandler = spy();
@@ -859,6 +874,125 @@ describe('<Popover />', () => {
 
       expect(apparentHandler.callCount).to.equal(0);
       expect(transitionHandler.callCount).to.equal(1);
+    });
+  });
+
+  describe('deprecated transition callback props', () => {
+    beforeEach(() => {
+      PropTypes.resetWarningCache();
+      stub(console, 'error');
+    });
+
+    afterEach(() => {
+      console.error.restore();
+    });
+
+    describe('prop: onEnter', () => {
+      it('issues a warning', () => {
+        PropTypes.checkPropTypes(
+          Popover.Naked.propTypes,
+          {
+            onEnter: () => [],
+          },
+          'prop',
+          'Popover',
+        );
+
+        expect(console.error.callCount).to.equal(2);
+        expect(console.error.firstCall.args[0]).to.equal(
+          'Warning: Failed prop type: The prop `onEnter` of `Popover` is deprecated. Use the `TransitionProps` prop instead.',
+        );
+      });
+    });
+
+    describe('prop: onEntering', () => {
+      it('issues a warning', () => {
+        PropTypes.checkPropTypes(
+          Popover.Naked.propTypes,
+          {
+            onEntering: () => [],
+          },
+          'prop',
+          'Popover',
+        );
+
+        expect(console.error.callCount).to.equal(2);
+        expect(console.error.firstCall.args[0]).to.equal(
+          'Warning: Failed prop type: The prop `onEntering` of `Popover` is deprecated. Use the `TransitionProps` prop instead.',
+        );
+      });
+    });
+
+    describe('prop: onEntered', () => {
+      it('issues a warning', () => {
+        PropTypes.checkPropTypes(
+          Popover.Naked.propTypes,
+          {
+            onEntered: () => [],
+          },
+          'prop',
+          'Popover',
+        );
+
+        expect(console.error.callCount).to.equal(2);
+        expect(console.error.firstCall.args[0]).to.equal(
+          'Warning: Failed prop type: The prop `onEntered` of `Popover` is deprecated. Use the `TransitionProps` prop instead.',
+        );
+      });
+    });
+
+    describe('prop: onExit', () => {
+      it('issues a warning', () => {
+        PropTypes.checkPropTypes(
+          Popover.Naked.propTypes,
+          {
+            onExit: () => [],
+          },
+          'prop',
+          'Popover',
+        );
+
+        expect(console.error.callCount).to.equal(2);
+        expect(console.error.firstCall.args[0]).to.equal(
+          'Warning: Failed prop type: The prop `onExit` of `Popover` is deprecated. Use the `TransitionProps` prop instead.',
+        );
+      });
+    });
+
+    describe('prop: onExiting', () => {
+      it('issues a warning', () => {
+        PropTypes.checkPropTypes(
+          Popover.Naked.propTypes,
+          {
+            onExiting: () => [],
+          },
+          'prop',
+          'Popover',
+        );
+
+        expect(console.error.callCount).to.equal(2);
+        expect(console.error.firstCall.args[0]).to.equal(
+          'Warning: Failed prop type: The prop `onExiting` of `Popover` is deprecated. Use the `TransitionProps` prop instead.',
+        );
+      });
+    });
+
+    describe('prop: onExited', () => {
+      it('issues a warning', () => {
+        PropTypes.checkPropTypes(
+          Popover.Naked.propTypes,
+          {
+            onExited: () => [],
+          },
+          'prop',
+          'Popover',
+        );
+
+        expect(console.error.callCount).to.equal(2);
+        expect(console.error.firstCall.args[0]).to.equal(
+          'Warning: Failed prop type: The prop `onExited` of `Popover` is deprecated. Use the `TransitionProps` prop instead.',
+        );
+      });
     });
   });
 });
