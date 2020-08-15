@@ -77,11 +77,9 @@ function includePeerDependencies(deps, versions) {
   Object.assign(deps, {
     'react-dom': versions['react-dom'],
     react: versions.react,
+    '@material-ui/core': versions['@material-ui/core'],
   });
 
-  if (deps['@material-ui/lab'] && !deps['@material-ui/core']) {
-    deps['@material-ui/core'] = versions['@material-ui/core'];
-  }
   if (deps['@material-ui/pickers'] && !deps['date-fns']) {
     deps['date-fns'] = 'latest';
   }
@@ -108,7 +106,7 @@ function getDependencies(raw, options = {}) {
     '@material-ui/styles': 'next',
     '@material-ui/system': 'next',
     '@material-ui/utils': 'next',
-    // TODO: Remove once v4 is stable
+    // TODO: Remove, moving into the lab
     '@material-ui/pickers': 'next',
   };
 

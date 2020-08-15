@@ -114,13 +114,14 @@ import {
 
     expect(getDependencies(source)).to.deep.equal({
       'date-fns': 'latest',
+      '@material-ui/core': 'next',
       '@material-ui/pickers': 'next',
       react: 'latest',
       'react-dom': 'latest',
     });
   });
 
-  it('should include core if lab present', () => {
+  it('should always include core', () => {
     const source = `
 import lab from '@material-ui/lab';
     `;
