@@ -6,15 +6,16 @@ const childProcess = require('child_process');
 
 const execFileAsync = util.promisify(childProcess.execFile);
 
-async function exec(command, args) {
+async function exec(file, args) {
   const options = {
     cwd: process.cwd(),
     env: process.env,
     stdio: 'pipe',
     encoding: 'utf-8',
+    maxBuffer: 1024 * 1024 * 2, // double the default
   };
 
-  const results = await execFileAsync(command, args, options);
+  const results = await execFileAsync(file, args, options);
   return results.stdout;
 }
 

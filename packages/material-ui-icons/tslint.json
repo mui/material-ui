@@ -1,0 +1,6 @@
+{
+  "extends": "../../tslint.json",
+  "linterOptions": {
+    "exclude": ["src/*.tsx", "custom/*.tsx"]
+  }
+}

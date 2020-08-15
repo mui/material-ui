@@ -124,14 +124,12 @@ describe('builder', () => {
       await main(options);
       expect(fs.lstatSync(options.outputDir).isDirectory()).to.equal(true);
 
-      const cases = [
-        'Accessibility.js',
-        'StarRounded.js',
-        'QueueMusicOutlined.js',
-        'AccessAlarms.js',
-      ];
-
-      cases.forEach((name) => {
+      [
+        'Accessibility.tsx',
+        'StarRounded.tsx',
+        'QueueMusicOutlined.tsx',
+        'AccessAlarms.tsx',
+      ].forEach((name) => {
         const actual = fs.readFileSync(path.join(options.outputDir, name), { encoding: 'utf8' });
         // Update the snapshots
         // fs.writeFileSync(path.join(MUI_ICONS_ROOT, 'expected', name), actual, { encoding: 'utf8' });

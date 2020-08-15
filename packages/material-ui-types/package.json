@@ -28,7 +28,7 @@
   "scripts": {
     "release": "npm publish --tag next",
     "test": "echo 'No runtime test. Type tests are run with the `typescript` script.'",
-    "typescript": "tslint -p tsconfig.json \"*.{ts,tsx}\""
+    "typescript": "tslint -p tsconfig.json \"**/*.{ts,tsx}\""
   },
   "sideEffects": false,
   "publishConfig": {

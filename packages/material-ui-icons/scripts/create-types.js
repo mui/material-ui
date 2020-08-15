@@ -33,7 +33,7 @@ ${files.map((file) => `export const ${normalizeFileName(file)}: SvgIconComponent
 async function run() {
   await fse.ensureDir(TARGET_DIR);
   console.log(`\u{1f52c}  Searching for modules inside "${chalk.dim(SRC_DIR)}".`);
-  const files = glob.sync('!(index)*.js', { cwd: SRC_DIR });
+  const files = glob.sync('!(index)*.tsx', { cwd: SRC_DIR });
   const typings = files.map((file) => createIconTyping(file));
   await Promise.all([...typings, createIndexTyping(files)]);
   console.log(`\u{1F5C4}  Written typings to ${chalk.dim(TARGET_DIR)}.`);

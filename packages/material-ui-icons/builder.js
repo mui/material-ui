@@ -105,7 +105,7 @@ async function generateIndex(options) {
   const files = await globAsync(path.join(options.outputDir, '*.tsx'));
   const index = files
     .map((file) => {
-      const typename = path.basename(file).replace('.ts', '');
+      const typename = path.basename(file).replace('.tsx', '');
       return `export { default as ${typename} } from './${typename}';\n`;
     })
     .join('');
