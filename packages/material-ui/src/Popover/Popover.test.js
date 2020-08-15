@@ -877,7 +877,7 @@ describe('<Popover />', () => {
     });
   });
 
-  describe('prop: onEnter', () => {
+  describe('deprecated transition callback props', () => {
     beforeEach(() => {
       PropTypes.resetWarningCache();
       stub(console, 'error');
@@ -887,155 +887,112 @@ describe('<Popover />', () => {
       console.error.restore();
     });
 
-    it('issues a warning', () => {
-      PropTypes.checkPropTypes(
-        Popover.Naked.propTypes,
-        {
-          onEnter: () => [],
-        },
-        'prop',
-        'Popover',
-      );
+    describe('prop: onEnter', () => {
+      it('issues a warning', () => {
+        PropTypes.checkPropTypes(
+          Popover.Naked.propTypes,
+          {
+            onEnter: () => [],
+          },
+          'prop',
+          'Popover',
+        );
 
-      expect(console.error.callCount).to.equal(2);
-      expect(console.error.firstCall.args[0]).to.equal(
-        'Warning: Failed prop type: The prop `onEnter` of `Popover` is deprecated. Use the `TransitionProps` prop instead.',
-      );
-    });
-  });
-
-  describe('prop: onEntering', () => {
-    beforeEach(() => {
-      PropTypes.resetWarningCache();
-      stub(console, 'error');
+        expect(console.error.callCount).to.equal(2);
+        expect(console.error.firstCall.args[0]).to.equal(
+          'Warning: Failed prop type: The prop `onEnter` of `Popover` is deprecated. Use the `TransitionProps` prop instead.',
+        );
+      });
     });
 
-    afterEach(() => {
-      console.error.restore();
+    describe('prop: onEntering', () => {
+      it('issues a warning', () => {
+        PropTypes.checkPropTypes(
+          Popover.Naked.propTypes,
+          {
+            onEntering: () => [],
+          },
+          'prop',
+          'Popover',
+        );
+
+        expect(console.error.callCount).to.equal(2);
+        expect(console.error.firstCall.args[0]).to.equal(
+          'Warning: Failed prop type: The prop `onEntering` of `Popover` is deprecated. Use the `TransitionProps` prop instead.',
+        );
+      });
     });
 
-    it('issues a warning', () => {
-      PropTypes.checkPropTypes(
-        Popover.Naked.propTypes,
-        {
-          onEntering: () => [],
-        },
-        'prop',
-        'Popover',
-      );
+    describe('prop: onEntered', () => {
+      it('issues a warning', () => {
+        PropTypes.checkPropTypes(
+          Popover.Naked.propTypes,
+          {
+            onEntered: () => [],
+          },
+          'prop',
+          'Popover',
+        );
 
-      expect(console.error.callCount).to.equal(2);
-      expect(console.error.firstCall.args[0]).to.equal(
-        'Warning: Failed prop type: The prop `onEntering` of `Popover` is deprecated. Use the `TransitionProps` prop instead.',
-      );
-    });
-  });
-
-  describe('prop: onEntered', () => {
-    beforeEach(() => {
-      PropTypes.resetWarningCache();
-      stub(console, 'error');
+        expect(console.error.callCount).to.equal(2);
+        expect(console.error.firstCall.args[0]).to.equal(
+          'Warning: Failed prop type: The prop `onEntered` of `Popover` is deprecated. Use the `TransitionProps` prop instead.',
+        );
+      });
     });
 
-    afterEach(() => {
-      console.error.restore();
+    describe('prop: onExit', () => {
+      it('issues a warning', () => {
+        PropTypes.checkPropTypes(
+          Popover.Naked.propTypes,
+          {
+            onExit: () => [],
+          },
+          'prop',
+          'Popover',
+        );
+
+        expect(console.error.callCount).to.equal(2);
+        expect(console.error.firstCall.args[0]).to.equal(
+          'Warning: Failed prop type: The prop `onExit` of `Popover` is deprecated. Use the `TransitionProps` prop instead.',
+        );
+      });
     });
 
-    it('issues a warning', () => {
-      PropTypes.checkPropTypes(
-        Popover.Naked.propTypes,
-        {
-          onEntered: () => [],
-        },
-        'prop',
-        'Popover',
-      );
+    describe('prop: onExiting', () => {
+      it('issues a warning', () => {
+        PropTypes.checkPropTypes(
+          Popover.Naked.propTypes,
+          {
+            onExiting: () => [],
+          },
+          'prop',
+          'Popover',
+        );
 
-      expect(console.error.callCount).to.equal(2);
-      expect(console.error.firstCall.args[0]).to.equal(
-        'Warning: Failed prop type: The prop `onEntered` of `Popover` is deprecated. Use the `TransitionProps` prop instead.',
-      );
-    });
-  });
-
-  describe('prop: onExit', () => {
-    beforeEach(() => {
-      PropTypes.resetWarningCache();
-      stub(console, 'error');
+        expect(console.error.callCount).to.equal(2);
+        expect(console.error.firstCall.args[0]).to.equal(
+          'Warning: Failed prop type: The prop `onExiting` of `Popover` is deprecated. Use the `TransitionProps` prop instead.',
+        );
+      });
     });
 
-    afterEach(() => {
-      console.error.restore();
-    });
+    describe('prop: onExited', () => {
+      it('issues a warning', () => {
+        PropTypes.checkPropTypes(
+          Popover.Naked.propTypes,
+          {
+            onExited: () => [],
+          },
+          'prop',
+          'Popover',
+        );
 
-    it('issues a warning', () => {
-      PropTypes.checkPropTypes(
-        Popover.Naked.propTypes,
-        {
-          onExit: () => [],
-        },
-        'prop',
-        'Popover',
-      );
-
-      expect(console.error.callCount).to.equal(2);
-      expect(console.error.firstCall.args[0]).to.equal(
-        'Warning: Failed prop type: The prop `onExit` of `Popover` is deprecated. Use the `TransitionProps` prop instead.',
-      );
-    });
-  });
-
-  describe('prop: onExiting', () => {
-    beforeEach(() => {
-      PropTypes.resetWarningCache();
-      stub(console, 'error');
-    });
-
-    afterEach(() => {
-      console.error.restore();
-    });
-
-    it('issues a warning', () => {
-      PropTypes.checkPropTypes(
-        Popover.Naked.propTypes,
-        {
-          onExiting: () => [],
-        },
-        'prop',
-        'Popover',
-      );
-
-      expect(console.error.callCount).to.equal(2);
-      expect(console.error.firstCall.args[0]).to.equal(
-        'Warning: Failed prop type: The prop `onExiting` of `Popover` is deprecated. Use the `TransitionProps` prop instead.',
-      );
-    });
-  });
-
-  describe('prop: onExited', () => {
-    beforeEach(() => {
-      PropTypes.resetWarningCache();
-      stub(console, 'error');
-    });
-
-    afterEach(() => {
-      console.error.restore();
-    });
-
-    it('issues a warning', () => {
-      PropTypes.checkPropTypes(
-        Popover.Naked.propTypes,
-        {
-          onExited: () => [],
-        },
-        'prop',
-        'Popover',
-      );
-
-      expect(console.error.callCount).to.equal(2);
-      expect(console.error.firstCall.args[0]).to.equal(
-        'Warning: Failed prop type: The prop `onExited` of `Popover` is deprecated. Use the `TransitionProps` prop instead.',
-      );
+        expect(console.error.callCount).to.equal(2);
+        expect(console.error.firstCall.args[0]).to.equal(
+          'Warning: Failed prop type: The prop `onExited` of `Popover` is deprecated. Use the `TransitionProps` prop instead.',
+        );
+      });
     });
   });
 });
