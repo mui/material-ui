@@ -25,8 +25,11 @@ export const styles = (theme) => {
       display: 'flex',
       padding: '6px 16px',
     },
+    /* Styles applied to the root element if `variant="filled"`. */
     filled: {},
+    /* Styles applied to the root element if `variant="outlined"`. */
     outlined: {},
+    /* Styles applied to the root element if `variant="standard"`. */
     standard: {},
     /* Styles applied to the root element if `variant="standard"` and `color="success"`. */
     standardSuccess: {
