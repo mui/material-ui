@@ -540,7 +540,7 @@ describe('<Select />', () => {
     it('should apply additional props to the Menu component', () => {
       const onEntered = spy();
       const { getByRole } = render(
-        <Select MenuProps={{ onEntered, transitionDuration: 100 }} value="10">
+        <Select MenuProps={{ TransitionProps: { onEntered }, transitionDuration: 100 }} value="10">
           <MenuItem value="10">Ten</MenuItem>
         </Select>,
       );
