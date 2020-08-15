@@ -54,6 +54,14 @@ function Unstable_TrapFocus(props) {
     }
 
     activated.current = !disableAutoFocus;
+  }, [disableAutoFocus, open]);
+
+  React.useEffect(() => {
+    // We might render an empty child.
+    if (!open || !rootRef.current) {
+      return;
+    }
+
     const doc = ownerDocument(rootRef.current);
 
     if (!rootRef.current.contains(doc.activeElement)) {
@@ -75,6 +83,34 @@ function Unstable_TrapFocus(props) {
       }
     }
 
+    return () => {
+      // restoreLastFocus()
+      if (!disableRestoreFocus) {
+        // In IE 11 it is possible for document.activeElement to be null resulting
+        // in nodeToRestore.current being null.
+        // Not all elements in IE 11 have a focus method.
+        // Once IE 11 support is dropped the focus() call can be unconditional.
+        if (nodeToRestore.current && nodeToRestore.current.focus) {
+          ignoreNextEnforceFocus.current = true;
+          nodeToRestore.current.focus();
+        }
+
+        nodeToRestore.current = null;
+      }
+    };
+    // Missing `disableRestoreFocus` which is fine.
+    // We don't support changing that prop on an open TrapFocus
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open]);
+
+  React.useEffect(() => {
+    // We might render an empty child.
+    if (!open || !rootRef.current) {
+      return;
+    }
+
+    const doc = ownerDocument(rootRef.current);
+
     const contain = (nativeEvent) => {
       if (
         !doc.hasFocus() ||
@@ -84,10 +120,6 @@ function Unstable_TrapFocus(props) {
       ) {
         ignoreNextEnforceFocus.current = false;
         return;
-      }
-
-      if (!activated.current) {
-        nodeToRestore.current = doc.activeElement;
       }
 
       if (!rootRef.current.contains(doc.activeElement)) {
@@ -150,23 +182,13 @@ function Unstable_TrapFocus(props) {
 
       doc.removeEventListener('focus', contain, true);
       doc.removeEventListener('keydown', loopFocus, true);
-
-      // restoreLastFocus()
-      if (!disableRestoreFocus) {
-        // In IE 11 it is possible for document.activeElement to be null resulting
-        // in nodeToRestore.current being null.
-        // Not all elements in IE 11 have a focus method.
-        // Once IE 11 support is dropped the focus() call can be unconditional.
-        if (nodeToRestore.current && nodeToRestore.current.focus) {
-          nodeToRestore.current.focus();
-        }
-
-        nodeToRestore.current = null;
-      }
     };
   }, [disableAutoFocus, disableEnforceFocus, disableRestoreFocus, isEnabled, open]);
 
   const onFocus = (event) => {
+    if (!activated.current) {
+      nodeToRestore.current = event.relatedTarget;
+    }
     activated.current = true;
     reactFocusEventTarget.current = event.target;
 

@@ -16,6 +16,7 @@ testingLibrary.configure({
 });
 
 const mochaHooks = {
+  beforeAll: [],
   beforeEach: [],
   afterEach: [],
 };
@@ -37,8 +38,11 @@ function throwOnUnexpectedConsoleMessages(methodName, expectedMatcher) {
       message,
     ]);
   }
-  // eslint-disable-next-line no-console
-  console[methodName] = logUnexpectedConsoleCalls;
+
+  mochaHooks.beforeAll.push(function registerConsoleStub() {
+    // eslint-disable-next-line no-console
+    console[methodName] = logUnexpectedConsoleCalls;
+  });
 
   mochaHooks.beforeEach.push(function resetUnexpectedCalls() {
     unexpectedCalls.length = 0;

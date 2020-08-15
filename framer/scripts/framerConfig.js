@@ -153,7 +153,12 @@ export const componentSettings = {
     template: 'circular_progress.txt',
   },
   Fab: {
-    ignoredProps: ['children', 'disableFocusRipple'],
+    ignoredProps: [
+      'children',
+      'disableFocusRipple',
+      // FIXME: `Union`
+      'variant',
+    ],
     propValues: {
       icon: "'add'",
       iconTheme: 'Filled',

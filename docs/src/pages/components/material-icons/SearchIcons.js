@@ -91,28 +91,48 @@ function selectNode(node) {
 }
 
 let Icons = (props) => {
-  const { icons, classes, handleClickOpen } = props;
+  const { icons, classes, handleOpenClick } = props;
 
-  const handleClick = (event) => {
+  const handleIconClick = (icon) => () => {
+    if (Math.random() < 0.1) {
+      window.ga('send', {
+        hitType: 'event',
+        eventCategory: 'material-icons',
+        eventAction: 'click',
+        eventLabel: icon.name,
+      });
+      window.ga('send', {
+        hitType: 'event',
+        eventCategory: 'material-icons-theme',
+        eventAction: 'click',
+        eventLabel: icon.theme,
+      });
+    }
+  };
+
+  const handleLabelClick = (event) => {
     selectNode(event.currentTarget);
   };
 
   return (
     <div>
       {icons.map((icon) => {
+        /* eslint-disable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events */
         return (
-          <span key={icon.key} className={clsx('markdown-body', classes.icon)}>
-            <icon.Icon
+          // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+          <span
+            key={icon.importName}
+            onClick={handleIconClick(icon)}
+            className={clsx('markdown-body', classes.icon)}
+          >
+            <icon.Component
               tabIndex={-1}
-              onClick={handleClickOpen}
-              title={icon.key}
+              onClick={handleOpenClick}
+              title={icon.importName}
               className={classes.iconSvg}
-              data-ga-event-category="material-icons"
-              data-ga-event-action="click"
-              data-ga-event-label={icon.key}
             />
-            {/* eslint-disable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events */}
-            <p onClick={handleClick}>{icon.key}</p>
+            <p onClick={handleLabelClick}>{icon.importName}</p>
+            {/* eslint-enable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events */}
           </span>
         );
       })}
@@ -122,7 +142,7 @@ let Icons = (props) => {
 
 Icons.propTypes = {
   classes: PropTypes.object.isRequired,
-  handleClickOpen: PropTypes.func.isRequired,
+  handleOpenClick: PropTypes.func.isRequired,
   icons: PropTypes.array.isRequired,
 };
 Icons = React.memo(Icons);
@@ -202,12 +222,12 @@ let DialogDetails = (props) => {
       {selectedIcon ? (
         <React.Fragment>
           <DialogTitle id="icon-dialog-title" onClick={handleClick}>
-            {selectedIcon.key}
+            {selectedIcon.importName}
           </DialogTitle>
           <HighlightedCode
             className={classes.markdown}
             onClick={handleClick}
-            code={`import ${selectedIcon.key}Icon from '@material-ui/icons/${selectedIcon.key}';`}
+            code={`import ${selectedIcon.importName}Icon from '@material-ui/icons/${selectedIcon.importName}';`}
             language="js"
           />
           <Link
@@ -377,43 +397,45 @@ const searchIndex = FlexSearch.create({
 const allIconsMap = {};
 const allIcons = Object.keys(mui)
   .sort()
-  .map((key) => {
-    let tag;
-    if (key.indexOf('Outlined') !== -1) {
-      tag = 'Outlined';
-    } else if (key.indexOf('TwoTone') !== -1) {
-      tag = 'Two tone';
-    } else if (key.indexOf('Rounded') !== -1) {
-      tag = 'Rounded';
-    } else if (key.indexOf('Sharp') !== -1) {
-      tag = 'Sharp';
+  .map((importName) => {
+    let theme;
+    if (importName.indexOf('Outlined') !== -1) {
+      theme = 'Outlined';
+    } else if (importName.indexOf('TwoTone') !== -1) {
+      theme = 'Two tone';
+    } else if (importName.indexOf('Rounded') !== -1) {
+      theme = 'Rounded';
+    } else if (importName.indexOf('Sharp') !== -1) {
+      theme = 'Sharp';
     } else {
-      tag = 'Filled';
+      theme = 'Filled';
     }
 
-    let searchable = key.replace(/(Outlined|TwoTone|Rounded|Sharp)$/, '');
+    const name = importName.replace(/(Outlined|TwoTone|Rounded|Sharp)$/, '');
+    let searchable = name;
     if (synonyms[searchable]) {
       searchable += ` ${synonyms[searchable]}`;
     }
-    searchIndex.add(key, searchable);
+    searchIndex.add(importName, searchable);
 
     const icon = {
-      key,
-      tag,
-      Icon: mui[key],
+      importName,
+      name,
+      theme,
+      Component: mui[importName],
     };
-    allIconsMap[key] = icon;
+    allIconsMap[importName] = icon;
     return icon;
   });
 
 export default function SearchIcons() {
   const classes = useStyles();
-  const [tag, setTag] = React.useState('Filled');
+  const [theme, setTheme] = React.useState('Filled');
   const [keys, setKeys] = React.useState(null);
   const [open, setOpen] = React.useState(false);
   const [selectedIcon, setSelectedIcon] = React.useState(null);
 
-  const handleClickOpen = React.useCallback((event) => {
+  const handleOpenClick = React.useCallback((event) => {
     setSelectedIcon(allIconsMap[event.currentTarget.getAttribute('title')]);
     setOpen(true);
   }, []);
@@ -461,9 +483,9 @@ export default function SearchIcons() {
   const icons = React.useMemo(
     () =>
       (keys === null ? allIcons : keys.map((key) => allIconsMap[key])).filter(
-        (icon) => tag === icon.tag,
+        (icon) => theme === icon.theme,
       ),
-    [tag, keys],
+    [theme, keys],
   );
 
   return (
@@ -472,18 +494,18 @@ export default function SearchIcons() {
         <form className={classes.form}>
           <RadioGroup>
             {['Filled', 'Outlined', 'Rounded', 'Two tone', 'Sharp'].map(
-              (key) => {
+              (currentTheme) => {
                 return (
                   <FormControlLabel
-                    key={key}
+                    key={currentTheme}
                     control={
                       <Radio
-                        checked={tag === key}
-                        onChange={() => setTag(key)}
-                        value={key}
+                        checked={theme === currentTheme}
+                        onChange={() => setTheme(currentTheme)}
+                        value={currentTheme}
                       />
                     }
-                    label={key}
+                    label={currentTheme}
                   />
                 );
               },
@@ -512,7 +534,7 @@ export default function SearchIcons() {
         <Icons
           icons={icons}
           classes={classes}
-          handleClickOpen={handleClickOpen}
+          handleOpenClick={handleOpenClick}
         />
       </Grid>
       <DialogDetails

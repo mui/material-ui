@@ -3,7 +3,7 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface ContainerTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
-    children: NonNullable<React.ReactNode>;
+    children?: React.ReactNode;
     /**
      * If `true`, the left and right padding is removed.
      */

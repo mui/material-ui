@@ -68,7 +68,7 @@ ThemeProvider.propTypes = {
   /**
    * Your component tree.
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /**
    * A theme object. You can provide a function to extend the outer theme.
    */

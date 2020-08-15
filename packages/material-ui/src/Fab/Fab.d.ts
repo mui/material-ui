@@ -1,13 +1,17 @@
+import { OverridableStringUnion } from '@material-ui/types';
 import { PropTypes } from '..';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
+
+export interface FabPropsVariantOverrides {}
+export type FabVariantDefaults = Record<'circular' | 'extended', true>;
 
 export type FabTypeMap<P = {}, D extends React.ElementType = 'button'> = ExtendButtonBaseTypeMap<{
   props: P & {
     /**
      * The content of the button.
      */
-    children: NonNullable<React.ReactNode>;
+    children?: React.ReactNode;
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
      */
@@ -37,7 +41,7 @@ export type FabTypeMap<P = {}, D extends React.ElementType = 'button'> = ExtendB
     /**
      * The variant to use.
      */
-    variant?: 'circular' | 'extended';
+    variant?: OverridableStringUnion<FabVariantDefaults, FabPropsVariantOverrides>;
   };
   defaultComponent: D;
   classKey: FabClassKey;
@@ -67,6 +71,7 @@ export type FabClassKey =
   | 'primary'
   | 'secondary'
   | 'extended'
+  | 'circular'
   | 'focusVisible'
   | 'disabled'
   | 'colorInherit'

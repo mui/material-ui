@@ -212,7 +212,7 @@ describe('<Popover />', () => {
 
       // transitions towards entered
       const wrapper = mount(
-        <Popover {...defaultProps} open transitionDuration={0} {...handlers}>
+        <Popover {...defaultProps} open transitionDuration={0} TransitionProps={{ ...handlers }}>
           <div />
         </Popover>,
       );
@@ -268,7 +268,7 @@ describe('<Popover />', () => {
       it('should set the inline styles for the enter phase', () => {
         const handleEntering = spy();
         const wrapper = mount(
-          <Popover {...defaultProps} onEntering={handleEntering}>
+          <Popover {...defaultProps} TransitionProps={{ onEntering: handleEntering }}>
             <div />
           </Popover>,
         );
@@ -332,9 +332,11 @@ describe('<Popover />', () => {
               anchorEl={anchorEl}
               anchorOrigin={anchorOrigin}
               transitionDuration={0}
-              onEntered={() => {
-                popoverEl = document.querySelector('[data-mui-test="Popover"]');
-                resolve();
+              TransitionProps={{
+                onEntered: () => {
+                  popoverEl = document.querySelector('[data-mui-test="Popover"]');
+                  resolve();
+                },
               }}
             >
               <div />
@@ -471,9 +473,11 @@ describe('<Popover />', () => {
               anchorPosition={anchorPosition}
               anchorOrigin={anchorOrigin}
               transitionDuration={0}
-              onEntered={() => {
-                popoverEl = document.querySelector('[data-mui-test="Popover"]');
-                resolve();
+              TransitionProps={{
+                onEntered: () => {
+                  popoverEl = document.querySelector('[data-mui-test="Popover"]');
+                  resolve();
+                },
               }}
             >
               <div />
@@ -515,9 +519,11 @@ describe('<Popover />', () => {
               {...defaultProps}
               anchorReference="none"
               transitionDuration={0}
-              onEntered={() => {
-                popoverEl = document.querySelector('[data-mui-test="Popover"]');
-                resolve();
+              TransitionProps={{
+                onEntered: () => {
+                  popoverEl = document.querySelector('[data-mui-test="Popover"]');
+                  resolve();
+                },
               }}
               PaperProps={{
                 style: {
@@ -568,7 +574,7 @@ describe('<Popover />', () => {
         <Popover
           anchorEl={mockedAnchor}
           open
-          onEntering={handleEntering}
+          TransitionProps={{ onEntering: handleEntering }}
           transitionDuration={0}
           marginThreshold={8}
         >
@@ -653,7 +659,7 @@ describe('<Popover />', () => {
           <Popover
             anchorEl={anchorEl}
             open
-            onEntering={handleEntering}
+            TransitionProps={{ onEntering: handleEntering }}
             marginThreshold={marginThreshold}
             PaperProps={{ component: FakePaper }}
           >
@@ -775,7 +781,7 @@ describe('<Popover />', () => {
       mount(
         <Popover
           anchorEl={mockedAnchorEl}
-          onEntering={handleEntering}
+          TransitionProps={{ onEntering: handleEntering }}
           getContentAnchorEl={getContentAnchorEl}
           open
         >
@@ -808,47 +814,6 @@ describe('<Popover />', () => {
         </Popover>,
       );
       expect(wrapper.find(TransitionComponent).props().timeout).to.equal(undefined);
-    });
-  });
-
-  describe('prop: TransitionProp', () => {
-    it('chains onEntering with the apparent onEntering prop', () => {
-      const apparentHandler = spy();
-      const transitionHandler = spy();
-
-      mount(
-        <Popover
-          {...defaultProps}
-          open
-          TransitionProps={{ onEntering: transitionHandler }}
-          onEntering={apparentHandler}
-        >
-          <div />
-        </Popover>,
-      );
-
-      expect(apparentHandler.callCount).to.equal(1);
-      expect(transitionHandler.callCount).to.equal(1);
-    });
-
-    it('does not chain other transition callbacks with the apparent ones', () => {
-      const apparentHandler = spy();
-      const transitionHandler = spy();
-      const wrapper = mount(
-        <Popover
-          {...defaultProps}
-          open
-          TransitionProps={{ onExiting: transitionHandler }}
-          onExiting={apparentHandler}
-        >
-          <div />
-        </Popover>,
-      );
-
-      wrapper.setProps({ open: false });
-
-      expect(apparentHandler.callCount).to.equal(0);
-      expect(transitionHandler.callCount).to.equal(1);
     });
   });
 });

@@ -6,7 +6,7 @@ export interface InputAdornmentTypeMap<P = {}, D extends React.ElementType = 'di
     /**
      * The content of the component, normally an `IconButton` or string.
      */
-    children: NonNullable<React.ReactNode>;
+    children?: React.ReactNode;
     /**
      * Disable pointer events on the root.
      * This allows for the content of the adornment to focus the input on click.

@@ -1,7 +1,8 @@
 import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import { useFakeTimers } from 'sinon';
 import { expect } from 'chai';
-import { createClientRender, fireEvent, screen } from 'test/utils';
+import { act, createClientRender, fireEvent, screen } from 'test/utils';
 import TrapFocus from './Unstable_TrapFocus';
 import Portal from '../Portal';
 
@@ -120,6 +121,164 @@ describe('<TrapFocus />', () => {
     });
 
     expect(document.querySelector('[data-test="sentinelEnd"]')).toHaveFocus();
+  });
+
+  it('does not steal focus from a portaled element if any prop but open changes', () => {
+    function getDoc() {
+      return document;
+    }
+    function isEnabled() {
+      return true;
+    }
+    function Test(props) {
+      return (
+        <TrapFocus getDoc={getDoc} isEnabled={isEnabled} disableAutoFocus open {...props}>
+          <div data-testid="focus-root" tabIndex={-1}>
+            {ReactDOM.createPortal(<input />, document.body)}
+          </div>
+        </TrapFocus>
+      );
+    }
+    const { setProps } = render(<Test />);
+    const portaledTextbox = screen.getByRole('textbox');
+    portaledTextbox.focus();
+    // sanity check
+    expect(portaledTextbox).toHaveFocus();
+
+    setProps({ disableAutoFocus: false });
+
+    expect(portaledTextbox).toHaveFocus();
+
+    setProps({ disableEnforceFocus: true });
+
+    expect(portaledTextbox).toHaveFocus();
+
+    setProps({ disableRestoreFocus: true });
+
+    expect(portaledTextbox).toHaveFocus();
+
+    // same behavior, just referential equality changes
+    setProps({ isEnabled: () => true });
+
+    expect(portaledTextbox).toHaveFocus();
+  });
+
+  it('undesired: lazy root does not get autofocus', () => {
+    let mountDeferredComponent;
+    const DeferredComponent = React.forwardRef(function DeferredComponent(props, ref) {
+      const [mounted, setMounted] = React.useReducer(() => true, false);
+
+      mountDeferredComponent = setMounted;
+
+      if (mounted) {
+        return <div ref={ref} {...props} />;
+      }
+      return null;
+    });
+    render(
+      <TrapFocus getDoc={() => document} isEnabled={() => true} open>
+        <DeferredComponent data-testid="deferred-component" />
+      </TrapFocus>,
+    );
+
+    expect(initialFocus).toHaveFocus();
+
+    act(() => {
+      mountDeferredComponent();
+    });
+
+    // desired
+    // expect(screen.getByTestId('deferred-component')).toHaveFocus();
+    // undesired
+    expect(initialFocus).toHaveFocus();
+  });
+
+  it('does not bounce focus around due to sync focus-restore + focus-contain', () => {
+    const eventLog = [];
+    function Test(props) {
+      return (
+        <div onBlur={() => eventLog.push('blur')}>
+          <TrapFocus getDoc={() => document} isEnabled={() => true} open {...props}>
+            <div data-testid="focus-root" tabIndex={-1}>
+              <input />
+            </div>
+          </TrapFocus>
+        </div>
+      );
+    }
+    const { setProps } = render(<Test />);
+
+    // same behavior, just referential equality changes
+    setProps({ isEnabled: () => true });
+
+    expect(screen.getByTestId('focus-root')).toHaveFocus();
+    expect(eventLog).to.deep.equal([]);
+  });
+
+  it('restores focus when closed', () => {
+    function Test(props) {
+      return (
+        <TrapFocus getDoc={() => document} isEnabled={() => true} open {...props}>
+          <div data-testid="focus-root" tabIndex={-1}>
+            <input />
+          </div>
+        </TrapFocus>
+      );
+    }
+    const { setProps } = render(<Test />);
+
+    setProps({ open: false });
+
+    expect(initialFocus).toHaveFocus();
+  });
+
+  it('undesired: enabling restore-focus logic when closing has no effect', () => {
+    function Test(props) {
+      return (
+        <TrapFocus
+          getDoc={() => document}
+          isEnabled={() => true}
+          open
+          disableRestoreFocus
+          {...props}
+        >
+          <div data-testid="focus-root" tabIndex={-1}>
+            <input />
+          </div>
+        </TrapFocus>
+      );
+    }
+    const { setProps } = render(<Test />);
+
+    setProps({ open: false, disableRestoreFocus: false });
+
+    // undesired: should be expect(initialFocus).toHaveFocus();
+    expect(screen.getByTestId('focus-root')).toHaveFocus();
+  });
+
+  it('undesired: setting `disableRestoreFocus` to false before closing has no effect', () => {
+    function Test(props) {
+      return (
+        <TrapFocus
+          getDoc={() => document}
+          isEnabled={() => true}
+          open
+          disableRestoreFocus
+          {...props}
+        >
+          <div data-testid="focus-root" tabIndex={-1}>
+            <input />
+          </div>
+        </TrapFocus>
+      );
+    }
+    const { setProps } = render(<Test />);
+
+    setProps({ disableRestoreFocus: false });
+    setProps({ open: false });
+
+    // undesired: should be expect(initialFocus).toHaveFocus();
+    expect(screen.getByTestId('focus-root')).toHaveFocus();
   });
 
   describe('interval', () => {

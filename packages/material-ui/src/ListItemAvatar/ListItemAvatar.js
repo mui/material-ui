@@ -46,7 +46,7 @@ ListItemAvatar.propTypes = {
   /**
    * The content of the component – normally `Avatar`.
    */
-  children: PropTypes.element.isRequired,
+  children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
