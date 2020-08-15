@@ -26,7 +26,6 @@ describe('<Accordion />', () => {
   }));
 
   it('should render and not be controlled', () => {
-    console.error('sadasd');
     const wrapper = mount(<Accordion>{minimalChildren}</Accordion>);
     const root = wrapper.find(`.${classes.root}`).first();
     expect(root.type()).to.equal(Paper);
