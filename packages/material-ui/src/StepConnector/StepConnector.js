@@ -15,7 +15,6 @@ export const styles = (theme) => ({
   /* Styles applied to the root element if `orientation="vertical"`. */
   vertical: {
     marginLeft: 12, // half icon
-    padding: '0 0 8px',
   },
   /* Styles applied to the root element if `alternativeLabel={true}`. */
   alternativeLabel: {
