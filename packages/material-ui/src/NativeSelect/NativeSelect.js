@@ -136,7 +136,7 @@ const NativeSelect = React.forwardRef(function NativeSelect(props, ref) {
       input,
       variant: fcs.variant,
     },
-    'MuiButton',
+    'MuiNativeSelect',
   );
 
   return React.cloneElement(input, {
