@@ -94,7 +94,7 @@ export function getComponentName(destPath) {
   const splitregex = new RegExp(`[\\${path.sep}-]+`);
 
   const parts = destPath
-    .replace('.js', '')
+    .replace('.tsx', '')
     .split(splitregex)
     .map((part) => part.charAt(0).toUpperCase() + part.substring(1));
 
@@ -102,10 +102,10 @@ export function getComponentName(destPath) {
 }
 
 async function generateIndex(options) {
-  const files = await globAsync(path.join(options.outputDir, '*.js'));
+  const files = await globAsync(path.join(options.outputDir, '*.tsx'));
   const index = files
     .map((file) => {
-      const typename = path.basename(file).replace('.js', '');
+      const typename = path.basename(file).replace('.ts', '');
       return `export { default as ${typename} } from './${typename}';\n`;
     })
     .join('');
@@ -228,7 +228,10 @@ export async function main(options) {
       process.stdout.write = () => {};
     }
 
-    rimraf.sync(`${options.outputDir}/*.js`); // Clean old files
+    // Clean old files
+    rimraf.sync(`${options.outputDir}/*.js`);
+    rimraf.sync(`${options.outputDir}/*.ts`);
+    rimraf.sync(`${options.outputDir}/*.tsx`);
 
     let renameFilter = options.renameFilter;
     if (typeof renameFilter === 'string') {
@@ -266,7 +269,7 @@ export async function main(options) {
 
     let legacyFiles = await globAsync(path.join(__dirname, '/legacy', '*.js'));
     legacyFiles = legacyFiles.map((file) => path.basename(file));
-    let generatedFiles = await globAsync(path.join(options.outputDir, '*.js'));
+    let generatedFiles = await globAsync(path.join(options.outputDir, '*.tsx'));
     generatedFiles = generatedFiles.map((file) => path.basename(file));
 
     if (intersection(legacyFiles, generatedFiles).length > 0) {

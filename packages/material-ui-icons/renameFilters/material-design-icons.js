@@ -21,5 +21,7 @@ export default function myDestRewriter(svgPathObj) {
     fileName = `FiveG${fileName.slice(2)}`;
   }
 
+  fileName = fileName.replace('.js', '.tsx');
+
   return fileName;
 }
