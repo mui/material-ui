@@ -33,7 +33,7 @@ The `MuiPaper` name can be used for providing [default props](/customization/glo
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a HTML element or a component. |
 | <span class="prop-name">elevation</span> | <span class="prop-type">number</span> | <span class="prop-default">1</span> | Shadow depth, corresponds to `dp` in the spec. It accepts values between 0 and 24 inclusive. |
 | <span class="prop-name">square</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, rounded corners are disabled. |
-| <span class="prop-name">variant</span> | <span class="prop-type">'elevation'<br>&#124;&nbsp;'outlined'</span> | <span class="prop-default">'elevation'</span> | The variant to use. |
+| <span class="prop-name">variant</span> | <span class="prop-type">'elevation'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;string</span> | <span class="prop-default">'elevation'</span> | The variant to use. |
 
 The `ref` is forwarded to the root element.
 
@@ -46,6 +46,7 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">root</span> | <span class="prop-name">.MuiPaper-root</span> | Styles applied to the root element.
 | <span class="prop-name">rounded</span> | <span class="prop-name">.MuiPaper-rounded</span> | Styles applied to the root element if `square={false}`.
 | <span class="prop-name">outlined</span> | <span class="prop-name">.MuiPaper-outlined</span> | Styles applied to the root element if `variant="outlined"`.
+| <span class="prop-name">elevation</span> | <span class="prop-name">.MuiPaper-elevation</span> | Styles applied to the root element if `variant="elevation"`.
 | <span class="prop-name">elevation0</span> | <span class="prop-name">.MuiPaper-elevation0</span> | 
 | <span class="prop-name">elevation1</span> | <span class="prop-name">.MuiPaper-elevation1</span> | 
 | <span class="prop-name">elevation2</span> | <span class="prop-name">.MuiPaper-elevation2</span> | 
