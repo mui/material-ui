@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { useThemeVariants } from '@material-ui/styles';
 import { withStyles } from '@material-ui/core/styles';
 import usePagination from './usePagination';
 import PaginationItem from '../PaginationItem';
@@ -56,10 +57,23 @@ const Pagination = React.forwardRef(function Pagination(props, ref) {
 
   const { items } = usePagination({ ...props, componentName: 'Pagination' });
 
+  const themeVariantsClasses = useThemeVariants(
+    {
+      ...props,
+      color,
+      getItemAriaLabel,
+      renderItem,
+      shape,
+      size,
+      variant,
+    },
+    'MuiPaginationItem',
+  );
+
   return (
     <nav
       aria-label="pagination navigation"
-      className={clsx(classes.root, classes[variant], className)}
+      className={clsx(classes.root, classes[variant], themeVariantsClasses, className)}
       ref={ref}
       {...other}
     >
