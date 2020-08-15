@@ -139,7 +139,6 @@ const NativeSelect = React.forwardRef(function NativeSelect(props, ref) {
     'MuiButton',
   );
 
-
   return React.cloneElement(input, {
     // Most of the logic is implemented in `NativeSelectInput`.
     // The `Select` component is a simple API wrapper to expose something better to play with.
@@ -174,6 +173,10 @@ NativeSelect.propTypes = {
    * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * The icon that displays the arrow.
    */

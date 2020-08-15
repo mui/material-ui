@@ -35,7 +35,7 @@ The `MuiNativeSelect` name can be used for providing [default props](/customizat
 | <span class="prop-name">inputProps</span> | <span class="prop-type">object</span> |  | Attributes applied to the `select` element. |
 | <span class="prop-name">onChange</span> | <span class="prop-type">func</span> |  | Callback function fired when a menu item is selected.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback. You can pull out the new value by accessing `event.target.value` (string). |
 | <span class="prop-name">value</span> | <span class="prop-type">any</span> |  | The input value. The DOM API casts this to a string. |
-| <span class="prop-name">variant</span> | <span class="prop-type">'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'</span> |  | The variant to use. |
+| <span class="prop-name">variant</span> | <span class="prop-type">'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'<br>&#124;&nbsp;string</span> |  | The variant to use. |
 
 The `ref` is forwarded to the root element.
 
@@ -47,6 +47,7 @@ Any other props supplied will be provided to the root element ([Input](/api/inpu
 |:-----|:-------------|:------------|
 | <span class="prop-name">root</span> | <span class="prop-name">.MuiNativeSelect-root</span> | Styles applied to the select component `root` class.
 | <span class="prop-name">select</span> | <span class="prop-name">.MuiNativeSelect-select</span> | Styles applied to the select component `select` class.
+| <span class="prop-name">standard</span> | <span class="prop-name">.MuiNativeSelect-standard</span> | Styles applied to the select component if `variant="standard"`.
 | <span class="prop-name">filled</span> | <span class="prop-name">.MuiNativeSelect-filled</span> | Styles applied to the select component if `variant="filled"`.
 | <span class="prop-name">outlined</span> | <span class="prop-name">.MuiNativeSelect-outlined</span> | Styles applied to the select component if `variant="outlined"`.
 | <span class="prop-name">selectMenu</span> | <span class="prop-name">.MuiNativeSelect-selectMenu</span> | Styles applied to the select component `selectMenu` class.

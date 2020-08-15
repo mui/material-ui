@@ -62,6 +62,7 @@ Any other props supplied will be provided to the root element ([Input](/api/inpu
 |:-----|:-------------|:------------|
 | <span class="prop-name">root</span> | <span class="prop-name">.MuiSelect-root</span> | Styles applied to the select component `root` class.
 | <span class="prop-name">select</span> | <span class="prop-name">.MuiSelect-select</span> | Styles applied to the select component `select` class.
+| <span class="prop-name">standard</span> | <span class="prop-name">.MuiSelect-standard</span> | Styles applied to the select component if `variant="standard"`.
 | <span class="prop-name">filled</span> | <span class="prop-name">.MuiSelect-filled</span> | Styles applied to the select component if `variant="filled"`.
 | <span class="prop-name">outlined</span> | <span class="prop-name">.MuiSelect-outlined</span> | Styles applied to the select component if `variant="outlined"`.
 | <span class="prop-name">selectMenu</span> | <span class="prop-name">.MuiSelect-selectMenu</span> | Styles applied to the select component `selectMenu` class.
