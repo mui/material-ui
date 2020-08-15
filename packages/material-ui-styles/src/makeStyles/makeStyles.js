@@ -252,6 +252,7 @@ export default function makeStyles(stylesOrCreator, options = {}) {
         'MuiFab',
         'MuiToolbar',
         'MuiTypography',
+        'MuiPaginationItem',
       ];
 
       if (

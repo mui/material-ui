@@ -224,7 +224,6 @@ const PaginationItem = React.forwardRef(function PaginationItem(props, ref) {
       disabled,
       selected,
       shape,
-      fullWidth,
       size,
       type,
       variant,

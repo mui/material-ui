@@ -39,7 +39,10 @@ export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'di
     /**
      * The pagination item variant.
      */
-    variant?: OverridableStringUnion<PaginationItemVariantDefaults, PaginationItemPropsVariantOverrides>;
+    variant?: OverridableStringUnion<
+      PaginationItemVariantDefaults,
+      PaginationItemPropsVariantOverrides
+    >;
   };
   defaultComponent: D;
   classKey: PaginationItemClassKey;
