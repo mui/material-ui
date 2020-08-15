@@ -14,6 +14,25 @@ const globAsync = util.promisify(glob);
 export const RENAME_FILTER_DEFAULT = './renameFilters/default';
 export const RENAME_FILTER_MUI = './renameFilters/material-design-icons';
 
+let blacklistedIcons = [
+  '6FtApart', // Arbitrary covid related distance
+  'MotionPhotosOn', // Google product
+  'MotionPhotosPause', // Google product
+  'MotionPhotosPaused', // Google product
+  'Polymer', // Legacy brand
+  'ExposureNeg1', // Google product
+  'ExposureNeg2', // Google product
+  'ExposurePlus1', // Google product
+  'ExposurePlus2', // Google product
+  'ExposureZero', // Google product
+];
+
+blacklistedIcons = blacklistedIcons.reduce((acc, item) => {
+  acc = acc.concat([item, `${item}Outlined`, `${item}Rounded`, `${item}Sharp`, `${item}TwoTone`]);
+
+  return acc;
+}, []);
+
 const svgo = new SVGO({
   floatPrecision: 4,
   plugins: [
@@ -179,9 +198,15 @@ async function worker({ svgPath, options, renameFilter, template }) {
   const data = await fse.readFile(svgPath, { encoding: 'utf8' });
   const paths = await cleanPaths({ svgPath, data });
 
+  const componentName = getComponentName(destPath);
+
+  if (blacklistedIcons.indexOf(componentName) !== -1) {
+    return;
+  }
+
   const fileString = Mustache.render(template, {
     paths,
-    componentName: getComponentName(destPath),
+    componentName,
   });
 
   const absDestPath = path.join(options.outputDir, destPath);
