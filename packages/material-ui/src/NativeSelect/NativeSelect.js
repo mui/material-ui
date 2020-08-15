@@ -146,7 +146,6 @@ const NativeSelect = React.forwardRef(function NativeSelect(props, ref) {
     inputProps: {
       children,
       classes,
-      className: clsx(className, themeVariantsClasses),
       IconComponent,
       variant: fcs.variant,
       type: undefined, // We render a select. We can ignore the type provided by the `Input`.
@@ -154,6 +153,7 @@ const NativeSelect = React.forwardRef(function NativeSelect(props, ref) {
       ...(input ? input.props.inputProps : {}),
     },
     ref,
+    className: clsx(className, themeVariantsClasses),
     ...other,
   });
 });
