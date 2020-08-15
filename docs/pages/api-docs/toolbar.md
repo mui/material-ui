@@ -32,7 +32,7 @@ The `MuiToolbar` name can be used for providing [default props](/customization/g
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a HTML element or a component. |
 | <span class="prop-name">disableGutters</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, disables gutter padding. |
-| <span class="prop-name">variant</span> | <span class="prop-type">'dense'<br>&#124;&nbsp;'regular'</span> | <span class="prop-default">'regular'</span> | The variant to use. |
+| <span class="prop-name">variant</span> | <span class="prop-type">'dense'<br>&#124;&nbsp;'regular'<br>&#124;&nbsp;string</span> | <span class="prop-default">'regular'</span> | The variant to use. |
 
 The `ref` is forwarded to the root element.
 

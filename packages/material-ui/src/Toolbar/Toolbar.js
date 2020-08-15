@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { useThemeVariants } from '@material-ui/styles';
 import withStyles from '../styles/withStyles';
 
 export const styles = (theme) => ({
@@ -37,6 +38,16 @@ const Toolbar = React.forwardRef(function Toolbar(props, ref) {
     ...other
   } = props;
 
+  const themeVariantsClasses = useThemeVariants(
+    {
+      ...props,
+      component: Component,
+      disableGutters,
+      variant,
+    },
+    'MuiToolbar',
+  );
+
   return (
     <Component
       className={clsx(
@@ -45,6 +56,7 @@ const Toolbar = React.forwardRef(function Toolbar(props, ref) {
         {
           [classes.gutters]: !disableGutters,
         },
+        themeVariantsClasses,
         className,
       )}
       ref={ref}
@@ -83,7 +95,10 @@ Toolbar.propTypes = {
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['dense', 'regular']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['dense', 'regular']),
+    PropTypes.string,
+  ]),
 };
 
 export default withStyles(styles, { name: 'MuiToolbar' })(Toolbar);
