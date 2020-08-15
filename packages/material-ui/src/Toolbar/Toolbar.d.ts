@@ -1,5 +1,9 @@
 import * as React from 'react';
+import { OverridableStringUnion } from '@material-ui/types';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+
+export interface ToolbarPropsVariantOverrides {}
+export type ToolbarVariantDefaults = Record<'regular' | 'dense', true>;
 
 export interface ToolbarTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
@@ -14,7 +18,7 @@ export interface ToolbarTypeMap<P = {}, D extends React.ElementType = 'div'> {
     /**
      * The variant to use.
      */
-    variant?: 'regular' | 'dense';
+    variant?: OverridableStringUnion<ToolbarVariantDefaults, ToolbarPropsVariantOverrides>;
   };
   defaultComponent: D;
   classKey: ToolbarClassKey;

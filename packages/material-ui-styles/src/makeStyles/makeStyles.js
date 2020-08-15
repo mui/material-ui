@@ -251,6 +251,7 @@ export default function makeStyles(stylesOrCreator, options = {}) {
         'MuiDivider',
         'MuiFab',
         'MuiPaper',
+        'MuiToolbar',
         'MuiTypography',
       ];
 
