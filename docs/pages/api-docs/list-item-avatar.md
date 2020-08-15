@@ -28,7 +28,7 @@ The `MuiListItemAvatar` name can be used for providing [default props](/customiz
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name required">children<abbr title="required">*</abbr></span> | <span class="prop-type">element</span> |  | The content of the component – normally `Avatar`. |
+| <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the component – normally `Avatar`. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 
 The `ref` is forwarded to the root element.

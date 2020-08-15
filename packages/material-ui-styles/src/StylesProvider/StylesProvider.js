@@ -79,7 +79,7 @@ StylesProvider.propTypes = {
   /**
    * Your component tree.
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /**
    * You can disable the generation of the styles with this option.
    * It can be useful when traversing the React tree outside of the HTML

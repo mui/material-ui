@@ -103,7 +103,7 @@ Container.propTypes = {
   /**
    * @ignore
    */
-  children: PropTypes /* @typescript-to-proptypes-ignore */.node.isRequired,
+  children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
