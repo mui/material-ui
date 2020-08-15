@@ -447,7 +447,7 @@ describe('<Snackbar />', () => {
         'Snackbar',
       );
 
-      // expect(console.error.callCount).to.equal(1);
+      expect(console.error.callCount).to.equal(1);
       expect(console.error.firstCall.args[0]).to.equal(
         'Warning: Failed props type: The props `onEnter` of `Snackbar` is deprecated. Use the `TransitionProps` prop instead.',
       );
@@ -474,7 +474,7 @@ describe('<Snackbar />', () => {
         'Snackbar',
       );
 
-      // expect(console.error.callCount).to.equal(1);
+      expect(console.error.callCount).to.equal(1);
       expect(console.error.firstCall.args[0]).to.equal(
         'Warning: Failed props type: The props `onEntering` of `Snackbar` is deprecated. Use the `TransitionProps` prop instead.',
       );
@@ -501,7 +501,7 @@ describe('<Snackbar />', () => {
         'Snackbar',
       );
 
-      // expect(console.error.callCount).to.equal(1);
+      expect(console.error.callCount).to.equal(1);
       expect(console.error.firstCall.args[0]).to.equal(
         'Warning: Failed props type: The props `onEntered` of `Snackbar` is deprecated. Use the `TransitionProps` prop instead.',
       );
@@ -528,7 +528,7 @@ describe('<Snackbar />', () => {
         'Snackbar',
       );
 
-      // expect(console.error.callCount).to.equal(1);
+      expect(console.error.callCount).to.equal(1);
       expect(console.error.firstCall.args[0]).to.equal(
         'Warning: Failed props type: The props `onExit` of `Snackbar` is deprecated. Use the `TransitionProps` prop instead.',
       );
@@ -555,7 +555,7 @@ describe('<Snackbar />', () => {
         'Snackbar',
       );
 
-      // expect(console.error.callCount).to.equal(1);
+      expect(console.error.callCount).to.equal(1);
       expect(console.error.firstCall.args[0]).to.equal(
         'Warning: Failed props type: The props `onExiting` of `Snackbar` is deprecated. Use the `TransitionProps` prop instead.',
       );
@@ -582,7 +582,7 @@ describe('<Snackbar />', () => {
         'Snackbar',
       );
 
-      // expect(console.error.callCount).to.equal(1);
+      expect(console.error.callCount).to.equal(1);
       expect(console.error.firstCall.args[0]).to.equal(
         'Warning: Failed props type: The props `onExited` of `Snackbar` is deprecated. Use the `TransitionProps` prop instead.',
       );
