@@ -1,10 +1,11 @@
 import * as React from 'react';
+import { NativeSelectProps } from './NativeSelect';
 
 export interface NativeSelectInputProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   disabled?: boolean;
   IconComponent?: React.ElementType;
   inputRef?: React.Ref<HTMLSelectElement>;
-  variant?: 'standard' | 'outlined' | 'filled';
+  variant?: NativeSelectProps['variant'];
 }
 
 declare const NativeSelectInput: React.ComponentType<NativeSelectInputProps>;

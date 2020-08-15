@@ -95,7 +95,10 @@ NativeSelectInput.propTypes = {
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['filled', 'outlined', 'standard']),
+    PropTypes.string,
+  ]),
 };
 
 export default NativeSelectInput;

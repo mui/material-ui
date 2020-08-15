@@ -1,5 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
+import { useThemeVariants } from '@material-ui/styles';
 import NativeSelectInput from './NativeSelectInput';
 import withStyles from '../styles/withStyles';
 import formControlState from '../FormControl/formControlState';
@@ -43,6 +45,8 @@ export const styles = (theme) => ({
       paddingRight: 24,
     },
   },
+  /* Styles applied to the select component if `variant="standard"`. */
+  standard: {},
   /* Styles applied to the select component if `variant="filled"`. */
   filled: {
     '&&': {
@@ -110,6 +114,7 @@ const NativeSelect = React.forwardRef(function NativeSelect(props, ref) {
   const {
     children,
     classes,
+    className,
     IconComponent = ArrowDropDownIcon,
     input = defaultInput,
     inputProps,
@@ -124,6 +129,17 @@ const NativeSelect = React.forwardRef(function NativeSelect(props, ref) {
     states: ['variant'],
   });
 
+  const themeVariantsClasses = useThemeVariants(
+    {
+      ...props,
+      IconComponent,
+      input,
+      variant: fcs.variant,
+    },
+    'MuiButton',
+  );
+
+
   return React.cloneElement(input, {
     // Most of the logic is implemented in `NativeSelectInput`.
     // The `Select` component is a simple API wrapper to expose something better to play with.
@@ -131,6 +147,7 @@ const NativeSelect = React.forwardRef(function NativeSelect(props, ref) {
     inputProps: {
       children,
       classes,
+      className: clsx(className, themeVariantsClasses),
       IconComponent,
       variant: fcs.variant,
       type: undefined, // We render a select. We can ignore the type provided by the `Input`.
@@ -183,7 +200,10 @@ NativeSelect.propTypes = {
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['filled', 'outlined', 'standard']),
+    PropTypes.string,
+  ]),
 };
 
 NativeSelect.muiName = 'Select';

@@ -1,7 +1,11 @@
 import * as React from 'react';
+import { OverridableStringUnion } from '@material-ui/types';
 import { StandardProps } from '..';
 import { InputProps } from '../Input';
 import { NativeSelectInputProps } from './NativeSelectInput';
+
+export interface NativeSelectPropsVariantOverrides {}
+export type NativeSelectVariantDefaults = Record<'standard' | 'outlined' | 'filled', true>;
 
 export interface NativeSelectProps
   extends StandardProps<InputProps, NativeSelectClassKey, 'inputProps' | 'value' | 'onChange'> {
@@ -36,12 +40,13 @@ export interface NativeSelectProps
   /**
    * The variant to use.
    */
-  variant?: 'standard' | 'outlined' | 'filled';
+  variant?: OverridableStringUnion<NativeSelectVariantDefaults, NativeSelectPropsVariantOverrides>;
 }
 
 export type NativeSelectClassKey =
   | 'root'
   | 'select'
+  | 'standard'
   | 'filled'
   | 'outlined'
   | 'selectMenu'
