@@ -17,6 +17,10 @@ export const styles = {
     margin: 0,
     listStyle: 'none',
   },
+  /* Styles applied to the root element if `varaint="outlined"`. */
+  outlined: {},
+  /* Styles applied to the root element if `varaint="text"`. */
+  text: {},
 };
 
 function defaultGetAriaLabel(type, page, selected) {
@@ -55,7 +59,7 @@ const Pagination = React.forwardRef(function Pagination(props, ref) {
   return (
     <nav
       aria-label="pagination navigation"
-      className={clsx(classes.root, className)}
+      className={clsx(classes.root, classes[variant], className)}
       ref={ref}
       {...other}
     >
@@ -182,7 +186,10 @@ Pagination.propTypes = {
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['outlined', 'text']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['outlined', 'text']),
+    PropTypes.string,
+  ]),
 };
 
 export default withStyles(styles, { name: 'MuiPagination' })(Pagination);
