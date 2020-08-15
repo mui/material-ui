@@ -12,6 +12,7 @@ import clsx from 'clsx';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
 import createChainedFunction from '../utils/createChainedFunction';
+import deprecatedPropType from '../utils/deprecatedPropType';
 import withStyles from '../styles/withStyles';
 import Modal from '../Modal';
 import Grow from '../Grow';
@@ -554,27 +555,27 @@ Popover.propTypes = {
   /**
    * Callback fired before the component is entering.
    */
-  onEnter: PropTypes.func,
+  onEnter: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
    * Callback fired when the component has entered.
    */
-  onEntered: PropTypes.func,
+  onEntered: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
    * Callback fired when the component is entering.
    */
-  onEntering: PropTypes.func,
+  onEntering: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
    * Callback fired before the component is exiting.
    */
-  onExit: PropTypes.func,
+  onExit: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
    * Callback fired when the component has exited.
    */
-  onExited: PropTypes.func,
+  onExited: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
    * Callback fired when the component is exiting.
    */
-  onExiting: PropTypes.func,
+  onExiting: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
    * If `true`, the popover is visible.
    */

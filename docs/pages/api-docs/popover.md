@@ -40,12 +40,12 @@ The `MuiPopover` name can be used for providing [default props](/customization/g
 | <span class="prop-name">getContentAnchorEl</span> | <span class="prop-type">func</span> |  | This function is called in order to retrieve the content anchor element. It's the opposite of the `anchorEl` prop. The content anchor element should be an element inside the popover. It's used to correctly scroll and set the position of the popover. The positioning strategy tries to make the content anchor element just above the anchor element. |
 | <span class="prop-name">marginThreshold</span> | <span class="prop-type">number</span> | <span class="prop-default">16</span> | Specifies how close to the edge of the window the popover can appear. |
 | <span class="prop-name">onClose</span> | <span class="prop-type">func</span> |  | Callback fired when the component requests to be closed. |
-| <span class="prop-name">onEnter</span> | <span class="prop-type">func</span> |  | Callback fired before the component is entering. |
-| <span class="prop-name">onEntered</span> | <span class="prop-type">func</span> |  | Callback fired when the component has entered. |
-| <span class="prop-name">onEntering</span> | <span class="prop-type">func</span> |  | Callback fired when the component is entering. |
-| <span class="prop-name">onExit</span> | <span class="prop-type">func</span> |  | Callback fired before the component is exiting. |
-| <span class="prop-name">onExited</span> | <span class="prop-type">func</span> |  | Callback fired when the component has exited. |
-| <span class="prop-name">onExiting</span> | <span class="prop-type">func</span> |  | Callback fired when the component is exiting. |
+| ~~<span class="prop-name">onEnter</span>~~ | <span class="prop-type">func</span> |  | *Deprecated*. Use the `TransitionProps` prop instead.<br><br>Callback fired before the component is entering. |
+| ~~<span class="prop-name">onEntered</span>~~ | <span class="prop-type">func</span> |  | *Deprecated*. Use the `TransitionProps` prop instead.<br><br>Callback fired when the component has entered. |
+| ~~<span class="prop-name">onEntering</span>~~ | <span class="prop-type">func</span> |  | *Deprecated*. Use the `TransitionProps` prop instead.<br><br>Callback fired when the component is entering. |
+| ~~<span class="prop-name">onExit</span>~~ | <span class="prop-type">func</span> |  | *Deprecated*. Use the `TransitionProps` prop instead.<br><br>Callback fired before the component is exiting. |
+| ~~<span class="prop-name">onExited</span>~~ | <span class="prop-type">func</span> |  | *Deprecated*. Use the `TransitionProps` prop instead.<br><br>Callback fired when the component has exited. |
+| ~~<span class="prop-name">onExiting</span>~~ | <span class="prop-type">func</span> |  | *Deprecated*. Use the `TransitionProps` prop instead.<br><br>Callback fired when the component is exiting. |
 | <span class="prop-name required">open<abbr title="required">*</abbr></span> | <span class="prop-type">bool</span> |  | If `true`, the popover is visible. |
 | <span class="prop-name">PaperProps</span> | <span class="prop-type">{ component?: element type }</span> | <span class="prop-default">{}</span> | Props applied to the [`Paper`](/api/paper/) element. |
 | <span class="prop-name">transformOrigin</span> | <span class="prop-type">{ horizontal: 'center'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;number, vertical: 'bottom'<br>&#124;&nbsp;'center'<br>&#124;&nbsp;'top'<br>&#124;&nbsp;number }</span> | <span class="prop-default">{  vertical: 'top',  horizontal: 'left',}</span> | This is the point on the popover which will attach to the anchor's origin.<br>Options: vertical: [top, center, bottom, x(px)]; horizontal: [left, center, right, x(px)]. |
