@@ -33,15 +33,13 @@ const CustomContent = React.forwardRef(function CustomContent(props, ref) {
     focused,
     handleExpansion,
     handleSelection,
+    preventSelection,
   } = useTreeItem(nodeId);
 
   const icon = iconProp || expansionIcon || displayIcon;
 
   const handleMouseDown = (event) => {
-    if (event.shiftKey || event.ctrlKey || event.metaKey || disabled) {
-      // Prevent text selection
-      event.preventDefault();
-    }
+    preventSelection(event);
   };
 
   const handleExpansionClick = (event) => {

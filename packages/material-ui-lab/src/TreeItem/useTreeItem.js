@@ -56,6 +56,13 @@ export default function useTreeItem(nodeId) {
     }
   };
 
+  const preventSelection = (event) => {
+    if (event.shiftKey || event.ctrlKey || event.metaKey || disabled) {
+      // Prevent text selection
+      event.preventDefault();
+    }
+  };
+
   return {
     disabled,
     expanded,
@@ -63,5 +70,6 @@ export default function useTreeItem(nodeId) {
     focused,
     handleExpansion,
     handleSelection,
+    preventSelection,
   };
 }

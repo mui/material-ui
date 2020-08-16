@@ -54,7 +54,7 @@ const data = {
 
 ## ContentComponent prop
 
-You can use the `ContentComponent` prop to further customize the behavior of the TreeItem
+You can use the `ContentComponent` prop and the `useTreeItem` hook to further customize the behavior of the TreeItem
 e.g. limiting expansion to clicking the icon or increasing the width of the state indicator.
 
 {{"demo": "pages/components/tree-view/IconExpansionTreeView.js", "defaultCodeOpen": false}}

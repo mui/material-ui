@@ -7,6 +7,7 @@ export default function useTreeItem(
   expanded: boolean;
   selected: boolean;
   focused: boolean;
-  handleExpansion: (event: React.SyntheticEvent) => {};
-  handleSelection: (event: React.SyntheticEvent) => {};
+  handleExpansion: (event: React.SyntheticEvent) => void;
+  handleSelection: (event: React.SyntheticEvent) => void;
+  preventSelection: (event: React.SyntheticEvent) => void;
 };

@@ -39,6 +39,7 @@ const CustomContent = React.forwardRef(function CustomContent(
     focused,
     handleExpansion,
     handleSelection,
+    preventSelection,
   } = useTreeItem(nodeId);
 
   const icon = iconProp || expansionIcon || displayIcon;
@@ -46,10 +47,7 @@ const CustomContent = React.forwardRef(function CustomContent(
   const handleMouseDown = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>,
   ) => {
-    if (event.shiftKey || event.ctrlKey || event.metaKey || disabled) {
-      // Prevent text selection
-      event.preventDefault();
-    }
+    preventSelection(event);
   };
 
   const handleExpansionClick = (

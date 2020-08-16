@@ -20,17 +20,20 @@ const TreeItemContent = React.forwardRef(function TreeItemContent(props, ref) {
     ...other
   } = props;
 
-  const { disabled, expanded, selected, focused, handleExpansion, handleSelection } = useTreeItem(
-    nodeId,
-  );
+  const {
+    disabled,
+    expanded,
+    selected,
+    focused,
+    handleExpansion,
+    handleSelection,
+    preventSelection,
+  } = useTreeItem(nodeId);
 
   const icon = iconProp || expansionIcon || displayIcon;
 
   const handleMouseDown = (event) => {
-    if (event.shiftKey || event.ctrlKey || event.metaKey || disabled) {
-      // Prevent text selection
-      event.preventDefault();
-    }
+    preventSelection(event);
 
     if (onMouseDown) {
       onMouseDown(event);
