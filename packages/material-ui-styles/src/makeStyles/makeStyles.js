@@ -250,8 +250,10 @@ export default function makeStyles(stylesOrCreator, options = {}) {
         'MuiChip',
         'MuiDivider',
         'MuiFab',
+        'MuiPaper',
         'MuiToolbar',
         'MuiTypography',
+        'MuiAlert',
         'MuiPaginationItem',
       ];
 
