@@ -18,7 +18,7 @@ export const styles = {
     margin: 0,
     listStyle: 'none',
   },
-  /* Styles applied to the root element if `varaint="outlined"`. */
+  /* Styles applied to the root element if `variant="outlined"`. */
   outlined: {},
   /* Styles applied to the root element if `varaint="text"`. */
   text: {},
