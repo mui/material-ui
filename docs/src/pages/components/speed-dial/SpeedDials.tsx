@@ -55,7 +55,6 @@ export default function SpeedDials() {
   const [direction, setDirection] = React.useState<SpeedDialProps['direction']>(
     'up',
   );
-  const [open, setOpen] = React.useState(false);
   const [hidden, setHidden] = React.useState(false);
 
   const handleDirectionChange = (
@@ -68,14 +67,6 @@ export default function SpeedDials() {
 
   const handleHiddenChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setHidden(event.target.checked);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleOpen = () => {
-    setOpen(true);
   };
 
   return (
@@ -111,9 +102,6 @@ export default function SpeedDials() {
           className={classes.speedDial}
           hidden={hidden}
           icon={<SpeedDialIcon />}
-          onClose={handleClose}
-          onOpen={handleOpen}
-          open={open}
           direction={direction}
         >
           {actions.map((action) => (
@@ -121,7 +109,6 @@ export default function SpeedDials() {
               key={action.name}
               icon={action.icon}
               tooltipTitle={action.name}
-              onClick={handleClose}
             />
           ))}
         </SpeedDial>

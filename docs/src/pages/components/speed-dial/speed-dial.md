@@ -15,6 +15,10 @@ The floating action button can display related actions.
 
 {{"demo": "pages/components/speed-dial/SpeedDials.js"}}
 
+## Controlled open Speed Dial
+
+{{"demo": "pages/components/speed-dial/ControlledOpenSpeedDial.js"}}
+
 ## Custom close icon
 
 You can provide an alternate icon for the closed and open states using the `icon` and `openIcon` props

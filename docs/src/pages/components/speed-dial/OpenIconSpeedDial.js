@@ -34,19 +34,10 @@ const actions = [
 
 export default function OpenIconSpeedDial() {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
   const [hidden, setHidden] = React.useState(false);
 
   const handleVisibility = () => {
     setHidden((prevHidden) => !prevHidden);
-  };
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
   };
 
   return (
@@ -57,16 +48,12 @@ export default function OpenIconSpeedDial() {
         className={classes.speedDial}
         hidden={hidden}
         icon={<SpeedDialIcon openIcon={<EditIcon />} />}
-        onClose={handleClose}
-        onOpen={handleOpen}
-        open={open}
       >
         {actions.map((action) => (
           <SpeedDialAction
             key={action.name}
             icon={action.icon}
             tooltipTitle={action.name}
-            onClick={handleClose}
           />
         ))}
       </SpeedDial>
