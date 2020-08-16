@@ -254,6 +254,7 @@ export default function makeStyles(stylesOrCreator, options = {}) {
         'MuiToolbar',
         'MuiTypography',
         'MuiAlert',
+        'MuiPagination',
       ];
 
       if (

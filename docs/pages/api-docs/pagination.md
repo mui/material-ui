@@ -45,7 +45,7 @@ The `MuiPagination` name can be used for providing [default props](/customizatio
 | <span class="prop-name">showLastButton</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, show the last-page button. |
 | <span class="prop-name">siblingCount</span> | <span class="prop-type">number</span> | <span class="prop-default">1</span> | Number of always visible pages before and after the current page. |
 | <span class="prop-name">size</span> | <span class="prop-type">'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'</span> | <span class="prop-default">'medium'</span> | The size of the pagination component. |
-| <span class="prop-name">variant</span> | <span class="prop-type">'outlined'<br>&#124;&nbsp;'text'</span> | <span class="prop-default">'text'</span> | The variant to use. |
+| <span class="prop-name">variant</span> | <span class="prop-type">'outlined'<br>&#124;&nbsp;'text'<br>&#124;&nbsp;string</span> | <span class="prop-default">'text'</span> | The variant to use. |
 
 The `ref` is forwarded to the root element.
 
@@ -57,6 +57,8 @@ Any other props supplied will be provided to the root element (native element).
 |:-----|:-------------|:------------|
 | <span class="prop-name">root</span> | <span class="prop-name">.MuiPagination-root</span> | Styles applied to the root element.
 | <span class="prop-name">ul</span> | <span class="prop-name">.MuiPagination-ul</span> | Styles applied to the ul element.
+| <span class="prop-name">outlined</span> | <span class="prop-name">.MuiPagination-outlined</span> | Styles applied to the root element if `variant="outlined"`.
+| <span class="prop-name">text</span> | <span class="prop-name">.MuiPagination-text</span> | Styles applied to the root element if `variant="text"`.
 
 You can override the style of the component thanks to one of these customization points:
 
