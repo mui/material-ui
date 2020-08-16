@@ -277,6 +277,7 @@ const PaginationItem = React.forwardRef(function PaginationItem(props, ref) {
           [classes.selected]: selected,
           [classes[`size${capitalize(size)}`]]: size !== 'medium',
         },
+        themeVariantsClasses,
         className,
       )}
       {...other}
