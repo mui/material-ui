@@ -41,30 +41,6 @@ export interface MenuProps
    */
   onClose?: PopoverProps['onClose'];
   /**
-   * Callback fired before the Menu enters.
-   */
-  onEnter?: PopoverProps['onEnter'];
-  /**
-   * Callback fired when the Menu has entered.
-   */
-  onEntered?: PopoverProps['onEntered'];
-  /**
-   * Callback fired when the Menu is entering.
-   */
-  onEntering?: PopoverProps['onEntering'];
-  /**
-   * Callback fired before the Menu exits.
-   */
-  onExit?: PopoverProps['onExit'];
-  /**
-   * Callback fired when the Menu has exited.
-   */
-  onExited?: PopoverProps['onExited'];
-  /**
-   * Callback fired when the Menu is exiting.
-   */
-  onExiting?: PopoverProps['onExiting'];
-  /**
    * If `true`, the menu is visible.
    */
   open: boolean;
@@ -76,6 +52,11 @@ export interface MenuProps
    * The length of the transition in `ms`, or 'auto'
    */
   transitionDuration?: TransitionProps['timeout'] | 'auto';
+  /**
+   * Props applied to the transition element.
+   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition) component.
+   */
+  TransitionProps?: TransitionProps;
   /**
    * The variant to use. Use `menu` to prevent selected items from impacting the initial focus
    * and the vertical alignment relative to the anchor element.

@@ -2,6 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
+import { useThemeVariants } from '@material-ui/styles';
 import withStyles from '../styles/withStyles';
 
 export const styles = (theme) => {
@@ -27,6 +28,8 @@ export const styles = (theme) => {
     outlined: {
       border: `1px solid ${theme.palette.divider}`,
     },
+    /* Styles applied to the root element if `variant="elevation"`. */
+    elevation: {},
     ...elevations,
   };
 };
@@ -42,15 +45,27 @@ const Paper = React.forwardRef(function Paper(props, ref) {
     ...other
   } = props;
 
+  const themeVariantsClasses = useThemeVariants(
+    {
+      ...props,
+      component: Component,
+      square,
+      elevation,
+      variant,
+    },
+    'MuiPaper',
+  );
+
   return (
     <Component
       className={clsx(
         classes.root,
+        classes[variant],
         {
           [classes.rounded]: !square,
           [classes[`elevation${elevation}`]]: variant === 'elevation',
-          [classes.outlined]: variant === 'outlined',
         },
+        themeVariantsClasses,
         className,
       )}
       ref={ref}
@@ -104,7 +119,10 @@ Paper.propTypes = {
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['elevation', 'outlined']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['elevation', 'outlined']),
+    PropTypes.string,
+  ]),
 };
 
 export default withStyles(styles, { name: 'MuiPaper' })(Paper);

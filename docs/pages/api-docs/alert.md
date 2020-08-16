@@ -38,7 +38,7 @@ The `MuiAlert` name can be used for providing [default props](/customization/glo
 | <span class="prop-name">onClose</span> | <span class="prop-type">func</span> |  | Callback fired when the component requests to be closed. When provided and no `action` prop is set, a close icon button is displayed that triggers the callback when clicked.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback. |
 | <span class="prop-name">role</span> | <span class="prop-type">string</span> | <span class="prop-default">'alert'</span> | The ARIA role attribute of the element. |
 | <span class="prop-name">severity</span> | <span class="prop-type">'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'</span> | <span class="prop-default">'success'</span> | The severity of the alert. This defines the color and icon used. |
-| <span class="prop-name">variant</span> | <span class="prop-type">'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'</span> | <span class="prop-default">'standard'</span> | The variant to use. |
+| <span class="prop-name">variant</span> | <span class="prop-type">'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'<br>&#124;&nbsp;string</span> | <span class="prop-default">'standard'</span> | The variant to use. |
 
 The `ref` is forwarded to the root element.
 
@@ -49,6 +49,9 @@ Any other props supplied will be provided to the root element ([Paper](/api/pape
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
 | <span class="prop-name">root</span> | <span class="prop-name">.MuiAlert-root</span> | Styles applied to the root element.
+| <span class="prop-name">filled</span> | <span class="prop-name">.MuiAlert-filled</span> | Styles applied to the root element if `variant="filled"`.
+| <span class="prop-name">outlined</span> | <span class="prop-name">.MuiAlert-outlined</span> | Styles applied to the root element if `variant="outlined"`.
+| <span class="prop-name">standard</span> | <span class="prop-name">.MuiAlert-standard</span> | Styles applied to the root element if `variant="standard"`.
 | <span class="prop-name">standardSuccess</span> | <span class="prop-name">.MuiAlert-standardSuccess</span> | Styles applied to the root element if `variant="standard"` and `color="success"`.
 | <span class="prop-name">standardInfo</span> | <span class="prop-name">.MuiAlert-standardInfo</span> | Styles applied to the root element if `variant="standard"` and `color="info"`.
 | <span class="prop-name">standardWarning</span> | <span class="prop-name">.MuiAlert-standardWarning</span> | Styles applied to the root element if `variant="standard"` and `color="warning"`.

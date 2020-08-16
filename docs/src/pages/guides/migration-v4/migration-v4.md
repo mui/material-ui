@@ -253,6 +253,29 @@ This change affects almost all components where you're using the `component` pro
   +<Grid justifyContent="center">
   ```
 
+### Menu
+
+- The onE\* transition props were removed. Use TransitionProps instead.
+
+  ```diff
+  <Menu
+  -  onEnter={onEnter}
+  -  onEntered={onEntered},
+  -  onEntering={onEntered},
+  -  onExit={onEntered},
+  -  onExited={onEntered},
+  -  onExiting={onEntered}
+  +  TransitionProps={{
+  +    onEnter,
+  +    onEntered,
+  +    onEntering,
+  +    onExit,
+  +    onExited,
+  +    onExiting,
+  +  }}
+  >
+  ```
+
 ### Pagination
 
 - Rename `round` to `circular` for consistency. The possible values should be adjectives, not nouns:

@@ -219,7 +219,10 @@ export const componentSettings = {
     template: 'self_closing.txt',
   },
   Paper: {
-    ignoredProps: [],
+    ignoredProps: [
+      // FIXME: `Union`
+      'variant',
+    ],
     propValues: {
       width: 100,
       height: 100,
