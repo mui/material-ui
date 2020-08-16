@@ -88,7 +88,7 @@ export const styles = (theme) => ({
       fontSize: theme.typography.pxToRem(22),
     },
   },
-  /* Styles applied to the root element if `varaint="text"`. */
+  /* Styles applied to the root element if `variant="text"`. */
   text: {},
   /* Styles applied to the root element if `variant="text"` and `color="primary"`. */
   textPrimary: {
