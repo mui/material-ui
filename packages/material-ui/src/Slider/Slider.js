@@ -589,6 +589,10 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   };
 
   const handleTouchMove = useEventCallback((nativeEvent) => {
+    if (disabled) {
+      return;
+    }
+
     const finger = trackFinger(nativeEvent, touchId);
 
     if (!finger) {
