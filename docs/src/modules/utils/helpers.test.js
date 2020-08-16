@@ -114,6 +114,7 @@ import {
 
     expect(getDependencies(source)).to.deep.equal({
       'date-fns': 'latest',
+      '@material-ui/core': 'next',
       '@material-ui/pickers': 'next',
       react: 'latest',
       'react-dom': 'latest',
