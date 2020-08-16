@@ -121,7 +121,7 @@ import {
     });
   });
 
-  it('should always include core', () => {
+  it('should include core if lab present', () => {
     const source = `
 import lab from '@material-ui/lab';
     `;
