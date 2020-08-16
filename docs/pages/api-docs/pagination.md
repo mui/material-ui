@@ -57,8 +57,8 @@ Any other props supplied will be provided to the root element (native element).
 |:-----|:-------------|:------------|
 | <span class="prop-name">root</span> | <span class="prop-name">.MuiPagination-root</span> | Styles applied to the root element.
 | <span class="prop-name">ul</span> | <span class="prop-name">.MuiPagination-ul</span> | Styles applied to the ul element.
-| <span class="prop-name">outlined</span> | <span class="prop-name">.MuiPagination-outlined</span> | Styles applied to the root element if `varaint="outlined"`.
-| <span class="prop-name">text</span> | <span class="prop-name">.MuiPagination-text</span> | Styles applied to the root element if `varaint="text"`.
+| <span class="prop-name">outlined</span> | <span class="prop-name">.MuiPagination-outlined</span> | Styles applied to the root element if `variant="outlined"`.
+| <span class="prop-name">text</span> | <span class="prop-name">.MuiPagination-text</span> | Styles applied to the root element if `variant="text"`.
 
 You can override the style of the component thanks to one of these customization points:
 
