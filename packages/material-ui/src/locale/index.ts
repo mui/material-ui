@@ -1819,10 +1819,10 @@ export const thTH: Localization = {
       },
       labelRowsPerPage: 'จำนวนแถวต่อหน้า:',
       labelDisplayedRows: ({ from, to, count }) =>
-  `${from}-${to} จาก ${count !== -1 ? count : `มากกว่า ${to}`}`,
+        `${from}-${to} จาก ${count !== -1 ? count : `มากกว่า ${to}`}`,
     },
     MuiRating: {
-      getLabelText: value => `${value} ดาว${value !== 1 ? 's' : ''}`,
+      getLabelText: (value) => `${value} ดาว${value !== 1 ? 's' : ''}`,
       emptyLabelText: 'ว่างเปล่า',
     },
     MuiAutocomplete: {
