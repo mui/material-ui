@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { OverridableStringUnion } from '@material-ui/types';
 import { StandardProps } from '@material-ui/core';
 import { UsePaginationItem, UsePaginationProps } from './usePagination';
 
@@ -8,6 +9,9 @@ export interface PaginationRenderItemParams extends UsePaginationItem {
   size: PaginationProps['size'];
   variant: PaginationProps['variant'];
 }
+
+export interface PaginationPropsVariantOverrides {}
+export type PaginationVariantDefaults = Record<'text' | 'outlined', true>;
 
 export interface PaginationProps
   extends UsePaginationProps,
@@ -49,7 +53,7 @@ export interface PaginationProps
   /**
    * The variant to use.
    */
-  variant?: 'text' | 'outlined';
+  variant?: OverridableStringUnion<PaginationVariantDefaults, PaginationPropsVariantOverrides>;
 }
 
 export type PaginationClassKey = 'root' | 'ul';
