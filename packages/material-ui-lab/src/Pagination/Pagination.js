@@ -20,7 +20,7 @@ export const styles = {
   },
   /* Styles applied to the root element if `variant="outlined"`. */
   outlined: {},
-  /* Styles applied to the root element if `varaint="text"`. */
+  /* Styles applied to the root element if `variant="text"`. */
   text: {},
 };
 
