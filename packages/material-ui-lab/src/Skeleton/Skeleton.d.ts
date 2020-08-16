@@ -1,5 +1,9 @@
 import * as React from 'react';
+import { OverridableStringUnion } from '@material-ui/types';
 import { OverridableComponent, OverrideProps } from '@material-ui/core/OverridableComponent';
+
+export interface SkeletonPropsVariantOverrides {}
+export type SkeletonVariantDefaults = Record<'text' | 'rectangular' | 'circular', true>;
 
 export interface SkeletonTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P & {
@@ -20,7 +24,7 @@ export interface SkeletonTypeMap<P = {}, D extends React.ElementType = 'span'> {
     /**
      * The type of content that will be rendered.
      */
-    variant?: 'text' | 'rectangular' | 'circular';
+    variant?: OverridableStringUnion<SkeletonVariantDefaults, SkeletonPropsVariantOverrides>;
     /**
      * Width of the skeleton.
      * Useful when the skeleton is inside an inline element with no width of its own.
