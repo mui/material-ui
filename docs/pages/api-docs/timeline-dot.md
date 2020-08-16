@@ -31,7 +31,7 @@ The `MuiTimelineDot` name can be used for providing [default props](/customizati
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the component. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">color</span> | <span class="prop-type">'grey'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'</span> | <span class="prop-default">'grey'</span> | The dot can have a different colors. |
-| <span class="prop-name">variant</span> | <span class="prop-type">'filled'<br>&#124;&nbsp;'outlined'</span> | <span class="prop-default">'filled'</span> | The dot can appear filled or outlined. |
+| <span class="prop-name">variant</span> | <span class="prop-type">'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;string</span> | <span class="prop-default">'filled'</span> | The dot can appear filled or outlined. |
 
 The `ref` is forwarded to the root element.
 
@@ -42,6 +42,8 @@ Any other props supplied will be provided to the root element (native element).
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
 | <span class="prop-name">root</span> | <span class="prop-name">.MuiTimelineDot-root</span> | Styles applied to the root element.
+| <span class="prop-name">filled</span> | <span class="prop-name">.MuiTimelineDot-filled</span> | Styles applied to the root element if `variant="filled"`.
+| <span class="prop-name">outlined</span> | <span class="prop-name">.MuiTimelineDot-outlined</span> | Styles applied to the root element if `variant="outlined"`.
 | <span class="prop-name">filledGrey</span> | <span class="prop-name">.MuiTimelineDot-filledGrey</span> | Styles applied to the root element if `color="grey"` and `variant="filled"`.
 | <span class="prop-name">outlinedGrey</span> | <span class="prop-name">.MuiTimelineDot-outlinedGrey</span> | Styles applied to the root element if `color="grey"` and `variant="outlined"`.
 | <span class="prop-name">filledPrimary</span> | <span class="prop-name">.MuiTimelineDot-filledPrimary</span> | Styles applied to the root element if `color="primary"` and `variant="filled"`.

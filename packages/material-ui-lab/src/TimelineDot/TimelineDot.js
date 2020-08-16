@@ -19,7 +19,8 @@ export const styles = (theme) => ({
   },
   /* Styles applied to the root element if `variant="filled"`. */
   filled: {},
-  /* Styles applied to the root element if `variant="outlined"`. */  
+  /* Styles applied to the root element if `variant="outlined"`. */
+
   outlined: {},
   /* Styles applied to the root element if `color="grey"` and `variant="filled"`. */
   filledGrey: {
