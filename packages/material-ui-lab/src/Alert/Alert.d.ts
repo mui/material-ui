@@ -1,8 +1,12 @@
 import * as React from 'react';
+import { OverridableStringUnion } from '@material-ui/types';
 import { StandardProps } from '@material-ui/core';
 import { PaperProps } from '@material-ui/core/Paper';
 
 export type Color = 'success' | 'info' | 'warning' | 'error';
+
+export interface AlertPropsVariantOverrides {}
+export type AlertVariantDefaults = Record<'standard' | 'filled' | 'outlined', true>;
 
 export interface AlertProps extends StandardProps<PaperProps, AlertClassKey, 'variant'> {
   /**
@@ -49,11 +53,14 @@ export interface AlertProps extends StandardProps<PaperProps, AlertClassKey, 'va
   /**
    * The variant to use.
    */
-  variant?: 'standard' | 'filled' | 'outlined';
+  variant?: OverridableStringUnion<AlertVariantDefaults, AlertPropsVariantOverrides>;
 }
 
 export type AlertClassKey =
   | 'root'
+  | 'filled'
+  | 'standard'
+  | 'outlined'
   | 'standardSuccess'
   | 'standardInfo'
   | 'standardWarning'
