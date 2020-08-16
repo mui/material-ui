@@ -452,6 +452,10 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   const isRtl = theme.direction === 'rtl';
 
   const handleKeyDown = useEventCallback((event) => {
+    if (disabled) {
+      return;
+    }
+
     const index = Number(event.currentTarget.getAttribute('data-index'));
     const value = values[index];
     const tenPercents = (max - min) / 10;
