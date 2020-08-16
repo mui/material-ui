@@ -44,12 +44,12 @@ const Menu = React.forwardRef(function Menu(props, ref) {
     disableAutoFocusItem = false,
     MenuListProps = {},
     onClose,
-    onEntering,
     open,
     PaperProps = {},
     PopoverClasses,
     transitionDuration = 'auto',
     variant = 'selectedMenu',
+    TransitionProps: { onEntering, ...TransitionProps } = {},
     ...other
   } = props;
   const theme = useTheme();
@@ -133,7 +133,6 @@ const Menu = React.forwardRef(function Menu(props, ref) {
       getContentAnchorEl={getContentAnchorEl}
       classes={PopoverClasses}
       onClose={onClose}
-      TransitionProps={{ onEntering: handleEntering }}
       anchorOrigin={theme.direction === 'rtl' ? RTL_ORIGIN : LTR_ORIGIN}
       transformOrigin={theme.direction === 'rtl' ? RTL_ORIGIN : LTR_ORIGIN}
       PaperProps={{
@@ -146,6 +145,7 @@ const Menu = React.forwardRef(function Menu(props, ref) {
       open={open}
       ref={ref}
       transitionDuration={transitionDuration}
+      TransitionProps={{ onEntering: handleEntering, ...TransitionProps }}
       {...other}
     >
       <MenuList
@@ -212,30 +212,6 @@ Menu.propTypes = {
    */
   onClose: PropTypes.func,
   /**
-   * Callback fired before the Menu enters.
-   */
-  onEnter: PropTypes.func,
-  /**
-   * Callback fired when the Menu has entered.
-   */
-  onEntered: PropTypes.func,
-  /**
-   * Callback fired when the Menu is entering.
-   */
-  onEntering: PropTypes.func,
-  /**
-   * Callback fired before the Menu exits.
-   */
-  onExit: PropTypes.func,
-  /**
-   * Callback fired when the Menu has exited.
-   */
-  onExited: PropTypes.func,
-  /**
-   * Callback fired when the Menu is exiting.
-   */
-  onExiting: PropTypes.func,
-  /**
    * If `true`, the menu is visible.
    */
   open: PropTypes.bool.isRequired,
@@ -259,6 +235,11 @@ Menu.propTypes = {
       exit: PropTypes.number,
     }),
   ]),
+  /**
+   * Props applied to the transition element.
+   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition) component.
+   */
+  TransitionProps: PropTypes.object,
   /**
    * The variant to use. Use `menu` to prevent selected items from impacting the initial focus
    * and the vertical alignment relative to the anchor element.

@@ -5,6 +5,7 @@ import { withStyles, lighten, darken } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
 import { capitalize } from '@material-ui/core/utils';
+import { useThemeVariants } from '@material-ui/styles';
 import SuccessOutlinedIcon from '../internal/svg-icons/SuccessOutlined';
 import ReportProblemOutlinedIcon from '../internal/svg-icons/ReportProblemOutlined';
 import ErrorOutlineIcon from '../internal/svg-icons/ErrorOutline';
@@ -24,6 +25,12 @@ export const styles = (theme) => {
       display: 'flex',
       padding: '6px 16px',
     },
+    /* Styles applied to the root element if `variant="filled"`. */
+    filled: {},
+    /* Styles applied to the root element if `variant="outlined"`. */
+    outlined: {},
+    /* Styles applied to the root element if `variant="standard"`. */
+    standard: {},
     /* Styles applied to the root element if `variant="standard"` and `color="success"`. */
     standardSuccess: {
       color: getColor(theme.palette.success.main, 0.6),
@@ -159,6 +166,18 @@ const Alert = React.forwardRef(function Alert(props, ref) {
     ...other
   } = props;
 
+  const themeVariantsClasses = useThemeVariants(
+    {
+      ...props,
+      closeText,
+      iconMapping,
+      role,
+      severity,
+      variant,
+    },
+    'MuiAlert',
+  );
+
   return (
     <Paper
       role={role}
@@ -166,7 +185,9 @@ const Alert = React.forwardRef(function Alert(props, ref) {
       elevation={0}
       className={clsx(
         classes.root,
+        classes[variant],
         classes[`${variant}${capitalize(color || severity)}`],
+        themeVariantsClasses,
         className,
       )}
       ref={ref}
@@ -263,7 +284,10 @@ Alert.propTypes = {
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['filled', 'outlined', 'standard']),
+    PropTypes.string,
+  ]),
 };
 
 export default withStyles(styles, { name: 'MuiAlert' })(Alert);

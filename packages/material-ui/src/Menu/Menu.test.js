@@ -162,7 +162,7 @@ describe('<Menu />', () => {
     expect(false).to.equal(menuEl.contains(document.activeElement));
   });
 
-  it('should call onEntering with element if exists', () => {
+  it('should call TransitionProps.onEntering with element if exists', () => {
     const onEnteringSpy = spy();
     const wrapper = mount(
       <Menu {...defaultProps} TransitionProps={{ onEntering: onEnteringSpy }} />,
@@ -176,7 +176,7 @@ describe('<Menu />', () => {
     expect(onEnteringSpy.calledWith(elementForHandleEnter)).to.equal(true);
   });
 
-  it('should call props.onEntering, disableAutoFocusItem', () => {
+  it('should call TransitionProps.onEntering, disableAutoFocusItem', () => {
     const onEnteringSpy = spy();
     const wrapper = mount(
       <Menu

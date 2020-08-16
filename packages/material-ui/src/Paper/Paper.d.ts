@@ -1,5 +1,9 @@
 import * as React from 'react';
+import { OverridableStringUnion } from '@material-ui/types';
 import { StandardProps } from '..';
+
+export interface PaperPropsVariantOverrides {}
+export type PaperVariantDefaults = Record<'elevation' | 'outlined', true>;
 
 export interface PaperProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, PaperClassKey> {
@@ -24,13 +28,14 @@ export interface PaperProps
   /**
    * The variant to use.
    */
-  variant?: 'elevation' | 'outlined';
+  variant?: OverridableStringUnion<PaperVariantDefaults, PaperPropsVariantOverrides>;
 }
 
 export type PaperClassKey =
   | 'root'
   | 'rounded'
   | 'outlined'
+  | 'elevation'
   | 'elevation0'
   | 'elevation1'
   | 'elevation2'
