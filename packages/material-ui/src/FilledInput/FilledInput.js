@@ -105,8 +105,8 @@ export const styles = (theme) => {
     multiline: {
       padding: '25px 12px 8px',
       '&$marginDense': {
-        paddingTop: 23,
-        paddingBottom: 6,
+        paddingTop: 21,
+        paddingBottom: 4,
       },
     },
     /* Styles applied to the `input` element. */
@@ -122,16 +122,16 @@ export const styles = (theme) => {
     },
     /* Styles applied to the `input` element if `margin="dense"`. */
     inputMarginDense: {
-      paddingTop: 23,
-      paddingBottom: 6,
+      paddingTop: 21,
+      paddingBottom: 4,
     },
     /* Styles applied to the `input` if in `<FormControl hiddenLabel />`. */
     inputHiddenLabel: {
-      paddingTop: 18,
-      paddingBottom: 19,
+      paddingTop: 16,
+      paddingBottom: 17,
       '&$inputMarginDense': {
-        paddingTop: 10,
-        paddingBottom: 11,
+        paddingTop: 8,
+        paddingBottom: 9,
       },
     },
     /* Styles applied to the `input` element if `multiline={true}`. */

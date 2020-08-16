@@ -69,7 +69,7 @@ export const styles = (theme) => {
     multiline: {
       padding: '4px 0 5px',
       '&$marginDense': {
-        paddingTop: 3,
+        paddingTop: 1,
       },
     },
     /* Styles applied to the root element if the color is secondary. */
@@ -132,7 +132,7 @@ export const styles = (theme) => {
     },
     /* Styles applied to the `input` element if `margin="dense"`. */
     inputMarginDense: {
-      paddingTop: 3,
+      paddingTop: 1,
     },
     /* Styles applied to the `input` element if `multiline={true}`. */
     inputMultiline: {
