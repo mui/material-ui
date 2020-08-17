@@ -130,6 +130,11 @@ describe('<SwipeableDrawer />', () => {
     expect(document.querySelector('.MuiPaper-root')).to.have.attribute('data-test', 'foo');
   });
 
+  // only run in supported browsers
+  if (typeof Touch === 'undefined') {
+    return;
+  }
+
   describe('swipe to open', () => {
     let container;
 
@@ -567,6 +572,47 @@ describe('<SwipeableDrawer />', () => {
       }).toErrorDev(
         'Warning: Failed prop type: Invalid prop `ModalProps.BackdropProps.component` supplied to `MockedSwipeableDrawer`. Expected an element type that can hold a ref.',
       );
+    });
+  });
+
+  describe('native scroll', () => {
+    it('should not drag is native scroll is available', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // Need layout
+        this.skip();
+      }
+
+      const handleClose = spy();
+      render(
+        <SwipeableDrawer onOpen={() => {}} onClose={handleClose} anchor="bottom" open>
+          <div style={{ height: 10000, flexShrink: 0 }}>
+            <h1>SwipeableDrawer</h1>
+          </div>
+        </SwipeableDrawer>,
+      );
+
+      const windowHeight = window.innerHeight;
+      const h1 = document.querySelector('h1');
+
+      const Paper = document.querySelector('.MuiPaper-root');
+      Paper.scrollTop = 10;
+
+      // Perform a full swipe down to close sequence
+      fireEvent.touchStart(h1, {
+        touches: [new Touch({ identifier: 0, target: h1, pageX: 0, clientY: windowHeight - 200 })],
+      });
+      fireEvent.touchMove(h1, {
+        touches: [new Touch({ identifier: 0, target: h1, pageX: 0, clientY: windowHeight - 180 })],
+      });
+      fireEvent.touchMove(h1, {
+        touches: [new Touch({ identifier: 0, target: h1, pageX: 0, clientY: windowHeight - 10 })],
+      });
+      fireEvent.touchEnd(h1, {
+        changedTouches: [
+          new Touch({ identifier: 0, target: h1, pageX: 0, clientY: windowHeight - 10 }),
+        ],
+      });
+      expect(handleClose.callCount).to.equal(0);
     });
   });
 });

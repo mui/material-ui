@@ -72,6 +72,7 @@ describe('<StepButton />', () => {
 
   describe('event handlers', () => {
     it('should forward mouseenter, mouseleave and touchstart', function touchTests() {
+      // only run in supported browsers
       if (typeof Touch === 'undefined') {
         this.skip();
       }
