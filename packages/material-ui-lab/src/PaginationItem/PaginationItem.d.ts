@@ -1,6 +1,10 @@
 import * as React from 'react';
+import { OverridableStringUnion } from '@material-ui/types';
 import { OverridableComponent, OverrideProps } from '@material-ui/core/OverridableComponent';
 import { UsePaginationItem } from '../Pagination/usePagination';
+
+export interface PaginationItemPropsVariantOverrides {}
+export type PaginationItemVariantDefaults = Record<'text' | 'outlined', true>;
 
 export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
@@ -35,7 +39,10 @@ export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'di
     /**
      * The pagination item variant.
      */
-    variant?: 'text' | 'outlined';
+    variant?: OverridableStringUnion<
+      PaginationItemVariantDefaults,
+      PaginationItemPropsVariantOverrides
+    >;
   };
   defaultComponent: D;
   classKey: PaginationItemClassKey;
@@ -58,6 +65,7 @@ export type PaginationItemClassKey =
   | 'page'
   | 'sizeSmall'
   | 'sizeLarge'
+  | 'text'
   | 'textPrimary'
   | 'textSecondary'
   | 'outlined'
