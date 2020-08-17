@@ -85,6 +85,11 @@ export interface MenuProps
    */
   transitionDuration?: TransitionProps['timeout'] | 'auto';
   /**
+   * Props applied to the transition element.
+   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition) component.
+   */
+  TransitionProps?: TransitionProps;
+  /**
    * The variant to use. Use `menu` to prevent selected items from impacting the initial focus
    * and the vertical alignment relative to the anchor element.
    */

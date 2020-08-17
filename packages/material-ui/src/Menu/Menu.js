@@ -9,6 +9,7 @@ import MenuList from '../MenuList';
 import * as ReactDOM from 'react-dom';
 import setRef from '../utils/setRef';
 import useTheme from '../styles/useTheme';
+import deprecatedPropType from '../utils/deprecatedPropType';
 
 const RTL_ORIGIN = {
   vertical: 'top',
@@ -45,11 +46,12 @@ const Menu = React.forwardRef(function Menu(props, ref) {
     disableAutoFocusItem = false,
     MenuListProps = {},
     onClose,
-    onEntering,
+    onEntering: onEnteringProp,
     open,
     PaperProps = {},
     PopoverClasses,
     transitionDuration = 'auto',
+    TransitionProps: { onEntering, ...TransitionProps } = {},
     variant = 'selectedMenu',
     ...other
   } = props;
@@ -66,7 +68,9 @@ const Menu = React.forwardRef(function Menu(props, ref) {
     if (menuListActionsRef.current) {
       menuListActionsRef.current.adjustStyleForScrollbar(element, theme);
     }
-
+    if (onEnteringProp) {
+      onEnteringProp(element, isAppearing);
+    }
     if (onEntering) {
       onEntering(element, isAppearing);
     }
@@ -135,7 +139,7 @@ const Menu = React.forwardRef(function Menu(props, ref) {
       getContentAnchorEl={getContentAnchorEl}
       classes={PopoverClasses}
       onClose={onClose}
-      TransitionProps={{ onEntering: handleEntering }}
+      TransitionProps={{ onEntering: handleEntering, ...TransitionProps }}
       anchorOrigin={theme.direction === 'rtl' ? RTL_ORIGIN : LTR_ORIGIN}
       transformOrigin={theme.direction === 'rtl' ? RTL_ORIGIN : LTR_ORIGIN}
       PaperProps={{
@@ -216,27 +220,27 @@ Menu.propTypes = {
   /**
    * Callback fired before the Menu enters.
    */
-  onEnter: PropTypes.func,
+  onEnter: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
    * Callback fired when the Menu has entered.
    */
-  onEntered: PropTypes.func,
+  onEntered: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
    * Callback fired when the Menu is entering.
    */
-  onEntering: PropTypes.func,
+  onEntering: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
    * Callback fired before the Menu exits.
    */
-  onExit: PropTypes.func,
+  onExit: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
    * Callback fired when the Menu has exited.
    */
-  onExited: PropTypes.func,
+  onExited: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
    * Callback fired when the Menu is exiting.
    */
-  onExiting: PropTypes.func,
+  onExiting: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
    * If `true`, the menu is visible.
    */
@@ -261,6 +265,11 @@ Menu.propTypes = {
       exit: PropTypes.number,
     }),
   ]),
+  /**
+   * Props applied to the transition element.
+   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition) component.
+   */
+  TransitionProps: PropTypes.object,
   /**
    * The variant to use. Use `menu` to prevent selected items from impacting the initial focus
    * and the vertical alignment relative to the anchor element.
