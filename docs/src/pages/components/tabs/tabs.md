@@ -13,7 +13,7 @@ components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
 
 A basic example with no frills.
 
-{{"demo": "pages/components/tabs/SimpleTabs.js", "bg": true}}
+{{"demo": "pages/components/tabs/BasicTabs.js", "bg": true}}
 
 ### Wrapped labels
 
@@ -54,26 +54,23 @@ By default, left and right scroll buttons are automatically presented on desktop
 
 ### Forced scroll buttons
 
-Left and right scroll buttons be presented (reserve space) regardless of the viewport width with:
-
-```jsx
-<Tabs scrollButtons="on" />
-```
+Left and right scroll buttons be presented (reserve space) regardless of the viewport width with `scrollButtons="on"`:
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonForce.js", "bg": true}}
 
 If you want to make sure the buttons are always visible, you should customize the opacity.
 
+```css
+.MuiTabs-scrollButtons.Mui-disabled {
+  opacity: 0.3;
+}
+```
+
 {{"demo": "pages/components/tabs/ScrollableTabsButtonVisible.js", "bg": true}}
 
 ### Prevent scroll buttons
 
-Left and right scroll buttons are never be presented with:
-
-```jsx
-<Tabs scrollButtons="off" />
-```
-
+Left and right scroll buttons are never be presented with `scrollButtons="off"`.
 All scrolling must be initiated through user agent scrolling mechanisms (e.g. left/right swipe, shift-mousewheel, etc.)
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonPrevent.js", "bg": true}}
