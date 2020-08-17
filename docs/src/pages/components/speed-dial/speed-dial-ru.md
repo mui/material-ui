@@ -6,10 +6,12 @@ components: SpeedDial, SpeedDialAction, SpeedDialIcon
 # Speed Dial
 
 <p class="description">When pressed, a floating action button can display three to six related actions in the form of a speed dial.</p>
-
+Дл отображения больше шести кнопок нужно использовать другой компонент вместо FAB 
 If more than six actions are needed, something other than a FAB should be used to present them.
 
 ## Simple Speed Dial
+
+Плавающая кнопка действия (FAB) может показывать связание кнопки действия 
 
 The floating action button can display related actions.
 
