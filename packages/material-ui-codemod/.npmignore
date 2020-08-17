@@ -2,3 +2,5 @@
 !/src/*.js
 !/lib/*.js
 *.test.js
+*.test.ts
+*.test.tsx
