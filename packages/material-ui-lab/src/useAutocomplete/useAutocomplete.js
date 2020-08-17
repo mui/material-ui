@@ -135,12 +135,12 @@ export default function useAutocomplete(props) {
   const defaultHighlighted = autoHighlight ? 0 : -1;
   const highlightedIndexRef = React.useRef(defaultHighlighted);
 
-  const [value, setValue] = useControlled({
+  const [value, setValueState] = useControlled({
     controlled: valueProp,
     default: defaultValue,
     name: componentName,
   });
-  const [inputValue, setInputValue] = useControlled({
+  const [inputValue, setInputValueState] = useControlled({
     controlled: inputValueProp,
     default: '',
     name: componentName,
@@ -164,7 +164,7 @@ export default function useAutocomplete(props) {
       return;
     }
 
-    setInputValue(newInputValue);
+    setInputValueState(newInputValue);
 
     if (onInputChange) {
       onInputChange(event, newInputValue, 'reset');
@@ -525,7 +525,7 @@ export default function useAutocomplete(props) {
       onChange(event, newValue, reason, details);
     }
 
-    setValue(newValue);
+    setValueState(newValue);
   };
 
   const isTouch = React.useRef(false);
@@ -641,7 +641,7 @@ export default function useAutocomplete(props) {
 
   const handleClear = (event) => {
     ignoreFocus.current = true;
-    setInputValue('');
+    setInputValueState('');
 
     if (onInputChange) {
       onInputChange(event, '', 'clear');
@@ -813,7 +813,7 @@ export default function useAutocomplete(props) {
     const newValue = event.target.value;
 
     if (inputValue !== newValue) {
-      setInputValue(newValue);
+      setInputValueState(newValue);
 
       if (onInputChange) {
         onInputChange(event, newValue, 'input');

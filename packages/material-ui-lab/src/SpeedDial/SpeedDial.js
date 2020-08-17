@@ -118,14 +118,12 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
     ...other
   } = props;
 
-  const [openState, setOpenState] = useControlled({
+  const [open, setOpenState] = useControlled({
     controlled: openProp,
     default: false,
     name: 'SpeedDial',
     state: 'open',
   });
-
-  const open = openState;
 
   const eventTimer = React.useRef();
 
