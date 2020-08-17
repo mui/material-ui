@@ -257,6 +257,7 @@ export default function makeStyles(stylesOrCreator, options = {}) {
         'MuiPagination',
         'MuiPaginationItem',
         'MuiSkeleton',
+        'MuiTimelineDot',
       ];
 
       if (
