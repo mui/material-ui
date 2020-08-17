@@ -50,13 +50,13 @@ const useStyles = makeStyles((theme: Theme) => ({
   root: {
     flexGrow: 1,
     width: '100%',
-    backgroundColor: theme.palette.background.paper
+    backgroundColor: theme.palette.background.paper,
   },
   scrollButtons: {
-    "&.Mui-disabled": {
-      opacity: 0.3
-    }
-  }
+    '&.Mui-disabled': {
+      opacity: 0.3,
+    },
+  },
 }));
 
 export default function ScrollableTabsButtonVisible() {
