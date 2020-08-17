@@ -59,7 +59,7 @@ export const styles = (theme) => {
     marginDense: {},
     /* Styles applied to the root element if `multiline={true}`. */
     multiline: {
-      padding: '18.5px 14px',
+      padding: '16.5px 14px',
       '&$marginDense': {
         paddingTop: 10.5,
         paddingBottom: 10.5,
@@ -71,7 +71,7 @@ export const styles = (theme) => {
     },
     /* Styles applied to the `input` element. */
     input: {
-      padding: '18.5px 14px',
+      padding: '16.5px 14px',
       '&:-webkit-autofill': {
         WebkitBoxShadow: theme.palette.type === 'light' ? null : '0 0 0 100px #266798 inset',
         WebkitTextFillColor: theme.palette.type === 'light' ? null : '#fff',
@@ -81,8 +81,8 @@ export const styles = (theme) => {
     },
     /* Styles applied to the `input` element if `margin="dense"`. */
     inputMarginDense: {
-      paddingTop: 10.5,
-      paddingBottom: 10.5,
+      paddingTop: 8.5,
+      paddingBottom: 8.5,
     },
     /* Styles applied to the `input` element if `multiline={true}`. */
     inputMultiline: {
