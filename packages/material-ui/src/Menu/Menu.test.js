@@ -54,14 +54,16 @@ describe('<Menu />', () => {
 
         const wrapper = mount(
           <Menu
-            onEnter={handleEnter}
-            onEntering={handleEntering}
-            onEntered={() => {
-              expect(handleEnter.callCount).to.equal(1);
-              expect(handleEnter.args[0].length).to.equal(2);
-              expect(handleEntering.callCount).to.equal(1);
-              expect(handleEntering.args[0].length).to.equal(2);
-              done();
+            TransitionProps={{
+              onEnter: handleEnter,
+              onEntering: handleEntering,
+              onEntered: () => {
+                expect(handleEnter.callCount).to.equal(1);
+                expect(handleEnter.args[0].length).to.equal(2);
+                expect(handleEntering.callCount).to.equal(1);
+                expect(handleEntering.args[0].length).to.equal(2);
+                done();
+              },
             }}
             {...defaultProps}
           />,
@@ -80,14 +82,16 @@ describe('<Menu />', () => {
 
         const wrapper = mount(
           <Menu
-            onExit={handleExit}
-            onExiting={handleExiting}
-            onExited={() => {
-              expect(handleExit.callCount).to.equal(1);
-              expect(handleExit.args[0].length).to.equal(1);
-              expect(handleExiting.callCount).to.equal(1);
-              expect(handleExiting.args[0].length).to.equal(1);
-              done();
+            TransitionProps={{
+              onExit: handleExit,
+              onExiting: handleExiting,
+              onExited: () => {
+                expect(handleExit.callCount).to.equal(1);
+                expect(handleExit.args[0].length).to.equal(1);
+                expect(handleExiting.callCount).to.equal(1);
+                expect(handleExiting.args[0].length).to.equal(1);
+                done();
+              },
             }}
             {...defaultProps}
             open
