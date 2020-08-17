@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { spy } from 'sinon';
+import * as PropTypes from 'prop-types';
+import { spy, stub } from 'sinon';
 import { expect } from 'chai';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
@@ -37,6 +38,15 @@ describe('<Menu />', () => {
   }));
 
   describe('event callbacks', () => {
+    beforeEach(() => {
+      PropTypes.resetWarningCache();
+      stub(console, 'error');
+    });
+
+    afterEach(() => {
+      console.error.restore();
+    });
+
     describe('entering', () => {
       it('should fire callbacks', (done) => {
         const handleEnter = spy();
@@ -91,6 +101,114 @@ describe('<Menu />', () => {
         wrapper.setProps({
           open: false,
         });
+      });
+    });
+
+    describe('prop: onEnter', () => {
+      it('issues a warning', () => {
+        PropTypes.checkPropTypes(
+          Menu.Naked.propTypes,
+          {
+            onEnter: () => [],
+          },
+          'prop',
+          'Menu',
+        );
+
+        expect(console.error.callCount).to.equal(2);
+        expect(console.error.firstCall.args[0]).to.equal(
+          'Warning: Failed prop type: The prop `onEnter` of `Menu` is deprecated. Use the `TransitionProps` prop instead.',
+        );
+      });
+    });
+
+    describe('prop: onEntering', () => {
+      it('issues a warning', () => {
+        PropTypes.checkPropTypes(
+          Menu.Naked.propTypes,
+          {
+            onEntering: () => [],
+          },
+          'prop',
+          'Menu',
+        );
+
+        expect(console.error.callCount).to.equal(2);
+        expect(console.error.firstCall.args[0]).to.equal(
+          'Warning: Failed prop type: The prop `onEntering` of `Menu` is deprecated. Use the `TransitionProps` prop instead.',
+        );
+      });
+    });
+
+    describe('prop: onEntered', () => {
+      it('issues a warning', () => {
+        PropTypes.checkPropTypes(
+          Menu.Naked.propTypes,
+          {
+            onEntered: () => [],
+          },
+          'prop',
+          'Menu',
+        );
+
+        expect(console.error.callCount).to.equal(2);
+        expect(console.error.firstCall.args[0]).to.equal(
+          'Warning: Failed prop type: The prop `onEntered` of `Menu` is deprecated. Use the `TransitionProps` prop instead.',
+        );
+      });
+    });
+
+    describe('prop: onExit', () => {
+      it('issues a warning', () => {
+        PropTypes.checkPropTypes(
+          Menu.Naked.propTypes,
+          {
+            onExit: () => [],
+          },
+          'prop',
+          'Menu',
+        );
+
+        expect(console.error.callCount).to.equal(2);
+        expect(console.error.firstCall.args[0]).to.equal(
+          'Warning: Failed prop type: The prop `onExit` of `Menu` is deprecated. Use the `TransitionProps` prop instead.',
+        );
+      });
+    });
+
+    describe('prop: onExiting', () => {
+      it('issues a warning', () => {
+        PropTypes.checkPropTypes(
+          Menu.Naked.propTypes,
+          {
+            onExiting: () => [],
+          },
+          'prop',
+          'Menu',
+        );
+
+        expect(console.error.callCount).to.equal(2);
+        expect(console.error.firstCall.args[0]).to.equal(
+          'Warning: Failed prop type: The prop `onExiting` of `Menu` is deprecated. Use the `TransitionProps` prop instead.',
+        );
+      });
+    });
+
+    describe('prop: onExited', () => {
+      it('issues a warning', () => {
+        PropTypes.checkPropTypes(
+          Menu.Naked.propTypes,
+          {
+            onExited: () => [],
+          },
+          'prop',
+          'Menu',
+        );
+
+        expect(console.error.callCount).to.equal(2);
+        expect(console.error.firstCall.args[0]).to.equal(
+          'Warning: Failed prop type: The prop `onExited` of `Menu` is deprecated. Use the `TransitionProps` prop instead.',
+        );
       });
     });
   });
