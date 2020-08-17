@@ -256,6 +256,7 @@ export default function makeStyles(stylesOrCreator, options = {}) {
         'MuiAlert',
         'MuiPagination',
         'MuiPaginationItem',
+        'MuiSkeleton',
       ];
 
       if (
