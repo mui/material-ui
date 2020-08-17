@@ -1,16 +1,16 @@
 import * as React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import SpeedDial from '@material-ui/lab/SpeedDial';
 import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
 import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
 import FileCopyIcon from '@material-ui/icons/FileCopyOutlined';
 import SaveIcon from '@material-ui/icons/Save';
-import EditIcon from '@material-ui/icons/Edit';
+import PrintIcon from '@material-ui/icons/Print';
+import ShareIcon from '@material-ui/icons/Share';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: 380,
+    height: 320,
     transform: 'translateZ(0px)',
     flexGrow: 1,
   },
@@ -24,16 +24,13 @@ const useStyles = makeStyles((theme) => ({
 const actions = [
   { icon: <FileCopyIcon />, name: 'Copy' },
   { icon: <SaveIcon />, name: 'Save' },
+  { icon: <PrintIcon />, name: 'Print' },
+  { icon: <ShareIcon />, name: 'Share' },
 ];
 
 export default function ControlledOpenSpeedDial() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const [hidden, setHidden] = React.useState(false);
-
-  const handleVisibility = () => {
-    setHidden((prevHidden) => !prevHidden);
-  };
 
   const handleOpen = () => {
     setOpen(true);
@@ -45,12 +42,10 @@ export default function ControlledOpenSpeedDial() {
 
   return (
     <div className={classes.root}>
-      <Button onClick={handleVisibility}>Toggle Speed Dial</Button>
       <SpeedDial
         ariaLabel="SpeedDial uncontrolled open example"
         className={classes.speedDial}
-        hidden={hidden}
-        icon={<SpeedDialIcon openIcon={<EditIcon />} />}
+        icon={<SpeedDialIcon />}
         onClose={handleClose}
         onOpen={handleOpen}
         open={open}
