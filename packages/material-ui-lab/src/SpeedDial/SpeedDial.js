@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import { duration, withStyles } from '@material-ui/core/styles';
 import Zoom from '@material-ui/core/Zoom';
 import Fab from '@material-ui/core/Fab';
-import { capitalize, isMuiElement, useForkRef } from '@material-ui/core/utils';
+import { capitalize, isMuiElement, useForkRef, useControlled } from '@material-ui/core/utils';
 
 function getOrientation(direction) {
   if (direction === 'up' || direction === 'down') {
@@ -107,7 +107,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
     onMouseEnter,
     onMouseLeave,
     onOpen,
-    open,
+    open: openProp,
     openIcon,
     TransitionComponent = Zoom,
     transitionDuration = {
@@ -117,6 +117,13 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
     TransitionProps,
     ...other
   } = props;
+
+  const [open, setOpenState] = useControlled({
+    controlled: openProp,
+    default: false,
+    name: 'SpeedDial',
+    state: 'open',
+  });
 
   const eventTimer = React.useRef();
 
@@ -178,6 +185,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
     const { current: nextItemArrowKeyCurrent = key } = nextItemArrowKey;
 
     if (event.key === 'Escape') {
+      setOpenState(false);
       if (onClose) {
         actions.current[0].focus();
         onClose(event, 'escapeKeyDown');
@@ -219,7 +227,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
     }
 
     clearTimeout(eventTimer.current);
-
+    setOpenState(false);
     if (onClose) {
       if (event.type === 'blur') {
         event.persist();
@@ -240,11 +248,15 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
     clearTimeout(eventTimer.current);
 
     if (open) {
+      setOpenState(false);
       if (onClose) {
         onClose(event, 'toggle');
       }
-    } else if (onOpen) {
-      onOpen(event, 'toggle');
+    } else {
+      setOpenState(true);
+      if (onOpen) {
+        onOpen(event, 'toggle');
+      }
     }
   };
 
@@ -262,17 +274,20 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
     // We only handle the last event.
     clearTimeout(eventTimer.current);
 
-    if (onOpen && !open) {
-      event.persist();
-      // Wait for a future focus or click event
-      eventTimer.current = setTimeout(() => {
-        const eventMap = {
-          focus: 'focus',
-          mouseenter: 'mouseEnter',
-        };
+    if (!open) {
+      setOpenState(true);
+      if (onOpen) {
+        event.persist();
+        // Wait for a future focus or click event
+        eventTimer.current = setTimeout(() => {
+          const eventMap = {
+            focus: 'focus',
+            mouseenter: 'mouseEnter',
+          };
 
-        onOpen(event, eventMap[event.type]);
-      });
+          onOpen(event, eventMap[event.type]);
+        });
+      }
     }
   };
 
@@ -431,7 +446,7 @@ SpeedDial.propTypes = {
   /**
    * If `true`, the SpeedDial is open.
    */
-  open: PropTypes.bool.isRequired,
+  open: PropTypes.bool,
   /**
    * The icon to display in the SpeedDial Fab when the SpeedDial is open.
    */

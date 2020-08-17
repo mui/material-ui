@@ -55,7 +55,7 @@ export interface SpeedDialProps
   /**
    * If `true`, the SpeedDial is open.
    */
-  open: boolean;
+  open?: boolean;
   /**
    * The icon to display in the SpeedDial Fab when the SpeedDial is open.
    */

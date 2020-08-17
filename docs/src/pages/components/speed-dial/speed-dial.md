@@ -9,11 +9,17 @@ components: SpeedDial, SpeedDialAction, SpeedDialIcon
 
 If more than six actions are needed, something other than a FAB should be used to present them.
 
-## Simple Speed Dial
+## Basic speed dial
 
 The floating action button can display related actions.
 
 {{"demo": "pages/components/speed-dial/SpeedDials.js"}}
+
+## Controlled speed dial
+
+The open state of the component can be controlled with the `open`/`onOpen`/`onClose` props.
+
+{{"demo": "pages/components/speed-dial/ControlledOpenSpeedDial.js"}}
 
 ## Custom close icon
 
@@ -26,6 +32,6 @@ of the `SpeedDialIcon` component.
 
 The SpeedDialActions tooltips can be displayed persistently so that users don't have to long-press in order to see the tooltip on touch devices.
 
-It is enabled here across all devices for demo purposes, but in production it could use the `isTouch` logic to conditionally set the property.
+It is enabled here across all devices for demo purposes, but in production it could use the `isTouch` logic to conditionally set the prop.
 
 {{"demo": "pages/components/speed-dial/SpeedDialTooltipOpen.js"}}
