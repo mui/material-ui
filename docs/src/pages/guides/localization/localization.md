@@ -65,6 +65,7 @@ const theme = createMuiTheme(
 | Spanish                 | es-ES               | `esES`      |
 | Swedish                 | sv-SE               | `svSE`      |
 | Turkish                 | tr-TR               | `trTR`      |
+| Thai                    | th-TH               | `thTH`      |
 | Ukrainian               | uk-UA               | `ukUA`      |
 | Vietnamese              | vi-VN               | `viVN`      |
 
