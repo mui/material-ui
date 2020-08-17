@@ -3,6 +3,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import GitHubIcon from '@material-ui/icons/GitHub';
+import Chip from '@material-ui/core/Chip';
+import Tooltip from '@material-ui/core/Tooltip';
 import SketchIcon from 'docs/src/modules/components/SketchIcon';
 import FigmaIcon from 'docs/src/modules/components/FigmaIcon';
 import BundleSizeIcon from 'docs/src/modules/components/BundleSizeIcon';
@@ -10,7 +12,7 @@ import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import W3CIcon from 'docs/src/modules/components/W3CIcon';
 import MaterialDesignIcon from 'docs/src/modules/components/MaterialDesignIcon';
 import { useSelector } from 'react-redux';
-import { makeStyles, fade } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,18 +24,6 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(2),
     '& li': {
       margin: theme.spacing(0.5),
-      padding: theme.spacing(0.5, 1, 0.5, 0.5),
-      border: `1px solid ${fade(theme.palette.action.active, 0.12)}`,
-      borderRadius: theme.shape.borderRadius,
-    },
-    '& a': {
-      color: theme.palette.text.primary,
-      textDecoration: 'none',
-      display: 'flex',
-      alignItems: 'center',
-    },
-    '& svg': {
-      marginRight: theme.spacing(1),
     },
   },
 }));
@@ -45,69 +35,123 @@ export default function ComponentLinkHeader(props) {
 
   return (
     <ul className={classes.root}>
-      <li>
-        <a
-          target="_blank"
-          rel="noopener nofollow"
-          href={`https://github.com/mui-org/material-ui/tree/next/packages/material-ui/src/${headers.components[0]}`}
-        >
-          <GitHubIcon />
-          {t('viewGitHubSort')}
-        </a>
-      </li>
       {headers.materialDesign ? (
         <li>
-          <a target="_blank" rel="noopener nofollow" href={headers.materialDesign}>
-            <MaterialDesignIcon /> Material Design
-          </a>
+          <Chip
+            clickable
+            role={undefined}
+            component="a"
+            variant="outlined"
+            rel="nofollow"
+            href={headers.materialDesign}
+            icon={<MaterialDesignIcon />}
+            data-ga-event-category="ComponentLinkHeader"
+            data-ga-event-action="click"
+            data-ga-event-label="Material Design"
+            data-ga-event-split="0.1"
+            label="Material Design"
+          />
         </li>
       ) : null}
       <li>
-        <a
-          target="_blank"
-          rel="noopener nofollow"
-          href={`https://github.com/mui-org/material-ui/issues?q=is%3Aissue+label%3A%22${headers.githubLabel}%22`}
-        >
-          <InfoOutlinedIcon />
-          Feedback
-        </a>
+        <Chip
+          clickable
+          role={undefined}
+          component="a"
+          variant="outlined"
+          rel="nofollow"
+          href={`https://github.com/mui-org/material-ui/issues?q=is%3Aissue+is%3Aopen+label%3A%22${headers.githubLabel}%22`}
+          icon={<InfoOutlinedIcon />}
+          data-ga-event-category="ComponentLinkHeader"
+          data-ga-event-action="click"
+          data-ga-event-label="Feedback"
+          data-ga-event-split="0.1"
+          label="Feedback"
+        />
       </li>
       {headers.waiAria ? (
         <li>
-          <a target="_blank" rel="noopener nofollow" href={headers.waiAria}>
-            <W3CIcon /> WAI-ARIA
-          </a>
+          <Chip
+            clickable
+            role={undefined}
+            component="a"
+            variant="outlined"
+            rel="nofollow"
+            href={headers.waiAria}
+            icon={<W3CIcon />}
+            data-ga-event-category="ComponentLinkHeader"
+            data-ga-event-action="click"
+            data-ga-event-label="WAI-ARIA"
+            data-ga-event-split="0.1"
+            label="WAI-ARIA"
+          />
         </li>
       ) : null}
       <li>
-        <a
-          target="_blank"
-          rel="noopener nofollow"
-          href={`https://bundlephobia.com/result?p=${headers.package}@next#:~:text=${headers.components[0]}`}
-        >
-          <BundleSizeIcon />
-          Bundle size
-        </a>
+        <Tooltip title="Scroll down to 'Exports Analysis' for a more detailed report.">
+          <Chip
+            clickable
+            role={undefined}
+            component="a"
+            variant="outlined"
+            rel="nofollow"
+            href={`https://bundlephobia.com/result?p=${headers.package}@next`}
+            icon={<BundleSizeIcon />}
+            data-ga-event-category="ComponentLinkHeader"
+            data-ga-event-action="click"
+            data-ga-event-label="Bundle size"
+            data-ga-event-split="0.1"
+            label="Bundle size"
+          />
+        </Tooltip>
       </li>
       <li>
-        <a
-          target="_blank"
-          rel="noopener nofollow"
-          href="https://material-ui.com/store/items/sketch-react/"
-        >
-          <SketchIcon />
-          Sketch
-        </a>
+        <Chip
+          clickable
+          role={undefined}
+          component="a"
+          variant="outlined"
+          rel="nofollow"
+          href="https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=component-link-header"
+          icon={<SketchIcon />}
+          data-ga-event-category="ComponentLinkHeader"
+          data-ga-event-action="click"
+          data-ga-event-label="Sketch"
+          data-ga-event-split="0.1"
+          label="Sketch"
+        />
       </li>
       <li>
-        <a
-          target="_blank"
-          rel="noopener nofollow"
-          href="https://material-ui.com/store/items/figma-react/"
-        >
-          <FigmaIcon />
-          Figma
-        </a>
+        <Chip
+          clickable
+          role={undefined}
+          component="a"
+          variant="outlined"
+          rel="nofollow"
+          href="https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=component-link-header"
+          icon={<FigmaIcon />}
+          data-ga-event-category="ComponentLinkHeader"
+          data-ga-event-action="click"
+          data-ga-event-label="Figma"
+          data-ga-event-split="0.1"
+          label="Figma"
+        />
+      </li>
+      <li>
+        <Chip
+          clickable
+          role={undefined}
+          component="a"
+          variant="outlined"
+          rel="nofollow"
+          href={`https://github.com/mui-org/material-ui/tree/next/packages/material-ui/src/${headers.components[0]}`}
+          icon={<GitHubIcon />}
+          data-ga-event-category="ComponentLinkHeader"
+          data-ga-event-action="click"
+          data-ga-event-label="Source"
+          data-ga-event-split="0.1"
+          label={t('viewGitHubSort')}
+        />
       </li>
     </ul>
   );
