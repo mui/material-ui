@@ -9,18 +9,17 @@ import SaveIcon from '@material-ui/icons/Save';
 import EditIcon from '@material-ui/icons/Edit';
 
 const useStyles = makeStyles((theme: Theme) => ({
-    root: {
-      height: 380,
-      transform: 'translateZ(0px)',
-      flexGrow: 1,
-    },
-    speedDial: {
-      position: 'absolute',
-      bottom: theme.spacing(2),
-      right: theme.spacing(2),
-    },
-  }),
-);
+  root: {
+    height: 380,
+    transform: 'translateZ(0px)',
+    flexGrow: 1,
+  },
+  speedDial: {
+    position: 'absolute',
+    bottom: theme.spacing(2),
+    right: theme.spacing(2),
+  },
+}));
 
 const actions = [
   { icon: <FileCopyIcon />, name: 'Copy' },
