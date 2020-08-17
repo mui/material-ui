@@ -58,6 +58,10 @@ Left and right scroll buttons will be presented regardless of the viewport width
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonForce.js", "bg": true}}
 
+If you want to make sure the buttons are always visible, you should customize the opacity.
+
+{{"demo": "pages/components/tabs/ScrollableTabsButtonVisible.js", "bg": true}}
+
 ### Prevent Scroll Buttons
 
 Left and right scroll buttons will never be presented. All scrolling must be initiated through user agent scrolling mechanisms (e.g. left/right swipe, shift-mousewheel, etc.)
