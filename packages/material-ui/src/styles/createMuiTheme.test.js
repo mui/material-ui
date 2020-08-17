@@ -23,12 +23,6 @@ describe('createMuiTheme', () => {
     expect(muiTheme.transitions.duration.shorter).to.not.equal(undefined);
   });
 
-  it('should use the defined spacing for the gutters mixin', () => {
-    const spacing = 100;
-    const muiTheme = createMuiTheme({ spacing });
-    expect(muiTheme.mixins.gutters().paddingLeft).to.equal(spacing * 2);
-  });
-
   describe('shadows', () => {
     it('should provide the default array', () => {
       const muiTheme = createMuiTheme();
