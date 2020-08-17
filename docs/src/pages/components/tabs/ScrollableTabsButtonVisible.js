@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
   },
   scrollButtons: {
-    disabled: {
+    '&.Mui-disabled': {
       opacity: 0.3,
     },
   },
