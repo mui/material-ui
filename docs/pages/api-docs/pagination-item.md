@@ -37,7 +37,7 @@ The `MuiPaginationItem` name can be used for providing [default props](/customiz
 | <span class="prop-name">shape</span> | <span class="prop-type">'circular'<br>&#124;&nbsp;'rounded'</span> | <span class="prop-default">'circular'</span> | The shape of the pagination item. |
 | <span class="prop-name">size</span> | <span class="prop-type">'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'</span> | <span class="prop-default">'medium'</span> | The size of the pagination item. |
 | <span class="prop-name">type</span> | <span class="prop-type">'end-ellipsis'<br>&#124;&nbsp;'first'<br>&#124;&nbsp;'last'<br>&#124;&nbsp;'next'<br>&#124;&nbsp;'page'<br>&#124;&nbsp;'previous'<br>&#124;&nbsp;'start-ellipsis'</span> | <span class="prop-default">'page'</span> | The type of pagination item. |
-| <span class="prop-name">variant</span> | <span class="prop-type">'outlined'<br>&#124;&nbsp;'text'</span> | <span class="prop-default">'text'</span> | The pagination item variant. |
+| <span class="prop-name">variant</span> | <span class="prop-type">'outlined'<br>&#124;&nbsp;'text'<br>&#124;&nbsp;string</span> | <span class="prop-default">'text'</span> | The pagination item variant. |
 
 The `ref` is forwarded to the root element.
 
@@ -51,9 +51,10 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">page</span> | <span class="prop-name">.MuiPaginationItem-page</span> | Styles applied to the root element if `type="page"`.
 | <span class="prop-name">sizeSmall</span> | <span class="prop-name">.MuiPaginationItem-sizeSmall</span> | Styles applied applied to the root element if `size="small"`.
 | <span class="prop-name">sizeLarge</span> | <span class="prop-name">.MuiPaginationItem-sizeLarge</span> | Styles applied applied to the root element if `size="large"`.
+| <span class="prop-name">text</span> | <span class="prop-name">.MuiPaginationItem-text</span> | Styles applied to the root element if `variant="text"`.
 | <span class="prop-name">textPrimary</span> | <span class="prop-name">.MuiPaginationItem-textPrimary</span> | Styles applied to the root element if `variant="text"` and `color="primary"`.
 | <span class="prop-name">textSecondary</span> | <span class="prop-name">.MuiPaginationItem-textSecondary</span> | Styles applied to the root element if `variant="text"` and `color="secondary"`.
-| <span class="prop-name">outlined</span> | <span class="prop-name">.MuiPaginationItem-outlined</span> | Styles applied to the root element if `outlined="true"`.
+| <span class="prop-name">outlined</span> | <span class="prop-name">.MuiPaginationItem-outlined</span> | Styles applied to the root element if `variant="outlined"`.
 | <span class="prop-name">outlinedPrimary</span> | <span class="prop-name">.MuiPaginationItem-outlinedPrimary</span> | Styles applied to the root element if `variant="outlined"` and `color="primary"`.
 | <span class="prop-name">outlinedSecondary</span> | <span class="prop-name">.MuiPaginationItem-outlinedSecondary</span> | Styles applied to the root element if `variant="outlined"` and `color="secondary"`.
 | <span class="prop-name">rounded</span> | <span class="prop-name">.MuiPaginationItem-rounded</span> | Styles applied to the root element if `rounded="true"`.

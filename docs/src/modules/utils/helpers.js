@@ -79,10 +79,25 @@ function includePeerDependencies(deps, versions) {
     react: versions.react,
   });
 
-  if (deps['@material-ui/lab'] && !deps['@material-ui/core']) {
+  if (
+    deps['@material-ui/lab'] ||
+    deps['@material-ui/pickers'] ||
+    deps['@material-ui/x'] ||
+    deps['@material-ui/x-grid'] ||
+    deps['@material-ui/x-pickers'] ||
+    deps['@material-ui/x-tree-view'] ||
+    deps['@material-ui/data-grid']
+  ) {
     deps['@material-ui/core'] = versions['@material-ui/core'];
   }
-  if (deps['@material-ui/pickers'] && !deps['date-fns']) {
+
+  if (deps['@material-ui/x-data-grid-generator']) {
+    deps['@material-ui/core'] = versions['@material-ui/core'];
+    deps['@material-ui/icons'] = versions['@material-ui/icons'];
+    deps['@material-ui/lab'] = versions['@material-ui/lab'];
+  }
+
+  if (deps['@material-ui/pickers']) {
     deps['date-fns'] = 'latest';
   }
 }
@@ -108,7 +123,6 @@ function getDependencies(raw, options = {}) {
     '@material-ui/styles': 'next',
     '@material-ui/system': 'next',
     '@material-ui/utils': 'next',
-    // TODO: Remove once v4 is stable
     '@material-ui/pickers': 'next',
   };
 

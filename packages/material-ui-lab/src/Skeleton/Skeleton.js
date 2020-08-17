@@ -1,6 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
+import { useThemeVariants } from '@material-ui/styles';
 import { fade, withStyles } from '@material-ui/core/styles';
 
 export const styles = (theme) => ({
@@ -103,6 +104,16 @@ const Skeleton = React.forwardRef(function Skeleton(props, ref) {
     ...other
   } = props;
 
+  const themeVariantsClasses = useThemeVariants(
+    {
+      ...props,
+      animation,
+      component: Component,
+      variant,
+    },
+    'MuiSkeleton',
+  );
+
   const hasChildren = Boolean(other.children);
 
   return (
@@ -117,6 +128,7 @@ const Skeleton = React.forwardRef(function Skeleton(props, ref) {
           [classes.fitContent]: hasChildren && !width,
           [classes.heightAuto]: hasChildren && !height,
         },
+        themeVariantsClasses,
         className,
       )}
       {...other}
@@ -169,7 +181,10 @@ Skeleton.propTypes = {
   /**
    * The type of content that will be rendered.
    */
-  variant: PropTypes.oneOf(['circular', 'rectangular', 'text']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['circular', 'rectangular', 'text']),
+    PropTypes.string,
+  ]),
   /**
    * Width of the skeleton.
    * Useful when the skeleton is inside an inline element with no width of its own.
