@@ -255,6 +255,7 @@ export default function makeStyles(stylesOrCreator, options = {}) {
         'MuiTypography',
         'MuiAlert',
         'MuiPagination',
+        'MuiPaginationItem',
       ];
 
       if (
