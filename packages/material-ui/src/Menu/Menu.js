@@ -218,27 +218,27 @@ Menu.propTypes = {
    */
   onClose: PropTypes.func,
   /**
-   * Callback fired before the transition is entering.
+   * Callback fired before the Menu enters.
    */
   onEnter: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
-   * Callback fired when the transition has entered.
+   * Callback fired when the Menu has entered.
    */
   onEntered: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
-   * Callback fired when the transition is entering.
+   * Callback fired when the Menu is entering.
    */
   onEntering: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
-   * Callback fired before the transition is exiting.
+   * Callback fired before the Menu exits.
    */
   onExit: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
-   * Callback fired when the transition has exited.
+   * Callback fired when the Menu has exited.
    */
   onExited: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
-   * Callback fired when the transition is exiting.
+   * Callback fired when the Menu is exiting.
    */
   onExiting: deprecatedPropType(PropTypes.func, 'Use the `TransitionProps` prop instead.'),
   /**
@@ -266,7 +266,8 @@ Menu.propTypes = {
     }),
   ]),
   /**
-   * Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.
+   * Props applied to the transition element.
+   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition) component.
    */
   TransitionProps: PropTypes.object,
   /**
