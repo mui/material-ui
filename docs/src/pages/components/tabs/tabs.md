@@ -9,58 +9,69 @@ components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
 
 [Tabs](https://material.io/design/components/tabs.html) organize and allow navigation between groups of content that are related and at the same level of hierarchy.
 
-## Simple Tabs
+## Basic tabs
 
-A simple example with no frills.
+A basic example with no frills.
 
-{{"demo": "pages/components/tabs/SimpleTabs.js", "bg": true}}
+{{"demo": "pages/components/tabs/BasicTabs.js", "bg": true}}
 
-### Wrapped Labels
+### Wrapped labels
 
 Long labels will automatically wrap on tabs. If the label is too long for the tab, it will overflow and the text will not be visible.
 
 {{"demo": "pages/components/tabs/TabsWrappedLabel.js", "bg": true}}
 
-### Disabled Tab
+### Disabled tab
 
-A Tab can be disabled by setting `disabled` property.
+A Tab can be disabled by setting `disabled` prop.
 
 {{"demo": "pages/components/tabs/DisabledTabs.js", "bg": true}}
 
-## Fixed Tabs
+## Fixed tabs
 
 Fixed tabs should be used with a limited number of tabs and when consistent placement will aid muscle memory.
 
 ### Full width
 
-The `variant="fullWidth"` property should be used for smaller views.
+The `variant="fullWidth"` prop should be used for smaller views.
 This demo also uses [react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views) to animate the Tab transition, and allowing tabs to be swiped on touch devices.
 
 {{"demo": "pages/components/tabs/FullWidthTabs.js", "bg": true}}
 
 ### Centered
 
-The `centered` property should be used for larger views.
+The `centered` prop should be used for larger views.
 
 {{"demo": "pages/components/tabs/CenteredTabs.js", "bg": true}}
 
-## Scrollable Tabs
+## Scrollable tabs
 
-### Automatic Scroll Buttons
+### Automatic scroll buttons
 
-Left and right scroll buttons will automatically be presented on desktop and hidden on mobile. (based on viewport width)
+By default, left and right scroll buttons are automatically presented on desktop and hidden on mobile. (based on viewport width)
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonAuto.js", "bg": true}}
 
-### Forced Scroll Buttons
+### Forced scroll buttons
 
-Left and right scroll buttons will be presented regardless of the viewport width.
+Left and right scroll buttons be presented (reserve space) regardless of the viewport width with `scrollButtons="on"`:
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonForce.js", "bg": true}}
 
-### Prevent Scroll Buttons
+If you want to make sure the buttons are always visible, you should customize the opacity.
 
-Left and right scroll buttons will never be presented. All scrolling must be initiated through user agent scrolling mechanisms (e.g. left/right swipe, shift-mousewheel, etc.)
+```css
+.MuiTabs-scrollButtons.Mui-disabled {
+  opacity: 0.3;
+}
+```
+
+{{"demo": "pages/components/tabs/ScrollableTabsButtonVisible.js", "bg": true}}
+
+### Prevent scroll buttons
+
+Left and right scroll buttons are never be presented with `scrollButtons="off"`.
+All scrolling must be initiated through user agent scrolling mechanisms (e.g. left/right swipe, shift-mousewheel, etc.)
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonPrevent.js", "bg": true}}
 
