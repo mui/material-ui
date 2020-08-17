@@ -254,6 +254,65 @@ describe('<Slider />', () => {
       expect(container.firstChild).to.have.class(classes.disabled);
       expect(getByRole('slider')).to.not.have.attribute('tabIndex');
     });
+
+    const SelfDisablingSlider = () => {
+      const [isDisabled, setIsDisabled] = React.useState(false);
+
+      return <Slider defaultValue={0} disabled={isDisabled} onChange={() => setIsDisabled(true)} />;
+    };
+
+    it('should not respond to drag events after becoming disabled', () => {
+      const { getByRole, container } = render(<SelfDisablingSlider />);
+
+      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+        width: 100,
+        height: 10,
+        bottom: 10,
+        left: 0,
+      }));
+
+      fireEvent.touchStart(
+        container.firstChild,
+        createTouches([{ identifier: 1, clientX: 21, clientY: 0 }]),
+      );
+
+      const thumb = getByRole('slider');
+
+      expect(thumb).to.have.attribute('aria-valuenow', '21');
+
+      fireEvent.touchMove(
+        container.firstChild,
+        createTouches([{ identifier: 1, clientX: 30, clientY: 0 }]),
+      );
+
+      expect(thumb).to.have.attribute('aria-valuenow', '21');
+    });
+
+    it('should not respond to the keyboard after becoming disabled', () => {
+      const { getByRole, container } = render(<SelfDisablingSlider />);
+
+      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+        width: 100,
+        height: 10,
+        bottom: 10,
+        left: 0,
+      }));
+
+      fireEvent.touchStart(
+        container.firstChild,
+        createTouches([{ identifier: 1, clientX: 21, clientY: 0 }]),
+      );
+
+      const thumb = getByRole('slider');
+
+      expect(thumb).to.have.attribute('aria-valuenow', '21');
+
+      fireEvent.keyDown(thumb, {
+        key: 'PageDown',
+      });
+      
+      expect(thumb).to.have.attribute('aria-valuenow', '21');
+    })
   });
 
   describe('prop: track', () => {
