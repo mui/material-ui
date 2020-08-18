@@ -12,7 +12,7 @@
     "@typescript-eslint/parser": "^3.6.0"
   },
   "scripts": {
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/eslint-plugin-material-ui/**/*.test.{js,ts,tsx}' --exclude '**/node_modules/**'"
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/eslint-plugin-material-ui/**/*.test.js' --exclude '**/node_modules/**'"
   },
   "repository": {
     "type": "git",
