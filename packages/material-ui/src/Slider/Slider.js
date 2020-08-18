@@ -138,9 +138,10 @@ export const styles = (theme) => ({
     display: 'inline-block',
     position: 'relative',
     cursor: 'pointer',
-    touchAction: 'none',
     color: theme.palette.primary.main,
     WebkitTapHighlightColor: 'transparent',
+    // Disable scroll capabilities.
+    touchAction: 'none',
     '&$disabled': {
       pointerEvents: 'none',
       cursor: 'default',
@@ -617,7 +618,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   });
 
   const handleTouchStart = useEventCallback((event) => {
-    if (event.cancelable) {
+    if (event.cancelable && iOS) {
       // Workaround as Safari has partial support for touchAction: 'none'.
       event.preventDefault();
     }
