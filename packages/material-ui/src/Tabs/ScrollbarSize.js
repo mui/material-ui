@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import ownerWindow from "../utils";
 import debounce from '../utils/debounce';
 
 const styles = {
@@ -34,11 +35,12 @@ export default function ScrollbarSize(props) {
       }
     });
 
-    window.addEventListener('resize', handleResize);
+    const containerWindow = ownerWindow(nodeRef.current);
+    containerWindow.addEventListener('resize', handleResize);
     return () => {
       handleResize.clear();
-      window.removeEventListener('resize', handleResize);
-    };
+      containerWindow.removeEventListener('resize', handleResize);
+    };	    
   }, [onChange]);
 
   React.useEffect(() => {
