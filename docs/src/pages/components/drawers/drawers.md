@@ -26,7 +26,7 @@ You can make the drawer swipeable with the `SwipeableDrawer` component.
 
 This component comes with a 2 kB gzipped payload overhead.
 Some low-end mobile devices won't be able to follow the fingers at 60 FPS.
-You can use the `disableBackdropTransition` property to help.
+You can use the `disableBackdropTransition` prop to help.
 
 {{"demo": "pages/components/drawers/SwipeableTemporaryDrawer.js"}}
 

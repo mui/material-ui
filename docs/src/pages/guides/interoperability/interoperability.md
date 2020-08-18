@@ -214,10 +214,10 @@ Another approach is to use the `&&` characters in styled-components to [bump up 
 If you attempt to style a Drawer with variant permanent,
 you will likely need to affect the Drawer's child paper element.
 However, the paper is not the root element of Drawer and therefore styled-components customization as above will not work.
-You need to use the [`classes`](/styles/advanced/#overriding-styles-classes-prop) API of Material-UI.
+You need to use the Material-UI [`classes`](/styles/advanced/#overriding-styles-classes-prop) API.
 
 The following example overrides the `label` style of `Button` in addition to the custom styles on the button itself.
-It also works around [this styled-components issue](https://github.com/styled-components/styled-components/issues/439) by "consuming" properties that should not be passed on to the underlying component.
+It also works around [this styled-components issue](https://github.com/styled-components/styled-components/issues/439) by "consuming" props that should not be passed on to the underlying component.
 
 {{"demo": "pages/guides/interoperability/StyledComponentsDeep.js"}}
 
@@ -312,8 +312,8 @@ const StyledButton = styled(Button)`
 The [Portal](/components/portal/) provides a first-class way to render children into a DOM node that exists outside the DOM hierarchy of the parent component.
 Because of the way styled-components scopes its CSS, you may run into issues where styling is not applied.
 
-For example, if you attempt to style the [Menu](/components/menus/) of a [Select](/components/selects/) component using the property `MenuProps`,
-you will need to pass along the `className` property to the element being rendered outside of it's DOM hierarchy.
+For example, if you attempt to style the [Menu](/components/menus/) of a [Select](/components/selects/) component using the `MenuProps` prop,
+you will need to pass along the `className` prop to the element being rendered outside of it's DOM hierarchy.
 The following example shows a workaround:
 
 ```jsx

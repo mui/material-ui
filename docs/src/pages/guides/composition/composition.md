@@ -14,7 +14,7 @@ which can conflict with the `muiName` solution. If you wrap a component, verify 
 that component has this static property set.
 
 If you encounter this issue, you need to use the same tag for your wrapping component
-that is used with the wrapped component. In addition, you should forward the properties,
+that is used with the wrapped component. In addition, you should forward the props,
 as the parent component may need to control the wrapped components props.
 
 Let's see an example:

@@ -6,7 +6,7 @@
 
 You can change the font family with the `theme.typography.fontFamily` property.
 
-For instance, this demo uses the system font instead of the default Roboto font:
+For instance, this example uses the system font instead of the default Roboto font:
 
 ```js
 const theme = createMuiTheme({
@@ -87,7 +87,7 @@ so `rem` units allow us to accommodate the user's settings, resulting in a bette
 Users change font size settings for all kinds of reasons, from poor eyesight to choosing optimum settings
 for devices that can be vastly different in size and viewing distance.
 
-To change the font-size of Material-UI you can provide a `fontSize` property.
+To change the font-size of Material-UI you can provide a `fontSize` prop.
 The default value is `14px`.
 
 ```js
@@ -108,7 +108,7 @@ The computed font size by the browser follows this mathematical equation:
 
 ### Responsive font sizes
 
-The typography variants properties map directly to the generated CSS.
+The `theme.typography.*` [variant](#variants) properties map directly to the generated CSS.
 You can use [media queries](/customization/breakpoints/#api) inside them:
 
 ```js
@@ -152,7 +152,7 @@ You might want to change the `<html>` element default font size. For instance, w
 
 > ⚠️ Changing the font size can harm accessibility ♿️. Most browsers agreed on the default size of 16 pixels, but the user can change it. For instance, someone with an impaired vision could have set their browser’s default font size to something larger.
 
-An `htmlFontSize` theme property is provided for this use case,
+The `theme.typography.htmlFontSize` property is provided for this use case,
 which tells Material-UI what the font-size on the `<html>` element is.
 This is used to adjust the `rem` value so the calculated font-size always match the specification.
 

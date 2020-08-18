@@ -17,7 +17,7 @@
 
 #### Returns
 
-`transition`: A transition CSS value, which composes all properties which should be transitioned, together with the defined duration, easing and duration.
+`transition`: A CSS transition value, which composes all CSS properties that should be transitioned, together with the defined duration, easing and duration.
 
 Use the <code>theme.transitions.create()</code> helper to create consistent transitions for the elements of your UI.</p>
 

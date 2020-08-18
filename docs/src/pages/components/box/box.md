@@ -16,7 +16,7 @@ It's created using the [`styled()`](/styles/api/#styled-style-function-component
 ## Overriding Material-UI components
 
 The Box component wraps your component.
-It creates a new DOM element, a `<div>` by default that can be changed with the `component` property.
+It creates a new DOM element, a `<div>` by default that can be changed with the `component` prop.
 Let's say you want to use a `<span>` instead:
 
 ```jsx
@@ -35,7 +35,7 @@ To workaround the problem, you have two options:
 
 1. Use [`React.cloneElement()`](https://reactjs.org/docs/react-api.html#cloneelement)
 
-The Box component has a `clone` property to enable the usage of the clone element method of React.
+The Box component has a `clone` prop to enable the use of the clone element method of React.
 
 ```jsx
 <Box color="text.primary" clone>
@@ -66,4 +66,4 @@ import Box from '@material-ui/core/Box';
 | <span class="prop-name">clone</span>                     | <span class="prop-type">bool</span>                                                                         | <span class="prop-default">false</span> | If `true`, the box will recycle its children DOM element. It's using `React.cloneElement` internally. |
 | <span class="prop-name">component</span>                 | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func&nbsp;&#124;<br>&nbsp;object<br></span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component.            |
 
-Any other properties supplied will be used by [the style functions](/system/basics/#all-inclusive) or spread to the root element.
+Any other props supplied will be used by [the style functions](/system/basics/#all-inclusive) or spread to the root element.

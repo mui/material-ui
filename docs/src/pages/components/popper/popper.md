@@ -52,7 +52,7 @@ Alternatively, you can use [react-spring](https://github.com/react-spring/react-
 
 ## Faked reference object
 
-The `anchorEl` property can be a reference to a fake DOM element.
+The value of the `anchorEl` prop can be a reference to a fake DOM element.
 You just need to create an object shaped like the [`ReferenceObject`](https://github.com/FezVrasta/popper.js/blob/0642ce0ddeffe3c7c033a412d4d60ce7ec8193c3/packages/popper/index.d.ts#L118-L123).
 
 Highlight part of the text to see the popper:

@@ -25,7 +25,7 @@ Where _sides_ is one of:
 
 Depending on the input and the theme configuration, the following transformation is applied:
 
-- input: `number` & theme: `number`: the property is multiplied by the theme value.
+- input: `number` & theme: `number`: the prop value is multiplied by the theme value.
 
 ```jsx
 const theme = {
@@ -38,7 +38,7 @@ const theme = {
 <Box m={2} /> // margin: 16px;
 ```
 
-- input: `number` & theme: `array`: the property is value is used as the array index.
+- input: `number` & theme: `array`: the prop value is used as the array index.
 
 ```jsx
 const theme = {
@@ -50,7 +50,7 @@ const theme = {
 <Box m={2} /> // margin: 3px;
 ```
 
-- input: `number` & theme: `function`: the function is called with the property value.
+- input: `number` & theme: `function`: the function is called with the prop value.
 
 ```jsx
 const theme = {
@@ -61,7 +61,7 @@ const theme = {
 <Box m={2} /> // margin: 4px;
 ```
 
-- input: `string`: the property is passed as raw CSS value.
+- input: `string`: the prop value is passed as raw CSS value.
 
 ```jsx
 <Box m="2rem" /> // margin: 2rem;
