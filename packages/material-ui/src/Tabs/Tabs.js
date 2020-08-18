@@ -535,7 +535,7 @@ Tabs.propTypes = {
   'aria-labelledby': PropTypes.string,
   /**
    * If `true`, the tabs will be centered.
-   * This property is intended for large views.
+   * This prop is intended for large views.
    */
   centered: PropTypes.bool,
   /**
