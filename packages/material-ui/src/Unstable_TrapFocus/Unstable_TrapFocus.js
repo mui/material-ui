@@ -74,6 +74,13 @@ function Unstable_TrapFocus(props) {
     }
 
     const contain = () => {
+      const { current: rootElement } = rootRef;
+      // Cleanup functions are executed lazily in React 17.
+      // Contain can be called between the component being unmounted and its cleanup function being run.
+      if (rootElement === null) {
+        return;
+      }
+
       if (
         !doc.hasFocus() ||
         disableEnforceFocus ||
