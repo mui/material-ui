@@ -255,14 +255,8 @@ describe('<Slider />', () => {
       expect(getByRole('slider')).to.not.have.attribute('tabIndex');
     });
 
-    const SelfDisablingSlider = () => {
-      const [isDisabled, setIsDisabled] = React.useState(false);
-
-      return <Slider defaultValue={0} disabled={isDisabled} onChange={() => setIsDisabled(true)} />;
-    };
-
     it('should not respond to drag events after becoming disabled', () => {
-      const { getByRole, container } = render(<SelfDisablingSlider />);
+      const { getByRole, setProps, container } = render(<Slider defaultValue={0} />);
 
       stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
         width: 100,
@@ -279,6 +273,8 @@ describe('<Slider />', () => {
       const thumb = getByRole('slider');
 
       expect(thumb).to.have.attribute('aria-valuenow', '21');
+
+      setProps({ disabled: true });
 
       fireEvent.touchMove(
         container.firstChild,
@@ -289,7 +285,7 @@ describe('<Slider />', () => {
     });
 
     it('should not respond to the keyboard after becoming disabled', () => {
-      const { getByRole, container } = render(<SelfDisablingSlider />);
+      const { getByRole, setProps, container } = render(<Slider defaultValue={0} />);
 
       stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
         width: 100,
@@ -307,14 +303,18 @@ describe('<Slider />', () => {
 
       expect(thumb).to.have.attribute('aria-valuenow', '21');
 
-      // If the active element is no longer the thumb, we have already exited the state we're trying to test for.
-      if (document.activeElement === thumb) {
-        fireEvent.keyDown(thumb, {
-          key: 'PageDown',
-        });
-      }
+      setProps({ disabled: true });
 
-      expect(thumb).to.have.attribute('aria-valuenow', '21');
+      expect(thumb).not.toHaveFocus();
+
+      // If the active element is no longer the thumb, we have already exited the state we're trying to test for.
+      // if (document.activeElement === thumb) {
+      //   fireEvent.keyDown(thumb, {
+      //     key: 'PageDown',
+      //   });
+      // }
+
+      // expect(thumb).to.have.attribute('aria-valuenow', '21');
     });
   });
 
