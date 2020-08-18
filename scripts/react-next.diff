@@ -119,26 +119,8 @@ index d78203151f..72ac37571b 100644
      });
    });
  
-diff --git a/packages/material-ui/src/Drawer/Drawer.test.js b/packages/material-ui/src/Drawer/Drawer.test.js
-index de32d9ca79..db44b7585c 100644
---- a/packages/material-ui/src/Drawer/Drawer.test.js
-+++ b/packages/material-ui/src/Drawer/Drawer.test.js
-@@ -18,7 +18,12 @@ describe('<Drawer />', () => {
-   let classes;
-   const render = createClientRender();
- 
--  before(() => {
-+  before(function beforeEachHook() {
-+    if (/jsdom/.test(window.navigator.userAgent)) {
-+      // otherwise test:unit never finishes
-+      this.skip();
-+    }
-+
-     classes = getClasses(
-       <Drawer>
-         <div />
 diff --git a/packages/material-ui/src/Modal/Modal.test.js b/packages/material-ui/src/Modal/Modal.test.js
-index 2a41490811..4dbc5a1600 100644
+index 2a41490811..137b02a5fc 100644
 --- a/packages/material-ui/src/Modal/Modal.test.js
 +++ b/packages/material-ui/src/Modal/Modal.test.js
 @@ -22,7 +22,12 @@ describe('<Modal />', () => {
@@ -155,40 +137,8 @@ index 2a41490811..4dbc5a1600 100644
      savedBodyStyle = document.body.style;
    });
  
-@@ -401,7 +406,14 @@ describe('<Modal />', () => {
-       document.body.removeChild(initialFocus);
-     });
- 
--    it('should focus on the modal when it is opened', () => {
-+    it('should focus on the modal when it is opened', function test() {
-+      const isEdge15 = /Edge\/15\.\d+/.test(window.navigator.userAgent);
-+      const isChrome49 = /Chrome\/49\.\d+/.test(window.navigator.userAgent);
-+      if (isEdge15 || isChrome49) {
-+        // FIXME: unknown why it fails
-+        this.skip();
-+      }
-+
-       const { getByTestId, setProps } = render(
-         <Modal open>
-           <div data-testid="modal">Foo</div>
-@@ -415,7 +427,14 @@ describe('<Modal />', () => {
-       expect(initialFocus).toHaveFocus();
-     });
- 
--    it('should support autoFocus', () => {
-+    it('should support autoFocus', function test() {
-+      const isEdge15 = /Edge\/15\.\d+/.test(window.navigator.userAgent);
-+      const isChrome49 = /Chrome\/49\.\d+/.test(window.navigator.userAgent);
-+      if (isEdge15 || isChrome49) {
-+        // FIXME: unknown why it fails
-+        this.skip();
-+      }
-+
-       const { getByTestId, setProps } = render(
-         <Modal open>
-           <div>
 diff --git a/packages/material-ui/src/Popover/Popover.test.js b/packages/material-ui/src/Popover/Popover.test.js
-index 5fe8d1f2ec..44790f4119 100644
+index 08a1ed4b80..a28903c454 100644
 --- a/packages/material-ui/src/Popover/Popover.test.js
 +++ b/packages/material-ui/src/Popover/Popover.test.js
 @@ -55,7 +55,12 @@ describe('<Popover />', () => {
@@ -205,26 +155,6 @@ index 5fe8d1f2ec..44790f4119 100644
      classes = getClasses(
        <Popover {...defaultProps}>
          <div />
-diff --git a/packages/material-ui/src/Select/Select.test.js b/packages/material-ui/src/Select/Select.test.js
-index d5842bf87c..19e90c7c3d 100644
---- a/packages/material-ui/src/Select/Select.test.js
-+++ b/packages/material-ui/src/Select/Select.test.js
-@@ -663,7 +663,14 @@ describe('<Select />', () => {
-       clock.restore();
-     });
- 
--    it('should not focus on close controlled select', () => {
-+    it('should not focus on close controlled select', function test() {
-+      const isEdge15 = /Edge\/15\.\d+/.test(window.navigator.userAgent);
-+      const isChrome49 = /Chrome\/49\.\d+/.test(window.navigator.userAgent);
-+      if (isEdge15 || isChrome49) {
-+        // FIXME: unknown why it fails
-+        this.skip();
-+      }
-+
-       function ControlledWrapper() {
-         const [open, setOpen] = React.useState(false);
- 
 diff --git a/packages/material-ui/src/Tabs/Tabs.test.js b/packages/material-ui/src/Tabs/Tabs.test.js
 index 9c004c515b..648559f279 100644
 --- a/packages/material-ui/src/Tabs/Tabs.test.js
@@ -257,57 +187,47 @@ index 9cd267a0c0..7323483c87 100644
        });
      });
    });
-diff --git a/packages/material-ui/src/Tooltip/Tooltip.js b/packages/material-ui/src/Tooltip/Tooltip.js
-index 0dfb45f2e6..1eeb34f94b 100644
---- a/packages/material-ui/src/Tooltip/Tooltip.js
-+++ b/packages/material-ui/src/Tooltip/Tooltip.js
-@@ -347,7 +347,8 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
-   const handleLeave = (forward = true) => (event) => {
-     const childrenProps = children.props;
- 
--    if (event.type === 'blur') {
-+    // TODO Should be `blur` once https://github.com/facebook/react/pull/19561 is released
-+    if (event.type === 'focusout') {
-       if (childrenProps.onBlur && forward) {
-         childrenProps.onBlur(event);
-       }
 diff --git a/packages/material-ui/src/Unstable_TrapFocus/Unstable_TrapFocus.js b/packages/material-ui/src/Unstable_TrapFocus/Unstable_TrapFocus.js
-index 5fbc86b1ba..e7b33b024b 100644
+index 0c70635965..bdef6b3c45 100644
 --- a/packages/material-ui/src/Unstable_TrapFocus/Unstable_TrapFocus.js
 +++ b/packages/material-ui/src/Unstable_TrapFocus/Unstable_TrapFocus.js
-@@ -76,6 +76,12 @@ function Unstable_TrapFocus(props) {
-     }
+@@ -112,6 +112,13 @@ function Unstable_TrapFocus(props) {
+     const doc = ownerDocument(rootRef.current);
  
      const contain = (nativeEvent) => {
++      const { current: rootElement } = rootRef;
 +      // Contain can be called between the component being unmounted and its cleanup function being run.
-+      // Cleanup functions are executed lazily in react@next
-+      if (rootRef.current === null) {
++      // Cleanup functions are executed lazily in React 17
++      if (rootElement === null) {
 +        return;
 +      }
 +
        if (
          !doc.hasFocus() ||
          disableEnforceFocus ||
-@@ -157,7 +163,13 @@ function Unstable_TrapFocus(props) {
-         // in nodeToRestore.current being null.
-         // Not all elements in IE 11 have a focus method.
-         // Once IE 11 support is dropped the focus() call can be unconditional.
--        if (nodeToRestore.current && nodeToRestore.current.focus) {
-+        if (
-+          nodeToRestore.current &&
-+          nodeToRestore.current.focus &&
-+          // TODO: Can be removed after https://github.com/jsdom/jsdom/pull/3005 is released.
-+          // We technically only want a WeakRef to nodeToRestore anyway.
-+          nodeToRestore.current.isConnected
-+        ) {
-           nodeToRestore.current.focus();
+@@ -122,7 +129,7 @@ function Unstable_TrapFocus(props) {
+         return;
+       }
+ 
+-      if (!rootRef.current.contains(doc.activeElement)) {
++      if (!rootElement.contains(doc.activeElement)) {
+         // if the focus event is not coming from inside the children's react tree, reset the refs
+         if (
+           (nativeEvent && reactFocusEventTarget.current !== nativeEvent.target) ||
+@@ -137,7 +144,7 @@ function Unstable_TrapFocus(props) {
+           return;
          }
  
+-        rootRef.current.focus();
++        rootElement.focus();
+       } else {
+         activated.current = true;
+       }
 diff --git a/packages/material-ui/src/Unstable_TrapFocus/Unstable_TrapFocus.test.js b/packages/material-ui/src/Unstable_TrapFocus/Unstable_TrapFocus.test.js
-index 061720ce47..eaa59b3f25 100644
+index 174e4ae5d4..ec4c2c90f1 100644
 --- a/packages/material-ui/src/Unstable_TrapFocus/Unstable_TrapFocus.test.js
 +++ b/packages/material-ui/src/Unstable_TrapFocus/Unstable_TrapFocus.test.js
-@@ -59,7 +59,7 @@ describe('<TrapFocus />', () => {
+@@ -60,7 +60,7 @@ describe('<TrapFocus />', () => {
    it('should focus first focusable child in portal', () => {
      const { getByTestId } = render(
        <TrapFocus {...defaultProps} open>
@@ -316,7 +236,7 @@ index 061720ce47..eaa59b3f25 100644
            <Portal>
              <input autoFocus data-testid="auto-focus" />
            </Portal>
-@@ -67,7 +67,8 @@ describe('<TrapFocus />', () => {
+@@ -68,7 +68,8 @@ describe('<TrapFocus />', () => {
        </TrapFocus>,
      );
  
@@ -326,23 +246,7 @@ index 061720ce47..eaa59b3f25 100644
    });
  
    it('should warn if the modal content is not focusable', () => {
-@@ -202,7 +203,14 @@ describe('<TrapFocus />', () => {
-         expect(getByTestId('modal')).toHaveFocus();
-       });
- 
--      it('should restore the focus', () => {
-+      it('should restore the focus', function test() {
-+        const isEdge15 = /Edge\/15\.\d+/.test(window.navigator.userAgent);
-+        const isChrome49 = /Chrome\/49\.\d+/.test(window.navigator.userAgent);
-+        if (isEdge15 || isChrome49) {
-+          // FIXME: unknown why it fails
-+          this.skip();
-+        }
-+
-         const Test = (props) => (
-           <div>
-             <input />
-@@ -223,7 +231,10 @@ describe('<TrapFocus />', () => {
+@@ -382,7 +383,10 @@ describe('<TrapFocus />', () => {
  
          // restore the focus to the first element before triggering the trap
          setProps({ open: false });
@@ -461,39 +365,3 @@ index fdf6df9a0d..aaa3ad1552 100644
      });
    });
  });
-diff --git a/packages/material-ui/test/integration/Select.test.js b/packages/material-ui/test/integration/Select.test.js
-index e396e81914..e0819b15f4 100644
---- a/packages/material-ui/test/integration/Select.test.js
-+++ b/packages/material-ui/test/integration/Select.test.js
-@@ -51,7 +51,14 @@ describe('<Select> integration', () => {
-       clock.restore();
-     });
- 
--    it('should focus the selected item', () => {
-+    it('should focus the selected item', function test() {
-+      const isEdge15 = /Edge\/15\.\d+/.test(window.navigator.userAgent);
-+      const isChrome49 = /Chrome\/49\.\d+/.test(window.navigator.userAgent);
-+      if (isEdge15 || isChrome49) {
-+        // FIXME: unknown why it fails
-+        this.skip();
-+      }
-+
-       const { getByTestId, getAllByRole, getByRole, queryByRole } = render(<SelectAndDialog />);
- 
-       const trigger = getByRole('button');
-@@ -74,7 +81,14 @@ describe('<Select> integration', () => {
-       expect(trigger).toHaveFocus();
-     });
- 
--    it('should be able to change the selected item', () => {
-+    it('should be able to change the selected item', function test() {
-+      const isEdge15 = /Edge\/15\.\d+/.test(window.navigator.userAgent);
-+      const isChrome49 = /Chrome\/49\.\d+/.test(window.navigator.userAgent);
-+      if (isEdge15 || isChrome49) {
-+        // FIXME: unknown why it fails
-+        this.skip();
-+      }
-+
-       const { getAllByRole, getByRole, queryByRole } = render(<SelectAndDialog />);
- 
-       const trigger = getByRole('button');
