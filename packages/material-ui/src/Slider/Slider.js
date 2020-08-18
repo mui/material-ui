@@ -126,6 +126,8 @@ const axisProps = {
 
 const Identity = (x) => x;
 
+const iOS = typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
+
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
@@ -615,8 +617,10 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   });
 
   const handleTouchStart = useEventCallback((event) => {
-    // Workaround as Safari has partial support for touchAction: 'none'.
-    event.preventDefault();
+    if (event.cancelable) {
+      // Workaround as Safari has partial support for touchAction: 'none'.
+      event.preventDefault();
+    }
     const touch = event.changedTouches[0];
     if (touch != null) {
       // A number that uniquely identifies the current finger in the touch session.
@@ -639,11 +643,17 @@ const Slider = React.forwardRef(function Slider(props, ref) {
 
   React.useEffect(() => {
     const { current: slider } = sliderRef;
-    slider.addEventListener('touchstart', handleTouchStart);
+    // TODO: replace with a synthetic event, like onMouseDown.
+    // https://caniuse.com/#search=touch-action
+    slider.addEventListener('touchstart', handleTouchStart, {
+      // Workaround as Safari has partial support for touchAction: 'none'.
+      passive: !iOS,
+    });
+
     const doc = ownerDocument(slider);
 
     return () => {
-      slider.removeEventListener('touchstart', handleTouchStart);
+      slider.removeEventListener('touchstart', handleTouchStart, { passive: !iOS });
       doc.removeEventListener('mousemove', handleTouchMove);
       doc.removeEventListener('mouseup', handleTouchEnd);
       doc.removeEventListener('touchmove', handleTouchMove);
