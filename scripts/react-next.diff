@@ -223,41 +223,6 @@ index 0c70635965..bdef6b3c45 100644
        } else {
          activated.current = true;
        }
-diff --git a/packages/material-ui/src/Unstable_TrapFocus/Unstable_TrapFocus.test.js b/packages/material-ui/src/Unstable_TrapFocus/Unstable_TrapFocus.test.js
-index 174e4ae5d4..ec4c2c90f1 100644
---- a/packages/material-ui/src/Unstable_TrapFocus/Unstable_TrapFocus.test.js
-+++ b/packages/material-ui/src/Unstable_TrapFocus/Unstable_TrapFocus.test.js
-@@ -60,7 +60,7 @@ describe('<TrapFocus />', () => {
-   it('should focus first focusable child in portal', () => {
-     const { getByTestId } = render(
-       <TrapFocus {...defaultProps} open>
--        <div tabIndex={-1}>
-+        <div data-testid="focus-trap-root" tabIndex={-1}>
-           <Portal>
-             <input autoFocus data-testid="auto-focus" />
-           </Portal>
-@@ -68,7 +68,8 @@ describe('<TrapFocus />', () => {
-       </TrapFocus>,
-     );
- 
--    expect(getByTestId('auto-focus')).toHaveFocus();
-+    // FIXME: should be `auto-focus`
-+    expect(getByTestId('focus-trap-root')).toHaveFocus();
-   });
- 
-   it('should warn if the modal content is not focusable', () => {
-@@ -382,7 +383,10 @@ describe('<TrapFocus />', () => {
- 
-         // restore the focus to the first element before triggering the trap
-         setProps({ open: false });
--        expect(getByRole('textbox')).toHaveFocus();
-+
-+        // FIXME: should be
-+        // expect(getByRole('textbox')).toHaveFocus();
-+        expect(getByTestId('modal')).toHaveFocus();
-       });
-     });
-   });
 diff --git a/packages/material-ui/src/internal/SwitchBase.test.js b/packages/material-ui/src/internal/SwitchBase.test.js
 index 8c8f59a9d8..657a5e57bc 100644
 --- a/packages/material-ui/src/internal/SwitchBase.test.js

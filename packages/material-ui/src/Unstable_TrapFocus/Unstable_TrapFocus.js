@@ -169,7 +169,7 @@ function Unstable_TrapFocus(props) {
       }
     };
 
-    doc.addEventListener('focus', contain, true);
+    doc.addEventListener('focusin', contain);
     doc.addEventListener('keydown', loopFocus, true);
 
     // With Edge, Safari and Firefox, no focus related events are fired when the focused area stops being a focused area.
@@ -187,7 +187,7 @@ function Unstable_TrapFocus(props) {
     return () => {
       clearInterval(interval);
 
-      doc.removeEventListener('focus', contain, true);
+      doc.removeEventListener('focusin', contain);
       doc.removeEventListener('keydown', loopFocus, true);
     };
   }, [disableAutoFocus, disableEnforceFocus, disableRestoreFocus, isEnabled, open]);
