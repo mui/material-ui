@@ -112,6 +112,13 @@ function Unstable_TrapFocus(props) {
     const doc = ownerDocument(rootRef.current);
 
     const contain = (nativeEvent) => {
+      const { current: rootElement } = rootRef;
+      // Cleanup functions are executed lazily in React 17.
+      // Contain can be called between the component being unmounted and its cleanup function being run.
+      if (rootElement === null) {
+        return;
+      }
+
       if (
         !doc.hasFocus() ||
         disableEnforceFocus ||
@@ -122,7 +129,7 @@ function Unstable_TrapFocus(props) {
         return;
       }
 
-      if (!rootRef.current.contains(doc.activeElement)) {
+      if (!rootElement.contains(doc.activeElement)) {
         // if the focus event is not coming from inside the children's react tree, reset the refs
         if (
           (nativeEvent && reactFocusEventTarget.current !== nativeEvent.target) ||
@@ -137,7 +144,7 @@ function Unstable_TrapFocus(props) {
           return;
         }
 
-        rootRef.current.focus();
+        rootElement.focus();
       } else {
         activated.current = true;
       }
