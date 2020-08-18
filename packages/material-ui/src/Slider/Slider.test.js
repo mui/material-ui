@@ -307,12 +307,15 @@ describe('<Slider />', () => {
 
       expect(thumb).to.have.attribute('aria-valuenow', '21');
 
-      fireEvent.keyDown(thumb, {
-        key: 'PageDown',
-      });
-      
+      // If the active element is no longer the thumb, we have already exited the state we're trying to test for.
+      if (document.activeElement === thumb) {
+        fireEvent.keyDown(thumb, {
+          key: 'PageDown',
+        });
+      }
+
       expect(thumb).to.have.attribute('aria-valuenow', '21');
-    })
+    });
   });
 
   describe('prop: track', () => {
