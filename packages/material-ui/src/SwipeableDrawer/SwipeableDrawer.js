@@ -54,7 +54,7 @@ function getDomTreeShapes(element, rootNode) {
   // Adapted from https://github.com/oliviertassinari/react-swipeable-views/blob/7666de1dba253b896911adf2790ce51467670856/packages/react-swipeable-views/src/SwipeableViews.js#L129
   let domTreeShapes = [];
 
-  while (element && element !== rootNode) {
+  while (element && element !== rootNode.parentElement) {
     const style = ownerWindow(rootNode).getComputedStyle(element);
 
     if (
