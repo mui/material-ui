@@ -644,7 +644,6 @@ const Slider = React.forwardRef(function Slider(props, ref) {
 
   React.useEffect(() => {
     const { current: slider } = sliderRef;
-    // TODO: replace with a synthetic event, like onMouseDown.
     // https://caniuse.com/#search=touch-action
     slider.addEventListener('touchstart', handleTouchStart, {
       // Workaround as Safari has partial support for touchAction: 'none'.
