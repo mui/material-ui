@@ -449,6 +449,13 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     setOpen(-1);
   });
 
+  if (disabled && active !== -1) {
+    setActive(-1);
+  }
+  if (disabled && focusVisible !== -1) {
+    setFocusVisible(-1);
+  }
+
   const isRtl = theme.direction === 'rtl';
 
   const handleKeyDown = useEventCallback((event) => {

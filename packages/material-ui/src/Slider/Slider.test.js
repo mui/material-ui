@@ -282,6 +282,7 @@ describe('<Slider />', () => {
       );
 
       expect(thumb).to.have.attribute('aria-valuenow', '21');
+      expect(thumb).to.not.have.class(classes.active);
     });
 
     it('should not respond to the keyboard after becoming disabled', () => {
@@ -305,6 +306,7 @@ describe('<Slider />', () => {
       }
 
       expect(thumb).to.have.attribute('aria-valuenow', '0');
+      expect(thumb).to.not.have.class(classes.focusVisible);
     });
   });
 
