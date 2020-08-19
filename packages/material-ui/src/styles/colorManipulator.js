@@ -115,7 +115,7 @@ export function decomposeColor(color) {
   if (['rgb', 'rgba', 'hsl', 'hsla', 'color'].indexOf(type) === -1) {
     throw new MuiError(
       'Material-UI: Unsupported `%s` color.\n' +
-        'We support the following formats: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color().',
+        'The following formats are supported: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color().',
       color,
     );
   }
@@ -133,7 +133,7 @@ export function decomposeColor(color) {
       throw new Error(
         [
           `Material-UI: unsupported \`${colorSpace}\` color space.`,
-          'We support the following spaces: srgb, display-p3, a98-rgb, prophoto-rgb, rec-2020.',
+          'The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rgb, rec-2020.',
         ].join('\n'),
       );
     }
