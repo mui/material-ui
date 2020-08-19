@@ -1,5 +1,5 @@
 import * as babel from '@babel/core';
-import { readFile } from 'fs-extra';
+import { readFile, existsSync } from 'fs-extra';
 import * as path from 'path';
 
 const workspaceRoot = path.join(__dirname, '../../../../');
@@ -96,7 +96,13 @@ function getInheritComponentName(valueNode) {
  * @property {string | undefined} inheritComponent
  */
 export default async function parseTest(componentFilename) {
-  const testFilename = withExtension(componentFilename, '.test.js');
+  const testFilename = ['js', 'ts', 'tsx']
+    .map((extension) => {
+      return withExtension(componentFilename, `.test.${extension}`);
+    })
+    .find((possibleTestFileName) => {
+      return existsSync(possibleTestFileName);
+    });
   const babelParseResult = await parseWithConfig(testFilename, babelConfigPath);
   const descriptor = findConformanceDescriptor(babelParseResult);
 
