@@ -31,6 +31,14 @@ export default function ComponentLinkHeader(props) {
   const classes = useStyles();
   const t = useSelector((state) => state.options.t);
 
+  let folder;
+
+  if (headers.package === '@material-ui/lab') {
+    folder = 'material-ui-lab';
+  } else {
+    folder = 'material-ui';
+  }
+
   return (
     <ul className={classes.root}>
       {headers.materialDesign ? (
@@ -135,22 +143,24 @@ export default function ComponentLinkHeader(props) {
           label="Figma"
         />
       </li>
-      <li>
-        <Chip
-          clickable
-          role={undefined}
-          component="a"
-          variant="outlined"
-          rel="nofollow"
-          href={`https://github.com/mui-org/material-ui/tree/next/packages/material-ui/src/${headers.components[0]}`}
-          icon={<GitHubIcon />}
-          data-ga-event-category="ComponentLinkHeader"
-          data-ga-event-action="click"
-          data-ga-event-label="Source"
-          data-ga-event-split="0.1"
-          label={t('viewGitHubSort')}
-        />
-      </li>
+      {headers.components[0] ? (
+        <li>
+          <Chip
+            clickable
+            role={undefined}
+            component="a"
+            variant="outlined"
+            rel="nofollow"
+            href={`https://github.com/mui-org/material-ui/tree/next/packages/${folder}/src/${headers.components[0]}`}
+            icon={<GitHubIcon />}
+            data-ga-event-category="ComponentLinkHeader"
+            data-ga-event-action="click"
+            data-ga-event-label="Source"
+            data-ga-event-split="0.1"
+            label={t('viewGitHubSort')}
+          />
+        </li>
+      ) : null}
     </ul>
   );
 }

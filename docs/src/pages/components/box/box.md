@@ -1,10 +1,14 @@
 ---
 title: Box React component
+githubLabel: component: Box
+package: @material-ui/core
 ---
 
 # Box
 
 <p class="description">The Box component serves as a wrapper component for most of the CSS utility needs.</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 The Box component packages [all the style functions](/system/basics/#all-inclusive) that are exposed in `@material-ui/system`.
 It's created using the [`styled()`](/styles/api/#styled-style-function-component) function of `@material-ui/core/styles`.
