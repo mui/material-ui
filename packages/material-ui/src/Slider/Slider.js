@@ -138,10 +138,10 @@ export const styles = (theme) => ({
     display: 'inline-block',
     position: 'relative',
     cursor: 'pointer',
-    color: theme.palette.primary.main,
-    WebkitTapHighlightColor: 'transparent',
     // Disable scroll capabilities.
     touchAction: 'none',
+    color: theme.palette.primary.main,
+    WebkitTapHighlightColor: 'transparent',
     '&$disabled': {
       pointerEvents: 'none',
       cursor: 'default',
