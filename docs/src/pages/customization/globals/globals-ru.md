@@ -8,13 +8,15 @@
 
 ```js
 const theme = createMuiTheme({
-  overrides: {
+  components: {
     // Style sheet name ⚛️
     MuiButton: {
-      // Name of the rule
-      text: {
-        // Some CSS
-        color: 'white',
+      overrides: {
+        // Name of the rule
+        textPrimary: {
+          // Some CSS
+          color: 'white',
+        },
       },
     },
   },
@@ -31,11 +33,13 @@ If you are using the [CssBaseline](/components/css-baseline/) component to apply
 
 ```jsx
 const theme = createMuiTheme({
-  overrides: {
+  components: {
     MuiCssBaseline: {
-      '@global': {
-        html: {
-          WebkitFontSmoothing: 'auto',
+      overrides: {
+        '@global': {
+          html: {
+            WebkitFontSmoothing: 'auto',
+          },
         },
       },
     },
@@ -57,11 +61,13 @@ return (
 
 ```js
 const theme = createMuiTheme({
-  props: {
+  components: {
     // Название компоненты
     MuiButtonBase: {
-      // Пример одного из стандартных свойств props
-      disableRipple: true, // Скажи НЕТ эффекту расходящихся волн 💣!
+      props: {
+        // Пример одного из стандартных свойств props
+        disableRipple: true, // Скажи НЕТ эффекту расходящихся волн 💣!
+      },
     },
   },
 });

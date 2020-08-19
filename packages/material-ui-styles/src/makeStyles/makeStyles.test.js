@@ -265,11 +265,13 @@ describe('makeStyles', () => {
         mount(
           <ThemeProvider
             theme={createMuiTheme({
-              overrides: {
+              components: {
                 MuiTextField: {
-                  root: {
-                    padding: 9,
-                    margin: [2, 2, 3],
+                  overrides: {
+                    root: {
+                      padding: 9,
+                      margin: [2, 2, 3],
+                    },
                   },
                 },
               },

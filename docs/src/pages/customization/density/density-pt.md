@@ -38,54 +38,78 @@ O tema é configurado com as seguintes opções:
 
 ```js
 const theme = createMuiTheme({
-  props: {
+  components: {
     MuiButton: {
-      size: 'small',
+      props: {
+        size: 'small',
+      },
     },
     MuiFilledInput: {
-      margin: 'dense',
+      props: {
+        margin: 'dense',
+      },
     },
     MuiFormControl: {
-      margin: 'dense',
+      props: {
+        margin: 'dense',
+      },
     },
     MuiFormHelperText: {
-      margin: 'dense',
+      props: {
+        margin: 'dense',
+      },
     },
     MuiIconButton: {
-      size: 'small',
+      props: {
+        size: 'small',
+      },
+      overrides: {
+        sizeSmall: {
+          // Adjust spacing to reach minimal touch target hitbox
+          marginLeft: 4,
+          marginRight: 4,
+          padding: 12,
+        },
+      },
     },
     MuiInputBase: {
-      margin: 'dense',
+      props: {
+        margin: 'dense',
+      },
     },
     MuiInputLabel: {
-      margin: 'dense',
+      props: {
+        margin: 'dense',
+      },
     },
     MuiListItem: {
-      dense: true,
+      props: {
+        dense: true,
+      },
     },
     MuiOutlinedInput: {
-      margin: 'dense',
+      props: {
+        margin: 'dense',
+      },
     },
     MuiFab: {
-      size: 'small',
+      props: {
+        size: 'small',
+      },
     },
     MuiTable: {
-      size: 'small',
+      props: {
+        size: 'small',
+      },
     },
     MuiTextField: {
-      margin: 'dense',
+      props: {
+        margin: 'dense',
+      },
     },
     MuiToolbar: {
-      variant: 'dense',
-    },
-  },
-  overrides: {
-    MuiIconButton: {
-      sizeSmall: {
-        // Ajusta o espaçamento para atingir o mínimo de toque
-        marginLeft: 4,
-        marginRight: 4,
-        padding: 12,
+      props: {
+        variant: 'dense',
       },
     },
   },

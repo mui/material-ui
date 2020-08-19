@@ -8,13 +8,15 @@ Wenn die Konfigurationsvariablen nicht ausreichen, können Sie die Vorteile der 
 
 ```js
 const theme = createMuiTheme({
-  overrides: {
+  components: {
     // Style sheet name ⚛️
     MuiButton: {
-      // Name of the rule
-      text: {
-        // Some CSS
-        color: 'white',
+      overrides: {
+        // Name of the rule
+        textPrimary: {
+          // Some CSS
+          color: 'white',
+        },
       },
     },
   },
@@ -31,11 +33,13 @@ If you are using the [CssBaseline](/components/css-baseline/) component to apply
 
 ```jsx
 const theme = createMuiTheme({
-  overrides: {
+  components: {
     MuiCssBaseline: {
-      '@global': {
-        html: {
-          WebkitFontSmoothing: 'auto',
+      overrides: {
+        '@global': {
+          html: {
+            WebkitFontSmoothing: 'auto',
+          },
         },
       },
     },
@@ -57,11 +61,13 @@ Sie können die Standard-Eigenschaften aller Komponenten der Material-UI ändern
 
 ```js
 const theme = createMuiTheme({
-  props: {
+  components: {
     // Name der Komponente ⚛️
     MuiButtonBase: {
-      // Die Standardeigenschaften, die verändert werden sollen
-      disableRipple: true, // Keine Welleneffekte in der ganzen Applikation 💣!
+      props: {
+        // Die Standardeigenschaften, die verändert werden sollen
+        disableRipple: true, // Keine Welleneffekte in der ganzen Applikation 💣!
+      },
     },
   },
 });

@@ -8,13 +8,15 @@
 
 ```js
 const theme = createMuiTheme({
-  overrides: {
+  components: {
     // Style sheet name ⚛️
     MuiButton: {
-      // Name of the rule
-      text: {
-        // Some CSS
-        color: 'white',
+      overrides: {
+        // Name of the rule
+        textPrimary: {
+          // Some CSS
+          color: 'white',
+        },
       },
     },
   },
@@ -31,11 +33,13 @@ const theme = createMuiTheme({
 
 ```jsx
 const theme = createMuiTheme({
-  overrides: {
+  components: {
     MuiCssBaseline: {
-      '@global': {
-        html: {
-          WebkitFontSmoothing: 'auto',
+      overrides: {
+        '@global': {
+          html: {
+            WebkitFontSmoothing: 'auto',
+          },
         },
       },
     },
@@ -57,11 +61,13 @@ return (
 
 ```js
 const theme = createMuiTheme({
-  props: {
+  components: {
     // 组件的名称 ⚛️
     MuiButtonBase: {
-      // 需要修改的默认属性
-      disableRipple: true, // 在整个程序中没有更多的ripple 💣!
+      props: {
+        // 需要修改的默认属性
+        disableRipple: true, // 在整个程序中没有更多的ripple 💣!
+      },
     },
   },
 });

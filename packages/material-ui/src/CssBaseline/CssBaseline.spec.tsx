@@ -5,35 +5,41 @@ import { createMuiTheme } from '@material-ui/core';
   // reduced example from
   // https://github.com/mui-org/material-ui/blob/next/docs/src/pages/customization/typography/typography.md
   createMuiTheme({
-    overrides: {
+    components: {
       MuiCssBaseline: {
-        '@global': {
-          '@font-face': [{ fontFamily: 'custom', fontWeight: 600 }],
+        overrides: {
+          '@global': {
+            '@font-face': [{ fontFamily: 'custom', fontWeight: 600 }],
+          },
         },
       },
     },
   });
   // assuming "@global" is a class
   createMuiTheme({
-    overrides: {
+    components: {
       MuiCssBaseline: {
-        '@global': {
-          // @ts-expect-error
-          fontWeight: 'bold',
+        overrides: {
+          '@global': {
+            // @ts-expect-error
+            fontWeight: 'bold',
+          },
         },
       },
     },
   });
   // reset.css
   createMuiTheme({
-    overrides: {
+    components: {
       MuiCssBaseline: {
-        '@global': {
-          ul: {
-            'list-style': 'none',
-          },
-          p: {
-            fontWeight: 'bolde', // undesired, should throw
+        overrides: {
+          '@global': {
+            ul: {
+              'list-style': 'none',
+            },
+            p: {
+              fontWeight: 'bolde', // undesired, should throw
+            },
           },
         },
       },

@@ -8,13 +8,15 @@ When the configuration variables aren't powerful enough, you can take advantage 
 
 ```js
 const theme = createMuiTheme({
-  overrides: {
+  components: {
     // Style sheet name ⚛️
     MuiButton: {
-      // Name of the rule
-      text: {
-        // Some CSS
-        color: 'white',
+      overrides: {
+        // Name of the rule
+        textPrimary: {
+          // Some CSS
+          color: 'white',
+        },
       },
     },
   },
@@ -31,11 +33,13 @@ If you are using the [CssBaseline](/components/css-baseline/) component to apply
 
 ```jsx
 const theme = createMuiTheme({
-  overrides: {
+  components: {
     MuiCssBaseline: {
-      '@global': {
-        html: {
-          WebkitFontSmoothing: 'auto',
+      overrides: {
+        '@global': {
+          html: {
+            WebkitFontSmoothing: 'auto',
+          },
         },
       },
     },
@@ -57,11 +61,13 @@ You can change the default props of all the Material-UI components. A `props` ke
 
 ```js
 const theme = createMuiTheme({
-  props: {
+  components: {
     // Name of the component ⚛️
     MuiButtonBase: {
-      // The default props to change
-      disableRipple: true, // No more ripple, on the whole application 💣!
+      props: {
+        // The default props to change
+        disableRipple: true, // No more ripple, on the whole application 💣!
+      },
     },
   },
 });

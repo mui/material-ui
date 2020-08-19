@@ -12,13 +12,15 @@ To override lab components styles with TypeScript, check [this documentation](/c
 
 ```js
 const theme = createMuiTheme({
-  overrides: {
+  components: {
     // Style sheet name ⚛️
     MuiButton: {
-      // Name of the rule
-      textPrimary: {
-        // Some CSS
-        color: 'white',
+      overrides: {
+        // Name of the rule
+        textPrimary: {
+          // Some CSS
+          color: 'white',
+        },
       },
     },
   },
@@ -37,11 +39,13 @@ If you are using the [CssBaseline](/components/css-baseline/) component to apply
 
 ```jsx
 const theme = createMuiTheme({
-  overrides: {
+  components: {
     MuiCssBaseline: {
-      '@global': {
-        html: {
-          WebkitFontSmoothing: 'auto',
+      overrides: {
+        '@global': {
+          html: {
+            WebkitFontSmoothing: 'auto',
+          },
         },
       },
     },
@@ -66,11 +70,13 @@ To override lab components styles with TypeScript, check [this documentation](/c
 
 ```js
 const theme = createMuiTheme({
-  props: {
+  components: {
     // Name of the component ⚛️
     MuiButtonBase: {
-      // The default props to change
-      disableRipple: true, // No more ripple, on the whole application 💣!
+      props: {
+        // The default props to change
+        disableRipple: true, // No more ripple, on the whole application 💣!
+      },
     },
   },
 });

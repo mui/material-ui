@@ -8,13 +8,15 @@ Quando as variáveis de configuração não são poderosas o suficiente, você p
 
 ```js
 const theme = createMuiTheme({
-  overrides: {
-    // Nome da folha de estilo ⚛️
+  components: {
+    // Style sheet name ⚛️
     MuiButton: {
-      // Nome da regra
-      text: {
-        // Algum CSS
-        color: 'white',
+      overrides: {
+        // Name of the rule
+        textPrimary: {
+          // Some CSS
+          color: 'white',
+        },
       },
     },
   },
@@ -31,11 +33,13 @@ Se você estiver usando o componente [CssBaseline](/components/css-baseline/) pa
 
 ```jsx
 const theme = createMuiTheme({
-  overrides: {
+  components: {
     MuiCssBaseline: {
-      '@global': {
-        html: {
-          WebkitFontSmoothing: 'auto',
+      overrides: {
+        '@global': {
+          html: {
+            WebkitFontSmoothing: 'auto',
+          },
         },
       },
     },
@@ -57,11 +61,13 @@ Você pode alterar as propriedades padrão de todos os componentes de Material-U
 
 ```js
 const theme = createMuiTheme({
-  props: {
+  components: {
     // Nome do componente ⚛️
     MuiButtonBase: {
-      // As propriedades padrão para mudar
-      disableRipple: true, // Sem efeito cascata, em toda a aplicação 💣!
+      props: {
+        // As propriedades padrão para mudar
+        disableRipple: true, // Sem efeito cascata, em toda a aplicação 💣!
+      },
     },
   },
 });
