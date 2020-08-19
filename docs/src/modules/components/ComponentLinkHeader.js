@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import GitHubIcon from '@material-ui/icons/GitHub';
 import Chip from '@material-ui/core/Chip';
 import Tooltip from '@material-ui/core/Tooltip';
 import SketchIcon from 'docs/src/modules/components/SketchIcon';
@@ -143,24 +142,6 @@ export default function ComponentLinkHeader(props) {
           label="Figma"
         />
       </li>
-      {headers.components[0] ? (
-        <li>
-          <Chip
-            clickable
-            role={undefined}
-            component="a"
-            variant="outlined"
-            rel="nofollow"
-            href={`https://github.com/mui-org/material-ui/tree/next/packages/${folder}/src/${headers.components[0]}`}
-            icon={<GitHubIcon />}
-            data-ga-event-category="ComponentLinkHeader"
-            data-ga-event-action="click"
-            data-ga-event-label="Source"
-            data-ga-event-split="0.1"
-            label={t('viewGitHubSort')}
-          />
-        </li>
-      ) : null}
     </ul>
   );
 }
