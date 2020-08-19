@@ -452,9 +452,9 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   const isRtl = theme.direction === 'rtl';
 
   const handleKeyDown = useEventCallback((event) => {
-    // if (disabled) {
-    //   return;
-    // }
+    if (disabled) {
+      return;
+    }
 
     const index = Number(event.currentTarget.getAttribute('data-index'));
     const value = values[index];
@@ -589,10 +589,6 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   };
 
   const handleTouchMove = useEventCallback((nativeEvent) => {
-    // if (disabled) {
-    //   return;
-    // }
-
     const finger = trackFinger(nativeEvent, touchId);
 
     if (!finger) {
