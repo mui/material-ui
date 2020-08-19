@@ -87,7 +87,7 @@ so `rem` units allow us to accommodate the user's settings, resulting in a bette
 Users change font size settings for all kinds of reasons, from poor eyesight to choosing optimum settings
 for devices that can be vastly different in size and viewing distance.
 
-To change the font-size of Material-UI you can provide a `fontSize` prop.
+To change the font-size of Material-UI you can provide a `fontSize` property.
 The default value is `14px`.
 
 ```js
