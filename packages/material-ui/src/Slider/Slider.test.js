@@ -287,34 +287,24 @@ describe('<Slider />', () => {
     it('should not respond to the keyboard after becoming disabled', () => {
       const { getByRole, setProps, container } = render(<Slider defaultValue={0} />);
 
-      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
-        width: 100,
-        height: 10,
-        bottom: 10,
-        left: 0,
-      }));
-
-      fireEvent.touchStart(
-        container.firstChild,
-        createTouches([{ identifier: 1, clientX: 21, clientY: 0 }]),
-      );
-
       const thumb = getByRole('slider');
 
-      expect(thumb).to.have.attribute('aria-valuenow', '21');
+      act(() => {
+        thumb.focus();
+      });
 
       setProps({ disabled: true });
 
-      expect(thumb).not.toHaveFocus();
+      // expect(thumb).not.toHaveFocus();
 
       // If the active element is no longer the thumb, we have already exited the state we're trying to test for.
-      // if (document.activeElement === thumb) {
-      //   fireEvent.keyDown(thumb, {
-      //     key: 'PageDown',
-      //   });
-      // }
+      if (document.activeElement === thumb) {
+        fireEvent.keyDown(thumb, {
+          key: 'PageUp',
+        });
+      }
 
-      // expect(thumb).to.have.attribute('aria-valuenow', '21');
+      expect(thumb).to.have.attribute('aria-valuenow', '0');
     });
   });
 
