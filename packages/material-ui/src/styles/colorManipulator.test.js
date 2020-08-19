@@ -154,7 +154,7 @@ describe('utils/colorManipulator', () => {
       const decomposed = decomposeColor('#111111f8');
       expect(decomposed).to.deep.equal({
         type: 'rgba',
-        space: undefined,
+        colorSpace: undefined,
         values: [17, 17, 17, 0.973],
       });
     });
