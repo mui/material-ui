@@ -187,42 +187,6 @@ index 9cd267a0c0..7323483c87 100644
        });
      });
    });
-diff --git a/packages/material-ui/src/Unstable_TrapFocus/Unstable_TrapFocus.js b/packages/material-ui/src/Unstable_TrapFocus/Unstable_TrapFocus.js
-index 0c70635965..bdef6b3c45 100644
---- a/packages/material-ui/src/Unstable_TrapFocus/Unstable_TrapFocus.js
-+++ b/packages/material-ui/src/Unstable_TrapFocus/Unstable_TrapFocus.js
-@@ -112,6 +112,13 @@ function Unstable_TrapFocus(props) {
-     const doc = ownerDocument(rootRef.current);
- 
-     const contain = (nativeEvent) => {
-+      const { current: rootElement } = rootRef;
-+      // Contain can be called between the component being unmounted and its cleanup function being run.
-+      // Cleanup functions are executed lazily in React 17
-+      if (rootElement === null) {
-+        return;
-+      }
-+
-       if (
-         !doc.hasFocus() ||
-         disableEnforceFocus ||
-@@ -122,7 +129,7 @@ function Unstable_TrapFocus(props) {
-         return;
-       }
- 
--      if (!rootRef.current.contains(doc.activeElement)) {
-+      if (!rootElement.contains(doc.activeElement)) {
-         // if the focus event is not coming from inside the children's react tree, reset the refs
-         if (
-           (nativeEvent && reactFocusEventTarget.current !== nativeEvent.target) ||
-@@ -137,7 +144,7 @@ function Unstable_TrapFocus(props) {
-           return;
-         }
- 
--        rootRef.current.focus();
-+        rootElement.focus();
-       } else {
-         activated.current = true;
-       }
 diff --git a/packages/material-ui/src/internal/SwitchBase.test.js b/packages/material-ui/src/internal/SwitchBase.test.js
 index 8c8f59a9d8..657a5e57bc 100644
 --- a/packages/material-ui/src/internal/SwitchBase.test.js
