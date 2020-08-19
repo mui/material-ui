@@ -46,7 +46,7 @@ withStyles(styles);
 //           Type 'string' is not assignable to type '"-moz-initial" | "inherit" | "initial" | "revert" | "unset" | "column" | "column-reverse" | "row"...'.
 ```
 
-The problem is that the type of the `flexDirection` property is inferred as `string`, which is too arbitrary. To fix this, you can pass the styles object directly to `withStyles`:
+The problem is that the type of the `flexDirection` prop is inferred as `string`, which is too arbitrary. To fix this, you can pass the styles object directly to `withStyles`:
 
 ```ts
 withStyles({
@@ -120,7 +120,7 @@ However to allow these styles to pass TypeScript, the definitions have to be amb
 
 ```ts
 // error because TypeScript thinks `@media (min-width: 960px)` is a class name
-// and `content` is the css property
+// and `content` is the CSS property
 const ambiguousStyles = createStyles({
   content: {
     minHeight: '100vh',
@@ -234,7 +234,7 @@ Unfortunately due to a [current limitation of TypeScript decorators](https://git
 When adding custom properties to the `Theme`, you may continue to use it in a strongly typed way by exploiting
 [TypeScript's module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation).
 
-The following example adds an `appDrawer` property that is merged into the one exported by `material-ui`:
+The following example adds an `appDrawer` prop that is merged into the one exported by `material-ui`:
 
 ```ts
 import { Theme } from '@material-ui/core/styles/createMuiTheme';

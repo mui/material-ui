@@ -59,10 +59,10 @@ Hopefully, you might be able to take advantage of the [`typography`](/customizat
 
 ## Changing the semantic element
 
-The Typography component uses the `variantMapping` property to associate a UI variant with a semantic element.
-It’s important to realize that the style of a typography is independent from the semantic underlying element.
+The Typography component uses the `variantMapping` prop to associate a UI variant with a semantic element.
+It’s important to realize that the style of a typography component is independent from the semantic underlying element.
 
-- You can change the underlying element for a one time occasion with the `component` property:
+- You can change the underlying element for a one-off situation with the `component` prop:
 
 ```jsx
 {

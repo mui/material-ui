@@ -36,7 +36,7 @@ You can use the `arrow` prop to give your tooltip an arrow indicating which elem
 ## Custom child element
 
 The tooltip needs to apply DOM event listeners to its child element.
-If the child is a custom React element, you need to make sure that it spreads its properties to the underlying DOM element.
+If the child is a custom React element, you need to make sure that it spreads its props to the underlying DOM element.
 
 ```jsx
 const MyComponent = React.forwardRef(function MyComponent(props, ref) {
@@ -61,7 +61,7 @@ You can define the types of events that cause a tooltip to show.
 
 ## Controlled Tooltips
 
-You can use the `open`, `onOpen` and `onClose` properties to control the behavior of the tooltip.
+You can use the `open`, `onOpen` and `onClose` props to control the behavior of the tooltip.
 
 {{"demo": "pages/components/tooltips/ControlledTooltips.js"}}
 
@@ -108,8 +108,8 @@ Use a different transition.
 
 ## Showing and hiding
 
-The tooltip is normally shown immediately when the user's mouse hovers over the element, and hides immediately when the user's mouse leaves. A delay in showing or hiding the tooltip can be added through the properties `enterDelay` and `leaveDelay`, as shown in the Controlled Tooltips demo above.
+The tooltip is normally shown immediately when the user's mouse hovers over the element, and hides immediately when the user's mouse leaves. A delay in showing or hiding the tooltip can be added through the `enterDelay` and `leaveDelay` props, as shown in the Controlled Tooltips demo above.
 
-On mobile, the tooltip is displayed when the user longpresses the element and hides after a delay of 1500ms. You can disable this feature with the `disableTouchListener` property.
+On mobile, the tooltip is displayed when the user longpresses the element and hides after a delay of 1500ms. You can disable this feature with the `disableTouchListener` prop.
 
 {{"demo": "pages/components/tooltips/DelayTooltips.js"}}

@@ -17,10 +17,10 @@ You might need to change the style of a component for a specific implementation,
 ### Overriding styles with class names
 
 The first way to override the style of a component is to use **class names**.
-Every component provides a `className` property which is always applied to the root element.
+Every component provides a `className` prop which is always applied to the root element.
 
 This example uses the [`withStyles()`](/styles/basics/#higher-order-component-api) higher-order
-component to inject custom styles into the DOM, and to pass the class name to the `ClassNames` component via its `classes` property.
+component to inject custom styles into the DOM, and to pass the class name to the `ClassNames` component via its `classes` prop.
 You can choose [any other styling solution](/guides/interoperability/), or even plain CSS to create the styles, but be sure to
 consider the [CSS injection order](/styles/advanced/#css-injection-order), as the CSS injected into the DOM
 by Material-UI to style a component has the highest specificity possible, since the `<link>` is injected at the bottom
@@ -30,7 +30,7 @@ of the `<head />` to ensure the components always render correctly.
 
 ### Overriding styles with classes
 
-When the `className` property isn't enough, and you need to access deeper elements, you can take advantage of the `classes` object property to customize all the CSS injected by Material-UI for a given component.
+When the `className` prop isn't enough, and you need to access deeper elements, you can take advantage of the `classes` prop to customize the CSS injected by Material-UI for a given component.
 
 The list of classes for each
 component is documented in the component API page, you should refer to the **CSS section** and **rule name column**.
@@ -69,7 +69,7 @@ Using the dev tools, you know that you need to target the `Button` component and
 ### Shorthand
 
 The above code example can be condensed by using **the same CSS API** as the child component.
-In this example, the `withStyles()` higher-order component is injecting a `classes` property that is used by the [`Button` component](/api/button/#css).
+In this example, the `withStyles()` higher-order component is injecting a `classes` prop that is used by the [`Button` component](/api/button/#css).
 
 ```jsx
 const StyledButton = withStyles({
@@ -114,7 +114,7 @@ Here is an example with the _disable_ state and the button component using a **p
 
 Sometimes, you can't use a **pseudo-class** as the state doesn't exist in the platform.
 Let's take the menu item component and the _selected_ state as an example.
-Aside from accessing nested elements, the `classes` property can be used to customize the special states of Material-UI components:
+Aside from accessing nested elements, the `classes` prop can be used to customize the special states of Material-UI components:
 
 ```css
 .MenuItem {
@@ -206,8 +206,7 @@ compiles to:
 ### Overriding with inline-styles
 
 The second way to override the style of a component is to use the **inline-style** approach.
-Every component provides a `style` property.
-These properties are always applied to the root element.
+Every component provides a `style` prop. These props are always applied to the root element.
 
 You don't have to worry about CSS specificity as the inline-style takes precedence over the regular CSS.
 
@@ -322,7 +321,7 @@ const theme = createMuiTheme({
 
 ### Adding new component variants
 
-You can take advantage of the `variants` key of the `theme` to add new variants to Material-UI components. These new variants, can specify which styles the component should have, if specific properties are defined together.
+You can take advantage of the `variants` key in the `theme` to add new variants to Material-UI components. These new variants, can specify which styles the component should have, if specific props are defined together.
 
 The definitions are specified in an array, under the component's name. For every one of them a class is added in the head. The order is **important**, so make sure that the styles that should win will be specified lastly.
 

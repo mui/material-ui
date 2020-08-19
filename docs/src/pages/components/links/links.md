@@ -8,12 +8,11 @@ components: Link
 
 ## Simple links
 
-The Link component is built on top of the [Typography](/api/typography/) component.
-You can leverage its properties.
+The Link component is built on top of the [Typography](/api/typography/) component, meaning that you can use its props.
 
 {{"demo": "pages/components/links/Links.js"}}
 
-However, the Link component has different default properties than the Typography component:
+However, the Link component has some different default props than the Typography component:
 
 - `color="primary"` as the link needs to stand out.
 - `variant="inherit"` as the link will, most of the time, be used as a child of a Typography component.
@@ -30,7 +29,7 @@ When you use `target="_blank"` with Links, it is [recommended](https://developer
 ## Third-party routing library
 
 One common use case is to perform navigation on the client only, without an HTTP round-trip to the server.
-The `Link` component provides a property to handle this use case: `component`.
+The `Link` component provides the `component` prop to handle this use case.
 
 Here is an [integration example with react-router](/guides/composition/#link).
 

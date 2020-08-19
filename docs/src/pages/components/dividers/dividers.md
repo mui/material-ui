@@ -12,7 +12,7 @@ components: Divider
 ## List Dividers
 
 The divider renders as an `<hr>` by default.
-You can save rendering this DOM element by using the `divider` property on the `ListItem` component.
+You can save rendering this DOM element by using the `divider` prop on the `ListItem` component.
 
 {{"demo": "pages/components/dividers/ListDividers.js", "bg": true}}
 

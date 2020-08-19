@@ -31,7 +31,7 @@ The `MuiTabs` name can be used for providing [default props](/customization/glob
 | <span class="prop-name">action</span> | <span class="prop-type">ref</span> |  | Callback fired when the component mounts. This is useful when you want to trigger an action programmatically. It supports two actions: `updateIndicator()` and `updateScrollButtons()` |
 | <span class="prop-name">aria-label</span> | <span class="prop-type">string</span> |  | The label for the Tabs as a string. |
 | <span class="prop-name">aria-labelledby</span> | <span class="prop-type">string</span> |  | An id or list of ids separated by a space that label the Tabs. |
-| <span class="prop-name">centered</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the tabs will be centered. This property is intended for large views. |
+| <span class="prop-name">centered</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the tabs will be centered. This prop is intended for large views. |
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the component. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a HTML element or a component. |

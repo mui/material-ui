@@ -252,9 +252,9 @@ const styles = (theme) => ({
 
 ### `withWidth([options]) => higher-order component`
 
-Inject a `width` property.
+Inject a `width` prop.
 It does not modify the component passed to it; instead, it returns a new component.
-This `width` breakpoint property match the current screen width.
+This `width` breakpoint prop matches the current screen width.
 It can be one of the following breakpoints:
 
 ```ts
@@ -270,7 +270,7 @@ Some implementation details that might be interesting to being aware of:
 
 1. `options` (_Object_ [optional]):
 
-- `options.withTheme` (_Boolean_ [optional]): Defaults to `false`. Provide the `theme` object to the component as a property.
+- `options.withTheme` (_Boolean_ [optional]): Defaults to `false`. Provide the `theme` object to the component as a prop.
 - `options.noSSR` (_Boolean_ [optional]): Defaults to `false`.
   In order to perform the server-side rendering reconciliation, it needs to render twice.
   A first time with nothing and a second time with the children.
@@ -282,15 +282,15 @@ Some implementation details that might be interesting to being aware of:
   You might want to use a heuristic to approximate
   the screen width of the client browser screen width.
   For instance, you could be using the user-agent or the [client-hints](https://caniuse.com/#search=client%20hint).
-  we also can set the initial width globally using [`custom properties`](/customization/globals/#default-props) on the theme.
-  In order to set the initialWidth we need to pass a custom property with this shape:
+  we also can set the initial width globally using [`custom props`](/customization/globals/#default-props) in the theme.
+  In order to set the initialWidth we need to pass a custom prop with this shape:
 
 ```js
 const theme = createMuiTheme({
   props: {
     // withWidth component ⚛️
     MuiWithWidth: {
-      // Initial width property
+      // Initial width prop
       initialWidth: 'lg', // Breakpoint being globally set 🌎!
     },
   },

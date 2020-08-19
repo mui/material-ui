@@ -47,8 +47,8 @@ const Box = styled.div`${spacing}${palette}`;
 export default Box;
 ```
 
-This Box component now supports new [spacing properties](/system/spacing/#api) and [color properties](/system/palette/#api).
-For instance, you can provide a padding property: `p` and a color property: `color`.
+This Box component now supports new [spacing props](/system/spacing/#api) and [color props](/system/palette/#api).
+For example, you can provide a padding prop: `p` and a color prop: `color`.
 
 ```jsx
 <Box p="1rem" color="grey">
@@ -134,8 +134,7 @@ If you are already using `@material-ui/core`, we encourage you to start with the
 
 ## Responsive
 
-**All** the properties are responsive, we support 3 different APIs.
-It uses this default, but customizable, breakpoints theme structure:
+**All** the props are responsive. There are three different APIs – Array, Object, and Collocation – that each use this default (but customizable) breakpoints theme structure:
 
 ```js
 const values = {
@@ -233,9 +232,9 @@ It's also possible that you want to change the theme path prefix.
 
 1. `options` (_Object_):
 
-- `options.prop` (_String_): The property the style function will be triggered on.
+- `options.prop` (_String_): The prop the style function will be triggered on.
 - `options.cssProperty` (_String|Boolean_ [optional]): Defaults to `options.prop`. The CSS property used.
-  You can disabled this option by providing `false`. When disabled, the property value will handle as a style object on it's own. It can be used for [rendering variants](#variants).
+  You can disabled this option by providing `false`. When disabled, the property value will be handled as a style object on it's own. It can be used for [rendering variants](#variants).
 - `options.themeKey` (_String_ [optional]): The theme path prefix.
 - `options.transform` (_Function_ [optional]): Apply a transformation before outputing a CSS value.
 
@@ -245,7 +244,7 @@ It's also possible that you want to change the theme path prefix.
 
 #### Examples
 
-You can create a component that supports some CSS grid properties like `grid-gap`. By supplying `spacing` as the `themeKey` you can reuse logic enabling the behavior we see in other spacing properties like `padding`.
+You can create a component that supports some CSS grid properties such as `grid-gap`. By supplying `spacing` as the `themeKey` you can reuse logic enabling the behavior we see in other spacing properties like `padding`.
 
 ```jsx
 import styled from 'styled-components';
@@ -315,15 +314,15 @@ const palette = compose(textColor, bgcolor);
 
 ## Variants
 
-The `style()` helper can also be used to maps properties to style objects in a theme.
-In this example, the `variant` property supports all the keys present in `theme.typography`.
+The `style()` helper can also be used to maps props to style objects in a theme.
+In this example, the `variant` prop supports all the keys present in `theme.typography`.
 
 {{"demo": "pages/system/basics/Variant.js", "defaultCodeOpen": true}}
 
-## CSS property
+## CSS prop
 
 If you want to support custom CSS values, you can use the `css()` helper.
-It will process the `css` property.
+It will process the `css` prop.
 
 {{"demo": "pages/system/basics/CssProp.js", "defaultCodeOpen": true}}
 

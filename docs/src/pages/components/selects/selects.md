@@ -56,7 +56,7 @@ Here are some examples of customizing the component. You can learn more about th
 [overrides documentation page](/customization/components/).
 
 The first step is to style the `InputBase` component.
-Once it's styled, you can either use it directly as a text field or provide it to the select `input` property to have a `select` field.
+Once it's styled, you can either use it directly as a text field or provide it to the select `input` prop to have a `select` field.
 
 {{"demo": "pages/components/selects/CustomizedSelects.js"}}
 
@@ -65,7 +65,7 @@ Once it's styled, you can either use it directly as a text field or provide it t
 ## Multiple select
 
 The `Select` component can handle multiple selections.
-It's enabled with the `multiple` property.
+It's enabled with the `multiple` prop.
 
 Like with the single selection, you can pull out the new value by accessing `event.target.value` in the `onChange` callback. It's always an array.
 

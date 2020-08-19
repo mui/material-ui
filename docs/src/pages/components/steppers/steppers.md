@@ -19,9 +19,9 @@ Steppers may display a transient feedback message after a step is saved.
 
 ### Linear
 
-The `Stepper` can be controlled by passing the current step index (zero-based) as the `activeStep` property. `Stepper` orientation is set using the `orientation` property.
+The `Stepper` can be controlled by passing the current step index (zero-based) as the `activeStep` prop. `Stepper` orientation is set using the `orientation` prop.
 
-This example also shows the use of an optional step by placing the `optional` property on the second `Step` component. Note that it's up to you to manage when an optional step is skipped. Once you've determined this for a particular step you must set `completed={false}` to signify that even though the active step index has gone beyond the optional step, it's not actually complete.
+This example also shows the use of an optional step by placing the `optional` prop on the second `Step` component. Note that it's up to you to manage when an optional step is skipped. Once you've determined this for a particular step you must set `completed={false}` to signify that even though the active step index has gone beyond the optional step, it's not actually complete.
 
 {{"demo": "pages/components/steppers/HorizontalLinearStepper.js", "bg": true}}
 
@@ -42,7 +42,7 @@ Here is an example of customizing the component. You can learn more about this i
 
 Non-linear steppers allow users to enter a multi-step flow at any point.
 
-This example is similar to the regular horizontal stepper, except steps are no longer automatically set to `disabled={true}` based on the `activeStep` property.
+This example is similar to the regular horizontal stepper, except steps are no longer automatically set to `disabled={true}` based on the `activeStep` prop.
 
 The use of the `StepButton` here demonstrates clickable step labels, as well as setting the `completed`
 flag. However because steps can be accessed in a non-linear fashion, it's up to your own implementation to

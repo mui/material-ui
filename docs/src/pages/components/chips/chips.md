@@ -18,9 +18,9 @@ not shown in context.
 Examples of Chips, using an image Avatar, SVG Icon Avatar, "Letter"
 and (string) Avatar.
 
-- Chips with the `onClick` property defined change appearance on focus,
+- Chips with the `onClick` prop defined change appearance on focus,
   hover, and click.
-- Chips with the `onDelete` property defined will display a delete
+- Chips with the `onDelete` prop defined will display a delete
   icon which changes appearance on hover.
 
 {{"demo": "pages/components/chips/Chips.js"}}
@@ -35,7 +35,7 @@ Outlined chips offer an alternative style.
 
 An example of rendering multiple Chips from an array of values.
 Deleting a chip removes it from the array. Note that since no
-`onClick` property is defined, the Chip can be focused, but does not
+`onClick` prop is defined, the Chip can be focused, but does not
 gain depth while clicked or touched.
 
 {{"demo": "pages/components/chips/ChipsArray.js", "bg": true}}

@@ -11,12 +11,12 @@ Material-UI provides a number of transitions that can be used to introduce some 
 [motion](https://material.io/design/motion/)
 to your applications components.
 
-To better support server rendering Material-UI provides a `style` property
+To better support server rendering Material-UI provides a `style` prop
 to the children of some transition components (Fade, Grow, Zoom, Slide).
-The `style` property must be applied to the DOM for the animation to work as expected.
+The `style` prop must be applied to the DOM for the animation to work as expected.
 
 ```jsx
-// The `props` object contains a `style` property.
+// The `props` object contains a `style` prop.
 // You need to provide it to the `div` element as shown here.
 function MyComponent(props) {
   return (
@@ -55,18 +55,18 @@ Expand outwards from the center of the child element, while also fading in
 from transparent to opaque.
 
 The second example demonstrates how to change the `transform-origin`, and conditionally applies
-the `timeout` property to change the entry speed.
+the `timeout` prop to change the entry speed.
 
 {{"demo": "pages/components/transitions/SimpleGrow.js", "bg": true}}
 
 ## Slide
 
 Slide in from the edge of the screen.
-The `direction` property controls which edge of the screen the transition starts from.
+The `direction` prop controls which edge of the screen the transition starts from.
 
-The Transition component's `mountOnEnter` property prevents the child component from being mounted
+The Transition component's `mountOnEnter` prop prevents the child component from being mounted
 until `in` is `true`. This prevents the relatively positioned component from scrolling into view
-from its off-screen position. Similarly the `unmountOnExit` property removes the component
+from its off-screen position. Similarly the `unmountOnExit` prop removes the component
 from the DOM after it has been transition off screen.
 
 {{"demo": "pages/components/transitions/SimpleSlide.js", "bg": true}}
