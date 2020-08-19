@@ -524,6 +524,25 @@ const theme = createMuitheme({
   +<Skeleton classes={{ circular: 'custom-circle-classname', rectangular: 'custom-rect-classname',  }} />
   ```
 
+  ### Stepper
+
+- The root component (Paper) was replaced with a div. Stepper no longer has elevation, nor inherits Paper's props.
+
+```diff
+-<Stepper elevation={2}>
+-  <Step>
+-    <StepLabel>Hello world</StepLabel>
+-  </Step>
+-</Stepper>
++<Paper square elevation={2}>
++  <Stepper>
++    <Step>
++      <StepLabel>Hello world</StepLabel>
++    </Step>
++  </Stepper>
++<Paper>
+```
+
 ### TablePagination
 
 - The customization of the table pagination's actions labels must be done with the `getItemAriaLabel` prop. This increases consistency with the `Pagination` component.
