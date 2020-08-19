@@ -296,8 +296,6 @@ describe('<Slider />', () => {
 
       setProps({ disabled: true });
 
-      // expect(thumb).not.toHaveFocus();
-
       // If the active element is no longer the thumb, we have already exited the state we're trying to test for.
       if (document.activeElement === thumb) {
         fireEvent.keyDown(thumb, {
