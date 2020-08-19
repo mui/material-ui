@@ -112,7 +112,7 @@ export function decomposeColor(color) {
   const marker = color.indexOf('(');
   const type = color.substring(0, marker);
 
-  if (['rgb', 'rgba', 'hsl', 'hsla','color'].indexOf(type) === -1) {
+  if (['rgb', 'rgba', 'hsl', 'hsla', 'color'].indexOf(type) === -1) {
     throw new MuiError(
       'Material-UI: Unsupported `%s` color.\n' +
         'We support the following formats: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color().',
