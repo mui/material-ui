@@ -1,21 +1,26 @@
 import * as React from 'react';
-import { makeStyles, Theme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     width: '100%',
     backgroundColor: theme.palette.background.paper,
   },
+  scrollButtons: {
+    '&.Mui-disabled': {
+      opacity: 0.3,
+    },
+  },
 }));
 
-export default function ScrollableTabsButtonAuto() {
+export default function ScrollableTabsButtonVisible() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+  const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
@@ -25,8 +30,11 @@ export default function ScrollableTabsButtonAuto() {
         value={value}
         onChange={handleChange}
         variant="scrollable"
-        scrollButtons="auto"
-        aria-label="scrollable auto tabs example"
+        scrollButtons="on"
+        aria-label="visible arrows tabs example"
+        classes={{
+          scrollButtons: classes.scrollButtons,
+        }}
       >
         <Tab label="Item One" />
         <Tab label="Item Two" />

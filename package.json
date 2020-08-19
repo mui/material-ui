@@ -33,13 +33,13 @@
     "size:why": "size-limit --why packages/material-ui/build/index.js",
     "start": "yarn docs:dev",
     "test": "yarn lint && yarn typescript && yarn test:coverage",
-    "test:coverage": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc mocha 'packages/**/*.test.js' 'docs/**/*.test.js' 'scripts/**/*.test.js' 'test/utils/**/*.test.js' --exclude '**/node_modules/**' && nyc report --reporter=lcovonly",
-    "test:coverage:html": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc mocha 'packages/**/*.test.js' 'docs/**/*.test.js' 'scripts/**/*.test.js' 'test/utils/**/*.test.js' --exclude '**/node_modules/**' && nyc report --reporter=html",
+    "test:coverage": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}' 'scripts/**/*.test.{js,ts,tsx}' 'test/utils/**/*.test.{js,ts,tsx}' --exclude '**/node_modules/**' && nyc report --reporter=lcovonly",
+    "test:coverage:html": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}' 'scripts/**/*.test.{js,ts,tsx}' 'test/utils/**/*.test.{js,ts,tsx}' --exclude '**/node_modules/**' && nyc report --reporter=html",
     "test:karma": "cross-env NODE_ENV=test karma start test/karma.conf.js",
     "test:regressions": "yarn test:regressions:build && rimraf test/regressions/screenshots/chrome/* && vrtest run --config test/vrtest.config.js --record",
     "test:regressions:build": "webpack --config test/regressions/webpack.config.js",
     "test:umd": "node packages/material-ui/test/umd/run.js",
-    "test:unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.js' 'docs/**/*.test.js' 'scripts/**/*.test.js' 'test/utils/**/*.test.js' --exclude '**/node_modules/**'",
+    "test:unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}' 'scripts/**/*.test.{js,ts,tsx}' 'test/utils/**/*.test.{js,ts,tsx}' --exclude '**/node_modules/**'",
     "test:watch": "yarn test:unit --watch",
     "typescript": "lerna run typescript --parallel"
   },
@@ -179,7 +179,7 @@
       "packages/material-ui-styles/src/**/*.js"
     ],
     "exclude": [
-      "**/*.test.js"
+      "**/*.test.{js,ts,tsx}"
     ],
     "sourceMap": false,
     "instrument": false

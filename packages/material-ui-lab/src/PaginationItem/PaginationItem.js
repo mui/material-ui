@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { useThemeVariants } from '@material-ui/styles';
 import { fade, useTheme, withStyles } from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import { capitalize } from '@material-ui/core/utils';
@@ -87,6 +88,8 @@ export const styles = (theme) => ({
       fontSize: theme.typography.pxToRem(22),
     },
   },
+  /* Styles applied to the root element if `variant="text"`. */
+  text: {},
   /* Styles applied to the root element if `variant="text"` and `color="primary"`. */
   textPrimary: {
     '&$selected': {
@@ -121,7 +124,7 @@ export const styles = (theme) => ({
       },
     },
   },
-  /* Styles applied to the root element if `outlined="true"`. */
+  /* Styles applied to the root element if `variant="outlined"`. */
   outlined: {
     border: `1px solid ${
       theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
@@ -214,6 +217,20 @@ const PaginationItem = React.forwardRef(function PaginationItem(props, ref) {
     ...other
   } = props;
 
+  const themeVariantsClasses = useThemeVariants(
+    {
+      ...props,
+      color,
+      disabled,
+      selected,
+      shape,
+      size,
+      type,
+      variant,
+    },
+    'MuiPaginationItem',
+  );
+
   const theme = useTheme();
 
   const normalizedIcons =
@@ -260,6 +277,7 @@ const PaginationItem = React.forwardRef(function PaginationItem(props, ref) {
           [classes.selected]: selected,
           [classes[`size${capitalize(size)}`]]: size !== 'medium',
         },
+        themeVariantsClasses,
         className,
       )}
       {...other}
@@ -332,7 +350,10 @@ PaginationItem.propTypes = {
   /**
    * The pagination item variant.
    */
-  variant: PropTypes.oneOf(['outlined', 'text']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['outlined', 'text']),
+    PropTypes.string,
+  ]),
 };
 
 export default withStyles(styles, { name: 'MuiPaginationItem' })(PaginationItem);

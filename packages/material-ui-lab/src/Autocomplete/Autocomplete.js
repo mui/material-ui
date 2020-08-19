@@ -70,10 +70,10 @@ export const styles = (theme) => ({
     },
     '&[class*="MuiInput-root"][class*="MuiInput-marginDense"]': {
       '& $input': {
-        padding: '4px 4px 5px',
+        padding: '2px 4px 3px',
       },
       '& $input:first-child': {
-        padding: '3px 0 6px',
+        padding: '1px 0 4px',
       },
     },
     '&[class*="MuiOutlinedInput-root"]': {
@@ -85,7 +85,7 @@ export const styles = (theme) => ({
         paddingRight: 52 + 4 + 9,
       },
       '& $input': {
-        padding: '9.5px 4px',
+        padding: '7.5px 4px',
       },
       '& $input:first-child': {
         paddingLeft: 6,
@@ -97,7 +97,7 @@ export const styles = (theme) => ({
     '&[class*="MuiOutlinedInput-root"][class*="MuiOutlinedInput-marginDense"]': {
       padding: 6,
       '& $input': {
-        padding: '4.5px 4px',
+        padding: '2.5px 4px',
       },
     },
     '&[class*="MuiFilledInput-root"]': {
@@ -110,7 +110,7 @@ export const styles = (theme) => ({
         paddingRight: 52 + 4 + 9,
       },
       '& $input': {
-        padding: '9px 4px',
+        padding: '7px 4px',
       },
       '& $endAdornment': {
         right: 9,
@@ -119,7 +119,7 @@ export const styles = (theme) => ({
     '&[class*="MuiFilledInput-root"][class*="MuiFilledInput-marginDense"]': {
       paddingBottom: 1,
       '& $input': {
-        padding: '4.5px 4px',
+        padding: '2.5px 4px',
       },
     },
   },

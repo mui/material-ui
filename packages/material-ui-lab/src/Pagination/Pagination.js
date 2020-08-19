@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { useThemeVariants } from '@material-ui/styles';
 import { withStyles } from '@material-ui/core/styles';
 import usePagination from './usePagination';
 import PaginationItem from '../PaginationItem';
@@ -17,6 +18,10 @@ export const styles = {
     margin: 0,
     listStyle: 'none',
   },
+  /* Styles applied to the root element if `variant="outlined"`. */
+  outlined: {},
+  /* Styles applied to the root element if `variant="text"`. */
+  text: {},
 };
 
 function defaultGetAriaLabel(type, page, selected) {
@@ -52,10 +57,23 @@ const Pagination = React.forwardRef(function Pagination(props, ref) {
 
   const { items } = usePagination({ ...props, componentName: 'Pagination' });
 
+  const themeVariantsClasses = useThemeVariants(
+    {
+      ...props,
+      color,
+      getItemAriaLabel,
+      renderItem,
+      shape,
+      size,
+      variant,
+    },
+    'MuiPaginationItem',
+  );
+
   return (
     <nav
       aria-label="pagination navigation"
-      className={clsx(classes.root, className)}
+      className={clsx(classes.root, classes[variant], themeVariantsClasses, className)}
       ref={ref}
       {...other}
     >
@@ -182,7 +200,10 @@ Pagination.propTypes = {
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['outlined', 'text']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['outlined', 'text']),
+    PropTypes.string,
+  ]),
 };
 
 export default withStyles(styles, { name: 'MuiPagination' })(Pagination);

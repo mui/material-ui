@@ -60,7 +60,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     ...other
   } = props;
 
-  const [value, setValue] = useControlled({
+  const [value, setValueState] = useControlled({
     controlled: valueProp,
     default: defaultValue,
     name: 'Select',
@@ -152,7 +152,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
 
     const child = childrenArray[index];
-    setValue(child.props.value);
+    setValueState(child.props.value);
 
     if (onChange) {
       onChange(event, child);
@@ -179,7 +179,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
 
     if (value !== newValue) {
-      setValue(newValue);
+      setValueState(newValue);
 
       if (onChange) {
         event.persist();

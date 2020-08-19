@@ -1,5 +1,9 @@
 import * as React from 'react';
+import { OverridableStringUnion } from '@material-ui/types';
 import { StandardProps } from '@material-ui/core';
+
+export interface TimelineDotPropsVariantOverrides {}
+export type TimelineDotVariantDefaults = Record<'filled' | 'outlined', true>;
 
 export interface TimelineDotProps extends StandardProps<{}, TimelineDotClassKey> {
   /**
@@ -7,20 +11,22 @@ export interface TimelineDotProps extends StandardProps<{}, TimelineDotClassKey>
    */
   children?: React.ReactNode;
   /**
-   * The dot can appear filled or outlined.
-   */
-  variant?: 'filled' | 'outlined';
-  /**
    * The dot can have a different colors.
    */
   color?: 'inherit' | 'primary' | 'secondary' | 'grey';
+  /**
+   * The dot can appear filled or outlined.
+   */
+  variant?: OverridableStringUnion<TimelineDotVariantDefaults, TimelineDotPropsVariantOverrides>;
 }
 
 export type TimelineDotClassKey =
   | 'root'
-  | 'defaultDefault'
-  | 'defaultPrimary'
-  | 'defaultSecondary'
+  | 'filled'
+  | 'outlined'
+  | 'filledDefault'
+  | 'filledPrimary'
+  | 'filledSecondary'
   | 'outlinedDefault'
   | 'outlinedPrimary'
   | 'outlinedSecondary';

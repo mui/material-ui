@@ -9,9 +9,14 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: '100%',
     backgroundColor: theme.palette.background.paper,
   },
+  scrollButtons: {
+    '&.Mui-disabled': {
+      opacity: 0.3,
+    },
+  },
 }));
 
-export default function ScrollableTabsButtonAuto() {
+export default function ScrollableTabsButtonVisible() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -25,8 +30,11 @@ export default function ScrollableTabsButtonAuto() {
         value={value}
         onChange={handleChange}
         variant="scrollable"
-        scrollButtons="auto"
-        aria-label="scrollable auto tabs example"
+        scrollButtons="on"
+        aria-label="visible arrows tabs example"
+        classes={{
+          scrollButtons: classes.scrollButtons,
+        }}
       >
         <Tab label="Item One" />
         <Tab label="Item Two" />

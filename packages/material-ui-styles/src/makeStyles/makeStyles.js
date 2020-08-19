@@ -253,6 +253,11 @@ export default function makeStyles(stylesOrCreator, options = {}) {
         'MuiPaper',
         'MuiToolbar',
         'MuiTypography',
+        'MuiAlert',
+        'MuiPagination',
+        'MuiPaginationItem',
+        'MuiSkeleton',
+        'MuiTimelineDot',
       ];
 
       if (

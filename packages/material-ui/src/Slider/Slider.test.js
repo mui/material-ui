@@ -26,7 +26,7 @@ function createTouches(touches) {
 }
 
 describe('<Slider />', () => {
-  // Not support by IE 11
+  // only run in supported browsers
   if (typeof Touch === 'undefined') {
     return;
   }

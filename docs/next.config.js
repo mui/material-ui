@@ -10,10 +10,13 @@ const workspaceRoot = path.join(__dirname, '../');
 /**
  * https://github.com/zeit/next.js/blob/287961ed9142a53f8e9a23bafb2f31257339ea98/packages/next/next-server/server/config.ts#L10
  * @typedef {'legacy' | 'blocking' | 'concurrent'} ReactRenderMode
- * legacy - ReactDOM.render(<App />)
- * legacy-strict - ReactDOM.render(<React.StrictMode><App /></React.StrictMode>, Element)
- * blocking - ReactDOM.createSyncRoot(Element).render(<App />)
- * concurrent - ReactDOM.createRoot(Element).render(<App />)
+ *
+ * Values explained:
+ * - legacy - `ReactDOM.render(<App />)`
+ * - legacy-strict - `ReactDOM.render(<React.StrictMode><App /></React.StrictMode>, Element)`
+ * - blocking - `ReactDOM.createSyncRoot(Element).render(<App />)`
+ * - concurrent - `ReactDOM.createRoot(Element).render(<App />)`
+ *
  * @type {ReactRenderMode | 'legacy-strict'}
  */
 const reactMode = 'legacy';
@@ -134,7 +137,6 @@ module.exports = {
       },
     };
   },
-  exportTrailingSlash: true,
   trailingSlash: true,
   // Next.js provides a `defaultPathMap` argument, we could simplify the logic.
   // However, we don't in order to prevent any regression in the `findPages()` method.
