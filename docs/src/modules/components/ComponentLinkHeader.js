@@ -28,14 +28,6 @@ export default function ComponentLinkHeader(props) {
   const { headers } = props;
   const classes = useStyles();
 
-  let folder;
-
-  if (headers.package === '@material-ui/lab') {
-    folder = 'material-ui-lab';
-  } else {
-    folder = 'material-ui';
-  }
-
   return (
     <ul className={classes.root}>
       {headers.materialDesign ? (
