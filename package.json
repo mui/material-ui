@@ -137,7 +137,7 @@
     "rollup-plugin-node-globals": "^1.4.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-size-snapshot": "^0.12.0",
-    "rollup-plugin-terser": "^6.1.0",
+    "rollup-plugin-terser": "^7.0.0",
     "sinon": "^9.0.0",
     "size-limit": "^0.21.0",
     "ts-node": "^8.3.0",
@@ -169,8 +169,7 @@
     "**/cross-fetch": "^3.0.5",
     "**/dot-prop": "^5.2.0",
     "**/hoist-non-react-statics": "^3.3.2",
-    "**/webpack": "^4.44.1",
-    "**/terser": "^4.1.2"
+    "**/webpack": "^4.44.1"
   },
   "nyc": {
     "include": [
