@@ -127,6 +127,12 @@ const axisProps = {
 const Identity = (x) => x;
 
 const iOS = typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
+// Approximate the support of touch-action to iOS.
+// iOS support touch action since v13 which as over 80% of marketing
+// in August 2020.
+// Because the passive vs non passive event doesn't make a significant difference
+// We can keep this logic until we increase the minimum supported version of Safari to v13.
+const touchActionSupport = !iOS;
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
@@ -618,8 +624,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   });
 
   const handleTouchStart = useEventCallback((event) => {
-    if (event.cancelable && iOS) {
-      // Workaround as Safari has partial support for touchAction: 'none'.
+    if (!touchActionSupport) {
       event.preventDefault();
     }
     const touch = event.changedTouches[0];
@@ -646,14 +651,13 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     const { current: slider } = sliderRef;
     // https://caniuse.com/#search=touch-action
     slider.addEventListener('touchstart', handleTouchStart, {
-      // Workaround as Safari has partial support for touchAction: 'none'.
-      passive: !iOS,
+      passive: touchActionSupport,
     });
 
     const doc = ownerDocument(slider);
 
     return () => {
-      slider.removeEventListener('touchstart', handleTouchStart, { passive: !iOS });
+      slider.removeEventListener('touchstart', handleTouchStart, { passive: touchActionSupport });
       doc.removeEventListener('mousemove', handleTouchMove);
       doc.removeEventListener('mouseup', handleTouchEnd);
       doc.removeEventListener('touchmove', handleTouchMove);
