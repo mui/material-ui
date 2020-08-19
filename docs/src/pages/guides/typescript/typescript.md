@@ -42,7 +42,7 @@ const styles = {
 
 withStyles(styles);
 //         ^^^^^^
-//         Types of the `flexDirection`prop are incompatible.
+//         Types of property 'flexDirection' are incompatible.
 //           Type 'string' is not assignable to type '"-moz-initial" | "inherit" | "initial" | "revert" | "unset" | "column" | "column-reverse" | "row"...'.
 ```
 
