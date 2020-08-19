@@ -12,7 +12,7 @@ The Link component is built on top of the [Typography](/api/typography/) compone
 
 {{"demo": "pages/components/links/Links.js"}}
 
-However, the Link component has some different prop defaults than the Typography component:
+However, the Link component has some different default props than the Typography component:
 
 - `color="primary"` as the link needs to stand out.
 - `variant="inherit"` as the link will, most of the time, be used as a child of a Typography component.
