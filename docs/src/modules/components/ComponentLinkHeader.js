@@ -8,7 +8,6 @@ import BundleSizeIcon from 'docs/src/modules/components/BundleSizeIcon';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import W3CIcon from 'docs/src/modules/components/W3CIcon';
 import MaterialDesignIcon from 'docs/src/modules/components/MaterialDesignIcon';
-import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -28,7 +27,6 @@ const useStyles = makeStyles((theme) => ({
 export default function ComponentLinkHeader(props) {
   const { headers } = props;
   const classes = useStyles();
-  const t = useSelector((state) => state.options.t);
 
   let folder;
 
