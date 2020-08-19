@@ -285,7 +285,7 @@ describe('<Slider />', () => {
     });
 
     it('should not respond to the keyboard after becoming disabled', () => {
-      const { getByRole, setProps, container } = render(<Slider defaultValue={0} />);
+      const { getByRole, setProps } = render(<Slider defaultValue={0} />);
 
       const thumb = getByRole('slider');
 
