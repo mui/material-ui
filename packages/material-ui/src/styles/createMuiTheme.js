@@ -53,21 +53,17 @@ function createMuiTheme(options = {}, ...args) {
       'expanded',
       'selected',
     ];
-    const traverse = (node, parentKey, depth = 1) => {
+    const traverse = (node, component) => {
       let key;
 
       // eslint-disable-next-line guard-for-in, no-restricted-syntax
       for (key in node) {
         const child = node[key];
-        if (depth === 1) {
-          if (key.indexOf('Mui') === 0 && child) {
-            traverse(child, key, depth + 1);
-          }
-        } else if (pseudoClasses.indexOf(key) !== -1 && Object.keys(child).length > 0) {
+        if (pseudoClasses.indexOf(key) !== -1 && Object.keys(child).length > 0) {
           if (process.env.NODE_ENV !== 'production') {
             console.error(
               [
-                `Material-UI: The \`${parentKey}\` component increases ` +
+                `Material-UI: The \`${component}\` component increases ` +
                   `the CSS specificity of the \`${key}\` internal state.`,
                 'You can not override it like this: ',
                 JSON.stringify(node, null, 2),
@@ -94,10 +90,10 @@ function createMuiTheme(options = {}, ...args) {
     };
 
     Object.keys(muiTheme.components).forEach(component => {
-      const overrides = muiTheme.components[component].overridse;
+      const overrides = muiTheme.components[component].overrides;
       
-      if(overrides) {
-        traverse(overrides);
+      if(overrides && component.indexOf('Mui') === 0) {
+        traverse(overrides, component);
       }
     });
   }

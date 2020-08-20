@@ -78,7 +78,9 @@ describe('deprecated_createMuiTheme', () => {
         },
       };
       const muiTheme = createMuiTheme({ props });
-      expect(muiTheme.props).to.deep.equal(props);
+      expect(muiTheme.components.MuiDialog.props).to.deep.equal(props.MuiDialog);
+      expect(muiTheme.components.MuiButtonBase.props).to.deep.equal(props.MuiButtonBase);
+      expect(muiTheme.components.MuiPopover.props).to.deep.equal(props.MuiPopover);
     });
   });
 
@@ -89,7 +91,7 @@ describe('deprecated_createMuiTheme', () => {
       expect(() => {
         theme = createMuiTheme({ overrides: { Button: { disabled: { color: 'blue' } } } });
       }).not.toErrorDev();
-      expect(Object.keys(theme.overrides.Button.disabled).length).to.equal(1);
+      expect(Object.keys(theme.components.Button.overrides.disabled).length).to.equal(1);
 
       expect(() => {
         theme = createMuiTheme({ overrides: { MuiButton: { root: { color: 'blue' } } } });
@@ -100,7 +102,7 @@ describe('deprecated_createMuiTheme', () => {
       }).toErrorDev(
         'Material-UI: The `MuiButton` component increases the CSS specificity of the `disabled` internal state.',
       );
-      expect(Object.keys(theme.overrides.MuiButton.disabled).length).to.equal(0);
+      expect(Object.keys(theme.components.MuiButton.overrides.disabled).length).to.equal(0);
     });
   });
 

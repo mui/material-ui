@@ -290,10 +290,12 @@ describe('makeStyles', () => {
 
       it('can be used to remove styles', () => {
         const theme = {
-          overrides: {
+          components: {
             Test: {
-              root: {
-                margin: null,
+              overrides: {
+                root: {
+                  margin: null,
+                },
               },
             },
           },
