@@ -3,9 +3,9 @@ import {
   WithStyles,
   Theme,
   createStyles,
-} from "@material-ui/core/styles";
-import MuiButton, { ButtonProps } from "@material-ui/core/Button";
-import React from "react";
+} from '@material-ui/core/styles';
+import MuiButton, { ButtonProps } from '@material-ui/core/Button';
+import React from 'react';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -15,9 +15,9 @@ const styles = (theme: Theme) =>
       fontFamily: theme.typography.h1.fontFamily,
       padding: theme.spacing(2, 4),
       fontSize: theme.typography.pxToRem(14),
-      boxShadow: "none",
-      "&:active, &:focus": {
-        boxShadow: "none",
+      boxShadow: 'none',
+      '&:active, &:focus': {
+        boxShadow: 'none',
       },
     },
     sizeSmall: {
@@ -31,7 +31,7 @@ const styles = (theme: Theme) =>
   });
 
 function Button<C extends React.ElementType>(
-  props: ButtonProps<C, { component?: C }> & WithStyles<typeof styles>
+  props: ButtonProps<C, { component?: C }> & WithStyles<typeof styles>,
 ) {
   return <MuiButton {...props} />;
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export default function defer<P>(Component: React.ComponentType<P>) {
   const Defer = (props: P) => {

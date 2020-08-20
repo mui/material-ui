@@ -1,31 +1,31 @@
-import React from "react";
+import React from 'react';
 import {
   withStyles,
   Theme,
   WithStyles,
   createStyles,
-} from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import Hidden from "@material-ui/core/Hidden";
-import Container from "@material-ui/core/Container";
-import Typography from "../components/Typography";
-import TextField from "../components/TextField";
-import Snackbar from "../components/Snackbar";
-import Button from "../components/Button";
+} from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import Hidden from '@material-ui/core/Hidden';
+import Container from '@material-ui/core/Container';
+import Typography from '../components/Typography';
+import TextField from '../components/TextField';
+import Snackbar from '../components/Snackbar';
+import Button from '../components/Button';
 
 const styles = (theme: Theme) =>
   createStyles({
     root: {
       marginTop: theme.spacing(10),
       marginBottom: 0,
-      display: "flex",
+      display: 'flex',
     },
     cardWrapper: {
       zIndex: 1,
     },
     card: {
-      display: "flex",
-      justifyContent: "center",
+      display: 'flex',
+      justifyContent: 'center',
       backgroundColor: theme.palette.warning.main,
       padding: theme.spacing(8, 3),
     },
@@ -33,32 +33,32 @@ const styles = (theme: Theme) =>
       maxWidth: 400,
     },
     textField: {
-      width: "100%",
+      width: '100%',
       marginTop: theme.spacing(3),
       marginBottom: theme.spacing(2),
     },
     button: {
-      width: "100%",
+      width: '100%',
     },
     imagesWrapper: {
-      position: "relative",
+      position: 'relative',
     },
     imageDots: {
-      position: "absolute",
+      position: 'absolute',
       top: -67,
       left: -67,
       right: 0,
       bottom: 0,
-      width: "100%",
-      background: "url(/static/onepirate/productCTAImageDots.png)",
+      width: '100%',
+      background: 'url(/static/onepirate/productCTAImageDots.png)',
     },
     image: {
-      position: "absolute",
+      position: 'absolute',
       top: -28,
       left: -28,
       right: 0,
       bottom: 0,
-      width: "100%",
+      width: '100%',
       maxWidth: 600,
     },
   });

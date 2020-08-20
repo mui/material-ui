@@ -1,7 +1,7 @@
-import validator from "validator";
+import validator from 'validator';
 
 export function email(value: string) {
-  return value && !validator.isEmail(value.trim()) ? "Invalid email" : null;
+  return value && !validator.isEmail(value.trim()) ? 'Invalid email' : null;
 }
 
 function isDirty(value: string) {
@@ -10,13 +10,13 @@ function isDirty(value: string) {
 
 export function required(
   requiredFields: string[],
-  values: { [index: string]: string }
+  values: { [index: string]: string },
 ): { [index: string]: string | null } {
   return requiredFields.reduce(
     (fields, field) => ({
       ...fields,
-      ...(isDirty(values[field]) ? undefined : { [field]: "Required" }),
+      ...(isDirty(values[field]) ? undefined : { [field]: 'Required' }),
     }),
-    {}
+    {},
   );
 }

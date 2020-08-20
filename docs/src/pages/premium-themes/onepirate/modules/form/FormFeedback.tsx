@@ -1,7 +1,7 @@
-import React from "react";
-import clsx from "clsx";
-import { withStyles, Theme, WithStyles } from "@material-ui/core/styles";
-import Typography from "../components/Typography";
+import React from 'react';
+import clsx from 'clsx';
+import { withStyles, Theme, WithStyles } from '@material-ui/core/styles';
+import Typography from '../components/Typography';
 
 const styles = (theme: Theme) => ({
   root: {
@@ -25,7 +25,7 @@ interface FormFeedbackProps {
 function FormFeedback(
   props: WithStyles<typeof styles> &
     React.HTMLAttributes<HTMLDivElement> &
-    FormFeedbackProps
+    FormFeedbackProps,
 ) {
   return (
     <div
@@ -35,7 +35,7 @@ function FormFeedback(
           [props.classes.error]: !!props.error,
           [props.classes.success]: !!props.success,
         },
-        props.className
+        props.className,
       )}
     >
       <Typography color="inherit">{props.children}</Typography>

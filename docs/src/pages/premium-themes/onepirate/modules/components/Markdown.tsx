@@ -1,13 +1,13 @@
-import React from "react";
-import ReactMarkdown from "markdown-to-jsx";
+import React from 'react';
+import ReactMarkdown from 'markdown-to-jsx';
 import {
   Theme,
   createStyles,
   withStyles,
   WithStyles,
-} from "@material-ui/core/styles";
-import Typography, { TypographyProps } from "@material-ui/core/Typography";
-import Link from "@material-ui/core/Link";
+} from '@material-ui/core/styles';
+import Typography, { TypographyProps } from '@material-ui/core/Typography';
+import Link from '@material-ui/core/Link';
 
 const styles = (theme: Theme) =>
   createStyles({
