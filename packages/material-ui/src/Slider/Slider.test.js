@@ -296,11 +296,16 @@ describe('<Slider />', () => {
 
       setProps({ disabled: true });
 
-      // If the active element is no longer the thumb, we have already exited the state we're trying to test for.
+      // This branch is necessary because Firefox and Safari will keep focus
+      // on a disabled slider, even though we blur it: 
+      // https://codesandbox.io/s/mui-pr-22247-forked-h151h?file=/src/App.js
       if (document.activeElement === thumb) {
+        expect(thumb).toHaveFocus();
         fireEvent.keyDown(thumb, {
           key: 'PageUp',
         });
+      } else {
+        expect(thumb).not.toHaveFocus();
       }
 
       expect(thumb).to.have.attribute('aria-valuenow', '0');
