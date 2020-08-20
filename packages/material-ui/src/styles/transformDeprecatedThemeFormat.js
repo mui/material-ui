@@ -1,4 +1,4 @@
-const transformV4ThemeToV5 = (inputTheme) => {
+const transformDeprecatedThemeFormat = (inputTheme) => {
   const {
     props,
     variants,
@@ -31,4 +31,4 @@ const transformV4ThemeToV5 = (inputTheme) => {
   return theme;
 }
 
-export default transformV4ThemeToV5;
+export default transformDeprecatedThemeFormat;

@@ -8,7 +8,7 @@ import shape from './shape';
 import createSpacing from './createSpacing';
 import transitions from './transitions';
 import zIndex from './zIndex';
-import transformV4ThemeToV5 from './transformV4ThemeToV5';
+import transformDeprecatedThemeFormat from './transformDeprecatedThemeFormat';
 
 function createMuiTheme(options = {}, ...args) {
   const {
@@ -99,7 +99,7 @@ function createMuiTheme(options = {}, ...args) {
     traverse(muiTheme.overrides);
   }
 
-  return transformV4ThemeToV5(muiTheme);
+  return transformDeprecatedThemeFormat(muiTheme);
 }
 
 export default createMuiTheme;

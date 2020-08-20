@@ -4,13 +4,12 @@ import Button from '@material-ui/core/Button';
 
 const theme = createMuiTheme({
   components: {
-
-  }
-  MuiButtonBase: {
-    // Name of the component ⚛️
-    props: {
-      // The default props to change
-      disableRipple: true, // No more ripple, on the whole application 💣!
+    MuiButtonBase: {
+      // Name of the component ⚛️
+      props: {
+        // The default props to change
+        disableRipple: true, // No more ripple, on the whole application 💣!
+      },
     },
   },
 });

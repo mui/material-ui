@@ -1,7 +1,7 @@
 import { expect } from 'chai';
-import transformV4ThemeToV5 from './transformV4ThemeToV5';
+import transformDeprecatedThemeFormat from './transformDeprecatedThemeFormat';
 
-describe('transformV4ThemeToV5', () => {
+describe('transformDeprecatedThemeFormat', () => {
   describe('props', () => {
     it('moves props to components props', () => {
       const theme = {
@@ -29,9 +29,10 @@ describe('transformV4ThemeToV5', () => {
         },
       };
   
-      expect(transformV4ThemeToV5(theme).components.MuiButton).to.deep.equal({ props: { disabled: true }})
+      expect(transformDeprecatedThemeFormat(theme).components.MuiButton).to.deep.equal({ props: { disabled: true }})
     })
   });
+  // TODO: add tests
   describe('overrides', () => {
   });
   describe('variants', () => {
