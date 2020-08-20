@@ -491,4 +491,14 @@ export interface Components {
     overrides?: Overrides['MuiTypography'];
     variants?: Variants['MuiTypography'];
   };
+  MuiUseMediaQuery?: {
+    props?: ComponentsProps['MuiUseMediaQuery'];
+    overrides?: never;
+    variants?: Variants['MuiUseMediaQuery'];
+  };
+  MuiWithWidth?: {
+    props?: ComponentsProps['MuiWithWidth'];
+    overrides?: never;
+    variants?: Variants['MuiWithWidth'];
+  }
 }

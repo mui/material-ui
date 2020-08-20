@@ -651,7 +651,7 @@ function themeProviderTest() {
   <ThemeProvider theme={{ foo: 1 }}>{null}</ThemeProvider>;
   // @ts-expect-error
   <ThemeProvider<Theme> theme={{ foo: 1 }}>{null}</ThemeProvider>;
-  <ThemeProvider<Theme> theme={{ props: { MuiAppBar: { 'aria-atomic': 'true' } } }}>
+  <ThemeProvider<Theme> theme={{ components: { MuiAppBar: { props: { 'aria-atomic': 'true' } } } }}>
     {null}
   </ThemeProvider>;
 }

@@ -1,19 +1,21 @@
-import { Breakpoints, BreakpointsOptions } from './createBreakpoints';
-import { Mixins, MixinsOptions } from './createMixins';
+/* eslint-disable @typescript-eslint/naming-convention */
+import { BreakpointsOptions } from './createBreakpoints';
+import { MixinsOptions } from './createMixins';
 import { Palette, PaletteOptions } from './createPalette';
-import { Typography, TypographyOptions } from './createTypography';
+import { TypographyOptions } from './createTypography';
 import { Shadows } from './shadows';
-import { Shape, ShapeOptions } from './shape';
-import { Spacing, SpacingOptions } from './createSpacing';
-import { Transitions, TransitionsOptions } from './transitions';
-import { ZIndex, ZIndexOptions } from './zIndex';
+import { ShapeOptions } from './shape';
+import { SpacingOptions } from './createSpacing';
+import { TransitionsOptions } from './transitions';
+import { ZIndexOptions } from './zIndex';
 import { Overrides } from './overrides';
 import { Variants } from './variants';
 import { ComponentsProps } from './props';
+import { Theme } from './createMuiTheme';
 
 export type Direction = 'ltr' | 'rtl';
 
-export interface ThemeOptions {
+export interface DeprecatedThemeOptions {
   shape?: ShapeOptions;
   breakpoints?: BreakpointsOptions;
   direction?: Direction;
@@ -30,23 +32,6 @@ export interface ThemeOptions {
   unstable_strictMode?: boolean;
 }
 
-export interface Theme {
-  shape: Shape;
-  breakpoints: Breakpoints;
-  direction: Direction;
-  mixins: Mixins;
-  overrides?: Overrides;
-  palette: Palette;
-  props?: ComponentsProps;
-  shadows: Shadows;
-  spacing: Spacing;
-  transitions: Transitions;
-  typography: Typography;
-  variants?: Variants;
-  zIndex: ZIndex;
-  unstable_strictMode?: boolean;
-}
-
 /**
  * Generate a theme base on the options received.
  *
@@ -54,4 +39,4 @@ export interface Theme {
  * @param args Deep merge the arguments with the about to be returned theme.
  * @returns A complete, ready to use theme object.
  */
-export default function createMuiTheme(options?: ThemeOptions, ...args: object[]): Theme;
+export default function deprecated_createMuiTheme(options?: DeprecatedThemeOptions, ...args: object[]): Theme;
