@@ -7,10 +7,10 @@ describe('transformDeprecatedThemeFormat', () => {
       const theme = {
         props: {
           MuiButton: {
-            disabled: true
+            disabled: true,
           },
         },
-        overrides: { 
+        overrides: {
           MuiTable: {
             root: {
               background: 'red',
@@ -22,7 +22,7 @@ describe('transformDeprecatedThemeFormat', () => {
             {
               props: { variant: 'dashed' },
               styles: {
-                border: '1px dashed grey'
+                border: '1px dashed grey',
               },
             },
           ],
@@ -30,21 +30,23 @@ describe('transformDeprecatedThemeFormat', () => {
       };
 
       const transformedTheme = transformDeprecatedThemeFormat(theme);
-  
+
       expect(transformedTheme.components.MuiButton.props).to.deep.equal(theme.props.MuiButton);
       expect(transformedTheme.components.MuiFab.variants).to.deep.equal(theme.variants.MuiFab);
-      expect(transformedTheme.components.MuiTable.overrides).to.deep.equal(theme.overrides.MuiTable);
-    })
+      expect(transformedTheme.components.MuiTable.overrides).to.deep.equal(
+        theme.overrides.MuiTable,
+      );
+    });
   });
 
   it('merges props, variants and overrides to components', () => {
     const theme = {
       props: {
         MuiButton: {
-          disabled: true
+          disabled: true,
         },
       },
-      overrides: { 
+      overrides: {
         MuiButton: {
           root: {
             background: 'red',
@@ -56,7 +58,7 @@ describe('transformDeprecatedThemeFormat', () => {
           {
             props: { variant: 'dashed' },
             styles: {
-              border: '1px dashed grey'
+              border: '1px dashed grey',
             },
           },
         ],
@@ -67,20 +69,22 @@ describe('transformDeprecatedThemeFormat', () => {
 
     expect(transformedTheme.components.MuiButton.props).to.deep.equal(theme.props.MuiButton);
     expect(transformedTheme.components.MuiButton.variants).to.deep.equal(theme.variants.MuiButton);
-    expect(transformedTheme.components.MuiButton.overrides).to.deep.equal(theme.overrides.MuiButton);
+    expect(transformedTheme.components.MuiButton.overrides).to.deep.equal(
+      theme.overrides.MuiButton,
+    );
   });
 
   it('merges props, variants and overrides from different components in appropriate key', () => {
     const theme = {
       props: {
         MuiButton: {
-          disabled: true
+          disabled: true,
         },
         MuiFab: {
           color: 'primary',
         },
       },
-      overrides: { 
+      overrides: {
         MuiButton: {
           root: {
             background: 'red',
@@ -97,7 +101,7 @@ describe('transformDeprecatedThemeFormat', () => {
           {
             props: { variant: 'dashed' },
             styles: {
-              border: '1px dashed grey'
+              border: '1px dashed grey',
             },
           },
         ],
@@ -116,11 +120,12 @@ describe('transformDeprecatedThemeFormat', () => {
 
     expect(transformedTheme.components.MuiButton.props).to.deep.equal(theme.props.MuiButton);
     expect(transformedTheme.components.MuiButton.variants).to.deep.equal(theme.variants.MuiButton);
-    expect(transformedTheme.components.MuiButton.overrides).to.deep.equal(theme.overrides.MuiButton);
+    expect(transformedTheme.components.MuiButton.overrides).to.deep.equal(
+      theme.overrides.MuiButton,
+    );
 
     expect(transformedTheme.components.MuiFab.props).to.deep.equal(theme.props.MuiFab);
     expect(transformedTheme.components.MuiFab.variants).to.deep.equal(theme.variants.MuiFab);
     expect(transformedTheme.components.MuiFab.overrides).to.deep.equal(theme.overrides.MuiFab);
   });
-
 });

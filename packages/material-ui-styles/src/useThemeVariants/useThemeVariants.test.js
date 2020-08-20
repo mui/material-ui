@@ -28,7 +28,7 @@ describe('useThemeVariants', () => {
             },
           ],
         },
-      }
+      },
     });
 
     render(

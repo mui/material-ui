@@ -294,7 +294,7 @@ const theme = createMuiTheme({
         // Initial width prop
         initialWidth: 'lg', // Breakpoint being globally set 🌎!
       },
-    },  
+    },
   },
 });
 ```

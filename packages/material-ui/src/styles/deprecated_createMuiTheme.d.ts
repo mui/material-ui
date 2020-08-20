@@ -39,4 +39,7 @@ export interface DeprecatedThemeOptions {
  * @param args Deep merge the arguments with the about to be returned theme.
  * @returns A complete, ready to use theme object.
  */
-export default function deprecated_createMuiTheme(options?: DeprecatedThemeOptions, ...args: object[]): Theme;
+export default function deprecated_createMuiTheme(
+  options?: DeprecatedThemeOptions,
+  ...args: object[]
+): Theme;

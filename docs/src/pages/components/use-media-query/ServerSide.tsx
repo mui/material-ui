@@ -25,7 +25,7 @@ export default function ServerSide() {
             // Change the default options of useMediaQuery
             props: { ssrMatchMedia },
           },
-        }
+        },
       }}
     >
       <MyComponent />

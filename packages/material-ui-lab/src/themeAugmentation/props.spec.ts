@@ -9,7 +9,7 @@ createMuiTheme({
         maximum: 5,
       },
     },
-  }
+  },
 });
 
 // Ensure Autocomplete generics are loose
@@ -27,5 +27,5 @@ createMuiTheme({
         defaultValue: val,
       },
     },
-  }
+  },
 });

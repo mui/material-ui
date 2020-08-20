@@ -493,12 +493,10 @@ export interface Components {
   };
   MuiUseMediaQuery?: {
     props?: ComponentsProps['MuiUseMediaQuery'];
-    overrides?: never;
     variants?: Variants['MuiUseMediaQuery'];
   };
   MuiWithWidth?: {
     props?: ComponentsProps['MuiWithWidth'];
-    overrides?: never;
     variants?: Variants['MuiWithWidth'];
-  }
+  };
 }

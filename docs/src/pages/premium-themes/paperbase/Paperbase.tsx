@@ -48,8 +48,8 @@ let theme = createMuiTheme({
     MuiTab: {
       props: {
         disableRipple: true,
-      }
-    }
+      },
+    },
   },
   mixins: {
     toolbar: {
@@ -59,7 +59,7 @@ let theme = createMuiTheme({
 });
 
 theme = {
-  ...theme, 
+  ...theme,
   components: {
     MuiDrawer: {
       overrides: {
@@ -157,7 +157,6 @@ theme = {
     },
   },
 };
-
 
 const drawerWidth = 256;
 

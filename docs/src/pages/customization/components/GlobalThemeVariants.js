@@ -49,7 +49,7 @@ const theme = createMuiTheme({
         },
       ],
     },
-  }
+  },
 });
 
 export default function GlobalThemeVariants() {

@@ -114,7 +114,7 @@ const theme = createMuiTheme({
         disabled: true,
       },
       overrides: {
-         // Name of the styleSheet
+        // Name of the styleSheet
         root: {
           // Name of the rule
           background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
@@ -158,8 +158,8 @@ const theme2 = createMuiTheme({
     MuiButtonBase: {
       props: {
         disableRipple: true,
-      }
-    }
+      },
+    },
   },
 });
 
