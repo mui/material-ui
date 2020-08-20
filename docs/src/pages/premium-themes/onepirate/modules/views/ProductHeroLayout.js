@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
@@ -78,7 +78,7 @@ function ProductHeroLayout(props) {
 
 ProductHeroLayout.propTypes = {
   backgroundClassName: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   classes: PropTypes.object.isRequired,
 };
 

@@ -1,7 +1,4 @@
-/* eslint-disable import/order */
-import withRoot from './modules/withRoot';
-// --- Post bootstrap -----
-import * as React from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
@@ -14,6 +11,7 @@ import { email, required } from './modules/form/validation';
 import RFTextField from './modules/form/RFTextField';
 import FormButton from './modules/form/FormButton';
 import FormFeedback from './modules/form/FormFeedback';
+import withRoot from './modules/withRoot';
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -39,9 +37,9 @@ function SignUp() {
     );
 
     if (!errors.email) {
-      const emailError = email(values.email, values);
+      const emailError = email(values.email);
       if (emailError) {
-        errors.email = email(values.email, values);
+        errors.email = email(values.email);
       }
     }
 
@@ -71,13 +69,14 @@ function SignUp() {
           subscription={{ submitting: true }}
           validate={validate}
         >
-          {({ handleSubmit2, submitting }) => (
+          {({ handleSubmit: handleSubmit2, submitting }) => (
             <form onSubmit={handleSubmit2} className={classes.form} noValidate>
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <Field
                     autoFocus
                     component={RFTextField}
+                    disabled={submitting || sent}
                     autoComplete="fname"
                     fullWidth
                     label="First name"
@@ -88,6 +87,7 @@ function SignUp() {
                 <Grid item xs={12} sm={6}>
                   <Field
                     component={RFTextField}
+                    disabled={submitting || sent}
                     autoComplete="lname"
                     fullWidth
                     label="Last name"

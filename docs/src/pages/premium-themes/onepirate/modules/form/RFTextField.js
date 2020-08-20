@@ -1,5 +1,6 @@
-import * as React from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+
 import TextField from '../components/TextField';
 
 function RFTextField(props) {
@@ -13,7 +14,7 @@ function RFTextField(props) {
 
   return (
     <TextField
-      error={Boolean(touched && (error || submitError))}
+      error={Boolean(!!touched && (error || submitError))}
       {...input}
       {...other}
       InputProps={{
@@ -28,12 +29,49 @@ function RFTextField(props) {
 }
 
 RFTextField.propTypes = {
+  /**
+   * This prop helps users to fill forms faster, especially on mobile devices.
+   * The name can be confusing, as it's more like an autofill.
+   * You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).
+   */
   autoComplete: PropTypes.string,
-  input: PropTypes.object.isRequired,
+  input: PropTypes.shape({
+    checked: PropTypes.bool,
+    multiple: PropTypes.bool,
+    name: PropTypes.string.isRequired,
+    onBlur: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
+    onFocus: PropTypes.func.isRequired,
+    type: PropTypes.string,
+    value: PropTypes.string.isRequired,
+  }).isRequired,
+  /**
+   * Props applied to the Input element.
+   * It will be a [`FilledInput`](/api/filled-input/),
+   * [`OutlinedInput`](/api/outlined-input/) or [`Input`](/api/input/)
+   * component depending on the `variant` prop value.
+   */
   InputProps: PropTypes.object,
   meta: PropTypes.shape({
-    error: PropTypes.string,
-    touched: PropTypes.bool.isRequired,
+    active: PropTypes.bool,
+    data: PropTypes.object,
+    dirty: PropTypes.bool,
+    dirtySinceLastSubmit: PropTypes.bool,
+    error: PropTypes.any,
+    initial: PropTypes.string,
+    invalid: PropTypes.bool,
+    length: PropTypes.number,
+    modified: PropTypes.bool,
+    modifiedSinceLastSubmit: PropTypes.bool,
+    pristine: PropTypes.bool,
+    submitError: PropTypes.any,
+    submitFailed: PropTypes.bool,
+    submitSucceeded: PropTypes.bool,
+    submitting: PropTypes.bool,
+    touched: PropTypes.bool,
+    valid: PropTypes.bool,
+    validating: PropTypes.bool,
+    visited: PropTypes.bool,
   }).isRequired,
 };
 

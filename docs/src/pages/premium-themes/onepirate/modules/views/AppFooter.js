@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
@@ -83,7 +83,7 @@ export default function AppFooter() {
             <Grid
               container
               direction="column"
-              justifyContent="flex-end"
+              justify="flex-end"
               className={classes.iconsWrapper}
               spacing={2}
             >
@@ -127,6 +127,7 @@ export default function AppFooter() {
               Language
             </Typography>
             <TextField
+              size="medium"
               select
               SelectProps={{
                 native: true,
