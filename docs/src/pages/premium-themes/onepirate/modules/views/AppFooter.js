@@ -83,6 +83,7 @@ export default function AppFooter() {
             <Grid
               container
               direction="column"
+              justifyContent="flex-end"
               className={classes.iconsWrapper}
               spacing={2}
             >
