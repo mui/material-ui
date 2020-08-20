@@ -58,12 +58,10 @@ const theme = createMuiTheme({
   typography: {
     fontFamily: 'Raleway, Arial',
   },
-  components: {
+  overrides: {
     MuiCssBaseline: {
-      overrides: {
-        '@global': {
-          '@font-face': [raleway],
-        },
+      '@global': {
+        '@font-face': [raleway],
       },
     },
   },

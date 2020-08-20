@@ -47,13 +47,11 @@ Der Ripple-Effekt kommt ausschließlich von der `BaseButton` Komponente. Sie kö
 import { createMuiTheme } from '@material-ui/core';
 
 const theme = createMuiTheme({
-  components: {
-    // Name of the component ⚛️    
+  props: {
+    // Name of the component ⚛️
     MuiButtonBase: {
-      props: {
-        // The properties to apply
-        disableRipple: true, // No more ripple, on the whole application 💣!
-      },
+      // The properties to apply
+      disableRipple: true, // No more ripple, on the whole application 💣!
     },
   },
 });
@@ -82,16 +80,14 @@ You can go one step further by disabling all transitions and animations effects:
 import { createMuiTheme } from '@material-ui/core';
 
 const theme = createMuiTheme({
-  components: {
+  overrides: {
     // Name of the component ⚛️
     MuiCssBaseline: {
-      overrides: {
-        // Name of the rule
-        '@global': {
-          '*, *::before, *::after': {
-            transition: 'none !important',
-            animation: 'none !important',
-          },
+      // Name of the rule
+      '@global': {
+        '*, *::before, *::after': {
+          transition: 'none !important',
+          animation: 'none !important',
         },
       },
     },

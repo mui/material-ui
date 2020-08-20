@@ -277,12 +277,10 @@ const GlobalCss = withStyles({
 
 ```jsx
 const theme = createMuiTheme({
-  components: {
+  overrides: {
     MuiButton: {
-      overrides: {
-        root: {
-          fontSize: '1rem',
-        },
+      root: {
+        fontSize: '1rem',
       },
     },
   },

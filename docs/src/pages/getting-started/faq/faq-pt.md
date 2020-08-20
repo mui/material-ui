@@ -47,13 +47,11 @@ O efeito cascata é exclusivamente proveniente do componente `BaseButton`. Você
 import { createMuiTheme } from '@material-ui/core';
 
 const theme = createMuiTheme({
-  components: {
-    // Name of the component ⚛️    
+  props: {
+    // Nome do componente ⚛️
     MuiButtonBase: {
-      props: {
-        // The properties to apply
-        disableRipple: true, // No more ripple, on the whole application 💣!
-      },
+      // As propriedades para aplicar
+      disableRipple: true, // Sem efeito cascata, em toda aplicação 💣!
     },
   },
 });
@@ -82,16 +80,14 @@ Você pode ir além, desabilitando todas as transições e efeitos de animaçõe
 import { createMuiTheme } from '@material-ui/core';
 
 const theme = createMuiTheme({
-  components: {
-    // Name of the component ⚛️    
+  overrides: {
+    // Nome do componente ⚛️
     MuiCssBaseline: {
-      overrides: {
-        // Name of the rule
-        '@global': {
-          '*, *::before, *::after': {
-            transition: 'none !important',
-            animation: 'none !important',
-          },
+      // Nome da regra
+      '@global': {
+        '*, *::before, *::after': {
+          transition: 'none !important',
+          animation: 'none !important',
         },
       },
     },

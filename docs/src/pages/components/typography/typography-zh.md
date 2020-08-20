@@ -63,21 +63,19 @@ import 'fontsource-roboto';
 
 ```js
 const theme = createMuiTheme({
-  components: {
+  props: {
     MuiTypography: {
-      props: {
-        variantMapping: {
-          h1: 'h2',
-          h2: 'h2',
-          h3: 'h2',
-          h4: 'h2',
-          h5: 'h2',
-          h6: 'h2',
-          subtitle1: 'h2',
-          subtitle2: 'h2',
-          body1: 'span',
-          body2: 'span',
-        },
+      variantMapping: {
+        h1: 'h2',
+        h2: 'h2',
+        h3: 'h2',
+        h4: 'h2',
+        h5: 'h2',
+        h6: 'h2',
+        subtitle1: 'h2',
+        subtitle2: 'h2',
+        body1: 'span',
+        body2: 'span',
       },
     },
   },

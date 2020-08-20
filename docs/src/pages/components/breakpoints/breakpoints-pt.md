@@ -208,13 +208,11 @@ Alguns detalhes de implementação que podem ser interessantes para estar ciente
 
 ```js
 const theme = createMuiTheme({
-  components: {
-    // withWidth component ⚛️
+  props: {
+    // Componente withWidth ⚛️
     MuiWithWidth: {
-      props: {
-        // Initial width property
-        initialWidth: 'lg', // Breakpoint being globally set
-      },
+      // Propriedade de largura inicial
+      initialWidth: 'lg', // Ponto de quebra globalmente iniciado
     },
   },
 });

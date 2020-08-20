@@ -265,14 +265,12 @@ type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 ```js
 const theme = createMuiTheme({
-  components: {
+  props: {
     // withWidth component ⚛️
     MuiWithWidth: {
-      props: {
-        // Initial width property
-        initialWidth: 'lg', // Breakpoint being globally set 🌎!
-      },
-    },  
+      // Initial width property
+      initialWidth: 'lg', // Breakpoint being globally set 🌎!
+    },
   },
 });
 ```

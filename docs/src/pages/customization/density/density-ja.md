@@ -38,78 +38,54 @@ This section explains how to apply density. It doesn't cover potential use cases
 
 ```js
 const theme = createMuiTheme({
-  components: {
+  props: {
     MuiButton: {
-      props: {
-        size: 'small',
-      },
+      size: 'small',
     },
     MuiFilledInput: {
-      props: {
-        margin: 'dense',
-      },
+      margin: 'dense',
     },
     MuiFormControl: {
-      props: {
-        margin: 'dense',
-      },
+      margin: 'dense',
     },
     MuiFormHelperText: {
-      props: {
-        margin: 'dense',
-      },
+      margin: 'dense',
     },
     MuiIconButton: {
-      props: {
-        size: 'small',
-      },
-      overrides: {
-        sizeSmall: {
-          // Adjust spacing to reach minimal touch target hitbox
-          marginLeft: 4,
-          marginRight: 4,
-          padding: 12,
-        },
-      },
+      size: 'small',
     },
     MuiInputBase: {
-      props: {
-        margin: 'dense',
-      },
+      margin: 'dense',
     },
     MuiInputLabel: {
-      props: {
-        margin: 'dense',
-      },
+      margin: 'dense',
     },
     MuiListItem: {
-      props: {
-        dense: true,
-      },
+      dense: true,
     },
     MuiOutlinedInput: {
-      props: {
-        margin: 'dense',
-      },
+      margin: 'dense',
     },
     MuiFab: {
-      props: {
-        size: 'small',
-      },
+      size: 'small',
     },
     MuiTable: {
-      props: {
-        size: 'small',
-      },
+      size: 'small',
     },
     MuiTextField: {
-      props: {
-        margin: 'dense',
-      },
+      margin: 'dense',
     },
     MuiToolbar: {
-      props: {
-        variant: 'dense',
+      variant: 'dense',
+    },
+  },
+  overrides: {
+    MuiIconButton: {
+      sizeSmall: {
+        // Adjust spacing to reach minimal touch target hitbox
+        marginLeft: 4,
+        marginRight: 4,
+        padding: 12,
       },
     },
   },

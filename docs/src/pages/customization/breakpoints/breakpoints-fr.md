@@ -265,14 +265,12 @@ Some implementation details that might be interesting to being aware of:
 
 ```js
 const theme = createMuiTheme({
-  components: {
+  props: {
     // withWidth component ⚛️
     MuiWithWidth: {
-      props: {
-        // Initial width property
-        initialWidth: 'lg', // Breakpoint being globally set 🌎!
-      },
-    },  
+      // Initial width property
+      initialWidth: 'lg', // Breakpoint being globally set 🌎!
+    },
   },
 });
 ```

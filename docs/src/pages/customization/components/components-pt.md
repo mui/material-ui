@@ -277,12 +277,10 @@ Você pode aproveitar as vantagens de `sobrescrita` da chave do `tema` para pote
 
 ```jsx
 const theme = createMuiTheme({
-  components: {
+  overrides: {
     MuiButton: {
-      overrides: {
-        root: {
-          fontSize: '1rem',
-        },
+      root: {
+        fontSize: '1rem',
       },
     },
   },

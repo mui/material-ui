@@ -277,12 +277,10 @@ Wenn die Konfigurationsvariablen nicht ausreichen, können Sie die Vorteile der 
 
 ```jsx
 const theme = createMuiTheme({
-  components: {
+  overrides: {
     MuiButton: {
-      overrides: {
-        root: {
-          fontSize: '1rem',
-        },
+      root: {
+        fontSize: '1rem',
       },
     },
   },

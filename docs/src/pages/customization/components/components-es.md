@@ -277,12 +277,10 @@ You can take advantage of the `overrides` key of the `theme` to potentially chan
 
 ```jsx
 const theme = createMuiTheme({
-  components: {
+  overrides: {
     MuiButton: {
-      overrides: {
-        root: {
-          fontSize: '1rem',
-        },
+      root: {
+        fontSize: '1rem',
       },
     },
   },
