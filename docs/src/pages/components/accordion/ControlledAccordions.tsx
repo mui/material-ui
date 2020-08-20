@@ -10,7 +10,6 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       width: '100%',
-      'overflow-anchor': 'none',
     },
     heading: {
       fontSize: theme.typography.pxToRem(15),

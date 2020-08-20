@@ -19,6 +19,7 @@ export const styles = (theme) => {
     root: {
       position: 'relative',
       transition: theme.transitions.create(['margin'], transition),
+      overflowAnchor: 'none', // Keep the same scrolling position
       '&:before': {
         position: 'absolute',
         left: 0,
