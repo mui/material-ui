@@ -44,10 +44,12 @@ let theme = createMuiTheme({
   shape: {
     borderRadius: 8,
   },
-  props: {
+  components: {
     MuiTab: {
-      disableRipple: true,
-    },
+      props: {
+        disableRipple: true,
+      }
+    }
   },
   mixins: {
     toolbar: {

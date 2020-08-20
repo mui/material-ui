@@ -142,7 +142,7 @@ const theme2 = createMuiTheme({
     },
   },
   components: {
-    MuiButton: { 
+    MuiButton: {
       props: {
         disabled: false,
         TouchRippleProps: {

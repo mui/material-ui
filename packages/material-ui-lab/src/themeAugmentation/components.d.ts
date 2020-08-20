@@ -1,124 +1,122 @@
-import { ComponentsProps } from '@material-ui/core/styles/props';
-import { Overrides } from '@material-ui/core/styles/overrides';
-import { Variants } from '@material-ui/core/styles/variants';
+import { ComponentsProps, Overrides, Variants } from '@material-ui/core';
 
 export interface LabComponents {
-  MuiAlert: {
+  MuiAlert?: {
     props?: ComponentsProps['MuiAlert'];
     variants?: Variants['MuiAlert'];
     overrides?: Overrides['MuiAlert'];
   };
-  MuiAlertTitle: {
+  MuiAlertTitle?: {
     props?: ComponentsProps['MuiAlertTitle'];
     variants?: Variants['MuiAlertTitle'];
     overrides?: Overrides['MuiAlertTitle'];
   };
-  MuiAutocomplete: {
+  MuiAutocomplete?: {
     props?: ComponentsProps['MuiAutocomplete'];
     variants?: Variants['MuiAutocomplete'];
     overrides?: Overrides['MuiAutocomplete'];
   };
-  MuiAvatarGroup: {
+  MuiAvatarGroup?: {
     props?: ComponentsProps['MuiAvatarGroup'];
     variants?: Variants['MuiAvatarGroup'];
     overrides?: Overrides['MuiAvatarGroup'];
   };
-  MuiPagination: {
+  MuiPagination?: {
     props?: ComponentsProps['MuiPagination'];
     variants?: Variants['MuiPagination'];
     overrides?: Overrides['MuiPagination'];
   };
-  MuiPaginationItem: {
+  MuiPaginationItem?: {
     props?: ComponentsProps['MuiPaginationItem'];
     variants?: Variants['MuiPaginationItem'];
     overrides?: Overrides['MuiPaginationItem'];
   };
-  MuiRating: {
+  MuiRating?: {
     props?: ComponentsProps['MuiRating'];
     variants?: Variants['MuiRating'];
     overrides?: Overrides['MuiRating'];
   };
-  MuiSkeleton: {
+  MuiSkeleton?: {
     props?: ComponentsProps['MuiSkeleton'];
     variants?: Variants['MuiSkeleton'];
     overrides?: Overrides['MuiSkeleton'];
   };
-  MuiSpeedDial: {
+  MuiSpeedDial?: {
     props?: ComponentsProps['MuiSpeedDial'];
     variants?: Variants['MuiSpeedDial'];
     overrides?: Overrides['MuiSpeedDial'];
   };
-  MuiSpeedDialAction: {
+  MuiSpeedDialAction?: {
     props?: ComponentsProps['MuiSpeedDialAction'];
     variants?: Variants['MuiSpeedDialAction'];
     overrides?: Overrides['MuiSpeedDialAction'];
   };
-  MuiSpeedDialIcon: {
+  MuiSpeedDialIcon?: {
     props?: ComponentsProps['MuiSpeedDialIcon'];
     variants?: Variants['MuiSpeedDialIcon'];
     overrides?: Overrides['MuiSpeedDialIcon'];
   };
-  MuiTabList: {
+  MuiTabList?: {
     props?: ComponentsProps['MuiTabList'];
     variants?: Variants['MuiTabList'];
     overrides?: Overrides['MuiTabList'];
   };
-  MuiTabPanel: {
+  MuiTabPanel?: {
     props?: ComponentsProps['MuiTabPanel'];
     variants?: Variants['MuiTabPanel'];
     overrides?: Overrides['MuiTabPanel'];
   };
-  MuiTimeline: {
+  MuiTimeline?: {
     props?: ComponentsProps['MuiTimeline'];
     variants?: Variants['MuiTimeline'];
     overrides?: Overrides['MuiTimeline'];
   };
-  MuiTimelineConnector: {
+  MuiTimelineConnector?: {
     props?: ComponentsProps['MuiTimelineConnector'];
     variants?: Variants['MuiTimelineConnector'];
     overrides?: Overrides['MuiTimelineConnector'];
   };
-  MuiTimelineContent: {
+  MuiTimelineContent?: {
     props?: ComponentsProps['MuiTimelineContent'];
     variants?: Variants['MuiTimelineContent'];
     overrides?: Overrides['MuiTimelineContent'];
   };
-  MuiTimelineDot: {
+  MuiTimelineDot?: {
     props?: ComponentsProps['MuiTimelineDot'];
     variants?: Variants['MuiTimelineDot'];
     overrides?: Overrides['MuiTimelineDot'];
   };
-  MuiTimelineItem: {
+  MuiTimelineItem?: {
     props?: ComponentsProps['MuiTimelineItem'];
     variants?: Variants['MuiTimelineItem'];
     overrides?: Overrides['MuiTimelineItem'];
   };
-  MuiTimelineOppositeContent: {
+  MuiTimelineOppositeContent?: {
     props?: ComponentsProps['MuiTimelineOppositeContent'];
     variants?: Variants['MuiTimelineOppositeContent'];
     overrides?: Overrides['MuiTimelineOppositeContent'];
   };
-  MuiTimelineSeparator: {
+  MuiTimelineSeparator?: {
     props?: ComponentsProps['MuiTimelineSeparator'];
     variants?: Variants['MuiTimelineSeparator'];
     overrides?: Overrides['MuiTimelineSeparator'];
   };
-  MuiToggleButton: {
+  MuiToggleButton?: {
     props?: ComponentsProps['MuiToggleButton'];
     variants?: Variants['MuiToggleButton'];
     overrides?: Overrides['MuiToggleButton'];
   };
-  MuiToggleButtonGroup: {
+  MuiToggleButtonGroup?: {
     props?: ComponentsProps['MuiToggleButtonGroup'];
     variants?: Variants['MuiToggleButtonGroup'];
     overrides?: Overrides['MuiToggleButtonGroup'];
   };
-  MuiTreeItem: {
+  MuiTreeItem?: {
     props?: ComponentsProps['MuiTreeItem'];
     variants?: Variants['MuiTreeItem'];
     overrides?: Overrides['MuiTreeItem'];
   };
-  MuiTreeView: {
+  MuiTreeView?: {
     props?: ComponentsProps['MuiTreeView'];
     variants?: Variants['MuiTreeView'];
     overrides?: Overrides['MuiTreeView'];
