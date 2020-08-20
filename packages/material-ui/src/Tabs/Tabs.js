@@ -494,6 +494,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
         <div
           aria-label={ariaLabel}
           aria-labelledby={ariaLabelledBy}
+          aria-orientation={orientation === 'vertical' ? 'vertical' : null}
           className={clsx(classes.flexContainer, {
             [classes.flexContainerVertical]: vertical,
             [classes.centered]: centered && !scrollable,
