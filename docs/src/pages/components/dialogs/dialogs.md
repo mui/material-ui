@@ -72,7 +72,7 @@ The dialog has a close button added to aide usability.
 ## Optional sizes
 
 You can set a dialog maximum width by using the `maxWidth` enumerable in combination with the `fullWidth` boolean.
-When the `fullWidth` property is true, the dialog will adapt based on the `maxWidth` value.
+When the `fullWidth` prop is true, the dialog will adapt based on the `maxWidth` value.
 
 {{"demo": "pages/components/dialogs/MaxWidthDialog.js"}}
 

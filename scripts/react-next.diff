@@ -64,19 +64,6 @@ index 197b2f77a3..f1ead08079 100644
      });
    });
  });
-diff --git a/packages/material-ui-styles/src/makeStyles/makeStyles.test.js b/packages/material-ui-styles/src/makeStyles/makeStyles.test.js
-index 3805828fee..be114e409d 100644
---- a/packages/material-ui-styles/src/makeStyles/makeStyles.test.js
-+++ b/packages/material-ui-styles/src/makeStyles/makeStyles.test.js
-@@ -213,7 +213,7 @@ describe('makeStyles', () => {
-       expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'makeStyles-root-2' });
- 
-       wrapper.unmount();
--      expect(sheetsRegistry.registry.length).to.equal(0);
-+      expect(sheetsRegistry.registry.length).to.equal(1);
-     });
- 
-     it('should work when depending on a theme', () => {
 diff --git a/packages/material-ui-styles/src/useThemeVariants/useThemeVariants.test.js b/packages/material-ui-styles/src/useThemeVariants/useThemeVariants.test.js
 index 9c99a49a1f..5d9db342e9 100644
 --- a/packages/material-ui-styles/src/useThemeVariants/useThemeVariants.test.js
@@ -119,42 +106,6 @@ index d78203151f..72ac37571b 100644
      });
    });
  
-diff --git a/packages/material-ui/src/Modal/Modal.test.js b/packages/material-ui/src/Modal/Modal.test.js
-index 2a41490811..137b02a5fc 100644
---- a/packages/material-ui/src/Modal/Modal.test.js
-+++ b/packages/material-ui/src/Modal/Modal.test.js
-@@ -22,7 +22,12 @@ describe('<Modal />', () => {
-   const render = createClientRender();
-   let savedBodyStyle;
- 
--  before(() => {
-+  before(function beforeEachHook() {
-+    if (/jsdom/.test(window.navigator.userAgent)) {
-+      // otherwise test:unit never finishes
-+      this.skip();
-+    }
-+
-     savedBodyStyle = document.body.style;
-   });
- 
-diff --git a/packages/material-ui/src/Popover/Popover.test.js b/packages/material-ui/src/Popover/Popover.test.js
-index 08a1ed4b80..a28903c454 100644
---- a/packages/material-ui/src/Popover/Popover.test.js
-+++ b/packages/material-ui/src/Popover/Popover.test.js
-@@ -55,7 +55,12 @@ describe('<Popover />', () => {
-     anchorEl: () => document.createElement('svg'),
-   };
- 
--  before(() => {
-+  before(function beforeEachHook() {
-+    if (/jsdom/.test(window.navigator.userAgent)) {
-+      // otherwise test:unit never finishes
-+      this.skip();
-+    }
-+
-     classes = getClasses(
-       <Popover {...defaultProps}>
-         <div />
 diff --git a/packages/material-ui/src/Tabs/Tabs.test.js b/packages/material-ui/src/Tabs/Tabs.test.js
 index 9c004c515b..648559f279 100644
 --- a/packages/material-ui/src/Tabs/Tabs.test.js
@@ -184,77 +135,6 @@ index 9cd267a0c0..7323483c87 100644
 -          'Material-UI: Too many re-renders.',
 -        ]);
 +        }).toErrorDev(['Material-UI: Too many re-renders.']);
-       });
-     });
-   });
-diff --git a/packages/material-ui/src/Unstable_TrapFocus/Unstable_TrapFocus.js b/packages/material-ui/src/Unstable_TrapFocus/Unstable_TrapFocus.js
-index 0c70635965..bdef6b3c45 100644
---- a/packages/material-ui/src/Unstable_TrapFocus/Unstable_TrapFocus.js
-+++ b/packages/material-ui/src/Unstable_TrapFocus/Unstable_TrapFocus.js
-@@ -112,6 +112,13 @@ function Unstable_TrapFocus(props) {
-     const doc = ownerDocument(rootRef.current);
- 
-     const contain = (nativeEvent) => {
-+      const { current: rootElement } = rootRef;
-+      // Contain can be called between the component being unmounted and its cleanup function being run.
-+      // Cleanup functions are executed lazily in React 17
-+      if (rootElement === null) {
-+        return;
-+      }
-+
-       if (
-         !doc.hasFocus() ||
-         disableEnforceFocus ||
-@@ -122,7 +129,7 @@ function Unstable_TrapFocus(props) {
-         return;
-       }
- 
--      if (!rootRef.current.contains(doc.activeElement)) {
-+      if (!rootElement.contains(doc.activeElement)) {
-         // if the focus event is not coming from inside the children's react tree, reset the refs
-         if (
-           (nativeEvent && reactFocusEventTarget.current !== nativeEvent.target) ||
-@@ -137,7 +144,7 @@ function Unstable_TrapFocus(props) {
-           return;
-         }
- 
--        rootRef.current.focus();
-+        rootElement.focus();
-       } else {
-         activated.current = true;
-       }
-diff --git a/packages/material-ui/src/Unstable_TrapFocus/Unstable_TrapFocus.test.js b/packages/material-ui/src/Unstable_TrapFocus/Unstable_TrapFocus.test.js
-index 174e4ae5d4..ec4c2c90f1 100644
---- a/packages/material-ui/src/Unstable_TrapFocus/Unstable_TrapFocus.test.js
-+++ b/packages/material-ui/src/Unstable_TrapFocus/Unstable_TrapFocus.test.js
-@@ -60,7 +60,7 @@ describe('<TrapFocus />', () => {
-   it('should focus first focusable child in portal', () => {
-     const { getByTestId } = render(
-       <TrapFocus {...defaultProps} open>
--        <div tabIndex={-1}>
-+        <div data-testid="focus-trap-root" tabIndex={-1}>
-           <Portal>
-             <input autoFocus data-testid="auto-focus" />
-           </Portal>
-@@ -68,7 +68,8 @@ describe('<TrapFocus />', () => {
-       </TrapFocus>,
-     );
- 
--    expect(getByTestId('auto-focus')).toHaveFocus();
-+    // FIXME: should be `auto-focus`
-+    expect(getByTestId('focus-trap-root')).toHaveFocus();
-   });
- 
-   it('should warn if the modal content is not focusable', () => {
-@@ -382,7 +383,10 @@ describe('<TrapFocus />', () => {
- 
-         // restore the focus to the first element before triggering the trap
-         setProps({ open: false });
--        expect(getByRole('textbox')).toHaveFocus();
-+
-+        // FIXME: should be
-+        // expect(getByRole('textbox')).toHaveFocus();
-+        expect(getByTestId('modal')).toHaveFocus();
        });
      });
    });

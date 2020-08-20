@@ -33,13 +33,13 @@
     "size:why": "size-limit --why packages/material-ui/build/index.js",
     "start": "yarn docs:dev",
     "test": "yarn lint && yarn typescript && yarn test:coverage",
-    "test:coverage": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc mocha 'packages/**/*.test.js' 'docs/**/*.test.js' 'scripts/**/*.test.js' 'test/utils/**/*.test.js' --exclude '**/node_modules/**' && nyc report --reporter=lcovonly",
-    "test:coverage:html": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc mocha 'packages/**/*.test.js' 'docs/**/*.test.js' 'scripts/**/*.test.js' 'test/utils/**/*.test.js' --exclude '**/node_modules/**' && nyc report --reporter=html",
+    "test:coverage": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}' 'scripts/**/*.test.{js,ts,tsx}' 'test/utils/**/*.test.{js,ts,tsx}' --exclude '**/node_modules/**' && nyc report --reporter=lcovonly",
+    "test:coverage:html": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}' 'scripts/**/*.test.{js,ts,tsx}' 'test/utils/**/*.test.{js,ts,tsx}' --exclude '**/node_modules/**' && nyc report --reporter=html",
     "test:karma": "cross-env NODE_ENV=test karma start test/karma.conf.js",
     "test:regressions": "yarn test:regressions:build && rimraf test/regressions/screenshots/chrome/* && vrtest run --config test/vrtest.config.js --record",
     "test:regressions:build": "webpack --config test/regressions/webpack.config.js",
     "test:umd": "node packages/material-ui/test/umd/run.js",
-    "test:unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.js' 'docs/**/*.test.js' 'scripts/**/*.test.js' 'test/utils/**/*.test.js' --exclude '**/node_modules/**'",
+    "test:unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}' 'scripts/**/*.test.{js,ts,tsx}' 'test/utils/**/*.test.{js,ts,tsx}' --exclude '**/node_modules/**'",
     "test:watch": "yarn test:unit --watch",
     "typescript": "lerna run typescript --parallel"
   },
@@ -137,7 +137,7 @@
     "rollup-plugin-node-globals": "^1.4.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-size-snapshot": "^0.12.0",
-    "rollup-plugin-terser": "^6.1.0",
+    "rollup-plugin-terser": "^7.0.0",
     "sinon": "^9.0.0",
     "size-limit": "^0.21.0",
     "ts-node": "^8.3.0",
@@ -145,7 +145,7 @@
     "typescript": "^3.9.6",
     "unist-util-visit": "^2.0.2",
     "url-loader": "^4.1.0",
-    "vrtest-mui": "^0.3.3",
+    "vrtest-mui": "^0.3.4",
     "webpack": "^4.41.0",
     "webpack-cli": "^3.3.9",
     "yargs": "^15.2.0",
@@ -169,8 +169,7 @@
     "**/cross-fetch": "^3.0.5",
     "**/dot-prop": "^5.2.0",
     "**/hoist-non-react-statics": "^3.3.2",
-    "**/webpack": "^4.44.1",
-    "**/terser": "^4.1.2"
+    "**/webpack": "^4.44.1"
   },
   "nyc": {
     "include": [
@@ -179,7 +178,7 @@
       "packages/material-ui-styles/src/**/*.js"
     ],
     "exclude": [
-      "**/*.test.js"
+      "**/*.test.{js,ts,tsx}"
     ],
     "sourceMap": false,
     "instrument": false

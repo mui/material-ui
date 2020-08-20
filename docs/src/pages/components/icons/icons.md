@@ -163,7 +163,7 @@ As a prerequisite, you must include one, such as the
 ```
 
 `Icon` will set the correct class name for the Material icon font. For other fonts, you must supply the
-class name using the Icon component's `className` property.
+class name using the Icon component's `className` prop.
 
 To use an icon simply wrap the icon name (font ligature) with the `Icon` component,
 for example:
@@ -211,10 +211,10 @@ The `aria-hidden=true` attribute is added so that your icons are properly access
 
 ### Semantic SVG Icons
 
-If your icon has semantic meaning, all you need to do is throw in a `titleAccess="meaning"` property.
+If your icon has semantic meaning, you should include the `titleAccess` prop with a meaningful value.
 The `role="img"` attribute and the `<title>` element are added so that your icons are properly accessible.
 
-In the case of focusable interactive elements, like when used with an icon button, you can use the `aria-label` property:
+In the case of focusable interactive elements, like when used with an icon button, you can use the `aria-label` prop:
 
 ```jsx
 import IconButton from '@material-ui/core/IconButton';

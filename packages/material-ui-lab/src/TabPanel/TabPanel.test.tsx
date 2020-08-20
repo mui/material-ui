@@ -1,4 +1,3 @@
-// @ts-check
 import * as React from 'react';
 import { expect } from 'chai';
 import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
@@ -7,10 +6,7 @@ import TabContext from '../TabContext';
 
 describe('<TabPanel />', () => {
   const mount = createMount();
-  /**
-   * @type {Record<string, string>}
-   */
-  let classes;
+  let classes: Record<string, string>;
   const render = createClientRender();
 
   before(() => {
@@ -20,11 +16,7 @@ describe('<TabPanel />', () => {
   describeConformance(<TabPanel value="0" />, () => ({
     classes,
     inheritComponent: 'div',
-    mount:
-      /**
-       * @param {HTMLElement} element
-       */
-      (element) => mount(<TabContext value="0">{element}</TabContext>),
+    mount: (node) => mount(<TabContext value="0">{node}</TabContext>),
     refInstanceof: window.HTMLDivElement,
     skip: ['componentProp', 'reactTestRenderer'],
   }));

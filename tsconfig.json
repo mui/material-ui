@@ -25,7 +25,9 @@
       "@material-ui/types": ["./packages/material-ui-types"],
       "test/*": ["./test/*"],
       "typescript-to-proptypes": ["./packages/typescript-to-proptypes/src"]
-    }
+    },
+    // Otherwise we get react-native typings which conflict with dom.lib.
+    "types": ["react"]
   },
-  "exclude": ["**/build/"]
+  "exclude": ["**/build", "**/node_modules", "docs/.next", "docs/export"]
 }

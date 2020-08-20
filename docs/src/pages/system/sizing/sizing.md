@@ -4,7 +4,7 @@
 
 ## Supported values
 
-The sizing style functions support different property input type:
+The sizing style functions support different property input types:
 
 {{"demo": "pages/system/sizing/Values.js", "defaultCodeOpen": false}}
 

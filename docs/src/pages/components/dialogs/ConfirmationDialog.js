@@ -64,7 +64,7 @@ function ConfirmationDialogRaw(props) {
       disableBackdropClick
       disableEscapeKeyDown
       maxWidth="xs"
-      onEntering={handleEntering}
+      TransitionProps={{ onEntering: handleEntering }}
       aria-labelledby="confirmation-dialog-title"
       open={open}
       {...other}

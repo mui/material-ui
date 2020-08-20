@@ -689,6 +689,18 @@ describe('<Tabs />', () => {
       expect(style.top).to.equal('60px');
       expect(style.height).to.equal('50px');
     });
+
+    it('does not add aria-orientation by default', () => {
+      render(<Tabs value={0} />);
+
+      expect(screen.getByRole('tablist')).not.to.have.attribute('aria-orientation');
+    });
+
+    it('adds the proper aria-orientation when vertical', () => {
+      render(<Tabs value={0} orientation="vertical" />);
+
+      expect(screen.getByRole('tablist')).to.have.attribute('aria-orientation', 'vertical');
+    });
   });
 
   describe('server-side render', () => {

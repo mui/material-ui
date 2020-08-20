@@ -72,7 +72,7 @@ Note that the documentation [avoids](/guides/api/#native-properties) mentioning 
 
 ## Sizes
 
-Fancy larger or smaller buttons? Use the `size` property.
+For larger or smaller buttons use the `size` prop.
 
 {{"demo": "pages/components/buttons/ButtonSizes.js"}}
 
@@ -120,7 +120,7 @@ You can take advantage of this lower level component to build custom interaction
 ## Third-party routing library
 
 One common use case is to use the button to trigger navigation to a new page.
-The `ButtonBase` component provides a property to handle this use case: `component`.
+The `ButtonBase` component provides the `component` prop to handle this use case.
 However for certain focus polyfills `ButtonBase` requires the DOM node of the provided
 component. This is achieved by attaching a ref to the component and expecting that the
 component forwards this ref to the underlying DOM node.

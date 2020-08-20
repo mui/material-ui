@@ -59,7 +59,7 @@ const theme = createMuiTheme({
     // Name of the component ⚛️    
     MuiButtonBase: {
       props: {
-        // The properties to apply
+        // The props to apply
         disableRipple: true, // No more ripple, on the whole application 💣!
       },
     },
@@ -132,7 +132,7 @@ where we show how simple it is to restyle Material-UI components with alternativ
 
 ## When should I use inline-style vs CSS?
 
-As a rule of thumb, only use inline-style for dynamic style properties.
+As a rule of thumb, only use inline-styles for dynamic style properties.
 The CSS alternative provides more advantages, such as:
 
 - auto-prefixing
