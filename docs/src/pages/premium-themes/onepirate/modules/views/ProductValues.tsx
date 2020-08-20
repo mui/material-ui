@@ -1,31 +1,31 @@
-import React from "react";
+import React from 'react';
 import {
   withStyles,
   Theme,
   createStyles,
   WithStyles,
-} from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import Container from "@material-ui/core/Container";
-import Typography from "../components/Typography";
+} from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import Container from '@material-ui/core/Container';
+import Typography from '../components/Typography';
 
 const styles = (theme: Theme) =>
   createStyles({
     root: {
-      display: "flex",
-      overflow: "hidden",
+      display: 'flex',
+      overflow: 'hidden',
       backgroundColor: theme.palette.secondary.light,
     },
     container: {
       marginTop: theme.spacing(15),
       marginBottom: theme.spacing(30),
-      display: "flex",
-      position: "relative",
+      display: 'flex',
+      position: 'relative',
     },
     item: {
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
       padding: theme.spacing(0, 5),
     },
     image: {
@@ -36,8 +36,8 @@ const styles = (theme: Theme) =>
       marginBottom: theme.spacing(5),
     },
     curvyLines: {
-      pointerEvents: "none",
-      position: "absolute",
+      pointerEvents: 'none',
+      position: 'absolute',
       top: -180,
     },
   });
@@ -49,7 +49,7 @@ function ProductValues(props: WithStyles<typeof styles>) {
     <section className={classes.root}>
       <Container className={classes.container}>
         <img
-          src="/productCurvyLines.png"
+          src="/static/themes/onepirate/productCurvyLines.png"
           className={classes.curvyLines}
           alt="curvy lines"
         />
@@ -58,7 +58,7 @@ function ProductValues(props: WithStyles<typeof styles>) {
             <div className={classes.item}>
               <img
                 className={classes.image}
-                src="/productValues1.svg"
+                src="/static/themes/onepirate/productValues1.svg"
                 alt="suitcase"
               />
               <Typography variant="h6" className={classes.title}>
@@ -66,10 +66,10 @@ function ProductValues(props: WithStyles<typeof styles>) {
               </Typography>
               <Typography variant="h5">
                 {
-                  "From the latest trendy boutique hotel to the iconic palace with XXL pool"
+                  'From the latest trendy boutique hotel to the iconic palace with XXL pool'
                 }
                 {
-                  ", go for a mini-vacation just a few subway stops away from your home."
+                  ', go for a mini-vacation just a few subway stops away from your home.'
                 }
               </Typography>
             </div>
@@ -78,7 +78,7 @@ function ProductValues(props: WithStyles<typeof styles>) {
             <div className={classes.item}>
               <img
                 className={classes.image}
-                src="/productValues2.svg"
+                src="/static/themes/onepirate/productValues2.svg"
                 alt="graph"
               />
               <Typography variant="h6" className={classes.title}>
@@ -86,9 +86,9 @@ function ProductValues(props: WithStyles<typeof styles>) {
               </Typography>
               <Typography variant="h5">
                 {
-                  "Privatize a pool, take a Japanese bath or wake up in 900m2 of garden… "
+                  'Privatize a pool, take a Japanese bath or wake up in 900m2 of garden… '
                 }
-                {"your Sundays will not be alike."}
+                {'your Sundays will not be alike.'}
               </Typography>
             </div>
           </Grid>
@@ -96,15 +96,15 @@ function ProductValues(props: WithStyles<typeof styles>) {
             <div className={classes.item}>
               <img
                 className={classes.image}
-                src="/productValues3.svg"
+                src="/static/themes/onepirate/productValues3.svg"
                 alt="clock"
               />
               <Typography variant="h6" className={classes.title}>
                 Exclusive rates
               </Typography>
               <Typography variant="h5">
-                {"By registering, you will access specially negotiated rates "}
-                {"that you will not find anywhere else."}
+                {'By registering, you will access specially negotiated rates '}
+                {'that you will not find anywhere else.'}
               </Typography>
             </div>
           </Grid>

@@ -89,13 +89,19 @@ export default function AppFooter() {
             >
               <Grid item className={classes.icons}>
                 <a href="https://material-ui.com/" className={classes.icon}>
-                  <img src="/appFooterFacebook.png" alt="Facebook" />
+                  <img
+                    src="/static/themes/onepirate/appFooterFacebook.png"
+                    alt="Facebook"
+                  />
                 </a>
                 <a
                   href="https://twitter.com/MaterialUI"
                   className={classes.icon}
                 >
-                  <img src="/appFooterTwitter.png" alt="Twitter" />
+                  <img
+                    src="/static/themes/onepirate/appFooterTwitter.png"
+                    alt="Twitter"
+                  />
                 </a>
               </Grid>
               <Grid item>
