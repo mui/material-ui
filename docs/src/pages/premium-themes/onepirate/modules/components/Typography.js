@@ -3,15 +3,8 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import MuiTypography from '@material-ui/core/Typography';
 
-export let TypographyMarkType;
-(function (TypographyMarkType) {
-  TypographyMarkType['Center'] = 'center';
-  TypographyMarkType['Left'] = 'left';
-  TypographyMarkType['None'] = 'none';
-})(TypographyMarkType || (TypographyMarkType = {}));
-
 const markSyleMapping = {
-  [TypographyMarkType.Center]: {
+  center: {
     h1: '',
     h2: 'markedH2Center',
     h3: 'markedH3Center',
@@ -19,7 +12,7 @@ const markSyleMapping = {
     h5: '',
     h6: '',
   },
-  [TypographyMarkType.Left]: {
+  left: {
     h1: '',
     h2: '',
     h3: '',
@@ -27,7 +20,7 @@ const markSyleMapping = {
     h5: '',
     h6: 'markedH6Left',
   },
-  [TypographyMarkType.None]: {
+  none: {
     h1: '',
     h2: '',
     h3: '',
@@ -38,28 +31,28 @@ const markSyleMapping = {
 };
 
 const styles = (theme) => ({
-  [markSyleMapping[TypographyMarkType.Center]['h2']]: {
+  [markSyleMapping['center']['h2']]: {
     height: 4,
     width: 73,
     display: 'block',
     margin: `${theme.spacing(1)}px auto 0`,
     backgroundColor: theme.palette.secondary.main,
   },
-  [markSyleMapping[TypographyMarkType.Center]['h3']]: {
+  [markSyleMapping['center']['h3']]: {
     height: 4,
     width: 55,
     display: 'block',
     margin: `${theme.spacing(1)}px auto 0`,
     backgroundColor: theme.palette.secondary.main,
   },
-  [markSyleMapping[TypographyMarkType.Center]['h4']]: {
+  [markSyleMapping['center']['h4']]: {
     height: 4,
     width: 55,
     display: 'block',
     margin: `${theme.spacing(1)}px auto 0`,
     backgroundColor: theme.palette.secondary.main,
   },
-  [markSyleMapping[TypographyMarkType.Left]['h6']]: {
+  [markSyleMapping['left']['h6']]: {
     height: 2,
     width: 28,
     display: 'block',
@@ -126,7 +119,7 @@ Typography.propTypes = {
 };
 
 Typography.defaultProps = {
-  marked: TypographyMarkType.None,
+  marked: 'none',
 };
 
 export default withStyles(styles)(Typography);

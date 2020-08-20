@@ -7,16 +7,10 @@ import {
 } from '@material-ui/core/styles';
 import MuiTypography, { TypographyProps } from '@material-ui/core/Typography';
 
-export enum TypographyMarkType {
-  Center = 'center',
-  Left = 'left',
-  None = 'none',
-}
-
 const markSyleMapping: {
   [index: string]: { [subindex: string]: string };
 } = {
-  [TypographyMarkType.Center]: {
+  center: {
     h1: '',
     h2: 'markedH2Center',
     h3: 'markedH3Center',
@@ -24,7 +18,7 @@ const markSyleMapping: {
     h5: '',
     h6: '',
   },
-  [TypographyMarkType.Left]: {
+  left: {
     h1: '',
     h2: '',
     h3: '',
@@ -32,7 +26,7 @@ const markSyleMapping: {
     h5: '',
     h6: 'markedH6Left',
   },
-  [TypographyMarkType.None]: {
+  none: {
     h1: '',
     h2: '',
     h3: '',
@@ -44,28 +38,28 @@ const markSyleMapping: {
 
 const styles = (theme: Theme) =>
   createStyles({
-    [markSyleMapping[TypographyMarkType.Center]['h2']]: {
+    [markSyleMapping['center']['h2']]: {
       height: 4,
       width: 73,
       display: 'block',
       margin: `${theme.spacing(1)}px auto 0`,
       backgroundColor: theme.palette.secondary.main,
     },
-    [markSyleMapping[TypographyMarkType.Center]['h3']]: {
+    [markSyleMapping['center']['h3']]: {
       height: 4,
       width: 55,
       display: 'block',
       margin: `${theme.spacing(1)}px auto 0`,
       backgroundColor: theme.palette.secondary.main,
     },
-    [markSyleMapping[TypographyMarkType.Center]['h4']]: {
+    [markSyleMapping['center']['h4']]: {
       height: 4,
       width: 55,
       display: 'block',
       margin: `${theme.spacing(1)}px auto 0`,
       backgroundColor: theme.palette.secondary.main,
     },
-    [markSyleMapping[TypographyMarkType.Left]['h6']]: {
+    [markSyleMapping['left']['h6']]: {
       height: 2,
       width: 28,
       display: 'block',
@@ -75,7 +69,7 @@ const styles = (theme: Theme) =>
   });
 
 interface ExtraTypographyProps {
-  marked?: TypographyMarkType;
+  marked?: 'center' | 'left' | 'none';
 }
 
 const variantMapping = {
@@ -109,7 +103,7 @@ function Typography<C extends React.ElementType>(
 }
 
 Typography.defaultProps = {
-  marked: TypographyMarkType.None,
+  marked: 'none' as const,
 };
 
 export default withStyles(styles)(Typography);
