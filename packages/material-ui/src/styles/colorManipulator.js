@@ -130,11 +130,10 @@ export function decomposeColor(color) {
       values[3] = values[3].substr(1);
     }
     if (['srgb', 'display-p3', 'a98-rgb', 'prophoto-rgb', 'rec-2020'].indexOf(colorSpace) === -1) {
-      throw new Error(
-        [
-          `Material-UI: unsupported \`${colorSpace}\` color space.`,
+      throw new MuiError(
+        'Material-UI: unsupported `%s` color space.\n' +
           'The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rgb, rec-2020.',
-        ].join('\n'),
+        colorSpace,
       );
     }
   } else {
