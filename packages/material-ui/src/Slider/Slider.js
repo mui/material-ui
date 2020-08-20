@@ -461,7 +461,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   const handleKeyDown = useEventCallback((event) => {
     if (disabled) {
       // This check is necessary because Firefox and Safari will keep focus
-      // on a disabled slider, even though we blur it: 
+      // on a disabled slider, even though we blur it:
       // https://codesandbox.io/s/mui-pr-22247-forked-h151h?file=/src/App.js
       return;
     }

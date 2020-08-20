@@ -297,7 +297,7 @@ describe('<Slider />', () => {
       setProps({ disabled: true });
 
       // This branch is necessary because Firefox and Safari will keep focus
-      // on a disabled slider, even though we blur it: 
+      // on a disabled slider, even though we blur it:
       // https://codesandbox.io/s/mui-pr-22247-forked-h151h?file=/src/App.js
       if (document.activeElement === thumb) {
         expect(thumb).toHaveFocus();
