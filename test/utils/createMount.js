@@ -1,6 +1,7 @@
 /* eslint-env mocha */
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import * as ReactDOMTestUtils from 'react-dom/test-utils';
 import * as PropTypes from 'prop-types';
 import { mount as enzymeMount } from 'enzyme';
 
@@ -63,7 +64,9 @@ export default function createMount(options = {}) {
   });
 
   afterEach(() => {
-    ReactDOM.unmountComponentAtNode(container);
+    ReactDOMTestUtils.act(() => {
+      ReactDOM.unmountComponentAtNode(container);
+    });
     container.parentElement.removeChild(container);
     container = null;
   });
@@ -76,7 +79,9 @@ export default function createMount(options = {}) {
         `Tried to mount without setup. Mounting inside before() is not allowed. Try mounting in beforeEach or better: in each test`,
       );
     }
-    ReactDOM.unmountComponentAtNode(container);
+    ReactDOMTestUtils.act(() => {
+      ReactDOM.unmountComponentAtNode(container);
+    });
 
     // some tests require that no other components are in the tree
     // e.g. when doing .instance(), .state() etc.

@@ -119,42 +119,6 @@ index d78203151f..72ac37571b 100644
      });
    });
  
-diff --git a/packages/material-ui/src/Modal/Modal.test.js b/packages/material-ui/src/Modal/Modal.test.js
-index 2a41490811..137b02a5fc 100644
---- a/packages/material-ui/src/Modal/Modal.test.js
-+++ b/packages/material-ui/src/Modal/Modal.test.js
-@@ -22,7 +22,12 @@ describe('<Modal />', () => {
-   const render = createClientRender();
-   let savedBodyStyle;
- 
--  before(() => {
-+  before(function beforeEachHook() {
-+    if (/jsdom/.test(window.navigator.userAgent)) {
-+      // otherwise test:unit never finishes
-+      this.skip();
-+    }
-+
-     savedBodyStyle = document.body.style;
-   });
- 
-diff --git a/packages/material-ui/src/Popover/Popover.test.js b/packages/material-ui/src/Popover/Popover.test.js
-index 08a1ed4b80..a28903c454 100644
---- a/packages/material-ui/src/Popover/Popover.test.js
-+++ b/packages/material-ui/src/Popover/Popover.test.js
-@@ -55,7 +55,12 @@ describe('<Popover />', () => {
-     anchorEl: () => document.createElement('svg'),
-   };
- 
--  before(() => {
-+  before(function beforeEachHook() {
-+    if (/jsdom/.test(window.navigator.userAgent)) {
-+      // otherwise test:unit never finishes
-+      this.skip();
-+    }
-+
-     classes = getClasses(
-       <Popover {...defaultProps}>
-         <div />
 diff --git a/packages/material-ui/src/Tabs/Tabs.test.js b/packages/material-ui/src/Tabs/Tabs.test.js
 index 9c004c515b..648559f279 100644
 --- a/packages/material-ui/src/Tabs/Tabs.test.js
