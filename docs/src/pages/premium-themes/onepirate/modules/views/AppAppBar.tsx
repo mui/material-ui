@@ -1,11 +1,10 @@
-import React from "react";
-import clsx from "clsx";
-import { withStyles, Theme } from "@material-ui/core/styles";
-import Link from "@material-ui/core/Link";
-import AppBar from "../components/AppBar";
-import Toolbar, { styles as toolbarStyles } from "../components/Toolbar";
-import { Link as RouterLink } from "react-router-dom";
-import { AppBarProps, WithStyles } from "@material-ui/core";
+import React from 'react';
+import clsx from 'clsx';
+import { AppBarProps, WithStyles } from '@material-ui/core';
+import { withStyles, Theme } from '@material-ui/core/styles';
+import Link from '@material-ui/core/Link';
+import AppBar from '../components/AppBar';
+import Toolbar, { styles as toolbarStyles } from '../components/Toolbar';
 
 const styles = (theme: Theme) => ({
   title: {
@@ -13,7 +12,7 @@ const styles = (theme: Theme) => ({
   },
   placeholder: toolbarStyles(theme).root,
   toolbar: {
-    justifyContent: "space-between",
+    justifyContent: 'space-between',
   },
   left: {
     flex: 1,
@@ -23,8 +22,8 @@ const styles = (theme: Theme) => ({
   },
   right: {
     flex: 1,
-    display: "flex",
-    justifyContent: "flex-end",
+    display: 'flex',
+    justifyContent: 'flex-end',
   },
   rightLink: {
     fontSize: 16,
@@ -49,10 +48,9 @@ function AppAppBar(props: WithStyles<typeof styles> & AppBarProps) {
             underline="none"
             color="inherit"
             className={classes.title}
-            component={RouterLink}
-            to="/"
+            href="/premium-themes/onepirate/"
           >
-            {"onepirate"}
+            {'onepirate'}
           </Link>
           <div className={classes.right}>
             <Link
@@ -60,19 +58,17 @@ function AppAppBar(props: WithStyles<typeof styles> & AppBarProps) {
               variant="h6"
               underline="none"
               className={classes.rightLink}
-              component={RouterLink}
-              to="/sign-in/"
+              href="/premium-themes/onepirate/sign-in/"
             >
-              {"Sign In"}
+              {'Sign In'}
             </Link>
             <Link
               variant="h6"
               underline="none"
               className={clsx(classes.rightLink, classes.linkSecondary)}
-              component={RouterLink}
-              to="/sign-up/"
+              href="/premium-themes/onepirate/sign-up/"
             >
-              {"Sign Up"}
+              {'Sign Up'}
             </Link>
           </div>
         </Toolbar>

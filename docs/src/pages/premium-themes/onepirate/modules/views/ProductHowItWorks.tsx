@@ -1,35 +1,34 @@
-import React from "react";
+import React from 'react';
 import {
   withStyles,
   Theme,
   createStyles,
   WithStyles,
-} from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import Container from "@material-ui/core/Container";
-import Button from "../components/Button";
-import Typography from "../components/Typography";
-import { Link as RouterLink } from "react-router-dom";
+} from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import Container from '@material-ui/core/Container';
+import Button from '../components/Button';
+import Typography from '../components/Typography';
 
 const styles = (theme: Theme) =>
   createStyles({
     root: {
-      display: "flex",
+      display: 'flex',
       backgroundColor: theme.palette.secondary.light,
-      overflow: "hidden",
+      overflow: 'hidden',
     },
     container: {
       marginTop: theme.spacing(10),
       marginBottom: theme.spacing(15),
-      position: "relative",
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
+      position: 'relative',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
     },
     item: {
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
       padding: theme.spacing(0, 5),
     },
     title: {
@@ -47,8 +46,8 @@ const styles = (theme: Theme) =>
       marginBottom: theme.spacing(4),
     },
     curvyLines: {
-      pointerEvents: "none",
-      position: "absolute",
+      pointerEvents: 'none',
+      position: 'absolute',
       top: -180,
       opacity: 0.7,
     },
@@ -114,8 +113,8 @@ function ProductHowItWorks(props: WithStyles<typeof styles>) {
                   className={classes.image}
                 />
                 <Typography variant="h5" align="center">
-                  {"New offers every week. New experiences, new surprises. "}
-                  {"Your Sundays will no longer be alike."}
+                  {'New offers every week. New experiences, new surprises. '}
+                  {'Your Sundays will no longer be alike.'}
                 </Typography>
               </div>
             </Grid>
@@ -126,8 +125,8 @@ function ProductHowItWorks(props: WithStyles<typeof styles>) {
           size="large"
           variant="contained"
           className={classes.button}
-          component={RouterLink}
-          to="/sign-up/"
+          component="a"
+          href="/premium-themes/onepirate/sign-up/"
         >
           Get started
         </Button>

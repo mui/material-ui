@@ -1,7 +1,7 @@
-import React from "react";
-import Button from "../components/Button";
-import defer from "./defer";
-import { ButtonProps } from "@material-ui/core";
+import React from 'react';
+import { ButtonProps } from '@material-ui/core';
+import Button from '../components/Button';
+import defer from './defer';
 
 interface FormButtonProps {
   disabled?: boolean;
@@ -9,7 +9,7 @@ interface FormButtonProps {
 }
 
 function FormButton<C extends React.ElementType>(
-  props: FormButtonProps & ButtonProps<C, { component?: C }>
+  props: FormButtonProps & ButtonProps<C, { component?: C }>,
 ) {
   const { disabled, mounted, ...others } = props;
   return (

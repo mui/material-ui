@@ -1,46 +1,53 @@
-import React from "react";
-import clsx from "clsx";
-import { withStyles, WithStyles, createStyles } from "@material-ui/core/styles";
-import MuiTextField, { TextFieldProps } from "@material-ui/core/TextField";
+import React from 'react';
+import clsx from 'clsx';
+import { withStyles, WithStyles, createStyles } from '@material-ui/core/styles';
+import MuiTextField, { TextFieldProps } from '@material-ui/core/TextField';
+
+const inputSyleMapping = {
+  small: 'inputSizeSmall',
+  medium: 'inputSizeMedium',
+  large: 'inputSizeLarge',
+  xlarge: 'inputSizeXlarge',
+};
 
 const styles = (theme: any) =>
   createStyles({
     root: {
       padding: 0,
-      "label + &": {
+      'label + &': {
         marginTop: theme.spacing(3),
       },
     },
     input: {
       minWidth: theme.spacing(6),
       backgroundColor: theme.palette.common.white,
-      "&$disabled": {
+      '&$disabled': {
         backgroundColor: theme.palette.divider,
       },
     },
     inputBorder: {
-      border: "1px solid #e9ddd0",
-      "&:focus": {
+      border: '1px solid #e9ddd0',
+      '&:focus': {
         borderColor: theme.palette.secondary.main,
       },
     },
     disabled: {},
-    [inputSyleMapping["small"]]: {
+    [inputSyleMapping['small']]: {
       fontSize: 14,
       padding: theme.spacing(1),
       width: `calc(100% - ${theme.spacing(2)}px)`,
     },
-    [inputSyleMapping["medium"]]: {
+    [inputSyleMapping['medium']]: {
       fontSize: 16,
       padding: theme.spacing(2),
       width: `calc(100% - ${theme.spacing(4)}px)`,
     },
-    [inputSyleMapping["large"]]: {
+    [inputSyleMapping['large']]: {
       fontSize: 18,
       padding: 22,
       width: `calc(100% - ${22 * 2}px)`,
     },
-    [inputSyleMapping["xlarge"]]: {
+    [inputSyleMapping['xlarge']]: {
       fontSize: 20,
       padding: 25,
       width: `calc(100% - ${25 * 2}px)`,
@@ -49,26 +56,19 @@ const styles = (theme: any) =>
       fontSize: 18,
     },
     select: {
-      height: "auto",
+      height: 'auto',
       borderRadius: 0,
     },
     selectIcon: {
-      top: "50%",
+      top: '50%',
       marginTop: -12,
     },
   });
 
-export interface OnePirateTextFieldProps extends Omit<TextFieldProps, "size"> {
+export interface OnePirateTextFieldProps extends Omit<TextFieldProps, 'size'> {
   noBorder?: boolean;
-  size?: "small" | "medium" | "large" | "xlarge";
+  size?: 'small' | 'medium' | 'large' | 'xlarge';
 }
-
-const inputSyleMapping = {
-  small: "inputSizeSmall",
-  medium: "inputSizeMedium",
-  large: "inputSizeLarge",
-  xlarge: "inputSizeXlarge",
-};
 
 function TextField(props: OnePirateTextFieldProps & WithStyles<typeof styles>) {
   const {
@@ -102,7 +102,7 @@ function TextField(props: OnePirateTextFieldProps & WithStyles<typeof styles>) {
             {
               [classes.inputBorder]: !noBorder,
             },
-            InputPropsClassesInput
+            InputPropsClassesInput,
           ),
           disabled: classes.disabled,
           ...InputPropsClassesOther,
@@ -127,7 +127,7 @@ function TextField(props: OnePirateTextFieldProps & WithStyles<typeof styles>) {
 }
 
 TextField.defaultProps = {
-  size: "medium" as const,
+  size: 'medium' as const,
   noBorder: false,
 };
 

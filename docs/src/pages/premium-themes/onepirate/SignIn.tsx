@@ -1,18 +1,16 @@
-import withRoot from "./modules/withRoot";
-// --- Post bootstrap -----
-import React from "react";
-import { Field, Form, FormSpy } from "react-final-form";
-import { makeStyles } from "@material-ui/core/styles";
-import Link from "@material-ui/core/Link";
-import Typography from "./modules/components/Typography";
-import AppFooter from "./modules/views/AppFooter";
-import AppAppBar from "./modules/views/AppAppBar";
-import AppForm from "./modules/views/AppForm";
-import { email, required } from "./modules/form/validation";
-import RFTextField from "./modules/form/RFTextField";
-import FormButton from "./modules/form/FormButton";
-import FormFeedback from "./modules/form/FormFeedback";
-import { Link as RouterLink } from "react-router-dom";
+import React from 'react';
+import { Field, Form, FormSpy } from 'react-final-form';
+import { makeStyles } from '@material-ui/core/styles';
+import Link from '@material-ui/core/Link';
+import Typography from './modules/components/Typography';
+import AppFooter from './modules/views/AppFooter';
+import AppAppBar from './modules/views/AppAppBar';
+import AppForm from './modules/views/AppForm';
+import { email, required } from './modules/form/validation';
+import RFTextField from './modules/form/RFTextField';
+import FormButton from './modules/form/FormButton';
+import FormFeedback from './modules/form/FormFeedback';
+import withRoot from './modules/withRoot';
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -32,7 +30,7 @@ function SignIn() {
   const [sent, setSent] = React.useState(false);
 
   const validate = (values: { [index: string]: string }) => {
-    const errors = required(["email", "password"], values);
+    const errors = required(['email', 'password'], values);
 
     if (!errors.email) {
       const emailError = email(values.email);
@@ -57,10 +55,9 @@ function SignIn() {
             Sign In
           </Typography>
           <Typography variant="body2" align="center">
-            {"Not a member yet? "}
+            {'Not a member yet? '}
             <Link
-              component={RouterLink}
-              to="/sign-up/"
+              href="/premium-themes/onepirate/sign-up/"
               align="center"
               underline="always"
             >
@@ -115,7 +112,7 @@ function SignIn() {
                 color="secondary"
                 fullWidth
               >
-                {submitting || sent ? "In progress…" : "Sign In"}
+                {submitting || sent ? 'In progress…' : 'Sign In'}
               </FormButton>
             </form>
           )}
@@ -123,8 +120,7 @@ function SignIn() {
         <Typography align="center">
           <Link
             underline="always"
-            component={RouterLink}
-            to="/forgot-password/"
+            href="/premium-themes/onepirate/forgot-password/"
           >
             Forgot password?
           </Link>

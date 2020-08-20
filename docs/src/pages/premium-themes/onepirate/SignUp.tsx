@@ -1,19 +1,17 @@
-import withRoot from "./modules/withRoot";
-// --- Post bootstrap -----
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import Link from "@material-ui/core/Link";
-import { Field, Form, FormSpy } from "react-final-form";
-import Typography from "./modules/components/Typography";
-import AppFooter from "./modules/views/AppFooter";
-import AppAppBar from "./modules/views/AppAppBar";
-import AppForm from "./modules/views/AppForm";
-import { email, required } from "./modules/form/validation";
-import RFTextField from "./modules/form/RFTextField";
-import FormButton from "./modules/form/FormButton";
-import FormFeedback from "./modules/form/FormFeedback";
-import { Link as RouterLink } from "react-router-dom";
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import Link from '@material-ui/core/Link';
+import { Field, Form, FormSpy } from 'react-final-form';
+import Typography from './modules/components/Typography';
+import AppFooter from './modules/views/AppFooter';
+import AppAppBar from './modules/views/AppAppBar';
+import AppForm from './modules/views/AppForm';
+import { email, required } from './modules/form/validation';
+import RFTextField from './modules/form/RFTextField';
+import FormButton from './modules/form/FormButton';
+import FormFeedback from './modules/form/FormFeedback';
+import withRoot from './modules/withRoot';
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -34,8 +32,8 @@ function SignUp() {
 
   const validate = (values: { [index: string]: string }) => {
     const errors = required(
-      ["firstName", "lastName", "email", "password"],
-      values
+      ['firstName', 'lastName', 'email', 'password'],
+      values,
     );
 
     if (!errors.email) {
@@ -61,7 +59,7 @@ function SignUp() {
             Sign Up
           </Typography>
           <Typography variant="body2" align="center">
-            <Link component={RouterLink} to="/sign-in/" underline="always">
+            <Link href="/premium-themes/onepirate/sign-in/" underline="always">
               Already have an account?
             </Link>
           </Typography>
@@ -134,7 +132,7 @@ function SignUp() {
                 color="secondary"
                 fullWidth
               >
-                {submitting || sent ? "In progress…" : "Sign Up"}
+                {submitting || sent ? 'In progress…' : 'Sign Up'}
               </FormButton>
             </form>
           )}

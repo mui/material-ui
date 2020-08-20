@@ -1,6 +1,6 @@
-import React from "react";
-import { withStyles, Theme, WithStyles } from "@material-ui/core/styles";
-import MuiAppBar, { AppBarProps } from "@material-ui/core/AppBar";
+import React from 'react';
+import { withStyles, Theme, WithStyles } from '@material-ui/core/styles';
+import MuiAppBar, { AppBarProps } from '@material-ui/core/AppBar';
 
 const styles = (theme: Theme) => ({
   root: {
