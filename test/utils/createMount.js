@@ -85,11 +85,23 @@ export default function createMount(options = {}) {
 
     // some tests require that no other components are in the tree
     // e.g. when doing .instance(), .state() etc.
-    return mount(strict == null ? node : <Mode __element={node} __strict={Boolean(strict)} />, {
-      attachTo: container,
-      ...globalEnzymeOptions,
-      ...localEnzymeOptions,
-    });
+    const wrapper = mount(
+      strict == null ? node : <Mode __element={node} __strict={Boolean(strict)} />,
+      {
+        attachTo: container,
+        ...globalEnzymeOptions,
+        ...localEnzymeOptions,
+      },
+    );
+    const originalUnmount = wrapper.unmount;
+    wrapper.unmount = () => {
+      // flush effect cleanup functions
+      ReactDOMTestUtils.act(() => {
+        originalUnmount.call(wrapper);
+      });
+    };
+
+    return wrapper;
   };
 
   return mountWithContext;

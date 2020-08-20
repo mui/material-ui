@@ -64,19 +64,6 @@ index 197b2f77a3..f1ead08079 100644
      });
    });
  });
-diff --git a/packages/material-ui-styles/src/makeStyles/makeStyles.test.js b/packages/material-ui-styles/src/makeStyles/makeStyles.test.js
-index 3805828fee..be114e409d 100644
---- a/packages/material-ui-styles/src/makeStyles/makeStyles.test.js
-+++ b/packages/material-ui-styles/src/makeStyles/makeStyles.test.js
-@@ -213,7 +213,7 @@ describe('makeStyles', () => {
-       expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'makeStyles-root-2' });
- 
-       wrapper.unmount();
--      expect(sheetsRegistry.registry.length).to.equal(0);
-+      expect(sheetsRegistry.registry.length).to.equal(1);
-     });
- 
-     it('should work when depending on a theme', () => {
 diff --git a/packages/material-ui-styles/src/useThemeVariants/useThemeVariants.test.js b/packages/material-ui-styles/src/useThemeVariants/useThemeVariants.test.js
 index 9c99a49a1f..5d9db342e9 100644
 --- a/packages/material-ui-styles/src/useThemeVariants/useThemeVariants.test.js
