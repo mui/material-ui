@@ -9,7 +9,14 @@ import TableRow from '@material-ui/core/TableRow';
 import Title from './Title';
 
 // Generate Order Data
-function createData(id, date, name, shipTo, paymentMethod, amount) {
+function createData(
+  id: number,
+  date: string,
+  name: string,
+  shipTo: string,
+  paymentMethod: string,
+  amount: number,
+) {
   return { id, date, name, shipTo, paymentMethod, amount };
 }
 
@@ -56,7 +63,7 @@ const rows = [
   ),
 ];
 
-function preventDefault(event) {
+function preventDefault(event: React.MouseEvent) {
   event.preventDefault();
 }
 
