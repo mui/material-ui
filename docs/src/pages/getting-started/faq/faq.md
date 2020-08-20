@@ -92,7 +92,7 @@ import { createMuiTheme } from '@material-ui/core';
 
 const theme = createMuiTheme({
   components: {
-    // Name of the component ⚛️    
+    // Name of the component ⚛️
     MuiCssBaseline: {
       overrides: {
         // Name of the rule
