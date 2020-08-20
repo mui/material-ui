@@ -1179,60 +1179,60 @@ export const itIT: Localization = {
 
 export const jaJP: Localization = {
   props: {
-    // MuiBreadcrumbs: {
-    //   expandText: 'Show path',
-    // },
+    MuiBreadcrumbs: {
+      expandText: 'すべて表示',
+    },
     MuiTablePagination: {
-      // getItemAriaLabel: (type) => {
-      //   if (type === 'first') {
-      //     return 'Go to first page';
-      //   }
-      //   if (type === 'last') {
-      //     return 'Go to last page';
-      //   }
-      //   if (type === 'next') {
-      //     return 'Go to next page';
-      //   }
-      //   // if (type === 'previous') {
-      //   return 'Go to previous page';
-      // },
-      labelRowsPerPage: 'ページごとの行:',
+      getItemAriaLabel: (type) => {
+        if (type === 'first') {
+          return '最初のページへ';
+        }
+        if (type === 'last') {
+          return '最後のページへ';
+        }
+        if (type === 'next') {
+          return '次のページへ';
+        }
+        // if (type === 'previous') {
+        return '前のページへ';
+      },
+      labelRowsPerPage: 'ページあたりの行数:',
       labelDisplayedRows: ({ from, to, count }) =>
-        `${from}-${to} of ${count !== -1 ? count : `more than ${to}`}`,
+        `${from}～${to} / ${count !== -1 ? count : `${to}以上`}`,
     },
     MuiRating: {
-      getLabelText: (value) => `${value} ${value !== 1 ? '出演者' : '星'}`,
-      // emptyLabelText: 'Empty',
+      getLabelText: (value) => `星${value}`,
+      emptyLabelText: '星なし',
     },
     MuiAutocomplete: {
       clearText: 'クリア',
       closeText: '閉じる',
-      loadingText: '積み込み…',
-      noOptionsText: '結果がありません',
-      openText: '開いた',
+      loadingText: '読み込み中…',
+      noOptionsText: 'データがありません',
+      openText: '開く',
     },
     MuiAlert: {
       closeText: '閉じる',
     },
-    // MuiPagination: {
-    //   'aria-label': 'Pagination navigation',
-    //   getItemAriaLabel: (type, page, selected) => {
-    //     if (type === 'page') {
-    //       return `${selected ? '' : 'Go to '}page ${page}`;
-    //     }
-    //     if (type === 'first') {
-    //       return 'Go to first page';
-    //     }
-    //     if (type === 'last') {
-    //       return 'Go to last page';
-    //     }
-    //     if (type === 'next') {
-    //       return 'Go to next page';
-    //     }
-    //     // if (type === 'previous') {
-    //     return 'Go to previous page';
-    //   },
-    // },
+    MuiPagination: {
+      'aria-label': 'ページ選択',
+      getItemAriaLabel: (type, page, selected) => {
+        if (type === 'page') {
+          return `ページ${page}${selected ? '' : 'へ'}`;
+        }
+        if (type === 'first') {
+          return '最初のページへ';
+        }
+        if (type === 'last') {
+          return '最後のページへ';
+        }
+        if (type === 'next') {
+          return '次のページへ';
+        }
+        // if (type === 'previous') {
+        return '前のページへ';
+      },
+    },
   },
 };
 
