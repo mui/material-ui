@@ -29,24 +29,9 @@ The `MuiCssBaseline` name can be used for providing [default props](/customizati
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> | <span class="prop-default">null</span> | You can wrap a node. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 
 The component cannot hold a ref.
 
-
-## CSS
-
-| Rule name | Global class | Description |
-|:-----|:-------------|:------------|
-| <span class="prop-name">@global</span> | | Apply global styles.
-
-You can override the style of the component thanks to one of these customization points:
-
-- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
-- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
-- With a theme and an [`overrides` property](/customization/globals/#css).
-
-If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/CssBaseline/CssBaseline.js) for more detail.
 
 ## Demos
 

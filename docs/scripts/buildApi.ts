@@ -224,7 +224,7 @@ async function buildDocs(options: {
   if (component.styles && component.default.options) {
     // Collect the customization points of the `classes` property.
     styles.classes = Object.keys(getStylesCreator(component.styles).create(theme)).filter(
-      (className) => !className.match(/^(@media|@keyframes)/),
+      (className) => !className.match(/^(@media|@keyframes|@global)/),
     );
     styles.name = component.default.options.name;
     styles.globalClasses = styles.classes.reduce((acc, key) => {
