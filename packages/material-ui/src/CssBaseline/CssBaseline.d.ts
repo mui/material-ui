@@ -9,11 +9,6 @@ export interface CssBaselineProps extends StyledComponentProps<never> {
 }
 
 /**
- * @deprecated The name of this type is misleading. `CssBaseline` implements no class at all.
- */
-export type CssBaselineClassKey = '@global';
-
-/**
  * Kickstart an elegant, consistent, and simple baseline to build upon.
  * Demos:
  *

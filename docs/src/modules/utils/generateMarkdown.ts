@@ -284,12 +284,12 @@ function generatePropType(type: PropTypeDescriptor): string | undefined {
 }
 
 function generateName(reactAPI: ReactApi) {
-  if (!reactAPI.styles.classes.length) {
-    return '\n';
+  if (reactAPI.styles.classes.length && !reactAPI.styles.name) {
+    throw new Error(`Missing styles name on ${reactAPI.name} component`);
   }
 
   if (!reactAPI.styles.name) {
-    throw new Error(`Missing styles name on ${reactAPI.name} component`);
+    return '\n';
   }
 
   return `## Component name

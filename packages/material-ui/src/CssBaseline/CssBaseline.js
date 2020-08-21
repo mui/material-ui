@@ -48,8 +48,7 @@ export const styles = (theme) => ({
  * Kickstart an elegant, consistent, and simple baseline to build upon.
  */
 function CssBaseline(props) {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { children = null, classes } = props;
+  const { children = null } = props;
   return <React.Fragment>{children}</React.Fragment>;
 }
 
@@ -62,11 +61,6 @@ CssBaseline.propTypes = {
    * You can wrap a node.
    */
   children: PropTypes.node,
-  /**
-   * Override or extend the styles applied to the component.
-   * See [CSS API](#css) below for more details.
-   */
-  classes: PropTypes.object,
 };
 
 if (process.env.NODE_ENV !== 'production') {
