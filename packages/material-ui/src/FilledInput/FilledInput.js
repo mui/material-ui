@@ -113,6 +113,8 @@ export const styles = (theme) => {
         paddingBottom: 17,
       },
     },
+    /* Styles applied to the root element if `hiddenLabel={true}`. */
+    hiddenLabel: {},
     /* Styles applied to the `input` element. */
     input: {
       padding: '25px 12px 8px',
