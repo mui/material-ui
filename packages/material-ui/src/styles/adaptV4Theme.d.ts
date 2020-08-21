@@ -7,8 +7,8 @@ import { ShapeOptions } from './shape';
 import { SpacingOptions } from './createSpacing';
 import { TransitionsOptions } from './transitions';
 import { ZIndexOptions } from './zIndex';
-import { Overrides } from './overrides';
-import { Variants } from './variants';
+import { ComponentsOverrides } from './overrides';
+import { ComponentsVariants } from './variants';
 import { ComponentsProps } from './props';
 import { Theme } from './createMuiTheme';
 
@@ -19,14 +19,14 @@ export interface DeprecatedThemeOptions {
   breakpoints?: BreakpointsOptions;
   direction?: Direction;
   mixins?: MixinsOptions;
-  overrides?: Overrides;
+  overrides?: ComponentsOverrides;
   palette?: PaletteOptions;
   props?: ComponentsProps;
   shadows?: Shadows;
   spacing?: SpacingOptions;
   transitions?: TransitionsOptions;
   typography?: TypographyOptions | ((palette: Palette) => TypographyOptions);
-  variants?: Variants;
+  variants?: ComponentsVariants;
   zIndex?: ZIndexOptions;
   unstable_strictMode?: boolean;
 }

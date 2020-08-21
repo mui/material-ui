@@ -34,5 +34,5 @@ export {
   ThemeProviderProps,
 } from '@material-ui/styles';
 export { ComponentsProps } from './props';
-export { Variants } from './variants';
-export { Overrides } from './overrides';
+export { ComponentsVariants } from './variants';
+export { ComponentsOverrides } from './overrides';
