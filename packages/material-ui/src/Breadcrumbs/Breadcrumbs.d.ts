@@ -8,6 +8,7 @@ export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'>
      */
     children?: React.ReactNode;
     /**
+     * Override or extend the styles applied to the component.
      * See [CSS API](#css) below for more details.
      */
     classes?: {

@@ -17,6 +17,7 @@ export interface PaginationProps
   extends UsePaginationProps,
     StandardProps<React.HTMLAttributes<HTMLElement>, 'children' | 'onChange'> {
   /**
+   * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
   classes?: {

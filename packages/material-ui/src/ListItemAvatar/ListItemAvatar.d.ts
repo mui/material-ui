@@ -1,11 +1,12 @@
 import { InternalStandardProps as StandardProps } from '..';
 
-export interface ListItemAvatarProps extends StandardProps<{}> {
+export interface ListItemAvatarProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
    * The content of the component – normally `Avatar`.
    */
   children?: React.ReactNode;
   /**
+   * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
   classes?: {

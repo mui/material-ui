@@ -11,10 +11,6 @@ export interface TabContextProps {
    */
   children?: React.ReactNode;
   /**
-   * See [CSS API](#css) below for more details.
-   */
-  classes?: {};
-  /**
    * The value of the currently selected `Tab`.
    */
   value: string;

@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { InternalStandardProps as StandardProps } from '@material-ui/core';
 
-export interface TimelineProps extends StandardProps<{}> {
+export interface TimelineProps extends StandardProps<React.HTMLAttributes<HTMLUListElement>> {
   /**
    * The content of the component.
    */
   children?: React.ReactNode;
   /**
+   * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
   classes?: {

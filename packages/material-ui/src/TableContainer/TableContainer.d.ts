@@ -8,6 +8,7 @@ export interface TableContainerTypeMap<P = {}, D extends React.ElementType = 'di
      */
     children?: React.ReactNode;
     /**
+     * Override or extend the styles applied to the component.
      * See [CSS API](#css) below for more details.
      */
     classes?: {

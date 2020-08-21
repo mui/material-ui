@@ -4,6 +4,7 @@ import { InternalStandardProps as StandardProps } from '..';
 export interface CircularProgressProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'children'> {
   /**
+   * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
   classes?: {

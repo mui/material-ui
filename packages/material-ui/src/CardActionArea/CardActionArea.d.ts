@@ -4,6 +4,7 @@ import { OverrideProps } from '../OverridableComponent';
 export type CardActionAreaTypeMap<P, D extends React.ElementType> = ExtendButtonBaseTypeMap<{
   props: P & {
     /**
+     * Override or extend the styles applied to the component.
      * See [CSS API](#css) below for more details.
      */
     classes?: {

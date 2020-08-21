@@ -4,6 +4,7 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 export interface InputAdornmentTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
     /**
+     * Override or extend the styles applied to the component.
      * See [CSS API](#css) below for more details.
      */
     classes?: {

@@ -4,6 +4,7 @@ import { InputBaseProps } from '../InputBase';
 
 export interface OutlinedInputProps extends StandardProps<InputBaseProps> {
   /**
+   * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
   classes?: {

@@ -4,6 +4,7 @@ import { IconButtonProps } from '../IconButton/IconButton';
 export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDivElement> {
   backIconButtonProps?: Partial<IconButtonProps>;
   /**
+   * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
   classes?: {};

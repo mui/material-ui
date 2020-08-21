@@ -5,12 +5,13 @@ import { InternalStandardProps as StandardProps } from '@material-ui/core';
 export interface TimelineDotPropsVariantOverrides {}
 export type TimelineDotVariantDefaults = Record<'filled' | 'outlined', true>;
 
-export interface TimelineDotProps extends StandardProps<{}> {
+export interface TimelineDotProps extends StandardProps<React.HTMLAttributes<HTMLSpanElement>> {
   /**
    * The content of the component.
    */
   children?: React.ReactNode;
   /**
+   * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
   classes?: {

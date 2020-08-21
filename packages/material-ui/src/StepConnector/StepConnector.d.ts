@@ -6,6 +6,7 @@ export type StepConnectorIcon = React.ReactElement | string | number;
 export interface StepConnectorProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'children'> {
   /**
+   * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
   classes?: {

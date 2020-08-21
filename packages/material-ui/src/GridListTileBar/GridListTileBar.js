@@ -132,6 +132,10 @@ GridListTileBar.propTypes = {
    */
   actionPosition: PropTypes.oneOf(['left', 'right']),
   /**
+   * @ignore
+   */
+  children: PropTypes.node,
+  /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */

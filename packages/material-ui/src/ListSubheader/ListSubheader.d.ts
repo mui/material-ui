@@ -8,6 +8,7 @@ export interface ListSubheaderTypeMap<P = {}, D extends React.ElementType = 'li'
      */
     children?: React.ReactNode;
     /**
+     * Override or extend the styles applied to the component.
      * See [CSS API](#css) below for more details.
      */
     classes?: {

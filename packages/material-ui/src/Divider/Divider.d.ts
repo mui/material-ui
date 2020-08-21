@@ -11,6 +11,7 @@ export interface DividerTypeMap<P = {}, D extends React.ElementType = 'hr'> {
      */
     absolute?: boolean;
     /**
+     * Override or extend the styles applied to the component.
      * See [CSS API](#css) below for more details.
      */
     classes?: {

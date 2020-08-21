@@ -8,10 +8,6 @@ export interface MenuListProps extends StandardProps<ListProps> {
    */
   autoFocus?: boolean;
   /**
-   * See [CSS API](#css) below for more details.
-   */
-  classes?: {};
-  /**
    * If `true`, will focus the first menuitem if `variant="menu"` or selected item
    * if `variant="selectedMenu"`.
    */

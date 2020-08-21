@@ -28,6 +28,7 @@ export interface SliderTypeMap<P = {}, D extends React.ElementType = 'span'> {
      */
     'aria-valuetext'?: string;
     /**
+     * Override or extend the styles applied to the component.
      * See [CSS API](#css) below for more details.
      */
     classes?: {

@@ -4,6 +4,7 @@ import { InternalStandardProps as StandardProps } from '@material-ui/core';
 export interface SpeedDialIconProps
   extends StandardProps<React.HTMLAttributes<HTMLSpanElement>, 'children'> {
   /**
+   * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
   classes?: {
