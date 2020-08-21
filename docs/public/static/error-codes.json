@@ -5,5 +5,8 @@
   "4": "Material-UI: The color provided to augmentColor(color) is invalid.\nThe color object needs to have a `main` property or a `%s` property.",
   "5": "Material-UI: The color provided to augmentColor(color) is invalid.\n`color.main` should be a string, but `%s` was provided instead.\n\nDid you intend to use one of the following approaches?\n\nimport { green } from \"@material-ui/core/colors\";\n\nconst theme1 = createMuiTheme({ palette: {\n  primary: green,\n} });\n\nconst theme2 = createMuiTheme({ palette: {\n  primary: { main: green[500] },\n} });",
   "6": "Material-UI: Unsupported non-unitless line height with grid alignment.\nUse unitless line heights instead.",
-  "7": "Material-UI: capitalize(string) expects a string argument."
+  "7": "Material-UI: capitalize(string) expects a string argument.",
+  "8": "Material-UI: Unsupported `%s` color.\nWe support the following formats: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color().",
+  "9": "Material-UI: Unsupported `%s` color.\nThe following formats are supported: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color().",
+  "10": "Material-UI: unsupported `%s` color space.\nThe following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rgb, rec-2020."
 }
