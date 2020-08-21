@@ -66,7 +66,6 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">@global</span> | | Apply global styles.
 | <span class="prop-name">root</span> | <span class="prop-name">.MuiInputBase-root</span> | Styles applied to the root element.
 | <span class="prop-name">formControl</span> | <span class="prop-name">.MuiInputBase-formControl</span> | Styles applied to the root element if the component is a descendant of `FormControl`.
 | <span class="prop-name">focused</span> | <span class="prop-name">.Mui-focused</span> | Styles applied to the root element if the component is focused.
