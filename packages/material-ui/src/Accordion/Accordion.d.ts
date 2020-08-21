@@ -9,6 +9,21 @@ export interface AccordionProps extends StandardProps<PaperProps, AccordionClass
    */
   children: NonNullable<React.ReactNode>;
   /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the root element if `square={false}`. */
+    rounded?: string;
+    /** Pseudo-class applied to the root element if `expanded={true}`. */
+    expanded?: string;
+    /** Pseudo-class applied to the root element if `disabled={true}`. */
+    disabled?: string;
+    /** Styles applied to the region element, the container of the children. */
+    region?: string;
+  };
+  /**
    * If `true`, expands the accordion by default.
    */
   defaultExpanded?: boolean;

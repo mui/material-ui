@@ -188,6 +188,59 @@ async function annotateComponentDefinition(component: { filename: string }, api:
   writeFileSync(typesFilename, typesSourceNew, { encoding: 'utf8' });
 }
 
+async function annotateClassesDefinition(component: { filename: string }, api: ReactApi) {
+  const typesFilename = component.filename.replace(/\.js$/, '.d.ts');
+  const typesSource = readFileSync(typesFilename, { encoding: 'utf8' });
+  const typesAST = await babel.parseAsync(typesSource, {
+    configFile: false,
+    filename: typesFilename,
+    presets: [require.resolve('@babel/preset-typescript')],
+  });
+  if (typesAST === null) {
+    throw new Error('No AST returned from babel.');
+  }
+
+  let start = 0;
+  let end: number | null = null;
+  traverse(typesAST, {
+    TSPropertySignature(babelPath) {
+      const { node } = babelPath;
+      const possiblyPropName = (node.key as babel.types.Identifier).name;
+      if (possiblyPropName === 'classes' && node.typeAnnotation !== null) {
+        if (end !== null) {
+          throw new Error('Found multiple possible locations for the `classes` definition.');
+        }
+        if (node.typeAnnotation.start !== null) {
+          start = node.typeAnnotation.start;
+          end = node.typeAnnotation.end;
+        }
+      }
+    },
+  });
+
+  if (end === null || start === 0) {
+    // TODO: throw
+    console.warn(
+      "Don't know where to insert the definitions for classes. Probably didn't add a place for `classes` with e.g. `classes: {};`",
+    );
+    return;
+  }
+
+  // colon is parth of TSTypeAnnotation
+  const propertyTypeIntendation = '  ';
+  let classesDefinitionSource = ': {';
+  api.styles.classes.forEach((className) => {
+    classesDefinitionSource += `${api.EOL}${propertyTypeIntendation}  /** ${api.styles.descriptions[className]} */`;
+    classesDefinitionSource += `${api.EOL}${propertyTypeIntendation}  ${className}?: string;`;
+  });
+  // semicolon is not part of TSTypeAnnotation
+  classesDefinitionSource += `${api.EOL}${propertyTypeIntendation}}`;
+
+  const typesSourceNew =
+    typesSource.slice(0, start) + classesDefinitionSource + typesSource.slice(end);
+  writeFileSync(typesFilename, typesSourceNew, { encoding: 'utf8' });
+}
+
 async function buildDocs(options: {
   component: { filename: string };
   pagesMarkdown: Array<{ components: string[]; filename: string; pathname: string }>;
@@ -336,6 +389,7 @@ Page.getInitialProps = () => {
   console.log('Built markdown docs for', reactAPI.name);
 
   await annotateComponentDefinition(componentObject, reactAPI);
+  await annotateClassesDefinition(componentObject, reactAPI);
 }
 
 function run(argv: { componentDirectories?: string[]; grep?: string; outputDirectory?: string }) {
