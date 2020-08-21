@@ -1,5 +1,5 @@
-const transformDeprecatedThemeFormat = (inputTheme) => {
-  const { props, variants, overrides, ...other } = inputTheme;
+const adaptV4Theme = (inputTheme) => {
+  const { props = {}, variants = {}, overrides = {}, ...other } = inputTheme;
   const theme = {
     ...other,
     components: {},
@@ -26,4 +26,4 @@ const transformDeprecatedThemeFormat = (inputTheme) => {
   return theme;
 };
 
-export default transformDeprecatedThemeFormat;
+export default adaptV4Theme;

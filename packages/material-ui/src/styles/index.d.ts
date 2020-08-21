@@ -7,9 +7,9 @@ export {
   Direction,
 } from './createMuiTheme';
 export {
-  default as deprecated_createMuiTheme,
+  default as adaptV4Theme,
   DeprecatedThemeOptions,
-} from './deprecated_createMuiTheme';
+} from './adaptV4Theme';
 export { PaletteColorOptions, SimplePaletteColorOptions } from './createPalette';
 export { default as createStyles } from './createStyles';
 export { TypographyStyle, Variant as TypographyVariant } from './createTypography';

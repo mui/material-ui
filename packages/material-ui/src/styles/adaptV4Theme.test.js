@@ -1,42 +1,91 @@
 import { expect } from 'chai';
-import transformDeprecatedThemeFormat from './transformDeprecatedThemeFormat';
+import adaptV4Theme from './adaptV4Theme';
 
-describe('transformDeprecatedThemeFormat', () => {
-  describe('props', () => {
-    it('moves props, variants and overrides to components', () => {
-      const theme = {
-        props: {
-          MuiButton: {
-            disabled: true,
-          },
+describe('adaptV4Theme', () => {
+  it('moves props to components', () => {
+    const theme = {
+      props: {
+        MuiButton: {
+          disabled: true,
         },
-        overrides: {
-          MuiTable: {
-            root: {
-              background: 'red',
+      },
+    };
+
+    const transformedTheme = adaptV4Theme(theme);
+
+    expect(transformedTheme.components.MuiButton.props).to.deep.equal(theme.props.MuiButton);
+  });
+
+  it('moves variants to components', () => {
+    const theme = {
+      variants: {
+        MuiFab: [
+          {
+            props: { variant: 'dashed' },
+            styles: {
+              border: '1px dashed grey',
             },
           },
+        ],
+      },
+    };
+
+    const transformedTheme = adaptV4Theme(theme);
+
+    expect(transformedTheme.components.MuiFab.variants).to.deep.equal(theme.variants.MuiFab);
+  });
+
+  it('moves overrides to components', () => {
+    const theme = {
+      overrides: {
+        MuiTable: {
+          root: {
+            background: 'red',
+          },
         },
-        variants: {
-          MuiFab: [
-            {
-              props: { variant: 'dashed' },
-              styles: {
-                border: '1px dashed grey',
-              },
+      },
+    };
+
+    const transformedTheme = adaptV4Theme(theme);
+
+    expect(transformedTheme.components.MuiTable.overrides).to.deep.equal(
+      theme.overrides.MuiTable,
+    );
+  });
+
+  it('moves props, variants and overrides to components', () => {
+    const theme = {
+      props: {
+        MuiButton: {
+          disabled: true,
+        },
+      },
+      overrides: {
+        MuiTable: {
+          root: {
+            background: 'red',
+          },
+        },
+      },
+      variants: {
+        MuiFab: [
+          {
+            props: { variant: 'dashed' },
+            styles: {
+              border: '1px dashed grey',
             },
-          ],
-        },
-      };
+          },
+        ],
+      },
+    };
 
-      const transformedTheme = transformDeprecatedThemeFormat(theme);
+    const transformedTheme = adaptV4Theme(theme);
 
-      expect(transformedTheme.components.MuiButton.props).to.deep.equal(theme.props.MuiButton);
-      expect(transformedTheme.components.MuiFab.variants).to.deep.equal(theme.variants.MuiFab);
-      expect(transformedTheme.components.MuiTable.overrides).to.deep.equal(
-        theme.overrides.MuiTable,
-      );
-    });
+    expect(transformedTheme.components.MuiButton.props).to.deep.equal(theme.props.MuiButton);
+    expect(transformedTheme.components.MuiFab.variants).to.deep.equal(theme.variants.MuiFab);
+    expect(transformedTheme.components.MuiTable.overrides).to.deep.equal(
+      theme.overrides.MuiTable,
+    );
   });
 
   it('merges props, variants and overrides to components', () => {
@@ -65,7 +114,7 @@ describe('transformDeprecatedThemeFormat', () => {
       },
     };
 
-    const transformedTheme = transformDeprecatedThemeFormat(theme);
+    const transformedTheme = adaptV4Theme(theme);
 
     expect(transformedTheme.components.MuiButton.props).to.deep.equal(theme.props.MuiButton);
     expect(transformedTheme.components.MuiButton.variants).to.deep.equal(theme.variants.MuiButton);
@@ -116,7 +165,7 @@ describe('transformDeprecatedThemeFormat', () => {
       },
     };
 
-    const transformedTheme = transformDeprecatedThemeFormat(theme);
+    const transformedTheme = adaptV4Theme(theme);
 
     expect(transformedTheme.components.MuiButton.props).to.deep.equal(theme.props.MuiButton);
     expect(transformedTheme.components.MuiButton.variants).to.deep.equal(theme.variants.MuiButton);

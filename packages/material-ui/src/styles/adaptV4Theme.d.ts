@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import { BreakpointsOptions } from './createBreakpoints';
 import { MixinsOptions } from './createMixins';
 import { Palette, PaletteOptions } from './createPalette';
@@ -33,13 +32,11 @@ export interface DeprecatedThemeOptions {
 }
 
 /**
- * Generate a theme base on the options received.
+ * Generate a theme base on the V4 theme options received.
  *
  * @param options Takes an incomplete theme object and adds the missing parts.
- * @param args Deep merge the arguments with the about to be returned theme.
  * @returns A complete, ready to use theme object.
  */
-export default function deprecated_createMuiTheme(
+export default function adaptV4Theme(
   options?: DeprecatedThemeOptions,
-  ...args: object[]
 ): Theme;
