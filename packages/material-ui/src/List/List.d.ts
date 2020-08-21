@@ -8,6 +8,10 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      */
     children?: React.ReactNode;
     /**
+     * See [CSS API](#css) below for more details.
+     */
+    classes?: {};
+    /**
      * If `true`, compact vertical padding designed for keyboard and mouse input will be used for
      * the list and list items.
      * The prop is available to descendant components as the `dense` context.

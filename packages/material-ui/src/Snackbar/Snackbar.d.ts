@@ -38,6 +38,10 @@ export interface SnackbarProps
    */
   children?: React.ReactElement<any, any>;
   /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
+  /**
    * Props applied to the `ClickAwayListener` element.
    */
   ClickAwayListenerProps?: Partial<ClickAwayListenerProps>;

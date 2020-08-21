@@ -14,6 +14,10 @@ export interface TooltipProps
    */
   children: React.ReactElement<any, any>;
   /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
+  /**
    * Do not respond to focus events.
    */
   disableFocusListener?: boolean;

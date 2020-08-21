@@ -13,6 +13,10 @@ export interface BackdropProps
    */
   children?: React.ReactNode;
   /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
+  /**
    * If `true`, the backdrop is invisible.
    * It can be used when rendering a popover or a custom select component.
    */

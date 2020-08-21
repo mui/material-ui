@@ -11,6 +11,10 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
        */
       children?: React.ReactNode;
       /**
+       * See [CSS API](#css) below for more details.
+       */
+      classes?: {};
+      /**
        * The color of the link.
        */
       color?: TypographyProps['color'];

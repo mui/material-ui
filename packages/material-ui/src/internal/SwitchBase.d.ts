@@ -14,6 +14,10 @@ export interface SwitchBaseProps
    */
   checked?: boolean;
   checkedIcon: React.ReactNode;
+  /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
   defaultChecked?: boolean;
   disabled?: boolean;
   /**

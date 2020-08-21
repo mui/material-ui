@@ -7,6 +7,10 @@ export interface CardContentTypeMap<P = {}, D extends React.ElementType = 'div'>
      * The content of the component.
      */
     children?: React.ReactNode;
+    /**
+     * See [CSS API](#css) below for more details.
+     */
+    classes?: {};
   };
   defaultComponent: D;
   classKey: CardContentClassKey;

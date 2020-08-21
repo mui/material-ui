@@ -7,6 +7,10 @@ export interface ListItemIconProps
    * or a `@material-ui/icons` SVG icon element.
    */
   children?: React.ReactNode;
+  /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
 }
 
 export type ListItemIconClassKey = 'root' | 'alignItemsFlexStart';

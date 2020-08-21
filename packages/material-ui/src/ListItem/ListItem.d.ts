@@ -24,6 +24,10 @@ export interface ListItemTypeMap<P, D extends React.ElementType> {
      */
     children?: React.ReactNode;
     /**
+     * See [CSS API](#css) below for more details.
+     */
+    classes?: {};
+    /**
      * The container component used when a `ListItemSecondaryAction` is the last child.
      */
     ContainerComponent?: React.ElementType<React.HTMLAttributes<HTMLDivElement>>;

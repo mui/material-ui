@@ -26,6 +26,10 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
        */
       backIconButtonProps?: Partial<IconButtonProps>;
       /**
+       * See [CSS API](#css) below for more details.
+       */
+      classes?: {};
+      /**
        * The total number of rows.
        *
        * To enable server side pagination for an unknown number of items, provide -1.

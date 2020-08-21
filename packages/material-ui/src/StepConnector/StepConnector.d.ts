@@ -4,7 +4,12 @@ import { StandardProps } from '..';
 export type StepConnectorIcon = React.ReactElement | string | number;
 
 export interface StepConnectorProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, StepConnectorClasskey, 'children'> {}
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, StepConnectorClasskey, 'children'> {
+  /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
+}
 
 export type StepConnectorClasskey =
   | 'root'

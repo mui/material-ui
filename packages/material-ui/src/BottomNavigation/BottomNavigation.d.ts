@@ -8,6 +8,10 @@ export interface BottomNavigationTypeMap<P = {}, D extends React.ElementType = '
      */
     children?: React.ReactNode;
     /**
+     * See [CSS API](#css) below for more details.
+     */
+    classes?: {};
+    /**
      * Callback fired when the value changes.
      *
      * @param {object} event The event source of the callback. **Warning**: This is a generic event not a change event.

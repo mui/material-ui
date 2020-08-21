@@ -26,6 +26,10 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
      */
     children?: React.ReactNode;
     /**
+     * See [CSS API](#css) below for more details.
+     */
+    classes?: {};
+    /**
      * If `true`, the base button will be disabled.
      */
     disabled?: boolean;

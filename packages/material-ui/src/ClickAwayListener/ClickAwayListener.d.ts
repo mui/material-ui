@@ -6,6 +6,10 @@ export interface ClickAwayListenerProps {
    */
   children?: React.ReactNode;
   /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
+  /**
    * If `true`, the React tree is ignored and only the DOM tree is considered.
    * This prop changes how portaled elements are handled.
    */

@@ -9,6 +9,10 @@ export interface SnackbarContentProps
    */
   action?: React.ReactNode;
   /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
+  /**
    * The message to display.
    */
   message?: React.ReactNode;

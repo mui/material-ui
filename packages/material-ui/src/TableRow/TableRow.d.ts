@@ -8,6 +8,10 @@ export interface TableRowTypeMap<P = {}, D extends React.ElementType = 'tr'> {
      */
     children?: React.ReactNode;
     /**
+     * See [CSS API](#css) below for more details.
+     */
+    classes?: {};
+    /**
      * If `true`, the table row will shade on hover.
      */
     hover?: boolean;

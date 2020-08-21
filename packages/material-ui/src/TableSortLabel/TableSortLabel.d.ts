@@ -16,6 +16,10 @@ export type TableSortLabelTypeMap<
      */
     children?: React.ReactNode;
     /**
+     * See [CSS API](#css) below for more details.
+     */
+    classes?: {};
+    /**
      * The current sort direction.
      */
     direction?: 'asc' | 'desc';

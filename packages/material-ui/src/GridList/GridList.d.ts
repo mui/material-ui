@@ -13,6 +13,10 @@ export interface GridListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      */
     children: NonNullable<React.ReactNode>;
     /**
+     * See [CSS API](#css) below for more details.
+     */
+    classes?: {};
+    /**
      * Number of columns.
      */
     cols?: number;

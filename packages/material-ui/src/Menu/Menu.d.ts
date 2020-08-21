@@ -23,6 +23,10 @@ export interface MenuProps
    */
   children?: React.ReactNode;
   /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
+  /**
    * When opening the menu will not focus the active item but the `[role="menu"]`
    * unless `autoFocus` is also set to `false`. Not using the default means not
    * following WAI-ARIA authoring practices. Please be considerate about possible

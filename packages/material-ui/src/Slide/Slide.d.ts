@@ -7,6 +7,10 @@ export interface SlideProps extends TransitionProps {
    */
   children?: React.ReactElement<any, any>;
   /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
+  /**
    * Direction the child node will enter from.
    */
   direction?: 'left' | 'right' | 'up' | 'down';

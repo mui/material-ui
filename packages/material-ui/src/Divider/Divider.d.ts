@@ -11,6 +11,10 @@ export interface DividerTypeMap<P = {}, D extends React.ElementType = 'hr'> {
      */
     absolute?: boolean;
     /**
+     * See [CSS API](#css) below for more details.
+     */
+    classes?: {};
+    /**
      * If `true`, a vertical divider will have the correct height when used in flex container.
      * (By default, a vertical divider will have a calculated height of `0px` if it is the child of a flex container.)
      */

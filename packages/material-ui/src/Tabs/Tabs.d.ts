@@ -32,6 +32,10 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
      */
     children?: React.ReactNode;
     /**
+     * See [CSS API](#css) below for more details.
+     */
+    classes?: {};
+    /**
      * Determines the color of the indicator.
      */
     indicatorColor?: 'secondary' | 'primary';

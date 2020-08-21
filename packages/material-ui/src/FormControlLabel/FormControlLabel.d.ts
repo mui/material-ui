@@ -12,6 +12,10 @@ export interface FormControlLabelProps
    */
   checked?: boolean;
   /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
+  /**
    * A control element. For instance, it can be a `Radio`, a `Switch` or a `Checkbox`.
    */
   control: React.ReactElement<any, any>;

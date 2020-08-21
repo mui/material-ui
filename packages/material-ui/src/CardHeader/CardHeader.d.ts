@@ -18,6 +18,10 @@ export interface CardHeaderTypeMap<
      */
     avatar?: React.ReactNode;
     /**
+     * See [CSS API](#css) below for more details.
+     */
+    classes?: {};
+    /**
      * If `true`, `subheader` and `title` won't be wrapped by a Typography component.
      * This can be useful to render an alternative Typography variant by wrapping
      * the `title` text, and optional `subheader` text

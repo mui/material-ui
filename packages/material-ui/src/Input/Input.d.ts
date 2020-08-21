@@ -3,6 +3,10 @@ import { InputBaseProps } from '../InputBase';
 
 export interface InputProps extends StandardProps<InputBaseProps, InputClassKey> {
   /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
+  /**
    * If `true`, the input will not have an underline.
    */
   disableUnderline?: boolean;

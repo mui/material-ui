@@ -10,6 +10,10 @@ export interface FormHelperTextTypeMap<P = {}, D extends React.ElementType = 'p'
      */
     children?: React.ReactNode;
     /**
+     * See [CSS API](#css) below for more details.
+     */
+    classes?: {};
+    /**
      * If `true`, the helper text should be displayed in a disabled state.
      */
     disabled?: boolean;

@@ -6,7 +6,12 @@ export interface DialogContentTextTypeMap<
   P = {},
   D extends React.ElementType = TypographyTypeMap['defaultComponent']
 > {
-  props: P & TypographyTypeMap['props'];
+  props: P & {
+    /**
+     * See [CSS API](#css) below for more details.
+     */
+    classes?: {};
+  } & TypographyTypeMap['props'];
   defaultComponent: D;
   classKey: DialogContentTextClassKey;
 }

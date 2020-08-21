@@ -5,6 +5,10 @@ export interface ContainerTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
     children?: React.ReactNode;
     /**
+     * See [CSS API](#css) below for more details.
+     */
+    classes?: {};
+    /**
      * If `true`, the left and right padding is removed.
      */
     disableGutters?: boolean;

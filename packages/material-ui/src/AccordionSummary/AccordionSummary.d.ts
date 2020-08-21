@@ -13,6 +13,10 @@ export type AccordionSummaryTypeMap<
      */
     children?: React.ReactNode;
     /**
+     * See [CSS API](#css) below for more details.
+     */
+    classes?: {};
+    /**
      * The icon to display as the expand indicator.
      */
     expandIcon?: React.ReactNode;

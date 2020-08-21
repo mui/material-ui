@@ -4,6 +4,10 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 export interface InputAdornmentTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
     /**
+     * See [CSS API](#css) below for more details.
+     */
+    classes?: {};
+    /**
      * The content of the component, normally an `IconButton` or string.
      */
     children?: React.ReactNode;

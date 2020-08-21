@@ -18,6 +18,10 @@ export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     children?: React.ReactNode;
     /**
+     * See [CSS API](#css) below for more details.
+     */
+    classes?: {};
+    /**
      * Attributes applied to the `img` element if the component is used to display an image.
      * It can be used to listen for the loading error event.
      */

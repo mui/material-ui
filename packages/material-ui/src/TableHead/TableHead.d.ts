@@ -7,6 +7,10 @@ export interface TableHeadTypeMap<P = {}, D extends React.ElementType = 'thead'>
      * The content of the component, normally `TableRow`.
      */
     children?: React.ReactNode;
+    /**
+     * See [CSS API](#css) below for more details.
+     */
+    classes?: {};
   };
   defaultComponent: D;
   classKey: TableHeadClassKey;

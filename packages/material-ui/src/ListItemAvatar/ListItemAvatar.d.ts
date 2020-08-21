@@ -5,6 +5,10 @@ export interface ListItemAvatarProps extends StandardProps<{}, ListItemAvatarCla
    * The content of the component – normally `Avatar`.
    */
   children?: React.ReactNode;
+  /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
 }
 
 export type ListItemAvatarClassKey = 'root' | 'icon';

@@ -20,6 +20,10 @@ export interface SelectProps
    */
   children?: React.ReactNode;
   /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
+  /**
    * The default element value. Use when the component is not controlled.
    */
   defaultValue?: unknown;

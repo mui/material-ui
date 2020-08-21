@@ -8,6 +8,10 @@ export interface FormGroupProps
    */
   children?: React.ReactNode;
   /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
+  /**
    * Display group of elements in a compact row.
    */
   row?: boolean;

@@ -7,6 +7,10 @@ export interface HiddenProps {
    */
   children?: React.ReactNode;
   /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
+  /**
    * Specify which implementation to use.  'js' is the default, 'css' works better for
    * server-side rendering.
    */

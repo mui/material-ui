@@ -93,6 +93,10 @@ export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     children?: React.ReactNode;
     /**
+     * See [CSS API](#css) below for more details.
+     */
+    classes?: {};
+    /**
      * If `true`, the component will have the flex *container* behavior.
      * You should be wrapping *items* with a *container*.
      */

@@ -3,6 +3,10 @@ import { PaperProps } from '../Paper';
 
 export interface CardProps extends StandardProps<PaperProps, CardClassKey> {
   /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
+  /**
    * If `true`, the card will use raised styling.
    */
   raised?: boolean;

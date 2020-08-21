@@ -8,6 +8,10 @@ export interface AccordionActionsProps
    */
   children?: React.ReactNode;
   /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
+  /**
    * If `true`, the actions do not have additional margin.
    */
   disableSpacing?: boolean;

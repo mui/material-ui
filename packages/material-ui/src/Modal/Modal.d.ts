@@ -18,6 +18,10 @@ export interface ModalProps
    */
   children: React.ReactElement;
   /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
+  /**
    * When set to true the Modal waits until a nested Transition is completed before closing.
    */
   closeAfterTransition?: boolean;

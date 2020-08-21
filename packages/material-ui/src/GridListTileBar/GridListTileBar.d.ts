@@ -12,6 +12,10 @@ export interface GridListTileBarProps extends StandardProps<{}, GridListTileBarC
    */
   actionPosition?: 'left' | 'right';
   /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
+  /**
    * String or element serving as subtitle (support text).
    */
   subtitle?: React.ReactNode;

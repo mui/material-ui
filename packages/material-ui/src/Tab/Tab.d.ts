@@ -10,6 +10,10 @@ export type TabTypeMap<P = {}, D extends React.ElementType = 'div'> = ExtendButt
      */
     children?: null;
     /**
+     * See [CSS API](#css) below for more details.
+     */
+    classes?: {};
+    /**
      * If `true`, the tab will be disabled.
      */
     disabled?: boolean;

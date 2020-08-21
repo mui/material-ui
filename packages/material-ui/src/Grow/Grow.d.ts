@@ -8,6 +8,10 @@ export interface GrowProps extends Omit<TransitionProps, 'timeout'> {
    */
   children?: React.ReactElement<any, any>;
   /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
+  /**
    * If `true`, show the component; triggers the enter or exit animation.
    */
   in?: boolean;

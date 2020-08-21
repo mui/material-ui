@@ -13,6 +13,10 @@ export interface MenuItemTypeMap<P = {}, D extends React.ElementType = 'li'> {
        */
       children?: React.ReactNode;
       /**
+       * See [CSS API](#css) below for more details.
+       */
+      classes?: {};
+      /**
        * `classes` prop applied to the [`ListItem`](/api/list-item/) element.
        */
       ListItemClasses?: ListItemProps['classes'];

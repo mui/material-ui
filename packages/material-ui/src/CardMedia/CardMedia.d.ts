@@ -8,6 +8,10 @@ export interface CardMediaTypeMap<P, D extends React.ElementType> {
      */
     children?: React.ReactNode;
     /**
+     * See [CSS API](#css) below for more details.
+     */
+    classes?: {};
+    /**
      * Image to be displayed as a background image.
      * Either `image` or `src` prop must be specified.
      * Note that caller must specify height otherwise the image will not be visible.

@@ -7,6 +7,10 @@ export interface AccordionDetailsProps
    * The content of the accordion details.
    */
   children?: React.ReactNode;
+  /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
 }
 
 export type AccordionDetailsClassKey = 'root';

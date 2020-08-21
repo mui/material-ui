@@ -9,6 +9,10 @@ export interface StepLabelProps
    */
   children?: React.ReactNode;
   /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
+  /**
    * Mark the step as failed.
    */
   error?: boolean;

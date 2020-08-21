@@ -18,6 +18,10 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     children?: null;
     /**
+     * See [CSS API](#css) below for more details.
+     */
+    classes?: {};
+    /**
      * If `true`, the chip will appear clickable, and will raise when pressed,
      * even if the onClick prop is not defined.
      * If false, the chip will not be clickable, even if onClick prop is defined.

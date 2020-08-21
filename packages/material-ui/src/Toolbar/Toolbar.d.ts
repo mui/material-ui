@@ -12,6 +12,10 @@ export interface ToolbarTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     children?: React.ReactNode;
     /**
+     * See [CSS API](#css) below for more details.
+     */
+    classes?: {};
+    /**
      * If `true`, disables gutter padding.
      */
     disableGutters?: boolean;

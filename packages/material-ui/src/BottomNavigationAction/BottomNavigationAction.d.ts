@@ -13,6 +13,10 @@ export type BottomNavigationActionTypeMap<
      */
     children?: React.ReactNode;
     /**
+     * See [CSS API](#css) below for more details.
+     */
+    classes?: {};
+    /**
      * The icon element.
      */
     icon?: React.ReactNode;

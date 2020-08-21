@@ -11,6 +11,10 @@ export interface NativeSelectProps
    */
   children?: React.ReactNode;
   /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
+  /**
    * The icon that displays the arrow.
    */
   IconComponent?: React.ElementType;

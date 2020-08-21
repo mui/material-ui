@@ -8,6 +8,10 @@ export interface TabScrollButtonProps
    */
   children?: React.ReactNode;
   /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
+  /**
    * Which direction should the button indicate?
    */
   direction: 'left' | 'right';

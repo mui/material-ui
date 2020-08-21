@@ -7,6 +7,10 @@ export interface TableContainerTypeMap<P = {}, D extends React.ElementType = 'di
      * The table itself, normally `<Table />`.
      */
     children?: React.ReactNode;
+    /**
+     * See [CSS API](#css) below for more details.
+     */
+    classes?: {};
   };
   defaultComponent: D;
   classKey: TableContainerClassKey;

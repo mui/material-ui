@@ -12,6 +12,10 @@ export interface PaperProps
    */
   children?: React.ReactNode;
   /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
+  /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */

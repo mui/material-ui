@@ -12,6 +12,10 @@ export interface StepProps
    */
   children?: React.ReactNode;
   /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
+  /**
    * Mark the step as completed. Is passed to child components.
    */
   completed?: boolean;

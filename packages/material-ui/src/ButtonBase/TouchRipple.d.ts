@@ -6,6 +6,10 @@ export type TouchRippleProps = StandardProps<
   TouchRippleClassKey
 > & {
   center?: boolean;
+  /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
 };
 
 export type TouchRippleClassKey =

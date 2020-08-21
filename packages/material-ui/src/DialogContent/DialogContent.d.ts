@@ -8,6 +8,10 @@ export interface DialogContentProps
    */
   children?: React.ReactNode;
   /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
+  /**
    * Display the top and bottom dividers.
    */
   dividers?: boolean;

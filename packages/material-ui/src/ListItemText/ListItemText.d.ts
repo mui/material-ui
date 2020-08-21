@@ -11,6 +11,10 @@ export interface ListItemTextProps<
    */
   children?: React.ReactNode;
   /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
+  /**
    * If `true`, the children won't be wrapped by a Typography component.
    * This can be useful to render an alternative Typography variant by wrapping
    * the `children` (or `primary`) text, and optional `secondary` text

@@ -7,6 +7,10 @@ export interface InputLabelProps extends StandardProps<FormLabelProps, InputLabe
    * The contents of the `InputLabel`.
    */
   children?: React.ReactNode;
+  /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
   color?: FormLabelProps['color'];
   /**
    * If `true`, the transition animation is disabled.

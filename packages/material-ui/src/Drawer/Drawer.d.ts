@@ -20,6 +20,10 @@ export interface DrawerProps
    */
   children?: React.ReactNode;
   /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
+  /**
    * The elevation of the drawer.
    */
   elevation?: number;

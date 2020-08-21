@@ -14,6 +14,10 @@ export type StepButtonTypeMap<P, D extends React.ElementType> = ExtendButtonBase
      */
     children?: React.ReactNode;
     /**
+     * See [CSS API](#css) below for more details.
+     */
+    classes?: {};
+    /**
      * The icon displayed by the step label.
      */
     icon?: React.ReactNode;

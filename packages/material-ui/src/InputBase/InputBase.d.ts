@@ -24,6 +24,10 @@ export interface InputBaseProps
    */
   autoFocus?: boolean;
   /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
+  /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
   color?: 'primary' | 'secondary';

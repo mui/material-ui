@@ -15,6 +15,10 @@ export interface MobileStepperProps
    */
   backButton: React.ReactNode;
   /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
+  /**
    * Props applied to the `LinearProgress` element.
    */
   LinearProgressProps?: Partial<LinearProgressProps>;

@@ -8,6 +8,10 @@ export interface DialogTitleProps
    */
   children?: React.ReactNode;
   /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
+  /**
    * If `true`, the children won't be wrapped by a typography component.
    * For instance, this can be useful to render an h4 instead of the default h2.
    */
