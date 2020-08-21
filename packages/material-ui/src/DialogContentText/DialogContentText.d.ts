@@ -10,8 +10,11 @@ export interface DialogContentTextTypeMap<
     /**
      * See [CSS API](#css) below for more details.
      */
-    classes?: {};
-  } & TypographyTypeMap['props'];
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+    };
+  } & Omit<TypographyTypeMap['props'], 'classes'>;
   defaultComponent: D;
   classKey: DialogContentTextClassKey;
 }

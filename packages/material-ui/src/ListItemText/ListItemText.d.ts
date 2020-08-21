@@ -13,7 +13,20 @@ export interface ListItemTextProps<
   /**
    * See [CSS API](#css) below for more details.
    */
-  classes?: {};
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the `Typography` components if primary and secondary are set. */
+    multiline?: string;
+    /** Styles applied to the `Typography` components if dense. */
+    dense?: string;
+    /** Styles applied to the root element if `inset={true}`. */
+    inset?: string;
+    /** Styles applied to the primary `Typography` component. */
+    primary?: string;
+    /** Styles applied to the secondary `Typography` component. */
+    secondary?: string;
+  };
   /**
    * If `true`, the children won't be wrapped by a Typography component.
    * This can be useful to render an alternative Typography variant by wrapping

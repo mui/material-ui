@@ -12,7 +12,26 @@ export interface TreeItemProps
   /**
    * See [CSS API](#css) below for more details.
    */
-  classes?: {};
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the `role="group"` element. */
+    group?: string;
+    /** Styles applied to the tree node content. */
+    content?: string;
+    /** Pseudo-class applied to the content element when expanded. */
+    expanded?: string;
+    /** Pseudo-class applied to the content element when selected. */
+    selected?: string;
+    /** Pseudo-class applied to the content element when focused. */
+    focused?: string;
+    /** Pseudo-class applied to the element when disabled. */
+    disabled?: string;
+    /** Styles applied to the tree node icon and collapse/expand icon. */
+    iconContainer?: string;
+    /** Styles applied to the label element. */
+    label?: string;
+  };
   /**
    * The icon used to collapse the node.
    */

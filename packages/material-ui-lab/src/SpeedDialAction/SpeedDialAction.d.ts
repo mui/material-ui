@@ -5,10 +5,25 @@ import { TooltipProps } from '@material-ui/core/Tooltip';
 
 export interface SpeedDialActionProps
   extends StandardProps<Partial<TooltipProps>, SpeedDialActionClassKey, 'children'> {
-    /**
-     * See [CSS API](#css) below for more details.
-     */
-    classes?: {};
+  /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {
+    /** Styles applied to the Fab component. */
+    fab?: string;
+    /** Styles applied to the Fab component if `open={false}`. */
+    fabClosed?: string;
+    /** Styles applied to the root element if `tooltipOpen={true}`. */
+    staticTooltip?: string;
+    /** Styles applied to the root element if `tooltipOpen={true}` and `open={false}`. */
+    staticTooltipClosed?: string;
+    /** Styles applied to the static tooltip label if `tooltipOpen={true}`. */
+    staticTooltipLabel?: string;
+    /** Styles applied to the root if `tooltipOpen={true}` and `tooltipPlacement="left"`` */
+    tooltipPlacementLeft?: string;
+    /** Styles applied to the root if `tooltipOpen={true}` and `tooltipPlacement="right"`` */
+    tooltipPlacementRight?: string;
+  };
   /**
    * Props applied to the [`Fab`](/api/fab/) component.
    */

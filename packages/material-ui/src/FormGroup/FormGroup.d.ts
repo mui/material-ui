@@ -10,7 +10,12 @@ export interface FormGroupProps
   /**
    * See [CSS API](#css) below for more details.
    */
-  classes?: {};
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the root element if `row={true}`. */
+    row?: string;
+  };
   /**
    * Display group of elements in a compact row.
    */

@@ -11,7 +11,18 @@ export interface RadioProps
   /**
    * See [CSS API](#css) below for more details.
    */
-  classes?: {};
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Pseudo-class applied to the root element if `checked={true}`. */
+    checked?: string;
+    /** Pseudo-class applied to the root element if `disabled={true}`. */
+    disabled?: string;
+    /** Styles applied to the root element if `color="primary"`. */
+    colorPrimary?: string;
+    /** Styles applied to the root element if `color="secondary"`. */
+    colorSecondary?: string;
+  };
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */

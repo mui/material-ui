@@ -14,7 +14,30 @@ export interface GridListTileBarProps extends StandardProps<{}, GridListTileBarC
   /**
    * See [CSS API](#css) below for more details.
    */
-  classes?: {};
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the root element if `titlePosition="bottom"`. */
+    titlePositionBottom?: string;
+    /** Styles applied to the root element if `titlePosition="top"`. */
+    titlePositionTop?: string;
+    /** Styles applied to the root element if a `subtitle` is provided. */
+    rootSubtitle?: string;
+    /** Styles applied to the title and subtitle container element. */
+    titleWrap?: string;
+    /** Styles applied to the container element if `actionPosition="left"`. */
+    titleWrapActionPosLeft?: string;
+    /** Styles applied to the container element if `actionPosition="right"`. */
+    titleWrapActionPosRight?: string;
+    /** Styles applied to the title container element. */
+    title?: string;
+    /** Styles applied to the subtitle container element. */
+    subtitle?: string;
+    /** Styles applied to the actionIcon if supplied. */
+    actionIcon?: string;
+    /** Styles applied to the actionIcon if `actionPosition="left"`. */
+    actionIconActionPosLeft?: string;
+  };
   /**
    * String or element serving as subtitle (support text).
    */

@@ -10,7 +10,12 @@ export interface DialogContentProps
   /**
    * See [CSS API](#css) below for more details.
    */
-  classes?: {};
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the root element if `dividers={true}`. */
+    dividers?: string;
+  };
   /**
    * Display the top and bottom dividers.
    */

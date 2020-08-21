@@ -28,7 +28,14 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
     /**
      * See [CSS API](#css) below for more details.
      */
-    classes?: {};
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+      /** Pseudo-class applied to the root element if `disabled={true}`. */
+      disabled?: string;
+      /** Pseudo-class applied to the root element if keyboard focused. */
+      focusVisible?: string;
+    };
     /**
      * If `true`, the base button will be disabled.
      */

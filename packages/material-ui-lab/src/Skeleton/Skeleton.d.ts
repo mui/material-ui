@@ -19,7 +19,26 @@ export interface SkeletonTypeMap<P = {}, D extends React.ElementType = 'span'> {
     /**
      * See [CSS API](#css) below for more details.
      */
-    classes?: {};
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+      /** Styles applied to the root element if `variant="text"`. */
+      text?: string;
+      /** Styles applied to the root element if `variant="rectangular"`. */
+      rectangular?: string;
+      /** Styles applied to the root element if `variant="circular"`. */
+      circular?: string;
+      /** Styles applied to the root element if `animation="pulse"`. */
+      pulse?: string;
+      /** Styles applied to the root element if `animation="wave"`. */
+      wave?: string;
+      /** Styles applied when the component is passed children. */
+      withChildren?: string;
+      /** Styles applied when the component is passed children and no width. */
+      fitContent?: string;
+      /** Styles applied when the component is passed children and no height. */
+      heightAuto?: string;
+    };
     /**
      * Height of the skeleton.
      * Useful when you don't want to adapt the skeleton to a text element but for instance a card.

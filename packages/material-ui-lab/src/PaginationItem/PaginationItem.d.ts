@@ -11,7 +11,40 @@ export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'di
     /**
      * See [CSS API](#css) below for more details.
      */
-    classes?: {};
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+      /** Styles applied to the root element if `type="page"`. */
+      page?: string;
+      /** Styles applied applied to the root element if `size="small"`. */
+      sizeSmall?: string;
+      /** Styles applied applied to the root element if `size="large"`. */
+      sizeLarge?: string;
+      /** Styles applied to the root element if `variant="text"`. */
+      text?: string;
+      /** Styles applied to the root element if `variant="text"` and `color="primary"`. */
+      textPrimary?: string;
+      /** Styles applied to the root element if `variant="text"` and `color="secondary"`. */
+      textSecondary?: string;
+      /** Styles applied to the root element if `variant="outlined"`. */
+      outlined?: string;
+      /** Styles applied to the root element if `variant="outlined"` and `color="primary"`. */
+      outlinedPrimary?: string;
+      /** Styles applied to the root element if `variant="outlined"` and `color="secondary"`. */
+      outlinedSecondary?: string;
+      /** Styles applied to the root element if `rounded="true"`. */
+      rounded?: string;
+      /** Styles applied to the root element if `type="start-ellipsis"` or `type="end-ellipsis"`. */
+      ellipsis?: string;
+      /** Pseudo-class applied to the root element if keyboard focused. */
+      focusVisible?: string;
+      /** Pseudo-class applied to the root element if `disabled={true}`. */
+      disabled?: string;
+      /** Pseudo-class applied to the root element if `selected={true}`. */
+      selected?: string;
+      /** Styles applied to the icon element. */
+      icon?: string;
+    };
     /**
      * The active color.
      */

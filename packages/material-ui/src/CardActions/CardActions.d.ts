@@ -10,7 +10,12 @@ export interface CardActionsProps
   /**
    * See [CSS API](#css) below for more details.
    */
-  classes?: {};
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the root element if `disableSpacing={false}`. */
+    spacing?: string;
+  };
   /**
    * If `true`, the actions do not have additional margin.
    */

@@ -9,7 +9,10 @@ export interface TimelineSeparatorProps extends StandardProps<{}, TimelineSepara
   /**
    * See [CSS API](#css) below for more details.
    */
-  classes?: {};
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+  };
 }
 
 export type TimelineSeparatorClassKey = 'root';

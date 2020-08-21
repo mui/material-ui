@@ -10,7 +10,14 @@ export interface TabScrollButtonProps
   /**
    * See [CSS API](#css) below for more details.
    */
-  classes?: {};
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the root element if `orientation="vertical"`. */
+    vertical?: string;
+    /** Pseudo-class applied to the root element if `disabled={true}`. */
+    disabled?: string;
+  };
   /**
    * Which direction should the button indicate?
    */

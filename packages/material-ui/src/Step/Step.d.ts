@@ -14,7 +14,18 @@ export interface StepProps
   /**
    * See [CSS API](#css) below for more details.
    */
-  classes?: {};
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the root element if `orientation="horizontal"`. */
+    horizontal?: string;
+    /** Styles applied to the root element if `orientation="vertical"`. */
+    vertical?: string;
+    /** Styles applied to the root element if `alternativeLabel={true}`. */
+    alternativeLabel?: string;
+    /** Pseudo-class applied to the root element if `completed={true}`. */
+    completed?: string;
+  };
   /**
    * Mark the step as completed. Is passed to child components.
    */

@@ -19,7 +19,24 @@ export interface SpeedDialProps
   /**
    * See [CSS API](#css) below for more details.
    */
-  classes?: {};
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the Fab component. */
+    fab?: string;
+    /** Styles applied to the root if direction="up" */
+    directionUp?: string;
+    /** Styles applied to the root if direction="down" */
+    directionDown?: string;
+    /** Styles applied to the root if direction="left" */
+    directionLeft?: string;
+    /** Styles applied to the root if direction="right" */
+    directionRight?: string;
+    /** Styles applied to the actions (`children` wrapper) element. */
+    actions?: string;
+    /** Styles applied to the actions (`children` wrapper) element if `open={false}`. */
+    actionsClosed?: string;
+  };
   /**
    * The aria-label of the button element.
    * Also used to provide the `id` for the `SpeedDial` element and its children.

@@ -5,7 +5,10 @@ export interface CardProps extends StandardProps<PaperProps, CardClassKey> {
   /**
    * See [CSS API](#css) below for more details.
    */
-  classes?: {};
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+  };
   /**
    * If `true`, the card will use raised styling.
    */

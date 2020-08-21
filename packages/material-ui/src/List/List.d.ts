@@ -10,7 +10,16 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
     /**
      * See [CSS API](#css) below for more details.
      */
-    classes?: {};
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+      /** Styles applied to the root element if `disablePadding={false}`. */
+      padding?: string;
+      /** Styles applied to the root element if dense. */
+      dense?: string;
+      /** Styles applied to the root element if a `subheader` is provided. */
+      subheader?: string;
+    };
     /**
      * If `true`, compact vertical padding designed for keyboard and mouse input will be used for
      * the list and list items.

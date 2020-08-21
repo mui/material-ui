@@ -11,7 +11,14 @@ export interface StepContentProps
   /**
    * See [CSS API](#css) below for more details.
    */
-  classes?: {};
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the root element if `last={true}` (controlled by `Step`). */
+    last?: string;
+    /** Styles applied to the Transition component. */
+    transition?: string;
+  };
   /**
    * The component used for the transition.
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.

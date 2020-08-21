@@ -15,7 +15,10 @@ export interface GridListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
     /**
      * See [CSS API](#css) below for more details.
      */
-    classes?: {};
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+    };
     /**
      * Number of columns.
      */

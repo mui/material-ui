@@ -12,7 +12,16 @@ export interface GridListTileTypeMap<P = {}, D extends React.ElementType = 'li'>
     /**
      * See [CSS API](#css) below for more details.
      */
-    classes?: {};
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+      /** Styles applied to the `div` element that wraps the children. */
+      tile?: string;
+      /** Styles applied to an `img` element child, if needed to ensure it covers the tile. */
+      imgFullHeight?: string;
+      /** Styles applied to an `img` element child, if needed to ensure it covers the tile. */
+      imgFullWidth?: string;
+    };
     /**
      * Width of the tile in number of grid cells.
      */

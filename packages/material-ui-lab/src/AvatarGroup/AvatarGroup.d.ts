@@ -10,7 +10,12 @@ export interface AvatarGroupProps
   /**
    * See [CSS API](#css) below for more details.
    */
-  classes?: {};
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the avatar elements. */
+    avatar?: string;
+  };
   /**
    * Max avatars to show before +x.
    */

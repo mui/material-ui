@@ -5,7 +5,30 @@ export interface AppBarProps extends StandardProps<PaperProps, AppBarClassKey> {
   /**
    * See [CSS API](#css) below for more details.
    */
-  classes?: {};
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the root element if `position="fixed"`. */
+    positionFixed?: string;
+    /** Styles applied to the root element if `position="absolute"`. */
+    positionAbsolute?: string;
+    /** Styles applied to the root element if `position="sticky"`. */
+    positionSticky?: string;
+    /** Styles applied to the root element if `position="static"`. */
+    positionStatic?: string;
+    /** Styles applied to the root element if `position="relative"`. */
+    positionRelative?: string;
+    /** Styles applied to the root element if `color="default"`. */
+    colorDefault?: string;
+    /** Styles applied to the root element if `color="primary"`. */
+    colorPrimary?: string;
+    /** Styles applied to the root element if `color="secondary"`. */
+    colorSecondary?: string;
+    /** Styles applied to the root element if `color="inherit"`. */
+    colorInherit?: string;
+    /** Styles applied to the root element if `color="transparent"`. */
+    colorTransparent?: string;
+  };
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */

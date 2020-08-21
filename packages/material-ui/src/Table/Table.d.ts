@@ -14,7 +14,12 @@ export interface TableTypeMap<P = {}, D extends React.ElementType = 'table'> {
     /**
      * See [CSS API](#css) below for more details.
      */
-    classes?: {};
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+      /** Styles applied to the root element if `stickyHeader={true}`. */
+      stickyHeader?: string;
+    };
     /**
      * Allows TableCells to inherit padding of the Table.
      */

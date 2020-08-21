@@ -10,7 +10,26 @@ export interface SvgIconTypeMap<P = {}, D extends React.ElementType = 'svg'> {
     /**
      * See [CSS API](#css) below for more details.
      */
-    classes?: {};
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+      /** Styles applied to the root element if `color="primary"`. */
+      colorPrimary?: string;
+      /** Styles applied to the root element if `color="secondary"`. */
+      colorSecondary?: string;
+      /** Styles applied to the root element if `color="action"`. */
+      colorAction?: string;
+      /** Styles applied to the root element if `color="error"`. */
+      colorError?: string;
+      /** Styles applied to the root element if `color="disabled"`. */
+      colorDisabled?: string;
+      /** Styles applied to the root element if `fontSize="inherit"`. */
+      fontSizeInherit?: string;
+      /** Styles applied to the root element if `fontSize="small"`. */
+      fontSizeSmall?: string;
+      /** Styles applied to the root element if `fontSize="large"`. */
+      fontSizeLarge?: string;
+    };
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
      * You can use the `htmlColor` prop to apply a color attribute to the SVG element.

@@ -14,7 +14,20 @@ export interface FormControlLabelProps
   /**
    * See [CSS API](#css) below for more details.
    */
-  classes?: {};
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the root element if `labelPlacement="start"`. */
+    labelPlacementStart?: string;
+    /** Styles applied to the root element if `labelPlacement="top"`. */
+    labelPlacementTop?: string;
+    /** Styles applied to the root element if `labelPlacement="bottom"`. */
+    labelPlacementBottom?: string;
+    /** Pseudo-class applied to the root element if `disabled={true}`. */
+    disabled?: string;
+    /** Styles applied to the label's Typography component. */
+    label?: string;
+  };
   /**
    * A control element. For instance, it can be a `Radio`, a `Switch` or a `Checkbox`.
    */

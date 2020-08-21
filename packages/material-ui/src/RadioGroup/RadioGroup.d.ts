@@ -4,10 +4,10 @@ import { FormGroupProps, FormGroupClassKey } from '../FormGroup';
 
 export interface RadioGroupProps
   extends StandardProps<FormGroupProps, RadioGroupClassKey, 'onChange'> {
-    /**
-     * See [CSS API](#css) below for more details.
-     */
-    classes?: {};
+  /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
   /**
    * The default `input` element value. Use when the component is not controlled.
    */

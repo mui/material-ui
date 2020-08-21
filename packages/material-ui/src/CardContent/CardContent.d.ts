@@ -10,7 +10,10 @@ export interface CardContentTypeMap<P = {}, D extends React.ElementType = 'div'>
     /**
      * See [CSS API](#css) below for more details.
      */
-    classes?: {};
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+    };
   };
   defaultComponent: D;
   classKey: CardContentClassKey;

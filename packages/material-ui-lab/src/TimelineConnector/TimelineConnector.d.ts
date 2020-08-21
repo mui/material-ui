@@ -9,7 +9,10 @@ export interface TimelineConnectorProps extends StandardProps<{}, TimelineConnec
   /**
    * See [CSS API](#css) below for more details.
    */
-  classes?: {};
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+  };
 }
 
 export type TimelineConnectorClassKey = 'root';

@@ -57,7 +57,12 @@ export interface PopoverProps
   /**
    * See [CSS API](#css) below for more details.
    */
-  classes?: {};
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the `Paper` component. */
+    paper?: string;
+  };
   /**
    * A HTML element, component instance, or function that returns either.
    * The `container` will passed to the Modal component.

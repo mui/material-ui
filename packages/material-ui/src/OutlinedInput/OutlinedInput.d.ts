@@ -6,7 +6,38 @@ export interface OutlinedInputProps extends StandardProps<InputBaseProps, Outlin
   /**
    * See [CSS API](#css) below for more details.
    */
-  classes?: {};
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the root element if the color is secondary. */
+    colorSecondary?: string;
+    /** Styles applied to the root element if the component is focused. */
+    focused?: string;
+    /** Styles applied to the root element if `disabled={true}`. */
+    disabled?: string;
+    /** Styles applied to the root element if `startAdornment` is provided. */
+    adornedStart?: string;
+    /** Styles applied to the root element if `endAdornment` is provided. */
+    adornedEnd?: string;
+    /** Pseudo-class applied to the root element if `error={true}`. */
+    error?: string;
+    /** Styles applied to the `input` element if `margin="dense"`. */
+    marginDense?: string;
+    /** Styles applied to the root element if `multiline={true}`. */
+    multiline?: string;
+    /** Styles applied to the `NotchedOutline` element. */
+    notchedOutline?: string;
+    /** Styles applied to the `input` element. */
+    input?: string;
+    /** Styles applied to the `input` element if `margin="dense"`. */
+    inputMarginDense?: string;
+    /** Styles applied to the `input` element if `multiline={true}`. */
+    inputMultiline?: string;
+    /** Styles applied to the `input` element if `startAdornment` is provided. */
+    inputAdornedStart?: string;
+    /** Styles applied to the `input` element if `endAdornment` is provided. */
+    inputAdornedEnd?: string;
+  };
   /**
    * The label of the input. It is only used for layout. The actual labelling
    * is handled by `InputLabel`. If specified `labelWidth` is ignored.

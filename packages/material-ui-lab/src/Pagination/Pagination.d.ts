@@ -16,10 +16,19 @@ export type PaginationVariantDefaults = Record<'text' | 'outlined', true>;
 export interface PaginationProps
   extends UsePaginationProps,
     StandardProps<React.HTMLAttributes<HTMLElement>, PaginationClassKey, 'children' | 'onChange'> {
-      /**
-       * See [CSS API](#css) below for more details.
-       */
-      classes?: {};
+  /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the ul element. */
+    ul?: string;
+    /** Styles applied to the root element if `variant="outlined"`. */
+    outlined?: string;
+    /** Styles applied to the root element if `variant="text"`. */
+    text?: string;
+  };
   /**
    * The active color.
    */

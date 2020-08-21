@@ -11,7 +11,14 @@ export interface SnackbarContentProps
   /**
    * See [CSS API](#css) below for more details.
    */
-  classes?: {};
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the message wrapper element. */
+    message?: string;
+    /** Styles applied to the action wrapper element if `action` is provided. */
+    action?: string;
+  };
   /**
    * The message to display.
    */

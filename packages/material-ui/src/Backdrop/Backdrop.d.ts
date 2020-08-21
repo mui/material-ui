@@ -15,7 +15,12 @@ export interface BackdropProps
   /**
    * See [CSS API](#css) below for more details.
    */
-  classes?: {};
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the root element if `invisible={true}`. */
+    invisible?: string;
+  };
   /**
    * If `true`, the backdrop is invisible.
    * It can be used when rendering a popover or a custom select component.

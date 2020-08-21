@@ -25,7 +25,12 @@ export interface MenuProps
   /**
    * See [CSS API](#css) below for more details.
    */
-  classes?: {};
+  classes?: {
+    /** Styles applied to the `Paper` component. */
+    paper?: string;
+    /** Styles applied to the `List` component via `MenuList`. */
+    list?: string;
+  };
   /**
    * When opening the menu will not focus the active item but the `[role="menu"]`
    * unless `autoFocus` is also set to `false`. Not using the default means not

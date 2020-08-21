@@ -10,7 +10,12 @@ export interface TimelineContentProps
   /**
    * See [CSS API](#css) below for more details.
    */
-  classes?: {};
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the root element if `align="right"`. */
+    alignRight?: string;
+  };
 }
 
 export type TimelineContentClassKey = 'root';

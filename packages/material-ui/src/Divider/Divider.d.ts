@@ -13,7 +13,24 @@ export interface DividerTypeMap<P = {}, D extends React.ElementType = 'hr'> {
     /**
      * See [CSS API](#css) below for more details.
      */
-    classes?: {};
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+      /** Styles applied to the root element if `absolute={true}`. */
+      absolute?: string;
+      /** Styles applied to the root element if `variant="inset"`. */
+      inset?: string;
+      /** Styles applied to the root element if `variant="fullWidth"`. */
+      fullWidth?: string;
+      /** Styles applied to the root element if `light={true}`. */
+      light?: string;
+      /** Styles applied to the root element if `variant="middle"`. */
+      middle?: string;
+      /** Styles applied to the root element if `orientation="vertical"`. */
+      vertical?: string;
+      /** Styles applied to the root element if `flexItem={true}`. */
+      flexItem?: string;
+    };
     /**
      * If `true`, a vertical divider will have the correct height when used in flex container.
      * (By default, a vertical divider will have a calculated height of `0px` if it is the child of a flex container.)

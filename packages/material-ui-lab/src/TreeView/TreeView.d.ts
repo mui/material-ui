@@ -10,7 +10,10 @@ export interface TreeViewPropsBase
   /**
    * See [CSS API](#css) below for more details.
    */
-  classes?: {};
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+  };
   /**
    * The default icon used to collapse the node.
    */

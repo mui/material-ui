@@ -10,7 +10,20 @@ export interface ListSubheaderTypeMap<P = {}, D extends React.ElementType = 'li'
     /**
      * See [CSS API](#css) below for more details.
      */
-    classes?: {};
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+      /** Styles applied to the root element if `color="primary"`. */
+      colorPrimary?: string;
+      /** Styles applied to the root element if `color="inherit"`. */
+      colorInherit?: string;
+      /** Styles applied to the inner `component` element if `disableGutters={false}`. */
+      gutters?: string;
+      /** Styles applied to the root element if `inset={true}`. */
+      inset?: string;
+      /** Styles applied to the root element if `disableSticky={false}`. */
+      sticky?: string;
+    };
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
      */

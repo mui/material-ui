@@ -10,7 +10,20 @@ export interface CollapseProps extends StandardProps<TransitionProps, CollapseCl
   /**
    * See [CSS API](#css) below for more details.
    */
-  classes?: {};
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Pseudo-class applied to the root element if `orientation="horizontal"`. */
+    horizontal?: string;
+    /** Styles applied to the root element when the transition has entered. */
+    entered?: string;
+    /** Styles applied to the root element when the transition has exited and `collapsedSize` != 0px. */
+    hidden?: string;
+    /** Styles applied to the outer wrapper element. */
+    wrapper?: string;
+    /** Styles applied to the inner wrapper element. */
+    wrapperInner?: string;
+  };
   /**
    * The width (horizontal) or height (vertical) of the container when collapsed.
    */

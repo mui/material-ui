@@ -95,7 +95,59 @@ export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
     /**
      * See [CSS API](#css) below for more details.
      */
-    classes?: {};
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+      /** Styles applied to the root element if `container={true}`. */
+      container?: string;
+      /** Styles applied to the root element if `item={true}`. */
+      item?: string;
+      /** Styles applied to the root element if `zeroMinWidth={true}`. */
+      zeroMinWidth?: string;
+      'direction-xs-column'?: string;
+      'direction-xs-column-reverse'?: string;
+      'direction-xs-row-reverse'?: string;
+      'wrap-xs-nowrap'?: string;
+      'wrap-xs-wrap-reverse'?: string;
+      'align-items-xs-center'?: string;
+      'align-items-xs-flex-start'?: string;
+      'align-items-xs-flex-end'?: string;
+      'align-items-xs-baseline'?: string;
+      'align-content-xs-center'?: string;
+      'align-content-xs-flex-start'?: string;
+      'align-content-xs-flex-end'?: string;
+      'align-content-xs-space-between'?: string;
+      'align-content-xs-space-around'?: string;
+      'justify-content-xs-center'?: string;
+      'justify-content-xs-flex-end'?: string;
+      'justify-content-xs-space-between'?: string;
+      'justify-content-xs-space-around'?: string;
+      'justify-content-xs-space-evenly'?: string;
+      'spacing-xs-1'?: string;
+      'spacing-xs-2'?: string;
+      'spacing-xs-3'?: string;
+      'spacing-xs-4'?: string;
+      'spacing-xs-5'?: string;
+      'spacing-xs-6'?: string;
+      'spacing-xs-7'?: string;
+      'spacing-xs-8'?: string;
+      'spacing-xs-9'?: string;
+      'spacing-xs-10'?: string;
+      'grid-xs-auto'?: string;
+      'grid-xs-true'?: string;
+      'grid-xs-1'?: string;
+      'grid-xs-2'?: string;
+      'grid-xs-3'?: string;
+      'grid-xs-4'?: string;
+      'grid-xs-5'?: string;
+      'grid-xs-6'?: string;
+      'grid-xs-7'?: string;
+      'grid-xs-8'?: string;
+      'grid-xs-9'?: string;
+      'grid-xs-10'?: string;
+      'grid-xs-11'?: string;
+      'grid-xs-12'?: string;
+    };
     /**
      * If `true`, the component will have the flex *container* behavior.
      * You should be wrapping *items* with a *container*.

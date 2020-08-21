@@ -15,7 +15,16 @@ export interface MenuItemTypeMap<P = {}, D extends React.ElementType = 'li'> {
       /**
        * See [CSS API](#css) below for more details.
        */
-      classes?: {};
+      classes?: {
+        /** Styles applied to the root element. */
+        root?: string;
+        /** Styles applied to the root element if `disableGutters={false}`. */
+        gutters?: string;
+        /** Styles applied to the root element if `selected={true}`. */
+        selected?: string;
+        /** Styles applied to the root element if dense. */
+        dense?: string;
+      };
       /**
        * `classes` prop applied to the [`ListItem`](/api/list-item/) element.
        */

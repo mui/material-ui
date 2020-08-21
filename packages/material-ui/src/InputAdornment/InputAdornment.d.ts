@@ -6,7 +6,22 @@ export interface InputAdornmentTypeMap<P = {}, D extends React.ElementType = 'di
     /**
      * See [CSS API](#css) below for more details.
      */
-    classes?: {};
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+      /** Styles applied to the root element if `variant="filled"`. */
+      filled?: string;
+      /** Styles applied to the root element if `position="start"`. */
+      positionStart?: string;
+      /** Styles applied to the root element if `position="end"`. */
+      positionEnd?: string;
+      /** Styles applied to the root element if `disablePointerEvents=true`. */
+      disablePointerEvents?: string;
+      /** Styles applied if the adornment is used inside <FormControl hiddenLabel />. */
+      hiddenLabel?: string;
+      /** Styles applied if the adornment is used inside <FormControl margin="dense" />. */
+      marginDense?: string;
+    };
     /**
      * The content of the component, normally an `IconButton` or string.
      */

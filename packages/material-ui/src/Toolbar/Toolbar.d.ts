@@ -14,7 +14,16 @@ export interface ToolbarTypeMap<P = {}, D extends React.ElementType = 'div'> {
     /**
      * See [CSS API](#css) below for more details.
      */
-    classes?: {};
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+      /** Styles applied to the root element if `disableGutters={false}`. */
+      gutters?: string;
+      /** Styles applied to the root element if `variant="regular"`. */
+      regular?: string;
+      /** Styles applied to the root element if `variant="dense"`. */
+      dense?: string;
+    };
     /**
      * If `true`, disables gutter padding.
      */

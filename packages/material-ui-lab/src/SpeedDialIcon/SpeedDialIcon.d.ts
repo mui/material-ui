@@ -3,10 +3,23 @@ import { StandardProps } from '@material-ui/core';
 
 export interface SpeedDialIconProps
   extends StandardProps<React.HTMLAttributes<HTMLSpanElement>, SpeedDialIconClassKey, 'children'> {
-    /**
-     * See [CSS API](#css) below for more details.
-     */
-    classes?: {};
+  /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the icon component. */
+    icon?: string;
+    /** Styles applied to the icon component if `open={true}`. */
+    iconOpen?: string;
+    /** Styles applied to the icon when an `openIcon` is provided and if `open={true}`. */
+    iconWithOpenIconOpen?: string;
+    /** Styles applied to the `openIcon` if provided. */
+    openIcon?: string;
+    /** Styles applied to the `openIcon` if provided and if `open={true}`. */
+    openIconOpen?: string;
+  };
   /**
    * The icon to display in the SpeedDial Floating Action Button.
    */

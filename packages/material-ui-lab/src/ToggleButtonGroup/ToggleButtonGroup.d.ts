@@ -14,7 +14,18 @@ export interface ToggleButtonGroupProps
   /**
    * See [CSS API](#css) below for more details.
    */
-  classes?: {};
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the root element if `orientation="vertical"`. */
+    vertical?: string;
+    /** Styles applied to the children. */
+    grouped?: string;
+    /** Styles applied to the children if `orientation="horizontal"`. */
+    groupedHorizontal?: string;
+    /** Styles applied to the children if `orientation="vertical"`. */
+    groupedVertical?: string;
+  };
   /**
    * If `true`, only allow one of the child ToggleButton values to be selected.
    */
