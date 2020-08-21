@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import Chip from '@material-ui/core/Chip';
 import Tooltip from '@material-ui/core/Tooltip';
 import SketchIcon from 'docs/src/modules/components/SketchIcon';
@@ -27,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
 export default function ComponentLinkHeader(props) {
   const { headers } = props;
   const classes = useStyles();
+  const t = useSelector((state) => state.options.t);
 
   return (
     <ul className={classes.root}>
@@ -59,9 +61,9 @@ export default function ComponentLinkHeader(props) {
           icon={<InfoOutlinedIcon />}
           data-ga-event-category="ComponentLinkHeader"
           data-ga-event-action="click"
-          data-ga-event-label="Feedback"
+          data-ga-event-label={t('githubLabel')}
           data-ga-event-split="0.1"
-          label="Feedback"
+          label={t('githubLabel')}
         />
       </li>
       {headers.waiAria ? (
@@ -83,7 +85,7 @@ export default function ComponentLinkHeader(props) {
         </li>
       ) : null}
       <li>
-        <Tooltip title="Scroll down to 'Exports Analysis' for a more detailed report.">
+        <Tooltip title={t('bundleSizeTooltip')}>
           <Chip
             clickable
             role={undefined}
@@ -94,9 +96,9 @@ export default function ComponentLinkHeader(props) {
             icon={<BundleSizeIcon />}
             data-ga-event-category="ComponentLinkHeader"
             data-ga-event-action="click"
-            data-ga-event-label="Bundle size"
+            data-ga-event-label={t('bundleSize')}
             data-ga-event-split="0.1"
-            label="Bundle size"
+            label={t('bundleSize')}
           />
         </Tooltip>
       </li>

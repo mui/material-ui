@@ -9,9 +9,9 @@ package: @material-ui/core
 
 <p class="description">The container centers your content horizontally. It's the most basic layout element.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
-
 While containers can be nested, most layouts do not require a nested container.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Fluid
 

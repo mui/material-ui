@@ -11,8 +11,6 @@ waiAria: https://www.w3.org/TR/wai-aria-practices/#button
 
 <p class="description">Buttons allow users to take actions, and make choices, with a single tap.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
-
 Buttons communicate actions that users can take. They are typically placed throughout your UI, in places like:
 
 - Dialogs
@@ -20,6 +18,8 @@ Buttons communicate actions that users can take. They are typically placed throu
 - Forms
 - Cards
 - Toolbars
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Contained Buttons
 

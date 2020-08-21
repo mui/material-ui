@@ -10,9 +10,9 @@ package: @material-ui/core
 
 <p class="description">Grid lists display a collection of images in an organized grid.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
-
 Grid lists represent a collection of items in a repeated pattern. They help improve the visual comprehension of the content they hold.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Image-only Grid list
 

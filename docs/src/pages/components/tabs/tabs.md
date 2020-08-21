@@ -11,9 +11,9 @@ package: @material-ui/core
 
 <p class="description">Tabs make it easy to explore and switch between different views.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
-
 Tabs organize and allow navigation between groups of content that are related and at the same level of hierarchy.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Basic tabs
 
