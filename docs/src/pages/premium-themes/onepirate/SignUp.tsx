@@ -1,6 +1,8 @@
 import React from 'react';
-import { Field, Form, FormSpy } from 'react-final-form';
 import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import Link from '@material-ui/core/Link';
+import { Field, Form, FormSpy } from 'react-final-form';
 import Typography from './modules/components/Typography';
 import AppFooter from './modules/views/AppFooter';
 import AppAppBar from './modules/views/AppAppBar';
@@ -24,12 +26,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ForgotPassword() {
+function SignUp() {
   const classes = useStyles();
   const [sent, setSent] = React.useState(false);
 
-  const validate = (values) => {
-    const errors = required(['email'], values);
+  const validate = (values: { [index: string]: string }) => {
+    const errors = required(
+      ['firstName', 'lastName', 'email', 'password'],
+      values,
+    );
 
     if (!errors.email) {
       const emailError = email(values.email);
@@ -51,11 +56,12 @@ function ForgotPassword() {
       <AppForm>
         <React.Fragment>
           <Typography variant="h3" gutterBottom marked="center" align="center">
-            Forgot your password?
+            Sign Up
           </Typography>
           <Typography variant="body2" align="center">
-            {"Enter your email address below and we'll " +
-              'send you a link to reset your password.'}
+            <Link href="/premium-themes/onepirate/sign-in/" underline="always">
+              Already have an account?
+            </Link>
           </Typography>
         </React.Fragment>
         <Form
@@ -65,8 +71,32 @@ function ForgotPassword() {
         >
           {({ handleSubmit: handleSubmit2, submitting }) => (
             <form onSubmit={handleSubmit2} className={classes.form} noValidate>
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={6}>
+                  <Field
+                    autoFocus
+                    component={RFTextField}
+                    disabled={submitting || sent}
+                    autoComplete="fname"
+                    fullWidth
+                    label="First name"
+                    name="firstName"
+                    required
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <Field
+                    component={RFTextField}
+                    disabled={submitting || sent}
+                    autoComplete="lname"
+                    fullWidth
+                    label="Last name"
+                    name="lastName"
+                    required
+                  />
+                </Grid>
+              </Grid>
               <Field
-                autoFocus
                 autoComplete="email"
                 component={RFTextField}
                 disabled={submitting || sent}
@@ -75,7 +105,17 @@ function ForgotPassword() {
                 margin="normal"
                 name="email"
                 required
-                size="large"
+              />
+              <Field
+                fullWidth
+                component={RFTextField}
+                disabled={submitting || sent}
+                required
+                name="password"
+                autoComplete="current-password"
+                label="Password"
+                type="password"
+                margin="normal"
               />
               <FormSpy subscription={{ submitError: true }}>
                 {({ submitError }) =>
@@ -89,11 +129,10 @@ function ForgotPassword() {
               <FormButton
                 className={classes.button}
                 disabled={submitting || sent}
-                size="large"
                 color="secondary"
                 fullWidth
               >
-                {submitting || sent ? 'In progress…' : 'Send reset link'}
+                {submitting || sent ? 'In progress…' : 'Sign Up'}
               </FormButton>
             </form>
           )}
@@ -104,4 +143,4 @@ function ForgotPassword() {
   );
 }
 
-export default withRoot(ForgotPassword);
+export default withRoot(SignUp);

@@ -1,11 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, Theme, WithStyles } from '@material-ui/core/styles';
 import Paper from '../components/Paper';
 
-const styles = (theme) => ({
+const styles = (theme: Theme) => ({
   root: {
     display: 'flex',
     backgroundImage: 'url(/static/onepirate/appCurvyLines.png)',
@@ -19,7 +18,9 @@ const styles = (theme) => ({
   },
 });
 
-function AppForm(props) {
+function AppForm(
+  props: WithStyles<typeof styles> & React.HTMLAttributes<HTMLDivElement>,
+) {
   const { children, classes } = props;
 
   return (
@@ -34,10 +35,5 @@ function AppForm(props) {
     </div>
   );
 }
-
-AppForm.propTypes = {
-  children: PropTypes.node,
-  classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles)(AppForm);

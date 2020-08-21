@@ -1,11 +1,12 @@
 import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import MuiButton from '@material-ui/core/Button';
+import React from 'react';
 
-export default withStyles((theme) => ({
+const styles = (theme) => ({
   root: {
     borderRadius: 0,
     fontWeight: theme.typography.fontWeightMedium,
-    fontFamily: theme.typography.fontFamilySecondary,
+    fontFamily: theme.typography.h1.fontFamily,
     padding: theme.spacing(2, 4),
     fontSize: theme.typography.pxToRem(14),
     boxShadow: 'none',
@@ -21,4 +22,10 @@ export default withStyles((theme) => ({
     padding: theme.spacing(2, 5),
     fontSize: theme.typography.pxToRem(16),
   },
-}))(Button);
+});
+
+function Button(props) {
+  return <MuiButton {...props} />;
+}
+
+export default withStyles(styles)(Button);

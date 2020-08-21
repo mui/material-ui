@@ -1,8 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import MuiPaper from '@material-ui/core/Paper';
-import { withStyles } from '@material-ui/core/styles';
+import MuiPaper, { PaperProps } from '@material-ui/core/Paper';
+import { withStyles, Theme, WithStyles } from '@material-ui/core/styles';
 
 const backgroundStyleMapping = {
   light: 'backgroundLight',
@@ -10,7 +9,7 @@ const backgroundStyleMapping = {
   dark: 'backgroundDark',
 };
 
-const styles = (theme) => ({
+const styles = (theme: Theme) => ({
   [backgroundStyleMapping['light']]: {
     backgroundColor: theme.palette.secondary.light,
   },
@@ -25,7 +24,14 @@ const styles = (theme) => ({
   },
 });
 
-function Paper(props) {
+interface ExtraPaperProps {
+  background: 'light' | 'main' | 'dark';
+  padding?: boolean;
+}
+
+function Paper(
+  props: PaperProps & ExtraPaperProps & WithStyles<typeof styles>,
+) {
   const { background, classes, className, padding, ...other } = props;
 
   return (
@@ -43,15 +49,5 @@ function Paper(props) {
     />
   );
 }
-
-Paper.propTypes = {
-  background: PropTypes.oneOf(['dark', 'light', 'main']).isRequired,
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object.isRequired,
-  className: PropTypes.string,
-  padding: PropTypes.bool,
-};
 
 export default withStyles(styles)(Paper);

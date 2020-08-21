@@ -28,7 +28,7 @@ function ForgotPassword() {
   const classes = useStyles();
   const [sent, setSent] = React.useState(false);
 
-  const validate = (values) => {
+  const validate = (values: { [index: string]: string }) => {
     const errors = required(['email'], values);
 
     if (!errors.email) {

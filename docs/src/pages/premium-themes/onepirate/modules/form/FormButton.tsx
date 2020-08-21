@@ -1,10 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
+import { ButtonProps } from '@material-ui/core';
 import Button from '../components/Button';
 import defer from './defer';
 
-function FormButton(props) {
+interface FormButtonProps {
+  disabled?: boolean;
+  mounted?: boolean;
+}
+
+function FormButton<C extends React.ElementType>(
+  props: FormButtonProps & ButtonProps<C, { component?: C }>,
+) {
   const { disabled, mounted, ...others } = props;
   return (
     <Button
@@ -15,14 +21,4 @@ function FormButton(props) {
     />
   );
 }
-
-FormButton.propTypes = {
-  /**
-   * If `true`, the button will be disabled.
-   * If `true`, the base button will be disabled.
-   */
-  disabled: PropTypes.bool,
-  mounted: PropTypes.bool,
-};
-
 export default defer(FormButton);

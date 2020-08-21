@@ -1,10 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, Theme, WithStyles } from '@material-ui/core/styles';
 import Typography from '../components/Typography';
 
-const styles = (theme) => ({
+const styles = (theme: Theme) => ({
   root: {
     padding: theme.spacing(2),
   },
@@ -18,7 +17,16 @@ const styles = (theme) => ({
   },
 });
 
-function FormFeedback(props) {
+interface FormFeedbackProps {
+  error?: boolean;
+  success?: boolean;
+}
+
+function FormFeedback(
+  props: WithStyles<typeof styles> &
+    React.HTMLAttributes<HTMLDivElement> &
+    FormFeedbackProps,
+) {
   return (
     <div
       className={clsx(
@@ -34,13 +42,5 @@ function FormFeedback(props) {
     </div>
   );
 }
-
-FormFeedback.propTypes = {
-  children: PropTypes.node,
-  classes: PropTypes.object.isRequired,
-  className: PropTypes.string,
-  error: PropTypes.bool,
-  success: PropTypes.bool,
-};
 
 export default withStyles(styles)(FormFeedback);
