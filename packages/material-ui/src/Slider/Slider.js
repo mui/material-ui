@@ -126,13 +126,22 @@ const axisProps = {
 
 const Identity = (x) => x;
 
-const iOS = typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
-// Approximate the support of touch-action to iOS.
+// TODO: remove support for Safari < 13.
+// https://caniuse.com/#search=touch-action
+//
 // iOS support touch action since v13 which as over 80% of marketing
 // in August 2020.
-// Because the passive vs non passive event doesn't make a significant difference
-// We can keep this logic until we increase the minimum supported version of Safari to v13.
-const touchActionSupport = !iOS;
+let cachedSupportsTouchActionNone;
+function doesSupportTouchActionNone() {
+  if (cachedSupportsTouchActionNone === undefined) {
+    const element = document.createElement('div');
+    element.style.touchAction = 'none';
+    document.body.appendChild(element);
+    cachedSupportsTouchActionNone = window.getComputedStyle(element).touchAction === 'none';
+    element.parentElement.removeChild(element);
+  }
+  return cachedSupportsTouchActionNone;
+}
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
@@ -624,9 +633,11 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   });
 
   const handleTouchStart = useEventCallback((event) => {
-    if (!touchActionSupport) {
+    // If touch-action: none; is not supported we need to prevent the scroll manually.
+    if (!doesSupportTouchActionNone()) {
       event.preventDefault();
     }
+
     const touch = event.changedTouches[0];
     if (touch != null) {
       // A number that uniquely identifies the current finger in the touch session.
@@ -649,15 +660,16 @@ const Slider = React.forwardRef(function Slider(props, ref) {
 
   React.useEffect(() => {
     const { current: slider } = sliderRef;
-    // https://caniuse.com/#search=touch-action
     slider.addEventListener('touchstart', handleTouchStart, {
-      passive: touchActionSupport,
+      passive: doesSupportTouchActionNone(),
     });
 
     const doc = ownerDocument(slider);
 
     return () => {
-      slider.removeEventListener('touchstart', handleTouchStart, { passive: touchActionSupport });
+      slider.removeEventListener('touchstart', handleTouchStart, {
+        passive: doesSupportTouchActionNone(),
+      });
       doc.removeEventListener('mousemove', handleTouchMove);
       doc.removeEventListener('mouseup', handleTouchEnd);
       doc.removeEventListener('touchmove', handleTouchMove);
