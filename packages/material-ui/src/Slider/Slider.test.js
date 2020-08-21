@@ -255,6 +255,11 @@ describe('<Slider />', () => {
       expect(getByRole('slider')).to.not.have.attribute('tabIndex');
     });
 
+    // jsdom doesn't blur correctly
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      return;
+    }
+
     it('should not respond to drag events after becoming disabled', () => {
       const { getByRole, setProps, container } = render(<Slider defaultValue={0} />);
 
@@ -273,8 +278,11 @@ describe('<Slider />', () => {
       const thumb = getByRole('slider');
 
       expect(thumb).to.have.attribute('aria-valuenow', '21');
+      expect(thumb).toHaveFocus();
 
       setProps({ disabled: true });
+      expect(thumb).not.toHaveFocus();
+      expect(thumb).to.not.have.class(classes.active);
 
       fireEvent.touchMove(
         container.firstChild,
@@ -282,33 +290,17 @@ describe('<Slider />', () => {
       );
 
       expect(thumb).to.have.attribute('aria-valuenow', '21');
-      expect(thumb).to.not.have.class(classes.active);
     });
 
     it('should not respond to the keyboard after becoming disabled', () => {
       const { getByRole, setProps } = render(<Slider defaultValue={0} />);
 
       const thumb = getByRole('slider');
-
       act(() => {
         thumb.focus();
       });
-
       setProps({ disabled: true });
-
-      // This branch is necessary because Firefox and Safari will keep focus
-      // on a disabled slider, even though we blur it:
-      // https://codesandbox.io/s/mui-pr-22247-forked-h151h?file=/src/App.js
-      if (document.activeElement === thumb) {
-        expect(thumb).toHaveFocus();
-        fireEvent.keyDown(thumb, {
-          key: 'PageUp',
-        });
-      } else {
-        expect(thumb).not.toHaveFocus();
-      }
-
-      expect(thumb).to.have.attribute('aria-valuenow', '0');
+      expect(thumb).not.toHaveFocus();
       expect(thumb).to.not.have.class(classes.focusVisible);
     });
   });

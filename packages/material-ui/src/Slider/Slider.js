@@ -144,6 +144,8 @@ function doesSupportTouchActionNone() {
   return cachedSupportsTouchActionNone;
 }
 
+const useEnhancedEffect = typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
+
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
@@ -449,6 +451,15 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     setOpen(-1);
   });
 
+  useEnhancedEffect(() => {
+    if (disabled && sliderRef.current.contains(document.activeElement)) {
+      // This is necessary because Firefox and Safari will keep focus
+      // on a disabled element:
+      // https://codesandbox.io/s/mui-pr-22247-forked-h151h?file=/src/App.js
+      document.activeElement.blur();
+    }
+  }, [disabled]);
+
   if (disabled && active !== -1) {
     setActive(-1);
   }
@@ -459,13 +470,6 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   const isRtl = theme.direction === 'rtl';
 
   const handleKeyDown = useEventCallback((event) => {
-    if (disabled) {
-      // This check is necessary because Firefox and Safari will keep focus
-      // on a disabled slider, even though we blur it:
-      // https://codesandbox.io/s/mui-pr-22247-forked-h151h?file=/src/App.js
-      return;
-    }
-
     const index = Number(event.currentTarget.getAttribute('data-index'));
     const value = values[index];
     const tenPercents = (max - min) / 10;
