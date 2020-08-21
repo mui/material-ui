@@ -225,16 +225,15 @@ async function annotateClassesDefinition(component: { filename: string }, api: R
   }
 
   // colon is parth of TSTypeAnnotation
-  const propertyTypeIntendation = '  ';
   let classesDefinitionSource = ': {';
   api.styles.classes.forEach((className) => {
     if (api.styles.descriptions[className] !== undefined) {
-      classesDefinitionSource += `${api.EOL}${propertyTypeIntendation}  /** ${api.styles.descriptions[className]} */`;
+      classesDefinitionSource += `\n/** ${api.styles.descriptions[className]} */`;
     }
-    classesDefinitionSource += `${api.EOL}${propertyTypeIntendation}  '${className}'?: string;`;
+    classesDefinitionSource += `\n'${className}'?: string;`;
   });
   // semicolon is not part of TSTypeAnnotation
-  classesDefinitionSource += `${api.EOL}${propertyTypeIntendation}}`;
+  classesDefinitionSource += `\n}`;
 
   const typesSourceNew =
     typesSource.slice(0, start) + classesDefinitionSource + typesSource.slice(end);
