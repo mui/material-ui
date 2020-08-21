@@ -87,23 +87,19 @@ function Typography<C extends React.ElementType>(
     WithStyles<typeof styles> &
     ExtraTypographyProps,
 ) {
-  const { children, variant, classes, marked, ...other } = props;
+  const { children, variant, classes, marked = 'none', ...other } = props;
 
-  let className = '';
-  if (marked && variant && variant in markSyleMapping[marked]) {
-    className = classes[markSyleMapping[marked][variant]];
+  let markedClassName = '';
+  if (variant && variant in markSyleMapping[marked]) {
+    markedClassName = classes[markSyleMapping[marked][variant]];
   }
 
   return (
     <MuiTypography variantMapping={variantMapping} variant={variant} {...other}>
       {children}
-      {marked ? <span className={className} /> : null}
+      {markedClassName ? <span className={markedClassName} /> : null}
     </MuiTypography>
   );
 }
-
-Typography.defaultProps = {
-  marked: 'none' as const,
-};
 
 export default withStyles(styles)(Typography);

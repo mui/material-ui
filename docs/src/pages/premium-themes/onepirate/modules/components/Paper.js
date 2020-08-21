@@ -26,7 +26,7 @@ const styles = (theme) => ({
 });
 
 function Paper(props) {
-  const { background, classes, className, padding = false, ...other } = props;
+  const { background, classes, className, padding, ...other } = props;
 
   return (
     <MuiPaper
@@ -35,7 +35,7 @@ function Paper(props) {
       className={clsx(
         classes[backgroundStyleMapping[background]],
         {
-          [classes.padding]: padding,
+          [classes.padding]: !!padding,
         },
         className,
       )}
@@ -52,10 +52,6 @@ Paper.propTypes = {
   classes: PropTypes.object.isRequired,
   className: PropTypes.string,
   padding: PropTypes.bool,
-};
-
-Paper.defaultProps = {
-  padding: false,
 };
 
 export default withStyles(styles)(Paper);

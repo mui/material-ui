@@ -44,8 +44,8 @@ const styles = (theme) => ({
   },
   [inputSyleMapping['large']]: {
     fontSize: 18,
-    padding: 22,
-    width: `calc(100% - ${22 * 2}px)`,
+    padding: 20,
+    width: `calc(100% - ${20 * 2}px)`,
   },
   [inputSyleMapping['xlarge']]: {
     fontSize: 20,
@@ -70,8 +70,8 @@ function TextField(props) {
     classes,
     InputProps = {},
     InputLabelProps,
-    noBorder = false,
-    size,
+    noBorder,
+    size = 'medium',
     SelectProps,
     ...other
   } = props;
@@ -143,11 +143,6 @@ TextField.propTypes = {
    */
   SelectProps: PropTypes.object,
   size: PropTypes.oneOf(['large', 'medium', 'small', 'xlarge']),
-};
-
-TextField.defaultProps = {
-  size: 'medium',
-  noBorder: false,
 };
 
 export default withStyles(styles)(TextField);

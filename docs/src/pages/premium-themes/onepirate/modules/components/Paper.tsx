@@ -32,7 +32,7 @@ interface ExtraPaperProps {
 function Paper(
   props: PaperProps & ExtraPaperProps & WithStyles<typeof styles>,
 ) {
-  const { background, classes, className, padding = false, ...other } = props;
+  const { background, classes, className, padding, ...other } = props;
 
   return (
     <MuiPaper
@@ -41,7 +41,7 @@ function Paper(
       className={clsx(
         classes[backgroundStyleMapping[background]],
         {
-          [classes.padding]: padding,
+          [classes.padding]: !!padding,
         },
         className,
       )}
@@ -49,9 +49,5 @@ function Paper(
     />
   );
 }
-
-Paper.defaultProps = {
-  padding: false,
-};
 
 export default withStyles(styles)(Paper);
