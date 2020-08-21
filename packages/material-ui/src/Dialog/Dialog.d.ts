@@ -19,6 +19,10 @@ export interface DialogProps
    */
   children?: React.ReactNode;
   /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
+  /**
    * If `true`, clicking the backdrop will not fire the `onClose` callback.
    */
   disableBackdropClick?: boolean;

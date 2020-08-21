@@ -10,6 +10,10 @@ export interface TreeItemProps
    */
   children?: React.ReactNode;
   /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
+  /**
    * The icon used to collapse the node.
    */
   collapseIcon?: React.ReactNode;

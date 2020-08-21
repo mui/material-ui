@@ -11,6 +11,10 @@ export type ToggleButtonTypeMap<
      */
     children?: React.ReactNode;
     /**
+     * See [CSS API](#css) below for more details.
+     */
+    classes?: {};
+    /**
      * If `true`, the button will be disabled.
      */
     disabled?: boolean;

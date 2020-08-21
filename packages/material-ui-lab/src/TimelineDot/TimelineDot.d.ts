@@ -11,6 +11,10 @@ export interface TimelineDotProps extends StandardProps<{}, TimelineDotClassKey>
    */
   children?: React.ReactNode;
   /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
+  /**
    * The dot can have a different colors.
    */
   color?: 'inherit' | 'primary' | 'secondary' | 'grey';

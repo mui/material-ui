@@ -9,6 +9,10 @@ export type PaginationItemVariantDefaults = Record<'text' | 'outlined', true>;
 export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
     /**
+     * See [CSS API](#css) below for more details.
+     */
+    classes?: {};
+    /**
      * The active color.
      */
     color?: 'standard' | 'primary' | 'secondary';

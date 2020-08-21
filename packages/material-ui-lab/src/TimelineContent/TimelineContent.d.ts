@@ -7,6 +7,10 @@ export interface TimelineContentProps
    * The content of the component.
    */
   children?: React.ReactNode;
+  /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
 }
 
 export type TimelineContentClassKey = 'root';

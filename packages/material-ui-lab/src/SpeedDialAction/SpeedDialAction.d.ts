@@ -5,6 +5,10 @@ import { TooltipProps } from '@material-ui/core/Tooltip';
 
 export interface SpeedDialActionProps
   extends StandardProps<Partial<TooltipProps>, SpeedDialActionClassKey, 'children'> {
+    /**
+     * See [CSS API](#css) below for more details.
+     */
+    classes?: {};
   /**
    * Props applied to the [`Fab`](/api/fab/) component.
    */

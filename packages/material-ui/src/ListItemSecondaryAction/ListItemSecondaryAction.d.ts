@@ -6,6 +6,10 @@ export interface ListItemSecondaryActionProps
    * The content of the component, normally an `IconButton` or selection control.
    */
   children?: React.ReactNode;
+  /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
 }
 
 export type ListItemSecondaryActionClassKey = 'root';

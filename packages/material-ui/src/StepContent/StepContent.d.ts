@@ -9,6 +9,10 @@ export interface StepContentProps
    */
   children?: React.ReactNode;
   /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
+  /**
    * The component used for the transition.
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    */

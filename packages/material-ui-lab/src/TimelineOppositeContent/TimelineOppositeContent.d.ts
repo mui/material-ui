@@ -7,6 +7,10 @@ export interface TimelineOppositeContentProps
    * The content of the component.
    */
   children?: React.ReactNode;
+  /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
 }
 
 export type TimelineOppositeContentClassKey = 'root' | 'alignRight';

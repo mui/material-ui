@@ -11,6 +11,10 @@ export interface RatingProps
     RatingClassKey,
     'children' | 'onChange'
   > {
+    /**
+     * See [CSS API](#css) below for more details.
+     */
+    classes?: {};
   /**
    * The default value. Use when the component is not controlled.
    */

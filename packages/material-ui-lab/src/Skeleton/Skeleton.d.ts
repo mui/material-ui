@@ -17,6 +17,10 @@ export interface SkeletonTypeMap<P = {}, D extends React.ElementType = 'span'> {
      */
     children?: React.ReactNode;
     /**
+     * See [CSS API](#css) below for more details.
+     */
+    classes?: {};
+    /**
      * Height of the skeleton.
      * Useful when you don't want to adapt the skeleton to a text element but for instance a card.
      */

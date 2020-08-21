@@ -8,6 +8,10 @@ export interface CollapseProps extends StandardProps<TransitionProps, CollapseCl
    */
   children?: React.ReactNode;
   /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
+  /**
    * The width (horizontal) or height (vertical) of the container when collapsed.
    */
   collapsedSize?: string | number;

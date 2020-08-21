@@ -3,6 +3,10 @@ import { OverrideProps } from '../OverridableComponent';
 
 export type CardActionAreaTypeMap<P, D extends React.ElementType> = ExtendButtonBaseTypeMap<{
   props: P & {
+    /**
+     * See [CSS API](#css) below for more details.
+     */
+    classes?: {};
     focusVisibleClassName?: string;
   };
   defaultComponent: D;

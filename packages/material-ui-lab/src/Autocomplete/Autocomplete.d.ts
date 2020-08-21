@@ -63,6 +63,10 @@ export interface AutocompleteProps<
    */
   ChipProps?: object;
   /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
+  /**
    * The icon to display in place of the default close icon.
    */
   closeIcon?: React.ReactNode;

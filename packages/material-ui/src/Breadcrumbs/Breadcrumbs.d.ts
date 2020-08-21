@@ -8,6 +8,10 @@ export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'>
      */
     children?: React.ReactNode;
     /**
+     * See [CSS API](#css) below for more details.
+     */
+    classes?: {};
+    /**
      * Override the default label for the expand button.
      *
      * For localization purposes, you can use the provided [translations](/guides/localization/).

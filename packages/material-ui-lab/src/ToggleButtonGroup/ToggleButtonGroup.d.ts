@@ -12,6 +12,10 @@ export interface ToggleButtonGroupProps
    */
   children?: React.ReactNode;
   /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
+  /**
    * If `true`, only allow one of the child ToggleButton values to be selected.
    */
   exclusive?: boolean;

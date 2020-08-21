@@ -219,10 +219,8 @@ async function annotateClassesDefinition(component: { filename: string }, api: R
   });
 
   if (end === null || start === 0) {
-    // TODO: throw
-    console.warn(
-      `${typesFilename}: Don't know where to insert the definitions for classes. Probably didn't add a place for \`classes\` with e.g. \`classes: {};\``,
-    );
+    // TODO: gracefully return. Some components actually don't implement this prop.
+    console.warn(typesFilename);
     return;
   }
 

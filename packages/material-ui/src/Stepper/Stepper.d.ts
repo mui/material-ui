@@ -20,6 +20,10 @@ export interface StepperProps extends StandardProps<PaperProps, StepperClasskey>
    */
   children?: React.ReactNode;
   /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
+  /**
    * An element to be placed between each step.
    */
   connector?: React.ReactElement<any, any>;

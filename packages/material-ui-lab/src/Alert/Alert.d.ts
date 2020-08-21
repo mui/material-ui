@@ -14,6 +14,10 @@ export interface AlertProps extends StandardProps<PaperProps, AlertClassKey, 'va
    */
   action?: React.ReactNode;
   /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
+  /**
    * Override the default label for the *close popup* icon button.
    *
    * For localization purposes, you can use the provided [translations](/guides/localization/).

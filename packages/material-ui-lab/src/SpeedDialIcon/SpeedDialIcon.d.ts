@@ -3,6 +3,10 @@ import { StandardProps } from '@material-ui/core';
 
 export interface SpeedDialIconProps
   extends StandardProps<React.HTMLAttributes<HTMLSpanElement>, SpeedDialIconClassKey, 'children'> {
+    /**
+     * See [CSS API](#css) below for more details.
+     */
+    classes?: {};
   /**
    * The icon to display in the SpeedDial Floating Action Button.
    */

@@ -12,6 +12,10 @@ export interface TableTypeMap<P = {}, D extends React.ElementType = 'table'> {
      */
     children?: React.ReactNode;
     /**
+     * See [CSS API](#css) below for more details.
+     */
+    classes?: {};
+    /**
      * Allows TableCells to inherit padding of the Table.
      */
     padding?: Padding;

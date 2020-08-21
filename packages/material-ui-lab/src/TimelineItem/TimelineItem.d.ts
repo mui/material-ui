@@ -6,6 +6,10 @@ export interface TimelineItemProps extends StandardProps<{}, TimelineItemClassKe
    * The content of the component.
    */
   children?: React.ReactNode;
+  /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
 }
 
 export type TimelineItemClassKey =

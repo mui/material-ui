@@ -12,6 +12,10 @@ export interface TabListTypeMap<
      * A list of `<Tab />` elements.
      */
     children?: React.ReactElement[];
+    /**
+     * See [CSS API](#css) below for more details.
+     */
+    classes?: {};
   } & Omit<TabsTypeMap['props'], 'children' | 'value'>;
   defaultComponent: D;
   classKey: TabListClassKey;

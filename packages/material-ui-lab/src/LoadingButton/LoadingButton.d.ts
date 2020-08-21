@@ -7,6 +7,10 @@ export type LoadingButtonTypeMap<
 > = ExtendButtonTypeMap<{
   props: P & {
     /**
+     * See [CSS API](#css) below for more details.
+     */
+    classes?: {};
+    /**
      * If `true`, the pending indicator will be shown.
      */
     pending?: boolean;

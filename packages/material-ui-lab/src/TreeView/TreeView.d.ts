@@ -8,6 +8,10 @@ export interface TreeViewPropsBase
    */
   children?: React.ReactNode;
   /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
+  /**
    * The default icon used to collapse the node.
    */
   defaultCollapseIcon?: React.ReactNode;

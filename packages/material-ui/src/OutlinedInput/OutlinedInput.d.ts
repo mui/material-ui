@@ -4,6 +4,10 @@ import { InputBaseProps } from '../InputBase';
 
 export interface OutlinedInputProps extends StandardProps<InputBaseProps, OutlinedInputClassKey> {
   /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
+  /**
    * The label of the input. It is only used for layout. The actual labelling
    * is handled by `InputLabel`. If specified `labelWidth` is ignored.
    */

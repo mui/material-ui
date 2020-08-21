@@ -10,6 +10,10 @@ export interface TabPanelProps
    */
   children?: React.ReactNode;
   /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
+  /**
    * The `value` of the corresponding `Tab`. Must use the index of the `Tab` when
    * no `value` was passed to `Tab`.
    */

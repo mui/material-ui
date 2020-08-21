@@ -55,6 +55,10 @@ export interface PopoverProps
    */
   children?: React.ReactNode;
   /**
+   * See [CSS API](#css) below for more details.
+   */
+  classes?: {};
+  /**
    * A HTML element, component instance, or function that returns either.
    * The `container` will passed to the Modal component.
    *
