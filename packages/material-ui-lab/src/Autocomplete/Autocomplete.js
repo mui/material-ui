@@ -392,7 +392,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     );
   };
 
-  const hasClearIcon = !disableClearable && !disabled;
+  const hasClearIcon = !disableClearable && !disabled && dirty;
   const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false;
 
   return (
