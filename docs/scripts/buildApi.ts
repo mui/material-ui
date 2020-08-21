@@ -221,7 +221,7 @@ async function annotateClassesDefinition(component: { filename: string }, api: R
   if (end === null || start === 0) {
     // TODO: throw
     console.warn(
-      "Don't know where to insert the definitions for classes. Probably didn't add a place for `classes` with e.g. `classes: {};`",
+      `${typesFilename}: Don't know where to insert the definitions for classes. Probably didn't add a place for \`classes\` with e.g. \`classes: {};\``,
     );
     return;
   }
