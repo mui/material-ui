@@ -64,8 +64,13 @@ CssBaseline.propTypes = {
 };
 
 if (process.env.NODE_ENV !== 'production') {
-  // eslint-disable-next-line
-  CssBaseline['propTypes' + ''] = exactProp(CssBaseline.propTypes);
+  // eslint-disable-next-line no-useless-concat
+  CssBaseline['propTypes' + ''] = exactProp({
+    // eslint-disable-next-line react/forbid-foreign-prop-types
+    ...CssBaseline.propTypes,
+    // classes is injected by withStyles but .propTypes on the actual component are part of the public API
+    classes: PropTypes.any,
+  });
 }
 
 export default withStyles(styles, { name: 'MuiCssBaseline' })(CssBaseline);
