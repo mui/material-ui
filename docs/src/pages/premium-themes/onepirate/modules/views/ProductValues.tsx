@@ -1,43 +1,48 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import {
+  withStyles,
+  Theme,
+  createStyles,
+  WithStyles,
+} from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import Typography from '../components/Typography';
 
-const styles = (theme) => ({
-  root: {
-    display: 'flex',
-    overflow: 'hidden',
-    backgroundColor: theme.palette.secondary.light,
-  },
-  container: {
-    marginTop: theme.spacing(15),
-    marginBottom: theme.spacing(30),
-    display: 'flex',
-    position: 'relative',
-  },
-  item: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: theme.spacing(0, 5),
-  },
-  image: {
-    height: 55,
-  },
-  title: {
-    marginTop: theme.spacing(5),
-    marginBottom: theme.spacing(5),
-  },
-  curvyLines: {
-    pointerEvents: 'none',
-    position: 'absolute',
-    top: -180,
-  },
-});
+const styles = (theme: Theme) =>
+  createStyles({
+    root: {
+      display: 'flex',
+      overflow: 'hidden',
+      backgroundColor: theme.palette.secondary.light,
+    },
+    container: {
+      marginTop: theme.spacing(15),
+      marginBottom: theme.spacing(30),
+      display: 'flex',
+      position: 'relative',
+    },
+    item: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      padding: theme.spacing(0, 5),
+    },
+    image: {
+      height: 55,
+    },
+    title: {
+      marginTop: theme.spacing(5),
+      marginBottom: theme.spacing(5),
+    },
+    curvyLines: {
+      pointerEvents: 'none',
+      position: 'absolute',
+      top: -180,
+    },
+  });
 
-function ProductValues(props) {
+function ProductValues(props: WithStyles<typeof styles>) {
   const { classes } = props;
 
   return (
@@ -63,7 +68,6 @@ function ProductValues(props) {
                 {
                   'From the latest trendy boutique hotel to the iconic palace with XXL pool'
                 }
-
                 {
                   ', go for a mini-vacation just a few subway stops away from your home.'
                 }
@@ -84,7 +88,6 @@ function ProductValues(props) {
                 {
                   'Privatize a pool, take a Japanese bath or wake up in 900m2 of garden… '
                 }
-
                 {'your Sundays will not be alike.'}
               </Typography>
             </div>
@@ -110,9 +113,5 @@ function ProductValues(props) {
     </section>
   );
 }
-
-ProductValues.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles)(ProductValues);

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import ReactMarkdown from 'markdown-to-jsx';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -24,20 +24,25 @@ const options = {
       ),
     },
     h4: {
-      component: (props) => (
-        <Typography gutterBottom variant="caption" paragraph {...props} />
-      ),
+      component: (props) => {
+        return (
+          <Typography gutterBottom variant="caption" paragraph {...props} />
+        );
+      },
     },
     p: {
       component: (props) => <Typography paragraph {...props} />,
     },
     a: { component: Link },
     li: {
-      component: withStyles(styles)(({ classes, ...props }) => (
-        <li className={classes.listItem}>
-          <Typography component="span" {...props} />
-        </li>
-      )),
+      component: withStyles(styles)((props) => {
+        const { classes, ...other } = props;
+        return (
+          <li className={classes.listItem}>
+            <Typography component="span" {...other} />
+          </li>
+        );
+      }),
     },
   },
 };
