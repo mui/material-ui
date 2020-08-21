@@ -670,6 +670,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
       slider.removeEventListener('touchstart', handleTouchStart, {
         passive: doesSupportTouchActionNone(),
       });
+
       doc.removeEventListener('mousemove', handleTouchMove);
       doc.removeEventListener('mouseup', handleTouchEnd);
       doc.removeEventListener('touchmove', handleTouchMove);
