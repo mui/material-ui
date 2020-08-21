@@ -102,12 +102,12 @@ const highDensity = {
     MuiTextField: {
       props: {
         margin: 'dense',
-      }
+      },
     },
     MuiToolbar: {
       props: {
         variant: 'dense',
-      }
+      },
     },
   },
 };

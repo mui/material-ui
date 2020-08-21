@@ -37,6 +37,4 @@ export interface DeprecatedThemeOptions {
  * @param options Takes an incomplete theme object and adds the missing parts.
  * @returns A complete, ready to use theme object.
  */
-export default function adaptV4Theme(
-  options?: DeprecatedThemeOptions,
-): Theme;
+export default function adaptV4Theme(options?: DeprecatedThemeOptions): Theme;

@@ -48,9 +48,7 @@ describe('adaptV4Theme', () => {
 
     const transformedTheme = adaptV4Theme(theme);
 
-    expect(transformedTheme.components.MuiTable.overrides).to.deep.equal(
-      theme.overrides.MuiTable,
-    );
+    expect(transformedTheme.components.MuiTable.overrides).to.deep.equal(theme.overrides.MuiTable);
   });
 
   it('moves props, variants and overrides to components', () => {
@@ -83,9 +81,7 @@ describe('adaptV4Theme', () => {
 
     expect(transformedTheme.components.MuiButton.props).to.deep.equal(theme.props.MuiButton);
     expect(transformedTheme.components.MuiFab.variants).to.deep.equal(theme.variants.MuiFab);
-    expect(transformedTheme.components.MuiTable.overrides).to.deep.equal(
-      theme.overrides.MuiTable,
-    );
+    expect(transformedTheme.components.MuiTable.overrides).to.deep.equal(theme.overrides.MuiTable);
   });
 
   it('merges props, variants and overrides to components', () => {

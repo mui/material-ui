@@ -6,10 +6,7 @@ export {
   Theme,
   Direction,
 } from './createMuiTheme';
-export {
-  default as adaptV4Theme,
-  DeprecatedThemeOptions,
-} from './adaptV4Theme';
+export { default as adaptV4Theme, DeprecatedThemeOptions } from './adaptV4Theme';
 export { PaletteColorOptions, SimplePaletteColorOptions } from './createPalette';
 export { default as createStyles } from './createStyles';
 export { TypographyStyle, Variant as TypographyVariant } from './createTypography';
