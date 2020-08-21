@@ -16,7 +16,6 @@ export interface DialogContentTextTypeMap<
     };
   } & Omit<TypographyTypeMap['props'], 'classes'>;
   defaultComponent: D;
-  classKey: DialogContentTextClassKey;
 }
 
 export type DialogContentTextClassKey = 'root';

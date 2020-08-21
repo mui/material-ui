@@ -1,12 +1,11 @@
 import * as React from 'react';
-import { Omit, StandardProps } from '..';
+import { Omit, InternalStandardProps as StandardProps } from '..';
 import { FadeProps } from '../Fade';
 import { TransitionProps } from '../transitions/transition';
 
 export interface BackdropProps
   extends StandardProps<
-    React.HTMLAttributes<HTMLDivElement> & Partial<Omit<FadeProps, 'children'>>,
-    BackdropClassKey
+    React.HTMLAttributes<HTMLDivElement> & Partial<Omit<FadeProps, 'children'>>
   > {
   /**
    * The content of the component.

@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { StandardProps, TypographyProps } from '@material-ui/core';
+import { InternalStandardProps as StandardProps, TypographyProps } from '@material-ui/core';
 
-export interface TimelineContentProps
-  extends StandardProps<TypographyProps, TimelineContentClassKey> {
+export interface TimelineContentProps extends StandardProps<TypographyProps> {
   /**
    * The content of the component.
    */

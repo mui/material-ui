@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { StandardProps } from '@material-ui/core';
+import { InternalStandardProps as StandardProps } from '@material-ui/core';
 import { FabProps } from '@material-ui/core/Fab';
 import { TooltipProps } from '@material-ui/core/Tooltip';
 
-export interface SpeedDialActionProps
-  extends StandardProps<Partial<TooltipProps>, SpeedDialActionClassKey, 'children'> {
+export interface SpeedDialActionProps extends StandardProps<Partial<TooltipProps>, 'children'> {
   /**
    * See [CSS API](#css) below for more details.
    */

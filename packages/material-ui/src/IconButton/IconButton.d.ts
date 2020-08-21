@@ -60,7 +60,6 @@ export type IconButtonTypeMap<
     size?: 'small' | 'medium';
   };
   defaultComponent: D;
-  classKey: IconButtonClassKey;
 }>;
 
 /**

@@ -1,7 +1,7 @@
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 import { InputBaseProps, InputBaseClassKey } from '../InputBase';
 
-export interface FilledInputProps extends StandardProps<InputBaseProps, FilledInputClassKey> {
+export interface FilledInputProps extends StandardProps<InputBaseProps> {
   /**
    * See [CSS API](#css) below for more details.
    */

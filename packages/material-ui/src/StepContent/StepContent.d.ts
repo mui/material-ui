@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 import { TransitionProps } from '../transitions/transition';
 
-export interface StepContentProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, StepContentClasskey> {
+export interface StepContentProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
    * Step content.
    */

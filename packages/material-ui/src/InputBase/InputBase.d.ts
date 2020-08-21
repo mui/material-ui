@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 
 export interface InputBaseProps
   extends StandardProps<
     React.HTMLAttributes<HTMLDivElement>,
-    InputBaseClassKey,
     /*
      * `onChange`, `onKeyUp`, `onKeyDown`, `onBlur`, `onFocus` are applied to the inner `InputComponent`,
      * which by default is an input or textarea. Since these handlers differ from the

@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { StandardProps } from '@material-ui/core';
+import { InternalStandardProps as StandardProps } from '@material-ui/core';
 
-export interface AvatarGroupProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, AvatarGroupClassKey> {
+export interface AvatarGroupProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
    * The avatars to stack.
    */

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverridableStringUnion } from '@material-ui/types';
-import { StandardProps } from '@material-ui/core';
+import { InternalStandardProps as StandardProps } from '@material-ui/core';
 import { UsePaginationItem, UsePaginationProps } from './usePagination';
 
 export interface PaginationRenderItemParams extends UsePaginationItem {
@@ -15,7 +15,7 @@ export type PaginationVariantDefaults = Record<'text' | 'outlined', true>;
 
 export interface PaginationProps
   extends UsePaginationProps,
-    StandardProps<React.HTMLAttributes<HTMLElement>, PaginationClassKey, 'children' | 'onChange'> {
+    StandardProps<React.HTMLAttributes<HTMLElement>, 'children' | 'onChange'> {
   /**
    * See [CSS API](#css) below for more details.
    */

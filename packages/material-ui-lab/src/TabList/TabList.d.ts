@@ -18,7 +18,6 @@ export interface TabListTypeMap<
     classes?: {};
   } & Omit<TabsTypeMap['props'], 'children' | 'value'>;
   defaultComponent: D;
-  classKey: TabListClassKey;
 }
 /**
  *

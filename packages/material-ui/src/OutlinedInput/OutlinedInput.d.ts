@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 import { InputBaseProps } from '../InputBase';
 
-export interface OutlinedInputProps extends StandardProps<InputBaseProps, OutlinedInputClassKey> {
+export interface OutlinedInputProps extends StandardProps<InputBaseProps> {
   /**
    * See [CSS API](#css) below for more details.
    */

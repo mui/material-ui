@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 
 export interface LinearProgressProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, LinearProgressClassKey, 'children'> {
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'children'> {
   /**
    * See [CSS API](#css) below for more details.
    */

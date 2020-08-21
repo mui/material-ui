@@ -189,7 +189,6 @@ export interface SliderTypeMap<P = {}, D extends React.ElementType = 'span'> {
     valueLabelFormat?: string | ((value: number, index: number) => React.ReactNode);
   };
   defaultComponent: D;
-  classKey: SliderClassKey;
 }
 /**
  *

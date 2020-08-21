@@ -42,7 +42,6 @@ export interface ListSubheaderTypeMap<P = {}, D extends React.ElementType = 'li'
     inset?: boolean;
   };
   defaultComponent: D;
-  classKey: ListSubheaderClassKey;
 }
 
 /**

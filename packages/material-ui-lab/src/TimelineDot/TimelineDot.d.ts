@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { OverridableStringUnion } from '@material-ui/types';
-import { StandardProps } from '@material-ui/core';
+import { InternalStandardProps as StandardProps } from '@material-ui/core';
 
 export interface TimelineDotPropsVariantOverrides {}
 export type TimelineDotVariantDefaults = Record<'filled' | 'outlined', true>;
 
-export interface TimelineDotProps extends StandardProps<{}, TimelineDotClassKey> {
+export interface TimelineDotProps extends StandardProps<{}> {
   /**
    * The content of the component.
    */

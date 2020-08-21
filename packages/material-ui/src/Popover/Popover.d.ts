@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 import { PaperProps } from '../Paper';
 import { ModalProps } from '../Modal';
 import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
@@ -17,7 +17,7 @@ export interface PopoverPosition {
 export type PopoverReference = 'anchorEl' | 'anchorPosition' | 'none';
 
 export interface PopoverProps
-  extends StandardProps<ModalProps & Partial<TransitionHandlerProps>, PopoverClassKey, 'children'> {
+  extends StandardProps<ModalProps & Partial<TransitionHandlerProps>, 'children'> {
   /**
    * A ref for imperative actions.
    * It currently only supports updatePosition() action.

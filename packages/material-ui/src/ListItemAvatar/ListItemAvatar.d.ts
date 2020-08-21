@@ -1,6 +1,6 @@
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 
-export interface ListItemAvatarProps extends StandardProps<{}, ListItemAvatarClassKey> {
+export interface ListItemAvatarProps extends StandardProps<{}> {
   /**
    * The content of the component – normally `Avatar`.
    */

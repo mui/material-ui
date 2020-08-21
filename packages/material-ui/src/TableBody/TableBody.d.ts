@@ -16,7 +16,6 @@ export interface TableBodyTypeMap<P = {}, D extends React.ElementType = 'tbody'>
     };
   };
   defaultComponent: D;
-  classKey: TableBodyClassKey;
 }
 /**
  *

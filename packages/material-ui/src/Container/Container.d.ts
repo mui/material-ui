@@ -44,7 +44,6 @@ export interface ContainerTypeMap<P = {}, D extends React.ElementType = 'div'> {
     maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | false;
   };
   defaultComponent: D;
-  classKey: ContainerClassKey;
 }
 /**
  *

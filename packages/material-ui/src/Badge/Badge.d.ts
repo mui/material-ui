@@ -87,7 +87,6 @@ export interface BadgeTypeMap<P = {}, D extends React.ElementType = 'div'> {
     variant?: OverridableStringUnion<BadgeVariantDefaults, BadgePropsVariantOverrides>;
   };
   defaultComponent: D;
-  classKey: BadgeClassKey;
 }
 
 export type BadgeClassKey =

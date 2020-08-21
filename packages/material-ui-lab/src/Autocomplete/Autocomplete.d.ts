@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '@material-ui/core';
+import { InternalStandardProps as StandardProps } from '@material-ui/core';
 import { PopperProps } from '@material-ui/core/Popper';
 import {
   AutocompleteChangeDetails,
@@ -53,11 +53,7 @@ export interface AutocompleteProps<
   FreeSolo extends boolean | undefined
 >
   extends UseAutocompleteProps<T, Multiple, DisableClearable, FreeSolo>,
-    StandardProps<
-      React.HTMLAttributes<HTMLDivElement>,
-      AutocompleteClassKey,
-      'defaultValue' | 'onChange' | 'children'
-    > {
+    StandardProps<React.HTMLAttributes<HTMLDivElement>, 'defaultValue' | 'onChange' | 'children'> {
   /**
    * Props applied to the [`Chip`](/api/chip/) element.
    */

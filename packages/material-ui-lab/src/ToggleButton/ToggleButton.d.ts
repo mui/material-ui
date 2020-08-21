@@ -51,7 +51,6 @@ export type ToggleButtonTypeMap<
     value: NonNullable<unknown>;
   };
   defaultComponent: D;
-  classKey: ToggleButtonClassKey;
 }>;
 
 /**

@@ -55,7 +55,6 @@ export interface FormLabelTypeMap<P = {}, D extends React.ElementType = 'label'>
       required?: boolean;
     };
   defaultComponent: D;
-  classKey: FormLabelClassKey;
 }
 
 /**

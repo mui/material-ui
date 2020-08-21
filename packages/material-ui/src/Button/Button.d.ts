@@ -121,7 +121,6 @@ export type ButtonTypeMap<
     variant?: OverridableStringUnion<ButtonVariantDefaults, ButtonPropsVariantOverrides>;
   };
   defaultComponent: D;
-  classKey: ButtonClassKey;
 }>;
 
 /**
@@ -132,7 +131,6 @@ export type ButtonTypeMap<
 export interface ExtendButtonTypeMap<M extends OverridableTypeMap> {
   props: M['props'] & ButtonTypeMap['props'];
   defaultComponent: M['defaultComponent'];
-  classKey: M['classKey'];
 }
 
 export type ExtendButton<M extends OverridableTypeMap> = ((

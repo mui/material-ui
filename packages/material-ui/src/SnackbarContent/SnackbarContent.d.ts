@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 import { PaperProps } from '../Paper';
 
-export interface SnackbarContentProps
-  extends StandardProps<PaperProps, SnackbarContentClassKey, 'children'> {
+export interface SnackbarContentProps extends StandardProps<PaperProps, 'children'> {
   /**
    * The action to display. It renders after the message, at the end of the snackbar.
    */

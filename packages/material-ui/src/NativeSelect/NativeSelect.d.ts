@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 import { InputProps } from '../Input';
 import { NativeSelectInputProps } from './NativeSelectInput';
 
 export interface NativeSelectProps
-  extends StandardProps<InputProps, NativeSelectClassKey, 'inputProps' | 'value' | 'onChange'> {
+  extends StandardProps<InputProps, 'inputProps' | 'value' | 'onChange'> {
   /**
    * The option elements to populate the select with.
    * Can be some `<option>` elements.

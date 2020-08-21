@@ -65,7 +65,6 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
     variant?: 'standard' | 'outlined' | 'filled';
   };
   defaultComponent: D;
-  classKey: FormControlClassKey;
 }
 
 /**

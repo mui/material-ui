@@ -1,10 +1,7 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 
-export type TouchRippleProps = StandardProps<
-  React.HTMLAttributes<HTMLElement>,
-  TouchRippleClassKey
-> & {
+export type TouchRippleProps = StandardProps<React.HTMLAttributes<HTMLElement>> & {
   center?: boolean;
   /**
    * See [CSS API](#css) below for more details.

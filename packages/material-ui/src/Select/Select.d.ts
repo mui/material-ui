@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 import { InputProps } from '../Input';
 import { MenuProps } from '../Menu';
 import { SelectInputProps } from './SelectInput';
 
 export interface SelectProps
-  extends StandardProps<InputProps, SelectClassKey, 'value' | 'onChange'>,
+  extends StandardProps<InputProps, 'value' | 'onChange'>,
     Pick<SelectInputProps, 'onChange'> {
   /**
    * If `true`, the width of the popover will automatically be set according to the items inside the

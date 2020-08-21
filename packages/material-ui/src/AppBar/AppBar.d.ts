@@ -1,7 +1,7 @@
-import { PropTypes, StandardProps } from '..';
+import { PropTypes, InternalStandardProps as StandardProps } from '..';
 import { PaperProps } from '../Paper';
 
-export interface AppBarProps extends StandardProps<PaperProps, AppBarClassKey> {
+export interface AppBarProps extends StandardProps<PaperProps> {
   /**
    * See [CSS API](#css) below for more details.
    */

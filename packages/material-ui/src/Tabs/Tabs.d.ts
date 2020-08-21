@@ -120,7 +120,6 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
     variant?: 'standard' | 'scrollable' | 'fullWidth';
   };
   defaultComponent: D;
-  classKey: TabsClassKey;
 }
 
 /**

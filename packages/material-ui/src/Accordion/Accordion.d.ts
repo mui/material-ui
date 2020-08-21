@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 import { TransitionProps } from '../transitions/transition';
 import { PaperProps } from '../Paper';
 
-export interface AccordionProps extends StandardProps<PaperProps, AccordionClassKey, 'onChange'> {
+export interface AccordionProps extends StandardProps<PaperProps, 'onChange'> {
   /**
    * The content of the accordion.
    */
@@ -57,7 +57,7 @@ export interface AccordionProps extends StandardProps<PaperProps, AccordionClass
   TransitionProps?: TransitionProps;
 }
 
-export type AccordionClassKey = 'root' | 'rounded' | 'expanded' | 'disabled' | 'region';
+export type AccordionClassKey = keyof NonNullable<AccordionProps['classes']>;
 
 /**
  *

@@ -107,7 +107,6 @@ export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'>
     variant?: OverridableStringUnion<ButtonGroupVariantDefaults, ButtonGroupPropsVariantOverrides>;
   };
   defaultComponent: D;
-  classKey: ButtonGroupClassKey;
 }
 
 /**

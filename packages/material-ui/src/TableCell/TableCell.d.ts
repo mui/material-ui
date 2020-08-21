@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 import { Padding, Size } from '../Table';
 
 export { Padding, Size };
@@ -12,8 +12,7 @@ export { Padding, Size };
  * Since it is not decided via prop, we have create loose typings
  * here.
  */
-export interface TableCellProps
-  extends StandardProps<TableCellBaseProps, TableCellClassKey, 'align'> {
+export interface TableCellProps extends StandardProps<TableCellBaseProps, 'align'> {
   /**
    * Set the text-align on the table cell content.
    *

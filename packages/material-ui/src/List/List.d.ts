@@ -36,7 +36,6 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
     subheader?: React.ReactNode;
   };
   defaultComponent: D;
-  classKey: ListClassKey;
 }
 
 /**

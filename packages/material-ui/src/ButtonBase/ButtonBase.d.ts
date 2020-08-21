@@ -77,7 +77,6 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
     TouchRippleProps?: Partial<TouchRippleProps>;
   };
   defaultComponent: D;
-  classKey: ButtonBaseClassKey;
 }
 
 /**
@@ -88,7 +87,6 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
 export interface ExtendButtonBaseTypeMap<M extends OverridableTypeMap> {
   props: M['props'] & ButtonBaseTypeMap['props'];
   defaultComponent: M['defaultComponent'];
-  classKey: M['classKey'];
 }
 
 export type ExtendButtonBase<M extends OverridableTypeMap> = ((

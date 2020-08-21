@@ -130,7 +130,6 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
     >;
   };
   defaultComponent: D;
-  classKey: TypographyClassKey;
 }
 
 /**

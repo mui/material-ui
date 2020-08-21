@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { StandardProps } from '@material-ui/core';
+import { InternalStandardProps as StandardProps } from '@material-ui/core';
 
-export interface TreeViewPropsBase
-  extends StandardProps<React.HTMLAttributes<HTMLUListElement>, TreeViewClassKey> {
+export interface TreeViewPropsBase extends StandardProps<React.HTMLAttributes<HTMLUListElement>> {
   /**
    * The content of the component.
    */

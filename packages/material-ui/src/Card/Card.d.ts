@@ -1,7 +1,7 @@
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 import { PaperProps } from '../Paper';
 
-export interface CardProps extends StandardProps<PaperProps, CardClassKey> {
+export interface CardProps extends StandardProps<PaperProps> {
   /**
    * See [CSS API](#css) below for more details.
    */

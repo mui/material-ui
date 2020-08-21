@@ -45,7 +45,6 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
       variant?: TypographyProps['variant'];
     };
   defaultComponent: D;
-  classKey: LinkClassKey;
 }
 
 /**

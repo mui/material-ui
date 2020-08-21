@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps, PropTypes } from '..';
+import { InternalStandardProps as StandardProps, PropTypes } from '..';
 import { FormControlProps } from '../FormControl';
 import { FormHelperTextProps } from '../FormHelperText';
 import { InputBaseProps } from '../InputBase';
@@ -12,7 +12,6 @@ import { SelectProps } from '../Select';
 export interface BaseTextFieldProps
   extends StandardProps<
     FormControlProps,
-    TextFieldClassKey,
     // event handlers are declared on derived interfaces
     'onChange' | 'onBlur' | 'onFocus' | 'defaultValue'
   > {

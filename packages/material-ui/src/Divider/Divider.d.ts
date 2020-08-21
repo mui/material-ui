@@ -50,7 +50,6 @@ export interface DividerTypeMap<P = {}, D extends React.ElementType = 'hr'> {
     variant?: OverridableStringUnion<DividerVariantDefaults, DividerPropsVariantOverrides>;
   };
   defaultComponent: D;
-  classKey: DividerClassKey;
 }
 
 /**

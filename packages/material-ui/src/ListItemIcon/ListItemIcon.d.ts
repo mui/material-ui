@@ -1,7 +1,6 @@
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 
-export interface ListItemIconProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, ListItemIconClassKey> {
+export interface ListItemIconProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
    * The content of the component, normally `Icon`, `SvgIcon`,
    * or a `@material-ui/icons` SVG icon element.

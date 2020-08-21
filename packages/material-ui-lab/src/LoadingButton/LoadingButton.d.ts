@@ -43,7 +43,6 @@ export type LoadingButtonTypeMap<
     pendingPosition?: 'start' | 'end' | 'center';
   };
   defaultComponent: D;
-  classKey: LoadingButtonClassKey;
 }>;
 
 /**

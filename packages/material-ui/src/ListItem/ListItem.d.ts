@@ -80,7 +80,6 @@ export interface ListItemTypeMap<P, D extends React.ElementType> {
     selected?: boolean;
   };
   defaultComponent: D;
-  classKey: ListItemClassKey;
 }
 
 /**

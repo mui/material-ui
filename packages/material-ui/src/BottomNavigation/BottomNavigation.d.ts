@@ -32,7 +32,6 @@ export interface BottomNavigationTypeMap<P = {}, D extends React.ElementType = '
     value?: any;
   };
   defaultComponent: D;
-  classKey: BottomNavigationClassKey;
 }
 /**
  *

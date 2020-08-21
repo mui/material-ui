@@ -61,7 +61,6 @@ export interface FormHelperTextTypeMap<P = {}, D extends React.ElementType = 'p'
     variant?: 'standard' | 'outlined' | 'filled';
   };
   defaultComponent: D;
-  classKey: FormHelperTextClassKey;
 }
 /**
  *

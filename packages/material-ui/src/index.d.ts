@@ -16,6 +16,7 @@ export { Omit };
  * All standard components exposed by `material-ui` are `StyledComponents` with
  * certain `classes`, on which one can also set a top-level `className` and inline
  * `style`.
+ * @deprecated will be removed in v5 for internal usage only
  */
 export type StandardProps<C, ClassKey extends string, Removals extends keyof C = never> = Omit<
   C,
@@ -25,6 +26,22 @@ export type StandardProps<C, ClassKey extends string, Removals extends keyof C =
     className?: string;
     ref?: C extends { ref?: infer RefType } ? RefType : React.Ref<unknown>;
     style?: React.CSSProperties;
+  };
+
+/**
+ * @private ONLY USE FROM WITHIN mui-org/material-ui
+ *
+ * All standard components exposed by `material-ui` are `StyledComponents`.
+ * However, we don't declare classes on this type.
+ * It is recommended to declare them manually with an interface so that each class can have a separate JSDOC.
+ */
+export type InternalStandardProps<C, Removals extends keyof C = never> = Omit<
+  C,
+  'classes' | Removals
+> &
+  // each component declares it's classes in a separate interface for proper JSDOC
+  StyledComponentProps<never> & {
+    ref?: C extends { ref?: infer RefType } ? RefType : React.Ref<unknown>;
   };
 
 export type PaletteType = 'light' | 'dark';

@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 import { PaperProps } from '../Paper';
 
 export type Orientation = 'horizontal' | 'vertical';
 
-export interface StepperProps extends StandardProps<PaperProps, StepperClasskey> {
+export interface StepperProps extends StandardProps<PaperProps> {
   /**
    * Set the active step (zero based index).
    * Set to -1 to disable all the steps.

@@ -16,7 +16,6 @@ export interface TableContainerTypeMap<P = {}, D extends React.ElementType = 'di
     };
   };
   defaultComponent: D;
-  classKey: TableContainerClassKey;
 }
 /**
  *

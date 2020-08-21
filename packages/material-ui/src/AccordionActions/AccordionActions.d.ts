@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 
-export interface AccordionActionsProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, AccordionActionsClassKey> {
+export interface AccordionActionsProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
    * The content of the component.
    */

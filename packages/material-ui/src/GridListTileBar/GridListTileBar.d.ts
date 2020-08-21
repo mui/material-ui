@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 
-export interface GridListTileBarProps extends StandardProps<{}, GridListTileBarClassKey> {
+export interface GridListTileBarProps
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'title'> {
   /**
    * An IconButton element to be used as secondary action target
    * (primary action target is the tile itself).

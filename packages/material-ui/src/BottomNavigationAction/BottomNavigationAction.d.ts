@@ -47,7 +47,6 @@ export type BottomNavigationActionTypeMap<
     value?: any;
   };
   defaultComponent: D;
-  classKey: BottomNavigationActionClassKey;
 }>;
 
 /**

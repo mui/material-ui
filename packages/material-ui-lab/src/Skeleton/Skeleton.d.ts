@@ -55,7 +55,6 @@ export interface SkeletonTypeMap<P = {}, D extends React.ElementType = 'span'> {
     width?: number | string;
   };
   defaultComponent: 'div';
-  classKey: SkeletonClassKey;
 }
 
 /**

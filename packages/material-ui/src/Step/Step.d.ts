@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 
-export interface StepProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, StepClasskey> {
+export interface StepProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
    * Sets the step as active. Is passed to child components.
    */

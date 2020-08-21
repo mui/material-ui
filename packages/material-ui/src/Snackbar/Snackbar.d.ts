@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 import { SnackbarContentProps } from '../SnackbarContent';
 import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
 import { ClickAwayListenerProps } from '../ClickAwayListener';
@@ -12,10 +12,7 @@ export interface SnackbarOrigin {
 export type SnackbarCloseReason = 'timeout' | 'clickaway';
 
 export interface SnackbarProps
-  extends StandardProps<
-    React.HTMLAttributes<HTMLDivElement> & Partial<TransitionHandlerProps>,
-    SnackbarClassKey
-  > {
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement> & Partial<TransitionHandlerProps>> {
   /**
    * The action to display. It renders after the message, at the end of the snackbar.
    */

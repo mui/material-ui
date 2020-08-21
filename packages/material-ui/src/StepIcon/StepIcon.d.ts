@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 
 export interface StepIconProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, StepIconClasskey, 'children'> {
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'children'> {
   /**
    * Whether this step is active.
    */

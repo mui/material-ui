@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 import { TypographyProps } from '../Typography';
 
 export interface ListItemTextProps<
   PrimaryTypographyComponent extends React.ElementType = 'span',
   SecondaryTypographyComponent extends React.ElementType = 'p'
-> extends StandardProps<React.HTMLAttributes<HTMLDivElement>, ListItemTextClassKey> {
+> extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
    * Alias for the `primary` prop.
    */

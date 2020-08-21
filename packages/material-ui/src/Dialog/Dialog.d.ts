@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 import { PaperProps } from '../Paper';
 import { ModalProps } from '../Modal';
 import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
 
 export interface DialogProps
-  extends StandardProps<ModalProps & Partial<TransitionHandlerProps>, DialogClassKey, 'children'> {
+  extends StandardProps<ModalProps & Partial<TransitionHandlerProps>, 'children'> {
   /**
    * The id(s) of the element(s) that describe the dialog.
    */

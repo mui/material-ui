@@ -36,7 +36,6 @@ export interface TableTypeMap<P = {}, D extends React.ElementType = 'table'> {
     stickyHeader?: boolean;
   };
   defaultComponent: D;
-  classKey: TableClassKey;
 }
 /**
  *

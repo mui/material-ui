@@ -210,7 +210,6 @@ export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
     zeroMinWidth?: boolean;
   };
   defaultComponent: D;
-  classKey: GridClassKey;
 }
 
 /**

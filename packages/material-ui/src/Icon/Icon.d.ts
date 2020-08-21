@@ -41,7 +41,6 @@ export interface IconTypeMap<P = {}, D extends React.ElementType = 'span'> {
     fontSize?: 'inherit' | 'default' | 'small' | 'large';
   };
   defaultComponent: D;
-  classKey: IconClassKey;
 }
 /**
  *

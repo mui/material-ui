@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverridableStringUnion } from '@material-ui/types';
-import { StandardProps } from '@material-ui/core';
+import { InternalStandardProps as StandardProps } from '@material-ui/core';
 import { PaperProps } from '@material-ui/core/Paper';
 
 export type Color = 'success' | 'info' | 'warning' | 'error';
@@ -8,7 +8,7 @@ export type Color = 'success' | 'info' | 'warning' | 'error';
 export interface AlertPropsVariantOverrides {}
 export type AlertVariantDefaults = Record<'standard' | 'filled' | 'outlined', true>;
 
-export interface AlertProps extends StandardProps<PaperProps, AlertClassKey, 'variant'> {
+export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
   /**
    * The action to display. It renders after the message, at the end of the alert.
    */

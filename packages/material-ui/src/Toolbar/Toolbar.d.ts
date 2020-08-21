@@ -34,7 +34,6 @@ export interface ToolbarTypeMap<P = {}, D extends React.ElementType = 'div'> {
     variant?: OverridableStringUnion<ToolbarVariantDefaults, ToolbarPropsVariantOverrides>;
   };
   defaultComponent: D;
-  classKey: ToolbarClassKey;
 }
 /**
  *

@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 import { StepIconProps } from '../StepIcon';
 
-export interface StepLabelProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, StepLabelClasskey> {
+export interface StepLabelProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
    * In most cases will simply be a string containing a title for the label.
    */

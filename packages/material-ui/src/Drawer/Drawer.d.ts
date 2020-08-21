@@ -1,16 +1,12 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 import { ModalProps } from '../Modal';
 import { SlideProps } from '../Slide';
 import { PaperProps } from '../Paper';
 import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
 
 export interface DrawerProps
-  extends StandardProps<
-    ModalProps & Partial<TransitionHandlerProps>,
-    DrawerClassKey,
-    'open' | 'children'
-  > {
+  extends StandardProps<ModalProps & Partial<TransitionHandlerProps>, 'open' | 'children'> {
   /**
    * Side from which the drawer will appear.
    */

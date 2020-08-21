@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { StandardProps } from '@material-ui/core';
+import { InternalStandardProps as StandardProps } from '@material-ui/core';
 import { TransitionProps } from '@material-ui/core/transitions';
 import { Omit } from '@material-ui/types';
 
 export interface TreeItemProps
-  extends StandardProps<Omit<React.HTMLAttributes<HTMLLIElement>, 'onFocus'>, TreeItemClassKey> {
+  extends StandardProps<Omit<React.HTMLAttributes<HTMLLIElement>, 'onFocus'>> {
   /**
    * The content of the component.
    */

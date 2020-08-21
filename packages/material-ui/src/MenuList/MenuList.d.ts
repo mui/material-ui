@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 import { ListProps, ListClassKey } from '../List';
 
-export interface MenuListProps extends StandardProps<ListProps, MenuListClassKey> {
+export interface MenuListProps extends StandardProps<ListProps> {
   /**
    * If `true`, will focus the `[role="menu"]` container and move into tab order.
    */

@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 import { FormGroupProps, FormGroupClassKey } from '../FormGroup';
 
-export interface RadioGroupProps
-  extends StandardProps<FormGroupProps, RadioGroupClassKey, 'onChange'> {
+export interface RadioGroupProps extends StandardProps<FormGroupProps, 'onChange'> {
   /**
    * See [CSS API](#css) below for more details.
    */

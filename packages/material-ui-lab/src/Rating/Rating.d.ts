@@ -1,16 +1,12 @@
 import * as React from 'react';
-import { StandardProps } from '@material-ui/core';
+import { InternalStandardProps as StandardProps } from '@material-ui/core';
 
 export interface IconContainerProps extends React.HTMLAttributes<HTMLSpanElement> {
   value: number;
 }
 
 export interface RatingProps
-  extends StandardProps<
-    React.HTMLAttributes<HTMLSpanElement>,
-    RatingClassKey,
-    'children' | 'onChange'
-  > {
+  extends StandardProps<React.HTMLAttributes<HTMLSpanElement>, 'children' | 'onChange'> {
   /**
    * See [CSS API](#css) below for more details.
    */

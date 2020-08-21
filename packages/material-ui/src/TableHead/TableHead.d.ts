@@ -16,7 +16,6 @@ export interface TableHeadTypeMap<P = {}, D extends React.ElementType = 'thead'>
     };
   };
   defaultComponent: D;
-  classKey: TableHeadClassKey;
 }
 /**
  *

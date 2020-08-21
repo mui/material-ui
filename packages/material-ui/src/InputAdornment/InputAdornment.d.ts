@@ -47,7 +47,6 @@ export interface InputAdornmentTypeMap<P = {}, D extends React.ElementType = 'di
     variant?: 'standard' | 'outlined' | 'filled';
   };
   defaultComponent: D;
-  classKey: InputAdornmentClassKey;
 }
 /**
  *

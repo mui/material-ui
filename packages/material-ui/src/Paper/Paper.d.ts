@@ -1,12 +1,11 @@
 import * as React from 'react';
 import { OverridableStringUnion } from '@material-ui/types';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 
 export interface PaperPropsVariantOverrides {}
 export type PaperVariantDefaults = Record<'elevation' | 'outlined', true>;
 
-export interface PaperProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, PaperClassKey> {
+export interface PaperProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
    * The content of the component.
    */

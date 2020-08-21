@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 import { FormLabelProps } from '../FormLabel';
 
-export interface InputLabelProps extends StandardProps<FormLabelProps, InputLabelClassKey> {
+export interface InputLabelProps extends StandardProps<FormLabelProps> {
   /**
    * The contents of the `InputLabel`.
    */

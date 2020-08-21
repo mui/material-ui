@@ -4,10 +4,6 @@ import { DrawerProps } from '../Drawer';
 
 export interface SwipeableDrawerProps extends Omit<DrawerProps, 'onClose' | 'open'> {
   /**
-   * See [CSS API](#css) below for more details.
-   */
-  classes?: {};
-  /**
    * Disable the backdrop transition.
    * This can improve the FPS on low-end devices.
    */

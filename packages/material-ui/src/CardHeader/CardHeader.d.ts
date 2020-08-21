@@ -67,7 +67,6 @@ export interface CardHeaderTypeMap<
     >;
   };
   defaultComponent: DefaultComponent;
-  classKey: CardHeaderClassKey;
 }
 /**
  *

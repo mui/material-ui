@@ -29,7 +29,6 @@ export interface GridListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
     spacing?: number;
   };
   defaultComponent: D;
-  classKey: GridListClassKey;
 }
 /**
  *

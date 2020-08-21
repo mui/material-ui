@@ -60,7 +60,6 @@ export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
     variant?: OverridableStringUnion<AvatarVariantDefaults, AvatarPropsVariantOverrides>;
   };
   defaultComponent: D;
-  classKey: AvatarClassKey;
 }
 
 /**

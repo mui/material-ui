@@ -16,7 +16,6 @@ export interface CardContentTypeMap<P = {}, D extends React.ElementType = 'div'>
     };
   };
   defaultComponent: D;
-  classKey: CardContentClassKey;
 }
 /**
  *

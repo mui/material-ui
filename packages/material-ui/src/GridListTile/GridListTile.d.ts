@@ -32,7 +32,6 @@ export interface GridListTileTypeMap<P = {}, D extends React.ElementType = 'li'>
     rows?: number;
   };
   defaultComponent: D;
-  classKey: GridListTileClassKey;
 }
 /**
  *

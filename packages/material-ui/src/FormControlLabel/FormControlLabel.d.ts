@@ -1,12 +1,8 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 
 export interface FormControlLabelProps
-  extends StandardProps<
-    React.LabelHTMLAttributes<HTMLLabelElement>,
-    FormControlLabelClassKey,
-    'children' | 'onChange'
-  > {
+  extends StandardProps<React.LabelHTMLAttributes<HTMLLabelElement>, 'children' | 'onChange'> {
   /**
    * If `true`, the component appears selected.
    */

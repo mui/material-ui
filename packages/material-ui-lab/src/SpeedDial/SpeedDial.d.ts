@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '@material-ui/core';
+import { InternalStandardProps as StandardProps } from '@material-ui/core';
 import { FabProps } from '@material-ui/core/Fab';
 import { TransitionHandlerProps, TransitionProps } from '@material-ui/core/transitions';
 
@@ -9,7 +9,6 @@ export type OpenReason = 'toggle' | 'focus' | 'mouseEnter';
 export interface SpeedDialProps
   extends StandardProps<
     React.HTMLAttributes<HTMLDivElement> & Partial<TransitionHandlerProps>,
-    SpeedDialClassKey,
     'children'
   > {
   /**

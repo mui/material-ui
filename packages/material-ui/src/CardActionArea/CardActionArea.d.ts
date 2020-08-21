@@ -17,7 +17,6 @@ export type CardActionAreaTypeMap<P, D extends React.ElementType> = ExtendButton
     focusVisibleClassName?: string;
   };
   defaultComponent: D;
-  classKey: CardActionAreaClassKey;
 }>;
 
 /**

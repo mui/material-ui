@@ -32,7 +32,6 @@ export interface TableRowTypeMap<P = {}, D extends React.ElementType = 'tr'> {
     selected?: boolean;
   };
   defaultComponent: D;
-  classKey: TableRowClassKey;
 }
 /**
  * Will automatically set dynamic row height

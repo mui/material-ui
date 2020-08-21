@@ -71,7 +71,6 @@ export type FabTypeMap<P = {}, D extends React.ElementType = 'button'> = ExtendB
     variant?: OverridableStringUnion<FabVariantDefaults, FabPropsVariantOverrides>;
   };
   defaultComponent: D;
-  classKey: FabClassKey;
 }>;
 
 /**

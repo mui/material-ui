@@ -1,13 +1,9 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 import { SwitchBaseProps, SwitchBaseClassKey } from '../internal/SwitchBase';
 
 export interface CheckboxProps
-  extends StandardProps<
-    SwitchBaseProps,
-    CheckboxClassKey,
-    'checkedIcon' | 'color' | 'icon' | 'type'
-  > {
+  extends StandardProps<SwitchBaseProps, 'checkedIcon' | 'color' | 'icon' | 'type'> {
   /**
    * If `true`, the component is checked.
    */

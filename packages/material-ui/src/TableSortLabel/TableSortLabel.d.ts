@@ -44,7 +44,6 @@ export type TableSortLabelTypeMap<
     IconComponent?: React.ComponentType<{ className: string }>;
   };
   defaultComponent: D;
-  classKey: TableSortLabelClassKey;
 }>;
 
 /**

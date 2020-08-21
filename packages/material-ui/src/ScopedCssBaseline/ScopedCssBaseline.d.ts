@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 
 export type ScopedCssBaselineClassKey = 'root';
 
 export interface ScopedCssBaselineProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, ScopedCssBaselineClassKey> {
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
    * The content of the component.
    */

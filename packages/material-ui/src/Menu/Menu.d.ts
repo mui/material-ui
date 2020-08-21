@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { PopoverProps } from '../Popover';
 import { MenuListProps } from '../MenuList';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
 
-export interface MenuProps
-  extends StandardProps<PopoverProps & Partial<TransitionHandlerProps>, MenuClassKey> {
+export interface MenuProps extends StandardProps<PopoverProps & Partial<TransitionHandlerProps>> {
   /**
    * A HTML element, or a function that returns it.
    * It's used to set the position of the menu.

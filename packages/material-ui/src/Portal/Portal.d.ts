@@ -6,10 +6,6 @@ export interface PortalProps {
    */
   children?: React.ReactNode;
   /**
-   * See [CSS API](#css) below for more details.
-   */
-  classes?: {};
-  /**
    * A HTML element or function that returns one.
    * The `container` will have the portal children appended to it.
    *

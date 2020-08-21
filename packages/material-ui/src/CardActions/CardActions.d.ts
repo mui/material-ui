@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 
-export interface CardActionsProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, CardActionsClassKey> {
+export interface CardActionsProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
    * The content of the component.
    */

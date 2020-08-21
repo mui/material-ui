@@ -46,7 +46,6 @@ export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'>
     separator?: React.ReactNode;
   };
   defaultComponent: D;
-  classKey: BreadcrumbsClassKey;
 }
 
 /**

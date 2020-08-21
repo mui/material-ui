@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 import { TransitionProps } from '../transitions/transition';
 import { PopperProps } from '../Popper/Popper';
 
-export interface TooltipProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, TooltipClassKey, 'title'> {
+export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'title'> {
   /**
    * If `true`, adds an arrow to the tooltip.
    */

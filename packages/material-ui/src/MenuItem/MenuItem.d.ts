@@ -31,7 +31,6 @@ export interface MenuItemTypeMap<P = {}, D extends React.ElementType = 'li'> {
       ListItemClasses?: ListItemProps['classes'];
     };
   defaultComponent: D;
-  classKey: MenuItemClassKey;
 }
 
 /**

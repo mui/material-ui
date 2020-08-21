@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 import { PaperProps } from '../Paper';
 import { LinearProgressProps } from '../LinearProgress';
 
-export interface MobileStepperProps
-  extends StandardProps<PaperProps, MobileStepperClassKey, 'children' | 'variant'> {
+export interface MobileStepperProps extends StandardProps<PaperProps, 'children' | 'variant'> {
   /**
    * Set the active step (zero based index).
    * Defines which dot is highlighted when the variant is 'dots'.

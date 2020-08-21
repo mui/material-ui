@@ -1,7 +1,7 @@
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 
 export interface ListItemSecondaryActionProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, ListItemSecondaryActionClassKey> {
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
    * The content of the component, normally an `IconButton` or selection control.
    */

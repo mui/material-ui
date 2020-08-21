@@ -64,7 +64,6 @@ export interface SvgIconTypeMap<P = {}, D extends React.ElementType = 'svg'> {
     viewBox?: string;
   };
   defaultComponent: D;
-  classKey: SvgIconClassKey;
 }
 /**
  *

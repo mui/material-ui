@@ -122,7 +122,6 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
       showLastButton?: boolean;
     };
   defaultComponent: D;
-  classKey: TablePaginationClassKey;
 }
 
 /**

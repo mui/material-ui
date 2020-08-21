@@ -16,7 +16,6 @@ export interface TableFooterTypeMap<P = {}, D extends React.ElementType = 'tfoot
     };
   };
   defaultComponent: D;
-  classKey: TableFooterClassKey;
 }
 /**
  *

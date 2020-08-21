@@ -61,7 +61,6 @@ export type TabTypeMap<P = {}, D extends React.ElementType = 'div'> = ExtendButt
     wrapped?: boolean;
   };
   defaultComponent: D;
-  classKey: TabClassKey;
 }>;
 
 /**

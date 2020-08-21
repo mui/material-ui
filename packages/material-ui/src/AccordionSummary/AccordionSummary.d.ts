@@ -39,7 +39,6 @@ export type AccordionSummaryTypeMap<
     IconButtonProps?: Partial<IconButtonProps>;
   };
   defaultComponent: D;
-  classKey: AccordionSummaryClassKey;
 }>;
 
 /**

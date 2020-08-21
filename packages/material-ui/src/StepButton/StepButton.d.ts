@@ -36,7 +36,7 @@ export type StepButtonTypeMap<P, D extends React.ElementType> = ExtendButtonBase
     optional?: React.ReactNode;
   };
   defaultComponent: D;
-  classKey: StepButtonClasskey;
+
   ignoredProps: 'disabled';
 }>;
 

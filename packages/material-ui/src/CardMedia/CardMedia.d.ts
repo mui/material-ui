@@ -32,7 +32,6 @@ export interface CardMediaTypeMap<P, D extends React.ElementType> {
     src?: string;
   };
   defaultComponent: D;
-  classKey: CardMediaClassKey;
 }
 
 /**

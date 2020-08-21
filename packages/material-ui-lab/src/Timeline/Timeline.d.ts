@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { StandardProps } from '@material-ui/core';
+import { InternalStandardProps as StandardProps } from '@material-ui/core';
 
-export interface TimelineProps extends StandardProps<{}, TimelineClassKey> {
+export interface TimelineProps extends StandardProps<{}> {
   /**
    * The content of the component.
    */

@@ -1,12 +1,8 @@
 import * as React from 'react';
-import { StandardProps } from '@material-ui/core';
+import { InternalStandardProps as StandardProps } from '@material-ui/core';
 
 export interface ToggleButtonGroupProps
-  extends StandardProps<
-    React.HTMLAttributes<HTMLDivElement>,
-    ToggleButtonGroupClassKey,
-    'onChange' | 'children'
-  > {
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'children'> {
   /**
    * The content of the button.
    */

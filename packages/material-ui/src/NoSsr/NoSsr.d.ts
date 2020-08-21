@@ -6,10 +6,6 @@ export interface NoSsrProps {
    */
   children?: React.ReactNode;
   /**
-   * See [CSS API](#css) below for more details.
-   */
-  classes?: {};
-  /**
    * If `true`, the component will not only prevent server-side rendering.
    * It will also defer the rendering of the children into a different screen frame.
    */

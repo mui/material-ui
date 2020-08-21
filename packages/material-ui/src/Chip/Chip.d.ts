@@ -127,7 +127,6 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
     variant?: OverridableStringUnion<ChipVariantDefaults, ChipPropsVariantOverrides>;
   };
   defaultComponent: D;
-  classKey: ChipClassKey;
 }
 
 /**

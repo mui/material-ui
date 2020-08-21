@@ -7,10 +7,6 @@ export interface ZoomProps extends TransitionProps {
    */
   children?: React.ReactElement<any, any>;
   /**
-   * See [CSS API](#css) below for more details.
-   */
-  classes?: {};
-  /**
    * If `true`, the component will transition in.
    */
   in?: boolean;

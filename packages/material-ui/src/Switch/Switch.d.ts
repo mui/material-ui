@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 import { SwitchBaseProps, SwitchBaseClassKey } from '../internal/SwitchBase';
 
 export interface SwitchProps
-  extends StandardProps<SwitchBaseProps, SwitchClassKey, 'checkedIcon' | 'color' | 'icon'> {
+  extends StandardProps<SwitchBaseProps, 'checkedIcon' | 'color' | 'icon'> {
   /**
    * The icon to display when the component is checked.
    */
