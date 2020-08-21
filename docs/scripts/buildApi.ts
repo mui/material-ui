@@ -228,7 +228,9 @@ async function annotateClassesDefinition(component: { filename: string }, api: R
   const propertyTypeIntendation = '  ';
   let classesDefinitionSource = ': {';
   api.styles.classes.forEach((className) => {
-    classesDefinitionSource += `${api.EOL}${propertyTypeIntendation}  /** ${api.styles.descriptions[className]} */`;
+    if (api.styles.descriptions[className] !== undefined) {
+      classesDefinitionSource += `${api.EOL}${propertyTypeIntendation}  /** ${api.styles.descriptions[className]} */`;
+    }
     classesDefinitionSource += `${api.EOL}${propertyTypeIntendation}  ${className}?: string;`;
   });
   // semicolon is not part of TSTypeAnnotation
