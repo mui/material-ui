@@ -23,7 +23,7 @@ Some important features of the `Popper` component:
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Simple Popper
+## Basic popper
 
 {{"demo": "pages/components/popper/SimplePopper.js"}}
 

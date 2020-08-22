@@ -13,8 +13,7 @@ A floating action button appears in front of all screen content, typically as a 
 FABs come in two types: regular, and extended.
 
 Only use a FAB if it is the most suitable way to present a screen’s primary action.
-
-Only one floating action button is recommended per screen to represent the most common action.
+Only one component is recommended per screen to represent the most common action.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
