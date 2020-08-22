@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { InternalStandardProps as StandardProps } from '..';
-import { SwitchBaseProps, SwitchBaseClassKey } from '../internal/SwitchBase';
+import { SwitchBaseProps } from '../internal/SwitchBase';
 
 export interface CheckboxProps
   extends StandardProps<SwitchBaseProps, 'checkedIcon' | 'color' | 'icon' | 'type'> {

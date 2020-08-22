@@ -276,6 +276,10 @@ Collapse.propTypes = {
    */
   classes: PropTypes.object,
   /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
    * The width (horizontal) or height (vertical) of the container when collapsed.
    */
   collapsedSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),

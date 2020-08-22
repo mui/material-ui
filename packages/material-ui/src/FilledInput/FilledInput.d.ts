@@ -1,5 +1,5 @@
 import { InternalStandardProps as StandardProps } from '..';
-import { InputBaseProps, InputBaseClassKey } from '../InputBase';
+import { InputBaseProps } from '../InputBase';
 
 export interface FilledInputProps extends StandardProps<InputBaseProps> {
   /**

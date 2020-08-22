@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '..';
-import { FormGroupProps, FormGroupClassKey } from '../FormGroup';
+import { FormGroupProps } from '../FormGroup';
 
-export interface RadioGroupProps extends StandardProps<FormGroupProps, 'onChange'> {
+export interface RadioGroupProps extends Omit<FormGroupProps, 'onChange'> {
   /**
    * The default `input` element value. Use when the component is not controlled.
    */

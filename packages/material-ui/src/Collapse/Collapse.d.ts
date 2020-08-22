@@ -7,6 +7,7 @@ export interface CollapseProps extends StandardProps<TransitionProps, 'timeout'>
    * The content node to be collapsed.
    */
   children?: React.ReactNode;
+  className?: string;
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.

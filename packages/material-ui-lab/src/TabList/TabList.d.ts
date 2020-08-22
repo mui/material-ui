@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TabsTypeMap, TabsClassKey } from '@material-ui/core/Tabs';
+import { TabsTypeMap } from '@material-ui/core/Tabs';
 import { Omit } from '@material-ui/types';
 import { OverridableComponent, OverrideProps } from '@material-ui/core/OverridableComponent';
 
