@@ -7,7 +7,7 @@ githubLabel: component: CssBaseline
 
 <p class="description">Material-UI provides a CssBaseline component to kickstart an elegant, consistent, and simple baseline to build upon.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Global reset
 

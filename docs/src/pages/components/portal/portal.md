@@ -13,7 +13,7 @@ githubLabel: component: Portal
 The children of the portal component will be appended to the `container` specified.
 The component is used internally by the [`Modal`](/components/modal/) and [`Popper`](/components/popper/) components.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Example
 

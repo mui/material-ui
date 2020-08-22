@@ -40,22 +40,24 @@ export default function ComponentLinkHeader(props) {
 
   return (
     <ul className={classes.root}>
-      <li>
-        <Chip
-          clickable
-          role={undefined}
-          component="a"
-          variant="outlined"
-          rel="nofollow"
-          href={`https://github.com/mui-org/material-ui/issues?q=is%3Aopen+label%3A%22${headers.githubLabel}%22`}
-          icon={<InfoOutlinedIcon />}
-          data-ga-event-category="ComponentLinkHeader"
-          data-ga-event-action="click"
-          data-ga-event-label={t('githubLabel')}
-          data-ga-event-split="0.1"
-          label={t('githubLabel')}
-        />
-      </li>
+      {headers.githubLabel ? (
+        <li>
+          <Chip
+            clickable
+            role={undefined}
+            component="a"
+            variant="outlined"
+            rel="nofollow"
+            href={`https://github.com/mui-org/material-ui/issues?q=is%3Aopen+label%3A%22${headers.githubLabel}%22`}
+            icon={<InfoOutlinedIcon />}
+            data-ga-event-category="ComponentLinkHeader"
+            data-ga-event-action="click"
+            data-ga-event-label={t('githubLabel')}
+            data-ga-event-split="0.1"
+            label={t('githubLabel')}
+          />
+        </li>
+      ) : null}
       {headers.waiAria ? (
         <li>
           <Chip

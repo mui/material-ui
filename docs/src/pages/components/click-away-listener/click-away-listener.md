@@ -11,7 +11,7 @@ githubLabel: component: ClickAwayListener
 - 📦 [1.5 kB gzipped](/size-snapshot).
 - ⚛️ Support portals
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Example
 
