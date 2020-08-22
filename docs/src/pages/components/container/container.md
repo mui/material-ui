@@ -10,7 +10,7 @@ githubLabel: component: Container
 
 While containers can be nested, most layouts do not require a nested container.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Fluid
 

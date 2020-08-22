@@ -3,7 +3,7 @@ title: Autocomplete React component
 components: TextField, Popper, Autocomplete
 githubLabel: component: Autocomplete
 waiAria: https://www.w3.org/TR/wai-aria-practices/#combobox
-package: @material-ui/lab
+packageName: @material-ui/lab
 ---
 
 # Autocomplete

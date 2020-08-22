@@ -22,7 +22,7 @@ Buttons communicate actions that users can take. They are typically placed throu
 
 ## Contained Buttons
 
-[Contained buttons](https://material.io/design/components/buttons.html#contained-button)
+[Contained buttons](https://material.io/components/buttons#contained-button)
 are high-emphasis, distinguished by their use of elevation and fill.
 They contain actions that are primary to your app.
 
@@ -34,7 +34,7 @@ You can remove the elevation with the `disableElevation` prop.
 
 ## Text Buttons
 
-[Text buttons](https://material.io/design/components/buttons.html#text-button)
+[Text buttons](https://material.io/components/buttons#text-button)
 are typically used for less-pronounced actions, including those located:
 
 - In dialogs
@@ -46,7 +46,7 @@ In cards, text buttons help maintain an emphasis on card content.
 
 ## Outlined Buttons
 
-[Outlined buttons](https://material.io/design/components/buttons.html#outlined-button)
+[Outlined buttons](https://material.io/components/buttons#outlined-button)
 are medium-emphasis buttons. They contain actions that are important,
 but aren’t the primary action in an app.
 

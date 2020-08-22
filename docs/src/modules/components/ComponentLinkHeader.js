@@ -26,30 +26,20 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ComponentLinkHeader(props) {
-  const { headers } = props;
+  const {
+    headers,
+    headers: { packageName = '@material-ui/core' },
+    options,
+  } = props;
   const classes = useStyles();
   const t = useSelector((state) => state.options.t);
 
+  if (headers.materialDesign && options.design === false) {
+    throw new Error('missing design assets');
+  }
+
   return (
     <ul className={classes.root}>
-      {headers.materialDesign ? (
-        <li>
-          <Chip
-            clickable
-            role={undefined}
-            component="a"
-            variant="outlined"
-            rel="nofollow"
-            href={headers.materialDesign}
-            icon={<MaterialDesignIcon />}
-            data-ga-event-category="ComponentLinkHeader"
-            data-ga-event-action="click"
-            data-ga-event-label="Material Design"
-            data-ga-event-split="0.1"
-            label="Material Design"
-          />
-        </li>
-      ) : null}
       <li>
         <Chip
           clickable
@@ -92,7 +82,7 @@ export default function ComponentLinkHeader(props) {
             component="a"
             variant="outlined"
             rel="nofollow"
-            href={`https://bundlephobia.com/result?p=${headers.package}@next`}
+            href={`https://bundlephobia.com/result?p=${packageName}@next`}
             icon={<BundleSizeIcon />}
             data-ga-event-category="ComponentLinkHeader"
             data-ga-event-action="click"
@@ -102,42 +92,65 @@ export default function ComponentLinkHeader(props) {
           />
         </Tooltip>
       </li>
-      <li>
-        <Chip
-          clickable
-          role={undefined}
-          component="a"
-          variant="outlined"
-          rel="nofollow"
-          href="https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=component-link-header"
-          icon={<SketchIcon />}
-          data-ga-event-category="ComponentLinkHeader"
-          data-ga-event-action="click"
-          data-ga-event-label="Sketch"
-          data-ga-event-split="0.1"
-          label="Sketch"
-        />
-      </li>
-      <li>
-        <Chip
-          clickable
-          role={undefined}
-          component="a"
-          variant="outlined"
-          rel="nofollow"
-          href="https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=component-link-header"
-          icon={<FigmaIcon />}
-          data-ga-event-category="ComponentLinkHeader"
-          data-ga-event-action="click"
-          data-ga-event-label="Figma"
-          data-ga-event-split="0.1"
-          label="Figma"
-        />
-      </li>
+      {headers.materialDesign ? (
+        <li>
+          <Chip
+            clickable
+            role={undefined}
+            component="a"
+            variant="outlined"
+            rel="nofollow"
+            href={headers.materialDesign}
+            icon={<MaterialDesignIcon />}
+            data-ga-event-category="ComponentLinkHeader"
+            data-ga-event-action="click"
+            data-ga-event-label="Material Design"
+            data-ga-event-split="0.1"
+            label="Material Design"
+          />
+        </li>
+      ) : null}
+      {options.design !== false ? (
+        <React.Fragment>
+          <li>
+            <Chip
+              clickable
+              role={undefined}
+              component="a"
+              variant="outlined"
+              rel="nofollow"
+              href="https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=component-link-header"
+              icon={<SketchIcon />}
+              data-ga-event-category="ComponentLinkHeader"
+              data-ga-event-action="click"
+              data-ga-event-label="Sketch"
+              data-ga-event-split="0.1"
+              label="Sketch"
+            />
+          </li>
+          <li>
+            <Chip
+              clickable
+              role={undefined}
+              component="a"
+              variant="outlined"
+              rel="nofollow"
+              href="https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=component-link-header"
+              icon={<FigmaIcon />}
+              data-ga-event-category="ComponentLinkHeader"
+              data-ga-event-action="click"
+              data-ga-event-label="Figma"
+              data-ga-event-split="0.1"
+              label="Figma"
+            />
+          </li>
+        </React.Fragment>
+      ) : null}
     </ul>
   );
 }
 
 ComponentLinkHeader.propTypes = {
   headers: PropTypes.object.isRequired,
+  options: PropTypes.object.isRequired,
 };

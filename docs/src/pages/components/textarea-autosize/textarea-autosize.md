@@ -12,7 +12,7 @@ githubLabel: component: TextareaAutosize
 
 The `TextareaAutosize` component automatically adjust the textarea height on keyboard and window resize events.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Empty
 

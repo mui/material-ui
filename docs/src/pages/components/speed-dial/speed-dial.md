@@ -2,7 +2,7 @@
 title: Speed Dial React component
 components: SpeedDial, SpeedDialAction, SpeedDialIcon
 githubLabel: component: SpeedDial
-package: @material-ui/lab
+packageName: @material-ui/lab
 ---
 
 # Speed Dial

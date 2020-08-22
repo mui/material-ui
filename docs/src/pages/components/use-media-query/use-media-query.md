@@ -14,7 +14,7 @@ Some of the key features:
 - 📦 [1 kB gzipped](/size-snapshot).
 - 🤖 It supports server-side rendering.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Basic media query
 

@@ -10,7 +10,7 @@ githubLabel: component: Box
 The Box component packages [all the style functions](/system/basics/#all-inclusive) that are exposed in `@material-ui/system`.
 It's created using the [`styled()`](/styles/api/#styled-style-function-component) function of `@material-ui/core/styles`.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Example
 

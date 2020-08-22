@@ -20,7 +20,7 @@ The `Modal` offers important features:
 - ♿️ Adds the appropriate ARIA roles automatically.
 - 📦 [5 kB gzipped](/size-snapshot).
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 > **Terminology note**. The term "modal" is sometimes used to mean "dialog", but this is a misnomer.
 > A modal window describes parts of a UI.

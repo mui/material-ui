@@ -11,6 +11,8 @@ materialDesign: https://material.io/components/text-fields
 
 Text fields allow users to enter text into a UI. They typically appear in forms and dialogs.
 
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
 ## TextField
 
 The `TextField` wrapper component is a complete form control including a label, input and help text.

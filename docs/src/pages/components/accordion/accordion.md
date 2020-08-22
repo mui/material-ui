@@ -12,9 +12,9 @@ waiAria: https://www.w3.org/TR/wai-aria-practices/#accordion
 
 An accordion is a lightweight container that may either stand alone or be connected to a larger surface, such as a card.
 
-> **Note:** Accordions are no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support them. It was formerly known as the "expansion panel".
-
 {{"component": "modules/components/ComponentLinkHeader.js"}}
+
+> **Note:** Accordions are no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support them. It was formerly known as the "expansion panel".
 
 ## Basic accordion
 
@@ -26,7 +26,7 @@ Extend the default behavior to create an accordion with the `Accordion` componen
 
 {{"demo": "pages/components/accordion/ControlledAccordions.js", "bg": true}}
 
-## Customized accordions
+## Customized accordion
 
 Here is an example of customizing the component. You can learn more about this in the
 [overrides documentation page](/customization/components/).

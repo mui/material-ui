@@ -1,6 +1,7 @@
 ---
 title: Transition React component
 components: Collapse, Fade, Grow, Slide, Zoom
+githubLabel: component: Transition
 ---
 
 # Transitions
@@ -11,8 +12,9 @@ Material-UI provides a number of transitions that can be used to introduce some 
 [motion](https://material.io/design/motion/)
 to your applications components.
 
-To better support server rendering Material-UI provides a `style` prop
-to the children of some transition components (Fade, Grow, Zoom, Slide).
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
+To better support server rendering Material-UI provides a `style` prop to the children of some transition components (Fade, Grow, Zoom, Slide).
 The `style` prop must be applied to the DOM for the animation to work as expected.
 
 ```jsx

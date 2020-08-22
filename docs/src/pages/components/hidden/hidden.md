@@ -13,7 +13,7 @@ To ease integration with Material-UI's [responsive breakpoints](/customization/b
 this component can be used to hide any content,
 or you can use it in conjunction with the [`Grid`](/components/grid/) component.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## How it works
 

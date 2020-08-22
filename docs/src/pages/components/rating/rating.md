@@ -2,7 +2,8 @@
 title: Rating React component
 components: Rating
 githubLabel: component: Rating
-package: @material-ui/lab
+waiAria: https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating
+packageName: @material-ui/lab
 ---
 
 # Rating
