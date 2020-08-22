@@ -1,13 +1,17 @@
 ---
 title: Breadcrumbs React component
 components: Breadcrumbs, Link, Typography
+githubLabel: component: Breadcrumbs
+waiAria: https://www.w3.org/TR/wai-aria-practices/#breadcrumb
 ---
 
 # Breadcrumbs
 
 <p class="description">Breadcrumbs allow users to make selections from a range of values.</p>
 
-## Simple breadcrumbs
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
+## Basic breadcrumbs
 
 {{"demo": "pages/components/breadcrumbs/SimpleBreadcrumbs.js"}}
 

@@ -14,7 +14,7 @@ waiAria: https://www.w3.org/TR/wai-aria-practices/#alert
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Simple alerts
+## Basic alerts
 
 The alert offers four severity levels that set a distinctive icon and color.
 

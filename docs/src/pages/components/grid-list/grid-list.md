@@ -3,7 +3,6 @@ title: Grid List React component
 components: GridList, GridListTile, GridListTileBar, ListSubheader, IconButton
 materialDesign: https://material.io/components/image-lists
 githubLabel: component: GridList
-package: @material-ui/core
 ---
 
 # Grid List

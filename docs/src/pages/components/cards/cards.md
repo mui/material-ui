@@ -1,17 +1,21 @@
 ---
 title: Card React component
 components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
+githubLabel: component: Card
+materialDesign: https://material.io/components/cards
 ---
 
 # Card
 
 <p class="description">Cards contain content and actions about a single subject.</p>
 
-[Cards](https://material.io/design/components/cards.html) are surfaces that display content and actions on a single topic.
+Cards are surfaces that display content and actions on a single topic.
 
 They should be easy to scan for relevant and actionable information. Elements, like text and images, should be placed on them in a way that clearly indicates hierarchy.
 
-## Simple Card
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
+## Simple card
 
 Although cards can support multiple actions, UI controls, and an overflow menu, use restraint and remember that cards are entry points to more complex and detailed information.
 

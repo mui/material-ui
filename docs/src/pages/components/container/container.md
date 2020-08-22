@@ -2,7 +2,6 @@
 title: Container React component
 components: Container
 githubLabel: component: Container
-package: @material-ui/core
 ---
 
 # Container

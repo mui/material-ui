@@ -1,6 +1,7 @@
 ---
 title: Popper React component
 components: Popper
+githubLabel: component: Popper
 ---
 
 # Popper
@@ -19,6 +20,8 @@ Some important features of the `Popper` component:
 - Clicking away does not hide the `Popper` component.
   If you need this behavior, you can use [`ClickAwayListener`](/components/click-away-listener/) - see the example in the [menu documentation section](/components/menus/#menulist-composition).
 - The `anchorEl` is passed as the reference object to create a new `Popper.js` instance.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Simple Popper
 

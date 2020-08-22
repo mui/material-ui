@@ -1,11 +1,15 @@
 ---
 title: Rating React component
 components: Rating
+githubLabel: component: Rating
+package: @material-ui/lab
 ---
 
 # Rating
 
 <p class="description">Ratings provide insight regarding others’ opinions and experiences with a product. Users can also rate products they’ve purchased.</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Simple ratings
 

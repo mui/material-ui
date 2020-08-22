@@ -1,10 +1,9 @@
 ---
 title: Tabs React component
 components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
+githubLabel: component: Tabs
 materialDesign: https://material.io/components/tabs
 waiAria: https://www.w3.org/TR/wai-aria-practices/#tabpanel
-githubLabel: component: Tabs
-package: @material-ui/core
 ---
 
 # Tabs

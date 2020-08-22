@@ -3,7 +3,6 @@ title: Grid React component
 components: Grid
 githubLabel: component: Grid
 materialDesign: https://material.io/design/layout/understanding-layout.html
-package: @material-ui/core
 ---
 
 # Grid

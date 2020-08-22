@@ -1,6 +1,7 @@
 ---
 title: Trap Focus React component
 components: Unstable_TrapFocus
+githubLabel: component: TrapFocus
 ---
 
 # Trap Focus
@@ -16,6 +17,8 @@ When `open={true}` the trap is enabled, and pressing <kbd>Tab</kbd> or <kbd>Shif
 
 - 📦 [1.5 kB gzipped](https://material-ui.com/size-snapshot).
 - ⚛️ Support portals
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Example
 

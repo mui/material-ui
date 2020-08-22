@@ -1,6 +1,7 @@
 ---
 title: Bottom Navigation React component
 components: BottomNavigation, BottomNavigationAction
+githubLabel: component: BottomNavigation
 ---
 
 # Bottom Navigation

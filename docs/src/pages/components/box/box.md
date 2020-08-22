@@ -1,7 +1,6 @@
 ---
 title: Box React component
 githubLabel: component: Box
-package: @material-ui/core
 ---
 
 # Box

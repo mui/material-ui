@@ -2,7 +2,6 @@
 title: ButtonGroup React component
 components: Button, ButtonGroup
 githubLabel: component: ButtonGroup
-package: @material-ui/core
 ---
 
 # Button group
