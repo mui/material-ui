@@ -5,6 +5,7 @@ import ownerDocument from '../utils/ownerDocument';
 import List from '../List';
 import getScrollbarSize from '../utils/getScrollbarSize';
 import useForkRef from '../utils/useForkRef';
+import useEnhancedEffect from '../utils/useEnhancedEffect';
 
 function nextItem(list, item, disableListWrap) {
   if (list === item) {
@@ -83,8 +84,6 @@ function moveFocus(
     }
   }
 }
-
-const useEnhancedEffect = typeof window === 'undefined' ? React.useEffect : React.useLayoutEffect;
 
 /**
  * A permanently displayed menu following https://www.w3.org/TR/wai-aria-practices/#menubutton.

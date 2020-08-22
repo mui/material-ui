@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 /**
- * Private module reserved for @material-ui/x packages.
+ * Private module reserved for @material-ui packages.
  */
 export default function useId(idOverride) {
   const [defaultId, setDefaultId] = React.useState(idOverride);

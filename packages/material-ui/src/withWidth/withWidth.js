@@ -5,6 +5,7 @@ import { getThemeProps } from '@material-ui/styles';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import useTheme from '../styles/useTheme';
 import { breakpointKeys } from '../styles/createBreakpoints';
+import useEnhancedEffect from '../utils/useEnhancedEffect';
 import useMediaQuery from '../useMediaQuery';
 
 // By default, returns true if screen width is the same or greater than the given breakpoint.
@@ -22,8 +23,6 @@ export const isWidthDown = (breakpoint, width, inclusive = true) => {
   }
   return breakpointKeys.indexOf(width) < breakpointKeys.indexOf(breakpoint);
 };
-
-const useEnhancedEffect = typeof window === 'undefined' ? React.useEffect : React.useLayoutEffect;
 
 const withWidth = (options = {}) => (Component) => {
   const {
