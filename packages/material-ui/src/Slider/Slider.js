@@ -129,7 +129,8 @@ const Identity = (x) => x;
 // TODO: remove support for Safari < 13.
 // https://caniuse.com/#search=touch-action
 //
-// iOS support touch action since v13 which as over 80% of marketing
+// Safari, on iOS, supports touch action since v13.
+// Over 80% of the iOS phones are compatible
 // in August 2020.
 let cachedSupportsTouchActionNone;
 function doesSupportTouchActionNone() {
