@@ -1,8 +1,8 @@
 import React from 'react';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
+import ImageList from '@material-ui/core/ImageList';
+import ImageListTile from '@material-ui/core/ImageListTile';
+import ImageListTileBar from '@material-ui/core/ImageListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import tileData from './tileData';
@@ -51,16 +51,16 @@ const useStyles = makeStyles((theme: Theme) =>
  *   },
  * ];
  */
-export default function AdvancedGridList() {
+export default function AdvancedImageList() {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <GridList cellHeight={200} spacing={1} className={classes.gridList}>
+      <ImageList cellHeight={200} spacing={1} className={classes.gridList}>
         {tileData.map((tile) => (
-          <GridListTile key={tile.img} cols={tile.featured ? 2 : 1} rows={tile.featured ? 2 : 1}>
+          <ImageListTile key={tile.img} cols={tile.featured ? 2 : 1} rows={tile.featured ? 2 : 1}>
             <img src={tile.img} alt={tile.title} />
-            <GridListTileBar
+            <ImageListTileBar
               title={tile.title}
               titlePosition="top"
               actionIcon={
@@ -71,9 +71,9 @@ export default function AdvancedGridList() {
               actionPosition="left"
               className={classes.titleBar}
             />
-          </GridListTile>
+          </ImageListTile>
         ))}
-      </GridList>
+      </ImageList>
     </div>
   );
 }

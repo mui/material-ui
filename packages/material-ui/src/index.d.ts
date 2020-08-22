@@ -223,6 +223,15 @@ export * from './Icon';
 export { default as IconButton } from './IconButton';
 export * from './IconButton';
 
+export { default as ImageList } from './ImageList';
+export * from './ImageList';
+
+export { default as ImageListTile } from './ImageListTile';
+export * from './ImageListTile';
+
+export { default as ImageListTileBar } from './ImageListTileBar';
+export * from './ImageListTileBar';
+
 export { default as Input } from './Input';
 export * from './Input';
 

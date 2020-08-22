@@ -1,6 +1,6 @@
 ---
 title: Composant React Grid List
-components: GridList, GridListTile, GridListTileBar, ListSubheader, IconButton
+components: ImageList, ImageListTile, ImageListTileBar, ListSubheader, IconButton
 ---
 
 # Grid list
@@ -11,24 +11,24 @@ components: GridList, GridListTile, GridListTileBar, ListSubheader, IconButton
 
 ## Grid list contenant uniquement des images
 
-Un exemple simple d'image défilable `GridList`.
+Un exemple simple d'image défilable `ImageList`.
 
-{{"demo": "pages/components/grid-list/ImageGridList.js", "hideEditButton": true}}
+{{"demo": "pages/components/image-list/ImageImageList.js", "hideEditButton": true}}
 
 ## Grid list avec barres de titre
 
-Cet exemple illustre l'utilisation de `GridListTileBar` pour ajouter une superposition à chaque `GridListTile`. La superposition peut accueillir un `titre`, `sous - titre` et une action secondaire - dans cet exemple un `IconButton`.
+Cet exemple illustre l'utilisation de `ImageListTileBar` pour ajouter une superposition à chaque `ImageListTile`. La superposition peut accueillir un `titre`, `sous - titre` et une action secondaire - dans cet exemple un `IconButton`.
 
-{{"demo": "pages/components/grid-list/TitlebarGridList.js", "hideEditButton": true}}
+{{"demo": "pages/components/image-list/TitlebarImageList.js", "hideEditButton": true}}
 
 ## Grid List sur une ligne
 
 Cet exemple illustre une grid list défilante horizontale d'images. Les listes de grille défilant horizontalement sont déconseillées car le défilement interfère avec les habitudes de lecture, ce qui affecte la compréhension. Une exception notable est la liste d'images comportant une seule ligne, telle qu'une galerie, qui défile horizontalement.
 
-{{"demo": "pages/components/grid-list/SingleLineGridList.js", "hideEditButton": true}}
+{{"demo": "pages/components/image-list/SingleLineImageList.js", "hideEditButton": true}}
 
 ## Grid list avancée
 
 Cet exemple montre des tuiles , en utilisant les `rows` et `cols`props pour ajuster la taille de la tuile, et le `padding` prop pour ajuster l'espacement. Les tuiles ont une barre de titre personnalisée, placée en haut et avec un dégradé personnalisé `titleBackground`. L'action secondaire `IconButton` est positionnée sur la gauche.
 
-{{"demo": "pages/components/grid-list/AdvancedGridList.js", "hideEditButton": true, "defaultCodeOpen": false}}
+{{"demo": "pages/components/image-list/AdvancedImageList.js", "hideEditButton": true, "defaultCodeOpen": false}}

@@ -67,29 +67,7 @@ export const styles = (theme) => ({
   },
 });
 
-let warnedOnce = false;
-
-/**
- * ⚠️ The GridListTileBar component was renamed to ImageListTileBar to align with the current Material Design naming..
- *
- * You should use `import { ImageListTileBar } from '@material-ui/core'`
- * or `import ImageListTileBar from '@material-ui/core/ImageListTileBar'`.
- */
-const GridListTileBar = React.forwardRef(function GridListTileBar(props, ref) {
-  if (process.env.NODE_ENV !== 'production') {
-    if (!warnedOnce) {
-      warnedOnce = true;
-      console.error(
-        [
-          'Material-UI: The GridListTileBar component was renamed to ImageListTileBar to align with the current Material Design naming.',
-          '',
-          "You should use `import { ImageListTileBar } from '@material-ui/core'`",
-          "or `import ImageListTileBar from '@material-ui/core/ImageListTileBar'`.",
-        ].join('\n'),
-      );
-    }
-  }
-
+const ImageListTileBar = React.forwardRef(function ImageListTileBar(props, ref) {
   const {
     actionIcon,
     actionPosition = 'right',
@@ -139,7 +117,7 @@ const GridListTileBar = React.forwardRef(function GridListTileBar(props, ref) {
   );
 });
 
-GridListTileBar.propTypes = {
+ImageListTileBar.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -176,4 +154,4 @@ GridListTileBar.propTypes = {
   titlePosition: PropTypes.oneOf(['bottom', 'top']),
 };
 
-export default withStyles(styles, { name: 'MuiGridListTileBar' })(GridListTileBar);
+export default withStyles(styles, { name: 'MuiImageListTileBar' })(ImageListTileBar);

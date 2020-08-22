@@ -65,29 +65,7 @@ function ensureImageCover(imgEl, classes) {
   }
 }
 
-let warnedOnce = false;
-
-/**
- * ⚠️ The GridList component was renamed to imageList to align with the current Material Design naming..
- *
- * You should use `import { ImageListTile } from '@material-ui/core'`
- * or `import ImageListTile from '@material-ui/core/ImageListTile'`.
- */
-const GridListTile = React.forwardRef(function GridListTile(props, ref) {
-  if (process.env.NODE_ENV !== 'production') {
-    if (!warnedOnce) {
-      warnedOnce = true;
-      console.error(
-        [
-          'Material-UI: The GridListTile component was renamed to ImageListTile to align with the current Material Design naming.',
-          '',
-          "You should use `import { ImageListTile } from '@material-ui/core'`",
-          "or `import ImageListTile from '@material-ui/core/ImageListTile'`.",
-        ].join('\n'),
-      );
-    }
-  }
-
+const ImageListTile = React.forwardRef(function ImageListTile(props, ref) {
   // cols rows default values are for docs only
   const {
     children,
@@ -140,10 +118,10 @@ const GridListTile = React.forwardRef(function GridListTile(props, ref) {
   );
 });
 
-GridListTile.propTypes = {
+ImageListTile.propTypes = {
   /**
    * Theoretically you can pass any node as children, but the main use case is to pass an img,
-   * in which case GridListTile takes care of making the image "cover" available space
+   * in which case ImageListTile takes care of making the image "cover" available space
    * (similar to `background-size: cover` or to `object-fit: cover`).
    */
   children: PropTypes.node,
@@ -157,7 +135,7 @@ GridListTile.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Width of the tile in number of grid cells.
+   * Width of the tile in number of image cells.
    */
   cols: PropTypes.number,
   /**
@@ -166,9 +144,9 @@ GridListTile.propTypes = {
    */
   component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
-   * Height of the tile in number of grid cells.
+   * Height of the tile in number of image cells.
    */
   rows: PropTypes.number,
 };
 
-export default withStyles(styles, { name: 'MuiGridListTile' })(GridListTile);
+export default withStyles(styles, { name: 'MuiImageListTile' })(ImageListTile);

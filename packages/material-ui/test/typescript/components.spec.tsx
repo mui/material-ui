@@ -32,8 +32,8 @@ import {
   FormControlLabel,
   FormGroup,
   Grid,
-  GridList,
-  GridListTile,
+  ImageList,
+  ImageListTile,
   Grow,
   IconButton,
   Input,
@@ -525,13 +525,13 @@ const GridTest = () => (
   </Grid>
 );
 
-const GridListTest = () => (
-  <GridList cellHeight={160} cols={3} onClick={(e) => log(e)}>
-    <GridListTile cols={1} rows={4} onClick={(e) => log(e)}>
+const ImageListTest = () => (
+  <ImageList cellHeight={160} cols={3} onClick={(e) => log(e)}>
+    <ImageListTile cols={1} rows={4} onClick={(e) => log(e)}>
       <img src="img.png" alt="alt text" />
-    </GridListTile>
+    </ImageListTile>
     ,
-  </GridList>
+  </ImageList>
 );
 
 const ListTest = () => (

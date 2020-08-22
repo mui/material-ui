@@ -1,8 +1,8 @@
 import React from 'react';
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
+import ImageList from '@material-ui/core/ImageList';
+import ImageListTile from '@material-ui/core/ImageListTile';
+import ImageListTileBar from '@material-ui/core/ImageListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import tileData from './tileData';
@@ -48,16 +48,16 @@ const useStyles = makeStyles((theme: Theme) =>
  *   },
  * ];
  */
-export default function SingleLineGridList() {
+export default function SingleLineImageList() {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <GridList className={classes.gridList} cols={2.5}>
+      <ImageList className={classes.gridList} cols={2.5}>
         {tileData.map((tile) => (
-          <GridListTile key={tile.img}>
+          <ImageListTile key={tile.img}>
             <img src={tile.img} alt={tile.title} />
-            <GridListTileBar
+            <ImageListTileBar
               title={tile.title}
               classes={{
                 root: classes.titleBar,
@@ -69,9 +69,9 @@ export default function SingleLineGridList() {
                 </IconButton>
               }
             />
-          </GridListTile>
+          </ImageListTile>
         ))}
-      </GridList>
+      </ImageList>
     </div>
   );
 }

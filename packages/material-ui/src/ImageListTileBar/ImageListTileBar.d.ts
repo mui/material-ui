@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 
-export interface GridListTileBarProps extends StandardProps<{}, GridListTileBarClassKey> {
+export interface ImageListTileBarProps extends StandardProps<{}, ImageListTileBarClassKey> {
   /**
    * An IconButton element to be used as secondary action target
    * (primary action target is the tile itself).
@@ -25,7 +25,7 @@ export interface GridListTileBarProps extends StandardProps<{}, GridListTileBarC
   titlePosition?: 'top' | 'bottom';
 }
 
-export type GridListTileBarClassKey =
+export type ImageListTileBarClassKey =
   | 'root'
   | 'titlePositionBottom'
   | 'titlePositionTop'
@@ -39,16 +39,13 @@ export type GridListTileBarClassKey =
   | 'actionIconActionPosLeft';
 
 /**
- * ⚠️ The GridListTileBar component was renamed to ImageListTileBar to align with the current Material Design naming..
  *
- * You should use `import { ImageListTileBar } from '@material-ui/core'`
- * or `import ImageListTileBar from '@material-ui/core/ImageListTileBar'`.
  * Demos:
  *
- * - [Grid List](https://material-ui.com/components/grid-list/)
+ * - [Image List](https://material-ui.com/components/image-list/)
  *
  * API:
  *
- * - [GridListTileBar API](https://material-ui.com/api/grid-list-tile-bar/)
+ * - [ImageListTileBar API](https://material-ui.com/api/image-list-tile-bar/)
  */
-export default function GridListTileBar(props: GridListTileBarProps): JSX.Element;
+export default function ImageListTileBar(props: ImageListTileBarProps): JSX.Element;

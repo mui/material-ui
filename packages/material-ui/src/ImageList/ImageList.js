@@ -16,29 +16,7 @@ export const styles = {
   },
 };
 
-let warnedOnce = false;
-
-/**
- * ⚠️ The GridList component was renamed to ImageList to align with the current Material Design naming.
- *
- * You should use `import { ImageList } from '@material-ui/core'`
- * or `import ImageList from '@material-ui/core/ImageList'`.
- */
-const GridList = React.forwardRef(function GridList(props, ref) {
-  if (process.env.NODE_ENV !== 'production') {
-    if (!warnedOnce) {
-      warnedOnce = true;
-      console.error(
-        [
-          'Material-UI: The GridList component was renamed to ImageList to align with the current Material Design naming.',
-          '',
-          "You should use `import { ImageList } from '@material-ui/core'`",
-          "or `import ImageList from '@material-ui/core/ImageList'`.",
-        ].join('\n'),
-      );
-    }
-  }
-
+const ImageList = React.forwardRef(function ImageList(props, ref) {
   const {
     cellHeight = 180,
     children,
@@ -67,7 +45,7 @@ const GridList = React.forwardRef(function GridList(props, ref) {
           if (isFragment(child)) {
             console.error(
               [
-                "Material-UI: The GridList component doesn't accept a Fragment as a child.",
+                "Material-UI: The ImageList component doesn't accept a Fragment as a child.",
                 'Consider providing an array instead.',
               ].join('\n'),
             );
@@ -90,14 +68,14 @@ const GridList = React.forwardRef(function GridList(props, ref) {
   );
 });
 
-GridList.propTypes = {
+ImageList.propTypes = {
   /**
    * Number of px for one cell height.
    * You can set `'auto'` if you want to let the children determine the height.
    */
   cellHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['auto'])]),
   /**
-   * Grid Tiles that will be in Grid List.
+   * Image Tiles that will be in Image List.
    */
   children: PropTypes.node.isRequired,
   /**
@@ -128,4 +106,4 @@ GridList.propTypes = {
   style: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiGridList' })(GridList);
+export default withStyles(styles, { name: 'MuiImageList' })(ImageList);

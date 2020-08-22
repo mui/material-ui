@@ -1,38 +1,35 @@
 ---
-filename: /packages/material-ui/src/GridList/GridList.js
+filename: /packages/material-ui/src/ImageList/ImageList.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# GridList API
+# ImageList API
 
-<p class="description">The API documentation of the GridList React component. Learn more about the props and the CSS customization points.</p>
+<p class="description">The API documentation of the ImageList React component. Learn more about the props and the CSS customization points.</p>
 
 ## Import
 
 ```js
-import GridList from '@material-ui/core/GridList';
+import ImageList from '@material-ui/core/ImageList';
 // or
-import { GridList } from '@material-ui/core';
+import { ImageList } from '@material-ui/core';
 ```
 
 You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
 
-⚠️ The GridList component was renamed to ImageList to align with the current Material Design naming.
 
-You should use `import { ImageList } from '@material-ui/core'`
-or `import ImageList from '@material-ui/core/ImageList'`.
 
 ## Component name
 
-The `MuiGridList` name can be used for providing [default props](/customization/globals/#default-props) or [style overrides](/customization/globals/#css) at the theme level.
+The `MuiImageList` name can be used for providing [default props](/customization/globals/#default-props) or [style overrides](/customization/globals/#css) at the theme level.
 
 ## Props
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">cellHeight</span> | <span class="prop-type">number<br>&#124;&nbsp;'auto'</span> | <span class="prop-default">180</span> | Number of px for one cell height. You can set `'auto'` if you want to let the children determine the height. |
-| <span class="prop-name required">children<abbr title="required">*</abbr></span> | <span class="prop-type">node</span> |  | Grid Tiles that will be in Grid List. |
+| <span class="prop-name required">children<abbr title="required">*</abbr></span> | <span class="prop-type">node</span> |  | Image Tiles that will be in Image List. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">cols</span> | <span class="prop-type">number</span> | <span class="prop-default">2</span> | Number of columns. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'ul'</span> | The component used for the root node. Either a string to use a HTML element or a component. |
@@ -46,7 +43,7 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiGridList-root</span> | Styles applied to the root element.
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiImageList-root</span> | Styles applied to the root element.
 
 You can override the style of the component thanks to one of these customization points:
 
@@ -54,9 +51,9 @@ You can override the style of the component thanks to one of these customization
 - With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
 - With a theme and an [`overrides` property](/customization/globals/#css).
 
-If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/GridList/GridList.js) for more detail.
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/ImageList/ImageList.js) for more detail.
 
 ## Demos
 
-- [Grid List](/components/grid-list/)
+- [Image List](/components/image-list/)
 

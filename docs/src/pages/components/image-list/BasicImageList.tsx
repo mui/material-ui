@@ -1,7 +1,7 @@
 import React from 'react';
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
+import ImageList from '@material-ui/core/ImageList';
+import ImageListTile from '@material-ui/core/ImageListTile';
 import tileData from './tileData';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -38,18 +38,18 @@ const useStyles = makeStyles((theme: Theme) =>
  *   },
  * ];
  */
-export default function ImageGridList() {
+export default function BasicImageList() {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <GridList cellHeight={160} className={classes.gridList} cols={3}>
+      <ImageList cellHeight={160} className={classes.gridList} cols={3}>
         {tileData.map((tile) => (
-          <GridListTile key={tile.img} cols={tile.cols || 1}>
+          <ImageListTile key={tile.img} cols={tile.cols || 1}>
             <img src={tile.img} alt={tile.title} />
-          </GridListTile>
+          </ImageListTile>
         ))}
-      </GridList>
+      </ImageList>
     </div>
   );
 }

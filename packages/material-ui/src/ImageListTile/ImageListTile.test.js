@@ -4,26 +4,17 @@ import { spy, useFakeTimers } from 'sinon';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
-import GridListTile from './GridListTile';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
+import ImageListTile from './ImageListTile';
 
-describe('<GridListTile />', () => {
+describe('<ImageListTile />', () => {
   const mount = createMount();
   let classes;
 
-  beforeEach(() => {
-    consoleErrorMock.spy();
-  });
-
-  afterEach(() => {
-    consoleErrorMock.reset();
-  });
-
   before(() => {
-    classes = getClasses(<GridListTile />);
+    classes = getClasses(<ImageListTile />);
   });
 
-  describeConformance(<GridListTile />, () => ({
+  describeConformance(<ImageListTile />, () => ({
     classes,
     inheritComponent: 'li',
     mount,
@@ -32,7 +23,7 @@ describe('<GridListTile />', () => {
   }));
 
   const tileData = {
-    img: 'images/grid-list/00-52-29-429_640.jpg',
+    img: 'images/image-list/00-52-29-429_640.jpg',
     title: 'Breakfast',
     author: 'jill111',
   };
@@ -40,14 +31,14 @@ describe('<GridListTile />', () => {
   describe('prop: children', () => {
     it('should render children by default', () => {
       const children = <img src={tileData.img} alt="foo" />;
-      const wrapper = mount(<GridListTile>{children}</GridListTile>);
+      const wrapper = mount(<ImageListTile>{children}</ImageListTile>);
 
       expect(wrapper.containsMatchingElement(children)).to.equal(true);
     });
 
     it('should not change non image child', () => {
       const children = <div />;
-      const wrapper = mount(<GridListTile>{children}</GridListTile>);
+      const wrapper = mount(<ImageListTile>{children}</ImageListTile>);
       expect(wrapper.containsMatchingElement(children)).to.equal(true);
     });
   });
@@ -61,10 +52,10 @@ describe('<GridListTile />', () => {
     Image.muiName = 'Image';
 
     return mount(
-      <GridListTile>
+      <ImageListTile>
         <Image />
         {null}
-      </GridListTile>,
+      </ImageListTile>,
     );
   }
 
