@@ -138,14 +138,14 @@ export * from './FormLabel';
 export { default as Grid } from './Grid';
 export * from './Grid';
 
-export { default as GridList } from './GridList';
-export * from './GridList';
+export { default as ImageList } from './ImageList';
+export * from './ImageList';
 
-export { default as GridListTile } from './GridListTile';
-export * from './GridListTile';
+export { default as ImageListTile } from './ImageListTile';
+export * from './ImageListTile';
 
-export { default as GridListTileBar } from './GridListTileBar';
-export * from './GridListTileBar';
+export { default as ImageListTileBar } from './ImageListTileBar';
+export * from './ImageListTileBar';
 
 export { default as Grow } from './Grow';
 export * from './Grow';
