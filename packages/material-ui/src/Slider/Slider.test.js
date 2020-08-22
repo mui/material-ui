@@ -292,7 +292,7 @@ describe('<Slider />', () => {
       expect(thumb).to.have.attribute('aria-valuenow', '21');
     });
 
-    it('should not respond to the keyboard after becoming disabled', () => {
+    it('is not focused (visibly) after becoming disabled', () => {
       const { getByRole, setProps } = render(<Slider defaultValue={0} />);
 
       const thumb = getByRole('slider');
