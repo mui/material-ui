@@ -8,8 +8,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 const styles = {
   root: {
     width: 400,
-    height: 400,
-    padding: 60,
+    padding: '50px 70px',
   },
 };
 

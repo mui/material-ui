@@ -78,13 +78,12 @@ export const styles = (theme) => ({
   popperArrow: arrowGenerator(),
   /* Styles applied to the tooltip (label wrapper) element. */
   tooltip: {
-    backgroundColor: fade(theme.palette.grey[700], 0.9),
+    backgroundColor: fade(theme.palette.grey[700], 0.92),
     borderRadius: theme.shape.borderRadius,
     color: theme.palette.common.white,
     fontFamily: theme.typography.fontFamily,
     padding: '4px 8px',
-    fontSize: theme.typography.pxToRem(10),
-    lineHeight: `${round(14 / 10)}em`,
+    fontSize: theme.typography.pxToRem(11),
     maxWidth: 300,
     wordWrap: 'break-word',
     fontWeight: theme.typography.fontWeightMedium,
