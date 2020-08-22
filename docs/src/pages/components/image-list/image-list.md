@@ -2,7 +2,7 @@
 title: Image list React component
 components: ImageList, ImageListTile, ImageListTileBar, ListSubheader, IconButton
 materialDesign: https://material.io/components/image-lists
-githubLabel: component: GridList
+githubLabel: component: ImageList
 ---
 
 # Image list
@@ -13,11 +13,11 @@ Image lists represent a collection of items in a repeated pattern. They help imp
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Image-only Image list
+## Basic image list
 
 A simple example of a scrollable image `ImageList`.
 
-{{"demo": "pages/components/image-list/ImageImageList.js", "hideEditButton": true}}
+{{"demo": "pages/components/image-list/BasicImageList.js", "hideEditButton": true}}
 
 ## Image list with titlebars
 
@@ -26,7 +26,7 @@ The overlay can accommodate a `title`, `subtitle` and secondary action - in this
 
 {{"demo": "pages/components/image-list/TitlebarImageList.js", "hideEditButton": true}}
 
-## Single line Image list
+## Single line image list
 
 This example demonstrates a horizontal scrollable single-line image list of images.
 Horizontally scrolling image lists are discouraged because the scrolling interferes with typical reading patterns, affecting comprehension.
@@ -34,7 +34,7 @@ One notable exception is a horizontally-scrolling, single-line image list of ima
 
 {{"demo": "pages/components/image-list/SingleLineImageList.js", "hideEditButton": true}}
 
-## Advanced Image list
+## Advanced image list
 
 This example demonstrates "featured" tiles, using the `rows` and `cols` props to adjust the size of the tile, and the `padding` prop to adjust the spacing.
 The tiles have a customized titlebar, positioned at the top and with a custom gradient `titleBackground`.

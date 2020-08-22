@@ -1,22 +1,24 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 import ImageList from '@material-ui/core/ImageList';
 import ImageListTile from '@material-ui/core/ImageListTile';
 import tileData from './tileData';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    overflow: 'hidden',
-    backgroundColor: theme.palette.background.paper,
-  },
-  gridList: {
-    width: 500,
-    height: 450,
-  },
-}));
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      justifyContent: 'space-around',
+      overflow: 'hidden',
+      backgroundColor: theme.palette.background.paper,
+    },
+    gridList: {
+      width: 500,
+      height: 450,
+    },
+  }),
+);
 
 /**
  * The example data is structured as follows:
@@ -36,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
  *   },
  * ];
  */
-export default function ImageImageList() {
+export default function BasicImageList() {
   const classes = useStyles();
 
   return (
