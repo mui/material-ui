@@ -98,11 +98,11 @@ describe('<GridListTile />', () => {
   describe('resize', () => {
     let clock;
 
-    before(() => {
+    beforeEach(() => {
       clock = useFakeTimers();
     });
 
-    after(() => {
+    afterEach(() => {
       clock.restore();
     });
 

@@ -78,6 +78,8 @@ export const styles = (theme) => {
     fullWidth: {
       width: '100%',
     },
+    /* Styles applied to the root element if `hiddenLabel={true}`. */
+    hiddenLabel: {},
     /* Styles applied to the `input` element. */
     input: {
       font: 'inherit',
@@ -422,6 +424,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
           [classes.multiline]: multiline,
           [classes.adornedStart]: startAdornment,
           [classes.adornedEnd]: endAdornment,
+          [classes.hiddenLabel]: fcs.hiddenLabel,
         },
         className,
       )}

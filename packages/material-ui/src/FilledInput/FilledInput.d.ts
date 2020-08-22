@@ -27,6 +27,8 @@ export interface FilledInputProps extends StandardProps<InputBaseProps> {
     marginDense?: string;
     /** Styles applied to the root element if `multiline={true}`. */
     multiline?: string;
+    /** Styles applied to the root element if `hiddenLabel={true}`. */
+    hiddenLabel?: string;
     /** Styles applied to the `input` element. */
     input?: string;
     /** Styles applied to the `input` element if `margin="dense"`. */

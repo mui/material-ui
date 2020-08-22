@@ -49,6 +49,8 @@ export interface InputBaseProps
     colorSecondary?: string;
     /** Styles applied to the root element if `fullWidth={true}`. */
     fullWidth?: string;
+    /** Styles applied to the root element if `hiddenLabel={true}`. */
+    hiddenLabel?: string;
     /** Styles applied to the `input` element. */
     input?: string;
     /** Styles applied to the `input` element if `margin="dense"`. */
