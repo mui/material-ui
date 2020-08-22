@@ -66,7 +66,9 @@ declare const BottomNavigationAction: ExtendButtonBase<BottomNavigationActionTyp
   ButtonBaseTypeMap['defaultComponent']
 >>;
 
-export type BottomNavigationActionClassKey = 'root' | 'selected' | 'iconOnly' | 'wrapper' | 'label';
+export type BottomNavigationActionClassKey = keyof NonNullable<
+  BottomNavigationActionProps['classes']
+>;
 
 export type BottomNavigationActionProps<
   D extends React.ElementType = ButtonBaseTypeMap['defaultComponent'],

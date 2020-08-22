@@ -58,13 +58,7 @@ export interface ListSubheaderTypeMap<P = {}, D extends React.ElementType = 'li'
  */
 declare const ListSubheader: OverridableComponent<ListSubheaderTypeMap>;
 
-export type ListSubheaderClassKey =
-  | 'root'
-  | 'colorPrimary'
-  | 'colorInherit'
-  | 'inset'
-  | 'sticky'
-  | 'gutters';
+export type ListSubheaderClassKey = keyof NonNullable<ListSubheaderTypeMap['props']['classes']>;
 
 export type ListSubheaderProps<
   D extends React.ElementType = ListSubheaderTypeMap['defaultComponent'],

@@ -37,7 +37,7 @@ export interface BackdropProps
   transitionDuration?: TransitionProps['timeout'];
 }
 
-export type BackdropClassKey = 'root' | 'invisible';
+export type BackdropClassKey = keyof NonNullable<BackdropProps['classes']>;
 
 /**
  *

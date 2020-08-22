@@ -189,25 +189,7 @@ export interface InputBaseComponentProps
   [arbitrary: string]: any;
 }
 
-export type InputBaseClassKey =
-  | 'root'
-  | 'formControl'
-  | 'focused'
-  | 'disabled'
-  | 'adornedEnd'
-  | 'adornedStart'
-  | 'error'
-  | 'marginDense'
-  | 'multiline'
-  | 'fullWidth'
-  | 'colorSecondary'
-  | 'input'
-  | 'inputMarginDense'
-  | 'inputMultiline'
-  | 'inputTypeSearch'
-  | 'inputAdornedStart'
-  | 'inputAdornedEnd'
-  | 'inputHiddenLabel';
+export type InputBaseClassKey = keyof NonNullable<InputBaseProps['classes']>;
 
 /**
  * `InputBase` contains as few styles as possible.

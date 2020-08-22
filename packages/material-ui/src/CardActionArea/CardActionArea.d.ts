@@ -36,7 +36,7 @@ declare const CardActionArea: ExtendButtonBase<CardActionAreaTypeMap<
   ButtonBaseTypeMap['defaultComponent']
 >>;
 
-export type CardActionAreaClassKey = 'root' | 'focusVisible' | 'focusHighlight';
+export type CardActionAreaClassKey = keyof NonNullable<CardActionAreaProps['classes']>;
 
 export type CardActionAreaProps<
   D extends React.ElementType = ButtonBaseTypeMap['defaultComponent'],

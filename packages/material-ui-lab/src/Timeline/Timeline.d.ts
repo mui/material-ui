@@ -26,7 +26,7 @@ export interface TimelineProps extends StandardProps<React.HTMLAttributes<HTMLUL
   align?: 'left' | 'right' | 'alternate';
 }
 
-export type TimelineClassKey = 'root' | 'alignLeft' | 'alignRight' | 'alignAlternate';
+export type TimelineClassKey = keyof NonNullable<TimelineProps['classes']>;
 
 /**
  *

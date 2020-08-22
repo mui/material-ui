@@ -135,16 +135,7 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
  */
 declare const Tabs: OverridableComponent<TabsTypeMap>;
 
-export type TabsClassKey =
-  | 'root'
-  | 'flexContainer'
-  | 'scroller'
-  | 'fixed'
-  | 'scrollable'
-  | 'centered'
-  | 'scrollButtons'
-  | 'scrollButtonsDesktop'
-  | 'indicator';
+export type TabsClassKey = keyof NonNullable<TabsTypeMap['props']['classes']>;
 
 export interface TabsActions {
   updateIndicator(): void;

@@ -33,17 +33,7 @@ export interface StepConnectorProps
   };
 }
 
-export type StepConnectorClasskey =
-  | 'root'
-  | 'horizontal'
-  | 'vertical'
-  | 'alternativeLabel'
-  | 'active'
-  | 'completed'
-  | 'disabled'
-  | 'line'
-  | 'lineHorizontal'
-  | 'lineVertical';
+export type StepConnectorClasskey = keyof NonNullable<StepConnectorProps['classes']>;
 
 /**
  *

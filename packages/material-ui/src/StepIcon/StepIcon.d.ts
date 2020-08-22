@@ -37,7 +37,7 @@ export interface StepIconProps
   icon: React.ReactNode;
 }
 
-export type StepIconClasskey = 'root' | 'text' | 'active' | 'completed' | 'error';
+export type StepIconClasskey = keyof NonNullable<StepIconProps['classes']>;
 
 /**
  *

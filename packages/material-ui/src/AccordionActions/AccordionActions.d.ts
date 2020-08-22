@@ -22,7 +22,7 @@ export interface AccordionActionsProps extends StandardProps<React.HTMLAttribute
   disableSpacing?: boolean;
 }
 
-export type AccordionActionsClassKey = 'root' | 'spacing';
+export type AccordionActionsClassKey = keyof NonNullable<AccordionActionsProps['classes']>;
 
 /**
  *

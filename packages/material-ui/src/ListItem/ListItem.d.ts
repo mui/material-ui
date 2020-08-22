@@ -97,18 +97,7 @@ export interface ListItemTypeMap<P, D extends React.ElementType> {
 declare const ListItem: OverridableComponent<ListItemTypeMap<{ button?: false }, 'li'>> &
   ExtendButtonBase<ListItemTypeMap<{ button: true }, 'div'>>;
 
-export type ListItemClassKey =
-  | 'root'
-  | 'container'
-  | 'focusVisible'
-  | 'default'
-  | 'dense'
-  | 'disabled'
-  | 'divider'
-  | 'gutters'
-  | 'button'
-  | 'secondaryAction'
-  | 'selected';
+export type ListItemClassKey = keyof NonNullable<ListItemProps['classes']>;
 
 export type ListItemProps<D extends React.ElementType = 'li', P = {}> = OverrideProps<
   ListItemTypeMap<P, D>,

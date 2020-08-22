@@ -57,18 +57,7 @@ export interface StepLabelProps extends StandardProps<React.HTMLAttributes<HTMLD
   StepIconProps?: Partial<StepIconProps>;
 }
 
-export type StepLabelClasskey =
-  | 'root'
-  | 'horizontal'
-  | 'vertical'
-  | 'active'
-  | 'completed'
-  | 'alternativeLabel'
-  | 'error'
-  | 'disabled'
-  | 'label'
-  | 'iconContainer'
-  | 'labelContainer';
+export type StepLabelClasskey = keyof NonNullable<StepLabelProps['classes']>;
 
 /**
  *

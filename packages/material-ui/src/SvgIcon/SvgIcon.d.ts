@@ -79,16 +79,7 @@ export interface SvgIconTypeMap<P = {}, D extends React.ElementType = 'svg'> {
  */
 declare const SvgIcon: OverridableComponent<SvgIconTypeMap>;
 
-export type SvgIconClassKey =
-  | 'root'
-  | 'colorSecondary'
-  | 'colorAction'
-  | 'colorDisabled'
-  | 'colorError'
-  | 'colorPrimary'
-  | 'fontSizeInherit'
-  | 'fontSizeSmall'
-  | 'fontSizeLarge';
+export type SvgIconClassKey = keyof NonNullable<SvgIconTypeMap['props']['classes']>;
 
 export type SvgIconProps<
   D extends React.ElementType = SvgIconTypeMap['defaultComponent'],

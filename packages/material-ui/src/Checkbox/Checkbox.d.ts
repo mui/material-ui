@@ -92,11 +92,7 @@ export interface CheckboxProps
   value?: SwitchBaseProps['value'];
 }
 
-export type CheckboxClassKey =
-  | SwitchBaseClassKey
-  | 'indeterminate'
-  | 'colorPrimary'
-  | 'colorSecondary';
+export type CheckboxClassKey = keyof NonNullable<CheckboxProps['classes']>;
 
 /**
  *

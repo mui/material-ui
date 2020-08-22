@@ -55,13 +55,9 @@ export type AccordionSummaryTypeMap<
  */
 declare const AccordionSummary: ExtendButtonBase<AccordionSummaryTypeMap>;
 
-export type AccordionSummaryClassKey =
-  | 'root'
-  | 'expanded'
-  | 'focused'
-  | 'disabled'
-  | 'content'
-  | 'expandIcon';
+export type AccordionSummaryClassKey = keyof NonNullable<
+  AccordionSummaryTypeMap['props']['classes']
+>;
 
 export type AccordionSummaryProps<
   D extends React.ElementType = AccordionSummaryTypeMap['defaultComponent'],

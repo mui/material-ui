@@ -17,7 +17,7 @@ export interface TimelineSeparatorProps
   };
 }
 
-export type TimelineSeparatorClassKey = 'root';
+export type TimelineSeparatorClassKey = keyof NonNullable<TimelineSeparatorProps['classes']>;
 
 /**
  *

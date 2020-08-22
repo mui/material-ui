@@ -203,27 +203,7 @@ export interface SliderTypeMap<P = {}, D extends React.ElementType = 'span'> {
  */
 declare const Slider: OverridableComponent<SliderTypeMap>;
 
-export type SliderClassKey =
-  | 'root'
-  | 'colorPrimary'
-  | 'colorSecondary'
-  | 'marked'
-  | 'vertical'
-  | 'disabled'
-  | 'rail'
-  | 'track'
-  | 'trackFalse'
-  | 'trackInverted'
-  | 'thumb'
-  | 'thumbColorPrimary'
-  | 'thumbColorSecondary'
-  | 'active'
-  | 'focusVisible'
-  | 'valueLabel'
-  | 'mark'
-  | 'markActive'
-  | 'markLabel'
-  | 'markLabelActive';
+export type SliderClassKey = keyof NonNullable<SliderTypeMap['props']['classes']>;
 
 export type SliderProps<
   D extends React.ElementType = SliderTypeMap['defaultComponent'],

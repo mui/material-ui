@@ -114,7 +114,7 @@ export type ButtonBaseProps<
   P = {}
 > = OverrideProps<ButtonBaseTypeMap<P, D>, D>;
 
-export type ButtonBaseClassKey = 'root' | 'disabled' | 'focusVisible';
+export type ButtonBaseClassKey = keyof NonNullable<ButtonBaseTypeMap['props']['classes']>;
 
 export interface ButtonBaseActions {
   focusVisible(): void;

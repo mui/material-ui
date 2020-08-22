@@ -54,13 +54,7 @@ export interface SpeedDialActionProps extends StandardProps<Partial<TooltipProps
   tooltipOpen?: boolean;
 }
 
-export type SpeedDialActionClassKey =
-  | 'fab'
-  | 'fabClosed'
-  | 'staticTooltip'
-  | 'staticTooltipClosed'
-  | 'staticTooltipLabel'
-  | 'tooltipPlacementLeft';
+export type SpeedDialActionClassKey = keyof NonNullable<SpeedDialActionProps['classes']>;
 
 /**
  *

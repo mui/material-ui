@@ -142,38 +142,7 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
  */
 declare const Chip: OverridableComponent<ChipTypeMap>;
 
-export type ChipClassKey =
-  | 'root'
-  | 'sizeSmall'
-  | 'colorPrimary'
-  | 'colorSecondary'
-  | 'disabled'
-  | 'clickable'
-  | 'clickableColorPrimary'
-  | 'clickableColorSecondary'
-  | 'deletable'
-  | 'deletableColorPrimary'
-  | 'deletableColorSecondary'
-  | 'default'
-  | 'outlined'
-  | 'outlinedPrimary'
-  | 'outlinedSecondary'
-  | 'avatar'
-  | 'avatarSmall'
-  | 'avatarColorPrimary'
-  | 'avatarColorSecondary'
-  | 'icon'
-  | 'iconSmall'
-  | 'iconColorPrimary'
-  | 'iconColorSecondary'
-  | 'label'
-  | 'labelSmall'
-  | 'deleteIcon'
-  | 'deleteIconSmall'
-  | 'deleteIconColorPrimary'
-  | 'deleteIconColorSecondary'
-  | 'deleteIconOutlinedColorPrimary'
-  | 'deleteIconOutlinedColorSecondary';
+export type ChipClassKey = keyof NonNullable<ChipTypeMap['props']['classes']>;
 
 export type ChipProps<
   D extends React.ElementType = ChipTypeMap['defaultComponent'],

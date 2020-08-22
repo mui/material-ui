@@ -22,7 +22,7 @@ export interface DialogActionsProps extends StandardProps<React.HTMLAttributes<H
   disableSpacing?: boolean;
 }
 
-export type DialogActionsClassKey = 'root' | 'spacing';
+export type DialogActionsClassKey = keyof NonNullable<DialogActionsProps['classes']>;
 
 /**
  *

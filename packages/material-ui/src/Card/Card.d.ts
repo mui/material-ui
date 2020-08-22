@@ -16,7 +16,7 @@ export interface CardProps extends StandardProps<PaperProps> {
   raised?: boolean;
 }
 
-export type CardClassKey = 'root';
+export type CardClassKey = keyof NonNullable<CardProps['classes']>;
 
 /**
  *

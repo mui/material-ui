@@ -52,7 +52,7 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
  */
 declare const List: OverridableComponent<ListTypeMap>;
 
-export type ListClassKey = 'root' | 'padding' | 'dense' | 'subheader';
+export type ListClassKey = keyof NonNullable<ListTypeMap['props']['classes']>;
 
 export type ListProps<
   D extends React.ElementType = ListTypeMap['defaultComponent'],

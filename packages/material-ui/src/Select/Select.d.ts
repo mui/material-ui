@@ -154,17 +154,7 @@ export interface SelectProps
   variant?: 'standard' | 'outlined' | 'filled';
 }
 
-export type SelectClassKey =
-  | 'root'
-  | 'select'
-  | 'filled'
-  | 'outlined'
-  | 'selectMenu'
-  | 'disabled'
-  | 'icon'
-  | 'iconOpen'
-  | 'iconFilled'
-  | 'iconOutlined';
+export type SelectClassKey = keyof NonNullable<SelectProps['classes']>;
 
 /**
  *

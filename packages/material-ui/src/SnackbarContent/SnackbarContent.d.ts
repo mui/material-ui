@@ -29,7 +29,7 @@ export interface SnackbarContentProps extends StandardProps<PaperProps, 'childre
   role?: PaperProps['role'];
 }
 
-export type SnackbarContentClassKey = 'root' | 'message' | 'action';
+export type SnackbarContentClassKey = keyof NonNullable<SnackbarContentProps['classes']>;
 
 /**
  *

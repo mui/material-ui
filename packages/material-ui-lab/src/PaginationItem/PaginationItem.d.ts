@@ -97,23 +97,7 @@ export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'di
  */
 declare const PaginationItem: OverridableComponent<PaginationItemTypeMap>;
 
-export type PaginationItemClassKey =
-  | 'root'
-  | 'page'
-  | 'sizeSmall'
-  | 'sizeLarge'
-  | 'text'
-  | 'textPrimary'
-  | 'textSecondary'
-  | 'outlined'
-  | 'outlinedPrimary'
-  | 'outlinedSecondary'
-  | 'rounded'
-  | 'ellipsis'
-  | 'focusVisible'
-  | 'disabled'
-  | 'selected'
-  | 'icon';
+export type PaginationItemClassKey = keyof NonNullable<PaginationItemTypeMap['props']['classes']>;
 
 export type PaginationItemProps<
   D extends React.ElementType = PaginationItemTypeMap['defaultComponent'],

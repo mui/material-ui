@@ -73,19 +73,7 @@ export interface InputLabelProps extends StandardProps<FormLabelProps> {
   variant?: 'standard' | 'outlined' | 'filled';
 }
 
-export type InputLabelClassKey =
-  | 'root'
-  | 'focused'
-  | 'disabled'
-  | 'error'
-  | 'required'
-  | 'asterisk'
-  | 'formControl'
-  | 'marginDense'
-  | 'shrink'
-  | 'animated'
-  | 'filled'
-  | 'outlined';
+export type InputLabelClassKey = keyof NonNullable<InputLabelProps['classes']>;
 
 /**
  *

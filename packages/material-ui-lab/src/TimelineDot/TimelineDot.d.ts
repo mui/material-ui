@@ -44,16 +44,7 @@ export interface TimelineDotProps extends StandardProps<React.HTMLAttributes<HTM
   variant?: OverridableStringUnion<TimelineDotVariantDefaults, TimelineDotPropsVariantOverrides>;
 }
 
-export type TimelineDotClassKey =
-  | 'root'
-  | 'filled'
-  | 'outlined'
-  | 'filledDefault'
-  | 'filledPrimary'
-  | 'filledSecondary'
-  | 'outlinedDefault'
-  | 'outlinedPrimary'
-  | 'outlinedSecondary';
+export type TimelineDotClassKey = keyof NonNullable<TimelineDotProps['classes']>;
 
 /**
  *

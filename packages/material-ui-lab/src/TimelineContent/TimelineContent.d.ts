@@ -18,7 +18,7 @@ export interface TimelineContentProps extends StandardProps<TypographyProps> {
   };
 }
 
-export type TimelineContentClassKey = 'root';
+export type TimelineContentClassKey = keyof NonNullable<TimelineContentProps['classes']>;
 
 /**
  *

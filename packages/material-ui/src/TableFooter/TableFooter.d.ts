@@ -30,7 +30,7 @@ export interface TableFooterTypeMap<P = {}, D extends React.ElementType = 'tfoot
  */
 declare const TableFooter: OverridableComponent<TableFooterTypeMap>;
 
-export type TableFooterClassKey = 'root';
+export type TableFooterClassKey = keyof NonNullable<TableFooterTypeMap['props']['classes']>;
 
 export type TableFooterProps<
   D extends React.ElementType = TableFooterTypeMap['defaultComponent'],

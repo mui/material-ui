@@ -17,7 +17,7 @@ export interface ListItemAvatarProps extends StandardProps<React.HTMLAttributes<
   };
 }
 
-export type ListItemAvatarClassKey = 'root' | 'icon';
+export type ListItemAvatarClassKey = keyof NonNullable<ListItemAvatarProps['classes']>;
 
 /**
  * A simple wrapper to apply `List` styles to an `Avatar`.

@@ -73,7 +73,7 @@ export interface MenuProps extends StandardProps<PopoverProps & Partial<Transiti
   variant?: 'menu' | 'selectedMenu';
 }
 
-export type MenuClassKey = 'paper' | 'list';
+export type MenuClassKey = keyof NonNullable<MenuProps['classes']>;
 
 /**
  *

@@ -22,7 +22,7 @@ export interface FormGroupProps extends StandardProps<React.HTMLAttributes<HTMLD
   row?: boolean;
 }
 
-export type FormGroupClassKey = 'root' | 'row';
+export type FormGroupClassKey = keyof NonNullable<FormGroupProps['classes']>;
 
 /**
  * `FormGroup` wraps controls such as `Checkbox` and `Switch`.

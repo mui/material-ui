@@ -32,7 +32,7 @@ export interface TabScrollButtonProps extends StandardProps<React.HTMLAttributes
   orientation: 'horizontal' | 'vertical';
 }
 
-export type TabScrollButtonClassKey = 'root' | 'vertical' | 'disabled';
+export type TabScrollButtonClassKey = keyof NonNullable<TabScrollButtonProps['classes']>;
 /**
  *
  * Demos:

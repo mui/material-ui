@@ -54,18 +54,7 @@ export interface GridListTileBarProps
   titlePosition?: 'top' | 'bottom';
 }
 
-export type GridListTileBarClassKey =
-  | 'root'
-  | 'titlePositionBottom'
-  | 'titlePositionTop'
-  | 'rootSubtitle'
-  | 'titleWrap'
-  | 'titleWrapActionPosLeft'
-  | 'titleWrapActionPosRight'
-  | 'title'
-  | 'subtitle'
-  | 'actionIcon'
-  | 'actionIconActionPosLeft';
+export type GridListTileBarClassKey = keyof NonNullable<GridListTileBarProps['classes']>;
 
 /**
  *

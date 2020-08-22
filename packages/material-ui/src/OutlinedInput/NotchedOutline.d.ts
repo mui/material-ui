@@ -10,7 +10,7 @@ export interface NotchedOutlineProps
   notched: boolean;
 }
 
-export type NotchedOutlineClassKey = 'root' | 'legend' | 'focused' | 'error' | 'disabled';
+export type NotchedOutlineClassKey = keyof NonNullable<NotchedOutlineProps['classes']>;
 
 declare const NotchedOutline: React.ComponentType<NotchedOutlineProps>;
 

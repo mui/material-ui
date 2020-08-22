@@ -31,7 +31,7 @@ export interface MenuListProps extends StandardProps<ListProps> {
   variant?: 'menu' | 'selectedMenu';
 }
 
-export type MenuListClassKey = ListClassKey;
+export type MenuListClassKey = keyof NonNullable<MenuListProps['classes']>;
 
 /**
  * A permanently displayed menu following <https://www.w3.org/TR/wai-aria-practices/#menubutton>.

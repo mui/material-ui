@@ -75,15 +75,7 @@ export interface FormHelperTextTypeMap<P = {}, D extends React.ElementType = 'p'
  */
 declare const FormHelperText: OverridableComponent<FormHelperTextTypeMap>;
 
-export type FormHelperTextClassKey =
-  | 'root'
-  | 'error'
-  | 'disabled'
-  | 'marginDense'
-  | 'focused'
-  | 'filled'
-  | 'contained'
-  | 'required';
+export type FormHelperTextClassKey = keyof NonNullable<FormHelperTextTypeMap['props']['classes']>;
 
 export type FormHelperTextProps<
   D extends React.ElementType = FormHelperTextTypeMap['defaultComponent'],

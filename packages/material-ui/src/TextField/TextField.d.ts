@@ -208,7 +208,7 @@ export interface OutlinedTextFieldProps extends BaseTextFieldProps {
 
 export type TextFieldProps = StandardTextFieldProps | FilledTextFieldProps | OutlinedTextFieldProps;
 
-export type TextFieldClassKey = 'root';
+export type TextFieldClassKey = keyof NonNullable<TextFieldProps['classes']>;
 
 /**
  * The `TextField` is a convenience wrapper for the most common cases (80%).

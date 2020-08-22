@@ -50,7 +50,7 @@ export interface TableTypeMap<P = {}, D extends React.ElementType = 'table'> {
  */
 declare const Table: OverridableComponent<TableTypeMap>;
 
-export type TableClassKey = 'root' | 'stickyHeader';
+export type TableClassKey = keyof NonNullable<TableTypeMap['props']['classes']>;
 
 export type TableProps<
   D extends React.ElementType = TableTypeMap['defaultComponent'],

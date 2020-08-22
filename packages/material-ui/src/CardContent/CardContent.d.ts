@@ -30,7 +30,7 @@ export interface CardContentTypeMap<P = {}, D extends React.ElementType = 'div'>
  */
 declare const CardContent: OverridableComponent<CardContentTypeMap>;
 
-export type CardContentClassKey = 'root';
+export type CardContentClassKey = keyof NonNullable<CardContentTypeMap['props']['classes']>;
 
 export type CardContentProps<
   D extends React.ElementType = CardContentTypeMap['defaultComponent'],

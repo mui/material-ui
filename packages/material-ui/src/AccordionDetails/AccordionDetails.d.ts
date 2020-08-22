@@ -16,7 +16,7 @@ export interface AccordionDetailsProps extends StandardProps<React.HTMLAttribute
   };
 }
 
-export type AccordionDetailsClassKey = 'root';
+export type AccordionDetailsClassKey = keyof NonNullable<AccordionDetailsProps['classes']>;
 
 /**
  *

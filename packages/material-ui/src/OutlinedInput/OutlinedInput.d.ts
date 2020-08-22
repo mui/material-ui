@@ -55,22 +55,7 @@ export interface OutlinedInputProps extends StandardProps<InputBaseProps> {
   notched?: boolean;
 }
 
-export type OutlinedInputClassKey =
-  | 'root'
-  | 'colorSecondary'
-  | 'focused'
-  | 'disabled'
-  | 'adornedStart'
-  | 'adornedEnd'
-  | 'error'
-  | 'marginDense'
-  | 'multiline'
-  | 'notchedOutline'
-  | 'input'
-  | 'inputMarginDense'
-  | 'inputMultiline'
-  | 'inputAdornedStart'
-  | 'inputAdornedEnd';
+export type OutlinedInputClassKey = keyof NonNullable<OutlinedInputProps['classes']>;
 
 /**
  *

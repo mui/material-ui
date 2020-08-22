@@ -25,7 +25,7 @@ export interface RadioGroupProps extends StandardProps<FormGroupProps, 'onChange
   value?: any;
 }
 
-export type RadioGroupClassKey = FormGroupClassKey;
+export type RadioGroupClassKey = keyof NonNullable<RadioGroupProps['classes']>;
 
 /**
  *

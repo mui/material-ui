@@ -66,13 +66,7 @@ export interface ListItemTextProps<
   >;
 }
 
-export type ListItemTextClassKey =
-  | 'root'
-  | 'multiline'
-  | 'dense'
-  | 'inset'
-  | 'primary'
-  | 'secondary';
+export type ListItemTextClassKey = keyof NonNullable<ListItemTextProps['classes']>;
 /**
  *
  * Demos:

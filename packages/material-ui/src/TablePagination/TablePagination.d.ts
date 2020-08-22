@@ -141,17 +141,7 @@ declare const TablePagination: OverridableComponent<TablePaginationTypeMap<
   React.ComponentType<TablePaginationBaseProps>
 >>;
 
-export type TablePaginationClassKey =
-  | 'root'
-  | 'toolbar'
-  | 'spacer'
-  | 'menuItem'
-  | 'caption'
-  | 'input'
-  | 'selectRoot'
-  | 'select'
-  | 'selectIcon'
-  | 'actions';
+export type TablePaginationClassKey = keyof NonNullable<TablePaginationProps['classes']>;
 
 export type TablePaginationBaseProps = Omit<TableCellProps, 'classes' | 'component' | 'children'>;
 

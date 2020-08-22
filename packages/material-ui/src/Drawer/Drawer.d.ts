@@ -82,19 +82,7 @@ export interface DrawerProps
   variant?: 'permanent' | 'persistent' | 'temporary';
 }
 
-export type DrawerClassKey =
-  | 'root'
-  | 'docked'
-  | 'paper'
-  | 'paperAnchorLeft'
-  | 'paperAnchorRight'
-  | 'paperAnchorTop'
-  | 'paperAnchorBottom'
-  | 'paperAnchorDockedLeft'
-  | 'paperAnchorDockedTop'
-  | 'paperAnchorDockedRight'
-  | 'paperAnchorDockedBottom'
-  | 'modal';
+export type DrawerClassKey = keyof NonNullable<DrawerProps['classes']>;
 
 /**
  * The props of the [Modal](https://material-ui.com/api/modal/) component are available

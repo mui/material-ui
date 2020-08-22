@@ -78,16 +78,7 @@ export type IconButtonTypeMap<
  */
 declare const IconButton: ExtendButtonBase<IconButtonTypeMap>;
 
-export type IconButtonClassKey =
-  | 'root'
-  | 'edgeStart'
-  | 'edgeEnd'
-  | 'colorInherit'
-  | 'colorPrimary'
-  | 'colorSecondary'
-  | 'disabled'
-  | 'sizeSmall'
-  | 'label';
+export type IconButtonClassKey = keyof NonNullable<IconButtonTypeMap['props']['classes']>;
 
 export type IconButtonProps<
   D extends React.ElementType = IconButtonTypeMap['defaultComponent'],

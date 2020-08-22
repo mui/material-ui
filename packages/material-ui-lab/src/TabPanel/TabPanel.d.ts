@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { InternalStandardProps as StandardProps } from '@material-ui/core';
 
-export type TabPanelClassKey = 'root';
+export type TabPanelClassKey = keyof NonNullable<TabPanelProps['classes']>;
 
 export interface TabPanelProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**

@@ -72,15 +72,7 @@ export interface FormLabelTypeMap<P = {}, D extends React.ElementType = 'label'>
  */
 declare const FormLabel: OverridableComponent<FormLabelTypeMap>;
 
-export type FormLabelClassKey =
-  | 'root'
-  | 'colorSecondary'
-  | 'focused'
-  | 'disabled'
-  | 'error'
-  | 'filled'
-  | 'required'
-  | 'asterisk';
+export type FormLabelClassKey = keyof NonNullable<FormLabelTypeMap['props']['classes']>;
 
 export type FormLabelBaseProps = React.LabelHTMLAttributes<HTMLLabelElement>;
 

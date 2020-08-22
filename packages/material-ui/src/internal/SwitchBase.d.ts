@@ -59,7 +59,7 @@ export interface SwitchBaseProps
   value?: unknown;
 }
 
-export type SwitchBaseClassKey = 'root' | 'checked' | 'disabled' | 'input';
+export type SwitchBaseClassKey = keyof NonNullable<SwitchBaseProps['classes']>;
 
 declare const SwitchBase: React.ComponentType<SwitchBaseProps>;
 

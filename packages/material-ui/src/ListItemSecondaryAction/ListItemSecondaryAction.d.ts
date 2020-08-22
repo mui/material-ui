@@ -18,7 +18,9 @@ export interface ListItemSecondaryActionProps
   };
 }
 
-export type ListItemSecondaryActionClassKey = 'root';
+export type ListItemSecondaryActionClassKey = keyof NonNullable<
+  ListItemSecondaryActionProps['classes']
+>;
 
 /**
  * Must be used as the last child of ListItem to function properly.

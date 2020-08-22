@@ -66,25 +66,7 @@ export interface LinearProgressProps
   variant?: 'determinate' | 'indeterminate' | 'buffer' | 'query';
 }
 
-export type LinearProgressClassKey =
-  | 'root'
-  | 'colorPrimary'
-  | 'colorSecondary'
-  | 'determinate'
-  | 'indeterminate'
-  | 'buffer'
-  | 'query'
-  | 'dashed'
-  | 'dashedColorPrimary'
-  | 'dashedColorSecondary'
-  | 'bar'
-  | 'barColorPrimary'
-  | 'barColorSecondary'
-  | 'bar1Indeterminate'
-  | 'bar2Indeterminate'
-  | 'bar1Determinate'
-  | 'bar1Buffer'
-  | 'bar2Buffer';
+export type LinearProgressClassKey = keyof NonNullable<LinearProgressProps['classes']>;
 
 /**
  * ## ARIA

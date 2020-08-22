@@ -121,7 +121,7 @@ export interface SingleSelectTreeViewProps extends TreeViewPropsBase {
 
 export type TreeViewProps = SingleSelectTreeViewProps | MultiSelectTreeViewProps;
 
-export type TreeViewClassKey = 'root';
+export type TreeViewClassKey = keyof NonNullable<TreeViewProps['classes']>;
 
 /**
  *

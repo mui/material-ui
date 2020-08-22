@@ -103,7 +103,7 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
  */
 declare const FormControl: OverridableComponent<FormControlTypeMap>;
 
-export type FormControlClassKey = 'root' | 'marginNormal' | 'marginDense' | 'fullWidth';
+export type FormControlClassKey = keyof NonNullable<FormControlTypeMap['props']['classes']>;
 
 export type FormControlProps<
   D extends React.ElementType = FormControlTypeMap['defaultComponent'],

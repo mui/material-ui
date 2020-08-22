@@ -43,7 +43,7 @@ export interface GridListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
  */
 declare const GridList: OverridableComponent<GridListTypeMap>;
 
-export type GridListClassKey = 'root';
+export type GridListClassKey = keyof NonNullable<GridListTypeMap['props']['classes']>;
 
 export type GridListProps<
   D extends React.ElementType = GridListTypeMap['defaultComponent'],

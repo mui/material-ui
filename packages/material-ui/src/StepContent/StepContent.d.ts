@@ -38,7 +38,7 @@ export interface StepContentProps extends StandardProps<React.HTMLAttributes<HTM
   TransitionProps?: TransitionProps;
 }
 
-export type StepContentClasskey = 'root' | 'last' | 'transition';
+export type StepContentClasskey = keyof NonNullable<StepContentProps['classes']>;
 
 /**
  *

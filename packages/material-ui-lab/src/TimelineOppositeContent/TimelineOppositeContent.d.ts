@@ -18,7 +18,9 @@ export interface TimelineOppositeContentProps extends StandardProps<TypographyPr
   };
 }
 
-export type TimelineOppositeContentClassKey = 'root' | 'alignRight';
+export type TimelineOppositeContentClassKey = keyof NonNullable<
+  TimelineOppositeContentProps['classes']
+>;
 
 /**
  *

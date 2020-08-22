@@ -67,16 +67,7 @@ export interface NativeSelectProps
   variant?: 'standard' | 'outlined' | 'filled';
 }
 
-export type NativeSelectClassKey =
-  | 'root'
-  | 'select'
-  | 'filled'
-  | 'outlined'
-  | 'selectMenu'
-  | 'disabled'
-  | 'icon'
-  | 'iconFilled'
-  | 'iconOutlined';
+export type NativeSelectClassKey = keyof NonNullable<NativeSelectProps['classes']>;
 
 /**
  * An alternative to `<Select native />` with a much smaller bundle size footprint.

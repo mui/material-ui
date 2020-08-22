@@ -129,22 +129,7 @@ export interface DialogProps
   TransitionProps?: TransitionProps;
 }
 
-export type DialogClassKey =
-  | 'root'
-  | 'scrollPaper'
-  | 'scrollBody'
-  | 'container'
-  | 'paper'
-  | 'paperScrollPaper'
-  | 'paperScrollBody'
-  | 'paperWidthFalse'
-  | 'paperWidthXs'
-  | 'paperWidthSm'
-  | 'paperWidthMd'
-  | 'paperWidthLg'
-  | 'paperWidthXl'
-  | 'paperFullWidth'
-  | 'paperFullScreen';
+export type DialogClassKey = keyof NonNullable<DialogProps['classes']>;
 
 /**
  * Dialogs are overlaid modal paper based components with a backdrop.

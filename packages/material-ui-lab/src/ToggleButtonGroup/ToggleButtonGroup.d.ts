@@ -53,12 +53,7 @@ export interface ToggleButtonGroupProps
   value?: any;
 }
 
-export type ToggleButtonGroupClassKey =
-  | 'root'
-  | 'vertical'
-  | 'grouped'
-  | 'groupedHorizontal'
-  | 'groupedVertical';
+export type ToggleButtonGroupClassKey = keyof NonNullable<ToggleButtonGroupProps['classes']>;
 
 /**
  *

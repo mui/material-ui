@@ -98,15 +98,7 @@ export interface SpeedDialProps
   TransitionProps?: TransitionProps;
 }
 
-export type SpeedDialClassKey =
-  | 'root'
-  | 'fab'
-  | 'directionUp'
-  | 'directionDown'
-  | 'directionLeft'
-  | 'directionRight'
-  | 'actions'
-  | 'actionsClosed';
+export type SpeedDialClassKey = keyof NonNullable<SpeedDialProps['classes']>;
 
 /**
  *

@@ -10,14 +10,7 @@ export type TouchRippleProps = StandardProps<React.HTMLAttributes<HTMLElement>> 
   classes?: {};
 };
 
-export type TouchRippleClassKey =
-  | 'root'
-  | 'ripple'
-  | 'rippleVisible'
-  | 'ripplePulsate'
-  | 'child'
-  | 'childLeaving'
-  | 'childPulsate';
+export type TouchRippleClassKey = keyof NonNullable<TouchRippleProps['classes']>;
 
 declare const TouchRipple: React.ComponentType<TouchRippleProps>;
 

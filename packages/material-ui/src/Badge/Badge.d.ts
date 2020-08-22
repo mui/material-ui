@@ -90,23 +90,7 @@ export interface BadgeTypeMap<P = {}, D extends React.ElementType = 'div'> {
   defaultComponent: D;
 }
 
-export type BadgeClassKey =
-  | 'root'
-  | 'badge'
-  | 'colorPrimary'
-  | 'colorSecondary'
-  | 'colorError'
-  | 'dot'
-  | 'standard'
-  | 'anchorOriginTopRightRectangular'
-  | 'anchorOriginBottomRightRectangular'
-  | 'anchorOriginTopLeftRectangular'
-  | 'anchorOriginBottomLeftRectangular'
-  | 'anchorOriginTopRightCircular'
-  | 'anchorOriginBottomRightCircular'
-  | 'anchorOriginTopLeftCircular'
-  | 'anchorOriginBottomLeftCircular'
-  | 'invisible';
+export type BadgeClassKey = keyof NonNullable<BadgeTypeMap['props']['classes']>;
 /**
  *
  * Demos:

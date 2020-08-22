@@ -92,17 +92,6 @@ export type FabProps<
   P = {}
 > = OverrideProps<FabTypeMap<P, D>, D>;
 
-export type FabClassKey =
-  | 'root'
-  | 'label'
-  | 'primary'
-  | 'secondary'
-  | 'extended'
-  | 'circular'
-  | 'focusVisible'
-  | 'disabled'
-  | 'colorInherit'
-  | 'sizeSmall'
-  | 'sizeMedium';
+export type FabClassKey = keyof NonNullable<FabTypeMap['props']['classes']>;
 
 export default Fab;

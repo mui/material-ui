@@ -46,7 +46,9 @@ export interface BottomNavigationTypeMap<P = {}, D extends React.ElementType = '
  */
 declare const BottomNavigation: OverridableComponent<BottomNavigationTypeMap>;
 
-export type BottomNavigationClassKey = 'root';
+export type BottomNavigationClassKey = keyof NonNullable<
+  BottomNavigationTypeMap['props']['classes']
+>;
 
 export type BottomNavigationProps<
   D extends React.ElementType = BottomNavigationTypeMap['defaultComponent'],

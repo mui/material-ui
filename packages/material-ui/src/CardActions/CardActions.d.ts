@@ -22,7 +22,7 @@ export interface CardActionsProps extends StandardProps<React.HTMLAttributes<HTM
   disableSpacing?: boolean;
 }
 
-export type CardActionsClassKey = 'root' | 'spacing';
+export type CardActionsClassKey = keyof NonNullable<CardActionsProps['classes']>;
 
 /**
  *

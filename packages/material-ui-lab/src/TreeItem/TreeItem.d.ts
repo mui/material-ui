@@ -86,16 +86,7 @@ export interface TreeItemProps
   TransitionProps?: TransitionProps;
 }
 
-export type TreeItemClassKey =
-  | 'root'
-  | 'expanded'
-  | 'selected'
-  | 'focused'
-  | 'disabled'
-  | 'group'
-  | 'content'
-  | 'iconContainer'
-  | 'label';
+export type TreeItemClassKey = keyof NonNullable<TreeItemProps['classes']>;
 
 /**
  *

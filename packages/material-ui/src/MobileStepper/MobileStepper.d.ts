@@ -57,15 +57,7 @@ export interface MobileStepperProps extends StandardProps<PaperProps, 'children'
   variant?: 'text' | 'dots' | 'progress';
 }
 
-export type MobileStepperClassKey =
-  | 'root'
-  | 'positionBottom'
-  | 'positionTop'
-  | 'positionStatic'
-  | 'dots'
-  | 'dot'
-  | 'dotActive'
-  | 'progress';
+export type MobileStepperClassKey = keyof NonNullable<MobileStepperProps['classes']>;
 
 /**
  *

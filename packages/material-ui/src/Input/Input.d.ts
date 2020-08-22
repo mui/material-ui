@@ -42,21 +42,7 @@ export interface InputProps extends StandardProps<InputBaseProps> {
   disableUnderline?: boolean;
 }
 
-export type InputClassKey =
-  | 'root'
-  | 'formControl'
-  | 'focused'
-  | 'disabled'
-  | 'colorSecondary'
-  | 'underline'
-  | 'error'
-  | 'marginDense'
-  | 'multiline'
-  | 'fullWidth'
-  | 'input'
-  | 'inputMarginDense'
-  | 'inputMultiline'
-  | 'inputTypeSearch';
+export type InputClassKey = keyof NonNullable<InputProps['classes']>;
 
 /**
  *

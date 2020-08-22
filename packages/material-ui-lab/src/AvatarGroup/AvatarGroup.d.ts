@@ -26,7 +26,7 @@ export interface AvatarGroupProps extends StandardProps<React.HTMLAttributes<HTM
   spacing?: 'small' | 'medium' | number;
 }
 
-export type AvatarGroupClassKey = 'root' | 'avatar';
+export type AvatarGroupClassKey = keyof NonNullable<AvatarGroupProps['classes']>;
 
 /**
  *

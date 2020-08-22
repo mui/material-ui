@@ -72,12 +72,6 @@ export type ToggleButtonProps<
   P = {}
 > = OverrideProps<ToggleButtonTypeMap<P, D>, D>;
 
-export type ToggleButtonClassKey =
-  | 'root'
-  | 'disabled'
-  | 'selected'
-  | 'label'
-  | 'sizeSmall'
-  | 'sizeLarge';
+export type ToggleButtonClassKey = keyof NonNullable<ToggleButtonTypeMap['props']['classes']>;
 
 export default ToggleButton;

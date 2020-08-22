@@ -97,7 +97,7 @@ export interface OverridableCardHeader extends OverridableComponent<CardHeaderTy
   ): JSX.Element;
 }
 
-export type CardHeaderClassKey = 'root' | 'avatar' | 'action' | 'content' | 'title' | 'subheader';
+export type CardHeaderClassKey = keyof NonNullable<CardHeaderTypeMap['props']['classes']>;
 
 export type CardHeaderProps<
   DefaultComponent extends React.ElementType = CardHeaderTypeMap['defaultComponent'],

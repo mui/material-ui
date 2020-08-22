@@ -19,7 +19,9 @@ export interface DialogContentTextTypeMap<
   defaultComponent: D;
 }
 
-export type DialogContentTextClassKey = 'root';
+export type DialogContentTextClassKey = keyof NonNullable<
+  DialogContentTextTypeMap['props']['classes']
+>;
 
 /**
  *

@@ -21,7 +21,7 @@ export interface DialogTitleProps extends StandardProps<React.HTMLAttributes<HTM
   disableTypography?: boolean;
 }
 
-export type DialogTitleClassKey = 'root';
+export type DialogTitleClassKey = keyof NonNullable<DialogTitleProps['classes']>;
 
 /**
  *

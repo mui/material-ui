@@ -36,13 +36,7 @@ export interface SpeedDialIconProps
   open?: boolean;
 }
 
-export type SpeedDialIconClassKey =
-  | 'root'
-  | 'icon'
-  | 'iconOpen'
-  | 'iconWithOpenIconOpen'
-  | 'openIcon'
-  | 'openIconOpen';
+export type SpeedDialIconClassKey = keyof NonNullable<SpeedDialIconProps['classes']>;
 
 /**
  *

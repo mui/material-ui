@@ -70,7 +70,7 @@ export interface PaginationProps
   variant?: OverridableStringUnion<PaginationVariantDefaults, PaginationPropsVariantOverrides>;
 }
 
-export type PaginationClassKey = 'root' | 'ul';
+export type PaginationClassKey = keyof NonNullable<PaginationProps['classes']>;
 
 /**
  *

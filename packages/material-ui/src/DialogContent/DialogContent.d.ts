@@ -22,7 +22,7 @@ export interface DialogContentProps extends StandardProps<React.HTMLAttributes<H
   dividers?: boolean;
 }
 
-export type DialogContentClassKey = 'root' | 'dividers';
+export type DialogContentClassKey = keyof NonNullable<DialogContentProps['classes']>;
 
 /**
  *

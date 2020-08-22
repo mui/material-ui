@@ -47,7 +47,7 @@ export interface CardMediaTypeMap<P, D extends React.ElementType> {
  */
 declare const CardMedia: OverridableComponent<CardMediaTypeMap<{}, 'div'>>;
 
-export type CardMediaClassKey = 'root' | 'media';
+export type CardMediaClassKey = keyof NonNullable<CardMediaProps['classes']>;
 
 export type CardMediaProps<D extends React.ElementType = 'div', P = {}> = OverrideProps<
   CardMediaTypeMap<P, D>,

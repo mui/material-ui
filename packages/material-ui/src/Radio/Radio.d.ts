@@ -43,7 +43,7 @@ export interface RadioProps
   size?: 'small' | 'medium';
 }
 
-export type RadioClassKey = SwitchBaseClassKey | 'colorPrimary' | 'colorSecondary';
+export type RadioClassKey = keyof NonNullable<RadioProps['classes']>;
 
 /**
  *

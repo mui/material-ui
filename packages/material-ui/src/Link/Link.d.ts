@@ -61,13 +61,7 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
  */
 declare const Link: OverridableComponent<LinkTypeMap>;
 
-export type LinkClassKey =
-  | 'root'
-  | 'underlineNone'
-  | 'underlineHover'
-  | 'underlineAlways'
-  | 'button'
-  | 'focusVisible';
+export type LinkClassKey = keyof NonNullable<LinkTypeMap['props']['classes']>;
 
 export type LinkBaseProps = React.AnchorHTMLAttributes<HTMLAnchorElement> &
   Omit<TypographyProps, 'children' | 'component' | 'color' | 'variant'>;

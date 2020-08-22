@@ -77,17 +77,7 @@ export type TabTypeMap<P = {}, D extends React.ElementType = 'div'> = ExtendButt
  */
 declare const Tab: ExtendButtonBase<TabTypeMap>;
 
-export type TabClassKey =
-  | 'root'
-  | 'labelIcon'
-  | 'textColorInherit'
-  | 'textColorPrimary'
-  | 'textColorSecondary'
-  | 'selected'
-  | 'disabled'
-  | 'fullWidth'
-  | 'wrapped'
-  | 'wrapper';
+export type TabClassKey = keyof NonNullable<TabTypeMap['props']['classes']>;
 
 export type TabProps<
   D extends React.ElementType = TabTypeMap['defaultComponent'],

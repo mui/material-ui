@@ -142,18 +142,7 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
   TransitionProps?: TransitionProps;
 }
 
-export type TooltipClassKey =
-  | 'popper'
-  | 'popperInteractive'
-  | 'popperArrow'
-  | 'tooltip'
-  | 'tooltipArrow'
-  | 'arrow'
-  | 'touch'
-  | 'tooltipPlacementLeft'
-  | 'tooltipPlacementRight'
-  | 'tooltipPlacementTop'
-  | 'tooltipPlacementBottom';
+export type TooltipClassKey = keyof NonNullable<TooltipProps['classes']>;
 
 /**
  *

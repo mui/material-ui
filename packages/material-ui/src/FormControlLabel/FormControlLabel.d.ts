@@ -59,13 +59,7 @@ export interface FormControlLabelProps
   value?: unknown;
 }
 
-export type FormControlLabelClassKey =
-  | 'root'
-  | 'labelPlacementStart'
-  | 'labelPlacementTop'
-  | 'labelPlacementBottom'
-  | 'disabled'
-  | 'label';
+export type FormControlLabelClassKey = keyof NonNullable<FormControlLabelProps['classes']>;
 
 /**
  * Drop in replacement of the `Radio`, `Switch` and `Checkbox` component.

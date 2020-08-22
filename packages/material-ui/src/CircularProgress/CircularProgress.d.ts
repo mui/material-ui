@@ -60,17 +60,7 @@ export interface CircularProgressProps
   variant?: 'determinate' | 'indeterminate';
 }
 
-export type CircularProgressClassKey =
-  | 'root'
-  | 'determinate'
-  | 'indeterminate'
-  | 'colorPrimary'
-  | 'colorSecondary'
-  | 'svg'
-  | 'circle'
-  | 'circleDeterminate'
-  | 'circleIndeterminate'
-  | 'circleDisableShrink';
+export type CircularProgressClassKey = keyof NonNullable<CircularProgressProps['classes']>;
 
 /**
  * ## ARIA

@@ -42,16 +42,7 @@ export interface AppBarProps extends StandardProps<PaperProps> {
   position?: 'fixed' | 'absolute' | 'sticky' | 'static' | 'relative';
 }
 
-export type AppBarClassKey =
-  | 'root'
-  | 'positionFixed'
-  | 'positionAbsolute'
-  | 'positionSticky'
-  | 'positionStatic'
-  | 'positionRelative'
-  | 'colorDefault'
-  | 'colorPrimary'
-  | 'colorSecondary';
+export type AppBarClassKey = keyof NonNullable<AppBarProps['classes']>;
 
 /**
  *

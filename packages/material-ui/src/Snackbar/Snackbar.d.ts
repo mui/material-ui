@@ -118,14 +118,7 @@ export interface SnackbarProps
   TransitionProps?: TransitionProps;
 }
 
-export type SnackbarClassKey =
-  | 'root'
-  | 'anchorOriginTopCenter'
-  | 'anchorOriginBottomCenter'
-  | 'anchorOriginTopRight'
-  | 'anchorOriginBottomRight'
-  | 'anchorOriginTopLeft'
-  | 'anchorOriginBottomLeft';
+export type SnackbarClassKey = keyof NonNullable<SnackbarProps['classes']>;
 
 /**
  *

@@ -66,14 +66,7 @@ export interface DividerTypeMap<P = {}, D extends React.ElementType = 'hr'> {
  */
 declare const Divider: OverridableComponent<DividerTypeMap>;
 
-export type DividerClassKey =
-  | 'root'
-  | 'absolute'
-  | 'inset'
-  | 'fullWidth'
-  | 'light'
-  | 'middle'
-  | 'vertical';
+export type DividerClassKey = keyof NonNullable<DividerTypeMap['props']['classes']>;
 
 export type DividerProps<
   D extends React.ElementType = DividerTypeMap['defaultComponent'],

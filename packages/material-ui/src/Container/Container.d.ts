@@ -58,15 +58,7 @@ export interface ContainerTypeMap<P = {}, D extends React.ElementType = 'div'> {
  */
 declare const Container: OverridableComponent<ContainerTypeMap>;
 
-export type ContainerClassKey =
-  | 'root'
-  | 'disableGutters'
-  | 'fixed'
-  | 'maxWidthXs'
-  | 'maxWidthSm'
-  | 'maxWidthMd'
-  | 'maxWidthLg'
-  | 'maxWidthXl';
+export type ContainerClassKey = keyof NonNullable<ContainerTypeMap['props']['classes']>;
 
 export type ContainerProps<
   D extends React.ElementType = ContainerTypeMap['defaultComponent'],

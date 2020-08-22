@@ -16,7 +16,7 @@ export interface AlertTitleProps extends StandardProps<React.HTMLAttributes<HTML
   };
 }
 
-export type AlertTitleClassKey = 'root';
+export type AlertTitleClassKey = keyof NonNullable<AlertTitleProps['classes']>;
 
 /**
  *

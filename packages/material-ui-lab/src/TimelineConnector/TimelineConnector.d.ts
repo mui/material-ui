@@ -17,7 +17,7 @@ export interface TimelineConnectorProps
   };
 }
 
-export type TimelineConnectorClassKey = 'root';
+export type TimelineConnectorClassKey = keyof NonNullable<TimelineConnectorProps['classes']>;
 
 /**
  *

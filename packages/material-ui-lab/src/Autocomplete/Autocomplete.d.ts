@@ -234,28 +234,9 @@ export interface AutocompleteProps<
   size?: 'small' | 'medium';
 }
 
-export type AutocompleteClassKey =
-  | 'root'
-  | 'focused'
-  | 'tag'
-  | 'tagSizeSmall'
-  | 'inputRoot'
-  | 'input'
-  | 'inputFocused'
-  | 'endAdornment'
-  | 'clearIndicator'
-  | 'clearIndicatorDirty'
-  | 'popupIndicator'
-  | 'popupIndicatorOpen'
-  | 'popper'
-  | 'popperDisablePortal'
-  | 'paper'
-  | 'listbox'
-  | 'loading'
-  | 'noOptions'
-  | 'option'
-  | 'groupLabel'
-  | 'groupUl';
+export type AutocompleteClassKey = keyof NonNullable<
+  AutocompleteProps<any, any, any, any>['classes']
+>;
 
 /**
  *

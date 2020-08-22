@@ -60,12 +60,7 @@ export type TableSortLabelTypeMap<
  */
 declare const TableSortLabel: ExtendButtonBase<TableSortLabelTypeMap>;
 
-export type TableSortLabelClassKey =
-  | 'root'
-  | 'active'
-  | 'icon'
-  | 'iconDirectionDesc'
-  | 'iconDirectionAsc';
+export type TableSortLabelClassKey = keyof NonNullable<TableSortLabelTypeMap['props']['classes']>;
 
 export type TableSortLabelProps<
   D extends React.ElementType = TableSortLabelTypeMap['defaultComponent'],

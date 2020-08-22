@@ -47,7 +47,7 @@ export interface StepperProps extends StandardProps<PaperProps> {
   orientation?: Orientation;
 }
 
-export type StepperClasskey = 'root' | 'horizontal' | 'vertical' | 'alternativeLabel';
+export type StepperClasskey = keyof NonNullable<StepperProps['classes']>;
 
 /**
  *

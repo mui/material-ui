@@ -3,7 +3,7 @@ import { ListItemTypeMap, ListItemProps } from '../ListItem';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ExtendButtonBase } from '../ButtonBase';
 
-export type MenuItemClassKey = 'root' | 'gutters' | 'selected' | 'dense';
+export type MenuItemClassKey = keyof NonNullable<MenuItemTypeMap['props']['classes']>;
 
 export interface MenuItemTypeMap<P = {}, D extends React.ElementType = 'li'> {
   props: P &

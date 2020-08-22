@@ -56,16 +56,7 @@ export interface IconTypeMap<P = {}, D extends React.ElementType = 'span'> {
  */
 declare const Icon: OverridableComponent<IconTypeMap>;
 
-export type IconClassKey =
-  | 'root'
-  | 'colorSecondary'
-  | 'colorAction'
-  | 'colorDisabled'
-  | 'colorError'
-  | 'colorPrimary'
-  | 'fontSizeInherit'
-  | 'fontSizeSmall'
-  | 'fontSizeLarge';
+export type IconClassKey = keyof NonNullable<IconTypeMap['props']['classes']>;
 
 export type IconProps<
   D extends React.ElementType = IconTypeMap['defaultComponent'],

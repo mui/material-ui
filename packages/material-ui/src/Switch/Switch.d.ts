@@ -62,14 +62,7 @@ export interface SwitchProps
   value?: unknown;
 }
 
-export type SwitchClassKey =
-  | SwitchBaseClassKey
-  | 'switchBase'
-  | 'colorPrimary'
-  | 'colorSecondary'
-  | 'sizeSmall'
-  | 'thumb'
-  | 'track';
+export type SwitchClassKey = keyof NonNullable<SwitchProps['classes']>;
 
 /**
  *

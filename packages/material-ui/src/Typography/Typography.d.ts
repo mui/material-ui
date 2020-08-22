@@ -151,36 +151,6 @@ export type TypographyProps<
   P = {}
 > = OverrideProps<TypographyTypeMap<P, D>, D>;
 
-export type TypographyClassKey =
-  | 'root'
-  | 'h1'
-  | 'h2'
-  | 'h3'
-  | 'h4'
-  | 'h5'
-  | 'h6'
-  | 'subtitle1'
-  | 'subtitle2'
-  | 'body1'
-  | 'body2'
-  | 'caption'
-  | 'button'
-  | 'overline'
-  | 'inherit'
-  | 'alignLeft'
-  | 'alignCenter'
-  | 'alignRight'
-  | 'alignJustify'
-  | 'noWrap'
-  | 'gutterBottom'
-  | 'paragraph'
-  | 'colorInherit'
-  | 'colorPrimary'
-  | 'colorSecondary'
-  | 'colorTextPrimary'
-  | 'colorTextSecondary'
-  | 'colorError'
-  | 'displayInline'
-  | 'displayBlock';
+export type TypographyClassKey = keyof NonNullable<TypographyTypeMap['props']['classes']>;
 
 export default Typography;

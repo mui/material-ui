@@ -46,7 +46,7 @@ export interface FilledInputProps extends StandardProps<InputBaseProps> {
   disableUnderline?: boolean;
 }
 
-export type FilledInputClassKey = InputBaseClassKey | 'colorSecondary' | 'underline';
+export type FilledInputClassKey = keyof NonNullable<FilledInputProps['classes']>;
 
 /**
  *

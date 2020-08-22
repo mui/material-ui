@@ -46,7 +46,7 @@ export interface GridListTileTypeMap<P = {}, D extends React.ElementType = 'li'>
  */
 declare const GridListTile: OverridableComponent<GridListTileTypeMap>;
 
-export type GridListTileClassKey = 'root' | 'tile' | 'imgFullHeight' | 'imgFullWidth';
+export type GridListTileClassKey = keyof NonNullable<GridListTileTypeMap['props']['classes']>;
 
 export type GridListTileProps<
   D extends React.ElementType = GridListTileTypeMap['defaultComponent'],

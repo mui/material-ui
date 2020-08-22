@@ -158,35 +158,6 @@ export type ButtonProps<
   P = {}
 > = OverrideProps<ButtonTypeMap<P, D>, D>;
 
-export type ButtonClassKey =
-  | 'root'
-  | 'label'
-  | 'text'
-  | 'textPrimary'
-  | 'textSecondary'
-  | 'outlined'
-  | 'outlinedPrimary'
-  | 'outlinedSecondary'
-  | 'contained'
-  | 'containedPrimary'
-  | 'containedSecondary'
-  | 'disableElevation'
-  | 'focusVisible'
-  | 'disabled'
-  | 'colorInherit'
-  | 'textSizeSmall'
-  | 'textSizeLarge'
-  | 'outlinedSizeSmall'
-  | 'outlinedSizeLarge'
-  | 'containedSizeSmall'
-  | 'containedSizeLarge'
-  | 'sizeSmall'
-  | 'sizeLarge'
-  | 'fullWidth'
-  | 'startIcon'
-  | 'endIcon'
-  | 'iconSizeSmall'
-  | 'iconSizeMedium'
-  | 'iconSizeLarge';
+export type ButtonClassKey = keyof NonNullable<ButtonTypeMap['props']['classes']>;
 
 export default Button;

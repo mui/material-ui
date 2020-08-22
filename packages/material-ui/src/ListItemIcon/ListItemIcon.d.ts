@@ -18,7 +18,7 @@ export interface ListItemIconProps extends StandardProps<React.HTMLAttributes<HT
   };
 }
 
-export type ListItemIconClassKey = 'root' | 'alignItemsFlexStart';
+export type ListItemIconClassKey = keyof NonNullable<ListItemIconProps['classes']>;
 
 /**
  * A simple wrapper to apply `List` styles to an `Icon` or `SvgIcon`.

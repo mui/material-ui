@@ -49,7 +49,7 @@ export interface StepProps extends StandardProps<React.HTMLAttributes<HTMLDivEle
   last?: boolean;
 }
 
-export type StepClasskey = 'root' | 'horizontal' | 'vertical' | 'alternativeLabel' | 'completed';
+export type StepClasskey = keyof NonNullable<StepProps['classes']>;
 
 /**
  *

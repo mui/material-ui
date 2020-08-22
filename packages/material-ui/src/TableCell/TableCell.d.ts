@@ -89,19 +89,7 @@ export type TableCellBaseProps = React.ThHTMLAttributes<HTMLTableHeaderCellEleme
 
 export type SortDirection = 'asc' | 'desc' | false;
 
-export type TableCellClassKey =
-  | 'root'
-  | 'head'
-  | 'body'
-  | 'footer'
-  | 'alignLeft'
-  | 'alignCenter'
-  | 'alignRight'
-  | 'alignJustify'
-  | 'sizeSmall'
-  | 'paddingCheckbox'
-  | 'paddingNone'
-  | 'stickyHeader';
+export type TableCellClassKey = keyof NonNullable<TableCellProps['classes']>;
 
 /**
  * The component renders a `<th>` element when the parent context is a header

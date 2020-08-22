@@ -70,16 +70,7 @@ export interface SkeletonTypeMap<P = {}, D extends React.ElementType = 'span'> {
  */
 declare const Skeleton: OverridableComponent<SkeletonTypeMap>;
 
-export type SkeletonClassKey =
-  | 'root'
-  | 'text'
-  | 'rectangular'
-  | 'circular'
-  | 'pulse'
-  | 'wave'
-  | 'withChildren'
-  | 'fitContent'
-  | 'heightAuto';
+export type SkeletonClassKey = keyof NonNullable<SkeletonTypeMap['props']['classes']>;
 
 export type SkeletonProps<
   D extends React.ElementType = SkeletonTypeMap['defaultComponent'],

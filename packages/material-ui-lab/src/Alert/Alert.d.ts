@@ -100,26 +100,7 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
   variant?: OverridableStringUnion<AlertVariantDefaults, AlertPropsVariantOverrides>;
 }
 
-export type AlertClassKey =
-  | 'root'
-  | 'filled'
-  | 'standard'
-  | 'outlined'
-  | 'standardSuccess'
-  | 'standardInfo'
-  | 'standardWarning'
-  | 'standardError'
-  | 'outlinedSuccess'
-  | 'outlinedInfo'
-  | 'outlinedWarning'
-  | 'outlinedError'
-  | 'filledSuccess'
-  | 'filledInfo'
-  | 'filledWarning'
-  | 'filledError'
-  | 'icon'
-  | 'message'
-  | 'action';
+export type AlertClassKey = keyof NonNullable<AlertProps['classes']>;
 
 /**
  *

@@ -120,23 +120,7 @@ export interface RatingProps
   value?: number | null;
 }
 
-export type RatingClassKey =
-  | 'root'
-  | 'sizeSmall'
-  | 'sizeLarge'
-  | 'readOnly'
-  | 'disabled'
-  | 'focusVisible'
-  | 'visuallyHidden'
-  | 'pristine'
-  | 'label'
-  | 'icon'
-  | 'iconEmpty'
-  | 'iconFilled'
-  | 'iconHover'
-  | 'iconFocus'
-  | 'iconActive'
-  | 'decimal';
+export type RatingClassKey = keyof NonNullable<RatingProps['classes']>;
 
 /**
  *
