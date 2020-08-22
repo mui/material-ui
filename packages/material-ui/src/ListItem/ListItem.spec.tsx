@@ -27,6 +27,6 @@ function MouseEnterTest() {
 
   function handleMouseEnterButton(event: React.MouseEvent<HTMLDivElement>) {}
   // @ts-expect-error
-  <ListItem onMouseEnter={handleMouseEnterButton} />; // desired: missing property button
+  <ListItem onMouseEnter={handleMouseEnterButton} />; // desired: missing prop button
   <ListItem button onMouseEnter={handleMouseEnterButton} />;
 }

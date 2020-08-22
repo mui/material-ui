@@ -44,7 +44,7 @@ The `MuiTabs` name can be used for providing [default props](/customization/glob
 | <span class="prop-name">TabIndicatorProps</span> | <span class="prop-type">object</span> | <span class="prop-default">{}</span> | Props applied to the tab indicator element. |
 | <span class="prop-name">TabScrollButtonProps</span> | <span class="prop-type">object</span> |  | Props applied to the [`TabScrollButton`](/api/tab-scroll-button/) element. |
 | <span class="prop-name">textColor</span> | <span class="prop-type">'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'</span> | <span class="prop-default">'inherit'</span> | Determines the color of the `Tab`. |
-| <span class="prop-name">value</span> | <span class="prop-type">any</span> |  | The value of the currently selected `Tab`. If you don't want any selected `Tab`, you can set this property to `false`. |
+| <span class="prop-name">value</span> | <span class="prop-type">any</span> |  | The value of the currently selected `Tab`. If you don't want any selected `Tab`, you can set this prop to `false`. |
 | <span class="prop-name">variant</span> | <span class="prop-type">'fullWidth'<br>&#124;&nbsp;'scrollable'<br>&#124;&nbsp;'standard'</span> | <span class="prop-default">'standard'</span> | Determines additional display behavior of the tabs:<br> - `scrollable` will invoke scrolling properties and allow for horizontally  scrolling (or swiping) of the tab bar.  -`fullWidth` will make the tabs grow to use all the available space,  which should be used for small views, like on mobile.  - `standard` will render the default state. |
 
 The `ref` is forwarded to the root element.
