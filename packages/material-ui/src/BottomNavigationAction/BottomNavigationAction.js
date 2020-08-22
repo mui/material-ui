@@ -203,6 +203,8 @@ BottomNavigationAction.propTypes = {
    * If `true`, the `BottomNavigationAction` will show its label.
    * By default, only the selected `BottomNavigationAction`
    * inside `BottomNavigation` will show its label.
+   *
+   * The prop defaults to the value (`false`) inherited by the parent BottomNavigation component.
    */
   showLabel: PropTypes.bool,
   /**
