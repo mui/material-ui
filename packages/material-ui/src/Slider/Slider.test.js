@@ -255,12 +255,12 @@ describe('<Slider />', () => {
       expect(getByRole('slider')).to.not.have.attribute('tabIndex');
     });
 
-    // jsdom doesn't blur correctly
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      return;
-    }
+    it('should not respond to drag events after becoming disabled', function test() {
+      // jsdom doesn't blur correctly
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
 
-    it('should not respond to drag events after becoming disabled', () => {
       const { getByRole, setProps, container } = render(<Slider defaultValue={0} />);
 
       stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
@@ -292,7 +292,12 @@ describe('<Slider />', () => {
       expect(thumb).to.have.attribute('aria-valuenow', '21');
     });
 
-    it('is not focused (visibly) after becoming disabled', () => {
+    it('is not focused (visibly) after becoming disabled', function test() {
+      // jsdom doesn't blur correctly
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
       const { getByRole, setProps } = render(<Slider defaultValue={0} />);
 
       const thumb = getByRole('slider');
