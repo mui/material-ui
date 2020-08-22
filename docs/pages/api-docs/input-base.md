@@ -77,6 +77,7 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">multiline</span> | <span class="prop-name">.MuiInputBase-multiline</span> | Styles applied to the root element if `multiline={true}`.
 | <span class="prop-name">colorSecondary</span> | <span class="prop-name">.MuiInputBase-colorSecondary</span> | Styles applied to the root element if the color is secondary.
 | <span class="prop-name">fullWidth</span> | <span class="prop-name">.MuiInputBase-fullWidth</span> | Styles applied to the root element if `fullWidth={true}`.
+| <span class="prop-name">hiddenLabel</span> | <span class="prop-name">.MuiInputBase-hiddenLabel</span> | Styles applied to the root element if `hiddenLabel={true}`.
 | <span class="prop-name">input</span> | <span class="prop-name">.MuiInputBase-input</span> | Styles applied to the `input` element.
 | <span class="prop-name">inputMarginDense</span> | <span class="prop-name">.MuiInputBase-inputMarginDense</span> | Styles applied to the `input` element if `margin="dense"`.
 | <span class="prop-name">inputMultiline</span> | <span class="prop-name">.MuiInputBase-inputMultiline</span> | Styles applied to the `input` element if `multiline={true}`.
