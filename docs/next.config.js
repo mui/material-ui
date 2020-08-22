@@ -84,6 +84,14 @@ module.exports = {
     return {
       ...config,
       plugins,
+      resolve: {
+        ...config.resolve,
+        // resolve .tsx first
+        extensions: [
+          '.tsx',
+          ...config.resolve.extensions.filter((extension) => extension !== '.tsx'),
+        ],
+      },
       node: {
         fs: 'empty',
       },
