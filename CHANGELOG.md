@@ -1,5 +1,135 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 5.0.0-alpha.7
+
+###### _Aug 22, 2020_
+
+Big thanks to the 22 contributors who made this release possible.
+Here are some highlights ✨:
+
+- 💎 A new diamond sponsor: [Octopus](https://octopus.com/), thank you!
+- ⚛️ Migrate parts of the codebase to TypeScript (#22295, #22280, #22179, #22195) @rothbart, @eps1lon, @oliviertassinari.
+- 💅 Add support for custom variant to most of the components (9 new components in this release) @mnajdova
+- ⚛️ Keep working on React 17 support (#22270, #22262) @eps1lon
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@material-ui/core@v5.0.0-alpha.7`
+
+### Breaking changes
+
+- [Menu] Remove transition onX props (#22212) @mbrookes
+  The onE\* transition props were removed. Use TransitionProps instead.
+
+  ```diff
+  <Menu
+  -  onEnter={onEnter}
+  -  onEntered={onEntered},
+  -  onEntering={onEntered},
+  -  onExit={onEntered},
+  -  onExited={onEntered},
+  -  onExiting={onEntered}
+  +  TransitionProps={{
+  +    onEnter,
+  +    onEntered,
+  +    onEntering,
+  +    onExit,
+  +    onExited,
+  +    onExiting,
+  +  }}
+  >
+  ```
+
+- [Popover] Remove transition onX props (#22184) @mbrookes
+  The onE\* transition props were removed. Use TransitionProps instead.
+
+    ```diff
+    <Popover
+    -  onEnter={onEnter}
+    -  onEntered={onEntered},
+    -  onEntering={onEntered},
+    -  onExit={onEntered},
+    -  onExited={onEntered},
+    -  onExiting={onEntered}
+    +  TransitionProps={{
+    +    onEnter,
+    +    onEntered,
+    +    onEntering,
+    +    onExit,
+    +    onExited,
+    +    onExiting,
+    +  }}
+    />
+    ```
+
+- [TextField] Improve line-height reset (#22149) @imnasnainaec
+  Increase the line-height by 4px to support long descender on special alphabets.
+  If you were overriding the input vertical padding, reduce it by 4px.
+
+### Changes
+
+- [Accordion] Fix scroll anchoring (#22292) @brickmaker17
+- [colorManipulator] Add support for CSS Color Module Level 4 (#20790) @marcosvega91
+- [Divider] Custom variant (#22182) @mnajdova
+- [Fab] Custom variant (#22189) @mnajdova
+- [l10n] Add Thai (th-TH) locale (#22242) @smoogi
+- [l10n] Improve ja-JP locale (#22287) @chelproc
+- [Link] Custom variant (#22204) @mnajdova
+- [Paper] Custom variant (#22216) @mnajdova
+- [Slider] Improve touch passive event handling (#22269) @mikhalev-im
+- [Stepper] Fix spacing without StepContent (#22199) @Floriferous
+- [SwipeableDrawer] Fix prevented inner scroll (#22254) @BramKaashoek
+- [Tabs] Add aria-orientation of vertical (#22291) @eps1lon
+- [Tabs] Document how to make scroll icons visible (#22255) @Sorgrum
+- [TextField] Add hidden label to multi-line filled textfield (#22284) @fakeharahman
+- [Toolbar] Custom variant (#22217) @mnajdova
+- [TrapFocus] Entangle effects (#22155) @eps1lon
+- [TrapFocus] Fix compatibility issues with React 17 (#22270) @eps1lon
+- [TrapFocus] Prevent possible crash in React 17 (#22262) @eps1lon
+
+### `@material-ui/icons@v5.0.0-alpha.7`
+
+- [icons] Synchronize icons (#22186) @oliviertassinari
+
+### `@material-ui/styles@v5.0.0-alpha.7`
+
+- [core] Change children to be optional (#22134) @suliskh
+
+### `@material-ui/lab@v5.0.0-alpha.7`
+
+- [Alert] Custom variant (#22218) @mnajdova
+- [Pagination] Custom variant (#22220, #22219) @mnajdova
+- [Skeleton] Custom variant (#22243) @mnajdova
+- [SpeedDial] Add support for uncontrolled open state (#22248) @akharkhonov
+- [Timeline] Custom variant (#22244) @mnajdova
+
+### Docs
+
+- [docs] Add Design resources in installation (#22209) @oliviertassinari
+- [docs] Add Octopus diamond sponsor (#22177) @oliviertassinari
+- [docs] Better track usage of icons (#22187) @oliviertassinari
+- [docs] Change property/properties to prop/props (#22271) @mbrookes
+- [docs] Document TextField helperText height (#22146) @morgan-sam
+- [docs] Fix `@global` being considered a class (#22297) @eps1lon
+- [docs] Fix a typo on TextField components (#22300) @Renfrew
+- [docs] Fix use of removed transition onE* props (#22286) @mbrookes
+- [docs] Improve codesandbox generation logic (#22221) @oliviertassinari
+- [docs] Migrate Onepirate to TypeScript (#22295) @rothbart
+- [docs] Migrate Dashboard template to TypeScript (#22280) @oliviertassinari
+- [docs] Fix minimizing-bundle-size.md (#22298) @Primajin
+
+### Core
+
+- [core] Batch small changes (#22183) @oliviertassinari
+- [core] Change children to be optional (#22134) @suliskh
+- [test] Clear fake timers only in afterEach hook (#22307) @dmtrKovalenko
+- [test] Convert initMatchers to TypeScript (#22179) @eps1lon
+- [test] Improve toHaveVirtualFocus error message (#22185) @eps1lon
+- [test] Lint fix the custom rules plugin for useThemeVariants (#22192) @mnajdova
+- [test] Make all tests runnable with React 17 (#22290) @eps1lon
+- [test] Prevent swallowing errors during setup (#22196) @eps1lon
+- [test] Setup infra for tests in TypeScript (#22195) @eps1lon
+- [test] Update react next patch (#22260) @eps1lon
+
 ## 5.0.0-alpha.6
 
 ###### _Aug 13, 2020_

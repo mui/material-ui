@@ -1,18 +1,22 @@
 ---
 title: Circular, Linear progress React components
 components: CircularProgress, LinearProgress
+githubLabel: component: CircularProgress
+materialDesign: https://material.io/components/progress-indicators
 ---
 
 # Progress
 
-<p class="description">Progress indicators commonly known as spinners, express an unspecified wait time or display the length of a process. The animation works with CSS, not JavaScript.</p>
+<p class="description">Progress indicators commonly known as spinners, express an unspecified wait time or display the length of a process.</p>
 
-[Progress indicators](https://material.io/design/components/progress-indicators.html) inform users about the status of ongoing processes, such as loading an app, submitting a form, or saving updates. They communicate an app’s state and indicate available actions, such as whether users can navigate away from the current screen.
+Progress indicators inform users about the status of ongoing processes, such as loading an app, submitting a form, or saving updates.
 
 - **Determinate** indicators display how long an operation will take.
 - **Indeterminate** indicators visualize an unspecified wait time.
 
-When displaying progress for a sequence of processes, indicate overall progress rather than the progress of each activity.
+The animations of the components rely on CSS as much as possible to work even before the JavaScript is loaded.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Circular
 

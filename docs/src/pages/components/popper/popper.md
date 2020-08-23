@@ -1,6 +1,7 @@
 ---
 title: Popper React component
 components: Popper
+githubLabel: component: Popper
 ---
 
 # Popper
@@ -20,7 +21,9 @@ Some important features of the `Popper` component:
   If you need this behavior, you can use [`ClickAwayListener`](/components/click-away-listener/) - see the example in the [menu documentation section](/components/menus/#menulist-composition).
 - The `anchorEl` is passed as the reference object to create a new `Popper.js` instance.
 
-## Simple Popper
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
+## Basic popper
 
 {{"demo": "pages/components/popper/SimplePopper.js"}}
 

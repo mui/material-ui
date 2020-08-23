@@ -1,21 +1,23 @@
 ---
 title: Fab React component
 components: Fab
+githubLabel: component: Fab
+materialDesign: https://material.io/components/buttons-floating-action-button
 ---
 
 # Floating action button
 
 <p class="description">A floating action button (FAB) performs the primary, or most common, action on a screen.</p>
 
-## Floating Action Button
-
-A [floating action button](https://material.io/design/components/buttons-floating-action-button.html)
-appears in front of all screen content, typically as a circular shape with an icon in its center.
+A floating action button appears in front of all screen content, typically as a circular shape with an icon in its center.
 FABs come in two types: regular, and extended.
 
 Only use a FAB if it is the most suitable way to present a screen’s primary action.
+Only one component is recommended per screen to represent the most common action.
 
-Only one floating action button is recommended per screen to represent the most common action.
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
+## Basic FAB
 
 {{"demo": "pages/components/floating-action-button/FloatingActionButtons.js"}}
 

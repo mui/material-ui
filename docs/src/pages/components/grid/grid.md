@@ -1,6 +1,8 @@
 ---
 title: Grid React component
 components: Grid
+githubLabel: component: Grid
+materialDesign: https://material.io/design/layout/understanding-layout.html
 ---
 
 # Grid
@@ -9,6 +11,8 @@ components: Grid
 
 The [grid](https://material.io/design/layout/responsive-layout-grid.html) creates visual consistency between layouts while allowing flexibility across a wide variety of designs.
 Material Design’s responsive UI is based on a 12-column grid layout.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## How it works
 

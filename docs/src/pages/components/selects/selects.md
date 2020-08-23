@@ -1,11 +1,14 @@
 ---
 title: Select React component
 components: Select, NativeSelect
+githubLabel: component: Select
 ---
 
 # Select
 
 <p class="description">Select components are used for collecting user provided information from a list of options.</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Basic select
 

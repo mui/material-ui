@@ -40,7 +40,7 @@ Deciding where to put a test is (like naming things) a hard problem:
   a lot of styles consider adding a component (that doesn't require any interaction)
   to `test/regressions/tests/` e.g. `test/regressions/tests/List/ListWithSomeStyleProp`
 
-### Unexpected calls to `console.error` or `console.war`
+### Unexpected calls to `console.error` or `console.warn`
 
 By default our test suite fails if any test recorded `console.error` or `console.warn` calls:
 ![unexpected console.error call](./unexpected-console-error-call.png)

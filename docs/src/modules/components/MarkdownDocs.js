@@ -22,6 +22,11 @@ import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import Ad from 'docs/src/modules/components/Ad';
 import AdManager from 'docs/src/modules/components/AdManager';
 import AdGuest from 'docs/src/modules/components/AdGuest';
+import ComponentLinkHeader from 'docs/src/modules/components/ComponentLinkHeader';
+
+const markdownComponents = {
+  'modules/components/ComponentLinkHeader.js': ComponentLinkHeader,
+};
 
 function flattenPages(pages, current = []) {
   return pages.reduce((items, item) => {
@@ -94,7 +99,7 @@ function MarkdownDocs(props) {
 
   const t = useSelector((state) => state.options.t);
   const userLanguage = useSelector((state) => state.options.userLanguage);
-  const { description, location, rendered, title, toc } = docs[userLanguage] || docs.en;
+  const { description, location, rendered, title, toc, headers } = docs[userLanguage] || docs.en;
   if (description === undefined) {
     throw new Error('Missing description in the page');
   }
@@ -127,12 +132,15 @@ function MarkdownDocs(props) {
             </div>
             {rendered.map((renderedMarkdownOrDemo, index) => {
               if (typeof renderedMarkdownOrDemo === 'string') {
-                const renderedMarkdown = renderedMarkdownOrDemo;
-                return <MarkdownElement key={index} renderedMarkdown={renderedMarkdown} />;
+                return <MarkdownElement key={index} renderedMarkdown={renderedMarkdownOrDemo} />;
               }
 
-              const demoOptions = renderedMarkdownOrDemo;
-              const name = demoOptions.demo;
+              if (renderedMarkdownOrDemo.component) {
+                const Component = markdownComponents[renderedMarkdownOrDemo.component];
+                return <Component key={index} headers={headers} options={renderedMarkdownOrDemo} />;
+              }
+
+              const name = renderedMarkdownOrDemo.demo;
               const demo = demos?.[name];
               if (demo === undefined) {
                 const errorMessage = [
@@ -162,18 +170,17 @@ function MarkdownDocs(props) {
               }
 
               return (
-                <React.Fragment key={index}>
-                  <Demo
-                    demo={{
-                      raw: demo.raw,
-                      js: requireDemo(demo.module).default,
-                      rawTS: demo.rawTS,
-                      tsx: demo.moduleTS ? requireDemo(demo.moduleTS).default : null,
-                    }}
-                    demoOptions={demoOptions}
-                    githubLocation={`${SOURCE_CODE_ROOT_URL}/docs/src/${name}`}
-                  />
-                </React.Fragment>
+                <Demo
+                  key={index}
+                  demo={{
+                    raw: demo.raw,
+                    js: requireDemo(demo.module).default,
+                    rawTS: demo.rawTS,
+                    tsx: demo.moduleTS ? requireDemo(demo.moduleTS).default : null,
+                  }}
+                  demoOptions={renderedMarkdownOrDemo}
+                  githubLocation={`${SOURCE_CODE_ROOT_URL}/docs/src/${name}`}
+                />
               );
             })}
             <footer className={classes.footer}>

@@ -1,6 +1,7 @@
 ---
 title: Container React component
 components: Container
+githubLabel: component: Container
 ---
 
 # Container
@@ -8,6 +9,8 @@ components: Container
 <p class="description">The container centers your content horizontally. It's the most basic layout element.</p>
 
 While containers can be nested, most layouts do not require a nested container.
+
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Fluid
 

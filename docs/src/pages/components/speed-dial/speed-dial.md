@@ -1,6 +1,8 @@
 ---
 title: Speed Dial React component
 components: SpeedDial, SpeedDialAction, SpeedDialIcon
+githubLabel: component: SpeedDial
+packageName: @material-ui/lab
 ---
 
 # Speed Dial
@@ -8,6 +10,8 @@ components: SpeedDial, SpeedDialAction, SpeedDialIcon
 <p class="description">When pressed, a floating action button can display three to six related actions in the form of a speed dial.</p>
 
 If more than six actions are needed, something other than a FAB should be used to present them.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Basic speed dial
 

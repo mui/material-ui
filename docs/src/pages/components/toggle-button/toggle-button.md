@@ -1,15 +1,20 @@
 ---
 title: Toggle Button React component
 components: ToggleButton, ToggleButtonGroup
+githubLabel: component: ToggleButton
+materialDesign: https://material.io/components/buttons#toggle-button
+packageName: @material-ui/lab
 ---
 
 # Toggle Buttons
 
 <p class="description">Toggle buttons can be used to group related options.</p>
 
-To emphasize groups of related [Toggle buttons](https://material.io/components/buttons#toggle-button),
+To emphasize groups of related Toggle buttons,
 a group should share a common container.
 The `ToggleButtonGroup` controls the selected state of its child buttons when given its own `value` prop.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Exclusive selection
 
