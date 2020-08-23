@@ -5176,10 +5176,10 @@ compression-webpack-plugin@^2.0.0:
     serialize-javascript "^1.4.0"
     webpack-sources "^1.0.1"
 
-compression-webpack-plugin@^4.0.0:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/compression-webpack-plugin/-/compression-webpack-plugin-4.0.1.tgz#33eda97f1170dd38c5556771de10f34245aa0274"
-  integrity sha512-0mg6PgwTsUe5LEcUrOu3ob32vraDx2VdbMGAT1PARcOV+UJWDYZFdkSo6RbHoGQ061mmmkC7XpRKOlvwm/gzJQ==
+compression-webpack-plugin@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/compression-webpack-plugin/-/compression-webpack-plugin-5.0.1.tgz#316c1a4e4ccc94510a978c967fc143581d1e3643"
+  integrity sha512-Wcb99O4UkdDZiM+blEw6h+cUfJYCn2kgK0l3fjLOm72Stso9DVMieQpBD4PVpyI7DLL6+zNh0iJV3p4HDwTinQ==
   dependencies:
     cacache "^15.0.5"
     find-cache-dir "^3.3.1"

@@ -87,7 +87,7 @@
     "chai": "^4.1.2",
     "chai-dom": "^1.8.1",
     "chalk": "^4.0.0",
-    "compression-webpack-plugin": "^4.0.0",
+    "compression-webpack-plugin": "^5.0.1",
     "confusing-browser-globals": "^1.0.9",
     "core-js": "^2.6.11",
     "cross-env": "^7.0.0",
