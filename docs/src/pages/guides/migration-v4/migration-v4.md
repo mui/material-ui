@@ -475,87 +475,91 @@ This change affects almost all components where you're using the `component` pro
 
 ### createMuiTheme
 
-- The components' definition inside the theme were restructure under the `components` key, to allow people easier discoverability about the definitions regarding one component. 
+- The components' definition inside the theme were restructure under the `components` key, to allow people easier discoverability about the definitions regarding one component.
 
 1. `props`
-  ```diff
-  import { createMuiTheme } from '@material-ui/core/styles';
 
-  const theme = createMuitheme({
-  -  props: {
-  -    MuiButton: {
-  -      disableRipple: true,  
-  -    },
-  -  },
-  +  components: {
-  +    MuiButton: {
-  +      props: {
-  +        disableRipple: true,
-  +      },
-  +    },
-  +  },
-  });  
-  ```
+```diff
+import { createMuiTheme } from '@material-ui/core/styles';
+
+const theme = createMuitheme({
+-  props: {
+-    MuiButton: {
+-      disableRipple: true,
+-    },
+-  },
++  components: {
++    MuiButton: {
++      props: {
++        disableRipple: true,
++      },
++    },
++  },
+});
+```
 
 2. `overrides`
-  ```diff
-  import { createMuiTheme } from '@material-ui/core/styles';
 
-  const theme = createMuitheme({
-  -  overrides: {
-  -    MuiButton: {
-  -      root: { padding: 0 },
-  -    },
-  -  },
-  +  components: {
-  +    MuiButton: {
-  +      overrides: {
-  +        root: { padding: 0 },
-  +      },
-  +    },
-  +  },
-  });  
-  ```  
+```diff
+import { createMuiTheme } from '@material-ui/core/styles';
+
+const theme = createMuitheme({
+-  overrides: {
+-    MuiButton: {
+-      root: { padding: 0 },
+-    },
+-  },
++  components: {
++    MuiButton: {
++      overrides: {
++        root: { padding: 0 },
++      },
++    },
++  },
+});
+```
 
 3. `variants`
-  ```diff
-  import { createMuiTheme } from '@material-ui/core/styles';
 
-  const theme = createMuitheme({
-  -  variants: {
-  -    MuiButton: [{
-  -      props: { variant: 'dashed' },
-  -      styles: { border: '1px dashed grey' },
-  -    }],
-  -  },
-  +  components: {
-  +    MuiButton: {
-  +      variants: [{
-  +        props: { variant: 'dashed' },
-  +        styles: { border: '1px dashed grey' },
-  +      }],
-  +    },
-  +  },
-  });  
-  ```
+```diff
+import { createMuiTheme } from '@material-ui/core/styles';
+
+const theme = createMuitheme({
+-  variants: {
+-    MuiButton: [{
+-      props: { variant: 'dashed' },
+-      styles: { border: '1px dashed grey' },
+-    }],
+-  },
++  components: {
++    MuiButton: {
++      variants: [{
++        props: { variant: 'dashed' },
++        styles: { border: '1px dashed grey' },
++      }],
++    },
++  },
+});
+```
 
 For allowing smoother transition, we've created adapter for v4 theme that clients can use, so they can iterativly upgrade to the new theme structure.
-  ```diff
-  -import { createMuiTheme } from '@material-ui/core/styles';
-  +import { createMuiTheme, adaptV4Theme } from '@material-ui/core/styles';
 
-  -const theme = createMuitheme({
-  +const theme = createMuitheme(adaptV4Theme({  
-    props: {
-      MuiButton: {
-        disableRipple: true,
-      },
+```diff
+-import { createMuiTheme } from '@material-ui/core/styles';
++import { createMuiTheme, adaptV4Theme } from '@material-ui/core/styles';
+
+-const theme = createMuitheme({
++const theme = createMuitheme(adaptV4Theme({
+  props: {
+    MuiButton: {
+      disableRipple: true,
     },
-    overrides: {
-      MuiButton: {
-        root: { padding: 0 },
-      },
+  },
+  overrides: {
+    MuiButton: {
+      root: { padding: 0 },
     },
-  -});  
-  +}));  
-  ```
+  },
+-});
++}));
+```
