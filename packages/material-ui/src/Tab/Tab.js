@@ -13,7 +13,6 @@ export const styles = (theme) => ({
     maxWidth: 264,
     minWidth: 72,
     position: 'relative',
-    boxSizing: 'border-box',
     minHeight: 48,
     flexShrink: 0,
     padding: '6px 12px',

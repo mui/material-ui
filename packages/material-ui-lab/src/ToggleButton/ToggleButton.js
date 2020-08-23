@@ -11,7 +11,6 @@ export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     ...theme.typography.button,
-    boxSizing: 'border-box',
     borderRadius: theme.shape.borderRadius,
     padding: 11,
     border: `1px solid ${fade(theme.palette.action.active, 0.12)}`,
