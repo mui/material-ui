@@ -143,7 +143,7 @@
     "size-limit": "^0.21.0",
     "ts-node": "^8.3.0",
     "tslint": "5.14.0",
-    "typescript": "^3.9.6",
+    "typescript": "^4.0.2",
     "unist-util-visit": "^2.0.2",
     "url-loader": "^4.1.0",
     "vrtest-mui": "^0.3.4",
