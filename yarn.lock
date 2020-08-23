@@ -2615,9 +2615,9 @@
   integrity sha512-OCutwjDZ4aFS6PB1UZ988C4YgwlBHJd6wCeQqaLdmadZ/7e+w79+hbMUFC1QXDNCmdyoRfAFdm0RypzwR+Qpag==
 
 "@types/eslint@^7.2.0":
-  version "7.2.0"
-  resolved "https://registry.yarnpkg.com/@types/eslint/-/eslint-7.2.0.tgz#eb5c5b575237334df24c53195e37b53d66478d7b"
-  integrity sha512-LpUXkr7fnmPXWGxB0ZuLEzNeTURuHPavkC5zuU4sg62/TgL5ZEjamr5Y8b6AftwHtx2bPJasI+CL0TT2JwQ7aA==
+  version "7.2.1"
+  resolved "https://registry.yarnpkg.com/@types/eslint/-/eslint-7.2.1.tgz#fcfbcccaecfb487b0fc5d44686807cc625f358b6"
+  integrity sha512-WjKivjZyeL65Qt8HLLGwyhC3NkhoPVgCvxPcCMb02k8fCSJH1vvDRefXmSHA4U9TcjOj024yCOxFgCPKC0gMXQ==
   dependencies:
     "@types/estree" "*"
     "@types/json-schema" "*"
