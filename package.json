@@ -141,7 +141,7 @@
     "rollup-plugin-terser": "^7.0.0",
     "sinon": "^9.0.0",
     "size-limit": "^0.21.0",
-    "ts-node": "^8.3.0",
+    "ts-node": "^9.0.0",
     "tslint": "5.14.0",
     "typescript": "^4.0.2",
     "unist-util-visit": "^2.0.2",
