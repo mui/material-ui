@@ -11,7 +11,11 @@ describe('adaptV4Theme', () => {
       },
     };
 
-    const transformedTheme = adaptV4Theme(theme);
+    let transformedTheme;
+
+    expect(() => {
+      transformedTheme = adaptV4Theme(theme);
+    }).toWarnDev(['adaptV4Theme() is deprecated']);
 
     expect(transformedTheme.components.MuiButton.props).to.deep.equal(theme.props.MuiButton);
   });
@@ -30,7 +34,11 @@ describe('adaptV4Theme', () => {
       },
     };
 
-    const transformedTheme = adaptV4Theme(theme);
+    let transformedTheme;
+
+    expect(() => {
+      transformedTheme = adaptV4Theme(theme);
+    }).toWarnDev(['adaptV4Theme() is deprecated']);
 
     expect(transformedTheme.components.MuiFab.variants).to.deep.equal(theme.variants.MuiFab);
   });
@@ -46,7 +54,11 @@ describe('adaptV4Theme', () => {
       },
     };
 
-    const transformedTheme = adaptV4Theme(theme);
+    let transformedTheme;
+
+    expect(() => {
+      transformedTheme = adaptV4Theme(theme);
+    }).toWarnDev(['adaptV4Theme() is deprecated']);
 
     expect(transformedTheme.components.MuiTable.overrides).to.deep.equal(theme.overrides.MuiTable);
   });
@@ -77,7 +89,11 @@ describe('adaptV4Theme', () => {
       },
     };
 
-    const transformedTheme = adaptV4Theme(theme);
+    let transformedTheme;
+
+    expect(() => {
+      transformedTheme = adaptV4Theme(theme);
+    }).toWarnDev(['adaptV4Theme() is deprecated']);
 
     expect(transformedTheme.components.MuiButton.props).to.deep.equal(theme.props.MuiButton);
     expect(transformedTheme.components.MuiFab.variants).to.deep.equal(theme.variants.MuiFab);
@@ -110,7 +126,11 @@ describe('adaptV4Theme', () => {
       },
     };
 
-    const transformedTheme = adaptV4Theme(theme);
+    let transformedTheme;
+
+    expect(() => {
+      transformedTheme = adaptV4Theme(theme);
+    }).toWarnDev(['adaptV4Theme() is deprecated']);
 
     expect(transformedTheme.components.MuiButton.props).to.deep.equal(theme.props.MuiButton);
     expect(transformedTheme.components.MuiButton.variants).to.deep.equal(theme.variants.MuiButton);
@@ -161,7 +181,11 @@ describe('adaptV4Theme', () => {
       },
     };
 
-    const transformedTheme = adaptV4Theme(theme);
+    let transformedTheme;
+
+    expect(() => {
+      transformedTheme = adaptV4Theme(theme);
+    }).toWarnDev(['adaptV4Theme() is deprecated']);
 
     expect(transformedTheme.components.MuiButton.props).to.deep.equal(theme.props.MuiButton);
     expect(transformedTheme.components.MuiButton.variants).to.deep.equal(theme.variants.MuiButton);
