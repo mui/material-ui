@@ -71,6 +71,7 @@
     "@types/prettier": "^2.0.0",
     "@types/react": "^16.9.44",
     "@types/sinon": "^9.0.0",
+    "@types/yargs": "^15.0.5",
     "@typescript-eslint/eslint-plugin": "^3.6.0",
     "@typescript-eslint/parser": "^3.6.0",
     "argos-cli": "^0.3.0",
