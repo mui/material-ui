@@ -109,7 +109,7 @@ const theme = createMuitheme({
 });
 ```
 
-For allowing smoother transition, we've created an adapter for v4 theme that clients can use, so they can iteratively upgrade to the new theme structure.
+For a smoother transition, the `adaptV4Theme` helper allows you to iteratively upgrade to the new theme structure. Note that it will display a deprecation warning in the console, since it will be removed at the next major release.
 
 ```diff
 -import { createMuiTheme } from '@material-ui/core/styles';
