@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { enUS, zhCN, faIR, ruRU, ptBR, esES, frFR, deDE, jaJP } from '@material-ui/core/locale';
 import { blue, pink } from '@material-ui/core/colors';
-import { useEnhancedEffect } from '@material-ui/core/utils';
+import { unstable_useEnhancedEffect as useEnhancedEffect } from '@material-ui/core/utils';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 

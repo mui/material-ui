@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useEnhancedEffect } from '@material-ui/core/utils';
+import { unstable_useEnhancedEffect as useEnhancedEffect } from '@material-ui/core/utils';
 
 export const AdContext = React.createContext();
 
