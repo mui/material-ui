@@ -1,4 +1,13 @@
-const adaptV4Theme = (inputTheme) => {
+export default function adaptV4Theme(inputTheme) {
+  if (process.env.NODE_ENV !== 'production') {
+    console.warn(
+      [
+        'Material-UI: adaptV4Theme() is deprecated.',
+        'Follow the upgrade guide on http://next.material-ui.com/guides/migration-v4/#theme',
+      ].join('\n'),
+    );
+  }
+
   const { props = {}, variants = {}, overrides = {}, ...other } = inputTheme;
   const theme = {
     ...other,
@@ -24,6 +33,4 @@ const adaptV4Theme = (inputTheme) => {
   });
 
   return theme;
-};
-
-export default adaptV4Theme;
+}
