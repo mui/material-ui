@@ -1,17 +1,22 @@
 ---
 title: Accordion React component
 components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
+githubLabel: component: Accordion
+materialDesign: https://material.io/archive/guidelines/components/expansion-panels.html
+waiAria: https://www.w3.org/TR/wai-aria-practices/#accordion
 ---
 
 # Accordion
 
 <p class="description">Accordions contain creation flows and allow lightweight editing of an element.</p>
 
-[An accordion](https://material.io/archive/guidelines/components/expansion-panels.html) is a lightweight container that may either stand alone or be connected to a larger surface, such as a card.
+An accordion is a lightweight container that may either stand alone or be connected to a larger surface, such as a card.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 > **Note:** Accordions are no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support them. It was formerly known as the "expansion panel".
 
-## Simple accordion
+## Basic accordion
 
 {{"demo": "pages/components/accordion/SimpleAccordion.js", "bg": true}}
 
@@ -21,7 +26,7 @@ Extend the default behavior to create an accordion with the `Accordion` componen
 
 {{"demo": "pages/components/accordion/ControlledAccordions.js", "bg": true}}
 
-## Customized accordions
+## Customized accordion
 
 Here is an example of customizing the component. You can learn more about this in the
 [overrides documentation page](/customization/components/).

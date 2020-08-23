@@ -1,15 +1,20 @@
 ---
 title: Tooltip React component
 components: Tooltip
+githubLabel: component: Tooltip
+materialDesign: https://material.io/components/tooltips
+waiAria: https://www.w3.org/TR/wai-aria-practices/#tooltip
 ---
 
 # Tooltip
 
 <p class="description">Tooltips display informative text when users hover over, focus on, or tap an element.</p>
 
-When activated, [Tooltips](https://material.io/design/components/tooltips.html) display a text label identifying an element, such as a description of its function.
+When activated, Tooltips display a text label identifying an element, such as a description of its function.
 
-## Simple Tooltips
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
+## Basic tooltip
 
 {{"demo": "pages/components/tooltips/SimpleTooltips.js"}}
 

@@ -1,5 +1,6 @@
 ---
 title: Media queries in React for responsive design
+githubLabel: hook: useMediaQuery
 ---
 
 # useMediaQuery
@@ -13,7 +14,9 @@ Some of the key features:
 - 📦 [1 kB gzipped](/size-snapshot).
 - 🤖 It supports server-side rendering.
 
-## Simple media query
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
+## Basic media query
 
 You should provide a media query to the first argument of the hook.
 The media query string can be any valid CSS media query, e.g. [`'(prefers-color-scheme: dark)'`](/customization/palette/#user-preference).

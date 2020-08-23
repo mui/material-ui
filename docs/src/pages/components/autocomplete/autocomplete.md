@@ -1,6 +1,9 @@
 ---
 title: Autocomplete React component
 components: TextField, Popper, Autocomplete
+githubLabel: component: Autocomplete
+waiAria: https://www.w3.org/TR/wai-aria-practices/#combobox
+packageName: @material-ui/lab
 ---
 
 # Autocomplete
@@ -13,6 +16,8 @@ The widget is useful for setting the value of a single-line textbox in one of tw
 2. The textbox may contain any arbitrary value, but it is advantageous to suggest possible values to the user, e.g., a search field may suggest similar or previous searches to save the user time: [free solo](#free-solo).
 
 It's meant to be an improved version of the "react-select" and "downshift" packages.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Combo box
 

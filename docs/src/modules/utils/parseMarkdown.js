@@ -7,7 +7,7 @@ import prism from 'docs/src/modules/utils/prism';
 const headerRegExp = /---[\r\n]([\s\S]*)[\r\n]---/;
 const titleRegExp = /# (.*)[\r\n]/;
 const descriptionRegExp = /<p class="description">(.*)<\/p>[\r\n]/;
-const headerKeyValueRegExp = /(.*): (.*)/g;
+const headerKeyValueRegExp = /(.*?): (.*)/g;
 const emptyRegExp = /^\s*$/;
 const notEnglishMarkdownRegExp = /-([a-z]{2})\.md$/;
 
@@ -56,12 +56,10 @@ export function getHeaders(markdown) {
   return headers;
 }
 
-export const demoRegexp = /^"demo": "(.*)"/;
-
 export function getContents(markdown) {
   return markdown
     .replace(headerRegExp, '') // Remove header information
-    .split(/^{{("demo":[^}]*)}}$/gm) // Split markdown into an array, separating demos
+    .split(/^{{("(?:demo|component)":[^}]*)}}$/gm) // Split markdown into an array, separating demos
     .filter((content) => !emptyRegExp.test(content)); // Remove empty lines
 }
 
@@ -172,7 +170,7 @@ ${headers.components
       let headingIndex = -1;
 
       const rendered = contents.map((content) => {
-        if (demos && demoRegexp.test(content)) {
+        if (/^"(demo|component)": "(.*)"/.test(content)) {
           try {
             return JSON.parse(`{${content}}`);
           } catch (err) {
@@ -287,6 +285,7 @@ ${headers.components
         rendered,
         toc,
         title,
+        headers,
       };
     } else if (filename.indexOf('.tsx') !== -1) {
       const demoName = `pages/${pageFilename}/${filename
