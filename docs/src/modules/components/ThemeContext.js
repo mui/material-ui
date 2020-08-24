@@ -222,6 +222,7 @@ export function ThemeProvider(props) {
     // Expose the theme as a global variable so people can play with it.
     if (process.browser) {
       window.theme = theme;
+      window.createMuiTheme = createMuiTheme;
     }
   }, [theme]);
 
