@@ -11,7 +11,6 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
        */
       children?: React.ReactNode;
       /**
-       * See [CSS API](#css) below for more details.
        */
       classes?: {
         /** Styles applied to the root element. */

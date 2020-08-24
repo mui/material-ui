@@ -27,7 +27,6 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
     children?: React.ReactNode;
     /**
      * Override or extend the styles applied to the component.
-     * See [CSS API](#css) below for more details.
      */
     classes?: {
       /** Styles applied to the root element. */

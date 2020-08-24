@@ -5,7 +5,6 @@ export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDi
   backIconButtonProps?: Partial<IconButtonProps>;
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css) below for more details.
    */
   classes?: {};
   count: number;

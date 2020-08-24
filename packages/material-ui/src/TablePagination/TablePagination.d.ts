@@ -27,7 +27,6 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
       backIconButtonProps?: Partial<IconButtonProps>;
       /**
        * Override or extend the styles applied to the component.
-       * See [CSS API](#css) below for more details.
        */
       classes?: {
         /** Styles applied to the root element. */

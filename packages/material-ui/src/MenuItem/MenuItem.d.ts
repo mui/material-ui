@@ -13,7 +13,6 @@ export interface MenuItemTypeMap<P = {}, D extends React.ElementType = 'li'> {
        */
       children?: React.ReactNode;
       /**
-       * See [CSS API](#css) below for more details.
        */
       classes?: {
         /** Styles applied to the root element. */

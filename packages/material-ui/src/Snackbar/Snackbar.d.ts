@@ -36,7 +36,6 @@ export interface SnackbarProps
   children?: React.ReactElement<any, any>;
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css) below for more details.
    */
   classes?: {
     /** Styles applied to the root element. */

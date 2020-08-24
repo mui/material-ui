@@ -11,7 +11,6 @@ export type TabTypeMap<P = {}, D extends React.ElementType = 'div'> = ExtendButt
     children?: null;
     /**
      * Override or extend the styles applied to the component.
-     * See [CSS API](#css) below for more details.
      */
     classes?: {
       /** Styles applied to the root element. */

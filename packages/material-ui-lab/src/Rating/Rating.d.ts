@@ -9,7 +9,6 @@ export interface RatingProps
   extends StandardProps<React.HTMLAttributes<HTMLSpanElement>, 'children' | 'onChange'> {
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css) below for more details.
    */
   classes?: {
     /** Styles applied to the root element. */
