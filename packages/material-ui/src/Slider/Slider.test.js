@@ -160,7 +160,7 @@ describe('<Slider />', () => {
       const { getByRole } = render(<Slider defaultValue={30} step={10} marks />);
       const thumb = getByRole('slider');
       fireEvent.mouseDown(thumb);
-      expect(document.activeElement).to.equal(thumb);
+      expect(thumb).toHaveFocus();
     });
 
     it('should support mouse events', () => {
@@ -210,6 +210,15 @@ describe('<Slider />', () => {
     );
 
     fireEvent.touchMove(document.body, createTouches([{ identifier: 1, clientX: 20, clientY: 0 }]));
+  });
+
+  it('focuses the thumb on when touching', () => {
+    const { getByRole } = render(<Slider value={0} min={20} max={40} />);
+    const thumb = getByRole('slider');
+
+    fireEvent.touchStart(thumb, createTouches([{ identifier: 1, clientX: 0, clientY: 0 }]));
+
+    expect(thumb).toHaveFocus();
   });
 
   describe('prop: step', () => {
