@@ -67,7 +67,7 @@ describe('createMuiTheme', () => {
     it('should have the components as expected', () => {
       const components = {
         MuiDialog: {
-          defaultProps: { 
+          defaultProps: {
             fullScreen: true,
             fullWidth: false,
           },

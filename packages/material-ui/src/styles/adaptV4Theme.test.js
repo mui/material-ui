@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import adaptV4Theme from './adaptV4Theme';
 
 describe('adaptV4Theme', () => {
-  it('moves props to components\' defaultProps', () => {
+  it("moves props to components' defaultProps", () => {
     const theme = {
       props: {
         MuiButton: {
@@ -20,7 +20,7 @@ describe('adaptV4Theme', () => {
     expect(transformedTheme.components.MuiButton.defaultProps).to.deep.equal(theme.props.MuiButton);
   });
 
-  it('moves overrides to components\' cssOverrides', () => {
+  it("moves overrides to components' cssOverrides", () => {
     const theme = {
       overrides: {
         MuiTable: {
@@ -37,7 +37,9 @@ describe('adaptV4Theme', () => {
       transformedTheme = adaptV4Theme(theme);
     }).toWarnDev(['adaptV4Theme() is deprecated']);
 
-    expect(transformedTheme.components.MuiTable.cssOverrides).to.deep.equal(theme.overrides.MuiTable);
+    expect(transformedTheme.components.MuiTable.cssOverrides).to.deep.equal(
+      theme.overrides.MuiTable,
+    );
   });
 
   it('moves props, and overrides to components', () => {
@@ -63,7 +65,9 @@ describe('adaptV4Theme', () => {
     }).toWarnDev(['adaptV4Theme() is deprecated']);
 
     expect(transformedTheme.components.MuiButton.defaultProps).to.deep.equal(theme.props.MuiButton);
-    expect(transformedTheme.components.MuiTable.cssOverrides).to.deep.equal(theme.overrides.MuiTable);
+    expect(transformedTheme.components.MuiTable.cssOverrides).to.deep.equal(
+      theme.overrides.MuiTable,
+    );
   });
 
   it('merges props and overrides to components', () => {

@@ -12,8 +12,8 @@ interface TextProps {
 interface Theme {
   components: {
     Button: { defaultProps: Partial<ButtonProps> & { sigil: string } };
-    Text: { defaultProps:  Partial<TextProps> };
-  }
+    Text: { defaultProps: Partial<TextProps> };
+  };
 }
 
 function Text(props: TextProps) {
