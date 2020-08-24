@@ -244,8 +244,8 @@ describe('makeStyles', () => {
       expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'MuiTextField-root' });
     });
 
-    describe('overrides', () => {
-      it('should support the overrides key', () => {
+    describe('cssOverrides', () => {
+      it('should support the cssOverrides key inside components', () => {
         const useStyles = makeStyles(
           {
             root: {
@@ -292,7 +292,7 @@ describe('makeStyles', () => {
         const theme = {
           components: {
             Test: {
-              overrides: {
+              cssOverrides: {
                 root: {
                   margin: null,
                 },

@@ -41,12 +41,12 @@ export default function getStylesCreator(stylesOrCreator) {
         !name ||
         !theme.components ||
         !theme.components[name] ||
-        (!theme.components[name].overrides && !theme.components[name].variants)
+        (!theme.components[name].cssOverrides && !theme.components[name].variants)
       ) {
         return styles;
       }
 
-      const overrides = theme.components[name].overrides || {};
+      const overrides = theme.components[name].cssOverrides || {};
       const variants = theme.components[name].variants || [];
       const stylesWithOverrides = { ...styles };
 

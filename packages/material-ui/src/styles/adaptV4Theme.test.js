@@ -167,12 +167,12 @@ describe('adaptV4Theme', () => {
       transformedTheme = adaptV4Theme(theme);
     }).toWarnDev(['adaptV4Theme() is deprecated']);
 
-    expect(transformedTheme.components.MuiButton.defaultProps).to.deep.equal(theme.props.MuiButton);
+    expect(transformedTheme.components.MuiButton.defaultProps).to.deep.equal(theme.defaultProps.MuiButton);
     expect(transformedTheme.components.MuiButton.cssOverrides).to.deep.equal(
-      theme.overrides.MuiButton,
+      theme.cssOverrides.MuiButton,
     );
 
-    expect(transformedTheme.components.MuiFab.defaultProps).to.deep.equal(theme.props.MuiFab);
-    expect(transformedTheme.components.MuiFab.cssOverrides).to.deep.equal(theme.overrides.MuiFab);
+    expect(transformedTheme.components.MuiFab.defaultProps).to.deep.equal(theme.defaultProps.MuiFab);
+    expect(transformedTheme.components.MuiFab.cssOverrides).to.deep.equal(theme.cssOverrides.MuiFab);
   });
 });

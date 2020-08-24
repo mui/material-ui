@@ -211,7 +211,7 @@ describe('withStyles', () => {
       expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'MuiTextField-root' });
     });
 
-    it('should support the overrides key', () => {
+    it('should support the cssOverrides key inside components', () => {
       const styles = { root: { padding: 8 } };
       const StyledComponent = withStyles(styles, { name: 'MuiTextField' })(() => <div />);
       const generateClassName = createGenerateClassName();
