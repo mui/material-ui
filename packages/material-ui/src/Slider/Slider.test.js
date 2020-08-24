@@ -256,7 +256,7 @@ describe('<Slider />', () => {
     });
 
     it('should not respond to drag events after becoming disabled', function test() {
-      // jsdom doesn't blur correctly
+      // TODO: Don't skip once a fix for https://github.com/jsdom/jsdom/issues/3029 is released.
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
@@ -293,7 +293,7 @@ describe('<Slider />', () => {
     });
 
     it('is not focused (visibly) after becoming disabled', function test() {
-      // jsdom doesn't blur correctly
+      // TODO: Don't skip once a fix for https://github.com/jsdom/jsdom/issues/3029 is released.
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
