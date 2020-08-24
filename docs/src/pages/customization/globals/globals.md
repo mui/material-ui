@@ -64,7 +64,7 @@ return (
 ## Default props
 
 You can change the default props of all the Material-UI components.
-A `props` key is exposed in the `theme` for this use case.
+A `deafaultProps` key is exposed in the `theme`'s components key for this use case.
 
 To override lab components styles with TypeScript, check [this documentation](/components/about-the-lab/#typescript).
 
@@ -73,7 +73,7 @@ const theme = createMuiTheme({
   components: {
     // Name of the component ⚛️
     MuiButtonBase: {
-      props: {
+      defaultProps: {
         // The default props to change
         disableRipple: true, // No more ripple, on the whole application 💣!
       },

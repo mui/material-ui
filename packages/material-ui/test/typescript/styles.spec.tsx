@@ -113,7 +113,7 @@ const theme = createMuiTheme({
       props: {
         disabled: true,
       },
-      overrides: {
+      cssOverrides: {
         // Name of the styleSheet
         root: {
           // Name of the rule
@@ -128,7 +128,7 @@ const theme = createMuiTheme({
       },
     },
     MuiAppBar: {
-      props: {
+      defaultProps: {
         position: 'fixed',
       },
     },
@@ -143,7 +143,7 @@ const theme2 = createMuiTheme({
   },
   components: {
     MuiButton: {
-      props: {
+      defaultProps: {
         disabled: false,
         TouchRippleProps: {
           center: true,
@@ -151,12 +151,12 @@ const theme2 = createMuiTheme({
       },
     },
     MuiTable: {
-      props: {
+      defaultProps: {
         cellPadding: 12,
       },
     },
     MuiButtonBase: {
-      props: {
+      defaultProps: {
         disableRipple: true,
       },
     },

@@ -8,27 +8,35 @@ export default function adaptV4Theme(inputTheme) {
     );
   }
 
-  const { props = {}, variants = {}, overrides = {}, ...other } = inputTheme;
+  const { props = {},  defaultProps = {}, cssOverrides = {}, overrides = {}, ...other } = inputTheme;
   const theme = {
     ...other,
     components: {},
   };
 
-  Object.keys(variants).forEach((component) => {
+  // default props
+  Object.keys(defaultProps).forEach((component) => {
     const componentValue = theme.components[component] || {};
-    componentValue.variants = variants[component];
+    componentValue.defaultProps = defaultProps[component];
     theme.components[component] = componentValue;
   });
 
   Object.keys(props).forEach((component) => {
     const componentValue = theme.components[component] || {};
-    componentValue.props = props[component];
+    componentValue.defaultProps = props[component];
+    theme.components[component] = componentValue;
+  });
+
+  // css overrides
+  Object.keys(cssOverrides).forEach((component) => {
+    const componentValue = theme.components[component] || {};
+    componentValue.cssOverrides = cssOverrides[component];
     theme.components[component] = componentValue;
   });
 
   Object.keys(overrides).forEach((component) => {
     const componentValue = theme.components[component] || {};
-    componentValue.overrides = overrides[component];
+    componentValue.cssOverrides = overrides[component];
     theme.components[component] = componentValue;
   });
 

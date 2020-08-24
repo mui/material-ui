@@ -46,7 +46,7 @@ let theme = createMuiTheme({
   },
   components: {
     MuiTab: {
-      props: {
+      defaultProps: {
         disableRipple: true,
       },
     },
@@ -62,14 +62,14 @@ theme = {
   ...theme,
   components: {
     MuiDrawer: {
-      overrides: {
+      cssOverrides: {
         paper: {
           backgroundColor: '#18202c',
         },
       },
     },
     MuiButton: {
-      overrides: {
+      cssOverrides: {
         label: {
           textTransform: 'none',
         },
@@ -82,7 +82,7 @@ theme = {
       },
     },
     MuiTabs: {
-      overrides: {
+      cssOverrides: {
         root: {
           marginLeft: theme.spacing(1),
         },
@@ -95,7 +95,7 @@ theme = {
       },
     },
     MuiTab: {
-      overrides: {
+      cssOverrides: {
         root: {
           textTransform: 'none',
           margin: '0 16px',
@@ -109,35 +109,35 @@ theme = {
       },
     },
     MuiIconButton: {
-      overrides: {
+      cssOverrides: {
         root: {
           padding: theme.spacing(1),
         },
       },
     },
     MuiTooltip: {
-      overrides: {
+      cssOverrides: {
         tooltip: {
           borderRadius: 4,
         },
       },
     },
     MuiDivider: {
-      overrides: {
+      cssOverrides: {
         root: {
           backgroundColor: '#404854',
         },
       },
     },
     MuiListItemText: {
-      overrides: {
+      cssOverrides: {
         primary: {
           fontWeight: theme.typography.fontWeightMedium,
         },
       },
     },
     MuiListItemIcon: {
-      overrides: {
+      cssOverrides: {
         root: {
           color: 'inherit',
           marginRight: 0,
@@ -148,7 +148,7 @@ theme = {
       },
     },
     MuiAvatar: {
-      overrides: {
+      cssOverrides: {
         root: {
           width: 32,
           height: 32,

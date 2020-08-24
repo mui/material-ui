@@ -2,105 +2,105 @@ import { ComponentsProps, ComponentsOverrides, ComponentsVariants } from '@mater
 
 export interface LabComponents {
   MuiAlert?: {
-    props?: ComponentsProps['MuiAlert'];
-    overrides?: ComponentsOverrides['MuiAlert'];
+    defaultProps?: ComponentsProps['MuiAlert'];
+    cssOverrides?: ComponentsOverrides['MuiAlert'];
     variants?: ComponentsVariants['MuiAlert'];
   };
   MuiAlertTitle?: {
-    props?: ComponentsProps['MuiAlertTitle'];
-    overrides?: ComponentsOverrides['MuiAlertTitle'];
+    defaultProps?: ComponentsProps['MuiAlertTitle'];
+    cssOverrides?: ComponentsOverrides['MuiAlertTitle'];
   };
   MuiAutocomplete?: {
-    props?: ComponentsProps['MuiAutocomplete'];
-    overrides?: ComponentsOverrides['MuiAutocomplete'];
+    defaultProps?: ComponentsProps['MuiAutocomplete'];
+    cssOverrides?: ComponentsOverrides['MuiAutocomplete'];
   };
   MuiAvatarGroup?: {
-    props?: ComponentsProps['MuiAvatarGroup'];
-    overrides?: ComponentsOverrides['MuiAvatarGroup'];
+    defaultProps?: ComponentsProps['MuiAvatarGroup'];
+    cssOverrides?: ComponentsOverrides['MuiAvatarGroup'];
   };
   MuiPagination?: {
-    props?: ComponentsProps['MuiPagination'];
-    overrides?: ComponentsOverrides['MuiPagination'];
+    defaultProps?: ComponentsProps['MuiPagination'];
+    cssOverrides?: ComponentsOverrides['MuiPagination'];
     variants?: ComponentsVariants['MuiPagination'];
   };
   MuiPaginationItem?: {
-    props?: ComponentsProps['MuiPaginationItem'];
-    overrides?: ComponentsOverrides['MuiPaginationItem'];
+    defaultProps?: ComponentsProps['MuiPaginationItem'];
+    cssOverrides?: ComponentsOverrides['MuiPaginationItem'];
     variants?: ComponentsVariants['MuiPaginationItem'];
   };
   MuiRating?: {
-    props?: ComponentsProps['MuiRating'];
-    overrides?: ComponentsOverrides['MuiRating'];
+    defaultProps?: ComponentsProps['MuiRating'];
+    cssOverrides?: ComponentsOverrides['MuiRating'];
   };
   MuiSkeleton?: {
-    props?: ComponentsProps['MuiSkeleton'];
-    overrides?: ComponentsOverrides['MuiSkeleton'];
+    defaultProps?: ComponentsProps['MuiSkeleton'];
+    cssOverrides?: ComponentsOverrides['MuiSkeleton'];
     variants?: ComponentsVariants['MuiSkeleton'];
   };
   MuiSpeedDial?: {
-    props?: ComponentsProps['MuiSpeedDial'];
-    overrides?: ComponentsOverrides['MuiSpeedDial'];
+    defaultProps?: ComponentsProps['MuiSpeedDial'];
+    cssOverrides?: ComponentsOverrides['MuiSpeedDial'];
   };
   MuiSpeedDialAction?: {
-    props?: ComponentsProps['MuiSpeedDialAction'];
-    overrides?: ComponentsOverrides['MuiSpeedDialAction'];
+    defaultProps?: ComponentsProps['MuiSpeedDialAction'];
+    cssOverrides?: ComponentsOverrides['MuiSpeedDialAction'];
   };
   MuiSpeedDialIcon?: {
-    props?: ComponentsProps['MuiSpeedDialIcon'];
-    overrides?: ComponentsOverrides['MuiSpeedDialIcon'];
+    defaultProps?: ComponentsProps['MuiSpeedDialIcon'];
+    cssOverrides?: ComponentsOverrides['MuiSpeedDialIcon'];
   };
   MuiTabList?: {
-    props?: ComponentsProps['MuiTabList'];
-    overrides?: ComponentsOverrides['MuiTabList'];
+    defaultProps?: ComponentsProps['MuiTabList'];
+    cssOverrides?: ComponentsOverrides['MuiTabList'];
   };
   MuiTabPanel?: {
-    props?: ComponentsProps['MuiTabPanel'];
-    overrides?: ComponentsOverrides['MuiTabPanel'];
+    defaultProps?: ComponentsProps['MuiTabPanel'];
+    cssOverrides?: ComponentsOverrides['MuiTabPanel'];
   };
   MuiTimeline?: {
-    props?: ComponentsProps['MuiTimeline'];
-    overrides?: ComponentsOverrides['MuiTimeline'];
+    defaultProps?: ComponentsProps['MuiTimeline'];
+    cssOverrides?: ComponentsOverrides['MuiTimeline'];
   };
   MuiTimelineConnector?: {
-    props?: ComponentsProps['MuiTimelineConnector'];
-    overrides?: ComponentsOverrides['MuiTimelineConnector'];
+    defaultProps?: ComponentsProps['MuiTimelineConnector'];
+    cssOverrides?: ComponentsOverrides['MuiTimelineConnector'];
   };
   MuiTimelineContent?: {
-    props?: ComponentsProps['MuiTimelineContent'];
-    overrides?: ComponentsOverrides['MuiTimelineContent'];
+    defaultProps?: ComponentsProps['MuiTimelineContent'];
+    cssOverrides?: ComponentsOverrides['MuiTimelineContent'];
   };
   MuiTimelineDot?: {
-    props?: ComponentsProps['MuiTimelineDot'];
-    overrides?: ComponentsOverrides['MuiTimelineDot'];
+    defaultProps?: ComponentsProps['MuiTimelineDot'];
+    cssOverrides?: ComponentsOverrides['MuiTimelineDot'];
     variants?: ComponentsVariants['MuiTimelineDot'];
   };
   MuiTimelineItem?: {
-    props?: ComponentsProps['MuiTimelineItem'];
-    overrides?: ComponentsOverrides['MuiTimelineItem'];
+    defaultProps?: ComponentsProps['MuiTimelineItem'];
+    cssOverrides?: ComponentsOverrides['MuiTimelineItem'];
   };
   MuiTimelineOppositeContent?: {
-    props?: ComponentsProps['MuiTimelineOppositeContent'];
-    overrides?: ComponentsOverrides['MuiTimelineOppositeContent'];
+    defaultProps?: ComponentsProps['MuiTimelineOppositeContent'];
+    cssOverrides?: ComponentsOverrides['MuiTimelineOppositeContent'];
   };
   MuiTimelineSeparator?: {
-    props?: ComponentsProps['MuiTimelineSeparator'];
-    overrides?: ComponentsOverrides['MuiTimelineSeparator'];
+    defaultProps?: ComponentsProps['MuiTimelineSeparator'];
+    cssOverrides?: ComponentsOverrides['MuiTimelineSeparator'];
   };
   MuiToggleButton?: {
-    props?: ComponentsProps['MuiToggleButton'];
-    overrides?: ComponentsOverrides['MuiToggleButton'];
+    defaultProps?: ComponentsProps['MuiToggleButton'];
+    cssOverrides?: ComponentsOverrides['MuiToggleButton'];
   };
   MuiToggleButtonGroup?: {
-    props?: ComponentsProps['MuiToggleButtonGroup'];
-    overrides?: ComponentsOverrides['MuiToggleButtonGroup'];
+    defaultProps?: ComponentsProps['MuiToggleButtonGroup'];
+    cssOverrides?: ComponentsOverrides['MuiToggleButtonGroup'];
   };
   MuiTreeItem?: {
-    props?: ComponentsProps['MuiTreeItem'];
-    overrides?: ComponentsOverrides['MuiTreeItem'];
+    defaultProps?: ComponentsProps['MuiTreeItem'];
+    cssOverrides?: ComponentsOverrides['MuiTreeItem'];
   };
   MuiTreeView?: {
-    props?: ComponentsProps['MuiTreeView'];
-    overrides?: ComponentsOverrides['MuiTreeView'];
+    defaultProps?: ComponentsProps['MuiTreeView'];
+    cssOverrides?: ComponentsOverrides['MuiTreeView'];
   };
 }
 

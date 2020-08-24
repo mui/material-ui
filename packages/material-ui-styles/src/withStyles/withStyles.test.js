@@ -146,7 +146,7 @@ describe('withStyles', () => {
           theme={createMuiTheme({
             components: {
               MuiFoo: {
-                props: {
+                defaultProps: {
                   foo: 'bar',
                 },
               },
@@ -174,7 +174,7 @@ describe('withStyles', () => {
           theme={createMuiTheme({
             components: {
               MuiFoo: {
-                props: {
+                defaultProps: {
                   foo: 'bar',
                 },
               },
@@ -222,7 +222,7 @@ describe('withStyles', () => {
           theme={createMuiTheme({
             components: {
               MuiTextField: {
-                overrides: {
+                cssOverrides: {
                   root: {
                     padding: 9,
                   },
@@ -255,15 +255,15 @@ describe('withStyles', () => {
                 variants: [
                   {
                     props: { variant: 'test' },
-                    styles: { padding: 9 },
+                    css: { padding: 9 },
                   },
                   {
                     props: { variant: 'test', size: 'large' },
-                    styles: { fontSize: 20 },
+                    css: { fontSize: 20 },
                   },
                   {
                     props: { size: 'largest' },
-                    styles: { fontSize: 22 },
+                    css: { fontSize: 22 },
                   },
                 ],
               },

@@ -60,7 +60,7 @@ describe('<Modal />', () => {
     });
 
     it('should consume theme default props', () => {
-      const theme = createMuiTheme({ components: { MuiModal: { props: { container } } } });
+      const theme = createMuiTheme({ components: { MuiModal: { defaultProps: { container } } } });
       render(
         <ThemeProvider theme={theme}>
           <Modal open>

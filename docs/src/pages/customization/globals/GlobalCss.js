@@ -6,7 +6,7 @@ const theme = createMuiTheme({
   components: {
     MuiButton: {
       // Style sheet name ⚛️
-      overrides: {
+      cssOverrides: {
         // Name of the rule
         textPrimary: {
           // Some CSS

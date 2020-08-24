@@ -267,7 +267,7 @@ describe('makeStyles', () => {
             theme={createMuiTheme({
               components: {
                 MuiTextField: {
-                  overrides: {
+                  cssOverrides: {
                     root: {
                       padding: 9,
                       margin: [2, 2, 3],

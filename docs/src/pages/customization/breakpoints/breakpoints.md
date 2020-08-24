@@ -290,7 +290,7 @@ const theme = createMuiTheme({
   components: {
     // withWidth component ⚛️
     MuiWithWidth: {
-      props: {
+      defaultProps: {
         // Initial width prop
         initialWidth: 'lg', // Breakpoint being globally set 🌎!
       },
