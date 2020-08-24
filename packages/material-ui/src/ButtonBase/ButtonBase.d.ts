@@ -85,7 +85,7 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
  * can make extension quite tricky
  */
 export interface ExtendButtonBaseTypeMap<M extends OverridableTypeMap> {
-  props: M['props'] & ButtonBaseTypeMap['props'];
+  props: M['props'] & Omit<ButtonBaseTypeMap['props'], 'classes'>;
   defaultComponent: M['defaultComponent'];
 }
 
