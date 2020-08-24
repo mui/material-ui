@@ -6,6 +6,7 @@ export {
   Theme,
   Direction,
 } from './createMuiTheme';
+export { default as adaptV4Theme, DeprecatedThemeOptions } from './adaptV4Theme';
 export { PaletteColorOptions, SimplePaletteColorOptions } from './createPalette';
 export { default as createStyles } from './createStyles';
 export { TypographyStyle, Variant as TypographyVariant } from './createTypography';
@@ -32,3 +33,6 @@ export {
   ThemeProvider,
   ThemeProviderProps,
 } from '@material-ui/styles';
+export { ComponentsProps } from './props';
+export { ComponentsVariants } from './variants';
+export { ComponentsOverrides } from './overrides';

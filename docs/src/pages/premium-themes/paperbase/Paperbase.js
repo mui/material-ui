@@ -43,9 +43,11 @@ let theme = createMuiTheme({
   shape: {
     borderRadius: 8,
   },
-  props: {
+  components: {
     MuiTab: {
-      disableRipple: true,
+      props: {
+        disableRipple: true,
+      },
     },
   },
   mixins: {
@@ -57,79 +59,99 @@ let theme = createMuiTheme({
 
 theme = {
   ...theme,
-  overrides: {
+  components: {
     MuiDrawer: {
-      paper: {
-        backgroundColor: '#18202c',
+      overrides: {
+        paper: {
+          backgroundColor: '#18202c',
+        },
       },
     },
     MuiButton: {
-      label: {
-        textTransform: 'none',
-      },
-      contained: {
-        boxShadow: 'none',
-        '&:active': {
+      overrides: {
+        label: {
+          textTransform: 'none',
+        },
+        contained: {
           boxShadow: 'none',
+          '&:active': {
+            boxShadow: 'none',
+          },
         },
       },
     },
     MuiTabs: {
-      root: {
-        marginLeft: theme.spacing(1),
-      },
-      indicator: {
-        height: 3,
-        borderTopLeftRadius: 3,
-        borderTopRightRadius: 3,
-        backgroundColor: theme.palette.common.white,
+      overrides: {
+        root: {
+          marginLeft: theme.spacing(1),
+        },
+        indicator: {
+          height: 3,
+          borderTopLeftRadius: 3,
+          borderTopRightRadius: 3,
+          backgroundColor: theme.palette.common.white,
+        },
       },
     },
     MuiTab: {
-      root: {
-        textTransform: 'none',
-        margin: '0 16px',
-        minWidth: 0,
-        padding: 0,
-        [theme.breakpoints.up('md')]: {
-          padding: 0,
+      overrides: {
+        root: {
+          textTransform: 'none',
+          margin: '0 16px',
           minWidth: 0,
+          padding: 0,
+          [theme.breakpoints.up('md')]: {
+            padding: 0,
+            minWidth: 0,
+          },
         },
       },
     },
     MuiIconButton: {
-      root: {
-        padding: theme.spacing(1),
+      overrides: {
+        root: {
+          padding: theme.spacing(1),
+        },
       },
     },
     MuiTooltip: {
-      tooltip: {
-        borderRadius: 4,
+      overrides: {
+        tooltip: {
+          borderRadius: 4,
+        },
       },
     },
     MuiDivider: {
-      root: {
-        backgroundColor: '#404854',
+      overrides: {
+        root: {
+          backgroundColor: '#404854',
+        },
       },
     },
     MuiListItemText: {
-      primary: {
-        fontWeight: theme.typography.fontWeightMedium,
+      overrides: {
+        primary: {
+          fontWeight: theme.typography.fontWeightMedium,
+        },
       },
     },
     MuiListItemIcon: {
-      root: {
-        color: 'inherit',
-        marginRight: 0,
-        '& svg': {
-          fontSize: 20,
+      overrides: {
+        root: {
+          color: 'inherit',
+          marginRight: 0,
+          '& svg': {
+            fontSize: 20,
+          },
         },
       },
     },
     MuiAvatar: {
-      root: {
-        width: 32,
-        height: 32,
+      overrides: {
+        root: {
+          width: 32,
+          height: 32,
+        },
       },
     },
   },

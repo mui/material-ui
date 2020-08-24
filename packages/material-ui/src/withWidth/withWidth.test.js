@@ -153,7 +153,9 @@ describe('withWidth', () => {
 
   describe('theme prop: MuiWithWidth.initialWidth', () => {
     it('should use theme prop', () => {
-      const theme = createMuiTheme({ props: { MuiWithWidth: { initialWidth: 'lg' } } });
+      const theme = createMuiTheme({
+        components: { MuiWithWidth: { props: { initialWidth: 'lg' } } },
+      });
       const element = <EmptyWithWidth theme={theme} />;
       // First mount on the server
       const wrapper1 = shallow(element);

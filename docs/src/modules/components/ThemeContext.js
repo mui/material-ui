@@ -36,54 +36,78 @@ const themeInitialOptions = {
 };
 
 const highDensity = {
-  props: {
+  components: {
     MuiButton: {
-      size: 'small',
+      props: {
+        size: 'small',
+      },
     },
     MuiFilledInput: {
-      margin: 'dense',
+      props: {
+        margin: 'dense',
+      },
     },
     MuiFormControl: {
-      margin: 'dense',
+      props: {
+        margin: 'dense',
+      },
     },
     MuiFormHelperText: {
-      margin: 'dense',
+      props: {
+        margin: 'dense',
+      },
     },
     MuiIconButton: {
-      size: 'small',
+      props: {
+        size: 'small',
+      },
+      overrides: {
+        sizeSmall: {
+          // minimal touch target hit spacing
+          marginLeft: 4,
+          marginRight: 4,
+          padding: 12,
+        },
+      },
     },
     MuiInputBase: {
-      margin: 'dense',
+      props: {
+        margin: 'dense',
+      },
     },
     MuiInputLabel: {
-      margin: 'dense',
+      props: {
+        margin: 'dense',
+      },
     },
     MuiListItem: {
-      dense: true,
+      props: {
+        dense: true,
+      },
     },
     MuiOutlinedInput: {
-      margin: 'dense',
+      props: {
+        margin: 'dense',
+      },
     },
     MuiFab: {
-      size: 'small',
+      props: {
+        size: 'small',
+      },
     },
     MuiTable: {
-      size: 'small',
+      props: {
+        size: 'small',
+      },
     },
     MuiTextField: {
-      margin: 'dense',
+      props: {
+        margin: 'dense',
+      },
     },
     MuiToolbar: {
-      variant: 'dense',
-    },
-  },
-  overrides: {
-    MuiIconButton: {
-      sizeSmall: {
-        // minimal touch target hit spacing
-        marginLeft: 4,
-        marginRight: 4,
-        padding: 12,
+      props: {
+        variant: 'dense',
       },
     },
   },

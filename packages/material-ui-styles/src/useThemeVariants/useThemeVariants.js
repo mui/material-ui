@@ -6,8 +6,8 @@ const useThemeVariants = (props, name) => {
   const theme = useTheme();
 
   let variantsClasses = '';
-  if (theme && theme.variants && theme.variants[name]) {
-    const themeVariants = theme.variants[name];
+  if (theme && theme.components && theme.components[name] && theme.components[name].variants) {
+    const themeVariants = theme.components[name].variants;
 
     themeVariants.forEach((themeVariant) => {
       let isMatch = true;

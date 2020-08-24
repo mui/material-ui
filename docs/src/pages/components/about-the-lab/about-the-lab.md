@@ -46,10 +46,12 @@ In order to benefit from the [CSS overrides](/customization/globals/#css) and [d
 import '@material-ui/lab/themeAugmentation';
 
 const theme = createMuiTheme({
-  overrides: {
+  components: {
     MuiTimeline: {
-      root: {
-        backgroundColor: 'red',
+      overrides: {
+        root: {
+          backgroundColor: 'red',
+        },
       },
     },
   },

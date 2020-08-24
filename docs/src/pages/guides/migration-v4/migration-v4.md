@@ -65,6 +65,72 @@ This change affects almost all components where you're using the `component` pro
   +},
   ```
 
+- The components' definition inside the theme were restructure under the `components` key, to allow people easier discoverability about the definitions regarding one component.
+
+1. `props`
+
+```diff
+import { createMuiTheme } from '@material-ui/core/styles';
+
+const theme = createMuitheme({
+-  props: {
+-    MuiButton: {
+-      disableRipple: true,
+-    },
+-  },
++  components: {
++    MuiButton: {
++      props: {
++        disableRipple: true,
++      },
++    },
++  },
+});
+```
+
+2. `overrides`
+
+```diff
+import { createMuiTheme } from '@material-ui/core/styles';
+
+const theme = createMuitheme({
+-  overrides: {
+-    MuiButton: {
+-      root: { padding: 0 },
+-    },
+-  },
++  components: {
++    MuiButton: {
++      overrides: {
++        root: { padding: 0 },
++      },
++    },
++  },
+});
+```
+
+For a smoother transition, the `adaptV4Theme` helper allows you to iteratively upgrade to the new theme structure. Note that it will display a deprecation warning in the console, since it will be removed at the next major release.
+
+```diff
+-import { createMuiTheme } from '@material-ui/core/styles';
++import { createMuiTheme, adaptV4Theme } from '@material-ui/core/styles';
+
+-const theme = createMuitheme({
++const theme = createMuitheme(adaptV4Theme({
+  props: {
+    MuiButton: {
+      disableRipple: true,
+    },
+  },
+  overrides: {
+    MuiButton: {
+      root: { padding: 0 },
+    },
+  },
+-});
++}));
+```
+
 ### Avatar
 
 - Rename `circle` to `circular` for consistency. The possible values should be adjectives, not nouns:
@@ -189,7 +255,7 @@ This change affects almost all components where you're using the `component` pro
   }
   ```
 
-### Expansion Panel
+### ExpansionPanel
 
 - Rename the `ExpansionPanel` components with `Accordion` to use a more common naming convention:
 

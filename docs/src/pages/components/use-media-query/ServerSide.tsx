@@ -20,9 +20,11 @@ export default function ServerSide() {
   return (
     <ThemeProvider<Theme>
       theme={{
-        props: {
-          // Change the default options of useMediaQuery
-          MuiUseMediaQuery: { ssrMatchMedia },
+        components: {
+          MuiUseMediaQuery: {
+            // Change the default options of useMediaQuery
+            props: { ssrMatchMedia },
+          },
         },
       }}
     >

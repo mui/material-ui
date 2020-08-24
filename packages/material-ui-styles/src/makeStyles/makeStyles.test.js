@@ -265,11 +265,13 @@ describe('makeStyles', () => {
         mount(
           <ThemeProvider
             theme={createMuiTheme({
-              overrides: {
+              components: {
                 MuiTextField: {
-                  root: {
-                    padding: 9,
-                    margin: [2, 2, 3],
+                  overrides: {
+                    root: {
+                      padding: 9,
+                      margin: [2, 2, 3],
+                    },
                   },
                 },
               },
@@ -288,10 +290,12 @@ describe('makeStyles', () => {
 
       it('can be used to remove styles', () => {
         const theme = {
-          overrides: {
+          components: {
             Test: {
-              root: {
-                margin: null,
+              overrides: {
+                root: {
+                  margin: null,
+                },
               },
             },
           },
