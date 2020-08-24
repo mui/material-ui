@@ -18,10 +18,21 @@ describe('<Portal />', () => {
       const markup1 = serverRender(<div>Bar</div>);
       expect(markup1.text()).to.equal('Bar');
 
-      const markup2 = serverRender(
-        <Portal>
-          <div>Bar</div>
-        </Portal>,
+      let markup2;
+      expect(() => {
+        markup2 = serverRender(
+          <Portal>
+            <div>Bar</div>
+          </Portal>,
+        );
+      }).toErrorDev(
+        // Known issue due to using SSR APIs in a browser environment.
+        // We use 3x useLayoutEffect in the component.
+        [
+          'Warning: useLayoutEffect does nothing on the server',
+          'Warning: useLayoutEffect does nothing on the server',
+          'Warning: useLayoutEffect does nothing on the server',
+        ],
       );
       expect(markup2.text()).to.equal('');
     });
