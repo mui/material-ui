@@ -2,8 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import useEventCallback from '../utils/useEventCallback';
-
-const useEnhancedEffect = typeof window === 'undefined' ? React.useEffect : React.useLayoutEffect;
+import useEnhancedEffect from '../utils/useEnhancedEffect';
 
 /**
  * @ignore - internal component.

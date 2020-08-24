@@ -1,18 +1,24 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, createServerRender } from 'test/utils';
+import { createClientRender, createServerRender } from 'test/utils';
 import NoSsr from './NoSsr';
 
 describe('<NoSsr />', () => {
-  const mount = createMount();
+  const render = createClientRender();
   const serverRender = createServerRender();
 
   describe('server-side rendering', () => {
     it('should not render the children as the width is unknown', () => {
-      const wrapper = serverRender(
-        <NoSsr>
-          <span>Hello</span>
-        </NoSsr>,
+      let wrapper;
+      expect(() => {
+        wrapper = serverRender(
+          <NoSsr>
+            <span>Hello</span>
+          </NoSsr>,
+        );
+      }).toErrorDev(
+        // Known issue due to using SSR APIs in a browser environment.
+        ['Warning: useLayoutEffect does nothing on the server'],
       );
       expect(wrapper.text()).to.equal('');
     });
@@ -20,23 +26,29 @@ describe('<NoSsr />', () => {
 
   describe('mounted', () => {
     it('should render the children', () => {
-      const wrapper = mount(
+      render(
         <NoSsr>
           <span id="client-only" />
         </NoSsr>,
       );
-      expect(wrapper.find('#client-only').exists()).to.equal(true);
+      expect(document.querySelector('#client-only')).to.not.equal(null);
     });
   });
 
   describe('prop: fallback', () => {
     it('should render the fallback', () => {
-      const wrapper = serverRender(
-        <div>
-          <NoSsr fallback="fallback">
-            <span>Hello</span>
-          </NoSsr>
-        </div>,
+      let wrapper;
+      expect(() => {
+        wrapper = serverRender(
+          <div>
+            <NoSsr fallback="fallback">
+              <span>Hello</span>
+            </NoSsr>
+          </div>,
+        );
+      }).toErrorDev(
+        // Known issue due to using SSR APIs in a browser environment.
+        ['Warning: useLayoutEffect does nothing on the server'],
       );
       expect(wrapper.text()).to.equal('fallback');
     });
@@ -44,12 +56,12 @@ describe('<NoSsr />', () => {
 
   describe('prop: defer', () => {
     it('should defer the rendering', () => {
-      const wrapper = mount(
+      render(
         <NoSsr defer>
           <span id="client-only">Hello</span>
         </NoSsr>,
       );
-      expect(wrapper.find('#client-only').exists()).to.equal(true);
+      expect(document.querySelector('#client-only')).to.not.equal(null);
     });
   });
 });

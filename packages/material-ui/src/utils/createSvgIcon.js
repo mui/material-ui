@@ -2,7 +2,7 @@ import React from 'react';
 import SvgIcon from '../SvgIcon';
 
 /**
- * Private module reserved for @material-ui/x packages.
+ * Private module reserved for @material-ui packages.
  */
 export default function createSvgIcon(path, displayName) {
   const Component = (props, ref) => (

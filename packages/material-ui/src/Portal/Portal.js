@@ -4,12 +4,11 @@ import PropTypes from 'prop-types';
 import { exactProp, HTMLElementType } from '@material-ui/utils';
 import setRef from '../utils/setRef';
 import useForkRef from '../utils/useForkRef';
+import useEnhancedEffect from '../utils/useEnhancedEffect';
 
 function getContainer(container) {
   return typeof container === 'function' ? container() : container;
 }
-
-const useEnhancedEffect = typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
 
 /**
  * Portals provide a first-class way to render children into a DOM node

@@ -6,6 +6,7 @@ import Drawer, { getAnchor, isHorizontal } from '../Drawer/Drawer';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
 import useEventCallback from '../utils/useEventCallback';
+import useEnhancedEffect from '../utils/useEnhancedEffect';
 import { duration } from '../styles/transitions';
 import useTheme from '../styles/useTheme';
 import { getTransitionProps } from '../transitions/utils';
@@ -120,8 +121,6 @@ function findNativeHandler({ domTreeShapes, start, current, anchor }) {
 
 const iOS = typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
 const transitionDurationDefault = { enter: duration.enteringScreen, exit: duration.leavingScreen };
-
-const useEnhancedEffect = typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
 
 const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) {
   const theme = useTheme();

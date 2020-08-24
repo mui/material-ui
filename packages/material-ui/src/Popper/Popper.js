@@ -7,6 +7,7 @@ import Portal from '../Portal';
 import createChainedFunction from '../utils/createChainedFunction';
 import setRef from '../utils/setRef';
 import useForkRef from '../utils/useForkRef';
+import useEnhancedEffect from '../utils/useEnhancedEffect';
 
 function flipPlacement(placement, theme) {
   const direction = (theme && theme.direction) || 'ltr';
@@ -32,8 +33,6 @@ function flipPlacement(placement, theme) {
 function getAnchorEl(anchorEl) {
   return typeof anchorEl === 'function' ? anchorEl() : anchorEl;
 }
-
-const useEnhancedEffect = typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
 
 const defaultPopperOptions = {};
 

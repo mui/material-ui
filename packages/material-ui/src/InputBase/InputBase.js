@@ -9,6 +9,7 @@ import FormControlContext, { useFormControl } from '../FormControl/FormControlCo
 import withStyles from '../styles/withStyles';
 import capitalize from '../utils/capitalize';
 import useForkRef from '../utils/useForkRef';
+import useEnhancedEffect from '../utils/useEnhancedEffect';
 import TextareaAutosize from '../TextareaAutosize';
 import { isFilled } from './utils';
 
@@ -156,8 +157,6 @@ export const styles = (theme) => {
     inputHiddenLabel: {},
   };
 };
-
-const useEnhancedEffect = typeof window === 'undefined' ? React.useEffect : React.useLayoutEffect;
 
 /**
  * `InputBase` contains as few styles as possible.
