@@ -695,7 +695,17 @@ const Slider = React.forwardRef(function Slider(props, ref) {
       doc.removeEventListener('touchmove', handleTouchMove);
       doc.removeEventListener('touchend', handleTouchEnd);
     };
-  }, [disabled, handleTouchEnd, handleTouchMove, handleTouchStart]);
+  }, [handleTouchEnd, handleTouchMove, handleTouchStart]);
+
+  React.useEffect(() => {
+    if (disabled) {
+      const doc = ownerDocument(sliderRef.current);
+      doc.removeEventListener('mousemove', handleTouchMove);
+      doc.removeEventListener('mouseup', handleTouchEnd);
+      doc.removeEventListener('touchmove', handleTouchMove);
+      doc.removeEventListener('touchend', handleTouchEnd);
+    }
+  }, [disabled, handleTouchEnd, handleTouchMove]);
 
   const handleMouseDown = useEventCallback((event) => {
     if (onMouseDown) {
