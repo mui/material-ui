@@ -223,7 +223,7 @@ async function annotateClassesDefinition(component: { filename: string }, api: R
     return;
   }
 
-  // colon is parth of TSTypeAnnotation
+  // colon is part of TSTypeAnnotation
   let classesDefinitionSource = ': {';
   api.styles.classes.forEach((className) => {
     if (api.styles.descriptions[className] !== undefined) {
