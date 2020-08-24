@@ -219,8 +219,7 @@ async function annotateClassesDefinition(component: { filename: string }, api: R
   });
 
   if (end === null || start === 0) {
-    // TODO: gracefully return. Some components actually don't implement this prop.
-    console.warn(typesFilename);
+    // Some components actually don't implement this prop.
     return;
   }
 
