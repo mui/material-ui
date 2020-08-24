@@ -1,11 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { exactProp } from '@material-ui/utils';
-
-const useEnhancedEffect =
-  typeof window !== 'undefined' && process.env.NODE_ENV !== 'test'
-    ? React.useLayoutEffect
-    : React.useEffect;
+import useEnhancedEffect from '../utils/useEnhancedEffect';
 
 /**
  * NoSsr purposely removes components from the subject of Server Side Rendering (SSR).

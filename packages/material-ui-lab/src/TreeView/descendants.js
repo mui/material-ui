@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { unstable_useEnhancedEffect as useEnhancedEffect } from '@material-ui/core/utils';
 
 /** Credit: https://github.com/reach/reach-ui/blob/86a046f54d53b6420e392b3fa56dd991d9d4e458/packages/descendants/README.md
  *  Modified slightly to suit our purposes.
@@ -37,8 +38,6 @@ function binaryFindElement(array, element) {
 
   return start;
 }
-
-const useEnhancedEffect = typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
 
 const DescendantContext = React.createContext({});
 

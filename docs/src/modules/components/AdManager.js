@@ -1,10 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-
-const useEnhancedEffect =
-  typeof window !== 'undefined' && process.env.NODE_ENV !== 'test'
-    ? React.useLayoutEffect
-    : React.useEffect;
+import { unstable_useEnhancedEffect as useEnhancedEffect } from '@material-ui/core/utils';
 
 export const AdContext = React.createContext();
 

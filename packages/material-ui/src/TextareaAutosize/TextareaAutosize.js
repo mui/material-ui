@@ -2,13 +2,12 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import debounce from '../utils/debounce';
 import useForkRef from '../utils/useForkRef';
-import { ownerWindow } from '../utils';
+import useEnhancedEffect from '../utils/useEnhancedEffect';
+import ownerWindow from '../utils/ownerWindow';
 
 function getStyleValue(computedStyle, property) {
   return parseInt(computedStyle[property], 10) || 0;
 }
-
-const useEnhancedEffect = typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
 
 const styles = {
   /* Styles applied to the shadow textarea element. */

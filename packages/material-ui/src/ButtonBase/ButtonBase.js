@@ -15,6 +15,7 @@ export const styles = {
     alignItems: 'center',
     justifyContent: 'center',
     position: 'relative',
+    boxSizing: 'border-box',
     WebkitTapHighlightColor: 'transparent',
     backgroundColor: 'transparent', // Reset default value
     // We disable the focus ring for mouse, touch and keyboard users.

@@ -1,13 +1,16 @@
 ---
 title: Badge React component
 components: Badge
+githubLabel: component: Badge
 ---
 
 # Badge
 
 <p class="description">Badge generates a small badge to the top-right of its child(ren).</p>
 
-## Basic badges
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
+## Basic badge
 
 Examples of badges containing text, using primary and secondary colors. The badge is applied to its children.
 

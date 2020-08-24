@@ -1,13 +1,18 @@
 ---
 title: Menu React component
 components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
+githubLabel: component: Menu
+materialDesign: https://material.io/components/menus
+waiAria: https://www.w3.org/TR/wai-aria-practices/#menubutton
 ---
 
 # Menus
 
 <p class="description">Menus display a list of choices on temporary surfaces.</p>
 
-A [Menu](https://material.io/design/components/menus.html) displays a list of choices on a temporary surface. It appears when the user interacts with a button, or other control.
+A Menu displays a list of choices on a temporary surface. It appears when the user interacts with a button, or other control.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Simple Menu
 

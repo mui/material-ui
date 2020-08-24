@@ -6,6 +6,7 @@ import withStyles from '../styles/withStyles';
 import { fade } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
 import isMuiElement from '../utils/isMuiElement';
+import useEnhancedEffect from '../utils/useEnhancedEffect';
 import useForkRef from '../utils/useForkRef';
 import ListContext from '../List/ListContext';
 
@@ -98,8 +99,6 @@ export const styles = (theme) => ({
   /* Pseudo-class applied to the root element if `selected={true}`. */
   selected: {},
 });
-
-const useEnhancedEffect = typeof window === 'undefined' ? React.useEffect : React.useLayoutEffect;
 
 /**
  * Uses an additional container component if `ListItemSecondaryAction` is the last child.

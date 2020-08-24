@@ -1,6 +1,8 @@
 ---
 title: Timeline React component
 components: Timeline, TimelineItem, TimelineSeparator, TimelineDot, TimelineConnector, TimelineContent, TimelineOppositeContent
+githubLabel: component: Timeline
+packageName: @material-ui/lab
 ---
 
 # Timeline
@@ -8,6 +10,8 @@ components: Timeline, TimelineItem, TimelineSeparator, TimelineDot, TimelineConn
 <p class="description">The timeline displays a list of events in chronological order.</p>
 
 **Note:** This component is not documented in the [Material Design guidelines](https://material.io/), but Material-UI supports it.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Basic timeline
 
