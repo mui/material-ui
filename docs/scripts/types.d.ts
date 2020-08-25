@@ -103,7 +103,7 @@ declare module 'react-docgen' {
     | InstanceOfPropTypeDescriptor;
 
   export interface PropDescriptor {
-    defaultValue?: unknown;
+    defaultValue?: { computed: boolean; value: string };
     description?: string;
     required?: boolean;
     /**

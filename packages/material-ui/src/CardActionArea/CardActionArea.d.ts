@@ -3,10 +3,20 @@ import { OverrideProps } from '../OverridableComponent';
 
 export type CardActionAreaTypeMap<P, D extends React.ElementType> = ExtendButtonBaseTypeMap<{
   props: P & {
+    /**
+     * Override or extend the styles applied to the component.
+     */
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+      /** Pseudo-class applied to the ButtonBase root element if the action area is keyboard focused. */
+      focusVisible?: string;
+      /** Styles applied to the overlay that covers the action area when it is keyboard focused. */
+      focusHighlight?: string;
+    };
     focusVisibleClassName?: string;
   };
   defaultComponent: D;
-  classKey: CardActionAreaClassKey;
 }>;
 
 /**
@@ -25,7 +35,7 @@ declare const CardActionArea: ExtendButtonBase<CardActionAreaTypeMap<
   ButtonBaseTypeMap['defaultComponent']
 >>;
 
-export type CardActionAreaClassKey = 'root' | 'focusVisible' | 'focusHighlight';
+export type CardActionAreaClassKey = keyof NonNullable<CardActionAreaProps['classes']>;
 
 export type CardActionAreaProps<
   D extends React.ElementType = ButtonBaseTypeMap['defaultComponent'],

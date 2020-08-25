@@ -9,6 +9,19 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
      */
     children?: React.ReactNode;
     /**
+     * Override or extend the styles applied to the component.
+     */
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+      /** Styles applied to the root element if `margin="normal"`. */
+      marginNormal?: string;
+      /** Styles applied to the root element if `margin="dense"`. */
+      marginDense?: string;
+      /** Styles applied to the root element if `fullWidth={true}`. */
+      fullWidth?: string;
+    };
+    /**
      * The color of the component. It supports those theme colors that make sense for this component.
      */
     color?: 'primary' | 'secondary';
@@ -52,7 +65,6 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
     variant?: 'standard' | 'outlined' | 'filled';
   };
   defaultComponent: D;
-  classKey: FormControlClassKey;
 }
 
 /**
@@ -90,7 +102,7 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
  */
 declare const FormControl: OverridableComponent<FormControlTypeMap>;
 
-export type FormControlClassKey = 'root' | 'marginNormal' | 'marginDense' | 'fullWidth';
+export type FormControlClassKey = keyof NonNullable<FormControlTypeMap['props']['classes']>;
 
 export type FormControlProps<
   D extends React.ElementType = FormControlTypeMap['defaultComponent'],

@@ -26,6 +26,17 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
      */
     children?: React.ReactNode;
     /**
+     * Override or extend the styles applied to the component.
+     */
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+      /** Pseudo-class applied to the root element if `disabled={true}`. */
+      disabled?: string;
+      /** Pseudo-class applied to the root element if keyboard focused. */
+      focusVisible?: string;
+    };
+    /**
      * If `true`, the base button will be disabled.
      */
     disabled?: boolean;
@@ -66,7 +77,6 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
     TouchRippleProps?: Partial<TouchRippleProps>;
   };
   defaultComponent: D;
-  classKey: ButtonBaseClassKey;
 }
 
 /**
@@ -75,9 +85,8 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
  * can make extension quite tricky
  */
 export interface ExtendButtonBaseTypeMap<M extends OverridableTypeMap> {
-  props: M['props'] & ButtonBaseTypeMap['props'];
+  props: M['props'] & Omit<ButtonBaseTypeMap['props'], 'classes'>;
   defaultComponent: M['defaultComponent'];
-  classKey: M['classKey'];
 }
 
 export type ExtendButtonBase<M extends OverridableTypeMap> = ((
@@ -104,7 +113,7 @@ export type ButtonBaseProps<
   P = {}
 > = OverrideProps<ButtonBaseTypeMap<P, D>, D>;
 
-export type ButtonBaseClassKey = 'root' | 'disabled' | 'focusVisible';
+export type ButtonBaseClassKey = keyof NonNullable<ButtonBaseTypeMap['props']['classes']>;
 
 export interface ButtonBaseActions {
   focusVisible(): void;

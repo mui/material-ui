@@ -2118,7 +2118,7 @@ export const thTH: Localization = {
   components: {
     MuiBreadcrumbs: {
       defaultProps: {
-        expandText: 'ดูเส้นทาง',
+        expandText: 'แสดงเส้นทาง',
       },
     },
     MuiTablePagination: {
@@ -2128,13 +2128,13 @@ export const thTH: Localization = {
             return 'ไปที่หน้าแรก';
           }
           if (type === 'last') {
-            return 'ไปยังหน้าสุดท้าย';
+            return 'ไปที่หน้าสุดท้าย';
           }
           if (type === 'next') {
-            return 'หน้าต่อไป';
+            return 'ไปที่หน้าถัดไป';
           }
           // if (type === 'previous') {
-          return 'หน้าก่อน';
+          return 'ไปที่หน้าก่อน';
         },
         labelRowsPerPage: 'จำนวนแถวต่อหน้า:',
         labelDisplayedRows: ({ from, to, count }) =>
@@ -2143,7 +2143,7 @@ export const thTH: Localization = {
     },
     MuiRating: {
       defaultProps: {
-        getLabelText: (value) => `${value} ดาว${value !== 1 ? 's' : ''}`,
+        getLabelText: (value) => `${value} ดาว`,
         emptyLabelText: 'ว่างเปล่า',
       },
     },
@@ -2169,16 +2169,16 @@ export const thTH: Localization = {
             return `${selected ? '' : 'ไปที่'}หน้า ${page}`;
           }
           if (type === 'first') {
-            return 'ไปยังหน้าแรก';
+            return 'ไปที่หน้าแรก';
           }
           if (type === 'last') {
-            return 'ไปยังหน้าหน้าสุดท้าย';
+            return 'ไปที่หน้าสุดท้าย';
           }
           if (type === 'next') {
-            return 'ไปหน้าต่อไป';
+            return 'ไปที่หน้าถัดไป';
           }
           // if (type === 'previous') {
-          return 'ไปหน้าก่อน';
+          return 'ไปที่หน้าก่อน';
         },
       },
     },

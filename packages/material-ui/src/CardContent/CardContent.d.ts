@@ -7,9 +7,15 @@ export interface CardContentTypeMap<P = {}, D extends React.ElementType = 'div'>
      * The content of the component.
      */
     children?: React.ReactNode;
+    /**
+     * Override or extend the styles applied to the component.
+     */
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+    };
   };
   defaultComponent: D;
-  classKey: CardContentClassKey;
 }
 /**
  *
@@ -23,7 +29,7 @@ export interface CardContentTypeMap<P = {}, D extends React.ElementType = 'div'>
  */
 declare const CardContent: OverridableComponent<CardContentTypeMap>;
 
-export type CardContentClassKey = 'root';
+export type CardContentClassKey = keyof NonNullable<CardContentTypeMap['props']['classes']>;
 
 export type CardContentProps<
   D extends React.ElementType = CardContentTypeMap['defaultComponent'],

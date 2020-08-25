@@ -172,9 +172,7 @@ async function generateProptypes(
 
   proptypes.body.forEach((component) => {
     component.types.forEach((prop) => {
-      if (prop.name === 'classes' && prop.jsDoc) {
-        prop.jsDoc += '\nSee [CSS API](#css) below for more details.';
-      } else if (
+      if (
         !prop.jsDoc ||
         (ignoreExternalDocumentation[component.name] &&
           ignoreExternalDocumentation[component.name].includes(prop.name))

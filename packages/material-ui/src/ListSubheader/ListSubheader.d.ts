@@ -8,6 +8,23 @@ export interface ListSubheaderTypeMap<P = {}, D extends React.ElementType = 'li'
      */
     children?: React.ReactNode;
     /**
+     * Override or extend the styles applied to the component.
+     */
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+      /** Styles applied to the root element if `color="primary"`. */
+      colorPrimary?: string;
+      /** Styles applied to the root element if `color="inherit"`. */
+      colorInherit?: string;
+      /** Styles applied to the inner `component` element if `disableGutters={false}`. */
+      gutters?: string;
+      /** Styles applied to the root element if `inset={true}`. */
+      inset?: string;
+      /** Styles applied to the root element if `disableSticky={false}`. */
+      sticky?: string;
+    };
+    /**
      * The color of the component. It supports those theme colors that make sense for this component.
      */
     color?: 'default' | 'primary' | 'inherit';
@@ -25,7 +42,6 @@ export interface ListSubheaderTypeMap<P = {}, D extends React.ElementType = 'li'
     inset?: boolean;
   };
   defaultComponent: D;
-  classKey: ListSubheaderClassKey;
 }
 
 /**
@@ -41,13 +57,7 @@ export interface ListSubheaderTypeMap<P = {}, D extends React.ElementType = 'li'
  */
 declare const ListSubheader: OverridableComponent<ListSubheaderTypeMap>;
 
-export type ListSubheaderClassKey =
-  | 'root'
-  | 'colorPrimary'
-  | 'colorInherit'
-  | 'inset'
-  | 'sticky'
-  | 'gutters';
+export type ListSubheaderClassKey = keyof NonNullable<ListSubheaderTypeMap['props']['classes']>;
 
 export type ListSubheaderProps<
   D extends React.ElementType = ListSubheaderTypeMap['defaultComponent'],

@@ -1,15 +1,25 @@
 import * as React from 'react';
-import { StandardProps, TypographyProps } from '@material-ui/core';
+import { InternalStandardProps as StandardProps, TypographyProps } from '@material-ui/core';
 
-export interface TimelineOppositeContentProps
-  extends StandardProps<TypographyProps, TimelineOppositeContentClassKey> {
+export interface TimelineOppositeContentProps extends StandardProps<TypographyProps> {
   /**
    * The content of the component.
    */
   children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the root element if `align="right"`. */
+    alignRight?: string;
+  };
 }
 
-export type TimelineOppositeContentClassKey = 'root' | 'alignRight';
+export type TimelineOppositeContentClassKey = keyof NonNullable<
+  TimelineOppositeContentProps['classes']
+>;
 
 /**
  *

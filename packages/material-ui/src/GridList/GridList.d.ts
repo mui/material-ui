@@ -13,6 +13,13 @@ export interface GridListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      */
     children: NonNullable<React.ReactNode>;
     /**
+     * Override or extend the styles applied to the component.
+     */
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+    };
+    /**
      * Number of columns.
      */
     cols?: number;
@@ -22,7 +29,6 @@ export interface GridListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
     spacing?: number;
   };
   defaultComponent: D;
-  classKey: GridListClassKey;
 }
 /**
  *
@@ -36,7 +42,7 @@ export interface GridListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
  */
 declare const GridList: OverridableComponent<GridListTypeMap>;
 
-export type GridListClassKey = 'root';
+export type GridListClassKey = keyof NonNullable<GridListTypeMap['props']['classes']>;
 
 export type GridListProps<
   D extends React.ElementType = GridListTypeMap['defaultComponent'],

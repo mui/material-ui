@@ -1,16 +1,29 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 
 export interface FormControlLabelProps
-  extends StandardProps<
-    React.LabelHTMLAttributes<HTMLLabelElement>,
-    FormControlLabelClassKey,
-    'children' | 'onChange'
-  > {
+  extends StandardProps<React.LabelHTMLAttributes<HTMLLabelElement>, 'children' | 'onChange'> {
   /**
    * If `true`, the component appears selected.
    */
   checked?: boolean;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the root element if `labelPlacement="start"`. */
+    labelPlacementStart?: string;
+    /** Styles applied to the root element if `labelPlacement="top"`. */
+    labelPlacementTop?: string;
+    /** Styles applied to the root element if `labelPlacement="bottom"`. */
+    labelPlacementBottom?: string;
+    /** Pseudo-class applied to the root element if `disabled={true}`. */
+    disabled?: string;
+    /** Styles applied to the label's Typography component. */
+    label?: string;
+  };
   /**
    * A control element. For instance, it can be a `Radio`, a `Switch` or a `Checkbox`.
    */
@@ -45,13 +58,7 @@ export interface FormControlLabelProps
   value?: unknown;
 }
 
-export type FormControlLabelClassKey =
-  | 'root'
-  | 'labelPlacementStart'
-  | 'labelPlacementTop'
-  | 'labelPlacementBottom'
-  | 'disabled'
-  | 'label';
+export type FormControlLabelClassKey = keyof NonNullable<FormControlLabelProps['classes']>;
 
 /**
  * Drop in replacement of the `Radio`, `Switch` and `Checkbox` component.

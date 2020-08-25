@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 import { SnackbarContentProps } from '../SnackbarContent';
 import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
 import { ClickAwayListenerProps } from '../ClickAwayListener';
@@ -12,10 +12,7 @@ export interface SnackbarOrigin {
 export type SnackbarCloseReason = 'timeout' | 'clickaway';
 
 export interface SnackbarProps
-  extends StandardProps<
-    React.HTMLAttributes<HTMLDivElement> & Partial<TransitionHandlerProps>,
-    SnackbarClassKey
-  > {
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement> & Partial<TransitionHandlerProps>> {
   /**
    * The action to display. It renders after the message, at the end of the snackbar.
    */
@@ -37,6 +34,25 @@ export interface SnackbarProps
    * Replace the `SnackbarContent` component.
    */
   children?: React.ReactElement<any, any>;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the root element if `anchorOrigin={{ 'top', 'center' }}`. */
+    anchorOriginTopCenter?: string;
+    /** Styles applied to the root element if `anchorOrigin={{ 'bottom', 'center' }}`. */
+    anchorOriginBottomCenter?: string;
+    /** Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }}`. */
+    anchorOriginTopRight?: string;
+    /** Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }}`. */
+    anchorOriginBottomRight?: string;
+    /** Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }}`. */
+    anchorOriginTopLeft?: string;
+    /** Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }}`. */
+    anchorOriginBottomLeft?: string;
+  };
   /**
    * Props applied to the `ClickAwayListener` element.
    */
@@ -101,14 +117,7 @@ export interface SnackbarProps
   TransitionProps?: TransitionProps;
 }
 
-export type SnackbarClassKey =
-  | 'root'
-  | 'anchorOriginTopCenter'
-  | 'anchorOriginBottomCenter'
-  | 'anchorOriginTopRight'
-  | 'anchorOriginBottomRight'
-  | 'anchorOriginTopLeft'
-  | 'anchorOriginBottomLeft';
+export type SnackbarClassKey = keyof NonNullable<SnackbarProps['classes']>;
 
 /**
  *

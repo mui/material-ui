@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 import { PaperProps } from '../Paper';
 import { ModalProps } from '../Modal';
 import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
 
 export interface DialogProps
-  extends StandardProps<ModalProps & Partial<TransitionHandlerProps>, DialogClassKey, 'children'> {
+  extends StandardProps<ModalProps & Partial<TransitionHandlerProps>, 'children'> {
   /**
    * The id(s) of the element(s) that describe the dialog.
    */
@@ -18,6 +18,41 @@ export interface DialogProps
    * Dialog children, usually the included sub-components.
    */
   children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the container element if `scroll="paper"`. */
+    scrollPaper?: string;
+    /** Styles applied to the container element if `scroll="body"`. */
+    scrollBody?: string;
+    /** Styles applied to the container element. */
+    container?: string;
+    /** Styles applied to the `Paper` component. */
+    paper?: string;
+    /** Styles applied to the `Paper` component if `scroll="paper"`. */
+    paperScrollPaper?: string;
+    /** Styles applied to the `Paper` component if `scroll="body"`. */
+    paperScrollBody?: string;
+    /** Styles applied to the `Paper` component if `maxWidth=false`. */
+    paperWidthFalse?: string;
+    /** Styles applied to the `Paper` component if `maxWidth="xs"`. */
+    paperWidthXs?: string;
+    /** Styles applied to the `Paper` component if `maxWidth="sm"`. */
+    paperWidthSm?: string;
+    /** Styles applied to the `Paper` component if `maxWidth="md"`. */
+    paperWidthMd?: string;
+    /** Styles applied to the `Paper` component if `maxWidth="lg"`. */
+    paperWidthLg?: string;
+    /** Styles applied to the `Paper` component if `maxWidth="xl"`. */
+    paperWidthXl?: string;
+    /** Styles applied to the `Paper` component if `fullWidth={true}`. */
+    paperFullWidth?: string;
+    /** Styles applied to the `Paper` component if `fullScreen={true}`. */
+    paperFullScreen?: string;
+  };
   /**
    * If `true`, clicking the backdrop will not fire the `onClose` callback.
    */
@@ -93,22 +128,7 @@ export interface DialogProps
   TransitionProps?: TransitionProps;
 }
 
-export type DialogClassKey =
-  | 'root'
-  | 'scrollPaper'
-  | 'scrollBody'
-  | 'container'
-  | 'paper'
-  | 'paperScrollPaper'
-  | 'paperScrollBody'
-  | 'paperWidthFalse'
-  | 'paperWidthXs'
-  | 'paperWidthSm'
-  | 'paperWidthMd'
-  | 'paperWidthLg'
-  | 'paperWidthXl'
-  | 'paperFullWidth'
-  | 'paperFullScreen';
+export type DialogClassKey = keyof NonNullable<DialogProps['classes']>;
 
 /**
  * Dialogs are overlaid modal paper based components with a backdrop.

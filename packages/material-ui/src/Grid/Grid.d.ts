@@ -27,54 +27,7 @@ export type GridWrap = 'nowrap' | 'wrap' | 'wrap-reverse';
 
 export type GridSize = 'auto' | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
-export type GridClassKey =
-  | 'root'
-  | 'container'
-  | 'item'
-  | 'zeroMinWidth'
-  | 'direction-xs-column'
-  | 'direction-xs-column-reverse'
-  | 'direction-xs-row-reverse'
-  | 'wrap-xs-nowrap'
-  | 'wrap-xs-wrap-reverse'
-  | 'align-items-xs-center'
-  | 'align-items-xs-flex-start'
-  | 'align-items-xs-flex-end'
-  | 'align-items-xs-baseline'
-  | 'align-content-xs-center'
-  | 'align-content-xs-flex-start'
-  | 'align-content-xs-flex-end'
-  | 'align-content-xs-space-between'
-  | 'align-content-xs-space-around'
-  | 'justify-content-xs-center'
-  | 'justify-content-xs-flex-end'
-  | 'justify-content-xs-space-between'
-  | 'justify-content-xs-space-around'
-  | 'justify-content-xs-space-evenly'
-  | 'spacing-xs-1'
-  | 'spacing-xs-2'
-  | 'spacing-xs-3'
-  | 'spacing-xs-4'
-  | 'spacing-xs-5'
-  | 'spacing-xs-6'
-  | 'spacing-xs-7'
-  | 'spacing-xs-8'
-  | 'spacing-xs-9'
-  | 'spacing-xs-10'
-  | 'grid-xs-auto'
-  | 'grid-xs-true'
-  | 'grid-xs-1'
-  | 'grid-xs-2'
-  | 'grid-xs-3'
-  | 'grid-xs-4'
-  | 'grid-xs-5'
-  | 'grid-xs-6'
-  | 'grid-xs-7'
-  | 'grid-xs-8'
-  | 'grid-xs-9'
-  | 'grid-xs-10'
-  | 'grid-xs-11'
-  | 'grid-xs-12';
+export type GridClassKey = keyof NonNullable<GridTypeMap['props']['classes']>;
 
 export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
@@ -92,6 +45,62 @@ export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * The content of the component.
      */
     children?: React.ReactNode;
+    /**
+     * Override or extend the styles applied to the component.
+     */
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+      /** Styles applied to the root element if `container={true}`. */
+      container?: string;
+      /** Styles applied to the root element if `item={true}`. */
+      item?: string;
+      /** Styles applied to the root element if `zeroMinWidth={true}`. */
+      zeroMinWidth?: string;
+      'direction-xs-column'?: string;
+      'direction-xs-column-reverse'?: string;
+      'direction-xs-row-reverse'?: string;
+      'wrap-xs-nowrap'?: string;
+      'wrap-xs-wrap-reverse'?: string;
+      'align-items-xs-center'?: string;
+      'align-items-xs-flex-start'?: string;
+      'align-items-xs-flex-end'?: string;
+      'align-items-xs-baseline'?: string;
+      'align-content-xs-center'?: string;
+      'align-content-xs-flex-start'?: string;
+      'align-content-xs-flex-end'?: string;
+      'align-content-xs-space-between'?: string;
+      'align-content-xs-space-around'?: string;
+      'justify-content-xs-center'?: string;
+      'justify-content-xs-flex-end'?: string;
+      'justify-content-xs-space-between'?: string;
+      'justify-content-xs-space-around'?: string;
+      'justify-content-xs-space-evenly'?: string;
+      'spacing-xs-1'?: string;
+      'spacing-xs-2'?: string;
+      'spacing-xs-3'?: string;
+      'spacing-xs-4'?: string;
+      'spacing-xs-5'?: string;
+      'spacing-xs-6'?: string;
+      'spacing-xs-7'?: string;
+      'spacing-xs-8'?: string;
+      'spacing-xs-9'?: string;
+      'spacing-xs-10'?: string;
+      'grid-xs-auto'?: string;
+      'grid-xs-true'?: string;
+      'grid-xs-1'?: string;
+      'grid-xs-2'?: string;
+      'grid-xs-3'?: string;
+      'grid-xs-4'?: string;
+      'grid-xs-5'?: string;
+      'grid-xs-6'?: string;
+      'grid-xs-7'?: string;
+      'grid-xs-8'?: string;
+      'grid-xs-9'?: string;
+      'grid-xs-10'?: string;
+      'grid-xs-11'?: string;
+      'grid-xs-12'?: string;
+    };
     /**
      * If `true`, the component will have the flex *container* behavior.
      * You should be wrapping *items* with a *container*.
@@ -154,7 +163,6 @@ export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
     zeroMinWidth?: boolean;
   };
   defaultComponent: D;
-  classKey: GridClassKey;
 }
 
 /**

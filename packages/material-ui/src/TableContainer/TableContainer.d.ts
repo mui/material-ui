@@ -7,9 +7,15 @@ export interface TableContainerTypeMap<P = {}, D extends React.ElementType = 'di
      * The table itself, normally `<Table />`.
      */
     children?: React.ReactNode;
+    /**
+     * Override or extend the styles applied to the component.
+     */
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+    };
   };
   defaultComponent: D;
-  classKey: TableContainerClassKey;
 }
 /**
  *
@@ -23,7 +29,7 @@ export interface TableContainerTypeMap<P = {}, D extends React.ElementType = 'di
  */
 declare const TableContainer: OverridableComponent<TableContainerTypeMap>;
 
-export type TableContainerClassKey = 'root';
+export type TableContainerClassKey = keyof NonNullable<TableContainerTypeMap['props']['classes']>;
 
 export type TableContainerProps<
   D extends React.ElementType = TableContainerTypeMap['defaultComponent'],

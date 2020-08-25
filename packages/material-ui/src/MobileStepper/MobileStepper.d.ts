@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 import { PaperProps } from '../Paper';
 import { LinearProgressProps } from '../LinearProgress';
 
-export interface MobileStepperProps
-  extends StandardProps<PaperProps, MobileStepperClassKey, 'children' | 'variant'> {
+export interface MobileStepperProps extends StandardProps<PaperProps, 'children' | 'variant'> {
   /**
    * Set the active step (zero based index).
    * Defines which dot is highlighted when the variant is 'dots'.
@@ -14,6 +13,27 @@ export interface MobileStepperProps
    * A back button element. For instance, it can be a `Button` or an `IconButton`.
    */
   backButton: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the root element if `position="bottom"`. */
+    positionBottom?: string;
+    /** Styles applied to the root element if `position="top"`. */
+    positionTop?: string;
+    /** Styles applied to the root element if `position="static"`. */
+    positionStatic?: string;
+    /** Styles applied to the dots container if `variant="dots"`. */
+    dots?: string;
+    /** Styles applied to each dot if `variant="dots"`. */
+    dot?: string;
+    /** Styles applied to a dot if `variant="dots"` and this is the active step. */
+    dotActive?: string;
+    /** Styles applied to the Linear Progress component if `variant="progress"`. */
+    progress?: string;
+  };
   /**
    * Props applied to the `LinearProgress` element.
    */
@@ -36,15 +56,7 @@ export interface MobileStepperProps
   variant?: 'text' | 'dots' | 'progress';
 }
 
-export type MobileStepperClassKey =
-  | 'root'
-  | 'positionBottom'
-  | 'positionTop'
-  | 'positionStatic'
-  | 'dots'
-  | 'dot'
-  | 'dotActive'
-  | 'progress';
+export type MobileStepperClassKey = keyof NonNullable<MobileStepperProps['classes']>;
 
 /**
  *

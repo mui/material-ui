@@ -18,6 +18,25 @@ export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     children?: React.ReactNode;
     /**
+     * Override or extend the styles applied to the component.
+     */
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+      /** Styles applied to the root element if not `src` or `srcSet`. */
+      colorDefault?: string;
+      /** Styles applied to the root element if `variant="circular"`. */
+      circular?: string;
+      /** Styles applied to the root element if `variant="rounded"`. */
+      rounded?: string;
+      /** Styles applied to the root element if `variant="square"`. */
+      square?: string;
+      /** Styles applied to the img element if either `src` or `srcSet` is defined. */
+      img?: string;
+      /** Styles applied to the fallback icon */
+      fallback?: string;
+    };
+    /**
      * Attributes applied to the `img` element if the component is used to display an image.
      * It can be used to listen for the loading error event.
      */
@@ -41,7 +60,6 @@ export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
     variant?: OverridableStringUnion<AvatarVariantDefaults, AvatarPropsVariantOverrides>;
   };
   defaultComponent: D;
-  classKey: AvatarClassKey;
 }
 
 /**
@@ -56,14 +74,7 @@ export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
  */
 declare const Avatar: OverridableComponent<AvatarTypeMap>;
 
-export type AvatarClassKey =
-  | 'root'
-  | 'colorDefault'
-  | 'circular'
-  | 'rounded'
-  | 'square'
-  | 'img'
-  | 'fallback';
+export type AvatarClassKey = keyof NonNullable<AvatarTypeMap['props']['classes']>;
 
 export type AvatarProps<
   D extends React.ElementType = AvatarTypeMap['defaultComponent'],

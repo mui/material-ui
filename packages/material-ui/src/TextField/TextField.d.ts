@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps, PropTypes } from '..';
+import { InternalStandardProps as StandardProps, PropTypes } from '..';
 import { FormControlProps } from '../FormControl';
 import { FormHelperTextProps } from '../FormHelperText';
 import { InputBaseProps } from '../InputBase';
@@ -12,7 +12,6 @@ import { SelectProps } from '../Select';
 export interface BaseTextFieldProps
   extends StandardProps<
     FormControlProps,
-    TextFieldClassKey,
     // event handlers are declared on derived interfaces
     'onChange' | 'onBlur' | 'onFocus' | 'defaultValue'
   > {
@@ -30,6 +29,13 @@ export interface BaseTextFieldProps
    * @ignore
    */
   children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+  };
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
@@ -201,7 +207,7 @@ export interface OutlinedTextFieldProps extends BaseTextFieldProps {
 
 export type TextFieldProps = StandardTextFieldProps | FilledTextFieldProps | OutlinedTextFieldProps;
 
-export type TextFieldClassKey = 'root';
+export type TextFieldClassKey = keyof NonNullable<TextFieldProps['classes']>;
 
 /**
  * The `TextField` is a convenience wrapper for the most common cases (80%).

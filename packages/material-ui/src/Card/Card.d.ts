@@ -1,14 +1,21 @@
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 import { PaperProps } from '../Paper';
 
-export interface CardProps extends StandardProps<PaperProps, CardClassKey> {
+export interface CardProps extends StandardProps<PaperProps> {
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+  };
   /**
    * If `true`, the card will use raised styling.
    */
   raised?: boolean;
 }
 
-export type CardClassKey = 'root';
+export type CardClassKey = keyof NonNullable<CardProps['classes']>;
 
 /**
  *

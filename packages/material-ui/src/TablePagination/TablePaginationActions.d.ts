@@ -3,6 +3,10 @@ import { IconButtonProps } from '../IconButton/IconButton';
 
 export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDivElement> {
   backIconButtonProps?: Partial<IconButtonProps>;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: {};
   count: number;
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.

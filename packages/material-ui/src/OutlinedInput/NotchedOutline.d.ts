@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 
 export interface NotchedOutlineProps
-  extends StandardProps<React.FieldsetHTMLAttributes<HTMLFieldSetElement>, NotchedOutlineClassKey> {
+  extends StandardProps<React.FieldsetHTMLAttributes<HTMLFieldSetElement>> {
   disabled?: boolean;
   error?: boolean;
   focused?: boolean;
@@ -10,7 +10,7 @@ export interface NotchedOutlineProps
   notched: boolean;
 }
 
-export type NotchedOutlineClassKey = 'root' | 'legend' | 'focused' | 'error' | 'disabled';
+export type NotchedOutlineClassKey = keyof NonNullable<NotchedOutlineProps['classes']>;
 
 declare const NotchedOutline: React.ComponentType<NotchedOutlineProps>;
 

@@ -1,12 +1,22 @@
 import * as React from 'react';
-import { StandardProps } from '@material-ui/core';
+import { InternalStandardProps as StandardProps } from '@material-ui/core';
 
-export interface TabScrollButtonProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, TabScrollButtonClassKey> {
+export interface TabScrollButtonProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
    * The content of the component.
    */
   children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the root element if `orientation="vertical"`. */
+    vertical?: string;
+    /** Pseudo-class applied to the root element if `disabled={true}`. */
+    disabled?: string;
+  };
   /**
    * Which direction should the button indicate?
    */
@@ -21,7 +31,7 @@ export interface TabScrollButtonProps
   orientation: 'horizontal' | 'vertical';
 }
 
-export type TabScrollButtonClassKey = 'root' | 'vertical' | 'disabled';
+export type TabScrollButtonClassKey = keyof NonNullable<TabScrollButtonProps['classes']>;
 /**
  *
  * Demos:

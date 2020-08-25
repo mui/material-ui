@@ -16,6 +16,21 @@ export type TableSortLabelTypeMap<
      */
     children?: React.ReactNode;
     /**
+     * Override or extend the styles applied to the component.
+     */
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+      /** Pseudo-class applied to the root element if `active={true}`. */
+      active?: string;
+      /** Styles applied to the icon component. */
+      icon?: string;
+      /** Styles applied to the icon component if `direction="desc"`. */
+      iconDirectionDesc?: string;
+      /** Styles applied to the icon component if `direction="asc"`. */
+      iconDirectionAsc?: string;
+    };
+    /**
      * The current sort direction.
      */
     direction?: 'asc' | 'desc';
@@ -29,7 +44,6 @@ export type TableSortLabelTypeMap<
     IconComponent?: React.ComponentType<{ className: string }>;
   };
   defaultComponent: D;
-  classKey: TableSortLabelClassKey;
 }>;
 
 /**
@@ -45,12 +59,7 @@ export type TableSortLabelTypeMap<
  */
 declare const TableSortLabel: ExtendButtonBase<TableSortLabelTypeMap>;
 
-export type TableSortLabelClassKey =
-  | 'root'
-  | 'active'
-  | 'icon'
-  | 'iconDirectionDesc'
-  | 'iconDirectionAsc';
+export type TableSortLabelClassKey = keyof NonNullable<TableSortLabelTypeMap['props']['classes']>;
 
 export type TableSortLabelProps<
   D extends React.ElementType = TableSortLabelTypeMap['defaultComponent'],

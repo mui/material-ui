@@ -8,6 +8,19 @@ export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'>
      */
     children?: React.ReactNode;
     /**
+     * Override or extend the styles applied to the component.
+     */
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+      /** Styles applied to the ol element. */
+      ol?: string;
+      /** Styles applied to the li element. */
+      li?: string;
+      /** Styles applied to the separator element. */
+      separator?: string;
+    };
+    /**
      * Override the default label for the expand button.
      *
      * For localization purposes, you can use the provided [translations](/guides/localization/).
@@ -33,7 +46,6 @@ export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'>
     separator?: React.ReactNode;
   };
   defaultComponent: D;
-  classKey: BreadcrumbsClassKey;
 }
 
 /**
@@ -48,7 +60,7 @@ export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'>
  */
 declare const Breadcrumbs: OverridableComponent<BreadcrumbsTypeMap>;
 
-export type BreadcrumbsClassKey = 'root' | 'ol' | 'li' | 'separator';
+export type BreadcrumbsClassKey = keyof NonNullable<BreadcrumbsTypeMap['props']['classes']>;
 
 export type BreadcrumbsProps<
   D extends React.ElementType = BreadcrumbsTypeMap['defaultComponent'],

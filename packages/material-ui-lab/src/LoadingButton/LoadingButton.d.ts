@@ -7,6 +7,29 @@ export type LoadingButtonTypeMap<
 > = ExtendButtonTypeMap<{
   props: P & {
     /**
+     * Override or extend the styles applied to the component.
+     */
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+      /** Styles applied to the root element if `pending={true}`. */
+      pending?: string;
+      /** Styles applied to the pendingIndicator element. */
+      pendingIndicator?: string;
+      /** Styles applied to the pendingIndicator element if `pendingPosition="center"`. */
+      pendingIndicatorCenter?: string;
+      /** Styles applied to the pendingIndicator element if `pendingPosition="start"`. */
+      pendingIndicatorStart?: string;
+      /** Styles applied to the pendingIndicator element if `pendingPosition="end"`. */
+      pendingIndicatorEnd?: string;
+      /** Styles applied to the endIcon element if `pending={true}` and `pendingPosition="end"`. */
+      endIconPendingEnd?: string;
+      /** Styles applied to the startIcon element if `pending={true}` and `pendingPosition="start"`. */
+      startIconPendingStart?: string;
+      /** Styles applied to the label element if `pending={true}` and `pendingPosition="center"`. */
+      labelPendingCenter?: string;
+    };
+    /**
      * If `true`, the pending indicator will be shown.
      */
     pending?: boolean;
@@ -20,7 +43,6 @@ export type LoadingButtonTypeMap<
     pendingPosition?: 'start' | 'end' | 'center';
   };
   defaultComponent: D;
-  classKey: LoadingButtonClassKey;
 }>;
 
 /**
@@ -41,15 +63,6 @@ export type LoadingButtonProps<
   P = {}
 > = OverrideProps<LoadingButtonTypeMap<P, D>, D>;
 
-export type LoadingButtonClassKey =
-  | 'root'
-  | 'pending'
-  | 'pendingIndicator'
-  | 'pendingIndicatorCenter'
-  | 'pendingIndicatorStart'
-  | 'pendingIndicatorEnd'
-  | 'endIconPendingEnd'
-  | 'startIconPendingStart'
-  | 'labelPendingCenter';
+export type LoadingButtonClassKey = keyof NonNullable<LoadingButtonTypeMap['props']['classes']>;
 
 export default LoadingButton;

@@ -1,12 +1,33 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 
 export interface CircularProgressProps
-  extends StandardProps<
-    React.HTMLAttributes<HTMLDivElement>,
-    CircularProgressClassKey,
-    'children'
-  > {
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'children'> {
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the root element if `variant="determinate"`. */
+    determinate?: string;
+    /** Styles applied to the root element if `variant="indeterminate"`. */
+    indeterminate?: string;
+    /** Styles applied to the root element if `color="primary"`. */
+    colorPrimary?: string;
+    /** Styles applied to the root element if `color="secondary"`. */
+    colorSecondary?: string;
+    /** Styles applied to the `svg` element. */
+    svg?: string;
+    /** Styles applied to the `circle` svg path. */
+    circle?: string;
+    /** Styles applied to the `circle` svg path if `variant="determinate"`. */
+    circleDeterminate?: string;
+    /** Styles applied to the `circle` svg path if `variant="indeterminate"`. */
+    circleIndeterminate?: string;
+    /** Styles applied to the `circle` svg path if `disableShrink={true}`. */
+    circleDisableShrink?: string;
+  };
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
@@ -38,17 +59,7 @@ export interface CircularProgressProps
   variant?: 'determinate' | 'indeterminate';
 }
 
-export type CircularProgressClassKey =
-  | 'root'
-  | 'determinate'
-  | 'indeterminate'
-  | 'colorPrimary'
-  | 'colorSecondary'
-  | 'svg'
-  | 'circle'
-  | 'circleDeterminate'
-  | 'circleIndeterminate'
-  | 'circleDisableShrink';
+export type CircularProgressClassKey = keyof NonNullable<CircularProgressProps['classes']>;
 
 /**
  * ## ARIA

@@ -1,19 +1,24 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 import { IconButtonProps } from '../IconButton';
 
 export interface SwitchBaseProps
-  extends StandardProps<
-    IconButtonProps,
-    SwitchBaseClassKey,
-    'children' | 'onChange' | 'type' | 'value'
-  > {
+  extends StandardProps<IconButtonProps, 'children' | 'onChange' | 'type' | 'value'> {
   autoFocus?: boolean;
   /**
    * If `true`, the component is checked.
    */
   checked?: boolean;
   checkedIcon: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: {
+    root?: string;
+    checked?: string;
+    disabled?: string;
+    inpit?: string;
+  };
   defaultChecked?: boolean;
   disabled?: boolean;
   /**
@@ -58,7 +63,7 @@ export interface SwitchBaseProps
   value?: unknown;
 }
 
-export type SwitchBaseClassKey = 'root' | 'checked' | 'disabled' | 'input';
+export type SwitchBaseClassKey = keyof NonNullable<SwitchBaseProps['classes']>;
 
 declare const SwitchBase: React.ComponentType<SwitchBaseProps>;
 

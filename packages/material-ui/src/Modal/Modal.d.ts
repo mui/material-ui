@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 import { BackdropProps } from '../Backdrop';
 import { PortalProps } from '../Portal';
 
 export interface ModalProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, never, 'children'> {
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'children'> {
   /**
    * A backdrop component. This prop enables custom backdrop rendering.
    */

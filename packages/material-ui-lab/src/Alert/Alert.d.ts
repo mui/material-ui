@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverridableStringUnion } from '@material-ui/types';
-import { StandardProps } from '@material-ui/core';
+import { InternalStandardProps as StandardProps } from '@material-ui/core';
 import { PaperProps } from '@material-ui/core/Paper';
 
 export type Color = 'success' | 'info' | 'warning' | 'error';
@@ -8,11 +8,54 @@ export type Color = 'success' | 'info' | 'warning' | 'error';
 export interface AlertPropsVariantOverrides {}
 export type AlertVariantDefaults = Record<'standard' | 'filled' | 'outlined', true>;
 
-export interface AlertProps extends StandardProps<PaperProps, AlertClassKey, 'variant'> {
+export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
   /**
    * The action to display. It renders after the message, at the end of the alert.
    */
   action?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the root element if `variant="filled"`. */
+    filled?: string;
+    /** Styles applied to the root element if `variant="outlined"`. */
+    outlined?: string;
+    /** Styles applied to the root element if `variant="standard"`. */
+    standard?: string;
+    /** Styles applied to the root element if `variant="standard"` and `color="success"`. */
+    standardSuccess?: string;
+    /** Styles applied to the root element if `variant="standard"` and `color="info"`. */
+    standardInfo?: string;
+    /** Styles applied to the root element if `variant="standard"` and `color="warning"`. */
+    standardWarning?: string;
+    /** Styles applied to the root element if `variant="standard"` and `color="error"`. */
+    standardError?: string;
+    /** Styles applied to the root element if `variant="outlined"` and `color="success"`. */
+    outlinedSuccess?: string;
+    /** Styles applied to the root element if `variant="outlined"` and `color="info"`. */
+    outlinedInfo?: string;
+    /** Styles applied to the root element if `variant="outlined"` and `color="warning"`. */
+    outlinedWarning?: string;
+    /** Styles applied to the root element if `variant="outlined"` and `color="error"`. */
+    outlinedError?: string;
+    /** Styles applied to the root element if `variant="filled"` and `color="success"`. */
+    filledSuccess?: string;
+    /** Styles applied to the root element if `variant="filled"` and `color="info"`. */
+    filledInfo?: string;
+    /** Styles applied to the root element if `variant="filled"` and `color="warning"`. */
+    filledWarning?: string;
+    /** Styles applied to the root element if `variant="filled"` and `color="error"`. */
+    filledError?: string;
+    /** Styles applied to the icon wrapper element. */
+    icon?: string;
+    /** Styles applied to the message wrapper element. */
+    message?: string;
+    /** Styles applied to the action wrapper element if `action` is provided. */
+    action?: string;
+  };
   /**
    * Override the default label for the *close popup* icon button.
    *
@@ -56,26 +99,7 @@ export interface AlertProps extends StandardProps<PaperProps, AlertClassKey, 'va
   variant?: OverridableStringUnion<AlertVariantDefaults, AlertPropsVariantOverrides>;
 }
 
-export type AlertClassKey =
-  | 'root'
-  | 'filled'
-  | 'standard'
-  | 'outlined'
-  | 'standardSuccess'
-  | 'standardInfo'
-  | 'standardWarning'
-  | 'standardError'
-  | 'outlinedSuccess'
-  | 'outlinedInfo'
-  | 'outlinedWarning'
-  | 'outlinedError'
-  | 'filledSuccess'
-  | 'filledInfo'
-  | 'filledWarning'
-  | 'filledError'
-  | 'icon'
-  | 'message'
-  | 'action';
+export type AlertClassKey = keyof NonNullable<AlertProps['classes']>;
 
 /**
  *

@@ -8,6 +8,19 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      */
     children?: React.ReactNode;
     /**
+     * Override or extend the styles applied to the component.
+     */
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+      /** Styles applied to the root element if `disablePadding={false}`. */
+      padding?: string;
+      /** Styles applied to the root element if dense. */
+      dense?: string;
+      /** Styles applied to the root element if a `subheader` is provided. */
+      subheader?: string;
+    };
+    /**
      * If `true`, compact vertical padding designed for keyboard and mouse input will be used for
      * the list and list items.
      * The prop is available to descendant components as the `dense` context.
@@ -23,7 +36,6 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
     subheader?: React.ReactNode;
   };
   defaultComponent: D;
-  classKey: ListClassKey;
 }
 
 /**
@@ -39,7 +51,7 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
  */
 declare const List: OverridableComponent<ListTypeMap>;
 
-export type ListClassKey = 'root' | 'padding' | 'dense' | 'subheader';
+export type ListClassKey = keyof NonNullable<ListTypeMap['props']['classes']>;
 
 export type ListProps<
   D extends React.ElementType = ListTypeMap['defaultComponent'],

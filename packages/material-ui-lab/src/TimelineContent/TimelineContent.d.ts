@@ -1,15 +1,23 @@
 import * as React from 'react';
-import { StandardProps, TypographyProps } from '@material-ui/core';
+import { InternalStandardProps as StandardProps, TypographyProps } from '@material-ui/core';
 
-export interface TimelineContentProps
-  extends StandardProps<TypographyProps, TimelineContentClassKey> {
+export interface TimelineContentProps extends StandardProps<TypographyProps> {
   /**
    * The content of the component.
    */
   children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the root element if `align="right"`. */
+    alignRight?: string;
+  };
 }
 
-export type TimelineContentClassKey = 'root';
+export type TimelineContentClassKey = keyof NonNullable<TimelineContentProps['classes']>;
 
 /**
  *

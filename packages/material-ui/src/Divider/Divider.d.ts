@@ -11,6 +11,27 @@ export interface DividerTypeMap<P = {}, D extends React.ElementType = 'hr'> {
      */
     absolute?: boolean;
     /**
+     * Override or extend the styles applied to the component.
+     */
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+      /** Styles applied to the root element if `absolute={true}`. */
+      absolute?: string;
+      /** Styles applied to the root element if `variant="inset"`. */
+      inset?: string;
+      /** Styles applied to the root element if `variant="fullWidth"`. */
+      fullWidth?: string;
+      /** Styles applied to the root element if `light={true}`. */
+      light?: string;
+      /** Styles applied to the root element if `variant="middle"`. */
+      middle?: string;
+      /** Styles applied to the root element if `orientation="vertical"`. */
+      vertical?: string;
+      /** Styles applied to the root element if `flexItem={true}`. */
+      flexItem?: string;
+    };
+    /**
      * If `true`, a vertical divider will have the correct height when used in flex container.
      * (By default, a vertical divider will have a calculated height of `0px` if it is the child of a flex container.)
      */
@@ -29,7 +50,6 @@ export interface DividerTypeMap<P = {}, D extends React.ElementType = 'hr'> {
     variant?: OverridableStringUnion<DividerVariantDefaults, DividerPropsVariantOverrides>;
   };
   defaultComponent: D;
-  classKey: DividerClassKey;
 }
 
 /**
@@ -45,14 +65,7 @@ export interface DividerTypeMap<P = {}, D extends React.ElementType = 'hr'> {
  */
 declare const Divider: OverridableComponent<DividerTypeMap>;
 
-export type DividerClassKey =
-  | 'root'
-  | 'absolute'
-  | 'inset'
-  | 'fullWidth'
-  | 'light'
-  | 'middle'
-  | 'vertical';
+export type DividerClassKey = keyof NonNullable<DividerTypeMap['props']['classes']>;
 
 export type DividerProps<
   D extends React.ElementType = DividerTypeMap['defaultComponent'],

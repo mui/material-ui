@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { StandardProps } from '..';
-import { ListProps, ListClassKey } from '../List';
+import { ListProps } from '../List';
 
-export interface MenuListProps extends StandardProps<ListProps, MenuListClassKey> {
+export interface MenuListProps extends ListProps {
   /**
    * If `true`, will focus the `[role="menu"]` container and move into tab order.
    */
@@ -31,7 +30,7 @@ export interface MenuListProps extends StandardProps<ListProps, MenuListClassKey
   variant?: 'menu' | 'selectedMenu';
 }
 
-export type MenuListClassKey = ListClassKey;
+export type MenuListClassKey = keyof NonNullable<MenuListProps['classes']>;
 
 /**
  * A permanently displayed menu following <https://www.w3.org/TR/wai-aria-practices/#menubutton>.
