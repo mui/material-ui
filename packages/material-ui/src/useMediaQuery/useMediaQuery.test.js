@@ -254,7 +254,9 @@ describe('useMediaQuery', () => {
         });
 
         return (
-          <ThemeProvider theme={{ components: { MuiUseMediaQuery: { defaultProps: { ssrMatchMedia } } } }}>
+          <ThemeProvider
+            theme={{ components: { MuiUseMediaQuery: { defaultProps: { ssrMatchMedia } } } }}
+          >
             <MyComponent />
           </ThemeProvider>
         );
