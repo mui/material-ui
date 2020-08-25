@@ -1,6 +1,5 @@
 import { OverridableStringUnion } from '@material-ui/types';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { string } from 'prop-types';
 
 export interface DividerPropsVariantOverrides {}
 export type DividerVariantDefaults = Record<'fullWidth' | 'inset' | 'middle', true>;

@@ -35,7 +35,7 @@ The `MuiDivider` name can be used for providing [default props](/customization/g
 | <span class="prop-name">flexItem</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, a vertical divider will have the correct height when used in flex container. (By default, a vertical divider will have a calculated height of `0px` if it is the child of a flex container.) |
 | <span class="prop-name">light</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the divider will have a lighter color. |
 | <span class="prop-name">orientation</span> | <span class="prop-type">'horizontal'<br>&#124;&nbsp;'vertical'</span> | <span class="prop-default">'horizontal'</span> | The divider orientation. |
-| <span class="prop-name">textAlign</span> | <span class="prop-type">'center'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'left'</span> | <span class="prop-default">'center'</span> | The text alignment. |
+| <span class="prop-name">textAlign</span> | <span class="prop-type">'center'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'</span> | <span class="prop-default">'center'</span> | The text alignment. |
 | <span class="prop-name">variant</span> | <span class="prop-type">'fullWidth'<br>&#124;&nbsp;'inset'<br>&#124;&nbsp;'middle'<br>&#124;&nbsp;string</span> | <span class="prop-default">'fullWidth'</span> | The variant to use. |
 
 The `ref` is forwarded to the root element.
@@ -56,8 +56,8 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">flexItem</span> | <span class="prop-name">.MuiDivider-flexItem</span> | Styles applied to the root element if `flexItem={true}`.
 | <span class="prop-name">text</span> | <span class="prop-name">.MuiDivider-text</span> | Styles applied to the root element if divider have text.
 | <span class="prop-name">textVertical</span> | <span class="prop-name">.MuiDivider-textVertical</span> | Styles applied to the root element if `orientation="vertical"`.
-| <span class="prop-name">textAlignRight</span> | <span class="prop-name">.MuiDivider-textAlignRight</span> | Styles applied to the root element if `textAlign="right"` `orientation="horizontal"`.
-| <span class="prop-name">textAlignLeft</span> | <span class="prop-name">.MuiDivider-textAlignLeft</span> | Styles applied to the root element if `textAlign="left"` `orientation="horizontal"`.
+| <span class="prop-name">textAlignRight</span> | <span class="prop-name">.MuiDivider-textAlignRight</span> | Styles applied to the root element if `textAlign="right" orientation="horizontal"`.
+| <span class="prop-name">textAlignLeft</span> | <span class="prop-name">.MuiDivider-textAlignLeft</span> | Styles applied to the root element if `textAlign="left" orientation="horizontal"`.
 | <span class="prop-name">spanText</span> | <span class="prop-name">.MuiDivider-spanText</span> | Styles applied to the span children element if `orientation="horizontal"`.
 | <span class="prop-name">spanTextVertical</span> | <span class="prop-name">.MuiDivider-spanTextVertical</span> | Styles applied to the span children element if `orientation="vertical"`.
 

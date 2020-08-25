@@ -1,11 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import {
-  getClasses,
-  createMount,
-  describeConformance,
-  createClientRender,
-} from 'test/utils';
+import { getClasses, createMount, describeConformance, createClientRender } from 'test/utils';
 import Divider from './Divider';
 
 describe('<Divider />', () => {

@@ -138,6 +138,7 @@ const Divider = React.forwardRef(function Divider(props, ref) {
       light,
       orientation,
       role,
+      textAlign,
       variant,
     },
     'MuiDivider',
@@ -224,7 +225,7 @@ Divider.propTypes = {
   /**
    * The text alignment.
    */
-  textAlign: PropTypes.oneOf(['center', 'right', 'left']),
+  textAlign: PropTypes.oneOf(['center', 'left', 'right']),
   /**
    * The variant to use.
    */
