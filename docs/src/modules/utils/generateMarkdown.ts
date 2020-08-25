@@ -319,17 +319,18 @@ function generateProps(reactAPI: ReactApi) {
       return;
     }
 
-    let defaultValue = '';
+    const renderedDefaultValue = prop.defaultValue?.value.replace(/\r*\n/g, '');
+    const renderDefaultValue =
+      renderedDefaultValue &&
+      // Ignore "large" default values which would break the table layout.
+      renderedDefaultValue.length <= 150;
 
-    if (prop.defaultValue) {
-      defaultValue = `<span class="prop-default">${escapeCell(
-        (prop.defaultValue as any).value.replace(/\r*\n/g, ''),
+    let defaultValueColumn = '';
+    if (renderDefaultValue) {
+      defaultValueColumn = `<span class="prop-default">${escapeCell(
+        // narrowed `renderedDefaultValue` to non-nullable by `renderDefaultValue`
+        renderedDefaultValue!,
       )}</span>`;
-    }
-
-    // Give up
-    if (defaultValue.length > 180) {
-      defaultValue = '';
     }
 
     const chainedPropType = getChained(prop.type);
@@ -352,7 +353,7 @@ function generateProps(reactAPI: ReactApi) {
 
     text += `| ${propRaw} | <span class="prop-type">${generatePropType(
       prop.type,
-    )}</span> | ${defaultValue} | ${description} |\n`;
+    )}</span> | ${defaultValueColumn} | ${description} |\n`;
   });
 
   let refHint = 'The `ref` is forwarded to the root element.';
