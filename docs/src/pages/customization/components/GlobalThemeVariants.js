@@ -22,7 +22,7 @@ const theme = createMuiTheme({
       variants: [
         {
           props: { variant: 'dashed' },
-          styles: {
+          style: {
             textTransform: 'none',
             border: `2px dashed ${defaultTheme.palette.primary.main}`,
             color: defaultTheme.palette.primary.main,
@@ -30,20 +30,20 @@ const theme = createMuiTheme({
         },
         {
           props: { variant: 'dashed', color: 'secondary' },
-          styles: {
+          style: {
             border: `2px dashed ${defaultTheme.palette.secondary.main}`,
             color: defaultTheme.palette.secondary.main,
           },
         },
         {
           props: { variant: 'dashed', size: 'large' },
-          styles: {
+          style: {
             borderWidth: 4,
           },
         },
         {
           props: { variant: 'dashed', color: 'secondary', size: 'large' },
-          styles: {
+          style: {
             fontSize: 18,
           },
         },
