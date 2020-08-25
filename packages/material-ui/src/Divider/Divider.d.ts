@@ -34,9 +34,9 @@ export interface DividerTypeMap<P = {}, D extends React.ElementType = 'hr'> {
       vertical?: string;
       /** Styles applied to the root element if `flexItem={true}`. */
       flexItem?: string;
-      /** Styles applied to the root element if divider have children. */
+      /** Styles applied to the root element if divider have text. */
       withChildren?: string;
-      /** Styles applied to the root element if divider have children and `orientation="vertical"`. */
+      /** Styles applied to the root element if divider have text and `orientation="vertical"`. */
       withChildrenVertical?: string;
       /** Styles applied to the root element if `textAlign="right" orientation="horizontal"`. */
       textAlignRight?: string;

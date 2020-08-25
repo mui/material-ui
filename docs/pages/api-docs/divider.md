@@ -54,12 +54,12 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">middle</span> | <span class="prop-name">.MuiDivider-middle</span> | Styles applied to the root element if `variant="middle"`.
 | <span class="prop-name">vertical</span> | <span class="prop-name">.MuiDivider-vertical</span> | Styles applied to the root element if `orientation="vertical"`.
 | <span class="prop-name">flexItem</span> | <span class="prop-name">.MuiDivider-flexItem</span> | Styles applied to the root element if `flexItem={true}`.
-| <span class="prop-name">text</span> | <span class="prop-name">.MuiDivider-text</span> | Styles applied to the root element if divider have text.
-| <span class="prop-name">textVertical</span> | <span class="prop-name">.MuiDivider-textVertical</span> | Styles applied to the root element if `orientation="vertical"`.
+| <span class="prop-name">withChildren</span> | <span class="prop-name">.MuiDivider-withChildren</span> | Styles applied to the root element if divider have text.
+| <span class="prop-name">withChildrenVertical</span> | <span class="prop-name">.MuiDivider-withChildrenVertical</span> | Styles applied to the root element if divider have text and `orientation="vertical"`.
 | <span class="prop-name">textAlignRight</span> | <span class="prop-name">.MuiDivider-textAlignRight</span> | Styles applied to the root element if `textAlign="right" orientation="horizontal"`.
 | <span class="prop-name">textAlignLeft</span> | <span class="prop-name">.MuiDivider-textAlignLeft</span> | Styles applied to the root element if `textAlign="left" orientation="horizontal"`.
-| <span class="prop-name">spanText</span> | <span class="prop-name">.MuiDivider-spanText</span> | Styles applied to the span children element if `orientation="horizontal"`.
-| <span class="prop-name">spanTextVertical</span> | <span class="prop-name">.MuiDivider-spanTextVertical</span> | Styles applied to the span children element if `orientation="vertical"`.
+| <span class="prop-name">children</span> | <span class="prop-name">.MuiDivider-children</span> | Styles applied to the span children element if `orientation="horizontal"`.
+| <span class="prop-name">childrenVertical</span> | <span class="prop-name">.MuiDivider-childrenVertical</span> | Styles applied to the span children element if `orientation="vertical"`.
 
 You can override the style of the component thanks to one of these customization points:
 
