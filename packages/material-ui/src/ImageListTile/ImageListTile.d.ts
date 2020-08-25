@@ -10,11 +10,11 @@ export interface ImageListTileTypeMap<P = {}, D extends React.ElementType = 'li'
      */
     children?: React.ReactNode;
     /**
-     * Width of the tile in number of grid cells.
+     * Width of the tile in number of image cells.
      */
     cols?: number;
     /**
-     * Height of the tile in number of grid cells.
+     * Height of the tile in number of image cells.
      */
     rows?: number;
   };

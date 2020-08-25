@@ -18,7 +18,7 @@ import { GridListTile } from '@material-ui/core';
 
 You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
 
-⚠️ The GridList component was renamed to imageList to align with the current Material Design naming..
+⚠️ The GridList component was renamed to imageList to align with the current Material Design naming.
 
 You should use `import { ImageListTile } from '@material-ui/core'`
 or `import ImageListTile from '@material-ui/core/ImageListTile'`.
