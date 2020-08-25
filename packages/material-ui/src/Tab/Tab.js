@@ -201,6 +201,7 @@ Tab.propTypes = {
    *
    * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
    * to highlight the element by applying separate styles with the `focusVisibleClassName`.
+   * @default false
    */
   disableRipple: PropTypes.bool,
   /**

@@ -146,7 +146,7 @@ function generatePropDescription(prop: PropDescriptor) {
     .replace(/(\r?\n){2}/g, '<br>')
     .replace(/\r?\n/g, ' ');
 
-  if (parsed.tags.some((tag) => tag.title === 'ignore')) {
+  if (parsed.description.trim() === '' || parsed.tags.some((tag) => tag.title === 'ignore')) {
     return null;
   }
 
