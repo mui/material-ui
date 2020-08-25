@@ -113,7 +113,7 @@ const theme = createMuiTheme({
       defaultProps: {
         disabled: true,
       },
-      styleOverrides: {
+      stylesOverrides: {
         // Name of the styleSheet
         root: {
           // Name of the rule
