@@ -322,7 +322,7 @@ function generateProps(reactAPI: ReactApi) {
     const renderedDefaultValue = prop.defaultValue?.value.replace(/\r*\n/g, '');
     const renderDefaultValue =
       renderedDefaultValue &&
-      // Ignore "large" default values which would break the table layout.
+      // Ignore "large" default values that would break the table layout.
       renderedDefaultValue.length <= 150;
 
     let defaultValueColumn = '';
