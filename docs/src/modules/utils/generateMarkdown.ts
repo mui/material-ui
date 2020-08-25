@@ -323,18 +323,33 @@ function generateProps(reactAPI: ReactApi) {
       return;
     }
 
-    const renderedDefaultValue = prop.defaultValue?.value.replace(/\r*\n/g, '');
-    const renderDefaultValue =
-      renderedDefaultValue &&
-      // Ignore "large" default values that would break the table layout.
-      renderedDefaultValue.length <= 150;
-
     let defaultValueColumn = '';
-    if (renderDefaultValue) {
+
+    const { defaultValue, jsdocDefaultValue } = prop;
+    if (defaultValue !== undefined && jsdocDefaultValue === undefined) {
+      // discriminator for polymorphism for which the default value is hard to extract
+      if (propName !== 'component') {
+        throw new Error(
+          `Missing JSDOC @default for prop '${propName}' with default value "${defaultValue.value}"`,
+        );
+      }
+    } else if (jsdocDefaultValue !== undefined) {
+      if (jsdocDefaultValue.value !== defaultValue?.value) {
+        throw new Error(
+          `Expected JSDOC @default value for prop '${propName}' of "${jsdocDefaultValue.value}" to equal runtime default value of "${defaultValue?.value}"`,
+        );
+      }
+    }
+
+    if (defaultValue) {
       defaultValueColumn = `<span class="prop-default">${escapeCell(
-        // narrowed `renderedDefaultValue` to non-nullable by `renderDefaultValue`
-        renderedDefaultValue!,
+        defaultValue.value.replace(/\r*\n/g, ''),
       )}</span>`;
+    }
+
+    // Give up
+    if (defaultValueColumn.length > 180) {
+      defaultValueColumn = '';
     }
 
     const chainedPropType = getChained(prop.type);

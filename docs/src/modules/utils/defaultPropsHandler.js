@@ -74,24 +74,13 @@ function getDefaultValuesFromProps(properties, documentation) {
           sloppy: true,
         }),
       );
-      const defaultValue = getDefaultValue(propertyPath);
-
-      if (defaultValue != null && jsdocDefaultValue == null) {
-        // discriminator for polymorphism for which the default value is hard to extract
-        if (propName !== 'component') {
-          // TODO: throw/warn/ignore?
-          console.warn(`Missing JSDOC default value for ${propName}`);
-        }
-      } else if (jsdocDefaultValue != null) {
-        if (jsdocDefaultValue.value !== defaultValue?.value) {
-          throw new Error(
-            `Expected JSDOC default value of "${jsdocDefaultValue.value}" to equal runtime default value of "${defaultValue?.value}"`,
-          );
-        }
+      if (jsdocDefaultValue) {
+        propDescriptor.jsdocDefaultValue = jsdocDefaultValue;
       }
-      const usedDefaultValue = defaultValue ?? jsdocDefaultValue;
-      if (usedDefaultValue) {
-        propDescriptor.defaultValue = usedDefaultValue;
+
+      const defaultValue = getDefaultValue(propertyPath);
+      if (defaultValue) {
+        propDescriptor.defaultValue = defaultValue;
       }
     });
 }
