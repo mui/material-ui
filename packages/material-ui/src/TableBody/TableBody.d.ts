@@ -7,9 +7,15 @@ export interface TableBodyTypeMap<P = {}, D extends React.ElementType = 'tbody'>
      * The content of the component, normally `TableRow`.
      */
     children?: React.ReactNode;
+    /**
+     * Override or extend the styles applied to the component.
+     */
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+    };
   };
   defaultComponent: D;
-  classKey: TableBodyClassKey;
 }
 /**
  *
@@ -23,7 +29,7 @@ export interface TableBodyTypeMap<P = {}, D extends React.ElementType = 'tbody'>
  */
 declare const TableBody: OverridableComponent<TableBodyTypeMap>;
 
-export type TableBodyClassKey = 'root';
+export type TableBodyClassKey = keyof NonNullable<TableBodyTypeMap['props']['classes']>;
 
 export type TableBodyProps<
   D extends React.ElementType = TableBodyTypeMap['defaultComponent'],

@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 import { PaperProps } from '../Paper';
 
 export type Orientation = 'horizontal' | 'vertical';
 
-export interface StepperProps extends StandardProps<PaperProps, StepperClasskey> {
+export interface StepperProps extends StandardProps<PaperProps> {
   /**
    * Set the active step (zero based index).
    * Set to -1 to disable all the steps.
@@ -20,6 +20,19 @@ export interface StepperProps extends StandardProps<PaperProps, StepperClasskey>
    */
   children?: React.ReactNode;
   /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the root element if `orientation="horizontal"`. */
+    horizontal?: string;
+    /** Styles applied to the root element if `orientation="vertical"`. */
+    vertical?: string;
+    /** Styles applied to the root element if `alternativeLabel={true}`. */
+    alternativeLabel?: string;
+  };
+  /**
    * An element to be placed between each step.
    */
   connector?: React.ReactElement<any, any>;
@@ -33,7 +46,7 @@ export interface StepperProps extends StandardProps<PaperProps, StepperClasskey>
   orientation?: Orientation;
 }
 
-export type StepperClasskey = 'root' | 'horizontal' | 'vertical' | 'alternativeLabel';
+export type StepperClasskey = keyof NonNullable<StepperProps['classes']>;
 
 /**
  *

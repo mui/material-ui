@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { PopoverProps } from '../Popover';
 import { MenuListProps } from '../MenuList';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
 
-export interface MenuProps
-  extends StandardProps<PopoverProps & Partial<TransitionHandlerProps>, MenuClassKey> {
+export interface MenuProps extends StandardProps<PopoverProps & Partial<TransitionHandlerProps>> {
   /**
    * A HTML element, or a function that returns it.
    * It's used to set the position of the menu.
@@ -22,6 +21,15 @@ export interface MenuProps
    * Menu contents, normally `MenuItem`s.
    */
   children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: {
+    /** Styles applied to the `Paper` component. */
+    paper?: string;
+    /** Styles applied to the `List` component via `MenuList`. */
+    list?: string;
+  };
   /**
    * When opening the menu will not focus the active item but the `[role="menu"]`
    * unless `autoFocus` is also set to `false`. Not using the default means not
@@ -64,7 +72,7 @@ export interface MenuProps
   variant?: 'menu' | 'selectedMenu';
 }
 
-export type MenuClassKey = 'paper' | 'list';
+export type MenuClassKey = keyof NonNullable<MenuProps['classes']>;
 
 /**
  *

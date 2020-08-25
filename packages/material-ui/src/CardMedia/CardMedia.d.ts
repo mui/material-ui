@@ -8,6 +8,17 @@ export interface CardMediaTypeMap<P, D extends React.ElementType> {
      */
     children?: React.ReactNode;
     /**
+     * Override or extend the styles applied to the component.
+     */
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+      /** Styles applied to the root element if `component="video, audio, picture, iframe, or img"`. */
+      media?: string;
+      /** Styles applied to the root element if `component="picture or img"`. */
+      img?: string;
+    };
+    /**
      * Image to be displayed as a background image.
      * Either `image` or `src` prop must be specified.
      * Note that caller must specify height otherwise the image will not be visible.
@@ -21,7 +32,6 @@ export interface CardMediaTypeMap<P, D extends React.ElementType> {
     src?: string;
   };
   defaultComponent: D;
-  classKey: CardMediaClassKey;
 }
 
 /**
@@ -36,7 +46,7 @@ export interface CardMediaTypeMap<P, D extends React.ElementType> {
  */
 declare const CardMedia: OverridableComponent<CardMediaTypeMap<{}, 'div'>>;
 
-export type CardMediaClassKey = 'root' | 'media';
+export type CardMediaClassKey = keyof NonNullable<CardMediaProps['classes']>;
 
 export type CardMediaProps<D extends React.ElementType = 'div', P = {}> = OverrideProps<
   CardMediaTypeMap<P, D>,

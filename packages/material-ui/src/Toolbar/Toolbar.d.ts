@@ -12,6 +12,19 @@ export interface ToolbarTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     children?: React.ReactNode;
     /**
+     * Override or extend the styles applied to the component.
+     */
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+      /** Styles applied to the root element if `disableGutters={false}`. */
+      gutters?: string;
+      /** Styles applied to the root element if `variant="regular"`. */
+      regular?: string;
+      /** Styles applied to the root element if `variant="dense"`. */
+      dense?: string;
+    };
+    /**
      * If `true`, disables gutter padding.
      */
     disableGutters?: boolean;
@@ -21,7 +34,6 @@ export interface ToolbarTypeMap<P = {}, D extends React.ElementType = 'div'> {
     variant?: OverridableStringUnion<ToolbarVariantDefaults, ToolbarPropsVariantOverrides>;
   };
   defaultComponent: D;
-  classKey: ToolbarClassKey;
 }
 /**
  *
@@ -35,7 +47,7 @@ export interface ToolbarTypeMap<P = {}, D extends React.ElementType = 'div'> {
  */
 declare const Toolbar: OverridableComponent<ToolbarTypeMap>;
 
-export type ToolbarClassKey = 'root' | 'gutters' | 'regular' | 'dense';
+export type ToolbarClassKey = keyof NonNullable<ToolbarTypeMap['props']['classes']>;
 
 export type ToolbarProps<
   D extends React.ElementType = ToolbarTypeMap['defaultComponent'],

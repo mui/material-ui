@@ -6,12 +6,21 @@ export interface DialogContentTextTypeMap<
   P = {},
   D extends React.ElementType = TypographyTypeMap['defaultComponent']
 > {
-  props: P & TypographyTypeMap['props'];
+  props: P & {
+    /**
+     * Override or extend the styles applied to the component.
+     */
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+    };
+  } & Omit<TypographyTypeMap['props'], 'classes'>;
   defaultComponent: D;
-  classKey: DialogContentTextClassKey;
 }
 
-export type DialogContentTextClassKey = 'root';
+export type DialogContentTextClassKey = keyof NonNullable<
+  DialogContentTextTypeMap['props']['classes']
+>;
 
 /**
  *

@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 
-export interface GridListTileBarProps extends StandardProps<{}, GridListTileBarClassKey> {
+export interface GridListTileBarProps
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'title'> {
   /**
    * An IconButton element to be used as secondary action target
    * (primary action target is the tile itself).
@@ -11,6 +12,33 @@ export interface GridListTileBarProps extends StandardProps<{}, GridListTileBarC
    * Position of secondary action IconButton.
    */
   actionPosition?: 'left' | 'right';
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the root element if `titlePosition="bottom"`. */
+    titlePositionBottom?: string;
+    /** Styles applied to the root element if `titlePosition="top"`. */
+    titlePositionTop?: string;
+    /** Styles applied to the root element if a `subtitle` is provided. */
+    rootSubtitle?: string;
+    /** Styles applied to the title and subtitle container element. */
+    titleWrap?: string;
+    /** Styles applied to the container element if `actionPosition="left"`. */
+    titleWrapActionPosLeft?: string;
+    /** Styles applied to the container element if `actionPosition="right"`. */
+    titleWrapActionPosRight?: string;
+    /** Styles applied to the title container element. */
+    title?: string;
+    /** Styles applied to the subtitle container element. */
+    subtitle?: string;
+    /** Styles applied to the actionIcon if supplied. */
+    actionIcon?: string;
+    /** Styles applied to the actionIcon if `actionPosition="left"`. */
+    actionIconActionPosLeft?: string;
+  };
   /**
    * String or element serving as subtitle (support text).
    */
@@ -25,18 +53,7 @@ export interface GridListTileBarProps extends StandardProps<{}, GridListTileBarC
   titlePosition?: 'top' | 'bottom';
 }
 
-export type GridListTileBarClassKey =
-  | 'root'
-  | 'titlePositionBottom'
-  | 'titlePositionTop'
-  | 'rootSubtitle'
-  | 'titleWrap'
-  | 'titleWrapActionPosLeft'
-  | 'titleWrapActionPosRight'
-  | 'title'
-  | 'subtitle'
-  | 'actionIcon'
-  | 'actionIconActionPosLeft';
+export type GridListTileBarClassKey = keyof NonNullable<GridListTileBarProps['classes']>;
 
 /**
  *

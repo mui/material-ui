@@ -1,14 +1,22 @@
 import * as React from 'react';
-import { StandardProps } from '@material-ui/core';
+import { InternalStandardProps as StandardProps } from '@material-ui/core';
 
-export interface TimelineSeparatorProps extends StandardProps<{}, TimelineSeparatorClassKey> {
+export interface TimelineSeparatorProps
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
    * The content of the component.
    */
   children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+  };
 }
 
-export type TimelineSeparatorClassKey = 'root';
+export type TimelineSeparatorClassKey = keyof NonNullable<TimelineSeparatorProps['classes']>;
 
 /**
  *

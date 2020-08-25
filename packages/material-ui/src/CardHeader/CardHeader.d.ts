@@ -18,6 +18,23 @@ export interface CardHeaderTypeMap<
      */
     avatar?: React.ReactNode;
     /**
+     * Override or extend the styles applied to the component.
+     */
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+      /** Styles applied to the avatar element. */
+      avatar?: string;
+      /** Styles applied to the action element. */
+      action?: string;
+      /** Styles applied to the content wrapper element. */
+      content?: string;
+      /** Styles applied to the title Typography element. */
+      title?: string;
+      /** Styles applied to the subheader Typography element. */
+      subheader?: string;
+    };
+    /**
      * If `true`, `subheader` and `title` won't be wrapped by a Typography component.
      * This can be useful to render an alternative Typography variant by wrapping
      * the `title` text, and optional `subheader` text
@@ -50,7 +67,6 @@ export interface CardHeaderTypeMap<
     >;
   };
   defaultComponent: DefaultComponent;
-  classKey: CardHeaderClassKey;
 }
 /**
  *
@@ -80,7 +96,7 @@ export interface OverridableCardHeader extends OverridableComponent<CardHeaderTy
   ): JSX.Element;
 }
 
-export type CardHeaderClassKey = 'root' | 'avatar' | 'action' | 'content' | 'title' | 'subheader';
+export type CardHeaderClassKey = keyof NonNullable<CardHeaderTypeMap['props']['classes']>;
 
 export type CardHeaderProps<
   DefaultComponent extends React.ElementType = CardHeaderTypeMap['defaultComponent'],

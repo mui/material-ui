@@ -24,6 +24,33 @@ export interface ListItemTypeMap<P, D extends React.ElementType> {
      */
     children?: React.ReactNode;
     /**
+     * Override or extend the styles applied to the component.
+     */
+    classes?: {
+      /** Styles applied to the (normally root) `component` element. May be wrapped by a `container`. */
+      root?: string;
+      /** Styles applied to the `container` element if `children` includes `ListItemSecondaryAction`. */
+      container?: string;
+      /** Pseudo-class applied to the `component`'s `focusVisibleClassName` prop if `button={true}`. */
+      focusVisible?: string;
+      /** Styles applied to the `component` element if dense. */
+      dense?: string;
+      /** Styles applied to the `component` element if `alignItems="flex-start"`. */
+      alignItemsFlexStart?: string;
+      /** Pseudo-class applied to the inner `component` element if `disabled={true}`. */
+      disabled?: string;
+      /** Styles applied to the inner `component` element if `divider={true}`. */
+      divider?: string;
+      /** Styles applied to the inner `component` element if `disableGutters={false}`. */
+      gutters?: string;
+      /** Styles applied to the inner `component` element if `button={true}`. */
+      button?: string;
+      /** Styles applied to the `component` element if `children` includes `ListItemSecondaryAction`. */
+      secondaryAction?: string;
+      /** Pseudo-class applied to the root element if `selected={true}`. */
+      selected?: string;
+    };
+    /**
      * The container component used when a `ListItemSecondaryAction` is the last child.
      */
     ContainerComponent?: React.ElementType<React.HTMLAttributes<HTMLDivElement>>;
@@ -53,7 +80,6 @@ export interface ListItemTypeMap<P, D extends React.ElementType> {
     selected?: boolean;
   };
   defaultComponent: D;
-  classKey: ListItemClassKey;
 }
 
 /**
@@ -70,18 +96,7 @@ export interface ListItemTypeMap<P, D extends React.ElementType> {
 declare const ListItem: OverridableComponent<ListItemTypeMap<{ button?: false }, 'li'>> &
   ExtendButtonBase<ListItemTypeMap<{ button: true }, 'div'>>;
 
-export type ListItemClassKey =
-  | 'root'
-  | 'container'
-  | 'focusVisible'
-  | 'default'
-  | 'dense'
-  | 'disabled'
-  | 'divider'
-  | 'gutters'
-  | 'button'
-  | 'secondaryAction'
-  | 'selected';
+export type ListItemClassKey = keyof NonNullable<ListItemProps['classes']>;
 
 export type ListItemProps<D extends React.ElementType = 'li', P = {}> = OverrideProps<
   ListItemTypeMap<P, D>,

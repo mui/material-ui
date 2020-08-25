@@ -8,6 +8,21 @@ export interface TableRowTypeMap<P = {}, D extends React.ElementType = 'tr'> {
      */
     children?: React.ReactNode;
     /**
+     * Override or extend the styles applied to the component.
+     */
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+      /** Pseudo-class applied to the root element if `selected={true}`. */
+      selected?: string;
+      /** Pseudo-class applied to the root element if `hover={true}`. */
+      hover?: string;
+      /** Styles applied to the root element if table variant="head". */
+      head?: string;
+      /** Styles applied to the root element if table variant="footer". */
+      footer?: string;
+    };
+    /**
      * If `true`, the table row will shade on hover.
      */
     hover?: boolean;
@@ -17,7 +32,6 @@ export interface TableRowTypeMap<P = {}, D extends React.ElementType = 'tr'> {
     selected?: boolean;
   };
   defaultComponent: D;
-  classKey: TableRowClassKey;
 }
 /**
  * Will automatically set dynamic row height
@@ -32,7 +46,7 @@ export interface TableRowTypeMap<P = {}, D extends React.ElementType = 'tr'> {
  */
 declare const TableRow: OverridableComponent<TableRowTypeMap>;
 
-export type TableRowClassKey = 'root' | 'selected' | 'hover' | 'head' | 'footer';
+export type TableRowClassKey = keyof NonNullable<TableRowTypeMap['props']['classes']>;
 
 export type TableRowProps<
   D extends React.ElementType = TableRowTypeMap['defaultComponent'],

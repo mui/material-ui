@@ -32,6 +32,33 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
      */
     children?: React.ReactNode;
     /**
+     * Override or extend the styles applied to the component.
+     */
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+      /** Styles applied to the root element if `orientation="vertical"`. */
+      vertical?: string;
+      /** Styles applied to the flex container element. */
+      flexContainer?: string;
+      /** Styles applied to the flex container element if `orientation="vertical"`. */
+      flexContainerVertical?: string;
+      /** Styles applied to the flex container element if `centered={true}` & `!variant="scrollable"`. */
+      centered?: string;
+      /** Styles applied to the tablist element. */
+      scroller?: string;
+      /** Styles applied to the tablist element if `!variant="scrollable"`. */
+      fixed?: string;
+      /** Styles applied to the tablist element if `variant="scrollable"`. */
+      scrollable?: string;
+      /** Styles applied to the `ScrollButtonComponent` component. */
+      scrollButtons?: string;
+      /** Styles applied to the `ScrollButtonComponent` component if `scrollButtons="auto"` or scrollButtons="desktop"`. */
+      scrollButtonsDesktop?: string;
+      /** Styles applied to the `TabIndicator` component. */
+      indicator?: string;
+    };
+    /**
      * Determines the color of the indicator.
      */
     indicatorColor?: 'secondary' | 'primary';
@@ -93,7 +120,6 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
     variant?: 'standard' | 'scrollable' | 'fullWidth';
   };
   defaultComponent: D;
-  classKey: TabsClassKey;
 }
 
 /**
@@ -108,16 +134,7 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
  */
 declare const Tabs: OverridableComponent<TabsTypeMap>;
 
-export type TabsClassKey =
-  | 'root'
-  | 'flexContainer'
-  | 'scroller'
-  | 'fixed'
-  | 'scrollable'
-  | 'centered'
-  | 'scrollButtons'
-  | 'scrollButtonsDesktop'
-  | 'indicator';
+export type TabsClassKey = keyof NonNullable<TabsTypeMap['props']['classes']>;
 
 export interface TabsActions {
   updateIndicator(): void;

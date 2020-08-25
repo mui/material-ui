@@ -12,6 +12,29 @@ export type IconButtonTypeMap<
      */
     children?: React.ReactNode;
     /**
+     * Override or extend the styles applied to the component.
+     */
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+      /** Styles applied to the root element if `edge="start"`. */
+      edgeStart?: string;
+      /** Styles applied to the root element if `edge="end"`. */
+      edgeEnd?: string;
+      /** Styles applied to the root element if `color="inherit"`. */
+      colorInherit?: string;
+      /** Styles applied to the root element if `color="primary"`. */
+      colorPrimary?: string;
+      /** Styles applied to the root element if `color="secondary"`. */
+      colorSecondary?: string;
+      /** Pseudo-class applied to the root element if `disabled={true}`. */
+      disabled?: string;
+      /** Styles applied to the root element if `size="small"`. */
+      sizeSmall?: string;
+      /** Styles applied to the children container element. */
+      label?: string;
+    };
+    /**
      * The color of the component. It supports those theme colors that make sense for this component.
      */
     color?: PropTypes.Color;
@@ -37,7 +60,6 @@ export type IconButtonTypeMap<
     size?: 'small' | 'medium';
   };
   defaultComponent: D;
-  classKey: IconButtonClassKey;
 }>;
 
 /**
@@ -55,16 +77,7 @@ export type IconButtonTypeMap<
  */
 declare const IconButton: ExtendButtonBase<IconButtonTypeMap>;
 
-export type IconButtonClassKey =
-  | 'root'
-  | 'edgeStart'
-  | 'edgeEnd'
-  | 'colorInherit'
-  | 'colorPrimary'
-  | 'colorSecondary'
-  | 'disabled'
-  | 'sizeSmall'
-  | 'label';
+export type IconButtonClassKey = keyof NonNullable<IconButtonTypeMap['props']['classes']>;
 
 export type IconButtonProps<
   D extends React.ElementType = IconButtonTypeMap['defaultComponent'],

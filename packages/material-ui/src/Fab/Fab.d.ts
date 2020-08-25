@@ -13,6 +13,33 @@ export type FabTypeMap<P = {}, D extends React.ElementType = 'button'> = ExtendB
      */
     children?: React.ReactNode;
     /**
+     * Override or extend the styles applied to the component.
+     */
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+      /** Styles applied to the span element that wraps the children. */
+      label?: string;
+      /** Styles applied to the root element if `color="primary"`. */
+      primary?: string;
+      /** Styles applied to the root element if `color="secondary"`. */
+      secondary?: string;
+      /** Styles applied to the root element if `variant="extended"`. */
+      extended?: string;
+      /** Styles applied to the root element if `variant="circular"`. */
+      circular?: string;
+      /** Pseudo-class applied to the ButtonBase root element if the button is keyboard focused. */
+      focusVisible?: string;
+      /** Pseudo-class applied to the root element if `disabled={true}`. */
+      disabled?: string;
+      /** Styles applied to the root element if `color="inherit"`. */
+      colorInherit?: string;
+      /** Styles applied to the root element if `size="small"``. */
+      sizeSmall?: string;
+      /** Styles applied to the root element if `size="medium"``. */
+      sizeMedium?: string;
+    };
+    /**
      * The color of the component. It supports those theme colors that make sense for this component.
      */
     color?: PropTypes.Color;
@@ -44,7 +71,6 @@ export type FabTypeMap<P = {}, D extends React.ElementType = 'button'> = ExtendB
     variant?: OverridableStringUnion<FabVariantDefaults, FabPropsVariantOverrides>;
   };
   defaultComponent: D;
-  classKey: FabClassKey;
 }>;
 
 /**
@@ -65,17 +91,6 @@ export type FabProps<
   P = {}
 > = OverrideProps<FabTypeMap<P, D>, D>;
 
-export type FabClassKey =
-  | 'root'
-  | 'label'
-  | 'primary'
-  | 'secondary'
-  | 'extended'
-  | 'circular'
-  | 'focusVisible'
-  | 'disabled'
-  | 'colorInherit'
-  | 'sizeSmall'
-  | 'sizeMedium';
+export type FabClassKey = keyof NonNullable<FabTypeMap['props']['classes']>;
 
 export default Fab;

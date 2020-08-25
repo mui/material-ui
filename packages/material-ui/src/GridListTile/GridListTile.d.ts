@@ -10,6 +10,19 @@ export interface GridListTileTypeMap<P = {}, D extends React.ElementType = 'li'>
      */
     children?: React.ReactNode;
     /**
+     * Override or extend the styles applied to the component.
+     */
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+      /** Styles applied to the `div` element that wraps the children. */
+      tile?: string;
+      /** Styles applied to an `img` element child, if needed to ensure it covers the tile. */
+      imgFullHeight?: string;
+      /** Styles applied to an `img` element child, if needed to ensure it covers the tile. */
+      imgFullWidth?: string;
+    };
+    /**
      * Width of the tile in number of grid cells.
      */
     cols?: number;
@@ -19,7 +32,6 @@ export interface GridListTileTypeMap<P = {}, D extends React.ElementType = 'li'>
     rows?: number;
   };
   defaultComponent: D;
-  classKey: GridListTileClassKey;
 }
 /**
  *
@@ -33,7 +45,7 @@ export interface GridListTileTypeMap<P = {}, D extends React.ElementType = 'li'>
  */
 declare const GridListTile: OverridableComponent<GridListTileTypeMap>;
 
-export type GridListTileClassKey = 'root' | 'tile' | 'imgFullHeight' | 'imgFullWidth';
+export type GridListTileClassKey = keyof NonNullable<GridListTileTypeMap['props']['classes']>;
 
 export type GridListTileProps<
   D extends React.ElementType = GridListTileTypeMap['defaultComponent'],

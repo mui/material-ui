@@ -46,13 +46,13 @@ export type DefaultComponentProps<M extends OverridableTypeMap> =
 // prettier-ignore
 export type BaseProps<M extends OverridableTypeMap> =
   & M['props']
-  & CommonProps<M>;
+  & CommonProps;
 
 /**
  * Props that are valid for material-ui components.
  */
-export interface CommonProps<M extends OverridableTypeMap>
-  extends StyledComponentProps<M['classKey']> {
+// each component declares it's classes in a separate interface for proper JSDOC.
+export interface CommonProps extends StyledComponentProps<never> {
   className?: string;
   style?: React.CSSProperties;
 }
@@ -60,7 +60,6 @@ export interface CommonProps<M extends OverridableTypeMap>
 export interface OverridableTypeMap {
   props: {};
   defaultComponent: React.ElementType;
-  classKey: string;
 }
 
 /**

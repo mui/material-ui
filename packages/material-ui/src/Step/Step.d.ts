@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 
-export interface StepProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, StepClasskey> {
+export interface StepProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
    * Sets the step as active. Is passed to child components.
    */
@@ -11,6 +10,21 @@ export interface StepProps
    * Should be `Step` sub-components such as `StepLabel`, `StepContent`.
    */
   children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the root element if `orientation="horizontal"`. */
+    horizontal?: string;
+    /** Styles applied to the root element if `orientation="vertical"`. */
+    vertical?: string;
+    /** Styles applied to the root element if `alternativeLabel={true}`. */
+    alternativeLabel?: string;
+    /** Pseudo-class applied to the root element if `completed={true}`. */
+    completed?: string;
+  };
   /**
    * Mark the step as completed. Is passed to child components.
    */
@@ -34,7 +48,7 @@ export interface StepProps
   last?: boolean;
 }
 
-export type StepClasskey = 'root' | 'horizontal' | 'vertical' | 'alternativeLabel' | 'completed';
+export type StepClasskey = keyof NonNullable<StepProps['classes']>;
 
 /**
  *

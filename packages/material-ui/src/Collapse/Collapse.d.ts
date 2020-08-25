@@ -1,12 +1,30 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 import { TransitionProps } from '../transitions/transition';
 
-export interface CollapseProps extends StandardProps<TransitionProps, CollapseClassKey, 'timeout'> {
+export interface CollapseProps extends StandardProps<TransitionProps, 'timeout'> {
   /**
    * The content node to be collapsed.
    */
   children?: React.ReactNode;
+  className?: string;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Pseudo-class applied to the root element if `orientation="horizontal"`. */
+    horizontal?: string;
+    /** Styles applied to the root element when the transition has entered. */
+    entered?: string;
+    /** Styles applied to the root element when the transition has exited and `collapsedSize` != 0px. */
+    hidden?: string;
+    /** Styles applied to the outer wrapper element. */
+    wrapper?: string;
+    /** Styles applied to the inner wrapper element. */
+    wrapperInner?: string;
+  };
   /**
    * The width (horizontal) or height (vertical) of the container when collapsed.
    */
@@ -33,13 +51,7 @@ export interface CollapseProps extends StandardProps<TransitionProps, CollapseCl
   timeout?: TransitionProps['timeout'] | 'auto';
 }
 
-export type CollapseClassKey =
-  | 'root'
-  | 'horizontal'
-  | 'entered'
-  | 'hidden'
-  | 'wrapper'
-  | 'wrapperInner';
+export type CollapseClassKey = keyof NonNullable<CollapseProps['classes']>;
 
 /**
  * The Collapse transition is used by the

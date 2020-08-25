@@ -1,12 +1,41 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 import { FormLabelProps } from '../FormLabel';
 
-export interface InputLabelProps extends StandardProps<FormLabelProps, InputLabelClassKey> {
+export interface InputLabelProps extends StandardProps<FormLabelProps> {
   /**
    * The contents of the `InputLabel`.
    */
   children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Pseudo-class applied to the root element if `focused={true}`. */
+    focused?: string;
+    /** Pseudo-class applied to the root element if `disabled={true}`. */
+    disabled?: string;
+    /** Pseudo-class applied to the root element if `error={true}`. */
+    error?: string;
+    /** Pseudo-class applied to the root element if `required={true}`. */
+    required?: string;
+    /** Pseudo-class applied to the asterisk element. */
+    asterisk?: string;
+    /** Styles applied to the root element if the component is a descendant of `FormControl`. */
+    formControl?: string;
+    /** Styles applied to the root element if `margin="dense"`. */
+    marginDense?: string;
+    /** Styles applied to the `input` element if `shrink={true}`. */
+    shrink?: string;
+    /** Styles applied to the `input` element if `disableAnimation={false}`. */
+    animated?: string;
+    /** Styles applied to the root element if `variant="filled"`. */
+    filled?: string;
+    /** Styles applied to the root element if `variant="outlined"`. */
+    outlined?: string;
+  };
   color?: FormLabelProps['color'];
   /**
    * If `true`, the transition animation is disabled.
@@ -43,19 +72,7 @@ export interface InputLabelProps extends StandardProps<FormLabelProps, InputLabe
   variant?: 'standard' | 'outlined' | 'filled';
 }
 
-export type InputLabelClassKey =
-  | 'root'
-  | 'focused'
-  | 'disabled'
-  | 'error'
-  | 'required'
-  | 'asterisk'
-  | 'formControl'
-  | 'marginDense'
-  | 'shrink'
-  | 'animated'
-  | 'filled'
-  | 'outlined';
+export type InputLabelClassKey = keyof NonNullable<InputLabelProps['classes']>;
 
 /**
  *

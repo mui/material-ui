@@ -10,6 +10,31 @@ export type TabTypeMap<P = {}, D extends React.ElementType = 'div'> = ExtendButt
      */
     children?: null;
     /**
+     * Override or extend the styles applied to the component.
+     */
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+      /** Styles applied to the root element if both `icon` and `label` are provided. */
+      labelIcon?: string;
+      /** Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor="inherit"`. */
+      textColorInherit?: string;
+      /** Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor="primary"`. */
+      textColorPrimary?: string;
+      /** Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor="secondary"`. */
+      textColorSecondary?: string;
+      /** Pseudo-class applied to the root element if `selected={true}` (controlled by the Tabs component). */
+      selected?: string;
+      /** Pseudo-class applied to the root element if `disabled={true}` (controlled by the Tabs component). */
+      disabled?: string;
+      /** Styles applied to the root element if `fullWidth={true}` (controlled by the Tabs component). */
+      fullWidth?: string;
+      /** Styles applied to the root element if `wrapped={true}`. */
+      wrapped?: string;
+      /** Styles applied to the `icon` and `label`'s wrapper element. */
+      wrapper?: string;
+    };
+    /**
      * If `true`, the tab will be disabled.
      */
     disabled?: boolean;
@@ -36,7 +61,6 @@ export type TabTypeMap<P = {}, D extends React.ElementType = 'div'> = ExtendButt
     wrapped?: boolean;
   };
   defaultComponent: D;
-  classKey: TabClassKey;
 }>;
 
 /**
@@ -52,17 +76,7 @@ export type TabTypeMap<P = {}, D extends React.ElementType = 'div'> = ExtendButt
  */
 declare const Tab: ExtendButtonBase<TabTypeMap>;
 
-export type TabClassKey =
-  | 'root'
-  | 'labelIcon'
-  | 'textColorInherit'
-  | 'textColorPrimary'
-  | 'textColorSecondary'
-  | 'selected'
-  | 'disabled'
-  | 'fullWidth'
-  | 'wrapped'
-  | 'wrapper';
+export type TabClassKey = keyof NonNullable<TabTypeMap['props']['classes']>;
 
 export type TabProps<
   D extends React.ElementType = TabTypeMap['defaultComponent'],

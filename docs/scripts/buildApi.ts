@@ -5,6 +5,7 @@ import { mkdirSync, readFileSync, writeFileSync } from 'fs';
 import path from 'path';
 import kebabCase from 'lodash/kebabCase';
 import uniqBy from 'lodash/uniqBy';
+import * as prettier from 'prettier';
 import { defaultHandlers, parse as docgenParse } from 'react-docgen';
 import remark from 'remark';
 import remarkVisit from 'unist-util-visit';
@@ -97,7 +98,11 @@ function computeApiDescription(api: ReactApi, options: { host: string }): Promis
   });
 }
 
-async function annotateComponentDefinition(component: { filename: string }, api: ReactApi) {
+async function annotateComponentDefinition(context: {
+  component: { filename: string };
+  api: ReactApi;
+}) {
+  const { api, component } = context;
   const HOST = 'https://material-ui.com';
 
   const typesFilename = component.filename.replace(/\.js$/, '.d.ts');
@@ -188,9 +193,83 @@ async function annotateComponentDefinition(component: { filename: string }, api:
   writeFileSync(typesFilename, typesSourceNew, { encoding: 'utf8' });
 }
 
+async function annotateClassesDefinition(context: {
+  api: ReactApi;
+  component: { filename: string };
+  prettierConfigPath: string;
+}) {
+  const { api, component, prettierConfigPath } = context;
+
+  const typesFilename = component.filename.replace(/\.js$/, '.d.ts');
+  const typesSource = readFileSync(typesFilename, { encoding: 'utf8' });
+  const typesAST = await babel.parseAsync(typesSource, {
+    configFile: false,
+    filename: typesFilename,
+    presets: [require.resolve('@babel/preset-typescript')],
+  });
+  if (typesAST === null) {
+    throw new Error('No AST returned from babel.');
+  }
+
+  let start = 0;
+  let end: number | null = null;
+  traverse(typesAST, {
+    TSPropertySignature(babelPath) {
+      const { node } = babelPath;
+      const possiblyPropName = (node.key as babel.types.Identifier).name;
+      if (possiblyPropName === 'classes' && node.typeAnnotation !== null) {
+        if (end !== null) {
+          throw new Error('Found multiple possible locations for the `classes` definition.');
+        }
+        if (node.typeAnnotation.start !== null) {
+          start = node.typeAnnotation.start;
+          end = node.typeAnnotation.end;
+        }
+      }
+    },
+  });
+
+  if (end === null || start === 0) {
+    // Some components actually don't implement this prop.
+    return;
+  }
+
+  // colon is part of TSTypeAnnotation
+  let classesDefinitionSource = ': {';
+  api.styles.classes.forEach((className) => {
+    if (api.styles.descriptions[className] !== undefined) {
+      classesDefinitionSource += `\n/** ${api.styles.descriptions[className]} */`;
+    }
+    classesDefinitionSource += `\n'${className}'?: string;`;
+  });
+  // semicolon is not part of TSTypeAnnotation
+  classesDefinitionSource += `\n}`;
+
+  const typesSourceNew =
+    typesSource.slice(0, start) + classesDefinitionSource + typesSource.slice(end);
+
+  const prettierConfig = prettier.resolveConfig.sync(typesFilename, {
+    config: prettierConfigPath,
+  });
+  if (prettierConfig === null) {
+    throw new Error(
+      `Could not resolve config for '${typesFilename}' using prettier config path '${prettierConfigPath}'.`,
+    );
+  }
+
+  writeFileSync(
+    typesFilename,
+    prettier.format(typesSourceNew, { ...prettierConfig, filepath: typesFilename }),
+    {
+      encoding: 'utf8',
+    },
+  );
+}
+
 async function buildDocs(options: {
   component: { filename: string };
   pagesMarkdown: Array<{ components: string[]; filename: string; pathname: string }>;
+  prettierConfigPath: string;
   outputDirectory: string;
   theme: object;
   workspaceRoot: string;
@@ -200,6 +279,7 @@ async function buildDocs(options: {
     outputDirectory,
     workspaceRoot,
     pagesMarkdown,
+    prettierConfigPath,
     theme,
   } = options;
   const src = readFileSync(componentObject.filename, 'utf8');
@@ -335,7 +415,12 @@ Page.getInitialProps = () => {
 
   console.log('Built markdown docs for', reactAPI.name);
 
-  await annotateComponentDefinition(componentObject, reactAPI);
+  await annotateComponentDefinition({ api: reactAPI, component: componentObject });
+  await annotateClassesDefinition({
+    api: reactAPI,
+    component: componentObject,
+    prettierConfigPath,
+  });
 }
 
 function run(argv: { componentDirectories?: string[]; grep?: string; outputDirectory?: string }) {
@@ -348,6 +433,8 @@ function run(argv: { componentDirectories?: string[]; grep?: string; outputDirec
   });
   const outputDirectory = path.resolve(argv.outputDirectory!);
   const grep = argv.grep == null ? null : new RegExp(argv.grep);
+
+  const prettierConfigPath = path.join(workspaceRoot, 'prettier.config.js');
 
   mkdirSync(outputDirectory, { mode: 0o777, recursive: true });
 
@@ -375,7 +462,14 @@ function run(argv: { componentDirectories?: string[]; grep?: string; outputDirec
 
   const componentBuilds = components.map((component) => {
     // use Promise.allSettled once we switch to node 12
-    return buildDocs({ component, outputDirectory, pagesMarkdown, theme, workspaceRoot })
+    return buildDocs({
+      component,
+      outputDirectory,
+      pagesMarkdown,
+      prettierConfigPath,
+      theme,
+      workspaceRoot,
+    })
       .then((value) => {
         return { status: 'fulfilled' as const, value };
       })

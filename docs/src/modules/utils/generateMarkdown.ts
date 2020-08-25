@@ -306,11 +306,15 @@ function generateProps(reactAPI: ReactApi) {
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|\n`;
 
-  Object.keys(reactAPI.props).forEach((propRaw) => {
-    const prop = reactAPI.props[propRaw];
+  Object.keys(reactAPI.props).forEach((propName) => {
+    const prop = reactAPI.props[propName];
 
     if (typeof prop.description === 'undefined') {
-      throw new Error(`The "${propRaw}" prop is missing a description`);
+      throw new Error(`The "${propName}" prop is missing a description`);
+    }
+
+    if (propName === 'classes') {
+      prop.description += ' See [CSS API](#css) below for more details.';
     }
 
     const description = generatePropDescription(prop);
@@ -334,23 +338,24 @@ function generateProps(reactAPI: ReactApi) {
 
     const chainedPropType = getChained(prop.type);
 
+    let propNameColumn = propName;
     if (
       prop.required ||
       /\.isRequired/.test(prop.type.raw) ||
       (chainedPropType !== false && chainedPropType.required)
     ) {
-      propRaw = `<span class="prop-name required">${propRaw}<abbr title="required">*</abbr></span>`;
+      propNameColumn = `<span class="prop-name required">${propName}<abbr title="required">*</abbr></span>`;
     } else {
-      propRaw = `<span class="prop-name">${propRaw}</span>`;
+      propNameColumn = `<span class="prop-name">${propName}</span>`;
     }
 
     if (prop.type.name === 'custom') {
       if (getDeprecatedInfo(prop.type)) {
-        propRaw = `~~${propRaw}~~`;
+        propNameColumn = `~~${propNameColumn}~~`;
       }
     }
 
-    text += `| ${propRaw} | <span class="prop-type">${generatePropType(
+    text += `| ${propNameColumn} | <span class="prop-type">${generatePropType(
       prop.type,
     )}</span> | ${defaultValue} | ${description} |\n`;
   });

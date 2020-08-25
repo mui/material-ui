@@ -1,12 +1,18 @@
 import * as React from 'react';
-import { StandardProps } from '@material-ui/core';
+import { InternalStandardProps as StandardProps } from '@material-ui/core';
 
-export interface TreeViewPropsBase
-  extends StandardProps<React.HTMLAttributes<HTMLUListElement>, TreeViewClassKey> {
+export interface TreeViewPropsBase extends StandardProps<React.HTMLAttributes<HTMLUListElement>> {
   /**
    * The content of the component.
    */
   children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+  };
   /**
    * The default icon used to collapse the node.
    */
@@ -114,7 +120,7 @@ export interface SingleSelectTreeViewProps extends TreeViewPropsBase {
 
 export type TreeViewProps = SingleSelectTreeViewProps | MultiSelectTreeViewProps;
 
-export type TreeViewClassKey = 'root';
+export type TreeViewClassKey = keyof NonNullable<TreeViewProps['classes']>;
 
 /**
  *
