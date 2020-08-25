@@ -5,404 +5,404 @@ import { ComponentsVariants } from './variants';
 export interface Components {
   MuiAppBar?: {
     defaultProps?: ComponentsProps['MuiAppBar'];
-    cssOverrides?: ComponentsOverrides['MuiAppBar'];
+    styleOverrides?: ComponentsOverrides['MuiAppBar'];
   };
   MuiAvatar?: {
     defaultProps?: ComponentsProps['MuiAvatar'];
-    cssOverrides?: ComponentsOverrides['MuiAvatar'];
+    styleOverrides?: ComponentsOverrides['MuiAvatar'];
     variants?: ComponentsVariants['MuiAvatar'];
   };
   MuiBackdrop?: {
     defaultProps?: ComponentsProps['MuiBackdrop'];
-    cssOverrides?: ComponentsOverrides['MuiBackdrop'];
+    styleOverrides?: ComponentsOverrides['MuiBackdrop'];
   };
   MuiBadge?: {
     defaultProps?: ComponentsProps['MuiBadge'];
-    cssOverrides?: ComponentsOverrides['MuiBadge'];
+    styleOverrides?: ComponentsOverrides['MuiBadge'];
     variants?: ComponentsVariants['MuiBadge'];
   };
   MuiBottomNavigation?: {
     defaultProps?: ComponentsProps['MuiBottomNavigation'];
-    cssOverrides?: ComponentsOverrides['MuiBottomNavigation'];
+    styleOverrides?: ComponentsOverrides['MuiBottomNavigation'];
   };
   MuiBottomNavigationAction?: {
     defaultProps?: ComponentsProps['MuiBottomNavigationAction'];
-    cssOverrides?: ComponentsOverrides['MuiBottomNavigationAction'];
+    styleOverrides?: ComponentsOverrides['MuiBottomNavigationAction'];
   };
   MuiBreadcrumbs?: {
     defaultProps?: ComponentsProps['MuiBreadcrumbs'];
-    cssOverrides?: ComponentsOverrides['MuiBreadcrumbs'];
+    styleOverrides?: ComponentsOverrides['MuiBreadcrumbs'];
   };
   MuiButton?: {
     defaultProps?: ComponentsProps['MuiButton'];
-    cssOverrides?: ComponentsOverrides['MuiButton'];
+    styleOverrides?: ComponentsOverrides['MuiButton'];
     variants?: ComponentsVariants['MuiButton'];
   };
   MuiButtonBase?: {
     defaultProps?: ComponentsProps['MuiButtonBase'];
-    cssOverrides?: ComponentsOverrides['MuiButtonBase'];
+    styleOverrides?: ComponentsOverrides['MuiButtonBase'];
   };
   MuiButtonGroup?: {
     defaultProps?: ComponentsProps['MuiButtonGroup'];
-    cssOverrides?: ComponentsOverrides['MuiButtonGroup'];
+    styleOverrides?: ComponentsOverrides['MuiButtonGroup'];
     variants?: ComponentsVariants['MuiButtonGroup'];
   };
   MuiCard?: {
     defaultProps?: ComponentsProps['MuiCard'];
-    cssOverrides?: ComponentsOverrides['MuiCard'];
+    styleOverrides?: ComponentsOverrides['MuiCard'];
   };
   MuiCardActionArea?: {
     defaultProps?: ComponentsProps['MuiCardActionArea'];
-    cssOverrides?: ComponentsOverrides['MuiCardActionArea'];
+    styleOverrides?: ComponentsOverrides['MuiCardActionArea'];
   };
   MuiCardActions?: {
     defaultProps?: ComponentsProps['MuiCardActions'];
-    cssOverrides?: ComponentsOverrides['MuiCardActions'];
+    styleOverrides?: ComponentsOverrides['MuiCardActions'];
   };
   MuiCardContent?: {
     defaultProps?: ComponentsProps['MuiCardContent'];
-    cssOverrides?: ComponentsOverrides['MuiCardContent'];
+    styleOverrides?: ComponentsOverrides['MuiCardContent'];
   };
   MuiCardHeader?: {
     defaultProps?: ComponentsProps['MuiCardHeader'];
-    cssOverrides?: ComponentsOverrides['MuiCardHeader'];
+    styleOverrides?: ComponentsOverrides['MuiCardHeader'];
   };
   MuiCardMedia?: {
     defaultProps?: ComponentsProps['MuiCardMedia'];
-    cssOverrides?: ComponentsOverrides['MuiCardMedia'];
+    styleOverrides?: ComponentsOverrides['MuiCardMedia'];
   };
   MuiCheckbox?: {
     defaultProps?: ComponentsProps['MuiCheckbox'];
-    cssOverrides?: ComponentsOverrides['MuiCheckbox'];
+    styleOverrides?: ComponentsOverrides['MuiCheckbox'];
   };
   MuiChip?: {
     defaultProps?: ComponentsProps['MuiChip'];
-    cssOverrides?: ComponentsOverrides['MuiChip'];
+    styleOverrides?: ComponentsOverrides['MuiChip'];
     variants?: ComponentsVariants['MuiChip'];
   };
   MuiCircularProgress?: {
     defaultProps?: ComponentsProps['MuiCircularProgress'];
-    cssOverrides?: ComponentsOverrides['MuiCircularProgress'];
+    styleOverrides?: ComponentsOverrides['MuiCircularProgress'];
   };
   MuiCollapse?: {
     defaultProps?: ComponentsProps['MuiCollapse'];
-    cssOverrides?: ComponentsOverrides['MuiCollapse'];
+    styleOverrides?: ComponentsOverrides['MuiCollapse'];
   };
   MuiContainer?: {
     defaultProps?: ComponentsProps['MuiContainer'];
-    cssOverrides?: ComponentsOverrides['MuiContainer'];
+    styleOverrides?: ComponentsOverrides['MuiContainer'];
   };
   /**
    * @deprecated See CssBaseline.d.ts
    */
   MuiCssBaseline?: {
     defaultProps?: ComponentsProps['MuiCssBaseline'];
-    cssOverrides?: ComponentsOverrides['MuiCssBaseline'];
+    styleOverrides?: ComponentsOverrides['MuiCssBaseline'];
   };
   MuiDialog?: {
     defaultProps?: ComponentsProps['MuiDialog'];
-    cssOverrides?: ComponentsOverrides['MuiDialog'];
+    styleOverrides?: ComponentsOverrides['MuiDialog'];
   };
   MuiDialogActions?: {
     defaultProps?: ComponentsProps['MuiDialogActions'];
-    cssOverrides?: ComponentsOverrides['MuiDialogActions'];
+    styleOverrides?: ComponentsOverrides['MuiDialogActions'];
   };
   MuiDialogContent?: {
     defaultProps?: ComponentsProps['MuiDialogContent'];
-    cssOverrides?: ComponentsOverrides['MuiDialogContent'];
+    styleOverrides?: ComponentsOverrides['MuiDialogContent'];
   };
   MuiDialogContentText?: {
     defaultProps?: ComponentsProps['MuiDialogContentText'];
-    cssOverrides?: ComponentsOverrides['MuiDialogContentText'];
+    styleOverrides?: ComponentsOverrides['MuiDialogContentText'];
   };
   MuiDialogTitle?: {
     defaultProps?: ComponentsProps['MuiDialogTitle'];
-    cssOverrides?: ComponentsOverrides['MuiDialogTitle'];
+    styleOverrides?: ComponentsOverrides['MuiDialogTitle'];
   };
   MuiDivider?: {
     defaultProps?: ComponentsProps['MuiDivider'];
-    cssOverrides?: ComponentsOverrides['MuiDivider'];
+    styleOverrides?: ComponentsOverrides['MuiDivider'];
     variants?: ComponentsVariants['MuiDivider'];
   };
   MuiDrawer?: {
     defaultProps?: ComponentsProps['MuiDrawer'];
-    cssOverrides?: ComponentsOverrides['MuiDrawer'];
+    styleOverrides?: ComponentsOverrides['MuiDrawer'];
   };
   MuiAccordion?: {
     defaultProps?: ComponentsProps['MuiAccordion'];
-    cssOverrides?: ComponentsOverrides['MuiAccordion'];
+    styleOverrides?: ComponentsOverrides['MuiAccordion'];
   };
   MuiAccordionActions?: {
     defaultProps?: ComponentsProps['MuiAccordionActions'];
-    cssOverrides?: ComponentsOverrides['MuiAccordionActions'];
+    styleOverrides?: ComponentsOverrides['MuiAccordionActions'];
   };
   MuiAccordionDetails?: {
     defaultProps?: ComponentsProps['MuiAccordionDetails'];
-    cssOverrides?: ComponentsOverrides['MuiAccordionDetails'];
+    styleOverrides?: ComponentsOverrides['MuiAccordionDetails'];
   };
   MuiAccordionSummary?: {
     defaultProps?: ComponentsProps['MuiAccordionSummary'];
-    cssOverrides?: ComponentsOverrides['MuiAccordionSummary'];
+    styleOverrides?: ComponentsOverrides['MuiAccordionSummary'];
   };
   MuiFab?: {
     defaultProps?: ComponentsProps['MuiFab'];
-    cssOverrides?: ComponentsOverrides['MuiFab'];
+    styleOverrides?: ComponentsOverrides['MuiFab'];
     variants?: ComponentsVariants['MuiFab'];
   };
   MuiFilledInput?: {
     defaultProps?: ComponentsProps['MuiFilledInput'];
-    cssOverrides?: ComponentsOverrides['MuiFilledInput'];
+    styleOverrides?: ComponentsOverrides['MuiFilledInput'];
   };
   MuiFormControl?: {
     defaultProps?: ComponentsProps['MuiFormControl'];
-    cssOverrides?: ComponentsOverrides['MuiFormControl'];
+    styleOverrides?: ComponentsOverrides['MuiFormControl'];
   };
   MuiFormControlLabel?: {
     defaultProps?: ComponentsProps['MuiFormControlLabel'];
-    cssOverrides?: ComponentsOverrides['MuiFormControlLabel'];
+    styleOverrides?: ComponentsOverrides['MuiFormControlLabel'];
   };
   MuiFormGroup?: {
     defaultProps?: ComponentsProps['MuiFormGroup'];
-    cssOverrides?: ComponentsOverrides['MuiFormGroup'];
+    styleOverrides?: ComponentsOverrides['MuiFormGroup'];
   };
   MuiFormHelperText?: {
     defaultProps?: ComponentsProps['MuiFormHelperText'];
-    cssOverrides?: ComponentsOverrides['MuiFormHelperText'];
+    styleOverrides?: ComponentsOverrides['MuiFormHelperText'];
   };
   MuiFormLabel?: {
     defaultProps?: ComponentsProps['MuiFormLabel'];
-    cssOverrides?: ComponentsOverrides['MuiFormLabel'];
+    styleOverrides?: ComponentsOverrides['MuiFormLabel'];
   };
   MuiGrid?: {
     defaultProps?: ComponentsProps['MuiGrid'];
-    cssOverrides?: ComponentsOverrides['MuiGrid'];
+    styleOverrides?: ComponentsOverrides['MuiGrid'];
   };
   MuiGridList?: {
     defaultProps?: ComponentsProps['MuiGrid'];
-    cssOverrides?: ComponentsOverrides['MuiGrid'];
+    styleOverrides?: ComponentsOverrides['MuiGrid'];
   };
   MuiGridListTile?: {
     defaultProps?: ComponentsProps['MuiGridListTile'];
-    cssOverrides?: ComponentsOverrides['MuiGridListTile'];
+    styleOverrides?: ComponentsOverrides['MuiGridListTile'];
   };
   MuiGridListTileBar?: {
     defaultProps?: ComponentsProps['MuiGridListTileBar'];
-    cssOverrides?: ComponentsOverrides['MuiGridListTileBar'];
+    styleOverrides?: ComponentsOverrides['MuiGridListTileBar'];
   };
   MuiIcon?: {
     defaultProps?: ComponentsProps['MuiIcon'];
-    cssOverrides?: ComponentsOverrides['MuiIcon'];
+    styleOverrides?: ComponentsOverrides['MuiIcon'];
   };
   MuiIconButton?: {
     defaultProps?: ComponentsProps['MuiIconButton'];
-    cssOverrides?: ComponentsOverrides['MuiIconButton'];
+    styleOverrides?: ComponentsOverrides['MuiIconButton'];
   };
   MuiInput?: {
     defaultProps?: ComponentsProps['MuiInput'];
-    cssOverrides?: ComponentsOverrides['MuiInput'];
+    styleOverrides?: ComponentsOverrides['MuiInput'];
   };
   MuiInputAdornment?: {
     defaultProps?: ComponentsProps['MuiInputAdornment'];
-    cssOverrides?: ComponentsOverrides['MuiInputAdornment'];
+    styleOverrides?: ComponentsOverrides['MuiInputAdornment'];
   };
   MuiInputBase?: {
     defaultProps?: ComponentsProps['MuiInputBase'];
-    cssOverrides?: ComponentsOverrides['MuiInputBase'];
+    styleOverrides?: ComponentsOverrides['MuiInputBase'];
   };
   MuiInputLabel?: {
     defaultProps?: ComponentsProps['MuiInputLabel'];
-    cssOverrides?: ComponentsOverrides['MuiInputLabel'];
+    styleOverrides?: ComponentsOverrides['MuiInputLabel'];
   };
   MuiLinearProgress?: {
     defaultProps?: ComponentsProps['MuiLinearProgress'];
-    cssOverrides?: ComponentsOverrides['MuiLinearProgress'];
+    styleOverrides?: ComponentsOverrides['MuiLinearProgress'];
   };
   MuiLink?: {
     defaultProps?: ComponentsProps['MuiLink'];
-    cssOverrides?: ComponentsOverrides['MuiLink'];
+    styleOverrides?: ComponentsOverrides['MuiLink'];
     variants?: ComponentsVariants['MuiLink'];
   };
   MuiList?: {
     defaultProps?: ComponentsProps['MuiList'];
-    cssOverrides?: ComponentsOverrides['MuiList'];
+    styleOverrides?: ComponentsOverrides['MuiList'];
   };
   MuiListItem?: {
     defaultProps?: ComponentsProps['MuiListItem'];
-    cssOverrides?: ComponentsOverrides['MuiListItem'];
+    styleOverrides?: ComponentsOverrides['MuiListItem'];
   };
   MuiListItemAvatar?: {
     defaultProps?: ComponentsProps['MuiListItemAvatar'];
-    cssOverrides?: ComponentsOverrides['MuiListItemAvatar'];
+    styleOverrides?: ComponentsOverrides['MuiListItemAvatar'];
   };
   MuiListItemIcon?: {
     defaultProps?: ComponentsProps['MuiListItemIcon'];
-    cssOverrides?: ComponentsOverrides['MuiListItemIcon'];
+    styleOverrides?: ComponentsOverrides['MuiListItemIcon'];
   };
   MuiListItemSecondaryAction?: {
     defaultProps?: ComponentsProps['MuiListItemSecondaryAction'];
-    cssOverrides?: ComponentsOverrides['MuiListItemSecondaryAction'];
+    styleOverrides?: ComponentsOverrides['MuiListItemSecondaryAction'];
   };
   MuiListItemText?: {
     defaultProps?: ComponentsProps['MuiListItemText'];
-    cssOverrides?: ComponentsOverrides['MuiListItemText'];
+    styleOverrides?: ComponentsOverrides['MuiListItemText'];
   };
   MuiListSubheader?: {
     defaultProps?: ComponentsProps['MuiListSubheader'];
-    cssOverrides?: ComponentsOverrides['MuiListSubheader'];
+    styleOverrides?: ComponentsOverrides['MuiListSubheader'];
   };
   MuiMenu?: {
     defaultProps?: ComponentsProps['MuiMenu'];
-    cssOverrides?: ComponentsOverrides['MuiMenu'];
+    styleOverrides?: ComponentsOverrides['MuiMenu'];
   };
   MuiMenuItem?: {
     defaultProps?: ComponentsProps['MuiMenuItem'];
-    cssOverrides?: ComponentsOverrides['MuiMenuItem'];
+    styleOverrides?: ComponentsOverrides['MuiMenuItem'];
   };
   MuiMobileStepper?: {
     defaultProps?: ComponentsProps['MuiMobileStepper'];
-    cssOverrides?: ComponentsOverrides['MuiMobileStepper'];
+    styleOverrides?: ComponentsOverrides['MuiMobileStepper'];
   };
   MuiNativeSelect?: {
     defaultProps?: ComponentsProps['MuiNativeSelect'];
-    cssOverrides?: ComponentsOverrides['MuiNativeSelect'];
+    styleOverrides?: ComponentsOverrides['MuiNativeSelect'];
   };
   MuiOutlinedInput?: {
     defaultProps?: ComponentsProps['MuiOutlinedInput'];
-    cssOverrides?: ComponentsOverrides['MuiOutlinedInput'];
+    styleOverrides?: ComponentsOverrides['MuiOutlinedInput'];
   };
   MuiPaper?: {
     defaultProps?: ComponentsProps['MuiPaper'];
-    cssOverrides?: ComponentsOverrides['MuiPaper'];
+    styleOverrides?: ComponentsOverrides['MuiPaper'];
     variants?: ComponentsVariants['MuiPaper'];
   };
   MuiPopover?: {
     defaultProps?: ComponentsProps['MuiPopover'];
-    cssOverrides?: ComponentsOverrides['MuiPopover'];
+    styleOverrides?: ComponentsOverrides['MuiPopover'];
   };
   MuiRadio?: {
     defaultProps?: ComponentsProps['MuiRadio'];
-    cssOverrides?: ComponentsOverrides['MuiRadio'];
+    styleOverrides?: ComponentsOverrides['MuiRadio'];
   };
   MuiScopedCssBaseline?: {
     defaultProps?: ComponentsProps['MuiScopedCssBaseline'];
-    cssOverrides?: ComponentsOverrides['MuiScopedCssBaseline'];
+    styleOverrides?: ComponentsOverrides['MuiScopedCssBaseline'];
   };
   MuiSelect?: {
     defaultProps?: ComponentsProps['MuiSelect'];
-    cssOverrides?: ComponentsOverrides['MuiSelect'];
+    styleOverrides?: ComponentsOverrides['MuiSelect'];
   };
   MuiSlider?: {
     defaultProps?: ComponentsProps['MuiSlider'];
-    cssOverrides?: ComponentsOverrides['MuiSlider'];
+    styleOverrides?: ComponentsOverrides['MuiSlider'];
   };
   MuiSnackbar?: {
     defaultProps?: ComponentsProps['MuiSnackbar'];
-    cssOverrides?: ComponentsOverrides['MuiSnackbar'];
+    styleOverrides?: ComponentsOverrides['MuiSnackbar'];
   };
   MuiSnackbarContent?: {
     defaultProps?: ComponentsProps['MuiSnackbarContent'];
-    cssOverrides?: ComponentsOverrides['MuiSnackbarContent'];
+    styleOverrides?: ComponentsOverrides['MuiSnackbarContent'];
   };
   MuiStep?: {
     defaultProps?: ComponentsProps['MuiStep'];
-    cssOverrides?: ComponentsOverrides['MuiStep'];
+    styleOverrides?: ComponentsOverrides['MuiStep'];
   };
   MuiStepButton?: {
     defaultProps?: ComponentsProps['MuiStepButton'];
-    cssOverrides?: ComponentsOverrides['MuiStepButton'];
+    styleOverrides?: ComponentsOverrides['MuiStepButton'];
   };
   MuiStepConnector?: {
     defaultProps?: ComponentsProps['MuiStepConnector'];
-    cssOverrides?: ComponentsOverrides['MuiStepConnector'];
+    styleOverrides?: ComponentsOverrides['MuiStepConnector'];
   };
   MuiStepContent?: {
     defaultProps?: ComponentsProps['MuiStepContent'];
-    cssOverrides?: ComponentsOverrides['MuiStepContent'];
+    styleOverrides?: ComponentsOverrides['MuiStepContent'];
   };
   MuiStepIcon?: {
     defaultProps?: ComponentsProps['MuiStepIcon'];
-    cssOverrides?: ComponentsOverrides['MuiStepIcon'];
+    styleOverrides?: ComponentsOverrides['MuiStepIcon'];
   };
   MuiStepLabel?: {
     defaultProps?: ComponentsProps['MuiStepLabel'];
-    cssOverrides?: ComponentsOverrides['MuiStepLabel'];
+    styleOverrides?: ComponentsOverrides['MuiStepLabel'];
   };
   MuiStepper?: {
     defaultProps?: ComponentsProps['MuiStepper'];
-    cssOverrides?: ComponentsOverrides['MuiStepper'];
+    styleOverrides?: ComponentsOverrides['MuiStepper'];
   };
   MuiSvgIcon?: {
     defaultProps?: ComponentsProps['MuiSvgIcon'];
-    cssOverrides?: ComponentsOverrides['MuiSvgIcon'];
+    styleOverrides?: ComponentsOverrides['MuiSvgIcon'];
   };
   MuiSwitch?: {
     defaultProps?: ComponentsProps['MuiSwitch'];
-    cssOverrides?: ComponentsOverrides['MuiSwitch'];
+    styleOverrides?: ComponentsOverrides['MuiSwitch'];
   };
   MuiTab?: {
     defaultProps?: ComponentsProps['MuiTab'];
-    cssOverrides?: ComponentsOverrides['MuiTab'];
+    styleOverrides?: ComponentsOverrides['MuiTab'];
   };
   MuiTable?: {
     defaultProps?: ComponentsProps['MuiTable'];
-    cssOverrides?: ComponentsOverrides['MuiTable'];
+    styleOverrides?: ComponentsOverrides['MuiTable'];
   };
   MuiTableBody?: {
     defaultProps?: ComponentsProps['MuiTableBody'];
-    cssOverrides?: ComponentsOverrides['MuiTableBody'];
+    styleOverrides?: ComponentsOverrides['MuiTableBody'];
   };
   MuiTableCell?: {
     defaultProps?: ComponentsProps['MuiTableCell'];
-    cssOverrides?: ComponentsOverrides['MuiTableCell'];
+    styleOverrides?: ComponentsOverrides['MuiTableCell'];
   };
   MuiTableContainer?: {
     defaultProps?: ComponentsProps['MuiTableContainer'];
-    cssOverrides?: ComponentsOverrides['MuiTableContainer'];
+    styleOverrides?: ComponentsOverrides['MuiTableContainer'];
   };
   MuiTableFooter?: {
     defaultProps?: ComponentsProps['MuiTableFooter'];
-    cssOverrides?: ComponentsOverrides['MuiTableFooter'];
+    styleOverrides?: ComponentsOverrides['MuiTableFooter'];
   };
   MuiTableHead?: {
     defaultProps?: ComponentsProps['MuiTableHead'];
-    cssOverrides?: ComponentsOverrides['MuiTableHead'];
+    styleOverrides?: ComponentsOverrides['MuiTableHead'];
   };
   MuiTablePagination?: {
     defaultProps?: ComponentsProps['MuiTablePagination'];
-    cssOverrides?: ComponentsOverrides['MuiTablePagination'];
+    styleOverrides?: ComponentsOverrides['MuiTablePagination'];
   };
   MuiTableRow?: {
     defaultProps?: ComponentsProps['MuiTableRow'];
-    cssOverrides?: ComponentsOverrides['MuiTableRow'];
+    styleOverrides?: ComponentsOverrides['MuiTableRow'];
   };
   MuiTableSortLabel?: {
     defaultProps?: ComponentsProps['MuiTableSortLabel'];
-    cssOverrides?: ComponentsOverrides['MuiTableSortLabel'];
+    styleOverrides?: ComponentsOverrides['MuiTableSortLabel'];
   };
   MuiTabs?: {
     defaultProps?: ComponentsProps['MuiTabs'];
-    cssOverrides?: ComponentsOverrides['MuiTabs'];
+    styleOverrides?: ComponentsOverrides['MuiTabs'];
   };
   MuiTextField?: {
     defaultProps?: ComponentsProps['MuiTextField'];
-    cssOverrides?: ComponentsOverrides['MuiTextField'];
+    styleOverrides?: ComponentsOverrides['MuiTextField'];
   };
   MuiToolbar?: {
     defaultProps?: ComponentsProps['MuiToolbar'];
-    cssOverrides?: ComponentsOverrides['MuiToolbar'];
+    styleOverrides?: ComponentsOverrides['MuiToolbar'];
     variants?: ComponentsVariants['MuiToolbar'];
   };
   MuiTooltip?: {
     defaultProps?: ComponentsProps['MuiTooltip'];
-    cssOverrides?: ComponentsOverrides['MuiTooltip'];
+    styleOverrides?: ComponentsOverrides['MuiTooltip'];
   };
   MuiTouchRipple?: {
     defaultProps?: ComponentsProps['MuiTouchRipple'];
-    cssOverrides?: ComponentsOverrides['MuiTouchRipple'];
+    styleOverrides?: ComponentsOverrides['MuiTouchRipple'];
   };
   MuiTypography?: {
     defaultProps?: ComponentsProps['MuiTypography'];
-    cssOverrides?: ComponentsOverrides['MuiTypography'];
+    styleOverrides?: ComponentsOverrides['MuiTypography'];
     variants?: ComponentsVariants['MuiTypography'];
   };
   MuiUseMediaQuery?: {

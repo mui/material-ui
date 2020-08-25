@@ -309,7 +309,7 @@ Learn more about it in the [themes section](/customization/globals/#css) of the 
 const theme = createMuiTheme({
   components: {
     MuiButton: {
-      cssOverrides: {
+      styleOverrides: {
         root: {
           fontSize: '1rem',
         },
@@ -334,14 +334,14 @@ const theme = createMuiTheme({
       variants: [
         {
           props: { variant: 'dashed' },
-          css: {
+          style: {
             textTransform: 'none',
             border: `2px dashed grey${blue[500]}`,
           },
         },
         {
           props: { variant: 'dashed', color: 'secondary' },
-          css: {
+          style: {
             border: `4px dashed ${red[500]}`,
           },
         },

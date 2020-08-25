@@ -20,7 +20,7 @@ describe('adaptV4Theme', () => {
     expect(transformedTheme.components.MuiButton.defaultProps).to.deep.equal(theme.props.MuiButton);
   });
 
-  it("moves overrides to components' cssOverrides", () => {
+  it("moves overrides to components' styleOverrides", () => {
     const theme = {
       overrides: {
         MuiTable: {
@@ -37,7 +37,7 @@ describe('adaptV4Theme', () => {
       transformedTheme = adaptV4Theme(theme);
     }).toWarnDev(['adaptV4Theme() is deprecated']);
 
-    expect(transformedTheme.components.MuiTable.cssOverrides).to.deep.equal(
+    expect(transformedTheme.components.MuiTable.styleOverrides).to.deep.equal(
       theme.overrides.MuiTable,
     );
   });
@@ -65,7 +65,7 @@ describe('adaptV4Theme', () => {
     }).toWarnDev(['adaptV4Theme() is deprecated']);
 
     expect(transformedTheme.components.MuiButton.defaultProps).to.deep.equal(theme.props.MuiButton);
-    expect(transformedTheme.components.MuiTable.cssOverrides).to.deep.equal(
+    expect(transformedTheme.components.MuiTable.styleOverrides).to.deep.equal(
       theme.overrides.MuiTable,
     );
   });
@@ -93,7 +93,7 @@ describe('adaptV4Theme', () => {
     }).toWarnDev(['adaptV4Theme() is deprecated']);
 
     expect(transformedTheme.components.MuiButton.defaultProps).to.deep.equal(theme.props.MuiButton);
-    expect(transformedTheme.components.MuiButton.cssOverrides).to.deep.equal(
+    expect(transformedTheme.components.MuiButton.styleOverrides).to.deep.equal(
       theme.overrides.MuiButton,
     );
   });
@@ -129,12 +129,12 @@ describe('adaptV4Theme', () => {
     }).toWarnDev(['adaptV4Theme() is deprecated']);
 
     expect(transformedTheme.components.MuiButton.defaultProps).to.deep.equal(theme.props.MuiButton);
-    expect(transformedTheme.components.MuiButton.cssOverrides).to.deep.equal(
+    expect(transformedTheme.components.MuiButton.styleOverrides).to.deep.equal(
       theme.overrides.MuiButton,
     );
 
     expect(transformedTheme.components.MuiFab.defaultProps).to.deep.equal(theme.props.MuiFab);
-    expect(transformedTheme.components.MuiFab.cssOverrides).to.deep.equal(theme.overrides.MuiFab);
+    expect(transformedTheme.components.MuiFab.styleOverrides).to.deep.equal(theme.overrides.MuiFab);
   });
 
   it('merges partially migrated props and overrides from different components in appropriate key', () => {
@@ -147,7 +147,7 @@ describe('adaptV4Theme', () => {
           color: 'primary',
         },
       },
-      cssOverrides: {
+      styleOverrides: {
         MuiButton: {
           root: {
             background: 'red',
@@ -170,15 +170,15 @@ describe('adaptV4Theme', () => {
     expect(transformedTheme.components.MuiButton.defaultProps).to.deep.equal(
       theme.defaultProps.MuiButton,
     );
-    expect(transformedTheme.components.MuiButton.cssOverrides).to.deep.equal(
-      theme.cssOverrides.MuiButton,
+    expect(transformedTheme.components.MuiButton.styleOverrides).to.deep.equal(
+      theme.styleOverrides.MuiButton,
     );
 
     expect(transformedTheme.components.MuiFab.defaultProps).to.deep.equal(
       theme.defaultProps.MuiFab,
     );
-    expect(transformedTheme.components.MuiFab.cssOverrides).to.deep.equal(
-      theme.cssOverrides.MuiFab,
+    expect(transformedTheme.components.MuiFab.styleOverrides).to.deep.equal(
+      theme.styleOverrides.MuiFab,
     );
   });
 });

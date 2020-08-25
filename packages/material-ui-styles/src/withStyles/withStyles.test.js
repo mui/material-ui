@@ -211,7 +211,7 @@ describe('withStyles', () => {
       expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'MuiTextField-root' });
     });
 
-    it('should support the cssOverrides key inside components', () => {
+    it('should support the styleOverrides key inside components', () => {
       const styles = { root: { padding: 8 } };
       const StyledComponent = withStyles(styles, { name: 'MuiTextField' })(() => <div />);
       const generateClassName = createGenerateClassName();
@@ -222,7 +222,7 @@ describe('withStyles', () => {
           theme={createMuiTheme({
             components: {
               MuiTextField: {
-                cssOverrides: {
+                styleOverrides: {
                   root: {
                     padding: 9,
                   },
@@ -255,15 +255,15 @@ describe('withStyles', () => {
                 variants: [
                   {
                     props: { variant: 'test' },
-                    css: { padding: 9 },
+                    style: { padding: 9 },
                   },
                   {
                     props: { variant: 'test', size: 'large' },
-                    css: { fontSize: 20 },
+                    style: { fontSize: 20 },
                   },
                   {
                     props: { size: 'largest' },
-                    css: { fontSize: 22 },
+                    style: { fontSize: 22 },
                   },
                 ],
               },

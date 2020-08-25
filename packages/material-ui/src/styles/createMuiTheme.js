@@ -90,10 +90,10 @@ function createMuiTheme(options = {}, ...args) {
     };
 
     Object.keys(muiTheme.components).forEach((component) => {
-      const cssOverrides = muiTheme.components[component].cssOverrides;
+      const styleOverrides = muiTheme.components[component].styleOverrides;
 
-      if (cssOverrides && component.indexOf('Mui') === 0) {
-        traverse(cssOverrides, component);
+      if (styleOverrides && component.indexOf('Mui') === 0) {
+        traverse(styleOverrides, component);
       }
     });
   }
