@@ -6,23 +6,18 @@ import describeConformance from '../test-utils/describeConformance';
 import GridListTileBar from './GridListTileBar';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 
-
 describe('<GridListTileBar />', () => {
   let classes;
   const mount = createMount();
   let shallow;
 
-  beforeEach(() => {
+  before(() => {
+    classes = getClasses(<GridListTileBar title="classes" />);
     consoleErrorMock.spy();
   });
 
-  afterEach(() => {
+  after(() => {
     consoleErrorMock.reset();
-  });
-
-  before(() => {
-    classes = getClasses(<GridListTileBar title="classes" />);
-    shallow = createShallow({ dive: true });
   });
 
   describeConformance(<GridListTileBar title="conform?" />, () => ({
@@ -32,18 +27,4 @@ describe('<GridListTileBar />', () => {
     refInstanceof: window.HTMLDivElement,
     skip: ['componentProp'],
   }));
-
-  const tileData = {
-    img: 'images/grid-list/00-52-29-429_640.jpg',
-    title: 'Breakfast',
-    author: 'jill111',
-  };
-
-  describe('prop: title', () => {
-    it('should renders title', () => {
-      const wrapper = shallow(<GridListTileBar title={tileData.title} />);
-
-      expect(wrapper.children('div').text()).to.equal(tileData.title);
-    });
-  });
 });
