@@ -239,7 +239,7 @@ export const caES: Localization = {
         closeText: 'Tancat',
       },
     },
-    // MuiPagination: {  
+    // MuiPagination: {
     //   defaultProps: {
     //     'aria-label': 'Pagination navigation',
     //     getItemAriaLabel: (type, page, selected) => {
@@ -692,7 +692,7 @@ export const etEE: Localization = {
 
 export const faIR: Localization = {
   components: {
-    // MuiBreadcrumbs: { 
+    // MuiBreadcrumbs: {
     //   defaultProps: {
     //     expandText: 'Show path',
     //   },
@@ -910,7 +910,7 @@ export const frFR: Localization = {
 
 export const heIL: Localization = {
   components: {
-    // MuiBreadcrumbs: { 
+    // MuiBreadcrumbs: {
     //   defaultProps: {
     //     expandText: 'Show path',
     //   },
