@@ -43,7 +43,7 @@ export interface DividerTypeMap<P = {}, D extends React.ElementType = 'hr'> {
       /** Styles applied to the root element if `textAlign="left" orientation="horizontal"`. */
       textAlignLeft?: string;
       /** Styles applied to the span children element if `orientation="horizontal"`. */
-      children?: string;
+      wrapper?: string;
       /** Styles applied to the span children element if `orientation="vertical"`. */
       childrenVertical?: string;
     };
