@@ -326,11 +326,21 @@ function generateProps(reactAPI: ReactApi) {
     let defaultValueColumn = '';
 
     const { defaultValue, jsdocDefaultValue } = prop;
-    if (defaultValue !== undefined && jsdocDefaultValue === undefined) {
+    if (prop.type.name === 'func') {
+      if (jsdocDefaultValue !== undefined) {
+        throw new Error(
+          `Prop '${propName}' is a function for which @default is not supported until we can generate human readable documentation for it and verify it.`,
+        );
+      }
+    } else if (defaultValue !== undefined && jsdocDefaultValue === undefined) {
       // discriminator for polymorphism for which the default value is hard to extract
       if (propName !== 'component') {
-        throw new Error(
-          `Missing JSDOC @default for prop '${propName}' with default value "${defaultValue.value}"`,
+        // TODO: throw/warn/ignore?
+        // throw new Error(
+        //   `Missing JSDOC @default for prop '${propName}' with default value "${defaultValue.value}"`,
+        // );
+        console.warn(
+          `${reactAPI.filename}: Missing JSDOC @default for prop '${propName}' with default value "${defaultValue.value}"`,
         );
       }
     } else if (jsdocDefaultValue !== undefined) {
