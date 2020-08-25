@@ -1,15 +1,13 @@
 import * as React from 'react';
-import { expect } from 'chai';
-import { createShallow, getClasses, createMount, describeConformance } from 'test/utils';
+import { getClasses, createMount, describeConformance, createClientRender } from 'test/utils';
 import DialogContent from './DialogContent';
 
 describe('<DialogContent />', () => {
   const mount = createMount();
-  let shallow;
+  const render = createClientRender();
   let classes;
 
   before(() => {
-    shallow = createShallow({ dive: true });
     classes = getClasses(<DialogContent />);
   });
 
@@ -22,8 +20,9 @@ describe('<DialogContent />', () => {
   }));
 
   it('should render children', () => {
-    const children = <p />;
-    const wrapper = shallow(<DialogContent>{children}</DialogContent>);
-    expect(wrapper.children().equals(children)).to.equal(true);
+    const children = <p data-testid="test-children" />;
+    const { getByTestId } = render(<DialogContent>{children}</DialogContent>);
+
+    getByTestId('test-children');
   });
 });
