@@ -4,13 +4,6 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 export interface ImageListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
   props: P & {
     cellHeight?: number | 'auto';
-    /**
-     * Image Tiles that will be in Image List.
-     */
-    children: NonNullable<React.ReactNode>;
-    /**
-     * Number of columns.
-     */
     cols?: number;
     spacing?: number;
   };

@@ -3,19 +3,7 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface ImageListTileTypeMap<P = {}, D extends React.ElementType = 'li'> {
   props: P & {
-    /**
-     * Theoretically you can pass any node as children, but the main use case is to pass an img,
-     * in which case ImageListTile takes care of making the image "cover" available space
-     * (similar to `background-size: cover` or to `object-fit: cover`).
-     */
-    children?: React.ReactNode;
-    /**
-     * Width of the tile in number of image cells.
-     */
     cols?: number;
-    /**
-     * Height of the tile in number of image cells.
-     */
     rows?: number;
   };
   defaultComponent: D;

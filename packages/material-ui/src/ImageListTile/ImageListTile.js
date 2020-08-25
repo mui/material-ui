@@ -124,9 +124,7 @@ ImageListTile.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * Theoretically you can pass any node as children, but the main use case is to pass an img,
-   * in which case ImageListTile takes care of making the image "cover" available space
-   * (similar to `background-size: cover` or to `object-fit: cover`).
+   * @ignore
    */
   children: PropTypes.node,
   /**
@@ -139,7 +137,7 @@ ImageListTile.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Width of the tile in number of image cells.
+   * @ignore
    */
   cols: PropTypes.number,
   /**
@@ -148,7 +146,7 @@ ImageListTile.propTypes = {
    */
   component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
-   * Height of the tile in number of image cells.
+   * @ignore
    */
   rows: PropTypes.number,
 };
