@@ -8,7 +8,13 @@ export default function adaptV4Theme(inputTheme) {
     );
   }
 
-  const { props = {}, defaultProps = {}, styleOverrides = {}, overrides = {}, ...other } = inputTheme;
+  const {
+    props = {},
+    defaultProps = {},
+    styleOverrides = {},
+    overrides = {},
+    ...other
+  } = inputTheme;
   const theme = {
     ...other,
     components: {},
