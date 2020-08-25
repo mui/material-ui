@@ -134,7 +134,9 @@ describe('adaptV4Theme', () => {
     );
 
     expect(transformedTheme.components.MuiFab.defaultProps).to.deep.equal(theme.props.MuiFab);
-    expect(transformedTheme.components.MuiFab.stylesOverrides).to.deep.equal(theme.overrides.MuiFab);
+    expect(transformedTheme.components.MuiFab.stylesOverrides).to.deep.equal(
+      theme.overrides.MuiFab,
+    );
   });
 
   it('merges partially migrated props and overrides from different components in appropriate key', () => {
