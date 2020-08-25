@@ -62,14 +62,14 @@ theme = {
   ...theme,
   components: {
     MuiDrawer: {
-      styleOverrides: {
+      stylesOverrides: {
         paper: {
           backgroundColor: '#18202c',
         },
       },
     },
     MuiButton: {
-      styleOverrides: {
+      stylesOverrides: {
         label: {
           textTransform: 'none',
         },
@@ -82,7 +82,7 @@ theme = {
       },
     },
     MuiTabs: {
-      styleOverrides: {
+      stylesOverrides: {
         root: {
           marginLeft: theme.spacing(1),
         },
@@ -95,7 +95,7 @@ theme = {
       },
     },
     MuiTab: {
-      styleOverrides: {
+      stylesOverrides: {
         root: {
           textTransform: 'none',
           margin: '0 16px',
@@ -109,35 +109,35 @@ theme = {
       },
     },
     MuiIconButton: {
-      styleOverrides: {
+      stylesOverrides: {
         root: {
           padding: theme.spacing(1),
         },
       },
     },
     MuiTooltip: {
-      styleOverrides: {
+      stylesOverrides: {
         tooltip: {
           borderRadius: 4,
         },
       },
     },
     MuiDivider: {
-      styleOverrides: {
+      stylesOverrides: {
         root: {
           backgroundColor: '#404854',
         },
       },
     },
     MuiListItemText: {
-      styleOverrides: {
+      stylesOverrides: {
         primary: {
           fontWeight: theme.typography.fontWeightMedium,
         },
       },
     },
     MuiListItemIcon: {
-      styleOverrides: {
+      stylesOverrides: {
         root: {
           color: 'inherit',
           marginRight: 0,
@@ -148,7 +148,7 @@ theme = {
       },
     },
     MuiAvatar: {
-      styleOverrides: {
+      stylesOverrides: {
         root: {
           width: 32,
           height: 32,

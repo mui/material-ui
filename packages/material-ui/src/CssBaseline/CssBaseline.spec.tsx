@@ -7,7 +7,7 @@ import { createMuiTheme } from '@material-ui/core';
   createMuiTheme({
     components: {
       MuiCssBaseline: {
-        styleOverrides: {
+        stylesOverrides: {
           '@global': {
             '@font-face': [{ fontFamily: 'custom', fontWeight: 600 }],
           },
@@ -19,7 +19,7 @@ import { createMuiTheme } from '@material-ui/core';
   createMuiTheme({
     components: {
       MuiCssBaseline: {
-        styleOverrides: {
+        stylesOverrides: {
           '@global': {
             // @ts-expect-error
             fontWeight: 'bold',
@@ -32,7 +32,7 @@ import { createMuiTheme } from '@material-ui/core';
   createMuiTheme({
     components: {
       MuiCssBaseline: {
-        styleOverrides: {
+        stylesOverrides: {
           '@global': {
             ul: {
               'list-style': 'none',

@@ -48,7 +48,7 @@ import '@material-ui/lab/themeAugmentation';
 const theme = createMuiTheme({
   components: {
     MuiTimeline: {
-      styleOverrides: {
+      stylesOverrides: {
         root: {
           backgroundColor: 'red',
         },
