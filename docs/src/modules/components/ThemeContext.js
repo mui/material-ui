@@ -91,7 +91,7 @@ const highDensity = {
       },
     },
     MuiFab: {
-      prdefaultPropsops: {
+      defaultProps: {
         size: 'small',
       },
     },
