@@ -24,7 +24,7 @@ describe('useThemeVariants', () => {
           variants: [
             {
               props: { variant: 'test' },
-              style: { backgroundColor: 'rgb(255, 0, 0)' },
+              styles: { backgroundColor: 'rgb(255, 0, 0)' },
             },
           ],
         },
@@ -50,7 +50,7 @@ describe('useThemeVariants', () => {
           variants: [
             {
               props: { variant: 'test' },
-              style: { backgroundColor: 'rgb(255, 0, 0)' },
+              styles: { backgroundColor: 'rgb(255, 0, 0)' },
             },
           ],
         },
@@ -74,15 +74,15 @@ describe('useThemeVariants', () => {
           variants: [
             {
               props: { variant: 'test' },
-              style: { backgroundColor: 'rgb(255, 0, 0)' },
+              styles: { backgroundColor: 'rgb(255, 0, 0)' },
             },
             {
               props: { variant: 'test', color: 'primary' },
-              style: { backgroundColor: 'rgb(255, 255, 0)' },
+              styles: { backgroundColor: 'rgb(255, 255, 0)' },
             },
             {
               props: { variant: 'test', color: 'secondary' },
-              style: { backgroundColor: 'rgb(0, 0, 255)' },
+              styles: { backgroundColor: 'rgb(0, 0, 255)' },
             },
           ],
         },
@@ -119,7 +119,7 @@ describe('useThemeVariants', () => {
           variants: [
             {
               props: { variant: 'test1' },
-              style: { backgroundColor: 'rgb(255, 0, 0)' },
+              styles: { backgroundColor: 'rgb(255, 0, 0)' },
             },
           ],
         },

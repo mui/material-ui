@@ -71,7 +71,7 @@ export default function getStylesCreator(stylesOrCreator) {
         const classKey = propsToClassKey(definition.props);
         stylesWithOverrides[classKey] = deepmerge(
           stylesWithOverrides[classKey] || {},
-          definition.style,
+          definition.styles,
         );
       });
 
