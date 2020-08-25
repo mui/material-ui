@@ -107,7 +107,7 @@ export const styles = (theme) => ({
     paddingRight: theme.spacing(1.2),
   },
   /* Styles applied to the span children element if `orientation="vertical"`. */
-  childrenVertical: {
+  wrapperVertical: {
     paddingTop: theme.spacing(1.2),
     paddingBottom: theme.spacing(1.2),
   },
