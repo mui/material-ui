@@ -101,7 +101,7 @@ export const styles = (theme) => ({
     },
   },
   /* Styles applied to the span children element if `orientation="horizontal"`. */
-  children: {
+  wrapper: {
     display: 'inline-block',
     paddingLeft: theme.spacing(1.2),
     paddingRight: theme.spacing(1.2),
