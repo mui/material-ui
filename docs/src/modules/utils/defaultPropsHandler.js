@@ -80,12 +80,12 @@ function getDefaultValuesFromProps(properties, documentation) {
         // discriminator for polymorphism for which the default value is hard to extract
         if (propName !== 'component') {
           // TODO: throw/warn/ignore?
-          throw new Error(`Missing JSDOC default value for ${propName}`);
+          console.warn(`Missing JSDOC default value for ${propName}`);
         }
-      } else if (jsdocDefaultValue != null && defaultValue != null) {
-        if (jsdocDefaultValue.value !== defaultValue.value) {
+      } else if (jsdocDefaultValue != null) {
+        if (jsdocDefaultValue.value !== defaultValue?.value) {
           throw new Error(
-            `Expected JSDOC default value of "${jsdocDefaultValue.value}" to equal runtime default value of "${defaultValue.value}"`,
+            `Expected JSDOC default value of "${jsdocDefaultValue.value}" to equal runtime default value of "${defaultValue?.value}"`,
           );
         }
       }
