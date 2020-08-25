@@ -68,7 +68,7 @@ export const styles = (theme) => ({
       transform: 'translateY(50%)',
     },
   },
-  /* Styles applied to the root element if `orientation="vertical"`. */
+  /* Styles applied to the root element if divider have text and `orientation="vertical"`. */
   textVertical: {
     flexDirection: 'column',
     '&::before, &::after': {
