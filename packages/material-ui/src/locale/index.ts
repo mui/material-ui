@@ -194,8 +194,10 @@ export const bgBG: Localization = {
 
 export const caES: Localization = {
   components: {
-    // MuiBreadcrumbs: { defaultProps:
-    //   expandText: 'Show path',
+    // MuiBreadcrumbs: {
+    //   defaultProps: {
+    //    expandText: 'Show path',
+    //   },
     // },
     MuiTablePagination: {
       defaultProps: {
@@ -237,23 +239,25 @@ export const caES: Localization = {
         closeText: 'Tancat',
       },
     },
-    // MuiPagination: {  defaultProps: {
-    //   'aria-label': 'Pagination navigation',
-    //   getItemAriaLabel: (type, page, selected) => {
-    //     if (type === 'page') {
-    //       return `${selected ? '' : 'Go to '}page ${page}`;
-    //     }
-    //     if (type === 'first') {
-    //       return 'Go to first page';
-    //     }
-    //     if (type === 'last') {
-    //       return 'Go to last page';
-    //     }
-    //     if (type === 'next') {
-    //       return 'Go to next page';
-    //     }
-    //     // if (type === 'previous') {
-    //     return 'Go to previous page';
+    // MuiPagination: {  
+    //   defaultProps: {
+    //     'aria-label': 'Pagination navigation',
+    //     getItemAriaLabel: (type, page, selected) => {
+    //       if (type === 'page') {
+    //         return `${selected ? '' : 'Go to '}page ${page}`;
+    //       }
+    //       if (type === 'first') {
+    //         return 'Go to first page';
+    //       }
+    //       if (type === 'last') {
+    //         return 'Go to last page';
+    //       }
+    //       if (type === 'next') {
+    //         return 'Go to next page';
+    //       }
+    //       // if (type === 'previous') {
+    //       return 'Go to previous page';
+    //     },
     //   },
     // },
   },
@@ -688,8 +692,10 @@ export const etEE: Localization = {
 
 export const faIR: Localization = {
   components: {
-    // MuiBreadcrumbs: { defaultProps:
-    //   expandText: 'Show path',
+    // MuiBreadcrumbs: { 
+    //   defaultProps: {
+    //     expandText: 'Show path',
+    //   },
     // },
     MuiBreadcrumbs: {
       defaultProps: {
@@ -904,8 +910,10 @@ export const frFR: Localization = {
 
 export const heIL: Localization = {
   components: {
-    // MuiBreadcrumbs: { defaultProps:
-    //   expandText: 'Show path',
+    // MuiBreadcrumbs: { 
+    //   defaultProps: {
+    //     expandText: 'Show path',
+    //   },
     // },
     MuiTablePagination: {
       defaultProps: {
@@ -947,23 +955,25 @@ export const heIL: Localization = {
         closeText: 'סגור',
       },
     },
-    // MuiPagination: {  defaultProps: {
-    //   'aria-label': 'Pagination navigation',
-    //   getItemAriaLabel: (type, page, selected) => {
-    //     if (type === 'page') {
-    //       return `${selected ? '' : 'Go to '}page ${page}`;
-    //     }
-    //     if (type === 'first') {
-    //       return 'Go to first page';
-    //     }
-    //     if (type === 'last') {
-    //       return 'Go to last page';
-    //     }
-    //     if (type === 'next') {
-    //       return 'Go to next page';
-    //     }
-    //     // if (type === 'previous') {
-    //     return 'Go to previous page';
+    // MuiPagination: {
+    //   defaultProps: {
+    //     'aria-label': 'Pagination navigation',
+    //     getItemAriaLabel: (type, page, selected) => {
+    //       if (type === 'page') {
+    //         return `${selected ? '' : 'Go to '}page ${page}`;
+    //       }
+    //       if (type === 'first') {
+    //         return 'Go to first page';
+    //       }
+    //       if (type === 'last') {
+    //         return 'Go to last page';
+    //       }
+    //       if (type === 'next') {
+    //         return 'Go to next page';
+    //       }
+    //       // if (type === 'previous') {
+    //       return 'Go to previous page';
+    //     },
     //   },
     // },
   },
@@ -1113,8 +1123,10 @@ export const huHU: Localization = {
 
 export const hyAM: Localization = {
   components: {
-    // MuiBreadcrumbs: { defaultProps:
-    //   expandText: 'Show path',
+    // MuiBreadcrumbs: {
+    //   defaultProps: {
+    //     expandText: 'Show path',
+    //   },
     // },
     MuiTablePagination: {
       defaultProps: {
@@ -1156,23 +1168,25 @@ export const hyAM: Localization = {
         closeText: 'Փակել',
       },
     },
-    // MuiPagination: {  defaultProps: {
-    //   'aria-label': 'Pagination navigation',
-    //   getItemAriaLabel: (type, page, selected) => {
-    //     if (type === 'page') {
-    //       return `${selected ? '' : 'Go to '}page ${page}`;
-    //     }
-    //     if (type === 'first') {
-    //       return 'Go to first page';
-    //     }
-    //     if (type === 'last') {
-    //       return 'Go to last page';
-    //     }
-    //     if (type === 'next') {
-    //       return 'Go to next page';
-    //     }
-    //     // if (type === 'previous') {
-    //     return 'Go to previous page';
+    // MuiPagination: {
+    //   defaultProps: {
+    //     'aria-label': 'Pagination navigation',
+    //     getItemAriaLabel: (type, page, selected) => {
+    //       if (type === 'page') {
+    //         return `${selected ? '' : 'Go to '}page ${page}`;
+    //       }
+    //       if (type === 'first') {
+    //         return 'Go to first page';
+    //       }
+    //       if (type === 'last') {
+    //         return 'Go to last page';
+    //       }
+    //       if (type === 'next') {
+    //         return 'Go to next page';
+    //       }
+    //       // if (type === 'previous') {
+    //       return 'Go to previous page';
+    //     },
     //   },
     // },
   },
@@ -1180,8 +1194,10 @@ export const hyAM: Localization = {
 
 export const idID: Localization = {
   components: {
-    // MuiBreadcrumbs: { defaultProps:
-    //   expandText: 'Show path',
+    // MuiBreadcrumbs: {
+    //   defaultProps: {
+    //     expandText: 'Show path',
+    //   },
     // },
     MuiTablePagination: {
       defaultProps: {
@@ -1223,23 +1239,25 @@ export const idID: Localization = {
         closeText: 'Tutup',
       },
     },
-    // MuiPagination: {  defaultProps: {
-    //   'aria-label': 'Pagination navigation',
-    //   getItemAriaLabel: (type, page, selected) => {
-    //     if (type === 'page') {
-    //       return `${selected ? '' : 'Go to '}page ${page}`;
-    //     }
-    //     if (type === 'first') {
-    //       return 'Go to first page';
-    //     }
-    //     if (type === 'last') {
-    //       return 'Go to last page';
-    //     }
-    //     if (type === 'next') {
-    //       return 'Go to next page';
-    //     }
-    //     // if (type === 'previous') {
-    //     return 'Go to previous page';
+    // MuiPagination: {
+    //   defaultProps: {
+    //     'aria-label': 'Pagination navigation',
+    //     getItemAriaLabel: (type, page, selected) => {
+    //       if (type === 'page') {
+    //         return `${selected ? '' : 'Go to '}page ${page}`;
+    //       }
+    //       if (type === 'first') {
+    //         return 'Go to first page';
+    //       }
+    //       if (type === 'last') {
+    //         return 'Go to last page';
+    //       }
+    //       if (type === 'next') {
+    //         return 'Go to next page';
+    //       }
+    //       // if (type === 'previous') {
+    //       return 'Go to previous page';
+    //     },
     //   },
     // },
   },
@@ -1247,8 +1265,10 @@ export const idID: Localization = {
 
 export const isIS: Localization = {
   components: {
-    // MuiBreadcrumbs: { defaultProps:
-    //   expandText: 'Show path',
+    // MuiBreadcrumbs: {
+    //   defaultProps: {
+    //    expandText: 'Show path',
+    //   },
     // },
     MuiTablePagination: {
       defaultProps: {
@@ -1290,23 +1310,25 @@ export const isIS: Localization = {
         closeText: 'Loka',
       },
     },
-    // MuiPagination: {  defaultProps: {
-    //   'aria-label': 'Pagination navigation',
-    //   getItemAriaLabel: (type, page, selected) => {
-    //     if (type === 'page') {
-    //       return `${selected ? '' : 'Go to '}page ${page}`;
-    //     }
-    //     if (type === 'first') {
-    //       return 'Go to first page';
-    //     }
-    //     if (type === 'last') {
-    //       return 'Go to last page';
-    //     }
-    //     if (type === 'next') {
-    //       return 'Go to next page';
-    //     }
-    //     // if (type === 'previous') {
-    //     return 'Go to previous page';
+    // MuiPagination: {
+    //   defaultProps: {
+    //     'aria-label': 'Pagination navigation',
+    //     getItemAriaLabel: (type, page, selected) => {
+    //       if (type === 'page') {
+    //         return `${selected ? '' : 'Go to '}page ${page}`;
+    //       }
+    //       if (type === 'first') {
+    //         return 'Go to first page';
+    //       }
+    //       if (type === 'last') {
+    //         return 'Go to last page';
+    //       }
+    //       if (type === 'next') {
+    //         return 'Go to next page';
+    //       }
+    //       // if (type === 'previous') {
+    //       return 'Go to previous page';
+    //     },
     //   },
     // },
   },
@@ -1456,8 +1478,10 @@ export const jaJP: Localization = {
 
 export const koKR: Localization = {
   components: {
-    // MuiBreadcrumbs: { defaultProps:
-    //   expandText: 'Show path',
+    // MuiBreadcrumbs: {
+    //   defaultProps: {
+    //     expandText: 'Show path',
+    //   },
     // },
     MuiTablePagination: {
       defaultProps: {
@@ -1494,26 +1518,30 @@ export const koKR: Localization = {
         openText: '열기',
       },
     },
-    // MuiAlert: { defaultProps: {
-    //   closeText: 'Close',
+    // MuiAlert: {
+    //   defaultProps: {
+    //     closeText: 'Close',
+    //   },
     // },
-    // MuiPagination: {  defaultProps: {
-    //   'aria-label': 'Pagination navigation',
-    //   getItemAriaLabel: (type, page, selected) => {
-    //     if (type === 'page') {
-    //       return `${selected ? '' : 'Go to '}page ${page}`;
-    //     }
-    //     if (type === 'first') {
-    //       return 'Go to first page';
-    //     }
-    //     if (type === 'last') {
-    //       return 'Go to last page';
-    //     }
-    //     if (type === 'next') {
-    //       return 'Go to next page';
-    //     }
-    //     // if (type === 'previous') {
-    //     return 'Go to previous page';
+    // MuiPagination: {
+    //   defaultProps: {
+    //     'aria-label': 'Pagination navigation',
+    //     getItemAriaLabel: (type, page, selected) => {
+    //       if (type === 'page') {
+    //         return `${selected ? '' : 'Go to '}page ${page}`;
+    //       }
+    //       if (type === 'first') {
+    //         return 'Go to first page';
+    //       }
+    //       if (type === 'last') {
+    //         return 'Go to last page';
+    //       }
+    //       if (type === 'next') {
+    //         return 'Go to next page';
+    //       }
+    //       // if (type === 'previous') {
+    //       return 'Go to previous page';
+    //     },
     //   },
     // },
   },
@@ -1521,8 +1549,10 @@ export const koKR: Localization = {
 
 export const nlNL: Localization = {
   components: {
-    // MuiBreadcrumbs: { defaultProps:
-    //   expandText: 'Show path',
+    // MuiBreadcrumbs: {
+    //   defaultProps: {
+    //     expandText: 'Show path',
+    //   },
     // },
     MuiTablePagination: {
       defaultProps: {
@@ -1564,23 +1594,25 @@ export const nlNL: Localization = {
         closeText: 'Sluiten',
       },
     },
-    // MuiPagination: {  defaultProps: {
-    //   'aria-label': 'Pagination navigation',
-    //   getItemAriaLabel: (type, page, selected) => {
-    //     if (type === 'page') {
-    //       return `${selected ? '' : 'Go to '}page ${page}`;
-    //     }
-    //     if (type === 'first') {
-    //       return 'Go to first page';
-    //     }
-    //     if (type === 'last') {
-    //       return 'Go to last page';
-    //     }
-    //     if (type === 'next') {
-    //       return 'Go to next page';
-    //     }
-    //     // if (type === 'previous') {
-    //     return 'Go to previous page';
+    // MuiPagination: {
+    //   defaultProps: {
+    //     'aria-label': 'Pagination navigation',
+    //     getItemAriaLabel: (type, page, selected) => {
+    //       if (type === 'page') {
+    //         return `${selected ? '' : 'Go to '}page ${page}`;
+    //       }
+    //       if (type === 'first') {
+    //         return 'Go to first page';
+    //       }
+    //       if (type === 'last') {
+    //         return 'Go to last page';
+    //       }
+    //       if (type === 'next') {
+    //         return 'Go to next page';
+    //       }
+    //       // if (type === 'previous') {
+    //       return 'Go to previous page';
+    //     },
     //   },
     // },
   },
@@ -2340,8 +2372,10 @@ export const ukUA: Localization = {
 
 export const viVN: Localization = {
   components: {
-    // MuiBreadcrumbs: { defaultProps:
-    //   expandText: 'Show path',
+    // MuiBreadcrumbs: {
+    //   defaultProps: {
+    //     expandText: 'Show path',
+    //   },
     // },
     MuiTablePagination: {
       defaultProps: {
@@ -2383,23 +2417,25 @@ export const viVN: Localization = {
         closeText: 'Đóng',
       },
     },
-    // MuiPagination: {  defaultProps: {
-    //   'aria-label': 'Pagination navigation',
-    //   getItemAriaLabel: (type, page, selected) => {
-    //     if (type === 'page') {
-    //       return `${selected ? '' : 'Go to '}page ${page}`;
-    //     }
-    //     if (type === 'first') {
-    //       return 'Go to first page';
-    //     }
-    //     if (type === 'last') {
-    //       return 'Go to last page';
-    //     }
-    //     if (type === 'next') {
-    //       return 'Go to next page';
-    //     }
-    //     // if (type === 'previous') {
-    //     return 'Go to previous page';
+    // MuiPagination: {
+    //   defaultProps: {
+    //     'aria-label': 'Pagination navigation',
+    //     getItemAriaLabel: (type, page, selected) => {
+    //       if (type === 'page') {
+    //         return `${selected ? '' : 'Go to '}page ${page}`;
+    //       }
+    //       if (type === 'first') {
+    //         return 'Go to first page';
+    //       }
+    //       if (type === 'last') {
+    //         return 'Go to last page';
+    //       }
+    //       if (type === 'next') {
+    //         return 'Go to next page';
+    //       }
+    //       // if (type === 'previous') {
+    //       return 'Go to previous page';
+    //     },
     //   },
     // },
   },
