@@ -53,7 +53,7 @@ describe('<Divider />', () => {
       it('should set the textVertical class', () => {
         const { container } = render(<Divider orientation="vertical">content</Divider>);
         expect(container.querySelectorAll(`.${classes.withChildrenVertical}`).length).to.equal(1);
-        expect(container.querySelectorAll(`.${classes.childrenVertical}`).length).to.equal(1);
+        expect(container.querySelectorAll(`.${classes.wrapperVertical}`).length).to.equal(1);
       });
     });
 

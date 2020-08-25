@@ -101,13 +101,13 @@ export const styles = (theme) => ({
     },
   },
   /* Styles applied to the span children element if `orientation="horizontal"`. */
-  children: {
+  wrapper: {
     display: 'inline-block',
     paddingLeft: theme.spacing(1.2),
     paddingRight: theme.spacing(1.2),
   },
   /* Styles applied to the span children element if `orientation="vertical"`. */
-  childrenVertical: {
+  wrapperVertical: {
     paddingTop: theme.spacing(1.2),
     paddingBottom: theme.spacing(1.2),
   },
@@ -168,8 +168,8 @@ const Divider = React.forwardRef(function Divider(props, ref) {
     >
       {children ? (
         <span
-          className={clsx(classes.children, {
-            [classes.childrenVertical]: orientation === 'vertical',
+          className={clsx(classes.wrapper, {
+            [classes.wrapperVertical]: orientation === 'vertical',
           })}
         >
           {children}
