@@ -168,7 +168,7 @@ const Divider = React.forwardRef(function Divider(props, ref) {
     >
       {children ? (
         <span
-          className={clsx(classes.children, {
+          className={clsx(classes.wrapper, {
             [classes.wrapperVertical]: orientation === 'vertical',
           })}
         >
