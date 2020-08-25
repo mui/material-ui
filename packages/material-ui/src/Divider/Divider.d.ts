@@ -35,17 +35,17 @@ export interface DividerTypeMap<P = {}, D extends React.ElementType = 'hr'> {
       /** Styles applied to the root element if `flexItem={true}`. */
       flexItem?: string;
       /** Styles applied to the root element if divider have text. */
-      text?: string;
+      withChildren?: string;
       /** Styles applied to the root element if divider have text and `orientation="vertical"`. */
-      textVertical?: string;
+      withChildrenVertical?: string;
       /** Styles applied to the root element if `textAlign="right" orientation="horizontal"`. */
       textAlignRight?: string;
       /** Styles applied to the root element if `textAlign="left" orientation="horizontal"`. */
       textAlignLeft?: string;
       /** Styles applied to the span children element if `orientation="horizontal"`. */
-      spanText?: string;
+      children?: string;
       /** Styles applied to the span children element if `orientation="vertical"`. */
-      spanTextVertical?: string;
+      childrenVertical?: string;
     };
     /**
      * If `true`, a vertical divider will have the correct height when used in flex container.

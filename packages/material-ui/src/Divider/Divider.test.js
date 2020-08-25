@@ -46,14 +46,14 @@ describe('<Divider />', () => {
 
     it('should set the default text class', () => {
       const { container } = render(<Divider>content</Divider>);
-      expect(container.firstChild).to.have.class(classes.text);
+      expect(container.firstChild).to.have.class(classes.withChildren);
     });
 
     describe('prop: orientation', () => {
       it('should set the textVertical class', () => {
         const { container } = render(<Divider orientation="vertical">content</Divider>);
-        expect(container.querySelectorAll(`.${classes.textVertical}`).length).to.equal(1);
-        expect(container.querySelectorAll(`.${classes.spanTextVertical}`).length).to.equal(1);
+        expect(container.querySelectorAll(`.${classes.withChildrenVertical}`).length).to.equal(1);
+        expect(container.querySelectorAll(`.${classes.childrenVertical}`).length).to.equal(1);
       });
     });
 

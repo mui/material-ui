@@ -49,7 +49,7 @@ export const styles = (theme) => ({
     height: 'auto',
   },
   /* Styles applied to the root element if divider have text. */
-  text: {
+  withChildren: {
     display: 'flex',
     whiteSpace: 'nowrap',
     textAlign: 'center',
@@ -69,7 +69,7 @@ export const styles = (theme) => ({
     },
   },
   /* Styles applied to the root element if divider have text and `orientation="vertical"`. */
-  textVertical: {
+  withChildrenVertical: {
     flexDirection: 'column',
     '&::before, &::after': {
       height: '100%',
@@ -101,13 +101,13 @@ export const styles = (theme) => ({
     },
   },
   /* Styles applied to the span children element if `orientation="horizontal"`. */
-  spanText: {
+  children: {
     display: 'inline-block',
     paddingLeft: theme.spacing(1.2),
     paddingRight: theme.spacing(1.2),
   },
   /* Styles applied to the span children element if `orientation="vertical"`. */
-  spanTextVertical: {
+  childrenVertical: {
     paddingTop: theme.spacing(1.2),
     paddingBottom: theme.spacing(1.2),
   },
@@ -154,8 +154,8 @@ const Divider = React.forwardRef(function Divider(props, ref) {
           [classes.flexItem]: flexItem,
           [classes.light]: light,
           [classes.vertical]: orientation === 'vertical',
-          [classes.text]: children,
-          [classes.textVertical]: children && orientation === 'vertical',
+          [classes.withChildren]: children,
+          [classes.withChildrenVertical]: children && orientation === 'vertical',
           [classes.textAlignRight]: textAlign === 'right' && orientation !== 'vertical',
           [classes.textAlignLeft]: textAlign === 'left' && orientation !== 'vertical',
         },
@@ -168,8 +168,8 @@ const Divider = React.forwardRef(function Divider(props, ref) {
     >
       {children ? (
         <span
-          className={clsx(classes.spanText, {
-            [classes.spanTextVertical]: orientation === 'vertical',
+          className={clsx(classes.children, {
+            [classes.childrenVertical]: orientation === 'vertical',
           })}
         >
           {children}
