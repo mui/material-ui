@@ -257,7 +257,7 @@ For a smoother transition, the `adaptV4Theme` helper allows you to iteratively u
 
 ### ExpansionPanel
 
-- Rename the `ExpansionPanel` components with `Accordion` to use a more common naming convention:
+- Rename the `ExpansionPanel` components to `Accordion` to use a more common naming convention:
 
   ```diff
   -import ExpansionPanel from '@material-ui/core/ExpansionPanel';
@@ -318,6 +318,34 @@ For a smoother transition, the `adaptV4Theme` helper allows you to iteratively u
   -<Grid justify="center">
   +<Grid justifyContent="center">
   ```
+
+### GridList
+
+- Rename the `GridList` components to `ImageList` to align with the current Material Design naming.
+
+```diff
+-import GridList from '@material-ui/core/GridList';
+-import GridListTile from '@material-ui/core/GridListTile';
+-import GridListTileBar from '@material-ui/core/GridListTileBar';
++import ImageList from '@material-ui/core/ImageList';
++import ImageListTile from '@material-ui/core/ImageListTile';
++import ImageListTileBar from '@material-ui/core/ImageListTileBar';
+
+-<GridList>
+-  <GridListTile>
++<ImageList>
++  <ImageListTile>
+     <img src="file.jpg" alt="Image title" />
+-    <GridListTileBar
++    <ImageListTileBar
+       title="Title"
+       subtitle="Subtitle"
+     />
+-  </GridListTile>
+-</GridList>
++  </ImageListTile>
++</ImageList>
+```
 
 ### Menu
 

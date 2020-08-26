@@ -188,6 +188,17 @@ export interface Components {
   MuiGridListTileBar?: {
     defaultProps?: ComponentsProps['MuiGridListTileBar'];
     stylesOverrides?: ComponentsOverrides['MuiGridListTileBar'];
+  MuiImageList?: {
+    defaultProps?: ComponentsProps['MuiImageList'];
+    stylesOverrides?: ComponentsOverrides['MuiImageList'];
+  };
+  MuiImageListTile?: {
+    defaultProps?: ComponentsProps['MuiImageListTile'];
+    stylesOverrides?: ComponentsOverrides['MuiImageListTile'];
+  };
+  MuiImageListTileBar?: {
+    defaultProps?: ComponentsProps['MuiImageListTileBar'];
+    stylesOverrides?: ComponentsOverrides['MuiImageListTileBar'];
   };
   MuiIcon?: {
     defaultProps?: ComponentsProps['MuiIcon'];

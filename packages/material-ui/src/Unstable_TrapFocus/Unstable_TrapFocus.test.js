@@ -292,12 +292,7 @@ describe('<TrapFocus />', () => {
       clock.restore();
     });
 
-    it('contains the focus if the active element is removed', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // see https://github.com/jsdom/jsdom/issues/2953
-        this.skip();
-      }
-
+    it('contains the focus if the active element is removed', () => {
       function WithRemovableElement({ hideButton = false }) {
         return (
           <TrapFocus {...defaultProps} open>
