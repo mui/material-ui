@@ -70,8 +70,8 @@ for (const testCase of testCases) {
     });
 
     if (fs.existsSync(outputPath)) {
-      expect(propTypes.replace(/\r?\n/, '\n')).to.include(
-        fs.readFileSync(outputPath, 'utf8').replace(/\r?\n/, '\n'),
+      expect(propTypes.replace(/\r?\n/g, '\n')).to.include(
+        fs.readFileSync(outputPath, 'utf8').replace(/\r?\n/g, '\n'),
       );
     } else {
       fs.writeFileSync(outputPath, propTypes);
