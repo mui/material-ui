@@ -60,7 +60,7 @@ describe('<Breadcrumbs />', () => {
 
     const listitems = getAllByRole('listitem', { hidden: false });
 
-    expect(listitems).to.have.length(2);
+    expect(listitems).to.have.length(3);
     expect(getByRole('list')).to.have.text('first//ninth');
     expect(getByRole('button').querySelector('[data-mui-test="MoreHorizIcon"]')).not.to.equal(null);
   });

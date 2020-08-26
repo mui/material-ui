@@ -71,6 +71,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(props, ref) {
       const focusable = event.currentTarget.parentNode.parentNode.querySelector(
         'a[href],button,[tabindex]',
       );
+
       if (focusable) {
         focusable.focus();
       }

@@ -13,36 +13,23 @@ describe('<BreadcrumbCollapsed />', () => {
   });
 
   it('should render an icon', () => {
-    const { container } = render(<BreadcrumbCollapsed />);
+    const { container, getByRole } = render(<BreadcrumbCollapsed />);
 
     expect(container.querySelectorAll('svg').length).to.equal(1);
-    expect(container.firstChild).to.have.class(classes.root);
+    expect(getByRole('button')).to.have.class(classes.button);
   });
 
-  describe('prop: onKeyDown', () => {
-    it(`should be called on key down - Enter`, () => {
+  describe('prop: onClick', () => {
+    it(`should be called`, () => {
       const handleClick = spy();
-      const { container } = render(<BreadcrumbCollapsed onClick={handleClick} />);
-      const expand = container.firstChild;
+      const { getByRole } = render(<BreadcrumbCollapsed onClick={handleClick} />);
+      const expand = getByRole('button');
 
       act(() => {
-        expand.focus();
-        fireEvent.keyDown(expand, { key: 'Enter' });
+        fireEvent.click(expand);
       });
 
-      expect(handleClick.callCount).to.equal(1);
-    });
-
-    it(`should be called on key up - Space`, () => {
-      const handleClick = spy();
-      const { container } = render(<BreadcrumbCollapsed onClick={handleClick} />);
-      const expand = container.firstChild;
-
-      act(() => {
-        expand.focus();
-        fireEvent.keyUp(expand, { key: ' ' });
-      });
-
+      expect(expand.nodeName).to.equal('BUTTON');
       expect(handleClick.callCount).to.equal(1);
     });
   });

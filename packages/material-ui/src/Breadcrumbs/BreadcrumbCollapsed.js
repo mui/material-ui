@@ -34,9 +34,11 @@ function BreadcrumbCollapsed(props) {
   const { classes, ...other } = props;
 
   return (
-    <ButtonBase className={classes.button} focusRipple {...other}>
-      <MoreHorizIcon className={classes.icon} />
-    </ButtonBase>
+    <li>
+      <ButtonBase className={classes.button} focusRipple {...other}>
+        <MoreHorizIcon className={classes.icon} />
+      </ButtonBase>
+    </li>
   );
 }
 
