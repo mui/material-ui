@@ -5,14 +5,14 @@
 // Only exported for test purposes.
 export const specialProperty = 'exact-prop: \u200b';
 
-export default function exactProp(propTypes) {
+export default function exactProp(propTypes: any) {
   if (process.env.NODE_ENV === 'production') {
     return propTypes;
   }
 
   return {
     ...propTypes,
-    [specialProperty]: (props) => {
+    [specialProperty]: (props: { [key: string]: any }) => {
       const unsupportedProps = Object.keys(props).filter((prop) => !propTypes.hasOwnProperty(prop));
       if (unsupportedProps.length > 0) {
         return new Error(

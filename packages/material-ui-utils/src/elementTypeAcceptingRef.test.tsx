@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 import elementTypeAcceptingRef from './elementTypeAcceptingRef';
 
 describe('elementTypeAcceptingRef', () => {
-  function checkPropType(elementType) {
+  function checkPropType(elementType: any) {
     PropTypes.checkPropTypes(
       { component: elementTypeAcceptingRef },
       { component: elementType },
@@ -20,11 +20,9 @@ describe('elementTypeAcceptingRef', () => {
   });
 
   describe('acceptance', () => {
-    let rootNode;
+    let rootNode: HTMLElement;
 
-    function assertPass(Component, options = {}) {
-      const { failsOnMount = false, shouldMount = true } = options;
-
+    function assertPass(Component: any, { failsOnMount = false, shouldMount = true } = {}) {
       function testAct() {
         checkPropType(Component);
         if (shouldMount) {
@@ -88,6 +86,7 @@ describe('elementTypeAcceptingRef', () => {
     });
 
     it('accepts memo', () => {
+      // @ts-ignore
       const Component = React.memo('div');
 
       assertPass(Component);
@@ -95,6 +94,7 @@ describe('elementTypeAcceptingRef', () => {
 
     it('accepts lazy', () => {
       const Component = React.lazy(() =>
+        // @ts-ignore
         Promise.resolve({ default: (props) => <div {...props} /> }),
       );
 
@@ -114,7 +114,7 @@ describe('elementTypeAcceptingRef', () => {
   });
 
   describe('rejections', () => {
-    function assertFail(Component, hint) {
+    function assertFail(Component: any, hint: string) {
       expect(() => {
         checkPropType(Component);
       }).toErrorDev(

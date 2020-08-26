@@ -1,4 +1,10 @@
-export default function HTMLElementType(props, propName, componentName, location, propFullName) {
+export default function HTMLElementType(
+  props: { [key: string]: any },
+  propName: string,
+  componentName: string,
+  location: string,
+  propFullName: string,
+) {
   if (process.env.NODE_ENV === 'production') {
     return null;
   }

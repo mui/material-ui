@@ -2765,6 +2765,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-is@^16.7.1":
+  version "16.7.1"
+  resolved "https://registry.yarnpkg.com/@types/react-is/-/react-is-16.7.1.tgz#d3f1c68c358c00ce116b55ef5410cf486dd08539"
+  integrity sha512-dMLFD2cCsxtDgMkTydQCM0PxDq8vwc6uN5M/jRktDfYvH3nQj6pjC9OrCXS2lKlYoYTNJorI/dI8x9dpLshexQ==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-native@*":
   version "0.57.51"
   resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.57.51.tgz#adcb02141734b72822848351be734971e508f5f1"

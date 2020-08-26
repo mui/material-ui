@@ -1,8 +1,16 @@
-export function isPlainObject(item) {
+export function isPlainObject(item: any) {
   return item && typeof item === 'object' && item.constructor === Object;
 }
 
-export default function deepmerge(target, source, options = { clone: true }) {
+export interface DeepmergeOptions {
+  clone?: boolean;
+}
+
+export default function deepmerge<T>(
+  target: Partial<T>,
+  source: Partial<T>,
+  options: DeepmergeOptions = { clone: true },
+) {
   const output = options.clone ? { ...target } : target;
 
   if (isPlainObject(target) && isPlainObject(source)) {
@@ -12,9 +20,12 @@ export default function deepmerge(target, source, options = { clone: true }) {
         return;
       }
 
+      // @ts-ignore
       if (isPlainObject(source[key]) && key in target) {
+        // @ts-ignore
         output[key] = deepmerge(target[key], source[key], options);
       } else {
+        // @ts-ignore
         output[key] = source[key];
       }
     });

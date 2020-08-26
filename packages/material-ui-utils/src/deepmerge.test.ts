@@ -7,6 +7,8 @@ describe('deepmerge', () => {
     deepmerge({}, JSON.parse('{ "myProperty": "a", "__proto__" : { "isAdmin" : true } }'), {
       clone: false,
     });
+
+    // @ts-ignore
     expect({}.isAdmin).to.equal(undefined);
   });
 

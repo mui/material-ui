@@ -2,12 +2,8 @@ import { expect } from 'chai';
 import exactProp, { specialProperty } from './exactProp';
 
 describe('exactProp()', () => {
-  let exactPropTypes;
-
-  before(() => {
-    exactPropTypes = exactProp({
-      bar: {},
-    });
+  const exactPropTypes = exactProp({
+    bar: {},
   });
 
   it('should have the right shape', () => {
