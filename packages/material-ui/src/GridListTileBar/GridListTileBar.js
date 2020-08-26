@@ -70,7 +70,7 @@ export const styles = (theme) => ({
 let warnedOnce = false;
 
 /**
- * ⚠️ The GridListTileBar component was renamed to ImageListTileBar to align with the current Material Design naming..
+ * ⚠️ The GridListTileBar component was renamed to ImageListTileBar to align with the current Material Design naming.
  *
  * You should use `import { ImageListTileBar } from '@material-ui/core'`
  * or `import ImageListTileBar from '@material-ui/core/ImageListTileBar'`.
