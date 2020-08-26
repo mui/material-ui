@@ -29,11 +29,13 @@ The `MuiDivider` name can be used for providing [default props](/customization/g
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">absolute</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Absolutely position the element. |
+| <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the component. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'hr'</span> | The component used for the root node. Either a string to use a HTML element or a component. |
+| <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">children ? 'div' : 'hr'</span> | The component used for the root node. Either a string to use a HTML element or a component. |
 | <span class="prop-name">flexItem</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, a vertical divider will have the correct height when used in flex container. (By default, a vertical divider will have a calculated height of `0px` if it is the child of a flex container.) |
 | <span class="prop-name">light</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the divider will have a lighter color. |
 | <span class="prop-name">orientation</span> | <span class="prop-type">'horizontal'<br>&#124;&nbsp;'vertical'</span> | <span class="prop-default">'horizontal'</span> | The divider orientation. |
+| <span class="prop-name">textAlign</span> | <span class="prop-type">'center'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'</span> | <span class="prop-default">'center'</span> | The text alignment. |
 | <span class="prop-name">variant</span> | <span class="prop-type">'fullWidth'<br>&#124;&nbsp;'inset'<br>&#124;&nbsp;'middle'<br>&#124;&nbsp;string</span> | <span class="prop-default">'fullWidth'</span> | The variant to use. |
 
 The `ref` is forwarded to the root element.
@@ -52,6 +54,12 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">middle</span> | <span class="prop-name">.MuiDivider-middle</span> | Styles applied to the root element if `variant="middle"`.
 | <span class="prop-name">vertical</span> | <span class="prop-name">.MuiDivider-vertical</span> | Styles applied to the root element if `orientation="vertical"`.
 | <span class="prop-name">flexItem</span> | <span class="prop-name">.MuiDivider-flexItem</span> | Styles applied to the root element if `flexItem={true}`.
+| <span class="prop-name">withChildren</span> | <span class="prop-name">.MuiDivider-withChildren</span> | Styles applied to the root element if divider have text.
+| <span class="prop-name">withChildrenVertical</span> | <span class="prop-name">.MuiDivider-withChildrenVertical</span> | Styles applied to the root element if divider have text and `orientation="vertical"`.
+| <span class="prop-name">textAlignRight</span> | <span class="prop-name">.MuiDivider-textAlignRight</span> | Styles applied to the root element if `textAlign="right" orientation="horizontal"`.
+| <span class="prop-name">textAlignLeft</span> | <span class="prop-name">.MuiDivider-textAlignLeft</span> | Styles applied to the root element if `textAlign="left" orientation="horizontal"`.
+| <span class="prop-name">wrapper</span> | <span class="prop-name">.MuiDivider-wrapper</span> | Styles applied to the span children element if `orientation="horizontal"`.
+| <span class="prop-name">wrapperVertical</span> | <span class="prop-name">.MuiDivider-wrapperVertical</span> | Styles applied to the span children element if `orientation="vertical"`.
 
 You can override the style of the component thanks to one of these customization points:
 
