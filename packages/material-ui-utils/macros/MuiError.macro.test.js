@@ -10,7 +10,9 @@ const fixturePath = path.resolve(__dirname, './__fixtures__');
 
 function readOutputFixtureSync(fixture, file) {
   // babel hardcodes the linefeed to \n
-  return fs.readFileSync(path.join(fixturePath, fixture, file), { encoding: 'utf8' }).replace(/\r?\n/g, '\n')
+  return fs
+    .readFileSync(path.join(fixturePath, fixture, file), { encoding: 'utf8' })
+    .replace(/\r?\n/g, '\n');
 }
 
 pluginTester({
