@@ -144,9 +144,11 @@ describe('withStyles', () => {
       const { container } = render(
         <ThemeProvider
           theme={createMuiTheme({
-            props: {
+            components: {
               MuiFoo: {
-                foo: 'bar',
+                props: {
+                  foo: 'bar',
+                },
               },
             },
           })}
@@ -170,9 +172,11 @@ describe('withStyles', () => {
       const { container } = render(
         <ThemeProvider
           theme={createMuiTheme({
-            props: {
+            components: {
               MuiFoo: {
-                foo: 'bar',
+                props: {
+                  foo: 'bar',
+                },
               },
             },
           })}
@@ -216,10 +220,12 @@ describe('withStyles', () => {
       render(
         <ThemeProvider
           theme={createMuiTheme({
-            overrides: {
+            components: {
               MuiTextField: {
-                root: {
-                  padding: 9,
+                overrides: {
+                  root: {
+                    padding: 9,
+                  },
                 },
               },
             },
@@ -244,21 +250,23 @@ describe('withStyles', () => {
       render(
         <ThemeProvider
           theme={createMuiTheme({
-            variants: {
-              MuiButton: [
-                {
-                  props: { variant: 'test' },
-                  styles: { padding: 9 },
-                },
-                {
-                  props: { variant: 'test', size: 'large' },
-                  styles: { fontSize: 20 },
-                },
-                {
-                  props: { size: 'largest' },
-                  styles: { fontSize: 22 },
-                },
-              ],
+            components: {
+              MuiButton: {
+                variants: [
+                  {
+                    props: { variant: 'test' },
+                    styles: { padding: 9 },
+                  },
+                  {
+                    props: { variant: 'test', size: 'large' },
+                    styles: { fontSize: 20 },
+                  },
+                  {
+                    props: { size: 'largest' },
+                    styles: { fontSize: 22 },
+                  },
+                ],
+              },
             },
           })}
         >

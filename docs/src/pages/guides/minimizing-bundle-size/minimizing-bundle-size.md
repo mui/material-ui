@@ -181,13 +181,18 @@ module.exports = override(useBabelRc());
 
 If you wish, `babel-plugin-import` can be configured through `config-overrides.js` instead of `.babelrc` by using this [configuration](https://github.com/arackaf/customize-cra/blob/master/api.md#fixbabelimportslibraryname-options).
 
-Modify your `package.json` start command:
+Modify your `package.json` commands:
 
 ```diff
   "scripts": {
--  "start": "react-scripts start"
-+  "start": "react-app-rewired start"
-  }
+-   "start": "react-scripts start",
++   "start": "react-app-rewired start",
+-   "build": "react-scripts build",
++   "build": "react-app-rewired build",
+-   "test": "react-scripts test",
++   "test": "react-app-rewired test",
+    "eject": "react-scripts eject"
+}
 ```
 
 Note: You may run into errors like these:

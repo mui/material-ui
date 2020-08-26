@@ -1,6 +1,9 @@
 ---
 title: Alert React component
 components: Alert, AlertTitle
+githubLabel: component: Alert
+packageName: @material-ui/lab
+waiAria: https://www.w3.org/TR/wai-aria-practices/#alert
 ---
 
 # Alert
@@ -9,7 +12,9 @@ components: Alert, AlertTitle
 
 **Note:** This component is not documented in the [Material Design guidelines](https://material.io/), but Material-UI supports it.
 
-## Simple alerts
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
+## Basic alerts
 
 The alert offers four severity levels that set a distinctive icon and color.
 

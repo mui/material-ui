@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
@@ -26,7 +26,9 @@ function AppForm(props) {
     <div className={classes.root}>
       <Container maxWidth="sm">
         <Box mt={7} mb={12}>
-          <Paper className={classes.paper}>{children}</Paper>
+          <Paper className={classes.paper} background="light">
+            {children}
+          </Paper>
         </Box>
       </Container>
     </div>
@@ -34,7 +36,7 @@ function AppForm(props) {
 }
 
 AppForm.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   classes: PropTypes.object.isRequired,
 };
 

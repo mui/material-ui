@@ -1,16 +1,12 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 import { ModalProps } from '../Modal';
 import { SlideProps } from '../Slide';
 import { PaperProps } from '../Paper';
 import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
 
 export interface DrawerProps
-  extends StandardProps<
-    ModalProps & Partial<TransitionHandlerProps>,
-    DrawerClassKey,
-    'open' | 'children'
-  > {
+  extends StandardProps<ModalProps & Partial<TransitionHandlerProps>, 'open' | 'children'> {
   /**
    * Side from which the drawer will appear.
    */
@@ -19,6 +15,35 @@ export interface DrawerProps
    * The contents of the drawer.
    */
   children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the root element if `variant="permanent or persistent"`. */
+    docked?: string;
+    /** Styles applied to the `Paper` component. */
+    paper?: string;
+    /** Styles applied to the `Paper` component if `anchor="left"`. */
+    paperAnchorLeft?: string;
+    /** Styles applied to the `Paper` component if `anchor="right"`. */
+    paperAnchorRight?: string;
+    /** Styles applied to the `Paper` component if `anchor="top"`. */
+    paperAnchorTop?: string;
+    /** Styles applied to the `Paper` component if `anchor="bottom"`. */
+    paperAnchorBottom?: string;
+    /** Styles applied to the `Paper` component if `anchor="left"` and `variant` is not "temporary". */
+    paperAnchorDockedLeft?: string;
+    /** Styles applied to the `Paper` component if `anchor="top"` and `variant` is not "temporary". */
+    paperAnchorDockedTop?: string;
+    /** Styles applied to the `Paper` component if `anchor="right"` and `variant` is not "temporary". */
+    paperAnchorDockedRight?: string;
+    /** Styles applied to the `Paper` component if `anchor="bottom"` and `variant` is not "temporary". */
+    paperAnchorDockedBottom?: string;
+    /** Styles applied to the `Modal` component. */
+    modal?: string;
+  };
   /**
    * The elevation of the drawer.
    */
@@ -56,19 +81,7 @@ export interface DrawerProps
   variant?: 'permanent' | 'persistent' | 'temporary';
 }
 
-export type DrawerClassKey =
-  | 'root'
-  | 'docked'
-  | 'paper'
-  | 'paperAnchorLeft'
-  | 'paperAnchorRight'
-  | 'paperAnchorTop'
-  | 'paperAnchorBottom'
-  | 'paperAnchorDockedLeft'
-  | 'paperAnchorDockedTop'
-  | 'paperAnchorDockedRight'
-  | 'paperAnchorDockedBottom'
-  | 'modal';
+export type DrawerClassKey = keyof NonNullable<DrawerProps['classes']>;
 
 /**
  * The props of the [Modal](https://material-ui.com/api/modal/) component are available

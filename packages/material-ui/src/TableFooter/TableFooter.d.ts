@@ -7,9 +7,15 @@ export interface TableFooterTypeMap<P = {}, D extends React.ElementType = 'tfoot
      * The content of the component, normally `TableRow`.
      */
     children?: React.ReactNode;
+    /**
+     * Override or extend the styles applied to the component.
+     */
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+    };
   };
   defaultComponent: D;
-  classKey: TableFooterClassKey;
 }
 /**
  *
@@ -23,7 +29,7 @@ export interface TableFooterTypeMap<P = {}, D extends React.ElementType = 'tfoot
  */
 declare const TableFooter: OverridableComponent<TableFooterTypeMap>;
 
-export type TableFooterClassKey = 'root';
+export type TableFooterClassKey = keyof NonNullable<TableFooterTypeMap['props']['classes']>;
 
 export type TableFooterProps<
   D extends React.ElementType = TableFooterTypeMap['defaultComponent'],

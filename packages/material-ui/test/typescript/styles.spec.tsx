@@ -108,27 +108,29 @@ const theme = createMuiTheme({
   zIndex: {
     appBar: 42,
   },
-  overrides: {
+  components: {
     MuiButton: {
-      // Name of the styleSheet
-      root: {
-        // Name of the rule
-        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-        borderRadius: 3,
-        border: 0,
-        color: 'white',
-        height: 48,
-        padding: '0 30px',
-        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+      props: {
+        disabled: true,
+      },
+      overrides: {
+        // Name of the styleSheet
+        root: {
+          // Name of the rule
+          background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+          borderRadius: 3,
+          border: 0,
+          color: 'white',
+          height: 48,
+          padding: '0 30px',
+          boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+        },
       },
     },
-  },
-  props: {
-    MuiButton: {
-      disabled: true,
-    },
     MuiAppBar: {
-      position: 'fixed',
+      props: {
+        position: 'fixed',
+      },
     },
   },
 });
@@ -139,18 +141,24 @@ const theme2 = createMuiTheme({
       main: blue[500],
     },
   },
-  props: {
+  components: {
     MuiButton: {
-      disabled: false,
-      TouchRippleProps: {
-        center: true,
+      props: {
+        disabled: false,
+        TouchRippleProps: {
+          center: true,
+        },
       },
     },
     MuiTable: {
-      cellPadding: 12,
+      props: {
+        cellPadding: 12,
+      },
     },
     MuiButtonBase: {
-      disableRipple: true,
+      props: {
+        disableRipple: true,
+      },
     },
   },
 });
@@ -643,7 +651,7 @@ function themeProviderTest() {
   <ThemeProvider theme={{ foo: 1 }}>{null}</ThemeProvider>;
   // @ts-expect-error
   <ThemeProvider<Theme> theme={{ foo: 1 }}>{null}</ThemeProvider>;
-  <ThemeProvider<Theme> theme={{ props: { MuiAppBar: { 'aria-atomic': 'true' } } }}>
+  <ThemeProvider<Theme> theme={{ components: { MuiAppBar: { props: { 'aria-atomic': 'true' } } } }}>
     {null}
   </ThemeProvider>;
 }

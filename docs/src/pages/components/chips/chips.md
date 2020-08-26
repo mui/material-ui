@@ -1,17 +1,21 @@
 ---
 title: Chip React component
 components: Chip
+githubLabel: component: Chip
+materialDesign: https://material.io/components/chips
 ---
 
 # Chip
 
 <p class="description">Chips are compact elements that represent an input, attribute, or action.</p>
 
-[Chips](https://material.io/design/components/chips.html) allow users to enter information, make selections, filter content, or trigger actions.
+Chips allow users to enter information, make selections, filter content, or trigger actions.
 
 While included here as a standalone component, the most common use will
 be in some form of input, so some of the behavior demonstrated here is
 not shown in context.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Chip
 

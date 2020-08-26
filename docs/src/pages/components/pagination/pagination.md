@@ -1,11 +1,15 @@
 ---
 title: Pagination React component
 components: Pagination, PaginationItem
+githubLabel: component: Pagination
+packageName: @material-ui/lab
 ---
 
 # Pagination
 
 <p class="description">The Pagination component enables the user to select a specific page from a range of pages.</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Basic pagination
 

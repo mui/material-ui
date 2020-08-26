@@ -1,15 +1,32 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 import { TypographyProps } from '../Typography';
 
 export interface ListItemTextProps<
   PrimaryTypographyComponent extends React.ElementType = 'span',
   SecondaryTypographyComponent extends React.ElementType = 'p'
-> extends StandardProps<React.HTMLAttributes<HTMLDivElement>, ListItemTextClassKey> {
+> extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
    * Alias for the `primary` prop.
    */
   children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the `Typography` components if primary and secondary are set. */
+    multiline?: string;
+    /** Styles applied to the `Typography` components if dense. */
+    dense?: string;
+    /** Styles applied to the root element if `inset={true}`. */
+    inset?: string;
+    /** Styles applied to the primary `Typography` component. */
+    primary?: string;
+    /** Styles applied to the secondary `Typography` component. */
+    secondary?: string;
+  };
   /**
    * If `true`, the children won't be wrapped by a Typography component.
    * This can be useful to render an alternative Typography variant by wrapping
@@ -48,13 +65,7 @@ export interface ListItemTextProps<
   >;
 }
 
-export type ListItemTextClassKey =
-  | 'root'
-  | 'multiline'
-  | 'dense'
-  | 'inset'
-  | 'primary'
-  | 'secondary';
+export type ListItemTextClassKey = keyof NonNullable<ListItemTextProps['classes']>;
 /**
  *
  * Demos:

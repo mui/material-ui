@@ -87,20 +87,26 @@ describe('createMuiTheme', () => {
       let theme;
 
       expect(() => {
-        theme = createMuiTheme({ overrides: { Button: { disabled: { color: 'blue' } } } });
+        theme = createMuiTheme({
+          components: { Button: { overrides: { disabled: { color: 'blue' } } } },
+        });
       }).not.toErrorDev();
-      expect(Object.keys(theme.overrides.Button.disabled).length).to.equal(1);
+      expect(Object.keys(theme.components.Button.overrides.disabled).length).to.equal(1);
 
       expect(() => {
-        theme = createMuiTheme({ overrides: { MuiButton: { root: { color: 'blue' } } } });
+        theme = createMuiTheme({
+          components: { MuiButton: { overrides: { root: { color: 'blue' } } } },
+        });
       }).not.toErrorDev();
 
       expect(() => {
-        theme = createMuiTheme({ overrides: { MuiButton: { disabled: { color: 'blue' } } } });
+        theme = createMuiTheme({
+          components: { MuiButton: { overrides: { disabled: { color: 'blue' } } } },
+        });
       }).toErrorDev(
         'Material-UI: The `MuiButton` component increases the CSS specificity of the `disabled` internal state.',
       );
-      expect(Object.keys(theme.overrides.MuiButton.disabled).length).to.equal(0);
+      expect(Object.keys(theme.components.MuiButton.overrides.disabled).length).to.equal(0);
     });
   });
 

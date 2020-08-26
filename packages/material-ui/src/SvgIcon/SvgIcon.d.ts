@@ -8,6 +8,29 @@ export interface SvgIconTypeMap<P = {}, D extends React.ElementType = 'svg'> {
      */
     children?: React.ReactNode;
     /**
+     * Override or extend the styles applied to the component.
+     */
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+      /** Styles applied to the root element if `color="primary"`. */
+      colorPrimary?: string;
+      /** Styles applied to the root element if `color="secondary"`. */
+      colorSecondary?: string;
+      /** Styles applied to the root element if `color="action"`. */
+      colorAction?: string;
+      /** Styles applied to the root element if `color="error"`. */
+      colorError?: string;
+      /** Styles applied to the root element if `color="disabled"`. */
+      colorDisabled?: string;
+      /** Styles applied to the root element if `fontSize="inherit"`. */
+      fontSizeInherit?: string;
+      /** Styles applied to the root element if `fontSize="small"`. */
+      fontSizeSmall?: string;
+      /** Styles applied to the root element if `fontSize="large"`. */
+      fontSizeLarge?: string;
+    };
+    /**
      * The color of the component. It supports those theme colors that make sense for this component.
      * You can use the `htmlColor` prop to apply a color attribute to the SVG element.
      */
@@ -41,7 +64,6 @@ export interface SvgIconTypeMap<P = {}, D extends React.ElementType = 'svg'> {
     viewBox?: string;
   };
   defaultComponent: D;
-  classKey: SvgIconClassKey;
 }
 /**
  *
@@ -56,16 +78,7 @@ export interface SvgIconTypeMap<P = {}, D extends React.ElementType = 'svg'> {
  */
 declare const SvgIcon: OverridableComponent<SvgIconTypeMap>;
 
-export type SvgIconClassKey =
-  | 'root'
-  | 'colorSecondary'
-  | 'colorAction'
-  | 'colorDisabled'
-  | 'colorError'
-  | 'colorPrimary'
-  | 'fontSizeInherit'
-  | 'fontSizeSmall'
-  | 'fontSizeLarge';
+export type SvgIconClassKey = keyof NonNullable<SvgIconTypeMap['props']['classes']>;
 
 export type SvgIconProps<
   D extends React.ElementType = SvgIconTypeMap['defaultComponent'],

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '@material-ui/core';
+import { InternalStandardProps as StandardProps } from '@material-ui/core';
 import { PopperProps } from '@material-ui/core/Popper';
 import {
   AutocompleteChangeDetails,
@@ -53,15 +53,64 @@ export interface AutocompleteProps<
   FreeSolo extends boolean | undefined
 >
   extends UseAutocompleteProps<T, Multiple, DisableClearable, FreeSolo>,
-    StandardProps<
-      React.HTMLAttributes<HTMLDivElement>,
-      AutocompleteClassKey,
-      'defaultValue' | 'onChange' | 'children'
-    > {
+    StandardProps<React.HTMLAttributes<HTMLDivElement>, 'defaultValue' | 'onChange' | 'children'> {
   /**
    * Props applied to the [`Chip`](/api/chip/) element.
    */
   ChipProps?: object;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the root element if `fullWidth={true}`. */
+    fullWidth?: string;
+    /** Pseudo-class applied to the root element if focused. */
+    focused?: string;
+    /** Styles applied to the tag elements, e.g. the chips. */
+    tag?: string;
+    /** Styles applied to the tag elements, e.g. the chips if `size="small"`. */
+    tagSizeSmall?: string;
+    /** Styles applied when the popup icon is rendered. */
+    hasPopupIcon?: string;
+    /** Styles applied when the clear icon is rendered. */
+    hasClearIcon?: string;
+    /** Styles applied to the Input element. */
+    inputRoot?: string;
+    /** Styles applied to the input element. */
+    input?: string;
+    /** Styles applied to the input element if tag focused. */
+    inputFocused?: string;
+    /** Styles applied to the endAdornment element. */
+    endAdornment?: string;
+    /** Styles applied to the clear indicator. */
+    clearIndicator?: string;
+    /** Styles applied to the clear indicator if the input is dirty. */
+    clearIndicatorDirty?: string;
+    /** Styles applied to the popup indicator. */
+    popupIndicator?: string;
+    /** Styles applied to the popup indicator if the popup is open. */
+    popupIndicatorOpen?: string;
+    /** Styles applied to the popper element. */
+    popper?: string;
+    /** Styles applied to the popper element if `disablePortal={true}`. */
+    popperDisablePortal?: string;
+    /** Styles applied to the `Paper` component. */
+    paper?: string;
+    /** Styles applied to the `listbox` component. */
+    listbox?: string;
+    /** Styles applied to the loading wrapper. */
+    loading?: string;
+    /** Styles applied to the no option wrapper. */
+    noOptions?: string;
+    /** Styles applied to the option elements. */
+    option?: string;
+    /** Styles applied to the group's label elements. */
+    groupLabel?: string;
+    /** Styles applied to the group's ul elements. */
+    groupUl?: string;
+  };
   /**
    * The icon to display in place of the default close icon.
    */
@@ -184,28 +233,9 @@ export interface AutocompleteProps<
   size?: 'small' | 'medium';
 }
 
-export type AutocompleteClassKey =
-  | 'root'
-  | 'focused'
-  | 'tag'
-  | 'tagSizeSmall'
-  | 'inputRoot'
-  | 'input'
-  | 'inputFocused'
-  | 'endAdornment'
-  | 'clearIndicator'
-  | 'clearIndicatorDirty'
-  | 'popupIndicator'
-  | 'popupIndicatorOpen'
-  | 'popper'
-  | 'popperDisablePortal'
-  | 'paper'
-  | 'listbox'
-  | 'loading'
-  | 'noOptions'
-  | 'option'
-  | 'groupLabel'
-  | 'groupUl';
+export type AutocompleteClassKey = keyof NonNullable<
+  AutocompleteProps<any, any, any, any>['classes']
+>;
 
 /**
  *

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TabsTypeMap, TabsClassKey } from '@material-ui/core/Tabs';
+import { TabsTypeMap } from '@material-ui/core/Tabs';
 import { Omit } from '@material-ui/types';
 import { OverridableComponent, OverrideProps } from '@material-ui/core/OverridableComponent';
 
@@ -14,7 +14,6 @@ export interface TabListTypeMap<
     children?: React.ReactElement[];
   } & Omit<TabsTypeMap['props'], 'children' | 'value'>;
   defaultComponent: D;
-  classKey: TabListClassKey;
 }
 /**
  *
@@ -29,7 +28,7 @@ export interface TabListTypeMap<
  */
 declare const TabList: OverridableComponent<TabListTypeMap>;
 
-export type TabListClassKey = TabsClassKey;
+export type TabListClassKey = keyof NonNullable<TabListTypeMap['props']['classes']>;
 
 export type TabListProps<
   D extends React.ElementType = TabListTypeMap['defaultComponent'],

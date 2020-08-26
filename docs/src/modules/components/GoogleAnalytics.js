@@ -17,6 +17,12 @@ function handleClick(event) {
 
     // We reach a tracking element, no need to look higher in the dom tree.
     if (category) {
+      const split = parseFloat(element.getAttribute('data-ga-event-split'));
+
+      if (split && split < Math.random()) {
+        return;
+      }
+
       window.ga('send', {
         hitType: 'event',
         eventCategory: category,

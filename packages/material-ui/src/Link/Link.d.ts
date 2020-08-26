@@ -11,6 +11,22 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
        */
       children?: React.ReactNode;
       /**
+       */
+      classes?: {
+        /** Styles applied to the root element. */
+        root?: string;
+        /** Styles applied to the root element if `underline="none"`. */
+        underlineNone?: string;
+        /** Styles applied to the root element if `underline="hover"`. */
+        underlineHover?: string;
+        /** Styles applied to the root element if `underline="always"`. */
+        underlineAlways?: string;
+        /** Styles applied to the root element if `component="button"`. */
+        button?: string;
+        /** Pseudo-class applied to the root element if the link is keyboard focused. */
+        focusVisible?: string;
+      };
+      /**
        * The color of the link.
        */
       color?: TypographyProps['color'];
@@ -28,7 +44,6 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
       variant?: TypographyProps['variant'];
     };
   defaultComponent: D;
-  classKey: LinkClassKey;
 }
 
 /**
@@ -45,13 +60,7 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
  */
 declare const Link: OverridableComponent<LinkTypeMap>;
 
-export type LinkClassKey =
-  | 'root'
-  | 'underlineNone'
-  | 'underlineHover'
-  | 'underlineAlways'
-  | 'button'
-  | 'focusVisible';
+export type LinkClassKey = keyof NonNullable<LinkTypeMap['props']['classes']>;
 
 export type LinkBaseProps = React.AnchorHTMLAttributes<HTMLAnchorElement> &
   Omit<TypographyProps, 'children' | 'component' | 'color' | 'variant'>;

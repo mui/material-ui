@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -90,6 +90,7 @@ function ProductCTA(props) {
               />
               <Button
                 type="submit"
+                color="primary"
                 variant="contained"
                 className={classes.button}
               >
@@ -111,7 +112,7 @@ function ProductCTA(props) {
       </Grid>
       <Snackbar
         open={open}
-        onClose={handleClose}
+        closeFunc={handleClose}
         message="We will send you our best offers, once a week."
       />
     </Container>

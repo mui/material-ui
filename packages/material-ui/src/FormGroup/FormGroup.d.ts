@@ -1,19 +1,27 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 
-export interface FormGroupProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, FormGroupClassKey> {
+export interface FormGroupProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
    * The content of the component.
    */
   children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the root element if `row={true}`. */
+    row?: string;
+  };
   /**
    * Display group of elements in a compact row.
    */
   row?: boolean;
 }
 
-export type FormGroupClassKey = 'root' | 'row';
+export type FormGroupClassKey = keyof NonNullable<FormGroupProps['classes']>;
 
 /**
  * `FormGroup` wraps controls such as `Checkbox` and `Switch`.

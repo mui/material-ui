@@ -16,6 +16,7 @@ export { Omit };
  * All standard components exposed by `material-ui` are `StyledComponents` with
  * certain `classes`, on which one can also set a top-level `className` and inline
  * `style`.
+ * @deprecated will be removed in v5 for internal usage only
  */
 export type StandardProps<C, ClassKey extends string, Removals extends keyof C = never> = Omit<
   C,
@@ -24,6 +25,25 @@ export type StandardProps<C, ClassKey extends string, Removals extends keyof C =
   StyledComponentProps<ClassKey> & {
     className?: string;
     ref?: C extends { ref?: infer RefType } ? RefType : React.Ref<unknown>;
+    style?: React.CSSProperties;
+  };
+
+/**
+ * @private ONLY USE FROM WITHIN mui-org/material-ui
+ *
+ * Internal helper type for conform (describeConformance) components that are decorated with `withStyles
+ * However, we don't declare classes on this type.
+ * It is recommended to declare them manually with an interface so that each class can have a separate JSDOC.
+ */
+export type InternalStandardProps<C, Removals extends keyof C = never> = Omit<
+  C,
+  'classes' | Removals
+> &
+  // each component declares it's classes in a separate interface for proper JSDOC
+  StyledComponentProps<never> & {
+    ref?: C extends { ref?: infer RefType } ? RefType : React.Ref<unknown>;
+    // TODO: Remove implicit props. Up to each component.
+    className?: string;
     style?: React.CSSProperties;
   };
 
@@ -192,15 +212,6 @@ export * from './FormLabel';
 export { default as Grid } from './Grid';
 export * from './Grid';
 
-export { default as GridList } from './GridList';
-export * from './GridList';
-
-export { default as GridListTile } from './GridListTile';
-export * from './GridListTile';
-
-export { default as GridListTileBar } from './GridListTileBar';
-export * from './GridListTileBar';
-
 export { default as Grow } from './Grow';
 export * from './Grow';
 
@@ -212,6 +223,15 @@ export * from './Icon';
 
 export { default as IconButton } from './IconButton';
 export * from './IconButton';
+
+export { default as ImageList } from './ImageList';
+export * from './ImageList';
+
+export { default as ImageListTile } from './ImageListTile';
+export * from './ImageListTile';
+
+export { default as ImageListTileBar } from './ImageListTileBar';
+export * from './ImageListTileBar';
 
 export { default as Input } from './Input';
 export * from './Input';

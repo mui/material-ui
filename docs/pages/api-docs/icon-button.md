@@ -72,5 +72,5 @@ You can take advantage of this behavior to [target nested components](/guides/ap
 ## Demos
 
 - [Buttons](/components/buttons/)
-- [Grid List](/components/grid-list/)
+- [Image List](/components/image-list/)
 

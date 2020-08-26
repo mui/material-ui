@@ -10,7 +10,7 @@ import TableCell from '../TableCell';
 import Toolbar from '../Toolbar';
 import Typography from '../Typography';
 import TablePaginationActions from './TablePaginationActions';
-import useId from '../utils/unstable_useId';
+import useId from '../utils/useId';
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
@@ -187,7 +187,6 @@ TablePagination.propTypes = {
   backIconButtonProps: PropTypes.object,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object,
   /**

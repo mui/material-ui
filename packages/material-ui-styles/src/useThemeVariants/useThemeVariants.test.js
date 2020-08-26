@@ -19,13 +19,15 @@ describe('useThemeVariants', () => {
 
   it('returns variants classes if props do match', () => {
     const theme = createMuiTheme({
-      variants: {
-        Test: [
-          {
-            props: { variant: 'test' },
-            styles: { backgroundColor: 'rgb(255, 0, 0)' },
-          },
-        ],
+      components: {
+        Test: {
+          variants: [
+            {
+              props: { variant: 'test' },
+              styles: { backgroundColor: 'rgb(255, 0, 0)' },
+            },
+          ],
+        },
       },
     });
 
@@ -43,13 +45,15 @@ describe('useThemeVariants', () => {
 
   it('does not return variants classes if props do not match', () => {
     const theme = createMuiTheme({
-      variants: {
-        Test: [
-          {
-            props: { variant: 'test' },
-            styles: { backgroundColor: 'rgb(255, 0, 0)' },
-          },
-        ],
+      components: {
+        Test: {
+          variants: [
+            {
+              props: { variant: 'test' },
+              styles: { backgroundColor: 'rgb(255, 0, 0)' },
+            },
+          ],
+        },
       },
     });
 
@@ -65,21 +69,23 @@ describe('useThemeVariants', () => {
 
   it('matches correctly multiple props', () => {
     const theme = createMuiTheme({
-      variants: {
-        Test: [
-          {
-            props: { variant: 'test' },
-            styles: { backgroundColor: 'rgb(255, 0, 0)' },
-          },
-          {
-            props: { variant: 'test', color: 'primary' },
-            styles: { backgroundColor: 'rgb(255, 255, 0)' },
-          },
-          {
-            props: { variant: 'test', color: 'secondary' },
-            styles: { backgroundColor: 'rgb(0, 0, 255)' },
-          },
-        ],
+      components: {
+        Test: {
+          variants: [
+            {
+              props: { variant: 'test' },
+              styles: { backgroundColor: 'rgb(255, 0, 0)' },
+            },
+            {
+              props: { variant: 'test', color: 'primary' },
+              styles: { backgroundColor: 'rgb(255, 255, 0)' },
+            },
+            {
+              props: { variant: 'test', color: 'secondary' },
+              styles: { backgroundColor: 'rgb(0, 0, 255)' },
+            },
+          ],
+        },
       },
     });
 
@@ -108,13 +114,15 @@ describe('useThemeVariants', () => {
     });
 
     const theme = createMuiTheme({
-      variants: {
-        MuiButton: [
-          {
-            props: { variant: 'test1' },
-            styles: { backgroundColor: 'rgb(255, 0, 0)' },
-          },
-        ],
+      components: {
+        MuiButton: {
+          variants: [
+            {
+              props: { variant: 'test1' },
+              styles: { backgroundColor: 'rgb(255, 0, 0)' },
+            },
+          ],
+        },
       },
     });
 

@@ -1,12 +1,16 @@
 ---
 components: Link
+githubLabel: component: Link
+waiAria: https://www.w3.org/TR/wai-aria-practices/#link
 ---
 
 # Links
 
 <p class="description">The Link component allows you to easily customize anchor elements with your theme colors and typography styles.</p>
 
-## Simple links
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
+## Basic links
 
 The Link component is built on top of the [Typography](/api/typography/) component, meaning that you can use its props.
 

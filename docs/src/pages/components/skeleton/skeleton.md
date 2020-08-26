@@ -1,6 +1,8 @@
 ---
 title: Skeleton React component
 components: Skeleton
+githubLabel: component: Skeleton
+packageName: @material-ui/lab
 ---
 
 # Skeleton
@@ -8,6 +10,10 @@ components: Skeleton
 <p class="description">Display a placeholder preview of your content before the data gets loaded to reduce load-time frustration.</p>
 
 The data for your components might not be immediately available. You can increase the perceived performance for users by using skeletons. It feels like things are happening immediately, then the information is incrementally displayed on the screen (Cf. [Avoid The Spinner](https://www.lukew.com/ff/entry.asp?1797)).
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
+## Usage
 
 The component is designed to be used **directly in your components**.
 For instance:

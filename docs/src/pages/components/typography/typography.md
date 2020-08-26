@@ -1,5 +1,8 @@
 ---
+title: Typography React component
 components: Typography
+githubLabel: component: Typography
+materialDesign: https://material.io/design/typography/the-type-system.html
 ---
 
 # Typography
@@ -8,6 +11,8 @@ components: Typography
 
 Too many type sizes and styles at once can spoil any layout.
 A [typographic scale](https://material.io/design/typography/#type-scale) has a limited set of type sizes that work well together along with the layout grid.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## General
 
@@ -77,19 +82,21 @@ It’s important to realize that the style of a typography component is independ
 
 ```js
 const theme = createMuiTheme({
-  props: {
+  components: {
     MuiTypography: {
-      variantMapping: {
-        h1: 'h2',
-        h2: 'h2',
-        h3: 'h2',
-        h4: 'h2',
-        h5: 'h2',
-        h6: 'h2',
-        subtitle1: 'h2',
-        subtitle2: 'h2',
-        body1: 'span',
-        body2: 'span',
+      props: {
+        variantMapping: {
+          h1: 'h2',
+          h2: 'h2',
+          h3: 'h2',
+          h4: 'h2',
+          h5: 'h2',
+          h6: 'h2',
+          subtitle1: 'h2',
+          subtitle2: 'h2',
+          body1: 'span',
+          body2: 'span',
+        },
       },
     },
   },

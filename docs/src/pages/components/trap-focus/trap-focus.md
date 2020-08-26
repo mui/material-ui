@@ -1,21 +1,24 @@
 ---
 title: Trap Focus React component
 components: Unstable_TrapFocus
+githubLabel: component: TrapFocus
 ---
 
 # Trap Focus
 
 <p class="description">Trap focus within a DOM node.</p>
 
-> ⚠️ The component is experimental and unstable.
-
-`TrapFocus` is a component that manages focus for its descendants.
+TrapFocus is a component that manages focus for its descendants.
 This is useful when implementing overlays such as modal dialogs, which should not allow focus to escape while open.
 
 When `open={true}` the trap is enabled, and pressing <kbd>Tab</kbd> or <kbd>Shift</kbd>+<kbd>Tab</kbd> will rotate focus within the inner focusable elements of the component.
 
 - 📦 [1.5 kB gzipped](https://material-ui.com/size-snapshot).
 - ⚛️ Support portals
+
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
+> ⚠️ The component is experimental and unstable.
 
 ## Example
 

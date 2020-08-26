@@ -14,9 +14,11 @@ describe('getThemeProps', () => {
   it('should ignore different component', () => {
     const props = getThemeProps({
       theme: {
-        props: {
+        components: {
           MuiBar: {
-            disableRipple: true,
+            props: {
+              disableRipple: true,
+            },
           },
         },
       },
@@ -29,9 +31,11 @@ describe('getThemeProps', () => {
   it('should return the props', () => {
     const props = getThemeProps({
       theme: {
-        props: {
+        components: {
           MuiFoo: {
-            disableRipple: true,
+            props: {
+              disableRipple: true,
+            },
           },
         },
       },

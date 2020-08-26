@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '@material-ui/core';
+import { InternalStandardProps as StandardProps } from '@material-ui/core';
 import { FabProps } from '@material-ui/core/Fab';
 import { TransitionHandlerProps, TransitionProps } from '@material-ui/core/transitions';
 
@@ -9,13 +9,33 @@ export type OpenReason = 'toggle' | 'focus' | 'mouseEnter';
 export interface SpeedDialProps
   extends StandardProps<
     React.HTMLAttributes<HTMLDivElement> & Partial<TransitionHandlerProps>,
-    SpeedDialClassKey,
     'children'
   > {
   /**
    * SpeedDialActions to display when the SpeedDial is `open`.
    */
   children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the Fab component. */
+    fab?: string;
+    /** Styles applied to the root if direction="up" */
+    directionUp?: string;
+    /** Styles applied to the root if direction="down" */
+    directionDown?: string;
+    /** Styles applied to the root if direction="left" */
+    directionLeft?: string;
+    /** Styles applied to the root if direction="right" */
+    directionRight?: string;
+    /** Styles applied to the actions (`children` wrapper) element. */
+    actions?: string;
+    /** Styles applied to the actions (`children` wrapper) element if `open={false}`. */
+    actionsClosed?: string;
+  };
   /**
    * The aria-label of the button element.
    * Also used to provide the `id` for the `SpeedDial` element and its children.
@@ -77,15 +97,7 @@ export interface SpeedDialProps
   TransitionProps?: TransitionProps;
 }
 
-export type SpeedDialClassKey =
-  | 'root'
-  | 'fab'
-  | 'directionUp'
-  | 'directionDown'
-  | 'directionLeft'
-  | 'directionRight'
-  | 'actions'
-  | 'actionsClosed';
+export type SpeedDialClassKey = keyof NonNullable<SpeedDialProps['classes']>;
 
 /**
  *

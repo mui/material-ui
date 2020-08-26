@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
@@ -9,11 +9,11 @@ const styles = (theme) => ({
     padding: theme.spacing(2),
   },
   error: {
-    backgroundColor: theme.palette.error.xLight,
+    backgroundColor: theme.palette.error.light,
     color: theme.palette.error.dark,
   },
   success: {
-    backgroundColor: theme.palette.success.xLight,
+    backgroundColor: theme.palette.success.light,
     color: theme.palette.success.dark,
   },
 });
@@ -24,8 +24,8 @@ function FormFeedback(props) {
       className={clsx(
         props.classes.root,
         {
-          [props.classes.error]: props.error,
-          [props.classes.success]: props.success,
+          [props.classes.error]: !!props.error,
+          [props.classes.success]: !!props.success,
         },
         props.className,
       )}

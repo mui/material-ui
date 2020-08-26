@@ -307,10 +307,12 @@ Learn more about it in the [themes section](/customization/globals/#css) of the 
 
 ```jsx
 const theme = createMuiTheme({
-  overrides: {
+  components: {
     MuiButton: {
-      root: {
-        fontSize: '1rem',
+      overrides: {
+        root: {
+          fontSize: '1rem',
+        },
       },
     },
   },
@@ -327,22 +329,24 @@ The definitions are specified in an array, under the component's name. For every
 
 ```jsx
 const theme = createMuiTheme({
-  variants: {
-    MuiButton: [
-      {
-        props: { variant: 'dashed' },
-        styles: {
-          textTransform: 'none',
-          border: `2px dashed grey${blue[500]}`,
+  components: {
+    MuiButton: {
+      variants: [
+        {
+          props: { variant: 'dashed' },
+          styles: {
+            textTransform: 'none',
+            border: `2px dashed grey${blue[500]}`,
+          },
         },
-      },
-      {
-        props: { variant: 'dashed', color: 'secondary' },
-        styles: {
-          border: `4px dashed ${red[500]}`,
+        {
+          props: { variant: 'dashed', color: 'secondary' },
+          styles: {
+            border: `4px dashed ${red[500]}`,
+          },
         },
-      },
-    ],
+      ],
+    },
   },
 });
 ```

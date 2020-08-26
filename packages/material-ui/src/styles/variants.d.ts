@@ -1,7 +1,7 @@
 import { CSSProperties, CreateCSSProperties, PropsFunc } from '@material-ui/styles/withStyles';
 import { ComponentsPropsList } from './props';
 
-export type Variants = {
+export type ComponentsVariants = {
   [Name in keyof ComponentsPropsList]?: Array<{
     props: Partial<ComponentsPropsList[Name]>;
     styles: // JSS property bag

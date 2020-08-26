@@ -9,6 +9,7 @@ import FormControlContext, { useFormControl } from '../FormControl/FormControlCo
 import withStyles from '../styles/withStyles';
 import capitalize from '../utils/capitalize';
 import useForkRef from '../utils/useForkRef';
+import useEnhancedEffect from '../utils/useEnhancedEffect';
 import TextareaAutosize from '../TextareaAutosize';
 import { isFilled } from './utils';
 
@@ -78,6 +79,8 @@ export const styles = (theme) => {
     fullWidth: {
       width: '100%',
     },
+    /* Styles applied to the root element if `hiddenLabel={true}`. */
+    hiddenLabel: {},
     /* Styles applied to the `input` element. */
     input: {
       font: 'inherit',
@@ -154,8 +157,6 @@ export const styles = (theme) => {
     inputHiddenLabel: {},
   };
 };
-
-const useEnhancedEffect = typeof window === 'undefined' ? React.useEffect : React.useLayoutEffect;
 
 /**
  * `InputBase` contains as few styles as possible.
@@ -422,6 +423,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
           [classes.multiline]: multiline,
           [classes.adornedStart]: startAdornment,
           [classes.adornedEnd]: endAdornment,
+          [classes.hiddenLabel]: fcs.hiddenLabel,
         },
         className,
       )}
@@ -499,7 +501,6 @@ InputBase.propTypes = {
   autoFocus: PropTypes.bool,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object,
   /**

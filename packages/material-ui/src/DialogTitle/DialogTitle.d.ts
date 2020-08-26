@@ -1,12 +1,18 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 
-export interface DialogTitleProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, DialogTitleClassKey> {
+export interface DialogTitleProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
    * The content of the component.
    */
   children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+  };
   /**
    * If `true`, the children won't be wrapped by a typography component.
    * For instance, this can be useful to render an h4 instead of the default h2.
@@ -14,7 +20,7 @@ export interface DialogTitleProps
   disableTypography?: boolean;
 }
 
-export type DialogTitleClassKey = 'root';
+export type DialogTitleClassKey = keyof NonNullable<DialogTitleProps['classes']>;
 
 /**
  *

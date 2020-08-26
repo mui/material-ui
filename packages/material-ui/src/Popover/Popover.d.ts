@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 import { PaperProps } from '../Paper';
 import { ModalProps } from '../Modal';
 import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
@@ -17,7 +17,7 @@ export interface PopoverPosition {
 export type PopoverReference = 'anchorEl' | 'anchorPosition' | 'none';
 
 export interface PopoverProps
-  extends StandardProps<ModalProps & Partial<TransitionHandlerProps>, PopoverClassKey, 'children'> {
+  extends StandardProps<ModalProps & Partial<TransitionHandlerProps>, 'children'> {
   /**
    * A ref for imperative actions.
    * It currently only supports updatePosition() action.
@@ -54,6 +54,15 @@ export interface PopoverProps
    * The content of the component.
    */
   children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the `Paper` component. */
+    paper?: string;
+  };
   /**
    * A HTML element, component instance, or function that returns either.
    * The `container` will passed to the Modal component.
@@ -115,7 +124,7 @@ export interface PopoverProps
   TransitionProps?: TransitionProps;
 }
 
-export type PopoverClassKey = 'root' | 'paper';
+export type PopoverClassKey = keyof NonNullable<PopoverProps['classes']>;
 
 export interface PopoverActions {
   updatePosition(): void;

@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 import { InputProps } from '../Input';
 import { MenuProps } from '../Menu';
 import { SelectInputProps } from './SelectInput';
 
 export interface SelectProps
-  extends StandardProps<InputProps, SelectClassKey, 'value' | 'onChange'>,
+  extends StandardProps<InputProps, 'value' | 'onChange'>,
     Pick<SelectInputProps, 'onChange'> {
   /**
    * If `true`, the width of the popover will automatically be set according to the items inside the
@@ -19,6 +19,33 @@ export interface SelectProps
    * ⚠️The `MenuItem` elements **must** be direct descendants when `native` is false.
    */
   children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: {
+    /** Styles applied to the select component `root` class. */
+    root?: string;
+    /** Styles applied to the select component `select` class. */
+    select?: string;
+    /** Styles applied to the select component if `variant="filled"`. */
+    filled?: string;
+    /** Styles applied to the select component if `variant="outlined"`. */
+    outlined?: string;
+    /** Styles applied to the select component `selectMenu` class. */
+    selectMenu?: string;
+    /** Pseudo-class applied to the select component `disabled` class. */
+    disabled?: string;
+    /** Styles applied to the icon component. */
+    icon?: string;
+    /** Styles applied to the icon component if the popup is open. */
+    iconOpen?: string;
+    /** Styles applied to the icon component if `variant="filled"`. */
+    iconFilled?: string;
+    /** Styles applied to the icon component if `variant="outlined"`. */
+    iconOutlined?: string;
+    /** Styles applied to the underlying native input component. */
+    nativeInput?: string;
+  };
   /**
    * The default element value. Use when the component is not controlled.
    */
@@ -126,17 +153,7 @@ export interface SelectProps
   variant?: 'standard' | 'outlined' | 'filled';
 }
 
-export type SelectClassKey =
-  | 'root'
-  | 'select'
-  | 'filled'
-  | 'outlined'
-  | 'selectMenu'
-  | 'disabled'
-  | 'icon'
-  | 'iconOpen'
-  | 'iconFilled'
-  | 'iconOutlined';
+export type SelectClassKey = keyof NonNullable<SelectProps['classes']>;
 
 /**
  *

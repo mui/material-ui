@@ -8,7 +8,7 @@ import capitalize from '../utils/capitalize';
 import Grow from '../Grow';
 import Popper from '../Popper';
 import useForkRef from '../utils/useForkRef';
-import useId from '../utils/unstable_useId';
+import useId from '../utils/useId';
 import useIsFocusVisible from '../utils/useIsFocusVisible';
 import useControlled from '../utils/useControlled';
 import useTheme from '../styles/useTheme';
@@ -78,13 +78,12 @@ export const styles = (theme) => ({
   popperArrow: arrowGenerator(),
   /* Styles applied to the tooltip (label wrapper) element. */
   tooltip: {
-    backgroundColor: fade(theme.palette.grey[700], 0.9),
+    backgroundColor: fade(theme.palette.grey[700], 0.92),
     borderRadius: theme.shape.borderRadius,
     color: theme.palette.common.white,
     fontFamily: theme.typography.fontFamily,
     padding: '4px 8px',
-    fontSize: theme.typography.pxToRem(10),
-    lineHeight: `${round(14 / 10)}em`,
+    fontSize: theme.typography.pxToRem(11),
     maxWidth: 300,
     wordWrap: 'break-word',
     fontWeight: theme.typography.fontWeightMedium,
@@ -539,7 +538,6 @@ Tooltip.propTypes = {
   children: elementAcceptingRef.isRequired,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object,
   /**

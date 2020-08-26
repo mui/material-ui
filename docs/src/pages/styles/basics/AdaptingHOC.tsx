@@ -25,11 +25,12 @@ const styles = createStyles({
 interface MyButtonRawProps {
   color: 'red' | 'blue';
 }
+// These are the props available inside MyButtonRaw
+// They're different from MyButtonRawProps which are the props available for dynamic styling.
+type MyButtonRawInnerProps = MyButtonRawProps & WithStyles<typeof styles>;
 
 function MyButtonRaw(
-  props: WithStyles<typeof styles> &
-    Omit<ButtonProps, keyof MyButtonRawProps> &
-    MyButtonRawProps,
+  props: MyButtonRawInnerProps & Omit<ButtonProps, keyof MyButtonRawInnerProps>,
 ) {
   const { classes, color, ...other } = props;
   return <Button className={classes.root} {...other} />;

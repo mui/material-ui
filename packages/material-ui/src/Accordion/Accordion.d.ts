@@ -1,13 +1,28 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 import { TransitionProps } from '../transitions/transition';
 import { PaperProps } from '../Paper';
 
-export interface AccordionProps extends StandardProps<PaperProps, AccordionClassKey, 'onChange'> {
+export interface AccordionProps extends StandardProps<PaperProps, 'onChange'> {
   /**
    * The content of the accordion.
    */
   children: NonNullable<React.ReactNode>;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the root element if `square={false}`. */
+    rounded?: string;
+    /** Pseudo-class applied to the root element if `expanded={true}`. */
+    expanded?: string;
+    /** Pseudo-class applied to the root element if `disabled={true}`. */
+    disabled?: string;
+    /** Styles applied to the region element, the container of the children. */
+    region?: string;
+  };
   /**
    * If `true`, expands the accordion by default.
    */
@@ -42,7 +57,7 @@ export interface AccordionProps extends StandardProps<PaperProps, AccordionClass
   TransitionProps?: TransitionProps;
 }
 
-export type AccordionClassKey = 'root' | 'rounded' | 'expanded' | 'disabled' | 'region';
+export type AccordionClassKey = keyof NonNullable<AccordionProps['classes']>;
 
 /**
  *

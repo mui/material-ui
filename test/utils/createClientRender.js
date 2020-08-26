@@ -147,10 +147,12 @@ export function createClientRender(globalOptions = {}) {
       error.stack = createClientRenderStack;
       throw error;
     }
-    // If this issues an act() warning you probably didn't
-    // wait for an async event in your test (or didn't wrap it in act() at all).
-    // please wait for every update in your test and make appropriate assertions
-    await cleanup();
+
+    // act to flush effect cleanup functions
+    // state updates during this phase are safe
+    await act(async () => {
+      await cleanup();
+    });
   });
 
   return function configuredClientRender(element, options = {}) {

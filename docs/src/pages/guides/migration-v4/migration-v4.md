@@ -65,6 +65,72 @@ This change affects almost all components where you're using the `component` pro
   +},
   ```
 
+- The components' definition inside the theme were restructure under the `components` key, to allow people easier discoverability about the definitions regarding one component.
+
+1. `props`
+
+```diff
+import { createMuiTheme } from '@material-ui/core/styles';
+
+const theme = createMuitheme({
+-  props: {
+-    MuiButton: {
+-      disableRipple: true,
+-    },
+-  },
++  components: {
++    MuiButton: {
++      props: {
++        disableRipple: true,
++      },
++    },
++  },
+});
+```
+
+2. `overrides`
+
+```diff
+import { createMuiTheme } from '@material-ui/core/styles';
+
+const theme = createMuitheme({
+-  overrides: {
+-    MuiButton: {
+-      root: { padding: 0 },
+-    },
+-  },
++  components: {
++    MuiButton: {
++      overrides: {
++        root: { padding: 0 },
++      },
++    },
++  },
+});
+```
+
+For a smoother transition, the `adaptV4Theme` helper allows you to iteratively upgrade to the new theme structure. Note that it will display a deprecation warning in the console, since it will be removed at the next major release.
+
+```diff
+-import { createMuiTheme } from '@material-ui/core/styles';
++import { createMuiTheme, adaptV4Theme } from '@material-ui/core/styles';
+
+-const theme = createMuitheme({
++const theme = createMuitheme(adaptV4Theme({
+  props: {
+    MuiButton: {
+      disableRipple: true,
+    },
+  },
+  overrides: {
+    MuiButton: {
+      root: { padding: 0 },
+    },
+  },
+-});
++}));
+```
+
 ### Avatar
 
 - Rename `circle` to `circular` for consistency. The possible values should be adjectives, not nouns:
@@ -189,9 +255,9 @@ This change affects almost all components where you're using the `component` pro
   }
   ```
 
-### Expansion Panel
+### ExpansionPanel
 
-- Rename the `ExpansionPanel` components with `Accordion` to use a more common naming convention:
+- Rename the `ExpansionPanel` components to `Accordion` to use a more common naming convention:
 
   ```diff
   -import ExpansionPanel from '@material-ui/core/ExpansionPanel';
@@ -252,6 +318,34 @@ This change affects almost all components where you're using the `component` pro
   -<Grid justify="center">
   +<Grid justifyContent="center">
   ```
+
+### GridList
+
+- Rename the `GridList` components to `ImageList` to align with the current Material Design naming.
+
+```diff
+-import GridList from '@material-ui/core/GridList';
+-import GridListTile from '@material-ui/core/GridListTile';
+-import GridListTileBar from '@material-ui/core/GridListTileBar';
++import ImageList from '@material-ui/core/ImageList';
++import ImageListTile from '@material-ui/core/ImageListTile';
++import ImageListTileBar from '@material-ui/core/ImageListTileBar';
+
+-<GridList>
+-  <GridListTile>
++<ImageList>
++  <ImageListTile>
+     <img src="file.jpg" alt="Image title" />
+-    <GridListTileBar
++    <ImageListTileBar
+       title="Title"
+       subtitle="Subtitle"
+     />
+-  </GridListTile>
+-</GridList>
++  </ImageListTile>
++</ImageList>
+```
 
 ### Menu
 

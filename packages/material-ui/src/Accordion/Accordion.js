@@ -19,6 +19,7 @@ export const styles = (theme) => {
     root: {
       position: 'relative',
       transition: theme.transitions.create(['margin'], transition),
+      overflowAnchor: 'none', // Keep the same scrolling position
       '&:before': {
         position: 'absolute',
         left: 0,
@@ -177,7 +178,6 @@ Accordion.propTypes = {
   }),
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object,
   /**

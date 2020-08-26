@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 import { Padding, Size } from '../Table';
 
 export { Padding, Size };
@@ -12,8 +12,7 @@ export { Padding, Size };
  * Since it is not decided via prop, we have create loose typings
  * here.
  */
-export interface TableCellProps
-  extends StandardProps<TableCellBaseProps, TableCellClassKey, 'align'> {
+export interface TableCellProps extends StandardProps<TableCellBaseProps, 'align'> {
   /**
    * Set the text-align on the table cell content.
    *
@@ -25,6 +24,35 @@ export interface TableCellProps
    * The table cell contents.
    */
   children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the root element if `variant="head"` or `context.table.head`. */
+    head?: string;
+    /** Styles applied to the root element if `variant="body"` or `context.table.body`. */
+    body?: string;
+    /** Styles applied to the root element if `variant="footer"` or `context.table.footer`. */
+    footer?: string;
+    /** Styles applied to the root element if `size="small"`. */
+    sizeSmall?: string;
+    /** Styles applied to the root element if `padding="checkbox"`. */
+    paddingCheckbox?: string;
+    /** Styles applied to the root element if `padding="none"`. */
+    paddingNone?: string;
+    /** Styles applied to the root element if `align="left"`. */
+    alignLeft?: string;
+    /** Styles applied to the root element if `align="center"`. */
+    alignCenter?: string;
+    /** Styles applied to the root element if `align="right"`. */
+    alignRight?: string;
+    /** Styles applied to the root element if `align="justify"`. */
+    alignJustify?: string;
+    /** Styles applied to the root element if `context.table.stickyHeader={true}`. */
+    stickyHeader?: string;
+  };
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -60,19 +88,7 @@ export type TableCellBaseProps = React.ThHTMLAttributes<HTMLTableHeaderCellEleme
 
 export type SortDirection = 'asc' | 'desc' | false;
 
-export type TableCellClassKey =
-  | 'root'
-  | 'head'
-  | 'body'
-  | 'footer'
-  | 'alignLeft'
-  | 'alignCenter'
-  | 'alignRight'
-  | 'alignJustify'
-  | 'sizeSmall'
-  | 'paddingCheckbox'
-  | 'paddingNone'
-  | 'stickyHeader';
+export type TableCellClassKey = keyof NonNullable<TableCellProps['classes']>;
 
 /**
  * The component renders a `<th>` element when the parent context is a header

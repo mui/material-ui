@@ -284,12 +284,12 @@ function generatePropType(type: PropTypeDescriptor): string | undefined {
 }
 
 function generateName(reactAPI: ReactApi) {
-  if (!reactAPI.styles.classes.length) {
-    return '\n';
+  if (reactAPI.styles.classes.length && !reactAPI.styles.name) {
+    throw new Error(`Missing styles name on ${reactAPI.name} component`);
   }
 
   if (!reactAPI.styles.name) {
-    throw new Error(`Missing styles name on ${reactAPI.name} component`);
+    return '\n';
   }
 
   return `## Component name
@@ -306,11 +306,15 @@ function generateProps(reactAPI: ReactApi) {
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|\n`;
 
-  Object.keys(reactAPI.props).forEach((propRaw) => {
-    const prop = reactAPI.props[propRaw];
+  Object.keys(reactAPI.props).forEach((propName) => {
+    const prop = reactAPI.props[propName];
 
     if (typeof prop.description === 'undefined') {
-      throw new Error(`The "${propRaw}" prop is missing a description`);
+      throw new Error(`The "${propName}" prop is missing a description`);
+    }
+
+    if (propName === 'classes') {
+      prop.description += ' See [CSS API](#css) below for more details.';
     }
 
     const description = generatePropDescription(prop);
@@ -319,40 +323,42 @@ function generateProps(reactAPI: ReactApi) {
       return;
     }
 
-    let defaultValue = '';
+    const renderedDefaultValue = prop.defaultValue?.value.replace(/\r*\n/g, '');
+    const renderDefaultValue =
+      renderedDefaultValue &&
+      // Ignore "large" default values that would break the table layout.
+      renderedDefaultValue.length <= 150;
 
-    if (prop.defaultValue) {
-      defaultValue = `<span class="prop-default">${escapeCell(
-        (prop.defaultValue as any).value.replace(/\r*\n/g, ''),
+    let defaultValueColumn = '';
+    if (renderDefaultValue) {
+      defaultValueColumn = `<span class="prop-default">${escapeCell(
+        // narrowed `renderedDefaultValue` to non-nullable by `renderDefaultValue`
+        renderedDefaultValue!,
       )}</span>`;
-    }
-
-    // Give up
-    if (defaultValue.length > 180) {
-      defaultValue = '';
     }
 
     const chainedPropType = getChained(prop.type);
 
+    let propNameColumn = propName;
     if (
       prop.required ||
       /\.isRequired/.test(prop.type.raw) ||
       (chainedPropType !== false && chainedPropType.required)
     ) {
-      propRaw = `<span class="prop-name required">${propRaw}<abbr title="required">*</abbr></span>`;
+      propNameColumn = `<span class="prop-name required">${propName}<abbr title="required">*</abbr></span>`;
     } else {
-      propRaw = `<span class="prop-name">${propRaw}</span>`;
+      propNameColumn = `<span class="prop-name">${propName}</span>`;
     }
 
     if (prop.type.name === 'custom') {
       if (getDeprecatedInfo(prop.type)) {
-        propRaw = `~~${propRaw}~~`;
+        propNameColumn = `~~${propNameColumn}~~`;
       }
     }
 
-    text += `| ${propRaw} | <span class="prop-type">${generatePropType(
+    text += `| ${propNameColumn} | <span class="prop-type">${generatePropType(
       prop.type,
-    )}</span> | ${defaultValue} | ${description} |\n`;
+    )}</span> | ${defaultValueColumn} | ${description} |\n`;
   });
 
   let refHint = 'The `ref` is forwarded to the root element.';

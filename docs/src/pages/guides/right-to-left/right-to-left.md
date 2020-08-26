@@ -1,6 +1,6 @@
 # Right-to-left
 
-<p class="description">Right-to-left languages such as Arabic, Persian or Hebrew are supported. To change the direction of Material-UI components you must follow the following steps.</p>
+<p class="description">Right-to-left languages such as Arabic, Persian, or Hebrew are supported. To change the direction of Material-UI components you must follow the following steps.</p>
 
 ## Steps
 

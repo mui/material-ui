@@ -12,6 +12,15 @@ export interface TableTypeMap<P = {}, D extends React.ElementType = 'table'> {
      */
     children?: React.ReactNode;
     /**
+     * Override or extend the styles applied to the component.
+     */
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+      /** Styles applied to the root element if `stickyHeader={true}`. */
+      stickyHeader?: string;
+    };
+    /**
      * Allows TableCells to inherit padding of the Table.
      */
     padding?: Padding;
@@ -27,7 +36,6 @@ export interface TableTypeMap<P = {}, D extends React.ElementType = 'table'> {
     stickyHeader?: boolean;
   };
   defaultComponent: D;
-  classKey: TableClassKey;
 }
 /**
  *
@@ -41,7 +49,7 @@ export interface TableTypeMap<P = {}, D extends React.ElementType = 'table'> {
  */
 declare const Table: OverridableComponent<TableTypeMap>;
 
-export type TableClassKey = 'root' | 'stickyHeader';
+export type TableClassKey = keyof NonNullable<TableTypeMap['props']['classes']>;
 
 export type TableProps<
   D extends React.ElementType = TableTypeMap['defaultComponent'],

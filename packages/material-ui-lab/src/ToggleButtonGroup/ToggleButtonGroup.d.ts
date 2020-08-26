@@ -1,16 +1,27 @@
 import * as React from 'react';
-import { StandardProps } from '@material-ui/core';
+import { InternalStandardProps as StandardProps } from '@material-ui/core';
 
 export interface ToggleButtonGroupProps
-  extends StandardProps<
-    React.HTMLAttributes<HTMLDivElement>,
-    ToggleButtonGroupClassKey,
-    'onChange' | 'children'
-  > {
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'children'> {
   /**
    * The content of the button.
    */
   children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the root element if `orientation="vertical"`. */
+    vertical?: string;
+    /** Styles applied to the children. */
+    grouped?: string;
+    /** Styles applied to the children if `orientation="horizontal"`. */
+    groupedHorizontal?: string;
+    /** Styles applied to the children if `orientation="vertical"`. */
+    groupedVertical?: string;
+  };
   /**
    * If `true`, only allow one of the child ToggleButton values to be selected.
    */
@@ -41,12 +52,7 @@ export interface ToggleButtonGroupProps
   value?: any;
 }
 
-export type ToggleButtonGroupClassKey =
-  | 'root'
-  | 'vertical'
-  | 'grouped'
-  | 'groupedHorizontal'
-  | 'groupedVertical';
+export type ToggleButtonGroupClassKey = keyof NonNullable<ToggleButtonGroupProps['classes']>;
 
 /**
  *

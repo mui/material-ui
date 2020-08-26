@@ -1,13 +1,17 @@
 ---
 title: Text Field React component
 components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
+githubLabel: component: TextField
+materialDesign: https://material.io/components/text-fields
 ---
 
 # Text Field
 
 <p class="description">Text fields let users enter and edit text.</p>
 
-[Text fields](https://material.io/design/components/text-fields.html) allow users to enter text into a UI. They typically appear in forms and dialogs.
+Text fields allow users to enter text into a UI. They typically appear in forms and dialogs.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## TextField
 
@@ -163,7 +167,7 @@ and more - see [this article](https://technology.blog.gov.uk/2020/02/24/why-the-
 For number validation, one viable alternative is to use the default input type="text" with the _pattern_ attribute, for example:
 
 ```jsx
-<TextField inputProps={{ inputmode: 'numeric', pattern: '[0-9]*' }} />
+<TextField inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }} />
 ```
 
 In the future, we might provide a [number input component](https://github.com/mui-org/material-ui/issues/19154).

@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 
 export type NamedMuiComponent = React.ComponentType & { muiName: string };
 
 export interface NamedMuiElement {
   type: NamedMuiComponent;
-  props: StandardProps<{}, never>;
+  props: StandardProps<{}>;
   key: string | number | null;
 }
 

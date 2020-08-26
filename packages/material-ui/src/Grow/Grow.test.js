@@ -36,11 +36,11 @@ describe('<Grow />', () => {
   describe('calls the appropriate callbacks for each transition', () => {
     let clock;
 
-    before(() => {
+    beforeEach(() => {
       clock = useFakeTimers();
     });
 
-    after(() => {
+    afterEach(() => {
       clock.restore();
     });
 
@@ -109,11 +109,11 @@ describe('<Grow />', () => {
     const leaveDuration = 446;
     let clock;
 
-    before(() => {
+    beforeEach(() => {
       clock = useFakeTimers();
     });
 
-    after(() => {
+    afterEach(() => {
       clock.restore();
     });
 

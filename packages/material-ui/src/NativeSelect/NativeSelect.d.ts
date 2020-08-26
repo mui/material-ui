@@ -1,15 +1,42 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '..';
 import { InputProps } from '../Input';
 import { NativeSelectInputProps } from './NativeSelectInput';
 
 export interface NativeSelectProps
-  extends StandardProps<InputProps, NativeSelectClassKey, 'inputProps' | 'value' | 'onChange'> {
+  extends StandardProps<InputProps, 'inputProps' | 'value' | 'onChange'> {
   /**
    * The option elements to populate the select with.
    * Can be some `<option>` elements.
    */
   children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: {
+    /** Styles applied to the select component `root` class. */
+    root?: string;
+    /** Styles applied to the select component `select` class. */
+    select?: string;
+    /** Styles applied to the select component if `variant="filled"`. */
+    filled?: string;
+    /** Styles applied to the select component if `variant="outlined"`. */
+    outlined?: string;
+    /** Styles applied to the select component `selectMenu` class. */
+    selectMenu?: string;
+    /** Pseudo-class applied to the select component `disabled` class. */
+    disabled?: string;
+    /** Styles applied to the icon component. */
+    icon?: string;
+    /** Styles applied to the icon component if the popup is open. */
+    iconOpen?: string;
+    /** Styles applied to the icon component if `variant="filled"`. */
+    iconFilled?: string;
+    /** Styles applied to the icon component if `variant="outlined"`. */
+    iconOutlined?: string;
+    /** Styles applied to the underlying native input component. */
+    nativeInput?: string;
+  };
   /**
    * The icon that displays the arrow.
    */
@@ -39,16 +66,7 @@ export interface NativeSelectProps
   variant?: 'standard' | 'outlined' | 'filled';
 }
 
-export type NativeSelectClassKey =
-  | 'root'
-  | 'select'
-  | 'filled'
-  | 'outlined'
-  | 'selectMenu'
-  | 'disabled'
-  | 'icon'
-  | 'iconFilled'
-  | 'iconOutlined';
+export type NativeSelectClassKey = keyof NonNullable<NativeSelectProps['classes']>;
 
 /**
  * An alternative to `<Select native />` with a much smaller bundle size footprint.
