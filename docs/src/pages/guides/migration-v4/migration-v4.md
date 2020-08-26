@@ -101,7 +101,7 @@ const theme = createMuitheme({
 -  },
 +  components: {
 +    MuiButton: {
-+      stylesOverrides: {
++      styleOverrides: {
 +        root: { padding: 0 },
 +      },
 +    },

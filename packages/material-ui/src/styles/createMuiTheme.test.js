@@ -88,31 +88,31 @@ describe('createMuiTheme', () => {
     });
   });
 
-  describe('stylesOverrides', () => {
+  describe('styleOverrides', () => {
     it('should warn when trying to override an internal state the wrong way', () => {
       let theme;
 
       expect(() => {
         theme = createMuiTheme({
-          components: { Button: { stylesOverrides: { disabled: { color: 'blue' } } } },
+          components: { Button: { styleOverrides: { disabled: { color: 'blue' } } } },
         });
       }).not.toErrorDev();
-      expect(Object.keys(theme.components.Button.stylesOverrides.disabled).length).to.equal(1);
+      expect(Object.keys(theme.components.Button.styleOverrides.disabled).length).to.equal(1);
 
       expect(() => {
         theme = createMuiTheme({
-          components: { MuiButton: { stylesOverrides: { root: { color: 'blue' } } } },
+          components: { MuiButton: { styleOverrides: { root: { color: 'blue' } } } },
         });
       }).not.toErrorDev();
 
       expect(() => {
         theme = createMuiTheme({
-          components: { MuiButton: { stylesOverrides: { disabled: { color: 'blue' } } } },
+          components: { MuiButton: { styleOverrides: { disabled: { color: 'blue' } } } },
         });
       }).toErrorDev(
         'Material-UI: The `MuiButton` component increases the CSS specificity of the `disabled` internal state.',
       );
-      expect(Object.keys(theme.components.MuiButton.stylesOverrides.disabled).length).to.equal(0);
+      expect(Object.keys(theme.components.MuiButton.styleOverrides.disabled).length).to.equal(0);
     });
   });
 

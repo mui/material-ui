@@ -309,7 +309,7 @@ Learn more about it in the [themes section](/customization/globals/#css) of the 
 const theme = createMuiTheme({
   components: {
     MuiButton: {
-      stylesOverrides: {
+      styleOverrides: {
         root: {
           fontSize: '1rem',
         },

@@ -11,7 +11,7 @@ export default function adaptV4Theme(inputTheme) {
   const {
     props = {},
     defaultProps = {},
-    stylesOverrides = {},
+    styleOverrides = {},
     overrides = {},
     ...other
   } = inputTheme;
@@ -34,15 +34,15 @@ export default function adaptV4Theme(inputTheme) {
   });
 
   // css overrides
-  Object.keys(stylesOverrides).forEach((component) => {
+  Object.keys(styleOverrides).forEach((component) => {
     const componentValue = theme.components[component] || {};
-    componentValue.stylesOverrides = stylesOverrides[component];
+    componentValue.styleOverrides = styleOverrides[component];
     theme.components[component] = componentValue;
   });
 
   Object.keys(overrides).forEach((component) => {
     const componentValue = theme.components[component] || {};
-    componentValue.stylesOverrides = overrides[component];
+    componentValue.styleOverrides = overrides[component];
     theme.components[component] = componentValue;
   });
 

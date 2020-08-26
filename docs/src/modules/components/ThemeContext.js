@@ -61,7 +61,7 @@ const highDensity = {
       defaultProps: {
         size: 'small',
       },
-      stylesOverrides: {
+      styleOverrides: {
         sizeSmall: {
           // minimal touch target hit spacing
           marginLeft: 4,
