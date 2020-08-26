@@ -50,7 +50,7 @@ to discuss the approach before submitting a pull request.
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
   - **[Middle](https://material.io/design/components/dividers.html#types) ✓**
   - **[Subheader](https://material.io/design/components/dividers.html#types) ✓**
-- **[Image lists](https://material.io/design/components/image-lists.html) ✓** (AKA Grid Lists)
+- **[Image lists](https://material.io/components/image-lists) ✓**
 - **[Lists](https://material.io/design/components/lists.html) ✓**
   - [Types:](https://material.io/design/components/lists.html#types)
     - **Single line ✓**

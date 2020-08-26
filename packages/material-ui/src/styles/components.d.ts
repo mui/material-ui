@@ -177,17 +177,17 @@ export interface Components {
     props?: ComponentsProps['MuiGrid'];
     overrides?: ComponentsOverrides['MuiGrid'];
   };
-  MuiGridList?: {
-    props?: ComponentsProps['MuiGrid'];
-    overrides?: ComponentsOverrides['MuiGrid'];
+  MuiImageList?: {
+    props?: ComponentsProps['MuiImageList'];
+    overrides?: ComponentsOverrides['MuiImageList'];
   };
-  MuiGridListTile?: {
-    props?: ComponentsProps['MuiGridListTile'];
-    overrides?: ComponentsOverrides['MuiGridListTile'];
+  MuiImageListTile?: {
+    props?: ComponentsProps['MuiImageListTile'];
+    overrides?: ComponentsOverrides['MuiImageListTile'];
   };
-  MuiGridListTileBar?: {
-    props?: ComponentsProps['MuiGridListTileBar'];
-    overrides?: ComponentsOverrides['MuiGridListTileBar'];
+  MuiImageListTileBar?: {
+    props?: ComponentsProps['MuiImageListTileBar'];
+    overrides?: ComponentsOverrides['MuiImageListTileBar'];
   };
   MuiIcon?: {
     props?: ComponentsProps['MuiIcon'];
