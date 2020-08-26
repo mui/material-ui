@@ -3,3 +3,5 @@
 # Undo the GitHub's default
 # https://github.com/github/linguist/blob/96ad1185828f44bb9b774328a584551ee57ed264/lib/linguist/vendor.yml#L177
 packages/**/*.d.ts -linguist-vendored
+/docs/** -linguist-documentation
+/examples/** -linguist-documentation
