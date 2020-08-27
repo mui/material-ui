@@ -6,14 +6,13 @@ import MoreHorizIcon from '../internal/svg-icons/MoreHoriz';
 import ButtonBase from '../ButtonBase';
 
 const styles = (theme) => ({
-  root: {
+  button: {
     display: 'flex',
     marginLeft: theme.spacing(0.5),
     marginRight: theme.spacing(0.5),
     backgroundColor: theme.palette.grey[100],
     color: theme.palette.grey[700],
     borderRadius: 2,
-    cursor: 'pointer',
     '&:hover, &:focus': {
       backgroundColor: theme.palette.grey[200],
     },
@@ -35,9 +34,11 @@ function BreadcrumbCollapsed(props) {
   const { classes, ...other } = props;
 
   return (
-    <ButtonBase component="li" className={classes.root} focusRipple {...other}>
-      <MoreHorizIcon className={classes.icon} />
-    </ButtonBase>
+    <li>
+      <ButtonBase className={classes.button} focusRipple {...other}>
+        <MoreHorizIcon className={classes.icon} />
+      </ButtonBase>
+    </li>
   );
 }
 

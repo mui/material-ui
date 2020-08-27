@@ -68,7 +68,10 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(props, ref) {
 
       // The clicked element received the focus but gets removed from the DOM.
       // Let's keep the focus in the component after expanding.
-      const focusable = event.currentTarget.parentNode.querySelector('a[href],button,[tabindex]');
+      const focusable = event.currentTarget.parentNode.parentNode.querySelector(
+        'a[href],button,[tabindex]',
+      );
+
       if (focusable) {
         focusable.focus();
       }
