@@ -1066,5 +1066,18 @@ describe('<Tabs />', () => {
         });
       });
     });
+
+    it('moves focus to the first tab when there are no active tabs', () => {
+      const { getAllByRole } = render(
+        <Tabs
+          value={false}
+        >
+          <Tab />
+          <Tab />
+        </Tabs>
+      );
+
+      expect(getAllByRole('tab').map((tab) => tab.getAttribute('tabIndex'))).to.deep.equal(['0', '-1']);
+    });
   });
 });
