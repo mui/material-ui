@@ -188,6 +188,7 @@ const pages = [
       { pathname: '/guides/minimizing-bundle-size' },
       { pathname: '/guides/composition' },
       { pathname: '/guides/server-rendering' },
+      { pathname: '/guides/content-security-policy', title: 'Content Security Policy' },
       { pathname: '/guides/responsive-ui', title: 'Responsive UI' },
       { pathname: '/guides/migration-v4', title: 'Migration From v4' },
       { pathname: '/guides/migration-v3', title: 'Migration From v3' },
