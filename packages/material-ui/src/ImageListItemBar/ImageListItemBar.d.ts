@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { InternalStandardProps as StandardProps } from '..';
 
-export interface ImageListTileBarProps
+export interface ImageListItemBarProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'title'> {
   /**
    * An IconButton element to be used as secondary action target
@@ -53,7 +53,7 @@ export interface ImageListTileBarProps
   titlePosition?: 'top' | 'bottom';
 }
 
-export type ImageListTileBarClassKey = keyof NonNullable<ImageListTileBarProps['classes']>;
+export type ImageListItemBarClassKey = keyof NonNullable<ImageListItemBarProps['classes']>;
 
 /**
  *
@@ -63,6 +63,6 @@ export type ImageListTileBarClassKey = keyof NonNullable<ImageListTileBarProps['
  *
  * API:
  *
- * - [ImageListTileBar API](https://material-ui.com/api/image-list-tile-bar/)
+ * - [ImageListItemBar API](https://material-ui.com/api/image-list-item-bar/)
  */
-export default function ImageListTileBar(props: ImageListTileBarProps): JSX.Element;
+export default function ImageListItemBar(props: ImageListItemBarProps): JSX.Element;

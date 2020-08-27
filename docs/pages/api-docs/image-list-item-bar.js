@@ -2,8 +2,8 @@ import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
-const pageFilename = 'api/image-list-tile-bar';
-const requireRaw = require.context('!raw-loader!./', false, /\/image-list-tile-bar\.md$/);
+const pageFilename = 'api/image-list-item-bar';
+const requireRaw = require.context('!raw-loader!./', false, /\/image-list-item-bar\.md$/);
 
 export default function Page({ docs }) {
   return <MarkdownDocs docs={docs} />;

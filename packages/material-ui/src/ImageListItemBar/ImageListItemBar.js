@@ -67,7 +67,7 @@ export const styles = (theme) => ({
   },
 });
 
-const ImageListTileBar = React.forwardRef(function ImageListTileBar(props, ref) {
+const ImageListItemBar = React.forwardRef(function ImageListItemBar(props, ref) {
   const {
     actionIcon,
     actionPosition = 'right',
@@ -117,7 +117,7 @@ const ImageListTileBar = React.forwardRef(function ImageListTileBar(props, ref) 
   );
 });
 
-ImageListTileBar.propTypes = {
+ImageListItemBar.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -157,4 +157,4 @@ ImageListTileBar.propTypes = {
   titlePosition: PropTypes.oneOf(['bottom', 'top']),
 };
 
-export default withStyles(styles, { name: 'MuiImageListTileBar' })(ImageListTileBar);
+export default withStyles(styles, { name: 'MuiImageListItemBar' })(ImageListItemBar);

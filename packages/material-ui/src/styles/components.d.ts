@@ -181,13 +181,13 @@ export interface Components {
     props?: ComponentsProps['MuiImageList'];
     overrides?: ComponentsOverrides['MuiImageList'];
   };
-  MuiImageListTile?: {
-    props?: ComponentsProps['MuiImageListTile'];
-    overrides?: ComponentsOverrides['MuiImageListTile'];
+  MuiImageListItem?: {
+    props?: ComponentsProps['MuiImageListItem'];
+    overrides?: ComponentsOverrides['MuiImageListItem'];
   };
-  MuiImageListTileBar?: {
-    props?: ComponentsProps['MuiImageListTileBar'];
-    overrides?: ComponentsOverrides['MuiImageListTileBar'];
+  MuiImageListItemBar?: {
+    props?: ComponentsProps['MuiImageListItemBar'];
+    overrides?: ComponentsOverrides['MuiImageListItemBar'];
   };
   MuiIcon?: {
     props?: ComponentsProps['MuiIcon'];

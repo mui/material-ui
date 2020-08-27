@@ -1,19 +1,19 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createShallow, getClasses, createMount, describeConformance } from 'test/utils';
-import ImageListTileBar from './ImageListTileBar';
+import ImageListItemBar from './ImageListItemBar';
 
-describe('<ImageListTileBar />', () => {
+describe('<ImageListItemBar />', () => {
   let classes;
   const mount = createMount();
   let shallow;
 
   before(() => {
-    classes = getClasses(<ImageListTileBar title="classes" />);
+    classes = getClasses(<ImageListItemBar title="classes" />);
     shallow = createShallow({ dive: true });
   });
 
-  describeConformance(<ImageListTileBar title="conform?" />, () => ({
+  describeConformance(<ImageListItemBar title="conform?" />, () => ({
     classes,
     inheritComponent: 'div',
     mount,
@@ -29,7 +29,7 @@ describe('<ImageListTileBar />', () => {
 
   describe('prop: title', () => {
     it('should renders title', () => {
-      const wrapper = shallow(<ImageListTileBar title={tileData.title} />);
+      const wrapper = shallow(<ImageListItemBar title={tileData.title} />);
 
       expect(wrapper.children('div').text()).to.equal(tileData.title);
     });

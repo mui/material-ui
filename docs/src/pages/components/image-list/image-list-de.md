@@ -1,6 +1,6 @@
 ---
 title: Grid List React Komponente
-components: ImageList, ImageListTile, ImageListTileBar, ListSubheader, IconButton
+components: ImageList, ImageListItem, ImageListItemBar, ListSubheader, IconButton
 ---
 
 # Rasterliste (Grid List)
@@ -17,7 +17,7 @@ Ein einfaches Beispiel für ein scrollbare `RasterList` mit Bildern.
 
 ## Rasterliste mit Titelleisten
 
-In diesem Beispiel wird die Verwendung der `ImageListTileBar` veranschaulicht, um jeweils eine Überlagerung zu jedem `ImageListTile`hinzuzufügen. Die Überlagerung kann einen `title`, `subtitle` und eine sekundäre Aktion aufnehmen - in diesem Beispiel ein `IconButton`.
+In diesem Beispiel wird die Verwendung der `ImageListItemBar` veranschaulicht, um jeweils eine Überlagerung zu jedem `ImageListItem`hinzuzufügen. Die Überlagerung kann einen `title`, `subtitle` und eine sekundäre Aktion aufnehmen - in diesem Beispiel ein `IconButton`.
 
 {{"demo": "pages/components/image-list/TitlebarImageList.js", "hideEditButton": true}}
 
