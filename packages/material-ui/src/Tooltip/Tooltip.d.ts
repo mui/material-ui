@@ -88,13 +88,13 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
    *
    * @param {object} event The event source of the callback.
    */
-  onClose?: (event: React.ChangeEvent<{}>) => void;
+  onClose?: (event: React.SyntheticEvent | Event) => void;
   /**
    * Callback fired when the component requests to be open.
    *
    * @param {object} event The event source of the callback.
    */
-  onOpen?: (event: React.ChangeEvent<{}>) => void;
+  onOpen?: (event: React.SyntheticEvent) => void;
   /**
    * If `true`, the tooltip is shown.
    */
