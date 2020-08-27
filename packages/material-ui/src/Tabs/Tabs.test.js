@@ -306,7 +306,6 @@ describe('<Tabs />', () => {
 
       fireEvent.click(getAllByRole('tab')[1]);
       expect(handleChange.callCount).to.equal(1);
-      expect(handleChange.args[0][1]).to.equal(1);
 
       fireEvent.click(getAllByRole('tab')[0]);
       expect(handleChange.callCount).to.equal(1);
