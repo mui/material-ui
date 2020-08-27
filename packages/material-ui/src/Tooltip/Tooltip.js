@@ -69,11 +69,6 @@ export const styles = (theme) => ({
   /* Styles applied to the Popper component. */
   popper: {
     zIndex: theme.zIndex.tooltip,
-    pointerEvents: 'none', // disable jss-rtl plugin
-  },
-  /* Styles applied to the Popper component if `interactive={true}`. */
-  popperInteractive: {
-    pointerEvents: 'auto',
   },
   /* Styles applied to the Popper component if `arrow={true}`. */
   popperArrow: arrowGenerator(),
@@ -174,7 +169,6 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     enterNextDelay = 0,
     enterTouchDelay = 700,
     id: idProp,
-    interactive = false,
     leaveDelay = 0,
     leaveTouchDelay = 1500,
     onClose,
@@ -486,20 +480,16 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     childrenProps.onMouseOver = handleEnter();
     childrenProps.onMouseLeave = handleLeave();
 
-    if (interactive) {
-      interactiveWrapperListeners.onMouseOver = handleEnter(false);
-      interactiveWrapperListeners.onMouseLeave = handleLeave(false);
-    }
+    interactiveWrapperListeners.onMouseOver = handleEnter(false);
+    interactiveWrapperListeners.onMouseLeave = handleLeave(false);
   }
 
   if (!disableFocusListener) {
     childrenProps.onFocus = handleFocus();
     childrenProps.onBlur = handleLeave();
 
-    if (interactive) {
-      interactiveWrapperListeners.onFocus = handleFocus(false);
-      interactiveWrapperListeners.onBlur = handleLeave(false);
-    }
+    interactiveWrapperListeners.onFocus = handleFocus(false);
+    interactiveWrapperListeners.onBlur = handleLeave(false);
   }
 
   if (process.env.NODE_ENV !== 'production') {
@@ -534,7 +524,6 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
       {React.cloneElement(children, childrenProps)}
       <PopperComponent
         className={clsx(classes.popper, {
-          [classes.popperInteractive]: interactive,
           [classes.popperArrow]: arrow,
         })}
         placement={placement}
@@ -635,12 +624,6 @@ Tooltip.propTypes = {
    * If you don't provide this prop. It falls back to a randomly generated id.
    */
   id: PropTypes.string,
-  /**
-   * Makes a tooltip interactive, i.e. will not close when the user
-   * hovers over the tooltip before the `leaveDelay` is expired.
-   * @default false
-   */
-  interactive: PropTypes.bool,
   /**
    * The number of milliseconds to wait before hiding the tooltip.
    * This prop won't impact the leave touch delay (`leaveTouchDelay`).

@@ -775,6 +775,11 @@ const theme = createMuiTheme({
   +import ToggleButton from '@material-ui/core/ToggleButton';
   +import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
   ```
+### Tooltip
+
+- Removed the `interactive` prop.
+  The tooltip implements this behavior by default now.
+  The previous default behavior (`interactive={false}`) failed [success criterion 1.4.3 ("hoverable") in WCAG 2.1](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus).
 
 ### Typography
 
