@@ -63,7 +63,7 @@ Here is an example of what a fictional header could look like:
 </head>
 ```
 
-### Client-Side Rendering (CSR)
+### Create React App (CRA)
 
 According to the [Create React App Docs](https://create-react-app.dev/docs/advanced-configuration/), a Create React App will dynamically embed the runtime script into index.html during the production build by default. This will require a new hash to be set in your CSP during each deployment.
 
