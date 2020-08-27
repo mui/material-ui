@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import ImageList from '@material-ui/core/ImageList';
-import ImageListTile from '@material-ui/core/ImageListTile';
-import ImageListTileBar from '@material-ui/core/ImageListTileBar';
+import ImageListItem from '@material-ui/core/ImageListItem';
+import ImageListItemBar from '@material-ui/core/ImageListItemBar';
 import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import tileData from './tileData';
@@ -58,13 +58,13 @@ export default function AdvancedImageList() {
     <div className={classes.root}>
       <ImageList cellHeight={200} spacing={1} className={classes.gridList}>
         {tileData.map((tile) => (
-          <ImageListTile
+          <ImageListItem
             key={tile.img}
             cols={tile.featured ? 2 : 1}
             rows={tile.featured ? 2 : 1}
           >
             <img src={tile.img} alt={tile.title} />
-            <ImageListTileBar
+            <ImageListItemBar
               title={tile.title}
               titlePosition="top"
               actionIcon={
@@ -78,7 +78,7 @@ export default function AdvancedImageList() {
               actionPosition="left"
               className={classes.titleBar}
             />
-          </ImageListTile>
+          </ImageListItem>
         ))}
       </ImageList>
     </div>

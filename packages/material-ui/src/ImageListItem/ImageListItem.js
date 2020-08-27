@@ -52,7 +52,7 @@ const fit = (imgEl, classes) => {
   }
 };
 
-const ImageListTile = React.forwardRef(function ImageListTile(props, ref) {
+const ImageListItem = React.forwardRef(function ImageListItem(props, ref) {
   // cols rows default values are for docs only
   const {
     children,
@@ -127,14 +127,14 @@ const ImageListTile = React.forwardRef(function ImageListTile(props, ref) {
   );
 });
 
-ImageListTile.propTypes = {
+ImageListItem.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
    * Theoretically you can pass any node as children, but the main use case is to pass an img,
-   * in which case ImageListTile takes care of making the image "cover" available space
+   * in which case ImageListItem takes care of making the image "cover" available space
    * (similar to `background-size: cover` or to `object-fit: cover`).
    */
   children: PropTypes.node,
@@ -161,4 +161,4 @@ ImageListTile.propTypes = {
   rows: PropTypes.number,
 };
 
-export default withStyles(styles, { name: 'MuiImageListTile' })(ImageListTile);
+export default withStyles(styles, { name: 'MuiImageListItem' })(ImageListItem);

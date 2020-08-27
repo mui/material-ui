@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
-export interface ImageListTileTypeMap<P = {}, D extends React.ElementType = 'li'> {
+export interface ImageListItemTypeMap<P = {}, D extends React.ElementType = 'li'> {
   props: P & {
     /**
      * Theoretically you can pass any node as children, but the main use case is to pass an img,
-     * in which case ImageListTile takes care of making the image "cover" available space
+     * in which case ImageListItem takes care of making the image "cover" available space
      * (similar to `background-size: cover` or to `object-fit: cover`).
      */
     children?: React.ReactNode;
@@ -19,7 +19,7 @@ export interface ImageListTileTypeMap<P = {}, D extends React.ElementType = 'li'
     rows?: number;
   };
   defaultComponent: D;
-  classKey: ImageListTileClassKey;
+  classKey: ImageListItemClassKey;
 }
 /**
  *
@@ -29,15 +29,15 @@ export interface ImageListTileTypeMap<P = {}, D extends React.ElementType = 'li'
  *
  * API:
  *
- * - [ImageListTile API](https://material-ui.com/api/image-list-tile/)
+ * - [ImageListItem API](https://material-ui.com/api/image-list-item/)
  */
-declare const ImageListTile: OverridableComponent<ImageListTileTypeMap>;
+declare const ImageListItem: OverridableComponent<ImageListItemTypeMap>;
 
-export type ImageListTileClassKey = 'root' | 'tile' | 'imgFullHeight' | 'imgFullWidth';
+export type ImageListItemClassKey = 'root' | 'tile' | 'imgFullHeight' | 'imgFullWidth';
 
-export type ImageListTileProps<
-  D extends React.ElementType = ImageListTileTypeMap['defaultComponent'],
+export type ImageListItemProps<
+  D extends React.ElementType = ImageListItemTypeMap['defaultComponent'],
   P = {}
-> = OverrideProps<ImageListTileTypeMap<P, D>, D>;
+> = OverrideProps<ImageListItemTypeMap<P, D>, D>;
 
-export default ImageListTile;
+export default ImageListItem;

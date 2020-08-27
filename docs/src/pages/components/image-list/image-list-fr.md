@@ -1,6 +1,6 @@
 ---
 title: Composant React Grid List
-components: ImageList, ImageListTile, ImageListTileBar, ListSubheader, IconButton
+components: ImageList, ImageListItem, ImageListItemBar, ListSubheader, IconButton
 ---
 
 # Grid list
@@ -17,7 +17,7 @@ Un exemple simple d'image défilable `ImageList`.
 
 ## Grid list avec barres de titre
 
-Cet exemple illustre l'utilisation de `ImageListTileBar` pour ajouter une superposition à chaque `ImageListTile`. La superposition peut accueillir un `titre`, `sous - titre` et une action secondaire - dans cet exemple un `IconButton`.
+Cet exemple illustre l'utilisation de `ImageListItemBar` pour ajouter une superposition à chaque `ImageListItem`. La superposition peut accueillir un `titre`, `sous - titre` et une action secondaire - dans cet exemple un `IconButton`.
 
 {{"demo": "pages/components/image-list/TitlebarImageList.js", "hideEditButton": true}}
 

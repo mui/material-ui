@@ -1,6 +1,6 @@
 ---
 title: Componente React para Lista cuadriculada
-components: ImageList, ImageListTile, ImageListTileBar, ListSubheader, IconButton
+components: ImageList, ImageListItem, ImageListItemBar, ListSubheader, IconButton
 ---
 
 # Lista cuadriculada
@@ -17,7 +17,7 @@ Un ejemplo simple de una lista cuadriculada (`ImageList`) con imágenes desplaza
 
 ## Lista cuadriculada con barras de título
 
-Este ejemplo demuestra el uso de una barra para cuadro de lista cuadriculada (`ImageListTileBar`) que agrega una capa sobrepuesta a cada cuadro en una lista cuadriculada (`ImageListTile`). La capa sobrepuesta puede acomodar un título (`title`), subtítulo (`subtitle`), y acción secundaria (en este ejemplo un `IconButton`).
+Este ejemplo demuestra el uso de una barra para cuadro de lista cuadriculada (`ImageListItemBar`) que agrega una capa sobrepuesta a cada cuadro en una lista cuadriculada (`ImageListItem`). La capa sobrepuesta puede acomodar un título (`title`), subtítulo (`subtitle`), y acción secundaria (en este ejemplo un `IconButton`).
 
 {{"demo": "pages/components/image-list/TitlebarImageList.js", "hideEditButton": true}}
 

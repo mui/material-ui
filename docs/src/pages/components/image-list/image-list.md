@@ -1,6 +1,6 @@
 ---
 title: Image list React component
-components: ImageList, ImageListTile, ImageListTileBar, ListSubheader, IconButton
+components: ImageList, ImageListItem, ImageListItemBar, ListSubheader, IconButton
 materialDesign: https://material.io/components/image-lists
 githubLabel: component: ImageList
 ---
@@ -21,7 +21,7 @@ A simple example of a scrollable image `ImageList`.
 
 ## Image list with titlebars
 
-This example demonstrates the use of the `ImageListTileBar` to add an overlay to each `ImageListTile`.
+This example demonstrates the use of the `ImageListItemBar` to add an overlay to each `ImageListItem`.
 The overlay can accommodate a `title`, `subtitle` and secondary action - in this example an `IconButton`.
 
 {{"demo": "pages/components/image-list/TitlebarImageList.js", "hideEditButton": true}}
