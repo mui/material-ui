@@ -7,6 +7,7 @@ import withStyles from '../styles/withStyles';
 import capitalize from '../utils/capitalize';
 import Grow from '../Grow';
 import Popper from '../Popper';
+import useEventCallback from '../utils/useEventCallback';
 import useForkRef from '../utils/useForkRef';
 import useId from '../utils/useId';
 import useIsFocusVisible from '../utils/useIsFocusVisible';
@@ -326,22 +327,27 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     }
   };
 
-  const handleClose = (event) => {
-    clearTimeout(hystersisTimer);
-    hystersisTimer = setTimeout(() => {
-      hystersisOpen = false;
-    }, 800 + leaveDelay);
-    setOpenState(false);
+  const handleClose = useEventCallback(
+    /**
+     * @param {React.SyntheticEvent | Event} event
+     */
+    (event) => {
+      clearTimeout(hystersisTimer);
+      hystersisTimer = setTimeout(() => {
+        hystersisOpen = false;
+      }, 800 + leaveDelay);
+      setOpenState(false);
 
-    if (onClose) {
-      onClose(event);
-    }
+      if (onClose) {
+        onClose(event);
+      }
 
-    clearTimeout(closeTimer.current);
-    closeTimer.current = setTimeout(() => {
-      ignoreNonTouchEvents.current = false;
-    }, theme.transitions.duration.shortest);
-  };
+      clearTimeout(closeTimer.current);
+      closeTimer.current = setTimeout(() => {
+        ignoreNonTouchEvents.current = false;
+      }, theme.transitions.duration.shortest);
+    },
+  );
 
   const handleLeave = (forward = true) => (event) => {
     const childrenProps = children.props;
@@ -401,6 +407,28 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
       handleClose(event);
     }, leaveTouchDelay);
   };
+
+  React.useEffect(() => {
+    if (!open) {
+      return undefined;
+    }
+
+    /**
+     * @param {KeyboardEvent} nativeEvent
+     */
+    function handleKeyDown(nativeEvent) {
+      // IE 11, Edge (prior to using Bink?) use 'Esc'
+      if (nativeEvent.key === 'Escape' || nativeEvent.key === 'Esc') {
+        handleClose(nativeEvent);
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [handleClose, open]);
 
   const handleUseRef = useForkRef(setChildNode, ref);
   const handleFocusRef = useForkRef(focusVisibleRef, handleUseRef);
