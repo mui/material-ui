@@ -1067,7 +1067,7 @@ describe('<Tabs />', () => {
       });
     });
 
-    it('moves focus to the first tab when there are no active tabs', () => {
+    it('should allow to focus first tab when there are no active tabs', () => {
       const { getAllByRole } = render(
         <Tabs value={false}>
           <Tab />
