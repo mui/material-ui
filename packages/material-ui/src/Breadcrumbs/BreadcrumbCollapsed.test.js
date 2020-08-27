@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { getClasses, act, fireEvent, createClientRender } from 'test/utils';
+import { getClasses, fireEvent, createClientRender } from 'test/utils';
 import BreadcrumbCollapsed from './BreadcrumbCollapsed';
 
 describe('<BreadcrumbCollapsed />', () => {
@@ -19,17 +19,20 @@ describe('<BreadcrumbCollapsed />', () => {
     expect(getByRole('button')).to.have.class(classes.button);
   });
 
+  it('renders a native <button>', () => {
+    const { getByRole } = render(<BreadcrumbCollapsed />);
+
+    expect(getByRole('button')).to.have.property('nodeName', 'BUTTON');
+  });
+
   describe('prop: onClick', () => {
-    it(`should be called`, () => {
+    it(`should be called when clicked`, () => {
       const handleClick = spy();
       const { getByRole } = render(<BreadcrumbCollapsed onClick={handleClick} />);
       const expand = getByRole('button');
 
-      act(() => {
-        fireEvent.click(expand);
-      });
+      fireEvent.click(expand);
 
-      expect(expand.nodeName).to.equal('BUTTON');
       expect(handleClick.callCount).to.equal(1);
     });
   });
