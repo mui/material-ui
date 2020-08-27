@@ -3,7 +3,11 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
 const pageFilename = 'guides/content-security-policy';
-const requireDemo = require.context('docs/src/pages/guides/content-security-policy', false, /\.(js|tsx)$/);
+const requireDemo = require.context(
+  'docs/src/pages/guides/content-security-policy',
+  false,
+  /\.(js|tsx)$/,
+);
 const requireRaw = require.context(
   '!raw-loader!../../src/pages/guides/content-security-policy',
   false,
