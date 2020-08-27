@@ -1,6 +1,6 @@
 ---
 title: Componente React para Lista de Grade
-components: ImageList, ImageListTile, ImageListTileBar, ListSubheader, IconButton
+components: ImageList, ImageListItem, ImageListItemBar, ListSubheader, IconButton
 ---
 
 # Lista de Grade
@@ -17,7 +17,7 @@ Um exemplo simples de uma `ImageList` com imagens.
 
 ## Lista de grade com barras de título
 
-Este exemplo demonstra o uso do `ImageListTileBar` para adicionar uma sobreposição a cada `ImageListTile`. A sobreposição pode acomodar um `title`, `subtitle` e ação secundária - neste exemplo utilizamos um `IconButton`.
+Este exemplo demonstra o uso do `ImageListItemBar` para adicionar uma sobreposição a cada `ImageListItem`. A sobreposição pode acomodar um `title`, `subtitle` e ação secundária - neste exemplo utilizamos um `IconButton`.
 
 {{"demo": "pages/components/image-list/TitlebarImageList.js", "hideEditButton": true}}
 

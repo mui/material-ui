@@ -4,17 +4,17 @@ import { spy, useFakeTimers } from 'sinon';
 import { getClasses } from '@material-ui/core/test-utils';
 import createMount from 'test/utils/createMount';
 import describeConformance from '../test-utils/describeConformance';
-import ImageListTile from './ImageListTile';
+import ImageListItem from './ImageListItem';
 
-describe('<ImageListTile />', () => {
+describe('<ImageListItem />', () => {
   const mount = createMount();
   let classes;
 
   before(() => {
-    classes = getClasses(<ImageListTile />);
+    classes = getClasses(<ImageListItem />);
   });
 
-  describeConformance(<ImageListTile />, () => ({
+  describeConformance(<ImageListItem />, () => ({
     classes,
     inheritComponent: 'li',
     mount,
@@ -31,14 +31,14 @@ describe('<ImageListTile />', () => {
   describe('prop: children', () => {
     it('should render children by default', () => {
       const children = <img src={tileData.img} alt="foo" />;
-      const wrapper = mount(<ImageListTile>{children}</ImageListTile>);
+      const wrapper = mount(<ImageListItem>{children}</ImageListItem>);
 
       expect(wrapper.containsMatchingElement(children)).to.equal(true);
     });
 
     it('should not change non image child', () => {
       const children = <div />;
-      const wrapper = mount(<ImageListTile>{children}</ImageListTile>);
+      const wrapper = mount(<ImageListItem>{children}</ImageListItem>);
       expect(wrapper.containsMatchingElement(children)).to.equal(true);
     });
   });
@@ -52,10 +52,10 @@ describe('<ImageListTile />', () => {
     Image.muiName = 'Image';
 
     return mount(
-      <ImageListTile>
+      <ImageListItem>
         <Image />
         {null}
-      </ImageListTile>,
+      </ImageListItem>,
     );
   }
 

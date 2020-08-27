@@ -65,7 +65,7 @@ function ensureImageCover(imgEl, classes) {
   }
 }
 
-const ImageListTile = React.forwardRef(function ImageListTile(props, ref) {
+const ImageListItem = React.forwardRef(function ImageListItem(props, ref) {
   // cols rows default values are for docs only
   const {
     children,
@@ -118,7 +118,7 @@ const ImageListTile = React.forwardRef(function ImageListTile(props, ref) {
   );
 });
 
-ImageListTile.propTypes = {
+ImageListItem.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -151,4 +151,4 @@ ImageListTile.propTypes = {
   rows: PropTypes.number,
 };
 
-export default withStyles(styles, { name: 'MuiImageListTile' })(ImageListTile);
+export default withStyles(styles, { name: 'MuiImageListItem' })(ImageListItem);
