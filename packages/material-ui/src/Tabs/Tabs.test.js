@@ -301,7 +301,7 @@ describe('<Tabs />', () => {
         <Tabs value={0} onChange={handleChange}>
           <Tab />
           <Tab />
-        </Tabs>
+        </Tabs>,
       );
 
       fireEvent.click(getAllByRole('tab')[1]);
