@@ -7,8 +7,7 @@ import withStyles from '../styles/withStyles';
 export const styles = {
   /* Styles applied to the root element. */
   root: {
-    display: 'flex',
-    flexWrap: 'wrap',
+    display: 'grid',
     overflowY: 'auto',
     listStyle: 'none',
     padding: 0,
@@ -33,7 +32,7 @@ const ImageList = React.forwardRef(function ImageList(props, ref) {
     <Component
       className={clsx(classes.root, className)}
       ref={ref}
-      style={{ margin: -spacing / 2, ...style }}
+      style={{     gridTemplateColumns: `repeat(${cols}, 1fr)`, gap: spacing, ...style }}
       {...other}
     >
       {React.Children.map(children, (child) => {
@@ -52,14 +51,15 @@ const ImageList = React.forwardRef(function ImageList(props, ref) {
           }
         }
 
-        const childCols = child.props.cols || 1;
-        const childRows = child.props.rows || 1;
+        const childCols = child.props.cols;
+        const childRows = child.props.rows;
 
         return React.cloneElement(child, {
           style: {
-            width: `${(100 / cols) * childCols}%`,
             height: cellHeight === 'auto' ? 'auto' : cellHeight * childRows + spacing,
-            padding: spacing / 2,
+            'grid-column-end': `span ${childCols}`,
+            'grid-rw-end': `span ${childRows}`,
+            overflow: 'hidden',
             ...child.props.style,
           },
         });

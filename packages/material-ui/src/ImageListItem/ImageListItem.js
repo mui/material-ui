@@ -9,48 +9,17 @@ import { ownerWindow } from '../utils';
 export const styles = {
   /* Styles applied to the root element. */
   root: {
-    boxSizing: 'border-box',
-    flexShrink: 0,
-  },
-  /* Styles applied to the `div` element that wraps the children. */
-  tile: {
     position: 'relative',
-    display: 'block', // In case it's not rendered with a div.
-    height: '100%',
-    overflow: 'hidden',
   },
-  /* Styles applied to an `img` element child, if needed to ensure it covers the tile. */
-  imgFullHeight: {
-    height: '100%',
-    transform: 'translateX(-50%)',
-    position: 'relative',
-    left: '50%',
-  },
-  /* Styles applied to an `img` element child, if needed to ensure it covers the tile. */
-  imgFullWidth: {
+  /* Styles applied to an `img` element to ensure it covers the item. */
+  img: {
+    objectFit: 'cover',
     width: '100%',
-    position: 'relative',
-    transform: 'translateY(-50%)',
-    top: '50%',
+    height: '100%',
   },
+
 };
 
-const fit = (imgEl, classes) => {
-  if (!imgEl || !imgEl.complete) {
-    return;
-  }
-
-  if (
-    imgEl.width / imgEl.height >
-    imgEl.parentElement.offsetWidth / imgEl.parentElement.offsetHeight
-  ) {
-    imgEl.classList.remove(...classes.imgFullWidth.split(' '));
-    imgEl.classList.add(...classes.imgFullHeight.split(' '));
-  } else {
-    imgEl.classList.remove(...classes.imgFullHeight.split(' '));
-    imgEl.classList.add(...classes.imgFullWidth.split(' '));
-  }
-};
 
 const ImageListItem = React.forwardRef(function ImageListItem(props, ref) {
   // cols rows default values are for docs only
@@ -66,49 +35,13 @@ const ImageListItem = React.forwardRef(function ImageListItem(props, ref) {
     ...other
   } = props;
 
-  const imgRef = React.useRef(null);
-
-  React.useEffect(() => {
-    const img = imgRef.current;
-
-    if (!img) {
-      return undefined;
-    }
-
-    let listener;
-
-    if (img.complete) {
-      fit(img, classes);
-    } else {
-      listener = () => {
-        fit(img, classes);
-      };
-      img.addEventListener('load', listener);
-    }
-
-    return () => {
-      if (listener) {
-        img.removeEventListener('load', listener);
-      }
-    };
-  });
-
-  React.useEffect(() => {
-    const handleResize = debounce(() => {
-      fit(imgRef.current, classes);
-    });
-
-    const containerWindow = ownerWindow(imgRef.current);
-    containerWindow.addEventListener('resize', handleResize);
-    return () => {
-      handleResize.clear();
-      containerWindow.removeEventListener('resize', handleResize);
-    };
-  }, [classes]);
-
   return (
-    <Component className={clsx(classes.root, className)} ref={ref} {...other}>
-      <div className={classes.tile}>
+    <Component
+      className={clsx(classes.root, className)}
+      // style={{ 'grid-row-end': `span ${cols}` }} 
+      ref={ref} {...other}
+    >
+      {/* <div className={classes.item}> */}
         {React.Children.map(children, (child) => {
           if (!React.isValidElement(child)) {
             return null;
@@ -116,13 +49,13 @@ const ImageListItem = React.forwardRef(function ImageListItem(props, ref) {
 
           if (child.type === 'img' || isMuiElement(child, ['Image'])) {
             return React.cloneElement(child, {
-              ref: imgRef,
+              className: classes.img,
             });
           }
 
           return child;
         })}
-      </div>
+      {/* </div> */}
     </Component>
   );
 });
@@ -147,7 +80,7 @@ ImageListItem.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Width of the tile in number of grid cells.
+   * Width of the item in number of grid cells.
    * @default 1
    */
   cols: PropTypes.number,
@@ -157,7 +90,7 @@ ImageListItem.propTypes = {
    */
   component: PropTypes.elementType,
   /**
-   * Height of the tile in number of grid cells.
+   * Height of the item in number of grid cells.
    * @default 1
    */
   rows: PropTypes.number,
