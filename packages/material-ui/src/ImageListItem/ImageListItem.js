@@ -5,6 +5,7 @@ import debounce from '../utils/debounce';
 import withStyles from '../styles/withStyles';
 import isMuiElement from '../utils/isMuiElement';
 import { ownerWindow } from '../utils';
+import ImageListContext from '../ImageList/ImageListContext';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -17,9 +18,7 @@ export const styles = {
     width: '100%',
     height: '100%',
   },
-
 };
-
 
 const ImageListItem = React.forwardRef(function ImageListItem(props, ref) {
   // cols rows default values are for docs only
@@ -27,35 +26,38 @@ const ImageListItem = React.forwardRef(function ImageListItem(props, ref) {
     children,
     classes,
     className,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     cols = 1,
     component: Component = 'li',
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     rows = 1,
+    style,
     ...other
   } = props;
+
+  const { cellHeight, spacing } = React.useContext(ImageListContext);
 
   return (
     <Component
       className={clsx(classes.root, className)}
-      // style={{ 'grid-row-end': `span ${cols}` }} 
-      ref={ref} {...other}
+      ref={ref}
+      style={{
+        height: cellHeight === 'auto' ? 'auto' : cellHeight * rows + spacing,
+        'grid-column-end': `span ${cols}`,
+        'grid-row-end': `span ${rows}`,
+        ...style,
+      }}
+      {...other}
     >
-      {/* <div className={classes.item}> */}
-        {React.Children.map(children, (child) => {
-          if (!React.isValidElement(child)) {
-            return null;
-          }
-
-          if (child.type === 'img' || isMuiElement(child, ['Image'])) {
-            return React.cloneElement(child, {
-              className: classes.img,
-            });
-          }
-
-          return child;
-        })}
-      {/* </div> */}
+      {React.Children.map(children, (child) => {
+        if (!React.isValidElement(child)) {
+          return null;
+        }
+        if (child.type === 'img' || isMuiElement(child, ['Image'])) {
+          return React.cloneElement(child, {
+            className: classes.img,
+          });
+        }
+        return child;
+      })}
     </Component>
   );
 });

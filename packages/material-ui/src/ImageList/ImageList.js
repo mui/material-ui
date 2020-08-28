@@ -3,6 +3,7 @@ import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
+import ImageListContext from './ImageListContext';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -28,42 +29,16 @@ const ImageList = React.forwardRef(function ImageList(props, ref) {
     ...other
   } = props;
 
+  const contextValue = React.useMemo(() => ({ cellHeight, spacing }), [cellHeight, spacing]);
+
   return (
     <Component
       className={clsx(classes.root, className)}
       ref={ref}
-      style={{     gridTemplateColumns: `repeat(${cols}, 1fr)`, gap: spacing, ...style }}
+      style={{ gridTemplateColumns: `repeat(${cols}, 1fr)`, gap: spacing, ...style }}
       {...other}
     >
-      {React.Children.map(children, (child) => {
-        if (!React.isValidElement(child)) {
-          return null;
-        }
-
-        if (process.env.NODE_ENV !== 'production') {
-          if (isFragment(child)) {
-            console.error(
-              [
-                "Material-UI: The ImageList component doesn't accept a Fragment as a child.",
-                'Consider providing an array instead.',
-              ].join('\n'),
-            );
-          }
-        }
-
-        const childCols = child.props.cols;
-        const childRows = child.props.rows;
-
-        return React.cloneElement(child, {
-          style: {
-            height: cellHeight === 'auto' ? 'auto' : cellHeight * childRows + spacing,
-            'grid-column-end': `span ${childCols}`,
-            'grid-rw-end': `span ${childRows}`,
-            overflow: 'hidden',
-            ...child.props.style,
-          },
-        });
-      })}
+      <ImageListContext.Provider value={contextValue}>{children}</ImageListContext.Provider>
     </Component>
   );
 });

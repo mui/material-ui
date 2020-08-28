@@ -26,14 +26,6 @@ The overlay can accommodate a `title`, `subtitle` and secondary action - in this
 
 {{"demo": "pages/components/image-list/TitlebarImageList.js", "hideEditButton": true}}
 
-## Single line image list
-
-This example demonstrates a horizontal scrollable single-line image list of images.
-Horizontally scrolling image lists are discouraged because the scrolling interferes with typical reading patterns, affecting comprehension.
-One notable exception is a horizontally-scrolling, single-line image list of images, such as a gallery.
-
-{{"demo": "pages/components/image-list/SingleLineImageList.js", "hideEditButton": true}}
-
 ## Advanced image list
 
 This example demonstrates "featured" tiles, using the `rows` and `cols` props to adjust the size of the tile, and the `padding` prop to adjust the spacing.
