@@ -6,7 +6,7 @@ const styles = (theme) => ({
   root: {
     borderRadius: 0,
     fontWeight: theme.typography.fontWeightMedium,
-    fontFamily: theme.typography.fontFamilySecondary,
+    fontFamily: theme.typography.h1.fontFamily,
     padding: theme.spacing(2, 4),
     fontSize: theme.typography.pxToRem(14),
     boxShadow: 'none',
