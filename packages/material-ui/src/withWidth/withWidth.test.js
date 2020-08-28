@@ -154,7 +154,7 @@ describe('withWidth', () => {
   describe('theme prop: MuiWithWidth.initialWidth', () => {
     it('should use theme prop', () => {
       const theme = createMuiTheme({
-        components: { MuiWithWidth: { props: { initialWidth: 'lg' } } },
+        components: { MuiWithWidth: { defaultProps: { initialWidth: 'lg' } } },
       });
       const element = <EmptyWithWidth theme={theme} />;
       // First mount on the server

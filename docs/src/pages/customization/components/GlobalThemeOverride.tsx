@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 const theme = createMuiTheme({
   components: {
     MuiButton: {
-      overrides: {
+      styleOverrides: {
         root: {
           fontSize: '1rem',
         },

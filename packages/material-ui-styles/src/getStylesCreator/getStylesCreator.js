@@ -41,12 +41,12 @@ export default function getStylesCreator(stylesOrCreator) {
         !name ||
         !theme.components ||
         !theme.components[name] ||
-        (!theme.components[name].overrides && !theme.components[name].variants)
+        (!theme.components[name].styleOverrides && !theme.components[name].variants)
       ) {
         return styles;
       }
 
-      const overrides = theme.components[name].overrides || {};
+      const overrides = theme.components[name].styleOverrides || {};
       const variants = theme.components[name].variants || [];
       const stylesWithOverrides = { ...styles };
 
@@ -71,7 +71,7 @@ export default function getStylesCreator(stylesOrCreator) {
         const classKey = propsToClassKey(definition.props);
         stylesWithOverrides[classKey] = deepmerge(
           stylesWithOverrides[classKey] || {},
-          definition.styles,
+          definition.style,
         );
       });
 

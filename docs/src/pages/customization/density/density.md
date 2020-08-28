@@ -48,30 +48,30 @@ The theme is configured with the following options:
 const theme = createMuiTheme({
   components: {
     MuiButton: {
-      props: {
+      defaultProps: {
         size: 'small',
       },
     },
     MuiFilledInput: {
-      props: {
+      defaultProps: {
         margin: 'dense',
       },
     },
     MuiFormControl: {
-      props: {
+      defaultProps: {
         margin: 'dense',
       },
     },
     MuiFormHelperText: {
-      props: {
+      defaultProps: {
         margin: 'dense',
       },
     },
     MuiIconButton: {
-      props: {
+      defaultProps: {
         size: 'small',
       },
-      overrides: {
+      styleOverrides: {
         sizeSmall: {
           // Adjust spacing to reach minimal touch target hitbox
           marginLeft: 4,
@@ -81,42 +81,42 @@ const theme = createMuiTheme({
       },
     },
     MuiInputBase: {
-      props: {
+      defaultProps: {
         margin: 'dense',
       },
     },
     MuiInputLabel: {
-      props: {
+      defaultProps: {
         margin: 'dense',
       },
     },
     MuiListItem: {
-      props: {
+      defaultProps: {
         dense: true,
       },
     },
     MuiOutlinedInput: {
-      props: {
+      defaultProps: {
         margin: 'dense',
       },
     },
     MuiFab: {
-      props: {
+      defaultProps: {
         size: 'small',
       },
     },
     MuiTable: {
-      props: {
+      defaultProps: {
         size: 'small',
       },
     },
     MuiTextField: {
-      props: {
+      defaultProps: {
         margin: 'dense',
       },
     },
     MuiToolbar: {
-      props: {
+      defaultProps: {
         variant: 'dense',
       },
     },

@@ -84,7 +84,7 @@ It’s important to realize that the style of a typography component is independ
 const theme = createMuiTheme({
   components: {
     MuiTypography: {
-      props: {
+      defaultProps: {
         variantMapping: {
           h1: 'h2',
           h2: 'h2',

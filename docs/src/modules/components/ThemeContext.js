@@ -38,30 +38,30 @@ const themeInitialOptions = {
 const highDensity = {
   components: {
     MuiButton: {
-      props: {
+      defaultProps: {
         size: 'small',
       },
     },
     MuiFilledInput: {
-      props: {
+      defaultProps: {
         margin: 'dense',
       },
     },
     MuiFormControl: {
-      props: {
+      defaultProps: {
         margin: 'dense',
       },
     },
     MuiFormHelperText: {
-      props: {
+      defaultProps: {
         margin: 'dense',
       },
     },
     MuiIconButton: {
-      props: {
+      defaultProps: {
         size: 'small',
       },
-      overrides: {
+      styleOverrides: {
         sizeSmall: {
           // minimal touch target hit spacing
           marginLeft: 4,
@@ -71,42 +71,42 @@ const highDensity = {
       },
     },
     MuiInputBase: {
-      props: {
+      defaultProps: {
         margin: 'dense',
       },
     },
     MuiInputLabel: {
-      props: {
+      defaultProps: {
         margin: 'dense',
       },
     },
     MuiListItem: {
-      props: {
+      defaultProps: {
         dense: true,
       },
     },
     MuiOutlinedInput: {
-      props: {
+      defaultProps: {
         margin: 'dense',
       },
     },
     MuiFab: {
-      props: {
+      defaultProps: {
         size: 'small',
       },
     },
     MuiTable: {
-      props: {
+      defaultProps: {
         size: 'small',
       },
     },
     MuiTextField: {
-      props: {
+      defaultProps: {
         margin: 'dense',
       },
     },
     MuiToolbar: {
-      props: {
+      defaultProps: {
         variant: 'dense',
       },
     },

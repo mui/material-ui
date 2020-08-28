@@ -3,7 +3,7 @@ import { createMuiTheme } from '@material-ui/core';
 createMuiTheme({
   components: {
     MuiAvatarGroup: {
-      overrides: {
+      styleOverrides: {
         avatar: {
           border: 'none',
         },

@@ -80,7 +80,7 @@ const theme = createMuitheme({
 -  },
 +  components: {
 +    MuiButton: {
-+      props: {
++      defaultProps: {
 +        disableRipple: true,
 +      },
 +    },
@@ -101,7 +101,7 @@ const theme = createMuitheme({
 -  },
 +  components: {
 +    MuiButton: {
-+      overrides: {
++      styleOverrides: {
 +        root: { padding: 0 },
 +      },
 +    },

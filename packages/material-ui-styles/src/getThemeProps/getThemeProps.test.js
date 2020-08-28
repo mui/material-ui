@@ -16,7 +16,7 @@ describe('getThemeProps', () => {
       theme: {
         components: {
           MuiBar: {
-            props: {
+            defaultProps: {
               disableRipple: true,
             },
           },
@@ -33,7 +33,7 @@ describe('getThemeProps', () => {
       theme: {
         components: {
           MuiFoo: {
-            props: {
+            defaultProps: {
               disableRipple: true,
             },
           },

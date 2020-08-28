@@ -10,9 +10,9 @@ interface TextProps {
 }
 
 interface Theme {
-  props: {
-    Button: Partial<ButtonProps> & { sigil: string };
-    Text: Partial<TextProps>;
+  components: {
+    Button: { defaultProps: Partial<ButtonProps> & { sigil: string } };
+    Text: { defaultProps: Partial<TextProps> };
   };
 }
 

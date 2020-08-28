@@ -4,7 +4,7 @@ import { ComponentsPropsList } from './props';
 export type ComponentsVariants = {
   [Name in keyof ComponentsPropsList]?: Array<{
     props: Partial<ComponentsPropsList[Name]>;
-    styles: // JSS property bag
+    style: // JSS property bag
     | CSSProperties
       // JSS property bag where values are based on props
       | CreateCSSProperties<Partial<ComponentsPropsList[Name]>>

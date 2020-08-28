@@ -63,50 +63,56 @@ describe('createMuiTheme', () => {
     });
   });
 
-  describe('props', () => {
-    it('should have the props as expected', () => {
-      const props = {
+  describe('components', () => {
+    it('should have the components as expected', () => {
+      const components = {
         MuiDialog: {
-          fullScreen: true,
-          fullWidth: false,
+          defaultProps: {
+            fullScreen: true,
+            fullWidth: false,
+          },
         },
         MuiButtonBase: {
-          disableRipple: true,
+          defaultProps: {
+            disableRipple: true,
+          },
         },
         MuiPopover: {
-          container: document.createElement('div'),
+          defaultProps: {
+            container: document.createElement('div'),
+          },
         },
       };
-      const muiTheme = createMuiTheme({ props });
-      expect(muiTheme.props).to.deep.equal(props);
+      const muiTheme = createMuiTheme({ components });
+      expect(muiTheme.components).to.deep.equal(components);
     });
   });
 
-  describe('overrides', () => {
+  describe('styleOverrides', () => {
     it('should warn when trying to override an internal state the wrong way', () => {
       let theme;
 
       expect(() => {
         theme = createMuiTheme({
-          components: { Button: { overrides: { disabled: { color: 'blue' } } } },
+          components: { Button: { styleOverrides: { disabled: { color: 'blue' } } } },
         });
       }).not.toErrorDev();
-      expect(Object.keys(theme.components.Button.overrides.disabled).length).to.equal(1);
+      expect(Object.keys(theme.components.Button.styleOverrides.disabled).length).to.equal(1);
 
       expect(() => {
         theme = createMuiTheme({
-          components: { MuiButton: { overrides: { root: { color: 'blue' } } } },
+          components: { MuiButton: { styleOverrides: { root: { color: 'blue' } } } },
         });
       }).not.toErrorDev();
 
       expect(() => {
         theme = createMuiTheme({
-          components: { MuiButton: { overrides: { disabled: { color: 'blue' } } } },
+          components: { MuiButton: { styleOverrides: { disabled: { color: 'blue' } } } },
         });
       }).toErrorDev(
         'Material-UI: The `MuiButton` component increases the CSS specificity of the `disabled` internal state.',
       );
-      expect(Object.keys(theme.components.MuiButton.overrides.disabled).length).to.equal(0);
+      expect(Object.keys(theme.components.MuiButton.styleOverrides.disabled).length).to.equal(0);
     });
   });
 

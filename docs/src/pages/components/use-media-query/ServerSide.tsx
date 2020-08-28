@@ -23,7 +23,7 @@ export default function ServerSide() {
         components: {
           MuiUseMediaQuery: {
             // Change the default options of useMediaQuery
-            props: { ssrMatchMedia },
+            defaultProps: { ssrMatchMedia },
           },
         },
       }}

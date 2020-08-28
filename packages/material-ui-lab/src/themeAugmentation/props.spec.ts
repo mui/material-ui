@@ -3,7 +3,7 @@ import { createMuiTheme } from '@material-ui/core';
 createMuiTheme({
   components: {
     MuiAvatarGroup: {
-      props: {
+      defaultProps: {
         spacing: 'small',
         // @ts-expect-error invalid prop
         maximum: 5,
@@ -18,7 +18,7 @@ const val = '' as string | null | string[];
 createMuiTheme({
   components: {
     MuiAutocomplete: {
-      props: {
+      defaultProps: {
         multiple: trueOrFalse,
         disableClearable: trueOrFalse,
         freeSolo: trueOrFalse,

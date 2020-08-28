@@ -309,7 +309,7 @@ Learn more about it in the [themes section](/customization/globals/#css) of the 
 const theme = createMuiTheme({
   components: {
     MuiButton: {
-      overrides: {
+      styleOverrides: {
         root: {
           fontSize: '1rem',
         },
@@ -323,7 +323,7 @@ const theme = createMuiTheme({
 
 ### Adding new component variants
 
-You can take advantage of the `variants` key in the `theme` to add new variants to Material-UI components. These new variants, can specify which styles the component should have, if specific props are defined together.
+You can take advantage of the `variants` key in the `theme`'s components section to add new variants to Material-UI components. These new variants, can specify which styles the component should have, if specific props are defined together.
 
 The definitions are specified in an array, under the component's name. For every one of them a class is added in the head. The order is **important**, so make sure that the styles that should win will be specified lastly.
 
@@ -334,14 +334,14 @@ const theme = createMuiTheme({
       variants: [
         {
           props: { variant: 'dashed' },
-          styles: {
+          style: {
             textTransform: 'none',
             border: `2px dashed grey${blue[500]}`,
           },
         },
         {
           props: { variant: 'dashed', color: 'secondary' },
-          styles: {
+          style: {
             border: `4px dashed ${red[500]}`,
           },
         },

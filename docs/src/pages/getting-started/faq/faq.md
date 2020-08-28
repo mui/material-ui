@@ -58,7 +58,7 @@ const theme = createMuiTheme({
   components: {
     // Name of the component ⚛️
     MuiButtonBase: {
-      props: {
+      defaultProps: {
         // The props to apply
         disableRipple: true, // No more ripple, on the whole application 💣!
       },
@@ -94,7 +94,7 @@ const theme = createMuiTheme({
   components: {
     // Name of the component ⚛️
     MuiCssBaseline: {
-      overrides: {
+      styleOverrides: {
         // Name of the rule
         '@global': {
           '*, *::before, *::after': {

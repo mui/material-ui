@@ -28,7 +28,7 @@ function createMuiTheme(options = {}, ...args) {
       breakpoints,
       direction: 'ltr',
       mixins: createMixins(breakpoints, spacing, mixinsInput),
-      components: {}, // Inject component overrides
+      components: {}, // Inject component definitions
       palette,
       shadows,
       typography: createTypography(palette, typographyInput),
@@ -90,10 +90,10 @@ function createMuiTheme(options = {}, ...args) {
     };
 
     Object.keys(muiTheme.components).forEach((component) => {
-      const overrides = muiTheme.components[component].overrides;
+      const styleOverrides = muiTheme.components[component].styleOverrides;
 
-      if (overrides && component.indexOf('Mui') === 0) {
-        traverse(overrides, component);
+      if (styleOverrides && component.indexOf('Mui') === 0) {
+        traverse(styleOverrides, component);
       }
     });
   }

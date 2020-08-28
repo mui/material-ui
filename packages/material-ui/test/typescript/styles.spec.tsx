@@ -110,10 +110,10 @@ const theme = createMuiTheme({
   },
   components: {
     MuiButton: {
-      props: {
+      defaultProps: {
         disabled: true,
       },
-      overrides: {
+      styleOverrides: {
         // Name of the styleSheet
         root: {
           // Name of the rule
@@ -128,7 +128,7 @@ const theme = createMuiTheme({
       },
     },
     MuiAppBar: {
-      props: {
+      defaultProps: {
         position: 'fixed',
       },
     },
@@ -143,7 +143,7 @@ const theme2 = createMuiTheme({
   },
   components: {
     MuiButton: {
-      props: {
+      defaultProps: {
         disabled: false,
         TouchRippleProps: {
           center: true,
@@ -151,12 +151,12 @@ const theme2 = createMuiTheme({
       },
     },
     MuiTable: {
-      props: {
+      defaultProps: {
         cellPadding: 12,
       },
     },
     MuiButtonBase: {
-      props: {
+      defaultProps: {
         disableRipple: true,
       },
     },
@@ -651,7 +651,9 @@ function themeProviderTest() {
   <ThemeProvider theme={{ foo: 1 }}>{null}</ThemeProvider>;
   // @ts-expect-error
   <ThemeProvider<Theme> theme={{ foo: 1 }}>{null}</ThemeProvider>;
-  <ThemeProvider<Theme> theme={{ components: { MuiAppBar: { props: { 'aria-atomic': 'true' } } } }}>
+  <ThemeProvider<Theme>
+    theme={{ components: { MuiAppBar: { defaultProps: { 'aria-atomic': 'true' } } } }}
+  >
     {null}
   </ThemeProvider>;
 }
