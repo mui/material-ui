@@ -118,7 +118,7 @@ const Tab = React.forwardRef(function Tab(props, ref) {
   } = props;
 
   const handleClick = (event) => {
-    if (onChange) {
+    if (!selected && onChange) {
       onChange(event, value);
     }
 

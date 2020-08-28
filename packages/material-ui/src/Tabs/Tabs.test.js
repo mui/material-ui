@@ -295,6 +295,19 @@ describe('<Tabs />', () => {
       expect(handleChange.args[0][1]).to.equal(1);
     });
 
+    it('should not call onChange when already selected', () => {
+      const handleChange = spy();
+      const { getAllByRole } = render(
+        <Tabs value={0} onChange={handleChange}>
+          <Tab />
+          <Tab />
+        </Tabs>,
+      );
+
+      fireEvent.click(getAllByRole('tab')[0]);
+      expect(handleChange.callCount).to.equal(0);
+    });
+
     it('when `selectionFollowsFocus` should call if an unselected tab gets focused', () => {
       const handleChange = spy((event, value) => value);
       const { getAllByRole } = render(
