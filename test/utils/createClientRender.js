@@ -80,10 +80,12 @@ export function createClientRender(globalOptions = {}) {
   const { strict: globalStrict } = globalOptions;
 
   afterEach(async () => {
-    // If this issues an act() warning you probably didn't
-    // wait for an async event in your test (or didn't wrap it in act() at all).
-    // please wait for every update in your test and make appropriate assertions
-    await cleanup();
+    // act to flush effect cleanup functions
+    // state updates during this phase are safe
+    // TODO: Revisit once https://github.com/testing-library/react-testing-library/pull/768 is resolved.
+    await act(async () => {
+      await cleanup();
+    });
   });
 
   return function configuredClientRender(element, options = {}) {
