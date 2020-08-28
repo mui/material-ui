@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import clsx from 'clsx';
 import { withStyles, WithStyles, createStyles } from '@material-ui/core/styles';
 import MuiTextField, { TextFieldProps } from '@material-ui/core/TextField';

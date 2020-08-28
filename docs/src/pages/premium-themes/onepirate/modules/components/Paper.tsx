@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import clsx from 'clsx';
 import MuiPaper, { PaperProps } from '@material-ui/core/Paper';
 import { withStyles, Theme, WithStyles } from '@material-ui/core/styles';
