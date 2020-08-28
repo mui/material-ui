@@ -1,4 +1,4 @@
-export function isPlainObject(item: any) {
+export function isPlainObject(item: unknown) {
   return item && typeof item === 'object' && item.constructor === Object;
 }
 

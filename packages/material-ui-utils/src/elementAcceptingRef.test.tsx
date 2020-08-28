@@ -82,16 +82,14 @@ describe('elementAcceptingRef', () => {
     });
 
     it('accepts memo', () => {
-      // @ts-ignore
-      const Component = React.memo('div');
+      const Component = React.memo(React.forwardRef(() => null));
 
       assertPass(<Component />);
     });
 
     it('accepts lazy', () => {
       const Component = React.lazy(() =>
-        // @ts-ignore
-        Promise.resolve({ default: (props) => <div {...props} /> }),
+        Promise.resolve({ default: (props: any) => <div {...props} /> }),
       );
 
       // should actually fail when mounting since the ref is forwarded to a function component

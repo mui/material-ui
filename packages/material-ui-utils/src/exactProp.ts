@@ -12,7 +12,7 @@ export default function exactProp(propTypes: any) {
 
   return {
     ...propTypes,
-    [specialProperty]: (props: { [key: string]: any }) => {
+    [specialProperty]: (props: { [key: string]: unknown }) => {
       const unsupportedProps = Object.keys(props).filter((prop) => !propTypes.hasOwnProperty(prop));
       if (unsupportedProps.length > 0) {
         return new Error(

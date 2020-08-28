@@ -35,21 +35,13 @@
     "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json"
   },
   "peerDependencies": {
-    "@types/prop-types": "^15.7.3",
-    "@types/react-is": "^16.7.1",
     "react": "^16.8.0",
     "react-dom": "^16.8.0"
   },
-  "peerDependenciesMeta": {
-    "@types/prop-types": {
-      "optional": true
-    },
-    "@types/react-is": {
-      "optional": true
-    }
-  },
   "dependencies": {
     "@babel/runtime": "^7.4.4",
+    "@types/prop-types": "^15.7.3",
+    "@types/react-is": "^16.7.1",
     "prop-types": "^15.7.2",
     "react-is": "^16.8.0"
   },

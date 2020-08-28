@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import chainPropTypes from './chainPropTypes';
 
-function isClassComponent(elementType: any) {
+function isClassComponent(elementType: { prototype?: Record<keyof any, any> }) {
   // elementType.prototype?.isReactComponent
   const { prototype = {} } = elementType;
 
@@ -9,7 +9,7 @@ function isClassComponent(elementType: any) {
 }
 
 function elementTypeAcceptingRef(
-  props: { [key: string]: any },
+  props: { [key: string]: unknown },
   propName: string,
   componentName: string,
   location: string,
