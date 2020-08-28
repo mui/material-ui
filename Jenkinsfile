@@ -4,7 +4,6 @@ node {
   }
    
   stage('Install dependencies') {
-    bat "npm install -g yarn"
     bat "yarn install"
   }
    
