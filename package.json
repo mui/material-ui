@@ -111,6 +111,7 @@
     "fs-extra": "^9.0.0",
     "glob": "^7.1.2",
     "glob-gitignore": "^1.0.11",
+    "jest-sonar-reporter": "^2.0.0",
     "jsdom": "^16.0.0",
     "karma": "^5.0.1",
     "karma-browserstack-launcher": "~1.4.0",
