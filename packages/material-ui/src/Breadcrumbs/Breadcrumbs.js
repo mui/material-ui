@@ -62,16 +62,16 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(props, ref) {
 
   const [expanded, setExpanded] = React.useState(false);
 
+  const listRef = React.useRef(null);
   const renderItemsBeforeAndAfter = (allItems) => {
-    const handleClickExpand = (event) => {
+    const handleClickExpand = () => {
       setExpanded(true);
 
       // The clicked element received the focus but gets removed from the DOM.
       // Let's keep the focus in the component after expanding.
-      const focusable = event.currentTarget.parentNode.parentNode.querySelector(
-        'a[href],button,[tabindex]',
-      );
-
+      // Moving it the the <ol> or <nav> does not cause any announcement in NVDA.
+      // By moving it to some link/button at least we have some announcement.
+      const focusable = listRef.current.querySelector('a[href],button,[tabindex]');
       if (focusable) {
         focusable.focus();
       }
@@ -127,7 +127,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(props, ref) {
       className={clsx(classes.root, className)}
       {...other}
     >
-      <ol className={classes.ol}>
+      <ol className={classes.ol} ref={listRef}>
         {insertSeparators(
           expanded || (maxItems && allItems.length <= maxItems)
             ? allItems
