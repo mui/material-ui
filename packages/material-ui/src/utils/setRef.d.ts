@@ -11,6 +11,6 @@
  * @param ref a ref callback or ref object if anything falsy this is a no-op
  */
 export default function setRef<T>(
-  ref: React.RefObject<T> | ((instance: T | null) => void) | null | undefined,
+  ref: React.MutableRefObject<T | null> | ((instance: T | null) => void) | null | undefined,
   value: T | null
 ): void;
