@@ -8,6 +8,7 @@ import {
   act,
   createClientRender,
   fireEvent,
+  screen,
 } from 'test/utils';
 import { camelCase } from 'lodash/string';
 import Tooltip, { testReset } from './Tooltip';
@@ -233,6 +234,31 @@ describe('<Tooltip />', () => {
     // TODO: Unclear why not running triggers microtasks but runAll does not trigger microtasks
     // can be removed once Popper#update is sync
     clock.runAll();
+  });
+
+  it('is dismissable by pressing Escape', () => {
+    const transitionTimeout = 0;
+    render(
+      <Tooltip enterDelay={0} TransitionProps={{ timeout: transitionTimeout }} title="Movie quote">
+        <button autoFocus>Hello, Dave!</button>
+      </Tooltip>,
+    );
+
+    expect(screen.getByRole('tooltip')).not.toBeInaccessible();
+
+    act(() => {
+      fireEvent.keyDown(
+        // We don't care about the target. Any Escape should dismiss the tooltip
+        // eslint-disable-next-line material-ui/disallow-active-element-as-key-event-target
+        document.activeElement,
+        { key: 'Escape' },
+      );
+    });
+    act(() => {
+      clock.tick(transitionTimeout);
+    });
+
+    expect(screen.queryByRole('tooltip')).to.equal(null);
   });
 
   describe('touch screen', () => {

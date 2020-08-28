@@ -8,6 +8,13 @@ import { expect } from 'chai';
 const temporaryErrorCodesPath = path.join(os.tmpdir(), 'error-codes.json');
 const fixturePath = path.resolve(__dirname, './__fixtures__');
 
+function readOutputFixtureSync(fixture, file) {
+  // babel hardcodes the linefeed to \n
+  return fs
+    .readFileSync(path.join(fixturePath, fixture, file), { encoding: 'utf8' })
+    .replace(/\r?\n/g, '\n');
+}
+
 pluginTester({
   plugin,
   filename: __filename,
@@ -18,7 +25,7 @@ pluginTester({
         muiError: { errorCodesPath: path.join(fixturePath, 'literal', 'error-codes.json') },
       },
       fixture: path.join(fixturePath, 'literal', 'input.js'),
-      outputFixture: path.join(fixturePath, 'literal', 'output.js'),
+      output: readOutputFixtureSync('literal', 'output.js'),
     },
     {
       title: 'annotates missing error codes',
@@ -28,7 +35,7 @@ pluginTester({
         },
       },
       fixture: path.join(fixturePath, 'no-error-code-annotation', 'input.js'),
-      outputFixture: path.join(fixturePath, 'no-error-code-annotation', 'output.js'),
+      output: readOutputFixtureSync('no-error-code-annotation', 'output.js'),
     },
     {
       title: 'can throw on missing error codes',
@@ -53,7 +60,7 @@ pluginTester({
           missingError: 'write',
         },
       },
-      outputFixture: path.join(fixturePath, 'error-code-extraction', 'output.js'),
+      output: readOutputFixtureSync('error-code-extraction', 'output.js'),
       setup() {
         fs.copyFileSync(
           path.join(fixturePath, 'error-code-extraction', 'error-codes.before.json'),

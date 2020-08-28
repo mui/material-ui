@@ -419,6 +419,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
       onChange,
       textColor,
       value: childValue,
+      ...(childIndex === 1 && value === false && !child.props.tabIndex ? { tabIndex: 0 } : {}),
     });
   });
 

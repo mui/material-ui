@@ -1,6 +1,6 @@
 ---
 title: Сеть изображений, компонент React
-components: ImageList, ImageListTile, ImageListTileBar, ListSubheader, IconButton
+components: ImageList, ImageListItem, ImageListItemBar, ListSubheader, IconButton
 ---
 
 # Сеть изображений

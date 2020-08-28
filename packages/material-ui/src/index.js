@@ -153,11 +153,11 @@ export * from './IconButton';
 export { default as ImageList } from './ImageList';
 export * from './ImageList';
 
-export { default as ImageListTile } from './ImageListTile';
-export * from './ImageListTile';
+export { default as ImageListItem } from './ImageListItem';
+export * from './ImageListItem';
 
-export { default as ImageListTileBar } from './ImageListTileBar';
-export * from './ImageListTileBar';
+export { default as ImageListItemBar } from './ImageListItemBar';
+export * from './ImageListItemBar';
 
 export { default as Input } from './Input';
 export * from './Input';

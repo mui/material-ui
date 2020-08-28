@@ -1,6 +1,6 @@
 ---
 title: Grid List React component
-components: ImageList, ImageListTile, ImageListTileBar, ListSubheader, IconButton
+components: ImageList, ImageListItem, ImageListItemBar, ListSubheader, IconButton
 ---
 
 # Grid List
@@ -17,7 +17,7 @@ components: ImageList, ImageListTile, ImageListTileBar, ListSubheader, IconButto
 
 ## タイトルバー付きのGrid list
 
-この例は、 `ImageListTileBar` を使用して、各 `ImageListTile`オーバーレイを追加する方法を示しています。 オーバーレイには、 `title`, `subtitle` および副次的アクション例えば`IconButton`を含めることができます。
+この例は、 `ImageListItemBar` を使用して、各 `ImageListItem`オーバーレイを追加する方法を示しています。 オーバーレイには、 `title`, `subtitle` および副次的アクション例えば`IconButton`を含めることができます。
 
 {{"demo": "pages/components/image-list/TitlebarImageList.js", "hideEditButton": true}}
 

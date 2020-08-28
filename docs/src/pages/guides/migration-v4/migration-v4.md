@@ -328,22 +328,22 @@ For a smoother transition, the `adaptV4Theme` helper allows you to iteratively u
 -import GridListTile from '@material-ui/core/GridListTile';
 -import GridListTileBar from '@material-ui/core/GridListTileBar';
 +import ImageList from '@material-ui/core/ImageList';
-+import ImageListTile from '@material-ui/core/ImageListTile';
-+import ImageListTileBar from '@material-ui/core/ImageListTileBar';
++import ImageListItem from '@material-ui/core/ImageListItem';
++import ImageListItemBar from '@material-ui/core/ImageListItemBar';
 
 -<GridList>
 -  <GridListTile>
 +<ImageList>
-+  <ImageListTile>
++  <ImageListItem>
      <img src="file.jpg" alt="Image title" />
 -    <GridListTileBar
-+    <ImageListTileBar
++    <ImageListItemBar
        title="Title"
        subtitle="Subtitle"
      />
 -  </GridListTile>
 -</GridList>
-+  </ImageListTile>
++  </ImageListItem>
 +</ImageList>
 ```
 
