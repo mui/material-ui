@@ -592,7 +592,9 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     }
 
     // Cancel move in case some other element consumed a mouseup event and it was not fired.
-    if (nativeEvent.buttons === 0) {
+    if (nativeEvent.type === 'mousemove' && nativeEvent.buttons === 0) {
+      // eslint-disable-next-line @typescript-eslint/no-use-before-define
+      handleTouchEnd(nativeEvent);
       return;
     }
 
