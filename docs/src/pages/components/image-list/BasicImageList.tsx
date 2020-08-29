@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme: Theme) =>
       overflow: 'hidden',
       backgroundColor: theme.palette.background.paper,
     },
-    gridList: {
+    imageList: {
       width: 500,
       height: 450,
     },
@@ -43,7 +43,7 @@ export default function BasicImageList() {
 
   return (
     <div className={classes.root}>
-      <ImageList cellHeight={160} className={classes.gridList} cols={3}>
+      <ImageList cellHeight={160} className={classes.imageList} cols={3}>
         {itemData.map((item) => (
           <ImageListItem key={item.img} cols={item.cols || 1}>
             <img src={item.img} alt={item.title} />

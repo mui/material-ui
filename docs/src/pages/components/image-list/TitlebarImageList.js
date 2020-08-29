@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'hidden',
     backgroundColor: theme.palette.background.paper,
   },
-  gridList: {
+  imageList: {
     width: 500,
     height: 450,
   },
@@ -47,7 +47,7 @@ export default function TitlebarImageList() {
 
   return (
     <div className={classes.root}>
-      <ImageList cellHeight={180} className={classes.gridList}>
+      <ImageList cellHeight={180} className={classes.imageList}>
         <ImageListItem key="Subheader" cols={2} style={{ height: 'auto' }}>
           <ListSubheader component="div">December</ListSubheader>
         </ImageListItem>

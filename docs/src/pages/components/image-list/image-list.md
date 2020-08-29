@@ -5,7 +5,7 @@ components: ImageList, ImageListItem, ImageListItemBar
 
 # Image list
 
-<p class="description">Image lists display a collection of images in an organized grid.</p>
+<p class="description">Image lists display a collection of images in an organized image.</p>
 
 Image lists represent a collection of items in a repeated pattern. They help improve the visual comprehension of the content they hold.
 

@@ -23,7 +23,7 @@ Cet exemple illustre l'utilisation de `ImageListItemBar` pour ajouter une superp
 
 ## Grid List sur une ligne
 
-Cet exemple illustre une grid list défilante horizontale d'images. Les listes de grille défilant horizontalement sont déconseillées car le défilement interfère avec les habitudes de lecture, ce qui affecte la compréhension. Une exception notable est la liste d'images comportant une seule ligne, telle qu'une galerie, qui défile horizontalement.
+Cet exemple illustre une image list défilante horizontale d'images. Les listes de grille défilant horizontalement sont déconseillées car le défilement interfère avec les habitudes de lecture, ce qui affecte la compréhension. Une exception notable est la liste d'images comportant une seule ligne, telle qu'une galerie, qui défile horizontalement.
 
 {{"demo": "pages/components/image-list/SingleLineImageList.js", "hideEditButton": true}}
 

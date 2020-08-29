@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme: Theme) =>
       overflow: 'hidden',
       backgroundColor: theme.palette.background.paper,
     },
-    gridList: {
+    imageList: {
       flexWrap: 'nowrap',
       // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
       transform: 'translateZ(0)',
@@ -53,7 +53,7 @@ export default function SingleLineImageList() {
 
   return (
     <div className={classes.root}>
-      <ImageList className={classes.gridList} cols={2.5}>
+      <ImageList className={classes.imageList} cols={2.5}>
         {itemData.map((item) => (
           <ImageListItem key={item.img}>
             <img src={item.img} alt={item.title} />
