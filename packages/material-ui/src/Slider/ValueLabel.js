@@ -43,6 +43,7 @@ const styles = (theme) => ({
 /**
  * @ignore - internal component.
  */
+// TODO: convert to emotion
 function ValueLabel(props) {
   const { children, classes, className, open, value, valueLabelDisplay } = props;
 

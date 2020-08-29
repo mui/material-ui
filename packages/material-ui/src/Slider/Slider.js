@@ -2,16 +2,13 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
-import withStyles from '../styles/withStyles';
-import useTheme from '../styles/useTheme';
-import { fade, lighten, darken } from '../styles/colorManipulator';
 import useIsFocusVisible from '../utils/useIsFocusVisible';
 import ownerDocument from '../utils/ownerDocument';
 import useEventCallback from '../utils/useEventCallback';
 import useForkRef from '../utils/useForkRef';
 import capitalize from '../utils/capitalize';
 import useControlled from '../utils/useControlled';
-import ValueLabel from './ValueLabel';
+import ValueLabelComponent from './ValueLabel';
 
 function asc(a, b) {
   return a - b;
@@ -144,227 +141,40 @@ function doesSupportTouchActionNone() {
   return cachedSupportsTouchActionNone;
 }
 
-export const styles = (theme) => ({
-  /* Styles applied to the root element. */
-  root: {
-    height: 2,
-    width: '100%',
-    boxSizing: 'content-box',
-    padding: '13px 0',
-    display: 'inline-block',
-    position: 'relative',
-    cursor: 'pointer',
-    // Disable scroll capabilities.
-    touchAction: 'none',
-    color: theme.palette.primary.main,
-    WebkitTapHighlightColor: 'transparent',
-    '&$disabled': {
-      pointerEvents: 'none',
-      cursor: 'default',
-      color: theme.palette.grey[400],
-    },
-    '&$vertical': {
-      width: 2,
-      height: '100%',
-      padding: '0 13px',
-    },
-    // The primary input mechanism of the device includes a pointing device of limited accuracy.
-    '@media (pointer: coarse)': {
-      // Reach 42px touch target, about ~8mm on screen.
-      padding: '20px 0',
-      '&$vertical': {
-        padding: '0 20px',
-      },
-    },
-    '@media print': {
-      colorAdjust: 'exact',
-    },
-  },
-  /* Styles applied to the root element if `color="primary"`. */
-  colorPrimary: {
-    // TODO v5: move the style here
-  },
-  /* Styles applied to the root element if `color="secondary"`. */
-  colorSecondary: {
-    color: theme.palette.secondary.main,
-  },
-  /* Styles applied to the root element if `marks` is provided with at least one label. */
-  marked: {
-    marginBottom: 20,
-    '&$vertical': {
-      marginBottom: 'auto',
-      marginRight: 20,
-    },
-  },
-  /* Pseudo-class applied to the root element if `orientation="vertical"`. */
-  vertical: {},
-  /* Pseudo-class applied to the root and thumb element if `disabled={true}`. */
-  disabled: {},
-  /* Styles applied to the rail element. */
-  rail: {
-    display: 'block',
-    position: 'absolute',
-    width: '100%',
-    height: 2,
-    borderRadius: 1,
-    backgroundColor: 'currentColor',
-    opacity: 0.38,
-    '$vertical &': {
-      height: '100%',
-      width: 2,
-    },
-  },
-  /* Styles applied to the track element. */
-  track: {
-    display: 'block',
-    position: 'absolute',
-    height: 2,
-    borderRadius: 1,
-    backgroundColor: 'currentColor',
-    '$vertical &': {
-      width: 2,
-    },
-  },
-  /* Styles applied to the track element if `track={false}`. */
-  trackFalse: {
-    '& $track': {
-      display: 'none',
-    },
-  },
-  /* Styles applied to the track element if `track="inverted"`. */
-  trackInverted: {
-    '& $track': {
-      backgroundColor:
-        // Same logic as the LinearProgress track color
-        theme.palette.type === 'light'
-          ? lighten(theme.palette.primary.main, 0.62)
-          : darken(theme.palette.primary.main, 0.5),
-    },
-    '& $rail': {
-      opacity: 1,
-    },
-  },
-  /* Styles applied to the thumb element. */
-  thumb: {
-    position: 'absolute',
-    width: 12,
-    height: 12,
-    marginLeft: -6,
-    marginTop: -5,
-    boxSizing: 'border-box',
-    borderRadius: '50%',
-    outline: 0,
-    backgroundColor: 'currentColor',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    transition: theme.transitions.create(['box-shadow'], {
-      duration: theme.transitions.duration.shortest,
+const getUtilityClass = (name) => {
+  return `MuiSlider-${name}`;
+};
+
+const useSliderClasses = (props) => {
+  const { color, disabled, marked, orientation, track } = props;
+
+  const utilityClasses = {
+    root: clsx(getUtilityClass('root'), getUtilityClass(`color${capitalize(color)}`), {
+      [getUtilityClass('disabled')]: disabled,
+      [getUtilityClass('marked')]: marked,
+      [getUtilityClass('vertical')]: orientation === 'vertical',
+      [getUtilityClass('trackInverted')]: track === 'inverted',
+      [getUtilityClass('trackFalse')]: track === false,
     }),
-    '&::after': {
-      position: 'absolute',
-      content: '""',
-      borderRadius: '50%',
-      // reach 42px hit target (2 * 15 + thumb diameter)
-      left: -15,
-      top: -15,
-      right: -15,
-      bottom: -15,
-    },
-    '&$focusVisible,&:hover': {
-      boxShadow: `0px 0px 0px 8px ${fade(theme.palette.primary.main, 0.16)}`,
-      '@media (hover: none)': {
-        boxShadow: 'none',
-      },
-    },
-    '&$active': {
-      boxShadow: `0px 0px 0px 14px ${fade(theme.palette.primary.main, 0.16)}`,
-    },
-    '&$disabled': {
-      width: 8,
-      height: 8,
-      marginLeft: -4,
-      marginTop: -3,
-      '&:hover': {
-        boxShadow: 'none',
-      },
-    },
-    '$vertical &': {
-      marginLeft: -5,
-      marginBottom: -6,
-    },
-    '$vertical &$disabled': {
-      marginLeft: -3,
-      marginBottom: -4,
-    },
-  },
-  /* Styles applied to the thumb element if `color="primary"`. */
-  thumbColorPrimary: {
-    // TODO v5: move the style here
-  },
-  /* Styles applied to the thumb element if `color="secondary"`. */
-  thumbColorSecondary: {
-    '&$focusVisible,&:hover': {
-      boxShadow: `0px 0px 0px 8px ${fade(theme.palette.secondary.main, 0.16)}`,
-    },
-    '&$active': {
-      boxShadow: `0px 0px 0px 14px ${fade(theme.palette.secondary.main, 0.16)}`,
-    },
-  },
-  /* Pseudo-class applied to the thumb element if it's active. */
-  active: {},
-  /* Pseudo-class applied to the thumb element if keyboard focused. */
-  focusVisible: {},
-  /* Styles applied to the thumb label element. */
-  valueLabel: {
-    // IE 11 centering bug, to remove from the customization demos once no longer supported
-    left: 'calc(-50% - 4px)',
-  },
-  /* Styles applied to the mark element. */
-  mark: {
-    position: 'absolute',
-    width: 2,
-    height: 2,
-    borderRadius: 1,
-    backgroundColor: 'currentColor',
-  },
-  /* Styles applied to the mark element if active (depending on the value). */
-  markActive: {
-    backgroundColor: theme.palette.background.paper,
-    opacity: 0.8,
-  },
-  /* Styles applied to the mark label element. */
-  markLabel: {
-    ...theme.typography.body2,
-    color: theme.palette.text.secondary,
-    position: 'absolute',
-    top: 26,
-    transform: 'translateX(-50%)',
-    whiteSpace: 'nowrap',
-    '$vertical &': {
-      top: 'auto',
-      left: 26,
-      transform: 'translateY(50%)',
-    },
-    '@media (pointer: coarse)': {
-      top: 40,
-      '$vertical &': {
-        left: 31,
-      },
-    },
-  },
-  /* Styles applied to the mark label element if active (depending on the value). */
-  markLabelActive: {
-    color: theme.palette.text.primary,
-  },
-});
+    rail: getUtilityClass('rail'),
+    track: getUtilityClass('track'),
+    mark: getUtilityClass('mark'),
+    markLabel: getUtilityClass('markLabel'),
+    valueLabel: getUtilityClass('valueLabel'),
+    thumb: clsx(getUtilityClass('thumb'), getUtilityClass(`thumbColor${capitalize(color)}`), {
+      [getUtilityClass('disabled')]: disabled,
+    }),
+  };
+
+  return utilityClasses;
+};
 
 const Slider = React.forwardRef(function Slider(props, ref) {
   const {
     'aria-label': ariaLabel,
     'aria-labelledby': ariaLabelledby,
     'aria-valuetext': ariaValuetext,
-    classes,
+    classes = {},
     className,
     color = 'primary',
     component: Component = 'span',
@@ -382,15 +192,16 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     orientation = 'horizontal',
     scale = Identity,
     step = 1,
-    ThumbComponent = 'span',
     track = 'normal',
     value: valueProp,
-    ValueLabelComponent = ValueLabel,
     valueLabelDisplay = 'off',
     valueLabelFormat = Identity,
+    isRtl = false,
+    components = {},
+    componentsProps = {},
     ...other
   } = props;
-  const theme = useTheme();
+
   const touchId = React.useRef();
   // We can't use the :active browser pseudo-classes.
   // - The active state isn't triggered when clicking on the rail.
@@ -448,8 +259,6 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   const handleMouseLeave = useEventCallback(() => {
     setOpen(-1);
   });
-
-  const isRtl = theme.direction === 'rtl';
 
   const handleKeyDown = useEventCallback((event) => {
     const index = Number(event.currentTarget.getAttribute('data-index'));
@@ -707,26 +516,65 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     ...axisProps[axis].leap(trackLeap),
   };
 
+  const Root = components.root || 'span';
+  const rootProps = componentsProps.root || {};
+
+  const Rail = components.rail || 'span';
+  const railProps = componentsProps.rail || {};
+
+  const Track = components.track || 'span';
+  const trackProps = componentsProps.track || {};
+
+  const Thumb = components.thumb || 'span';
+  const thumbProps = componentsProps.thumb || {};
+
+  const ValueLabel = components.valueLabel || ValueLabelComponent;
+  const valueLabelProps = componentsProps.valueLabel || {};
+
+  const Mark = components.mark || 'span';
+  const markProps = componentsProps.mark || {};
+
+  const MarkLabel = components.markLabel || 'span';
+  const markLabelProps = componentsProps.markLabel || {};
+
+  // all props with defaults
+  // consider extracting to hook an reusing the lint rule for the varints
+  const stateAndProps = {
+    ...props,
+    color,
+    disabled,
+    max,
+    min,
+    orientation,
+    scale,
+    step,
+    track,
+    valueLabelDisplay,
+    valueLabelFormat,
+    isRtl,
+  };
+
+  const utilityClasses = useSliderClasses({
+    ...stateAndProps,
+    marked: marks.length > 0 && marks.some((mark) => mark.label),
+  });
+
   return (
-    <Component
+    <Root
       ref={handleRef}
-      className={clsx(
-        classes.root,
-        classes[`color${capitalize(color)}`],
-        {
-          [classes.disabled]: disabled,
-          [classes.marked]: marks.length > 0 && marks.some((mark) => mark.label),
-          [classes.vertical]: orientation === 'vertical',
-          [classes.trackInverted]: track === 'inverted',
-          [classes.trackFalse]: track === false,
-        },
-        className,
-      )}
+      className={clsx(className, classes.root, utilityClasses.root)}
       onMouseDown={handleMouseDown}
-      {...other}
+      marked={marks.length > 0 && marks.some((mark) => mark.label)}
+      {...stateAndProps}
+      {...rootProps}
     >
-      <span className={classes.rail} />
-      <span className={classes.track} style={trackStyle} />
+      <Rail {...stateAndProps} {...railProps} className={clsx(classes.rail, utilityClasses.rail)} />
+      <Track
+        {...stateAndProps}
+        {...trackProps}
+        className={clsx(classes.track, utilityClasses.track)}
+        style={trackStyle}
+      />
       <input value={values.join(',')} name={name} type="hidden" />
       {marks.map((mark, index) => {
         const percent = valueToPercent(mark.value, min, max);
@@ -749,24 +597,30 @@ const Slider = React.forwardRef(function Slider(props, ref) {
 
         return (
           <React.Fragment key={mark.value}>
-            <span
+            <Mark
               style={style}
               data-index={index}
-              className={clsx(classes.mark, {
-                [classes.markActive]: markActive,
+              {...stateAndProps}
+              {...markProps}
+              className={clsx(classes.mark, utilityClasses.mark, {
+                [getUtilityClass('markActive')]: markActive,
               })}
+              markActive={markActive}
             />
             {mark.label != null ? (
-              <span
+              <MarkLabel
                 aria-hidden
                 data-index={index}
                 style={style}
-                className={clsx(classes.markLabel, {
-                  [classes.markLabelActive]: markActive,
+                {...stateAndProps}
+                {...markLabelProps}
+                className={clsx(classes.mark, utilityClasses.markLabel, {
+                  [getUtilityClass('markLabelActive')]: markActive,
                 })}
+                markLabelActive={markActive}
               >
                 {mark.label}
-              </span>
+              </MarkLabel>
             ) : null}
           </React.Fragment>
         );
@@ -776,11 +630,11 @@ const Slider = React.forwardRef(function Slider(props, ref) {
         const style = axisProps[axis].offset(percent);
 
         return (
-          <ValueLabelComponent
+          <ValueLabel
             key={index}
             valueLabelFormat={valueLabelFormat}
             valueLabelDisplay={valueLabelDisplay}
-            className={classes.valueLabel}
+            className={clsx(classes.valueLabel, utilityClasses.valueLabel)}
             value={
               typeof valueLabelFormat === 'function'
                 ? valueLabelFormat(scale(value), index)
@@ -789,13 +643,18 @@ const Slider = React.forwardRef(function Slider(props, ref) {
             index={index}
             open={open === index || active === index || valueLabelDisplay === 'on'}
             disabled={disabled}
+            {...stateAndProps}
+            {...valueLabelProps}
           >
-            <ThumbComponent
-              className={clsx(classes.thumb, classes[`thumbColor${capitalize(color)}`], {
-                [classes.active]: active === index,
-                [classes.disabled]: disabled,
-                [classes.focusVisible]: focusVisible === index,
+            <Thumb
+              className={clsx(classes.thumb, utilityClasses.thumb, {
+                [getUtilityClass('active')]: active === index,
+                [getUtilityClass('focusVisible')]: focusVisible === index,
               })}
+              {...stateAndProps}
+              {...thumbProps}
+              active={active === index}
+              focusVisible={focusVisible === index}
               tabIndex={disabled ? null : 0}
               role="slider"
               style={style}
@@ -815,10 +674,10 @@ const Slider = React.forwardRef(function Slider(props, ref) {
               onMouseOver={handleMouseOver}
               onMouseLeave={handleMouseLeave}
             />
-          </ValueLabelComponent>
+          </ValueLabel>
         );
       })}
-    </Component>
+    </Root>
   );
 });
 
@@ -881,6 +740,19 @@ Slider.propTypes = {
    */
   component: PropTypes.elementType,
   /**
+   * The components used for each slot in the component.
+   * Either a string to use a HTML element or a component.
+   */
+  components: PropTypes.shape({
+    root: PropTypes.component,
+    rail: PropTypes.component,
+    track: PropTypes.component,
+    thumb: PropTypes.component,
+    valueLabel: PropTypes.component,
+    mark: PropTypes.component,
+    markLabel: PropTypes.component,
+  }),
+  /**
    * The default element value. Use when the component is not controlled.
    */
   defaultValue: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
@@ -903,6 +775,10 @@ Slider.propTypes = {
    * @returns {string}
    */
   getAriaValueText: PropTypes.func,
+  /**
+   * Indicates whether the theme context has rtl direction. It is set automatically.
+   */
+  isRtl: PropTypes.boolean,
   /**
    * Marks indicate predetermined values to which the user can move the slider.
    * If `true` the marks will be spaced according the value of the `step` prop.
@@ -1005,4 +881,4 @@ Slider.propTypes = {
   valueLabelFormat: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };
 
-export default withStyles(styles, { name: 'MuiSlider' })(Slider);
+export default Slider;
