@@ -5,7 +5,7 @@ import ImageListItem from '@material-ui/core/ImageListItem';
 import ImageListItemBar from '@material-ui/core/ImageListItemBar';
 import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
-import tileData from './tileData';
+import itemData from './itemData';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme: Theme) =>
     gridList: {
       width: 500,
       height: 450,
-      // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
+      // Promote the list into its own layer in Chrome. This cost memory, but helps keep FPS high.
       transform: 'translateZ(0)',
     },
     titleBar: {
@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme: Theme) =>
  * import image from 'path/to/image.jpg';
  * [etc...]
  *
- * const tileData = [
+ * const itemData = [
  *   {
  *     img: image,
  *     title: 'Image',
@@ -57,14 +57,14 @@ export default function AdvancedImageList() {
   return (
     <div className={classes.root}>
       <ImageList cellHeight={200} spacing={1} className={classes.gridList}>
-        {tileData.map((tile) => (
-          <ImageListItem key={tile.img} cols={tile.featured ? 2 : 1} rows={tile.featured ? 2 : 1}>
-            <img src={tile.img} alt={tile.title} />
+        {itemData.map((item) => (
+          <ImageListItem key={item.img} cols={item.featured ? 2 : 1} rows={item.featured ? 2 : 1}>
+            <img src={item.img} alt={item.title} />
             <ImageListItemBar
-              title={tile.title}
+              title={item.title}
               titlePosition="top"
               actionIcon={
-                <IconButton aria-label={`star ${tile.title}`} className={classes.icon}>
+                <IconButton aria-label={`star ${item.title}`} className={classes.icon}>
                   <StarBorderIcon />
                 </IconButton>
               }

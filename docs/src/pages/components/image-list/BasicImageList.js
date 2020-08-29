@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import ImageList from '@material-ui/core/ImageList';
 import ImageListItem from '@material-ui/core/ImageListItem';
-import tileData from './tileData';
+import itemData from './itemData';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
  * import image from 'path/to/image.jpg';
  * [etc...]
  *
- * const tileData = [
+ * const itemData = [
  *   {
  *     img: image,
  *     title: 'Image',
@@ -42,9 +42,9 @@ export default function BasicImageList() {
   return (
     <div className={classes.root}>
       <ImageList cellHeight={160} className={classes.gridList} cols={3}>
-        {tileData.map((tile) => (
-          <ImageListItem key={tile.img} cols={tile.cols || 1}>
-            <img src={tile.img} alt={tile.title} />
+        {itemData.map((item) => (
+          <ImageListItem key={item.img} cols={item.cols || 1}>
+            <img src={item.img} alt={item.title} />
           </ImageListItem>
         ))}
       </ImageList>

@@ -4,7 +4,7 @@ import { StandardProps } from '..';
 export interface ImageListItemBarProps extends StandardProps<{}, ImageListItemBarClassKey> {
   /**
    * An IconButton element to be used as secondary action target
-   * (primary action target is the tile itself).
+   * (primary action target is the item itself).
    */
   actionIcon?: React.ReactNode;
   /**
@@ -16,7 +16,7 @@ export interface ImageListItemBarProps extends StandardProps<{}, ImageListItemBa
    */
   subtitle?: React.ReactNode;
   /**
-   * Title to be displayed on tile.
+   * Title to be displayed on item.
    */
   title?: React.ReactNode;
   /**
