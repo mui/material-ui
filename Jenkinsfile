@@ -5,7 +5,7 @@ node {
    
   stage('Install dependencies') {
     bat "yarn install"
-    bat "yarn add -D mocha-sonar-reporter"
+    bat "yarn add -D -W mocha-sonar-reporter"
   }
    
   stage('Prettier') {
