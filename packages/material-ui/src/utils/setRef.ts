@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 /**
  * TODO v5: consider to make it private
  *
