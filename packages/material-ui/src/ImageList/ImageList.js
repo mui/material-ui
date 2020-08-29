@@ -36,14 +36,14 @@ const ImageList = React.forwardRef(function ImageList(props, ref) {
       if (window !== undefined && window.document.documentMode) {
         console.error(
           [
-            "Material-UI: ImageList v5+ no longer supports Internet Explorer.",
+            'Material-UI: ImageList v5+ no longer supports Internet Explorer.',
             'Use v4 of this component instead.',
           ].join('\n'),
         );
       }
     }
   }, []);
-  
+
   return (
     <Component
       className={clsx(classes.root, className)}
@@ -62,13 +62,13 @@ ImageList.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * Number of px for one cell height.
-   * You can set `'auto'` if you want to let the children determine the height.
+   * The height of one item in px.
+   * Set to `'auto'` to let the children determine the height.
    * @default 180
    */
   cellHeight: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
   /**
-   * Image Tiles that will be in Image List.
+   * Image list items that will be in the image list.
    */
   children: PropTypes /* @typescript-to-proptypes-ignore */.node.isRequired,
   /**

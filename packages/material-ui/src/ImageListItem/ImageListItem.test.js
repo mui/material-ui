@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy, useFakeTimers } from 'sinon';
 import { getClasses, createMount, describeConformance } from 'test/utils';
 import ImageListItem from './ImageListItem';
 
@@ -60,76 +59,6 @@ describe('<ImageListItem />', () => {
   describe('mount image', () => {
     it('should handle missing image', () => {
       mountMockImage(null);
-    });
-
-    it('should fit the height', () => {
-      const imgEl = {
-        complete: true,
-        width: 16,
-        height: 9,
-        parentElement: { offsetWidth: 4, offsetHeight: 3 },
-        classList: { remove: spy(), add: spy() },
-        removeEventListener: () => {},
-      };
-      mountMockImage(imgEl);
-      expect(imgEl.classList.remove.callCount).to.equal(1);
-      expect(imgEl.classList.remove.args[0][0]).to.equal(classes.imgFullWidth);
-      expect(imgEl.classList.add.callCount).to.equal(1);
-      expect(imgEl.classList.add.args[0][0]).to.equal(classes.imgFullHeight);
-    });
-
-    it('should fit the width', () => {
-      const imgEl = {
-        complete: true,
-        width: 4,
-        height: 3,
-        parentElement: { offsetWidth: 16, offsetHeight: 9 },
-        classList: { remove: spy(), add: spy() },
-        removeEventListener: () => {},
-      };
-      mountMockImage(imgEl);
-      expect(imgEl.classList.remove.callCount).to.equal(1);
-      expect(imgEl.classList.remove.args[0][0]).to.equal(classes.imgFullHeight);
-      expect(imgEl.classList.add.callCount).to.equal(1);
-      expect(imgEl.classList.add.args[0][0]).to.equal(classes.imgFullWidth);
-    });
-  });
-
-  describe('resize', () => {
-    let clock;
-
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-
-    afterEach(() => {
-      clock.restore();
-    });
-
-    it('should handle the resize event', () => {
-      const imgEl = {
-        complete: true,
-        width: 4,
-        height: 3,
-        parentElement: { offsetWidth: 16, offsetHeight: 9 },
-        classList: { remove: spy(), add: spy() },
-        removeEventListener: () => {},
-      };
-      mountMockImage(imgEl);
-      expect(imgEl.classList.remove.callCount).to.equal(1);
-      expect(imgEl.classList.remove.args[0][0]).to.equal(classes.imgFullHeight);
-      expect(imgEl.classList.add.callCount).to.equal(1);
-      expect(imgEl.classList.add.args[0][0]).to.equal(classes.imgFullWidth);
-
-      window.dispatchEvent(new window.Event('resize', {}));
-      expect(imgEl.classList.remove.callCount).to.equal(1);
-      clock.tick(166);
-
-      expect(imgEl.classList.remove.callCount).to.equal(2);
-      expect(imgEl.classList.remove.callCount).to.equal(2);
-      expect(imgEl.classList.remove.args[1][0]).to.equal(classes.imgFullHeight);
-      expect(imgEl.classList.add.callCount).to.equal(2);
-      expect(imgEl.classList.add.args[1][0]).to.equal(classes.imgFullWidth);
     });
   });
 });

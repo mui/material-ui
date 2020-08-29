@@ -32,7 +32,7 @@ const ImageListItem = React.forwardRef(function ImageListItem(props, ref) {
     ...other
   } = props;
 
-  const { cellHeight, spacing } = React.useContext(ImageListContext);
+  const { cellHeight = 'auto', spacing } = React.useContext(ImageListContext);
 
   return (
     <Component
@@ -40,8 +40,8 @@ const ImageListItem = React.forwardRef(function ImageListItem(props, ref) {
       ref={ref}
       style={{
         height: cellHeight === 'auto' ? 'auto' : cellHeight * rows + spacing,
-        'grid-column-end': `span ${cols}`,
-        'grid-row-end': `span ${rows}`,
+        gridColumnEnd: `span ${cols}`,
+        gridRowEnd: `span ${rows}`,
         ...style,
       }}
       {...other}
