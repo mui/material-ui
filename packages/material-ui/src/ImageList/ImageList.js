@@ -30,6 +30,20 @@ const ImageList = React.forwardRef(function ImageList(props, ref) {
 
   const contextValue = React.useMemo(() => ({ cellHeight, spacing }), [cellHeight, spacing]);
 
+  React.useEffect(() => {
+    if (process.env.NODE_ENV !== 'production') {
+      // Detect Internet Explorer 8+
+      if (window !== undefined && window.document.documentMode) {
+        console.error(
+          [
+            "Material-UI: ImageList v5+ no longer supports Internet Explorer.",
+            'Use v4 of this component instead.',
+          ].join('\n'),
+        );
+      }
+    }
+  }, []);
+  
   return (
     <Component
       className={clsx(classes.root, className)}
