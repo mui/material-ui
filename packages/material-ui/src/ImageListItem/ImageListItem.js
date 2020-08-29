@@ -108,7 +108,7 @@ ImageListItem.propTypes = {
    * @default 1
    */
   rows: PropTypes.number,
-  /*
+  /**
    * @ignore
    */
   style: PropTypes.object,
