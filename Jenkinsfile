@@ -5,7 +5,7 @@ node {
    
   stage('Install dependencies') {
     bat "yarn install"
-    bat "yarn add -D mocha-sonarqube-reporter"
+    bat "yarn add -D mocha-sonar-reporter"
   }
    
   stage('Prettier') {
@@ -20,7 +20,7 @@ node {
    
   stage('Testing') {
     try {
-      bat "yarn test:coverage --reporter mocha-sonarqube-reporter"
+      bat "yarn test:coverage mocha-sonar-reporter"
     } catch(err) {
       echo "${err}"
     }
