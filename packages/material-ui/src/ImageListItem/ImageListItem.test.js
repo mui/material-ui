@@ -20,7 +20,7 @@ describe('<ImageListItem />', () => {
     testComponentPropWith: 'div',
   }));
 
-  const tileData = {
+  const itemData = {
     img: 'images/image-list/00-52-29-429_640.jpg',
     title: 'Breakfast',
     author: 'jill111',
@@ -28,7 +28,7 @@ describe('<ImageListItem />', () => {
 
   describe('prop: children', () => {
     it('should render children by default', () => {
-      const children = <img src={tileData.img} alt="foo" />;
+      const children = <img src={itemData.img} alt="foo" />;
       const wrapper = mount(<ImageListItem>{children}</ImageListItem>);
 
       expect(wrapper.containsMatchingElement(children)).to.equal(true);

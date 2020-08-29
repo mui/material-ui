@@ -26,7 +26,7 @@ export interface ImageListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      */
     cols?: number;
     /**
-     * Number of px for the spacing between tiles.
+     * Number of px for the spacing between items.
      * @default 4
      */
     spacing?: number;

@@ -21,7 +21,7 @@ describe('<ImageListItemBar />', () => {
     skip: ['componentProp'],
   }));
 
-  const tileData = {
+  const itemData = {
     img: 'images/image-list/00-52-29-429_640.jpg',
     title: 'Breakfast',
     author: 'jill111',
@@ -29,9 +29,9 @@ describe('<ImageListItemBar />', () => {
 
   describe('prop: title', () => {
     it('should renders title', () => {
-      const wrapper = shallow(<ImageListItemBar title={tileData.title} />);
+      const wrapper = shallow(<ImageListItemBar title={itemData.title} />);
 
-      expect(wrapper.children('div').text()).to.equal(tileData.title);
+      expect(wrapper.children('div').text()).to.equal(itemData.title);
     });
   });
 });

@@ -124,7 +124,7 @@ ImageListItemBar.propTypes = {
   // ----------------------------------------------------------------------
   /**
    * An IconButton element to be used as secondary action target
-   * (primary action target is the tile itself).
+   * (primary action target is the item itself).
    */
   actionIcon: PropTypes.node,
   /**
@@ -149,7 +149,7 @@ ImageListItemBar.propTypes = {
    */
   subtitle: PropTypes.node,
   /**
-   * Title to be displayed on tile.
+   * Title to be displayed on item.
    */
   title: PropTypes.node,
   /**
