@@ -28,11 +28,11 @@ The `MuiImageListItemBar` name can be used for providing [default props](/custom
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">actionIcon</span> | <span class="prop-type">node</span> |  | An IconButton element to be used as secondary action target (primary action target is the tile itself). |
+| <span class="prop-name">actionIcon</span> | <span class="prop-type">node</span> |  | An IconButton element to be used as secondary action target (primary action target is the item itself). |
 | <span class="prop-name">actionPosition</span> | <span class="prop-type">'left'<br>&#124;&nbsp;'right'</span> | <span class="prop-default">'right'</span> | Position of secondary action IconButton. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">subtitle</span> | <span class="prop-type">node</span> |  | String or element serving as subtitle (support text). |
-| <span class="prop-name">title</span> | <span class="prop-type">node</span> |  | Title to be displayed on tile. |
+| <span class="prop-name">title</span> | <span class="prop-type">node</span> |  | Title to be displayed on item. |
 | <span class="prop-name">titlePosition</span> | <span class="prop-type">'bottom'<br>&#124;&nbsp;'top'</span> | <span class="prop-default">'bottom'</span> | Position of the title bar. |
 
 The `ref` is forwarded to the root element.

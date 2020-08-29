@@ -28,12 +28,12 @@ The `MuiImageList` name can be used for providing [default props](/customization
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">cellHeight</span> | <span class="prop-type">'auto'<br>&#124;&nbsp;number</span> | <span class="prop-default">180</span> | Number of px for one cell height. You can set `'auto'` if you want to let the children determine the height. |
-| <span class="prop-name required">children<abbr title="required">*</abbr></span> | <span class="prop-type">node</span> |  | Image Tiles that will be in Image List. |
+| <span class="prop-name">cellHeight</span> | <span class="prop-type">'auto'<br>&#124;&nbsp;number</span> | <span class="prop-default">180</span> | The height of one cell in px. Set `to 'auto'` to let the children determine the height. |
+| <span class="prop-name required">children<abbr title="required">*</abbr></span> | <span class="prop-type">node</span> |  | Image list items that will be in the image list. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">cols</span> | <span class="prop-type">number</span> | <span class="prop-default">2</span> | Number of columns. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'ul'</span> | The component used for the root node. Either a string to use a HTML element or a component. |
-| <span class="prop-name">spacing</span> | <span class="prop-type">number</span> | <span class="prop-default">4</span> | Number of px for the spacing between tiles. |
+| <span class="prop-name">spacing</span> | <span class="prop-type">number</span> | <span class="prop-default">4</span> | Number of px for the spacing between items. |
 
 The `ref` is forwarded to the root element.
 

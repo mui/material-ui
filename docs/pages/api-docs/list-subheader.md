@@ -61,6 +61,5 @@ If that's not sufficient, you can check the [implementation of the component](ht
 
 ## Demos
 
-- [Image List](/components/image-list/)
 - [Lists](/components/lists/)
 
