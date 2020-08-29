@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme: Theme) =>
  * import image from 'path/to/image.jpg';
  * [etc...]
  *
- * const ItemData = [
+ * const itemData = [
  *   {
  *     img: image,
  *     title: 'Image',
