@@ -1,4 +1,4 @@
-const tileData = [
+const itemData = [
   {
     img: '/static/images/image-list/breakfast.jpg',
     title: 'Breakfast',
@@ -66,4 +66,4 @@ const tileData = [
   },
 ];
 
-export default tileData;
+export default itemData;

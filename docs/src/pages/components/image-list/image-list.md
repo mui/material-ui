@@ -28,8 +28,8 @@ The overlay can accommodate a `title`, `subtitle` and secondary action - in this
 
 ## Advanced image list
 
-This example demonstrates "featured" tiles, using the `rows` and `cols` props to adjust the size of the tile, and the `padding` prop to adjust the spacing.
-The tiles have a customized titlebar, positioned at the top and with a custom gradient `titleBackground`.
+This example demonstrates "featured" items, using the `rows` and `cols` props to adjust the size of the item, and the `padding` prop to adjust the spacing.
+The items have a customized titlebar, positioned at the top and with a custom gradient `titleBackground`.
 The secondary action `IconButton` is positioned on the left.
 
 {{"demo": "pages/components/image-list/AdvancedImageList.js", "hideEditButton": true, "defaultCodeOpen": false}}

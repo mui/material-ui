@@ -5,7 +5,7 @@ import ImageListItem from '@material-ui/core/ImageListItem';
 import ImageListItemBar from '@material-ui/core/ImageListItemBar';
 import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
-import tileData from './tileData';
+import itemData from './itemData';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
  * import image from 'path/to/image.jpg';
  * [etc...]
  *
- * const tileData = [
+ * const itemData = [
  *   {
  *     img: image,
  *     title: 'Image',
@@ -55,19 +55,19 @@ export default function AdvancedImageList() {
   return (
     <div className={classes.root}>
       <ImageList cellHeight={200} spacing={1} className={classes.gridList}>
-        {tileData.map((tile) => (
+        {itemData.map((item) => (
           <ImageListItem
-            key={tile.img}
-            cols={tile.featured ? 2 : 1}
-            rows={tile.featured ? 2 : 1}
+            key={item.img}
+            cols={item.featured ? 2 : 1}
+            rows={item.featured ? 2 : 1}
           >
-            <img src={tile.img} alt={tile.title} />
+            <img src={item.img} alt={item.title} />
             <ImageListItemBar
-              title={tile.title}
+              title={item.title}
               titlePosition="top"
               actionIcon={
                 <IconButton
-                  aria-label={`star ${tile.title}`}
+                  aria-label={`star ${item.title}`}
                   className={classes.icon}
                 >
                   <StarBorderIcon />
