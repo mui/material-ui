@@ -12,20 +12,20 @@ export const styles = {
     flexShrink: 0,
   },
   /* Styles applied to the `div` element that wraps the children. */
-  tile: {
+  item: {
     position: 'relative',
     display: 'block', // In case it's not rendered with a div.
     height: '100%',
     overflow: 'hidden',
   },
-  /* Styles applied to an `img` element child, if needed to ensure it covers the tile. */
+  /* Styles applied to an `img` element child, if needed to ensure it covers the item. */
   imgFullHeight: {
     height: '100%',
     transform: 'translateX(-50%)',
     position: 'relative',
     left: '50%',
   },
-  /* Styles applied to an `img` element child, if needed to ensure it covers the tile. */
+  /* Styles applied to an `img` element child, if needed to ensure it covers the item. */
   imgFullWidth: {
     width: '100%',
     position: 'relative',
@@ -99,7 +99,7 @@ const ImageListItem = React.forwardRef(function ImageListItem(props, ref) {
 
   return (
     <Component className={clsx(classes.root, className)} ref={ref} {...other}>
-      <div className={classes.tile}>
+      <div className={classes.item}>
         {React.Children.map(children, (child) => {
           if (!React.isValidElement(child)) {
             return null;

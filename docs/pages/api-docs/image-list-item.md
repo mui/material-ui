@@ -40,9 +40,9 @@ Any other props supplied will be provided to the root element (native element).
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
 | <span class="prop-name">root</span> | <span class="prop-name">.MuiImageListItem-root</span> | Styles applied to the root element.
-| <span class="prop-name">tile</span> | <span class="prop-name">.MuiImageListItem-tile</span> | Styles applied to the `div` element that wraps the children.
-| <span class="prop-name">imgFullHeight</span> | <span class="prop-name">.MuiImageListItem-imgFullHeight</span> | Styles applied to an `img` element child, if needed to ensure it covers the tile.
-| <span class="prop-name">imgFullWidth</span> | <span class="prop-name">.MuiImageListItem-imgFullWidth</span> | Styles applied to an `img` element child, if needed to ensure it covers the tile.
+| <span class="prop-name">item</span> | <span class="prop-name">.MuiImageListItem-item</span> | Styles applied to the `div` element that wraps the children.
+| <span class="prop-name">imgFullHeight</span> | <span class="prop-name">.MuiImageListItem-imgFullHeight</span> | Styles applied to an `img` element child, if needed to ensure it covers the item.
+| <span class="prop-name">imgFullWidth</span> | <span class="prop-name">.MuiImageListItem-imgFullWidth</span> | Styles applied to an `img` element child, if needed to ensure it covers the item.
 
 You can override the style of the component thanks to one of these customization points:
 

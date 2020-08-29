@@ -6,7 +6,7 @@ import describeConformance from '../test-utils/describeConformance';
 import ImageList from './ImageList';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 
-const tilesData = [
+const itemsData = [
   {
     img: 'images/image-list/00-52-29-429_640.jpg',
     title: 'Breakfast',
@@ -46,60 +46,60 @@ describe('<ImageList />', () => {
     const cellHeight = 250;
     const wrapper = shallow(
       <ImageList cellHeight={cellHeight}>
-        {tilesData.map((tile) => (
+        {itemsData.map((item) => (
           <span
-            key={tile.img}
-            className="image-tile"
-            title={tile.title}
-            subtitle={<span>by: {tile.author}</span>}
+            key={item.img}
+            className="image-item"
+            title={item.title}
+            subtitle={<span>by: {item.author}</span>}
           >
-            <img src={tile.img} alt="foo" />
+            <img src={item.img} alt="foo" />
           </span>
         ))}
       </ImageList>,
     );
 
-    expect(wrapper.find('.image-tile').length).to.equal(2);
+    expect(wrapper.find('.image-item').length).to.equal(2);
     expect(wrapper.children().at(0).props().style.height).to.equal(cellHeight + 4);
   });
 
   it('renders children by default', () => {
     const wrapper = shallow(
       <ImageList>
-        {tilesData.map((tile) => (
+        {itemsData.map((item) => (
           <span
-            key={tile.img}
-            className="image-tile"
-            title={tile.title}
-            subtitle={<span>by: {tile.author}</span>}
+            key={item.img}
+            className="image-item"
+            title={item.title}
+            subtitle={<span>by: {item.author}</span>}
           >
-            <img src={tile.img} alt="foo" />
+            <img src={item.img} alt="foo" />
           </span>
         ))}
         {false && <span>this is a null child</span>}
       </ImageList>,
     );
 
-    expect(wrapper.find('.image-tile').length).to.equal(2);
+    expect(wrapper.find('.image-item').length).to.equal(2);
   });
 
   it('renders children and change cols', () => {
     const wrapper = shallow(
       <ImageList cols={4}>
-        {tilesData.map((tile) => (
+        {itemsData.map((item) => (
           <span
-            key={tile.img}
-            className="image-tile"
-            title={tile.title}
-            subtitle={<span>by: {tile.author}</span>}
+            key={item.img}
+            className="image-item"
+            title={item.title}
+            subtitle={<span>by: {item.author}</span>}
           >
-            <img src={tile.img} alt="foo" />
+            <img src={item.img} alt="foo" />
           </span>
         ))}
       </ImageList>,
     );
 
-    expect(wrapper.find('.image-tile').length).to.equal(2);
+    expect(wrapper.find('.image-item').length).to.equal(2);
     expect(wrapper.children().at(0).props().style.width).to.equal('25%');
   });
 
@@ -107,20 +107,20 @@ describe('<ImageList />', () => {
     const spacing = 10;
     const wrapper = shallow(
       <ImageList spacing={spacing}>
-        {tilesData.map((tile) => (
+        {itemsData.map((item) => (
           <span
-            key={tile.img}
-            className="image-tile"
-            title={tile.title}
-            subtitle={<span>by: {tile.author}</span>}
+            key={item.img}
+            className="image-item"
+            title={item.title}
+            subtitle={<span>by: {item.author}</span>}
           >
-            <img src={tile.img} alt="foo" />
+            <img src={item.img} alt="foo" />
           </span>
         ))}
       </ImageList>,
     );
 
-    expect(wrapper.find('.image-tile').length).to.equal(2);
+    expect(wrapper.find('.image-item').length).to.equal(2);
     expect(wrapper.children().at(0).props().style.padding).to.equal(spacing / 2);
   });
 
@@ -128,20 +128,20 @@ describe('<ImageList />', () => {
     const style = { backgroundColor: 'red' };
     const wrapper = shallow(
       <ImageList style={style}>
-        {tilesData.map((tile) => (
+        {itemsData.map((item) => (
           <span
-            key={tile.img}
-            className="image-tile"
-            title={tile.title}
-            subtitle={<span>by: {tile.author}</span>}
+            key={item.img}
+            className="image-item"
+            title={item.title}
+            subtitle={<span>by: {item.author}</span>}
           >
-            <img src={tile.img} alt="foo" />
+            <img src={item.img} alt="foo" />
           </span>
         ))}
       </ImageList>,
     );
 
-    expect(wrapper.find('.image-tile').length).to.equal(2);
+    expect(wrapper.find('.image-item').length).to.equal(2);
     expect(wrapper.props().style.backgroundColor).to.equal(style.backgroundColor);
   });
 
