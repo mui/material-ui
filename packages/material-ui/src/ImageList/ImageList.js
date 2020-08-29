@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';

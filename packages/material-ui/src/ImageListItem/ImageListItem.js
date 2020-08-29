@@ -1,10 +1,9 @@
 import * as React from 'react';
+import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import debounce from '../utils/debounce';
 import withStyles from '../styles/withStyles';
 import isMuiElement from '../utils/isMuiElement';
-import { ownerWindow } from '../utils';
 import ImageListContext from '../ImageList/ImageListContext';
 
 export const styles = {
@@ -51,11 +50,24 @@ const ImageListItem = React.forwardRef(function ImageListItem(props, ref) {
         if (!React.isValidElement(child)) {
           return null;
         }
+
+        if (process.env.NODE_ENV !== 'production') {
+          if (isFragment(child)) {
+            console.error(
+              [
+                "Material-UI: The ImageListItem component doesn't accept a Fragment as a child.",
+                'Consider providing an array instead.',
+              ].join('\n'),
+            );
+          }
+        }
+
         if (child.type === 'img' || isMuiElement(child, ['Image'])) {
           return React.cloneElement(child, {
             className: classes.img,
           });
         }
+
         return child;
       })}
     </Component>
@@ -96,6 +108,10 @@ ImageListItem.propTypes = {
    * @default 1
    */
   rows: PropTypes.number,
+  /*
+   * @ignore
+   */
+  style: PropTypes.object,
 };
 
 export default withStyles(styles, { name: 'MuiImageListItem' })(ImageListItem);
