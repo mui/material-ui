@@ -81,14 +81,9 @@ function TextField(props) {
     ...InputPropsOther
   } = InputProps;
 
-  const disableUnderline = {
-    disableUnderline: true,
-  };
-
   return (
     <MuiTextField
       InputProps={{
-        ...disableUnderline,
         classes: {
           root: classes.root,
           input: clsx(
@@ -102,6 +97,7 @@ function TextField(props) {
           disabled: classes.disabled,
           ...InputPropsClassesOther,
         },
+        disableUnderline: true,
         ...InputPropsOther,
       }}
       InputLabelProps={{
