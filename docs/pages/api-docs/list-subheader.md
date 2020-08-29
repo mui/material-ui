@@ -61,6 +61,5 @@ If that's not sufficient, you can check the [implementation of the component](ht
 
 ## Demos
 
-- [Grid List](/components/grid-list/)
 - [Lists](/components/lists/)
 

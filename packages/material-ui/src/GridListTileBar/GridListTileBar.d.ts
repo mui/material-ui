@@ -43,10 +43,6 @@ export type GridListTileBarClassKey =
  *
  * You should use `import { ImageListTileBar } from '@material-ui/core'`
  * or `import ImageListTileBar from '@material-ui/core/ImageListTileBar'`.
- * Demos:
- *
- * - [Grid List](https://material-ui.com/components/grid-list/)
- *
  * API:
  *
  * - [GridListTileBar API](https://material-ui.com/api/grid-list-tile-bar/)

@@ -15,10 +15,6 @@ export interface GridListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
  *
  * You should use `import { ImageList } from '@material-ui/core'`
  * or `import ImageList from '@material-ui/core/ImageList'`.
- * Demos:
- *
- * - [Grid List](https://material-ui.com/components/grid-list/)
- *
  * API:
  *
  * - [GridList API](https://material-ui.com/api/grid-list/)
