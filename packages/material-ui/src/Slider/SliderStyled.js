@@ -225,31 +225,31 @@ const Slider = React.forwardRef(function Slider(props, ref) {
       }}
       componentsProps={{
         root: {
-          as: props.components.root,
+          as: components.root,
           ...(componentsProps.root || {}),
         },
         rail: {
-          as: props.components.rail,
+          as: components.rail,
           ...(componentsProps.rail || {}),
         },
         track: {
-          as: props.components.track,
+          as: components.track,
           ...(componentsProps.track || {}),
         },
         thumb: {
-          as: props.components.thumb,
+          as: components.thumb,
           ...(componentsProps.thumb || {}),
         },
         valueLabel: {
-          as: props.components.valueLabel,
+          as: components.valueLabel,
           ...(componentsProps.valueLabel || {}),
         },
         mark: {
-          as: props.components.mark,
+          as: components.mark,
           ...(componentsProps.mark || {}),
         },
         markLabel: {
-          as: props.components.markLabel,
+          as: components.markLabel,
           ...(componentsProps.markLabel || {}),
         },
       }}
