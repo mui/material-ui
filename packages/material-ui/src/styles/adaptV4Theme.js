@@ -1,3 +1,6 @@
+import createBreakpoints from './createBreakpoints';
+import createSpacing from './createSpacing';
+
 export default function adaptV4Theme(inputTheme) {
   if (process.env.NODE_ENV !== 'production') {
     console.warn(
@@ -13,6 +16,7 @@ export default function adaptV4Theme(inputTheme) {
     defaultProps = {},
     styleOverrides = {},
     overrides = {},
+    mixins = {},
     ...other
   } = inputTheme;
   const theme = {
@@ -45,6 +49,26 @@ export default function adaptV4Theme(inputTheme) {
     componentValue.styleOverrides = overrides[component];
     theme.components[component] = componentValue;
   });
+
+  // theme.mixins.gutters
+  const breakpoints = createBreakpoints(inputTheme.breakpoints || {});
+  const spacing = createSpacing(inputTheme.spacing);
+
+  theme.mixins = {
+    gutters: (styles = {}) => {
+      return {
+        paddingLeft: spacing(2),
+        paddingRight: spacing(2),
+        ...styles,
+        [breakpoints.up('sm')]: {
+          paddingLeft: spacing(3),
+          paddingRight: spacing(3),
+          ...styles[breakpoints.up('sm')],
+        },
+      };
+    },
+    ...mixins,
+  };
 
   return theme;
 }
