@@ -5,6 +5,7 @@ node {
    
   stage('Install dependencies') {
     bat "yarn install"
+    bat "yarn add -D jest-sonar-reporter"
   }
    
   stage('Prettier') {
