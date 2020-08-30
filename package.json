@@ -150,7 +150,7 @@
     "webpack": "^4.41.0",
     "webpack-cli": "^3.3.9",
     "yargs": "^15.2.0",
-    "yarn-deduplicate": "^2.0.0"
+    "yarn-deduplicate": "^3.0.0"
   },
   "resolutions": {
     "**/@babel/core": "^7.10.2",
