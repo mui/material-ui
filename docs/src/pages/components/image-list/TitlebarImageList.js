@@ -10,13 +10,6 @@ import itemData from './itemData';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    overflow: 'hidden',
-    backgroundColor: theme.palette.background.paper,
-  },
-  imageList: {
     width: 500,
     height: 450,
   },
@@ -46,29 +39,27 @@ export default function TitlebarImageList() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <ImageList className={classes.imageList}>
-        <ImageListItem key="Subheader" cols={2} style={{ height: 'auto' }}>
-          <ListSubheader component="div">December</ListSubheader>
+    <ImageList className={classes.root}>
+      <ImageListItem key="Subheader" cols={2}>
+        <ListSubheader component="div">December</ListSubheader>
+      </ImageListItem>
+      {itemData.map((item) => (
+        <ImageListItem key={item.img}>
+          <img src={item.img} alt={item.title} />
+          <ImageListItemBar
+            title={item.title}
+            subtitle={<span>by: {item.author}</span>}
+            actionIcon={
+              <IconButton
+                aria-label={`info about ${item.title}`}
+                className={classes.icon}
+              >
+                <InfoIcon />
+              </IconButton>
+            }
+          />
         </ImageListItem>
-        {itemData.map((item) => (
-          <ImageListItem key={item.img}>
-            <img src={item.img} alt={item.title} />
-            <ImageListItemBar
-              title={item.title}
-              subtitle={<span>by: {item.author}</span>}
-              actionIcon={
-                <IconButton
-                  aria-label={`info about ${item.title}`}
-                  className={classes.icon}
-                >
-                  <InfoIcon />
-                </IconButton>
-              }
-            />
-          </ImageListItem>
-        ))}
-      </ImageList>
-    </div>
+      ))}
+    </ImageList>
   );
 }

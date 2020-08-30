@@ -6,13 +6,6 @@ import itemData from './itemData';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    overflow: 'hidden',
-    backgroundColor: theme.palette.background.paper,
-  },
-  imageList: {
     width: 500,
     height: 450,
   },
@@ -36,18 +29,16 @@ export default function QuiltedImageList() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <ImageList rowHeight={121} className={classes.imageList} cols={4}>
-        {itemData.map((item) => (
-          <ImageListItem
-            key={item.img}
-            cols={item.cols || 1}
-            rows={item.rows || 1}
-          >
-            <img src={item.img} alt={item.title} />
-          </ImageListItem>
-        ))}
-      </ImageList>
-    </div>
+    <ImageList cols={4} rowHeight={121} className={classes.root}>
+      {itemData.map((item) => (
+        <ImageListItem
+          key={item.img}
+          cols={item.cols || 1}
+          rows={item.rows || 1}
+        >
+          <img src={item.img} alt={item.title} />
+        </ImageListItem>
+      ))}
+    </ImageList>
   );
 }

@@ -10,13 +10,6 @@ import itemData from './itemData';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      display: 'flex',
-      flexWrap: 'wrap',
-      justifyContent: 'space-around',
-      overflow: 'hidden',
-      backgroundColor: theme.palette.background.paper,
-    },
-    imageList: {
       width: 500,
       height: 450,
       // Promote the list into its own layer in Chrome. This costs memory, but helps keeping high FPS.
@@ -41,46 +34,42 @@ const useStyles = makeStyles((theme: Theme) =>
  *
  * const itemData = [
  *   {
- *     img: image,
+ *     img: 'image-path',
  *     title: 'Image',
  *     author: 'author',
  *     featured: true,
  *   },
- *   {
- *     [etc...]
- *   },
+ *   { etc... },
  * ];
  */
 export default function AdvancedImageList() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <ImageList rowHeight={200} spacing={1} className={classes.imageList}>
-        {itemData.map((item) => (
-          <ImageListItem
-            key={item.img}
-            cols={item.featured ? 2 : 1}
-            rows={item.featured ? 2 : 1}
-          >
-            <img src={item.img} alt={item.title} />
-            <ImageListItemBar
-              title={item.title}
-              titlePosition="top"
-              actionIcon={
-                <IconButton
-                  aria-label={`star ${item.title}`}
-                  className={classes.icon}
-                >
-                  <StarBorderIcon />
-                </IconButton>
-              }
-              actionPosition="left"
-              className={classes.titleBar}
-            />
-          </ImageListItem>
-        ))}
-      </ImageList>
-    </div>
+    <ImageList rowHeight={200} spacing={1} className={classes.root}>
+      {itemData.map((item) => (
+        <ImageListItem
+          key={item.img}
+          cols={item.featured ? 2 : 1}
+          rows={item.featured ? 2 : 1}
+        >
+          <img src={item.img} alt={item.title} />
+          <ImageListItemBar
+            title={item.title}
+            titlePosition="top"
+            actionIcon={
+              <IconButton
+                aria-label={`star ${item.title}`}
+                className={classes.icon}
+              >
+                <StarBorderIcon />
+              </IconButton>
+            }
+            actionPosition="left"
+            className={classes.titleBar}
+          />
+        </ImageListItem>
+      ))}
+    </ImageList>
   );
 }

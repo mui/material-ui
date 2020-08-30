@@ -15,8 +15,8 @@ const itemData = [
     author: 'Manja Vitolic',
   },
   {
-    img: '/static/images/image-list/woven/keys.jpg',
-    title: 'Keys',
+    img: '/static/images/image-list/woven/art.jpg',
+    title: 'Art',
     author: 'Scott Webb',
   },
   {

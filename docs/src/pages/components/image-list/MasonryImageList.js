@@ -9,7 +9,6 @@ const useStyles = makeStyles((theme) => ({
     width: 500,
     height: 450,
     overflowY: 'scroll',
-    backgroundColor: theme.palette.background.paper,
   },
 }));
 

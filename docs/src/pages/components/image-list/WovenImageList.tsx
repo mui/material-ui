@@ -7,14 +7,6 @@ import itemData from './peerItemData';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      display: 'flex',
-      flexWrap: 'wrap',
-      justifyContent: 'space-around',
-      overflow: 'hidden',
-      backgroundColor: theme.palette.background.paper,
-    },
-    imageList: {
-      alignItems: 'center', // "Woven"
       width: 500,
       height: 450,
     },
@@ -34,14 +26,12 @@ export default function WovenImageList() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <ImageList className={classes.imageList} cols={3} spacing={8}>
-        {itemData.map((item) => (
-          <ImageListItem key={item.img}>
-            <img src={item.img} alt={item.title} />
-          </ImageListItem>
-        ))}
-      </ImageList>
-    </div>
+    <ImageList variant="woven" cols={3} spacing={8} className={classes.root}>
+      {itemData.map((item) => (
+        <ImageListItem key={item.img}>
+          <img src={item.img} alt={item.title} />
+        </ImageListItem>
+      ))}
+    </ImageList>
   );
 }
