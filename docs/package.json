@@ -48,7 +48,7 @@
     "@types/validator": "^13.1.0",
     "accept-language": "^3.0.18",
     "address": "^1.0.3",
-    "ast-types": "^0.13.2",
+    "ast-types": "^0.14.1",
     "autoprefixer": "^9.6.1",
     "autosuggest-highlight": "^3.1.1",
     "babel-plugin-module-resolver": "^4.0.0",
