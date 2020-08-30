@@ -4,13 +4,13 @@ import ImageList from '@material-ui/core/ImageList';
 import ImageListItem from '@material-ui/core/ImageListItem';
 import itemData from './peerItemData';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
   root: {
     width: 500,
     height: 450,
     overflowY: 'scroll',
   },
-}));
+});
 
 /**
  * The example data is structured as follows:

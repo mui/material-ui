@@ -7,7 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import itemData from './itemData';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
   root: {
     width: 500,
     height: 450,
@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   icon: {
     color: 'white',
   },
-}));
+});
 
 /**
  * The example data is structured as follows:
