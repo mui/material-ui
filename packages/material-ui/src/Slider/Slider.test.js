@@ -98,6 +98,36 @@ describe('<Slider />', () => {
     expect(handleChangeCommitted.callCount).to.equal(1);
   });
 
+  it('should edge against a dropped mouseup event', () => {
+    const handleChange = spy();
+    const { container } = render(<Slider onChange={handleChange} value={0} />);
+    stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+      width: 100,
+      left: 0,
+    }));
+
+    fireEvent.mouseDown(container.firstChild, {
+      buttons: 1,
+      clientX: 1,
+    });
+    expect(handleChange.callCount).to.equal(1);
+    expect(handleChange.args[0][1]).to.equal(1);
+
+    fireEvent.mouseMove(document.body, {
+      buttons: 1,
+      clientX: 10,
+    });
+    expect(handleChange.callCount).to.equal(2);
+    expect(handleChange.args[1][1]).to.equal(10);
+
+    fireEvent.mouseMove(document.body, {
+      buttons: 0,
+      clientX: 11,
+    });
+    // The mouse's button was released, stop the dragging session.
+    expect(handleChange.callCount).to.equal(2);
+  });
+
   describe('prop: orientation', () => {
     it('should render with the vertical classes', () => {
       const { container, getByRole } = render(<Slider orientation="vertical" value={0} />);
