@@ -22,9 +22,7 @@ export const styles = {
   /* Styles applied to the root element if `variant="standard"`. */
   standard: {},
   /* Styles applied to the root element if `variant="woven"`. */
-  woven: {
-    alignItems: 'center',
-  },
+  woven: {},
 };
 
 const ImageList = React.forwardRef(function ImageList(props, ref) {

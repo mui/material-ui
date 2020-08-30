@@ -18,6 +18,14 @@ export const styles = {
     width: '100%',
     height: '100%',
   },
+  /* Styles applied to the root element if `variant="woven"`. */
+  woven: {
+    height: '100%',
+    alignSelf: 'center',
+    '&:nth-child(even)': {
+      height: '70%',
+    },
+  },
 };
 
 const ImageListItem = React.forwardRef(function ImageListItem(props, ref) {
@@ -35,12 +43,19 @@ const ImageListItem = React.forwardRef(function ImageListItem(props, ref) {
 
   const { rowHeight = 'auto', spacing, variant } = React.useContext(ImageListContext);
 
+  let height = 'auto';
+  if (variant === 'woven') {
+    height = undefined;
+  } else if (rowHeight !== 'auto') {
+    height = rowHeight * rows + spacing * (rows - 1);
+  }
+
   return (
     <Component
-      className={clsx(classes.root, className)}
+      className={clsx(classes.root, classes[variant], className)}
       ref={ref}
       style={{
-        height: rowHeight === 'auto' ? 'auto' : rowHeight * rows + spacing * (rows - 1),
+        height,
         gridColumnEnd: variant !== 'masonry' ? `span ${cols}` : undefined,
         gridRowEnd: variant !== 'masonry' ? `span ${rows}` : undefined,
         marginBottom: variant === 'masonry' ? spacing : undefined,
