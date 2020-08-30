@@ -34,7 +34,7 @@ function ForgotPassword() {
     if (!errors.email) {
       const emailError = email(values.email);
       if (emailError) {
-        errors.email = email(values.email);
+        errors.email = emailError;
       }
     }
 

@@ -45,7 +45,6 @@
     "@types/react-virtualized": "^9.21.4",
     "@types/react-window": "^1.7.0",
     "@types/styled-components": "5.1.2",
-    "@types/validator": "^13.1.0",
     "accept-language": "^3.0.18",
     "address": "^1.0.3",
     "ast-types": "^0.14.1",
@@ -109,7 +108,6 @@
     "redux-logger": "^3.0.6",
     "rimraf": "^3.0.0",
     "styled-components": "^5.0.0",
-    "validator": "^13.1.1",
     "webfontloader": "^1.6.28",
     "webpack": "^4.41.0",
     "webpack-bundle-analyzer": "^3.5.1"
