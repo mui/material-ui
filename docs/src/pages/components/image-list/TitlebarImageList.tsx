@@ -49,7 +49,7 @@ export default function TitlebarImageList() {
 
   return (
     <div className={classes.root}>
-      <ImageList cellHeight={180} className={classes.gridList}>
+      <ImageList className={classes.gridList}>
         <ImageListItem key="Subheader" cols={2} style={{ height: 'auto' }}>
           <ListSubheader component="div">December</ListSubheader>
         </ImageListItem>

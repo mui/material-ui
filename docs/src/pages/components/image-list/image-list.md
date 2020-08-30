@@ -13,23 +13,28 @@ Image lists represent a collection of items in a repeated pattern. They help imp
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Basic image list
+## Standard image list
 
-A simple example of a scrollable image `ImageList`.
+Standard image lists are best for items of equal importance. They have a uniform container size, ratio, and padding.
 
-{{"demo": "pages/components/image-list/BasicImageList.js", "hideEditButton": true}}
+{{"demo": "pages/components/image-list/StandardImageList.js", "hideEditButton": true}}
 
-## Image list with titlebars
+## Quilted image list
 
-This example demonstrates the use of the `ImageListItemBar` to add an overlay to each `ImageListItem`.
+Quilted image lists emphasize certain items over others in a collection. They create hierarchy using varied container sizes and ratios.
+
+{{"demo": "pages/components/image-list/QuiltedImageList.js", "hideEditButton": true}}
+
+## Image list with title bars
+
+This example demonstrates the use of the `ImageListItemBar` to add an overlay to each item.
 The overlay can accommodate a `title`, `subtitle` and secondary action - in this example an `IconButton`.
 
 {{"demo": "pages/components/image-list/TitlebarImageList.js", "hideEditButton": true}}
 
-## Advanced image list
+## Custom image list
 
-This example demonstrates "featured" items, using the `rows` and `cols` props to adjust the size of the item, and the `padding` prop to adjust the spacing.
-The items have a customized titlebar, positioned at the top and with a custom gradient `titleBackground`.
-The secondary action `IconButton` is positioned on the left.
+In this example the items have a customized titlebar, positioned at the top and with a custom gradient `titleBackground`.
+The secondary action `IconButton` is positioned on the left. The `spacing` prop is used to adjust the gap between items.
 
-{{"demo": "pages/components/image-list/AdvancedImageList.js", "hideEditButton": true, "defaultCodeOpen": false}}
+{{"demo": "pages/components/image-list/CustomImageList.js", "hideEditButton": true, "defaultCodeOpen": false}}

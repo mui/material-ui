@@ -21,29 +21,24 @@ const useStyles = makeStyles((theme) => ({
 /**
  * The example data is structured as follows:
  *
- * import image from 'path/to/image.jpg';
- * [etc...]
- *
  * const itemData = [
- *   {
- *     img: image,
- *     title: 'Image',
- *     author: 'author',
- *     cols: 2,
- *   },
- *   {
- *     [etc...]
- *   },
+ *   { img: image, rows: 2, cols: 2 },
+ *   { [etc...] },
  * ];
+ *
  */
-export default function BasicImageList() {
+export default function QuiltedImageList() {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <ImageList cellHeight={160} className={classes.gridList} cols={3}>
+      <ImageList rowHeight={121} className={classes.gridList} cols={4}>
         {itemData.map((item) => (
-          <ImageListItem key={item.img} cols={item.cols || 1}>
+          <ImageListItem
+            key={item.img}
+            cols={item.cols || 1}
+            rows={item.rows || 1}
+          >
             <img src={item.img} alt={item.title} />
           </ImageListItem>
         ))}

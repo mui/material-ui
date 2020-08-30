@@ -38,7 +38,7 @@ import { FormControlProps } from '../FormControl';
 import { FormGroupProps } from '../FormGroup';
 import { FormHelperTextProps } from '../FormHelperText';
 import { FormLabelProps } from '../FormLabel';
-import { ImageListProps } from '../ImageList';
+import { ImageListProps } from '../rowHeight';
 import { ImageListItemBarProps } from '../ImageListItemBar';
 import { ImageListItemProps } from '../ImageListItem';
 import { GridProps } from '../Grid';

@@ -23,29 +23,20 @@ const useStyles = makeStyles((theme: Theme) =>
 /**
  * The example data is structured as follows:
  *
- * import image from 'path/to/image.jpg';
- * [etc...]
- *
  * const itemData = [
- *   {
- *     img: image,
- *     title: 'Image',
- *     author: 'author',
- *     cols: 2,
- *   },
- *   {
- *     [etc...]
- *   },
+ *   { img: image },
+ *   { [etc...] },
  * ];
+ *
  */
-export default function BasicImageList() {
+export default function StandardImageList() {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <ImageList cellHeight={160} className={classes.gridList} cols={3}>
+      <ImageList rowHeight={164} className={classes.gridList} cols={3}>
         {itemData.map((item) => (
-          <ImageListItem key={item.img} cols={item.cols || 1}>
+          <ImageListItem key={item.img}>
             <img src={item.img} alt={item.title} />
           </ImageListItem>
         ))}

@@ -32,14 +32,14 @@ const ImageListItem = React.forwardRef(function ImageListItem(props, ref) {
     ...other
   } = props;
 
-  const { cellHeight = 'auto', spacing } = React.useContext(ImageListContext);
+  const { rowHeight = 'auto', spacing } = React.useContext(ImageListContext);
 
   return (
     <Component
       className={clsx(classes.root, className)}
       ref={ref}
       style={{
-        height: cellHeight === 'auto' ? 'auto' : cellHeight * rows + spacing,
+        height: rowHeight === 'auto' ? 'auto' : rowHeight * rows + spacing * (rows - 1),
         gridColumnEnd: `span ${cols}`,
         gridRowEnd: `span ${rows}`,
         ...style,
@@ -94,7 +94,7 @@ ImageListItem.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Width of the item in number of grid cells.
+   * Width of the item in number of grid columns.
    * @default 1
    */
   cols: PropTypes.number,
@@ -104,8 +104,12 @@ ImageListItem.propTypes = {
    */
   component: PropTypes.elementType,
   /**
+<<<<<<< HEAD
    * Height of the item in number of grid cells.
    * @default 1
+=======
+   * Height of the item in number of grid rows.
+>>>>>>> Update demos
    */
   rows: PropTypes.number,
   /**

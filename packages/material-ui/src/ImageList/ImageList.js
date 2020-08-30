@@ -11,13 +11,14 @@ export const styles = {
     overflowY: 'auto',
     listStyle: 'none',
     padding: 0,
+    // alignItems: 'center', // TODO: Woven
     WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
   },
 };
 
 const ImageList = React.forwardRef(function ImageList(props, ref) {
   const {
-    cellHeight = 180,
+    rowHeight = 'auto',
     children,
     classes,
     className,
@@ -28,7 +29,7 @@ const ImageList = React.forwardRef(function ImageList(props, ref) {
     ...other
   } = props;
 
-  const contextValue = React.useMemo(() => ({ cellHeight, spacing }), [cellHeight, spacing]);
+  const contextValue = React.useMemo(() => ({ rowHeight, spacing }), [rowHeight, spacing]);
 
   React.useEffect(() => {
     if (process.env.NODE_ENV !== 'production') {
@@ -62,11 +63,11 @@ ImageList.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * The height of one item in px.
+   * The height of one row in px.
    * Set to `'auto'` to let the children determine the height.
    * @default 180
    */
-  cellHeight: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
+  rowHeight: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
   /**
    * Image list items that will be in the image list.
    */

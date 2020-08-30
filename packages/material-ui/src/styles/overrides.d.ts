@@ -41,7 +41,7 @@ import { FormLabelClassKey } from '../FormLabel';
 import { GridClassKey } from '../Grid';
 import { IconButtonClassKey } from '../IconButton';
 import { IconClassKey } from '../Icon';
-import { ImageListClassKey } from '../ImageList';
+import { ImageListClassKey } from '../rowHeight';
 import { ImageListItemBarClassKey } from '../ImageListItemBar';
 import { ImageListItemClassKey } from '../ImageListItem';
 import { InputAdornmentClassKey } from '../InputAdornment';

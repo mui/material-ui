@@ -10,12 +10,12 @@ export interface ImageListItemTypeMap<P = {}, D extends React.ElementType = 'li'
      */
     children?: React.ReactNode;
     /**
-     * Width of the item in number of grid cells.
+     * Width of the item in number of grid columns.
      * @default 1
      */
     cols?: number;
     /**
-     * Height of the item in number of grid cells.
+     * Height of the item in number of grid columns.
      * @default 1
      */
     rows?: number;
