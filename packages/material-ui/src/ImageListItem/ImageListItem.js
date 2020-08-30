@@ -82,9 +82,7 @@ ImageListItem.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * Theoretically you can pass any node as children, but the main use case is to pass an img,
-   * in which case ImageListItem takes care of making the image "cover" available space
-   * (similar to `background-size: cover` or to `object-fit: cover`).
+   * While you can pass any node as children, the main use case is for an img.
    */
   children: PropTypes.node,
   /**

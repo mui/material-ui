@@ -7,7 +7,7 @@ export type ImageListVariantDefaults = Record<'masonry' | 'quilted' | 'standard'
 export interface ImageListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
   props: P & {
     /**
-     * Image list items that will be in the image list.
+     * Items that will be in the image list.
      */
     children: NonNullable<React.ReactNode>;
     /**
@@ -16,6 +16,14 @@ export interface ImageListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
     classes?: {
       /** Styles applied to the root element. */
       root?: string;
+      /** Styles applied to the root element if `variant="masonry"`. */
+      masonry?: string;
+      /** Styles applied to the root element if `variant="quilted"`. */
+      quilted?: string;
+      /** Styles applied to the root element if `variant="standard"`. */
+      standard?: string;
+      /** Styles applied to the root element if `variant="woven"`. */
+      woven?: string;
     };
     /**
      * Number of columns.

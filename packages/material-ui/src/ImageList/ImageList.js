@@ -29,12 +29,12 @@ export const styles = {
 
 const ImageList = React.forwardRef(function ImageList(props, ref) {
   const {
-    rowHeight = 'auto',
     children,
     classes,
     className,
     cols = 2,
     component: Component = 'ul',
+    rowHeight = 'auto',
     spacing = 4,
     style: styleProp,
     variant = 'standard',
