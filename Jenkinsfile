@@ -20,7 +20,7 @@ node {
    
   stage('Testing') {
     try {
-      bat "yarn test:coverage mocha-sonar-reporter --report-dir=.nyc_coverage"
+      bat "yarn test:coverage mocha-sonar-reporter"
     } catch(err) {
       echo "${err}"
     }
