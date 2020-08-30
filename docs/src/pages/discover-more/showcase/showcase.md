@@ -4,7 +4,7 @@
 
 Are you using Material-UI? [Share your product](https://github.com/mui-org/material-ui/issues/22426).
 
-The websites we include rank well with, at least, one of these dimensions:
+The websites we include rank well in at least one of these dimensions:
 
 - Non Material Design customization
 - High traffic
