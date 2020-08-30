@@ -27,9 +27,6 @@ https://material-ui.dev/* https://material-ui.com/:splat 301!
 /r/ts-issue-template https://www.typescriptlang.org/play/#code/JYWwDg9gTgLgBAKjgQwM5wEoFNkGN4BmUEIcA5FDvmQNwBQokscA3nXHAPSdwwAWWOLhKQAdllEx0ATwgBXOHNRYAJnQC+cIiXIABEMhhYowZABsAtHOCdhlMnToE5o-MAii4AESwgIACgBKVnYuHgBNeSghCBUsDSA 302
 /r/custom-component-variants /customization/components/#adding-new-component-variants
 
-/store/* https://material-ui-store.netlify.app/:splat 200
-/store-staging/* https://master--material-ui-store.netlify.app/:splat 200
-
 # Added in chronological order, to be removed at some point.
 /css-in-js/* /styles/:splat 301
 /customization/css-in-js/ /styles/basics/ 301
@@ -136,3 +133,11 @@ https://v3-9-0.material-ui.com/* https://v3.material-ui.com/:splat 301!
 /v0.3.2 https://v0.material-ui.com/v0.3.2
 /v0.3.1 https://v0.material-ui.com/v0.3.1
 /v0.3.0 https://v0.material-ui.com/v0.3.0
+
+# Proxies
+/store/* https://material-ui-store.netlify.app/:splat 200
+/store-staging/* https://master--material-ui-store.netlify.app/:splat 200
+/components/data-grid/* https://material-ui-x.netlify.app/components/data-grid/:splat 200
+# Unlike the store that expect to be hosted under a subfolder,
+# material-ui-x is configured to be hosted at the root.
+/_next/* https://material-ui-x.netlify.app/_next/:splat 200
