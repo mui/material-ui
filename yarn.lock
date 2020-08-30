@@ -2744,9 +2744,9 @@
   integrity sha512-MoF2IC9oGSgArJwlxdst4XsvWuoYfNUWtBw0kpnCi6K05kV+Ecl7siEeJ40tgCbI9uqEMGQL/NlPMRv6KVkY5Q==
 
 "@types/prettier@*", "@types/prettier@^2.0.0", "@types/prettier@^2.0.1":
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/@types/prettier/-/prettier-2.0.2.tgz#5bb52ee68d0f8efa9cc0099920e56be6cc4e37f3"
-  integrity sha512-IkVfat549ggtkZUthUzEX49562eGikhSYeVGX97SkMFn+sTZrgRewXjQ4tPKFPCykZHkX1Zfd9OoELGqKU2jJA==
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@types/prettier/-/prettier-2.1.0.tgz#5f96562c1075ee715a5b138f0b7f591c1f40f6b8"
+  integrity sha512-hiYA88aHiEIgDmeKlsyVsuQdcFn3Z2VuFd/Xm/HCnGnPD8UFU5BM128uzzRVVGEzKDKYUrRsRH9S2o+NUy/3IA==
 
 "@types/prop-types@*":
   version "15.7.1"
