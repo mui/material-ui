@@ -2,7 +2,7 @@ import * as React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import ImageList from '@material-ui/core/ImageList';
 import ImageListItem from '@material-ui/core/ImageListItem';
-import itemData from './wovenItemData';
+import itemData from './peerItemData';
 
 const useStyles = makeStyles((theme) => ({
   root: {

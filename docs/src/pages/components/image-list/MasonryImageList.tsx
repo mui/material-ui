@@ -7,16 +7,10 @@ import itemData from './peerItemData';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      display: 'flex',
-      flexWrap: 'wrap',
-      justifyContent: 'space-around',
-      overflow: 'hidden',
-      backgroundColor: theme.palette.background.paper,
-    },
-    imageList: {
-      alignItems: 'center', // "Woven"
       width: 500,
       height: 450,
+      overflowY: 'scroll',
+      backgroundColor: theme.palette.background.paper,
     },
   }),
 );
@@ -30,12 +24,12 @@ const useStyles = makeStyles((theme: Theme) =>
  * ];
  *
  */
-export default function WovenImageList() {
+export default function MasonryImageList() {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <ImageList className={classes.imageList} cols={3} spacing={8}>
+      <ImageList variant="masonry" cols={3} spacing={8}>
         {itemData.map((item) => (
           <ImageListItem key={item.img}>
             <img src={item.img} alt={item.title} />

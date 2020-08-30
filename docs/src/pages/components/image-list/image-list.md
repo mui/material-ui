@@ -31,6 +31,12 @@ Woven image lists use alternating container ratios to create a rhythmic layout. 
 
 {{"demo": "pages/components/image-list/WovenImageList.js", "hideEditButton": true}}
 
+## Masonry image list
+
+Masonry image lists use dynamically sized container heights that reflect the aspect ratio of each image. This image list is best used for browsing uncropped peer content.
+
+{{"demo": "pages/components/image-list/MasonryImageList.js", "hideEditButton": true}}
+
 ## Image list with title bars
 
 This example demonstrates the use of the `ImageListItemBar` to add an overlay to each item.

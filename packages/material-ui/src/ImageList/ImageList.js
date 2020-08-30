@@ -13,6 +13,18 @@ export const styles = {
     padding: 0,
     WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
   },
+  /* Styles applied to the root element if `variant="masonry"`. */
+  masonry: {
+    display: 'block',
+  },
+  /* Styles applied to the root element if `variant="quilted"`. */
+  quilted: {},
+  /* Styles applied to the root element if `variant="standard"`. */
+  standard: {},
+  /* Styles applied to the root element if `variant="woven"`. */
+  woven: {
+    alignItems: 'center',
+  },
 };
 
 const ImageList = React.forwardRef(function ImageList(props, ref) {
@@ -24,11 +36,12 @@ const ImageList = React.forwardRef(function ImageList(props, ref) {
     cols = 2,
     component: Component = 'ul',
     spacing = 4,
-    style,
+    style: styleProp,
+    variant = 'standard',
     ...other
   } = props;
 
-  const contextValue = React.useMemo(() => ({ rowHeight, spacing }), [rowHeight, spacing]);
+  const contextValue = React.useMemo(() => ({ rowHeight, spacing, variant }), [rowHeight, spacing, variant]);
 
   React.useEffect(() => {
     if (process.env.NODE_ENV !== 'production') {
@@ -44,11 +57,16 @@ const ImageList = React.forwardRef(function ImageList(props, ref) {
     }
   }, []);
 
+  const style =
+    variant === 'masonry'
+      ? { columnCount: cols, columnGap: spacing, ...styleProp }
+      : { gridTemplateColumns: `repeat(${cols}, 1fr)`, gap: spacing, ...styleProp };
+
   return (
     <Component
-      className={clsx(classes.root, className)}
+      className={clsx(classes.root, classes[variant], className)}
       ref={ref}
-      style={{ gridTemplateColumns: `repeat(${cols}, 1fr)`, gap: spacing, ...style }}
+      style={style}
       {...other}
     >
       <ImageListContext.Provider value={contextValue}>{children}</ImageListContext.Provider>
@@ -62,7 +80,7 @@ ImageList.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * Image list items that will be in the image list.
+   * Items that will be in the image list.
    */
   children: PropTypes /* @typescript-to-proptypes-ignore */.node.isRequired,
   /**
@@ -83,9 +101,9 @@ ImageList.propTypes = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
-    /**
+  /**
    * The height of one row in px.
-   * Set `to 'auto'` to let the children determine the height.
+   * Set to `'auto'` to let the children determine the height.
    * @default 180
    */
   rowHeight: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
@@ -98,6 +116,13 @@ ImageList.propTypes = {
    * @ignore
    */
   style: PropTypes.object,
+  /**
+   * The variant to use.
+   */
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['masonry', 'quilted', 'standard', 'woven']),
+    PropTypes.string,
+  ]),
 };
 
 export default withStyles(styles, { name: 'MuiImageList' })(ImageList);

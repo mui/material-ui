@@ -1,6 +1,9 @@
 import * as React from 'react';
+import { OverridableStringUnion } from '@material-ui/types';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
+export interface ImageListPropsVariantOverrides {}
+export type ImageListVariantDefaults = Record<'masonry' | 'quilted' | 'standard' | 'woven', true>;
 export interface ImageListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
   props: P & {
     /**
@@ -21,7 +24,7 @@ export interface ImageListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
     cols?: number;
     /**
      * The height of one row in px.
-     * Set `to 'auto'` to let the children determine the height.
+     * Set to `'auto'` to let the children determine the height.
      * @default 180
      */
     rowHeight?: number | 'auto';
@@ -30,6 +33,10 @@ export interface ImageListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      * @default 4
      */
     spacing?: number;
+    /**
+     * The variant to use.
+     */
+    variant?: OverridableStringUnion<ImageListVariantDefaults, ImageListPropsVariantOverrides>;
   };
   defaultComponent: D;
 }

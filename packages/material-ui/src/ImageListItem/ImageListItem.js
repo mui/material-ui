@@ -10,6 +10,7 @@ export const styles = {
   /* Styles applied to the root element. */
   root: {
     position: 'relative',
+    lineHeight: 0,
   },
   /* Styles applied to an `img` element to ensure it covers the item. */
   img: {
@@ -32,7 +33,7 @@ const ImageListItem = React.forwardRef(function ImageListItem(props, ref) {
     ...other
   } = props;
 
-  const { rowHeight = 'auto', spacing } = React.useContext(ImageListContext);
+  const { rowHeight = 'auto', spacing, variant } = React.useContext(ImageListContext);
 
   return (
     <Component
@@ -40,8 +41,9 @@ const ImageListItem = React.forwardRef(function ImageListItem(props, ref) {
       ref={ref}
       style={{
         height: rowHeight === 'auto' ? 'auto' : rowHeight * rows + spacing * (rows - 1),
-        gridColumnEnd: `span ${cols}`,
-        gridRowEnd: `span ${rows}`,
+        gridColumnEnd: variant !== 'masonry' ? `span ${cols}` : undefined,
+        gridRowEnd: variant !== 'masonry' ? `span ${rows}` : undefined,
+        marginBottom: variant === 'masonry' ? spacing : undefined,
         ...style,
       }}
       {...other}
