@@ -35,24 +35,24 @@ const itemData = [
     author: 'Philipp Berndt',
   },
   {
-    img: '/static/images/image-list/peer/sink.jpg',
-    title: 'Sink',
-    author: 'Charles Deluvio',
-  },
-  {
     img: '/static/images/image-list/peer/plant.jpg',
     title: 'Plant',
     author: 'John Mark Arnold',
   },
   {
-    img: '/static/images/image-list/peer/chairs.jpg',
-    title: 'Chairs',
-    author: 'Fi Bell',
+    img: '/static/images/image-list/peer/sink.jpg',
+    title: 'Sink',
+    author: 'Charles Deluvio',
   },
   {
     img: '/static/images/image-list/peer/blinds.jpg',
     title: 'Blinds',
     author: 'Darren Rihardson',
+  },
+  {
+    img: '/static/images/image-list/peer/chairs.jpg',
+    title: 'Chairs',
+    author: 'Fi Bell',
   },
   {
     img: '/static/images/image-list/peer/candle.jpg',
