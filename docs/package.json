@@ -103,7 +103,7 @@
     "react-text-mask": "^5.0.2",
     "react-virtualized": "^9.21.1",
     "react-window": "^1.8.5",
-    "recast": "^0.19.0",
+    "recast": "^0.20.2",
     "recharts": "^1.6.2",
     "redux": "^4.0.4",
     "redux-logger": "^3.0.6",
