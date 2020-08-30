@@ -13,17 +13,6 @@
  */
 const appList = [
   {
-    title: 'BrainBoard',
-    description:
-      'BrainBoard is a the WYSIWYG of the multi-cloud: a technology that allows cloud engineers and DevOps ' +
-      'to design, deploy and depict architectures on a multi-cloud fashion.' +
-      'You draw the architecture, it generates the equivalent Terraform and deploy it on the target cloud providers.',
-    image: 'brainboard.png',
-    link: 'https://www.brainboard.co/',
-    source: 'https://github.com/brainboard',
-    dateAdded: '2020-08-29',
-  },
-  {
     title: 'd-cide',
     description:
       'A progressive Web App to make rational decisions in workshops. ' +
