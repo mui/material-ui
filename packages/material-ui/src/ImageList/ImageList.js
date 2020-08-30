@@ -11,7 +11,6 @@ export const styles = {
     overflowY: 'auto',
     listStyle: 'none',
     padding: 0,
-    // alignItems: 'center', // TODO: Woven
     WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
   },
 };
@@ -63,12 +62,6 @@ ImageList.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * The height of one row in px.
-   * Set to `'auto'` to let the children determine the height.
-   * @default 180
-   */
-  rowHeight: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
-  /**
    * Image list items that will be in the image list.
    */
   children: PropTypes /* @typescript-to-proptypes-ignore */.node.isRequired,
@@ -90,6 +83,12 @@ ImageList.propTypes = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+    /**
+   * The height of one row in px.
+   * Set `to 'auto'` to let the children determine the height.
+   * @default 180
+   */
+  rowHeight: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
   /**
    * Number of px for the spacing between items.
    * @default 4

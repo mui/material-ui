@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme: Theme) =>
       overflow: 'hidden',
       backgroundColor: theme.palette.background.paper,
     },
-    gridList: {
+    imageList: {
       width: 500,
       height: 450,
     },
@@ -24,8 +24,13 @@ const useStyles = makeStyles((theme: Theme) =>
  * The example data is structured as follows:
  *
  * const itemData = [
- *   { img: image, rows: 2, cols: 2 },
- *   { [etc...] },
+ *   {
+ *      img: 'image-path',
+ *      title: 'text',
+ *      rows: 2,
+ *      cols: 2,
+ *   },
+ *   { etc... },
  * ];
  *
  */
@@ -34,7 +39,7 @@ export default function QuiltedImageList() {
 
   return (
     <div className={classes.root}>
-      <ImageList rowHeight={121} className={classes.gridList} cols={4}>
+      <ImageList rowHeight={121} className={classes.imageList} cols={4}>
         {itemData.map((item) => (
           <ImageListItem
             key={item.img}

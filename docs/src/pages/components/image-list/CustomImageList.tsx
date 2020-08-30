@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme: Theme) =>
       overflow: 'hidden',
       backgroundColor: theme.palette.background.paper,
     },
-    gridList: {
+    imageList: {
       width: 500,
       height: 450,
       // Promote the list into its own layer in Chrome. This costs memory, but helps keeping high FPS.
@@ -56,7 +56,7 @@ export default function AdvancedImageList() {
 
   return (
     <div className={classes.root}>
-      <ImageList rowHeight={200} spacing={1} className={classes.gridList}>
+      <ImageList rowHeight={200} spacing={1} className={classes.imageList}>
         {itemData.map((item) => (
           <ImageListItem
             key={item.img}

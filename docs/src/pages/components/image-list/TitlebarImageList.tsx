@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
       overflow: 'hidden',
       backgroundColor: theme.palette.background.paper,
     },
-    gridList: {
+    imageList: {
       width: 500,
       height: 450,
     },
@@ -35,13 +35,13 @@ const useStyles = makeStyles((theme: Theme) =>
  *
  * const itemData = [
  *   {
- *     img: image,
- *     title: 'Image',
- *     author: 'author',
+ *      img: 'image-path',
+ *      title: 'text',
+ *      author: 'name',
+ *      rows: 2,
+ *      cols: 2,
  *   },
- *   {
- *     [etc...]
- *   },
+ *   { etc... },
  * ];
  */
 export default function TitlebarImageList() {
@@ -49,7 +49,7 @@ export default function TitlebarImageList() {
 
   return (
     <div className={classes.root}>
-      <ImageList className={classes.gridList}>
+      <ImageList className={classes.imageList}>
         <ImageListItem key="Subheader" cols={2} style={{ height: 'auto' }}>
           <ListSubheader component="div">December</ListSubheader>
         </ImageListItem>

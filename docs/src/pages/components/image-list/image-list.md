@@ -25,6 +25,12 @@ Quilted image lists emphasize certain items over others in a collection. They cr
 
 {{"demo": "pages/components/image-list/QuiltedImageList.js", "hideEditButton": true}}
 
+## Woven image list
+
+Woven image lists use alternating container ratios to create a rhythmic layout. A woven image list is best for browsing peer content.
+
+{{"demo": "pages/components/image-list/WovenImageList.js", "hideEditButton": true}}
+
 ## Image list with title bars
 
 This example demonstrates the use of the `ImageListItemBar` to add an overlay to each item.

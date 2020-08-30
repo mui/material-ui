@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme: Theme) =>
       backgroundColor: theme.palette.background.paper,
     },
     imageList: {
+      alignItems: 'center', // "Woven"
       width: 500,
       height: 450,
     },
@@ -29,12 +30,12 @@ const useStyles = makeStyles((theme: Theme) =>
  * ];
  *
  */
-export default function StandardImageList() {
+export default function WovenImageList() {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <ImageList rowHeight={164} className={classes.imageList} cols={3}>
+      <ImageList className={classes.imageList} cols={3} spacing={8}>
         {itemData.map((item) => (
           <ImageListItem key={item.img}>
             <img src={item.img} alt={item.title} />

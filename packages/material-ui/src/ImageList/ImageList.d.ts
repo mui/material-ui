@@ -4,12 +4,6 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 export interface ImageListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
   props: P & {
     /**
-     * The height of one row in px.
-     * Set to `'auto'` to let the children determine the height.
-     * @default 180
-     */
-    rowHeight?: number | 'auto';
-    /**
      * Image list items that will be in the image list.
      */
     children: NonNullable<React.ReactNode>;
@@ -25,6 +19,12 @@ export interface ImageListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      * @default 2
      */
     cols?: number;
+    /**
+     * The height of one row in px.
+     * Set `to 'auto'` to let the children determine the height.
+     * @default 180
+     */
+    rowHeight?: number | 'auto';
     /**
      * Number of px for the spacing between items.
      * @default 4

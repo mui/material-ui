@@ -2,7 +2,7 @@ import * as React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import ImageList from '@material-ui/core/ImageList';
 import ImageListItem from '@material-ui/core/ImageListItem';
-import itemData from './itemData';
+import itemData from './wovenItemData';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
   },
   imageList: {
+    alignItems: 'center', // "Woven"
     width: 500,
     height: 450,
   },
@@ -22,28 +23,19 @@ const useStyles = makeStyles((theme) => ({
  * The example data is structured as follows:
  *
  * const itemData = [
- *   {
- *      img: 'image-path',
- *      title: 'text',
- *      rows: 2,
- *      cols: 2,
- *   },
+ *   { img: 'image-path', title: 'text' },
  *   { etc... },
  * ];
  *
  */
-export default function QuiltedImageList() {
+export default function WovenImageList() {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <ImageList rowHeight={121} className={classes.imageList} cols={4}>
+      <ImageList className={classes.imageList} cols={3} spacing={8}>
         {itemData.map((item) => (
-          <ImageListItem
-            key={item.img}
-            cols={item.cols || 1}
-            rows={item.rows || 1}
-          >
+          <ImageListItem key={item.img}>
             <img src={item.img} alt={item.title} />
           </ImageListItem>
         ))}
