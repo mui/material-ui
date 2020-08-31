@@ -8,6 +8,8 @@ import {
   act,
   createClientRender,
   fireEvent,
+  focusVisible,
+  simulatePointerDevice,
 } from 'test/utils';
 import CheckBox from '../internal/svg-icons/CheckBox';
 import Avatar from '../Avatar';
@@ -398,7 +400,7 @@ describe('<Chip />', () => {
         const input = container.querySelector('input');
         act(() => {
           input.focus();
-        })
+        });
         fireEvent.keyDown(input, { key: 'Backspace' });
 
         // defaultPrevented?
@@ -536,6 +538,21 @@ describe('<Chip />', () => {
       const icon = container.querySelector('svg[data-mui-test="CancelIcon"]');
       expect(icon).to.have.class(classes.deleteIcon);
       expect(icon).to.have.class(classes.deleteIconSmall);
+    });
+  });
+
+  describe('event: focus', () => {
+    it('has a focus-visible polyfill', () => {
+      const { container } = render(<Chip label="Test Chip" onClick={() => {}} />);
+      const chip = container.querySelector(`.${classes.root}`);
+      simulatePointerDevice();
+
+      expect(chip).not.to.have.class(classes.focusVisible);
+      chip.focus();
+      expect(chip).not.to.have.class(classes.focusVisible);
+      focusVisible(chip);
+
+      expect(chip).to.have.class(classes.focusVisible);
     });
   });
 });
