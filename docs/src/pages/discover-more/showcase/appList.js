@@ -640,6 +640,16 @@ const appList = [
     stars: 14,
     dateAdded: '2020-03-25',
   },
+  {
+    title: 'Backstage',
+    description:
+      'Backstage is an open platform for building developer portals.',
+    image: 'https://backstage.io/blog/assets/20-05-20/Service_Catalog_MVP.png',
+    link: 'https://backstage.io',
+    source: 'https://github.com/spotify/backstage',
+    stars: 7400,
+    dateAdded: '2020-08-31',
+  },
 ];
 
 export default appList;
