@@ -1,10 +1,12 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
 import isPropValid from '@emotion/is-prop-valid';
+import { getThemeProps } from '@material-ui/styles';
 import useTheme from '../styles/useTheme';
 import { fade, lighten, darken } from '../styles/colorManipulator';
 import SliderBase from './Slider';
 import ValueLabel from './ValueLabel';
+import defaultTheme from '../styles/defaultTheme';
 
 const shouldForwardProp = (prop) =>
   isPropValid(prop) && prop !== 'color' && prop !== 'orientation' && prop !== 'disabled';
@@ -202,17 +204,32 @@ const StyledMarkLabel = styled('span', { shouldForwardProp })((props) => ({
   }),
 }));
 
-// This implementatino uses the ClassNames component https://emotion.sh/docs/class-names
-const Slider = React.forwardRef(function Slider(props, ref) {
-  const { components = {}, componentsProps = {}, ...other } = props;
+const useThemeProps = (inputProps, ref, name) => {
+  const props = Object.assign({}, inputProps);
+  const { innerRef } = props;
 
-  const theme = useTheme();
+  const contextTheme = useTheme() || defaultTheme;
+
+  const more = getThemeProps({ theme: contextTheme, name, props });
+
+  const theme = more.theme || contextTheme;
   const isRtl = theme.direction === 'rtl';
+
+  return {
+    ref: innerRef || ref,
+    theme,
+    isRtl,
+    ...more,
+  };
+};
+
+// This implementatino uses the ClassNames component https://emotion.sh/docs/class-names
+const Slider = React.forwardRef(function Slider(inputProps, inputRef) {
+  const props = useThemeProps(inputProps, inputRef, 'MuiSlider');
+  const { components = {}, componentsProps = {}, ref, ...other } = props;
 
   return (
     <SliderBase
-      isRtl={isRtl}
-      theme={theme}
       {...other}
       components={{
         root: StyledComponent,
