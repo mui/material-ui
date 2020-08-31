@@ -8,8 +8,7 @@ describe('deepmerge', () => {
       clone: false,
     });
 
-    // @ts-ignore
-    expect({}.isAdmin).to.equal(undefined);
+    expect({}).not.to.have.property('isAdmin');
   });
 
   // https://github.com/mui-org/material-ui/issues/20095
