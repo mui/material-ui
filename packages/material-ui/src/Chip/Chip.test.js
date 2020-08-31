@@ -396,7 +396,9 @@ describe('<Chip />', () => {
         const handleKeyDown = spy((event) => event.defaultPrevented);
         const { container } = render(<Chip label={<input />} onKeyDown={handleKeyDown} />);
         const input = container.querySelector('input');
-        input.focus();
+        act(() => {
+          input.focus();
+        })
         fireEvent.keyDown(input, { key: 'Backspace' });
 
         // defaultPrevented?

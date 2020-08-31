@@ -8,6 +8,8 @@ import { emphasize, fade } from '../styles/colorManipulator';
 import useForkRef from '../utils/useForkRef';
 import unsupportedProp from '../utils/unsupportedProp';
 import capitalize from '../utils/capitalize';
+import useEventCallback from '../utils/useEventCallback';
+import useIsFocusVisible from '../utils/useIsFocusVisible';
 import ButtonBase from '../ButtonBase';
 
 export const styles = (theme) => {
@@ -87,7 +89,7 @@ export const styles = (theme) => {
       userSelect: 'none',
       WebkitTapHighlightColor: 'transparent',
       cursor: 'pointer',
-      '&:hover, &:focus': {
+      '&$focusVisible, &:hover': {
         backgroundColor: emphasize(backgroundColor, 0.08),
       },
       '&:active': {
@@ -96,31 +98,31 @@ export const styles = (theme) => {
     },
     /* Styles applied to the root element if `onClick` and `color="primary"` is defined or `clickable={true}`. */
     clickableColorPrimary: {
-      '&:hover, &:focus': {
+      '&$focusVisible, &:hover': {
         backgroundColor: emphasize(theme.palette.primary.main, 0.08),
       },
     },
     /* Styles applied to the root element if `onClick` and `color="secondary"` is defined or `clickable={true}`. */
     clickableColorSecondary: {
-      '&:hover, &:focus': {
+      '&$focusVisible, &:hover': {
         backgroundColor: emphasize(theme.palette.secondary.main, 0.08),
       },
     },
     /* Styles applied to the root element if `onDelete` is defined. */
     deletable: {
-      '&:focus': {
+      '&$focusVisible': {
         backgroundColor: emphasize(backgroundColor, 0.08),
       },
     },
     /* Styles applied to the root element if `onDelete` and `color="primary"` is defined. */
     deletableColorPrimary: {
-      '&:focus': {
+      '&$focusVisible': {
         backgroundColor: emphasize(theme.palette.primary.main, 0.2),
       },
     },
     /* Styles applied to the root element if `onDelete` and `color="secondary"` is defined. */
     deletableColorSecondary: {
-      '&:focus': {
+      '&$focusVisible': {
         backgroundColor: emphasize(theme.palette.secondary.main, 0.2),
       },
     },
@@ -130,7 +132,7 @@ export const styles = (theme) => {
       border: `1px solid ${
         theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
       }`,
-      '$clickable&:hover, $clickable&:focus, $deletable&:focus': {
+      '&$focusVisible, $clickable&:hover': {
         backgroundColor: fade(theme.palette.text.primary, theme.palette.action.hoverOpacity),
       },
       '& $avatar': {
@@ -158,7 +160,7 @@ export const styles = (theme) => {
     outlinedPrimary: {
       color: theme.palette.primary.main,
       border: `1px solid ${theme.palette.primary.main}`,
-      '$clickable&:hover, $clickable&:focus, $deletable&:focus': {
+      '&$focusVisible, $clickable&:hover': {
         backgroundColor: fade(theme.palette.primary.main, theme.palette.action.hoverOpacity),
       },
     },
@@ -166,7 +168,7 @@ export const styles = (theme) => {
     outlinedSecondary: {
       color: theme.palette.secondary.main,
       border: `1px solid ${theme.palette.secondary.main}`,
-      '$clickable&:hover, $clickable&:focus, $deletable&:focus': {
+      '&$focusVisible, $clickable&:hover': {
         backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
       },
     },
@@ -260,6 +262,8 @@ export const styles = (theme) => {
         color: theme.palette.secondary.main,
       },
     },
+    /* Pseudo-class applied to the root element if keyboard focused. */
+    focusVisible: {},
   };
 };
 
@@ -293,6 +297,37 @@ const Chip = React.forwardRef(function Chip(props, ref) {
 
   const chipRef = React.useRef(null);
   const handleRef = useForkRef(chipRef, ref);
+
+  const {
+    isFocusVisibleRef,
+    onFocus: handleFocusVisible,
+    onBlur: handleBlurVisible,
+  } = useIsFocusVisible();
+  const [focusVisible, setFocusVisible] = React.useState(false);
+  if (disabled && focusVisible) {
+    setFocusVisible(false);
+  }
+  React.useEffect(() => {
+    isFocusVisibleRef.current = focusVisible;
+  }, [focusVisible, isFocusVisibleRef]);
+
+  const handleBlur = useEventCallback((event) => {
+    handleBlurVisible(event);
+    if (isFocusVisibleRef.current === false) {
+      setFocusVisible(false);
+    }
+  }, false);
+
+  const handleFocus = useEventCallback((event) => {
+    if (!chipRef.current) {
+      chipRef.current = event.currentTarget;
+    }
+
+    handleFocusVisible(event);
+    if (isFocusVisibleRef.current === true) {
+      setFocusVisible(true);
+    }
+  });
 
   const handleDeleteIconClick = (event) => {
     // Stop the event from bubbling up to the `Chip`
@@ -415,6 +450,7 @@ const Chip = React.forwardRef(function Chip(props, ref) {
           [classes[`clickableColor${capitalize(color)}`]]: clickable && color !== 'default',
           [classes.deletable]: onDelete,
           [classes[`deletableColor${capitalize(color)}`]]: onDelete && color !== 'default',
+          [classes.focusVisible]: focusVisible,
           [classes.outlinedPrimary]: variant === 'outlined' && color === 'primary',
           [classes.outlinedSecondary]: variant === 'outlined' && color === 'secondary',
         },
@@ -423,7 +459,9 @@ const Chip = React.forwardRef(function Chip(props, ref) {
       )}
       aria-disabled={disabled ? true : undefined}
       tabIndex={clickable || onDelete ? 0 : undefined}
+      onBlur={handleBlur}
       onClick={onClick}
+      onFocus={handleFocus}
       onKeyDown={handleKeyDown}
       onKeyUp={handleKeyUp}
       ref={handleRef}
