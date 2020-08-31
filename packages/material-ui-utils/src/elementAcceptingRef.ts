@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import chainPropTypes from './chainPropTypes';
 
-function isClassComponent(elementType: any) {
+function isClassComponent(elementType: Function) {
   // elementType.prototype?.isReactComponent
   const { prototype = {} } = elementType;
 
@@ -9,7 +9,7 @@ function isClassComponent(elementType: any) {
 }
 
 function acceptingRef(
-  props: { [key: string]: any },
+  props: { [key: string]: unknown },
   propName: string,
   componentName: string,
   location: string,
@@ -24,7 +24,7 @@ function acceptingRef(
 
   let warningHint;
 
-  const elementType = element.type;
+  const elementType: unknown = (element as any).type;
   /**
    * Blacklisting instead of whitelisting
    *

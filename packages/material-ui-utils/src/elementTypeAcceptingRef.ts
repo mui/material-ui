@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import chainPropTypes from './chainPropTypes';
 
-function isClassComponent(elementType: { prototype?: Record<keyof any, any> }) {
+function isClassComponent(elementType: Function) {
   // elementType.prototype?.isReactComponent
-  const { prototype = {} } = elementType;
+  const { prototype } = elementType;
 
   return Boolean(prototype.isReactComponent);
 }
