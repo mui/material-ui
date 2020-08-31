@@ -1,5 +1,181 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 5.0.0-alpha.8
+
+###### _Aug 31, 2020_
+
+Big thanks to the 19 contributors who made this release possible.
+Here are some highlights ✨:
+
+- 🎨 Inverse the customization API of the theme to be component-centric (#22347, #22293) @mnajdova.
+
+```jsx
+const theme = createMuiTheme({
+  components: {
+    MuiIconButton: {
+      defaultProps: {
+        size: 'small',
+      },
+      styleOverrides: {
+        sizeSmall: {
+          marginLeft: 4,
+          marginRight: 4,
+          padding: 12,
+        },
+      },
+    },
+  },
+});
+```
+
+- ✨ Add [text in divider](https://next.material-ui.com/components/dividers/#dividers-with-text) support (#22285) @ShehryarShoukat96
+
+  ```jsx
+  <Divider>{'CENTER'}</Divider>
+  ```
+
+  <img width="530" alt="divider" src="https://user-images.githubusercontent.com/3165635/91740018-01cb5e80-ebb3-11ea-9a7f-6ddb48b3f496.png">
+
+- ♿️ A bunch of accessibility fixes (#22366, #22374, #22377, #22340, #22376) @fakeharahman @alexmotoc @eps1lon @oliviertassinari
+- ⚛️ Increase adoption of TypeScript in the codebase (#22389, #22367, #22282) @Luchanso, @oliviertassinari
+
+### `@material-ui/core@v5.0.0-alpha.8`
+
+#### Breaking changes
+
+- [theme] Rename theme keys to defaultProps and styleOverrides (#22347) @mnajdova
+- [theme] Restructure component definitions (#22293) @mnajdova
+  The components' definition inside the theme were restructure under the `components` key, to allow people easier discoverability about the definitions regarding one component.
+
+  1. `props`
+
+  ```diff
+  import { createMuiTheme } from '@material-ui/core/styles';
+
+  const theme = createMuitheme({
+  -  props: {
+  -    MuiButton: {
+  -      disableRipple: true,
+  -    },
+  -  },
+  +  components: {
+  +    MuiButton: {
+  +      defaultProps: {
+  +        disableRipple: true,
+  +      },
+  +    },
+  +  },
+  });
+  ```
+
+  2. `overrides`
+
+  ```diff
+  import { createMuiTheme } from '@material-ui/core/styles';
+
+  const theme = createMuitheme({
+  -  overrides: {
+  -    MuiButton: {
+  -      root: { padding: 0 },
+  -    },
+  -  },
+  +  components: {
+  +    MuiButton: {
+  +      styleOverrides: {
+  +        root: { padding: 0 },
+  +      },
+  +    },
+  +  },
+  });
+  ```
+
+  Note that if you don't have the time to upgrade the structure of the theme, you
+  can use the `adaptV4Theme()` adapter.
+
+- [GridList] Rename to ImageList (#22311) @mbrookes
+- [GridList] Rename Tile to Item (#22385) @mbrookes
+  Rename the `GridList` components to `ImageList` to align with the current Material Design naming.
+
+  ```diff
+  -import GridList from '@material-ui/core/GridList';
+  -import GridListTile from '@material-ui/core/GridListTile';
+  -import GridListTileBar from '@material-ui/core/GridListTileBar';
+  +import ImageList from '@material-ui/core/ImageList';
+  +import ImageListItem from '@material-ui/core/ImageListItem';
+  +import ImageListItemBar from '@material-ui/core/ImageListItemBar';
+
+  -<GridList>
+  -  <GridListTile>
+  +<ImageList>
+  +  <ImageListItem>
+      <img src="file.jpg" alt="Image title" />
+  -    <GridListTileBar
+  +    <ImageListItemBar
+        title="Title"
+        subtitle="Subtitle"
+      />
+  -  </GridListTile>
+  -</GridList>
+  +  </ImageListItem>
+  +</ImageList>
+  ```
+
+#### Changes
+
+- [Breadcrumbs] Fix wrong role usage (#22366) @fakeharahman
+- [Breadcrumbs] More robust focus capture (#22374) @eps1lon
+- [ButtonBase] Reset box-sizing to border-box (#22316) @su8ru
+- [Dialog] Fix unexpected close when releasing click on backdrop (#22310) @danbrud
+- [Divider] Add text in divider (#22285) @ShehryarShoukat96
+- [Slider] Respect disabled property when already focused  (#22247) @pireads
+- [Tabs] Don't fire onChange if current value (#22381) @jjoselv
+- [Tabs] Improve focus management on list with no active tabs (#22377) @alexmotoc
+- [theme] Add theme.mixins.gutters() in adaptV4Theme (#22396) @mnajdova
+- [Tooltip] Improve readability (#22340) @oliviertassinari
+- [Tooltip] Meet dismissable WCAG criterion (#22376) @eps1lon
+- [l10n] Improve th-TH locale (#22350) @vimutti77
+
+### `@material-ui/lab@v5.0.0-alpha.8`
+
+- [docs] Add IntelliSense for each class in the `classes` prop (#22312) @eps1lon
+
+### `@material-ui/styles@v5.0.0-alpha.8`
+
+- [theme] Restructure component definitions (#22293) @mnajdova
+
+### `@material-ui/utils@v5.0.0-alpha.8`
+
+- [core] Move utils package to TypeScript (#22367) @oliviertassinari
+
+### Docs
+
+- [docs] Add Content Security Policy guide (#22383) @tjg37
+- [docs] Add IntelliSense for each class in the `classes` prop (#22312) @eps1lon
+- [docs] Add links in the header (#22210) @oliviertassinari
+- [docs] Fix Argos-ci 404 link (#22362) @brunocechet
+- [docs] Fix test README typo @mbrookes
+- [docs] Forward x data-grid (#22400) @oliviertassinari
+- [docs] Transpile demo .ts files (#22388) @eps1lon
+- [docs] Add Backstage to showcase (#22428) @stefanalund
+- [docs] Update Fontsource installation instructions (#22431) @DecliningLotus
+
+### Core
+
+- [icons] Label them as vendored for GitHub (#22397) @oliviertassinari
+- [test] DialogContent with testing-library (#22356) @baterson
+- [test] DialogContentText with testing-library (#22357) @baterson
+- [test] DialogTitle with testing-library (#22358) @baterson
+- [test] Enable tests that weren't working in JSDOM (#22360) @eps1lon
+- [test] Fix failing tests on Windows (#22369) @eps1lon
+- [test] Update react 17 patch (#22391) @eps1lon
+- [core] Add explicit dependency on `@types/yargs` (#22339) @eps1lon
+- [core] Add useEnhancedEffect module (#22317) @oliviertassinari
+- [core] Batch small changes (#22314) @oliviertassinari
+- [core] Fix setRef types (#22389) @Luchanso
+- [core] Include TypeScript definitions in GitHub source (#22282) @oliviertassinari
+- [core] Refactor how we ignore default values in docs (#22355) @eps1lon
+- [core] Update SECURITY.md to account for v5 @oliviertassinari
+
 ## 5.0.0-alpha.7
 
 ###### _Aug 22, 2020_
