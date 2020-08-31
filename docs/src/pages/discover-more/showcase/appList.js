@@ -620,6 +620,16 @@ const appList = [
     stars: 14,
     dateAdded: '2020-03-25',
   },
+  {
+    title: 'Backstage',
+    description:
+      'Backstage is an open platform by Spotify for building developer portals.',
+    image: 'backstage.jpg',
+    link: 'https://backstage.io',
+    source: 'https://github.com/spotify/backstage',
+    stars: 7400,
+    dateAdded: '2020-08-31',
+  },
 ];
 
 export default appList;
