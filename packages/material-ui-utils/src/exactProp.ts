@@ -1,3 +1,4 @@
+import { ValidationMap } from 'prop-types';
 // This module is based on https://github.com/airbnb/prop-types-exact repository.
 // However, in order to reduce the number of dependencies and to remove some extra safe checks
 // the module was forked.
@@ -5,7 +6,7 @@
 // Only exported for test purposes.
 export const specialProperty = 'exact-prop: \u200b';
 
-export default function exactProp(propTypes: any) {
+export default function exactProp<T>(propTypes: ValidationMap<T>): ValidationMap<T> {
   if (process.env.NODE_ENV === 'production') {
     return propTypes;
   }
