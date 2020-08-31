@@ -41,14 +41,15 @@ You can [install it](https://www.npmjs.com/package/fontsource-roboto) by typing 
 Then, you can import it in your entry-point.
 
 ```js
-import 'fontsource-roboto';
+import 'fontsource-roboto/300.css';
+import 'fontsource-roboto/400.css';
+import 'fontsource-roboto/500.css';
+import 'fontsource-roboto/700.css';
 ```
 
-For more info check out [Fontsource](https://github.com/DecliningLotus/fontsource/blob/master/packages/roboto/README.md).
+For more info check out [Fontsource](https://github.com/fontsource/fontsource).
 
-⚠️ Be careful when using this approach.
-Make sure your bundler doesn't eager load all the font variations (100/300/400/500/700/900, italic/regular, SVG/woff). Fontsource can be configured to load specific subsets, weights and styles.
-Inlining all the font files can significantly increase the size of your bundle.
+Fontsource can be configured to load specific subsets, weights and styles.
 Material-UI default typography configuration only relies on 300, 400, 500, and 700 font weights.
 
 ## Component
