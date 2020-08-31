@@ -562,17 +562,17 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   return (
     <Root
       ref={handleRef}
-      className={clsx(className, classes.root, utilityClasses.root)}
       onMouseDown={handleMouseDown}
       marked={marks.length > 0 && marks.some((mark) => mark.label)}
       {...stateAndProps}
       {...rootProps}
+      className={clsx(className, classes.root, utilityClasses.root, rootProps.className)}
     >
-      <Rail {...stateAndProps} {...railProps} className={clsx(classes.rail, utilityClasses.rail)} />
+      <Rail {...stateAndProps} {...railProps} className={clsx(classes.rail, utilityClasses.rail, railProps.className)} />
       <Track
         {...stateAndProps}
         {...trackProps}
-        className={clsx(classes.track, utilityClasses.track)}
+        className={clsx(classes.track, utilityClasses.track, trackProps.className)}
         style={trackStyle}
       />
       <input value={values.join(',')} name={name} type="hidden" />
@@ -604,7 +604,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
               {...markProps}
               className={clsx(classes.mark, utilityClasses.mark, {
                 [getUtilityClass('markActive')]: markActive,
-              })}
+              }, markProps.className)}
               markActive={markActive}
             />
             {mark.label != null ? (
@@ -616,7 +616,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
                 {...markLabelProps}
                 className={clsx(classes.mark, utilityClasses.markLabel, {
                   [getUtilityClass('markLabelActive')]: markActive,
-                })}
+                }, markLabelProps.className)}
                 markLabelActive={markActive}
               >
                 {mark.label}
@@ -634,7 +634,6 @@ const Slider = React.forwardRef(function Slider(props, ref) {
             key={index}
             valueLabelFormat={valueLabelFormat}
             valueLabelDisplay={valueLabelDisplay}
-            className={clsx(classes.valueLabel, utilityClasses.valueLabel)}
             value={
               typeof valueLabelFormat === 'function'
                 ? valueLabelFormat(scale(value), index)
@@ -645,14 +644,15 @@ const Slider = React.forwardRef(function Slider(props, ref) {
             disabled={disabled}
             {...stateAndProps}
             {...valueLabelProps}
+            className={clsx(classes.valueLabel, utilityClasses.valueLabel, valueLabelProps.className)}
           >
             <Thumb
+              {...stateAndProps}
+              {...thumbProps}
               className={clsx(classes.thumb, utilityClasses.thumb, {
                 [getUtilityClass('active')]: active === index,
                 [getUtilityClass('focusVisible')]: focusVisible === index,
-              })}
-              {...stateAndProps}
-              {...thumbProps}
+              }, thumbProps.className)}
               active={active === index}
               focusVisible={focusVisible === index}
               tabIndex={disabled ? null : 0}

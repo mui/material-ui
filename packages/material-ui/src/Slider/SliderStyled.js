@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { ClassNames } from '@emotion/core';
 import styled from '@emotion/styled';
 import isPropValid from '@emotion/is-prop-valid';
 import { getThemeProps } from '@material-ui/styles';
@@ -223,55 +224,74 @@ const useThemeProps = (inputProps, ref, name) => {
   };
 };
 
+// Stores a mapping between hashed string and cssified styles object
+const stylesCache = {};
+
+const useThemeOverrides = (name) => {
+  const theme = useTheme() || defaultTheme;
+
+  let overrides = {};
+
+  if(theme && theme.components && theme.components[name] && theme.components[name].overrides) {
+    overrides = theme.components[name].overrides;
+  }
+
+  return overrides;
+};
+
+const getComponentProps = (components, componentsProps, name) => {
+  return {
+    as: components[name],
+    ...(componentsProps[name] || {}),
+  };
+}
+
+const convertOverridesToClasses = (overrides, css) => {
+  const classes = {};
+
+  for(let key in overrides) {
+    classes[key] = css(overrides[key]);
+  }
+
+  console.log(classes);
+  return classes;
+}
+
 // This implementatino uses the ClassNames component https://emotion.sh/docs/class-names
 const Slider = React.forwardRef(function Slider(inputProps, inputRef) {
   const props = useThemeProps(inputProps, inputRef, 'MuiSlider');
+  const overrides = useThemeOverrides('MuiSlider');
   const { components = {}, componentsProps = {}, ref, ...other } = props;
 
   return (
-    <SliderBase
-      {...other}
-      components={{
-        root: StyledComponent,
-        rail: StyledRail,
-        track: StyledTrack,
-        thumb: StyledThumb,
-        valueLabel: StyledValueLabel,
-        mark: StyledMark,
-        markLabel: StyledMarkLabel,
-      }}
-      componentsProps={{
-        root: {
-          as: components.root,
-          ...(componentsProps.root || {}),
-        },
-        rail: {
-          as: components.rail,
-          ...(componentsProps.rail || {}),
-        },
-        track: {
-          as: components.track,
-          ...(componentsProps.track || {}),
-        },
-        thumb: {
-          as: components.thumb,
-          ...(componentsProps.thumb || {}),
-        },
-        valueLabel: {
-          as: components.valueLabel,
-          ...(componentsProps.valueLabel || {}),
-        },
-        mark: {
-          as: components.mark,
-          ...(componentsProps.mark || {}),
-        },
-        markLabel: {
-          as: components.markLabel,
-          ...(componentsProps.markLabel || {}),
-        },
-      }}
-      ref={ref}
-    />
+    // TODO: move to ThemeProvider
+    <ClassNames>
+      {({ css, cx }) => (
+        <SliderBase
+        {...other}
+        classes={convertOverridesToClasses(overrides, css)}
+        components={{
+          root: StyledComponent,
+          rail: StyledRail,
+          track: StyledTrack,
+          thumb: StyledThumb,
+          valueLabel: StyledValueLabel,
+          mark: StyledMark,
+          markLabel: StyledMarkLabel,
+        }}
+        componentsProps={{
+          root: getComponentProps(components, componentsProps, 'root'),
+          rail:  getComponentProps(components, componentsProps, 'rail'),
+          track:  getComponentProps(components, componentsProps, 'track'),
+          thumb:  getComponentProps(components, componentsProps, 'thumb'),
+          valueLabel:  getComponentProps(components, componentsProps, 'valueLabel'),
+          mark:  getComponentProps(components, componentsProps, 'mark'),
+          markLabel:  getComponentProps(components, componentsProps, 'markLabel'),
+        }}
+        ref={ref}
+      />
+      )}
+    </ClassNames>
   );
 });
 

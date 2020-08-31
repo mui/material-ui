@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 import VolumeDown from '@material-ui/icons/VolumeDown';
 import VolumeUp from '@material-ui/icons/VolumeUp';
+import { ThemeProvider } from '@material-ui/styles';
 
 const useStyles = makeStyles({
   root: {
@@ -21,29 +22,42 @@ export default function ContinuousSlider() {
   };
 
   return (
-    <div className={classes.root}>
-      <Typography id="continuous-slider" gutterBottom>
-        Volume
-      </Typography>
-      <Grid container spacing={2}>
-        <Grid item>
-          <VolumeDown />
+    <ThemeProvider theme={{
+      components: {
+        MuiSlider: {
+          overrides: {
+            root: { background: 'green'},
+            track: { background: 'yellow'},
+            rail: { background: 'blue' },
+            thumb: { background: 'red' },
+          }
+        }
+      }
+    }}>
+      <div className={classes.root}>
+        <Typography id="continuous-slider" gutterBottom>
+          Volume
+        </Typography>
+        <Grid container spacing={2}>
+          <Grid item>
+            <VolumeDown />
+          </Grid>
+          <Grid item xs>
+            <Slider
+              value={value}
+              onChange={handleChange}
+              aria-labelledby="continuous-slider"
+            />
+          </Grid>
+          <Grid item>
+            <VolumeUp />
+          </Grid>
         </Grid>
-        <Grid item xs>
-          <Slider
-            value={value}
-            onChange={handleChange}
-            aria-labelledby="continuous-slider"
-          />
-        </Grid>
-        <Grid item>
-          <VolumeUp />
-        </Grid>
-      </Grid>
-      <Typography id="disabled-slider" gutterBottom>
-        Disabled slider
-      </Typography>
-      <Slider disabled defaultValue={30} aria-labelledby="disabled-slider" />
-    </div>
+        <Typography id="disabled-slider" gutterBottom>
+          Disabled slider
+        </Typography>
+        <Slider disabled defaultValue={30} aria-labelledby="disabled-slider" />
+      </div>
+    </ThemeProvider>
   );
 }
