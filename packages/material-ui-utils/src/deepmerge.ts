@@ -1,4 +1,4 @@
-export function isPlainObject(item: unknown) {
+export function isPlainObject(item: unknown): item is Record<keyof any, unknown> {
   return item && typeof item === 'object' && item.constructor === Object;
 }
 
@@ -7,10 +7,10 @@ export interface DeepmergeOptions {
 }
 
 export default function deepmerge<T>(
-  target: Partial<T>,
-  source: Partial<T>,
+  target: T,
+  source: unknown,
   options: DeepmergeOptions = { clone: true },
-) {
+): T {
   const output = options.clone ? { ...target } : target;
 
   if (isPlainObject(target) && isPlainObject(source)) {
@@ -20,13 +20,11 @@ export default function deepmerge<T>(
         return;
       }
 
-      // @ts-ignore
       if (isPlainObject(source[key]) && key in target) {
-        // @ts-ignore
-        output[key] = deepmerge(target[key], source[key], options);
+        // Since `output` is a clone of `target` and we have narrowed `target` in this block we can cast to the same type.
+        (output as Record<keyof any, unknown>)[key] = deepmerge(target[key], source[key], options);
       } else {
-        // @ts-ignore
-        output[key] = source[key];
+        (output as Record<keyof any, unknown>)[key] = source[key];
       }
     });
   }
