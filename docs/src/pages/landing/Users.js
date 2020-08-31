@@ -156,7 +156,7 @@ export default function Users() {
             <Grid container justifyContent="center">
               <Button
                 variant="outlined"
-                href="https://spectrum.chat/material-ui/general/whos-using-material-ui~00e6687a-9b2d-454f-97a6-950d9fde71cf"
+                href="https://github.com/mui-org/material-ui/issues/22426"
                 rel="noopener nofollow"
                 target="_blank"
                 className={classes.button}
