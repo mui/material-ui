@@ -4,7 +4,7 @@
   "private": false,
   "author": "Material-UI Team",
   "description": "Material-UI Utils - Utility functions for Material-UI.",
-  "main": "./src/index.js",
+  "main": "./src/index.ts",
   "keywords": [
     "react",
     "react-component",
@@ -23,14 +23,16 @@
   },
   "homepage": "https://github.com/mui-org/material-ui/tree/next/packages/material-ui-utils",
   "scripts": {
-    "build": "yarn build:cjs && yarn build:esm && yarn build:es && yarn build:copy-files",
+    "build": "yarn build:cjs && yarn build:esm && yarn build:es && yarn build:copy-files && yarn build:types",
     "build:cjs": "node ../../scripts/build cjs",
     "build:esm": "node ../../scripts/build esm",
     "build:es": "node ../../scripts/build es",
     "build:copy-files": "node ../../scripts/copy-files.js",
+    "build:types": "tsc -p tsconfig.build.json",
     "prebuild": "rimraf build",
     "release": "yarn build && npm publish build --tag next",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/material-ui-utils/**/*.test.{js,ts,tsx}' --exclude '**/node_modules/**'"
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/material-ui-utils/**/*.test.{js,ts,tsx}' --exclude '**/node_modules/**'",
+    "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json"
   },
   "peerDependencies": {
     "react": "^16.8.0",
@@ -38,6 +40,8 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.4.4",
+    "@types/prop-types": "^15.7.3",
+    "@types/react-is": "^16.7.1",
     "prop-types": "^15.7.2",
     "react-is": "^16.8.0"
   },

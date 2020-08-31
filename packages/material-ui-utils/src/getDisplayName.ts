@@ -1,24 +1,23 @@
+import * as React from 'react';
 import { ForwardRef, Memo } from 'react-is';
 
 // Simplified polyfill for IE 11 support
 // https://github.com/JamesMGreene/Function.name/blob/58b314d4a983110c3682f1228f845d39ccca1817/Function.name.js#L3
 const fnNameMatchRegex = /^\s*function(?:\s|\s*\/\*.*\*\/\s*)+([^(\s/]*)\s*/;
-export function getFunctionName(fn) {
+export function getFunctionName(fn: Function): string {
   const match = `${fn}`.match(fnNameMatchRegex);
   const name = match && match[1];
   return name || '';
 }
 
-/**
- * @param {function} Component
- * @param {string} fallback
- * @returns {string | undefined}
- */
-function getFunctionComponentName(Component, fallback = '') {
+function getFunctionComponentName(
+  Component: React.FunctionComponent | React.ComponentClass,
+  fallback = '',
+) {
   return Component.displayName || Component.name || getFunctionName(Component) || fallback;
 }
 
-function getWrappedName(outerType, innerType, wrapperName) {
+function getWrappedName(outerType: any, innerType: any, wrapperName: string) {
   const functionName = getFunctionComponentName(innerType);
   return (
     outerType.displayName || (functionName !== '' ? `${wrapperName}(${functionName})` : wrapperName)
@@ -29,11 +28,8 @@ function getWrappedName(outerType, innerType, wrapperName) {
  * cherry-pick from
  * https://github.com/facebook/react/blob/769b1f270e1251d9dbdce0fcbd9e92e502d059b8/packages/shared/getComponentName.js
  * originally forked from recompose/getDisplayName with added IE 11 support
- *
- * @param {React.ReactType} Component
- * @returns {string | undefined}
  */
-export default function getDisplayName(Component) {
+export default function getDisplayName(Component: React.ElementType): string | undefined {
   if (Component == null) {
     return undefined;
   }
@@ -46,12 +42,13 @@ export default function getDisplayName(Component) {
     return getFunctionComponentName(Component, 'Component');
   }
 
+  // TypeScript can't have components as objects but they exist in the form of `memo` or `Suspense`
   if (typeof Component === 'object') {
-    switch (Component.$$typeof) {
+    switch ((Component as any).$$typeof) {
       case ForwardRef:
-        return getWrappedName(Component, Component.render, 'ForwardRef');
+        return getWrappedName(Component, (Component as any).render, 'ForwardRef');
       case Memo:
-        return getWrappedName(Component, Component.type, 'memo');
+        return getWrappedName(Component, (Component as any).type, 'memo');
       default:
         return undefined;
     }
