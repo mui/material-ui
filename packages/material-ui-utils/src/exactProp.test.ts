@@ -1,33 +1,35 @@
 import { expect } from 'chai';
-import exactProp, { specialProperty } from './exactProp';
+import * as PropTypes from 'prop-types';
+import exactProp from './exactProp';
 
 describe('exactProp()', () => {
-  const exactPropTypes = exactProp({
-    bar: {},
+  beforeEach(() => {
+    PropTypes.resetWarningCache();
   });
 
-  it('should have the right shape', () => {
-    expect(typeof exactProp).to.equal('function');
-    expect(typeof exactPropTypes).to.equal('object');
+  it('should return null for supported props', () => {
+    const props = {
+      bar: false,
+    };
+    const propTypes = {
+      bar: PropTypes.bool,
+    };
+
+    expect(() => {
+      PropTypes.checkPropTypes(exactProp(propTypes), props, 'props', 'Component');
+    }).not.toErrorDev();
   });
 
-  describe('exactPropTypes', () => {
-    it('should return null for supported props', () => {
-      const props = {
-        bar: false,
-      };
-      const result = exactPropTypes[specialProperty](props);
-      expect(result).to.equal(null);
-    });
+  it('should return an error for unsupported props', () => {
+    const props = {
+      foo: false,
+    };
+    const propTypes = {
+      bar: PropTypes.bool,
+    };
 
-    it('should return an error for unsupported props', () => {
-      const props = {
-        foo: true,
-      };
-      const result = exactPropTypes[specialProperty](props);
-      expect(result.message).to.match(
-        /The following props are not supported: `foo`. Please remove them/,
-      );
-    });
+    expect(() => {
+      PropTypes.checkPropTypes(exactProp(propTypes), props, 'props', 'Component');
+    }).toErrorDev('The following props are not supported: `foo`. Please remove them');
   });
 });
