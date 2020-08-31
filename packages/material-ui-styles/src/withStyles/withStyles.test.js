@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { stub } from 'sinon';
 import { SheetsRegistry } from 'jss';
+import { act } from 'react-dom/test-utils';
 import { Input } from '@material-ui/core';
 import createMount from 'test/utils/createMount';
 import { isMuiElement } from '@material-ui/core/utils';
@@ -110,7 +111,10 @@ describe('withStyles', () => {
       expect(sheetsRegistry.registry.length).to.equal(1);
       expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'Empty-root-2' });
 
-      wrapper.unmount();
+      // TODO: Unnecessary on `next` branch
+      act(() => {
+        wrapper.unmount();
+      });
       expect(sheetsRegistry.registry.length).to.equal(0);
     });
 

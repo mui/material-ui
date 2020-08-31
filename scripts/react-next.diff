@@ -1,5 +1,5 @@
 diff --git a/packages/material-ui-lab/src/Autocomplete/Autocomplete.test.js b/packages/material-ui-lab/src/Autocomplete/Autocomplete.test.js
-index 2f3ea31dc..4ad337e85 100644
+index 2f3ea31dc2..4ad337e85a 100644
 --- a/packages/material-ui-lab/src/Autocomplete/Autocomplete.test.js
 +++ b/packages/material-ui-lab/src/Autocomplete/Autocomplete.test.js
 @@ -1018,7 +1018,7 @@ describe('<Autocomplete />', () => {
@@ -29,8 +29,22 @@ index 2f3ea31dc..4ad337e85 100644
        expect(consoleWarnMock.messages()[0]).to.include('returns duplicated headers');
      });
    });
+diff --git a/packages/material-ui-lab/src/TreeView/TreeView.test.js b/packages/material-ui-lab/src/TreeView/TreeView.test.js
+index 50c9f5d05c..59ff4d8fd0 100644
+--- a/packages/material-ui-lab/src/TreeView/TreeView.test.js
++++ b/packages/material-ui-lab/src/TreeView/TreeView.test.js
+@@ -118,8 +118,7 @@ describe('<TreeView />', () => {
+       const {
+         current: { errors },
+       } = errorRef;
+-      expect(errors).to.have.length(1);
+-      expect(errors[0].toString()).to.include('RangeError: Maximum call stack size exceeded');
++      expect(errors).to.have.length(0);
+     });
+   });
+ 
 diff --git a/packages/material-ui-styles/src/ThemeProvider/ThemeProvider.test.js b/packages/material-ui-styles/src/ThemeProvider/ThemeProvider.test.js
-index 9013d9095..7f0862466 100644
+index 9013d90955..7f0862466d 100644
 --- a/packages/material-ui-styles/src/ThemeProvider/ThemeProvider.test.js
 +++ b/packages/material-ui-styles/src/ThemeProvider/ThemeProvider.test.js
 @@ -135,7 +135,7 @@ describe('ThemeProvider', () => {
@@ -52,7 +66,7 @@ index 9013d9095..7f0862466 100644
          'Material-UI: You should return an object from your theme function',
        );
 diff --git a/packages/material-ui/src/Breadcrumbs/Breadcrumbs.test.js b/packages/material-ui/src/Breadcrumbs/Breadcrumbs.test.js
-index ed0e37f21..49d8ea9b0 100644
+index ed0e37f214..49d8ea9b0f 100644
 --- a/packages/material-ui/src/Breadcrumbs/Breadcrumbs.test.js
 +++ b/packages/material-ui/src/Breadcrumbs/Breadcrumbs.test.js
 @@ -102,7 +102,7 @@ describe('<Breadcrumbs />', () => {
@@ -64,8 +78,22 @@ index ed0e37f21..49d8ea9b0 100644
        expect(consoleErrorMock.messages()[0]).to.include(
          'Material-UI: You have provided an invalid combination of props to the Breadcrumbs.\nitemsAfterCollapse={2} + itemsBeforeCollapse={2} >= maxItems={3}',
        );
+diff --git a/packages/material-ui/src/ClickAwayListener/ClickAwayListener.test.js b/packages/material-ui/src/ClickAwayListener/ClickAwayListener.test.js
+index 5e538c8ea3..3b7d03c987 100644
+--- a/packages/material-ui/src/ClickAwayListener/ClickAwayListener.test.js
++++ b/packages/material-ui/src/ClickAwayListener/ClickAwayListener.test.js
+@@ -132,8 +132,7 @@ describe('<ClickAwayListener />', () => {
+       expect(handleClickAway.callCount).to.equal(0);
+ 
+       fireEvent.click(getByText('Stop inside a portal'));
+-      // True-negative, we don't have enough information to do otherwise.
+-      expect(handleClickAway.callCount).to.equal(1);
++      expect(handleClickAway.callCount).to.equal(0);
+     });
+   });
+ 
 diff --git a/packages/material-ui/src/TextareaAutosize/TextareaAutosize.test.js b/packages/material-ui/src/TextareaAutosize/TextareaAutosize.test.js
-index 09daadd96..1eaf80628 100644
+index 09daadd961..1eaf806289 100644
 --- a/packages/material-ui/src/TextareaAutosize/TextareaAutosize.test.js
 +++ b/packages/material-ui/src/TextareaAutosize/TextareaAutosize.test.js
 @@ -261,7 +261,7 @@ describe('<TextareaAutosize />', () => {
@@ -78,7 +106,7 @@ index 09daadd96..1eaf80628 100644
        });
      });
 diff --git a/packages/material-ui/src/internal/SwitchBase.test.js b/packages/material-ui/src/internal/SwitchBase.test.js
-index 41a38bc07..c9397fd13 100644
+index 41a38bc073..c9397fd133 100644
 --- a/packages/material-ui/src/internal/SwitchBase.test.js
 +++ b/packages/material-ui/src/internal/SwitchBase.test.js
 @@ -373,7 +373,7 @@ describe('<SwitchBase />', () => {
@@ -100,7 +128,7 @@ index 41a38bc07..c9397fd13 100644
          expect(consoleErrorMock.messages()[1]).to.include(
            'Material-UI: A component is changing the controlled checked state of SwitchBase to be uncontrolled.',
 diff --git a/packages/material-ui/src/useMediaQuery/useMediaQuery.test.js b/packages/material-ui/src/useMediaQuery/useMediaQuery.test.js
-index ba9977d1a..b5ca0ca4b 100644
+index ba9977d1a2..b5ca0ca4b9 100644
 --- a/packages/material-ui/src/useMediaQuery/useMediaQuery.test.js
 +++ b/packages/material-ui/src/useMediaQuery/useMediaQuery.test.js
 @@ -285,7 +285,7 @@ describe('useMediaQuery', () => {
