@@ -42,24 +42,24 @@ Here are some highlights ✨:
 - [Popover] Remove transition onX props (#22184) @mbrookes
   The onE\* transition props were removed. Use TransitionProps instead.
 
-    ```diff
-    <Popover
-    -  onEnter={onEnter}
-    -  onEntered={onEntered},
-    -  onEntering={onEntered},
-    -  onExit={onEntered},
-    -  onExited={onEntered},
-    -  onExiting={onEntered}
-    +  TransitionProps={{
-    +    onEnter,
-    +    onEntered,
-    +    onEntering,
-    +    onExit,
-    +    onExited,
-    +    onExiting,
-    +  }}
-    />
-    ```
+  ```diff
+  <Popover
+  -  onEnter={onEnter}
+  -  onEntered={onEntered},
+  -  onEntering={onEntered},
+  -  onExit={onEntered},
+  -  onExited={onEntered},
+  -  onExiting={onEntered}
+  +  TransitionProps={{
+  +    onEnter,
+  +    onEntered,
+  +    onEntering,
+  +    onExit,
+  +    onExited,
+  +    onExiting,
+  +  }}
+  />
+  ```
 
 - [TextField] Improve line-height reset (#22149) @imnasnainaec
   Increase the line-height by 4px to support long descender on special alphabets.
@@ -111,7 +111,7 @@ Here are some highlights ✨:
 - [docs] Document TextField helperText height (#22146) @morgan-sam
 - [docs] Fix `@global` being considered a class (#22297) @eps1lon
 - [docs] Fix a typo on TextField components (#22300) @Renfrew
-- [docs] Fix use of removed transition onE* props (#22286) @mbrookes
+- [docs] Fix use of removed transition onE\* props (#22286) @mbrookes
 - [docs] Improve codesandbox generation logic (#22221) @oliviertassinari
 - [docs] Migrate Onepirate to TypeScript (#22295) @rothbart
 - [docs] Migrate Dashboard template to TypeScript (#22280) @oliviertassinari

@@ -11,9 +11,9 @@ import {
   TypographyProps,
 } from '@material-ui/system';
 
-const Box = styled.div<
-  PaletteProps & SpacingProps & TypographyProps
->`${palette}${spacing}${typography}`;
+const Box = styled.div<PaletteProps & SpacingProps & TypographyProps>`
+  ${palette}${spacing}${typography}
+`;
 // or import Box from '@material-ui/core/Box';
 
 const theme = createMuiTheme();
