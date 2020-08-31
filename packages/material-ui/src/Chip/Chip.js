@@ -8,8 +8,6 @@ import { emphasize, fade } from '../styles/colorManipulator';
 import useForkRef from '../utils/useForkRef';
 import unsupportedProp from '../utils/unsupportedProp';
 import capitalize from '../utils/capitalize';
-import useEventCallback from '../utils/useEventCallback';
-import useIsFocusVisible from '../utils/useIsFocusVisible';
 import ButtonBase from '../ButtonBase';
 
 export const styles = (theme) => {
@@ -298,37 +296,6 @@ const Chip = React.forwardRef(function Chip(props, ref) {
   const chipRef = React.useRef(null);
   const handleRef = useForkRef(chipRef, ref);
 
-  const {
-    isFocusVisibleRef,
-    onFocus: handleFocusVisible,
-    onBlur: handleBlurVisible,
-  } = useIsFocusVisible();
-  const [focusVisible, setFocusVisible] = React.useState(false);
-  if (disabled && focusVisible) {
-    setFocusVisible(false);
-  }
-  React.useEffect(() => {
-    isFocusVisibleRef.current = focusVisible;
-  }, [focusVisible, isFocusVisibleRef]);
-
-  const handleBlur = useEventCallback((event) => {
-    handleBlurVisible(event);
-    if (isFocusVisibleRef.current === false) {
-      setFocusVisible(false);
-    }
-  }, false);
-
-  const handleFocus = useEventCallback((event) => {
-    if (!chipRef.current) {
-      chipRef.current = event.currentTarget;
-    }
-
-    handleFocusVisible(event);
-    if (isFocusVisibleRef.current === true) {
-      setFocusVisible(true);
-    }
-  });
-
   const handleDeleteIconClick = (event) => {
     // Stop the event from bubbling up to the `Chip`
     event.stopPropagation();
@@ -369,7 +336,10 @@ const Chip = React.forwardRef(function Chip(props, ref) {
   const small = size === 'small';
 
   const Component = ComponentProp || (clickable ? ButtonBase : 'div');
-  const moreProps = Component === ButtonBase ? { component: 'div' } : {};
+  const moreProps =
+    Component === ButtonBase
+      ? { component: 'div', focusVisibleClassName: classes.focusVisible }
+      : {};
 
   let deleteIcon = null;
   if (onDelete) {
@@ -450,18 +420,16 @@ const Chip = React.forwardRef(function Chip(props, ref) {
           [classes[`clickableColor${capitalize(color)}`]]: clickable && color !== 'default',
           [classes.deletable]: onDelete,
           [classes[`deletableColor${capitalize(color)}`]]: onDelete && color !== 'default',
-          [classes.focusVisible]: focusVisible,
           [classes.outlinedPrimary]: variant === 'outlined' && color === 'primary',
           [classes.outlinedSecondary]: variant === 'outlined' && color === 'secondary',
         },
         themeVariantsClasses,
         className,
       )}
-      aria-disabled={disabled ? true : undefined}
+      aria-disabled={!clickable && disabled ? true : undefined}
+      disabled={clickable && disabled ? true : undefined}
       tabIndex={clickable || onDelete ? 0 : undefined}
-      onBlur={handleBlur}
       onClick={onClick}
-      onFocus={handleFocus}
       onKeyDown={handleKeyDown}
       onKeyUp={handleKeyUp}
       ref={handleRef}

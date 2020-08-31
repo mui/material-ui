@@ -1,9 +1,6 @@
 import { act, fireEvent } from './createClientRender';
 
-/**
- * @param {HTMLElement} element
- */
-export function focusVisible(element) {
+export function dispatchFocusVisible(element: HTMLElement) {
   act(() => {
     element.blur();
     fireEvent.keyDown(document.body, { key: 'Tab' });

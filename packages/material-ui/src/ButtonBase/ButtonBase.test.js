@@ -9,8 +9,8 @@ import {
   act,
   createClientRender,
   fireEvent,
-  focusVisible,
   screen,
+  dispatchFocusVisible,
   simulatePointerDevice,
 } from 'test/utils';
 import * as PropTypes from 'prop-types';
@@ -198,7 +198,7 @@ describe('<ButtonBase />', () => {
         const button = getByRole('button');
         simulatePointerDevice();
 
-        focusVisible(button);
+        dispatchFocusVisible(button);
 
         expect(button.querySelectorAll('.ripple-pulsate')).to.have.lengthOf(0);
       });
@@ -458,7 +458,7 @@ describe('<ButtonBase />', () => {
       const button = getByRole('button');
 
       simulatePointerDevice();
-      focusVisible(button);
+      dispatchFocusVisible(button);
 
       expect(button.querySelectorAll('.ripple-pulsate')).to.have.lengthOf(1);
     });
@@ -477,7 +477,7 @@ describe('<ButtonBase />', () => {
       const button = getByRole('button');
 
       simulatePointerDevice();
-      focusVisible(button);
+      dispatchFocusVisible(button);
       fireEvent.mouseLeave(button);
 
       expect(button.querySelectorAll('.ripple-pulsate')).to.have.lengthOf(1);
@@ -499,7 +499,7 @@ describe('<ButtonBase />', () => {
       const button = getByRole('button');
 
       simulatePointerDevice();
-      focusVisible(button);
+      dispatchFocusVisible(button);
       fireEvent.keyDown(button, { key: ' ' });
 
       expect(button.querySelectorAll('.ripple-pulsate .child-leaving')).to.have.lengthOf(1);
@@ -522,7 +522,7 @@ describe('<ButtonBase />', () => {
       const button = getByRole('button');
 
       simulatePointerDevice();
-      focusVisible(button);
+      dispatchFocusVisible(button);
       fireEvent.keyDown(button, { key: ' ' });
       fireEvent.keyUp(button, { key: ' ' });
 
@@ -545,7 +545,7 @@ describe('<ButtonBase />', () => {
       );
       const button = getByRole('button');
       simulatePointerDevice();
-      focusVisible(button);
+      dispatchFocusVisible(button);
 
       act(() => {
         button.blur();
@@ -575,7 +575,7 @@ describe('<ButtonBase />', () => {
       const button = getByText('Hello');
       simulatePointerDevice();
 
-      focusVisible(button);
+      dispatchFocusVisible(button);
 
       expect(button).to.have.class(classes.focusVisible);
 
@@ -635,7 +635,7 @@ describe('<ButtonBase />', () => {
       expect(button).not.to.have.class(classes.focusVisible);
       button.focus();
       expect(button).not.to.have.class(classes.focusVisible);
-      focusVisible(button);
+      dispatchFocusVisible(button);
       expect(button).to.have.class(classes.focusVisible);
     });
 
@@ -677,7 +677,7 @@ describe('<ButtonBase />', () => {
       const focusRetarget = getByText('you cannot escape me');
       simulatePointerDevice();
 
-      focusVisible(buttonBase);
+      dispatchFocusVisible(buttonBase);
 
       expect(focusRetarget).toHaveFocus();
       expect(eventLog).to.deep.equal(['focus-visible', 'focus', 'blur']);
@@ -693,7 +693,7 @@ describe('<ButtonBase />', () => {
       );
       simulatePointerDevice();
 
-      focusVisible(getByRole('button'));
+      dispatchFocusVisible(getByRole('button'));
 
       expect(onFocusVisibleSpy.calledOnce).to.equal(true);
       expect(onFocusVisibleSpy.firstCall.args).to.have.lengthOf(1);

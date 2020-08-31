@@ -9,24 +9,12 @@ import {
   createClientRender,
   fireEvent,
   screen,
+  simulatePointerDevice,
+  dispatchFocusVisible,
 } from 'test/utils';
 import { camelCase } from 'lodash/string';
 import Tooltip, { testReset } from './Tooltip';
 import Input from '../Input';
-
-function focusVisible(element) {
-  act(() => {
-    element.blur();
-    fireEvent.keyDown(document.activeElement || document.body, { key: 'Tab' });
-    element.focus();
-  });
-}
-
-function simulatePointerDevice() {
-  // first focus on a page triggers focus visible until a pointer event
-  // has been dispatched
-  document.dispatchEvent(new window.Event('pointerdown'));
-}
 
 describe('<Tooltip />', () => {
   /**
@@ -379,7 +367,7 @@ describe('<Tooltip />', () => {
       );
       simulatePointerDevice();
 
-      focusVisible(getByRole('button'));
+      dispatchFocusVisible(getByRole('button'));
       expect(queryByRole('tooltip')).to.equal(null);
 
       act(() => {
@@ -408,7 +396,7 @@ describe('<Tooltip />', () => {
         </Tooltip>,
       );
       const children = getByRole('button');
-      focusVisible(children);
+      dispatchFocusVisible(children);
 
       expect(queryByRole('tooltip')).to.equal(null);
 
@@ -430,7 +418,7 @@ describe('<Tooltip />', () => {
 
       expect(queryByRole('tooltip')).to.equal(null);
 
-      focusVisible(children);
+      dispatchFocusVisible(children);
       // Bypass `enterDelay` wait, use `enterNextDelay`.
       expect(queryByRole('tooltip')).to.equal(null);
 
@@ -463,7 +451,7 @@ describe('<Tooltip />', () => {
       );
       simulatePointerDevice();
 
-      focusVisible(getByRole('button'));
+      dispatchFocusVisible(getByRole('button'));
       act(() => {
         clock.tick(enterDelay);
       });
@@ -762,7 +750,7 @@ describe('<Tooltip />', () => {
 
       expect(queryByRole('tooltip')).to.equal(null);
 
-      focusVisible(getByRole('button'));
+      dispatchFocusVisible(getByRole('button'));
 
       expect(getByRole('tooltip')).toBeVisible();
 

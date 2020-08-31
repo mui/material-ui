@@ -8,7 +8,7 @@ import {
   act,
   createClientRender,
   fireEvent,
-  focusVisible,
+  dispatchFocusVisible,
   simulatePointerDevice,
 } from 'test/utils';
 import CheckBox from '../internal/svg-icons/CheckBox';
@@ -398,9 +398,7 @@ describe('<Chip />', () => {
         const handleKeyDown = spy((event) => event.defaultPrevented);
         const { container } = render(<Chip label={<input />} onKeyDown={handleKeyDown} />);
         const input = container.querySelector('input');
-        act(() => {
-          input.focus();
-        });
+        input.focus();
         fireEvent.keyDown(input, { key: 'Backspace' });
 
         // defaultPrevented?
@@ -550,9 +548,23 @@ describe('<Chip />', () => {
       expect(chip).not.to.have.class(classes.focusVisible);
       chip.focus();
       expect(chip).not.to.have.class(classes.focusVisible);
-      focusVisible(chip);
+      dispatchFocusVisible(chip);
 
       expect(chip).to.have.class(classes.focusVisible);
+    });
+
+    it('should reset the focused state', () => {
+      const { container, setProps } = render(<Chip label="Test Chip" onClick={() => {}} />);
+      const chip = container.querySelector(`.${classes.root}`);
+
+      simulatePointerDevice();
+      dispatchFocusVisible(chip);
+
+      expect(chip).to.have.class(classes.focusVisible);
+
+      setProps({ disabled: true });
+
+      expect(chip).not.to.have.class(classes.focusVisible);
     });
   });
 });
