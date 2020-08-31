@@ -49,7 +49,10 @@ function acceptingRef(
   return null;
 }
 
-const elementAcceptingRef = chainPropTypes(PropTypes.element, acceptingRef);
+const elementAcceptingRef = chainPropTypes(
+  PropTypes.element,
+  acceptingRef,
+) as PropTypes.Requireable<unknown>;
 elementAcceptingRef.isRequired = chainPropTypes(PropTypes.element.isRequired, acceptingRef);
 
 export default elementAcceptingRef;
