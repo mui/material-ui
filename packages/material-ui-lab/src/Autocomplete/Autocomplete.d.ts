@@ -51,8 +51,7 @@ export interface AutocompleteProps<
   Multiple extends boolean | undefined,
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined
->
-  extends UseAutocompleteProps<T, Multiple, DisableClearable, FreeSolo>,
+> extends UseAutocompleteProps<T, Multiple, DisableClearable, FreeSolo>,
     StandardProps<React.HTMLAttributes<HTMLDivElement>, 'defaultValue' | 'onChange' | 'children'> {
   /**
    * Props applied to the [`Chip`](/api/chip/) element.
