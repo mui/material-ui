@@ -1,4 +1,8 @@
+import * as React from 'react';
+
 /**
+ * TODO v5: consider to make it private
+ *
  * passes {value} to {ref}
  *
  * WARNING: Be sure to only call this inside a callback that is passed as a ref.
@@ -11,6 +15,12 @@
  * @param ref a ref callback or ref object if anything falsy this is a no-op
  */
 export default function setRef<T>(
-  ref: React.RefObject<T> | ((instance: T | null) => void) | null | undefined,
-  value: T | null
-): void;
+  ref: React.MutableRefObject<T | null> | ((instance: T | null) => void) | null | undefined,
+  value: T | null,
+): void {
+  if (typeof ref === 'function') {
+    ref(value);
+  } else if (ref) {
+    ref.current = value;
+  }
+}

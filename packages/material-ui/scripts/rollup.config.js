@@ -15,6 +15,7 @@ const babelOptions = {
   exclude: /node_modules/,
   // We are using @babel/plugin-transform-runtime
   runtimeHelpers: true,
+  extensions: ['.js', '.ts', '.tsx'],
   configFile: '../../babel.config.js',
 };
 const commonjsOptions = {
@@ -38,6 +39,9 @@ const commonjsOptions = {
       'isValidElementType',
     ],
   },
+};
+const nodeOptions = {
+  extensions: ['.js', '.tsx', '.ts'],
 };
 
 function onwarn(warning) {
@@ -70,7 +74,7 @@ export default [
     },
     external: Object.keys(globals),
     plugins: [
-      nodeResolve(),
+      nodeResolve(nodeOptions),
       babel(babelOptions),
       commonjs(commonjsOptions),
       nodeGlobals(), // Wait for https://github.com/cssinjs/jss/pull/893
@@ -88,7 +92,7 @@ export default [
     },
     external: Object.keys(globals),
     plugins: [
-      nodeResolve(),
+      nodeResolve(nodeOptions),
       babel(babelOptions),
       commonjs(commonjsOptions),
       nodeGlobals(), // Wait for https://github.com/cssinjs/jss/pull/893
