@@ -68,7 +68,35 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
     ...other
   } = props;
 
+  const touchStartPos = React.useRef();
+  const touchTimer = React.useRef();
+
+  const handleTouchStart = React.useCallback(event => {
+    const { clientX, clientY } = event.touches[0];
+
+    touchStartPos.current = {
+      clientX,
+      clientY,
+    };
+  }, [touchStartPos])
+
+  const handleTouchEnd = React.useCallback(event => {
+    const target = event.target;
+    const { clientX, clientY } = event.changedTouches[0];
+
+    if (
+      Math.abs(clientX - touchStartPos.current.clientX) < 10 &&
+      Math.abs(clientY - touchStartPos.current.clientY) < 10
+    ) {
+      touchTimer.current = setTimeout(() => {
+        target.dispatchEvent(new Event('click', { bubbles: true }));
+      }, 10);
+    }
+  }, [touchTimer, touchStartPos])
+
   const handleChange = (event) => {
+    clearTimeout(touchTimer.current);
+
     if (onChange) {
       onChange(event, value);
     }
@@ -77,6 +105,16 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
       onClick(event);
     }
   };
+
+  React.useImperativeHandle(
+    ref,
+    () => ({
+      handleTouchStart,
+      handleTouchEnd,
+      innerRef: ref
+    }),
+    [handleTouchStart, handleTouchEnd, ref],
+  );
 
   return (
     <ButtonBase
@@ -91,6 +129,8 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
       )}
       focusRipple
       onClick={handleChange}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
       {...other}
     >
       <span className={classes.wrapper}>

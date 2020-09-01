@@ -8,6 +8,7 @@ import {
   createClientRender,
   within,
 } from 'test/utils';
+import { act } from 'react-test-renderer';
 import ButtonBase from '../ButtonBase';
 import BottomNavigationAction from './BottomNavigationAction';
 
@@ -24,7 +25,7 @@ describe('<BottomNavigationAction />', () => {
     classes,
     inheritComponent: ButtonBase,
     mount,
-    refInstanceof: window.HTMLButtonElement,
+    refInstanceof: Object,
     skip: ['componentProp'],
   }));
 
@@ -79,5 +80,41 @@ describe('<BottomNavigationAction />', () => {
 
       expect(handleClick.callCount).to.equal(1);
     });
+  });
+
+  it('should fire onClick on touch tap', done => {
+    const handleClick = spy();
+    const bottomNavigationActionRef = React.createRef();
+
+    const { container } = render(<BottomNavigationAction onClick={handleClick} ref={bottomNavigationActionRef} />);
+    const instance = bottomNavigationActionRef.current;
+
+    act(() => {
+      instance.handleTouchStart({
+        touches: [
+          {
+            clientX: 42,
+            clientY: 42,
+          },
+        ],
+      });
+    });
+
+    act(() => {
+      instance.handleTouchEnd({
+        target: container.firstChild,
+        changedTouches: [
+          {
+            clientX: 42,
+            clientY: 42,
+          },
+        ],
+      });
+    });
+
+    setTimeout(() => {
+      expect(handleClick.callCount).to.equal(1)
+      done()
+    }, 15)
   });
 });
