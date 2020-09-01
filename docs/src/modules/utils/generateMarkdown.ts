@@ -323,43 +323,44 @@ function generateProps(reactAPI: ReactApi) {
       return;
     }
 
-    let defaultValueColumn = '';
-
     const { defaultValue, jsdocDefaultValue } = prop;
-    if (prop.type.name === 'func') {
-      if (jsdocDefaultValue !== undefined) {
-        throw new Error(
-          `Prop '${propName}' is a function for which @default is not supported until we can generate human readable documentation for it and verify it.`,
-        );
-      }
-    } else if (defaultValue !== undefined && jsdocDefaultValue === undefined) {
-      // discriminator for polymorphism for which the default value is hard to extract
+
+    if (jsdocDefaultValue !== undefined && defaultValue === undefined) {
+      throw new Error(
+        `Declared a @default annotation in JSDOC for prop '${propName}' but could not find a default value in the implementation.`,
+      );
+    } else if (jsdocDefaultValue === undefined && defaultValue !== undefined) {
+      // Discriminator for polymorphism which is not documented at the component level.
+      // The documentation of `component` does not know in which component it is used.
       if (propName !== 'component') {
         // TODO: throw/warn/ignore?
         // throw new Error(
-        //   `Missing JSDOC @default for prop '${propName}' with default value "${defaultValue.value}"`,
+        //   `JSDOC @default annotation not found for '${propName}'.`,
         // );
-        console.warn(
-          `${reactAPI.filename}: Missing JSDOC @default for prop '${propName}' with default value "${defaultValue.value}"`,
-        );
+        console.warn(`JSDOC @default annotation not found for '${propName}'.`);
       }
     } else if (jsdocDefaultValue !== undefined) {
-      if (jsdocDefaultValue.value !== defaultValue?.value) {
+      // `defaultValue` can't be undefined or we would've thrown earlier.
+      if (jsdocDefaultValue.value !== defaultValue!.value) {
         throw new Error(
-          `Expected JSDOC @default value for prop '${propName}' of "${jsdocDefaultValue.value}" to equal runtime default value of "${defaultValue?.value}"`,
+          `Expected JSDOC @default annotation for prop '${propName}' of "${jsdocDefaultValue.value}" to equal runtime default value of "${defaultValue?.value}"`,
         );
       }
     }
 
-    if (defaultValue) {
-      defaultValueColumn = `<span class="prop-default">${escapeCell(
-        defaultValue.value.replace(/\r*\n/g, ''),
-      )}</span>`;
-    }
+    const renderedDefaultValue = defaultValue?.value.replace(/\r?\n/g, '');
+    const renderDefaultValue =
+      renderedDefaultValue &&
+      // Ignore "large" default values that would break the table layout.
+      renderedDefaultValue.length <= 150;
 
-    // Give up
-    if (defaultValueColumn.length > 180) {
-      defaultValueColumn = '';
+    let defaultValueColumn = '';
+    // give up on "large" default values e.g. big functions or objects
+    if (renderDefaultValue) {
+      defaultValueColumn = `<span class="prop-default">${escapeCell(
+        // narrowed `renderedDefaultValue` to non-nullable by `renderDefaultValue`
+        renderedDefaultValue!,
+      )}</span>`;
     }
 
     const chainedPropType = getChained(prop.type);
