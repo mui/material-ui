@@ -33,23 +33,23 @@ function defaultGetAriaLabel(type, page, selected) {
 
 const Pagination = React.forwardRef(function Pagination(props, ref) {
   const {
-    boundaryCount,
+    boundaryCount = 1,
     classes,
     className,
     color = 'standard',
-    count,
-    defaultPage,
-    disabled,
+    count = 1,
+    defaultPage = 1,
+    disabled = false,
     getItemAriaLabel = defaultGetAriaLabel,
-    hideNextButton,
-    hidePrevButton,
+    hideNextButton = false,
+    hidePrevButton = false,
     onChange,
     page,
     renderItem = (item) => <PaginationItem {...item} />,
     shape = 'circular',
-    showFirstButton,
-    showLastButton,
-    siblingCount,
+    showFirstButton = false,
+    showLastButton = false,
+    siblingCount = 1,
     size = 'medium',
     variant = 'text',
     ...other
@@ -60,10 +60,19 @@ const Pagination = React.forwardRef(function Pagination(props, ref) {
   const themeVariantsClasses = useThemeVariants(
     {
       ...props,
+      boundaryCount,
       color,
+      count,
+      defaultPage,
+      disabled,
       getItemAriaLabel,
+      hideNextButton,
+      hidePrevButton,
       renderItem,
       shape,
+      showFirstButton,
+      showLastButton,
+      siblingCount,
       size,
       variant,
     },
@@ -117,6 +126,7 @@ Pagination.propTypes = {
   className: PropTypes.string,
   /**
    * The active color.
+   * @default 'standard'
    */
   color: PropTypes.oneOf(['primary', 'secondary', 'standard']),
   /**
@@ -171,10 +181,12 @@ Pagination.propTypes = {
    *
    * @param {PaginationRenderItemParams} params The props to spread on a PaginationItem.
    * @returns {ReactNode}
+   * @default (item) => <PaginationItem {...item} />
    */
   renderItem: PropTypes.func,
   /**
    * The shape of the pagination items.
+   * @default 'circular'
    */
   shape: PropTypes.oneOf(['circular', 'rounded']),
   /**
@@ -194,10 +206,12 @@ Pagination.propTypes = {
   siblingCount: PropTypes.number,
   /**
    * The size of the pagination component.
+   * @default 'medium'
    */
   size: PropTypes.oneOf(['large', 'medium', 'small']),
   /**
    * The variant to use.
+   * @default 'text'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['outlined', 'text']),

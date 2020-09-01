@@ -121,7 +121,7 @@ function resolveType(type: NonNullable<doctrine.Tag['type']>): string {
   throw new TypeError(`resolveType for '${type.type}' not implemented`);
 }
 
-function generatePropDescription(prop: PropDescriptor) {
+function generatePropDescription(prop: PropDescriptor, propName: string) {
   const { description } = prop;
   const type = prop.type;
   let deprecated = '';
@@ -162,28 +162,24 @@ function generatePropDescription(prop: PropDescriptor) {
 
     // Split up the parsed tags into 'arguments' and 'returns' parsed objects. If there's no
     // 'returns' parsed object (i.e., one with title being 'returns'), make one of type 'void'.
-    const parsedLength = parsed.tags.length;
-    let parsedArgs: doctrine.Tag[] = [];
-    let parsedReturns: doctrine.Tag;
-
-    if (parsed.tags[parsedLength - 1].title === 'returns') {
-      parsedArgs = parsed.tags.slice(0, parsedLength - 1);
-      parsedReturns = parsed.tags[parsedLength - 1];
-    } else {
-      parsedArgs = parsed.tags;
-      // @ts-expect-error
-      parsedReturns = { type: { name: 'void' } };
-    }
+    const parsedArgs: doctrine.Tag[] = parsed.tags.filter((tag) => tag.title === 'param');
+    const parsedReturns: doctrine.Tag =
+      parsed.tags.find((tag) => tag.title === 'returns') ??
+      ({
+        type: { name: 'void' },
+      } as doctrine.Tag);
 
     signature += '<br><br>**Signature:**<br>`function(';
     signature += parsedArgs
-      .map((tag) => {
+      .map((tag, index) => {
         if (tag.type != null && tag.type.type === 'OptionalType') {
           return `${tag.name}?: ${(tag.type.expression as any).name}`;
         }
 
         if (tag.type === undefined) {
-          throw new TypeError('Tag has no type');
+          throw new TypeError(
+            `In function signature for prop '${propName}' Argument #${index} has no type.`,
+          );
         }
         return `${tag.name}: ${resolveType(tag.type!)}`;
       })
@@ -317,7 +313,7 @@ function generateProps(reactAPI: ReactApi) {
       prop.description += ' See [CSS API](#css) below for more details.';
     }
 
-    const description = generatePropDescription(prop);
+    const description = generatePropDescription(prop, propName);
 
     if (description === null) {
       return;
@@ -325,11 +321,21 @@ function generateProps(reactAPI: ReactApi) {
 
     const { defaultValue, jsdocDefaultValue } = prop;
 
+    const renderedDefaultValue = defaultValue?.value.replace(/\r?\n/g, '');
+    const renderDefaultValue =
+      renderedDefaultValue &&
+      // Ignore "large" default values that would break the table layout.
+      renderedDefaultValue.length <= 150;
+
     if (jsdocDefaultValue !== undefined && defaultValue === undefined) {
       throw new Error(
         `Declared a @default annotation in JSDOC for prop '${propName}' but could not find a default value in the implementation.`,
       );
-    } else if (jsdocDefaultValue === undefined && defaultValue !== undefined) {
+    } else if (
+      jsdocDefaultValue === undefined &&
+      defaultValue !== undefined &&
+      renderDefaultValue
+    ) {
       // Discriminator for polymorphism which is not documented at the component level.
       // The documentation of `component` does not know in which component it is used.
       if (propName !== 'component') {
@@ -347,12 +353,6 @@ function generateProps(reactAPI: ReactApi) {
         );
       }
     }
-
-    const renderedDefaultValue = defaultValue?.value.replace(/\r?\n/g, '');
-    const renderDefaultValue =
-      renderedDefaultValue &&
-      // Ignore "large" default values that would break the table layout.
-      renderedDefaultValue.length <= 150;
 
     let defaultValueColumn = '';
     // give up on "large" default values e.g. big functions or objects

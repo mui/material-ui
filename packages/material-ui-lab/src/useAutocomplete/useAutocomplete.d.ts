@@ -36,16 +36,19 @@ export interface UseAutocompleteProps<
    * If `true`, the portion of the selected suggestion that has not been typed by the user,
    * known as the completion string, appears inline after the input cursor in the textbox.
    * The inline completion string is visually highlighted and has a selected state.
+   * @default false
    */
   autoComplete?: boolean;
   /**
    * If `true`, the first option is automatically highlighted.
+   * @default false
    */
   autoHighlight?: boolean;
   /**
    * If `true`, the selected option becomes the value of the input
    * when the Autocomplete loses focus unless the user chooses
    * a different option or changes the character string in the input.
+   * @default false
    */
   autoSelect?: boolean;
   /**
@@ -55,6 +58,7 @@ export interface UseAutocompleteProps<
    * - `true` the input is always blurred.
    * - `touch` the input is blurred after a touch event.
    * - `mouse` the input is blurred after a mouse event.
+   * @default false
    */
   blurOnSelect?: 'touch' | 'mouse' | true | false;
   /**
@@ -62,10 +66,12 @@ export interface UseAutocompleteProps<
    *
    * Set to `true` if you want to help the user enter a new value.
    * Set to `false` if you want to help the user resume his search.
+   * @default !props.freeSolo
    */
   clearOnBlur?: boolean;
   /**
    * If `true`, clear all values when the user presses escape and the popup is closed.
+   * @default false
    */
   clearOnEscape?: boolean;
   /**
@@ -76,22 +82,27 @@ export interface UseAutocompleteProps<
    * If `true`, the popup will ignore the blur event if the input is filled.
    * You can inspect the popup markup with your browser tools.
    * Consider this option when you need to customize the component.
+   * @default false
    */
   debug?: boolean;
   /**
    * If `true`, the input can't be cleared.
+   * @default false
    */
   disableClearable?: DisableClearable;
   /**
    * If `true`, the popup won't close when a value is selected.
+   * @default false
    */
   disableCloseOnSelect?: boolean;
   /**
    * If `true`, will allow focus on disabled items.
+   * @default false
    */
   disabledItemsFocusable?: boolean;
   /**
    * If `true`, the list box in the popup will not wrap focus.
+   * @default false
    */
   disableListWrap?: boolean;
   /**
@@ -104,10 +115,12 @@ export interface UseAutocompleteProps<
   filterOptions?: (options: T[], state: FilterOptionsState<T>) => T[];
   /**
    * If `true`, hide the selected options from the list box.
+   * @default false
    */
   filterSelectedOptions?: boolean;
   /**
    * If `true`, the Autocomplete is free solo, meaning that the user input is not bound to provided options.
+   * @default false
    */
   freeSolo?: FreeSolo;
   /**
@@ -123,6 +136,7 @@ export interface UseAutocompleteProps<
    *
    * @param {T} option
    * @returns {string}
+   * @default (option) => option.label ?? option
    */
   getOptionLabel?: (option: T) => string;
   /**
@@ -145,6 +159,7 @@ export interface UseAutocompleteProps<
   /**
    * If `true`, the component handles the "Home" and "End" keys when the popup is open.
    * It should move focus to the first option and last option, respectively.
+   * @default !props.freeSolo
    */
   handleHomeEndKeys?: boolean;
   /**
@@ -154,6 +169,7 @@ export interface UseAutocompleteProps<
   id?: string;
   /**
    * If `true`, the highlight can move to the input.
+   * @default false
    */
   includeInputInList?: boolean;
   /**
@@ -205,6 +221,7 @@ export interface UseAutocompleteProps<
   open?: boolean;
   /**
    * If `true`, the popup will open on input focus.
+   * @default false
    */
   openOnFocus?: boolean;
   /**
@@ -214,10 +231,12 @@ export interface UseAutocompleteProps<
   /**
    * If `true`, the input's text will be selected on focus.
    * It helps the user clear the selected value.
+   * @default !props.freeSolo
    */
   selectOnFocus?: boolean;
   /**
    * If `true`, `value` must be an array and the menu will support multiple selections.
+   * @default false
    */
   multiple?: Multiple;
   /**
@@ -229,6 +248,7 @@ export interface UseAutocompleteProps<
   value?: Value<T, Multiple, DisableClearable, FreeSolo>;
   /**
    * The default input value. Use when the component is not controlled.
+   * @default props.multiple ? [] : null
    */
   defaultValue?: Value<T, Multiple, DisableClearable, FreeSolo>;
   /**

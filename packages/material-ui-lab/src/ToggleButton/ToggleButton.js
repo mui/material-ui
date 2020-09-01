@@ -136,10 +136,12 @@ ToggleButton.propTypes = {
   className: PropTypes.string,
   /**
    * If `true`, the button will be disabled.
+   * @default false
    */
   disabled: PropTypes.bool,
   /**
    * If `true`, the  keyboard focus ripple will be disabled.
+   * @default false
    */
   disableFocusRipple: PropTypes.bool,
   /**
@@ -165,6 +167,7 @@ ToggleButton.propTypes = {
   /**
    * The size of the button.
    * The prop defaults to the value injected by the parent ToggleButtonGroup component.
+   * @default 'medium'
    */
   size: PropTypes.oneOf(['large', 'medium', 'small']),
   /**

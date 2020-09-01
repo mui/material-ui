@@ -29,10 +29,12 @@ export type ToggleButtonTypeMap<
     };
     /**
      * If `true`, the button will be disabled.
+     * @default false
      */
     disabled?: boolean;
     /**
      * If `true`, the  keyboard focus ripple will be disabled.
+     * @default false
      */
     disableFocusRipple?: boolean;
     /**
@@ -42,6 +44,7 @@ export type ToggleButtonTypeMap<
     /**
      * The size of the button.
      * The prop defaults to the value injected by the parent ToggleButtonGroup component.
+     * @default 'medium'
      */
     size?: 'small' | 'medium' | 'large';
     /**

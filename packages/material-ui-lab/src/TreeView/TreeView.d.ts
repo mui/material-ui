@@ -24,6 +24,7 @@ export interface TreeViewPropsBase extends StandardProps<React.HTMLAttributes<HT
   defaultEndIcon?: React.ReactNode;
   /**
    * Expanded node ids. (Uncontrolled)
+   * @default []
    */
   defaultExpanded?: string[];
   /**
@@ -37,10 +38,12 @@ export interface TreeViewPropsBase extends StandardProps<React.HTMLAttributes<HT
   defaultParentIcon?: React.ReactNode;
   /**
    * If `true`, will allow focus on disabled items.
+   * @default false
    */
   disabledItemsFocusable?: boolean;
   /**
    * If `true` selection is disabled.
+   * @default false
    */
   disableSelection?: boolean;
   /**
@@ -72,6 +75,7 @@ export interface MultiSelectTreeViewProps extends TreeViewPropsBase {
   /**
    * Selected node ids. (Uncontrolled)
    * When `multiSelect` is true this takes an array of strings; when false (default) a string.
+   * @default []
    */
   defaultSelected?: string[];
   /**
@@ -81,6 +85,7 @@ export interface MultiSelectTreeViewProps extends TreeViewPropsBase {
   selected?: string[];
   /**
    * If true `ctrl` and `shift` will trigger multiselect.
+   * @default false
    */
   multiSelect?: true;
   /**
@@ -97,6 +102,7 @@ export interface SingleSelectTreeViewProps extends TreeViewPropsBase {
   /**
    * Selected node ids. (Uncontrolled)
    * When `multiSelect` is true this takes an array of strings; when false (default) a string.
+   * @default []
    */
   defaultSelected?: string;
   /**
@@ -106,6 +112,7 @@ export interface SingleSelectTreeViewProps extends TreeViewPropsBase {
   selected?: string;
   /**
    * If true `ctrl` and `shift` will trigger multiselect.
+   * @default false
    */
   multiSelect?: false;
   /**

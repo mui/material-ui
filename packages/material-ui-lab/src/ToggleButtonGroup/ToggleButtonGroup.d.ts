@@ -24,6 +24,7 @@ export interface ToggleButtonGroupProps
   };
   /**
    * If `true`, only allow one of the child ToggleButton values to be selected.
+   * @default false
    */
   exclusive?: boolean;
   /**
@@ -37,10 +38,12 @@ export interface ToggleButtonGroupProps
   onChange?: (event: React.MouseEvent<HTMLElement>, value: any) => void;
   /**
    * The group orientation (layout flow direction).
+   * @default 'horizontal'
    */
   orientation?: 'horizontal' | 'vertical';
   /**
    * The size of the buttons.
+   * @default 'medium'
    */
   size?: 'small' | 'medium' | 'large';
   /**
