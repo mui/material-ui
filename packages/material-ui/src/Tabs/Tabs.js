@@ -95,13 +95,13 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
     orientation = 'horizontal',
     ScrollButtonComponent = TabScrollButton,
     scrollButtons = 'auto',
-    scrollbar = 'off',
     selectionFollowsFocus,
     TabIndicatorProps = {},
     TabScrollButtonProps,
     textColor = 'inherit',
     value,
     variant = 'standard',
+    visibleScrollbar = false,
     ...other
   } = props;
   const theme = useTheme();
@@ -133,7 +133,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
 
   const [scrollerStyle, setScrollerStyle] = React.useState({
     overflow: 'hidden',
-    marginBottom: null,
+    scrollbarWidth: 0,
   });
 
   const valueToIndex = new Map();
@@ -247,10 +247,10 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
     moveTabsScroll(tabsRef.current[clientSize]);
   };
 
-  const handleScrollbarSizeChange = React.useCallback((scrollbarHeight) => {
+  const handleScrollbarSizeChange = React.useCallback((scrollbarWidth) => {
     setScrollerStyle({
       overflow: null,
-      marginBottom: scrollbar == 'off' ? -scrollbarHeight : 0,
+      scrollbarWidth,
     });
   }, []);
 
@@ -258,10 +258,10 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
     const conditionalElements = {};
 
     conditionalElements.scrollbarSizeListener = scrollable ? (
-      <ScrollbarSize onChange={handleScrollbarSizeChange} className={clsx({
-          [classes.hideScrollbar]: scrollbar == 'off',
-          [classes.scrollableX]: orientation == 'horizontal',
-          [classes.scrollableY]: orientation == 'vertical'
+      <ScrollbarSize
+        onChange={handleScrollbarSizeChange}
+        className={clsx(classes.scrollableX, {
+          [classes.hideScrollbar]: !visibleScrollbar,
         })}
       />
     ) : null;
@@ -500,11 +500,16 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
       <div
         className={clsx(classes.scroller, {
           [classes.fixed]: !scrollable,
-          [classes.hideScrollbar]: scrollable && scrollbar == 'off',
-          [classes.scrollableX]: scrollable && orientation == 'horizontal',
-          [classes.scrollableY]: scrollable && orientation == 'vertical'
+          [classes.hideScrollbar]: scrollable && !visibleScrollbar,
+          [classes.scrollableX]: scrollable && !vertical,
+          [classes.scrollableY]: scrollable && vertical,
         })}
-        style={scrollerStyle}
+        style={{
+          overflow: scrollerStyle.overflow,
+          [vertical ? `margin${isRtl ? 'Left' : 'Right'}` : 'marginBottom']: visibleScrollbar
+            ? undefined
+            : -scrollerStyle.scrollbarWidth,
+        }}
         ref={tabsRef}
         onScroll={handleTabsScroll}
       >
@@ -603,13 +608,6 @@ Tabs.propTypes = {
    * - `off` will never present them.
    */
   scrollButtons: PropTypes.oneOf(['auto', 'desktop', 'off', 'on']),
-    /**
-   * Determine behavior of scrollbar when tabs are set to scroll:
-   *
-   * - `auto` will only present it when not all the items are visible.
-   * - `off` will never present it.
-   */
-  scrollbar: PropTypes.oneOf(['auto', 'off']),
   /**
    * If `true` the selected tab changes on focus. Otherwise it only
    * changes on activation.
@@ -642,6 +640,11 @@ Tabs.propTypes = {
    *  - `standard` will render the default state.
    */
   variant: PropTypes.oneOf(['fullWidth', 'scrollable', 'standard']),
+  /**
+   * If `true`, the scrollbar will be visible. It can be useful when displaying
+   * a long vertical list of tabs.
+   */
+  visibleScrollbar: PropTypes.bool,
 };
 
 export default withStyles(styles, { name: 'MuiTabs' })(Tabs);

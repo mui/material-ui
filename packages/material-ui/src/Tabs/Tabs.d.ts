@@ -49,8 +49,12 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
       scroller?: string;
       /** Styles applied to the tablist element if `!variant="scrollable"`. */
       fixed?: string;
-      /** Styles applied to the tablist element if `variant="scrollable"`. */
-      scrollable?: string;
+      /** Styles applied to the tablist element if `variant="scrollable"` and `orientation="horizontal"`. */
+      scrollableX?: string;
+      /** Styles applied to the tablist element if `variant="scrollable"` and `orientation="vertical"`. */
+      scrollableY?: string;
+      /** Styles applied to the tablist element if `variant="scrollable"` and `scrollbar="off"`. */
+      hideScrollbar?: string;
       /** Styles applied to the `ScrollButtonComponent` component. */
       scrollButtons?: string;
       /** Styles applied to the `ScrollButtonComponent` component if `scrollButtons="auto"` or scrollButtons="desktop"`. */
@@ -87,13 +91,6 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
      */
     scrollButtons?: 'auto' | 'desktop' | 'on' | 'off';
     /**
-     * Determine behavior of scrollbar when tabs are set to scroll:
-     *
-     * - `auto` will only present it when not all the items are visible.
-     * - `off` will never present it.
-     */
-    scrollbar?: 'auto' | 'off';
-    /**
      * If `true` the selected tab changes on focus. Otherwise it only
      * changes on activation.
      */
@@ -125,6 +122,11 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
      *  - `standard` will render the default state.
      */
     variant?: 'standard' | 'scrollable' | 'fullWidth';
+    /**
+     * If `true`, the scrollbar will be visible. It can be useful when displaying
+     * a long vertical list of tabs.
+     */
+    visibleScrollbar?: boolean;
   };
   defaultComponent: D;
 }
