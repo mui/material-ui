@@ -50,9 +50,18 @@ export const styles = (theme) => ({
     overflowX: 'hidden',
     width: '100%',
   },
-  /* Styles applied to the tablist element if `variant="scrollable"`. */
-  scrollable: {
-    overflowX: 'scroll',
+  /* Styles applied to the tablist element if `variant="scrollable"` and `orientation="horizontal"`. */
+  scrollableX: {
+    overflowX: 'auto',
+    overflowY: 'hidden',
+  },
+  /* Styles applied to the tablist element if `variant="scrollable"` and `orientation="vertical"`. */
+  scrollableY: {
+    overflowY: 'auto',
+    overflowX: 'hidden',
+  },
+  /* Styles applied to the tablist element if `variant="scrollable"` and `scrollbar="off"`. */
+  hideScrollbar: {
     // Hide dimensionless scrollbar on MacOS
     scrollbarWidth: 'none', // Firefox
     '&::-webkit-scrollbar': {
@@ -86,6 +95,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
     orientation = 'horizontal',
     ScrollButtonComponent = TabScrollButton,
     scrollButtons = 'auto',
+    scrollbar = 'off',
     selectionFollowsFocus,
     TabIndicatorProps = {},
     TabScrollButtonProps,
@@ -240,14 +250,20 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
   const handleScrollbarSizeChange = React.useCallback((scrollbarHeight) => {
     setScrollerStyle({
       overflow: null,
-      marginBottom: -scrollbarHeight,
+      marginBottom: scrollbar == 'off' ? -scrollbarHeight : 0,
     });
   }, []);
 
   const getConditionalElements = () => {
     const conditionalElements = {};
+
     conditionalElements.scrollbarSizeListener = scrollable ? (
-      <ScrollbarSize className={classes.scrollable} onChange={handleScrollbarSizeChange} />
+      <ScrollbarSize onChange={handleScrollbarSizeChange} className={clsx({
+          [classes.hideScrollbar]: scrollbar == 'off',
+          [classes.scrollableX]: orientation == 'horizontal',
+          [classes.scrollableY]: orientation == 'vertical'
+        })}
+      />
     ) : null;
 
     const scrollButtonsActive = displayScroll.start || displayScroll.end;
@@ -484,7 +500,9 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
       <div
         className={clsx(classes.scroller, {
           [classes.fixed]: !scrollable,
-          [classes.scrollable]: scrollable,
+          [classes.hideScrollbar]: scrollable && scrollbar == 'off',
+          [classes.scrollableX]: scrollable && orientation == 'horizontal',
+          [classes.scrollableY]: scrollable && orientation == 'vertical'
         })}
         style={scrollerStyle}
         ref={tabsRef}
@@ -585,6 +603,13 @@ Tabs.propTypes = {
    * - `off` will never present them.
    */
   scrollButtons: PropTypes.oneOf(['auto', 'desktop', 'off', 'on']),
+    /**
+   * Determine behavior of scrollbar when tabs are set to scroll:
+   *
+   * - `auto` will only present it when not all the items are visible.
+   * - `off` will never present it.
+   */
+  scrollbar: PropTypes.oneOf(['auto', 'off']),
   /**
    * If `true` the selected tab changes on focus. Otherwise it only
    * changes on activation.

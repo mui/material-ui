@@ -87,6 +87,13 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
      */
     scrollButtons?: 'auto' | 'desktop' | 'on' | 'off';
     /**
+     * Determine behavior of scrollbar when tabs are set to scroll:
+     *
+     * - `auto` will only present it when not all the items are visible.
+     * - `off` will never present it.
+     */
+    scrollbar?: 'auto' | 'off';
+    /**
      * If `true` the selected tab changes on focus. Otherwise it only
      * changes on activation.
      */

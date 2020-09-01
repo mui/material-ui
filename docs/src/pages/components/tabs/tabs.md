@@ -91,7 +91,15 @@ Here is an example of customizing the component. You can learn more about this i
 
 ## Vertical tabs
 
+To make vertical tabs instead of default horizontal ones, there is `orientation="vertical"`:
+
 {{"demo": "pages/components/tabs/VerticalTabs.js", "bg": true}}
+
+## Scrollbar
+
+The scrollbar is hidden by default. However, you may need to show it in some cases: for instance, when there is a lot of tabs, and scroll buttons are not convenient enough to scroll through them. In such case, use `scrollbar="auto"`: it will show the scrollbar, as long as all tabs are not visible, regardless of `orientation` and `scrollButtons` options.
+
+{{"demo": "pages/components/tabs/VerticalTabsScrollbar.js", "bg": true}}
 
 ## Nav Tabs
 
