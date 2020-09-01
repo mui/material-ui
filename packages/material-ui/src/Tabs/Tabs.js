@@ -247,6 +247,8 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
     moveTabsScroll(tabsRef.current[clientSize]);
   };
 
+  // TODO Remove <ScrollbarSize /> as browser support for hidding the scrollbar
+  // with CSS improves.
   const handleScrollbarSizeChange = React.useCallback((scrollbarWidth) => {
     setScrollerStyle({
       overflow: null,
