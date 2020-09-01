@@ -60,6 +60,8 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
     icon,
     label,
     onChange,
+    onTouchStart,
+    onTouchEnd,
     onClick,
     // eslint-disable-next-line react/prop-types -- private, always overridden by BottomNavigation
     selected,
@@ -71,16 +73,24 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
   const touchStartPos = React.useRef();
   const touchTimer = React.useRef();
 
-  const handleTouchStart = React.useCallback(event => {
+  React.useEffect(() => {
+    return () => clearTimeout(touchTimer.current);
+  }, [touchTimer]);
+
+  function handleTouchStart(event) {
+    if (onTouchStart) onTouchStart(event);
+
     const { clientX, clientY } = event.touches[0];
 
     touchStartPos.current = {
       clientX,
       clientY,
     };
-  }, [touchStartPos])
+  }
 
-  const handleTouchEnd = React.useCallback(event => {
+  function handleTouchEnd(event) {
+    if (onTouchEnd) onTouchEnd(event);
+
     const target = event.target;
     const { clientX, clientY } = event.changedTouches[0];
 
@@ -92,7 +102,7 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
         target.dispatchEvent(new Event('click', { bubbles: true }));
       }, 10);
     }
-  }, [touchTimer, touchStartPos])
+  }
 
   const handleChange = (event) => {
     clearTimeout(touchTimer.current);
@@ -105,16 +115,6 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
       onClick(event);
     }
   };
-
-  React.useImperativeHandle(
-    ref,
-    () => ({
-      handleTouchStart,
-      handleTouchEnd,
-      innerRef: ref
-    }),
-    [handleTouchStart, handleTouchEnd, ref],
-  );
 
   return (
     <ButtonBase
@@ -182,6 +182,14 @@ BottomNavigationAction.propTypes = {
    * @ignore
    */
   onClick: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onTouchEnd: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onTouchStart: PropTypes.func,
   /**
    * If `true`, the `BottomNavigationAction` will show its label.
    * By default, only the selected `BottomNavigationAction`
