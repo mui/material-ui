@@ -68,7 +68,6 @@ const TextField = React.forwardRef(function TextField(props, ref) {
     FormHelperTextProps,
     fullWidth = false,
     helperText,
-    hiddenLabel,
     id,
     InputLabelProps,
     inputProps,
@@ -158,7 +157,6 @@ const TextField = React.forwardRef(function TextField(props, ref) {
       disabled={disabled}
       error={error}
       fullWidth={fullWidth}
-      hiddenLabel={hiddenLabel}
       ref={ref}
       required={required}
       color={color}
@@ -250,10 +248,6 @@ TextField.propTypes = {
    * The helper text content.
    */
   helperText: PropTypes.node,
-  /**
-   * @ignore
-   */
-  hiddenLabel: PropTypes.bool,
   /**
    * The id of the `input` element.
    * Use this prop to make `label` and `helperText` accessible for screen readers.
