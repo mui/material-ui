@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     '& a': {
       display: 'block',
-      marginBottom: theme.spacing(0.5),
+      marginBottom: theme.spacing(1),
     },
     '& img': {
       display: 'inline-block',
@@ -17,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
   },
   placeholder: {
     width: 125,
-    marginTop: theme.spacing(1),
     height: 35,
     alignItems: 'center',
     justifyContent: 'center',
