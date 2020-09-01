@@ -41,14 +41,17 @@ export type FabTypeMap<P = {}, D extends React.ElementType = 'button'> = ExtendB
     };
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
+     * @default 'default'
      */
     color?: PropTypes.Color;
     /**
      * If `true`, the button will be disabled.
+     * @default false
      */
     disabled?: boolean;
     /**
      * If `true`, the  keyboard focus ripple will be disabled.
+     * @default false
      */
     disableFocusRipple?: boolean;
     /**
@@ -63,10 +66,12 @@ export type FabTypeMap<P = {}, D extends React.ElementType = 'button'> = ExtendB
     /**
      * The size of the button.
      * `small` is equivalent to the dense button styling.
+     * @default 'large'
      */
     size?: 'small' | 'medium' | 'large';
     /**
      * The variant to use.
+     * @default 'circular'
      */
     variant?: OverridableStringUnion<FabVariantDefaults, FabPropsVariantOverrides>;
   };

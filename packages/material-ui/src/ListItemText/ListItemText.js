@@ -117,11 +117,13 @@ ListItemText.propTypes = {
    * This can be useful to render an alternative Typography variant by wrapping
    * the `children` (or `primary`) text, and optional `secondary` text
    * with the Typography component.
+   * @default false
    */
   disableTypography: PropTypes.bool,
   /**
    * If `true`, the children will be indented.
    * This should be used if there is no left avatar or left icon.
+   * @default false
    */
   inset: PropTypes.bool,
   /**

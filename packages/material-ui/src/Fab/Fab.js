@@ -195,6 +195,7 @@ Fab.propTypes = {
   className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'default'
    */
   color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary']),
   /**
@@ -204,10 +205,12 @@ Fab.propTypes = {
   component: PropTypes.elementType,
   /**
    * If `true`, the button will be disabled.
+   * @default false
    */
   disabled: PropTypes.bool,
   /**
    * If `true`, the  keyboard focus ripple will be disabled.
+   * @default false
    */
   disableFocusRipple: PropTypes.bool,
   /**
@@ -226,10 +229,12 @@ Fab.propTypes = {
   /**
    * The size of the button.
    * `small` is equivalent to the dense button styling.
+   * @default 'large'
    */
   size: PropTypes.oneOf(['large', 'medium', 'small']),
   /**
    * The variant to use.
+   * @default 'circular'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['circular', 'extended']),

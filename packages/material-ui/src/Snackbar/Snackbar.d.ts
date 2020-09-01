@@ -21,6 +21,7 @@ export interface SnackbarProps
    * The anchor of the `Snackbar`.
    * On smaller screens, the component grows to occupy all the available width,
    * the horizontal alignment is ignored.
+   * @default { vertical: 'bottom', horizontal: 'left' }
    */
   anchorOrigin?: SnackbarOrigin;
   /**
@@ -28,6 +29,7 @@ export interface SnackbarProps
    * `onClose` function. `onClose` should then set the state of the `open`
    * prop to hide the Snackbar. This behavior is disabled by default with
    * the `null` value.
+   * @default null
    */
   autoHideDuration?: number | null;
   /**
@@ -63,6 +65,7 @@ export interface SnackbarProps
   ContentProps?: Partial<SnackbarContentProps>;
   /**
    * If `true`, the `autoHideDuration` timer will expire even if the window is not focused.
+   * @default false
    */
   disableWindowBlurListener?: boolean;
   /**
@@ -101,6 +104,7 @@ export interface SnackbarProps
   /**
    * The component used for the transition.
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * @default Grow
    */
   TransitionComponent?: React.ComponentType<
     TransitionProps & { children?: React.ReactElement<any, any> }
@@ -108,11 +112,16 @@ export interface SnackbarProps
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
+   * @default {
+   *   enter: duration.enteringScreen,
+   *   exit: duration.leavingScreen,
+   * }
    */
   transitionDuration?: TransitionProps['timeout'];
   /**
    * Props applied to the transition element.
    * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition) component.
+   * @default {}
    */
   TransitionProps?: TransitionProps;
 }

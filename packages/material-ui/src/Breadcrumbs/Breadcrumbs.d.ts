@@ -24,24 +24,29 @@ export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'>
      * Override the default label for the expand button.
      *
      * For localization purposes, you can use the provided [translations](/guides/localization/).
+     * @default 'Show path'
      */
     expandText?: string;
     /**
      * If max items is exceeded, the number of items to show after the ellipsis.
+     * @default 1
      */
     itemsAfterCollapse?: number;
     /**
      * If max items is exceeded, the number of items to show before the ellipsis.
+     * @default 1
      */
     itemsBeforeCollapse?: number;
     /**
      * Specifies the maximum number of breadcrumbs to display. When there are more
      * than the maximum number, only the first `itemsBeforeCollapse` and last `itemsAfterCollapse`
      * will be shown, with an ellipsis in between.
+     * @default 8
      */
     maxItems?: number;
     /**
      * Custom separator node.
+     * @default '/'
      */
     separator?: React.ReactNode;
   };

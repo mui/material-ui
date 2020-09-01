@@ -76,6 +76,7 @@ Portal.propTypes = {
   ]),
   /**
    * The `children` will be inside the DOM hierarchy of the parent component.
+   * @default false
    */
   disablePortal: PropTypes.bool,
   /**

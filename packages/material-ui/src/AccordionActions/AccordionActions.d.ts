@@ -17,6 +17,7 @@ export interface AccordionActionsProps extends StandardProps<React.HTMLAttribute
   };
   /**
    * If `true`, the actions do not have additional margin.
+   * @default false
    */
   disableSpacing?: boolean;
 }

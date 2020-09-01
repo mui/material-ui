@@ -79,18 +79,22 @@ export type ButtonTypeMap<
     };
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
+     * @default 'primary'
      */
     color?: 'inherit' | 'primary' | 'secondary';
     /**
      * If `true`, the button will be disabled.
+     * @default false
      */
     disabled?: boolean;
     /**
      * If `true`, no elevation is used.
+     * @default false
      */
     disableElevation?: boolean;
     /**
      * If `true`, the  keyboard focus ripple will be disabled.
+     * @default false
      */
     disableFocusRipple?: boolean;
     /**
@@ -99,6 +103,7 @@ export type ButtonTypeMap<
     endIcon?: React.ReactNode;
     /**
      * If `true`, the button will take up the full width of its container.
+     * @default false
      */
     fullWidth?: boolean;
     /**
@@ -109,6 +114,7 @@ export type ButtonTypeMap<
     /**
      * The size of the button.
      * `small` is equivalent to the dense button styling.
+     * @default 'medium'
      */
     size?: 'small' | 'medium' | 'large';
     /**
@@ -117,6 +123,7 @@ export type ButtonTypeMap<
     startIcon?: React.ReactNode;
     /**
      * The variant to use.
+     * @default 'text'
      */
     variant?: OverridableStringUnion<ButtonVariantDefaults, ButtonPropsVariantOverrides>;
   };

@@ -186,6 +186,7 @@ Divider.propTypes = {
   // ----------------------------------------------------------------------
   /**
    * Absolutely position the element.
+   * @default false
    */
   absolute: PropTypes.bool,
   /**
@@ -208,14 +209,17 @@ Divider.propTypes = {
   /**
    * If `true`, a vertical divider will have the correct height when used in flex container.
    * (By default, a vertical divider will have a calculated height of `0px` if it is the child of a flex container.)
+   * @default false
    */
   flexItem: PropTypes.bool,
   /**
    * If `true`, the divider will have a lighter color.
+   * @default false
    */
   light: PropTypes.bool,
   /**
    * The divider orientation.
+   * @default 'horizontal'
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
@@ -224,10 +228,12 @@ Divider.propTypes = {
   role: PropTypes.string,
   /**
    * The text alignment.
+   * @default 'center'
    */
   textAlign: PropTypes.oneOf(['center', 'left', 'right']),
   /**
    * The variant to use.
+   * @default 'fullWidth'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['fullWidth', 'inset', 'middle']),

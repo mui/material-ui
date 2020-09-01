@@ -190,10 +190,12 @@ Tab.propTypes = {
   className: PropTypes.string,
   /**
    * If `true`, the tab will be disabled.
+   * @default false
    */
   disabled: PropTypes.bool,
   /**
    * If `true`, the  keyboard focus ripple will be disabled.
+   * @default false
    */
   disableFocusRipple: PropTypes.bool,
   /**
@@ -231,6 +233,7 @@ Tab.propTypes = {
   /**
    * Tab labels appear in a single row.
    * They can use a second line if needed.
+   * @default false
    */
   wrapped: PropTypes.bool,
 };

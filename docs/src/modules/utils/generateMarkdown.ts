@@ -152,22 +152,22 @@ function generatePropDescription(prop: PropDescriptor, propName: string) {
 
   let signature = '';
 
-  if (type.name === 'func' && parsed.tags.length > 0) {
+  // Split up the parsed tags into 'arguments' and 'returns' parsed objects. If there's no
+  // 'returns' parsed object (i.e., one with title being 'returns'), make one of type 'void'.
+  const parsedArgs: doctrine.Tag[] = parsed.tags.filter((tag) => tag.title === 'param');
+  let parsedReturns:
+    | doctrine.Tag
+    | { description?: undefined; type: { name: string } }
+    | undefined = parsed.tags.find((tag) => tag.title === 'returns');
+  if (type.name === 'func' && (parsedArgs.length > 0 || parsedReturns !== undefined)) {
+    parsedReturns = parsedReturns ?? { type: { name: 'void' } };
+
     // Remove new lines from tag descriptions to avoid markdown errors.
     parsed.tags.forEach((tag) => {
       if (tag.description) {
         tag.description = tag.description.replace(/\r*\n/g, ' ');
       }
     });
-
-    // Split up the parsed tags into 'arguments' and 'returns' parsed objects. If there's no
-    // 'returns' parsed object (i.e., one with title being 'returns'), make one of type 'void'.
-    const parsedArgs: doctrine.Tag[] = parsed.tags.filter((tag) => tag.title === 'param');
-    const parsedReturns: doctrine.Tag =
-      parsed.tags.find((tag) => tag.title === 'returns') ??
-      ({
-        type: { name: 'void' },
-      } as doctrine.Tag);
 
     signature += '<br><br>**Signature:**<br>`function(';
     signature += parsedArgs

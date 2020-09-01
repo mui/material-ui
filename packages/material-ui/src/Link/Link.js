@@ -137,6 +137,7 @@ Link.propTypes = {
   className: PropTypes.string,
   /**
    * The color of the link.
+   * @default 'primary'
    */
   color: PropTypes.oneOf([
     'error',
@@ -166,10 +167,12 @@ Link.propTypes = {
   TypographyClasses: PropTypes.object,
   /**
    * Controls when the link should have an underline.
+   * @default 'hover'
    */
   underline: PropTypes.oneOf(['always', 'hover', 'none']),
   /**
    * Applies the theme typography styles.
+   * @default 'inherit'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf([

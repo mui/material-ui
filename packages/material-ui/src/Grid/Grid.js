@@ -255,6 +255,7 @@ Grid.propTypes = {
   /**
    * Defines the `align-content` style property.
    * It's applied for all screen sizes.
+   * @default 'stretch'
    */
   alignContent: PropTypes.oneOf([
     'center',
@@ -267,6 +268,7 @@ Grid.propTypes = {
   /**
    * Defines the `align-items` style property.
    * It's applied for all screen sizes.
+   * @default 'stretch'
    */
   alignItems: PropTypes.oneOf(['baseline', 'center', 'flex-end', 'flex-start', 'stretch']),
   /**
@@ -289,21 +291,25 @@ Grid.propTypes = {
   /**
    * If `true`, the component will have the flex *container* behavior.
    * You should be wrapping *items* with a *container*.
+   * @default false
    */
   container: PropTypes.bool,
   /**
    * Defines the `flex-direction` style property.
    * It is applied for all screen sizes.
+   * @default 'row'
    */
   direction: PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row']),
   /**
    * If `true`, the component will have the flex *item* behavior.
    * You should be wrapping *items* with a *container*.
+   * @default false
    */
   item: PropTypes.bool,
   /**
    * Defines the `justify-content` style property.
    * It is applied for all screen sizes.
+   * @default 'flex-start'
    */
   justifyContent: PropTypes.oneOf([
     'center',
@@ -316,6 +322,7 @@ Grid.propTypes = {
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for the `lg` breakpoint and wider screens if not overridden.
+   * @default false
    */
   lg: PropTypes.oneOfType([
     PropTypes.oneOf(['auto', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
@@ -324,6 +331,7 @@ Grid.propTypes = {
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for the `md` breakpoint and wider screens if not overridden.
+   * @default false
    */
   md: PropTypes.oneOfType([
     PropTypes.oneOf(['auto', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
@@ -332,6 +340,7 @@ Grid.propTypes = {
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for the `sm` breakpoint and wider screens if not overridden.
+   * @default false
    */
   sm: PropTypes.oneOfType([
     PropTypes.oneOf(['auto', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
@@ -340,16 +349,19 @@ Grid.propTypes = {
   /**
    * Defines the space between the type `item` component.
    * It can only be used on a type `container` component.
+   * @default 0
    */
   spacing: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
   /**
    * Defines the `flex-wrap` style property.
    * It's applied for all screen sizes.
+   * @default 'wrap'
    */
   wrap: PropTypes.oneOf(['nowrap', 'wrap-reverse', 'wrap']),
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for the `xl` breakpoint and wider screens.
+   * @default false
    */
   xl: PropTypes.oneOfType([
     PropTypes.oneOf(['auto', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
@@ -358,6 +370,7 @@ Grid.propTypes = {
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for all the screen sizes with the lowest priority.
+   * @default false
    */
   xs: PropTypes.oneOfType([
     PropTypes.oneOf(['auto', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
@@ -366,6 +379,7 @@ Grid.propTypes = {
   /**
    * If `true`, it sets `min-width: 0` on the item.
    * Refer to the limitations section of the documentation to better understand the use case.
+   * @default false
    */
   zeroMinWidth: PropTypes.bool,
 };

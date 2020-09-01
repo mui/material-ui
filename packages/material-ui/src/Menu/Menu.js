@@ -182,6 +182,7 @@ Menu.propTypes = {
    * children are not focusable. If you set this prop to `false` focus will be placed
    * on the parent modal container. This has severe accessibility implications
    * and should only be considered if you manage focus otherwise.
+   * @default true
    */
   autoFocus: PropTypes.bool,
   /**
@@ -197,10 +198,12 @@ Menu.propTypes = {
    * unless `autoFocus` is also set to `false`. Not using the default means not
    * following WAI-ARIA authoring practices. Please be considerate about possible
    * accessibility implications.
+   * @default false
    */
   disableAutoFocusItem: PropTypes.bool,
   /**
    * Props applied to the [`MenuList`](/api/menu-list/) element.
+   * @default {}
    */
   MenuListProps: PropTypes.object,
   /**
@@ -224,6 +227,7 @@ Menu.propTypes = {
   PopoverClasses: PropTypes.object,
   /**
    * The length of the transition in `ms`, or 'auto'
+   * @default 'auto'
    */
   transitionDuration: PropTypes.oneOfType([
     PropTypes.oneOf(['auto']),
@@ -237,11 +241,13 @@ Menu.propTypes = {
   /**
    * Props applied to the transition element.
    * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition) component.
+   * @default {}
    */
   TransitionProps: PropTypes.object,
   /**
    * The variant to use. Use `menu` to prevent selected items from impacting the initial focus
    * and the vertical alignment relative to the anchor element.
+   * @default 'selectedMenu'
    */
   variant: PropTypes.oneOf(['menu', 'selectedMenu']),
 };

@@ -36,10 +36,12 @@ export type TabTypeMap<P = {}, D extends React.ElementType = 'div'> = ExtendButt
     };
     /**
      * If `true`, the tab will be disabled.
+     * @default false
      */
     disabled?: boolean;
     /**
      * If `true`, the  keyboard focus ripple will be disabled.
+     * @default false
      */
     disableFocusRipple?: boolean;
     /**
@@ -57,6 +59,7 @@ export type TabTypeMap<P = {}, D extends React.ElementType = 'div'> = ExtendButt
     /**
      * Tab labels appear in a single row.
      * They can use a second line if needed.
+     * @default false
      */
     wrapped?: boolean;
   };

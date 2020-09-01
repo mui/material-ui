@@ -464,6 +464,10 @@ Popover.propTypes = {
    * Options:
    * vertical: [top, center, bottom];
    * horizontal: [left, center, right].
+   * @default {
+   *   vertical: 'top',
+   *   horizontal: 'left',
+   * }
    */
   anchorOrigin: PropTypes.shape({
     horizontal: PropTypes.oneOfType([
@@ -486,6 +490,7 @@ Popover.propTypes = {
   /**
    * This determines which anchor prop to refer to to set
    * the position of the popover.
+   * @default 'anchorEl'
    */
   anchorReference: PropTypes.oneOf(['anchorEl', 'anchorPosition', 'none']),
   /**
@@ -513,6 +518,7 @@ Popover.propTypes = {
   ]),
   /**
    * The elevation of the popover.
+   * @default 8
    */
   elevation: PropTypes.number,
   /**
@@ -526,6 +532,7 @@ Popover.propTypes = {
   getContentAnchorEl: PropTypes.func,
   /**
    * Specifies how close to the edge of the window the popover can appear.
+   * @default 16
    */
   marginThreshold: PropTypes.number,
   /**
@@ -539,6 +546,7 @@ Popover.propTypes = {
   open: PropTypes.bool.isRequired,
   /**
    * Props applied to the [`Paper`](/api/paper/) element.
+   * @default {}
    */
   PaperProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({
     component: elementTypeAcceptingRef,
@@ -550,6 +558,10 @@ Popover.propTypes = {
    * Options:
    * vertical: [top, center, bottom, x(px)];
    * horizontal: [left, center, right, x(px)].
+   * @default {
+   *   vertical: 'top',
+   *   horizontal: 'left',
+   * }
    */
   transformOrigin: PropTypes.shape({
     horizontal: PropTypes.oneOfType([
@@ -562,10 +574,12 @@ Popover.propTypes = {
   /**
    * The component used for the transition.
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * @default Grow
    */
   TransitionComponent: PropTypes.elementType,
   /**
    * Set to 'auto' to automatically calculate transition time based on height.
+   * @default 'auto'
    */
   transitionDuration: PropTypes.oneOfType([
     PropTypes.oneOf(['auto']),
@@ -579,6 +593,7 @@ Popover.propTypes = {
   /**
    * Props applied to the transition element.
    * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition) component.
+   * @default {}
    */
   TransitionProps: PropTypes.object,
 };

@@ -148,6 +148,7 @@ ImageListItem.propTypes = {
   className: PropTypes.string,
   /**
    * Width of the tile in number of grid cells.
+   * @default 1
    */
   cols: PropTypes.number,
   /**
@@ -157,6 +158,7 @@ ImageListItem.propTypes = {
   component: PropTypes.elementType,
   /**
    * Height of the tile in number of grid cells.
+   * @default 1
    */
   rows: PropTypes.number,
 };

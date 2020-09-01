@@ -173,6 +173,7 @@ AccordionSummary.propTypes = {
   expandIcon: PropTypes.node,
   /**
    * Props applied to the `IconButton` element wrapping the expand icon.
+   * @default {}
    */
   IconButtonProps: PropTypes.object,
   /**

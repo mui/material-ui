@@ -88,6 +88,7 @@ export interface InputBaseProps
   error?: boolean;
   /**
    * If `true`, the input will take up the full width of its container.
+   * @default false
    */
   fullWidth?: boolean;
   /**
@@ -97,10 +98,12 @@ export interface InputBaseProps
   /**
    * The component used for the `input` element.
    * Either a string to use a HTML element or a component.
+   * @default 'input'
    */
   inputComponent?: React.ElementType<InputBaseComponentProps>;
   /**
    * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
+   * @default {}
    */
   inputProps?: InputBaseComponentProps;
   /**
@@ -114,6 +117,7 @@ export interface InputBaseProps
   margin?: 'dense' | 'none';
   /**
    * If `true`, a textarea element will be rendered.
+   * @default false
    */
   multiline?: boolean;
   /**
@@ -176,6 +180,7 @@ export interface InputBaseProps
   startAdornment?: React.ReactNode;
   /**
    * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
+   * @default 'text'
    */
   type?: string;
   /**

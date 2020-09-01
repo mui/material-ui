@@ -49,6 +49,7 @@ CardActions.propTypes = {
   className: PropTypes.string,
   /**
    * If `true`, the actions do not have additional margin.
+   * @default false
    */
   disableSpacing: PropTypes.bool,
 };

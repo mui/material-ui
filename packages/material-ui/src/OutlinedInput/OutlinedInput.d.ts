@@ -46,6 +46,7 @@ export interface OutlinedInputProps extends StandardProps<InputBaseProps> {
   /**
    * The width of the label. Is ignored if `label` is provided. Prefer `label`
    * if the input label appears with a strike through.
+   * @default 0
    */
   labelWidth?: number;
   /**

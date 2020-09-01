@@ -95,6 +95,7 @@ TableSortLabel.propTypes = {
   // ----------------------------------------------------------------------
   /**
    * If `true`, the label will have the active styling (should be true for the sorted column).
+   * @default false
    */
   active: PropTypes.bool,
   /**
@@ -111,14 +112,17 @@ TableSortLabel.propTypes = {
   className: PropTypes.string,
   /**
    * The current sort direction.
+   * @default 'asc'
    */
   direction: PropTypes.oneOf(['asc', 'desc']),
   /**
    * Hide sort icon when active is false.
+   * @default false
    */
   hideSortIcon: PropTypes.bool,
   /**
    * Sort icon to use.
+   * @default ArrowDownwardIcon
    */
   IconComponent: PropTypes.elementType,
 };

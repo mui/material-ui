@@ -6,6 +6,7 @@ export interface ImageListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
     /**
      * Number of px for one cell height.
      * You can set `'auto'` if you want to let the children determine the height.
+     * @default 180
      */
     cellHeight?: number | 'auto';
     /**
@@ -21,10 +22,12 @@ export interface ImageListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
     };
     /**
      * Number of columns.
+     * @default 2
      */
     cols?: number;
     /**
      * Number of px for the spacing between tiles.
+     * @default 4
      */
     spacing?: number;
   };

@@ -25,6 +25,7 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
     /**
      * If `true`, the tabs will be centered.
      * This prop is intended for large views.
+     * @default false
      */
     centered?: boolean;
     /**
@@ -60,6 +61,7 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
     };
     /**
      * Determines the color of the indicator.
+     * @default 'secondary'
      */
     indicatorColor?: 'secondary' | 'primary';
     /**
@@ -71,10 +73,12 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
     onChange?: (event: React.SyntheticEvent, value: any) => void;
     /**
      * The tabs orientation (layout flow direction).
+     * @default 'horizontal'
      */
     orientation?: 'horizontal' | 'vertical';
     /**
      * The component used to render the scroll buttons.
+     * @default TabScrollButton
      */
     ScrollButtonComponent?: React.ElementType;
     /**
@@ -84,6 +88,7 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
      * - `desktop` will only present them on medium and larger viewports.
      * - `on` will always present them.
      * - `off` will never present them.
+     * @default 'auto'
      */
     scrollButtons?: 'auto' | 'desktop' | 'on' | 'off';
     /**
@@ -93,6 +98,7 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
     selectionFollowsFocus?: boolean;
     /**
      * Props applied to the tab indicator element.
+     * @default  {}
      */
     TabIndicatorProps?: Partial<React.HTMLAttributes<HTMLDivElement>>;
     /**
@@ -101,6 +107,7 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
     TabScrollButtonProps?: Partial<TabScrollButtonProps>;
     /**
      * Determines the color of the `Tab`.
+     * @default 'inherit'
      */
     textColor?: 'secondary' | 'primary' | 'inherit';
     /**
@@ -116,6 +123,7 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
      *  -`fullWidth` will make the tabs grow to use all the available space,
      *  which should be used for small views, like on mobile.
      *  - `standard` will render the default state.
+     * @default 'standard'
      */
     variant?: 'standard' | 'scrollable' | 'fullWidth';
   };

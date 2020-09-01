@@ -558,6 +558,7 @@ Tooltip.propTypes = {
   // ----------------------------------------------------------------------
   /**
    * If `true`, adds an arrow to the tooltip.
+   * @default false
    */
   arrow: PropTypes.bool,
   /**
@@ -574,27 +575,33 @@ Tooltip.propTypes = {
   className: PropTypes.string,
   /**
    * Do not respond to focus events.
+   * @default false
    */
   disableFocusListener: PropTypes.bool,
   /**
    * Do not respond to hover events.
+   * @default false
    */
   disableHoverListener: PropTypes.bool,
   /**
    * Do not respond to long press touch events.
+   * @default false
    */
   disableTouchListener: PropTypes.bool,
   /**
    * The number of milliseconds to wait before showing the tooltip.
    * This prop won't impact the enter touch delay (`enterTouchDelay`).
+   * @default 100
    */
   enterDelay: PropTypes.number,
   /**
    * The number of milliseconds to wait before showing the tooltip when one was already recently opened.
+   * @default 0
    */
   enterNextDelay: PropTypes.number,
   /**
    * The number of milliseconds a user must touch the element before showing the tooltip.
+   * @default 700
    */
   enterTouchDelay: PropTypes.number,
   /**
@@ -605,15 +612,18 @@ Tooltip.propTypes = {
   /**
    * Makes a tooltip interactive, i.e. will not close when the user
    * hovers over the tooltip before the `leaveDelay` is expired.
+   * @default false
    */
   interactive: PropTypes.bool,
   /**
    * The number of milliseconds to wait before hiding the tooltip.
    * This prop won't impact the leave touch delay (`leaveTouchDelay`).
+   * @default 0
    */
   leaveDelay: PropTypes.number,
   /**
    * The number of milliseconds after the user stops touching an element before hiding the tooltip.
+   * @default 1500
    */
   leaveTouchDelay: PropTypes.number,
   /**
@@ -634,6 +644,7 @@ Tooltip.propTypes = {
   open: PropTypes.bool,
   /**
    * Tooltip placement.
+   * @default 'bottom'
    */
   placement: PropTypes.oneOf([
     'bottom-end',
@@ -651,6 +662,7 @@ Tooltip.propTypes = {
   ]),
   /**
    * The component used for the popper.
+   * @default Popper
    */
   PopperComponent: PropTypes.elementType,
   /**
@@ -664,6 +676,7 @@ Tooltip.propTypes = {
   /**
    * The component used for the transition.
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * @default Grow
    */
   TransitionComponent: PropTypes.elementType,
   /**

@@ -27,6 +27,7 @@ export interface TrapFocusProps {
    *
    * Generally this should never be set to `true` as it makes the trap focus less
    * accessible to assistive technologies, like screen readers.
+   * @default false
    */
   disableAutoFocus?: boolean;
   /**
@@ -34,11 +35,13 @@ export interface TrapFocusProps {
    *
    * Generally this should never be set to `true` as it makes the trap focus less
    * accessible to assistive technologies, like screen readers.
+   * @default false
    */
   disableEnforceFocus?: boolean;
   /**
    * If `true`, the trap focus will not restore focus to previously focused element once
    * trap focus is hidden.
+   * @default false
    */
   disableRestoreFocus?: boolean;
 }

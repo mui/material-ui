@@ -265,6 +265,7 @@ Modal.propTypes = {
   // ----------------------------------------------------------------------
   /**
    * A backdrop component. This prop enables custom backdrop rendering.
+   * @default SimpleBackdrop
    */
   BackdropComponent: PropTypes.elementType,
   /**
@@ -277,6 +278,7 @@ Modal.propTypes = {
   children: elementAcceptingRef.isRequired,
   /**
    * When set to true the Modal waits until a nested Transition is completed before closing.
+   * @default false
    */
   closeAfterTransition: PropTypes.bool,
   /**
@@ -297,10 +299,12 @@ Modal.propTypes = {
    *
    * Generally this should never be set to `true` as it makes the modal less
    * accessible to assistive technologies, like screen readers.
+   * @default false
    */
   disableAutoFocus: PropTypes.bool,
   /**
    * If `true`, clicking the backdrop will not fire `onClose`.
+   * @default false
    */
   disableBackdropClick: PropTypes.bool,
   /**
@@ -308,33 +312,40 @@ Modal.propTypes = {
    *
    * Generally this should never be set to `true` as it makes the modal less
    * accessible to assistive technologies, like screen readers.
+   * @default false
    */
   disableEnforceFocus: PropTypes.bool,
   /**
    * If `true`, hitting escape will not fire `onClose`.
+   * @default false
    */
   disableEscapeKeyDown: PropTypes.bool,
   /**
    * The `children` will be inside the DOM hierarchy of the parent component.
+   * @default false
    */
   disablePortal: PropTypes.bool,
   /**
    * If `true`, the modal will not restore focus to previously focused element once
    * modal is hidden.
+   * @default false
    */
   disableRestoreFocus: PropTypes.bool,
   /**
    * Disable the scroll lock behavior.
+   * @default false
    */
   disableScrollLock: PropTypes.bool,
   /**
    * If `true`, the backdrop is not rendered.
+   * @default false
    */
   hideBackdrop: PropTypes.bool,
   /**
    * Always keep the children in the DOM.
    * This prop can be useful in SEO situation or
    * when you want to maximize the responsiveness of the Modal.
+   * @default false
    */
   keepMounted: PropTypes.bool,
   /**

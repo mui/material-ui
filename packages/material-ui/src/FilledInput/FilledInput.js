@@ -231,6 +231,7 @@ FilledInput.propTypes = {
   error: PropTypes.bool,
   /**
    * If `true`, the input will take up the full width of its container.
+   * @default false
    */
   fullWidth: PropTypes.bool,
   /**
@@ -240,10 +241,12 @@ FilledInput.propTypes = {
   /**
    * The component used for the `input` element.
    * Either a string to use a HTML element or a component.
+   * @default 'input'
    */
   inputComponent: PropTypes.elementType,
   /**
    * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
+   * @default {}
    */
   inputProps: PropTypes.object,
   /**
@@ -265,6 +268,7 @@ FilledInput.propTypes = {
   minRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * If `true`, a textarea element will be rendered.
+   * @default false
    */
   multiline: PropTypes.bool,
   /**
@@ -301,6 +305,7 @@ FilledInput.propTypes = {
   startAdornment: PropTypes.node,
   /**
    * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
+   * @default 'text'
    */
   type: PropTypes.string,
   /**

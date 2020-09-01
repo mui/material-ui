@@ -39,10 +39,12 @@ export interface NativeSelectProps
   };
   /**
    * The icon that displays the arrow.
+   * @default ArrowDropDownIcon
    */
   IconComponent?: React.ElementType;
   /**
    * An `Input` element; does not have to be a material-ui specific `Input`.
+   * @default <Input />
    */
   input?: React.ReactElement<any, any>;
   /**

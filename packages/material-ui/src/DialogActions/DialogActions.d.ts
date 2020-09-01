@@ -17,6 +17,7 @@ export interface DialogActionsProps extends StandardProps<React.HTMLAttributes<H
   };
   /**
    * If `true`, the actions do not have additional margin.
+   * @default false
    */
   disableSpacing?: boolean;
 }

@@ -158,10 +158,12 @@ NativeSelect.propTypes = {
   classes: PropTypes.object,
   /**
    * The icon that displays the arrow.
+   * @default ArrowDropDownIcon
    */
   IconComponent: PropTypes.elementType,
   /**
    * An `Input` element; does not have to be a material-ui specific `Input`.
+   * @default <Input />
    */
   input: PropTypes.element,
   /**

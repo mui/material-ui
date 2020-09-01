@@ -17,6 +17,7 @@ export interface DialogContentProps extends StandardProps<React.HTMLAttributes<H
   };
   /**
    * Display the top and bottom dividers.
+   * @default false
    */
   dividers?: boolean;
 }

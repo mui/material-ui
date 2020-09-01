@@ -538,6 +538,7 @@ Tabs.propTypes = {
   /**
    * If `true`, the tabs will be centered.
    * This prop is intended for large views.
+   * @default false
    */
   centered: PropTypes.bool,
   /**
@@ -559,6 +560,7 @@ Tabs.propTypes = {
   component: PropTypes.elementType,
   /**
    * Determines the color of the indicator.
+   * @default 'secondary'
    */
   indicatorColor: PropTypes.oneOf(['primary', 'secondary']),
   /**
@@ -570,10 +572,12 @@ Tabs.propTypes = {
   onChange: PropTypes.func,
   /**
    * The tabs orientation (layout flow direction).
+   * @default 'horizontal'
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
    * The component used to render the scroll buttons.
+   * @default TabScrollButton
    */
   ScrollButtonComponent: PropTypes.elementType,
   /**
@@ -583,6 +587,7 @@ Tabs.propTypes = {
    * - `desktop` will only present them on medium and larger viewports.
    * - `on` will always present them.
    * - `off` will never present them.
+   * @default 'auto'
    */
   scrollButtons: PropTypes.oneOf(['auto', 'desktop', 'off', 'on']),
   /**
@@ -592,6 +597,7 @@ Tabs.propTypes = {
   selectionFollowsFocus: PropTypes.bool,
   /**
    * Props applied to the tab indicator element.
+   * @default  {}
    */
   TabIndicatorProps: PropTypes.object,
   /**
@@ -600,6 +606,7 @@ Tabs.propTypes = {
   TabScrollButtonProps: PropTypes.object,
   /**
    * Determines the color of the `Tab`.
+   * @default 'inherit'
    */
   textColor: PropTypes.oneOf(['inherit', 'primary', 'secondary']),
   /**
@@ -615,6 +622,7 @@ Tabs.propTypes = {
    *  -`fullWidth` will make the tabs grow to use all the available space,
    *  which should be used for small views, like on mobile.
    *  - `standard` will render the default state.
+   * @default 'standard'
    */
   variant: PropTypes.oneOf(['fullWidth', 'scrollable', 'standard']),
 };

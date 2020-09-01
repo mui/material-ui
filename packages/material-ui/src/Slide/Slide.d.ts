@@ -8,6 +8,7 @@ export interface SlideProps extends TransitionProps {
   children?: React.ReactElement<any, any>;
   /**
    * Direction the child node will enter from.
+   * @default 'down'
    */
   direction?: 'left' | 'right' | 'up' | 'down';
   /**
@@ -18,6 +19,10 @@ export interface SlideProps extends TransitionProps {
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
+   * @default {
+   *   enter: duration.enteringScreen,
+   *   exit: duration.leavingScreen,
+   * }
    */
   timeout?: TransitionProps['timeout'];
 }

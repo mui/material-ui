@@ -69,6 +69,7 @@ Hidden.propTypes = {
   /**
    * Specify which implementation to use.  'js' is the default, 'css' works better for
    * server-side rendering.
+   * @default 'js'
    */
   implementation: PropTypes.oneOf(['css', 'js']),
   /**
@@ -85,18 +86,22 @@ Hidden.propTypes = {
   initialWidth: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
   /**
    * If `true`, screens this size and down will be hidden.
+   * @default false
    */
   lgDown: PropTypes.bool,
   /**
    * If `true`, screens this size and up will be hidden.
+   * @default false
    */
   lgUp: PropTypes.bool,
   /**
    * If `true`, screens this size and down will be hidden.
+   * @default false
    */
   mdDown: PropTypes.bool,
   /**
    * If `true`, screens this size and up will be hidden.
+   * @default false
    */
   mdUp: PropTypes.bool,
   /**
@@ -108,26 +113,32 @@ Hidden.propTypes = {
   ]),
   /**
    * If `true`, screens this size and down will be hidden.
+   * @default false
    */
   smDown: PropTypes.bool,
   /**
    * If `true`, screens this size and up will be hidden.
+   * @default false
    */
   smUp: PropTypes.bool,
   /**
    * If `true`, screens this size and down will be hidden.
+   * @default false
    */
   xlDown: PropTypes.bool,
   /**
    * If `true`, screens this size and up will be hidden.
+   * @default false
    */
   xlUp: PropTypes.bool,
   /**
    * If `true`, screens this size and down will be hidden.
+   * @default false
    */
   xsDown: PropTypes.bool,
   /**
    * If `true`, screens this size and up will be hidden.
+   * @default false
    */
   xsUp: PropTypes.bool,
 };

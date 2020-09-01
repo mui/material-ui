@@ -89,10 +89,12 @@ Toolbar.propTypes = {
   component: PropTypes.elementType,
   /**
    * If `true`, disables gutter padding.
+   * @default false
    */
   disableGutters: PropTypes.bool,
   /**
    * The variant to use.
+   * @default 'regular'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['dense', 'regular']),

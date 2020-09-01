@@ -216,6 +216,9 @@ TablePagination.propTypes = {
    *
    * @param {string} type The link or button type to format ('first' | 'last' | 'next' | 'previous').
    * @returns {string}
+   * @default function defaultGetAriaLabel(type) {
+   *   return `Go to ${type} page`;
+   * }
    */
   getItemAriaLabel: PropTypes.func,
   /**
@@ -223,6 +226,9 @@ TablePagination.propTypes = {
    * object.
    *
    * For localization purposes, you can use the provided [translations](/guides/localization/).
+   * @default function defaultLabelDisplayedRows({ from, to, count }) {
+   *   return `${from}-${to} of ${count !== -1 ? count : `more than ${to}`}`;
+   * }
    */
   labelDisplayedRows: PropTypes.func,
   /**

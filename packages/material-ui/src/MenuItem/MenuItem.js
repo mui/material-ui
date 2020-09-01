@@ -99,6 +99,7 @@ MenuItem.propTypes = {
   component: PropTypes.elementType,
   /**
    * If `true`, compact vertical padding designed for keyboard and mouse input will be used.
+   * @default false
    */
   dense: PropTypes.bool,
   /**
@@ -107,6 +108,7 @@ MenuItem.propTypes = {
   disabled: PropTypes.bool,
   /**
    * If `true`, the left and right padding is removed.
+   * @default false
    */
   disableGutters: PropTypes.bool,
   /**

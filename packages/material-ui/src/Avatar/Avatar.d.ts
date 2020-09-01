@@ -56,6 +56,7 @@ export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
     srcSet?: string;
     /**
      * The shape of the avatar.
+     * @default 'circular'
      */
     variant?: OverridableStringUnion<AvatarVariantDefaults, AvatarPropsVariantOverrides>;
   };
