@@ -131,6 +131,8 @@ module.exports = {
       files: [
         // matching the pattern of the test runner
         '*.test.js',
+        '*.test.ts',
+        '*.test.tsx',
       ],
       env: {
         mocha: true,

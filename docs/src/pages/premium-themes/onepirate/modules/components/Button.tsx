@@ -5,7 +5,7 @@ import {
   createStyles,
 } from '@material-ui/core/styles';
 import MuiButton, { ButtonProps } from '@material-ui/core/Button';
-import React from 'react';
+import * as React from 'react';
 
 const styles = (theme: Theme) =>
   createStyles({

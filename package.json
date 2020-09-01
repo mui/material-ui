@@ -1,5 +1,5 @@
 {
-  "version": "5.0.0-alpha.7",
+  "version": "5.0.0-alpha.8",
   "private": true,
   "scripts": {
     "proptypes": "ts-node --skip-project ./scripts/generateProptypes.ts",
@@ -7,7 +7,7 @@
     "argos": "argos upload test/regressions/screenshots/chrome --token $ARGOS_TOKEN",
     "build:codesandbox": "lerna run --parallel --scope \"@material-ui/*\" build",
     "docs:api": "rimraf ./docs/pages/api-docs && yarn docs:api:build",
-    "docs:api:build": "cross-env BABEL_ENV=test __NEXT_EXPORT_TRAILING_SLASH=true babel-node --extensions \".ts,.js\" ./docs/scripts/buildApi.ts  ./docs/pages/api-docs ./packages/material-ui/src ./packages/material-ui-lab/src",
+    "docs:api:build": "cross-env BABEL_ENV=test __NEXT_EXPORT_TRAILING_SLASH=true babel-node --extensions \".tsx,.ts,.js\" ./docs/scripts/buildApi.ts  ./docs/pages/api-docs ./packages/material-ui/src ./packages/material-ui-lab/src",
     "docs:build": "yarn workspace docs build",
     "docs:build-sw": "yarn workspace docs build-sw",
     "docs:build-color-preview": "babel-node scripts/buildColorTypes",
@@ -150,7 +150,7 @@
     "webpack": "^4.41.0",
     "webpack-cli": "^3.3.9",
     "yargs": "^15.2.0",
-    "yarn-deduplicate": "^2.0.0"
+    "yarn-deduplicate": "^3.0.0"
   },
   "resolutions": {
     "**/@babel/core": "^7.10.2",

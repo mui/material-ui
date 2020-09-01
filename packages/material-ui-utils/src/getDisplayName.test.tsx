@@ -1,5 +1,5 @@
 /* eslint-disable react/prefer-stateless-function */
-import React from 'react';
+import * as React from 'react';
 import { expect } from 'chai';
 import getDisplayName, { getFunctionName } from './getDisplayName';
 
@@ -26,15 +26,15 @@ describe('utils/getDisplayName.js', () => {
 
       const AndAnotherComponent = () => <div />;
 
-      const AnonymousForwardRefComponent = React.forwardRef((props, ref) => (
+      const AnonymousForwardRefComponent = React.forwardRef<HTMLDivElement>((props, ref) => (
         <div {...props} ref={ref} />
       ));
 
-      const ForwardRefComponent = React.forwardRef(function Div(props, ref) {
+      const ForwardRefComponent = React.forwardRef<HTMLDivElement>(function Div(props, ref) {
         return <div {...props} ref={ref} />;
       });
 
-      const NamedForwardRefComponent = React.forwardRef((props, ref) => (
+      const NamedForwardRefComponent = React.forwardRef<HTMLDivElement>((props, ref) => (
         <div {...props} ref={ref} />
       ));
       NamedForwardRefComponent.displayName = 'Div';
@@ -60,8 +60,11 @@ describe('utils/getDisplayName.js', () => {
       expect(getDisplayName(AnonymousMemoComponent)).to.equal('memo');
       expect(getDisplayName(MemoComponent)).to.equal('memo(Div)');
       expect(getDisplayName(NamedMemoComponent)).to.equal('Div');
+      // @ts-expect-error
       expect(getDisplayName()).to.equal(undefined);
+      // @ts-expect-error
       expect(getDisplayName({})).to.equal(undefined);
+      // @ts-expect-error
       expect(getDisplayName(false)).to.equal(undefined);
     });
   });

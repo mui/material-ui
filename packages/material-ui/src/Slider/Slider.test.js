@@ -160,7 +160,7 @@ describe('<Slider />', () => {
       const { getByRole } = render(<Slider defaultValue={30} step={10} marks />);
       const thumb = getByRole('slider');
       fireEvent.mouseDown(thumb);
-      expect(document.activeElement).to.equal(thumb);
+      expect(thumb).toHaveFocus();
     });
 
     it('should support mouse events', () => {
@@ -212,6 +212,15 @@ describe('<Slider />', () => {
     fireEvent.touchMove(document.body, createTouches([{ identifier: 1, clientX: 20, clientY: 0 }]));
   });
 
+  it('focuses the thumb on when touching', () => {
+    const { getByRole } = render(<Slider value={0} min={20} max={40} />);
+    const thumb = getByRole('slider');
+
+    fireEvent.touchStart(thumb, createTouches([{ identifier: 1, clientX: 0, clientY: 0 }]));
+
+    expect(thumb).toHaveFocus();
+  });
+
   describe('prop: step', () => {
     it('should handle a null step', () => {
       const { getByRole, container } = render(
@@ -253,6 +262,60 @@ describe('<Slider />', () => {
       const { container, getByRole } = render(<Slider disabled value={0} />);
       expect(container.firstChild).to.have.class(classes.disabled);
       expect(getByRole('slider')).to.not.have.attribute('tabIndex');
+    });
+
+    it('should not respond to drag events after becoming disabled', function test() {
+      // TODO: Don't skip once a fix for https://github.com/jsdom/jsdom/issues/3029 is released.
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const { getByRole, setProps, container } = render(<Slider defaultValue={0} />);
+
+      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+        width: 100,
+        height: 10,
+        bottom: 10,
+        left: 0,
+      }));
+
+      fireEvent.touchStart(
+        container.firstChild,
+        createTouches([{ identifier: 1, clientX: 21, clientY: 0 }]),
+      );
+
+      const thumb = getByRole('slider');
+
+      expect(thumb).to.have.attribute('aria-valuenow', '21');
+      expect(thumb).toHaveFocus();
+
+      setProps({ disabled: true });
+      expect(thumb).not.toHaveFocus();
+      expect(thumb).to.not.have.class(classes.active);
+
+      fireEvent.touchMove(
+        container.firstChild,
+        createTouches([{ identifier: 1, clientX: 30, clientY: 0 }]),
+      );
+
+      expect(thumb).to.have.attribute('aria-valuenow', '21');
+    });
+
+    it('is not focused (visibly) after becoming disabled', function test() {
+      // TODO: Don't skip once a fix for https://github.com/jsdom/jsdom/issues/3029 is released.
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const { getByRole, setProps } = render(<Slider defaultValue={0} />);
+
+      const thumb = getByRole('slider');
+      act(() => {
+        thumb.focus();
+      });
+      setProps({ disabled: true });
+      expect(thumb).not.toHaveFocus();
+      expect(thumb).to.not.have.class(classes.focusVisible);
     });
   });
 

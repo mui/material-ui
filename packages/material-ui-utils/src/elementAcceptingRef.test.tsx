@@ -3,13 +3,13 @@ import { expect } from 'chai';
 import * as PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import elementTypeAcceptingRef from './elementTypeAcceptingRef';
+import elementAcceptingRef from './elementAcceptingRef';
 
-describe('elementTypeAcceptingRef', () => {
-  function checkPropType(elementType) {
+describe('elementAcceptingRef', () => {
+  function checkPropType(element: any, required = false) {
     PropTypes.checkPropTypes(
-      { component: elementTypeAcceptingRef },
-      { component: elementType },
+      { children: required ? elementAcceptingRef.isRequired : elementAcceptingRef },
+      { children: element },
       'props',
       'DummyComponent',
     );
@@ -19,29 +19,23 @@ describe('elementTypeAcceptingRef', () => {
     PropTypes.resetWarningCache();
   });
 
-  describe('acceptance', () => {
-    let rootNode;
+  describe('acceptance when not required', () => {
+    let rootNode: HTMLElement;
 
-    function assertPass(Component, options = {}) {
-      const { failsOnMount = false, shouldMount = true } = options;
-
+    function assertPass(element: any, { shouldMount = true } = {}) {
       function testAct() {
-        checkPropType(Component);
+        checkPropType(element);
         if (shouldMount) {
           ReactDOM.render(
             <React.Suspense fallback={<p />}>
-              <Component ref={React.createRef()} />
+              {React.cloneElement(element, { ref: React.createRef() })}
             </React.Suspense>,
             rootNode,
           );
         }
       }
 
-      if (failsOnMount) {
-        expect(testAct).toErrorDev('');
-      } else {
-        expect(testAct).not.toErrorDev();
-      }
+      expect(testAct).not.toErrorDev();
     }
 
     before(() => {
@@ -58,7 +52,7 @@ describe('elementTypeAcceptingRef', () => {
     });
 
     it('accepts host components', () => {
-      assertPass('div');
+      assertPass(<div />);
     });
 
     it('class components', () => {
@@ -68,7 +62,7 @@ describe('elementTypeAcceptingRef', () => {
         }
       }
 
-      assertPass(Component);
+      assertPass(<Component />);
     });
 
     it('accepts pure class components', () => {
@@ -78,55 +72,70 @@ describe('elementTypeAcceptingRef', () => {
         }
       }
 
-      assertPass(Component);
+      assertPass(<Component />);
     });
 
     it('accepts forwardRef', () => {
       const Component = React.forwardRef(() => null);
 
-      assertPass(Component);
+      assertPass(<Component />);
     });
 
     it('accepts memo', () => {
-      const Component = React.memo('div');
+      const Component = React.memo(React.forwardRef(() => null));
 
-      assertPass(Component);
+      assertPass(<Component />);
     });
 
     it('accepts lazy', () => {
       const Component = React.lazy(() =>
-        Promise.resolve({ default: (props) => <div {...props} /> }),
+        Promise.resolve({ default: (props: any) => <div {...props} /> }),
       );
 
       // should actually fail when mounting since the ref is forwarded to a function component
       // but since this happens in a promise our consoleErrorMock doesn't catch it properly
-      assertPass(Component);
+      assertPass(<Component />);
     });
 
     it('technically allows other exotics like strict mode', () => {
-      assertPass(React.StrictMode);
+      assertPass(<React.StrictMode />);
     });
 
     // undesired behavior
     it('accepts Fragment', () => {
-      assertPass(React.Fragment, { failsOnMount: true });
+      assertPass(<React.Fragment />);
     });
   });
 
   describe('rejections', () => {
-    function assertFail(Component, hint) {
+    function assertFail(Component: any, hint: string) {
       expect(() => {
         checkPropType(Component);
       }).toErrorDev(
-        'Invalid props `component` supplied to `DummyComponent`. ' +
-          `Expected an element type that can hold a ref. ${hint}`,
+        'Invalid props `children` supplied to `DummyComponent`. ' +
+          `Expected an element that can hold a ref. ${hint}`,
       );
     }
+
+    it('rejects undefined values when required', () => {
+      expect(() => {
+        checkPropType(undefined, true);
+      }).toErrorDev('marked as required');
+    });
+
+    it('rejects null values when required', () => {
+      expect(() => {
+        checkPropType(null, true);
+      }).toErrorDev('marked as required');
+    });
 
     it('rejects function components', () => {
       const Component = () => null;
 
-      assertFail(Component, 'Did you accidentally provide a plain function component instead?');
+      assertFail(
+        <Component />,
+        'Did you accidentally use a plain function component for an element instead?',
+      );
     });
   });
 });

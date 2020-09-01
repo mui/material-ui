@@ -7,7 +7,8 @@ describe('deepmerge', () => {
     deepmerge({}, JSON.parse('{ "myProperty": "a", "__proto__" : { "isAdmin" : true } }'), {
       clone: false,
     });
-    expect({}.isAdmin).to.equal(undefined);
+
+    expect({}).not.to.have.property('isAdmin');
   });
 
   // https://github.com/mui-org/material-ui/issues/20095

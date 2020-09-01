@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { cx } from 'emotion';
 import { chainPropTypes } from '@material-ui/utils';
 import useIsFocusVisible from '../utils/useIsFocusVisible';
+import useEnhancedEffect from '../utils/useEnhancedEffect';
 import ownerDocument from '../utils/ownerDocument';
 import useEventCallback from '../utils/useEventCallback';
 import useForkRef from '../utils/useForkRef';
@@ -278,6 +279,22 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     setOpen(-1);
   });
 
+  useEnhancedEffect(() => {
+    if (disabled && sliderRef.current.contains(document.activeElement)) {
+      // This is necessary because Firefox and Safari will keep focus
+      // on a disabled element:
+      // https://codesandbox.io/s/mui-pr-22247-forked-h151h?file=/src/App.js
+      document.activeElement.blur();
+    }
+  }, [disabled]);
+
+  if (disabled && active !== -1) {
+    setActive(-1);
+  }
+  if (disabled && focusVisible !== -1) {
+    setFocusVisible(-1);
+  }
+
   const handleKeyDown = useEventCallback((event) => {
     const index = Number(event.currentTarget.getAttribute('data-index'));
     const value = values[index];
@@ -505,6 +522,16 @@ const Slider = React.forwardRef(function Slider(props, ref) {
       doc.removeEventListener('touchend', handleTouchEnd);
     };
   }, [handleTouchEnd, handleTouchMove, handleTouchStart]);
+
+  React.useEffect(() => {
+    if (disabled) {
+      const doc = ownerDocument(sliderRef.current);
+      doc.removeEventListener('mousemove', handleTouchMove);
+      doc.removeEventListener('mouseup', handleTouchEnd);
+      doc.removeEventListener('touchmove', handleTouchMove);
+      doc.removeEventListener('touchend', handleTouchEnd);
+    }
+  }, [disabled, handleTouchEnd, handleTouchMove]);
 
   const handleMouseDown = useEventCallback((event) => {
     if (onMouseDown) {

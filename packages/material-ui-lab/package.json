@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/lab",
-  "version": "5.0.0-alpha.7",
+  "version": "5.0.0-alpha.8",
   "private": false,
   "author": "Material-UI Team",
   "description": "Material-UI Lab - Incubator for Material-UI React components.",
@@ -46,7 +46,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.4.4",
-    "@material-ui/utils": "^5.0.0-alpha.1",
+    "@material-ui/utils": "^5.0.0-alpha.8",
     "clsx": "^1.0.4",
     "prop-types": "^15.7.2",
     "react-is": "^16.8.0"

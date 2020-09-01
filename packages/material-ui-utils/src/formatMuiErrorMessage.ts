@@ -3,7 +3,7 @@
  * Use `MuiError` from `@material-ui/utils/macros/MuiError.macro` instead.
  * @param {number} code
  */
-export default function formatMuiErrorMessage(code) {
+export default function formatMuiErrorMessage(code: number): string {
   // Apply babel-plugin-transform-template-literals in loose mode
   // loose mode is safe iff we're concatenating primitives
   // see https://babeljs.io/docs/en/babel-plugin-transform-template-literals#loose

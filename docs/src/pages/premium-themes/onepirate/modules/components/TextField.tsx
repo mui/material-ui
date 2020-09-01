@@ -1,7 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 import clsx from 'clsx';
 import { withStyles, WithStyles, createStyles } from '@material-ui/core/styles';
-import MuiTextField, { TextFieldProps } from '@material-ui/core/TextField';
+import MuiTextField, {
+  FilledTextFieldProps,
+  StandardTextFieldProps,
+} from '@material-ui/core/TextField';
 
 const inputSyleMapping = {
   small: 'inputSizeSmall',
@@ -65,7 +68,8 @@ const styles = (theme: any) =>
     },
   });
 
-export interface OnePirateTextFieldProps extends Omit<TextFieldProps, 'size'> {
+export interface OnePirateTextFieldProps
+  extends Omit<FilledTextFieldProps | StandardTextFieldProps, 'size'> {
   noBorder?: boolean;
   size?: 'small' | 'medium' | 'large' | 'xlarge';
 }
@@ -86,14 +90,9 @@ function TextField(props: OnePirateTextFieldProps & WithStyles<typeof styles>) {
     ...InputPropsOther
   } = InputProps;
 
-  const disableUnderline = {
-    disableUnderline: true,
-  };
-
   return (
     <MuiTextField
       InputProps={{
-        ...disableUnderline,
         classes: {
           root: classes.root,
           input: clsx(
@@ -107,6 +106,7 @@ function TextField(props: OnePirateTextFieldProps & WithStyles<typeof styles>) {
           disabled: classes.disabled,
           ...InputPropsClassesOther,
         },
+        disableUnderline: true,
         ...InputPropsOther,
       }}
       InputLabelProps={{

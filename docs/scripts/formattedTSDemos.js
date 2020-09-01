@@ -43,7 +43,8 @@ async function getFiles(root) {
         files.push(...(await getFiles(filePath)));
       } else if (
         stat.isFile() &&
-        filePath.endsWith('.tsx') &&
+        /\.tsx?$/.test(filePath) &&
+        !filePath.endsWith('.d.ts') &&
         !ignoreList.some((ignorePath) => filePath.endsWith(path.normalize(ignorePath)))
       ) {
         files.push(filePath);
@@ -61,7 +62,7 @@ const TranspileResult = {
 };
 
 async function transpileFile(tsxPath, program, ignoreCache = false) {
-  const jsPath = tsxPath.replace('.tsx', '.js');
+  const jsPath = tsxPath.replace(/\.tsx?$/, '.js');
   try {
     if (!ignoreCache && (await fse.exists(jsPath))) {
       const [jsStat, tsxStat] = await Promise.all([fse.stat(jsPath), fse.stat(tsxPath)]);
