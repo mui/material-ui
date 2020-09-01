@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { css } from 'emotion';
+import { css, cx } from 'emotion';
 import styled from '@emotion/styled';
 import isPropValid from '@emotion/is-prop-valid';
-import { getThemeProps } from '@material-ui/styles';
+import { getThemeProps, useThemeVariants, propsToClassKey } from '@material-ui/styles';
 import useTheme from '../styles/useTheme';
 import { fade, lighten, darken } from '../styles/colorManipulator';
 import SliderBase from './Slider';
@@ -226,16 +226,36 @@ const useThemeProps = (inputProps, ref, name) => {
   };
 };
 
-const useThemeOverrides = (name) => {
+const useThemeClasses = (name) => {
   const theme = useTheme() || defaultTheme;
 
-  let overrides = {};
+  let styleOverrides = {};
+  let variants = [];
 
-  if (theme && theme.components && theme.components[name] && theme.components[name].overrides) {
-    overrides = theme.components[name].overrides;
+  if (theme && theme.components && theme.components[name] && theme.components[name].styleOverrides) {
+    styleOverrides = theme.components[name].styleOverrides;
   }
 
-  return overrides;
+  if (theme && theme.components && theme.components[name] && theme.components[name].variants) {
+    variants = theme.components[name].variants;
+  }
+
+  const classes = {};
+
+  Object.keys(styleOverrides).forEach(key => {
+    classes[key] = css(styleOverrides[key]);
+  });
+
+  variants.forEach((definition) => {
+    const key = propsToClassKey(definition.props);
+    if(classes[key]) {
+      classes[key] = cx(classes[key], css(definition.style))
+    } else {
+      classes[key] = css(definition.style);
+    }
+  });
+
+  return classes;
 };
 
 const getComponentProps = (components, componentsProps, name) => {
@@ -245,25 +265,17 @@ const getComponentProps = (components, componentsProps, name) => {
   };
 };
 
-const convertOverridesToClasses = (overrides) => {
-  const classes = {};
-
-  for (let key in overrides) {
-    classes[key] = css(overrides[key]);
-  }
-
-  return classes;
-};
-
 const Slider = React.forwardRef(function Slider(inputProps, inputRef) {
   const props = useThemeProps(inputProps, inputRef, 'MuiSlider');
-  const overrides = useThemeOverrides('MuiSlider');
+  const classes = useThemeClasses('MuiSlider');
+  const themeVariantsClasses = useThemeVariants({ ...props, classes }, 'MuiSlider');
   const { components = {}, componentsProps = {}, ref, ...other } = props;
 
   return (
     <SliderBase
       {...other}
-      classes={convertOverridesToClasses(overrides)}
+      classes={classes}
+      className={cx(themeVariantsClasses, props.className)}
       components={{
         root: SliderRoot,
         rail: SliderRail,
