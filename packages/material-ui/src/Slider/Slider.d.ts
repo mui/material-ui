@@ -30,7 +30,48 @@ export interface SliderTypeMap<P = {}, D extends React.ElementType = 'span'> {
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: {};
+    classes?: {
+      /** Styles applied to the root element. */
+      root?: string;
+      /** Styles applied to the root element if `color="primary"`. */
+      colorPrimary?: string;
+      /** Styles applied to the root element if `color="secondary"`. */
+      colorSecondary?: string;
+      /** Styles applied to the root element if `marks` is provided with at least one label. */
+      marked?: string;
+      /** Pseudo-class applied to the root element if `orientation="vertical"`. */
+      vertical?: string;
+      /** Pseudo-class applied to the root and thumb element if `disabled={true}`. */
+      disabled?: string;
+      /** Styles applied to the rail element. */
+      rail?: string;
+      /** Styles applied to the track element. */
+      track?: string;
+      /** Styles applied to the track element if `track={false}`. */
+      trackFalse?: string;
+      /** Styles applied to the track element if `track="inverted"`. */
+      trackInverted?: string;
+      /** Styles applied to the thumb element. */
+      thumb?: string;
+      /** Styles applied to the thumb element if `color="primary"`. */
+      thumbColorPrimary?: string;
+      /** Styles applied to the thumb element if `color="secondary"`. */
+      thumbColorSecondary?: string;
+      /** Pseudo-class applied to the thumb element if it's active. */
+      active?: string;
+      /** Pseudo-class applied to the thumb element if keyboard focused. */
+      focusVisible?: string;
+      /** Styles applied to the thumb label element. */
+      valueLabel?: string;
+      /** Styles applied to the mark element. */
+      mark?: string;
+      /** Styles applied to the mark element if active (depending on the value). */
+      markActive?: string;
+      /** Styles applied to the mark label element. */
+      markLabel?: string;
+      /** Styles applied to the mark label element if active (depending on the value). */
+      markLabelActive?: string;
+    };
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
      */
