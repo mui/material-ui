@@ -9,6 +9,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     '& a': {
       display: 'block',
+      marginBottom: theme.spacing(1),
     },
     '& img': {
       display: 'inline-block',
@@ -63,7 +64,24 @@ export default function DiamondSponsors(props) {
         />
       </a>
       <a
-        style={{ marginTop: 8 }}
+        data-ga-event-category="sponsor"
+        data-ga-event-action={spot}
+        data-ga-event-label="doit"
+        href="https://www.doit-intl.com/?utm_source=materialui&utm_medium=referral"
+        rel="noopener noreferrer sponsored"
+        target="_blank"
+        style={{ width: 125, height: 35 }}
+      >
+        <img
+          width="125"
+          height="35"
+          src={`/static/in-house/doit-intl.png`}
+          alt="octopus"
+          title="Management Platform for Google Cloud and AWS"
+          loading="lazy"
+        />
+      </a>
+      <a
         aria-label={t('diamondSponsors')}
         className={classes.placeholder}
         rel="noopener noreferrer"
