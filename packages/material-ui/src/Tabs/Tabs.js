@@ -260,9 +260,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
     conditionalElements.scrollbarSizeListener = scrollable ? (
       <ScrollbarSize
         onChange={handleScrollbarSizeChange}
-        className={clsx(classes.scrollableX, {
-          [classes.hideScrollbar]: !visibleScrollbar,
-        })}
+        className={clsx(classes.scrollableX, classes.hideScrollbar)}
       />
     ) : null;
 
