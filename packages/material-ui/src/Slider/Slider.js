@@ -613,17 +613,17 @@ const Slider = React.forwardRef(function Slider(props, ref) {
       marked={marks.length > 0 && marks.some((mark) => mark.label)}
       {...stateAndProps}
       {...rootProps}
-      className={cx(rootProps.className, className, overridesClasses.root)}
+      className={cx(overridesClasses.root, rootProps.className, className)}
     >
       <Rail
         {...stateAndProps}
         {...railProps}
-        className={cx(railProps.className, overridesClasses.rail)}
+        className={cx(overridesClasses.rail, railProps.className)}
       />
       <Track
         {...stateAndProps}
         {...trackProps}
-        className={cx(trackProps.className, overridesClasses.track)}
+        className={cx(overridesClasses.track, trackProps.className)}
         style={trackStyle}
       />
       <input value={values.join(',')} name={name} type="hidden" />
@@ -653,7 +653,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
               data-index={index}
               {...stateAndProps}
               {...markProps}
-              className={cx(markProps.className, overridesClasses.mark, {
+              className={cx(overridesClasses.mark, markProps.className, {
                 [getUtilityClass('markActive')]: markActive,
               })}
               markActive={markActive}
@@ -665,7 +665,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
                 style={style}
                 {...stateAndProps}
                 {...markLabelProps}
-                className={cx(markLabelProps.className, overridesClasses.markLabel, {
+                className={cx(overridesClasses.markLabel, markLabelProps.className, {
                   [getUtilityClass('markLabelActive')]: markActive,
                 })}
                 markLabelActive={markActive}
@@ -695,12 +695,12 @@ const Slider = React.forwardRef(function Slider(props, ref) {
             disabled={disabled}
             {...stateAndProps}
             {...valueLabelProps}
-            className={cx(valueLabelProps.className, overridesClasses.valueLabel)}
+            className={cx(overridesClasses.valueLabel, valueLabelProps.className)}
           >
             <Thumb
               {...stateAndProps}
               {...thumbProps}
-              className={cx(thumbProps.className, overridesClasses.thumb, {
+              className={cx(overridesClasses.thumb, thumbProps.className, {
                 [getUtilityClass('active')]: active === index,
                 [getUtilityClass('focusVisible')]: focusVisible === index,
               })}
