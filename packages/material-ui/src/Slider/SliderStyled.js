@@ -248,7 +248,6 @@ const getComponentProps = (components, componentsProps, name) => {
 const convertOverridesToClasses = (overrides) => {
   const classes = {};
 
-  // TODO: resolve dynamic styles if we want to support
   for (let key in overrides) {
     classes[key] = css(overrides[key]);
   }

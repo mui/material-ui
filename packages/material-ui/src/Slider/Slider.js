@@ -146,27 +146,45 @@ const getUtilityClass = (name) => {
 };
 
 const useSliderClasses = (props) => {
-  const { color, disabled, marked, orientation, track } = props;
+  const { color, disabled, marked, orientation, track, classes } = props;
 
-  const utilityClasses = {
-    root: cx(getUtilityClass('root'), getUtilityClass(`color${capitalize(color)}`), {
-      [getUtilityClass('disabled')]: disabled,
-      [getUtilityClass('marked')]: marked,
-      [getUtilityClass('vertical')]: orientation === 'vertical',
-      [getUtilityClass('trackInverted')]: track === 'inverted',
-      [getUtilityClass('trackFalse')]: track === false,
-    }),
-    rail: getUtilityClass('rail'),
-    track: getUtilityClass('track'),
-    mark: getUtilityClass('mark'),
-    markLabel: getUtilityClass('markLabel'),
-    valueLabel: getUtilityClass('valueLabel'),
-    thumb: cx(getUtilityClass('thumb'), getUtilityClass(`thumbColor${capitalize(color)}`), {
-      [getUtilityClass('disabled')]: disabled,
-    }),
+  const overridesClasses = {
+    root: cx(
+      getUtilityClass('root'),
+      classes.root,
+      getUtilityClass(`color${capitalize(color)}`),
+      classes[`color${capitalize(color)}`],
+      {
+        [getUtilityClass('disabled')]: disabled,
+        [classes.disabled]: disabled,
+        [getUtilityClass('marked')]: marked,
+        [classes.marked]: marked,
+        [getUtilityClass('vertical')]: orientation === 'vertical',
+        [classes.vertical]: orientation === 'vertical',
+        [getUtilityClass('trackInverted')]: track === 'inverted',
+        [classes.trackInverted]: track === 'inverted',
+        [getUtilityClass('trackFalse')]: track === false,
+        [classes.trackFalse]: track === false,
+      }
+    ),
+    rail: cx(getUtilityClass('rail'), classes.rail),
+    track: cx(getUtilityClass('track'), classes.track),
+    mark: cx(getUtilityClass('mark'), classes.mark),
+    markLabel: cx(getUtilityClass('markLabel'), classes.markLabel),
+    valueLabel: cx(getUtilityClass('valueLabel'), classes.valueLabel),
+    thumb: cx(
+      getUtilityClass('thumb'),
+      classes.thumb,
+      getUtilityClass(`thumbColor${capitalize(color)}`), 
+      classes[`thumbColor${capitalize(color)}`],
+      {
+        [getUtilityClass('disabled')]: disabled,
+        [classes.disabled]: disabled
+      }
+    ),
   };
 
-  return utilityClasses;
+  return overridesClasses;
 };
 
 const Slider = React.forwardRef(function Slider(props, ref) {
@@ -555,8 +573,9 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     isRtl,
   };
 
-  const utilityClasses = useSliderClasses({
+  const overridesClasses = useSliderClasses({
     ...stateAndProps,
+    classes,
     marked: marks.length > 0 && marks.some((mark) => mark.label),
   });
 
@@ -567,17 +586,17 @@ const Slider = React.forwardRef(function Slider(props, ref) {
       marked={marks.length > 0 && marks.some((mark) => mark.label)}
       {...stateAndProps}
       {...rootProps}
-      className={cx(rootProps.className, classes.root, className, utilityClasses.root)}
+      className={cx(rootProps.className, className, overridesClasses.root)}
     >
       <Rail
         {...stateAndProps}
         {...railProps}
-        className={cx(railProps.className, classes.rail, utilityClasses.rail)}
+        className={cx(railProps.className, overridesClasses.rail)}
       />
       <Track
         {...stateAndProps}
         {...trackProps}
-        className={cx(trackProps.className, classes.track, utilityClasses.track)}
+        className={cx(trackProps.className, overridesClasses.track)}
         style={trackStyle}
       />
       <input value={values.join(',')} name={name} type="hidden" />
@@ -607,7 +626,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
               data-index={index}
               {...stateAndProps}
               {...markProps}
-              className={cx(markProps.className, classes.mark, utilityClasses.mark, {
+              className={cx(markProps.className, overridesClasses.mark, {
                 [getUtilityClass('markActive')]: markActive,
               })}
               markActive={markActive}
@@ -619,7 +638,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
                 style={style}
                 {...stateAndProps}
                 {...markLabelProps}
-                className={cx(markLabelProps.className, classes.mark, utilityClasses.markLabel, {
+                className={cx(markLabelProps.className, overridesClasses.markLabel, {
                   [getUtilityClass('markLabelActive')]: markActive,
                 })}
                 markLabelActive={markActive}
@@ -649,12 +668,12 @@ const Slider = React.forwardRef(function Slider(props, ref) {
             disabled={disabled}
             {...stateAndProps}
             {...valueLabelProps}
-            className={cx(valueLabelProps.className, classes.valueLabel, utilityClasses.valueLabel)}
+            className={cx(valueLabelProps.className, overridesClasses.valueLabel)}
           >
             <Thumb
               {...stateAndProps}
               {...thumbProps}
-              className={cx(thumbProps.className, classes.thumb, utilityClasses.thumb, {
+              className={cx(thumbProps.className, overridesClasses.thumb, {
                 [getUtilityClass('active')]: active === index,
                 [getUtilityClass('focusVisible')]: focusVisible === index,
               })}
