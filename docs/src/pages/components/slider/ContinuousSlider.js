@@ -22,18 +22,20 @@ export default function ContinuousSlider() {
   };
 
   return (
-    <ThemeProvider theme={{
-      components: {
-        MuiSlider: {
-          overrides: {
-            root: { background: 'green'},
-            track: { background: 'yellow'},
-            rail: { background: 'blue' },
-            thumb: { background: 'red' },
-          }
-        }
-      }
-    }}>
+    <ThemeProvider
+      theme={{
+        components: {
+          MuiSlider: {
+            overrides: {
+              root: { background: 'green' },
+              track: { background: 'yellow' },
+              rail: { background: 'blue' },
+              thumb: { background: 'red' },
+            },
+          },
+        },
+      }}
+    >
       <div className={classes.root}>
         <Typography id="continuous-slider" gutterBottom>
           Volume

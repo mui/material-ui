@@ -12,51 +12,53 @@ import defaultTheme from '../styles/defaultTheme';
 const shouldForwardProp = (prop) =>
   isPropValid(prop) && prop !== 'color' && prop !== 'orientation' && prop !== 'disabled';
 
-const StyledComponent = styled('span', { shouldForwardProp })((props) => ({
-  height: 2,
-  width: '100%',
-  boxSizing: 'content-box',
-  padding: '13px 0',
-  display: 'inline-block',
-  position: 'relative',
-  cursor: 'pointer',
-  touchAction: 'none',
-  color: props.theme.palette.primary.main,
-  WebkitTapHighlightColor: 'transparent',
-  ...(props.color === 'secondary' && {
-    color: props.theme.palette.secondary.main,
-  }),
-  ...(props.disabled && {
-    pointerEvents: 'none',
-    cursor: 'default',
-    color: props.theme.palette.grey[400],
-  }),
-  ...(props.orientation === 'vertical' && {
-    width: 2,
-    height: '100%',
-    padding: '0 13px',
-  }),
-  // The primary input mechanism of the device includes a pointing device of limited accuracy.
-  '@media (pointer: coarse)': {
-    // Reach 42px touch target, about ~8mm on screen.
-    padding: '20px 0',
-    ...(props.orientation === 'vertical' && {
-      padding: '0 20px',
+export const SliderRoot = styled('span', { shouldForwardProp })((props) => {
+  return {
+    height: 2,
+    width: '100%',
+    boxSizing: 'content-box',
+    padding: '13px 0',
+    display: 'inline-block',
+    position: 'relative',
+    cursor: 'pointer',
+    touchAction: 'none',
+    color: props.theme.palette.primary.main,
+    WebkitTapHighlightColor: 'transparent',
+    ...(props.color === 'secondary' && {
+      color: props.theme.palette.secondary.main,
     }),
-  },
-  '@media print': {
-    colorAdjust: 'exact',
-  },
-  ...(props.marked && {
-    marginBottom: 20,
-    ...(props.orientation === 'vertical' && {
-      marginBottom: 'auto',
-      marginRight: 20,
+    ...(props.disabled && {
+      pointerEvents: 'none',
+      cursor: 'default',
+      color: props.theme.palette.grey[400],
     }),
-  }),
-}));
+    ...(props.orientation === 'vertical' && {
+      width: 2,
+      height: '100%',
+      padding: '0 13px',
+    }),
+    // The primary input mechanism of the device includes a pointing device of limited accuracy.
+    '@media (pointer: coarse)': {
+      // Reach 42px touch target, about ~8mm on screen.
+      padding: '20px 0',
+      ...(props.orientation === 'vertical' && {
+        padding: '0 20px',
+      }),
+    },
+    '@media print': {
+      colorAdjust: 'exact',
+    },
+    ...(props.marked && {
+      marginBottom: 20,
+      ...(props.orientation === 'vertical' && {
+        marginBottom: 'auto',
+        marginRight: 20,
+      }),
+    }),
+  };
+});
 
-const StyledRail = styled('span', { shouldForwardProp })((props) => ({
+export const SliderRail = styled('span', { shouldForwardProp })((props) => ({
   display: 'block',
   position: 'absolute',
   width: '100%',
@@ -73,7 +75,7 @@ const StyledRail = styled('span', { shouldForwardProp })((props) => ({
   }),
 }));
 
-const StyledTrack = styled('span', { shouldForwardProp })((props) => ({
+export const SliderTrack = styled('span', { shouldForwardProp })((props) => ({
   display: 'block',
   position: 'absolute',
   height: 2,
@@ -94,7 +96,7 @@ const StyledTrack = styled('span', { shouldForwardProp })((props) => ({
   }),
 }));
 
-const StyledThumb = styled('span', { shouldForwardProp })((props) => ({
+export const SliderThumb = styled('span', { shouldForwardProp })((props) => ({
   position: 'absolute',
   width: 12,
   height: 12,
@@ -165,12 +167,12 @@ const StyledThumb = styled('span', { shouldForwardProp })((props) => ({
   }),
 }));
 
-const StyledValueLabel = styled(ValueLabel)({
+export const SliderValueLabel = styled(ValueLabel)({
   // IE 11 centering bug, to remove from the customization demos once no longer supported
   left: 'calc(-50% - 4px)',
 });
 
-const StyledMark = styled('span', { shouldForwardProp })((props) => ({
+export const SliderMark = styled('span', { shouldForwardProp })((props) => ({
   position: 'absolute',
   width: 2,
   height: 2,
@@ -182,7 +184,7 @@ const StyledMark = styled('span', { shouldForwardProp })((props) => ({
   }),
 }));
 
-const StyledMarkLabel = styled('span', { shouldForwardProp })((props) => ({
+export const SliderMarkLabel = styled('span', { shouldForwardProp })((props) => ({
   ...props.theme.typography.body2,
   color: props.theme.palette.text.secondary,
   position: 'absolute',
@@ -232,7 +234,7 @@ const useThemeOverrides = (name) => {
 
   let overrides = {};
 
-  if(theme && theme.components && theme.components[name] && theme.components[name].overrides) {
+  if (theme && theme.components && theme.components[name] && theme.components[name].overrides) {
     overrides = theme.components[name].overrides;
   }
 
@@ -244,20 +246,19 @@ const getComponentProps = (components, componentsProps, name) => {
     as: components[name],
     ...(componentsProps[name] || {}),
   };
-}
+};
 
 const convertOverridesToClasses = (overrides, css) => {
   const classes = {};
 
-  for(let key in overrides) {
+  // TODO: resolve dynamic styles if we want to support
+  for (let key in overrides) {
     classes[key] = css(overrides[key]);
   }
 
-  console.log(classes);
   return classes;
-}
+};
 
-// This implementatino uses the ClassNames component https://emotion.sh/docs/class-names
 const Slider = React.forwardRef(function Slider(inputProps, inputRef) {
   const props = useThemeProps(inputProps, inputRef, 'MuiSlider');
   const overrides = useThemeOverrides('MuiSlider');
@@ -268,28 +269,29 @@ const Slider = React.forwardRef(function Slider(inputProps, inputRef) {
     <ClassNames>
       {({ css, cx }) => (
         <SliderBase
-        {...other}
-        classes={convertOverridesToClasses(overrides, css)}
-        components={{
-          root: StyledComponent,
-          rail: StyledRail,
-          track: StyledTrack,
-          thumb: StyledThumb,
-          valueLabel: StyledValueLabel,
-          mark: StyledMark,
-          markLabel: StyledMarkLabel,
-        }}
-        componentsProps={{
-          root: getComponentProps(components, componentsProps, 'root'),
-          rail:  getComponentProps(components, componentsProps, 'rail'),
-          track:  getComponentProps(components, componentsProps, 'track'),
-          thumb:  getComponentProps(components, componentsProps, 'thumb'),
-          valueLabel:  getComponentProps(components, componentsProps, 'valueLabel'),
-          mark:  getComponentProps(components, componentsProps, 'mark'),
-          markLabel:  getComponentProps(components, componentsProps, 'markLabel'),
-        }}
-        ref={ref}
-      />
+          {...other}
+          classes={convertOverridesToClasses(overrides, css)}
+          components={{
+            root: SliderRoot,
+            rail: SliderRail,
+            track: SliderTrack,
+            thumb: SliderThumb,
+            valueLabel: SliderValueLabel,
+            mark: SliderMark,
+            markLabel: SliderMarkLabel,
+            ...components,
+          }}
+          componentsProps={{
+            root: getComponentProps(components, componentsProps, 'root'),
+            rail: getComponentProps(components, componentsProps, 'rail'),
+            track: getComponentProps(components, componentsProps, 'track'),
+            thumb: getComponentProps(components, componentsProps, 'thumb'),
+            valueLabel: getComponentProps(components, componentsProps, 'valueLabel'),
+            mark: getComponentProps(components, componentsProps, 'mark'),
+            markLabel: getComponentProps(components, componentsProps, 'markLabel'),
+          }}
+          ref={ref}
+        />
       )}
     </ClassNames>
   );

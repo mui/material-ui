@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { exactProp } from '@material-ui/utils';
-import { CacheProvider } from "@emotion/core";
-import createCache from "@emotion/cache";
-import rtlPlugin from "stylis-plugin-rtl";
+import { CacheProvider } from '@emotion/core';
+import createCache from '@emotion/cache';
+import rtlPlugin from 'stylis-plugin-rtl';
 import ThemeContext from '../useTheme/ThemeContext';
 import useTheme from '../useTheme';
 import nested from './nested';
@@ -65,20 +65,24 @@ function ThemeProvider(props) {
   }, [localTheme, outerTheme]);
 
   const cacheLtr = createCache({
-    key: "mui",
+    key: 'mui',
     stylisPlugins: [],
-    speedy: true
+    speedy: true,
   });
-  
+
   const cacheRtl = createCache({
-    key: "muirtl",
+    key: 'muirtl',
     stylisPlugins: [rtlPlugin],
-    speedy: true
+    speedy: true,
   });
-  
+
   const rtl = theme.direction === 'rtl';
 
-  return <CacheProvider value={rtl ? cacheRtl : cacheLtr}><ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider></CacheProvider>;
+  return (
+    <CacheProvider value={rtl ? cacheRtl : cacheLtr}>
+      <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>
+    </CacheProvider>
+  );
 }
 
 ThemeProvider.propTypes = {
