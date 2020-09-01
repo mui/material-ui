@@ -10,7 +10,11 @@ import ValueLabel from './ValueLabel';
 import defaultTheme from '../styles/defaultTheme';
 
 const shouldForwardProp = (prop) =>
-  isPropValid(prop) && prop !== 'color' && prop !== 'scale' && prop !== 'orientation' && prop !== 'disabled';
+  isPropValid(prop) &&
+  prop !== 'color' &&
+  prop !== 'scale' &&
+  prop !== 'orientation' &&
+  prop !== 'disabled';
 
 export const SliderRoot = styled('span', { shouldForwardProp })((props) => {
   return {
@@ -232,7 +236,12 @@ const useThemeClasses = (name) => {
   let styleOverrides = {};
   let variants = [];
 
-  if (theme && theme.components && theme.components[name] && theme.components[name].styleOverrides) {
+  if (
+    theme &&
+    theme.components &&
+    theme.components[name] &&
+    theme.components[name].styleOverrides
+  ) {
     styleOverrides = theme.components[name].styleOverrides;
   }
 
@@ -242,14 +251,14 @@ const useThemeClasses = (name) => {
 
   const classes = {};
 
-  Object.keys(styleOverrides).forEach(key => {
+  Object.keys(styleOverrides).forEach((key) => {
     classes[key] = css(styleOverrides[key]);
   });
 
   variants.forEach((definition) => {
     const key = propsToClassKey(definition.props);
-    if(classes[key]) {
-      classes[key] = cx(classes[key], css(definition.style))
+    if (classes[key]) {
+      classes[key] = cx(classes[key], css(definition.style));
     } else {
       classes[key] = css(definition.style);
     }

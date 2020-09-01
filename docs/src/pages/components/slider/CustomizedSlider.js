@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { useTheme, makeStyles } from '@material-ui/core/styles';
 import Slider, {
   SliderRoot,
   SliderMark,
@@ -67,6 +67,7 @@ const iosComponents = {
     height: 28,
     width: 28,
     backgroundColor: '#fff',
+    // @ts-ignore
     boxShadow: iOSBoxShadow,
     marginTop: -14,
     marginLeft: -14,
@@ -104,6 +105,7 @@ const iosComponents = {
     backgroundColor: '#bfbfbf',
   }),
   mark: styled(SliderMark)((props) => ({
+    // @ts-ignore
     backgroundColor: '#bfbfbf',
     height: 8,
     width: 1,
@@ -160,6 +162,7 @@ const airbnbComponents = {
     border: '1px solid currentColor',
     marginTop: -12,
     marginLeft: -13,
+    // @ts-ignore
     boxShadow: '#ebebeb 0 2px 2px',
     '&:focus, &:hover': {
       boxShadow: '#ccc 0 2px 3px 1px',
@@ -198,6 +201,7 @@ function AirbnbThumbComponent(props) {
 
 export default function CustomizedSlider() {
   const classes = useStyles();
+  // For some reason the theme when styled used twice is coming from emotion, not our defulat theme
   const theme = useTheme();
 
   return (

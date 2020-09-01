@@ -24,20 +24,21 @@ export default function ContinuousSlider() {
   const theme = {
     components: {
       MuiSlider: {
+        // @ts-ignore MuiSlider does not support variants, this is added just for testing
         variants: [
           {
-            props: { color: 'primary', orientation: 'vertical'},
+            props: { color: 'primary', orientation: 'vertical' },
             style: {
-              backgroundColor: 'green'
-            }
+              backgroundColor: 'green',
+            },
           },
         ],
         styleOverrides: {
           root: {
-            background: 'red'
-          }
-        }
-      }
+            background: 'red',
+          },
+        },
+      },
     },
   };
 

@@ -166,7 +166,7 @@ const useSliderClasses = (props) => {
         [classes.trackInverted]: track === 'inverted',
         [getUtilityClass('trackFalse')]: track === false,
         [classes.trackFalse]: track === false,
-      }
+      },
     ),
     rail: cx(getUtilityClass('rail'), classes.rail),
     track: cx(getUtilityClass('track'), classes.track),
@@ -176,12 +176,12 @@ const useSliderClasses = (props) => {
     thumb: cx(
       getUtilityClass('thumb'),
       classes.thumb,
-      getUtilityClass(`thumbColor${capitalize(color)}`), 
+      getUtilityClass(`thumbColor${capitalize(color)}`),
       classes[`thumbColor${capitalize(color)}`],
       {
         [getUtilityClass('disabled')]: disabled,
-        [classes.disabled]: disabled
-      }
+        [classes.disabled]: disabled,
+      },
     ),
   };
 
