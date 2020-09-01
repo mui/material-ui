@@ -249,10 +249,6 @@ TextField.propTypes = {
    */
   helperText: PropTypes.node,
   /**
-   * @ignore
-   */
-  hiddenLabel: PropTypes.bool,
-  /**
    * The id of the `input` element.
    * Use this prop to make `label` and `helperText` accessible for screen readers.
    */
