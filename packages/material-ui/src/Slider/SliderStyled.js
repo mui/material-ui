@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ClassNames } from '@emotion/core';
+import { css } from 'emotion';
 import styled from '@emotion/styled';
 import isPropValid from '@emotion/is-prop-valid';
 import { getThemeProps } from '@material-ui/styles';
@@ -10,7 +10,7 @@ import ValueLabel from './ValueLabel';
 import defaultTheme from '../styles/defaultTheme';
 
 const shouldForwardProp = (prop) =>
-  isPropValid(prop) && prop !== 'color' && prop !== 'orientation' && prop !== 'disabled';
+  isPropValid(prop) && prop !== 'color' && prop !== 'scale' && prop !== 'orientation' && prop !== 'disabled';
 
 export const SliderRoot = styled('span', { shouldForwardProp })((props) => {
   return {
@@ -226,9 +226,6 @@ const useThemeProps = (inputProps, ref, name) => {
   };
 };
 
-// Stores a mapping between hashed string and cssified styles object
-const stylesCache = {};
-
 const useThemeOverrides = (name) => {
   const theme = useTheme() || defaultTheme;
 
@@ -248,7 +245,7 @@ const getComponentProps = (components, componentsProps, name) => {
   };
 };
 
-const convertOverridesToClasses = (overrides, css) => {
+const convertOverridesToClasses = (overrides) => {
   const classes = {};
 
   // TODO: resolve dynamic styles if we want to support
@@ -265,35 +262,30 @@ const Slider = React.forwardRef(function Slider(inputProps, inputRef) {
   const { components = {}, componentsProps = {}, ref, ...other } = props;
 
   return (
-    // TODO: move to ThemeProvider
-    <ClassNames>
-      {({ css, cx }) => (
-        <SliderBase
-          {...other}
-          classes={convertOverridesToClasses(overrides, css)}
-          components={{
-            root: SliderRoot,
-            rail: SliderRail,
-            track: SliderTrack,
-            thumb: SliderThumb,
-            valueLabel: SliderValueLabel,
-            mark: SliderMark,
-            markLabel: SliderMarkLabel,
-            ...components,
-          }}
-          componentsProps={{
-            root: getComponentProps(components, componentsProps, 'root'),
-            rail: getComponentProps(components, componentsProps, 'rail'),
-            track: getComponentProps(components, componentsProps, 'track'),
-            thumb: getComponentProps(components, componentsProps, 'thumb'),
-            valueLabel: getComponentProps(components, componentsProps, 'valueLabel'),
-            mark: getComponentProps(components, componentsProps, 'mark'),
-            markLabel: getComponentProps(components, componentsProps, 'markLabel'),
-          }}
-          ref={ref}
-        />
-      )}
-    </ClassNames>
+    <SliderBase
+      {...other}
+      classes={convertOverridesToClasses(overrides)}
+      components={{
+        root: SliderRoot,
+        rail: SliderRail,
+        track: SliderTrack,
+        thumb: SliderThumb,
+        valueLabel: SliderValueLabel,
+        mark: SliderMark,
+        markLabel: SliderMarkLabel,
+        ...components,
+      }}
+      componentsProps={{
+        root: getComponentProps(components, componentsProps, 'root'),
+        rail: getComponentProps(components, componentsProps, 'rail'),
+        track: getComponentProps(components, componentsProps, 'track'),
+        thumb: getComponentProps(components, componentsProps, 'thumb'),
+        valueLabel: getComponentProps(components, componentsProps, 'valueLabel'),
+        mark: getComponentProps(components, componentsProps, 'mark'),
+        markLabel: getComponentProps(components, componentsProps, 'markLabel'),
+      }}
+      ref={ref}
+    />
   );
 });
 

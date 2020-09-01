@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
+import { cx } from 'emotion';
 import { chainPropTypes } from '@material-ui/utils';
 import useIsFocusVisible from '../utils/useIsFocusVisible';
 import ownerDocument from '../utils/ownerDocument';
@@ -149,7 +149,7 @@ const useSliderClasses = (props) => {
   const { color, disabled, marked, orientation, track } = props;
 
   const utilityClasses = {
-    root: clsx(getUtilityClass('root'), getUtilityClass(`color${capitalize(color)}`), {
+    root: cx(getUtilityClass('root'), getUtilityClass(`color${capitalize(color)}`), {
       [getUtilityClass('disabled')]: disabled,
       [getUtilityClass('marked')]: marked,
       [getUtilityClass('vertical')]: orientation === 'vertical',
@@ -161,7 +161,7 @@ const useSliderClasses = (props) => {
     mark: getUtilityClass('mark'),
     markLabel: getUtilityClass('markLabel'),
     valueLabel: getUtilityClass('valueLabel'),
-    thumb: clsx(getUtilityClass('thumb'), getUtilityClass(`thumbColor${capitalize(color)}`), {
+    thumb: cx(getUtilityClass('thumb'), getUtilityClass(`thumbColor${capitalize(color)}`), {
       [getUtilityClass('disabled')]: disabled,
     }),
   };
@@ -541,6 +541,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   // consider extracting to hook an reusing the lint rule for the varints
   const stateAndProps = {
     ...props,
+    classes: undefined, // we do not want to override other components classes
     color,
     disabled,
     max,
@@ -566,17 +567,17 @@ const Slider = React.forwardRef(function Slider(props, ref) {
       marked={marks.length > 0 && marks.some((mark) => mark.label)}
       {...stateAndProps}
       {...rootProps}
-      className={clsx(className, classes.root, utilityClasses.root, rootProps.className)}
+      className={cx(rootProps.className, classes.root, className, utilityClasses.root)}
     >
       <Rail
         {...stateAndProps}
         {...railProps}
-        className={clsx(classes.rail, utilityClasses.rail, railProps.className)}
+        className={cx(railProps.className, classes.rail, utilityClasses.rail)}
       />
       <Track
         {...stateAndProps}
         {...trackProps}
-        className={clsx(classes.track, utilityClasses.track, trackProps.className)}
+        className={cx(trackProps.className, classes.track, utilityClasses.track)}
         style={trackStyle}
       />
       <input value={values.join(',')} name={name} type="hidden" />
@@ -606,14 +607,9 @@ const Slider = React.forwardRef(function Slider(props, ref) {
               data-index={index}
               {...stateAndProps}
               {...markProps}
-              className={clsx(
-                classes.mark,
-                utilityClasses.mark,
-                {
-                  [getUtilityClass('markActive')]: markActive,
-                },
-                markProps.className,
-              )}
+              className={cx(markProps.className, classes.mark, utilityClasses.mark, {
+                [getUtilityClass('markActive')]: markActive,
+              })}
               markActive={markActive}
             />
             {mark.label != null ? (
@@ -623,14 +619,9 @@ const Slider = React.forwardRef(function Slider(props, ref) {
                 style={style}
                 {...stateAndProps}
                 {...markLabelProps}
-                className={clsx(
-                  classes.mark,
-                  utilityClasses.markLabel,
-                  {
-                    [getUtilityClass('markLabelActive')]: markActive,
-                  },
-                  markLabelProps.className,
-                )}
+                className={cx(markLabelProps.className, classes.mark, utilityClasses.markLabel, {
+                  [getUtilityClass('markLabelActive')]: markActive,
+                })}
                 markLabelActive={markActive}
               >
                 {mark.label}
@@ -658,24 +649,15 @@ const Slider = React.forwardRef(function Slider(props, ref) {
             disabled={disabled}
             {...stateAndProps}
             {...valueLabelProps}
-            className={clsx(
-              classes.valueLabel,
-              utilityClasses.valueLabel,
-              valueLabelProps.className,
-            )}
+            className={cx(valueLabelProps.className, classes.valueLabel, utilityClasses.valueLabel)}
           >
             <Thumb
               {...stateAndProps}
               {...thumbProps}
-              className={clsx(
-                classes.thumb,
-                utilityClasses.thumb,
-                {
-                  [getUtilityClass('active')]: active === index,
-                  [getUtilityClass('focusVisible')]: focusVisible === index,
-                },
-                thumbProps.className,
-              )}
+              className={cx(thumbProps.className, classes.thumb, utilityClasses.thumb, {
+                [getUtilityClass('active')]: active === index,
+                [getUtilityClass('focusVisible')]: focusVisible === index,
+              })}
               active={active === index}
               focusVisible={focusVisible === index}
               tabIndex={disabled ? null : 0}
@@ -763,19 +745,6 @@ Slider.propTypes = {
    */
   component: PropTypes.elementType,
   /**
-   * The components used for each slot in the component.
-   * Either a string to use a HTML element or a component.
-   */
-  components: PropTypes.shape({
-    root: PropTypes.component,
-    rail: PropTypes.component,
-    track: PropTypes.component,
-    thumb: PropTypes.component,
-    valueLabel: PropTypes.component,
-    mark: PropTypes.component,
-    markLabel: PropTypes.component,
-  }),
-  /**
    * The default element value. Use when the component is not controlled.
    */
   defaultValue: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
@@ -801,7 +770,7 @@ Slider.propTypes = {
   /**
    * Indicates whether the theme context has rtl direction. It is set automatically.
    */
-  isRtl: PropTypes.boolean,
+  isRtl: PropTypes.bool,
   /**
    * Marks indicate predetermined values to which the user can move the slider.
    * If `true` the marks will be spaced according the value of the `step` prop.
