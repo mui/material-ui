@@ -364,7 +364,7 @@ describe('<Tabs />', () => {
 
     it('should render with the scrollable class', () => {
       const { container } = render(tabs);
-      const selector = `.${classes.scroller}.${classes.scrollable}`;
+      const selector = `.${classes.scroller}.${classes.scrollableX}`;
       expect(container.querySelector(selector).tagName).to.equal('DIV');
       expect(container.querySelectorAll(selector)).to.have.lengthOf(1);
     });
@@ -390,7 +390,7 @@ describe('<Tabs />', () => {
       expect(hasLeftScrollButton(container)).to.equal(true);
       expect(hasRightScrollButton(container)).to.equal(true);
       tablistContainer.scrollLeft = 0;
-      fireEvent.scroll(container.querySelector(`.${classes.scroller}.${classes.scrollable}`));
+      fireEvent.scroll(container.querySelector(`.${classes.scroller}.${classes.scrollableX}`));
       clock.tick(166);
 
       expect(hasLeftScrollButton(container)).to.equal(false);
@@ -422,7 +422,7 @@ describe('<Tabs />', () => {
         </Tabs>,
       );
       const baseSelector = `.${classes.scroller}`;
-      const selector = `.${classes.scroller}.${classes.scrollable}`;
+      const selector = `.${classes.scroller}.${classes.scrollableX}`;
       expect(container.querySelector(baseSelector)).not.to.equal(null);
       expect(container.querySelector(selector)).to.equal(null);
     });
