@@ -1,15 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createShallow, getClasses, createMount, describeConformance } from 'test/utils';
+import { createClientRender, getClasses, createMount, describeConformance } from 'test/utils';
 import FormGroup from './FormGroup';
 
 describe('<FormGroup />', () => {
   const mount = createMount();
-  let shallow;
+  const render = createClientRender();
   let classes;
 
   before(() => {
-    shallow = createShallow({ dive: true });
     classes = getClasses(<FormGroup />);
   });
 
@@ -22,14 +21,13 @@ describe('<FormGroup />', () => {
   }));
 
   it('should render a div with a div child', () => {
-    const wrapper = shallow(
-      <FormGroup>
-        <div className="woofFormGroup" />
-      </FormGroup>,
-    );
+    const children = <div data-testid="test-children" />;
 
-    expect(wrapper.children('span').length).to.equal(0);
-    expect(wrapper.children('div').length).to.equal(1);
-    expect(wrapper.children('div').first().hasClass('woofFormGroup')).to.equal(true);
+    const { container, getByTestId } = render(<FormGroup>{children}</FormGroup>);
+
+    const root = container.querySelector(`.${classes.root}`);
+
+    getByTestId('test-children');
+    expect(root).to.not.equal(null);
   });
 });

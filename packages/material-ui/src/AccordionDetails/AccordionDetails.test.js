@@ -1,15 +1,13 @@
 import * as React from 'react';
-import { expect } from 'chai';
-import { createShallow, getClasses, createMount, describeConformance } from 'test/utils';
+import { createClientRender, getClasses, createMount, describeConformance } from 'test/utils';
 import AccordionDetails from './AccordionDetails';
 
 describe('<AccordionDetails />', () => {
   const mount = createMount();
-  let shallow;
+  const render = createClientRender();
   let classes;
 
   before(() => {
-    shallow = createShallow({ dive: true });
     classes = getClasses(<AccordionDetails>foo</AccordionDetails>);
   });
 
@@ -22,12 +20,10 @@ describe('<AccordionDetails />', () => {
   }));
 
   it('should render a children element', () => {
-    const wrapper = shallow(
-      <AccordionDetails>
-        <div>Hello</div>
-      </AccordionDetails>,
-    );
-    const container = wrapper.childAt(0);
-    expect(container.type()).to.equal('div');
+    const children = <div data-testid="test-children" />;
+
+    const { getByTestId } = render(<AccordionDetails>{children}</AccordionDetails>);
+
+    getByTestId('test-children');
   });
 });
