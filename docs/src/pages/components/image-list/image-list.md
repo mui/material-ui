@@ -44,6 +44,16 @@ The overlay can accommodate a `title`, `subtitle` and secondary action - in this
 
 {{"demo": "pages/components/image-list/TitlebarImageList.js", "hideEditButton": true}}
 
+### Title bar below image (Standard)
+
+The title bar can be placed below the image.
+
+{{"demo": "pages/components/image-list/TitlebarBelowImageList.js", "hideEditButton": true}}
+
+### Title bar below image (Masonry)
+
+{{"demo": "pages/components/image-list/TitlebarBelowMasonryImageList.js", "hideEditButton": true}}
+
 ## Custom image list
 
 In this example the items have a customized titlebar, positioned at the top and with a custom gradient `titleBackground`.

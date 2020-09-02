@@ -3,9 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import ImageList from '@material-ui/core/ImageList';
 import ImageListItem from '@material-ui/core/ImageListItem';
 import ImageListItemBar from '@material-ui/core/ImageListItemBar';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import IconButton from '@material-ui/core/IconButton';
-import InfoIcon from '@material-ui/icons/Info';
 import itemData from './itemData';
 
 const useStyles = makeStyles({
@@ -33,28 +30,18 @@ const useStyles = makeStyles({
  *   { etc... },
  * ];
  */
-export default function TitlebarImageList() {
+export default function TitlebarBelowImageList() {
   const classes = useStyles();
 
   return (
     <ImageList className={classes.root}>
-      <ImageListItem key="Subheader" cols={2}>
-        <ListSubheader component="div">December</ListSubheader>
-      </ImageListItem>
       {itemData.map((item) => (
         <ImageListItem key={item.img}>
           <img src={item.img} alt={item.title} />
           <ImageListItemBar
             title={item.title}
             subtitle={<span>by: {item.author}</span>}
-            actionIcon={
-              <IconButton
-                aria-label={`info about ${item.title}`}
-                className={classes.icon}
-              >
-                <InfoIcon />
-              </IconButton>
-            }
+            position="below"
           />
         </ImageListItem>
       ))}

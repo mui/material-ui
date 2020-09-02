@@ -29,8 +29,6 @@ const useStyles = makeStyles({
  *      img: 'image-path',
  *      title: 'text',
  *      author: 'name',
- *      rows: 2,
- *      cols: 2,
  *   },
  *   { etc... },
  * ];

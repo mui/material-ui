@@ -19,14 +19,20 @@ export interface ImageListItemBarProps
   classes?: {
     /** Styles applied to the root element. */
     root?: string;
-    /** Styles applied to the root element if `titlePosition="bottom"`. */
-    titlePositionBottom?: string;
-    /** Styles applied to the root element if `titlePosition="top"`. */
-    titlePositionTop?: string;
     /** Styles applied to the root element if a `subtitle` is provided. */
     rootSubtitle?: string;
+    /** Styles applied to the root element if `position="bottom"`. */
+    positionBottom?: string;
+    /** Styles applied to the root element if `position="top"`. */
+    positionTop?: string;
+    /** Styles applied to the root element if `position="below"`. */
+    positionBelow?: string;
+    /** Styles applied to the root element if `position="below"` and a `subtitle` is provided. */
+    positionBelowSubtitle?: string;
     /** Styles applied to the title and subtitle container element. */
     titleWrap?: string;
+    /** Styles applied to the title and subtitle container element if `position="below"`. */
+    titleWrapBelow?: string;
     /** Styles applied to the container element if `actionPosition="left"`. */
     titleWrapActionPosLeft?: string;
     /** Styles applied to the container element if `actionPosition="right"`. */
@@ -41,6 +47,11 @@ export interface ImageListItemBarProps
     actionIconActionPosLeft?: string;
   };
   /**
+   * Position of the title bar.
+   * @default 'bottom'
+   */
+  position?: 'below' | 'top' | 'bottom';
+  /**
    * String or element serving as subtitle (support text).
    */
   subtitle?: React.ReactNode;
@@ -48,11 +59,6 @@ export interface ImageListItemBarProps
    * Title to be displayed on item.
    */
   title?: React.ReactNode;
-  /**
-   * Position of the title bar.
-   * @default 'bottom'
-   */
-  titlePosition?: 'top' | 'bottom';
 }
 
 export type ImageListItemBarClassKey = keyof NonNullable<ImageListItemBarProps['classes']>;

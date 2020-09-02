@@ -9,14 +9,25 @@ import ImageListContext from '../ImageList/ImageListContext';
 export const styles = {
   /* Styles applied to the root element. */
   root: {
+    display: 'inline-block',
     position: 'relative',
-    lineHeight: 0,
+    lineHeight: 0, // Fix masonry item spacing
   },
   /* Styles applied to an `img` element to ensure it covers the item. */
   img: {
     objectFit: 'cover',
     width: '100%',
     height: '100%',
+  },
+  /* Styles applied to the root element if `variant="standard"`. */
+  standard: {
+    // For titlebar under list item
+    display: 'flex',
+    flexDirection: 'column',
+    '& $img': {
+      height: 'auto',
+      flexGrow: 1,
+    },
   },
   /* Styles applied to the root element if `variant="woven"`. */
   woven: {

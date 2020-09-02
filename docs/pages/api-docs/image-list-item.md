@@ -44,6 +44,7 @@ Any other props supplied will be provided to the root element (native element).
 |:-----|:-------------|:------------|
 | <span class="prop-name">root</span> | <span class="prop-name">.MuiImageListItem-root</span> | Styles applied to the root element.
 | <span class="prop-name">img</span> | <span class="prop-name">.MuiImageListItem-img</span> | Styles applied to an `img` element to ensure it covers the item.
+| <span class="prop-name">standard</span> | <span class="prop-name">.MuiImageListItem-standard</span> | Styles applied to the root element if `variant="standard"`.
 | <span class="prop-name">woven</span> | <span class="prop-name">.MuiImageListItem-woven</span> | Styles applied to the root element if `variant="woven"`.
 
 You can override the style of the component thanks to one of these customization points:
