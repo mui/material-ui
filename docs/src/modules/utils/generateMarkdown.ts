@@ -9,6 +9,10 @@ import {
 import { SOURCE_CODE_ROOT_URL, LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
 import { pageToTitle } from './helpers';
 
+interface DescribeablePropDescriptor extends PropDescriptor {
+  description: string;
+}
+
 export interface ReactApi extends ReactDocgenApi {
   EOL: string;
   filename: string;
@@ -121,7 +125,7 @@ function resolveType(type: NonNullable<doctrine.Tag['type']>): string {
   throw new TypeError(`resolveType for '${type.type}' not implemented`);
 }
 
-function generatePropDescription(prop: PropDescriptor, propName: string) {
+function generatePropDescription(prop: DescribeablePropDescriptor, propName: string) {
   const { description } = prop;
   const type = prop.type;
   let deprecated = '';
@@ -133,9 +137,6 @@ function generatePropDescription(prop: PropDescriptor, propName: string) {
     }
   }
 
-  if (description === undefined) {
-    throw new Error('wrong doctrine#parse type');
-  }
   const parsed = doctrine.parse(description, {
     sloppy: true,
   });
@@ -294,6 +295,42 @@ The \`${reactAPI.styles.name}\` name can be used for providing [default props](/
 `;
 }
 
+function assertDescribeableProp(
+  prop: PropDescriptor,
+  propName: string,
+  options: { renderDefaultValue: boolean },
+): asserts prop is DescribeablePropDescriptor {
+  const { defaultValue, jsdocDefaultValue, description } = prop;
+  const { renderDefaultValue } = options;
+
+  if (description === undefined) {
+    throw new Error(`The "${propName}" prop is missing a description.`);
+  }
+
+  if (jsdocDefaultValue !== undefined && defaultValue === undefined) {
+    throw new Error(
+      `Declared a @default annotation in JSDOC for prop '${propName}' but could not find a default value in the implementation.`,
+    );
+  } else if (jsdocDefaultValue === undefined && defaultValue !== undefined && renderDefaultValue) {
+    // Discriminator for polymorphism which is not documented at the component level.
+    // The documentation of `component` does not know in which component it is used.
+    if (propName !== 'component') {
+      // TODO: throw/warn/ignore?
+      // throw new Error(
+      //   `JSDOC @default annotation not found for '${propName}'.`,
+      // );
+      console.warn(`JSDOC @default annotation not found for '${propName}'.`);
+    }
+  } else if (jsdocDefaultValue !== undefined) {
+    // `defaultValue` can't be undefined or we would've thrown earlier.
+    if (jsdocDefaultValue.value !== defaultValue!.value) {
+      throw new Error(
+        `Expected JSDOC @default annotation for prop '${propName}' of "${jsdocDefaultValue.value}" to equal runtime default value of "${defaultValue?.value}"`,
+      );
+    }
+  }
+}
+
 function generateProps(reactAPI: ReactApi) {
   const header = '## Props';
 
@@ -305,9 +342,14 @@ function generateProps(reactAPI: ReactApi) {
   Object.keys(reactAPI.props).forEach((propName) => {
     const prop = reactAPI.props[propName];
 
-    if (typeof prop.description === 'undefined') {
-      throw new Error(`The "${propName}" prop is missing a description`);
-    }
+    const renderedDefaultValue = prop.defaultValue?.value.replace(/\r?\n/g, '');
+    const renderDefaultValue = Boolean(
+      renderedDefaultValue &&
+        // Ignore "large" default values that would break the table layout.
+        renderedDefaultValue.length <= 150,
+    );
+
+    assertDescribeableProp(prop, propName, { renderDefaultValue });
 
     if (propName === 'classes') {
       prop.description += ' See [CSS API](#css) below for more details.';
@@ -317,40 +359,6 @@ function generateProps(reactAPI: ReactApi) {
 
     if (description === null) {
       return;
-    }
-
-    const renderedDefaultValue = prop.defaultValue?.value.replace(/\r?\n/g, '');
-    const renderDefaultValue =
-      renderedDefaultValue &&
-      // Ignore "large" default values that would break the table layout.
-      renderedDefaultValue.length <= 150;
-
-    const { defaultValue, jsdocDefaultValue } = prop;
-    if (jsdocDefaultValue !== undefined && defaultValue === undefined) {
-      throw new Error(
-        `Declared a @default annotation in JSDOC for prop '${propName}' but could not find a default value in the implementation.`,
-      );
-    } else if (
-      jsdocDefaultValue === undefined &&
-      defaultValue !== undefined &&
-      renderDefaultValue
-    ) {
-      // Discriminator for polymorphism which is not documented at the component level.
-      // The documentation of `component` does not know in which component it is used.
-      if (propName !== 'component') {
-        // TODO: throw/warn/ignore?
-        // throw new Error(
-        //   `JSDOC @default annotation not found for '${propName}'.`,
-        // );
-        console.warn(`JSDOC @default annotation not found for '${propName}'.`);
-      }
-    } else if (jsdocDefaultValue !== undefined) {
-      // `defaultValue` can't be undefined or we would've thrown earlier.
-      if (jsdocDefaultValue.value !== defaultValue!.value) {
-        throw new Error(
-          `Expected JSDOC @default annotation for prop '${propName}' of "${jsdocDefaultValue.value}" to equal runtime default value of "${defaultValue?.value}"`,
-        );
-      }
     }
 
     let defaultValueColumn = '';
