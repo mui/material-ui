@@ -65,7 +65,7 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">fixed</span> | <span class="prop-name">.MuiTabs-fixed</span> | Styles applied to the tablist element if `!variant="scrollable"`.
 | <span class="prop-name">scrollableX</span> | <span class="prop-name">.MuiTabs-scrollableX</span> | Styles applied to the tablist element if `variant="scrollable"` and `orientation="horizontal"`.
 | <span class="prop-name">scrollableY</span> | <span class="prop-name">.MuiTabs-scrollableY</span> | Styles applied to the tablist element if `variant="scrollable"` and `orientation="vertical"`.
-| <span class="prop-name">hideScrollbar</span> | <span class="prop-name">.MuiTabs-hideScrollbar</span> | Styles applied to the tablist element if `variant="scrollable"` and `scrollbar="off"`.
+| <span class="prop-name">hideScrollbar</span> | <span class="prop-name">.MuiTabs-hideScrollbar</span> | Styles applied to the tablist element if `variant="scrollable"` and `visibleScrollbar={false}`.
 | <span class="prop-name">scrollButtons</span> | <span class="prop-name">.MuiTabs-scrollButtons</span> | Styles applied to the `ScrollButtonComponent` component.
 | <span class="prop-name">scrollButtonsDesktop</span> | <span class="prop-name">.MuiTabs-scrollButtonsDesktop</span> | Styles applied to the `ScrollButtonComponent` component if `scrollButtons="auto"` or scrollButtons="desktop"`.
 | <span class="prop-name">indicator</span> | <span class="prop-name">.MuiTabs-indicator</span> | Styles applied to the `TabIndicator` component.

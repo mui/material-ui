@@ -60,7 +60,7 @@ export const styles = (theme) => ({
     overflowY: 'auto',
     overflowX: 'hidden',
   },
-  /* Styles applied to the tablist element if `variant="scrollable"` and `scrollbar="off"`. */
+  /* Styles applied to the tablist element if `variant="scrollable"` and `visibleScrollbar={false}`. */
   hideScrollbar: {
     // Hide dimensionless scrollbar on MacOS
     scrollbarWidth: 'none', // Firefox

@@ -53,7 +53,7 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
       scrollableX?: string;
       /** Styles applied to the tablist element if `variant="scrollable"` and `orientation="vertical"`. */
       scrollableY?: string;
-      /** Styles applied to the tablist element if `variant="scrollable"` and `scrollbar="off"`. */
+      /** Styles applied to the tablist element if `variant="scrollable"` and `visibleScrollbar={false}`. */
       hideScrollbar?: string;
       /** Styles applied to the `ScrollButtonComponent` component. */
       scrollButtons?: string;
