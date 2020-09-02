@@ -99,6 +99,7 @@ Typography.propTypes = {
   marked: PropTypes.oneOf(['center', 'left', 'none']),
   /**
    * Applies the theme typography styles.
+   * @default 'body1'
    */
   variant: PropTypes.oneOf([
     'body1',
