@@ -1,4 +1,5 @@
-export { default } from './SliderStyled';
+export { default } from './Slider';
+export { default as SliderBase } from './SliderBase';
 export {
   SliderRoot,
   SliderMark,
@@ -7,5 +8,6 @@ export {
   SliderTrack,
   SliderThumb,
   SliderValueLabel,
-} from './SliderStyled';
-export * from './SliderStyled';
+} from './Slider';
+export * from './Slider';
+export * from './SliderBase';
