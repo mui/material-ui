@@ -24,56 +24,63 @@ describe('<Paper />', () => {
 
   describe('prop: square', () => {
     it('can disable the rounded class', () => {
-      const { container } = render(<Paper square>Hello World</Paper>);
-      const node = container.querySelector(`.${classes.rounded}`);
+      const { getByTestId } = render(
+        <Paper data-testid="root" square>
+          Hello World
+        </Paper>,
+      );
 
-      expect(node).to.equal(null);
+      expect(getByTestId('root')).not.to.have.class(classes.rounded);
     });
 
     it('adds a rounded class to the root when omitted', () => {
-      const { container } = render(<Paper>Hello World</Paper>);
-      const node = container.querySelector(`.${classes.rounded}`);
+      const { getByTestId } = render(<Paper data-testid="root">Hello World</Paper>);
 
-      expect(node).to.not.equal(null);
+      expect(getByTestId('root')).to.have.class(classes.rounded);
     });
   });
 
   describe('prop: variant', () => {
     it('adds a outlined class', () => {
-      const { container } = render(<Paper variant="outlined">Hello World</Paper>);
-      const node = container.querySelector(`.${classes.outlined}`);
+      const { getByTestId } = render(
+        <Paper data-testid="root" variant="outlined">
+          Hello World
+        </Paper>,
+      );
 
-      expect(node).to.not.equal(null);
+      expect(getByTestId('root')).to.have.class(classes.outlined);
     });
   });
 
   it('should set the elevation elevation class', () => {
-    const { container, setProps } = render(<Paper elevation={16}>Hello World</Paper>);
+    const { getByTestId, setProps } = render(
+      <Paper data-testid="root" elevation={16}>
+        Hello World
+      </Paper>,
+    );
+    const root = getByTestId('root');
 
-    let node = container.querySelector(`.${classes.elevation16}`);
-    expect(node).to.not.equal(null);
+    expect(root).to.have.class(classes.elevation16);
 
     setProps({ elevation: 24 });
-    node = container.querySelector(`.${classes.elevation24}`);
-    expect(node).to.not.equal(null);
+
+    expect(root).to.have.class(classes.elevation24);
 
     setProps({ elevation: 2 });
-    node = container.querySelector(`.${classes.elevation2}`);
-    expect(node).to.not.equal(null);
+
+    expect(root).to.have.class(classes.elevation2);
   });
 
   it('allows custom elevations via theme.shadows', () => {
     const theme = createMuiTheme();
     theme.shadows.push('20px 20px');
-    const { container } = render(
+    const { getByTestId } = render(
       <ThemeProvider theme={theme}>
-        <Paper classes={{ elevation25: 'custom-elevation' }} elevation={25} />
+        <Paper data-testid="root" classes={{ elevation25: 'custom-elevation' }} elevation={25} />
       </ThemeProvider>,
     );
 
-    const node = container.querySelector('.custom-elevation');
-
-    expect(node).to.not.equal(null);
+    expect(getByTestId('root')).to.have.class('custom-elevation');
   });
 
   describe('warnings', () => {

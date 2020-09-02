@@ -21,13 +21,12 @@ describe('<FormGroup />', () => {
   }));
 
   it('should render a div with a div child', () => {
-    const children = <div data-testid="test-children" />;
+    const { queryByTestId } = render(
+      <FormGroup>
+        <div data-testid="test-children" />
+      </FormGroup>,
+    );
 
-    const { container, getByTestId } = render(<FormGroup>{children}</FormGroup>);
-
-    const root = container.querySelector(`.${classes.root}`);
-
-    getByTestId('test-children');
-    expect(root).to.not.equal(null);
+    expect(queryByTestId('test-children')).to.not.equal(null);
   });
 });

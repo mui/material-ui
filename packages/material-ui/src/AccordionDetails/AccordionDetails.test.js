@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { expect } from 'chai';
 import { createClientRender, getClasses, createMount, describeConformance } from 'test/utils';
 import AccordionDetails from './AccordionDetails';
 
@@ -20,10 +21,12 @@ describe('<AccordionDetails />', () => {
   }));
 
   it('should render a children element', () => {
-    const children = <div data-testid="test-children" />;
+    const { queryByTestId } = render(
+      <AccordionDetails>
+        <div data-testid="test-children" />
+      </AccordionDetails>,
+    );
 
-    const { getByTestId } = render(<AccordionDetails>{children}</AccordionDetails>);
-
-    getByTestId('test-children');
+    expect(queryByTestId('test-children')).not.to.equal(null);
   });
 });

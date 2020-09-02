@@ -21,47 +21,62 @@ describe('<Icon />', () => {
   }));
 
   it('renders children by default', () => {
-    const { getByText } = render(<Icon>account_circle</Icon>);
+    const { getByTestId } = render(<Icon data-testid="root">account_circle</Icon>);
 
-    getByText('account_circle');
+    expect(getByTestId('root')).to.have.text('account_circle');
   });
 
   describe('optional classes', () => {
     it('should render with the secondary color', () => {
-      const { container } = render(<Icon color="secondary">account_circle</Icon>);
-      const node = container.querySelector(`.${classes.colorSecondary}`);
+      const { getByTestId } = render(
+        <Icon data-testid="root" color="secondary">
+          account_circle
+        </Icon>,
+      );
 
-      expect(node).to.not.equal(null);
+      expect(getByTestId('root')).to.have.class(classes.colorSecondary);
     });
 
     it('should render with the action color', () => {
-      const { container } = render(<Icon color="action">account_circle</Icon>);
-      const node = container.querySelector(`.${classes.colorAction}`);
+      const { getByTestId } = render(
+        <Icon data-testid="root" color="action">
+          account_circle
+        </Icon>,
+      );
 
-      expect(node).to.not.equal(null);
+      expect(getByTestId('root')).to.have.class(classes.colorAction);
     });
 
     it('should render with the error color', () => {
-      const { container } = render(<Icon color="error">account_circle</Icon>);
-      const node = container.querySelector(`.${classes.colorError}`);
+      const { getByTestId } = render(
+        <Icon data-testid="root" color="error">
+          account_circle
+        </Icon>,
+      );
 
-      expect(node).to.not.equal(null);
+      expect(getByTestId('root')).to.have.class(classes.colorError);
     });
 
     it('should render with the primary class', () => {
-      const { container } = render(<Icon color="primary">account_circle</Icon>);
-      const node = container.querySelector(`.${classes.colorPrimary}`);
+      const { getByTestId } = render(
+        <Icon data-testid="root" color="primary">
+          account_circle
+        </Icon>,
+      );
 
-      expect(node).to.not.equal(null);
+      expect(getByTestId('root')).to.have.class(classes.colorPrimary);
     });
   });
 
   describe('prop: fontSize', () => {
     it('should be able to change the fontSize', () => {
-      const { container } = render(<Icon fontSize="inherit">account_circle</Icon>);
-      const node = container.querySelector(`.${classes.fontSizeInherit}`);
+      const { getByTestId } = render(
+        <Icon data-testid="root" fontSize="inherit">
+          account_circle
+        </Icon>,
+      );
 
-      expect(node).to.not.equal(null);
+      expect(getByTestId('root')).to.have.class(classes.fontSizeInherit);
     });
   });
 });
