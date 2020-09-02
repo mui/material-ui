@@ -1,17 +1,16 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createShallow, getClasses, createMount, describeConformance } from 'test/utils';
+import { createClientRender, getClasses, createMount, describeConformance } from 'test/utils';
 import * as PropTypes from 'prop-types';
 import Paper from './Paper';
 import { createMuiTheme, ThemeProvider } from '../styles';
 
 describe('<Paper />', () => {
   const mount = createMount();
-  let shallow;
+  const render = createClientRender();
   let classes;
 
   before(() => {
-    shallow = createShallow({ dive: true });
     classes = getClasses(<Paper />);
   });
 
@@ -25,42 +24,63 @@ describe('<Paper />', () => {
 
   describe('prop: square', () => {
     it('can disable the rounded class', () => {
-      const wrapper = mount(<Paper square>Hello World</Paper>);
-      expect(wrapper.find(`.${classes.root}`).some(`.${classes.rounded}`)).to.equal(false);
+      const { getByTestId } = render(
+        <Paper data-testid="root" square>
+          Hello World
+        </Paper>,
+      );
+
+      expect(getByTestId('root')).not.to.have.class(classes.rounded);
     });
 
     it('adds a rounded class to the root when omitted', () => {
-      const wrapper = mount(<Paper>Hello World</Paper>);
-      expect(wrapper.find(`.${classes.root}`).every(`.${classes.rounded}`)).to.equal(true);
+      const { getByTestId } = render(<Paper data-testid="root">Hello World</Paper>);
+
+      expect(getByTestId('root')).to.have.class(classes.rounded);
     });
   });
 
   describe('prop: variant', () => {
     it('adds a outlined class', () => {
-      const wrapper = mount(<Paper variant="outlined">Hello World</Paper>);
-      expect(wrapper.find(`.${classes.root}`).some(`.${classes.outlined}`)).to.equal(true);
+      const { getByTestId } = render(
+        <Paper data-testid="root" variant="outlined">
+          Hello World
+        </Paper>,
+      );
+
+      expect(getByTestId('root')).to.have.class(classes.outlined);
     });
   });
 
   it('should set the elevation elevation class', () => {
-    const wrapper = shallow(<Paper elevation={16}>Hello World</Paper>);
-    expect(wrapper.hasClass(classes.elevation16)).to.equal(true);
-    wrapper.setProps({ elevation: 24 });
-    expect(wrapper.hasClass(classes.elevation24)).to.equal(true);
-    wrapper.setProps({ elevation: 2 });
-    expect(wrapper.hasClass(classes.elevation2)).to.equal(true);
+    const { getByTestId, setProps } = render(
+      <Paper data-testid="root" elevation={16}>
+        Hello World
+      </Paper>,
+    );
+    const root = getByTestId('root');
+
+    expect(root).to.have.class(classes.elevation16);
+
+    setProps({ elevation: 24 });
+
+    expect(root).to.have.class(classes.elevation24);
+
+    setProps({ elevation: 2 });
+
+    expect(root).to.have.class(classes.elevation2);
   });
 
   it('allows custom elevations via theme.shadows', () => {
     const theme = createMuiTheme();
     theme.shadows.push('20px 20px');
-    const wrapper = mount(
+    const { getByTestId } = render(
       <ThemeProvider theme={theme}>
-        <Paper data-testid="paper" classes={{ elevation25: 'custom-elevation' }} elevation={25} />
+        <Paper data-testid="root" classes={{ elevation25: 'custom-elevation' }} elevation={25} />
       </ThemeProvider>,
     );
 
-    expect(wrapper.find('div[data-testid="paper"]').hasClass('custom-elevation')).to.equal(true);
+    expect(getByTestId('root')).to.have.class('custom-elevation');
   });
 
   describe('warnings', () => {
