@@ -7,10 +7,10 @@ import NextLink from 'next/link';
 import MuiLink from '@material-ui/core/Link';
 
 const NextComposed = React.forwardRef(function NextComposed(props, ref) {
-  const { as, href, ...other } = props;
+  const { as, replace, href, ...other } = props;
 
   return (
-    <NextLink href={href} as={as}>
+    <NextLink href={href} as={as} replace={replace}>
       <a ref={ref} {...other} />
     </NextLink>
   );
