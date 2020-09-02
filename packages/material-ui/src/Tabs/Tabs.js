@@ -50,9 +50,18 @@ export const styles = (theme) => ({
     overflowX: 'hidden',
     width: '100%',
   },
-  /* Styles applied to the tablist element if `variant="scrollable"`. */
-  scrollable: {
-    overflowX: 'scroll',
+  /* Styles applied to the tablist element if `variant="scrollable"` and `orientation="horizontal"`. */
+  scrollableX: {
+    overflowX: 'auto',
+    overflowY: 'hidden',
+  },
+  /* Styles applied to the tablist element if `variant="scrollable"` and `orientation="vertical"`. */
+  scrollableY: {
+    overflowY: 'auto',
+    overflowX: 'hidden',
+  },
+  /* Styles applied to the tablist element if `variant="scrollable"` and `visibleScrollbar={false}`. */
+  hideScrollbar: {
     // Hide dimensionless scrollbar on MacOS
     scrollbarWidth: 'none', // Firefox
     '&::-webkit-scrollbar': {
@@ -92,6 +101,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
     textColor = 'inherit',
     value,
     variant = 'standard',
+    visibleScrollbar = false,
     ...other
   } = props;
   const theme = useTheme();
@@ -123,7 +133,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
 
   const [scrollerStyle, setScrollerStyle] = React.useState({
     overflow: 'hidden',
-    marginBottom: null,
+    scrollbarWidth: 0,
   });
 
   const valueToIndex = new Map();
@@ -237,17 +247,23 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
     moveTabsScroll(tabsRef.current[clientSize]);
   };
 
-  const handleScrollbarSizeChange = React.useCallback((scrollbarHeight) => {
+  // TODO Remove <ScrollbarSize /> as browser support for hidding the scrollbar
+  // with CSS improves.
+  const handleScrollbarSizeChange = React.useCallback((scrollbarWidth) => {
     setScrollerStyle({
       overflow: null,
-      marginBottom: -scrollbarHeight,
+      scrollbarWidth,
     });
   }, []);
 
   const getConditionalElements = () => {
     const conditionalElements = {};
+
     conditionalElements.scrollbarSizeListener = scrollable ? (
-      <ScrollbarSize className={classes.scrollable} onChange={handleScrollbarSizeChange} />
+      <ScrollbarSize
+        onChange={handleScrollbarSizeChange}
+        className={clsx(classes.scrollableX, classes.hideScrollbar)}
+      />
     ) : null;
 
     const scrollButtonsActive = displayScroll.start || displayScroll.end;
@@ -484,9 +500,16 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
       <div
         className={clsx(classes.scroller, {
           [classes.fixed]: !scrollable,
-          [classes.scrollable]: scrollable,
+          [classes.hideScrollbar]: scrollable && !visibleScrollbar,
+          [classes.scrollableX]: scrollable && !vertical,
+          [classes.scrollableY]: scrollable && vertical,
         })}
-        style={scrollerStyle}
+        style={{
+          overflow: scrollerStyle.overflow,
+          [vertical ? `margin${isRtl ? 'Left' : 'Right'}` : 'marginBottom']: visibleScrollbar
+            ? undefined
+            : -scrollerStyle.scrollbarWidth,
+        }}
         ref={tabsRef}
         onScroll={handleTabsScroll}
       >
@@ -617,6 +640,11 @@ Tabs.propTypes = {
    *  - `standard` will render the default state.
    */
   variant: PropTypes.oneOf(['fullWidth', 'scrollable', 'standard']),
+  /**
+   * If `true`, the scrollbar will be visible. It can be useful when displaying
+   * a long vertical list of tabs.
+   */
+  visibleScrollbar: PropTypes.bool,
 };
 
 export default withStyles(styles, { name: 'MuiTabs' })(Tabs);
