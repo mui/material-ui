@@ -319,14 +319,13 @@ function generateProps(reactAPI: ReactApi) {
       return;
     }
 
-    const { defaultValue, jsdocDefaultValue } = prop;
-
-    const renderedDefaultValue = defaultValue?.value.replace(/\r?\n/g, '');
+    const renderedDefaultValue = prop.defaultValue?.value.replace(/\r?\n/g, '');
     const renderDefaultValue =
       renderedDefaultValue &&
       // Ignore "large" default values that would break the table layout.
       renderedDefaultValue.length <= 150;
 
+    const { defaultValue, jsdocDefaultValue } = prop;
     if (jsdocDefaultValue !== undefined && defaultValue === undefined) {
       throw new Error(
         `Declared a @default annotation in JSDOC for prop '${propName}' but could not find a default value in the implementation.`,
