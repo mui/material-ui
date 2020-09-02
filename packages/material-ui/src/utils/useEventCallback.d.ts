@@ -1,5 +1,1 @@
-export interface Cancelable {
-  clear(): void;
-}
-
-export default function useEventCallback(...args: any[]): void;
+export default function useEventCallback<T extends (...args: any[]) => any>(func: T): T;
