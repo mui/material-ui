@@ -360,6 +360,42 @@ describe('makeStyles', () => {
         padding: '4px',
       });
     });
+
+    it('should support keyframe in dynamicSheet', () => {
+      const useStyles = makeStyles({
+        root: {
+          animation: () => '$test 1s infinite',
+        },
+
+        '@keyframes test': {
+          '0%': {
+            opacity: 1,
+          },
+          '100%': {
+            opacity: 0,
+          },
+        },
+      });
+      const StyledComponent = (props) => {
+        const classes = useStyles(props);
+        return <div className={classes.root} />;
+      };
+
+      const Test = () => (
+        <StylesProvider
+          sheetsRegistry={sheetsRegistry}
+          sheetsCache={new Map()}
+          generateClassName={generateClassName}
+        >
+          <StyledComponent />
+        </StylesProvider>
+      );
+
+      const wrapper = mount(<Test />);
+      expect(sheetsRegistry.registry.length).to.equal(2);
+      expect(sheetsRegistry.registry[0].keyframes === sheetsRegistry.registry[1].keyframes);
+      wrapper.unmount();
+    });
   });
 
   describe('options: disableGeneration', () => {
