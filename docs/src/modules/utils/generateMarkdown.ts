@@ -336,11 +336,7 @@ function createDescribeableProp(
       propName !== 'component';
 
     if (shouldHaveDefaultAnnotation) {
-      // TODO: throw/warn/ignore?
-      // throw new Error(
-      //   `JSDOC @default annotation not found for '${propName}'.`,
-      // );
-      console.warn(`JSDOC @default annotation not found for '${propName}'.`);
+      throw new Error(`JSDOC @default annotation not found for '${propName}'.`);
     }
   } else if (jsdocDefaultValue !== undefined) {
     // `defaultValue` can't be undefined or we would've thrown earlier.
