@@ -180,15 +180,26 @@ function generatePropDescription(prop: DescribeablePropDescriptor, propName: str
         return `${tag.name}: ${resolveType(tag.type!)}`;
       })
       .join(', ');
-    // @ts-expect-error
-    signature += `) => ${parsedReturns.type!.name}\`<br>`;
+
+    const returnType = parsedReturns.type;
+    if (returnType == null) {
+      throw new TypeError(
+        `Function signature for prop '${propName}' has no return type. Try \`@returns void\`. Otherwise it might be a bug with doctrine.`,
+      );
+    }
+    if (!('name' in returnType)) {
+      throw new TypeError(
+        `Could not determine a name for return type '${returnType.type}' of prop '${propName}'.`,
+      );
+    }
+
+    signature += `) => ${returnType.name}\`<br>`;
     signature += parsedArgs
       .filter((tag) => tag.description)
       .map((tag) => `*${tag.name}:* ${tag.description}`)
       .join('<br>');
     if (parsedReturns.description) {
-      // @ts-expect-error
-      signature += `<br> *returns* (${parsedReturns.type!.name}): ${parsedReturns.description}`;
+      signature += `<br> *returns* (${returnType.name}): ${parsedReturns.description}`;
     }
   }
 
