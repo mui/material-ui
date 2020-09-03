@@ -34,7 +34,7 @@ variables:
     # Path for artifacts uploaded to S3 that can be used as a permalink
     S3_ARTIFACTS_PATH_PERMA: 'artifacts/$(Build.SourceBranchName)-react-$(REACT_DIST_TAG)/$(Build.SourceVersion)/'
   ${{ if ne( variables['Build.Reason'], 'Schedule' ) }}:
-    REACT_DIST_TAG: 'next'
+    REACT_DIST_TAG: 'stable'
     # Preserve this path structure since it is locked in various tooling
     S3_ARTIFACTS_PATH_PERMA: 'artifacts/$(Build.SourceBranchName)/$(Build.SourceVersion)/'
 

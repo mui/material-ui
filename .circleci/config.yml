@@ -234,7 +234,6 @@ workflows:
                 - l10n
                 - /dependabot\//
       - test_unit:
-          react-dist-tag: next
           requires:
             - checkout
       - test_static:
@@ -244,11 +243,9 @@ workflows:
           requires:
             - checkout
       - test_browser:
-          react-dist-tag: next
           requires:
             - checkout
       - test_regressions:
-          react-dist-tag: next
           requires:
             - test_unit
             - test_static
