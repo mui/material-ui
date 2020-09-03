@@ -150,29 +150,21 @@ const useSliderClasses = (props) => {
   const { color, disabled, marked, orientation, track } = props;
 
   const utilityClasses = {
-    root: clsx(
-      getUtilityClass('root'),
-      getUtilityClass(`color${capitalize(color)}`),
-      {
-        ['Mui-disabled']: disabled,
-        [getUtilityClass('marked')]: marked,
-        [getUtilityClass('vertical')]: orientation === 'vertical',
-        [getUtilityClass('trackInverted')]: track === 'inverted',
-        [getUtilityClass('trackFalse')]: track === false,
-      },
-    ),
+    root: clsx(getUtilityClass('root'), getUtilityClass(`color${capitalize(color)}`), {
+      ['Mui-disabled']: disabled,
+      [getUtilityClass('marked')]: marked,
+      [getUtilityClass('vertical')]: orientation === 'vertical',
+      [getUtilityClass('trackInverted')]: track === 'inverted',
+      [getUtilityClass('trackFalse')]: track === false,
+    }),
     rail: getUtilityClass('rail'),
     track: getUtilityClass('track'),
     mark: getUtilityClass('mark'),
     markLabel: getUtilityClass('markLabel'),
     valueLabel: getUtilityClass('valueLabel'),
-    thumb: clsx(
-      getUtilityClass('thumb'),
-      getUtilityClass(`thumbColor${capitalize(color)}`),
-      {
-        ['Mui-disabled']: disabled,
-      },
-    ),
+    thumb: clsx(getUtilityClass('thumb'), getUtilityClass(`thumbColor${capitalize(color)}`), {
+      ['Mui-disabled']: disabled,
+    }),
   };
 
   return utilityClasses;

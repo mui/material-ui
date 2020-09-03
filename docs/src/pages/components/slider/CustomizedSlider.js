@@ -58,12 +58,12 @@ const marks = [
 ];
 
 const iosComponents = {
-  Root: styled(SliderRoot)({
+  root: styled(SliderRoot)({
     color: '#3880ff',
     height: 2,
     padding: '15px 0',
   }),
-  Thumb: styled(SliderThumb)((props) => ({
+  thumb: styled(SliderThumb)((props) => ({
     height: 28,
     width: 28,
     backgroundColor: '#fff',
@@ -88,7 +88,7 @@ const iosComponents = {
       },
     }),
   })),
-  ValueLabel: styled(SliderValueLabel)({
+  valueLabel: styled(SliderValueLabel)({
     left: 'calc(-50% + 12px)',
     top: -22,
     '& *': {
@@ -96,15 +96,15 @@ const iosComponents = {
       color: '#000',
     },
   }),
-  Track: styled(SliderTrack)({
+  track: styled(SliderTrack)({
     height: 2,
   }),
-  Rail: styled(SliderRail)({
+  rail: styled(SliderRail)({
     height: 2,
     opacity: 0.5,
     backgroundColor: '#bfbfbf',
   }),
-  Mark: styled(SliderMark)((props) => ({
+  mark: styled(SliderMark)((props) => ({
     // @ts-ignore
     backgroundColor: '#bfbfbf',
     height: 8,
@@ -118,11 +118,11 @@ const iosComponents = {
 };
 
 const prettoComponents = {
-  Root: styled(SliderRoot)({
+  root: styled(SliderRoot)({
     color: '#52af77',
     height: 8,
   }),
-  Thumb: styled(SliderThumb)((props) => ({
+  thumb: styled(SliderThumb)((props) => ({
     height: 24,
     width: 24,
     backgroundColor: '#fff',
@@ -136,26 +136,26 @@ const prettoComponents = {
       boxShadow: 'inherit',
     }),
   })),
-  ValueLabel: styled(SliderValueLabel)({
+  valueLabel: styled(SliderValueLabel)({
     left: 'calc(-50% + 4px)',
   }),
-  Track: styled(SliderTrack)({
+  track: styled(SliderTrack)({
     height: 8,
     borderRadius: 4,
   }),
-  Rail: styled(SliderRail)({
+  rail: styled(SliderRail)({
     height: 8,
     borderRadius: 4,
   }),
 };
 
 const airbnbComponents = {
-  Root: styled(SliderRoot)({
+  root: styled(SliderRoot)({
     color: '#3a8589',
     height: 3,
     padding: '13px 0',
   }),
-  Thumb: styled(SliderThumb)((props) => ({
+  thumb: styled(SliderThumb)((props) => ({
     height: 27,
     width: 27,
     backgroundColor: '#fff',
@@ -179,10 +179,10 @@ const airbnbComponents = {
       marginRight: 1,
     },
   })),
-  Track: styled(SliderTrack)({
+  track: styled(SliderTrack)({
     height: 3,
   }),
-  Rail: styled(SliderRail)({
+  rail: styled(SliderRail)({
     color: '#d8d8d8',
     opacity: 1,
     height: 3,
@@ -227,7 +227,7 @@ export default function CustomizedSlider() {
         <Typography gutterBottom>Tooltip value label</Typography>
         <Slider
           components={{
-            ValueLabel: ValueLabelComponent,
+            valueLabel: ValueLabelComponent,
           }}
           aria-label="custom thumb label"
           defaultValue={20}

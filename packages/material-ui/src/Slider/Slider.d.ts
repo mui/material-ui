@@ -81,7 +81,9 @@ export interface SliderTypeMap<P = {}, D extends React.ElementType = 'span'> {
      * Either a string to use a HTML element or a component.
      */
     components?: {
-      Root?: React.ElementType<Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'>>;
+      Root?: React.ElementType<
+        Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'>
+      >;
       Track?: React.ElementType;
       Rail?: React.ElementType;
       Thumb?: React.ElementType;
@@ -100,13 +102,17 @@ export interface SliderTypeMap<P = {}, D extends React.ElementType = 'span'> {
         active?: boolean;
         focusVisible?: boolean;
       };
-      mark?: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'> & { markActive?: boolean; };
-      markLabel?: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'> & { markLabelActive?: boolean; };
+      mark?: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'> & {
+        markActive?: boolean;
+      };
+      markLabel?: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'> & {
+        markLabelActive?: boolean;
+      };
       valueLabel?: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'> & {
         index?: number;
         open?: boolean;
       };
-    }
+    };
     /**
      * The default element value. Use when the component is not controlled.
      */

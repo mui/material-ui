@@ -100,6 +100,10 @@ For instance, in the following demo, the value _x_ represents the power of _10^x
 
 {{"demo": "pages/components/slider/NonLinearSlider.js"}}
 
+## Unstyled slider
+
+{{"demo": "pages/components/slider/UnstyledSlider.js"}}
+
 ## Accessibility
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#slider)

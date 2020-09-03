@@ -159,7 +159,7 @@ export const SliderThumb = styled('span', { shouldForwardProp })((props) => ({
     '&.Mui-disabled': {
       marginLeft: -3,
       marginBottom: -4,
-    }
+    },
   }),
   ...(props.color === 'secondary' && {
     ':hover': {
@@ -270,14 +270,19 @@ const useThemeClasses = (name) => {
   return classes;
 };
 
-const getComponentProps = (components, componentsProps, themeOverridesClassesPerComponent, name) => {
+const getComponentProps = (
+  components,
+  componentsProps,
+  themeOverridesClassesPerComponent,
+  name,
+) => {
   const slotProps = componentsProps[name] || {};
   return {
     as: components[name],
     ...slotProps,
     ...(name !== 'root' && {
       className: cx(themeOverridesClassesPerComponent, slotProps.className),
-    })
+    }),
   };
 };
 
@@ -294,41 +299,31 @@ const useSliderClasses = (props) => {
     classes,
   } = props;
 
-
   const marks =
-  marksProp === true && step !== null
-    ? [...Array(Math.floor((max - min) / step) + 1)].map((_, index) => ({
-        value: min + step * index,
-      }))
-    : marksProp || [];
-
+    marksProp === true && step !== null
+      ? [...Array(Math.floor((max - min) / step) + 1)].map((_, index) => ({
+          value: min + step * index,
+        }))
+      : marksProp || [];
 
   const marked = marks.length > 0 && marks.some((mark) => mark.label);
 
   const overridesClasses = {
-    root: cx(
-      classes.root,
-      classes[`color${capitalize(color)}`],
-      {
-        [classes.disabled]: disabled,
-        [classes.marked]: marked,
-        [classes.vertical]: orientation === 'vertical',
-        [classes.trackInverted]: track === 'inverted',
-        [classes.trackFalse]: track === false,
-      },
-    ),
+    root: cx(classes.root, classes[`color${capitalize(color)}`], {
+      [classes.disabled]: disabled,
+      [classes.marked]: marked,
+      [classes.vertical]: orientation === 'vertical',
+      [classes.trackInverted]: track === 'inverted',
+      [classes.trackFalse]: track === false,
+    }),
     rail: classes.rail,
     track: classes.track,
     mark: classes.mark,
     markLabel: classes.markLabel,
     valueLabel: classes.valueLabel,
-    thumb: cx(
-      classes.thumb,
-      classes[`thumbColor${capitalize(color)}`],
-      {
-        [classes.disabled]: disabled,
-      },
-    ),
+    thumb: cx(classes.thumb, classes[`thumbColor${capitalize(color)}`], {
+      [classes.disabled]: disabled,
+    }),
   };
 
   return overridesClasses;
@@ -357,13 +352,48 @@ const Slider = React.forwardRef(function Slider(inputProps, inputRef) {
         ...components,
       }}
       componentsProps={{
-        root: getComponentProps(components, componentsProps, themeOverridesClassesPerComponent, 'root'),
-        rail: getComponentProps(components, componentsProps, themeOverridesClassesPerComponent, 'rail'),
-        track: getComponentProps(components, componentsProps, themeOverridesClassesPerComponent, 'track'),
-        thumb: getComponentProps(components, componentsProps, themeOverridesClassesPerComponent, 'thumb'),
-        valueLabel: getComponentProps(components, componentsProps, themeOverridesClassesPerComponent, 'valueLabel'),
-        mark: getComponentProps(components, componentsProps, themeOverridesClassesPerComponent, 'mark'),
-        markLabel: getComponentProps(components, componentsProps, themeOverridesClassesPerComponent, 'markLabel'),
+        root: getComponentProps(
+          components,
+          componentsProps,
+          themeOverridesClassesPerComponent,
+          'root',
+        ),
+        rail: getComponentProps(
+          components,
+          componentsProps,
+          themeOverridesClassesPerComponent,
+          'rail',
+        ),
+        track: getComponentProps(
+          components,
+          componentsProps,
+          themeOverridesClassesPerComponent,
+          'track',
+        ),
+        thumb: getComponentProps(
+          components,
+          componentsProps,
+          themeOverridesClassesPerComponent,
+          'thumb',
+        ),
+        valueLabel: getComponentProps(
+          components,
+          componentsProps,
+          themeOverridesClassesPerComponent,
+          'valueLabel',
+        ),
+        mark: getComponentProps(
+          components,
+          componentsProps,
+          themeOverridesClassesPerComponent,
+          'mark',
+        ),
+        markLabel: getComponentProps(
+          components,
+          componentsProps,
+          themeOverridesClassesPerComponent,
+          'markLabel',
+        ),
       }}
       ref={ref}
     />
