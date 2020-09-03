@@ -77,7 +77,6 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     onBackdropClick,
     onClose,
     onEscapeKeyDown,
-    onRendered,
     open,
     ...other
   } = props;
@@ -121,10 +120,6 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
 
     if (!node) {
       return;
-    }
-
-    if (onRendered) {
-      onRendered();
     }
 
     if (open && isTopModal()) {
@@ -354,13 +349,6 @@ Modal.propTypes = {
    * `disableEscapeKeyDown` is false and the modal is in focus.
    */
   onEscapeKeyDown: PropTypes.func,
-  /**
-   * Callback fired once the children has been mounted into the `container`.
-   * It signals that the `open={true}` prop took effect.
-   *
-   * This prop will be deprecated and removed in v5, the ref can be used instead.
-   */
-  onRendered: PropTypes.func,
   /**
    * If `true`, the modal is open.
    */

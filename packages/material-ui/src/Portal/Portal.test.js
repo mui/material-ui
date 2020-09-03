@@ -27,9 +27,8 @@ describe('<Portal />', () => {
         );
       }).toErrorDev(
         // Known issue due to using SSR APIs in a browser environment.
-        // We use 3x useLayoutEffect in the component.
+        // We use 2x useLayoutEffect in the component.
         [
-          'Warning: useLayoutEffect does nothing on the server',
           'Warning: useLayoutEffect does nothing on the server',
           'Warning: useLayoutEffect does nothing on the server',
         ],
@@ -176,23 +175,6 @@ describe('<Portal />', () => {
       disablePortal: false,
     });
     expect(document.querySelector('#test3').parentElement.nodeName).to.equal('BODY');
-  });
-
-  it('should call onRendered', () => {
-    const ref = React.createRef();
-    const handleRendered = spy();
-    render(
-      <Portal
-        ref={ref}
-        onRendered={() => {
-          handleRendered();
-          expect(ref.current !== null).to.equal(true);
-        }}
-      >
-        <div />
-      </Portal>,
-    );
-    expect(handleRendered.callCount).to.equal(1);
   });
 
   it('should call ref after child effect', () => {
