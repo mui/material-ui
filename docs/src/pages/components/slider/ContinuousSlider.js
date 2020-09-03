@@ -2,10 +2,12 @@ import * as React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import Slider from '@material-ui/core/Slider';
+import Slider, { SliderRoot } from '@material-ui/core/Slider';
 import VolumeDown from '@material-ui/icons/VolumeDown';
 import VolumeUp from '@material-ui/icons/VolumeUp';
 import { ThemeProvider } from '@material-ui/styles';
+import styled from '@emotion/styled';
+
 
 const useStyles = makeStyles({
   root: {
@@ -42,6 +44,10 @@ export default function ContinuousSlider() {
     },
   };
 
+  const Root = styled(SliderRoot)({
+    backgroundColor: 'grey',
+  })
+
   return (
     <ThemeProvider theme={theme}>
       <div className={classes.root}>
@@ -57,6 +63,9 @@ export default function ContinuousSlider() {
               value={value}
               onChange={handleChange}
               aria-labelledby="continuous-slider"
+              components={{
+                Root,
+              }}
             />
           </Grid>
           <Grid item>
@@ -71,6 +80,9 @@ export default function ContinuousSlider() {
           Vertical primary slider
         </Typography>
         <Slider orientation="vertical" color="primary" defaultValue={30} />
+        <Slider orientation="vertical" color="primary" defaultValue={30} components={{
+          Root,
+        }} />
       </div>
     </ThemeProvider>
   );

@@ -5,6 +5,7 @@ import isPropValid from '@emotion/is-prop-valid';
 import { getThemeProps, useThemeVariants, propsToClassKey } from '@material-ui/styles';
 import useTheme from '../styles/useTheme';
 import { fade, lighten, darken } from '../styles/colorManipulator';
+import capitalize from '../utils/capitalize';
 import SliderBase from './SliderBase';
 import ValueLabel from './ValueLabel';
 import defaultTheme from '../styles/defaultTheme';
@@ -267,24 +268,82 @@ const useThemeClasses = (name) => {
   return classes;
 };
 
-const getComponentProps = (components, componentsProps, name) => {
+const getComponentProps = (components, componentsProps, themeOverridesClassesPerComponent, name) => {
+  const slotProps = componentsProps[name] || {};
   return {
     as: components[name],
-    ...(componentsProps[name] || {}),
+    ...slotProps,
+    ...(name !== 'root' && {
+      className: cx(themeOverridesClassesPerComponent, slotProps.className),
+    })
   };
+};
+
+const useSliderClasses = (props) => {
+  const {
+    color = 'primary',
+    disabled = false,
+    marks: marksProp = false,
+    max = 100,
+    min = 0,
+    orientation = 'horizontal',
+    step = 1,
+    track = 'normal',
+    classes,
+  } = props;
+
+
+  const marks =
+  marksProp === true && step !== null
+    ? [...Array(Math.floor((max - min) / step) + 1)].map((_, index) => ({
+        value: min + step * index,
+      }))
+    : marksProp || [];
+
+
+  const marked = marks.length > 0 && marks.some((mark) => mark.label);
+
+  const overridesClasses = {
+    root: cx(
+      classes.root,
+      classes[`color${capitalize(color)}`],
+      {
+        [classes.disabled]: disabled,
+        [classes.marked]: marked,
+        [classes.vertical]: orientation === 'vertical',
+        [classes.trackInverted]: track === 'inverted',
+        [classes.trackFalse]: track === false,
+      },
+    ),
+    rail: classes.rail,
+    track: classes.track,
+    mark: classes.mark,
+    markLabel: classes.markLabel,
+    valueLabel: classes.valueLabel,
+    thumb: cx(
+      classes.thumb,
+      classes[`thumbColor${capitalize(color)}`],
+      {
+        [classes.disabled]: disabled,
+      },
+    ),
+  };
+
+  return overridesClasses;
 };
 
 const Slider = React.forwardRef(function Slider(inputProps, inputRef) {
   const props = useThemeProps(inputProps, inputRef, 'MuiSlider');
   const classes = useThemeClasses('MuiSlider');
   const themeVariantsClasses = useThemeVariants({ ...props, classes }, 'MuiSlider');
+  const themeOverridesClassesPerComponent = useSliderClasses({ ...props, classes });
   const { components = {}, componentsProps = {}, ref, ...other } = props;
 
   return (
     <SliderBase
       {...other}
       classes={classes}
-      className={cx(themeVariantsClasses, props.className)}
+      className={cx(themeOverridesClassesPerComponent.root, themeVariantsClasses, props.className)}
       components={{
         Root: SliderRoot,
         Rail: SliderRail,
@@ -296,13 +355,13 @@ const Slider = React.forwardRef(function Slider(inputProps, inputRef) {
         ...components,
       }}
       componentsProps={{
-        root: getComponentProps(components, componentsProps, 'root'),
-        rail: getComponentProps(components, componentsProps, 'rail'),
-        track: getComponentProps(components, componentsProps, 'track'),
-        thumb: getComponentProps(components, componentsProps, 'thumb'),
-        valueLabel: getComponentProps(components, componentsProps, 'valueLabel'),
-        mark: getComponentProps(components, componentsProps, 'mark'),
-        markLabel: getComponentProps(components, componentsProps, 'markLabel'),
+        root: getComponentProps(components, componentsProps, themeOverridesClassesPerComponent, 'root'),
+        rail: getComponentProps(components, componentsProps, themeOverridesClassesPerComponent, 'rail'),
+        track: getComponentProps(components, componentsProps, themeOverridesClassesPerComponent, 'track'),
+        thumb: getComponentProps(components, componentsProps, themeOverridesClassesPerComponent, 'thumb'),
+        valueLabel: getComponentProps(components, componentsProps, themeOverridesClassesPerComponent, 'valueLabel'),
+        mark: getComponentProps(components, componentsProps, themeOverridesClassesPerComponent, 'mark'),
+        markLabel: getComponentProps(components, componentsProps, themeOverridesClassesPerComponent, 'markLabel'),
       }}
       ref={ref}
     />
