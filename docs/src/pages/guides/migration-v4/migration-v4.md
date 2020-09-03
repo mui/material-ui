@@ -366,7 +366,7 @@ const theme = createMuitheme({
 ### Modal
 
 - Remove `onRendered` prop.
-  Depending on your use case either use a [callback ref]() on the the child element or an effect hook in the child component.
+  Depending on your use case either use a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the the child element or an effect hook in the child component.
 
 ### Pagination
 
@@ -412,7 +412,7 @@ const theme = createMuitheme({
 ### Portal
 
 - Remove `onRendered` prop.
-  Depending on your use case either use a [callback ref]() on the the child element or an effect hook in the child component.
+  Depending on your use case either use a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the the child element or an effect hook in the child component.
 
 ### Rating
 
