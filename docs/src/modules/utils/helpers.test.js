@@ -135,4 +135,25 @@ import lab from '@material-ui/lab';
       'react-dom': 'latest',
     });
   });
+
+  it('should support the data-grid component', () => {
+    const source = `
+import * as React from 'react';
+import { DataGrid } from '@material-ui/data-grid';
+import { useDemoData } from '@material-ui/x-grid-data-generator';
+    `;
+
+    expect(getDependencies(source, { codeLanguage: 'TS' })).to.deep.equal({
+      '@material-ui/core': 'next',
+      '@material-ui/lab': 'next',
+      '@material-ui/icons': 'next',
+      '@material-ui/data-grid': 'latest',
+      '@material-ui/x-grid-data-generator': 'latest',
+      '@types/react': 'latest',
+      '@types/react-dom': 'latest',
+      react: 'latest',
+      'react-dom': 'latest',
+      typescript: 'latest',
+    });
+  });
 });

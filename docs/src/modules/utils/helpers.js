@@ -44,7 +44,7 @@ function pageToTitleI18n(page, t) {
  * set of packages that ship their own typings instead of using @types/ namespace
  * Array because Set([iterable]) is not supported in IE11
  */
-const packagesWithBundledTypes = ['@material-ui/core', '@material-ui/lab'];
+const packagesWithBundledTypes = [];
 
 /**
  * WARNING: Always uses `latest` typings.
@@ -57,9 +57,10 @@ const packagesWithBundledTypes = ['@material-ui/core', '@material-ui/lab'];
  * @param {Record<string, string>} deps - list of dependency as `name => version`
  */
 function addTypeDeps(deps) {
-  const packagesWithDTPackage = Object.keys(deps).filter(
-    (name) => packagesWithBundledTypes.indexOf(name) === -1,
-  );
+  const packagesWithDTPackage = Object.keys(deps)
+    .filter((name) => packagesWithBundledTypes.indexOf(name) === -1)
+    // All the Material-UI packages come with bundled types
+    .filter((name) => name.indexOf('@material-ui/') !== 0);
 
   packagesWithDTPackage.forEach((name) => {
     let resolvedName = name;
@@ -91,7 +92,7 @@ function includePeerDependencies(deps, versions) {
     deps['@material-ui/core'] = versions['@material-ui/core'];
   }
 
-  if (deps['@material-ui/x-data-grid-generator']) {
+  if (deps['@material-ui/x-grid-data-generator']) {
     deps['@material-ui/core'] = versions['@material-ui/core'];
     deps['@material-ui/icons'] = versions['@material-ui/icons'];
     deps['@material-ui/lab'] = versions['@material-ui/lab'];
