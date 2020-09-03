@@ -127,7 +127,7 @@ const theme = createMuiTheme({
 - [ButtonBase] Reset box-sizing to border-box (#22316) @su8ru
 - [Dialog] Fix unexpected close when releasing click on backdrop (#22310) @danbrud
 - [Divider] Add text in divider (#22285) @ShehryarShoukat96
-- [Slider] Respect disabled property when already focused  (#22247) @pireads
+- [Slider] Respect disabled property when already focused (#22247) @pireads
 - [Tabs] Don't fire onChange if current value (#22381) @jjoselv
 - [Tabs] Improve focus management on list with no active tabs (#22377) @alexmotoc
 - [theme] Add theme.mixins.gutters() in adaptV4Theme (#22396) @mnajdova
