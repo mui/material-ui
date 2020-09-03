@@ -12,6 +12,7 @@ interface Props {
   selectionFollowsFocus?: boolean;
   textColor: 'inherit' | 'primary' | 'secondary';
   variant: 'fullWidth' | 'scrollable' | 'standard';
+  visibleScrollbar: boolean;
   appBarColor?: 'default' | 'primary' | 'secondary' | 'inherit';
   icons: string[];
   labels: string[];
@@ -57,6 +58,7 @@ Tabs.defaultProps = {
   scrollButtons: 'auto' as 'auto',
   textColor: 'inherit' as 'inherit',
   variant: 'standard' as 'standard',
+  visibleScrollbar: false,
   icons: ['phone', 'favorite', 'person_pin'],
   labels: ['Tab 1', 'Tab 2', 'Tab 3'],
   width: 500,
@@ -91,6 +93,10 @@ addPropertyControls(Tabs, {
     type: ControlType.Enum,
     title: 'Variant',
     options: ['fullWidth', 'scrollable', 'standard'],
+  },
+  visibleScrollbar: {
+    type: ControlType.Boolean,
+    title: 'Visible scrollbar',
   },
   appBarColor: {
     type: ControlType.Enum,
