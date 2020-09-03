@@ -147,14 +147,14 @@ const getUtilityClass = (name) => {
 };
 
 const useSliderClasses = (props) => {
-  const { color, disabled, marked, orientation, track, classes } = props;
+  const { color, disabled, marked, orientation, track } = props;
 
   const utilityClasses = {
     root: clsx(
       getUtilityClass('root'),
       getUtilityClass(`color${capitalize(color)}`),
       {
-        [getUtilityClass('disabled')]: disabled,
+        ['Mui-disabled']: disabled,
         [getUtilityClass('marked')]: marked,
         [getUtilityClass('vertical')]: orientation === 'vertical',
         [getUtilityClass('trackInverted')]: track === 'inverted',
@@ -170,7 +170,7 @@ const useSliderClasses = (props) => {
       getUtilityClass('thumb'),
       getUtilityClass(`thumbColor${capitalize(color)}`),
       {
-        [getUtilityClass('disabled')]: disabled,
+        ['Mui-disabled']: disabled,
       },
     ),
   };
@@ -691,7 +691,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
               {...stateAndProps}
               {...thumbProps}
               className={clsx(utilityClasses.thumb, thumbProps.className, {
-                [getUtilityClass('active')]: active === index,
+                ['Mui-active']: active === index,
                 [getUtilityClass('focusVisible')]: focusVisible === index,
               })}
               active={active === index}

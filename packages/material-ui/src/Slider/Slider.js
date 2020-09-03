@@ -32,11 +32,11 @@ export const SliderRoot = styled('span', { shouldForwardProp })((props) => {
     ...(props.color === 'secondary' && {
       color: props.theme.palette.secondary.main,
     }),
-    ...(props.disabled && {
+    '&.Mui-disabled': {
       pointerEvents: 'none',
       cursor: 'default',
       color: props.theme.palette.grey[400],
-    }),
+    },
     ...(props.orientation === 'vertical' && {
       width: 2,
       height: '100%',
@@ -142,7 +142,7 @@ export const SliderThumb = styled('span', { shouldForwardProp })((props) => ({
   '&.Mui-active': {
     boxShadow: `0px 0px 0px 14px ${fade(props.theme.palette.primary.main, 0.16)}`,
   },
-  ...(props.disabled && {
+  '&.Mui-disabled': {
     width: 8,
     height: 8,
     marginLeft: -4,
@@ -150,14 +150,16 @@ export const SliderThumb = styled('span', { shouldForwardProp })((props) => ({
     ':hover': {
       boxShadow: 'none',
     },
-  }),
+  },
   ...(props.orientation === 'vertical' && {
     marginLeft: -5,
     marginBottom: -6,
   }),
-  ...((props.orientation === 'vertical' || props.disabled) && {
-    marginLeft: -3,
-    marginBottom: -4,
+  ...(props.orientation === 'vertical' && {
+    '&.Mui-disabled': {
+      marginLeft: -3,
+      marginBottom: -4,
+    }
   }),
   ...(props.color === 'secondary' && {
     ':hover': {
