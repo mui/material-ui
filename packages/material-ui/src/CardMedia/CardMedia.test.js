@@ -73,7 +73,7 @@ describe('<CardMedia />', () => {
   });
 
   describe('warnings', () => {
-    before(() => {
+    beforeEach(() => {
       PropTypes.resetWarningCache();
     });
 
