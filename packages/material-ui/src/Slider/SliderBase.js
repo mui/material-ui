@@ -561,25 +561,25 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     ...axisProps[axis].leap(trackLeap),
   };
 
-  const Root = components.root || 'span';
+  const Root = components.Root || 'span';
   const rootProps = componentsProps.root || {};
 
-  const Rail = components.rail || 'span';
+  const Rail = components.Rail || 'span';
   const railProps = componentsProps.rail || {};
 
-  const Track = components.track || 'span';
+  const Track = components.Track || 'span';
   const trackProps = componentsProps.track || {};
 
-  const Thumb = components.thumb || 'span';
+  const Thumb = components.Thumb || 'span';
   const thumbProps = componentsProps.thumb || {};
 
-  const ValueLabel = components.valueLabel || ValueLabelComponent;
+  const ValueLabel = components.ValueLabel || ValueLabelComponent;
   const valueLabelProps = componentsProps.valueLabel || {};
 
-  const Mark = components.mark || 'span';
+  const Mark = components.Mark || 'span';
   const markProps = componentsProps.mark || {};
 
-  const MarkLabel = components.markLabel || 'span';
+  const MarkLabel = components.MarkLabel || 'span';
   const markLabelProps = componentsProps.markLabel || {};
 
   // all props with defaults

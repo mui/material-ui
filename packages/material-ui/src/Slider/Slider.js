@@ -286,13 +286,13 @@ const Slider = React.forwardRef(function Slider(inputProps, inputRef) {
       classes={classes}
       className={cx(themeVariantsClasses, props.className)}
       components={{
-        root: SliderRoot,
-        rail: SliderRail,
-        track: SliderTrack,
-        thumb: SliderThumb,
-        valueLabel: SliderValueLabel,
-        mark: SliderMark,
-        markLabel: SliderMarkLabel,
+        Root: SliderRoot,
+        Rail: SliderRail,
+        Track: SliderTrack,
+        Thumb: SliderThumb,
+        ValueLabel: SliderValueLabel,
+        Mark: SliderMark,
+        MarkLabel: SliderMarkLabel,
         ...components,
       }}
       componentsProps={{
