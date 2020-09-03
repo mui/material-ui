@@ -38,6 +38,18 @@ For instance:
 
 {{"demo": "pages/customization/theming/CustomStyles.js"}}
 
+## Theme builder
+
+<video autoPlay muted width="320">
+  <source src="/static/studies.mp4" type="video/mp4" >
+</video>
+
+The community has built great tools to build a theme:
+
+- [mui-theme-creator](https://bareynol.github.io/mui-theme-creator/): A tool to help design and customize themes for the Material-UI component library. Includes basic site templates to show various components and how they are affected by the theme
+- [create-mui-theme](https://react-theming.github.io/create-mui-theme/): Is an online tool for creating Material-UI themes via Material Design Color Tool.
+- [Material palette generator](https://material.io/inline-tools/color/): The Material palette generator can be used to generate a palette for any color you input.
+
 ## Accessing the theme in a component
 
 You [can access](/styles/advanced/#accessing-the-theme-in-a-component) the theme variables inside your React components.
@@ -53,7 +65,7 @@ You can extend the outer theme by providing a function:
 
 {{"demo": "pages/customization/theming/ThemeNestingExtend.js"}}
 
-### A note on performance
+**A note on performance**
 
 The performance implications of nesting the `ThemeProvider` component are linked to JSS's work behind the scenes.
 The main point to understand is that the injected CSS is cached with the following tuple `(styles, theme)`.

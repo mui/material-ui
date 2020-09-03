@@ -353,7 +353,7 @@ describe('<TablePagination />', () => {
   });
 
   describe('warnings', () => {
-    before(() => {
+    beforeEach(() => {
       PropTypes.resetWarningCache();
     });
 
