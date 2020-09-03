@@ -138,7 +138,7 @@ export const SliderThumb = styled('span', { shouldForwardProp })((props) => ({
       boxShadow: 'none',
     },
   }),
-  '&.MuiSlider--active': {
+  '&.Mui-active': {
     boxShadow: `0px 0px 0px 14px ${fade(props.theme.palette.primary.main, 0.16)}`,
   },
   ...(props.disabled && {
