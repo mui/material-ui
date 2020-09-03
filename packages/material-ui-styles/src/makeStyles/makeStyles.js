@@ -109,7 +109,7 @@ function attach({ state, theme, stylesOptions, stylesCreator, name }, props) {
       ...options,
     });
 
-    // dynamicSheet.keyframes = { ...sheetManager.staticSheet.keyframes, ...dynamicSheet.keyframes };
+    dynamicSheet.keyframes = { ...sheetManager.staticSheet.keyframes, ...dynamicSheet.keyframes };
     dynamicSheet.update(props);
     dynamicSheet.attach();
 

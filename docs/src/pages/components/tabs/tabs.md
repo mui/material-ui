@@ -91,7 +91,11 @@ Here is an example of customizing the component. You can learn more about this i
 
 ## Vertical tabs
 
+To make vertical tabs instead of default horizontal ones, there is `orientation="vertical"`:
+
 {{"demo": "pages/components/tabs/VerticalTabs.js", "bg": true}}
+
+Note that you can restore the scrollbar with `visibleScrollbar`.
 
 ## Nav Tabs
 

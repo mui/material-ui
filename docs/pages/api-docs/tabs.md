@@ -46,6 +46,7 @@ The `MuiTabs` name can be used for providing [default props](/customization/glob
 | <span class="prop-name">textColor</span> | <span class="prop-type">'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'</span> | <span class="prop-default">'inherit'</span> | Determines the color of the `Tab`. |
 | <span class="prop-name">value</span> | <span class="prop-type">any</span> |  | The value of the currently selected `Tab`. If you don't want any selected `Tab`, you can set this prop to `false`. |
 | <span class="prop-name">variant</span> | <span class="prop-type">'fullWidth'<br>&#124;&nbsp;'scrollable'<br>&#124;&nbsp;'standard'</span> | <span class="prop-default">'standard'</span> | Determines additional display behavior of the tabs:<br> - `scrollable` will invoke scrolling properties and allow for horizontally  scrolling (or swiping) of the tab bar.  -`fullWidth` will make the tabs grow to use all the available space,  which should be used for small views, like on mobile.  - `standard` will render the default state. |
+| <span class="prop-name">visibleScrollbar</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the scrollbar will be visible. It can be useful when displaying a long vertical list of tabs. |
 
 The `ref` is forwarded to the root element.
 
@@ -62,7 +63,9 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">centered</span> | <span class="prop-name">.MuiTabs-centered</span> | Styles applied to the flex container element if `centered={true}` & `!variant="scrollable"`.
 | <span class="prop-name">scroller</span> | <span class="prop-name">.MuiTabs-scroller</span> | Styles applied to the tablist element.
 | <span class="prop-name">fixed</span> | <span class="prop-name">.MuiTabs-fixed</span> | Styles applied to the tablist element if `!variant="scrollable"`.
-| <span class="prop-name">scrollable</span> | <span class="prop-name">.MuiTabs-scrollable</span> | Styles applied to the tablist element if `variant="scrollable"`.
+| <span class="prop-name">scrollableX</span> | <span class="prop-name">.MuiTabs-scrollableX</span> | Styles applied to the tablist element if `variant="scrollable"` and `orientation="horizontal"`.
+| <span class="prop-name">scrollableY</span> | <span class="prop-name">.MuiTabs-scrollableY</span> | Styles applied to the tablist element if `variant="scrollable"` and `orientation="vertical"`.
+| <span class="prop-name">hideScrollbar</span> | <span class="prop-name">.MuiTabs-hideScrollbar</span> | Styles applied to the tablist element if `variant="scrollable"` and `visibleScrollbar={false}`.
 | <span class="prop-name">scrollButtons</span> | <span class="prop-name">.MuiTabs-scrollButtons</span> | Styles applied to the `ScrollButtonComponent` component.
 | <span class="prop-name">scrollButtonsDesktop</span> | <span class="prop-name">.MuiTabs-scrollButtonsDesktop</span> | Styles applied to the `ScrollButtonComponent` component if `scrollButtons="auto"` or scrollButtons="desktop"`.
 | <span class="prop-name">indicator</span> | <span class="prop-name">.MuiTabs-indicator</span> | Styles applied to the `TabIndicator` component.
