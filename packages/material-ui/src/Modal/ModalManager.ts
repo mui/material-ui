@@ -2,8 +2,12 @@ import getScrollbarSize from '../utils/getScrollbarSize';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
 
+export interface ManagedModalProps {
+  disableScrollLock?: boolean;
+}
+
 // Is a vertical scrollbar displayed?
-function isOverflowing(container) {
+function isOverflowing(container: Element): boolean {
   const doc = ownerDocument(container);
 
   if (doc.body === container) {
@@ -13,7 +17,7 @@ function isOverflowing(container) {
   return container.scrollHeight > container.clientHeight;
 }
 
-export function ariaHidden(node, show) {
+export function ariaHidden(node: Element, show: boolean): void {
   if (show) {
     node.setAttribute('aria-hidden', 'true');
   } else {
@@ -21,28 +25,32 @@ export function ariaHidden(node, show) {
   }
 }
 
-function getPaddingRight(node) {
-  return parseInt(ownerWindow(node).getComputedStyle(node)['padding-right'], 10) || 0;
+function getPaddingRight(node: Element): number {
+  return (
+    parseInt(ownerWindow(node).getComputedStyle(node)['padding-right' as 'paddingRight'], 10) || 0
+  );
 }
 
-function ariaHiddenSiblings(container, mountNode, currentNode, nodesToExclude = [], show) {
+function ariaHiddenSiblings(
+  container: Element,
+  mountNode: Element,
+  currentNode: Element,
+  nodesToExclude: Element[] = [],
+  show: boolean,
+): void {
   const blacklist = [mountNode, currentNode, ...nodesToExclude];
   const blacklistTagNames = ['TEMPLATE', 'SCRIPT', 'STYLE'];
 
-  [].forEach.call(container.children, (node) => {
-    if (
-      node.nodeType === 1 &&
-      blacklist.indexOf(node) === -1 &&
-      blacklistTagNames.indexOf(node.tagName) === -1
-    ) {
-      ariaHidden(node, show);
+  [].forEach.call(container.children, (element: Element) => {
+    if (blacklist.indexOf(element) === -1 && blacklistTagNames.indexOf(element.tagName) === -1) {
+      ariaHidden(element, show);
     }
   });
 }
 
-function findIndexOf(containerInfo, callback) {
+function findIndexOf<T>(items: T[], callback: (item: T) => boolean): number {
   let idx = -1;
-  containerInfo.some((item, index) => {
+  items.some((item, index) => {
     if (callback(item)) {
       idx = index;
       return true;
@@ -52,11 +60,11 @@ function findIndexOf(containerInfo, callback) {
   return idx;
 }
 
-function handleContainer(containerInfo, props) {
-  const restoreStyle = [];
-  const restorePaddings = [];
+function handleContainer(containerInfo: Container, props: ManagedModalProps) {
+  const restoreStyle: Array<{ key: string; el: HTMLElement; value: string }> = [];
+  const restorePaddings: string[] = [];
   const container = containerInfo.container;
-  let fixedNodes;
+  let fixedNodes: NodeListOf<HTMLElement | SVGElement>;
 
   if (!props.disableScrollLock) {
     if (isOverflowing(container)) {
@@ -69,13 +77,16 @@ function handleContainer(containerInfo, props) {
         el: container,
       });
       // Use computed style, here to get the real padding to add our scrollbar width.
-      container.style['padding-right'] = `${getPaddingRight(container) + scrollbarSize}px`;
+      // TODO: Is there a difference between `padding-right` and `paddingRight`?
+      container.style['padding-right' as 'paddingRight'] = `${
+        getPaddingRight(container) + scrollbarSize
+      }px`;
 
       // .mui-fixed is a global helper.
       fixedNodes = ownerDocument(container).querySelectorAll('.mui-fixed');
-      [].forEach.call(fixedNodes, (node) => {
-        restorePaddings.push(node.style.paddingRight);
-        node.style.paddingRight = `${getPaddingRight(node) + scrollbarSize}px`;
+      [].forEach.call(fixedNodes, (element: HTMLElement | SVGElement) => {
+        restorePaddings.push(element.style.paddingRight);
+        element.style.paddingRight = `${getPaddingRight(element) + scrollbarSize}px`;
       });
     }
 
@@ -84,8 +95,9 @@ function handleContainer(containerInfo, props) {
     const parent = container.parentElement;
     const containerWindow = ownerWindow(container);
     const scrollContainer =
-      parent.nodeName === 'HTML' &&
-      containerWindow.getComputedStyle(parent)['overflow-y'] === 'scroll'
+      parent?.nodeName === 'HTML' &&
+      // TODO: Is there a difference between `overflow-y` and `overflowY`?
+      containerWindow.getComputedStyle(parent)['overflow-y' as 'overflowY'] === 'scroll'
         ? parent
         : container;
 
@@ -101,7 +113,7 @@ function handleContainer(containerInfo, props) {
 
   const restore = () => {
     if (fixedNodes) {
-      [].forEach.call(fixedNodes, (node, i) => {
+      [].forEach.call(fixedNodes, (node: HTMLElement | SVGElement, i: number) => {
         if (restorePaddings[i]) {
           node.style.paddingRight = restorePaddings[i];
         } else {
@@ -122,14 +134,26 @@ function handleContainer(containerInfo, props) {
   return restore;
 }
 
-function getHiddenSiblings(container) {
-  const hiddenSiblings = [];
-  [].forEach.call(container.children, (node) => {
-    if (node.getAttribute && node.getAttribute('aria-hidden') === 'true') {
-      hiddenSiblings.push(node);
+function getHiddenSiblings(container: Element) {
+  const hiddenSiblings: Element[] = [];
+  [].forEach.call(container.children, (element: Element) => {
+    if (element.getAttribute('aria-hidden') === 'true') {
+      hiddenSiblings.push(element);
     }
   });
   return hiddenSiblings;
+}
+
+interface Modal {
+  mountNode: Element;
+  modalRef: Element;
+}
+
+interface Container {
+  container: HTMLElement;
+  hiddenSiblingNodes: Element[];
+  modals: Modal[];
+  restore: null | (() => void);
 }
 
 /**
@@ -140,18 +164,16 @@ function getHiddenSiblings(container) {
  * Used by the Modal to ensure proper styling of containers.
  */
 export default class ModalManager {
+  private containers: Container[];
+
+  private modals: Modal[];
+
   constructor() {
-    // this.modals[modalIndex] = modal
     this.modals = [];
-    // this.containers[containerIndex] = {
-    //   modals: [],
-    //   container,
-    //   restore: null,
-    // }
     this.containers = [];
   }
 
-  add(modal, container) {
+  add(modal: Modal, container: HTMLElement): number {
     let modalIndex = this.modals.indexOf(modal);
     if (modalIndex !== -1) {
       return modalIndex;
@@ -184,7 +206,7 @@ export default class ModalManager {
     return modalIndex;
   }
 
-  mount(modal, props) {
+  mount(modal: Modal, props: ManagedModalProps): void {
     const containerIndex = findIndexOf(
       this.containers,
       (item) => item.modals.indexOf(modal) !== -1,
@@ -196,7 +218,7 @@ export default class ModalManager {
     }
   }
 
-  remove(modal) {
+  remove(modal: Modal): number {
     const modalIndex = this.modals.indexOf(modal);
 
     if (modalIndex === -1) {
@@ -246,7 +268,7 @@ export default class ModalManager {
     return modalIndex;
   }
 
-  isTopModal(modal) {
+  isTopModal(modal: Modal): boolean {
     return this.modals.length > 0 && this.modals[this.modals.length - 1] === modal;
   }
 }
