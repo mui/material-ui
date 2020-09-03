@@ -245,7 +245,7 @@ export type SliderProps<
   P = {}
 > = OverrideProps<SliderTypeMap<P, D>, D>;
 
-type SliderRootProps = Omit<SliderProps, 'components' | 'componetnsProps'>;
+type SliderRootProps = Omit<SliderProps, 'components' | 'componentsProps'>;
 type SliderMarkProps = SliderRootProps & {
   markActive?: boolean;
 };
