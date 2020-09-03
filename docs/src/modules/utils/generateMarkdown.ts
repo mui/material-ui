@@ -113,6 +113,10 @@ function resolveType(type: NonNullable<doctrine.Tag['type']>): string {
     return 'any';
   }
 
+  if (type.type === 'VoidLiteral') {
+    return 'void';
+  }
+
   if (type.type === 'TypeApplication') {
     const arrayTypeName = resolveType(type.applications[0]);
     return `${arrayTypeName}[]`;
@@ -152,11 +156,10 @@ function generatePropDescription(prop: DescribeablePropDescriptor, propName: str
   // 'returns' parsed object (i.e., one with title being 'returns'), make one of type 'void'.
   const parsedArgs: doctrine.Tag[] = annotation.tags.filter((tag) => tag.title === 'param');
   let parsedReturns:
-    | doctrine.Tag
-    | { description?: undefined; type: { name: string } }
+    | { description?: string; type?: doctrine.Type }
     | undefined = annotation.tags.find((tag) => tag.title === 'returns');
   if (type.name === 'func' && (parsedArgs.length > 0 || parsedReturns !== undefined)) {
-    parsedReturns = parsedReturns ?? { type: { name: 'void' } };
+    parsedReturns = parsedReturns ?? { type: { type: 'VoidLiteral' } };
 
     // Remove new lines from tag descriptions to avoid markdown errors.
     annotation.tags.forEach((tag) => {
@@ -187,19 +190,16 @@ function generatePropDescription(prop: DescribeablePropDescriptor, propName: str
         `Function signature for prop '${propName}' has no return type. Try \`@returns void\`. Otherwise it might be a bug with doctrine.`,
       );
     }
-    if (!('name' in returnType)) {
-      throw new TypeError(
-        `Could not determine a name for return type '${returnType.type}' of prop '${propName}'.`,
-      );
-    }
 
-    signature += `) => ${returnType.name}\`<br>`;
+    const returnTypeName = resolveType(returnType);
+
+    signature += `) => ${returnTypeName}\`<br>`;
     signature += parsedArgs
       .filter((tag) => tag.description)
       .map((tag) => `*${tag.name}:* ${tag.description}`)
       .join('<br>');
     if (parsedReturns.description) {
-      signature += `<br> *returns* (${returnType.name}): ${parsedReturns.description}`;
+      signature += `<br> *returns* (${returnTypeName}): ${parsedReturns.description}`;
     }
   }
 
