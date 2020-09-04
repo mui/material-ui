@@ -1,14 +1,14 @@
 # Глобальная настройка
 
-<p class="description">The styleOverrides key enables you to customize the appearance of all instances of a component type, while the props key enables you to change the default value(s) of a component's props.</p>
+<p class="description">The overrides key enables you to customize the appearance of all instances of a component type, while the props key enables you to change the default value(s) of a component's props.</p>
 
 ## CSS
 
-Если настроек конфигурации недостаточно, можно использовать ключ `styleOverrides` у объекта `theme`, чтобы изменить **абсолютно любой стиль**, который Material-UI вносит в DOM. Это действительно мощная штука.
+Если настроек конфигурации недостаточно, можно использовать ключ `overrides` у объекта `theme`, чтобы изменить **абсолютно любой стиль**, который Material-UI вносит в DOM. Это действительно мощная штука.
 
 ```js
 const theme = createMuiTheme({
-  styleOverrides: {
+  overrides: {
     // Style sheet name ⚛️
     MuiButton: {
       // Name of the rule
@@ -31,7 +31,7 @@ If you are using the [CssBaseline](/components/css-baseline/) component to apply
 
 ```jsx
 const theme = createMuiTheme({
-  styleOverrides: {
+  overrides: {
     MuiCssBaseline: {
       '@global': {
         html: {

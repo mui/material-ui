@@ -4,11 +4,11 @@
 
 ## CSS
 
-Wenn die Konfigurationsvariablen nicht ausreichen, können Sie die Vorteile der `styleOverrides` Schlüssel des `Theme` verwenden, um potenziell jeden einzelnen von Material-UI in den DOM eingefügten **Stil** zu ändern. Das ist eine sehr mächtige Funktion.
+Wenn die Konfigurationsvariablen nicht ausreichen, können Sie die Vorteile der `overrides` Schlüssel des `Theme` verwenden, um potenziell jeden einzelnen von Material-UI in den DOM eingefügten **Stil** zu ändern. Das ist eine sehr mächtige Funktion.
 
 ```js
 const theme = createMuiTheme({
-  styleOverrides: {
+  overrides: {
     // Style sheet name ⚛️
     MuiButton: {
       // Name of the rule
@@ -31,7 +31,7 @@ If you are using the [CssBaseline](/components/css-baseline/) component to apply
 
 ```jsx
 const theme = createMuiTheme({
-  styleOverrides: {
+  overrides: {
     MuiCssBaseline: {
       '@global': {
         html: {

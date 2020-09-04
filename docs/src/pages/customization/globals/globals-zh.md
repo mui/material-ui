@@ -1,14 +1,14 @@
 # 全局样式
 
-<p class="description">styleOverrides使你可以统一修改某个组件所有对象的样式，而props则能修改某个组件的默认属性值。</p>
+<p class="description">Overrides使你可以统一修改某个组件所有对象的样式，而props则能修改某个组件的默认属性值。</p>
 
 ## CSS
 
-当配置变量不够强大的时候，您可以使用`theme`的`styleOverrides`来让Material-UI隐式地为您注入**样式规则**。 这是一个非常强大的特性。
+当配置变量不够强大的时候，您可以使用`theme`的`overrides`来让Material-UI隐式地为您注入**样式规则**。 这是一个非常强大的特性。
 
 ```js
 const theme = createMuiTheme({
-  styleOverrides: {
+  overrides: {
     // Style sheet name ⚛️
     MuiButton: {
       // Name of the rule
@@ -31,7 +31,7 @@ const theme = createMuiTheme({
 
 ```jsx
 const theme = createMuiTheme({
-  styleOverrides: {
+  overrides: {
     MuiCssBaseline: {
       '@global': {
         html: {
