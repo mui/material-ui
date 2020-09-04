@@ -64,12 +64,10 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
      * CSS property name (HYPHEN CASE) to be modified.
      */
     property: string;
-    el: HTMLElement;
+    el: HTMLElement | SVGElement;
     value: string;
   }> = [];
-  const restorePaddings: string[] = [];
   const container = containerInfo.container;
-  let fixedElements: NodeListOf<HTMLElement | SVGElement>;
 
   if (!props.disableScrollLock) {
     if (isOverflowing(container)) {
@@ -85,9 +83,13 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
       container.style.paddingRight = `${getPaddingRight(container) + scrollbarSize}px`;
 
       // .mui-fixed is a global helper.
-      fixedElements = ownerDocument(container).querySelectorAll('.mui-fixed');
+      const fixedElements = ownerDocument(container).querySelectorAll('.mui-fixed');
       [].forEach.call(fixedElements, (element: HTMLElement | SVGElement) => {
-        restorePaddings.push(element.style.paddingRight);
+        restoreStyle.push({
+          value: element.style.paddingRight,
+          property: 'padding-right',
+          el: element,
+        });
         element.style.paddingRight = `${getPaddingRight(element) + scrollbarSize}px`;
       });
     }
@@ -112,16 +114,6 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
   }
 
   const restore = () => {
-    if (fixedElements) {
-      [].forEach.call(fixedElements, (element: HTMLElement | SVGElement, i: number) => {
-        if (restorePaddings[i]) {
-          element.style.paddingRight = restorePaddings[i];
-        } else {
-          element.style.removeProperty('padding-right');
-        }
-      });
-    }
-
     restoreStyle.forEach(({ value, el, property }) => {
       if (value) {
         el.style.setProperty(property, value);
