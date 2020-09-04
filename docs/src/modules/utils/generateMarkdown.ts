@@ -156,7 +156,7 @@ function generatePropDescription(prop: DescribeablePropDescriptor, propName: str
   // 'returns' parsed object (i.e., one with title being 'returns'), make one of type 'void'.
   const parsedArgs: doctrine.Tag[] = annotation.tags.filter((tag) => tag.title === 'param');
   let parsedReturns:
-    | { description?: string; type?: doctrine.Type }
+    | { description?: string | null; type?: doctrine.Type | null }
     | undefined = annotation.tags.find((tag) => tag.title === 'returns');
   if (type.name === 'func' && (parsedArgs.length > 0 || parsedReturns !== undefined)) {
     parsedReturns = parsedReturns ?? { type: { type: 'VoidLiteral' } };
