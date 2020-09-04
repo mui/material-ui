@@ -3,28 +3,30 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Typography from '@material-ui/core/Typography';
 
-const initialState = {
-  mouseX: null,
-  mouseY: null,
-};
-
 export default function ContextMenu() {
-  const [state, setState] = React.useState(initialState);
+  const [contextMenu, setContextMenu] = React.useState(null);
 
-  const handleClick = (event) => {
+  const handleContextMenu = (event) => {
     event.preventDefault();
-    setState({
-      mouseX: event.clientX - 2,
-      mouseY: event.clientY - 4,
-    });
+    setContextMenu(
+      contextMenu === null
+        ? {
+            mouseX: event.clientX - 2,
+            mouseY: event.clientY - 4,
+          }
+        : // repeated contextmenu when it is already open closes it with Chrome 84 on Ubuntu
+          // Other native context menus might behave different.
+          // With this behavior we prevent contextmenu from the backdrop to re-locale existing context menus.
+          null,
+    );
   };
 
   const handleClose = () => {
-    setState(initialState);
+    setContextMenu(null);
   };
 
   return (
-    <div onContextMenu={handleClick} style={{ cursor: 'context-menu' }}>
+    <div onContextMenu={handleContextMenu} style={{ cursor: 'context-menu' }}>
       <Typography>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ipsum
         purus, bibendum sit amet vulputate eget, porta semper ligula. Donec
@@ -38,12 +40,12 @@ export default function ContextMenu() {
       </Typography>
       <Menu
         keepMounted
-        open={state.mouseY !== null}
+        open={contextMenu !== null}
         onClose={handleClose}
         anchorReference="anchorPosition"
         anchorPosition={
-          state.mouseY !== null && state.mouseX !== null
-            ? { top: state.mouseY, left: state.mouseX }
+          contextMenu !== null
+            ? { top: contextMenu.mouseY, left: contextMenu.mouseX }
             : undefined
         }
       >
