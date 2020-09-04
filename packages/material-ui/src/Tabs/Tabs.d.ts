@@ -133,6 +133,7 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
     /**
      * If `true`, the scrollbar will be visible. It can be useful when displaying
      * a long vertical list of tabs.
+     * @default false
      */
     visibleScrollbar?: boolean;
   };
