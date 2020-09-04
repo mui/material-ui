@@ -177,23 +177,6 @@ describe('<Portal />', () => {
     expect(document.querySelector('#test3').parentElement.nodeName).to.equal('BODY');
   });
 
-  it('should call onRendered', () => {
-    const ref = React.createRef();
-    const handleRendered = spy();
-    render(
-      <Portal
-        ref={ref}
-        onRendered={() => {
-          handleRendered();
-          expect(ref.current !== null).to.equal(true);
-        }}
-      >
-        <div />
-      </Portal>,
-    );
-    expect(handleRendered.callCount).to.equal(1);
-  });
-
   it('should call ref after child effect', () => {
     const callOrder = [];
     const handleRef = (node) => {
