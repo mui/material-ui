@@ -651,6 +651,7 @@ Tabs.propTypes = {
   /**
    * If `true`, the scrollbar will be visible. It can be useful when displaying
    * a long vertical list of tabs.
+   * @default false
    */
   visibleScrollbar: PropTypes.bool,
 };
