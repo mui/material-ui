@@ -1,14 +1,14 @@
 # Globais
 
-<p class="description">A chave <code>overrides</code> permite que você customize a aparência de todas as instâncias de um tipo de componente, enquanto a propriedade chave permite que você altere os valores padrão das propriedades de um componente.</p>
+<p class="description">A chave <code>styleOverrides</code> permite que você customize a aparência de todas as instâncias de um tipo de componente, enquanto a propriedade chave permite que você altere os valores padrão das propriedades de um componente.</p>
 
 ## CSS
 
-Quando as variáveis de configuração não são poderosas o suficiente, você pode tirar vantagem com o `overrides`, chave do `theme` para potencialmente alterar **cada estilo único** injetado por Material-UI no DOM. Esse é um recurso realmente poderoso.
+Quando as variáveis de configuração não são poderosas o suficiente, você pode tirar vantagem com o `styleOverrides`, chave do `theme` para potencialmente alterar **cada estilo único** injetado por Material-UI no DOM. Esse é um recurso realmente poderoso.
 
 ```js
 const theme = createMuiTheme({
-  overrides: {
+  styleOverrides: {
     // Nome da folha de estilo ⚛️
     MuiButton: {
       // Nome da regra
@@ -31,7 +31,7 @@ Se você estiver usando o componente [CssBaseline](/components/css-baseline/) pa
 
 ```jsx
 const theme = createMuiTheme({
-  overrides: {
+  styleOverrides: {
     MuiCssBaseline: {
       '@global': {
         html: {

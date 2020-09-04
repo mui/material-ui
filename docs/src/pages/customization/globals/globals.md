@@ -1,11 +1,11 @@
 # Globals
 
-<p class="description">The overrides key enables you to customize the appearance of all instances of a component type, while the props key enables you to change the default value(s) of a component's props.</p>
+<p class="description">The styleOverrides key enables you to customize the appearance of all instances of a component type, while the props key enables you to change the default value(s) of a component's props.</p>
 
 ## CSS
 
 When the configuration variables aren't powerful enough, you can take advantage of the
-`overrides` key of the `theme` to potentially change **every single style** injected by Material-UI into the DOM.
+`styleOverrides` key of the `theme` to potentially change **every single style** injected by Material-UI into the DOM.
 That's a really powerful feature.
 
 To override lab components styles with TypeScript, check [this documentation](/components/about-the-lab/#typescript).
@@ -15,7 +15,7 @@ const theme = createMuiTheme({
   components: {
     // Style sheet name ⚛️
     MuiButton: {
-      overrides: {
+      styleOverrides: {
         // Name of the rule
         textPrimary: {
           // Some CSS
@@ -41,7 +41,7 @@ If you are using the [CssBaseline](/components/css-baseline/) component to apply
 const theme = createMuiTheme({
   components: {
     MuiCssBaseline: {
-      overrides: {
+      styleOverrides: {
         '@global': {
           html: {
             WebkitFontSmoothing: 'auto',

@@ -4,11 +4,11 @@
 
 ## CSS
 
-設定変数が十分に強力でない場合は、 `theme` の</code>キーを`overrides</0> し、Material-UIによってDOMに注入される<strong>every single style</strong>を変更できるようにします。
+設定変数が十分に強力でない場合は、 `theme` の</code>キーを`styleOverrides</0> し、Material-UIによってDOMに注入される<strong>every single style</strong>を変更できるようにします。
 それは本当に強力な機能です。</p>
 
 <pre><code class="js">const theme = createMuiTheme({
-  overrides: {
+  styleOverrides: {
     // Style sheet name ⚛️
     MuiButton: {
       // Name of the rule
@@ -31,7 +31,7 @@ If you are using the [CssBaseline](/components/css-baseline/) component to apply
 
 ```jsx
 const theme = createMuiTheme({
-  overrides: {
+  styleOverrides: {
     MuiCssBaseline: {
       '@global': {
         html: {
