@@ -1,3 +1,25 @@
+diff --git a/babel.config.js b/babel.config.js
+index 162d469804..f4b17916a4 100644
+--- a/babel.config.js
++++ b/babel.config.js
+@@ -45,7 +45,16 @@ const productionPlugins = [
+ ];
+ 
+ module.exports = {
+-  presets: defaultPresets.concat(['@babel/preset-react', '@babel/preset-typescript']),
++  presets: defaultPresets.concat([
++    [
++      '@babel/preset-react',
++      {
++        // default in Babel 8
++        runtime: 'automatic',
++      },
++    ],
++    '@babel/preset-typescript',
++  ]),
+   plugins: [
+     [
+       'babel-plugin-macros',
 diff --git a/packages/material-ui-lab/src/Autocomplete/Autocomplete.test.js b/packages/material-ui-lab/src/Autocomplete/Autocomplete.test.js
 index 8addf692fb..86ea6e6dfa 100644
 --- a/packages/material-ui-lab/src/Autocomplete/Autocomplete.test.js
@@ -65,10 +87,10 @@ index 197b2f77a3..f1ead08079 100644
    });
  });
 diff --git a/packages/material-ui-styles/src/useThemeVariants/useThemeVariants.test.js b/packages/material-ui-styles/src/useThemeVariants/useThemeVariants.test.js
-index 9c99a49a1f..5d9db342e9 100644
+index 2ab151c6c8..6db6326d77 100644
 --- a/packages/material-ui-styles/src/useThemeVariants/useThemeVariants.test.js
 +++ b/packages/material-ui-styles/src/useThemeVariants/useThemeVariants.test.js
-@@ -127,11 +127,6 @@ describe('useThemeVariants', () => {
+@@ -135,11 +135,6 @@ describe('useThemeVariants', () => {
          </ThemeProvider>,
        ),
      ).toErrorDev([
@@ -81,7 +103,7 @@ index 9c99a49a1f..5d9db342e9 100644
          `Material-UI: You are using a variant value \`test\` for which you didn't define styles.`,
          `Please create a new variant matcher in your theme for this variant. To learn more about matchers visit https://next.material-ui.com/r/custom-component-variants.`,
 diff --git a/packages/material-ui/src/Breadcrumbs/Breadcrumbs.test.js b/packages/material-ui/src/Breadcrumbs/Breadcrumbs.test.js
-index 55a501a6e6..8cabc24615 100644
+index 273e3a009d..2a6c4b1379 100644
 --- a/packages/material-ui/src/Breadcrumbs/Breadcrumbs.test.js
 +++ b/packages/material-ui/src/Breadcrumbs/Breadcrumbs.test.js
 @@ -100,7 +100,6 @@ describe('<Breadcrumbs />', () => {
@@ -107,7 +129,7 @@ index d78203151f..72ac37571b 100644
    });
  
 diff --git a/packages/material-ui/src/Tabs/Tabs.test.js b/packages/material-ui/src/Tabs/Tabs.test.js
-index 9c004c515b..648559f279 100644
+index e1365185fb..a34c50ebaa 100644
 --- a/packages/material-ui/src/Tabs/Tabs.test.js
 +++ b/packages/material-ui/src/Tabs/Tabs.test.js
 @@ -90,9 +90,6 @@ describe('<Tabs />', () => {
@@ -161,10 +183,10 @@ index 8c8f59a9d8..657a5e57bc 100644
        ]);
      });
 diff --git a/packages/material-ui/src/useMediaQuery/useMediaQuery.test.js b/packages/material-ui/src/useMediaQuery/useMediaQuery.test.js
-index 3fba3ffab7..532c206595 100644
+index 25dc48c4c1..b33af6309c 100644
 --- a/packages/material-ui/src/useMediaQuery/useMediaQuery.test.js
 +++ b/packages/material-ui/src/useMediaQuery/useMediaQuery.test.js
-@@ -275,11 +275,7 @@ describe('useMediaQuery', () => {
+@@ -277,11 +277,7 @@ describe('useMediaQuery', () => {
  
        expect(() => {
          render(<MyComponent />);
