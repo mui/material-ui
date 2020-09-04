@@ -363,6 +363,11 @@ const theme = createMuitheme({
   >
   ```
 
+### Modal
+
+- Remove `onRendered` prop.
+  Depending on your use case either use a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element or an effect hook in the child component.
+
 ### Pagination
 
 - Rename `round` to `circular` for consistency. The possible values should be adjectives, not nouns:
@@ -403,6 +408,11 @@ const theme = createMuitheme({
   +  }}
   />
   ```
+
+### Portal
+
+- Remove `onRendered` prop.
+  Depending on your use case either use a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element or an effect hook in the child component.
 
 ### Rating
 

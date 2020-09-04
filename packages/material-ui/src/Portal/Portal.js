@@ -15,7 +15,7 @@ function getContainer(container) {
  * that exists outside the DOM hierarchy of the parent component.
  */
 const Portal = React.forwardRef(function Portal(props, ref) {
-  const { children, container, disablePortal = false, onRendered } = props;
+  const { children, container, disablePortal = false } = props;
   const [mountNode, setMountNode] = React.useState(null);
   const handleRef = useForkRef(React.isValidElement(children) ? children.ref : null, ref);
 
@@ -35,12 +35,6 @@ const Portal = React.forwardRef(function Portal(props, ref) {
 
     return undefined;
   }, [ref, mountNode, disablePortal]);
-
-  useEnhancedEffect(() => {
-    if (onRendered && (mountNode || disablePortal)) {
-      onRendered();
-    }
-  }, [onRendered, mountNode, disablePortal]);
 
   if (disablePortal) {
     if (React.isValidElement(children)) {
@@ -78,12 +72,6 @@ Portal.propTypes = {
    * The `children` will be inside the DOM hierarchy of the parent component.
    */
   disablePortal: PropTypes.bool,
-  /**
-   * Callback fired once the children has been mounted into the `container`.
-   *
-   * This prop will be deprecated and removed in v5, the ref can be used instead.
-   */
-  onRendered: PropTypes.func,
 };
 
 if (process.env.NODE_ENV !== 'production') {

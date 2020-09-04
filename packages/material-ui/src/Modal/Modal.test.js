@@ -531,20 +531,6 @@ describe('<Modal />', () => {
     });
   });
 
-  describe('prop: onRendered', () => {
-    it('should fire', () => {
-      const handleRendered = spy();
-
-      render(
-        <Modal open onRendered={handleRendered}>
-          <div />
-        </Modal>,
-      );
-
-      expect(handleRendered).to.have.property('callCount', 1);
-    });
-  });
-
   describe('two modal at the same time', () => {
     /**
      * @type {ReturnType<typeof useFakeTimers>}
