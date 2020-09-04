@@ -830,6 +830,7 @@ TreeView.propTypes = {
   defaultEndIcon: PropTypes.node,
   /**
    * Expanded node ids. (Uncontrolled)
+   * @default []
    */
   defaultExpanded: PropTypes.arrayOf(PropTypes.string),
   /**
@@ -844,14 +845,17 @@ TreeView.propTypes = {
   /**
    * Selected node ids. (Uncontrolled)
    * When `multiSelect` is true this takes an array of strings; when false (default) a string.
+   * @default []
    */
   defaultSelected: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]),
   /**
    * If `true`, will allow focus on disabled items.
+   * @default false
    */
   disabledItemsFocusable: PropTypes.bool,
   /**
    * If `true` selection is disabled.
+   * @default false
    */
   disableSelection: PropTypes.bool,
   /**
@@ -865,6 +869,7 @@ TreeView.propTypes = {
   id: PropTypes.string,
   /**
    * If true `ctrl` and `shift` will trigger multiselect.
+   * @default false
    */
   multiSelect: PropTypes.bool,
   /**

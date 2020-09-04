@@ -25,10 +25,12 @@ export interface AccordionProps extends StandardProps<PaperProps, 'onChange'> {
   };
   /**
    * If `true`, expands the accordion by default.
+   * @default false
    */
   defaultExpanded?: boolean;
   /**
    * If `true`, the accordion will be displayed in a disabled state.
+   * @default false
    */
   disabled?: boolean;
   /**
@@ -46,6 +48,7 @@ export interface AccordionProps extends StandardProps<PaperProps, 'onChange'> {
   /**
    * The component used for the transition.
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * @default Collapse
    */
   TransitionComponent?: React.ComponentType<
     TransitionProps & { children?: React.ReactElement<any, any> }

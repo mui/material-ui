@@ -166,24 +166,29 @@ Breadcrumbs.propTypes = {
    * Override the default label for the expand button.
    *
    * For localization purposes, you can use the provided [translations](/guides/localization/).
+   * @default 'Show path'
    */
   expandText: PropTypes.string,
   /**
    * If max items is exceeded, the number of items to show after the ellipsis.
+   * @default 1
    */
   itemsAfterCollapse: PropTypes.number,
   /**
    * If max items is exceeded, the number of items to show before the ellipsis.
+   * @default 1
    */
   itemsBeforeCollapse: PropTypes.number,
   /**
    * Specifies the maximum number of breadcrumbs to display. When there are more
    * than the maximum number, only the first `itemsBeforeCollapse` and last `itemsAfterCollapse`
    * will be shown, with an ellipsis in between.
+   * @default 8
    */
   maxItems: PropTypes.number,
   /**
    * Custom separator node.
+   * @default '/'
    */
   separator: PropTypes.node,
 };

@@ -263,6 +263,10 @@ Badge.propTypes = {
   // ----------------------------------------------------------------------
   /**
    * The anchor of the badge.
+   * @default {
+   *   vertical: 'top',
+   *   horizontal: 'right',
+   * }
    */
   anchorOrigin: PropTypes.shape({
     horizontal: PropTypes.oneOf(['left', 'right']).isRequired,
@@ -286,6 +290,7 @@ Badge.propTypes = {
   className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'default'
    */
   color: PropTypes.oneOf(['default', 'error', 'primary', 'secondary']),
   /**
@@ -299,18 +304,22 @@ Badge.propTypes = {
   invisible: PropTypes.bool,
   /**
    * Max count to show.
+   * @default 99
    */
   max: PropTypes.number,
   /**
    * Wrapped shape the badge should overlap.
+   * @default 'rectangular'
    */
   overlap: PropTypes.oneOf(['circular', 'rectangular']),
   /**
    * Controls whether the badge is hidden when `badgeContent` is zero.
+   * @default false
    */
   showZero: PropTypes.bool,
   /**
    * The variant to use.
+   * @default 'standard'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['dot', 'standard']),

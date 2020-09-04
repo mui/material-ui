@@ -9,6 +9,7 @@ export interface HiddenProps {
   /**
    * Specify which implementation to use.  'js' is the default, 'css' works better for
    * server-side rendering.
+   * @default 'js'
    */
   implementation?: 'js' | 'css';
   /**
@@ -25,18 +26,22 @@ export interface HiddenProps {
   initialWidth?: Breakpoint;
   /**
    * If `true`, screens this size and down will be hidden.
+   * @default false
    */
   lgDown?: boolean;
   /**
    * If `true`, screens this size and up will be hidden.
+   * @default false
    */
   lgUp?: boolean;
   /**
    * If `true`, screens this size and down will be hidden.
+   * @default false
    */
   mdDown?: boolean;
   /**
    * If `true`, screens this size and up will be hidden.
+   * @default false
    */
   mdUp?: boolean;
   /**
@@ -45,26 +50,32 @@ export interface HiddenProps {
   only?: Breakpoint | Breakpoint[];
   /**
    * If `true`, screens this size and down will be hidden.
+   * @default false
    */
   smDown?: boolean;
   /**
    * If `true`, screens this size and up will be hidden.
+   * @default false
    */
   smUp?: boolean;
   /**
    * If `true`, screens this size and down will be hidden.
+   * @default false
    */
   xlDown?: boolean;
   /**
    * If `true`, screens this size and up will be hidden.
+   * @default false
    */
   xlUp?: boolean;
   /**
    * If `true`, screens this size and down will be hidden.
+   * @default false
    */
   xsDown?: boolean;
   /**
    * If `true`, screens this size and up will be hidden.
+   * @default false
    */
   xsUp?: boolean;
 }

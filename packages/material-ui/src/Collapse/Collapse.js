@@ -280,6 +280,7 @@ Collapse.propTypes = {
   className: PropTypes.string,
   /**
    * The width (horizontal) or height (vertical) of the container when collapsed.
+   * @default '0px'
    */
   collapsedSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
@@ -317,6 +318,7 @@ Collapse.propTypes = {
   onExiting: PropTypes.func,
   /**
    * The collapse transition orientation.
+   * @default 'vertical'
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
@@ -328,6 +330,7 @@ Collapse.propTypes = {
    * You may specify a single timeout for all transitions, or individually with an object.
    *
    * Set to 'auto' to automatically calculate transition time based on height.
+   * @default duration.standard
    */
   timeout: PropTypes.oneOfType([
     PropTypes.oneOf(['auto']),

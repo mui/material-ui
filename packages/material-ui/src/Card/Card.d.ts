@@ -11,6 +11,7 @@ export interface CardProps extends StandardProps<PaperProps> {
   };
   /**
    * If `true`, the card will use raised styling.
+   * @default false
    */
   raised?: boolean;
 }

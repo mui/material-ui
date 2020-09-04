@@ -272,6 +272,7 @@ LinearProgress.propTypes = {
   className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'primary'
    */
   color: PropTypes.oneOf(['primary', 'secondary']),
   /**
@@ -287,6 +288,7 @@ LinearProgress.propTypes = {
   /**
    * The variant to use.
    * Use indeterminate or query when there is no progress value.
+   * @default 'indeterminate'
    */
   variant: PropTypes.oneOf(['buffer', 'determinate', 'indeterminate', 'query']),
 };

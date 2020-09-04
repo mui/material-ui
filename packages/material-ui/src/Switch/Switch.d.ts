@@ -39,6 +39,7 @@ export interface SwitchProps
   };
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'secondary'
    */
   color?: 'primary' | 'secondary' | 'default';
   /**
@@ -52,6 +53,7 @@ export interface SwitchProps
   /**
    * The size of the switch.
    * `small` is equivalent to the dense switch styling.
+   * @default 'medium'
    */
   size?: 'small' | 'medium';
   /**

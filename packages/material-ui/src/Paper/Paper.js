@@ -99,6 +99,7 @@ Paper.propTypes = {
   /**
    * Shadow depth, corresponds to `dp` in the spec.
    * It accepts values between 0 and 24 inclusive.
+   * @default 1
    */
   elevation: chainPropTypes(PropTypes.number, (props) => {
     const { classes, elevation } = props;
@@ -113,10 +114,12 @@ Paper.propTypes = {
   }),
   /**
    * If `true`, rounded corners are disabled.
+   * @default false
    */
   square: PropTypes.bool,
   /**
    * The variant to use.
+   * @default 'elevation'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['elevation', 'outlined']),

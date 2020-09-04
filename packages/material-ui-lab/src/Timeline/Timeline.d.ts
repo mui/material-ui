@@ -21,6 +21,7 @@ export interface TimelineProps extends StandardProps<React.HTMLAttributes<HTMLUL
   };
   /**
    * The position where the timeline's content should appear.
+   * @default 'left'
    */
   align?: 'left' | 'right' | 'alternate';
 }

@@ -82,6 +82,7 @@ SnackbarContent.propTypes = {
   message: PropTypes.node,
   /**
    * The ARIA role attribute of the element.
+   * @default 'alert'
    */
   role: PropTypes.string,
 };

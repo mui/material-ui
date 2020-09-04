@@ -94,6 +94,7 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
     clickable?: boolean;
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
+     * @default 'default'
      */
     color?: Exclude<PropTypes.Color, 'inherit'>;
     /**
@@ -102,6 +103,7 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
     deleteIcon?: React.ReactElement;
     /**
      * If `true`, the chip should be displayed in a disabled state.
+     * @default false
      */
     disabled?: boolean;
     /**
@@ -119,10 +121,12 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
     onDelete?: React.EventHandler<any>;
     /**
      * The size of the chip.
+     * @default 'medium'
      */
     size?: 'small' | 'medium';
     /**
      * The variant to use.
+     * @default 'default'
      */
     variant?: OverridableStringUnion<ChipVariantDefaults, ChipPropsVariantOverrides>;
   };

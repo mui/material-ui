@@ -24,6 +24,7 @@ export interface SnackbarContentProps extends StandardProps<PaperProps, 'childre
   message?: React.ReactNode;
   /**
    * The ARIA role attribute of the element.
+   * @default 'alert'
    */
   role?: PaperProps['role'];
 }

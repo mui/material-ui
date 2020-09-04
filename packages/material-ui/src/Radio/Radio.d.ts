@@ -25,6 +25,7 @@ export interface RadioProps
   };
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'secondary'
    */
   color?: 'primary' | 'secondary' | 'default';
   /**
@@ -38,6 +39,7 @@ export interface RadioProps
   /**
    * The size of the radio.
    * `small` is equivalent to the dense radio styling.
+   * @default 'medium'
    */
   size?: 'small' | 'medium';
 }

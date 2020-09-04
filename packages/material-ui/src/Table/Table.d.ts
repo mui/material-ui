@@ -22,16 +22,19 @@ export interface TableTypeMap<P = {}, D extends React.ElementType = 'table'> {
     };
     /**
      * Allows TableCells to inherit padding of the Table.
+     * @default 'default'
      */
     padding?: Padding;
     /**
      * Allows TableCells to inherit size of the Table.
+     * @default 'medium'
      */
     size?: Size;
     /**
      * Set the header sticky.
      *
      * ⚠️ It doesn't work with IE 11.
+     * @default false
      */
     stickyHeader?: boolean;
   };

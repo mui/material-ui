@@ -23,6 +23,7 @@ export interface BackdropProps
   /**
    * If `true`, the backdrop is invisible.
    * It can be used when rendering a popover or a custom select component.
+   * @default false
    */
   invisible?: boolean;
   /**

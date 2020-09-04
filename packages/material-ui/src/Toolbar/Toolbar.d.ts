@@ -26,10 +26,12 @@ export interface ToolbarTypeMap<P = {}, D extends React.ElementType = 'div'> {
     };
     /**
      * If `true`, disables gutter padding.
+     * @default false
      */
     disableGutters?: boolean;
     /**
      * The variant to use.
+     * @default 'regular'
      */
     variant?: OverridableStringUnion<ToolbarVariantDefaults, ToolbarPropsVariantOverrides>;
   };

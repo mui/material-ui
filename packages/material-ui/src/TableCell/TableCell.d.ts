@@ -18,6 +18,7 @@ export interface TableCellProps extends StandardProps<TableCellBaseProps, 'align
    *
    * Monetary or generally number fields **should be right aligned** as that allows
    * you to add them up quickly in your head without having to worry about decimals.
+   * @default 'inherit'
    */
   align?: 'inherit' | 'left' | 'center' | 'right' | 'justify';
   /**

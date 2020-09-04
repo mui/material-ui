@@ -76,6 +76,7 @@ ImageList.propTypes = {
   /**
    * Number of px for one cell height.
    * You can set `'auto'` if you want to let the children determine the height.
+   * @default 180
    */
   cellHeight: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
   /**
@@ -92,6 +93,7 @@ ImageList.propTypes = {
   className: PropTypes.string,
   /**
    * Number of columns.
+   * @default 2
    */
   cols: PropTypes.number,
   /**
@@ -101,6 +103,7 @@ ImageList.propTypes = {
   component: PropTypes.elementType,
   /**
    * Number of px for the spacing between tiles.
+   * @default 4
    */
   spacing: PropTypes.number,
   /**

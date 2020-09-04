@@ -5,6 +5,7 @@ export interface StepIconProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'children'> {
   /**
    * Whether this step is active.
+   * @default false
    */
   active?: boolean;
   /**
@@ -24,10 +25,12 @@ export interface StepIconProps
   };
   /**
    * Mark the step as completed. Is passed to child components.
+   * @default false
    */
   completed?: boolean;
   /**
    * Mark the step as failed.
+   * @default false
    */
   error?: boolean;
   /**

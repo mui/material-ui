@@ -364,6 +364,7 @@ ButtonBase.propTypes = {
   /**
    * If `true`, the ripples will be centered.
    * They won't start at the cursor interaction position.
+   * @default false
    */
   centerRipple: PropTypes.bool,
   /**
@@ -385,6 +386,7 @@ ButtonBase.propTypes = {
   component: elementTypeAcceptingRef,
   /**
    * If `true`, the base button will be disabled.
+   * @default false
    */
   disabled: PropTypes.bool,
   /**
@@ -392,14 +394,17 @@ ButtonBase.propTypes = {
    *
    * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
    * to highlight the element by applying separate styles with the `focusVisibleClassName`.
+   * @default false
    */
   disableRipple: PropTypes.bool,
   /**
    * If `true`, the touch ripple effect will be disabled.
+   * @default false
    */
   disableTouchRipple: PropTypes.bool,
   /**
    * If `true`, the base button will have a keyboard focus ripple.
+   * @default false
    */
   focusRipple: PropTypes.bool,
   /**
@@ -469,7 +474,7 @@ ButtonBase.propTypes = {
    */
   onTouchStart: PropTypes.func,
   /**
-   * @ignore
+   * @default 0
    */
   tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**

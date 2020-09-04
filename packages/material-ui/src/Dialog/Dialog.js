@@ -277,26 +277,31 @@ Dialog.propTypes = {
   className: PropTypes.string,
   /**
    * If `true`, clicking the backdrop will not fire the `onClose` callback.
+   * @default false
    */
   disableBackdropClick: PropTypes.bool,
   /**
    * If `true`, hitting escape will not fire the `onClose` callback.
+   * @default false
    */
   disableEscapeKeyDown: PropTypes.bool,
   /**
    * If `true`, the dialog will be full-screen
+   * @default false
    */
   fullScreen: PropTypes.bool,
   /**
    * If `true`, the dialog stretches to `maxWidth`.
    *
    * Notice that the dialog width grow is limited by the default margin.
+   * @default false
    */
   fullWidth: PropTypes.bool,
   /**
    * Determine the max-width of the dialog.
    * The dialog width grows with the size of the screen.
    * Set to `false` to disable `maxWidth`.
+   * @default 'sm'
    */
   maxWidth: PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs', false]),
   /**
@@ -321,24 +326,29 @@ Dialog.propTypes = {
   open: PropTypes.bool.isRequired,
   /**
    * The component used to render the body of the dialog.
+   * @default Paper
    */
   PaperComponent: PropTypes.elementType,
   /**
    * Props applied to the [`Paper`](/api/paper/) element.
+   * @default {}
    */
   PaperProps: PropTypes.object,
   /**
    * Determine the container for scrolling the dialog.
+   * @default 'paper'
    */
   scroll: PropTypes.oneOf(['body', 'paper']),
   /**
    * The component used for the transition.
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * @default Fade
    */
   TransitionComponent: PropTypes.elementType,
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
+   * @default { enter: duration.enteringScreen, exit: duration.leavingScreen }
    */
   transitionDuration: PropTypes.oneOfType([
     PropTypes.number,

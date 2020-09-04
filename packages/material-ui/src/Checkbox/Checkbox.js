@@ -117,6 +117,7 @@ Checkbox.propTypes = {
   checked: PropTypes.bool,
   /**
    * The icon to display when the component is checked.
+   * @default <CheckBoxIcon />
    */
   checkedIcon: PropTypes.node,
   /**
@@ -125,6 +126,7 @@ Checkbox.propTypes = {
   classes: PropTypes.object,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'secondary'
    */
   color: PropTypes.oneOf(['default', 'primary', 'secondary']),
   /**
@@ -137,6 +139,7 @@ Checkbox.propTypes = {
   disableRipple: PropTypes.bool,
   /**
    * The icon to display when the component is unchecked.
+   * @default <CheckBoxOutlineBlankIcon />
    */
   icon: PropTypes.node,
   /**
@@ -148,10 +151,12 @@ Checkbox.propTypes = {
    * This does not set the native input element to indeterminate due
    * to inconsistent behavior across browsers.
    * However, we set a `data-indeterminate` attribute on the input.
+   * @default false
    */
   indeterminate: PropTypes.bool,
   /**
    * The icon to display when the component is indeterminate.
+   * @default <IndeterminateCheckBoxIcon />
    */
   indeterminateIcon: PropTypes.node,
   /**
@@ -176,6 +181,7 @@ Checkbox.propTypes = {
   /**
    * The size of the checkbox.
    * `small` is equivalent to the dense checkbox styling.
+   * @default 'medium'
    */
   size: PropTypes.oneOf(['medium', 'small']),
   /**

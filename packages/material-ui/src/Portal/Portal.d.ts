@@ -15,6 +15,7 @@ export interface PortalProps {
   container?: Element | (() => Element | null) | null;
   /**
    * The `children` will be inside the DOM hierarchy of the parent component.
+   * @default false
    */
   disablePortal?: boolean;
 }

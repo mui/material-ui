@@ -9,6 +9,13 @@ import {
 import { SOURCE_CODE_ROOT_URL, LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
 import { pageToTitle } from './helpers';
 
+interface DescribeablePropDescriptor {
+  annotation: doctrine.Annotation;
+  defaultValue: string | null;
+  required: boolean;
+  type: PropTypeDescriptor;
+}
+
 export interface ReactApi extends ReactDocgenApi {
   EOL: string;
   filename: string;
@@ -121,8 +128,8 @@ function resolveType(type: NonNullable<doctrine.Tag['type']>): string {
   throw new TypeError(`resolveType for '${type.type}' not implemented`);
 }
 
-function generatePropDescription(prop: PropDescriptor) {
-  const { description } = prop;
+function generatePropDescription(prop: DescribeablePropDescriptor, propName: string): string {
+  const { annotation } = prop;
   const type = prop.type;
   let deprecated = '';
 
@@ -133,57 +140,42 @@ function generatePropDescription(prop: PropDescriptor) {
     }
   }
 
-  if (description === undefined) {
-    throw new Error('wrong doctrine#parse type');
-  }
-  const parsed = doctrine.parse(description, {
-    sloppy: true,
-  });
-
   // Two new lines result in a newline in the table.
   // All other new lines must be eliminated to prevent markdown mayhem.
-  const jsDocText = escapeCell(parsed.description)
+  const jsDocText = escapeCell(annotation.description)
     .replace(/(\r?\n){2}/g, '<br>')
     .replace(/\r?\n/g, ' ');
 
-  if (parsed.tags.some((tag) => tag.title === 'ignore')) {
-    return null;
-  }
-
   let signature = '';
 
-  if (type.name === 'func' && parsed.tags.length > 0) {
+  // Split up the parsed tags into 'arguments' and 'returns' parsed objects. If there's no
+  // 'returns' parsed object (i.e., one with title being 'returns'), make one of type 'void'.
+  const parsedArgs: doctrine.Tag[] = annotation.tags.filter((tag) => tag.title === 'param');
+  let parsedReturns:
+    | doctrine.Tag
+    | { description?: undefined; type: { name: string } }
+    | undefined = annotation.tags.find((tag) => tag.title === 'returns');
+  if (type.name === 'func' && (parsedArgs.length > 0 || parsedReturns !== undefined)) {
+    parsedReturns = parsedReturns ?? { type: { name: 'void' } };
+
     // Remove new lines from tag descriptions to avoid markdown errors.
-    parsed.tags.forEach((tag) => {
+    annotation.tags.forEach((tag) => {
       if (tag.description) {
         tag.description = tag.description.replace(/\r*\n/g, ' ');
       }
     });
 
-    // Split up the parsed tags into 'arguments' and 'returns' parsed objects. If there's no
-    // 'returns' parsed object (i.e., one with title being 'returns'), make one of type 'void'.
-    const parsedLength = parsed.tags.length;
-    let parsedArgs: doctrine.Tag[] = [];
-    let parsedReturns: doctrine.Tag;
-
-    if (parsed.tags[parsedLength - 1].title === 'returns') {
-      parsedArgs = parsed.tags.slice(0, parsedLength - 1);
-      parsedReturns = parsed.tags[parsedLength - 1];
-    } else {
-      parsedArgs = parsed.tags;
-      // @ts-expect-error
-      parsedReturns = { type: { name: 'void' } };
-    }
-
     signature += '<br><br>**Signature:**<br>`function(';
     signature += parsedArgs
-      .map((tag) => {
+      .map((tag, index) => {
         if (tag.type != null && tag.type.type === 'OptionalType') {
           return `${tag.name}?: ${(tag.type.expression as any).name}`;
         }
 
         if (tag.type === undefined) {
-          throw new TypeError('Tag has no type');
+          throw new TypeError(
+            `In function signature for prop '${propName}' Argument #${index} has no type.`,
+          );
         }
         return `${tag.name}: ${resolveType(tag.type!)}`;
       })
@@ -298,6 +290,71 @@ The \`${reactAPI.styles.name}\` name can be used for providing [default props](/
 `;
 }
 
+/**
+ * Returns `null` if the prop should be ignored.
+ * Throws if it is invalid.
+ *
+ * @param prop
+ * @param propName
+ */
+function createDescribeableProp(
+  prop: PropDescriptor,
+  propName: string,
+): DescribeablePropDescriptor | null {
+  const { defaultValue, jsdocDefaultValue, description, required, type } = prop;
+
+  const renderedDefaultValue = defaultValue?.value.replace(/\r?\n/g, '');
+  const renderDefaultValue = Boolean(
+    renderedDefaultValue &&
+      // Ignore "large" default values that would break the table layout.
+      renderedDefaultValue.length <= 150,
+  );
+
+  if (description === undefined) {
+    throw new Error(`The "${propName}" prop is missing a description.`);
+  }
+
+  const annotation = doctrine.parse(description, {
+    sloppy: true,
+  });
+
+  if (
+    annotation.description.trim() === '' ||
+    annotation.tags.some((tag) => tag.title === 'ignore')
+  ) {
+    return null;
+  }
+
+  if (jsdocDefaultValue !== undefined && defaultValue === undefined) {
+    throw new Error(
+      `Declared a @default annotation in JSDOC for prop '${propName}' but could not find a default value in the implementation.`,
+    );
+  } else if (jsdocDefaultValue === undefined && defaultValue !== undefined && renderDefaultValue) {
+    const shouldHaveDefaultAnnotation =
+      // Discriminator for polymorphism which is not documented at the component level.
+      // The documentation of `component` does not know in which component it is used.
+      propName !== 'component';
+
+    if (shouldHaveDefaultAnnotation) {
+      throw new Error(`JSDOC @default annotation not found for '${propName}'.`);
+    }
+  } else if (jsdocDefaultValue !== undefined) {
+    // `defaultValue` can't be undefined or we would've thrown earlier.
+    if (jsdocDefaultValue.value !== defaultValue!.value) {
+      throw new Error(
+        `Expected JSDOC @default annotation for prop '${propName}' of "${jsdocDefaultValue.value}" to equal runtime default value of "${defaultValue?.value}"`,
+      );
+    }
+  }
+
+  return {
+    annotation,
+    defaultValue: renderDefaultValue ? renderedDefaultValue! : null,
+    required: Boolean(required),
+    type,
+  };
+}
+
 function generateProps(reactAPI: ReactApi) {
   const header = '## Props';
 
@@ -307,34 +364,22 @@ function generateProps(reactAPI: ReactApi) {
 |:-----|:-----|:--------|:------------|\n`;
 
   Object.keys(reactAPI.props).forEach((propName) => {
-    const prop = reactAPI.props[propName];
-
-    if (typeof prop.description === 'undefined') {
-      throw new Error(`The "${propName}" prop is missing a description`);
-    }
-
+    const propDescriptor = reactAPI.props[propName];
     if (propName === 'classes') {
-      prop.description += ' See [CSS API](#css) below for more details.';
+      propDescriptor.description += ' See [CSS API](#css) below for more details.';
     }
 
-    const description = generatePropDescription(prop);
-
-    if (description === null) {
+    const prop = createDescribeableProp(propDescriptor, propName);
+    if (prop === null) {
       return;
     }
 
-    const renderedDefaultValue = prop.defaultValue?.value.replace(/\r*\n/g, '');
-    const renderDefaultValue =
-      renderedDefaultValue &&
-      // Ignore "large" default values that would break the table layout.
-      renderedDefaultValue.length <= 150;
+    const description = generatePropDescription(prop, propName);
 
     let defaultValueColumn = '';
-    if (renderDefaultValue) {
-      defaultValueColumn = `<span class="prop-default">${escapeCell(
-        // narrowed `renderedDefaultValue` to non-nullable by `renderDefaultValue`
-        renderedDefaultValue!,
-      )}</span>`;
+    // give up on "large" default values e.g. big functions or objects
+    if (prop.defaultValue) {
+      defaultValueColumn = `<span class="prop-default">${escapeCell(prop.defaultValue!)}</span>`;
     }
 
     const chainedPropType = getChained(prop.type);

@@ -89,10 +89,12 @@ TableRow.propTypes = {
   component: PropTypes.elementType,
   /**
    * If `true`, the table row will shade on hover.
+   * @default false
    */
   hover: PropTypes.bool,
   /**
    * If `true`, the table row will have the selected shading.
+   * @default false
    */
   selected: PropTypes.bool,
 };

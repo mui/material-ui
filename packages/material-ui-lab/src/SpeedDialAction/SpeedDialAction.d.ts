@@ -25,10 +25,12 @@ export interface SpeedDialActionProps extends StandardProps<Partial<TooltipProps
   };
   /**
    * Props applied to the [`Fab`](/api/fab/) component.
+   * @default {}
    */
   FabProps?: Partial<FabProps>;
   /**
    * Adds a transition delay, to allow a series of SpeedDialActions to be animated.
+   * @default 0
    */
   delay?: number;
   /**
@@ -41,6 +43,7 @@ export interface SpeedDialActionProps extends StandardProps<Partial<TooltipProps
   TooltipClasses?: TooltipProps['classes'];
   /**
    * Placement of the tooltip.
+   * @default 'left'
    */
   tooltipPlacement?: TooltipProps['placement'];
   /**
@@ -49,6 +52,7 @@ export interface SpeedDialActionProps extends StandardProps<Partial<TooltipProps
   tooltipTitle?: React.ReactNode;
   /**
    * Make the tooltip always visible when the SpeedDial is open.
+   * @default false
    */
   tooltipOpen?: boolean;
 }

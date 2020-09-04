@@ -59,6 +59,7 @@ CssBaseline.propTypes = {
   // ----------------------------------------------------------------------
   /**
    * You can wrap a node.
+   * @default null
    */
   children: PropTypes.node,
 };

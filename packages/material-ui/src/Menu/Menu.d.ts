@@ -15,6 +15,7 @@ export interface MenuProps extends StandardProps<PopoverProps & Partial<Transiti
    * children are not focusable. If you set this prop to `false` focus will be placed
    * on the parent modal container. This has severe accessibility implications
    * and should only be considered if you manage focus otherwise.
+   * @default true
    */
   autoFocus?: boolean;
   /**
@@ -35,10 +36,12 @@ export interface MenuProps extends StandardProps<PopoverProps & Partial<Transiti
    * unless `autoFocus` is also set to `false`. Not using the default means not
    * following WAI-ARIA authoring practices. Please be considerate about possible
    * accessibility implications.
+   * @default false
    */
   disableAutoFocusItem?: boolean;
   /**
    * Props applied to the [`MenuList`](/api/menu-list/) element.
+   * @default {}
    */
   MenuListProps?: Partial<MenuListProps>;
   /**
@@ -58,16 +61,19 @@ export interface MenuProps extends StandardProps<PopoverProps & Partial<Transiti
   PopoverClasses?: PopoverProps['classes'];
   /**
    * The length of the transition in `ms`, or 'auto'
+   * @default 'auto'
    */
   transitionDuration?: TransitionProps['timeout'] | 'auto';
   /**
    * Props applied to the transition element.
    * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition) component.
+   * @default {}
    */
   TransitionProps?: TransitionProps;
   /**
    * The variant to use. Use `menu` to prevent selected items from impacting the initial focus
    * and the vertical alignment relative to the anchor element.
+   * @default 'selectedMenu'
    */
   variant?: 'menu' | 'selectedMenu';
 }

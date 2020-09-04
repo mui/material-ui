@@ -24,10 +24,12 @@ export interface TableRowTypeMap<P = {}, D extends React.ElementType = 'tr'> {
     };
     /**
      * If `true`, the table row will shade on hover.
+     * @default false
      */
     hover?: boolean;
     /**
      * If `true`, the table row will have the selected shading.
+     * @default false
      */
     selected?: boolean;
   };

@@ -28,6 +28,7 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
       };
       /**
        * The color of the link.
+       * @default 'primary'
        */
       color?: TypographyProps['color'];
       /**
@@ -36,10 +37,12 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
       TypographyClasses?: TypographyProps['classes'];
       /**
        * Controls when the link should have an underline.
+       * @default 'hover'
        */
       underline?: 'none' | 'hover' | 'always';
       /**
        * Applies the theme typography styles.
+       * @default 'inherit'
        */
       variant?: TypographyProps['variant'];
     };
@@ -62,7 +65,7 @@ declare const Link: OverridableComponent<LinkTypeMap>;
 
 export type LinkClassKey = keyof NonNullable<LinkTypeMap['props']['classes']>;
 
-export type LinkBaseProps = React.AnchorHTMLAttributes<HTMLAnchorElement> &
+export type LinkBaseProps = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'color'> &
   Omit<TypographyProps, 'children' | 'component' | 'color' | 'variant'>;
 
 export type LinkProps<

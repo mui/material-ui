@@ -73,6 +73,7 @@ StepIcon.propTypes = {
   // ----------------------------------------------------------------------
   /**
    * Whether this step is active.
+   * @default false
    */
   active: PropTypes.bool,
   /**
@@ -81,10 +82,12 @@ StepIcon.propTypes = {
   classes: PropTypes.object,
   /**
    * Mark the step as completed. Is passed to child components.
+   * @default false
    */
   completed: PropTypes.bool,
   /**
    * Mark the step as failed.
+   * @default false
    */
   error: PropTypes.bool,
   /**
