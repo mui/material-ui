@@ -26,12 +26,7 @@ export function ariaHidden(element: Element, show: boolean): void {
 }
 
 function getPaddingRight(element: Element): number {
-  return (
-    parseInt(
-      ownerWindow(element).getComputedStyle(element)['padding-right' as 'paddingRight'],
-      10,
-    ) || 0
-  );
+  return parseInt(ownerWindow(element).getComputedStyle(element).paddingRight, 10) || 0;
 }
 
 function ariaHiddenSiblings(
@@ -64,7 +59,14 @@ function findIndexOf<T>(items: T[], callback: (item: T) => boolean): number {
 }
 
 function handleContainer(containerInfo: Container, props: ManagedModalProps) {
-  const restoreStyle: Array<{ key: string; el: HTMLElement; value: string }> = [];
+  const restoreStyle: Array<{
+    /**
+     * CSS property name (HYPHEN CASE) to be modified.
+     */
+    property: string;
+    el: HTMLElement;
+    value: string;
+  }> = [];
   const restorePaddings: string[] = [];
   const container = containerInfo.container;
   let fixedElements: NodeListOf<HTMLElement | SVGElement>;
@@ -76,14 +78,11 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
 
       restoreStyle.push({
         value: container.style.paddingRight,
-        key: 'padding-right',
+        property: 'padding-right',
         el: container,
       });
       // Use computed style, here to get the real padding to add our scrollbar width.
-      // TODO: Is there a difference between `padding-right` and `paddingRight`?
-      container.style['padding-right' as 'paddingRight'] = `${
-        getPaddingRight(container) + scrollbarSize
-      }px`;
+      container.style.paddingRight = `${getPaddingRight(container) + scrollbarSize}px`;
 
       // .mui-fixed is a global helper.
       fixedElements = ownerDocument(container).querySelectorAll('.mui-fixed');
@@ -98,9 +97,7 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
     const parent = container.parentElement;
     const containerWindow = ownerWindow(container);
     const scrollContainer =
-      parent?.nodeName === 'HTML' &&
-      // TODO: Is there a difference between `overflow-y` and `overflowY`?
-      containerWindow.getComputedStyle(parent)['overflow-y' as 'overflowY'] === 'scroll'
+      parent?.nodeName === 'HTML' && containerWindow.getComputedStyle(parent).overflowY === 'scroll'
         ? parent
         : container;
 
@@ -108,7 +105,7 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
     // screensize shrink.
     restoreStyle.push({
       value: scrollContainer.style.overflow,
-      key: 'overflow',
+      property: 'overflow',
       el: scrollContainer,
     });
     scrollContainer.style.overflow = 'hidden';
@@ -125,11 +122,11 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
       });
     }
 
-    restoreStyle.forEach(({ value, el, key }) => {
+    restoreStyle.forEach(({ value, el, property }) => {
       if (value) {
-        el.style.setProperty(key, value);
+        el.style.setProperty(property, value);
       } else {
-        el.style.removeProperty(key);
+        el.style.removeProperty(property);
       }
     });
   };
