@@ -113,6 +113,10 @@ function resolveType(type: NonNullable<doctrine.Tag['type']>): string {
     return 'any';
   }
 
+  if (type.type === 'VoidLiteral') {
+    return 'void';
+  }
+
   if (type.type === 'TypeApplication') {
     const arrayTypeName = resolveType(type.applications[0]);
     return `${arrayTypeName}[]`;
@@ -152,11 +156,10 @@ function generatePropDescription(prop: DescribeablePropDescriptor, propName: str
   // 'returns' parsed object (i.e., one with title being 'returns'), make one of type 'void'.
   const parsedArgs: doctrine.Tag[] = annotation.tags.filter((tag) => tag.title === 'param');
   let parsedReturns:
-    | doctrine.Tag
-    | { description?: undefined; type: { name: string } }
+    | { description?: string | null; type?: doctrine.Type | null }
     | undefined = annotation.tags.find((tag) => tag.title === 'returns');
   if (type.name === 'func' && (parsedArgs.length > 0 || parsedReturns !== undefined)) {
-    parsedReturns = parsedReturns ?? { type: { name: 'void' } };
+    parsedReturns = parsedReturns ?? { type: { type: 'VoidLiteral' } };
 
     // Remove new lines from tag descriptions to avoid markdown errors.
     annotation.tags.forEach((tag) => {
@@ -180,15 +183,23 @@ function generatePropDescription(prop: DescribeablePropDescriptor, propName: str
         return `${tag.name}: ${resolveType(tag.type!)}`;
       })
       .join(', ');
-    // @ts-expect-error
-    signature += `) => ${parsedReturns.type!.name}\`<br>`;
+
+    const returnType = parsedReturns.type;
+    if (returnType == null) {
+      throw new TypeError(
+        `Function signature for prop '${propName}' has no return type. Try \`@returns void\`. Otherwise it might be a bug with doctrine.`,
+      );
+    }
+
+    const returnTypeName = resolveType(returnType);
+
+    signature += `) => ${returnTypeName}\`<br>`;
     signature += parsedArgs
       .filter((tag) => tag.description)
       .map((tag) => `*${tag.name}:* ${tag.description}`)
       .join('<br>');
     if (parsedReturns.description) {
-      // @ts-expect-error
-      signature += `<br> *returns* (${parsedReturns.type!.name}): ${parsedReturns.description}`;
+      signature += `<br> *returns* (${returnTypeName}): ${parsedReturns.description}`;
     }
   }
 
