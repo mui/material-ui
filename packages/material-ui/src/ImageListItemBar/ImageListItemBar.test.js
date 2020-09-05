@@ -1,16 +1,15 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createShallow, getClasses, createMount, describeConformance } from 'test/utils';
+import { createClientRender, getClasses, createMount, describeConformance } from 'test/utils';
 import ImageListItemBar from './ImageListItemBar';
 
 describe('<ImageListItemBar />', () => {
   let classes;
   const mount = createMount();
-  let shallow;
+  const render = createClientRender();
 
   before(() => {
     classes = getClasses(<ImageListItemBar title="classes" />);
-    shallow = createShallow({ dive: true });
   });
 
   describeConformance(<ImageListItemBar title="conform?" />, () => ({
@@ -27,11 +26,101 @@ describe('<ImageListItemBar />', () => {
     author: 'jill111',
   };
 
-  describe('prop: title', () => {
-    it('should renders title', () => {
-      const wrapper = shallow(<ImageListItemBar title={itemData.title} />);
+  describe('props', () => {
+    describe('prop: title', () => {
+      it('should render a title', () => {
+        const { container } = render(<ImageListItemBar title={itemData.title} />);
 
-      expect(wrapper.children('div').text()).to.equal(itemData.title);
+        expect(container.querySelector('div')).to.have.text(itemData.title);
+      });
+    });
+
+    describe('prop: subtitle', () => {
+      it('should render a subtitle', () => {
+        const { container } = render(<ImageListItemBar subtitle={itemData.author} />);
+
+        expect(container.querySelector('div')).to.have.text(itemData.author);
+      });
+
+      it('should render with the rootSubtitle class', () => {
+        const { container } = render(<ImageListItemBar subtitle="subtitle" />);
+
+        expect(container.querySelector('div')).to.have.class(classes.root);
+        expect(container.querySelector('div')).to.have.class(classes.rootSubtitle);
+      });
+    });
+
+    describe('prop: position', () => {
+      describe('position="top"', () => {
+        it('should render the positionTop class', () => {
+          const { container } = render(<ImageListItemBar title="text" position="top" />);
+
+          expect(container.querySelector('div')).to.have.class(classes.root);
+          expect(container.querySelector('div')).to.have.class(classes.positionTop);
+        });
+      });
+
+      describe('position="below"', () => {
+        it('should render the positionBelow class', () => {
+          const { container } = render(<ImageListItemBar title="text" position="below" />);
+
+          expect(container.querySelector('div')).to.have.class(classes.root);
+          expect(container.querySelector('div')).to.have.class(classes.positionBelow);
+        });
+
+        it('should render the positionBelowSubtitle class', () => {
+          const { container } = render(
+            <ImageListItemBar title="text" subtitle="subtitle" position="below" />,
+          );
+
+          expect(container.querySelector('div')).to.have.class(classes.root);
+          expect(container.querySelector('div')).to.have.class(classes.positionBelowSubtitle);
+        });
+
+        it('should render a child div with the titleWrapBelow class', () => {
+          const { container } = render(<ImageListItemBar title="text" position="below" />);
+
+          expect(container.firstChild.querySelector('div')).to.have.class(classes.titleWrap);
+          expect(container.firstChild.querySelector('div')).to.have.class(classes.titleWrapBelow);
+        });
+      });
+    });
+
+    describe('prop: actionPosition', () => {
+      it('should render a child div with the titleWrapActionPosLeft class', () => {
+        const { container } = render(
+          <ImageListItemBar title="text" actionIcon={<div />} actionPosition="left" />,
+        );
+
+        expect(container.firstChild.querySelector('div')).to.have.class(classes.titleWrap);
+        expect(container.firstChild.querySelector('div')).to.have.class(
+          classes.titleWrapActionPosLeft,
+        );
+      });
+    });
+  });
+
+  describe('classes', () => {
+    it('should render with the root and positionBottom classes by default', () => {
+      const { container } = render(<ImageListItemBar title="text" />);
+
+      expect(container.querySelector('div')).to.have.class(classes.root);
+      expect(container.querySelector('div')).to.have.class(classes.positionBottom);
+    });
+
+    it('should render a child div with the titleWrap class by default', () => {
+      const { container } = render(<ImageListItemBar title="text" />);
+
+      expect(container.firstChild.querySelector('div')).to.have.class(classes.titleWrap);
+    });
+
+    it('should render a child div with the titleWrapActionPosRight class', () => {
+      const { container } = render(<ImageListItemBar title="text" actionIcon={<div />} />);
+
+      expect(container.firstChild.querySelector('div')).to.have.class(classes.titleWrap);
+      expect(container.firstChild.querySelector('div')).to.have.class(
+        classes.titleWrapActionPosRight,
+      );
     });
   });
 });

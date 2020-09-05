@@ -174,7 +174,7 @@ ImageListItemBar.propTypes = {
    */
   subtitle: PropTypes.node,
   /**
-   * Title to be displayed on item.
+   * Title to be displayed.
    */
   title: PropTypes.node,
 };

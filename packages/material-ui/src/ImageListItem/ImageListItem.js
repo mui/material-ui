@@ -11,7 +11,7 @@ export const styles = {
   root: {
     display: 'inline-block',
     position: 'relative',
-    lineHeight: 0, // Fix masonry item spacing
+    lineHeight: 0, // 🤷🏻‍♂️Fixes masonry item spacing
   },
   /* Styles applied to an `img` element to ensure it covers the item. */
   img: {
@@ -40,7 +40,7 @@ export const styles = {
 };
 
 const ImageListItem = React.forwardRef(function ImageListItem(props, ref) {
-  // cols rows default values are for docs only
+  // TODO: - Use jsdoc @default?: "cols rows default values are for docs only"
   const {
     children,
     classes,
@@ -130,12 +130,8 @@ ImageListItem.propTypes = {
    */
   component: PropTypes.elementType,
   /**
-<<<<<<< HEAD
-   * Height of the item in number of grid cells.
-   * @default 1
-=======
    * Height of the item in number of grid rows.
->>>>>>> Update demos
+   * @default 1
    */
   rows: PropTypes.number,
   /**

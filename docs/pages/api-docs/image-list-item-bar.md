@@ -33,7 +33,7 @@ The `MuiImageListItemBar` name can be used for providing [default props](/custom
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">position</span> | <span class="prop-type">'below'<br>&#124;&nbsp;'bottom'<br>&#124;&nbsp;'top'</span> | <span class="prop-default">'bottom'</span> | Position of the title bar. |
 | <span class="prop-name">subtitle</span> | <span class="prop-type">node</span> |  | String or element serving as subtitle (support text). |
-| <span class="prop-name">title</span> | <span class="prop-type">node</span> |  | Title to be displayed on item. |
+| <span class="prop-name">title</span> | <span class="prop-type">node</span> |  | Title to be displayed. |
 
 The `ref` is forwarded to the root element.
 

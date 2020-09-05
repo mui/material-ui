@@ -32,17 +32,17 @@ export interface ImageListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
     cols?: number;
     /**
      * The height of one row in px.
-     * Set to `'auto'` to let the children determine the height.
-     * @default 180
+     * @default 'auto'
      */
     rowHeight?: number | 'auto';
     /**
-     * Number of px for the spacing between items.
+     * The spacing between items in px.
      * @default 4
      */
     spacing?: number;
     /**
      * The variant to use.
+     * @default 'standard'
      */
     variant?: OverridableStringUnion<ImageListVariantDefaults, ImageListPropsVariantOverrides>;
   };

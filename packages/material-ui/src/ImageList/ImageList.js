@@ -105,12 +105,11 @@ ImageList.propTypes = {
   component: PropTypes.elementType,
   /**
    * The height of one row in px.
-   * Set to `'auto'` to let the children determine the height.
-   * @default 180
+   * @default 'auto'
    */
   rowHeight: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
   /**
-   * Number of px for the spacing between items.
+   * The spacing between items in px.
    * @default 4
    */
   spacing: PropTypes.number,
@@ -120,6 +119,7 @@ ImageList.propTypes = {
   style: PropTypes.object,
   /**
    * The variant to use.
+   * @default 'standard'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['masonry', 'quilted', 'standard', 'woven']),

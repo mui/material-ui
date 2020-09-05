@@ -56,7 +56,7 @@ export interface ImageListItemBarProps
    */
   subtitle?: React.ReactNode;
   /**
-   * Title to be displayed on item.
+   * Title to be displayed.
    */
   title?: React.ReactNode;
 }
