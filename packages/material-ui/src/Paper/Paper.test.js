@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender, getClasses, createMount, describeConformance } from 'test/utils';
-import * as PropTypes from 'prop-types';
 import Paper from './Paper';
 import { createMuiTheme, ThemeProvider } from '../styles';
 
@@ -83,20 +82,16 @@ describe('<Paper />', () => {
     expect(getByTestId('root')).to.have.class('custom-elevation');
   });
 
-  describe('warnings', () => {
-    beforeEach(() => {
-      PropTypes.resetWarningCache();
-    });
-
-    it('warns if the given `elevation` is not implemented in the theme', () => {
-      expect(() => {
-        PropTypes.checkPropTypes(
-          Paper.Naked.propTypes,
-          { classes: { elevation24: 'elevation-24', elevation26: 'elevation-26' }, elevation: 25 },
-          'prop',
-          'MockedPaper',
-        );
-      }).toErrorDev('Material-UI: This elevation `25` is not implemented.');
-    });
+  it('warns if the given `elevation` is not implemented in the theme', () => {
+    const theme = createMuiTheme();
+    expect(() => {
+      render(
+        <ThemeProvider theme={theme}>
+          <Paper elevation={26} />
+        </ThemeProvider>,
+      );
+    }).toWarnDev(
+      'Material-UI: The elevation provided <Paper elevation={26}> is not available in the theme.',
+    );
   });
 });
