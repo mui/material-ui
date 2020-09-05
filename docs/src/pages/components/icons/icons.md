@@ -138,7 +138,15 @@ import { ReactComponent as StarIcon } from './star.svg';
 <SvgIcon component={StarIcon} viewBox="0 0 600 476.6" />
 ```
 
-### Libraries
+### Font Awesome
+
+If you find that there are layout issues when using `FontAwesomeIcon` from `@fortawesome/react-fontawesome`, you may try passing the Font Awesome SVG data directly to `SvgIcon`. This is best implemented as a custom wrapper component but will render more reliably in Material UI components (e.g. an `IconButton`). Below is a comparison of the `FontAwesomeIcon` component and a wrapped `SvgIcon` component.
+
+{{"demo": "pages/components/icons/FontAwesomeSvgIconDemo.js"}}
+
+The `fullWidth` prop of `FontAwesomeIcon` can also be used to approximate the correct dimensions, but it isn't perfect.
+
+### Other Libraries
 
 #### Material Design (recommended)
 
