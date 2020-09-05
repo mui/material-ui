@@ -47,7 +47,7 @@ export default function FontAwesomeSvgIconDemo() {
     <Table>
       <TableHead>
         <TableRow>
-          <TableCell></TableCell>
+          <TableCell />
           <TableCell>FontAwesomeIcon</TableCell>
           <TableCell>Custom SvgIcon</TableCell>
         </TableRow>
