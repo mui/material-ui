@@ -144,9 +144,9 @@ import { useDemoData } from '@material-ui/x-grid-data-generator';
     `;
 
     expect(getDependencies(source, { codeLanguage: 'TS' })).to.deep.equal({
-      '@material-ui/core': 'next',
-      '@material-ui/lab': 'next',
-      '@material-ui/icons': 'next',
+      '@material-ui/core': 'latest',
+      '@material-ui/lab': 'latest',
+      '@material-ui/icons': 'latest',
       '@material-ui/data-grid': 'latest',
       '@material-ui/x-grid-data-generator': 'latest',
       '@types/react': 'latest',
