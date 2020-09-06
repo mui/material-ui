@@ -60,7 +60,7 @@ const Paper = React.forwardRef(function Paper(props, ref) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const theme = useTheme();
     if (theme.shadows[elevation] === undefined) {
-      console.warn(
+      console.error(
         [
           `Material-UI: The elevation provided <Paper elevation={${elevation}}> is not available in the theme.`,
           `Please make sure that \`theme.shadows[${elevation}]\` is defined.`,

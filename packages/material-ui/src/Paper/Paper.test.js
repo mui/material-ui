@@ -88,7 +88,7 @@ describe('<Paper />', () => {
   it('warns if the given `elevation` is not implemented in the theme', () => {
     expect(() => {
       render(<Paper elevation={25} />);
-    }).toWarnDev(
+    }).toErrorDev(
       'Material-UI: The elevation provided <Paper elevation={25}> is not available in the theme.',
     );
   });
