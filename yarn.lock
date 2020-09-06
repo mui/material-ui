@@ -14354,9 +14354,9 @@ rollup-plugin-size-snapshot@^0.12.0:
     webpack "^4.43.0"
 
 rollup-plugin-terser@^7.0.0:
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/rollup-plugin-terser/-/rollup-plugin-terser-7.0.1.tgz#df72d8272e03fcb504a76f414b9509c63c5eaf54"
-  integrity sha512-HL0dgzSxBYG/Ly9i/E5Sc+PuKKZ0zBzk11VmLCfdUtpqH4yYqkLclPkTqRy85FU9246yetImOClaQ/ufnj08vg==
+  version "7.0.2"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-terser/-/rollup-plugin-terser-7.0.2.tgz#e8fbba4869981b2dc35ae7e8a502d5c6c04d324d"
+  integrity sha512-w3iIaU4OxcF52UUXiZNsNeuXIMDvFrr+ZXK6bFZ0Q60qyVfq4uLptoS4bbq3paG3x216eQllFZX7zt6TIImguQ==
   dependencies:
     "@babel/code-frame" "^7.10.4"
     jest-worker "^26.2.1"
