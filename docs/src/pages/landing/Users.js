@@ -93,7 +93,7 @@ const useStyles = makeStyles(
       marginBottom: theme.spacing(4),
     },
     users: {
-      padding: theme.spacing(10, 4, 0),
+      padding: theme.spacing(10, 6, 0),
     },
     grid: {
       marginTop: theme.spacing(5),
