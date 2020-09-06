@@ -40,7 +40,7 @@ const useStyles = makeStyles({
  *   { etc... },
  * ];
  */
-export default function AdvancedImageList() {
+export default function CustomImageList() {
   const classes = useStyles();
 
   return (
