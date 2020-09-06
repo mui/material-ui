@@ -87,7 +87,7 @@ export const styles = (theme) => {
       userSelect: 'none',
       WebkitTapHighlightColor: 'transparent',
       cursor: 'pointer',
-      '&$focusVisible, &:hover': {
+      '&:hover, &$focusVisible': {
         backgroundColor: emphasize(backgroundColor, 0.08),
       },
       '&:active': {
