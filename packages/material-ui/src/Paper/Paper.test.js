@@ -83,13 +83,8 @@ describe('<Paper />', () => {
   });
 
   it('warns if the given `elevation` is not implemented in the theme', () => {
-    const theme = createMuiTheme();
     expect(() => {
-      render(
-        <ThemeProvider theme={theme}>
-          <Paper elevation={26} />
-        </ThemeProvider>,
-      );
+      render(<Paper elevation={26} />);
     }).toWarnDev(
       'Material-UI: The elevation provided <Paper elevation={26}> is not available in the theme.',
     );
