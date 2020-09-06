@@ -48,11 +48,11 @@ const ImageList = React.forwardRef(function ImageList(props, ref) {
   React.useEffect(() => {
     if (process.env.NODE_ENV !== 'production') {
       // Detect Internet Explorer 8+
-      if (window !== undefined && window.document.documentMode) {
+      if (document !== undefined && 'objectFit' in document.documentElement.style === false) {
         console.error(
           [
-            'Material-UI: ImageList v5+ no longer supports Internet Explorer.',
-            'Use v4 of this component instead.',
+            'Material-UI: ImageList v5+ no longer natively supports Internet Explorer.',
+            'Use v4 of this component instead, or polyfill CSS object-fit.',
           ].join('\n'),
         );
       }
