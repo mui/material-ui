@@ -8,7 +8,7 @@ import {
   act,
   createClientRender,
   fireEvent,
-  dispatchFocusVisible,
+  focusVisible,
   simulatePointerDevice,
 } from 'test/utils';
 import CheckBox from '../internal/svg-icons/CheckBox';
@@ -548,7 +548,7 @@ describe('<Chip />', () => {
       expect(chip).not.to.have.class(classes.focusVisible);
       chip.focus();
       expect(chip).not.to.have.class(classes.focusVisible);
-      dispatchFocusVisible(chip);
+      focusVisible(chip);
 
       expect(chip).to.have.class(classes.focusVisible);
     });
@@ -558,7 +558,7 @@ describe('<Chip />', () => {
       const chip = container.querySelector(`.${classes.root}`);
 
       simulatePointerDevice();
-      dispatchFocusVisible(chip);
+      focusVisible(chip);
 
       expect(chip).to.have.class(classes.focusVisible);
 

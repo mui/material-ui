@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { createClientRender, dispatchFocusVisible, simulatePointerDevice } from 'test/utils';
+import { createClientRender, focusVisible, simulatePointerDevice } from 'test/utils';
 import useIsFocusVisible, { teardown as teardownFocusVisible } from './useIsFocusVisible';
 import useForkRef from './useForkRef';
 
@@ -15,19 +15,19 @@ const SimpleButton = React.forwardRef(function SimpleButton(props, ref) {
 
   const handleRef = useForkRef(focusVisibleRef, ref);
 
-  const [focusVisible, setFocusVisible] = React.useState(false);
+  const [isFocusVisible, setIsFocusVisible] = React.useState(false);
 
   const handleBlur = (event) => {
     handleBlurVisible(event);
     if (isFocusVisibleRef.current === false) {
-      setFocusVisible(false);
+      setIsFocusVisible(false);
     }
   };
 
   const handleFocus = (event) => {
     handleFocusVisible(event);
     if (isFocusVisibleRef.current === true) {
-      setFocusVisible(true);
+      setIsFocusVisible(true);
     }
   };
 
@@ -36,7 +36,7 @@ const SimpleButton = React.forwardRef(function SimpleButton(props, ref) {
       type="button"
       {...props}
       ref={handleRef}
-      className={focusVisible ? 'focus-visible' : null}
+      className={isFocusVisible ? 'focus-visible' : null}
       onBlur={handleBlur}
       onFocus={handleFocus}
     />
@@ -97,7 +97,7 @@ describe('focus-visible polyfill', () => {
       expect(button.classList.contains('focus-visible')).to.equal(false);
 
       button.blur();
-      dispatchFocusVisible(button);
+      focusVisible(button);
 
       expect(button.classList.contains('focus-visible')).to.equal(true);
     });

@@ -10,7 +10,7 @@ import {
   fireEvent,
   screen,
   simulatePointerDevice,
-  dispatchFocusVisible,
+  focusVisible,
 } from 'test/utils';
 import { camelCase } from 'lodash/string';
 import Tooltip, { testReset } from './Tooltip';
@@ -367,7 +367,7 @@ describe('<Tooltip />', () => {
       );
       simulatePointerDevice();
 
-      dispatchFocusVisible(getByRole('button'));
+      focusVisible(getByRole('button'));
       expect(queryByRole('tooltip')).to.equal(null);
 
       act(() => {
@@ -396,7 +396,7 @@ describe('<Tooltip />', () => {
         </Tooltip>,
       );
       const children = getByRole('button');
-      dispatchFocusVisible(children);
+      focusVisible(children);
 
       expect(queryByRole('tooltip')).to.equal(null);
 
@@ -418,7 +418,7 @@ describe('<Tooltip />', () => {
 
       expect(queryByRole('tooltip')).to.equal(null);
 
-      dispatchFocusVisible(children);
+      focusVisible(children);
       // Bypass `enterDelay` wait, use `enterNextDelay`.
       expect(queryByRole('tooltip')).to.equal(null);
 
@@ -451,7 +451,7 @@ describe('<Tooltip />', () => {
       );
       simulatePointerDevice();
 
-      dispatchFocusVisible(getByRole('button'));
+      focusVisible(getByRole('button'));
       act(() => {
         clock.tick(enterDelay);
       });
@@ -750,7 +750,7 @@ describe('<Tooltip />', () => {
 
       expect(queryByRole('tooltip')).to.equal(null);
 
-      dispatchFocusVisible(getByRole('button'));
+      focusVisible(getByRole('button'));
 
       expect(getByRole('tooltip')).toBeVisible();
 
