@@ -13771,14 +13771,15 @@ recast@^0.18.1:
     source-map "~0.6.1"
 
 recast@^0.20.2:
-  version "0.20.2"
-  resolved "https://registry.yarnpkg.com/recast/-/recast-0.20.2.tgz#0152546463334533ce7d6d17e3cebc9e8f83ba9b"
-  integrity sha512-awmBZTpZ4465cZPTBF9bmd/GNF2p7EMBVXxbWfwWAm44PuLMu2p68DSW+a3c0iacdATt2HZCR9gHp2b8d+7Rog==
+  version "0.20.3"
+  resolved "https://registry.yarnpkg.com/recast/-/recast-0.20.3.tgz#ac9387e4a59e5c8caef9057a35e306646287a7ef"
+  integrity sha512-jrEPzRV5B7wfRiN0UYMtjgIx1Hp8MRHdLcMYqMNd0DoOe1CB5JmPL/04I7WPuuApCs7LCSisYK/FfKnPEaJrzw==
   dependencies:
     ast-types "0.14.1"
     esprima "~4.0.0"
     private "^0.1.8"
     source-map "~0.6.1"
+    tslib "^2.0.1"
 
 recharts-scale@^0.4.2:
   version "0.4.2"
