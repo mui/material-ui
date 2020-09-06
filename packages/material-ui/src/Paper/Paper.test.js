@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender, getClasses, createMount, describeConformance } from 'test/utils';
-import * as PropTypes from 'prop-types';
 import Paper from './Paper';
 import { createMuiTheme, ThemeProvider } from '../styles';
 
@@ -73,6 +72,9 @@ describe('<Paper />', () => {
 
   it('allows custom elevations via theme.shadows', () => {
     const theme = createMuiTheme();
+    // Theme.shadows holds a reference to `@material-ui/core/styles#shadows`
+    // Mutating it causes side effects in other tests
+    theme.shadows = theme.shadows.slice();
     theme.shadows.push('20px 20px');
     const { getByTestId } = render(
       <ThemeProvider theme={theme}>
@@ -83,20 +85,11 @@ describe('<Paper />', () => {
     expect(getByTestId('root')).to.have.class('custom-elevation');
   });
 
-  describe('warnings', () => {
-    beforeEach(() => {
-      PropTypes.resetWarningCache();
-    });
-
-    it('warns if the given `elevation` is not implemented in the theme', () => {
-      expect(() => {
-        PropTypes.checkPropTypes(
-          Paper.Naked.propTypes,
-          { classes: { elevation24: 'elevation-24', elevation26: 'elevation-26' }, elevation: 25 },
-          'prop',
-          'MockedPaper',
-        );
-      }).toErrorDev('Material-UI: This elevation `25` is not implemented.');
-    });
+  it('warns if the given `elevation` is not implemented in the theme', () => {
+    expect(() => {
+      render(<Paper elevation={25} />);
+    }).toErrorDev(
+      'Material-UI: The elevation provided <Paper elevation={25}> is not available in the theme.',
+    );
   });
 });
