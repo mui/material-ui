@@ -93,7 +93,7 @@
     "cross-env": "^7.0.0",
     "danger": "^10.0.0",
     "dom-accessibility-api": "^0.5.0",
-    "dtslint": "^3.2.0",
+    "dtslint": "^4.0.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "eslint": "^7.4.0",

@@ -6551,10 +6551,10 @@ dts-critic@latest:
     tmp "^0.2.1"
     yargs "^12.0.5"
 
-dtslint@^3.2.0:
-  version "3.7.0"
-  resolved "https://registry.yarnpkg.com/dtslint/-/dtslint-3.7.0.tgz#efcacd4cb9ff20848a0327fbad36ac5033ebeb70"
-  integrity sha512-kVFV+zI2zwCUuwjLl2XVuIoSeLIqba6SmFlBKicwrlk1v0If+x6/cNm7UljSsqN5fJM/K2JJfd9NPPDVBXjjuA==
+dtslint@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/dtslint/-/dtslint-4.0.0.tgz#064ecc82316015577ea139c4470f0455a5cbcd11"
+  integrity sha512-CFtRC9Fen0rHov1amucdjQ7p9WPfL8q0mXd7Bz36vVdS5Ru/9q2EHVz9BloJYsTQOFsEZCqKj8JlH2jNa91OlQ==
   dependencies:
     "@definitelytyped/header-parser" latest
     "@definitelytyped/typescript-versions" latest
