@@ -148,12 +148,7 @@ export function createClientRender(globalOptions = {}) {
       throw error;
     }
 
-    // act to flush effect cleanup functions
-    // state updates during this phase are safe
-    // TODO: Revisit once https://github.com/testing-library/react-testing-library/pull/768 is resolved.
-    await act(async () => {
-      await cleanup();
-    });
+    cleanup();
   });
 
   return function configuredClientRender(element, options = {}) {
