@@ -17,18 +17,6 @@ export interface Duration {
 }
 export const duration: Duration;
 
-export function formatMs(milliseconds: number): string;
-
-export interface Transitions {
-  easing: Easing;
-  duration: Duration;
-  create(
-    props: string | string[],
-    options?: Partial<{ duration: number | string; easing: string; delay: number | string }>
-  ): string;
-  getAutoHeightDuration(height: number): number;
-}
-
 export interface TransitionsOptions {
   easing?: Partial<Easing>;
   duration?: Partial<Duration>;
@@ -39,7 +27,27 @@ export interface TransitionsOptions {
   getAutoHeightDuration?: (height: number) => number;
 }
 
-// export type TransitionsOptions = DeepPartial<Transitions>;
+/**
+ * @private
+ *
+ * @param props
+ * @param options
+ */
+export function create(
+  props: string | string[],
+  options?: Partial<{ duration: number | string; easing: string; delay: number | string }>
+): string;
 
-declare const transitions: Transitions;
-export default transitions;
+/**
+ * @private
+ *
+ * @param height
+ */
+export function getAutoHeightDuration(height: number): number;
+
+export interface Transitions {
+  easing: Easing;
+  duration: Duration;
+  create: typeof create;
+  getAutoHeightDuration: typeof getAutoHeightDuration;
+}

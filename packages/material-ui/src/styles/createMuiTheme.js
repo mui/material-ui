@@ -6,7 +6,7 @@ import createTypography from './createTypography';
 import shadows from './shadows';
 import shape from './shape';
 import createSpacing from './createSpacing';
-import transitions from './transitions';
+import { duration, easing, create, getAutoHeightDuration } from './transitions';
 import zIndex from './zIndex';
 
 function createMuiTheme(options = {}, ...args) {
@@ -34,7 +34,7 @@ function createMuiTheme(options = {}, ...args) {
       typography: createTypography(palette, typographyInput),
       spacing,
       shape,
-      transitions,
+      transitions: { duration, easing, create, getAutoHeightDuration },
       zIndex,
     },
     other,
