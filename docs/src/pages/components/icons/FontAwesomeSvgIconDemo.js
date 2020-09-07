@@ -1,20 +1,14 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons/faEllipsisV';
 import { faInfo } from '@fortawesome/free-solid-svg-icons/faInfo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import SvgIcon from '@material-ui/core/SvgIcon';
 
-type FontAwesomeSvgIconProps = {
-  icon: any;
-};
-
-const FontAwesomeSvgIcon = React.forwardRef<
-  SVGSVGElement,
-  FontAwesomeSvgIconProps
->((props, ref) => {
+const FontAwesomeSvgIcon = React.forwardRef((props, ref) => {
   const { icon } = props;
 
   const {
@@ -33,7 +27,7 @@ const FontAwesomeSvgIcon = React.forwardRef<
          *
          * @see https://fontawesome.com/how-to-use/on-the-web/styling/duotone-icons#changing-opacity
          */
-        svgPathData.map((d: string, i: number) => (
+        svgPathData.map((d, i) => (
           <path style={{ opacity: i === 0 ? 0.4 : 1 }} d={d} />
         ))
       )}
@@ -41,15 +35,17 @@ const FontAwesomeSvgIcon = React.forwardRef<
   );
 });
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      '& > *': {
-        margin: theme.spacing(1),
-      },
+FontAwesomeSvgIcon.propTypes = {
+  icon: PropTypes.any.isRequired,
+};
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
     },
-  }),
-);
+  },
+}));
 
 export default function FontAwesomeSvgIconDemo() {
   const classes = useStyles();
