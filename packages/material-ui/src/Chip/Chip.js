@@ -338,7 +338,11 @@ const Chip = React.forwardRef(function Chip(props, ref) {
   const Component = ComponentProp || (clickable || onDelete ? ButtonBase : 'div');
   const moreProps =
     Component === ButtonBase
-      ? { component: 'div', focusVisibleClassName: classes.focusVisible }
+      ? {
+          component: 'div',
+          focusVisibleClassName: classes.focusVisible,
+          disableRipple: Boolean(onDelete),
+        }
       : {};
 
   let deleteIcon = null;
@@ -425,7 +429,6 @@ const Chip = React.forwardRef(function Chip(props, ref) {
         themeVariantsClasses,
         className,
       )}
-      disableRipple={Boolean(onDelete)}
       disabled={clickable && disabled ? true : undefined}
       onClick={onClick}
       onKeyDown={handleKeyDown}
