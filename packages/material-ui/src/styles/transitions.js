@@ -32,14 +32,6 @@ function formatMs(milliseconds) {
   return `${Math.round(milliseconds)}ms`;
 }
 
-/**
- * @param {string|Array} [props]
- * @param {object} [options]
- * @param {string} options.prop
- * @param {number} options.duration
- * @param {string} options.easing
- * @param {number} options.delay
- */
 export function create(props = ['all'], options = {}) {
   const {
     duration: durationOption = duration.standard,
