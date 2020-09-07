@@ -264,23 +264,13 @@ export type SliderProps<
   P = {}
 > = OverrideProps<SliderTypeMap<P, D>, D>;
 
-type SliderRootProps = Omit<SliderProps, 'components' | 'componentsProps'>;
-type SliderMarkProps = SliderRootProps & {
-  markActive?: boolean;
-};
-type SliderMarkLabelProps = SliderRootProps & {
-  markLabelActive?: boolean;
-};
-type SliderRailProps = SliderRootProps;
-type SliderTrackProps = SliderRootProps;
-type SliderThumbProps = SliderRootProps & {
-  active?: boolean;
-  focusVisible?: boolean;
-};
-type SliderValueLabel = SliderRootProps & {
-  index?: number;
-  open?: boolean;
-};
+type SliderRootProps = NonNullable<SliderProps["componentsProps"]>["root"];
+type SliderMarkProps = NonNullable<SliderProps["componentsProps"]>["mark"];
+type SliderMarkLabelProps = NonNullable<SliderProps["componentsProps"]>["markLabel"];
+type SliderRailProps = NonNullable<SliderProps["componentsProps"]>["rail"];
+type SliderTrackProps = NonNullable<SliderProps["componentsProps"]>["track"];
+type SliderThumbProps = NonNullable<SliderProps["componentsProps"]>["thumb"];
+type SliderValueLabel = NonNullable<SliderProps["componentsProps"]>["valueLabel"];
 
 export const SliderRoot: React.FC<SliderRootProps>;
 export const SliderMark: React.FC<SliderMarkProps>;
