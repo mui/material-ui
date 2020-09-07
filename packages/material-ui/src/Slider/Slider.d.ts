@@ -96,22 +96,30 @@ export interface SliderTypeMap<P = {}, D extends React.ElementType = 'span'> {
      * The props used for each slot inside the Slider.
      */
     componentsProps?: {
-      root?: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
-      track?: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
-      rail?: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
-      thumb?: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'> & {
-        active?: boolean;
-        focusVisible?: boolean;
+      root?: { state: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'> };
+      track?: { state: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'> };
+      rail?: { state: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'> };
+      thumb?: {
+        state: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'> & {
+          active?: boolean;
+          focusVisible?: boolean;
+        };
       };
-      mark?: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'> & {
-        markActive?: boolean;
+      mark?: {
+        state: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'> & {
+          markActive?: boolean;
+        };
       };
-      markLabel?: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'> & {
-        markLabelActive?: boolean;
+      markLabel?: {
+        state: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'> & {
+          markLabelActive?: boolean;
+        };
       };
-      valueLabel?: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'> & {
-        index?: number;
-        open?: boolean;
+      valueLabel?: {
+        state: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'> & {
+          index?: number;
+          open?: boolean;
+        };
       };
     };
     /**
@@ -264,13 +272,13 @@ export type SliderProps<
   P = {}
 > = OverrideProps<SliderTypeMap<P, D>, D>;
 
-type SliderRootProps = NonNullable<SliderProps["componentsProps"]>["root"];
-type SliderMarkProps = NonNullable<SliderProps["componentsProps"]>["mark"];
-type SliderMarkLabelProps = NonNullable<SliderProps["componentsProps"]>["markLabel"];
-type SliderRailProps = NonNullable<SliderProps["componentsProps"]>["rail"];
-type SliderTrackProps = NonNullable<SliderProps["componentsProps"]>["track"];
-type SliderThumbProps = NonNullable<SliderProps["componentsProps"]>["thumb"];
-type SliderValueLabel = NonNullable<SliderProps["componentsProps"]>["valueLabel"];
+type SliderRootProps = NonNullable<SliderProps['componentsProps']>['root'];
+type SliderMarkProps = NonNullable<SliderProps['componentsProps']>['mark'];
+type SliderMarkLabelProps = NonNullable<SliderProps['componentsProps']>['markLabel'];
+type SliderRailProps = NonNullable<SliderProps['componentsProps']>['rail'];
+type SliderTrackProps = NonNullable<SliderProps['componentsProps']>['track'];
+type SliderThumbProps = NonNullable<SliderProps['componentsProps']>['thumb'];
+type SliderValueLabel = NonNullable<SliderProps['componentsProps']>['valueLabel'];
 
 export const SliderRoot: React.FC<SliderRootProps>;
 export const SliderMark: React.FC<SliderMarkProps>;

@@ -58,12 +58,12 @@ const marks = [
 ];
 
 const iosComponents = {
-  root: styled(SliderRoot)({
+  Root: styled(SliderRoot)({
     color: '#3880ff',
     height: 2,
     padding: '15px 0',
   }),
-  thumb: styled(SliderThumb)((props) => ({
+  Thumb: styled(SliderThumb)({
     height: 28,
     width: 28,
     backgroundColor: '#fff',
@@ -79,8 +79,8 @@ const iosComponents = {
         boxShadow: iOSBoxShadow,
       },
     },
-  })),
-  valueLabel: styled(SliderValueLabel)({
+  }),
+  ValueLabel: styled(SliderValueLabel)({
     left: 'calc(-50% + 12px)',
     top: -22,
     '& *': {
@@ -88,21 +88,21 @@ const iosComponents = {
       color: '#000',
     },
   }),
-  track: styled(SliderTrack)({
+  Track: styled(SliderTrack)({
     height: 2,
   }),
-  rail: styled(SliderRail)({
+  Rail: styled(SliderRail)({
     height: 2,
     opacity: 0.5,
     backgroundColor: '#bfbfbf',
   }),
-  mark: styled(SliderMark)((props) => ({
+  Mark: styled(SliderMark)((props) => ({
     // @ts-ignore
     backgroundColor: '#bfbfbf',
     height: 8,
     width: 1,
     marginTop: -3,
-    ...(props.markActive && {
+    ...(props.state.markActive && {
       opacity: 1,
       backgroundColor: 'currentColor',
     }),
@@ -110,11 +110,11 @@ const iosComponents = {
 };
 
 const prettoComponents = {
-  root: styled(SliderRoot)({
+  Root: styled(SliderRoot)({
     color: '#52af77',
     height: 8,
   }),
-  thumb: styled(SliderThumb)((props) => ({
+  Thumb: styled(SliderThumb)({
     height: 24,
     width: 24,
     backgroundColor: '#fff',
@@ -124,27 +124,27 @@ const prettoComponents = {
     '&:focus, &:hover, &.Mui-active': {
       boxShadow: 'inherit',
     },
-  })),
-  valueLabel: styled(SliderValueLabel)({
+  }),
+  ValueLabel: styled(SliderValueLabel)({
     left: 'calc(-50% + 4px)',
   }),
-  track: styled(SliderTrack)({
+  Track: styled(SliderTrack)({
     height: 8,
     borderRadius: 4,
   }),
-  rail: styled(SliderRail)({
+  Rail: styled(SliderRail)({
     height: 8,
     borderRadius: 4,
   }),
 };
 
 const airbnbComponents = {
-  root: styled(SliderRoot)({
+  Root: styled(SliderRoot)({
     color: '#3a8589',
     height: 3,
     padding: '13px 0',
   }),
-  thumb: styled(SliderThumb)((props) => ({
+  Thumb: styled(SliderThumb)({
     height: 27,
     width: 27,
     backgroundColor: '#fff',
@@ -164,11 +164,11 @@ const airbnbComponents = {
       marginLeft: 1,
       marginRight: 1,
     },
-  })),
-  track: styled(SliderTrack)({
+  }),
+  Track: styled(SliderTrack)({
     height: 3,
   }),
-  rail: styled(SliderRail)({
+  Rail: styled(SliderRail)({
     color: '#d8d8d8',
     opacity: 1,
     height: 3,
@@ -213,7 +213,7 @@ export default function CustomizedSlider() {
         <Typography gutterBottom>Tooltip value label</Typography>
         <Slider
           components={{
-            valueLabel: ValueLabelComponent,
+            ValueLabel: ValueLabelComponent,
           }}
           aria-label="custom thumb label"
           defaultValue={20}
@@ -227,7 +227,6 @@ export default function CustomizedSlider() {
               as: AirbnbThumbComponent,
             },
           }}
-          ThumbComponent={AirbnbThumbComponent}
           getAriaLabel={(index) =>
             index === 0 ? 'Minimum price' : 'Maximum price'
           }

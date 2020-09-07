@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { css, cx } from 'emotion';
 import styled from '@emotion/styled';
-import isPropValid from '@emotion/is-prop-valid';
 import { getThemeProps, useThemeVariants, propsToClassKey } from '@material-ui/styles';
 import useTheme from '../styles/useTheme';
 import { fade, lighten, darken } from '../styles/colorManipulator';
@@ -10,12 +9,7 @@ import SliderBase from './SliderBase';
 import ValueLabel from './ValueLabel';
 import defaultTheme from '../styles/defaultTheme';
 
-const shouldForwardProp = (prop) =>
-  isPropValid(prop) &&
-  prop !== 'color' &&
-  prop !== 'scale' &&
-  prop !== 'orientation' &&
-  prop !== 'disabled';
+const shouldForwardProp = (prop) => prop !== 'state' && prop != 'as';
 
 export const SliderRoot = styled('span', { shouldForwardProp })((props) => {
   return {
@@ -29,7 +23,7 @@ export const SliderRoot = styled('span', { shouldForwardProp })((props) => {
     touchAction: 'none',
     color: props.theme.palette.primary.main,
     WebkitTapHighlightColor: 'transparent',
-    ...(props.color === 'secondary' && {
+    ...(props.state.color === 'secondary' && {
       color: props.theme.palette.secondary.main,
     }),
     '&.Mui-disabled': {
@@ -37,7 +31,7 @@ export const SliderRoot = styled('span', { shouldForwardProp })((props) => {
       cursor: 'default',
       color: props.theme.palette.grey[400],
     },
-    ...(props.orientation === 'vertical' && {
+    ...(props.state.orientation === 'vertical' && {
       width: 2,
       height: '100%',
       padding: '0 13px',
@@ -46,16 +40,16 @@ export const SliderRoot = styled('span', { shouldForwardProp })((props) => {
     '@media (pointer: coarse)': {
       // Reach 42px touch target, about ~8mm on screen.
       padding: '20px 0',
-      ...(props.orientation === 'vertical' && {
+      ...(props.state.orientation === 'vertical' && {
         padding: '0 20px',
       }),
     },
     '@media print': {
       colorAdjust: 'exact',
     },
-    ...(props.marked && {
+    ...(props.state.marked && {
       marginBottom: 20,
-      ...(props.orientation === 'vertical' && {
+      ...(props.state.orientation === 'vertical' && {
         marginBottom: 'auto',
         marginRight: 20,
       }),
@@ -71,11 +65,11 @@ export const SliderRail = styled('span', { shouldForwardProp })((props) => ({
   borderRadius: 1,
   backgroundColor: 'currentColor',
   opacity: 0.38,
-  ...(props.orientation === 'vertical' && {
+  ...(props.state.orientation === 'vertical' && {
     height: '100%',
     width: 2,
   }),
-  ...(props.track === 'inverted' && {
+  ...(props.state.track === 'inverted' && {
     opacity: 1,
   }),
 }));
@@ -86,13 +80,13 @@ export const SliderTrack = styled('span', { shouldForwardProp })((props) => ({
   height: 2,
   borderRadius: 1,
   backgroundColor: 'currentColor',
-  ...(props.orientation === 'vertical' && {
+  ...(props.state.orientation === 'vertical' && {
     width: 2,
   }),
-  ...(props.track === false && {
+  ...(props.state.track === false && {
     display: 'none',
   }),
-  ...(props.track === 'inverted' && {
+  ...(props.state.track === 'inverted' && {
     backgroundColor:
       // Same logic as the LinearProgress track color
       props.theme.palette.type === 'light'
@@ -151,17 +145,17 @@ export const SliderThumb = styled('span', { shouldForwardProp })((props) => ({
       boxShadow: 'none',
     },
   },
-  ...(props.orientation === 'vertical' && {
+  ...(props.state.orientation === 'vertical' && {
     marginLeft: -5,
     marginBottom: -6,
   }),
-  ...(props.orientation === 'vertical' && {
+  ...(props.state.orientation === 'vertical' && {
     '&.Mui-disabled': {
       marginLeft: -3,
       marginBottom: -4,
     },
   }),
-  ...(props.color === 'secondary' && {
+  ...(props.state.color === 'secondary' && {
     ':hover': {
       boxShadow: `0px 0px 0px 8px ${fade(props.theme.palette.secondary.main, 0.16)}`,
     },
@@ -185,7 +179,7 @@ export const SliderMark = styled('span', { shouldForwardProp })((props) => ({
   height: 2,
   borderRadius: 1,
   backgroundColor: 'currentColor',
-  ...(props.markActive && {
+  ...(props.state.markActive && {
     backgroundColor: props.theme.palette.background.paper,
     opacity: 0.8,
   }),
@@ -198,18 +192,18 @@ export const SliderMarkLabel = styled('span', { shouldForwardProp })((props) => 
   top: 26,
   transform: 'translateX(-50%)',
   whiteSpace: 'nowrap',
-  ...(props.orientation === 'vertical' && {
+  ...(props.state.orientation === 'vertical' && {
     top: 'auto',
     left: 26,
     transform: 'translateY(50%)',
   }),
   '@media (pointer: coarse)': {
     top: 40,
-    ...(props.orientation === 'vertical' && {
+    ...(props.state.orientation === 'vertical' && {
       left: 31,
     }),
   },
-  ...(props.markLabelActive && {
+  ...(props.state.markLabelActive && {
     color: props.theme.palette.text.primary,
   }),
 }));

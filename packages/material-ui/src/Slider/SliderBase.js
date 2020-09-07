@@ -170,6 +170,8 @@ const useSliderClasses = (props) => {
   return utilityClasses;
 };
 
+const isTag = (element) => typeof element === 'string';
+
 const Slider = React.forwardRef(function Slider(props, ref) {
   const {
     'aria-label': ariaLabel,
@@ -575,7 +577,6 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   // consider extracting to hook an reusing the lint rule for the varints
   const stateAndProps = {
     ...props,
-    classes: undefined, // we do not want to override other components classes
     color,
     disabled,
     max,
@@ -587,31 +588,34 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     valueLabelDisplay,
     valueLabelFormat,
     isRtl,
+    marked: marks.length > 0 && marks.some((mark) => mark.label),
   };
 
   const utilityClasses = useSliderClasses({
     ...stateAndProps,
     classes,
-    marked: marks.length > 0 && marks.some((mark) => mark.label),
   });
 
   return (
     <Root
       ref={handleRef}
       onMouseDown={handleMouseDown}
-      marked={marks.length > 0 && marks.some((mark) => mark.label)}
-      {...stateAndProps}
+      state={!isTag(Root) ? stateAndProps : undefined}
+      theme={!isTag(Root) ? props.theme : undefined}
       {...rootProps}
+      {...other}
       className={clsx(utilityClasses.root, rootProps.className, className)}
     >
       <Rail
-        {...stateAndProps}
         {...railProps}
+        state={!isTag(Rail) ? stateAndProps : undefined}
+        theme={!isTag(Rail) ? props.theme : undefined}
         className={clsx(utilityClasses.rail, railProps.className)}
       />
       <Track
-        {...stateAndProps}
         {...trackProps}
+        state={!isTag(Track) ? stateAndProps : undefined}
+        theme={!isTag(Track) ? props.theme : undefined}
         className={clsx(utilityClasses.track, trackProps.className)}
         style={{ ...trackStyle, ...trackProps.style }}
       />
@@ -639,25 +643,27 @@ const Slider = React.forwardRef(function Slider(props, ref) {
           <React.Fragment key={mark.value}>
             <Mark
               data-index={index}
-              {...stateAndProps}
               {...markProps}
               style={{ ...style, ...markProps.style }}
               className={clsx(utilityClasses.mark, markProps.className, {
                 [getUtilityClass('markActive')]: markActive,
               })}
-              markActive={markActive}
+              state={!isTag(Mark) ? { ...stateAndProps, markActive } : undefined}
+              theme={!isTag(Mark) ? props.theme : undefined}
             />
             {mark.label != null ? (
               <MarkLabel
                 aria-hidden
                 data-index={index}
-                {...stateAndProps}
                 {...markLabelProps}
                 style={{ ...style, ...markLabelProps.style }}
                 className={clsx(utilityClasses.markLabel, markLabelProps.className, {
                   [getUtilityClass('markLabelActive')]: markActive,
                 })}
-                markLabelActive={markActive}
+                state={
+                  !isTag(MarkLabel) ? { ...stateAndProps, markLabelActive: markActive } : undefined
+                }
+                theme={!isTag(MarkLabel) ? props.theme : undefined}
               >
                 {mark.label}
               </MarkLabel>
@@ -682,19 +688,27 @@ const Slider = React.forwardRef(function Slider(props, ref) {
             index={index}
             open={open === index || active === index || valueLabelDisplay === 'on'}
             disabled={disabled}
-            {...stateAndProps}
             {...valueLabelProps}
+            state={!isTag(ValueLabel) ? stateAndProps : undefined}
+            theme={!isTag(ValueLabel) ? props.theme : undefined}
             className={clsx(utilityClasses.valueLabel, valueLabelProps.className)}
           >
             <Thumb
-              {...stateAndProps}
               {...thumbProps}
+              state={
+                !isTag(Thumb)
+                  ? {
+                      ...stateAndProps,
+                      active: active === index,
+                      focusVisible: focusVisible === index,
+                    }
+                  : undefined
+              }
+              theme={!isTag(Thumb) ? props.theme : undefined}
               className={clsx(utilityClasses.thumb, thumbProps.className, {
                 ['Mui-active']: active === index,
                 ['Mui-focusVisible']: focusVisible === index,
               })}
-              active={active === index}
-              focusVisible={focusVisible === index}
               tabIndex={disabled ? null : 0}
               role="slider"
               style={{ ...style, ...thumbProps.style }}
