@@ -92,7 +92,7 @@ const ImageListItem = React.forwardRef(function ImageListItem(props, ref) {
 
         if (child.type === 'img' || isMuiElement(child, ['Image'])) {
           return React.cloneElement(child, {
-            className: classes.img,
+            className: clsx(classes.img, child.props.className),
           });
         }
 

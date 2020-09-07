@@ -33,7 +33,7 @@ export interface ImageListItemTypeMap<P = {}, D extends React.ElementType = 'li'
  */
 declare const ImageListItem: OverridableComponent<ImageListItemTypeMap>;
 
-export type ImageListItemClassKey = 'root' | 'item' | 'imgFullHeight' | 'imgFullWidth';
+export type ImageListItemClassKey = keyof NonNullable<ImageListItemProps['classes']>;
 
 export type ImageListItemProps<
   D extends React.ElementType = ImageListItemTypeMap['defaultComponent'],
