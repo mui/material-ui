@@ -408,7 +408,6 @@ const Chip = React.forwardRef(function Chip(props, ref) {
 
   return (
     <Component
-      role={clickable || onDelete ? 'button' : undefined}
       className={clsx(
         classes.root,
         classes[variant],
@@ -426,9 +425,8 @@ const Chip = React.forwardRef(function Chip(props, ref) {
         themeVariantsClasses,
         className,
       )}
-      aria-disabled={!clickable && disabled ? true : undefined}
+      disableRipple={Boolean(onDelete)}
       disabled={clickable && disabled ? true : undefined}
-      tabIndex={clickable || onDelete ? 0 : undefined}
       onClick={onClick}
       onKeyDown={handleKeyDown}
       onKeyUp={handleKeyUp}
