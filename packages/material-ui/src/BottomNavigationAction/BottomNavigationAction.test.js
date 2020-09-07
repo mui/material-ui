@@ -8,7 +8,6 @@ import {
   createClientRender,
   within,
   fireEvent,
-  act,
 } from 'test/utils';
 import ButtonBase from '../ButtonBase';
 import BottomNavigationAction from './BottomNavigationAction';
@@ -86,35 +85,31 @@ describe('<BottomNavigationAction />', () => {
   it('should fire onClick on touch tap', (done) => {
     const handleClick = spy();
 
-    // If disableTouchRipple is not applied, errors are thrown due to "code that updates TouchRiple is not wrapped in act()"
+    // Need disableTouchRipple to avoid ripple missing act (async setState after touchEnd)
     const { container } = render(
       <BottomNavigationAction onClick={handleClick} disableTouchRipple />,
     );
 
-    act(() => {
-      fireEvent.touchStart(container.firstChild, {
-        touches: [
-          new Touch({
-            identifier: 1,
-            target: container,
-            clientX: 42,
-            clientY: 42,
-          }),
-        ],
-      });
+    fireEvent.touchStart(container.firstChild, {
+      touches: [
+        new Touch({
+          identifier: 1,
+          target: container,
+          clientX: 42,
+          clientY: 42,
+        }),
+      ],
     });
 
-    act(() => {
-      fireEvent.touchEnd(container.firstChild, {
-        changedTouches: [
-          new Touch({
-            identifier: 1,
-            target: container,
-            clientX: 42,
-            clientY: 42,
-          }),
-        ],
-      });
+    fireEvent.touchEnd(container.firstChild, {
+      changedTouches: [
+        new Touch({
+          identifier: 1,
+          target: container,
+          clientX: 42,
+          clientY: 42,
+        }),
+      ],
     });
 
     setTimeout(() => {
@@ -126,40 +121,34 @@ describe('<BottomNavigationAction />', () => {
   it('should not fire onClick twice on touch tap', (done) => {
     const handleClick = spy();
 
-    // If disableTouchRipple is not applied, errors are thrown due to "code that updates TouchRiple is not wrapped in act()"
+    // Need disableTouchRipple to avoid ripple missing act (async setState after touchEnd)
     const { getByRole, container } = render(
       <BottomNavigationAction onClick={handleClick} disableTouchRipple />,
     );
 
-    act(() => {
-      fireEvent.touchStart(container.firstChild, {
-        touches: [
-          new Touch({
-            identifier: 1,
-            target: container,
-            clientX: 42,
-            clientY: 42,
-          }),
-        ],
-      });
+    fireEvent.touchStart(container.firstChild, {
+      touches: [
+        new Touch({
+          identifier: 1,
+          target: container,
+          clientX: 42,
+          clientY: 42,
+        }),
+      ],
     });
 
-    act(() => {
-      fireEvent.touchEnd(container.firstChild, {
-        changedTouches: [
-          new Touch({
-            identifier: 1,
-            target: container,
-            clientX: 42,
-            clientY: 42,
-          }),
-        ],
-      });
+    fireEvent.touchEnd(container.firstChild, {
+      changedTouches: [
+        new Touch({
+          identifier: 1,
+          target: container,
+          clientX: 42,
+          clientY: 42,
+        }),
+      ],
     });
 
-    act(() => {
-      getByRole('button').click();
-    });
+    getByRole('button').click();
 
     setTimeout(() => {
       expect(handleClick.callCount).to.equal(1);
@@ -170,35 +159,31 @@ describe('<BottomNavigationAction />', () => {
   it('should not fire onClick if swiping', (done) => {
     const handleClick = spy();
 
-    // If disableTouchRipple is not applied, errors are thrown due to "code that updates TouchRiple is not wrapped in act()"
+    // Need disableTouchRipple to avoid ripple missing act (async setState after touchEnd)
     const { container } = render(
       <BottomNavigationAction onClick={handleClick} disableTouchRipple />,
     );
 
-    act(() => {
-      fireEvent.touchStart(container.firstChild, {
-        touches: [
-          new Touch({
-            identifier: 1,
-            target: container,
-            clientX: 42,
-            clientY: 42,
-          }),
-        ],
-      });
+    fireEvent.touchStart(container.firstChild, {
+      touches: [
+        new Touch({
+          identifier: 1,
+          target: container,
+          clientX: 42,
+          clientY: 42,
+        }),
+      ],
     });
 
-    act(() => {
-      fireEvent.touchEnd(container.firstChild, {
-        changedTouches: [
-          new Touch({
-            identifier: 1,
-            target: container,
-            clientX: 84,
-            clientY: 84,
-          }),
-        ],
-      });
+    fireEvent.touchEnd(container.firstChild, {
+      changedTouches: [
+        new Touch({
+          identifier: 1,
+          target: container,
+          clientX: 84,
+          clientY: 84,
+        }),
+      ],
     });
 
     setTimeout(() => {
@@ -211,7 +196,7 @@ describe('<BottomNavigationAction />', () => {
     const handleTouchStart = spy();
     const handleTouchEnd = spy();
 
-    // If disableTouchRipple is not applied, errors are thrown due to "code that updates TouchRiple is not wrapped in act()"
+    // Need disableTouchRipple to avoid ripple missing act (async setState after touchEnd).
     const { container } = render(
       <BottomNavigationAction
         onTouchStart={handleTouchStart}
@@ -220,32 +205,28 @@ describe('<BottomNavigationAction />', () => {
       />,
     );
 
-    act(() => {
-      fireEvent.touchStart(container.firstChild, {
-        touches: [
-          new Touch({
-            identifier: 1,
-            target: container,
-            clientX: 42,
-            clientY: 42,
-          }),
-        ],
-      });
+    fireEvent.touchStart(container.firstChild, {
+      touches: [
+        new Touch({
+          identifier: 1,
+          target: container,
+          clientX: 42,
+          clientY: 42,
+        }),
+      ],
     });
 
     expect(handleTouchStart.callCount).to.be.equals(1);
 
-    act(() => {
-      fireEvent.touchEnd(container.firstChild, {
-        changedTouches: [
-          new Touch({
-            identifier: 1,
-            target: container,
-            clientX: 84,
-            clientY: 84,
-          }),
-        ],
-      });
+    fireEvent.touchEnd(container.firstChild, {
+      changedTouches: [
+        new Touch({
+          identifier: 1,
+          target: container,
+          clientX: 84,
+          clientY: 84,
+        }),
+      ],
     });
 
     expect(handleTouchEnd.callCount).to.be.equals(1);

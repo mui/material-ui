@@ -25,8 +25,8 @@ If there are **four** or **five** actions, display inactive views as icons only.
 
 {{"demo": "pages/components/bottom-navigation/LabelBottomNavigation.js", "bg": true}}
 
-## Fixed Bottom Navigation
+## Fixed positioning
 
-Keep Bottom Navigation fixed to the bottom, no matter the amount of content on-screen.
+This demo keeps bottom navigation fixed to the bottom, no matter the amount of content on-screen.
 
 {{"demo": "pages/components/bottom-navigation/FixedBottomNavigation.js", "bg": true, "iframe": true, "maxWidth": 600}}

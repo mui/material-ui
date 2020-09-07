@@ -77,7 +77,7 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
     return () => clearTimeout(touchTimer.current);
   }, [touchTimer]);
 
-  function handleTouchStart(event) {
+  const handleTouchStart = (event) => {
     if (onTouchStart) onTouchStart(event);
 
     const { clientX, clientY } = event.touches[0];
@@ -88,7 +88,7 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
     };
   }
 
-  function handleTouchEnd(event) {
+  const handleTouchEnd = (event) => {
     if (onTouchEnd) onTouchEnd(event);
 
     const target = event.target;
@@ -99,6 +99,11 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
       Math.abs(clientY - touchStartPos.current.clientY) < 10
     ) {
       touchTimer.current = setTimeout(() => {
+        // Simulate the native tap behavior on mobile.
+        // On the web, a tap won't trigger a click if a container is scrolling.
+        //
+        // Note that the synthetic behavior won't trigger a native <a> nor
+        // it will trigger a click at all on iOS.
         target.dispatchEvent(new Event('click', { bubbles: true }));
       }, 10);
     }
