@@ -44,13 +44,13 @@ The overlay can accommodate a `title`, `subtitle` and secondary action - in this
 
 {{"demo": "pages/components/image-list/TitlebarImageList.js", "hideEditButton": true}}
 
-### Title bar below image (Standard)
+### Title bar below image (standard)
 
 The title bar can be placed below the image.
 
 {{"demo": "pages/components/image-list/TitlebarBelowImageList.js", "hideEditButton": true}}
 
-### Title bar below image (Masonry)
+### Title bar below image (masonry)
 
 {{"demo": "pages/components/image-list/TitlebarBelowMasonryImageList.js", "hideEditButton": true}}
 

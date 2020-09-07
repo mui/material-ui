@@ -62,7 +62,7 @@ const ImageList = React.forwardRef(function ImageList(props, ref) {
   const style =
     variant === 'masonry'
       ? { columnCount: cols, columnGap: gap, ...styleProp }
-      : { gridTemplateColumns: `repeat(${cols}, 1fr)`, gap: gap, ...styleProp };
+      : { gridTemplateColumns: `repeat(${cols}, 1fr)`, gap, ...styleProp };
 
   return (
     <Component
@@ -104,15 +104,15 @@ ImageList.propTypes = {
    */
   component: PropTypes.elementType,
   /**
-   * The height of one row in px.
-   * @default 'auto'
-   */
-  rowHeight: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
-  /**
    * The gap between items in px.
    * @default 4
    */
   gap: PropTypes.number,
+  /**
+   * The height of one row in px.
+   * @default 'auto'
+   */
+  rowHeight: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
   /**
    * @ignore
    */
