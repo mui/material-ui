@@ -30,6 +30,20 @@ function mergeOuterLocalTheme(outerTheme, localTheme) {
   return { ...outerTheme, ...localTheme };
 }
 
+// Cache for the ltr version of the styles
+const cacheLtr = createCache({
+  key: 'mui',
+  stylisPlugins: [],
+  speedy: true,
+});
+
+// Cache for the rtl version of the styles
+const cacheRtl = createCache({
+  key: 'muirtl',
+  stylisPlugins: [rtlPlugin],
+  speedy: true,
+});
+
 /**
  * This component takes a `theme` prop.
  * It makes the `theme` available down the React tree thanks to React context.
@@ -63,18 +77,6 @@ function ThemeProvider(props) {
 
     return output;
   }, [localTheme, outerTheme]);
-
-  const cacheLtr = createCache({
-    key: 'mui',
-    stylisPlugins: [],
-    speedy: true,
-  });
-
-  const cacheRtl = createCache({
-    key: 'muirtl',
-    stylisPlugins: [rtlPlugin],
-    speedy: true,
-  });
 
   const rtl = theme.direction === 'rtl';
 
