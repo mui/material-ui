@@ -72,9 +72,6 @@ describe('<Paper />', () => {
 
   it('allows custom elevations via theme.shadows', () => {
     const theme = createMuiTheme();
-    // Theme.shadows holds a reference to `@material-ui/core/styles#shadows`
-    // Mutating it causes side effects in other tests
-    theme.shadows = theme.shadows.slice();
     theme.shadows.push('20px 20px');
     const { getByTestId } = render(
       <ThemeProvider theme={theme}>

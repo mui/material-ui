@@ -30,12 +30,13 @@ function createMuiTheme(options = {}, ...args) {
       mixins: createMixins(breakpoints, spacing, mixinsInput),
       components: {}, // Inject component definitions
       palette,
-      shadows,
+      // Don't use [...shadows] until you've verified it's transpiled code is not invoking the iterator protocal.
+      shadows: shadows.slice(),
       typography: createTypography(palette, typographyInput),
       spacing,
-      shape,
+      shape: { ...shape },
       transitions: { duration, easing, create, getAutoHeightDuration },
-      zIndex,
+      zIndex: { ...zIndex },
     },
     other,
   );
