@@ -95,6 +95,8 @@ describe('<BottomNavigationAction />', () => {
       fireEvent.touchStart(container.firstChild, {
         touches: [
           new Touch({
+            identifier: 1,
+            target: container,
             clientX: 42,
             clientY: 42,
           }),
@@ -106,6 +108,8 @@ describe('<BottomNavigationAction />', () => {
       fireEvent.touchEnd(container.firstChild, {
         changedTouches: [
           new Touch({
+            identifier: 1,
+            target: container,
             clientX: 42,
             clientY: 42,
           }),
@@ -131,6 +135,8 @@ describe('<BottomNavigationAction />', () => {
       fireEvent.touchStart(container.firstChild, {
         touches: [
           new Touch({
+            identifier: 1,
+            target: container,
             clientX: 42,
             clientY: 42,
           }),
@@ -142,6 +148,8 @@ describe('<BottomNavigationAction />', () => {
       fireEvent.touchEnd(container.firstChild, {
         changedTouches: [
           new Touch({
+            identifier: 1,
+            target: container,
             clientX: 42,
             clientY: 42,
           }),
@@ -171,6 +179,8 @@ describe('<BottomNavigationAction />', () => {
       fireEvent.touchStart(container.firstChild, {
         touches: [
           new Touch({
+            identifier: 1,
+            target: container,
             clientX: 42,
             clientY: 42,
           }),
@@ -182,6 +192,8 @@ describe('<BottomNavigationAction />', () => {
       fireEvent.touchEnd(container.firstChild, {
         changedTouches: [
           new Touch({
+            identifier: 1,
+            target: container,
             clientX: 84,
             clientY: 84,
           }),
@@ -212,6 +224,8 @@ describe('<BottomNavigationAction />', () => {
       fireEvent.touchStart(container.firstChild, {
         touches: [
           new Touch({
+            identifier: 1,
+            target: container,
             clientX: 42,
             clientY: 42,
           }),
@@ -225,6 +239,8 @@ describe('<BottomNavigationAction />', () => {
       fireEvent.touchEnd(container.firstChild, {
         changedTouches: [
           new Touch({
+            identifier: 1,
+            target: container,
             clientX: 84,
             clientY: 84,
           }),
