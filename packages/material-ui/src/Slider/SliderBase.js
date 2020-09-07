@@ -606,7 +606,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
         {...stateAndProps}
         {...trackProps}
         className={clsx(utilityClasses.track, trackProps.className)}
-        style={trackStyle}
+        style={{ ...trackStyle, ...trackProps.style }}
       />
       <input value={values.join(',')} name={name} type="hidden" />
       {marks.map((mark, index) => {
@@ -631,10 +631,10 @@ const Slider = React.forwardRef(function Slider(props, ref) {
         return (
           <React.Fragment key={mark.value}>
             <Mark
-              style={style}
               data-index={index}
               {...stateAndProps}
               {...markProps}
+              style={{ ...style, ...markProps.style }}
               className={clsx(utilityClasses.mark, markProps.className, {
                 [getUtilityClass('markActive')]: markActive,
               })}
@@ -644,9 +644,9 @@ const Slider = React.forwardRef(function Slider(props, ref) {
               <MarkLabel
                 aria-hidden
                 data-index={index}
-                style={style}
                 {...stateAndProps}
                 {...markLabelProps}
+                style={{ ...style, ...markLabelProps.style }}
                 className={clsx(utilityClasses.markLabel, markLabelProps.className, {
                   [getUtilityClass('markLabelActive')]: markActive,
                 })}
@@ -684,13 +684,13 @@ const Slider = React.forwardRef(function Slider(props, ref) {
               {...thumbProps}
               className={clsx(utilityClasses.thumb, thumbProps.className, {
                 ['Mui-active']: active === index,
-                [getUtilityClass('focusVisible')]: focusVisible === index,
+                ['Mui-focusVisible']: focusVisible === index,
               })}
               active={active === index}
               focusVisible={focusVisible === index}
               tabIndex={disabled ? null : 0}
               role="slider"
-              style={style}
+              style={{ ...style, ...thumbProps.style }}
               data-index={index}
               aria-label={getAriaLabel ? getAriaLabel(index) : ariaLabel}
               aria-labelledby={ariaLabelledby}

@@ -133,12 +133,12 @@ export const SliderThumb = styled('span', { shouldForwardProp })((props) => ({
       boxShadow: 'none',
     },
   },
-  ...(props.focusVisible && {
+  '&.Mui-focusVisible': {
     boxShadow: `0px 0px 0px 8px ${fade(props.theme.palette.primary.main, 0.16)}`,
     '@media (hover: none)': {
       boxShadow: 'none',
     },
-  }),
+  },
   '&.Mui-active': {
     boxShadow: `0px 0px 0px 14px ${fade(props.theme.palette.primary.main, 0.16)}`,
   },
@@ -165,10 +165,10 @@ export const SliderThumb = styled('span', { shouldForwardProp })((props) => ({
     ':hover': {
       boxShadow: `0px 0px 0px 8px ${fade(props.theme.palette.secondary.main, 0.16)}`,
     },
-    ...(props.focusVisible && {
+    '&.Mui-focusVisible': {
       boxShadow: `0px 0px 0px 8px ${fade(props.theme.palette.secondary.main, 0.16)}`,
-    }),
-    '&.MuiSlider--active': {
+    },
+    '&.Mui-active': {
       boxShadow: `0px 0px 0px 14px ${fade(props.theme.palette.secondary.main, 0.16)}`,
     },
   }),

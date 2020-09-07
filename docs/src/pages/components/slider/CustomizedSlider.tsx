@@ -77,7 +77,7 @@ const iosComponents = {
     boxShadow: iOSBoxShadow,
     marginTop: -14,
     marginLeft: -14,
-    '&:focus, &:hover': {
+    '&:focus, &:hover, &.Mui-active': {
       boxShadow:
         '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.3),0 0 0 1px rgba(0,0,0,0.02)',
       // Reset on touch devices, it doesn't add specificity
@@ -85,14 +85,6 @@ const iosComponents = {
         boxShadow: iOSBoxShadow,
       },
     },
-    ...(props.active && {
-      boxShadow:
-        '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.3),0 0 0 1px rgba(0,0,0,0.02)',
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        boxShadow: iOSBoxShadow,
-      },
-    }),
   })),
   valueLabel: styled(SliderValueLabel)({
     left: 'calc(-50% + 12px)',
@@ -135,12 +127,9 @@ const prettoComponents = {
     border: '2px solid currentColor',
     marginTop: -8,
     marginLeft: -12,
-    '&:focus, &:hover': {
+    '&:focus, &:hover, &.Mui-active': {
       boxShadow: 'inherit',
     },
-    ...(props.active && {
-      boxShadow: 'inherit',
-    }),
   })),
   valueLabel: styled(SliderValueLabel)({
     left: 'calc(-50% + 4px)',
@@ -170,12 +159,9 @@ const airbnbComponents = {
     marginLeft: -13,
     // @ts-ignore
     boxShadow: '#ebebeb 0 2px 2px',
-    '&:focus, &:hover': {
+    '&:focus, &:hover, &.Mui-active': {
       boxShadow: '#ccc 0 2px 3px 1px',
     },
-    ...(props.active && {
-      boxShadow: '#ccc 0 2px 3px 1px',
-    }),
     '& .bar': {
       // display: inline-block !important;
       height: 9,
