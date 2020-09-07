@@ -26,7 +26,7 @@ describe('<BottomNavigationAction />', () => {
     classes,
     inheritComponent: ButtonBase,
     mount,
-    refInstanceof: Object,
+    refInstanceof: window.HTMLButtonElement,
     skip: ['componentProp'],
   }));
 
