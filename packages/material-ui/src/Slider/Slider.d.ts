@@ -82,9 +82,7 @@ export interface SliderTypeMap<P = {}, D extends React.ElementType = 'span'> {
      * Either a string to use a HTML element or a component.
      */
     components?: {
-      Root?: React.ElementType<
-        Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'>
-      >;
+      Root?: React.ElementType;
       Track?: React.ElementType;
       Rail?: React.ElementType;
       Thumb?: React.ElementType;
@@ -96,30 +94,34 @@ export interface SliderTypeMap<P = {}, D extends React.ElementType = 'span'> {
      * The props used for each slot inside the Slider.
      */
     componentsProps?: {
-      root?: { state: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'> };
-      track?: { state: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'> };
-      rail?: { state: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'> };
+      root?: { state?: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'>; as: React.ElementType };
+      track?: { state?: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'>; as?: React.ElementType; };
+      rail?: { state?: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'>; as?: React.ElementType; };
       thumb?: {
-        state: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'> & {
+        state?: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'> & {
           active?: boolean;
           focusVisible?: boolean;
         };
+        as?: React.ElementType;
       };
       mark?: {
-        state: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'> & {
+        state?: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'> & {
           markActive?: boolean;
         };
+        as?: React.ElementType;
       };
       markLabel?: {
-        state: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'> & {
+        state?: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'> & {
           markLabelActive?: boolean;
         };
+        as?: React.ElementType;
       };
       valueLabel?: {
-        state: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'> & {
+        state?: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'> & {
           index?: number;
           open?: boolean;
         };
+        as?: React.ElementType;
       };
     };
     /**

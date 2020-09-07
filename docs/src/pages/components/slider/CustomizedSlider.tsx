@@ -219,7 +219,7 @@ export default function CustomizedSlider() {
         <Typography gutterBottom>Tooltip value label</Typography>
         <Slider
           components={{
-            valueLabel: ValueLabelComponent,
+            ValueLabel: ValueLabelComponent,
           }}
           aria-label="custom thumb label"
           defaultValue={20}
