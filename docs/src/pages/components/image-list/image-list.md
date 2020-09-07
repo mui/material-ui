@@ -57,6 +57,6 @@ The title bar can be placed below the image.
 ## Custom image list
 
 In this example the items have a customized titlebar, positioned at the top and with a custom gradient `titleBackground`.
-The secondary action `IconButton` is positioned on the left. The `spacing` prop is used to adjust the gap between items.
+The secondary action `IconButton` is positioned on the left. The `gap` prop is used to adjust the gap between items.
 
 {{"demo": "pages/components/image-list/CustomImageList.js", "hideEditButton": true, "defaultCodeOpen": false}}

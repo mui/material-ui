@@ -172,10 +172,10 @@ describe('<ImageList />', () => {
       });
     });
 
-    describe('prop: spacing', () => {
+    describe('prop: gap', () => {
       it('should render with modified grid-template-columns style', () => {
         const { getByTestId } = render(
-          <ImageList data-testid="test-root" spacing={8}>
+          <ImageList data-testid="test-root" gap={8}>
             {children}
           </ImageList>,
         );
@@ -185,7 +185,7 @@ describe('<ImageList />', () => {
 
       it('should render with modified column-gap style', () => {
         const { getByTestId } = render(
-          <ImageList data-testid="test-root" variant="masonry" spacing={8}>
+          <ImageList data-testid="test-root" variant="masonry" gap={8}>
             {children}
           </ImageList>,
         );

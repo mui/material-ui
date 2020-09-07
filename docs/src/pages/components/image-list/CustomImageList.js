@@ -44,7 +44,7 @@ export default function CustomImageList() {
   const classes = useStyles();
 
   return (
-    <ImageList rowHeight={200} spacing={1} className={classes.root}>
+    <ImageList rowHeight={200} gap={1} className={classes.root}>
       {itemData.map((item) => (
         <ImageListItem
           key={item.img}

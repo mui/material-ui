@@ -24,7 +24,7 @@ export default function WovenImageList() {
   const classes = useStyles();
 
   return (
-    <ImageList variant="woven" cols={3} spacing={8} className={classes.root}>
+    <ImageList variant="woven" cols={3} gap={8} className={classes.root}>
       {itemData.map((item) => (
         <ImageListItem key={item.img}>
           <img src={item.img} alt={item.title} />

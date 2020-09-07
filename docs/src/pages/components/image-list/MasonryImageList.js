@@ -26,7 +26,7 @@ export default function MasonryImageList() {
 
   return (
     <div className={classes.root}>
-      <ImageList variant="masonry" cols={3} spacing={8}>
+      <ImageList variant="masonry" cols={3} gap={8}>
         {itemData.map((item) => (
           <ImageListItem key={item.img}>
             <img src={item.img} alt={item.title} />

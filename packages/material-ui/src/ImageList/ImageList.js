@@ -33,15 +33,15 @@ const ImageList = React.forwardRef(function ImageList(props, ref) {
     cols = 2,
     component: Component = 'ul',
     rowHeight = 'auto',
-    spacing = 4,
+    gap = 4,
     style: styleProp,
     variant = 'standard',
     ...other
   } = props;
 
-  const contextValue = React.useMemo(() => ({ rowHeight, spacing, variant }), [
+  const contextValue = React.useMemo(() => ({ rowHeight, gap, variant }), [
     rowHeight,
-    spacing,
+    gap,
     variant,
   ]);
 
@@ -61,8 +61,8 @@ const ImageList = React.forwardRef(function ImageList(props, ref) {
 
   const style =
     variant === 'masonry'
-      ? { columnCount: cols, columnGap: spacing, ...styleProp }
-      : { gridTemplateColumns: `repeat(${cols}, 1fr)`, gap: spacing, ...styleProp };
+      ? { columnCount: cols, columnGap: gap, ...styleProp }
+      : { gridTemplateColumns: `repeat(${cols}, 1fr)`, gap: gap, ...styleProp };
 
   return (
     <Component
@@ -109,10 +109,10 @@ ImageList.propTypes = {
    */
   rowHeight: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
   /**
-   * The spacing between items in px.
+   * The gap between items in px.
    * @default 4
    */
-  spacing: PropTypes.number,
+  gap: PropTypes.number,
   /**
    * @ignore
    */

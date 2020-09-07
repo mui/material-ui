@@ -11,7 +11,7 @@ export const styles = {
   root: {
     display: 'inline-block',
     position: 'relative',
-    lineHeight: 0, // 🤷🏻‍♂️Fixes masonry item spacing
+    lineHeight: 0, // 🤷🏻‍♂️Fixes masonry item gap
   },
   /* Styles applied to an `img` element to ensure it covers the item. */
   img: {
@@ -52,13 +52,13 @@ const ImageListItem = React.forwardRef(function ImageListItem(props, ref) {
     ...other
   } = props;
 
-  const { rowHeight = 'auto', spacing, variant } = React.useContext(ImageListContext);
+  const { rowHeight = 'auto', gap, variant } = React.useContext(ImageListContext);
 
   let height = 'auto';
   if (variant === 'woven') {
     height = undefined;
   } else if (rowHeight !== 'auto') {
-    height = rowHeight * rows + spacing * (rows - 1);
+    height = rowHeight * rows + gap * (rows - 1);
   }
 
   return (
@@ -69,7 +69,7 @@ const ImageListItem = React.forwardRef(function ImageListItem(props, ref) {
         height,
         gridColumnEnd: variant !== 'masonry' ? `span ${cols}` : undefined,
         gridRowEnd: variant !== 'masonry' ? `span ${rows}` : undefined,
-        marginBottom: variant === 'masonry' ? spacing : undefined,
+        marginBottom: variant === 'masonry' ? gap : undefined,
         ...style,
       }}
       {...other}

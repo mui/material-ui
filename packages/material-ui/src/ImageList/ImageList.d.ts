@@ -36,10 +36,10 @@ export interface ImageListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      */
     rowHeight?: number | 'auto';
     /**
-     * The spacing between items in px.
+     * The gap between items in px.
      * @default 4
      */
-    spacing?: number;
+    gap?: number;
     /**
      * The variant to use.
      * @default 'standard'
