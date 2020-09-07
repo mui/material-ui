@@ -96,13 +96,13 @@ export const styles = (theme) => {
     },
     /* Styles applied to the root element if `onClick` and `color="primary"` is defined or `clickable={true}`. */
     clickableColorPrimary: {
-      '&$focusVisible, &:hover': {
+      '&:hover, &$focusVisible': {
         backgroundColor: emphasize(theme.palette.primary.main, 0.08),
       },
     },
     /* Styles applied to the root element if `onClick` and `color="secondary"` is defined or `clickable={true}`. */
     clickableColorSecondary: {
-      '&$focusVisible, &:hover': {
+      '&:hover, &$focusVisible': {
         backgroundColor: emphasize(theme.palette.secondary.main, 0.08),
       },
     },

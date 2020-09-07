@@ -272,7 +272,7 @@ export const styles = (theme) => ({
       right: -15,
       bottom: -15,
     },
-    '&$focusVisible,&:hover': {
+    '&:hover, &$focusVisible': {
       boxShadow: `0px 0px 0px 8px ${fade(theme.palette.primary.main, 0.16)}`,
       '@media (hover: none)': {
         boxShadow: 'none',
