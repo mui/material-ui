@@ -156,6 +156,7 @@ InputLabel.propTypes = {
   color: PropTypes.oneOf(['primary', 'secondary']),
   /**
    * If `true`, the transition animation is disabled.
+   * @default false
    */
   disableAnimation: PropTypes.bool,
   /**

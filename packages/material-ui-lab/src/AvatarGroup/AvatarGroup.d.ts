@@ -17,10 +17,12 @@ export interface AvatarGroupProps extends StandardProps<React.HTMLAttributes<HTM
   };
   /**
    * Max avatars to show before +x.
+   * @default 5
    */
   max?: number;
   /**
    * Spacing between avatars.
+   * @default 'medium'
    */
   spacing?: 'small' | 'medium' | number;
 }

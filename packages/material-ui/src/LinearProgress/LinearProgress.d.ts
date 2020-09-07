@@ -46,6 +46,7 @@ export interface LinearProgressProps
   };
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'primary'
    */
   color?: 'primary' | 'secondary';
   /**
@@ -61,6 +62,7 @@ export interface LinearProgressProps
   /**
    * The variant to use.
    * Use indeterminate or query when there is no progress value.
+   * @default 'indeterminate'
    */
   variant?: 'determinate' | 'indeterminate' | 'buffer' | 'query';
 }

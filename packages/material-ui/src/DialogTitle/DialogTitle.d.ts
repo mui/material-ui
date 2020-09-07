@@ -16,6 +16,7 @@ export interface DialogTitleProps extends StandardProps<React.HTMLAttributes<HTM
   /**
    * If `true`, the children won't be wrapped by a typography component.
    * For instance, this can be useful to render an h4 instead of the default h2.
+   * @default false
    */
   disableTypography?: boolean;
 }

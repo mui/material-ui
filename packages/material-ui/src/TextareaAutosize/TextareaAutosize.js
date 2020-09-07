@@ -189,6 +189,7 @@ TextareaAutosize.propTypes = {
   maxRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * Minimum number of rows to display.
+   * @default 1
    */
   minRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**

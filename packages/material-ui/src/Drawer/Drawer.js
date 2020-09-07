@@ -206,6 +206,7 @@ Drawer.propTypes = {
   // ----------------------------------------------------------------------
   /**
    * Side from which the drawer will appear.
+   * @default 'left'
    */
   anchor: PropTypes.oneOf(['bottom', 'left', 'right', 'top']),
   /**
@@ -226,10 +227,12 @@ Drawer.propTypes = {
   className: PropTypes.string,
   /**
    * The elevation of the drawer.
+   * @default 16
    */
   elevation: PropTypes.number,
   /**
    * Props applied to the [`Modal`](/api/modal/) element.
+   * @default {}
    */
   ModalProps: PropTypes.object,
   /**
@@ -240,10 +243,12 @@ Drawer.propTypes = {
   onClose: PropTypes.func,
   /**
    * If `true`, the drawer is open.
+   * @default false
    */
   open: PropTypes.bool,
   /**
    * Props applied to the [`Paper`](/api/paper/) element.
+   * @default {}
    */
   PaperProps: PropTypes.object,
   /**
@@ -253,6 +258,7 @@ Drawer.propTypes = {
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
+   * @default { enter: duration.enteringScreen, exit: duration.leavingScreen }
    */
   transitionDuration: PropTypes.oneOfType([
     PropTypes.number,
@@ -264,6 +270,7 @@ Drawer.propTypes = {
   ]),
   /**
    * The variant to use.
+   * @default 'temporary'
    */
   variant: PropTypes.oneOf(['permanent', 'persistent', 'temporary']),
 };

@@ -210,6 +210,7 @@ Avatar.propTypes = {
   srcSet: PropTypes.string,
   /**
    * The shape of the avatar.
+   * @default 'circular'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['circular', 'rounded', 'square']),

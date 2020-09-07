@@ -27,6 +27,7 @@ export interface CollapseProps extends StandardProps<TransitionProps, 'timeout'>
   };
   /**
    * The width (horizontal) or height (vertical) of the container when collapsed.
+   * @default '0px'
    */
   collapsedSize?: string | number;
   /**
@@ -40,6 +41,7 @@ export interface CollapseProps extends StandardProps<TransitionProps, 'timeout'>
   in?: boolean;
   /**
    * The collapse transition orientation.
+   * @default 'vertical'
    */
   orientation?: 'horizontal' | 'vertical';
   /**
@@ -47,6 +49,7 @@ export interface CollapseProps extends StandardProps<TransitionProps, 'timeout'>
    * You may specify a single timeout for all transitions, or individually with an object.
    *
    * Set to 'auto' to automatically calculate transition time based on height.
+   * @default duration.standard
    */
   timeout?: TransitionProps['timeout'] | 'auto';
 }

@@ -23,6 +23,7 @@ export interface BaseTextFieldProps
   autoComplete?: string;
   /**
    * If `true`, the `input` element will be focused during the first mount.
+   * @default false
    */
   autoFocus?: boolean;
   /**
@@ -38,6 +39,7 @@ export interface BaseTextFieldProps
   };
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'primary'
    */
   color?: 'primary' | 'secondary';
   /**
@@ -46,10 +48,12 @@ export interface BaseTextFieldProps
   defaultValue?: unknown;
   /**
    * If `true`, the `input` element will be disabled.
+   * @default false
    */
   disabled?: boolean;
   /**
    * If `true`, the label will be displayed in an error state.
+   * @default false
    */
   error?: boolean;
   /**
@@ -58,6 +62,7 @@ export interface BaseTextFieldProps
   FormHelperTextProps?: Partial<FormHelperTextProps>;
   /**
    * If `true`, the input will take up the full width of its container.
+   * @default false
    */
   fullWidth?: boolean;
   /**
@@ -91,6 +96,7 @@ export interface BaseTextFieldProps
   margin?: PropTypes.Margin;
   /**
    * If `true`, a textarea element will be rendered instead of an input.
+   * @default false
    */
   multiline?: boolean;
   /**
@@ -105,6 +111,7 @@ export interface BaseTextFieldProps
   placeholder?: string;
   /**
    * If `true`, the label is displayed as required and the `input` element will be required.
+   * @default false
    */
   required?: boolean;
   /**
@@ -122,6 +129,7 @@ export interface BaseTextFieldProps
   /**
    * Render a [`Select`](/api/select/) element while passing the Input element to `Select` as `input` parameter.
    * If this option is set you must pass the options of the select as children.
+   * @default false
    */
   select?: boolean;
   /**
@@ -152,6 +160,7 @@ export interface StandardTextFieldProps extends BaseTextFieldProps {
   onChange?: StandardInputProps['onChange'];
   /**
    * The variant to use.
+   * @default 'standard'
    */
   variant?: 'standard';
   /**
@@ -173,6 +182,7 @@ export interface FilledTextFieldProps extends BaseTextFieldProps {
   onChange?: FilledInputProps['onChange'];
   /**
    * The variant to use.
+   * @default 'standard'
    */
   variant: 'filled';
   /**
@@ -194,6 +204,7 @@ export interface OutlinedTextFieldProps extends BaseTextFieldProps {
   onChange?: OutlinedInputProps['onChange'];
   /**
    * The variant to use.
+   * @default 'standard'
    */
   variant: 'outlined';
   /**

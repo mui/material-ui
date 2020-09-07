@@ -31,14 +31,17 @@ export type LoadingButtonTypeMap<
     };
     /**
      * If `true`, the pending indicator will be shown.
+     * @default false
      */
     pending?: boolean;
     /**
      * Element placed before the children if the button is in pending state.
+     * @default <CircularProgress color="inherit" size={16} />
      */
     pendingIndicator?: React.ReactNode;
     /**
      * The pending indicator can be positioned on the start, end, or the center of the button.
+     * @default 'center'
      */
     pendingPosition?: 'start' | 'end' | 'center';
   };

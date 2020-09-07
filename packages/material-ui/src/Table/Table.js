@@ -79,16 +79,19 @@ Table.propTypes = {
   component: PropTypes.elementType,
   /**
    * Allows TableCells to inherit padding of the Table.
+   * @default 'default'
    */
   padding: PropTypes.oneOf(['checkbox', 'default', 'none']),
   /**
    * Allows TableCells to inherit size of the Table.
+   * @default 'medium'
    */
   size: PropTypes.oneOf(['medium', 'small']),
   /**
    * Set the header sticky.
    *
    * ⚠️ It doesn't work with IE 11.
+   * @default false
    */
   stickyHeader: PropTypes.bool,
 };

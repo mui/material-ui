@@ -74,6 +74,7 @@ export interface SliderTypeMap<P = {}, D extends React.ElementType = 'span'> {
     };
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
+     * @default 'primary'
      */
     color?: 'primary' | 'secondary';
     /**
@@ -82,6 +83,7 @@ export interface SliderTypeMap<P = {}, D extends React.ElementType = 'span'> {
     defaultValue?: number | number[];
     /**
      * If `true`, the slider will be disabled.
+     * @default false
      */
     disabled?: boolean;
     /**
@@ -103,16 +105,19 @@ export interface SliderTypeMap<P = {}, D extends React.ElementType = 'span'> {
      * Marks indicate predetermined values to which the user can move the slider.
      * If `true` the marks will be spaced according the value of the `step` prop.
      * If an array, it should contain objects with `value` and an optional `label` keys.
+     * @default false
      */
     marks?: boolean | Mark[];
     /**
      * The maximum allowed value of the slider.
      * Should not be equal to min.
+     * @default 100
      */
     max?: number;
     /**
      * The minimum allowed value of the slider.
      * Should not be equal to max.
+     * @default 0
      */
     min?: number;
     /**
@@ -135,10 +140,12 @@ export interface SliderTypeMap<P = {}, D extends React.ElementType = 'span'> {
     onChangeCommitted?: (event: React.SyntheticEvent, value: number | number[]) => void;
     /**
      * The slider orientation.
+     * @default 'horizontal'
      */
     orientation?: 'horizontal' | 'vertical';
     /**
      * A transformation function, to change the scale of the slider.
+     * @default (x) => x
      */
     scale?: (value: number) => number;
     /**
@@ -147,10 +154,12 @@ export interface SliderTypeMap<P = {}, D extends React.ElementType = 'span'> {
      * We recommend (max - min) to be evenly divisible by the step.
      *
      * When step is `null`, the thumb can only be slid onto marks provided with the `marks` prop.
+     * @default 1
      */
     step?: number | null;
     /**
      * The component used to display the value label.
+     * @default 'span'
      */
     ThumbComponent?: React.ElementType<React.HTMLAttributes<HTMLSpanElement>>;
     /**
@@ -159,6 +168,7 @@ export interface SliderTypeMap<P = {}, D extends React.ElementType = 'span'> {
      * - `normal` the track will render a bar representing the slider value.
      * - `inverted` the track will render a bar representing the remaining slider value.
      * - `false` the track will render without a bar.
+     * @default 'normal'
      */
     track?: 'normal' | false | 'inverted';
     /**
@@ -168,6 +178,7 @@ export interface SliderTypeMap<P = {}, D extends React.ElementType = 'span'> {
     value?: number | number[];
     /**
      * The value label component.
+     * @default ValueLabel
      */
     ValueLabelComponent?: React.ElementType<ValueLabelProps>;
     /**
@@ -176,6 +187,7 @@ export interface SliderTypeMap<P = {}, D extends React.ElementType = 'span'> {
      * - `auto` the value label will display when the thumb is hovered or focused.
      * - `on` will display persistently.
      * - `off` will never display.
+     * @default 'off'
      */
     valueLabelDisplay?: 'on' | 'auto' | 'off';
     /**
@@ -185,6 +197,7 @@ export interface SliderTypeMap<P = {}, D extends React.ElementType = 'span'> {
      *
      * - {number} value The value label's value to format
      * - {number} index The value label's index to format
+     * @default (x) => x
      */
     valueLabelFormat?: string | ((value: number, index: number) => React.ReactNode);
   };

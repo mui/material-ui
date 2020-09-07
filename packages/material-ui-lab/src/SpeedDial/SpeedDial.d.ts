@@ -43,14 +43,17 @@ export interface SpeedDialProps
   ariaLabel: string;
   /**
    * The direction the actions open relative to the floating action button.
+   * @default 'up'
    */
   direction?: 'up' | 'down' | 'left' | 'right';
   /**
    * If `true`, the SpeedDial will be hidden.
+   * @default false
    */
   hidden?: boolean;
   /**
    * Props applied to the [`Fab`](/api/fab/) element.
+   * @default {}
    */
   FabProps?: Partial<FabProps>;
   /**
@@ -83,11 +86,16 @@ export interface SpeedDialProps
   /**
    * The component used for the transition.
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * @default Zoom
    */
   TransitionComponent?: React.ComponentType<TransitionProps>;
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
+   * @default {
+   *   enter: duration.enteringScreen,
+   *   exit: duration.leavingScreen,
+   * }
    */
   transitionDuration?: TransitionProps['timeout'];
   /**

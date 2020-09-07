@@ -9,6 +9,7 @@ export type TableSortLabelTypeMap<
   props: P & {
     /**
      * If `true`, the label will have the active styling (should be true for the sorted column).
+     * @default false
      */
     active?: boolean;
     /**
@@ -32,14 +33,17 @@ export type TableSortLabelTypeMap<
     };
     /**
      * The current sort direction.
+     * @default 'asc'
      */
     direction?: 'asc' | 'desc';
     /**
      * Hide sort icon when active is false.
+     * @default false
      */
     hideSortIcon?: boolean;
     /**
      * Sort icon to use.
+     * @default ArrowDownwardIcon
      */
     IconComponent?: React.ComponentType<{ className: string }>;
   };

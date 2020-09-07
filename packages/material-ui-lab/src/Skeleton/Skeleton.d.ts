@@ -10,6 +10,7 @@ export interface SkeletonTypeMap<P = {}, D extends React.ElementType = 'span'> {
     /**
      * The animation.
      * If `false` the animation effect is disabled.
+     * @default 'pulse'
      */
     animation?: 'pulse' | 'wave' | false;
     /**
@@ -46,6 +47,7 @@ export interface SkeletonTypeMap<P = {}, D extends React.ElementType = 'span'> {
     height?: number | string;
     /**
      * The type of content that will be rendered.
+     * @default 'text'
      */
     variant?: OverridableStringUnion<SkeletonVariantDefaults, SkeletonPropsVariantOverrides>;
     /**

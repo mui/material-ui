@@ -55,26 +55,31 @@ export interface DialogProps
   };
   /**
    * If `true`, clicking the backdrop will not fire the `onClose` callback.
+   * @default false
    */
   disableBackdropClick?: boolean;
   /**
    * If `true`, hitting escape will not fire the `onClose` callback.
+   * @default false
    */
   disableEscapeKeyDown?: boolean;
   /**
    * If `true`, the dialog will be full-screen
+   * @default false
    */
   fullScreen?: boolean;
   /**
    * If `true`, the dialog stretches to `maxWidth`.
    *
    * Notice that the dialog width grow is limited by the default margin.
+   * @default false
    */
   fullWidth?: boolean;
   /**
    * Determine the max-width of the dialog.
    * The dialog width grows with the size of the screen.
    * Set to `false` to disable `maxWidth`.
+   * @default 'sm'
    */
   maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | false;
   /**
@@ -99,19 +104,23 @@ export interface DialogProps
   open: ModalProps['open'];
   /**
    * The component used to render the body of the dialog.
+   * @default Paper
    */
   PaperComponent?: React.ComponentType<PaperProps>;
   /**
    * Props applied to the [`Paper`](/api/paper/) element.
+   * @default {}
    */
   PaperProps?: Partial<PaperProps>;
   /**
    * Determine the container for scrolling the dialog.
+   * @default 'paper'
    */
   scroll?: 'body' | 'paper';
   /**
    * The component used for the transition.
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * @default Fade
    */
   TransitionComponent?: React.ComponentType<
     TransitionProps & { children?: React.ReactElement<any, any> }
@@ -119,6 +128,7 @@ export interface DialogProps
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
+   * @default { enter: duration.enteringScreen, exit: duration.leavingScreen }
    */
   transitionDuration?: TransitionProps['timeout'];
   /**

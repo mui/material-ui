@@ -230,6 +230,7 @@ Unstable_TrapFocus.propTypes = {
    *
    * Generally this should never be set to `true` as it makes the trap focus less
    * accessible to assistive technologies, like screen readers.
+   * @default false
    */
   disableAutoFocus: PropTypes.bool,
   /**
@@ -237,11 +238,13 @@ Unstable_TrapFocus.propTypes = {
    *
    * Generally this should never be set to `true` as it makes the trap focus less
    * accessible to assistive technologies, like screen readers.
+   * @default false
    */
   disableEnforceFocus: PropTypes.bool,
   /**
    * If `true`, the trap focus will not restore focus to previously focused element once
    * trap focus is hidden.
+   * @default false
    */
   disableRestoreFocus: PropTypes.bool,
   /**

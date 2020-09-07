@@ -35,6 +35,7 @@ export type AccordionSummaryTypeMap<
     expandIcon?: React.ReactNode;
     /**
      * Props applied to the `IconButton` element wrapping the expand icon.
+     * @default {}
      */
     IconButtonProps?: Partial<IconButtonProps>;
   };

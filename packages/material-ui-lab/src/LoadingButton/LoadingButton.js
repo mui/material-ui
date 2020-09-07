@@ -112,18 +112,22 @@ LoadingButton.propTypes = {
   className: PropTypes.string,
   /**
    * If `true`, the button will be disabled.
+   * @default false
    */
   disabled: PropTypes.bool,
   /**
    * If `true`, the pending indicator will be shown.
+   * @default false
    */
   pending: PropTypes.bool,
   /**
    * Element placed before the children if the button is in pending state.
+   * @default <CircularProgress color="inherit" size={16} />
    */
   pendingIndicator: PropTypes.node,
   /**
    * The pending indicator can be positioned on the start, end, or the center of the button.
+   * @default 'center'
    */
   pendingPosition: chainPropTypes(PropTypes.oneOf(['start', 'end', 'center']), (props) => {
     if (props.pendingPosition === 'start' && !props.startIcon) {

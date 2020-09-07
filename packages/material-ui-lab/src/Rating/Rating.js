@@ -466,10 +466,12 @@ Rating.propTypes = {
   className: PropTypes.string,
   /**
    * The default value. Use when the component is not controlled.
+   * @default null
    */
   defaultValue: PropTypes.number,
   /**
    * If `true`, the rating will be disabled.
+   * @default false
    */
   disabled: PropTypes.bool,
   /**
@@ -478,6 +480,7 @@ Rating.propTypes = {
   emptyIcon: PropTypes.node,
   /**
    * The label read when the rating input is empty.
+   * @default 'Empty'
    */
   emptyLabelText: PropTypes.node,
   /**
@@ -487,18 +490,28 @@ Rating.propTypes = {
    *
    * @param {number} value The rating label's value to format.
    * @returns {string}
+   *
+   * @default function defaultLabelText(value) {
+   *   return `${value} Star${value !== 1 ? 's' : ''}`;
+   * }
    */
   getLabelText: PropTypes.func,
   /**
    * The icon to display.
+   * @default <Star fontSize="inherit" />
    */
   icon: PropTypes.node,
   /**
    * The component containing the icon.
+   * @default function IconContainer(props) {
+   *   const { value, ...other } = props;
+   *   return <span {...other} />;
+   * }
    */
   IconContainerComponent: PropTypes.elementType,
   /**
    * Maximum rating.
+   * @default 5
    */
   max: PropTypes.number,
   /**
@@ -541,6 +554,7 @@ Rating.propTypes = {
   onMouseMove: PropTypes.func,
   /**
    * The minimum increment value change allowed.
+   * @default 1
    */
   precision: chainPropTypes(PropTypes.number, (props) => {
     if (props.precision < 0.1) {
@@ -555,10 +569,12 @@ Rating.propTypes = {
   }),
   /**
    * Removes all hover effects and pointer events.
+   * @default false
    */
   readOnly: PropTypes.bool,
   /**
    * The size of the rating.
+   * @default 'medium'
    */
   size: PropTypes.oneOf(['large', 'medium', 'small']),
   /**

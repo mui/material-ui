@@ -127,6 +127,7 @@ CardHeader.propTypes = {
    * This can be useful to render an alternative Typography variant by wrapping
    * the `title` text, and optional `subheader` text
    * with the Typography component.
+   * @default false
    */
   disableTypography: PropTypes.bool,
   /**

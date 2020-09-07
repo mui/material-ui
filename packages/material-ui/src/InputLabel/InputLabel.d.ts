@@ -39,6 +39,7 @@ export interface InputLabelProps extends StandardProps<FormLabelProps> {
   color?: FormLabelProps['color'];
   /**
    * If `true`, the transition animation is disabled.
+   * @default false
    */
   disableAnimation?: boolean;
   /**

@@ -401,6 +401,7 @@ TreeItem.propTypes = {
   /**
    * The component used for the transition.
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * @default Collapse
    */
   TransitionComponent: PropTypes.elementType,
   /**

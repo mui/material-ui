@@ -166,14 +166,17 @@ IconButton.propTypes = {
   className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'default'
    */
   color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary']),
   /**
    * If `true`, the button will be disabled.
+   * @default false
    */
   disabled: PropTypes.bool,
   /**
    * If `true`, the  keyboard focus ripple will be disabled.
+   * @default false
    */
   disableFocusRipple: PropTypes.bool,
   /**
@@ -181,6 +184,7 @@ IconButton.propTypes = {
    *
    * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
    * to highlight the element by applying separate styles with the `focusVisibleClassName`.
+   * @default false
    */
   disableRipple: PropTypes.bool,
   /**
@@ -188,11 +192,13 @@ IconButton.propTypes = {
    * side (this is often helpful for aligning the left or right
    * side of the icon with content above or below, without ruining the border
    * size and shape).
+   * @default false
    */
   edge: PropTypes.oneOf(['end', 'start', false]),
   /**
    * The size of the button.
    * `small` is equivalent to the dense button styling.
+   * @default 'medium'
    */
   size: PropTypes.oneOf(['medium', 'small']),
 };

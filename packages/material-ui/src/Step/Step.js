@@ -126,6 +126,7 @@ Step.propTypes = {
   disabled: PropTypes.bool,
   /**
    * Expand the step.
+   * @default false
    */
   expanded: PropTypes.bool,
   /**

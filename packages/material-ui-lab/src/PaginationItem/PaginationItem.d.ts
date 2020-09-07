@@ -47,10 +47,12 @@ export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'di
     };
     /**
      * The active color.
+     * @default 'standard'
      */
     color?: 'standard' | 'primary' | 'secondary';
     /**
      * If `true`, the item will be disabled.
+     * @default false
      */
     disabled?: boolean;
     /**
@@ -59,22 +61,27 @@ export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'di
     page?: number;
     /**
      * If `true` the pagination item is selected.
+     * @default false
      */
     selected?: boolean;
     /**
      * The shape of the pagination item.
+     * @default 'circular'
      */
     shape?: 'circular' | 'rounded';
     /**
      * The size of the pagination item.
+     * @default 'medium'
      */
     size?: 'small' | 'medium' | 'large';
     /**
      * The type of pagination item.
+     * @default 'page'
      */
     type?: UsePaginationItem['type'];
     /**
      * The pagination item variant.
+     * @default 'text'
      */
     variant?: OverridableStringUnion<
       PaginationItemVariantDefaults,

@@ -15,14 +15,9 @@ export interface PortalProps {
   container?: Element | (() => Element | null) | null;
   /**
    * The `children` will be inside the DOM hierarchy of the parent component.
+   * @default false
    */
   disablePortal?: boolean;
-  /**
-   * Callback fired once the children has been mounted into the `container`.
-   *
-   * This prop will be deprecated and removed in v5, the ref can be used instead.
-   */
-  onRendered?: () => void;
 }
 
 /**

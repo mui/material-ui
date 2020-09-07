@@ -42,6 +42,7 @@ export interface FormControlLabelProps
   label: React.ReactNode;
   /**
    * The position of the label.
+   * @default 'end'
    */
   labelPlacement?: 'end' | 'start' | 'top' | 'bottom';
   name?: string;

@@ -146,6 +146,7 @@ FormControlLabel.propTypes = {
   label: PropTypes.node,
   /**
    * The position of the label.
+   * @default 'end'
    */
   labelPlacement: PropTypes.oneOf(['bottom', 'end', 'start', 'top']),
   /**

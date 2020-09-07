@@ -14,10 +14,15 @@ export interface BadgeTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
     /**
      * The anchor of the badge.
+     * @default {
+     *   vertical: 'top',
+     *   horizontal: 'right',
+     * }
      */
     anchorOrigin?: BadgeOrigin;
     /**
      * Wrapped shape the badge should overlap.
+     * @default 'rectangular'
      */
     overlap?: 'rectangular' | 'circular';
     /**
@@ -67,6 +72,7 @@ export interface BadgeTypeMap<P = {}, D extends React.ElementType = 'div'> {
     };
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
+     * @default 'default'
      */
     color?: 'primary' | 'secondary' | 'default' | 'error';
     /**
@@ -75,14 +81,17 @@ export interface BadgeTypeMap<P = {}, D extends React.ElementType = 'div'> {
     invisible?: boolean;
     /**
      * Max count to show.
+     * @default 99
      */
     max?: number;
     /**
      * Controls whether the badge is hidden when `badgeContent` is zero.
+     * @default false
      */
     showZero?: boolean;
     /**
      * The variant to use.
+     * @default 'standard'
      */
     variant?: OverridableStringUnion<BadgeVariantDefaults, BadgePropsVariantOverrides>;
   };

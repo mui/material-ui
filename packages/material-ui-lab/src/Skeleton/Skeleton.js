@@ -149,6 +149,7 @@ Skeleton.propTypes = {
   /**
    * The animation.
    * If `false` the animation effect is disabled.
+   * @default 'pulse'
    */
   animation: PropTypes.oneOf(['pulse', 'wave', false]),
   /**
@@ -179,6 +180,7 @@ Skeleton.propTypes = {
   style: PropTypes.object,
   /**
    * The type of content that will be rendered.
+   * @default 'text'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['circular', 'rectangular', 'text']),

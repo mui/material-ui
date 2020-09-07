@@ -163,6 +163,7 @@ TableCell.propTypes = {
    *
    * Monetary or generally number fields **should be right aligned** as that allows
    * you to add them up quickly in your head without having to worry about decimals.
+   * @default 'inherit'
    */
   align: PropTypes.oneOf(['center', 'inherit', 'justify', 'left', 'right']),
   /**

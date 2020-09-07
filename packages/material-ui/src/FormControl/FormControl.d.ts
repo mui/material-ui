@@ -23,18 +23,22 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
     };
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
+     * @default 'primary'
      */
     color?: 'primary' | 'secondary';
     /**
      * If `true`, the label, input and helper text should be displayed in a disabled state.
+     * @default false
      */
     disabled?: boolean;
     /**
      * If `true`, the label should be displayed in an error state.
+     * @default false
      */
     error?: boolean;
     /**
      * If `true`, the component will take up the full width of its container.
+     * @default false
      */
     fullWidth?: boolean;
     /**
@@ -45,14 +49,17 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
      * If `true`, the label will be hidden.
      * This is used to increase density for a `FilledInput`.
      * Be sure to add `aria-label` to the `input` element.
+     * @default false
      */
     hiddenLabel?: boolean;
     /**
      * If `dense` or `normal`, will adjust vertical spacing of this and contained components.
+     * @default 'none'
      */
     margin?: PropTypes.Margin;
     /**
      * If `true`, the label will indicate that the input is required.
+     * @default false
      */
     required?: boolean;
     /**
@@ -61,6 +68,7 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
     size?: 'small' | 'medium';
     /**
      * The variant to use.
+     * @default 'standard'
      */
     variant?: 'standard' | 'outlined' | 'filled';
   };

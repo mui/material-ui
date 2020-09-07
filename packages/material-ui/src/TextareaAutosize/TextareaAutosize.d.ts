@@ -10,6 +10,7 @@ export interface TextareaAutosizeProps
   maxRows?: string | number;
   /**
    * Minimum number of rows to display.
+   * @default 1
    */
   minRows?: string | number;
 }

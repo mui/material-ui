@@ -393,14 +393,17 @@ SpeedDial.propTypes = {
   className: PropTypes.string,
   /**
    * The direction the actions open relative to the floating action button.
+   * @default 'up'
    */
   direction: PropTypes.oneOf(['down', 'left', 'right', 'up']),
   /**
    * Props applied to the [`Fab`](/api/fab/) element.
+   * @default {}
    */
   FabProps: PropTypes.object,
   /**
    * If `true`, the SpeedDial will be hidden.
+   * @default false
    */
   hidden: PropTypes.bool,
   /**
@@ -453,11 +456,16 @@ SpeedDial.propTypes = {
   /**
    * The component used for the transition.
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * @default Zoom
    */
   TransitionComponent: PropTypes.elementType,
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
+   * @default {
+   *   enter: duration.enteringScreen,
+   *   exit: duration.leavingScreen,
+   * }
    */
   transitionDuration: PropTypes.oneOfType([
     PropTypes.number,

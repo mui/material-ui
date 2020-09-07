@@ -1,15 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createShallow, getClasses, createMount, describeConformance } from 'test/utils';
+import { createClientRender, getClasses, createMount, describeConformance } from 'test/utils';
 import Icon from './Icon';
 
 describe('<Icon />', () => {
   const mount = createMount();
-  let shallow;
+  const render = createClientRender();
   let classes;
 
   before(() => {
-    shallow = createShallow({ dive: true });
     classes = getClasses(<Icon />);
   });
 
@@ -22,36 +21,62 @@ describe('<Icon />', () => {
   }));
 
   it('renders children by default', () => {
-    const wrapper = shallow(<Icon>account_circle</Icon>);
-    expect(wrapper.contains('account_circle')).to.equal(true);
+    const { getByTestId } = render(<Icon data-testid="root">account_circle</Icon>);
+
+    expect(getByTestId('root')).to.have.text('account_circle');
   });
 
   describe('optional classes', () => {
     it('should render with the secondary color', () => {
-      const wrapper = shallow(<Icon color="secondary">account_circle</Icon>);
-      expect(wrapper.hasClass(classes.colorSecondary)).to.equal(true);
+      const { getByTestId } = render(
+        <Icon data-testid="root" color="secondary">
+          account_circle
+        </Icon>,
+      );
+
+      expect(getByTestId('root')).to.have.class(classes.colorSecondary);
     });
 
     it('should render with the action color', () => {
-      const wrapper = shallow(<Icon color="action">account_circle</Icon>);
-      expect(wrapper.hasClass(classes.colorAction)).to.equal(true);
+      const { getByTestId } = render(
+        <Icon data-testid="root" color="action">
+          account_circle
+        </Icon>,
+      );
+
+      expect(getByTestId('root')).to.have.class(classes.colorAction);
     });
 
     it('should render with the error color', () => {
-      const wrapper = shallow(<Icon color="error">account_circle</Icon>);
-      expect(wrapper.hasClass(classes.colorError)).to.equal(true);
+      const { getByTestId } = render(
+        <Icon data-testid="root" color="error">
+          account_circle
+        </Icon>,
+      );
+
+      expect(getByTestId('root')).to.have.class(classes.colorError);
     });
 
     it('should render with the primary class', () => {
-      const wrapper = shallow(<Icon color="primary">account_circle</Icon>);
-      expect(wrapper.hasClass(classes.colorPrimary)).to.equal(true);
+      const { getByTestId } = render(
+        <Icon data-testid="root" color="primary">
+          account_circle
+        </Icon>,
+      );
+
+      expect(getByTestId('root')).to.have.class(classes.colorPrimary);
     });
   });
 
   describe('prop: fontSize', () => {
     it('should be able to change the fontSize', () => {
-      const wrapper = shallow(<Icon fontSize="inherit">account_circle</Icon>);
-      expect(wrapper.hasClass(classes.fontSizeInherit)).to.equal(true);
+      const { getByTestId } = render(
+        <Icon data-testid="root" fontSize="inherit">
+          account_circle
+        </Icon>,
+      );
+
+      expect(getByTestId('root')).to.have.class(classes.fontSizeInherit);
     });
   });
 });

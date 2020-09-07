@@ -105,6 +105,7 @@ AvatarGroup.propTypes = {
   className: PropTypes.string,
   /**
    * Max avatars to show before +x.
+   * @default 5
    */
   max: chainPropTypes(PropTypes.number, (props) => {
     if (props.max < 2) {
@@ -118,6 +119,7 @@ AvatarGroup.propTypes = {
   }),
   /**
    * Spacing between avatars.
+   * @default 'medium'
    */
   spacing: PropTypes.oneOfType([PropTypes.oneOf(['medium', 'small']), PropTypes.number]),
 };

@@ -179,6 +179,7 @@ TablePagination.propTypes = {
   /**
    * The component used for displaying the actions.
    * Either a string to use a HTML element or a component.
+   * @default TablePaginationActions
    */
   ActionsComponent: PropTypes.elementType,
   /**
@@ -215,6 +216,9 @@ TablePagination.propTypes = {
    *
    * @param {string} type The link or button type to format ('first' | 'last' | 'next' | 'previous').
    * @returns {string}
+   * @default function defaultGetAriaLabel(type) {
+   *   return `Go to ${type} page`;
+   * }
    */
   getItemAriaLabel: PropTypes.func,
   /**
@@ -222,12 +226,16 @@ TablePagination.propTypes = {
    * object.
    *
    * For localization purposes, you can use the provided [translations](/guides/localization/).
+   * @default function defaultLabelDisplayedRows({ from, to, count }) {
+   *   return `${from}-${to} of ${count !== -1 ? count : `more than ${to}`}`;
+   * }
    */
   labelDisplayedRows: PropTypes.func,
   /**
    * Customize the rows per page label.
    *
    * For localization purposes, you can use the provided [translations](/guides/localization/).
+   * @default 'Rows per page:'
    */
   labelRowsPerPage: PropTypes.node,
   /**
@@ -273,6 +281,7 @@ TablePagination.propTypes = {
   /**
    * Customizes the options of the rows per page select field. If less than two options are
    * available, no select field will be displayed.
+   * @default [10, 25, 50, 100]
    */
   rowsPerPageOptions: PropTypes.arrayOf(
     PropTypes.oneOfType([
@@ -285,14 +294,17 @@ TablePagination.propTypes = {
   ),
   /**
    * Props applied to the rows per page [`Select`](/api/select/) element.
+   * @default {}
    */
   SelectProps: PropTypes.object,
   /**
    * If `true`, show the first-page button.
+   * @default false
    */
   showFirstButton: PropTypes.bool,
   /**
    * If `true`, show the last-page button.
+   * @default false
    */
   showLastButton: PropTypes.bool,
 };

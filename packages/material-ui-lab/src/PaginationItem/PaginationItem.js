@@ -307,6 +307,7 @@ PaginationItem.propTypes = {
   className: PropTypes.string,
   /**
    * The active color.
+   * @default 'standard'
    */
   color: PropTypes.oneOf(['primary', 'secondary', 'standard']),
   /**
@@ -316,6 +317,7 @@ PaginationItem.propTypes = {
   component: PropTypes.elementType,
   /**
    * If `true`, the item will be disabled.
+   * @default false
    */
   disabled: PropTypes.bool,
   /**
@@ -324,18 +326,22 @@ PaginationItem.propTypes = {
   page: PropTypes.number,
   /**
    * If `true` the pagination item is selected.
+   * @default false
    */
   selected: PropTypes.bool,
   /**
    * The shape of the pagination item.
+   * @default 'circular'
    */
   shape: PropTypes.oneOf(['circular', 'rounded']),
   /**
    * The size of the pagination item.
+   * @default 'medium'
    */
   size: PropTypes.oneOf(['large', 'medium', 'small']),
   /**
    * The type of pagination item.
+   * @default 'page'
    */
   type: PropTypes.oneOf([
     'end-ellipsis',
@@ -348,6 +354,7 @@ PaginationItem.propTypes = {
   ]),
   /**
    * The pagination item variant.
+   * @default 'text'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['outlined', 'text']),

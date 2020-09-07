@@ -36,14 +36,17 @@ export type IconButtonTypeMap<
     };
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
+     * @default 'default'
      */
     color?: PropTypes.Color;
     /**
      * If `true`, the button will be disabled.
+     * @default false
      */
     disabled?: boolean;
     /**
      * If `true`, the  keyboard focus ripple will be disabled.
+     * @default false
      */
     disableFocusRipple?: boolean;
     /**
@@ -51,11 +54,13 @@ export type IconButtonTypeMap<
      * side (this is often helpful for aligning the left or right
      * side of the icon with content above or below, without ruining the border
      * size and shape).
+     * @default false
      */
     edge?: 'start' | 'end' | false;
     /**
      * The size of the button.
      * `small` is equivalent to the dense button styling.
+     * @default 'medium'
      */
     size?: 'small' | 'medium';
   };

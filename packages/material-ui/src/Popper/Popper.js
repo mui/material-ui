@@ -293,12 +293,14 @@ Popper.propTypes = {
   ]),
   /**
    * The `children` will be inside the DOM hierarchy of the parent component.
+   * @default false
    */
   disablePortal: PropTypes.bool,
   /**
    * Always keep the children in the DOM.
    * This prop can be useful in SEO situation or
    * when you want to maximize the responsiveness of the Popper.
+   * @default false
    */
   keepMounted: PropTypes.bool,
   /**
@@ -317,6 +319,7 @@ Popper.propTypes = {
   open: PropTypes.bool.isRequired,
   /**
    * Popper placement.
+   * @default 'bottom'
    */
   placement: PropTypes.oneOf([
     'bottom-end',
@@ -334,6 +337,7 @@ Popper.propTypes = {
   ]),
   /**
    * Options provided to the [`popper.js`](https://popper.js.org/docs/v1/) instance.
+   * @default {}
    */
   popperOptions: PropTypes.object,
   /**
@@ -346,6 +350,7 @@ Popper.propTypes = {
   style: PropTypes.object,
   /**
    * Help supporting a react-transition-group/Transition component.
+   * @default false
    */
   transition: PropTypes.bool,
 };

@@ -33,10 +33,12 @@ export interface SvgIconTypeMap<P = {}, D extends React.ElementType = 'svg'> {
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
      * You can use the `htmlColor` prop to apply a color attribute to the SVG element.
+     * @default 'inherit'
      */
     color?: 'inherit' | 'primary' | 'secondary' | 'action' | 'disabled' | 'error';
     /**
      * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
+     * @default 'default'
      */
     fontSize?: 'inherit' | 'default' | 'small' | 'large';
     /**
@@ -60,6 +62,7 @@ export interface SvgIconTypeMap<P = {}, D extends React.ElementType = 'svg'> {
      * and you pass viewBox="0 0 50 20",
      * this means that the coordinates inside the SVG will go from the top left corner (0,0)
      * to bottom right (50,20) and each unit will be worth 10px.
+     * @default '0 0 24 24'
      */
     viewBox?: string;
   };
