@@ -42,6 +42,7 @@ Timeline.propTypes = {
   // ----------------------------------------------------------------------
   /**
    * The position where the timeline's content should appear.
+   * @default 'left'
    */
   align: PropTypes.oneOf(['alternate', 'left', 'right']),
   /**

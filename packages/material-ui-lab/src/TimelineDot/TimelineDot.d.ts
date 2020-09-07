@@ -35,10 +35,12 @@ export interface TimelineDotProps extends StandardProps<React.HTMLAttributes<HTM
   };
   /**
    * The dot can have a different colors.
+   * @default 'grey'
    */
   color?: 'inherit' | 'primary' | 'secondary' | 'grey';
   /**
    * The dot can appear filled or outlined.
+   * @default 'filled'
    */
   variant?: OverridableStringUnion<TimelineDotVariantDefaults, TimelineDotPropsVariantOverrides>;
 }

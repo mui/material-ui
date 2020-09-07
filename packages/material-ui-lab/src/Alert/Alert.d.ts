@@ -60,6 +60,7 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
    * Override the default label for the *close popup* icon button.
    *
    * For localization purposes, you can use the provided [translations](/guides/localization/).
+   * @default 'Close'
    */
   closeText?: string;
   /**
@@ -68,6 +69,7 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
   color?: Color;
   /**
    * The severity of the alert. This defines the color and icon used.
+   * @default 'success'
    */
   severity?: Color;
   /**
@@ -77,6 +79,7 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
   icon?: React.ReactNode | false;
   /**
    * The ARIA role attribute of the element.
+   * @default 'alert'
    */
   role?: string;
   /**
@@ -95,6 +98,7 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
   onClose?: (event: React.SyntheticEvent) => void;
   /**
    * The variant to use.
+   * @default 'standard'
    */
   variant?: OverridableStringUnion<AlertVariantDefaults, AlertPropsVariantOverrides>;
 }

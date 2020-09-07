@@ -214,6 +214,7 @@ Switch.propTypes = {
   className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'secondary'
    */
   color: PropTypes.oneOf(['default', 'primary', 'secondary']),
   /**
@@ -233,6 +234,7 @@ Switch.propTypes = {
    * side (this is often helpful for aligning the left or right
    * side of the icon with content above or below, without ruining the border
    * size and shape).
+   * @default false
    */
   edge: PropTypes.oneOf(['end', 'start', false]),
   /**
@@ -266,6 +268,7 @@ Switch.propTypes = {
   /**
    * The size of the switch.
    * `small` is equivalent to the dense switch styling.
+   * @default 'medium'
    */
   size: PropTypes.oneOf(['medium', 'small']),
   /**

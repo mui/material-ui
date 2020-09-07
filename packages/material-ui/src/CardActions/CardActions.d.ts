@@ -17,6 +17,7 @@ export interface CardActionsProps extends StandardProps<React.HTMLAttributes<HTM
   };
   /**
    * If `true`, the actions do not have additional margin.
+   * @default false
    */
   disableSpacing?: boolean;
 }

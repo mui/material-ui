@@ -7,6 +7,7 @@ export interface MobileStepperProps extends StandardProps<PaperProps, 'children'
   /**
    * Set the active step (zero based index).
    * Defines which dot is highlighted when the variant is 'dots'.
+   * @default 0
    */
   activeStep?: number;
   /**
@@ -44,6 +45,7 @@ export interface MobileStepperProps extends StandardProps<PaperProps, 'children'
   nextButton: React.ReactNode;
   /**
    * Set the positioning type.
+   * @default 'bottom'
    */
   position?: 'bottom' | 'top' | 'static';
   /**
@@ -52,6 +54,7 @@ export interface MobileStepperProps extends StandardProps<PaperProps, 'children'
   steps: number;
   /**
    * The variant to use.
+   * @default 'dots'
    */
   variant?: 'text' | 'dots' | 'progress';
 }

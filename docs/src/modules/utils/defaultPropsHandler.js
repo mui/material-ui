@@ -74,16 +74,13 @@ function getDefaultValuesFromProps(properties, documentation) {
           sloppy: true,
         }),
       );
-      const defaultValue = getDefaultValue(propertyPath);
-
-      if (jsdocDefaultValue != null && defaultValue != null) {
-        throw new Error(
-          `Can't have JavaScript default value and jsdoc @defaultValue in prop '${propName}'. Remove the @defaultValue if you need the JavaScript default value at runtime.`,
-        );
+      if (jsdocDefaultValue) {
+        propDescriptor.jsdocDefaultValue = jsdocDefaultValue;
       }
-      const usedDefaultValue = defaultValue || jsdocDefaultValue;
-      if (usedDefaultValue) {
-        propDescriptor.defaultValue = usedDefaultValue;
+
+      const defaultValue = getDefaultValue(propertyPath);
+      if (defaultValue) {
+        propDescriptor.defaultValue = defaultValue;
       }
     });
 }

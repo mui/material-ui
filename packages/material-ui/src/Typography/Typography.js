@@ -181,6 +181,7 @@ Typography.propTypes = {
   // ----------------------------------------------------------------------
   /**
    * Set the text-align on the component.
+   * @default 'inherit'
    */
   align: PropTypes.oneOf(['center', 'inherit', 'justify', 'left', 'right']),
   /**
@@ -197,6 +198,7 @@ Typography.propTypes = {
   className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'initial'
    */
   color: PropTypes.oneOf([
     'error',
@@ -214,10 +216,12 @@ Typography.propTypes = {
   component: PropTypes.elementType,
   /**
    * Controls the display type
+   * @default 'initial'
    */
   display: PropTypes.oneOf(['block', 'initial', 'inline']),
   /**
    * If `true`, the text will have a bottom margin.
+   * @default false
    */
   gutterBottom: PropTypes.bool,
   /**
@@ -225,14 +229,17 @@ Typography.propTypes = {
    *
    * Note that text overflow can only happen with block or inline-block level elements
    * (the element needs to have a width in order to overflow).
+   * @default false
    */
   noWrap: PropTypes.bool,
   /**
    * If `true`, the text will have a bottom margin.
+   * @default false
    */
   paragraph: PropTypes.bool,
   /**
    * Applies the theme typography styles.
+   * @default 'body1'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf([
@@ -258,6 +265,19 @@ Typography.propTypes = {
    * For instance, subtitle1 to `<h6>`.
    * If you wish to change that mapping, you can provide your own.
    * Alternatively, you can use the `component` prop.
+   * @default {
+   *   h1: 'h1',
+   *   h2: 'h2',
+   *   h3: 'h3',
+   *   h4: 'h4',
+   *   h5: 'h5',
+   *   h6: 'h6',
+   *   subtitle1: 'h6',
+   *   subtitle2: 'h6',
+   *   body1: 'p',
+   *   body2: 'p',
+   *   inherit: 'p',
+   * }
    */
   variantMapping: PropTypes /* @typescript-to-proptypes-ignore */.object,
 };

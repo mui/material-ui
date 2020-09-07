@@ -17,6 +17,7 @@ export interface GrowProps extends Omit<TransitionProps, 'timeout'> {
    * You may specify a single timeout for all transitions, or individually with an object.
    *
    * Set to 'auto' to automatically calculate transition time based on height.
+   * @default 'auto'
    */
   timeout?: TransitionProps['timeout'] | 'auto';
 }

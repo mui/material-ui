@@ -33,10 +33,12 @@ export interface IconTypeMap<P = {}, D extends React.ElementType = 'span'> {
     };
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
+     * @default 'inherit'
      */
     color?: Exclude<PropTypes.Color, 'default'> | 'action' | 'disabled' | 'error';
     /**
      * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
+     * @default 'default'
      */
     fontSize?: 'inherit' | 'default' | 'small' | 'large';
   };

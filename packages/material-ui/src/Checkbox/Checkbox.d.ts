@@ -10,6 +10,7 @@ export interface CheckboxProps
   checked?: SwitchBaseProps['checked'];
   /**
    * The icon to display when the component is checked.
+   * @default <CheckBoxIcon />
    */
   checkedIcon?: React.ReactNode;
   /**
@@ -31,6 +32,7 @@ export interface CheckboxProps
   };
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'secondary'
    */
   color?: 'primary' | 'secondary' | 'default';
   /**
@@ -43,6 +45,7 @@ export interface CheckboxProps
   disableRipple?: SwitchBaseProps['disableRipple'];
   /**
    * The icon to display when the component is unchecked.
+   * @default <CheckBoxOutlineBlankIcon />
    */
   icon?: React.ReactNode;
   /**
@@ -54,10 +57,12 @@ export interface CheckboxProps
    * This does not set the native input element to indeterminate due
    * to inconsistent behavior across browsers.
    * However, we set a `data-indeterminate` attribute on the input.
+   * @default false
    */
   indeterminate?: boolean;
   /**
    * The icon to display when the component is indeterminate.
+   * @default <IndeterminateCheckBoxIcon />
    */
   indeterminateIcon?: React.ReactNode;
   /**
@@ -82,6 +87,7 @@ export interface CheckboxProps
   /**
    * The size of the checkbox.
    * `small` is equivalent to the dense checkbox styling.
+   * @default 'medium'
    */
   size?: 'small' | 'medium';
   /**

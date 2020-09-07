@@ -178,6 +178,10 @@ Fade.propTypes = {
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
+   * @default {
+   *   enter: duration.enteringScreen,
+   *   exit: duration.leavingScreen,
+   * }
    */
   timeout: PropTypes.oneOfType([
     PropTypes.number,

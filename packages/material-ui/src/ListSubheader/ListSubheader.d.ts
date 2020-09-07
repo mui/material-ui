@@ -26,18 +26,22 @@ export interface ListSubheaderTypeMap<P = {}, D extends React.ElementType = 'li'
     };
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
+     * @default 'default'
      */
     color?: 'default' | 'primary' | 'inherit';
     /**
      * If `true`, the List Subheader will not have gutters.
+     * @default false
      */
     disableGutters?: boolean;
     /**
      * If `true`, the List Subheader will not stick to the top during scroll.
+     * @default false
      */
     disableSticky?: boolean;
     /**
      * If `true`, the List Subheader will be indented.
+     * @default false
      */
     inset?: boolean;
   };

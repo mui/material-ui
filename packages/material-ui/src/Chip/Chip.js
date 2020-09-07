@@ -475,6 +475,7 @@ Chip.propTypes = {
   clickable: PropTypes.bool,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'default'
    */
   color: PropTypes.oneOf(['default', 'primary', 'secondary']),
   /**
@@ -488,6 +489,7 @@ Chip.propTypes = {
   deleteIcon: PropTypes.element,
   /**
    * If `true`, the chip should be displayed in a disabled state.
+   * @default false
    */
   disabled: PropTypes.bool,
   /**
@@ -517,10 +519,12 @@ Chip.propTypes = {
   onKeyUp: PropTypes.func,
   /**
    * The size of the chip.
+   * @default 'medium'
    */
   size: PropTypes.oneOf(['medium', 'small']),
   /**
    * The variant to use.
+   * @default 'default'
    */
   variant: PropTypes.oneOf(['default', 'outlined']),
 };

@@ -60,6 +60,7 @@ DialogContent.propTypes = {
   className: PropTypes.string,
   /**
    * Display the top and bottom dividers.
+   * @default false
    */
   dividers: PropTypes.bool,
 };

@@ -162,6 +162,7 @@ StepLabel.propTypes = {
   className: PropTypes.string,
   /**
    * Mark the step as failed.
+   * @default false
    */
   error: PropTypes.bool,
   /**

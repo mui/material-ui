@@ -6,6 +6,15 @@ trigger:
       - l10n
       - dependabot/*
 
+schedules:
+  - cron: '0 0 * * *'
+    displayName: Run with React canary
+    branches:
+      include:
+        - master
+        - next
+    always: true
+
 # https://developercommunity.visualstudio.com/comments/949241/view.html
 pr:
   branches:
@@ -17,6 +26,17 @@ pool:
 
 variables:
   DOCS_NEXT_CACHE_FOLDER: $(Build.SourcesDirectory)/docs/.next/cache
+  # azure-pipelines don't support variables per trigger
+  # We assume that the only scheduled job we have is for react@next
+  ${{ if eq( variables['Build.Reason'], 'Schedule' ) }}:
+    # npm dist tag for `react` (https://docs.npmjs.com/cli/dist-tag)
+    REACT_DIST_TAG: 'next'
+    # Path for artifacts uploaded to S3 that can be used as a permalink
+    S3_ARTIFACTS_PATH_PERMA: 'artifacts/$(Build.SourceBranchName)-react-$(REACT_DIST_TAG)/$(Build.SourceVersion)/'
+  ${{ if ne( variables['Build.Reason'], 'Schedule' ) }}:
+    REACT_DIST_TAG: 'stable'
+    # Preserve this path structure since it is locked in various tooling
+    S3_ARTIFACTS_PATH_PERMA: 'artifacts/$(Build.SourceBranchName)/$(Build.SourceVersion)/'
 
 steps:
   - task: NodeTool@0
@@ -25,6 +45,7 @@ steps:
     displayName: 'Install Node.js'
 
   - script: |
+      node scripts/use-react-dist-tag.js $(REACT_DIST_TAG)
       yarn install
     displayName: 'install dependencies'
 
@@ -44,7 +65,7 @@ steps:
       regionName: 'eu-central-1'
       bucketName: 'eps1lon-material-ui'
       globExpressions: '*.tgz'
-      targetFolder: 'artifacts/$(Build.SourceBranchName)/$(Build.SourceVersion)'
+      targetFolder: $(S3_ARTIFACTS_PATH_PERMA)
       filesAcl: 'public-read'
     displayName: 'Upload distributables to S3'
     condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
@@ -71,7 +92,7 @@ steps:
       yarn docs:build | tee scripts/sizeSnapshot/build/docs.next
     displayName: 'build docs for size snapshot'
     env:
-      NODE_OPTIONS: "--max_old_space_size=4096"
+      NODE_OPTIONS: '--max_old_space_size=4096'
 
   - script: |
       yarn size:snapshot
@@ -92,7 +113,7 @@ steps:
       bucketName: 'eps1lon-material-ui'
       sourceFolder: '$(System.DefaultWorkingDirectory)'
       globExpressions: 'size-snapshot.json'
-      targetFolder: 'artifacts/$(Build.SourceBranchName)/$(Build.SourceVersion)/'
+      targetFolder: $(S3_ARTIFACTS_PATH_PERMA)
       filesAcl: 'public-read'
       contentType: application/json
       logRequest: true
@@ -100,7 +121,7 @@ steps:
 
   - task: AmazonWebServices.aws-vsts-tools.S3Upload.S3Upload@1
     displayName: 'symlink size-snapshot to latest'
-    condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
+    condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'), ne(variables['Build.Reason'], 'Schedule'))
     inputs:
       awsCredentials: 's3 artifacts'
       regionName: 'eu-central-1'

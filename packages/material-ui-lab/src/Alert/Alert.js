@@ -242,6 +242,7 @@ Alert.propTypes = {
    * Override the default label for the *close popup* icon button.
    *
    * For localization purposes, you can use the provided [translations](/guides/localization/).
+   * @default 'Close'
    */
   closeText: PropTypes.string,
   /**
@@ -274,14 +275,17 @@ Alert.propTypes = {
   onClose: PropTypes.func,
   /**
    * The ARIA role attribute of the element.
+   * @default 'alert'
    */
   role: PropTypes.string,
   /**
    * The severity of the alert. This defines the color and icon used.
+   * @default 'success'
    */
   severity: PropTypes.oneOf(['error', 'info', 'success', 'warning']),
   /**
    * The variant to use.
+   * @default 'standard'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['filled', 'outlined', 'standard']),

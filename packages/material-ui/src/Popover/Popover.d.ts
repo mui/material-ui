@@ -36,6 +36,10 @@ export interface PopoverProps
    * Options:
    * vertical: [top, center, bottom];
    * horizontal: [left, center, right].
+   * @default {
+   *   vertical: 'top',
+   *   horizontal: 'left',
+   * }
    */
   anchorOrigin?: PopoverOrigin;
   /**
@@ -48,6 +52,7 @@ export interface PopoverProps
   /**
    * This determines which anchor prop to refer to to set
    * the position of the popover.
+   * @default 'anchorEl'
    */
   anchorReference?: PopoverReference;
   /**
@@ -73,6 +78,7 @@ export interface PopoverProps
   container?: ModalProps['container'];
   /**
    * The elevation of the popover.
+   * @default 8
    */
   elevation?: number;
   /**
@@ -86,6 +92,7 @@ export interface PopoverProps
   getContentAnchorEl?: null | ((element: Element) => Element);
   /**
    * Specifies how close to the edge of the window the popover can appear.
+   * @default 16
    */
   marginThreshold?: number;
   onClose?: ModalProps['onClose'];
@@ -95,6 +102,7 @@ export interface PopoverProps
   open: boolean;
   /**
    * Props applied to the [`Paper`](/api/paper/) element.
+   * @default {}
    */
   PaperProps?: Partial<PaperProps>;
   /**
@@ -104,22 +112,29 @@ export interface PopoverProps
    * Options:
    * vertical: [top, center, bottom, x(px)];
    * horizontal: [left, center, right, x(px)].
+   * @default {
+   *   vertical: 'top',
+   *   horizontal: 'left',
+   * }
    */
   transformOrigin?: PopoverOrigin;
   /**
    * The component used for the transition.
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * @default Grow
    */
   TransitionComponent?: React.ComponentType<
     TransitionProps & { children?: React.ReactElement<any, any> }
   >;
   /**
    * Set to 'auto' to automatically calculate transition time based on height.
+   * @default 'auto'
    */
   transitionDuration?: TransitionProps['timeout'] | 'auto';
   /**
    * Props applied to the transition element.
    * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition) component.
+   * @default {}
    */
   TransitionProps?: TransitionProps;
 }

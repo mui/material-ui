@@ -49,12 +49,14 @@ export interface PopperProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 
   container?: PortalProps['container'];
   /**
    * The `children` will be inside the DOM hierarchy of the parent component.
+   * @default false
    */
   disablePortal?: PortalProps['disablePortal'];
   /**
    * Always keep the children in the DOM.
    * This prop can be useful in SEO situation or
    * when you want to maximize the responsiveness of the Popper.
+   * @default false
    */
   keepMounted?: boolean;
   /**
@@ -73,10 +75,12 @@ export interface PopperProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 
   open: boolean;
   /**
    * Popper placement.
+   * @default 'bottom'
    */
   placement?: PopperPlacementType;
   /**
    * Options provided to the [`popper.js`](https://popper.js.org/docs/v1/) instance.
+   * @default {}
    */
   popperOptions?: object;
   /**
@@ -85,6 +89,7 @@ export interface PopperProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 
   popperRef?: React.Ref<PopperJs>;
   /**
    * Help supporting a react-transition-group/Transition component.
+   * @default false
    */
   transition?: boolean;
 }

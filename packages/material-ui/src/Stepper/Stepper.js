@@ -85,11 +85,13 @@ Stepper.propTypes = {
   /**
    * Set the active step (zero based index).
    * Set to -1 to disable all the steps.
+   * @default 0
    */
   activeStep: PropTypes.number,
   /**
    * If set to 'true' and orientation is horizontal,
    * then the step label will be positioned under the icon.
+   * @default false
    */
   alternativeLabel: PropTypes.bool,
   /**
@@ -106,14 +108,17 @@ Stepper.propTypes = {
   className: PropTypes.string,
   /**
    * An element to be placed between each step.
+   * @default <StepConnector />
    */
   connector: PropTypes.element,
   /**
    * If set the `Stepper` will not assist in controlling steps for linear flow.
+   * @default false
    */
   nonLinear: PropTypes.bool,
   /**
    * The stepper orientation (layout flow direction).
+   * @default 'horizontal'
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
 };

@@ -231,6 +231,7 @@ Grow.propTypes = {
    * You may specify a single timeout for all transitions, or individually with an object.
    *
    * Set to 'auto' to automatically calculate transition time based on height.
+   * @default 'auto'
    */
   timeout: PropTypes.oneOfType([
     PropTypes.oneOf(['auto']),

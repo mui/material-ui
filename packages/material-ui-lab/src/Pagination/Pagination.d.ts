@@ -31,6 +31,7 @@ export interface PaginationProps
   };
   /**
    * The active color.
+   * @default 'standard'
    */
   color?: 'primary' | 'secondary' | 'standard';
   /**
@@ -53,18 +54,22 @@ export interface PaginationProps
    *
    * @param {PaginationRenderItemParams} params The props to spread on a PaginationItem.
    * @returns {ReactNode}
+   * @default (item) => <PaginationItem {...item} />
    */
   renderItem?: (params: PaginationRenderItemParams) => React.ReactNode;
   /**
    * The shape of the pagination items.
+   * @default 'circular'
    */
   shape?: 'circular' | 'rounded';
   /**
    * The size of the pagination component.
+   * @default 'medium'
    */
   size?: 'small' | 'medium' | 'large';
   /**
    * The variant to use.
+   * @default 'text'
    */
   variant?: OverridableStringUnion<PaginationVariantDefaults, PaginationPropsVariantOverrides>;
 }

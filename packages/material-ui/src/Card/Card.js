@@ -43,6 +43,7 @@ Card.propTypes = {
   className: PropTypes.string,
   /**
    * If `true`, the card will use raised styling.
+   * @default false
    */
   raised: PropTypes.bool,
 };

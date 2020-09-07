@@ -19,6 +19,7 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
       /**
        * The component used for displaying the actions.
        * Either a string to use a HTML element or a component.
+       * @default TablePaginationActions
        */
       ActionsComponent?: React.ElementType<TablePaginationActionsProps>;
       /**
@@ -63,6 +64,9 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
        *
        * @param {string} type The link or button type to format ('first' | 'last' | 'next' | 'previous').
        * @returns {string}
+       * @default function defaultGetAriaLabel(type) {
+       *   return `Go to ${type} page`;
+       * }
        */
       getItemAriaLabel?: (type: 'first' | 'last' | 'next' | 'previous') => string;
       /**
@@ -70,12 +74,16 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
        * object.
        *
        * For localization purposes, you can use the provided [translations](/guides/localization/).
+       * @default function defaultLabelDisplayedRows({ from, to, count }) {
+       *   return `${from}-${to} of ${count !== -1 ? count : `more than ${to}`}`;
+       * }
        */
       labelDisplayedRows?: (paginationInfo: LabelDisplayedRowsArgs) => React.ReactNode;
       /**
        * Customize the rows per page label.
        *
        * For localization purposes, you can use the provided [translations](/guides/localization/).
+       * @default 'Rows per page:'
        */
       labelRowsPerPage?: React.ReactNode;
       /**
@@ -106,18 +114,22 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
       /**
        * Customizes the options of the rows per page select field. If less than two options are
        * available, no select field will be displayed.
+       * @default [10, 25, 50, 100]
        */
       rowsPerPageOptions?: Array<number | { value: number; label: string }>;
       /**
        * Props applied to the rows per page [`Select`](/api/select/) element.
+       * @default {}
        */
       SelectProps?: Partial<SelectProps>;
       /**
        * If `true`, show the first-page button.
+       * @default false
        */
       showFirstButton?: boolean;
       /**
        * If `true`, show the last-page button.
+       * @default false
        */
       showLastButton?: boolean;
     };

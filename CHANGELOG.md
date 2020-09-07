@@ -1,5 +1,58 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 5.0.0-alpha.9
+
+###### _Sep 6, 2020_
+
+Big thanks to the 14 contributors who made this release possible.
+Here are some highlights ✨:
+
+- 💎 A new diamond sponsor: [DoiT](https://www.doit-intl.com/), thank you!
+- 📚 Include the default value of the props in IntelliSense (#22447) @eps1lon
+- ⚛️ More source migrated to TypeScript and testing-library (#22441) @baterson
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@material-ui/core@v5.0.0-alpha.9`
+
+#### Breaking changes
+
+- [Modal] Remove `onRendered` prop from Modal and Portal (#22464) @eps1lon
+  Depending on your use case either use a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element or an effect hook in the child component.
+
+#### Changes
+
+- [Modal] Convert ModalManager to TypeScript (#22465) @eps1lon
+- [Paper] Fix elevation warning when rendering (#22494) @nesso-pfl
+- [Slider] Edge against swallowing of mouse up event (#22401) @motiejunas
+- [Tabs] Add option to show scrollbar (#22438) @LogyLeo
+- [Tabs] Document visibleScrollBar default value (#22475) @eps1lon
+- [TextField] Remove excessive catching of hiddenLabel prop (#22444) @croraf
+
+### `@material-ui/lab@v5.0.0-alpha.9`
+
+- [docs] Include default values in IntelliSense (#22447) @eps1lon
+
+### Docs
+
+- [docs] Add DoiT diamond sponsor (#22436) @oliviertassinari
+- [docs] Bump markdown-to-jsx (#22474) @eps1lon
+- [docs] Change showcase approval process (#22398) @africanzoe
+- [docs] Fix close context menu if repeated (#22463) @eps1lon
+- [docs] Fix Next.js example (#22457) @bhati
+- [docs] Fix TypeScript deps in CodeSandbox (#22346) @oliviertassinari
+- [docs] Fix unresolved returntypes for props (#22459) @eps1lon
+- [docs] Fix usage of overrides instead of styleOverrides (#22478) @discodanne
+- [docs] Improve Backstage showcase (#22458) @stefanalund
+- [docs] Improve styles basics.md section (#22440) @bxie
+- [docs] Include default values in IntelliSense (#22447) @eps1lon
+
+### Core
+
+- [core] Batch small changes (#22461) @oliviertassinari
+- [core] Fix useEventCallback type (#22448) @kodai3
+- [core] Try out new JSX transform where available (#22455) @eps1lon
+- [test] Migrate more components to react-testing-library (#22441) @baterson
+
 ## 5.0.0-alpha.8
 
 ###### _Aug 31, 2020_

@@ -9,6 +9,7 @@ export interface DrawerProps
   extends StandardProps<ModalProps & Partial<TransitionHandlerProps>, 'open' | 'children'> {
   /**
    * Side from which the drawer will appear.
+   * @default 'left'
    */
   anchor?: 'left' | 'top' | 'right' | 'bottom';
   /**
@@ -46,10 +47,12 @@ export interface DrawerProps
   };
   /**
    * The elevation of the drawer.
+   * @default 16
    */
   elevation?: number;
   /**
    * Props applied to the [`Modal`](/api/modal/) element.
+   * @default {}
    */
   ModalProps?: Partial<ModalProps>;
   /**
@@ -60,10 +63,12 @@ export interface DrawerProps
   onClose?: ModalProps['onClose'];
   /**
    * If `true`, the drawer is open.
+   * @default false
    */
   open?: boolean;
   /**
    * Props applied to the [`Paper`](/api/paper/) element.
+   * @default {}
    */
   PaperProps?: Partial<PaperProps>;
   /**
@@ -73,10 +78,12 @@ export interface DrawerProps
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
+   * @default { enter: duration.enteringScreen, exit: duration.leavingScreen }
    */
   transitionDuration?: TransitionProps['timeout'];
   /**
    * The variant to use.
+   * @default 'temporary'
    */
   variant?: 'permanent' | 'persistent' | 'temporary';
 }

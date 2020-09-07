@@ -121,6 +121,7 @@ MobileStepper.propTypes = {
   /**
    * Set the active step (zero based index).
    * Defines which dot is highlighted when the variant is 'dots'.
+   * @default 0
    */
   activeStep: PropTypes.number,
   /**
@@ -145,6 +146,7 @@ MobileStepper.propTypes = {
   nextButton: PropTypes.node,
   /**
    * Set the positioning type.
+   * @default 'bottom'
    */
   position: PropTypes.oneOf(['bottom', 'static', 'top']),
   /**
@@ -153,6 +155,7 @@ MobileStepper.propTypes = {
   steps: PropTypes.number.isRequired,
   /**
    * The variant to use.
+   * @default 'dots'
    */
   variant: PropTypes.oneOf(['dots', 'progress', 'text']),
 };

@@ -10,6 +10,7 @@ export interface ImageListItemBarProps
   actionIcon?: React.ReactNode;
   /**
    * Position of secondary action IconButton.
+   * @default 'right'
    */
   actionPosition?: 'left' | 'right';
   /**
@@ -49,6 +50,7 @@ export interface ImageListItemBarProps
   title?: React.ReactNode;
   /**
    * Position of the title bar.
+   * @default 'bottom'
    */
   titlePosition?: 'top' | 'bottom';
 }

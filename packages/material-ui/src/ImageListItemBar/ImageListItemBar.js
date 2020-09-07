@@ -129,6 +129,7 @@ ImageListItemBar.propTypes = {
   actionIcon: PropTypes.node,
   /**
    * Position of secondary action IconButton.
+   * @default 'right'
    */
   actionPosition: PropTypes.oneOf(['left', 'right']),
   /**
@@ -153,6 +154,7 @@ ImageListItemBar.propTypes = {
   title: PropTypes.node,
   /**
    * Position of the title bar.
+   * @default 'bottom'
    */
   titlePosition: PropTypes.oneOf(['bottom', 'top']),
 };

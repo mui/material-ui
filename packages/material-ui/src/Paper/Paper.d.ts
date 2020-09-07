@@ -56,14 +56,17 @@ export interface PaperProps extends StandardProps<React.HTMLAttributes<HTMLDivEl
   /**
    * Shadow depth, corresponds to `dp` in the spec.
    * It accepts values between 0 and 24 inclusive.
+   * @default 1
    */
   elevation?: number;
   /**
    * If `true`, rounded corners are disabled.
+   * @default false
    */
   square?: boolean;
   /**
    * The variant to use.
+   * @default 'elevation'
    */
   variant?: OverridableStringUnion<PaperVariantDefaults, PaperPropsVariantOverrides>;
 }

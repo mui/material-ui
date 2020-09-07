@@ -8,11 +8,13 @@ export interface StepperProps extends StandardProps<PaperProps> {
   /**
    * Set the active step (zero based index).
    * Set to -1 to disable all the steps.
+   * @default 0
    */
   activeStep?: number;
   /**
    * If set to 'true' and orientation is horizontal,
    * then the step label will be positioned under the icon.
+   * @default false
    */
   alternativeLabel?: boolean;
   /**
@@ -34,14 +36,17 @@ export interface StepperProps extends StandardProps<PaperProps> {
   };
   /**
    * An element to be placed between each step.
+   * @default <StepConnector />
    */
   connector?: React.ReactElement<any, any>;
   /**
    * If set the `Stepper` will not assist in controlling steps for linear flow.
+   * @default false
    */
   nonLinear?: boolean;
   /**
    * The stepper orientation (layout flow direction).
+   * @default 'horizontal'
    */
   orientation?: Orientation;
 }

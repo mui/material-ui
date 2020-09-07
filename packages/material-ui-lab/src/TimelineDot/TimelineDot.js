@@ -109,10 +109,12 @@ TimelineDot.propTypes = {
   className: PropTypes.string,
   /**
    * The dot can have a different colors.
+   * @default 'grey'
    */
   color: PropTypes.oneOf(['grey', 'inherit', 'primary', 'secondary']),
   /**
    * The dot can appear filled or outlined.
+   * @default 'filled'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['filled', 'outlined']),

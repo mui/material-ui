@@ -104,6 +104,8 @@ declare module 'react-docgen' {
 
   export interface PropDescriptor {
     defaultValue?: { computed: boolean; value: string };
+    // augmented by docs/src/modules/utils/defaultPropsHandler.js
+    jsdocDefaultValue?: { computed: boolean; value: string };
     description?: string;
     required?: boolean;
     /**

@@ -36,6 +36,7 @@ export interface StepProps extends StandardProps<React.HTMLAttributes<HTMLDivEle
   disabled?: boolean;
   /**
    * Expand the step.
+   * @default false
    */
   expanded?: boolean;
   /**

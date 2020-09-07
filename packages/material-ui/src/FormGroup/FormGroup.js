@@ -58,6 +58,7 @@ FormGroup.propTypes = {
   className: PropTypes.string,
   /**
    * Display group of elements in a compact row.
+   * @default false
    */
   row: PropTypes.bool,
 };

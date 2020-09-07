@@ -17,6 +17,7 @@ export interface FormGroupProps extends StandardProps<React.HTMLAttributes<HTMLD
   };
   /**
    * Display group of elements in a compact row.
+   * @default false
    */
   row?: boolean;
 }

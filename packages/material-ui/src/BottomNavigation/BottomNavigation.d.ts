@@ -24,6 +24,7 @@ export interface BottomNavigationTypeMap<P = {}, D extends React.ElementType = '
     /**
      * If `true`, all `BottomNavigationAction`s will show their labels.
      * By default, only the selected `BottomNavigationAction` will show its label.
+     * @default false
      */
     showLabels?: boolean;
     /**

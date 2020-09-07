@@ -36,6 +36,7 @@ export interface StepLabelProps extends StandardProps<React.HTMLAttributes<HTMLD
   };
   /**
    * Mark the step as failed.
+   * @default false
    */
   error?: boolean;
   /**

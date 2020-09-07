@@ -11,6 +11,7 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
   props: P & {
     /**
      * Set the text-align on the component.
+     * @default 'inherit'
      */
     align?: PropTypes.Alignment;
     /**
@@ -84,6 +85,7 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
     };
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
+     * @default 'initial'
      */
     color?:
       | 'initial'
@@ -95,10 +97,12 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
       | 'error';
     /**
      * Controls the display type
+     * @default 'initial'
      */
     display?: 'initial' | 'block' | 'inline';
     /**
      * If `true`, the text will have a bottom margin.
+     * @default false
      */
     gutterBottom?: boolean;
     /**
@@ -106,14 +110,17 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
      *
      * Note that text overflow can only happen with block or inline-block level elements
      * (the element needs to have a width in order to overflow).
+     * @default false
      */
     noWrap?: boolean;
     /**
      * If `true`, the text will have a bottom margin.
+     * @default false
      */
     paragraph?: boolean;
     /**
      * Applies the theme typography styles.
+     * @default 'body1'
      */
     variant?: OverridableStringUnion<TypographyVariantDefaults, TypographyPropsVariantOverrides>;
     /**
@@ -121,6 +128,19 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
      * For instance, subtitle1 to `<h6>`.
      * If you wish to change that mapping, you can provide your own.
      * Alternatively, you can use the `component` prop.
+     * @default {
+     *   h1: 'h1',
+     *   h2: 'h2',
+     *   h3: 'h3',
+     *   h4: 'h4',
+     *   h5: 'h5',
+     *   h6: 'h6',
+     *   subtitle1: 'h6',
+     *   subtitle2: 'h6',
+     *   body1: 'p',
+     *   body2: 'p',
+     *   inherit: 'p',
+     * }
      */
     variantMapping?: Partial<
       Record<
