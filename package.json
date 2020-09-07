@@ -155,6 +155,7 @@
   "resolutions": {
     "**/@babel/core": "^7.10.2",
     "**/@babel/code-frame": "^7.10.4",
+    "**/@babel/parser": "7.10.5",
     "**/@babel/plugin-proposal-class-properties": "^7.10.1",
     "**/@babel/plugin-proposal-object-rest-spread": "^7.10.1",
     "**/@babel/plugin-proposal-nullish-coalescing-operator": "^7.10.1",
