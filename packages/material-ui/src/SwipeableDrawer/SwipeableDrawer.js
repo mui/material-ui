@@ -492,6 +492,9 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     if (variant === 'temporary') {
       const doc = ownerDocument(paperRef.current);
       doc.addEventListener('touchstart', handleBodyTouchStart);
+      // A blocking listener prevents Firefox's navbar to auto-hide on scroll.
+      // It only needs to prevent scrolling on the drawer's content when open.
+      // When closed, the overlay prevents scrolling.
       doc.addEventListener('touchmove', handleBodyTouchMove, { passive: !open });
       doc.addEventListener('touchend', handleBodyTouchEnd);
 
