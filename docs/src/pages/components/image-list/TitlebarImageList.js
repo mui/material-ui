@@ -30,7 +30,7 @@ export default function TitlebarImageList() {
         <ImageListItem key={item.img}>
           <img
             srcSet={`${item.img}?w=248&fit=crop&auto=format 1x,
-                ${item.img}?w=248&&fit=crop&auto=format&dpr=2 2x`}
+                ${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
             alt={item.title}
           />
           <ImageListItemBar
