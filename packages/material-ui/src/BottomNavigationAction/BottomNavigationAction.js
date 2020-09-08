@@ -74,7 +74,9 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
   const touchTimer = React.useRef();
 
   React.useEffect(() => {
-    return () => clearTimeout(touchTimer.current);
+    return () => {
+      clearTimeout(touchTimer.current);
+    };
   }, [touchTimer]);
 
   const handleTouchStart = (event) => {
