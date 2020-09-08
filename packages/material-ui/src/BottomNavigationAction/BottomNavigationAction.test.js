@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy } from 'sinon';
+import { spy, useFakeTimers } from 'sinon';
 import {
   getClasses,
   createMount,
@@ -82,153 +82,182 @@ describe('<BottomNavigationAction />', () => {
     });
   });
 
-  it('should fire onClick on touch tap', (done) => {
-    const handleClick = spy();
+  describe('touch functionality', () => {
+    let clock;
 
-    // Need disableTouchRipple to avoid ripple missing act (async setState after touchEnd)
-    const { container } = render(
-      <BottomNavigationAction onClick={handleClick} disableTouchRipple />,
-    );
+    beforeEach(() => {
+      clock = useFakeTimers();
+    })
 
-    fireEvent.touchStart(container.firstChild, {
-      touches: [
-        new Touch({
-          identifier: 1,
-          target: container,
-          clientX: 42,
-          clientY: 42,
-        }),
-      ],
-    });
+    afterEach(() => {
+      clock.restore();
+    })
 
-    fireEvent.touchEnd(container.firstChild, {
-      changedTouches: [
-        new Touch({
-          identifier: 1,
-          target: container,
-          clientX: 42,
-          clientY: 42,
-        }),
-      ],
-    });
+    it('should fire onClick on touch tap', () => {
+      // Only run in supported browsers
+      if (typeof Touch === "undefined") {
+        return;
+      }
 
-    setTimeout(() => {
+      const handleClick = spy();
+
+      // Need disableTouchRipple to avoid ripple missing act (async setState after touchEnd)
+      const { container } = render(
+        <BottomNavigationAction onClick={handleClick} disableTouchRipple />,
+      );
+
+      fireEvent.touchStart(container.firstChild, {
+        touches: [
+          new Touch({
+            identifier: 1,
+            target: container,
+            clientX: 42,
+            clientY: 42,
+          }),
+        ],
+      });
+
+      fireEvent.touchEnd(container.firstChild, {
+        changedTouches: [
+          new Touch({
+            identifier: 1,
+            target: container,
+            clientX: 42,
+            clientY: 42,
+          }),
+        ],
+      });
+
+      clock.tick(15);
+
       expect(handleClick.callCount).to.equal(1);
-      done();
-    }, 15);
-  });
-
-  it('should not fire onClick twice on touch tap', (done) => {
-    const handleClick = spy();
-
-    // Need disableTouchRipple to avoid ripple missing act (async setState after touchEnd)
-    const { getByRole, container } = render(
-      <BottomNavigationAction onClick={handleClick} disableTouchRipple />,
-    );
-
-    fireEvent.touchStart(container.firstChild, {
-      touches: [
-        new Touch({
-          identifier: 1,
-          target: container,
-          clientX: 42,
-          clientY: 42,
-        }),
-      ],
     });
 
-    fireEvent.touchEnd(container.firstChild, {
-      changedTouches: [
-        new Touch({
-          identifier: 1,
-          target: container,
-          clientX: 42,
-          clientY: 42,
-        }),
-      ],
-    });
+    it('should not fire onClick twice on touch tap', () => {
+      // Only run in supported browsers
+      if (typeof Touch === "undefined") {
+        return;
+      }
 
-    getByRole('button').click();
+      const handleClick = spy();
 
-    setTimeout(() => {
+      // Need disableTouchRipple to avoid ripple missing act (async setState after touchEnd)
+      const { getByRole, container } = render(
+        <BottomNavigationAction onClick={handleClick} disableTouchRipple />,
+      );
+
+      fireEvent.touchStart(container.firstChild, {
+        touches: [
+          new Touch({
+            identifier: 1,
+            target: container,
+            clientX: 42,
+            clientY: 42,
+          }),
+        ],
+      });
+
+      fireEvent.touchEnd(container.firstChild, {
+        changedTouches: [
+          new Touch({
+            identifier: 1,
+            target: container,
+            clientX: 42,
+            clientY: 42,
+          }),
+        ],
+      });
+
+      getByRole('button').click();
+
+      clock.tick(15);
+
       expect(handleClick.callCount).to.equal(1);
-      done();
-    }, 15);
-  });
-
-  it('should not fire onClick if swiping', (done) => {
-    const handleClick = spy();
-
-    // Need disableTouchRipple to avoid ripple missing act (async setState after touchEnd)
-    const { container } = render(
-      <BottomNavigationAction onClick={handleClick} disableTouchRipple />,
-    );
-
-    fireEvent.touchStart(container.firstChild, {
-      touches: [
-        new Touch({
-          identifier: 1,
-          target: container,
-          clientX: 42,
-          clientY: 42,
-        }),
-      ],
     });
 
-    fireEvent.touchEnd(container.firstChild, {
-      changedTouches: [
-        new Touch({
-          identifier: 1,
-          target: container,
-          clientX: 84,
-          clientY: 84,
-        }),
-      ],
-    });
+    it('should not fire onClick if swiping', () => {
+      // Only run in supported browsers
+      if (typeof Touch === "undefined") {
+        return;
+      }
 
-    setTimeout(() => {
+      const handleClick = spy();
+
+      // Need disableTouchRipple to avoid ripple missing act (async setState after touchEnd)
+      const { container } = render(
+        <BottomNavigationAction onClick={handleClick} disableTouchRipple />,
+      );
+
+      fireEvent.touchStart(container.firstChild, {
+        touches: [
+          new Touch({
+            identifier: 1,
+            target: container,
+            clientX: 42,
+            clientY: 42,
+          }),
+        ],
+      });
+
+      fireEvent.touchEnd(container.firstChild, {
+        changedTouches: [
+          new Touch({
+            identifier: 1,
+            target: container,
+            clientX: 84,
+            clientY: 84,
+          }),
+        ],
+      });
+
+      clock.tick(15);
+
       expect(handleClick.callCount).to.equal(0);
-      done();
-    }, 15);
-  });
-
-  it('should forward onTouchStart and onTouchEnd events', () => {
-    const handleTouchStart = spy();
-    const handleTouchEnd = spy();
-
-    // Need disableTouchRipple to avoid ripple missing act (async setState after touchEnd).
-    const { container } = render(
-      <BottomNavigationAction
-        onTouchStart={handleTouchStart}
-        onTouchEnd={handleTouchEnd}
-        disableTouchRipple
-      />,
-    );
-
-    fireEvent.touchStart(container.firstChild, {
-      touches: [
-        new Touch({
-          identifier: 1,
-          target: container,
-          clientX: 42,
-          clientY: 42,
-        }),
-      ],
     });
 
-    expect(handleTouchStart.callCount).to.be.equals(1);
+    it('should forward onTouchStart and onTouchEnd events', () => {
+      // Only run in supported browsers
+      if (typeof Touch === "undefined") {
+        return;
+      }
 
-    fireEvent.touchEnd(container.firstChild, {
-      changedTouches: [
-        new Touch({
-          identifier: 1,
-          target: container,
-          clientX: 84,
-          clientY: 84,
-        }),
-      ],
+      const handleTouchStart = spy();
+      const handleTouchEnd = spy();
+
+      // Need disableTouchRipple to avoid ripple missing act (async setState after touchEnd).
+      const { container } = render(
+        <BottomNavigationAction
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          disableTouchRipple
+        />,
+      );
+
+      fireEvent.touchStart(container.firstChild, {
+        touches: [
+          new Touch({
+            identifier: 1,
+            target: container,
+            clientX: 42,
+            clientY: 42,
+          }),
+        ],
+      });
+
+      expect(handleTouchStart.callCount).to.be.equals(1);
+
+      fireEvent.touchEnd(container.firstChild, {
+        changedTouches: [
+          new Touch({
+            identifier: 1,
+            target: container,
+            clientX: 84,
+            clientY: 84,
+          }),
+        ],
+      });
+
+      expect(handleTouchEnd.callCount).to.be.equals(1);
     });
-
-    expect(handleTouchEnd.callCount).to.be.equals(1);
-  });
+  })
 });
