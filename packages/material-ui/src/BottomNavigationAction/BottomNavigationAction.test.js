@@ -87,15 +87,15 @@ describe('<BottomNavigationAction />', () => {
 
     beforeEach(() => {
       clock = useFakeTimers();
-    })
+    });
 
     afterEach(() => {
       clock.restore();
-    })
+    });
 
     it('should fire onClick on touch tap', () => {
       // Only run in supported browsers
-      if (typeof Touch === "undefined") {
+      if (typeof Touch === 'undefined') {
         return;
       }
 
@@ -135,7 +135,7 @@ describe('<BottomNavigationAction />', () => {
 
     it('should not fire onClick twice on touch tap', () => {
       // Only run in supported browsers
-      if (typeof Touch === "undefined") {
+      if (typeof Touch === 'undefined') {
         return;
       }
 
@@ -177,7 +177,7 @@ describe('<BottomNavigationAction />', () => {
 
     it('should not fire onClick if swiping', () => {
       // Only run in supported browsers
-      if (typeof Touch === "undefined") {
+      if (typeof Touch === 'undefined') {
         return;
       }
 
@@ -217,7 +217,7 @@ describe('<BottomNavigationAction />', () => {
 
     it('should forward onTouchStart and onTouchEnd events', () => {
       // Only run in supported browsers
-      if (typeof Touch === "undefined") {
+      if (typeof Touch === 'undefined') {
         return;
       }
 
@@ -259,5 +259,5 @@ describe('<BottomNavigationAction />', () => {
 
       expect(handleTouchEnd.callCount).to.be.equals(1);
     });
-  })
+  });
 });

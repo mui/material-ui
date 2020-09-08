@@ -90,7 +90,7 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
       clientX,
       clientY,
     };
-  }
+  };
 
   const handleTouchEnd = (event) => {
     if (onTouchEnd) onTouchEnd(event);
@@ -111,7 +111,7 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
         target.dispatchEvent(new Event('click', { bubbles: true }));
       }, 10);
     }
-  }
+  };
 
   const handleChange = (event) => {
     clearTimeout(touchTimer.current);
