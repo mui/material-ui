@@ -80,7 +80,9 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
   }, [touchTimer]);
 
   const handleTouchStart = (event) => {
-    if (onTouchStart) onTouchStart(event);
+    if (onTouchStart) {
+      onTouchStart(event);
+    }
 
     const { clientX, clientY } = event.touches[0];
 
