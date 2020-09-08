@@ -27,7 +27,7 @@ export const styles = (theme) => ({
       },
     },
     '&$disabled': {
-      color: fade(theme.palette.action.disabled, 0.12),
+      opacity: theme.palette.action.disabledOpacity,
     },
     '&:hover': {
       textDecoration: 'none',

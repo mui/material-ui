@@ -48,13 +48,10 @@ export const styles = (theme) => ({
       transform: 'translateX(20px)',
     },
     '&$disabled': {
-      color: theme.palette.type === 'light' ? theme.palette.grey[400] : theme.palette.grey[800],
+      opacity: theme.palette.action.disabledOpacity,
     },
     '&$checked + $track': {
       opacity: 0.5,
-    },
-    '&$disabled + $track': {
-      opacity: theme.palette.type === 'light' ? 0.12 : 0.1,
     },
   },
   /* Styles applied to the internal SwitchBase component's root element if `color="primary"`. */
@@ -68,15 +65,8 @@ export const styles = (theme) => ({
         },
       },
     },
-    '&$disabled': {
-      color: theme.palette.type === 'light' ? theme.palette.grey[400] : theme.palette.grey[800],
-    },
     '&$checked + $track': {
       backgroundColor: theme.palette.primary.main,
-    },
-    '&$disabled + $track': {
-      backgroundColor:
-        theme.palette.type === 'light' ? theme.palette.common.black : theme.palette.common.white,
     },
   },
   /* Styles applied to the internal SwitchBase component's root element if `color="secondary"`. */
@@ -90,15 +80,8 @@ export const styles = (theme) => ({
         },
       },
     },
-    '&$disabled': {
-      color: theme.palette.type === 'light' ? theme.palette.grey[400] : theme.palette.grey[800],
-    },
     '&$checked + $track': {
       backgroundColor: theme.palette.secondary.main,
-    },
-    '&$disabled + $track': {
-      backgroundColor:
-        theme.palette.type === 'light' ? theme.palette.common.black : theme.palette.common.white,
     },
   },
   /* Styles applied to the root element if `size="small"`. */
