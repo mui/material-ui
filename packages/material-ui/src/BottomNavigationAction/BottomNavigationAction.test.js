@@ -83,7 +83,7 @@ describe('<BottomNavigationAction />', () => {
   });
 
   describe('touch functionality', () => {
-    before(function test () {
+    before(function test() {
       // Only run in supported browsers
       if (typeof Touch === 'undefined') {
         this.skip();
