@@ -187,8 +187,7 @@ export const styles = (theme) => {
     },
     /* Styles applied to the `icon` element if `size="small"`. */
     iconSmall: {
-      width: 18,
-      height: 18,
+      fontSize: 18,
       marginLeft: 4,
       marginRight: -4,
     },
@@ -217,8 +216,7 @@ export const styles = (theme) => {
     deleteIcon: {
       WebkitTapHighlightColor: 'transparent',
       color: deleteIconColor,
-      height: 22,
-      width: 22,
+      fontSize: 22,
       cursor: 'pointer',
       margin: '0 5px 0 -6px',
       '&:hover': {
@@ -227,8 +225,7 @@ export const styles = (theme) => {
     },
     /* Styles applied to the `deleteIcon` element if `size="small"`. */
     deleteIconSmall: {
-      height: 16,
-      width: 16,
+      fontSize: 16,
       marginRight: 4,
       marginLeft: -4,
     },
