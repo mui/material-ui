@@ -107,20 +107,5 @@ describe('<ImageListItemBar />', () => {
       expect(container.querySelector('div')).to.have.class(classes.root);
       expect(container.querySelector('div')).to.have.class(classes.positionBottom);
     });
-
-    it('should render a child div with the titleWrap class by default', () => {
-      const { container } = render(<ImageListItemBar title="text" />);
-
-      expect(container.firstChild.querySelector('div')).to.have.class(classes.titleWrap);
-    });
-
-    it('should render a child div with the titleWrapActionPosRight class', () => {
-      const { container } = render(<ImageListItemBar title="text" actionIcon={<div />} />);
-
-      expect(container.firstChild.querySelector('div')).to.have.class(classes.titleWrap);
-      expect(container.firstChild.querySelector('div')).to.have.class(
-        classes.titleWrapActionPosRight,
-      );
-    });
   });
 });
