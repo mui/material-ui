@@ -14,7 +14,6 @@ export interface TypeText {
   primary: string;
   secondary: string;
   disabled: string;
-  hint: string;
 }
 
 export interface TypeAction {
