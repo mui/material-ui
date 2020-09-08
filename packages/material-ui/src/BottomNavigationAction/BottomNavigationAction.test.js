@@ -83,6 +83,13 @@ describe('<BottomNavigationAction />', () => {
   });
 
   describe('touch functionality', () => {
+    before(function test () {
+      // Only run in supported browsers
+      if (typeof Touch === 'undefined') {
+        this.skip();
+      }
+    });
+
     let clock;
 
     beforeEach(() => {
@@ -94,11 +101,6 @@ describe('<BottomNavigationAction />', () => {
     });
 
     it('should fire onClick on touch tap', () => {
-      // Only run in supported browsers
-      if (typeof Touch === 'undefined') {
-        return;
-      }
-
       const handleClick = spy();
 
       // Need disableTouchRipple to avoid ripple missing act (async setState after touchEnd)
@@ -134,11 +136,6 @@ describe('<BottomNavigationAction />', () => {
     });
 
     it('should not fire onClick twice on touch tap', () => {
-      // Only run in supported browsers
-      if (typeof Touch === 'undefined') {
-        return;
-      }
-
       const handleClick = spy();
 
       // Need disableTouchRipple to avoid ripple missing act (async setState after touchEnd)
@@ -176,11 +173,6 @@ describe('<BottomNavigationAction />', () => {
     });
 
     it('should not fire onClick if swiping', () => {
-      // Only run in supported browsers
-      if (typeof Touch === 'undefined') {
-        return;
-      }
-
       const handleClick = spy();
 
       // Need disableTouchRipple to avoid ripple missing act (async setState after touchEnd)
@@ -210,17 +202,12 @@ describe('<BottomNavigationAction />', () => {
         ],
       });
 
-      clock.tick(15);
+      clock.tick(10);
 
       expect(handleClick.callCount).to.equal(0);
     });
 
     it('should forward onTouchStart and onTouchEnd events', () => {
-      // Only run in supported browsers
-      if (typeof Touch === 'undefined') {
-        return;
-      }
-
       const handleTouchStart = spy();
       const handleTouchEnd = spy();
 
