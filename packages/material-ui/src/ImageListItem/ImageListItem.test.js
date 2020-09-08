@@ -51,7 +51,7 @@ describe('<ImageListItem />', () => {
 
   const children = <img src={itemData.img} alt={itemData.title} data-testid="test-children" />;
 
-  describe('props', () => {
+  describe('props:', () => {
     describe('prop: children', () => {
       it('should render children by default', () => {
         const { getByTestId } = render(<ImageListItem>{children}</ImageListItem>);
@@ -81,7 +81,7 @@ describe('<ImageListItem />', () => {
     });
   });
 
-  describe('classes', () => {
+  describe('classes:', () => {
     it('should render with the root and standard classes by default', () => {
       const { getByTestId } = render(
         <ImageList>

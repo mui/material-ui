@@ -26,7 +26,7 @@ describe('<ImageListItemBar />', () => {
     author: 'jill111',
   };
 
-  describe('props', () => {
+  describe('props:', () => {
     describe('prop: title', () => {
       it('should render a title', () => {
         const { container } = render(<ImageListItemBar title={itemData.title} />);
@@ -100,7 +100,7 @@ describe('<ImageListItemBar />', () => {
     });
   });
 
-  describe('classes', () => {
+  describe('classes:', () => {
     it('should render with the root and positionBottom classes by default', () => {
       const { container } = render(<ImageListItemBar title="text" />);
 

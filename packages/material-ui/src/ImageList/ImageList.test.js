@@ -55,7 +55,7 @@ describe('<ImageList />', () => {
     expect(getAllByTestId('test-children').length).to.equal(2);
   });
 
-  describe('classes', () => {
+  describe('classes:', () => {
     it('should render with the root and standard classes by default', () => {
       const { getByTestId } = render(<ImageList data-testid="test-root">{children}</ImageList>);
 
@@ -97,8 +97,12 @@ describe('<ImageList />', () => {
     });
   });
 
-  describe('style', () => {
-    it('should render with default grid-template-columns and gap styles', () => {
+  describe('style attribute:', () => {
+    it('should render with default grid-template-columns and gap styles', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
       const { getByTestId } = render(<ImageList data-testid="test-root">{children}</ImageList>);
 
       expect(getByTestId('test-root').style['grid-template-columns']).to.equal('repeat(2, 1fr)');
@@ -117,7 +121,7 @@ describe('<ImageList />', () => {
     });
   });
 
-  describe('props', () => {
+  describe('props:', () => {
     describe('prop: component', () => {
       it('should render a ul by default', () => {
         const { container } = render(<ImageList>{children}</ImageList>);
@@ -138,7 +142,11 @@ describe('<ImageList />', () => {
     });
 
     describe('prop: variant', () => {
-      it('should render with column-count and column-gap styles', () => {
+      it('should render with column-count and column-gap styles', function test() {
+        if (/jsdom/.test(window.navigator.userAgent)) {
+          this.skip();
+        }
+
         const { getByTestId } = render(
           <ImageList data-testid="test-root" variant="masonry">
             {children}
@@ -151,7 +159,11 @@ describe('<ImageList />', () => {
     });
 
     describe('prop: cols', () => {
-      it('should render with modified grid-template-columns style', () => {
+      it('should render with modified grid-template-columns style', function test() {
+        if (/jsdom/.test(window.navigator.userAgent)) {
+          this.skip();
+        }
+
         const { getByTestId } = render(
           <ImageList data-testid="test-root" cols={4}>
             {children}
@@ -161,7 +173,11 @@ describe('<ImageList />', () => {
         expect(getByTestId('test-root').style['grid-template-columns']).to.equal('repeat(4, 1fr)');
       });
 
-      it('should render with modified column-count style', () => {
+      it('should render with modified column-count style', function test() {
+        if (/jsdom/.test(window.navigator.userAgent)) {
+          this.skip();
+        }
+
         const { getByTestId } = render(
           <ImageList data-testid="test-root" variant="masonry" cols={4}>
             {children}
@@ -183,7 +199,11 @@ describe('<ImageList />', () => {
         expect(getByTestId('test-root').style.gap).to.equal('8px');
       });
 
-      it('should render with modified column-gap style', () => {
+      it('should render with modified column-gap style', function test() {
+        if (/jsdom/.test(window.navigator.userAgent)) {
+          this.skip();
+        }
+
         const { getByTestId } = render(
           <ImageList data-testid="test-root" variant="masonry" gap={8}>
             {children}
