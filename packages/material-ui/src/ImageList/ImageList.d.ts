@@ -31,7 +31,7 @@ export interface ImageListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      */
     cols?: number;
     /**
-     * The gap between items in px.
+     * The gap between items in pixels.
      * @default 4
      */
     gap?: number;
