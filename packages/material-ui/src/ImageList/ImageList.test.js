@@ -99,7 +99,7 @@ describe('<ImageList />', () => {
 
   describe('style attribute:', () => {
     it('should render with default grid-template-columns and gap styles', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (!/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
 
@@ -143,7 +143,7 @@ describe('<ImageList />', () => {
 
     describe('prop: variant', () => {
       it('should render with column-count and column-gap styles', function test() {
-        if (/jsdom/.test(window.navigator.userAgent)) {
+        if (!/jsdom/.test(window.navigator.userAgent)) {
           this.skip();
         }
 
@@ -160,7 +160,7 @@ describe('<ImageList />', () => {
 
     describe('prop: cols', () => {
       it('should render with modified grid-template-columns style', function test() {
-        if (/jsdom/.test(window.navigator.userAgent)) {
+        if (!/jsdom/.test(window.navigator.userAgent)) {
           this.skip();
         }
 
@@ -174,7 +174,7 @@ describe('<ImageList />', () => {
       });
 
       it('should render with modified column-count style', function test() {
-        if (/jsdom/.test(window.navigator.userAgent)) {
+        if (!/jsdom/.test(window.navigator.userAgent)) {
           this.skip();
         }
 
@@ -200,7 +200,7 @@ describe('<ImageList />', () => {
       });
 
       it('should render with modified column-gap style', function test() {
-        if (/jsdom/.test(window.navigator.userAgent)) {
+        if (!/jsdom/.test(window.navigator.userAgent)) {
           this.skip();
         }
 
