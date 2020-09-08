@@ -162,7 +162,7 @@ export const styles = (theme) => ({
     '&$disabled': {
       pointerEvents: 'none',
       cursor: 'default',
-      color: theme.palette.grey[400],
+      opacity: theme.palette.action.disabledOpacity,
     },
     '&$vertical': {
       width: 2,
@@ -209,7 +209,7 @@ export const styles = (theme) => ({
     height: 2,
     borderRadius: 1,
     backgroundColor: 'currentColor',
-    opacity: 0.38,
+    opacity: theme.palette.action.disabledOpacity,
     '$vertical &': {
       height: '100%',
       width: 2,

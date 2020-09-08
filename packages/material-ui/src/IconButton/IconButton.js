@@ -29,7 +29,7 @@ export const styles = (theme) => ({
     },
     '&$disabled': {
       backgroundColor: 'transparent',
-      color: theme.palette.action.disabled,
+      opacity: theme.palette.action.disabledOpacity,
     },
   },
   /* Styles applied to the root element if `edge="start"`. */
