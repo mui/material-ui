@@ -10,7 +10,7 @@ import {
 } from '@material-ui/core/styles';
 
 export const styles = (theme) => {
-  const radiusUnit = getUnit(theme.shape.borderRadius);
+  const radiusUnit = getUnit(theme.shape.borderRadius) || 'px';
   const radiusValue = toUnitless(theme.shape.borderRadius);
 
   return {
