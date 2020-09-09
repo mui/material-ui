@@ -33,6 +33,7 @@ export default function ContinuousSlider() {
             props: { color: 'primary', orientation: 'vertical' },
             style: {
               backgroundColor: 'green',
+              border: '3px solid orange',
             },
           },
         ],

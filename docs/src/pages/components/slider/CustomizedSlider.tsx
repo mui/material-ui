@@ -7,11 +7,6 @@ import {
 } from '@material-ui/core/styles';
 import Slider, {
   SliderRoot,
-  SliderMark,
-  SliderRail,
-  SliderTrack,
-  SliderThumb,
-  SliderValueLabel,
 } from '@material-ui/core/Slider';
 import styled from '@emotion/styled';
 import Typography from '@material-ui/core/Typography';
@@ -68,79 +63,84 @@ const iosComponents = {
     color: '#3880ff',
     height: 2,
     padding: '15px 0',
-  }),
-  Thumb: styled(SliderThumb)({
-    height: 28,
-    width: 28,
-    backgroundColor: '#fff',
-    // @ts-ignore
-    boxShadow: iOSBoxShadow,
-    marginTop: -14,
-    marginLeft: -14,
-    '&:focus, &:hover, &.Mui-active': {
-      boxShadow:
-        '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.3),0 0 0 1px rgba(0,0,0,0.02)',
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        boxShadow: iOSBoxShadow,
+    '& .MuiSlider-thumb': {
+      height: 28,
+      width: 28,
+      backgroundColor: '#fff',
+      // @ts-ignore
+      boxShadow: iOSBoxShadow,
+      marginTop: -14,
+      marginLeft: -14,
+      '&:focus, &:hover, &.Mui-active': {
+        boxShadow:
+          '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.3),0 0 0 1px rgba(0,0,0,0.02)',
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          boxShadow: iOSBoxShadow,
+        },
       },
     },
-  }),
-  ValueLabel: styled(SliderValueLabel)({
-    left: 'calc(-50% + 12px)',
-    top: -22,
-    '& *': {
-      background: 'transparent',
-      color: '#000',
+
+    '& .MuiSlider-valueLabel': {
+      left: 'calc(-50% + 12px)',
+      top: -22,
+      '& *': {
+        background: 'transparent',
+        color: '#000',
+      },
     },
+
+    '& .MuiSlider-track': {
+      height: 2,
+    },
+
+    '& .MuiSlider-rail': {
+      height: 2,
+      opacity: 0.5,
+      backgroundColor: '#bfbfbf',
+    },
+
+    '& .MuiSlider-mark': {
+      backgroundColor: '#bfbfbf',
+      height: 8,
+      width: 1,
+      marginTop: -3,
+      '&.MuiSlider-markActive': {
+        opacity: 1,
+        backgroundColor: 'currentColor',
+      },
+    }
   }),
-  Track: styled(SliderTrack)({
-    height: 2,
-  }),
-  Rail: styled(SliderRail)({
-    height: 2,
-    opacity: 0.5,
-    backgroundColor: '#bfbfbf',
-  }),
-  Mark: styled(SliderMark)((props) => ({
-    // @ts-ignore
-    backgroundColor: '#bfbfbf',
-    height: 8,
-    width: 1,
-    marginTop: -3,
-    ...(props.state.markActive && {
-      opacity: 1,
-      backgroundColor: 'currentColor',
-    }),
-  })),
 };
 
 const prettoComponents = {
   Root: styled(SliderRoot)({
     color: '#52af77',
     height: 8,
-  }),
-  Thumb: styled(SliderThumb)({
-    height: 24,
-    width: 24,
-    backgroundColor: '#fff',
-    border: '2px solid currentColor',
-    marginTop: -8,
-    marginLeft: -12,
-    '&:focus, &:hover, &.Mui-active': {
-      boxShadow: 'inherit',
+    '& .MuiSlider-thumb': {
+      height: 24,
+      width: 24,
+      backgroundColor: '#fff',
+      border: '2px solid currentColor',
+      marginTop: -8,
+      marginLeft: -12,
+      '&:focus, &:hover, &.Mui-active': {
+        boxShadow: 'inherit',
+      },
     },
-  }),
-  ValueLabel: styled(SliderValueLabel)({
-    left: 'calc(-50% + 4px)',
-  }),
-  Track: styled(SliderTrack)({
-    height: 8,
-    borderRadius: 4,
-  }),
-  Rail: styled(SliderRail)({
-    height: 8,
-    borderRadius: 4,
+    '& .MuiSlider-valueLabel': {
+      left: 'calc(-50% + 4px)',
+    },
+
+    '& .MuiSlider-track': {
+        height: 8,
+        borderRadius: 4,
+    },
+
+    '& .MuiSlider-rail': {
+      height: 8,
+      borderRadius: 4,
+    }
   }),
 };
 
@@ -149,35 +149,38 @@ const airbnbComponents = {
     color: '#3a8589',
     height: 3,
     padding: '13px 0',
-  }),
-  Thumb: styled(SliderThumb)({
-    height: 27,
-    width: 27,
-    backgroundColor: '#fff',
-    border: '1px solid currentColor',
-    marginTop: -12,
-    marginLeft: -13,
-    // @ts-ignore
-    boxShadow: '#ebebeb 0 2px 2px',
-    '&:focus, &:hover, &.Mui-active': {
-      boxShadow: '#ccc 0 2px 3px 1px',
+
+    '& .MuiSlider-thumb': {
+      height: 27,
+      width: 27,
+      backgroundColor: '#fff',
+      border: '1px solid currentColor',
+      marginTop: -12,
+      marginLeft: -13,
+      // @ts-ignore
+      boxShadow: '#ebebeb 0 2px 2px',
+      '&:focus, &:hover, &.Mui-active': {
+        boxShadow: '#ccc 0 2px 3px 1px',
+      },
+      '& .bar': {
+        // display: inline-block !important;
+        height: 9,
+        width: 1,
+        backgroundColor: 'currentColor',
+        marginLeft: 1,
+        marginRight: 1,
+      },
     },
-    '& .bar': {
-      // display: inline-block !important;
-      height: 9,
-      width: 1,
-      backgroundColor: 'currentColor',
-      marginLeft: 1,
-      marginRight: 1,
+
+    '& .MuiSlider-track': {
+      height: 3,
     },
-  }),
-  Track: styled(SliderTrack)({
-    height: 3,
-  }),
-  Rail: styled(SliderRail)({
-    color: '#d8d8d8',
-    opacity: 1,
-    height: 3,
+
+    '& .MuiSlider-rail': {
+      color: '#d8d8d8',
+      opacity: 1,
+      height: 3,
+    }
   }),
 };
 
@@ -233,7 +236,6 @@ export default function CustomizedSlider() {
               as: AirbnbThumbComponent,
             },
           }}
-          ThumbComponent={AirbnbThumbComponent}
           getAriaLabel={(index) =>
             index === 0 ? 'Minimum price' : 'Maximum price'
           }

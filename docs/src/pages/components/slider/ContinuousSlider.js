@@ -2,16 +2,25 @@ import * as React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import Slider from '@material-ui/core/Slider';
+import Slider, { SliderRoot } from '@material-ui/core/Slider';
 import VolumeDown from '@material-ui/icons/VolumeDown';
 import VolumeUp from '@material-ui/icons/VolumeUp';
 import { ThemeProvider } from '@material-ui/styles';
+import styled from '@emotion/styled';
 
 const useStyles = makeStyles({
   root: {
     width: 200,
   },
 });
+
+
+const componentOverrides = {
+  Root: styled(SliderRoot)`
+    background-color: pink;
+    border-color: green;
+  `
+}
 
 export default function ContinuousSlider() {
   const classes = useStyles();
@@ -30,6 +39,7 @@ export default function ContinuousSlider() {
             props: { color: 'primary', orientation: 'vertical' },
             style: {
               backgroundColor: 'green',
+              border: '3px solid orange',
             },
           },
         ],
@@ -70,7 +80,7 @@ export default function ContinuousSlider() {
         <Typography id="disabled-slider" gutterBottom>
           Vertical primary slider
         </Typography>
-        <Slider orientation="vertical" color="primary" defaultValue={30} />
+        <Slider orientation="vertical" color="primary" defaultValue={30} components={componentOverrides} />
       </div>
     </ThemeProvider>
   );

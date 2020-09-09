@@ -170,7 +170,7 @@ const useSliderClasses = (props) => {
   return utilityClasses;
 };
 
-const isTag = (element) => typeof element === 'string';
+const isComponent = (element) => typeof element !== 'string';
 
 const Slider = React.forwardRef(function Slider(props, ref) {
   const {
@@ -600,22 +600,18 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     <Root
       ref={handleRef}
       onMouseDown={handleMouseDown}
-      state={!isTag(Root) ? stateAndProps : undefined}
-      theme={!isTag(Root) ? props.theme : undefined}
+      state={isComponent(Root) ? stateAndProps : undefined}
+      theme={isComponent(Root) ? props.theme : undefined}
       {...rootProps}
       {...other}
       className={clsx(utilityClasses.root, rootProps.className, className)}
     >
       <Rail
         {...railProps}
-        state={!isTag(Rail) ? stateAndProps : undefined}
-        theme={!isTag(Rail) ? props.theme : undefined}
         className={clsx(utilityClasses.rail, railProps.className)}
       />
       <Track
         {...trackProps}
-        state={!isTag(Track) ? stateAndProps : undefined}
-        theme={!isTag(Track) ? props.theme : undefined}
         className={clsx(utilityClasses.track, trackProps.className)}
         style={{ ...trackStyle, ...trackProps.style }}
       />
@@ -648,8 +644,6 @@ const Slider = React.forwardRef(function Slider(props, ref) {
               className={clsx(utilityClasses.mark, markProps.className, {
                 [getUtilityClass('markActive')]: markActive,
               })}
-              state={!isTag(Mark) ? { ...stateAndProps, markActive } : undefined}
-              theme={!isTag(Mark) ? props.theme : undefined}
             />
             {mark.label != null ? (
               <MarkLabel
@@ -660,10 +654,6 @@ const Slider = React.forwardRef(function Slider(props, ref) {
                 className={clsx(utilityClasses.markLabel, markLabelProps.className, {
                   [getUtilityClass('markLabelActive')]: markActive,
                 })}
-                state={
-                  !isTag(MarkLabel) ? { ...stateAndProps, markLabelActive: markActive } : undefined
-                }
-                theme={!isTag(MarkLabel) ? props.theme : undefined}
               >
                 {mark.label}
               </MarkLabel>
@@ -689,24 +679,13 @@ const Slider = React.forwardRef(function Slider(props, ref) {
             open={open === index || active === index || valueLabelDisplay === 'on'}
             disabled={disabled}
             {...valueLabelProps}
-            state={!isTag(ValueLabel) ? stateAndProps : undefined}
-            theme={!isTag(ValueLabel) ? props.theme : undefined}
             className={clsx(utilityClasses.valueLabel, valueLabelProps.className)}
           >
             <Thumb
               {...thumbProps}
-              state={
-                !isTag(Thumb)
-                  ? {
-                      ...stateAndProps,
-                      active: active === index,
-                      focusVisible: focusVisible === index,
-                    }
-                  : undefined
-              }
-              theme={!isTag(Thumb) ? props.theme : undefined}
               className={clsx(utilityClasses.thumb, thumbProps.className, {
                 ['Mui-active']: active === index,
+                ['Mui-disabled']: disabled,
                 ['Mui-focusVisible']: focusVisible === index,
               })}
               tabIndex={disabled ? null : 0}
