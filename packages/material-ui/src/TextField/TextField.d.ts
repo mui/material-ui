@@ -160,7 +160,7 @@ export interface StandardTextFieldProps extends BaseTextFieldProps {
   onChange?: StandardInputProps['onChange'];
   /**
    * The variant to use.
-   * @default 'standard'
+   * @default 'outlined'
    */
   variant?: 'standard';
   /**
@@ -182,7 +182,7 @@ export interface FilledTextFieldProps extends BaseTextFieldProps {
   onChange?: FilledInputProps['onChange'];
   /**
    * The variant to use.
-   * @default 'standard'
+   * @default 'outlined'
    */
   variant: 'filled';
   /**
@@ -204,7 +204,7 @@ export interface OutlinedTextFieldProps extends BaseTextFieldProps {
   onChange?: OutlinedInputProps['onChange'];
   /**
    * The variant to use.
-   * @default 'standard'
+   * @default 'outlined'
    */
   variant: 'outlined';
   /**

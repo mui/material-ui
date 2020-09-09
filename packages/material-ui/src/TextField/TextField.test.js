@@ -33,7 +33,7 @@ describe('<TextField />', () => {
 
     it('should forward the multiline prop to Input', () => {
       const inputClasses = getClasses(<Input />);
-      const { getByRole } = render(<TextField multiline />);
+      const { getByRole } = render(<TextField variant="standard" multiline />);
 
       expect(getByRole('textbox', { hidden: false })).to.have.class(inputClasses.inputMultiline);
     });
@@ -41,7 +41,7 @@ describe('<TextField />', () => {
     it('should forward the fullWidth prop to Input', () => {
       const inputClasses = getClasses(<Input />);
       const { getByTestId } = render(
-        <TextField fullWidth InputProps={{ 'data-testid': 'mui-input-base-root' }} />,
+        <TextField variant="standard" fullWidth InputProps={{ 'data-testid': 'mui-input-base-root' }} />,
       );
 
       expect(getByTestId('mui-input-base-root')).to.have.class(inputClasses.fullWidth);
