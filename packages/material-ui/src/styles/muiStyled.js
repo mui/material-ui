@@ -35,19 +35,20 @@ const getVariantStyles = (name, theme) => {
 const muiStyled = (el, params, muiConfig) => {
   const result = styled(el, params);
   const muiFunc = (...params) => {
-    const theme = props.theme || defaultTheme;
     const name = muiConfig.muiName;
 
     if (muiConfig.overridesResolver) {
-      params.push((props) =>
-        muiConfig.overridesResolver(props, getStyleOverrides(name, theme), name),
-      );
+      params.push((props) => {
+        const theme = props.theme || defaultTheme;
+        return muiConfig.overridesResolver(props, getStyleOverrides(name, theme), name);
+      });
     }
 
     if (muiConfig.variantsResolver) {
-      params.push((props) =>
-        muiConfig.variantsResolver(props, getVariantStyles(name, theme), theme, name),
-      );
+      params.push((props) => {
+        const theme = props.theme || defaultTheme;
+        return muiConfig.variantsResolver(props, getVariantStyles(name, theme), theme, name);
+      });
     }
 
     return result(params);
