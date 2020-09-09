@@ -74,7 +74,12 @@ export default function CustomizedRatings() {
             `${value} Heart${value !== 1 ? 's' : ''}`
           }
           precision={0.5}
-          icon={<FavoriteIcon fontSize="inherit" />}
+          icon={
+            <FavoriteIcon fontSize="inherit" stroke="black" strokeWidth={2} />
+          }
+          emptyIcon={
+            <FavoriteIcon fontSize="inherit" stroke="black" strokeWidth={1} />
+          }
         />
       </Box>
       <Box component="fieldset" mb={3} borderColor="transparent">

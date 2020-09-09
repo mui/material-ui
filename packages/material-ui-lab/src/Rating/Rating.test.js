@@ -110,4 +110,26 @@ describe('<Rating />', () => {
     checked = container.querySelector('input[name="rating-test"]:checked');
     expect(checked.value).to.equal('2');
   });
+
+  it('uses the custom `icon` as the `emptyIcon` by default', () => {
+    const { getAllByTestId } = render(
+      <Rating defaultValue={2} icon={<div data-testid="icon" />} name="rating" />,
+    );
+
+    expect(getAllByTestId('icon')).to.have.length(5);
+  });
+
+  it('can have a custom `emptyIcon`', () => {
+    const { getAllByTestId } = render(
+      <Rating
+        defaultValue={2}
+        icon={<div data-testid="icon" />}
+        emptyIcon={<div data-testid="empty-icon" />}
+        name="rating"
+      />,
+    );
+
+    expect(getAllByTestId('icon')).to.have.length(2);
+    expect(getAllByTestId('empty-icon')).to.have.length(3);
+  });
 });
