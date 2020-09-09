@@ -41,13 +41,6 @@ describe('<ImageListItemBar />', () => {
 
         expect(container.querySelector('div')).to.have.text(itemData.author);
       });
-
-      it('should render with the rootSubtitle class', () => {
-        const { container } = render(<ImageListItemBar subtitle="subtitle" />);
-
-        expect(container.querySelector('div')).to.have.class(classes.root);
-        expect(container.querySelector('div')).to.have.class(classes.rootSubtitle);
-      });
     });
 
     describe('prop: position', () => {
@@ -66,15 +59,6 @@ describe('<ImageListItemBar />', () => {
 
           expect(container.querySelector('div')).to.have.class(classes.root);
           expect(container.querySelector('div')).to.have.class(classes.positionBelow);
-        });
-
-        it('should render the positionBelowSubtitle class', () => {
-          const { container } = render(
-            <ImageListItemBar title="text" subtitle="subtitle" position="below" />,
-          );
-
-          expect(container.querySelector('div')).to.have.class(classes.root);
-          expect(container.querySelector('div')).to.have.class(classes.positionBelowSubtitle);
         });
 
         it('should render a child div with the titleWrapBelow class', () => {
