@@ -50,7 +50,9 @@ Fancy larger or smaller ratings? Use the `size` prop.
 The accessibility of this component relies on:
 
 - Distinguishing checked and unchecked values by color **and** a thicker border.
-  **WARNING**: If you provide a custom icon make sure that `icon` and `emptyIcon` are distinguishable by something other than color. We choose a thicker border but a visible text that includes the current value is sufficient like in [#hover-feedback]. Different icons for each value also work like the emoticons in [#customized-ratings].
+
+  **WARNING**: If you provide a custom icon make sure that `icon` and `emptyIcon` are distinguishable by something other than color. We choose a thicker border but a visible text that includes the current value is sufficient like in [our hover feedback example](#hover-feedback). Different icons for each value also work like the emoticons in [the customized ratings example](#customized-ratings).
+
 - A radio group is used with its fields visually hidden.
   It contains six radio buttons, one for each star and another for 0 stars, which is checked by default. Make sure you are providing a `name` prop that is unique to the parent form.
 - The labels for the radio buttons contain actual text (“1 Star”, “2 Stars”, …), make sure you provide a `getLabelText` prop when the page language is not English.
