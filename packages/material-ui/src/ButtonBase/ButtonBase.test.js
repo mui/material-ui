@@ -10,27 +10,12 @@ import {
   createClientRender,
   fireEvent,
   screen,
+  focusVisible,
+  simulatePointerDevice,
 } from 'test/utils';
 import * as PropTypes from 'prop-types';
 import TouchRipple from './TouchRipple';
 import ButtonBase from './ButtonBase';
-
-/**
- * @param {HTMLElement} element
- */
-function focusVisible(element) {
-  act(() => {
-    element.blur();
-    fireEvent.keyDown(document.body, { key: 'Tab' });
-    element.focus();
-  });
-}
-
-function simulatePointerDevice() {
-  // first focus on a page triggers focus visible until a pointer event
-  // has been dispatched
-  fireEvent.pointerDown(document.body);
-}
 
 describe('<ButtonBase />', () => {
   const render = createClientRender();

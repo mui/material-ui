@@ -87,7 +87,7 @@ export const styles = (theme) => {
       userSelect: 'none',
       WebkitTapHighlightColor: 'transparent',
       cursor: 'pointer',
-      '&:hover, &:focus': {
+      '&:hover, &$focusVisible': {
         backgroundColor: emphasize(backgroundColor, 0.08),
       },
       '&:active': {
@@ -96,31 +96,31 @@ export const styles = (theme) => {
     },
     /* Styles applied to the root element if `onClick` and `color="primary"` is defined or `clickable={true}`. */
     clickableColorPrimary: {
-      '&:hover, &:focus': {
+      '&:hover, &$focusVisible': {
         backgroundColor: emphasize(theme.palette.primary.main, 0.08),
       },
     },
     /* Styles applied to the root element if `onClick` and `color="secondary"` is defined or `clickable={true}`. */
     clickableColorSecondary: {
-      '&:hover, &:focus': {
+      '&:hover, &$focusVisible': {
         backgroundColor: emphasize(theme.palette.secondary.main, 0.08),
       },
     },
     /* Styles applied to the root element if `onDelete` is defined. */
     deletable: {
-      '&:focus': {
+      '&$focusVisible': {
         backgroundColor: emphasize(backgroundColor, 0.08),
       },
     },
     /* Styles applied to the root element if `onDelete` and `color="primary"` is defined. */
     deletableColorPrimary: {
-      '&:focus': {
+      '&$focusVisible': {
         backgroundColor: emphasize(theme.palette.primary.main, 0.2),
       },
     },
     /* Styles applied to the root element if `onDelete` and `color="secondary"` is defined. */
     deletableColorSecondary: {
-      '&:focus': {
+      '&$focusVisible': {
         backgroundColor: emphasize(theme.palette.secondary.main, 0.2),
       },
     },
@@ -130,7 +130,7 @@ export const styles = (theme) => {
       border: `1px solid ${
         theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
       }`,
-      '$clickable&:hover, $clickable&:focus, $deletable&:focus': {
+      '&$focusVisible, $clickable&:hover': {
         backgroundColor: fade(theme.palette.text.primary, theme.palette.action.hoverOpacity),
       },
       '& $avatar': {
@@ -158,7 +158,7 @@ export const styles = (theme) => {
     outlinedPrimary: {
       color: theme.palette.primary.main,
       border: `1px solid ${theme.palette.primary.main}`,
-      '$clickable&:hover, $clickable&:focus, $deletable&:focus': {
+      '&$focusVisible, $clickable&:hover': {
         backgroundColor: fade(theme.palette.primary.main, theme.palette.action.hoverOpacity),
       },
     },
@@ -166,7 +166,7 @@ export const styles = (theme) => {
     outlinedSecondary: {
       color: theme.palette.secondary.main,
       border: `1px solid ${theme.palette.secondary.main}`,
-      '$clickable&:hover, $clickable&:focus, $deletable&:focus': {
+      '&$focusVisible, $clickable&:hover': {
         backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
       },
     },
@@ -257,6 +257,8 @@ export const styles = (theme) => {
         color: theme.palette.secondary.main,
       },
     },
+    /* Pseudo-class applied to the root element if keyboard focused. */
+    focusVisible: {},
   };
 };
 
@@ -330,8 +332,15 @@ const Chip = React.forwardRef(function Chip(props, ref) {
   const clickable = clickableProp !== false && onClick ? true : clickableProp;
   const small = size === 'small';
 
-  const Component = ComponentProp || (clickable ? ButtonBase : 'div');
-  const moreProps = Component === ButtonBase ? { component: 'div' } : {};
+  const Component = ComponentProp || (clickable || onDelete ? ButtonBase : 'div');
+  const moreProps =
+    Component === ButtonBase
+      ? {
+          component: 'div',
+          focusVisibleClassName: classes.focusVisible,
+          disableRipple: Boolean(onDelete),
+        }
+      : {};
 
   let deleteIcon = null;
   if (onDelete) {
@@ -400,7 +409,6 @@ const Chip = React.forwardRef(function Chip(props, ref) {
 
   return (
     <Component
-      role={clickable || onDelete ? 'button' : undefined}
       className={clsx(
         classes.root,
         classes[variant],
@@ -418,8 +426,7 @@ const Chip = React.forwardRef(function Chip(props, ref) {
         themeVariantsClasses,
         className,
       )}
-      aria-disabled={disabled ? true : undefined}
-      tabIndex={clickable || onDelete ? 0 : undefined}
+      disabled={clickable && disabled ? true : undefined}
       onClick={onClick}
       onKeyDown={handleKeyDown}
       onKeyUp={handleKeyUp}
