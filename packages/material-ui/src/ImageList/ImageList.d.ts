@@ -36,7 +36,7 @@ export interface ImageListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      */
     gap?: number;
     /**
-     * The height of one row in px.
+     * The height of one row in pixels.
      * @default 'auto'
      */
     rowHeight?: number | 'auto';

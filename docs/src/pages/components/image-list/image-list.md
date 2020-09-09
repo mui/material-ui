@@ -15,7 +15,7 @@ Image lists represent a collection of items in a repeated pattern. They help imp
 
 ## Standard image list
 
-Standard image lists are best for items of equal importance. They have a uniform container size, ratio, and padding.
+Standard image lists are best for items of equal importance. They have a uniform container size, ratio, and spacing.
 
 {{"demo": "pages/components/image-list/StandardImageList.js"}}
 

@@ -35,7 +35,7 @@ export default function TitlebarImageList() {
           />
           <ImageListItemBar
             title={item.title}
-            subtitle={<span>by: {item.author}</span>}
+            subtitle={item.author}
             actionIcon={
               <IconButton
                 aria-label={`info about ${item.title}`}

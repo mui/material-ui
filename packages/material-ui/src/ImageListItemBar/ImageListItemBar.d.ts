@@ -19,16 +19,12 @@ export interface ImageListItemBarProps
   classes?: {
     /** Styles applied to the root element. */
     root?: string;
-    /** Styles applied to the root element if a `subtitle` is provided. */
-    rootSubtitle?: string;
     /** Styles applied to the root element if `position="bottom"`. */
     positionBottom?: string;
     /** Styles applied to the root element if `position="top"`. */
     positionTop?: string;
     /** Styles applied to the root element if `position="below"`. */
     positionBelow?: string;
-    /** Styles applied to the root element if `position="below"` and a `subtitle` is provided. */
-    positionBelowSubtitle?: string;
     /** Styles applied to the title and subtitle container element. */
     titleWrap?: string;
     /** Styles applied to the title and subtitle container element if `position="below"`. */

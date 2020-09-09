@@ -44,11 +44,9 @@ Any other props supplied will be provided to the root element (native element).
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
 | <span class="prop-name">root</span> | <span class="prop-name">.MuiImageListItemBar-root</span> | Styles applied to the root element.
-| <span class="prop-name">rootSubtitle</span> | <span class="prop-name">.MuiImageListItemBar-rootSubtitle</span> | Styles applied to the root element if a `subtitle` is provided.
 | <span class="prop-name">positionBottom</span> | <span class="prop-name">.MuiImageListItemBar-positionBottom</span> | Styles applied to the root element if `position="bottom"`.
 | <span class="prop-name">positionTop</span> | <span class="prop-name">.MuiImageListItemBar-positionTop</span> | Styles applied to the root element if `position="top"`.
 | <span class="prop-name">positionBelow</span> | <span class="prop-name">.MuiImageListItemBar-positionBelow</span> | Styles applied to the root element if `position="below"`.
-| <span class="prop-name">positionBelowSubtitle</span> | <span class="prop-name">.MuiImageListItemBar-positionBelowSubtitle</span> | Styles applied to the root element if `position="below"` and a `subtitle` is provided.
 | <span class="prop-name">titleWrap</span> | <span class="prop-name">.MuiImageListItemBar-titleWrap</span> | Styles applied to the title and subtitle container element.
 | <span class="prop-name">titleWrapBelow</span> | <span class="prop-name">.MuiImageListItemBar-titleWrapBelow</span> | Styles applied to the title and subtitle container element if `position="below"`.
 | <span class="prop-name">titleWrapActionPosLeft</span> | <span class="prop-name">.MuiImageListItemBar-titleWrapActionPosLeft</span> | Styles applied to the container element if `actionPosition="left"`.
