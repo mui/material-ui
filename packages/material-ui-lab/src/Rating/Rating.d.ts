@@ -56,6 +56,7 @@ export interface RatingProps
   disabled?: boolean;
   /**
    * The icon to display when empty.
+   * @default props.icon === undefined ? defaultEmptyIcon : props.icon
    */
   emptyIcon?: React.ReactNode;
   /**
@@ -78,7 +79,7 @@ export interface RatingProps
   getLabelText?: (value: number) => string;
   /**
    * The icon to display.
-   * @default <Star fontSize="inherit" />
+   * @default <Star fontSize="inherit" stroke="black" strokeWidth={2} />
    */
   icon?: React.ReactNode;
   /**

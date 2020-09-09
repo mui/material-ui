@@ -482,6 +482,7 @@ Rating.propTypes = {
   disabled: PropTypes.bool,
   /**
    * The icon to display when empty.
+   * @default props.icon === undefined ? defaultEmptyIcon : props.icon
    */
   emptyIcon: PropTypes.node,
   /**
@@ -504,7 +505,7 @@ Rating.propTypes = {
   getLabelText: PropTypes.func,
   /**
    * The icon to display.
-   * @default <Star fontSize="inherit" />
+   * @default <Star fontSize="inherit" stroke="black" strokeWidth={2} />
    */
   icon: PropTypes.node,
   /**
