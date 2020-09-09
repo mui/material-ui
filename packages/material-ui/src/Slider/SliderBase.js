@@ -606,10 +606,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
       {...other}
       className={clsx(utilityClasses.root, rootProps.className, className)}
     >
-      <Rail
-        {...railProps}
-        className={clsx(utilityClasses.rail, railProps.className)}
-      />
+      <Rail {...railProps} className={clsx(utilityClasses.rail, railProps.className)} />
       <Track
         {...trackProps}
         className={clsx(utilityClasses.track, trackProps.className)}

@@ -51,7 +51,7 @@ const overridesResolver = (props, styles, name) => {
   };
 
   return styleOverrides;
-}
+};
 
 const variantsResolver = (props, styles, theme, name) => {
   const { state = {} } = props;
@@ -66,7 +66,7 @@ const variantsResolver = (props, styles, theme, name) => {
         }
       });
       if (isMatch) {
-        variantsStyles = {...variantsStyles, ...styles[propsToClassKey(themeVariant.props)]};
+        variantsStyles = { ...variantsStyles, ...styles[propsToClassKey(themeVariant.props)] };
       }
     });
   }
@@ -74,7 +74,11 @@ const variantsResolver = (props, styles, theme, name) => {
   return variantsStyles;
 };
 
-export const SliderRoot = muiStyled('div', { shouldForwardProp }, { muiName: 'MuiSlider', overridesResolver, variantsResolver })((props) => {
+export const SliderRoot = muiStyled(
+  'div',
+  { shouldForwardProp },
+  { muiName: 'MuiSlider', overridesResolver, variantsResolver },
+)((props) => {
   return {
     height: 2,
     width: '100%',
@@ -266,16 +270,12 @@ export const SliderRoot = muiStyled('div', { shouldForwardProp }, { muiName: 'Mu
       },
       '&.MuiSlider-markLabelActive': {
         color: props.theme.palette.text.primary,
-      }
-    }
+      },
+    },
   };
 });
 
-const getComponentProps = (
-  components,
-  componentsProps,
-  name,
-) => {
+const getComponentProps = (components, componentsProps, name) => {
   const slotProps = componentsProps[name] || {};
   return {
     as: components[name],
@@ -305,21 +305,19 @@ const useThemeProps = (inputProps, ref, name) => {
 const Slider = React.forwardRef(function Slider(inputProps, inputRef) {
   const props = useThemeProps(inputProps, inputRef, 'MuiSlider');
   const { components = {}, componentsProps = {}, ref, ...other } = props;
-  return <SliderBase
+  return (
+    <SliderBase
       {...other}
       components={{
         Root: SliderRoot,
         ...components,
       }}
       componentsProps={{
-        root: getComponentProps(
-          components,
-          componentsProps,
-          'root',
-        ),
+        root: getComponentProps(components, componentsProps, 'root'),
       }}
       ref={ref}
     />
+  );
 });
 
 export default Slider;

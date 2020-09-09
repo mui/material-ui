@@ -14,13 +14,12 @@ const useStyles = makeStyles({
   },
 });
 
-
 const componentOverrides = {
   Root: styled(SliderRoot)`
     background-color: pink;
     border-color: green;
-  `
-}
+  `,
+};
 
 export default function ContinuousSlider() {
   const classes = useStyles();
@@ -80,7 +79,12 @@ export default function ContinuousSlider() {
         <Typography id="disabled-slider" gutterBottom>
           Vertical primary slider
         </Typography>
-        <Slider orientation="vertical" color="primary" defaultValue={30} components={componentOverrides} />
+        <Slider
+          orientation="vertical"
+          color="primary"
+          defaultValue={30}
+          components={componentOverrides}
+        />
       </div>
     </ThemeProvider>
   );

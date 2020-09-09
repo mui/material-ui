@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { propsToClassKey } from '@material-ui/styles'
+import { propsToClassKey } from '@material-ui/styles';
 
 const getStyleOverrides = (name, theme) => {
   let styleOverrides = {};
@@ -37,7 +37,7 @@ const muiStyled = (el, params, muiConfig) => {
   const muiFunc = (...params) => {
     const newParams = params;
 
-    newParams.unshift(props => {
+    newParams.unshift((props) => {
       const theme = props.theme || defaultTheme;
       const name = muiConfig.muiName;
       const variantsResolver = muiConfig.variantsResolver;
@@ -46,7 +46,7 @@ const muiStyled = (el, params, muiConfig) => {
       return result;
     });
 
-    newParams.unshift(props => {
+    newParams.unshift((props) => {
       const theme = props.theme || defaultTheme;
       const name = muiConfig.muiName;
       const overridesResolver = muiConfig.overridesResolver;
@@ -55,8 +55,8 @@ const muiStyled = (el, params, muiConfig) => {
     });
 
     return result(newParams);
-  }
+  };
   return muiFunc;
-}
+};
 
 export default muiStyled;

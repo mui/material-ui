@@ -94,9 +94,18 @@ export interface SliderTypeMap<P = {}, D extends React.ElementType = 'span'> {
      * The props used for each slot inside the Slider.
      */
     componentsProps?: {
-      root?: { state?: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'>; as: React.ElementType };
-      track?: { state?: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'>; as?: React.ElementType; };
-      rail?: { state?: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'>; as?: React.ElementType; };
+      root?: {
+        state?: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
+        as: React.ElementType;
+      };
+      track?: {
+        state?: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
+        as?: React.ElementType;
+      };
+      rail?: {
+        state?: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
+        as?: React.ElementType;
+      };
       thumb?: {
         state?: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'> & {
           active?: boolean;
