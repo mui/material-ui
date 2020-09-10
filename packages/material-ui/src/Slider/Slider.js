@@ -377,7 +377,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     max = 100,
     min = 0,
     name,
-    onChange,
+    onChange: onChangeProp,
     onChangeCommitted,
     onMouseDown,
     orientation = 'horizontal',
@@ -404,6 +404,14 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     default: defaultValue,
     name: 'Slider',
   });
+
+  const onChange =
+    onChangeProp &&
+    ((event, value) => {
+      event.target.name = name;
+      event.target.value = value;
+      onChangeProp(event, value);
+    });
 
   const range = Array.isArray(valueDerived);
   let values = range ? valueDerived.slice().sort(asc) : [valueDerived];
