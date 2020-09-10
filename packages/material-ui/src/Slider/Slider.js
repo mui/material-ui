@@ -391,7 +391,6 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     valueLabelFormat = Identity,
     ...other
   } = props;
-
   const theme = useTheme();
   const touchId = React.useRef();
   // We can't use the :active browser pseudo-classes.
@@ -416,6 +415,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
         writable: true,
         value: { value, name },
       });
+
       onChange(event, value);
     });
 
