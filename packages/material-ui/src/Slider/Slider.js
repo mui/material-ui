@@ -703,8 +703,6 @@ const Slider = React.forwardRef(function Slider(props, ref) {
       passive: doesSupportTouchActionNone(),
     });
 
-    const doc = ownerDocument(slider);
-
     return () => {
       slider.removeEventListener('touchstart', handleTouchStart, {
         passive: doesSupportTouchActionNone(),
