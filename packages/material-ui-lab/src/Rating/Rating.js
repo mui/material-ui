@@ -126,9 +126,6 @@ IconContainer.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
-const defaultIcon = <Star fontSize="inherit" stroke="black" strokeWidth={2} />;
-const defaultEmptyIcon = <Star fontSize="inherit" stroke="black" strokeWidth={1} />;
-
 function defaultLabelText(value) {
   return `${value} Star${value !== 1 ? 's' : ''}`;
 }
@@ -139,15 +136,10 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     className,
     defaultValue = null,
     disabled = false,
-    // Intuitevly you might want to simply use `emptyIcon = defaultEmptyIcon`.
-    // However, this isn't a useful default when passing a custom icon while assuming that most of the difference between empty and filled comes from CSS.
-    // So we differentiate two default cases:
-    // 1. No custom icons where we want a WCAG 2.1 compliant Rating.
-    // 2. Passing a custom icon which is used for filled and empty assuming that authors use another technique to distinguish them.
-    emptyIcon = props.icon === undefined ? defaultEmptyIcon : props.icon,
+    emptyIcon: emptyIconProp,
     emptyLabelText = 'Empty',
     getLabelText = defaultLabelText,
-    icon = defaultIcon,
+    icon: iconProp,
     IconContainerComponent = IconContainer,
     max = 5,
     name: nameProp,
@@ -162,6 +154,25 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     ...other
   } = props;
 
+  const theme = useTheme();
+  const icon =
+    iconProp === undefined ? (
+      <Star fontSize="inherit" stroke={theme.palette.text.primary} strokeWidth={2} />
+    ) : (
+      iconProp
+    );
+  // Intuitevly you might want to simply use `emptyIcon = defaultEmptyIcon`.
+  // However, this isn't a useful default when passing a custom icon while assuming that most of the difference between empty and filled comes from CSS.
+  // So we differentiate two default cases:
+  // 1. No custom icons where we want a WCAG 2.1 compliant Rating.
+  // 2. Passing a custom icon which is used for filled and empty assuming that authors use another technique to distinguish them.
+  const emptyIcon =
+    iconProp === undefined ? (
+      <Star fontSize="inherit" stroke={theme.palette.text.primary} strokeWidth={1} />
+    ) : (
+      icon
+    );
+
   const name = useId(nameProp);
 
   const [valueDerived, setValueState] = useControlled({
@@ -171,7 +182,6 @@ const Rating = React.forwardRef(function Rating(props, ref) {
   });
 
   const valueRounded = roundValueToPrecision(valueDerived, precision);
-  const theme = useTheme();
   const [{ hover, focus }, setState] = React.useState({
     hover: -1,
     focus: -1,
