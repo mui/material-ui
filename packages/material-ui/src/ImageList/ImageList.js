@@ -104,12 +104,12 @@ ImageList.propTypes = {
    */
   component: PropTypes.elementType,
   /**
-   * The gap between items in pixels.
+   * The gap between items in px.
    * @default 4
    */
   gap: PropTypes.number,
   /**
-   * The height of one row in pixels.
+   * The height of one row in px.
    * @default 'auto'
    */
   rowHeight: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),

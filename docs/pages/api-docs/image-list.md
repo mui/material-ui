@@ -32,8 +32,8 @@ The `MuiImageList` name can be used for providing [default props](/customization
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">cols</span> | <span class="prop-type">number</span> | <span class="prop-default">2</span> | Number of columns. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'ul'</span> | The component used for the root node. Either a string to use a HTML element or a component. |
-| <span class="prop-name">gap</span> | <span class="prop-type">number</span> | <span class="prop-default">4</span> | The gap between items in pixels. |
-| <span class="prop-name">rowHeight</span> | <span class="prop-type">'auto'<br>&#124;&nbsp;number</span> | <span class="prop-default">'auto'</span> | The height of one row in pixels. |
+| <span class="prop-name">gap</span> | <span class="prop-type">number</span> | <span class="prop-default">4</span> | The gap between items in px. |
+| <span class="prop-name">rowHeight</span> | <span class="prop-type">'auto'<br>&#124;&nbsp;number</span> | <span class="prop-default">'auto'</span> | The height of one row in px. |
 | <span class="prop-name">variant</span> | <span class="prop-type">'masonry'<br>&#124;&nbsp;'quilted'<br>&#124;&nbsp;'standard'<br>&#124;&nbsp;'woven'<br>&#124;&nbsp;string</span> | <span class="prop-default">'standard'</span> | The variant to use. |
 
 The `ref` is forwarded to the root element.
