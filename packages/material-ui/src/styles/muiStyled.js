@@ -32,8 +32,10 @@ const getVariantStyles = (name, theme) => {
   return variantsStyles;
 };
 
+const shouldForwardProp = (prop) => prop !== 'state' && prop !== 'theme';
+
 const muiStyled = (el, params, muiConfig) => {
-  const result = styled(el, params);
+  const result = styled(el, { shouldForwardProp, ...params });
   const muiFunc = (...params) => {
     const name = muiConfig.muiName;
 

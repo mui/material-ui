@@ -4,10 +4,7 @@ import useThemeProps from '../styles/useThemeProps';
 import { fade, lighten, darken } from '../styles/colorManipulator';
 import capitalize from '../utils/capitalize';
 import SliderBase from './SliderBase';
-import defaultTheme from '../styles/defaultTheme';
 import muiStyled from '../styles/muiStyled';
-
-const shouldForwardProp = (prop) => prop !== 'state' && prop != 'as';
 
 const overridesResolver = (props, styles, name) => {
   const {
@@ -75,7 +72,7 @@ const variantsResolver = (props, styles, theme, name) => {
 
 export const SliderRoot = muiStyled(
   'div',
-  { shouldForwardProp },
+  {},
   { muiName: 'MuiSlider', overridesResolver, variantsResolver },
 )((props) => {
   return {
