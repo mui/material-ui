@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Rating, { IconContainerProps } from '@material-ui/lab/Rating';
-import StarBorderIcon from '@material-ui/icons/StarBorder';
+import StarIcon from '@material-ui/icons/Star';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
 import SentimentDissatisfiedIcon from '@material-ui/icons/SentimentDissatisfied';
 import SentimentSatisfiedIcon from '@material-ui/icons/SentimentSatisfied';
@@ -62,7 +63,7 @@ export default function CustomizedRatings() {
           name="customized-empty"
           defaultValue={2}
           precision={0.5}
-          emptyIcon={<StarBorderIcon fontSize="inherit" />}
+          emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
         />
       </Box>
       <Box component="fieldset" mb={3} borderColor="transparent">
@@ -75,6 +76,7 @@ export default function CustomizedRatings() {
           }
           precision={0.5}
           icon={<FavoriteIcon fontSize="inherit" />}
+          emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
         />
       </Box>
       <Box component="fieldset" mb={3} borderColor="transparent">
