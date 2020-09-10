@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Rating, { IconContainerProps } from '@material-ui/lab/Rating';
-import StarIcon from '@material-ui/icons/Star';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
@@ -57,15 +56,6 @@ function IconContainer(props: IconContainerProps) {
 export default function CustomizedRatings() {
   return (
     <div>
-      <Box component="fieldset" mb={3} borderColor="transparent">
-        <Typography component="legend">Custom empty icon</Typography>
-        <Rating
-          name="customized-empty"
-          defaultValue={2}
-          precision={0.5}
-          emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
-        />
-      </Box>
       <Box component="fieldset" mb={3} borderColor="transparent">
         <Typography component="legend">Custom icon and color</Typography>
         <StyledRating
