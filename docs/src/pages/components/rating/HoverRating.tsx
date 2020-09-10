@@ -33,6 +33,7 @@ export default function HoverRating() {
     <div className={classes.root}>
       <Rating
         name="hover-feedback"
+        disableVisualCheckedIndicator
         value={value}
         precision={0.5}
         onChange={(event, newValue) => {

@@ -31,10 +31,11 @@ The `MuiRating` name can be used for providing [default props](/customization/gl
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">defaultValue</span> | <span class="prop-type">number</span> | <span class="prop-default">null</span> | The default value. Use when the component is not controlled. |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the rating will be disabled. |
-| <span class="prop-name">emptyIcon</span> | <span class="prop-type">node</span> | <span class="prop-default">props.icon === undefined ? defaultEmptyIcon : props.icon</span> | The icon to display when empty. |
+| <span class="prop-name">disableVisualCheckedIndicator</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true` will not have additional visual indication which value is checked. Only disable this behavior if the current value is perceivable with something other than color. Otherwise this component might not pass WCAG Level A ([use of color](https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-without-color.html)). |
+| <span class="prop-name">emptyIcon</span> | <span class="prop-type">node</span> |  | The icon to display when empty. |
 | <span class="prop-name">emptyLabelText</span> | <span class="prop-type">node</span> | <span class="prop-default">'Empty'</span> | The label read when the rating input is empty. |
 | <span class="prop-name">getLabelText</span> | <span class="prop-type">func</span> | <span class="prop-default">function defaultLabelText(value) {  return `${value} Star${value !== 1 ? 's' : ''}`;}</span> | Accepts a function which returns a string value that provides a user-friendly name for the current value of the rating.<br>For localization purposes, you can use the provided [translations](/guides/localization/).<br><br>**Signature:**<br>`function(value: number) => string`<br>*value:* The rating label's value to format. |
-| <span class="prop-name">icon</span> | <span class="prop-type">node</span> | <span class="prop-default">&lt;Star fontSize="inherit" stroke="black" strokeWidth={2} /></span> | The icon to display. |
+| <span class="prop-name">icon</span> | <span class="prop-type">node</span> | <span class="prop-default">&lt;Star fontSize="inherit" /></span> | The icon to display. |
 | <span class="prop-name">IconContainerComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">function IconContainer(props) {  const { value, ...other } = props;  return &lt;span {...other} />;}</span> | The component containing the icon. |
 | <span class="prop-name">max</span> | <span class="prop-type">number</span> | <span class="prop-default">5</span> | Maximum rating. |
 | <span class="prop-name">name</span> | <span class="prop-type">string</span> |  | The name attribute of the radio `input` elements. If `readOnly` is false, the prop is required, this input name`should be unique within the parent form. |
@@ -62,6 +63,7 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">visuallyHidden</span> | <span class="prop-name">.MuiRating-visuallyHidden</span> | Visually hide an element.
 | <span class="prop-name">pristine</span> | <span class="prop-name">.MuiRating-pristine</span> | Styles applied to the pristine label.
 | <span class="prop-name">label</span> | <span class="prop-name">.MuiRating-label</span> | Styles applied to the label elements.
+| <span class="prop-name">checkedIndicator</span> | <span class="prop-name">.MuiRating-checkedIndicator</span> | Styles applied to the element responsible for the visual checked indicator.
 | <span class="prop-name">icon</span> | <span class="prop-name">.MuiRating-icon</span> | Styles applied to the icon wrapping elements.
 | <span class="prop-name">iconEmpty</span> | <span class="prop-name">.MuiRating-iconEmpty</span> | Styles applied to the icon wrapping elements when empty.
 | <span class="prop-name">iconFilled</span> | <span class="prop-name">.MuiRating-iconFilled</span> | Styles applied to the icon wrapping elements when filled.

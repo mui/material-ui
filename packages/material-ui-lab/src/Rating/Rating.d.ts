@@ -29,6 +29,8 @@ export interface RatingProps
     pristine?: string;
     /** Styles applied to the label elements. */
     label?: string;
+    /** Styles applied to the element responsible for the visual checked indicator. */
+    checkedIndicator?: string;
     /** Styles applied to the icon wrapping elements. */
     icon?: string;
     /** Styles applied to the icon wrapping elements when empty. */
@@ -55,8 +57,14 @@ export interface RatingProps
    */
   disabled?: boolean;
   /**
+   * If `true` will not have additional visual indication which value is checked.
+   * Only disable this behavior if the current value is perceivable with something other than color.
+   * Otherwise this component might not pass WCAG Level A ([use of color](https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-without-color.html)).
+   * @default false
+   */
+  disableVisualCheckedIndicator?: boolean;
+  /**
    * The icon to display when empty.
-   * @default props.icon === undefined ? defaultEmptyIcon : props.icon
    */
   emptyIcon?: React.ReactNode;
   /**
@@ -79,7 +87,7 @@ export interface RatingProps
   getLabelText?: (value: number) => string;
   /**
    * The icon to display.
-   * @default <Star fontSize="inherit" stroke="black" strokeWidth={2} />
+   * @default <Star fontSize="inherit" />
    */
   icon?: React.ReactNode;
   /**

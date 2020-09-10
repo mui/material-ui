@@ -87,9 +87,12 @@ export const styles = (theme) => ({
   label: {
     cursor: 'inherit',
   },
+  /* Styles applied to the element responsible for the visual checked indicator. */
+  checkedIndicator: {
+    borderBottom: `1px dotted ${theme.palette.text.primary}`,
+  },
   /* Styles applied to the icon wrapping elements. */
   icon: {
-    display: 'flex',
     transition: theme.transitions.create('transform', {
       duration: theme.transitions.duration.shortest,
     }),
@@ -126,6 +129,8 @@ IconContainer.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
+const defaultIcon = <Star fontSize="inherit" />;
+
 function defaultLabelText(value) {
   return `${value} Star${value !== 1 ? 's' : ''}`;
 }
@@ -136,10 +141,11 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     className,
     defaultValue = null,
     disabled = false,
-    emptyIcon: emptyIconProp,
+    disableVisualCheckedIndicator = false,
+    emptyIcon,
     emptyLabelText = 'Empty',
     getLabelText = defaultLabelText,
-    icon: iconProp,
+    icon = defaultIcon,
     IconContainerComponent = IconContainer,
     max = 5,
     name: nameProp,
@@ -154,25 +160,6 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     ...other
   } = props;
 
-  const theme = useTheme();
-  const icon =
-    iconProp === undefined ? (
-      <Star fontSize="inherit" stroke={theme.palette.text.primary} strokeWidth={2} />
-    ) : (
-      iconProp
-    );
-  // Intuitevly you might want to simply use `emptyIcon = defaultEmptyIcon`.
-  // However, this isn't a useful default when passing a custom icon while assuming that most of the difference between empty and filled comes from CSS.
-  // So we differentiate two default cases:
-  // 1. No custom icons where we want a WCAG 2.1 compliant Rating.
-  // 2. Passing a custom icon which is used for filled and empty assuming that authors use another technique to distinguish them.
-  const emptyIcon =
-    iconProp === undefined ? (
-      <Star fontSize="inherit" stroke={theme.palette.text.primary} strokeWidth={1} />
-    ) : (
-      icon
-    );
-
   const name = useId(nameProp);
 
   const [valueDerived, setValueState] = useControlled({
@@ -182,6 +169,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
   });
 
   const valueRounded = roundValueToPrecision(valueDerived, precision);
+  const theme = useTheme();
   const [{ hover, focus }, setState] = React.useState({
     hover: -1,
     focus: -1,
@@ -325,7 +313,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     }
   };
 
-  const item = (state, labelProps) => {
+  const item = (state, labelStyle) => {
     const id = `${name}-${String(state.value).replace('.', '-')}`;
     const container = (
       <IconContainerComponent
@@ -338,13 +326,19 @@ const Rating = React.forwardRef(function Rating(props, ref) {
           [classes.iconActive]: state.active,
         })}
       >
-        {!state.filled ? emptyIcon : icon}
+        {emptyIcon && !state.filled ? emptyIcon : icon}
       </IconContainerComponent>
     );
 
     if (readOnly) {
       return (
-        <span key={state.value} {...labelProps}>
+        <span
+          key={state.value}
+          className={clsx(classes.label, {
+            [classes.checkedIndicator]: !disableVisualCheckedIndicator && state.checked,
+          })}
+          style={labelStyle}
+        >
           {container}
         </span>
       );
@@ -352,7 +346,13 @@ const Rating = React.forwardRef(function Rating(props, ref) {
 
     return (
       <React.Fragment key={state.value}>
-        <label className={classes.label} htmlFor={id} {...labelProps}>
+        <label
+          className={clsx(classes.label, {
+            [classes.checkedIndicator]: !disableVisualCheckedIndicator && state.checked,
+          })}
+          htmlFor={id}
+          style={labelStyle}
+        >
           {container}
           <span className={classes.visuallyHidden}>{getLabelText(state.value)}</span>
         </label>
@@ -419,20 +419,17 @@ const Rating = React.forwardRef(function Rating(props, ref) {
                     focus: itemDecimalValue <= focus,
                     checked: itemDecimalValue === valueRounded,
                   },
-                  {
-                    style:
-                      items.length - 1 === indexDecimal
-                        ? {}
-                        : {
-                            width:
-                              itemDecimalValue === value
-                                ? `${(indexDecimal + 1) * precision * 100}%`
-                                : '0%',
-                            overflow: 'hidden',
-                            zIndex: 1,
-                            position: 'absolute',
-                          },
-                  },
+                  items.length - 1 === indexDecimal
+                    ? {}
+                    : {
+                        width:
+                          itemDecimalValue === value
+                            ? `${(indexDecimal + 1) * precision * 100}%`
+                            : '0%',
+                        overflow: 'hidden',
+                        zIndex: 1,
+                        position: 'absolute',
+                      },
                 );
               })}
             </span>
@@ -491,8 +488,14 @@ Rating.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
+   * If `true` will not have additional visual indication which value is checked.
+   * Only disable this behavior if the current value is perceivable with something other than color.
+   * Otherwise this component might not pass WCAG Level A ([use of color](https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-without-color.html)).
+   * @default false
+   */
+  disableVisualCheckedIndicator: PropTypes.bool,
+  /**
    * The icon to display when empty.
-   * @default props.icon === undefined ? defaultEmptyIcon : props.icon
    */
   emptyIcon: PropTypes.node,
   /**
@@ -515,7 +518,7 @@ Rating.propTypes = {
   getLabelText: PropTypes.func,
   /**
    * The icon to display.
-   * @default <Star fontSize="inherit" stroke="black" strokeWidth={2} />
+   * @default <Star fontSize="inherit" />
    */
   icon: PropTypes.node,
   /**

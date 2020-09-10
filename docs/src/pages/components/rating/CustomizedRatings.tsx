@@ -61,6 +61,7 @@ export default function CustomizedRatings() {
         <Rating
           name="customized-empty"
           defaultValue={2}
+          disableVisualCheckedIndicator
           precision={0.5}
           emptyIcon={<StarBorderIcon fontSize="inherit" />}
         />
@@ -74,12 +75,7 @@ export default function CustomizedRatings() {
             `${value} Heart${value !== 1 ? 's' : ''}`
           }
           precision={0.5}
-          icon={
-            <FavoriteIcon fontSize="inherit" stroke="black" strokeWidth={2} />
-          }
-          emptyIcon={
-            <FavoriteIcon fontSize="inherit" stroke="black" strokeWidth={1} />
-          }
+          icon={<FavoriteIcon fontSize="inherit" />}
         />
       </Box>
       <Box component="fieldset" mb={3} borderColor="transparent">
@@ -90,6 +86,7 @@ export default function CustomizedRatings() {
         <Typography component="legend">Custom icon set</Typography>
         <Rating
           name="customized-icons"
+          disableVisualCheckedIndicator
           defaultValue={2}
           getLabelText={(value: number) => customIcons[value].label}
           IconContainerComponent={IconContainer}
