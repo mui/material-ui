@@ -377,7 +377,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     max = 100,
     min = 0,
     name,
-    onChange: onChangeProp,
+    onChange,
     onChangeCommitted,
     onMouseDown,
     orientation = 'horizontal',
@@ -405,12 +405,16 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     name: 'Slider',
   });
 
-  const onChange =
-    onChangeProp &&
+  const handleChange =
+    onChange &&
     ((event, value) => {
-      event.target.name = name;
-      event.target.value = value;
-      onChangeProp(event, value);
+      event.persist(); 
+      // Redefine target to allow name and value to be read
+      Object.defineProperty(event, 'target', { 
+        writable: true, 
+        value: { value, name }, 
+      }); 
+      onChange(event, value);
     });
 
   const range = Array.isArray(valueDerived);
@@ -546,8 +550,8 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     setValueState(newValue);
     setFocusVisible(index);
 
-    if (onChange) {
-      onChange(event, newValue);
+    if (handleChange) {
+      handleChange(event, newValue);
     }
     if (onChangeCommitted) {
       onChangeCommitted(event, newValue);
@@ -633,8 +637,8 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     focusThumb({ sliderRef, activeIndex, setActive });
     setValueState(newValue);
 
-    if (onChange) {
-      onChange(nativeEvent, newValue);
+    if (handleChange) {
+      handleChange(nativeEvent, newValue);
     }
   });
 
@@ -682,8 +686,8 @@ const Slider = React.forwardRef(function Slider(props, ref) {
 
     setValueState(newValue);
 
-    if (onChange) {
-      onChange(event, newValue);
+    if (handleChange) {
+      handleChange(event, newValue);
     }
 
     const doc = ownerDocument(sliderRef.current);
@@ -733,8 +737,8 @@ const Slider = React.forwardRef(function Slider(props, ref) {
 
     setValueState(newValue);
 
-    if (onChange) {
-      onChange(event, newValue);
+    if (handleChange) {
+      handleChange(event, newValue);
     }
 
     const doc = ownerDocument(sliderRef.current);
