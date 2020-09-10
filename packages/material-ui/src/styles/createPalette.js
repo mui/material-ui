@@ -19,8 +19,6 @@ export const light = {
     secondary: 'rgba(0, 0, 0, 0.54)',
     // Disabled text have even lower visual prominence.
     disabled: 'rgba(0, 0, 0, 0.38)',
-    // Text hints.
-    hint: 'rgba(0, 0, 0, 0.38)',
   },
   // The color used to divide different elements.
   divider: 'rgba(0, 0, 0, 0.12)',
@@ -56,7 +54,6 @@ export const dark = {
     primary: common.white,
     secondary: 'rgba(255, 255, 255, 0.7)',
     disabled: 'rgba(255, 255, 255, 0.5)',
-    hint: 'rgba(255, 255, 255, 0.5)',
     icon: 'rgba(255, 255, 255, 0.5)',
   },
   divider: 'rgba(255, 255, 255, 0.12)',

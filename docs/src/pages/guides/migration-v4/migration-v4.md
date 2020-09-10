@@ -80,6 +80,26 @@ For a smoother transition, the `adaptV4Theme` helper allows you to iteratively u
   +},
   ```
 
+- The `theme.palette.text.hint` key was unused in Material-UI components, and has been removed.
+
+```diff
+import { createMuiTheme } from '@material-ui/core/styles';
+
+-const theme = createMuitheme(),
++const theme = createMuitheme({
++  palette: { text: { hint: 'rgba(0, 0, 0, 0.38)' } },
++});
+```
+
+```diff
+import { createMuiTheme } from '@material-ui/core/styles';
+
+-const theme = createMuitheme({palette: { type: 'dark' }}),
++const theme = createMuitheme({
++  palette: { type: 'dark', text: { hint: 'rgba(0, 0, 0, 0.38)' } },
++});
+```
+
 - The components' definition inside the theme were restructure under the `components` key, to allow people easier discoverability about the definitions regarding one component.
 
 1. `props`
