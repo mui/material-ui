@@ -650,11 +650,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
 
     touchId.current = undefined;
 
-    const doc = ownerDocument(sliderRef.current);
-    doc.removeEventListener('mousemove', handleTouchMove);
-    doc.removeEventListener('mouseup', handleTouchEnd);
-    doc.removeEventListener('touchmove', handleTouchMove);
-    doc.removeEventListener('touchend', handleTouchEnd);
+    stopListening();
   });
 
   const handleTouchStart = useEventCallback((event) => {
@@ -683,6 +679,24 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     doc.addEventListener('touchend', handleTouchEnd);
   });
 
+  const handleMouseMove = useEventCallback((event) => {
+    // require the left mouse button still be held
+    if (event.buttons === 1) {
+      handleTouchMove(event);
+    } else {
+      touchId.current = undefined;
+      stopListening();
+    }
+  });
+
+  const stopListening = React.useCallback(() => {
+    const doc = ownerDocument(sliderRef.current);
+    doc.removeEventListener('mousemove', handleMouseMove);
+    doc.removeEventListener('mouseup', handleTouchEnd);
+    doc.removeEventListener('touchmove', handleTouchMove);
+    doc.removeEventListener('touchend', handleTouchEnd);
+  }, [handleMouseMove, handleTouchEnd, handleTouchMove, sliderRef]);
+
   React.useEffect(() => {
     const { current: slider } = sliderRef;
     slider.addEventListener('touchstart', handleTouchStart, {
@@ -696,12 +710,9 @@ const Slider = React.forwardRef(function Slider(props, ref) {
         passive: doesSupportTouchActionNone(),
       });
 
-      doc.removeEventListener('mousemove', handleTouchMove);
-      doc.removeEventListener('mouseup', handleTouchEnd);
-      doc.removeEventListener('touchmove', handleTouchMove);
-      doc.removeEventListener('touchend', handleTouchEnd);
+      stopListening();
     };
-  }, [handleTouchEnd, handleTouchMove, handleTouchStart]);
+  }, [stopListening, handleTouchStart, sliderRef]);
 
   React.useEffect(() => {
     if (disabled) {
@@ -714,6 +725,10 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   }, [disabled, handleTouchEnd, handleTouchMove]);
 
   const handleMouseDown = useEventCallback((event) => {
+    // don't listen to right clicks
+    if (event.buttons === 2) {
+      return;
+    }
     if (onMouseDown) {
       onMouseDown(event);
     }
@@ -730,7 +745,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     }
 
     const doc = ownerDocument(sliderRef.current);
-    doc.addEventListener('mousemove', handleTouchMove);
+    doc.addEventListener('mousemove', handleMouseMove);
     doc.addEventListener('mouseup', handleTouchEnd);
   });
 
