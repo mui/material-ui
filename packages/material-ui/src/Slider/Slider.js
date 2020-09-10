@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { getThemeProps, propsToClassKey } from '@material-ui/styles';
-import useTheme from '../styles/useTheme';
+import { propsToClassKey } from '@material-ui/styles';
+import useThemeProps from '../styles/useThemeProps';
 import { fade, lighten, darken } from '../styles/colorManipulator';
 import capitalize from '../utils/capitalize';
 import SliderBase from './SliderBase';
@@ -12,7 +12,6 @@ const shouldForwardProp = (prop) => prop !== 'state' && prop != 'as';
 const overridesResolver = (props, styles, name) => {
   const {
     color = 'primary',
-    disabled = false,
     marks: marksProp = false,
     max = 100,
     min = 0,
@@ -283,28 +282,9 @@ const getComponentProps = (components, componentsProps, name) => {
   };
 };
 
-const useThemeProps = (inputProps, ref, name) => {
-  const props = Object.assign({}, inputProps);
-  const { innerRef } = props;
-
-  const contextTheme = useTheme() || defaultTheme;
-
-  const more = getThemeProps({ theme: contextTheme, name, props });
-
-  const theme = more.theme || contextTheme;
-  const isRtl = theme.direction === 'rtl';
-
-  return {
-    ref: innerRef || ref,
-    theme,
-    isRtl,
-    ...more,
-  };
-};
-
-const Slider = React.forwardRef(function Slider(inputProps, inputRef) {
-  const props = useThemeProps(inputProps, inputRef, 'MuiSlider');
-  const { components = {}, componentsProps = {}, ref, ...other } = props;
+const Slider = React.forwardRef(function Slider(inputProps, ref) {
+  const props = useThemeProps({ props: inputProps, name: 'MuiSlider' });
+  const { components = {}, componentsProps = {}, ...other } = props;
   return (
     <SliderBase
       {...other}
