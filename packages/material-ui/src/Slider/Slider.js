@@ -408,12 +408,12 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   const handleChange =
     onChange &&
     ((event, value) => {
-      event.persist(); 
+      event.persist();
       // Redefine target to allow name and value to be read
-      Object.defineProperty(event, 'target', { 
-        writable: true, 
-        value: { value, name }, 
-      }); 
+      Object.defineProperty(event, 'target', {
+        writable: true,
+        value: { value, name },
+      });
       onChange(event, value);
     });
 
