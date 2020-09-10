@@ -53,4 +53,5 @@ The accessibility of this component relies on:
   It contains six radio buttons, one for each star and another for 0 stars, which is checked by default. Make sure you are providing a `name` prop that is unique to the parent form.
 - The labels for the radio buttons contain actual text (“1 Star”, “2 Stars”, …), make sure you provide a `getLabelText` prop when the page language is not English.
 
-In the event you are using the color as the only means to indicate the value of a rating, we recommand the information to be also available in text, like in [this demo](#hover-feedback). This is important to match the [success Criterion 1.4.1](https://www.w3.org/TR/WCAG21/#use-of-color) of WCAG2.1.
+By default, the rating component uses both color and shape to indicate the value.
+In the event that you are using color as the only means to indicate the value (such as with the [Custom empty icon](#customized-ratings) example), the information should also be also displayed as text, as in [this demo](#hover-feedback). This is important to match [success Criterion 1.4.1](https://www.w3.org/TR/WCAG21/#use-of-color) of WCAG2.1.
