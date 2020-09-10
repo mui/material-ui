@@ -300,8 +300,8 @@ describe('adaptV4Theme', () => {
         transformedTheme = adaptV4Theme(theme);
       }).toWarnDev(['adaptV4Theme() is deprecated']);
 
-      expect(transformedTheme.spacing()).to.equal(8)
-      expect(transformedTheme.spacing(2)).to.equal(16)
+      expect(transformedTheme.spacing()).to.equal(8);
+      expect(transformedTheme.spacing(2)).to.equal(16);
     });
   });
 });
