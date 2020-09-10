@@ -391,6 +391,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     valueLabelFormat = Identity,
     ...other
   } = props;
+
   const theme = useTheme();
   const touchId = React.useRef();
   // We can't use the :active browser pseudo-classes.
@@ -408,7 +409,8 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   const handleChange =
     onChange &&
     ((event, value) => {
-      event.persist();
+      if (!(event instanceof Event)) event.persist();
+
       // Redefine target to allow name and value to be read
       Object.defineProperty(event, 'target', {
         writable: true,
