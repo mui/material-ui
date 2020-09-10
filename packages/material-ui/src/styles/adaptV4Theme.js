@@ -12,11 +12,12 @@ export default function adaptV4Theme(inputTheme) {
   }
 
   const {
-    props = {},
     defaultProps = {},
-    styleOverrides = {},
-    overrides = {},
     mixins = {},
+    overrides = {},
+    palette = {},
+    props = {},
+    styleOverrides = {},
     ...other
   } = inputTheme;
   const theme = {
@@ -68,6 +69,14 @@ export default function adaptV4Theme(inputTheme) {
       };
     },
     ...mixins,
+  };
+
+  // theme.palette.text.hint
+  theme.palette = {
+    text: {
+      hint: palette.type === 'dark' ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.38)',
+    },
+    ...palette,
   };
 
   return theme;
