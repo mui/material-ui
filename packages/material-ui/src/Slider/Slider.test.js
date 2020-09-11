@@ -700,6 +700,27 @@ describe('<Slider />', () => {
     expect(container.querySelectorAll(`.${classes.mark}[data-index="2"]`).length).to.equal(1);
   });
 
+  it('should pass "name" and "value" as part of the event.target for onChange', () => {
+    const handleChange = stub().callsFake((event) => event.target);
+    const { getByRole } = render(
+      <Slider onChange={handleChange} name="change-testing" value={3} />,
+    );
+    const thumb = getByRole('slider');
+
+    act(() => {
+      thumb.focus();
+      fireEvent.keyDown(thumb, {
+        key: 'ArrowRight',
+      });
+    });
+
+    expect(handleChange.callCount).to.equal(1);
+    expect(handleChange.firstCall.returnValue).to.deep.equal({
+      name: 'change-testing',
+      value: 4,
+    });
+  });
+
   describe('prop: ValueLabelComponent', () => {
     it('receives the formatted value', () => {
       function ValueLabelComponent(props) {
