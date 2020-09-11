@@ -37,12 +37,13 @@ export const styles = (theme) => ({
 
 const StepIcon = React.forwardRef(function StepIcon(props, ref) {
   const {
-    completed = false,
-    icon,
     active = false,
-    error = false,
     classes,
     className: classNameProp,
+    completed = false,
+    error = false,
+    icon,
+    ...other
   } = props;
 
   if (typeof icon === 'number' || typeof icon === 'string') {
@@ -61,7 +62,7 @@ const StepIcon = React.forwardRef(function StepIcon(props, ref) {
     }
 
     return (
-      <SvgIcon className={className} ref={ref}>
+      <SvgIcon className={className} ref={ref} {...other}>
         <circle cx="12" cy="12" r="12" />
         <text className={classes.text} x="12" y="16" textAnchor="middle">
           {icon}
