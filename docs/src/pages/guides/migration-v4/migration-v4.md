@@ -81,7 +81,7 @@ For a smoother transition, the `adaptV4Theme` helper allows you to iteratively u
   ```
 
 - `theme.spacing` now returns single values with px units by default.
-  This improves the usage with styled-components.
+  This change improves the integration with styled-components & emotion.
 
   Before:
 

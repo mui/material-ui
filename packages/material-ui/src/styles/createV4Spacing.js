@@ -1,6 +1,6 @@
 import { createUnarySpacing } from '@material-ui/system';
 
-export default function createSpacing(spacingInput = 8) {
+export default function createV4Spacing(spacingInput = 8) {
   // Already transformed.
   if (spacingInput.mui) {
     return spacingInput;

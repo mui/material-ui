@@ -1,7 +1,5 @@
 import { createUnarySpacing } from '@material-ui/system';
 
-let warnOnce;
-
 export default function createSpacing(spacingInput = 8) {
   // Already transformed.
   if (spacingInput.mui) {
