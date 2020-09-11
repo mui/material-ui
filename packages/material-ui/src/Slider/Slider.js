@@ -410,7 +410,9 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     ((event, value) => {
       if (!(event instanceof Event)) event.persist();
 
-      // Redefine target to allow name and value to be read
+      // Redefine target to allow name and value to be read.
+      // This allows seamless integration with the most popular form libraries.
+      // https://github.com/mui-org/material-ui/issues/13485#issuecomment-676048492
       Object.defineProperty(event, 'target', {
         writable: true,
         value: { value, name },
