@@ -436,6 +436,16 @@ const theme = createMuitheme({
 
 ### Rating
 
+- Change the default empty icon to improve accessibility.
+  If you have a custom `icon` prop but no `emptyIcon` prop, you can restore the previous behavior with:
+
+  ```diff
+  <Rating
+    icon={customIcon}
+  + emptyIcon={null}
+  />
+  ```
+
 - Rename `visuallyhidden` to `visuallyHidden` for consistency:
 
   ```diff

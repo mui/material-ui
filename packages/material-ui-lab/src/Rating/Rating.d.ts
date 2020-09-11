@@ -56,6 +56,7 @@ export interface RatingProps
   disabled?: boolean;
   /**
    * The icon to display when empty.
+   * @default <StarBorder fontSize="inherit" />
    */
   emptyIcon?: React.ReactNode;
   /**
