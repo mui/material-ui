@@ -526,7 +526,7 @@ const theme = createMuitheme({
 
   ### Stepper
 
-- The root component (Paper) was replaced with a div. Stepper no longer has elevation, nor inherits Paper's props.
+- The root component (Paper) was replaced with a div. Stepper no longer has elevation, nor inherits Paper's props. This change is meant to encourage composition.
 
 ```diff
 -<Stepper elevation={2}>
