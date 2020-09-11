@@ -28,7 +28,7 @@ should be made clear from the corresponding inline label.
 ## Switches with FormGroup
 
 `FormGroup` is a helpful wrapper used to group selection controls components that provides an easier API.
-However, you are encouraged you to use [Checkboxes](/components/checkboxes/) instead if multiple related controls are required. (See: [When to use](#when-to-use)).
+However, you are encouraged to use [Checkboxes](/components/checkboxes/) instead if multiple related controls are required. (See: [When to use](#when-to-use)).
 
 {{"demo": "pages/components/switches/SwitchesGroup.js"}}
 
