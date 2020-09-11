@@ -31,9 +31,6 @@ export const styles = (theme) => ({
       '@media (hover: none)': {
         backgroundColor: theme.palette.grey[300],
       },
-      '&$disabled': {
-        backgroundColor: theme.palette.action.disabledBackground,
-      },
       textDecoration: 'none',
     },
     '&$focusVisible': {
