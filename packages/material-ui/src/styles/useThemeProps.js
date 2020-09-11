@@ -17,4 +17,4 @@ export default function useThemeProps({ props: inputProps, name }) {
     isRtl,
     ...more,
   };
-};
+}

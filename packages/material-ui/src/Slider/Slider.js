@@ -284,6 +284,7 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
         ...components,
       }}
       componentsProps={{
+        ...componentsProps,
         root: getComponentProps(components, componentsProps, 'root'),
       }}
       ref={ref}
