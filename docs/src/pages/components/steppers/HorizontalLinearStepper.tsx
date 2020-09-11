@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme: Theme) =>
     buttonWrapper: {
       display: 'flex',
       flexDirection: 'row',
-      padding: '24px 0 0',
+      padding: '16px 0 0',
     },
     button: {
       marginRight: theme.spacing(1),
@@ -22,11 +22,8 @@ const useStyles = makeStyles((theme: Theme) =>
     spacer: {
       flex: '1 1 auto',
     },
-    content: {
-      padding: '0 24px',
-    },
     instructions: {
-      marginTop: theme.spacing(1),
+      marginTop: theme.spacing(2),
       marginBottom: theme.spacing(1),
     },
   }),
@@ -120,52 +117,50 @@ export default function HorizontalLinearStepper() {
           );
         })}
       </Stepper>
-      <div className={classes.content}>
-        {activeStep === steps.length ? (
-          <React.Fragment>
-            <Typography className={classes.instructions}>
-              All steps completed - you&apos;re finished
-            </Typography>
-            <div className={classes.buttonWrapper}>
-              <div className={classes.spacer} />
-              <Button variant="text" onClick={handleReset}>
-                Reset
-              </Button>
-            </div>
-          </React.Fragment>
-        ) : (
-          <React.Fragment>
-            <Typography className={classes.instructions}>
-              {getStepContent(activeStep)}
-            </Typography>
-            <div className={classes.buttonWrapper}>
+      {activeStep === steps.length ? (
+        <React.Fragment>
+          <Typography className={classes.instructions}>
+            All steps completed - you&apos;re finished
+          </Typography>
+          <div className={classes.buttonWrapper}>
+            <div className={classes.spacer} />
+            <Button variant="text" onClick={handleReset}>
+              Reset
+            </Button>
+          </div>
+        </React.Fragment>
+      ) : (
+        <React.Fragment>
+          <Typography className={classes.instructions}>
+            {getStepContent(activeStep)}
+          </Typography>
+          <div className={classes.buttonWrapper}>
+            <Button
+              variant="text"
+              color="inherit"
+              disabled={activeStep === 0}
+              onClick={handleBack}
+              className={classes.button}
+            >
+              Back
+            </Button>
+            <div className={classes.spacer} />
+            {isStepOptional(activeStep) && (
               <Button
                 variant="text"
                 color="inherit"
-                disabled={activeStep === 0}
-                onClick={handleBack}
+                onClick={handleSkip}
                 className={classes.button}
               >
-                Back
+                Skip
               </Button>
-              <div className={classes.spacer} />
-              {isStepOptional(activeStep) && (
-                <Button
-                  variant="text"
-                  color="inherit"
-                  onClick={handleSkip}
-                  className={classes.button}
-                >
-                  Skip
-                </Button>
-              )}
-              <Button variant="text" onClick={handleNext}>
-                {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-              </Button>
-            </div>
-          </React.Fragment>
-        )}
-      </div>
+            )}
+            <Button variant="text" onClick={handleNext}>
+              {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+            </Button>
+          </div>
+        </React.Fragment>
+      )}
     </div>
   );
 }
