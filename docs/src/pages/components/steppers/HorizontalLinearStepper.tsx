@@ -11,8 +11,19 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       width: '100%',
     },
+    buttonWrapper: {
+      display: 'flex',
+      flexDirection: 'row',
+      padding: '24px 0 0',
+    },
     button: {
       marginRight: theme.spacing(1),
+    },
+    spacer: {
+      flex: '1 1 auto',
+    },
+    content: {
+      padding: '0 24px',
     },
     instructions: {
       marginTop: theme.spacing(1),
@@ -109,47 +120,50 @@ export default function HorizontalLinearStepper() {
           );
         })}
       </Stepper>
-      <div>
+      <div className={classes.content}>
         {activeStep === steps.length ? (
-          <div>
+          <React.Fragment>
             <Typography className={classes.instructions}>
               All steps completed - you&apos;re finished
             </Typography>
-            <Button onClick={handleReset} className={classes.button}>
-              Reset
-            </Button>
-          </div>
+            <div className={classes.buttonWrapper}>
+              <div className={classes.spacer} />
+              <Button variant="text" onClick={handleReset}>
+                Reset
+              </Button>
+            </div>
+          </React.Fragment>
         ) : (
-          <div>
+          <React.Fragment>
             <Typography className={classes.instructions}>
               {getStepContent(activeStep)}
             </Typography>
-            <div>
+            <div className={classes.buttonWrapper}>
               <Button
+                variant="text"
+                color="inherit"
                 disabled={activeStep === 0}
                 onClick={handleBack}
                 className={classes.button}
               >
                 Back
               </Button>
+              <div className={classes.spacer} />
               {isStepOptional(activeStep) && (
                 <Button
-                  variant="contained"
+                  variant="text"
+                  color="inherit"
                   onClick={handleSkip}
                   className={classes.button}
                 >
                   Skip
                 </Button>
               )}
-              <Button
-                variant="contained"
-                onClick={handleNext}
-                className={classes.button}
-              >
+              <Button variant="text" onClick={handleNext}>
                 {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
               </Button>
             </div>
-          </div>
+          </React.Fragment>
         )}
       </div>
     </div>
