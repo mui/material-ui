@@ -55,7 +55,7 @@ export interface SwipeableDrawerProps extends Omit<DrawerProps, 'onClose' | 'ope
    */
   SwipeAreaProps?: object;
   /**
-   * The width of the left most (or right most) area in pixels where the
+   * The width of the left most (or right most) area in px where the
    * drawer can be swiped open from.
    * @default 20
    */
