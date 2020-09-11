@@ -46,7 +46,7 @@ const StepIcon = React.forwardRef(function StepIcon(props, ref) {
   } = props;
 
   if (typeof icon === 'number' || typeof icon === 'string') {
-    const className = clsx(propsClassName, classes.root, {
+    const className = clsx(classNameProp, classes.root, {
       [classes.active]: active,
       [classes.error]: error,
       [classes.completed]: completed,
