@@ -1,16 +1,23 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, describeConformance, createClientRender } from 'test/utils';
+import { createMount, getClasses, describeConformance, createClientRender } from 'test/utils';
 import StepIcon from './StepIcon';
 
 describe('<StepIcon />', () => {
   const render = createClientRender();
   const mount = createMount();
+  let classes;
+
+  before(() => {
+    classes = getClasses(<StepIcon icon={1} />);
+  });
 
   describeConformance(<StepIcon icon={1} />, () => ({
+    classes,
+    inheritComponent: 'svg',
     mount,
-    only: ['refForwarding'],
     refInstanceof: window.SVGSVGElement,
+    skip: ['componentProp'],
   }));
 
   it('renders <CheckCircle> when completed', () => {
