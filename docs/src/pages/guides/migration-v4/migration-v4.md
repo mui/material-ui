@@ -470,7 +470,7 @@ const theme = createMuitheme({
   +<Button ref={ref} />
   ```
 
-  ### Skeleton
+### Skeleton
 
 - Rename `circle` to `circular` and `rect` to `rectangular` for consistency. The possible values should be adjectives, not nouns:
 
