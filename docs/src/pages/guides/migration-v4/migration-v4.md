@@ -470,6 +470,19 @@ const theme = createMuitheme({
   +<Button ref={ref} />
   ```
 
+  ### Skeleton
+
+- Rename `circle` to `circular` and `rect` to `rectangular` for consistency. The possible values should be adjectives, not nouns:
+
+  ```diff
+  -<Skeleton variant="circle" />
+  -<Skeleton variant="rect" />
+  -<Skeleton classes={{ circle: 'custom-circle-classname', rect: 'custom-rect-classname',  }} />
+  +<Skeleton variant="circular" />
+  +<Skeleton variant="rectangular" />
+  +<Skeleton classes={{ circular: 'custom-circle-classname', rectangular: 'custom-rect-classname',  }} />
+  ```
+
 ### Slider
 
 - TypeScript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
@@ -509,19 +522,6 @@ const theme = createMuitheme({
   +    onExiting,
   +  }}
   />
-  ```
-
-  ### Skeleton
-
-- Rename `circle` to `circular` and `rect` to `rectangular` for consistency. The possible values should be adjectives, not nouns:
-
-  ```diff
-  -<Skeleton variant="circle" />
-  -<Skeleton variant="rect" />
-  -<Skeleton classes={{ circle: 'custom-circle-classname', rect: 'custom-rect-classname',  }} />
-  +<Skeleton variant="circular" />
-  +<Skeleton variant="rectangular" />
-  +<Skeleton classes={{ circular: 'custom-circle-classname', rectangular: 'custom-rect-classname',  }} />
   ```
 
   ### Stepper
