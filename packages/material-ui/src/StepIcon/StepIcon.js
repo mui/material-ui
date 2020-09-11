@@ -42,7 +42,7 @@ const StepIcon = React.forwardRef(function StepIcon(props, ref) {
     active = false,
     error = false,
     classes,
-    className: propsClassName,
+    className: classNameProp,
   } = props;
 
   if (typeof icon === 'number' || typeof icon === 'string') {
