@@ -38,7 +38,7 @@ The `MuiChip` name can be used for providing [default props](/customization/glob
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the chip should be displayed in a disabled state. |
 | <span class="prop-name">icon</span> | <span class="prop-type">element</span> |  | Icon element. |
 | <span class="prop-name">label</span> | <span class="prop-type">node</span> |  | The content of the label. |
-| <span class="prop-name">onDelete</span> | <span class="prop-type">func</span> |  | Callback function fired when the delete icon is clicked. If set, the delete icon will be shown. |
+| <span class="prop-name">onDelete</span> | <span class="prop-type">func</span> |  | Callback fired when the delete icon is clicked. If set, the delete icon will be shown. |
 | <span class="prop-name">size</span> | <span class="prop-type">'medium'<br>&#124;&nbsp;'small'</span> | <span class="prop-default">'medium'</span> | The size of the chip. |
 | <span class="prop-name">variant</span> | <span class="prop-type">'default'<br>&#124;&nbsp;'outlined'</span> | <span class="prop-default">'default'</span> | The variant to use. |
 

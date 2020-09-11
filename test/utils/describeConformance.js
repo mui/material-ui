@@ -201,7 +201,6 @@ const fullSuite = {
  * components.
  * @param {React.ReactElement} minimalElement - the component with it's minimal required props
  * @param {() => ConformanceOptions} getOptions
- *
  */
 export default function describeConformance(minimalElement, getOptions) {
   const { after: runAfterHook = () => {}, only = Object.keys(fullSuite), skip = [] } = getOptions();
