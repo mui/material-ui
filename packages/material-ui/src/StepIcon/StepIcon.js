@@ -36,10 +36,17 @@ export const styles = (theme) => ({
 });
 
 const StepIcon = React.forwardRef(function StepIcon(props, ref) {
-  const { completed = false, icon, active = false, error = false, classes } = props;
+  const {
+    completed = false,
+    icon,
+    active = false,
+    error = false,
+    classes,
+    className: propsClassName,
+  } = props;
 
   if (typeof icon === 'number' || typeof icon === 'string') {
-    const className = clsx(classes.root, {
+    const className = clsx(propsClassName, classes.root, {
       [classes.active]: active,
       [classes.error]: error,
       [classes.completed]: completed,
