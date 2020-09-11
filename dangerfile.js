@@ -37,7 +37,6 @@ async function cleanup() {
 /**
  * creates a callback for Object.entries(comparison).filter that excludes every
  * entry that does not exceed the given threshold values for parsed and gzip size
- *
  * @param {number} parsedThreshold
  * @param {number} gzipThreshold
  */

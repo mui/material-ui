@@ -53,7 +53,6 @@ const packagesWithBundledTypes = ['date-fns'];
  * in packagesWithBundledTypes
  *
  * @see packagesWithBundledTypes in this module namespace
- *
  * @param {Record<string, string>} deps - list of dependency as `name => version`
  */
 function addTypeDeps(deps) {

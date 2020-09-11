@@ -48,7 +48,6 @@ function findConformanceDescriptor(file) {
 }
 
 /**
- *
  * @param {import('@babel/core').Node} valueNode
  * @returns {string | undefined}
  */
@@ -78,7 +77,6 @@ function getRefInstance(valueNode) {
 }
 
 /**
- *
  * @param {import('@babel/core').Node} valueNode - An Identifier
  * @returns {string | undefined}
  */
@@ -87,7 +85,6 @@ function getInheritComponentName(valueNode) {
 }
 
 /**
- *
  * @param {string} componentFilename
  * @returns {ParseResult}
  *

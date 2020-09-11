@@ -112,7 +112,6 @@ const useDemoToolbarStyles = makeStyles(
 const alwaysTrue = () => true;
 
 /**
- *
  * @param {React.Ref<HTMLElement>[]} controlRefs
  * @param {object} [options]
  * @param {(index: number) => boolean} [options.isFocusableControl] In case certain controls become unfocusable

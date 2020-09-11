@@ -29,7 +29,6 @@ export interface TransitionsOptions {
 
 /**
  * @private
- *
  * @param props
  * @param options
  */
@@ -40,7 +39,6 @@ export function create(
 
 /**
  * @private
- *
  * @param height
  */
 export function getAutoHeightDuration(height: number): number;
