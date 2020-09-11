@@ -319,8 +319,8 @@ const theme = createMuitheme({
 - Rename the GridList `cellHeight` prop to `rowHieght`.
 - Add the `variant` prop to GridList.
 - Rename the GridListItemBar `actionPosition` prop to `position`. (Note also the related classname changes.)
-- Use CSS object-fit. For IE11 support either use a polyfill such as 
-https://www.npmjs.com/package/object-fit-images, or continue to use the v4 component.
+- Use CSS object-fit. For IE11 support either use a polyfill such as
+  https://www.npmjs.com/package/object-fit-images, or continue to use the v4 component.
 
 ```diff
 -import GridList from '@material-ui/core/GridList';
