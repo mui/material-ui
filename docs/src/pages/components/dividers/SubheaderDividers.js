@@ -16,10 +16,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
   },
   dividerFullWidth: {
-    margin: `5px 0 0 ${theme.spacing(2)}px`,
+    margin: `5px 0 0 ${theme.spacing(2)}`,
   },
   dividerInset: {
-    margin: `5px 0 0 ${theme.spacing(9)}px`,
+    margin: `5px 0 0 ${theme.spacing(9)}`,
   },
 }));
 
