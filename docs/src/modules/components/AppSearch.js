@@ -123,12 +123,8 @@ export default function AppSearch() {
 
   React.useEffect(() => {
     const handleKeyDown = (nativeEvent) => {
-      // Use nativeEvent.keyCode to support IE 11
       if (
-        [
-          191, // '/'
-          83, // 's'
-        ].indexOf(nativeEvent.keyCode) !== -1 &&
+        ['/', 's'].indexOf(nativeEvent.key) !== -1 &&
         document.activeElement.nodeName === 'BODY' &&
         document.activeElement !== inputRef.current
       ) {
