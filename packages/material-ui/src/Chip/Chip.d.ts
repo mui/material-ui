@@ -117,7 +117,7 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     label?: React.ReactNode;
     /**
-     * Callback function fired when the delete icon is clicked.
+     * Callback fired when the delete icon is clicked.
      * If set, the delete icon will be shown.
      */
     onDelete?: React.EventHandler<any>;

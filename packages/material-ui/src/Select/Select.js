@@ -177,7 +177,7 @@ Select.propTypes = {
    */
   native: PropTypes.bool,
   /**
-   * Callback function fired when a menu item is selected.
+   * Callback fired when a menu item is selected.
    *
    * @param {object} event The event source of the callback.
    * You can pull out the new value by accessing `event.target.value` (any).
