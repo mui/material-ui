@@ -81,6 +81,7 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">deleteIconColorSecondary</span> | <span class="prop-name">.MuiChip-deleteIconColorSecondary</span> | Styles applied to the deleteIcon element if `color="secondary"` and `variant="default"`.
 | <span class="prop-name">deleteIconOutlinedColorPrimary</span> | <span class="prop-name">.MuiChip-deleteIconOutlinedColorPrimary</span> | Styles applied to the deleteIcon element if `color="primary"` and `variant="outlined"`.
 | <span class="prop-name">deleteIconOutlinedColorSecondary</span> | <span class="prop-name">.MuiChip-deleteIconOutlinedColorSecondary</span> | Styles applied to the deleteIcon element if `color="secondary"` and `variant="outlined"`.
+| <span class="prop-name">focusVisible</span> | <span class="prop-name">.Mui-focusVisible</span> | Pseudo-class applied to the root element if keyboard focused.
 
 You can override the style of the component thanks to one of these customization points:
 

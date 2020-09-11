@@ -9,24 +9,12 @@ import {
   createClientRender,
   fireEvent,
   screen,
+  simulatePointerDevice,
+  focusVisible,
 } from 'test/utils';
 import { camelCase } from 'lodash/string';
 import Tooltip, { testReset } from './Tooltip';
 import Input from '../Input';
-
-function focusVisible(element) {
-  act(() => {
-    element.blur();
-    fireEvent.keyDown(document.activeElement || document.body, { key: 'Tab' });
-    element.focus();
-  });
-}
-
-function simulatePointerDevice() {
-  // first focus on a page triggers focus visible until a pointer event
-  // has been dispatched
-  document.dispatchEvent(new window.Event('pointerdown'));
-}
 
 describe('<Tooltip />', () => {
   /**

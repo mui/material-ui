@@ -2,8 +2,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Rating from '@material-ui/lab/Rating';
-import StarBorderIcon from '@material-ui/icons/StarBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
 import SentimentDissatisfiedIcon from '@material-ui/icons/SentimentDissatisfied';
 import SentimentSatisfiedIcon from '@material-ui/icons/SentimentSatisfied';
@@ -57,15 +57,6 @@ export default function CustomizedRatings() {
   return (
     <div>
       <Box component="fieldset" mb={3} borderColor="transparent">
-        <Typography component="legend">Custom empty icon</Typography>
-        <Rating
-          name="customized-empty"
-          defaultValue={2}
-          precision={0.5}
-          emptyIcon={<StarBorderIcon fontSize="inherit" />}
-        />
-      </Box>
-      <Box component="fieldset" mb={3} borderColor="transparent">
         <Typography component="legend">Custom icon and color</Typography>
         <StyledRating
           name="customized-color"
@@ -73,6 +64,7 @@ export default function CustomizedRatings() {
           getLabelText={(value) => `${value} Heart${value !== 1 ? 's' : ''}`}
           precision={0.5}
           icon={<FavoriteIcon fontSize="inherit" />}
+          emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
         />
       </Box>
       <Box component="fieldset" mb={3} borderColor="transparent">

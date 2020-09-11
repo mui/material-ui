@@ -263,4 +263,30 @@ describe('adaptV4Theme', () => {
       });
     });
   });
+
+  describe('theme.palette.text.hint', () => {
+    it('is added to the theme', () => {
+      const theme = {};
+
+      let transformedTheme;
+
+      expect(() => {
+        transformedTheme = adaptV4Theme(theme);
+      }).toWarnDev(['adaptV4Theme() is deprecated']);
+
+      expect(transformedTheme.palette.text.hint).to.equal('rgba(0, 0, 0, 0.38)');
+    });
+
+    it('is added to a dark theme', () => {
+      const theme = { palette: { type: 'dark' } };
+
+      let transformedTheme;
+
+      expect(() => {
+        transformedTheme = adaptV4Theme(theme);
+      }).toWarnDev(['adaptV4Theme() is deprecated']);
+
+      expect(transformedTheme.palette.text.hint).to.equal('rgba(255, 255, 255, 0.5)');
+    });
+  });
 });

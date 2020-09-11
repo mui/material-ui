@@ -138,7 +138,18 @@ import { ReactComponent as StarIcon } from './star.svg';
 <SvgIcon component={StarIcon} viewBox="0 0 600 476.6" />
 ```
 
-### Libraries
+### Font Awesome
+
+If you find that there are layout issues when using FontAwesomeIcon from `@fortawesome/react-fontawesome`, you may try passing the Font Awesome SVG data directly to SvgIcon.
+This is best implemented as a custom wrapper component but will render more reliably in Material UI components (e.g. an IconButton).
+
+Below is a comparison of the `FontAwesomeIcon` component and a wrapped `SvgIcon` component.
+
+{{"demo": "pages/components/icons/FontAwesomeSvgIconDemo.js"}}
+
+The `fullWidth` prop of `FontAwesomeIcon` can also be used to approximate the correct dimensions, but it isn't perfect.
+
+### Other Libraries
 
 #### Material Design (recommended)
 
@@ -187,7 +198,30 @@ Optionally, you can set the icon color using one of the theme color properties: 
 
 [Font Awesome](https://fontawesome.com/icons) can be used with the `Icon` component as follow:
 
-{{"demo": "pages/components/icons/FontAwesome.js", "hideEditButton": true}}
+{{"demo": "pages/components/icons/FontAwesomeIcon.js"}}
+
+But note that the Font Awesome icons weren't designed like the Material Design icons (compare the two previous demos).
+The fa icons are cropped to use all the space available.
+It's recommanded to adjust for this with a global override:
+
+```jsx
+const theme = createMuiTheme({
+  components: {
+    MuiIcon: {
+      styleOverrides: {
+        root: {
+          // Match 24px = 3 * 2 + 1.125 * 16
+          boxSizing: 'content-box',
+          padding: 3,
+          fontSize: '1.125rem',
+        },
+      },
+    },
+  },
+});
+```
+
+{{"demo": "pages/components/icons/FontAwesomeIconSize.js"}}
 
 ## Font vs SVG. Which approach to use?
 

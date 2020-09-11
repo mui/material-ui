@@ -12,6 +12,7 @@ import {
 } from '@material-ui/core/utils';
 import { visuallyHidden } from '@material-ui/system';
 import Star from '../internal/svg-icons/Star';
+import StarBorder from '../internal/svg-icons/StarBorder';
 
 function clamp(value, min, max) {
   if (value < min) {
@@ -43,7 +44,7 @@ export const styles = (theme) => ({
     display: 'inline-flex',
     position: 'relative',
     fontSize: theme.typography.pxToRem(24),
-    color: '#ffb400',
+    color: '#faaf00',
     cursor: 'pointer',
     textAlign: 'left',
     WebkitTapHighlightColor: 'transparent',
@@ -127,6 +128,7 @@ IconContainer.propTypes = {
 };
 
 const defaultIcon = <Star fontSize="inherit" />;
+const defaultEmptyIcon = <StarBorder fontSize="inherit" />;
 
 function defaultLabelText(value) {
   return `${value} Star${value !== 1 ? 's' : ''}`;
@@ -138,7 +140,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     className,
     defaultValue = null,
     disabled = false,
-    emptyIcon,
+    emptyIcon = defaultEmptyIcon,
     emptyLabelText = 'Empty',
     getLabelText = defaultLabelText,
     icon = defaultIcon,
@@ -476,6 +478,7 @@ Rating.propTypes = {
   disabled: PropTypes.bool,
   /**
    * The icon to display when empty.
+   * @default <StarBorder fontSize="inherit" />
    */
   emptyIcon: PropTypes.node,
   /**

@@ -1,20 +1,9 @@
 import { expect } from 'chai';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { createMount } from 'test/utils';
+import { createClientRender, focusVisible, simulatePointerDevice } from 'test/utils';
 import useIsFocusVisible, { teardown as teardownFocusVisible } from './useIsFocusVisible';
 import useForkRef from './useForkRef';
-
-function dispatchFocusVisible(element) {
-  element.ownerDocument.dispatchEvent(new window.Event('keydown'));
-  element.focus();
-}
-
-function simulatePointerDevice() {
-  // first focus on a page triggers focus visible until a pointer event
-  // has been dispatched
-  document.dispatchEvent(new window.Event('pointerdown'));
-}
 
 const SimpleButton = React.forwardRef(function SimpleButton(props, ref) {
   const {
@@ -26,19 +15,19 @@ const SimpleButton = React.forwardRef(function SimpleButton(props, ref) {
 
   const handleRef = useForkRef(focusVisibleRef, ref);
 
-  const [focusVisible, setFocusVisible] = React.useState(false);
+  const [isFocusVisible, setIsFocusVisible] = React.useState(false);
 
   const handleBlur = (event) => {
     handleBlurVisible(event);
     if (isFocusVisibleRef.current === false) {
-      setFocusVisible(false);
+      setIsFocusVisible(false);
     }
   };
 
   const handleFocus = (event) => {
     handleFocusVisible(event);
     if (isFocusVisibleRef.current === true) {
-      setFocusVisible(true);
+      setIsFocusVisible(true);
     }
   };
 
@@ -47,7 +36,7 @@ const SimpleButton = React.forwardRef(function SimpleButton(props, ref) {
       type="button"
       {...props}
       ref={handleRef}
-      className={focusVisible ? 'focus-visible' : null}
+      className={isFocusVisible ? 'focus-visible' : null}
       onBlur={handleBlur}
       onFocus={handleFocus}
     />
@@ -55,7 +44,7 @@ const SimpleButton = React.forwardRef(function SimpleButton(props, ref) {
 });
 
 describe('focus-visible polyfill', () => {
-  const mount = createMount();
+  const render = createClientRender();
 
   before(() => {
     // isolate test from previous component test that use the polyfill in the document scope
@@ -85,12 +74,13 @@ describe('focus-visible polyfill', () => {
 
     it('should set focus state for shadowRoot children', () => {
       const buttonRef = React.createRef();
-      mount(
+      render(
         <SimpleButton id="test-button" ref={buttonRef}>
           Hello
         </SimpleButton>,
+        {},
         {
-          attachTo: rootElement.shadowRoot,
+          container: rootElement.shadowRoot,
         },
       );
       simulatePointerDevice();
@@ -107,7 +97,7 @@ describe('focus-visible polyfill', () => {
       expect(button.classList.contains('focus-visible')).to.equal(false);
 
       button.blur();
-      dispatchFocusVisible(button);
+      focusVisible(button);
 
       expect(button.classList.contains('focus-visible')).to.equal(true);
     });

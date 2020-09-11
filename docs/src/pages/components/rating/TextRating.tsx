@@ -25,28 +25,20 @@ const useStyles = makeStyles({
   },
 });
 
-export default function HoverRating() {
-  const [value, setValue] = React.useState<number | null>(2);
-  const [hover, setHover] = React.useState(-1);
+export default function TextRating() {
   const classes = useStyles();
+  const value = 3.5;
 
   return (
     <div className={classes.root}>
       <Rating
-        name="hover-feedback"
+        name="text-feedback"
         value={value}
+        readOnly
         precision={0.5}
-        onChange={(event, newValue) => {
-          setValue(newValue);
-        }}
-        onChangeActive={(event, newHover) => {
-          setHover(newHover);
-        }}
         emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
       />
-      {value !== null && (
-        <Box ml={2}>{labels[hover !== -1 ? hover : value]}</Box>
-      )}
+      <Box ml={2}>{labels[value]}</Box>
     </div>
   );
 }

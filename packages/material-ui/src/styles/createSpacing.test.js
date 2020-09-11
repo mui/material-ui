@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import createSpacing from './createSpacing';
 
 describe('createSpacing', () => {
-  it('should work as expected', () => {
+  it('should be configurable', () => {
     let spacing;
     spacing = createSpacing();
     expect(spacing(1)).to.equal(8);
@@ -10,6 +10,8 @@ describe('createSpacing', () => {
     expect(spacing(1)).to.equal(10);
     spacing = createSpacing([0, 8, 16]);
     expect(spacing(2)).to.equal(16);
+    spacing = createSpacing(['0rem', '8rem', '16rem']);
+    expect(spacing(2)).to.equal('16rem');
     spacing = createSpacing((factor) => factor ** 2);
     expect(spacing(2)).to.equal(4);
     spacing = createSpacing((factor) => `${0.25 * factor}rem`);

@@ -2,94 +2,107 @@ import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { useThemeVariants } from '@material-ui/styles';
-import { fade, withStyles } from '@material-ui/core/styles';
+import {
+  fade,
+  withStyles,
+  unstable_toUnitless as toUnitless,
+  unstable_getUnit as getUnit,
+} from '@material-ui/core/styles';
 
-export const styles = (theme) => ({
-  /* Styles applied to the root element. */
-  root: {
-    display: 'block',
-    // Create a "on paper" color with sufficient contrast retaining the color
-    backgroundColor: fade(theme.palette.text.primary, theme.palette.type === 'light' ? 0.11 : 0.13),
-    height: '1.2em',
-  },
-  /* Styles applied to the root element if `variant="text"`. */
-  text: {
-    marginTop: 0,
-    marginBottom: 0,
-    height: 'auto',
-    transformOrigin: '0 55%',
-    transform: 'scale(1, 0.60)',
-    borderRadius: `${theme.shape.borderRadius}px/${
-      Math.round((theme.shape.borderRadius / 0.6) * 10) / 10
-    }px`,
-    '&:empty:before': {
-      content: '"\\00a0"',
+export const styles = (theme) => {
+  const radiusUnit = getUnit(theme.shape.borderRadius) || 'px';
+  const radiusValue = toUnitless(theme.shape.borderRadius);
+
+  return {
+    /* Styles applied to the root element. */
+    root: {
+      display: 'block',
+      // Create a "on paper" color with sufficient contrast retaining the color
+      backgroundColor: fade(
+        theme.palette.text.primary,
+        theme.palette.type === 'light' ? 0.11 : 0.13,
+      ),
+      height: '1.2em',
     },
-  },
-  /* Styles applied to the root element if `variant="rectangular"`. */
-  rectangular: {},
-  /* Styles applied to the root element if `variant="circular"`. */
-  circular: {
-    borderRadius: '50%',
-  },
-  /* Styles applied to the root element if `animation="pulse"`. */
-  pulse: {
-    animation: '$pulse 1.5s ease-in-out 0.5s infinite',
-  },
-  '@keyframes pulse': {
-    '0%': {
-      opacity: 1,
+    /* Styles applied to the root element if `variant="text"`. */
+    text: {
+      marginTop: 0,
+      marginBottom: 0,
+      height: 'auto',
+      transformOrigin: '0 55%',
+      transform: 'scale(1, 0.60)',
+      borderRadius: `${radiusValue}${radiusUnit}/${
+        Math.round((radiusValue / 0.6) * 10) / 10
+      }${radiusUnit}`,
+      '&:empty:before': {
+        content: '"\\00a0"',
+      },
     },
-    '50%': {
-      opacity: 0.4,
+    /* Styles applied to the root element if `variant="rectangular"`. */
+    rectangular: {},
+    /* Styles applied to the root element if `variant="circular"`. */
+    circular: {
+      borderRadius: '50%',
     },
-    '100%': {
-      opacity: 1,
+    /* Styles applied to the root element if `animation="pulse"`. */
+    pulse: {
+      animation: '$pulse 1.5s ease-in-out 0.5s infinite',
     },
-  },
-  /* Styles applied to the root element if `animation="wave"`. */
-  wave: {
-    position: 'relative',
-    overflow: 'hidden',
-    '&::after': {
-      animation: '$wave 1.6s linear 0.5s infinite',
-      background: `linear-gradient(90deg, transparent, ${theme.palette.action.hover}, transparent)`,
-      content: '""',
-      position: 'absolute',
-      transform: 'translateX(-100%)', // Avoid flash during server-side hydration
-      bottom: 0,
-      left: 0,
-      right: 0,
-      top: 0,
+    '@keyframes pulse': {
+      '0%': {
+        opacity: 1,
+      },
+      '50%': {
+        opacity: 0.4,
+      },
+      '100%': {
+        opacity: 1,
+      },
     },
-  },
-  '@keyframes wave': {
-    '0%': {
-      transform: 'translateX(-100%)',
+    /* Styles applied to the root element if `animation="wave"`. */
+    wave: {
+      position: 'relative',
+      overflow: 'hidden',
+      '&::after': {
+        animation: '$wave 1.6s linear 0.5s infinite',
+        background: `linear-gradient(90deg, transparent, ${theme.palette.action.hover}, transparent)`,
+        content: '""',
+        position: 'absolute',
+        transform: 'translateX(-100%)', // Avoid flash during server-side hydration
+        bottom: 0,
+        left: 0,
+        right: 0,
+        top: 0,
+      },
     },
-    '60%': {
-      // +0.5s of delay between each loop
-      transform: 'translateX(100%)',
+    '@keyframes wave': {
+      '0%': {
+        transform: 'translateX(-100%)',
+      },
+      '60%': {
+        // +0.5s of delay between each loop
+        transform: 'translateX(100%)',
+      },
+      '100%': {
+        transform: 'translateX(100%)',
+      },
     },
-    '100%': {
-      transform: 'translateX(100%)',
+    /* Styles applied when the component is passed children. */
+    withChildren: {
+      '& > *': {
+        visibility: 'hidden',
+      },
     },
-  },
-  /* Styles applied when the component is passed children. */
-  withChildren: {
-    '& > *': {
-      visibility: 'hidden',
+    /* Styles applied when the component is passed children and no width. */
+    fitContent: {
+      maxWidth: 'fit-content',
     },
-  },
-  /* Styles applied when the component is passed children and no width. */
-  fitContent: {
-    maxWidth: 'fit-content',
-  },
-  /* Styles applied when the component is passed children and no height. */
-  heightAuto: {
-    height: 'auto',
-  },
-});
+    /* Styles applied when the component is passed children and no height. */
+    heightAuto: {
+      height: 'auto',
+    },
+  };
+};
 
 const Skeleton = React.forwardRef(function Skeleton(props, ref) {
   const {

@@ -182,13 +182,7 @@ export const SliderRoot = muiStyled(
         right: -15,
         bottom: -15,
       },
-      ':hover': {
-        boxShadow: `0px 0px 0px 8px ${fade(props.theme.palette.primary.main, 0.16)}`,
-        '@media (hover: none)': {
-          boxShadow: 'none',
-        },
-      },
-      '&.Mui-focusVisible': {
+      ':hover, &.Mui-focusVisible': {
         boxShadow: `0px 0px 0px 8px ${fade(props.theme.palette.primary.main, 0.16)}`,
         '@media (hover: none)': {
           boxShadow: 'none',

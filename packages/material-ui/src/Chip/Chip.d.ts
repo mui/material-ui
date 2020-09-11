@@ -83,6 +83,8 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
       deleteIconOutlinedColorPrimary?: string;
       /** Styles applied to the deleteIcon element if `color="secondary"` and `variant="outlined"`. */
       deleteIconOutlinedColorSecondary?: string;
+      /** Pseudo-class applied to the root element if keyboard focused. */
+      focusVisible?: string;
     };
     /**
      * If `true`, the chip will appear clickable, and will raise when pressed,
