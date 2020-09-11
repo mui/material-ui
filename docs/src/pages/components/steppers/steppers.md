@@ -77,23 +77,23 @@ This component implements a compact stepper suitable for a mobile device. See [m
 This is essentially a back/next button positioned correctly.
 You must implement the textual description yourself, however, an example is provided below for reference.
 
-{{"demo": "pages/components/steppers/TextMobileStepper.js"}}
+{{"demo": "pages/components/steppers/TextMobileStepper.js", "bg": true}}
 
 ### Text with Carousel effect
 
 This demo is very similar to the previous, the difference is the usage of
 [react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views) to make the transition of steps.
 
-{{"demo": "pages/components/steppers/SwipeableTextMobileStepper.js"}}
+{{"demo": "pages/components/steppers/SwipeableTextMobileStepper.js", "bg": true}}
 
 ### Dots
 
 Use dots when the number of steps isn’t large.
 
-{{"demo": "pages/components/steppers/DotsMobileStepper.js"}}
+{{"demo": "pages/components/steppers/DotsMobileStepper.js", "bg": true}}
 
 ### Progress
 
 Use a progress bar when there are many steps, or if there are steps that need to be inserted during the process (based on responses to earlier steps).
 
-{{"demo": "pages/components/steppers/ProgressMobileStepper.js"}}
+{{"demo": "pages/components/steppers/ProgressMobileStepper.js", "bg": true}}
