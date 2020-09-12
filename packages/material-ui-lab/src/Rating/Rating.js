@@ -42,7 +42,6 @@ export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     display: 'inline-flex',
-    position: 'relative',
     fontSize: theme.typography.pxToRem(24),
     color: '#faaf00',
     cursor: 'pointer',
@@ -90,7 +89,6 @@ export const styles = (theme) => ({
   },
   /* Styles applied to the icon wrapping elements. */
   icon: {
-    display: 'flex',
     transition: theme.transitions.create('transform', {
       duration: theme.transitions.duration.shortest,
     }),
