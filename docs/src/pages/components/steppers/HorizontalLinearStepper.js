@@ -27,28 +27,25 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function getSteps() {
-  return ['Select campaign settings', 'Create an ad group', 'Create an ad'];
-}
-
-function getStepContent(step) {
-  switch (step) {
-    case 0:
-      return 'Select campaign settings...';
-    case 1:
-      return 'What is an ad group anyways?';
-    case 2:
-      return 'This is the bit I really care about!';
-    default:
-      return 'Unknown step';
-  }
-}
+const steps = [
+  {
+    label: 'Select campaign settings',
+    description: 'Select campaign settings...',
+  },
+  {
+    tabel: 'Create an ad group',
+    description: 'What is an ad group anyway?',
+  },
+  {
+    label: 'Create an ad',
+    description: 'This is the bit I really care about!',
+  },
+];
 
 export default function HorizontalLinearStepper() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
-  const steps = getSteps();
 
   const isStepOptional = (step) => {
     return step === 1;
@@ -95,7 +92,7 @@ export default function HorizontalLinearStepper() {
   return (
     <div className={classes.root}>
       <Stepper activeStep={activeStep}>
-        {steps.map((label, index) => {
+        {steps.map((step, index) => {
           const stepProps = {};
           const labelProps = {};
           if (isStepOptional(index)) {
@@ -107,8 +104,8 @@ export default function HorizontalLinearStepper() {
             stepProps.completed = false;
           }
           return (
-            <Step key={label} {...stepProps}>
-              <StepLabel {...labelProps}>{label}</StepLabel>
+            <Step key={step.label} {...stepProps}>
+              <StepLabel {...labelProps}>{step.label}</StepLabel>
             </Step>
           );
         })}
@@ -120,19 +117,16 @@ export default function HorizontalLinearStepper() {
           </Typography>
           <div className={classes.buttonWrapper}>
             <div className={classes.spacer} />
-            <Button variant="text" onClick={handleReset}>
-              Reset
-            </Button>
+            <Button onClick={handleReset}>Reset</Button>
           </div>
         </React.Fragment>
       ) : (
         <React.Fragment>
           <Typography className={classes.instructions}>
-            {getStepContent(activeStep)}
+            {steps[activeStep].description}
           </Typography>
           <div className={classes.buttonWrapper}>
             <Button
-              variant="text"
               color="inherit"
               disabled={activeStep === 0}
               onClick={handleBack}
@@ -143,7 +137,6 @@ export default function HorizontalLinearStepper() {
             <div className={classes.spacer} />
             {isStepOptional(activeStep) && (
               <Button
-                variant="text"
                 color="inherit"
                 onClick={handleSkip}
                 className={classes.button}
@@ -152,7 +145,7 @@ export default function HorizontalLinearStepper() {
               </Button>
             )}
 
-            <Button variant="text" onClick={handleNext}>
+            <Button onClick={handleNext}>
               {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
             </Button>
           </div>
