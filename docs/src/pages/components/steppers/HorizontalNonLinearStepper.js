@@ -31,18 +31,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const steps = [
-  {
-    label: 'Select campaign settings',
-    description: 'Select campaign settings...',
-  },
-  {
-    tabel: 'Create an ad group',
-    description: 'What is an ad group anyway?',
-  },
-  {
-    label: 'Create an ad',
-    description: 'This is the bit I really care about!',
-  },
+  'Select campaign settings',
+  'Create an ad group',
+  'Create an ad',
 ];
 
 export default function HorizontalNonLinearStepper() {
@@ -99,10 +90,10 @@ export default function HorizontalNonLinearStepper() {
   return (
     <div className={classes.root}>
       <Stepper nonLinear activeStep={activeStep}>
-        {steps.map((step, index) => (
-          <Step key={step.label} completed={completed[index]}>
+        {steps.map((label, index) => (
+          <Step key={label} completed={completed[index]}>
             <StepButton color="inherit" onClick={handleStep(index)}>
-              {step.label}
+              {label}
             </StepButton>
           </Step>
         ))}
@@ -121,7 +112,7 @@ export default function HorizontalNonLinearStepper() {
         ) : (
           <React.Fragment>
             <Typography className={classes.instructions}>
-              {steps[activeStep].description}
+              Step {activeStep + 1}
             </Typography>
             <div className={classes.buttonWrapper}>
               <Button
