@@ -4,49 +4,63 @@ import { makeStyles } from '@material-ui/core/styles';
 import ImageList from '@material-ui/core/ImageList';
 import ImageListItem from '@material-ui/core/ImageListItem';
 import ImageListItemBar from '@material-ui/core/ImageListItemBar';
-import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
-import InfoIcon from '@material-ui/icons/Info';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
 
 const useStyles = makeStyles({
   root: {
     width: 500,
     height: 450,
+    // Promote the list into its own layer in Chrome. This costs memory, but helps keeping high FPS.
+    transform: 'translateZ(0)',
+  },
+  titleBar: {
+    background:
+      'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' +
+      'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
   },
   icon: {
-    color: 'rgba(255, 255, 255, 0.54)',
+    color: 'white',
   },
 });
 
-export default function TitlebarImageList() {
+function srcset(image, width, height, rows = 1, cols = 1) {
+  return `${image}?w=${width * cols}&h=${height * rows}&fit=crop&auto=format 1x,
+  ${image}?w=${width * cols}&h=${height * rows}&fit=crop&auto=format&dpr=2 2x`;
+}
+
+export default function CustomImageList() {
   const classes = useStyles();
 
   return (
-    <ImageList className={classes.root}>
-      <ImageListItem key="Subheader" cols={2}>
-        <ListSubheader component="div">December</ListSubheader>
-      </ImageListItem>
-      {itemData.map((item) => (
-        <ImageListItem key={item.img}>
-          <img
-            srcSet={`${item.img}?w=248&fit=crop&auto=format 1x,
-                ${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
-            alt={item.title}
-          />
-          <ImageListItemBar
-            title={item.title}
-            subtitle={item.author}
-            actionIcon={
-              <IconButton
-                aria-label={`info about ${item.title}`}
-                className={classes.icon}
-              >
-                <InfoIcon />
-              </IconButton>
-            }
-          />
-        </ImageListItem>
-      ))}
+    <ImageList rowHeight={200} gap={1} className={classes.root}>
+      {itemData.map((item) => {
+        const cols = item.featured ? 2 : 1;
+        const rows = item.featured ? 2 : 1;
+
+        return (
+          <ImageListItem key={item.img} cols={cols} rows={rows}>
+            <img
+              srcSet={srcset(item.img, 250, 200, rows, cols)}
+              alt={item.title}
+            />
+            <ImageListItemBar
+              title={item.title}
+              position="top"
+              actionIcon={
+                <IconButton
+                  aria-label={`star ${item.title}`}
+                  className={classes.icon}
+                >
+                  <StarBorderIcon />
+                </IconButton>
+              }
+              actionPosition="left"
+              className={classes.titleBar}
+            />
+          </ImageListItem>
+        );
+      })}
     </ImageList>
   );
 }
@@ -56,8 +70,6 @@ const itemData = [
     img: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e',
     title: 'Breakfast',
     author: '@bkristastucchio',
-    rows: 2,
-    cols: 2,
     featured: true,
   },
   {
@@ -74,20 +86,16 @@ const itemData = [
     img: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
     title: 'Coffee',
     author: '@nolanissac',
-    cols: 2,
   },
   {
     img: 'https://images.unsplash.com/photo-1533827432537-70133748f5c8',
     title: 'Hats',
     author: '@hjrc33',
-    cols: 2,
   },
   {
     img: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62',
     title: 'Honey',
     author: '@arwinneil',
-    rows: 2,
-    cols: 2,
     featured: true,
   },
   {
@@ -104,8 +112,6 @@ const itemData = [
     img: 'https://images.unsplash.com/photo-1597645587822-e99fa5d45d25',
     title: 'Mushrooms',
     author: '@silverdalex',
-    rows: 2,
-    cols: 2,
   },
   {
     img: 'https://images.unsplash.com/photo-1567306301408-9b74779a11af',
@@ -121,6 +127,5 @@ const itemData = [
     img: 'https://images.unsplash.com/photo-1589118949245-7d38baf380d6',
     title: 'Bike',
     author: '@southside_customs',
-    cols: 2,
   },
 ];

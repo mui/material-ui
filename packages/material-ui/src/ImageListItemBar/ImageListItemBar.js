@@ -9,39 +9,44 @@ export const styles = (theme) => ({
     position: 'absolute',
     left: 0,
     right: 0,
-    height: 48,
     background: 'rgba(0, 0, 0, 0.5)',
     display: 'flex',
     alignItems: 'center',
     fontFamily: theme.typography.fontFamily,
   },
-  /* Styles applied to the root element if `titlePosition="bottom"`. */
-  titlePositionBottom: {
+  /* Styles applied to the root element if `position="bottom"`. */
+  positionBottom: {
     bottom: 0,
   },
-  /* Styles applied to the root element if `titlePosition="top"`. */
-  titlePositionTop: {
+  /* Styles applied to the root element if `position="top"`. */
+  positionTop: {
     top: 0,
   },
-  /* Styles applied to the root element if a `subtitle` is provided. */
-  rootSubtitle: {
-    height: 68,
+  /* Styles applied to the root element if `position="below"`. */
+  positionBelow: {
+    position: 'relative',
+    background: 'transparent',
+    alignItems: 'normal',
   },
   /* Styles applied to the title and subtitle container element. */
   titleWrap: {
     flexGrow: 1,
-    marginLeft: 16,
-    marginRight: 16,
+    padding: '12px 16px',
     color: theme.palette.common.white,
     overflow: 'hidden',
   },
+  /* Styles applied to the title and subtitle container element if `position="below"`. */
+  titleWrapBelow: {
+    padding: '6px 0 12px',
+    color: 'inherit',
+  },
   /* Styles applied to the container element if `actionPosition="left"`. */
   titleWrapActionPosLeft: {
-    marginLeft: 0,
+    paddingLeft: 0,
   },
   /* Styles applied to the container element if `actionPosition="right"`. */
   titleWrapActionPosRight: {
-    marginRight: 0,
+    paddingRight: 0,
   },
   /* Styles applied to the title container element. */
   title: {
@@ -75,7 +80,7 @@ const ImageListItemBar = React.forwardRef(function ImageListItemBar(props, ref) 
     className,
     subtitle,
     title,
-    titlePosition = 'bottom',
+    position = 'bottom',
     ...other
   } = props;
 
@@ -86,9 +91,9 @@ const ImageListItemBar = React.forwardRef(function ImageListItemBar(props, ref) 
       className={clsx(
         classes.root,
         {
-          [classes.titlePositionBottom]: titlePosition === 'bottom',
-          [classes.titlePositionTop]: titlePosition === 'top',
-          [classes.rootSubtitle]: subtitle,
+          [classes.positionBelow]: position === 'below',
+          [classes.positionBottom]: position === 'bottom',
+          [classes.positionTop]: position === 'top',
         },
         className,
       )}
@@ -97,6 +102,7 @@ const ImageListItemBar = React.forwardRef(function ImageListItemBar(props, ref) 
     >
       <div
         className={clsx(classes.titleWrap, {
+          [classes.titleWrapBelow]: position === 'below',
           [classes.titleWrapActionPosLeft]: actionPos === 'left',
           [classes.titleWrapActionPosRight]: actionPos === 'right',
         })}
@@ -124,7 +130,7 @@ ImageListItemBar.propTypes = {
   // ----------------------------------------------------------------------
   /**
    * An IconButton element to be used as secondary action target
-   * (primary action target is the tile itself).
+   * (primary action target is the item itself).
    */
   actionIcon: PropTypes.node,
   /**
@@ -145,18 +151,18 @@ ImageListItemBar.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * Position of the title bar.
+   * @default 'bottom'
+   */
+  position: PropTypes.oneOf(['below', 'bottom', 'top']),
+  /**
    * String or element serving as subtitle (support text).
    */
   subtitle: PropTypes.node,
   /**
-   * Title to be displayed on tile.
+   * Title to be displayed.
    */
   title: PropTypes.node,
-  /**
-   * Position of the title bar.
-   * @default 'bottom'
-   */
-  titlePosition: PropTypes.oneOf(['bottom', 'top']),
 };
 
 export default withStyles(styles, { name: 'MuiImageListItemBar' })(ImageListItemBar);

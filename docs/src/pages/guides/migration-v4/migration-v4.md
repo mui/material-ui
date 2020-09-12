@@ -346,6 +346,12 @@ const theme = createMuitheme({
 ### GridList
 
 - Rename the `GridList` components to `ImageList` to align with the current Material Design naming.
+- Rename the GridList `spacing` prop to `gap` to align with the CSS attribute.
+- Rename the GridList `cellHeight` prop to `rowHieght`.
+- Add the `variant` prop to GridList.
+- Rename the GridListItemBar `actionPosition` prop to `position`. (Note also the related classname changes.)
+- Use CSS object-fit. For IE11 support either use a polyfill such as
+  https://www.npmjs.com/package/object-fit-images, or continue to use the v4 component.
 
 ```diff
 -import GridList from '@material-ui/core/GridList';
@@ -355,9 +361,9 @@ const theme = createMuitheme({
 +import ImageListItem from '@material-ui/core/ImageListItem';
 +import ImageListItemBar from '@material-ui/core/ImageListItemBar';
 
--<GridList>
+-<GridList spacing={8} cellHeight={200}>
 -  <GridListTile>
-+<ImageList>
++<ImageList gap={8} rowHeight={200}>
 +  <ImageListItem>
      <img src="file.jpg" alt="Image title" />
 -    <GridListTileBar

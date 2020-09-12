@@ -47,7 +47,7 @@ describe('<Modal />', () => {
     }),
   );
 
-  describe('props', () => {
+  describe('props:', () => {
     let container;
 
     before(() => {
