@@ -178,6 +178,7 @@ function MarkdownDocs(props) {
                     rawTS: demo.rawTS,
                     tsx: demo.moduleTS ? requireDemo(demo.moduleTS).default : null,
                   }}
+                  disableAd={disableAd}
                   demoOptions={renderedMarkdownOrDemo}
                   githubLocation={`${SOURCE_CODE_ROOT_URL}/docs/src/${name}`}
                 />
