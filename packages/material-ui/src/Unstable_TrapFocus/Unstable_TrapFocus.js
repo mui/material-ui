@@ -151,8 +151,7 @@ function Unstable_TrapFocus(props) {
     };
 
     const loopFocus = (nativeEvent) => {
-      // 9 = Tab
-      if (disableEnforceFocus || !isEnabled() || nativeEvent.keyCode !== 9) {
+      if (disableEnforceFocus || !isEnabled() || nativeEvent.key !== 'Tab') {
         return;
       }
 
