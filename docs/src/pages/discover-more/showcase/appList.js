@@ -630,6 +630,15 @@ const appList = [
     stars: 7400,
     dateAdded: '2020-08-31',
   },
+  {
+    title: 'LightyearVPN',
+    description:
+      'LightyearVPN is a simple to use, fast and secure VPN software.',
+    image: 'lightyearvpn.jpg',
+    link: 'https://lightyearvpn.com',
+    similarWebVisits: 534,
+    dateAdded: '2020-09-11',
+  },
 ];
 
 export default appList;
