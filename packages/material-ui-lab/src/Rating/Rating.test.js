@@ -152,7 +152,6 @@ describe('<Rating />', () => {
         render(
           <form
             onSubmit={(event) => {
-              event.persist();
               // Prevent navigation
               event.preventDefault();
               // populate FormData with the submitted form
