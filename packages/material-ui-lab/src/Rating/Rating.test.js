@@ -155,7 +155,7 @@ describe('<Rating />', () => {
               // Prevent navigation
               event.preventDefault();
               // populate FormData with the submitted form
-              data = new window.FormData(event.target);
+              data = new FormData(event.target);
             }}
           >
             <Rating {...testData.ratingProps} />

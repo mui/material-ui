@@ -108,6 +108,7 @@
     "eslint-plugin-react-hooks": "^4.0.7",
     "expect-puppeteer": "^4.3.0",
     "format-util": "^1.0.5",
+    "formdata-polyfill": "^3.0.20",
     "fs-extra": "^9.0.0",
     "glob": "^7.1.2",
     "glob-gitignore": "^1.0.11",
