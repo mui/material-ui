@@ -49,7 +49,7 @@ theme.spacing(2); // = 8
 ` theme.spacing() ` 最多接受4个参数。 你可以使用参数来减少样板代码(boilerplate)。
 
 ```diff
--padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`, // '8px 16px'
+-padding: `${theme.spacing(1)} ${theme.spacing(2)}`, // '8px 16px'
 +padding: theme.spacing(1, 2), // '8px 16px'
 ```
 

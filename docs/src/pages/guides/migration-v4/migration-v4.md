@@ -80,6 +80,30 @@ For a smoother transition, the `adaptV4Theme` helper allows you to iteratively u
   +},
   ```
 
+- `theme.spacing` now returns single values with px units by default.
+  This change improves the integration with styled-components & emotion.
+
+  Before:
+
+  ```
+  theme.spacing(2) => 16
+  ```
+
+  After:
+
+  ```
+  theme.spacing(2) => '16px'
+  ```
+
+  You can restore the previous behavior with:
+
+  ```diff
+  -const theme = createMuiTheme();
+  +const theme = createMuiTheme({
+  +  spacing: x => x * 8,
+  +});
+  ```
+
 - The `theme.palette.text.hint` key was unused in Material-UI components, and has been removed.
 
 ```diff

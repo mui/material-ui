@@ -289,4 +289,19 @@ describe('adaptV4Theme', () => {
       expect(transformedTheme.palette.text.hint).to.equal('rgba(255, 255, 255, 0.5)');
     });
   });
+
+  describe('theme.spacing', () => {
+    it('does not add units to returned value for a single argument', () => {
+      const theme = {};
+
+      let transformedTheme;
+
+      expect(() => {
+        transformedTheme = adaptV4Theme(theme);
+      }).toWarnDev(['adaptV4Theme() is deprecated']);
+
+      expect(transformedTheme.spacing()).to.equal(8);
+      expect(transformedTheme.spacing(2)).to.equal(16);
+    });
+  });
 });
