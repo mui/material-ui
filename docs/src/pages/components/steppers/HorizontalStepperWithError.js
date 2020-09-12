@@ -5,26 +5,11 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Typography from '@material-ui/core/Typography';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
   root: {
     width: '100%',
   },
-  buttonWrapper: {
-    display: 'flex',
-    flexDirection: 'row',
-    padding: '16px 0 0',
-  },
-  button: {
-    marginRight: theme.spacing(1),
-  },
-  spacer: {
-    flex: '1 1 auto',
-  },
-  instructions: {
-    marginTop: theme.spacing(2),
-    marginBottom: theme.spacing(1),
-  },
-}));
+});
 
 const steps = [
   'Select campaign settings',
@@ -35,10 +20,6 @@ const steps = [
 export default function HorizontalStepperWithError() {
   const classes = useStyles();
 
-  const isStepOptional = (step) => {
-    return step === 1;
-  };
-
   const isStepFailed = (step) => {
     return step === 1;
   };
@@ -48,14 +29,13 @@ export default function HorizontalStepperWithError() {
       <Stepper activeStep={1}>
         {steps.map((label, index) => {
           const labelProps = {};
-          if (isStepOptional(index)) {
+          if (isStepFailed(index)) {
             labelProps.optional = (
               <Typography variant="caption" color="error">
                 Alert message
               </Typography>
             );
-          }
-          if (isStepFailed(index)) {
+
             labelProps.error = true;
           }
 
