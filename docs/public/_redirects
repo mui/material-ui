@@ -26,6 +26,7 @@ https://material-ui.dev/* https://material-ui.com/:splat 301!
 /r/issue-template https://codesandbox.io/s/material-ui-issue-dh2yh
 /r/ts-issue-template https://www.typescriptlang.org/play/#code/JYWwDg9gTgLgBAKjgQwM5wEoFNkGN4BmUEIcA5FDvmQNwBQokscA3nXHAPSdwwAWWOLhKQAdllEx0ATwgBXOHNRYAJnQC+cIiXIABEMhhYowZABsAtHOCdhlMnToE5o-MAii4AESwgIACgBKVnYuHgBNeSghCBUsDSA 302
 /r/custom-component-variants /customization/components/#adding-new-component-variants
+/r/x-license https://material-ui.com/store/items/material-ui-x/
 
 # Added in chronological order, to be removed at some point.
 /css-in-js/* /styles/:splat 301
