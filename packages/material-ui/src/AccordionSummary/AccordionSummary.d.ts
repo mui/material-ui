@@ -20,8 +20,8 @@ export type AccordionSummaryTypeMap<
       root?: string;
       /** Pseudo-class applied to the root element, children wrapper element and `IconButton` component if `expanded={true}`. */
       expanded?: string;
-      /** Pseudo-class applied to the root element if `focused={true}`. */
-      focused?: string;
+      /** Pseudo-class applied to the ButtonBase root element if the button is keyboard focused. */
+      focusVisible?: string;
       /** Pseudo-class applied to the root element if `disabled={true}`. */
       disabled?: string;
       /** Styles applied to the children wrapper element. */

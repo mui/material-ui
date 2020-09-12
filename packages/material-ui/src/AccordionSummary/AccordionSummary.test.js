@@ -80,41 +80,6 @@ describe('<AccordionSummary />', () => {
     expect(expandIcon).toBeInaccessible();
   });
 
-  it('focusing adds the `focused` class if focused visible', () => {
-    // TODO v5: Rename `focused` -> `focus-visible`
-    // `focused` is a global state which is applied on focus
-    // only here do we constrain it to focus-visible. THe name is also not consistent
-    // with :focus
-    const { getByRole } = render(<AccordionSummary />);
-    fireEvent.mouseDown(document.body); // pointer device
-    const button = getByRole('button');
-
-    act(() => {
-      fireEvent.keyDown(document.body, { key: 'Tab' }); // not actually focusing (yet)
-      button.focus();
-    });
-
-    expect(button).toHaveFocus();
-    expect(button).to.have.class(classes.focused);
-  });
-
-  it('blur should unset focused state', () => {
-    const { getByRole } = render(<AccordionSummary />);
-    fireEvent.mouseDown(document.body); // pointer device
-    fireEvent.keyDown(document.body, { key: 'Tab' }); // not actually focusing (yet)
-    const button = getByRole('button');
-
-    act(() => {
-      button.focus();
-    });
-    act(() => {
-      button.blur();
-    });
-
-    expect(button).not.toHaveFocus();
-    expect(button).not.to.have.class(classes.focused);
-  });
-
   it('should fire onBlur when the button blurs', () => {
     const handleBlur = spy();
     const { getByRole } = render(<AccordionSummary onBlur={handleBlur} />);

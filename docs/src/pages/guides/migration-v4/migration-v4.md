@@ -314,6 +314,17 @@ const theme = createMuitheme({
   +<Accordion onChange={(event: React.SyntheticEvent, expanded: boolean) => {}} />
   ```
 
+- Rename `focused` to `focusVisible` for consistency:
+
+  ```diff
+  <Accordion
+    classes={{
+  -    focused: 'custom-focus-visible-classname',
+  +    focusVisible: 'custom-focus-visible-classname',
+    }}
+  />
+  ```
+
 ### Fab
 
 - Rename `round` to `circular` for consistency. The possible values should be adjectives, not nouns:
