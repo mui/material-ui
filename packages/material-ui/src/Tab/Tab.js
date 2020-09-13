@@ -42,7 +42,7 @@ export const styles = (theme) => ({
       opacity: 1,
     },
     '&$disabled': {
-      opacity: 0.5,
+      opacity: theme.palette.action.disabledOpacity,
     },
   },
   /* Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor="primary"`. */
