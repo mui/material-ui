@@ -162,18 +162,18 @@ function MarkdownDocs(props) {
               }
 
               return (
-                <React.Fragment key={index}>
-                  <Demo
-                    demo={{
-                      raw: demo.raw,
-                      js: requireDemo(demo.module).default,
-                      rawTS: demo.rawTS,
-                      tsx: demo.moduleTS ? requireDemo(demo.moduleTS).default : null,
-                    }}
-                    demoOptions={demoOptions}
-                    githubLocation={`${SOURCE_CODE_ROOT_URL}/docs/src/${name}`}
-                  />
-                </React.Fragment>
+                <Demo
+                  key={index}
+                  demo={{
+                    raw: demo.raw,
+                    js: requireDemo(demo.module).default,
+                    rawTS: demo.rawTS,
+                    tsx: demo.moduleTS ? requireDemo(demo.moduleTS).default : null,
+                  }}
+                  disableAd={disableAd}
+                  demoOptions={demoOptions}
+                  githubLocation={`${SOURCE_CODE_ROOT_URL}/docs/src/${name}`}
+                />
               );
             })}
             <footer className={classes.footer}>

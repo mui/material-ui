@@ -706,8 +706,8 @@ const useStyles = makeStyles(
   { name: 'Demo' },
 );
 
-function Demo(props) {
-  const { demo, demoOptions, githubLocation } = props;
+export default function Demo(props) {
+  const { demo, demoOptions, disableAd, githubLocation } = props;
   const classes = useStyles();
   const t = useSelector((state) => state.options.t);
   const codeVariant = useSelector((state) => state.options.codeVariant);
@@ -827,7 +827,7 @@ function Demo(props) {
           />
         </div>
       </Collapse>
-      {showAd ? <AdCarbonInline /> : null}
+      {showAd && !disableAd && !demoOptions.disableAd ? <AdCarbonInline /> : null}
     </div>
   );
 }
@@ -835,7 +835,6 @@ function Demo(props) {
 Demo.propTypes = {
   demo: PropTypes.object.isRequired,
   demoOptions: PropTypes.object.isRequired,
+  disableAd: PropTypes.bool.isRequired,
   githubLocation: PropTypes.string.isRequired,
 };
-
-export default Demo;
