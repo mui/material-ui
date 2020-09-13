@@ -7834,13 +7834,13 @@ fragment-cache@^0.2.1:
     map-cache "^0.2.2"
 
 framer-motion@^2.1.0:
-  version "2.6.6"
-  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-2.6.6.tgz#49b52c58cfab708f9e743393c714806980b0030f"
-  integrity sha512-uSglqXNmJJ2YD0lq3x3ZLM7mwgwVNwoo6B3CAjeil4GJFDcENEwKNdGVMB53TbsFZwPiBLlcm9gJPQV1f9144w==
+  version "2.6.13"
+  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-2.6.13.tgz#cc26faf53bffb2d9a558bc71a3adaf3c437c0e55"
+  integrity sha512-ScEdiDyAT+kH51axqxFcHA9RLnJ8TpMQBf8HwcXBOt6wDVptHdewEnE3T7semz+7OY0sj0RCsUDhQaWo78aMqQ==
   dependencies:
-    framesync "^4.0.4"
+    framesync "^4.1.0"
     hey-listen "^1.0.8"
-    popmotion "9.0.0-rc.12"
+    popmotion "9.0.0-rc.14"
     style-value-types "^3.1.9"
     tslib "^1.10.0"
   optionalDependencies:
@@ -7851,7 +7851,7 @@ framer@^1.2.5:
   resolved "https://registry.yarnpkg.com/framer/-/framer-1.2.5.tgz#70cf754e2450ca159cc06c267165ec8479ac30f4"
   integrity sha512-q8aDopljyDjzK1yN5M96wZYQzZOx8BgY0O+Bm+3IM3YQw8SOfmt/ifdiwv52GIBKZZ+TT+WHH2gr/vcZiLNgLA==
 
-framesync@^4.0.4, framesync@^4.1.0:
+framesync@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/framesync/-/framesync-4.1.0.tgz#69a8db3ca432dc70d6a76ba882684a1497ef068a"
   integrity sha512-MmgZ4wCoeVxNbx2xp5hN/zPDCbLSKiDt4BbbslK7j/pM2lg5S0vhTNv1v8BCVb99JPIo6hXBFdwzU7Q4qcAaoQ==
@@ -12523,10 +12523,10 @@ pnp-webpack-plugin@1.6.4:
   dependencies:
     ts-pnp "^1.1.6"
 
-popmotion@9.0.0-rc.12:
-  version "9.0.0-rc.12"
-  resolved "https://registry.yarnpkg.com/popmotion/-/popmotion-9.0.0-rc.12.tgz#c5db0d9bf7f314b7cc8789257f2902965ee9f0bf"
-  integrity sha512-wfiXZHxG9GGwgsFuw1Ssw6ZYzwxaBcm/O+7qKmeGIokUEFgpIys3YyK7BQv9O58P6gK1Ys+psTfSt9lycrItaQ==
+popmotion@9.0.0-rc.14:
+  version "9.0.0-rc.14"
+  resolved "https://registry.yarnpkg.com/popmotion/-/popmotion-9.0.0-rc.14.tgz#e57351b7b85a3e42b7a16affbbd440138797c11f"
+  integrity sha512-zdMw1OSKjFBH+KKpZx7P+cGSUb3QCqg5QD12f6llucUeEFT+SDZYxvTY09JI23ZcJyzxgKFT1anbLq0eZ9bj3g==
   dependencies:
     framesync "^4.1.0"
     hey-listen "^1.0.8"
