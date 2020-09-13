@@ -1,5 +1,4 @@
 /**
- *
  * @param {babel.types.ImportDeclaration} param0
  */
 function isImportFromStyles({ source }) {
@@ -7,7 +6,6 @@ function isImportFromStyles({ source }) {
 }
 
 /**
- *
  * @param {babel.types.CallExpression} param0
  */
 function isCreateStylesCall({ callee }) {
@@ -15,7 +13,6 @@ function isCreateStylesCall({ callee }) {
 }
 
 /**
- *
  * @param {babel.types.ImportSpecifier} param0
  */
 function isCreateStylesImportSpecifier({ imported }) {

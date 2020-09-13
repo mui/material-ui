@@ -28,7 +28,6 @@ const inheritedComponentRegexp = /\/\/ @inheritedComponent (.*)/;
 /**
  * Receives a component's test information and source code and return's an object
  * containing the inherited component's name and pathname
- *
  * @param testInfo Information retrieved from the component's describeConformance() in its test.js file
  * @param src The component's source code
  */

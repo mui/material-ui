@@ -81,7 +81,6 @@ export function getDescription(markdown) {
 
 /**
  * Render markdown used in the Material-UI docs
- *
  * @param {string} markdown
  * @param {object} [options]
  * @param {function} [options.highlight] - https://marked.js.org/#/USING_ADVANCED.md#highlight
@@ -118,7 +117,6 @@ const externs = [
 ];
 
 /**
- *
  * @param {object} config
  * @param {() => string} config.requireRaw - returnvalue of require.context
  * @param {string} config.pageFilename - filename relative to nextjs pages directory

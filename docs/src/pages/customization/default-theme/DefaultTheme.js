@@ -36,7 +36,6 @@ function getType(value) {
 }
 
 /**
- *
  * @param {unknown} value
  * @param {ReturnType<typeof getType>} type
  */
