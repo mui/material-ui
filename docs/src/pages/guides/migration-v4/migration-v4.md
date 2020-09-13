@@ -524,7 +524,7 @@ const theme = createMuitheme({
   />
   ```
 
-  ### Stepper
+### Stepper
 
 - The root component (Paper) was replaced with a div. Stepper no longer has elevation, nor inherits Paper's props. This change is meant to encourage composition.
 
@@ -541,6 +541,21 @@ const theme = createMuitheme({
 +    </Step>
 +  </Stepper>
 +<Paper>
+```
+
+- Remove the built-in 24px padding.
+
+```diff
+-<Stepper>
+-  <Step>
+-    <StepLabel>Hello world</StepLabel>
+-  </Step>
+-</Stepper>
++<Stepper style={{ padding: 24 }}>
++  <Step>
++    <StepLabel>Hello world</StepLabel>
++  </Step>
++</Stepper>
 ```
 
 ### TablePagination
