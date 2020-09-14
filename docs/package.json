@@ -33,7 +33,7 @@
     "@material-ui/lab": "^5.0.0-alpha.1",
     "@material-ui/pickers": "^4.0.0-alpha.11",
     "@material-ui/styles": "^5.0.0-alpha.1",
-    "@material-ui/styled": "^5.0.0-alpha.1",
+    "@material-ui/styled-engine": "^5.0.0-alpha.1",
     "@material-ui/system": "^5.0.0-alpha.1",
     "@material-ui/types": "^5.0.0",
     "@trendmicro/react-interpolate": "^0.5.5",
