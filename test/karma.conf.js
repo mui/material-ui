@@ -91,8 +91,6 @@ module.exports = function setKarmaConfig(config) {
       ChromeHeadlessNoSandbox: {
         base: 'ChromeHeadless',
         flags: ['--no-sandbox'],
-        // FIXME: focus-visible polyfill broken in Chrome 86
-        browser_version: '85.0',
       },
     },
     singleRun: Boolean(process.env.CI),
