@@ -734,7 +734,7 @@ describe('<Tooltip />', () => {
       );
     }
 
-    it('ignores base focus', function test() {
+    it('ignores base focus', () => {
       const { getByRole, queryByRole } = render(<Test />);
       simulatePointerDevice();
 
