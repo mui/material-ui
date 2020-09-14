@@ -79,7 +79,7 @@
     "jss-rtl": "^0.3.0",
     "lodash": "^4.17.15",
     "lz-string": "^1.4.4",
-    "markdown-to-jsx": "^6.11.4",
+    "markdown-to-jsx": "^7.0.0",
     "marked": "^1.0.0",
     "material-table": "^1.50.0",
     "material-ui-popup-state": "^1.4.1",
