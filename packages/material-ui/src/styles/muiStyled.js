@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from '@material-ui/styled';
 import { propsToClassKey } from '@material-ui/styles';
 
 const getStyleOverrides = (name, theme) => {
