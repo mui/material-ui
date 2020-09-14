@@ -54,15 +54,22 @@ export default function AdvancedImageList() {
 
   return (
     <div className={classes.root}>
-      <ImageList cellHeight={200} spacing={1} className={classes.imageList}>
+      <ImageList cellHeight={200} gap={1} className={classes.imageList}>
         {itemData.map((item) => (
-          <ImageListItem key={item.img} cols={item.featured ? 2 : 1} rows={item.featured ? 2 : 1}>
+          <ImageListItem
+            key={item.img}
+            cols={item.featured ? 2 : 1}
+            rows={item.featured ? 2 : 1}
+          >
             <img src={item.img} alt={item.title} />
             <ImageListItemBar
               title={item.title}
               titlePosition="top"
               actionIcon={
-                <IconButton aria-label={`star ${item.title}`} className={classes.icon}>
+                <IconButton
+                  aria-label={`star ${item.title}`}
+                  className={classes.icon}
+                >
                   <StarBorderIcon />
                 </IconButton>
               }

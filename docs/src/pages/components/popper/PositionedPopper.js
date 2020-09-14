@@ -34,7 +34,9 @@ export default function PositionedPopper() {
         {({ TransitionProps }) => (
           <Fade {...TransitionProps} timeout={350}>
             <Paper>
-              <Typography className={classes.typography}>The content of the Popper.</Typography>
+              <Typography className={classes.typography}>
+                The content of the Popper.
+              </Typography>
             </Paper>
           </Fade>
         )}

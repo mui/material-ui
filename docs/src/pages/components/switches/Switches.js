@@ -28,7 +28,11 @@ export default function Switches() {
       />
       <Switch inputProps={{ 'aria-label': 'primary checkbox' }} />
       <Switch disabled inputProps={{ 'aria-label': 'disabled checkbox' }} />
-      <Switch disabled checked inputProps={{ 'aria-label': 'primary checkbox' }} />
+      <Switch
+        disabled
+        checked
+        inputProps={{ 'aria-label': 'primary checkbox' }}
+      />
       <Switch
         defaultChecked
         color="default"

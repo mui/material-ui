@@ -7,7 +7,9 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
-import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete';
+import Autocomplete, {
+  createFilterOptions,
+} from '@material-ui/lab/Autocomplete';
 
 const filter = createFilterOptions();
 
@@ -97,7 +99,11 @@ export default function FreeSoloCreateOptionDialog() {
           <TextField {...params} label="Free solo dialog" variant="outlined" />
         )}
       />
-      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="form-dialog-title"
+      >
         <form onSubmit={handleSubmit}>
           <DialogTitle id="form-dialog-title">Add a new film</DialogTitle>
           <DialogContent>
@@ -109,7 +115,9 @@ export default function FreeSoloCreateOptionDialog() {
               margin="dense"
               id="name"
               value={dialogValue.title}
-              onChange={(event) => setDialogValue({ ...dialogValue, title: event.target.value })}
+              onChange={(event) =>
+                setDialogValue({ ...dialogValue, title: event.target.value })
+              }
               label="title"
               type="text"
             />
@@ -117,7 +125,9 @@ export default function FreeSoloCreateOptionDialog() {
               margin="dense"
               id="name"
               value={dialogValue.year}
-              onChange={(event) => setDialogValue({ ...dialogValue, year: event.target.value })}
+              onChange={(event) =>
+                setDialogValue({ ...dialogValue, year: event.target.value })
+              }
               label="year"
               type="number"
             />
@@ -191,7 +201,8 @@ const top100Films = [
   { title: 'Alien', year: 1979 },
   { title: 'Sunset Boulevard', year: 1950 },
   {
-    title: 'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb',
+    title:
+      'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb',
     year: 1964,
   },
   { title: 'The Great Dictator', year: 1940 },

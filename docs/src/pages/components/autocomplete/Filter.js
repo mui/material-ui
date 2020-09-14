@@ -1,7 +1,9 @@
 /* eslint-disable no-use-before-define */
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
-import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete';
+import Autocomplete, {
+  createFilterOptions,
+} from '@material-ui/lab/Autocomplete';
 
 const filterOptions = createFilterOptions({
   matchFrom: 'start',
@@ -16,7 +18,9 @@ export default function Filter() {
       getOptionLabel={(option) => option.title}
       filterOptions={filterOptions}
       style={{ width: 300 }}
-      renderInput={(params) => <TextField {...params} label="Custom filter" variant="outlined" />}
+      renderInput={(params) => (
+        <TextField {...params} label="Custom filter" variant="outlined" />
+      )}
     />
   );
 }
@@ -75,7 +79,11 @@ const top100Films = [
   { title: 'Apocalypse Now', year: 1979 },
   { title: 'Alien', year: 1979 },
   { title: 'Sunset Boulevard', year: 1950 },
-  { title: 'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb', year: 1964 },
+  {
+    title:
+      'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb',
+    year: 1964,
+  },
   { title: 'The Great Dictator', year: 1940 },
   { title: 'Cinema Paradiso', year: 1988 },
   { title: 'The Lives of Others', year: 2006 },

@@ -16,7 +16,11 @@ export default function SimpleMenu() {
 
   return (
     <div>
-      <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+      <Button
+        aria-controls="simple-menu"
+        aria-haspopup="true"
+        onClick={handleClick}
+      >
         Open Menu
       </Button>
       <Menu

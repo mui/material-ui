@@ -8,7 +8,9 @@ export default function DisabledOptions() {
     <Autocomplete
       id="disabled-options-demo"
       options={timeSlots}
-      getOptionDisabled={(option) => option === timeSlots[0] || option === timeSlots[2]}
+      getOptionDisabled={(option) =>
+        option === timeSlots[0] || option === timeSlots[2]
+      }
       style={{ width: 300 }}
       renderInput={(params) => (
         <TextField {...params} label="Disabled options" variant="outlined" />
@@ -19,5 +21,8 @@ export default function DisabledOptions() {
 
 // One time slot every 30 minutes.
 const timeSlots = Array.from(new Array(24 * 2)).map(
-  (_, index) => `${index < 20 ? '0' : ''}${Math.floor(index / 2)}:${index % 2 === 0 ? '00' : '30'}`,
+  (_, index) =>
+    `${index < 20 ? '0' : ''}${Math.floor(index / 2)}:${
+      index % 2 === 0 ? '00' : '30'
+    }`,
 );

@@ -24,7 +24,7 @@ const ImageList = React.forwardRef(function ImageList(props, ref) {
     className,
     cols = 2,
     component: Component = 'ul',
-    spacing = 4,
+    gap = 4,
     style,
     ...other
   } = props;
@@ -33,7 +33,7 @@ const ImageList = React.forwardRef(function ImageList(props, ref) {
     <Component
       className={clsx(classes.root, className)}
       ref={ref}
-      style={{ margin: -spacing / 2, ...style }}
+      style={{ margin: -gap / 2, ...style }}
       {...other}
     >
       {React.Children.map(children, (child) => {
@@ -58,8 +58,8 @@ const ImageList = React.forwardRef(function ImageList(props, ref) {
         return React.cloneElement(child, {
           style: {
             width: `${(100 / cols) * childCols}%`,
-            height: cellHeight === 'auto' ? 'auto' : cellHeight * childRows + spacing,
-            padding: spacing / 2,
+            height: cellHeight === 'auto' ? 'auto' : cellHeight * childRows + gap,
+            padding: gap / 2,
             ...child.props.style,
           },
         });
@@ -102,7 +102,7 @@ ImageList.propTypes = {
   /**
    * @ignore
    */
-  spacing: PropTypes.number,
+  gap: PropTypes.number,
   /**
    * @ignore
    */

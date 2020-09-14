@@ -60,7 +60,11 @@ class MuiVirtualizedTable extends React.PureComponent {
         })}
         variant="body"
         style={{ height: rowHeight }}
-        align={(columnIndex != null && columns[columnIndex].numeric) || false ? 'right' : 'left'}
+        align={
+          (columnIndex != null && columns[columnIndex].numeric) || false
+            ? 'right'
+            : 'left'
+        }
       >
         {cellData}
       </TableCell>
@@ -73,7 +77,11 @@ class MuiVirtualizedTable extends React.PureComponent {
     return (
       <TableCell
         component="div"
-        className={clsx(classes.tableCell, classes.flexContainer, classes.noClick)}
+        className={clsx(
+          classes.tableCell,
+          classes.flexContainer,
+          classes.noClick,
+        )}
         variant="head"
         style={{ height: headerHeight }}
         align={columns[columnIndex].numeric || false ? 'right' : 'left'}
@@ -84,7 +92,13 @@ class MuiVirtualizedTable extends React.PureComponent {
   };
 
   render() {
-    const { classes, columns, rowHeight, headerHeight, ...tableProps } = this.props;
+    const {
+      classes,
+      columns,
+      rowHeight,
+      headerHeight,
+      ...tableProps
+    } = this.props;
     return (
       <AutoSizer>
         {({ height, width }) => (

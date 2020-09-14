@@ -20,7 +20,9 @@ export default function RealWorld() {
             </Box>
           </Grid>
           <Grid item>
-            <Typography>You have lost connection to the internet. This app is offline.</Typography>
+            <Typography>
+              You have lost connection to the internet. This app is offline.
+            </Typography>
           </Grid>
         </Grid>
         <Grid container justify="flex-end" spacing={1}>

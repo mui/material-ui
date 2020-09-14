@@ -61,7 +61,9 @@ export default function DetailedAccordion() {
             <Typography className={classes.heading}>Location</Typography>
           </div>
           <div className={classes.column}>
-            <Typography className={classes.secondaryHeading}>Select trip destination</Typography>
+            <Typography className={classes.secondaryHeading}>
+              Select trip destination
+            </Typography>
           </div>
         </AccordionSummary>
         <AccordionDetails className={classes.details}>

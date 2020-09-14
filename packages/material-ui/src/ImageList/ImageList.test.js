@@ -103,10 +103,10 @@ describe('<ImageList />', () => {
     expect(wrapper.children().at(0).props().style.width).to.equal('25%');
   });
 
-  it('renders children and change spacing', () => {
-    const spacing = 10;
+  it('renders children and change gap', () => {
+    const gap = 10;
     const wrapper = shallow(
-      <ImageList spacing={spacing}>
+      <ImageList gap={gap}>
         {itemsData.map((item) => (
           <span
             key={item.img}
@@ -121,7 +121,7 @@ describe('<ImageList />', () => {
     );
 
     expect(wrapper.find('.image-item').length).to.equal(2);
-    expect(wrapper.children().at(0).props().style.padding).to.equal(spacing / 2);
+    expect(wrapper.children().at(0).props().style.padding).to.equal(gap / 2);
   });
 
   it('should render children and overwrite style', () => {

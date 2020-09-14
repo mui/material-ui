@@ -38,7 +38,10 @@ function useResetCache(data) {
 }
 
 // Adapter for react-window
-const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) {
+const ListboxComponent = React.forwardRef(function ListboxComponent(
+  props,
+  ref,
+) {
   const { children, ...other } = props;
   const itemData = React.Children.toArray(children);
   const theme = useTheme();
@@ -89,7 +92,8 @@ ListboxComponent.propTypes = {
 };
 
 function random(length) {
-  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const characters =
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   let result = '';
 
   for (let i = 0; i < length; i += 1) {
@@ -133,7 +137,9 @@ export default function Virtualize() {
       renderGroup={renderGroup}
       options={OPTIONS}
       groupBy={(option) => option[0].toUpperCase()}
-      renderInput={(params) => <TextField {...params} variant="outlined" label="10,000 options" />}
+      renderInput={(params) => (
+        <TextField {...params} variant="outlined" label="10,000 options" />
+      )}
       renderOption={(option) => <Typography noWrap>{option}</Typography>}
     />
   );

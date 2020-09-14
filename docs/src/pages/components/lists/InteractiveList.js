@@ -47,7 +47,10 @@ export default function InteractiveList() {
       <FormGroup row>
         <FormControlLabel
           control={
-            <Checkbox checked={dense} onChange={(event) => setDense(event.target.checked)} />
+            <Checkbox
+              checked={dense}
+              onChange={(event) => setDense(event.target.checked)}
+            />
           }
           label="Enable dense"
         />

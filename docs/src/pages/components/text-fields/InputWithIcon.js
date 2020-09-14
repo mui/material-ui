@@ -20,7 +20,9 @@ export default function InputWithIcon() {
   return (
     <div>
       <FormControl className={classes.margin}>
-        <InputLabel htmlFor="input-with-icon-adornment">With a start adornment</InputLabel>
+        <InputLabel htmlFor="input-with-icon-adornment">
+          With a start adornment
+        </InputLabel>
         <Input
           id="input-with-icon-adornment"
           startAdornment={

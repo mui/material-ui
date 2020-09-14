@@ -10,7 +10,9 @@ function countryToFlag(isoCode) {
   return typeof String.fromCodePoint !== 'undefined'
     ? isoCode
         .toUpperCase()
-        .replace(/./g, (char) => String.fromCodePoint(char.charCodeAt(0) + 127397))
+        .replace(/./g, (char) =>
+          String.fromCodePoint(char.charCodeAt(0) + 127397),
+        )
     : isoCode;
 }
 
@@ -148,7 +150,11 @@ const countries = [
   { code: 'GP', label: 'Guadeloupe', phone: '590' },
   { code: 'GQ', label: 'Equatorial Guinea', phone: '240' },
   { code: 'GR', label: 'Greece', phone: '30' },
-  { code: 'GS', label: 'South Georgia and the South Sandwich Islands', phone: '500' },
+  {
+    code: 'GS',
+    label: 'South Georgia and the South Sandwich Islands',
+    phone: '500',
+  },
   { code: 'GT', label: 'Guatemala', phone: '502' },
   { code: 'GU', label: 'Guam', phone: '1-671' },
   { code: 'GW', label: 'Guinea-Bissau', phone: '245' },
@@ -202,7 +208,11 @@ const countries = [
   { code: 'MF', label: 'Saint Martin (French part)', phone: '590' },
   { code: 'MG', label: 'Madagascar', phone: '261' },
   { code: 'MH', label: 'Marshall Islands', phone: '692' },
-  { code: 'MK', label: 'Macedonia, the Former Yugoslav Republic of', phone: '389' },
+  {
+    code: 'MK',
+    label: 'Macedonia, the Former Yugoslav Republic of',
+    phone: '389',
+  },
   { code: 'ML', label: 'Mali', phone: '223' },
   { code: 'MM', label: 'Myanmar', phone: '95' },
   { code: 'MN', label: 'Mongolia', phone: '976' },

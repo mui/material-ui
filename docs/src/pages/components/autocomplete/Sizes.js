@@ -26,7 +26,12 @@ export default function Sizes() {
         getOptionLabel={(option) => option.title}
         defaultValue={top100Films[13]}
         renderInput={(params) => (
-          <TextField {...params} variant="standard" label="Size small" placeholder="Favorites" />
+          <TextField
+            {...params}
+            variant="standard"
+            label="Size small"
+            placeholder="Favorites"
+          />
         )}
       />
       <Autocomplete
@@ -37,7 +42,12 @@ export default function Sizes() {
         getOptionLabel={(option) => option.title}
         defaultValue={[top100Films[13]]}
         renderInput={(params) => (
-          <TextField {...params} variant="standard" label="Size small" placeholder="Favorites" />
+          <TextField
+            {...params}
+            variant="standard"
+            label="Size small"
+            placeholder="Favorites"
+          />
         )}
       />
       <Autocomplete
@@ -47,7 +57,12 @@ export default function Sizes() {
         getOptionLabel={(option) => option.title}
         defaultValue={top100Films[13]}
         renderInput={(params) => (
-          <TextField {...params} variant="outlined" label="Size small" placeholder="Favorites" />
+          <TextField
+            {...params}
+            variant="outlined"
+            label="Size small"
+            placeholder="Favorites"
+          />
         )}
       />
       <Autocomplete
@@ -58,7 +73,12 @@ export default function Sizes() {
         getOptionLabel={(option) => option.title}
         defaultValue={[top100Films[13]]}
         renderInput={(params) => (
-          <TextField {...params} variant="outlined" label="Size small" placeholder="Favorites" />
+          <TextField
+            {...params}
+            variant="outlined"
+            label="Size small"
+            placeholder="Favorites"
+          />
         )}
       />
       <Autocomplete
@@ -78,7 +98,12 @@ export default function Sizes() {
           ))
         }
         renderInput={(params) => (
-          <TextField {...params} variant="filled" label="Size small" placeholder="Favorites" />
+          <TextField
+            {...params}
+            variant="filled"
+            label="Size small"
+            placeholder="Favorites"
+          />
         )}
       />
       <Autocomplete
@@ -99,7 +124,12 @@ export default function Sizes() {
           ))
         }
         renderInput={(params) => (
-          <TextField {...params} variant="filled" label="Size small" placeholder="Favorites" />
+          <TextField
+            {...params}
+            variant="filled"
+            label="Size small"
+            placeholder="Favorites"
+          />
         )}
       />
     </div>
@@ -160,7 +190,11 @@ const top100Films = [
   { title: 'Apocalypse Now', year: 1979 },
   { title: 'Alien', year: 1979 },
   { title: 'Sunset Boulevard', year: 1950 },
-  { title: 'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb', year: 1964 },
+  {
+    title:
+      'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb',
+    year: 1964,
+  },
   { title: 'The Great Dictator', year: 1940 },
   { title: 'Cinema Paradiso', year: 1988 },
   { title: 'The Lives of Others', year: 2006 },

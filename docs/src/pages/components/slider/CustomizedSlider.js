@@ -62,7 +62,8 @@ const IOSSlider = withStyles({
     marginTop: -14,
     marginLeft: -14,
     '&:focus, &:hover, &$active': {
-      boxShadow: '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.3),0 0 0 1px rgba(0,0,0,0.02)',
+      boxShadow:
+        '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.3),0 0 0 1px rgba(0,0,0,0.02)',
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         boxShadow: iOSBoxShadow,
@@ -181,10 +182,19 @@ export default function CustomizedSlider() {
   return (
     <div className={classes.root}>
       <Typography gutterBottom>iOS</Typography>
-      <IOSSlider aria-label="ios slider" defaultValue={60} marks={marks} valueLabelDisplay="on" />
+      <IOSSlider
+        aria-label="ios slider"
+        defaultValue={60}
+        marks={marks}
+        valueLabelDisplay="on"
+      />
       <div className={classes.margin} />
       <Typography gutterBottom>pretto.fr</Typography>
-      <PrettoSlider valueLabelDisplay="auto" aria-label="pretto slider" defaultValue={20} />
+      <PrettoSlider
+        valueLabelDisplay="auto"
+        aria-label="pretto slider"
+        defaultValue={20}
+      />
       <div className={classes.margin} />
       <Typography gutterBottom>Tooltip value label</Typography>
       <Slider
@@ -196,7 +206,9 @@ export default function CustomizedSlider() {
       <Typography gutterBottom>Airbnb</Typography>
       <AirbnbSlider
         ThumbComponent={AirbnbThumbComponent}
-        getAriaLabel={(index) => (index === 0 ? 'Minimum price' : 'Maximum price')}
+        getAriaLabel={(index) =>
+          index === 0 ? 'Minimum price' : 'Maximum price'
+        }
         defaultValue={[20, 40]}
       />
     </div>

@@ -5,7 +5,7 @@ export interface ImageListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
   props: P & {
     cellHeight?: number | 'auto';
     cols?: number;
-    spacing?: number;
+    gap?: number;
   };
   defaultComponent: D;
   classKey: ImageListClassKey;

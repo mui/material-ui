@@ -29,8 +29,8 @@ function TabPanel(props) {
 
 TabPanel.propTypes = {
   children: PropTypes.node,
-  index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired,
+  index: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
 };
 
 function a11yProps(index) {
@@ -58,7 +58,11 @@ export default function TabsWrappedLabel() {
   return (
     <div className={classes.root}>
       <AppBar position="static">
-        <Tabs value={value} onChange={handleChange} aria-label="wrapped label tabs example">
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          aria-label="wrapped label tabs example"
+        >
           <Tab
             value="one"
             label="New Arrivals in the Longest Text of Nonfiction"

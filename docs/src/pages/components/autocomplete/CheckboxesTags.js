@@ -31,7 +31,12 @@ export default function CheckboxesTags() {
       )}
       style={{ width: 500 }}
       renderInput={(params) => (
-        <TextField {...params} variant="outlined" label="Checkboxes" placeholder="Favorites" />
+        <TextField
+          {...params}
+          variant="outlined"
+          label="Checkboxes"
+          placeholder="Favorites"
+        />
       )}
     />
   );

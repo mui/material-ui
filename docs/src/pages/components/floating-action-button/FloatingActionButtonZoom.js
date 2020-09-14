@@ -34,8 +34,8 @@ function TabPanel(props) {
 
 TabPanel.propTypes = {
   children: PropTypes.node,
-  index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired,
+  index: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
 };
 
 function a11yProps(index) {
@@ -142,11 +142,17 @@ export default function FloatingActionButtonZoom() {
           in={value === index}
           timeout={transitionDuration}
           style={{
-            transitionDelay: `${value === index ? transitionDuration.exit : 0}ms`,
+            transitionDelay: `${
+              value === index ? transitionDuration.exit : 0
+            }ms`,
           }}
           unmountOnExit
         >
-          <Fab aria-label={fab.label} className={fab.className} color={fab.color}>
+          <Fab
+            aria-label={fab.label}
+            className={fab.className}
+            color={fab.color}
+          >
             {fab.icon}
           </Fab>
         </Zoom>

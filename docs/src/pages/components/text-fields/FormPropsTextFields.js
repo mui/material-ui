@@ -17,8 +17,18 @@ export default function FormPropsTextFields() {
   return (
     <form className={classes.root} noValidate autoComplete="off">
       <div>
-        <TextField required id="standard-required" label="Required" defaultValue="Hello World" />
-        <TextField disabled id="standard-disabled" label="Disabled" defaultValue="Hello World" />
+        <TextField
+          required
+          id="standard-required"
+          label="Required"
+          defaultValue="Hello World"
+        />
+        <TextField
+          disabled
+          id="standard-disabled"
+          label="Disabled"
+          defaultValue="Hello World"
+        />
         <TextField
           id="standard-password-input"
           label="Password"
@@ -89,7 +99,12 @@ export default function FormPropsTextFields() {
           }}
           variant="filled"
         />
-        <TextField id="filled-search" label="Search field" type="search" variant="filled" />
+        <TextField
+          id="filled-search"
+          label="Search field"
+          type="search"
+          variant="filled"
+        />
         <TextField
           id="filled-helperText"
           label="Helper text"
@@ -138,7 +153,12 @@ export default function FormPropsTextFields() {
           }}
           variant="outlined"
         />
-        <TextField id="outlined-search" label="Search field" type="search" variant="outlined" />
+        <TextField
+          id="outlined-search"
+          label="Search field"
+          type="search"
+          variant="outlined"
+        />
         <TextField
           id="outlined-helperText"
           label="Helper text"

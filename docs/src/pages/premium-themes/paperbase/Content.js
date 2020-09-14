@@ -41,7 +41,12 @@ function Content(props) {
 
   return (
     <Paper className={classes.paper}>
-      <AppBar className={classes.searchBar} position="static" color="default" elevation={0}>
+      <AppBar
+        className={classes.searchBar}
+        position="static"
+        color="default"
+        elevation={0}
+      >
         <Toolbar>
           <Grid container spacing={2} alignItems="center">
             <Grid item>
@@ -58,7 +63,11 @@ function Content(props) {
               />
             </Grid>
             <Grid item>
-              <Button variant="contained" color="primary" className={classes.addUser}>
+              <Button
+                variant="contained"
+                color="primary"
+                className={classes.addUser}
+              >
                 Add user
               </Button>
               <Tooltip title="Reload">

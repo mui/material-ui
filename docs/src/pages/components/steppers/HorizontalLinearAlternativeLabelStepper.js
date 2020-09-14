@@ -20,7 +20,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getSteps() {
-  return ['Select master blaster campaign settings', 'Create an ad group', 'Create an ad'];
+  return [
+    'Select master blaster campaign settings',
+    'Create an ad group',
+    'Create an ad',
+  ];
 }
 
 function getStepContent(stepIndex) {
@@ -65,12 +69,16 @@ export default function HorizontalLabelPositionBelowStepper() {
       <div>
         {activeStep === steps.length ? (
           <div>
-            <Typography className={classes.instructions}>All steps completed</Typography>
+            <Typography className={classes.instructions}>
+              All steps completed
+            </Typography>
             <Button onClick={handleReset}>Reset</Button>
           </div>
         ) : (
           <div>
-            <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
+            <Typography className={classes.instructions}>
+              {getStepContent(activeStep)}
+            </Typography>
             <div>
               <Button
                 disabled={activeStep === 0}

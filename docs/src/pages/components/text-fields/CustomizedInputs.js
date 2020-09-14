@@ -91,7 +91,9 @@ const useStylesReddit = makeStyles((theme) => ({
 function RedditTextField(props) {
   const classes = useStylesReddit();
 
-  return <TextField InputProps={{ classes, disableUnderline: true }} {...props} />;
+  return (
+    <TextField InputProps={{ classes, disableUnderline: true }} {...props} />
+  );
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -132,7 +134,11 @@ export default function CustomizedInputs() {
 
   return (
     <form className={classes.root} noValidate>
-      <CssTextField className={classes.margin} id="custom-css-standard-input" label="Custom CSS" />
+      <CssTextField
+        className={classes.margin}
+        id="custom-css-standard-input"
+        label="Custom CSS"
+      />
       <CssTextField
         className={classes.margin}
         label="Custom CSS"

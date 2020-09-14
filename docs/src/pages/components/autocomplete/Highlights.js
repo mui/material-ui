@@ -13,7 +13,12 @@ export default function Highlights() {
       options={top100Films}
       getOptionLabel={(option) => option.title}
       renderInput={(params) => (
-        <TextField {...params} label="Highlights" variant="outlined" margin="normal" />
+        <TextField
+          {...params}
+          label="Highlights"
+          variant="outlined"
+          margin="normal"
+        />
       )}
       renderOption={(option, { inputValue }) => {
         const matches = match(option.title, inputValue);
@@ -22,7 +27,10 @@ export default function Highlights() {
         return (
           <div>
             {parts.map((part, index) => (
-              <span key={index} style={{ fontWeight: part.highlight ? 700 : 400 }}>
+              <span
+                key={index}
+                style={{ fontWeight: part.highlight ? 700 : 400 }}
+              >
                 {part.text}
               </span>
             ))}
@@ -87,7 +95,11 @@ const top100Films = [
   { title: 'Apocalypse Now', year: 1979 },
   { title: 'Alien', year: 1979 },
   { title: 'Sunset Boulevard', year: 1950 },
-  { title: 'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb', year: 1964 },
+  {
+    title:
+      'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb',
+    year: 1964,
+  },
   { title: 'The Great Dictator', year: 1940 },
   { title: 'Cinema Paradiso', year: 1988 },
   { title: 'The Lives of Others', year: 2006 },

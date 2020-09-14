@@ -22,7 +22,11 @@ const StyledTextField = styled(TextField)`
 export default function GlobalClassName() {
   return (
     <NoSsr>
-      <StyledTextField label="Deterministic" variant="outlined" id="deterministic-outlined-input" />
+      <StyledTextField
+        label="Deterministic"
+        variant="outlined"
+        id="deterministic-outlined-input"
+      />
     </NoSsr>
   );
 }
