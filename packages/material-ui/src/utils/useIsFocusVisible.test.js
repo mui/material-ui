@@ -1,7 +1,12 @@
 import { expect } from 'chai';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { createClientRender, focusVisible, simulatePointerDevice } from 'test/utils';
+import {
+  createClientRender,
+  focusVisible,
+  simulatePointerDevice,
+  programmaticFocusTriggersFocusVisible,
+} from 'test/utils';
 import useIsFocusVisible, { teardown as teardownFocusVisible } from './useIsFocusVisible';
 import useForkRef from './useForkRef';
 
@@ -94,7 +99,11 @@ describe('focus-visible polyfill', () => {
 
       button.focus();
 
-      expect(button.classList.contains('focus-visible')).to.equal(false);
+      if (programmaticFocusTriggersFocusVisible()) {
+        expect(button).to.have.class('focus-visible');
+      } else {
+        expect(button).not.to.have.class('focus-visible');
+      }
 
       button.blur();
       focusVisible(button);

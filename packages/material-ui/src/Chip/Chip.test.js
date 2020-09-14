@@ -10,6 +10,7 @@ import {
   fireEvent,
   focusVisible,
   simulatePointerDevice,
+  programmaticFocusTriggersFocusVisible,
 } from 'test/utils';
 import CheckBox from '../internal/svg-icons/CheckBox';
 import Avatar from '../Avatar';
@@ -546,8 +547,15 @@ describe('<Chip />', () => {
       simulatePointerDevice();
 
       expect(chip).not.to.have.class(classes.focusVisible);
+
       chip.focus();
-      expect(chip).not.to.have.class(classes.focusVisible);
+
+      if (programmaticFocusTriggersFocusVisible()) {
+        expect(chip).to.have.class(classes.focusVisible);
+      } else {
+        expect(chip).not.to.have.class(classes.focusVisible);
+      }
+
       focusVisible(chip);
 
       expect(chip).to.have.class(classes.focusVisible);
