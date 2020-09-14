@@ -511,6 +511,19 @@ const theme = createMuitheme({
   +<Button ref={ref} />
   ```
 
+### Skeleton
+
+- Rename `circle` to `circular` and `rect` to `rectangular` for consistency. The possible values should be adjectives, not nouns:
+
+  ```diff
+  -<Skeleton variant="circle" />
+  -<Skeleton variant="rect" />
+  -<Skeleton classes={{ circle: 'custom-circle-classname', rect: 'custom-rect-classname',  }} />
+  +<Skeleton variant="circular" />
+  +<Skeleton variant="rectangular" />
+  +<Skeleton classes={{ circular: 'custom-circle-classname', rectangular: 'custom-rect-classname',  }} />
+  ```
+
 ### Slider
 
 - TypeScript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
@@ -552,18 +565,39 @@ const theme = createMuitheme({
   />
   ```
 
-  ### Skeleton
+### Stepper
 
-- Rename `circle` to `circular` and `rect` to `rectangular` for consistency. The possible values should be adjectives, not nouns:
+- The root component (Paper) was replaced with a div. Stepper no longer has elevation, nor inherits Paper's props. This change is meant to encourage composition.
 
-  ```diff
-  -<Skeleton variant="circle" />
-  -<Skeleton variant="rect" />
-  -<Skeleton classes={{ circle: 'custom-circle-classname', rect: 'custom-rect-classname',  }} />
-  +<Skeleton variant="circular" />
-  +<Skeleton variant="rectangular" />
-  +<Skeleton classes={{ circular: 'custom-circle-classname', rectangular: 'custom-rect-classname',  }} />
-  ```
+```diff
+-<Stepper elevation={2}>
+-  <Step>
+-    <StepLabel>Hello world</StepLabel>
+-  </Step>
+-</Stepper>
++<Paper square elevation={2}>
++  <Stepper>
++    <Step>
++      <StepLabel>Hello world</StepLabel>
++    </Step>
++  </Stepper>
++<Paper>
+```
+
+- Remove the built-in 24px padding.
+
+```diff
+-<Stepper>
+-  <Step>
+-    <StepLabel>Hello world</StepLabel>
+-  </Step>
+-</Stepper>
++<Stepper style={{ padding: 24 }}>
++  <Step>
++    <StepLabel>Hello world</StepLabel>
++  </Step>
++</Stepper>
+```
 
 ### TablePagination
 

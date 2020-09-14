@@ -11,7 +11,7 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      width: '100%',
+      maxWidth: 400,
     },
     button: {
       marginTop: theme.spacing(1),
@@ -26,32 +26,30 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function getSteps() {
-  return ['Select campaign settings', 'Create an ad group', 'Create an ad'];
-}
-
-function getStepContent(step: number) {
-  switch (step) {
-    case 0:
-      return `For each ad campaign that you create, you can control how much
+const steps = [
+  {
+    label: 'Select campaign settings',
+    description: `For each ad campaign that you create, you can control how much
               you're willing to spend on clicks and conversions, which networks
-              and geographical locations you want your ads to show on, and more.`;
-    case 1:
-      return 'An ad group contains one or more ads which target a shared set of keywords.';
-    case 2:
-      return `Try out different ad text to see what brings in the most customers,
+              and geographical locations you want your ads to show on, and more.`,
+  },
+  {
+    label: 'Create an ad group',
+    description:
+      'An ad group contains one or more ads which target a shared set of keywords.',
+  },
+  {
+    label: 'Create an ad',
+    description: `Try out different ad text to see what brings in the most customers,
               and learn how to enhance your ads using features like ad extensions.
               If you run into any problems with your ads, find out how to tell if
-              they're running and how to resolve approval issues.`;
-    default:
-      return 'Unknown step';
-  }
-}
+              they're running and how to resolve approval issues.`,
+  },
+];
 
 export default function VerticalLinearStepper() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
-  const steps = getSteps();
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -68,8 +66,8 @@ export default function VerticalLinearStepper() {
   return (
     <div className={classes.root}>
       <Stepper activeStep={activeStep} orientation="vertical">
-        {steps.map((label, index) => (
-          <Step key={label}>
+        {steps.map((step, index) => (
+          <Step key={step.label}>
             <StepLabel
               optional={
                 index === 2 ? (
@@ -77,25 +75,25 @@ export default function VerticalLinearStepper() {
                 ) : null
               }
             >
-              {label}
+              {step.label}
             </StepLabel>
             <StepContent>
-              <Typography>{getStepContent(index)}</Typography>
+              <Typography>{step.description}</Typography>
               <div className={classes.actionsContainer}>
                 <div>
+                  <Button
+                    variant="contained"
+                    onClick={handleNext}
+                    className={classes.button}
+                  >
+                    {activeStep === steps.length - 1 ? 'Finish' : 'Continue'}
+                  </Button>
                   <Button
                     disabled={activeStep === 0}
                     onClick={handleBack}
                     className={classes.button}
                   >
                     Back
-                  </Button>
-                  <Button
-                    variant="contained"
-                    onClick={handleNext}
-                    className={classes.button}
-                  >
-                    {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
                   </Button>
                 </div>
               </div>

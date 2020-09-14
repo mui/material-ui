@@ -2,7 +2,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
-import Paper from '../Paper';
 import StepConnector from '../StepConnector';
 import StepperContext from './StepperContext';
 
@@ -10,7 +9,6 @@ export const styles = {
   /* Styles applied to the root element. */
   root: {
     display: 'flex',
-    padding: 24,
   },
   /* Styles applied to the root element if `orientation="horizontal"`. */
   horizontal: {
@@ -57,9 +55,7 @@ const Stepper = React.forwardRef(function Stepper(props, ref) {
 
   return (
     <StepperContext.Provider value={contextValue}>
-      <Paper
-        square
-        elevation={0}
+      <div
         className={clsx(
           classes.root,
           classes[orientation],
@@ -72,7 +68,7 @@ const Stepper = React.forwardRef(function Stepper(props, ref) {
         {...other}
       >
         {steps}
-      </Paper>
+      </div>
     </StepperContext.Provider>
   );
 });
