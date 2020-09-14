@@ -18,7 +18,7 @@ export default function CheckboxesTags() {
       disableCloseOnSelect
       getOptionLabel={(option) => option.title}
       renderOption={(props, option, { selected }) => (
-        <li {...props} key={option.title}>
+        <li {...props}>
           <Checkbox
             icon={icon}
             checkedIcon={checkedIcon}
