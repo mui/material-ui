@@ -8,7 +8,7 @@ import NextHead from 'next/head';
 import PropTypes from 'prop-types';
 import acceptLanguage from 'accept-language';
 import { create } from 'jss';
-import rtl from 'jss-rtl';
+import jssRtl from 'jss-rtl';
 import { CacheProvider } from '@emotion/core';
 import createCache from '@emotion/cache';
 import rtlPlugin from 'stylis-plugin-rtl';
@@ -26,7 +26,7 @@ import { ACTION_TYPES, CODE_VARIANTS } from 'docs/src/modules/constants';
 
 // Configure JSS
 const jss = create({
-  plugins: [...jssPreset().plugins, rtl()],
+  plugins: [...jssPreset().plugins, jssRtl()],
   insertionPoint: process.browser ? document.querySelector('#insertion-point-jss') : null,
 });
 
@@ -301,7 +301,7 @@ function AppWrapper(props) {
     initRedux({ options: { userLanguage: pageProps.userLanguage } }),
   );
 
-  const [setl, setRtl] = React.useState(false);
+  const [rtl, setRtl] = React.useState(false);
   const rtlContextValue = { rtl, setRtl };
 
   React.useEffect(() => {

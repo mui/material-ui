@@ -196,6 +196,7 @@ const pages = [
       { pathname: '/guides/localization' },
       { pathname: '/guides/content-security-policy', title: 'Content Security Policy' },
       { pathname: '/guides/right-to-left', title: 'Right-to-left' },
+      { pathname: '/guides/right-to-left-v5', title: 'Right-to-left v5' },
       { pathname: '/guides/flow' },
     ],
   },

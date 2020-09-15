@@ -62,20 +62,12 @@ function RTL(props) {
 }
 ```
 
-## Demo
-
-TODO
-
-_Use the direction toggle button on the top right corner to flip the whole documentation_
-
-{{"demo": "pages/guides/right-to-left/Direction.js"}}
-
 ## Opting out of rtl transformation
 
-TODO
+TODO: does not work :(
 
 If you want to prevent a specific rule-set from being affected by the `rtl` transformation you can add `flip: false` at the beginning.
 
 _Use the direction toggle button on the top right corner to see the effect._
 
-{{"demo": "pages/guides/right-to-left/RtlOptOut.js", "hideEditButton": true}}
+{{"demo": "pages/guides/right-to-left-v5/RtlOptOut.js", "hideEditButton": true}}

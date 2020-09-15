@@ -1,28 +1,32 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
+import styled from '@emotion/styled';
+import { ThemeProvider } from 'emotion-theming';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-    marginTop: theme.spacing(4),
-    marginRight: theme.spacing(2),
-  },
-  affected: {
-    textAlign: 'right',
-  },
-  unaffected: {
-    flip: false,
-    textAlign: 'right',
-  },
+const Root = styled('div')(props => ({
+  width: '100%',
+  marginTop: props.theme.spacing(4),
+  marginRight: props.theme.spacing(2),
 }));
 
-export default function RtlOptOut() {
-  const classes = useStyles();
+const AffectedText = styled('div')({
+  textAlign: 'right',
+});
 
+const UnaffectedText = styled('div')({
+  /* @noflip */
+  textAlign: 'right',
+});
+
+const theme = createMuiTheme();
+
+export default function RtlOptOut() {
   return (
-    <div className={classes.root}>
-      <div className={classes.affected}>Affected</div>
-      <div className={classes.unaffected}>Unaffected</div>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Root>
+        <AffectedText>Affected</AffectedText>
+        <UnaffectedText>Unaffected</UnaffectedText>
+      </Root>
+    </ThemeProvider>
   );
 }
