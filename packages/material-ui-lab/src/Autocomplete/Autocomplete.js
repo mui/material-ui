@@ -122,6 +122,9 @@ export const styles = (theme) => ({
         padding: '2.5px 4px',
       },
     },
+    '& [class*="MuiInputAdornment-filled"][class*="MuiInputAdornment-positionStart"]:not([class*="MuiInputAdornment-hiddenLabel"])': {
+      marginTop: 0,
+    },
   },
   /* Styles applied to the input element. */
   input: {
