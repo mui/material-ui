@@ -199,12 +199,9 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     value: valueProp,
     valueLabelDisplay = 'off',
     valueLabelFormat = Identity,
-    isRtl = false,
-    components = {},
-    componentsProps = {},
     ...other
   } = props;
-
+  const theme = useTheme();
   const touchId = React.useRef();
   // We can't use the :active browser pseudo-classes.
   // - The active state isn't triggered when clicking on the rail.
@@ -217,6 +214,22 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     default: defaultValue,
     name: 'Slider',
   });
+
+  const handleChange =
+    onChange &&
+    ((event, value) => {
+      if (!(event instanceof Event)) event.persist();
+
+      // Redefine target to allow name and value to be read.
+      // This allows seamless integration with the most popular form libraries.
+      // https://github.com/mui-org/material-ui/issues/13485#issuecomment-676048492
+      Object.defineProperty(event, 'target', {
+        writable: true,
+        value: { value, name },
+      });
+
+      onChange(event, value);
+    });
 
   const range = Array.isArray(valueDerived);
   let values = range ? valueDerived.slice().sort(asc) : [valueDerived];
@@ -349,8 +362,8 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     setValueState(newValue);
     setFocusVisible(index);
 
-    if (onChange) {
-      onChange(event, newValue);
+    if (handleChange) {
+      handleChange(event, newValue);
     }
     if (onChangeCommitted) {
       onChangeCommitted(event, newValue);
@@ -436,8 +449,8 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     focusThumb({ sliderRef, activeIndex, setActive });
     setValueState(newValue);
 
-    if (onChange) {
-      onChange(nativeEvent, newValue);
+    if (handleChange) {
+      handleChange(nativeEvent, newValue);
     }
   });
 
@@ -485,8 +498,8 @@ const Slider = React.forwardRef(function Slider(props, ref) {
 
     setValueState(newValue);
 
-    if (onChange) {
-      onChange(event, newValue);
+    if (handleChange) {
+      handleChange(event, newValue);
     }
 
     const doc = ownerDocument(sliderRef.current);
@@ -536,8 +549,8 @@ const Slider = React.forwardRef(function Slider(props, ref) {
 
     setValueState(newValue);
 
-    if (onChange) {
-      onChange(event, newValue);
+    if (handleChange) {
+      handleChange(event, newValue);
     }
 
     const doc = ownerDocument(sliderRef.current);
