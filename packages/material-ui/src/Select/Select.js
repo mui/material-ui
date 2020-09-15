@@ -203,10 +203,12 @@ Select.propTypes = {
   onOpen: PropTypes.func,
   /**
    * Control `select` open state.
+   * You can only use it when the `native` prop is `false` (default).
    */
   open: PropTypes.bool,
   /**
    * Render the selected value.
+   * You can only use it when the `native` prop is `false` (default).
    *
    * @param {any} value The `value` provided to the component.
    * @returns {ReactNode}

@@ -132,10 +132,12 @@ export interface SelectProps
   onOpen?: (event: React.ChangeEvent<{}>) => void;
   /**
    * Control `select` open state.
+   * You can only use it when the `native` prop is `false` (default).
    */
   open?: boolean;
   /**
    * Render the selected value.
+   * You can only use it when the `native` prop is `false` (default).
    *
    * @param {any} value The `value` provided to the component.
    * @returns {ReactNode}
