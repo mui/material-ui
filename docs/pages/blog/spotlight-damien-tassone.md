@@ -1,6 +1,6 @@
 ---
 title: A spotlight on Damien Tassone joining the team
-description: Damien Tassone has joined our company. He's the first full-time member to focus on the enterprise components of Material-UI.
+description: Damien Tassone has joined Material-UI. He's the first full-time member to focus on enterprise components.
 date: 2020-09-15T00:00:00.000Z
 authors: ['oliviertassinari']
 ---
