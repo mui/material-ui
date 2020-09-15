@@ -121,6 +121,7 @@ function getDependencies(raw, options = {}) {
     '@material-ui/icons': 'next',
     '@material-ui/lab': 'next',
     '@material-ui/styled-engine': 'next',
+    '@material-ui/styled-engine-sc': 'next',
     '@material-ui/styles': 'next',
     '@material-ui/system': 'next',
     '@material-ui/utils': 'next',
