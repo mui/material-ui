@@ -58,7 +58,6 @@ const IosSlider = styled(Slider)({
     height: 28,
     width: 28,
     backgroundColor: '#fff',
-    // @ts-ignore
     boxShadow: iOSBoxShadow,
     marginTop: -14,
     marginLeft: -14,
@@ -137,7 +136,6 @@ const AirbnbSlider = styled(Slider)({
     border: '1px solid currentColor',
     marginTop: -12,
     marginLeft: -13,
-    // @ts-ignore
     boxShadow: '#ebebeb 0 2px 2px',
     '&:focus, &:hover, &.Mui-active': {
       boxShadow: '#ccc 0 2px 3px 1px',
