@@ -1,4 +1,2 @@
-import styled from '@emotion/styled';
-export * from './styled';
-
-export default styled;
+export * from '@emotion/styled';
+export { default } from '@emotion/styled';

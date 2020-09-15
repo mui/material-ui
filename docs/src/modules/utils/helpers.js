@@ -120,6 +120,7 @@ function getDependencies(raw, options = {}) {
     '@material-ui/core': 'next',
     '@material-ui/icons': 'next',
     '@material-ui/lab': 'next',
+    '@material-ui/styled-engine': 'next',
     '@material-ui/styles': 'next',
     '@material-ui/system': 'next',
     '@material-ui/utils': 'next',

@@ -1,5 +1,2 @@
-import { CreateStyled } from '@emotion/styled';
-
-declare const styled: CreateStyled;
-
-export default styled;
+export * from '@emotion/styled';
+export { default } from '@emotion/styled';
