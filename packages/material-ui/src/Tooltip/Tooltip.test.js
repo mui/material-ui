@@ -11,6 +11,7 @@ import {
   screen,
   simulatePointerDevice,
   focusVisible,
+  programmaticFocusTriggersFocusVisible,
 } from 'test/utils';
 import { camelCase } from 'lodash/string';
 import Tooltip, { testReset } from './Tooltip';
@@ -741,7 +742,11 @@ describe('<Tooltip />', () => {
 
       getByRole('button').focus();
 
-      expect(queryByRole('tooltip')).to.equal(null);
+      if (programmaticFocusTriggersFocusVisible()) {
+        expect(queryByRole('tooltip')).not.to.equal(null);
+      } else {
+        expect(queryByRole('tooltip')).to.equal(null);
+      }
     });
 
     it('opens on focus-visible', () => {

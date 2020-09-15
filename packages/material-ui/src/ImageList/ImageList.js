@@ -1,69 +1,77 @@
 import * as React from 'react';
-import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
+import ImageListContext from './ImageListContext';
 
 export const styles = {
   /* Styles applied to the root element. */
   root: {
-    display: 'flex',
-    flexWrap: 'wrap',
+    display: 'grid',
     overflowY: 'auto',
     listStyle: 'none',
     padding: 0,
     WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
   },
+  /* Styles applied to the root element if `variant="masonry"`. */
+  masonry: {
+    display: 'block',
+  },
+  /* Styles applied to the root element if `variant="quilted"`. */
+  quilted: {},
+  /* Styles applied to the root element if `variant="standard"`. */
+  standard: {},
+  /* Styles applied to the root element if `variant="woven"`. */
+  woven: {},
 };
 
 const ImageList = React.forwardRef(function ImageList(props, ref) {
   const {
-    cellHeight = 180,
     children,
     classes,
     className,
     cols = 2,
     component: Component = 'ul',
-    spacing = 4,
-    style,
+    rowHeight = 'auto',
+    gap = 4,
+    style: styleProp,
+    variant = 'standard',
     ...other
   } = props;
 
+  const contextValue = React.useMemo(() => ({ rowHeight, gap, variant }), [
+    rowHeight,
+    gap,
+    variant,
+  ]);
+
+  React.useEffect(() => {
+    if (process.env.NODE_ENV !== 'production') {
+      // Detect Internet Explorer 8+
+      if (document !== undefined && 'objectFit' in document.documentElement.style === false) {
+        console.error(
+          [
+            'Material-UI: ImageList v5+ no longer natively supports Internet Explorer.',
+            'Use v4 of this component instead, or polyfill CSS object-fit.',
+          ].join('\n'),
+        );
+      }
+    }
+  }, []);
+
+  const style =
+    variant === 'masonry'
+      ? { columnCount: cols, columnGap: gap, ...styleProp }
+      : { gridTemplateColumns: `repeat(${cols}, 1fr)`, gap, ...styleProp };
+
   return (
     <Component
-      className={clsx(classes.root, className)}
+      className={clsx(classes.root, classes[variant], className)}
       ref={ref}
-      style={{ margin: -spacing / 2, ...style }}
+      style={style}
       {...other}
     >
-      {React.Children.map(children, (child) => {
-        if (!React.isValidElement(child)) {
-          return null;
-        }
-
-        if (process.env.NODE_ENV !== 'production') {
-          if (isFragment(child)) {
-            console.error(
-              [
-                "Material-UI: The ImageList component doesn't accept a Fragment as a child.",
-                'Consider providing an array instead.',
-              ].join('\n'),
-            );
-          }
-        }
-
-        const childCols = child.props.cols || 1;
-        const childRows = child.props.rows || 1;
-
-        return React.cloneElement(child, {
-          style: {
-            width: `${(100 / cols) * childCols}%`,
-            height: cellHeight === 'auto' ? 'auto' : cellHeight * childRows + spacing,
-            padding: spacing / 2,
-            ...child.props.style,
-          },
-        });
-      })}
+      <ImageListContext.Provider value={contextValue}>{children}</ImageListContext.Provider>
     </Component>
   );
 });
@@ -74,13 +82,7 @@ ImageList.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * Number of px for one cell height.
-   * You can set `'auto'` if you want to let the children determine the height.
-   * @default 180
-   */
-  cellHeight: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
-  /**
-   * Image Tiles that will be in Image List.
+   * Items that will be in the image list.
    */
   children: PropTypes /* @typescript-to-proptypes-ignore */.node.isRequired,
   /**
@@ -102,14 +104,27 @@ ImageList.propTypes = {
    */
   component: PropTypes.elementType,
   /**
-   * Number of px for the spacing between tiles.
+   * The gap between items in px.
    * @default 4
    */
-  spacing: PropTypes.number,
+  gap: PropTypes.number,
+  /**
+   * The height of one row in px.
+   * @default 'auto'
+   */
+  rowHeight: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
   /**
    * @ignore
    */
   style: PropTypes.object,
+  /**
+   * The variant to use.
+   * @default 'standard'
+   */
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['masonry', 'quilted', 'standard', 'woven']),
+    PropTypes.string,
+  ]),
 };
 
 export default withStyles(styles, { name: 'MuiImageList' })(ImageList);

@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy, useFakeTimers } from 'sinon';
-import { getClasses, createMount, describeConformance } from 'test/utils';
+import { createClientRender, getClasses, createMount, describeConformance } from 'test/utils';
+import ImageList from '../ImageList';
 import ImageListItem from './ImageListItem';
 
 describe('<ImageListItem />', () => {
-  const mount = createMount();
   let classes;
+  const mount = createMount();
+  const render = createClientRender();
 
   before(() => {
     classes = getClasses(<ImageListItem />);
@@ -20,26 +21,11 @@ describe('<ImageListItem />', () => {
     testComponentPropWith: 'div',
   }));
 
-  const tileData = {
-    img: 'images/image-list/00-52-29-429_640.jpg',
+  const itemData = {
+    img: 'images/image-list/breakfast.jpg',
     title: 'Breakfast',
     author: 'jill111',
   };
-
-  describe('prop: children', () => {
-    it('should render children by default', () => {
-      const children = <img src={tileData.img} alt="foo" />;
-      const wrapper = mount(<ImageListItem>{children}</ImageListItem>);
-
-      expect(wrapper.containsMatchingElement(children)).to.equal(true);
-    });
-
-    it('should not change non image child', () => {
-      const children = <div />;
-      const wrapper = mount(<ImageListItem>{children}</ImageListItem>);
-      expect(wrapper.containsMatchingElement(children)).to.equal(true);
-    });
-  });
 
   function mountMockImage(imgEl) {
     const Image = React.forwardRef((props, ref) => {
@@ -61,75 +47,66 @@ describe('<ImageListItem />', () => {
     it('should handle missing image', () => {
       mountMockImage(null);
     });
+  });
 
-    it('should fit the height', () => {
-      const imgEl = {
-        complete: true,
-        width: 16,
-        height: 9,
-        parentElement: { offsetWidth: 4, offsetHeight: 3 },
-        classList: { remove: spy(), add: spy() },
-        removeEventListener: () => {},
-      };
-      mountMockImage(imgEl);
-      expect(imgEl.classList.remove.callCount).to.equal(1);
-      expect(imgEl.classList.remove.args[0][0]).to.equal(classes.imgFullWidth);
-      expect(imgEl.classList.add.callCount).to.equal(1);
-      expect(imgEl.classList.add.args[0][0]).to.equal(classes.imgFullHeight);
+  const children = <img src={itemData.img} alt={itemData.title} data-testid="test-children" />;
+
+  describe('props:', () => {
+    describe('prop: children', () => {
+      it('should render children by default', () => {
+        const { getByTestId } = render(<ImageListItem>{children}</ImageListItem>);
+
+        expect(getByTestId('test-children')).not.to.equal(null);
+      });
     });
 
-    it('should fit the width', () => {
-      const imgEl = {
-        complete: true,
-        width: 4,
-        height: 3,
-        parentElement: { offsetWidth: 16, offsetHeight: 9 },
-        classList: { remove: spy(), add: spy() },
-        removeEventListener: () => {},
-      };
-      mountMockImage(imgEl);
-      expect(imgEl.classList.remove.callCount).to.equal(1);
-      expect(imgEl.classList.remove.args[0][0]).to.equal(classes.imgFullHeight);
-      expect(imgEl.classList.add.callCount).to.equal(1);
-      expect(imgEl.classList.add.args[0][0]).to.equal(classes.imgFullWidth);
+    describe('prop: component', () => {
+      it('should render a different component', () => {
+        const { container } = render(<ImageListItem component="div">{children}</ImageListItem>);
+        expect(container.firstChild).to.have.property('nodeName', 'DIV');
+      });
+    });
+
+    describe('prop: variant', () => {
+      it('should render with the  woven class', () => {
+        const { getByTestId } = render(
+          <ImageList variant="woven">
+            <ImageListItem data-testid="test-children" />
+          </ImageList>,
+        );
+
+        expect(getByTestId('test-children')).to.have.class(classes.root);
+        expect(getByTestId('test-children')).to.have.class(classes.woven);
+      });
     });
   });
 
-  describe('resize', () => {
-    let clock;
+  describe('classes:', () => {
+    it('should render with the root and standard classes by default', () => {
+      const { getByTestId } = render(
+        <ImageList>
+          <ImageListItem data-testid="test-children" />
+        </ImageList>,
+      );
 
-    beforeEach(() => {
-      clock = useFakeTimers();
+      expect(getByTestId('test-children')).to.have.class(classes.root);
+      expect(getByTestId('test-children')).to.have.class(classes.standard);
     });
 
-    afterEach(() => {
-      clock.restore();
+    it('should render img with the img class', () => {
+      const { getByTestId } = render(<ImageListItem>{children}</ImageListItem>);
+
+      expect(getByTestId('test-children')).to.have.class(classes.img);
     });
 
-    it('should handle the resize event', () => {
-      const imgEl = {
-        complete: true,
-        width: 4,
-        height: 3,
-        parentElement: { offsetWidth: 16, offsetHeight: 9 },
-        classList: { remove: spy(), add: spy() },
-        removeEventListener: () => {},
-      };
-      mountMockImage(imgEl);
-      expect(imgEl.classList.remove.callCount).to.equal(1);
-      expect(imgEl.classList.remove.args[0][0]).to.equal(classes.imgFullHeight);
-      expect(imgEl.classList.add.callCount).to.equal(1);
-      expect(imgEl.classList.add.args[0][0]).to.equal(classes.imgFullWidth);
+    it('should not render a non-img with the img class', () => {
+      const { getByTestId } = render(
+        <ImageListItem>
+          <div data-testid="test-children" />
+        </ImageListItem>,
+      );
 
-      window.dispatchEvent(new window.Event('resize', {}));
-      expect(imgEl.classList.remove.callCount).to.equal(1);
-      clock.tick(166);
-
-      expect(imgEl.classList.remove.callCount).to.equal(2);
-      expect(imgEl.classList.remove.callCount).to.equal(2);
-      expect(imgEl.classList.remove.args[1][0]).to.equal(classes.imgFullHeight);
-      expect(imgEl.classList.add.callCount).to.equal(2);
-      expect(imgEl.classList.add.args[1][0]).to.equal(classes.imgFullWidth);
+      expect(getByTestId('test-children')).to.not.have.class(classes.img);
     });
   });
 });

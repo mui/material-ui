@@ -41,6 +41,7 @@ const blacklist = [
   'docs-components-backdrop/SimpleBackdrop.png', // Needs interaction
   'docs-components-badges/BadgeAlignment.png', // Redux isolation
   'docs-components-badges/BadgeVisibility.png', // Needs interaction
+  'docs-components-bottom-navigation/FixedBottomNavigation.png', // Redundant
   'docs-components-breadcrumbs/ActiveLastBreadcrumb.png', // Redundant
   'docs-components-chips/ChipsPlayground.png', // Redux isolation
   'docs-components-click-away-listener', // Needs interaction

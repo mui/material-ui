@@ -86,7 +86,6 @@ const svgo = new SVGO({
 
 /**
  * Return Pascal-Cased component name.
- *
  * @param {string} destPath
  * @returns {string} class name
  */

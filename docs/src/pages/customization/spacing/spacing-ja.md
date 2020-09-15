@@ -49,7 +49,7 @@ theme.spacing(2); // = 8
 `theme.spacing()` ヘルパーは最大4つの引数を受け入れます。 You can use the arguments to reduce the boilerplate.
 
 ```diff
--padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`, // '8px 16px'
+-padding: `${theme.spacing(1)} ${theme.spacing(2)}`, // '8px 16px'
 +padding: theme.spacing(1, 2), // '8px 16px'
 ```
 

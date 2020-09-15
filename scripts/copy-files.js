@@ -21,7 +21,6 @@ async function includeFileInBuild(file) {
  *
  * It also tests that an this import can be used in TypeScript by checking
  * if an index.d.ts is present at that path.
- *
  * @param {string} rootDir
  */
 async function createModulePackages({ from, to }) {

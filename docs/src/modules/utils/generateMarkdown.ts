@@ -304,7 +304,6 @@ The \`${reactAPI.styles.name}\` name can be used for providing [default props](/
 /**
  * Returns `null` if the prop should be ignored.
  * Throws if it is invalid.
- *
  * @param prop
  * @param propName
  */

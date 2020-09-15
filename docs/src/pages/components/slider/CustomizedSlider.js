@@ -9,7 +9,7 @@ import { ThemeProvider } from 'emotion-theming';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: 300 + theme.spacing(3) * 2,
+    width: `calc(300px + ${theme.spacing(6)})`,
   },
   margin: {
     height: theme.spacing(3),

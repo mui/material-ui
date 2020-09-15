@@ -106,17 +106,17 @@ describe('<TrapFocus />', () => {
     );
 
     fireEvent.keyDown(screen.getByTestId('modal'), {
-      keyCode: 13, // Enter
+      key: 'Enter',
     });
     fireEvent.keyDown(screen.getByTestId('modal'), {
-      keyCode: 9, // Tab
+      key: 'Tab',
     });
 
     expect(document.querySelector('[data-test="sentinelStart"]')).toHaveFocus();
 
     initialFocus.focus();
     fireEvent.keyDown(screen.getByTestId('modal'), {
-      keyCode: 9, // Tab
+      key: 'Tab',
       shiftKey: true,
     });
 

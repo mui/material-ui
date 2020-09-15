@@ -10,40 +10,36 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
   },
+  buttonWrapper: {
+    display: 'flex',
+    flexDirection: 'row',
+    padding: '16px 0 0',
+  },
   button: {
     marginRight: theme.spacing(1),
+  },
+  spacer: {
+    flex: '1 1 auto',
   },
   completed: {
     display: 'inline-block',
   },
   instructions: {
-    marginTop: theme.spacing(1),
+    marginTop: theme.spacing(2),
     marginBottom: theme.spacing(1),
   },
 }));
 
-function getSteps() {
-  return ['Select campaign settings', 'Create an ad group', 'Create an ad'];
-}
-
-function getStepContent(step) {
-  switch (step) {
-    case 0:
-      return 'Step 1: Select campaign settings...';
-    case 1:
-      return 'Step 2: What is an ad group anyways?';
-    case 2:
-      return 'Step 3: This is the bit I really care about!';
-    default:
-      return 'Unknown step';
-  }
-}
+const steps = [
+  'Select campaign settings',
+  'Create an ad group',
+  'Create an ad',
+];
 
 export default function HorizontalNonLinearStepper() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [completed, setCompleted] = React.useState({});
-  const steps = getSteps();
 
   const totalSteps = () => {
     return steps.length;
@@ -96,36 +92,39 @@ export default function HorizontalNonLinearStepper() {
       <Stepper nonLinear activeStep={activeStep}>
         {steps.map((label, index) => (
           <Step key={label} completed={completed[index]}>
-            <StepButton onClick={handleStep(index)}>{label}</StepButton>
+            <StepButton color="inherit" onClick={handleStep(index)}>
+              {label}
+            </StepButton>
           </Step>
         ))}
       </Stepper>
       <div>
         {allStepsCompleted() ? (
-          <div>
+          <React.Fragment>
             <Typography className={classes.instructions}>
               All steps completed - you&apos;re finished
             </Typography>
-            <Button onClick={handleReset}>Reset</Button>
-          </div>
+            <div className={classes.buttonWrapper}>
+              <div className={classes.spacer} />
+              <Button onClick={handleReset}>Reset</Button>
+            </div>
+          </React.Fragment>
         ) : (
-          <div>
+          <React.Fragment>
             <Typography className={classes.instructions}>
-              {getStepContent(activeStep)}
+              Step {activeStep + 1}
             </Typography>
-            <div>
+            <div className={classes.buttonWrapper}>
               <Button
+                color="inherit"
                 disabled={activeStep === 0}
                 onClick={handleBack}
                 className={classes.button}
               >
                 Back
               </Button>
-              <Button
-                variant="contained"
-                onClick={handleNext}
-                className={classes.button}
-              >
+              <div className={classes.spacer} />
+              <Button onClick={handleNext} className={classes.button}>
                 Next
               </Button>
               {activeStep !== steps.length &&
@@ -134,14 +133,14 @@ export default function HorizontalNonLinearStepper() {
                     Step {activeStep + 1} already completed
                   </Typography>
                 ) : (
-                  <Button variant="contained" onClick={handleComplete}>
+                  <Button onClick={handleComplete}>
                     {completedSteps() === totalSteps() - 1
                       ? 'Finish'
                       : 'Complete Step'}
                   </Button>
                 ))}
             </div>
-          </div>
+          </React.Fragment>
         )}
       </div>
     </div>

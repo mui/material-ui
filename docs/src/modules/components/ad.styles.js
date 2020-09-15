@@ -6,9 +6,9 @@ const adBodyImageStyles = (theme) => ({
     display: 'block',
     overflow: 'hidden',
     border: `1px solid ${fade(theme.palette.action.active, 0.12)}`,
-    padding: `${theme.spacing(1.5)}px ${theme.spacing(1.5)}px ${theme.spacing(1.5)}px ${
-      theme.spacing(1.5) + 130
-    }px`,
+    padding: `${theme.spacing(1.5)} ${theme.spacing(1.5)} ${theme.spacing(
+      1.5,
+    )} calc(${theme.spacing(1.5)} + 130px)`,
     borderRadius: theme.shape.borderRadius,
   },
   imgWrapper: {

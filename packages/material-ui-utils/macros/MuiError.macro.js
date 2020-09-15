@@ -11,7 +11,6 @@ function invertObject(object) {
 }
 
 /**
- *
  * @param {import('babel-plugin-macros').MacroParams} param0
  */
 function muiError({ references, babel, config }) {

@@ -76,7 +76,7 @@ function generateGutter(theme, breakpoint) {
   SPACINGS.forEach((spacing) => {
     const themeSpacing = theme.spacing(spacing);
 
-    if (themeSpacing === 0) {
+    if (themeSpacing === '0px') {
       return;
     }
 

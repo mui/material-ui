@@ -39,7 +39,7 @@ export const styles = (theme) => {
       verticalAlign: 'middle',
       boxSizing: 'border-box',
       '&$disabled': {
-        opacity: 0.5,
+        opacity: theme.palette.action.disabledOpacity,
         pointerEvents: 'none',
       },
       '& $avatar': {
@@ -509,7 +509,7 @@ Chip.propTypes = {
    */
   onClick: PropTypes.func,
   /**
-   * Callback function fired when the delete icon is clicked.
+   * Callback fired when the delete icon is clicked.
    * If set, the delete icon will be shown.
    */
   onDelete: PropTypes.func,

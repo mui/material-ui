@@ -13,7 +13,7 @@ const styles = (theme) => ({
   },
   container: {
     marginBottom: theme.spacing(20),
-    maxWidth: 680 + theme.spacing(8 + 4),
+    maxWidth: `calc(680px + ${theme.spacing(12)})`,
     '& .markdownElement': {
       [theme.breakpoints.up('md')]: {
         paddingRight: theme.spacing(4),

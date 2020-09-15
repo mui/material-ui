@@ -49,7 +49,7 @@ theme.spacing(2); // = 8
 Вспомогательная функция ` theme.spacing () ` принимает до 4 аргументов. Вы можете использовать аргументы, чтобы уменьшить шаблон.
 
 ```diff
--padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`, // '8px 16px'
+-padding: `${theme.spacing(1)} ${theme.spacing(2)}`, // '8px 16px'
 +padding: theme.spacing(1, 2), // '8px 16px'
 ```
 

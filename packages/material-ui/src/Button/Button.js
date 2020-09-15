@@ -24,9 +24,6 @@ export const styles = (theme) => ({
       '@media (hover: none)': {
         backgroundColor: 'transparent',
       },
-      '&$disabled': {
-        backgroundColor: 'transparent',
-      },
     },
     '&$disabled': {
       color: theme.palette.action.disabled,
@@ -116,9 +113,6 @@ export const styles = (theme) => ({
       '@media (hover: none)': {
         boxShadow: theme.shadows[2],
         backgroundColor: theme.palette.grey[300],
-      },
-      '&$disabled': {
-        backgroundColor: theme.palette.action.disabledBackground,
       },
     },
     '&$focusVisible': {

@@ -38,12 +38,12 @@ const styles = (theme: any) =>
     [inputSyleMapping['small']]: {
       fontSize: 14,
       padding: theme.spacing(1),
-      width: `calc(100% - ${theme.spacing(2)}px)`,
+      width: `calc(100% - ${theme.spacing(2)})`,
     },
     [inputSyleMapping['medium']]: {
       fontSize: 16,
       padding: theme.spacing(2),
-      width: `calc(100% - ${theme.spacing(4)}px)`,
+      width: `calc(100% - ${theme.spacing(4)})`,
     },
     [inputSyleMapping['large']]: {
       fontSize: 18,

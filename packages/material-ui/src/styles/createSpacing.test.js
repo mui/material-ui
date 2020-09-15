@@ -5,15 +5,15 @@ describe('createSpacing', () => {
   it('should be configurable', () => {
     let spacing;
     spacing = createSpacing();
-    expect(spacing(1)).to.equal(8);
+    expect(spacing(1)).to.equal('8px');
     spacing = createSpacing(10);
-    expect(spacing(1)).to.equal(10);
+    expect(spacing(1)).to.equal('10px');
     spacing = createSpacing([0, 8, 16]);
-    expect(spacing(2)).to.equal(16);
+    expect(spacing(2)).to.equal('16px');
     spacing = createSpacing(['0rem', '8rem', '16rem']);
     expect(spacing(2)).to.equal('16rem');
     spacing = createSpacing((factor) => factor ** 2);
-    expect(spacing(2)).to.equal(4);
+    expect(spacing(2)).to.equal('4px');
     spacing = createSpacing((factor) => `${0.25 * factor}rem`);
     expect(spacing(2)).to.equal('0.5rem');
   });
@@ -26,7 +26,7 @@ describe('createSpacing', () => {
   it('should support a default value when no arguments are provided', () => {
     let spacing;
     spacing = createSpacing();
-    expect(spacing()).to.equal(8);
+    expect(spacing()).to.equal('8px');
     spacing = createSpacing((factor) => `${0.25 * factor}rem`);
     expect(spacing()).to.equal('0.25rem');
   });
@@ -48,14 +48,6 @@ describe('createSpacing', () => {
   });
 
   describe('warnings', () => {
-    // TODO v5: remove
-    it('should warn for the deprecated API', () => {
-      const spacing = createSpacing(11);
-      expect(() => {
-        expect(spacing.unit).to.equal(11);
-      }).toErrorDev('theme.spacing.unit usage has been deprecated');
-    });
-
     it('should warn for wrong input', () => {
       expect(() => {
         createSpacing({

@@ -12,6 +12,7 @@ import {
   screen,
   focusVisible,
   simulatePointerDevice,
+  programmaticFocusTriggersFocusVisible,
 } from 'test/utils';
 import * as PropTypes from 'prop-types';
 import TouchRipple from './TouchRipple';
@@ -633,9 +634,17 @@ describe('<ButtonBase />', () => {
       simulatePointerDevice();
 
       expect(button).not.to.have.class(classes.focusVisible);
+
       button.focus();
-      expect(button).not.to.have.class(classes.focusVisible);
+
+      if (programmaticFocusTriggersFocusVisible()) {
+        expect(button).to.have.class(classes.focusVisible);
+      } else {
+        expect(button).not.to.have.class(classes.focusVisible);
+      }
+
       focusVisible(button);
+
       expect(button).to.have.class(classes.focusVisible);
     });
 

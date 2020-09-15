@@ -64,7 +64,7 @@ SwipeArea.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * The width of the left most (or right most) area in pixels where the
+   * The width of the left most (or right most) area in px where the
    * drawer can be swiped open from.
    */
   width: PropTypes.number.isRequired,

@@ -1,5 +1,5 @@
 import createBreakpoints from './createBreakpoints';
-import createSpacing from './createSpacing';
+import createV4Spacing from './createV4Spacing';
 
 export default function adaptV4Theme(inputTheme) {
   if (process.env.NODE_ENV !== 'production') {
@@ -51,9 +51,12 @@ export default function adaptV4Theme(inputTheme) {
     theme.components[component] = componentValue;
   });
 
+  // theme.spacing
+  theme.spacing = createV4Spacing(inputTheme.spacing);
+
   // theme.mixins.gutters
   const breakpoints = createBreakpoints(inputTheme.breakpoints || {});
-  const spacing = createSpacing(inputTheme.spacing);
+  const spacing = theme.spacing;
 
   theme.mixins = {
     gutters: (styles = {}) => {

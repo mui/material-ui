@@ -49,7 +49,7 @@ theme.spacing(2); // = 8
 Der `theme.spacing ()` Helfer akzeptiert bis zu 4 Argumente. Sie können die Argumente verwenden, um den Boilerplate zu reduzieren.
 
 ```diff
--padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`, // '8px 16px'
+-padding: `${theme.spacing(1)} ${theme.spacing(2)}`, // '8px 16px'
 +padding: theme.spacing(1, 2), // '8px 16px'
 ```
 

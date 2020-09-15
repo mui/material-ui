@@ -28,11 +28,11 @@ The `MuiImageListItem` name can be used for providing [default props](/customiza
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | Theoretically you can pass any node as children, but the main use case is to pass an img, in which case ImageListItem takes care of making the image "cover" available space (similar to `background-size: cover` or to `object-fit: cover`). |
+| <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | While you can pass any node as children, the main use case is for an img. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">cols</span> | <span class="prop-type">number</span> | <span class="prop-default">1</span> | Width of the tile in number of grid cells. |
+| <span class="prop-name">cols</span> | <span class="prop-type">number</span> | <span class="prop-default">1</span> | Width of the item in number of grid columns. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'li'</span> | The component used for the root node. Either a string to use a HTML element or a component. |
-| <span class="prop-name">rows</span> | <span class="prop-type">number</span> | <span class="prop-default">1</span> | Height of the tile in number of grid cells. |
+| <span class="prop-name">rows</span> | <span class="prop-type">number</span> | <span class="prop-default">1</span> | Height of the item in number of grid rows. |
 
 The `ref` is forwarded to the root element.
 
@@ -43,9 +43,9 @@ Any other props supplied will be provided to the root element (native element).
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
 | <span class="prop-name">root</span> | <span class="prop-name">.MuiImageListItem-root</span> | Styles applied to the root element.
-| <span class="prop-name">tile</span> | <span class="prop-name">.MuiImageListItem-tile</span> | Styles applied to the `div` element that wraps the children.
-| <span class="prop-name">imgFullHeight</span> | <span class="prop-name">.MuiImageListItem-imgFullHeight</span> | Styles applied to an `img` element child, if needed to ensure it covers the tile.
-| <span class="prop-name">imgFullWidth</span> | <span class="prop-name">.MuiImageListItem-imgFullWidth</span> | Styles applied to an `img` element child, if needed to ensure it covers the tile.
+| <span class="prop-name">img</span> | <span class="prop-name">.MuiImageListItem-img</span> | Styles applied to an `img` element to ensure it covers the item.
+| <span class="prop-name">standard</span> | <span class="prop-name">.MuiImageListItem-standard</span> | Styles applied to the root element if `variant="standard"`.
+| <span class="prop-name">woven</span> | <span class="prop-name">.MuiImageListItem-woven</span> | Styles applied to the root element if `variant="woven"`.
 
 You can override the style of the component thanks to one of these customization points:
 
