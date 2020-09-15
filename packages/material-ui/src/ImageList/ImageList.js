@@ -18,7 +18,7 @@ export const styles = {
 
 const ImageList = React.forwardRef(function ImageList(props, ref) {
   const {
-    cellHeight = 180,
+    rowHeight = 180,
     children,
     classes,
     className,
@@ -58,7 +58,7 @@ const ImageList = React.forwardRef(function ImageList(props, ref) {
         return React.cloneElement(child, {
           style: {
             width: `${(100 / cols) * childCols}%`,
-            height: cellHeight === 'auto' ? 'auto' : cellHeight * childRows + gap,
+            height: rowHeight === 'auto' ? 'auto' : rowHeight * childRows + gap,
             padding: gap / 2,
             ...child.props.style,
           },
@@ -76,7 +76,7 @@ ImageList.propTypes = {
   /**
    * @ignore
    */
-  cellHeight: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
+  rowHeight: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
   /**
    * @ignore
    */

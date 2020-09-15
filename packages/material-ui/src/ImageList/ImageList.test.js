@@ -42,10 +42,10 @@ describe('<ImageList />', () => {
     }),
   );
 
-  it('should render children and change cellHeight', () => {
-    const cellHeight = 250;
+  it('should render children and change rowHeight', () => {
+    const rowHeight = 250;
     const wrapper = shallow(
-      <ImageList cellHeight={cellHeight}>
+      <ImageList rowHeight={rowHeight}>
         {itemsData.map((item) => (
           <span
             key={item.img}
@@ -60,7 +60,7 @@ describe('<ImageList />', () => {
     );
 
     expect(wrapper.find('.image-item').length).to.equal(2);
-    expect(wrapper.children().at(0).props().style.height).to.equal(cellHeight + 4);
+    expect(wrapper.children().at(0).props().style.height).to.equal(rowHeight + 4);
   });
 
   it('renders children by default', () => {
@@ -145,10 +145,10 @@ describe('<ImageList />', () => {
     expect(wrapper.props().style.backgroundColor).to.equal(style.backgroundColor);
   });
 
-  describe('prop: cellHeight', () => {
+  describe('prop: rowHeight', () => {
     it('should accept auto as a property', () => {
       const wrapper = shallow(
-        <ImageList cellHeight="auto">
+        <ImageList rowHeight="auto">
           <br />
         </ImageList>,
       );

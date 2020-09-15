@@ -54,7 +54,7 @@ export default function AdvancedImageList() {
 
   return (
     <div className={classes.root}>
-      <ImageList cellHeight={200} gap={1} className={classes.imageList}>
+      <ImageList rowHeight={200} gap={1} className={classes.imageList}>
         {itemData.map((item) => (
           <ImageListItem
             key={item.img}
