@@ -57,7 +57,7 @@ export interface SelectProps
    * In order to display a meaningful value, a function can be passed to the `renderValue` prop which
    * returns the value to be displayed when no items are selected.
    *
-   * ⚠️ When using this prop, make sure the label doesn't conflict with the empty displayed value.
+   * ⚠️ When using this prop, make sure the label doesn't overlap with the empty displayed value.
    * The label should either be hidden or forced to a shrunk state.
    * @default false
    */
