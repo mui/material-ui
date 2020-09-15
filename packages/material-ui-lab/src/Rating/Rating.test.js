@@ -149,15 +149,14 @@ describe('<Rating />', () => {
          * @type FormData
          */
         let data;
+        const handleSubmit = spy((event) => {
+          // Prevent navigation
+          event.preventDefault();
+          // populate FormData with the submitted form
+          data = new FormData(event.target);
+        });
         render(
-          <form
-            onSubmit={(event) => {
-              // Prevent navigation
-              event.preventDefault();
-              // populate FormData with the submitted form
-              data = new FormData(event.target);
-            }}
-          >
+          <form onSubmit={handleSubmit}>
             <Rating {...testData.ratingProps} />
             <button type="submit" />
           </form>,
@@ -170,7 +169,7 @@ describe('<Rating />', () => {
         });
 
         if (testData.formData === undefined) {
-          expect(data).to.equal(testData.formData);
+          expect(handleSubmit.callCount).to.equal(0);
         } else {
           expect(Array.from(data.entries())).to.deep.equal(testData.formData);
         }
