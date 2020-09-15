@@ -2,6 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
+import deprecatedPropType from '../utils/deprecatedPropType';
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
@@ -75,10 +76,12 @@ const ImageListItemBar = React.forwardRef(function ImageListItemBar(props, ref) 
     className,
     subtitle,
     title,
-    position = 'bottom',
+    position: positionProp = 'bottom',
+    titlePosition,
     ...other
   } = props;
 
+  const position = titlePosition || positionProp;
   const actionPos = actionIcon && actionPosition;
 
   return (
@@ -141,6 +144,10 @@ ImageListItemBar.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * Position of the title bar.
+   */
+  position: PropTypes.oneOf(['bottom', 'top']),
+  /**
    * String or element serving as subtitle (support text).
    */
   subtitle: PropTypes.node,
@@ -149,9 +156,12 @@ ImageListItemBar.propTypes = {
    */
   title: PropTypes.node,
   /**
-   * Position of the title bar.
+   * @ignore
    */
-  position: PropTypes.oneOf(['bottom', 'top']),
+  titlePosition: deprecatedPropType(
+    PropTypes.oneOf(['bottom', 'top']),
+    'Use the `position` prop instead.',
+  ),
 };
 
 export default withStyles(styles, { name: 'MuiImageListItemBar' })(ImageListItemBar);

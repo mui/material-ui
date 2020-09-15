@@ -3,6 +3,7 @@ import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
+import deprecatedPropType from '../utils/deprecatedPropType';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -18,16 +19,21 @@ export const styles = {
 
 const ImageList = React.forwardRef(function ImageList(props, ref) {
   const {
-    rowHeight = 180,
+    cellHeight,
     children,
     classes,
     className,
     cols = 2,
     component: Component = 'ul',
-    gap = 4,
+    gap: gapProp = 4,
+    rowHeight: rowHeightProp = 180,
+    spacing,
     style,
     ...other
   } = props;
+
+  const gap = spacing || gapProp;
+  const rowHeight = cellHeight || rowHeightProp;
 
   return (
     <Component
@@ -69,29 +75,28 @@ const ImageList = React.forwardRef(function ImageList(props, ref) {
 });
 
 ImageList.propTypes = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
   /**
    * @ignore
    */
-  rowHeight: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
+  cellHeight: deprecatedPropType(
+    PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['auto'])]),
+    'Use the `rowHeight` prop instead.',
+  ),
   /**
-   * @ignore
+   * Items that will be in the image list.
    */
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object,
+  classes: PropTypes.object.isRequired,
   /**
    * @ignore
    */
   className: PropTypes.string,
   /**
-   * @ignore
+   * Number of columns.
    */
   cols: PropTypes.number,
   /**
@@ -100,9 +105,17 @@ ImageList.propTypes = {
    */
   component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
-   * @ignore
+   * The gap between items in `px`.
    */
   gap: PropTypes.number,
+  /**
+   * The height of one row in `px`.
+   */
+  rowHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['auto'])]),
+  /**
+   * @ignore
+   */
+  spacing: deprecatedPropType(PropTypes.number, 'Use the `rowHeight` prop instead.'),
   /**
    * @ignore
    */

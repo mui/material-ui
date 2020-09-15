@@ -28,8 +28,12 @@ The `MuiImageList` name can be used for providing [default props](/customization
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
+| <span class="prop-name required">children<abbr title="required">*</abbr></span> | <span class="prop-type">node</span> |  | Items that will be in the image list. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span class="prop-name">cols</span> | <span class="prop-type">number</span> | <span class="prop-default">2</span> | Number of columns. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'ul'</span> | The component used for the root node. Either a string to use a HTML element or a component. |
+| <span class="prop-name">gap</span> | <span class="prop-type">number</span> | <span class="prop-default">4</span> | The gap between items in `px`. |
+| <span class="prop-name">rowHeight</span> | <span class="prop-type">number<br>&#124;&nbsp;'auto'</span> | <span class="prop-default">180</span> | The height of one row in `px`. |
 
 The `ref` is forwarded to the root element.
 
