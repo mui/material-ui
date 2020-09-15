@@ -1,9 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { exactProp } from '@material-ui/utils';
-import { CacheProvider } from '@emotion/core';
-import createCache from '@emotion/cache';
-import rtlPlugin from 'stylis-plugin-rtl';
 import ThemeContext from '../useTheme/ThemeContext';
 import useTheme from '../useTheme';
 import nested from './nested';
@@ -29,20 +26,6 @@ function mergeOuterLocalTheme(outerTheme, localTheme) {
 
   return { ...outerTheme, ...localTheme };
 }
-
-// Cache for the ltr version of the styles
-const cacheLtr = createCache({
-  key: 'mui',
-  stylisPlugins: [],
-  speedy: true,
-});
-
-// Cache for the rtl version of the styles
-const cacheRtl = createCache({
-  key: 'muirtl',
-  stylisPlugins: [rtlPlugin],
-  speedy: true,
-});
 
 /**
  * This component takes a `theme` prop.
@@ -78,13 +61,7 @@ function ThemeProvider(props) {
     return output;
   }, [localTheme, outerTheme]);
 
-  const rtl = theme.direction === 'rtl';
-
-  return (
-    <CacheProvider value={rtl ? cacheRtl : cacheLtr}>
-      <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>
-    </CacheProvider>
-  );
+  return <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>;
 }
 
 ThemeProvider.propTypes = {
