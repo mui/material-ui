@@ -377,19 +377,16 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
   );
 
   const renderGroup = renderGroupProp || defaultRenderGroup;
-  const renderOption = renderOptionProp || getOptionLabel;
+  const defaultRenderOption = (props2, option) => <li {...props2}>{getOptionLabel(option)}</li>;
+  const renderOption = renderOptionProp || defaultRenderOption;
 
   const renderListOption = (option, index) => {
     const optionProps = getOptionProps({ option, index });
 
-    return (
-      <li {...optionProps} className={classes.option}>
-        {renderOption(option, {
-          selected: optionProps['aria-selected'],
-          inputValue,
-        })}
-      </li>
-    );
+    return renderOption({ ...optionProps, className: classes.option }, option, {
+      selected: optionProps['aria-selected'],
+      inputValue,
+    });
   };
 
   const hasClearIcon = !disableClearable && !disabled;
@@ -846,6 +843,7 @@ Autocomplete.propTypes = {
   /**
    * Render the option, use `getOptionLabel` by default.
    *
+   * @param {object} props The props to apply on the li element.
    * @param {T} option The option to render.
    * @param {object} state The state of the component.
    * @returns {ReactNode}

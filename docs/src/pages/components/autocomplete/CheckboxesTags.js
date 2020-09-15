@@ -17,8 +17,8 @@ export default function CheckboxesTags() {
       options={top100Films}
       disableCloseOnSelect
       getOptionLabel={(option) => option.title}
-      renderOption={(option, { selected }) => (
-        <React.Fragment>
+      renderOption={(props, option, { selected }) => (
+        <li {...props}>
           <Checkbox
             icon={icon}
             checkedIcon={checkedIcon}
@@ -26,7 +26,7 @@ export default function CheckboxesTags() {
             checked={selected}
           />
           {option.title}
-        </React.Fragment>
+        </li>
       )}
       style={{ width: 500 }}
       renderInput={(params) => (
