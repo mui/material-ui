@@ -15,12 +15,12 @@ export const styles = (theme) => ({
     alignItems: 'center',
     fontFamily: theme.typography.fontFamily,
   },
-  /* Styles applied to the root element if `titlePosition="bottom"`. */
-  titlePositionBottom: {
+  /* Styles applied to the root element if `position="bottom"`. */
+  positionBottom: {
     bottom: 0,
   },
-  /* Styles applied to the root element if `titlePosition="top"`. */
-  titlePositionTop: {
+  /* Styles applied to the root element if `position="top"`. */
+  positionTop: {
     top: 0,
   },
   /* Styles applied to the root element if a `subtitle` is provided. */
@@ -75,7 +75,7 @@ const ImageListItemBar = React.forwardRef(function ImageListItemBar(props, ref) 
     className,
     subtitle,
     title,
-    titlePosition = 'bottom',
+    position = 'bottom',
     ...other
   } = props;
 
@@ -86,8 +86,8 @@ const ImageListItemBar = React.forwardRef(function ImageListItemBar(props, ref) 
       className={clsx(
         classes.root,
         {
-          [classes.titlePositionBottom]: titlePosition === 'bottom',
-          [classes.titlePositionTop]: titlePosition === 'top',
+          [classes.positionBottom]: position === 'bottom',
+          [classes.positionTop]: position === 'top',
           [classes.rootSubtitle]: subtitle,
         },
         className,
@@ -151,7 +151,7 @@ ImageListItemBar.propTypes = {
   /**
    * Position of the title bar.
    */
-  titlePosition: PropTypes.oneOf(['bottom', 'top']),
+  position: PropTypes.oneOf(['bottom', 'top']),
 };
 
 export default withStyles(styles, { name: 'MuiImageListItemBar' })(ImageListItemBar);

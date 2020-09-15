@@ -64,7 +64,7 @@ export default function AdvancedImageList() {
             <img src={item.img} alt={item.title} />
             <ImageListItemBar
               title={item.title}
-              titlePosition="top"
+              position="top"
               actionIcon={
                 <IconButton
                   aria-label={`star ${item.title}`}

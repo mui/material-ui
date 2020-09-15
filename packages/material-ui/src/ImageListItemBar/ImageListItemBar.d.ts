@@ -22,13 +22,13 @@ export interface ImageListItemBarProps extends StandardProps<{}, ImageListItemBa
   /**
    * Position of the title bar.
    */
-  titlePosition?: 'top' | 'bottom';
+  position?: 'top' | 'bottom';
 }
 
 export type ImageListItemBarClassKey =
   | 'root'
-  | 'titlePositionBottom'
-  | 'titlePositionTop'
+  | 'positionBottom'
+  | 'positionTop'
   | 'rootSubtitle'
   | 'titleWrap'
   | 'titleWrapActionPosLeft'
