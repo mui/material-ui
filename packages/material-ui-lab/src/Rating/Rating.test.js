@@ -132,9 +132,7 @@ describe('<Rating />', () => {
       },
       {
         ratingProps: { name: 'rating', defaultValue: 2, readOnly: true },
-        // FIXME: With native <input type="radio" /> read-only values are still submitted
-        // formData: [['rating', '2']],
-        formData: [],
+        formData: [['rating', '2']],
       },
       {
         ratingProps: { name: 'rating', required: true },
