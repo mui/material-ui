@@ -2,6 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { stub, spy } from 'sinon';
 import {
+  act,
   getClasses,
   createMount,
   describeConformance,
@@ -109,5 +110,70 @@ describe('<Rating />', () => {
     fireEvent.click(getByRole('radio', { name: '2 Stars' }));
     checked = container.querySelector('input[name="rating-test"]:checked');
     expect(checked.value).to.equal('2');
+  });
+
+  describe('<form> integration', () => {
+    before(function beforeHook() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM has issues with form validation for certain elements.
+        // We could adress them individually but that doesn't add much value if we already have a working environment.
+        this.skip();
+      }
+    });
+
+    [
+      {
+        ratingProps: { name: 'rating', defaultValue: 2 },
+        formData: [['rating', '2']],
+      },
+      {
+        ratingProps: { name: 'rating', defaultValue: 2, disabled: true },
+        formData: [],
+      },
+      {
+        ratingProps: { name: 'rating', defaultValue: 2, readOnly: true },
+        // FIXME: With native <input type="radio" /> read-only values are still submitted
+        // formData: [['rating', '2']],
+        formData: [],
+      },
+      {
+        ratingProps: { name: 'rating', required: true },
+        // FIXME: `Rating` does not implement `required`.
+        //        Native <input type="radio" /> would not pass validation
+        // formData: undefined,
+        formData: [['rating', '']],
+      },
+    ].forEach((testData, testNumber) => {
+      it(`submits the expected form data #${testNumber + 1}`, () => {
+        /**
+         * @type FormData
+         */
+        let data;
+        const handleSubmit = spy((event) => {
+          // Prevent navigation
+          event.preventDefault();
+          // populate FormData with the submitted form
+          data = new FormData(event.target);
+        });
+        render(
+          <form onSubmit={handleSubmit}>
+            <Rating {...testData.ratingProps} />
+            <button type="submit" />
+          </form>,
+        );
+        const submitter = document.querySelector('button[type="submit"]');
+
+        act(() => {
+          // form.submit() would not run form validation
+          submitter.click();
+        });
+
+        if (testData.formData === undefined) {
+          expect(handleSubmit.callCount).to.equal(0);
+        } else {
+          expect(Array.from(data.entries())).to.deep.equal(testData.formData);
+        }
+      });
+    });
   });
 });
