@@ -146,3 +146,4 @@ https://v3-9-0.material-ui.com/* https://v3.material-ui.com/:splat 301!
 # Unlike the store that expect to be hosted under a subfolder,
 # material-ui-x is configured to be hosted at the root.
 /_next/* https://material-ui-x.netlify.app/_next/:splat 200
+/static/x/* https://material-ui-x.netlify.app/static/x/:splat 200
