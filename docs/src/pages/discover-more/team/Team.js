@@ -32,7 +32,7 @@ const activeCore = [
     location: 'Dresden, Germany',
   },
   {
-    name: 'Damien Rassone',
+    name: 'Damien Tassone',
     github: 'dtassone',
     twitter: 'madKakoO',
     flag: 'Enterprise product designer',
