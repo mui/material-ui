@@ -199,9 +199,12 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     value: valueProp,
     valueLabelDisplay = 'off',
     valueLabelFormat = Identity,
+    isRtl = false,
+    components = {},
+    componentsProps = {},
     ...other
   } = props;
-  const theme = useTheme();
+
   const touchId = React.useRef();
   // We can't use the :active browser pseudo-classes.
   // - The active state isn't triggered when clicking on the rail.
