@@ -1,5 +1,144 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 5.0.0-alpha.10
+
+###### _Sep 15, 2020_
+
+Big thanks to the 16 contributors who made this release possible.
+Here are some highlights ✨:
+
+- Keep working on the breaking changes before v5-beta.
+  As always, you should find a clear and simple upgrade path for each of them.
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@material-ui/core@v5.0.0-alpha.10`
+
+#### Breaking changes
+
+- [Accordion] Normalize focusVisible logic (#22567) @oliviertassinari
+  Rename `focused` to `focusVisible` for consistency with the other components:
+
+  ```diff
+  <Accordion
+    classes={{
+  -   focused: 'custom-focus-visible-classname',
+  +   focusVisible: 'custom-focus-visible-classname',
+    }}
+  />
+  ```
+
+- [Stepper] Remove Paper and built-in padding (#22564) @mbrookes
+  The root component (Paper) was replaced with a `<div>`. Stepper no longer has elevation, nor inherits Paper's props. This change is meant to encourage composition.
+
+  ```diff
+  -<Stepper elevation={2}>
+  -  <Step>
+  -    <StepLabel>Hello world</StepLabel>
+  -  </Step>
+  -</Stepper>
+  +<Paper square elevation={2}>
+  +  <Stepper>
+  +    <Step>
+  +      <StepLabel>Hello world</StepLabel>
+  +    </Step>
+  +  </Stepper>
+  +<Paper>
+  ```
+
+  Remove the built-in 24px padding for consistency with the other components that avoid reserving space anytime it's possible.
+
+  ```diff
+  -<Stepper>
+  -  <Step>
+  -    <StepLabel>Hello world</StepLabel>
+  -  </Step>
+  -</Stepper>
+  +<Stepper style={{ padding: 24 }}>
+  +  <Step>
+  +    <StepLabel>Hello world</StepLabel>
+  +  </Step>
+  +</Stepper>
+  ```
+
+- [theme] Always return default spacing value with px units (#22552) @mbrookes
+
+  `theme.spacing` now returns single values with px units by default.
+  This change improves the integration with styled-components & emotion (with the CSS template strings syntax).
+
+  Before:
+
+  ```
+  theme.spacing(2) => 16
+  ```
+
+  After:
+
+  ```
+  theme.spacing(2) => '16px'
+  ```
+
+  You can restore the previous behavior with:
+
+  ```diff
+  -const theme = createMuiTheme();
+  +const theme = createMuiTheme({
+  +  spacing: x => x * 8,
+  +});
+  ```
+
+- [theme] Remove palette.text.hint key (#22537) @mbrookes
+
+  The `theme.palette.text.hint` key was available but unused in Material-UI v4 components.
+  You can use `adaptV4Theme()` to restore the previous behavior.
+
+#### Changes
+
+- [BottomNavigation] onClick does not fire if tapped while scrolling (#22524) @EliasJorgensen
+- [Button] Remove dead code (#22566) @oliviertassinari
+- [Chip] Fix focus visible style (#22430) @alexmotoc
+- [ImageList] Refactor using CSS grid & React context (#22395) @mbrookes
+- [Slider] Improve integration with form libraries (#22548) @NoNonsense126
+- [StepIcon] Add className in render SvgIcon (#22559) @ZouYouShun
+- [SwipeableDrawer] Avoid blocking events (#22525) @JadRizk
+- [theme] Support spacing and border radius with CSS unit (#22530) @madmanwithabike
+- [theme] Fix theme object global leak (#22517) @eps1lon
+- [theme] Increase usage of the disabled design tokens (#22570) @LorenzHenk
+
+### `@material-ui/lab@v5.0.0-alpha.10`
+
+#### Breaking changes
+
+- [Rating] Use different shape for empty and filled icons (#22554) @oliviertassinari
+  Change the default empty icon to improve accessibility (1.4.1 WCAG 2.1).
+  If you have a custom `icon` prop but no `emptyIcon` prop, you can restore the previous behavior with:
+
+  ```diff
+  <Rating
+    icon={customIcon}
+  + emptyIcon={null}
+  />
+  ```
+
+#### Changes
+
+- [Autocomplete] Improve TypeScript in the Google Maps demo (#22555) @L-U-C-K-Y
+- [Rating] Explain some styles in code comments (#22571) @eps1lon
+
+### Docs
+
+- [docs] Improve Font Awesome integration (#22496) @chrislambe
+- [docs] Clarify SSG acronym in Next.js example (#22558) @leerob
+- [docs] Add redirection for links published on npm (#22575) @oliviertassinari
+- [docs] Add LightyearVPN to showcase (#22568) @lightyearvpn
+- [docs] Fix typo, extra 'you' (#22560) @jedsmit
+- [docs] Option to disable ads (#22574) @oliviertassinari
+
+### Core
+
+- [core] Remove usage of deprecated event.keyCode (#22569) @oliviertassinari
+- [core] Remove references to other objects from created theme (#22523) @eps1lon
+- [core] Batch small changes (#22565) @oliviertassinari
+
 ## 5.0.0-alpha.9
 
 ###### _Sep 6, 2020_
