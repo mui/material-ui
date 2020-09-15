@@ -5,11 +5,11 @@ date: 2020-09-15T00:00:00.000Z
 authors: ['oliviertassinari']
 ---
 
-We are excited to share that [Marija Najdova](https://twitter.com/marijanajdova) has joined Material-UI. She has started this week full-time and is now part of the community team.
+We are excited to share that [Marija Najdova](https://twitter.com/marijanajdova) has joined Material-UI. She has started this week full-time, and is now part of the community team.
 
 Before joining Material-UI, Marija worked on the React implementation of [Fluent UI](https://www.microsoft.com/design/fluent/) at Microsoft. She's passionate about React, design systems, and component driven development. At Microsoft, as part of the Fluent UI core team since 2018, she was responsible for the icons, animations and various theme related features.
 
-I have been impressed by the dedication Marija puts into her work. She has made important changes happened even before starting, during her free time! For instance, she has recently introduced a new structure of the theme object to [add custom variants](https://next.material-ui.com/customization/components/#adding-new-component-variants) for v5:
+Marija is off to a running start, having made important changes happen during her free time, even before starting! These include a new structure for the theme object, as well as the ability to [add custom variants](https://next.material-ui.com/customization/components/#adding-new-component-variants) in v5:
 
 ```jsx
 const theme = createMuiTheme({
