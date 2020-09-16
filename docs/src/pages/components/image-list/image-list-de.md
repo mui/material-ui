@@ -1,6 +1,9 @@
 ---
 title: Grid List React Komponente
-components: ImageList, ImageListItem, ImageListItemBar, ListSubheader, IconButton
+components: ImageList, ImageListItem, ImageListItemBar
+materialDesign: https://material.io/components/image-lists
+githubLabel:
+  component: ImageList
 ---
 
 # Rasterliste (Grid List)
@@ -9,26 +12,50 @@ components: ImageList, ImageListItem, ImageListItemBar, ListSubheader, IconButto
 
 [Rasterlisten](https://material.io/design/components/image-lists.html) repräsentieren eine Sammlung von Elementen in einem sich wiederholenden Muster. Sie verbessern das visuelle Verständnis der Inhalte, die sie enthalten.
 
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
 ## Nur-Bild Raster Liste
 
-Ein einfaches Beispiel für ein scrollbare `RasterList` mit Bildern.
+Standard image lists are best for items of equal importance. They have a uniform container size, ratio, and spacing.
 
-{{"demo": "pages/components/image-list/ImageImageList.js", "hideEditButton": true}}
+{{"demo": "pages/components/image-list/StandardImageList.js"}}
 
 ## Rasterliste mit Titelleisten
 
-In diesem Beispiel wird die Verwendung der `ImageListItemBar` veranschaulicht, um jeweils eine Überlagerung zu jedem `ImageListItem`hinzuzufügen. Die Überlagerung kann einen `title`, `subtitle` und eine sekundäre Aktion aufnehmen - in diesem Beispiel ein `IconButton`.
+Quilted image lists emphasize certain items over others in a collection. They create hierarchy using varied container sizes and ratios.
 
-{{"demo": "pages/components/image-list/TitlebarImageList.js", "hideEditButton": true}}
+{{"demo": "pages/components/image-list/QuiltedImageList.js"}}
 
 ## Einzeilige Rasterliste
 
-Dieses Beispiel zeigt eine horizontale, durchlaufbare, einzeilige Rasterliste von Bildern. Horizontales Scrollen von Rasterlisten wird empfohlen, da das Scrollen typische Lesemuster stört und das Verständnis beeinträchtigt. Eine Ausnahme ist eine horizontal scrollende, einzeilige Rasterliste von Bildern, z. B. einer Galerie.
+Woven image lists use alternating container ratios to create a rhythmic layout. A woven image list is best for browsing peer content.
 
-{{"demo": "pages/components/image-list/SingleLineImageList.js", "hideEditButton": true}}
+{{"demo": "pages/components/image-list/WovenImageList.js"}}
 
 ## Erweiterte Rasterliste
 
-In diesem Beispiel werden "vorgestellte" Fliesen dargestellt, wobei die Eigenschaften `rows` und `cols` die Größe der Kacheln festlegen und der Abstand durch die `padding` Eigenschaft einstellen wird. Die Kacheln haben eine angepasste Titleleiste, an der Spitze positioniert ist und einem benutzerdefinierten Gradienten `titleBackground` hat. Die sekundäre Aktion `IconButton` befindet sich links.
+Masonry image lists use dynamically sized container heights that reflect the aspect ratio of each image. This image list is best used for browsing uncropped peer content.
 
-{{"demo": "pages/components/image-list/AdvancedImageList.js", "hideEditButton": true, "defaultCodeOpen": false}}
+{{"demo": "pages/components/image-list/MasonryImageList.js"}}
+
+## Image list with title bars
+
+In diesem Beispiel wird die Verwendung der `ImageListItemBar` veranschaulicht, um jeweils eine Überlagerung zu jedem `ImageListItem`hinzuzufügen. Die Überlagerung kann einen `title`, `subtitle` und eine sekundäre Aktion aufnehmen - in diesem Beispiel ein `IconButton`.
+
+{{"demo": "pages/components/image-list/TitlebarImageList.js"}}
+
+### Title bar below image (standard)
+
+The title bar can be placed below the image.
+
+{{"demo": "pages/components/image-list/TitlebarBelowImageList.js"}}
+
+### Title bar below image (masonry)
+
+{{"demo": "pages/components/image-list/TitlebarBelowMasonryImageList.js"}}
+
+## Custom image list
+
+In diesem Beispiel werden "vorgestellte" Fliesen dargestellt, wobei die Eigenschaften `rows` und `cols` die Größe der Kacheln festlegen und der Abstand durch die `padding` Eigenschaft einstellen wird. Die sekundäre Aktion `IconButton` befindet sich links. Die Kacheln haben eine angepasste Titleleiste, an der Spitze positioniert ist und einem benutzerdefinierten Gradienten `titleBackground` hat.
+
+{{"demo": "pages/components/image-list/CustomImageList.js", "defaultCodeOpen": false}}
