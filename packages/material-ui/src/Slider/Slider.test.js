@@ -18,6 +18,7 @@ function createTouches(touches) {
   };
 }
 
+// TODO: enable disabled tests
 describe('<Slider />', () => {
   // only run in supported browsers
   if (typeof Touch === 'undefined') {
