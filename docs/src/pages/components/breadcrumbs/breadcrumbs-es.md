@@ -1,11 +1,16 @@
 ---
 title: Componente React Migas de pan
 components: Breadcrumbs, Link, Typography
+githubLabel:
+  component: Migas de pan
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#breadcrumb'
 ---
 
 # Migas de pan
 
 <p class="description">Las Migas de pan permiten a los usuarios realizar selecciones desde un rango de valores.</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Migas de pan simples
 
@@ -33,7 +38,7 @@ En los siguientes ejemplos, estamos usando dos cadenas como separadores, y un í
 
 ## Migas de pan personalizadas
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+He aquí un ejemplo de personalización del componente. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/breadcrumbs/CustomizedBreadcrumbs.js"}}
 
