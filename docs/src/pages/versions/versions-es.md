@@ -20,7 +20,7 @@ La estabilidad asegura que componentes y librerias reutilizables, tutoriales, he
 
 This document contains the practices that are followed to provide you with a leading-edge UI library, balanced with stability, ensuring that future changes are always introduced in a predictable way.
 
-Material-UI follows [Semantic Versioning 2.0.0](https://semver.org/). Los números en la versión de Material-UI tienen tres partes: ` mayor.menor.parche`. El número de versión se incrementa en base a el nivel de cambio incluido en tal lanzamiento.
+Material-UI sigue [Versionado semántico 2.0.0](https://semver.org/). Los números en la versión de Material-UI tienen tres partes: `mayor.menor.parche`. El número de versión se incrementa en base a el nivel de cambio incluido en tal lanzamiento.
 
 - ** Lanzamientos mayores** contienen nuevas prestaciones importantes, se espera alguna o mínima asistencia por parte del desarrollador durante la actualización. Al actualizar a una nueva versión mayor, es posible que debas ejecutar los scripts de actualización, refactorizar código, ejecutar pruebas adicionales, y aprender nuevas API.
 - ** Lanzamientos menores ** contienen nuevas prestaciones importantes. Los lanzamientos menores son totalmente compatibles con versiones anteriores; no se espera asistencia del desarrollador durante la actualización, pero opcionalmente puedes modificar tus aplicaciones y librerias para comenzar a usar nuevas API, prestaciones, y capacidades que se agregaron en ese lanzamiento.
@@ -28,7 +28,7 @@ Material-UI follows [Semantic Versioning 2.0.0](https://semver.org/). Los númer
 
 ## Frecuencia de lanzamiento
 
-A regular schedule of releases helps you plan and coordinate your updates with the continuing evolution of Material-UI.
+Un programa regular de lanzamientos le ayuda a planificar y coordinar sus actualizaciones con la continua evolución de Material-UI.
 
 En general, espera el siguiente ciclo de lanzamiento:
 
@@ -38,29 +38,28 @@ En general, espera el siguiente ciclo de lanzamiento:
 
 ## Calendario de lanzamientos
 
-| Fecha          | Versión | Status   |
-|:-------------- |:------- |:-------- |
-| May 2018       | v1.0.0  | Released |
-| September 2018 | v3.0.0  | Released |
-| May 2019       | v4.0.0  | Released |
-| Q3 2020        | v5.0.0  | ⏳        |
+| Fecha              | Versión | Estado    |
+|:------------------ |:------- |:--------- |
+| Mayo de 2018       | v1.0.0  | Publicado |
+| Septiembre de 2018 | v3.0.0  | Publicado |
+| Mayo de 2019       | v4.0.0  | Publicado |
+| Q4 2020            | v5.0.0  | ⏳         |
 
-
-You can follow the [milestones](https://github.com/mui-org/material-ui/milestones) for a more detailed overview.
+Puedes seguir los [hitos](https://github.com/mui-org/material-ui/milestones) para una descripción más detallada.
 
 > ⚠️ **Disclaimer**: We operate in a dynamic environment, and things are subject to change. The information provided is intended to outline the general framework direction. It's intended for informational purposes only. We may decide to add/remove new items at any time depending on our capability to deliver while meeting our quality standards. The development, releases and timing of any features or functionality of Material-UI remains at the sole discretion of Material-UI. The roadmap does not represent a commitment, obligation or promise to deliver at any time.
 
 ## Política de soporte
 
-Find details on the [supported versions](/getting-started/support/#supported-versions).
+Encuentra detalles sobre las versiones [compatibles](/getting-started/support/#supported-versions).
 
 ## Practicas de deprecación
 
 A veces ** "cambios rompientes"**, como la remoción de soporte para algunas API y prestaciones, son necesarios.
 
-To make these transitions as easy as possible:
+Para facilitar al máximo estas transiciones:
 
-- The number of breaking changes is minimized, and migration tools provided when possible.
+- El número de cambios de ruptura se minimiza y las herramientas de migración se proporcionan cuando es posible.
 - The deprecation policy described below is followed, so that you have time to update your apps to the latest APIs and best practices.
 
 ### Deprecation policy
