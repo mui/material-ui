@@ -1,5 +1,7 @@
 ---
 title: Box React component
+githubLabel:
+  component: Cuadro
 ---
 
 # Cuadro
@@ -7,6 +9,8 @@ title: Box React component
 <p class="description">El componente Box sirve como una envoltura para la mayoría de las necesidades CSS.</p>
 
 El componente Box recoge [todas las funciones de estilo](/system/basics/#all-inclusive) que están expuesta en `@material-ui/system`. Se crea usando la función [`styled()`](/styles/api/#styled-style-function-component) de `@material-ui/core/styles`.
+
+[La función de estilo de la paleta](/system/palette/).
 
 ## Ejemplo
 
@@ -54,11 +58,10 @@ Los elementos hijo de Box aceptan una función props de render. Puede extraer el
 import Box from '@material-ui/core/Box';
 ```
 
-| Nombre                                               | Tipo                                                                                                              | Por defecto                             | Descripción                                                                                              |
-|:---------------------------------------------------- |:----------------------------------------------------------------------------------------------------------------- |:--------------------------------------- |:-------------------------------------------------------------------------------------------------------- |
-| <span class="prop-name required">hijos&nbsp;*</span> | <span class="prop-type">union:&nbsp;node&nbsp;&#124;<br />&nbsp;func<br /></span>                                 |                                         | Función de render de Box o nodo.                                                                         |
-| <span class="prop-name">clone</span>                 | <span class="prop-type">bool</span>                                                                               | <span class="prop-default">false</span> | Si `true`, el Box reciclará su elemento DOM secundario. Está usando `React.cloneElement` internamente.   |
-| <span class="prop-name">component</span>             | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br />&nbsp;func&nbsp;&#124;<br />&nbsp;object<br /></span> | <span class="prop-default">'div'</span> | El componente utilizado para el nodo raíz. Ya sea un 'string' para usar un elemento DOM o un componente. |
-
+| Nombre                                               | Tipo                                                                                                                          | Por defecto                             | Descripción                                                                                              |
+|:---------------------------------------------------- |:----------------------------------------------------------------------------------------------------------------------------- |:--------------------------------------- |:-------------------------------------------------------------------------------------------------------- |
+| <span class="prop-name required">hijos&nbsp;*</span> | <span class="prop-type">union:&nbsp;node&nbsp;&#124;<br>&nbsp;func<br></span>                                     |                                         | Función de render de Box o nodo.                                                                         |
+| <span class="prop-name">clone</span>                 | <span class="prop-type">bool</span>                                                                                           | <span class="prop-default">false</span> | Si `true`, el Box reciclará su elemento DOM secundario. Está usando `React.cloneElement` internamente.   |
+| <span class="prop-name">component</span>             | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func&nbsp;&#124;<br>&nbsp;object<br></span> | <span class="prop-default">'div'</span> | El componente utilizado para el nodo raíz. Ya sea un 'string' para usar un elemento DOM o un componente. |
 
 Cualquier otra propiedad proporcionada será utilizada por [las funciones de estilo](/system/basics/#all-inclusive) o se extenderá al elemento raíz.
