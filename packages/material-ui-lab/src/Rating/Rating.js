@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
-import { useTheme, withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import {
   capitalize,
   useForkRef,
@@ -13,16 +13,6 @@ import {
 import { visuallyHidden } from '@material-ui/system';
 import Star from '../internal/svg-icons/Star';
 import StarBorder from '../internal/svg-icons/StarBorder';
-
-function clamp(value, min, max) {
-  if (value < min) {
-    return min;
-  }
-  if (value > max) {
-    return max;
-  }
-  return value;
-}
 
 function getDecimalPrecision(num) {
   const decimalPart = num.toString().split('.')[1];
@@ -151,8 +141,6 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     name: nameProp,
     onChange,
     onChangeActive,
-    onMouseLeave,
-    onMouseMove,
     precision = 1,
     readOnly = false,
     size = 'medium',
@@ -169,7 +157,6 @@ const Rating = React.forwardRef(function Rating(props, ref) {
   });
 
   const valueRounded = roundValueToPrecision(valueDerived, precision);
-  const theme = useTheme();
   const [{ hover, focus }, setState] = React.useState({
     hover: -1,
     focus: -1,
@@ -191,60 +178,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
   } = useIsFocusVisible();
   const [focusVisible, setFocusVisible] = React.useState(false);
 
-  const rootRef = React.useRef();
-  const handleFocusRef = useForkRef(focusVisibleRef, rootRef);
-  const handleRef = useForkRef(handleFocusRef, ref);
-
-  const handleMouseMove = (event) => {
-    if (onMouseMove) {
-      onMouseMove(event);
-    }
-
-    const rootNode = rootRef.current;
-    const { right, left } = rootNode.getBoundingClientRect();
-    const { width } = rootNode.firstChild.getBoundingClientRect();
-    let percent;
-
-    if (theme.direction === 'rtl') {
-      percent = (right - event.clientX) / (width * max);
-    } else {
-      percent = (event.clientX - left) / (width * max);
-    }
-
-    let newHover = roundValueToPrecision(max * percent + precision / 2, precision);
-    newHover = clamp(newHover, precision, max);
-
-    setState((prev) =>
-      prev.hover === newHover && prev.focus === newHover
-        ? prev
-        : {
-            hover: newHover,
-            focus: newHover,
-          },
-    );
-
-    setFocusVisible(false);
-
-    if (onChangeActive && hover !== newHover) {
-      onChangeActive(event, newHover);
-    }
-  };
-
-  const handleMouseLeave = (event) => {
-    if (onMouseLeave) {
-      onMouseLeave(event);
-    }
-
-    const newHover = -1;
-    setState({
-      hover: newHover,
-      focus: newHover,
-    });
-
-    if (onChangeActive && hover !== newHover) {
-      onChangeActive(event, newHover);
-    }
-  };
+  const handleRef = useForkRef(focusVisibleRef, ref);
 
   const handleChange = (event) => {
     const newValue = parseFloat(event.target.value);
@@ -313,6 +247,33 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     }
   };
 
+  const createHandleIconEnter = (newHover) => (event) => {
+    setState((prev) =>
+      prev.hover === newHover && prev.focus === newHover
+        ? prev
+        : {
+            hover: newHover,
+            focus: newHover,
+          },
+    );
+
+    if (onChangeActive && hover !== newHover) {
+      onChangeActive(event, newHover);
+    }
+  };
+
+  const handleIconLeave = (event) => {
+    const newHover = -1;
+    setState({
+      hover: newHover,
+      focus: newHover,
+    });
+
+    if (onChangeActive && hover !== newHover) {
+      onChangeActive(event, newHover);
+    }
+  };
+
   const item = (state, labelProps) => {
     const id = `${name}-${String(state.value).replace('.', '-')}`;
     const container = (
@@ -332,7 +293,13 @@ const Rating = React.forwardRef(function Rating(props, ref) {
 
     return (
       <React.Fragment key={state.value}>
-        <label className={classes.label} htmlFor={id} {...labelProps}>
+        <label
+          className={classes.label}
+          htmlFor={id}
+          onMouseMove={createHandleIconEnter(state.value)}
+          onMouseLeave={handleIconLeave}
+          {...labelProps}
+        >
           {container}
           <span className={classes.visuallyHidden}>{getLabelText(state.value)}</span>
         </label>
@@ -357,8 +324,6 @@ const Rating = React.forwardRef(function Rating(props, ref) {
   return (
     <span
       ref={handleRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
       className={clsx(
         classes.root,
         {
@@ -532,14 +497,6 @@ Rating.propTypes = {
    * @param {number} value The new value.
    */
   onChangeActive: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onMouseLeave: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onMouseMove: PropTypes.func,
   /**
    * The minimum increment value change allowed.
    * @default 1
