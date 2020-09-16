@@ -1,6 +1,10 @@
 ---
 title: Hinweis React-Komponente
 components: Alert, AlertTitle
+githubLabel:
+  component: Hinweis
+packageName: '@material-ui/lab'
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
 ---
 
 # Hinweis
@@ -9,9 +13,11 @@ components: Alert, AlertTitle
 
 **Hinweis:** Diese Komponente ist nicht in den [Material-Design-Richtlinien](https://material.io/) dokumentiert, wird aber von Material-UI unterstützt.
 
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
 ## Einfache Hinweise
 
-Der Hinweis bietet vier Schweregrade an welche je ein eigenes Icon und eine eigene Farbe besitzen.
+Der Hinweis bietet vier Schweregrade an, welche je ein eigenes Icon und eine eigene Farbe besitzen.
 
 {{"demo": "pages/components/alert/SimpleAlerts.js"}}
 
@@ -47,7 +53,7 @@ Setting the icon prop to false will remove the icon altogether.
 
 ## Varianten
 
-Two additional variants are available – outlined, and filled:
+Zwei weitere Varianten sind verfügbar – umrandet und ausgefüllt:
 
 ### Umrandung
 
