@@ -1,18 +1,18 @@
-# Density 间距
+# Density 密度
 
-<p class="description">如何自定义间距(density)</p>
+<p class="description">如何为 Material-UI 组件设置自定义的密度。</p>
 
-## 使用 `Density`
+## 使用密度
 
-This section explains how to apply density. It doesn't cover potential use cases, or considerations for using density in your application. The Material design guidelines have a [comprehensive guide](https://material.io/design/layout/applying-density.html#typographic-density) covering these topics in more detail.
+本节解释了如何应用密度。 这不包括一些潜在的用例，也不包括在应用程序中使用密度的注意事项。 在 Material design 规范中有一个 [全面的指南](https://material.io/design/layout/applying-density.html#typographic-density)，它详细地介绍了本章的内容。
 
-## Implementing density
+## 实现密度（density）
 
-Higher density can be applied to some components via props. The component pages have at least one example using the respective component with higher density applied.
+通过给设置某些组件的属性，可以得到更大的密度。 组件页面至少有一个例子，它使用各自的组件并具有较大的密度。
 
-Depending on the component, density is applied either via lower spacing, or simply by reducing the size.
+对于不同的组件，可以通过缩小组件的间距（spacing）或简单地减小组件的尺寸（size）来应用密度。
 
-The following components have props applying higher density:
+以下组件有一些能够达到较大密度的属性：
 
 - [Button](/api/button/)
 - [Fab](/api/fab/)
@@ -28,13 +28,13 @@ The following components have props applying higher density:
 - [TextField](/api/text-field/)
 - [Toolbar](/api/toolbar/)
 
-## Explore theme density
+## 探索主题的密度
 
-This tool allows you to apply density via spacing and component props. You can browse around and see how this applies to the overall feel of Material-UI components.
+该工具允许您可以来通过 spacing 和 component 属性来应用密度。 您可以浏览一下，看看在 Material-UI 组件上使用后的整体感觉如何。
 
-If you enable high density a custom theme is applied to the docs. This theme is only for demonstration purposes. You *should not* apply this theme to your whole application as this might negatively impact user experience. The [Material design guidelines](https://material.io/design/layout/applying-density.html#typographic-density) has examples for when not to apply density.
+如果您启用了较大的密度，那么一个自定义的主题将被应用到当前的文档中。 该主题仅为演示使用。 您 _不应该_ 将此主题应用在整个应用程序中，因为这可能会对用户的体验产生一些负面影响。 在 [Material design 规范](https://material.io/design/layout/applying-density.html#typographic-density) 的示例中，列举了不应该使用密度的情景。
 
-The theme is configured with the following options:
+主题配置有以下选项：
 
 ```js
 const theme = createMuiTheme({
