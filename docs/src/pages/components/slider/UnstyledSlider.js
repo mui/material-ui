@@ -1,8 +1,8 @@
 import * as React from 'react';
 import styled from '@material-ui/styled-engine';
-import { SliderBase } from '@material-ui/core/Slider';
+import SliderUnstyled from '@material-ui/core/SliderUnstyled';
 
-const StyledSlider = styled(SliderBase)`
+const StyledSlider = styled(SliderUnstyled)`
   height: 2px;
   width: 100%;
   padding: 13px 0;
@@ -57,6 +57,6 @@ const StyledSlider = styled(SliderBase)`
   }
 `;
 
-export default function UnstyledSlider() {
+export default function StyledSliderDemo() {
   return <StyledSlider defaultValue={10} />;
 }
