@@ -1,6 +1,8 @@
 ---
 title: Portal React component
 components: Portal
+githubLabel:
+  component: Portal
 ---
 
 # Portal
@@ -10,6 +12,8 @@ components: Portal
 - 📦 [1.3 kB gzipped](/size-snapshot)
 
 Дочерние элементы портала будут добавлены внутрь элемента, указанного в свойстве `container`. The component is used internally by the [`Modal`](/components/modal/) and [`Popper`](/components/popper/) components.
+
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Пример
 
