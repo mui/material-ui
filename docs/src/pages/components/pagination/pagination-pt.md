@@ -1,11 +1,16 @@
 ---
 title: Componente React para Paginação
 components: Pagination, PaginationItem
+githubLabel:
+  component: Paginação
+packageName: '@material-ui/lab'
 ---
 
 # Paginação
 
 <p class="description">O componente de paginação permite ao usuário selecionar uma página específica a partir de um intervalo de páginas.</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Paginação básica
 
@@ -60,6 +65,8 @@ O componente `Pagination` foi projetado para paginar uma lista de itens arbitrá
 Para a paginação de um conjunto grande de dados tabulares, você deve usar o componente `TablePagination`.
 
 {{"demo": "pages/components/pagination/TablePagination.js"}}
+
+> ⚠️ Note that the `Pagination` page prop starts at 1 to match the requirement of including the value in the URL, while the `TablePagination` page prop stats at 0 to match the requirement of zero-based JavaScript arrays that comes with rendering a lot of tabular data.
 
 Você pode aprender mais sobre este caso de uso na [seção de tabela](/components/tables/#custom-pagination-options) da documentação.
 
