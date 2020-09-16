@@ -18,7 +18,7 @@ Möglicherweise müssen Sie den Stil einer Komponente für eine bestimmte Implem
 
 Die erste Möglichkeit, den Stil einer Komponente zu überschreiben, besteht in der Verwendung von **Klassennamen**. Jede Komponente stellt eine `Klassennamen` Eigenschaft bereit, die immer auf das unterste Element angewendet wird.
 
-Das obige Codebeispiel kann durch Verwendung **derselben CSS-API** als untergeordnete Komponente komprimiert werden. In diesem Beispiel injiziert die `withStyles()` höherer Ordnung Komponente eine `classes` Eigenschaft, die von der [`Button` Komponente](/api/button/#css) verwendet wird.
+In diesem Beispiel injiziert die `withStyles()` höherer Ordnung Komponente eine `classes` Eigenschaft, die von der [`Button` Komponente](/api/button/#css) verwendet wird. In diesem Beispiel injiziert die `withStyles()` höherer Ordnung Komponente eine `classes` Eigenschaft, die von der [`Button` Komponente](/api/button/#css) verwendet wird.
 
 {{"demo": "pages/customization/components/ClassNames.js"}}
 
@@ -28,7 +28,7 @@ Wenn die `Klassennamen`-Eigenschaft nicht genug ist, und Sie auf tiefere Element
 
 The list of classes for each component is documented in the component API page, you should refer to the **CSS section** and **rule name column**. Zum Beispiel können Sie sich die [ Button CSS-API](/api/button/#css) anschauen. Alternativ können Sie die [Browser-Entwicklungswerkzeuge](#using-the-dev-tools) verwenden.
 
-Das obige Codebeispiel kann durch Verwendung **derselben CSS-API** als untergeordnete Komponente komprimiert werden. In diesem Beispiel injiziert die `withStyles()` höherer Ordnung Komponente eine `classes` Eigenschaft, die von der [`Button` Komponente](/api/button/#css) verwendet wird.
+In diesem Beispiel injiziert die `withStyles()` höherer Ordnung Komponente eine `classes` Eigenschaft, die von der [`Button` Komponente](/api/button/#css) verwendet wird. In diesem Beispiel injiziert die `withStyles()` höherer Ordnung Komponente eine `classes` Eigenschaft, die von der [`Button` Komponente](/api/button/#css) verwendet wird.
 
 Beachten Sie, dass zusätzlich zum Buttonstil die Großschreibung der Buttonbeschriftung geändert wurde:
 
