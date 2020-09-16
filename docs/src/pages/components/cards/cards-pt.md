@@ -1,6 +1,9 @@
 ---
 title: Componente React para Cartão
 components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
+githubLabel:
+  component: Cartão
+materialDesign: https://material.io/components/cards
 ---
 
 # Cartão
@@ -10,6 +13,8 @@ components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedi
 [Cartões](https://material.io/design/components/cards.html) são componentes que exibem conteúdo e ações em um único tópico.
 
 Eles devem ser relevantes, de fácil verificação e apresentar informações úteis. Elementos, como texto e imagens, deve ser colocado sobre eles de uma forma que indica claramente a hierarquia.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Cartão Simples
 
@@ -25,13 +30,13 @@ Defina `variant="outlined"` para renderizar um cartão delineado.
 
 ## Interação Complexa
 
-O conteúdo do cartão pode ser expandido.
+O conteúdo do cartão pode ser expandido. (Click the downward chevron to view the recipe.)
 
 {{"demo": "pages/components/cards/RecipeReviewCard.js", "bg": true}}
 
 ## Mídia
 
-Exemplo de um cartão usando uma imagem para demonstrar a principal ideia do conteúdo.
+Exemplo de um cartão usando uma imagem para reforçar o conteúdo.
 
 {{"demo": "pages/components/cards/MediaCard.js", "bg": true}}
 
@@ -41,11 +46,11 @@ Por padrão, nós usamos uma combinação de um elemento `&lt;div&gt;` e um *bac
 
 > ⚠️ Quando `component="img"`, CardMedia depende de `object-fit` para centralizar a imagem. Não é suportado pelo IE 11.
 
-## Controles de UI
+## Controles da interface do usuário
 
 Ações suplementares dentro do cartão são explicitamente chamadas usando ícones, texto e controles de interface do usuário, normalmente colocados na parte inferior do cartão.
 
-Aqui está um exemplo de um controle de mídia do cartão.
+Aqui está um exemplo de um controle de mídia com cartão.
 
 {{"demo": "pages/components/cards/MediaControlCard.js", "bg": true}}
 
