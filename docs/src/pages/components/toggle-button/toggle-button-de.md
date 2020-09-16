@@ -1,6 +1,10 @@
 ---
 title: Schalter React Komponente
 components: ToggleButton, ToggleButtonGroup
+githubLabel:
+  component: ToggleButton
+materialDesign: 'https://material.io/components/buttons#toggle-button'
+packageName: '@material-ui/lab'
 ---
 
 # Schalter (Toggle Buttons)
@@ -8,6 +12,8 @@ components: ToggleButton, ToggleButtonGroup
 <p class="description">Schalter können verwendet werden, um verwandte Optionen zu gruppieren.</p>
 
 Um Gruppen von verwandten [Schaltern](https://material.io/components/buttons#toggle-button), hervorzuheben, sollte eine Gruppe einen gemeinsamen Container verwenden. The `ToggleButtonGroup` controls the selected state of its child buttons when given its own `value` prop.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Exclusive selection
 
