@@ -1,6 +1,9 @@
 ---
 title: Componente React Chip
 components: Chip
+githubLabel:
+  component: Chip
+materialDesign: https://material.io/components/chips
 ---
 
 # Chip
@@ -10,6 +13,8 @@ components: Chip
 [Chips](https://material.io/design/components/chips.html) permitirão que usuários insiram informações, façam seleções, filtrem conteúdo ou acionem gatilhos.
 
 Embora incluído aqui como um componente independente, o uso mais comum será em alguma forma de entrada, portanto, alguns dos comportamentos demonstrados aqui não são mostrados considerando um contexto.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Chip
 
@@ -28,7 +33,7 @@ Chips Delineados oferecem um estilo alternativo.
 
 ## Matriz de Chip (Array)
 
-Um exemplo de renderização de vários Chips em uma matriz de valores. Deletando um chip irá remove-lo da matriz. Observe que mesmo que a propriedade `onClick` não esteja definida, o Chip pode ser focado, mas não irá ganhar efeito de profundidade quando clicado ou tocado.
+Um exemplo de renderização de vários Chips a partir de uma matriz de valores. Deletando um chip irá remove-lo da matriz. Observe que mesmo que a propriedade `onClick` não esteja definida, o Chip pode ser focado, mas não irá ganhar efeito de profundidade quando clicado ou tocado.
 
 {{"demo": "pages/components/chips/ChipsArray.js", "bg": true}}
 
@@ -44,7 +49,7 @@ Você pode usar a propriedade `size` para definir um Chip pequeno.
 
 {{"demo": "pages/components/chips/SmallOutlinedChips.js"}}
 
-## Chip - Live Demo
+## Chip - Exemplo interativo
 
 {{"demo": "pages/components/chips/ChipsPlayground.js", "hideToolbar": true}}
 
