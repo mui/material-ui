@@ -573,8 +573,8 @@ describe('<Tabs />', () => {
       clock.restore();
     });
 
-    it('should call moveTabsScroll', () => {
-      const { container, setProps, getByRole } = render(
+    it('should scroll visible items', () => {
+      const { container, setProps, getByRole, getAllByRole } = render(
         <Tabs value={0} variant="scrollable" scrollButtons="on" style={{ width: 200 }}>
           <Tab />
           <Tab />
@@ -582,7 +582,11 @@ describe('<Tabs />', () => {
         </Tabs>,
       );
       const tablistContainer = getByRole('tablist').parentElement;
+      const tabs = getAllByRole('tab');
       Object.defineProperty(tablistContainer, 'clientWidth', { value: 120 });
+      Object.defineProperty(tabs[0], 'clientWidth', { value: 60 });
+      Object.defineProperty(tabs[1], 'clientWidth', { value: 50 });
+      Object.defineProperty(tabs[2], 'clientWidth', { value: 60 });
       Object.defineProperty(tablistContainer, 'scrollWidth', { value: 216 });
       tablistContainer.scrollLeft = 20;
       setProps();
@@ -597,9 +601,7 @@ describe('<Tabs />', () => {
       tablistContainer.scrollLeft = 0;
       fireEvent.click(findScrollButton(container, 'right'));
       clock.tick(1000);
-      expect(tablistContainer.scrollLeft).not.to.be.below(
-        tablistContainer.scrollWidth - tablistContainer.clientWidth,
-      );
+      expect(tablistContainer.scrollLeft).equal(60 + 50);
     });
   });
 
