@@ -20,9 +20,9 @@ const alias = {
   '@material-ui/lab': '../packages/material-ui-lab/src',
   '@material-ui/styles': '../packages/material-ui-styles/src',
   '@material-ui/styled-engine-sc': '../packages/material-ui-styled-engine-sc/src',
-  // Swap the comments on the next two lines for using styled-components as style engine
-  '@material-ui/styled-engine': '../packages/material-ui-styled-engine/src',
-  // '@material-ui/styled-engine': '../packages/material-ui-styled-engine-sc/src',
+  // Swap the comments on the next two lines for using the styled-components as style engine
+  // '@material-ui/styled-engine': '../packages/material-ui-styled-engine/src',
+  '@material-ui/styled-engine': '../packages/material-ui-styled-engine-sc/src',
   '@material-ui/system': '../packages/material-ui-system/src',
   '@material-ui/utils': '../packages/material-ui-utils/src',
   docs: './',
@@ -60,6 +60,10 @@ module.exports = {
         resolvePath,
       },
     ],
+    [
+      "babel-plugin-styled-components",
+      { "ssr": true, "displayName": true, "preprocess": false }
+    ]
   ],
   ignore: [/@babel[\\|/]runtime/], // Fix a Windows issue.
   env: {
@@ -69,6 +73,14 @@ module.exports = {
         'babel-plugin-transform-dev-warning',
         ['babel-plugin-react-remove-properties', { properties: ['data-mui-test'] }],
         ['babel-plugin-transform-react-remove-prop-types', { mode: 'remove' }],
+      ],
+    },
+    development: {
+      plugins: [
+        [
+          "babel-plugin-styled-components",
+          { "ssr": true, "displayName": true, "preprocess": false }
+        ],
       ],
     },
   },
