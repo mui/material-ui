@@ -56,10 +56,7 @@ export default function InteractiveGrid() {
             <Grid key={value} item>
               <Paper
                 className={classes.paper}
-                style={{
-                  paddingTop: (value + 1) * 10,
-                  paddingBottom: (value + 1) * 10,
-                }}
+                style={{ paddingTop: (value + 1) * 10, paddingBottom: (value + 1) * 10 }}
               >
                 {`Cell ${value + 1}`}
               </Paper>
