@@ -1,6 +1,9 @@
 ---
 title: React Icon Component
-components: Icon, SvgIcon
+components: Icones, SvgIcon
+githubLabel:
+  components: SvgIcon
+materialDesign: https://material.io/design/iconography/system-icons.html
 ---
 
 # Icônes
@@ -19,7 +22,7 @@ Material Design has standardized over 1,100 official icons, each in five differe
 
 ### Installation
 
-Install the package in your project directory with:
+Installez le package dans votre répertoire de projet avec:
 
 ```sh
 // with npm
@@ -130,7 +133,17 @@ import { ReactComponent as StarIcon } from './star.svg';
 <SvgIcon component={StarIcon} viewBox="0 0 600 476.6" />
 ```
 
-### Libraries
+### Font Awesome
+
+If you find that there are layout issues when using FontAwesomeIcon from `@fortawesome/react-fontawesome`, you may try passing the Font Awesome SVG data directly to SvgIcon. This is best implemented as a custom wrapper component but will render more reliably in Material UI components (e.g. an IconButton).
+
+[Font Awesome](https://fontawesome.com/icons) Peut être utilisé avec le composant `Icon` comme suit:
+
+{{"demo": "pages/components/icons/FontAwesomeSvgIconDemo.js"}}
+
+The `fullWidth` prop of `FontAwesomeIcon` can also be used to approximate the correct dimensions, but it isn't perfect.
+
+### Icônes de police Material
 
 #### Material Design (recommended)
 
@@ -150,7 +163,7 @@ Le composant `Icon` affichera une icône à partir de toute police d’icône pr
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 ```
 
-`Icon` will set the correct class name for the Material icon font. For other fonts, you must supply the class name using the Icon component's `className` property.
+`Icon` will set the correct class name for the Material icon font. `Icon` will set the correct class name for the Material icon font.
 
 Pour utiliser une icône, enveloppez simplement le nom de l'icône (ligature de police) avec le composant `Icon` , par exemple:
 
@@ -170,7 +183,28 @@ Par défaut, une icône héritera de la couleur de texte actuelle. Vous pouvez �
 
 [Font Awesome](https://fontawesome.com/icons) Peut être utilisé avec le composant `Icon` comme suit:
 
-{{"demo": "pages/components/icons/FontAwesome.js", "hideEditButton": true}}
+{{"demo": "pages/components/icons/FontAwesomeIcon.js"}}
+
+But note that the Font Awesome icons weren't designed like the Material Design icons (compare the two previous demos). The fa icons are cropped to use all the space available. It's recommanded to adjust for this with a global override:
+
+```jsx
+const theme = createMuiTheme({
+  components: {
+    MuiIcon: {
+      styleOverrides: {
+        root: {
+          // Match 24px = 3 * 2 + 1.125 * 16
+          boxSizing: 'content-box',
+          padding: 3,
+          fontSize: '1.125rem',
+        },
+      },
+    },
+  },
+});
+```
+
+{{"demo": "pages/components/icons/FontAwesomeIconSize.js"}}
 
 ## Font vs SVG. Which approach to use?
 
@@ -181,6 +215,7 @@ Pour plus de détails, vous pouvez voir [pourquoi GitHub a migré d'icônes de p
 ## Accessibilité
 
 Les icônes peuvent transmettre toutes sortes d'informations utiles. Il est donc important qu'elles atteignent le plus grand nombre de personnes possible. There are two use cases you’ll want to consider:
+
 - **Decorative Icons** are only being used for visual or branding reinforcement. S'ils étaient supprimés de la page, les utilisateurs comprendraient toujours et pourraient utiliser votre page.
 - **Les Icônes sémantiques** sont celles que vous utilisez pour transmettre du sens, plutôt que de simples décorations. Cela inclut les icônes sans texte adjacentes utilisées comme commandes interactives - boutons, éléments de formulaire, bascules, etc.
 
@@ -192,7 +227,7 @@ If your icons are purely decorative, you’re already done! The `aria-hidden=tru
 
 Si votre icône a une signification sémantique, il vous suffit d'ajouter une propriété `titleAccess = "meaning"` . The `role="img"` attribute and the `<title>` element are added so that your icons are properly accessible.
 
-Dans le cas d'éléments interactifs "focusable", comme avec un bouton icône, vous pouvez utiliser la propriété `aria-label`:
+Pour utiliser une icône, enveloppez simplement le nom de l'icône (ligature de police) avec le composant `Icon` , par exemple:
 
 ```jsx
 import IconButton from '@material-ui/core/IconButton';
