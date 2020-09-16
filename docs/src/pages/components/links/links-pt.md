@@ -1,10 +1,15 @@
 ---
 components: Link
+githubLabel:
+  component: Link
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#link'
 ---
 
 # Links
 
 <p class="description">O componente Link permite que você personalize facilmente elementos de âncora com suas cores de tema e estilos de tipografia.</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Links simples
 
@@ -12,10 +17,10 @@ O componente Link é construído sobre o componente [Typography](/api/typography
 
 {{"demo": "pages/components/links/Links.js"}}
 
-No entanto, o componente Link possui propriedades padrão diferentes do componente Typography:
+Quando você usa `target="_blank"` com Links, é [recomendado](https://developers.google.com/web/tools/lighthouse/audits/noopener) sempre definir `rel="noopener"` ou `rel="noreferrer"` quando conectando a conteúdo de terceiros.
 
-- `color="primary"` como o link precisa se destacar.
-- `variant="inherit"` como o link será, na maioria das vezes, usado como filho de um componente Typography.
+- A propriedade `color="primary"`, pelo fato de que o link precisa se destacar.
+- A propriedade `variant="inherit"`, já que o link será na maioria das vezes usado como filho de um componente Typography.
 
 ## Segurança
 
@@ -26,7 +31,7 @@ Quando você usa `target="_blank"` com Links, é [recomendado](https://developer
 
 ## Biblioteca de roteamento de terceiros
 
-Um caso de uso comum é executar a navegação apenas no lado do cliente, sem uma ida e volta HTTP ao servidor. O componente `Link` fornece uma propriedade para lidar com este caso: `component`.
+Uma situação comum é executar a navegação apenas no lado do cliente, sem uma ida e volta HTTP ao servidor. O componente `Link` fornece uma propriedade para lidar com este caso: `component`.
 
 Aqui está um [exemplo de integração com react-router](/guides/composition/#link).
 
