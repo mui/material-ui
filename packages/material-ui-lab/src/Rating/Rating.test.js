@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { stub, spy } from 'sinon';
+import { spy } from 'sinon';
 import {
   act,
   getClasses,
@@ -54,21 +54,18 @@ describe('<Rating />', () => {
   });
 
   it('should handle mouse hover correctly', () => {
-    const { container } = render(<Rating {...defaultProps} />);
-    stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
-      left: 0,
-      right: 100,
-    }));
-    stub(container.firstChild.firstChild, 'getBoundingClientRect').callsFake(() => ({
-      width: 20,
-    }));
-    fireEvent.mouseMove(container.firstChild, {
-      clientX: 19,
-    });
+    const { container } = render(<Rating value={2} />);
+
+    fireEvent.mouseMove(
+      document.querySelector(`label[for="${screen.getByRole('radio', { name: '1 Star' }).id}"]`),
+    );
+
     expect(container.querySelectorAll(`.${classes.iconHover}`).length).to.equal(1);
-    fireEvent.mouseMove(container.firstChild, {
-      clientX: 21,
-    });
+
+    fireEvent.mouseMove(
+      document.querySelector(`label[for="${screen.getByRole('radio', { name: '2 Stars' }).id}"]`),
+    );
+
     expect(container.querySelectorAll(`.${classes.iconHover}`).length).to.equal(2);
   });
 
