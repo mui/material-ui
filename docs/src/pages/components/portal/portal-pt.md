@@ -1,15 +1,19 @@
 ---
 title: Componente React Portal
 components: Portal
+githubLabel:
+  component: Portal
 ---
 
 # Portal
 
 <p class="description">O componente portal renderiza seus elementos filho em uma nova "subárvore" fora da hierarquia do DOM atual.</p>
 
-- 📦 [1.3 kB gzipado](/size-snapshot)
+- 📦 [1.3 kB gzipped](/size-snapshot)
 
 O filho do componente portal será adicionado ao `container` especificado. O componente é usado internamente pelos componentes [`Modal`](/components/modal/) e [`Popper`](/components/popper/).
+
+[A paleta](/system/palette/) com funções de estilo.
 
 ## Exemplo
 
