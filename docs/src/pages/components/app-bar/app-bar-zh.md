@@ -1,6 +1,9 @@
 ---
-title: React App Bar 应用栏组件
+title: React 应用栏组件
 components: AppBar, Toolbar, Menu
+githubLabel:
+  component: 一个突出的应用栏。
+materialDesign: https://material.io/components/app-bars-top
 ---
 
 # App Bar 应用栏
@@ -10,6 +13,8 @@ components: AppBar, Toolbar, Menu
 而[顶部应用栏](https://material.io/design/components/app-bars-top.html)则提供与当前屏幕相关的内容和操作。 它可用于展示品牌、屏幕标题、导航和操作选项。
 
 它既可以用作于转换为上下文相关的操作栏，又可以直接充当导航栏。
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## 简单的应用栏
 
@@ -113,9 +118,9 @@ function App() {
 
 1. `options` (*Object* [optional]):
 
-- `options.disableHysteresis` (*Boolean* [optional]): 默认值为`false`。 禁用迟滞的效果。 在决定 `trigger` 的值时会忽略在滚动的方向。
-- `options.target` （*Node* [optional]）：默认值时 `window`。
-- `options.threshold` (*Number* [optional]): 默认值是 `100`. 严格来说，当垂直滚动超过（但不包括）此阈值时，请更改 `trigger` 的值。
+   - `options.disableHysteresis` (*Boolean* [optional]): 默认值为`false`。 禁用迟滞的效果。 在决定 `trigger` 的值时会忽略在滚动的方向。
+   - `options.target` （*Node* [optional]）：默认值时 `window`。
+   - `options.threshold` (*Number* [optional]): 默认值是 `100`. 严格来说，当垂直滚动超过（但不包括）此阈值时，请更改 `trigger` 的值。 严格来说，当垂直滚动超过（但不包括）此阈值时，请更改 `trigger` 的值。
 
 #### 返回结果
 
