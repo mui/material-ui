@@ -8,6 +8,7 @@ import {
   describeConformance,
   createClientRender,
   fireEvent,
+  screen,
 } from 'test/utils';
 import Rating from './Rating';
 
@@ -110,6 +111,24 @@ describe('<Rating />', () => {
     fireEvent.click(getByRole('radio', { name: '2 Stars' }));
     checked = container.querySelector('input[name="rating-test"]:checked');
     expect(checked.value).to.equal('2');
+  });
+
+  it('has a customization point for the label of the empty value when it is active', () => {
+    const { container } = render(
+      <Rating classes={{ labelEmptyValueActive: 'customized' }} name="" value={null} />,
+    );
+
+    expect(container.querySelector('.customized')).to.equal(null);
+
+    act(() => {
+      const noValueRadio = screen.getAllByRole('radio').find((radio) => {
+        return radio.checked;
+      });
+
+      noValueRadio.focus();
+    });
+
+    expect(container.querySelector('.customized')).to.have.property('tagName', 'LABEL');
   });
 
   describe('<form> integration', () => {

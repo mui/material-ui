@@ -25,10 +25,10 @@ export interface RatingProps
     focusVisible?: string;
     /** Visually hide an element. */
     visuallyHidden?: string;
-    /** Styles applied to the label of the empty value when no value is active. */
-    labelEmptyValueActive?: string;
     /** Styles applied to the label elements. */
     label?: string;
+    /** Styles applied to the label of the "no value" input when it is active. */
+    labelEmptyValueActive?: string;
     /** Styles applied to the icon wrapping elements. */
     icon?: string;
     /** Styles applied to the icon wrapping elements when empty. */
