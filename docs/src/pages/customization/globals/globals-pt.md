@@ -6,6 +6,8 @@
 
 Quando as variáveis de configuração não são poderosas o suficiente, você pode tirar vantagem com o `overrides`, chave do `theme` para potencialmente alterar **cada estilo único** injetado por Material-UI no DOM. Esse é um recurso realmente poderoso.
 
+To override lab components styles with TypeScript, check [this documentation](/components/about-the-lab/#typescript).
+
 ```js
 const theme = createMuiTheme({
   overrides: {
@@ -23,7 +25,7 @@ const theme = createMuiTheme({
 
 {{"demo": "pages/customization/globals/GlobalCss.js"}}
 
-A lista desses pontos de customização de cada componente está documentada na seção **API do componente**. Por exemplo, você pode dar uma olhada no [Botão](/api/button/#css). Alternativamente, você pode sempre dar uma olhada na [implementação](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Button/Button.js).
+A lista desses pontos de customização de cada componente está documentada na seção **API do componente**. Por exemplo, você pode dar uma olhada no [Botão](/api/button/#css). Por exemplo, você pode dar uma olhada no [Botão](/api/button/#css).
 
 ## CSS global
 
@@ -55,6 +57,8 @@ return (
 
 Você pode alterar as propriedades padrão de todos os componentes de Material-UI. A chave `props` é exposta no `theme` para este caso de uso.
 
+To override lab components styles with TypeScript, check [this documentation](/components/about-the-lab/#typescript).
+
 ```js
 const theme = createMuiTheme({
   props: {
@@ -62,7 +66,7 @@ const theme = createMuiTheme({
     MuiButtonBase: {
       // As propriedades padrão para mudar
       disableRipple: true, // Sem efeito cascata, em toda a aplicação 💣!
-    },
+      },
   },
 });
 ```
