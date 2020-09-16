@@ -60,10 +60,6 @@ module.exports = {
         resolvePath,
       },
     ],
-    [
-      "babel-plugin-styled-components",
-      { "ssr": true, "displayName": true, "preprocess": false }
-    ]
   ],
   ignore: [/@babel[\\|/]runtime/], // Fix a Windows issue.
   env: {
@@ -73,14 +69,6 @@ module.exports = {
         'babel-plugin-transform-dev-warning',
         ['babel-plugin-react-remove-properties', { properties: ['data-mui-test'] }],
         ['babel-plugin-transform-react-remove-prop-types', { mode: 'remove' }],
-      ],
-    },
-    development: {
-      plugins: [
-        [
-          "babel-plugin-styled-components",
-          { "ssr": true, "displayName": true, "preprocess": false }
-        ],
       ],
     },
   },
