@@ -4,62 +4,63 @@ components: Typography
 
 # Typography
 
-<p class="description">Use typography to present your design and content as clearly and efficiently as possible.</p>
+<p class="description">Используйте оформление для максимально четкого и эффективного представления своего дизайна и содержания.</p>
 
-Too many type sizes and styles at once can spoil any layout. A [typographic scale](https://material.io/design/typography/#type-scale) has a limited set of type sizes that work well together along with the layout grid.
+Слишком много типов размеров и стилей одновременно могут портить любой макет. [Типографический масштаб](https://material.io/design/typography/#type-scale) имеет ограниченный набор размеров типов, которые хорошо работают вместе с макетной сеткой.
 
-## General
+## Основное
 
-The *Roboto* font will **not** be automatically loaded by Material-UI. The developer is responsible for loading all fonts used in their application. Roboto Font has a few easy ways to get started. For more advanced configuration, check out [the theme customization section](/customization/typography/).
+Шрифт *Roboto* **не будет** автоматически загружен в Material-UI. Разработчик отвечает за загрузку всех шрифтов, используемых в его приложении. Есть несколько простых способов начать использование шрифта Roboto. Для более продвинутой конфигурации ознакомьтесь с [разделом настроек темы](/customization/typography/).
 
-## Roboto Font CDN
+## Шрифт Roboto через CDN
 
-Shown below is a sample link markup used to load the Roboto font from a CDN:
+Ниже показан пример HTML-разметки, используемой для загрузки шрифта Roboto с CDN:
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
 ```
 
-## Install with npm
+## Установка используя npm
 
-You can [install it](https://www.npmjs.com/package/fontsource-roboto) by typing the below command in your terminal:
+Вы можете [установить его](https://www.npmjs.com/package/fontsource-roboto) набрав команду ниже в терминале:
 
 `npm install fontsource-roboto`
 
-Then, you can import it in your entry-point.
+Затем вы можете импортировать его в вашу точку входа.
 
 ```js
 import 'fontsource-roboto';
 ```
 
-For more info check out [Fontsource](https://github.com/DecliningLotus/fontsource/blob/master/packages/roboto/README.md).
+Для получения дополнительной информации ознакомьтесь с [Fontsource](https://github.com/DecliningLotus/fontsource/blob/master/packages/roboto/README.md).
 
-⚠️ Be careful when using this approach. Make sure your bundler doesn't eager load all the font variations (100/300/400/500/700/900, italic/regular, SVG/woff). Fontsource can be configured to load specific subsets, weights and styles. Inlining all the font files can significantly increase the size of your bundle. Material-UI default typography configuration only relies on 300, 400, 500, and 700 font weights.
+⚠️ Будьте осторожны при использовании этого подхода. Убедитесь, что ваш сборщик не загружает все вариации шрифта (100/300/400/500/700/900, italic/regular, SVG/woff). Fontsource может быть настроен на загрузку определенных подмножеств, жирности и стилей. Включение всех файлов шрифтов может значительно увеличить размер вашего итогового файла. Стандартная конфигурация оформления в стиле Material-UI зависит только от жирности шрифта: 300, 400, 500 и 700.
 
-## Component
+## Компоненты
 
 {{"demo": "pages/components/typography/Types.js"}}
 
-## Theme
+## Темы
 
-В некоторых ситуациях вы не сможете использовать компонент `Typography`. Hopefully, you might be able to take advantage of the [`typography`](/customization/default-theme/?expand-path=$.typography) keys of the theme.
+В некоторых ситуациях вы не сможете использовать компонент `Typography`. Надеемся, что вы сможете воспользоваться ключами свойства темы [` typograpthy`](/customization/default-theme/?expand-path=$.typography).
 
 {{"demo": "pages/components/typography/TypographyTheme.js"}}
 
 ## Изменение семантического элемента
 
-The Typography component uses the `variantMapping` property to associate a UI variant with a semantic element. It’s important to realize that the style of a typography is independent from the semantic underlying element.
+Компонент `Typography` использует свойство `variantMapping`, чтобы связать вариант интерфейса с семантическим элементом. Важно понимать, что стиль оформления не зависит от исходного семантического элемента.
 
-- You can change the underlying element for a one time occasion with the `component` property:
+- Вы можете изменить лежащий в основе элемент один раз с помощью свойства `component`:
 
 ```jsx
 Heading
 </Typography> {/* There is already an h1 in the page, let's not duplicate it. */}
 <Typography variant="h1" component="h2">
-  h1.
+  h1. Заголовок
+</Typography>
 ```
 
-- You can change the mapping [globally using the theme](/customization/globals/#default-props):
+- Вы можете изменить сопоставление вариантов [глобально используя тему](/customization/globals/#default-props):
 
 ```js
 const theme = createMuiTheme({
@@ -84,8 +85,8 @@ const theme = createMuiTheme({
 
 ## Доступность
 
-A few key factors to follow for an accessible typography:
+Несколько ключевых факторов для доступности оформления:
 
-- **Color**. Provide enough contrast between text and its background, check out the minimum recommended [WCAG 2.0 color contrast ratio](https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html) (4.5:1).
-- **Font size**. Use [relative units (rem)](/customization/typography/#font-size) to accommodate the user's settings.
-- **Heading hierarchy**. [Don't skip](https://www.w3.org/WAI/tutorials/page-structure/headings/) heading levels. In order to solve this problem, you need to [separate the semantics from the style](#changing-the-semantic-element).
+- **Цвет**. Предоставьте достаточный уровень контраста между текстом и его фоном, проверьте минимально рекомендованное [WCAG 2.0 цветовое соотношение контраста](https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html) (4.5:1).
+- **Размер шрифта**. Используйте [относительные единицы (rem)](/customization/typography/#font-size) для соответствия настройкам пользователя.
+- **Иерархия заголовков**. [Не пропускайте](https://www.w3.org/WAI/tutorials/page-structure/headings/) уровни заголовков. Чтобы решить эту задачу, вам нужно [отделить семантику от стиля](#changing-the-semantic-element).
