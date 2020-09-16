@@ -139,7 +139,7 @@ function getDependencies(raw, options = {}) {
     '@material-ui/styles': getMuiPackageVersion('styles', muiCommitRef),
     '@material-ui/system': getMuiPackageVersion('system', muiCommitRef),
     '@material-ui/utils': getMuiPackageVersion('utils', muiCommitRef),
-    '@material-ui/pickers': getMuiPackageVersion('pickers', muiCommitRef),
+    '@material-ui/pickers': 'next',
   };
 
   const re = /^import\s'([^']+)'|import\s[\s\S]*?\sfrom\s+'([^']+)/gm;
