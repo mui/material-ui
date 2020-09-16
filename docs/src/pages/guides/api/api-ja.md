@@ -24,7 +24,7 @@ Api設計が難しいのは、単純に見えるようにしても実際には�
 
 Props supplied to a component which are not explictly documented, are spread to the root element; for instance, the `className` property is applied to the root.
 
-ここで、`MenuItem`のリプルを無効にするとします。 スプレッド動作を利用できます。 スプレッド動作を利用できます。
+ここで、`MenuItem`のリプルを無効にするとします。 スプレッド動作を利用できます。 スプレッド動作を利用できます。 スプレッド動作を利用できます。
 
 ```jsx
 <MenuItem disableRipple />
@@ -84,7 +84,7 @@ const styles = {
 
 ### boolean vs enum
 
-コンポーネントのバリエーションのためのAPIを設計するには、次の二つのオプションがあります。*boolean*; または*enum*を使用します。 たとえば、異なるタイプのボタンを選択します。 各オプションには長所と短所があります。 たとえば、異なるタイプのボタンを選択します。 各オプションには長所と短所があります。
+コンポーネントのバリエーションのためのAPIを設計するには、次の二つのオプションがあります。*boolean*; または*enum*を使用します。 たとえば、異なるタイプのボタンを選択します。 各オプションには長所と短所があります。 たとえば、異なるタイプのボタンを選択します。 各オプションには長所と短所があります。 たとえば、異なるタイプのボタンを選択します。 各オプションには長所と短所があります。
 
 - Option 1 *boolean*:
     
@@ -105,9 +105,9 @@ const styles = {
     }
     ```
     
-    コンポーネントのバリエーションのためのAPIを設計するには、次の二つのオプションがあります。*boolean*; または*enum*を使用します。 たとえば、異なるタイプのボタンを選択します。 各オプションには長所と短所があります。
-    
     このAPIはより冗長です： `<Button>`、`<Button variant="contained">`、`<Button variant="fab">`。
+    
+    コンポーネントのバリエーションのためのAPIを設計するには、次の二つのオプションがあります。*boolean*; または*enum*を使用します。 たとえば、異なるタイプのボタンを選択します。 各オプションには長所と短所があります。
 
 Material-UIコンポーネントは、次の規則に従って2つのアプローチの組み合わせを使用します。
 
@@ -118,7 +118,7 @@ Going back to the previous button example; since it requires 3 possible values, 
 
 ### Ref
 
-` ref `はルート要素に転送されます。 `ref`はルート要素に転送されます。 This means that, without changing the rendered root element via the `component` prop, it is forwarded to the outermost DOM element which the component renders. If you pass a different component via the `component` prop, the ref will be attached to that component instead.
+`ref`はルート要素に転送されます。 `ref`はルート要素に転送されます。 This means that, without changing the rendered root element via the `component` prop, it is forwarded to the outermost DOM element which the component renders. `ref`はルート要素に転送されます。 This means that, without changing the rendered root element via the `component` prop, it is forwarded to the outermost DOM element which the component renders. If you pass a different component via the `component` prop, the ref will be attached to that component instead.
 
 ## 用語集
 
