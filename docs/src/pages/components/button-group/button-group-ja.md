@@ -1,11 +1,15 @@
 ---
 title: ButtonGroup React component
 components: Button, ButtonGroup
+githubLabel:
+  component: ButtonGroup
 ---
 
 # Button group
 
 <p class="description">The ButtonGroup component can be used to group related buttons.</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Basic button group
 
@@ -27,6 +31,6 @@ components: Button, ButtonGroup
 
 ## Disabled elevation
 
-You can remove the elevation with the `disableElevation` prop.
+`disableElevation`でシャドウを取り除けます。
 
 {{"demo": "pages/components/button-group/DisableElevation.js"}}
