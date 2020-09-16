@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
 const RltContext = React.createContext({
   rtl: false,
-  setRtl: () => {}
+  setRtl: () => {},
 });
 
 export default RltContext;

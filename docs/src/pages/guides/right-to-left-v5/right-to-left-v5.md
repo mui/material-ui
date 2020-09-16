@@ -50,8 +50,8 @@ function RTL(props) {
 If you use `styled-components` as your style engine, you can use the [StyleSheetManager](https://styled-components.com/docs/api#stylesheetmanager) and provide the stylis-plugin-rtl as an item in the `stylisPlugins` property:
 
 ```jsx
-import { StyleSheetManager } from "styled-components";
-import rtlPlugin from "stylis-plugin-rtl";
+import { StyleSheetManager } from 'styled-components';
+import rtlPlugin from 'stylis-plugin-rtl';
 
 function RTL(props) {
   return (

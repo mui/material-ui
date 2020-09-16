@@ -37,8 +37,7 @@
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/material-ui-styles/**/*.test.{js,ts,tsx}' --exclude '**/node_modules/**'",
     "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "peerDependencies": {
     "@emotion/core": "^10.0.27",
     "@emotion/styled": "^10.0.27",

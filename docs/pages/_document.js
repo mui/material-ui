@@ -1,6 +1,6 @@
 import React from 'react';
 import { ServerStyleSheets } from '@material-ui/styles';
-import { ServerStyleSheet } from 'styled-components'
+import { ServerStyleSheet } from 'styled-components';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
@@ -124,9 +124,11 @@ MyDocument.getInitialProps = async (ctx) => {
   const originalRenderPage = ctx.renderPage;
 
   try {
-    ctx.renderPage = () => originalRenderPage({
-      enhanceApp: App => props => styledComponentsSheet.collectStyles(materialSheets.collect(<App {...props} />))
-    })
+    ctx.renderPage = () =>
+      originalRenderPage({
+        enhanceApp: (App) => (props) =>
+          styledComponentsSheet.collectStyles(materialSheets.collect(<App {...props} />)),
+      });
 
     const initialProps = await Document.getInitialProps(ctx);
 
@@ -155,6 +157,6 @@ MyDocument.getInitialProps = async (ctx) => {
       ],
     };
   } finally {
-    styledComponentsSheet.seal()
+    styledComponentsSheet.seal();
   }
-}; 
+};

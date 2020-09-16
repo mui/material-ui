@@ -1,5 +1,6 @@
 import styled from '@material-ui/styled-engine';
 import { propsToClassKey } from '@material-ui/styles';
+import defaultTheme from './defaultTheme';
 
 const getStyleOverrides = (name, theme) => {
   let styleOverrides = {};
@@ -34,8 +35,8 @@ const getVariantStyles = (name, theme) => {
 
 const shouldForwardProp = (prop) => prop !== 'state' && prop !== 'theme';
 
-const muiStyled = (el, params, muiConfig) => {
-  const result = styled(el, { shouldForwardProp, ...params });
+const muiStyled = (el, styledParams, muiConfig) => {
+  const result = styled(el, { shouldForwardProp, ...styledParams });
   const muiFunc = (...params) => {
     const name = muiConfig.muiName;
 

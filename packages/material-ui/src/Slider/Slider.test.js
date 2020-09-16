@@ -2,14 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { spy, stub } from 'sinon';
 import { expect } from 'chai';
-import {
-  getClasses,
-  createMount,
-  describeConformance,
-  act,
-  createClientRender,
-  fireEvent,
-} from 'test/utils';
+import { createMount, describeConformance, act, createClientRender, fireEvent } from 'test/utils';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Slider from './Slider';
 
@@ -36,11 +29,11 @@ describe('<Slider />', () => {
   const render = createClientRender();
 
   before(() => {
-    classes = getClasses(<Slider value={0} />);
+    classes = {};
   });
 
   describeConformance(<Slider value={0} />, () => ({
-    classes,
+    classes: {},
     inheritComponent: 'span',
     mount,
     refInstanceof: window.HTMLSpanElement,

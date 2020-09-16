@@ -317,7 +317,14 @@ const getComponentProps = (components, componentsProps, name) => {
 
 const Slider = React.forwardRef(function Slider(inputProps, ref) {
   const props = useThemeProps({ props: inputProps, name: 'MuiSlider' });
-  const { components = {}, componentsProps = {}, ...other } = props;
+  const {
+    // TODO: these proptypes were not generated
+    /* eslint-disable react/prop-types */
+    components = {},
+    /* eslint-disable react/prop-types */
+    componentsProps = {},
+    ...other
+  } = props;
   return (
     <SliderUnstyled
       {...other}

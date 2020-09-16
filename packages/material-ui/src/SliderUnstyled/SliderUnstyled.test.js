@@ -1,7 +1,6 @@
 import * as React from 'react';
-import {
-  createClientRender,
-} from 'test/utils';
+import { expect } from 'chai';
+import { createClientRender } from 'test/utils';
 import SliderUnstyled from './SliderUnstyled';
 
 describe('<SliderUnstyled />', () => {
@@ -9,7 +8,7 @@ describe('<SliderUnstyled />', () => {
 
   it('should not throw when rendered', () => {
     expect(() => {
-      render(<SliderUnstyled />)
+      render(<SliderUnstyled />);
     }).not.to.throw();
   });
 });

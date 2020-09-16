@@ -151,7 +151,7 @@ const useSliderClasses = (props) => {
 
   const utilityClasses = {
     root: clsx(getUtilityClass('root'), getUtilityClass(`color${capitalize(color)}`), {
-      ['Mui-disabled']: disabled,
+      'Mui-disabled': disabled,
       [getUtilityClass('marked')]: marked,
       [getUtilityClass('vertical')]: orientation === 'vertical',
       [getUtilityClass('trackInverted')]: track === 'inverted',
@@ -163,7 +163,7 @@ const useSliderClasses = (props) => {
     markLabel: getUtilityClass('markLabel'),
     valueLabel: getUtilityClass('valueLabel'),
     thumb: clsx(getUtilityClass('thumb'), getUtilityClass(`thumbColor${capitalize(color)}`), {
-      ['Mui-disabled']: disabled,
+      'Mui-disabled': disabled,
     }),
   };
 
@@ -200,8 +200,13 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     valueLabelDisplay = 'off',
     valueLabelFormat = Identity,
     isRtl = false,
+    // TODO: these proptypes were not generated
+    /* eslint-disable react/prop-types */
     components = {},
+    /* eslint-disable react/prop-types */
     componentsProps = {},
+    /* eslint-disable react/prop-types */
+    theme,
     ...other
   } = props;
 
@@ -568,7 +573,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     ...axisProps[axis].leap(trackLeap),
   };
 
-  const Root = components.Root || 'span';
+  const Root = components.Root || Component;
   const rootProps = componentsProps.root || {};
 
   const Rail = components.Rail || 'span';
@@ -617,7 +622,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
       ref={handleRef}
       onMouseDown={handleMouseDown}
       state={isComponent(Root) ? stateAndProps : undefined}
-      theme={isComponent(Root) ? props.theme : undefined}
+      theme={isComponent(Root) ? theme : undefined}
       {...rootProps}
       {...other}
       className={clsx(utilityClasses.root, rootProps.className, className)}
@@ -697,9 +702,9 @@ const Slider = React.forwardRef(function Slider(props, ref) {
             <Thumb
               {...thumbProps}
               className={clsx(utilityClasses.thumb, thumbProps.className, {
-                ['Mui-active']: active === index,
-                ['Mui-disabled']: disabled,
-                ['Mui-focusVisible']: focusVisible === index,
+                'Mui-active': active === index,
+                'Mui-disabled': disabled,
+                'Mui-focusVisible': focusVisible === index,
               })}
               tabIndex={disabled ? null : 0}
               role="slider"

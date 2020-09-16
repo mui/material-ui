@@ -3,10 +3,10 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import styled from '@emotion/styled';
 import { ThemeProvider } from 'emotion-theming';
 
-const Root = styled('div')(props => ({
+const Root = styled('div')((props) => ({
   width: '100%',
-  marginTop: props.theme.spacing(4),
-  marginRight: props.theme.spacing(2),
+  marginTop: props.theme?.spacing(4),
+  marginRight: props.theme?.spacing(2),
 }));
 
 const AffectedText = styled('div')({
