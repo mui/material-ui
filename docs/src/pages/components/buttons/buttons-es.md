@@ -52,7 +52,7 @@ Todos los componentes aceptan un controlador `onClick` el cual se aplica al elem
 <Button onClick={() => { alert('clicked') }}>Click me</Button>
 ```
 
-Ten en cuenta que la documentación [evita](/guides/api/#native-properties) mencionar las propiedades nativas (existen varias) en la sección API de los componentes. 
+Ten en cuenta que la documentación [evita](/guides/api/#native-properties) mencionar las propiedades nativas (existen varias) en la sección API de los componentes.
 
 ## Botón de subida
 
