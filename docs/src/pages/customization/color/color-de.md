@@ -13,9 +13,9 @@ The Material Design team has also built an awesome palette configuration tool: [
 <a href="https://material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=3F51B5&secondary.color=F44336" target="_blank" rel="noopener nofollow">
   <img src="/static/images/color/colorTool.png" alt="Offizielles Farbwerkzeug" style="width: 574px" />
 </a>
-  
-  
 
+<br />
+<br />
 
 Die Ausgabe kann in die `createMuiTheme()` Funktion eingegeben werden:
 
@@ -71,7 +71,7 @@ Wenn Sie die standardmäßigen primären und / oder sekundären Farbtöne verwen
 ### Werkzeuge von der Community
 
 - [create-mui-theme](https://react-theming.github.io/create-mui-theme/): Is an online tool for creating Material-UI themes via Material Design Color Tool.
-- [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/): A tool to generate themes for your Material-UI applications by just selecting the colors and having a live preview.
+- [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/): A tool to generate themes for your Material-UI applications by just selecting the colors and having a live preview. Includes basic site templates to show various components and how they are affected by the theme
 - [Material palette generator](https://material.io/inline-tools/color/): Mit dem Material-Palettengenerator können Sie eine Palette für jede von Ihnen eingegebene Farbe erstellen.
 
 ## 2014 Material Design color palettes
@@ -85,7 +85,7 @@ These color palettes, originally created by Material Design in 2014, are compris
 
 ### Farbpalette
 
-Wenn ein *Ton* (rot, pink usw.) und eine *Schattierung* (500, 600 usw.) gegeben sind, können Sie die Farbe folgendermaßen importieren:
+Wenn ein _Ton_ (rot, pink usw.) und eine _Schattierung_ (500, 600 usw.) gegeben sind, können Sie die Farbe folgendermaßen importieren:
 
 ```jsx
 import HUE from '@material-ui/core/colors/HUE';
