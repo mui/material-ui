@@ -11,24 +11,6 @@ Before joining Material-UI, Marija worked on the React implementation of [Fluent
 
 Marija is off to a running start, having made important changes happen during her free time, even before starting! These include a new structure for the theme object, as well as the ability to [add custom variants](https://next.material-ui.com/customization/components/#adding-new-component-variants) in v5:
 
-```jsx
-const theme = createMuiTheme({
-  components: {
-    MuiButton: {
-      variants: [
-        {
-          props: { variant: 'dashed' },
-          style: {
-            textTransform: 'none',
-            border: `2px dashed grey${blue[500]}`,
-          },
-        },
-      ],
-    },
-  },
-});
-```
-
 She is now actively working on the unstyled components and [the update of the style engine](https://github.com/mui-org/material-ui/issues/22342). These are two items we've been eager to push forward since the release of v1 but that required someone to be dedicated to tackling them.
 
 The community team will continue developing the foundations on which to build great design systems. Here's a quick view of [the community roadmap](https://github.com/mui-org/material-ui/projects/25).
