@@ -4,11 +4,11 @@
 
 ## 密度を適用する
 
-This section explains how to apply density. Material design ガイドラインには、これらのトピックの詳細を説明した[comprehensive guide](https://material.io/design/layout/applying-density.html#typographic-density) があります。 It doesn't cover potential use cases, or considerations for using density in your application.
+This section explains how to apply density. Material design ガイドラインには、これらのトピックの詳細を説明した[comprehensive guide](https://material.io/design/layout/applying-density.html#typographic-density) があります。 Material design ガイドラインには、これらのトピックの詳細を説明した[comprehensive guide](https://material.io/design/layout/applying-density.html#typographic-density) があります。 It doesn't cover potential use cases, or considerations for using density in your application.
 
 ## 実装密度
 
-一部のコンポーネントには、propsを使用して高密度を適用できます。 コンポーネントページ は、より高い密度が適用されたそれぞれのコンポーネントを使用した少なくとも1つの例があります。 一部のコンポーネントには、propsを使用して高密度を適用できます。 コンポーネントページ は、より高い密度が適用されたそれぞれのコンポーネントを使用した少なくとも1つの例があります。
+一部のコンポーネントには、propsを使用して高密度を適用できます。 コンポーネントページ は、より高い密度が適用されたそれぞれのコンポーネントを使用した少なくとも1つの例があります。 一部のコンポーネントには、propsを使用して高密度を適用できます。 コンポーネントページ は、より高い密度が適用されたそれぞれのコンポーネントを使用した少なくとも1つの例があります。 一部のコンポーネントには、propsを使用して高密度を適用できます。 コンポーネントページ は、より高い密度が適用されたそれぞれのコンポーネントを使用した少なくとも1つの例があります。
 
 コンポーネントに応じて、密度は間隔を小さくするか、単純に サイズを縮小します。
 
