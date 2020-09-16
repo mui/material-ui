@@ -1,58 +1,62 @@
 ---
 title: Avatar React component
 components: Avatar, AvatarGroup, Badge
+githubLabel:
+  component: Avatar
 ---
 
 # Avatar
 
 <p class="description">Avatars(アバター) は、テーブルからダイアログメニューまで、あらゆる用途に使用されています。</p>
 
-## Image avatars
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
-Image avatars can be created by passing standard `img` props `src` or `srcSet` to the component.
+## Image avatars(画像アバター)
+
+Image Avatars(画像アバター) は通常の`img` propsである、 `src` もしくは `srcSet`をコンポーネントに渡すことで作成できます。
 
 {{"demo": "pages/components/avatars/ImageAvatars.js"}}
 
-## Letter avatars
+## Letter avatars(文字アバター)
 
-Avatars containing simple characters can be created by passing a string as `children`.
+`children`に文字列を渡すことで、シンプルな文字列を使ったアバターを作成することができます。
 
 {{"demo": "pages/components/avatars/LetterAvatars.js"}}
 
 ## サイズ
 
-You can change the size of the avatar with the `height` and `width` CSS properties.
+アバターのサイズは、 `height` と `width` の CSS プロパティで変更できます。
 
 {{"demo": "pages/components/avatars/SizeAvatars.js"}}
 
-## Icon avatars
+## Icon avatars (アイコンアバター)
 
-アイコンアバターは、 `子要素`としてアイコンを渡すことによって作成されます。
+アイコンアバターは、 `children(子要素)`としてアイコンを渡すことによって作成されます。
 
 {{"demo": "pages/components/avatars/IconAvatars.js"}}
 
 ## バリアント
 
-If you need square or rounded avatars, use the `variant` prop.
+四角形や丸いアバターを作成したい場合は、`variant` propを指定することで実現できます。
 
 {{"demo": "pages/components/avatars/VariantAvatars.js"}}
 
-## Fallbacks
+## Fallbacks (エラー回避)
 
-If there is an error loading the avatar image, the component falls back to an alternative in the following order:
+アバター画像の読み込み時に問題が発生した場合、コンポーネントは以下の順序に沿って代替手段をとります。
 
-- the provided children
-- the first letter of the `alt` text
-- a generic avatar icon
+- 指定された`children`(子要素)
+- `alt`に指定された文字列の頭文字
+- 汎用アバターアイコン
 
 {{"demo": "pages/components/avatars/FallbackAvatars.js"}}
 
 ## Grouped
 
-`AvatarGroup` renders its children as a stack.
+`AvatarGroup`は与えられた子要素をスタックとしてレンダリングします。
 
 {{"demo": "pages/components/avatars/GroupAvatars.js"}}
 
-## With badge
+## バッジをつける
 
 {{"demo": "pages/components/avatars/BadgeAvatars.js"}}
