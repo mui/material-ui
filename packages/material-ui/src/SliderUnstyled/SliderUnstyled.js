@@ -770,6 +770,7 @@ Slider.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
+   * @default {}
    */
   classes: PropTypes.object,
   /**
@@ -812,6 +813,7 @@ Slider.propTypes = {
   getAriaValueText: PropTypes.func,
   /**
    * Indicates whether the theme context has rtl direction. It is set automatically.
+   * @default false
    */
   isRtl: PropTypes.bool,
   /**

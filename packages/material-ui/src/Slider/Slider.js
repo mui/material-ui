@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { propsToClassKey } from '@material-ui/styles';
 import useThemeProps from '../styles/useThemeProps';
 import { fade, lighten, darken } from '../styles/colorManipulator';
@@ -259,6 +260,53 @@ const SliderRoot = muiStyled(
   };
 });
 
+SliderRoot.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
+  /**
+   * @ignore
+   */
+  children: PropTypes.node,
+  /**
+   * @ignore
+   */
+  state: PropTypes.shape({
+    'aria-label': PropTypes.string,
+    'aria-labelledby': PropTypes.string,
+    'aria-valuetext': PropTypes.string,
+    classes: PropTypes.object,
+    color: PropTypes.oneOf(['primary', 'secondary']),
+    defaultValue: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
+    disabled: PropTypes.bool,
+    getAriaLabel: PropTypes.func,
+    getAriaValueText: PropTypes.func,
+    isRtl: PropTypes.bool,
+    marks: PropTypes.oneOfType([
+      PropTypes.arrayOf(
+        PropTypes.shape({
+          label: PropTypes.node,
+          value: PropTypes.number.isRequired,
+        }),
+      ),
+      PropTypes.bool,
+    ]),
+    max: PropTypes.number,
+    min: PropTypes.number,
+    name: PropTypes.string,
+    onChange: PropTypes.func,
+    onChangeCommitted: PropTypes.func,
+    orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+    scale: PropTypes.func,
+    step: PropTypes.number,
+    track: PropTypes.oneOf(['inverted', 'normal', false]),
+    value: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
+    valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on']),
+    valueLabelFormat: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  }),
+};
+
 const getComponentProps = (components, componentsProps, name) => {
   const slotProps = componentsProps[name] || {};
   return {
@@ -285,5 +333,16 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
     />
   );
 });
+
+Slider.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
+  /**
+   * @ignore
+   */
+  children: PropTypes.node,
+};
 
 export default Slider;
