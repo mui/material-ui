@@ -1,6 +1,8 @@
 ---
 title: Сёдзи, компонент React
 components: Paper
+githubLabel:
+  component: Paper
 ---
 
 # Paper
@@ -8,6 +10,10 @@ components: Paper
 <p class="description">В Material Design физические свойства бумаги переводятся на экран. </p>
 
 Фон приложения напоминает плоскую непрозрачную текстуру листа бумаги, а поведение приложения имитирует способность бумаги изменять размер, перетасовывать и связывать вместе в несколько листов.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
+## Basic paper
 
 {{"demo": "pages/components/paper/SimplePaper.js", "bg": true}}
 
