@@ -1,6 +1,10 @@
 ---
 title: Componente React para Botões de opção
 components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
+githubLabel:
+  component: Botões de opção
+materialDesign: 'https://material.io/components/selection-controls#radio-buttons'
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#radiobutton'
 ---
 
 # Botões de opção
@@ -10,6 +14,8 @@ components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
 Use [botões de opção](https://material.io/design/components/selection-controls.html#radio-buttons) quando um usuário precisar ver todas as opções disponíveis. Se várias opções podem ser suprimidas da visualização, considere usar um menu suspenso (dropdown), pois ele utiliza menos espaço.
 
 Os botões de opção devem ter a opção comum e mais usada selecionada por padrão.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## RadioGroup
 
@@ -43,16 +49,38 @@ Aqui está um exemplo de customização do componente. Você pode aprender mais 
 
 {{"demo": "pages/components/radio-buttons/CustomizedRadios.js"}}
 
+## `useRadioGroup`
+
+For advanced customization use cases, a `useRadioGroup()` hook is exposed. It returns the context value of the parent radio group. The Radio component uses this hook internally.
+
+### API
+
+```jsx
+import { useRadioGroup } from '@material-ui/core/RadioGroup';
+```
+
+#### Retornos
+
+`value` (_Object_):
+
+- `value.name` (_String_ [optional]): The name used to reference the value of the control.
+- `value.onChange` (_Void_ [optional]): Callback fired when a radio button is selected.
+- `value.value` (_Any_ [optional]): Value of the selected radio button.
+
+#### Exemplo
+
+{{"demo": "pages/components/radio-buttons/UseRadioGroup.js"}}
+
 ## Quando usar
 
-- [Caixas de seleção vs. Botões de opção](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
+- [Caixas de Seleção vs. Botões de Opção](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
 
 ## Acessibilidade
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#radiobutton)
 
 - Todos os controles de formulário devem ter rótulos, e isso inclui os botões de opção, caixas de seleção e interruptores. Na maioria dos casos, isso é feito usando o elemento `<label>` ([FormControlLabel](/api/form-control-label/)).
-- Quando um rótulo não pode ser usado, é necessário adicionar um atributo diretamente no componente de entrada. Nesse caso você pode aplicar um atributo adicional (e.g.`aria-label`,`aria-labelledby`, `title`) através da propriedade `inputProps`.
+- Quando um rótulo não pode ser usado, é necessário adicionar um atributo diretamente no componente de entrada. Nesse caso você pode aplicar um atributo adicional (por exemplo, `aria-label`,`aria-labelledby`, `title`) através da propriedade `inputProps`.
 
 ```jsx
 <RadioButton
