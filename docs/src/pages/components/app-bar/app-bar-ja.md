@@ -7,9 +7,9 @@ components: AppBar, Toolbar, Menu
 
 <p class="description">App Barには、現在の画面に関する情報と操作が表示されます。</p>
 
-[top App Bar](https://material.io/design/components/app-bars-top.html) は、現在の画面に関連するコンテンツとアクションを提供します。 ブランディング、画面タイトル、ナビゲーション、およびアクションに使用されます。
+[top App Bar](https://material.io/design/components/app-bars-top.html) は、現在の画面に関連するコンテンツとアクションを提供します。 ブランディング、画面タイトル、ナビゲーション、およびアクションに使用されます。 ブランディング、画面タイトル、ナビゲーション、およびアクションに使用されます。
 
-It can transform into a contextual action bar or be used as a navbar.
+アクションバーに変換したり、ナビゲーションバーとして使うことができます。
 
 ## シンプルなアプリバー
 
@@ -37,7 +37,7 @@ It can transform into a contextual action bar or be used as a navbar.
 
 ## Prominent
 
-A prominent app bar.
+目立つアプリバー
 
 {{"demo": "pages/components/app-bar/ProminentAppBar.js", "bg": true}}
 
@@ -47,9 +47,9 @@ A prominent app bar.
 
 ## ラベルの配置
 
-アプリバーの位置を固定してレンダリングすると、要素の寸法はページの残りの部分に影響しません。 これにより、コンテンツの一部がアプリバーの背後で見えなくなる可能性があります。 以下に3つの解決策を示します。
+アプリバーの位置を固定してレンダリングすると、要素の寸法はページの残りの部分に影響しません。 これにより、コンテンツの一部がアプリバーの背後で見えなくなる可能性があります。 以下に3つの解決策を示します。 これにより、コンテンツの一部がアプリバーの背後で見えなくなる可能性があります。 以下に3つの解決策を示します。
 
-1. fixed の代わりに `position="sticky"` を使用できます。 ⚠️ stickyはIE 11ではサポートされていません。
+1. fixed の代わりに `position="sticky"` を使用できます。 fixed の代わりに `position="sticky"` を使用できます。 ⚠️ stickyはIE 11ではサポートされていません。
 2. 2番目の `<Toolbar />` コンポーネントをレンダリングできます:
 
 ```jsx
@@ -65,7 +65,7 @@ function App() {
 }
 ```
 
-3. You can use `theme.mixins.toolbar` CSS:
+3. `theme.mixins.toolbar` CSSを使えます。: 
 
 ```jsx
 const useStyles = makeStyles(theme => ({
@@ -113,7 +113,7 @@ function App() {
 
 1. `オプション` (*オプジェクト* [任意]):
 
-- `options.disableHysteresis` (*ブール値* [任意]): デフォルト値 `false`. ヒステリシスを無効にします。 ` trigger ` 値を決定するときにスクロール方向を無視します。
+- `options.disableHysteresis` (*ブール値* [任意]): デフォルト値 `false`. ヒステリシスを無効にします。 ヒステリシスを無効にします。 `trigger` 値を決定するときにスクロール方向を無視します。
 - `options.target` (*ノード* [任意]): デフォルト地 `window`.
 - `options.threshold` (*Number* [optional]): デフォルトは`100`. 垂直スクロールがこのしきい値(排他的) を厳密に超えたときに`trigger` 値を変更します。
 
