@@ -104,25 +104,40 @@ function includePeerDependencies(deps, versions) {
 }
 
 /**
+ * @param {string} packageName - The name of a package living inside this repository.
+ * @param {string} [commitRef]
+ * @return string - A valid version for a dependency entry in a package.json
+ */
+function getMuiPackageVersion(packageName, commitRef) {
+  if (commitRef === undefined) {
+    // TODO: change 'next' to 'latest' once next is merged into master.
+    return 'next';
+  }
+  const shortSha = commitRef.slice(0, 8);
+  return `https://pkg.csb.dev/mui-org/material-ui/commit/${shortSha}/@material-ui/${packageName}`;
+}
+
+/**
  * @param {string} raw - ES6 source with es module imports
- * @param {objects} options
- * @param {'JS' | 'TS'} options.codeLanguage
- * @param {'next' | 'latest'} options.reactVersion
+ * @param {object} options
+ * @param {'JS' | 'TS'} [options.codeLanguage] -
+ * @param {string} [options.muiCommitRef] - If specified use `@material-ui/*` packages from a specific commit.
+ * @param {'next' | 'latest'} [options.reactVersion]
  * @returns {Record<string, 'latest'>} map of packages with their required version
  */
 function getDependencies(raw, options = {}) {
-  const { codeLanguage = CODE_VARIANTS.JS, reactVersion = 'latest' } = options;
+  const { codeLanguage = CODE_VARIANTS.JS, muiCommitRef, reactVersion = 'latest' } = options;
 
   const deps = {};
   const versions = {
     'react-dom': reactVersion,
     react: reactVersion,
-    '@material-ui/core': 'latest',
-    '@material-ui/icons': 'latest',
-    '@material-ui/lab': 'latest',
-    '@material-ui/styles': 'latest',
-    '@material-ui/system': 'latest',
-    '@material-ui/utils': 'latest',
+    '@material-ui/core': getMuiPackageVersion('core', muiCommitRef),
+    '@material-ui/icons': getMuiPackageVersion('icons', muiCommitRef),
+    '@material-ui/lab': getMuiPackageVersion('lab', muiCommitRef),
+    '@material-ui/styles': getMuiPackageVersion('styles', muiCommitRef),
+    '@material-ui/system': getMuiPackageVersion('system', muiCommitRef),
+    '@material-ui/utils': getMuiPackageVersion('utils', muiCommitRef),
     // TODO: remove once @material-ui/pickers v4 is released.
     '@date-io/date-fns': 'v1',
   };
