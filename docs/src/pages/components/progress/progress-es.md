@@ -22,7 +22,7 @@ Al mostrar progreso para una secuencia de procesos, se indica el progreso genera
 
 ### Circular determinate
 
-{{"demo": "pages/components/progress/CircularStatic.js"}}
+{{"demo": "pages/components/progress/CircularDeterminate.js"}}
 
 ### Interactive integration
 
