@@ -1,13 +1,18 @@
 ---
-title: React Grid 栅格组件
+title: React 栅格组件
 components: Grid
+githubLabel:
+  component: Grid
+materialDesign: https://material.io/design/layout/understanding-layout.html
 ---
 
-# Grid 栅格
+# Grid
 
 <p class="description">Material Design 响应式布局的栅格可适应屏幕大小和方向，确保布局之间的一致性。</p>
 
 [Grid 栅格组件](https://material.io/design/layout/responsive-layout-grid.html)能确保不同布局间的视觉层面的舒适感，同时在众多不同设计中保持灵活性。 Material Design 的响应式 UI 是基于12列的栅格系统。
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## 它是如何工作的的呢
 
@@ -18,12 +23,13 @@ components: Grid
 - 而项目宽度以百分比设置，因此相对于其父元素，它们总是流动的和变换大小的。
 - 子元素则自带 padding 来和其他元素间隔。
 - 你可以找到五个网格断点：xs，sm，md，lg 和 xl。
+- 你可以为每个断点提供整数值，表示当视口宽度满足 [断点约束](/customization/breakpoints/#default-breakpoints) 时，12 个可用列中有多少列被组件占用。
 
-若你**对 flexbox 不太熟悉**，我们建议你阅读 [CSS-Tricks flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) 手册。
+若你对 **flexbox 不太熟悉**，我们建议你阅读 [CSS-Tricks flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) 手册。
 
-## Spacing 间距
+## Spacing（间距）
 
-响应式栅格侧重于的一致的水平间距，而不是列宽。 Material design 外边距（margins）和列（col）都遵循** 8px **的方块形基线栅格。 你可以将 spacing 的属性值设置为一个在0和10之间的整数，且并包括0和10。 默认情况下，两个网格项之间的间距遵循这样的线性函数： `output(spacing) = spacing * 8px`，例如 `spacing={2}` 会创建一个 16px 的宽间距。
+响应式栅格侧重于的一致的水平间距，而不是列宽。 Material design 外边距（margins）和列（col）都遵循 **8px** 的方块形基线栅格。 你可以将 `spacing` 的属性值设置为一个在 0 到 10 之间的整数 默认情况下，两个网格项之间的间距遵循这样的线性函数： `output(spacing) = spacing * 8px`，例如 `spacing={2}` 会创建一个 16px 的宽间距。
 
 通过[使用主题](/customization/spacing/)，该变换函数的输出是可定制的。
 
@@ -35,13 +41,17 @@ components: Grid
 
 ### 基本栅格
 
-列宽（column widths）适用于所有的断点（例如，`xs` 及大于其的值）。
+每一列的宽度是 1 到 12 之间的整数值；它们适用于任何断点，并且表明了组件占用多少列。
+
+你可以给定一个断点值来应用于比它更宽的所有其他断点（除非被覆盖，你可以在本页的后面部分阅读被覆盖后的行为）。 例如，无论组件的大小如何，`xs={12}` 都会占据整个视口的宽度。
 
 {{"demo": "pages/components/grid/CenteredGrid.js", "bg": true}}
 
 ### 有断点的栅格
 
-一些列（columns）会定义多种宽度，这会导致布局会根据事先定义的断点（breakpoint）来改变其宽度。
+一些列（columns）会定义多种宽度，这会导致布局会根据事先定义的断点（breakpoint）来改变其宽度。 你可以给较大断点指定宽度值。那么它会覆盖给较小断点指定的宽度值。
+
+例如，`xs={12} sm={6}` 表示当视口宽度为 [600 或更多像素](/customization/breakpoints/#default-breakpoints) 时，将组件的大小调整为占据视口宽度的一半（6列）。 对于较小的视口，该组件将填充所有 12 个可用的列。
 
 {{"demo": "pages/components/grid/FullWidthGrid.js", "bg": true}}
 
@@ -65,7 +75,7 @@ components: Grid
 
 ## 嵌套栅格
 
-`容器（container）`和` 项（item）`属性分别是两个独立的布尔值。 它们可以组合起来使用。
+`容器（container）`和`项（item）`属性分别是两个独立的布尔值。 它们可以组合起来使用。
 
 > 通过将计算过的将 `flex` 或 `inline-flex` 的显示赋予给一个元素，你可以生成一个 flex 的**容器（container ）** 。 Flex 容器（container）的流入子容器称为 flex ** 项（items**， 它们的布局基于 flex 布局模型。
 
@@ -82,15 +92,15 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
 1. 不使用 spacing 的特性，并且在用户层面设置成`spacing={0}`。
 2. 将间距（padding）应用于父级元素，并且将至少一半的间距值赋予子级元素：
 
-```jsx
-  <body>
-    <div style={{ padding: 20 }}>
-      <Grid container spacing={5}>
-        //...
-      </Grid>
-    </div>
-  </body>
-```
+   ```jsx
+   <body>
+     <div style={{ padding: 20 }}>
+       <Grid container spacing={5}>
+         //...
+       </Grid>
+     </div>
+   </body>
+   ```
 
 3. 将父元素设置为 `overflow-x: hidden;`。
 
@@ -103,7 +113,7 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
   <Typography noWrap>
 ```
 
-若想让子项继续在容器内展示，您需要设置 `min-width: 0`。 事实上，您也可以通过设置 `zeroMinWidth` 属性来解决这个问题：
+若想让子项继续在容器内展示，您需要设置 `min-width: 0`。 若想让子项继续在容器内展示，您需要设置 `min-width: 0`。
 
 ```jsx
 <Grid item xs zeroMinWidth>
