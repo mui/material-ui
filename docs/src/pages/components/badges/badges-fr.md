@@ -1,11 +1,15 @@
 ---
 title: Composant React Badge
 components: Badge
+githubLabel:
+  component: Badge
 ---
 
 # Badge
 
-<p class="description">Emblema gera um pequeno emblema para o canto superior direito do seu filho(s).</p>
+<p class="description">Le badge génère un petit badge en haut à droite de son enfant.</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Basic badges
 
@@ -13,9 +17,9 @@ Exemples de badges contenant du texte, utilisant les couleurs primaires et secon
 
 {{"demo": "pages/components/badges/SimpleBadge.js"}}
 
-## Badges custom
+## Badges personnalisés
 
-Voici un exemple de personnalisation du composant. You can learn more about this in the [overrides documentation page](/customization/components/).
+Voici un exemple de personnalisation du composant. Vous pouvez en apprendre plus à ce sujet dans la [page de documentation](/customization/components/).
 
 {{"demo": "pages/components/badges/CustomizedBadges.js"}}
 
@@ -25,30 +29,30 @@ La visibilité des badges peut être contrôlée à l'aide de la propriété `in
 
 {{"demo": "pages/components/badges/BadgeVisibility.js"}}
 
-Le badge se cache automatiquement quand badgeContent est nul. Vous pouvez la remplacer avec la propriété `showZero`.
+Le badge se cache automatiquement quand badgeContent est null. Vous pouvez la remplacer avec la propriété `showZero`.
 
 {{"demo": "pages/components/badges/ShowZeroBadge.js"}}
 
-## Maximum value
+## Valeur maximale
 
 Vous pouvez utiliser la propriété `max` pour limiter la valeur du contenu du badge.
 
 {{"demo": "pages/components/badges/BadgeMax.js"}}
 
-## Dot badge
+## Badge à points
 
-La propriété `dot` change un badge en petit point. Il peut être utilisé comme une notification indiquant que quelque chose a changé sans donner un nombre.
+La propriété `dot` change un badge en petit point. Cela peut être utilisé comme une notification que quelque chose a changé sans donner de compte.
 
 {{"demo": "pages/components/badges/DotBadge.js"}}
 
-## Badge overlap
+## Chevauchement des badges
 
 You can use the `overlap` property to place the badge relative to the corner of the wrapped element.
 
 {{"demo": "pages/components/badges/BadgeOverlap.js"}}
 
-## Badge alignment
+## Alignement du badge
 
-You can use the `anchorOrigin` prop to move the badge to any corner of the wrapped element.
+Vous pouvez utiliser le prop `anchorOrigin` pour déplacer le badge dans n'importe quel coin de l'élément enveloppé.
 
 {{"demo": "pages/components/badges/BadgeAlignment.js", "hideToolbar": true}}
