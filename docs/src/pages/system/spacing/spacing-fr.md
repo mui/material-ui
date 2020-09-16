@@ -92,7 +92,7 @@ const theme = {
 import { spacing } from '@material-ui/system';
 ```
 
-| Import name | Prop | CSS property                    | Theme key                                                        |
+| Import name | Prop | Propriété CSS                   | Clé du thème                                                     |
 |:----------- |:---- |:------------------------------- |:---------------------------------------------------------------- |
 | `spacing`   | `m`  | `margin`                        | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
 | `spacing`   | `mt` | `margin-top`                    | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
@@ -109,8 +109,7 @@ import { spacing } from '@material-ui/system';
 | `spacing`   | `px` | `padding-left`, `padding-right` | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
 | `spacing`   | `py` | `padding-top`, `padding-bottom` | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
 
-
-*Some people find the prop shorthand confusing, you can use the full version if you prefer:*
+_Some people find the prop shorthand confusing, you can use the full version if you prefer:_
 
 ```diff
 -<Box pt={2} />
