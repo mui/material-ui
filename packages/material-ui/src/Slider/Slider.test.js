@@ -11,7 +11,9 @@ import {
   fireEvent,
 } from 'test/utils';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import clsx from 'clsx';
 import Slider from './Slider';
+import ValueLabel from './ValueLabel';
 
 function createTouches(touches) {
   return {
@@ -516,14 +518,53 @@ describe('<Slider />', () => {
   });
 
   describe('prop: valueLabelDisplay', () => {
-    it('should always display the value label', () => {
-      const { getByRole, setProps } = render(<Slider valueLabelDisplay="auto" value={50} />);
+    it('should always display the value label according to on and off', () => {
+      const valueLabelClasses = getClasses(<ValueLabel />);
+      const { getByRole, setProps } = render(<Slider valueLabelDisplay="on" value={50} />);
       const thumb = getByRole('slider');
-      expect(thumb.textContent).to.equal('50');
+      expect(thumb).to.have.class(valueLabelClasses.open);
+
       setProps({
         valueLabelDisplay: 'off',
       });
-      expect(thumb.textContent).to.equal('');
+
+      const newThumb = getByRole('slider');
+      expect(newThumb).not.to.have.class(valueLabelClasses.open);
+    });
+
+    it('should display the value label only on hover for auto', () => {
+      const valueLabelClasses = getClasses(<ValueLabel />);
+      const { getByRole } = render(<Slider valueLabelDisplay="auto" value={50} />);
+      const thumb = getByRole('slider');
+      expect(thumb).not.to.have.class(valueLabelClasses.open);
+
+      fireEvent.mouseOver(thumb);
+
+      expect(thumb).to.have.class(valueLabelClasses.open);
+    });
+
+    it('should be respected when using custom value label', () => {
+      function ValueLabelComponent(props) {
+        const { value, open } = props;
+        return (
+          <span data-testid="value-label" className={clsx({ open })}>
+            {value}
+          </span>
+        );
+      }
+      ValueLabelComponent.propTypes = { value: PropTypes.number };
+
+      const screen = render(
+        <Slider ValueLabelComponent={ValueLabelComponent} valueLabelDisplay="on" value={50} />,
+      );
+
+      expect(screen.queryByTestId('value-label')).to.have.class('open');
+
+      screen.setProps({
+        valueLabelDisplay: 'off',
+      });
+
+      expect(screen.queryByTestId('value-label')).to.equal(null);
     });
   });
 
