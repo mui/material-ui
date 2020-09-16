@@ -1,6 +1,10 @@
 ---
 title: Tooltip React-Komponente
 components: Tooltip
+githubLabel:
+  component: Tooltip
+materialDesign: https://material.io/components/tooltips
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tooltip'
 ---
 
 # Tooltip
@@ -8,6 +12,8 @@ components: Tooltip
 <p class="description">Tooltips zeigen informativen Text an, wenn Benutzer auf ein Element zeigen, darauf fokussieren oder tippen.</p>
 
 Wenn aktiviert, zeigen [Tooltips](https://material.io/design/components/tooltips.html) eine Beschriftung an, die ein Element kennzeichnet, beispielsweise eine Beschreibung seiner Funktion.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Einfache Tooltips
 
@@ -21,7 +27,7 @@ The `Tooltip` has 12 **placements** choice. They don’t have directional arrows
 
 ## Benutzerdefinierte Tooltips
 
-Hier sind einige Beispiele, wie man die Komponente anpassen kann. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
+Hier einige Beispiele zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 
@@ -33,7 +39,7 @@ You can use the `arrow` prop to give your tooltip an arrow indicating which elem
 
 ## Benutzerdefiniertes untergeordnetes Element
 
-The tooltip needs to apply DOM event listeners to its child element. If the child is a custom React element, you need to make sure that it spreads its properties to the underlying DOM element.
+The tooltip needs to apply DOM event listeners to its child element. The tooltip needs to apply DOM event listeners to its child element.
 
 ```jsx
 const MyComponent = React.forwardRef(function MyComponent(props, ref) {
@@ -88,6 +94,11 @@ Standardmäßig lösen deaktivierte Elemente wie `<button>` keine Benutzerintera
 <Tooltip title="You don't have permission to do this">
   <span>
     <button disabled={disabled} style={disabled ? { pointerEvents: "none" } : {}}>
+      {'A disabled button'}
+    </button>
+  </span>
+</Tooltip> { pointerEvents: 'none' } : {}}
+    >
       {'A disabled button'}
     </button>
   </span>
