@@ -1,21 +1,21 @@
 ---
-title: Snackbar React component
+title: Всплывающее уведомление
 components: Snackbar, SnackbarContent
 ---
 
-# Snackbar
+# Всплывающий компонент
 
-<p class="description">Snackbars provide brief messages about app processes. The component is also known as a toast.</p>
+<p class="description">Всплывающие компоненты показывают краткие сообщения о процессах приложения. The component is also known as a toast.</p>
 
-[Snackbars](https://material.io/design/components/snackbars.html) inform users of a process that an app has performed or will perform. They appear temporarily, towards the bottom of the screen. They shouldn’t interrupt the user experience, and they don’t require user input to disappear.
+[Snackbars](https://material.io/design/components/snackbars.html) inform users of a process that an app has performed or will perform. Они времени отображаются в нижней части экрана (данное поведение можно изменить). Они не должны прерывать использование приложения пользователем, и они не требуют никаких действий для их закрытия.
 
-Snackbars contain a single line of text directly related to the operation performed. They may contain a text action, but no icons. You can use them to display notifications.
+Всплывающие компоненты содержат одну строку текста, непосредственно связанную с выполненной операцией. Они могут содержать текстовое действие, но не иконки. Вы можете использовать их для отображения уведомлений.
 
-#### Frequency
+#### Количество на странице
 
-Only one snackbar may be displayed at a time.
+В один момент на странице можно отобразить только один всплывающий компонент.
 
-## Simple snackbars
+## Простые всплывающие компоненты
 
 A basic snackbar that aims to reproduce Google Keep's snackbar behavior.
 
@@ -27,13 +27,13 @@ A basic snackbar that aims to reproduce Google Keep's snackbar behavior.
 
 {{"demo": "pages/components/snackbars/CustomizedSnackbars.js"}}
 
-## Positioned snackbars
+## Позиционированные всплывающие уведомления
 
 In wide layouts, snackbars can be left-aligned or center-aligned if they are consistently placed on the same spot at the bottom of the screen, however there may be circumstances where the placement of the snackbar needs to be more flexible. You can control the position of the snackbar by specifying the `anchorOrigin` prop.
 
 {{"demo": "pages/components/snackbars/PositionedSnackbar.js"}}
 
-## Message Length
+## Длина сообщения
 
 Some snackbars with varying message length.
 
@@ -53,15 +53,15 @@ Snackbars should appear above FABs (on mobile).
 
 {{"demo": "pages/components/snackbars/FabIntegrationSnackbar.js", "iframe": true, "maxWidth": 400}}
 
-### Изменить Transition
+### Изменение анимации
 
-[Grow](/components/transitions/#grow) is the default transition but you can use a different one.
+[Увеличение](/components/transitions/#grow) - это анимация, которая используется по умолчанию, но вы можете использовать другую анимацию.
 
 {{"demo": "pages/components/snackbars/TransitionsSnackbar.js"}}
 
 ### Control Slide direction
 
-You can change the direction of the [Slide](/components/transitions/#slide) transition.
+Вы можете изменить направление [анимации](/components/transitions/#slide).
 
 {{"demo": "pages/components/snackbars/DirectionSnackbar.js"}}
 
@@ -81,4 +81,4 @@ This example demonstrates how to use [notistack](https://github.com/iamhosseindh
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-1.1/#alert)
 
-- By default, the snackbar won't auto-hide. However, if you decide to use the `autoHideDuration` prop, it's recommended to give the user [sufficient time](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits.html) to respond.
+- По умолчанию всплывающий компонент не будет скрываться автоматически. Однако, если вы решите использовать функцию `autoHideDuration`, рекомендуется дать пользователю [достаточное время](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits.html) для реагирования.
