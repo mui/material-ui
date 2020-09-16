@@ -1,12 +1,12 @@
 # Derecha-a-izquierda
 
-<p class="description">Right-to-left languages such as Arabic, Persian or Hebrew are supported. To change the direction of Material-UI components you must follow the following steps.</p>
+<p class="description">Right-to-left languages such as Arabic, Persian or Hebrew are supported. Para cambiar la dirección de los componentes de Material-UI debe seguir los siguientes pasos.</p>
 
-## Steps
+## Pasos
 
 ### 1. HTML
 
-Make sure the `dir` attribute is set on the body, otherwise native components will break:
+Asegúrese de que el atributo `dir` está establecido en el body, de lo contrario los componentes nativos no funcionarán:
 
 ```html
 <body dir="rtl">
@@ -14,7 +14,7 @@ Make sure the `dir` attribute is set on the body, otherwise native components wi
 
 ### 2. Tema
 
-Set the direction in your custom theme:
+Establece la dirección en su tema personalizado:
 
 ```js
 const theme = createMuiTheme({
@@ -24,15 +24,15 @@ const theme = createMuiTheme({
 
 ### 3. jss-rtl
 
-You need this JSS plugin to flip the styles: [jss-rtl](https://github.com/alitaheri/jss-rtl).
+Necesitas este plugin JSS para voltear los estilos: [jss-rtl](https://github.com/alitaheri/jss-rtl).
 
 ```sh
 npm install jss-rtl
 ```
 
-Having installed the plugin in your project, Material-UI components still require it to be loaded by the jss instance, as described below. Internally, withStyles is using this JSS plugin when `direction: 'rtl'` is set on the theme. Head to the [plugin README](https://github.com/alitaheri/jss-rtl) to learn more about it.
+Después de haber instalado el plugin en su proyecto, los componentes de Material-UI todavía requieren que se cargue por la instancia jss, como se describe a continuación. Internamente, withStyles está utilizando este plugin JSS cuando `dirección: 'rtl'` está establecido en el tema. Dirígete al [plugin README](https://github.com/alitaheri/jss-rtl) para aprender más sobre él.
 
-Once you have created a new JSS instance with the plugin, you need to make it available to all the components in the component tree. The [`StylesProvider`](/styles/api/#stylesprovider) component enables this:
+Una vez que haya creado una nueva instancia JSS con el plugin, necesitará ponerla a disposición de todos los componentes del árbol de componentes. The [`StylesProvider`](/styles/api/#stylesprovider) component enables this:
 
 ```jsx
 import { create } from 'jss';
@@ -53,7 +53,7 @@ function RTL(props) {
 
 ## Demo
 
-*Use the direction toggle button on the top right corner to flip the whole documentation*
+_Utilice el botón de cambiar de dirección en la esquina superior derecha para voltear toda la documentación_
 
 {{"demo": "pages/guides/right-to-left/Direction.js"}}
 
@@ -61,6 +61,6 @@ function RTL(props) {
 
 If you want to prevent a specific rule-set from being affected by the `rtl` transformation you can add `flip: false` at the beginning.
 
-*Use the direction toggle button on the top right corner to see the effect.*
+_Use the direction toggle button on the top right corner to see the effect._
 
 {{"demo": "pages/guides/right-to-left/RtlOptOut.js", "hideEditButton": true}}
