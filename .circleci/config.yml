@@ -230,9 +230,10 @@ workflows:
       - checkout:
           filters:
             branches:
-              ignore:
-                - l10n
-                - /dependabot\//
+              only:
+                # Other branches are considered PRs
+                - master
+                - next
       - test_unit:
           requires:
             - checkout
