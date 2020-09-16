@@ -204,6 +204,7 @@ export default function CustomizedSlider() {
       <div className={classes.margin} />
       <Typography gutterBottom>Tooltip value label</Typography>
       <Slider
+        valueLabelDisplay="auto"
         ValueLabelComponent={ValueLabelComponent}
         aria-label="custom thumb label"
         defaultValue={20}
