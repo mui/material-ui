@@ -8,10 +8,11 @@ Eine Funktion, die eine [Klassennamengeneratorfunktion](https://cssinjs.org/jss-
 
 ### Parameter
 
-1. `options` (*Object* [optional]): 
-  - `options.disableGlobal ` (*Boolean* [optional]): Standardeinstellung ist `false`. Deaktivieren Sie die Generierung deterministischer Klassennamen.
-  - `options.productionPrefix` (*String* [optional]): Standardeinstellung ist ` 'jss' `. Ein String, der den Klassennamen in der Produktion vorangestellt wird.
-  - `options.seed` (*String* [optional]): Standardeinstellung ist `''`. Der String, mit der der Generator eindeutig identifiziert wird. Dies kann verwendet werden, um Klassennamenskollisionen bei Verwendung mehrerer Generatoren in einem Dokument zu vermeiden.
+1. `options` (*Object* [optional]):
+
+   - `options.disableGlobal` (*Boolean* [optional]): Standardeinstellung ist `false`. Deaktivieren Sie die Generierung deterministischer Klassennamen.
+   - `options.productionPrefix` (*String* [optional]): Standardeinstellung ist `'jss'`. Ein String, der den Klassennamen in der Produktion vorangestellt wird.
+   - `options.seed` (*String* [optional]): Standardeinstellung ist `''`. Der String, mit der der Generator eindeutig identifiziert wird. Dies kann verwendet werden, um Klassennamenskollisionen bei Verwendung mehrerer Generatoren in einem Dokument zu vermeiden.
 
 ### Rückgabewerte
 
@@ -70,11 +71,12 @@ Verknüpfen Sie ein Stylesheet mit einer Funktionskomponente mit dem **Hook** Mu
 ### Parameter
 
 1. `styles` (* Function | Object *): Eine Funktion, die die Stile oder ein Stilobjekt generiert. Es wird mit der Komponente verknüpft. Verwenden Sie die Funktionssignatur, wenn Sie Zugriff auf das Theme benötigen. Es ist das erste Argument.
-2. `options` (*Object* [optional]): 
-  - `options.defaultTheme` (*Object* [optional]): Das Standarddesign, das verwendet werden soll, wenn ein Theme nicht über einen Theme Provider bereitgestellt wird.
-  - `options.name` (*String* [optional]): Der Name des Stylesheets. Nützlich zum Debuggen.
-  - `options.flip` (*Boolean* [optional]): Wenn auf `false` gestellt, wird die `Rechts-Nach-Links` Transformation deaktiviert. Wenn es `true` ist sind die Stile invertiert. Wenn es `null` ist, folgt es der `theme.direction` Einstellung.
-  - Die anderen Schlüssel werden an das Optionsargument [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet) weitergeleitet.
+2. `options` (*Object* [optional]):
+
+- `options.defaultTheme` (*Object* [optional]): Das Standarddesign, das verwendet werden soll, wenn ein Theme nicht über einen Theme Provider bereitgestellt wird.
+- `options.name` (*String* [optional]): Der Name des Stylesheets. Nützlich zum Debuggen.
+- `options.flip` (*Boolean* [optional]): Wenn auf `false` gestellt, wird die `Rechts-Nach-Links` Transformation deaktiviert. Wenn es `true` ist sind die Stile invertiert. Wenn es `null` ist, folgt es der `theme.direction` Einstellung.
+- Die anderen Schlüssel werden an das Optionsargument [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet) weitergeleitet.
 
 ### Rückgabewerte
 
@@ -152,12 +154,13 @@ Verknüpfen Sie ein Stylesheet mit einer Funktionskomponente mit dem **styled co
 
 1. `Component`: Die Komponente, die verpackt wird.
 2. `styles` (* Function | Object *): Eine Funktion, die die Stile oder ein Stilobjekt generiert. Es wird mit der Komponente verknüpft. Verwenden Sie die Funktionssignatur, wenn Sie Zugriff auf das Theme benötigen. Es wird als Eigenschaft des ersten Arguments bereitgestellt.
-3. `options` (*Object* [optional]): 
-  - `options.defaultTheme` (*Object* [optional]): Das Standarddesign, das verwendet werden soll, wenn ein Theme nicht über einen Theme Provider bereitgestellt wird.
-  - `options.withTheme ` (*Boolean* [optional]): Standardeinstellung ist `false`. Übergeben Sie das `Theme` Objekt als Eigenschaft an die Komponente.
-  - `options.name` (*String* [optional]): Der Name des Stylesheets. Nützlich zum Debuggen. Wenn der Wert nicht angegeben wird, wird versucht, auf den Namen der Komponente zurückzugreifen.
-  - `options.flip` (*Boolean* [optional]): Wenn auf `false` gestellt, wird die `Rechts-Nach-Links` Transformation deaktiviert. Wenn es `true` ist sind die Stile invertiert. Wenn es `null` ist, folgt es der `theme.direction` Einstellung.
-  - Die anderen Schlüssel werden an das Optionsargument [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet) weitergeleitet.
+3. `options` (*Object* [optional]):
+
+- `options.defaultTheme` (*Object* [optional]): Das Standarddesign, das verwendet werden soll, wenn ein Theme nicht über einen Theme Provider bereitgestellt wird.
+- `options.withTheme` (*Boolean* [optional]): Standardeinstellung ist `false`. Übergeben Sie das `Theme` Objekt als Eigenschaft an die Komponente.
+- `options.name` (*String* [optional]): Der Name des Stylesheets. Nützlich zum Debuggen. Wenn der Wert nicht angegeben wird, wird versucht, auf den Namen der Komponente zurückzugreifen.
+- `options.flip` (*Boolean* [optional]): Wenn auf `false` gestellt, wird die `Rechts-Nach-Links` Transformation deaktiviert. Wenn es `true` ist sind die Stile invertiert. Wenn es `null` ist, folgt es der `theme.direction` Einstellung.
+- Die anderen Schlüssel werden an das Optionsargument [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet) weitergeleitet.
 
 ### Rückgabewerte
 
@@ -204,7 +207,6 @@ Es sollte vorzugsweise an der **Wurzel Ihres Komponentenbaums** verwendet werden
 | injectFirst       | bool   | false    | By default, the styles are injected last in the `<head>` element of the page. Dadurch erhalten sie eine höhere Spezifität als jedes andere Stylesheet. Wenn Sie die Stile der Material-UI überschreiben möchten, setzen Sie diese Option.                                                                                                                                   |
 | jss               | object |          | JSS-Instanz.                                                                                                                                                                                                                                                                                                                                                                      |
 
-
 ### Beispiele
 
 ```jsx
@@ -231,7 +233,6 @@ Diese Komponente hat eine `Theme` Eigenschaft. Diese wird durch den Kontext in d
 |:--------------- |:---------------------------------------- |:-------- |:------------------------------------------------------------------------------------------ |
 | children&nbsp;* | node                                     |          | Ihr Komponentenbaum.                                                                       |
 | theme&nbsp;*    | union:&nbsp;object&nbsp;&#124;&nbsp;func |          | Ein Themeobjekt. Sie können eine Funktion bereitstellen, um das äußere Theme zu erweitern. |
-
 
 ### Beispiele
 
@@ -286,12 +287,13 @@ Einige Implementierungsdetails, die interessant sein könnten:
 ### Parameter
 
 1. `styles` (* Function | Object *): Eine Funktion, die die Stile oder ein Stilobjekt generiert. Es wird mit der Komponente verknüpft. Verwenden Sie die Funktionssignatur, wenn Sie Zugriff auf das Theme benötigen. Es ist das erste Argument.
-2. `options` (*Object* [optional]): 
-  - `options.defaultTheme` (*Object* [optional]): Das Standarddesign, das verwendet werden soll, wenn ein Theme nicht über einen Theme Provider bereitgestellt wird.
-  - `options.withTheme ` (*Boolean* [optional]): Standardeinstellung ist `false`. Übergeben Sie das `Theme` Objekt als Eigenschaft an die Komponente.
-  - `options.name` (*String* [optional]): Der Name des Stylesheets. Nützlich zum Debuggen. Wenn der Wert nicht angegeben wird, wird versucht, auf den Namen der Komponente zurückzugreifen.
-  - `options.flip` (*Boolean* [optional]): Wenn auf `false` gestellt, wird die `Rechts-Nach-Links` Transformation deaktiviert. Wenn es `true` ist sind die Stile invertiert. Wenn es `null` ist, folgt es der `theme.direction` Einstellung.
-  - Die anderen Schlüssel werden an das Optionsargument [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet) weitergeleitet.
+2. `options` (*Object* [optional]):
+
+- `options.defaultTheme` (*Object* [optional]): Das Standarddesign, das verwendet werden soll, wenn ein Theme nicht über einen Theme Provider bereitgestellt wird.
+- `options.withTheme` (*Boolean* [optional]): Standardeinstellung ist `false`. Übergeben Sie das `Theme` Objekt als Eigenschaft an die Komponente.
+- `options.name` (*String* [optional]): Der Name des Stylesheets. Nützlich zum Debuggen. Wenn der Wert nicht angegeben wird, wird versucht, auf den Namen der Komponente zurückzugreifen.
+- `options.flip` (*Boolean* [optional]): Wenn auf `false` gestellt, wird die `Rechts-Nach-Links` Transformation deaktiviert. Wenn es `true` ist sind die Stile invertiert. Wenn es `null` ist, folgt es der `theme.direction` Einstellung.
+- Die anderen Schlüssel werden an das Optionsargument [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet) weitergeleitet.
 
 ### Rückgabewerte
 
