@@ -9,7 +9,6 @@ This guide aims to document the most popular alternatives, but you should find t
 - [Styled Components](#styled-components)
 - [CSS Modules](#css-modules)
 - [Emotion](#emotion)
-- [React JSS](#react-jss)
 
 ## Plain CSS
 
@@ -59,6 +58,8 @@ import { StylesProvider } from '@material-ui/core/styles';
 
 <StylesProvider injectFirst>
   {/* Your component tree.
+      */}
+</StylesProvider>
       Now, you can override Material-UI's styles. */}
 </StylesProvider>
 ```
@@ -149,6 +150,8 @@ import { StylesProvider } from '@material-ui/core/styles';
 
 <StylesProvider injectFirst>
   {/* Your component tree.
+      */}
+</StylesProvider>
       Now, you can override Material-UI's styles. */}
 </StylesProvider>
 ```
@@ -186,7 +189,6 @@ export default function StyledComponents() {
     </div>
   );
 }
-
 ```
 
 ### Controlling priority ⚠️
@@ -198,6 +200,8 @@ import { StylesProvider } from '@material-ui/core/styles';
 
 <StylesProvider injectFirst>
   {/* Your component tree.
+      */}
+</StylesProvider>
       Now, you can override Material-UI's styles. */}
 </StylesProvider>
 ```
@@ -375,6 +379,8 @@ import { StylesProvider } from '@material-ui/core/styles';
 
 <StylesProvider injectFirst>
   {/* Your component tree.
+      */}
+</StylesProvider>
       Now, you can override Material-UI's styles. */}
 </StylesProvider>
 ```
@@ -469,6 +475,8 @@ import { StylesProvider } from '@material-ui/core/styles';
 
 <StylesProvider injectFirst>
   {/* Your component tree.
+      */}
+</StylesProvider>
       Now, you can override Material-UI's styles. */}
 </StylesProvider>
 ```
