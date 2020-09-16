@@ -103,26 +103,40 @@ function includePeerDependencies(deps, versions) {
 }
 
 /**
+ * @param {string} packageName - The name of a package living inside this repository.
+ * @param {string} [commitRef]
+ * @return string - A valid version for a dependency entry in a package.json
+ */
+function getMuiPackageVersion(packageName, commitRef) {
+  if (commitRef === undefined) {
+    // TODO: change 'next' to 'latest' once next is merged into master.
+    return 'next';
+  }
+  const shortSha = commitRef.slice(0, 8);
+  return `https://pkg.csb.dev/mui-org/material-ui/commit/${shortSha}/@material-ui/${packageName}`;
+}
+
+/**
  * @param {string} raw - ES6 source with es module imports
- * @param {objects} options
- * @param {'JS' | 'TS'} options.codeLanguage
- * @param {'next' | 'latest'} options.reactVersion
+ * @param {object} options
+ * @param {'JS' | 'TS'} [options.codeLanguage] -
+ * @param {string} [options.muiCommitRef] - If specified use `@material-ui/*` packages from a specific commit.
+ * @param {'next' | 'latest'} [options.reactVersion]
  * @returns {Record<string, 'latest'>} map of packages with their required version
  */
 function getDependencies(raw, options = {}) {
-  const { codeLanguage = CODE_VARIANTS.JS, reactVersion = 'latest' } = options;
+  const { codeLanguage = CODE_VARIANTS.JS, muiCommitRef, reactVersion = 'latest' } = options;
 
   const deps = {};
   const versions = {
     'react-dom': reactVersion,
     react: reactVersion,
-    // TODO: change 'next' to 'latest' once next is merged into master.
-    '@material-ui/core': 'next',
-    '@material-ui/icons': 'next',
-    '@material-ui/lab': 'next',
-    '@material-ui/styles': 'next',
-    '@material-ui/system': 'next',
-    '@material-ui/utils': 'next',
+    '@material-ui/core': getMuiPackageVersion('core', muiCommitRef),
+    '@material-ui/icons': getMuiPackageVersion('icons', muiCommitRef),
+    '@material-ui/lab': getMuiPackageVersion('lab', muiCommitRef),
+    '@material-ui/styles': getMuiPackageVersion('styles', muiCommitRef),
+    '@material-ui/system': getMuiPackageVersion('system', muiCommitRef),
+    '@material-ui/utils': getMuiPackageVersion('utils', muiCommitRef),
     '@material-ui/pickers': 'next',
   };
 

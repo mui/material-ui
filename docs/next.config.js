@@ -33,9 +33,11 @@ module.exports = {
     const plugins = config.plugins.concat([
       new webpack.DefinePlugin({
         'process.env': {
+          COMMIT_REF: JSON.stringify(process.env.COMMIT_REF),
           ENABLE_AD: JSON.stringify(process.env.ENABLE_AD),
           GITHUB_AUTH: JSON.stringify(process.env.GITHUB_AUTH),
           LIB_VERSION: JSON.stringify(pkg.version),
+          PULL_REQUEST: JSON.stringify(process.env.PULL_REQUEST === 'true'),
           REACT_MODE: JSON.stringify(reactMode),
         },
       }),
