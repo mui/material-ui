@@ -2,17 +2,16 @@ name: 'Maintenance'
 on:
   # So that PRs touching the same files as the push are updated
   push:
-    branches-ignore:
-      # PRs are almost never based off of dependabot PRs
-      - 'dependabot/**'
+    branches:
+      - master
+      - next
   # So that the `dirtyLabel` is removed if conflicts are resolved
   # Could put too much strain on rate limit
   # If we hit the rate limit too often remove this event
   pull_request_target:
-    branches-ignore:
-      # These PRs are almost fully automated so labelling them is not as important.
-      # They do burst the GitHub API though so we're ignoring them to not hit the rate limit
-      - 'dependabot/**'
+    branches:
+      - master
+      - next
     types: [synchronize]
 
 jobs:
