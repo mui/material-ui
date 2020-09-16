@@ -1,20 +1,19 @@
 # Composição
 
-<p class="description">Material-UI tenta tornar a composição o mais fácil possível.</p>
+<p class="description">Material-UI tenta tornar a composição a mais simples possível.</p>
 
 ## Encapsulando componentes
 
-Para fornecer o máximo de flexibilidade e desempenho, precisamos de uma maneira de conhecer a natureza dos elementos filhos que um componente recebe. Para resolver esse problema, identificamos alguns dos componentes com uma propriedade estática `muiName` quando necessário.
+Para fornecer o máximo de flexibilidade e desempenho, precisamos de uma maneira de conhecer a natureza dos elementos filhos que um componente recebe. Para resolver esse problema, quando necessário, identificamos alguns dos componentes com uma propriedade estática `muiName`.
 
-Você pode, no entanto, precisar encapsular um componente para melhorá-lo, que pode entrar em conflito com a solução `muiName`. Se você encapsular um componente, verifique se este tem um conjunto de propriedades estáticas.
+Você pode, no entanto, precisar encapsular um componente para melhorá-lo, o que pode entrar em conflito com a solução `muiName`. Se você encapsular um componente, verifique se ele tem esta propriedade estática definida.
 
-Se você encontrar esse problema, precisará usar a mesma propriedade `muiName` do componente que será encapsulado no seu componente encapsulado. Além disso, você deve encaminhar as propriedades, já que o componente pai pode precisar controlar as propriedades do componente encapsulado.
+Se você se deparar com esta situação, precisará usar a mesma propriedade `muiName` do componente que será encapsulado no seu componente encapsulador. Além disso, você deve encaminhar as propriedades, já que o componente pai pode precisar controlar as propriedades do componente encapsulado.
 
 Vamos ver um exemplo:
 
 ```jsx
-const WrappedIcon = props => <Icon {...props} />;
-WrappedIcon.muiName = Icon.muiName;
+const WrappedIcon = props => <Icon {...props} />; WrappedIcon.muiName = Icon.muiName;
 ```
 
 {{"demo": "pages/guides/composition/Composition.js"}}
@@ -31,7 +30,7 @@ O componente customizado será renderizado pelo Material-UI desta forma:
 return React.createElement(props.component, props)
 ```
 
-Por exemplo, por padrão um componente `List` irá renderizar um elemento `<ul>`. Isso pode ser alterado passando um [componente React](https://reactjs.org/docs/components-and-props.html#function-and-class-components) para a propriedade `component`. O exemplo a seguir irá renderizar o componente `List` como um elemento `<nav>` como raiz:
+Por exemplo, por padrão um componente `List` irá renderizar um elemento `<ul>`. Isso pode ser alterado passando um [componente React](https://pt-br.reactjs.org/docs/components-and-props.html#function-and-class-components) para a propriedade `component`. O exemplo a seguir irá renderizar o componente `List` como um elemento `<nav>` como raiz:
 
 ```jsx
 <List component="nav">
@@ -48,7 +47,7 @@ Esse padrão é muito poderoso e permite uma grande flexibilidade, além de uma 
 
 ### Advertência com o uso de funções em linha
 
-Usando uma função em linha como um argumento para a propriedade `component` pode resultar em **desmontagem inesperada**, já que um novo componente é passado cada vez que o React renderiza. Por exemplo, se você quiser cria um `ListItem` customizado que atua como link, você poderia fazer o seguinte:
+Usando uma função em linha como um argumento para a propriedade `component` pode resultar em **desmontagem inesperada**, já que um novo componente é passado cada vez que o React renderiza. Por exemplo, se você quiser criar um `ListItem` customizado que atua como link, você poderia fazer o seguinte:
 
 ```jsx
 import { Link } from 'react-router-dom';
@@ -69,7 +68,7 @@ function ListItemLink(props) {
 }
 ```
 
-⚠️ No entanto, como estamos usando uma função em linha para alterar o componente renderizado, o React desmontará o link toda vez que o `ListItemLink` é renderizado. Não só irá o React atualizar o DOM desnecessariamente, como o efeito cascata do `ListItem` também não funcionará corretamente.
+⚠️ No entanto, como estamos usando uma função em linha para alterar o componente renderizado, o React desmontará o link toda vez que o `ListItemLink` é renderizado. O React não só irá atualizar o DOM desnecessariamente, como o efeito cascata do `ListItem` também não funcionará corretamente.
 
 A solução é simples: **evite funções em linha e passe um componente estático para a propriedade `component`**. Vamos mudar o componente `ListItemLink` para que `CustomLink` sempre referencie o mesmo componente:
 
@@ -108,7 +107,7 @@ import { Link } from 'react-router-dom';
 <ListItem button component={Link} to="/">
 ```
 
-⚠️ No entanto, esta estratégia sofre de uma limitação: colisões de propriedade. O componente que fornece a propriedade `component` (por exemplo, ListItem) pode não encaminhar todas as propriedades (por exemplo) para o elemento raiz.
+⚠️ No entanto, esta estratégia sofre de uma limitação: colisões de propriedade. O componente que fornece a propriedade `component` (por exemplo, ListItem) pode não encaminhar todas as propriedades (por exemplo uma propriedade dense) para o elemento raiz.
 
 ### Usando TypeScript
 
@@ -126,7 +125,7 @@ A integração com bibliotecas de roteamento de terceiros é resolvida com a pro
 
 {{"demo": "pages/guides/composition/LinkRouter.js"}}
 
-### List
+### Lista
 
 {{"demo": "pages/guides/composition/ListRouter.js"}}
 
@@ -134,14 +133,14 @@ A integração com bibliotecas de roteamento de terceiros é resolvida com a pro
 
 Esta seção aborda advertências ao usar um componente customizado como `children` ou para a propriedade `component`.
 
-Alguns dos componentes precisam acessar o nó DOM. Anteriormente, isso era possível usando `ReactDOM.findDOMNode`. Esta função está obsoleta em favor da utilização de `ref` e encaminhamento de ref. No entanto, apenas os seguintes tipos de componentes podem receber um `ref`:
+Alguns dos componentes precisam acessar o nó DOM. Anteriormente, isso era possível usando `ReactDOM.findDOMNode`. Esta função se tornou obsoleta em favor da utilização de `ref` e encaminhamento de ref. No entanto, apenas os seguintes tipos de componentes podem receber um `ref`:
 
 - Qualquer componente do Material-UI
-- componentes de classe, ou seja, `React.Component` ou `React.PureComponent`
+- Componentes de classe, ou seja, `React.Component` ou `React.PureComponent`
 - Componentes DOM (ou hospedeiro), por exemplo, `div` ou `button`
-- [Componentes React.forwardRef](https://reactjs.org/docs/react-api.html#reactforwardref)
-- [Componentes React.lazy](https://reactjs.org/docs/react-api.html#reactlazy)
-- [Componentes React.memo](https://reactjs.org/docs/react-api.html#reactmemo)
+- [Componentes React.forwardRef](https://pt-br.reactjs.org/docs/react-api.html#reactforwardref)
+- [Componentes React.lazy](https://pt-br.reactjs.org/docs/react-api.html#reactlazy)
+- [Componentes React.memo](https://pt-br.reactjs.org/docs/react-api.html#reactmemo)
 
 Se você não usar um dos tipos acima ao usar seus componentes em conjunto com o Material-UI, poderá ver um aviso do React no seu console semelhante a:
 
@@ -153,7 +152,7 @@ Em alguns casos, um aviso adicional é emitido para ajudar na depuração, semel
 
 > Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref.
 
-Só as duas formas de utilização mais comuns são cobertas aqui. Para mais informações, consulte [esta seção na documentação oficial do React](https://reactjs.org/docs/forwarding-refs.html).
+Só as duas formas de utilização mais comuns são cobertas aqui. Para mais informações, consulte [esta seção na documentação oficial do React](https://pt-br.reactjs.org/docs/forwarding-refs.html).
 
 ```diff
 -const MyButton = props => <div role="button" {...props} />;
@@ -162,9 +161,9 @@ Só as duas formas de utilização mais comuns são cobertas aqui. Para mais inf
 ```
 
 ```diff
--const SomeContent = props => <div {...props}>Hello, World!</div>;
+-const SomeContent = props => <div {...props}>Olá, Mundo!</div>;
 +const SomeContent = React.forwardRef((props, ref) => <div {...props} ref={ref}>Hello, World!</div>);
-<Tooltip title="Hello, again."><SomeContent /></Tooltip>;
+<Tooltip title="Olá, de novo."><SomeContent /></Tooltip>;
 ```
 
 Para descobrir se o componente de Material-UI que você está usando tem esse requisito, verifique na documentação de propriedades da API do componente. Se você precisar encaminhar refs, a descrição será vinculada a esta seção.
