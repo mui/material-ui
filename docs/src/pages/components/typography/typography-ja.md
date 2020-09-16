@@ -1,12 +1,18 @@
 ---
+title: タイポグラフィ
 components: タイポグラフィ
+githubLabel:
+  component: タイポグラフィ
+materialDesign: https://material.io/design/typography/the-type-system.html
 ---
 
 # タイポグラフィ
 
 <p class="description">タイポグラフィを使用して、デザインとコンテンツをできるだけ明確かつ効率的に表現します。</p>
 
-文字サイズとスタイルが多すぎると、レイアウトが損なわれます。 [typographic scale](https://material.io/design/typography/#type-scale) は、レイアウトグリッドとともに適切に機能する限られたタイプサイズのセットがあります。
+**Font size**. [typographic scale](https://material.io/design/typography/#type-scale) は、レイアウトグリッドとともに適切に機能する限られたタイプサイズのセットがあります。
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## 基本設定
 
@@ -32,9 +38,9 @@ components: タイポグラフィ
 import 'fontsource-roboto';
 ```
 
-For more info check out [Fontsource](https://github.com/DecliningLotus/fontsource/blob/master/packages/roboto/README.md).
+For more info check out [Fontsource](https://github.com/fontsource/fontsource).
 
-⚠️このアプローチを使用する場合は注意してください。 バンドラーがすべてのフォントバリエーション（100/300/400/500/700/900、イタリック/レギュラー、SVG / woff）を積極的に読み込まないようにしてください。 Fontsource can be configured to load specific subsets, weights and styles. すべてのフォントファイルをインライン化すると、バンドルのサイズが大幅に増加する可能性があります。 Material-UIのデフォルトのタイポグラフィ構成は、300、400、500、および700のフォントウェイトのみに依存しています。
+Fontsource can be configured to load specific subsets, weights and styles. Material-UIのデフォルトのタイポグラフィ構成は、300、400、500、および700のフォントウェイトのみに依存しています。
 
 ## Component
 
@@ -42,7 +48,7 @@ For more info check out [Fontsource](https://github.com/DecliningLotus/fontsourc
 
 ## テーマ
 
-状況によっては、 `Typography` コンポーネントを使用できない場合があります。 このテーマのe [`typography`](/customization/default-theme/?expand-path=$.typography)キーを活用できることを願っています。
+状況によっては、 `Typography` コンポーネントを使用できない場合があります。 状況によっては、 `Typography` コンポーネントを使用できない場合があります。 状況によっては、 `Typography` コンポーネントを使用できない場合があります。 このテーマのe [`typography`](/customization/default-theme/?expand-path=$.typography)キーを活用できることを願っています。
 
 {{"demo": "pages/components/typography/TypographyTheme.js"}}
 
