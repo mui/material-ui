@@ -1,31 +1,31 @@
-# 間隔
+# Spacing(間隔)
 
-<p class="description">要素の外観を変更するための、応答の短いマージンとパディングユーティリティークラス。</p>
+<p class="description">簡単に要素のmarginとpaddingをレスポンシブに変更するためのユーティリティクラスです。</p>
 
 ## 表記
 
 スペースユーティリティは、簡易マージンとパディングプロップをマージンとパディングのCSS宣言に変換します。 プロップには、`{property}{sides}`という形式で名前が付けられます。 プロップには、`{property}{sides}`という形式で名前が付けられます。
 
-Where *property* is one of:
+*property*は次のいずれかであり
 
-- `m` - for classes that set *margin*
-- `p` - for classes that set *padding*
+- `m` - *margin*を設定するためのclass
+- `p` - *padding*を設定するためのclass
 
-Where *sides* is one of:
+*sides* は次のいずれかである。
 
-- `t` - for classes that set *margin-top* or *padding-top*
-- `b` - for classes that set *margin-bottom* or *padding-bottom*
-- `l` - for classes that set *margin-left* or *padding-left*
-- `r` - for classes that set *margin-right* or *padding-right*
-- `x` - for classes that set both **-left* and **-right*
-- `y` - for classes that set both **-top* and **-bottom*
-- blank - for classes that set a margin or padding on all 4 sides of the element
+- `t` - *margin-top*もしくは *padding-top*を設定するためのclass 
+- `t` - *margin-bottom*もしくは *padding-bottom*を設定するためのclass 
+- `t` - *margin-left*もしくは *padding-left*を設定するためのclass
+- `t` - *margin-right*もしくは *padding-right*を設定するためのclass 
+- `x` - 水平方向（**-left* および **-right*）を設定するためのclass 
+- `y` - 垂直方向( **-top* および **-bottom*) を設定するためのclass
+- (指定なし) - HTML要素の四方向のmarginもしくはpaddingを設定するためのクラス
 
-## Transformation
+## 変形
 
-Depending on the input and the theme configuration, the following transformation is applied:
+入力内容とTheme (テーマ) 設定によって、以下の様に間隔の変更ができます。
 
-- input: `number` & theme: `number`: the property is multiplied by the theme value.
+- 入力: `number` & テーマ: `number`: テーマに設定された間隔を入力された数字倍に変形します。.
 
 ```jsx
 const theme = {
@@ -38,7 +38,7 @@ const theme = {
 <Box m={2} /> // margin: 16px;
 ```
 
-- input: `number` & theme: `array`: the property is value is used as the array index.
+- 入力: `number` & テーマ: `配列`: テーマに設定された値を配列としてインデックスから参照できます。
 
 ```jsx
 const theme = {
@@ -50,7 +50,7 @@ const theme = {
 <Box m={2} /> // margin: 3px;
 ```
 
-- input: `number` & theme: `function`: the function is called with the property value.
+- 入力: `number` & テーマ: `関数`: 入力された値が関数に渡され、結果をプロパティとして利用します。
 
 ```jsx
 const theme = {
@@ -61,7 +61,7 @@ const theme = {
 <Box m={2} /> // margin: 4px;
 ```
 
-- input: `string`: the property is passed as raw CSS value.
+- 入力: `string`: 入力された値はそのまま生のCSSの値として適用されます。
 
 ```jsx
 <Box m="2rem" /> // margin: 2rem;
@@ -78,7 +78,7 @@ const theme = {
 <Box p={2}>…
 ```
 
-## Horizontal centering
+## 水平方向に中央寄せする
 
 {{"demo": "pages/system/spacing/HorizontalCentering.js", "defaultCodeOpen": false, "bg": true}}
 
@@ -110,7 +110,7 @@ import { spacing } from '@material-ui/system';
 | `spacing`   | `py` | `padding-top`, `padding-bottom` | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
 
 
-*Some people find the prop shorthand confusing, you can use the full version if you prefer:*
+*もしPropsの略称が難しいと感じた場合、正称を使用することもできます。*
 
 ```diff
 -<Box pt={2} />
