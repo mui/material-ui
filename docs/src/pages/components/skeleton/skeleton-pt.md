@@ -1,6 +1,9 @@
 ---
 title: Componente React para Skeleton
 components: Skeleton
+githubLabel:
+  component: Skeleton
+packageName: '@material-ui/lab'
 ---
 
 # Skeleton
@@ -8,6 +11,10 @@ components: Skeleton
 <p class="description">Exiba uma visualização do espaço reservado de seu conteúdo antes que os dados sejam carregados, reduzindo a sensação de lentidão do tempo de carregamento.</p>
 
 Os dados dos seus componentes podem não estar imediatamente disponíveis. Você pode aumentar o desempenho percebido pelos usuários usando skeletons. Ele passa a sensação de que as coisas estão acontecendo imediatamente, então a informação é mostrada incrementalmente na tela (Cf. [Evite uso de progressos](https://www.lukew.com/ff/entry.asp?1797)).
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
+## Uso
 
 O componente é projetado para ser usado **diretamente em seus componentes**. Por exemplo:
 
@@ -53,7 +60,7 @@ Ele funciona bem quando se trata de tipografia, pois sua altura é definida usan
 
 {{"demo": "pages/components/skeleton/SkeletonTypography.js", "defaultCodeOpen": false}}
 
-Mas quando se trata de outros componentes, você pode não querer repetir a largura e a altura. Nesses casos, você pode passar componentes como `children`, e ele vai inferir a sua largura e a altura a partir deles.
+Mas quando se trata de outros componentes, você pode não querer repetir a largura e a altura. Nessas situações, você pode passar componentes como `children`, e ele vai inferir a sua largura e a altura a partir deles.
 
 ```jsx
 loading
