@@ -40,7 +40,7 @@ yarn add @material-ui/core
 
 ### Atualize a versão do React
 
-A versão miníma necessária do React foi incrementada de `react@^16.3.0` para `react@^16.8.0`. Isso nos permite a utilizar [Hooks](https://reactjs.org/docs/hooks-intro.html) (não usamos mais a API class).
+A versão miníma necessária do React foi incrementada de `react@^16.3.0` para `react@^16.8.0`. Isso nos permite a utilizar [Hooks](https://pt-br.reactjs.org/docs/hooks-intro.html) (não usamos mais a API class).
 
 ### Atualize a versão do Material-UI Styles
 
@@ -70,12 +70,12 @@ yarn add @material-ui/styles
 
 ### Estilos
 
-- ⚠️ Material-UI depende do JSS v10. JSS v10 não é compatível com o v9. Certifique-se de que o JSS v9 não esteja instalado em seu ambiente. (Remover `react-jss` do seu `package.json` pode ajudar). O componente StylesProvider substitui o componente JssProvider.
+- ⚠️ Material-UI depende do JSS v10. JSS v10 não é compatível com a v9. Certifique-se de que o JSS v9 não esteja instalado em seu ambiente. (Remover `react-jss` do seu `package.json` pode ajudar). O componente StylesProvider substitui o componente JssProvider.
 - Remova a primeira opção de argumento do `withTheme()`. (O primeiro argumento é um espaço reservado para uma opção futura potencial que nunca existiu.)
-  
-    Corresponde à [emotion API](https://emotion.sh/docs/introduction) e [styled-components API](https://www.styled-components.com).
 
-```diff
+  Corresponde à [emotion API](https://emotion.sh/docs/introduction) e [styled-components API](https://www.styled-components.com).
+
+  ```diff
   -const DeepChild = withTheme()(DeepChildRaw);
   +const DeepChild = withTheme(DeepChildRaw);
   ```
@@ -87,8 +87,7 @@ yarn add @material-ui/styles
   +import { hexToRgb } from '@material-ui/core/styles';
   ```
 
-- Escopo da [keyframes API](https://cssinjs.org/jss-syntax/#keyframes-animation). Você deve aplicar as seguintes alterações na sua base de código.
-  Ele ajuda a isolar a lógica da animação:
+- Escopo da [keyframes API](https://cssinjs.org/jss-syntax/#keyframes-animation). Você deve aplicar as seguintes alterações na sua base de código. Ele ajuda a isolar a lógica da animação:
 
   ```diff
     rippleVisible: {
@@ -108,8 +107,7 @@ yarn add @material-ui/styles
 
 ### Tema
 
-- O método` theme.palette.augmentColor () `não produz mais um efeito colateral em sua cor de entrada.
-  Para usá-lo corretamente, agora você precisa usar o valor retornado.
+- O método`theme.palette.augmentColor ()`não produz mais um efeito colateral em sua cor de entrada. Para usá-lo corretamente, agora você precisa usar o valor retornado.
 
   ```diff
   -const background = { main: color };
@@ -119,7 +117,7 @@ yarn add @material-ui/styles
   console.log({ background });
   ```
 
-- Você pode remover com segurança a próxima variante da criação de temas:
+- Você pode remover com segurança a opção `useNextVariants` do tema:
 
   ```diff
   typography: {
@@ -127,7 +125,7 @@ yarn add @material-ui/styles
   },
   ```
 
--` theme.spacing.unit` está com o uso obsoleto, você pode usar a nova API:
+- `theme.spacing.unit` está com o uso obsoleto, você pode usar a nova API:
 
   ```diff
   label: {
@@ -138,9 +136,9 @@ yarn add @material-ui/styles
   }
   ```
 
- * Dica: você pode fornecer mais de 1 argumento:` theme.spacing (1, 2) // = '8px 16px'` *.
+  Dica: você pode fornecer mais de 1 argumento:`theme.spacing (1, 2) // = '8px 16px'` *.
 
-  Você pode usar o [auxiliar de migração] (https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api) em seu projeto para tornar isso mais suave.
+  Você pode usar o \[auxiliar de migração\] (https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api) em seu projeto para tornar isso mais suave.
 
 ### Leiaute
 
@@ -149,13 +147,15 @@ yarn add @material-ui/styles
   ```diff
     /**
      * Define o espaço entre o tipo` componente do item.
-     * Só pode ser usado em um componente do tipo 'container'.
+     * Só pode ser usado em um componente do tipo `container`.
      */
   -  spacing: PropTypes.oneOf([0, 8, 16, 24, 32, 40]),
   +  spacing: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
   ```
-  Indo adiante, você pode usar o tema para implementar [uma função de transformação de espaçamento de grade customizada] (https://material-ui.com/system/spacing/#transformation).
-- [Container] Movido de `@material-ui/lab` to `@material-ui/core`.
+
+  Indo além, você pode usar o tema para implementar [uma função de transformação de espaçamento de grade customizada](https://material-ui.com/system/spacing/#transformation).
+
+- Você pode remover com segurança a próxima variante da criação de temas:
 
   ```diff
   -import Container from '@material-ui/lab/Container';
@@ -166,8 +166,7 @@ yarn add @material-ui/styles
 
 #### `value` type
 
-Tipo da propriedade `value` normalizado para os componentes de entrada utilizarem `unknown`. Isso afeta
-`InputBase`, `NativeSelect`, `OutlinedInput`, `Radio`, `RadioGroup`, `Select`, `SelectInput`, `Switch`, `TextArea`,  and `TextField`.
+Tipo da propriedade `value` normalizado para os componentes de entrada utilizarem `unknown`. Isso afeta `InputBase`, `NativeSelect`, `OutlinedInput`, `Radio`, `RadioGroup`, `Select`, `SelectInput`, `Switch`, `TextArea`,  and `TextField`.
 
 ```diff
 function MySelect({ children }) {
@@ -180,29 +179,29 @@ function MySelect({ children }) {
 }
 ```
 
-Esta alteração é explicada em mais detalhes no [guia de TypeScript](/guides/typescript/#handling-value-and-event-handlers)
+Esta alteração é explicada em mais detalhes no [guia TypeScript](/guides/typescript/#handling-value-and-event-handlers)
 
-### Botão
+### Button
 
 - [Button] Remova as variantes descontinuadas (flat, raised e fab):
-  
+
   ```diff
   -<Button variant="raised" />
   +<Button variant="contained" />
   ```
-  
+
   ```diff
   -<Button variant="flat" />
   +<Button variant="text" />
   ```
-  
+
   ```diff
   -import Button from '@material-ui/core/Button';
   -<Button variant="fab" />
   +import Fab from '@material-ui/core/Fab';
   +<Fab />
   ```
-  
+
   ```diff
   -import Button from '@material-ui/core/Button';
   -<Button variant="extendedFab" />
@@ -211,8 +210,8 @@ Esta alteração é explicada em mais detalhes no [guia de TypeScript](/guides/t
   ```
 
 - [ButtonBase] O componente passado para a propriedade `component` precisa ser capaz de lidar com ref. O [guia de composição](/guides/composition/#caveat-with-refs) explica a estratégia de migração.
-  
-    Isso também se aplica a `BottomNavigationAction`, `Button`, `CardActionArea`, `Checkbox`, `ExpansionPanelSummary`, `Fab`, `IconButton`, `MenuItem`, `Radio`, `StepButton`, `Tab`, `TableSortLabel` bem como `ListItem` se a propriedade `button` for `true`.
+
+  Isso também se aplica a `BottomNavigationAction`, `Button`, `CardActionArea`, `Checkbox`, `ExpansionPanelSummary`, `Fab`, `IconButton`, `MenuItem`, `Radio`, `StepButton`, `Tab`, `TableSortLabel` bem como `ListItem` se a propriedade `button` for `true`.
 
 ### Cartão
 
@@ -228,13 +227,13 @@ Esta alteração é explicada em mais detalhes no [guia de TypeScript](/guides/t
 
 - [DialogActions] Renomeie a propriedade `disableActionSpacing` para `disableSpacing`.
 - [DialogActions] Renomeie a classe CSS `action` para `spacing`.
-- [DialogContentText] Use a varante de tipografia `body1` em vez de `subtitle1`.
+- [DialogContentText] Use a variante de tipografia `body1` em vez de `subtitle1`.
 - [Dialog] O elemento filho precisa ser capaz de lidar com ref. O [guia de composição](/guides/composition/#caveat-with-refs) explica a estratégia de migração.
 
 ### Divider
 
 - [Divider] Remova a propriedade obsoleta `inset`.
-  
+
   ```diff
   -<Divider inset />
   +<Divider variant="inset" />
@@ -246,15 +245,15 @@ Esta alteração é explicada em mais detalhes no [guia de TypeScript](/guides/t
 - [ExpansionPanel] Aumente a especificidade CSS das regras de estilo `disabled` e `expanded`.
 - [ExpansionPanel] Renomeie a propriedade `CollapseProps` para `TransitionProps`.
 
-### List
+### Lista
 
 - [List] Refaça a lista de componentes para coincidir com a especificação:
-  
+
   - O componente `ListItemAvatar` é necessário ao usar um avatar.
   - O componente `ListItemIcon` é necessário ao usar uma caixa de seleção à esquerda.
   - A propriedade `edge` deve ser definida para botões de ícone.
-- [List] `dense` não reduz mais o espaçamento superior e inferior do elemento `List`.
 
+- [List] `dense` não reduz mais o espaçamento superior e inferior do elemento `List`.
 - [ListItem] Aumente a especificidade CSS das regras de estilo `disabled` e `focusVisible`.
 
 ### Menu
@@ -264,23 +263,22 @@ Esta alteração é explicada em mais detalhes no [guia de TypeScript](/guides/t
 ### Modal
 
 - [Modal] O elemento filho precisa ser capaz de lidar com ref. O [guia de composição](/guides/composition/#caveat-with-refs) explica a estratégia de migração.
-  
-    Isso também se aplica aos componentes `Dialog` e `Popover`.
+
+  Isso também se aplica aos componentes `Dialog` e `Popover`.
 
 - [Modal] Remova a API de customização de classes para o componente Modal (redução do tamanho do pacote -74% quando usado de forma independente).
-
 - [Modal] event.defaultPrevented é agora ignorado. A nova lógica fecha o Modal mesmo se `event.preventDefault()` é chamado no evento down da tecla escape (Esc). `event.preventDefault()` destina-se a impedir comportamentos padrão, como clicar em uma caixa de seleção para verificá-lo, apertar um botão para enviar um formulário e pressionar a seta para a esquerda para mover o cursor em uma entrada de texto, etc. Apenas elementos HTML especiais possuem esses comportamentos padrão. Você deve usar `event.stopPropagation()` se você não quer acionar o evento `onClose` no modal.
 
 ### Paper
 
 - [Paper] Reduza a elevação padrão. Altere a elevação padrão de Paper, para corresponder ao cartão e ao painel de expansão:
-  
+
   ```diff
   -<Paper />
   +<Paper elevation={2} />
   ```
-  
-    Isso afeta o componente `ExpansionPanel` também.
+
+  Isso afeta o componente `ExpansionPanel` também.
 
 ### Portal
 
@@ -293,16 +291,16 @@ Esta alteração é explicada em mais detalhes no [guia de TypeScript](/guides/t
 ### Slider
 
 - [Slider] Mova de `@material-ui/lab` para `@material-ui/core`.
-  
+
   ```diff
   -import Slider from '@material-ui/lab/Slider'
   +import Slider from '@material-ui/core/Slider'
   ```
 
-### Seletor
+### Interruptor
 
 - [Switch] Refatore a implementação para torná-la mais fácil de sobrescrever os estilos. Renomeie os nomes das classes para corresponder ao texto da especificação:
-  
+
   ```diff
   -icon
   -bar
@@ -312,28 +310,28 @@ Esta alteração é explicada em mais detalhes no [guia de TypeScript](/guides/t
 
 ### Snackbar
 
-- [Snackbar] Coincide a nova especificação.
-  
+- [Snackbar] Coincide com a nova especificação.
+
   - Modificado as dimensões
   - Modificado a transição padrão de `Slide` para `Grow`.
 
 ### SvgIcon
 
 - [SvgIcon] Renomeie nativeColor -> htmlColor. React resolveu o mesmo problema com o atributo HTML `for`, eles decidiram chamar um propriedade `htmlFor`. Essa mudança segue o mesmo raciocínio.
-  
+
   ```diff
   -<AddIcon nativeColor="#fff" />
   +<AddIcon htmlColor="#fff" />
   ```
 
-### Guias
+### Abas
 
 - [Tab] Remova as chaves de classe `labelContainer`, `label` e `labelWrapped` para simplificar. Isso nos permitiu remover 2 elementos DOM intermediários. Você deve conseguir mover os estilos customizados para chave de classe `root`.
-  
-    ![Uma estrutura DOM de item de guia mais simples](https://user-images.githubusercontent.com/3165635/53287870-53a35500-3782-11e9-9431-2d1a14a41be0.png)
+
+  ![Uma estrutura DOM de item de aba mais simples](https://user-images.githubusercontent.com/3165635/53287870-53a35500-3782-11e9-9431-2d1a14a41be0.png)
 
 - [Tabs] Remova as propriedades descontinuadas fullWidth e scrollable:
-  
+
   ```diff
   -<Tabs fullWidth scrollable />
   +<Tabs variant="scrollable" />
@@ -342,7 +340,7 @@ Esta alteração é explicada em mais detalhes no [guia de TypeScript](/guides/t
 ### Table
 
 - [TableCell] Remova a propriedade descontinuada `numeric`:
-  
+
   ```diff
   -<TableCell numeric>{row.calories}</TableCell>
   +<TableCell align="right">{row.calories}</TableCell>
@@ -350,7 +348,7 @@ Esta alteração é explicada em mais detalhes no [guia de TypeScript](/guides/t
 
 - [TableRow] Remova a propriedade CSS de altura fixa. A altura da célula é calculada pelo navegador usando o preenchimento e a altura da linha.
 - [TableCell] Movemos o modo `dense` para uma propriedade diferente:
-  
+
   ```diff
   -<TableCell padding="dense" />
   +<TableCell size="small" />
@@ -361,7 +359,7 @@ Esta alteração é explicada em mais detalhes no [guia de TypeScript](/guides/t
 ### TextField
 
 - [InputLabel] Você deve conseguir sobrescrever todos os estilos do componente FormLabel usando a API CSS do componente InputLabel. A propriedade `FormLabelClasses` foi removida.
-  
+
   ```diff
   <InputLabel
   - FormLabelClasses={{ asterisk: 'bar' }}
@@ -372,12 +370,12 @@ Esta alteração é explicada em mais detalhes no [guia de TypeScript](/guides/t
   ```
 
 - [InputBase] Modificado o modelo padrão de box sizing. Ele usa o seguinte CSS agora:
-  
+
   ```css
   box-sizing: border-box;
   ```
-  
-    Isso resolve problemas com a propriedade `fullWidth`.
+
+  Isso resolve problemas com a propriedade `fullWidth`.
 
 - [InputBase] Remova a classe `inputType` do `InputBase`.
 
@@ -386,9 +384,9 @@ Esta alteração é explicada em mais detalhes no [guia de TypeScript](/guides/t
 - [Tooltip] O elemento filho precisa ser capaz de lidar com ref. O [guia de composição](/guides/composition/#caveat-with-refs) explica a estratégia de migração.
 - [Tooltip] Aparece somente após o foco ser "focus-visible" em vez de qualquer foco.
 
-### Typography
+### Tipografia
 
-- [Typography] Remova as variantes de tipografia descontinuadas. Você pode atualizar executando as seguintes substituições: 
+- [Typography] Remova as variantes de tipografia descontinuadas. Você pode atualizar executando as seguintes substituições:
   - display4 => h1
   - display3 => h2
   - display2 => h3
@@ -400,7 +398,7 @@ Esta alteração é explicada em mais detalhes no [guia de TypeScript](/guides/t
   - body1 (padrão) => body2 (padrão)
 - [Typography] Remova o padrão opinativo do estilo da tipografia `display: block`. Você pode usar a nova propriedade `display?: 'initial' | 'inline' | 'block';`.
 - [Typography] Renomeie a propriedade `headlineMapping` para `variantMapping`, se alinha melhor com a sua finalidade.
-  
+
   ```diff
   -<Typography headlineMapping={headlineMapping}>
   +<Typography variantMapping={variantMapping}>
@@ -417,7 +415,7 @@ Esta alteração é explicada em mais detalhes no [guia de TypeScript](/guides/t
 ### UMD
 
 - Essa alteração facilita o uso de Material-UI com uma CDN:
-  
+
   ```diff
   const {
     Button,
@@ -425,9 +423,9 @@ Esta alteração é explicada em mais detalhes no [guia de TypeScript](/guides/t
   -} = window['material-ui'];
   +} = MaterialUI;
   ```
-  
-    É consistente com outros projetos do React:
-  
+
+  É consistente com outros projetos React:
+
   - material-ui => MaterialUI
   - react-dom => ReactDOM
   - prop-types => PropTypes
