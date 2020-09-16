@@ -1,10 +1,12 @@
 # 全局样式
 
-<p class="description">Overrides使你可以统一修改某个组件所有对象的样式，而props则能修改某个组件的默认属性值。</p>
+<p class="description">styleOverrides 键使你能够自定义组件类型所有实例的外观，而属性（props）键使你能够更改组件属性的默认值。</p>
 
 ## CSS
 
-当配置变量不够强大的时候，您可以使用`theme`的`overrides`来让Material-UI隐式地为您注入**样式规则**。 这是一个非常强大的特性。
+如果你觉得配置变量的功能不够强大，那么你也可以利用 `theme` 的 `styleOverrides` 键来隐式改变 Material-UI 注入到 DOM 中的 **每一个样式**。 这是一个十分有效的功能。
+
+要用 TypeScript 覆盖实验室组件的样式，请查看 [这个文档](/components/about-the-lab/#typescript)。
 
 ```js
 const theme = createMuiTheme({
@@ -23,19 +25,21 @@ const theme = createMuiTheme({
 
 {{"demo": "pages/customization/globals/GlobalCss.js"}}
 
-每个组件可自定义的部分列在文档的**Component API**部分。 例如，你可以看一下[Button](/api/button/#css)， 而且你总可以查阅 [implementation](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Button/Button.js)。
+每个组件可自定义的部分都被列在文档的 **Component API**。 例如，您可以参考以下 [Button](/api/button/#css) 组件。 另外，你也可以随时看看 [implementation](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Button/Button.js)。
 
 ## 全局 CSS
 
-如果你使用 [CssBaseline](/components/css-baseline/) 组件来应用全局重置(global resets)，那么也可以用它来应用全局样式。 就像这样：
+如果您使用 [CssBaseline](/components/css-baseline/) 组件来应用全局重置（global resets），那么也可以将它应用于全局样式。 就像这样：
 
 ```jsx
 const theme = createMuiTheme({
-  overrides: {
+  components: {
     MuiCssBaseline: {
-      '@global': {
-        html: {
-          WebkitFontSmoothing: 'auto',
+      styleOverrides: {
+        '@global': {
+          html: {
+            WebkitFontSmoothing: 'auto',
+          },
         },
       },
     },
@@ -53,7 +57,9 @@ return (
 
 ## 默认属性
 
-您可以更改所有Material-UI组件的默认属性。 该用例展示了在 `主题` 中的一个 `props` 键(key)。 
+您可以更改所有 Material-UI 组件的默认属性。 该用例展示了在 `主题` 中的一个 `props` 键(key)。
+
+要用 TypeScript 覆盖实验室组件的样式，请查看 [这个文档](/components/about-the-lab/#typescript)。
 
 ```js
 const theme = createMuiTheme({
@@ -62,6 +68,10 @@ const theme = createMuiTheme({
     MuiButtonBase: {
       // 需要修改的默认属性
       disableRipple: true, // 在整个程序中没有更多的ripple 💣!
+    },
+  },
+});
+      },
     },
   },
 });
