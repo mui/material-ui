@@ -22,7 +22,7 @@ Ao exibir o progresso de uma sequência de processos, indique o progresso geral 
 
 ### Circular determinado
 
-{{"demo": "pages/components/progress/CircularStatic.js"}}
+{{"demo": "pages/components/progress/CircularDeterminate.js"}}
 
 ### Integração interativa
 

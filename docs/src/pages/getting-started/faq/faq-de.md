@@ -108,7 +108,7 @@ Notice that the usage of `CssBaseline` is required for the above approach to wor
 
 No, it's not required. But this dependency comes built in, so carries no additional bundle size overhead.
 
-In diesem Fall gehen Sie zum [Zusammenführen von Style Libraries](/guides/interoperability/) Abschnitt in dem wir zeigen, wie einfach es ist, Material-UI-Komponenten mit alternativen Stilbibliotheken umzustrukturieren. Perhaps, however, you're adding some Material-UI components to an app that already uses another styling solution, or are already familiar with a different API, and don't want to learn a new one?
+Perhaps, however, you're adding some Material-UI components to an app that already uses another styling solution, or are already familiar with a different API, and don't want to learn a new one? In diesem Fall gehen Sie zum [Zusammenführen von Style Libraries](/guides/interoperability/) Abschnitt in dem wir zeigen, wie einfach es ist, Material-UI-Komponenten mit alternativen Stilbibliotheken umzustrukturieren.
 
 ## Wann verwende ich inline-style vs CSS?
 
@@ -252,6 +252,8 @@ function handleRender(req, res) {
 
   // Rendern des Komponenten als String.
 const html = ReactDOMServer.renderToString(
+  const html = ReactDOMServer.renderToString(
+
   - // Eine Sheet Instanz erstellen.
 ```
 
@@ -279,6 +281,8 @@ function handleRender(req, res) {
   //…
 
   // Render der Komponente als String.
+  const html = ReactDOMServer.renderToString(
+
   - // Eine Sheet Instanz erstellen.
 ```
 

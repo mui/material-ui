@@ -64,7 +64,7 @@ const DeepChild = withTheme(DeepChildRaw);
 
 ### ネストテーマ
 
-複数のテーマプロバイダーをネストできます。 これは、互いに異なる外観を持つアプリケーションのさまざまな領域を扱うときに非常に役立ちます。
+複数のテーマプロバイダーをネストできます。 これは、互いに異なる外観を持つアプリケーションのさまざまな領域を扱うときに非常に役立ちます。 これは、互いに異なる外観を持つアプリケーションのさまざまな領域を扱うときに非常に役立ちます。
 
 ```jsx
 <ThemeProvider theme={outerTheme}>
@@ -77,7 +77,7 @@ const DeepChild = withTheme(DeepChildRaw);
 
 {{"demo": "pages/styles/advanced/ThemeNesting.js"}}
 
-内部テーマは外側のテーマを**オーバーライドします**。 関数を提供することにより、外側のテーマを拡張できます。 内部テーマは外側のテーマを**オーバーライドします**。 関数を提供することにより、外側のテーマを拡張できます。
+内部テーマは外側のテーマを**オーバーライドします**。 関数を提供することにより、外側のテーマを拡張できます。 内部テーマは外側のテーマを**オーバーライドします**。 関数を提供することにより、外側のテーマを拡張できます。 内部テーマは外側のテーマを**オーバーライドします**。 関数を提供することにより、外側のテーマを拡張できます。
 
 ```jsx
 <ThemeProvider theme={…} >
@@ -237,6 +237,10 @@ The `StylesProvider` component has an `injectFirst` prop to inject the style tag
       import { StylesProvider } from '@material-ui/core/styles';
 
 <StylesProvider injectFirst>
+  {/* Your component tree.
+      import { StylesProvider } from '@material-ui/core/styles';
+
+<StylesProvider injectFirst>
   {/* Your component tree. Styled components can override Material-UI's styles.
 ```
 
@@ -296,15 +300,18 @@ export default function App() {
 import { create } from 'jss';
 import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 
-const jss = create({
-  ...jssPreset(),
-  // Define a custom insertion point that JSS will look for when injecting the styles into the DOM.
-  import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/core/styles';
+const styleNode = document.createComment('jss-insertion-point');
+document.head.insertBefore(styleNode, document.head.firstChild);
 
 const jss = create({
   ...jssPreset(),
   // Define a custom insertion point that JSS will look for when injecting the styles into the DOM.
+  insertionPoint: 'jss-insertion-point',
+});
+
+export default function App() {
+  return <StylesProvider jss={jss}>...</StylesProvider>;
+}
 ```
 
 #### JS createComment
@@ -314,13 +321,16 @@ codesandbox.io prevents access to the `<head>` element. To get around this issue
 ```jsx
 import { create } from 'jss';
 import { StylesProvider, jssPreset } from '@material-ui/core/styles';
-
-const styleNode = document.createComment('jss-insertion-point');
-document.head.insertBefore(styleNode, document.head.firstChild);
+import rtl from 'jss-rtl'
 
 const jss = create({
-  ...jssPreset(),
-  // Define a custom insertion point that JSS will look for when injecting the styles into the DOM.
+  plugins: [...jssPreset().plugins, rtl()],
+});
+
+export default function App() {
+  return (
+    <StylesProvider jss={jss}>
+      ...
   insertionPoint: 'jss-insertion-point',
 });
 

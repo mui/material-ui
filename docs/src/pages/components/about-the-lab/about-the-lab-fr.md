@@ -8,7 +8,7 @@ Lorsque les développeur utilise et test les composant en signalant les éventue
 
 Pour qu'un composant soit prêt à être déplacer dans le noyau, les critères suivant doivent être remplis:
 
-* Il doit être **utilisé**. L'équipe Material-ui utilise les données de Google Analytics et d'autres données, pour évaluer l'utilisation de chaque composant. Un composant du laboratoire avec très peu d'utilisation, veux soit dire qu'il n'est pas entièrement opérationnel, ou qu'il ni a pas suffisamment de demande.
+* Il doit être **utilisé**. L'équipe de Material-UI utilise les données de Google Analytics et d'autres données, pour évaluer l'utilisation de chaque composant. Un composant du laboratoire avec très peu d'utilisation, veux soit dire qu'il n'est pas entièrement opérationnel, ou qu'il ni a pas suffisamment de demande.
 * Il doit satisfaire a un **code de qualité** équivalent au composants du noyau. Sa ne doit pas être parfait pour faire par du noyau, mais le composant doit être suffisamment fiable pour que les développeur puisse en dépendre. 
     * Chaque composant a besoin de **définitions de type**. Il n'est pas nécessaire qu'un composant du laboratoire soit typés mais pour être déplacer dans le noyau il devra l'être.
     * Requiert de bon **test**. Certains composant du laboratoire n'ont actuellement aucun tests.

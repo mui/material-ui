@@ -43,7 +43,7 @@ Material-UI 遵循[Semantic Versioning 2.0.0](https://semver.org/)。 Material-U
 | 2018 年 5 月 | v1.0.0 | 已发布 |
 | 2018 年 9 月 | v3.0.0 | 已发布 |
 | 2019 年 5 月 | v4.0.0 | 已发布 |
-| 2020 年第三季度 | v5.0.0 | ⏳   |
+| Q4 2020    | v5.0.0 | ⏳   |
 
 
 查看 [里程碑](https://github.com/mui-org/material-ui/milestones) 可以得到一个更详细的总览。

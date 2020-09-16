@@ -54,7 +54,7 @@ Die Komponente Typografie verwendet die Eigenschaft `variantMapping` um eine UI-
 
 ```jsx
 Heading
-</Typography> {/* There is already an h1 in the page, let's not duplicate it. */}
+</Typography> {/* There is already an h1 in the page, let's not duplicate it. {/* There is already an h1 in the page, let's not duplicate it. */}
 <Typography variant="h1" component="h2">
   h1.
 ```

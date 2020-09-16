@@ -7,7 +7,7 @@ components: Grid
 
 <p class="description">Material Designのレスポンシブレイアウトグリッドは、画面サイズと向きに適応し、レイアウト間の一貫性を保証します。</p>
 
-[grid](https://material.io/design/layout/responsive-layout-grid.html) は、レイアウト間の視覚的な一貫性を実現しながら、さまざまなデザインでの柔軟性を可能にします。 Material DesignのレスポンシブUIは12列のグリッドレイアウトに基づいています。 Material DesignのレスポンシブUIは12列のグリッドレイアウトに基づいています。
+[grid](https://material.io/design/layout/responsive-layout-grid.html) は、レイアウト間の視覚的な一貫性を実現しながら、さまざまなデザインでの柔軟性を可能にします。 Material DesignのレスポンシブUIは12列のグリッドレイアウトに基づいています。 [grid](https://material.io/design/layout/responsive-layout-grid.html) は、レイアウト間の視覚的な一貫性を実現しながら、さまざまなデザインでの柔軟性を可能にします。 Material DesignのレスポンシブUIは12列のグリッドレイアウトに基づいています。 Material DesignのレスポンシブUIは12列のグリッドレイアウトに基づいています。
 
 ## 仕組み
 
@@ -53,7 +53,7 @@ Fluid gridsでは、コンテンツの尺度とサイズを変更する列を使
 
 ## 自動レイアウト
 
-自動レイアウトにより、 *items* が使用可能なスペースを均等に共有します。 自動レイアウトにより、 *items* が使用可能なスペースを均等に共有します。 それはまた、あなたが1つの *item* 幅を設定することができ、他のものはそれの周りに自動的にサイズ変更されることを意味します。
+自動レイアウトにより、 *items* が使用可能なスペースを均等に共有します。 自動レイアウトにより、 *items* が使用可能なスペースを均等に共有します。 自動レイアウトにより、 *items* が使用可能なスペースを均等に共有します。 それはまた、あなたが1つの *item* 幅を設定することができ、他のものはそれの周りに自動的にサイズ変更されることを意味します。
 
 {{"demo": "pages/components/grid/AutoGrid.js", "bg": true}}
 
@@ -67,7 +67,7 @@ Fluid gridsでは、コンテンツの尺度とサイズを変更する列を使
 
 `container`プロパティと`item`プロパティは、それぞれ独立したブール値です。 それらは組み合わせることができます。
 
-> Flex ** container ** は、 `flex` または `inline-flex`を持つ要素によって生成されたボックスです。 フレックスコンテナのインフローの子は、flex ** items ** と呼ばれ、flexレイアウトモデルを使用してレイアウトされます。 Flex ** container ** は、 `flex` または `inline-flex`を持つ要素によって生成されたボックスです。 フレックスコンテナのインフローの子は、flex ** items ** と呼ばれ、flexレイアウトモデルを使用してレイアウトされます。
+> Flex ** container ** は、 `flex` または `inline-flex`を持つ要素によって生成されたボックスです。 フレックスコンテナのインフローの子は、flex ** items ** と呼ばれ、flexレイアウトモデルを使用してレイアウトされます。 Flex ** container ** は、 `flex` または `inline-flex`を持つ要素によって生成されたボックスです。 フレックスコンテナのインフローの子は、flex ** items ** と呼ばれ、flexレイアウトモデルを使用してレイアウトされます。 Flex ** container ** は、 `flex` または `inline-flex`を持つ要素によって生成されたボックスです。 フレックスコンテナのインフローの子は、flex ** items ** と呼ばれ、flexレイアウトモデルを使用してレイアウトされます。
 
 https://www.w3.org/TR/css-flexbox-1/#box-model
 
@@ -114,7 +114,7 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
 
 ### direction: column | column-reverse
 
-`Grid`コンポーネントは`row`, `row-reverse`, `column`, `column-reverse`のいずれかの値を持つ`direction`プロパティを持っています。 しかし、` column `および` column-reverse `コンテナではサポートされていない機能がいくつかあります。 `Grid`コンポーネントは`row`, `row-reverse`, `column`, `column-reverse`のいずれかの値を持つ`direction`プロパティを持っています。 しかし、`column`および`column-reverse`コンテナではサポートされていない機能がいくつかあります。 コンポーネントは、所与のブレークポイントに使用するグリッドの数定義するプロパティ （`Xs`、 `Sm`、 `Md`、 `Lg`、及び `Xl`）幅の制御に焦点を当てている と実行 しない `column` および `column-reverse` コンテナ内の高さにも同様の影響があります。 `column` または `column-reverse` コンテナ内で使用された場合、これらのプロパティは `Grid` 要素の幅に望ましくない影響を与える可能性があります。 ` column ` または `column-reverse` コンテナ内で使用された場合、これらのプロパティは `Grid` 要素の幅に望ましくない影響を与える可能性があります。
+`Grid`コンポーネントは`row`, `row-reverse`, `column`, `column-reverse`のいずれかの値を持つ`direction`プロパティを持っています。 しかし、`column`および`column-reverse`コンテナではサポートされていない機能がいくつかあります。 `Grid`コンポーネントは`row`, `row-reverse`, `column`, `column-reverse`のいずれかの値を持つ`direction`プロパティを持っています。 しかし、`column`および`column-reverse`コンテナではサポートされていない機能がいくつかあります。 コンポーネントは、所与のブレークポイントに使用するグリッドの数定義するプロパティ （`Xs`、 `Sm`、 `Md`、 `Lg`、及び `Xl`）幅の制御に焦点を当てている と実行 しない `column` および `column-reverse` コンテナ内の高さにも同様の影響があります。 `column` または `column-reverse` コンテナ内で使用された場合、これらのプロパティは `Grid` 要素の幅に望ましくない影響を与える可能性があります。 `column` または `column-reverse` コンテナ内で使用された場合、これらのプロパティは `Grid` 要素の幅に望ましくない影響を与える可能性があります。 `Grid`コンポーネントは`row`, `row-reverse`, `column`, `column-reverse`のいずれかの値を持つ`direction`プロパティを持っています。 しかし、`column`および`column-reverse`コンテナではサポートされていない機能がいくつかあります。 コンポーネントは、所与のブレークポイントに使用するグリッドの数定義するプロパティ （`Xs`、 `Sm`、 `Md`、 `Lg`、及び `Xl`）幅の制御に焦点を当てている と実行 しない `column` および `column-reverse` コンテナ内の高さにも同様の影響があります。 `column` または `column-reverse` コンテナ内で使用された場合、これらのプロパティは `Grid` 要素の幅に望ましくない影響を与える可能性があります。 ` column ` または `column-reverse` コンテナ内で使用された場合、これらのプロパティは `Grid` 要素の幅に望ましくない影響を与える可能性があります。
 
 ## CSS Grid Layout
 

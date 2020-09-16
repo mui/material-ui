@@ -35,7 +35,7 @@ Stay up to date with the development of the library by following the blog.
 
 ### Resources 📖
 
-Material-UIは初めてですか？ 何から始めればいいのかは簡単に分かります。
+Material-UIは初めてですか？ 何から始めればいいのかは簡単に分かります。 このガイドを読めばすぐに開始できます。 何から始めればいいのかは簡単に分かります。
 
 [Material-UIを学ぶ](/getting-started/learn/)
 
@@ -91,7 +91,7 @@ The end result? All of the capabilities you expect from commercial-grade softwar
 
 ### Custom work 🛠
 
-Tweak Material-UI to meet specific requirements. We might: Give us a summary of your needs and we'll help you if we can.
+Tweak Material-UI to meet specific requirements. We might: Give us a summary of your needs and we'll help you if we can. Give us a summary of your needs and we'll help you if we can.
 
 - Give you an estimate of time and price if the work is straightforward
 - Suggest alternatives that might not require Material-UI

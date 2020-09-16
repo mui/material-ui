@@ -21,7 +21,7 @@ components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 
 {{"demo": "pages/components/accordion/ControlledAccordions.js", "bg": true}}
 
-## Настраиваемый аккоредон
+## Настраиваемый аккордеон
 
 Ниже находится пример кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
 

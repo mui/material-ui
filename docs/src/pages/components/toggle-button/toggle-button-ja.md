@@ -7,7 +7,7 @@ components: ToggleButton, ToggleButtonGroup
 
 <p class="description">トグルボタンを使用して、関連するオプションをグループ化できます。</p>
 
-ToggleButton sets `aria-pressed="<bool>"` according to the button state. You should label each button with `aria-label`.
+ToggleButton sets `aria-pressed="<bool>"` according to the button state. ToggleButton sets `aria-pressed="<bool>"` according to the button state.
 
 ## Exclusive selection
 
@@ -57,7 +57,7 @@ const handleAlignment = (event, newAlignment) => {
 
 ## Customized toggle button
 
-コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/toggle-button/CustomizedDividers.js", "bg": true}}
 

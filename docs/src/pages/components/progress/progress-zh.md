@@ -22,7 +22,7 @@ components: CircularProgress, LinearProgress
 
 ### 定量的环形进度条
 
-{{"demo": "pages/components/progress/CircularStatic.js"}}
+{{"demo": "pages/components/progress/CircularDeterminate.js"}}
 
 ### 交互集成
 

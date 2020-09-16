@@ -55,7 +55,7 @@ Das zweite Beispiel zeigt, wie Sie die `transform-origin` ändern können und be
 
 Slide in from the edge of the screen. The `direction` property controls which edge of the screen the transition starts from.
 
-In ähnlicher Weise entfernt die `unmountOnExit` -Eigenschaft die Komponente aus dem DOM, nachdem der Übergang vom Bildschirm beendet wurde. The Transition component's `mountOnEnter` property prevents the child component from being mounted until `in` is `true`. Dadurch wird verhindert, dass die relativ positionierte Komponente von der Off-Screen-Position in die Ansicht gescrollt wird.
+The Transition component's `mountOnEnter` property prevents the child component from being mounted until `in` is `true`. The Transition component's `mountOnEnter` property prevents the child component from being mounted until `in` is `true`. Dadurch wird verhindert, dass die relativ positionierte Komponente von der Off-Screen-Position in die Ansicht gescrollt wird.
 
 {{"demo": "pages/components/transitions/SimpleSlide.js", "bg": true}}
 

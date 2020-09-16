@@ -87,4 +87,4 @@ This is done for accessibility purposes, however, it might create issues. In the
     ```
 
 - The [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) can help you set the initial focus on the most relevant element, based on your modal content.
-- That is, users cannot interact with content outside an active modal window. Keep in mind that a "modal window" overlays on either the primary window or another modal window. Windows under a modal are **inert**. This might create [conflicting behaviors](#focus-trap).
+- Windows under a modal are **inert**. That is, users cannot interact with content outside an active modal window. Keep in mind that a "modal window" overlays on either the primary window or another modal window. This might create [conflicting behaviors](#focus-trap).

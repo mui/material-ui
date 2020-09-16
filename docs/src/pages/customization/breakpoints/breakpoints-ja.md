@@ -2,7 +2,7 @@
 
 <p class="description">さまざまなコンテキストでブレークポイントを使用できるようにするAPI。</p>
 
-最適なユーザーエクスペリエンスを得るには、material designインターフェイスがさまざまなブレークポイントでレイアウトを調整できる必要があります。 最適なユーザーエクスペリエンスを得るには、material designインターフェイスがさまざまなブレークポイントでレイアウトを調整できる必要があります。 Material-UIは、元の仕様の**簡易**[実装](https://material.io/design/layout/responsive-layout-grid.html#breakpoints)を使用します。
+最適なユーザーエクスペリエンスを得るには、material designインターフェイスがさまざまなブレークポイントでレイアウトを調整できる必要があります。 最適なユーザーエクスペリエンスを得るには、material designインターフェイスがさまざまなブレークポイントでレイアウトを調整できる必要があります。 最適なユーザーエクスペリエンスを得るには、material designインターフェイスがさまざまなブレークポイントでレイアウトを調整できる必要があります。 Material-UIは、元の仕様の**簡易**[実装](https://material.io/design/layout/responsive-layout-grid.html#breakpoints)を使用します。
 
 ブレークポイントは、さまざまなコンポーネントで応答性を高めるために内部的に使用されますが、[Grid](/components/grid/)および[Hidden](/components/hidden/)コンポーネントを使用してアプリケーションのレイアウトを制御する場合にも利用できます。
 
@@ -59,7 +59,7 @@ const styles = theme => ({
 
 ## JavaScriptメディアクエリ
 
-CSSだけでは不十分な場合もあります。 CSSだけでは不十分な場合もあります。 JavaScriptで、ブレークポイントの値に基づいてReactレンダリングツリーを変更できます。
+CSSだけでは不十分な場合もあります。 CSSだけでは不十分な場合もあります。 CSSだけでは不十分な場合もあります。 JavaScriptで、ブレークポイントの値に基づいてReactレンダリングツリーを変更できます。
 
 ### useMediaQueryフック
 
@@ -246,7 +246,7 @@ const styles = theme => ({
 
 ### `withWidth([options]) => higher-order component`
 
-`width`プロパティを挿入します。 渡されたコンポーネントは変更されません。; 代わりに、新しいコンポーネントを返します。 この`width`ブレークポイントのプロパティは、現在の画面の幅に一致します。 次のブレークポイントのいずれかです。
+`width`プロパティを挿入します。 渡されたコンポーネントは変更されません。; 代わりに、新しいコンポーネントを返します。 `width`プロパティを挿入します。 渡されたコンポーネントは変更されません。; 代わりに、新しいコンポーネントを返します。 この`width`ブレークポイントのプロパティは、現在の画面の幅に一致します。 次のブレークポイントのいずれかです。 次のブレークポイントのいずれかです。
 
 ```ts
 type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
@@ -254,14 +254,15 @@ type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 注意が必要な実装の詳細は、次のとおりです。
 
-- *non React static* プロパティを転送するので、このHOCはより「透明」です。 たとえば、`getInitialProps()`静的メソッド (next.js) を定義するために使用できます。 たとえば、`getInitialProps()`静的メソッド (next.js) を定義するために使用できます。
+- *non React static* プロパティを転送するので、このHOCはより「透明」です。 たとえば、`getInitialProps()`静的メソッド (next.js) を定義するために使用できます。 たとえば、`getInitialProps()`静的メソッド (next.js) を定義するために使用できます。 たとえば、`getInitialProps()`静的メソッド (next.js) を定義するために使用できます。
 
 #### 引数
 
 1. `オプション` (*オプジェクト* [任意]): 
   - `options.withTheme` (*ブール値* [任意]): デフォルト値 `false`. `theme`オブジェクトをプロパティとしてコンポーネントに提供します。
   - `options.noSSR` (*ブール値* [任意]): デフォルト値 `false`. サーバー側のレンダリング調整を実行するには、2回レンダリングする必要があります。 1回目は何もない状態で、2回目は子要素と一緒です。 このダブルパスレンダリングサイクルには欠点があります。 UIが点滅することがあります。 サーバサイドレンダリングを実行しない場合は、このフラグを`true`に設定できます。
-  - ` options.initialWidth ` （*Breakpoint* [optional]）： As ` window.innerWidth `サーバーでは使用できません デフォルトでは、最初のマウント時に空のコンポーネントがレンダリングされます。 ヒューリスティックを使用して、次の値を近似できます。 クライアント・ブラウザの画面幅。 たとえば、ユーザーエージェントまたはクライアントヒントを使用できます。 https://caniuse.com/#search=client%20hint、[`テーマにカスタムプロパティを使用して初期幅
+  - `options.initialWidth` （*Breakpoint* [optional]）： As `window.innerWidth`サーバーでは使用できません デフォルトでは、最初のマウント時に空のコンポーネントがレンダリングされます。 ヒューリスティックを使用して、次の値を近似できます。 クライアント・ブラウザの画面幅。 たとえば、ユーザーエージェントまたはクライアントヒントを使用できます。 https://caniuse.com/#search=client%20hint、[`テーマにカスタムプロパティを使用して初期幅
+グローバルに設定することもできます`](/customization/globals/#default-props)。 InitialWidthを設定するには、この形状のカスタムプロパティを渡す必要があります。 ヒューリスティックを使用して、次の値を近似できます。 クライアント・ブラウザの画面幅。 たとえば、ユーザーエージェントまたはクライアントヒントを使用できます。 https://caniuse.com/#search=client%20hint、[`テーマにカスタムプロパティを使用して初期幅
 グローバルに設定することもできます`](/customization/globals/#default-props)。 InitialWidthを設定するには、この形状のカスタムプロパティを渡す必要があります。
 
 ```js

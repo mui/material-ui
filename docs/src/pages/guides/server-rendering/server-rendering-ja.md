@@ -1,27 +1,27 @@
 # サーバーサイドレンダリング
 
-<p class="description">サーバー側レンダリングの最も一般的な使用例は、ユーザー（または検索エンジンのクローラー）が最初にアプリを要求したときに最初のレンダリングを処理することです。</p>
+<p class="description">サーバーサイドレンダリングの最も一般的な使用例は、ユーザー（または検索エンジンのクローラー）が最初にアプリを要求した際に、最初に提示される画面を描画するのに使われます。</p>
 
-The key step in server-side rendering is to render the initial HTML of the component **before** we send it to the client side. To do this, we use [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html).
+サーバはリクエストを受け付けると、必要なコンポーネントをHTMLフォーマットの文字列として書き出し、クライアント側に送り返します。 そして、初回リクエスト以降のレンダリングはクライアント側で行います。
 
-## サーバー上のMaterial-UI
+## Material-UIをサーバ上で使用する
 
-The client side is straightforward. All we need to do is remove the server-side generated CSS. Let's take a look at the client file:
+Material-UIは、サーバーでのレンダリングの制約を考慮してゼロから設計されましたが、正しく統合されるかどうかはユーザー次第です。 サーバサイドレンダリングでは必要とされるCSSが正しく渡される必要があります。HTML要素だけを返しクライアントサイドでCSSが挿入されるのを待つようにコード書かれた場合、CSSが適用される前後でチラつき（俗にいうFOUC）が発生する場合があります。 クライアントにスタイルを注入するには、次のことが必要です。
 
-1. Create a fresh, new [`ServerStyleSheets`](/styles/api/#serverstylesheets) instance on every request.
-2. Render the React tree with the server-side collector.
-3. Pull the CSS out.
-4. Pass the CSS along to the client.
+1. 新しい[`ServerStyleSheets`](/styles/api/#serverstylesheets) のインスタンスを毎リクエストごとに作成する。
+2. Server-side collectorを使用しReactのコンポーネントツリーを描画する。
+3. コンポーネントツリーで必要となるCSSを読み込む
+4. CSSをツリーと一緒にクライアント側へ渡す。
 
-On the client side, the CSS will be injected a second time before removing the server-side injected CSS.
+クライアントサイドでは上記のサーバサイドで書かれたCSSが取り除かれるより前に、本来のCSSが挿入されます。
 
 ## 設定する
 
-In the following recipe, we are going to look at how to set up server-side rendering.
+ここからは、サーバーサイドレンダリングをどう設定するかについて見ていきます。
 
 ### テーマ
 
-Create a theme that will be shared between the client and the server:
+サーバー側とクライアント側で共有されるテーマを作成します。
 
 `theme.js`
 
@@ -50,16 +50,16 @@ const theme = createMuiTheme({
 export default theme;
 ```
 
-### The server-side
+### サーバーサイド
 
-The following is the outline for what the server-side is going to look like. We are going to set up an [Express middleware](https://expressjs.com/en/guide/using-middleware.html) using [app.use](https://expressjs.com/en/api.html) to handle all requests that come in to the server. If you're unfamiliar with Express or middleware, just know that the handleRender function will be called every time the server receives a request.
+サーバーサイドのコードは概ね次の様になります。 ここでは[Express](https://expressjs.com/en/guide/using-middleware.html) 使用し、[app.use](https://expressjs.com/en/api.html)を用いてサーバへの全てのリクエストを捌いていきます。 もしExpressや他のサーバーアプリケーションにあまり馴染みがない場合、サーバーへのリクエストごとにhandleRender関数が呼ばれるということだけを覚えておいてください。
 
 `server.js`
 
 ```js
 import express from 'express';
 
-// We are going to fill these out in the sections to follow.
+// この箇所は後のセクションで埋めていきます。
 function renderFullPage(html, css) {
   /* ... */
 }
@@ -68,37 +68,36 @@ function handleRender(req, res) {
   /* ... */
 }
 
-const app = express();
-
-// Isso é acionado toda vez que o servidor recebe uma solicitação.
-app.use(handleRender);
-
-const port = 3000;
-app.listen(port);
-```
-
-### Handling the Request
-
-The first thing that we need to do on every request is create a new `ServerStyleSheets`.
-
-When rendering, we will wrap `App`, the root component, inside a [`StylesProvider`](/styles/api/#stylesprovider) and [`ThemeProvider`](/styles/api/#themeprovider) to make the style configuration and the `theme` available to all components in the component tree.
-
-The key step in server-side rendering is to render the initial HTML of the component **before** we send it to the client side. To do this, we use [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html).
-
-We then get the CSS from the `sheets` using `sheets.toString()`. We will see how this is passed along in the `renderFullPage` function.
-
-```jsx
-res.send(renderFullPage(html, css));
+function handleRender(req, res) {
+  /* ...
+*/
 }
 
 const app = express();
 
-app.use('/build', express.static('build'));
+// Isso é acionado toda vez que o servidor recebe uma solicitação.
+```
 
-// This is fired every time the server-side receives a request.
-  const css = sheets.toString();
+### リクエストハンドリング
 
-  // Send the rendered page back to the client.
+リクエストをサーバで受け付けた後、まず最初に行わなくてはいけないのは新しい`ServerStyleSheets`インスタンスの作成です。
+
+画面を描画する際に、ルートコンポーネントである`App`コンポーネントを [`StylesProvider`](/styles/api/#stylesprovider)と [`ThemeProvider`](/styles/api/#themeprovider)でラップします。 これによりスタイルの設定が行われ、コンポーネントツリー内に存在する全てのコンポーネントが`theme`インスタンスにアクセスできる様になります。
+
+サーバーサイドレンダリングにおいて最も重要なステップは、最初に描画されるHTMLをクライアントに**渡す前**に描画しきることです。 これを実現するために [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html)を使用します。
+
+その後、対象のCSS を`sheets` インスタンスから`sheets.toString()`を用いて文字列として取得します。 ここで、先ほどの`renderFullPage`関数の中で、これらの値がどの様に受け渡されるを見ていきます。
+
+```jsx
+const html = ReactDOMServer.renderToString(
+    sheets.collect(
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>,
+    ),
+  );
+
+  // Grab the CSS from the sheets.
   import express from 'express';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
@@ -110,24 +109,26 @@ function handleRender(req, res) {
   const sheets = new ServerStyleSheets();
 
   // Render the component to a string.
-  const html = ReactDOMServer.renderToString(
-    sheets.collect(
-      <ThemeProvider theme={theme}>
-        <App />
-      </ThemeProvider>,
-    ),
-  );
+  res.send(renderFullPage(html, css));
+}
 
-  // Grab the CSS from the sheets.
+const app = express();
+
+app.use('/build', express.static('build'));
+
+// This is fired every time the server-side receives a request.
+  const css = sheets.toString();
+
+  // Send the rendered page back to the client.
 app.use(handleRender);
 
 const port = 3000;
 app.listen(port);
 ```
 
-### Inject Initial Component HTML and CSS
+### コンポーネントHTML・CSSをテンプレートに挿入する
 
-The final step on the server-side is to inject the initial component HTML and CSS into a template to be rendered on the client side.
+最後に、コンポーネントツリーから作成されたCSSとHTMLをクライアントサイドで描画するためのテンプレートに差し込みます。
 
 ```js
 function renderFullPage(html, css) {
@@ -146,9 +147,9 @@ function renderFullPage(html, css) {
 }
 ```
 
-### The Client Side
+### クライアントサイド
 
-The client side is straightforward. All we need to do is remove the server-side generated CSS. Let's take a look at the client file:
+クライアント側は簡単です。 サーバーサイドで生成された CSS を削除するだけです。 クライアント側のコードを見てみましょう:
 
 `client.js`
 
@@ -177,14 +178,14 @@ function Main() {
 ReactDOM.hydrate(<Main />, document.querySelector('#root'));
 ```
 
-## Reference implementations
+## 参考実装
 
-We host different reference implementations which you can find in the [GitHub repository](https://github.com/mui-org/material-ui) under the [`/examples`](https://github.com/mui-org/material-ui/tree/master/examples) folder:
+[GitHubリポジトリ](https://github.com/mui-org/material-ui)の下の[`/examples`](https://github.com/mui-org/material-ui/tree/master/examples)フォルダにいくつかのサンプルプロジェクトを用意しています。
 
-- [The reference implementation of this tutorial](https://github.com/mui-org/material-ui/tree/master/examples/ssr)
+- [このチュートリアルの実装サンプル](https://github.com/mui-org/material-ui/tree/master/examples/ssr)
 - [Gatsby](https://github.com/mui-org/material-ui/tree/master/examples/gatsby)
 - [Next.js](https://github.com/mui-org/material-ui/tree/master/examples/nextjs)
 
-## Troubleshooting
+## トラブルシューティング
 
-Check out the FAQ answer: [My App doesn't render correctly on the server](/getting-started/faq/#my-app-doesnt-render-correctly-on-the-server).
+FAQに投稿された [My App doesn't render correctly on the server](/getting-started/faq/#my-app-doesnt-render-correctly-on-the-server)を参照してみてください。
