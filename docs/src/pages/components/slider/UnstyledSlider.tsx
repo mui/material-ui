@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from '@emotion/styled';
+import styled from '@material-ui/styled-engine';
 import { SliderBase } from '@material-ui/core/Slider';
 
 const StyledSlider = styled(SliderBase)`

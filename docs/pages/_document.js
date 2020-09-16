@@ -1,5 +1,6 @@
 import React from 'react';
 import { ServerStyleSheets } from '@material-ui/styles';
+import { ServerStyleSheet } from 'styled-components'
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
@@ -118,38 +119,42 @@ MyDocument.getInitialProps = async (ctx) => {
   // 4. page.render
 
   // Render app and page and get the context of the page with collected side effects.
-  const sheets = new ServerStyleSheets();
+  const materialSheets = new ServerStyleSheets();
+  const styledComponentsSheet = new ServerStyleSheet();
   const originalRenderPage = ctx.renderPage;
 
-  ctx.renderPage = () =>
-    originalRenderPage({
-      enhanceApp: (App) => (props) => sheets.collect(<App {...props} />),
-    });
+  try {
+    ctx.renderPage = () => originalRenderPage({
+      enhanceApp: App => props => styledComponentsSheet.collectStyles(materialSheets.collect(<App {...props} />))
+    })
 
-  const initialProps = await Document.getInitialProps(ctx);
+    const initialProps = await Document.getInitialProps(ctx);
 
-  let css = sheets.toString();
-  // It might be undefined, e.g. after an error.
-  if (css && process.env.NODE_ENV === 'production') {
-    const result1 = await prefixer.process(css, { from: undefined });
-    css = result1.css;
-    css = cleanCSS.minify(css).styles;
+    let css = materialSheets.toString();
+    // It might be undefined, e.g. after an error.
+    if (css && process.env.NODE_ENV === 'production') {
+      const result1 = await prefixer.process(css, { from: undefined });
+      css = result1.css;
+      css = cleanCSS.minify(css).styles;
+    }
+
+    return {
+      ...initialProps,
+      canonical: pathnameToLanguage(ctx.req.url).canonical,
+      userLanguage: ctx.query.userLanguage || 'en',
+      // Styles fragment is rendered after the app and page rendering finish.
+      styles: [
+        ...React.Children.toArray(initialProps.styles),
+        <style
+          id="jss-server-side"
+          key="jss-server-side"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: css }}
+        />,
+        styledComponentsSheet.getStyleElement(),
+      ],
+    };
+  } finally {
+    styledComponentsSheet.seal()
   }
-
-  return {
-    ...initialProps,
-    canonical: pathnameToLanguage(ctx.req.url).canonical,
-    userLanguage: ctx.query.userLanguage || 'en',
-    // Styles fragment is rendered after the app and page rendering finish.
-    styles: [
-      ...React.Children.toArray(initialProps.styles),
-      sheets.getStyleElement(),
-      <style
-        id="jss-server-side"
-        key="jss-server-side"
-        // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{ __html: css }}
-      />,
-    ],
-  };
-};
+}; 

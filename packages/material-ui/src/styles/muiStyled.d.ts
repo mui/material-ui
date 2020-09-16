@@ -5,4 +5,4 @@
  * @returns A complete, ready to use theme object.
  */
 // TODO: fix typings
-export default function adaptV4Theme(component: any, config: any, muiConfig: any): React.Component;
+export default function muiStyled(component: any, config: any, muiConfig: any): React.Component;
