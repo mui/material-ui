@@ -1,6 +1,11 @@
 ---
 title: Date picker, Time picker React components
 components: TextField
+githubLabel:
+  component: DatePicker
+materialDesign: https://material.io/components/date-pickers
+waiAria: https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/datepicker-dialog.html
+packageName: '@material-ui/lab'
 ---
 
 # 日付＆時間ピッカー
@@ -9,6 +14,8 @@ components: TextField
 
 - モバイルでは、ピッカーは確認ダイアログでの表示に最適です。
 - ォームなどのインライン表示では、セグメント化されたドロップダウンボタンなどのコンパクトなコントロールの使用を検討してください。
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## @material-ui/pickers
 
@@ -20,7 +27,7 @@ components: TextField
 
 ## Native pickers
 
-⚠ブラウザーによるネイティブ入力コントロールのサポート [は完全ではありません](https://caniuse.com/#feat=input-datetime)。 より充実したソリューションについては、 [@ material-ui / pickers](https://material-ui-pickers.dev/) をご覧ください。
+⚠ブラウザーによるネイティブ入力コントロールのサポート [は完全ではありません](https://caniuse.com/#feat=input-datetime)。 より充実したソリューションについては、 [@ material-ui / pickers](https://material-ui-pickers.dev/) をご覧ください。 より充実したソリューションについては、 [@ material-ui / pickers](https://material-ui-pickers.dev/) をご覧ください。 より充実したソリューションについては、 [@ material-ui / pickers](https://material-ui-pickers.dev/) をご覧ください。
 
 ### 日付ピッカー（Datepickers）
 
