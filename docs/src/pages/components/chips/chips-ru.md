@@ -1,15 +1,20 @@
 ---
 title: Фишки, компонент React
 components: Chip
+githubLabel:
+  component: Chip
+materialDesign: https://material.io/components/chips
 ---
 
-# Chip (фишка)
+# Chip
 
 <p class="description">Фишки - это компактные элементы, представляющие входные данные, атрибут или действие.</p>
 
 [Фишки](https://material.io/design/components/chips.html) позволяют пользователям вводить информацию, делать выбор, фильтровать контент или инициировать действия.
 
 Несмотря на то, что он включен здесь как автономный компонент, наиболее распространенное использование будет в той или иной форме ввода, поэтому некоторые из продемонстрированных здесь действий не показаны в контексте.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Chip
 
