@@ -11,7 +11,7 @@ Es gibt viele Möglichkeiten, die Material-UI zu unterstützen:
 - **Verbreiten Sie Material-Ui**. Evangelize Material-UI by [linking to material-ui.com](https://material-ui.com/) on your website, every backlink matters. Follow us on [Twitter](https://twitter.com/MaterialUI), like and retweet the important news. Or just talk about us with your friends.
 - **Give us feedback**. Tell us what we're doing well or where we can improve. Please upvote (👍) the issues that you are the most interested in seeing solved.
 - **Help new users**. You can answer questions on [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui).
-- **Make changes happen**. 
+- **Make changes happen**.
   - Edit the documentation. Every page has an "EDIT THIS PAGE" link in the top right.
   - Report bugs or missing features by [creating an issue](https://github.com/mui-org/material-ui/issues/new).
   - Review and comment on existing [pull requests](https://github.com/mui-org/material-ui/pulls) and [issues](https://github.com/mui-org/material-ui/issues).
@@ -21,7 +21,7 @@ Es gibt viele Möglichkeiten, die Material-UI zu unterstützen:
 
 ## Warum werden meine Komponenten in Produktions-Builds nicht richtig gerendert?
 
-The #1 reason this likely happens is due to class name conflicts once your code is in a production bundle. Damit die Material-UI funktioniert, muss der `Klassenname` die Werte aller Komponenten auf einer Seite von einer einzigen Instanz des [Klassennamensgenerators](/styles/advanced/#class-names) generiert werden.
+Sie sollten jedoch nicht eine `createGenerateClassName()` Funktion zwischen verschiedenen Anfragen teilen: Sie müssen für jede Anforderung einen neuen Klassennamengenerator bereitstellen.
 
 To correct this issue, all components on the page need to be initialized such that there is only ever **one class name generator** among them.
 
@@ -52,7 +52,7 @@ const theme = createMuiTheme({
     MuiButtonBase: {
       // The properties to apply
       disableRipple: true, // No more ripple, on the whole application 💣!
-    },
+      },
   },
 });
 ```
@@ -153,12 +153,12 @@ Wenn in der Konsole eine Warnmeldung wie die folgende angezeigt wird, haben Sie 
 Dafür gibt es mehrere häufige Gründe:
 
 - Sie haben eine andere `@material-ui/styles` Bibliothek irgendwo in Ihren Abhängigkeiten.
-- Sie haben eine Monorepo-Struktur für Ihr Projekt (z. B. Lerna, yarn workspaces) und das `@material-ui/styles` Modul ist eine Abhängigkeit in mehr als einem Paket (dieses ist mehr oder weniger dasselbe wie das vorherige).
-- Sie haben mehrere Anwendungen, die `@material-ui/styles` verwenden, und auf derselben Seite ausgeführt werden (z. B. werden mehrere Einstiegspunkte im Webpack auf derselben Seite geladen).
+- One possible fix to get @material-ui/styles to run in a Lerna monorepo across packages is to [hoist](https://github.com/lerna/lerna/blob/master/doc/hoist.md) shared dependencies to the root of your monorepo file.
+- Wenn Sie mehrere Anwendungen auf einer Seite ausführen, sollten Sie ein @material-ui/styles-Modul für alle verwenden.
 
 ### Dupliziertes Modul in node_modules
 
-If you think that the issue may be in the duplication of the @material-ui/styles module somewhere in your dependencies, there are several ways to check this. Sie können die `npm ls @material-ui/styles`, `yarn list @material-ui/styles` oder `find -L ./node_modules | grep /@material-ui/styles/package.json` Befehle in Ihrem Anwendungsordner ausführen.
+Sie können die `npm ls @material-ui/styles`, `yarn list @material-ui/styles` oder `find -L ./node_modules | grep /@material-ui/styles/package.json` Befehle in Ihrem Anwendungsordner ausführen. If you think that the issue may be in the duplication of the @material-ui/styles module somewhere in your dependencies, there are several ways to check this.
 
 Wenn keiner dieser Befehle die Duplizierung identifiziert, analysieren Sie Ihr Bundle auf mehrere Instanzen von @material-ui/styles. Sie können einfach Ihre Bundle-Quelle überprüfen oder ein Tool wie [source-map-explorer verwenden](https://github.com/danvk/source-map-explorer) oder [Webpack-Bundle-Analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer).
 
@@ -208,7 +208,7 @@ Beispiel für eine package.json-Datei in einem Lerna-Stammverzeichnis
 
 ### Mehrere Anwendungen auf einer Seite ausführen
 
-Wenn Sie mehrere Anwendungen auf einer Seite ausführen, sollten Sie ein @material-ui/styles-Modul für alle verwenden. Wenn Sie Webpack verwenden, können Sie das [CommonsChunkPlugin](https://webpack.js.org/plugins/commons-chunk-plugin/) verwenden. So erstellen Sie einen expliziten [vendor chunk](https://webpack.js.org/plugins/commons-chunk-plugin/#explicit-vendor-chunk), das das Modul @ material-ui/styles enthält:
+Sie haben mehrere Anwendungen, die `@material-ui/styles` verwenden, und auf derselben Seite ausgeführt werden (z. Wenn Sie Webpack verwenden, können Sie das [CommonsChunkPlugin](https://webpack.js.org/plugins/commons-chunk-plugin/) verwenden. So erstellen Sie einen expliziten [vendor chunk](https://webpack.js.org/plugins/commons-chunk-plugin/#explicit-vendor-chunk), das das Modul @ material-ui/styles enthält:
 
 ```diff
   module.exports = {
@@ -228,7 +228,9 @@ Wenn Sie mehrere Anwendungen auf einer Seite ausführen, sollten Sie ein @materi
 
 ## Meine App wird auf dem Server nicht richtig dargestellt
 
-Wenn dies nicht funktioniert, handelt es sich in 99% der Fälle um ein Konfigurationsproblem. A missing property, a wrong call order, or a missing component – server-side rendering is strict about configuration, and the best way to find out what's wrong is to compare your project to an already working setup. Check out the [reference implementations](/guides/server-rendering/#reference-implementations), bit by bit.
+Wenn dies nicht funktioniert, handelt es sich in 99% der Fälle um ein Konfigurationsproblem. A missing property, a wrong call order, or a missing component – server-side rendering is strict about configuration, and the best way to find out what's wrong is to compare your project to an already working setup.
+
+The best way to find out what's wrong is to compare your project to an **already working setup**. Check out the [reference implementations](/guides/server-rendering/#reference-implementations), bit by bit.
 
 ### CSS funktioniert nur beim ersten Laden, dann fehlt es
 
@@ -236,67 +238,79 @@ Das CSS wird nur beim ersten Laden der Seite generiert. Auf dem Server fehlt dan
 
 #### Zu ergreifende Maßnahmen
 
-The styling solution relies on a cache, the *sheets manager*, to only inject the CSS once per component type (if you use two buttons, you only need the CSS of the button one time). Sie müssen **eine neue ` sheets `Instanze für jede Anfrage** erstellen.
+The styling solution relies on a cache, the *sheets manager*, to only inject the CSS once per component type (if you use two buttons, you only need the CSS of the button one time). Sie müssen **eine neue `sheets`Instanze für jede Anfrage** erstellen.
 
-*beispiel für fix:*
+beispiel für fix:
 
 ```diff
-- // Eine Sheet Instanz erstellen.
 -const sheets = new ServerStyleSheets();
 
 function handleRender(req, res) {
 
 + // Eine Sheet Instanz erstellen.
-+ const sheets = new ServerStyleSheets();
+-const sheets = new ServerStyleSheets();
 
-  //…
+function handleRender(req, res) {
+
++ // Eine Sheet Instanz erstellen.
+-const sheets = new ServerStyleSheets();
+
+function handleRender(req, res) {
+
++ // Eine Sheet Instanz erstellen.
 
   // Rendern des Komponenten als String.
   const html = ReactDOMServer.renderToString(
+
+  - // Eine Sheet Instanz erstellen.
 ```
 
 ### React Klassenname Hydratation Nichtübereinstimmung
+
+> Warning: Prop className did not match.
 
 Es gibt eine Nichtübereinstimmung der Klassennamen zwischen Client und Server. Es könnte für die erste Anfrage funktionieren. Ein anderes Symptom ist, dass sich das Styling zwischen dem Laden der ersten Seite und dem Herunterladen der Clientskripte ändert.
 
 #### Zu ergreifende Maßnahmen
 
-Der Klassennamenwert basiert auf dem Konzept des [Klassennamensgenerators](/styles/advanced/#class-names). Die gesamte Seite muss mit **einem einzigen Generator** gerendert werden. Dieser Generator muss sich auf dem Server und auf dem Client identisch verhalten. Zum Beispiel:
+Der Klassennamenwert basiert auf dem Konzept des [Klassennamensgenerators](/styles/advanced/#class-names). Der Klassennamenwert basiert auf dem Konzept des [Klassennamensgenerators](/styles/advanced/#class-names). Dieser Generator muss sich auf dem Server und auf dem Client identisch verhalten. Zum Beispiel:
 
 - Sie müssen für jede Anforderung einen neuen Klassennamengenerator bereitstellen. Sie sollten jedoch nicht eine `createGenerateClassName()` Funktion zwischen verschiedenen Anfragen teilen:
 
-*beispiel für fix:*
+  beispiel für fix:
 
-```diff
-- // Erstellen Sie einen neuen Klassennamengenerator.
--const generateClassName = createGenerateClassName();
+  ```diff
+  - // Erstellen Sie einen neuen Klassennamengenerator.
+  - // Erstellen Sie einen neuen Klassennamengenerator.
+  -const generateClassName = createGenerateClassName();
 
 function handleRender(req, res) {
 
 + // Erstellt einen neuen Klassennamengenerator.
-+ const generateClassName = createGenerateClassName();
 
-  //…
+    // Rendern des Komponenten als String.
+    const html = ReactDOMServer.renderToString(
 
-  // Render der Komponente als String.
-  const html = ReactDOMServer.renderToString(
-```
+  - // Eine Sheet Instanz erstellen.
+  ```
 
 - Sie müssen sicherstellen, dass auf Ihrem Client und Server die **exakt dieselbe Version** von Material-UI ausführen. Es kann vorkommen, dass eine Nichtübereinstimmung von selbst kleinerer Versionen zu Stilproblemen führen kann. Um die Versionsnummern zu überprüfen, führen Sie `npm list@material-ui/core` in der Umgebung aus, in der Sie Ihre Anwendung erstellen, und in Ihrer Implementierungsumgebung.
-  
-    Sie können die gleiche Version in verschiedenen Umgebungen festlegen, indem Sie in den Abhängigkeiten Ihrer package.json eine bestimmte MUI-Version angeben.
 
-*beispiel für fix (package.json):*
+  Sie können die gleiche Version in verschiedenen Umgebungen festlegen, indem Sie in den Abhängigkeiten Ihrer package.json eine bestimmte MUI-Version angeben.
 
-```diff
-  "dependencies": {
+  _beispiel für fix (package.json):_
+
+  ```diff
+    "dependencies": {
     ...
 
--   "@material-ui/core": "^4.0.0",
+-
+  "@material-ui/core": "^4.0.0",
 +   "@material-ui/core": "4.0.0",
     ...
   },
-```
+    },
+  ```
 
 - Sie müssen sicherstellen, dass Server und Client denselben `process.env.NODE_ENV verwenden` Wert haben.
 
@@ -340,7 +354,7 @@ function Portal({ children, container }) {
 }
 ```
 
-Mit diesem einfaches heuristischen `Portal` wird es nach dem Einhängen möglicherweise erneut gerendert, da die Refs vor der Ausführung von Effekten auf dem neuesten Stand sind. Nur weil ein Ref aktuell ist, bedeutet das nicht, dass er auf eine definierte Instanz verweist. Wenn der ref an eine ref-Weiterleitungskomponente angehängt ist, ist nicht klar, wann der DOM-Knoten verfügbar ist. In the example above, the `Portal` would run an effect once, but might not re-render because `ref.current` is still `null`. This is especially apparent for React.lazy components in Suspense. Die obige Implementierung könnte auch keine Änderung im DOM-Knoten berücksichtigen.
+Mit diesem einfaches heuristischen `Portal` wird es nach dem Einhängen möglicherweise erneut gerendert, da die Refs vor der Ausführung von Effekten auf dem neuesten Stand sind. Nur weil ein Ref aktuell ist, bedeutet das nicht, dass er auf eine definierte Instanz verweist. Wenn der ref an eine ref-Weiterleitungskomponente angehängt ist, ist nicht klar, wann der DOM-Knoten verfügbar ist. This is especially apparent for React.lazy components in Suspense. Die obige Implementierung könnte auch keine Änderung im DOM-Knoten berücksichtigen. In the example above, the `Portal` would run an effect once, but might not re-render because `ref.current` is still `null`.
 
 Aus diesem Grund benötigen wir eine Eigenschaft mit dem eigentlichen DOM-Knoten, damit React ermitteln kann, wann das `Portal` neu gerendert werden soll:
 
@@ -371,7 +385,9 @@ Instead of writing:
 
 return (
   <div
-    className={`MuiButton-root ${disabled ? 'Mui-disabled' : ''} ${selected ? 'Mui-selected' : ''}`}
+    className={`MuiButton-root ${disabled ? 'Mui-disabled' : ''} ${
+      selected ? 'Mui-selected' : ''
+    }`}
   />
 );
 ```
