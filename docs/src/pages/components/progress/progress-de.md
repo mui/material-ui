@@ -22,7 +22,7 @@ Wenn Sie den Fortschritt für eine Folge von Prozessen anzeigen, geben Sie den G
 
 ### Circular determinate
 
-{{"demo": "pages/components/progress/CircularStatic.js"}}
+{{"demo": "pages/components/progress/CircularDeterminate.js"}}
 
 ### Interactive integration
 
