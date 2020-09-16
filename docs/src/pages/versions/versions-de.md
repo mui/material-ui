@@ -20,10 +20,10 @@ Stabilität stellt sicher, dass wiederverwendbare Komponenten und Bibliotheken, 
 
 This document contains the practices that are followed to provide you with a leading-edge UI library, balanced with stability, ensuring that future changes are always introduced in a predictable way.
 
-Material-UI follows [Semantic Versioning 2.0.0](https://semver.org/). Die Versionsnummern der Material-UI bestehen aus drei Teilen: `Hauptversion.Nebenversion.Patch`. Die Versionsnummer wird basierend auf dem in der Version enthaltenen Änderungsstand erhöht.
+Die Versionsnummer wird basierend auf dem in der Version enthaltenen Änderungsstand erhöht. Material-UI follows [Semantic Versioning 2.0.0](https://semver.org/). Die Versionsnummern der Material-UI bestehen aus drei Teilen: `Hauptversion.Nebenversion.Patch`.
 
 - **Hauptversionen** enthalten wichtige neue Funktionen, während des Updates wird jedoch eine minimale Entwicklerunterstützung erwartet. Bei der Aktualisierung auf eine neue Hauptversion müssen Sie möglicherweise Aktualisierungsskripts ausführen, Code umgestalten, zusätzliche Tests ausführen und neue APIs erlernen.
-- ** Nebenversionen ** enthalten wichtige neue Funktionen. Minor Releases sind vollständig abwärtskompatibel. Während des Updates wird keine Unterstützung durch Entwickler erwartet. Sie können jedoch optional Ihre Apps und Bibliotheken ändern, um neue APIs, Funktionen und Funktionen zu verwenden, die in der Version hinzugefügt wurden.
+- ** Nebenversionen ** enthalten wichtige neue Funktionen. Während des Updates wird keine Entwicklerunterstützung erwartet.
 - ** Patch-Versionen ** sind geringes Risiko, enthalten Fehlerbehebungen und kleine neue Funktionen. Während des Updates wird keine Entwicklerunterstützung erwartet.
 
 ## Release-Frequenz
@@ -43,8 +43,7 @@ Im Allgemeinen können Sie den folgenden Release-Zyklus erwarten:
 | May 2018       | v1.0.0  | Veröffentlicht |
 | September 2018 | v3.0.0  | Veröffentlicht |
 | May 2019       | v4.0.0  | Veröffentlicht |
-| Q3 2020        | v5.0.0  | ⏳              |
-
+| Q4 2020        | v5.0.0  | ⏳              |
 
 You can follow the [milestones](https://github.com/mui-org/material-ui/milestones) for a more detailed overview.
 
