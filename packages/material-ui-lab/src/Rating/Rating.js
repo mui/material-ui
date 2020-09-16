@@ -385,10 +385,8 @@ const Rating = React.forwardRef(function Rating(props, ref) {
                       items.length - 1 === indexDecimal
                         ? {}
                         : {
-                            width:
-                              itemDecimalValue === value
-                                ? `${(indexDecimal + 1) * precision * 100}%`
-                                : '0%',
+                            width: `${(indexDecimal + 1) * precision * 100}%`,
+                            opacity: itemDecimalValue <= value ? undefined : '0',
                             overflow: 'hidden',
                             zIndex: 1,
                             position: 'absolute',
