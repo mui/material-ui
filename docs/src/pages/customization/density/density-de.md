@@ -4,7 +4,7 @@
 
 ## Applying density
 
-This section explains how to apply density. It doesn't cover potential use cases, or considerations for using density in your application. The Material design guidelines have a [comprehensive guide](https://material.io/design/layout/applying-density.html#typographic-density) covering these topics in more detail.
+This section explains how to apply density. The Material design guidelines have a [comprehensive guide](https://material.io/design/layout/applying-density.html#typographic-density) covering these topics in more detail. It doesn't cover potential use cases, or considerations for using density in your application.
 
 ## Implementing density
 
@@ -25,7 +25,7 @@ The following components have props applying higher density:
 - [ListItem](/api/list-item/)
 - [OutlinedInput](/api/outlined-input/)
 - [Tabelle](/api/table/)
-- [Textfeld](/api/text-field/)
+- [TextField](/api/text-field/)
 - [Toolbar](/api/toolbar/)
 
 ## Explore theme density
