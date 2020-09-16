@@ -1,6 +1,9 @@
 ---
 title: React-компонент Сетка
 components: Grid
+githubLabel:
+  component: Grid
+materialDesign: https://material.io/design/layout/understanding-layout.html
 ---
 
 # Grid
@@ -8,6 +11,8 @@ components: Grid
 <p class="description">Сетка адаптивного макета Material Design адаптируется к размеру экрана и ориентации, обеспечивая согласованность макетов.</p>
 
 [Сетка](https://material.io/design/layout/responsive-layout-grid.html) создает визуальную согласованность между макетами, позволяя гибко адаптироваться к разнообразным дизайнам. Адаптивный пользовательский интерфейс Material Design основан на сетке с 12 колонками.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Как это работает
 
@@ -18,6 +23,7 @@ components: Grid
 - Ширина элементов задается в процентах, поэтому они всегда гибко изменяют свой размер относительно родительского элемента.
 - Элементы имеют отступы для создания промежутков между отдельными элементами.
 - Существует пять контрольных точек прерывания сетки: xs, sm, md, lg и xl.
+- Integer values can be given to each breakpoint, indicating how many of the 12 available columns are occupied by the component when the viewport width satisfies the [breakpoint contraints](/customization/breakpoints/#default-breakpoints).
 
 Если вы **слабо знакомы (или совсем незнакомы) с Flexbox**, мы рекомендуем Вам прочитать это руководство [CSS-трюки Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/).
 
@@ -35,13 +41,17 @@ components: Grid
 
 ### Базовая сетка
 
-Ширина столбца меняется во всех точках прерывания (от `xs` и выше).
+Column widths are integer values between 1 and 12; they apply at any breakpoint and indicate how many columns are occupied by the component.
+
+A value given to a breakpoint applies to all the other breakpoints wider than it (unless overridden, as you can read later in this page). For example, `xs={12}` sizes a component to occupy the whole viewport width regardless of its size.
 
 {{"demo": "pages/components/grid/CenteredGrid.js", "bg": true}}
 
 ### Сетка с точками прерывания
 
-Некоторые столбцы имеют несколько значений ширины, что приводит к изменению макета в определенной точке прерывания.
+Components may have multiple widths defined, causing the layout to change at the defined breakpoint. Width values given to larger breakpoints override those given to smaller breakpoints.
+
+For example, `xs={12} sm={6}` sizes a component to occupy half of the viewport width (6 columns) when viewport width is [600 or more pixels](/customization/breakpoints/#default-breakpoints). For smaller viewports, the component fills all 12 available columns.
 
 {{"demo": "pages/components/grid/FullWidthGrid.js", "bg": true}}
 
@@ -82,15 +92,15 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
 1. Не использовать отступы и не реализовывать их в пространстве пользователя. `spacing={0}` (по умолчанию).
 2. Применение внутренних отступов (padding) к родителю с использованием, как минимум, половины значения отступа, имеющегося у дочернего элемента:
 
-```jsx
-  <body>
+   ```jsx
+   <body>
     <div style={{ padding: 20 }}>
       <Grid container spacing={5}>
         //...
-      </Grid>
+       </Grid>
     </div>
   </body>
-```
+   ```
 
 3. Добавление `overflow-x: hidden;` к родителю.
 
@@ -103,7 +113,7 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
   <Typography noWrap>
 ```
 
-Чтобы элемент оставался в контейнере, необходимо установить `min-width: 0`. На практике вы можете установить свойство `zeroMinWidth`:
+Чтобы элемент оставался в контейнере, необходимо установить `min-width: 0`. Чтобы элемент оставался в контейнере, необходимо установить `min-width: 0`.
 
 ```jsx
 <Grid item xs zeroMinWidth>
