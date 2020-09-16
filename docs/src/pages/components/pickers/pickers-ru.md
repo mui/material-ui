@@ -1,6 +1,11 @@
 ---
 title: Date picker, Time picker React components
 components: TextField
+githubLabel:
+  component: DatePicker
+materialDesign: https://material.io/components/date-pickers
+waiAria: https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/datepicker-dialog.html
+packageName: '@material-ui/lab'
 ---
 
 # Поля выбора даты/времени
@@ -9,6 +14,8 @@ components: TextField
 
 - На мобильном устройстве лучше всего отображать в модальном окне.
 - Для инлайн-отображения, например в формах стоит рассмотреть возможность использования более компактных элементов управления, таких как сегментированные выпадающие кнопки.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## @material-ui/pickers
 
