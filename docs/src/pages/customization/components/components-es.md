@@ -18,17 +18,17 @@ Tal vez necesitara cambiar el estilo de un componente para una implementación e
 
 La forma mas natural de sobre-escribir el estilo de un componente es usando **class names**. Cada componente proporciona la propiedad `className` la cual es siempre aplicada al elemento raíz. 
 
-El siguiente ejemplo usa [`withStyles`](/styles/basics/#higher-order-component-api) como un componente HOC,(high-order component), para inyectar estilos customizados en el DOM, y para pasar el class name al componente `ClassNames` mediante su propiedad `classes`. You can choose [any other styling solution](/guides/interoperability/), or even plain CSS to create the styles, but be sure to consider the [CSS injection order](/styles/advanced/#css-injection-order), as the CSS injected into the DOM by Material-UI to style a component has the highest specificity possible, since the `<link>` is injected at the bottom of the `<head />` to ensure the components always render correctly.
+El siguiente ejemplo usa [`withStyles`](/styles/basics/#higher-order-component-api) como un componente HOC,(high-order component), para inyectar estilos customizados en el DOM, y para pasar el class name al componente `ClassNames` mediante su propiedad `classes`. Puedes elegir [cualquier otra solución de estilo](/guides/interoperability/), o incluso CSS para crear los estilos, pero asegúrate de considerar el [orden de inyección CSS](/styles/advanced/#css-injection-order), como el CSS inyectado en el DOM por Material-UI para diseñar un componente tiene la mayor especificidad posible, ya que el `<link>` se inyecta en la parte inferior del `<head />` para asegurar que los componentes siempre se renderizan correctamente.
 
 {{"demo": "pages/customization/components/ClassNames.js"}}
 
 ### Overriding styles with classes
 
-When the `className` property isn't enough, and you need to access deeper elements, you can take advantage of the `classes` object property to customize all the CSS injected by Material-UI for a given component.
+Cuando la propiedad `className` no es suficiente, y necesitas acceder a elementos más profundos, puedes aprovechar la propiedad de objetos `clases` para personalizar todo el CSS inyectado por Material-UI para un componente determinado.
 
-The list of classes for each component is documented in the component API page, you should refer to the **CSS section** and **rule name column**. Por ejemplo, puedes echar un vistazo a la [API CSS de Button](/api/button/#css). Como alternativa, puedes utilizar las [herramientas de desarrollo del navegador](#using-the-dev-tools).
+La lista de clases para cada componente está documentada en la página API del componente, debes referirte a la sección **CSS** y a la columna **nombre de regla**. Por ejemplo, puedes echar un vistazo a la [API CSS de Button](/api/button/#css). Como alternativa, puedes utilizar las [herramientas de desarrollo del navegador](#using-the-dev-tools).
 
-This example also uses `withStyles()` (see above), but here, `ClassesNesting` is using `Button`'s `classes` prop to provide an object that maps the **names of classes to override** (style rules) to the **CSS class names to apply** (values). The component's existing classes will continue to be injected, so it is only necessary to provide the specific styles you wish to add or override.
+Este ejemplo también utiliza `withStyles()` (ver arriba), pero aquí, `ClassesNesting` está usando `Button`'s `classes` prop a proporcionar un objeto que mapea los **nombres de clases para anular** (reglas de estilo) a los nombres de la clase **CSS para aplicar** (valores). The component's existing classes will continue to be injected, so it is only necessary to provide the specific styles you wish to add or override.
 
 Notice that in addition to the button styling, the button label's capitalization has been changed:
 
