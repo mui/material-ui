@@ -4,7 +4,38 @@ import useThemeProps from '../styles/useThemeProps';
 import { fade, lighten, darken } from '../styles/colorManipulator';
 import capitalize from '../utils/capitalize';
 import SliderBase from './SliderBase';
-import muiStyled from '../styles/muiStyled';
+import styled from '@material-ui/styled-engine';
+
+const getStyleOverrides = (name, theme) => {
+  let styleOverrides = {};
+
+  if (
+    theme &&
+    theme.components &&
+    theme.components[name] &&
+    theme.components[name].styleOverrides
+  ) {
+    styleOverrides = theme.components[name].styleOverrides;
+  }
+
+  return styleOverrides;
+};
+
+const getVariantStyles = (name, theme) => {
+  let variants = [];
+  if (theme && theme.components && theme.components[name] && theme.components[name].variants) {
+    variants = theme.components[name].variants;
+  }
+
+  const variantsStyles = {};
+
+  variants.forEach((definition) => {
+    const key = propsToClassKey(definition.props);
+    variantsStyles[key] = definition.style;
+  });
+
+  return variantsStyles;
+};
 
 const overridesResolver = (props, styles, name) => {
   const {
@@ -70,7 +101,7 @@ const variantsResolver = (props, styles, theme, name) => {
   return variantsStyles;
 };
 
-export const SliderRoot = muiStyled(
+export const SliderRoot = styled(
   'div',
   {},
   { muiName: 'MuiSlider', overridesResolver, variantsResolver },
@@ -262,6 +293,9 @@ export const SliderRoot = muiStyled(
         color: props.theme.palette.text.primary,
       },
     },
+
+    ...overridesResolver(props, getStyleOverrides('MuiSlider', props.theme), 'MuiSlider'),
+    ...variantsResolver(props, getVariantStyles('MuiSlider', props.theme), props.theme, 'MuiSlider'),
   };
 });
 

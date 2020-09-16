@@ -1,7 +1,7 @@
 import styled from '@material-ui/styled-engine';
 import { propsToClassKey } from '@material-ui/styles';
 
-const getStyleOverrides = (name, theme) => {
+export const getStyleOverrides = (name, theme) => {
   let styleOverrides = {};
 
   if (
@@ -16,7 +16,7 @@ const getStyleOverrides = (name, theme) => {
   return styleOverrides;
 };
 
-const getVariantStyles = (name, theme) => {
+export const getVariantStyles = (name, theme) => {
   let variants = [];
   if (theme && theme.components && theme.components[name] && theme.components[name].variants) {
     variants = theme.components[name].variants;
