@@ -1,19 +1,25 @@
 ---
-title: React Tabs 选项卡组件
+title: React 选项卡组件
 components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
+githubLabel:
+  component: Tabs 选项卡
+materialDesign: https://material.io/components/tabs
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tabpanel'
 ---
 
 # Tabs 选项卡
 
 <p class="description">使用选项卡，你可以轻松地浏览和切换不同的视图。</p>
 
-对于在同一层次，并且息息相关的内容组，使用[选项卡](https://material.io/design/components/tabs.html) 能够将它们分组并且在其之间切换。
+对于在同一层次，并且息息相关的内容组，使用选项卡能够将它们分组并且在其之间切换。
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## 简单的选项卡
 
-一个没有多余装饰的简单例子
-
 {{"demo": "pages/components/tabs/SimpleTabs.js", "bg": true}}
+
+{{"demo": "pages/components/tabs/BasicTabs.js", "bg": true}}
 
 ### 包装的标签
 
@@ -57,6 +63,16 @@ components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonForce.js", "bg": true}}
 
+如果你想确保按钮始终可见，那么你应该自定义不透明度。
+
+```css
+.MuiTabs-scrollButtons.Mui-disabled {
+  opacity: 0.3;
+}
+```
+
+{{"demo": "pages/components/tabs/ScrollableTabsButtonVisible.js", "bg": true}}
+
 ### 防止滚动按钮
 
 永远不会显示左右滚动按钮。 所有的滚动比如通过用户代理的滚动机制来发起（例如，左右滑动，移动鼠标滑轮等等）。
@@ -65,15 +81,19 @@ components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
 
 ## 自定义的选项卡
 
-以下是自定义组件的一个示例。 您可以在[重写文档页面](/customization/components/)中了解更多有关此内容的信息。
+以下是自定义组件的一个示例。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
 
 {{"demo": "pages/components/tabs/CustomizedTabs.js", "bg": true}}
 
-🎨如果你是在寻找灵感，你可以查看 [MUI Treasury's customization examples](https://mui-treasury.com/styles/tabs/)。
+🎨 如果您还在寻找灵感，您可以看看 [MUI Treasury 特别定制的一些例子](https://mui-treasury.com/styles/tabs/)。
 
 ## 垂直的选项卡
 
+选项卡的标签可以是所有的图标或者所有的文本。
+
 {{"demo": "pages/components/tabs/VerticalTabs.js", "bg": true}}
+
+请注意，你可以使用 `visibleScrollbar` 恢复滚动条。
 
 ## 导航选项卡
 
@@ -89,36 +109,36 @@ components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
 
 {{"demo": "pages/components/tabs/IconLabelTabs.js", "bg": true}}
 
-## 可访问性
+## 无障碍设计
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#tabpanel)
 
-需要采取以下步骤，以便为无障碍技术提供必要的信息：
+您需要采取以下步骤，来为无障碍技术提供一些必要的信息：
 
 1. 在 `Tabs` 上应用 `aria-label` 或 `aria-labelledby` 标签。
-2. `Tab` 需要连接到其 相应的 `id`、`aria-controls` 和 `aria-labelledby` 中对应的 `[role="tabpanel"]`。
+2. 通过设置 `id`、`aria-controls` 和 `aria-labelledby` ，`Tab` 需要连接到其对应的 `[role="tabpanel"]`。
 
-当前实现的例子可以在本页面的演示中找到。 我们还在 `@material-ui/lab` 中发布了不需要额外工作就能使用的 [实验性 API](#experimental-api)
+实现这样的设计例子可以在本页面的演示中找到。 我们还在 `@material-ui/lab` 中发布了不需要额外工作就能使用的 [一个实验性的 API](#experimental-api)。
 
 ### 键盘导航
 
-该组件使用 “手动激活” 的行为来实现键盘导航。 如果你想切换到 “选择自动跟随焦点(selection automatically follows focus)”的行为，你必须将 `selectionFollowsFocus` 传递给 `Tabs` 组件。 WAI-ARIA 项目实践中有一个详细的指南 [如何决定什么时候选择自动跟随焦点](https://www.w3.org/TR/wai-aria-practices/#kbd_selection_follows_focus)。
+该组件使用“手动激活”的行为来实现键盘导航。 如果你想切换到“选择自动跟随焦点”（selection automatically follows focus）的行为，你必须将 `selectionFollowsFocus` 传递给 `Tabs` 组件。 WAI-ARIA 项目实践中有一个详细的指南 [如何决定什么时候选择自动跟随焦点](https://www.w3.org/TR/wai-aria-practices/#kbd_selection_follows_focus)。
 
 #### 演示
 
 下面的两个演示只是在键盘导航行为上有所区别。 聚焦到其中一个选项卡，然后用方向键导航你就可以注意到其中的差异。
 
 ```jsx
-/* Tabs where selection follows focus */
+/* 那个跟随焦点的选项卡 */
 <Tabs selectionFollowsFocus />
-/* Tabs where each tab needs to be selected manually */
+/* 需要手动选择选项卡中的每一个选项 */
 <Tabs />
 ```
 
 {{"demo": "pages/components/tabs/AccessibleTabs.js", "bg": true}}
 
-## 实验性 API
+## 实验性的 API
 
-遵循 [WAI-ARIA 项目实践](https://www.w3.org/TR/wai-aria-practices/#tabpanel)，`@material-ui/lab` 提供了工具集组件，该组件通过注入属性的方式来实现具有可访问性(accessible) 功能的选项卡。
+遵循 [WAI-ARIA 项目实践](https://www.w3.org/TR/wai-aria-practices/#tabpanel)，`@material-ui/lab` 提供了工具集组件，该组件通过注入属性的方式来实现无障碍设计的选项卡。
 
 {{"demo": "pages/components/tabs/LabTabs.js", "bg": true}}
