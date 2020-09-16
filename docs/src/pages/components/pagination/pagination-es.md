@@ -31,11 +31,11 @@ Opcionalmente puede activar los botones de primera página y última página, o 
 
 ## Rangos de paginación
 
-You can specify how many digits to display either side of current page with the `siblingRange` prop, and adjacent to the start and end page number with the `boundaryRange` prop.
+Puede especificar cuántos dígitos mostrar en ambos lados de la página actual con el prop `siblingRange` prop,  y adyacente los números de página del comienzo y del final con el prop `boundaryRange`.
 
 {{"demo": "pages/components/pagination/PaginationRanges.js"}}
 
-## Controlled pagination
+## Paginación Controlada
 
 {{"demo": "pages/components/pagination/PaginationControlled.js"}}
 
@@ -69,6 +69,6 @@ You can learn more about this use case in the [table section](/components/tables
 
 The root node has a role of "navigation" and aria-label "pagination navigation" by default. The page items have an aria-label that identifies the purpose of the item ("go to first page", "go to previous page", "go to page 1" etc.). You can override these using the `getItemAriaLabel` prop.
 
-### Keyboard
+### Teclado
 
-The pagination items are in tab order, with a tabindex of "0".
+Los elementos de paginación están en orden de tabulación, con un índice de tabulación (tabindex) de "0".
