@@ -1,6 +1,10 @@
 ---
 title: React-компонент Автозаполнение
 components: TextField, Popper, Autocomplete
+githubLabel:
+  component: Autocomplete (Автодополнение)
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#combobox'
+packageName: '@material-ui/lab'
 ---
 
 # Autocomplete (Автодополнение)
@@ -14,11 +18,39 @@ components: TextField, Popper, Autocomplete
 
 It's meant to be an improved version of the "react-select" and "downshift" packages.
 
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
 ## Комбо-Бокс
 
 Значение должно быть выбрано из предопределенного набора допустимых значений.
 
 {{"demo": "pages/components/autocomplete/ComboBox.js"}}
+
+### Песочница
+
+By default, the component accepts the following options structures:
+
+```ts
+const filterOptions = createFilterOptions({
+  matchFrom: 'start',
+  stringify: option => option.title,
+});
+
+<Autocomplete filterOptions={filterOptions} />
+```
+
+например:
+
+```js
+const options = [
+  { label: 'The Godfather', id: 1 },
+  { label: 'Pulp Fiction', id: 2 },
+];
+// or
+const options = ['The Godfather', 'Pulp Fiction'];
+```
+
+However, you can use different structures by providing a `getOptionLabel` prop.
 
 ### Песочница
 
@@ -49,7 +81,7 @@ The component has two states that can be controlled:
 
 ### Search input
 
-The prop is designed to cover the primary use case of a **search input** with suggestions, e.g. Google search or react-autowhatever.
+Вы также можете показать диалоговое окно, если пользователь хочет добавить новое значение.
 
 {{"demo": "pages/components/autocomplete/FreeSolo.js"}}
 
@@ -69,6 +101,8 @@ If you intend to use this mode for a [combo box](#combo-box) like experience (an
 {{"demo": "pages/components/autocomplete/FreeSoloCreateOptionDialog.js"}}
 
 ## Сгруппированные
+
+You can group the options with the `groupBy` prop. If you do so, make sure that the options are also sorted with the same dimension that they are grouped by, otherwise you will notice duplicate headers.
 
 {{"demo": "pages/components/autocomplete/Grouped.js"}}
 
@@ -97,6 +131,17 @@ Head to the [Customized Autocomplete](#customized-autocomplete) section for a cu
 ## Асинхронные запросы
 
 {{"demo": "pages/components/autocomplete/Asynchronous.js"}}
+
+В случае, если вам нужно зафиксировать определенный тег (так что он не мог быть удалён через интерфейс), вы можете установить chips в состояние disabled.
+
+```jsx
+import matchSorter from 'match-sorter';
+
+const filterOptions = (options, { inputValue }) =>
+  matchSorter(options, inputValue);
+
+<Autocomplete filterOptions={filterOptions} />
+```
 
 ### Места Google Maps
 
@@ -136,7 +181,7 @@ Fancy smaller inputs? Use the `size` prop.
 
 {{"demo": "pages/components/autocomplete/Sizes.js"}}
 
-## Customizations
+## Кастомизация
 
 ### Custom input
 
@@ -170,13 +215,14 @@ import { createFilterOptions } from '@material-ui/lab/Autocomplete';
 
 #### Аргументы
 
-1. `config` (*Object* [optional]): 
-  - `config.ignoreAccents` (*Boolean* [optional]): Defaults to `true`. Remove diacritics.
-  - `config.ignoreCase` (*Boolean* [optional]): Defaults to `true`. Lowercase everything.
-  - `config.limit` (*Number* [optional]): Default to null. Limit the number of suggested options to be shown. For example, if `config.limit` is `100`, only the first `100` matching options are shown. It can be useful if a lot of options match and virtualization wasn't set up.
-  - `config.matchFrom` (*'any' | 'start'* [optional]): Defaults to `'any'`.
-  - `config.stringify` (*Func* [optional]): Controls how an option is converted into a string so that it can be matched against the input text fragment.
-  - `config.trim` (*Boolean* [optional]): По умолчанию - `false`. Remove trailing spaces.
+1. `config` (*Object* [optional]):
+
+- `config.ignoreAccents` (*Boolean* [optional]): Defaults to `true`. Remove diacritics.
+- `config.ignoreCase` (*Boolean* [optional]): Defaults to `true`. Lowercase everything.
+- `config.limit` (*Number* [optional]): Default to null. Limit the number of suggested options to be shown. For example, if `config.limit` is `100`, only the first `100` matching options are shown. It can be useful if a lot of options match and virtualization wasn't set up.
+- `config.matchFrom` (*'any' | 'start'* [optional]): Defaults to `'any'`.
+- `config.stringify` (*Func* [optional]): Controls how an option is converted into a string so that it can be matched against the input text fragment.
+- `config.trim` (*Boolean* [optional]): По умолчанию - `false`. Remove trailing spaces.
 
 #### Возвращает
 
@@ -184,13 +230,13 @@ import { createFilterOptions } from '@material-ui/lab/Autocomplete';
 
 In the following demo, the options need to start with the query prefix:
 
-```js
+```jsx
 const filterOptions = createFilterOptions({
   matchFrom: 'start',
-  stringify: option => option.title,
+  stringify: (option) => option.title,
 });
 
-<Autocomplete filterOptions={filterOptions} />
+<Autocomplete filterOptions={filterOptions} />;
 ```
 
 {{"demo": "pages/components/autocomplete/Filter.js", "defaultCodeOpen": false}}
@@ -205,7 +251,7 @@ import matchSorter from 'match-sorter';
 const filterOptions = (options, { inputValue }) =>
   matchSorter(options, inputValue);
 
-<Autocomplete filterOptions={filterOptions} />
+<Autocomplete filterOptions={filterOptions} />;
 ```
 
 ## Виртуализация
@@ -225,15 +271,16 @@ By default, the component disable the **autocomplete** feature (remembering what
 However, in addition to remembering past entered values, the browser might also propose **autofill** suggestions (saved login, address, or payment details). In the event you want the avoid autofill, you can try the following:
 
 - Name the input without leaking any information the browser can use. e.g. `id="field1"` instead of `id="country"`. If you leave the id empty, the component uses a random id.
-- Set `autoComplete="new-password"`: 
-        jsx
-        <TextField
-        {...params}
-        inputProps={{
-          ...params.inputProps,
-          autoComplete: 'new-password',
-        }}
-        />
+- Set `autoComplete="new-password"`: jsx Set `autoComplete="new-password": 
+        jsx`
+
+  ```jsx
+  inputProps={{
+        ...params.inputProps,
+        autoComplete: 'new-password',
+      }}
+      /&#062;
+  ```
 
 ### iOS VoiceOver
 
