@@ -156,7 +156,7 @@ overriding the `filterOptions` `prop`:
 <Autocomplete filterOptions={(x) => x} />
 ```
 
-#### Google Maps place
+### Google Maps place
 
 A customized UI for Google Maps Places Autocomplete.
 
