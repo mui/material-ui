@@ -1,14 +1,18 @@
 ---
 components: CssBaseline, ScopedCssBaseline
+githubLabel:
+  component: CssBaseline
 ---
 
 # Principes CSS
 
 <p class="description">Material-UI fournit un composant CssBaseline pour relancer une base élégante, cohérente et simple sur laquelle s'appuyer.</p>
 
-## Global reset
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-Vous connaissez peut-être [normalize.css](https://github.com/necolas/normalize.css), une collection d'éléments HTML et de normalisations de style d'attributs.
+## Réinitialisation globale
+
+Vous êtes peut-être familier avec [normalize.css](https://github.com/necolas/normalize.css), une collection d'éléments HTML et de normalisations de styles.
 
 ```jsx
 import * as React from 'react';
@@ -24,9 +28,9 @@ export default function MyApp() {
 }
 ```
 
-## Scoping on children
+## Scope sur les enfants
 
-However, you might be progressively migrating a website to Material-UI, using a global reset might not be an option. It's possible to apply the baseline only to the children by using the `ScopedCssBaseline` component.
+Cependant, vous pourriez migrer progressivement un site Web vers Material-UI, utiliser une réinitialisation globale pourrait ne pas être une option. Il est possible d'appliquer la ligne de base uniquement aux enfants en utilisant le composant `ScopedCssBaseline`.
 
 ```jsx
 import * as React from 'react';
@@ -43,13 +47,13 @@ export default function MyApp() {
 }
 ```
 
-⚠️ Make sure you import `ScopedCssBaseline` first to avoid box-sizing conflicts as in the above example.
+⚠ Assurez-vous d'abord d'importer `ScopedCssBaseline` pour éviter les conflits de taille de boîte comme dans l'exemple ci-dessus.
 
 ## Approche
 
 ### Page
 
-The `<html>` and `<body>` elements are updated to provide better page-wide defaults. More specifically:
+Les éléments `<html>` et `<body>` sont mis à jour pour fournir de meilleurs paramètres par défaut à l'échelle de la page. Plus spécifiquement:
 
 - La marge dans tous les navigateurs est supprimée.
 - La couleur d'arrière-plan par défaut de Material Design est appliquée. Ceci est réalisé à l'aide de [`thème.la palette.arrière-plan.par défaut`](/customization/default-theme/?expand-path=$.palette.background) pour les appareils standard et un fond blanc pour les périphériques d'impression.
@@ -61,10 +65,10 @@ The `<html>` and `<body>` elements are updated to provide better page-wide defau
 ### Typographie
 
 - Aucune taille de police de base n’est déclarée sur le `<html>`, mais 16px est utilisée (valeur par défaut du navigateur). Vous pouvez en apprendre davantage sur les implications de l' évolution du `<html>` taille de la police par défaut dans [la documentation abordant les thèmes](/customization/typography/#typography-html-font-size) page.
-- Set the `theme.typography.body2` style on the `<body>` element.
-- Set the font-weight to `theme.typography.fontWeightBold` for the `<b>` and `<strong>` elements.
-- Custom font-smoothing is enabled for better display of the Roboto font.
+- Définit le style `theme.typography.body2` sur l'élément `<body>`.
+- Définit le poids de police à `theme.typography.fontWeightBold` pour les éléments `<b>` et `<strong>`.
+- Le lissage de police personnalisé est activé pour un meilleur affichage de la police Roboto.
 
 ## Personnalisation
 
-Head to the [global customization](/customization/globals/#global-css) section of the documentation to change the output of these components.
+Rendez-vous à la section [de personnalisation globale](/customization/globals/#global-css) de la documentation pour modifier la sortie de ces composants.
