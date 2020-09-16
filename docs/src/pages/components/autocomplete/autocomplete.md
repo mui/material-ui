@@ -156,6 +156,8 @@ overriding the `filterOptions` `prop`:
 <Autocomplete filterOptions={(x) => x} />
 ```
 
+#### Google Maps place
+
 A customized UI for Google Maps Places Autocomplete.
 
 {{"demo": "pages/components/autocomplete/GoogleMaps.js"}}
