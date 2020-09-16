@@ -15,6 +15,8 @@ components: NoSsr
 - Under too heavy server load, you can turn on service degradation.
 - Improve the time-to-interactive by only rendering what's important (with the `defer` property).
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
 ## Отсрочка на стороне клиента
 
 {{"demo": "pages/components/no-ssr/SimpleNoSsr.js"}}
