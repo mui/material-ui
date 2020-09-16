@@ -1,6 +1,6 @@
 # 位置
 
-<p class="description">使用这些速记实用程序快速配置元素的位置。</p>
+<p class="description">使用这些简写的小程程序来快速配置元素的位置。</p>
 
 ## z-index
 
@@ -17,7 +17,7 @@
 import { positions } from '@material-ui/system';
 ```
 
-| 导入名称       | Prop       | CSS 属性     | Theme key                                                      |
+| 导入名称       | 属性         | CSS 属性     | Theme key                                                      |
 |:---------- |:---------- |:---------- |:-------------------------------------------------------------- |
 | `position` | `position` | `position` | none                                                           |
 | `zIndex`   | `zIndex`   | `z-index`  | [`zIndex`](/customization/default-theme/?expand-path=$.zIndex) |
