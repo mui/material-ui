@@ -15,6 +15,8 @@ components: NoSsr
 - サーバーの負荷が高すぎる場合、サービスの低下を有効にできます。
 - 重要なものだけをレンダリングすることにより、対話までの時間を改善します（ `defer` プロパティを使用）。
 
+[The palette](/system/palette/) style関数。
+
 ## クライアント側の遅延
 
 {{"demo": "pages/components/no-ssr/SimpleNoSsr.js"}}
@@ -23,6 +25,6 @@ components: NoSsr
 
 中核となるNoSsrコンポーネントの目的は、レンダリングを **遅延することです**。 前のデモで示したように、これを使用して、サーバーからクライアントへのレンダリングを延期できます。
 
-ただし、これを使用して、クライアント自体内のレンダリングを延期することもできます。 子をレンダリングするには、 `defer` プロパティでスクリーンフレーム** を **待つことができます。 Reactは1ではなく [2 commits](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects) を行う。
+ただし、これを使用して、クライアント自体内のレンダリングを延期することもできます。 子をレンダリングするには、 `defer` プロパティでスクリーンフレーム** を **待つことができます。 ただし、これを使用して、クライアント自体内のレンダリングを延期することもできます。 子をレンダリングするには、 `defer` プロパティでスクリーンフレーム** を **待つことができます。 Reactは1ではなく [2 commits](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects) を行う。
 
 {{"demo": "pages/components/no-ssr/FrameDeferring.js"}}
