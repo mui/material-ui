@@ -1,11 +1,17 @@
 ---
-title: Componente React de avaliação
+title: Componente React para Avaliações
 components: Rating
+githubLabel:
+  component: Rating
+waiAria: 'https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating'
+packageName: '@material-ui/lab'
 ---
 
-# Avaliação
+# Rating
 
 <p class="description">As avaliações fornecem informações sobre opiniões e experiências de outros usuários com um produto. Os usuários também podem avaliar os produtos que compraram.</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Avaliações simples
 
@@ -17,7 +23,7 @@ Aqui estão alguns exemplos de customização do componente. Você pode aprender
 
 {{"demo": "pages/components/rating/CustomizedRatings.js"}}
 
-## Feedback ao passar mouse
+## Feedback ao passar o mouse
 
 Você pode exibir um rótulo ao passar o mouse para ajudar os usuários a escolher o valor de avaliação correto. A demonstração usa a propriedade `onChangeActive`.
 
@@ -43,3 +49,9 @@ A acessibilidade neste componente conta com:
 
 - Um grupo de botões é usado com seus campos visualmente ocultos. Ele contém seis botões de opção, um para cada estrela e outro para 0 estrelas, que é marcado por padrão. Certifique-se de que você está fornecendo uma propriedade `name`, que é exclusivo para o formulário principal.
 - Os rótulos dos botões de opção contêm o texto atualmente como ("1 Star", "2 Star", …). Certifique-se de fornecer uma propriedade `getLabelText` quando o idioma da página não for o inglês.
+
+By default, the rating component uses both a difference of color and shape between the filled and empty icons to indicate the value.
+
+In the event that you are using color as the only means to indicate the value, the information should also be also displayed as text, as in this demo. This is important to match [success Criterion 1.4.1](https://www.w3.org/TR/WCAG21/#use-of-color) of WCAG2.1.
+
+{{"demo": "pages/components/rating/TextRating.js"}}
