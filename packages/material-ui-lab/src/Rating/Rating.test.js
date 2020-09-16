@@ -8,6 +8,7 @@ import {
   describeConformance,
   createClientRender,
   fireEvent,
+  screen,
 } from 'test/utils';
 import Rating from './Rating';
 
@@ -32,10 +33,20 @@ describe('<Rating />', () => {
     skip: ['componentProp'],
   }));
 
-  it('should render', () => {
-    const { container } = render(<Rating {...defaultProps} />);
+  it('renders radio buttons each step from 0 (inclusive) to max (inclusive)', () => {
+    render(<Rating />);
 
-    expect(container.firstChild).to.have.class(classes.root);
+    const radios = screen.getAllByRole('radio');
+    // The order and their values is important for assistive technology.
+    // The position of the currently focused value is announced in e.g. NVDA.
+    // This could lead to confusing announcements e.g. "Radio group no value 6/6".
+    // This implies an order of `1,2,3,4,5,no value` when an incrementing order is expected.
+    expect(radios[0]).to.have.property('value', '1');
+    expect(radios[1]).to.have.property('value', '2');
+    expect(radios[2]).to.have.property('value', '3');
+    expect(radios[3]).to.have.property('value', '4');
+    expect(radios[4]).to.have.property('value', '5');
+    expect(radios[5]).to.have.property('value', '');
   });
 
   it('should round the value to the provided precision', () => {
