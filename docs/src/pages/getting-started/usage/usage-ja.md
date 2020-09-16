@@ -4,7 +4,7 @@
 
 Material-UIコンポーネントは独立して機能します。 **これらは自立しており**、表示するのに必要なスタイルだけを加えます。 それらは[normalize.css](https://github.com/necolas/normalize.css/)のようなグローバルのスタイルシートには依存しません。
 
-ドキュメントに示されているように、任意のコンポーネントを使用できます。 ドキュメントに示されているように、任意のコンポーネントを使用できます。 どのようにインポートされるか確認する為にそれぞれのコンポーネントの[デモページ](/components/buttons/)を参照してください。
+ドキュメントに示されているように、任意のコンポーネントを使用できます。 ドキュメントに示されているように、任意のコンポーネントを使用できます。 ドキュメントに示されているように、任意のコンポーネントを使用できます。 どのようにインポートされるか確認する為にそれぞれのコンポーネントの[デモページ](/components/buttons/)を参照してください。
 
 ## 今すぐ始める
 
@@ -36,7 +36,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 ### Responsive meta tag
 
-すべてのデバイスで適切なレンダリングとタッチズームを確実なものにするには、responsive viewport metaタグを`<head>`に追加します。 すべてのデバイスで適切なレンダリングとタッチズームを確実なものにするには、responsive viewport metaタグを`<head>`に追加します。
+すべてのデバイスで適切なレンダリングとタッチズームを確実なものにするには、responsive viewport metaタグを`<head>`に追加します。 すべてのデバイスで適切なレンダリングとタッチズームを確実なものにするには、responsive viewport metaタグを`<head>`に追加します。 すべてのデバイスで適切なレンダリングとタッチズームを確実なものにするには、responsive viewport metaタグを`<head>`に追加します。
 
 ```html
 <meta
@@ -47,11 +47,11 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 ### CssBaseline
 
-Material-UIはオプションで[CssBaseline](/components/css-baseline/)コンポーネントを提供しています。 それらは[normalize.css](https://github.com/necolas/normalize.css/)のようなグローバルのスタイルシートには依存しません。
+Material-UIはオプションで[CssBaseline](/components/css-baseline/)コンポーネントを提供しています。 それらは[normalize.css](https://github.com/necolas/normalize.css/)のようなグローバルのスタイルシートには依存しません。 それらは[normalize.css](https://github.com/necolas/normalize.css/)のようなグローバルのスタイルシートには依存しません。
 
 ## バージョン管理されたドキュメント
 
-このドキュメントは常に最新の安定版のMaterial-UIを反映しています。 古いバージョンのドキュメントは、[別のページ ](https://material-ui.com/versions/)にあります。 このドキュメントは常に最新の安定版のMaterial-UIを反映しています。 古いバージョンのドキュメントは、[別のページ ](https://material-ui.com/versions/)にあります。
+このドキュメントは常に最新の安定版のMaterial-UIを反映しています。 古いバージョンのドキュメントは、[別のページ ](https://material-ui.com/versions/)にあります。 このドキュメントは常に最新の安定版のMaterial-UIを反映しています。 古いバージョンのドキュメントは、[別のページ ](https://material-ui.com/versions/)にあります。 このドキュメントは常に最新の安定版のMaterial-UIを反映しています。 古いバージョンのドキュメントは、[別のページ ](https://material-ui.com/versions/)にあります。
 
 ## 次のステップ
 
