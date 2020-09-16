@@ -154,4 +154,34 @@ import { useDemoData } from '@material-ui/x-grid-data-generator';
       typescript: 'latest',
     });
   });
+
+  it('can use codesandbox deploys if a commit is given', () => {
+    const source = `
+import * as Core from '@material-ui/core';
+import * as Icons from '@material-ui/icons';
+import * as Lab from '@material-ui/lab';
+import * as Styles from '@material-ui/styles';
+import * as System from '@material-ui/system';
+import * as Utils from '@material-ui/utils';
+    `;
+
+    expect(
+      getDependencies(source, { muiCommitRef: '2d0e8b4daf20b7494c818b6f8c4cc8423bc99d6f' }),
+    ).to.deep.equal({
+      react: 'latest',
+      'react-dom': 'latest',
+      '@material-ui/core':
+        'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@material-ui/core',
+      '@material-ui/icons':
+        'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@material-ui/icons',
+      '@material-ui/lab':
+        'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@material-ui/lab',
+      '@material-ui/styles':
+        'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@material-ui/styles',
+      '@material-ui/system':
+        'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@material-ui/system',
+      '@material-ui/utils':
+        'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@material-ui/utils',
+    });
+  });
 });
