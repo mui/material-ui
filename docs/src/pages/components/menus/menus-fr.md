@@ -1,6 +1,10 @@
 ---
 title: Composant React Menu
 components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
+githubLabel:
+  component: Menu
+materialDesign: https://material.io/components/menus
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
 ---
 
 # Menus
@@ -8,6 +12,8 @@ components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 <p class="description">Les menus affichent une liste de choix sur des surfaces temporaires.</p>
 
 Un [Menu](https://material.io/design/components/menus.html) affiche une liste de choix sur une surface temporaire. Il apparaît lorsque l'utilisateur interagit avec un bouton ou un autre contrôle.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Menu simple
 
@@ -35,7 +41,7 @@ La responsabilité principale du composant `MenuList` est de gérer le focus.
 
 ## Menus personnalisés
 
-Voici un exemple de personnalisation du composant. Vous pouvez en savoir plus dans la [page de documentation des overrides (surcharges)](/customization/components/).
+Voici un exemple de personnalisation du composant. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/components/).
 
 {{"demo": "pages/components/menus/CustomizedMenus.js"}}
 
