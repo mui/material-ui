@@ -12,6 +12,10 @@ export interface ImageListItemBarProps extends StandardProps<{}, ImageListItemBa
    */
   actionPosition?: 'left' | 'right';
   /**
+   * Position of the title bar.
+   */
+  position?: 'top' | 'bottom';
+  /**
    * String or element serving as subtitle (support text).
    */
   subtitle?: React.ReactNode;
@@ -20,9 +24,9 @@ export interface ImageListItemBarProps extends StandardProps<{}, ImageListItemBa
    */
   title?: React.ReactNode;
   /**
-   * Position of the title bar.
+   * @ignore
    */
-  position?: 'top' | 'bottom';
+  titlePosition?: 'top' | 'bottom';
 }
 
 export type ImageListItemBarClassKey =
