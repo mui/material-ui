@@ -1,6 +1,9 @@
 ---
-title: React Icon 图标组件
+title: React 图标组件
 components: Icon, SvgIcon
+githubLabel:
+  components: SvgIcon（Svg 图标）
+materialDesign: https://material.io/design/iconography/system-icons.html
 ---
 
 # Icons 图标
@@ -29,9 +32,9 @@ npm install @material-ui/icons
 yarn add @material-ui/icons
 ```
 
-这些组件使用Material-UI的SvgIcon组件通过SVG路径来对各图标进行渲染，因此它们与下一个Material-UI的发布版本之间具有对等依赖性。
+这些组件使用 Material-UI 的 SvgIcon 组件，这样可以通过 SVG 路径来对各个图标进行渲染，因此它们与下一个发布的版本的 Material-UI 具有对等依赖性。
 
-如果你尚未在你的项目中使用Material-UI, 你可以按如下方式安装:
+如果你尚未在你的项目中使用 Material-UI，你可以这样添加:
 
 ```sh
 // 用 npm 安装
@@ -60,7 +63,7 @@ yarn add @material-ui/core
 
 当然了，方法 1 比方法 2 安全得多，但是方法 2 提供了最好的开发体验。 在使用第二个方法之前，请确保您遵循 [最小化捆绑包大小指南](/guides/minimizing-bundle-size/#option-2)。 我们强烈建议您配置一个 Babel 插件。
 
-其中我们给每个图标配备了一个”主题“：Filled (default), Outlined, Rounded, Two tone 以及 Sharp。 若您想导入一个不是默认主题的图标组件，在图标名加主题做为后缀即可。 例如，`@material-ui/icons/Delete` 图标可以：
+其中我们给每个图标配备了一个”主题“：Filled (default)，Outlined，Rounded，Two tone 以及 Sharp。 若您想导入一个不是默认主题的图标组件，在图标名加主题做为后缀即可。 例如，`@material-ui/icons/Delete` 图标可以：
 
 - 导出为 Filled 主题（默认值）：`@material-ui/icons/Delete`，
 - 导出为 Outlined 主题：`@material-ui/icons/DeleteOutlined`，
@@ -72,9 +75,9 @@ yarn add @material-ui/core
 
 {{"demo": "pages/components/icons/SvgMaterialIcons.js"}}
 
-## SvgIcon Svg 图标
+## SvgIcon（Svg 图标）
 
-如果你想导入一个自定义的 SVG 图标（但是又无法在 Material 图标[默认系列](/components/material-icons/)中找到），你可以使用 `SvgIcon` 来包装你的图标。 此组件是原生 `<svg>` 元素的拓展版：
+如果你想导入一个自定义的 SVG 图标（但是又无法在 Material 图标 [默认系列](/components/material-icons/) 中找到），你可以使用 `SvgIcon` 来包装你的图标。 此组件是原生 `<svg>` 元素的拓展版：
 
 - 它具备一些内置的无障碍设计。
 - SVG 元素应缩放为 24x24px 的视图，这样一来其他一些 Material-UI 组件可以将此图标直接使用，或者包含为其子元素。 （使用 `viewBox` 属性，您可以随意自定义）。
@@ -100,7 +103,7 @@ function HomeIcon(props) {
 
 ### 组件属性
 
-即使图标以 `.svg` 格式保存，你依然可以使用 `SvgIcon` 来包装它。 通过 [svgr](https://github.com/smooth-code/svgr) 提供的加载器，您可以导入 svg 文件，并以 React 组件形式使用。 譬如，使用 webpack ：
+即使图标以 `.svg` 的格式保存，你依然可以使用 `SvgIcon` 来包装它。 通过 [svgr](https://github.com/smooth-code/svgr) 提供的加载器，您可以导入 SVG 文件，并以 React 组件形式使用。 譬如，使用 webpack ：
 
 ```jsx
 // webpack.config.js
@@ -115,7 +118,7 @@ import StarIcon from './star.svg';
 <SvgIcon component={StarIcon} viewBox="0 0 600 476.6" />
 ```
 
-也可以通过“url-loader”或“file-loader”来使用它。 Create React App 也是这样使用的。
+通过 “url-loader” 或 “file-loader” 加载也是可行的。 Create React App 也是这样使用的。
 
 ```jsx
 // webpack.config.js
@@ -130,11 +133,21 @@ import { ReactComponent as StarIcon } from './star.svg';
 <SvgIcon component={StarIcon} viewBox="0 0 600 476.6" />
 ```
 
-### 库
+### Font Awesome
+
+If you find that there are layout issues when using FontAwesomeIcon from `@fortawesome/react-fontawesome`, you may try passing the Font Awesome SVG data directly to SvgIcon. This is best implemented as a custom wrapper component but will render more reliably in Material UI components (e.g. an IconButton).
+
+如下是一个同时使用[Font Awesome](https://fontawesome.com/icons) 与 `Icon` 的示例：
+
+友情提示：[mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) 已经将每个 SVG 图标用 `SvgIcon` 组件包装起来，你可以高枕无忧了。
+
+The `fullWidth` prop of `FontAwesomeIcon` can also be used to approximate the correct dimensions, but it isn't perfect.
+
+### Font Material 图标
 
 #### Material Design （强烈推荐）
 
-Material Design 将 [1100 多个海量官方图标 ](#material-icons)标准化。
+Material Design 将 [1100 多个海量官方图标](#material-icons) 标准化。
 
 #### MDI
 
@@ -150,7 +163,7 @@ Material Design 将 [1100 多个海量官方图标 ](#material-icons)标准化�
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 ```
 
-`Icon`  将为 Material icon font 设置正确的 class 名字。 对于其他字体来说，则需要通过 Icon 组件的 `className` 属性来传递类名称（class name)。
+`Icon`  将为 Material icon font 设置正确的类名。 `Icon`  将为 Material icon font 设置正确的 class 名字。
 
 若想要使用图标，您只需把图标名（字体连字）和 `Icon` 组件包装到一起，例如：
 
@@ -168,31 +181,11 @@ import Icon from '@material-ui/core/Icon';
 
 ### Font Awesome
 
-如下是一个同时使用[Font Awesome](https://fontawesome.com/icons) 与 `Icon` 的示例：
+如下是一个同时使用 [Font Awesome](https://fontawesome.com/icons) 与 `Icon` 的示例：
 
-{{"demo": "pages/components/icons/FontAwesome.js", "hideEditButton": true}}
+{{"demo": "pages/components/icons/FontAwesomeIcon.js"}}
 
-## Font vs SVG。 使用哪个更好呢？
-
-这两种方法都能管用，然而，它们之间还是有着一些微妙的差异，特别当涉及到整体性能和渲染质量。 我们推荐尽可能选择 SVG，因为它允许代码分割、支持更多图标、而且渲染得更快、更好。
-
-若您想了解更多细节，请查看 [ 为什么 GitHub 从字体图标迁移到 SVG 图标](https://github.blog/2016-02-22-delivering-octicons-with-svg/)这篇文章。
-
-## 无障碍设计
-
-图标可以传达各种各样有意义的信息，所以将他们传递给尽可能多的受众是至关重要的。 您可能会注意到这两个用例：
-- **装饰性的图标（Decorative Icons）** 只在视觉或者品牌强化中使用。 即使将它们从页面中移除，用户仍然可以理解并能够使用整个界面。
-- **语义图标（Semantic Icons）** 则是那些承载含义的图标，而不只有纯粹的装饰用途。 这也包括了将一些不带着文本的图标作为交互式控件使用 — 按钮，表单元素，切换等。
-
-### 装饰 SVG 图标
-
-如果你的图标只是作为纯粹的装饰，那么你已经大功告成啦！ 而添加 `aria-hidden=true` 属性可以让你的图标变成正确的且可访问的（隐形的）。
-
-### 语义 SVG 图标
-
-如果您的图标带有语义，您只需要包含 `titleAccess =“含义”` 这个属性。 我们添加了 `role="img"` 属性和 `<title>` 元素，这样一来您的图标就满足无障碍设计的需求了。
-
-对于那些可聚焦的交互式元素，譬如与一个图标按钮一起使用时，您可以使用 `aria-label` 属性：
+But note that the Font Awesome icons weren't designed like the Material Design icons (compare the two previous demos). The fa icons are cropped to use all the space available. It's recommanded to adjust for this with a global override:
 
 ```jsx
 import IconButton from '@material-ui/core/IconButton';
@@ -205,6 +198,44 @@ import SvgIcon from '@material-ui/core/SvgIcon';
     <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z" />
   </SvgIcon>
 </IconButton>
+```
+
+{{"demo": "pages/components/icons/FontAwesomeIconSize.js"}}
+
+## Font vs SVG。 使用哪个更好呢？
+
+这两种方法都能管用，然而，它们之间还是有着一些微妙的差异，特别当涉及到整体性能和渲染质量的时候。 我们推荐尽可能选择 SVG，因为它允许代码分割、支持更多图标、而且渲染得更快、更好。
+
+若您想了解更多细节，请查看 [ why GitHub migrated from font icons to SVG icons](https://github.blog/2016-02-22-delivering-octicons-with-svg/) 这篇文章。
+
+## 无障碍设计
+
+图标可以传达各种各样有意义的信息，所以将他们传递给尽可能多的受众是至关重要的。 您可能会注意到这两个用例：
+
+- **装饰性的图标（Decorative Icons）** 只在视觉或者品牌强化中使用。 即使将它们从页面中移除，用户仍然可以理解并能够使用整个界面。
+- **语义图标（Semantic Icons）** 则是那些承载含义的图标，而不只有纯粹的装饰用途。 这也包括了将一些不带着文本的图标作为交互式控件使用 — 按钮，表单元素，切换等。
+
+### 装饰 SVG 图标
+
+如果你的图标只是作为纯粹的装饰，那么你已经大功告成啦！ 而添加 `aria-hidden=true` 属性可以让你的图标变成正确的且可访问的（隐形的）。
+
+### 语义 SVG 图标
+
+如果您的图标带有语义，您只需要包含 `titleAccess =“含义”` 这个属性。 我们添加了 `role="img"` 属性和 `<title>` 元素，这样一来您的图标就满足无障碍设计的需求了。
+
+若想要使用图标，您只需把图标名（字体连字）和 `Icon` 组件包装到一起，例如：
+
+```jsx
+import IconButton from '@material-ui/core/IconButton';
+import SvgIcon from '@material-ui/core/SvgIcon';
+
+// ...
+
+<IconButton aria-label="delete">
+  <SvgIcon>
+    <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z" />
+  </SvgIcon>
+</IconButton>;
 ```
 
 ### 装饰形的字体图标
@@ -223,6 +254,9 @@ import Typography from '@material-ui/core/Typography';
 
 <Icon>add_circle</Icon>
 <Typography variant="srOnly">创建一个用户</Typography>
+
+<Icon>add_circle</Icon>
+<span className={classes.visuallyHidden}>创建一个用户</span>
 ```
 
 ### 参考
