@@ -43,7 +43,7 @@ En general, espera el siguiente ciclo de lanzamiento:
 | Mayo de 2018       | v1.0.0  | Publicado |
 | Septiembre de 2018 | v3.0.0  | Publicado |
 | Mayo de 2019       | v4.0.0  | Publicado |
-| Q3 2020            | v5.0.0  | ⏳         |
+| Q4 2020            | v5.0.0  | ⏳         |
 
 
 Puedes seguir los [hitos](https://github.com/mui-org/material-ui/milestones) para una descripción más detallada.
