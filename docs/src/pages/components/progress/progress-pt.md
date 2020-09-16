@@ -1,64 +1,59 @@
 ---
 title: Componentes React para progresso circular, linear
 components: CircularProgress, LinearProgress
+githubLabel:
+  component: Conjunto de progressos
+materialDesign: https://material.io/components/progress-indicators
 ---
 
 # Progresso
 
-<p class="description">Indicadores de progresso comumente conhecidos como spinners, expressam um tempo de espera não especificado ou exibem a duração de um processo. A animação funciona com CSS, não com JavaScript.</p>
+<p class="description">Indicadores de progresso comumente conhecidos como spinners, expressam um tempo de espera não especificado ou exibem a duração de um processo.</p>
 
-[Indicadores de progresso](https://material.io/design/components/progress-indicators.html) informam aos usuários sobre o estado de processos em progresso, como o carregamento de um aplicativo, envio de um formulário, ou atualizações. Eles comunicam o estado do aplicativo e indicam ações disponíveis, tal como, se o usuário pode sair da página atual.
+[Indicadores de progresso](https://material.io/design/components/progress-indicators.html) informam aos usuários sobre o estado de processos em progresso, como o carregamento de um aplicativo, envio de um formulário, ou atualizações.
+
+- O indicador circular **determinado** preenche a faixa circular invisível com cor, a medida que o indicador se move de 0 a 360 graus.
+- Indicador **indeterminado** demonstra um tempo de espera não especificado.
 
 Indicador **determinado** mostra quanto tempo uma operação vai demorar.
 
-Indicador **indeterminado** demonstra um tempo de espera não especificado.
-
-#### Conjunto de progressos
-
-Ao exibir o progresso de uma seqüência de processos, indique o progresso geral em vez do progresso de cada atividade.
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Circular
 
-[Progresso circular](https://material.io/design/components/progress-indicators.html#circular-progress-indicators) suporta ambos, processos determinados e indeterminados.
-
-- O indicador circular **determinado** preenche a faixa circular invisível com cor, a medida que o indicador se move de 0 a 360 graus.
-- O indicador circular **indeterminado** crescem e diminuem em tamanho enquanto se movem de forma circular na faixa invisível.
-
-### Circular Indeterminado
+### Circular indeterminado
 
 {{"demo": "pages/components/progress/CircularIndeterminate.js"}}
 
-### Integração Interativa
-
-{{"demo": "pages/components/progress/CircularIntegration.js"}}
-
-### Circular Determinado
+### Circular determinado
 
 {{"demo": "pages/components/progress/CircularDeterminate.js"}}
 
-### Circular estático
+### Integração interativa
 
-{{"demo": "pages/components/progress/CircularStatic.js"}}
+{{"demo": "pages/components/progress/CircularIntegration.js"}}
+
+### Circular com rótulo
+
+{{"demo": "pages/components/progress/CircularWithValueLabel.js"}}
 
 ## Linear
 
-Indicadores de [progresso linear](https://material.io/design/components/progress-indicators.html#linear-progress-indicators).
-
-### Linear Indeterminado
+### Linear indeterminado
 
 {{"demo": "pages/components/progress/LinearIndeterminate.js"}}
 
-### Linear Determinado
+### Linear determinado
 
 {{"demo": "pages/components/progress/LinearDeterminate.js"}}
 
-### Buffer Linear
+### Linear bufferizado
 
 {{"demo": "pages/components/progress/LinearBuffer.js"}}
 
-### Consulta Linear
+### Linear com rótulo
 
-{{"demo": "pages/components/progress/LinearQuery.js"}}
+{{"demo": "pages/components/progress/LinearWithValueLabel.js"}}
 
 ## Intervalo não-padrão
 
@@ -73,15 +68,15 @@ const normalise = value => (value - MIN) * 100 / (MAX - MIN);
 // Exemplo de componente que utiliza a função `normalise` no ponto de renderização.
 function Progress(props) {
   return (
-    <React.Fragment>
+    <React. Fragment>
       <CircularProgress variant="determinate" value={normalise(props.value)} />
       <LinearProgress variant="determinate" value={normalise(props.value)} />
-    </React.Fragment>
+    </React. Fragment>
   )
 }
 ```
 
-## Barra de progresso customizada
+## Progresso customizado
 
 Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
@@ -89,11 +84,13 @@ Aqui estão alguns exemplos de customização do componente. Você pode aprender
 
 ## Aparência atrasada
 
-Existem [3 limites importantes](https://www.nngroup.com/articles/response-times-3-important-limits/) para saber sobre o tempo de resposta. O efeito cascata do componente `ButtonBase` garante que o usuário experimente um sistema de feedback em tempo real. Normalmente, nenhum feedback é necessário durante atrasos de mais de 0,1 segundos e menos de 1,0 segundos. Mas após 1,0 segundo, você pode exibir um carregador para garantir que o fluxo de pensamento do usuário não seja interrompido.
+Existem [3 limites importantes](https://www.nngroup.com/articles/response-times-3-important-limits/) para saber sobre tempo de resposta. O efeito cascata do componente `ButtonBase` garante que o usuário experimente um sistema de feedback em tempo real. Normalmente, nenhum feedback é necessário durante atrasos de mais de 0,1 segundos e menos de 1,0 segundos. Mas após 1,0 segundo, você pode exibir um carregador para garantir que o fluxo de pensamento do usuário não seja interrompido.
 
 {{"demo": "pages/components/progress/DelayingAppearance.js"}}
 
 ## Limitações
+
+### High CPU load
 
 Quando o processamento é particularmente lento, você pode perder a animação do traço ou ver raios aleatórios com CircularProgress. Para não bloquear o processo principal de renderização, você deve processar suas operações com um web worker ou por batch.
 
@@ -102,3 +99,13 @@ Quando o processamento é particularmente lento, você pode perder a animação 
 Quando não for possível, você pode utilizar a propriedade `disableShrink` para atenuar o problema. Veja [este problema](https://github.com/mui-org/material-ui/issues/10327).
 
 {{"demo": "pages/components/progress/CircularUnderLoad.js"}}
+
+### High frequency updates
+
+The `LinearProgress` uses a transition on the CSS transform property to provide a smooth update between different values. The default transition duration is 200ms. In the event a parent component updates the `value` prop too quickly, you will at least experience a 200ms delay between the re-render and the progress bar fully updated.
+
+If you need to perform 30 re-renders per second or more, we recommend disabling the transition:
+
+```css
+Indicadores de <a href="https://material.io/design/components/progress-indicators.html#linear-progress-indicators">progresso linear</a>.
+```
