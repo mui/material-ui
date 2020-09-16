@@ -27,6 +27,6 @@ components: Button, ButtonGroup
 
 ## Disabled elevation
 
-You can remove the elevation with the `disableElevation` prop.
+`disableElevation`でシャドウを取り除けます。
 
 {{"demo": "pages/components/button-group/DisableElevation.js"}}
