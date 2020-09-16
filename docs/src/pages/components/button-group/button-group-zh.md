@@ -1,17 +1,21 @@
 ---
-title: React ButtonGroup按钮组组件
+title: React 按钮组组件
 components: Button, ButtonGroup
+githubLabel:
+  component: ButtonGroup
 ---
 
-# Button groups 按钮组
+# Button groups 按钮组组件
 
-<p class="description">ButtonGroup 组件可用于对相关按钮进行分组。</p>
+<p class="description">按钮组组件可用于对相关按钮进行分组。</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Basic button group 基本的按钮组
 
 {{"demo": "pages/components/button-group/BasicButtonGroup.js"}}
 
-## Basic button group 大小和颜色
+## 大小和颜色
 
 {{"demo": "pages/components/button-group/GroupSizesColors.js"}}
 
@@ -21,11 +25,11 @@ components: Button, ButtonGroup
 
 ## Split button 分体式按钮
 
-`ButtonGroup` 也可用于创建 split button。 下拉列表可以用于更改按钮相关的操作（如本例所示），或者用于立即触发一个相关的操作。
+`按钮组组件`也可用于创建分体式按钮。 下拉列表可以用于更改按钮相关的操作（如本例所示），或者用于立即触发一个相关的操作。
 
 {{"demo": "pages/components/button-group/SplitButton.js"}}
 
-## Disabled elevation 禁用 elevation
+## Disabled elevation 禁用立体效果（elevation）
 
 你也可以使用属性 `disableElevation` 属性来消除实心按钮的立体效果。
 
