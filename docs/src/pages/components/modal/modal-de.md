@@ -1,6 +1,9 @@
 ---
 title: Modal React-Komponente
 components: Modal
+githubLabel:
+  component: Modal
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 ---
 
 # Modal
@@ -12,16 +15,18 @@ Die Komponente rendered seine `Kinder` - Knoten vor einer Hintergrund - Komponen
 - 💄 Verwaltet modales Stacking, wenn eins zu einem Zeitpunkt nicht ausreicht.
 - 🔐 Erstellt einen Hintergrund zum Deaktivieren der Interaktion unter dem Modal.
 - 🔐 Es deaktiviert das Blättern des Seiteninhalts, während es geöffnet ist.
-- ♿️ Der Fokus wird richtig verwaltet. Wechseln des Fokus zum modalen Inhalt und diesen halten belassen, bis der Modal geschlossen ist.
+- The [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) can help you set the initial focus on the most relevant element, based on your modal content.
 - ♿️ Fügt die entsprechenden ARIA-Rollen automatisch hinzu.
 - 📦 [5 kB gzipped](/size-snapshot).
 
-> **Terminologieanmerkung**. Der Begriff "modal" bedeutet manchmal "Dialog", aber das ist eine Fehlbezeichnung. A modal window describes parts of a UI. Ein Element wird als modal betrachtet, wenn es [die Interaktion mit dem Rest der Anwendung blockiert](https://en.wikipedia.org/wiki/Modal_window).
+Die Style-Funktion der [Palette](/system/palette/).
+
+> **Terminologieanmerkung**. Der Begriff "modal" bedeutet manchmal "Dialog", aber das ist eine Fehlbezeichnung. Ein Element wird als modal betrachtet, wenn es [die Interaktion mit dem Rest der Anwendung blockiert](https://en.wikipedia.org/wiki/Modal_window). A modal window describes parts of a UI.
 
 Wenn Sie ein modales Dialogfeld erstellen, möchten Sie wahrscheinlich die [Dialog-](/components/dialogs/) Komponente verwenden, anstatt direkt ein Modal zu verwenden. Modal ist ein untergeordnetes Konstrukt, das von den folgenden Komponenten genutzt wird:
 
 - [Dialog](/components/dialogs/)
-- [Drawer](/components/drawers/)
+- [Seitliches Menü (Drawer)](/components/drawers/)
 - [Menu](/components/menus/)
 - [Popover](/components/popover/)
 
@@ -71,9 +76,9 @@ This is done for accessibility purposes, however, it might create issues. In the
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#dialog_modal)
 
 - Achten Sie darauf, eine Referenzierung des modalen Titels durch `aria-labelledby = "id..."` zu dem `Modal` hinzufügen. Zusätzlich können Sie eine Beschreibung Ihres Modals mit der `aria-describedby="id..."` Prop auf dem `Modal` angeben.
-    
-    ```jsx
-    <Modal
+
+  ```jsx
+  <Modal
     aria-labelledby="modal-title"
     aria-describedby="modal-description"
     >
@@ -84,7 +89,7 @@ This is done for accessibility purposes, however, it might create issues. In the
       My Description
     </p>
     </Modal>
-    ```
+  ```
 
 - The [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) can help you set the initial focus on the most relevant element, based on your modal content.
-- Keep in mind that a "modal window" overlays on either the primary window or another modal window. Windows under a modal are **inert**. That is, users cannot interact with content outside an active modal window. This might create [conflicting behaviors](#focus-trap).
+- Windows under a modal are **inert**. Keep in mind that a "modal window" overlays on either the primary window or another modal window. Keep in mind that a "modal window" overlays on either the primary window or another modal window. This might create [conflicting behaviors](#focus-trap).
