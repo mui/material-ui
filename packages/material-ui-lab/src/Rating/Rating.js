@@ -330,14 +330,6 @@ const Rating = React.forwardRef(function Rating(props, ref) {
       </IconContainerComponent>
     );
 
-    if (readOnly) {
-      return (
-        <span key={state.value} {...labelProps}>
-          {container}
-        </span>
-      );
-    }
-
     return (
       <React.Fragment key={state.value}>
         <label className={classes.label} htmlFor={id} {...labelProps}>
@@ -349,13 +341,14 @@ const Rating = React.forwardRef(function Rating(props, ref) {
           onBlur={handleBlur}
           onChange={handleChange}
           onClick={handleClear}
-          disabled={disabled}
+          disabled={readOnly && !state.checked ? true : disabled}
           value={state.value}
           id={id}
           type="radio"
           name={name}
           checked={state.checked}
           className={classes.visuallyHidden}
+          readOnly={readOnly}
         />
       </React.Fragment>
     );
@@ -376,8 +369,6 @@ const Rating = React.forwardRef(function Rating(props, ref) {
         },
         className,
       )}
-      role={readOnly ? 'img' : null}
-      aria-label={readOnly ? getLabelText(value) : null}
       {...other}
     >
       {Array.from(new Array(max)).map((_, index) => {
@@ -436,7 +427,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
           checked: itemValue === valueRounded,
         });
       })}
-      {!readOnly && !disabled && valueRounded == null && (
+      {!disabled && valueRounded == null && (
         <React.Fragment>
           <input
             value=""
@@ -445,6 +436,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
             name={name}
             defaultChecked
             className={classes.visuallyHidden}
+            readOnly={readOnly}
           />
           <label className={classes.pristine} htmlFor={`${name}-empty`}>
             <span className={classes.visuallyHidden}>{emptyLabelText}</span>
@@ -521,20 +513,10 @@ Rating.propTypes = {
   max: PropTypes.number,
   /**
    * The name attribute of the radio `input` elements.
-   * If `readOnly` is false, the prop is required,
-   * this input name`should be unique within the parent form.
+   * This input `name` should be unique within the page.
+   * Being unique within a form is insufficient since the `name` is used to generated IDs.
    */
-  name: chainPropTypes(PropTypes.string, (props) => {
-    if (!props.readOnly && !props.name) {
-      return new Error(
-        [
-          'Material-UI: The prop `name` is required (when `readOnly` is false).',
-          'Additionally, the input name should be unique within the parent form.',
-        ].join('\n'),
-      );
-    }
-    return null;
-  }),
+  name: PropTypes.string,
   /**
    * Callback fired when the value changes.
    *
