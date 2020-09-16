@@ -329,6 +329,12 @@ const jss = create({
 export default function App() {
   return <StylesProvider jss={jss}>...</StylesProvider>;
 }
+  insertionPoint: document.getElementById('jss-insertion-point'),
+});
+
+export default function App() {
+  return <StylesProvider jss={jss}>...</StylesProvider>;
+}
 ```
 
 #### JS createComment
