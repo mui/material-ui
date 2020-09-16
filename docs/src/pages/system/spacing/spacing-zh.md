@@ -1,10 +1,10 @@
-# Spacing 间距
+# Spacing（间距）
 
-<p class="description">各种简写响应边距和填充实用程序类，用于修改元素的外观。</p>
+<p class="description">为了改变一个元素的外观，您可以使用一系列的简写响应式的 margin 和 padding 的辅助工具类。</p>
 
 ## 符号
 
-空间实用程序将速记边距和填充道具转换为边距和填充CSS声明。 道具使用格式`{property}{sides}` 命名。
+用 space 辅助工具能够将简写的 margin 和 padding 属性转换为margin 和 padding 的 CSS 声明。 而属性则使用 `{property}{sides}` 的格式命名。
 
 其中*属性*是其中之一：
 
@@ -19,11 +19,11 @@
 - `r` - 对于设置*margin-right*或*padding-right*的类
 - `x` - 对于设置** -left*和** -right*的类
 - `y` - 对于设置** -top*和** -bottom*的类
-- 空白 - 用于在元素的所有4个边上设置边距或填充的类
+- blank - 能够设置元素的所有 4 个边的 margin 或者 padding 的类名
 
-## 转型
+## 转换
 
-根据输入和主题配置，应用以下转换：
+根据输入和主题配置，您可以应用以下的转换：
 
 - 输入：`数字` & 主题：`数字` ：该属性乘以主题值。
 
@@ -76,6 +76,8 @@ const theme = {
 <Box p={1}>…
 <Box m={1}>…
 <Box p={2}>…
+<Box m={1}>…
+<Box p={2}>…
 ```
 
 ## 水平居中
@@ -92,7 +94,7 @@ const theme = {
 import { spacing } from '@material-ui/system';
 ```
 
-| 导入名称      | Prop | CSS 属性                          | Theme key                                                        |
+| 导入名称      | 属性   | CSS 属性                          | Theme key                                                        |
 |:--------- |:---- |:------------------------------- |:---------------------------------------------------------------- |
 | `spacing` | `m`  | `margin`                        | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
 | `spacing` | `mt` | `margin-top`                    | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
@@ -109,8 +111,7 @@ import { spacing } from '@material-ui/system';
 | `spacing` | `px` | `padding-left`, `padding-right` | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
 | `spacing` | `py` | `padding-top`, `padding-bottom` | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
 
-
-*有些人觉得属性简写让人困惑，如果你愿意，可以使用完整版：*
+_有些人觉得属性简写让人困惑，如果你愿意的话，您也可以使用完整版：_
 
 ```diff
 -<Box pt={2} />
