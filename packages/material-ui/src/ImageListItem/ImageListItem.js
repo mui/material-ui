@@ -119,8 +119,12 @@ const ImageListItem = React.forwardRef(function ImageListItem(props, ref) {
 });
 
 ImageListItem.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
-   * While you can pass any node as children, the main use case is for an img.
+   * @ignore
    */
   children: PropTypes.node,
   /**
@@ -133,7 +137,7 @@ ImageListItem.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Width of the item in number of grid columns.
+   * @ignore
    */
   cols: PropTypes.number,
   /**
@@ -142,7 +146,7 @@ ImageListItem.propTypes = {
    */
   component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
-   * Height of the item in number of grid rows.
+   * @ignore
    */
   rows: PropTypes.number,
 };

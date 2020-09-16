@@ -75,28 +75,25 @@ const ImageList = React.forwardRef(function ImageList(props, ref) {
 });
 
 ImageList.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * @ignore
    */
-  cellHeight: deprecatedPropType(
-    PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['auto'])]),
-    'Use the `rowHeight` prop instead.',
-  ),
-  /**
-   * Items that will be in the image list.
-   */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
   className: PropTypes.string,
   /**
-   * Number of columns.
+   * @ignore
    */
   cols: PropTypes.number,
   /**
@@ -105,17 +102,13 @@ ImageList.propTypes = {
    */
   component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
-   * The gap between items in `px`.
+   * @ignore
    */
   gap: PropTypes.number,
   /**
-   * The height of one row in `px`.
-   */
-  rowHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['auto'])]),
-  /**
    * @ignore
    */
-  spacing: deprecatedPropType(PropTypes.number, 'Use the `rowHeight` prop instead.'),
+  rowHeight: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
   /**
    * @ignore
    */
