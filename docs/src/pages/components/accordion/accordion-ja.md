@@ -9,7 +9,7 @@ components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 
 [拡張パネル](https://material.io/archive/guidelines/components/expansion-panels.html)は 独立した軽量のコンテナであるか、カードなどの大きなサーフェスに接続されています。
 
-> **注：** 拡張パネルについては、[Material Design guidelines](https://material.io/)では説明されていませんが、Material-UIでは引き続きサポートされます。 It was formerly known as the "expansion panel".
+> **注：** 拡張パネルについては、[Material Design guidelines](https://material.io/)では説明されていませんが、Material-UIでは引き続きサポートされます。 以前は"expansion panel"としてしられていたものです。
 
 ## Simple Accordion
 
@@ -23,19 +23,19 @@ components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 
 ## カスタマイズされた拡張パネル
 
-コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/accordion/CustomizedAccordions.js"}}
 
 ## Additional actions
 
-In order to put an action such as a `Checkbox` or a button inside of the `AccordionSummary`, you need to stop the propagation of the focus and click events to prevent the panel from expanding/collapsing when using the action. You should also provide an `aria-label` for the action, otherwise the label of the nested action will be included in the label of the parent button that controls the accordion expansion.
+`Checkbox`などのアクションまたはボタンを`AccordionSummary`の内部で使うために、フォーカスの伝播を止めて、アクション時にクリックイベントがパネルの開閉動作を呼ばないようにする必要があります。 また、アクションに `aria-label` を付与する必要があります。そうしないと、入れ子になったアクションのラベルがアコーディオンの拡張を制御する親コンポーネントのボタンのラベルに含まれることになります。
 
 {{"demo": "pages/components/accordion/ActionsInAccordionSummary.js", "bg": true}}
 
 ## パフォーマンス
 
-The content of Accordions is mounted by default even if the accordion is not expanded. このデフォルトの動作では、サーバー側のレンダリングとSEOが考慮されています。 Accordionsのコンテンツは、パネルが展開されていない場合でもデフォルトでマウントされます。 このデフォルトの動作では、サーバー側のレンダリングとSEOが考慮されています。 If you render expensive component trees inside your panels or simply render many panels it might be a good idea to change this default behavior by enabling the `unmountOnExit` in `TransitionProps`:
+Accordionsのコンテンツは、パネルが展開されていない場合でもデフォルトでマウントされます。 このデフォルトの動作では、サーバー側のレンダリングとSEOが考慮されています。 If you render expensive component trees inside your panels or simply render many panels it might be a good idea to change this default behavior by enabling the `unmountOnExit` in `TransitionProps`:
 
 ```jsx
 <Accordion TransitionProps={{ unmountOnExit: true }} />
