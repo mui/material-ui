@@ -1,6 +1,8 @@
 ---
 title: Composant React Téléportation
 components: Portal
+githubLabel:
+  component: Portal
 ---
 
 # Portal
@@ -10,6 +12,8 @@ components: Portal
 - 📦 [1.3 kB gzipped](/size-snapshot)
 
 Les enfants du composant Portal seront ajoutés au `container` fournit. The component is used internally by the [`Modal`](/components/modal/) and [`Popper`](/components/popper/) components.
+
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Exemple
 
