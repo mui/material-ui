@@ -1,10 +1,8 @@
 trigger:
   branches:
     include:
-      - '*'
-    exclude:
-      - l10n
-      - dependabot/*
+      - 'master'
+      - 'next'
 
 schedules:
   - cron: '0 0 * * *'
