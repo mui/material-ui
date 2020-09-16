@@ -12,7 +12,7 @@ Make sure the `dir` attribute is set on the body, otherwise native components wi
 <body dir="rtl">
 ```
 
-### 2. Theme
+### 2. Темы
 
 Set the direction in your custom theme:
 
@@ -53,7 +53,7 @@ function RTL(props) {
 
 ## Demo
 
-*Use the direction toggle button on the top right corner to flip the whole documentation*
+_Use the direction toggle button on the top right corner to flip the whole documentation_
 
 {{"demo": "pages/guides/right-to-left/Direction.js"}}
 
@@ -61,6 +61,6 @@ function RTL(props) {
 
 If you want to prevent a specific rule-set from being affected by the `rtl` transformation you can add `flip: false` at the beginning.
 
-*Use the direction toggle button on the top right corner to see the effect.*
+_Use the direction toggle button on the top right corner to see the effect._
 
 {{"demo": "pages/guides/right-to-left/RtlOptOut.js", "hideEditButton": true}}
