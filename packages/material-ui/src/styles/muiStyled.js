@@ -53,7 +53,7 @@ const muiStyled = (el, params, muiConfig) => {
       });
     }
 
-    return result(params);
+    return result(...params);
   };
   return muiFunc;
 };

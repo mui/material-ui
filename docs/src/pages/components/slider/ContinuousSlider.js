@@ -6,7 +6,7 @@ import Slider from '@material-ui/core/Slider';
 import VolumeDown from '@material-ui/icons/VolumeDown';
 import VolumeUp from '@material-ui/icons/VolumeUp';
 import { ThemeProvider } from '@material-ui/styles';
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 
 const useStyles = makeStyles({
   root: {

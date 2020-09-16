@@ -4,8 +4,7 @@ import useThemeProps from '../styles/useThemeProps';
 import { fade, lighten, darken } from '../styles/colorManipulator';
 import capitalize from '../utils/capitalize';
 import SliderBase from './SliderBase';
-import styled from '@material-ui/styled-engine';
-import { getStyleOverrides, getVariantStyles } from '../styles/muiStyled';
+import muiStyled from '../styles/muiStyled';
 
 const overridesResolver = (props, styles, name) => {
   const {
@@ -71,7 +70,7 @@ const variantsResolver = (props, styles, theme, name) => {
   return variantsStyles;
 };
 
-export const SliderRoot = styled(
+export const SliderRoot = muiStyled(
   'div',
   {},
   { muiName: 'MuiSlider', overridesResolver, variantsResolver },
@@ -263,9 +262,6 @@ export const SliderRoot = styled(
         color: props.theme.palette.text.primary,
       },
     },
-
-    ...overridesResolver(props, getStyleOverrides('MuiSlider', props.theme), 'MuiSlider'),
-    ...variantsResolver(props, getVariantStyles('MuiSlider', props.theme), props.theme, 'MuiSlider'),
   };
 });
 
