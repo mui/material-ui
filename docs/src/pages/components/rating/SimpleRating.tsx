@@ -27,7 +27,7 @@ export default function SimpleRating() {
         <Rating name="disabled" value={value} disabled />
       </Box>
       <Box component="fieldset" mb={3} borderColor="transparent">
-        <Typography component="legend">no rating given</Typography>
+        <Typography component="legend">No rating given</Typography>
         <Rating name="no-value" value={null} />
       </Box>
     </div>
