@@ -1,9 +1,13 @@
 ---
 title: Componente React para Botão
 components: Button, IconButton, ButtonBase
+materialDesign: https://material.io/components/buttons
+githubLabel:
+  component: Button
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
 ---
 
-# Botão
+# Button
 
 <p class="description">Botões permitem que os usuários tomem ações e decisões com um simples toque.</p>
 
@@ -15,19 +19,21 @@ components: Button, IconButton, ButtonBase
 - Cartões
 - Barras de ferramentas
 
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
 ## Botões Contidos
 
 [Botões Contidos](https://material.io/design/components/buttons.html#contained-button) tem alta ênfase, distinguem-se pelo uso de elevação e preenchimento. Eles contém as principais ações da sua aplicação.
 
 {{"demo": "pages/components/buttons/ContainedButtons.js"}}
 
-Você pode remover a sombra com a propriedade `disableElevation`.
+Você pode remover a elevação com a propriedade `disableElevation`.
 
 {{"demo": "pages/components/buttons/DisableElevation.js"}}
 
 ## Botões de Texto
 
-[Botões de texto](https://material.io/design/components/buttons.html#text-button) são utilizados tipicamente para ações menos significativas, incluindo aquelas localizadas em:
+Em cartões, os botões de texto ajudam a manter a ênfase no conteúdo do cartão.
 
 - Caixas de diálogo
 - Cartões
@@ -54,7 +60,7 @@ Todos os componentes aceitam um método manipulador `onClick` que é aplicado ao
 
 Note que a documentação [evita](/guides/api/#native-properties) mencionar as propriedades nativas (existem várias) na seção de API dos componentes.
 
-## Botão de Upload
+## Botão de upload
 
 {{"demo": "pages/components/buttons/UploadButtons.js"}}
 
@@ -64,21 +70,21 @@ Gosta de botões maiores ou menores? Use a propriedade `size`.
 
 {{"demo": "pages/components/buttons/ButtonSizes.js"}}
 
-## Botões com ícones e "Label"
+## Botões com ícones e rótulo
 
-Às vezes você pode querer ter ícones para determinados botão para melhorar o UX do aplicativo como reconhecemos logotipos mais facilmente do que o texto sem formatação. Por exemplo, se você tem um botão com a açõo de "deletar" você pode rotulá-lo com um ícone do caixote de lixo.
+Às vezes você pode querer ter ícones para determinado botão para melhorar o UX do aplicativo, reconhecemos logotipos mais facilmente do que o texto puro. Por exemplo, se você tem um botão com a ação de "deletar", você pode rotulá-lo com o ícone de lata de lixo.
 
 {{"demo": "pages/components/buttons/IconLabelButtons.js"}}
 
-## Botões de Icone
+## Botões de Ícone
 
 Botões de ícones são comumente encontrados em barras de aplicativos e barras de ferramentas.
 
-Ícones são também adequadas para botões de alternância que permitem uma escolha única para ser selecionado ou desmarcada, como adicionar ou remover uma estrela para um item.
+Ícones são também adequados para botões de alternância que permitem uma escolha única para ser selecionado ou desmarcado, como adicionar ou remover uma estrela para um item.
 
 {{"demo": "pages/components/buttons/IconButtons.js"}}
 
-## Botões Customizados
+## Botões customizados
 
 Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
@@ -88,13 +94,23 @@ Aqui estão alguns exemplos de customização do componente. Você pode aprender
 
 ## Botões complexos
 
-O botões de texto, botões contidos, botões de ação flutuante e ícone botões são construídos em cima do mesmo componente: O componente `ButtonBase `. Você pode tirar vantagem deste componente de nível mais abastrato para construir interações personalizadas.
+The loading buttons can show pending state and disable interactions.
+
+{{"demo": "pages/components/buttons/LoadingButtons.js"}}
+
+Aqui está um [exemplo de integração com react-router](/guides/composition/#button).
+
+O componente ButtonBase define `pointer-events: none;` ao desabilitar os botões, o que previne que o cursor desabilitado seja exibido.
+
+## Botões complexos
+
+Os botões de texto, botões contidos, botões de ação flutuante e botões de ícone são construídos com base no mesmo componente: O componente `ButtonBase`. Você pode tirar vantagem deste componente de nível mais abstrato para construir interações customizadas.
 
 {{"demo": "pages/components/buttons/ButtonBase.js"}}
 
 ## Biblioteca de roteamento de terceiros
 
-Um caso de uso comum é usar o botão para acionar uma navegação para uma nova página. O componente `ButtonBase` fornece uma propriedade para lidar com este caso de uso: `componente`. No entanto, para alguns polyfills de foco `ButtonBase` requer o nó DOM do componente fornecido. Isso é obtido anexando-se uma referência ao componente e esperando que o componente envie essa referência para o nó DOM subjacente. Dado que muitos dos componentes interativos dependem do `ButtonBase`, você deve ser capaz de tirar proveito em todos os lugares.
+Um caso de uso comum é usar o botão para acionar uma navegação para uma nova página. Um caso de uso comum é usar o botão para acionar uma navegação para uma nova página. No entanto, para alguns polyfills de foco, `ButtonBase` requer o nó DOM do componente fornecido. Isso é obtido anexando-se uma referência ao componente e esperando que o componente envie essa referência para o nó DOM subjacente. Dado que muitos dos componentes interativos dependem do `ButtonBase`, você deve ser capaz de tirar proveito em todos os lugares.
 
 Aqui está um [exemplo de integração com react-router](/guides/composition/#button).
 
@@ -108,12 +124,13 @@ Se você deseja usar `not-allowed`, você tem duas opções:
 
 1. **Apenas com CSS**. Você pode modificar os estilos aplicados no seletor de estado disabled do elemento `<button>`:
 
-  ```css
-  .MuiButtonBase-root:disabled {
-    cursor: not-allowed;
-    pointer-events: auto;
-  }
-  ```
+```css
+<span style={{ cursor: 'not-allowed' }}>
+    <Button component={Link} disabled>
+      disabled
+    </Button>
+  </span>
+```
 
 Então:
 
@@ -122,12 +139,12 @@ Então:
 
 2. **Alteração no DOM**. Você pode encapsular o botão:
 
-  ```jsx
-  <span style={{ cursor: 'not-allowed' }}>
+```jsx
+<span style={{ cursor: 'not-allowed' }}>
     <Button component={Link} disabled>
       disabled
     </Button>
   </span>
-  ```
+```
 
 Isso tem a vantagem de suportar qualquer elemento, por exemplo, um elemento de link `<a>`.
