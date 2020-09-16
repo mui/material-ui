@@ -6,11 +6,14 @@ Debido a que el alcance de los problemas que soluciona Material-UI es límite, i
 
 ## Recursos de diseño
 
-- **Sketch**: [Sketch for Material-UI](https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-sketch) — Un gran kit de interfaz de usuario con más de 600 símbolos de Material-UI fabricados a mano 💎.
-- **Figma**: [Figma for Material-UI](https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-sketch) — Un gran kit de UI con más de 600 componentes de Material-UI fabricados a mano 🎨.
-- **Framer**: [Framer for Material-UI](https://packages.framer.com/package/material-ui/material-ui) — Una pequeña vista previa del kit de la interfaz de usuario del MIT del componente de material fabricado a mano.
+<a href="https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-sketch" style="margin-left: 8px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-sketch.svg" alt="sketch" /></a>
+<a href="https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-figma" style="margin-left: 32px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-figma.svg" alt="figma" /></a>
 
-¿No has encontrado los recursos de diseño que tu equipo está buscando? [¡Haznos saber!](mailto:design@material-ui.com)
+A set of reusable components for design tools is available, designed to match the React components, and to help you craft great products:
+
+- <strong x-id="1">Sketch</strong>: [Sketch for Material-UI](https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-sketch) — A large UI kit with over 600 handcrafted Material-UI's symbols 💎.
+- <strong x-id="1">Figma</strong>: [Figma for Material-UI](https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-sketch) — A large UI kit with over 600 handcrafted Material-UI's components 🎨.
+- <strong x-id="1">Framer</strong>: [Framer for Material-UI](https://packages.framer.com/package/material-ui/material-ui) — A small MIT UI kit preview of handcrafted Material-UI's component.
 
 ## Imágenes e ilustraciones
 
