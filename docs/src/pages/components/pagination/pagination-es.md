@@ -1,41 +1,46 @@
 ---
 title: Pagination React component
 components: Pagination, PaginationItem
+githubLabel:
+  component: Paginación
+packageName: '@material-ui/lab'
 ---
 
-# Pagination
+# Paginación
 
-<p class="description">The Pagination component enables the user to select a specific page from a range of pages.</p>
+<p class="description">El componente de paginación permite al usuario seleccionar una página específica de un rango de páginas.</p>
 
-## Basic pagination
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
+## Paginación básica
 
 {{"demo": "pages/components/pagination/BasicPagination.js"}}
 
-## Outlined pagination
+## Paginación delineada
 
 {{"demo": "pages/components/pagination/PaginationOutlined.js"}}
 
-## Rounded pagination
+## Paginación redondeada
 
 {{"demo": "pages/components/pagination/PaginationRounded.js"}}
 
-## Pagination size
+## Tamaño de paginación
 
 {{"demo": "pages/components/pagination/PaginationSize.js"}}
 
 ## Botones
 
-You can optionally enable first-page and last-page buttons, or disable the previous-page and next-page buttons.
+Opcionalmente puede activar los botones de primera página y última página, o desactivar los botones de página anterior y página siguiente.
 
 {{"demo": "pages/components/pagination/PaginationButtons.js"}}
 
-## Pagination ranges
+## Rangos de paginación
 
-You can specify how many digits to display either side of current page with the `siblingRange` prop, and adjacent to the start and end page number with the `boundaryRange` prop.
+Puede especificar cuántos dígitos mostrar en ambos lados de la página actual con el prop `siblingRange` prop,  y adyacente los números de página del comienzo y del final con el prop `boundaryRange`.
 
 {{"demo": "pages/components/pagination/PaginationRanges.js"}}
 
-## Controlled pagination
+## Paginación Controlada
 
 {{"demo": "pages/components/pagination/PaginationControlled.js"}}
 
@@ -61,6 +66,8 @@ For the pagination of a large set of tabular data, you should use the `TablePagi
 
 {{"demo": "pages/components/pagination/TablePagination.js"}}
 
+> ⚠️ Note that the `Pagination` page prop starts at 1 to match the requirement of including the value in the URL, while the `TablePagination` page prop stats at 0 to match the requirement of zero-based JavaScript arrays that comes with rendering a lot of tabular data.
+
 You can learn more about this use case in the [table section](/components/tables/#custom-pagination-options) of the documentation.
 
 ## Accesibilidad
@@ -69,6 +76,6 @@ You can learn more about this use case in the [table section](/components/tables
 
 The root node has a role of "navigation" and aria-label "pagination navigation" by default. The page items have an aria-label that identifies the purpose of the item ("go to first page", "go to previous page", "go to page 1" etc.). You can override these using the `getItemAriaLabel` prop.
 
-### Keyboard
+### Teclado
 
-The pagination items are in tab order, with a tabindex of "0".
+Los elementos de paginación están en orden de tabulación, con un índice de tabulación (tabindex) de "0".
