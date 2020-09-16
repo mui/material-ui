@@ -371,6 +371,22 @@ const Rating = React.forwardRef(function Rating(props, ref) {
       )}
       {...other}
     >
+      {!disabled && valueRounded == null && (
+        <React.Fragment>
+          <input
+            value=""
+            id={`${name}-empty`}
+            type="radio"
+            name={name}
+            defaultChecked
+            className={classes.visuallyHidden}
+            readOnly={readOnly}
+          />
+          <label className={classes.pristine} htmlFor={`${name}-empty`}>
+            <span className={classes.visuallyHidden}>{emptyLabelText}</span>
+          </label>
+        </React.Fragment>
+      )}
       {Array.from(new Array(max)).map((_, index) => {
         const itemValue = index + 1;
 
@@ -427,22 +443,6 @@ const Rating = React.forwardRef(function Rating(props, ref) {
           checked: itemValue === valueRounded,
         });
       })}
-      {!disabled && valueRounded == null && (
-        <React.Fragment>
-          <input
-            value=""
-            id={`${name}-empty`}
-            type="radio"
-            name={name}
-            defaultChecked
-            className={classes.visuallyHidden}
-            readOnly={readOnly}
-          />
-          <label className={classes.pristine} htmlFor={`${name}-empty`}>
-            <span className={classes.visuallyHidden}>{emptyLabelText}</span>
-          </label>
-        </React.Fragment>
-      )}
     </span>
   );
 });
