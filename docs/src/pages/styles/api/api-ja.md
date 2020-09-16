@@ -138,8 +138,7 @@ The method returns the collected styles.
 
 ⚠️ You must call `.collect()` before using this method.
 
-### `
-sheets.getStyleElement() => CSS React element`
+### `` sheets.getStyleElement() => CSS React element` ``
 
 sheets.getStyleElement() => CSS React element`
 
@@ -162,7 +161,7 @@ sheets.getStyleElement() => CSS React element`
 
 ### 戻り値
 
-Link a style sheet with a function component using the **styled components** pattern.
+`Component` ：作成された新しいコンポーネント。 内部コンポーネントへの参照を転送します。
 
 ### 例
 
@@ -258,7 +257,7 @@ Provide the `theme` object as a property of the input component so it can be use
 
 ### 戻り値
 
-This hook returns the `theme` object so it can be used inside a function component.
+Provide the `theme` object as a property of the input component so it can be used in the render method.
 
 ### 例
 
@@ -317,7 +316,7 @@ function MyComponent(props) {
 export default withStyles(styles)(MyComponent);
 ```
 
-`higher-order component` ：コンポーネントをラップするために使用する必要があります。
+注意が必要な実装の詳細は、次のとおりです。
 
 ```jsx
 import React from 'react';
@@ -341,7 +340,7 @@ export default MyComponent
 
 ## `withTheme(Component) => Component`
 
-また、[デコレータ](https://babeljs.io/docs/en/babel-plugin-proposal-decorators)などとしてしても使用できます。
+`higher-order component` ：コンポーネントをラップするために使用する必要があります。
 
 ### 引数
 
