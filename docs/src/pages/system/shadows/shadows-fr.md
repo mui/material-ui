@@ -21,6 +21,6 @@ The helpers allow you to control relative depth, or distance, between two surfac
 import { shadows } from '@material-ui/system';
 ```
 
-| Import name | Prop        | CSS property | Theme key |
-|:----------- |:----------- |:------------ |:--------- |
-| `boxShadow` | `boxShadow` | `box-shadow` | `shadows` |
+| Import name | Prop        | Propriété CSS | Clé du thème |
+|:----------- |:----------- |:------------- |:------------ |
+| `boxShadow` | `boxShadow` | `box-shadow`  | `shadows`    |
