@@ -477,7 +477,11 @@ ${text}
 
 You can override the style of the component thanks to one of these customization points:
 
-- With a rule name of the [\`classes\` object prop](/customization/components/#overriding-styles-with-classes).
+${
+  reactAPI.styles.classes.filter((styleRule) => styleRule.indexOf('@') !== 0).length > 0
+    ? `- With a rule name of the [\`classes\` object prop](/customization/components/#overriding-styles-with-classes).`
+      : ''
+}
 - With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
 - With a theme and an [\`overrides\` property](/customization/globals/#css).
 
