@@ -225,7 +225,8 @@ By default, the component disable the **autocomplete** feature (remembering what
 However, in addition to remembering past entered values, the browser might also propose **autofill** suggestions (saved login, address, or payment details). In the event you want the avoid autofill, you can try the following:
 
 - Name the input without leaking any information the browser can use. e.g. `id="field1"` instead of `id="country"`. If you leave the id empty, the component uses a random id.
-- Set `autoComplete="new-password"`: jsx 
+- Set `autoComplete="new-password"`: jsx Set `autoComplete="new-password": 
+        jsx` 
         Set <code>autoComplete="new-password": 
             jsx</code>
 
