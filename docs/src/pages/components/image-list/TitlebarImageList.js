@@ -58,10 +58,7 @@ export default function TitlebarImageList() {
               title={item.title}
               subtitle={<span>by: {item.author}</span>}
               actionIcon={
-                <IconButton
-                  aria-label={`info about ${item.title}`}
-                  className={classes.icon}
-                >
+                <IconButton aria-label={`info about ${item.title}`} className={classes.icon}>
                   <InfoIcon />
                 </IconButton>
               }

@@ -91,9 +91,7 @@ export default function HorizontalLinearStepper() {
           const stepProps = {};
           const labelProps = {};
           if (isStepOptional(index)) {
-            labelProps.optional = (
-              <Typography variant="caption">Optional</Typography>
-            );
+            labelProps.optional = <Typography variant="caption">Optional</Typography>;
           }
           if (isStepSkipped(index)) {
             stepProps.completed = false;
@@ -117,15 +115,9 @@ export default function HorizontalLinearStepper() {
           </div>
         ) : (
           <div>
-            <Typography className={classes.instructions}>
-              {getStepContent(activeStep)}
-            </Typography>
+            <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
             <div>
-              <Button
-                disabled={activeStep === 0}
-                onClick={handleBack}
-                className={classes.button}
-              >
+              <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
                 Back
               </Button>
               {isStepOptional(activeStep) && (

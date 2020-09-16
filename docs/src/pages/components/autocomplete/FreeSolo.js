@@ -11,12 +11,7 @@ export default function FreeSolo() {
         freeSolo
         options={top100Films.map((option) => option.title)}
         renderInput={(params) => (
-          <TextField
-            {...params}
-            label="freeSolo"
-            margin="normal"
-            variant="outlined"
-          />
+          <TextField {...params} label="freeSolo" margin="normal" variant="outlined" />
         )}
       />
       <Autocomplete
@@ -93,8 +88,7 @@ const top100Films = [
   { title: 'Alien', year: 1979 },
   { title: 'Sunset Boulevard', year: 1950 },
   {
-    title:
-      'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb',
+    title: 'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb',
     year: 1964,
   },
   { title: 'The Great Dictator', year: 1940 },

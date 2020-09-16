@@ -16,13 +16,7 @@ export default function SwitchLabels() {
   return (
     <FormGroup row>
       <FormControlLabel
-        control={
-          <Switch
-            checked={state.checkedA}
-            onChange={handleChange}
-            name="checkedA"
-          />
-        }
+        control={<Switch checked={state.checkedA} onChange={handleChange} name="checkedA" />}
         label="Secondary"
       />
       <FormControlLabel
@@ -38,11 +32,7 @@ export default function SwitchLabels() {
       />
       <FormControlLabel control={<Switch />} label="Uncontrolled" />
       <FormControlLabel disabled control={<Switch />} label="Disabled" />
-      <FormControlLabel
-        disabled
-        control={<Switch checked />}
-        label="Disabled"
-      />
+      <FormControlLabel disabled control={<Switch checked />} label="Disabled" />
     </FormGroup>
   );
 }

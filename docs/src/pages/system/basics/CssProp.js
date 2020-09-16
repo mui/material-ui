@@ -14,10 +14,7 @@ export default function CssProp() {
   return (
     <NoSsr>
       <ThemeProvider theme={theme}>
-        <Box
-          color="white"
-          css={{ bgcolor: 'palevioletred', p: 1, textTransform: 'uppercase' }}
-        >
+        <Box color="white" css={{ bgcolor: 'palevioletred', p: 1, textTransform: 'uppercase' }}>
           CssProp
         </Box>
       </ThemeProvider>

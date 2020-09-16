@@ -29,9 +29,7 @@ export default function ChipsArray() {
   ]);
 
   const handleDelete = (chipToDelete) => () => {
-    setChipData((chips) =>
-      chips.filter((chip) => chip.key !== chipToDelete.key),
-    );
+    setChipData((chips) => chips.filter((chip) => chip.key !== chipToDelete.key));
   };
 
   return (

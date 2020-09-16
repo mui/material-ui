@@ -96,9 +96,7 @@ export default function GoogleMaps() {
     <Autocomplete
       id="google-map-demo"
       style={{ width: 300 }}
-      getOptionLabel={(option) =>
-        typeof option === 'string' ? option : option.description
-      }
+      getOptionLabel={(option) => (typeof option === 'string' ? option : option.description)}
       filterOptions={(x) => x}
       options={options}
       autoComplete
@@ -113,16 +111,10 @@ export default function GoogleMaps() {
         setInputValue(newInputValue);
       }}
       renderInput={(params) => (
-        <TextField
-          {...params}
-          label="Add a location"
-          variant="outlined"
-          fullWidth
-        />
+        <TextField {...params} label="Add a location" variant="outlined" fullWidth />
       )}
       renderOption={(option) => {
-        const matches =
-          option.structured_formatting.main_text_matched_substrings;
+        const matches = option.structured_formatting.main_text_matched_substrings;
         const parts = parse(
           option.structured_formatting.main_text,
           matches.map((match) => [match.offset, match.offset + match.length]),
@@ -135,10 +127,7 @@ export default function GoogleMaps() {
             </Grid>
             <Grid item xs>
               {parts.map((part, index) => (
-                <span
-                  key={index}
-                  style={{ fontWeight: part.highlight ? 700 : 400 }}
-                >
+                <span key={index} style={{ fontWeight: part.highlight ? 700 : 400 }}>
                   {part.text}
                 </span>
               ))}

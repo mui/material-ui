@@ -1,10 +1,6 @@
 import React from 'react';
 import Checkbox from '@material-ui/core/Checkbox';
-import {
-  createMuiTheme,
-  makeStyles,
-  ThemeProvider,
-} from '@material-ui/core/styles';
+import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import { orange } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({

@@ -13,9 +13,7 @@ export default function SwitchesSize() {
   return (
     <FormGroup>
       <FormControlLabel
-        control={
-          <Switch size="small" checked={checked} onChange={toggleChecked} />
-        }
+        control={<Switch size="small" checked={checked} onChange={toggleChecked} />}
         label="Small"
       />
       <FormControlLabel

@@ -78,9 +78,7 @@ export default function CircularIntegration() {
         >
           {success ? <CheckIcon /> : <SaveIcon />}
         </Fab>
-        {loading && (
-          <CircularProgress size={68} className={classes.fabProgress} />
-        )}
+        {loading && <CircularProgress size={68} className={classes.fabProgress} />}
       </div>
       <div className={classes.wrapper}>
         <Button
@@ -92,9 +90,7 @@ export default function CircularIntegration() {
         >
           Accept terms
         </Button>
-        {loading && (
-          <CircularProgress size={24} className={classes.buttonProgress} />
-        )}
+        {loading && <CircularProgress size={24} className={classes.buttonProgress} />}
       </div>
     </div>
   );

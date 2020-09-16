@@ -57,13 +57,7 @@ export default function OutlinedChips() {
         deleteIcon={<DoneIcon />}
         variant="outlined"
       />
-      <Chip
-        label="Clickable link"
-        component="a"
-        href="#chip"
-        clickable
-        variant="outlined"
-      />
+      <Chip label="Clickable link" component="a" href="#chip" clickable variant="outlined" />
       <Chip
         avatar={<Avatar>M</Avatar>}
         label="Primary clickable"
@@ -82,12 +76,7 @@ export default function OutlinedChips() {
         deleteIcon={<DoneIcon />}
         variant="outlined"
       />
-      <Chip
-        label="Deletable primary"
-        onDelete={handleDelete}
-        color="primary"
-        variant="outlined"
-      />
+      <Chip label="Deletable primary" onDelete={handleDelete} color="primary" variant="outlined" />
       <Chip
         icon={<FaceIcon />}
         label="Deletable secondary"

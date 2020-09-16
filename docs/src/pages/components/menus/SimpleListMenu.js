@@ -47,10 +47,7 @@ export default function SimpleListMenu() {
           aria-label="when device is locked"
           onClick={handleClickListItem}
         >
-          <ListItemText
-            primary="When device is locked"
-            secondary={options[selectedIndex]}
-          />
+          <ListItemText primary="When device is locked" secondary={options[selectedIndex]} />
         </ListItem>
       </List>
       <Menu

@@ -52,17 +52,10 @@ export default function StressTest() {
         <fieldset>
           <div>
             <label htmlFor="color">theme color: </label>
-            <input
-              id="color"
-              type="color"
-              onChange={handleColorChange}
-              value={color}
-            />
+            <input id="color" type="color" onChange={handleColorChange} value={color} />
           </div>
           <div>
-            <label htmlFor="background-color">
-              background-color property:{' '}
-            </label>
+            <label htmlFor="background-color">background-color property: </label>
             <input
               id="background-color"
               type="color"

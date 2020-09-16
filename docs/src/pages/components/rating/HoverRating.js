@@ -42,9 +42,7 @@ export default function HoverRating() {
           setHover(newHover);
         }}
       />
-      {value !== null && (
-        <Box ml={2}>{labels[hover !== -1 ? hover : value]}</Box>
-      )}
+      {value !== null && <Box ml={2}>{labels[hover !== -1 ? hover : value]}</Box>}
     </div>
   );
 }

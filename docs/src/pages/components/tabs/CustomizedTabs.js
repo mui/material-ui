@@ -106,11 +106,7 @@ export default function CustomizedTabs() {
         <Typography className={classes.padding} />
       </div>
       <div className={classes.demo2}>
-        <StyledTabs
-          value={value}
-          onChange={handleChange}
-          aria-label="styled tabs example"
-        >
+        <StyledTabs value={value} onChange={handleChange} aria-label="styled tabs example">
           <StyledTab label="Workflows" />
           <StyledTab label="Datasets" />
           <StyledTab label="Connections" />

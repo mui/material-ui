@@ -35,19 +35,11 @@ function SimpleDialog(props) {
   };
 
   return (
-    <Dialog
-      onClose={handleClose}
-      aria-labelledby="simple-dialog-title"
-      open={open}
-    >
+    <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
       <DialogTitle id="simple-dialog-title">Set backup account</DialogTitle>
       <List>
         {emails.map((email) => (
-          <ListItem
-            button
-            onClick={() => handleListItemClick(email)}
-            key={email}
-          >
+          <ListItem button onClick={() => handleListItemClick(email)} key={email}>
             <ListItemAvatar>
               <Avatar className={classes.avatar}>
                 <PersonIcon />
@@ -57,11 +49,7 @@ function SimpleDialog(props) {
           </ListItem>
         ))}
 
-        <ListItem
-          autoFocus
-          button
-          onClick={() => handleListItemClick('addAccount')}
-        >
+        <ListItem autoFocus button onClick={() => handleListItemClick('addAccount')}>
           <ListItemAvatar>
             <Avatar>
               <AddIcon />
@@ -100,11 +88,7 @@ export default function SimpleDialogDemo() {
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
         Open simple dialog
       </Button>
-      <SimpleDialog
-        selectedValue={selectedValue}
-        open={open}
-        onClose={handleClose}
-      />
+      <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
     </div>
   );
 }

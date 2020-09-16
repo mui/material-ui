@@ -22,11 +22,7 @@ export default function Checkboxes() {
       />
       <Checkbox inputProps={{ 'aria-label': 'uncontrolled-checkbox' }} />
       <Checkbox disabled inputProps={{ 'aria-label': 'disabled checkbox' }} />
-      <Checkbox
-        disabled
-        checked
-        inputProps={{ 'aria-label': 'disabled checked checkbox' }}
-      />
+      <Checkbox disabled checked inputProps={{ 'aria-label': 'disabled checked checkbox' }} />
       <Checkbox
         defaultChecked
         indeterminate

@@ -36,10 +36,7 @@ export default function SwitchListSecondary() {
   };
 
   return (
-    <List
-      subheader={<ListSubheader>Settings</ListSubheader>}
-      className={classes.root}
-    >
+    <List subheader={<ListSubheader>Settings</ListSubheader>} className={classes.root}>
       <ListItem>
         <ListItemIcon>
           <WifiIcon />

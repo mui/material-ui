@@ -198,10 +198,7 @@ export default function GitHubLabel() {
                 className={classes.iconSelected}
                 style={{ visibility: selected ? 'visible' : 'hidden' }}
               />
-              <span
-                className={classes.color}
-                style={{ backgroundColor: option.color }}
-              />
+              <span className={classes.color} style={{ backgroundColor: option.color }} />
               <div className={classes.text}>
                 {option.name}
                 <br />
