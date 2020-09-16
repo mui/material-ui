@@ -1,13 +1,17 @@
 ---
-title: React Container 容器组件
+title: React 容器组件
 components: Container
+githubLabel:
+  component: Container
 ---
 
-# Container 容器
+# Container
 
 <p class="description">通过容器组件，您页面的内容会呈现水平居中。 这是最基本的布局元素。</p>
 
 虽然容器可以嵌套，但大多数布局不需要嵌套的容器。
+
+查看[调色板](/system/palette/)样式功能。
 
 ## Fluid 流体布局
 
@@ -21,7 +25,7 @@ components: Container
 
 ## 固定大小
 
-通过设置`fixed` 属性，您可以设计固定的大小而不是尝试完全流体布局的视口。 max-width 和当前断点的 min-width 则相同。
+通过设置 `fixed` 属性，您可以设计固定的大小而不是尝试完全流体布局的视口。 max-width 和当前断点的 min-width 则相同。
 
 {{"demo": "pages/components/container/FixedContainer.js", "iframe": true, "defaultCodeOpen": false}}
 
