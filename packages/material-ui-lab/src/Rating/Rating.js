@@ -75,15 +75,13 @@ export const styles = (theme) => ({
   focusVisible: {},
   /* Visually hide an element. */
   visuallyHidden,
-  /* Styles applied to the pristine label. */
-  pristine: {
-    'input:focus + &': {
-      top: 0,
-      bottom: 0,
-      position: 'absolute',
-      outline: '1px solid #999',
-      width: '100%',
-    },
+  /* Styles applied to the label of the empty value when no value is active. */
+  labelEmptyValueActive: {
+    top: 0,
+    bottom: 0,
+    position: 'absolute',
+    outline: '1px solid #999',
+    width: '100%',
   },
   /* Styles applied to the label elements. */
   label: {
@@ -428,7 +426,10 @@ const Rating = React.forwardRef(function Rating(props, ref) {
         });
       })}
       {!disabled && valueRounded == null && (
-        <React.Fragment>
+        <label
+          onFocus={(event) => event.currentTarget.classList.add(classes.labelEmptyValueActive)}
+          onBlur={(event) => event.currentTarget.classList.remove(classes.labelEmptyValueActive)}
+        >
           <input
             value=""
             id={`${name}-empty`}
@@ -438,10 +439,8 @@ const Rating = React.forwardRef(function Rating(props, ref) {
             className={classes.visuallyHidden}
             readOnly={readOnly}
           />
-          <label className={classes.pristine} htmlFor={`${name}-empty`}>
-            <span className={classes.visuallyHidden}>{emptyLabelText}</span>
-          </label>
-        </React.Fragment>
+          <span className={classes.visuallyHidden}>{emptyLabelText}</span>
+        </label>
       )}
     </span>
   );

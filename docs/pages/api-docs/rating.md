@@ -60,7 +60,7 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
 | <span class="prop-name">focusVisible</span> | <span class="prop-name">.Mui-focusVisible</span> | Pseudo-class applied to the root element if keyboard focused.
 | <span class="prop-name">visuallyHidden</span> | <span class="prop-name">.MuiRating-visuallyHidden</span> | Visually hide an element.
-| <span class="prop-name">pristine</span> | <span class="prop-name">.MuiRating-pristine</span> | Styles applied to the pristine label.
+| <span class="prop-name">labelEmptyValueActive</span> | <span class="prop-name">.MuiRating-labelEmptyValueActive</span> | Styles applied to the label of the empty value when no value is active.
 | <span class="prop-name">label</span> | <span class="prop-name">.MuiRating-label</span> | Styles applied to the label elements.
 | <span class="prop-name">icon</span> | <span class="prop-name">.MuiRating-icon</span> | Styles applied to the icon wrapping elements.
 | <span class="prop-name">iconEmpty</span> | <span class="prop-name">.MuiRating-iconEmpty</span> | Styles applied to the icon wrapping elements when empty.
