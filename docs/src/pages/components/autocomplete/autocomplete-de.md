@@ -225,7 +225,8 @@ By default, the component disable the **autocomplete** feature (remembering what
 Zusätzlich zur Speicherung der eingegebenen Werte kann der Browser aber auch **Autofill** Vorschläge vorschlagen (gespeichertes Login, Adresse oder Zahlungsinformationen). Falls Sie die automatische Füllung vermeiden möchten, können Sie Folgendes versuchen:
 
 - Name the input without leaking any information the browser can use. e.g. `id="field1"` instead of `id="country"`. Wenn Sie die ID leer lassen, verwendet die Komponente eine zufällige ID.
-- Setze `autoComplete="neues Passwort"`: jsx 
+- Setze `autoComplete="neues Passwort"`: jsx Setze `autoComplete="neues Passwort": 
+        jsx` 
         Setze <code>autoComplete="neues Passwort": 
             jsx</code>
 
