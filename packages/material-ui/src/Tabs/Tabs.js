@@ -239,12 +239,12 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
     scroll(scrollValue);
   };
 
-  const getScrollSize = container => {
+  const getScrollSize = (container) => {
     const containerSize = container[clientSize];
     let totalSize = 0;
     const children = Array.from(container.children);
 
-    for(let i = 0; i < children.length; i++) {
+    for (let i = 0; i < children.length; i++) {
       const button = children[i];
       if (totalSize + button[clientSize] > containerSize) {
         break;
