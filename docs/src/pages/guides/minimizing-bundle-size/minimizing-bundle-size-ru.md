@@ -82,6 +82,7 @@ This option provides the best User Experience and Developer Experience:
 - UX: The Babel plugin enables top level tree-shaking even if your bundler doesn't support it.
 - DX: The Babel plugin makes startup time in dev mode as fast as Option 1.
 - DX: This syntax reduces the duplication of code, requiring only a single import for multiple modules. Overall, the code is easier to read, and you are less likely to make a mistake when importing a new module.
+
 ```js
 import { Button, TextField } from '@material-ui/core';
 ```
@@ -155,49 +156,52 @@ Pick one of the following plugins:
 
 If you are using Create React App, you will need to use a couple of projects that let you use `.babelrc` configuration, without ejecting.
 
-  `yarn add -D react-app-rewired customize-cra`
+`yarn add -D react-app-rewired customize-cra`
 
-  Create a `config-overrides.js` file in the root directory:
+Create a `config-overrides.js` file in the root directory:
 
-  ```js
-  /* config-overrides.js */
-  const { useBabelRc, override } = require('customize-cra')
-
-  module.exports = override(
-    useBabelRc()
-  );
-  ```
-
-  If you wish, `babel-plugin-import` can be configured through `config-overrides.js` instead of `.babelrc` by using this [configuration](https://github.com/arackaf/customize-cra/blob/master/api.md#fixbabelimportslibraryname-options).
-
-  Modify your `package.json` start command:
-
-```diff
-  "scripts": {
+```js
+"scripts": {
 -  "start": "react-scripts start"
 +  "start": "react-app-rewired start"
   }
 ```
 
-  Note: You may run into errors like these:
+If you wish, `babel-plugin-import` can be configured through `config-overrides.js` instead of `.babelrc` by using this [configuration](https://github.com/arackaf/customize-cra/blob/master/api.md#fixbabelimportslibraryname-options).
 
-  > Module not found: Can't resolve '@material-ui/core/makeStyles' in '/your/project'
+Modify your `package.json` start command:
 
-  This is because `@material-ui/styles` is re-exported through `core`, but the full import is not allowed.
+```diff
+  "scripts": {
+-   "start": "react-scripts start",
++   "start": "react-app-rewired start",
+-   "build": "react-scripts build",
++   "build": "react-app-rewired build",
+-   "test": "react-scripts test",
++   "test": "react-app-rewired test",
+    "eject": "react-scripts eject"
+}
+```
 
-  You have an import like this in your code:
+Note: You may run into errors like these:
 
-  ```js
-  import { makeStyles, createStyles } from '@material-ui/core';
-  ```
+> Module not found: Can't resolve '@material-ui/core/makeStyles' in '/your/project'
 
-  The fix is simple, define the import separately:
+This is because `@material-ui/styles` is re-exported through `core`, but the full import is not allowed.
 
-  ```js
-  import { makeStyles, createStyles } from '@material-ui/core/styles';
-  ```
+You have an import like this in your code:
 
-  Enjoy significantly faster start times.
+```js
+import { makeStyles, createStyles } from '@material-ui/core';
+```
+
+The fix is simple, define the import separately:
+
+```js
+import { makeStyles, createStyles } from '@material-ui/core/styles';
+```
+
+Enjoy significantly faster start times.
 
 #### 2. Convert all your imports
 
