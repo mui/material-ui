@@ -1,11 +1,15 @@
 ---
 title: Badge React-Komponente
 components: Badge
+githubLabel:
+  component: Badge
 ---
 
 # Badge
 
 <p class="description">Badge generiert ein kleines Abzeichen an der oberen rechten Ecke seiner Kinder.</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Basic badges
 
