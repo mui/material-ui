@@ -75,19 +75,17 @@ export const styles = (theme) => ({
   focusVisible: {},
   /* Visually hide an element. */
   visuallyHidden,
-  /* Styles applied to the pristine label. */
-  pristine: {
-    'input:focus + &': {
-      top: 0,
-      bottom: 0,
-      position: 'absolute',
-      outline: '1px solid #999',
-      width: '100%',
-    },
-  },
   /* Styles applied to the label elements. */
   label: {
     cursor: 'inherit',
+  },
+  /* Styles applied to the label of the "no value" input when it is active. */
+  labelEmptyValueActive: {
+    top: 0,
+    bottom: 0,
+    position: 'absolute',
+    outline: '1px solid #999',
+    width: '100%',
   },
   /* Styles applied to the icon wrapping elements. */
   icon: {
@@ -313,6 +311,8 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     }
   };
 
+  const [emptyValueFocused, setEmptyValueFocused] = React.useState(false);
+
   const item = (state, labelProps) => {
     const id = `${name}-${String(state.value).replace('.', '-')}`;
     const container = (
@@ -428,7 +428,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
         });
       })}
       {!disabled && valueRounded == null && (
-        <React.Fragment>
+        <label className={clsx({ [classes.labelEmptyValueActive]: emptyValueFocused })}>
           <input
             value=""
             id={`${name}-empty`}
@@ -437,11 +437,11 @@ const Rating = React.forwardRef(function Rating(props, ref) {
             defaultChecked
             className={classes.visuallyHidden}
             readOnly={readOnly}
+            onFocus={() => setEmptyValueFocused(true)}
+            onBlur={() => setEmptyValueFocused(false)}
           />
-          <label className={classes.pristine} htmlFor={`${name}-empty`}>
-            <span className={classes.visuallyHidden}>{emptyLabelText}</span>
-          </label>
-        </React.Fragment>
+          <span className={classes.visuallyHidden}>{emptyLabelText}</span>
+        </label>
       )}
     </span>
   );
