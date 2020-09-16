@@ -1,6 +1,9 @@
 ---
 title: Componente para navegación a pie de página
 components: BottomNavigation, BottomNavigationAction
+githubLabel:
+  component: BottomNavigation
+materialDesign: https://material.io/components/bottom-navigation
 ---
 
 # Barra de navegación inferior
@@ -9,9 +12,11 @@ components: BottomNavigation, BottomNavigationAction
 
 [La barra de Navegación Inferior](https://material.io/design/components/bottom-navigation.html) muestra de tres a cinco destinos en la parte inferior de una pantalla. Cada destino es representado por un icono y una etiqueta de texto opcional. Cuando un icono de navegación inferior es tocado, el usuario es llevado al destino de navegación superior asociado con ese icono.
 
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
 ## Barra de navegación inferior
 
-Cuando sólo hay **tres** acciones, muestra las dos cosas, iconos y etiquetas de texto en todo momento.
+Si hay **cuatro ** o **cinco** acciones, mostrar vistas inactivas solamente como iconos.
 
 {{"demo": "pages/components/bottom-navigation/SimpleBottomNavigation.js", "bg": true}}
 
@@ -20,3 +25,9 @@ Cuando sólo hay **tres** acciones, muestra las dos cosas, iconos y etiquetas de
 Si hay **cuatro ** o **cinco** acciones, mostrar vistas inactivas solamente como iconos.
 
 {{"demo": "pages/components/bottom-navigation/LabelBottomNavigation.js", "bg": true}}
+
+## Fixed positioning
+
+This demo keeps bottom navigation fixed to the bottom, no matter the amount of content on-screen.
+
+{{"demo": "pages/components/bottom-navigation/FixedBottomNavigation.js", "bg": true, "iframe": true, "maxWidth": 600}}
