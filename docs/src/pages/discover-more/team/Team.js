@@ -15,42 +15,77 @@ const activeCore = [
     github: 'oliviertassinari',
     twitter: 'olivtassinari',
     flag: 'v1.x co-creator',
-    city: 'Paris, France',
+    location: 'Paris, France',
   },
   {
     name: 'Matt Brookes',
     github: 'mbrookes',
     twitter: 'randomtechdude',
-    flag: 'Core focus: *',
-    city: 'London, UK',
+    flag: 'Pioneer',
+    location: 'London, UK',
   },
   {
     name: 'Sebastian Silbermann',
     github: 'eps1lon',
     twitter: 'sebsilbermann',
-    flag: 'Core focus: *',
-    city: 'Dresden, Germany',
+    flag: 'Open source focus',
+    location: 'Dresden, Germany',
+  },
+  {
+    name: 'Damien Tassone',
+    github: 'dtassone',
+    twitter: 'madKakoO',
+    flag: 'Enterprise product designer',
+    location: 'Barcelona, Spain',
+  },
+  {
+    name: 'Marija Najdova',
+    github: 'mnajdova',
+    twitter: 'marijanajdova',
+    flag: 'Open source focus',
+    location: 'Skopje, North Macedonia',
   },
   {
     name: 'Josh Wooding',
     github: 'joshwooding',
     twitter: 'JoshWooding_',
-    flag: 'Core focus: *',
-    city: 'London, UK',
+    flag: 'Community member, J.P. Morgan',
+    location: 'London, UK',
   },
+];
+
+const community = [
   {
     name: 'Dmitriy Kovalenko',
     github: 'dmtrKovalenko',
     twitter: 'dmtrKovalenko',
-    flag: 'Core focus: pickers',
-    city: 'Kharkiv, Ukraine',
+    flag: 'Date pickers',
+    location: 'Kharkiv, Ukraine',
   },
   {
-    name: 'Damien Rassone',
-    github: 'dtassone',
-    twitter: 'madKakoO',
-    flag: 'Enterprise product designer',
-    city: 'Barcelona, Spain',
+    name: 'Danica Shen',
+    github: 'DDDDDanica',
+    flag: '🇨🇳 Chinese docs',
+    location: 'Ireland',
+  },
+  {
+    name: 'Yan Lee',
+    github: 'AGDholo',
+    flag: '🇨🇳 Chinese docs',
+    location: 'China',
+  },
+  {
+    name: 'Jairon Alves Lima',
+    github: 'jaironalves',
+    flag: '🇧🇷 Brazilian docs',
+    location: 'São Paulo, Brazil',
+  },
+  {
+    name: 'Oleg Slobodskoi',
+    github: 'kof',
+    twitter: 'oleg008',
+    flag: 'JSS',
+    location: 'Berlin, Germany',
   },
 ];
 
@@ -60,72 +95,47 @@ const emeriti = [
     github: 'hai-cea',
     twitter: 'haicea',
     flag: 'v0.x creator',
-    city: 'Dallas, Texas, US',
+    location: 'Dallas, Texas, US',
   },
   {
     name: 'Nathan Marks',
     github: 'nathanmarks',
     flag: 'v1.x co-creator',
-    city: 'Toronto, ON',
+    location: 'Toronto, ON',
   },
   {
     name: 'Kevin Ross',
     github: 'rosskevin',
     twitter: 'rosskevin',
-    flag: 'Core focus: *',
-    city: 'Franklin, Tennessee, US',
+    flag: 'Core focus',
+    location: 'Franklin, Tennessee, US',
   },
   {
     name: 'Sebastian Sebald',
     github: 'sebald',
     twitter: 'sebastiansebald',
-    flag: 'Core focus: *',
-    city: 'Freiburg, Germany',
+    flag: 'Core focus',
+    location: 'Freiburg, Germany',
   },
   {
     name: 'Ken Gregory',
     github: 'kgregory',
-    flag: 'Core focus: *',
-    city: 'New Jersey, US',
+    flag: 'Core focus',
+    location: 'New Jersey, US',
   },
   {
     name: 'Tom Crockett',
     github: 'pelotom',
     twitter: 'pelotom',
-    flag: 'Core focus: *',
-    city: 'Los Angeles, California, US',
+    flag: 'Core focus',
+    location: 'Los Angeles, California, US',
   },
   {
     name: 'Maik Marschner',
     github: 'leMaik',
     twitter: 'leMaikOfficial',
-    flag: 'Core focus: *',
-    city: 'Hannover, Germany',
-  },
-];
-
-const partners = [
-  {
-    name: 'Oleg Slobodskoi',
-    github: 'kof',
-    twitter: 'oleg008',
-    flag: 'JSS',
-    city: 'Berlin, Germany',
-  },
-  {
-    name: 'Danica Shen',
-    github: 'DDDDDanica',
-    flag: '🇨🇳 Chinese docs',
-  },
-  {
-    name: 'Yan Lee',
-    github: 'AGDholo',
-    flag: '🇨🇳 Chinese docs',
-  },
-  {
-    name: 'Jairon Alves Lima',
-    github: 'jaironalves',
-    flag: '🇧🇷 Brazilian docs',
+    flag: 'Core focus',
+    location: 'Hannover, Germany',
   },
 ];
 
@@ -179,7 +189,7 @@ function Group(props) {
                       {member.flag}
                     </Typography>
                     <Typography variant="body2" color="textSecondary">
-                      {member.city}
+                      {member.location}
                     </Typography>
                     <Grid container>
                       {member.github && (
@@ -225,7 +235,7 @@ function Team(props) {
   return (
     <div>
       <Group
-        title="Active Core Team"
+        title="Core team"
         description={`The development of the project and its ecosystem is
 guided by an international team,
 some of whom have chosen to be featured below.`}
@@ -233,14 +243,14 @@ some of whom have chosen to be featured below.`}
         {...props}
       />
       <Group
-        title="Community Partners"
+        title="Community contributors"
         description={`Some members of the community have so enriched it,
       that they deserve special mention.`}
-        members={partners}
+        members={community}
         {...props}
       />
       <Group
-        title="Core Team Emeriti"
+        title="Community emeriti"
         description={`We honor some no-longer-active core team members who have made
 valuable contributions in the past.
 They advise us from time-to-time.`}

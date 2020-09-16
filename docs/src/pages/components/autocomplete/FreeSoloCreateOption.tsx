@@ -57,7 +57,7 @@ export default function FreeSoloCreateOption() {
         // Regular option
         return option.title;
       }}
-      renderOption={(option) => option.title}
+      renderOption={(props, option) => <li {...props}>{option.title}</li>}
       style={{ width: 300 }}
       freeSolo
       renderInput={(params) => (

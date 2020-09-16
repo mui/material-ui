@@ -215,8 +215,8 @@ export default function GitHubLabel() {
           disablePortal
           renderTags={() => null}
           noOptionsText="No labels"
-          renderOption={(option, { selected }) => (
-            <React.Fragment>
+          renderOption={(props, option, { selected }) => (
+            <li {...props}>
               <DoneIcon
                 className={classes.iconSelected}
                 style={{
@@ -238,7 +238,7 @@ export default function GitHubLabel() {
                   visibility: selected ? 'visible' : 'hidden',
                 }}
               />
-            </React.Fragment>
+            </li>
           )}
           options={[...labels].sort((a, b) => {
             // Display the selected labels first.

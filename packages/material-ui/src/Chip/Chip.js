@@ -530,7 +530,10 @@ Chip.propTypes = {
    * The variant to use.
    * @default 'default'
    */
-  variant: PropTypes.oneOf(['default', 'outlined']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['default', 'outlined']),
+    PropTypes.string,
+  ]),
 };
 
 export default withStyles(styles, { name: 'MuiChip' })(Chip);

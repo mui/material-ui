@@ -2,9 +2,10 @@
 import * as React from 'react';
 import useAutocomplete from '@material-ui/lab/useAutocomplete';
 import NoSsr from '@material-ui/core/NoSsr';
+import { useTheme, createMuiTheme } from '@material-ui/core/styles';
 import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 
 const Label = styled('label')`
   padding: 0 0 4px;
@@ -13,9 +14,10 @@ const Label = styled('label')`
 `;
 
 const InputWrapper = styled('div')`
+  ${({ theme }) => `
   width: 300px;
-  border: 1px solid #d9d9d9;
-  background-color: #fff;
+  border: 1px solid ${theme.palette.type === 'dark' ? '#434343' : '#d9d9d9'};
+  background-color: ${theme.palette.type === 'dark' ? '#141414' : '#fff'};
   border-radius: 4px;
   padding: 1px;
   display: flex;
@@ -31,6 +33,8 @@ const InputWrapper = styled('div')`
   }
 
   & input {
+    background-color: ${theme.palette.type === 'dark' ? '#141414' : '#fff'};
+    color: ${theme.palette.type === 'dark' ? '#fff' : '#000'};
     font-size: 14px;
     height: 30px;
     box-sizing: border-box;
@@ -42,6 +46,7 @@ const InputWrapper = styled('div')`
     margin: 0;
     outline: 0;
   }
+`}
 `;
 
 const Tag = styled(({ label, onDelete, ...props }) => (
@@ -50,13 +55,16 @@ const Tag = styled(({ label, onDelete, ...props }) => (
     <CloseIcon onClick={onDelete} />
   </div>
 ))`
+  ${({ theme }) => `
   display: flex;
   align-items: center;
   height: 24px;
   margin: 2px;
   line-height: 22px;
-  background-color: #fafafa;
-  border: 1px solid #e8e8e8;
+  background-color: ${
+    theme.palette.type === 'dark' ? 'rgba(255,255,255,0.08)' : '#fafafa'
+  };
+  border: 1px solid ${theme.palette.type === 'dark' ? '#303030' : '#e8e8e8'};
   border-radius: 2px;
   box-sizing: content-box;
   padding: 0 4px 0 10px;
@@ -79,15 +87,17 @@ const Tag = styled(({ label, onDelete, ...props }) => (
     cursor: pointer;
     padding: 4px;
   }
+`}
 `;
 
 const Listbox = styled('ul')`
+  ${({ theme }) => `
   width: 300px;
   margin: 2px 0 0;
   padding: 0;
   position: absolute;
   list-style: none;
-  background-color: #fff;
+  background-color: ${theme.palette.type === 'dark' ? '#141414' : '#fff'};
   overflow: auto;
   max-height: 250px;
   border-radius: 4px;
@@ -108,7 +118,7 @@ const Listbox = styled('ul')`
   }
 
   & li[aria-selected='true'] {
-    background-color: #fafafa;
+    background-color: ${theme.palette.type === 'dark' ? '#2b2b2b' : '#fafafa'};
     font-weight: 600;
 
     & svg {
@@ -117,14 +127,17 @@ const Listbox = styled('ul')`
   }
 
   & li[data-focus='true'] {
-    background-color: #e6f7ff;
+    background-color: ${theme.palette.type === 'dark' ? '#003b57' : '#e6f7ff'};
     cursor: pointer;
 
     & svg {
-      color: #000;
+      color: currentColor;
     }
   }
+`}
 `;
+
+const defaultTheme = createMuiTheme();
 
 export default function CustomizedHook() {
   const {
@@ -146,29 +159,36 @@ export default function CustomizedHook() {
     getOptionLabel: (option) => option.title,
   });
 
+  const theme = useTheme() || defaultTheme;
+
   return (
     <NoSsr>
-      <div>
-        <div {...getRootProps()}>
-          <Label {...getInputLabelProps()}>Customized hook</Label>
-          <InputWrapper ref={setAnchorEl} className={focused ? 'focused' : ''}>
-            {value.map((option: FilmOptionType, index: number) => (
-              <Tag label={option.title} {...getTagProps({ index })} />
-            ))}
-            <input {...getInputProps()} />
-          </InputWrapper>
+      <ThemeProvider theme={theme}>
+        <div>
+          <div {...getRootProps()}>
+            <Label {...getInputLabelProps()}>Customized hook</Label>
+            <InputWrapper
+              ref={setAnchorEl}
+              className={focused ? 'focused' : ''}
+            >
+              {value.map((option: FilmOptionType, index: number) => (
+                <Tag label={option.title} {...getTagProps({ index })} />
+              ))}
+              <input {...getInputProps()} />
+            </InputWrapper>
+          </div>
+          {groupedOptions.length > 0 ? (
+            <Listbox {...getListboxProps()}>
+              {groupedOptions.map((option, index) => (
+                <li {...getOptionProps({ option, index })}>
+                  <span>{option.title}</span>
+                  <CheckIcon fontSize="small" />
+                </li>
+              ))}
+            </Listbox>
+          ) : null}
         </div>
-        {groupedOptions.length > 0 ? (
-          <Listbox {...getListboxProps()}>
-            {groupedOptions.map((option, index) => (
-              <li {...getOptionProps({ option, index })}>
-                <span>{option.title}</span>
-                <CheckIcon fontSize="small" />
-              </li>
-            ))}
-          </Listbox>
-        ) : null}
-      </div>
+      </ThemeProvider>
     </NoSsr>
   );
 }

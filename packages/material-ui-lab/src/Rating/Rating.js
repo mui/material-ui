@@ -75,19 +75,17 @@ export const styles = (theme) => ({
   focusVisible: {},
   /* Visually hide an element. */
   visuallyHidden,
-  /* Styles applied to the pristine label. */
-  pristine: {
-    'input:focus + &': {
-      top: 0,
-      bottom: 0,
-      position: 'absolute',
-      outline: '1px solid #999',
-      width: '100%',
-    },
-  },
   /* Styles applied to the label elements. */
   label: {
     cursor: 'inherit',
+  },
+  /* Styles applied to the label of the "no value" input when it is active. */
+  labelEmptyValueActive: {
+    top: 0,
+    bottom: 0,
+    position: 'absolute',
+    outline: '1px solid #999',
+    width: '100%',
   },
   /* Styles applied to the icon wrapping elements. */
   icon: {
@@ -313,6 +311,8 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     }
   };
 
+  const [emptyValueFocused, setEmptyValueFocused] = React.useState(false);
+
   const item = (state, labelProps) => {
     const id = `${name}-${String(state.value).replace('.', '-')}`;
     const container = (
@@ -330,14 +330,6 @@ const Rating = React.forwardRef(function Rating(props, ref) {
       </IconContainerComponent>
     );
 
-    if (readOnly) {
-      return (
-        <span key={state.value} {...labelProps}>
-          {container}
-        </span>
-      );
-    }
-
     return (
       <React.Fragment key={state.value}>
         <label className={classes.label} htmlFor={id} {...labelProps}>
@@ -349,13 +341,14 @@ const Rating = React.forwardRef(function Rating(props, ref) {
           onBlur={handleBlur}
           onChange={handleChange}
           onClick={handleClear}
-          disabled={disabled}
+          disabled={readOnly && !state.checked ? true : disabled}
           value={state.value}
           id={id}
           type="radio"
           name={name}
           checked={state.checked}
           className={classes.visuallyHidden}
+          readOnly={readOnly}
         />
       </React.Fragment>
     );
@@ -376,8 +369,6 @@ const Rating = React.forwardRef(function Rating(props, ref) {
         },
         className,
       )}
-      role={readOnly ? 'img' : null}
-      aria-label={readOnly ? getLabelText(value) : null}
       {...other}
     >
       {Array.from(new Array(max)).map((_, index) => {
@@ -436,8 +427,8 @@ const Rating = React.forwardRef(function Rating(props, ref) {
           checked: itemValue === valueRounded,
         });
       })}
-      {!readOnly && !disabled && valueRounded == null && (
-        <React.Fragment>
+      {!disabled && valueRounded == null && (
+        <label className={clsx({ [classes.labelEmptyValueActive]: emptyValueFocused })}>
           <input
             value=""
             id={`${name}-empty`}
@@ -445,11 +436,12 @@ const Rating = React.forwardRef(function Rating(props, ref) {
             name={name}
             defaultChecked
             className={classes.visuallyHidden}
+            readOnly={readOnly}
+            onFocus={() => setEmptyValueFocused(true)}
+            onBlur={() => setEmptyValueFocused(false)}
           />
-          <label className={classes.pristine} htmlFor={`${name}-empty`}>
-            <span className={classes.visuallyHidden}>{emptyLabelText}</span>
-          </label>
-        </React.Fragment>
+          <span className={classes.visuallyHidden}>{emptyLabelText}</span>
+        </label>
       )}
     </span>
   );
@@ -521,20 +513,10 @@ Rating.propTypes = {
   max: PropTypes.number,
   /**
    * The name attribute of the radio `input` elements.
-   * If `readOnly` is false, the prop is required,
-   * this input name`should be unique within the parent form.
+   * This input `name` should be unique within the page.
+   * Being unique within a form is insufficient since the `name` is used to generated IDs.
    */
-  name: chainPropTypes(PropTypes.string, (props) => {
-    if (!props.readOnly && !props.name) {
-      return new Error(
-        [
-          'Material-UI: The prop `name` is required (when `readOnly` is false).',
-          'Additionally, the input name should be unique within the parent form.',
-        ].join('\n'),
-      );
-    }
-    return null;
-  }),
+  name: PropTypes.string,
   /**
    * Callback fired when the value changes.
    *

@@ -143,7 +143,11 @@ export default function Virtualize() {
       renderInput={(params) => (
         <TextField {...params} variant="outlined" label="10,000 options" />
       )}
-      renderOption={(option) => <Typography noWrap>{option}</Typography>}
+      renderOption={(props, option) => (
+        <li {...props}>
+          <Typography noWrap>{option}</Typography>
+        </li>
+      )}
     />
   );
 }
