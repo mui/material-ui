@@ -1,4 +1,4 @@
-# Abstände (Spacing)
+# Abstände
 
 <p class="description">Verwende den theme.spacing() Helfer, um einen konsistenten Abstand zwischen den Elementen Ihrer Benutzeroberfläche zu erstellen.</p>
 
