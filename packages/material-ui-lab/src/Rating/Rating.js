@@ -513,7 +513,7 @@ Rating.propTypes = {
   max: PropTypes.number,
   /**
    * The name attribute of the radio `input` elements.
-   * This input `name`should be unique within the page.
+   * This input `name` should be unique within the page.
    * Being unique within a form is insufficient since the `name` is used to generated IDs.
    */
   name: PropTypes.string,
