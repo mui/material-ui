@@ -23,6 +23,6 @@ components: NoSsr
 
 中核となるNoSsrコンポーネントの目的は、レンダリングを **遅延することです**。 前のデモで示したように、これを使用して、サーバーからクライアントへのレンダリングを延期できます。 前のデモで示したように、これを使用して、サーバーからクライアントへのレンダリングを延期できます。
 
-ただし、これを使用して、クライアント自体内のレンダリングを延期することもできます。 子をレンダリングするには、 `defer` プロパティでスクリーンフレーム** を **待つことができます。 Reactは1ではなく [2 commits](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects) を行う。
+ただし、これを使用して、クライアント自体内のレンダリングを延期することもできます。 子をレンダリングするには、 `defer` プロパティでスクリーンフレーム** を **待つことができます。 ただし、これを使用して、クライアント自体内のレンダリングを延期することもできます。 子をレンダリングするには、 `defer` プロパティでスクリーンフレーム** を **待つことができます。 Reactは1ではなく [2 commits](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects) を行う。
 
 {{"demo": "pages/components/no-ssr/FrameDeferring.js"}}
