@@ -387,6 +387,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
           </label>
         </React.Fragment>
       )}
+
       {Array.from(new Array(max)).map((_, index) => {
         const itemValue = index + 1;
 
