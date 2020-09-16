@@ -1,6 +1,9 @@
 ---
-title: React List 列表组件
+title: React 列表组件
 components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
+githubLabel:
+  component: Lists（列表）
+materialDesign: https://material.io/components/lists
 ---
 
 # List 列表
@@ -8,6 +11,8 @@ components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, Lis
 <p class="description">列表是对文本或图像的连续、垂直的索引。</p>
 
 [列表](https://material.io/design/components/lists.html) 能够承载一组连续的文本或图像。 它们由包含主要和补充操作的项子集组成，而这些操作由图标和文本表示。
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## 简易列表
 
@@ -24,7 +29,7 @@ function ListItemLink(props) {
 
 <ListItemLink href="#simple-list">
   <ListItemText primary="Spam" />
-</ListItemLink>
+</ListItemLink>;
 ```
 
 你可以从这里查看 [React Router与文档此部分结合使用的相关样例](/guides/composition/#react-router)。
@@ -37,9 +42,9 @@ function ListItemLink(props) {
 
 {{"demo": "pages/components/lists/FolderList.js", "bg": true}}
 
-## 交互
+## 交互式
 
-您在以下的一个交互式演示可以探索不同设置的视觉效果：
+下面是一个交互式的演示，你也可以探索不同设置下的视觉结果：
 
 {{"demo": "pages/components/lists/InteractiveList.js", "bg": true}}
 
@@ -85,6 +90,12 @@ function ListItemLink(props) {
 
 {{"demo": "pages/components/lists/InsetList.js", "bg": true}}
 
+## 没有边距的列表
+
+当在一个定义了边距（gutters）的组件中渲染一个列表时，`ListItem` 的边距可以通过 `disableGutters` 来禁用。
+
+{{"demo": "pages/components/lists/GutterlessList.js", "bg": true}}
+
 ## 大型列表渲染
 
 在下面的示例中，我们演示了如何将 [react-window](https://github.com/bvaughn/react-window) 与 `List` 组件一起使用。 它渲染了200多行，并且可以轻松的延展到更多行。 可视化优化了整体的性能。
@@ -93,6 +104,6 @@ function ListItemLink(props) {
 
 我们鼓励尽可能使用 [react-window](https://github.com/bvaughn/react-window)。 如果这个库不包括你的用例，你应该考虑使用 [react-virtualized](https://github.com/bvaughn/react-virtualized)，然后使用 [react-virtuoso](https://github.com/petyosi/react-virtuoso)等替代品。
 
-## 个性化
+## Customization 个性化
 
-🎨如果你是在寻找灵感，你可以查看 [MUI Treasury's customization examples](https://mui-treasury.com/styles/list-item)。
+🎨 如果您还在寻找灵感，您可以看看 [MUI Treasury 特别定制的一些例子](https://mui-treasury.com/styles/list-item)。
