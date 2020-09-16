@@ -4,7 +4,7 @@
 
 ## Palette colors
 
-A color intention is a mapping of a palette color to a given intention within your application. The theme exposes the following palette colors (accessible under `theme.palette.`):
+The theme exposes the following palette colors (accessible under `theme.palette.`):
 
 - *primary* - used to represent primary interface elements for a user. It's the color displayed most frequently across your app's screens and components.
 - *secondary* - used to represent secondary interface elements for a user. It provides more ways to accent and distinguish your product. Having it is optional.
@@ -85,13 +85,16 @@ const theme = createMuiTheme({
     },
     // Used by `getContrastText()` to maximize the contrast between
     // the background and the text.
+    tonalOffset: 0.2,
+  },
+});
+    contrastThreshold: 3,
+    // Used by the functions below to shift a color's luminance by approximately
+    // two indexes within its tonal palette.
     contrastThreshold: 3,
     // Used by the functions below to shift a color's luminance by approximately
     // two indexes within its tonal palette.
     // Zum Beispiel von Red 500 zu Red 300 oder Red 700 zu wechseln.
-    tonalOffset: 0.2,
-  },
-});
 ```
 
 As in the example above, if the intention object contains custom colors using any of the "main", "light", "dark" or "contrastText" keys, these map as follows:
@@ -211,6 +214,18 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline/>
+      <Routes />
+    </ThemeProvider>
+  );
+} 'dark' : 'light',
+        },
+      }),
+    [prefersDarkMode],
+  );
+
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
       <Routes />
     </ThemeProvider>
   );
