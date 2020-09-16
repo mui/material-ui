@@ -1,6 +1,8 @@
 ---
 title: Transition React component
 components: Collapse, Fade, Grow, Slide, Zoom
+githubLabel:
+  component: Transición
 ---
 
 # Transiciones
@@ -8,6 +10,8 @@ components: Collapse, Fade, Grow, Slide, Zoom
 <p class="description">Transition helps make a UI expressive and easy to use.</p>
 
 Material-UI provides a number of transitions that can be used to introduce some basic [motion](https://material.io/design/motion/) to your applications components.
+
+[La función de estilo de la paleta](/system/palette/).
 
 To better support server rendering Material-UI provides a `style` property to the children of some transition components (Fade, Grow, Zoom, Slide). The `style` property must be applied to the DOM for the animation to work as expected.
 
@@ -33,7 +37,7 @@ export default Main() {
 
 ## Collapse
 
-Expand vertically from the top of the child element. The `collapsedHeight` property can be used to set the minimum height when not expanded.
+Expand vertically from the top of the child element. Use the `orientation` prop if you need a horizontal collapse. The `collapsedHeight` property can be used to set the minimum height when not expanded.
 
 {{"demo": "pages/components/transitions/SimpleCollapse.js", "bg": true}}
 
@@ -47,7 +51,7 @@ Fade in from transparent to opaque.
 
 Expand outwards from the center of the child element, while also fading in from transparent to opaque.
 
-The second example demonstrates how to change the `transform-origin`, and conditionally applies the `timeout` property to change the entry speed.
+The second example demonstrates how to change the `transform-origin`, and conditionally applies the `timeout` prop to change the entry speed.
 
 {{"demo": "pages/components/transitions/SimpleGrow.js", "bg": true}}
 
@@ -73,6 +77,12 @@ The components accept a `TransitionComponent` prop to customize the default tran
 
 - Accepts an `in` prop. This corresponds to the open/close state.
 - Call the `onEnter` callback prop when the enter transition starts.
-- Call the `onExited` callback prop when the exit transition is completed. These two callbacks allow to unmount the children when in a closed state and fully transitioned.
+- Call the `onExited` callback prop when the exit transition is completed. Call the `onExited` callback prop when the exit transition is completed.
 
-For more information on creating a custom transition, visit the [React Transition Group Transition docs](http://reactcommunity.org/react-transition-group/transition).
+For more information on creating a custom transition, visit the [React Transition Group Transition docs](http://reactcommunity.org/react-transition-group/transition). You can also visit the dedicated sections of some of the components:
+
+- [Modal](/components/modal/#transitions)
+- [Dialog](/components/dialogs/#transitions)
+- [Popper](/components/popper/#transitions)
+- [Snackbar](/components/snackbars/#transitions)
+- [Tooltip](/components/tooltips/#transitions)
