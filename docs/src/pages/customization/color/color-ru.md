@@ -13,9 +13,9 @@ The Material Design team has also built an awesome palette configuration tool: [
 <a href="https://material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=3F51B5&secondary.color=F44336" target="_blank" rel="noopener nofollow">
   <img src="/static/images/color/colorTool.png" alt="Официальный инструмент для работы с цветом" style="width: 574px" />
 </a>
-  
-  
 
+<br />
+<br />
 
 The output can be fed into `createMuiTheme()` function:
 
@@ -71,7 +71,7 @@ If you are using the default primary and / or secondary shades then by providing
 ### Инструменты, созданные сообществом
 
 - [create-mui-theme](https://react-theming.github.io/create-mui-theme/): Is an online tool for creating Material-UI themes via Material Design Color Tool.
-- [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/): A tool to generate themes for your Material-UI applications by just selecting the colors and having a live preview.
+- [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/): A tool to generate themes for your Material-UI applications by just selecting the colors and having a live preview. Includes basic site templates to show various components and how they are affected by the theme
 - [Material palette generator](https://material.io/inline-tools/color/): Этот инструмент можно использовать для создания палитры на основе любого выбранного цвета.
 
 ## 2014 Material Design color palettes
@@ -81,7 +81,7 @@ These color palettes, originally created by Material Design in 2014, are compris
 ### Важные термины
 
 - **Palette**: A palette is a collection of colors, i.e. hues and their shades. Материал-UI предоставляет все цвета из руководящих принципов Material Design. [This color palette](#color-palette) has been designed with colors that work harmoniously with each other.
-- **Hue" & "Shade**: A single color within the palette is made up of a hue such as "red", and shade, such as "500". «red 50» - самый светлый оттенок красного (* розовый! *), а «red 900» самый темный. Кроме того, большинство тонов имеют «акцентные» оттенки с префиксом `A`.
+- **Hue" & "Shade**: A single color within the palette is made up of a hue such as "red", and shade, such as "500". «red 50» - самый светлый оттенок красного (* розовый! *), а «red 900» самый темный. д.), можно импортировать цвет следующим образом:
 
 ### Цветовая палитра
 
