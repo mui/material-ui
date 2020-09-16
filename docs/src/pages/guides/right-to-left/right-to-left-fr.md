@@ -53,7 +53,7 @@ function RTL(props) {
 
 ## Démo
 
-*Utilisez le bouton de navigation situé dans le coin supérieur droit pour retourner toute la documentation*
+_Utilisez le bouton de navigation situé dans le coin supérieur droit pour retourner toute la documentation_
 
 {{"demo": "pages/guides/right-to-left/Direction.js"}}
 
@@ -61,6 +61,6 @@ function RTL(props) {
 
 If you want to prevent a specific rule-set from being affected by the `rtl` transformation you can add `flip: false` at the beginning.
 
-*Use the direction toggle button on the top right corner to see the effect.*
+_Use the direction toggle button on the top right corner to see the effect._
 
 {{"demo": "pages/guides/right-to-left/RtlOptOut.js", "hideEditButton": true}}
