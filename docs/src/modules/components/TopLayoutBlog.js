@@ -20,7 +20,10 @@ const styles = (theme) => ({
   container: {
     marginBottom: theme.spacing(20),
     maxWidth: 680 + theme.spacing(8 + 4),
-    '& .markdownElement': {
+    '& h1': {
+      marginBottom: theme.spacing(4),
+    },
+    '& .markdown-body': {
       fontSize: 18,
       lineHeight: 1.7,
       [theme.breakpoints.up('md')]: {
@@ -46,10 +49,11 @@ const styles = (theme) => ({
 function TopLayoutBlog(props) {
   const { classes, docs } = props;
   const { description, rendered, title } = docs.en;
+  const finalTitle = title || docs.en.headers.title;
 
   return (
     <AppFrame disableDrawer>
-      <Head title={`${title} - Material-UI`} description={description} />
+      <Head title={`${finalTitle} - Material-UI`} description={description} />
       <div className={classes.root}>
         <AppContainer className={classes.container}>
           <Link
@@ -60,6 +64,11 @@ function TopLayoutBlog(props) {
           >
             {'< Back to blog'}
           </Link>
+          {docs.en.headers.title ? (
+            <MarkdownElement>
+              <h1>{docs.en.headers.title}</h1>
+            </MarkdownElement>
+          ) : null}
           {rendered.map((chunk, index) => {
             return <MarkdownElement key={index} renderedMarkdown={chunk} />;
           })}

@@ -286,6 +286,7 @@ ${headers.components
         description,
         location: headers.filename || `/docs/src/pages/${pageFilename}/${filename}`,
         rendered,
+        headers,
         toc,
         title,
       };
