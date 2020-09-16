@@ -63,7 +63,7 @@ In this example an input allows a discrete value to be set.
 
 ## Customized sliders
 
-コンポーネントのカスタマイズの例を次に示します。 コンポーネントのカスタマイズの例を次に示します。 詳細については、 [オーバーライドドキュメントページ](/customization/components/)ご覧ください。
+コンポーネントのカスタマイズの例を次に示します。 コンポーネントのカスタマイズの例を次に示します。 コンポーネントのカスタマイズの例を次に示します。 詳細については、 [オーバーライドドキュメントページ](/customization/components/)ご覧ください。
 
 {{"demo": "pages/components/slider/CustomizedSlider.js"}}
 
@@ -97,7 +97,7 @@ You can use the `scale` prop to represent the `value` on a different scale. For 
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#slider)
 
-コンポーネントは、アクセス可能にするために必要なほとんどの作業を処理します。 ただし、次の点を確認する必要があります。 ただし、次の点を確認する必要があります。
+コンポーネントは、アクセス可能にするために必要なほとんどの作業を処理します。 ただし、次の点を確認する必要があります。 ただし、次の点を確認する必要があります。 ただし、次の点を確認する必要があります。
 
 - Each thumb has a user-friendly label (`aria-label`, `aria-labelledby` or `getAriaLabel` prop).
 - Each thumb has a user-friendly text for its current value. 値がラベルのセマンティクスと一致する場合、これは必要ありません。 この名前は、 `getAriaValueText`または`aria-valuetext`プロパティを使用して変更できます。
