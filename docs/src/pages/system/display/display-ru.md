@@ -40,7 +40,6 @@ For faster mobile-friendly development, use responsive display classes for showi
 | Visible only on lg | `display={{ xs: 'none', lg: 'block', xl: 'none' }}`  |
 | Visible only on xl | `display={{ xs: 'none', xl: 'block' }}`              |
 
-
 {{"demo": "pages/system/display/Hiding.js", "defaultCodeOpen": false}}
 
 ```jsx
