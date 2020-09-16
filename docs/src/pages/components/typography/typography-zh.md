@@ -1,5 +1,5 @@
 ---
-components: 文字铸排
+components: Typography
 ---
 
 # Typography 文字铸排
