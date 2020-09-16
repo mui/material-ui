@@ -1,6 +1,10 @@
 ---
 title: Snackbar React-Komponente
 components: Snackbar, SnackbarContent
+githubLabel:
+  component: Snackbar
+materialDesign: https://material.io/components/snackbars
+waiAria: 'https://www.w3.org/TR/wai-aria-1.1/#alert'
 ---
 
 # Snackbar
@@ -10,6 +14,8 @@ components: Snackbar, SnackbarContent
 [Snackbars](https://material.io/design/components/snackbars.html) informieren Benutzer über einen Prozess, den eine App ausgeführt hat oder ausführen wird. Sie erscheinen vorübergehend am unteren Rand des Bildschirms. Sie sollten die Benutzererfahrung nicht unterbrechen und erfordern keine Benutzereingaben, um verschwinden zu können.
 
 Snackbars contain a single line of text directly related to the operation performed. They may contain a text action, but no icons. Sie können diese verwenden, um Benachrichtigungen anzuzeigen.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 #### Häufigkeit
 
@@ -23,7 +29,7 @@ Eine einfache Snackbar, die das Verhalten der Snackbar von Google Keep reproduzi
 
 ## Benutzerdefinierte Snackbars
 
-Hier sind einige Beispiele, wie man die Komponente anpassen kann. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
+Hier einige Beispiele zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
 
 {{"demo": "pages/components/snackbars/CustomizedSnackbars.js"}}
 
