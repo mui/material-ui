@@ -43,7 +43,7 @@ const activeCore = [
     github: 'mnajdova',
     twitter: 'marijanajdova',
     flag: 'Open source focus',
-    location: 'Macedonia',
+    location: 'Skopje, North Macedonia',
   },
   {
     name: 'Josh Wooding',
