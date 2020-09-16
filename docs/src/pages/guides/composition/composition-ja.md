@@ -48,7 +48,7 @@ This pattern is very powerful and allows for great flexibility, as well as a way
 
 ### インラインのある警告
 
-Not only will React update the DOM unnecessarily, the ripple effect of the `ListItem` will also not work correctly. ⚠️ However, since we are using an inline function to change the rendered component, React will unmount the link every time `ListItemLink` is rendered.
+⚠️ However, since we are using an inline function to change the rendered component, React will unmount the link every time `ListItemLink` is rendered. Not only will React update the DOM unnecessarily, the ripple effect of the `ListItem` will also not work correctly.
 
 ```jsx
 import { Link } from 'react-router-dom';
