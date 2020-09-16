@@ -1,6 +1,10 @@
 ---
 title: Radio buttons React component
 components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
+githubLabel:
+  component: Radio
+materialDesign: 'https://material.io/components/selection-controls#radio-buttons'
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#radiobutton'
 ---
 
 # Radio
@@ -10,6 +14,8 @@ components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
 Usa [botones de radio](https://material.io/design/components/selection-controls.html#radio-buttons) cuando el usuario necesita ver todas las opciones disponibles. Si las opciones disponibles se pueden colapsar, considere usar un menú desplegable porque utiliza menos espacio.
 
 Radio buttons should have the most commonly used option selected by default.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## RadioGroup
 
@@ -39,11 +45,36 @@ In general, radio buttons should have a value selected by default. If this is no
 
 ## Customized radios
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+He aquí un ejemplo de personalización del componente. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/radio-buttons/CustomizedRadios.js"}}
 
-## When to use
+## `useRadioGroup`
+
+For advanced customization use cases, a `useRadioGroup()` hook is exposed. It returns the context value of the parent radio group. The Radio component uses this hook internally.
+
+### API
+
+```jsx
+<RadioButton
+  value="radioA"
+  inputProps={{ 'aria-label': 'Radio A' }}
+/>
+```
+
+#### Regresa
+
+`value` (_Object_):
+
+- `value.name` (_String_ [optional]): The name used to reference the value of the control.
+- `value.onChange` (_Void_ [optional]): Callback fired when a radio button is selected.
+- `value.value` (_Any_ [optional]): Value of the selected radio button.
+
+#### Ejemplo
+
+{{"demo": "pages/components/radio-buttons/UseRadioGroup.js"}}
+
+## Cuándo usarlo
 
 - [Checkboxes vs. Botones de selección](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
 
@@ -57,6 +88,8 @@ Here is an example of customizing the component. You can learn more about this i
 ```jsx
 <RadioButton
   value="radioA"
-  inputProps={{ 'aria-label': 'Radio A' }}
+  inputProps={{
+    'aria-label': 'Radio A',
+  }}
 />
 ```
