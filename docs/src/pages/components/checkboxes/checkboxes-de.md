@@ -1,15 +1,21 @@
 ---
 title: Checkbox React-Komponente
 components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
+materialDesign: 'https://material.io/components/selection-controls#checkboxes'
+githubLabel:
+  component: Checkbox
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#checkbox'
 ---
 
-# Checkbox (kontrollkästchen)
+# Checkbox
 
 <p class="description">Kontrollkästchen ermöglichen dem Benutzer die Auswahl eines oder mehrerer Elemente aus einem Satz.</p>
 
 [Kontrollkästchen ](https://material.io/design/components/selection-controls.html#checkboxes) können eine Option aus- oder anschalten.
 
 Wenn in einer Liste mehrere Optionen erscheinen, können Sie durch Kontrollkästchen die Abstände erhalten statt Ein- / Aus - Schalter zu verwenden. Wenn Sie nur eine Option haben, vermeiden Sie die Verwendung eines Kontrollkästchens und verwenden Sie stattdessen einen Ein- / Ausschalter.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Basic checkboxes
 
