@@ -1,45 +1,51 @@
 ---
-title: Alert React component
+title: Alert React コンポーネント
 components: Alert, AlertTitle
+githubLabel:
+  component: アラート
+packageName: '@material-ui/lab'
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
 ---
 
-# Alert
+# アラート
 
-<p class="description">An alert displays a short, important message in a way that attracts the user's attention without interrupting the user's task.</p>
+<p class="description">アラートは、ユーザのタスクを中断することなく、ユーザの注意を引き付けるような短く重要なメッセージを表示します。</p>
 
-**Note:** This component is not documented in the [Material Design guidelines](https://material.io/), but Material-UI supports it.
+**注意:** このコンポーネントは [Material Design guidelines](https://material.io/)に記載されていませんが、Material-UIはそれをサポートしています。
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Simple alerts
 
-The alert offers four severity levels that set a distinctive icon and color.
+このアラートは、特徴的なアイコンと色を設定する4つの重要度レベルを提供します。
 
 {{"demo": "pages/components/alert/SimpleAlerts.js"}}
 
 ## Description
 
-You can use the `AlertTitle` component to display a formatted title above the content.
+`アラートタイトル` コンポーネントを使用して、書式付きタイトルをコンテンツの上に表示することができます。
 
 {{"demo": "pages/components/alert/DescriptionAlerts.js"}}
 
-## Actions
+## アクション
 
-An alert can have an action, such as a close or undo button. It is rendered after the message, at the end of the alert.
+アラートには、閉じるボタンや元に戻すボタンなどのアクションがあります。 これは、アラートの最後にメッセージの後にレンダリングされます。 これは、アラートの最後にメッセージの後にレンダリングされます。
 
-If an `onClose` callback is provided and no `action` prop is set, a close icon is displayed. The `action` prop can be used to provide an alternative action, for example using a Button or IconButton.
+`onClose` コールバックが指定されていて、 `アクション` プロパティが設定されていない場合は、閉じるアイコンが表示されます。 `アクション` プロパティは、ボタンや IconButtonなどの代替アクションを提供するために使用できます。 `アクション` プロパティは、ボタンや IconButtonなどの代替アクションを提供するために使用できます。
 
 {{"demo": "pages/components/alert/ActionAlerts.js"}}
 
-### Transition
+### トランジション
 
-You can use a [transition component](/components/transitions/) such as `Collapse` to transition the appearance of the alert.
+[Collapse](/components/transitions/) のような `トランジションコンポーネント` を使用して、アラートの外観を遷移することができます。
 
 {{"demo": "pages/components/alert/TransitionAlerts.js"}}
 
-## アイコン
+## Icons
 
-The `icon` prop allows you to add an icon to the beginning of the alert component. This will override the default icon for the specified severity.
+`アイコン` プロパティでは、アラートコンポーネントの先頭にアイコンを追加できます。 これは指定された重要度のデフォルトアイコンを上書きします。 これは指定された重要度のデフォルトアイコンを上書きします。
 
-You can change the default severity to icon mapping with the `iconMapping` prop. This can be defined globally using [theme customization](/customization/globals/#default-props).
+`iconMapping` プロパティを使用して、デフォルトの重要度をアイコンマッピングに変更できます。 `iconMapping` プロパティを使用して、デフォルトの重要度をアイコンマッピングに変更できます。 [テーマカスタマイズ](/customization/globals/#default-props)を使用してグローバルに定義することができます。
 
 Setting the icon prop to false will remove the icon altogether.
 
@@ -47,23 +53,23 @@ Setting the icon prop to false will remove the icon altogether.
 
 ## バリアント
 
-Two additional variants are available – outlined, and filled:
+さらに2つのバリエーションがあります – アウトラインと塗りつぶし:
 
 ### アウトライン (Outlined)
 
 {{"demo": "pages/components/alert/OutlinedAlerts.js"}}
 
-### Filled
+### 塗りつぶし
 
 {{"demo": "pages/components/alert/FilledAlerts.js"}}
 
-## Toast
+## トースト
 
-You can use the Snackbar to [display a toast](/components/snackbars/#customized-snackbars) with the Alert.
+Snackbar を使ってアラートで [乾杯を表示](/components/snackbars/#customized-snackbars)できます。
 
 ## カラー
 
-The `color` prop will override the default color for the specified severity.
+`色` プロパティは、指定された重要度のデフォルトの色を上書きします。
 
 {{"demo": "pages/components/alert/ColorAlerts.js"}}
 
@@ -71,8 +77,8 @@ The `color` prop will override the default color for the specified severity.
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#alert)
 
-When the component is dynamically displayed, the content is automatically announced by most screen readers. At this time, screen readers do not inform users of alerts that are present when the page loads.
+コンポーネントが動的に表示されると、ほとんどのスクリーンリーダーによってコンテンツが自動的に表示されます。 この時点で、スクリーンリーダーは、ページが読み込まれたときに存在するアラートをユーザーに知らせることはありません。 この時点で、スクリーンリーダーは、ページが読み込まれたときに存在するアラートをユーザーに知らせることはありません。
 
-Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (for example the visible text), or is included through alternative means, such as additional hidden text.
+色を使って意味を加えることは視覚的な表示のみを提供し、スクリーンリーダーなどの支援技術の利用者には伝えられません。 色で示されている情報がコンテンツ自体から明らかになっていることを確認してください (例えば、目に見えるテキスト) または、隠されたテキストなどの代替手段によって含まれています。 色で示されている情報がコンテンツ自体から明らかになっていることを確認してください (例えば、目に見えるテキスト) または、隠されたテキストなどの代替手段によって含まれています。
 
-Actions must have a tab index of 0 so that they can be reached by keyboard-only users.
+アクションはキーボードのみのユーザーがアクセスできるように、タブインデックスが 0 である必要があります。
