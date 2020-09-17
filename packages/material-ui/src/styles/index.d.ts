@@ -15,6 +15,7 @@ export { default as responsiveFontSizes } from './responsiveFontSizes';
 export { ComponentsPropsList } from './props';
 export { Duration, Easing, Transitions, TransitionsOptions, duration, easing } from './transitions';
 export { default as useTheme } from './useTheme';
+export { default as useThemeProps } from './useThemeProps';
 export {
   default as withStyles,
   WithStyles,

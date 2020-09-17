@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
 import {
   useIsFocusVisible,
-  useEnhancedEffect,
+  unstable_useEnhancedEffect as useEnhancedEffect,
   ownerDocument,
   useEventCallback,
   useForkRef,

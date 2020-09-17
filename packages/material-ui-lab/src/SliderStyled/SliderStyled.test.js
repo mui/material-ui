@@ -2,8 +2,16 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { spy, stub } from 'sinon';
 import { expect } from 'chai';
-import { createMount, describeConformance, act, createClientRender, fireEvent } from 'test/utils';
+import {
+  createMount,
+  describeConformance,
+  act,
+  createClientRender,
+  fireEvent,
+  screen,
+} from 'test/utils';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import styled from '@material-ui/styled-engine';
 import Slider from './SliderStyled';
 
 function createTouches(touches) {
@@ -717,6 +725,69 @@ describe('<Slider />', () => {
       );
 
       expect(getByTestId('value-label')).to.have.text('1010');
+    });
+  });
+
+  describe('theme components', () => {
+    const theme = createMuiTheme({
+      components: {
+        MuiSlider: {
+          variants: [
+            {
+              props: { color: 'primary', orientation: 'vertical' },
+              style: {
+                backgroundColor: 'rgb(0, 255, 0)',
+              },
+            },
+          ],
+          styleOverrides: {
+            root: {
+              background: 'rgb(255, 0, 0)',
+            },
+          },
+        },
+      },
+    });
+
+    it('overrides should be respected', () => {
+      render(
+        <ThemeProvider theme={theme}>
+          <Slider data-testid="component">Test</Slider>
+        </ThemeProvider>,
+      );
+
+      const style = window.getComputedStyle(screen.getByTestId('component'));
+      expect(style.getPropertyValue('background-color')).to.equal('rgb(255, 0, 0)');
+    });
+
+    it('variants should win over overrides', () => {
+      render(
+        <ThemeProvider theme={theme}>
+          <Slider data-testid="component" color="primary" orientation="vertical">
+            Test
+          </Slider>
+        </ThemeProvider>,
+      );
+
+      const style = window.getComputedStyle(screen.getByTestId('component'));
+      expect(style.getPropertyValue('background-color')).to.equal('rgb(0, 255, 0)');
+    });
+
+    it('styled wrapper should win over variants', () => {
+      const CustomSlider = styled(Slider)`
+        background-color: rgb(0, 0, 255);
+      `;
+
+      render(
+        <ThemeProvider theme={theme}>
+          <CustomSlider data-testid="component" color="primary" orientation="vertical">
+            Test
+          </CustomSlider>
+        </ThemeProvider>,
+      );
+
+      const style = window.getComputedStyle(screen.getByTestId('component'));
+      expect(style.getPropertyValue('background-color')).to.equal('rgb(0, 0, 255)');
     });
   });
 });
