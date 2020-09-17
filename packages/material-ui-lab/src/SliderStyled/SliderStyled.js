@@ -1,15 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import {
-  useThemeProps,
-  muiStyled,
-  fade,
-  lighten,
-  darken,
-} from '@material-ui/core/styles';
-import { 
-  propsToClassKey
-} from '@material-ui/styles';
+import { useThemeProps, muiStyled, fade, lighten, darken } from '@material-ui/core/styles';
+import { propsToClassKey } from '@material-ui/styles';
 import { capitalize } from '@material-ui/core/utils';
 import SliderUnstyled from '../SliderUnstyled';
 
