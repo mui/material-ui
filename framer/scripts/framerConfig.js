@@ -250,26 +250,6 @@ export const componentSettings = {
     },
     template: 'radio_group.txt',
   },
-  Slider: {
-    ignoredProps: [
-      'defaultValue',
-      'getAriaLabel',
-      'getAriaValueText',
-      'onChange',
-      'onChangeCommitted',
-      'scale',
-      'ThumbComponent',
-      'value',
-      'ValueLabelComponent',
-      'valueLabelFormat',
-      'marks',
-    ],
-    propValues: {
-      width: 160,
-      height: 24,
-    },
-    template: 'slider.txt',
-  },
   SnackbarContent: {
     ignoredProps: ['action', 'role'],
     propValues: {
