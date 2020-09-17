@@ -1,14 +1,22 @@
 import * as React from 'react';
-import { expect } from 'chai';
-import { createClientRender } from 'test/utils';
+import {
+  createMount,
+  describeConformance,
+} from 'test/utils';
 import SliderUnstyled from './SliderUnstyled';
 
 describe('<SliderUnstyled />', () => {
-  const render = createClientRender();
-
-  it('should not throw when rendered', () => {
-    expect(() => {
-      render(<SliderUnstyled />);
-    }).not.to.throw();
-  });
+  if (typeof Touch === 'undefined') {
+    return;
+  }
+  
+  const mount = createMount();
+  
+  describeConformance(<SliderUnstyled value={0} />, () => ({
+    classes: {},
+    inheritComponent: 'span',
+    mount,
+    refInstanceof: window.HTMLSpanElement,
+    testComponentPropWith: 'span',
+  }));
 });

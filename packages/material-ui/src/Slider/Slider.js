@@ -72,7 +72,7 @@ const variantsResolver = (props, styles, theme, name) => {
 };
 
 const SliderRoot = muiStyled(
-  'div',
+  'span',
   {},
   { muiName: 'MuiSlider', overridesResolver, variantsResolver },
 )((props) => {

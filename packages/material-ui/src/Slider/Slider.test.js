@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { spy, stub } from 'sinon';
 import { expect } from 'chai';
 import {
-  /* createMount, describeConformance, */ act,
+  act,
   createClientRender,
   fireEvent,
 } from 'test/utils';
@@ -22,28 +22,18 @@ function createTouches(touches) {
   };
 }
 
-// TODO: enable the tests
 describe('<Slider />', () => {
   // only run in supported browsers
   if (typeof Touch === 'undefined') {
     return;
   }
 
-  // const mount = createMount();
   let classes;
   const render = createClientRender();
 
   before(() => {
     classes = {};
   });
-
-  // describeConformance(<Slider value={0} />, () => ({
-  //   classes: {},
-  //   inheritComponent: 'span',
-  //   mount,
-  //   refInstanceof: window.HTMLSpanElement,
-  //   testComponentPropWith: 'span',
-  // }));
 
   it('should call handlers', () => {
     const handleChange = spy();
