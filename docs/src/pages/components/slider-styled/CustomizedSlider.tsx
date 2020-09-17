@@ -169,6 +169,7 @@ const AirbnbSlider = styled(Slider)({
     height: 3,
   },
 });
+
 function AirbnbThumbComponent(props: any) {
   return (
     <span {...props}>
