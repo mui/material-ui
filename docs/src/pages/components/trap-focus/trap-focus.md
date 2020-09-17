@@ -1,7 +1,7 @@
 ---
 title: Trap Focus React component
 components: Unstable_TrapFocus
-githubLabel: component: TrapFocus
+githubLabel: 'component: TrapFocus'
 ---
 
 # Trap Focus

@@ -10,7 +10,7 @@ describe('parseMarkdown', () => {
 title: Alert React component
 components: Alert, AlertTitle
 githubLabel: 'component: Alert'
-packageName: @material-ui/lab
+packageName: '@material-ui/lab'
 waiAria: https://www.w3.org/TR/wai-aria-practices/#alert
 ---
 `),

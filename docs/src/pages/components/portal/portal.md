@@ -1,7 +1,7 @@
 ---
 title: Portal React component
 components: Portal
-githubLabel: component: Portal
+githubLabel: 'component: Portal'
 ---
 
 # Portal
