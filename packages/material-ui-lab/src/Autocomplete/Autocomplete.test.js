@@ -396,7 +396,7 @@ describe('<Autocomplete />', () => {
           multiple
         />,
       );
-      fireEvent.click(container.querySelectorAll('svg[data-mui-test="CancelIcon"]')[1]);
+      fireEvent.click(container.querySelectorAll('svg[data-testid="CancelIcon"]')[1]);
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.deep.equal([options[0]]);
     });

@@ -43,7 +43,7 @@ describe('<TabScrollButton />', () => {
         <TabScrollButton {...defaultProps} {...defaultProps} direction="left" disabled />,
       );
       expect(
-        container.querySelectorAll('svg[data-mui-test="KeyboardArrowLeftIcon"]').length,
+        container.querySelectorAll('svg[data-testid="KeyboardArrowLeftIcon"]').length,
       ).to.equal(1);
     });
 
@@ -52,7 +52,7 @@ describe('<TabScrollButton />', () => {
         <TabScrollButton {...defaultProps} {...defaultProps} direction="right" disabled />,
       );
       expect(
-        container.querySelectorAll('svg[data-mui-test="KeyboardArrowRightIcon"]').length,
+        container.querySelectorAll('svg[data-testid="KeyboardArrowRightIcon"]').length,
       ).to.equal(1);
     });
   });

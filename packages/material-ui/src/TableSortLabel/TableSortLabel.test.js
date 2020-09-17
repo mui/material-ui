@@ -58,7 +58,7 @@ describe('<TableSortLabel />', () => {
 
     it('should accept a custom icon for the sort icon', () => {
       const { container } = render(<TableSortLabel IconComponent={SortIcon} />);
-      const icon = container.querySelector(`svg.${classes.icon}[data-mui-test="SortIcon"]`);
+      const icon = container.querySelector(`svg.${classes.icon}[data-testid="SortIcon"]`);
       expect(icon).to.not.equal(null);
     });
   });

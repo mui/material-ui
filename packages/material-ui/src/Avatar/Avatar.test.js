@@ -127,7 +127,7 @@ describe('<Avatar />', () => {
     it('should render a div containing an svg icon', () => {
       expect(avatar.tagName).to.equal('DIV');
       const cancelIcon = avatar.firstChild;
-      expect(cancelIcon).to.have.attribute('data-mui-test', 'CancelIcon');
+      expect(cancelIcon).to.have.attribute('data-testid', 'CancelIcon');
     });
 
     it('should merge user classes & spread custom props to the root node', () => {

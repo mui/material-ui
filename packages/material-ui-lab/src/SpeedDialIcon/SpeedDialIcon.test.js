@@ -23,7 +23,7 @@ describe('<SpeedDialIcon />', () => {
 
   it('should render the Add icon by default', () => {
     const wrapper = mount(<SpeedDialIcon />);
-    expect(findOutermostIntrinsic(wrapper).find('svg[data-mui-test="AddIcon"]').length).to.equal(1);
+    expect(findOutermostIntrinsic(wrapper).find('svg[data-testid="AddIcon"]').length).to.equal(1);
   });
 
   it('should render an Icon', () => {

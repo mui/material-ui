@@ -63,14 +63,14 @@ describe('<MobileStepper />', () => {
     const wrapper = mount(<MobileStepper {...defaultProps} />);
     const backButton = wrapper.find('button[aria-label="back"]');
     expect(backButton.exists()).to.equal(true);
-    expect(backButton.find('svg[data-mui-test="KeyboardArrowLeftIcon"]')).to.have.lengthOf(1);
+    expect(backButton.find('svg[data-testid="KeyboardArrowLeftIcon"]')).to.have.lengthOf(1);
   });
 
   it('should render next button', () => {
     const wrapper = mount(<MobileStepper {...defaultProps} />);
     const nextButton = wrapper.find('button[aria-label="next"]');
     expect(nextButton.exists()).to.equal(true);
-    expect(nextButton.find('svg[data-mui-test="KeyboardArrowRightIcon"]')).to.have.lengthOf(1);
+    expect(nextButton.find('svg[data-testid="KeyboardArrowRightIcon"]')).to.have.lengthOf(1);
   });
 
   it('should render two buttons and text displaying progress when supplied with variant text', () => {
