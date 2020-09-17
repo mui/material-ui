@@ -1,6 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import withStyles from '@material-ui/core/styles/withStyles';
+import { withStyles } from '@material-ui/core/styles';
 
 const styles = (theme) => ({
   thumb: {
