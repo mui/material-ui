@@ -22,6 +22,13 @@ If you have a single option, avoid using a checkbox and use an on/off switch ins
 
 {{"demo": "pages/components/checkboxes/Checkboxes.js"}}
 
+## Indeterminate
+
+A checkbox input can only have two states: checked or unchecked. It either submits its value or doesn't.
+Visually, there are actually three states a checkbox can be in: checked, unchecked, or indeterminate.
+
+{{"demo": "pages/components/checkboxes/IndeterminateCheckbox.js"}}
+
 ## Checkbox with FormControlLabel
 
 `Checkbox` can be provided with a label thanks to the `FormControlLabel` component.
