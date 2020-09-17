@@ -27,7 +27,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 
-The `ref` is forwarded to the root element.
+The component cannot hold a ref.
 
 Any other props supplied will be provided to the root element (native element).
 

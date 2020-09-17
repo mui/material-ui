@@ -53,7 +53,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">valueLabelDisplay</span> | <span class="prop-type">'auto'<br>&#124;&nbsp;'off'<br>&#124;&nbsp;'on'</span> | <span class="prop-default">'off'</span> | Controls when the value label is displayed:<br>- `auto` the value label will display when the thumb is hovered or focused. - `on` will display persistently. - `off` will never display. |
 | <span class="prop-name">valueLabelFormat</span> | <span class="prop-type">func<br>&#124;&nbsp;string</span> | <span class="prop-default">(x) => x</span> | The format function the value label's value.<br>When a function is provided, it should have the following signature:<br>- {number} value The value label's value to format - {number} index The value label's index to format |
 
-The component cannot hold a ref.
+The `ref` is forwarded to the root element.
 
 Any other props supplied will be provided to the root element (native element).
 
