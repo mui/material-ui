@@ -2,7 +2,13 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { spy, stub } from 'sinon';
 import { expect } from 'chai';
-import { act, createClientRender, fireEvent } from 'test/utils';
+import {
+  createMount,
+  describeConformance,
+  act,
+  createClientRender,
+  fireEvent
+} from 'test/utils';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Slider from './Slider';
 
@@ -24,12 +30,16 @@ describe('<Slider />', () => {
     return;
   }
 
-  let classes;
+  const mount = createMount();
   const render = createClientRender();
 
-  before(() => {
-    classes = {};
-  });
+  describeConformance(<Slider value={0} />, () => ({
+    classes: {},
+    inheritComponent: 'span',
+    mount,
+    refInstanceof: window.HTMLSpanElement,
+    testComponentPropWith: 'span',
+  }));
 
   it('should call handlers', () => {
     const handleChange = spy();
@@ -305,7 +315,7 @@ describe('<Slider />', () => {
 
       setProps({ disabled: true });
       expect(thumb).not.toHaveFocus();
-      expect(thumb).to.not.have.class(classes.active);
+      expect(thumb).to.not.have.class('Mui-active');
 
       fireEvent.touchMove(
         container.firstChild,
@@ -329,7 +339,7 @@ describe('<Slider />', () => {
       });
       setProps({ disabled: true });
       expect(thumb).not.toHaveFocus();
-      expect(thumb).to.not.have.class(classes.focusVisible);
+      expect(thumb).to.not.have.class('Mui-focusVisible');
     });
   });
 
