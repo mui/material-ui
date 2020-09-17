@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import acceptLanguage from 'accept-language';
 import { create } from 'jss';
 import jssRtl from 'jss-rtl';
+import { StyleSheetManager } from 'styled-components';
 import { CacheProvider } from '@emotion/core';
 import createCache from '@emotion/cache';
 import rtlPlugin from 'stylis-plugin-rtl';
@@ -334,11 +335,13 @@ function AppWrapper(props) {
       <ReduxProvider store={redux}>
         <RtlContext.Provider value={rtlContextValue}>
           <PageContext.Provider value={{ activePage, pages, versions: pageProps.versions }}>
-            <CacheProvider value={rtl ? cacheRtl : cacheLtr}>
-              <StylesProvider jss={jss}>
-                <ThemeProvider>{children}</ThemeProvider>
-              </StylesProvider>
-            </CacheProvider>
+            <StyleSheetManager stylisPlugins={rtl ? [rtlPlugin] : []}>
+              <CacheProvider value={rtl ? cacheRtl : cacheLtr}>
+                <StylesProvider jss={jss}>
+                  <ThemeProvider>{children}</ThemeProvider>
+                </StylesProvider>
+              </CacheProvider>
+            </StyleSheetManager>
           </PageContext.Provider>
         </RtlContext.Provider>
         <LanguageNegotiation />

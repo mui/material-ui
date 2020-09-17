@@ -49,7 +49,7 @@ const marks = [
   },
 ];
 
-const IosSlider = styled(Slider)({
+const IOSSlider = styled(Slider)({
   color: '#3880ff',
   height: 2,
   padding: '15px 0',
@@ -174,7 +174,7 @@ export default function CustomizedSlider() {
   return (
     <div className={classes.root}>
       <Typography gutterBottom>iOS</Typography>
-      <IosSlider
+      <IOSSlider
         aria-label="ios slider"
         defaultValue={60}
         marks={marks}
