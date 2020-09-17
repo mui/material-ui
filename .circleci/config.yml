@@ -226,14 +226,14 @@ jobs:
 workflows:
   version: 2
   pipeline:
+    # Approximating to only run when the base branch is `master` or `next`
+    when:
+      or:
+        - equal: [master, << pipeline.git.branch >>]
+        - equal: [next, << pipeline.git.branch >>]
+        - equal: ${CIRCLE_PR_NUMBER}
     jobs:
       - checkout:
-          filters:
-            branches:
-              only:
-                # Other branches are considered PRs
-                - master
-                - next
       - test_unit:
           requires:
             - checkout
