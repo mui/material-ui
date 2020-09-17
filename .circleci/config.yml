@@ -55,6 +55,17 @@ jobs:
   checkout:
     <<: *defaults
     steps:
+      - run:
+          name: Filter base branch
+          # CircleCI does not apply filters to base branch (like any other CI provider)
+          # We're approximating a filter for `master` and `next` base branches here.
+          # Can't use `when` or `condition` because pipeline values don't include whether the pipeline is triggered by a PR.
+          command: |
+            echo ${CIRCLE_BRANCH}
+            echo ${CIRCLE_PR_NUMBER}
+            if [ "$CIRCLE_BRANCH" != "master" || "$CIRCLE_BRANCH" != "next" || "$CIRCLE_PR_NUMBER" == "" ]; then
+                circleci-agent step halt
+            fi
       - checkout
       - install_js
       - run:
@@ -226,14 +237,8 @@ jobs:
 workflows:
   version: 2
   pipeline:
-    # Approximating to only run when the base branch is `master` or `next`
-    when:
-      or:
-        - equal: [master, << pipeline.git.branch >>]
-        - equal: [next, << pipeline.git.branch >>]
-        - equal: ${CIRCLE_PR_NUMBER}
     jobs:
-      - checkout:
+      - checkout
       - test_unit:
           requires:
             - checkout
