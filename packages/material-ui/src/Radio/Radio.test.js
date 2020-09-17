@@ -32,18 +32,18 @@ describe('<Radio />', () => {
 
   describe('prop: unchecked', () => {
     it('should render an unchecked icon', () => {
-      const { container } = render(<Radio />);
+      const { getAllByTestId } = render(<Radio />);
       expect(
-        container.querySelectorAll('svg[data-testid="RadioButtonUncheckedIcon"]').length,
+        getAllByTestId("RadioButtonUncheckedIcon").length
       ).to.equal(1);
     });
   });
 
   describe('prop: checked', () => {
     it('should render a checked icon', () => {
-      const { container } = render(<Radio checked />);
+      const { getAllByTestId } = render(<Radio checked />);
       expect(
-        container.querySelectorAll('svg[data-testid="RadioButtonCheckedIcon"]').length,
+        getAllByTestId("RadioButtonCheckedIcon").length
       ).to.equal(1);
     });
   });
