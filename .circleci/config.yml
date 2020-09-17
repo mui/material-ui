@@ -209,9 +209,14 @@ workflows:
       - checkout:
           filters:
             branches:
-              ignore:
-                - l10n
-                - /dependabot\//
+              # Ideally we only run this pipeline if the base branch is `master` or `next`.
+              # CircleCI doesn't support it because branch filters are based on target branch.
+              # We approximate it by running on `master`, `next` and any PR (assuming they always target master or next).
+              only:
+                - master
+                - next
+                # pull requests have its branch name following the `pull/$CIRCLE_PR_NUMBER` scheme.
+                - /pull\/.*/
       - test_unit:
           requires:
             - checkout
