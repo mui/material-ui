@@ -1,11 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useTheme, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Slider from '@material-ui/lab/SliderStyled';
 import styled from '@emotion/styled';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
-import { ThemeProvider } from 'emotion-theming';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -171,45 +170,41 @@ function AirbnbThumbComponent(props) {
 
 export default function CustomizedSlider() {
   const classes = useStyles();
-  // For some reason the theme when styled used twice is coming from emotion, not our defulat theme
-  const theme = useTheme();
 
   return (
-    <ThemeProvider theme={theme}>
-      <div className={classes.root}>
-        <Typography gutterBottom>iOS</Typography>
-        <IosSlider
-          aria-label="ios slider"
-          defaultValue={60}
-          marks={marks}
-          valueLabelDisplay="on"
-        />
-        <div className={classes.margin} />
-        <Typography gutterBottom>pretto.fr</Typography>
-        <PrettoSlider
-          valueLabelDisplay="auto"
-          aria-label="pretto slider"
-          defaultValue={20}
-        />
-        <div className={classes.margin} />
-        <Typography gutterBottom>Tooltip value label</Typography>
-        <Slider
-          components={{
-            ValueLabel: ValueLabelComponent,
-          }}
-          aria-label="custom thumb label"
-          defaultValue={20}
-        />
-        <div className={classes.margin} />
-        <Typography gutterBottom>Airbnb</Typography>
-        <AirbnbSlider
-          components={{ Thumb: AirbnbThumbComponent }}
-          getAriaLabel={(index) =>
-            index === 0 ? 'Minimum price' : 'Maximum price'
-          }
-          defaultValue={[20, 40]}
-        />
-      </div>
-    </ThemeProvider>
+    <div className={classes.root}>
+      <Typography gutterBottom>iOS</Typography>
+      <IosSlider
+        aria-label="ios slider"
+        defaultValue={60}
+        marks={marks}
+        valueLabelDisplay="on"
+      />
+      <div className={classes.margin} />
+      <Typography gutterBottom>pretto.fr</Typography>
+      <PrettoSlider
+        valueLabelDisplay="auto"
+        aria-label="pretto slider"
+        defaultValue={20}
+      />
+      <div className={classes.margin} />
+      <Typography gutterBottom>Tooltip value label</Typography>
+      <Slider
+        components={{
+          ValueLabel: ValueLabelComponent,
+        }}
+        aria-label="custom thumb label"
+        defaultValue={20}
+      />
+      <div className={classes.margin} />
+      <Typography gutterBottom>Airbnb</Typography>
+      <AirbnbSlider
+        components={{ Thumb: AirbnbThumbComponent }}
+        getAriaLabel={(index) =>
+          index === 0 ? 'Minimum price' : 'Maximum price'
+        }
+        defaultValue={[20, 40]}
+      />
+    </div>
   );
 }

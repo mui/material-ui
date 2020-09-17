@@ -57,6 +57,6 @@ const StyledSlider = styled(SliderUnstyled)`
   }
 `;
 
-export default function StyledSliderDemo() {
+export default function UnstyledSlider() {
   return <StyledSlider defaultValue={10} />;
 }
