@@ -67,10 +67,7 @@ describe('<Pagination />', () => {
     expect(buttons[1].querySelector('svg')).to.have.attribute('data-testid', 'NavigateNextIcon');
     expect(buttons[2].textContent).to.equal('1');
     expect(buttons[6].textContent).to.equal('5');
-    expect(buttons[7].querySelector('svg')).to.have.attribute(
-      'data-testid',
-      'NavigateBeforeIcon',
-    );
+    expect(buttons[7].querySelector('svg')).to.have.attribute('data-testid', 'NavigateBeforeIcon');
     expect(buttons[8].querySelector('svg')).to.have.attribute('data-testid', 'FirstPageIcon');
   });
 
@@ -86,10 +83,7 @@ describe('<Pagination />', () => {
     );
 
     const buttons = getAllByRole('button');
-    expect(buttons[4].querySelector('svg')).to.have.attribute(
-      'data-testid',
-      'NavigateBeforeIcon',
-    );
+    expect(buttons[4].querySelector('svg')).to.have.attribute('data-testid', 'NavigateBeforeIcon');
     expect(buttons[1].textContent).to.equal('5');
     expect(buttons[2].textContent).to.equal('6');
     expect(buttons[3].textContent).to.equal('7');

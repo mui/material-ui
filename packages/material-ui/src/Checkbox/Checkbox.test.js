@@ -65,9 +65,9 @@ describe('<Checkbox />', () => {
   describe('prop: indeterminate', () => {
     it('should render an indeterminate icon', () => {
       const { container } = render(<Checkbox indeterminate />);
-      expect(
-        container.querySelector('svg[data-testid="IndeterminateCheckBoxIcon"]'),
-      ).not.to.equal(null);
+      expect(container.querySelector('svg[data-testid="IndeterminateCheckBoxIcon"]')).not.to.equal(
+        null,
+      );
     });
   });
 
