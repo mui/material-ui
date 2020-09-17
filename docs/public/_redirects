@@ -139,6 +139,8 @@ https://v3-9-0.material-ui.com/* https://v3.material-ui.com/:splat 301!
 /store/* https://material-ui-store.netlify.app/:splat 200
 /store-staging/* https://master--material-ui-store.netlify.app/:splat 200
 /components/data-grid/* https://material-ui-x.netlify.app/components/data-grid/:splat 200
+/api/data-grid/ https://material-ui-x.netlify.app/api/data-grid/ 200
+/api/x-grid/ https://material-ui-x.netlify.app/api/x-grid/ 200
 # Unlike the store that expect to be hosted under a subfolder,
 # material-ui-x is configured to be hosted at the root.
 /_next/* https://material-ui-x.netlify.app/_next/:splat 200
