@@ -17,6 +17,4 @@ Slider.defaultProps = {
   height: 24,
 };
 
-addPropertyControls(Slider, {
-
-});
+addPropertyControls(Slider, {});
