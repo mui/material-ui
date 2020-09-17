@@ -125,8 +125,11 @@ Select.propTypes = {
   /**
    * If `true`, a value is displayed even if no items are selected.
    *
-   * In order to display a meaningful value, a function should be passed to the `renderValue` prop which returns the value to be displayed when no items are selected.
-   * You can only use it when the `native` prop is `false` (default).
+   * In order to display a meaningful value, a function can be passed to the `renderValue` prop which
+   * returns the value to be displayed when no items are selected.
+   *
+   * ⚠️ When using this prop, make sure the label doesn't overlap with the empty displayed value.
+   * The label should either be hidden or forced to a shrunk state.
    * @default false
    */
   displayEmpty: PropTypes.bool,
