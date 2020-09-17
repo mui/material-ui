@@ -65,7 +65,10 @@ jobs:
             echo ${CIRCLE_PR_NUMBER}
             if ! [[ $CIRCLE_BRANCH = "master" ]] && ! [[ $CIRCLE_BRANCH = "next" ]] && ! [[ $CIRCLE_PR_NUMBER ]]
             then
+                echo "Skipping because branch='$CIRCLE_BRANCH' and pr_number='$CIRCLE_PR_NUMBER'"
                 circleci-agent step halt
+            else
+                echo "Not skipping because branch='$CIRCLE_BRANCH' and pr_number='$CIRCLE_PR_NUMBER'"
             fi
       - checkout
       - install_js
