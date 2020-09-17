@@ -63,7 +63,8 @@ jobs:
           command: |
             echo ${CIRCLE_BRANCH}
             echo ${CIRCLE_PR_NUMBER}
-            if [ "$CIRCLE_BRANCH" != "master" || "$CIRCLE_BRANCH" != "next" || "$CIRCLE_PR_NUMBER" == "" ]; then
+            if ! [[ $CIRCLE_BRANCH = "master" ]] && ! [[ $CIRCLE_BRANCH = "next" ]] && ! [[ $CIRCLE_PR_NUMBER ]]
+            then
                 circleci-agent step halt
             fi
       - checkout
