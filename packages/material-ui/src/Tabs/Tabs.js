@@ -239,12 +239,27 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
     scroll(scrollValue);
   };
 
+  const getScrollSize = () => {
+    const containerSize = tabsRef.current[clientSize];
+    let totalSize = 0;
+    const children = Array.from(tabListRef.current.children);
+
+    for (let i = 0; i < children.length; i += 1) {
+      const tab = children[i];
+      if (totalSize + tab[clientSize] > containerSize) {
+        break;
+      }
+      totalSize += tab[clientSize];
+    }
+    return totalSize;
+  };
+
   const handleStartScrollClick = () => {
-    moveTabsScroll(-tabsRef.current[clientSize]);
+    moveTabsScroll(-1 * getScrollSize());
   };
 
   const handleEndScrollClick = () => {
-    moveTabsScroll(tabsRef.current[clientSize]);
+    moveTabsScroll(getScrollSize());
   };
 
   // TODO Remove <ScrollbarSize /> as browser support for hidding the scrollbar
