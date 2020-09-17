@@ -1,0 +1,21 @@
+{{=« »=}}	
+import * as React from 'react';	
+import { addPropertyControls, ControlType } from 'framer';	
+import Mui«componentName» from '@material-ui/core/«componentName»';	
+
+interface Props {	
+«& tsInterface»	
+}	
+
+export function «componentName»(props: Props): JSX.Element {	
+  const { width, height, ...other } = props;	
+  return <Mui«componentName» {...other} />;	
+}	
+
+«componentName».defaultProps = {	
+«& defaultProps»	
+};	
+
+addPropertyControls(«componentName», {	
+«& propertyControls»	
+});
