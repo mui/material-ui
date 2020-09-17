@@ -179,7 +179,7 @@ function AppFrame(props) {
   };
   const handleToggleDirection = () => {
     setRtl(!rtl);
-    // TODO: remove in v5 after the style engine is oved to emotion
+    // TODO: remove in v5 after the style engine is moved to emotion
     changeTheme({ direction: theme.direction === 'ltr' ? 'rtl' : 'ltr' });
   };
 
