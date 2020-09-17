@@ -2,7 +2,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { spy, stub } from 'sinon';
 import { expect } from 'chai';
-import { /* createMount, describeConformance, */ act, createClientRender, fireEvent } from 'test/utils';
+import {
+  /* createMount, describeConformance, */ act,
+  createClientRender,
+  fireEvent,
+} from 'test/utils';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Slider from './Slider';
 
@@ -123,11 +127,11 @@ describe('<Slider />', () => {
   });
 
   describe('prop: orientation', () => {
-    // it('should render with the vertical classes', () => {
-    //   const { container, getByRole } = render(<Slider orientation="vertical" value={0} />);
-    //   expect(container.firstChild).to.have.class(classes.vertical);
-    //   expect(getByRole('slider')).to.have.attribute('aria-orientation', 'vertical');
-    // });
+    it('should render with the vertical classes', () => {
+      const { container, getByRole } = render(<Slider orientation="vertical" value={0} />);
+      expect(container.firstChild).to.have.class('MuiSlider-vertical');
+      expect(getByRole('slider')).to.have.attribute('aria-orientation', 'vertical');
+    });
 
     it('should report the right position', () => {
       const handleChange = spy();
@@ -282,11 +286,11 @@ describe('<Slider />', () => {
   });
 
   describe('prop: disabled', () => {
-    // it('should render the disabled classes', () => {
-    //   const { container, getByRole } = render(<Slider disabled value={0} />);
-    //   expect(container.firstChild).to.have.class(classes.disabled);
-    //   expect(getByRole('slider')).to.not.have.attribute('tabIndex');
-    // });
+    it('should render the disabled classes', () => {
+      const { container, getByRole } = render(<Slider disabled value={0} />);
+      expect(container.firstChild).to.have.class('Mui-disabled');
+      expect(getByRole('slider')).to.not.have.attribute('tabIndex');
+    });
 
     it('should not respond to drag events after becoming disabled', function test() {
       // TODO: Don't skip once a fix for https://github.com/jsdom/jsdom/issues/3029 is released.
@@ -344,15 +348,15 @@ describe('<Slider />', () => {
   });
 
   describe('prop: track', () => {
-    // it('should render the track classes for false', () => {
-    //   const { container } = render(<Slider track={false} value={50} />);
-    //   expect(container.firstChild).to.have.class(classes.trackFalse);
-    // });
+    it('should render the track classes for false', () => {
+      const { container } = render(<Slider track={false} value={50} />);
+      expect(container.firstChild).to.have.class('MuiSlider-trackFalse');
+    });
 
-    // it('should render the track classes for inverted', () => {
-    //   const { container } = render(<Slider track="inverted" value={50} />);
-    //   expect(container.firstChild).to.have.class(classes.trackInverted);
-    // });
+    it('should render the track classes for inverted', () => {
+      const { container } = render(<Slider track="inverted" value={50} />);
+      expect(container.firstChild).to.have.class('MuiSlider-trackInverted');
+    });
   });
 
   describe('keyboard', () => {
@@ -614,27 +618,17 @@ describe('<Slider />', () => {
       PropTypes.resetWarningCache();
     });
 
-    // it('should warn if aria-valuetext is provided', () => {
-    //   expect(() => {
-    //     PropTypes.checkPropTypes(
-    //       Slider.Naked.propTypes,
-    //       { classes: {}, value: [20, 50], 'aria-valuetext': 'hot' },
-    //       'prop',
-    //       'MockedSlider',
-    //     );
-    //   }).toErrorDev('Material-UI: You need to use the `getAriaValueText` prop instead of');
-    // });
+    it('should warn if aria-valuetext is provided', () => {
+      expect(() => render(<Slider value={[20, 50]} aria-valuetext="hot" />)).toErrorDev(
+        'Material-UI: You need to use the `getAriaValueText` prop instead of',
+      );
+    });
 
-    // it('should warn if aria-label is provided', () => {
-    //   expect(() => {
-    //     PropTypes.checkPropTypes(
-    //       Slider.Naked.propTypes,
-    //       { classes: {}, value: [20, 50], 'aria-label': 'hot' },
-    //       'prop',
-    //       'MockedSlider',
-    //     );
-    //   }).toErrorDev('Material-UI: You need to use the `getAriaLabel` prop instead of');
-    // });
+    it('should warn if aria-label is provided', () => {
+      expect(() => render(<Slider value={[20, 50]} aria-label="hot" />)).toErrorDev(
+        'Material-UI: You need to use the `getAriaLabel` prop instead of',
+      );
+    });
 
     it('should warn when switching from controlled to uncontrolled', () => {
       const { setProps } = render(<Slider value={[20, 50]} />);
@@ -715,24 +709,24 @@ describe('<Slider />', () => {
     });
   });
 
-  // describe('prop: ValueLabelComponent', () => {
-  //   it('receives the formatted value', () => {
-  //     function ValueLabelComponent(props) {
-  //       const { value } = props;
-  //       return <span data-testid="value-label">{value}</span>;
-  //     }
-  //     ValueLabelComponent.propTypes = { value: PropTypes.string };
+  describe('prop: components', () => {
+    it('ValueLabel receives the formatted value', () => {
+      function ValueLabelComponent(props) {
+        const { value } = props;
+        return <span data-testid="value-label">{value}</span>;
+      }
+      ValueLabelComponent.propTypes = { value: PropTypes.string };
 
-  //     const { getByTestId } = render(
-  //       <Slider
-  //         value={10}
-  //         ValueLabelComponent={ValueLabelComponent}
-  //         valueLabelDisplay="on"
-  //         valueLabelFormat={(n) => n.toString(2)}
-  //       />,
-  //     );
+      const { getByTestId } = render(
+        <Slider
+          value={10}
+          components={{ ValueLabel: ValueLabelComponent }}
+          valueLabelDisplay="on"
+          valueLabelFormat={(n) => n.toString(2)}
+        />,
+      );
 
-  //     expect(getByTestId('value-label')).to.have.text('1010');
-  //   });
-  // });
+      expect(getByTestId('value-label')).to.have.text('1010');
+    });
+  });
 });
