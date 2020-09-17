@@ -12,3 +12,4 @@ It works with npm and yarn.
   "dependencies": {
     "@material-ui/styled-engine": "npm:@material-ui/styled-engine-sc@^5.0.0-alpha.1"
   },
+```

@@ -122,7 +122,7 @@ _Use the direction toggle button on the top right corner to see the effect._
 
 ### emotion & styled-components
 
-Opting out of rtl is not documented as a feature for the `stylis-plugin-rtl`. Based on the tests they have, you should be able to use the /* @noflip */ comments before the rule you which to prevent from being affected by the `rtl`. However this doesn't seem to work with the current version.
+Opting out of rtl is not documented as a feature for the `stylis-plugin-rtl`. Based on the tests they have, you should be able to use the /_ @noflip _/ comments before the rule you which to prevent from being affected by the `rtl`. However this doesn't seem to work with the current version.
 
 _Use the direction toggle button on the top right corner to see the effect._
 
