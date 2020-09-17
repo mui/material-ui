@@ -1,9 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
-import Slider from '@material-ui/core/Slider';
+import { useTheme, makeStyles } from '@material-ui/core/styles';
+import Slider from '@material-ui/lab/SliderStyled';
+import styled from '@emotion/styled';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
+import { ThemeProvider } from 'emotion-theming';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -48,20 +50,18 @@ const marks = [
   },
 ];
 
-const IOSSlider = withStyles({
-  root: {
-    color: '#3880ff',
-    height: 2,
-    padding: '15px 0',
-  },
-  thumb: {
+const IosSlider = styled(Slider)({
+  color: '#3880ff',
+  height: 2,
+  padding: '15px 0',
+  '& .MuiSlider-thumb': {
     height: 28,
     width: 28,
     backgroundColor: '#fff',
     boxShadow: iOSBoxShadow,
     marginTop: -14,
     marginLeft: -14,
-    '&:focus, &:hover, &$active': {
+    '&:focus, &:hover, &.Mui-active': {
       boxShadow:
         '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.3),0 0 0 1px rgba(0,0,0,0.02)',
       // Reset on touch devices, it doesn't add specificity
@@ -70,8 +70,7 @@ const IOSSlider = withStyles({
       },
     },
   },
-  active: {},
-  valueLabel: {
+  '& .MuiSlider-valueLabel': {
     left: 'calc(-50% + 12px)',
     top: -22,
     '& *': {
@@ -79,63 +78,58 @@ const IOSSlider = withStyles({
       color: '#000',
     },
   },
-  track: {
+  '& .MuiSlider-track': {
     height: 2,
   },
-  rail: {
+  '& .MuiSlider-rail': {
     height: 2,
     opacity: 0.5,
     backgroundColor: '#bfbfbf',
   },
-  mark: {
+  '& .MuiSlider-mark': {
     backgroundColor: '#bfbfbf',
     height: 8,
     width: 1,
     marginTop: -3,
+    '&.MuiSlider-markActive': {
+      opacity: 1,
+      backgroundColor: 'currentColor',
+    },
   },
-  markActive: {
-    opacity: 1,
-    backgroundColor: 'currentColor',
-  },
-})(Slider);
+});
 
-const PrettoSlider = withStyles({
-  root: {
-    color: '#52af77',
-    height: 8,
-  },
-  thumb: {
+const PrettoSlider = styled(Slider)({
+  color: '#52af77',
+  height: 8,
+  '& .MuiSlider-thumb': {
     height: 24,
     width: 24,
     backgroundColor: '#fff',
     border: '2px solid currentColor',
     marginTop: -8,
     marginLeft: -12,
-    '&:focus, &:hover, &$active': {
+    '&:focus, &:hover, &.Mui-active': {
       boxShadow: 'inherit',
     },
   },
-  active: {},
-  valueLabel: {
+  '& .MuiSlider-valueLabel': {
     left: 'calc(-50% + 4px)',
   },
-  track: {
+  '& .MuiSlider-track': {
     height: 8,
     borderRadius: 4,
   },
-  rail: {
+  '& .MuiSlider-rail': {
     height: 8,
     borderRadius: 4,
   },
-})(Slider);
+});
 
-const AirbnbSlider = withStyles({
-  root: {
-    color: '#3a8589',
-    height: 3,
-    padding: '13px 0',
-  },
-  thumb: {
+const AirbnbSlider = styled(Slider)({
+  color: '#3a8589',
+  height: 3,
+  padding: '13px 0',
+  '& .MuiSlider-thumb': {
     height: 27,
     width: 27,
     backgroundColor: '#fff',
@@ -143,7 +137,7 @@ const AirbnbSlider = withStyles({
     marginTop: -12,
     marginLeft: -13,
     boxShadow: '#ebebeb 0 2px 2px',
-    '&:focus, &:hover, &$active': {
+    '&:focus, &:hover, &.Mui-active': {
       boxShadow: '#ccc 0 2px 3px 1px',
     },
     '& .bar': {
@@ -155,16 +149,15 @@ const AirbnbSlider = withStyles({
       marginRight: 1,
     },
   },
-  active: {},
-  track: {
+  '& .MuiSlider-track': {
     height: 3,
   },
-  rail: {
+  '& .MuiSlider-rail': {
     color: '#d8d8d8',
     opacity: 1,
     height: 3,
   },
-})(Slider);
+});
 
 function AirbnbThumbComponent(props) {
   return (
@@ -178,39 +171,45 @@ function AirbnbThumbComponent(props) {
 
 export default function CustomizedSlider() {
   const classes = useStyles();
+  // For some reason the theme when styled used twice is coming from emotion, not our defulat theme
+  const theme = useTheme();
 
   return (
-    <div className={classes.root}>
-      <Typography gutterBottom>iOS</Typography>
-      <IOSSlider
-        aria-label="ios slider"
-        defaultValue={60}
-        marks={marks}
-        valueLabelDisplay="on"
-      />
-      <div className={classes.margin} />
-      <Typography gutterBottom>pretto.fr</Typography>
-      <PrettoSlider
-        valueLabelDisplay="auto"
-        aria-label="pretto slider"
-        defaultValue={20}
-      />
-      <div className={classes.margin} />
-      <Typography gutterBottom>Tooltip value label</Typography>
-      <Slider
-        ValueLabelComponent={ValueLabelComponent}
-        aria-label="custom thumb label"
-        defaultValue={20}
-      />
-      <div className={classes.margin} />
-      <Typography gutterBottom>Airbnb</Typography>
-      <AirbnbSlider
-        ThumbComponent={AirbnbThumbComponent}
-        getAriaLabel={(index) =>
-          index === 0 ? 'Minimum price' : 'Maximum price'
-        }
-        defaultValue={[20, 40]}
-      />
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className={classes.root}>
+        <Typography gutterBottom>iOS</Typography>
+        <IosSlider
+          aria-label="ios slider"
+          defaultValue={60}
+          marks={marks}
+          valueLabelDisplay="on"
+        />
+        <div className={classes.margin} />
+        <Typography gutterBottom>pretto.fr</Typography>
+        <PrettoSlider
+          valueLabelDisplay="auto"
+          aria-label="pretto slider"
+          defaultValue={20}
+        />
+        <div className={classes.margin} />
+        <Typography gutterBottom>Tooltip value label</Typography>
+        <Slider
+          components={{
+            ValueLabel: ValueLabelComponent,
+          }}
+          aria-label="custom thumb label"
+          defaultValue={20}
+        />
+        <div className={classes.margin} />
+        <Typography gutterBottom>Airbnb</Typography>
+        <AirbnbSlider
+          components={{ Thumb: AirbnbThumbComponent }}
+          getAriaLabel={(index) =>
+            index === 0 ? 'Minimum price' : 'Maximum price'
+          }
+          defaultValue={[20, 40]}
+        />
+      </div>
+    </ThemeProvider>
   );
 }

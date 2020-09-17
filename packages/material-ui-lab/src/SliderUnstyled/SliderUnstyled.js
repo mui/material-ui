@@ -2,13 +2,13 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
-import useIsFocusVisible from '../utils/useIsFocusVisible';
-import useEnhancedEffect from '../utils/useEnhancedEffect';
-import ownerDocument from '../utils/ownerDocument';
-import useEventCallback from '../utils/useEventCallback';
-import useForkRef from '../utils/useForkRef';
-import capitalize from '../utils/capitalize';
-import useControlled from '../utils/useControlled';
+import useIsFocusVisible from '@material-ui/core/utils/useIsFocusVisible';
+import useEnhancedEffect from '@material-ui/core/utils/useEnhancedEffect';
+import ownerDocument from '@material-ui/core/utils/ownerDocument';
+import useEventCallback from '@material-ui/core/utils/useEventCallback';
+import useForkRef from '@material-ui/core/utils/useForkRef';
+import capitalize from '@material-ui/core/utils/capitalize';
+import useControlled from '@material-ui/core/utils/useControlled';
 import ValueLabelComponent from './ValueLabel';
 
 function asc(a, b) {

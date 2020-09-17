@@ -121,6 +121,7 @@ const pages = [
           { pathname: '/components/pagination' },
           { pathname: '/components/rating' },
           { pathname: '/components/skeleton' },
+          { pathname: '/components/slider-styled' },
           { pathname: '/components/speed-dial' },
           { pathname: '/components/timeline' },
           { pathname: '/components/toggle-button' },

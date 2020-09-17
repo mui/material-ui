@@ -20,7 +20,7 @@ Sliders reflect a range of values along a bar, from which users may select a sin
 
 Continuous sliders allow users to select a value along a subjective range.
 
-{{"demo": "pages/components/slider/ContinuousSlider.js"}}
+{{"demo": "pages/components/slider-styled/ContinuousSlider.js"}}
 
 ## Discrete sliders
 
@@ -29,53 +29,53 @@ By order of demos:
 
 You can generate a mark for each step with `marks={true}`.
 
-{{"demo": "pages/components/slider/DiscreteSlider.js"}}
+{{"demo": "pages/components/slider-styled/DiscreteSlider.js"}}
 
 ### Small steps
 
 You can change the default step increment.
 
-{{"demo": "pages/components/slider/DiscreteSliderSteps.js"}}
+{{"demo": "pages/components/slider-styled/DiscreteSliderSteps.js"}}
 
 ### Custom marks
 
 You can have custom marks by providing a rich array to the `marks` prop.
 
-{{"demo": "pages/components/slider/DiscreteSliderMarks.js"}}
+{{"demo": "pages/components/slider-styled/DiscreteSliderMarks.js"}}
 
 ### Restricted values
 
 You can restrict the selectable values to those provided with the `marks` prop with `step={null}`.
 
-{{"demo": "pages/components/slider/DiscreteSliderValues.js"}}
+{{"demo": "pages/components/slider-styled/DiscreteSliderValues.js"}}
 
 ### Label always visible
 
 You can force the thumb label to be always visible with `valueLabelDisplay="on"`.
 
-{{"demo": "pages/components/slider/DiscreteSliderLabel.js"}}
+{{"demo": "pages/components/slider-styled/DiscreteSliderLabel.js"}}
 
 ## Range slider
 
 The slider can be used to set the start and end of a range by supplying an array of values to the `value` prop.
 
-{{"demo": "pages/components/slider/RangeSlider.js"}}
+{{"demo": "pages/components/slider-styled/RangeSlider.js"}}
 
 ## Slider with input field
 
 In this example an input allows a discrete value to be set.
 
-{{"demo": "pages/components/slider/InputSlider.js"}}
+{{"demo": "pages/components/slider-styled/InputSlider.js"}}
 
 ## Customized sliders
 
 Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
-{{"demo": "pages/components/slider/CustomizedSlider.js"}}
+{{"demo": "pages/components/slider-styled/CustomizedSlider.js"}}
 
 ## Vertical sliders
 
-{{"demo": "pages/components/slider/VerticalSlider.js"}}
+{{"demo": "pages/components/slider-styled/VerticalSlider.js"}}
 
 ## Track
 
@@ -85,20 +85,24 @@ The track shows the range available for user selection.
 
 The track can be turned off with `track={false}`.
 
-{{"demo": "pages/components/slider/TrackFalseSlider.js"}}
+{{"demo": "pages/components/slider-styled/TrackFalseSlider.js"}}
 
 ### Inverted track
 
 The track can be inverted with `track="inverted"`.
 
-{{"demo": "pages/components/slider/TrackInvertedSlider.js"}}
+{{"demo": "pages/components/slider-styled/TrackInvertedSlider.js"}}
 
 ## Non-linear scale
 
 You can use the `scale` prop to represent the `value` on a different scale.
 For instance, in the following demo, the value _x_ represents the power of _10^x_.
 
-{{"demo": "pages/components/slider/NonLinearSlider.js"}}
+{{"demo": "pages/components/slider-styled/NonLinearSlider.js"}}
+
+## Unstyled slider
+
+{{"demo": "pages/components/slider-styled/UnstyledSlider.js"}}
 
 ## Accessibility
 

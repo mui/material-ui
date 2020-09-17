@@ -2,16 +2,9 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { spy, stub } from 'sinon';
 import { expect } from 'chai';
-import {
-  getClasses,
-  createMount,
-  describeConformance,
-  act,
-  createClientRender,
-  fireEvent,
-} from 'test/utils';
+import { createMount, describeConformance, act, createClientRender, fireEvent } from 'test/utils';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import Slider from './Slider';
+import Slider from './SliderStyled';
 
 function createTouches(touches) {
   return {
@@ -32,15 +25,10 @@ describe('<Slider />', () => {
   }
 
   const mount = createMount();
-  let classes;
   const render = createClientRender();
 
-  before(() => {
-    classes = getClasses(<Slider value={0} />);
-  });
-
   describeConformance(<Slider value={0} />, () => ({
-    classes,
+    classes: {},
     inheritComponent: 'span',
     mount,
     refInstanceof: window.HTMLSpanElement,
@@ -131,7 +119,7 @@ describe('<Slider />', () => {
   describe('prop: orientation', () => {
     it('should render with the vertical classes', () => {
       const { container, getByRole } = render(<Slider orientation="vertical" value={0} />);
-      expect(container.firstChild).to.have.class(classes.vertical);
+      expect(container.firstChild).to.have.class('MuiSlider-vertical');
       expect(getByRole('slider')).to.have.attribute('aria-orientation', 'vertical');
     });
 
@@ -290,7 +278,7 @@ describe('<Slider />', () => {
   describe('prop: disabled', () => {
     it('should render the disabled classes', () => {
       const { container, getByRole } = render(<Slider disabled value={0} />);
-      expect(container.firstChild).to.have.class(classes.disabled);
+      expect(container.firstChild).to.have.class('Mui-disabled');
       expect(getByRole('slider')).to.not.have.attribute('tabIndex');
     });
 
@@ -321,7 +309,7 @@ describe('<Slider />', () => {
 
       setProps({ disabled: true });
       expect(thumb).not.toHaveFocus();
-      expect(thumb).to.not.have.class(classes.active);
+      expect(thumb).to.not.have.class('Mui-active');
 
       fireEvent.touchMove(
         container.firstChild,
@@ -345,19 +333,19 @@ describe('<Slider />', () => {
       });
       setProps({ disabled: true });
       expect(thumb).not.toHaveFocus();
-      expect(thumb).to.not.have.class(classes.focusVisible);
+      expect(thumb).to.not.have.class('Mui-focusVisible');
     });
   });
 
   describe('prop: track', () => {
     it('should render the track classes for false', () => {
       const { container } = render(<Slider track={false} value={50} />);
-      expect(container.firstChild).to.have.class(classes.trackFalse);
+      expect(container.firstChild).to.have.class('MuiSlider-trackFalse');
     });
 
     it('should render the track classes for inverted', () => {
       const { container } = render(<Slider track="inverted" value={50} />);
-      expect(container.firstChild).to.have.class(classes.trackInverted);
+      expect(container.firstChild).to.have.class('MuiSlider-trackInverted');
     });
   });
 
@@ -529,8 +517,8 @@ describe('<Slider />', () => {
 
   describe('markActive state', () => {
     function getActives(container) {
-      return Array.from(container.querySelectorAll(`.${classes.mark}`)).map((node) =>
-        node.classList.contains(classes.markActive),
+      return Array.from(container.querySelectorAll(`.MuiSlider-mark`)).map((node) =>
+        node.classList.contains('MuiSlider-markActive'),
       );
     }
 
@@ -621,25 +609,15 @@ describe('<Slider />', () => {
     });
 
     it('should warn if aria-valuetext is provided', () => {
-      expect(() => {
-        PropTypes.checkPropTypes(
-          Slider.Naked.propTypes,
-          { classes: {}, value: [20, 50], 'aria-valuetext': 'hot' },
-          'prop',
-          'MockedSlider',
-        );
-      }).toErrorDev('Material-UI: You need to use the `getAriaValueText` prop instead of');
+      expect(() => render(<Slider value={[20, 50]} aria-valuetext="hot" />)).toErrorDev(
+        'Material-UI: You need to use the `getAriaValueText` prop instead of',
+      );
     });
 
     it('should warn if aria-label is provided', () => {
-      expect(() => {
-        PropTypes.checkPropTypes(
-          Slider.Naked.propTypes,
-          { classes: {}, value: [20, 50], 'aria-label': 'hot' },
-          'prop',
-          'MockedSlider',
-        );
-      }).toErrorDev('Material-UI: You need to use the `getAriaLabel` prop instead of');
+      expect(() => render(<Slider value={[20, 50]} aria-label="hot" />)).toErrorDev(
+        'Material-UI: You need to use the `getAriaLabel` prop instead of',
+      );
     });
 
     it('should warn when switching from controlled to uncontrolled', () => {
@@ -694,10 +672,10 @@ describe('<Slider />', () => {
         defaultValue={0}
       />,
     );
-    expect(container.querySelectorAll(`.${classes.markLabel}`).length).to.equal(3);
-    expect(container.querySelectorAll(`.${classes.mark}`).length).to.equal(3);
-    expect(container.querySelectorAll(`.${classes.markLabel}[data-index="2"]`).length).to.equal(1);
-    expect(container.querySelectorAll(`.${classes.mark}[data-index="2"]`).length).to.equal(1);
+    expect(container.querySelectorAll('.MuiSlider-markLabel').length).to.equal(3);
+    expect(container.querySelectorAll('.MuiSlider-mark').length).to.equal(3);
+    expect(container.querySelectorAll('.MuiSlider-markLabel[data-index="2"]').length).to.equal(1);
+    expect(container.querySelectorAll('.MuiSlider-mark[data-index="2"]').length).to.equal(1);
   });
 
   it('should pass "name" and "value" as part of the event.target for onChange', () => {
@@ -721,8 +699,8 @@ describe('<Slider />', () => {
     });
   });
 
-  describe('prop: ValueLabelComponent', () => {
-    it('receives the formatted value', () => {
+  describe('prop: components', () => {
+    it('ValueLabel receives the formatted value', () => {
       function ValueLabelComponent(props) {
         const { value } = props;
         return <span data-testid="value-label">{value}</span>;
@@ -732,7 +710,7 @@ describe('<Slider />', () => {
       const { getByTestId } = render(
         <Slider
           value={10}
-          ValueLabelComponent={ValueLabelComponent}
+          components={{ ValueLabel: ValueLabelComponent }}
           valueLabelDisplay="on"
           valueLabelFormat={(n) => n.toString(2)}
         />,

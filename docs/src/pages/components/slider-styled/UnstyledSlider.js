@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from '@material-ui/styled-engine';
-import SliderUnstyled from '@material-ui/core/SliderUnstyled';
+import SliderUnstyled from '@material-ui/lab/SliderUnstyled';
 
 const StyledSlider = styled(SliderUnstyled)`
   height: 2px;
