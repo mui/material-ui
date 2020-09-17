@@ -240,7 +240,7 @@
     "/components/button-group": "Button Group",
     "/components/floating-action-button": "Floating Action Button",
     "/components/backdrop": "Backdrop",
-    "/components/alert": "Hinweis",
+    "/components/alert": "Alert",
     "/components/pagination": "Paginierung"
   }
 }
