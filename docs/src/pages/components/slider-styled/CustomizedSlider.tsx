@@ -54,6 +54,7 @@ const IOSSlider = styled(Slider)({
   color: '#3880ff',
   height: 2,
   padding: '15px 0',
+
   '& .MuiSlider-thumb': {
     height: 28,
     width: 28,
