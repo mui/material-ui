@@ -81,7 +81,6 @@
     "lz-string": "^1.4.4",
     "markdown-to-jsx": "^7.0.0",
     "marked": "^1.0.0",
-    "material-table": "^1.50.0",
     "material-ui-popup-state": "^1.4.1",
     "next": "^9.5.0",
     "notistack": "^1.0.0",

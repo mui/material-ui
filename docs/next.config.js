@@ -71,7 +71,7 @@ module.exports = {
         (context, request, callback) => {
           const hasDependencyOnRepoPackages = [
             'notistack',
-            'material-table',
+            '@material-ui/data-grid',
             '@material-ui/pickers',
           ].includes(request);
 
@@ -100,33 +100,8 @@ module.exports = {
           // transpile 3rd party packages with dependencies in this repository
           {
             test: /\.(js|mjs|jsx)$/,
-            include: /node_modules(\/|\\)(material-table|notistack|@material-ui(\/|\\)pickers)/,
-            use: {
-              loader: 'babel-loader',
-              options: {
-                // on the server we use the transpiled commonJS build, on client ES6 modules
-                // babel needs to figure out in what context to parse the file
-                sourceType: 'unambiguous',
-                plugins: [
-                  [
-                    'babel-plugin-module-resolver',
-                    {
-                      alias: {
-                        // all packages in this monorepo
-                        '@material-ui/core': '../packages/material-ui/src',
-                        '@material-ui/docs': '../packages/material-ui-docs/src',
-                        '@material-ui/icons': '../packages/material-ui-icons/src',
-                        '@material-ui/lab': '../packages/material-ui-lab/src',
-                        '@material-ui/styles': '../packages/material-ui-styles/src',
-                        '@material-ui/system': '../packages/material-ui-system/src',
-                        '@material-ui/utils': '../packages/material-ui-utils/src',
-                      },
-                      transformFunctions: ['require'],
-                    },
-                  ],
-                ],
-              },
-            },
+            include: /node_modules(\/|\\)(notistack|@material-ui(\/|\\)(pickers|data-grid))/,
+            use: options.defaultLoaders.babel,
           },
           // required to transpile ../packages/
           {

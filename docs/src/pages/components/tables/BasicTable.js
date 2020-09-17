@@ -19,13 +19,7 @@ const useStyles = makeStyles({
   },
 });
 
-function createData(
-  name: string,
-  calories: number,
-  fat: number,
-  carbs: number,
-  protein: number,
-) {
+function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
 }
 
@@ -37,7 +31,7 @@ const rows = [
   createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
-export default function SimpleTable() {
+export default function BasicTable() {
   const classes = useStyles();
 
   return (
