@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { addPropertyControls, ControlType } from 'framer';
+import { addPropertyControls } from 'framer';
 import MuiSlider from '@material-ui/core/Slider';
 
 interface Props {
