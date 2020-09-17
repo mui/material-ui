@@ -186,29 +186,19 @@ module.exports = {
   async rewrites() {
     return [
       { source: `/:lang(${LANGUAGES.join('|')})?/:rest*`, destination: '/:rest*' },
-      { source: '/api/:rest*', destination: '/api-docs/:rest*' }
-    ];
-  },
-  async redirects() {
-    return [
+      { source: '/api/:rest*', destination: '/api-docs/:rest*' },
       {
         source: '/components/data-grid/:rest*',
         destination: 'https://material-ui-x.netlify.app/components/data-grid/:rest*',
-        basePath: false,
-        permanent: false,
       },
       {
         source: '/api/data-grid/',
         destination: 'https://material-ui-x.netlify.app/api/data-grid/',
-        basePath: false,
-        permanent: false,
       },
       {
         source: '/api/x-grid/',
         destination: 'https://material-ui-x.netlify.app/api/x-grid/',
-        basePath: false,
-        permanent: false,
       },
-    ]
+    ];
   },
 };
