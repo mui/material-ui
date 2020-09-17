@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Slider from '@material-ui/lab/SliderStyledStyled';
+import Slider from '@material-ui/lab/SliderStyled';
 
 function testOnChange() {
   function handleSliderChange(event: React.SyntheticEvent, tabsValue: unknown) {}

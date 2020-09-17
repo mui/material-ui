@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { OverridableComponent, OverrideProps } from '@material-ui/core/OverridableComponent';
 import { SliderTypeMap } from '../SliderUnstyled';
 
 /**
