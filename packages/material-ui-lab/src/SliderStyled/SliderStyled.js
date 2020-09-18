@@ -93,7 +93,6 @@ const SliderRoot = muiStyled(
       marginRight: 20,
     }),
   }),
-
   '& .MuiSlider-rail': {
     display: 'block',
     position: 'absolute',
@@ -110,7 +109,6 @@ const SliderRoot = muiStyled(
       opacity: 1,
     }),
   },
-
   '& .MuiSlider-track': {
     display: 'block',
     position: 'absolute',
@@ -131,7 +129,6 @@ const SliderRoot = muiStyled(
           : darken(props.theme.palette.primary.main, 0.5),
     }),
   },
-
   '& .MuiSlider-thumb': {
     position: 'absolute',
     width: 12,
@@ -198,12 +195,10 @@ const SliderRoot = muiStyled(
       },
     }),
   },
-
   '& .MuiSlider-valueLabel': {
     // IE 11 centering bug, to remove from the customization demos once no longer supported
     left: 'calc(-50% - 4px)',
   },
-
   '& .MuiSlider-mark': {
     position: 'absolute',
     width: 2,
@@ -215,7 +210,6 @@ const SliderRoot = muiStyled(
       opacity: 0.8,
     },
   },
-
   '& .MuiSlider-markLabel': {
     ...props.theme.typography.body2,
     color: props.theme.palette.text.secondary,
