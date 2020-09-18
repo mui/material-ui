@@ -130,9 +130,22 @@ import useAutocomplete from '@material-ui/lab/useAutocomplete';
 
 ## 异步请求
 
+该组件对异步使用有两种不同的案例：
+
+- [打开时加载](#load-on-open)：它将等待用户与组件进行交互以加载选项。
+- [当你键入内容时进行搜索](#search-as-you-type)：每一次键入都会提交一个新的请求。
+
+### 打开时加载
+
+只要网络请求正在等待，它就会显示进度状态。
+
 {{"demo": "pages/components/autocomplete/Asynchronous.js"}}
 
-有时候你需要锁定某个标签，这样他们不会被从界面中移除，这时你可以将 chips 设置为禁用。
+### 当你键入内容时进行搜索
+
+如果你的逻辑是在每次键入内容时就获取新的选项，并使用文本框的当前值在服务器上进行筛选，那么则可能需要考虑限制请求速率。
+
+此外，你需要通过覆盖 `filterOptions` 属性来禁用 `Autocomplete` 组件的内置过滤功能。
 
 ```jsx
 <Autocomplete filterOptions={(x) => x} />
@@ -288,4 +301,4 @@ iOS Safari 中的 VoiceOver 对 `aria-owns` 属性的支持并不是很到位。
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#combobox)
 
-我们鼓励用户在 textbox 中使用标签。 该组件实现了 WAI-ARIA 的指导标准。
+我们鼓励用户在 textbox 中使用标签。 组件带入了 WAI-ARIA 授权的一些标准。
