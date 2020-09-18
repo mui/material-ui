@@ -75,6 +75,20 @@ Cada icono también tiene un "tema": Filled (por defecto), Outlined, Rounded, Tw
 
 {{"demo": "pages/components/icons/SvgMaterialIcons.js"}}
 
+### Pruebas
+
+For testing purposes, each icon exposed from `@material-ui/icons` has a `data-testid` attribute with the name of the icon. Por ejemplo:
+
+```jsx
+import DeleteIcon from '@material-ui/icons/Delete';
+```
+
+has the following attribute once mounted:
+
+```html
+<svg data-testid="DeleteIcon"></svg>
+```
+
 ## SvgIcon
 
 Si necesita un icono SVG personalizado (no disponible en los iconos de Material [por defecto](/components/material-icons/)) puede utilizar el envoltorio `SvgIcon`. Este componente extiende el elemento nativo `<svg>`:
@@ -227,7 +241,7 @@ Si tus iconos son puramente decorativos, ya está hecho! El atributo `aria-hidde
 
 Si el icono tiene un significado semántico, todo lo que se necesita hacer es usar la propiedad `titleAccess="meaning"`. El atributo `role="img"` y el elemento `<title>` se añaden para que sus iconos sean accesibles.
 
-Para usar un icono, simplemente se envuelve el nombre del icono (ligadura de la fuente) con el componente `Icono`, por ejemplo:
+En el caso delos elementos interactivos a los que se puede hacer foco, como cuando se usa con un botón icono, se puede utilizar la propiedad `aria-label`:
 
 ```jsx
 import IconButton from '@material-ui/core/IconButton';
