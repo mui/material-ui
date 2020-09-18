@@ -3,9 +3,17 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface ImageListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
   props: P & {
-    rowHeight?: number | 'auto';
+    /**
+     * @deprecated use rowHeight instead.
+     */
+    cellHeight?: number | 'auto';
     cols?: number;
     gap?: number;
+    rowHeight?: number | 'auto';
+    /**
+     * @deprecated use gap instead.
+     */
+    spacing?: number;
   };
   defaultComponent: D;
   classKey: ImageListClassKey;

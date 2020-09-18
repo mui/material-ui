@@ -80,6 +80,13 @@ ImageList.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
+   * @deprecated use rowHeight instead.
+   */
+  cellHeight: deprecatedPropType(
+    PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['auto'])]),
+    'Use the `rowHeight` prop instead.',
+  ),
+  /**
    * @ignore
    */
   children: PropTypes.node,
@@ -109,6 +116,10 @@ ImageList.propTypes = {
    * @ignore
    */
   rowHeight: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
+  /**
+   * @deprecated use gap instead.
+   */
+  spacing: deprecatedPropType(PropTypes.number, 'Use the `rowHeight` prop instead.'),
   /**
    * @ignore
    */
