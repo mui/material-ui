@@ -330,6 +330,14 @@ const Rating = React.forwardRef(function Rating(props, ref) {
       </IconContainerComponent>
     );
 
+    if (readOnly) {
+      return (
+        <span key={state.value} {...labelProps}>
+          {container}
+        </span>
+      );
+    }
+
     return (
       <React.Fragment key={state.value}>
         <label className={classes.label} htmlFor={id} {...labelProps}>
@@ -341,14 +349,13 @@ const Rating = React.forwardRef(function Rating(props, ref) {
           onBlur={handleBlur}
           onChange={handleChange}
           onClick={handleClear}
-          disabled={readOnly && !state.checked ? true : disabled}
+          disabled={disabled}
           value={state.value}
           id={id}
           type="radio"
           name={name}
           checked={state.checked}
           className={classes.visuallyHidden}
-          readOnly={readOnly}
         />
       </React.Fragment>
     );
@@ -369,6 +376,8 @@ const Rating = React.forwardRef(function Rating(props, ref) {
         },
         className,
       )}
+      role={readOnly ? 'img' : null}
+      aria-label={readOnly ? getLabelText(value) : null}
       {...other}
     >
       {Array.from(new Array(max)).map((_, index) => {
@@ -427,7 +436,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
           checked: itemValue === valueRounded,
         });
       })}
-      {!disabled && valueRounded == null && (
+      {!readOnly && !disabled && valueRounded == null && (
         <label className={clsx({ [classes.labelEmptyValueActive]: emptyValueFocused })}>
           <input
             value=""
@@ -436,7 +445,6 @@ const Rating = React.forwardRef(function Rating(props, ref) {
             name={name}
             defaultChecked
             className={classes.visuallyHidden}
-            readOnly={readOnly}
             onFocus={() => setEmptyValueFocused(true)}
             onBlur={() => setEmptyValueFocused(false)}
           />

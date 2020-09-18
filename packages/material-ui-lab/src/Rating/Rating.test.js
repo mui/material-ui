@@ -16,16 +16,12 @@ describe('<Rating />', () => {
   const mount = createMount();
   const render = createClientRender();
   let classes;
-  const defaultProps = {
-    name: 'rating-test',
-    value: 2,
-  };
 
   before(() => {
-    classes = getClasses(<Rating {...defaultProps} />);
+    classes = getClasses(<Rating />);
   });
 
-  describeConformance(<Rating {...defaultProps} />, () => ({
+  describeConformance(<Rating />, () => ({
     classes,
     inheritComponent: 'span',
     mount,
@@ -34,13 +30,13 @@ describe('<Rating />', () => {
   }));
 
   it('should render', () => {
-    const { container } = render(<Rating {...defaultProps} />);
+    const { container } = render(<Rating />);
 
     expect(container.firstChild).to.have.class(classes.root);
   });
 
   it('should round the value to the provided precision', () => {
-    const { container } = render(<Rating {...defaultProps} value={3.9} precision={0.2} />);
+    const { container } = render(<Rating name="rating-test" value={3.9} precision={0.2} />);
 
     expect(container.querySelector('input[name="rating-test"]:checked')).to.have.property(
       'value',
@@ -49,7 +45,7 @@ describe('<Rating />', () => {
   });
 
   it('should handle mouse hover correctly', () => {
-    const { container } = render(<Rating {...defaultProps} />);
+    const { container } = render(<Rating />);
     stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
       left: 0,
       right: 100,
@@ -69,7 +65,7 @@ describe('<Rating />', () => {
 
   it('should clear the rating', () => {
     const handleChange = spy();
-    const { getByRole } = render(<Rating {...defaultProps} onChange={handleChange} />);
+    const { getByRole } = render(<Rating onChange={handleChange} value={2} />);
 
     const input = getByRole('radio', { name: '2 Stars' });
     fireEvent.click(input, {
@@ -82,7 +78,9 @@ describe('<Rating />', () => {
 
   it('should select the rating', () => {
     const handleChange = spy();
-    const { container, getByRole } = render(<Rating {...defaultProps} onChange={handleChange} />);
+    const { container, getByRole } = render(
+      <Rating name="rating-test" onChange={handleChange} value={2} />,
+    );
 
     fireEvent.click(getByRole('radio', { name: '3 Stars' }));
 
@@ -93,7 +91,7 @@ describe('<Rating />', () => {
   });
 
   it('should select the empty input if value is null', () => {
-    const { container, getByRole } = render(<Rating {...defaultProps} value={null} />);
+    const { container, getByRole } = render(<Rating name="rating-test" value={null} />);
     const input = getByRole('radio', { name: 'Empty' });
     const checked = container.querySelector('input[name="rating-test"]:checked');
     expect(input).to.equal(checked);
@@ -101,9 +99,7 @@ describe('<Rating />', () => {
   });
 
   it('should support a defaultValue', () => {
-    const { container, getByRole } = render(
-      <Rating {...defaultProps} value={undefined} defaultValue={3} />,
-    );
+    const { container, getByRole } = render(<Rating defaultValue={3} name="rating-test" />);
     let checked;
     checked = container.querySelector('input[name="rating-test"]:checked');
     expect(checked.value).to.equal('3');
@@ -131,6 +127,20 @@ describe('<Rating />', () => {
     expect(container.querySelector('.customized')).to.have.property('tagName', 'LABEL');
   });
 
+  describe('prop: readOnly', () => {
+    it('renders a role="img"', () => {
+      render(<Rating readOnly value={2} />);
+
+      expect(screen.getByRole('img')).toHaveAccessibleName('2 Stars');
+    });
+
+    it('can be labelled with getLabelText', () => {
+      render(<Rating getLabelText={(value) => `Stars: ${value}`} readOnly value={2} />);
+
+      expect(screen.getByRole('img')).toHaveAccessibleName('Stars: 2');
+    });
+  });
+
   describe('<form> integration', () => {
     before(function beforeHook() {
       if (/jsdom/.test(window.navigator.userAgent)) {
@@ -151,7 +161,8 @@ describe('<Rating />', () => {
       },
       {
         ratingProps: { name: 'rating', defaultValue: 2, readOnly: true },
-        formData: [['rating', '2']],
+        // native <input type="radio" /> and our Radio/Checkbox don't implement readOnly as well
+        formData: [],
       },
       {
         ratingProps: { name: 'rating', required: true },
