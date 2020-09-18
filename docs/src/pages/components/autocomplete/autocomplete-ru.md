@@ -130,9 +130,22 @@ Head to the [Customized Autocomplete](#customized-autocomplete) section for a cu
 
 ## Асинхронные запросы
 
+The component supports two different asynchronous use-cases:
+
+- [Load on open](#load-on-open): it waits for the component to be interacted with to load the options.
+- [Search as you type](#search-as-you-type): a new request is made for each keystroke.
+
+### Load on open
+
+It displays a progress state as long as the network request is pending.
+
 {{"demo": "pages/components/autocomplete/Asynchronous.js"}}
 
-В случае, если вам нужно зафиксировать определенный тег (так что он не мог быть удалён через интерфейс), вы можете установить chips в состояние disabled.
+### Search as you type
+
+If your logic is fetching new options on each keystroke and using the current value of the textbox to filter on the server, you may want to consider throttling requests.
+
+Additionally, you will need to disable the built-in filtering of the `Autocomplete` component by overriding the `filterOptions` prop:
 
 ```jsx
 import matchSorter from 'match-sorter';
@@ -268,7 +281,7 @@ The browsers have heuristics to help the users fill the form inputs. However, it
 
 By default, the component disable the **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute.
 
-However, in addition to remembering past entered values, the browser might also propose **autofill** suggestions (saved login, address, or payment details). In the event you want the avoid autofill, you can try the following:
+Однако, помимо запоминания введенных ранее значений браузер может также предложить **автозаполнение** (сохраненный логин, адрес или платежная информация). In the event you want the avoid autofill, you can try the following:
 
 - Name the input without leaking any information the browser can use. e.g. `id="field1"` instead of `id="country"`. If you leave the id empty, the component uses a random id.
 - Set `autoComplete="new-password"`: jsx Set `autoComplete="new-password": 
