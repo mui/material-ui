@@ -136,7 +136,7 @@ theme = responsiveFontSizes(theme);
 
 #### 要求
 
-Currently `unstable_createMuiStrictModeTheme` adds no additional requirements.
+目前 `unstable_createMuiStrictModeTheme` 没有添加额外的要求。
 
 #### 参数
 
@@ -150,13 +150,17 @@ Currently `unstable_createMuiStrictModeTheme` adds no additional requirements.
 #### 例子
 
 ```js
--function TabPanel(props) {
-+const TabPanel = React.forwardRef(function TabPanel(props, ref) {
-  return <div role="tabpanel" {...props} ref={ref} />;
--}
-+});
+import { unstable_createMuiStrictModeTheme } from '@material-ui/core/styles';
 
-function Tabs() {
-  return <Fade><TabPanel>...</TabPanel></Fade>;
+const theme = unstable_createMuiStrictModeTheme();
+
+function App() {
+  return (
+    <React.StrictMode>
+      <ThemeProvider theme={theme}>
+        <LandingPage />
+      </ThemeProvider>
+    </React.StrictMode>
+  );
 }
 ```
