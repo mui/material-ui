@@ -3,7 +3,7 @@ title: React-компонент Таблица
 components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
 ---
 
-# Table (tаблица)
+# Table (таблица)
 
 <p class="description">Таблицы отображают наборы данных. Они могут быть полностью модифицированы.</p>
 

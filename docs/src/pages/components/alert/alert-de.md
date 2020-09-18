@@ -3,7 +3,7 @@ title: Hinweis React-Komponente
 components: Alert, AlertTitle
 ---
 
-# Hinweis
+# Alert
 
 <p class="description">Ein Hinweis zeigt eine kurze, wichtige Nachricht auf eine Weise, welche die Aufmerksamkeit des Benutzers auf sich zieht ohne die Aufgabe des Benutzers zu unterbrechen.</p>
 
