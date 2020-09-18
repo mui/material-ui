@@ -122,7 +122,7 @@ _Use the direction toggle button on the top right corner to see the effect._
 
 ### emotion & styled-components
 
-Opting out of rtl is not documented as a feature for the `stylis-plugin-rtl`. Based on the tests they have, you should be able to use the /_ @noflip _/ comments before the rule you which to prevent from being affected by the `rtl`. However this doesn't seem to work with the current version.
+You have to use the template literal syntax and add the `/* @noflip */` directive before the rule or property for which you want to disable right-to-left styles.
 
 _Use the direction toggle button on the top right corner to see the effect._
 
