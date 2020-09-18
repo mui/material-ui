@@ -1,6 +1,6 @@
 # 过渡动画
 
-<p class="description">主题键使您能够自定义使用跨 Material-UI 组件的各种过渡动画的持续时间和缓动效果，并且它也提供了一个用于创建自定义过渡动画的工具集。</p>
+<p class="description">主题键使您能够自定义使用跨 Material-UI 组件的各种过渡动画的时长和缓动效果，并且它也提供了一个用于创建自定义过渡动画的工具集。</p>
 
 ## API
 
@@ -9,21 +9,22 @@
 
 #### 参数
 
-1. `props` (_String_ | _String[]_): Defaults to `['all']`. Provides a CSS property, or a list of CSS properties that should be transitioned.
+1. `props` (_String_ | _String[]_)：默认值为 `['all']`。 这将提供一个 CSS 属性，或者提供一个应该具有动画效果的 CSS 属性列表。
 2. `options` (*Object* [optional]):
 
-- `options.duration` (_String_ | _Number_ [optional]): Defaults to `theme.transitions.duration.standard`. Provides the duration of the transition.
-- `options.easing` (_String_ [optional]): Defaults to `theme.transitions.easing.easeInOut`. Provides the easing for the transition.
-- `options.delay` (_String_ | _Number_ [optional]): Defaults to `0`. Provides the delay for the transition.
+- `options.duration` (_String_ | _Number_ [optional])：默认为 `theme.transitions.duration.standard`。 这将提供动画效果的时长。
+- `options.easing` (_String_ [optional])：默认为 `theme.transitions.easing.easeInOut`。 这将为动画提供缓动效果。
+- `options.delay` (_String_ | _Number_ [optional])：默认为 `0`。 这将为动画提供延迟效果。
 
 #### 返回结果
 
-`transition`: A CSS transition value, which composes all CSS properties that should be transitioned, together with the defined duration, easing and duration.
+`transition`：一个 CSS 的动画值，它包含了所有需要应用动画效果的 CSS 属性，以及定义的时长、缓动效果。
 
 使用 <code>theme.transitions.create()</code> 助手来为你的 UI 元素创建一致的过渡动画。</p>
 
 ```js
 theme.transitions.create(['background-color', 'transform']);
+
 ```
 
 #### 示例
@@ -34,11 +35,11 @@ theme.transitions.create(['background-color', 'transform']);
 
 #### 参数
 
-1. `height` (_Number_): The height of the component.
+1. `height` (_Number_)：组件的高度。
 
 #### 返回结果
 
-`duration`: The calculated duration based on the height.
+`duration`：基于高度计算出来的时长。
 
 ## 时长
 
@@ -64,9 +65,9 @@ const theme = createMuiTheme({
 });
 ```
 
-## Easings
+## 缓动
 
-You can change some or all of the easing values, or provide your own, by providing a custom CSS <code>transition-timing-function</code> value.
+你可以通过提供一个自定义的 CSS <code>transition-timing-function</code> 值来改变部分或全部的缓动值，或者提供你自己的缓动值。
 
 ```js
 const theme = createMuiTheme({
@@ -77,9 +78,9 @@ const theme = createMuiTheme({
       // 物体以全速从屏幕外进入屏幕，并在屏幕上以全速前进。
       // 缓慢减速至静止点。
       easeOut: 'cubic-bezier(0.0, 0, 0.2, 1)',
-      // Objects leave the screen at full velocity. They do not decelerate when off-screen.
+      // 物体以全速离开屏幕。 它们在屏幕外不会减速。
       easeIn: 'cubic-bezier(0.4, 0, 1, 1)',
-      // The sharp curve is used by objects that may return to the screen at any time.
+      // 锐化曲线是由可能随时返回屏幕的对象使用的。
       sharp: 'cubic-bezier(0.4, 0, 0.6, 1)',
     },
   },
