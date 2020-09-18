@@ -6,10 +6,17 @@ This package is a wrapper around the `styled-components` package. It is created 
 
 The installation of the dependency in your package is slightly different from the usual.
 You need to alias the default `emotion` implementation to the `styled-components` one.
-It works with npm and yarn.
+Depending on the bundler you are using, you made add it like this:
 
-```json
-  "dependencies": {
-    "@material-ui/styled-engine": "npm:@material-ui/styled-engine-sc@^5.0.0-alpha.1"
-  },
+### webpack
+
+```js
+module.exports = {
+  //...
+  resolve: {
+    alias: {
+      "@material-ui/styled-engine": "@material-ui/styled-engine-sc",
+    }
+  }
+};
 ```
