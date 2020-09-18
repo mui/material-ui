@@ -47,8 +47,6 @@ This constraint makes building rich data tables challenging.
 You can find the [`DataGrid` component](/components/data-grid/) for use cases that are focused around handling a large amount of tabular data.
 While it comes with a more rigid structure, in exchange, you gain more powerful features.
 
-{{"demo": "pages/components/tables/DataGridDemo.js"}}
-
 ## Customized tables
 
 Here is an example of customizing the component. You can learn more about this in the
