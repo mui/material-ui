@@ -75,6 +75,20 @@ yarn add @material-ui/core
 
 {{"demo": "pages/components/icons/SvgMaterialIcons.js"}}
 
+### 测试
+
+For testing purposes, each icon exposed from `@material-ui/icons` has a `data-testid` attribute with the name of the icon. 就像这样：
+
+```jsx
+import DeleteIcon from '@material-ui/icons/Delete';
+```
+
+has the following attribute once mounted:
+
+```html
+<svg data-testid="DeleteIcon"></svg>
+```
+
 ## SvgIcon（Svg 图标）
 
 如果你想导入一个自定义的 SVG 图标（但是又无法在 Material 图标 [默认系列](/components/material-icons/) 中找到），你可以使用 `SvgIcon` 来包装你的图标。 此组件是原生 `<svg>` 元素的拓展版：
@@ -135,13 +149,13 @@ import { ReactComponent as StarIcon } from './star.svg';
 
 ### Font Awesome
 
-If you find that there are layout issues when using FontAwesomeIcon from `@fortawesome/react-fontawesome`, you may try passing the Font Awesome SVG data directly to SvgIcon. This is best implemented as a custom wrapper component but will render more reliably in Material UI components (e.g. an IconButton).
+如果你在 `@fortawesome/react-fontawesome` 中使用 FontAwesomeIcon 时发现布局问题，你可以尝试将 Font Awesome SVG 直接传递给 SvgIcon。 这最好用自定义的包装组件来实现它，但在 Material UI 组件（例如，IconButton）中进行渲染会更加可靠。
 
 如下是一个同时使用[Font Awesome](https://fontawesome.com/icons) 与 `Icon` 的示例：
 
 友情提示：[mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) 已经将每个 SVG 图标用 `SvgIcon` 组件包装起来，你可以高枕无忧了。
 
-The `fullWidth` prop of `FontAwesomeIcon` can also be used to approximate the correct dimensions, but it isn't perfect.
+`FontAwesomeIcon` 的 `fullWidth` 属性也可用于近似正确的尺寸，但它并不完美。
 
 ### Font Material 图标
 
@@ -185,19 +199,23 @@ import Icon from '@material-ui/core/Icon';
 
 {{"demo": "pages/components/icons/FontAwesomeIcon.js"}}
 
-But note that the Font Awesome icons weren't designed like the Material Design icons (compare the two previous demos). The fa icons are cropped to use all the space available. It's recommanded to adjust for this with a global override:
+但要注意的是，Font Awesome icons 并不是像 Material Design icons 那样设计的（对比之前的两个示例）。 fa icons 经过裁剪，以利用所有可用空间。 所以我们建议使用全局覆盖的方式来解决这个问题：
 
 ```jsx
-import IconButton from '@material-ui/core/IconButton';
-import SvgIcon from '@material-ui/core/SvgIcon';
-
-// ...
-
-<IconButton aria-label="delete">
-  <SvgIcon>
-    <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z" />
-  </SvgIcon>
-</IconButton>
+const theme = createMuiTheme({
+  components: {
+    MuiIcon: {
+      styleOverrides: {
+        root: {
+          // 匹配 24px = 3 * 2 + 1.125 * 16
+          boxSizing: 'content-box',
+          padding: 3,
+          fontSize: '1.125rem',
+        },
+      },
+    },
+  },
+});
 ```
 
 {{"demo": "pages/components/icons/FontAwesomeIconSize.js"}}
@@ -223,7 +241,7 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 
 如果您的图标带有语义，您只需要包含 `titleAccess =“含义”` 这个属性。 我们添加了 `role="img"` 属性和 `<title>` 元素，这样一来您的图标就满足无障碍设计的需求了。
 
-若想要使用图标，您只需把图标名（字体连字）和 `Icon` 组件包装到一起，例如：
+对于那些可聚焦的交互式元素，譬如与一个图标按钮一起使用时，您可以使用 `aria-label` 属性：
 
 ```jsx
 import IconButton from '@material-ui/core/IconButton';
