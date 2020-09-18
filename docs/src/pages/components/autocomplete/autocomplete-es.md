@@ -130,9 +130,22 @@ También conocidos como etiquetas, el usuario puede introducir más de un valor.
 
 ## Peticiones asíncronas
 
+The component supports two different asynchronous use-cases:
+
+- [Load on open](#load-on-open): it waits for the component to be interacted with to load the options.
+- [Search as you type](#search-as-you-type): a new request is made for each keystroke.
+
+### Load on open
+
+It displays a progress state as long as the network request is pending.
+
 {{"demo": "pages/components/autocomplete/Asynchronous.js"}}
 
-En caso de que necesites bloquear ciertas etiquetas de modo que no puedan ser removidas en la interfaz, se puede deshabilitar los chips.
+### Search as you type
+
+If your logic is fetching new options on each keystroke and using the current value of the textbox to filter on the server, you may want to consider throttling requests.
+
+Additionally, you will need to disable the built-in filtering of the `Autocomplete` component by overriding the `filterOptions` prop:
 
 ```jsx
 import matchSorter from 'match-sorter';
@@ -294,4 +307,4 @@ If you provide a custom `ListboxComponent` prop, you need to make sure that the 
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#combobox)
 
-We encourage the usage of a label for the textbox. El componente implementa las prácticas de creación de WAI-ARIA.
+We encourage the usage of a label for the textbox. The component implements the WAI-ARIA authoring practices.
