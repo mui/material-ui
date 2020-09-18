@@ -1,10 +1,15 @@
 ---
 components: Link
+githubLabel:
+  component: Link
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#link'
 ---
 
 # Links
 
 <p class="description">Mit der Link-Komponente kannst du Ankerelemente auf einfache Weise an deine Designfarben und Typografiestile anpassen.</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Einfache Links
 

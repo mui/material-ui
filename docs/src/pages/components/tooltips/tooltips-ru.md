@@ -1,13 +1,19 @@
 ---
 title: Tooltip React component
 components: Tooltip
+githubLabel:
+  component: Tooltip
+materialDesign: https://material.io/components/tooltips
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tooltip'
 ---
 
-# Tooltip (подсказки)
+# Tooltip
 
 <p class="description">Всплывающие подсказки отображают информативный текст когда пользователь наводит курсор на элемент, фокусируется на нем или нажимает на него.</p>
 
 При активации, [Tooltips](https://material.io/design/components/tooltips.html) отображают текстовую метку, идентифицирующая элемент, например, описание его функции.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Простые подсказки
 
@@ -33,7 +39,7 @@ You can use the `arrow` prop to give your tooltip an arrow indicating which elem
 
 ## Custom child element
 
-The tooltip needs to apply DOM event listeners to its child element. If the child is a custom React element, you need to make sure that it spreads its properties to the underlying DOM element.
+The tooltip needs to apply DOM event listeners to its child element. The tooltip needs to apply DOM event listeners to its child element.
 
 ```jsx
 const MyComponent = React.forwardRef(function MyComponent(props, ref) {

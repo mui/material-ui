@@ -48,7 +48,7 @@ This pattern is very powerful and allows for great flexibility, as well as a way
 
 ### Caveat with inlining
 
-Using an inline function as an argument for the `component` prop may result in **unexpected unmounting**, since a new component is passed every time React renders. For instance, if you want to create a custom `ListItem` that acts as a link, you could do the following:
+Using an inline function as an argument for the `component` prop may result in **unexpected unmounting**, since a new component is passed every time React renders. Not only will React update the DOM unnecessarily, the ripple effect of the `ListItem` will also not work correctly.
 
 ```jsx
 import { Link } from 'react-router-dom';

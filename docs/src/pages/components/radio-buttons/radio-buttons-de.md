@@ -1,6 +1,10 @@
 ---
 title: Radio Button React-Komponente
 components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
+githubLabel:
+  component: Auswahlfeld
+materialDesign: 'https://material.io/components/selection-controls#radio-buttons'
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#radiobutton'
 ---
 
 # Auswahlfeld
@@ -10,6 +14,8 @@ components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
 Verwenden Sie die [Optionsfelder](https://material.io/design/components/selection-controls.html#radio-buttons) wenn dem Benutzer alle verfügbaren Optionen anzeigt werden müssen. Wenn verfügbare Optionen reduziert werden können, sollten Sie ein Dropdown-Menü in Betracht ziehen, da so weniger Platz benötigt wird.
 
 Bei Optionsschaltflächen sollte die am häufigsten verwendete Option standardmäßig ausgewählt sein.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## RadioGroup
 
@@ -43,6 +49,31 @@ Hier ist ein Beispiel zum Anpassen der Komponente. Mehr dazu erfahren Sie auf de
 
 {{"demo": "pages/components/radio-buttons/CustomizedRadios.js"}}
 
+## `useRadioGroup`
+
+For advanced customization use cases, a `useRadioGroup()` hook is exposed. It returns the context value of the parent radio group. The Radio component uses this hook internally.
+
+### API
+
+```jsx
+<RadioButton
+  value="radioA"
+  inputProps={{ 'aria-label': 'Radio A' }}
+/>
+```
+
+#### Rückgabewerte
+
+`value` (_Object_):
+
+- `value.name` (_String_ [optional]): The name used to reference the value of the control.
+- `value.onChange` (_Void_ [optional]): Callback fired when a radio button is selected.
+- `value.value` (_Any_ [optional]): Value of the selected radio button.
+
+#### Beispiel
+
+{{"demo": "pages/components/radio-buttons/UseRadioGroup.js"}}
+
 ## When to use
 
 - [Kontrollkästchen vs. Optionsfeld (Radio Buttons)](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
@@ -57,6 +88,8 @@ Hier ist ein Beispiel zum Anpassen der Komponente. Mehr dazu erfahren Sie auf de
 ```jsx
 <RadioButton
   value="radioA"
-  inputProps={{ 'aria-label': 'Radio A' }}
+  inputProps={{
+    'aria-label': 'Radio A',
+  }}
 />
 ```

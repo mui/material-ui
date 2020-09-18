@@ -1,6 +1,10 @@
 ---
 title: Composant Alert React
 components: Alert, AlertTitle
+githubLabel:
+  component: Alert
+packageName: '@material-ui/lab'
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
 ---
 
 # Alert
@@ -8,6 +12,8 @@ components: Alert, AlertTitle
 <p class="description">Une alerte affiche un message court et important d'une manière qui attire l'attention de l'utilisateur sans interrompre sa tâche.</p>
 
 **Remarque :** Ce composant n'est pas documenté dans les [consignes de Material Design](https://material.io/), mais Material-UI le supporte.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Alertes simples
 

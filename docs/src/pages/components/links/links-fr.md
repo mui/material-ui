@@ -1,10 +1,15 @@
 ---
 components: Link
+githubLabel:
+  component: Link
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#link'
 ---
 
 # Liens
 
 <p class="description">Le composant Lien vous permet de personnaliser facilement les éléments de types ancre avec les couleurs de votre thème et les styles de typographie.</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Simple links
 

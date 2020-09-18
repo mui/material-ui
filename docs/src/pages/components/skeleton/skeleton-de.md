@@ -1,18 +1,26 @@
 ---
 title: Skeleton React component
 components: Skeleton
+githubLabel:
+  component: Skeleton
+packageName: '@material-ui/lab'
 ---
 
-# Skelett
+# Skeleton
 
 <p class="description">Display a placeholder preview of your content before the data gets loaded to reduce load-time frustration.</p>
 
 The data for your components might not be immediately available. You can increase the perceived performance for users by using skeletons. It feels like things are happening immediately, then the information is incrementally displayed on the screen (Cf. [Avoid The Spinner](https://www.lukew.com/ff/entry.asp?1797)).
 
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
+## Nutzung
+
 The component is designed to be used **directly in your components**. Zum Beispiel:
 
 ```jsx
-{item ? (
+{
+  item ? {item ? (
   <img style={{ width: 210, height: 118 }} alt={item.title} src={item.src} />
 ) : (
   <Skeleton variant="rect" width={210} height={118} />
@@ -48,7 +56,7 @@ It works well when it comes to typography as its height is set using `em` units.
 ```jsx
 <Typography variant="h1">
   {loading ? <Skeleton /> : 'h1'}
-</Typography>
+</Typography> <Skeleton /> : 'h1'}</Typography>
 ```
 
 {{"demo": "pages/components/skeleton/SkeletonTypography.js", "defaultCodeOpen": false}}
@@ -56,9 +64,13 @@ It works well when it comes to typography as its height is set using `em` units.
 But when it comes to other components, you may not want to repeat the width and height. In these instances, you can pass `children` and it will infer its width and height from them.
 
 ```jsx
-loading
-  ? <Skeleton><Avatar /></Skeleton>
-  : <Avatar src={data.avatar} />
+loading ? (
+  <Skeleton variant="circular">
+    <Avatar />
+  </Skeleton>
+) : (
+  <Avatar src={data.avatar} />
+);
 ```
 
 {{"demo": "pages/components/skeleton/SkeletonChildren.js", "defaultCodeOpen": false}}

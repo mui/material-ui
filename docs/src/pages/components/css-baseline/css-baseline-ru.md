@@ -1,10 +1,14 @@
 ---
 components: CssBaseline, ScopedCssBaseline
+githubLabel:
+  component: CssBaseline
 ---
 
 # CSS Baseline
 
 <p class="description">Material-UI предоставляет компонент CssBaseline, чтобы создать элегантную, согласованную и простую основу для работы.</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Global reset
 

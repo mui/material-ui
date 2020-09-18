@@ -1,9 +1,13 @@
 ---
 title: React-компонент Кнопка
 components: Button, IconButton, ButtonBase
+materialDesign: https://material.io/components/buttons
+githubLabel:
+  component: Button
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
 ---
 
-# Button (кнопки)
+# Button
 
 <p class="description">Кнопки позволяют пользователям выполнять действия и делать выбор одним нажатием.</p>
 
@@ -14,6 +18,8 @@ components: Button, IconButton, ButtonBase
 - Формы
 - Карточки
 - Панели инструментов
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Блочные кнопки
 
@@ -27,7 +33,7 @@ components: Button, IconButton, ButtonBase
 
 ## Текстовые кнопки
 
-[Текстовые кнопки](https://material.io/design/components/buttons.html#text-button) обычно используются для менее важных действий, в том числе расположенных:
+В Карточках (Cards) текстовые кнопки помогают сохранить акцент на содержании карточки.
 
 - В диалогах
 - В карточках - Cards
@@ -88,13 +94,23 @@ Fancy larger or smaller buttons? Use the `size` property.
 
 ## Сложные кнопки
 
+The loading buttons can show pending state and disable interactions.
+
+{{"demo": "pages/components/buttons/LoadingButtons.js"}}
+
+Здесь можно ознакомится [с примером использования с react-router](/guides/composition/#button).
+
+Компонент ButtonBase устанавливает `pointer-events: none;` на отключенных (disabled) кнопках, что отменяет появление disabled-курсора.
+
+## Сложные кнопки
+
 Текстовые кнопки, плавающие кнопки действий, блочные кнопки построены на основе одного и того же компонента: `ButtonBase`. Вы можете воспользоваться этим более низкоуровневым компонентом для создания пользовательских взаимодействий.
 
 {{"demo": "pages/components/buttons/ButtonBase.js"}}
 
 ## Сторонняя библиотека маршрутизации
 
-Одно из обыденных случаев использования кнопки - это навигация на другую страницу. `ButtonBase` компонент предоставляет свойство для обработки этого варианта использования: `component`. However for certain focus polyfills `ButtonBase` requires the DOM node of the provided component. Этого можно достичь, указав ref для данного компонента, ожидая что компонент пересылает этот ref в базовый узел DOM. Учитывая то, что многие наши компоненты используют `ButtonBase`, вы сможете пользоваться ими повсюду в вашем приложении.
+Одно из обыденных случаев использования кнопки - это навигация на другую страницу. Одно из обыденных случаев использования кнопки - это навигация на другую страницу. However for certain focus polyfills `ButtonBase` requires the DOM node of the provided component. Этого можно достичь, указав ref для данного компонента, ожидая что компонент пересылает этот ref в базовый узел DOM. Учитывая то, что многие наши компоненты используют `ButtonBase`, вы сможете пользоваться ими повсюду в вашем приложении.
 
 Здесь можно ознакомится [с примером использования с react-router](/guides/composition/#button).
 
@@ -108,12 +124,12 @@ Fancy larger or smaller buttons? Use the `size` property.
 
 1. **CSS only**. Вы можете удалить все стили событий курсора в выключенном(disabled) состоянии в элементе `<button>`:
 
-  ```css
-  .MuiButtonBase-root:disabled {
+```css
+.MuiButtonBase-root:disabled {
     cursor: not-allowed;
     pointer-events: auto;
   }
-  ```
+```
 
 Однако:
 
@@ -122,12 +138,12 @@ Fancy larger or smaller buttons? Use the `size` property.
 
 2. **DOM change**. Вы можете обернуть кнопку в дополнительный контейнер:
 
-  ```jsx
-  <span style={{ cursor: 'not-allowed' }}>
+```jsx
+<span style={{ cursor: 'not-allowed' }}>
     <Button component={Link} disabled>
       disabled
     </Button>
   </span>
-  ```
+```
 
 Этот способ работает для всех элементов, в том числе и для `<a>`.

@@ -1,13 +1,19 @@
 ---
 title: Composant React Info-bulle
 components: Tooltip
+githubLabel:
+  component: Tooltip
+materialDesign: https://material.io/components/tooltips
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tooltip'
 ---
 
-# Tooltip (Info-bulle)
+# Tooltip
 
 <p class="description">Les info-bulles affichent un texte informatif lorsque les utilisateurs survolent, se concentrent ou tapent sur un élément.</p>
 
 Lorsqu'elles sont activées, [Info-bulles](https://material.io/design/components/tooltips.html) affiche une étiquette de texte identifiant un élément, telle qu'une description de sa fonction.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Info-bulles simples
 
@@ -33,7 +39,7 @@ You can use the `arrow` prop to give your tooltip an arrow indicating which elem
 
 ## Élément enfant personnalisé
 
-The tooltip needs to apply DOM event listeners to its child element. If the child is a custom React element, you need to make sure that it spreads its properties to the underlying DOM element.
+The tooltip needs to apply DOM event listeners to its child element. The tooltip needs to apply DOM event listeners to its child element.
 
 ```jsx
 const MyComponent = React.forwardRef(function MyComponent(props, ref) {

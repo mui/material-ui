@@ -1,6 +1,9 @@
 ---
-title: React Bottom Navigation 底部导航栏组件
+title: React 底部导航栏组件
 components: BottomNavigation, BottomNavigationAction
+githubLabel:
+  component: BottomNavigation
+materialDesign: https://material.io/components/bottom-navigation
 ---
 
 # Bottom Navigation 底部导航栏
@@ -9,9 +12,11 @@ components: BottomNavigation, BottomNavigationAction
 
 [底部导航栏](https://material.io/design/components/bottom-navigation.html)在屏幕下方显示三到五个导航项。 每一个导航项都由一个图标和一个可选文本标签表示。 当点击底部导航图标时，用户被切换到该图标关联的目标页面顶部。
 
-## 底部导航栏
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
-当只有 **三个** 导航项时，导航栏会始终显示图标和文本标签。
+## Bottom Navigation 底部导航栏
+
+如果有**四个**或**五个**导航项，那些未被选中的导航项会以图标的样式显示。
 
 {{"demo": "pages/components/bottom-navigation/SimpleBottomNavigation.js", "bg": true}}
 
@@ -20,3 +25,9 @@ components: BottomNavigation, BottomNavigationAction
 如果有**四个**或**五个**导航项，那些未被选中的导航项会以图标的样式显示。
 
 {{"demo": "pages/components/bottom-navigation/LabelBottomNavigation.js", "bg": true}}
+
+## 固定位置
+
+无论屏幕上有多少内容，该演示的内容都会将底部导航固定在底部。
+
+{{"demo": "pages/components/bottom-navigation/FixedBottomNavigation.js", "bg": true, "iframe": true, "maxWidth": 600}}

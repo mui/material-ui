@@ -1,6 +1,9 @@
 ---
 title: Drawer React-Komponente
 components: Drawer, SwipeableDrawer
+githubLabel:
+  component: Seitliches Menü (Drawer)
+materialDesign: https://material.io/components/navigation-drawer
 ---
 
 # Seitliches Menü (Drawer)
@@ -10,6 +13,8 @@ components: Drawer, SwipeableDrawer
 [Navigation drawers](https://material.io/design/components/navigation-drawer.html) (or "sidebars") provide access to destinations and app functionality, such as switching accounts. Sie können entweder permanent auf dem Bildschirm angezeigt oder durch ein Navigationsmenüsymbol gesteuert werden.
 
 [Die Seitenblätter](https://material.io/design/components/sheets-side.html) sind Zusatzflächen, die hauptsächlich auf Tablets und Desktops verwendet werden.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Temporäre Navigationsleisten
 
@@ -29,7 +34,7 @@ Diese Komponente ist mit einem 2-kB-gzipped -Overhead ausgestattet. Einige mobil
 
 The following properties are used in this documentation website for optimal usability of the component:
 
-- iOS is hosted on high-end devices. The backdrop transition can be enabled without dropping frames. Die Leistung wird gut genug sein.
+- iOS is hosted on high-end devices. Die Leistung wird gut genug sein. The backdrop transition can be enabled without dropping frames.
 - iOS has a "swipe to go back" feature that interferes with the discovery feature, so discovery has to be disabled.
 
 ```jsx
@@ -68,7 +73,7 @@ Die Mini-Variante wird für Anwendungsbereiche empfohlen, die neben Inhalten ein
 
 Permanent navigation drawers are always visible and pinned to the left edge, at the same elevation as the content or background. Sie können nicht geschlossen werden.
 
-Permanente Navigationsleisten sind die **empfohlene Standardeinstellung für Desktop**.
+Apps, welche sich auf den Informationsverbrauch konzentrieren, verwenden eine Links-Rechts-Hierarchie.
 
 ### Navigation in voller Höhe
 

@@ -1,27 +1,31 @@
 ---
 title: Componente Badge
 components: Badge
+githubLabel:
+  component: Badge
 ---
 
 # Badge
 
 <p class="description">El componente Badge genera un pequeño badge en la esquina superior derecha de su(s) hijo(s).</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
 ## Badges básicos
 
 Ejemplos de insignias que contienen texto, utilizando colores primarios y secundarios. La insignia se aplica a sus hijos.
 
-{{"demo": "pages/demos/badges/SimpleBadge.js"}}
+{{"demo": "pages/components/badges/SimpleBadge.js"}}
 
 ## Placas personalizadas
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+He aquí un ejemplo de personalización del componente. You can learn more about this in the [overrides documentation page](/customization/components/).
 
-{{"demo": "pages/demos/badges/CustomizedBadge.js"}}
+{{"demo": "pages/components/badges/CustomizedBadges.js"}}
 
 ## Visibilidad del Badge
 
-La visibilidad del badge puede ser controlada usando la propiedad `invisible`.
+Usted puede usar la propiedad `overlap` para establecer el Badge relativo a la esquina del elemento envuelto.
 
 {{"demo": "pages/components/badges/BadgeVisibility.js"}}
 
@@ -43,7 +47,7 @@ La propiedad `dot` cambia el badge a un pequeño punto. Esto puede ser usado par
 
 ## Superposición del Badge
 
-Usted puede usar la propiedad `overlap` para establecer el Badge relativo a la esquina del elemento envuelto.
+Usted puede usar la propiedad `anchorOrigin` para mover el Badge a cualquier esquina del elemento envuelto.
 
 {{"demo": "pages/components/badges/BadgeOverlap.js"}}
 

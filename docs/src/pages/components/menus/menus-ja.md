@@ -1,6 +1,10 @@
 ---
 title: メニューReactコンポーネント
 components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
+githubLabel:
+  component: Menu
+materialDesign: https://material.io/components/menus
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
 ---
 
 # Menus
@@ -9,13 +13,15 @@ components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 
 [Menu](https://material.io/design/components/menus.html)には、一時サーフェス上の選択項目のリストが表示されます。 ユーザーがボタンやその他のコントロールを操作すると表示されます。
 
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
 ## シンプルなメニュー
 
-デフォルトでは、アンカー要素の上にシンプルなメニューが開きます（このオプションはpropsを介して変更できます）。 画面の端に近づくと、シンプルメニューが垂直方向に再配置され、すべてのメニュー項目が完全に表示されます。
+デフォルトでは、アンカー要素の上にシンプルなメニューが開きます（このオプションはpropsを介して変更できます）。 画面の端に近づくと、シンプルメニューが垂直方向に再配置され、すべてのメニュー項目が完全に表示されます。 画面の端に近づくと、シンプルメニューが垂直方向に再配置され、すべてのメニュー項目が完全に表示されます。
 
 オプションを選択したら、そのオプションをすぐにコミットしてメニューを閉じるのが理想的です。
 
-**曖昧さ回避**: 単純なメニューとは対照的に、単純なダイアログでは、リスト項目で使用可能なオプションに関連する追加の詳細を表示したり、主要なタスクに関連するナビゲーションまたは直交アクションを提供することができます。 シンプルメニューは同じ内容を表示できますが、ユーザーの現在のコンテキストを混乱させないため、シンプルダイアログよりも好まれます。
+**曖昧さ回避**: 単純なメニューとは対照的に、単純なダイアログでは、リスト項目で使用可能なオプションに関連する追加の詳細を表示したり、主要なタスクに関連するナビゲーションまたは直交アクションを提供することができます。 You can use the same list composition features with the `MenuItem` component:
 
 {{"demo": "pages/components/menus/SimpleMenu.js"}}
 
@@ -35,7 +41,7 @@ The primary responsibility of the `MenuList` component is to handle the focus.
 
 ## Customized menus
 
-コンポーネントのカスタマイズ例を次に示します。 詳細については、 [overrides documentation page](/customization/components/)を参照してください。
+コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/menus/CustomizedMenus.js"}}
 

@@ -1,6 +1,9 @@
 ---
 title: Composant React Carte
 components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
+githubLabel:
+  component: Card (carte)
+materialDesign: https://material.io/components/cards
 ---
 
 # Card (carte)
@@ -9,7 +12,9 @@ components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedi
 
 [cartes](https://material.io/design/components/cards.html) sont des surfaces qui affichent du contenu et des actions sur un seul sujet.
 
-They should be easy to scan for relevant and actionable information. Elements, like text and images, should be placed on them in a way that clearly indicates hierarchy.
+Ils devraient être faciles à analyser pour trouver des informations pertinentes et réalisables. Les éléments, comme le texte et les images, doivent être placés sur eux d'une manière qui indique clairement la hiérarchie.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Carte simple
 
@@ -25,7 +30,7 @@ Définissez `variant="outlined"` pour afficher une carte encadrée.
 
 ## Interaction complexe
 
-Sur le bureau, le contenu de la carte peut s’étendre.
+Sur grand écran, le contenu de la carte peut s’étendre. (Click the downward chevron to view the recipe.)
 
 {{"demo": "pages/components/cards/RecipeReviewCard.js", "bg": true}}
 
@@ -39,7 +44,7 @@ Par défaut, nous utilisons la combinaison d'un élément `<div>` et *background
 
 {{"demo": "pages/components/cards/ImgMediaCard.js", "bg": true}}
 
-> ⚠️ When `component="img"`, CardMedia relies on `object-fit` for centering the image. It's not supported by IE 11.
+> ⚠ Quand `component="img"`, CardMedia s'appuie sur `objet-fit` pour centrer l'image. Ce n'est pas supporté par IE 11.
 
 ## Contrôles d'UI
 
@@ -51,4 +56,4 @@ Voici un exemple de carte de contrôle multimédia.
 
 ## Personnalisation
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/card).
+🎨 Si vous cherchez de l'inspiration, vous pouvez consulter les [exemples de personnalisation de MUI Treasury](https://mui-treasury.com/components/card).

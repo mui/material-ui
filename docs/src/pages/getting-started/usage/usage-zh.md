@@ -30,7 +30,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 {{"demo": "pages/getting-started/usage/Usage.js", "hideToolbar": true, "bg": true}}
 
-## 全局变量
+## 全局样式
 
 您能够注意到，有一些重要的全局变量，可以改善 Material-UI 的用户体验。
 

@@ -1,8 +1,8 @@
 # Espaciado
 
-<p class="description">Use the theme.spacing() helper to create consistent spacing between the elements of your UI.</p>
+<p class="description">Use el ayudante theme.spacing() para crear un espacio consistente entre los elementos de su interfaz de usuario.</p>
 
-Material-UI uses [a recommended 8px scaling factor](https://material.io/design/layout/understanding-layout.html) by default.
+Material-UI utiliza [un factor recomendado de escalado de 8px](https://material.io/design/layout/understanding-layout.html) por defecto.
 
 ```js
 const theme = createMuiTheme();
@@ -10,11 +10,11 @@ const theme = createMuiTheme();
 theme.spacing(2) // = 8 * 2
 ```
 
-## Custom spacing
+## Espacio personalizado
 
-You can change the spacing transformation by providing:
+Puede cambiar la transformacin de espaciado proporcionando:
 
-- a number
+- un número
 
 ```js
 const theme = createMuiTheme({
@@ -24,7 +24,7 @@ const theme = createMuiTheme({
 theme.spacing(2) // = 4 * 2
 ```
 
-- a function
+- una función
 
 ```js
 const theme = createMuiTheme({
@@ -34,7 +34,7 @@ const theme = createMuiTheme({
 theme.spacing(2); // = 0.25 * 2rem = 0.5rem = 8px
 ```
 
-- an array
+- una lista
 
 ```js
 const theme = createMuiTheme({
@@ -44,16 +44,16 @@ const theme = createMuiTheme({
 theme.spacing(2); // = 8
 ```
 
-## Multiple arity
+## Entidad múltiple
 
-The `theme.spacing()` helper accepts up to 4 arguments. You can use the arguments to reduce the boilerplate.
+El ayudante `theme.spacing()` acepta hasta 4 argumentos. Puede utilizar los argumentos para reducir el boilerplate.
 
 ```diff
 -padding: `${theme.spacing(1)} ${theme.spacing(2)}`, // '8px 16px'
 +padding: theme.spacing(1, 2), // '8px 16px'
 ```
 
-Mixing string values is also supported:
+Mezclar valores de texto también es compatible:
 
 ```js
 margin: theme.spacing(1, 'auto'), // '8px auto'

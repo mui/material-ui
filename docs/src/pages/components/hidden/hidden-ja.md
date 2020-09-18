@@ -1,13 +1,17 @@
 ---
 title: Hidden Reactコンポーネント
 components: Hidden
+githubLabel:
+  component: Hidden
 ---
 
 # Hidden
 
 <p class="description">Quickly and responsively toggle the visibility value of components and more with the hidden utilities.</p>
 
-**明示的に非表示にしない限り**、すべての要素が表示されます。 To ease integration with Material-UI's [responsive breakpoints](/customization/breakpoints/), this component can be used to hide any content, or you can use it in conjunction with the [`Grid`](/components/grid/) component.
+**明示的に非表示にしない限り**、すべての要素が表示されます。 **明示的に非表示にしない限り**、すべての要素が表示されます。 **明示的に非表示にしない限り**、すべての要素が表示されます。 To ease integration with Material-UI's [responsive breakpoints](/customization/breakpoints/), this component can be used to hide any content, or you can use it in conjunction with the [`Grid`](/components/grid/) component.
+
+[The palette](/system/palette/) style関数。
 
 ## 仕組み
 
@@ -35,21 +39,21 @@ mdDown      |                     hide | show
 
 ## ブレイクポイント
 
-ブレークポイントの `up`プロパティを使用すると、指定した*children*がブレークポイントの位置またはその上*at or above*になります。
+ブレークポイントの`down`プロパティを使用すると、指定した*children*がブレークポイントの位置またはその上*at or below*になります。
 
 {{"demo": "pages/components/hidden/BreakpointUp.js", "bg": true}}
 
 ## ブレイクポイント
 
-ブレークポイントの`down`プロパティを使用すると、指定した*children*がブレークポイントの位置またはその上*at or below*になります。
+ブレークポイントの `only`プロパティを使用すると、指定した*children*がブレークポイントの位置またはその上*at*>になります。
 
 {{"demo": "pages/components/hidden/BreakpointDown.js", "bg": true}}
 
 ## ブレークポイントのみ
 
-ブレークポイントの `only`プロパティを使用すると、指定した*children*がブレークポイントの位置またはその上*at*>になります。
-
 `only` プロパティは、次の2つの方法で使用できます。
+
+The `only` prop can be used in two ways:
 
 - 単一のブレークポイントをリストする
 - ブレークポイントの配列をリストします

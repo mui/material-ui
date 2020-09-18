@@ -258,10 +258,11 @@ type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 #### Аргументы
 
-1. `варианты` (*объекта* [optional]): 
-  - `options.withTheme` (*Boolean* [optional]): По умолчанию - `false`. Provide the `theme` object to the component as a property.
-  - `options.noSSR` (*Boolean* [optional]): По умолчанию - `false`. In order to perform the server-side rendering reconciliation, it needs to render twice. A first time with nothing and a second time with the children. This double pass rendering cycle comes with a drawback. The UI might blink. You can set this flag to `true` if you are not doing server-side rendering.
-  - `options.initialWidth` (*Breakpoint* [optional]): As `window.innerWidth` is unavailable on the server, we default to rendering an empty component during the first mount. You might want to use an heuristic to approximate the screen width of the client browser screen width. For instance, you could be using the user-agent or the client-hints. https://caniuse.com/#search=client%20hint, we also can set the initial width globally using [`custom properties`](/customization/globals/#default-props) on the theme. In order to set the initialWidth we need to pass a custom property with this shape:
+1. `варианты` (*объекта* [optional]):
+
+- `options.withTheme` (*Boolean* [optional]): По умолчанию - `false`. Provide the `theme` object to the component as a property.
+- `options.noSSR` (*Boolean* [optional]): По умолчанию - `false`. In order to perform the server-side rendering reconciliation, it needs to render twice. A first time with nothing and a second time with the children. This double pass rendering cycle comes with a drawback. The UI might blink. You can set this flag to `true` if you are not doing server-side rendering.
+- `options.initialWidth` (*Breakpoint* [optional]): As `window.innerWidth` is unavailable on the server, we default to rendering an empty component during the first mount. You might want to use an heuristic to approximate the screen width of the client browser screen width. For instance, you could be using the user-agent or the client-hints. https://caniuse.com/#search=client%20hint, we also can set the initial width globally using [`custom properties`](/customization/globals/#default-props) on the theme. In order to set the initialWidth we need to pass a custom property with this shape:
 
 ```js
 const theme = createMuiTheme({
@@ -270,7 +271,7 @@ const theme = createMuiTheme({
     MuiWithWidth: {
       // Initial width property
       initialWidth: 'lg', // Breakpoint being globally set 🌎!
-    },
+      },
   },
 });
 ```

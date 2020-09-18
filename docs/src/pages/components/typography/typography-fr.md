@@ -1,12 +1,18 @@
 ---
-components: Typography
+title: Typography React component
+components: Typographie
+githubLabel:
+  component: Typographie
+materialDesign: https://material.io/design/typography/the-type-system.html
 ---
 
-# Typography
+# Typographie
 
 <p class="description">Utilisez la typographie pour présenter votre design et votre contenu aussi clairement et efficacement que possible.</p>
 
 Trop de types de formats et de styles à la fois peuvent gâcher n'importe quelle mise en page. Une [échelle typographique](https://material.io/design/typography/#type-scale) a un ensemble limité de tailles de type qui fonctionnent bien ensemble avec la grille de mise en page.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Général
 
@@ -32,9 +38,9 @@ Ensuite, vous pouvez l'importer dans votre point d'entrée.
 import 'fontsource-roboto';
 ```
 
-For more info check out [Fontsource](https://github.com/DecliningLotus/fontsource/blob/master/packages/roboto/README.md).
+For more info check out [Fontsource](https://github.com/fontsource/fontsource).
 
-⚠️ Soyez prudent lorsque vous utilisez cette approche. Make sure your bundler doesn't eager load all the font variations (100/300/400/500/700/900, italic/regular, SVG/woff). Fontsource can be configured to load specific subsets, weights and styles. Inlining all the font files can significantly increase the size of your bundle. Material-UI default typography configuration only relies on 300, 400, 500, and 700 font weights.
+Fontsource can be configured to load specific subsets, weights and styles. Material-UI default typography configuration only relies on 300, 400, 500, and 700 font weights.
 
 ## Composant
 

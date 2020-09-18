@@ -1,6 +1,8 @@
 ---
 title: Popper React-Komponente
 components: Popper
+githubLabel:
+  component: Popper
 ---
 
 # Popper
@@ -17,6 +19,8 @@ Einige wichtige Funktionen der `Popper` Komponente:
 - Durch Wegklicken wird die `Popper` Komponente ausgeblendet. Wenn Sie dieses Verhalten benötigen, können Sie den [`ClickAwayListener`](/components/click-away-listener/) verwenden - siehe das Beispiel im [Menü Dokumentation Abschnitt](/components/menus/#menulist-composition).
 - Die `anchorEl` Komponente wird als Referenzobjekt übergeben, um eine neue Instanz von `Popper.js` zu erstellen.
 
+Die Style-Funktion der [Palette](/system/palette/).
+
 ## Einfacher Popper
 
 {{"demo": "pages/components/popper/SimplePopper.js"}}
@@ -27,7 +31,7 @@ The open/close state of the popper can be animated with a render prop child and 
 
 - Be a direct child descendent of the popper.
 - Call the `onEnter` callback prop when the enter transition starts.
-- Call the `onExited` callback prop when the exit transition is completed. These two callbacks allow the popper to unmount the child content when closed and fully transitioned.
+- Call the `onExited` callback prop when the exit transition is completed. Call the `onExited` callback prop when the exit transition is completed.
 
 Popper has built-in support for [react-transition-group](https://github.com/reactjs/react-transition-group).
 

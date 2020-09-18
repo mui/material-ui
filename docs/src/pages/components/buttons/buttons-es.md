@@ -1,9 +1,13 @@
 ---
 title: Componente de React Button
 components: Button, IconButton, ButtonBase
+materialDesign: https://material.io/components/buttons
+githubLabel:
+  component: Button (Botón)
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
 ---
 
-# Button (botón)
+# Button (Botón)
 
 <p class="description">Los botones permiten a los usuarios ejecutar acciones, y tomar decisiones, con un simple toque.</p>
 
@@ -14,6 +18,8 @@ components: Button, IconButton, ButtonBase
 - Formularios
 - Tarjetas
 - Barras de herramientas
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Botones contenidos
 
@@ -27,7 +33,7 @@ Se puede eliminar la elevación con la prop `disableElevation`.
 
 ## Botones de texto
 
-Los [Botones de texto](https://material.io/design/components/buttons.html#text-button) se suelen usar para acciones menos notables, incluyendo las que se encuentran:
+En las tarjetas, los botones de texto ayudan a mantener un énfasis en el contenido de la tarjeta.
 
 - En diálogos
 - En tarjetas
@@ -46,13 +52,13 @@ Los botones delineados también son una alternativa de menos énfasis que los bo
 
 ## Handling clicks
 
-All components accept an `onClick` handler that is applied to the root DOM element.
+Todos los componentes aceptan un controlador `onClick` el cual se aplica al elemento raíz en el DOM.
 
 ```jsx
 <Button onClick={() => { alert('clicked') }}>Click me</Button>
 ```
 
-Note that the documentation [avoids](/guides/api/#native-properties) mentioning native props (there are a lot) in the API section of the components.
+Ten en cuenta que la documentación [evita](/guides/api/#native-properties) mencionar las propiedades nativas (existen varias) en la sección API de los componentes.
 
 ## Botón de subida
 
@@ -84,7 +90,17 @@ Here are some examples of customizing the component. You can learn more about th
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js", "defaultCodeOpen": false}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/button).
+🎨 Si estás buscando inspiración, puedes mirar [los ejemplos de MUI Treasury](https://mui-treasury.com/styles/button).
+
+## Botones Complejos
+
+The loading buttons can show pending state and disable interactions.
+
+{{"demo": "pages/components/buttons/LoadingButtons.js"}}
+
+Toggle the switch to see the transition between the different states.
+
+{{"demo": "pages/components/buttons/LoadingButtonsTransition.js"}}
 
 ## Botones Complejos
 
@@ -94,7 +110,7 @@ Los Botones de Texto, los Botones Contenidos, los Botones de Acción Flotantes y
 
 ## Librería externa de routing
 
-Un caso de uso común es emplear el botón para iniciar la navegación hacia una nueva página. El componente `ButtonBase` provee un atributo para tratar este uso: `component`. Sin embargo, para ciertos rellenos `ButtonBase` requiere el nodo DOM del componente proporcionado. Esto se logra adjuntando una referencia al componente y esperando que el componente reenvíe esta referencia al nodo DOM subyacente. Given that many of the interactive components rely on `ButtonBase`, you should be able to take advantage of it everywhere.
+Un caso de uso común es emplear el botón para iniciar la navegación hacia una nueva página. Un caso de uso común es emplear el botón para iniciar la navegación hacia una nueva página. Sin embargo, para ciertos rellenos `ButtonBase` requiere el nodo DOM del componente proporcionado. Esto se logra adjuntando una referencia al componente y esperando que el componente reenvíe esta referencia al nodo DOM subyacente. Given that many of the interactive components rely on `ButtonBase`, you should be able to take advantage of it everywhere.
 
 Here is an [integration example with react-router](/guides/composition/#button).
 
@@ -102,18 +118,18 @@ Here is an [integration example with react-router](/guides/composition/#button).
 
 ### Cursor not-allowed
 
-The ButtonBase component sets `pointer-events: none;` on disabled buttons, which prevents the appearance of a disabled cursor.
+El componente ButtonBase define `pointer-events: none;` en los botones deshabilitados, lo que previene la aparición del cursor desactivado.
 
-If you wish to use `not-allowed`, you have two options:
+Si deseas usar `not-allowed`, tienes dos opciones:
 
-1. **CSS only**. You can remove the pointer events style on the disabled state of the `<button>` element:
+1. **Mediante CSS**. Puedes eliminar los estilos del cursor aplicados cuando el elemento `<button>` está deshabilitado:
 
-  ```css
-  .MuiButtonBase-root:disabled {
+```css
+.MuiButtonBase-root:disabled {
     cursor: not-allowed;
     pointer-events: auto;
   }
-  ```
+```
 
 However:
 
@@ -122,12 +138,12 @@ However:
 
 2. **DOM change**. You can wrap the button:
 
-  ```jsx
-  <span style={{ cursor: 'not-allowed' }}>
+```jsx
+<span style={{ cursor: 'not-allowed' }}>
     <Button component={Link} disabled>
       disabled
     </Button>
   </span>
-  ```
+```
 
 Este tiene la ventaja de permitir cualquier elemento, por ejemplo un enlace `<a>`<a></0>.</p>

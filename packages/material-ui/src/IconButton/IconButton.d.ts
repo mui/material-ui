@@ -73,7 +73,6 @@ export type IconButtonTypeMap<
  * Demos:
  *
  * - [Buttons](https://material-ui.com/components/buttons/)
- * - [Image List](https://material-ui.com/components/image-list/)
  *
  * API:
  *

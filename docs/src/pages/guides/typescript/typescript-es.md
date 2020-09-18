@@ -194,7 +194,7 @@ const DecoratedSFC = withStyles(styles)(({ text, type, color, classes }: Props) 
 ));
 
 const DecoratedClass = withStyles(styles)(
-  class extends React.Component<Props> {
+  class extends React. Component<Props> {
     render() {
       const { text, type, color, classes } = this.props
       return (
@@ -283,7 +283,7 @@ Now the `CustomComponent` can be used with a `component` prop which should be se
 It is possible to have generic `CustomComponent` which will accept any React component, custom and HTML elements.
 
 ```ts
-function GenericCustomComponent<C extends React.ElementType>(
+function GenericCustomComponent<C extends React. ElementType>(
   props: TypographyProps<C, { component?: C }>,
 ) {
   /* ... */
@@ -297,7 +297,10 @@ function ThirdPartyComponent({ prop1 } : { prop1: string }) {
   return <div />
 }
 // ...
-<GenericCustomComponent component={ThirdPartyComponent} prop1="some value" />;
+function ThirdPartyComponent({ prop1 } : { prop1: string }) {
+  return <div />
+}
+// ...
 ```
 
 The `prop1` became required for the `GenericCustomComponent` as the `ThirdPartyComponent` has it as a requirement.

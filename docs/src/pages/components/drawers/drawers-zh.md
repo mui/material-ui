@@ -1,15 +1,20 @@
 ---
-title: React Drawer 抽屉组件
+title: React 抽屉组件
 components: Drawer, SwipeableDrawer
+githubLabel:
+  component: Drawer 抽屉
+materialDesign: https://material.io/components/navigation-drawer
 ---
 
 # Drawer 抽屉
 
-<p class="description">导航抽屉提供了一个访问您应用中的目标地址的途径。侧边栏被固定在屏幕的左侧或右侧，而它包含了一些补充内容。</p>
+<p class="description">导航抽屉提供了一个访问您应用中的目标地址的途径。 侧边栏被固定在屏幕的左侧或右侧，而它包含了一些补充内容。</p>
 
 用户能够通过 [Navigation drawers](https://material.io/design/components/navigation-drawer.html) （或者 “sidebars”）来访问目标地址和一些应用功能，例如切换帐户。 它们既可以永久在屏幕上，也可以由一个导航菜单图标控制。
 
 [Side sheets](https://material.io/design/components/sheets-side.html) 主要在平板和桌面上作为辅助的平面使用。
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## 临时抽屉
 
@@ -68,7 +73,7 @@ const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
 永久抽屉始终可见并固定在左侧，与内容或背景位于同一高度。 他们无法被关闭。
 
-**桌面上，我们推荐的默认导航是**一个固定的导航。
+一个从左到右层次结构的信息消费，是应用程序需要重视的。
 
 ### 全高导航栏
 

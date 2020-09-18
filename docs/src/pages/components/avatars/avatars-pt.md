@@ -1,11 +1,15 @@
 ---
 title: Componente React para Avatares
 components: Avatar, AvatarGroup, Badge
+githubLabel:
+  component: Avatar
 ---
 
 # Avatar
 
 <p class="description">Os avatares são encontrados ao longo do material design, com usos em tudo, desde tabelas até menus de diálogo.</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Avatares com imagens
 
@@ -21,7 +25,7 @@ Avatares com letras podem ser criados passando sua string como `children`.
 
 ## Tamanhos
 
-Você pode alterar o tamanho do avatar com as propriedades CSS `height` e `width`.
+Você pode alterar o tamanho do avatar com as propriedades CSS  `height` e `width`.
 
 {{"demo": "pages/components/avatars/SizeAvatars.js"}}
 

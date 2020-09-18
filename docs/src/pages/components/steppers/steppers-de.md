@@ -1,6 +1,9 @@
 ---
 title: Stepper React-Komponente
 components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIcon, StepLabel, Stepper
+githubLabel:
+  component: Stepper
+materialDesign: https://material.io/archive/guidelines/components/steppers.html
 ---
 
 # Stepper
@@ -12,29 +15,25 @@ components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIco
 - **Types of Steps**: Editable, Non-editable, Mobile, Optional
 - **Types of Steppers**: Horizontal, Vertical, Linear, Non-linear
 
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
 > **Note:** Steppers are no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support them.
 
 ## Horizontal Stepper
 
+Horizontal steppers are ideal when the contents of one step depend on an earlier step.
+
+{{"demo": "pages/components/steppers/HorizontalLinearStepper.js", "bg": true}}
+
 ### Linear
+
+A linear stepper allows the user to complete the steps in sequence.
 
 Der `Stepper` kann gesteuert werden, indem der aktuelle Schrittindex (auf Null basierend) als `activeStep` Eigenschaft übergeben wird. Die `Stepper-` Ausrichtung wird mithilfe der Eigenschaft `orientation` gesetzt.
 
 Dieses Beispiel zeigt auch die Verwendung eines optionalen Schritt durch setzten der `optional` Eigenschaft auf der zweiten `Step` Komponente. Beachten Sie, dass Sie selbst entscheiden müssen, wann ein optionaler Schritt übersprungen wird. Wenn Sie dies für einen bestimmten Schritt festgelegt haben, müssen Sie `complete={false}` setzten, um anzuzeigen, dass der Index des aktiven Schritts den optionalen Schritt überschritten hat, jedoch nicht wirklich abgeschlossen ist.
 
-{{"demo": "pages/components/steppers/HorizontalLinearStepper.js", "bg": true}}
-
-### Linear - Alternative Label
-
-Labels can be placed below the step icon by setting the `alternativeLabel` prop on the `Stepper` component.
-
-{{"demo": "pages/components/steppers/HorizontalLinearAlternativeLabelStepper.js", "bg": true}}
-
-### Anpasster Stepper
-
-Hier ist ein Beispiel zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
-
-{{"demo": "pages/components/steppers/CustomizedSteppers.js", "bg": true}}
+{{"demo": "pages/components/steppers/HorizontalLinearStepper.js"}}
 
 ### Nicht linear
 
@@ -44,41 +43,51 @@ Dieses Beispiel ähnelt dem regulären horizontalen Stepper, mit der Ausnahme, d
 
 The use of the `StepButton` here demonstrates clickable step labels, as well as setting the `completed` flag. However because steps can be accessed in a non-linear fashion, it's up to your own implementation to determine when all steps are completed (or even if they need to be completed).
 
-{{"demo": "pages/components/steppers/HorizontalNonLinearStepper.js", "bg": true}}
+{{"demo": "pages/components/steppers/HorizontalNonLinearStepper.js"}}
 
-### Non-linear - Alternative Label
+### Anpasster Stepper
 
 Labels can be placed below the step icon by setting the `alternativeLabel` prop on the `Stepper` component.
 
-{{"demo": "pages/components/steppers/HorizontalNonLinearAlternativeLabelStepper.js", "bg": true}}
+{{"demo": "pages/components/steppers/HorizontalLinearAlternativeLabelStepper.js"}}
 
-### Non-linear - Error Step
+### Nicht linear
 
-{{"demo": "pages/components/steppers/HorizontalNonLinearStepperWithError.js", "bg": true}}
+{{"demo": "pages/components/steppers/HorizontalStepperWithError.js"}}
+
+### Non-linear - Alternative Label
+
+Hier ist ein Beispiel zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
+
+{{"demo": "pages/components/steppers/CustomizedSteppers.js"}}
 
 ## Vertikaler Stepper
 
-{{"demo": "pages/components/steppers/VerticalLinearStepper.js", "bg": true}}
+Vertical steppers are designed for narrow screen sizes. They are ideal for mobile. All the features of the horizontal stepper can be implemented.
+
+{{"demo": "pages/components/steppers/VerticalLinearStepper.js"}}
 
 ## Mobile Stepper
 
-Diese Komponente implementiert einen kompakten Stepper, der für ein mobiles Gerät geeignet ist. Siehe [Mobile steps](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps) zur Inspiration.
+Diese Komponente implementiert einen kompakten Stepper, der für ein mobiles Gerät geeignet ist. IT has more limited functionality than the vertical stepper. Siehe [Mobile steps](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps) zur Inspiration.
+
+The mobile stepper supports three variants to display progress through the available steps: text, dots, and progress.
 
 ### Text
 
-This is essentially a back/next button positioned correctly. You must implement the textual description yourself, however, an example is provided below for reference.
+Verwenden Sie Punkte, wenn die Anzahl der Schritte nicht groß ist.
 
 {{"demo": "pages/components/steppers/TextMobileStepper.js", "bg": true}}
 
 ### Text mit Karussel-Effekt:
 
-Diese Demo ist der vorherigen sehr ähnlich, der Unterschied besteht in der Verwendung von [react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views), um den Übergang von Schritten zu realisieren.
+Verwenden Sie eine Fortschrittsleiste, wenn viele Schritte vorhanden sind oder wenn Schritte eingefügt werden müssen (basierend auf den Antworten auf frühere Schritte).
 
 {{"demo": "pages/components/steppers/SwipeableTextMobileStepper.js", "bg": true}}
 
 ### Dots
 
-Verwenden Sie Punkte, wenn die Anzahl der Schritte nicht groß ist.
+Use dots when the number of steps is small.
 
 {{"demo": "pages/components/steppers/DotsMobileStepper.js", "bg": true}}
 

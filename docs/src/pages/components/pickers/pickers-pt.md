@@ -1,20 +1,27 @@
 ---
-title: Componentes React para Seletor de Data
+title: Componente React para Data e Hora
 components: TextField
+githubLabel:
+  component: DatePicker
+materialDesign: https://material.io/components/date-pickers
+waiAria: https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/datepicker-dialog.html
+packageName: '@material-ui/lab'
 ---
 
 # Seletores Data / Hora
 
-<p class="description">Seletores de datas e seletores de hora fornecem uma maneira simples de selecionar um único valor de um conjunto pré-determinado.</p>
+<p class="description">Seletores de data e seletores de hora fornecem uma maneira simples de selecionar um único valor de um conjunto pré-determinado.</p>
 
 - Em dispositivos móveis, seletores são melhores aplicados quando mostrados em diálogos de confirmação.
 - Para exibição em linha, como em um formulário, considere usar controles compactos, como botões suspensos segmentados.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## @material-ui/pickers
 
 ![estrelas](https://img.shields.io/github/stars/mui-org/material-ui-pickers.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/@material-ui/pickers.svg)
 
-[@material-ui/pickers](https://material-ui-pickers.dev/) fornece os controles seletores de data e hora.
+A biblioteca [@material-ui/pickers](https://material-ui-pickers.dev/) fornece os controles de seletores de data e hora.
 
 {{"demo": "pages/components/pickers/MaterialUIPickers.js"}}
 
@@ -22,7 +29,7 @@ components: TextField
 
 ⚠️ O suporte dos navegadores aos controles de entrada nativos [não é perfeito](https://caniuse.com/#feat=input-datetime). Dê uma olhada em [@material-ui/pickers](https://material-ui-pickers.dev/) para obter uma melhor solução.
 
-### Selecionadores de data
+### Seletores de data
 
 Um exemplo de seletor de data nativo com `type="date"`.
 
@@ -34,7 +41,7 @@ Um exemplo de seletor de data & hora nativo com `type="datetime-local"`.
 
 {{"demo": "pages/components/pickers/DateAndTimePickers.js"}}
 
-### Seletores de Hora
+### Seletores de hora
 
 Um exemplo de seletor de hora nativo com `type="time"`.
 

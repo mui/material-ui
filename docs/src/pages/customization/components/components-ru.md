@@ -5,10 +5,10 @@
 Поскольку компоненты могут использоваться в разных контекстах, существует несколько подходов к этому. Переходя от самого нераспространённого варианта к самому широко используемому, это:
 
 1. [Конкретное изменение для единичного случая](#1-specific-variation-for-a-one-time-situation)
-2. [Динамическое изменение для единичного случая](#2-dynamic-variation-for-a-one-time-situation)
-3. [Особый вариант компонента](#3-specific-variation-of-a-component) использумый в различных контекстах
-4. [Material Design варианты](#4-material-design-variations) как у компонента кнопка
-5. [Глобальное изменение темы](#5-global-theme-variation)
+1. [Динамическое изменение для единичного случая](#2-dynamic-variation-for-a-one-time-situation)
+1. [Особый вариант компонента](#3-specific-variation-of-a-component) использумый в различных контекстах
+1. [Material Design варианты](#4-material-design-variations) как у компонента кнопка
+1. [Глобальное изменение темы](#5-global-theme-variation)
 
 ## 1. Конкретное изменение для единичного случая
 
@@ -24,11 +24,11 @@
 
 ### Overriding styles with classes
 
-Когда ` className ` свойства недостаточно, и вам нужен доступ ко вложенным элементам, вы можете воспользоваться свойством объекта `classes` для настройки всех CSS, внедренных через Material-UI для данного компонента.
+Когда `className` свойства недостаточно, и вам нужен доступ ко вложенным элементам, вы можете воспользоваться свойством объекта `classes` для настройки всех CSS, внедренных через Material-UI для данного компонента.
 
-Список классов, доступных для каждого компонента представлен на странице API-документации компонента. Обратитесь к разделу ** CSS ** и ищите в **столбце с именем правила**. Для примера можете взглянуть на [Button CSS API](/api/button/#css). Кроме того, вы можете воспользоваться [встроенными в браузер инструментами разработчика](#using-the-dev-tools).
+Список классов, доступных для каждого компонента представлен на странице API-документации компонента. Обратитесь к разделу ** CSS ** и ищите в **столбце с именем правила**. В качестве примера можно привести компонент пункт меню и состояние *выбрано*. Помимо доступа к вложенным элементам, свойство `classes` можно использовать для настройки специальных состояний компонентов Material-UI:
 
-В этом примере также используется ` withStyles() ` (см. выше), но теперь ` ClassesNesting ` присваивает свойству `classes` компонета `Button` обьект сопоставляющий **имена переопределяемых классов** (стилевые правила) с **именам использумых классов CSS ** (значениями). Существующие классы компонента будут по прежнему внедряться, поэтому необходимо указать только те стили, которые вы хотите добавить или переопределить.
+В этом примере также используется `withStyles()` (см. выше), но теперь `ClassesNesting` присваивает свойству `classes` компонета `Button` обьект сопоставляющий **имена переопределяемых классов** (стилевые правила) с **именам использумых классов CSS ** (значениями). Существующие классы компонента будут по прежнему внедряться, поэтому необходимо указать только те стили, которые вы хотите добавить или переопределить.
 
 Обратите внимание, что в дополнение к стилю кнопки, стиль текста кнопки был изменен на стиль с заглавными буквами:
 
@@ -40,7 +40,7 @@
 
 ### Использование инструментов разработчика
 
-Инструменты разработчика браузера могут сэкономить вам много времени. В режиме разработки имена классов Material-UI [следуют простому шаблону](/styles/advanced/#class-names): ` Mui[имя компонента]-[имя стилевого правила]-[UUID]`.
+Инструменты разработчика браузера могут сэкономить вам много времени. В режиме разработки имена классов Material-UI [следуют простому шаблону](/styles/advanced/#class-names): `Mui[имя компонента]-[имя стилевого правила]-[UUID]`.
 
 Вернемся к упомянутому выше примеру. Как вы можете переопределить текст кнопки?
 
@@ -127,7 +127,6 @@ const StyledButton = withStyles({
 | required     | Mui-required      |
 | expanded     | Mui-expanded      |
 | selected     | Mui-selected      |
-
 
 ```css
 .MenuItem {
@@ -251,7 +250,7 @@ const theme = createMuiTheme({
 
 ### Глобальное переопределение CSS
 
-Вы также можете настроить все экземпляры компонента с помощью CSS. Components expose [global class names](/styles/advanced/#with-material-ui-core) to enable this. Это очень похоже на настройку Bootstrap.
+Вы также можете настроить все экземпляры компонента с помощью CSS. Это очень похоже на настройку Bootstrap. Components expose [global class names](/styles/advanced/#with-material-ui-core) to enable this.
 
 ```jsx
 const GlobalCss = withStyles({
@@ -288,3 +287,45 @@ const theme = createMuiTheme({
 ```
 
 {{"demo": "pages/customization/components/GlobalThemeOverride.js"}}
+
+### Adding new component variants
+
+You can take advantage of the `variants` key in the `theme`'s components section to add new variants to Material-UI components. These new variants, can specify which styles the component should have, if specific props are defined together.
+
+The definitions are specified in an array, under the component's name. For every one of them a class is added in the head. The order is **important**, so make sure that the styles that should win will be specified lastly.
+
+```jsx
+const theme = createMuiTheme({
+  components: {
+    MuiButton: {
+      variants: [
+        {
+          props: { variant: 'dashed' },
+          style: {
+            textTransform: 'none',
+            border: `2px dashed grey${blue[500]}`,
+          },
+        },
+        {
+          props: { variant: 'dashed', color: 'secondary' },
+          style: {
+            border: `4px dashed ${red[500]}`,
+          },
+        },
+      ],
+    },
+  },
+});
+```
+
+If you are using TypeScript, you will need to specify your new variants/colors, using module augmentation.
+
+```tsx
+declare module '@material-ui/core/Button/Button' {
+  interface ButtonPropsVariantOverrides {
+    dashed: true;
+  }
+}
+```
+
+{{"demo": "pages/customization/components/GlobalThemeVariants.js"}}

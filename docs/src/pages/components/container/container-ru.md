@@ -1,6 +1,8 @@
 ---
 title: Container React component
 components: Container
+githubLabel:
+  component: Container
 ---
 
 # Container
@@ -9,9 +11,11 @@ components: Container
 
 Несмотря на то, что контейнеры могут быть вложенными, большинство макетов не требуют вложенного контейнера.
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
 ## Fluid
 
-A fluid container width is bounded by the `maxWidth` property value.
+A fluid container width is bounded by the `maxWidth` prop value.
 
 {{"demo": "pages/components/container/SimpleContainer.js", "iframe": true, "defaultCodeOpen": false}}
 

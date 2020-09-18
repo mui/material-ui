@@ -1,9 +1,12 @@
 ---
-title: React Table 表格组件
+title: React 表格组件
 components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
+githubLabel:
+  component: Table
+materialDesign: https://material.io/components/data-tables
 ---
 
-# Table 表格
+# Table
 
 <p class="description">表格展示数据组。 它们是完全可以自定义的。</p>
 
@@ -17,11 +20,13 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 
 当在引入工具时，我们应将它们直接放在表格的上方或下方。
 
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
 ## 表格的结构
 
 一个数据表格的顶部是标题行，并展示各列的名称，而后续的各行则是表格的数据。
 
-若用户想要选择或操作数据，那则应该咋每一行加入复选框。
+若用户想要选择或操作数据，那则应该在每一行加入复选框。
 
 鉴于无障碍设计的考虑，表格的第一栏应该是一个 `<th>` 元素，它附着了 `"row"` 的 `范围` 。 这样一来，屏幕阅读器就可以通过行和列的名字，来定位到某个单元格的值。
 
@@ -47,7 +52,7 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 
 ## 自定义表格
 
-以下是自定义此组件的一个示例。 您可以在[重写文档页面](/customization/components/)中了解更多有关此内容的信息。
+以下是自定义组件的一个示例。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
 
 {{"demo": "pages/components/tables/CustomizedTables.js", "bg": true}}
 
@@ -56,16 +61,16 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 通过 `rowsPerPageOptions` 属性，也可以自定义 "Rows per page" 显示的选择项。 你应该提供以下一种数组：
 
 - **数字（numbers）**，而每个数字用作为选择项的标签（label）和值（value）。
-    
-    ```jsx
-    <TablePagination rowsPerPageOptions={[10, 50]} />
-    ```
+
+  ```jsx
+  <TablePagination rowsPerPageOptions={[10, 50]} />
+  ```
 
 - **对象（objects）**，而 `value` 和 `label` 键则相应的对照选择项的标签（label）和值（value）（譬如，当有一个语言字符串为“All” 时你会受益匪浅）。
-    
-    ```jsx
-    <TablePagination rowsPerPageOptions={[10, 50, { value: -1, label: 'All' }]} />
-    ```
+
+  ```jsx
+  <TablePagination rowsPerPageOptions={[10, 50, { value: -1, label: 'All' }]} />
+  ```
 
 ### 自定义表格分页操作
 
@@ -79,21 +84,21 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 
 {{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
 
-## 可折叠表格
+## 可折叠的表格
 
 以可扩展行的表格为例，揭示更多信息。 它利用了 [`Collapse`](/api/collapse/) 组件。
 
 {{"demo": "pages/components/tables/CollapsibleTable.js", "bg": true}}
 
-## 跨越表格
+## 跨越表格（Spanning Table）
 
-一个行 & 列跨越的简单例子
+一个行和列跨越的简单例子。
 
 {{"demo": "pages/components/tables/SpanningTable.js", "bg": true}}
 
 ## 大型列表渲染（Virtualized Table）
 
-以下例子展示了将 [react-virtualized](https://github.com/bvaughn/react-virtualized) 与 `表格` 组件一起使用的方法。 它渲染了200多行，并且可以轻松的延展到更多行。 可视化优化了整体的性能。
+以下例子展示了将 [react-virtualized](https://github.com/bvaughn/react-virtualized) 与 `Table` 组件一起使用的方法。 它渲染了200多行，并且可以轻松的延展到更多行。 可视化优化了整体的性能。
 
 {{"demo": "pages/components/tables/ReactVirtualizedTable.js", "bg": true}}
 
@@ -115,7 +120,7 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 - [mui-datatables](https://github.com/gregnb/mui-datatables)：Material-UI 的响应式数据表格，包括筛选，排序，搜索等功能。
 - [tubular-react](https://github.com/unosquare/tubular-react): 一个带有本地或者远程的数据来源的 Material-UI 表格。 它能够对数据进行筛选、排序、自由搜索、导出为本地 CSV 以及汇总。
 
-## 可访问性
+## 无障碍设计
 
 （WAI 教程：https://www.w3.org/WAI/tutorials/tables/）
 

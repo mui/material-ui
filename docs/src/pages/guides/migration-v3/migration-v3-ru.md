@@ -70,12 +70,12 @@ yarn add @material-ui/styles
 
 ### Стили
 
-- ⚠️ Material-UI depends on JSS v10. JSS v10 is not backward compatible with v9. Make sure JSS v9 is not installed in your environment. (Removing `react-jss` from your `package.json` can help). The StylesProvider component replaces the JssProvider one.
+- ⚠️ Material-UI depends on JSS v10. JSS v10 is not backward compatible with v9. Make sure JSS v9 is not installed in your environment. The StylesProvider component replaces the JssProvider one. (Removing `react-jss` from your `package.json` can help).
 - Remove the first option argument of `withTheme()`. (The first argument was a placeholder for a potential future option that never arose.)
-  
-    It matches the [emotion API](https://emotion.sh/docs/introduction) and the [styled-components API](https://www.styled-components.com).
 
-```diff
+  It matches the [emotion API](https://emotion.sh/docs/introduction) and the [styled-components API](https://www.styled-components.com).
+
+  ```diff
   -const DeepChild = withTheme()(DeepChildRaw);
   +const DeepChild = withTheme(DeepChildRaw);
   ```
@@ -87,8 +87,7 @@ yarn add @material-ui/styles
   +import { hexToRgb } from '@material-ui/core/styles';
   ```
 
-- Scope the [keyframes API](https://cssinjs.org/jss-syntax/#keyframes-animation). You should apply the following changes in your codebase.
-  It helps isolating the animation logic:
+- Scope the [keyframes API](https://cssinjs.org/jss-syntax/#keyframes-animation). You should apply the following changes in your codebase. It helps isolating the animation logic:
 
   ```diff
     rippleVisible: {
@@ -106,10 +105,9 @@ yarn add @material-ui/styles
     },
   ```
 
-### Theme
+### Темы
 
-- The `theme.palette.augmentColor()` method no longer performs a side effect on its input color.
-  To use it correctly, you have to use the returned value.
+- The `theme.palette.augmentColor()` method no longer performs a side effect on its input color. To use it correctly, you have to use the returned value.
 
   ```diff
   -const background = { main: color };
@@ -142,7 +140,7 @@ yarn add @material-ui/styles
 
   You can use [the migration helper](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api) on your project to make this smoother.
 
-### Layout
+### Расположение
 
 - [Grid] In order to support arbitrary spacing values and to remove the need to mentally count by 8, we are changing the spacing API:
 
@@ -154,7 +152,9 @@ yarn add @material-ui/styles
   -  spacing: PropTypes.oneOf([0, 8, 16, 24, 32, 40]),
   +  spacing: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
   ```
+
   Going forward, you can use the theme to implement [a custom Grid spacing transformation function](https://material-ui.com/system/spacing/#transformation).
+
 - [Container] Moved from `@material-ui/lab` to `@material-ui/core`.
 
   ```diff
@@ -166,8 +166,7 @@ yarn add @material-ui/styles
 
 #### `value` type
 
-Normalized `value` prop type for input components to use `unknown`. This affects
-`InputBase`, `NativeSelect`, `OutlinedInput`, `Radio`, `RadioGroup`, `Select`, `SelectInput`, `Switch`, `TextArea`,  and `TextField`.
+Normalized `value` prop type for input components to use `unknown`. This affects `InputBase`, `NativeSelect`, `OutlinedInput`, `Radio`, `RadioGroup`, `Select`, `SelectInput`, `Switch`, `TextArea`,  and `TextField`.
 
 ```diff
 function MySelect({ children }) {
@@ -185,24 +184,24 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
 ### Button
 
 - [Button] Remove the deprecated button variants (flat, raised and fab):
-  
+
   ```diff
   -<Button variant="raised" />
   +<Button variant="contained" />
   ```
-  
+
   ```diff
   -<Button variant="flat" />
   +<Button variant="text" />
   ```
-  
+
   ```diff
   -import Button from '@material-ui/core/Button';
   -<Button variant="fab" />
   +import Fab from '@material-ui/core/Fab';
   +<Fab />
   ```
-  
+
   ```diff
   -import Button from '@material-ui/core/Button';
   -<Button variant="extendedFab" />
@@ -211,8 +210,8 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
   ```
 
 - [ButtonBase] The component passed to the `component` prop needs to be able to hold a ref. The [composition guide](/guides/composition/#caveat-with-refs) explains the migration strategy.
-  
-    This also applies to `BottomNavigationAction`, `Button`, `CardActionArea`, `Checkbox`, `ExpansionPanelSummary`, `Fab`, `IconButton`, `MenuItem`, `Radio`, `StepButton`, `Tab`, `TableSortLabel` as well as `ListItem` if the `button` prop is true.
+
+  This also applies to `BottomNavigationAction`, `Button`, `CardActionArea`, `Checkbox`, `ExpansionPanelSummary`, `Fab`, `IconButton`, `MenuItem`, `Radio`, `StepButton`, `Tab`, `TableSortLabel` as well as `ListItem` if the `button` prop is true.
 
 ### Card (карточка)
 
@@ -234,7 +233,7 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
 ### Divider
 
 - [Divider] Remove the deprecated `inset` prop.
-  
+
   ```diff
   -<Divider inset />
   +<Divider variant="inset" />
@@ -249,12 +248,12 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
 ### Список
 
 - [List] Rework the list components to match the specification:
-  
+
   - The `ListItemAvatar` component is required when using an avatar.
   - The `ListItemIcon` component is required when using a left checkbox.
   - The `edge` property should be set on the icon buttons.
-- [List] `dense` no longer reduces the top and bottom padding of the `List` element.
 
+- [List] `dense` no longer reduces the top and bottom padding of the `List` element.
 - [ListItem] Increase the CSS specificity of the `disabled` and `focusVisible` style rules.
 
 ### Menu
@@ -264,23 +263,22 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
 ### Modal
 
 - [Modal] The child needs to be able to hold a ref. The [composition guide](/guides/composition/#caveat-with-refs) explains the migration strategy.
-  
-    This also applies to `Dialog` and `Popover`.
+
+  This also applies to `Dialog` and `Popover`.
 
 - [Modal] Remove the classes customization API for the Modal component (-74% bundle size reduction when used standalone).
-
 - [Modal] event.defaultPrevented is now ignored. The new logic closes the Modal even if `event.preventDefault()` is called on the key down escape event. `event.preventDefault()` is meant to stop default behaviors like clicking a checkbox to check it, hitting a button to submit a form, and hitting left arrow to move the cursor in a text input etc. Only special HTML elements have these default behaviors. You should use `event.stopPropagation()` if you don't want to trigger an `onClose` event on the modal.
 
 ### Paper
 
 - [Paper] Reduce the default elevation. Change the default Paper elevation to match the Card and the Expansion Panel:
-  
+
   ```diff
   -<Paper />
   +<Paper elevation={2} />
   ```
-  
-    This affects the `ExpansionPanel` as well.
+
+  This affects the `ExpansionPanel` as well.
 
 ### Portal
 
@@ -293,7 +291,7 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
 ### Slider
 
 - [Slider] Move from `@material-ui/lab` to `@material-ui/core`.
-  
+
   ```diff
   -import Slider from '@material-ui/lab/Slider'
   +import Slider from '@material-ui/core/Slider'
@@ -302,7 +300,7 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
 ### Switch (переключатель)
 
 - [Switch] Refactor the implementation to make it easier to override the styles. Rename the class names to match the specification wording:
-  
+
   ```diff
   -icon
   -bar
@@ -313,14 +311,14 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
 ### Snackbar
 
 - [Snackbar] Match the new specification.
-  
+
   - Change the dimensions
   - Change the default transition from `Slide` to `Grow`.
 
 ### SvgIcon
 
 - [SvgIcon] Rename nativeColor -> htmlColor. React solved the same problem with the `for` HTML attribute, they have decided to call the prop `htmlFor`. This change follows the same reasoning.
-  
+
   ```diff
   -<AddIcon nativeColor="#fff" />
   +<AddIcon htmlColor="#fff" />
@@ -329,11 +327,11 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
 ### Вкладки
 
 - [Tab] Remove the `labelContainer`, `label` and `labelWrapped` class keys for simplicity. This has allowed us to remove 2 intermediary DOM elements. You should be able to move the custom styles to the `root` class key.
-  
-    ![A simpler tab item DOM structure](https://user-images.githubusercontent.com/3165635/53287870-53a35500-3782-11e9-9431-2d1a14a41be0.png)
+
+  ![A simpler tab item DOM structure](https://user-images.githubusercontent.com/3165635/53287870-53a35500-3782-11e9-9431-2d1a14a41be0.png)
 
 - [Tabs] Remove deprecated fullWidth and scrollable props:
-  
+
   ```diff
   -<Tabs fullWidth scrollable />
   +<Tabs variant="scrollable" />
@@ -342,7 +340,7 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
 ### Table (tаблица)
 
 - [TableCell] Remove the deprecated `numeric` property:
-  
+
   ```diff
   -<TableCell numeric>{row.calories}</TableCell>
   +<TableCell align="right">{row.calories}</TableCell>
@@ -350,7 +348,7 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
 
 - [TableRow] Remove the fixed height CSS property. The cell height is computed by the browser using the padding and line-height.
 - [TableCell] Move the `dense` mode to a different property:
-  
+
   ```diff
   -<TableCell padding="dense" />
   +<TableCell size="small" />
@@ -358,10 +356,10 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
 
 - [TablePagination] The component no longer tries to fix invalid (`page`, `count`, `rowsPerPage`) property combinations. It raises a warning instead.
 
-### Текстовое поля
+### TextField
 
 - [InputLabel] You should be able to override all the styles of the FormLabel component using the CSS API of the InputLabel component. The `FormLabelClasses` property has been removed.
-  
+
   ```diff
   <InputLabel
   - FormLabelClasses={{ asterisk: 'bar' }}
@@ -372,12 +370,12 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
   ```
 
 - [InputBase] Change the default box sizing model. It uses the following CSS now:
-  
+
   ```css
   box-sizing: border-box;
   ```
-  
-    This solves issues with the `fullWidth` prop.
+
+  This solves issues with the `fullWidth` prop.
 
 - [InputBase] Remove the `inputType` class from `InputBase`.
 
@@ -388,7 +386,7 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
 
 ### Оформление текста
 
-- [Typography] Remove the deprecated typography variants. You can upgrade by performing the following replacements: 
+- [Typography] Remove the deprecated typography variants. You can upgrade by performing the following replacements:
   - display4 => h1
   - display3 => h2
   - display2 => h3
@@ -400,13 +398,13 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
   - body1 (default) => body2 (default)
 - [Typography] Remove the opinionated `display: block` default typography style. You can use the new `display?: 'initial' | 'inline' | 'block';` property.
 - [Typography] Rename the `headlineMapping` property to `variantMapping` to better align with its purpose.
-  
+
   ```diff
   -<Typography headlineMapping={headlineMapping}>
   +<Typography variantMapping={variantMapping}>
   ```
 
-- [Typography] Change the default variant from `body2` to `body1`. A font size of 16px is a better default than 14px. Bootstrap, material.io, and even the documentation use 16px as a default font size. 14px like Ant Design uses is understandable, as Chinese users have a different alphabet. 12px is recommended as the default font size for Japanese.
+- [Typography] Change the default variant from `body2` to `body1`. A font size of 16px is a better default than 14px. 14px like Ant Design uses is understandable, as Chinese users have a different alphabet. Bootstrap, material.io, and even the documentation use 16px as a default font size. 12px is recommended as the default font size for Japanese.
 - [Typography] Remove the default color from the typography variants. The color should inherit most of the time. It's the default behavior of the web.
 - [Typography] Rename `color="default"` to `color="initial"` following the logic of [this thread](https://github.com/mui-org/material-ui/issues/13028). The usage of *default* should be avoided, it lacks semantic.
 
@@ -417,7 +415,7 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
 ### UMD
 
 - This change eases the use of Material-UI with a CDN:
-  
+
   ```diff
   const {
     Button,
@@ -425,9 +423,9 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
   -} = window['material-ui'];
   +} = MaterialUI;
   ```
-  
-    It's consistent with other React projects:
-  
+
+  It's consistent with other React projects:
+
   - material-ui => MaterialUI
   - react-dom => ReactDOM
   - prop-types => PropTypes

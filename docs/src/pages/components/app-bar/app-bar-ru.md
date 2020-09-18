@@ -1,6 +1,9 @@
 ---
 title: React-компонент Панель навигации
 components: AppBar, Toolbar, Menu
+githubLabel:
+  component: AppBar
+materialDesign: https://material.io/components/app-bars-top
 ---
 
 # Панель навигации
@@ -10,6 +13,8 @@ components: AppBar, Toolbar, Menu
 В [](https://material.io/design/components/app-bars-top.html)верхней панели приложений</a> отображается содержимое и действия, связанные с текущим экраном. Она используется для брендинга, заголовков экрана, навигации и действий.
 
 Она может использоваться как контекстное меню или как навигационная панель.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Простая панель навигации
 
@@ -113,9 +118,9 @@ function App() {
 
 1. `варианты` (*объекта* [optional]):
 
-- `options.disableHysteresis` (*Boolean* [optional]): По умолчанию - `false`. Отключение запаздывания. Игнорирование направления прокрутки когда определено `trigger` значение.
-- `options.target` (*Node* [optional]): По умолчанию `window`.
-- `options.threshold` (*Number* [optional]): По умолчанию `100`. Измените значение `trigger` когда вертикальная прокрутка строго первышает этот порог (исключительно).
+   - `options.disableHysteresis` (*Boolean* [optional]): По умолчанию - `false`. Отключение запаздывания. Игнорирование направления прокрутки когда определено `trigger` значение.
+   - `options.target` (*Node* [optional]): По умолчанию `window`.
+   - `options.threshold` (*Number* [optional]): По умолчанию `100`. Измените значение `trigger` когда вертикальная прокрутка строго первышает этот порог (исключительно).
 
 #### Возвращает
 
@@ -124,5 +129,5 @@ function App() {
 #### Примеры
 
 ```jsx
-<div>
+<div mark="crwd-mark">
 ```

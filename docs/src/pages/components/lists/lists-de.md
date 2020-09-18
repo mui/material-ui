@@ -1,6 +1,9 @@
 ---
 title: List React Komponente
 components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
+githubLabel:
+  component: List (liste)
+materialDesign: https://material.io/components/lists
 ---
 
 # Listen (List)
@@ -8,6 +11,8 @@ components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, Lis
 <p class="description">Listen sind durchgehende, vertikale Indexe von Text oder Bildern.</p>
 
 [Listen](https://material.io/design/components/lists.html) sind eine fortlaufende Gruppe von Text oder Bildern. Sie bestehen aus Elementen, die primäre und ergänzende Aktionen enthalten, die durch Symbole und Texte dargestellt werden.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Einfache Liste
 
@@ -22,9 +27,11 @@ function ListItemLink(props) {
 
 //...
 
-<ListItemLink href="#simple-list">
-  <ListItemText primary="Spam" />
-</ListItemLink>
+function ListItemLink(props) {
+  return <ListItem button component="a" {...props} />;
+}
+
+//...
 ```
 
 Nach diesem Abschnitt der Dokumentation finden Sie eine [Demo mit React Router](/guides/composition/#react-router).
@@ -87,11 +94,17 @@ This feature relies on CSS sticky positioning. Unfortunately it's [not implement
 
 ## Virtualisierte Liste
 
+When rendering a list within a component that defines its own gutters, `ListItem` gutters can be disabled with `disableGutters`.
+
+{{"demo": "pages/components/lists/GutterlessList.js", "bg": true}}
+
+## Virtualisierte Liste
+
 Im folgenden Beispiel zeigen wir wie Sie [react-window](https://github.com/bvaughn/react-window) mit der `Listen<` Komponente nutzen können. Sie zeigt 200 Zeilen an und kann auch einfach mehr verwalten. Virtualisierung hilft bei Leistungsproblemen.
 
 {{"demo": "pages/components/lists/VirtualizedList.js", "bg": true}}
 
-The use of [react-window](https://github.com/bvaughn/react-window) when possible is encouraged. Wenn diese Bibliothek Ihren Anwendungsfall nicht abdeckt, sollten Sie [react-virtualized](https://github.com/bvaughn/react-virtualized) und Alternativen wie [react-virtuoso](https://github.com/petyosi/react-virtuoso) in Betracht ziehen.
+Wenn diese Bibliothek Ihren Anwendungsfall nicht abdeckt, sollten Sie [react-virtualized](https://github.com/bvaughn/react-virtualized) und Alternativen wie [react-virtuoso](https://github.com/petyosi/react-virtuoso) in Betracht ziehen. The use of [react-window](https://github.com/bvaughn/react-window) when possible is encouraged.
 
 ## Individuelle Anpassung
 

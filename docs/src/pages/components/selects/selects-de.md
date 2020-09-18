@@ -1,17 +1,21 @@
 ---
 title: Auswahl React-Komponente
 components: Select, NativeSelect
+githubLabel:
+  component: Selects (auswähler)
 ---
 
 # Selects (auswähler)
 
 <p class="description">Auswahllkomponenten werden zum Sammeln von vom Benutzer bereitgestellten Informationen aus einer Liste von Optionen verwendet.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
 ## Einfache Auswahl
 
 Menüs werden über ihren Referenzelementen so positioniert, dass der aktuell ausgewählte Menüpunkt über dem Referenzelement angezeigt wird.
 
-{{"demo": "pages/components/selects/SimpleSelect.js"}}
+{{"demo": "pages/components/selects/BasicSelect.js"}}
 
 ## Advanced features
 
@@ -19,19 +23,37 @@ The Select component is meant to be interchangeable with a native `<select>` ele
 
 If you are looking for more advanced features, like combobox, multiselect, autocomplete, async or creatable support, head to the [`Autocomplete` component](/components/autocomplete/). It's meant to be an improved version of the "react-select" and "downshift" packages.
 
-## Native Auswahl
+## Eigenschaften
 
-Da die Benutzererfahrung auf mobilen Geräten durch die native Auswahl der Plattform verbessert werden kann, erlauben wir ein solches Muster.
+### Filled and outlined variants
 
 {{"demo": "pages/components/selects/NativeSelects.js"}}
 
+### Labels and helper text
+
+{{"demo": "pages/components/selects/SelectLabels.js"}}
+
+### Auto width
+
+{{"demo": "pages/components/selects/SelectAutoWidth.js"}}
+
+### Other props
+
+{{"demo": "pages/components/selects/SelectOtherProps.js"}}
+
 ## Text Felder (Text Fields)
 
-Die `TextField` Wrapper-Komponente ist ein vollständiges Formularsteuerelement, das eine Beschriftung, Eingabe und Hilfetext enthält. Ein Beispiel für den Auswahlmodus [in diesem Abschnitt](/components/text-fields/#select).
+Da die Benutzererfahrung auf mobilen Geräten durch die native Auswahl der Plattform verbessert werden kann, erlauben wir ein solches Muster.
+
+🎨 Wenn Sie nach Inspiration suchen, sehen sie sich [MUI Treasury's Anpassungs-Beispiele](https://mui-treasury.com/styles/select) an.
+
+## TextField
+
+Die `TextField` Wrapper-Komponente ist ein vollständiges Formularsteuerelement, das eine Beschriftung, Eingabe und Hilfetext enthält. The `Select` component can handle multiple selections.
 
 ## Benutzerdefinierte Auswahl
 
-Hier sind einige Beispiele, wie man die Komponente anpassen kann. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
+Hier einige Beispiele zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
 
 Der erste Schritt besteht darin, die `InputBase` Komponente zu formatieren. Anschließend können Sie es entweder direkt als Textfeld verwenden oder der Eigenschaft select `input` zuweisen, um ein Feld `select` zu erhalten.
 
@@ -39,19 +61,37 @@ Der erste Schritt besteht darin, die `InputBase` Komponente zu formatieren. Ansc
 
 🎨 Wenn Sie nach Inspiration suchen, sehen sie sich [MUI Treasury's Anpassungs-Beispiele](https://mui-treasury.com/styles/select) an.
 
-## Mehrfach Auswahl
+## Kontrollierte Auswahl
 
-The `Select` component can handle multiple selections. It's enabled with the `multiple` property.
+The `Select` component can handle multiple selections. The `Select` component can handle multiple selections.
 
 Like with the single selection, you can pull out the new value by accessing `event.target.value` in the `onChange` callback. Es ist immer ein Array.
 
+### Standard
+
 {{"demo": "pages/components/selects/MultipleSelect.js"}}
 
-## Kontrollierte Auswahl
+### Checkmarks
+
+{{"demo": "pages/components/selects/MultipleSelectCheckmarks.js"}}
+
+### Chip
+
+Alternatively a `TextField` with an `id` and `label` creates the proper markup and ids for you:
+
+### Placeholder
+
+{{"demo": "pages/components/selects/MultipleSelectPlaceholder.js"}}
+
+### Native
+
+{{"demo": "pages/components/selects/MultipleSelectNative.js"}}
+
+## Mit einem Dialog
 
 {{"demo": "pages/components/selects/ControlledOpenSelect.js"}}
 
-## Mit einem Dialog
+## Gruppierung
 
 Während es von der Material Design-Spezifikation nicht empfohlen wird, können Sie eine Auswahl innerhalb eines Dialogfelds verwenden.
 

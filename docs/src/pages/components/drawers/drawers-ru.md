@@ -1,6 +1,9 @@
 ---
 title: Панель, компонент React
 components: Drawer, SwipeableDrawer
+githubLabel:
+  component: Панель
+materialDesign: https://material.io/components/navigation-drawer
 ---
 
 # Панель
@@ -9,7 +12,9 @@ components: Drawer, SwipeableDrawer
 
 [Navigation drawers](https://material.io/design/components/navigation-drawer.html) (or "sidebars") provide access to destinations and app functionality, such as switching accounts. Они могут либо находится всегда в открытом состоянии либо контролироватся с помощью навигационного меню.
 
-[Боковые панели](https://material. io/design/components/sheets-side.html) являются дополнительными элементами, в основном используемыми на планшетах и ПК.
+\[Боковые панели\](https://material. io/design/components/sheets-side.html) являются дополнительными элементами, в основном используемыми на планшетах и ПК.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Скрытая Панель
 
@@ -68,7 +73,7 @@ Persistent navigation drawers are acceptable for all sizes larger than mobile. T
 
 Permanent navigation drawers are always visible and pinned to the left edge, at the same elevation as the content or background. They cannot be closed.
 
-Рекомендуется использовать вполне видимые навигационные панели на **ПК**.
+Исползуется в приложениях, которые сфокусированны на предоставлении информации и используют иерархию элементов слева направо.
 
 ### Навигация в полную высоту
 

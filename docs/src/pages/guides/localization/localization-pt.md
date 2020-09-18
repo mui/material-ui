@@ -6,7 +6,7 @@ A localidade padrão do Material-UI é em inglês (Estados Unidos). Se você qui
 
 ## Texto da localidade
 
-Use o tema para configurar o texto de configuração global:
+Use o tema para configurar os textos da localização globalmente:
 
 ```jsx
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
@@ -43,6 +43,7 @@ const theme = createMuiTheme({
 | Finlandês               | fi-FI                     | `fiFI`             |
 | Francês                 | fr-FR                     | `frFR`             |
 | Alemão                  | de-DE                     | `deDE`             |
+| Hebraico                | el-GR                     | `elGR`             |
 | Hebraico                | he-IL                     | `heIL`             |
 | Hindi                   | hi-IN                     | `hiIN`             |
 | Húngaro                 | hu-HU                     | `huHU`             |
@@ -54,13 +55,14 @@ const theme = createMuiTheme({
 | Persa                   | fa-IR                     | `faIR`             |
 | Polonês                 | pl-PL                     | `plPL`             |
 | Português (Brasil)      | pt-BR                     | `ptBR`             |
-| Português               | pt-PT                     | `ptPT`             |
+| Português (Europeu)     | pt-PT                     | `ptPT`             |
 | Romeno                  | ro-RO                     | `roRO`             |
 | Russo                   | ru-RU                     | `ruRU`             |
 | Eslovaco                | sk-SK                     | `skSK`             |
 | Espanhol                | es-ES                     | `esES`             |
 | Sueco                   | sv-SE                     | `svSE`             |
 | Turco                   | tr-TR                     | `trTR`             |
+| Vietnamita              | th-TH                     | `thTH`             |
 | Ucraniano               | uk-UA                     | `ukUA`             |
 | Vietnamita              | vi-VN                     | `viVN`             |
 
@@ -68,7 +70,7 @@ Você pode [encontrar o fonte](https://github.com/mui-org/material-ui/blob/next/
 
 Para criar sua própria tradução, ou para personalizar o texto em Inglês. copie este arquivo para o seu projeto, faça as alterações necessárias e importe a localidade de lá.
 
-Por favor, considere contribuir com novas traduções de volta para o Material-UI abrindo uma pull request. No entanto, o Material-UI visa suportar as [100 localidades mais populares](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers), nós podemos não aceitar contribuições para localidades que não são frequentemente usadas, por exemplo `gl-ES` que tem "apenas" 2. milhões de falantes nativos.
+Por favor, considere contribuir com novas traduções de volta para o Material-UI abrindo uma pull request. No entanto, o Material-UI visa suportar as [100 localidades mais populares](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers), nós podemos não aceitar contribuições para localidades que não são frequentemente usadas, por exemplo `gl-ES` que tem "apenas" 2.5 milhões de falantes nativos.
 
 ## Suporte RTL
 

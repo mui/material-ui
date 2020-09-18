@@ -1,27 +1,33 @@
 ---
-title: React Radio buttons（单选按钮）组件
+title: React 单选按钮组件
 components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
+githubLabel:
+  component: Radio 单选框组件
+materialDesign: 'https://material.io/components/selection-controls#radio-buttons'
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#radiobutton'
 ---
 
-# Radio 单选框
+# Radio 单选框组件
 
 <p class="description">用户可以通过单选按钮从一组中选择一个选项。</p>
 
-当用户想要看到所有的选项时，可以使用[单选按钮](https://material.io/design/components/selection-controls.html#radio-buttons)。 如果可用选项可以折叠，请您考虑使用占用空间更少的下拉菜单。
+当用户想要看到所有的选项时，可以使用单选按钮。 如果可用选项可以折叠，请您考虑使用占用空间更少的下拉菜单。
 
 默认情况下，单选按钮应该选择了最常用的选项。
 
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
 ## RadioGroup 单选框组
 
-`RadioGroup`适用于一组` Radio `，它提供相对简单的 API 并且能够使用键盘对该RadioGroup 进行控制。
+`RadioGroup` 适用于一组 `Radio`，它提供相对简单的 API 并且能够使用键盘对该 RadioGroup 进行控制。
 
 {{"demo": "pages/components/radio-buttons/RadioButtonsGroup.js"}}
 
-要横向布置按钮，请设置 `row`prop: `<RadioGroup row />`.
+要横向布置按钮，请将 `row` 属性设置为：`<RadioGroup row />`。
 
-## Standalone radio buttons 独立的单选框按钮 
+## Standalone radio buttons 独立的单选框按钮
 
-`Radio` 也可以单独使用，无需额外的包装。
+`Radio` 也可以单独使用，无需额外的 RadioGroup wrapper。
 
 {{"demo": "pages/components/radio-buttons/RadioButtons.js"}}
 
@@ -29,11 +35,11 @@ components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
 
 你可以用 `FormControlLabel` 组件的 `labelPlacement` 属性来改变标签的位置。
 
-{{"demo": "pages/components/radio-buttons/FormControlLabelPlacement.js"}} 
+{{"demo": "pages/components/radio-buttons/FormControlLabelPlacement.js"}}
 
-## Show error 显示错误
+## 显示错误
 
-一般来说，单选按钮应具有一个被默认选中的值。 如果不是这种情况，则在提交表单时如果未选择任何值，则可能会显示错误：
+一般来说，单选按钮应带有一个默认选中的值。 如果不是这种情况，若用户在提交表单时如果未选择任何值，您可以让其显示一个错误：
 
 {{"demo": "pages/components/radio-buttons/ErrorRadios.js"}}
 
@@ -43,11 +49,36 @@ components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
 
 {{"demo": "pages/components/radio-buttons/CustomizedRadios.js"}}
 
+## `useRadioGroup`
+
+对于需要高级定制用例的情况，它会暴露一个 `useRadioGroup()` 钩子以供被调用。 这将会返回单选框组上下文的值。 单选框组件在其内部会使用这个钩子。
+
+### API
+
+```jsx
+<RadioButton
+  value="radioA"
+  inputProps={{ 'aria-label': 'Radio A' }}
+/>
+```
+
+#### 返回结果
+
+`value` (_Object_):
+
+- `value.name` (_String_ [optional])：用于引用控件值的名称。
+- `value.onChange` (_Void_ [optional])：当单选框被选中时会触发的回调。
+- `value.value` (_Any_ [optional])：所被选定的单选框的值。
+
+#### 示例
+
+{{"demo": "pages/components/radio-buttons/UseRadioGroup.js"}}
+
 ## 什么时候使用
 
-- [复选框 对比 单选按钮](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
+- [复选框 对比 单选按钮（Radio Buttons）](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
 
-## 可及性
+## 无障碍设计
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#radiobutton)
 
@@ -57,6 +88,8 @@ components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
 ```jsx
 <RadioButton
   value="radioA"
-  inputProps={{ 'aria-label': 'Radio A' }}
+  inputProps={{
+    'aria-label': 'Radio A',
+  }}
 />
 ```

@@ -1,17 +1,21 @@
 ---
 title: Container React component
 components: Container
+githubLabel:
+  component: Container
 ---
 
 # Container
 
 <p class="description">El container centra el contenido horizontalmente. Es el elemento más básico del layout.</p>
 
-Si bien los contenedores pueden anidarse, la mayoria de los layouts no requieren un contenedor anidado. 
+Si bien los contenedores pueden anidarse, la mayoria de los layouts no requieren un contenedor anidado.
+
+[La función de estilo de la paleta](/system/palette/).
 
 ## Fluido
 
-El ancho de un contenedor fluido está ligado al valor de la propiedad `maxWidth`.
+A fluid container width is bounded by the `maxWidth` prop value.
 
 {{"demo": "pages/components/container/SimpleContainer.js", "iframe": true, "defaultCodeOpen": false}}
 

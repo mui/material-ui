@@ -1,6 +1,6 @@
 # Temas
 
-<p class="description">Personalize Material-UI com seu tema. Você pode mudar as cores, a tipografia e muito mais.</p>
+<p class="description">Customize Material-UI com seu tema. Você pode mudar as cores, a tipografia e muito mais.</p>
 
 O tema especifica a cor dos componentes, o escurecimento das superfícies, o nível de sombra, a opacidade apropriada dos elementos de tinta, etc.
 
@@ -18,12 +18,13 @@ O `ThemeProvider` depende do [ recurso de contexto do React](https://pt-br.react
 
 Alterar as variáveis de configuração do tema é a maneira mais eficaz de combinar o Material-UI às suas necessidades. As seções a seguir abordam as variáveis mais importantes do tema:
 
-- [Paleta de Cores](/customization/palette/)
+- [Paleta](/customization/palette/)
 - [Tipografia](/customization/typography/)
 - [Espaçamento](/customization/spacing/)
 - [Pontos de quebra](/customization/breakpoints/)
 - [z-index](/customization/z-index/)
 - [Globais](/customization/globals/)
+- [Transições](/customization/transitions/)
 
 Você pode conferir a [seção de tema padrão](/customization/default-theme/) para visualizar o tema padrão na íntegra.
 
@@ -32,6 +33,18 @@ Você pode conferir a [seção de tema padrão](/customization/default-theme/) p
 Ao usar o tema do Material-UI com a [solução de estilo](/styles/basics/) ou [quaisquer outros](/guides/interoperability/#themeprovider), pode ser conveniente adicionar variáveis adicionais ao tema, para que você possa usá-las em qualquer lugar. Por exemplo:
 
 {{"demo": "pages/customization/theming/CustomStyles.js"}}
+
+## Acessando o tema em um componente
+
+<video autoPlay muted loop width="320">
+  <source src="/static/studies.mp4" type="video/mp4" >
+</video>
+
+Você [pode acessar](/styles/advanced/#accessing-the-theme-in-a-component) as variáveis do tema dentro de seus componentes React.
+
+- [material-ui-tema-editor](https://in-your-saas.github.io/material-ui-theme-editor/): Uma ferramenta para gerar temas para seus aplicativos de Material-UI, basta selecionar as cores e ter uma visualização ao vivo. Includes basic site templates to show various components and how they are affected by the theme
+- [create-mui-theme](https://react-theming.github.io/create-mui-theme/): É uma ferramenta online para criar temas de Material-UI por meio da ferramenta de cor do Material Design.
+- [Material palette generator](https://material.io/inline-tools/color/): O gerador de paleta do Material pode ser usado para gerar uma paleta para qualquer cor que você inserir.
 
 ## Acessando o tema em um componente
 
@@ -47,7 +60,7 @@ O tema interno **sobrescreverá** o tema externo. Você pode estender o tema ext
 
 {{"demo": "pages/customization/theming/ThemeNestingExtend.js"}}
 
-### Uma nota sobre desempenho
+**Uma nota sobre desempenho**
 
 As implicações de desempenho de aninhamento do componente `ThemeProvider`, estão ligados a forma como o JSS trabalha nos bastidores. O principal ponto a ser entendido é que o CSS injetado é armazenado em cache com a seguinte tupla `(styles, theme)`.
 
@@ -67,7 +80,7 @@ Gere uma base de temas sobre as opções recebidas.
 
 #### Retornos
 
-`theme` (*Object*): Um objeto de tema completo, pronto para uso.
+`theme` (*Object*): O novo tema com uma tipografia responsiva.
 
 #### Exemplos
 
@@ -104,7 +117,7 @@ Gera configurações de tipografia responsivas com base nas opções recebidas.
 
 #### Retornos
 
-`theme` (*Object*): O novo tema com uma tipografia responsiva.
+`theme` (*Object*): Um objeto de tema completo, pronto para uso.
 
 #### Exemplos
 
@@ -117,71 +130,13 @@ theme = responsiveFontSizes(theme);
 
 ### `unstable_createMuiStrictModeTheme(options, ...args) => theme`
 
-**AVISO**: Não use esse método em produção.
+Usando `unstable_createMuiStrictModeTheme` restringe o uso de alguns de nossos componentes.
 
 Gera um tema que reduz a quantidade de avisos dentro de [`React.StrictMode`](https://pt-br.reactjs.org/docs/strict-mode.html) como por exemplo, `Warning: findDOMNode is deprecated in StrictMode`.
 
 #### Requisitos
 
-Usando `unstable_createMuiStrictModeTheme` restringe o uso de alguns de nossos componentes.
-
-##### Propriedade `component`
-
-O componente usado na propriedade `component` dos seguintes componentes precisa encaminhar seu ref:
-
-- [`Collapse`](/api/collapse/)
-
-Caso contrário, você irá se deparar com `Error: Function component cannot be given refs`. Veja também: [Composição: Advertência com refs](/guides/composition/#caveat-with-refs).
-
-##### Propriedade `children`
-
-O `children` dos seguintes componentes precisam encaminhar seu ref:
-
-- [`Fade`](/api/fade/)
-- [`Grow`](/api/grow/)
-- [`Zoom`](/api/zoom/)
-
-```diff
--function TabPanel(props) {
-+const TabPanel = React.forwardRef(function TabPanel(props, ref) {
-  return <div role="tabpanel" {...props} ref={ref} />;
--}
-+});
-
-function Tabs() {
-  return <Fade><TabPanel>...</TabPanel></Fade>;
-}
-```
-
-Caso contrário o componente não irá animar corretamente e você irá se deparar com o aviso `Function components cannot be given refs`.
-
-#### Desabilitar a compatibilidade do StrictMode parcialmente
-
-Se você ainda ver essa mensagem, `Error: Function component cannot be given refs`, então você provavelmente está utilizando um componente de terceiros no qual as correções mencionadas acima não surtem efeito. Você pode corrigir isso aplicando `disableStrictModeCompat`. Você verá novamente avisos de depreciação, mas estes são somente avisos, enquanto a mensagem `Function component cannot be given refs` quebra o comportamento documentado de nossos componentes.
-
-```diff
-import { unstable_createMuiStrictModeTheme } from '@material-ui/core/styles';
-
-function ThirdPartyTabPanel(props) {
-  return <div {...props} role="tabpanel">
-}
-
-const theme = unstable_createMuiStrictModeTheme();
-
-function Fade() {
-  return (
-    <React.StrictMode>
-      <ThemeProvider theme={theme}>
-
--        <Fade>
-+        <Fade disableStrictModeCompat>
-          <ThirdPartyTabPanel />
-        </Fade>
-      </ThemeProvider>
-    </React.StrictMode>,
-  );
-}
-```
+Currently `unstable_createMuiStrictModeTheme` adds no additional requirements.
 
 #### Argumentos
 
@@ -190,22 +145,18 @@ function Fade() {
 
 #### Retornos
 
-`theme` (*Object*): Um objeto de tema completo, pronto para uso.
+`theme` (*Object*): O novo tema com uma tipografia responsiva.
 
 #### Exemplos
 
 ```js
-import { unstable_createMuiStrictModeTheme } from '@material-ui/core/styles';
+-function TabPanel(props) {
++const TabPanel = React.forwardRef(function TabPanel(props, ref) {
+  return <div role="tabpanel" {...props} ref={ref} />;
+-}
++});
 
-const theme = unstable_createMuiStrictModeTheme();
-
-function App() {
-  return (
-    <React.StrictMode>
-      <ThemeProvider theme={theme}>
-        <LandingPage />
-      </ThemeProvider>
-    </React.StrictMode>,
-  );
+function Tabs() {
+  return <Fade><TabPanel>...</TabPanel></Fade>;
 }
 ```

@@ -300,6 +300,10 @@ function ThirdPartyComponent({ prop1 } : { prop1: string }) {
 }
 // ...
 <GenericCustomComponent component={ThirdPartyComponent} prop1="some value" />;
+function ThirdPartyComponent({ prop1 } : { prop1: string }) {
+  return <div />
+}
+// ...
 ```
 
 The `prop1` became required for the `GenericCustomComponent` as the `ThirdPartyComponent` has it as a requirement.

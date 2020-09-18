@@ -1,6 +1,9 @@
 ---
 title: Composant React Table
 components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
+githubLabel:
+  component: Table (Tableaux)
+materialDesign: https://material.io/components/data-tables
 ---
 
 # Table (Tableaux)
@@ -17,13 +20,15 @@ Tables can include:
 
 Lorsque des outils sont inclus, ils doivent être placés directement au-dessus ou au-dessous de la table.
 
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
 ## Structure
 
 Une table de données contient en haut une ligne d’en-tête qui répertorie les noms de colonne, suivis de lignes pour les données.
 
 Des cases à cocher doivent accompagner chaque ligne si l'utilisateur doit sélectionner ou manipuler des données.
 
-For accessibility, the first column is set to be a `<th>` element, with a `scope` of `"col"`. Cela permet aux lecteurs d'écran d'identifier la valeur d'une cellule par son nom de ligne et de colonne.
+It utilizes the [`Collapse`](/api/collapse/) component. Cela permet aux lecteurs d'écran d'identifier la valeur d'une cellule par son nom de ligne et de colonne.
 
 ## Tableau simple
 
@@ -56,16 +61,16 @@ Voici un exemple de personnalisation du composant. Vous pouvez en savoir plus da
 It's possible to customise the options shown in the "Rows per page" select using the `rowsPerPageOptions` prop. You should either provide an array of:
 
 - **numbers**, each number will be used for the option's label and value.
-    
-    ```jsx
-    <TablePagination rowsPerPageOptions={[10, 50]} />
-    ```
+
+  ```jsx
+  <TablePagination rowsPerPageOptions={[10, 50]} />
+  ```
 
 - **objects**, the `value` and `label` keys will be used respectively for the value and label of the option (useful for language strings such as 'All').
-    
-    ```jsx
-    <TablePagination rowsPerPageOptions={[10, 50, { value: -1, label: 'All' }]} />
-    ```
+
+  ```jsx
+  <TablePagination rowsPerPageOptions={[10, 50, { value: -1, label: 'All' }]} />
+  ```
 
 ### Custom pagination actions
 

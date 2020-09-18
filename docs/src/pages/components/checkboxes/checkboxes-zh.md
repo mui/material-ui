@@ -1,9 +1,13 @@
 ---
-title: React Checkbox 多选框组件
+title: React 多选框组件
 components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
+materialDesign: 'https://material.io/components/selection-controls#checkboxes'
+githubLabel:
+  component: Checkbox 选择框
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#checkbox'
 ---
 
-# Checkbox 多选框
+# Checkbox 选择框
 
 <p class="description">在一个集合内，用户可以通过多选框组件进行一项或者多项选择。</p>
 
@@ -11,13 +15,15 @@ components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 
 若一个列表存在多个选择项时，使用多选框替代开关控件，可以节省空间。 若只存在一个选择项，请避免使用多选框，而改用开关控件。
 
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
 ## 简单多选框
 
 {{"demo": "pages/components/checkboxes/Checkboxes.js"}}
 
 ## 带有 FormControlLabel 的多选框
 
-借助 `FormControlLabel` 组件，`多选框组件`可以和标签一起使用。 
+借助 `FormControlLabel` 组件，`多选框组件`可以和标签一起使用。
 
 {{"demo": "pages/components/checkboxes/CheckboxLabels.js"}}
 
@@ -35,11 +41,11 @@ components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 
 ## 自定义的多选框
 
-以下是自定义此组件的一个示例。 您可以在[重写文档页面](/customization/components/)中了解更多有关此内容的信息。
+以下是自定义组件的一个示例。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
 
 {{"demo": "pages/components/checkboxes/CustomizedCheckbox.js", "defaultCodeOpen": false}}
 
-🎨如果你是在寻找灵感，你可以查看 [MUI Treasury's customization examples](https://mui-treasury.com/styles/checkbox)。
+🎨 如果您还在寻找灵感，您可以看看 [MUI Treasury 特别定制的一些例子](https://mui-treasury.com/styles/checkbox)。
 
 ## 什么时候使用
 
@@ -51,7 +57,7 @@ components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#checkbox)
 
 - 所有表单控件都应该带有标签，而这包括了单选按钮，复选框和开关。 在大多数情况下，这是通过使用一个 `<label>` 元素（[FormControlLabel](/api/form-control-label/)）实现的。
-- 如果无法使用标签，您则必须在输入组件中直接添加属性。 在这种情况下，您可以经由 `inputProps` 属性，来附着一些额外的属性（例如 `arial-label`，`aria-labelledby`，`title`）。
+- 如果无法使用标签，您则必须在输入组件中直接添加属性。 如果无法使用标签，您则必须在输入组件中直接添加属性。
 
 ```jsx
 <Checkbox

@@ -1,6 +1,8 @@
 ---
 title: Popper React component
 components: Popper
+githubLabel:
+  component: Popper
 ---
 
 # Popper
@@ -17,6 +19,8 @@ Some important features of the `Popper` component:
 - Clicking away does not hide the `Popper` component. If you need this behavior, you can use [`ClickAwayListener`](/components/click-away-listener/) - see the example in the [menu documentation section](/components/menus/#menulist-composition).
 - The `anchorEl` is passed as the reference object to create a new `Popper.js` instance.
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
 ## Simple Popper
 
 {{"demo": "pages/components/popper/SimplePopper.js"}}
@@ -27,7 +31,7 @@ The open/close state of the popper can be animated with a render prop child and 
 
 - Be a direct child descendent of the popper.
 - Call the `onEnter` callback prop when the enter transition starts.
-- Call the `onExited` callback prop when the exit transition is completed. These two callbacks allow the popper to unmount the child content when closed and fully transitioned.
+- Call the `onExited` callback prop when the exit transition is completed. Call the `onExited` callback prop when the exit transition is completed.
 
 Popper has built-in support for [react-transition-group](https://github.com/reactjs/react-transition-group).
 

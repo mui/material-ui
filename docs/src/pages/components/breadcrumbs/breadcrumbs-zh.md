@@ -1,25 +1,30 @@
 ---
-title: React Breadcrumbs 面包屑导航组件
+title: React 面包屑导航组件
 components: Breadcrumbs, Link, Typography
+githubLabel:
+  component: Breadcrumbs 面包屑导航
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#breadcrumb'
 ---
 
 # Breadcrumbs 面包屑导航
 
 <p class="description">面包屑导航允许用户在一系列的值中进行选择。</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
 ## 简单的面包屑导航
 
 {{"demo": "pages/components/breadcrumbs/SimpleBreadcrumbs.js"}}
 
-## 最后活跃的面包屑
+## 激活最后一个面包屑导航
 
-保持最后一个面包屑的互动性
+保持最后一个面包屑导航交互。
 
 {{"demo": "pages/components/breadcrumbs/ActiveLastBreadcrumb.js"}}
 
 ## 自定义分隔符
 
-在以下的示例中，我们使用了两个字符串分隔符和一个SVG图标。
+在以下的示例中，我们使用了两个字符串分隔符和一个 SVG 图标。
 
 {{"demo": "pages/components/breadcrumbs/CustomSeparator.js"}}
 
@@ -41,11 +46,11 @@ components: Breadcrumbs, Link, Typography
 
 {{"demo": "pages/components/breadcrumbs/RouterBreadcrumbs.js", "bg": true}}
 
-## 可访问性
+## 无障碍设计
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#breadcrumb)
 
-请务必在 `面包屑导航`组件上加上`aria-label`的描述。
+请务必在`面包屑导航`组件上加上 `aria-label` 的描述。
 
 这个组件的可访问性依赖于：
 

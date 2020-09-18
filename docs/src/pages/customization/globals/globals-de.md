@@ -6,6 +6,8 @@
 
 Wenn die Konfigurationsvariablen nicht ausreichen, können Sie die Vorteile der `overrides` Schlüssel des `Theme` verwenden, um potenziell jeden einzelnen von Material-UI in den DOM eingefügten **Stil** zu ändern. Das ist eine sehr mächtige Funktion.
 
+To override lab components styles with TypeScript, check [this documentation](/components/about-the-lab/#typescript).
+
 ```js
 const theme = createMuiTheme({
   overrides: {
@@ -23,7 +25,7 @@ const theme = createMuiTheme({
 
 {{"demo": "pages/customization/globals/GlobalCss.js"}}
 
-Die Liste dieser Anpassungspunkte für jede Komponente ist unter der **Komponenten-API** Sektion dokumentiert. Zum Beispiel können Sie sich den [Button](/api/button/#css) anschauen. Alternativ können Sie sich immer die [Implementierung](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Button/Button.js) ansehen.
+Die Liste dieser Anpassungspunkte für jede Komponente ist unter der **Komponenten-API** Sektion dokumentiert. Zum Beispiel können Sie sich den [Button](/api/button/#css) anschauen. Zum Beispiel können Sie sich den [Button](/api/button/#css) anschauen.
 
 ## Globales CSS
 
@@ -49,11 +51,19 @@ return (
     {children}
   </ThemeProvider>
 );
+return (
+  <ThemeProvider theme={theme}>
+    <CssBaseline />
+    {children}
+  </ThemeProvider>
+);
 ```
 
 ## Standard-Eigenschaften
 
 Sie können die Standard-Eigenschaften aller Komponenten der Material-UI ändern. A `props` key is exposed in the `theme` for this use case.
+
+To override lab components styles with TypeScript, check [this documentation](/components/about-the-lab/#typescript).
 
 ```js
 const theme = createMuiTheme({
@@ -62,7 +72,7 @@ const theme = createMuiTheme({
     MuiButtonBase: {
       // Die Standardeigenschaften, die verändert werden sollen
       disableRipple: true, // Keine Welleneffekte in der ganzen Applikation 💣!
-    },
+      },
   },
 });
 ```

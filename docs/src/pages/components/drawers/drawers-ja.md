@@ -1,15 +1,20 @@
 ---
 title: Drawer React component
 components: Drawer, SwipeableDrawer
+githubLabel:
+  component: Drawer
+materialDesign: https://material.io/components/navigation-drawer
 ---
 
 # Drawer
 
-<p class="description">ナビゲーションドロワー(Drawer) を使用すると、App内の目的地にアクセスできます。サイドシートは、画面の左端または右端にアンカーされた補足コンテンツを含むサーフェスです。</p>
+<p class="description">ナビゲーションドロワー(Drawer) を使用すると、App内の目的地にアクセスできます。 サイドシートは、画面の左端または右端にアンカーされた補足コンテンツを含むサーフェスです。</p>
 
 [ナビゲーション・ドロワー](https://material.io/design/components/navigation-drawer.html)(または「サイドバー」)は、目的地へのアクセスとアカウントの切り替えなどのアプリケーション機能を提供します。 これらは、画面上で永続的に表示することも、ナビゲーション・メニュー・アイコンで制御することもできます。
 
 [サイドシート](https://material.io/design/components/sheets-side.html) は、主にタブレットやデスクトップで使用される補助サーフェスです。
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Temporary drawer
 
@@ -29,7 +34,7 @@ components: Drawer, SwipeableDrawer
 
 このドキュメントのWebサイトでは、コンポーネントの操作性を最適化するために、次のプロパティが使用されています。
 
-- iOSはハイエンドデバイスでホストされています。 The backdrop transition can be enabled without dropping frames. 性能は十分良いでしょう。
+- iOSはハイエンドデバイスでホストされています。 iOSはハイエンドデバイスでホストされています。 The backdrop transition can be enabled without dropping frames. 性能は十分良いでしょう。
 - iOS has a "swipe to go back" feature that interferes with the discovery feature, so discovery has to be disabled.
 
 ```jsx
@@ -68,7 +73,7 @@ const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
 固定ナビゲーションdrawersは常に表示され、コンテンツまたは背景と同じ高さの左端に固定されます。 それらを閉じることはできません。
 
-パーマネントナビゲーションドロワーは、**デスクトップでデフォルト推奨**です。
+アプリケーションは、左から右への階層を使用する情報消費に重点を置いていました。
 
 ### Full-height navigation（フルハイトナビゲーション）
 

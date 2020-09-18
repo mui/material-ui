@@ -1,13 +1,17 @@
 ---
-title: Componentes de Transição React
+title: Componentes React para Transição
 components: Collapse, Fade, Grow, Slide, Zoom
+githubLabel:
+  component: Transição
 ---
 
 # Transições
 
-<p class="description">Transições ajudam a fazer a INTERFACE expressiva e fácil de usar.</p>
+<p class="description">Transições ajudam a deixar a interface expressiva e fácil de usar.</p>
 
 Material-UI provê um número de transições que podem ser usadas para introduzir algumas [animações](https://material.io/design/motion/) básicas para os componentes de sua aplicação.
+
+[A paleta](/system/palette/) com funções de estilo.
 
 Para um melhor suporte ao server rendering Material-UI provê uma propriedade de `estilo` para o filho de alguns componentes de transição (Fade, Grow, Zoom, Slide). A propriedade `style` deve ser aplicada ao DOM para que a animação funcione conforme esperada.
 
@@ -33,13 +37,13 @@ export default Main() {
 
 ## Collapse
 
-Expanda verticalmente a partir do topo do elemento filho. A propriedade `collapsedHeight` pode ser usada para definir a altura mínima quando não expandida.
+Expandir para fora partindo do centro do elemento filho. Use the `orientation` prop if you need a horizontal collapse. A propriedade `collapsedHeight` pode ser usada para definir a altura mínima quando não expandida.
 
 {{"demo": "pages/components/transitions/SimpleCollapse.js", "bg": true}}
 
 ## Fade
 
-Fade in de transparente para opaco.
+Esmaecer de transparente para opaco.
 
 {{"demo": "pages/components/transitions/SimpleFade.js", "bg": true}}
 
@@ -47,7 +51,7 @@ Fade in de transparente para opaco.
 
 Expande para fora a partir do centro do elemento filho, enquanto também desvanece em efeito de transparente para opaco.
 
-O segundo exemplo demonstra como alterar `transform-origin` e condicionalmente aplica a propriedade `timeout` para alterar a velocidade de entrada.
+The second example demonstrates how to change the `transform-origin`, and conditionally applies the `timeout` prop to change the entry speed.
 
 {{"demo": "pages/components/transitions/SimpleGrow.js", "bg": true}}
 
@@ -71,8 +75,14 @@ Este exemplo também demonstra como atrasar a transição de entrada.
 
 Os componentes aceitam uma propriedade `TransitionComponent` para customizar as transições padrão. Você pode usar qualquer um dos componentes acima ou seu próprio componente. Ele deve respeitar as seguintes condições:
 
-- Aceita uma propriedade `in`. Isso corresponde ao estado de aberto/fechado.
+- Aceitar uma propriedade `in`. Isso corresponde ao estado de aberto/fechado.
 - Chamar a propriedade de callback `onEnter` quando a transição de entrada iniciar.
 - Chamar a propriedade de callback `onExited` quando a transição de saída for concluída. Esses dois callbacks permitem desmontar os elementos filhos quando em estado fechado e totalmente transitados.
 
-Para obter maiores informações sobre como criar transações customizadas, visite a [documentação de transições do React Transition Group](http://reactcommunity.org/react-transition-group/transition).
+Para obter maiores informações sobre como criar transações customizadas, visite a [documentação de transições do React Transition Group](http://reactcommunity.org/react-transition-group/transition). You can also visit the dedicated sections of some of the components:
+
+- [Modal](/components/modal/#transitions)
+- [Dialog](/components/dialogs/#transitions)
+- [Popper](/components/popper/#transitions)
+- [Snackbar](/components/snackbars/#transitions)
+- [Tooltip](/components/tooltips/#transitions)

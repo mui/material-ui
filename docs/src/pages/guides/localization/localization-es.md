@@ -1,12 +1,12 @@
 # Localización
 
-<p class="description">Localization (also referred to as "l10n") is the process of adapting a product or content to a specific locale or market.</p>
+<p class="description">La localización (también llamada "l10n") es el proceso de adaptación de un producto o contenido a un local o mercado específico.</p>
 
-The default locale of Material-UI is English (United States). If you want to use other locales, follow the instructions below.
+La localización predeterminada de Material-UI es Inglés (Estados Unidos). Si quieres usar otros locales, sigue las instrucciones que se indican a continuación.
 
-## Locale text
+## Texto local
 
-Use the theme to configure the locale text globally:
+Utilice el tema para configurar el texto regional globalmente:
 
 ```jsx
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
@@ -27,49 +27,51 @@ const theme = createMuiTheme({
 
 {{"demo": "pages/guides/localization/Locales.js", "defaultCodeOpen": false}}
 
-### Supported locales
+### Locales soportados
 
-| Locale                  | BCP 47 language tag | Nombre del import |
-|:----------------------- |:------------------- |:----------------- |
-| Armenian                | hy-AM               | `hyAM`            |
-| Azerbaijani             | az-AZ               | `azAZ`            |
-| Bulgarian               | bg-BG               | `bgBG`            |
-| Catalan                 | ca-ES               | `caES`            |
-| Chinese (Simplified)    | zh-CN               | `zhCN`            |
-| Czech                   | cs-CZ               | `csCZ`            |
-| Dutch                   | nl-NL               | `nlNL`            |
-| English (United States) | en-US               | `enUS`            |
-| Estonian                | et-EE               | `etEE`            |
-| Finnish                 | fi-FI               | `fiFI`            |
-| French                  | fr-FR               | `frFR`            |
-| German                  | de-DE               | `deDE`            |
-| Hebrew                  | he-IL               | `heIL`            |
-| Hindi                   | hi-IN               | `hiIN`            |
-| Hungarian               | hu-HU               | `huHU`            |
-| Icelandic               | is-IS               | `isIS`            |
-| Indonesian              | id-ID               | `idID`            |
-| Italian                 | it-IT               | `itIT`            |
-| Japanese                | ja-JP               | `jaJP`            |
-| Korean                  | ko-KR               | `koKR`            |
-| Persian                 | fa-IR               | `faIR`            |
-| Polish                  | pl-PL               | `plPL`            |
-| Portuguese (Brazil)     | pt-BR               | `ptBR`            |
-| Portuguese              | pt-PT               | `ptPT`            |
-| Romanian                | ro-RO               | `roRO`            |
-| Russian                 | ru-RU               | `ruRU`            |
-| Slovak                  | sk-SK               | `skSK`            |
-| Spanish                 | es-ES               | `esES`            |
-| Swedish                 | sv-SE               | `svSE`            |
-| Turkish                 | tr-TR               | `trTR`            |
-| Ukrainian               | uk-UA               | `ukUA`            |
-| Vietnamese              | vi-VN               | `viVN`            |
+| Local                   | Etiqueta de idioma BCP 47 | Nombre del import |
+|:----------------------- |:------------------------- |:----------------- |
+| Armenio                 | hy-AM                     | `hyAM`            |
+| Azerbaiyano             | az-AZ                     | `azAZ`            |
+| Búlgaro                 | bg-BG                     | `bgBG`            |
+| Catalán                 | ca-ES                     | `caES`            |
+| Chino (simplificado)    | zh-CN                     | `zhCN`            |
+| Checo                   | cs-CZ                     | `csCZ`            |
+| Holandés                | nl-NL                     | `nlNL`            |
+| Inglés (Estados Unidos) | en-US                     | `enUS`            |
+| Estonio                 | et-EE                     | `etEE`            |
+| Finlandés               | fi-FI                     | `fiFI`            |
+| Francés                 | fr-FR                     | `frFR`            |
+| Alemán                  | de-DE                     | `deDE`            |
+| Greek                   | el-GR                     | `elGR`            |
+| Hebreo                  | he-IL                     | `heIL`            |
+| Hindú                   | hi-IN                     | `hiIN`            |
+| Húngaro                 | hu-HU                     | `huHU`            |
+| Islandés                | is-IS                     | `isIS`            |
+| Indonesio               | id-ID                     | `idID`            |
+| Italiano                | it-IT                     | `itIT`            |
+| Japonés                 | ja-JP                     | `jaJP`            |
+| Coreano                 | ko-KR                     | `koKR`            |
+| Persa                   | fa-IR                     | `faIR`            |
+| Polaco                  | pl-PL                     | `plPL`            |
+| Portugués (Brasil)      | pt-BR                     | `ptBR`            |
+| Portugués               | pt-PT                     | `ptPT`            |
+| Rumano                  | ro-RO                     | `roRO`            |
+| Ruso                    | ru-RU                     | `ruRU`            |
+| Eslovaco                | sk-SK                     | `skSK`            |
+| Español                 | es-ES                     | `esES`            |
+| Sueco                   | sv-SE                     | `svSE`            |
+| Turco                   | tr-TR                     | `trTR`            |
+| Thai                    | th-TH                     | `thTH`            |
+| Ucraniano               | uk-UA                     | `ukUA`            |
+| Vietnamita              | vi-VN                     | `viVN`            |
 
-You can [find the source](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/locale/index.ts) in the GitHub repository.
+Puedes [encontrar la fuente](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/locale/index.ts) en el repositorio de GitHub.
 
 To create your own translation, or to customise the English text, copy this file to your project, make any changes needed and import the locale from there.
 
-Please do consider contributing new translations back to Material-UI by opening a pull request. However, Material-UI aims to support the [100 most popular locales](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers), we might not accept contributions for locales that are not frequently used, for instance `gl-ES` that has "only" 2.5 million native speakers.
+Por favor considere contribuir con nuevas traducciones a Material-UI abriendo un pull request. Sin embargo, Material-UI pretende apoyar a los [100 locales más populares](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers), podríamos no aceptar contribuciones para locales que no se utilizan con frecuencia, por ejemplo `gl-ES` que tiene "solo" 2. millones de hablantes nativos.
 
-## RTL Support
+## Soporte RTL
 
-Right-to-left languages such as Arabic, Persian or Hebrew are supported. Follow [this guide](/guides/right-to-left/) to use them.
+Right-to-left languages such as Arabic, Persian or Hebrew are supported. Sigue [esta guía](/guides/right-to-left/) para usarlas.

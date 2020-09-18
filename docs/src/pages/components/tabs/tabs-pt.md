@@ -1,6 +1,10 @@
 ---
 title: Componente React para Abas
 components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
+githubLabel:
+  component: Abas
+materialDesign: https://material.io/components/tabs
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tabpanel'
 ---
 
 # Abas
@@ -9,11 +13,13 @@ components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
 
 As [abas](https://material.io/design/components/tabs.html) organizam e permitem a navegação entre grupos de conteúdo relacionados e no mesmo nível hierárquico.
 
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
 ## Abas simples
 
-Um exemplo simples sem frescuras.
-
 {{"demo": "pages/components/tabs/SimpleTabs.js", "bg": true}}
+
+{{"demo": "pages/components/tabs/BasicTabs.js", "bg": true}}
 
 ### Rótulos com quebras
 
@@ -57,6 +63,16 @@ Botões de rolagem para esquerda e direita serão apresentados independente da l
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonForce.js", "bg": true}}
 
+If you want to make sure the buttons are always visible, you should customize the opacity.
+
+```css
+.MuiTabs-scrollButtons.Mui-disabled {
+  opacity: 0.3;
+}
+```
+
+{{"demo": "pages/components/tabs/ScrollableTabsButtonVisible.js", "bg": true}}
+
 ### Impedir botões de rolagem
 
 Botões de rolagem para a esquerda e para a direita nunca serão apresentados. Toda rolagem deve ser iniciada por meio de mecanismos de rolagem do agente do usuário (por exemplo, deslizar para a esquerda/direita, rolar scroll do mouse, etc.)
@@ -65,7 +81,7 @@ Botões de rolagem para a esquerda e para a direita nunca serão apresentados. T
 
 ## Abas customizadas
 
-Aqui esta um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
+Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
 {{"demo": "pages/components/tabs/CustomizedTabs.js", "bg": true}}
 
@@ -73,7 +89,11 @@ Aqui esta um exemplo de customização do componente. Você pode aprender mais s
 
 ## Abas verticais
 
+O rótulo das abas podem ser compostos apenas por ícones ou apenas por texto.
+
 {{"demo": "pages/components/tabs/VerticalTabs.js", "bg": true}}
+
+Note that you can restore the scrollbar with `visibleScrollbar`.
 
 ## Abas de navegação
 
@@ -109,9 +129,9 @@ Os componentes implementam a navegação do teclado usando o comportamento de "a
 As duas demonstrações seguintes diferem apenas no seu comportamento de navegação por teclado. Foque em uma aba e navegue com as teclas de seta para notar a diferença.
 
 ```jsx
-/* Tabs where selection follows focus */
+/* Abas onde a seleção segue o foco */
 <Tabs selectionFollowsFocus />
-/* Tabs where each tab needs to be selected manually */
+/* Abas onde cada aba precisa ser selecionada manualmente */
 <Tabs />
 ```
 

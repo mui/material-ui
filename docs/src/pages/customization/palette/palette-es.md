@@ -4,7 +4,7 @@
 
 ## Palette colors
 
-A color intention is a mapping of a palette color to a given intention within your application. The theme exposes the following palette colors (accessible under `theme.palette.`):
+The theme exposes the following palette colors (accessible under `theme.palette.`):
 
 - *primary* - used to represent primary interface elements for a user. It's the color displayed most frequently across your app's screens and components.
 - *secondary* - used to represent secondary interface elements for a user. It provides more ways to accent and distinguish your product. Having it is optional.
@@ -85,13 +85,16 @@ const theme = createMuiTheme({
     },
     // Used by `getContrastText()` to maximize the contrast between
     // the background and the text.
+    tonalOffset: 0.2,
+  },
+});
+    contrastThreshold: 3,
+    // Used by the functions below to shift a color's luminance by approximately
+    // two indexes within its tonal palette.
     contrastThreshold: 3,
     // Used by the functions below to shift a color's luminance by approximately
     // two indexes within its tonal palette.
     // E.g., shift from Red 500 to Red 300 or Red 700.
-    tonalOffset: 0.2,
-  },
-});
 ```
 
 Como en el ejemplo anterior, si el objeto de propósito de color contiene colores personalizados usando cualquiera de las claves "main", "light", "dark" o "contrastText", se mapean de la siguiente manera:
@@ -138,26 +141,30 @@ const theme = createMuiTheme({
 If you are using TypeScript, you would also need to use [module augmentation](/guides/typescript/#customization-of-theme) for the theme to accept the above values.
 
 ```ts
-declare module '@material-ui/core/styles/createMuiTheme' {
-  interface Theme {
-    status: {
-      danger: React.CSSProperties['color'],
-    }
-  }
-  interface ThemeOptions {
-    status: {
-      danger: React.CSSProperties['color']
-    }
-  }
-}
+import * as React from 'react';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
-declare module "@material-ui/core/styles/createPalette" {
-  interface Palette {
-    neutral: Palette['primary'];
-  }
-  interface PaletteOptions {
-    neutral: PaletteOptions['primary'];
-  }
+function App() {
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+
+  const theme = React.useMemo(
+    () =>
+      createMuiTheme({
+        palette: {
+          type: prefersDarkMode ? 'dark' : 'light',
+        },
+      }),
+    [prefersDarkMode],
+  );
+
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline/>
+      <Routes />
+    </ThemeProvider>
+  );
 }
 ```
 
@@ -190,19 +197,27 @@ You can leverage this preference dynamically with the [useMediaQuery](/component
 For instance, you can enable the dark mode automatically:
 
 ```jsx
-import * as React from 'react';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
+declare module '@material-ui/core/styles/createMuiTheme' {
+  interface Theme {
+    status: {
+      danger: React.CSSProperties['color'],
+    }
+  }
+  interface ThemeOptions {
+    status: {
+      danger: React.CSSProperties['color']
+    }
+  }
+}
 
-function App() {
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-
-  const theme = React.useMemo(
-    () =>
-      createMuiTheme({
-        palette: {
-          type: prefersDarkMode ? 'dark' : 'light',
+declare module "@material-ui/core/styles/createPalette" {
+  interface Palette {
+    neutral: Palette['primary'];
+  }
+  interface PaletteOptions {
+    neutral: PaletteOptions['primary'];
+  }
+} 'dark' : 'light',
         },
       }),
     [prefersDarkMode],
@@ -210,7 +225,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline/>
+      <CssBaseline />
       <Routes />
     </ThemeProvider>
   );

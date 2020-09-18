@@ -15,6 +15,8 @@ Ce composant peut être utile dans diverses situations:
 - Si la charge du serveur est trop importante, vous pouvez activer une dégradation du service.
 - Améliorez le temps d'interactivité en ne rendant que ce qui est important (avec la propriété `defer`).
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
 ## Report du côté client
 
 {{"demo": "pages/components/no-ssr/SimpleNoSsr.js"}}

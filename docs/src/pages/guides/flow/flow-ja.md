@@ -4,4 +4,4 @@
 
 ## flow-typed
 
-[flow-typed](https://github.com/flowtype/flow-typed) は、サードパーティ製ライブラリをFlowアプリで使用するための、インターフェース定義のセットです。 コミュニティはこのプロジェクトの定義を[維持しています](https://github.com/flow-typed/flow-typed/tree/master/definitions/npm/%40material-ui) 。
+[flow-typed](https://github.com/flowtype/flow-typed) は、サードパーティ製ライブラリをFlowアプリで使用するための、インターフェース定義のセットです。 コミュニティはこのプロジェクトの定義を[維持しています](https://github.com/flow-typed/flow-typed/tree/master/definitions/npm/%40material-ui) 。 [flow-typed](https://github.com/flowtype/flow-typed) は、サードパーティ製ライブラリをFlowアプリで使用するための、インターフェース定義のセットです。 コミュニティはこのプロジェクトの定義を[維持しています](https://github.com/flow-typed/flow-typed/tree/master/definitions/npm/%40material-ui) 。 [flow-typed](https://github.com/flowtype/flow-typed) は、サードパーティ製ライブラリをFlowアプリで使用するための、インターフェース定義のセットです。 コミュニティはこのプロジェクトの定義を[維持しています](https://github.com/flow-typed/flow-typed/tree/master/definitions/npm/%40material-ui) 。

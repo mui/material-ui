@@ -1,19 +1,24 @@
 ---
 title: Composant React Puce
 components: Chip
+githubLabel:
+  component: Chip
+materialDesign: https://material.io/components/chips
 ---
 
-# Chip (puce)
+# Chip
 
-<p class="description">Les puces sont des éléments compacts qui représentent une entrée, un attribut ou une action.</p>
+<p class="description">Les Chip sont des éléments compacts qui représentent une entrée, un attribut ou une action.</p>
 
 [Les puces](https://material.io/design/components/chips.html) permettent aux utilisateurs de saisir des informations, d'effectuer des sélections, de filtrer le contenu ou de déclencher des actions.
 
 Bien qu’il soit inclus ici en tant que composant autonome, l’utilisation la plus courante sera sous une forme quelconque d’entrée, de sorte que le comportement présenté ici est un comportement non présenté dans son contexte.
 
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
 ## Chip
 
-Exemples de puces, utilisant une image Avatar, icône SVG Avatar, "Lettre" et (chaîne) Avatar.
+Exemples de Chip , utilisant une image Avatar, icône SVG Avatar, "Lettre" et (chaîne) Avatar.
 
 - Les puces avec la propriété `onClick` définie changent l’apparence sur le focus, survolent, puis cliquent sur.
 - Les puces avec la propriété `onDelete` définie afficheront une icône de suppression qui change d’apparence en survol.
@@ -22,32 +27,32 @@ Exemples de puces, utilisant une image Avatar, icône SVG Avatar, "Lettre" et (c
 
 ### Outlined Chips
 
-Outlined chips offer an alternative style.
+Les Outlined Chips offrent un style alternatif.
 
 {{"demo": "pages/components/chips/OutlinedChips.js"}}
 
-## Tableau de puce
+## Tableau de Chip
 
-Un exemple de rendu de plusieurs puces à partir d'un tableau de valeurs. Supprimer une puce la supprime du tablea. Notez que puisqu'aucun `onClick` propriété est définie, la puce peut être concentré, mais ne pas profondeur de gain tandis que vous cliquez dessus ou touché.
+Un exemple de rendu de plusieurs Chip à partir d'un tableau de valeurs. Supprimer une Chip la supprime du tableau. Notez que puisqu'aucun `onClick` propriété est définie, la puce peut être concentré, mais ne pas profondeur de gain tandis que vous cliquez dessus ou touché.
 
 {{"demo": "pages/components/chips/ChipsArray.js", "bg": true}}
 
-## Small Chip
+## Petite Chip
 
-You can use the `size` prop to define a small Chip.
+Vous pouvez utiliser la propriété `size` pour définir une petite Chip.
 
-### Default variant
+### Variante par défaut
 
 {{"demo": "pages/components/chips/SmallChips.js"}}
 
-### Outlined variant
+### Variante linéaire
 
 {{"demo": "pages/components/chips/SmallOutlinedChips.js"}}
 
-## Terrain de jeu de puce
+## Playground Chip
 
 {{"demo": "pages/components/chips/ChipsPlayground.js", "hideToolbar": true}}
 
 ## Accessibilité
 
-If the Chip is deletable or clickable then it is a button in tab order. When the Chip is focused (e.g. when tabbing) releasing (`keyup` event) `Backspace` or `Delete` will call the `onDelete` handler while releasing `Escape` will blur the Chip.
+Si la Chip est supprimable ou cliquable, c'est un bouton dans l'ordre des onglets. Lorsque la Chip est concentrée (p. ex. lorsque la tabulation est activée) (`keyup` event) `Backspace` ou `Delete` appellera le gestionnaire `onDelete` lors de la libération de `Escape` flottera la Chip.

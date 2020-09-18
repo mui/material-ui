@@ -59,7 +59,7 @@ const styles = theme => ({
 
 ## JavaScriptメディアクエリ
 
-CSSだけでは不十分な場合もあります。 JavaScriptで、ブレークポイントの値に基づいてReactレンダリングツリーを変更できます。
+CSSだけでは不十分な場合もあります。 CSSだけでは不十分な場合もあります。 CSSだけでは不十分な場合もあります。 JavaScriptで、ブレークポイントの値に基づいてReactレンダリングツリーを変更できます。
 
 ### useMediaQueryフック
 
@@ -144,7 +144,7 @@ declare module "@material-ui/core/styles/createBreakpoints" {
 
 #### 引数
 
-1. `key` (*String* | *Number*)：ブレークポイントキー（` xs ` 、` sm `など）またはピクセル単位の画面幅の数値。
+1. `key` (*String* | *Number*)：ブレークポイントキー（`xs` 、`sm`など）またはピクセル単位の画面幅の数値。
 
 #### 戻り値
 
@@ -169,7 +169,7 @@ const styles = theme => ({
 
 #### 引数
 
-1. `key` (*String* | *Number*)：ブレークポイントキー（` xs ` 、` sm `など）またはピクセル単位の画面幅の数値。
+1. `key` (*String* | *Number*)：ブレークポイントキー（`xs` 、`sm`など）またはピクセル単位の画面幅の数値。
 
 #### 戻り値
 
@@ -195,7 +195,7 @@ const styles = theme => ({
 
 #### 引数
 
-1. `key` (*String*)：ブレークポイントキー（` xs ` 、` sm `など）。
+1. `key` (*String*)：ブレークポイントキー（`xs` 、`sm`など）。
 
 #### 戻り値
 
@@ -258,10 +258,11 @@ type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 #### 引数
 
-1. `オプション` (*オプジェクト* [任意]): 
-  - `options.withTheme` (*ブール値* [任意]): デフォルト値 `false`. `theme`オブジェクトをプロパティとしてコンポーネントに提供します。
-  - `options.noSSR` (*ブール値* [任意]): デフォルト値 `false`. サーバー側のレンダリング調整を実行するには、2回レンダリングする必要があります。 1回目は何もない状態で、2回目は子要素と一緒です。 このダブルパスレンダリングサイクルには欠点があります。 UIが点滅することがあります。 サーバサイドレンダリングを実行しない場合は、このフラグを`true`に設定できます。
-  - ` options.initialWidth ` （*Breakpoint* [optional]）： As ` window.innerWidth `サーバーでは使用できません デフォルトでは、最初のマウント時に空のコンポーネントがレンダリングされます。 ヒューリスティックを使用して、次の値を近似できます。 クライアント・ブラウザの画面幅。 たとえば、ユーザーエージェントまたはクライアントヒントを使用できます。 https://caniuse.com/#search=client%20hint、[`テーマにカスタムプロパティを使用して初期幅
+1. `オプション` (*オプジェクト* [任意]):
+
+- `options.withTheme` (*ブール値* [任意]): デフォルト値 `false`. `theme`オブジェクトをプロパティとしてコンポーネントに提供します。
+- `options.noSSR` (*ブール値* [任意]): デフォルト値 `false`. サーバー側のレンダリング調整を実行するには、2回レンダリングする必要があります。 1回目は何もない状態で、2回目は子要素と一緒です。 このダブルパスレンダリングサイクルには欠点があります。 UIが点滅することがあります。 サーバサイドレンダリングを実行しない場合は、このフラグを`true`に設定できます。
+- `options.initialWidth` （*Breakpoint* [optional]）： As `window.innerWidth`サーバーでは使用できません デフォルトでは、最初のマウント時に空のコンポーネントがレンダリングされます。 クライアント・ブラウザの画面幅。 たとえば、ユーザーエージェントまたはクライアントヒントを使用できます。 https://caniuse.com/#search=client%20hint、[`テーマにカスタムプロパティを使用して初期幅
 グローバルに設定することもできます`](/customization/globals/#default-props)。 InitialWidthを設定するには、この形状のカスタムプロパティを渡す必要があります。
 
 ```js
@@ -271,7 +272,7 @@ const theme = createMuiTheme({
     MuiWithWidth: {
       // Initial width property
       initialWidth: 'lg', // Breakpoint being globally set 🌎!
-    },
+      },
   },
 });
 ```
@@ -280,7 +281,7 @@ const theme = createMuiTheme({
 
 #### 戻り値
 
-`higher-order component` ：コンポーネントをラップするために使用する必要があります。
+注意が必要な実装の詳細は、次のとおりです。
 
 #### 例
 

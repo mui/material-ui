@@ -1,14 +1,14 @@
 # Minimizando o tamanho do pacote
 
-<p class="description">Saiba mais sobre as ferramentas que você pode aproveitar para reduzir o tamanho do pacote.</p>
+<p class="description">Saiba mais sobre as ferramentas que você pode usar para reduzir o tamanho do pacote.</p>
 
 ## Tamanho do pacote importa
 
-O tamanho do pacote de Material-UI é levado muito a sério. Fotos contendo o tamanho do pacote são feitas em cada commit e partes críticas dos pacotes([veja a última foto](/size-snapshot)). Combinado com [dangerJS](https://danger.systems/js/) podemos inspecionar [alterações detalhadas no tamanho do pacote](https://github.com/mui-org/material-ui/pull/14638#issuecomment-466658459) em cada solicitação de Pull Request.
+O tamanho do pacote do Material-UI é levado muito a sério. Fotos contendo o tamanho do pacote são feitas em cada commit e partes críticas dos pacotes([veja a última foto](/size-snapshot)). Combinado com [dangerJS](https://danger.systems/js/) podemos inspecionar [alterações detalhadas no tamanho do pacote](https://github.com/mui-org/material-ui/pull/14638#issuecomment-466658459) em cada solicitação de Pull Request.
 
 ## Quando e como usar tree-shaking?
 
-Tree-shaking no Material-UI funciona de uma forma moderna. Material-UI expõe sua API completa na importação do nível superior `material-ui`. Se você estiver usando módulos ES6 e um bundler que suporta tree-shaking ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` com uma propriedade definida](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) você pode usar com segurança importações nomeadas e ainda assim, obter automaticamente um tamanho otimizado do pacote:
+Tree-shaking no Material-UI funciona de uma forma moderna. Material-UI expõe sua API completa na importação de nível superior `material-ui`. Se você estiver usando módulos ES6 e um bundler que suporta tree-shaking ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` com uma propriedade definida](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) você pode usar com segurança importações nomeadas e ainda assim, obter automaticamente um tamanho otimizado do pacote:
 
 ```js
 import { Button, TextField } from '@material-ui/core';
@@ -82,6 +82,7 @@ Esta opção fornece a melhor Experiência do Usuário e Experiência do Desenvo
 - UX: O plugin Babel permite tree-shaking de nível superior, mesmo se o seu bundler não suporte.
 - DX: O plugin Babel torna o tempo de inicialização no modo de desenvolvimento tão rápido quanto a opção 1.
 - DX: Essa sintaxe reduz a duplicação de código, exigindo apenas uma única importação para vários módulos. Em geral, o código é mais fácil de ser lido, e é menos provável que você cometa um erro ao importar um novo módulo.
+
 ```js
 import { Button, TextField } from '@material-ui/core';
 ```
@@ -155,49 +156,52 @@ Escolha um dos seguintes plugins:
 
 Se você estiver usando Create React App, você precisará usar alguns projetos que permitem a configuração por `.babelrc`, sem ejetar.
 
-  `yarn add -D react-app-rewired customize-cra`
+`yarn add -D react-app-rewired customize-cra`
 
-  Crie um arquivo `config-overrides.js` na pasta raiz:
+Crie um arquivo `config-overrides.js` na pasta raiz:
 
-  ```js
-  /* config-overrides.js */
-  const { useBabelRc, override } = require('customize-cra')
-
-  module.exports = override(
-    useBabelRc()
-  );
-  ```
-
-  Se você desejar, `babel-plugin-import` pode ser configurado através de `config-overrides.js` ao invés de `.babelrc` usando esta [configuração](https://github.com/arackaf/customize-cra/blob/master/api.md#fixbabelimportslibraryname-options).
-
-  Modifique seu comando start no `package.json`:
-
-```diff
-  "scripts": {
+```js
+"scripts": {
 -  "start": "react-scripts start"
 +  "start": "react-app-rewired start"
   }
 ```
 
-  Nota: Você pode se deparar com erros como estes:
+Se você desejar, `babel-plugin-import` pode ser configurado através de `config-overrides.js` ao invés de `.babelrc` usando esta [configuração](https://github.com/arackaf/customize-cra/blob/master/api.md#fixbabelimportslibraryname-options).
 
-  > Module not found: Can't resolve '@material-ui/core/makeStyles' in '/seu/projeto'
+Modifique seu comando start no `package.json`:
 
-  Isso acontece porque `@material-ui/styles` é reexportado através do `core`, mas a importação completa não é permitida.
+```diff
+  "scripts": {
+-   "start": "react-scripts start",
++   "start": "react-app-rewired start",
+-   "build": "react-scripts build",
++   "build": "react-app-rewired build",
+-   "test": "react-scripts test",
++   "test": "react-app-rewired test",
+    "eject": "react-scripts eject"
+}
+```
 
-  Você tem uma importação como essa no seu código:
+Nota: Você pode se deparar com erros como estes:
 
-  ```js
-  import { makeStyles, createStyles } from '@material-ui/core';
-  ```
+> Module not found: Can't resolve '@material-ui/core/makeStyles' in '/seu/projeto'
 
-  A correção é simples, defina a importação separadamente:
+Isso acontece porque `@material-ui/styles` é reexportado através do `core`, mas a importação completa não é permitida.
 
-  ```js
-  import { makeStyles, createStyles } from '@material-ui/core/styles';
-  ```
+Você tem uma importação como essa no seu código:
 
-  Desfrute do tempo de inicialização significativamente mais rápido.
+```js
+import { makeStyles, createStyles } from '@material-ui/core';
+```
+
+A correção é simples, defina a importação separadamente:
+
+```js
+import { makeStyles, createStyles } from '@material-ui/core/styles';
+```
+
+Desfrute do tempo de inicialização significativamente mais rápido.
 
 #### 2. Converta todas as suas importações
 
@@ -213,6 +217,6 @@ Finalmeny, você pode converter sua base de código existente com esse modificad
 
 O pacote publicado no npm é **transpilado** com [Babel](https://github.com/babel/babel), para levar em consideração as [plataformas suportadas](/getting-started/supported-platforms/).
 
-Uma segunda versão dos componentes é também publicada, essa versão pode ser encontrada na [pasta `/es`](https://unpkg.com/@material-ui/core/es/). Toda a sintaxe não oficial é transpilada para o padrão [ECMA-262](https://www.ecma-international.org/publications/standards/Ecma-262.htm), nada mais. Isso pode ser usado para criar pacotes separados visando diferentes navegadores. Os navegadores mais antigos exigem mais recursos JavaScript para serem transpilados, o que aumenta o tamanho do pacote. Nenhum polyfill está incluído para os recursos de tempo de execução do ES2015. IE11+ e navegadores evergreen suportam todos os recursos necessários. Se você precisar de suporte para outros navegadores, considere usar [`@babel/polyfill`](https://www.npmjs.com/package/@babel/polyfill).
+Uma segunda versão dos componentes é também publicada, essa versão pode ser encontrada na [pasta `/es`](https://unpkg.com/@material-ui/core/es/). Toda a sintaxe não oficial é transpilada para o [padrão ECMA-262](https://www.ecma-international.org/publications/standards/Ecma-262.htm), nada mais. Isso pode ser usado para criar pacotes separados visando diferentes navegadores. Os navegadores mais antigos exigem mais recursos JavaScript para serem transpilados, o que aumenta o tamanho do pacote. Nenhum polyfill está incluído para os recursos de tempo de execução do ES2015. IE11+ e navegadores evergreen suportam todos os recursos necessários. Se você precisar de suporte para outros navegadores, considere usar [`@babel/polyfill`](https://www.npmjs.com/package/@babel/polyfill).
 
 ⚠️ Para minimizar a duplicação de código nos pacotes de usuários, autores de bibliotecas são **fortemente desencorajados** de usar a pasta `/es`.

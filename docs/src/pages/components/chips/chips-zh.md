@@ -1,9 +1,12 @@
 ---
-title: React Chip 纸片组件
+title: React 纸片组件
 components: Chip
+githubLabel:
+  component: Chip
+materialDesign: https://material.io/components/chips
 ---
 
-# Chip 纸片组件
+# Chip
 
 <p class="description">纸片组件是用来表示输入框、属性或操作的紧凑元素。</p>
 
@@ -11,7 +14,9 @@ components: Chip
 
 在这里，虽然我们将纸片组件归类为一个独立的组件，但更常见的作法是用在表单中作为输入框，因此本篇演示的内容并不会在上下文中显示。
 
-## 纸片组件
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
+## Chip
 
 以下是纸片组件的一个例子，它使用了图片，SVG 图标，“字母” 和（带有字符串的）头像。
 
@@ -28,7 +33,7 @@ components: Chip
 
 ## 纸片阵列
 
-下面是一个通过数组呈现多个纸片的示例。 删除一个纸片元素，则会将其从纸片组的数组中删除。 请注意，既然 `onClick` 属性并没有被定义过，所以这些纸片在被点击或触碰时可以被对焦，但不会在立体和阴影上有所变化。
+下面是一个通过数组呈现多个纸片的示例。 删除一个纸片元素，则会将其从纸片组的数组中删除。 请注意，由于没有定义 `onClick` 属性，所以这些纸片在被点击或触碰时可以被对焦，但不会在立体和阴影上有所变化。
 
 {{"demo": "pages/components/chips/ChipsArray.js", "bg": true}}
 
@@ -48,6 +53,6 @@ components: Chip
 
 {{"demo": "pages/components/chips/ChipsPlayground.js", "hideToolbar": true}}
 
-## 可访问性
+## 无障碍设计
 
-如果Chip可删除或可点击，它应该作为一个按钮而被 tab 所顺序访问。 当纸片被聚焦时（例如在制表符时），释放（`keyup` 事件） `Backspace` 或 `Delete` 将调用 `onDelete` 处理程序，而释放 `Escape` 将模糊纸片。
+如果 Chip 是可删除或可点击的，它则应该是一个安装标签顺序排列的按钮。 当纸片被聚焦时（例如在制表符时），释放（`keyup` 事件） `Backspace` 或 `Delete` 将调用 `onDelete` 处理程序，从而通过释放 `Escape` 来模糊纸片组件。

@@ -1,6 +1,8 @@
 ---
 title: Transition React component
 components: Collapse, Fade, Grow, Slide, Zoom
+githubLabel:
+  component: トランジション
 ---
 
 # Transitions
@@ -8,6 +10,8 @@ components: Collapse, Fade, Grow, Slide, Zoom
 <p class="description">Transitionは、UIを表現力豊かで使いやすくするのに役立ちます。</p>
 
 Material-UIは、いくつかの基本的な [モーション](https://material.io/design/motion/) をアプリケーションコンポーネントに導入するために使用できる多くのトランジションを提供します。
+
+[The palette](/system/palette/) style関数。
 
 サーバーレンダリングをより適切にサポートするために、Material-UIはいくつかの遷移コンポーネント（フェード、成長、ズーム、スライド）の子に `スタイル` プロパティ を提供します。 アニメーションが期待どおりに機能するには、 `スタイル` プロパティをDOMに適用する必要があります。
 
@@ -33,7 +37,7 @@ export default Main() {
 
 ## Collapse
 
-子要素の上部から垂直方向に展開します。 `collapsedHeight` プロパティを使用して、展開されていないときの最小の高さを設定できます。
+子要素の上部から垂直方向に展開します。 Use the `orientation` prop if you need a horizontal collapse. `collapsedHeight` プロパティを使用して、展開されていないときの最小の高さを設定できます。
 
 {{"demo": "pages/components/transitions/SimpleCollapse.js", "bg": true}}
 
@@ -73,6 +77,12 @@ The components accept a `TransitionComponent` prop to customize the default tran
 
 - Accepts an `in` prop. This corresponds to the open/close state.
 - Call the `onEnter` callback prop when the enter transition starts.
-- Call the `onExited` callback prop when the exit transition is completed. These two callbacks allow to unmount the children when in a closed state and fully transitioned.
+- Call the `onExited` callback prop when the exit transition is completed. Call the `onExited` callback prop when the exit transition is completed.
 
-For more information on creating a custom transition, visit the [React Transition Group Transition docs](http://reactcommunity.org/react-transition-group/transition).
+For more information on creating a custom transition, visit the [React Transition Group Transition docs](http://reactcommunity.org/react-transition-group/transition). You can also visit the dedicated sections of some of the components:
+
+- [Modal](/components/modal/#transitions)
+- [Dialog](/components/dialogs/#transitions)
+- [Popper](/components/popper/#transitions)
+- [Snackbar](/components/snackbars/#transitions)
+- [Tooltip](/components/tooltips/#transitions)

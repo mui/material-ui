@@ -21,7 +21,7 @@ We use GitHub issues exclusively as a bugs and feature requests tracker. If you 
 #### New issue guidelines
 
 - Please follow the issue template.
-- Please begin the title with '[ComponentName]' where appropriate, and use a succinct description that helps others find similar issues. 
+- Please begin the title with '[ComponentName]' where appropriate, and use a succinct description that helps others find similar issues.
   - "doesn't work" ❌
   - "[Button] Add support for <some feature>" ✅
 - Please don't group multiple topics in one issue – each should have its own issue instead.
@@ -55,6 +55,7 @@ The current status of each Material-UI version is as follows:
 
 - Material-UI v4 (hooks): ✅ In active development.
 - Material-UI v3 (change supported browsers): ⚠️ Only handle security fixes.
+- Material-UI v3 (change supported browsers): ❌ Inactive.
 - ~Material-UI v2 (never existed)~.
 - Material-UI v1 (rewrite): ❌ Inactive.
 - Material-UI v0.x: ❌ Inactive.
@@ -82,12 +83,16 @@ The end result? All of the capabilities you expect from commercial-grade softwar
 <a
   data-ga-event-category="support"
   data-ga-event-action="tidelift"
-  href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise"> Get more details </a>
+  href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise">
+Get more details
+</a>
 
 <a
   data-ga-event-category="support"
   data-ga-event-action="tidelift"
-  href="https://tidelift.com/subscription/request-a-demo?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise"> Request a demo </a>
+  href="https://tidelift.com/subscription/request-a-demo?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise">
+Request a demo
+</a>
 
 ### Custom work 🛠
 

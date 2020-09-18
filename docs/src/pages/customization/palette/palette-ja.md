@@ -4,7 +4,7 @@
 
 ## Palette colors
 
-A color intention is a mapping of a palette color to a given intention within your application. The theme exposes the following palette colors (accessible under `theme.palette.`):
+The theme exposes the following palette colors (accessible under `theme.palette.`):
 
 - *primary* - used to represent primary interface elements for a user. It's the color displayed most frequently across your app's screens and components.
 - *secondary* - used to represent secondary interface elements for a user. It provides more ways to accent and distinguish your product. Having it is optional.
@@ -21,7 +21,7 @@ You can explore the default values of the palette using [the theme explorer](/cu
 
 {{"demo": "pages/customization/palette/Intentions.js", "bg": "inline", "hideToolbar": true}}
 
-既定のパレットでは、副次的な意図を表すために、先頭に`A`(`A200`など。) が付いたシェーディングが使用されます。 他の目的のために省略されたシェードがあります。
+既定のパレットでは、副次的な意図を表すために、先頭に`A`(`A200`など。 ) が付いたシェーディングが使用されます。
 
 ## カスタマイズ
 
@@ -49,7 +49,7 @@ interface PaletteColor {
 
 ### カラーオブジェクトを使用する
 
-意図をカスタマイズする最も簡単な方法は、提供されている1つまたは複数のカラーをインポートすることです。 次のようにパレット意図に適用します。
+意図をカスタマイズする最も簡単な方法は、提供されている1つまたは複数のカラーをインポートすることです。
 
 ```js
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -163,7 +163,7 @@ declare module "@material-ui/core/styles/createPalette" {
 
 ## Picking colors
 
-インスピレーションが必要ですか？ The Material Design team has built an [palette configuration tool](/customization/color/#picking-colors) to help you.
+インスピレーションが必要ですか？ インスピレーションが必要ですか？ インスピレーションが必要ですか？ The Material Design team has built an [palette configuration tool](/customization/color/#picking-colors) to help you.
 
 ## Dark mode
 

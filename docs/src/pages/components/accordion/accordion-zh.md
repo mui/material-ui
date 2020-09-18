@@ -1,6 +1,10 @@
 ---
-title: React Accordion 扩展面板组件
+title: React 扩展面板组件
 components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
+githubLabel:
+  component: Accordion 扩展面板
+materialDesign: https://material.io/archive/guidelines/components/expansion-panels.html
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#accordion'
 ---
 
 # Accordion 扩展面板
@@ -9,7 +13,9 @@ components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 
 [扩展面板](https://material.io/archive/guidelines/components/accordion.html)是一个轻量级容器，既可以单独使用，也可以和卡片这样更大的平面相结合。
 
-> **注意：** 此版本的扩展面板将不再记录在 [Material Design 指南中](https://material.io/)，但 Material-UI 将继续支持它。
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
+> **注意：** 此版本的扩展面板将不再记录在 [Material Design 指南中](https://material.io/)，但 Material-UI 将继续支持它。 您可能属性它之前的名字为 "expansion panel"。
 
 ## 简单的扩展面板
 
@@ -17,7 +23,7 @@ components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 
 ## 可控制的折叠面板
 
-使用 ` Accordion` 组件，能够扩展已有的控制面板行为，来创建自定义的扩展面板组。
+使用`控制面板` 组件，能够扩展已有的控制面板行为，来创建自定义的扩展面板组。
 
 {{"demo": "pages/components/accordion/ControlledAccordions.js", "bg": true}}
 
@@ -29,13 +35,13 @@ components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 
 ## 其他操作
 
-当你把 `Checkbox` 或者一个按钮这样的操作事件放进`AccordionSummary`，当在打开和收缩控制面板时使用这个操作，你则需要阻止 focus 和 click 事件的传播。 您则需要把 `aria-label` 传给操作，否则控制面板扩展的父级按钮会把嵌套着的操作的标签包含进去。
+当你把 `Checkbox` 或者一个按钮这样的操作事件放进 `AccordionSummary`，当在打开和收缩控制面板时使用这个操作，你则需要阻止 focus 和 click 事件的传播（propagation）。 您还应该为该操作提供一个 `aria-label` 标签，否则嵌套操作的标签将包含在控制扩展面板的父按钮的标签中。
 
 {{"demo": "pages/components/accordion/ActionsInAccordionSummary.js", "bg": true}}
 
 ## 性能
 
-默认情况下，即使在面板没被展开的情况下，扩展面板的内容也会被注入到页面中。 这样的默认情况是是考虑到了服务端渲染（server-side rendering）和搜索引擎优化（SEO）。 但如果你您要在扩展面板中渲染开销很大的树组件，或者只是单纯想要渲染很多扩展面板，我们建议变更这个默认的行为：需要启用 `TransitionProps` 中的 `unmountOnExit` 属性。
+即使扩展面板没有展开，默认情况下扩展面板的内容也会挂载。 这样的默认情况是是考虑到了服务端渲染（server-side rendering）和搜索引擎优化（SEO）。 如果您在扩展面板中渲染组件树性能开销很大，或者只是想要渲染很多不带内容的扩展面板，那么通过启用 `TransitionProps` 中的 `unmountOnExit` 来改变默认的渲染方式也许可行。
 
 ```jsx
 <Accordion TransitionProps={{ unmountOnExit: true }} />
@@ -53,4 +59,4 @@ components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#accordion)
 
-如果想要取得较好的无障碍设计，我们建议您在 `AccordionSummary` 中配置 `id` 和 `aria-controls` 。 `Accordion` 将为面板的内容区域导出必要的 `aria-labelledby` 和 `id`。
+为了获得最佳的无障碍设计，我们建议在 `AccordionSummary` 上设置 `id` 和 `aria-controls`。 `Accordion` 将为扩展面板的内容区域派生必需的 `aria-labelledby` 和 `id`。

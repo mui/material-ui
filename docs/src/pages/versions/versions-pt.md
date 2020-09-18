@@ -16,7 +16,7 @@ Aqui você irá encontrar a versão em desenvolvimento e sua documentação. Pod
 
 ## Estratégia de controle de versão
 
-A estabilidade garante que componentes e bibliotecas reutilizáveis, tutoriais, ferramentas e práticas aprendidas não se tornem obsoletos inesperadamente. A estabilidade é essencial para que o ecossistema em torno do Material-UI prospere.
+A estabilidade garante que componentes e bibliotecas reutilizáveis, tutoriais, ferramentas e práticas aprendidas não se tornem obsoletas inesperadamente. A estabilidade é essencial para que o ecossistema em torno do Material-UI prospere.
 
 Este documento contém as práticas que são seguidas para fornecer uma biblioteca de ponta para interface do usuário, equilibrada com a estabilidade e garantindo que mudanças futuras sejam sempre introduzidas de maneira previsível.
 
@@ -38,13 +38,12 @@ Em geral, você pode esperar o seguinte ciclo de lançamento:
 
 ## Cronograma de lançamento
 
-| Data                       | Versão | Situação |
-|:-------------------------- |:------ |:-------- |
-| Maio de 2018               | v1.0.0 | Lançada  |
-| Setembro de 2018           | v3.0.0 | Lançada  |
-| Maio de 2019               | v4.0.0 | Lançada  |
-| Terceiro trimestre de 2020 | v5.0.0 | ⏳        |
-
+| Data             | Versão | Situação |
+|:---------------- |:------ |:-------- |
+| Maio de 2018     | v1.0.0 | Lançada  |
+| Setembro de 2018 | v3.0.0 | Lançada  |
+| Maio de 2019     | v4.0.0 | Lançada  |
+| Q4 2020          | v5.0.0 | ⏳        |
 
 Você pode seguir os [milestones](https://github.com/mui-org/material-ui/milestones) para uma visão geral mais detalhada.
 
@@ -54,7 +53,7 @@ Você pode seguir os [milestones](https://github.com/mui-org/material-ui/milesto
 
 Encontre detalhes nas [versões suportadas](/getting-started/support/#supported-versions).
 
-## Práticas de substituição
+## Práticas de descontinuação
 
 Às vezes, **"alterações significativas"**, tais como a remoção do suporte para selecionar APIs e recursos, são necessários.
 
@@ -65,7 +64,7 @@ Para tornar essas transições o mais fácil possível:
 
 ### Política de descontinuação
 
-- Recursos descontinuados são anunciados no log de mudanças, quando possível, com avisos colocados em tempo de execução.
+- Recursos descontinuados são anunciados no log de mudanças, e quando possível, com avisos colocados em tempo de execução.
 - Quando uma descontinuação é anunciada, um caminho para efetuar a atualização é fornecido.
 - O uso já existente da API durante o período de descontinuação é suportado, então seu código continuará a funcionar durante esse período.
 - Atualizações de subdependências do framework (React) que exigem alterações nos seus aplicativos só são feitas em uma versão principal.

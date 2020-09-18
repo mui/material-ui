@@ -1,6 +1,10 @@
 ---
 title: Tabs React component
 components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
+githubLabel:
+  component: Pestañas
+materialDesign: https://material.io/components/tabs
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tabpanel'
 ---
 
 # Pestañas
@@ -9,11 +13,13 @@ components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
 
 [Tabs](https://material.io/design/components/tabs.html) organize and allow navigation between groups of content that are related and at the same level of hierarchy.
 
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
 ## Simple Tabs
 
-Un ejemplo sencillo sin florituras.
-
 {{"demo": "pages/components/tabs/SimpleTabs.js", "bg": true}}
+
+{{"demo": "pages/components/tabs/BasicTabs.js", "bg": true}}
 
 ### Wrapped Labels
 
@@ -57,6 +63,16 @@ Left and right scroll buttons will be presented regardless of the viewport width
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonForce.js", "bg": true}}
 
+If you want to make sure the buttons are always visible, you should customize the opacity.
+
+```css
+.MuiTabs-scrollButtons.Mui-disabled {
+  opacity: 0.3;
+}
+```
+
+{{"demo": "pages/components/tabs/ScrollableTabsButtonVisible.js", "bg": true}}
+
 ### Prevent Scroll Buttons
 
 Left and right scroll buttons will never be presented. All scrolling must be initiated through user agent scrolling mechanisms (e.g. left/right swipe, shift-mousewheel, etc.)
@@ -65,7 +81,7 @@ Left and right scroll buttons will never be presented. All scrolling must be ini
 
 ## Customized tabs
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+He aquí un ejemplo de personalización del componente. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/tabs/CustomizedTabs.js", "bg": true}}
 
@@ -73,7 +89,11 @@ Here is an example of customizing the component. You can learn more about this i
 
 ## Vertical tabs
 
+To make vertical tabs instead of default horizontal ones, there is `orientation="vertical"`:
+
 {{"demo": "pages/components/tabs/VerticalTabs.js", "bg": true}}
+
+Note that you can restore the scrollbar with `visibleScrollbar`.
 
 ## Nav Tabs
 

@@ -1,6 +1,8 @@
 ---
 title: Hidden React-Komponente
 components: Hidden
+githubLabel:
+  component: Hidden
 ---
 
 # Hidden
@@ -9,9 +11,11 @@ components: Hidden
 
 Alle Elemente sind sichtbar, außer **sie explizit versteckt**. To ease integration with Material-UI's [responsive breakpoints](/customization/breakpoints/), this component can be used to hide any content, or you can use it in conjunction with the [`Grid`](/components/grid/) component.
 
+Die Style-Funktion der [Palette](/system/palette/).
+
 ## So funktioniert es
 
-Hidden funktioniert mit einem Bereich von Haltepunkten, z. B. `xsUp` oder `mdDown`, oder einem oder mehreren Haltepunkten, z. B. `only='sm'` oder `only {['md','xl']}`. Bereiche und individuelle Haltepunkte können gleichzeitig verwendet werden, um ein sehr benutzerdefiniertes Verhalten zu erreichen. Die Bereiche enthalten die angegebenen Haltepunkte.
+Hidden funktioniert mit einem Bereich von Haltepunkten, z. `xsUp` oder `mdDown`, oder einem oder mehreren Haltepunkten, z. `only='sm'` oder `only {['md','xl']}`. Bereiche und individuelle Haltepunkte können gleichzeitig verwendet werden, um ein sehr benutzerdefiniertes Verhalten zu erreichen. Die Bereiche enthalten die angegebenen Haltepunkte.
 
 ```js
 innerWidth  |xs      sm       md       lg       xl
@@ -35,21 +39,21 @@ Wenn Sie serverseitiges Rendering verwenden, können Sie `implementation="css"` 
 
 ## Haltepunkte Up
 
-Unter Verwendung einer beliebigen Haltepunkte `up` Eigenschaft, werden die angegebenen *Kinder* ausgeblendet *bei oder über* dem Haltepunkt.
+Unter Verwendung einer beliebigen Haltepunkte `down` Eigenschaft, werden die angegebenen *Kinder* ausgeblendet *bei oder unter* dem Haltepunkt.
 
 {{"demo": "pages/components/hidden/BreakpointUp.js", "bg": true}}
 
 ## Haltepunkte Down
 
-Unter Verwendung einer beliebigen Haltepunkte `down` Eigenschaft, werden die angegebenen *Kinder* ausgeblendet *bei oder unter* dem Haltepunkt.
+Unter Verwendung der Haltepunkt `only` Eigenschaft, werden die angegebenen *Kinder* *bei* dem Haltepunkt(en) ausgeblendet.
 
 {{"demo": "pages/components/hidden/BreakpointDown.js", "bg": true}}
 
 ## Haltepunkte einzeln
 
-Unter Verwendung der Haltepunkt `only` Eigenschaft, werden die angegebenen *Kinder* *bei* dem Haltepunkt(en) ausgeblendet.
-
 Die `only` Eigenschaft kann auf zwei Arten verwendet werden:
+
+The `only` prop can be used in two ways:
 
 - Einzelnen Haltepunkt auflisten
 - Listen Sie ein Array von Haltepunkten auf

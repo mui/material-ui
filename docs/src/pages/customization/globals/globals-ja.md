@@ -4,10 +4,12 @@
 
 ## CSS
 
-設定変数が十分に強力でない場合は、 `theme` の</code>キーを`overrides</0> し、Material-UIによってDOMに注入される<strong>every single style</strong>を変更できるようにします。
-それは本当に強力な機能です。</p>
+設定変数が十分に強力でない場合は、 `theme` の</code>キーを`overrides</0> し、Material-UIによってDOMに注入される<strong>every single style</strong>を変更できるようにします。 それは本当に強力な機能です。 それは本当に強力な機能です。
 
-<pre><code class="js">const theme = createMuiTheme({
+To override lab components styles with TypeScript, check [this documentation](/components/about-the-lab/#typescript).
+
+```js
+const theme = createMuiTheme({
   overrides: {
     // Style sheet name ⚛️
     MuiButton: {
@@ -19,7 +21,12 @@
     },
   },
 });
-`</pre> 
+`</pre>
+
+<p spaces-before="0">{{"demo": "pages/customization/globals/GlobalCss.js"}}</p>
+
+<p spaces-before="0">各コンポーネントのカスタマイズポイントの一覧は、 <strong x-id="1">Component API</strong>のセクションに記載されています。
+```
 
 {{"demo": "pages/customization/globals/GlobalCss.js"}}
 
@@ -30,7 +37,9 @@
 If you are using the [CssBaseline](/components/css-baseline/) component to apply global resets, it can also be used to apply global styles. 例えば：
 
 ```jsx
-const theme = createMuiTheme({
+例えば：</p>
+
+<pre><code class="jsx">const theme = createMuiTheme({
   overrides: {
     MuiCssBaseline: {
       '@global': {
@@ -53,7 +62,9 @@ return (
 
 ## Default props
 
-すべての Material-UI コンポーネントのdefault propsを変更できます。 A `props` key is exposed in the `theme` for this use case.
+const theme = createMuiTheme({ props: { // Name of the component ⚛️ MuiButtonBase: { // The default props to change disableRipple: true, // No more ripple, on the whole application 💣! A `props` key is exposed in the `theme` for this use case.
+
+To override lab components styles with TypeScript, check [this documentation](/components/about-the-lab/#typescript).
 
 ```js
 const theme = createMuiTheme({
@@ -62,7 +73,7 @@ const theme = createMuiTheme({
     MuiButtonBase: {
       // The default props to change
       disableRipple: true, // No more ripple, on the whole application 💣!
-    },
+      },
   },
 });
 ```

@@ -10,7 +10,7 @@
 
 ## 最新バージョン
 
-ここには、最新の未発表の文書とコードがあります。 これを使用して、変更点を確認し、Material-UIの貢献者により良いフィードバックを提供できます。
+ここには、最新の未発表の文書とコードがあります。 ここには、最新の未発表の文書とコードがあります。 これを使用して、変更点を確認し、Material-UIの貢献者により良いフィードバックを提供できます。
 
 {{"demo": "pages/versions/LatestVersions.js", "hideToolbar": true, "bg": "inline"}}
 
@@ -20,11 +20,11 @@
 
 This document contains the practices that are followed to provide you with a leading-edge UI library, balanced with stability, ensuring that future changes are always introduced in a predictable way.
 
-Material-UI は [Semantic Versioning 2.0.0](https://semver.org/) に従いバージョンを付けています。 Material-UIのバージョン番号には3つの部分があります：` major.minor.patch ` 。 バージョン番号は、リリースに含まれる変更のレベルに基づいて増分されます。
+Material-UI は [Semantic Versioning 2.0.0](https://semver.org/) に従いバージョンを付けています。 Material-UIのバージョン番号には3つの部分があります：`major.minor.patch` 。 バージョン番号は、リリースに含まれる変更のレベルに基づいて増分されます。 Material-UIのバージョン番号には3つの部分があります：` major.minor.patch ` 。 バージョン番号は、リリースに含まれる変更のレベルに基づいて増分されます。
 
-- **メジャーリリース**　には、重要な新機能が含まれています。一部の機能は含まれていますが、アップデート中の開発者支援は最小限に抑えられます。 新しいメジャーリリースに更新するときは、更新スクリプトの実行、コードのリファクタリング、追加テストの実行、および新しいAPIの学習が必要になる場合があります。
-- **マイナーリリース**　重要な新機能が含まれています。 マイナーリリースは完全に下位互換性がある; アップデート中に開発者の支援は必要ありませんが、必要に応じて、リリースで追加された新しいAPI、機能、および機能を使用するようにアプリケーションとライブラリを変更できます。
-- **パッチリリース**　リスクが低く、バグ修正と小さな新機能が含まれています。 更新中に開発者の支援は必要ありません。
+- **マイナーリリース**　重要な新機能が含まれています。 新しいメジャーリリースに更新するときは、更新スクリプトの実行、コードのリファクタリング、追加テストの実行、および新しいAPIの学習が必要になる場合があります。
+- **パッチリリース**　リスクが低く、バグ修正と小さな新機能が含まれています。 マイナーリリースは完全に下位互換性がある; アップデート中に開発者の支援は必要ありませんが、必要に応じて、リリースで追加された新しいAPI、機能、および機能を使用するようにアプリケーションとライブラリを変更できます。
+- **メジャーリリース**　には、重要な新機能が含まれています。 一部の機能は含まれていますが、アップデート中の開発者支援は最小限に抑えられます。 更新中に開発者の支援は必要ありません。
 
 ## リリース頻度
 
@@ -38,17 +38,16 @@ Material-UI は [Semantic Versioning 2.0.0](https://semver.org/) に従いバー
 
 ## リリーススケジュール
 
-| Date        | Version | Status   |
-|:----------- |:------- |:-------- |
-| 2018年 5月    | v1.0.0  | Released |
-| 2018年 9月    | v3.0.0  | Released |
-| 2019年 5月    | v4.0.0  | Released |
-| 2020年 第3四半期 | v5.0.0  | ⏳        |
-
+| Date     | Version | Status   |
+|:-------- |:------- |:-------- |
+| 2018年 5月 | v1.0.0  | Released |
+| 2018年 9月 | v3.0.0  | Released |
+| 2019年 5月 | v4.0.0  | Released |
+| Q4 2020  | v5.0.0  | ⏳        |
 
 詳細な概要については [マイルストーン](https://github.com/mui-org/material-ui/milestones) をご覧ください。
 
-> ⚠️ **免責事項**: 我々は流動的な環境で事業を行っており、状況は変化する可能性があります。 提供される情報は、フレームワークの一般的な方向性を概説することを目的としています。 情報提供のみを目的とします。 We may decide to add/remove new items at any time depending on our capability to deliver while meeting our quality standards. The development, releases and timing of any features or functionality of Material-UI remains at the sole discretion of Material-UI. The roadmap does not represent a commitment, obligation or promise to deliver at any time.
+> ⚠️ **免責事項**: 我々は流動的な環境で事業を行っており、状況は変化する可能性があります。 提供される情報は、フレームワークの一般的な方向性を概説することを目的としています。 We may decide to add/remove new items at any time depending on our capability to deliver while meeting our quality standards. The development, releases and timing of any features or functionality of Material-UI remains at the sole discretion of Material-UI. The roadmap does not represent a commitment, obligation or promise to deliver at any time.
 
 ## サポートポリシー
 

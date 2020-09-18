@@ -1,13 +1,13 @@
-# Paleta de Cores
+# Paleta
 
 <p class="description">A paleta permite modificar a cor dos componentes para se adequarem à sua marca.</p>
 
-## Palette colors
+## Paleta de cores
 
-A color intention is a mapping of a palette color to a given intention within your application. The theme exposes the following palette colors (accessible under `theme.palette.`):
+O tema expõe as seguintes cores da paleta (acessível sob `theme.palette`.):
 
-- *primary* - used to represent primary interface elements for a user. It's the color displayed most frequently across your app's screens and components.
-- *secondary* - used to represent secondary interface elements for a user. It provides more ways to accent and distinguish your product. Having it is optional.
+- *primary* - used to represent primary interface elements for a user. É a cor mais frequentemente exibida nas telas e componentes do seu aplicativo.
+- *secondary* - used to represent secondary interface elements for a user. Ela fornece mais maneiras de realçar e distinguir o seu produto. Tê-la é opcional.
 - *error* - used to represent interface elements that the user should be made aware of.
 - *warning* - used to represent potentially dangerous actions or important messages.
 - *info* - used to present information to the user that is neutral and not necessarily important.
@@ -25,7 +25,7 @@ A paleta padrão usa as sombras prefixadas com `A` (`A200`, etc.) para a intenç
 
 ## Customização
 
-You may override the default palette values by including a palette object as part of your theme. If any of the:
+Você pode sobrescrever os valores padrão da paleta incluindo um objeto de paleta como parte do seu tema. Se algum dos seguintes:
 
 - [`palette.primary`](/customization/default-theme/?expand-path=$.palette.primary)
 - [`palette.secondary`](/customization/default-theme/?expand-path=$.palette.secondary)
@@ -36,7 +36,7 @@ You may override the default palette values by including a palette object as par
 
 palette color objects are provided, they will replace the defaults.
 
-The palette color value can either be a [color](/customization/color/#2014-material-design-color-palettes) object, or an object with one or more of the keys specified by the following TypeScript interface:
+O valor da paleta de cor pode ser um objeto [cor](/customization/color/#2014-material-design-color-palettes), ou um objeto com uma ou mais das chaves especificadas pela seguinte interface TypeScript:
 
 ```ts
 interface PaletteColor {
@@ -99,7 +99,7 @@ Como no exemplo acima, se o objeto de intenção contém cores customizadas usan
 - Se as chaves "dark" e / ou "light" são omitidas, seus valores serão calculados de "main", de acordo com o valor "tonalOffset".
 - Se "contrastText" é omitido, seu valor será calculado para contrastar com "main", de acordo com o valor de "contrastThreshold".
 
-Tanto os valores de "tonalOffset" e "contrastThreshold" poderão ser customizados conforme o necessário. O "tonalOffset" pode ser um valor numérico entre 0 e 1, que será aplicada a ambos variantes claros e escuros, ou um objeto com as variantes clara e escuras especificado a seguir pelo tipo TypeScript:
+Tanto os valores de "tonalOffset" e "contrastThreshold" poderão ser customizados conforme o necessário. O "tonalOffset" pode ser um valor numérico entre 0 e 1, que será aplicado a ambas variantes de claro e escuro, ou um objeto com as variantes claro e escuro especificado a seguir pelo tipo TypeScript:
 
 ```ts
 type PaletteTonalOffset = number | {
@@ -116,9 +116,9 @@ Observe que "contrastThreshold" segue uma curva não linear.
 
 {{"demo": "pages/customization/palette/Palette.js", "defaultCodeOpen": true}}
 
-### Adding new colors
+### Adicionando novas cores
 
-You can add new colors inside and outside the palette of the theme as follow:
+Você pode adicionar novas cores dentro e fora da paleta do tema da seguinte maneira:
 
 ```js
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -135,7 +135,7 @@ const theme = createMuiTheme({
 });
 ```
 
-If you are using TypeScript, you would also need to use [module augmentation](/guides/typescript/#customization-of-theme) for the theme to accept the above values.
+Se você estiver usando TypeScript, você também deverá usar a [extensão de módulos](/guides/typescript/#customization-of-theme) para que o tema aceite os valores acima.
 
 ```ts
 declare module '@material-ui/core/styles/createMuiTheme' {
@@ -161,13 +161,13 @@ declare module "@material-ui/core/styles/createPalette" {
 }
 ```
 
-## Picking colors
+## Escolhendo cores
 
-Precisa de inspiração? The Material Design team has built an [palette configuration tool](/customization/color/#picking-colors) to help you.
+Precisa de inspiração? A equipe do Material Design construiu uma [ferramenta de configuração de paleta](/customization/color/#picking-colors) para te ajudar.
 
 ## Modo escuro
 
-O Material-UI vem com dois tipos de paletas, luz (o padrão) e escuro. Você pode deixar o tema escuro definindo `type: 'dark'`. Embora seja apenas uma alteração no valor de uma propriedade única, internamente ela modifica vários valores da paleta.
+O Material-UI vem com dois tipos de paletas, claro (o padrão) e escuro. Você pode deixar o tema escuro definindo `type: 'dark'`. Embora seja apenas uma alteração no valor de uma propriedade única, internamente ela modifica vários valores da paleta.
 
 ```js
 const darkTheme = createMuiTheme({

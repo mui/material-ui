@@ -28,7 +28,7 @@ Material-UI fue diseñado con la fuente [ Roboto ](https://fonts.google.com/spec
 
 ## Fuente de Iconos
 
-Para poder utilizar la fuente del componente `Icon`, primero debes agregar la fuente [Material icons](https://material.io/tools/icons/). Aquí hay [ algunas instrucciones ](/components/icons/#font-icons) sobre cómo hacerlo. Por ejemplo, a través de Google Web Fonts:
+Aquí hay [ algunas instrucciones ](/components/icons/#font-icons) sobre cómo hacerlo. Aquí hay [ algunas instrucciones ](/components/icons/#font-icons) sobre cómo hacerlo. Por ejemplo, a través de Google Web Fonts:
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
@@ -59,4 +59,15 @@ Puedes seguir [ este ejemplo sobre CDN ](https://github.com/mui-org/material-ui/
 
 ⚠️ Sin embargo, utilizar esta estrategia en **producción** **no es aconsejable** - ya que el cliente tiene que descargar la biblioteca completa, sin importar cuales son los componentes que realmente están en uso, afectando al desempeño y la utilización de ancho de banda.
 
-⚠️ Los enlaces UMD están utilizando la etiqueta `latest` para hacer referencia a la última versión de la biblioteca. Dicha referencia es **inestable**, cambia cada vez que lanzamos nuevas versiones. Deberias considerar hacer referencia a alguna versión específica, por ejemplo, [v4.4.0](https://unpkg.com/@material-ui/core@4.4.0/umd/material-ui.development.js).
+⚠️ Los enlaces UMD están utilizando la etiqueta `latest` para hacer referencia a la última versión de la biblioteca. ⚠️ Los enlaces UMD están utilizando la etiqueta `latest` para hacer referencia a la última versión de la biblioteca. Deberias considerar hacer referencia a alguna versión específica, por ejemplo, [v4.4.0](https://unpkg.com/@material-ui/core@4.4.0/umd/material-ui.development.js).
+
+## Recursos de diseño
+
+<a href="https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-sketch" style="margin-left: 8px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-sketch.svg" alt="sketch" /></a>
+<a href="https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-figma" style="margin-left: 32px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-figma.svg" alt="figma" /></a>
+
+A set of reusable components for design tools is available, designed to match the React components, and to help you craft great products:
+
+- **Sketch**: [Sketch for Material-UI](https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-sketch) — A large UI kit with over 600 handcrafted Material-UI's symbols 💎.
+- **Figma**: [Figma for Material-UI](https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-sketch) — A large UI kit with over 600 handcrafted Material-UI's components 🎨.
+- **Framer**: [Framer for Material-UI](https://packages.framer.com/package/material-ui/material-ui) — A small MIT UI kit preview of handcrafted Material-UI's component.

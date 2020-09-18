@@ -1,6 +1,9 @@
 ---
 title: Composant React de barre d'application
 components: AppBar, Toolbar, Menu
+githubLabel:
+  component: AppBar
+materialDesign: https://material.io/components/app-bars-top
 ---
 
 # App Bar (Barre d'application)
@@ -9,7 +12,9 @@ components: AppBar, Toolbar, Menu
 
 [La barre d'application](https://material.io/design/components/app-bars-top.html) de la page fournit le contenu et les actions liés à l'écran actuel. Il est utilisé pour la marque, les titres d'écran, la navigation et les actions.
 
-It can transform into a contextual action bar or be used as a navbar.
+Il peut être utilisé en tant que barre d'action contextuel ou en tant que barre de navigation.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Barre d'application simple
 
@@ -35,9 +40,9 @@ Une barre de recherche latérale.
 
 {{"demo": "pages/components/app-bar/DenseAppBar.js", "bg": true}}
 
-## Prominent
+## Barre plus importante
 
-A prominent app bar.
+Barre d'application étendu.
 
 {{"demo": "pages/components/app-bar/ProminentAppBar.js", "bg": true}}
 
@@ -45,12 +50,12 @@ A prominent app bar.
 
 {{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 400}}
 
-## Fixed placement
+## Emplacement fixe
 
-When you render the app bar position fixed, the dimension of the element doesn't impact the rest of the page. This can cause some part of your content to be invisible, behind the app bar. Here are 3 possible solutions:
+Quand vous rendez la barre d'application en position fixe, les dimensions de l'élément n'impact pas le reste de page. Cela peut rendre certaine partie de votre contenu invisible, caché derrière la barre d'application. Voici 3 solutions possible:
 
-1. You can use `position="sticky"` instead of fixed. ⚠️ sticky is not supported by IE 11.
-2. You can render a second `<Toolbar />` component:
+1. Vous pouvez utiliser `position="sticky"` au lieu de `position="fixed"`. Sticky n'est pas supporter par IE 11.
+2. Vous pouvez rendre un deuxième composant `<Toolbar />` :
 
 ```jsx
 function App() {
@@ -65,7 +70,7 @@ function App() {
 }
 ```
 
-3. You can use `theme.mixins.toolbar` CSS:
+3. Vous pouvez utiliser `theme.mixins.toolbar` CSS:
 
 ```jsx
 const useStyles = makeStyles(theme => ({
@@ -87,23 +92,23 @@ function App() {
 
 ## Défilement
 
-You can use the `useScrollTrigger()` hook to respond to user scroll actions.
+Vous pouvez utiliser le `useScrollTrigger()` hook pour répondre au défilement déclencher par l'utilisateur.
 
 ### Barre d'application masquable
 
-The app bar hides on scroll down to leave more space for reading.
+La barre d'application est caché lorsque l'utilisateur défile vers le bas de page lui conférant plus d'espace de lecture.
 
 {{"demo": "pages/components/app-bar/HideAppBar.js", "iframe": true}}
 
 ### Barre d'application élevable
 
-The app bar elevates on scroll to communicate that the user is not at the top of the page.
+La barre d'application s'élève lorsque l'utilisateur fait défiler la page pour lui indiquer qu'il n'est plus au début de la page.
 
 {{"demo": "pages/components/app-bar/ElevateAppBar.js", "iframe": true}}
 
-### Back to top
+### Retour au sommet
 
-A floating action buttons appears on scroll to make it easy to get back to the top of the page.
+Au défilement un bouton d'action flottant apparaît pour faciliter le retour au sommet de la page.
 
 {{"demo": "pages/components/app-bar/BackToTop.js", "iframe": true}}
 
@@ -113,9 +118,9 @@ A floating action buttons appears on scroll to make it easy to get back to the t
 
 1. `options` (*Object* [optional]):
 
-- `options.disableHysteresis` (*Boolean* [optional]): Valeur par défaut `false`. Désactive l'hystérésis. Ignore le sens de défilement lors de la détermination de la valeur `trigger`.
-- `options.target` (*Node* [optional]): Valeur par défaut `window`.
-- `options.threshold` (*Nombre* [optional]): Valeur par défaut `100`. Modifier la valeur de `déclenchement` quand lorsque le défilement vertical dépasse strictement ce seuil (exclusif).
+   - `options.disableHysteresis` (*Boolean* [optional]): Valeur par défaut `false`. Désactive l'hystérésis. Ignore le sens de défilement lors de la détermination de la valeur `trigger`.
+   - `options.target` (*Node* [optional]): Valeur par défaut `window`.
+   - `options.threshold` (*Nombre* [optional]): Valeur par défaut `100`. Modifier la valeur de `déclenchement` quand lorsque le défilement vertical dépasse strictement ce seuil (exclusif).
 
 #### Valeur de retour
 

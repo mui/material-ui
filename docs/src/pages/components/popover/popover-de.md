@@ -1,6 +1,8 @@
 ---
 title: Popover React-Komponente
 components: Grow, Popover
+githubLabel:
+  component: Popover
 ---
 
 # Popover
@@ -11,6 +13,8 @@ Wissenswertes zur Verwendung der Komponente `Popover`:
 
 - Die Komponente ist auf der [`Modal`](/components/modal/) Komponente aufgebaut.
 - Das Scrollen und das Wegklicken sind im Gegensatz zur Komponente [`Popper`](/components/popper/) blockiert.
+
+Die Style-Funktion der [Palette](/system/palette/).
 
 ## Einfaches Popover
 

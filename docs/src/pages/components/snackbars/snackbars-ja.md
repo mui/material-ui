@@ -1,15 +1,21 @@
 ---
 title: Snackbar React component
 components: Snackbar, SnackbarContent
+githubLabel:
+  component: Snackbar
+materialDesign: https://material.io/components/snackbars
+waiAria: 'https://www.w3.org/TR/wai-aria-1.1/#alert'
 ---
 
-# Snackbar (スナックバー)
+# Snackbar
 
 <p class="description">Snackbars provide brief messages about app processes. The component is also known as a toast.</p>
 
 [スナックバー](https://material.io/design/components/snackbars.html) は、アプリが実行したプロセスまたは実行するプロセスをユーザーに通知します。 一時的に画面の下部に表示されます。 ユーザーの操作を中断したり、ユーザー入力を消去したりする必要はありません。
 
-スナックバーには、実行された操作に直接関連する1行のテキストが含まれます。 テキストアクションは含まれますが、アイコンは含まれません。 それら使うことで通知を表示できます。
+スナックバーには、実行された操作に直接関連する1行のテキストが含まれます。 テキストアクションは含まれますが、アイコンは含まれません。 それら使うことで通知を表示できます。 テキストアクションは含まれますが、アイコンは含まれません。 それら使うことで通知を表示できます。
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 #### 頻度
 
@@ -23,7 +29,7 @@ Google Keepのスナックバーの動作を再現することを目的とした
 
 ## カスタマイズされたスナックバー
 
-コンポーネントのカスタマイズの例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+コンポーネントのカスタマイズの例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/snackbars/CustomizedSnackbars.js"}}
 

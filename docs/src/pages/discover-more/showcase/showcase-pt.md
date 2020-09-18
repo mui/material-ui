@@ -2,9 +2,11 @@
 
 <p class="description">A seguir uma lista de algumas aplicações que estão utilizando Material-UI.</p>
 
-Quer adicionar sua aplicação? Encontrou uma aplicação que não funciona mais ou já não está utilizando Material-UI? Por favor, envie um pull request no [GitHub](https://github.com/mui-org/material-ui) para atualizar [esta página](https://github.com/mui-org/material-ui/blob/next/docs/src/pages/discover-more/showcase/appList.js)! Bons candidatos são sites com boa classificação nessas dimensões:
+Você está usando o Material-UI? [Share your product](https://github.com/mui-org/material-ui/issues/22426).
 
-- Sem customização Material Design
+The websites we include rank well in at least one of these dimensions:
+
+- Sem customização do Material Design
 - Alto tráfego
 - Código aberto
 

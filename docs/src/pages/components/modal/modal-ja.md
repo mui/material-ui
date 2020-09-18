@@ -1,13 +1,16 @@
 ---
 title: Modal React component
 components: Modal
+githubLabel:
+  component: Modal
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 ---
 
 # Modal
 
 <p class="description">モーダルコンポーネントは、ダイアログ、ポップオーバー、ライトボックスなどを作成するための強固な基盤を提供します。</p>
 
-コンポーネントは、backdropコンポーネントの前にその `children`ノードをレンダリングします。 `Modal` には、次のような重要な機能があります。
+コンポーネントは、backdropコンポーネントの前にその `children`ノードをレンダリングします。 `Modal` には、次のような重要な機能があります。 `Modal` には、次のような重要な機能があります。 `Modal` には、次のような重要な機能があります。
 
 - 💄 一度に1つだけでは不十分な場合に、モーダルスタッキングを管理します。
 - 🔐モーダルの下のインタラクションを無効にするためのバックドロップを作成します。
@@ -16,9 +19,11 @@ components: Modal
 - ♿️適切なARIAロールを自動的に追加します。
 - [5 kB gzipped](/size-snapshot).
 
+[The palette](/system/palette/) style関数。
+
 > **用語の注記**。 「モーダル」という用語は「ダイアログ」を意味するために使用されることがありますが、これは誤った呼び名です。 A modal window describes parts of a UI. 要素が[アプリケーションの他の部分との対話をブロックする場合](https://en.wikipedia.org/wiki/Modal_window)、その要素はモーダルであると見なされます。
 
-モーダルダイアログを作成する場合は、モーダルを直接使用するのではなく、 [ダイアログ](/components/dialogs/) コンポーネントを使用することをお勧めします。 モーダルは、次のコンポーネントによって活用される低レベルの構成要素です。
+要素が[アプリケーションの他の部分との対話をブロックする場合](https://en.wikipedia.org/wiki/Modal_window)、その要素はモーダルであると見なされます。 This component should respect the following conditions:
 
 - [Dialog](/components/dialogs/)
 - [Drawer](/components/drawers/)
@@ -31,7 +36,7 @@ components: Modal
 
 `アウトライン：0` CSSプロパティでアウトライン（多くの場合、青または金）を無効にできることに注意してください。
 
-## トランジション
+## Transitions
 
 The open/close state of the modal can be animated with a transition component. This component should respect the following conditions:
 
@@ -50,7 +55,7 @@ Alternatively, you can use [react-spring](https://github.com/react-spring/react-
 
 ## Server-side modal
 
-React は、サーバー上の [`createPortal（）`](https://reactjs.org/docs/portals.html) APIを[サポートしません。](https://github.com/facebook/react/issues/13097) In order to display the modal, you need to disable the portal feature with the `disablePortal` prop:
+React は、サーバー上の [`createPortal（）`](https://reactjs.org/docs/portals.html) APIを[サポートしません。](https://github.com/facebook/react/issues/13097) In order to display the modal, you need to disable the portal feature with the `disablePortal` prop: In order to display the modal, you need to disable the portal feature with the `disablePortal` prop: In order to display the modal, you need to disable the portal feature with the `disablePortal` prop:
 
 {{"demo": "pages/components/modal/ServerModal.js"}}
 
@@ -70,10 +75,10 @@ This is done for accessibility purposes, however, it might create issues. In the
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#dialog_modal)
 
-- モーダルタイトルを参照する `aria-labelledby = "id..."` `モーダル`に追加してください。 Additionally, you may give a description of your modal with the `aria-describedby="id..."` prop on the `Modal`.
-    
-    ```jsx
-    <Modal
+- **用語の注記**。 「モーダル」という用語は「ダイアログ」を意味するために使用されることがありますが、これは誤った呼び名です。 A modal window describes parts of a UI. 要素が[アプリケーションの他の部分との対話をブロックする場合](https://en.wikipedia.org/wiki/Modal_window)、その要素はモーダルであると見なされます。
+
+  ```jsx
+  <Modal
     aria-labelledby="modal-title"
     aria-describedby="modal-description"
     >
@@ -84,7 +89,7 @@ This is done for accessibility purposes, however, it might create issues. In the
       My Description
     </p>
     </Modal>
-    ```
+  ```
 
 - The [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) can help you set the initial focus on the most relevant element, based on your modal content.
-- Keep in mind that a "modal window" overlays on either the primary window or another modal window. Windows under a modal are **inert**. That is, users cannot interact with content outside an active modal window. This might create [conflicting behaviors](#focus-trap).
+- Windows under a modal are **inert**. Keep in mind that a "modal window" overlays on either the primary window or another modal window. Keep in mind that a "modal window" overlays on either the primary window or another modal window. This might create [conflicting behaviors](#focus-trap).

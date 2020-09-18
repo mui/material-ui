@@ -1,6 +1,9 @@
 ---
 title: Componente React para Drawer
 components: Drawer, SwipeableDrawer
+githubLabel:
+  component: Drawer
+materialDesign: https://material.io/components/navigation-drawer
 ---
 
 # Drawer
@@ -10,6 +13,8 @@ components: Drawer, SwipeableDrawer
 [Navegação por drawers](https://material.io/design/components/navigation-drawer.html) (ou "barras laterais") fornecem acesso a destinos e funcionalidades do aplicativo, como por exemplo, a mudança de usuário. Eles podem estar permanentemente na tela ou controlados por um ícone de menu de navegação.
 
 [Folhas laterais](https://material.io/design/components/sheets-side.html) são superfícies complementares usadas principalmente em tablets e computadores.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Drawer temporário
 
@@ -56,11 +61,11 @@ Drawers de navegação persistentes são aceitáveis para todos os tamanhos maio
 
 {{"demo": "pages/components/drawers/PersistentDrawerRight.js", "iframe": true}}
 
-## Mini variant drawer
+## Variação mini drawer
 
 Nesta variação, o drawer de navegação persistente muda sua largura. Seu estado de recolhido é como um mini-drawer no mesmo plano de elevação do conteúdo, recortado pela barra de aplicativos. Quando expandido, ele aparece da forma padrão de um drawer de navegação persistente.
 
-A mini variação é recomendada para seções de aplicativos que necessitam ser selecionadas por um acesso rápido ao lado do conteúdo.
+A variação mini é recomendada para seções de aplicativos que necessitam ser selecionadas por um acesso rápido ao lado do conteúdo.
 
 {{"demo": "pages/components/drawers/MiniDrawer.js", "iframe": true}}
 
@@ -68,9 +73,9 @@ A mini variação é recomendada para seções de aplicativos que necessitam ser
 
 Drawers de navegação permanentes são sempre visíveis e fixados na borda esquerda, na mesma elevação do conteúdo ou plano de fundo. Eles não podem ser fechados.
 
-Drawers de navegação permanente são **recomendados por padrão para aplicações desktop**.
+Aplicativos focados no consumo de informações que usam uma hierarquia da esquerda para a direita.
 
-### Navegação em altura cheia
+### Navegação em altura total
 
 Aplicativos focados no consumo de informações que usam uma hierarquia da esquerda para a direita.
 
@@ -78,7 +83,7 @@ Aplicativos focados no consumo de informações que usam uma hierarquia da esque
 
 {{"demo": "pages/components/drawers/PermanentDrawerRight.js", "iframe": true}}
 
-### Cortado sob a barra de aplicativos
+### Cortado por baixo da barra de aplicativos
 
 Aplicativos focados em produtividade que exigem consistência na tela.
 
