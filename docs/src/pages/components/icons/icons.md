@@ -76,6 +76,20 @@ Each icon also has a "theme": Filled (default), Outlined, Rounded, Two tone and 
 
 {{"demo": "pages/components/icons/SvgMaterialIcons.js"}}
 
+### Testing
+
+For testing purposes, each icon exposed from `@material-ui/icons` has a `data-testid` attribute with the name of the icon. For instance:
+
+```jsx
+import DeleteIcon from '@material-ui/icons/Delete';
+```
+
+has the following attribute once mounted:
+
+```html
+<svg data-testid="DeleteIcon"></svg>
+```
+
 ## SvgIcon
 
 If you need a custom SVG icon (not available in the Material Icons [default set](/components/material-icons/)) you can use the `SvgIcon` wrapper.
