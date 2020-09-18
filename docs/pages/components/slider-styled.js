@@ -14,7 +14,7 @@ const requireRaw = require.context(
   /\.(js|md|tsx)$/,
 );
 
-// Run styled-components ref logic
+// create styled components to prevent false positive for "dynamic component creation"
 // https://github.com/styled-components/styled-components/pull/2998
 requireDemo.keys().map(requireDemo);
 
