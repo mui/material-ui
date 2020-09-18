@@ -35,6 +35,7 @@ const defaultAlias = {
 };
 
 const productionPlugins = [
+  ['styled-components', { ssr: true, displayName: true, preprocess: false }],
   '@babel/plugin-transform-react-constant-elements',
   'babel-plugin-transform-dev-warning',
   ['babel-plugin-react-remove-properties', { properties: ['data-mui-test'] }],
@@ -49,6 +50,7 @@ const productionPlugins = [
 module.exports = {
   presets: defaultPresets.concat(['@babel/preset-react', '@babel/preset-typescript']),
   plugins: [
+    ['styled-components', { ssr: true, displayName: true, preprocess: false }],
     [
       'babel-plugin-macros',
       {
@@ -85,6 +87,7 @@ module.exports = {
     },
     development: {
       plugins: [
+        ['styled-components', { ssr: true, displayName: true, preprocess: false }],
         [
           'babel-plugin-module-resolver',
           {
@@ -110,6 +113,7 @@ module.exports = {
     test: {
       sourceMaps: 'both',
       plugins: [
+        ['styled-components', { ssr: true, displayName: true, preprocess: false }],
         [
           'babel-plugin-module-resolver',
           {

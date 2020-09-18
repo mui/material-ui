@@ -1,6 +1,6 @@
 import React from 'react';
-import { ServerStyleSheets } from '@material-ui/styles';
-import { ServerStyleSheet } from 'styled-components';
+import { ServerStyleSheet as StyledComponentSheets } from 'styled-components';
+import { ServerStyleSheets as MaterialUiServerStyleSheets } from '@material-ui/core/styles';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
@@ -119,26 +119,17 @@ MyDocument.getInitialProps = async (ctx) => {
   // 4. page.render
 
   // Render app and page and get the context of the page with collected side effects.
-  const materialSheets = new ServerStyleSheets();
-  const styledComponentsSheet = new ServerStyleSheet();
+  const styledComponentSheet = new StyledComponentSheets();
+  const materialUiSheets = new MaterialUiServerStyleSheets();
   const originalRenderPage = ctx.renderPage;
-
   try {
     ctx.renderPage = () =>
       originalRenderPage({
         enhanceApp: (App) => (props) =>
-          styledComponentsSheet.collectStyles(materialSheets.collect(<App {...props} />)),
+          styledComponentSheet.collectStyles(materialUiSheets.collect(<App {...props} />)),
       });
 
     const initialProps = await Document.getInitialProps(ctx);
-
-    let css = materialSheets.toString();
-    // It might be undefined, e.g. after an error.
-    if (css && process.env.NODE_ENV === 'production') {
-      const result1 = await prefixer.process(css, { from: undefined });
-      css = result1.css;
-      css = cleanCSS.minify(css).styles;
-    }
 
     return {
       ...initialProps,
@@ -146,17 +137,14 @@ MyDocument.getInitialProps = async (ctx) => {
       userLanguage: ctx.query.userLanguage || 'en',
       // Styles fragment is rendered after the app and page rendering finish.
       styles: [
-        ...React.Children.toArray(initialProps.styles),
-        <style
-          id="jss-server-side"
-          key="jss-server-side"
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{ __html: css }}
-        />,
-        styledComponentsSheet.getStyleElement(),
+        <React.Fragment key="styles">
+          {initialProps.styles}
+          {materialUiSheets.getStyleElement()}
+          {styledComponentSheet.getStyleElement()}
+        </React.Fragment>,
       ],
     };
   } finally {
-    styledComponentsSheet.seal();
+    styledComponentSheet.seal();
   }
 };
