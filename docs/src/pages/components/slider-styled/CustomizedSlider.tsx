@@ -54,6 +54,7 @@ const IOSSlider = styled(Slider)({
   color: '#3880ff',
   height: 2,
   padding: '15px 0',
+
   '& .MuiSlider-thumb': {
     height: 28,
     width: 28,
@@ -61,6 +62,7 @@ const IOSSlider = styled(Slider)({
     boxShadow: iOSBoxShadow,
     marginTop: -14,
     marginLeft: -14,
+
     '&:focus, &:hover, &.Mui-active': {
       boxShadow:
         '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.3),0 0 0 1px rgba(0,0,0,0.02)',
@@ -167,6 +169,7 @@ const AirbnbSlider = styled(Slider)({
     height: 3,
   },
 });
+
 function AirbnbThumbComponent(props: any) {
   return (
     <span {...props}>
