@@ -73,15 +73,15 @@ yarn add @material-ui/core@next
   +},
   ```
 
-- `theme.spacing` now returns single values with px units by default. This change improves the integration with styled-components & emotion.
+- `theme.spacing` 现在默认返回以 px 为单位的单个数值。 这一改动改善了与 styled-components & emotion 的整合。
 
-  Before:
+  修改前：
 
   ```
   theme.spacing(2) => 16
   ```
 
-  After:
+  修改后：
 
   ```
   theme.spacing(2) => '16px'
@@ -96,7 +96,7 @@ yarn add @material-ui/core@next
   +});
   ```
 
-- The `theme.palette.text.hint` key was unused in Material-UI components, and has been removed.
+- `theme.palette.text.hint` 键在 Material-UI 组件中未使用，现已被删除。
 
 ```diff
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -301,21 +301,21 @@ const theme = createMuitheme({
   +<Accordion>
   -  <ExpansionPanelSummary>
   +  <AccordionSummary>
-       <Typography>Location</Typography>
-       <Typography>Select trip destination</Typography>
+       <Typography>位置</Typography>
+       <Typography>选择出行目的地</Typography>
   -  </ExpansionPanelSummary>
   +  </AccordionSummary>
   -  <ExpansionPanelDetails>
   +  <AccordionDetails>
        <Chip label="Barbados" onDelete={() => {}} />
-       <Typography variant="caption">Select your destination of choice</Typography>
+       <Typography variant="caption">请选择您的目的地</Typography>
   -  </ExpansionPanelDetails>
   +  </AccordionDetails>
      <Divider />
   -  <ExpansionPanelActions>
   +  <AccordionActions>
-       <Button size="small">Cancel</Button>
-       <Button size="small">Save</Button>
+       <Button size="small">取消</Button>
+       <Button size="small">保存</Button>
   -  </ExpansionPanelActions>
   +  </AccordionActions>
   -</ExpansionPanel>
@@ -329,7 +329,7 @@ const theme = createMuitheme({
   +<Accordion onChange={(event: React.SyntheticEvent, expanded: boolean) => {}} />
   ```
 
-- Rename `focused` to `focusVisible` for consistency:
+- 为保持一致性，我们将 `focused` 重命名为 `focusVisible`。
 
   ```diff
   <Accordion
@@ -361,11 +361,11 @@ const theme = createMuitheme({
 ### GridList
 
 - 为保持和当前 Material Design 命名的一致性，我们将 `GridList` 组件重命名为 `ImageList`。
-- Rename the GridList `spacing` prop to `gap` to align with the CSS attribute.
-- Rename the GridList `cellHeight` prop to `rowHieght`.
-- Add the `variant` prop to GridList.
-- Rename the GridListItemBar `actionPosition` prop to `position`. (Note also the related classname changes.)
-- Use CSS object-fit. For IE11 support either use a polyfill such as https://www.npmjs.com/package/object-fit-images, or continue to use the v4 component.
+- 为保持和 CSS 属性名字的一致性，我们将 `spacing` 属性重命名为 `gap`。
+- 我们将 GridList 的 `cellHeight` 属性重命名为 `rowHieght`。
+- 添加 `variant` 属性到 GridList 中。
+- 我们将 GridListItemBar 的 `actionPosition` 属性重命名为 `position`。 (也要注意相关的类名变化)。
+- 使用 CSS object-fit。 如果要兼容 IE11，那么你可以使用 polyfill 来转换它，例如 https://www.npmjs.com/package/object-fit-images，或者继续使用 v4 组件。
 
 ```diff
 -import GridList from '@material-ui/core/GridList';
@@ -466,7 +466,7 @@ const theme = createMuitheme({
 
 ### Rating
 
-- Change the default empty icon to improve accessibility. If you have a custom `icon` prop but no `emptyIcon` prop, you can restore the previous behavior with:
+- 为提高无障碍的可访问性，我们更改了默认的空图标。 如果你有自定义了 `icon` 属性，但没有使用 `emptyIcon` 属性，你可以用以下方法还原到以前的行为：
 
   ```diff
   <Rating
@@ -551,34 +551,34 @@ const theme = createMuitheme({
 
 ### Stepper 步骤条组件
 
-- The root component (Paper) was replaced with a div. Stepper no longer has elevation, nor inherits Paper's props. This change is meant to encourage composition.
+- 根组件（Paper）已经被 div 所取代。 Stepper 不再有立体效果，也不再继承 Paper 的属性。 这个改动是为了鼓励开发者进行组合使用。
 
 ```diff
 -<Stepper elevation={2}>
 -  <Step>
--    <StepLabel>Hello world</StepLabel>
+-    <StepLabel>你好，世界</StepLabel>
 -  </Step>
 -</Stepper>
 +<Paper square elevation={2}>
 +  <Stepper>
 +    <Step>
-+      <StepLabel>Hello world</StepLabel>
++      <StepLabel>你好，世界</StepLabel>
 +    </Step>
 +  </Stepper>
 +<Paper>
 ```
 
-- Remove the built-in 24px padding.
+- 移除内置的 24px 边距。
 
 ```diff
 -<Stepper>
 -  <Step>
--    <StepLabel>Hello world</StepLabel>
+-    <StepLabel>你好，世界</StepLabel>
 -  </Step>
 -</Stepper>
 +<Stepper style={{ padding: 24 }}>
 +  <Step>
-+    <StepLabel>Hello world</StepLabel>
++    <StepLabel>你好，世界</StepLabel>
 +  </Step>
 +</Stepper>
 ```
@@ -653,6 +653,6 @@ const theme = createMuitheme({
 
   +const Span = styled('span')(visuallyHidden);
 
-  -<Typography variant="srOnly">Create a user</Typography>
-  +<Span>Create a user</Span>
+  -<Typography variant="srOnly">创建用户</Typography>
+  +<Span>创建用户</Span>
   ```
