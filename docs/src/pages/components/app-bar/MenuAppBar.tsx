@@ -30,7 +30,6 @@ export default function MenuAppBar() {
   const classes = useStyles();
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAuth(event.target.checked);
@@ -94,7 +93,7 @@ export default function MenuAppBar() {
                   vertical: 'top',
                   horizontal: 'right',
                 }}
-                open={open}
+                open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
