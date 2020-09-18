@@ -80,6 +80,8 @@ ImageList.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
+   * Number of px for one cell height.
+   * You can set `'auto'` if you want to let the children determine the height.
    * @deprecated use rowHeight instead.
    */
   cellHeight: deprecatedPropType(
@@ -100,7 +102,7 @@ ImageList.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * @ignore
+   * Number of columns.
    */
   cols: PropTypes.number,
   /**
@@ -109,17 +111,18 @@ ImageList.propTypes = {
    */
   component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
-   * @ignore
+   * The gap between items in px.
    */
   gap: PropTypes.number,
   /**
-   * @ignore
+   * The height of one row in px.
    */
   rowHeight: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
   /**
+   * Number of px for the spacing between tiles.
    * @deprecated use gap instead.
    */
-  spacing: deprecatedPropType(PropTypes.number, 'Use the `rowHeight` prop instead.'),
+  spacing: deprecatedPropType(PropTypes.number, 'Use the `gap` prop instead.'),
   /**
    * @ignore
    */
