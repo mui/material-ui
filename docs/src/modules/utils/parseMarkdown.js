@@ -41,7 +41,9 @@ export function getHeaders(markdown) {
 
   // eslint-disable-next-line no-cond-assign
   while ((regexMatches = headerKeyValueRegExp.exec(header)) !== null) {
-    headers[regexMatches[1]] = regexMatches[2];
+    const key = regexMatches[1];
+    const value = regexMatches[2].replace(/'(.*)'/, '$1');
+    headers[key] = value;
   }
 
   if (headers.components) {

@@ -1,7 +1,7 @@
 ---
 title: Popper React component
 components: Popper
-githubLabel: component: Popper
+githubLabel: 'component: Popper'
 ---
 
 # Popper
