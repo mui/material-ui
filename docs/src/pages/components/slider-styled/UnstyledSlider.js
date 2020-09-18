@@ -3,6 +3,7 @@ import styled from '@material-ui/styled-engine';
 import SliderUnstyled from '@material-ui/lab/SliderUnstyled';
 
 const StyledSlider = styled(SliderUnstyled)`
+  color: black;
   height: 2px;
   width: 100%;
   padding: 13px 0;
