@@ -40,8 +40,7 @@
   "dependencies": {},
   "peerDependencies": {
     "@emotion/core": "^10.0.27",
-    "@emotion/styled": "^10.0.27",
-    "emotion-theming": "^10.0.27"
+    "@emotion/styled": "^10.0.27"
   },
   "sideEffects": false,
   "publishConfig": {
