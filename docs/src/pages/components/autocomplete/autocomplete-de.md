@@ -130,9 +130,22 @@ Auch als Tags bekannt, darf der Benutzer mehr als einen Wert eingeben.
 
 ## Asynchrone Anfragen
 
+The component supports two different asynchronous use-cases:
+
+- [Load on open](#load-on-open): it waits for the component to be interacted with to load the options.
+- [Search as you type](#search-as-you-type): a new request is made for each keystroke.
+
+### Load on open
+
+It displays a progress state as long as the network request is pending.
+
 {{"demo": "pages/components/autocomplete/Asynchronous.js"}}
 
-Falls Sie bestimmte Tags sperren müssen, damit sie nicht in der Schnittstelle entfernt werden können, können Sie die Chips deaktivieren.
+### Search as you type
+
+If your logic is fetching new options on each keystroke and using the current value of the textbox to filter on the server, you may want to consider throttling requests.
+
+Additionally, you will need to disable the built-in filtering of the `Autocomplete` component by overriding the `filterOptions` prop:
 
 ```jsx
 import matchSorter from 'match-sorter';
