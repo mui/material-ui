@@ -253,27 +253,27 @@ describe('<Chip />', () => {
 
   describe('prop: deleteIcon', () => {
     it('should render a default icon with the root, deletable, deleteIcon and deleteIconOutlinedColorSecondary classes', () => {
-      const { container, getByRole } = render(
+      const { getByRole, getByTestId } = render(
         <Chip label="Custom delete icon Chip" onDelete={() => {}} />,
       );
 
-      const icon = container.querySelector('svg[data-mui-test="CancelIcon"]');
+      const icon = getByTestId('CancelIcon');
       expect(getByRole('button')).to.contain(icon);
       expect(icon).to.have.class(classes.deleteIcon);
     });
 
     it('should render a default icon with the root, deletable and deleteIcon classes', () => {
-      const { container, getByRole } = render(
+      const { getByRole, getByTestId } = render(
         <Chip label="Custom delete icon Chip" onDelete={() => {}} />,
       );
 
-      const icon = container.querySelector('svg[data-mui-test="CancelIcon"]');
+      const icon = getByTestId('CancelIcon');
       expect(getByRole('button')).to.contain(icon);
       expect(icon).to.have.class(classes.deleteIcon);
     });
 
     it('should render default icon with the root, deletable and deleteIcon primary class', () => {
-      const { container } = render(
+      const { container, getByTestId } = render(
         <Chip label="Custom delete icon Chip" onDelete={() => {}} color="primary" />,
       );
 
@@ -281,13 +281,13 @@ describe('<Chip />', () => {
       expect(chip).to.have.class(classes.colorPrimary);
       expect(chip).to.have.class(classes.deletable);
       expect(chip).to.have.class(classes.deletableColorPrimary);
-      const icon = chip.querySelector('svg[data-mui-test="CancelIcon"]');
+      const icon = getByTestId('CancelIcon');
       expect(icon).to.have.class(classes.deleteIcon);
       expect(icon).to.have.class(classes.deleteIconColorPrimary);
     });
 
     it('should render a default icon with the root, deletable, deleteIcon secondary class', () => {
-      const { container } = render(
+      const { container, getByTestId } = render(
         <Chip label="Custom delete icon Chip" onDelete={() => {}} color="secondary" />,
       );
 
@@ -295,18 +295,18 @@ describe('<Chip />', () => {
       expect(chip).to.have.class(classes.colorSecondary);
       expect(chip).to.have.class(classes.deletable);
       expect(chip).to.have.class(classes.deletableColorSecondary);
-      const icon = chip.querySelector('svg[data-mui-test="CancelIcon"]');
+      const icon = getByTestId('CancelIcon');
       expect(icon).to.have.class(classes.deleteIcon);
       expect(icon).to.have.class(classes.deleteIconColorSecondary);
     });
 
     it('accepts a custom icon', () => {
       const handleDelete = spy();
-      const { container } = render(
+      const { getByTestId } = render(
         <Chip label="Custom delete icon Chip" onDelete={handleDelete} deleteIcon={<CheckBox />} />,
       );
 
-      fireEvent.click(container.querySelector('svg[data-mui-test="CheckBoxIcon"]'));
+      fireEvent.click(getByTestId('CheckBoxIcon'));
 
       expect(handleDelete.callCount).to.equal(1);
     });
@@ -532,9 +532,9 @@ describe('<Chip />', () => {
     });
 
     it('should render the delete icon with the deleteIcon and deleteIconSmall classes', () => {
-      const { container } = render(<Chip size="small" onDelete={() => {}} />);
+      const { getByTestId } = render(<Chip size="small" onDelete={() => {}} />);
 
-      const icon = container.querySelector('svg[data-mui-test="CancelIcon"]');
+      const icon = getByTestId('CancelIcon');
       expect(icon).to.have.class(classes.deleteIcon);
       expect(icon).to.have.class(classes.deleteIconSmall);
     });

@@ -39,21 +39,17 @@ describe('<TabScrollButton />', () => {
 
   describe('prop: direction', () => {
     it('should render with the left icon', () => {
-      const { container } = render(
+      const { getAllByTestId } = render(
         <TabScrollButton {...defaultProps} {...defaultProps} direction="left" disabled />,
       );
-      expect(
-        container.querySelectorAll('svg[data-mui-test="KeyboardArrowLeftIcon"]').length,
-      ).to.equal(1);
+      expect(getAllByTestId('KeyboardArrowLeftIcon').length).to.equal(1);
     });
 
     it('should render with the right icon', () => {
-      const { container } = render(
+      const { getAllByTestId } = render(
         <TabScrollButton {...defaultProps} {...defaultProps} direction="right" disabled />,
       );
-      expect(
-        container.querySelectorAll('svg[data-mui-test="KeyboardArrowRightIcon"]').length,
-      ).to.equal(1);
+      expect(getAllByTestId('KeyboardArrowRightIcon').length).to.equal(1);
     });
   });
 });

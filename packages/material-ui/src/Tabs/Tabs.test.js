@@ -17,7 +17,7 @@ import Tabs from './Tabs';
 import { createMuiTheme, ThemeProvider } from '../styles';
 
 function findScrollButton(container, direction) {
-  return container.querySelector(`svg[data-mui-test="KeyboardArrow${capitalize(direction)}Icon"]`);
+  return container.querySelector(`svg[data-testid="KeyboardArrow${capitalize(direction)}Icon"]`);
 }
 
 function hasLeftScrollButton(container) {

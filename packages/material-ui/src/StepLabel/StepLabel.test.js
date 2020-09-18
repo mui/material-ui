@@ -47,7 +47,7 @@ describe('<StepLabel />', () => {
 
       const icon = container.querySelector(`.${iconClasses.root}`);
       // Should render WarningIcon instead of CheckCircleIcon because of { error: true } props
-      expect(icon).to.have.attribute('data-mui-test').equal('WarningIcon');
+      expect(icon).to.have.attribute('data-testid').equal('WarningIcon');
     });
   });
 
@@ -65,7 +65,7 @@ describe('<StepLabel />', () => {
 
       getByTestId('custom-icon');
       expect(icon).to.not.equal(null);
-      expect(icon).to.not.have.attribute('data-mui-test').equal('CheckCircleIcon');
+      expect(icon).to.not.have.attribute('data-testid').equal('CheckCircleIcon');
       expect(label).to.have.class(classes.active);
       expect(label).to.have.class(classes.completed);
     });

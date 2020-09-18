@@ -6,7 +6,7 @@ import SvgIcon from '../SvgIcon';
  */
 export default function createSvgIcon(path, displayName) {
   const Component = (props, ref) => (
-    <SvgIcon data-mui-test={`${displayName}Icon`} ref={ref} {...props}>
+    <SvgIcon data-testid={`${displayName}Icon`} ref={ref} {...props}>
       {path}
     </SvgIcon>
   );

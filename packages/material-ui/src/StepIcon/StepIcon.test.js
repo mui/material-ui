@@ -21,14 +21,14 @@ describe('<StepIcon />', () => {
   }));
 
   it('renders <CheckCircle> when completed', () => {
-    const { container } = render(<StepIcon completed icon={1} />);
+    const { getAllByTestId } = render(<StepIcon completed icon={1} />);
 
-    expect(container.querySelectorAll('svg[data-mui-test="CheckCircleIcon"]')).to.have.length(1);
+    expect(getAllByTestId('CheckCircleIcon')).to.have.length(1);
   });
 
   it('renders <Warning> when error occurred', () => {
-    const { container } = render(<StepIcon icon={1} error />);
-    expect(container.querySelectorAll('svg[data-mui-test="WarningIcon"]')).to.have.length(1);
+    const { getAllByTestId } = render(<StepIcon icon={1} error />);
+    expect(getAllByTestId('WarningIcon')).to.have.length(1);
   });
 
   it('contains text "3" when position is "3"', () => {
