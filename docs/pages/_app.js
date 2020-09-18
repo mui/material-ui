@@ -284,14 +284,12 @@ function findActivePage(currentPages, pathname) {
 const cacheLtr = createCache({
   key: 'mui',
   stylisPlugins: [],
-  speedy: true,
 });
 
 // Cache for the rtl version of the styles
 const cacheRtl = createCache({
   key: 'muirtl',
   stylisPlugins: [rtlPlugin],
-  speedy: true,
 });
 
 function AppWrapper(props) {
