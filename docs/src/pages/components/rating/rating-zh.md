@@ -50,8 +50,8 @@ packageName: '@material-ui/lab'
 - 在使用单选框组（radio group）时，其字段在视觉上是被隐藏的。 它包含六个单选按钮，其中五个用于每个星，另一个用于 0 星，其默认情况下处于选中状态。 请确保您提供的 `name` 属性在父级表单中是独特的。
 - 单选按钮的标签需要包含一个确切的文本（“一星”，“两星”，.......），并请确认当页面语言不是英语时，您提供了一个 `getLabelText` 属性。
 
-By default, the rating component uses both a difference of color and shape between the filled and empty icons to indicate the value.
+默认情况下，评分组件使用填充和空图标之间的颜色和形状差异来表示值。
 
-In the event that you are using color as the only means to indicate the value, the information should also be also displayed as text, as in this demo. This is important to match [success Criterion 1.4.1](https://www.w3.org/TR/WCAG21/#use-of-color) of WCAG2.1.
+如果你使用颜色作为唯一的方式来表示数值，那么数值信息也应该像下面这个示例一样以文本的形式来显示。 这对于符合 WCAG2.1 的 [成功标准 1.4.1](https://www.w3.org/TR/WCAG21/#use-of-color) 非常重要。
 
 {{"demo": "pages/components/rating/TextRating.js"}}
