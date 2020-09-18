@@ -33,18 +33,14 @@ describe('<Radio />', () => {
   describe('prop: unchecked', () => {
     it('should render an unchecked icon', () => {
       const { getAllByTestId } = render(<Radio />);
-      expect(
-        getAllByTestId("RadioButtonUncheckedIcon").length
-      ).to.equal(1);
+      expect(getAllByTestId('RadioButtonUncheckedIcon').length).to.equal(1);
     });
   });
 
   describe('prop: checked', () => {
     it('should render a checked icon', () => {
       const { getAllByTestId } = render(<Radio checked />);
-      expect(
-        getAllByTestId("RadioButtonCheckedIcon").length
-      ).to.equal(1);
+      expect(getAllByTestId('RadioButtonCheckedIcon').length).to.equal(1);
     });
   });
 

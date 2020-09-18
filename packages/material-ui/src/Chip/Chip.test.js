@@ -532,9 +532,9 @@ describe('<Chip />', () => {
     });
 
     it('should render the delete icon with the deleteIcon and deleteIconSmall classes', () => {
-      const { container } = render(<Chip size="small" onDelete={() => {}} />);
+      const { getByTestId } = render(<Chip size="small" onDelete={() => {}} />);
 
-      const icon = container.querySelector('svg[data-testid="CancelIcon"]');
+      const icon = getByTestId('CancelIcon');
       expect(icon).to.have.class(classes.deleteIcon);
       expect(icon).to.have.class(classes.deleteIconSmall);
     });
