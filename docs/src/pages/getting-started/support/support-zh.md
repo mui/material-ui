@@ -55,7 +55,7 @@ Material-UI CE（社区版本）最初的时候就是 100% 的开源项目（MIT
 
 - Material-UI v4 (hooks): ✅ In active development.
 - Material-UI v3 (change supported browsers): ⚠️ Only handle security fixes.
-- Material-UI v3 (change supported browsers): ❌ Inactive.
+- Material-UI v3（更改支持的浏览器）：❌ 不活跃状态.
 - ~Material-UI v2 （根本不存在）~。
 - Material-UI v1（重写）: ❌ 闲置。
 - Material-UI v0.x：❌闲置。
