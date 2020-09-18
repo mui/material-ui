@@ -3,8 +3,7 @@ import useTheme from './useTheme';
 import defaultTheme from './defaultTheme';
 
 export default function useThemeProps({ props: inputProps, name }) {
-  /* eslint-disable prefer-object-spread */
-  const props = Object.assign({}, inputProps);
+  const props = { ...inputProps };
 
   const contextTheme = useTheme() || defaultTheme;
 
