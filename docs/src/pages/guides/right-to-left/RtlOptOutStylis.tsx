@@ -9,14 +9,14 @@ const Root = styled('div')((props: { theme?: Theme }) => ({
   marginRight: props.theme?.spacing(2),
 }));
 
-const AffectedText = styled('div')({
-  textAlign: 'right',
-});
+const AffectedText = styled('div')`
+  text-align: left;
+`;
 
-const UnaffectedText = styled('div')({
+const UnaffectedText = styled('div')`
   /* @noflip */
-  textAlign: 'right',
-});
+  text-align: left;
+`;
 
 const theme = createMuiTheme();
 
