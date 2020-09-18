@@ -33,6 +33,27 @@ const getVariantStyles = (name, theme) => {
   return variantsStyles;
 };
 
+const variantsResolver = (props, styles, theme, name) => {
+  const { state = {} } = props;
+  let variantsStyles = {};
+  const themeVariants = theme?.components?.[name]?.variants;
+  if (themeVariants) {
+    themeVariants.forEach((themeVariant) => {
+      let isMatch = true;
+      Object.keys(themeVariant.props).forEach((key) => {
+        if (state[key] !== themeVariant.props[key]) {
+          isMatch = false;
+        }
+      });
+      if (isMatch) {
+        variantsStyles = { ...variantsStyles, ...styles[propsToClassKey(themeVariant.props)] };
+      }
+    });
+  }
+
+  return variantsStyles;
+};
+
 const shouldForwardProp = (prop) => prop !== 'state' && prop !== 'theme';
 
 const muiStyled = (tag, options, muiOptions) => {
@@ -47,12 +68,10 @@ const muiStyled = (tag, options, muiOptions) => {
       });
     }
 
-    if (muiOptions.variantsResolver) {
-      styles.push((props) => {
-        const theme = props.theme || defaultTheme;
-        return muiOptions.variantsResolver(props, getVariantStyles(name, theme), theme, name);
-      });
-    }
+    styles.push((props) => {
+      const theme = props.theme || defaultTheme;
+      return variantsResolver(props, getVariantStyles(name, theme), theme, name);
+    });
 
     return defaultStyledResolver(...styles);
   };
