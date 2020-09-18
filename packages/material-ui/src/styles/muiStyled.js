@@ -35,28 +35,28 @@ const getVariantStyles = (name, theme) => {
 
 const shouldForwardProp = (prop) => prop !== 'state' && prop !== 'theme';
 
-const muiStyled = (el, styledParams, muiConfig) => {
-  const result = styled(el, { shouldForwardProp, ...styledParams });
-  const muiFunc = (...params) => {
-    const name = muiConfig.muiName;
+const muiStyled = (tag, options, muiOptions) => {
+  const defaultStyledResolver = styled(tag, { shouldForwardProp, ...options });
+  const muiStyledResolver = (...styles) => {
+    const name = muiOptions.muiName;
 
-    if (muiConfig.overridesResolver) {
-      params.push((props) => {
+    if (muiOptions.overridesResolver) {
+      styles.push((props) => {
         const theme = props.theme || defaultTheme;
-        return muiConfig.overridesResolver(props, getStyleOverrides(name, theme), name);
+        return muiOptions.overridesResolver(props, getStyleOverrides(name, theme), name);
       });
     }
 
-    if (muiConfig.variantsResolver) {
-      params.push((props) => {
+    if (muiOptions.variantsResolver) {
+      styles.push((props) => {
         const theme = props.theme || defaultTheme;
-        return muiConfig.variantsResolver(props, getVariantStyles(name, theme), theme, name);
+        return muiOptions.variantsResolver(props, getVariantStyles(name, theme), theme, name);
       });
     }
 
-    return result(...params);
+    return defaultStyledResolver(...styles);
   };
-  return muiFunc;
+  return muiStyledResolver;
 };
 
 export default muiStyled;
