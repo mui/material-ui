@@ -26,8 +26,8 @@ materialDesign: https://material.io/components/bottom-navigation
 
 {{"demo": "pages/components/bottom-navigation/LabelBottomNavigation.js", "bg": true}}
 
-## Fixed positioning
+## 固定位置
 
-This demo keeps bottom navigation fixed to the bottom, no matter the amount of content on-screen.
+无论屏幕上有多少内容，该演示的内容都会将底部导航固定在底部。
 
 {{"demo": "pages/components/bottom-navigation/FixedBottomNavigation.js", "bg": true, "iframe": true, "maxWidth": 600}}
