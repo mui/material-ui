@@ -41,10 +41,10 @@ The Table has been given a fixed width to demonstrate horizontal scrolling. In o
 
 ## Data table
 
-The `Table` components are meant to have a close mapping to the native `<table>` elements.
+The `Table` component has a close mapping to the native `<table>` elements.
 This constraint makes building rich data tables challenging.
 
-You can find the [`DataGrid` component](/components/data-grid/) for use cases that are focused around handling a large amount of tabular data.
+The [`DataGrid` component](/components/data-grid/) is designed for use-cases that are focused around handling a large amounts of tabular data.
 While it comes with a more rigid structure, in exchange, you gain more powerful features.
 
 ## Customized tables
