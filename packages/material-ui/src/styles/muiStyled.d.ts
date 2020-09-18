@@ -96,7 +96,7 @@ export type WithTheme<P, T> = P extends { theme: infer Theme }
   : P & { theme: T };
 
 export interface StyledComponent<InnerProps, StyleProps, Theme extends object>
-  extends React.SFC<InnerProps & StyleProps & { theme?: Theme }>,
+  extends React.FunctionComponent<InnerProps & StyleProps & { theme?: Theme }>,
     ComponentSelector {
   /**
    * @desc this method is type-unsafe
