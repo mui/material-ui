@@ -1,61 +1,61 @@
 ---
-title: React Grid List 网格列表组件
+title: React Grid List 图像列表组件
 components: ImageList, ImageListItem, ImageListItemBar
 materialDesign: https://material.io/components/image-lists
 githubLabel:
   component: ImageList
 ---
 
-# Grid List 网格列表
+# Image list 图像列表
 
-<p class="description">网格列表在一个系统的网格中展示了一系列的图像。</p>
+<p class="description">图像列表在一个系统的网格中展示了一系列的图像。</p>
 
-[网格列表](https://material.io/design/components/image-lists.html)展示了一个在重复的模式中的子集。 它们有助于提高对所持内容的视觉理解。
+图像列表展示了一个在重复的模式中的子集。 它们有助于提高对所持内容的视觉理解。
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## 仅有图像的网格列表
+## 标准图像列表
 
-Standard image lists are best for items of equal importance. They have a uniform container size, ratio, and spacing.
+标准的图像列表最适合于同等重要的项目。 它们具有统一的容器尺寸、比例和间距。
 
 {{"demo": "pages/components/image-list/StandardImageList.js"}}
 
-## 带有标题栏的网格列表
+## 带有标题栏的图像列表
 
-Quilted image lists emphasize certain items over others in a collection. They create hierarchy using varied container sizes and ratios.
+拼接图像列表强调集合中的某些项目而不是之外的其他项目。 它们使用不同的容器尺寸和比例创建层次结构。
 
 {{"demo": "pages/components/image-list/QuiltedImageList.js"}}
 
-## 单行网格列表
+## 交织图像列表
 
-Woven image lists use alternating container ratios to create a rhythmic layout. A woven image list is best for browsing peer content.
+交织图像列表使用交替的容器比率来创建一个有节奏的布局。 当需要浏览同行内容时，最好采用交织图像列表的方式。
 
 {{"demo": "pages/components/image-list/WovenImageList.js"}}
 
-## 高级网格列表
+## 堆砌图像列表
 
-Masonry image lists use dynamically sized container heights that reflect the aspect ratio of each image. This image list is best used for browsing uncropped peer content.
+堆砌图像列表使用动态调整大小的容器高度，以反映每个图像的纵横比。 该图像列表最适合用于浏览未被裁剪的同行内容。
 
 {{"demo": "pages/components/image-list/MasonryImageList.js"}}
 
-## Image list with title bars
+## 带标题栏的图像列表
 
 此示例演示如何使用 `ImageListItemBar` 为每个 `ImageListItem` 添加一个叠加层。 叠加层可以容纳 `title`， `subtitle` 和辅助操作—在本例中为 `IconButton`。
 
 {{"demo": "pages/components/image-list/TitlebarImageList.js"}}
 
-### Title bar below image (standard)
+### 图像下方的标题栏（标准）
 
-The title bar can be placed below the image.
+标题栏可以放置在图像下方。
 
 {{"demo": "pages/components/image-list/TitlebarBelowImageList.js"}}
 
-### Title bar below image (masonry)
+### 图像下方的标题栏（堆砌）
 
 {{"demo": "pages/components/image-list/TitlebarBelowMasonryImageList.js"}}
 
-## Custom image list
+## 自定义图像列表
 
-瓷砖有一个位于顶部的自定义标题栏，并带有自定义渐变的 `titleBackground`。 而辅助操作的 `IconButton` 则位于左侧。 The `gap` prop is used to adjust the gap between items.
+在这个例子中，每个项目都有一个自定义的位于顶部的标题栏，并带有自定义渐变的 `titleBackground`。 而辅助操作的 `IconButton` 则位于左侧。 `gap` 属性用于调整项目之间的间隙。
 
 {{"demo": "pages/components/image-list/CustomImageList.js", "defaultCodeOpen": false}}
