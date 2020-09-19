@@ -621,8 +621,8 @@ const useStyles = makeStyles(
   (theme) => ({
     root: {
       marginBottom: 40,
-      marginLeft: -theme.spacing(2),
-      marginRight: -theme.spacing(2),
+      marginLeft: theme.spacing(-2),
+      marginRight: theme.spacing(-2),
       [theme.breakpoints.up('sm')]: {
         padding: theme.spacing(0, 1),
         marginLeft: 0,
