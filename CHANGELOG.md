@@ -77,15 +77,6 @@ Here are some highlights ✨:
   theme.spacing(2) => '16px'
   ```
 
-  You can restore the previous behavior with:
-
-  ```diff
-  -const theme = createMuiTheme();
-  +const theme = createMuiTheme({
-  +  spacing: x => x * 8,
-  +});
-  ```
-
 - [theme] Remove palette.text.hint key (#22537) @mbrookes
 
   The `theme.palette.text.hint` key was available but unused in Material-UI v4 components.
