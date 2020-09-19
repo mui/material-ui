@@ -156,7 +156,8 @@ ImageListItemBar.propTypes = {
    */
   title: PropTypes.node,
   /**
-   * @ignore
+   * Position of the title bar.
+   * @deprecated Use position instead.
    */
   titlePosition: deprecatedPropType(
     PropTypes.oneOf(['bottom', 'top']),

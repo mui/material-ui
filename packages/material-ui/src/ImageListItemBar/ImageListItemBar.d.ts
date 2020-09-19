@@ -24,7 +24,8 @@ export interface ImageListItemBarProps extends StandardProps<{}, ImageListItemBa
    */
   title?: React.ReactNode;
   /**
-   * @ignore
+   * Position of the title bar.
+   * @deprecated Use position instead.
    */
   titlePosition?: 'top' | 'bottom';
 }

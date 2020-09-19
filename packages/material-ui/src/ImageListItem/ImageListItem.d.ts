@@ -2,9 +2,19 @@ import * as React from 'react';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface ImageListItemTypeMap<P = {}, D extends React.ElementType = 'li'> {
-  props: P & {
-    cols?: number;
-    rows?: number;
+  props: P & {  
+  /**
+   * While you can pass any node as children, the main use case is for an img.
+   */
+  children?: React.ReactNode,
+  /**
+   * Width of the item in number of grid columns.
+   */
+  cols?: number;
+  /**
+   * Height of the item in number of grid rows.
+   */
+  rows?: number;
   };
   defaultComponent: D;
   classKey: ImageListItemClassKey;

@@ -124,7 +124,7 @@ ImageListItem.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * @ignore
+   * While you can pass any node as children, the main use case is for an img.
    */
   children: PropTypes.node,
   /**
@@ -137,7 +137,7 @@ ImageListItem.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * @ignore
+   * Width of the item in number of grid columns.
    */
   cols: PropTypes.number,
   /**
@@ -146,7 +146,7 @@ ImageListItem.propTypes = {
    */
   component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
-   * @ignore
+   * Height of the item in number of grid rows.
    */
   rows: PropTypes.number,
 };
