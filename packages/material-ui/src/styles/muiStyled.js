@@ -54,7 +54,7 @@ const variantsResolver = (props, styles, theme, name) => {
   return variantsStyles;
 };
 
-const shouldForwardProp = (prop) => prop !== 'state' && prop !== 'theme';
+const shouldForwardProp = (prop) => prop !== 'styleProps' && prop !== 'theme';
 
 const muiStyled = (tag, options, muiOptions) => {
   const defaultStyledResolver = styled(tag, { shouldForwardProp, ...options });

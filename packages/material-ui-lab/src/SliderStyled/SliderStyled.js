@@ -62,7 +62,7 @@ const SliderRoot = muiStyled(
   touchAction: 'none',
   color: props.theme.palette.primary.main,
   WebkitTapHighlightColor: 'transparent',
-  ...(props.state.color === 'secondary' && {
+  ...(props.styleProps.color === 'secondary' && {
     color: props.theme.palette.secondary.main,
   }),
   '&.Mui-disabled': {
@@ -70,7 +70,7 @@ const SliderRoot = muiStyled(
     cursor: 'default',
     color: props.theme.palette.grey[400],
   },
-  ...(props.state.orientation === 'vertical' && {
+  ...(props.styleProps.orientation === 'vertical' && {
     width: 2,
     height: '100%',
     padding: '0 13px',
@@ -79,16 +79,16 @@ const SliderRoot = muiStyled(
   '@media (pointer: coarse)': {
     // Reach 42px touch target, about ~8mm on screen.
     padding: '20px 0',
-    ...(props.state.orientation === 'vertical' && {
+    ...(props.styleProps.orientation === 'vertical' && {
       padding: '0 20px',
     }),
   },
   '@media print': {
     colorAdjust: 'exact',
   },
-  ...(props.state.marked && {
+  ...(props.styleProps.marked && {
     marginBottom: 20,
-    ...(props.state.orientation === 'vertical' && {
+    ...(props.styleProps.orientation === 'vertical' && {
       marginBottom: 'auto',
       marginRight: 20,
     }),
@@ -101,11 +101,11 @@ const SliderRoot = muiStyled(
     borderRadius: 1,
     backgroundColor: 'currentColor',
     opacity: 0.38,
-    ...(props.state.orientation === 'vertical' && {
+    ...(props.styleProps.orientation === 'vertical' && {
       height: '100%',
       width: 2,
     }),
-    ...(props.state.track === 'inverted' && {
+    ...(props.styleProps.track === 'inverted' && {
       opacity: 1,
     }),
   },
@@ -115,13 +115,13 @@ const SliderRoot = muiStyled(
     height: 2,
     borderRadius: 1,
     backgroundColor: 'currentColor',
-    ...(props.state.orientation === 'vertical' && {
+    ...(props.styleProps.orientation === 'vertical' && {
       width: 2,
     }),
-    ...(props.state.track === false && {
+    ...(props.styleProps.track === false && {
       display: 'none',
     }),
-    ...(props.state.track === 'inverted' && {
+    ...(props.styleProps.track === 'inverted' && {
       backgroundColor:
         // Same logic as the LinearProgress track color
         props.theme.palette.type === 'light'
@@ -173,17 +173,17 @@ const SliderRoot = muiStyled(
         boxShadow: 'none',
       },
     },
-    ...(props.state.orientation === 'vertical' && {
+    ...(props.styleProps.orientation === 'vertical' && {
       marginLeft: -5,
       marginBottom: -6,
     }),
-    ...(props.state.orientation === 'vertical' && {
+    ...(props.styleProps.orientation === 'vertical' && {
       '&.Mui-disabled': {
         marginLeft: -3,
         marginBottom: -4,
       },
     }),
-    ...(props.state.color === 'secondary' && {
+    ...(props.styleProps.color === 'secondary' && {
       ':hover': {
         boxShadow: `0px 0px 0px 8px ${fade(props.theme.palette.secondary.main, 0.16)}`,
       },
@@ -217,14 +217,14 @@ const SliderRoot = muiStyled(
     top: 26,
     transform: 'translateX(-50%)',
     whiteSpace: 'nowrap',
-    ...(props.state.orientation === 'vertical' && {
+    ...(props.styleProps.orientation === 'vertical' && {
       top: 'auto',
       left: 26,
       transform: 'translateY(50%)',
     }),
     '@media (pointer: coarse)': {
       top: 40,
-      ...(props.state.orientation === 'vertical' && {
+      ...(props.styleProps.orientation === 'vertical' && {
         left: 31,
       }),
     },
@@ -246,7 +246,7 @@ SliderRoot.propTypes = {
   /**
    * @ignore
    */
-  state: PropTypes.shape({
+  styleProps: PropTypes.shape({
     'aria-label': PropTypes.string,
     'aria-labelledby': PropTypes.string,
     'aria-valuetext': PropTypes.string,

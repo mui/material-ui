@@ -623,8 +623,10 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     <Root
       ref={handleRef}
       onMouseDown={handleMouseDown}
-      state={isComponent(Root) ? stateAndProps : undefined}
-      theme={isComponent(Root) ? theme : undefined}
+      {...(isComponent(Root) && {
+        styleProps: stateAndProps,
+        theme,
+      })}
       {...rootProps}
       {...other}
       className={clsx(utilityClasses.root, rootProps.className, className)}

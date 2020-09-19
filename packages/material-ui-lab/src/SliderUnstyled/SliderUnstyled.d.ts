@@ -53,41 +53,25 @@ export interface SliderTypeMap<P = {}, D extends React.ElementType = 'span'> {
      */
     componentsProps?: {
       root?: {
-        state?: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
+        styleProps?: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
         as: React.ElementType;
       };
       track?: {
-        state?: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
         as?: React.ElementType;
       };
       rail?: {
-        state?: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
         as?: React.ElementType;
       };
       thumb?: {
-        state?: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'> & {
-          active?: boolean;
-          focusVisible?: boolean;
-        };
         as?: React.ElementType;
       };
       mark?: {
-        state?: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'> & {
-          markActive?: boolean;
-        };
         as?: React.ElementType;
       };
       markLabel?: {
-        state?: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'> & {
-          markLabelActive?: boolean;
-        };
         as?: React.ElementType;
       };
       valueLabel?: {
-        state?: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'> & {
-          index?: number;
-          open?: boolean;
-        };
         as?: React.ElementType;
       };
     };
