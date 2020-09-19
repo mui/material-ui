@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Alert, AlertTitle } from '@material-ui/lab';
+import Alert from '@material-ui/core/Alert';
+import AlertTitle from '@material-ui/core/AlertTitle';
 
 const useStyles = makeStyles((theme) => ({
   root: {
