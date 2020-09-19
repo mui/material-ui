@@ -3,8 +3,8 @@
 export type SpacingArgument = number | string;
 
 export interface Spacing {
-  (): number;
-  (value: number): number;
+  (): string;
+  (value: number): string;
   (topBottom: SpacingArgument, rightLeft: SpacingArgument): string;
   (top: SpacingArgument, rightLeft: SpacingArgument, bottom: SpacingArgument): string;
   (
