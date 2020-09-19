@@ -73,6 +73,7 @@ const pages = [
         pathname: '/components',
         subheader: '/components/feedback',
         children: [
+          { pathname: '/components/alert' },
           { pathname: '/components/backdrop' },
           { pathname: '/components/dialogs' },
           { pathname: '/components/progress' },
@@ -116,7 +117,6 @@ const pages = [
         subheader: '/components/lab',
         children: [
           { pathname: '/components/about-the-lab' },
-          { pathname: '/components/alert' },
           { pathname: '/components/autocomplete' },
           { pathname: '/components/pagination' },
           { pathname: '/components/rating' },
