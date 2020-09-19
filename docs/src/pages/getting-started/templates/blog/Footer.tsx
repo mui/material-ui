@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
@@ -26,7 +25,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Footer(props) {
+interface FooterProps {
+  description: string;
+  title: string;
+}
+
+export default function Footer(props: FooterProps) {
   const classes = useStyles();
   const { description, title } = props;
 
@@ -49,10 +53,3 @@ function Footer(props) {
     </footer>
   );
 }
-
-Footer.propTypes = {
-  description: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-};
-
-export default Footer;

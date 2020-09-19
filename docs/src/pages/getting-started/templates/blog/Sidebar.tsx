@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -16,7 +15,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Sidebar(props) {
+interface SidebarProps {
+  archives: Array<{
+    url: string;
+    title: string;
+  }>;
+  description: string;
+  social: Array<{
+    icon: React.ElementType;
+    name: string;
+  }>;
+  title: string;
+}
+
+export default function Sidebar(props: SidebarProps) {
   const classes = useStyles();
   const { archives, description, social, title } = props;
 
@@ -41,7 +53,6 @@ function Sidebar(props) {
           {archive.title}
         </Link>
       ))}
-
       <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
         Social
       </Typography>
@@ -58,22 +69,3 @@ function Sidebar(props) {
     </Grid>
   );
 }
-
-Sidebar.propTypes = {
-  archives: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      url: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
-  description: PropTypes.string.isRequired,
-  social: PropTypes.arrayOf(
-    PropTypes.shape({
-      icon: PropTypes.elementType.isRequired,
-      name: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
-  title: PropTypes.string.isRequired,
-};
-
-export default Sidebar;

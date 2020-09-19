@@ -16,7 +16,7 @@ const options = {
       component: Typography,
       props: {
         gutterBottom: true,
-        variant: 'h5',
+        variant: 'h4',
       },
     },
     h2: {
@@ -41,11 +41,14 @@ const options = {
     },
     a: { component: Link },
     li: {
-      component: withStyles(styles)(({ classes, ...props }) => (
-        <li className={classes.listItem}>
-          <Typography component="span" {...props} />
-        </li>
-      )),
+      component: withStyles(styles)((props) => {
+        const { classes, ...other } = props;
+        return (
+          <li className={classes.listItem}>
+            <Typography component="span" {...other} />
+          </li>
+        );
+      }),
     },
   },
 };

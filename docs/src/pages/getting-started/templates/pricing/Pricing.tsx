@@ -114,7 +114,6 @@ const tiers = [
     buttonVariant: 'outlined',
   },
 ];
-
 const footers = [
   {
     title: 'Company',
@@ -265,7 +264,10 @@ export default function Pricing() {
                   </ul>
                 </CardContent>
                 <CardActions>
-                  <Button fullWidth variant={tier.buttonVariant}>
+                  <Button
+                    fullWidth
+                    variant={tier.buttonVariant as 'outlined' | 'contained'}
+                  >
                     {tier.buttonText}
                   </Button>
                 </CardActions>

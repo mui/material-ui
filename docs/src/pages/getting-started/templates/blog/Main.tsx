@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -13,7 +12,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Main(props) {
+interface MainProps {
+  posts: Array<string>;
+  title: string;
+}
+
+export default function Main(props: MainProps) {
   const classes = useStyles();
   const { posts, title } = props;
 
@@ -31,10 +35,3 @@ function Main(props) {
     </Grid>
   );
 }
-
-Main.propTypes = {
-  posts: PropTypes.arrayOf(PropTypes.string).isRequired,
-  title: PropTypes.string.isRequired,
-};
-
-export default Main;
