@@ -34,14 +34,14 @@ const getVariantStyles = (name, theme) => {
 };
 
 const variantsResolver = (props, styles, theme, name) => {
-  const { state = {} } = props;
+  const { styleProps = {} } = props;
   let variantsStyles = {};
   const themeVariants = theme?.components?.[name]?.variants;
   if (themeVariants) {
     themeVariants.forEach((themeVariant) => {
       let isMatch = true;
       Object.keys(themeVariant.props).forEach((key) => {
-        if (state[key] !== themeVariant.props[key]) {
+        if (styleProps[key] !== themeVariant.props[key]) {
           isMatch = false;
         }
       });
