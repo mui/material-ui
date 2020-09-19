@@ -96,6 +96,11 @@ const styles = (theme) => ({
         // To prevent the link to get the focus.
         display: 'none',
       },
+      '& a:not(.anchor-link-style):hover': {
+        color: 'currentColor',
+        borderBottom: '1px solid currentColor',
+        textDecoration: 'none',
+      },
       '&:hover .anchor-link-style': {
         display: 'inline-block',
         padding: '0 8px',
