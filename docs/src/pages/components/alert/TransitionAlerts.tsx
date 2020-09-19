@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import Alert from '@material-ui/lab/Alert';
+import Alert from '@material-ui/core/Alert';
 import IconButton from '@material-ui/core/IconButton';
 import Collapse from '@material-ui/core/Collapse';
 import Button from '@material-ui/core/Button';

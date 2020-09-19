@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { getClasses, createMount, describeConformance } from 'test/utils';
-import Paper from '@material-ui/core/Paper';
+import Paper from '../Paper';
 import Alert from './Alert';
 
 describe('<Alert />', () => {

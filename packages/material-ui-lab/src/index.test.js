@@ -12,7 +12,7 @@ describe('@material-ui/lab', () => {
     expect(typeof MaterialUI).to.equal('object');
   });
 
-  it('should not do undefined exports', () => {
+  it('should not have undefined exports', () => {
     Object.keys(MaterialUI).forEach((exportKey) =>
       expect(Boolean(MaterialUI[exportKey])).to.equal(true),
     );

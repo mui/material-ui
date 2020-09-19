@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { OverridableStringUnion } from '@material-ui/types';
-import { InternalStandardProps as StandardProps } from '@material-ui/core';
-import { PaperProps } from '@material-ui/core/Paper';
+import { InternalStandardProps as StandardProps } from '..';
+import { PaperProps } from '../Paper';
 
 export type Color = 'success' | 'info' | 'warning' | 'error';
 
