@@ -21,8 +21,8 @@ const alias = {
   '@material-ui/styles': '../packages/material-ui-styles/src',
   '@material-ui/styled-engine-sc': '../packages/material-ui-styled-engine-sc/src',
   // Swap the comments on the next two lines for using the styled-components as style engine
-  '@material-ui/styled-engine': '../packages/material-ui-styled-engine/src',
-  // '@material-ui/styled-engine': '../packages/material-ui-styled-engine-sc/src',
+  // '@material-ui/styled-engine': '../packages/material-ui-styled-engine/src',
+  '@material-ui/styled-engine': '../packages/material-ui-styled-engine-sc/src',
   '@material-ui/system': '../packages/material-ui-system/src',
   '@material-ui/utils': '../packages/material-ui-utils/src',
   docs: './',
@@ -40,6 +40,7 @@ module.exports = {
     ['next/babel', { 'transform-runtime': { corejs: 2, version: transformRuntimeVersion } }],
   ],
   plugins: [
+    ['babel-plugin-styled-components', { ssr: true, displayName: true, preprocess: false }],
     [
       'babel-plugin-macros',
       {
@@ -65,10 +66,36 @@ module.exports = {
   env: {
     production: {
       plugins: [
+        ['babel-plugin-styled-components', { ssr: true, displayName: true, preprocess: false }],
         '@babel/plugin-transform-react-constant-elements',
         'babel-plugin-transform-dev-warning',
         ['babel-plugin-react-remove-properties', { properties: ['data-mui-test'] }],
         ['babel-plugin-transform-react-remove-prop-types', { mode: 'remove' }],
+      ],
+    },
+    development: {
+      plugins: [
+        ['babel-plugin-styled-components', { ssr: true, displayName: true, preprocess: false }],
+        [
+          'babel-plugin-macros',
+          {
+            muiError: {
+              errorCodesPath,
+            },
+          },
+        ],
+        'babel-plugin-optimize-clsx',
+        // for IE 11 support
+        '@babel/plugin-transform-object-assign',
+        'babel-plugin-preval',
+        [
+          'babel-plugin-module-resolver',
+          {
+            alias,
+            transformFunctions: ['require', 'require.context'],
+            resolvePath,
+          },
+        ],
       ],
     },
   },
