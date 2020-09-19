@@ -128,6 +128,9 @@ https://material-ui.dev/* https://material-ui.com/:splat 301!
 /customization/themes/ /customization/theming/ 301
 https://v1-5-0.material-ui.com/* https://v1.material-ui.com/:splat 301!
 https://v3-9-0.material-ui.com/* https://v3.material-ui.com/:splat 301!
+/:lang/components/data-grid/* /components/data-grid/:splat 302
+/:lang/api/data-grid/ /api/data-grid/ 302
+/:lang/api/x-grid/ /api/x-grid/ 302
 
 # Proxies
 
