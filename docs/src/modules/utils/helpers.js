@@ -27,7 +27,7 @@ function pageToTitle(page) {
   const path = page.subheader || page.pathname;
   const name = path.replace(/.*\//, '');
 
-  if (path.indexOf('/api/') !== -1) {
+  if (path.indexOf('/api') === 0) {
     return upperFirst(camelCase(name));
   }
 
