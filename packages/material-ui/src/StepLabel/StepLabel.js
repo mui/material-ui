@@ -28,6 +28,7 @@ export const styles = (theme) => ({
   },
   /* Styles applied to the `Typography` component which wraps `children`. */
   label: {
+    transition: theme.transitions.create('color'),
     '&$active': {
       color: theme.palette.text.primary,
       fontWeight: 500,
