@@ -10,6 +10,6 @@ if (!warnOnce) {
     ].join('\n'),
   );
   warnOnce = true;
-};
+}
 
 export default AlertTitle;
