@@ -3,8 +3,10 @@ import warning from 'warning';
 import AlertTitle from '@material-ui/core/AlertTitle';
 
 export default React.forwardRef(function DeprecatedAlertTitle(props, ref) {
+  let warnOnce = false;
+
   warning(
-    false,
+    warnOnce,
     [
       'Material-UI: the AlertTitle component was moved from the lab to the core.',
       '',
@@ -12,6 +14,8 @@ export default React.forwardRef(function DeprecatedAlertTitle(props, ref) {
       "or `import AlertTitle from '@material-ui/core/AlertTitle'`",
     ].join('\n'),
   );
+  
+  warnOnce = true;
 
   return <AlertTitle ref={ref} {...props} />;
 });
