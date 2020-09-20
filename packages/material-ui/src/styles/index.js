@@ -18,4 +18,5 @@ export {
   StylesProvider,
   ThemeProvider as MuiThemeProvider,
   ThemeProvider,
+  useThemeVariants,
 } from '@material-ui/styles';
