@@ -57,8 +57,8 @@ describe('<TablePagination />', () => {
         expect(rowsPerPage).to.equal(10);
         expect(count).to.equal(42);
         return {
-          from:11,
-          to: 20
+          from: 11,
+          to: 20,
         };
       }
 

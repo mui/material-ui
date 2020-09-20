@@ -69,8 +69,8 @@ export const styles = (theme) => ({
 
 function defaultCalculateRowRange({ page, rowsPerPage, count }) {
   return {
-      from: count === 0 ? 0 : page * rowsPerPage + 1,
-      to: count !== -1 ? Math.min(count, (page + 1) * rowsPerPage) : (page + 1) * rowsPerPage
+    from: count === 0 ? 0 : page * rowsPerPage + 1,
+    to: count !== -1 ? Math.min(count, (page + 1) * rowsPerPage) : (page + 1) * rowsPerPage,
   };
 }
 
@@ -156,7 +156,7 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
 
         <Typography color="inherit" variant="body2" className={classes.caption}>
           {labelDisplayedRows({
-            ...calculateRowRange({page, rowsPerPage, count}),
+            ...calculateRowRange({ page, rowsPerPage, count }),
             count: count === -1 ? -1 : count,
             page,
           })}
