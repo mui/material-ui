@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function SimpleAlerts() {
+export default function BasicAlerts() {
   const classes = useStyles();
 
   return (

@@ -19,7 +19,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
 
 L'alerte offre quatre niveaux de sévérité qui définissent une icône et une couleur distinctes.
 
-{{"demo": "pages/components/alert/SimpleAlerts.js"}}
+{{"demo": "pages/components/alert/BasicAlerts.js"}}
 
 ## Description
 
