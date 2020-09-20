@@ -1,15 +1,19 @@
+import React from 'react';
+import warning from 'warning';
 import AlertTitle from '@material-ui/core/AlertTitle';
 
-// To remove in v5
-let warnOnce = false;
-if (!warnOnce) {
-  console.warn(
+export default React.forwardRef(function DeprecatedAlertTitle(props, ref) {
+  warning(
+    false,
     [
-      'Material-UI: AlertTitle from @material-ui/lab is deprecated.',
-      'Please use @material-ui/core/AlertTitle',
+      'Material-UI: the AlertTitle component was moved from the lab to the core.',
+      '',
+      'Yay, the component is stable! 🎉',
+      '',
+      "You should use `import { AlertTitle } from '@material-ui/core'`",
+      "or `import AlertTitle from '@material-ui/core/AlertTitle'`",
     ].join('\n'),
   );
-  warnOnce = true;
-}
 
-export default AlertTitle;
+  return <AlertTitle ref={ref} {...props} />;
+});

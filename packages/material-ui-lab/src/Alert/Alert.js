@@ -1,14 +1,19 @@
+import React from 'react';
+import warning from 'warning';
 import Alert from '@material-ui/core/Alert';
 
-// To remove in v5
-let warnOnce = false;
-if (!warnOnce) {
-  console.warn(
+export default React.forwardRef(function DeprecatedAlert(props, ref) {
+  warning(
+    false,
     [
-      'Material-UI: Alert from @material-ui/lab is deprecated.',
-      'Please use @material-ui/core/Alert',
+      'Material-UI: the Alert component was moved from the lab to the core.',
+      '',
+      'Yay, the component is stable! 🎉',
+      '',
+      "You should use `import { Alert } from '@material-ui/core'`",
+      "or `import Alert from '@material-ui/core/Alert'`",
     ].join('\n'),
   );
-  warnOnce = true;
-}
-export default Alert;
+
+  return <Alert ref={ref} {...props} />;
+});
