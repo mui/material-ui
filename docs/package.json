@@ -86,7 +86,7 @@
     "next": "^9.5.0",
     "notistack": "^1.0.0",
     "nprogress": "^0.2.0",
-    "postcss": "^7.0.18",
+    "postcss": "^8.0.5",
     "prismjs": "^1.17.1",
     "prop-types": "^15.7.2",
     "raw-loader": "^1.0.0",
