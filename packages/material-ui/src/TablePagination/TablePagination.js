@@ -200,7 +200,7 @@ TablePagination.propTypes = {
    * @default function defaultCalculateRowRange({ page, rowsPerPage, count }) {
    *   return {
    *     from: count === 0 ? 0 : page * rowsPerPage + 1,
-   *     to: count !== -1 ? Math.min(count, (page + 1) * rowsPerPage) : (page + 1) * rowsPerPage,
+   *     to: count !== -1 ? Math.min(count, (page + 1) * rowsPerPage) : (page + 1) * rowsPerPage
    *   };
    * }
    */
