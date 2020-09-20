@@ -1,9 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { useThemeVariants } from '@material-ui/styles';
 import { capitalize } from '@material-ui/core/utils';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, useThemeVariants } from '@material-ui/core/styles';
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
