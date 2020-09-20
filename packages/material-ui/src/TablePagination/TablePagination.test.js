@@ -48,6 +48,41 @@ describe('<TablePagination />', () => {
     }),
   );
 
+  describe('prop: calculateRowRange', () => {
+    it('should use the calculateRowRange callback', () => {
+      let calculateRowRangeCalled = false;
+      function calculateRowRange({ page, rowsPerPage, count }) {
+        calculateRowRangeCalled = true;
+        expect(page).to.equal(2);
+        expect(rowsPerPage).to.equal(10);
+        expect(count).to.equal(42);
+        return {
+          from:11,
+          to: 20
+        };
+      }
+
+      const { container } = render(
+        <table>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                count={42}
+                page={2}
+                onChangePage={noop}
+                onChangeRowsPerPage={noop}
+                rowsPerPage={10}
+                calculateRowRange={calculateRowRange}
+              />
+            </TableRow>
+          </TableFooter>
+        </table>,
+      );
+      expect(calculateRowRangeCalled).to.equal(true);
+      expect(container.innerHTML.includes('11-20 of 42')).to.equal(true);
+    });
+  });
+
   describe('prop: labelDisplayedRows', () => {
     it('should use the labelDisplayedRows callback', () => {
       let labelDisplayedRowsCalled = false;

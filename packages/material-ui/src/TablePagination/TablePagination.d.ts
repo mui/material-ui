@@ -6,6 +6,12 @@ import { TableCellProps } from '../TableCell';
 import { IconButtonProps } from '../IconButton';
 import { SelectProps } from '../Select';
 
+export interface CalculateRowRangeArgs {
+  page: number;
+  rowsPerPage: number;
+  count: number;
+}
+
 export interface LabelDisplayedRowsArgs {
   from: number;
   to: number;
@@ -69,6 +75,18 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
        * }
        */
       getItemAriaLabel?: (type: 'first' | 'last' | 'next' | 'previous') => string;
+      /**
+       * Customize how the `from` and `to` row range is calculated. Invoked with a `{ page, rowsPerPage, count }`
+       * object.
+       *
+       * @default function defaultCalculateRowRange({ page, rowsPerPage, count }) {
+       *   return {
+       *     from: count === 0 ? 0 : page * rowsPerPage + 1,
+       *     to: count !== -1 ? Math.min(count, (page + 1) * rowsPerPage) : (page + 1) * rowsPerPage
+       *   };
+       * }
+       */
+      calculateRowRange?: (paginationInfo: CalculateRowRangeArgs) => React.ReactNode;
       /**
        * Customize the displayed rows label. Invoked with a `{ from, to, count, page }`
        * object.
