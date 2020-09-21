@@ -35,6 +35,13 @@ export default function Checkboxes() {
       />
       <Checkbox
         defaultChecked
+        indeterminate
+        inputProps={{
+          'aria-label': 'indeterminate checkbox',
+        }}
+      />
+      <Checkbox
+        defaultChecked
         color="default"
         inputProps={{
           'aria-label': 'checkbox with default color',
