@@ -30,6 +30,7 @@ The `MuiTablePagination` name can be used for providing [default props](/customi
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">ActionsComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">TablePaginationActions</span> | The component used for displaying the actions. Either a string to use a HTML element or a component. |
 | <span class="prop-name">backIconButtonProps</span> | <span class="prop-type">object</span> |  | Props applied to the back arrow [`IconButton`](/api/icon-button/) component. |
+| <span class="prop-name">calculateRowRange</span> | <span class="prop-type">func</span> |  | Customize how the `from` and `to` row range is calculated. Invoked with a `{ page, rowsPerPage, count }` object. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">TableCell</span> | The component used for the root node. Either a string to use a HTML element or a component. |
 | <span class="prop-name required">count<abbr title="required">*</abbr></span> | <span class="prop-type">number</span> |  | The total number of rows.<br>To enable server side pagination for an unknown number of items, provide -1. |
