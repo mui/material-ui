@@ -152,8 +152,8 @@ export const styles = (theme) => {
         marginRight: 3,
       },
     },
-    /* Styles applied to the root element if `variant="standard"`. */
-    standard: {},
+    /* Styles applied to the root element if `variant="filled"`. */
+    filled: {},
     /* Styles applied to the root element if `variant="outlined"` and `color="primary"`. */
     outlinedPrimary: {
       color: theme.palette.primary.main,
@@ -229,14 +229,14 @@ export const styles = (theme) => {
       marginRight: 4,
       marginLeft: -4,
     },
-    /* Styles applied to the deleteIcon element if `color="primary"` and `variant="standard"`. */
+    /* Styles applied to the deleteIcon element if `color="primary"` and `variant="filled"`. */
     deleteIconColorPrimary: {
       color: fade(theme.palette.primary.contrastText, 0.7),
       '&:hover, &:active': {
         color: theme.palette.primary.contrastText,
       },
     },
-    /* Styles applied to the deleteIcon element if `color="secondary"` and `variant="standard"`. */
+    /* Styles applied to the deleteIcon element if `color="secondary"` and `variant="filled"`. */
     deleteIconColorSecondary: {
       color: fade(theme.palette.secondary.contrastText, 0.7),
       '&:hover, &:active': {
@@ -286,7 +286,7 @@ const Chip = React.forwardRef(function Chip(props, ref) {
     onKeyDown,
     onKeyUp,
     size = 'medium',
-    variant = 'standard',
+    variant = 'filled',
     ...other
   } = props;
 
@@ -528,10 +528,10 @@ Chip.propTypes = {
   size: PropTypes.oneOf(['medium', 'small']),
   /**
    * The variant to use.
-   * @default 'standard'
+   * @default 'filled'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['standard', 'outlined']),
+    PropTypes.oneOf(['filled', 'outlined']),
     PropTypes.string,
   ]),
 };

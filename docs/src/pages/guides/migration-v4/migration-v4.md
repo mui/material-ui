@@ -360,10 +360,10 @@ const theme = createMuitheme({
 
 ### Chip
 
-- Rename `default` variant to `standard` for consistency.
+- Rename `default` variant to `filled` for consistency.
   ```diff
   -<Chip variant="default">
-  +<Chip variant="standard">
+  +<Chip variant="filled">
   ```
 
 ### Grid
