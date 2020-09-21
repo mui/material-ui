@@ -277,7 +277,12 @@ export type AutocompleteChangeReason =
 export interface AutocompleteChangeDetails<T = string> {
   option: T;
 }
-export type AutocompleteCloseReason = 'toggleInput' | 'escape' | 'select-option' | 'remove-option' | 'blur';
+export type AutocompleteCloseReason =
+  | 'toggleInput'
+  | 'escape'
+  | 'select-option'
+  | 'remove-option'
+  | 'blur';
 export type AutocompleteInputChangeReason = 'input' | 'reset' | 'clear';
 
 export default function useAutocomplete<
