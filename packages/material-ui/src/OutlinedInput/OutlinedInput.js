@@ -8,7 +8,7 @@ import withStyles from '../styles/withStyles';
 
 export const styles = (theme) => {
   const borderColor =
-    theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)';
+    theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)';
 
   return {
     /* Styles applied to the root element. */
@@ -73,9 +73,9 @@ export const styles = (theme) => {
     input: {
       padding: '16.5px 14px',
       '&:-webkit-autofill': {
-        WebkitBoxShadow: theme.palette.type === 'light' ? null : '0 0 0 100px #266798 inset',
-        WebkitTextFillColor: theme.palette.type === 'light' ? null : '#fff',
-        caretColor: theme.palette.type === 'light' ? null : '#fff',
+        WebkitBoxShadow: theme.palette.mode === 'light' ? null : '0 0 0 100px #266798 inset',
+        WebkitTextFillColor: theme.palette.mode === 'light' ? null : '#fff',
+        caretColor: theme.palette.mode === 'light' ? null : '#fff',
         borderRadius: 'inherit',
       },
     },

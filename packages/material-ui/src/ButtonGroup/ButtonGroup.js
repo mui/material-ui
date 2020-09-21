@@ -72,7 +72,7 @@ export const styles = (theme) => ({
   groupedTextHorizontal: {
     '&:not(:last-child)': {
       borderRight: `1px solid ${
-        theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
+        theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
       }`,
     },
   },
@@ -80,7 +80,7 @@ export const styles = (theme) => ({
   groupedTextVertical: {
     '&:not(:last-child)': {
       borderBottom: `1px solid ${
-        theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
+        theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
       }`,
     },
   },

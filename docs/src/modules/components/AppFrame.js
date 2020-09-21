@@ -110,8 +110,8 @@ const styles = (theme) => ({
     },
   },
   appBar: {
-    color: theme.palette.type === 'light' ? null : '#fff',
-    backgroundColor: theme.palette.type === 'light' ? null : theme.palette.background.level2,
+    color: theme.palette.mode === 'light' ? null : '#fff',
+    backgroundColor: theme.palette.mode === 'light' ? null : theme.palette.background.level2,
     transition: theme.transitions.create('width'),
   },
   language: {
@@ -171,9 +171,9 @@ function AppFrame(props) {
 
   const changeTheme = useChangeTheme();
   const handleTogglePaletteType = () => {
-    const paletteType = theme.palette.type === 'light' ? 'dark' : 'light';
+    const paletteMode = theme.palette.mode === 'light' ? 'dark' : 'light';
 
-    changeTheme({ paletteType });
+    changeTheme({ paletteMode });
   };
   const handleToggleDirection = () => {
     changeTheme({ direction: theme.direction === 'ltr' ? 'rtl' : 'ltr' });
@@ -310,7 +310,7 @@ function AppFrame(props) {
               data-ga-event-category="header"
               data-ga-event-action="dark"
             >
-              {theme.palette.type === 'light' ? <Brightness4Icon /> : <Brightness7Icon />}
+              {theme.palette.mode === 'light' ? <Brightness4Icon /> : <Brightness7Icon />}
             </IconButton>
           </Tooltip>
           <Tooltip title={t('toggleRTL')} key={theme.direction} enterDelay={300}>

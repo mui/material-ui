@@ -200,9 +200,9 @@ const additionalProps = (component) => {
       type: { name: 'string' },
       defaultValue: { value: componentSettings[component].propValues.message },
     },
-    paletteType: {
-      type: { name: 'enum', value: [{ value: "'dark'" }, { value: "'light'" }] },
-      description: 'Theme palette type',
+    paletteMode: {
+      mode: { name: 'enum', value: [{ value: "'dark'" }, { value: "'light'" }] },
+      description: 'Theme palette mode',
       defaultValue: { value: "'light'" },
     },
     primaryAction: {

@@ -6,7 +6,7 @@ import InputBase from '../InputBase';
 import withStyles from '../styles/withStyles';
 
 export const styles = (theme) => {
-  const light = theme.palette.type === 'light';
+  const light = theme.palette.mode === 'light';
   const bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
   const backgroundColor = light ? 'rgba(0, 0, 0, 0.09)' : 'rgba(255, 255, 255, 0.09)';
 
@@ -119,9 +119,9 @@ export const styles = (theme) => {
     input: {
       padding: '25px 12px 8px',
       '&:-webkit-autofill': {
-        WebkitBoxShadow: theme.palette.type === 'light' ? null : '0 0 0 100px #266798 inset',
-        WebkitTextFillColor: theme.palette.type === 'light' ? null : '#fff',
-        caretColor: theme.palette.type === 'light' ? null : '#fff',
+        WebkitBoxShadow: theme.palette.mode === 'light' ? null : '0 0 0 100px #266798 inset',
+        WebkitTextFillColor: theme.palette.mode === 'light' ? null : '#fff',
+        caretColor: theme.palette.mode === 'light' ? null : '#fff',
         borderTopLeftRadius: 'inherit',
         borderTopRightRadius: 'inherit',
       },

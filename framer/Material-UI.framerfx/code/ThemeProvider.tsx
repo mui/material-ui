@@ -5,7 +5,7 @@ import { parseColor } from './utils';
 
 interface Props {
   children?: React.ReactNode;
-  paletteType: 'dark' | 'light';
+  paletteMode: 'dark' | 'light';
   primary: string;
   secondary: string;
   error: string;
@@ -18,7 +18,7 @@ export function Theme(props: Props): JSX.Element {
   const {
     children,
     error,
-    paletteType,
+    paletteMode,
     primary,
     secondary,
     info,
@@ -29,7 +29,7 @@ export function Theme(props: Props): JSX.Element {
 
   const theme = createMuiTheme({
     palette: {
-      type: paletteType,
+      mode: paletteMode,
       primary: { main: parseColor(primary) },
       secondary: { main: parseColor(secondary) },
       error: { main: parseColor(error) },
@@ -47,7 +47,7 @@ export function Theme(props: Props): JSX.Element {
 }
 
 Theme.defaultProps = {
-  paletteType: 'light' as const,
+  paletteMode: 'light' as const,
   primary: '#3f51b5',
   secondary: '#f50057',
   error: '#f44336',
@@ -57,7 +57,7 @@ Theme.defaultProps = {
 };
 
 addPropertyControls(Theme, {
-  paletteType: {
+  paletteMode: {
     type: ControlType.Enum,
     title: 'Palette type',
     options: ['dark', 'light'],

@@ -77,7 +77,7 @@ const AnotherStyledSFC = withStyles({
 // Overriding styles
 const theme = createMuiTheme({
   palette: {
-    type: 'dark',
+    mode: 'dark',
     primary: blue,
     contrastThreshold: 3,
     tonalOffset: 0.2,

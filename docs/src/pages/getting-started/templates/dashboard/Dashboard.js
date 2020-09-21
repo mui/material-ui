@@ -99,7 +99,7 @@ const useStyles = makeStyles((theme) => ({
   appBarSpacer: theme.mixins.toolbar,
   content: {
     backgroundColor:
-      theme.palette.type === 'light'
+      theme.palette.mode === 'light'
         ? theme.palette.grey[100]
         : theme.palette.grey[900],
     flexGrow: 1,

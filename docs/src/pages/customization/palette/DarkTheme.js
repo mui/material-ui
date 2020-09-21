@@ -102,7 +102,7 @@ const lightTheme = createMuiTheme();
 const darkTheme = createMuiTheme({
   palette: {
     // Switching the dark mode on is a single property value change.
-    type: 'dark',
+    mode: 'dark',
   },
 });
 

@@ -26,7 +26,7 @@ export const styles = (theme) => ({
   colorDefault: {
     color: theme.palette.background.default,
     backgroundColor:
-      theme.palette.type === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
+      theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
   },
   /* Styles applied to the root element if `variant="circular"`. */
   circular: {},

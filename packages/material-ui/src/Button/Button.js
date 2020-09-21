@@ -66,7 +66,7 @@ export const styles = (theme) => ({
   outlined: {
     padding: '5px 15px',
     border: `1px solid ${
-      theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
+      theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
     }`,
     '&$disabled': {
       border: `1px solid ${theme.palette.action.disabledBackground}`,

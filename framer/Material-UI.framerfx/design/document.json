@@ -3779,7 +3779,7 @@
           ],
           "error" : "#f44336",
           "info" : "#2196f3",
-          "paletteType" : "light",
+          "paletteMode" : "light",
           "primary" : "#3577CB",
           "secondary" : "#CA2B51",
           "success" : "#4caf4f",

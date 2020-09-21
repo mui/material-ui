@@ -20,7 +20,7 @@ export const styles = (theme) => {
       // Create a "on paper" color with sufficient contrast retaining the color
       backgroundColor: fade(
         theme.palette.text.primary,
-        theme.palette.type === 'light' ? 0.11 : 0.13,
+        theme.palette.mode === 'light' ? 0.11 : 0.13,
       ),
       height: '1.2em',
     },
