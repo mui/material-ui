@@ -29,7 +29,7 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 
 一个没有多余装饰的简单例子。
 
-{{"demo": "pages/components/tables/SimpleTable.js", "bg": true}}
+{{"demo": "pages/components/tables/BasicTable.js", "bg": true}}
 
 ## 紧凑的表格
 

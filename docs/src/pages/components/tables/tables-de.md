@@ -29,7 +29,7 @@ Es verwendet die `TableSortLabel` Komponente, um Spaltenüberschriften zu format
 
 Ein einfaches Beispiel ohne Verzierungen.
 
-{{"demo": "pages/components/tables/SimpleTable.js", "bg": true}}
+{{"demo": "pages/components/tables/BasicTable.js", "bg": true}}
 
 ## Dichte Tabelle
 

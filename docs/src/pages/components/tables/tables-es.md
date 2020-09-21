@@ -29,7 +29,7 @@ Utiliza el componente `TableSortLabel` para ayudar a dar estilo a las cabeceras 
 
 Un ejemplo sencillo sin florituras.
 
-{{"demo": "pages/components/tables/SimpleTable.js", "bg": true}}
+{{"demo": "pages/components/tables/BasicTable.js", "bg": true}}
 
 ## Tabla Densa
 

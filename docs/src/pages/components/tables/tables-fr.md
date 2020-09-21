@@ -29,7 +29,7 @@ It utilizes the [`Collapse`](/api/collapse/) component. An example of a table wi
 
 Un exemple simple et sans fioritures.
 
-{{"demo": "pages/components/tables/SimpleTable.js", "bg": true}}
+{{"demo": "pages/components/tables/BasicTable.js", "bg": true}}
 
 ## Tableau dense
 

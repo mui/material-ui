@@ -29,7 +29,7 @@ It utilizes the [`Collapse`](/api/collapse/) component. Это позволяе�
 
 Простой пример без излишеств.
 
-{{"demo": "pages/components/tables/SimpleTable.js", "bg": true}}
+{{"demo": "pages/components/tables/BasicTable.js", "bg": true}}
 
 ## Плотная компоновка таблицы
 

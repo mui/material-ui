@@ -29,7 +29,7 @@ Para acessibilidade, a primeira coluna é ajustada para ser um elemento `<th>`, 
 
 Um exemplo simples sem muito enfeite.
 
-{{"demo": "pages/components/tables/SimpleTable.js", "bg": true}}
+{{"demo": "pages/components/tables/BasicTable.js", "bg": true}}
 
 ## Tabela Densa
 
