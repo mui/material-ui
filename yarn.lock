@@ -7812,9 +7812,9 @@ fragment-cache@^0.2.1:
     map-cache "^0.2.2"
 
 framer-motion@^2.1.0:
-  version "2.6.13"
-  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-2.6.13.tgz#cc26faf53bffb2d9a558bc71a3adaf3c437c0e55"
-  integrity sha512-ScEdiDyAT+kH51axqxFcHA9RLnJ8TpMQBf8HwcXBOt6wDVptHdewEnE3T7semz+7OY0sj0RCsUDhQaWo78aMqQ==
+  version "2.6.15"
+  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-2.6.15.tgz#08e8aae96f199ed1a40a8414458b455101301d6d"
+  integrity sha512-S9q1adpF0ZEoKQfI3SC3V4EAWnxa8JmHh+8H7fNgBWmiGOR9+BtglEhDcRx8/ylnb+H+uqM50RryonsnGV6U1A==
   dependencies:
     framesync "^4.1.0"
     hey-listen "^1.0.8"
@@ -16644,9 +16644,9 @@ webpack-sources@1.4.3, webpack-sources@^1.0.1, webpack-sources@^1.1.0, webpack-s
     source-map "~0.6.1"
 
 webpack@4.44.1, webpack@^4.28.2, webpack@^4.41.0, webpack@^4.43.0, webpack@^4.44.1:
-  version "4.44.1"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.44.1.tgz#17e69fff9f321b8f117d1fda714edfc0b939cc21"
-  integrity sha512-4UOGAohv/VGUNQJstzEywwNxqX417FnjZgZJpJQegddzPmTvph37eBIRbRTfdySXzVtJXLJfbMN3mMYhM6GdmQ==
+  version "4.44.2"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.44.2.tgz#6bfe2b0af055c8b2d1e90ed2cd9363f841266b72"
+  integrity sha512-6KJVGlCxYdISyurpQ0IPTklv+DULv05rs2hseIXer6D7KrUicRDLFb4IUM1S6LUAKypPM/nSiVSuv8jHu1m3/Q==
   dependencies:
     "@webassemblyjs/ast" "1.9.0"
     "@webassemblyjs/helper-module-context" "1.9.0"
