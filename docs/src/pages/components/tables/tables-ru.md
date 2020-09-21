@@ -101,14 +101,6 @@ An example of a table with expandable rows, revealing more information. It utili
 
 Для более сложных вариантов использования вы можете воспользоваться:
 
-### material-table
-
-![stars](https://img.shields.io/github/stars/mbrn/material-table.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/material-table.svg)
-
-[material-table](https://github.com/mbrn/material-table) представляет собой простой и мощный объект DataTable для React на основе Material-UI Table с некоторыми дополнительными функциями. They support many different use cases (editable, filtering, grouping, sorting, selection, i18n, tree data and more). You should check it out.
-
-{{"demo": "pages/components/tables/MaterialTableDemo.js", "bg": true}}
-
 ### Прочее
 
 - [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/): A data grid for Material-UI with paging, sorting, filtering, grouping and editing features ([paid license](https://js.devexpress.com/licensing/)).

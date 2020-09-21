@@ -101,14 +101,6 @@ An example of a table with expandable rows, revealing more information. It utili
 
 より高度な使用例では、以下を利用できます。
 
-### material-table
-
-![Stars](https://img.shields.io/github/stars/mbrn/material-table.svg?style=social&label=Stars) ![npmダウンロード](https://img.shields.io/npm/dm/material-table.svg)
-
-[material-table](https://github.com/mbrn/material-table) は、いくつかの追加機能を備えたMaterial-UI Tableを基にしたシンプルで強力なReact用データテーブルです。 それらは多くの異なるユースケース（編集可能、フィルタリング、グループ化、ソート、選択、i18n、ツリーデータなど）をサポートします。 参照するといいでしょう。 それらは多くの異なるユースケース（編集可能、フィルタリング、グループ化、ソート、選択、i18n、ツリーデータなど）をサポートします。 参照するといいでしょう。 それらは多くの異なるユースケース（編集可能、フィルタリング、グループ化、ソート、選択、i18n、ツリーデータなど）をサポートします。 参照するといいでしょう。
-
-{{"demo": "pages/components/tables/MaterialTableDemo.js", "bg": true}}
-
 ### その他
 
 - [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/): A data grid for Material-UI with paging, sorting, filtering, grouping and editing features ([paid license](https://js.devexpress.com/licensing/)).

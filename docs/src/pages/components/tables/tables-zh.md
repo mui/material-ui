@@ -101,14 +101,6 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 
 对于更高级的用例，您可以利用：
 
-### material-table
-
-![stars](https://img.shields.io/github/stars/mbrn/material-table.svg?style=social&label=Stars) ![npm下载](https://img.shields.io/npm/dm/material-table.svg)
-
-[material-table](https://github.com/mbrn/material-table) 是一款针对 React 的简洁有效的的数据库，它基于 Material-UI Table 并且添加了一些额外的功能。 它们支持了不同的用户案例（可编辑，筛选，分组，排序，选择，国际化，树形数据等等）。 您应该看一下。
-
-{{"demo": "pages/components/tables/MaterialTableDemo.js", "bg": true}}
-
 ### 其他的
 
 - [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/)：针对 Material-UI 的兼并对数据进行排序、搜索、筛选、分组、操作等功能的数据网格（[付费的许可证](https://js.devexpress.com/licensing/)）。

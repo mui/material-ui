@@ -101,14 +101,6 @@ Im folgenden Beispiel zeigen wir wie Sie [react-virtualized](https://github.com/
 
 Für fortgeschrittenere Anwendungsfälle können Ihnen folgende Projekte helfen:
 
-### material-table
-
-![stars](https://img.shields.io/github/stars/mbrn/material-table.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/material-table.svg)
-
-[Material-Table](https://github.com/mbrn/material-table) ist ein einfache und leistungsfähige Daten Tabelle für React basierend auf Material-UI Table mit einigen zusätzlichen Funktionen. Sie unterstützen viele verschiedene Anwendungsfälle (editierbar, filtern, gruppieren, sortieren, auswählen, i18n, Baumdaten und mehr). Sie sollten es sich mal angucken.
-
-{{"demo": "pages/components/tables/MaterialTableDemo.js", "bg": true}}
-
 ### Sonstiges
 
 - [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/): A data grid for Material-UI with paging, sorting, filtering, grouping and editing features ([paid license](https://js.devexpress.com/licensing/)).

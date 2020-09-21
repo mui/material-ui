@@ -101,14 +101,6 @@ Dans l'exemple suivant, nous montrons comment utiliser [react-virtualized](https
 
 Pour des cas d'utilisation plus avancés, vous pourrez peut-être tirer parti des projects suivants:
 
-### material-table
-
-![stars](https://img.shields.io/github/stars/mbrn/material-table.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/material-table.svg)
-
-[material-table](https://github.com/mbrn/material-table) est une table de données simple et puissante pour React basé sur les tables Material-UI avec quelques fonctionnalités supplémentaires. Ils prennent en charge de nombreux cas d'utilisation différents (éditable, filtrage, regroupement, tri, sélection, i18n, données arborescentes, etc.). Vous devriez y jeter un coup d'oeil.
-
-{{"demo": "pages/components/tables/MaterialTableDemo.js", "bg": true}}
-
 ### Autres
 
 - [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/): A data grid for Material-UI with paging, sorting, filtering, grouping and editing features ([paid license](https://js.devexpress.com/licensing/)).
