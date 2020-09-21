@@ -1,9 +1,4 @@
-# Proxies
-/fr/* /:splat 200
-/de/* /:splat 200
-/ja/* /:splat 200
-
-# For Google
+# Link used in the demos, avoid 404
 /drafts / 301
 /inbox* / 301
 /trash / 301
@@ -11,14 +6,13 @@
 
 /size-snapshot https://s3.eu-central-1.amazonaws.com/eps1lon-material-ui/artifacts/master/latest/size-snapshot.json 200
 
-# To add when we finish work on v5.
+# To add when we finish work on v5
 # https://next.material-ui.com/* https://material-ui.com/:splat 301!
 
-# We like to have multiple domains O:)
-https://material-ui-next.com/* https://material-ui.com/:splat 301!
+# Support multiple domains
 https://material-ui.dev/* https://material-ui.com/:splat 301!
 
-# link shortener
+# For links hosted in the code published on npm
 /r/styles-instance-warning /getting-started/faq/#i-have-several-instances-of-styles-on-the-page 302
 /r/caveat-with-refs-guide /guides/composition/#caveat-with-refs 302
 /r/pseudo-classes-guide /customization/components/#pseudo-classes 302
@@ -28,42 +22,9 @@ https://material-ui.dev/* https://material-ui.com/:splat 301!
 /r/custom-component-variants /customization/components/#adding-new-component-variants
 /r/x-license https://material-ui.com/store/items/material-ui-x/
 
-# Added in chronological order, to be removed at some point.
-/css-in-js/* /styles/:splat 301
-/customization/css-in-js/ /styles/basics/ 301
-/customization/overrides/ /customization/components/ 301
-/demos/selection-controls/ /components/radio-buttons/ 301
-/demos/* /components/:splat 301
-/getting-started/page-layout-examples/* /getting-started/templates/:splat 301
-/guides/csp/ /styles/advanced/#what-is-csp-and-why-is-it-useful 301
-/guides/migration-v0.x /guides/migration-v0x/ 301
-/lab/about/ /components/about-the-lab/ 301
-/lab/api/* /api/:splat 301
-/lab/* /components/:splat 301
-/layout/basics/ /guides/responsive-ui/ 301
-/layout/breakpoints/ /customization/breakpoints/ 301
-/layout/css-in-js/ /styles/basics/ 301
-/layout/* /components/:splat 301
-/page-layout-examples/* /getting-started/templates/:splat 301
-/style/color/ /customization/color/ 301
-/style/reboot/ /components/css-baseline/ 301
-/style/typography https://v3.material-ui.com/style/typography/#migration-to-typography-v2 301
-/style/* /components/:splat 301
-/utils/modals/ /components/modal/ 301
-/utils/popovers/ /components/popover/ 301
-/utils/* /components/:splat 301
-/api/mui-theme-provider/ /styles/api/ 301
-/components/expansion-panels/ /components/accordion/ 301
-/api/expansion-panel/ /api/accordion/ 301
-/api/expansion-panel-actions/ /api/accordion-actions/ 301
-/api/expansion-panel-details/ /api/accordion-details/ 301
-/api/expansion-panel-summary/ /api/accordion-summary/ 301
-/premium-themes* https://material-ui.com/store/ 301
-/customization/themes/ /customization/theming/ 301
-https://v1-5-0.material-ui.com/* https://v1.material-ui.com/:splat 301!
-https://v3-9-0.material-ui.com/* https://v3.material-ui.com/:splat 301!
-
-# Legacy
+# Legacy redirection
+# Added in chronological order
+# To be removed at some point
 /v0.20.0 https://v0.material-ui.com/v0.20.0
 /v0.19.4 https://v0.material-ui.com/v0.19.4
 /v0.19.3 https://v0.material-ui.com/v0.19.3
@@ -134,14 +95,58 @@ https://v3-9-0.material-ui.com/* https://v3.material-ui.com/:splat 301!
 /v0.3.2 https://v0.material-ui.com/v0.3.2
 /v0.3.1 https://v0.material-ui.com/v0.3.1
 /v0.3.0 https://v0.material-ui.com/v0.3.0
+/css-in-js/* /styles/:splat 301
+/customization/css-in-js/ /styles/basics/ 301
+/customization/overrides/ /customization/components/ 301
+/demos/selection-controls/ /components/radio-buttons/ 301
+/demos/* /components/:splat 301
+/getting-started/page-layout-examples/* /getting-started/templates/:splat 301
+/guides/csp/ /styles/advanced/#what-is-csp-and-why-is-it-useful 301
+/guides/migration-v0.x /guides/migration-v0x/ 301
+/lab/about/ /components/about-the-lab/ 301
+/lab/api/* /api/:splat 301
+/lab/* /components/:splat 301
+/layout/basics/ /guides/responsive-ui/ 301
+/layout/breakpoints/ /customization/breakpoints/ 301
+/layout/css-in-js/ /styles/basics/ 301
+/layout/* /components/:splat 301
+/page-layout-examples/* /getting-started/templates/:splat 301
+/style/color/ /customization/color/ 301
+/style/reboot/ /components/css-baseline/ 301
+/style/typography https://v3.material-ui.com/style/typography/#migration-to-typography-v2 301
+/style/* /components/:splat 301
+/utils/modals/ /components/modal/ 301
+/utils/popovers/ /components/popover/ 301
+/utils/* /components/:splat 301
+/api/mui-theme-provider/ /styles/api/ 301
+/components/expansion-panels/ /components/accordion/ 301
+/api/expansion-panel/ /api/accordion/ 301
+/api/expansion-panel-actions/ /api/accordion-actions/ 301
+/api/expansion-panel-details/ /api/accordion-details/ 301
+/api/expansion-panel-summary/ /api/accordion-summary/ 301
+/premium-themes* https://material-ui.com/store/ 301
+/customization/themes/ /customization/theming/ 301
+https://v1-5-0.material-ui.com/* https://v1.material-ui.com/:splat 301!
+https://v3-9-0.material-ui.com/* https://v3.material-ui.com/:splat 301!
+/:lang/components/data-grid/* /components/data-grid/:splat 302
+/:lang/api/data-grid/ /api/data-grid/ 302
+/:lang/api/x-grid/ /api/x-grid/ 302
 
 # Proxies
+
+## Localization
+/fr/* /:splat 200
+/de/* /:splat 200
+/ja/* /:splat 200
+
+## Store
 /store/* https://material-ui-store.netlify.app/:splat 200
 /store-staging/* https://master--material-ui-store.netlify.app/:splat 200
-/components/data-grid/* https://material-ui-x.netlify.app/components/data-grid/:splat 200
-/api/data-grid/ https://material-ui-x.netlify.app/api/data-grid/ 200
-/api/x-grid/ https://material-ui-x.netlify.app/api/x-grid/ 200
-# Unlike the store that expect to be hosted under a subfolder,
-# material-ui-x is configured to be hosted at the root.
+
+## material-ui-x
+## Unlike the store that expect to be hosted under a subfolder,
+## material-ui-x is configured to be hosted at the root.
+/api/*/ https://material-ui-x.netlify.app/api/:splat/ 200
+/components/* https://material-ui-x.netlify.app/components/:splat 200
 /_next/* https://material-ui-x.netlify.app/_next/:splat 200
 /static/x/* https://material-ui-x.netlify.app/static/x/:splat 200
