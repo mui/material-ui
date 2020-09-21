@@ -58,7 +58,7 @@ const shouldForwardProp = (prop) => prop !== 'styleProps' && prop !== 'theme';
 
 const muiStyled = (tag, options, muiOptions) => {
   const name = muiOptions.muiName;
-  const defaultStyledResolver = styled(tag, { shouldForwardProp, ...options });
+  const defaultStyledResolver = styled(tag, { shouldForwardProp, label: name, ...options });
   const muiStyledResolver = (...styles) => {
     if (muiOptions.overridesResolver) {
       styles.push((props) => {
