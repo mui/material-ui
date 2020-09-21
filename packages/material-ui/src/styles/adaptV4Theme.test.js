@@ -304,7 +304,7 @@ describe('adaptV4Theme', () => {
 
   describe('theme.palette.mode', () => {
     it('converts theme.palette.type to theme.palette.mode', () => {
-      const theme = { palette: { type: 'dark'}};
+      const theme = { palette: { type: 'dark' } };
 
       let transformedTheme;
 
@@ -314,7 +314,7 @@ describe('adaptV4Theme', () => {
 
       expect(transformedTheme.palette.mode).to.equal('dark');
     });
-  })
+  });
 
   describe('theme.spacing', () => {
     it('does not add units to returned value for a single argument', () => {

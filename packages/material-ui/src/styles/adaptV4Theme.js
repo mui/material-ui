@@ -79,7 +79,10 @@ export default function adaptV4Theme(inputTheme) {
   // theme.palette.text.hint
   theme.palette = {
     text: {
-      hint: (palette.mode === 'dark' || palette.type === 'dark') ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.38)',
+      hint:
+        palette.mode === 'dark' || palette.type === 'dark'
+          ? 'rgba(255, 255, 255, 0.5)'
+          : 'rgba(0, 0, 0, 0.38)',
     },
     ...(paletteMode && {
       mode: paletteMode,
