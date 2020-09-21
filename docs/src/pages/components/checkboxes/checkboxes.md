@@ -29,13 +29,13 @@ Visually, there are actually three states a checkbox can be in: checked, uncheck
 
 {{"demo": "pages/components/checkboxes/IndeterminateCheckbox.js"}}
 
-## Checkbox with FormControlLabel
+## Label
 
 `Checkbox` can be provided with a label thanks to the `FormControlLabel` component.
 
 {{"demo": "pages/components/checkboxes/CheckboxLabels.js"}}
 
-## Checkboxes with FormGroup
+## FormGroup
 
 `FormGroup` is a helpful wrapper used to group selection controls components that provides an easier API.
 
