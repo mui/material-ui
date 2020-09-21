@@ -358,6 +358,14 @@ const theme = createMuitheme({
   +<Fab variant="circular">
   ```
 
+### Chip
+
+- Rename `default` variant to `standard` for consistency.
+  ```diff
+  -<Chip variant="default">
+  +<Chip variant="standard">
+  ```
+
 ### Grid
 
 - Rename `justify` prop with `justifyContent` to be aligned with the CSS property name.
