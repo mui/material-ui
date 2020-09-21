@@ -25,6 +25,8 @@ let blacklistedIcons = [
   'ExposurePlus1', // Google product
   'ExposurePlus2', // Google product
   'ExposureZero', // Google product
+  'VerticalDistribute', // Advanced text editor
+  'HorizontalDistribute', // Advanced text editor
 ];
 
 blacklistedIcons = blacklistedIcons.reduce((acc, item) => {
