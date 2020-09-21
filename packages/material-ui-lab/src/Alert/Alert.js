@@ -2,8 +2,9 @@ import React from 'react';
 import warning from 'warning';
 import Alert from '@material-ui/core/Alert';
 
+let warnedOnce = false;
+ 
 export default React.forwardRef(function DeprecatedAlert(props, ref) {
-  let warnOnce = false;
 
   warning(
     warnOnce,
