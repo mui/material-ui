@@ -81,7 +81,7 @@ export const styles = (theme) => ({
       '$hasPopupIcon &, $hasClearIcon &': {
         paddingRight: 26 + 4 + 9,
       },
-      '$hasPopupIcon$hasClearIcon &': {
+      '$hasPopupIcon$hasClearIcon &:hover': {
         paddingRight: 52 + 4 + 9,
       },
       '& $input': {
