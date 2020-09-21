@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
@@ -21,7 +20,17 @@ const useStyles = makeStyles({
   },
 });
 
-function FeaturedPost(props) {
+interface FeaturedPostProps {
+  post: {
+    date: string;
+    description: string;
+    image: string;
+    imageText: string;
+    title: string;
+  };
+}
+
+export default function FeaturedPost(props: FeaturedPostProps) {
   const classes = useStyles();
   const { post } = props;
 
@@ -57,15 +66,3 @@ function FeaturedPost(props) {
     </Grid>
   );
 }
-
-FeaturedPost.propTypes = {
-  post: PropTypes.shape({
-    date: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    imageText: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-  }).isRequired,
-};
-
-export default FeaturedPost;

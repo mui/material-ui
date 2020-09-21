@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
@@ -25,7 +24,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Header(props) {
+interface HeaderProps {
+  sections: Array<{
+    title: string;
+    url: string;
+  }>;
+  title: string;
+}
+
+export default function Header(props: HeaderProps) {
   const classes = useStyles();
   const { sections, title } = props;
 
@@ -71,15 +78,3 @@ function Header(props) {
     </React.Fragment>
   );
 }
-
-Header.propTypes = {
-  sections: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      url: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
-  title: PropTypes.string.isRequired,
-};
-
-export default Header;
