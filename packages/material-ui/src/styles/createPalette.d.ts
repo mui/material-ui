@@ -72,7 +72,7 @@ export const dark: TypeObject;
 
 export interface Palette {
   common: CommonColors;
-  type: PaletteType;
+  mode: PaletteMode;
   contrastThreshold: number;
   tonalOffset: PaletteTonalOffset;
   primary: PaletteColor;
