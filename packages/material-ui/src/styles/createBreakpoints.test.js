@@ -65,7 +65,9 @@ describe('createBreakpoints', () => {
     });
 
     it('should work on largest breakpoints', () => {
-      expect(breakpoints.between('lg', 'xl')).to.equal('@media (min-width:1280px) and (max-width:1919.95px)');
+      expect(breakpoints.between('lg', 'xl')).to.equal(
+        '@media (min-width:1280px) and (max-width:1919.95px)',
+      );
     });
 
     it('should work for custom breakpoints', () => {

@@ -56,7 +56,7 @@ export default function createBreakpoints(breakpoints) {
   }
 
   function only(key) {
-    if(keys.indexOf(key) + 1 < keys.length) {
+    if (keys.indexOf(key) + 1 < keys.length) {
       return between(key, keys[keys.indexOf(key) + 1]);
     }
 
