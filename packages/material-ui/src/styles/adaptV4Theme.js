@@ -74,7 +74,7 @@ export default function adaptV4Theme(inputTheme) {
     ...mixins,
   };
 
-  const { type: paletteMode, ...paletteRest } = palette;
+  const { type: mode, ...paletteRest } = palette;
 
   // theme.palette.text.hint
   theme.palette = {
@@ -84,9 +84,7 @@ export default function adaptV4Theme(inputTheme) {
           ? 'rgba(255, 255, 255, 0.5)'
           : 'rgba(0, 0, 0, 0.38)',
     },
-    ...(paletteMode && {
-      mode: paletteMode,
-    }),
+    mode,
     ...paletteRest,
   };
 
