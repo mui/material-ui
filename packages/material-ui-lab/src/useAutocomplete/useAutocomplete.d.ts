@@ -181,7 +181,7 @@ export interface UseAutocompleteProps<
    * Use in controlled mode (see open).
    *
    * @param {object} event The event source of the callback.
-   * @param {string} reason Can be: `"toggleInput"`, `"escape"`, `"select-option"`, `"blur"`.
+   * @param {string} reason Can be: `"toggleInput"`, `"escape"`, `"select-option"`, `"remove-option"`, `"blur"`.
    */
   onClose?: (event: React.ChangeEvent<{}>, reason: AutocompleteCloseReason) => void;
   /**
@@ -277,7 +277,12 @@ export type AutocompleteChangeReason =
 export interface AutocompleteChangeDetails<T = string> {
   option: T;
 }
-export type AutocompleteCloseReason = 'toggleInput' | 'escape' | 'select-option' | 'blur';
+export type AutocompleteCloseReason =
+  | 'toggleInput'
+  | 'escape'
+  | 'select-option'
+  | 'remove-option'
+  | 'blur';
 export type AutocompleteInputChangeReason = 'input' | 'reset' | 'clear';
 
 export default function useAutocomplete<
