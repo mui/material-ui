@@ -41,6 +41,9 @@ export const styles = (theme) => ({
   },
   /* Styles applied to each dot if `variant="dots"`. */
   dot: {
+    transition: theme.transitions.create('background-color', {
+      duration: theme.transitions.duration.shortest,
+    }),
     backgroundColor: theme.palette.action.disabled,
     borderRadius: '50%',
     width: 8,

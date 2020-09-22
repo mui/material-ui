@@ -10,6 +10,9 @@ export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     display: 'block',
+    transition: theme.transitions.create('color', {
+      duration: theme.transitions.duration.shortest,
+    }),
     color: theme.palette.text.disabled,
     '&$completed': {
       color: theme.palette.primary.main,
