@@ -168,7 +168,9 @@ const theme = createMuitheme({
 });
 ```
 
-- Breakpoints are now treated as values instead of ranges. The behavior of `down(key)` was changed to define media query less than the value defined with the corresponding breakpoint (exclusive). Tbe `between(start, end)` was also updated to define media query for the values between the actual values of start (inclusive) and end (exclusive). Find examples of the changes required defined below:
+- Breakpoints are now treated as values instead of ranges. The behavior of `down(key)` was changed to define media query less than the value defined with the corresponding breakpoint (exclusive).
+  The `between(start, end)` was also updated to define media query for the values between the actual values of start (inclusive) and end (exclusive).
+  Find examples of the changes required defined below:
 
 ```diff
 -theme.breakpoints.down('sm') // '@media (max-width:959.95px)' - [0, sm + 1) => [0, md)
