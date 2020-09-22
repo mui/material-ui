@@ -48,7 +48,7 @@ gain depth while clicked or touched.
 
 You can use the `size` prop to define a small Chip.
 
-### Default variant
+### Filled variant
 
 {{"demo": "pages/components/chips/SmallChips.js"}}
 
