@@ -1,11 +1,11 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
+import ImageList from '@material-ui/core/ImageList';
+import ImageListItem from '@material-ui/core/ImageListItem';
+import ImageListItemBar from '@material-ui/core/ImageListItemBar';
 import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
-import tileData from './tileData';
+import itemData from './itemData';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'hidden',
     backgroundColor: theme.palette.background.paper,
   },
-  gridList: {
+  imageList: {
     flexWrap: 'nowrap',
     // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
     transform: 'translateZ(0)',
@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
  * import image from 'path/to/image.jpg';
  * [etc...]
  *
- * const tileData = [
+ * const itemData = [
  *   {
  *     img: image,
  *     title: 'Image',
@@ -46,30 +46,30 @@ const useStyles = makeStyles((theme) => ({
  *   },
  * ];
  */
-export default function SingleLineGridList() {
+export default function SingleLineImageList() {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <GridList className={classes.gridList} cols={2.5}>
-        {tileData.map((tile) => (
-          <GridListTile key={tile.img}>
-            <img src={tile.img} alt={tile.title} />
-            <GridListTileBar
-              title={tile.title}
+      <ImageList className={classes.imageList} cols={2.5}>
+        {itemData.map((item) => (
+          <ImageListItem key={item.img}>
+            <img src={item.img} alt={item.title} />
+            <ImageListItemBar
+              title={item.title}
               classes={{
                 root: classes.titleBar,
                 title: classes.title,
               }}
               actionIcon={
-                <IconButton aria-label={`star ${tile.title}`}>
+                <IconButton aria-label={`star ${item.title}`}>
                   <StarBorderIcon className={classes.title} />
                 </IconButton>
               }
             />
-          </GridListTile>
+          </ImageListItem>
         ))}
-      </GridList>
+      </ImageList>
     </div>
   );
 }

@@ -1,69 +1,69 @@
-const tileData = [
+const itemData = [
   {
-    img: '/static/images/grid-list/breakfast.jpg',
+    img: '/static/images/image-list/breakfast.jpg',
     title: 'Breakfast',
     author: 'jill111',
     cols: 2,
     featured: true,
   },
   {
-    img: '/static/images/grid-list/burgers.jpg',
+    img: '/static/images/image-list/burgers.jpg',
     title: 'Tasty burger',
     author: 'director90',
   },
   {
-    img: '/static/images/grid-list/camera.jpg',
+    img: '/static/images/image-list/camera.jpg',
     title: 'Camera',
     author: 'Danson67',
   },
   {
-    img: '/static/images/grid-list/morning.jpg',
+    img: '/static/images/image-list/morning.jpg',
     title: 'Morning',
     author: 'fancycrave1',
     featured: true,
   },
   {
-    img: '/static/images/grid-list/hats.jpg',
+    img: '/static/images/image-list/hats.jpg',
     title: 'Hats',
     author: 'Hans',
   },
   {
-    img: '/static/images/grid-list/honey.jpg',
+    img: '/static/images/image-list/honey.jpg',
     title: 'Honey',
     author: 'fancycravel',
   },
   {
-    img: '/static/images/grid-list/vegetables.jpg',
+    img: '/static/images/image-list/vegetables.jpg',
     title: 'Vegetables',
     author: 'jill111',
     cols: 2,
   },
   {
-    img: '/static/images/grid-list/plant.jpg',
+    img: '/static/images/image-list/plant.jpg',
     title: 'Water plant',
     author: 'BkrmadtyaKarki',
   },
   {
-    img: '/static/images/grid-list/mushroom.jpg',
+    img: '/static/images/image-list/mushroom.jpg',
     title: 'Mushrooms',
     author: 'PublicDomainPictures',
   },
   {
-    img: '/static/images/grid-list/olive.jpg',
+    img: '/static/images/image-list/olive.jpg',
     title: 'Olive oil',
     author: 'congerdesign',
   },
   {
-    img: '/static/images/grid-list/star.jpg',
+    img: '/static/images/image-list/star.jpg',
     title: 'Sea star',
     cols: 2,
     author: '821292',
   },
   {
-    img: '/static/images/grid-list/bike.jpg',
+    img: '/static/images/image-list/bike.jpg',
     title: 'Bike',
     author: 'danfador',
   },
 ];
 
-export default tileData;
+export default itemData;

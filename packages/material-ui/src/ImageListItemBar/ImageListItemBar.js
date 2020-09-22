@@ -2,6 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
+import deprecatedPropType from '../utils/deprecatedPropType';
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
@@ -15,12 +16,12 @@ export const styles = (theme) => ({
     alignItems: 'center',
     fontFamily: theme.typography.fontFamily,
   },
-  /* Styles applied to the root element if `titlePosition="bottom"`. */
-  titlePositionBottom: {
+  /* Styles applied to the root element if `position="bottom"`. */
+  positionBottom: {
     bottom: 0,
   },
-  /* Styles applied to the root element if `titlePosition="top"`. */
-  titlePositionTop: {
+  /* Styles applied to the root element if `position="top"`. */
+  positionTop: {
     top: 0,
   },
   /* Styles applied to the root element if a `subtitle` is provided. */
@@ -67,29 +68,7 @@ export const styles = (theme) => ({
   },
 });
 
-let warnedOnce = false;
-
-/**
- * ⚠️ The GridListTileBar component was renamed to ImageListTileBar to align with the current Material Design naming.
- *
- * You should use `import { ImageListTileBar } from '@material-ui/core'`
- * or `import ImageListTileBar from '@material-ui/core/ImageListTileBar'`.
- */
-const GridListTileBar = React.forwardRef(function GridListTileBar(props, ref) {
-  if (process.env.NODE_ENV !== 'production') {
-    if (!warnedOnce) {
-      warnedOnce = true;
-      console.error(
-        [
-          'Material-UI: The GridListTileBar component was renamed to ImageListTileBar to align with the current Material Design naming.',
-          '',
-          "You should use `import { ImageListTileBar } from '@material-ui/core'`",
-          "or `import ImageListTileBar from '@material-ui/core/ImageListTileBar'`.",
-        ].join('\n'),
-      );
-    }
-  }
-
+const ImageListItemBar = React.forwardRef(function ImageListItemBar(props, ref) {
   const {
     actionIcon,
     actionPosition = 'right',
@@ -97,10 +76,12 @@ const GridListTileBar = React.forwardRef(function GridListTileBar(props, ref) {
     className,
     subtitle,
     title,
-    titlePosition = 'bottom',
+    position: positionProp = 'bottom',
+    titlePosition,
     ...other
   } = props;
 
+  const position = titlePosition || positionProp;
   const actionPos = actionIcon && actionPosition;
 
   return (
@@ -108,8 +89,8 @@ const GridListTileBar = React.forwardRef(function GridListTileBar(props, ref) {
       className={clsx(
         classes.root,
         {
-          [classes.titlePositionBottom]: titlePosition === 'bottom',
-          [classes.titlePositionTop]: titlePosition === 'top',
+          [classes.positionBottom]: position === 'bottom',
+          [classes.positionTop]: position === 'top',
           [classes.rootSubtitle]: subtitle,
         },
         className,
@@ -139,14 +120,14 @@ const GridListTileBar = React.forwardRef(function GridListTileBar(props, ref) {
   );
 });
 
-GridListTileBar.propTypes = {
+ImageListItemBar.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
    * An IconButton element to be used as secondary action target
-   * (primary action target is the tile itself).
+   * (primary action target is the item itself).
    */
   actionIcon: PropTypes.node,
   /**
@@ -163,17 +144,25 @@ GridListTileBar.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * Position of the title bar.
+   */
+  position: PropTypes.oneOf(['bottom', 'top']),
+  /**
    * String or element serving as subtitle (support text).
    */
   subtitle: PropTypes.node,
   /**
-   * Title to be displayed on tile.
+   * Title to be displayed on item.
    */
   title: PropTypes.node,
   /**
    * Position of the title bar.
+   * @deprecated Use position instead.
    */
-  titlePosition: PropTypes.oneOf(['bottom', 'top']),
+  titlePosition: deprecatedPropType(
+    PropTypes.oneOf(['bottom', 'top']),
+    'Use the `position` prop instead.',
+  ),
 };
 
-export default withStyles(styles, { name: 'MuiGridListTileBar' })(GridListTileBar);
+export default withStyles(styles, { name: 'MuiImageListItemBar' })(ImageListItemBar);
