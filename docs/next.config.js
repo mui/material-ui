@@ -111,6 +111,7 @@ module.exports = {
                     {
                       alias: {
                         '@material-ui/core': '../packages/material-ui/src',
+                        '@material-ui/utils': '../packages/material-ui-utils/src',
                       },
                       transformFunctions: ['require'],
                     },
