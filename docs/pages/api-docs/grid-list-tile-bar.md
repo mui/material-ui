@@ -18,7 +18,10 @@ import { GridListTileBar } from '@material-ui/core';
 
 You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
 
+⚠️ The GridListTileBar component was renamed to ImageListTileBar to align with the current Material Design naming.
 
+You should use `import { ImageListTileBar } from '@material-ui/core'`
+or `import ImageListTileBar from '@material-ui/core/ImageListTileBar'`.
 
 ## Component name
 
@@ -62,8 +65,4 @@ You can override the style of the component thanks to one of these customization
 - With a theme and an [`overrides` property](/customization/globals/#css).
 
 If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/GridListTileBar/GridListTileBar.js) for more detail.
-
-## Demos
-
-- [Grid List](/components/grid-list/)
 

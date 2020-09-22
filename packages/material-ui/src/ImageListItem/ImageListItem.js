@@ -12,20 +12,20 @@ export const styles = {
     flexShrink: 0,
   },
   /* Styles applied to the `div` element that wraps the children. */
-  tile: {
+  item: {
     position: 'relative',
     display: 'block', // In case it's not rendered with a div.
     height: '100%',
     overflow: 'hidden',
   },
-  /* Styles applied to an `img` element child, if needed to ensure it covers the tile. */
+  /* Styles applied to an `img` element child, if needed to ensure it covers the item. */
   imgFullHeight: {
     height: '100%',
     transform: 'translateX(-50%)',
     position: 'relative',
     left: '50%',
   },
-  /* Styles applied to an `img` element child, if needed to ensure it covers the tile. */
+  /* Styles applied to an `img` element child, if needed to ensure it covers the item. */
   imgFullWidth: {
     width: '100%',
     position: 'relative',
@@ -65,29 +65,7 @@ function ensureImageCover(imgEl, classes) {
   }
 }
 
-let warnedOnce = false;
-
-/**
- * ⚠️ The GridList component was renamed to ImageList to align with the current Material Design naming.
- *
- * You should use `import { ImageListTile } from '@material-ui/core'`
- * or `import ImageListTile from '@material-ui/core/ImageListTile'`.
- */
-const GridListTile = React.forwardRef(function GridListTile(props, ref) {
-  if (process.env.NODE_ENV !== 'production') {
-    if (!warnedOnce) {
-      warnedOnce = true;
-      console.error(
-        [
-          'Material-UI: The GridListTile component was renamed to ImageListTile to align with the current Material Design naming.',
-          '',
-          "You should use `import { ImageListTile } from '@material-ui/core'`",
-          "or `import ImageListTile from '@material-ui/core/ImageListTile'`.",
-        ].join('\n'),
-      );
-    }
-  }
-
+const ImageListItem = React.forwardRef(function ImageListItem(props, ref) {
   // cols rows default values are for docs only
   const {
     children,
@@ -121,7 +99,7 @@ const GridListTile = React.forwardRef(function GridListTile(props, ref) {
 
   return (
     <Component className={clsx(classes.root, className)} ref={ref} {...other}>
-      <div className={classes.tile}>
+      <div className={classes.item}>
         {React.Children.map(children, (child) => {
           if (!React.isValidElement(child)) {
             return null;
@@ -140,24 +118,26 @@ const GridListTile = React.forwardRef(function GridListTile(props, ref) {
   );
 });
 
-GridListTile.propTypes = {
+ImageListItem.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
-   * Theoretically you can pass any node as children, but the main use case is to pass an img,
-   * in which case GridListTile takes care of making the image "cover" available space
-   * (similar to `background-size: cover` or to `object-fit: cover`).
+   * While you can pass any node as children, the main use case is for an img.
    */
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
   className: PropTypes.string,
   /**
-   * Width of the tile in number of grid cells.
+   * Width of the item in number of grid columns.
    */
   cols: PropTypes.number,
   /**
@@ -166,9 +146,9 @@ GridListTile.propTypes = {
    */
   component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
-   * Height of the tile in number of grid cells.
+   * Height of the item in number of grid rows.
    */
   rows: PropTypes.number,
 };
 
-export default withStyles(styles, { name: 'MuiGridListTile' })(GridListTile);
+export default withStyles(styles, { name: 'MuiImageListItem' })(ImageListItem);

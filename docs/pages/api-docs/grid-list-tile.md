@@ -18,7 +18,10 @@ import { GridListTile } from '@material-ui/core';
 
 You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
 
+⚠️ The GridList component was renamed to ImageList to align with the current Material Design naming.
 
+You should use `import { ImageListTile } from '@material-ui/core'`
+or `import ImageListTile from '@material-ui/core/ImageListTile'`.
 
 ## Component name
 
@@ -54,8 +57,4 @@ You can override the style of the component thanks to one of these customization
 - With a theme and an [`overrides` property](/customization/globals/#css).
 
 If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/GridListTile/GridListTile.js) for more detail.
-
-## Demos
-
-- [Grid List](/components/grid-list/)
 
