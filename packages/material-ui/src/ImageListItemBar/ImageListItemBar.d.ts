@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 
-export interface GridListTileBarProps extends StandardProps<{}, GridListTileBarClassKey> {
+export interface ImageListItemBarProps extends StandardProps<{}, ImageListItemBarClassKey> {
   /**
    * An IconButton element to be used as secondary action target
-   * (primary action target is the tile itself).
+   * (primary action target is the item itself).
    */
   actionIcon?: React.ReactNode;
   /**
@@ -12,23 +12,28 @@ export interface GridListTileBarProps extends StandardProps<{}, GridListTileBarC
    */
   actionPosition?: 'left' | 'right';
   /**
+   * Position of the title bar.
+   */
+  position?: 'top' | 'bottom';
+  /**
    * String or element serving as subtitle (support text).
    */
   subtitle?: React.ReactNode;
   /**
-   * Title to be displayed on tile.
+   * Title to be displayed on item.
    */
   title?: React.ReactNode;
   /**
    * Position of the title bar.
+   * @deprecated Use position instead.
    */
   titlePosition?: 'top' | 'bottom';
 }
 
-export type GridListTileBarClassKey =
+export type ImageListItemBarClassKey =
   | 'root'
-  | 'titlePositionBottom'
-  | 'titlePositionTop'
+  | 'positionBottom'
+  | 'positionTop'
   | 'rootSubtitle'
   | 'titleWrap'
   | 'titleWrapActionPosLeft'
@@ -39,12 +44,13 @@ export type GridListTileBarClassKey =
   | 'actionIconActionPosLeft';
 
 /**
- * ⚠️ The GridListTileBar component was renamed to ImageListTileBar to align with the current Material Design naming.
  *
- * You should use `import { ImageListTileBar } from '@material-ui/core'`
- * or `import ImageListTileBar from '@material-ui/core/ImageListTileBar'`.
+ * Demos:
+ *
+ * - [Image List](https://material-ui.com/components/image-list/)
+ *
  * API:
  *
- * - [GridListTileBar API](https://material-ui.com/api/grid-list-tile-bar/)
+ * - [ImageListItemBar API](https://material-ui.com/api/image-list-item-bar/)
  */
-export default function GridListTileBar(props: GridListTileBarProps): JSX.Element;
+export default function ImageListItemBar(props: ImageListItemBarProps): JSX.Element;

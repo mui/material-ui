@@ -10,11 +10,10 @@ export interface GridListTileTypeMap<P = {}, D extends React.ElementType = 'li'>
   classKey: GridListTileClassKey;
 }
 /**
+ * ⚠️ The GridList component was renamed to ImageList to align with the current Material Design naming.
  *
- * Demos:
- *
- * - [Grid List](https://material-ui.com/components/grid-list/)
- *
+ * You should use `import { ImageListTile } from '@material-ui/core'`
+ * or `import ImageListTile from '@material-ui/core/ImageListTile'`.
  * API:
  *
  * - [GridListTile API](https://material-ui.com/api/grid-list-tile/)

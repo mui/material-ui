@@ -25,8 +25,8 @@ const pages = [
           { pathname: '/components/box' },
           { pathname: '/components/container' },
           { pathname: '/components/grid' },
-          { pathname: '/components/grid-list' },
           { pathname: '/components/hidden' },
+          { pathname: '/components/image-list' },
         ],
       },
       {

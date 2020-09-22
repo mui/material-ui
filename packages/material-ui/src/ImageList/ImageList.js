@@ -3,6 +3,7 @@ import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
+import deprecatedPropType from '../utils/deprecatedPropType';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -16,46 +17,29 @@ export const styles = {
   },
 };
 
-let warnedOnce = false;
-
-/**
- * ⚠️ The GridList component was renamed to ImageList to align with the current Material Design naming.
- *
- * You should use `import { ImageList } from '@material-ui/core'`
- * or `import ImageList from '@material-ui/core/ImageList'`.
- */
-const GridList = React.forwardRef(function GridList(props, ref) {
-  if (process.env.NODE_ENV !== 'production') {
-    if (!warnedOnce) {
-      warnedOnce = true;
-      console.error(
-        [
-          'Material-UI: The GridList component was renamed to ImageList to align with the current Material Design naming.',
-          '',
-          "You should use `import { ImageList } from '@material-ui/core'`",
-          "or `import ImageList from '@material-ui/core/ImageList'`.",
-        ].join('\n'),
-      );
-    }
-  }
-
+const ImageList = React.forwardRef(function ImageList(props, ref) {
   const {
-    cellHeight = 180,
+    cellHeight,
     children,
     classes,
     className,
     cols = 2,
     component: Component = 'ul',
-    spacing = 4,
+    gap: gapProp = 4,
+    rowHeight: rowHeightProp = 180,
+    spacing,
     style,
     ...other
   } = props;
+
+  const gap = spacing || gapProp;
+  const rowHeight = cellHeight || rowHeightProp;
 
   return (
     <Component
       className={clsx(classes.root, className)}
       ref={ref}
-      style={{ margin: -spacing / 2, ...style }}
+      style={{ margin: -gap / 2, ...style }}
       {...other}
     >
       {React.Children.map(children, (child) => {
@@ -67,7 +51,7 @@ const GridList = React.forwardRef(function GridList(props, ref) {
           if (isFragment(child)) {
             console.error(
               [
-                "Material-UI: The GridList component doesn't accept a Fragment as a child.",
+                "Material-UI: The ImageList component doesn't accept a Fragment as a child.",
                 'Consider providing an array instead.',
               ].join('\n'),
             );
@@ -80,8 +64,8 @@ const GridList = React.forwardRef(function GridList(props, ref) {
         return React.cloneElement(child, {
           style: {
             width: `${(100 / cols) * childCols}%`,
-            height: cellHeight === 'auto' ? 'auto' : cellHeight * childRows + spacing,
-            padding: spacing / 2,
+            height: rowHeight === 'auto' ? 'auto' : rowHeight * childRows + gap,
+            padding: gap / 2,
             ...child.props.style,
           },
         });
@@ -90,21 +74,29 @@ const GridList = React.forwardRef(function GridList(props, ref) {
   );
 });
 
-GridList.propTypes = {
+ImageList.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
-   * Number of px for one cell height.
-   * You can set `'auto'` if you want to let the children determine the height.
+   * Cell height in `px`.
+   * Set to `'auto'` to let the children determine the height.
+   * @deprecated Use rowHeight instead.
    */
-  cellHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['auto'])]),
+  cellHeight: deprecatedPropType(
+    PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['auto'])]),
+    'Use the `rowHeight` prop instead.',
+  ),
   /**
-   * Grid Tiles that will be in Grid List.
+   * Items that will be in the image list.
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -119,13 +111,22 @@ GridList.propTypes = {
    */
   component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
-   * Number of px for the spacing between tiles.
+   * The gap between items in `px`.
    */
-  spacing: PropTypes.number,
+  gap: PropTypes.number,
+  /**
+   * The height of one row in `px`.
+   */
+  rowHeight: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
+  /**
+   * The spacing between items in `px`.
+   * @deprecated Use gap instead.
+   */
+  spacing: deprecatedPropType(PropTypes.number, 'Use the `gap` prop instead.'),
   /**
    * @ignore
    */
   style: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiGridList' })(GridList);
+export default withStyles(styles, { name: 'MuiImageList' })(ImageList);
