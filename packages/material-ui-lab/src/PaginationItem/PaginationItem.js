@@ -127,7 +127,7 @@ export const styles = (theme) => ({
   /* Styles applied to the root element if `variant="outlined"`. */
   outlined: {
     border: `1px solid ${
-      theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
+      theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
     }`,
     '&$selected': {
       '&$disabled': {

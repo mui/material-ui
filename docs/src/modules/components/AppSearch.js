@@ -45,7 +45,7 @@ const useStyles = makeStyles(
           fontWeight: theme.typography.fontWeightRegular,
         },
         '& .algolia-docsearch-suggestion--highlight': {
-          color: theme.palette.type === 'light' ? '#174d8c' : '#acccf1',
+          color: theme.palette.mode === 'light' ? '#174d8c' : '#acccf1',
         },
         '& .algolia-docsearch-suggestion': {
           textDecoration: 'none',

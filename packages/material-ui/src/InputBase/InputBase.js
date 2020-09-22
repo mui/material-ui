@@ -14,7 +14,7 @@ import TextareaAutosize from '../TextareaAutosize';
 import { isFilled } from './utils';
 
 export const styles = (theme) => {
-  const light = theme.palette.type === 'light';
+  const light = theme.palette.mode === 'light';
   const placeholder = {
     color: 'currentColor',
     opacity: light ? 0.42 : 0.5,

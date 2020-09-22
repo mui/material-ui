@@ -59,7 +59,7 @@ export default function Themes() {
               <img
                 className={classes.img}
                 alt={t('themesButton')}
-                src={`/static/images/themes-${theme.palette.type}.jpg`}
+                src={`/static/images/themes-${theme.palette.mode}.jpg`}
                 loading="eager"
                 width={500}
                 height={307}

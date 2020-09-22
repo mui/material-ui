@@ -12,7 +12,7 @@ import ButtonBase from '../ButtonBase';
 
 export const styles = (theme) => {
   const backgroundColor =
-    theme.palette.type === 'light' ? theme.palette.grey[300] : theme.palette.grey[700];
+    theme.palette.mode === 'light' ? theme.palette.grey[300] : theme.palette.grey[700];
   const deleteIconColor = fade(theme.palette.text.primary, 0.26);
 
   return {
@@ -47,7 +47,7 @@ export const styles = (theme) => {
         marginRight: -6,
         width: 24,
         height: 24,
-        color: theme.palette.type === 'light' ? theme.palette.grey[700] : theme.palette.grey[300],
+        color: theme.palette.mode === 'light' ? theme.palette.grey[700] : theme.palette.grey[300],
         fontSize: theme.typography.pxToRem(12),
       },
       '& $avatarColorPrimary': {
@@ -128,7 +128,7 @@ export const styles = (theme) => {
     outlined: {
       backgroundColor: 'transparent',
       border: `1px solid ${
-        theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
+        theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
       }`,
       '&$focusVisible, $clickable&:hover': {
         backgroundColor: fade(theme.palette.text.primary, theme.palette.action.hoverOpacity),
@@ -181,7 +181,7 @@ export const styles = (theme) => {
     avatarColorSecondary: {},
     /* Styles applied to the `icon` element. */
     icon: {
-      color: theme.palette.type === 'light' ? theme.palette.grey[700] : theme.palette.grey[300],
+      color: theme.palette.mode === 'light' ? theme.palette.grey[700] : theme.palette.grey[300],
       marginLeft: 5,
       marginRight: -6,
     },

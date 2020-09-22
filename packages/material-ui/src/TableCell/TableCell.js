@@ -17,7 +17,7 @@ export const styles = (theme) => ({
     // Removes the alpha (sets it to 1), and lightens or darkens the theme color.
     borderBottom: `1px solid
     ${
-      theme.palette.type === 'light'
+      theme.palette.mode === 'light'
         ? lighten(fade(theme.palette.divider, 1), 0.88)
         : darken(fade(theme.palette.divider, 1), 0.68)
     }`,

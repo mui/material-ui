@@ -10,7 +10,7 @@ const BorderLinearProgress = withStyles((theme) => ({
   },
   colorPrimary: {
     backgroundColor:
-      theme.palette.grey[theme.palette.type === 'light' ? 200 : 700],
+      theme.palette.grey[theme.palette.mode === 'light' ? 200 : 700],
   },
   bar: {
     borderRadius: 5,
@@ -24,7 +24,7 @@ const useStylesFacebook = makeStyles((theme) => ({
     position: 'relative',
   },
   bottom: {
-    color: theme.palette.grey[theme.palette.type === 'light' ? 200 : 700],
+    color: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 700],
   },
   top: {
     color: '#1a90ff',

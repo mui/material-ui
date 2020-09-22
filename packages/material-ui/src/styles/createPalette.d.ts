@@ -1,4 +1,4 @@
-import { Color, PaletteType } from '..';
+import { Color, PaletteMode } from '..';
 
 export {};
 // use standalone interface over typeof colors/commons
@@ -72,7 +72,7 @@ export const dark: TypeObject;
 
 export interface Palette {
   common: CommonColors;
-  type: PaletteType;
+  mode: PaletteMode;
   contrastThreshold: number;
   tonalOffset: PaletteTonalOffset;
   primary: PaletteColor;
@@ -107,7 +107,7 @@ export interface PaletteOptions {
   warning?: PaletteColorOptions;
   info?: PaletteColorOptions;
   success?: PaletteColorOptions;
-  type?: PaletteType;
+  mode?: PaletteMode;
   tonalOffset?: PaletteTonalOffset;
   contrastThreshold?: number;
   common?: Partial<CommonColors>;

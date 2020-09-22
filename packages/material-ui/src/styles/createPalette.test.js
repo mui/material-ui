@@ -84,7 +84,7 @@ describe('createPalette()', () => {
   });
 
   it('should create a dark palette', () => {
-    const palette = createPalette({ type: 'dark' });
+    const palette = createPalette({ mode: 'dark' });
     expect(palette.primary.main, 'should use indigo as the default primary color').to.equal(
       indigo[500],
     );
@@ -135,10 +135,10 @@ describe('createPalette()', () => {
   });
 
   describe('warnings', () => {
-    it('throws an exception when an invalid type is specified', () => {
+    it('throws an exception when an invalid mode is specified', () => {
       expect(() => {
-        createPalette({ type: 'foo' });
-      }).toErrorDev('Material-UI: The palette type `foo` is not supported');
+        createPalette({ mode: 'foo' });
+      }).toErrorDev('Material-UI: The palette mode `foo` is not supported');
     });
 
     it('throws an exception when a wrong color is provided', () => {

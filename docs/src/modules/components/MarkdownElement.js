@@ -35,7 +35,7 @@ const styles = (theme) => ({
       padding: '0 3px',
       color: theme.palette.text.primary,
       backgroundColor:
-        theme.palette.type === 'light' ? 'rgba(255, 229, 100, 0.2)' : 'rgba(255, 229, 100, 0.2)',
+        theme.palette.mode === 'light' ? 'rgba(255, 229, 100, 0.2)' : 'rgba(255, 229, 100, 0.2)',
       fontSize: '.85em',
       borderRadius: 2,
     },
@@ -130,11 +130,11 @@ const styles = (theme) => ({
         fontFamily: 'Consolas, "Liberation Mono", Menlo, monospace',
       },
       '& .required': {
-        color: theme.palette.type === 'light' ? '#006500' : '#a5ffa5',
+        color: theme.palette.mode === 'light' ? '#006500' : '#a5ffa5',
       },
       '& .prop-type': {
         fontFamily: 'Consolas, "Liberation Mono", Menlo, monospace',
-        color: theme.palette.type === 'light' ? '#932981' : '#ffb6ec',
+        color: theme.palette.mode === 'light' ? '#932981' : '#ffb6ec',
       },
       '& .prop-default': {
         fontFamily: 'Consolas, "Liberation Mono", Menlo, monospace',

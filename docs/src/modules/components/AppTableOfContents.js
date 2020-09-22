@@ -41,11 +41,11 @@ const useStyles = makeStyles((theme) => ({
     boxSizing: 'border-box',
     '&:hover': {
       borderLeftColor:
-        theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[900],
+        theme.palette.mode === 'light' ? theme.palette.grey[200] : theme.palette.grey[900],
     },
     '&$active,&:active': {
       borderLeftColor:
-        theme.palette.type === 'light' ? theme.palette.grey[300] : theme.palette.grey[800],
+        theme.palette.mode === 'light' ? theme.palette.grey[300] : theme.palette.grey[800],
     },
   },
   secondaryItem: {

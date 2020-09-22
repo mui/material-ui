@@ -237,7 +237,7 @@ export const styles = (theme) => ({
     '& $track': {
       backgroundColor:
         // Same logic as the LinearProgress track color
-        theme.palette.type === 'light'
+        theme.palette.mode === 'light'
           ? lighten(theme.palette.primary.main, 0.62)
           : darken(theme.palette.primary.main, 0.5),
     },

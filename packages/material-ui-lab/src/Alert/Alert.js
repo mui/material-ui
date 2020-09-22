@@ -13,8 +13,8 @@ import InfoOutlinedIcon from '../internal/svg-icons/InfoOutlined';
 import CloseIcon from '../internal/svg-icons/Close';
 
 export const styles = (theme) => {
-  const getColor = theme.palette.type === 'light' ? darken : lighten;
-  const getBackgroundColor = theme.palette.type === 'light' ? lighten : darken;
+  const getColor = theme.palette.mode === 'light' ? darken : lighten;
+  const getBackgroundColor = theme.palette.mode === 'light' ? lighten : darken;
 
   return {
     /* Styles applied to the root element. */

@@ -47,7 +47,7 @@ export type InternalStandardProps<C, Removals extends keyof C = never> = Omit<
     style?: React.CSSProperties;
   };
 
-export type PaletteType = 'light' | 'dark';
+export type PaletteMode = 'light' | 'dark';
 export interface Color {
   50: string;
   100: string;
