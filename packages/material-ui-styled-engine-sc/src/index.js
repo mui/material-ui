@@ -1,4 +1,4 @@
-import scStyled from "styled-components";
+import scStyled from 'styled-components';
 
 export default function styled(tag, options) {
   if (options) {

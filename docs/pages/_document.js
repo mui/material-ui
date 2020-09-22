@@ -1,7 +1,7 @@
 import React from 'react';
 import { ServerStyleSheets } from '@material-ui/styles';
 import { ServerStyleSheet } from 'styled-components';
-import { extractCritical } from 'emotion-server'
+import { extractCritical } from 'emotion-server';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
@@ -132,7 +132,7 @@ MyDocument.getInitialProps = async (ctx) => {
       });
 
     const initialProps = await Document.getInitialProps(ctx);
-    const emotionStyles = extractCritical(initialProps.html)
+    const emotionStyles = extractCritical(initialProps.html);
 
     let css = materialSheets.toString();
     // It might be undefined, e.g. after an error.
