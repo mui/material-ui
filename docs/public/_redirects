@@ -148,5 +148,6 @@ https://v3-9-0.material-ui.com/* https://v3.material-ui.com/:splat 301!
 ## material-ui-x is configured to be hosted at the root.
 /api/*/ https://material-ui-x.netlify.app/api/:splat/ 200
 /components/* https://material-ui-x.netlify.app/components/:splat 200
+/components/data-grid/demo/ https://muix-preview.netlify.app/ 200
 /_next/* https://material-ui-x.netlify.app/_next/:splat 200
 /static/x/* https://material-ui-x.netlify.app/static/x/:splat 200
