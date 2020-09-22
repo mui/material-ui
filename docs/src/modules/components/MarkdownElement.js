@@ -40,6 +40,7 @@ const styles = (theme) => ({
       borderRadius: 2,
     },
     '& code[class*="language-"]': {
+      display: 'block', // Fixes iOS code font-size issues
       backgroundColor: '#272c34',
       color: '#fff',
       // Avoid layout jump after hydration (style injected by prism)
