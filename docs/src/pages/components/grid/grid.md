@@ -10,6 +10,10 @@ components: Grid
 The [grid](https://material.io/design/layout/responsive-layout-grid.html) creates visual consistency between layouts while allowing flexibility across a wide variety of designs.
 Material Design’s responsive UI is based on a 12-column grid layout.
 
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
+> ⚠️ The `Grid` component shouldn't be confused with a data grid; it is closer to a layout grid. For a data grid head to [the `DataGrid` component](/components/data-grid/).
+
 ## How it works
 
 The grid system is implemented with the `Grid` component:
