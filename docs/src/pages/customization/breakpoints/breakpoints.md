@@ -20,15 +20,6 @@ Each breakpoint (a key) matches with a _fixed_ screen width (a value):
 - **lg,** large: 1280px
 - **xl,** extra-large: 1920px
 
-These breakpoint values are used to determine breakpoint ranges. A range starts from the breakpoint value inclusive, to the next breakpoint value exclusive:
-
-```js
-value         |0px     600px    960px    1280px   1920px
-key           |xs      sm       md       lg       xl
-screen width  |--------|--------|--------|--------|-------->
-range         |   xs   |   sm   |   md   |   lg   |   xl
-```
-
 These values can be [customized](#custom-breakpoints).
 
 ## CSS Media Queries
