@@ -126,7 +126,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 
 - The components' definition inside the theme were restructure under the `components` key, to allow people easier discoverability about the definitions regarding one component.
 
-- The `theme.palette.type` was renamed to `theme.palette.mode`, to better follow the "dark mode" term that is usually used for describes this feature.
+- The `theme.palette.type` was renamed to `theme.palette.mode`, to better follow the "dark mode" term that is usually used for describing this feature.
 
 ```diff
 import { createMuiTheme } from '@material-ui/core/styles';
