@@ -658,7 +658,7 @@ const useStyles = makeStyles(
     /* Make no difference between the demo and the markdown. */
     demoBgInline: {
       // Maintain alignment with the markdown text
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         padding: theme.spacing(3),
       },
     },

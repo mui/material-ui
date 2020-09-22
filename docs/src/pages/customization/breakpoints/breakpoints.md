@@ -47,7 +47,7 @@ In the following demo, we change the background color (red, blue & green) based 
 const styles = (theme) => ({
   root: {
     padding: theme.spacing(1),
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       backgroundColor: theme.palette.secondary.main,
     },
     [theme.breakpoints.up('md')]: {
@@ -187,9 +187,8 @@ const styles = (theme) => ({
 const styles = (theme) => ({
   root: {
     backgroundColor: 'blue',
-    // Match [0, md + 1)
-    //       [0, lg)
-    //       [0, 1280px)
+    // Match [0, md)
+    //       [0, 960px)
     [theme.breakpoints.down('md')]: {
       backgroundColor: 'red',
     },
@@ -240,9 +239,8 @@ const styles = (theme) => ({
 const styles = (theme) => ({
   root: {
     backgroundColor: 'blue',
-    // Match [sm, md + 1)
-    //       [sm, lg)
-    //       [600px, 1280px)
+    // Match [sm, md)
+    //       [600px, 960px)
     [theme.breakpoints.between('sm', 'md')]: {
       backgroundColor: 'red',
     },

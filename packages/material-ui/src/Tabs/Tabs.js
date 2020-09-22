@@ -72,7 +72,7 @@ export const styles = (theme) => ({
   scrollButtons: {},
   /* Styles applied to the `ScrollButtonComponent` component if `scrollButtons="auto"` or scrollButtons="desktop"`. */
   scrollButtonsDesktop: {
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       display: 'none',
     },
   },
