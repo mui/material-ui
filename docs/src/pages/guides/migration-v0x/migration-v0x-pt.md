@@ -22,32 +22,33 @@ Material-UI foi iniciado [4 anos atrás](https://github.com/mui-org/material-ui/
 ### Onde devo começar a migração?
 
 1. Comece instalando a versão v1.x do Material-UI ao lado da versão v0.x.
-    
-    utilizando o yarn:
+
+utilizando o yarn:
 
 ```sh
-  yarn add material-ui
+yarn add material-ui
   yarn add @material-ui/core
-  ```
+```
 
-  Ou utilizando npm:
-  ```sh
-  npm install material-ui
+Ou utilizando npm:
+
+```sh
+npm install material-ui
   npm install @material-ui/core
-  ```
+```
 
-  então
+então
 
-  ```js
-  import FlatButton from 'material-ui/FlatButton'; // v0.x
+```js
+import FlatButton from 'material-ui/FlatButton'; // v0.x
   import Button from '@material-ui/core/Button'; // v1.x
-  ```
+```
 
 2. Execute [o auxiliar de migração](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod) em seu projeto.
 3. `MuiThemeProvider` é opcional para v1.x., mas se você tem um tema customizado, você é livre para usar as versões v0.x e v1.x do componente, ao mesmo tempo, como neste exemplo:
 
-  ```jsx
-  import * as React from 'react';
+```jsx
+import * as React from 'react';
   import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'; // v1.x
   import { MuiThemeProvider as V0MuiThemeProvider} from 'material-ui';
   import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -70,7 +71,7 @@ Material-UI foi iniciado [4 anos atrás](https://github.com/mui-org/material-ui/
   }
 
   export default App;
-  ```
+```
 
 4. Depois disso, você está livre para migrar uma instância de componente por vez.
 
@@ -78,16 +79,15 @@ Material-UI foi iniciado [4 anos atrás](https://github.com/mui-org/material-ui/
 
 ### Autocompletar
 
-Material-UI, não fornece uma API de alto nível para resolver este problema.
-Recomendamos que você explore [as soluções que a comunidade construiu](/components/autocomplete/).
-
-No futuro, procuraremos fornecer um componente para resolver as formas de uso mais simples: [#9997](https://github.com/mui-org/material-ui/issues/9997).
-
-### Svg Icon
+Material-UI, não fornece uma API de alto nível para resolver este problema. Recomendamos que você explore [as soluções que a comunidade construiu](/components/autocomplete/).
 
 Execute [o auxiliar de migração](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod) em seu projeto.
 
-Isto irá aplicar a seguinte mudança:
+### Ícone Svg
+
+Execute [o auxiliar de migração](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod) em seu projeto.
+
+Caminho de atualização do RaisedButton:
 
 ```diff
 -import AddIcon from 'material-ui/svg-icons/Add';
@@ -96,7 +96,7 @@ Isto irá aplicar a seguinte mudança:
 <AddIcon />
 ```
 
-### Botão liso
+### Botão flat
 
 ```diff
 -import FlatButton from 'material-ui/FlatButton';
@@ -187,4 +187,4 @@ Caminho de atualização do RaisedButton:
 
 ### Continua…
 
-Você migrou sua aplicação com sucesso e deseja ajudar a comunidade? Existe um problema em aberto para concluir este guia de migração [#7195](https://github.com/mui-org/material-ui/issues/7195). Qualquer pull request é bem-vindo 😊.
+Você migrou sua aplicação com sucesso, e que tal ajudar a comunidade? Existe um problema em aberto para concluir este guia de migração [#7195](https://github.com/mui-org/material-ui/issues/7195). Qualquer pull request é bem-vindo 😊.

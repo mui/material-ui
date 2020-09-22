@@ -6,10 +6,9 @@ Este guia tem como objetivo documentar as alternativas mais populares, mas você
 
 - [CSS puro](#plain-css)
 - [CSS global](#global-css)
-- [Styled Components](#global-css)
-- [Módulos CSS](#styled-components)
-- [Emotion](#css-modules)
-- [React JSS](#react-jss)
+- [Styled Components](#styled-components)
+- [Módulos CSS](#css-modules)
+- [Emotion](#emotion)
 
 ## CSS puro
 
@@ -140,7 +139,7 @@ export default function GlobalCssButton() {
 }
 ```
 
-### Controlar prioridade ⚠️
+### Controlando prioridade ⚠️
 
 **Nota:** O JSS injeta seus estilos na parte inferior do `<head>`. Se você não quiser marcar atributos de estilo com **!important**, você precisa alterar [a ordem de injeção do CSS](/styles/advanced/#css-injection-order), como na demonstração:
 
@@ -186,7 +185,6 @@ export default function StyledComponents() {
     </div>
   );
 }
-
 ```
 
 ### Controlando prioridade ⚠️
@@ -224,7 +222,7 @@ const StyledButton = styled(Button)`
   &:hover {
     background-color: #5469d4;
   }
-  & .MuiButton-label {
+  & . MuiButton-label {
     color: #fff;
   }
 `;
@@ -239,7 +237,7 @@ export default function StyledComponentsDeep() {
 }
 ```
 
-A demonstração acima depende [doa valores padrão de `classes`](/styles/advanced/#with-material-ui-core), mas você pode fornecer seu próprio nome de classe: `.label`.
+A demonstração acima depende [dos valores padrão de `classes`](/styles/advanced/#with-material-ui-core), mas você pode fornecer seu próprio nome de classe: `.label`.
 
 ```jsx
 import * as React from 'react';
@@ -297,9 +295,9 @@ const StyledButton = styled(Button)`
 
 {{"demo": "pages/guides/interoperability/StyledComponentsTheme.js"}}
 
-### Portal
+### Portais
 
-O [Portal](/components/portal/) fornece uma maneira de primeira classe para renderizar filhos em um nó DOM que existe fora da hierarquia DOM do componente pai. Devido a maneira como o escopo de CSS do styled-components funciona, você pode encontrar problemas nos quais o estilo não é aplicado.
+O [Portal](/components/portal/) fornece uma maneira de elegante para renderizar filhos em um nó DOM que existe fora da hierarquia DOM do componente pai. Devido a maneira como o escopo de CSS do styled-components funciona, você pode encontrar problemas nos quais o estilo não é aplicado.
 
 Por exemplo, se você tentar estilizar o [Menu](/components/menus/) de um componente [Select](/components/selects/) usando a propriedade `MenuProps`, você precisará passar a propriedade `className` para o elemento que está sendo renderizado fora de sua hierarquia DOM. O exemplo a seguir mostra uma solução alternativa:
 

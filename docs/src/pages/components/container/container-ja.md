@@ -1,17 +1,21 @@
 ---
 title: Container Reactコンポーネント
 components: Container
+githubLabel:
+  component: Container
 ---
 
-# Container(コンテナ)
+# Container
 
 <p class="description">コンテナはコンテンツを水平方向に中央揃えにします。 それが最も基本的なレイアウト要素です。</p>
 
 コンテナは入れ子にすることができますが、ほとんどのレイアウトは入れ子になったコンテナを必要としません。
 
+[The palette](/system/palette/) style関数。
+
 ## Fluid(可変)
 
-A fluid container width is bounded by the `maxWidth` property value.
+A fluid container width is bounded by the `maxWidth` prop value.
 
 {{"demo": "pages/components/container/SimpleContainer.js", "iframe": true, "defaultCodeOpen": false}}
 

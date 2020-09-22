@@ -29,7 +29,7 @@ function ChipsPlayground(props) {
     onDelete: 'none',
     avatar: 'none',
     icon: 'none',
-    variant: 'default',
+    variant: 'filled',
     size: 'medium',
   });
   const { color, onDelete, avatar, icon, variant, size } = state;
@@ -47,7 +47,7 @@ function ChipsPlayground(props) {
 
   const colorToCode = color !== 'default' ? `color="${color}" ` : '';
   const sizeToCode = size === 'small' ? `size="small" ` : '';
-  const variantToCode = variant !== 'default' ? `variant="${variant}" ` : '';
+  const variantToCode = variant !== 'filled' ? `variant="${variant}" ` : '';
 
   let onDeleteToCode;
   switch (onDelete) {
@@ -132,9 +132,9 @@ function ChipsPlayground(props) {
                 onChange={handleChange}
               >
                 <FormControlLabel
-                  value="default"
+                  value="filled"
                   control={<Radio />}
-                  label="default"
+                  label="filled"
                 />
                 <FormControlLabel
                   value="outlined"

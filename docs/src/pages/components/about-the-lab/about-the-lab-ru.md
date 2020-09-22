@@ -2,18 +2,18 @@
 
 <p class="description">Этот пакет содержит инкубационные компоненты, которые еще не готовы к переходу в основной пакет.</p>
 
-The main difference between the lab and the core is how the components are versioned. Having a separate lab package allows us to release breaking changes when necessary while the core package follows a [slower-moving policy](https://material-ui.com/versions/#release-frequency).
+Главное различие между пакетом lab и основным пакетом заключается в очерёдности выхода обновлений. Наличие отдельного пакета lab позволяет нам выпускать критические обновления по мере необходимости, в то время как основной пакет следует [политике "семь раз отмерь..."](https://material-ui.com/versions/#release-frequency).
 
-As developers use and test the components and report issues, the maintainers learn more about shortcomings of the components: missing features, accessibility issues, bugs, API design, etc. The older and more used a component is, the less likely it is that new issues will be found and subsequently need to introduce breaking changes.
+По мере использования и тестирования компонентов сторонними разработчиками, разработчики, поддерживающие пакет, узнают больше о недостатках компонентов: недостающих фичах, проблемах универсального доступа, багах, проблемах в дизайне API, и т.д. Чем старше компонент, и чем более интенсивно он используется, тем менее вероятно проявление новых проблем, требующих критических обновлений.
 
-For a component to be ready to move to the core, the following criteria are considered:
+Готовность компонента к перемещению в основной пакет определяется следующими критериями:
 
-* It needs to be **used**. The Material-UI team uses Google Analytics stats among other metrics to evaluate the usage of each component. A lab component with low usage either means that it isn't fully working yet or that there is a low demand for it.
-* It needs to match the **code quality** of the core components. It doesn't have to be perfect to be a part of the core, but the component should be reliable enough that developers can depend on it. 
-    * Each component needs **type definitions**. It is not currently required that a lab component is typed, but it would need to be typed to move to the core.
-    * Requires good **test coverage**. Some of the lab components don't currently have comprehensive tests.
-* Can it be used as **leverage** to incentivize users to upgrade to the latest major release? The less fragmented the community is, the better.
-* It needs to have a low probability of a **breaking change** in the short/medium future. For instance, if it needs a new feature that will likely require a breaking change, it may be preferable to delay its promotion to the core.
+- Он должен **использоваться**. Команда Material-UI помимо прочих метрик использует Google Analytics, чтобы оценить использование каждого компонента. Если компонент пакета lab используется редко, это может говорить о том, что он не полностью работоспособен, либо об отсутствии спроса на этот компонент.
+- Он должен соответствовать **качеству кода** компонентов основного пакета. Он не обязан быть совершенным, чтобы стать частью основного пакета, но компонент должен быть достаточно надёжным, чтобы сторонние разработчики могли на него положиться.
+  - Для каждого компонента требуется **определение типов**. Компоненты пакета lab на данный момент не обязаны быть типизированными, но это понадобится для перемещения компонента в основной пакет.
+  - Требуется хорошее **покрытие тестами**. Некоторые компоненты пакета lab на данный момент не имеют всесторонних тестов.
+- Может ли он использоваться как **рычаг**, стимулирующий пользователей к обновлению до последней мажорной версии? Чем менее разрозненно коммьюнити, тем лучше.
+- Он должен иметь низкую вероятность **критических изменений** в обозримом будущем. К примеру, если ему не хватает новой фичи, которая скорее всего потребует критических изменений, предпочтительно будет отложить его добавление в основной пакет.
 
 ## Инструкция по установке
 
@@ -27,7 +27,7 @@ npm install @material-ui/lab
 yarn add @material-ui/lab
 ```
 
-The lab has a peer dependency on the core components. If you are not already using Material-UI in your project, you can install it with:
+Пакет lab зависит напрямую от пакета основных компонентов. Если Material-UI ещё не использовался вашем проекте, вы можете установить его командой:
 
 ```sh
 // with npm
@@ -35,4 +35,24 @@ npm install @material-ui/core
 
 // with yarn
 yarn add @material-ui/core
+```
+
+## TypeScript
+
+Чтобы получить возможность пользоваться [переопределением CSS](/customization/globals/#css) и [изменением свойств по умолчанию](/customization/globals/#default-props), разработчикам, использующим TypeScript, нужно импортировать следующие типы. Чтобы расширить структуру темы по умолчанию для использования компонентов доступных в пакете lab, внутри используется [аугментация модулей](/guides/typescript/#customization-of-theme).
+
+```tsx
+import '@material-ui/lab/themeAugmentation';
+
+const theme = createMuiTheme({
+  components: {
+    MuiTimeline: {
+      styleOverrides: {
+        root: {
+          backgroundColor: 'red',
+        },
+      },
+    },
+  },
+});
 ```

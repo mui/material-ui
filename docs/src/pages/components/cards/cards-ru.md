@@ -1,6 +1,9 @@
 ---
 title: Card компонент из React
 components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
+githubLabel:
+  component: Card (карточка)
+materialDesign: https://material.io/components/cards
 ---
 
 # Card (карточка)
@@ -10,6 +13,8 @@ components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedi
 [Карточки](https://material.io/design/components/cards.html) - это поверхности, которые отображают контент и действия относящиеся к одной теме / объекту.
 
 They should be easy to scan for relevant and actionable information. Elements, like text and images, should be placed on them in a way that clearly indicates hierarchy.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Простая Карточка
 
@@ -25,7 +30,7 @@ Set `variant="outlined"` to render an outlined card.
 
 ## Сложное взаимодействие
 
-В варианте для десктопа контент карточки может расширяться.
+В варианте для десктопа контент карточки может расширяться. (Click the downward chevron to view the recipe.)
 
 {{"demo": "pages/components/cards/RecipeReviewCard.js", "bg": true}}
 

@@ -386,7 +386,7 @@ describe('<Autocomplete />', () => {
     it('should remove the last option', () => {
       const handleChange = spy();
       const options = ['one', 'two'];
-      const { container } = render(
+      const { getAllByTestId } = render(
         <Autocomplete
           {...defaultProps}
           defaultValue={options}
@@ -396,7 +396,7 @@ describe('<Autocomplete />', () => {
           multiple
         />,
       );
-      fireEvent.click(container.querySelectorAll('svg[data-mui-test="CancelIcon"]')[1]);
+      fireEvent.click(getAllByTestId('CancelIcon')[1]);
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.deep.equal([options[0]]);
     });

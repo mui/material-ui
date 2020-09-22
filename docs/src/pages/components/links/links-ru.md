@@ -1,10 +1,15 @@
 ---
 components: Link
+githubLabel:
+  component: Link
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#link'
 ---
 
 # Ссылки
 
 <p class="description">Компонент Link позволяет легко кастомизировать анкерные элементы в соответствии с цветами и стилями типографики вашей темы.</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Простые ссылки
 

@@ -34,7 +34,7 @@ yarn add @material-ui/system
 
 ### Komponent erstellen
 
-Um die `Box` Komponente zu verwenden, müssen Sie diese zuerst erstellen. Fügen Sie zunächst eine `Abstand` und eine `Palette ` Funktion zum Stilargument hinzu.
+Um die `Box` Komponente zu verwenden, müssen Sie diese zuerst erstellen. Fügen Sie zunächst eine `Abstand` und eine `Palette` Funktion zum Stilargument hinzu.
 
 ```jsx
 import styled from 'styled-components';
@@ -49,6 +49,7 @@ Diese Box-Komponente unterstützt jetzt neue [Abstandseigenschaften](/system/spa
 
 ```jsx
 <Box p="1rem" color="grey">Gib mir etwas Platz!</Box>
+</Box>
 ```
 
 Die Komponente kann mit beliebigen gültigen CSS-Werten gestaltet werden.
@@ -188,7 +189,48 @@ const theme = {
 
 ### Kollokation
 
-If you want to group the breakpoint values, you can use the `breakpoints()` helper.
+Wenn Sie möchten, die Gruppe der breakpoint-Werte verwenden, können Sie die `breakpoints()` helfer.
+
+```jsx
+import styled from 'styled-components';
+import { style } from '@material-ui/system';
+import { Box } from '@material-ui/core';
+
+const gridGap = style({
+  prop: 'gridGap',
+  themeKey: 'spacing',
+});
+
+const Grid = styled(Box)`${gridGap}`;
+const example = <Grid display="grid" gridGap={[2, 3]}>...</Grid>;
+```
+
+{{"demo": "pages/system/basics/CollocationApi.js"}}
+
+## Individuelle Stileigenschaften
+
+### `style(options) => style function`
+
+Verwenden Sie diesen Helfer, um Ihre eigene Style-Funktion zu erstellen.
+
+Not all CSS properties are supported. Möglicherweise möchten Sie neue unterstützen. Es ist auch möglich, dass Sie das Designpfad-Präfix ändern möchten.
+
+#### Parameter
+
+1. `options` (*Object*):
+
+- [Tachyons](https://tachyons.io/) war eine der ersten (2014) CSS-Bibliotheken, die das [Atomic CSS-Muster](https://css-tricks.com/lets-define-exactly-atomic-css/) förderten (oder funktionales CSS).
+- `options.cssProperty` (*String|Boolean* [optional]): Standardeinstellung ist `options.prop`. Die verwendete CSS-Eigenschaft. Sie können diese Option deaktivieren, indem Sie `false` angeben. Wenn diese Eigenschaft deaktiviert ist, wird der Eigenschaftswert als eigenes Stilobjekt behandelt. Es kann für [Rendering-Varianten](#variants) verwendet werden.
+- `options.themeKey` (*String* [optional]): Der Themepfadpräfix.
+- `options.transform` (*Function* [optional]): Wenden Sie eine Umwandlung an, bevor Sie einen CSS-Wert ausgeben.
+
+#### Rückgabewerte
+
+`Style-Funktion`: Die erstellte Stilfunktion.
+
+#### Beispiele
+
+You can create a component that supports some CSS grid properties like `grid-gap`. By supplying `spacing` as the `themeKey` you can reuse logic enabling the behavior we see in other spacing properties like `padding`.
 
 ```jsx
 import { compose, spacing, palette, breakpoints } from '@material-ui/system';
@@ -210,56 +252,9 @@ const Box = styled.div`
 />
 
 /**
- * Ausgaben:
  *
- * padding: 16px;
- * @media (min-width: 600px) {
- *   padding: 24px;
- * }
- * @media (min-width: 960px) {
- *   padding: 32px;
- * }
- */
-```
-
-{{"demo": "pages/system/basics/CollocationApi.js"}}
-
-## Individuelle Stileigenschaften
-
-### `style(options) => style function`
-
-Verwenden Sie diesen Helfer, um Ihre eigene Style-Funktion zu erstellen.
-
-Not all CSS properties are supported. Möglicherweise möchten Sie neue unterstützen. Es ist auch möglich, dass Sie das Designpfad-Präfix ändern möchten.
-
-#### Argumente
-
-1. `options` (*Object*): 
-  - `options.pro ` (*String*): Die Eigenschaft, für die die Style-Funktion ausgelöst wird.
-  - `options.cssProperty ` (*String|Boolean* [optional]): Standardeinstellung ist `options.prop`. Die verwendete CSS-Eigenschaft. Sie können diese Option deaktivieren, indem Sie `false` angeben. Wenn diese Eigenschaft deaktiviert ist, wird der Eigenschaftswert als eigenes Stilobjekt behandelt. Es kann für [Rendering-Varianten](#variants) verwendet werden.
-  - `options.themeKey` (*String* [optional]): Der Themepfadpräfix.
-  - `options.transform` (*Function* [optional]): Wenden Sie eine Umwandlung an, bevor Sie einen CSS-Wert ausgeben.
-
-#### Rückgabewerte
-
-`Style-Funktion`: Die erstellte Stilfunktion.
-
-#### Beispiele
-
-You can create a component that supports some CSS grid properties like `grid-gap`. By supplying `spacing` as the `themeKey` you can reuse logic enabling the behavior we see in other spacing properties like `padding`.
-
-```jsx
-import styled from 'styled-components';
-import { style } from '@material-ui/system';
-import { Box } from '@material-ui/core';
-
-const gridGap = style({
-  prop: 'gridGap',
-  themeKey: 'spacing',
-});
-
-const Grid = styled(Box)`${gridGap}`;
-const example = <Grid display="grid" gridGap={[2, 3]}>...</Grid>;
+  </Grid>
+);
 ```
 
 You can also customize the prop name by adding both a `prop` and `cssProperty` and transform the value by adding a `transform` function.
@@ -308,13 +303,13 @@ const palette = compose(textColor, bgcolor);
 
 ## Varianten
 
-Der `style()` Helfer kann auch verwendet werden, um Eigenschaften Stilobjekten in einem Theme zuzuordnen. In diesem Beispiel unterstützt die `variant` Eigenschaft alle in ` theme.typography` vorhandenen Schlüssel.
+Der `style()` Helfer kann auch verwendet werden, um Eigenschaften Stilobjekten in einem Theme zuzuordnen. In diesem Beispiel unterstützt die `variant` Eigenschaft alle in `theme.typography` vorhandenen Schlüssel.
 
 {{"demo": "pages/system/basics/Variant.js", "defaultCodeOpen": true}}
 
 ## CSS-Eigenschaft
 
-If you want to support custom CSS values, you can use the `css()` helper. Dieser verarbeitet die `css ` Eigenshaften.
+Dieser verarbeitet die `css` Eigenshaften. Dieser verarbeitet die `css` Eigenshaften.
 
 {{"demo": "pages/system/basics/CssProp.js", "defaultCodeOpen": true}}
 
@@ -336,7 +331,7 @@ In Praxis kann eine Box-Komponente viel Zeit sparen. In diesem Beispiel wird gez
 - Tachyons wurde später (2017) gefolgt von [Tailwind CSS](https://tailwindcss.com/). Sie haben Atomic CSS populärer gemacht.
 - [Twitter-Bootstrap](https://getbootstrap.com/docs/4.1/utilities/borders/) hat langsam atomare Klassennamen in v2, v3 und v4 eingeführt. The way they group their "Helper classes" was used as inspiration.
 - In der Welt von React, war das [Styled System](https://github.com/jxnblk/styled-system) eins der ersten (2017), die Stilfunktionen unterstützte. Sie kann als generische Box-Komponente verwendet werden und ersetzt die atomaren CSS-Helfer sowie Helfer beim Schreiben neuer Komponenten.
-- Große Unternehmen wie Pinterest, GitHub und Segment.io verwenden denselben Ansatz in verschiedenen Geschmacksrichtungen: 
+- Große Unternehmen wie Pinterest, GitHub und Segment.io verwenden denselben Ansatz in verschiedenen Geschmacksrichtungen:
   - [Evergreen Box](https://evergreen.segment.com/components/layout-primitives/)
   - [Gestalt Box](https://pinterest.github.io/gestalt/#/Box)
   - [Primer Box](https://primer.style/components/docs/Box)

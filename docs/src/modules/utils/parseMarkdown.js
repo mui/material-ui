@@ -41,7 +41,9 @@ export function getHeaders(markdown) {
 
   // eslint-disable-next-line no-cond-assign
   while ((regexMatches = headerKeyValueRegExp.exec(header)) !== null) {
-    headers[regexMatches[1]] = regexMatches[2];
+    const key = regexMatches[1];
+    const value = regexMatches[2].replace(/'(.*)'/, '$1');
+    headers[key] = value;
   }
 
   if (headers.components) {
@@ -81,7 +83,6 @@ export function getDescription(markdown) {
 
 /**
  * Render markdown used in the Material-UI docs
- *
  * @param {string} markdown
  * @param {object} [options]
  * @param {function} [options.highlight] - https://marked.js.org/#/USING_ADVANCED.md#highlight
@@ -118,7 +119,6 @@ const externs = [
 ];
 
 /**
- *
  * @param {object} config
  * @param {() => string} config.requireRaw - returnvalue of require.context
  * @param {string} config.pageFilename - filename relative to nextjs pages directory

@@ -1,9 +1,13 @@
 ---
 title: Checkbox React component
 components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
+materialDesign: 'https://material.io/components/selection-controls#checkboxes'
+githubLabel:
+  component: Case à cocher
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#checkbox'
 ---
 
-# Checkbox (case à cocher)
+# Case à cocher
 
 <p class="description">Les cases à cocher permettent à l'utilisateur de sélectionner un ou plusieurs objets d'un ensembe.</p>
 
@@ -11,17 +15,19 @@ components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 
 Si vous avez plusieurs options dans une liste, vous pouvez conserver de l'espace en utilisant des cases à cocher au lieu d'interrupteurs d'activation / désactivation. Si vous n'avez qu'une seule option, évitez d’utiliser une case à cocher et utilisez plutôt un interrupteur on / off à la place.
 
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
 ## Basic checkboxes
 
 {{"demo": "pages/components/checkboxes/Checkboxes.js"}}
 
-## Checkbox with FormControlLabel
+## Checkbox avec FormControlLabel
 
-`Checkbox` can be provided with a label thanks to the `FormControlLabel` component.
+`La case à cocher` peut être fournie avec une étiquette grâce au composant `FormControlLabel`.
 
 {{"demo": "pages/components/checkboxes/CheckboxLabels.js"}}
 
-## Cases à cocher avec FormGroup
+## Checkbox avec FormGroup
 
 `FormGroup` est un wrapper utile utilisé pour regrouper les composants de contrôles de sélection et qui fournit une API plus simple.
 
@@ -33,13 +39,13 @@ Vous pouvez changer l'emplacement du label:
 
 {{"demo": "pages/components/checkboxes/FormControlLabelPosition.js"}}
 
-## Case à cocher personnalisée
+## Checkbox personnalisée
 
 Voici un exemple de personnalisation du composant. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/components/).
 
 {{"demo": "pages/components/checkboxes/CustomizedCheckbox.js", "defaultCodeOpen": false}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/checkbox).
+🎨 Si vous cherchez de l'inspiration, vous pouvez consulter les [exemples de personnalisation de MUI Treasury](https://mui-treasury.com/styles/checkbox).
 
 ## Quand les utiliser
 

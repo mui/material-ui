@@ -36,7 +36,6 @@ function getType(value) {
 }
 
 /**
- *
  * @param {unknown} value
  * @param {ReturnType<typeof getType>} type
  */
@@ -300,7 +299,7 @@ function DefaultTheme(props) {
 
   const data = React.useMemo(() => {
     return createMuiTheme({
-      palette: { type: darkTheme ? 'dark' : 'light' },
+      palette: { mode: darkTheme ? 'dark' : 'light' },
     });
   }, [darkTheme]);
 

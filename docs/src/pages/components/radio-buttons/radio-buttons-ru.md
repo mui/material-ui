@@ -1,6 +1,10 @@
 ---
 title: Radio buttons React component
 components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
+githubLabel:
+  component: Радиокнопка
+materialDesign: 'https://material.io/components/selection-controls#radio-buttons'
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#radiobutton'
 ---
 
 # Радиокнопка
@@ -10,6 +14,8 @@ components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
 Use [radio buttons](https://material.io/design/components/selection-controls.html#radio-buttons) when the user needs to see all available options. Если доступные параметры можно свернуть, возможно лучше использовать раскрывающееся меню, так как оно занимает меньше места.
 
 Для радиокнопок наиболее часто используемый параметр должен быть выбран по умолчанию.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## RadioGroup
 
@@ -43,6 +49,31 @@ In general, radio buttons should have a value selected by default. If this is no
 
 {{"demo": "pages/components/radio-buttons/CustomizedRadios.js"}}
 
+## `useRadioGroup`
+
+For advanced customization use cases, a `useRadioGroup()` hook is exposed. It returns the context value of the parent radio group. The Radio component uses this hook internally.
+
+### API
+
+```jsx
+<RadioButton
+  value="radioA"
+  inputProps={{ 'aria-label': 'Radio A' }}
+/>
+```
+
+#### Возвращает
+
+`value` (_Object_):
+
+- `value.name` (_String_ [optional]): The name used to reference the value of the control.
+- `value.onChange` (_Void_ [optional]): Callback fired when a radio button is selected.
+- `value.value` (_Any_ [optional]): Value of the selected radio button.
+
+#### Пример
+
+{{"demo": "pages/components/radio-buttons/UseRadioGroup.js"}}
+
 ## Бесплатно
 
 - [Чекбоксы. Radio Buttons (радиокнопки)](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
@@ -57,6 +88,8 @@ In general, radio buttons should have a value selected by default. If this is no
 ```jsx
 <RadioButton
   value="radioA"
-  inputProps={{ 'aria-label': 'Radio A' }}
+  inputProps={{
+    'aria-label': 'Radio A',
+  }}
 />
 ```

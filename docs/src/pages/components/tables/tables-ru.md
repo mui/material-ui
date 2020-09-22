@@ -1,6 +1,9 @@
 ---
 title: React-компонент Таблица
 components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
+githubLabel:
+  component: Table (tаблица)
+materialDesign: https://material.io/components/data-tables
 ---
 
 # Table (tаблица)
@@ -17,13 +20,15 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 
 При использовании таких инструментов их следует размещать непосредственно сверху или снизу таблицы.
 
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
 ## Структура
 
 Таблица данных содержит 1 строку заголовка, в которой перечислены имена столбцов, за которыми следуют строки для данных.
 
 Флажки должны сопровождать каждую строку, если пользователю необходимо выбрать или манипулировать данными.
 
-For accessibility, the first column is set to be a `<th>` element, with a `scope` of `"col"`. Это позволяет программам чтения с экрана идентифицировать значение ячейки по имени строки и столбца.
+It utilizes the [`Collapse`](/api/collapse/) component. Это позволяет программам чтения с экрана идентифицировать значение ячейки по имени строки и столбца.
 
 ## Простая таблица
 
@@ -56,16 +61,16 @@ For accessibility, the first column is set to be a `<th>` element, with a `scope
 Возможна настройка параметров, отображаемых в "Строках на странице", используя `rowsPerPageOptions` prop. You should either provide an array of:
 
 - **numbers**, each number will be used for the option's label and value.
-    
-    ```jsx
-    <TablePagination rowsPerPageOptions={[10, 50]} />
-    ```
+
+  ```jsx
+  <TablePagination rowsPerPageOptions={[10, 50]} />
+  ```
 
 - **objects**, the `value` and `label` keys will be used respectively for the value and label of the option (useful for language strings such as 'All').
-    
-    ```jsx
-    <TablePagination rowsPerPageOptions={[10, 50, { value: -1, label: 'All' }]} />
-    ```
+
+  ```jsx
+  <TablePagination rowsPerPageOptions={[10, 50, { value: -1, label: 'All' }]} />
+  ```
 
 ### Пользовательские действия разбивки на страницы
 

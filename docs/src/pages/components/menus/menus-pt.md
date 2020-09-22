@@ -1,6 +1,10 @@
 ---
-title: Componente Menu React
+title: Componente React para Menu
 components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
+githubLabel:
+  component: Menu
+materialDesign: https://material.io/components/menus
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
 ---
 
 # Menus
@@ -9,13 +13,15 @@ components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 
 O [Menu](https://material.io/design/components/menus.html) exibe uma lista de opções em uma superfície temporária. Aparece quando o usuário interage com um botão ou outro controle.
 
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
 ## Menu simples
 
 Menus simples abrem sobre o elemento âncora por padrão (esta opção pode ser alterada via props). Quando estão perto de uma borda da tela, menus simples realinham verticalmente para garantir que todos os itens do menu fiquem completamente visíveis.
 
 Escolhendo uma opção deve confirmar imediatamente a opção e fechar o menu.
 
-**Desambiguação**: Em contraste com menus simples, uma caixa de diálogo simples pode apresentar detalhes adicionais relacionados às opções disponíveis para um item da lista ou fornecer navegação ou ações indiretas relacionada à tarefa principal. Embora possam exibir o mesmo conteúdo, menus simples são preferidos em relação a caixas de diálogos simples, pois menus simples são menos prejudiciais ao contexto atual do usuário.
+**Desambiguação**: Em contraste com menus simples, uma caixa de diálogo simples pode apresentar detalhes adicionais relacionados às opções disponíveis para um item da lista ou fornecer navegação ou ações indiretas relacionada à tarefa principal. Embora possam exibir o mesmo conteúdo, menus simples são preferidos em relação a diálogos simples, pois menus simples são menos prejudiciais ao contexto atual do usuário.
 
 {{"demo": "pages/components/menus/SimpleMenu.js"}}
 
@@ -27,13 +33,13 @@ Se usado para a seleção de itens, quando abertos, menus simples tentam alinhar
 
 ## Composição de MenuList
 
-O componente `Menu` usa o componente `Popover` internamente. No entanto, você pode querer usar uma estratégia de posicionamento diferente ou não bloquear a rolagem. Para responder a essas necessidades, expomos um componente `MenuList` que você pode compor, com `Popper` neste exemplo.
+O componente `Menu` usa o componente `Popover` internamente. No entanto, você pode querer usar uma estratégia de posicionamento diferente ou não bloquear a rolagem. Para atender a essas situações, disponibilizamos um componente `MenuList` que você pode compor com o uso do `Popper`, veja o exemplo a seguir.
 
 A principal responsabilidade do componente `MenuList` é manipular o foco.
 
 {{"demo": "pages/components/menus/MenuListComposition.js", "bg": true}}
 
-## Menus Customizados
+## Menus customizados
 
 Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
@@ -51,7 +57,7 @@ Se a altura de um menu impede que todos os itens de menu sejam exibidos, o menu 
 
 ## Limitações
 
-Existe [um erro com flexbox](https://bugs.chromium.org/p/chromium/issues/detail?id=327437) que impede `text-overflow: ellipsis` de funcionar em um leiaute flexbox. Você pode usar o componente `Typography` com `noWrap` para solucionar esse problema:
+Existe [um problema com flexbox](https://bugs.chromium.org/p/chromium/issues/detail?id=327437) que impede `text-overflow: ellipsis` de funcionar em um leiaute flexível. Você pode usar o componente `Typography` com `noWrap` para solucionar esse problema:
 
 {{"demo": "pages/components/menus/TypographyMenu.js", "bg": true}}
 
@@ -69,10 +75,10 @@ Aqui está um exemplo de um menu de contexto. (Clique com o botão direito para 
 
 ## Projetos Complementares
 
-Para usos mais avançados, você pode tirar vantagem com:
+Para situações de uso mais avançadas, você pode tirar proveito com:
 
 ### PopupState helper
 
-Existe um pacote de terceiros [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) que cuida do estado do menu para você na maioria dos casos.
+Existe um pacote de terceiros [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) que cuida do estado do menu para você na maioria das situações.
 
 {{"demo": "pages/components/menus/MenuPopupState.js"}}

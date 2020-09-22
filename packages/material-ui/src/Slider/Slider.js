@@ -237,7 +237,7 @@ export const styles = (theme) => ({
     '& $track': {
       backgroundColor:
         // Same logic as the LinearProgress track color
-        theme.palette.type === 'light'
+        theme.palette.mode === 'light'
           ? lighten(theme.palette.primary.main, 0.62)
           : darken(theme.palette.primary.main, 0.5),
     },
@@ -272,7 +272,7 @@ export const styles = (theme) => ({
       right: -15,
       bottom: -15,
     },
-    '&$focusVisible,&:hover': {
+    '&:hover, &$focusVisible': {
       boxShadow: `0px 0px 0px 8px ${fade(theme.palette.primary.main, 0.16)}`,
       '@media (hover: none)': {
         boxShadow: 'none',
@@ -360,6 +360,8 @@ export const styles = (theme) => ({
   },
 });
 
+const Forward = ({ children }) => children;
+
 const Slider = React.forwardRef(function Slider(props, ref) {
   const {
     'aria-label': ariaLabel,
@@ -386,7 +388,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     ThumbComponent = 'span',
     track = 'normal',
     value: valueProp,
-    ValueLabelComponent = ValueLabel,
+    ValueLabelComponent: ValueLabelComponentProp = ValueLabel,
     valueLabelDisplay = 'off',
     valueLabelFormat = Identity,
     ...other
@@ -404,6 +406,22 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     default: defaultValue,
     name: 'Slider',
   });
+
+  const handleChange =
+    onChange &&
+    ((event, value) => {
+      if (!(event instanceof Event)) event.persist();
+
+      // Redefine target to allow name and value to be read.
+      // This allows seamless integration with the most popular form libraries.
+      // https://github.com/mui-org/material-ui/issues/13485#issuecomment-676048492
+      Object.defineProperty(event, 'target', {
+        writable: true,
+        value: { value, name },
+      });
+
+      onChange(event, value);
+    });
 
   const range = Array.isArray(valueDerived);
   let values = range ? valueDerived.slice().sort(asc) : [valueDerived];
@@ -538,8 +556,8 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     setValueState(newValue);
     setFocusVisible(index);
 
-    if (onChange) {
-      onChange(event, newValue);
+    if (handleChange) {
+      handleChange(event, newValue);
     }
     if (onChangeCommitted) {
       onChangeCommitted(event, newValue);
@@ -625,8 +643,8 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     focusThumb({ sliderRef, activeIndex, setActive });
     setValueState(newValue);
 
-    if (onChange) {
-      onChange(nativeEvent, newValue);
+    if (handleChange) {
+      handleChange(nativeEvent, newValue);
     }
   });
 
@@ -674,8 +692,8 @@ const Slider = React.forwardRef(function Slider(props, ref) {
 
     setValueState(newValue);
 
-    if (onChange) {
-      onChange(event, newValue);
+    if (handleChange) {
+      handleChange(event, newValue);
     }
 
     const doc = ownerDocument(sliderRef.current);
@@ -725,8 +743,8 @@ const Slider = React.forwardRef(function Slider(props, ref) {
 
     setValueState(newValue);
 
-    if (onChange) {
-      onChange(event, newValue);
+    if (handleChange) {
+      handleChange(event, newValue);
     }
 
     const doc = ownerDocument(sliderRef.current);
@@ -808,6 +826,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
       {values.map((value, index) => {
         const percent = valueToPercent(value, min, max);
         const style = axisProps[axis].offset(percent);
+        const ValueLabelComponent = valueLabelDisplay === 'off' ? Forward : ValueLabelComponentProp;
 
         return (
           <ValueLabelComponent

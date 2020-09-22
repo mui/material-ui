@@ -1,13 +1,19 @@
 ---
 title: Componente React para Dicas
 components: Tooltip
+githubLabel:
+  component: Tooltip
+materialDesign: https://material.io/components/tooltips
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tooltip'
 ---
 
-# Dica
+# Tooltip
 
 <p class="description">Dicas exibem texto informativo quando os usuários passam o mouse, focalizam ou tocam em um elemento.</p>
 
 Quando ativada, [dicas](https://material.io/design/components/tooltips.html) exibem um rótulo de texto identificando o elemento, como uma descrição de sua função.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Dicas simples
 
@@ -25,7 +31,7 @@ Aqui estão alguns exemplos de customização do componente. Você pode aprender
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 
-## Dicas de seta
+## Dicas com seta
 
 Você pode usar a propriedade `arrow` para dar à sua dica uma seta indicando a qual elemento se refere.
 
@@ -33,7 +39,7 @@ Você pode usar a propriedade `arrow` para dar à sua dica uma seta indicando a 
 
 ## Elemento filho customizado
 
-A dica precisa aplicar ouvintes de evento DOM ao seu elemento filho. Se o filho for um elemento React personalizado, você precisará garantir que ele repasse suas propriedades para o elemento DOM subjacente.
+A dica precisa aplicar eventos DOM ao seu elemento filho. Se o filho for um elemento React personalizado, você precisará garantir que ele repasse suas propriedades para o elemento DOM subjacente.
 
 ```jsx
 const MyComponent = React.forwardRef(function MyComponent(props, ref) {
@@ -48,7 +54,7 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 </Tooltip>
 ```
 
-Você pode encontrar um conceito similar no guia de [componentes de encapsulamento](/guides/composition/#wrapping-components).
+Você pode encontrar um conceito similar no guia [encapaulando componentes](/guides/composition/#wrapping-components).
 
 ## Gatilhos
 
@@ -76,7 +82,7 @@ Uma dica pode ser interativa. Ela não será fechada quando o usuário passar po
 
 ## Elementos Desabilitados
 
-Por padrão os elementos desativados como `<button>` não disparam interações do usuário, então uma `Tooltip` não será ativada em eventos normais, omo passar o mouse. Para acomodar elementos desativados, adicione um elemento encapsulador simples, como um `span`.
+Por padrão os elementos desabilitados como `<button>` não disparam interações do usuário, então uma `Tooltip` não será ativada em eventos normais, como passar o mouse. Para acomodar elementos desabilitados, adicione um elemento encapsulador simples, como um `span`.
 
 > ⚠️ Para trabalhar com o Safari, você precisa de pelo menos um display block ou flex item abaixo do elemento que encapsula a dica.
 
@@ -100,9 +106,9 @@ Use uma transição diferente.
 
 {{"demo": "pages/components/tooltips/TransitionsTooltips.js"}}
 
-## Mostrando e ocultando
+## Exibindo e ocultando
 
-A dica normalmente é mostrada imediatamente quando o mouse do usuário passa sobre o elemento e se oculta imediatamente quando o mouse do usuário sai. Um atraso na exibição ou ocultação da dica pode ser adicionado por meio das propriedades `enterDelay` e `leaveDelay`, conforme mostrado na demonstração de dicas controladas acima.
+A dica normalmente é exibida imediatamente quando o mouse do usuário passa sobre o elemento e se oculta imediatamente quando o mouse do usuário sai. Um atraso na exibição ou ocultação da dica pode ser adicionado por meio das propriedades `enterDelay` e `leaveDelay`, conforme mostrado na demonstração de dicas controladas acima.
 
 No celular, a dica é exibida quando o usuário pressiona longamente o elemento e oculta após um atraso de 1500 ms. Você pode desativar esse recurso com a propriedade `disableTouchListener`.
 

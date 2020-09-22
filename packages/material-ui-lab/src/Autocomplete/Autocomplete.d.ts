@@ -230,11 +230,16 @@ export interface AutocompleteProps<
   /**
    * Render the option, use `getOptionLabel` by default.
    *
+   * @param {object} props The props to apply on the li element.
    * @param {T} option The option to render.
    * @param {object} state The state of the component.
    * @returns {ReactNode}
    */
-  renderOption?: (option: T, state: AutocompleteRenderOptionState) => React.ReactNode;
+  renderOption?: (
+    props: React.HTMLAttributes<HTMLLIElement>,
+    option: T,
+    state: AutocompleteRenderOptionState
+  ) => React.ReactNode;
   /**
    * Render the selected value.
    *

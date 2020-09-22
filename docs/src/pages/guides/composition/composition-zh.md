@@ -1,12 +1,12 @@
-# Composition 组合
+# 封装
 
-<p class="description">Material-UI 试着让组合尽可能的简单。</p>
+<p class="description">Material-UI 试着让封装尽可能的简单。</p>
 
 ## 封装组件
 
-我们需要一种了解组件接收的子元素的本质的方式，这样可以尽可能提供最大的灵活性和最好的性能。 To solve this problem we tag some of the components with a `muiName` static property when needed.
+我们需要一种了解组件接收的子元素的本质的方式，这样可以尽可能提供最大的灵活性和最好的性能。 我们会用 `muiName` 静态属性来标记一些我们的组件，这样能够解决这个问题。
 
-但是，您仍可能需要封装一个组件以增强它的功能，而这可能与 `muiName` 的解决方案相冲突。 If you wrap a component, verify if that component has this static property set.
+但是，您仍可能需要封装一个组件以增强它的功能，而这可能与 `muiName` 的解决方案相冲突。 若你要封装一个组件，那么得验证该组件是否具有此静态属性的集合。
 
 如果您遇到此问题，那么请为封装组件附加上与被封装组件一样的标记。 另外，鉴于父组件可能需要对被封装的组件属性加以控制，您应该向父组件传递这些属性。
 
@@ -21,17 +21,17 @@ WrappedIcon.muiName = Icon.muiName;
 
 ## 组件属性
 
-Material-UI allows you to change the root element that will be rendered via a prop called `component`.
+在 Material-UI 中，通过一个叫 `component` 的属性，您可以更改将被渲染的根元素。
 
 ### 它是如何工作的呢？
 
-The custom component will be rendered by Material-UI like this:
+Materal-UI 将这样渲染自定义的组件：
 
 ```js
 return React.createElement(props.component, props)
 ```
 
-例如，在默认情况下，`List` 组件会渲染 `<ul>` 元素。 This can be changed by passing a [React component](https://reactjs.org/docs/components-and-props.html#function-and-class-components) to the `component` prop. The following example will render the `List` component with a `<nav>` element as root element instead:
+例如，在默认情况下，`List` 组件会渲染 `<ul>` 元素。 但只要把一个 [React 组件](https://reactjs.org/docs/components-and-props.html#function-and-class-components) 属性传递给 `component` 属性，就即可将此更改。 在下面的例子里，就将 `List` 组件作为一个根元素来渲染成 `<nav>` 元素：
 
 ```jsx
 <List component="nav">
@@ -44,11 +44,11 @@ return React.createElement(props.component, props)
 </List>
 ```
 
-This pattern is very powerful and allows for great flexibility, as well as a way to interoperate with other libraries, such as your favorite routing or forms library. 但它也**带有一个小小的警告!**
+这种模式非常强大，它拥有很强的灵活性，也涵盖了与其他库互操作的方法，例如你最喜欢的一些 routing 或者 forms 的库。 但它也**带有一个小小的警告!**
 
 ### 当与内联函数一起使用时要注意
 
-Using an inline function as an argument for the `component` prop may result in **unexpected unmounting**, since a new component is passed every time React renders. 例如，如果要创建自定义` ListItem `作为链接，您可以执行以下操作：
+Using an inline function as an argument for the `component` prop may result in **unexpected unmounting**, since a new component is passed every time React renders. 例如，如果要创建自定义`ListItem`作为链接，您可以执行以下操作： 例如，如果要创建自定义 `ListItem` 来作为一个链接使用，您可以这样编写：
 
 ```jsx
 import { Link } from 'react-router-dom';
@@ -69,9 +69,9 @@ function ListItemLink(props) {
 }
 ```
 
-⚠️然而，由于我们使用内联函数来更改呈现的组件，因此，在每一次` ListItemLink `被渲染时，React都会先将它卸载。 不只是React会更新那些不必要的DOM，`ListItem` 的涟漪效应也将无法正常工作。
+⚠️ 然而，由于我们使用一个内联函数来更改渲染的组件，所以每一次渲染 `ListItemLink` 时，React 都会先将它卸载。 React 不仅会不必要地更新 DOM，还会影响 `ListItem` 的涟漪效果。
 
-The solution is simple: **avoid inline functions and pass a static component to the `component` prop** instead. Let's change the `ListItemLink` component so `CustomLink` always reference the same component:
+The solution is simple: **avoid inline functions and pass a static component to the `component` prop** instead. Let's change the `ListItemLink` component so `CustomLink` always reference the same component: 我们可以改变 `ListItemLink` 组件，这样一来 `CustomLink` 总是引用相同的组件：
 
 ```jsx
 import { Link } from 'react-router-dom';
@@ -98,9 +98,9 @@ function ListItemLink(props) {
 }
 ```
 
-### Caveat with prop forwarding
+### 带有传递属性的一些注意事项
 
-You can take advantage of the prop forwarding to simplify the code. 在此示例中，我们不创建任何中间组件：
+您可以利用传递属性来简化您的代码。 在此示例中，我们不创建任何中间组件：
 
 ```jsx
 import { Link } from 'react-router-dom';
@@ -108,15 +108,15 @@ import { Link } from 'react-router-dom';
 <ListItem button component={Link} to="/">
 ```
 
-⚠️ However, this strategy suffers from a limitation: prop collisions. The component providing the `component` prop (e.g. ListItem) might not forward all the props (for example dense) to the root element.
+⚠️ 但是，这种策略会受到一些限制：属性的冲突。 提供 `component` 属性的组件（如：ListItem）则可能不会将其所有属性（如 dense）传递到根元素。
 
 ### 使用 TypeScript
 
-You can find the details in the [TypeScript guide](/guides/typescript/#usage-of-component-prop).
+您可以在 [TypeScript 指南](/guides/typescript/#usage-of-component-prop) 中找到详细信息 。
 
-## Routing libraries
+## 路由库
 
-The integration with third-party routing libraries is achieved with the `component` prop. The behavior is identical to the description of the prop above. Here are a few demos with [react-router-dom](https://github.com/ReactTraining/react-router). It covers the Button, Link, and List components, you should be able to apply the same strategy with all the components.
+通过 `component` 属性实现了与第三方路由库的整合。 该行为与上面的属性描述完全相同。 以下是一些 [react-router-dom](https://github.com/ReactTraining/react-router) 的示例： 它覆盖按钮（Button）、链接（Link）和列表（List）组件，对所有的组件，你应该能应用相同的策略。
 
 ### Button
 
@@ -130,30 +130,30 @@ The integration with third-party routing libraries is achieved with the `compone
 
 {{"demo": "pages/guides/composition/ListRouter.js"}}
 
-## 使用refs时要注意
+## 使用 refs 时的一些注意事项
 
-本节介绍将自定义组件用作`子组件`或`component`属性的值时的注意事项。
+本节介绍了将一个自定义组件用作`子组件`或 作为 `component` 的属性时的一些注意事项。
 
-某些组件需要访问DOM节点。 之前提到，通过使用` ReactDOM.findDOMNode ` 就能实现。 该方法已被废弃，代替的是使用` ref `和 ref 转递。 然而，只有下列组件类型才可获得 `ref`：
+某些组件需要访问 DOM 节点。 之前提到，通过使用 `ReactDOM.findDOMNode` 就能实现。 该方法已被废弃，代替的是使用 `ref` 和 ref 转递。 然而，只有给予下列组件类型一个 `ref`：
 
-- 任何Material-UI组件
+- 任何 Material-UI 组件
 - 类组件，如 `React.Component` 或 `React.PureComponent` 等
-- DOM (或 host) 组件，例如 `div` 或 `button`等
-- [React.forwardRef组件](https://reactjs.org/docs/react-api.html#reactforwardref)
-- [React.lazy组件](https://reactjs.org/docs/react-api.html#reactlazy)
-- [React.memo组件](https://reactjs.org/docs/react-api.html#reactmemo)
+- DOM（或 host）组件，例如 `div` 或 `button`
+- [React.forwardRef 组件](https://reactjs.org/docs/react-api.html#reactforwardref)
+- [React.lazy 组件](https://reactjs.org/docs/react-api.html#reactlazy)
+- [React.memo 组件](https://reactjs.org/docs/react-api.html#reactmemo)
 
-如果在将组件与Material-UI结合使用时未使用上述类型之一，则可能会在控制台中看到来自React的警告，类似于：
+如果在将组件与 Material-UI 结合使用时未使用上述类型之一，那么您可能会在控制台中看到来自 React 的警告，类似于：
 
 > Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
 
-请注意，在使用 `lazy` 和 `memo` 组件时，如果被封装的组件无法持有 ref，您仍然有可能收到这个警告。
+请注意，在使用 `lazy` 和 `memo` 组件时，如果被封装的组件无法承载一个 ref，您仍然有可能收到这个警告。
 
-In some instances an additional warning is issued to help with debugging, similar to:
+在某些情况下，我们发出了一个额外警告来帮助调试，类似于：
 
 > Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref.
 
-Only the two most common use cases are covered. 更多信息见[React官方文档中的本章节](https://reactjs.org/docs/forwarding-refs.html)。
+这只包含了两个最常见的用例。 欲了解更多信息，请查阅[在 React 官方文档中的此章节](https://reactjs.org/docs/forwarding-refs.html)。
 
 ```diff
 -const MyButton = props => <div role="button" {...props} />;
@@ -163,15 +163,15 @@ Only the two most common use cases are covered. 更多信息见[React官方文�
 
 ```diff
 -const SomeContent = props => <div {...props}>Hello, World!</div>;
-+const SomeContent = React.forwardRef((props, ref) => <div {...props} ref={ref}>Hello, World!</div>);
++const SomeContent = React.forwardRef((props, ref) => <div {...props} ref={ref}>你好，世界！</div>);
 <Tooltip title="Hello, again."><SomeContent /></Tooltip>;
 ```
 
-要确定您使用的Material-UI组件是否具有此需求，请查阅该组件的props API文档。 如果您需要转递 refs，描述将链接到此部分。
+要确定您使用的Material-UI组件是否具有此需求，请查阅该组件的props API文档。 如果您需要转递 refs，描述会关联到此章节。
 
-### Caveat with StrictMode
+### 使用 StrictMode 的注意事项
 
-If you use class components for the cases described above you will still see warnings in `React.StrictMode`. `ReactDOM.findDOMNode` is used internally for backwards compatibility. You can use `React.forwardRef` and a designated prop in your class component to forward the `ref` to a DOM component. Doing so should not trigger any more warnings related to the deprecation of `ReactDOM.findDOMNode`.
+如果对上述情况，您使用类组件，那么您会看到 `React.StrictMode` 中的一些警告。 在内部使用 `ReactDOMfindDOMNode` 来达到向后的兼容性。 您可以使用 ` React.forwardRef ` 和类组件中的一个指定的属性来把 `ref` 传递到一个 DOM 组件中。 这样做不再会触发与 ` ReactDOM.findDOMNode ` 相关的弃用警告 。
 
 ```diff
 class Component extends React.Component {

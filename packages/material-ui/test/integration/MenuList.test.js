@@ -4,7 +4,13 @@ import { spy } from 'sinon';
 import MenuList from '@material-ui/core/MenuList';
 import MenuItem from '@material-ui/core/MenuItem';
 import Divider from '@material-ui/core/Divider';
-import { act, createClientRender, fireEvent, screen } from 'test/utils';
+import {
+  act,
+  createClientRender,
+  fireEvent,
+  screen,
+  programmaticFocusTriggersFocusVisible,
+} from 'test/utils';
 
 describe('<MenuList> integration', () => {
   const render = createClientRender();
@@ -471,7 +477,11 @@ describe('<MenuList> integration', () => {
       fireEvent.click(menuitem);
 
       expect(menuitem).toHaveFocus();
-      expect(menuitem).not.to.have.class('focus-visible');
+      if (programmaticFocusTriggersFocusVisible()) {
+        expect(menuitem).to.have.class('focus-visible');
+      } else {
+        expect(menuitem).not.to.have.class('focus-visible');
+      }
     });
 
     it('should not move focus when no match', () => {

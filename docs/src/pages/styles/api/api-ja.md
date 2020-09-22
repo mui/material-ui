@@ -8,10 +8,11 @@
 
 ### 引数
 
-1. `オプション` (*オプジェクト* [任意]): 
-  - `options.disableGlobal` (*Boolean* [optional]): Defaults `false`. 確定的なクラス名の生成を無効にします。
-  - `options.productionPrefix` (*String* [optional]): Defaults to `'jss'`. プロダクションでクラス名のプレフィックスに使用される文字列。
-  - `options.seed` (*String* [optional]): Defaults to `''`. ジェネレータを一意に識別するために使用される文字列。 同じドキュメントで複数のジェネレーターを使用する場合、クラス名の衝突を避けるために使用できます。
+1. `オプション` (*オプジェクト* [任意]):
+
+   - `options.disableGlobal` (*Boolean* [optional]): Defaults `false`. 確定的なクラス名の生成を無効にします。
+   - `options.productionPrefix` (*String* [optional]): Defaults to `'jss'`. プロダクションでクラス名のプレフィックスに使用される文字列。
+   - `options.seed` (*String* [optional]): Defaults to `''`. Useful for debugging. If the value isn't provided, it will try to fallback to the name of the component.
 
 ### 戻り値
 
@@ -70,11 +71,12 @@ Link a style sheet with a function component using the **hook** pattern.
 ### 引数
 
 1. `styles` (*Function | Object*): A function generating the styles or a styles object. It will be linked to the component. Use the function signature if you need to have access to the theme. It's provided as the first argument.
-2. `オプション` (*オプジェクト* [任意]): 
-  - `options.defaultTheme` (*Object* [optional]): The default theme to use if a theme isn't supplied through a Theme Provider.
-  - `options.name` (*String* [optional]): The name of the style sheet. Useful for debugging.
-  - `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
-  - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet).
+2. `オプション` (*オプジェクト* [任意]):
+
+- `options.defaultTheme` (*Object* [optional]): The default theme to use if a theme isn't supplied through a Theme Provider.
+- `options.name` (*String* [optional]): The name of the style sheet. Useful for debugging.
+- `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
+- The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet).
 
 ### 戻り値
 
@@ -138,10 +140,9 @@ The method returns the collected styles.
 
 ⚠️ You must call `.collect()` before using this method.
 
-### `
-sheets.getStyleElement() => CSS React element`
+### `` sheets.getStyleElement() => CSS React element` ``
 
-The method is an alternative to `.toString()` when you are rendering the whole page with React.
+sheets.getStyleElement() => CSS React element`
 
 ⚠️ You must call `.collect()` before using this method.
 
@@ -153,16 +154,17 @@ Link a style sheet with a function component using the **styled components** pat
 
 1. `Component`:：ラップされるコンポーネント。
 2. `styles` (*Function | Object*): A function generating the styles or a styles object. It will be linked to the component. Use the function signature if you need to have access to the theme. It's provided as property of the first argument.
-3. `オプション` (*オプジェクト* [任意]): 
-  - `options.defaultTheme` (*Object* [optional]): The default theme to use if a theme isn't supplied through a Theme Provider.
-  - `options.withTheme` (*ブール値* [任意]): デフォルト値 `false`. `theme`オブジェクトをプロパティとしてコンポーネントに提供します。
-  - `options.name` (*String* [optional]): The name of the style sheet. Useful for debugging. If the value isn't provided, it will try to fallback to the name of the component.
-  - `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
-  - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet).
+3. `オプション` (*オプジェクト* [任意]):
+
+- `options.defaultTheme` (*Object* [optional]): The default theme to use if a theme isn't supplied through a Theme Provider.
+- `options.withTheme` (*ブール値* [任意]): デフォルト値 `false`. `theme`オブジェクトをプロパティとしてコンポーネントに提供します。
+- `options.name` (*String* [optional]): The name of the style sheet. Useful for debugging. If the value isn't provided, it will try to fallback to the name of the component.
+- `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
+- The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet).
 
 ### 戻り値
 
-`Component` ：作成された新しいコンポーネント。
+`Component` ：作成された新しいコンポーネント。 内部コンポーネントへの参照を転送します。
 
 ### 例
 
@@ -205,7 +207,6 @@ It should preferably be used at **the root of your component tree**.
 | injectFirst       | bool   | false   | By default, the styles are injected last in the `<head>` element of the page. As a result, they gain more specificity than any other style sheet. If you want to override Material-UI's styles, set this prop.                                                                                                                 |
 | jss               | object |         | JSS's instance.                                                                                                                                                                                                                                                                                                                      |
 
-
 ### 例
 
 ```jsx
@@ -233,7 +234,6 @@ This component takes a `theme` property, and makes it available down the React t
 | children&nbsp;* | node                                     |         | Your component tree.                                                  |
 | theme&nbsp;*    | union:&nbsp;object&nbsp;&#124;&nbsp;func |         | A theme object. You can provide a function to extend the outer theme. |
 
-
 ### 例
 
 ```jsx
@@ -254,11 +254,11 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 ## `useTheme() => theme`
 
-This hook returns the `theme` object so it can be used inside a function component.
+Provide the `theme` object as a property of the input component so it can be used in the render method.
 
 ### 戻り値
 
-`theme`：以前にコンテキストに挿入されたテーマオブジェクト。
+Provide the `theme` object as a property of the input component so it can be used in the render method.
 
 ### 例
 
@@ -287,16 +287,17 @@ Link a style sheet with a component using the **higher-order component** pattern
 ### 引数
 
 1. `styles` (*Function | Object*): A function generating the styles or a styles object. It will be linked to the component. Use the function signature if you need to have access to the theme. It's provided as the first argument.
-2. `オプション` (*オプジェクト* [任意]): 
-  - `options.defaultTheme` (*Object* [optional]): The default theme to use if a theme isn't supplied through a Theme Provider.
-  - `options.withTheme` (*ブール値* [任意]): デフォルト値 `false`. `theme`オブジェクトをプロパティとしてコンポーネントに提供します。
-  - `options.name` (*String* [optional]): The name of the style sheet. Useful for debugging. If the value isn't provided, it will try to fallback to the name of the component.
-  - `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
-  - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet).
+2. `オプション` (*オプジェクト* [任意]):
+
+- `options.defaultTheme` (*Object* [optional]): The default theme to use if a theme isn't supplied through a Theme Provider.
+- `options.withTheme` (*ブール値* [任意]): デフォルト値 `false`. `theme`オブジェクトをプロパティとしてコンポーネントに提供します。
+- `options.name` (*String* [optional]): The name of the style sheet. Useful for debugging. If the value isn't provided, it will try to fallback to the name of the component.
+- `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
+- The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet).
 
 ### 戻り値
 
-`higher-order component` ：コンポーネントをラップするために使用する必要があります。
+注意が必要な実装の詳細は、次のとおりです。
 
 ### 例
 
@@ -317,7 +318,7 @@ function MyComponent(props) {
 export default withStyles(styles)(MyComponent);
 ```
 
-また、[デコレータ](https://babeljs.io/docs/en/babel-plugin-proposal-decorators)などとしてしても使用できます。
+注意が必要な実装の詳細は、次のとおりです。
 
 ```jsx
 import * as React from 'react';
@@ -341,7 +342,7 @@ export default MyComponent
 
 ## `withTheme(Component) => Component`
 
-Provide the `theme` object as a property of the input component so it can be used in the render method.
+また、[デコレータ](https://babeljs.io/docs/en/babel-plugin-proposal-decorators)などとしてしても使用できます。
 
 ### 引数
 
@@ -349,7 +350,7 @@ Provide the `theme` object as a property of the input component so it can be use
 
 ### 戻り値
 
-`Component` ：作成された新しいコンポーネント。 内部コンポーネントへの参照を転送します。
+`Component` ：作成された新しいコンポーネント。 内部コンポーネントへの参照を転送します。 内部コンポーネントへの参照を転送します。
 
 ### 例
 

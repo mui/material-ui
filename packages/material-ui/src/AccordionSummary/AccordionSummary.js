@@ -25,7 +25,7 @@ export const styles = (theme) => {
       '&$expanded': {
         minHeight: 64,
       },
-      '&$focused': {
+      '&$focusVisible': {
         backgroundColor: theme.palette.action.focus,
       },
       '&$disabled': {
@@ -34,8 +34,8 @@ export const styles = (theme) => {
     },
     /* Pseudo-class applied to the root element, children wrapper element and `IconButton` component if `expanded={true}`. */
     expanded: {},
-    /* Pseudo-class applied to the root element if `focused={true}`. */
-    focused: {},
+    /* Pseudo-class applied to the ButtonBase root element if the button is keyboard focused. */
+    focusVisible: {},
     /* Pseudo-class applied to the root element if `disabled={true}`. */
     disabled: {},
     /* Styles applied to the children wrapper element. */
@@ -71,28 +71,11 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(props, ref) 
     classes,
     className,
     expandIcon,
+    focusVisibleClassName,
     IconButtonProps = {},
-    onBlur,
     onClick,
-    onFocusVisible,
     ...other
   } = props;
-
-  const [focusedState, setFocusedState] = React.useState(false);
-  const handleFocusVisible = (event) => {
-    setFocusedState(true);
-
-    if (onFocusVisible) {
-      onFocusVisible(event);
-    }
-  };
-  const handleBlur = (event) => {
-    setFocusedState(false);
-
-    if (onBlur) {
-      onBlur(event);
-    }
-  };
 
   const { disabled = false, expanded, toggle } = React.useContext(AccordionContext);
   const handleChange = (event) => {
@@ -116,12 +99,10 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(props, ref) 
         {
           [classes.disabled]: disabled,
           [classes.expanded]: expanded,
-          [classes.focused]: focusedState,
         },
         className,
       )}
-      onFocusVisible={handleFocusVisible}
-      onBlur={handleBlur}
+      focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
       onClick={handleChange}
       ref={ref}
       {...other}
@@ -172,6 +153,15 @@ AccordionSummary.propTypes = {
    */
   expandIcon: PropTypes.node,
   /**
+   * This prop can help a person know which element has the keyboard focus.
+   * The class name will be applied when the element gain the focus through a keyboard interaction.
+   * It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo).
+   * The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md).
+   * A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components
+   * if needed.
+   */
+  focusVisibleClassName: PropTypes.string,
+  /**
    * Props applied to the `IconButton` element wrapping the expand icon.
    * @default {}
    */
@@ -179,15 +169,7 @@ AccordionSummary.propTypes = {
   /**
    * @ignore
    */
-  onBlur: PropTypes.func,
-  /**
-   * @ignore
-   */
   onClick: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onFocusVisible: PropTypes.func,
 };
 
 export default withStyles(styles, { name: 'MuiAccordionSummary' })(AccordionSummary);

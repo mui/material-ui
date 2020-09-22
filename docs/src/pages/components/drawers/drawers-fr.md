@@ -1,6 +1,9 @@
 ---
 title: Composant React Tiroir
 components: Drawer, SwipeableDrawer
+githubLabel:
+  component: Drawer (Tiroir)
+materialDesign: https://material.io/components/navigation-drawer
 ---
 
 # Drawer (Tiroir)
@@ -10,6 +13,8 @@ components: Drawer, SwipeableDrawer
 [Navigation drawers](https://material.io/design/components/navigation-drawer.html) (or "sidebars") provide access to destinations and app functionality, such as switching accounts. They can either be permanently on-screen or controlled by a navigation menu icon.
 
 [Side sheets](https://material.io/design/components/sheets-side.html) are supplementary surfaces primarily used on tablet and desktop.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Tiroir temporaire
 
@@ -29,7 +34,7 @@ This component comes with a 2 kB gzipped payload overhead. Some low-end mobile d
 
 The following properties are used in this documentation website for optimal usability of the component:
 
-- iOS is hosted on high-end devices. The backdrop transition can be enabled without dropping frames. The performance will be good enough.
+- iOS is hosted on high-end devices. The performance will be good enough. The backdrop transition can be enabled without dropping frames.
 - iOS has a "swipe to go back" feature that interferes with the discovery feature, so discovery has to be disabled.
 
 ```jsx
@@ -68,7 +73,7 @@ The mini variant is recommended for apps sections that need quick selection acce
 
 Permanent navigation drawers are always visible and pinned to the left edge, at the same elevation as the content or background. They cannot be closed.
 
-Les tiroirs de navigation permanents sont les **valeurs par défaut recommandées pour le bureau**.
+Applications axées sur la consommation d'informations utilisant une hiérarchie de gauche à droite.
 
 ### Navigation pleine hauteur
 

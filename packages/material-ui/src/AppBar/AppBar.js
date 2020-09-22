@@ -7,7 +7,7 @@ import Paper from '../Paper';
 
 export const styles = (theme) => {
   const backgroundColorDefault =
-    theme.palette.type === 'light' ? theme.palette.grey[100] : theme.palette.grey[900];
+    theme.palette.mode === 'light' ? theme.palette.grey[100] : theme.palette.grey[900];
 
   return {
     /* Styles applied to the root element. */

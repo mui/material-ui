@@ -1,6 +1,8 @@
 ---
 title: Textarea Autosize React component
 components: TextareaAutosize
+githubLabel:
+  component: TextareaAutosize
 ---
 
 # テキストエリアの自動サイズ調整
@@ -10,6 +12,8 @@ components: TextareaAutosize
 - [2.1 kB gzipped](/size-snapshot).
 
 The `TextareaAutosize` component automatically adjust the textarea height on keyboard and window resize events.
+
+[The palette](/system/palette/) style関数。
 
 ## 空のテキストエリア
 

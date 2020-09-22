@@ -23,7 +23,7 @@ export const styles = (theme) => ({
   indeterminate: {},
   /* Styles applied to the root element if `color="primary"`. */
   colorPrimary: {
-    '&$checked': {
+    '&$checked, &$indeterminate': {
       color: theme.palette.primary.main,
       '&:hover': {
         backgroundColor: fade(theme.palette.primary.main, theme.palette.action.hoverOpacity),
@@ -39,7 +39,7 @@ export const styles = (theme) => ({
   },
   /* Styles applied to the root element if `color="secondary"`. */
   colorSecondary: {
-    '&$checked': {
+    '&$checked, &$indeterminate': {
       color: theme.palette.secondary.main,
       '&:hover': {
         backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.hoverOpacity),

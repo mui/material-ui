@@ -1,17 +1,22 @@
 ---
 title: Divider React component
 components: Divider
+githubLabel:
+  component: Divider
+materialDesign: https://material.io/components/dividers
 ---
 
-# Divider (区切り線)
+# Divider
 
 <p class="description">Divider(区切り線) は、リストおよびレイアウトのコンテンツをグループ化する細い線です。</p>
 
 [Dividers](https://material.io/design/components/dividers.html) は、内容を明確なグループに分けます。
 
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
 ## List Dividers
 
-区切り線はデフォルトで `<hr>` としてレンダリングされます。 このDOM要素のレンダリングを節約するには、 `ListItem` コンポーネントの `divider` プロパティを使用します。
+Note the use of the `flexItem` prop to accommodate for the flex container. このDOM要素のレンダリングを節約するには、 `ListItem` コンポーネントの `divider` プロパティを使用します。
 
 {{"demo": "pages/components/dividers/ListDividers.js", "bg": true}}
 
@@ -33,6 +38,20 @@ In a list, you should ensure the `Divider` is rendered as an `<li>` to match the
 
 ## Vertical Dividers
 
-You can also render a divider vertically using the `orientation` prop. Note the use of the `flexItem` prop to accommodate for the flex container.
+You can also render a divider with content.
+
+{{"demo": "pages/components/dividers/DividerText.js"}}
+
+## Divider (区切り線)
+
+You can also render a divider vertically using the `orientation` prop.
 
 {{"demo": "pages/components/dividers/VerticalDividers.js", "bg": true}}
+
+> Note the use of the `flexItem` prop to accommodate for the flex container.
+
+### Vertical with text
+
+You can also render a vertical divider with content.
+
+{{"demo": "pages/components/dividers/VerticalDividerText.js"}}

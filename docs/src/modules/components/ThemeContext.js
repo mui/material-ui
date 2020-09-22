@@ -169,7 +169,7 @@ export function ThemeProvider(props) {
       case 'CHANGE':
         return {
           ...state,
-          paletteType: action.payload.paletteType || state.paletteType,
+          paletteMode: action.payload.paletteMode || state.paletteMode,
           direction: action.payload.direction || state.direction,
           paletteColors: action.payload.paletteColors || state.paletteColors,
         };
@@ -180,27 +180,27 @@ export function ThemeProvider(props) {
 
   const userLanguage = useSelector((state) => state.options.userLanguage);
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-  const preferredType = prefersDarkMode ? 'dark' : 'light';
-  const { dense, direction, paletteColors, paletteType = preferredType, spacing } = themeOptions;
+  const preferredMode = prefersDarkMode ? 'dark' : 'light';
+  const { dense, direction, paletteColors, paletteMode = preferredMode, spacing } = themeOptions;
 
   useLazyCSS('/static/styles/prism-okaidia.css', '#prismjs');
 
   React.useEffect(() => {
     if (process.browser) {
       const nextPaletteColors = JSON.parse(getCookie('paletteColors') || 'null');
-      const nextPaletteType = getCookie('paletteType');
+      const nextPaletteType = getCookie('paletteMode');
 
       dispatch({
         type: 'CHANGE',
-        payload: { paletteColors: nextPaletteColors, paletteType: nextPaletteType },
+        payload: { paletteColors: nextPaletteColors, paletteMode: nextPaletteType },
       });
     }
   }, []);
 
-  // persist paletteType
+  // persist paletteMode
   React.useEffect(() => {
-    document.cookie = `paletteType=${paletteType};path=/;max-age=31536000`;
-  }, [paletteType]);
+    document.cookie = `paletteMode=${paletteMode};path=/;max-age=31536000`;
+  }, [paletteMode]);
 
   useEnhancedEffect(() => {
     document.body.dir = direction;
@@ -211,18 +211,18 @@ export function ThemeProvider(props) {
       {
         direction,
         nprogress: {
-          color: paletteType === 'light' ? '#000' : '#fff',
+          color: paletteMode === 'light' ? '#000' : '#fff',
         },
         palette: {
           primary: {
-            main: paletteType === 'light' ? blue[700] : blue[200],
+            main: paletteMode === 'light' ? blue[700] : blue[200],
           },
           secondary: {
-            main: paletteType === 'light' ? darken(pink.A400, 0.1) : pink[200],
+            main: paletteMode === 'light' ? darken(pink.A400, 0.1) : pink[200],
           },
-          type: paletteType,
+          mode: paletteMode,
           background: {
-            default: paletteType === 'light' ? '#fff' : '#121212',
+            default: paletteMode === 'light' ? '#fff' : '#121212',
           },
           ...paletteColors,
         },
@@ -233,13 +233,13 @@ export function ThemeProvider(props) {
     );
 
     nextTheme.palette.background.level2 =
-      paletteType === 'light' ? nextTheme.palette.grey[100] : '#333';
+      paletteMode === 'light' ? nextTheme.palette.grey[100] : '#333';
 
     nextTheme.palette.background.level1 =
-      paletteType === 'light' ? '#fff' : nextTheme.palette.grey[900];
+      paletteMode === 'light' ? '#fff' : nextTheme.palette.grey[900];
 
     return nextTheme;
-  }, [dense, direction, paletteColors, paletteType, spacing, userLanguage]);
+  }, [dense, direction, paletteColors, paletteMode, spacing, userLanguage]);
 
   React.useEffect(() => {
     // Expose the theme as a global variable so people can play with it.

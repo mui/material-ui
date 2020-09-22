@@ -33,7 +33,7 @@ The `MuiNativeSelect` name can be used for providing [default props](/customizat
 | <span class="prop-name">IconComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">ArrowDropDownIcon</span> | The icon that displays the arrow. |
 | <span class="prop-name">input</span> | <span class="prop-type">element</span> | <span class="prop-default">&lt;Input /></span> | An `Input` element; does not have to be a material-ui specific `Input`. |
 | <span class="prop-name">inputProps</span> | <span class="prop-type">object</span> |  | Attributes applied to the `select` element. |
-| <span class="prop-name">onChange</span> | <span class="prop-type">func</span> |  | Callback function fired when a menu item is selected.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback. You can pull out the new value by accessing `event.target.value` (string). |
+| <span class="prop-name">onChange</span> | <span class="prop-type">func</span> |  | Callback fired when a menu item is selected.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback. You can pull out the new value by accessing `event.target.value` (string). |
 | <span class="prop-name">value</span> | <span class="prop-type">any</span> |  | The input value. The DOM API casts this to a string. |
 | <span class="prop-name">variant</span> | <span class="prop-type">'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'</span> |  | The variant to use. |
 

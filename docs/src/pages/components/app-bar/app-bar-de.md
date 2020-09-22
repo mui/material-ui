@@ -1,6 +1,9 @@
 ---
 title: App Bar React-Komponente
 components: AppBar, Toolbar, Menu
+githubLabel:
+  component: AppBar
+materialDesign: https://material.io/components/app-bars-top
 ---
 
 # App Bar
@@ -10,6 +13,8 @@ components: AppBar, Toolbar, Menu
 Die [obere App-Bar](https://material.io/design/components/app-bars-top.html) liefert Inhalte und Aktionen auf dem aktuellen Bildschirm. Sie wird für Branding, Bildschirmtitel, Navigation und Aktionen verwendet.
 
 It can transform into a contextual action bar or be used as a navbar.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Einfache App-Bar
 
@@ -113,9 +118,9 @@ Beim Scrollen erscheint ein schwebender Button, um einfach wieder zum Seitenanfa
 
 1. `options` (*Object* [optional]):
 
-- `options.disableHysteresis ` (*Boolean* [optional]): Standardeinstellung ist `false`. Hysterese deaktivieren. Die Bildlaufrichtung wird beim Bestimmen des `trigger`-Werts ignoriert.
-- `options.target` (*Node* [optional]): Standardwert `window`.
-- `options.threshold` (*Number* [optional]): Defaults to `100`. Change the `trigger` value when the vertical scroll strictly crosses this threshold (exclusive).
+   - `options.disableHysteresis` (*Boolean* [optional]): Standardeinstellung ist `false`. Hysterese deaktivieren. Die Bildlaufrichtung wird beim Bestimmen des `trigger`-Werts ignoriert.
+   - `options.target` (*Node* [optional]): Standardwert `window`.
+   - `options.threshold` (*Number* [optional]): Defaults to `100`. Change the `trigger` value when the vertical scroll strictly crosses this threshold (exclusive).
 
 #### Rückgabewerte
 

@@ -1,7 +1,7 @@
 ---
 title: Accordion React component
 components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
-githubLabel: component: Accordion
+githubLabel: 'component: Accordion'
 materialDesign: https://material.io/archive/guidelines/components/expansion-panels.html
 waiAria: https://www.w3.org/TR/wai-aria-practices/#accordion
 ---

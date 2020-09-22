@@ -1,6 +1,6 @@
 # ディスプレイ
 
-<p class="description">Quickly and responsively toggle the display value of components and more with the display utilities. 一般的な値の一部のサポートと、印刷時の表示を制御するための追加機能が含まれています。</p>
+<p class="description">一般的な値の一部のサポートと、印刷時の表示を制御するための追加機能が含まれています。 一般的な値の一部のサポートと、印刷時の表示を制御するための追加機能が含まれています。 Quickly and responsively toggle the display value of components and more with the display utilities.</p>
 
 ## 例
 
@@ -39,7 +39,6 @@ For faster mobile-friendly development, use responsive display classes for showi
 | Visible only on md | `display={{ xs: 'none', md: 'block', lg: 'none' }}`  |
 | Visible only on lg | `display={{ xs: 'none', lg: 'block', xl: 'none' }}`  |
 | Visible only on xl | `display={{ xs: 'none', xl: 'block' }}`              |
-
 
 {{"demo": "pages/system/display/Hiding.js", "defaultCodeOpen": false}}
 

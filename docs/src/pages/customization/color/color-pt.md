@@ -4,18 +4,18 @@
 
 O [sistema de cores](https://material.io/design/color/) do Material Design pode ser usado para criar um tema que reflete sua marca ou estilo.
 
-## Picking colors
+## Escolhendo cores
 
 ### Ferramenta oficial de cores
 
-The Material Design team has also built an awesome palette configuration tool: [material.io/resources/color/](https://material.io/resources/color/). Isso pode ajudar você a criar uma paleta de cores para sua UI, bem como medir o nível de acessibilidade de qualquer combinação de cores.
+A equipe do Material Design também criou uma ferramenta de configuração de paleta incrível: [material.io/resources/color/](https://material.io/resources/color/). Isso pode ajudar você a criar uma paleta de cores para sua UI, bem como medir o nível de acessibilidade de qualquer combinação de cores.
 
 <a href="https://material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=3F51B5&secondary.color=F44336" target="_blank" rel="noopener nofollow">
   <img src="/static/images/color/colorTool.png" alt="Ferramenta oficial de cores" style="width: 574px" />
 </a>
-  
-  
 
+<br />
+<br />
 
 A saída pode ser alimentada na função `createMuiTheme()`:
 
@@ -42,7 +42,7 @@ const theme = createMuiTheme({
 
 ### Área de exemplos
 
-To test a [material.io/design/color](https://material.io/design/color/) color scheme with the Material-UI documentation, simply select colors using the palette and sliders below. Como alternativa, você pode inserir valores hexadecimais nos campos de texto Primário e Secundário.
+Para testar um esquema de cores do [material.io/design/color](https://material.io/design/color/) com a documentação do Material-UI, simplesmente selecione as cores usando a paleta e os controles deslizantes abaixo. Como alternativa, você pode inserir valores hexadecimais nos campos de texto Primary e Secondary.
 
 {{"demo": "pages/customization/color/ColorTool.js", "hideToolbar": true, "bg": true}}
 
@@ -64,28 +64,28 @@ const theme = createMuiTheme({
 });
 ```
 
-Apenas o tom `main` precisa ser fornecido (a menos que você deseje customizar ainda mais `light`, `dark` ou `contrastText`), já que as outras cores serão calculadas por `createMuiTheme()`, como descrito na seção de [Customização de tema](/customization/palette/).
+Apenas o tom `main` precisa ser fornecido (a menos que você deseje customizar ainda mais `light`, `dark` ou `contrastText`), já que as outras cores serão calculadas por `createMuiTheme()`, como descrito na seção de [customização de tema](/customization/palette/).
 
 Se você estiver usando os tons primário e / ou secundário por padrão, fornecendo o objeto de cor, `createMuiTheme()` usará tons apropriados da cor do material para `main`, `light` e `dark`.
 
 ### Ferramentas da comunidade
 
 - [create-mui-theme](https://react-theming.github.io/create-mui-theme/): É uma ferramenta online para criar temas de Material-UI por meio da ferramenta de cor do Material Design.
-- [material-ui-tema-editor](https://in-your-saas.github.io/material-ui-theme-editor/): Uma ferramenta para gerar temas para seus aplicativos de Material-UI, basta selecionar as cores e ter uma visualização ao vivo.
+- [material-ui-tema-editor](https://in-your-saas.github.io/material-ui-theme-editor/): Uma ferramenta para gerar temas para seus aplicativos de Material-UI, basta selecionar as cores e ter uma visualização ao vivo. Includes basic site templates to show various components and how they are affected by the theme
 - [Material palette generator](https://material.io/inline-tools/color/): O gerador de paleta do Material pode ser usado para gerar uma paleta para qualquer cor que você inserir.
 
-## 2014 Material Design color palettes
+## Paletas de cores Material Design 2014
 
-These color palettes, originally created by Material Design in 2014, are comprised of colors designed to work together harmoniously, and can be used to develop your brand palette. To generate your own harmonious palettes, use the palette generation tool.
+Estas paletas de cores, originalmente criadas por Material Design em 2014, são compostas por cores desenhadas para trabalhar juntas harmoniosamente e podem ser usadas para desenvolver a paleta de sua marca. Para gerar suas próprias paletas harmoniosas, use a ferramenta de geração de paleta.
 
 ### Termos importantes
 
-- **Palette**: A palette is a collection of colors, i.e. hues and their shades. Material-UI fornece todas as cores das diretrizes do Material Design. [Esta paleta de cores](#color-palette) foi projetada com cores que funcionam harmoniosamente entre si.
-- **Hue" & "Shade**: A single color within the palette is made up of a hue such as "red", and shade, such as "500". "red 50" é o tom mais claro de vermelho (*rosa!*), enquanto "red 900" é o mais escuro. Além disso, a maioria dos matizes vem com tons de "destaque" (acentuação), prefixados com um `A`.
+- **Paleta**: uma paleta é uma coleção de cores, ou seja, tons e seus sombreados. Material-UI fornece todas as cores das diretrizes do Material Design. [Esta paleta de cores](#color-palette) foi projetada com cores que funcionam harmoniosamente entre si.
+- **Hue" & "Shade**: A single color within the palette is made up of a hue such as "red", and shade, such as "500". "red 50" é o tom mais claro de vermelho (*rosa!*), enquanto "red 900" é o mais escuro. Além disso, a maioria das matizes vem com tons de "destaque" (acentuação), prefixados com um `A`.
 
 ### Paleta de cores
 
-Dado que *HUE* seja (red, pink, etc.) e *SHADE* (500, 600, etc.) você pode importar a cor assim:
+Dado que _HUE_ seja (red, pink, etc.) e _SHADE_ (500, 600, etc.) você pode importar a cor assim:
 
 ```jsx
 import HUE from '@material-ui/core/colors/HUE';
@@ -97,7 +97,7 @@ const color = HUE[SHADE];
 
 ### Exemplos
 
-For instance, you can refer to complementary primary and accent colors, "red 500" and "purple A200" like so:
+Por exemplo, você pode se referir a cores complementares primárias e de destaque, "vermelho 500" e "roxo A200" assim:
 
 ```js
 import purple from '@material-ui/core/colors/purple';
@@ -105,5 +105,5 @@ import red from '@material-ui/core/colors/red';
 
 const primary = red[500]; // #f44336
 const accent = purple['A200']; // #e040fb
-const accent = purple.A200; // #e040fb (alternative method)
+const accent = purple.A200; // #e040fb (método alternativo)
 ```

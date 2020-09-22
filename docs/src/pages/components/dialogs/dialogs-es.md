@@ -1,15 +1,21 @@
 ---
 title: Componente React Dialog
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
+githubLabel:
+  component: Dialog
+materialDesign: https://material.io/components/dialogs
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 ---
 
-# Dialog (diálogo)
+# Dialog
 
 <p class="description">Los diálogos informan a los usuarios sobre una tarea y pueden contener información importante, requerir decisiones, o involucrar múltiples tareas.</p>
 
 Un [Diálogo](https://material.io/design/components/dialogs.html)es una clase de [ventana modal](/components/modal/) que aparece encima del contenido para proveer información importante o pedir que el usuario tome una decision. Los diálogos deshabilitan todas las funcciones de la aplicación cuando aparecen, y se quedan visibles hasta que se confirman, se descartan, o se toma alguna acción necesaria.
 
 Los diálogos están diseñados para interrumpir el usuario, por eso deben usarse sólo cuando sean necesarios.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Diálogos simples
 
@@ -26,7 +32,7 @@ Mecánica táctil:
 
 Las alertas son interrupciones urgentes, que requieren reconocimiento, que informan al usuario sobre una situación.
 
-Most alerts don't need titles. They summarize a decision in a sentence or two by either:
+La mayoría de las alertas no necesitan títulos. Resumen una decisión en una o dos frase, ya sea por:
 
 - Hacer una pregunta (por ejemplo, "¿Eliminar esta conversación?")
 - Hacer una declaración relacionada con los botones de acción
@@ -52,9 +58,9 @@ Los diálogos de formulario permiten a los usuarios llenar campos dentro de un c
 
 {{"demo": "pages/components/dialogs/FormDialog.js"}}
 
-## Customized dialogs
+## Diálogos personalizados
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+He aquí un ejemplo de personalización del componente. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 The dialog has a close button added to aide usability.
 

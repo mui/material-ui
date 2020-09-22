@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Sidebar(props) {
+function Sidebar(props) {
   const classes = useStyles();
   const { archives, description, social, title } = props;
 
@@ -41,11 +41,12 @@ export default function Sidebar(props) {
           {archive.title}
         </Link>
       ))}
+
       <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
         Social
       </Typography>
       {social.map((network) => (
-        <Link display="block" variant="body1" href="#" key={network}>
+        <Link display="block" variant="body1" href="#" key={network.name}>
           <Grid container direction="row" spacing={1} alignItems="center">
             <Grid item>
               <network.icon />
@@ -59,8 +60,20 @@ export default function Sidebar(props) {
 }
 
 Sidebar.propTypes = {
-  archives: PropTypes.array,
-  description: PropTypes.string,
-  social: PropTypes.array,
-  title: PropTypes.string,
+  archives: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+  description: PropTypes.string.isRequired,
+  social: PropTypes.arrayOf(
+    PropTypes.shape({
+      icon: PropTypes.elementType.isRequired,
+      name: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+  title: PropTypes.string.isRequired,
 };
+
+export default Sidebar;

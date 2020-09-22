@@ -1,6 +1,9 @@
 ---
 title: Componente React para Listas
 components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
+githubLabel:
+  component: Lista
+materialDesign: https://material.io/components/lists
 ---
 
 # Listas
@@ -8,6 +11,8 @@ components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, Lis
 <p class="description">Listas são continuas, apresentam verticalmente texto ou imagens.</p>
 
 [Listas](https://material.io/design/components/lists.html) são um grupo contínuo de texto ou imagens. Elas são compostas por itens contendo ações primárias e complementares, que são representados por ícones e texto.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Lista Simples
 
@@ -22,9 +27,11 @@ function ListItemLink(props) {
 
 //...
 
-<ListItemLink href="#simple-list">
-  <ListItemText primary="Spam" />
-</ListItemLink>
+function ListItemLink(props) {
+  return <ListItem button component="a" {...props} />;
+}
+
+//...
 ```
 
 Você pode encontrar uma [demonstração com React Router seguindo esta seção](/guides/composition/#react-router) da documentação.
@@ -43,7 +50,7 @@ Abaixo está uma demonstração interativa que permite explorar os resultados vi
 
 {{"demo": "pages/components/lists/InteractiveList.js", "bg": true}}
 
-## Lista - Item Selecionado
+## Lista com item selecionado
 
 {{"demo": "pages/components/lists/SelectedListItem.js", "bg": true}}
 
@@ -55,7 +62,7 @@ Você deve alterar o alinhamento do item da lista ao exibir 3 linhas ou mais, al
 
 ## Controles de Lista
 
-### Caixa de Seleção
+### Caixa de seleção
 
 Uma caixa de seleção pode ser uma ação primária ou uma ação secundária.
 
@@ -73,25 +80,31 @@ O interruptor é uma ação secundária, sem interferir com o estado do item da 
 
 {{"demo": "pages/components/lists/SwitchListSecondary.js", "bg": true}}
 
-## Lista de Subpastas Fixadas
+## Lista com subtítulo fixado
 
-Após a rolagem, os subtítulos permanecem fixos na parte superior da tela até serem empurrados para fora da tela pelo próximo subtítulo.
+Após a rolagem, os subtítulos permanecem fixos na parte superior da tela até serem empurrados para fora da área de visualização pelo próximo subtítulo.
 
 Esse recurso depende do posicionamento fixo do CSS. Infelizmente, [não é implementado](https://caniuse.com/#search=sticky) por todos os navegadores. O padrão é `disableSticky` quando não é suportado.
 
 {{"demo": "pages/components/lists/PinnedSubheaderList.js", "bg": true}}
 
-## Lista de Inserção
+## Lista de inclusão
 
 {{"demo": "pages/components/lists/InsetList.js", "bg": true}}
 
 ## Lista Virtualizada
 
-No exemplo a seguir, nós demonstramos como usar [react-window](https://github.com/bvaughn/react-window) com o componente `List`. Ela renderiza 200 linhas e pode facilmente lidar com mais. A virtualização ajuda a lidar com problemas de desempenho.
+When rendering a list within a component that defines its own gutters, `ListItem` gutters can be disabled with `disableGutters`.
+
+{{"demo": "pages/components/lists/GutterlessList.js", "bg": true}}
+
+## Lista virtualizada
+
+No exemplo a seguir, nós demonstramos como usar a biblioteca [react-window](https://github.com/bvaughn/react-window) com o componente `List`. Ela renderiza 200 linhas e pode facilmente lidar com mais. A virtualização ajuda a lidar com problemas de desempenho.
 
 {{"demo": "pages/components/lists/VirtualizedList.js", "bg": true}}
 
-O uso de [react-window](https://github.com/bvaughn/react-window), quando possível, é recomendado. Se no seu caso esta biblioteca não resolver, você deve considerar o uso de [react-virtualized](https://github.com/bvaughn/react-virtualized), e em seguida, como alternativa [react-virtuoso](https://github.com/petyosi/react-virtuoso).
+O uso da biblioteca [react-window](https://github.com/bvaughn/react-window), quando possível, é recomendado. Se no seu caso esta biblioteca não resolver, você deve considerar o uso de [react-virtualized](https://github.com/bvaughn/react-virtualized), e em seguida, como alternativa [react-virtuoso](https://github.com/petyosi/react-virtuoso).
 
 ## Customização
 

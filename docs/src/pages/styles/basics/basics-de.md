@@ -2,7 +2,7 @@
 
 <p class="description">Sie können die Styling-Lösung von Material-UI in Ihrer App verwenden, unabhängig davon, ob Sie Material-UI-Komponenten verwenden.</p>
 
-Material-UI hat das Ziel, solide Grundlagen für dynamische UIs zu schaffen. Der Einfachheit halber **stellen wir die in Material-UI-Komponenten verwendete Styling-Lösung** als `@material-ui/styles ` Paket zur Verfügung. Sie können es verwenden, müssen aber nicht, da Material-UI auch mit allen anderen wichtigen Styling-Lösungen [verwendbar ist](/guides/interoperability/).
+Material-UI hat das Ziel, solide Grundlagen für dynamische UIs zu schaffen. Material-UI hat das Ziel, solide Grundlagen für dynamische UIs zu schaffen. Sie können es verwenden, müssen aber nicht, da Material-UI auch mit allen anderen wichtigen Styling-Lösungen [verwendbar ist](/guides/interoperability/).
 
 ## Wieso die Styling-Lösung von Material-UI benutzten?
 

@@ -20,23 +20,25 @@ export default function Highlights() {
           margin="normal"
         />
       )}
-      renderOption={(option, { inputValue }) => {
+      renderOption={(props, option, { inputValue }) => {
         const matches = match(option.title, inputValue);
         const parts = parse(option.title, matches);
 
         return (
-          <div>
-            {parts.map((part, index) => (
-              <span
-                key={index}
-                style={{
-                  fontWeight: part.highlight ? 700 : 400,
-                }}
-              >
-                {part.text}
-              </span>
-            ))}
-          </div>
+          <li {...props}>
+            <div>
+              {parts.map((part, index) => (
+                <span
+                  key={index}
+                  style={{
+                    fontWeight: part.highlight ? 700 : 400,
+                  }}
+                >
+                  {part.text}
+                </span>
+              ))}
+            </div>
+          </li>
         );
       }}
     />

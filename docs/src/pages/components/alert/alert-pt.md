@@ -1,6 +1,10 @@
 ---
 title: Componente React para Alerta
 components: Alert, AlertTitle
+githubLabel:
+  component: Alerta
+packageName: '@material-ui/lab'
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
 ---
 
 # Alerta
@@ -8,6 +12,8 @@ components: Alert, AlertTitle
 <p class="description">Um alerta exibe uma mensagem curta e importante de uma forma que atrai a atenção do usuário sem interromper o que ele estiver fazendo.</p>
 
 **Observação:** Este componente não está documentado nas [diretrizes do Material Design](https://material.io/), mas o Material-UI o suporta.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Alerta simples
 
@@ -57,13 +63,13 @@ Duas variantes adicionais estão disponíveis – delineado e preenchido:
 
 {{"demo": "pages/components/alert/FilledAlerts.js"}}
 
-## Aviso na tela
+## Toast
 
-Você pode usar o componente SnackBar para [exibir um aviso na tela](/components/snackbars/#customized-snackbars) com o componente Alert.
+Você pode usar o componente Snackbar para [exibir um toast](/components/snackbars/#customized-snackbars) com o componente Alert.
 
 ## Cor
 
-A propriedade `color` irá sobrescrever a cor padrão para a gravidade especificada.
+A propriedade `color` irá sobrescrever a cor padrão para a severidade especificada.
 
 {{"demo": "pages/components/alert/ColorAlerts.js"}}
 
@@ -75,4 +81,4 @@ Quando o componente é exibido de forma dinâmica, o conteúdo é automaticament
 
 O uso de cores para adicionar significado apenas fornece uma indicação visual, que não vai ser transmitida para usuários de tecnologias assistivas, como leitores de tela. Certifique-se de que a informação indicada pela cor seja clara a partir do próprio conteúdo (por exemplo, o texto visível), ou esteja incluída através de meios alternativos, como um texto oculto adicional.
 
-As ações devem ter um índice de tabulação igual a 0 para que possam ser acessíveis por usuários que usam apenas o teclado.
+As ações devem ter um índice de tabulação de 0 para que possam ser acessíveis por usuários que usam apenas o teclado.

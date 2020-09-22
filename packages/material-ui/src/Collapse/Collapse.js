@@ -116,7 +116,7 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
     wrapperRef.current ? wrapperRef.current[isHorizontal ? 'clientWidth' : 'clientHeight'] : 0;
 
   const handleEnter = normalizedTransitionCallback((node, isAppearing) => {
-    if (wrapperRef.current) {
+    if (wrapperRef.current && isHorizontal) {
       // Set absolute position to get the size of collapsed content
       wrapperRef.current.style.position = 'absolute';
     }
@@ -130,7 +130,7 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
   const handleEntering = normalizedTransitionCallback((node, isAppearing) => {
     const wrapperSize = getWrapperSize();
 
-    if (wrapperRef.current) {
+    if (wrapperRef.current && isHorizontal) {
       // After the size is read reset the position back to default
       wrapperRef.current.style.position = '';
     }

@@ -2,11 +2,11 @@
 
 <p class="description">借助 TypeScript，你可以为 JavaScript 添加静态类型，从而提高代码质量及开发者的工作效率。</p>
 
-Material-UI requires a minimum version of TypeScript 3.2.
+Material-UI 需要的最低 TypeScript 的版本为 3.2。
 
-请查看一下 [Create React App with TypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript) 的例子。
+请查看 [Create React App with TypeScript](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-typescript) 的例子。
 
-为了让类型检查起作用，你必须在 `tsconfig.json` 里启用以下选项：
+若想使用类型，你必须在 `tsconfig.json` 里启用以下的一些选项：
 
 ```json
 {
@@ -19,15 +19,15 @@ Material-UI requires a minimum version of TypeScript 3.2.
 }
 ```
 
-对每个发布在 `@types/` 命名空间下的类型声明包，同样需要启用严格模式（strict mode）。 使用不太严格的 `tsconfig.json` 或省略某些库可能会带来一些错误。 为了最好的类型检查体验，我们建议设置 `"strict": true` 。
+对每个发布在 `@types/` 命名空间下的类型声明包，同样需要启用严格模式（strict mode）。 使用不太严格的 `tsconfig.json` 或省略某些库可能会造成一些错误。 若您想获得最佳类型（type）的体验，我们建议设置 `"strict": true` 。
 
 ## `withStyles` 的使用
 
-在 TypeScript 中使用 `withStyles` 可能有点棘手，但有一些实用程序可以帮助提高使用感受。
+在 TypeScript 中使用 `withStyles` 可能有点棘手，但有一些工具集可以使体验尽可能地轻松。
 
 ### 使用 `createStyles` 来杜绝类型扩展
 
-有一个造成混淆的常见原因是 TypeScript的 [类型扩展](https://mariusschulz.com/blog/typescript-2-1-literal-type-widening)，因此这个示例不会像预期那样工作：
+造成混淆的一个常见原因是 TypeScript的 [类型扩展（type widening）](https://mariusschulz.com/blog/typescript-2-1-literal-type-widening)，这会导致以下示例无法按预期工作：
 
 ```ts
 const styles = {
@@ -40,7 +40,7 @@ const styles = {
 withStyles（styles）;
 //         ^^^^^^
 //        属性 'flexDirection' 的类型是不兼容的。
-//           'string' 类型不能赋予给这些类型：'"-moz-initial" | "inherit" | "initial" | "revert" | "unset" | "column" | "column-reverse" | "row"...'。
+//           “string” 类型不能赋予给这些类型：'"-moz-initial" | "inherit" | "initial" | "revert" | "unset" | "column" | "column-reverse" | "row"...'。
 ```
 
 问题是 `flexDirection` 属性的类型被推断为 `string`，这样太随意了。 要解决此问题，您可以将样式对象直接传递给 `withStyles`：
@@ -54,7 +54,7 @@ withStyles({
 });
 ```
 
-然而，如果您尝试让样式随主题而变化，类型扩展会再次显示其不怎么雅观的部分：
+然而，如果您尝试根据主题来构建样式，那么类型扩展会再次显示其不怎么雅观的部分：
 
 ```ts
 withStyles(({ palette, spacing }) => ({
@@ -68,7 +68,7 @@ withStyles(({ palette, spacing }) => ({
 }));
 ```
 
-这是因为 TypeScript [扩展了函数表达式](https://github.com/Microsoft/TypeScript/issues/241)的返回类型。
+这是因为 TypeScript [扩展了函数表达式的返回类型](https://github.com/Microsoft/TypeScript/issues/241)。
 
 因此，我们建议使用我们的 `createStyles` 帮助函数来构造样式规则对象：
 
@@ -93,7 +93,7 @@ const styles = ({ palette, spacing }: Theme) => createStyles({
 });
 ```
 
-`createStyles` 只是身份函数；它不会在运行时“做任何事情”，只是在编译时指导类型推断。
+`createStyles` 只是一个恒等函数（identity function)；它不会在运行时“做任何事情”，只是在编译时帮助指导类型推断。
 
 ### Media queries（媒体查询）
 
@@ -112,7 +112,7 @@ const styles = createStyles({
 });
 ```
 
-但是，为了允许这些样式传递 TypeScript，鉴于CSS 类的名称和实际的 CSS 属性名称不一致，定义必须是模糊的。 由于类名称应与 CSS 属性相同，因此应避免使用。
+但是，为了允许这些样式来传递 TypeScript，鉴于CSS 类的名称和实际的 CSS 属性名称不一致，所赋予的定义必须是模糊的。 由于类名称应与 CSS 属性相同，因此应避免使用。
 
 ```ts
 // 这样是错误的，由于 TypeScript 认为 `@media (min-width: 960px)` 是一个类名
@@ -165,7 +165,7 @@ interface Props {
 }
 ```
 
-然而，这是不是很 [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) ，因为它需要你在两个不同的地方保持类名（`'root'`， `'paper'`， `'button'`，...）。 我们提供了一个类型操作符 `WithStyles` 来帮助解决这个问题，因此您可以直接写入：:
+然而，这是不是很 [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) ，因为它需要你在两个不同的地方保持类名（如 `“root”`， `“paper”`， `“button”`，...）。 我们提供了一个类型操作符 `WithStyles` 来帮助解决这个问题，因此您可以直接写入：:
 
 ```ts
 import { WithStyles, createStyles } from '@material-ui/core';
@@ -207,11 +207,11 @@ const DecoratedClass = withStyles(styles)(
 );
 ```
 
-不幸的是，由于[TypeScript 装饰器现有的限制 ](https://github.com/Microsoft/TypeScript/issues/4881)， `withStyles(styles)` 不能用在 TypeScript 中作为一个装饰器。
+不幸的是，由于 [TypeScript 装饰器现有的限制](https://github.com/Microsoft/TypeScript/issues/4881)， 在 TypeScript 中，`withStyles(styles)`作为一个装饰器使用。
 
-## 自定义 `主题`
+## 定制的`主题`
 
-将自定义属性添加到`主题`中时，您可以通过以强类型的方式实现 [TypeScript 的模块扩充](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation)而继续使用它 。
+将自定义属性添加到 `Theme` 中时，您可以通过以强类型的方式实现 [TypeScript 的模块扩充](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation) 而继续使用它 。
 
 以下示例添加了一个 `appDrawer` 属性，并将其合并到由 `material-ui` 提供的属性中：
 
@@ -236,7 +236,7 @@ declare module '@material-ui/core/styles/createMuiTheme' {
 }
 ```
 
-以及一个带有其他默认选项的自定义主题仓库：
+以及一个带有额外的默认选项的一个自定义主题仓库：
 
 **./styles/createMyTheme**:
 
@@ -262,15 +262,15 @@ import createMyTheme from './styles/createMyTheme';
 const theme = createMyTheme({ appDrawer: { breakpoint: 'md' }});
 ```
 
-## `component` 属性用法
+## `component` 属性的用法
 
-Material-UI 的许多组件允许你通过 `component` 属性替换它们的根节点，这将在组件的 API 文档中详细说明。 例如，一个按钮（Button）的根节点可以被替换成一个 React Router 的链接（Link），并且传入按钮（Button）的任何额外的属性，例如 `to` ，会被传递到链接（Link）组件。 关于按钮和 react-router-dom 的代码示例查看[这些示例](/guides/composition/#routing-libraries)。
+你可以通过 `component` 属性替换许多 Material-UI 的许多组件的根节点，我们在组件的 API 文档中做了详细的说明。 例如，一个按钮（Button）的根节点可以被替换成一个 React Router 的链接（Link），并且，任何传入按钮（Button）的额外的属性，例如 `to` ，都会被传递到链接（Link）组件中。 关于按钮组件和 react-router-dom 的代码示例查看 [这些示例](/guides/composition/#routing-libraries)。
 
-To be able to use props of such a Material-UI component on their own, props should be used with type arguments. Otherwise, the `component` prop will not be present in the props of the Material-UI component.
+为了能够单独使用 Material-UI 组件的属性，该属性应该与类型参数一起使用。 否则，`component` 属性将不会出现在 Material-UI 组件的属性中。
 
-The examples below use `TypographyProps` but the same will work for any component which has props defined with `OverrideProps`.
+下面的示例使用了 `TypographyProps`，这也同样适用于那些带有 `OverrideProps` 定义的属性的组件。
 
-The following `CustomComponent` component has the same props as the `Typography` component.
+以下 `CustomComponent` 组件与 `Typography` 组件具有相同的属性。
 
 ```ts
 function CustomComponent(props: TypographyProps<'a', { component: 'a' }>) {
@@ -278,9 +278,9 @@ function CustomComponent(props: TypographyProps<'a', { component: 'a' }>) {
 }
 ```
 
-Now the `CustomComponent` can be used with a `component` prop which should be set to `'a'`. In addition, the `CustomComponent` will have all props of a `<a>` HTML element. The other props of the `Typography` component will also be present in props of the `CustomComponent`.
+按照以上示例来设置，现在的 `CustomComponent` 就可以与 `component` 属性一起使用了，并且该属性应该设置为 `'a'`。 此外，`CustomComponent` 将拥有 `<a>` 这个 HTML 元素的所有属性。 `Typography` 组件的其他属性也会出现在 `CustomComponent` 的属性中。
 
-It is possible to have generic `CustomComponent` which will accept any React component, custom and HTML elements.
+而通过一个通用的 `CustomComponent` 来接受任何React组件、自定义的和 HTML 元素也是有可能的。
 
 ```ts
 function GenericCustomComponent<C extends React.ElementType>(
@@ -290,24 +290,27 @@ function GenericCustomComponent<C extends React.ElementType>(
 }
 ```
 
-Now if the `GenericCustomComponent` will be used with a `component` prop provided, it should also have all props required by the provided component.
+现在，如果将 `GenericCustomComponent` 与所提供的 `component` 属性一起使用，它也应该拥有所提供的组件所需的所有属性。
 
 ```ts
+function ThirdPartyComponent({ prop1 }: { prop1: string }) {
+  return <div />;
+}
+// ...
 function ThirdPartyComponent({ prop1 } : { prop1: string }) {
   return <div />
 }
 // ...
-<GenericCustomComponent component={ThirdPartyComponent} prop1="some value" />;
 ```
 
-The `prop1` became required for the `GenericCustomComponent` as the `ThirdPartyComponent` has it as a requirement.
+当所需的 `ThirdPartyComponent` 是明确要求时，`prop1` 也成为 `GenericCustomComponent` 的必需属性。
 
-但是，并不是每个组件都完全支持您传入的任何组件类型。 如果您在 TypeScript 中遇到一个不接受其 `component` 属性的组件，请提起一个 issue。 通过使组件道具具有通用性，一直在努力解决这个问题。
+但是，并不是每个组件都完全支持您传入的任何组件类型。 如果您在 TypeScript 中遇到一个不接受其 `component` 属性的组件，请新建一个 issue。 我们也一直在努力实现组件属性的通用化。
 
-## 处理`值`和事件处理器
+## 处理 `值（value）` 和事件处理器
 
-很多与用户输入有关的组件会提供一个 `value` 属性或者包含当前`值`的事件处理器。 大多数情况下`值`只在 React 内被处理，这样的话它能够是任何类型，譬如 objects 或者 arrays。
+很多与用户输入有关的组件会提供一个 `value` 属性或者包含当前 `值` 的事件处理器。 大多数情况下只在 React 内部处理`值`，这样的话它能够是任何类型，譬如 objects 或者 arrays。
 
-然而，如果是它依赖于组件子项的情况，此类型无法在编译时被验证，例如对于 `Select` 或者 `RadioGroup` 来说。 这意味着留给我们的最合适的选项是将其输入为 `unknown` 并让开发者自行决定如何来缩小该类型。 与 [`event.target` 在 React 中并不通用的原因](https://github.com/DefinitelyTyped/DefinitelyTyped/issues/11508#issuecomment-256045682)相同，我们并不推荐您在这些案例中尝试使用一个通用的类型。
+然而，如果是它依赖于组件子项的情况，此类型无法在编译时被验证，例如对于 `Select` 或者 `RadioGroup` 来说。 这意味着留给我们的最合适的选项是将其输入为 `unknown` 并让开发者自行决定如何来缩小该类型。 与 [`event.target` 在 React 中并不通用的原因](https://github.com/DefinitelyTyped/DefinitelyTyped/issues/11508#issuecomment-256045682) 相同，我们并不推荐您在这些案例中尝试使用一个通用的类型。
 
-The demos include typed variants that use type casting. 鉴于所有的类型都位于一个文件中，并且都是非常基本的，这样的折衷可以接受。 您必须自行决定是否能够接受同样的折衷。 The library types are be strict by default and loose via opt-in.
+这些演示包括使用类型转换的类型变量。 鉴于所有的类型都位于一个文件中，并且都是非常基本的，这样的折衷可以接受。 您必须自行决定是否能够接受同样的折衷。 库的类型默认为严格的，但也可以通过选择性加入变得通融一点。

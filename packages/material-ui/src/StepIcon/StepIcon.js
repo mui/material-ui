@@ -10,6 +10,9 @@ export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     display: 'block',
+    transition: theme.transitions.create('color', {
+      duration: theme.transitions.duration.shortest,
+    }),
     color: theme.palette.text.disabled,
     '&$completed': {
       color: theme.palette.primary.main,
@@ -36,10 +39,18 @@ export const styles = (theme) => ({
 });
 
 const StepIcon = React.forwardRef(function StepIcon(props, ref) {
-  const { completed = false, icon, active = false, error = false, classes } = props;
+  const {
+    active = false,
+    classes,
+    className: classNameProp,
+    completed = false,
+    error = false,
+    icon,
+    ...other
+  } = props;
 
   if (typeof icon === 'number' || typeof icon === 'string') {
-    const className = clsx(classes.root, {
+    const className = clsx(classNameProp, classes.root, {
       [classes.active]: active,
       [classes.error]: error,
       [classes.completed]: completed,
@@ -54,7 +65,7 @@ const StepIcon = React.forwardRef(function StepIcon(props, ref) {
     }
 
     return (
-      <SvgIcon className={className} ref={ref}>
+      <SvgIcon className={className} ref={ref} {...other}>
         <circle cx="12" cy="12" r="12" />
         <text className={classes.text} x="12" y="16" textAnchor="middle">
           {icon}
@@ -80,6 +91,10 @@ StepIcon.propTypes = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * Mark the step as completed. Is passed to child components.
    * @default false

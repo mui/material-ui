@@ -36,9 +36,6 @@ export const styles = (theme) => ({
       '@media (hover: none)': {
         backgroundColor: 'transparent',
       },
-      '&$disabled': {
-        backgroundColor: 'transparent',
-      },
     },
   },
   /* Pseudo-class applied to the root element if `disabled={true}`. */

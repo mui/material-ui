@@ -1,10 +1,10 @@
 # Espaciado
 
-<p class="description">A wide range of shorthand responsive margin and padding utility classes to modify an element’s appearance.</p>
+<p class="description">Una amplia gama de tipos de utilidades de relleno y márgenes receptivos cortos para modificar la apariencia de un elemento.</p>
 
-## Notation
+## Notación
 
-The space utility converts shorthand margin and padding props to margin and padding CSS declarations. The props are named using the format `{property}{sides}`.
+La utilidad espacial convierte el abreviado del margen corto y los accesorios de relleno en márgenes y declaraciones CSS. Los props se nombran usando el formato `{property}{sides}`.
 
 Where *property* is one of:
 
@@ -19,11 +19,11 @@ Where *sides* is one of:
 - `r` - for classes that set *margin-right* or *padding-right*
 - `x` - for classes that set both **-left* and **-right*
 - `y` - for classes that set both **-top* and **-bottom*
-- blank - for classes that set a margin or padding on all 4 sides of the element
+- en blanco - para las clases que establecen un margen o un relleno en los 4 lados del elemento
 
-## Transformation
+## Transformación
 
-Depending on the input and the theme configuration, the following transformation is applied:
+Dependiendo del input y la configuración del tema, se aplica la siguiente transformación:
 
 - input: `number` & theme: `number`: the property is multiplied by the theme value.
 
@@ -78,7 +78,7 @@ const theme = {
 <Box p={2}>…
 ```
 
-## Horizontal centering
+## Centrado Horizontal
 
 {{"demo": "pages/system/spacing/HorizontalCentering.js", "defaultCodeOpen": false, "bg": true}}
 
@@ -109,8 +109,7 @@ import { spacing } from '@material-ui/system';
 | `spacing`         | `px` | `padding-left`, `padding-right` | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
 | `spacing`         | `py` | `padding-top`, `padding-bottom` | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
 
-
-*Some people find the prop shorthand confusing, you can use the full version if you prefer:*
+_Algunas personas encuentran confusión con la abreviatura del prop, puedes usar la versión completa si lo prefieres:_
 
 ```diff
 -<Box pt={2} />

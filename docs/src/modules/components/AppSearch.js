@@ -45,7 +45,7 @@ const useStyles = makeStyles(
           fontWeight: theme.typography.fontWeightRegular,
         },
         '& .algolia-docsearch-suggestion--highlight': {
-          color: theme.palette.type === 'light' ? '#174d8c' : '#acccf1',
+          color: theme.palette.mode === 'light' ? '#174d8c' : '#acccf1',
         },
         '& .algolia-docsearch-suggestion': {
           textDecoration: 'none',
@@ -123,12 +123,8 @@ export default function AppSearch() {
 
   React.useEffect(() => {
     const handleKeyDown = (nativeEvent) => {
-      // Use nativeEvent.keyCode to support IE 11
       if (
-        [
-          191, // '/'
-          83, // 's'
-        ].indexOf(nativeEvent.keyCode) !== -1 &&
+        ['/', 's'].indexOf(nativeEvent.key) !== -1 &&
         document.activeElement.nodeName === 'BODY' &&
         document.activeElement !== inputRef.current
       ) {

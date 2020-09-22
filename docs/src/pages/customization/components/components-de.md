@@ -5,10 +5,10 @@
 Da Komponenten in unterschiedlichen Kontexten eingesetzt werden können, gibt es verschiedene Ansätze. Vom engsten Anwendungsfall bis zum umfassendsten sind dies:
 
 1. [Spezifische Abweichung für eine einmalige Situation](#1-specific-variation-for-a-one-time-situation)
-2. [Dynamische Variation für eine einmalige Situation](#2-dynamic-variation-for-a-one-time-situation)
-3. [ Spezifische Variation einer Komponente ](#3-specific-variation-of-a-component) wiederverwendet in verschiedenen Kontexten
-4. [ Variationen des Materialdesigns ](#4-material-design-variations) wie mit der Button-Komponente
-5. [Global theme variation](#5-global-theme-variation)
+1. [Dynamische Variation für eine einmalige Situation](#2-dynamic-variation-for-a-one-time-situation)
+1. [ Spezifische Variation einer Komponente ](#3-specific-variation-of-a-component) wiederverwendet in verschiedenen Kontexten
+1. [ Variationen des Materialdesigns ](#4-material-design-variations) wie mit der Button-Komponente
+1. [Global theme variation](#5-global-theme-variation)
 
 ## 1. Spezifische Abweichung für eine einmalige Situation
 
@@ -18,17 +18,17 @@ Möglicherweise müssen Sie den Stil einer Komponente für eine bestimmte Implem
 
 Die erste Möglichkeit, den Stil einer Komponente zu überschreiben, besteht in der Verwendung von **Klassennamen**. Jede Komponente stellt eine `Klassennamen` Eigenschaft bereit, die immer auf das unterste Element angewendet wird.
 
-In diesem Beispiel wird die [`withStyles()`](/styles/basics/#higher-order-component-api) höherer Ordnung Komponente verwendet um benutzerdefinierte Stile in den DOM einzufügen und den Klassennamen mittels ihre `classes` Eigenschaftan die ` ClassNames` Komponente zu übergeben. Sie können sich [für jede andere Styling-Lösung](/guides/interoperability/) entscheiden oder sogar Standard CSS benutzen, um die Stile zu schaffen. Stellen Sie aber sicher, die [CSS - Injektionsreihenfolge](/styles/advanced/#css-injection-order) zu prüfen, da das CSS, welches durch die Material UI-Komponente in den DOM injiziert wird, die höchste Spezifität hat, da der `<link>` am Ende des `<4 />` injiziert wird, um sicherzustellen, dass die Komponenten immer richtig gerendert werden.
+In diesem Beispiel wird die [`withStyles()`](/styles/basics/#higher-order-component-api) höherer Ordnung Komponente verwendet um benutzerdefinierte Stile in den DOM einzufügen und den Klassennamen mittels ihre `classes` Eigenschaftan die `ClassNames` Komponente zu übergeben. In diesem Beispiel injiziert die `withStyles()` höherer Ordnung Komponente eine `classes` Eigenschaft, die von der [`Button` Komponente](/api/button/#css) verwendet wird.
 
 {{"demo": "pages/customization/components/ClassNames.js"}}
 
 ### Überschreiben des styles mit Klassennamen
 
-Wenn die ` Klassennamen`-Eigenschaft nicht genug ist, und Sie auf tiefere Elemente zugreifen müssen, können Sie die ` classes`-Eigenschaft nutzen, um alle von Material-UI für eine bestimmte Komponente eingefügtes CSS anzupassen.
+Wenn die `Klassennamen`-Eigenschaft nicht genug ist, und Sie auf tiefere Elemente zugreifen müssen, können Sie die `classes`-Eigenschaft nutzen, um alle von Material-UI für eine bestimmte Komponente eingefügtes CSS anzupassen.
 
 The list of classes for each component is documented in the component API page, you should refer to the **CSS section** and **rule name column**. Zum Beispiel können Sie sich die [ Button CSS-API](/api/button/#css) anschauen. Alternativ können Sie die [Browser-Entwicklungswerkzeuge](#using-the-dev-tools) verwenden.
 
-In diesem Beispiel wird auch `withStyles()` verwendet (siehe oben), aber hier verwendet `ClassesNesting` die `Button` `classes` Eigenschaft, welche ein Objekt liefert, das die **Namen der zu überschreibenden Klassen** (Stilregeln) auf die anzuwendenden **CSS-Klassennamen ** (Werte) abbildet. Die vorhandenen Klassen der Komponente werden weiterhin eingefügt. Daher müssen nur die spezifischen Styles gesetzt werden die Sie hinzufügen oder überschreiben möchten.
+In diesem Beispiel wird auch `withStyles()` verwendet (siehe oben), aber hier verwendet `ClassesNesting` die `Button` `classes` Eigenschaft, welche ein Objekt liefert, das die **Namen der zu überschreibenden Klassen** (Stilregeln) auf die anzuwendenden **CSS-Klassennamen ** (Werte) abbildet. In diesem Beispiel injiziert die `withStyles()` höherer Ordnung Komponente eine `classes` Eigenschaft, die von der [`Button` Komponente](/api/button/#css) verwendet wird.
 
 Beachten Sie, dass zusätzlich zum Buttonstil die Großschreibung der Buttonbeschriftung geändert wurde:
 
@@ -127,7 +127,6 @@ Instead of providing values to the `classes` prop API, you can rely on [the glob
 | erforderlich | Mui-required         |
 | expanded     | Mui-expanded         |
 | ausgewählt   | Mui-selected         |
-
 
 ```css
 .MenuItem {
@@ -251,7 +250,7 @@ const theme = createMuiTheme({
 
 ### Globales CSS überschreiben
 
-Sie können auch alle Instanzen einer Komponente mit CSS anpassen. Components expose [global class names](/styles/advanced/#with-material-ui-core) to enable this. Es ist sehr ähnlich, wie Sie Bootstrap anpassen würden.
+Sie können auch alle Instanzen einer Komponente mit CSS anpassen. Es ist sehr ähnlich, wie Sie Bootstrap anpassen würden. Components expose [global class names](/styles/advanced/#with-material-ui-core) to enable this.
 
 ```jsx
 const GlobalCss = withStyles({
@@ -267,6 +266,8 @@ const GlobalCss = withStyles({
 // …
 
 <GlobalCss />
+
+<GlobalCss />;
 ```
 
 {{"demo": "pages/customization/components/GlobalCssOverride.js", "iframe": true, "height": 70}}
@@ -288,3 +289,45 @@ const theme = createMuiTheme({
 ```
 
 {{"demo": "pages/customization/components/GlobalThemeOverride.js"}}
+
+### Adding new component variants
+
+You can take advantage of the `variants` key in the `theme`'s components section to add new variants to Material-UI components. These new variants, can specify which styles the component should have, if specific props are defined together.
+
+The definitions are specified in an array, under the component's name. For every one of them a class is added in the head. The order is **important**, so make sure that the styles that should win will be specified lastly.
+
+```jsx
+const theme = createMuiTheme({
+  components: {
+    MuiButton: {
+      variants: [
+        {
+          props: { variant: 'dashed' },
+          style: {
+            textTransform: 'none',
+            border: `2px dashed grey${blue[500]}`,
+          },
+        },
+        {
+          props: { variant: 'dashed', color: 'secondary' },
+          style: {
+            border: `4px dashed ${red[500]}`,
+          },
+        },
+      ],
+    },
+  },
+});
+```
+
+If you are using TypeScript, you will need to specify your new variants/colors, using module augmentation.
+
+```tsx
+declare module '@material-ui/core/Button/Button' {
+  interface ButtonPropsVariantOverrides {
+    dashed: true;
+  }
+}
+```
+
+{{"demo": "pages/customization/components/GlobalThemeVariants.js"}}

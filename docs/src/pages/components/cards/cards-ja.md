@@ -1,6 +1,9 @@
 ---
 title: Card コンポーネント
 components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
+githubLabel:
+  component: Card (カード)
+materialDesign: https://material.io/components/cards
 ---
 
 # Card (カード)
@@ -10,6 +13,8 @@ components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedi
 [Card](https://material.io/design/components/cards.html) は、1つのトピックに関するコンテンツとアクションを表示する面です。
 
 関連する実行可能な情報を容易にスキャンできる必要があります。 テキストや画像などの要素は、階層を明確に示すように配置する必要があります。
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## シンプルなCard
 
@@ -25,7 +30,7 @@ Set `variant="outlined"` to render an outlined card.
 
 ## 複雑なインタラクション
 
-デスクトップでは、Cardの内容が展開できる可能性があります。
+デスクトップでは、Cardの内容が展開できる可能性があります。 (Click the downward chevron to view the recipe.)
 
 {{"demo": "pages/components/cards/RecipeReviewCard.js", "bg": true}}
 
@@ -35,7 +40,7 @@ Set `variant="outlined"` to render an outlined card.
 
 {{"demo": "pages/components/cards/MediaCard.js", "bg": true}}
 
-デフォルトでは、メディアを表示する為に `<div>` 要素と *背景画像* の組み合わせを使用します。 状況によってこれは問題になることがあります。 例えば、動画やレスポンシブ画像を表示したいとします。 そのような場合は `component` プロパティを使用します。
+デフォルトでは、メディアを表示する為に `<div>` 要素と *背景画像* の組み合わせを使用します。 It can be problematic in some situations, for example, you might want to display a video or a responsive image. そのような場合は `component` プロパティを使用します。
 
 {{"demo": "pages/components/cards/ImgMediaCard.js", "bg": true}}
 

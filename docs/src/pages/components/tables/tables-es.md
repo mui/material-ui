@@ -1,9 +1,12 @@
 ---
 title: Componente de React Table
 components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
+githubLabel:
+  component: Table (Tabla)
+materialDesign: https://material.io/components/data-tables
 ---
 
-# Table (tabla)
+# Table (Tabla)
 
 <p class="description">Las tablas muestran conjuntos de datos. Pueden ser totalmente personalizadas.</p>
 
@@ -17,13 +20,15 @@ Las tablas pueden incluir:
 
 Cuando se incluyen herramientas, se deberían poner directamente arriba o debajo de la tabla.
 
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
 ## Estructura
 
 Una tabla de datos contiene una cabecera en la parte superior con los nombres de las columnas, seguida por las filas de datos.
 
 Un checkbox debe acompañar a cada fila por si el usuario necesita seleccionar o manipular datos.
 
-For accessibility, the first column is set to be a `<th>` element, with a `scope` of `"col"`. Esto permite a los lectores de pantalla identificar el valor de una celda por el nombre de su fila y columna.
+Utiliza el componente `TableSortLabel` para ayudar a dar estilo a las cabeceras de las columnas. Esto permite a los lectores de pantalla identificar el valor de una celda por el nombre de su fila y columna.
 
 ## Tabla Sencilla
 
@@ -47,7 +52,7 @@ La Tabla tiene un ancho fijo para demostrar el desplazamiento horizontal. Para e
 
 ## Tablas personalizadas
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+He aquí un ejemplo de personalización del componente. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/tables/CustomizedTables.js", "bg": true}}
 
@@ -56,16 +61,16 @@ Here is an example of customizing the component. You can learn more about this i
 Es posible personalizar las opciones en el item "Filas por página" usando la propiedad `rowsPerPageOptions`. Debes proveer alguna de estas opciones de array:
 
 - **numbers**, cada número será usado para la etiqueta y el valor de la opción.
-    
-    ```jsx
-    <TablePagination rowsPerPageOptions={[10, 50]} />
-    ```
+
+  ```jsx
+  <TablePagination rowsPerPageOptions={[10, 50]} />
+  ```
 
 - **objects**, the `value` and `label` keys will be used respectively for the value and label of the option (useful for language strings such as 'All').
-    
-    ```jsx
-    <TablePagination rowsPerPageOptions={[10, 50, { value: -1, label: 'All' }]} />
-    ```
+
+  ```jsx
+  <TablePagination rowsPerPageOptions={[10, 50, { value: -1, label: 'All' }]} />
+  ```
 
 ### Custom pagination actions
 

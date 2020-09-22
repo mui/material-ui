@@ -57,21 +57,12 @@ async function getFiles(root) {
 
 const TranspileResult = {
   Success: 0,
-  Skipped: 1,
-  Failed: 2,
+  Failed: 1,
 };
 
-async function transpileFile(tsxPath, program, ignoreCache = false) {
+async function transpileFile(tsxPath, program) {
   const jsPath = tsxPath.replace(/\.tsx?$/, '.js');
   try {
-    if (!ignoreCache && (await fse.exists(jsPath))) {
-      const [jsStat, tsxStat] = await Promise.all([fse.stat(jsPath), fse.stat(tsxPath)]);
-      if (jsStat.mtimeMs > tsxStat.mtimeMs) {
-        // JavaScript version is newer, skip transpiling
-        return TranspileResult.Skipped;
-      }
-    }
-
     const source = await fse.readFile(tsxPath, 'utf8');
 
     const { code } = await babel.transformAsync(source, { ...babelConfig, filename: tsxPath });
@@ -111,46 +102,55 @@ async function transpileFile(tsxPath, program, ignoreCache = false) {
 }
 
 async function main(argv) {
-  const { watch: watchMode, disableCache: cacheDisabled } = argv;
+  const { watch: watchMode, disableCache, pattern } = argv;
 
-  const tsxFiles = await getFiles(path.join(workspaceRoot, 'docs/src/pages'));
+  // TODO: Remove at some point.
+  // Though not too soon so that it isn't disruptive.
+  // It's a no-op anyway.
+  if (disableCache !== undefined) {
+    console.warn(
+      '--disable-cache does not have any effect since it is the default. In the future passing this flag will throw.',
+    );
+  }
+
+  const filePattern = new RegExp(pattern);
+  if (pattern.length > 0) {
+    console.log(`Only considering demos matching ${filePattern}`);
+  }
+
+  const tsxFiles = (await getFiles(path.join(workspaceRoot, 'docs/src/pages'))).filter(
+    (fileName) => {
+      return filePattern.test(fileName);
+    },
+  );
 
   const program = typescriptToProptypes.createTSProgram(tsxFiles, tsConfig);
 
   let successful = 0;
   let failed = 0;
-  let skipped = 0;
-  (await Promise.all(tsxFiles.map((file) => transpileFile(file, program, cacheDisabled)))).forEach(
-    (result) => {
-      switch (result) {
-        case TranspileResult.Success: {
-          successful += 1;
-          break;
-        }
-        case TranspileResult.Failed: {
-          failed += 1;
-          break;
-        }
-        case TranspileResult.Skipped: {
-          skipped += 1;
-          break;
-        }
-        default: {
-          throw new Error(`No handler for ${result}`);
-        }
+  (await Promise.all(tsxFiles.map((file) => transpileFile(file, program)))).forEach((result) => {
+    switch (result) {
+      case TranspileResult.Success: {
+        successful += 1;
+        break;
       }
-    },
-  );
+      case TranspileResult.Failed: {
+        failed += 1;
+        break;
+      }
+      default: {
+        throw new Error(`No handler for ${result}`);
+      }
+    }
+  });
 
   console.log(
     [
       '------ Summary ------',
       '%i demo(s) were successfully transpiled',
-      '%i demo(s) were skipped',
       '%i demo(s) were unsuccessful',
     ].join('\n'),
     successful,
-    skipped,
     failed,
   );
 
@@ -184,9 +184,14 @@ yargs
           type: 'boolean',
         })
         .option('disable-cache', {
-          default: false,
-          description: 'transpiles all demos even if they didnt change',
+          description: 'No longer supported. The cache is disabled by default.',
           type: 'boolean',
+        })
+        .option('pattern', {
+          default: '',
+          description:
+            'Transpiles only the TypeScript demos whose filename matches the given pattern.',
+          type: 'string',
         });
     },
     handler: main,

@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy } from 'sinon';
+import { spy, useFakeTimers } from 'sinon';
 import {
   getClasses,
   createMount,
   describeConformance,
   createClientRender,
   within,
+  fireEvent,
 } from 'test/utils';
 import ButtonBase from '../ButtonBase';
 import BottomNavigationAction from './BottomNavigationAction';
@@ -78,6 +79,172 @@ describe('<BottomNavigationAction />', () => {
       getByRole('button').click();
 
       expect(handleClick.callCount).to.equal(1);
+    });
+  });
+
+  describe('touch functionality', () => {
+    before(function test() {
+      // Only run in supported browsers
+      if (typeof Touch === 'undefined') {
+        this.skip();
+      }
+    });
+
+    let clock;
+
+    beforeEach(() => {
+      clock = useFakeTimers();
+    });
+
+    afterEach(() => {
+      clock.restore();
+    });
+
+    it('should fire onClick on touch tap', () => {
+      const handleClick = spy();
+
+      // Need disableTouchRipple to avoid ripple missing act (async setState after touchEnd)
+      const { container } = render(
+        <BottomNavigationAction onClick={handleClick} disableTouchRipple />,
+      );
+
+      fireEvent.touchStart(container.firstChild, {
+        touches: [
+          new Touch({
+            identifier: 1,
+            target: container,
+            clientX: 42,
+            clientY: 42,
+          }),
+        ],
+      });
+
+      fireEvent.touchEnd(container.firstChild, {
+        changedTouches: [
+          new Touch({
+            identifier: 1,
+            target: container,
+            clientX: 42,
+            clientY: 42,
+          }),
+        ],
+      });
+
+      clock.tick(15);
+
+      expect(handleClick.callCount).to.equal(1);
+    });
+
+    it('should not fire onClick twice on touch tap', () => {
+      const handleClick = spy();
+
+      // Need disableTouchRipple to avoid ripple missing act (async setState after touchEnd)
+      const { getByRole, container } = render(
+        <BottomNavigationAction onClick={handleClick} disableTouchRipple />,
+      );
+
+      fireEvent.touchStart(container.firstChild, {
+        touches: [
+          new Touch({
+            identifier: 1,
+            target: container,
+            clientX: 42,
+            clientY: 42,
+          }),
+        ],
+      });
+
+      fireEvent.touchEnd(container.firstChild, {
+        changedTouches: [
+          new Touch({
+            identifier: 1,
+            target: container,
+            clientX: 42,
+            clientY: 42,
+          }),
+        ],
+      });
+
+      getByRole('button').click();
+
+      clock.tick(15);
+
+      expect(handleClick.callCount).to.equal(1);
+    });
+
+    it('should not fire onClick if swiping', () => {
+      const handleClick = spy();
+
+      // Need disableTouchRipple to avoid ripple missing act (async setState after touchEnd)
+      const { container } = render(
+        <BottomNavigationAction onClick={handleClick} disableTouchRipple />,
+      );
+
+      fireEvent.touchStart(container.firstChild, {
+        touches: [
+          new Touch({
+            identifier: 1,
+            target: container,
+            clientX: 42,
+            clientY: 42,
+          }),
+        ],
+      });
+
+      fireEvent.touchEnd(container.firstChild, {
+        changedTouches: [
+          new Touch({
+            identifier: 1,
+            target: container,
+            clientX: 84,
+            clientY: 84,
+          }),
+        ],
+      });
+
+      clock.tick(10);
+
+      expect(handleClick.callCount).to.equal(0);
+    });
+
+    it('should forward onTouchStart and onTouchEnd events', () => {
+      const handleTouchStart = spy();
+      const handleTouchEnd = spy();
+
+      // Need disableTouchRipple to avoid ripple missing act (async setState after touchEnd).
+      const { container } = render(
+        <BottomNavigationAction
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          disableTouchRipple
+        />,
+      );
+
+      fireEvent.touchStart(container.firstChild, {
+        touches: [
+          new Touch({
+            identifier: 1,
+            target: container,
+            clientX: 42,
+            clientY: 42,
+          }),
+        ],
+      });
+
+      expect(handleTouchStart.callCount).to.be.equals(1);
+
+      fireEvent.touchEnd(container.firstChild, {
+        changedTouches: [
+          new Touch({
+            identifier: 1,
+            target: container,
+            clientX: 84,
+            clientY: 84,
+          }),
+        ],
+      });
+
+      expect(handleTouchEnd.callCount).to.be.equals(1);
     });
   });
 });

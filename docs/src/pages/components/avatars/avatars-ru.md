@@ -1,11 +1,15 @@
 ---
 title: React-компонент Аватар
 components: Avatar, AvatarGroup, Badge
+githubLabel:
+  component: Avatar
 ---
 
 # Avatar
 
 <p class="description">Аватары встречаются в material design и используются во всем - от таблиц до диалоговых меню.</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Аватары изображений
 

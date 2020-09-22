@@ -1,6 +1,9 @@
 ---
 title: Chip コンポーネント
 components: Chip
+githubLabel:
+  component: Chip
+materialDesign: https://material.io/components/chips
 ---
 
 # Chip
@@ -9,7 +12,9 @@ components: Chip
 
 [Chips](https://material.io/design/components/chips.html) 使用すると、ユーザーは情報を入力したり、選択を行ったり、コンテンツをフィルター処理したり、アクションを起動したりできます。
 
-ここで、スタンドアロンコンポーネントとして含まれているが、最も一般的な用途は、 何らかの形の入力ので、ここで示した挙動の一部はコンテキストに表示されません。 
+ここで、スタンドアロンコンポーネントとして含まれているが、最も一般的な用途は、 何らかの形の入力ので、ここで示した挙動の一部はコンテキストに表示されません。
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Chip
 

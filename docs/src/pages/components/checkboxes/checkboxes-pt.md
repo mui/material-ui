@@ -1,15 +1,21 @@
 ---
 title: Componente React para Caixa de Seleção
 components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
+materialDesign: 'https://material.io/components/selection-controls#checkboxes'
+githubLabel:
+  component: Caixa de seleção
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#checkbox'
 ---
 
-# Caixa de Seleção
+# Caixa de seleção
 
-<p class="description">Caixas de Seleção permitem ao usuário selecionar um ou mais itens de um conjunto.</p>
+<p class="description">Caixas de seleção permitem ao usuário selecionar um ou mais itens de um conjunto.</p>
 
 [Caixas de Seleção](https://material.io/design/components/selection-controls.html#checkboxes) podem ser usadas para ativar ou desativar uma opção.
 
 Se você tem várias opções aparecendo em uma lista, você pode economizar espaço usando caixas de seleção ao invés de interruptores liga/desliga. Se você tem uma única opção, evite usar uma caixa de seleção e use um interruptor de liga/desliga.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Caixa de seleção básica
 
@@ -17,13 +23,13 @@ Se você tem várias opções aparecendo em uma lista, você pode economizar esp
 
 ## Caixa de seleção com FormControlLabel
 
-O componente `Checkbox` pode ser fornecido com um rótulo graças ao componente `FormControlLabel`.
+O componente `Checkbox` pode ser exibido com um rótulo graças ao componente `FormControlLabel`.
 
 {{"demo": "pages/components/checkboxes/CheckboxLabels.js"}}
 
-## Caixas de Seleção com FormGroup
+## Caixas de seleção com FormGroup
 
-`FormGroup` é usado para agrupar componentes seletores para facilitar o uso da API.
+`FormGroup` é usado para agrupar componentes de seleção para facilitar o uso da API.
 
 {{"demo": "pages/components/checkboxes/CheckboxesGroup.js"}}
 

@@ -1,5 +1,7 @@
 ---
 title: React-компонент Box
+githubLabel:
+  component: Box
 ---
 
 # Box
@@ -7,6 +9,8 @@ title: React-компонент Box
 <p class="description">Box компонент используется как обертка компонента для большинства используемых CSS свойств.</p>
 
 The Box component packages [all the style functions](/system/basics/#all-inclusive) that are exposed in `@material-ui/system`. It's created using the [`styled()`](/styles/api/#styled-style-function-component) function of `@material-ui/core/styles`.
+
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Пример
 
@@ -54,11 +58,10 @@ The Box children accepts a render props function. You can pull out the `classNam
 import Box from '@material-ui/core/Box';
 ```
 
-| Имя                                                     | Тип                                                                                                               | По-умолчанию                            | Описание                                                                                              |
-|:------------------------------------------------------- |:----------------------------------------------------------------------------------------------------------------- |:--------------------------------------- |:----------------------------------------------------------------------------------------------------- |
-| <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">union:&nbsp;node&nbsp;&#124;<br />&nbsp;func<br /></span>                                 |                                         | Box render function or node.                                                                          |
-| <span class="prop-name">clone</span>                    | <span class="prop-type">bool</span>                                                                               | <span class="prop-default">false</span> | If `true`, the box will recycle its children DOM element. It's using `React.cloneElement` internally. |
-| <span class="prop-name">component</span>                | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br />&nbsp;func&nbsp;&#124;<br />&nbsp;object<br /></span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component.            |
-
+| Имя                                                     | Тип                                                                                                                           | По-умолчанию                            | Описание                                                                                              |
+|:------------------------------------------------------- |:----------------------------------------------------------------------------------------------------------------------------- |:--------------------------------------- |:----------------------------------------------------------------------------------------------------- |
+| <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">union:&nbsp;node&nbsp;&#124;<br>&nbsp;func<br></span>                                     |                                         | Box render function or node.                                                                          |
+| <span class="prop-name">clone</span>                    | <span class="prop-type">bool</span>                                                                                           | <span class="prop-default">false</span> | If `true`, the box will recycle its children DOM element. It's using `React.cloneElement` internally. |
+| <span class="prop-name">component</span>                | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func&nbsp;&#124;<br>&nbsp;object<br></span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component.            |
 
 Any other properties supplied will be used by [the style functions](/system/basics/#all-inclusive) or spread to the root element.

@@ -38,7 +38,7 @@ The `MuiStepper` name can be used for providing [default props](/customization/g
 
 The `ref` is forwarded to the root element.
 
-Any other props supplied will be provided to the root element ([Paper](/api/paper/)).
+Any other props supplied will be provided to the root element (native element).
 
 ## CSS
 
@@ -56,11 +56,6 @@ You can override the style of the component thanks to one of these customization
 - With a theme and an [`overrides` property](/customization/globals/#css).
 
 If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Stepper/Stepper.js) for more detail.
-
-## Inheritance
-
-The props of the [Paper](/api/paper/) component are also available.
-You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Demos
 

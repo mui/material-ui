@@ -1,6 +1,10 @@
 ---
 title: React-компонент Меню
 components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
+githubLabel:
+  component: Menu
+materialDesign: https://material.io/components/menus
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
 ---
 
 # Меню
@@ -8,6 +12,8 @@ components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 <p class="description">Меню временно отображают список вариантов.</p>
 
 [Меню](https://material.io/design/components/menus.html) отображает список выбранного на временной поверхности. Оно появляется когда пользователь взаимодействует с кнопкой или другим элементом управления.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Простое меню
 

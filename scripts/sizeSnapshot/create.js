@@ -62,7 +62,6 @@ function* matchAll(string, regex) {
 
 /**
  * Inverse to `pretty-bytes`
- *
  * @param {string} n
  * @param {'B', 'kB' | 'MB' | 'GB' | 'TB' | 'PB'} unit
  * @returns {number}

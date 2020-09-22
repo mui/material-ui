@@ -3,7 +3,6 @@ import { render as enzymeRender } from 'enzyme';
 import { stub } from 'sinon';
 
 /**
- *
  * @param {object} [options]
  * @param {boolean} [options.expectUseLayoutEffectWarning]
  */

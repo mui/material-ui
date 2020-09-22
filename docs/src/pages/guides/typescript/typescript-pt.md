@@ -2,7 +2,7 @@
 
 <p class="description">Você pode adicionar tipagem estática para o JavaScript para melhorar a produtividade do desenvolvimento e a qualidade do código graças ao TypeScript.</p>
 
-Material-UI requires a minimum version of TypeScript 3.2.
+Material-UI requer como versão mínima o TypeScript 3.2.
 
 Dê uma olhada no exemplo [Create React App com TypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript).
 
@@ -19,11 +19,11 @@ Para que os tipos funcionem, você tem que pelo menos ter as seguintes opções 
 }
 ```
 
-As opções de modo strict são as mesmas que são necessárias para todos os tipos de pacote publicados no namespace `@types/`. Usando uma `tsconfig.json` menos rigorosa ou omitindo algumas das bibliotecas podem causar erros. Para obter a melhor experiência com os tipos, recomendamos configurar `"strict": true`.
+As opções do modo strict são as mesmas que são necessárias para todos os tipos de pacote publicados no namespace `@types/`. Usando uma `tsconfig.json` menos rigorosa ou omitindo algumas das bibliotecas podem causar erros. Para obter a melhor experiência com os tipos, recomendamos configurar `"strict": true`.
 
 ## Uso de `withStyles`
 
-Utilizando `withStyles` no TypeScript pode ser um pouco complicado, mas há alguns utilitários que tornam a experiência menos dolorosa possível.
+Utilizando `withStyles` no TypeScript pode ser um pouco complicado, mas há alguns utilitários que tornam a experiência menos dolorosa.
 
 ### Utilizando `createStyles` para evitar a ampliação de tipo (type widening)
 
@@ -70,7 +70,7 @@ withStyles(({ palette, spacing }) => ({
 
 Isso ocorre pois o TypeScript [amplia o retorno de tipos de expressões de função](https://github.com/Microsoft/TypeScript/issues/241).
 
-Por causa disso, é recomendado usar a função auxiliar `createStyles` para construir seu objeto de regras de estilo:
+Por causa disso, é recomendado usar a função utilitária `createStyles` para construir seu objeto de regras de estilo:
 
 ```ts
 // Estilos sem dependência
@@ -95,7 +95,7 @@ const styles = ({ palette, spacing }: Theme) => createStyles({
 
 `createStyles` é apenas a identidade da função; ela não "faz nada" em tempo de execução, apenas auxilia a inferência de tipos em tempo de compilação.
 
-### Consultas de Mídia (Media queries)
+### Consultas de mídia
 
 `withStyles` permite utilizar um objeto de estilos de nível superior com consultas de mídia assim:
 
@@ -141,7 +141,7 @@ const ambiguousStyles = createStyles({
 });
 ```
 
-### Incrementando suas propriedades utilizando `WithStyles`
+### Aumentando suas propriedades utilizando `WithStyles`
 
 Desde que um componente seja decorado com `withStyles(styles)`, ele recebe uma propriedade injetada `classes`, você pode querer definir estas propriedades de acordo com:
 
@@ -194,7 +194,7 @@ const DecoratedSFC = withStyles(styles)(({ text, type, color, classes }: Props) 
 ));
 
 const DecoratedClass = withStyles(styles)(
-  class extends React.Component<Props> {
+  class extends React. Component<Props> {
     render() {
       const { text, type, color, classes } = this.props
       return (
@@ -254,7 +254,7 @@ export default function createMyTheme(options: ThemeOptions) {
 }
 ```
 
-Isso poderia ser usado como:
+Isso poderia ser usado da seguinte maneira:
 
 ```ts
 import createMyTheme from './styles/createMyTheme';
@@ -283,7 +283,7 @@ Agora o `CustomComponent` pode ser usado com uma propriedade `component` que dev
 É possível ter um componente genérico `CustomComponent` que aceitará qualquer componente React, customizado e elementos HTML.
 
 ```ts
-function GenericCustomComponent<C extends React.ElementType>(
+function GenericCustomComponent<C extends React. ElementType>(
   props: TypographyProps<C, { component?: C }>,
 ) {
   /* ... */
@@ -302,7 +302,7 @@ function ThirdPartyComponent({ prop1 } : { prop1: string }) {
 
 A `prop1` tornou-se necessária para o `GenericCustomComponent` como o `ThirdPartyComponent` tem ela como um requisito.
 
-Nem todos os componentes suportam totalmente qualquer tipo de componente que você passe. Se você encontrar um componente que rejeita sua propriedade `component` no TypeScript por favor abra um issue. Há um esforço contínuo para corrigir isso fazendo com que a propriedade component seja genérica.
+Nem todos os componentes suportam totalmente qualquer tipo de componente que você passe. Se você encontrar um componente que rejeita sua propriedade `component` no TypeScript por favor abra uma issue. Há um esforço contínuo para corrigir isso fazendo com que a propriedade component seja genérica.
 
 ## Manipulando `value` e manipuladores de eventos
 

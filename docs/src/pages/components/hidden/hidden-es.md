@@ -1,6 +1,8 @@
 ---
 title: Hidden React component
 components: Hidden
+githubLabel:
+  component: Hidden
 ---
 
 # Hidden
@@ -8,6 +10,8 @@ components: Hidden
 <p class="description">Hidden: Cambia rápida y de manera responsiva el valor de visibilidad de los componentes y más con nuestras utilidades ocultas.</p>
 
 Todos los elementos son visibles a menos que **estén explícitamente ocultos**. Para facilitar la integración con [interrupción responsivas](/customization/breakpoints/) de Material-UI, éste componente se puede usar para ocultar cualquier contenido, o puede usarlo junto con el componente [`Grid`](/components/grid/).
+
+[La función de estilo de la paleta](/system/palette/).
 
 ## Cómo funciona
 
@@ -47,9 +51,9 @@ Using any breakpoint `down` property, the given *children* will be hidden *at or
 
 ## Breakpoint only
 
-Using the breakpoint `only` property, the given *children* will be hidden *at* the specified breakpoint(s).
-
 The `only` property can be used in two ways:
+
+The `only` prop can be used in two ways:
 
 - list a single breakpoint
 - list an array of breakpoints

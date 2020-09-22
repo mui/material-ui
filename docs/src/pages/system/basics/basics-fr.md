@@ -49,6 +49,7 @@ This Box component now supports new [spacing properties](/system/spacing/#api) a
 
 ```jsx
 <Box p="1rem" color="grey">Give me some space!</Box>
+</Box>
 ```
 
 The component can be styled providing any valid CSS values.
@@ -234,11 +235,12 @@ Not all CSS properties are supported. It's possible that you want to support new
 
 #### Paramètres
 
-1. `options` (*Object*): 
-  - `options.prop` (*String*): The property the style function will be triggered on.
-  - `options.cssProperty` (*String|Boolean* [optional]): Defaults to `options.prop`. The CSS property used. You can disabled this option by providing `false`. When disabled, the property value will handle as a style object on it's own. It can be used for [rendering variants](#variants).
-  - `options.themeKey` (*String* [optional]): The theme path prefix.
-  - `options.transform` (*Function* [optional]): Apply a transformation before outputing a CSS value.
+1. `options` (*Object*):
+
+- `options.prop` (*String*): The property the style function will be triggered on.
+- `options.cssProperty` (*String|Boolean* [optional]): Defaults to `options.prop`. The CSS property used. You can disabled this option by providing `false`. The CSS property used. It can be used for [rendering variants](#variants).
+- `options.themeKey` (*String* [optional]): The theme path prefix.
+- `options.transform` (*Function* [optional]): Apply a transformation before outputing a CSS value.
 
 #### Valeur de retour
 
@@ -260,6 +262,8 @@ const gridGap = style({
 
 const Grid = styled(Box)`${gridGap}`;
 const example = <Grid display="grid" gridGap={[2, 3]}>...</Grid>;
+  </Grid>
+);
 ```
 
 You can also customize the prop name by adding both a `prop` and `cssProperty` and transform the value by adding a `transform` function.
@@ -314,11 +318,11 @@ The `style()` helper can also be used to maps properties to style objects in a t
 
 ## CSS property
 
-If you want to support custom CSS values, you can use the `css()` helper. It will process the `css` property.
+It will process the `css` property. It will process the `css` property.
 
 {{"demo": "pages/system/basics/CssProp.js", "defaultCodeOpen": true}}
 
-## Comment ça fonctionne
+## Comment ça marche
 
 styled-system has done a great job at [explaining how it works](https://github.com/jxnblk/styled-system/blob/master/docs/how-it-works.md#how-it-works). It can help building a mental model for this "style function" concept.
 
@@ -336,7 +340,7 @@ In practice, a Box component can save you a lot of time. In this example, we dem
 - Tachyons was later on (2017) followed by [Tailwind CSS](https://tailwindcss.com/). They have made Atomic CSS more popular.
 - [Twitter Bootstrap](https://getbootstrap.com/docs/4.1/utilities/borders/) has slowly introduced atomic class names in v2, v3, and v4. The way they group their "Helper classes" was used as inspiration.
 - In the React world, [Styled System](https://github.com/jxnblk/styled-system) was one of the first (2017) to promote the style functions. It can be used as a generic Box component replacing the atomic CSS helpers as well as helpers to write new components.
-- Large companies such as Pinterest, GitHub, and Segment.io are using the same approach in different flavours: 
+- Large companies such as Pinterest, GitHub, and Segment.io are using the same approach in different flavours:
   - [Evergreen Box](https://evergreen.segment.com/components/layout-primitives/)
   - [Gestalt Box](https://pinterest.github.io/gestalt/#/Box)
   - [Primer Box](https://primer.style/components/docs/Box)

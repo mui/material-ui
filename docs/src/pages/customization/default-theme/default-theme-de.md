@@ -10,4 +10,4 @@ Explore the default theme object:
 
 > Tip: you can play with the documentation theme object in your browser console, as the `theme` variable is exposed on all the documentation pages. Please note that **the documentation site is using a custom theme**.
 
-Wenn Sie mehr darüber erfahren möchten, wie das Theme zusammengestellt wird, werfen Sie einen Blick auf [` material-ui / style / createMuiTheme.js `](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/styles/createMuiTheme.js), und die zugehörigen Importe, die ` createMuiTheme ` verwendet.
+Wenn Sie mehr darüber erfahren möchten, wie das Theme zusammengestellt wird, werfen Sie einen Blick auf [`material-ui / style / createMuiTheme.js`](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/styles/createMuiTheme.js), und die zugehörigen Importe, die `createMuiTheme` verwendet.

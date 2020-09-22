@@ -1,17 +1,21 @@
 ---
 title: Consulta de mídia no React para design responsivo
+githubLabel:
+  hook: useMediaQuery
 ---
 
 # useMediaQuery
 
-<p class="description">Este é um hook de CSS media query para React. Ele ouve correspondências para uma consulta de mídia no CSS. Permite a renderização de componentes com base no fato de a consulta corresponder ou não.</p>
+<p class="description">Este é um hook de consulta de mídia CSS para React. Ele ouve correspondências para uma consulta de mídia no CSS. Permite a renderização de componentes com base no fato de a consulta corresponder ou não.</p>
 
 Algumas das principais características:
 
 - ⚛️ Tem uma API React idiomática.
-- 🚀 Com desempenho, ele observa o documento para detectar quando suas consultas de mídia mudam, em vez de pesquisar os valores periodicamente.
+- 🚀 É performático, ele observa o documento para detectar quando suas consultas de mídia mudam, em vez de pesquisar os valores periodicamente.
 - 📦 [1 kB gzipped](/size-snapshot).
-- 🤖 Ele suporta a renderização do lado do servidor.
+- 🤖 Suporta a renderização do lado do servidor.
+
+[A paleta](/system/palette/) com funções de estilo.
 
 ## Consulta de mídia simples
 
@@ -19,11 +23,11 @@ Você deve fornecer uma consulta de mídia ao primeiro argumento do hook. A stri
 
 {{"demo": "pages/components/use-media-query/SimpleMediaQuery.js", "defaultCodeOpen": true}}
 
-⚠️ Você não pode usar `'print'` devido a limitação de navegadores, por exemplo, este bug [Firefox](https://bugzilla.mozilla.org/show_bug.cgi?id=774398).
+⚠️ Você não pode usar `'print'` devido a limitação de navegadores, por exemplo, este bug presente no [Firefox](https://bugzilla.mozilla.org/show_bug.cgi?id=774398).
 
-## Usando helpers de ponto de quebra do Material-UI
+## Usando auxiliares de ponto de quebra do Material-UI
 
-Você pode usar os [helpers de ponto de quebra](/customization/breakpoints/) do Material-UI da seguinte maneira:
+Você pode usar os [auxiliares de ponto de quebra](/customization/breakpoints/) do Material-UI da seguinte maneira:
 
 ```jsx
 import { useTheme } from '@material-ui/core/styles';
@@ -39,7 +43,7 @@ function MyComponent() {
 
 {{"demo": "pages/components/use-media-query/ThemeHelper.js", "defaultCodeOpen": false}}
 
-Como alternativa, você pode usar uma função de retorno de chamada, aceitando o tema como um primeiro argumento:
+Como alternativa, você pode usar uma função de retorno, aceitando o tema como um primeiro argumento:
 
 ```jsx
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -51,7 +55,7 @@ function MyComponent() {
 }
 ```
 
-⚠️ Não há **nenhum suporte de tema padrão**, você precisa injetá-lo em um provedor de temas.
+Você pode usar [json2mq](https://github.com/akiran/json2mq) para gerar uma string de consulta de mídia a partir de um objeto JavaScript.
 
 ## Usando a sintaxe JavaScript
 
@@ -83,7 +87,7 @@ describe('MeusTestes', () => {
 });
 ```
 
-## Renderização no servidor (Server-Side Rendering)
+## Renderização do lado servidor
 
 > ⚠️ Renderização do lado servidor e consultas de mídia do lado cliente são fundamentalmente conflitantes. Esteja ciente da escolha. O suporte só pode ser parcial.
 
@@ -134,6 +138,7 @@ function handleRender(req, res) {
 
   // …
 }
+}
 ```
 
 {{"demo": "pages/components/use-media-query/ServerSide.js", "defaultCodeOpen": false}}
@@ -153,13 +158,14 @@ O componente de ordem superior `withWidth()` injeta a largura da tela da página
 #### Argumentos
 
 1. `query` (*String* | *Function*): Uma string representando a consulta de mídia a ser manipulada ou uma função de retorno de chamada aceitando o tema (no contexto) que retorna uma string.
-2. `options` (*Object* [opcional]): 
-  - `options.defaultMatches` (*Boolean* [opcional]): Como `window.matchMedia()` não esta disponível no servidor, retornamos uma correspondência padrão durante a primeira montagem. O valor padrão é `false`.
-  - `options.matchMedia` (*Function* [opcional]) Você pode fornecer sua própria implementação de *matchMedia*. Isso pode ser usado para manipular uma janela de conteúdo do iframe.
-  - `options.noSsr` (*Boolean* [opcional]): Padrão é `false`. Para realizar a reconciliação de renderização do lado do servidor, ele precisa renderizar duas vezes. Uma primeira vez sem nada e uma segunda vez com os filhos. Este ciclo de renderização de dupla passagem tem uma desvantagem. É mais lento. Você pode definir esse sinalizador para `true` se você **não estiver fazendo a renderização do lado do servidor**.
-  - `options.ssrMatchMedia` (*Function* [opcional]) Você pode fornecer sua própria implementação de *matchMedia* em um [contexto de renderização do lado do servidor](#server-side-rendering).
+2. `options` (*Object* [opcional]):
 
-Nota: Você pode alterar as opções padrão usando [`default props`](/customization/globals/#default-props), este recurso pertence ao tema através da chave `MuiUseMediaQuery`.
+- `options.defaultMatches` (*Boolean* [opcional]): Como `window.matchMedia()` não esta disponível no servidor, retornamos uma correspondência padrão durante a primeira montagem. O valor padrão é `false`.
+- `options.matchMedia` (*Function* [opcional]) Você pode fornecer sua própria implementação de *matchMedia*. Isso pode ser usado para manipular uma janela iframe com conteúdo.
+- `options.noSsr` (*Boolean* [opcional]): Padrão é `false`. Para realizar a reconciliação de renderização do lado do servidor, ele precisa renderizar duas vezes. Uma primeira vez sem nada e uma segunda vez com os filhos. Este ciclo de renderização de dupla passagem tem uma desvantagem. É mais lento. Você pode definir esse sinalizador para `true` se você **não estiver fazendo a renderização do lado do servidor**.
+- `options.ssrMatchMedia` (*Function* [opcional]) Você pode fornecer sua própria implementação de *matchMedia* em um [contexto de renderização do lado do servidor](#server-side-rendering).
+
+Nota: Você pode alterar as opções padrão usando [`propriedades padrão`](/customization/globals/#default-props), este recurso pertence ao tema através da chave `MuiUseMediaQuery`.
 
 #### Retornos
 

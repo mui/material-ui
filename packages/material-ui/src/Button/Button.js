@@ -24,9 +24,6 @@ export const styles = (theme) => ({
       '@media (hover: none)': {
         backgroundColor: 'transparent',
       },
-      '&$disabled': {
-        backgroundColor: 'transparent',
-      },
     },
     '&$disabled': {
       color: theme.palette.action.disabled,
@@ -69,7 +66,7 @@ export const styles = (theme) => ({
   outlined: {
     padding: '5px 15px',
     border: `1px solid ${
-      theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
+      theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
     }`,
     '&$disabled': {
       border: `1px solid ${theme.palette.action.disabledBackground}`,
@@ -116,9 +113,6 @@ export const styles = (theme) => ({
       '@media (hover: none)': {
         boxShadow: theme.shadows[2],
         backgroundColor: theme.palette.grey[300],
-      },
-      '&$disabled': {
-        backgroundColor: theme.palette.action.disabledBackground,
       },
     },
     '&$focusVisible': {

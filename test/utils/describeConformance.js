@@ -35,7 +35,6 @@ function testRef(element, mount, onRef = assertDOMNode) {
 /**
  * Returns the component with the same constructor as `component` that renders
  * the outermost host
- *
  * @param {import('enzyme').ReactWrapper} wrapper
  * @param {object} options
  * @param {import('react').ElementType} component
@@ -55,7 +54,6 @@ function randomStringValue() {
 /**
  * Material-UI components have a `className` prop. The `className` is applied to
  * the root component.
- *
  * @param {React.ReactElement} element
  * @param {() => ConformanceOptions} getOptions
  */
@@ -76,7 +74,6 @@ function testClassName(element, getOptions) {
 /**
  * Material-UI components have a `component` prop that allows rendering a different
  * Component from @inheritComponent
- *
  * @param {React.ReactElement} element
  * @param {() => ConformanceOptions} getOptions
  */
@@ -95,7 +92,6 @@ function testComponentProp(element, getOptions) {
 /**
  * Material-UI components can spread additional props to a documented component.
  * It's set via @inheritComponent in the source.
- *
  * @param {React.ReactElement} element
  * @param {() => ConformanceOptions} getOptions
  */
@@ -118,7 +114,6 @@ function testPropsSpread(element, getOptions) {
  *
  * This is determined by a given constructor i.e. a React.Component or HTMLElement for
  * components that forward their ref and attach it to a host component.
- *
  * @param {React.ReactElement} element
  * @param {() => ConformanceOptions} getOptions
  */
@@ -142,7 +137,6 @@ function describeRef(element, getOptions) {
 
 /**
  * Tests that the root component has the root class
- *
  * @param {React.ReactElement} element
  * @param {() => ConformanceOptions} getOptions
  */
@@ -168,7 +162,6 @@ function testRootClass(element, getOptions) {
 /**
  * Tests that the component can be rendered with react-test-renderer.
  * This is important for snapshot testing with Jest (even if we don't encourage it).
- *
  * @param {React.ReactElement} element
  */
 function testReactTestRenderer(element) {
@@ -206,10 +199,8 @@ const fullSuite = {
 /**
  * Tests various aspects of a component that should be equal across Material-UI
  * components.
- *
  * @param {React.ReactElement} minimalElement - the component with it's minimal required props
  * @param {() => ConformanceOptions} getOptions
- *
  */
 export default function describeConformance(minimalElement, getOptions) {
   const { after: runAfterHook = () => {}, only = Object.keys(fullSuite), skip = [] } = getOptions();

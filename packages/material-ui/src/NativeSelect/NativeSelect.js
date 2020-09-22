@@ -23,7 +23,7 @@ export const styles = (theme) => ({
     '&:focus': {
       // Show that it's not an text input
       backgroundColor:
-        theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.05)' : 'rgba(255, 255, 255, 0.05)',
+        theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.05)' : 'rgba(255, 255, 255, 0.05)',
       borderRadius: 0, // Reset Chrome style
     },
     // Remove IE 11 arrow
@@ -171,7 +171,7 @@ NativeSelect.propTypes = {
    */
   inputProps: PropTypes.object,
   /**
-   * Callback function fired when a menu item is selected.
+   * Callback fired when a menu item is selected.
    *
    * @param {object} event The event source of the callback.
    * You can pull out the new value by accessing `event.target.value` (string).

@@ -73,7 +73,6 @@ const customQueries = {
  */
 
 /**
- *
  * @param {React.ReactElement} element
  * @param {RenderOptions} [options]
  * @returns {import('@testing-library/react').RenderResult<typeof queries & typeof customQueries> & { setProps(props: object): void}}

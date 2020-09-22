@@ -15,6 +15,8 @@ Esse componente pode ser útil em várias situações:
 - Sob carga de servidor muito pesada, você pode ativar a degradação do serviço.
 - Melhorar o tempo de interação apenas renderizando o que é importante (com a propriedade `defer`).
 
+[A paleta](/system/palette/) com funções de estilo.
+
 ## Adiamento do lado do cliente
 
 {{"demo": "pages/components/no-ssr/SimpleNoSsr.js"}}
@@ -23,6 +25,6 @@ Esse componente pode ser útil em várias situações:
 
 Em sua essência, o objetivo do componente NoSsr é **adiar a renderização**. Como está ilustrado na demonstração anterior, você pode usá-lo para adiar a renderização do servidor para o cliente.
 
-Mas você também pode usá-lo para adiar a renderização dentro do próprio cliente. Você pode **aguardar um quadro de tela** com a propriedade `defer` para renderizar o children. React faz [2 commits](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects) em vez de 1.
+Mas você também pode usá-lo para adiar a renderização dentro do próprio cliente. Você pode **aguardar um quadro de tela** com a propriedade `defer` para renderizar o children. React faz [2 commits](https://pt-br.reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects) em vez de 1.
 
 {{"demo": "pages/components/no-ssr/FrameDeferring.js"}}

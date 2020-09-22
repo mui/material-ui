@@ -1,6 +1,6 @@
 # @material-ui/system
 
-<p class="description">Styled system & style functions for building powerful design systems.</p>
+<p class="description">Funciones estilizadas de sistema y estilo para construir potentes sistemas de diseño.</p>
 
 ## Primeros pasos
 
@@ -9,10 +9,10 @@
 - ⚛️ Access the theme values directly from the component props.
 - 🦋 Encourage UI consistency.
 - 🌈 Write responsive style effortlessly.
-- 🦎 Work with any theme object.
-- 💅 Work with the most popular CSS-in-JS solutions.
-- 📦 Less than [4 KB gzipped](https://bundlephobia.com/result?p=@material-ui/system).
-- 🚀 [Fast enough](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-benchmark/README.md#material-uisystem) not to be a bottleneck at runtime.
+- 🦎 Trabajar con cualquier objeto temático.
+- 💅 Trabaja con las soluciones CSS-en-JS más populares.
+- 📦 Menos de [4 KB comprimido](https://bundlephobia.com/result?p=@material-ui/system).
+- 🚀 [Rápido suficientemente ](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-benchmark/README.md#material-uisystem) como para no ser un cuello de botella en tiempo de ejecución.
 
 It's important to understand that this package exposes pure (side-effect free) style functions with this signature: `({ theme, ...style }) => style`, **that's it**.
 
@@ -32,7 +32,7 @@ npm install @material-ui/system
 yarn add @material-ui/system
 ```
 
-### Create a component
+### Crear un componente
 
 In order to use the `Box` component, you first need to create it. To start with, add a `spacing` and `palette` function to the style argument.
 
@@ -49,9 +49,10 @@ This Box component now supports new [spacing properties](/system/spacing/#api) a
 
 ```jsx
 <Box p="1rem" color="grey">Give me some space!</Box>
+</Box>
 ```
 
-The component can be styled providing any valid CSS values.
+El componente puede ser diseñado proporcionando cualquier valor CSS válido.
 
 ### Temática
 
@@ -91,7 +92,7 @@ and a primary color:
 <Box color="primary">blue</Box>
 ```
 
-### All-inclusive
+### Todo incluido
 
 To make the Box component more useful, we have been building a collection of style functions, here is the full list:
 
@@ -111,7 +112,7 @@ If you are already using `@material-ui/core`, you can use the [Box component](/c
 import Box from '@material-ui/core/Box';
 ```
 
-## Interoperability
+## Interoperabilidad
 
 `@material-ui/system` works with most CSS-in-JS libraries, including JSS, styled-components, and emotion.
 
@@ -129,7 +130,7 @@ If you are already using `@material-ui/core`, we encourage you to start with the
 
 {{"demo": "pages/system/basics/Emotion.js", "defaultCodeOpen": true}}
 
-## Responsive
+## Responsivo
 
 **All** the properties are responsive, we support 3 different APIs. It uses this default, but customizable, breakpoints theme structure:
 
@@ -186,7 +187,7 @@ const theme = {
  */
 ```
 
-### Collocation
+### Colocación
 
 If you want to group the breakpoint values, you can use the `breakpoints()` helper.
 
@@ -224,7 +225,7 @@ const Box = styled.div`
 
 {{"demo": "pages/system/basics/CollocationApi.js"}}
 
-## Custom style props
+## Props de estilo personalizado
 
 ### `style(options) => style function`
 
@@ -234,13 +235,14 @@ Not all CSS properties are supported. It's possible that you want to support new
 
 #### Argumentos
 
-1. `options` (*Object*): 
-  - `options.prop` (*String*): The property the style function will be triggered on.
-  - `options.cssProperty` (*String|Boolean* [optional]): Defaults to `options.prop`. The CSS property used. You can disabled this option by providing `false`. When disabled, the property value will handle as a style object on it's own. It can be used for [rendering variants](#variants).
-  - `options.themeKey` (*String* [optional]): The theme path prefix.
-  - `options.transform` (*Function* [optional]): Apply a transformation before outputing a CSS value.
+1. `options` (*Object*):
 
-#### Devuelve
+- `options.prop` (*String*): The property the style function will be triggered on.
+- `options.cssProperty` (*String|Boolean* [optional]): Defaults to `options.prop`. The CSS property used. You can disabled this option by providing `false`. The CSS property used. It can be used for [rendering variants](#variants).
+- `options.themeKey` (*String* [optional]): The theme path prefix.
+- `options.transform` (*Function* [optional]): Apply a transformation before outputing a CSS value.
+
+#### Regresa
 
 `style function`: The style function created.
 
@@ -260,6 +262,8 @@ const gridGap = style({
 
 const Grid = styled(Box)`${gridGap}`;
 const example = <Grid display="grid" gridGap={[2, 3]}>...</Grid>;
+  </Grid>
+);
 ```
 
 You can also customize the prop name by adding both a `prop` and `cssProperty` and transform the value by adding a `transform` function.
@@ -281,9 +285,9 @@ const example = <Colored bc="primary.main">...</Colored>;
 
 ### `compose(...style functions) => style function`
 
-Merge multiple style functions into one.
+Combinar múltiples funciones de estilo en una.
 
-#### Devuelve
+#### Regresa
 
 `style function`: The style function created.
 
@@ -306,7 +310,7 @@ export const bgcolor = style({
 const palette = compose(textColor, bgcolor);
 ```
 
-## Variants
+## Variantes
 
 The `style()` helper can also be used to maps properties to style objects in a theme. In this example, the `variant` property supports all the keys present in `theme.typography`.
 
@@ -314,7 +318,7 @@ The `style()` helper can also be used to maps properties to style objects in a t
 
 ## Propiedad CSS
 
-If you want to support custom CSS values, you can use the `css()` helper. It will process the `css` property.
+It will process the `css` property. It will process the `css` property.
 
 {{"demo": "pages/system/basics/CssProp.js", "defaultCodeOpen": true}}
 
@@ -336,7 +340,7 @@ In practice, a Box component can save you a lot of time. In this example, we dem
 - Tachyons was later on (2017) followed by [Tailwind CSS](https://tailwindcss.com/). They have made Atomic CSS more popular.
 - [Twitter Bootstrap](https://getbootstrap.com/docs/4.1/utilities/borders/) has slowly introduced atomic class names in v2, v3, and v4. The way they group their "Helper classes" was used as inspiration.
 - In the React world, [Styled System](https://github.com/jxnblk/styled-system) was one of the first (2017) to promote the style functions. It can be used as a generic Box component replacing the atomic CSS helpers as well as helpers to write new components.
-- Large companies such as Pinterest, GitHub, and Segment.io are using the same approach in different flavours: 
+- Large companies such as Pinterest, GitHub, and Segment.io are using the same approach in different flavours:
   - [Evergreen Box](https://evergreen.segment.com/components/layout-primitives/)
   - [Gestalt Box](https://pinterest.github.io/gestalt/#/Box)
   - [Primer Box](https://primer.style/components/docs/Box)

@@ -57,7 +57,7 @@ export default function DiamondSponsors(props) {
         <img
           width="125"
           height="35"
-          src={`/static/in-house/octopus-${theme.palette.type}.png`}
+          src={`/static/in-house/octopus-${theme.palette.mode}.png`}
           alt="octopus"
           title="Repeatable, reliable deployments"
           loading="lazy"
@@ -76,7 +76,7 @@ export default function DiamondSponsors(props) {
           width="125"
           height="35"
           src={`/static/in-house/doit-intl.png`}
-          alt="octopus"
+          alt="doit-intl"
           title="Management Platform for Google Cloud and AWS"
           loading="lazy"
         />

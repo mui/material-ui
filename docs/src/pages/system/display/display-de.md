@@ -1,6 +1,6 @@
 # Anzeige
 
-<p class="description">Quickly and responsively toggle the display value of components and more with the display utilities. Unterstützt einige der gebräuchlichsten Werte sowie einige Extras zur Steuerung der Anzeige beim Drucken.</p>
+<p class="description">Unterstützt einige der gebräuchlichsten Werte sowie einige Extras zur Steuerung der Anzeige beim Drucken. Quickly and responsively toggle the display value of components and more with the display utilities.</p>
 
 ## Beispiele
 
@@ -39,7 +39,6 @@ Verwenden Sie für eine schnellere, mobilere Entwicklung responsive Anzeigeklass
 | Sichtbar nur bei md  | `display={{ xs: 'none', md: 'block', lg: 'none' }}`  |
 | Sichtbar nur bei lg  | `display={{ xs: 'none', lg: 'block', xl: 'none' }}`  |
 | Sichtbar nur bei xl  | `display={{ xs: 'none', xl: 'block' }}`              |
-
 
 {{"demo": "pages/system/display/Hiding.js", "defaultCodeOpen": false}}
 

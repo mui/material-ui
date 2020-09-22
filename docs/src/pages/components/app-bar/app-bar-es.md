@@ -1,15 +1,20 @@
 ---
 title: 'Componente React: App Bar'
 components: AppBar, Toolbar, Menu
+githubLabel:
+  component: Un App Bar prominente.
+materialDesign: https://material.io/components/app-bars-top
 ---
 
 # App Bar
 
-<p class="description">La App Bar muestra información y acciones disponibles en la pantalla actual.</p>
+<p class="description">La App Bar muestra información y acciones relacionadas con la pantalla actual.</p>
 
 La [top App Bar](https://material.io/design/components/app-bars-top.html) provee contenido y acciones relacionados a la pantalla actual. Es usada para mostrar logotipos de marcas, títulos de pantalla, navegación y acciones.
 
 Se puede transformar en una barra de acción contextual o usarse como una barra de navegación.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## App Bar Simple
 
@@ -113,9 +118,9 @@ Aparece un botón de acción flotante al desplazarse para que sea fácil volver 
 
 1. `options` (*Object* [optional]):
 
-- `options.disableHysteresis` (*Boolean* [optional]): Default `false`. Desactiva la histéresis. Ignora la dirección de desplazamiento cuando determina el valor del `trigger`.
-- `options.target` (*Node* [optional]): Default `window`.
-- `options.threshold` (*Number* [optional]): Default `100`. Cambia el valor de `trigger` cuando el desplazamiento vertical cruza estrictamente este umbral (exclusivo).
+   - `options.disableHysteresis` (*Boolean* [optional]): Default `false`. Desactiva la histéresis. Ignora la dirección de desplazamiento cuando determina el valor del `trigger`.
+   - `options.target` (*Node* [optional]): Default `window`.
+   - `options.threshold` (*Number* [optional]): Default `100`. Cambia el valor de `trigger` cuando el desplazamiento vertical cruza estrictamente este umbral (exclusivo).
 
 #### Regresa
 
@@ -130,7 +135,7 @@ function HideOnScroll(props) {
   const trigger = useScrollTrigger();
   return (
     <Slide in={!trigger}>
-      <div>Hello</div>
+      <div>Hola</div>
     </Slide>
   );
 }

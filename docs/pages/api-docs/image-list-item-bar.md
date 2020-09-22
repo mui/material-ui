@@ -28,12 +28,12 @@ The `MuiImageListItemBar` name can be used for providing [default props](/custom
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">actionIcon</span> | <span class="prop-type">node</span> |  | An IconButton element to be used as secondary action target (primary action target is the tile itself). |
+| <span class="prop-name">actionIcon</span> | <span class="prop-type">node</span> |  | An IconButton element to be used as secondary action target (primary action target is the item itself). |
 | <span class="prop-name">actionPosition</span> | <span class="prop-type">'left'<br>&#124;&nbsp;'right'</span> | <span class="prop-default">'right'</span> | Position of secondary action IconButton. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span class="prop-name">position</span> | <span class="prop-type">'below'<br>&#124;&nbsp;'bottom'<br>&#124;&nbsp;'top'</span> | <span class="prop-default">'bottom'</span> | Position of the title bar. |
 | <span class="prop-name">subtitle</span> | <span class="prop-type">node</span> |  | String or element serving as subtitle (support text). |
-| <span class="prop-name">title</span> | <span class="prop-type">node</span> |  | Title to be displayed on tile. |
-| <span class="prop-name">titlePosition</span> | <span class="prop-type">'bottom'<br>&#124;&nbsp;'top'</span> | <span class="prop-default">'bottom'</span> | Position of the title bar. |
+| <span class="prop-name">title</span> | <span class="prop-type">node</span> |  | Title to be displayed. |
 
 The `ref` is forwarded to the root element.
 
@@ -44,10 +44,11 @@ Any other props supplied will be provided to the root element (native element).
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
 | <span class="prop-name">root</span> | <span class="prop-name">.MuiImageListItemBar-root</span> | Styles applied to the root element.
-| <span class="prop-name">titlePositionBottom</span> | <span class="prop-name">.MuiImageListItemBar-titlePositionBottom</span> | Styles applied to the root element if `titlePosition="bottom"`.
-| <span class="prop-name">titlePositionTop</span> | <span class="prop-name">.MuiImageListItemBar-titlePositionTop</span> | Styles applied to the root element if `titlePosition="top"`.
-| <span class="prop-name">rootSubtitle</span> | <span class="prop-name">.MuiImageListItemBar-rootSubtitle</span> | Styles applied to the root element if a `subtitle` is provided.
+| <span class="prop-name">positionBottom</span> | <span class="prop-name">.MuiImageListItemBar-positionBottom</span> | Styles applied to the root element if `position="bottom"`.
+| <span class="prop-name">positionTop</span> | <span class="prop-name">.MuiImageListItemBar-positionTop</span> | Styles applied to the root element if `position="top"`.
+| <span class="prop-name">positionBelow</span> | <span class="prop-name">.MuiImageListItemBar-positionBelow</span> | Styles applied to the root element if `position="below"`.
 | <span class="prop-name">titleWrap</span> | <span class="prop-name">.MuiImageListItemBar-titleWrap</span> | Styles applied to the title and subtitle container element.
+| <span class="prop-name">titleWrapBelow</span> | <span class="prop-name">.MuiImageListItemBar-titleWrapBelow</span> | Styles applied to the title and subtitle container element if `position="below"`.
 | <span class="prop-name">titleWrapActionPosLeft</span> | <span class="prop-name">.MuiImageListItemBar-titleWrapActionPosLeft</span> | Styles applied to the container element if `actionPosition="left"`.
 | <span class="prop-name">titleWrapActionPosRight</span> | <span class="prop-name">.MuiImageListItemBar-titleWrapActionPosRight</span> | Styles applied to the container element if `actionPosition="right"`.
 | <span class="prop-name">title</span> | <span class="prop-name">.MuiImageListItemBar-title</span> | Styles applied to the title container element.

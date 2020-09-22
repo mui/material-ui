@@ -64,10 +64,8 @@ describe('<Checkbox />', () => {
 
   describe('prop: indeterminate', () => {
     it('should render an indeterminate icon', () => {
-      const { container } = render(<Checkbox indeterminate />);
-      expect(
-        container.querySelector('svg[data-mui-test="IndeterminateCheckBoxIcon"]'),
-      ).not.to.equal(null);
+      const { getByTestId } = render(<Checkbox indeterminate />);
+      expect(getByTestId('IndeterminateCheckBoxIcon')).not.to.equal(null);
     });
   });
 

@@ -23,9 +23,6 @@ const styles = (theme) => ({
   secondaryBar: {
     zIndex: 0,
   },
-  menuButton: {
-    marginLeft: -theme.spacing(1),
-  },
   iconButtonAvatar: {
     padding: 4,
   },
@@ -55,7 +52,7 @@ function Header(props) {
                   color="inherit"
                   aria-label="open drawer"
                   onClick={onDrawerToggle}
-                  className={classes.menuButton}
+                  edge="start"
                 >
                   <MenuIcon />
                 </IconButton>

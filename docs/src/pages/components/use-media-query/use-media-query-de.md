@@ -1,5 +1,7 @@
 ---
 title: Medienanfragen in React für Responsive Design
+githubLabel:
+  hook: useMediaQuery
 ---
 
 # useMediaQuery
@@ -12,6 +14,8 @@ Einige der wichtigsten Funktionen:
 - 🚀 Es ist performant. Es observiert das Dokument, welches erkennt, wenn sich die Medienabfragen ändern, anstatt die Werte regelmäßig abzufragen.
 - 📦 [ kB](/size-snapshot) gzipped.
 - 🤖 Es unterstützt serverseitiges Rendering.
+
+Die Style-Funktion der [Palette](/system/palette/).
 
 ## Einfache Medienabfrage
 
@@ -115,7 +119,16 @@ function handleRender(req, res) {
   const ssrMatchMedia = query => ({
     matches: mediaQuery.match(query, {
       // The estimated CSS width of the browser.
-      width: deviceType === 'mobile' ? '0px' : '1024px',
+      import ReactDOMServer from 'react-dom/server';
+import parser from 'ua-parser-js';
+import mediaQuery from 'css-mediaquery';
+import { ThemeProvider } from '@material-ui/core/styles';
+
+function handleRender(req, res) {
+  const deviceType = parser(req.headers['user-agent']).device.type || 'desktop';
+  const ssrMatchMedia = query => ({
+    matches: mediaQuery.match(query, {
+      // The estimated CSS width of the browser. width: deviceType === 'mobile' ? '0px' : '1024px',
     }),
   });
 
@@ -134,6 +147,7 @@ function handleRender(req, res) {
 
   // …
 }
+}
 ```
 
 {{"demo": "pages/components/use-media-query/ServerSide.js", "defaultCodeOpen": false}}
@@ -150,14 +164,15 @@ Die Komponente höherer Ordnung `withWidth()` fügt die Bildschirmbreite der Sei
 
 ### `useMediaQuery(query, [options]) => matches`
 
-#### Argumente
+#### Parameter
 
 1. `query` (*String* | *Function*): A string representing the media query to handle or a callback function accepting the theme (in the context) that returns a string.
-2. `options` (*Object* [optional]): 
-  - ` options.defaultMatches ` (*Boolean* [optional]): Da `window.matchMedia()` auf dem Server nicht verfügbar ist, wird ein Standard Match zurückgegeben. Der Standardwert ist `false`.
-  - `options.matchMedia` (*Function* [optional]) You can provide your own implementation of *matchMedia*. This can be used for handling an iframe content window.
-  - `options.noSsr ` (*Boolean* [optional]): Standardeinstellung ist `false`. Um den serverseitigen Renderingabgleich durchzuführen, muss er zweimal gerendert werden. Ein erstes Mal mit nichts und ein zweites Mal mit den Kind-Elementen. Dieser Zyklus mit zwei Durchgängen ist mit einem Nachteil verbunden. Es ist langsamer. Sie können diese Flag auf `true` setzten, wenn Sie **nicht serverseitig** rendern.
-  - `options.ssrMatchMedia` (*Function* [optional]) You can provide your own implementation of *matchMedia* in a [server-side rendering context](#server-side-rendering).
+2. `options` (*Object* [optional]):
+
+- `options.defaultMatches` (*Boolean* [optional]): Da `window.matchMedia()` auf dem Server nicht verfügbar ist, wird ein Standard Match zurückgegeben. Der Standardwert ist `false`.
+- `options.matchMedia` (*Function* [optional]) You can provide your own implementation of *matchMedia*. This can be used for handling an iframe content window.
+- `options.noSsr` (*Boolean* [optional]): Standardeinstellung ist `false`. Um den serverseitigen Renderingabgleich durchzuführen, muss er zweimal gerendert werden. Ein erstes Mal mit nichts und ein zweites Mal mit den Kind-Elementen. Dieser Zyklus mit zwei Durchgängen ist mit einem Nachteil verbunden. Es ist langsamer. Sie können diese Flag auf `true` setzten, wenn Sie **nicht serverseitig** rendern.
+- `options.ssrMatchMedia` (*Function* [optional]) You can provide your own implementation of *matchMedia* in a [server-side rendering context](#server-side-rendering).
 
 Note: You can change the default options using the [`default props`](/customization/globals/#default-props) feature of the theme with the `MuiUseMediaQuery` key.
 

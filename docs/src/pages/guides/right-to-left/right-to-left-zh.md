@@ -4,7 +4,7 @@
 
 ## 步骤
 
-### 1。 HTML
+### 1. HTML
 
 确保在 body 上设置了 `dir` 属性，否则本机组件将中断：
 
@@ -12,7 +12,7 @@
 <body dir="rtl">
 ```
 
-### 2。 主题
+### 2. 主题
 
 在您自定义的主题中设置方向：
 
@@ -53,14 +53,14 @@ function RTL(props) {
 
 ## 演示
 
-*请使用右上角的方向切换按钮来翻转整个文档。*
+_请使用右上角的方向切换按钮来翻转整个文档。_
 
 {{"demo": "pages/guides/right-to-left/Direction.js"}}
 
 ## 选择退出 rtl 转换
 
-若您想避免一个特殊的特定规则受到 `rtl` 转换的影响，您可以在最开始时加上`flip: false`。
+若您想避免一个特殊的特定规则受到 `rtl` 转换的影响，您可以在最开始时加上 `flip: false`。
 
-*请使用右上角的方向切换按钮来查看效果。*
+_请使用右上角的方向切换按钮来查看效果。_
 
 {{"demo": "pages/guides/right-to-left/RtlOptOut.js", "hideEditButton": true}}

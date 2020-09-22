@@ -77,7 +77,7 @@ const AnotherStyledSFC = withStyles({
 // Overriding styles
 const theme = createMuiTheme({
   palette: {
-    type: 'dark',
+    mode: 'dark',
     primary: blue,
     contrastThreshold: 3,
     tonalOffset: 0.2,
@@ -163,7 +163,7 @@ const theme2 = createMuiTheme({
   },
 });
 
-const t1: number = createMuiTheme().spacing(1);
+const t1: string = createMuiTheme().spacing(1);
 const t2: string = createMuiTheme().spacing(1, 2);
 const t3: string = createMuiTheme().spacing(1, 2, 3);
 const t4: string = createMuiTheme().spacing(1, 2, 3, 4);

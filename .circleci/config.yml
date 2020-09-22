@@ -160,7 +160,7 @@ jobs:
       - install_js
       - run:
           name: Transpile TypeScript demos
-          command: yarn docs:typescript:formatted --disable-cache
+          command: yarn docs:typescript:formatted
       - run:
           name: '`yarn docs:typescript:formatted` changes committed?'
           command: git add -A && git diff --exit-code --staged
@@ -227,12 +227,7 @@ workflows:
   version: 2
   pipeline:
     jobs:
-      - checkout:
-          filters:
-            branches:
-              ignore:
-                - l10n
-                - /dependabot\//
+      - checkout
       - test_unit:
           requires:
             - checkout

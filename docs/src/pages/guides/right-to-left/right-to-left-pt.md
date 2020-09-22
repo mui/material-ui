@@ -24,7 +24,7 @@ const theme = createMuiTheme({
 
 ### 3. jss-rtl
 
-Você precisa deste plugin JSS para mudar os estilos: [jss-rtl](https://github.com/alitaheri/jss-rtl).
+Você precisa deste plugin JSS para inverter os estilos: [jss-rtl](https://github.com/alitaheri/jss-rtl).
 
 ```sh
 npm install jss-rtl
@@ -53,7 +53,7 @@ function RTL(props) {
 
 ## Demonstração
 
-*Use o botão de alternância de direção no canto superior direito para inverter toda a documentação*
+_Use o botão de alternância de direção no canto superior direito para inverter toda a documentação_
 
 {{"demo": "pages/guides/right-to-left/Direction.js"}}
 
@@ -61,6 +61,6 @@ function RTL(props) {
 
 Se você quiser evitar que um conjunto de regras específico seja afetado pela transformação `rtl`, você pode adicionar `flip: false` no inicio.
 
-*Use o botão de alternância de direção no canto superior direito para ver o efeito.*
+_Use o botão de alternância de direção no canto superior direito para ver o efeito._
 
 {{"demo": "pages/guides/right-to-left/RtlOptOut.js", "hideEditButton": true}}

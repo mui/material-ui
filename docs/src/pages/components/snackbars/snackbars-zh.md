@@ -1,15 +1,21 @@
 ---
-title: React Snackbar 消息条组件
+title: React 消息条组件
 components: Snackbar, SnackbarContent
+githubLabel:
+  component: Snackbar（消息条）
+materialDesign: https://material.io/components/snackbars
+waiAria: 'https://www.w3.org/TR/wai-aria-1.1/#alert'
 ---
 
-# Snackbar 消息条
+# Snackbar（消息条）
 
 <p class="description">消息条组件提供了关于应用流程的简短信息。 该组件也被称为 toast。</p>
 
 [消息条](https://material.io/design/components/snackbars.html)将应用程序已执行或即将执行的进程通知用户。 它们会从屏幕底部短暂地出现。 它们不应中断用户体验，也不要求任何用户的操作来关闭。
 
 消息条包含了一行直接与所执行操作相关的文本。 它们可能包含一些文本操作，但并不会展示图标。 您也可以用他们展示通知。
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 #### 频率
 
@@ -23,7 +29,7 @@ components: Snackbar, SnackbarContent
 
 ## 自定义的消息条
 
-以下是自定义组件的一些例子。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
+你可以参考以下一些例子来自定义组件。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
 
 {{"demo": "pages/components/snackbars/CustomizedSnackbars.js"}}
 
@@ -71,7 +77,7 @@ components: Snackbar, SnackbarContent
 
 ### notistack
 
-![评星](https://img.shields.io/github/stars/iamhosseindhv/notistack.svg?style=social&label=Stars) ![npm下载](https://img.shields.io/npm/dm/notistack.svg)
+![stars](https://img.shields.io/github/stars/iamhosseindhv/notistack.svg?style=social&label=Stars) ![npm下载](https://img.shields.io/npm/dm/notistack.svg)
 
 以下例子演示了如何使用 [notistack](https://github.com/iamhosseindhv/notistack)。 notistack 有一个 **imperative API** 可以轻松地显示一串消息条，且无需处理其打开/关闭状态。 您也可以把它们 **堆叠** 在一起（尽管 Material Design 规范不鼓励这样做）。
 

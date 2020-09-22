@@ -1,21 +1,25 @@
 ---
 title: ButtonGroup React component
 components: Button, ButtonGroup
+githubLabel:
+  component: ButtonGroup
 ---
 
 # Button group
 
-<p class="description">The ButtonGroup component can be used to group related buttons.</p>
+<p class="description">Die ButtonGroup-Komponente kann verwendet werden, um zueinandergehörende Schaltflächen zu gruppieren.</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Basic button group
 
 {{"demo": "pages/components/button-group/BasicButtonGroup.js"}}
 
-## Sizes and colors
+## Größen und Farben
 
 {{"demo": "pages/components/button-group/GroupSizesColors.js"}}
 
-## Vertical group
+## Vertikale Gruppe
 
 {{"demo": "pages/components/button-group/GroupOrientation.js"}}
 
@@ -27,6 +31,6 @@ components: Button, ButtonGroup
 
 ## Disabled elevation
 
-You can remove the elevation with the `disableElevation` prop.
+Die Erhöhung kann mit der `disableElevation`-Prop deaktiviert werden.
 
 {{"demo": "pages/components/button-group/DisableElevation.js"}}

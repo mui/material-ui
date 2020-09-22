@@ -1,6 +1,10 @@
 ---
 title: Checkbox React component
 components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
+materialDesign: 'https://material.io/components/selection-controls#checkboxes'
+githubLabel:
+  component: Checkbox
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#checkbox'
 ---
 
 # Checkbox
@@ -10,6 +14,8 @@ components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 [Чекбоксы](https://material.io/design/components/selection-controls.html#checkboxes) могут быть использованы для включения или выключения различных опций.
 
 Если у вас есть несколько опций, отображаемых в списке, вы можете сохранить пространство, используя чекбоксы вместо переключателей. Если у вас есть только один вариант, лучше не использовать чекбокс, вместо него используйте переключатель включения / выключения.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Basic checkboxes
 

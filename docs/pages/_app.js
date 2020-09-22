@@ -61,7 +61,6 @@ function LanguageNegotiation() {
 
 /**
  * Priority: on first render: navigated value, persisted value; otherwise initial value, 'JS'
- *
  * @returns {string} - The persisted variant if the initial value is undefined
  */
 function usePersistCodeVariant() {
@@ -297,7 +296,9 @@ function AppWrapper(props) {
 
   const activePage = findActivePage(pages, router.pathname);
 
-  let fonts = ['https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap'];
+  let fonts = [
+    'https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700&display=swap',
+  ];
   if (router.pathname.match(/onepirate/)) {
     fonts = [
       'https://fonts.googleapis.com/css?family=Roboto+Condensed:700|Work+Sans:300,400&display=swap',

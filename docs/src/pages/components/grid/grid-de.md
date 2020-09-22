@@ -1,6 +1,9 @@
 ---
 title: Grid React Komponente
 components: Grid
+githubLabel:
+  component: Grid
+materialDesign: https://material.io/design/layout/understanding-layout.html
 ---
 
 # Grid
@@ -8,6 +11,8 @@ components: Grid
 <p class="description">Das responsive Layoutraster von Material Design passt sich der Bildschirmgröße und -ausrichtung an und sorgt für Konsistenz über alle Layouts hinweg.</p>
 
 Das [Grid](https://material.io/design/layout/responsive-layout-grid.html) sorgt für visuelle Konsistenz zwischen Layouts und ermöglicht Flexibilität bei einer Vielzahl von Designs. Die responsive UI von Material Design basiert auf einem 12-Spalten-Rasterlayout.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## So funktioniert es
 
@@ -18,12 +23,13 @@ Das Rastersystem wird mit der `Grid-` Komponente implementiert:
 - Die Elementbreiten werden in Prozent angegeben. Sie sind daher immer fließend und werden in Bezug auf das übergeordnete Element angepasst.
 - Elemente haben einen Abstand, um den Abstand zwischen den einzelnen Elementen zu erstellen.
 - Es gibt fünf Rasterpunkte: xs, sm, md, lg und xl.
+- Integer values can be given to each breakpoint, indicating how many of the 12 available columns are occupied by the component when the viewport width satisfies the [breakpoint contraints](/customization/breakpoints/#default-breakpoints).
 
 Wenn Sie **neu sind oder Flexbox nicht gut kennen**, empfehlen wir Ihnen, dies zu lesen: [CSS-Tricks Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/).
 
 ## Abstände
 
-Das responsive Raster konzentriert sich auf konsistente Abstandsbreiten und nicht auf die Spaltenbreite. Die Ränder und Spalten des Materialdesigns folgen einem Grundraster aus **8px** Quadraten. Die Abstandseigenschaft ist eine ganze Zahl zwischen 0 und einschließlich 10. Standardmäßig folgt der Abstand zwischen zwei Rasterelementen einer linearen Funktion: `output(spacing) = spacing * 8px`, z. B. `spacing={2}` erzeugt eine Lücke von 16px.
+Das responsive Raster konzentriert sich auf konsistente Abstandsbreiten und nicht auf die Spaltenbreite. Die Ränder und Spalten des Materialdesigns folgen einem Grundraster aus **8px** Quadraten. The `spacing` prop value is an integer between 0 and 10 inclusive. Standardmäßig folgt der Abstand zwischen zwei Rasterelementen einer linearen Funktion: `output(spacing) = spacing * 8px`, z. B. `spacing={2}` erzeugt eine Lücke von 16px.
 
 Diese Ausgabetransformationsfunktion kann durch [Verwendung des Themes](/customization/spacing/) angepasst werden.
 
@@ -35,13 +41,17 @@ Flüssige Raster verwenden Spalten, die den Inhalt skalieren und verkleinern. A 
 
 ### Grundraster
 
-Die Spaltenbreiten gelten für alle Rasterpunkte (d.h. `xs` und höher).
+Column widths are integer values between 1 and 12; they apply at any breakpoint and indicate how many columns are occupied by the component.
+
+A value given to a breakpoint applies to all the other breakpoints wider than it (unless overridden, as you can read later in this page). For example, `xs={12}` sizes a component to occupy the whole viewport width regardless of its size.
 
 {{"demo": "pages/components/grid/CenteredGrid.js", "bg": true}}
 
 ### Raster mit Rasterpunkten
 
-Für einige Spalten sind mehrere Breiten definiert, wodurch sich das Layout am definierten Rasterpunkten ändert.
+Für einige Spalten sind mehrere Breiten definiert, wodurch sich das Layout am definierten Rasterpunkten ändert. Width values given to larger breakpoints override those given to smaller breakpoints.
+
+For example, `xs={12} sm={6}` sizes a component to occupy half of the viewport width (6 columns) when viewport width is [600 or more pixels](/customization/breakpoints/#default-breakpoints). For smaller viewports, the component fills all 12 available columns.
 
 {{"demo": "pages/components/grid/FullWidthGrid.js", "bg": true}}
 
@@ -82,15 +92,15 @@ Es gibt eine Einschränkung beim negativen Rand, den wir verwenden, um den Absta
 1. Nicht die Abstands-Funktion benutzen und den Abstand in Anzeigeraum `spacing={0}` (Standard) setzen.
 2. Anwenden von Paddings auf das übergeordnete Element, wobei mindestens der halbe Abstand auf das untergeordnete Element angewendet wird:
 
-```jsx
-  <body>
+   ```jsx
+   <body>
     <div style={{ padding: 20 }}>
       <Grid container spacing={5}>
         //...
-      </Grid>
+       </Grid>
     </div>
   </body>
-```
+   ```
 
 3. Hinzufügen von `overflow-x: hidden;` zum Elternteil.
 
@@ -103,7 +113,7 @@ The initial setting on flex items is `min-width: auto`. It's causing a positioni
   <Typography noWrap>
 ```
 
-In order for the item to stay within the container you need to set `min-width: 0`. In practice, you can set the `zeroMinWidth` property:
+In order for the item to stay within the container you need to set `min-width: 0`. In order for the item to stay within the container you need to set `min-width: 0`.
 
 ```jsx
 <Grid item xs zeroMinWidth>

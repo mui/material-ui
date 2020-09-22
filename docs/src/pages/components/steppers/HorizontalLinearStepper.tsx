@@ -11,38 +11,34 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       width: '100%',
     },
+    buttonWrapper: {
+      display: 'flex',
+      flexDirection: 'row',
+      padding: '16px 0 0',
+    },
     button: {
       marginRight: theme.spacing(1),
     },
+    spacer: {
+      flex: '1 1 auto',
+    },
     instructions: {
-      marginTop: theme.spacing(1),
+      marginTop: theme.spacing(2),
       marginBottom: theme.spacing(1),
     },
   }),
 );
 
-function getSteps() {
-  return ['Select campaign settings', 'Create an ad group', 'Create an ad'];
-}
-
-function getStepContent(step: number) {
-  switch (step) {
-    case 0:
-      return 'Select campaign settings...';
-    case 1:
-      return 'What is an ad group anyways?';
-    case 2:
-      return 'This is the bit I really care about!';
-    default:
-      return 'Unknown step';
-  }
-}
+const steps = [
+  'Select campaign settings',
+  'Create an ad group',
+  'Create an ad',
+];
 
 export default function HorizontalLinearStepper() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set<number>());
-  const steps = getSteps();
 
   const isStepOptional = (step: number) => {
     return step === 1;
@@ -109,49 +105,46 @@ export default function HorizontalLinearStepper() {
           );
         })}
       </Stepper>
-      <div>
-        {activeStep === steps.length ? (
-          <div>
-            <Typography className={classes.instructions}>
-              All steps completed - you&apos;re finished
-            </Typography>
-            <Button onClick={handleReset} className={classes.button}>
-              Reset
+      {activeStep === steps.length ? (
+        <React.Fragment>
+          <Typography className={classes.instructions}>
+            All steps completed - you&apos;re finished
+          </Typography>
+          <div className={classes.buttonWrapper}>
+            <div className={classes.spacer} />
+            <Button onClick={handleReset}>Reset</Button>
+          </div>
+        </React.Fragment>
+      ) : (
+        <React.Fragment>
+          <Typography className={classes.instructions}>
+            Step {activeStep + 1}
+          </Typography>
+          <div className={classes.buttonWrapper}>
+            <Button
+              color="inherit"
+              disabled={activeStep === 0}
+              onClick={handleBack}
+              className={classes.button}
+            >
+              Back
+            </Button>
+            <div className={classes.spacer} />
+            {isStepOptional(activeStep) && (
+              <Button
+                color="inherit"
+                onClick={handleSkip}
+                className={classes.button}
+              >
+                Skip
+              </Button>
+            )}
+            <Button onClick={handleNext}>
+              {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
             </Button>
           </div>
-        ) : (
-          <div>
-            <Typography className={classes.instructions}>
-              {getStepContent(activeStep)}
-            </Typography>
-            <div>
-              <Button
-                disabled={activeStep === 0}
-                onClick={handleBack}
-                className={classes.button}
-              >
-                Back
-              </Button>
-              {isStepOptional(activeStep) && (
-                <Button
-                  variant="contained"
-                  onClick={handleSkip}
-                  className={classes.button}
-                >
-                  Skip
-                </Button>
-              )}
-              <Button
-                variant="contained"
-                onClick={handleNext}
-                className={classes.button}
-              >
-                {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-              </Button>
-            </div>
-          </div>
-        )}
-      </div>
+        </React.Fragment>
+      )}
     </div>
   );
 }

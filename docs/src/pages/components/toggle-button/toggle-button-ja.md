@@ -1,13 +1,19 @@
 ---
 title: Toggle Button React component
 components: ToggleButton, ToggleButtonGroup
+githubLabel:
+  component: ToggleButton
+materialDesign: 'https://material.io/components/buttons#toggle-button'
+packageName: '@material-ui/lab'
 ---
 
 # トグルボタン
 
 <p class="description">トグルボタンを使用して、関連するオプションをグループ化できます。</p>
 
-関連する [Toggle buttons](https://material.io/components/buttons#toggle-button)のグループを強調するには、次の操作を行います。 グループは共通のコンテナーを共用する必要があります。 The `ToggleButtonGroup` controls the selected state of its child buttons when given its own `value` prop.
+関連する [Toggle buttons](https://material.io/components/buttons#toggle-button)のグループを強調するには、次の操作を行います。 グループは共通のコンテナーを共用する必要があります。 ToggleButton sets `aria-pressed="<bool>"` according to the button state.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Exclusive selection
 
@@ -57,7 +63,7 @@ const handleAlignment = (event, newAlignment) => {
 
 ## Customized toggle button
 
-コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/toggle-button/CustomizedDividers.js", "bg": true}}
 

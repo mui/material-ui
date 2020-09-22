@@ -1,6 +1,9 @@
 ---
 title: Список, компонент React
 components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
+githubLabel:
+  component: Список
+materialDesign: https://material.io/components/lists
 ---
 
 # Списки
@@ -8,6 +11,8 @@ components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, Lis
 <p class="description">Списки представляют собой непрерывные вертикальные массивы данных из текста или изображений.</p>
 
 [Списки](https://material.io/design/components/lists.html) представляют собой непрерывную группу из текста или изображений. Они состоят из элементов, содержащих основные и дополнительные действия, которые представлены значками и текстом.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Простой список
 
@@ -22,9 +27,11 @@ function ListItemLink(props) {
 
 //...
 
-<ListItemLink href="#simple-list">
-  <ListItemText primary="Spam" />
-</ListItemLink>
+function ListItemLink(props) {
+  return <ListItem button component="a" {...props} />;
+}
+
+//...
 ```
 
 Вы можете [посмотреть демо с React Router](/guides/composition/#react-router).
@@ -39,7 +46,7 @@ function ListItemLink(props) {
 
 ## Интерактивность
 
-Ниже приведена интерактивная демонстрация, которая позволяет вам увидеть результаты различных настроек:
+Ниже приведен интерактивный пример, который демонстрирует результаты различных настроек сетки:
 
 {{"demo": "pages/components/lists/InteractiveList.js", "bg": true}}
 
@@ -85,13 +92,19 @@ This feature relies on CSS sticky positioning. Unfortunately it's [not implement
 
 {{"demo": "pages/components/lists/InsetList.js", "bg": true}}
 
+## Gutterless list
+
+When rendering a list within a component that defines its own gutters, `ListItem` gutters can be disabled with `disableGutters`.
+
+{{"demo": "pages/components/lists/GutterlessList.js", "bg": true}}
+
 ## Virtualized List
 
 In the following example, we demonstrate how to use [react-window](https://github.com/bvaughn/react-window) with the `List` component. Он отображает 200 строк и c легкостью может еще больше. Virtualization helps with performance issues.
 
 {{"demo": "pages/components/lists/VirtualizedList.js", "bg": true}}
 
-The use of [react-window](https://github.com/bvaughn/react-window) when possible is encouraged. If this library doesn't cover your use case, you should consider using [react-virtualized](https://github.com/bvaughn/react-virtualized), then alternatives like [react-virtuoso](https://github.com/petyosi/react-virtuoso).
+If this library doesn't cover your use case, you should consider using [react-virtualized](https://github.com/bvaughn/react-virtualized), then alternatives like [react-virtuoso](https://github.com/petyosi/react-virtuoso). The use of [react-window](https://github.com/bvaughn/react-window) when possible is encouraged.
 
 ## Кастомизация
 

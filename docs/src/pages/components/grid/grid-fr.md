@@ -1,6 +1,9 @@
 ---
 title: Composant React Grid
 components: Grid
+githubLabel:
+  component: Grid
+materialDesign: https://material.io/design/layout/understanding-layout.html
 ---
 
 # Grid
@@ -8,6 +11,8 @@ components: Grid
 <p class="description">Le composant responsive Grid de Material Design s'adapte à la taille et à l'orientation de l'écran, garantissant ainsi la cohérence entre les différents agencements.</p>
 
 [Grid](https://material.io/design/layout/responsive-layout-grid.html) créé une cohérence visuelle entre les agencements tout en permettant une certaine flexibilité à travers une grande variété de modèles. L’UI responsive de Material Design est basée sur une grille de 12 colonnes.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Comment ça marche
 
@@ -18,12 +23,13 @@ Le système de grille est implémenté avec le composant `Grid`:
 - La largeur des éléments est définie en pourcentage, ils sont donc toujours fluides et dimensionnés par rapport à leur élément parent.
 - Les éléments ont un rembourrage (padding) pour créer l'espacement entre les éléments individuels.
 - Il existe cinq points de rupture de grille: xs, sm, md, lg et xl.
+- Integer values can be given to each breakpoint, indicating how many of the 12 available columns are occupied by the component when the viewport width satisfies the [breakpoint contraints](/customization/breakpoints/#default-breakpoints).
 
 Si vous êtes **nouveau ou peu familiers avec FlexBox**, nous vous encourageons à lire ce guide [CSS-Tricks flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/).
 
 ## Ecartement
 
-La grille responsive se concentre sur les largeurs d'espacement cohérentes plutôt que sur la largeur des colonnes. Les marges du Material Design et les colonnes suivent un grille carrée de **8px**. La propriété spacing est un entier compris entre 0 et 10 inclus. Par défaut, l'espacement entre deux éléments de la grille suit une fonction linéaire: `sortie (espacement) = espacement * 8px`, par exemple `espacement ={2}` crée un intervalle large de 16px.
+La grille responsive se concentre sur les largeurs d'espacement cohérentes plutôt que sur la largeur des colonnes. Les marges du Material Design et les colonnes suivent un grille carrée de **8px**. The `spacing` prop value is an integer between 0 and 10 inclusive. Par défaut, l'espacement entre deux éléments de la grille suit une fonction linéaire: `sortie (espacement) = espacement * 8px`, par exemple `espacement ={2}` crée un intervalle large de 16px.
 
 Cette fonction de transformation de sortie peut être personnalisée [à l'aide du thème](/customization/spacing/).
 
@@ -35,13 +41,17 @@ Fluid grids use columns that scale and resize content. A fluid grid’s layout c
 
 ### Grille de base
 
-La largeur des colonnes s’applique à tous les points de rupture (c.-à-d. `xs` et plus).
+Column widths are integer values between 1 and 12; they apply at any breakpoint and indicate how many columns are occupied by the component.
+
+A value given to a breakpoint applies to all the other breakpoints wider than it (unless overridden, as you can read later in this page). For example, `xs={12}` sizes a component to occupy the whole viewport width regardless of its size.
 
 {{"demo": "pages/components/grid/CenteredGrid.js", "bg": true}}
 
 ### Grille avec points d'arrêt
 
-Plusieurs colonnes ont plusieurs largeurs définies, ce qui entraîne une modification de la présentation au point de rupture défini.
+Plusieurs colonnes ont plusieurs largeurs définies, ce qui entraîne une modification de la présentation au point de rupture défini. Width values given to larger breakpoints override those given to smaller breakpoints.
+
+For example, `xs={12} sm={6}` sizes a component to occupy half of the viewport width (6 columns) when viewport width is [600 or more pixels](/customization/breakpoints/#default-breakpoints). For smaller viewports, the component fills all 12 available columns.
 
 {{"demo": "pages/components/grid/FullWidthGrid.js", "bg": true}}
 
@@ -82,15 +92,15 @@ Il existe une limitation à la marge négative utilisée pour mettre en œuvre l
 1. Ne pas utiliser la fonctionnalité d'espacement et l'implémenter dans l'espace utilisateur `spacing={0}` (par défaut).
 2. Appliquer un rembourrage (padding) au parent avec au moins la moitié de la valeur d'espacement appliquée à l'enfant:
 
-```jsx
-  <body>
+   ```jsx
+   <body>
     <div style={{ padding: 20 }}>
       <Grid container spacing={5}>
         //...
-      </Grid>
+       </Grid>
     </div>
   </body>
-```
+   ```
 
 3. Ajouter `overflow-x: hidden;` au parent.
 
@@ -103,7 +113,7 @@ The initial setting on flex items is `min-width: auto`. It's causing a positioni
   <Typography noWrap>
 ```
 
-In order for the item to stay within the container you need to set `min-width: 0`. In practice, you can set the `zeroMinWidth` property:
+In order for the item to stay within the container you need to set `min-width: 0`. In order for the item to stay within the container you need to set `min-width: 0`.
 
 ```jsx
 <Grid item xs zeroMinWidth>

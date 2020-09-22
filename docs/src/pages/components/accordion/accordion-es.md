@@ -1,6 +1,10 @@
 ---
 title: Componente React Panel de Expansión
 components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
+githubLabel:
+  component: Accordion (panel de expansión)
+materialDesign: https://material.io/archive/guidelines/components/expansion-panels.html
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#accordion'
 ---
 
 # Accordion (panel de expansión)
@@ -9,7 +13,9 @@ components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 
 Un [panel de expansión](https://material.io/archive/guidelines/components/expansion-panels.html) es un contenedor liviano que puede ser ya sea único o estar conectado a una superficie más grande, como una tarjeta.
 
-> **Note:** Expansion panels are no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support them.
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
+> **Note:** Expansion panels are no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support them. It was formerly known as the "expansion panel".
 
 ## Panel de expansión simple
 
@@ -23,11 +29,11 @@ Extiende el comportamiento por defecto del panel para crear un acordeón con el 
 
 ## Customized accordions
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+He aquí un ejemplo de personalización del componente. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/accordion/CustomizedAccordions.js"}}
 
-## Additional actions
+## Acciones Adicionales
 
 In order to put an action such as a `Checkbox` or a button inside of the `AccordionSummary`, you need to stop the propagation of the focus and click events to prevent the panel from expanding/collapsing when using the action. You should also provide an `aria-label` for the action, otherwise the label of the nested action will be included in the label of the parent button that controls the accordion expansion.
 

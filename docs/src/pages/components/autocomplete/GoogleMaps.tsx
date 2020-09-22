@@ -29,18 +29,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+interface MainTextMatchedSubstrings {
+  offset: number;
+  length: number;
+}
+interface StructuredFormatting {
+  main_text: string;
+  secondary_text: string;
+  main_text_matched_substrings: MainTextMatchedSubstrings[];
+}
 interface PlaceType {
   description: string;
-  structured_formatting: {
-    main_text: string;
-    secondary_text: string;
-    main_text_matched_substrings: [
-      {
-        offset: number;
-        length: number;
-      },
-    ];
-  };
+  structured_formatting: StructuredFormatting;
 }
 
 export default function GoogleMaps() {
@@ -143,7 +143,7 @@ export default function GoogleMaps() {
           fullWidth
         />
       )}
-      renderOption={(option) => {
+      renderOption={(props, option) => {
         const matches =
           option.structured_formatting.main_text_matched_substrings;
         const parts = parse(
@@ -155,26 +155,28 @@ export default function GoogleMaps() {
         );
 
         return (
-          <Grid container alignItems="center">
-            <Grid item>
-              <LocationOnIcon className={classes.icon} />
+          <li {...props}>
+            <Grid container alignItems="center">
+              <Grid item>
+                <LocationOnIcon className={classes.icon} />
+              </Grid>
+              <Grid item xs>
+                {parts.map((part, index) => (
+                  <span
+                    key={index}
+                    style={{
+                      fontWeight: part.highlight ? 700 : 400,
+                    }}
+                  >
+                    {part.text}
+                  </span>
+                ))}
+                <Typography variant="body2" color="textSecondary">
+                  {option.structured_formatting.secondary_text}
+                </Typography>
+              </Grid>
             </Grid>
-            <Grid item xs>
-              {parts.map((part, index) => (
-                <span
-                  key={index}
-                  style={{
-                    fontWeight: part.highlight ? 700 : 400,
-                  }}
-                >
-                  {part.text}
-                </span>
-              ))}
-              <Typography variant="body2" color="textSecondary">
-                {option.structured_formatting.secondary_text}
-              </Typography>
-            </Grid>
-          </Grid>
+          </li>
         );
       }}
     />

@@ -62,6 +62,5 @@ export type StepperClasskey = keyof NonNullable<StepperProps['classes']>;
  * API:
  *
  * - [Stepper API](https://material-ui.com/api/stepper/)
- * - inherits [Paper API](https://material-ui.com/api/paper/)
  */
 export default function Stepper(props: StepperProps): JSX.Element;

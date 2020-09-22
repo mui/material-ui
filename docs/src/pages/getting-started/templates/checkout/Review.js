@@ -29,6 +29,7 @@ const products = [
   },
   { name: 'Shipping', desc: '', price: 'Free' },
 ];
+
 const addresses = [
   '1 Material-UI Drive',
   'Reactville',
@@ -36,6 +37,7 @@ const addresses = [
   '99999',
   'USA',
 ];
+
 const payments = [
   { name: 'Card type', detail: 'Visa' },
   { name: 'Card holder', detail: 'Mr John Smith' },
@@ -70,6 +72,7 @@ export default function Review() {
             <Typography variant="body2">{product.price}</Typography>
           </ListItem>
         ))}
+
         <ListItem className={classes.listItem}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" className={classes.total}>

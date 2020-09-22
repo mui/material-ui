@@ -1,7 +1,7 @@
 ---
 title: Radio buttons React component
 components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
-githubLabel: component: Radio
+githubLabel: 'component: Radio'
 materialDesign: https://material.io/components/selection-controls#radio-buttons
 waiAria: https://www.w3.org/TR/wai-aria-practices/#radiobutton
 ---

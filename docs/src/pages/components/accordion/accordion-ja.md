@@ -1,6 +1,10 @@
 ---
 title: Accordion React component
 components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
+githubLabel:
+  component: Accordion (拡張パネル)
+materialDesign: https://material.io/archive/guidelines/components/expansion-panels.html
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#accordion'
 ---
 
 # Accordion (拡張パネル)
@@ -9,7 +13,9 @@ components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 
 [拡張パネル](https://material.io/archive/guidelines/components/expansion-panels.html)は 独立した軽量のコンテナであるか、カードなどの大きなサーフェスに接続されています。
 
-> **注：** 拡張パネルについては、[Material Design guidelines](https://material.io/)では説明されていませんが、Material-UIでは引き続きサポートされます。
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
+> **注：** 拡張パネルについては、[Material Design guidelines](https://material.io/)では説明されていませんが、Material-UIでは引き続きサポートされます。 以前は"expansion panel"としてしられていたものです。
 
 ## Simple Accordion
 
@@ -23,13 +29,13 @@ components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 
 ## カスタマイズされた拡張パネル
 
-コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/accordion/CustomizedAccordions.js"}}
 
 ## Additional actions
 
-In order to put an action such as a `Checkbox` or a button inside of the `AccordionSummary`, you need to stop the propagation of the focus and click events to prevent the panel from expanding/collapsing when using the action. You should also provide an `aria-label` for the action, otherwise the label of the nested action will be included in the label of the parent button that controls the accordion expansion.
+`Checkbox`などのアクションまたはボタンを`AccordionSummary`の内部で使うために、フォーカスの伝播を止めて、アクション時にクリックイベントがパネルの開閉動作を呼ばないようにする必要があります。 また、アクションに `aria-label` を付与する必要があります。そうしないと、入れ子になったアクションのラベルがアコーディオンの拡張を制御する親コンポーネントのボタンのラベルに含まれることになります。
 
 {{"demo": "pages/components/accordion/ActionsInAccordionSummary.js", "bg": true}}
 
@@ -53,4 +59,4 @@ Accordionsのコンテンツは、パネルが展開されていない場合で�
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#accordion)
 
-最適なアクセシビリティのために、 `AccordionSummary``id` と `aria-controls` を設定することをお勧めします。 `Accordion` は、パネルのコンテンツ領域に必要な `aria-labelledby` および `id` を導き出します。
+最適なアクセシビリティのために、 `AccordionSummary``id` と `aria-controls` を設定することをお勧めします。 `Accordion` は、パネルのコンテンツ領域に必要な `aria-labelledby` および `id` を導き出します。 最適なアクセシビリティのために、 `AccordionSummary``id` と `aria-controls` を設定することをお勧めします。 `Accordion` は、パネルのコンテンツ領域に必要な `aria-labelledby` および `id` を導き出します。

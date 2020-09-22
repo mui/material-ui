@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
-import Paper from '../Paper';
 import Step from '../Step';
 import StepLabel from '../StepLabel';
 import StepConnector from '../StepConnector';
@@ -27,26 +26,12 @@ describe('<Stepper />', () => {
     </Stepper>,
     () => ({
       classes,
-      inheritComponent: Paper,
+      inheritComponent: 'div',
       mount,
       refInstanceof: window.HTMLDivElement,
       skip: ['componentProp'],
     }),
   );
-
-  it('has no elevation by default', () => {
-    const { container } = render(
-      <Stepper>
-        <Step />
-      </Stepper>,
-    );
-
-    const paperClasses = getClasses(<Paper />);
-
-    const paper = container.querySelector(`.${paperClasses.elevation0}`);
-
-    expect(paper).not.equal(null);
-  });
 
   describe('rendering children', () => {
     it('renders 3 Step and 2 StepConnector components', () => {

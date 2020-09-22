@@ -39,11 +39,11 @@ export default function CountrySelect() {
       }}
       autoHighlight
       getOptionLabel={(option) => option.label}
-      renderOption={(option) => (
-        <React.Fragment>
+      renderOption={(props, option) => (
+        <li {...props}>
           <span>{countryToFlag(option.code)}</span>
           {option.label} ({option.code}) +{option.phone}
-        </React.Fragment>
+        </li>
       )}
       renderInput={(params) => (
         <TextField

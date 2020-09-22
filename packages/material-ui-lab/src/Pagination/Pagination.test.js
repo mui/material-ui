@@ -63,15 +63,12 @@ describe('<Pagination />', () => {
 
     const buttons = getAllByRole('button');
 
-    expect(buttons[0].querySelector('svg')).to.have.attribute('data-mui-test', 'LastPageIcon');
-    expect(buttons[1].querySelector('svg')).to.have.attribute('data-mui-test', 'NavigateNextIcon');
+    expect(buttons[0].querySelector('svg')).to.have.attribute('data-testid', 'LastPageIcon');
+    expect(buttons[1].querySelector('svg')).to.have.attribute('data-testid', 'NavigateNextIcon');
     expect(buttons[2].textContent).to.equal('1');
     expect(buttons[6].textContent).to.equal('5');
-    expect(buttons[7].querySelector('svg')).to.have.attribute(
-      'data-mui-test',
-      'NavigateBeforeIcon',
-    );
-    expect(buttons[8].querySelector('svg')).to.have.attribute('data-mui-test', 'FirstPageIcon');
+    expect(buttons[7].querySelector('svg')).to.have.attribute('data-testid', 'NavigateBeforeIcon');
+    expect(buttons[8].querySelector('svg')).to.have.attribute('data-testid', 'FirstPageIcon');
   });
 
   it('renders correct amount of buttons on correct order when boundaryCount is zero', () => {
@@ -86,13 +83,10 @@ describe('<Pagination />', () => {
     );
 
     const buttons = getAllByRole('button');
-    expect(buttons[4].querySelector('svg')).to.have.attribute(
-      'data-mui-test',
-      'NavigateBeforeIcon',
-    );
+    expect(buttons[4].querySelector('svg')).to.have.attribute('data-testid', 'NavigateBeforeIcon');
     expect(buttons[1].textContent).to.equal('5');
     expect(buttons[2].textContent).to.equal('6');
     expect(buttons[3].textContent).to.equal('7');
-    expect(buttons[0].querySelector('svg')).to.have.attribute('data-mui-test', 'NavigateNextIcon');
+    expect(buttons[0].querySelector('svg')).to.have.attribute('data-testid', 'NavigateNextIcon');
   });
 });

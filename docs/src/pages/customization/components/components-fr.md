@@ -5,10 +5,10 @@
 As components can be used in different contexts, there are several approaches to this. Du plus étroit cas d'utilisation au plus large, il s'agit des suivants :
 
 1. [Variation spécifique pour une situation ponctuelle](#1-specific-variation-for-a-one-time-situation)
-2. [Variation dynamique pour une situation ponctuelle](#2-dynamic-variation-for-a-one-time-situation)
-3. [Variation spécifique d'un composant](#3-specific-variation-of-a-component) réutilisé dans différents contextes
-4. [Variations de Material Design](#4-material-design-variations) comme avec le composant bouton
-5. [Variation globale du thème](#5-global-theme-variation)
+1. [Variation dynamique pour une situation ponctuelle](#2-dynamic-variation-for-a-one-time-situation)
+1. [Variation spécifique d'un composant](#3-specific-variation-of-a-component) réutilisé dans différents contextes
+1. [Variations de Material Design](#4-material-design-variations) comme avec le composant bouton
+1. [Variation globale du thème](#5-global-theme-variation)
 
 ## 1. Variation spécifique pour une situation ponctuelle
 
@@ -127,7 +127,6 @@ Instead of providing values to the `classes` prop API, you can rely on [the glob
 | required     | Mui-required      |
 | expanded     | Mui-expanded      |
 | selected     | Mui-selected      |
-
 
 ```css
 .MenuItem {
@@ -251,7 +250,7 @@ const theme = createMuiTheme({
 
 ### Global CSS override
 
-You can also customize all instances of a component with CSS. Components expose [global class names](/styles/advanced/#with-material-ui-core) to enable this. It's very similar to how you would customize Bootstrap.
+You can also customize all instances of a component with CSS. It's very similar to how you would customize Bootstrap. Components expose [global class names](/styles/advanced/#with-material-ui-core) to enable this.
 
 ```jsx
 const GlobalCss = withStyles({
@@ -288,3 +287,45 @@ const theme = createMuiTheme({
 ```
 
 {{"demo": "pages/customization/components/GlobalThemeOverride.js"}}
+
+### Adding new component variants
+
+You can take advantage of the `variants` key in the `theme`'s components section to add new variants to Material-UI components. These new variants, can specify which styles the component should have, if specific props are defined together.
+
+The definitions are specified in an array, under the component's name. For every one of them a class is added in the head. The order is **important**, so make sure that the styles that should win will be specified lastly.
+
+```jsx
+const theme = createMuiTheme({
+  components: {
+    MuiButton: {
+      variants: [
+        {
+          props: { variant: 'dashed' },
+          style: {
+            textTransform: 'none',
+            border: `2px dashed grey${blue[500]}`,
+          },
+        },
+        {
+          props: { variant: 'dashed', color: 'secondary' },
+          style: {
+            border: `4px dashed ${red[500]}`,
+          },
+        },
+      ],
+    },
+  },
+});
+```
+
+If you are using TypeScript, you will need to specify your new variants/colors, using module augmentation.
+
+```tsx
+declare module '@material-ui/core/Button/Button' {
+  interface ButtonPropsVariantOverrides {
+    dashed: true;
+  }
+}
+```
+
+{{"demo": "pages/customization/components/GlobalThemeVariants.js"}}

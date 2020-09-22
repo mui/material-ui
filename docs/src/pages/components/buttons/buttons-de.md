@@ -1,11 +1,15 @@
 ---
 title: Button React Komponente
 components: Button, IconButton, ButtonBase
+materialDesign: https://material.io/components/buttons
+githubLabel:
+  component: Button
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
 ---
 
-# Button (schaltfläche)
+# Button
 
-<p class="description">Mit den Schaltflächen können Benutzer mit einem einzigen Tastendruck Aktionen ausführen und Entscheidungen treffen.</p>
+<p class="description">Buttons erlauben es dem Benutzer, mit einem einzigen Fingertipp Aktionen auszuführen und Entscheidungen zu treffen.</p>
 
 [Buttons](https://material.io/design/components/buttons.html) (Schaltflächen / Knöpfe) geben Aktionen an, die ein Nutzer ausführen kann. Sie werden an verschiedenen Orten in Anwendungen verwendet, zum Beispiel:
 
@@ -15,32 +19,34 @@ components: Button, IconButton, ButtonBase
 - Cards
 - Toolbars
 
-## Contained Buttons
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
-[Contained buttons](https://material.io/design/components/buttons.html#contained-button) sind hervorgehoben und unterscheiden sich durch die Verwendung von Höhe und Füllung. Sie enthalten Aktionen, die für Ihre App vorrangig sind.
+## Eigenständige Buttons
+
+[Contained buttons](https://material.io/design/components/buttons.html#contained-button) sind hervorgehoben und unterscheiden sich durch die Verwendung von Höhe und Füllung. Sie enthalten primäre Aktionen einer Anwendung.
 
 {{"demo": "pages/components/buttons/ContainedButtons.js"}}
 
-You can remove the elevation with the `disableElevation` prop.
+Die Erhöhung kann mit der `disableElevation`-Prop deaktiviert werden.
 
 {{"demo": "pages/components/buttons/DisableElevation.js"}}
 
-## Text Buttons
+## Text-Buttons
 
-[Text buttons](https://material.io/design/components/buttons.html#text-button) werden normalerweise für weniger ausgeprägte Aktionen verwendet, darunter auch solche, die Folgendes enthalten:
+In Karten helfen Text Buttons dabei, den Karteninhalt hervorzuheben.
 
 - In Dialogen
 - In Karten
 
-In Karten helfen Text Buttons dabei, den Karteninhalt hervorzuheben.
+In Karten helfen Text-Buttons dabei, den Karteninhalt zu betonen.
 
 {{"demo": "pages/components/buttons/TextButtons.js"}}
 
-## Outlined Buttons
+## Umrandete Buttons
 
-[Outlined Buttons](https://material.io/design/components/buttons.html#outlined-button) sind Buttons mit mittlerer Betonung. Sie enthalten wichtige Aktionen, aber nicht die primäre Aktion in einer App.
+[Outlined Buttons](https://material.io/design/components/buttons.html#outlined-button) sind Buttons mit mittlerer Betonung. Sie enthalten wichtige Aktionen, aber nicht die primäre Aktion einer Anwendung.
 
-Outlined Buttons sind auch eine Alternative mit geringerer Betonung als Contained Buttons, oder eine Alternative mit höherer Betonung als Text Buttons.
+Umrandete Buttons haben eine geringere Betonung als eigenständige Buttons, aber eine stärkere als Text-Buttons.
 
 {{"demo": "pages/components/buttons/OutlinedButtons.js"}}
 
@@ -80,11 +86,21 @@ Icons eignen sich auch für Umschaltflächen, mit denen eine einzelne Auswahl au
 
 ## Benutzerdefinierte Buttons
 
-Hier sind einige Beispiele, wie man die Komponente anpassen kann. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
+Hier einige Beispiele zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js", "defaultCodeOpen": false}}
 
 🎨 Wenn Sie nach Inspiration suchen, sehen sie sich [MUI Treasury's Anpassungs-Beispiele](https://mui-treasury.com/styles/button) an.
+
+## Komplexe Buttons
+
+The loading buttons can show pending state and disable interactions.
+
+{{"demo": "pages/components/buttons/LoadingButtons.js"}}
+
+Hier ist ein [Integrationsbeispiel mit react-router](/guides/composition/#button).
+
+{{"demo": "pages/components/buttons/LoadingButtonsTransition.js"}}
 
 ## Komplexe Buttons
 
@@ -94,7 +110,7 @@ Die Text Buttons, die Contained Buttons, die Floatin Action Buttons und die Icon
 
 ## Drittanbieter-Routing Bibliothek
 
-Ein häufig gebrauchtes Feature ist das Wechseln zu einer anderen Seite als Button-Aktion. Die `ButtonBase` Komponente stellt eine Eigenschaft für diesen Anwendungsfall bereit: `component`. Für bestimmte Fokus-Polyfills erfordert `ButtonBase` jedoch den DOM-Knoten der bereitgestellten Komponente. Dies wird erreicht, indem der Komponente ein Ref zugeordnet wird und erwartet wird, dass die Komponente diesen Ref an den zugrunde liegenden DOM-Knoten weiterleitet. Given that many of the interactive components rely on `ButtonBase`, you should be able to take advantage of it everywhere.
+Ein häufig gebrauchtes Feature ist das Wechseln zu einer anderen Seite als Button-Aktion. Ein häufig gebrauchtes Feature ist das Wechseln zu einer anderen Seite als Button-Aktion. Für bestimmte Fokus-Polyfills erfordert `ButtonBase` jedoch den DOM-Knoten der bereitgestellten Komponente. Dies wird erreicht, indem der Komponente ein Ref zugeordnet wird und erwartet wird, dass die Komponente diesen Ref an den zugrunde liegenden DOM-Knoten weiterleitet. Given that many of the interactive components rely on `ButtonBase`, you should be able to take advantage of it everywhere.
 
 Hier ist ein [Integrationsbeispiel mit react-router](/guides/composition/#button).
 
@@ -108,12 +124,12 @@ If you wish to use `not-allowed`, you have two options:
 
 1. **Nur CSS**. You can remove the pointer events style on the disabled state of the `<button>` element:
 
-  ```css
-  .MuiButtonBase-root:disabled {
+```css
+.MuiButtonBase-root:disabled {
     cursor: not-allowed;
     pointer-events: auto;
   }
-  ```
+```
 
 Aber:
 
@@ -122,12 +138,12 @@ Aber:
 
 2. **DOM-Anderung**. You can wrap the button:
 
-  ```jsx
-  <span style={{ cursor: 'not-allowed' }}>
+```jsx
+<span style={{ cursor: 'not-allowed' }}>
     <Button component={Link} disabled>
       disabled
     </Button>
   </span>
-  ```
+```
 
 This has the advantage of supporting any element, for instance, a link `<a>` element.

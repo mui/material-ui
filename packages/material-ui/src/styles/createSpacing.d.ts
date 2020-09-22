@@ -3,8 +3,8 @@
 export type SpacingArgument = number | string;
 
 export interface Spacing {
-  (): number;
-  (value: number): number;
+  (): string;
+  (value: number): string;
   (topBottom: SpacingArgument, rightLeft: SpacingArgument): string;
   (top: SpacingArgument, rightLeft: SpacingArgument, bottom: SpacingArgument): string;
   (
@@ -15,6 +15,9 @@ export interface Spacing {
   ): string;
 }
 
-export type SpacingOptions = number | ((factor: number) => string | number) | number[];
+export type SpacingOptions =
+  | number
+  | ((factor: number) => string | number)
+  | Array<string | number>;
 
 export default function createSpacing(spacing: SpacingOptions): Spacing;

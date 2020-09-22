@@ -25,10 +25,10 @@ export interface RatingProps
     focusVisible?: string;
     /** Visually hide an element. */
     visuallyHidden?: string;
-    /** Styles applied to the pristine label. */
-    pristine?: string;
     /** Styles applied to the label elements. */
     label?: string;
+    /** Styles applied to the label of the "no value" input when it is active. */
+    labelEmptyValueActive?: string;
     /** Styles applied to the icon wrapping elements. */
     icon?: string;
     /** Styles applied to the icon wrapping elements when empty. */
@@ -56,6 +56,7 @@ export interface RatingProps
   disabled?: boolean;
   /**
    * The icon to display when empty.
+   * @default <StarBorder fontSize="inherit" />
    */
   emptyIcon?: React.ReactNode;
   /**
@@ -96,8 +97,8 @@ export interface RatingProps
   max?: number;
   /**
    * The name attribute of the radio `input` elements.
-   * If `readOnly` is false, the prop is required,
-   * this input name`should be unique within the parent form.
+   * This input `name` should be unique within the page.
+   * Being unique within a form is insufficient since the `name` is used to generated IDs.
    */
   name?: string;
   /**

@@ -1,7 +1,7 @@
 ---
 title: Bottom Navigation React component
 components: BottomNavigation, BottomNavigationAction
-githubLabel: component: BottomNavigation
+githubLabel: 'component: BottomNavigation'
 materialDesign: https://material.io/components/bottom-navigation
 ---
 
@@ -24,3 +24,9 @@ When there are only **three** actions, display both icons and text labels at all
 If there are **four** or **five** actions, display inactive views as icons only.
 
 {{"demo": "pages/components/bottom-navigation/LabelBottomNavigation.js", "bg": true}}
+
+## Fixed positioning
+
+This demo keeps bottom navigation fixed to the bottom, no matter the amount of content on-screen.
+
+{{"demo": "pages/components/bottom-navigation/FixedBottomNavigation.js", "bg": true, "iframe": true, "maxWidth": 600}}

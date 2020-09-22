@@ -1,6 +1,6 @@
 # カラー
 
-<p class="description">色で意味を伝えます。 最初からMaterial Design仕様のすべての色にアクセスできます。</p>
+<p class="description"><strong>Palette</strong>: A palette is a collection of colors, i.e. hues and their shades. Material-UIは、Material Designガイドラインのすべてのカラーを提供します。 <a href="#color-palette">このカラーパレット</a>は、互いに調和する色でデザインされています。</p>
 
 Material Design[color system](https://material.io/design/color/)を使用すると、自分のブランドやスタイルを反映した色のテーマを作成できます。
 
@@ -13,9 +13,9 @@ The Material Design team has also built an awesome palette configuration tool: [
 <a href="https://material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=3F51B5&secondary.color=F44336" target="_blank" rel="noopener nofollow">
   <img src="/static/images/color/colorTool.png" alt="公式カラーツール" style="width: 574px" />
 </a>
-  
-  
 
+<br />
+<br />
 
 出力は、`createMuiTheme()`関数に渡すことができます。
 
@@ -71,7 +71,7 @@ const theme = createMuiTheme({
 ### コミュニティによるツール
 
 - [create-mui-theme](https://react-theming.github.io/create-mui-theme/): Is an online tool for creating Material-UI themes via Material Design Color Tool.
-- [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/): A tool to generate themes for your Material-UI applications by just selecting the colors and having a live preview.
+- [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/): A tool to generate themes for your Material-UI applications by just selecting the colors and having a live preview. Includes basic site templates to show various components and how they are affected by the theme
 - [マテリアルパレットジェネレータ](https://material.io/inline-tools/color/)　: マテリアルパレットジェネレータを使用して、入力した任意のカラーのパレットを生成できます。
 
 ## 2014 Material Design color palettes
@@ -80,12 +80,12 @@ These color palettes, originally created by Material Design in 2014, are compris
 
 ### 重要な用語
 
-- **Palette**: A palette is a collection of colors, i.e. hues and their shades. Material-UIは、Material Designガイドラインのすべてのカラーを提供します。 [このカラーパレット](#color-palette)は、互いに調和する色でデザインされています。
+- **Hue" & "Shade**: A single color within the palette is made up of a hue such as "red", and shade, such as "500". Material-UIは、Material Designガイドラインのすべてのカラーを提供します。 [このカラーパレット](#color-palette)は、互いに調和する色でデザインされています。 [このカラーパレット](#color-palette)は、互いに調和する色でデザインされています。
 - **Hue" & "Shade**: A single color within the palette is made up of a hue such as "red", and shade, such as "500". "red 50" は赤(*pink!*) の最も明るいシェードで、"red 900"は最も暗いシェードです。 また、ほとんどの色相には、先頭に`A`を持つ「アクセント」シェードが使用されます。
 
 ### カラー・パレット
 
-* HUEが与えられた場合* （赤、ピンクなど）および* SHADE * （500、600など）次のように色をインポートできます。
+HUEが与えられた場合* （赤、ピンクなど）および* SHADE * （500、600など）次のように色をインポートできます。
 
 ```jsx
 import HUE from '@material-ui/core/colors/HUE';
@@ -97,7 +97,7 @@ const color = HUE[SHADE];
 
 ### 例
 
-For instance, you can refer to complementary primary and accent colors, "red 500" and "purple A200" like so:
+HUEが与えられた場合* （赤、ピンクなど）および* SHADE * （500、600など）次のように色をインポートできます。
 
 ```js
 import purple from '@material-ui/core/colors/purple';

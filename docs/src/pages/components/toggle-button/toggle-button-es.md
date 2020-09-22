@@ -1,6 +1,10 @@
 ---
 title: Toggle Button React component
 components: ToggleButton, ToggleButtonGroup
+githubLabel:
+  component: ToggleButton
+materialDesign: 'https://material.io/components/buttons#toggle-button'
+packageName: '@material-ui/lab'
 ---
 
 # Toggle Buttons
@@ -8,6 +12,8 @@ components: ToggleButton, ToggleButtonGroup
 <p class="description">Los botones de alternancia se pueden utilizar para agrupar opciones relacionadas.</p>
 
 To emphasize groups of related [Toggle buttons](https://material.io/components/buttons#toggle-button), a group should share a common container. The `ToggleButtonGroup` controls the selected state of its child buttons when given its own `value` prop.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Exclusive selection
 
@@ -57,7 +63,7 @@ const handleAlignment = (event, newAlignment) => {
 
 ## Botón de conmutación personalizado
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+He aquí un ejemplo de personalización del componente. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/toggle-button/CustomizedDividers.js", "bg": true}}
 

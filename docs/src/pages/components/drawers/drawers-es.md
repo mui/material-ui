@@ -1,6 +1,9 @@
 ---
 title: Drawer
 components: Drawer, SwipeableDrawer
+githubLabel:
+  component: Cajón
+materialDesign: https://material.io/components/navigation-drawer
 ---
 
 # Cajón
@@ -10,6 +13,8 @@ components: Drawer, SwipeableDrawer
 [Navigation Drawers](https://material.io/design/components/navigation-drawer.html) proveen acceso a destinos o funcionalidades de su aplicación, como cambiar de cuentas. Pueden estar permanentemente en pantalla o controlados por un ícono del menú de navegación.
 
 [Las hojas laterales](https://material.io/design/components/sheets-side.html) son superficies suplementarias que se usan principalmente en tabletas y computadores de escritorio.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Drawer temporal
 
@@ -68,7 +73,7 @@ La variante mini está recomendada para secciones de la aplicación que necesite
 
 Permanent navigation drawers are always visible and pinned to the left edge, at the same elevation as the content or background. They cannot be closed.
 
-Los cajones de navegación permanentes son los **recomendados por defecto para escritorio**.
+Aplicaciones enfocadas en consumo de información que usan jerarquía de izquierda a derecha.
 
 ### Navegación de altura completa
 

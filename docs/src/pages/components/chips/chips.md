@@ -1,7 +1,7 @@
 ---
 title: Chip React component
 components: Chip
-githubLabel: component: Chip
+githubLabel: 'component: Chip'
 materialDesign: https://material.io/components/chips
 ---
 
@@ -48,7 +48,7 @@ gain depth while clicked or touched.
 
 You can use the `size` prop to define a small Chip.
 
-### Default variant
+### Filled variant
 
 {{"demo": "pages/components/chips/SmallChips.js"}}
 

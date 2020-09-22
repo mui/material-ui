@@ -1,19 +1,22 @@
 ---
 title: Fab React component
 components: Fab
+githubLabel:
+  component: Fab
+materialDesign: https://material.io/components/buttons-floating-action-button
 ---
 
 # Floating action button
 
 <p class="description">A floating action button (FAB) performs the primary, or most common, action on a screen.</p>
 
-## Floating Action Button
-
 A [floating action button](https://material.io/design/components/buttons-floating-action-button.html) appears in front of all screen content, typically as a circular shape with an icon in its center. FABs бывают двух типов: обычные и расширенные.
 
-Используйте плавающую кнопку действий (FAB) только в том случае, если это наиболее подходящий способ представить основное действие экрана.
+Используйте плавающую кнопку действий (FAB) только в том случае, если это наиболее подходящий способ представить основное действие экрана. Only one component is recommended per screen to represent the most common action.
 
-Для отображения наиболее распространенных действий рекомендуется использовать только одну кнопку с плавающим действием.
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
+## Floating Action Button
 
 {{"demo": "pages/components/floating-action-button/FloatingActionButtons.js"}}
 
@@ -29,6 +32,6 @@ Use the `size` prop for larger or smaller floating action buttons.
 
 Кнопка с плавающим действием, которая охватывает несколько боковых экранов (например, экраны с вкладками), должна анимироваться при переходах.
 
-Переход масштабирование (Zoom) может быть использован для достижения этой цели. Обратите внимание, что так как выход и вход анимации запускаются одновременно, мы используем ` enterDelay `, чтобы разрешить исходящим кнопкам плавающего действия анимироваться постепенно.
+Переход масштабирование (Zoom) может быть использован для достижения этой цели. Обратите внимание, что так как выход и вход анимации запускаются одновременно, мы используем `enterDelay`, чтобы разрешить исходящим кнопкам плавающего действия анимироваться постепенно.
 
 {{"demo": "pages/components/floating-action-button/FloatingActionButtonZoom.js", "bg": true}}

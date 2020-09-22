@@ -1,7 +1,7 @@
 ---
 title: Typography React component
 components: Typography
-githubLabel: component: Typography
+githubLabel: 'component: Typography'
 materialDesign: https://material.io/design/typography/the-type-system.html
 ---
 

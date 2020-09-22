@@ -409,6 +409,11 @@ export function parseFromProgram(
     }
     const componentName = node.name.getText();
 
+    // Discriminate render functions to components
+    if (componentName[0].toUpperCase() !== componentName[0]) {
+      return;
+    }
+
     const type = checker.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration);
     type.getCallSignatures().forEach((signature) => {
       if (!isTypeJSXElementLike(signature.getReturnType())) {

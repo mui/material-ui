@@ -1,74 +1,108 @@
 ---
 title: オートコンプリートReactコンポーネント
 components: TextField, Popper, Autocomplete
+githubLabel:
+  component: Autocomplete
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#combobox'
+packageName: '@material-ui/lab'
 ---
 
 # Autocomplete
 
 <p class="description">オートコンプリートは、推奨オプションのパネルによって強化された通常のテキスト入力です。</p>
 
-The widget is useful for setting the value of a single-line textbox in one of two types of scenarios:
+ウィジェットは、単一行テキストボックスの値を設定する際に以下の2通りの状況で役に立ちます。
 
-1. The value for the textbox must be chosen from a predefined set of allowed values, e.g., a location field must contain a valid location name: [combo box](#combo-box).
-2. The textbox may contain any arbitrary value, but it is advantageous to suggest possible values to the user, e.g., a search field may suggest similar or previous searches to save the user time: [free solo](#free-solo).
+1. テキストボックスの値が、予め決められた許容値の中から選ばないといけない場合。 例えば、位置の欄は [combo box](#combo-box)の中から選ばないといけない。
+2. テキストボックスが任意の値を含む可能性があるが、ユーザーに可能性のある値の提案をすることが有効な場合。例えば、検索欄で近い、又は、以前の検索結果を示してユーザーの時間を節約する。[free solo](#free-solo).
 
-It's meant to be an improved version of the "react-select" and "downshift" packages.
+"react-select"と"downshift"というパッケージの改良版であることを意識しています。
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Combo box
 
-The value must be chosen from a predefined set of allowed values.
+テキストボックスの値は、予め決められた許容値の中から選ばないといけない
 
 {{"demo": "pages/components/autocomplete/ComboBox.js"}}
 
+### Options structure
+
+By default, the component accepts the following options structures:
+
+```ts
+const filterOptions = createFilterOptions({
+  matchFrom: 'start',
+  stringify: option => option.title,
+});
+
+<Autocomplete filterOptions={filterOptions} />
+```
+
+例えば：
+
+```js
+const options = [
+  { label: 'The Godfather', id: 1 },
+  { label: 'Pulp Fiction', id: 2 },
+];
+// or
+const options = ['The Godfather', 'Pulp Fiction'];
+```
+
+However, you can use different structures by providing a `getOptionLabel` prop.
+
 ### Playground
 
-Each of the following examples demonstrate one feature of the Autocomplete component.
+以下の各例は、Autocompleteコンポーネントの各機能を示しています。
 
 {{"demo": "pages/components/autocomplete/Playground.js"}}
 
 ### Country select
 
-Choose one of the 248 countries.
+248の国から一つ選びます。
 
 {{"demo": "pages/components/autocomplete/CountrySelect.js"}}
 
 ### Controllable states
 
-The component has two states that can be controlled:
+コンポーネントは、操作できる二つのステートを持ちます。
 
-1. the "value" state with the `value`/`onChange` props combination. This state represents the value selected by the user, for instance when pressing <kbd>Enter</kbd>.
-2. the "input value" state with the `inputValue`/`onInputChange` props combination. This state represents the value displayed in the textbox.
+1. "value"ステートは `value`/`onChange` を組み合わせて使用します。 この値は、ユーザーが選択した値を示します。例えば、<kbd>Enter</kbd>を押している状態。
+2. "input value"ステートは`inputValue`/`onInputChange` を組み合わせて使用します。 この値は、テキストボックスに表示される値を示します。
 
-> ⚠️ These two state are isolated, they should be controlled independently.
+> 二つのステートは解離しており、独立して管理される必要があります。
 
 {{"demo": "pages/components/autocomplete/ControllableStates.js"}}
 
 ## Free solo
 
-Set `freeSolo` to true so the textbox can contain any arbitrary value.
+`freeSolo`をtureにすることで、テキストボックスに任意の値を含むことができます。
 
 ### Search input
 
-The prop is designed to cover the primary use case of a **search input** with suggestions, e.g. Google search or react-autowhatever.
+提案付きの**検索欄**に使われることを主な使われ方として設計されています。例えば、Google searchやreact-autowhatever
 
 {{"demo": "pages/components/autocomplete/FreeSolo.js"}}
 
 ### Creatable
 
-If you intend to use this mode for a [combo box](#combo-box) like experience (an enhanced version of a select element) we recommend setting:
+このモードを[combo box](#combo-box)のような体験(selectの拡張版) に使う意図であれば、以下のような設定をお勧めします。
 
-- `selectOnFocus` to helps the user clear the selected value.
-- `clearOnBlur` to helps the user to enter a new value.
-- `handleHomeEndKeys` to move focus inside the popup with the <kbd>Home</kbd> and <kbd>End</kbd> keys.
-- A last option, for instance `Add "YOUR SEARCH"`.
+- `selectOnFocus`でユーザーが選択した値を消せるようにする。
+- `clearOnBlur` でユーザーが新しい値を入力できるようにする。
+- `handleHomeEndKeys`でポップアップな内で<kbd>Home</kbd> and <kbd>End</kbd>キーを使ってフォーカスが移動できるようにする。
+- 最後の選択肢に, 例えば`Add "YOUR SEARCH"`を追加する。
 
 {{"demo": "pages/components/autocomplete/FreeSoloCreateOption.js"}}
 
-You could also display a dialog when the user wants to add a new value.
+ユーザーが新しい値を入力する時に、ダイアログを表示することもできます。
 
 {{"demo": "pages/components/autocomplete/FreeSoloCreateOptionDialog.js"}}
 
 ## Grouped
+
+You can group the options with the `groupBy` prop. If you do so, make sure that the options are also sorted with the same dimension that they are grouped by, otherwise you will notice duplicate headers.
 
 {{"demo": "pages/components/autocomplete/Grouped.js"}}
 
@@ -78,7 +112,7 @@ You could also display a dialog when the user wants to add a new value.
 
 ## `useAutocomplete`
 
-For advanced customization use cases, we expose a `useAutocomplete()` hook. It accepts almost the same options as the Autocomplete component minus all the props related to the rendering of JSX. The Autocomplete component uses this hook internally.
+高度な利用方法のために、 `useAutocomplete()` hooksがあります。 JSXのレンダリングに関連する値以外は、Autocompleteコンポーネントとほぼ同じ値をとります。 Autocompleteコンポーネントは内部でこのhookを使用しています。
 
 ```jsx
 import useAutocomplete from '@material-ui/lab/useAutocomplete';
@@ -96,108 +130,22 @@ Head to the [Customized Autocomplete](#customized-autocomplete) section for a cu
 
 ## Asynchronous requests
 
+The component supports two different asynchronous use-cases:
+
+- [Load on open](#load-on-open): it waits for the component to be interacted with to load the options.
+- [Search as you type](#search-as-you-type): a new request is made for each keystroke.
+
+### Load on open
+
+It displays a progress state as long as the network request is pending.
+
 {{"demo": "pages/components/autocomplete/Asynchronous.js"}}
 
-### Google Maps place
+### Search as you type
 
-A customized UI for Google Maps Places Autocomplete.
+If your logic is fetching new options on each keystroke and using the current value of the textbox to filter on the server, you may want to consider throttling requests.
 
-{{"demo": "pages/components/autocomplete/GoogleMaps.js"}}
-
-For this demo, we need to load the [Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/tutorial) API.
-
-> ⚠️ Before you can start using the Google Maps JavaScript API, you must sign up and create a billing account.
-
-## Multiple values
-
-Also known as tags, the user is allowed to enter more than one value.
-
-{{"demo": "pages/components/autocomplete/Tags.js"}}
-
-### Fixed options
-
-In the event that you need to lock certain tag so that they can't be removed in the interface, you can set the chips disabled.
-
-{{"demo": "pages/components/autocomplete/FixedTags.js"}}
-
-### Checkboxes
-
-{{"demo": "pages/components/autocomplete/CheckboxesTags.js"}}
-
-### Limit tags
-
-You can use the `limitTags` prop to limit the number of displayed options when not focused.
-
-{{"demo": "pages/components/autocomplete/LimitTags.js"}}
-
-## サイズ
-
-Fancy smaller inputs? `size`propを使用します。
-
-{{"demo": "pages/components/autocomplete/Sizes.js"}}
-
-## Customizations
-
-### Custom input
-
-The `renderInput` prop allows you to customize the rendered input. The first argument of this render prop contains props that you need to forward. Pay specific attention to the `ref` and `inputProps` keys.
-
-{{"demo": "pages/components/autocomplete/CustomInputAutocomplete.js"}}
-
-### GitHub's picker
-
-This demo reproduces the GitHub's label picker:
-
-{{"demo": "pages/components/autocomplete/GitHubLabel.js"}}
-
-Head to the [Customized hook](#customized-hook) section for a customization example with the `useAutocomplete` hook instead of the component.
-
-## Highlights
-
-The following demo relies on [autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight), a small (1 kB) utility for highlighting text in autosuggest and autocomplete components.
-
-{{"demo": "pages/components/autocomplete/Highlights.js"}}
-
-## Custom filter
-
-The component exposes a factory to create a filter method that can provided to the `filterOptions` prop. You can use it to change the default option filter behavior.
-
-```js
-import { createFilterOptions } from '@material-ui/lab/Autocomplete';
-```
-
-### `createFilterOptions(config) => filterOptions`
-
-#### 引数
-
-1. `config` (*Object* [optional]): 
-  - `config.ignoreAccents` (*Boolean* [optional]): Defaults to `true`. Remove diacritics.
-  - `config.ignoreCase` (*Boolean* [optional]): Defaults to `true`. Lowercase everything.
-  - `config.limit` (*Number* [optional]): Default to null. Limit the number of suggested options to be shown. For example, if `config.limit` is `100`, only the first `100` matching options are shown. It can be useful if a lot of options match and virtualization wasn't set up.
-  - `config.matchFrom` (*'any' | 'start'* [optional]): Defaults to `'any'`.
-  - `config.stringify` (*Func* [optional]): Controls how an option is converted into a string so that it can be matched against the input text fragment.
-  - `config.trim` (*Boolean* [optional]): Defaults `false`. Remove trailing spaces.
-
-#### 戻り値
-
-`filterOptions`: the returned filter method can be provided directly to the `filterOptions` prop of the `Autocomplete` component, or the parameter of the same name for the hook.
-
-In the following demo, the options need to start with the query prefix:
-
-```js
-const filterOptions = createFilterOptions({
-  matchFrom: 'start',
-  stringify: option => option.title,
-});
-
-<Autocomplete filterOptions={filterOptions} />
-```
-
-{{"demo": "pages/components/autocomplete/Filter.js", "defaultCodeOpen": false}}
-
-### 高度な機能(Advanced)
-
-For richer filtering mechanisms, like fuzzy matching, it's recommended to look at [match-sorter](https://github.com/kentcdodds/match-sorter). 例えば：
+Additionally, you will need to disable the built-in filtering of the `Autocomplete` component by overriding the `filterOptions` prop:
 
 ```jsx
 import matchSorter from 'match-sorter';
@@ -208,9 +156,120 @@ const filterOptions = (options, { inputValue }) =>
 <Autocomplete filterOptions={filterOptions} />
 ```
 
+### Google Maps place
+
+Google マップの位置の自動保管用のカスタムUI
+
+{{"demo": "pages/components/autocomplete/GoogleMaps.js"}}
+
+このデモでは、 [Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/tutorial) APIをロードする必要があります。
+
+> Google Maps JavaScript APIを使用する前に、サインアップして、決済アカウントを作成する必要があります。
+
+## Multiple values
+
+タグとも言える。ユーザーは一つ以上の値を選択することができます。
+
+{{"demo": "pages/components/autocomplete/Tags.js"}}
+
+### Fixed options
+
+インターフェースから削除されないように、特定のタグを固定する必要があるイベント中、チップスを無効化することができます。
+
+{{"demo": "pages/components/autocomplete/FixedTags.js"}}
+
+### Checkboxes
+
+{{"demo": "pages/components/autocomplete/CheckboxesTags.js"}}
+
+### Limit tags
+
+`limitTags` でフォーカスしていない時に表示する選択肢の数に上限を設けられます。
+
+{{"demo": "pages/components/autocomplete/LimitTags.js"}}
+
+## サイズ
+
+Fancy smaller inputs? `size`propを使用します。
+
+{{"demo": "pages/components/autocomplete/Sizes.js"}}
+
+## カスタマイズ
+
+### Custom input
+
+`renderInput`でレンダリングされる入力をカスタマイズできます。 このrender propsの一つ目の引数は、継承する必要のあるpropsを含みます。 `ref` と `inputProps` の扱いに特に注意してください。
+
+{{"demo": "pages/components/autocomplete/CustomInputAutocomplete.js"}}
+
+### GitHub's picker
+
+GitHubのラベルピッカーを再現したデモです。
+
+{{"demo": "pages/components/autocomplete/GitHubLabel.js"}}
+
+[Customized hook](#customized-hook)  部分で、  コンポーネントの代わりに、`useAutocomplete`hookを使用したカスタマイズ例が見れます。
+
+## Highlights
+
+以下のデモはこちらに依存します。[autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight), 提案されたテキストや自動保管コンポーネントをハイライトする小さいサイズの(1 kB)ユーティリティ
+
+{{"demo": "pages/components/autocomplete/Highlights.js"}}
+
+## Custom filter
+
+`filterOptions`に流せるフィルターメソッドを作成できるファクトリーを露出しているコンポーネント デフォルトのフィルター挙動を変更するのに使うことができます。
+
+```js
+import { createFilterOptions } from '@material-ui/lab/Autocomplete';
+```
+
+### `createFilterOptions(config) => filterOptions`
+
+#### 引数
+
+1. `config` (*Object* [optional]):
+
+- `config.ignoreAccents` (*Boolean* [optional]): Defaults to `true`. 発音記号を削除する
+- `config.ignoreCase` (*Boolean* [optional]): Defaults to `true`. すべて小文字にする。
+- `config.limit` (*Number* [optional]): Default to null. 表示される推奨オプションの数を制限する。 例えば、 `config.limit` が `100`の時、頭の`100`個のマッチングオプションのみが表示されます。 バーチャライズせずに、大量の選択肢を扱うのに有効です。
+- `config.matchFrom` (*'any' | 'start'* [optional]): Defaults to `'any'`.
+- `config.stringify` (*Func* [optional]): Controls how an option is converted into a string so that it can be matched against the input text fragment.
+- `config.trim` (*Boolean* [optional]): Defaults `false`. 末尾のスペースを削除します。
+
+#### 戻り値
+
+`filterOptions`: 返り値のフィルターメソッドは、`Autocomplete`コンポーネントの`filterOptions`propに直接渡すことができます。hookにも渡すことができます。
+
+以下のデモでは、選択肢が前方一致する必要があります。
+
+```jsx
+const filterOptions = createFilterOptions({
+  matchFrom: 'start',
+  stringify: (option) => option.title,
+});
+
+<Autocomplete filterOptions={filterOptions} />;
+```
+
+{{"demo": "pages/components/autocomplete/Filter.js", "defaultCodeOpen": false}}
+
+### 高度な機能(Advanced)
+
+fuzzy matchingのような高度なメカニズの為には [match-sorter](https://github.com/kentcdodds/match-sorter)を見ることをおすすめします。 例えば：
+
+```jsx
+import matchSorter from 'match-sorter';
+
+const filterOptions = (options, { inputValue }) =>
+  matchSorter(options, inputValue);
+
+<Autocomplete filterOptions={filterOptions} />;
+```
+
 ## Virtualization
 
-Search within 10,000 randomly generated options. The list is virtualized thanks to [react-window](https://github.com/bvaughn/react-window).
+10,000のランダム生成された選択肢内で検索します。 [react-window](https://github.com/bvaughn/react-window)でリストをバーチャライズしています。
 
 {{"demo": "pages/components/autocomplete/Virtualize.js"}}
 
@@ -218,33 +277,33 @@ Search within 10,000 randomly generated options. The list is virtualized thanks 
 
 ### autocomplete/autofill
 
-The browsers have heuristics to help the users fill the form inputs. However, it can harm the UX of the component.
+ブラウザは入力補助のために経験則を持っています。 しかし、これはコンポーネントのUXを損なう可能性があります。
 
-By default, the component disable the **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute.
+デフォルトでは, **autocomplete** 機能(特定の欄に以前入力した内容を保持しておくもの) は `autoComplete="off"` で無効化しています。
 
-However, in addition to remembering past entered values, the browser might also propose **autofill** suggestions (saved login, address, or payment details). In the event you want the avoid autofill, you can try the following:
+しかし、過去に入力された値を記憶しておくことに加えて、ブラウザは**autofill** を提案してくることがあります。(ログイン情報、住所、支払い情報) autofillを避けたい場合、以下の方法を取れます。
 
-- Name the input without leaking any information the browser can use. e.g. `id="field1"` instead of `id="country"`. If you leave the id empty, the component uses a random id.
-- Set `autoComplete="new-password"`: 
-        jsx
-        <TextField
-        {...params}
-        inputProps={{
-          ...params.inputProps,
-          autoComplete: 'new-password',
-        }}
-        />
+- ブラウザが判断できない命名を入力欄に使う。 例: `id="country"`の代わりに、`id="field1"`を使う idを空にした場合、コンポーネントはランダムなidを保管します。
+- Set `autoComplete="new-password"`: jsx
+
+  ```jsx
+  inputProps={{
+        ...params.inputProps,
+        autoComplete: 'new-password',
+      }}
+      /&#062;
+  ```
 
 ### iOS VoiceOver
 
-VoiceOver on iOS Safari doesn't support the `aria-owns` attribute very well. You can work around the issue with the `disablePortal` prop.
+iOS Safariのボイスオーバーは`aria-owns` を十分にサポートしていません。 `disablePortal`を用いて、この問題を回避できます。
 
 ### ListBox コンポーネント
 
-`Listbox コンポーネント` のカスタムプロパティを提供する場合、意図するスクロールコンテナの `role` 属性として `listbox` が設定されていることを確認する必要があります。 これにより、例えばキーボードを使用して移動する場合など、スクロールの正しい動作が保証されます。
+`Listbox コンポーネント` のカスタムプロパティを提供する場合、意図するスクロールコンテナの `role` 属性として `listbox` が設定されていることを確認する必要があります。 これにより、例えばキーボードを使用して移動する場合など、スクロールの正しい動作が保証されます。 これにより、例えばキーボードを使用して移動する場合など、スクロールの正しい動作が保証されます。
 
 ## アクセシビリティ
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#combobox)
 
-テキストボックスに対して、ラベルの使用を奨励しています。 コンポーネントは WAI-ARIA オーサリングを実装しています。
+テキストボックスに対して、ラベルの使用を奨励しています。 コンポーネントは WAI-ARIA オーサリングを実装しています。 コンポーネントは WAI-ARIA オーサリングを実装しています。

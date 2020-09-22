@@ -76,7 +76,7 @@ return (
 );
 ```
 
-## Font size
+## Размер шрифта
 
 Material-UI uses `rem` units for the font size. The browser `<html>` element default font size is `16px`, but browsers have an option to change this value, so `rem` units allow us to accommodate the user's settings, resulting in a better accessibility support. Users change font size settings for all kinds of reasons, from poor eyesight to choosing optimum settings for devices that can be vastly different in size and viewing distance.
 
@@ -141,7 +141,7 @@ To be done: [#15251](https://github.com/mui-org/material-ui/issues/15251).
 
 You might want to change the `<html>` element default font size. For instance, when using the [10px simplification](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/).
 
-> ⚠️ Changing the font size can harm accessibility ♿️. Most browsers agreed on the default size of 16 pixels, but the user can change it. For instance, someone with an impaired vision could have set their browser’s default font size to something larger.
+> ⚠️ Changing the font size can harm accessibility ♿️. ⚠️ Changing the font size can harm accessibility ♿️. For instance, someone with an impaired vision could have set their browser’s default font size to something larger.
 
 An `htmlFontSize` theme property is provided for this use case, which tells Material-UI what the font-size on the `<html>` element is. This is used to adjust the `rem` value so the calculated font-size always match the specification.
 
@@ -160,7 +160,7 @@ html {
 }
 ```
 
-*You need to apply the above CSS on the html element of this page to see the below demo rendered correctly*
+_You need to apply the above CSS on the html element of this page to see the below demo rendered correctly_
 
 {{"demo": "pages/customization/typography/FontSizeTheme.js"}}
 

@@ -1,6 +1,9 @@
 ---
 title: Text Field React-Komponente
 components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
+githubLabel:
+  component: TextField
+materialDesign: https://material.io/components/text-fields
 ---
 
 # Textfeld
@@ -9,7 +12,9 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 [Text fields](https://material.io/design/components/text-fields.html) allow users to enter text into a UI. They typically appear in forms and dialogs.
 
-## Textfeld
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
+## TextField
 
 Die `TextField` Wrapper-Komponente ist ein vollständiges Formularsteuerelement, das eine Beschriftung, Eingabe und Hilfetext enthält.
 
@@ -33,7 +38,7 @@ The `error` prop toggles the error state, the `helperText` prop can then be used
 
 ## Mehrzeilig
 
-The `multiline` prop transforms the text field into a [textarea](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) or a [TextareaAutosize](/components/textarea-autosize/).
+The `multiline` prop transforms the text field into a [textarea](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) or a [TextareaAutosize](/components/textarea-autosize/). Unless the `rows` prop is set, the height of the text field dynamically matches its content (using [TextareaAutosize](/components/textarea-autosize/)). You can use the `rowsMin` and `rowsMax` props to bound it.
 
 {{"demo": "pages/components/text-fields/MultilineTextFields.js"}}
 
@@ -51,7 +56,7 @@ There are multiple ways to display an icon with a text field.
 
 ### Eingabeverzierungen
 
-The main way is with an `InputAdornment`. This can be used to add a prefix, a suffix or an action to an input. Sie können beispielsweise eine Symbolschaltfläche verwenden, um das Kennwort ein- oder auszublenden.
+The main way is with an `InputAdornment`. Sie können beispielsweise eine Symbolschaltfläche verwenden, um das Kennwort ein- oder auszublenden. This can be used to add a prefix, a suffix or an action to an input.
 
 {{"demo": "pages/components/text-fields/InputAdornments.js"}}
 
@@ -63,7 +68,7 @@ Fancy smaller inputs? Verwenden Sie die `size` Prop.
 
 ## Layout
 
-`margin` prop can be used to alter the vertical spacing of inputs. Using `none` (default) will not apply margins to the `FormControl`, whereas `dense` and `normal` will. `dense` and `normal` alter other styles to meet the specification.
+`dense` and `normal` alter other styles to meet the specification. `margin` prop can be used to alter the vertical spacing of inputs. Using `none` (default) will not apply margins to the `FormControl`, whereas `dense` and `normal` will.
 
 `fullWidth` can be used to make the input take up the full width of its container.
 
@@ -95,7 +100,7 @@ The `color` prop changes the highlight color of the text field when focused.
 
 ## Benutzerdefinierte Eingabe
 
-Hier sind einige Beispiele, wie man die Komponente anpassen kann. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
+Hier einige Beispiele zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
 
 {{"demo": "pages/components/text-fields/CustomizedInputs.js"}}
 
@@ -129,6 +134,33 @@ oder
 
 The floating label is absolutely positioned, it won't impact the layout of the page. You need to make sure that the input is larger than the label to display correctly.
 
+### type="number"
+
+Inputs of type="number" have potential usability issues:
+
+- Allowing certain non-numeric characters ('e', '+', '-', '.') and silently discarding others
+- Wenn Sie die Komponente zusammenstellen:
+
+and more - see [this article](https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-design-system-team-changed-the-input-type-for-numbers/) by the GOV.UK Design System team for a more detailed explanation.
+
+For number validation, one viable alternative is to use the default input type="text" with the _pattern_ attribute, for example:
+
+```jsx
+<TextField inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }} />
+```
+
+In the future, we might provide a [number input component](https://github.com/mui-org/material-ui/issues/19154).
+
+### Helper text
+
+The helper text prop affects the height of the text field. If two text fields are placed side by side, one with a helper text and one without, they will have different heights. Zum Beispiel:
+
+{{"demo": "pages/components/text-fields/HelperTextMisaligned.js"}}
+
+This can be fixed by passing a space character to the `helperText` prop:
+
+{{"demo": "pages/components/text-fields/HelperTextAligned.js"}}
+
 ## Integration with 3rd party input libraries
 
 Sie können Bibliotheken von Drittanbietern verwenden, um eine Eingabe zu formatieren. Sie müssen eine benutzerdefinierte Implementierung des `<input>` -Elements mit der `inputComponent` -Eigenschaft bereitstellen.
@@ -147,35 +179,6 @@ interface InputElement {
 ```
 
 ```jsx
-function MyInputComponent(props) {
-  const { component: Component, inputRef, ...other } = props;
-
-  // implement `InputElement` interface
-  React.useImperativeHandle(inputRef, () => ({
-    focus: () => {
-      // logic to focus the rendered component from 3rd party belongs here
-    },
-    // hiding the value e.g. react-stripe-elements
-  }));
-
-  // `Component` will be your `SomeThirdPartyComponent` from below
-  return <Component {...other} />;
-}
-
-// usage
-<TextField
-  InputProps={{
-    inputComponent: MyInputComponent,
-    inputProps: { component: SomeThirdPartyComponent },
-  }}
-/>;
-```
-
-## Barrierefreiheit
-
-In order for the text field to be accessible, **the input should be linked to the label and the helper text**. The underlying DOM nodes should have this structure:
-
-```jsx
 <div class="form-control">
   <label for="my-input">E-Mail-Adresse</label>
   <input id="my-input" aria-describedby="my-helper-text" />
@@ -183,8 +186,9 @@ In order for the text field to be accessible, **the input should be linked to th
 </div>
 ```
 
-- Wenn Sie die Komponente `TextField` verwenden, müssen Sie nur eine eindeutige `Id`angeben.
-- Wenn Sie die Komponente zusammenstellen:
+## Barrierefreiheit
+
+In order for the text field to be accessible, **the input should be linked to the label and the helper text**. The underlying DOM nodes should have this structure:
 
 ```jsx
 <FormControl>
@@ -194,10 +198,24 @@ In order for the text field to be accessible, **the input should be linked to th
 </FormControl>
 ```
 
+- Wenn Sie die Komponente `TextField` verwenden, müssen Sie nur eine eindeutige `Id`angeben.
+- Wenn Sie die Komponente zusammenstellen:
+
+```jsx
+<FormControl>
+  <InputLabel htmlFor="my-input">Email address</InputLabel>
+  <Input id="my-input" aria-describedby="my-helper-text" />
+  <FormHelperText id="my-helper-text">
+    We'll never share your email.
+  </FormHelperText>
+</FormControl>
+```
+
 ## Ergänzende Projekte
 
 Für fortgeschrittenere Anwendungsfälle können Ihnen folgende Projekte helfen:
 
-- [formik-material-ui](https://github.com/stackworx/formik-material-ui) Bindings for using Material-UI with [formik](https://jaredpalmer.com/formik).
-- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) Bindings for using Material-UI with [Redux Form](https://redux-form.com/).
 - [mui-rff](https://github.com/lookfirst/mui-rff) Bindings for using Material-UI with [React Final Form](https://final-form.org/react).
+- [formik-material-ui](https://github.com/stackworx/formik-material-ui): Bindings for using Material-UI with [formik](https://jaredpalmer.com/formik).
+- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui): Bindings for using Material-UI with [Redux Form](https://redux-form.com/).
+- [mui-rff](https://github.com/lookfirst/mui-rff): Bindings for using Material-UI with [React Final Form](https://final-form.org/react).

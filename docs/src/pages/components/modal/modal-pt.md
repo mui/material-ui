@@ -1,6 +1,9 @@
 ---
-title: Componente React Modal
+title: Componente React para Modal
 components: Modal
+githubLabel:
+  component: Modal
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 ---
 
 # Modal
@@ -10,22 +13,24 @@ components: Modal
 O componente renderiza o conteúdo de seu `children` sobre um componente backdrop. O `Modal` oferece recursos importantes:
 
 - 💄 Gerencia o empilhamento de chamadas quando ter um de cada vez não for suficiente.
-- 🔐 Cria um pano de fundo para desabilitar a interação abaixo do modal.
-- 🔐 Desativa a rolagem do conteúdo da página enquanto estiver aberta.
+- 🔐 Cria um plano de fundo para desabilitar a interação abaixo do modal.
+- 🔐 Desativa a rolagem do conteúdo da página enquanto estiver aberto.
 - ♿️ Gerencia adequadamente o foco; movendo para o conteúdo modal, e mantendo-o lá até que o modal seja fechado.
 - ♿️ Adiciona as funções ARIA apropriadas automaticamente.
-- 📦 [5 kB gzipado](/size-snapshot).
+- 📦 [5 kB gzipped](/size-snapshot).
+
+[A paleta](/system/palette/) com funções de estilo.
 
 > **Nota sobre a terminologia**. O termo "modal" algumas vezes é usado com o sentido de "diálogo", mas isto é um equívoco. Uma janela modal descreve partes de uma UI. Um elemento é considerado modal se [ele bloqueia interações com o resto da aplicação](https://en.wikipedia.org/wiki/Modal_window).
 
-Se você está criando um diálogo Modal, você provavelmente quer usar o componente [Dialog](/components/dialogs/) em vez de diretamente um Modal. Modal é uma estrutura de baixo-nível que é alavancada pelos seguintes componentes:
+Se você está criando um diálogo modal, você provavelmente quer usar o componente [Dialog](/components/dialogs/) em vez de diretamente um Modal. Modal é uma estrutura de baixo-nível que é aproveitada pelos seguintes componentes:
 
 - [Dialog](/components/dialogs/)
 - [Drawer](/components/drawers/)
 - [Menu](/components/menus/)
 - [Popover](/components/popover/)
 
-## Modal Simples
+## Modal simples
 
 {{"demo": "pages/components/modal/SimpleModal.js"}}
 
@@ -71,9 +76,9 @@ No entanto, isso é feito para fins de acessibilidade, e pode criar problemas. N
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#dialog_modal)
 
 - Certifique-se de adicionar `aria-labelledby="id..."`, referenciando o título modal, ao `Modal`. Adicionalmente, você pode dar uma descrição do seu modal com a propriedade `aria-describedby = "id..."` no `Modal`.
-    
-    ```jsx
-    <Modal
+
+  ```jsx
+  <Modal
     aria-labelledby="modal-title"
     aria-describedby="modal-description"
     >
@@ -84,7 +89,7 @@ No entanto, isso é feito para fins de acessibilidade, e pode criar problemas. N
       Minha Descrição
     </p>
     </Modal>
-    ```
+  ```
 
 - O [WAI-ARIA authoring practices ](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) pode ajudá-lo a definir o foco inicial no elemento mais relevante, com base no seu conteúdo modal.
-- Esteja ciente que uma "janela modal" sobrepõe a janela primária ou qualquer outra janela modal. As janelas sob um modal são **inertes**. Ou seja, os usuários não podem interagir com o conteúdo fora de uma janela modal ativa. Isso pode criar [comportamentos conflitantes](#focus-trap).
+- Esteja ciente que uma "janela modal" sobrepõe a janela primária ou qualquer outra janela modal. Esteja ciente que uma "janela modal" sobrepõe a janela primária ou qualquer outra janela modal. Ou seja, os usuários não podem interagir com o conteúdo fora de uma janela modal ativa. Isso pode criar [comportamentos conflitantes](#focus-trap).

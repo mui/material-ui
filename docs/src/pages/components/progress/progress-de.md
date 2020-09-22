@@ -1,64 +1,59 @@
 ---
 title: Circular, Linear progress React components
 components: CircularProgress, LinearProgress
+githubLabel:
+  component: Fortschritt als Gruppe
+materialDesign: https://material.io/components/progress-indicators
 ---
 
 # Fortschritt (Progress)
 
-<p class="description">Progress indicators commonly known as spinners, express an unspecified wait time or display the length of a process. The animation works with CSS, not JavaScript.</p>
+<p class="description">Progress indicators commonly known as spinners, express an unspecified wait time or display the length of a process.</p>
 
-[Fortschrittsanzeigen](https://material.io/design/components/progress-indicators.html) informieren Benutzer über den Status laufender Prozesse, z. B. Laden einer App, Senden eines Formulars oder Speichern von Updates. Sie kommunizieren den Status der App und zeigen verfügbare Aktionen an, beispielsweise, ob Benutzer vom aktuellen Bildschirm weg navigieren können.
+[Fortschrittsanzeigen](https://material.io/design/components/progress-indicators.html) informieren Benutzer über den Status laufender Prozesse, z. B. Laden einer App, Senden eines Formulars oder Speichern von Updates.
+
+- **Bestimmte** zirkuläre Fortschritte füllen die unsichtbare, kreisförmige Spur mit Farbe, wenn sich der Indikator von 0 bis 360 Grad bewegt.
+- **Unbestimmt** Indikatoren visualisieren eine nicht angegebene Wartezeit.
 
 **Bestimmte** Indikatoren zeigen an, wie lange eine Operation dauert.
 
-**Unbestimmt** Indikatoren visualisieren eine nicht angegebene Wartezeit.
-
-#### Fortschritt als Gruppe
-
-Wenn Sie den Fortschritt für eine Folge von Prozessen anzeigen, geben Sie den Gesamtfortschritt und nicht den Fortschritt der einzelnen Aktivitäten an.
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Kreisförmig
 
-[Zirkulärer Fortschritt](https://material.io/design/components/progress-indicators.html#circular-progress-indicators) unterstützt sowohl bestimmte als auch unbestimmte Prozesse.
-
-- **Bestimmte** zirkuläre Fortschritte füllen die unsichtbare, kreisförmige Spur mit Farbe, wenn sich der Indikator von 0 bis 360 Grad bewegt.
-- **Unbestimmte** zirkuläree Fortschritte vergrößern und verkleinern sich, während sie sich entlang der unsichtbaren Spur bewegen.
-
-### Zirkular Unbestimmt
+### Circular indeterminate
 
 {{"demo": "pages/components/progress/CircularIndeterminate.js"}}
 
-### Interaktive Integration
-
-{{"demo": "pages/components/progress/CircularIntegration.js"}}
-
-### Zirkular Bestimmt
+### Circular determinate
 
 {{"demo": "pages/components/progress/CircularDeterminate.js"}}
 
-### Zirkular Statisch
+### Interactive integration
 
-{{"demo": "pages/components/progress/CircularStatic.js"}}
+{{"demo": "pages/components/progress/CircularIntegration.js"}}
+
+### Circular with label
+
+{{"demo": "pages/components/progress/CircularWithValueLabel.js"}}
 
 ## Linear
 
-[Linearer Fortschritt](https://material.io/design/components/progress-indicators.html#linear-progress-indicators) Indikator.
-
-### Linear Unbestimmt
+### Linear indeterminate
 
 {{"demo": "pages/components/progress/LinearIndeterminate.js"}}
 
-### Linear Bestimmt
+### Linear determinate
 
 {{"demo": "pages/components/progress/LinearDeterminate.js"}}
 
-### Linearer Puffer
+### Linear buffer
 
 {{"demo": "pages/components/progress/LinearBuffer.js"}}
 
-### Linear Abfrage
+### Linear with label
 
-{{"demo": "pages/components/progress/LinearQuery.js"}}
+{{"demo": "pages/components/progress/LinearWithValueLabel.js"}}
 
 ## Nicht-standardmäßige Bereiche
 
@@ -81,9 +76,9 @@ function Progress(props) {
 }
 ```
 
-## Individueller Fortschritt
+## Customized progress
 
-Hier sind einige Beispiele, wie man die Komponente anpassen kann. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
+Hier einige Beispiele zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
 
 {{"demo": "pages/components/progress/CustomizedProgressBars.js", "defaultCodeOpen": false}}
 
@@ -95,6 +90,8 @@ Es gibt [3 wichtige Grenzwerte](https://www.nngroup.com/articles/response-times-
 
 ## Einschränkungen
 
+### High CPU load
+
 Bei starker Belastung verlieren Sie möglicherweise die Strich-Animation oder sehen zufällige CircularProgress-Ringbreiten. Sie sollten prozessorintensive Vorgänge in einem Web-Worker oder in Batches ausführen, um den Haupt-Rendering-Thread nicht zu blockieren.
 
 ![schwere Last](/static/images/progress/heavy-load.gif)
@@ -102,3 +99,15 @@ Bei starker Belastung verlieren Sie möglicherweise die Strich-Animation oder se
 When it's not possible, you can leverage the `disableShrink` property to mitigate the issue. See [this issue](https://github.com/mui-org/material-ui/issues/10327).
 
 {{"demo": "pages/components/progress/CircularUnderLoad.js"}}
+
+### High frequency updates
+
+The `LinearProgress` uses a transition on the CSS transform property to provide a smooth update between different values. The default transition duration is 200ms. In the event a parent component updates the `value` prop too quickly, you will at least experience a 200ms delay between the re-render and the progress bar fully updated.
+
+If you need to perform 30 re-renders per second or more, we recommend disabling the transition:
+
+```css
+.MuiLinearProgress-bar {
+  transition: none;
+}
+```

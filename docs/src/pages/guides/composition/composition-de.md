@@ -48,7 +48,7 @@ This pattern is very powerful and allows for great flexibility, as well as a way
 
 ### Vorbehalt beim Inlining
 
-Using an inline function as an argument for the `component` prop may result in **unexpected unmounting**, since a new component is passed every time React renders. Zum Beispiel, wenn Sie ein benutzerdefiniertes `ListItem` erstellen möchten, das als Link fungiert, können Sie Folgendes tun:
+Using an inline function as an argument for the `component` prop may result in **unexpected unmounting**, since a new component is passed every time React renders. ⚠️ Da wir jedoch eine Inline-Funktion verwenden, um die gerenderte Komponente zu ändern, wird die Verknüpfung von React bei jedem Rendern des `ListItemLink` aufgehoben.
 
 ```jsx
 import { Link } from 'react-router-dom';
@@ -69,7 +69,7 @@ function ListItemLink(props) {
 }
 ```
 
-⚠️ Da wir jedoch eine Inline-Funktion verwenden, um die gerenderte Komponente zu ändern, wird die Verknüpfung von React bei jedem Rendern des `ListItemLink ` aufgehoben. React aktualisiert nicht nur das DOM unnötig, sondern die Wellenvisualisierung des `ListItem` funktioniert auch nicht richtig.
+⚠️ Da wir jedoch eine Inline-Funktion verwenden, um die gerenderte Komponente zu ändern, wird die Verknüpfung von React bei jedem Rendern des `ListItemLink` aufgehoben. React aktualisiert nicht nur das DOM unnötig, sondern die Wellenvisualisierung des `ListItem` funktioniert auch nicht richtig.
 
 The solution is simple: **avoid inline functions and pass a static component to the `component` prop** instead. Let's change the `ListItemLink` component so `CustomLink` always reference the same component:
 

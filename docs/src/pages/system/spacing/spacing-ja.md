@@ -1,10 +1,10 @@
-# 間隔
+# Spacing
 
-<p class="description">要素の外観を変更するための、応答の短いマージンとパディングユーティリティークラス。</p>
+<p class="description">簡単に要素のmarginとpaddingをレスポンシブに変更するためのユーティリティクラスです。</p>
 
 ## 表記
 
-スペースユーティリティは、簡易マージンとパディングプロップをマージンとパディングのCSS宣言に変換します。 プロップには、`{property}{sides}`という形式で名前が付けられます。
+スペースユーティリティは、簡易マージンとパディングプロップをマージンとパディングのCSS宣言に変換します。 プロップには、`{property}{sides}`という形式で名前が付けられます。 プロップには、`{property}{sides}`という形式で名前が付けられます。
 
 Where *property* is one of:
 
@@ -19,11 +19,11 @@ Where *sides* is one of:
 - `r` - for classes that set *margin-right* or *padding-right*
 - `x` - for classes that set both **-left* and **-right*
 - `y` - for classes that set both **-top* and **-bottom*
-- blank - for classes that set a margin or padding on all 4 sides of the element
+- (指定なし) - HTML要素の四方向のmarginもしくはpaddingを設定するためのクラス
 
-## Transformation
+## 変形
 
-Depending on the input and the theme configuration, the following transformation is applied:
+入力内容とTheme (テーマ) 設定によって、以下の様に間隔の変更ができます。
 
 - input: `number` & theme: `number`: the property is multiplied by the theme value.
 
@@ -78,7 +78,7 @@ const theme = {
 <Box p={2}>…
 ```
 
-## Horizontal centering
+## 水平方向に中央寄せする
 
 {{"demo": "pages/system/spacing/HorizontalCentering.js", "defaultCodeOpen": false, "bg": true}}
 
@@ -109,8 +109,7 @@ import { spacing } from '@material-ui/system';
 | `spacing`   | `px` | `padding-left`, `padding-right` | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
 | `spacing`   | `py` | `padding-top`, `padding-bottom` | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
 
-
-*Some people find the prop shorthand confusing, you can use the full version if you prefer:*
+_もしPropsの略称が難しいと感じた場合、正称を使用することもできます。_
 
 ```diff
 -<Box pt={2} />

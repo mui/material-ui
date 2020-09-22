@@ -15,6 +15,7 @@ export const styles = (theme) => ({
     // To remove at some point.
     overflow: 'hidden',
     display: 'inline-block', // allow overflow hidden to take action
+    textAlign: 'center', // support non-square icon
     flexShrink: 0,
   },
   /* Styles applied to the root element if `color="primary"`. */

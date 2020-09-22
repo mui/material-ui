@@ -1,11 +1,15 @@
 ---
 title: Select React component
 components: Select, NativeSelect
+githubLabel:
+  component: Liste à choix simple
 ---
 
 # Liste à choix simple
 
 <p class="description">Select components are used for collecting user provided information from a list of options.</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Simple Select
 
@@ -17,17 +21,35 @@ Menus are positioned over their emitting elements such that the currently select
 
 The Select component is meant to be interchangeable with a native `<select>` element.
 
-If you are looking for more advanced features, like combobox, multiselect, autocomplete, async or creatable support, head to the [`Autocomplete` component](/components/autocomplete/). It's meant to be an improved version of the "react-select" and "downshift" packages.
+If you are looking for more advanced features, like combobox, multiselect, autocomplete, async or creatable support, head to the [`Autocomplete` component](/components/autocomplete/). C'est censé être une version améliorée de la "react-select" et de "downshift".
 
-## Native Select
+## Props
 
-As the user experience can be improved on mobile using the native select of the platform, we allow such pattern.
+### Filled and outlined variants
 
 {{"demo": "pages/components/selects/NativeSelects.js"}}
 
+### Labels and helper text
+
+{{"demo": "pages/components/selects/SelectLabels.js"}}
+
+### Auto width
+
+{{"demo": "pages/components/selects/SelectAutoWidth.js"}}
+
+### Other props
+
+{{"demo": "pages/components/selects/SelectOtherProps.js"}}
+
 ## Text Fields (Champs de texte)
 
-Le composant d'encapsulation `TextField` est un contrôle de formulaire complet comprenant une étiquette, une entrée et un texte d'aide. You can find an example with the select mode [in this section](/components/text-fields/#select).
+As the user experience can be improved on mobile using the native select of the platform, we allow such pattern.
+
+{{"demo": "pages/components/selects/NativeSelect.js"}}
+
+## TextField
+
+Le composant d'encapsulation `TextField` est un contrôle de formulaire complet comprenant une étiquette, une entrée et un texte d'aide. The first step is to style the `InputBase` component.
 
 ## Customized selects
 
@@ -39,19 +61,37 @@ The first step is to style the `InputBase` component. Once it's styled, you can 
 
 🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/select).
 
-## Multiple Select
+## Controlled Open Select
 
-The `Select` component can handle multiple selections. It's enabled with the `multiple` property.
+The `Select` component can handle multiple selections. The `Select` component can handle multiple selections.
 
 Like with the single selection, you can pull out the new value by accessing `event.target.value` in the `onChange` callback. It's always an array.
 
+### Default
+
 {{"demo": "pages/components/selects/MultipleSelect.js"}}
 
-## Controlled Open Select
+### Checkmarks
+
+{{"demo": "pages/components/selects/MultipleSelectCheckmarks.js"}}
+
+### Chip
+
+Alternatively a `TextField` with an `id` and `label` creates the proper markup and ids for you:
+
+### Placeholder
+
+{{"demo": "pages/components/selects/MultipleSelectPlaceholder.js"}}
+
+### Native
+
+{{"demo": "pages/components/selects/MultipleSelectNative.js"}}
+
+## Avec un dialogue
 
 {{"demo": "pages/components/selects/ControlledOpenSelect.js"}}
 
-## Avec un dialogue
+## With a dialog
 
 Bien que cela soit découragé par la spécification Material Design, vous pouvez utiliser une sélection dans une boîte de dialogue.
 

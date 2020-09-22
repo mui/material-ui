@@ -1,6 +1,6 @@
 # Plataformas Suportadas
 
-<p class="description">Aprenda sobre as plataformas, do moderno ao antigo, que são suportadas pelo Material-UI.</p>
+<p class="description">Aprenda sobre as plataformas, desde as modernas até antigas, quais delas são suportadas pelo Material-UI.</p>
 
 ## Navegador
 
@@ -10,7 +10,6 @@ O Material-UI suporta as versões mais recentes e estáveis de todos os principa
 |:-- |:----- |:------- |:------ |:------ |:--------- |
 | 11 | >= 14 | >= 52   | >= 49  | >= 10  | ✅         |
 
-
 Como o Googlebot usa um serviço de renderização da Web (WRS) para indexar o conteúdo da página, é essencial que o Material-UI o suporte. [O WRS atualiza regularmente o mecanismo de renderização usado por ele](https://webmasters.googleblog.com/2019/05/the-new-evergreen-googlebot.html). Você pode esperar que os componentes do Material-UI sejam renderizados sem grandes problemas.
 
 ## Servidor
@@ -19,9 +18,9 @@ Por suportar renderização no lado do servidor, o Material-UI precisa oferecer 
 
 ### Prefixos CSS
 
-Esteja ciente de que alguns recursos do CSS [ exigem ](https://github.com/cssinjs/jss/issues/279) uma etapa adicional de pós-processamento que adiciona prefixos específicos do browser. Estes prefixos são adicionados automaticamente no cliente graças ao [` jss-plugin-vendor-prefixer `](https://www.npmjs.com/package/jss-plugin-vendor-prefixer).
+Esteja ciente de que alguns recursos do CSS [ exigem ](https://github.com/cssinjs/jss/issues/279) uma etapa adicional de pós-processamento que adiciona prefixos específicos do browser. Estes prefixos são adicionados automaticamente no cliente graças ao [`jss-plugin-vendor-prefixer`](https://www.npmjs.com/package/jss-plugin-vendor-prefixer).
 
-O CSS exibido nesta documentação é processado com [`autoprefixer`](https://www.npmjs.com/package/autoprefixer). Você pode usar [ a implementação encontrada na documentação ](https://github.com/mui-org/material-ui/blob/47aa5aeaec1d4ac2c08fd0e84277d6b91e497557/pages/_document.js#L123) como inspiração. Esteja ciente de que isso tem uma implicação no desempenho da página. É algo essencial para páginas estáticas, mas precisa ser equilibrado com não fazer nada ao renderizar páginas dinâmicas.
+O CSS exibido nesta documentação é processado com [`autoprefixer`](https://www.npmjs.com/package/autoprefixer). Você pode usar [a implementação encontrada na documentação](https://github.com/mui-org/material-ui/blob/47aa5aeaec1d4ac2c08fd0e84277d6b91e497557/pages/_document.js#L123) como inspiração. Esteja ciente de que isso tem uma implicação no desempenho da página. É algo essencial para páginas estáticas, mas precisa ser equilibrado com não fazer nada ao renderizar páginas dinâmicas.
 
 ## React
 
@@ -29,4 +28,4 @@ Material-UI suporta as versões mais recentes do React, começando com ^16.8.0 (
 
 ## TypeScript
 
-Material-UI requires a minimum version of TypeScript 3.2.
+Material-UI requer como versão mínima o TypeScript 3.2.

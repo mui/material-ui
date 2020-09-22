@@ -1,6 +1,10 @@
 ---
 title: Slider React Komponente
 components: Slider
+githubLabel:
+  component: Slider
+materialDesign: https://material.io/components/sliders
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#slider'
 ---
 
 # Slider
@@ -10,6 +14,8 @@ components: Slider
 [Schieberegler](https://material.io/design/components/sliders.html) spiegeln einen Wertebereich entlang einer Leiste wider, aus dem Benutzer einen einzelnen Wert auswählen können. Sie sind ideal zum Anpassen von Einstellungen wie Lautstärke, Helligkeit oder Anwenden von Bildfiltern.
 
 - 📦 [22 kB gzipped](/size-snapshot) (but only +8 kB when used together with other Material-UI components).
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Kontinuierliche Schieberegler
 
@@ -63,7 +69,7 @@ In this example an input allows a discrete value to be set.
 
 ## Benutzerdefinierte Auswahl
 
-Hier sind einige Beispiele, wie man die Komponente anpassen kann. You can learn more about this in the [overrides documentation page](/customization/components/).
+Hier einige Beispiele zum Anpassen der Komponente. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/slider/CustomizedSlider.js"}}
 

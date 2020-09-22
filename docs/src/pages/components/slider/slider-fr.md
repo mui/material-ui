@@ -1,6 +1,10 @@
 ---
 title: Slider React component
 components: Slider
+githubLabel:
+  component: Slider
+materialDesign: https://material.io/components/sliders
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#slider'
 ---
 
 # Slider
@@ -10,6 +14,8 @@ components: Slider
 [Les curseurs](https://material.io/design/components/sliders.html) reflètent une plage de valeurs sur une barre, à partir de laquelle les utilisateurs peuvent sélectionner une seule valeur. Ils sont idéaux pour ajuster des paramètres tels que le volume, la luminosité ou l'application de filtres d'images.
 
 - 📦 [22 kB gzipped](/size-snapshot) (but only +8 kB when used together with other Material-UI components).
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Continuous sliders
 
@@ -63,7 +69,7 @@ In this example an input allows a discrete value to be set.
 
 ## Curseurs personnalisés
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Here are some examples of customizing the component. Vous pouvez en apprendre plus à ce sujet dans la [page de documentation](/customization/components/).
 
 {{"demo": "pages/components/slider/CustomizedSlider.js"}}
 

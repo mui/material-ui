@@ -36,16 +36,16 @@ const useStyles = makeStyles((theme) => ({
   },
   item: {
     fontSize: '.8125rem',
-    padding: theme.spacing(0.5, 0, 0.5, `${Math.max(0, theme.spacing(1) - 3)}px`),
+    padding: theme.spacing(0.5, 0, 0.5, '5px'),
     borderLeft: `3px solid transparent`,
     boxSizing: 'border-box',
     '&:hover': {
       borderLeftColor:
-        theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[900],
+        theme.palette.mode === 'light' ? theme.palette.grey[200] : theme.palette.grey[900],
     },
     '&$active,&:active': {
       borderLeftColor:
-        theme.palette.type === 'light' ? theme.palette.grey[300] : theme.palette.grey[800],
+        theme.palette.mode === 'light' ? theme.palette.grey[300] : theme.palette.grey[800],
     },
   },
   secondaryItem: {

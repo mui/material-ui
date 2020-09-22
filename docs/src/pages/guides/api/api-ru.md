@@ -46,7 +46,7 @@ All components accept a [`classes`](/customization/components/#overriding-styles
 - The variants applied by a boolean property **aren't** prefixed, e.g. the `rounded` class applied by the `rounded` property.
 - The variants applied by an enum property **are** prefixed, e.g. the `colorPrimary` class applied by the `color="primary"` property.
 - A variant has **one level of specificity**. The `color` and `variant` properties are considered a variant. The lower the style specificity is, the simpler it is to override.
-- We increase the specificity for a variant modifier. We already **have to do it** for the pseudo-classes (`:hover`, `:focus`, etc.). It allows much more control at the cost of more boilerplate. Hopefully, it's also more intuitive.
+- We increase the specificity for a variant modifier. We increase the specificity for a variant modifier. It allows much more control at the cost of more boilerplate. Hopefully, it's also more intuitive.
 
 ```js
 const styles = {
@@ -67,7 +67,7 @@ Nested components inside a component have:
 - their own flattened properties when these are key to the top level component abstraction, for instance an `id` prop for the `Input` component.
 - their own `xxxProps` property when users might need to tweak the internal render method's sub-components, for instance, exposing the `inputProps` and `InputProps` properties on components that use `Input` internally.
 - their own `xxxComponent` property for performing component injection.
-- their own `xxxRef` prop when you might need to perform imperative actions, for instance, exposing an `inputRef` prop to access the native `input` on the `Input` component. This helps answer the question ["How can I access the DOM element?"](/getting-started/faq/#how-can-i-access-the-dom-element)
+- экземляр `window.HTMLDivElement`. This helps answer the question ["How can I access the DOM element?"](/getting-started/faq/#how-can-i-access-the-dom-element)
 
 ### Property naming
 
@@ -87,27 +87,27 @@ Most of the controlled component are controlled via the `value` and the `onChang
 There are two options to design the API for the variations of a component: with a *boolean*; or with an *enum*. For example, let's take a button that has different types. Each option has its pros and cons:
 
 - Option 1 *boolean*:
-    
-    ```tsx
-    type Props = {
+
+  ```tsx
+  type Props = {
     contained: boolean;
     fab: boolean;
     };
-    ```
-    
-    This API enables the shorthand notation: `<Button>`, `<Button contained />`, `<Button fab />`.
+  ```
+
+  This API enables the shorthand notation: `<Button>`, `<Button contained />`, `<Button fab />`.
 
 - Option 2 *enum*:
-    
-    ```tsx
-    type Props = {
+
+  ```tsx
+  type Props = {
       variant: 'text' | 'contained' | 'fab';
     }
-    ```
-    
-    This API is more verbose: `<Button>`, `<Button variant="contained">`, `<Button variant="fab">`.
-    
-    However it prevents an invalid combination from being used, bounds the number of properties exposed, and can easily support new values in the future.
+  ```
+
+  This API is more verbose: `<Button>`, `<Button variant="contained">`, `<Button variant="fab">`.
+
+  However it prevents an invalid combination from being used, bounds the number of properties exposed, and can easily support new values in the future.
 
 The Material-UI components use a combination of the two approaches according to the following rules:
 
@@ -122,7 +122,7 @@ The `ref` is forwarded to the root element. This means that, without changing th
 
 ## Словарь
 
-- **host component**: a DOM node type in the context of `react-dom`, e.g. a `'div'`. См. также [React Implementation Notes:](https://reactjs.org/docs/implementation-notes.html#mounting-host-elements).
+- **host component**: a DOM node type in the context of `react-dom`, e.g. a `'div'`. экземляр `window.HTMLDivElement`.
 - **host element**: DOM-нода в контексте `react-dom`, т.е. экземляр `window.HTMLDivElement`.
 - **outermost**: The first component when reading the component tree from top to bottom i.e. breadth-first search.
 - **root component**: the outermost component that renders a host component.

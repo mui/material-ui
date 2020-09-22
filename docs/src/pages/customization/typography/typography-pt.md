@@ -1,6 +1,6 @@
 # Tipografia
 
-<p class="description">O tema fornece um conjunto de tamanhos de tipos que funcionam bem juntos e também com a grade de leiaute.</p>
+<p class="description">O tema fornece um conjunto de tipos de tamanhos que funcionam bem juntos e também com a grade de leiaute.</p>
 
 ## Família da fonte
 
@@ -31,7 +31,7 @@ const theme = createMuiTheme({
 
 Para fontes auto-hospedadas, baixe os arquivos de fonte em formatos `ttf`, `woff`, e/ou `woff2` e importe-os em seu código.
 
-⚠️ Isso requer que você tenha um plugin ou loader em seu processo de compilação que possa manipular o carregamento de arquivos `ttf`, `woff` e `woff2`. Fontes *não* serão embutidas dentro do seu pacote. Elas serão carregadas de seu servidor da Web em vez de uma CDN.
+⚠️ Isso requer que você tenha um plugin ou loader em seu processo de compilação que possa manipular o carregamento de arquivos `ttf`, `woff` e `woff2`. Fontes *não* serão embutidas dentro do seu pacote. Elas serão carregadas de seu servidor da web em vez de uma CDN.
 
 ```js
 import RalewayWoff2 from './fonts/Raleway-Regular.woff2';
@@ -51,23 +51,12 @@ const raleway = {
 };
 ```
 
-Em seguida, você precisa alterar o tema para usar essa nova fonte. Para definir globalmente o Raleway como uma fonte, o componente [`CssBaseline`](/components/css-baseline/) pode ser usado (ou qualquer outra solução CSS de sua escolha).
+Em seguida, você precisa alterar o tema para usar essa nova fonte. Para definir globalmente Raleway como uma fonte, o componente [`CssBaseline`](/components/css-baseline/) pode ser usado (ou qualquer outra solução CSS de sua escolha).
 
 ```jsx
 const theme = createMuiTheme({
   typography: {
-    fontFamily: 'Raleway, Arial',
-  },
-  overrides: {
-    MuiCssBaseline: {
-      '@global': {
-        '@font-face': [raleway],
-      },
-    },
-  },
-});
-
-// ...
+    // Diz ao Material-UI qual é o font-size no elemento html.
 return (
   <ThemeProvider theme={theme}>
     <CssBaseline />
@@ -98,7 +87,7 @@ O tamanho da fonte computada pelo navegador segue esta equação matemática:
 
 <!-- https://latex.codecogs.com/gif.latex?computed&space;=&space;specification&space;\frac{typography.fontSize}{14}&space;\frac{html&space;font&space;size}{typography.htmlFontSize} -->
 
-### Tamanhos da fonte responsivo
+### Tamanhos de fonte responsivo
 
 As propriedades de variações de tipografia são mapeadas diretamente para o CSS gerado. Você pode usar [consultas de mídia](/customization/breakpoints/#api) dentro delas:
 
@@ -160,7 +149,7 @@ html {
 }
 ```
 
-*Você precisa aplicar o CSS acima no elemento html desta página para ver a demonstração abaixo renderizada corretamente*
+_Você precisa aplicar o CSS acima no elemento html desta página para ver a demonstração abaixo renderizada corretamente_
 
 {{"demo": "pages/customization/typography/FontSizeTheme.js"}}
 

@@ -1,6 +1,10 @@
 ---
 title: Slider React component
 components: Slider
+githubLabel:
+  component: Slider
+materialDesign: https://material.io/components/sliders
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#slider'
 ---
 
 # Slider
@@ -10,6 +14,8 @@ components: Slider
 [Sliders](https://material.io/design/components/sliders.html) reflect a range of values along a bar, from which users may select a single value. They are ideal for adjusting settings such as volume, brightness, or applying image filters.
 
 - 📦 [22 kB gzipped](/size-snapshot) (but only +8 kB when used together with other Material-UI components).
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Continuous sliders
 

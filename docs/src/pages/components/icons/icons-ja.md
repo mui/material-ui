@@ -1,6 +1,9 @@
 ---
 title: Icon コンポーネント
 components: Icon, SvgIcon
+githubLabel:
+  components: SvgIcon
+materialDesign: https://material.io/design/iconography/system-icons.html
 ---
 
 # Icons
@@ -19,7 +22,7 @@ Material Design has standardized over 1,100 official icons, each in five differe
 
 ### インストール
 
-Install the package in your project directory with:
+次を使用して、プロジェクトディレクトリにパッケージをインストールします。
 
 ```sh
 // with npm
@@ -71,6 +74,20 @@ Each icon also has a "theme": Filled (default), Outlined, Rounded, Two tone and 
 > Note: The Material Design specification names the icons using "snake_case" naming (for example `delete_forever`, `add_a_photo`), while `@material-ui/icons` exports the respective icons using "PascalCase" naming (for example `DeleteForever`, `AddAPhoto`). There are three exceptions to this naming rule: `3d_rotation` exported as `ThreeDRotation`, `4k` exported as `FourK`, and `360` exported as `ThreeSixty`.
 
 {{"demo": "pages/components/icons/SvgMaterialIcons.js"}}
+
+### テスト
+
+For testing purposes, each icon exposed from `@material-ui/icons` has a `data-testid` attribute with the name of the icon. 例えば：
+
+```jsx
+import DeleteIcon from '@material-ui/icons/Delete';
+```
+
+has the following attribute once mounted:
+
+```html
+<svg data-testid="DeleteIcon"></svg>
+```
 
 ## SvgIcon
 
@@ -130,6 +147,16 @@ import { ReactComponent as StarIcon } from './star.svg';
 <SvgIcon component={StarIcon} viewBox="0 0 600 476.6" />
 ```
 
+### Font Awesome
+
+If you find that there are layout issues when using FontAwesomeIcon from `@fortawesome/react-fontawesome`, you may try passing the Font Awesome SVG data directly to SvgIcon. This is best implemented as a custom wrapper component but will render more reliably in Material UI components (e.g. an IconButton).
+
+[Font Awesome](https://fontawesome.com/icons) は、 `Icon` コンポーネントとともに、次のように使用することができます。
+
+{{"demo": "pages/components/icons/FontAwesomeSvgIconDemo.js"}}
+
+The `fullWidth` prop of `FontAwesomeIcon` can also be used to approximate the correct dimensions, but it isn't perfect.
+
 ### ライブラリ
 
 #### Material Design (recommended)
@@ -144,13 +171,13 @@ Note: [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) has a
 
 ## Icon (Font icons)
 
-`Icon` コンポーネントは、合字をサポートする任意のアイコンフォントのアイコンを表示できます。 前提条件として、たとえば、Google Web Fontsを介して、 [Material icon font](https://google.github.io/material-design-icons/#icon-font-for-the-web) プロジェクトをプロジェクトに含める必要があります。
+`Icon` will set the correct class name for the Material icon font. 他のフォントの場合、Iconコンポーネントの `className` プロパティを使用して クラス名を指定する必要があります。
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 ```
 
-`Icon` will set the correct class name for the Material icon font. 他のフォントの場合、Iconコンポーネントの `className` プロパティを使用して クラス名を指定する必要があります。
+`Icon` will set the correct class name for the Material icon font. `Icon` will set the correct class name for the Material icon font.
 
 アイコンを使用するには、単純にアイコン名（フォントの合字）を `Icon` コンポーネントでラップします。例えば：
 
@@ -160,7 +187,7 @@ import Icon from '@material-ui/core/Icon';
 <Icon>star</Icon>
 ```
 
-デフォルトでは、アイコンは現在のテキストの色を継承します。 必要に応じて、テーマの色特性のいずれかを使用して、アイコンの色を設定することができます。： `primary`, `secondary`, `action`, `error` & `disabled`.
+デフォルトでは、アイコンは現在のテキストの色を継承します。 デフォルトでは、アイコンは現在のテキストの色を継承します。 デフォルトでは、アイコンは現在のテキストの色を継承します。 必要に応じて、テーマの色特性のいずれかを使用して、アイコンの色を設定することができます。： `primary`, `secondary`, `action`, `error` & `disabled`.
 
 ### Font Material icons
 
@@ -170,27 +197,51 @@ import Icon from '@material-ui/core/Icon';
 
 [Font Awesome](https://fontawesome.com/icons) は、 `Icon` コンポーネントとともに、次のように使用することができます。
 
-{{"demo": "pages/components/icons/FontAwesome.js", "hideEditButton": true}}
+{{"demo": "pages/components/icons/FontAwesomeIcon.js"}}
 
-## Font vs SVG どのアプローチを使用しますか？
+But note that the Font Awesome icons weren't designed like the Material Design icons (compare the two previous demos). The fa icons are cropped to use all the space available. It's recommanded to adjust for this with a global override:
 
-どちらの方法でも問題なく動作しますが、特にパフォーマンスとレンダリング品質の点で、わずかな違いがいくつかあります。 コード分割を可能にし、より多くのアイコンをサポートし、より速くより良くレンダリングするので、可能な限りSVGが優先されます。
+```jsx
+const theme = createMuiTheme({
+  components: {
+    MuiIcon: {
+      styleOverrides: {
+        root: {
+          // Match 24px = 3 * 2 + 1.125 * 16
+          boxSizing: 'content-box',
+          padding: 3,
+          fontSize: '1.125rem',
+        },
+      },
+    },
+  },
+});
+```
+
+{{"demo": "pages/components/icons/FontAwesomeIconSize.js"}}
+
+## Font vs SVG どのアプローチを使用しますか？ どのアプローチを使用しますか？
+
+どちらの方法でも問題なく動作しますが、特にパフォーマンスとレンダリング品質の点で、わずかな違いがいくつかあります。 どちらの方法でも問題なく動作しますが、特にパフォーマンスとレンダリング品質の点で、わずかな違いがいくつかあります。 どちらの方法でも問題なく動作しますが、特にパフォーマンスとレンダリング品質の点で、わずかな違いがいくつかあります。 コード分割を可能にし、より多くのアイコンをサポートし、より速くより良くレンダリングするので、可能な限りSVGが優先されます。
 
 詳しくは、[why GitHub migrated from font icons to SVG icons](https://github.blog/2016-02-22-delivering-octicons-with-svg/)をご覧ください。
 
 ## アクセシビリティ
 
-アイコンはあらゆる種類の意味のある情報を伝えることができるので、可能な限り多くの人に届くことが重要です。 次の2つの使用例を検討してください。
-- **装飾アイコン** は、視覚的またはブランド強化のためにのみ使用されています。 それらがページから削除された場合でも、ユーザーはあなたのページを理解して使用することができます。
-- **セマンティックアイコン** は、単なる装飾ではなく、意味を伝えるために使用しているものです。 これには、ボタン、フォーム要素、トグルなど、インタラクティブコントロールとして使用されるテキストのないアイコンが含まれます。
+アイコンはあらゆる種類の意味のある情報を伝えることができるので、可能な限り多くの人に届くことが重要です。 次の2つの使用例を検討してください。 次の2つの使用例を検討してください。
+
+- **セマンティックアイコン** は、単なる装飾ではなく、意味を伝えるために使用しているものです。 これには、ボタン、フォーム要素、トグルなど、インタラクティブコントロールとして使用されるテキストのないアイコンが含まれます。 これには、ボタン、フォーム要素、トグルなど、インタラクティブコントロールとして使用されるテキストのないアイコンが含まれます。 それらがページから削除された場合でも、ユーザーはあなたのページを理解して使用することができます。
+- **セマンティックアイコン** は、単なる装飾ではなく、意味を伝えるために使用しているものです。 これには、ボタン、フォーム要素、トグルなど、インタラクティブコントロールとして使用されるテキストのないアイコンが含まれます。 それらがページから削除された場合でも、ユーザーはあなたのページを理解して使用することができます。 これには、ボタン、フォーム要素、トグルなど、インタラクティブコントロールとして使用されるテキストのないアイコンが含まれます。
 
 ### Decorative SVG Icons
 
-アイコンが純粋に装飾的なものであれば、これで完了です。 The `aria-hidden=true` attribute is added so that your icons are properly accessible (invisible).
+`Icon` will set the correct class name for the Material icon font. 他のフォントの場合、Iconコンポーネントの `className` プロパティを使用して クラス名を指定する必要があります。
 
 ### Semantic SVG Icons
 
-あなたのアイコンが意味的な意味を持っているなら、あなたがする必要があるのは `titleAccess="meaning"` プロパティを投入することだけです。 The `role="img"` attribute and the `<title>` element are added so that your icons are properly accessible.
+あなたのアイコンが意味的な意味を持っているなら、あなたがする必要があるのは `titleAccess="meaning"` プロパティを投入することだけです。
+&lt;Icon&gt;add_circle&lt;/Icon&gt;
+&lt;Typography variant="srOnly"&gt;Create a user&lt;/Typography&gt;
 
 アイコンボタンと一緒に使用したときのようにフォーカス可能なインタラクティブ要素の場合は、 `aria-label` プロパティを使用できます。
 
@@ -209,7 +260,7 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 
 ### Decorative Font Icons
 
-アイコンが純粋に装飾的なものであれば、これで完了です。 The `aria-hidden=true` attribute is added so that your icons are properly accessible (invisible).
+`Icon` will set the correct class name for the Material icon font. 他のフォントの場合、Iconコンポーネントの `className` プロパティを使用して クラス名を指定する必要があります。
 
 ### Semantic Font Icons
 

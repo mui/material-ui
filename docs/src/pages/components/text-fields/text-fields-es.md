@@ -1,6 +1,9 @@
 ---
 title: Componente de React Text Field
 components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
+githubLabel:
+  component: TextField
+materialDesign: https://material.io/components/text-fields
 ---
 
 # Text Field (campo de texto)
@@ -8,6 +11,8 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 <p class="description">Los campos de texto permiten a los usuarios ingresar y editar texto.</p>
 
 [Text fields](https://material.io/design/components/text-fields.html) allow users to enter text into a UI. They typically appear in forms and dialogs.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## TextField
 
@@ -33,7 +38,7 @@ The `error` prop toggles the error state, the `helperText` prop can then be used
 
 ## Multiline
 
-The `multiline` prop transforms the text field into a [textarea](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) or a [TextareaAutosize](/components/textarea-autosize/).
+The `multiline` prop transforms the text field into a [textarea](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) or a [TextareaAutosize](/components/textarea-autosize/). Unless the `rows` prop is set, the height of the text field dynamically matches its content (using [TextareaAutosize](/components/textarea-autosize/)). You can use the `rowsMin` and `rowsMax` props to bound it.
 
 {{"demo": "pages/components/text-fields/MultilineTextFields.js"}}
 
@@ -51,7 +56,7 @@ There are multiple ways to display an icon with a text field.
 
 ### Adornos de campos de texto
 
-The main way is with an `InputAdornment`. This can be used to add a prefix, a suffix or an action to an input. Por ejemplo, puedes usar un botón de icono para esconder o revelar una contraseña.
+The main way is with an `InputAdornment`. Por ejemplo, puedes usar un botón de icono para esconder o revelar una contraseña. This can be used to add a prefix, a suffix or an action to an input.
 
 {{"demo": "pages/components/text-fields/InputAdornments.js"}}
 
@@ -63,7 +68,7 @@ Fancy smaller inputs? Use the `size` prop.
 
 ## Disposición
 
-`margin` prop can be used to alter the vertical spacing of inputs. Using `none` (default) will not apply margins to the `FormControl`, whereas `dense` and `normal` will. `dense` and `normal` alter other styles to meet the specification.
+`dense` and `normal` alter other styles to meet the specification. `margin` prop can be used to alter the vertical spacing of inputs. Using `none` (default) will not apply margins to the `FormControl`, whereas `dense` and `normal` will.
 
 `fullWidth` can be used to make the input take up the full width of its container.
 
@@ -129,6 +134,33 @@ o
 
 The floating label is absolutely positioned, it won't impact the layout of the page. You need to make sure that the input is larger than the label to display correctly.
 
+### type="number"
+
+Inputs of type="number" have potential usability issues:
+
+- Allowing certain non-numeric characters ('e', '+', '-', '.') and silently discarding others
+- Si se está componiendo el componente:
+
+and more - see [this article](https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-design-system-team-changed-the-input-type-for-numbers/) by the GOV.UK Design System team for a more detailed explanation.
+
+For number validation, one viable alternative is to use the default input type="text" with the _pattern_ attribute, for example:
+
+```jsx
+<TextField inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }} />
+```
+
+In the future, we might provide a [number input component](https://github.com/mui-org/material-ui/issues/19154).
+
+### Helper text
+
+The helper text prop affects the height of the text field. If two text fields are placed side by side, one with a helper text and one without, they will have different heights. For example:
+
+{{"demo": "pages/components/text-fields/HelperTextMisaligned.js"}}
+
+This can be fixed by passing a space character to the `helperText` prop:
+
+{{"demo": "pages/components/text-fields/HelperTextAligned.js"}}
+
 ## Integration with 3rd party input libraries
 
 Se pueden utilizar librerías externas para formatear un campo de texto. Para ello, hay que proporcionar una implementación personalizada del elemento `<input>` con el atributo `inputComponent`.
@@ -147,35 +179,6 @@ interface InputElement {
 ```
 
 ```jsx
-function MyInputComponent(props) {
-  const { component: Component, inputRef, ...other } = props;
-
-  // implement `InputElement` interface
-  React.useImperativeHandle(inputRef, () => ({
-    focus: () => {
-      // logic to focus the rendered component from 3rd party belongs here
-    },
-    // hiding the value e.g. react-stripe-elements
-  }));
-
-  // `Component` will be your `SomeThirdPartyComponent` from below
-  return <Component {...other} />;
-}
-
-// usage
-<TextField
-  InputProps={{
-    inputComponent: MyInputComponent,
-    inputProps: { component: SomeThirdPartyComponent },
-  }}
-/>;
-```
-
-## Accesibilidad
-
-In order for the text field to be accessible, **the input should be linked to the label and the helper text**. The underlying DOM nodes should have this structure:
-
-```jsx
 <div class="form-control">
   <label for="mi-campo">Email</label>
   <input id="mi-campo" aria-describedby="mi-texto-de-ayuda" />
@@ -183,8 +186,9 @@ In order for the text field to be accessible, **the input should be linked to th
 </div>
 ```
 
-- Si se usa el componente `TextField`, sólo hay que proporcionar un `id` único.
-- Si se está componiendo el componente:
+## Accesibilidad
+
+In order for the text field to be accessible, **the input should be linked to the label and the helper text**. The underlying DOM nodes should have this structure:
 
 ```jsx
 <FormControl>
@@ -194,10 +198,24 @@ In order for the text field to be accessible, **the input should be linked to th
 </FormControl>
 ```
 
+- Si se usa el componente `TextField`, sólo hay que proporcionar un `id` único.
+- Si se está componiendo el componente:
+
+```jsx
+<FormControl>
+  <InputLabel htmlFor="my-input">Email address</InputLabel>
+  <Input id="my-input" aria-describedby="my-helper-text" />
+  <FormHelperText id="my-helper-text">
+    We'll never share your email.
+  </FormHelperText>
+</FormControl>
+```
+
 ## Proyectos relacionados
 
 Para usos más avanzados tal vez puedas aprovercharte de:
 
-- [formik-material-ui](https://github.com/stackworx/formik-material-ui) Bindings for using Material-UI with [formik](https://jaredpalmer.com/formik).
-- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) Bindings for using Material-UI with [Redux Form](https://redux-form.com/).
 - [mui-rff](https://github.com/lookfirst/mui-rff) Bindings for using Material-UI with [React Final Form](https://final-form.org/react).
+- [formik-material-ui](https://github.com/stackworx/formik-material-ui): Bindings for using Material-UI with [formik](https://jaredpalmer.com/formik).
+- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui): Bindings for using Material-UI with [Redux Form](https://redux-form.com/).
+- [mui-rff](https://github.com/lookfirst/mui-rff): Bindings for using Material-UI with [React Final Form](https://final-form.org/react).
