@@ -845,7 +845,7 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
- 
+
       const options = getAllByRole('option');
       fireEvent.click(options[0], { ctrlKey: true });
       expect(handleClose.callCount).to.equal(0);
@@ -862,7 +862,7 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
- 
+
       const options = getAllByRole('option');
       fireEvent.click(options[0], { metaKey: true });
       expect(handleClose.callCount).to.equal(0);
