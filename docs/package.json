@@ -71,6 +71,7 @@
     "date-fns": "^2.15.0",
     "docsearch.js": "^2.6.3",
     "doctrine": "^3.0.0",
+    "emotion-server": "^10.0.27",
     "emotion-theming": "^10.0.27",
     "express": "^4.17.1",
     "fg-loadcss": "^2.0.1",
