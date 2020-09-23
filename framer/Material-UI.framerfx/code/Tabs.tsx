@@ -7,9 +7,9 @@ import { Icon } from './Icon';
 
 interface Props {
   centered: boolean;
-  disableHideScrollButtonsMobile: boolean;
+  allowScrollButtonsMobile: boolean;
   indicatorColor: 'primary' | 'secondary';
-  scrollButtons: 'auto' | 'off' | 'on';
+  scrollButtons: 'auto' | false | true;
   selectionFollowsFocus?: boolean;
   textColor: 'inherit' | 'primary' | 'secondary';
   variant: 'fullWidth' | 'scrollable' | 'standard';
@@ -55,7 +55,7 @@ export function Tabs(props: Props): JSX.Element {
 
 Tabs.defaultProps = {
   centered: false,
-  disableHideScrollButtonsMobile: false,
+  allowScrollButtonsMobile: false,
   indicatorColor: 'secondary' as 'secondary',
   scrollButtons: 'auto' as 'auto',
   textColor: 'inherit' as 'inherit',
@@ -72,7 +72,7 @@ addPropertyControls(Tabs, {
     type: ControlType.Boolean,
     title: 'Centered',
   },
-  disableHideScrollButtonsMobile: {
+  allowScrollButtonsMobile: {
     type: ControlType.Boolean,
     title: 'Disable hide scroll buttons mobile',
   },

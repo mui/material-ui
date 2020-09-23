@@ -70,7 +70,7 @@ export const styles = (theme) => ({
   },
   /* Styles applied to the `ScrollButtonComponent` component. */
   scrollButtons: {},
-  /* Styles applied to the `ScrollButtonComponent` component if `disableHideScrollButtonsMobile={true}`. */
+  /* Styles applied to the `ScrollButtonComponent` component if `allowScrollButtonsMobile={true}`. */
   scrollButtonsHideMobile: {
     [theme.breakpoints.down('sm')]: {
       display: 'none',
@@ -90,7 +90,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
     classes,
     className,
     component: Component = 'div',
-    disableHideScrollButtonsMobile = false,
+    allowScrollButtonsMobile = false,
     indicatorColor = 'secondary',
     onChange,
     orientation = 'horizontal',
@@ -284,7 +284,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
 
     const scrollButtonsActive = displayScroll.start || displayScroll.end;
     const showScrollButtons =
-      scrollable && ((scrollButtons === 'auto' && scrollButtonsActive) || scrollButtons === 'on');
+      scrollable && ((scrollButtons === 'auto' && scrollButtonsActive) || scrollButtons === true);
 
     conditionalElements.scrollButtonStart = showScrollButtons ? (
       <ScrollButtonComponent
@@ -293,7 +293,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
         onClick={handleStartScrollClick}
         disabled={!displayScroll.start}
         className={clsx(classes.scrollButtons, {
-          [classes.scrollButtonsHideMobile]: !disableHideScrollButtonsMobile,
+          [classes.scrollButtonsHideMobile]: !allowScrollButtonsMobile,
         })}
         {...TabScrollButtonProps}
       />
@@ -306,7 +306,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
         onClick={handleEndScrollClick}
         disabled={!displayScroll.end}
         className={clsx(classes.scrollButtons, {
-          [classes.scrollButtonsHideMobile]: !disableHideScrollButtonsMobile,
+          [classes.scrollButtonsHideMobile]: !allowScrollButtonsMobile,
         })}
         {...TabScrollButtonProps}
       />
@@ -334,7 +334,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
   });
 
   const updateScrollButtonState = useEventCallback(() => {
-    if (scrollable && scrollButtons !== 'off') {
+    if (scrollable && scrollButtons !== false) {
       const { scrollTop, scrollHeight, clientHeight, scrollWidth, clientWidth } = tabsRef.current;
       let showStartScroll;
       let showEndScroll;
@@ -564,6 +564,12 @@ Tabs.propTypes = {
    */
   action: refType,
   /**
+   * If `true`, the scroll buttons aren't forced hidden on mobile.
+   * By default the scroll buttons are hidden on mobile and takes precedence over `scrollButtons`.
+   * @default false
+   */
+  allowScrollButtonsMobile: PropTypes.bool,
+  /**
    * The label for the Tabs as a string.
    */
   'aria-label': PropTypes.string,
@@ -595,12 +601,6 @@ Tabs.propTypes = {
    */
   component: PropTypes.elementType,
   /**
-   * If `true`, the scroll buttons aren't forced hidden on mobile.
-   * Hidding scroll buttons with this prop takes precedence over `scrollButtons`.
-   * @default false
-   */
-  disableHideScrollButtonsMobile: PropTypes.bool,
-  /**
    * Determines the color of the indicator.
    * @default 'secondary'
    */
@@ -626,11 +626,14 @@ Tabs.propTypes = {
    * Determine behavior of scroll buttons when tabs are set to scroll:
    *
    * - `auto` will only present them when not all the items are visible.
-   * - `on` will always present them.
-   * - `off` will never present them.
+   * - `true` will always present them.
+   * - `false` will never present them.
+   *
+   * By default the scroll buttons are hidden on mobile.
+   * This behavior can be disabled with `allowScrollButtonsMobile`.
    * @default 'auto'
    */
-  scrollButtons: PropTypes.oneOf(['auto', 'off', 'on']),
+  scrollButtons: PropTypes /* @typescript-to-proptypes-ignore */.oneOf(['auto', false, true]),
   /**
    * If `true` the selected tab changes on focus. Otherwise it only
    * changes on activation.

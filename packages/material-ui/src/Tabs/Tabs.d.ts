@@ -15,6 +15,12 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
      */
     action?: React.Ref<TabsActions>;
     /**
+     * If `true`, the scroll buttons aren't forced hidden on mobile.
+     * By default the scroll buttons are hidden on mobile and takes precedence over `scrollButtons`.
+     * @default false
+     */
+    allowScrollButtonsMobile?: boolean;
+    /**
      * The label for the Tabs as a string.
      */
     'aria-label'?: string;
@@ -58,7 +64,7 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
       hideScrollbar?: string;
       /** Styles applied to the `ScrollButtonComponent` component. */
       scrollButtons?: string;
-      /** Styles applied to the `ScrollButtonComponent` component if `disableHideScrollButtonsMobile={true}`. */
+      /** Styles applied to the `ScrollButtonComponent` component if `allowScrollButtonsMobile={true}`. */
       scrollButtonsHideMobile?: string;
       /** Styles applied to the `TabIndicator` component. */
       indicator?: string;
@@ -68,12 +74,6 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
      * @default 'secondary'
      */
     indicatorColor?: 'secondary' | 'primary';
-    /**
-     * If `true`, the scroll buttons aren't forced hidden on mobile.
-     * Hidding scroll buttons with this prop takes precedence over `scrollButtons`.
-     * @default false
-     */
-    disableHideScrollButtonsMobile?: boolean;
     /**
      * Callback fired when the value changes.
      *
@@ -95,11 +95,14 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
      * Determine behavior of scroll buttons when tabs are set to scroll:
      *
      * - `auto` will only present them when not all the items are visible.
-     * - `on` will always present them.
-     * - `off` will never present them.
+     * - `true` will always present them.
+     * - `false` will never present them.
+     *
+     * By default the scroll buttons are hidden on mobile.
+     * This behavior can be disabled with `allowScrollButtonsMobile`.
      * @default 'auto'
      */
-    scrollButtons?: 'auto' | 'on' | 'off';
+    scrollButtons?: 'auto' | true | false;
     /**
      * If `true` the selected tab changes on focus. Otherwise it only
      * changes on activation.

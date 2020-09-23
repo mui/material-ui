@@ -59,7 +59,7 @@ By default, left and right scroll buttons are automatically presented on desktop
 
 ### Forced scroll buttons
 
-Left and right scroll buttons be presented (reserve space) regardless of the viewport width with `scrollButtons="on"`:
+Left and right scroll buttons be presented (reserve space) regardless of the viewport width with `scrollButtons={true}` `allowScrollButtonsMobile`:
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonForce.js", "bg": true}}
 
@@ -75,7 +75,7 @@ If you want to make sure the buttons are always visible, you should customize th
 
 ### Prevent scroll buttons
 
-Left and right scroll buttons are never be presented with `scrollButtons="off"`.
+Left and right scroll buttons are never be presented with `scrollButtons={false}`.
 All scrolling must be initiated through user agent scrolling mechanisms (e.g. left/right swipe, shift-mousewheel, etc.)
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonPrevent.js", "bg": true}}
