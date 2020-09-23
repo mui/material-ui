@@ -6,7 +6,6 @@ export {
   Theme,
   Direction,
 } from './createMuiTheme';
-export { default as createMuiV4Theme } from './createMuiV4Theme';
 export { default as adaptV4Theme, DeprecatedThemeOptions } from './adaptV4Theme';
 export { PaletteColorOptions, SimplePaletteColorOptions } from './createPalette';
 export { default as createStyles } from './createStyles';

@@ -192,7 +192,7 @@ function AppDrawer(props) {
         </SwipeableDrawer>
       </Hidden>
       {disablePermanent ? null : (
-        <Hidden mdDown implementation="css">
+        <Hidden lgDown implementation="css">
           <Drawer
             classes={{
               paper: classes.paper,

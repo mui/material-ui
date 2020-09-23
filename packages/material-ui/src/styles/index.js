@@ -1,7 +1,6 @@
 export { default as adaptV4Theme } from './adaptV4Theme';
 export * from './colorManipulator';
 export { default as createMuiTheme } from './createMuiTheme';
-export { default as createMuiV4Theme } from './createMuiV4Theme';
 export { default as unstable_createMuiStrictModeTheme } from './createMuiStrictModeTheme';
 export { default as createStyles } from './createStyles';
 export { getUnit as unstable_getUnit, toUnitless as unstable_toUnitless } from './cssUtils';
