@@ -22,7 +22,11 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 7,
   },
-  plugins: ['eslint-plugin-material-ui', 'eslint-plugin-react-hooks', '@typescript-eslint/eslint-plugin'],
+  plugins: [
+    'eslint-plugin-material-ui',
+    'eslint-plugin-react-hooks',
+    '@typescript-eslint/eslint-plugin',
+  ],
   settings: {
     'import/resolver': {
       webpack: {
@@ -199,7 +203,7 @@ module.exports = {
       },
     },
     {
-      files: ['docs/pages/**/*.js'],
+      files: ['docs/pages/**/*.js', 'docs/src/pages/**/*.js'],
       rules: {
         'react/prop-types': 'off',
       },

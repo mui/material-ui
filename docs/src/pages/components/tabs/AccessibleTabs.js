@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
@@ -27,12 +26,6 @@ function TabPanel(props) {
   );
 }
 
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.number.isRequired,
-  value: PropTypes.number.isRequired,
-};
-
 function DemoTabs(props) {
   const { labelId, onChange, selectionFollowsFocus, value } = props;
 
@@ -55,13 +48,6 @@ function DemoTabs(props) {
     </AppBar>
   );
 }
-
-DemoTabs.propTypes = {
-  labelId: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-  selectionFollowsFocus: PropTypes.bool,
-  value: PropTypes.number.isRequired,
-};
 
 const useStyles = makeStyles({
   root: {

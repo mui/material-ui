@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Rating from '@material-ui/lab/Rating';
 import FavoriteIcon from '@material-ui/icons/Favorite';
@@ -48,10 +47,6 @@ function IconContainer(props) {
   const { value, ...other } = props;
   return <span {...other}>{customIcons[value].icon}</span>;
 }
-
-IconContainer.propTypes = {
-  value: PropTypes.number.isRequired,
-};
 
 export default function CustomizedRatings() {
   return (

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import MuiTypography from '@material-ui/core/Typography';
 
@@ -86,37 +85,5 @@ function Typography(props) {
     </MuiTypography>
   );
 }
-
-Typography.propTypes = {
-  /**
-   * The content of the component.
-   */
-  children: PropTypes.node,
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object.isRequired,
-  marked: PropTypes.oneOf(['center', 'left', 'none']),
-  /**
-   * Applies the theme typography styles.
-   * @default 'body1'
-   */
-  variant: PropTypes.oneOf([
-    'body1',
-    'body2',
-    'button',
-    'caption',
-    'h1',
-    'h2',
-    'h3',
-    'h4',
-    'h5',
-    'h6',
-    'inherit',
-    'overline',
-    'subtitle1',
-    'subtitle2',
-  ]),
-};
 
 export default withStyles(styles)(Typography);

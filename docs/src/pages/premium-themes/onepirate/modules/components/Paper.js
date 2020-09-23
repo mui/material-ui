@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import MuiPaper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
@@ -43,15 +42,5 @@ function Paper(props) {
     />
   );
 }
-
-Paper.propTypes = {
-  background: PropTypes.oneOf(['dark', 'light', 'main']).isRequired,
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object.isRequired,
-  className: PropTypes.string,
-  padding: PropTypes.bool,
-};
 
 export default withStyles(styles)(Paper);

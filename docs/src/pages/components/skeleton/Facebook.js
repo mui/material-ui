@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -105,10 +104,6 @@ function Media(props) {
     </Card>
   );
 }
-
-Media.propTypes = {
-  loading: PropTypes.bool,
-};
 
 export default function Facebook() {
   return (

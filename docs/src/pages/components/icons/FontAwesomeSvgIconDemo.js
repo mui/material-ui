@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons/faEllipsisV';
 import { faInfo } from '@fortawesome/free-solid-svg-icons/faInfo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -34,10 +33,6 @@ const FontAwesomeSvgIcon = React.forwardRef((props, ref) => {
     </SvgIcon>
   );
 });
-
-FontAwesomeSvgIcon.propTypes = {
-  icon: PropTypes.any.isRequired,
-};
 
 const useStyles = makeStyles((theme) => ({
   root: {

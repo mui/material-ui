@@ -1,6 +1,5 @@
 /* eslint-disable no-nested-ternary */
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import Link from '@material-ui/core/Link';
@@ -35,11 +34,6 @@ function ListItemLink(props) {
     </li>
   );
 }
-
-ListItemLink.propTypes = {
-  open: PropTypes.bool,
-  to: PropTypes.string.isRequired,
-};
 
 const useStyles = makeStyles((theme) => ({
   root: {

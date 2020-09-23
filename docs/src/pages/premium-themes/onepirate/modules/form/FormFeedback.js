@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '../components/Typography';
@@ -34,13 +33,5 @@ function FormFeedback(props) {
     </div>
   );
 }
-
-FormFeedback.propTypes = {
-  children: PropTypes.node,
-  classes: PropTypes.object.isRequired,
-  className: PropTypes.string,
-  error: PropTypes.bool,
-  success: PropTypes.bool,
-};
 
 export default withStyles(styles)(FormFeedback);

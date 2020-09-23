@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import RadioGroup, { useRadioGroup } from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -30,13 +29,6 @@ function MyFormControlLabel(props) {
     />
   );
 }
-
-MyFormControlLabel.propTypes = {
-  /**
-   * The value of the component.
-   */
-  value: PropTypes.any,
-};
 
 export default function UseRadioGroup() {
   return (

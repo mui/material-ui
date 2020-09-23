@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -75,11 +74,5 @@ function ProductHeroLayout(props) {
     </section>
   );
 }
-
-ProductHeroLayout.propTypes = {
-  backgroundClassName: PropTypes.string.isRequired,
-  children: PropTypes.node,
-  classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles)(ProductHeroLayout);

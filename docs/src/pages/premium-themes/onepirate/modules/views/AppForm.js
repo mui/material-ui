@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import { withStyles } from '@material-ui/core/styles';
@@ -34,10 +33,5 @@ function AppForm(props) {
     </div>
   );
 }
-
-AppForm.propTypes = {
-  children: PropTypes.node,
-  classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles)(AppForm);

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
@@ -19,9 +18,5 @@ function UnstyledComponent(props) {
   const { classes } = props;
   return <Button className={classes.root}>Styled with HOC API</Button>;
 }
-
-UnstyledComponent.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles)(UnstyledComponent);

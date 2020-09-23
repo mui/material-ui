@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
@@ -26,11 +25,6 @@ function MyButtonRaw(props) {
   const { classes, color, ...other } = props;
   return <Button className={classes.root} {...other} />;
 }
-
-MyButtonRaw.propTypes = {
-  classes: PropTypes.object.isRequired,
-  color: PropTypes.oneOf(['blue', 'red']).isRequired,
-};
 
 const MyButton = withStyles(styles)(MyButtonRaw);
 

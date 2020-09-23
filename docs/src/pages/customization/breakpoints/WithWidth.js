@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import withWidth from '@material-ui/core/withWidth';
 import Typography from '@material-ui/core/Typography';
 
@@ -19,9 +18,5 @@ function WithWidth(props) {
     </Typography>
   );
 }
-
-WithWidth.propTypes = {
-  width: PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs']).isRequired,
-};
 
 export default withWidth()(WithWidth);

@@ -15,11 +15,8 @@ const fse = require('fs-extra');
 const path = require('path');
 const babel = require('@babel/core');
 const prettier = require('prettier');
-const typescriptToProptypes = require('typescript-to-proptypes');
 const yargs = require('yargs');
 const { fixBabelGeneratorIssues, fixLineEndings } = require('./helpers');
-
-const tsConfig = typescriptToProptypes.loadConfig(path.resolve(__dirname, '../tsconfig.json'));
 
 const babelConfig = {
   presets: ['@babel/preset-typescript'],
@@ -60,7 +57,7 @@ const TranspileResult = {
   Failed: 1,
 };
 
-async function transpileFile(tsxPath, program) {
+async function transpileFile(tsxPath) {
   const jsPath = tsxPath.replace(/\.tsx?$/, '.js');
   try {
     const source = await fse.readFile(tsxPath, 'utf8');
@@ -71,24 +68,13 @@ async function transpileFile(tsxPath, program) {
       throw new Error('TypeScript demo contains prop-types, please remove them');
     }
 
-    const propTypesAST = typescriptToProptypes.parseFromProgram(tsxPath, program, {
-      shouldResolveObject: ({ name }) => {
-        if (name === 'classes') {
-          return false;
-        }
-
-        return undefined;
-      },
-    });
-    const codeWithPropTypes = typescriptToProptypes.inject(propTypesAST, code);
-
     const prettierConfig = prettier.resolveConfig.sync(jsPath, {
       config: path.join(workspaceRoot, 'prettier.config.js'),
     });
     const prettierFormat = (jsSource) =>
       prettier.format(jsSource, { ...prettierConfig, filepath: jsPath });
 
-    const prettified = prettierFormat(codeWithPropTypes);
+    const prettified = prettierFormat(code);
     const formatted = fixBabelGeneratorIssues(prettified);
     const correctedLineEndings = fixLineEndings(source, formatted);
 
@@ -124,11 +110,9 @@ async function main(argv) {
     },
   );
 
-  const program = typescriptToProptypes.createTSProgram(tsxFiles, tsConfig);
-
   let successful = 0;
   let failed = 0;
-  (await Promise.all(tsxFiles.map((file) => transpileFile(file, program)))).forEach((result) => {
+  (await Promise.all(tsxFiles.map((file) => transpileFile(file)))).forEach((result) => {
     switch (result) {
       case TranspileResult.Success: {
         successful += 1;
@@ -163,7 +147,7 @@ async function main(argv) {
 
   tsxFiles.forEach((filePath) => {
     fse.watchFile(filePath, { interval: 500 }, async () => {
-      if ((await transpileFile(filePath, program, true)) === 0) {
+      if ((await transpileFile(filePath)) === 0) {
         console.log('Success - %s', filePath);
       }
     });

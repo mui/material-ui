@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import Button from '../components/Button';
 import defer from './defer';
@@ -15,14 +14,4 @@ function FormButton(props) {
     />
   );
 }
-
-FormButton.propTypes = {
-  /**
-   * If `true`, the button will be disabled.
-   * If `true`, the base button will be disabled.
-   */
-  disabled: PropTypes.bool,
-  mounted: PropTypes.bool,
-};
-
 export default defer(FormButton);

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
 import { withStyles } from '@material-ui/core/styles';
@@ -78,12 +77,5 @@ function AppAppBar(props) {
     </div>
   );
 }
-
-AppAppBar.propTypes = {
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles)(AppAppBar);
