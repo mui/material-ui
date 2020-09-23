@@ -20,6 +20,7 @@ function createMuiV4Theme(optionsInput = {}, ...argsInput) {
 
   // Postprocessing of the input theme
   theme.breakpoints = createBreakpointsV4(options.breakpoints || {});
+  theme.palette.type = theme.palette.mode;
 
   return theme;
 }
