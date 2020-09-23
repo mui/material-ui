@@ -33,7 +33,7 @@ const InputWrapper = styled('div')`
   }
 
   & input {
-    background-color: ${theme.palette.mode === 'dark' ? '#141414' : '#fff'};
+    background-color: ${theme.palette.background.paper};
     color: ${theme.palette.mode === 'dark' ? '#fff' : '#000'};
     font-size: 14px;
     height: 30px;
