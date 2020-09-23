@@ -53,17 +53,17 @@ This change affects almost all components where you're using the `component` pro
 
 ### Theme
 
-For a smoother transition, the `adaptV4Theme` helper allows you to iteratively upgrade to the new theme structure.
+For a smoother transition, the `createMuiV4Theme` helper allows you to iteratively upgrade to the new theme structure.
 
 ```diff
 -import { createMuiTheme } from '@material-ui/core/styles';
-+import { createMuiTheme, adaptV4Theme } from '@material-ui/core/styles';
++import { createMuiV4Theme } from '@material-ui/core/styles';
 
 -const theme = createMuitheme({
-+const theme = createMuitheme(adaptV4Theme({
++const theme = createMuiV4Theme({
   // v4 theme
 -});
-+}));
++});
 ```
 
 #### Changes
