@@ -834,6 +834,40 @@ describe('<Autocomplete />', () => {
       expect(handleClose.callCount).to.equal(1);
     });
 
+    it('does not close the popup when option selected if Control is pressed', () => {
+      const handleClose = spy();
+      const { getAllByRole } = render(
+        <Autocomplete
+          {...defaultProps}
+          onClose={handleClose}
+          open
+          options={['one', 'two']}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      const options = getAllByRole('option');
+      fireEvent.click(options[0], { ctrlKey: true });
+      expect(handleClose.callCount).to.equal(0);
+    });
+
+    it('does not close the popup when option selected if Meta is pressed', () => {
+      const handleClose = spy();
+      const { getAllByRole } = render(
+        <Autocomplete
+          {...defaultProps}
+          onClose={handleClose}
+          open
+          options={['one', 'two']}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      const options = getAllByRole('option');
+      fireEvent.click(options[0], { metaKey: true });
+      expect(handleClose.callCount).to.equal(0);
+    });
+
     it('moves focus to the first option on ArrowDown', () => {
       const { getAllByRole, getByRole } = render(
         <Autocomplete
