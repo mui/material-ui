@@ -1,3 +1,2 @@
-import Alert from '@material-ui/core/Alert';
-
-export default Alert;
+export { default } from '@material-ui/core/Alert';
+export * from '@material-ui/core/Alert';

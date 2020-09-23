@@ -1,3 +1,2 @@
-import AlertTitle from '@material-ui/core/AlertTitle';
-
-export default AlertTitle;
+export { default } from '@material-ui/core/AlertTitle';
+export * from '@material-ui/core/AlertTitle';
