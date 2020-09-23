@@ -5810,6 +5810,11 @@ cssesc@^3.0.0:
   resolved "https://registry.yarnpkg.com/cssesc/-/cssesc-3.0.0.tgz#37741919903b868565e1c09ea747445cd18983ee"
   integrity sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==
 
+cssjanus@^1.3.0:
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/cssjanus/-/cssjanus-1.3.2.tgz#7c23d39be92f63e1557a75c015f61d95009bd6b3"
+  integrity sha512-5pM/C1MIfoqhXa7k9PqSnrjj1SSZDakfyB1DZhdYyJoDUH+evGbsUg6/bpQapTJeSnYaj0rdzPUMeM33CvB0vw==
+
 cssnano-preset-default@^4.0.7:
   version "4.0.7"
   resolved "https://registry.yarnpkg.com/cssnano-preset-default/-/cssnano-preset-default-4.0.7.tgz#51ec662ccfca0f88b396dcd9679cdb931be17f76"
@@ -15413,6 +15418,13 @@ stylehacks@^4.0.0:
     browserslist "^4.0.0"
     postcss "^7.0.0"
     postcss-selector-parser "^3.0.0"
+
+stylis-plugin-rtl@^1.0.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/stylis-plugin-rtl/-/stylis-plugin-rtl-1.1.0.tgz#028d72419ccc47eeaaec684f3e192534f2c57ece"
+  integrity sha512-FPoSxP+gbBLJRUXDRDFNBhqy/eToquDLn7ZrjIVBRfXaZ9bunwNnDtDm2qW1EoU0c93krm1Dy+8iVmJpjRGsKw==
+  dependencies:
+    cssjanus "^1.3.0"
 
 stylis-rule-sheet@0.0.10:
   version "0.0.10"

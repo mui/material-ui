@@ -34,6 +34,9 @@ export * from './useTheme';
 export { default as useThemeVariants } from './useThemeVariants';
 export * from './useThemeVariants';
 
+export { default as propsToClassKey } from './propsToClassKey';
+export * from './propsToClassKey';
+
 export { default as withStyles } from './withStyles';
 export * from './withStyles';
 

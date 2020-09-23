@@ -27,6 +27,8 @@ const defaultAlias = {
   '@material-ui/docs': './packages/material-ui-docs/src',
   '@material-ui/icons': './packages/material-ui-icons/src',
   '@material-ui/lab': './packages/material-ui-lab/src',
+  '@material-ui/styled-engine': './packages/material-ui-styled-engine/src',
+  '@material-ui/styled-engine-sc': './packages/material-ui-styled-engine-sc/src',
   '@material-ui/styles': './packages/material-ui-styles/src',
   '@material-ui/system': './packages/material-ui-system/src',
   '@material-ui/utils': './packages/material-ui-utils/src',

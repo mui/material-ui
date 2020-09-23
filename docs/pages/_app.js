@@ -8,7 +8,11 @@ import NextHead from 'next/head';
 import PropTypes from 'prop-types';
 import acceptLanguage from 'accept-language';
 import { create } from 'jss';
-import rtl from 'jss-rtl';
+import jssRtl from 'jss-rtl';
+import { StyleSheetManager } from 'styled-components';
+import { CacheProvider } from '@emotion/core';
+import createCache from '@emotion/cache';
+import rtlPlugin from 'stylis-plugin-rtl';
 import { useRouter } from 'next/router';
 import { StylesProvider, jssPreset } from '@material-ui/styles';
 import pages from 'docs/src/pages';
@@ -16,13 +20,14 @@ import initRedux from 'docs/src/modules/redux/initRedux';
 import PageContext from 'docs/src/modules/components/PageContext';
 import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
 import loadScript from 'docs/src/modules/utils/loadScript';
+import RtlContext from 'docs/src/modules/utils/RtlContext';
 import { ThemeProvider } from 'docs/src/modules/components/ThemeContext';
 import { pathnameToLanguage, getCookie } from 'docs/src/modules/utils/helpers';
 import { ACTION_TYPES, CODE_VARIANTS } from 'docs/src/modules/constants';
 
 // Configure JSS
 const jss = create({
-  plugins: [...jssPreset().plugins, rtl()],
+  plugins: [...jssPreset().plugins, jssRtl()],
   insertionPoint: process.browser ? document.querySelector('#insertion-point-jss') : null,
 });
 
@@ -275,6 +280,17 @@ function findActivePage(currentPages, pathname) {
   return activePage;
 }
 
+// Cache for the ltr version of the styles
+const cacheLtr = createCache();
+cacheLtr.compat = true;
+
+// Cache for the rtl version of the styles
+const cacheRtl = createCache({
+  key: 'rtl',
+  stylisPlugins: [rtlPlugin],
+});
+cacheRtl.compat = true;
+
 function AppWrapper(props) {
   const { children, pageProps } = props;
 
@@ -282,6 +298,9 @@ function AppWrapper(props) {
   const [redux] = React.useState(() =>
     initRedux({ options: { userLanguage: pageProps.userLanguage } }),
   );
+
+  const [rtl, setRtl] = React.useState(false);
+  const rtlContextValue = { rtl, setRtl };
 
   React.useEffect(() => {
     loadDependencies();
@@ -313,11 +332,17 @@ function AppWrapper(props) {
         ))}
       </NextHead>
       <ReduxProvider store={redux}>
-        <PageContext.Provider value={{ activePage, pages, versions: pageProps.versions }}>
-          <StylesProvider jss={jss}>
-            <ThemeProvider>{children}</ThemeProvider>
-          </StylesProvider>
-        </PageContext.Provider>
+        <RtlContext.Provider value={rtlContextValue}>
+          <PageContext.Provider value={{ activePage, pages, versions: pageProps.versions }}>
+            <StyleSheetManager stylisPlugins={rtl ? [rtlPlugin] : []}>
+              <CacheProvider value={rtl ? cacheRtl : cacheLtr}>
+                <StylesProvider jss={jss}>
+                  <ThemeProvider>{children}</ThemeProvider>
+                </StylesProvider>
+              </CacheProvider>
+            </StyleSheetManager>
+          </PageContext.Provider>
+        </RtlContext.Provider>
         <LanguageNegotiation />
         <Analytics />
       </ReduxProvider>

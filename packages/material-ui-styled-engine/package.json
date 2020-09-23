@@ -1,0 +1,52 @@
+{
+  "name": "@material-ui/styled-engine",
+  "version": "5.0.0-alpha.8",
+  "private": false,
+  "author": "Material-UI Team",
+  "description": "Material-UI Styled - Wrapper package for styled utility.",
+  "main": "./src/index.js",
+  "keywords": [
+    "react",
+    "react-component",
+    "material design",
+    "material-ui",
+    "styled"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mui-org/material-ui.git",
+    "directory": "packages/material-ui-styled"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mui-org/material-ui/issues"
+  },
+  "homepage": "https://material-ui.com/styled/basics/",
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/material-ui"
+  },
+  "scripts": {
+    "build": "yarn build:cjs && yarn build:esm && yarn build:es && yarn build:copy-files",
+    "build:cjs": "node ../../scripts/build cjs",
+    "build:esm": "node ../../scripts/build esm",
+    "build:es": "node ../../scripts/build es",
+    "build:copy-files": "node ../../scripts/copy-files.js",
+    "prebuild": "rimraf build",
+    "release": "yarn build && npm publish build --tag next",
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/material-ui-styles/**/*.test.{js,ts,tsx}' --exclude '**/node_modules/**'",
+    "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "@emotion/core": "^10.0.27",
+    "@emotion/styled": "^10.0.27"
+  },
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  }
+}
