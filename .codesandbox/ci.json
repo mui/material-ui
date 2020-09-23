@@ -7,7 +7,9 @@
     "packages/material-ui-styles",
     "packages/material-ui-system",
     "packages/material-ui-types",
-    "packages/material-ui-utils"
+    "packages/material-ui-utils",
+    "packages/material-ui-styled-engine",
+    "packages/material-ui-styled-engine-sc"
   ],
   "publishDirectory": {
     "@material-ui/core": "packages/material-ui/build",
