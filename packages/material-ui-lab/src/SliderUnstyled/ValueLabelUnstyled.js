@@ -25,14 +25,13 @@ const useValueLabelClasses = (props) => {
  */
 function ValueLabel(props) {
   const { children, className, value, valueLabelDisplay, components = {}, theme } = props;
-
+  const classes = useValueLabelClasses(props);
+  
   if (valueLabelDisplay === 'off') {
     return children;
   }
 
   const Root = components.Root || 'span';
-
-  const classes = useValueLabelClasses(props);
 
   return React.cloneElement(
     children,

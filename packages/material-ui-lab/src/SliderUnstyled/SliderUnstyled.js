@@ -179,7 +179,6 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     'aria-label': ariaLabel,
     'aria-labelledby': ariaLabelledby,
     'aria-valuetext': ariaValuetext,
-    classes = {},
     className,
     color = 'primary',
     component: Component = 'span',

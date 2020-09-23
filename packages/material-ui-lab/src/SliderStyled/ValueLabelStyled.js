@@ -58,6 +58,7 @@ const ValueLabelRoot = muiStyled(
  */
 const ValueLabel = React.forwardRef(function ValueLabel(inputProps, ref) {
   const props = useThemeProps({ props: inputProps, name: 'PrivateValueLabel' });
+  /* eslint-disable react/prop-types */
   const { components = {}, ...other } = props;
 
   return (
