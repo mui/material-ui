@@ -69,6 +69,12 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
      */
     indicatorColor?: 'secondary' | 'primary';
     /**
+     * If `true`, the scroll buttons aren't forced hidden on mobile.
+     * Hidding scroll buttons with this prop takes precedence over `scrollButtons`.
+     * @default false
+     */
+    disableHideScrollButtonsMobile?: boolean;
+    /**
      * Callback fired when the value changes.
      *
      * @param {object} event The event source of the callback. **Warning**: This is a generic event not a change event.
@@ -89,12 +95,11 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
      * Determine behavior of scroll buttons when tabs are set to scroll:
      *
      * - `auto` will only present them when not all the items are visible.
-     * - `desktop` will only present them on medium and larger viewports.
      * - `on` will always present them.
      * - `off` will never present them.
      * @default 'auto'
      */
-    scrollButtons?: 'auto' | 'desktop' | 'on' | 'off';
+    scrollButtons?: 'auto' | 'on' | 'off';
     /**
      * If `true` the selected tab changes on focus. Otherwise it only
      * changes on activation.
