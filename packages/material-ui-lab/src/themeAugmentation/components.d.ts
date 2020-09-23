@@ -1,15 +1,6 @@
 import { ComponentsProps, ComponentsOverrides, ComponentsVariants } from '@material-ui/core';
 
 export interface LabComponents {
-  MuiAlert?: {
-    defaultProps?: ComponentsProps['MuiAlert'];
-    styleOverrides?: ComponentsOverrides['MuiAlert'];
-    variants?: ComponentsVariants['MuiAlert'];
-  };
-  MuiAlertTitle?: {
-    defaultProps?: ComponentsProps['MuiAlertTitle'];
-    styleOverrides?: ComponentsOverrides['MuiAlertTitle'];
-  };
   MuiAutocomplete?: {
     defaultProps?: ComponentsProps['MuiAutocomplete'];
     styleOverrides?: ComponentsOverrides['MuiAutocomplete'];

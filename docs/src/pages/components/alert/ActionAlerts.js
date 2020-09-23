@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Alert from '@material-ui/lab/Alert';
+import Alert from '@material-ui/core/Alert';
 import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({

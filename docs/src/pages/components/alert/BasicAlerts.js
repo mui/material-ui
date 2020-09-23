@@ -1,19 +1,17 @@
 import * as React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import Alert from '@material-ui/lab/Alert';
+import { makeStyles } from '@material-ui/core/styles';
+import Alert from '@material-ui/core/Alert';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: '100%',
-      '& > * + *': {
-        marginTop: theme.spacing(2),
-      },
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+    '& > * + *': {
+      marginTop: theme.spacing(2),
     },
-  }),
-);
+  },
+}));
 
-export default function SimpleAlerts() {
+export default function BasicAlerts() {
   const classes = useStyles();
 
   return (

@@ -19,7 +19,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
 
 警告提示有四种不同程度的级别，每种都有自己独特的颜色和图标。
 
-{{"demo": "pages/components/alert/SimpleAlerts.js"}}
+{{"demo": "pages/components/alert/BasicAlerts.js"}}
 
 ## 描述
 

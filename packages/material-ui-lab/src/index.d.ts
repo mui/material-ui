@@ -1,9 +1,3 @@
-export { default as Alert } from './Alert';
-export * from './Alert';
-
-export { default as AlertTitle } from './AlertTitle';
-export * from './AlertTitle';
-
 export { default as Autocomplete } from './Autocomplete';
 export * from './Autocomplete';
 

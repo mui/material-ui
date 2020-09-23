@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
+import MuiAlert, { AlertProps } from '@material-ui/core/Alert';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 
 const Alert = React.forwardRef(function Alert(props: AlertProps, ref) {
