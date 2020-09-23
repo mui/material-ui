@@ -58,8 +58,8 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
       hideScrollbar?: string;
       /** Styles applied to the `ScrollButtonComponent` component. */
       scrollButtons?: string;
-      /** Styles applied to the `ScrollButtonComponent` component if `scrollButtons="auto"` or scrollButtons="desktop"`. */
-      scrollButtonsDesktop?: string;
+      /** Styles applied to the `ScrollButtonComponent` component if `disableHideScrollButtonsMobile={true}`. */
+      scrollButtonsHideMobile?: string;
       /** Styles applied to the `TabIndicator` component. */
       indicator?: string;
     };
