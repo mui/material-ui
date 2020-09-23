@@ -449,6 +449,17 @@ describe('<Tabs />', () => {
       expect(container.querySelectorAll(`.${classes.scrollButtons}`)).to.have.lengthOf(2);
     });
 
+    it('should not hide scroll buttons when disableHideScrollButtonsMobile is true', () => {
+      const { container } = render(
+        <Tabs value={0} variant="scrollable" scrollButtons="on" disableHideScrollButtonsMobile>
+          <Tab />
+          <Tab />
+        </Tabs>,
+      );
+
+      expect(container.querySelectorAll(`.${classes.scrollButtonsHideMobile}`)).to.have.lengthOf(0);
+    });
+
     it('should handle window resize event', function test() {
       if (isJSDOM) {
         this.skip();
