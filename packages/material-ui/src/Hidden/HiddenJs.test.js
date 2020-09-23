@@ -103,7 +103,7 @@ describe('<HiddenJs />', () => {
 
     describe('down', () => {
       isHidden(['lg', 'xl'], 'Down', 'md');
-      isVisible(['xs', 'sm'], 'Down', 'md');
+      isVisible(['xs', 'sm', 'md'], 'Down', 'md');
     });
 
     describe('only', () => {
