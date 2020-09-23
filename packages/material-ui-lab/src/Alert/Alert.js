@@ -3,6 +3,9 @@ import Alert from '@material-ui/core/Alert';
 
 let warnedOnce = false;
 
+/**
+ * @ignore - do not document.
+ */
 export default React.forwardRef(function DeprecatedAlert(props, ref) {
   if (!warnedOnce) {
     console.warn(

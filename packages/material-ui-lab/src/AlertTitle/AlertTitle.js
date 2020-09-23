@@ -3,6 +3,9 @@ import AlertTitle from '@material-ui/core/AlertTitle';
 
 let warnedOnce = false;
 
+/**
+ * @ignore - do not document.
+ */
 export default React.forwardRef(function DeprecatedAlertTitle(props, ref) {
   if (!warnedOnce) {
     console.warn(
