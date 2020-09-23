@@ -11,7 +11,7 @@ import {
   capitalize,
   useControlled,
 } from '@material-ui/core/utils';
-import ValueLabelComponent from './ValueLabel';
+import ValueLabelComponent from './ValueLabelUnstyled';
 
 function asc(a, b) {
   return a - b;
@@ -614,10 +614,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     marked: marks.length > 0 && marks.some((mark) => mark.label),
   };
 
-  const utilityClasses = useSliderClasses({
-    ...stateAndProps,
-    classes,
-  });
+  const utilityClasses = useSliderClasses(stateAndProps);
 
   return (
     <Root
@@ -697,6 +694,10 @@ const Slider = React.forwardRef(function Slider(props, ref) {
                 ? valueLabelFormat(scale(value), index)
                 : valueLabelFormat
             }
+            {...(isComponent(ValueLabel) && {
+              styleProps: stateAndProps,
+              theme,
+            })}
             index={index}
             open={open === index || active === index || valueLabelDisplay === 'on'}
             disabled={disabled}
@@ -912,11 +913,6 @@ Slider.propTypes = {
    * For ranged sliders, provide an array with two values.
    */
   value: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
-  /**
-   * The value label component.
-   * @default ValueLabel
-   */
-  ValueLabelComponent: PropTypes.elementType,
   /**
    * Controls when the value label is displayed:
    *

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { useThemeProps, muiStyled, fade, lighten, darken } from '@material-ui/core/styles';
 import { capitalize } from '@material-ui/core/utils';
 import SliderUnstyled from '../SliderUnstyled';
+import ValueLabelStyled from './ValueLabelStyled';
 
 const overridesResolver = (props, styles, name) => {
   const {
@@ -32,12 +33,12 @@ const overridesResolver = (props, styles, name) => {
     ...(orientation === 'vertical' && styles.vertical),
     ...(track === 'inverted' && styles.trackInverted),
     ...(track === false && styles.trackFalse),
-    [`.& ${name}-rail`]: styles.rail,
-    [`.& ${name}-track`]: styles.track,
-    [`.& ${name}-mark`]: styles.mark,
-    [`.& ${name}-markLabel`]: styles.markLabel,
-    [`.& ${name}-valueLabel`]: styles.valueLabel,
-    [`.& ${name}-thumb`]: {
+    [`& .${name}-rail`]: styles.rail,
+    [`& .${name}-track`]: styles.track,
+    [`& .${name}-mark`]: styles.mark,
+    [`& .${name}-markLabel`]: styles.markLabel,
+    [`& .${name}-valueLabel`]: styles.valueLabel,
+    [`& .${name}-thumb`]: {
       ...styles.thumb,
       ...styles[`thumbColor${capitalize(color)}`],
       '&.Mui-disabled': styles.disabled,
@@ -281,22 +282,12 @@ SliderRoot.propTypes = {
   }),
 };
 
-const getComponentProps = (components, componentsProps, name) => {
-  const slotProps = componentsProps[name] || {};
-  return {
-    as: components[name],
-    ...slotProps,
-  };
-};
-
 const Slider = React.forwardRef(function Slider(inputProps, ref) {
   const props = useThemeProps({ props: inputProps, name: 'MuiSlider' });
   const {
     // TODO: these proptypes were not generated
     /* eslint-disable react/prop-types */
     components = {},
-    /* eslint-disable react/prop-types */
-    componentsProps = {},
     ...other
   } = props;
   return (
@@ -304,11 +295,8 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
       {...other}
       components={{
         Root: SliderRoot,
+        ValueLabel: ValueLabelStyled,
         ...components,
-      }}
-      componentsProps={{
-        ...componentsProps,
-        root: getComponentProps(components, componentsProps, 'root'),
       }}
       ref={ref}
     />
