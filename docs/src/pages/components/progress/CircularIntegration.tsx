@@ -46,7 +46,7 @@ export default function CircularIntegration() {
   const classes = useStyles();
   const [loading, setLoading] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
-  const timer = React.useRef<ReturnType<typeof setTimeout>>();
+  const timer = React.useRef<number>();
 
   const buttonClassname = clsx({
     [classes.buttonSuccess]: success,
@@ -54,7 +54,7 @@ export default function CircularIntegration() {
 
   React.useEffect(() => {
     return () => {
-      clearTimeout(timer.current!);
+      clearTimeout(timer.current);
     };
   }, []);
 
@@ -62,7 +62,7 @@ export default function CircularIntegration() {
     if (!loading) {
       setSuccess(false);
       setLoading(true);
-      timer.current = setTimeout(() => {
+      timer.current = window.setTimeout(() => {
         setSuccess(true);
         setLoading(false);
       }, 2000);
