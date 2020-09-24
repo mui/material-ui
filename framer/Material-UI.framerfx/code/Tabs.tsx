@@ -6,8 +6,8 @@ import MuiTab from '@material-ui/core/Tab';
 import { Icon } from './Icon';
 
 interface Props {
-  centered: boolean;
   allowScrollButtonsMobile: boolean;
+  centered: boolean;
   indicatorColor: 'primary' | 'secondary';
   scrollButtons: 'auto' | false | true;
   selectionFollowsFocus?: boolean;
@@ -54,8 +54,8 @@ export function Tabs(props: Props): JSX.Element {
 }
 
 Tabs.defaultProps = {
-  centered: false,
   allowScrollButtonsMobile: false,
+  centered: false,
   indicatorColor: 'secondary' as 'secondary',
   scrollButtons: 'auto' as 'auto',
   textColor: 'inherit' as 'inherit',
@@ -68,13 +68,13 @@ Tabs.defaultProps = {
 };
 
 addPropertyControls(Tabs, {
+  allowScrollButtonsMobile: {
+    type: ControlType.Boolean,
+    title: 'Allow scroll buttons mobile',
+  },
   centered: {
     type: ControlType.Boolean,
     title: 'Centered',
-  },
-  allowScrollButtonsMobile: {
-    type: ControlType.Boolean,
-    title: 'Disable hide scroll buttons mobile',
   },
   indicatorColor: {
     type: ControlType.Enum,
@@ -84,7 +84,7 @@ addPropertyControls(Tabs, {
   scrollButtons: {
     type: ControlType.Enum,
     title: 'Scroll buttons',
-    options: ['auto', 'off', 'on'],
+    options: ['auto', false, true],
   },
   selectionFollowsFocus: {
     type: ControlType.Boolean,
