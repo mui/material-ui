@@ -43,7 +43,7 @@ const BootstrapInput = withStyles((theme) => ({
   input: {
     borderRadius: 4,
     position: 'relative',
-    backgroundColor: theme.palette.common.white,
+    backgroundColor: theme.palette.background.paper,
     border: '1px solid #ced4da',
     fontSize: 16,
     width: 'auto',
@@ -74,13 +74,13 @@ const useStylesReddit = makeStyles((theme) => ({
     border: '1px solid #e2e2e1',
     overflow: 'hidden',
     borderRadius: 4,
-    backgroundColor: '#fcfcfb',
+    backgroundColor: theme.palette.background.paper,
     transition: theme.transitions.create(['border-color', 'box-shadow']),
     '&:hover': {
-      backgroundColor: '#fff',
+      backgroundColor: theme.palette.action.hover,
     },
     '&$focused': {
-      backgroundColor: '#fff',
+      backgroundColor: theme.palette.action.hover,
       boxShadow: `${fade(theme.palette.primary.main, 0.25)} 0 0 0 2px`,
       borderColor: theme.palette.primary.main,
     },
