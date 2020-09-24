@@ -122,14 +122,14 @@ export interface SelectProps
    *
    * @param {object} event The event source of the callback.
    */
-  onClose?: (event: React.ChangeEvent<{}>) => void;
+  onClose?: (event: React.SyntheticEvent) => void;
   /**
    * Callback fired when the component requests to be opened.
    * Use in controlled mode (see open).
    *
    * @param {object} event The event source of the callback.
    */
-  onOpen?: (event: React.ChangeEvent<{}>) => void;
+  onOpen?: (event: React.SyntheticEvent) => void;
   /**
    * Control `select` open state.
    * You can only use it when the `native` prop is `false` (default).

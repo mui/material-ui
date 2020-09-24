@@ -183,7 +183,7 @@ export interface UseAutocompleteProps<
    * @param {object} event The event source of the callback.
    * @param {string} reason Can be: `"toggleInput"`, `"escape"`, `"select-option"`, `"remove-option"`, `"blur"`.
    */
-  onClose?: (event: React.ChangeEvent<{}>, reason: AutocompleteCloseReason) => void;
+  onClose?: (event: React.SyntheticEvent, reason: AutocompleteCloseReason) => void;
   /**
    * Callback fired when the input value changes.
    *
@@ -192,7 +192,7 @@ export interface UseAutocompleteProps<
    * @param {string} reason Can be: `"input"` (user input), `"reset"` (programmatic change), `"clear"`.
    */
   onInputChange?: (
-    event: React.ChangeEvent<{}>,
+    event: React.SyntheticEvent,
     value: string,
     reason: AutocompleteInputChangeReason
   ) => void;
@@ -202,7 +202,7 @@ export interface UseAutocompleteProps<
    *
    * @param {object} event The event source of the callback.
    */
-  onOpen?: (event: React.ChangeEvent<{}>) => void;
+  onOpen?: (event: React.SyntheticEvent) => void;
   /**
    * Callback fired when the highlight option changes.
    *
@@ -211,7 +211,7 @@ export interface UseAutocompleteProps<
    * @param {string} reason Can be: `"keyboard"`, `"auto"`, `"mouse"`.
    */
   onHighlightChange?: (
-    event: React.ChangeEvent<{}>,
+    event: React.SyntheticEvent,
     option: T | null,
     reason: AutocompleteHighlightChangeReason
   ) => void;
@@ -259,7 +259,7 @@ export interface UseAutocompleteProps<
    * @param {string} reason One of "create-option", "select-option", "remove-option", "blur" or "clear".
    */
   onChange?: (
-    event: React.ChangeEvent<{}>,
+    event: React.SyntheticEvent,
     value: Value<T, Multiple, DisableClearable, FreeSolo>,
     reason: AutocompleteChangeReason,
     details?: AutocompleteChangeDetails<T>
