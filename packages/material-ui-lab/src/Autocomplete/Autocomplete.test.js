@@ -1338,6 +1338,22 @@ describe('<Autocomplete />', () => {
 
       expect(htmlOptions[0].innerHTML).to.equal('one');
     });
+
+    it('should display a no options message if no options are available', () => {
+      const { getByRole } = render(
+        <Autocomplete
+          {...defaultProps}
+          renderInput={(params) => <TextField autoFocus {...params} />}
+        />,
+      );
+
+      const combobox = getByRole('combobox');
+      const textbox = getByRole('textbox');
+      expect(combobox).to.have.attribute('aria-expanded', 'false');
+      expect(combobox).to.not.have.attribute('aria-owns');
+      expect(textbox).to.not.have.attribute('aria-controls');
+      expect(document.querySelector(`.${classes.paper}`)).to.have.text('No options');
+    });
   });
 
   describe('enter', () => {
