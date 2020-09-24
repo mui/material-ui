@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
   input: {
     width: 200,
     backgroundColor: theme.palette.background.paper,
-    color: theme.palette.getContrastText(theme.palette.background.paper)
+    color: theme.palette.getContrastText(theme.palette.background.paper),
   },
   listbox: {
     width: 200,
