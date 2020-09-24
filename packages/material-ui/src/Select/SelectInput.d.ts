@@ -18,9 +18,9 @@ export interface SelectInputProps {
     event: React.ChangeEvent<{ name?: string; value: unknown }>,
     child: React.ReactNode
   ) => void;
-  onClose?: (event: React.ChangeEvent<{}>) => void;
+  onClose?: (event: React.SyntheticEvent) => void;
   onFocus?: React.FocusEventHandler<any>;
-  onOpen?: (event: React.ChangeEvent<{}>) => void;
+  onOpen?: (event: React.SyntheticEvent) => void;
   open?: boolean;
   readOnly?: boolean;
   renderValue?: (value: SelectInputProps['value']) => React.ReactNode;

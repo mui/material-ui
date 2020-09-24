@@ -14,11 +14,4 @@ function testOnChange() {
   >
     <div />
   </Accordion>;
-
-  // this is structurally equal to `React.SyntheticEvent`
-  // It works but we don't recommend it since it has some non-structural implications: changeEvent.target === changeEvent.currentTarget
-  function handleChange(event: React.ChangeEvent<{}>) {}
-  <Accordion onChange={handleChange}>
-    <div />
-  </Accordion>;
 }
