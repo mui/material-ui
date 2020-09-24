@@ -17,7 +17,7 @@ export const isWidthUp = (breakpoint, width, inclusive = true) => {
 };
 
 // By default, returns true if screen width is the same or less than the given breakpoint.
-export const isWidthDown = (breakpoint, width, inclusive = true) => {
+export const isWidthDown = (breakpoint, width, inclusive = false) => {
   if (inclusive) {
     return breakpointKeys.indexOf(width) <= breakpointKeys.indexOf(breakpoint);
   }

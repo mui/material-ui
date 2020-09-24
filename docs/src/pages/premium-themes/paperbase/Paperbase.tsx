@@ -210,7 +210,7 @@ function Paperbase(props: PaperbaseProps) {
               onClose={handleDrawerToggle}
             />
           </Hidden>
-          <Hidden xsDown implementation="css">
+          <Hidden smDown implementation="css">
             <Navigator PaperProps={{ style: { width: drawerWidth } }} />
           </Hidden>
         </nav>
