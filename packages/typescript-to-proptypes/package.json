@@ -3,7 +3,6 @@
   "version": "2.0.1",
   "private": true,
   "description": "Generate proptypes from TypeScript declarations",
-  "main": "build/index.js",
   "engines": {
     "node": ">=10.3.0"
   },
@@ -23,9 +22,8 @@
     "react"
   ],
   "scripts": {
-    "build": "rimraf build && tsc",
-    "postinstall": "yarn build",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha --config packages/typescript-to-proptypes/.mocharc.js 'packages/typescript-to-proptypes/**/*.test.ts' --exclude '**/node_modules/**'"
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha --config packages/typescript-to-proptypes/.mocharc.js 'packages/typescript-to-proptypes/**/*.test.ts' --exclude '**/node_modules/**'",
+    "typescript": "tsc -p tsconfig.json"
   },
   "devDependencies": {
     "@types/babel__core": "^7.1.2",
