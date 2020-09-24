@@ -17,7 +17,7 @@ const InputWrapper = styled('div')`
   ${({ theme }) => `
   width: 300px;
   border: 1px solid ${theme.palette.mode === 'dark' ? '#434343' : '#d9d9d9'};
-  background-color: ${theme.palette.background.paper};
+  background-color: ${theme.palette.mode === 'dark' ? '#141414' : '#fff'};
   border-radius: 4px;
   padding: 1px;
   display: flex;
@@ -97,7 +97,7 @@ const Listbox = styled('ul')`
   padding: 0;
   position: absolute;
   list-style: none;
-  background-color: ${theme.palette.background.paper};
+  background-color: ${theme.palette.mode === 'dark' ? '#141414' : '#fff'};
   overflow: auto;
   max-height: 250px;
   border-radius: 4px;
