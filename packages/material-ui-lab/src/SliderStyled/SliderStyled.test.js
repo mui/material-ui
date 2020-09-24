@@ -218,6 +218,16 @@ describe('<Slider />', () => {
       expect(handleChange.args[1][1]).to.deep.equal([22, 30]);
       expect(handleChange.args[2][1]).to.equal(handleChange.args[1][1]);
     });
+
+    it('should not react to right clicks', () => {
+      const handleChange = spy();
+      const { getByRole } = render(
+        <Slider onChange={handleChange} defaultValue={30} step={10} marks />,
+      );
+      const thumb = getByRole('slider');
+      fireEvent.mouseDown(thumb, { button: 2 });
+      expect(handleChange.callCount).to.equal(0);
+    });
   });
 
   it('should not break when initial value is out of range', () => {

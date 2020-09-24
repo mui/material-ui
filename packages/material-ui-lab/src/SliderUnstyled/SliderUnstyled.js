@@ -483,11 +483,8 @@ const Slider = React.forwardRef(function Slider(props, ref) {
 
     touchId.current = undefined;
 
-    const doc = ownerDocument(sliderRef.current);
-    doc.removeEventListener('mousemove', handleTouchMove);
-    doc.removeEventListener('mouseup', handleTouchEnd);
-    doc.removeEventListener('touchmove', handleTouchMove);
-    doc.removeEventListener('touchend', handleTouchEnd);
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define
+    stopListening();
   });
 
   const handleTouchStart = useEventCallback((event) => {
@@ -516,39 +513,43 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     doc.addEventListener('touchend', handleTouchEnd);
   });
 
+  const stopListening = React.useCallback(() => {
+    const doc = ownerDocument(sliderRef.current);
+    doc.removeEventListener('mousemove', handleTouchMove);
+    doc.removeEventListener('mouseup', handleTouchEnd);
+    doc.removeEventListener('touchmove', handleTouchMove);
+    doc.removeEventListener('touchend', handleTouchEnd);
+  }, [handleTouchEnd, handleTouchMove]);
+
   React.useEffect(() => {
     const { current: slider } = sliderRef;
     slider.addEventListener('touchstart', handleTouchStart, {
       passive: doesSupportTouchActionNone(),
     });
 
-    const doc = ownerDocument(slider);
-
     return () => {
       slider.removeEventListener('touchstart', handleTouchStart, {
         passive: doesSupportTouchActionNone(),
       });
 
-      doc.removeEventListener('mousemove', handleTouchMove);
-      doc.removeEventListener('mouseup', handleTouchEnd);
-      doc.removeEventListener('touchmove', handleTouchMove);
-      doc.removeEventListener('touchend', handleTouchEnd);
+      stopListening();
     };
-  }, [handleTouchEnd, handleTouchMove, handleTouchStart]);
+  }, [stopListening, handleTouchStart]);
 
   React.useEffect(() => {
     if (disabled) {
-      const doc = ownerDocument(sliderRef.current);
-      doc.removeEventListener('mousemove', handleTouchMove);
-      doc.removeEventListener('mouseup', handleTouchEnd);
-      doc.removeEventListener('touchmove', handleTouchMove);
-      doc.removeEventListener('touchend', handleTouchEnd);
+      stopListening();
     }
-  }, [disabled, handleTouchEnd, handleTouchMove]);
+  }, [disabled, stopListening]);
 
   const handleMouseDown = useEventCallback((event) => {
     if (onMouseDown) {
       onMouseDown(event);
+    }
+
+    // Only handle left clicks
+    if (event.button !== 0) {
+      return;
     }
 
     event.preventDefault();
