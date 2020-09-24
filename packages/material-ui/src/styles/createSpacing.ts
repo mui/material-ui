@@ -8,16 +8,22 @@ export type SpacingOptions =
 
 export type SpacingArgument = number | string;
 
-export type Spacing = (() => string) &
-  ((value: SpacingArgument) => string) &
-  ((topBottom: SpacingArgument, rightLeft: SpacingArgument) => string) &
-  ((top: SpacingArgument, rightLeft: SpacingArgument, bottom: SpacingArgument) => string) &
-  ((
+// The different signatures imply different meaning for their arguments that can't be expressed structurally.
+// We express the difference with variable names.
+/* tslint:disable:unified-signatures */
+export interface Spacing {
+  (): string;
+  (value: number): string;
+  (topBottom: SpacingArgument, rightLeft: SpacingArgument): string;
+  (top: SpacingArgument, rightLeft: SpacingArgument, bottom: SpacingArgument): string;
+  (
     top: SpacingArgument,
     right: SpacingArgument,
     bottom: SpacingArgument,
     left: SpacingArgument,
-  ) => string);
+  ): string;
+}
+/* tslint:enable:unified-signatures */
 
 export default function createSpacing(spacingInput: SpacingOptions = 8): Spacing {
   // Already transformed.
