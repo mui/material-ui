@@ -141,6 +141,15 @@ const theme = createMuiTheme({
   palette: {
     primary: green,
   },
+  components: {
+    MuiFormLabel: {
+      styleOverrides: {
+        root: {
+          color: '#fff',
+        },
+      },
+    },
+  },
 });
 
 export default function CustomizedInputs() {
