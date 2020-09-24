@@ -2,8 +2,7 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "skipLibCheck": true,
-    "noUnusedLocals": true,
-    "types": ["react"]
+    "noUnusedLocals": true
   },
   "include": ["Material-UI.framerfx/code"]
 }

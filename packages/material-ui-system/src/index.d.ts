@@ -167,6 +167,16 @@ export const spacing: SimpleStyleFunction<
   | 'paddingY'
 >;
 export type SpacingProps = PropsFor<typeof spacing>;
+export function createUnarySpacing<Spacing>(theme: {
+  spacing: Spacing;
+}): Spacing extends number
+  ? (abs: number) => number
+  : Spacing extends any[]
+  ? <Index extends number>(abs: Index) => Spacing[Index]
+  : Spacing extends (...args: unknown[]) => unknown
+  ? Spacing
+  : // warns in Dev
+    () => undefined;
 
 // style.js
 export interface StyleOptions<PropKey, Theme extends object> {
