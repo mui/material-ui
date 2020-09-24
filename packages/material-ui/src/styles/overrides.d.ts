@@ -67,6 +67,7 @@ import { OutlinedInputClassKey } from '../OutlinedInput';
 import { PaperClassKey } from '../Paper';
 import { PopoverClassKey } from '../Popover';
 import { RadioClassKey } from '../Radio';
+import { RatingClassKey } from '../Rating';
 import { ScopedCssBaselineClassKey } from '../ScopedCssBaseline';
 import { SelectClassKey } from '../Select';
 import { SliderClassKey } from '../Slider';
@@ -181,6 +182,7 @@ export interface ComponentNameToClassKey {
   MuiPaper: PaperClassKey;
   MuiPopover: PopoverClassKey;
   MuiRadio: RadioClassKey;
+  MuiRating: RatingClassKey;
   MuiScopedCssBaseline: ScopedCssBaselineClassKey;
   MuiSelect: SelectClassKey;
   MuiSlider: SliderClassKey;

@@ -19,10 +19,6 @@ export interface LabComponents {
     styleOverrides?: ComponentsOverrides['MuiPaginationItem'];
     variants?: ComponentsVariants['MuiPaginationItem'];
   };
-  MuiRating?: {
-    defaultProps?: ComponentsProps['MuiRating'];
-    styleOverrides?: ComponentsOverrides['MuiRating'];
-  };
   MuiSkeleton?: {
     defaultProps?: ComponentsProps['MuiSkeleton'];
     styleOverrides?: ComponentsOverrides['MuiSkeleton'];
