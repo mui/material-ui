@@ -174,7 +174,7 @@ const useSliderClasses = (props) => {
 
 const isComponent = (element) => typeof element !== 'string';
 
-const Slider = React.forwardRef(function Slider(props, ref) {
+const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
   const {
     'aria-label': ariaLabel,
     'aria-labelledby': ariaLabelledby,
@@ -736,7 +736,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   );
 });
 
-Slider.propTypes = {
+SliderUnstyled.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -933,4 +933,4 @@ Slider.propTypes = {
   valueLabelFormat: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };
 
-export default Slider;
+export default SliderUnstyled;
