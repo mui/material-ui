@@ -11,7 +11,7 @@ export default function Head(props) {
   const router = useRouter();
 
   return (
-    <NextHead>      
+    <NextHead>
       <meta name="viewport" content="initial-scale=1, width=device-width" />
       <title>{title}</title>
       <meta name="description" content={description} />
