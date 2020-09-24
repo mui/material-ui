@@ -224,6 +224,41 @@ describe('<Slider />', () => {
       expect(handleChange.args[1][1]).to.deep.equal([22, 30]);
       expect(handleChange.args[2][1]).to.equal(handleChange.args[1][1]);
     });
+
+    it('should not react to right clicks', () => {
+      const handleMouseDown = spy();
+      const { getByRole } = render(
+        <Slider onMouseDown={handleMouseDown} defaultValue={30} step={10} marks />,
+      );
+      const thumb = getByRole('slider');
+      const rightClick = { buttons: 2 };
+      fireEvent.mouseDown(thumb, rightClick);
+      expect(handleMouseDown.callCount).to.equal(0);
+    });
+
+    it('should not remain focused if mouse was released outside of the window', () => {
+      const handleChange = spy();
+      const { container, getByRole } = render(
+        <Slider onChange={handleChange} defaultValue={30} step={10} marks />,
+      );
+
+      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+        width: 100,
+        height: 10,
+        bottom: 10,
+        left: 0,
+      }));
+
+      const thumb = getByRole('slider');
+      const noButtons = { button: 0, buttons: 0 };
+      const leftMouseButton = { button: 0, buttons: 1, clientX: 20 };
+      fireEvent.mouseDown(thumb, leftMouseButton);
+      expect(handleChange.callCount).to.equal(1);
+      fireEvent.mouseMove(thumb, leftMouseButton);
+      expect(handleChange.callCount).to.equal(2);
+      fireEvent.mouseMove(thumb, noButtons);
+      expect(handleChange.callCount).to.equal(2);
+    });
   });
 
   it('should not break when initial value is out of range', () => {
