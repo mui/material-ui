@@ -21,7 +21,7 @@ const theme = createMuiTheme({
   spacing: 4,
 });
 
-theme.spacing(2); // = 4px * 2
+theme.spacing(2); // `${4 * 2}px` = '8px'
 ```
 
 - a function
@@ -41,7 +41,7 @@ const theme = createMuiTheme({
   spacing: [0, 4, 8, 16, 32, 64],
 });
 
-theme.spacing(2); // = 8px
+theme.spacing(2); // = '8px'
 ```
 
 ## Multiple arity
