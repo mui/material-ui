@@ -1,5 +1,3 @@
-import { AlertClassKey } from '../Alert';
-import { AlertTitleClassKey } from '../AlertTitle';
 import { AutocompleteClassKey } from '../Autocomplete';
 import { AvatarGroupClassKey } from '../AvatarGroup';
 import { PaginationClassKey } from '../Pagination';
@@ -24,8 +22,6 @@ import { TreeItemClassKey } from '../TreeItem';
 import { TreeViewClassKey } from '../TreeView';
 
 export interface LabComponentNameToClassKey {
-  MuiAlert: AlertClassKey;
-  MuiAlertTitle: AlertTitleClassKey;
   MuiAutocomplete: AutocompleteClassKey;
   MuiAvatarGroup: AvatarGroupClassKey;
   MuiPagination: PaginationClassKey;

@@ -32,6 +32,7 @@ import Notifications from 'docs/src/modules/components/Notifications';
 import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
 import { LANGUAGES_LABEL } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
+import RtlContext from 'docs/src/modules/utils/RtlContext';
 import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
 import PageContext from 'docs/src/modules/components/PageContext';
 
@@ -147,6 +148,7 @@ function AppFrame(props) {
   const theme = useTheme();
   const t = useSelector((state) => state.options.t);
   const userLanguage = useSelector((state) => state.options.userLanguage);
+  const { rtl, setRtl } = React.useContext(RtlContext);
 
   const crowdInLocale = LOCALES[userLanguage] || userLanguage;
 
@@ -176,6 +178,8 @@ function AppFrame(props) {
     changeTheme({ paletteMode });
   };
   const handleToggleDirection = () => {
+    setRtl(!rtl);
+    // TODO: remove in v5 after the style engine is moved to emotion
     changeTheme({ direction: theme.direction === 'ltr' ? 'rtl' : 'ltr' });
   };
 

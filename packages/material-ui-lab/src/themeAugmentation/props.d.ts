@@ -1,5 +1,3 @@
-import { AlertProps } from '../Alert';
-import { AlertTitleProps } from '../AlertTitle';
 import { AutocompleteProps } from '../Autocomplete';
 import { AvatarGroupProps } from '../AvatarGroup';
 import { PaginationProps } from '../Pagination';
@@ -24,8 +22,6 @@ import { TreeItemProps } from '../TreeItem';
 import { TreeViewProps } from '../TreeView';
 
 export interface LabComponentsPropsList {
-  MuiAlert: AlertProps;
-  MuiAlertTitle: AlertTitleProps;
   MuiAutocomplete: AutocompleteProps<any, any, any, any>;
   MuiAvatarGroup: AvatarGroupProps;
   MuiPagination: PaginationProps;

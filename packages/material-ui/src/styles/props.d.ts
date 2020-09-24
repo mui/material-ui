@@ -1,3 +1,5 @@
+import { AlertProps } from '../Alert';
+import { AlertTitleProps } from '../AlertTitle';
 import { AppBarProps } from '../AppBar';
 import { AvatarProps } from '../Avatar';
 import { BackdropProps } from '../Backdrop';
@@ -107,6 +109,8 @@ export type ComponentsProps = {
 };
 
 export interface ComponentsPropsList {
+  MuiAlert: AlertProps;
+  MuiAlertTitle: AlertTitleProps;
   MuiAppBar: AppBarProps;
   MuiAvatar: AvatarProps;
   MuiBackdrop: BackdropProps;

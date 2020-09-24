@@ -134,6 +134,8 @@ function getDependencies(raw, options = {}) {
     '@material-ui/core': getMuiPackageVersion('core', muiCommitRef),
     '@material-ui/icons': getMuiPackageVersion('icons', muiCommitRef),
     '@material-ui/lab': getMuiPackageVersion('lab', muiCommitRef),
+    '@material-ui/styled-engine': getMuiPackageVersion('styled-engine', muiCommitRef),
+    '@material-ui/styled-engine-sc': getMuiPackageVersion('styled-engine-sc', muiCommitRef),
     '@material-ui/styles': getMuiPackageVersion('styles', muiCommitRef),
     '@material-ui/system': getMuiPackageVersion('system', muiCommitRef),
     '@material-ui/utils': getMuiPackageVersion('utils', muiCommitRef),

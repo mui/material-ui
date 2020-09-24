@@ -22,13 +22,27 @@ const theme = createMuiTheme({
 });
 ```
 
-### 3. jss-rtl
+### 3. Install the rtl plugin
 
-You need this JSS plugin to flip the styles: [jss-rtl](https://github.com/alitaheri/jss-rtl).
+In case you are using `jss` (up to v4), you need this JSS plugin to flip the styles: [jss-rtl](https://github.com/alitaheri/jss-rtl).
 
 ```sh
 npm install jss-rtl
 ```
+
+If you are using `emotion` or `styled-components`, you need this stylis plugin to flip the styles: [stylis-plugin-rtl](https://github.com/styled-components/stylis-plugin-rtl).
+
+```sh
+npm install stylis-plugin-rtl@^1
+```
+
+Note: both `emotion` and `styled-components` currently work with the v1 of the plugin.
+
+Having installed the plugin in your project, Material-UI components still require it to be loaded by the style engine instance that you use. Find bellow guides on how you can load it.
+
+### 3. Load the rtl plugin
+
+#### 3.1 JSS
 
 Having installed the plugin in your project, Material-UI components still require it to be loaded by the jss instance, as described below.
 Internally, withStyles is using this JSS plugin when `direction: 'rtl'` is set on the theme.
@@ -52,6 +66,44 @@ function RTL(props) {
 }
 ```
 
+#### 3.2 emotion
+
+If you use emotion as your style engine, you should create new cache instance that uses the `stylis-plugin-rtl` and provide that on the top of your application tree. The [CacheProvider](https://emotion.sh/docs/cache-provider) component enables this:
+
+```jsx
+import rtlPlugin from 'stylis-plugin-rtl';
+import { CacheProvider } from '@emotion/core';
+import createCache from '@emotion/cache';
+
+// Create rtl cache
+const cacheRtl = createCache({
+  key: 'muirtl',
+  stylisPlugins: [rtlPlugin],
+  speedy: true,
+});
+
+function RTL(props) {
+  return <CacheProvider value={cacheRtl}>{props.children}</CacheProvider>;
+}
+```
+
+#### 3.3 styled-components
+
+If you use `styled-components` as your style engine, you can use the [StyleSheetManager](https://styled-components.com/docs/api#stylesheetmanager) and provide the stylis-plugin-rtl as an item in the `stylisPlugins` property:
+
+```jsx
+import { StyleSheetManager } from 'styled-components';
+import rtlPlugin from 'stylis-plugin-rtl';
+
+function RTL(props) {
+  return (
+    <StyleSheetManager stylisPlugins={[rtlPlugin]}>
+      {props.children}
+    </StyleSheetManager>
+  );
+}
+```
+
 ## Demo
 
 _Use the direction toggle button on the top right corner to flip the whole documentation_
@@ -60,8 +112,18 @@ _Use the direction toggle button on the top right corner to flip the whole docum
 
 ## Opting out of rtl transformation
 
+### JSS
+
 If you want to prevent a specific rule-set from being affected by the `rtl` transformation you can add `flip: false` at the beginning.
 
 _Use the direction toggle button on the top right corner to see the effect._
 
 {{"demo": "pages/guides/right-to-left/RtlOptOut.js", "hideEditButton": true}}
+
+### emotion & styled-components
+
+You have to use the template literal syntax and add the `/* @noflip */` directive before the rule or property for which you want to disable right-to-left styles.
+
+_Use the direction toggle button on the top right corner to see the effect._
+
+{{"demo": "pages/guides/right-to-left/RtlOptOutStylis.js", "hideEditButton": true}}

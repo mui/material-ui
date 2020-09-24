@@ -1,5 +1,7 @@
 import React from 'react';
 import { ServerStyleSheets } from '@material-ui/styles';
+import { ServerStyleSheet } from 'styled-components';
+import { extractCritical } from 'emotion-server';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
@@ -92,55 +94,78 @@ export default class MyDocument extends Document {
   }
 }
 
+// `getInitialProps` belongs to `_document` (instead of `_app`),
+// it's compatible with static-site generation (SSG).
 MyDocument.getInitialProps = async (ctx) => {
   // Resolution order
   //
   // On the server:
-  // 1. page.getInitialProps
-  // 2. document.getInitialProps
-  // 3. page.render
-  // 4. document.render
+  // 1. app.getInitialProps
+  // 2. page.getInitialProps
+  // 3. document.getInitialProps
+  // 4. app.render
+  // 5. page.render
+  // 6. document.render
   //
   // On the server with error:
-  // 2. document.getInitialProps
+  // 1. document.getInitialProps
+  // 2. app.render
   // 3. page.render
   // 4. document.render
   //
   // On the client
-  // 1. page.getInitialProps
-  // 3. page.render
+  // 1. app.getInitialProps
+  // 2. page.getInitialProps
+  // 3. app.render
+  // 4. page.render
 
   // Render app and page and get the context of the page with collected side effects.
-  const sheets = new ServerStyleSheets();
+  const materialSheets = new ServerStyleSheets();
+  const styledComponentsSheet = new ServerStyleSheet();
   const originalRenderPage = ctx.renderPage;
 
-  ctx.renderPage = () =>
-    originalRenderPage({
-      enhanceApp: (App) => (props) => sheets.collect(<App {...props} />),
-    });
+  try {
+    ctx.renderPage = () =>
+      originalRenderPage({
+        enhanceApp: (App) => (props) =>
+          styledComponentsSheet.collectStyles(materialSheets.collect(<App {...props} />)),
+      });
 
-  const initialProps = await Document.getInitialProps(ctx);
+    const initialProps = await Document.getInitialProps(ctx);
+    const emotionStyles = extractCritical(initialProps.html);
 
-  let css = sheets.toString();
-  // It might be undefined, e.g. after an error.
-  if (css && process.env.NODE_ENV === 'production') {
-    const result1 = await prefixer.process(css, { from: undefined });
-    css = result1.css;
-    css = cleanCSS.minify(css).styles;
+    let css = materialSheets.toString();
+    // It might be undefined, e.g. after an error.
+    if (css && process.env.NODE_ENV === 'production') {
+      const result1 = await prefixer.process(css, { from: undefined });
+      css = result1.css;
+      css = cleanCSS.minify(css).styles;
+    }
+
+    return {
+      ...initialProps,
+      canonical: pathnameToLanguage(ctx.req.url).canonical,
+      userLanguage: ctx.query.userLanguage || 'en',
+      // Styles fragment is rendered after the app and page rendering finish.
+      styles: [
+        ...React.Children.toArray(initialProps.styles),
+        <style
+          id="jss-server-side"
+          key="jss-server-side"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: css }}
+        />,
+        <style
+          id="emotion-server-side"
+          key="emotion-server-side"
+          data-emotion-css={emotionStyles.ids.join(' ')}
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: emotionStyles.css }}
+        />,
+        styledComponentsSheet.getStyleElement(),
+      ],
+    };
+  } finally {
+    styledComponentsSheet.seal();
   }
-
-  return {
-    ...initialProps,
-    canonical: pathnameToLanguage(ctx.req.url).canonical,
-    userLanguage: ctx.query.userLanguage || 'en',
-    styles: [
-      ...React.Children.toArray(initialProps.styles),
-      <style
-        id="jss-server-side"
-        key="jss-server-side"
-        // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{ __html: css }}
-      />,
-    ],
-  };
 };

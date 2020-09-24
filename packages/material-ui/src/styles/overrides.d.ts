@@ -1,4 +1,6 @@
 import { CSSProperties, StyleRules } from './withStyles';
+import { AlertClassKey } from '../Alert';
+import { AlertTitleClassKey } from '../AlertTitle';
 import { AppBarClassKey } from '../AppBar';
 import { AvatarClassKey } from '../Avatar';
 import { BackdropClassKey } from '../Backdrop';
@@ -107,6 +109,8 @@ export type ComponentsOverrides = {
 };
 
 export interface ComponentNameToClassKey {
+  MuiAlert: AlertClassKey;
+  MuiAlertTitle: AlertTitleClassKey;
   MuiAppBar: AppBarClassKey;
   MuiAvatar: AvatarClassKey;
   MuiBackdrop: BackdropClassKey;

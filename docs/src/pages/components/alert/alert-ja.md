@@ -19,7 +19,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
 
 このアラートは、特徴的なアイコンと色を設定する4つの重要度レベルを提供します。
 
-{{"demo": "pages/components/alert/SimpleAlerts.js"}}
+{{"demo": "pages/components/alert/BasicAlerts.js"}}
 
 ## Description
 

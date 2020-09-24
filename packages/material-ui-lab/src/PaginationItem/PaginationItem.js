@@ -1,8 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { useThemeVariants } from '@material-ui/styles';
-import { fade, useTheme, withStyles } from '@material-ui/core/styles';
+import { fade, useTheme, withStyles, useThemeVariants } from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import { capitalize } from '@material-ui/core/utils';
 import FirstPageIcon from '../internal/svg-icons/FirstPage';

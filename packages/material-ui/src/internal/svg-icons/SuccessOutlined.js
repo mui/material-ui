@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createSvgIcon } from '@material-ui/core/utils';
+import createSvgIcon from '../../utils/createSvgIcon';
 
 /**
  * @ignore - internal component.

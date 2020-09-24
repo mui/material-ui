@@ -1,8 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { useThemeVariants } from '@material-ui/styles';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, useThemeVariants } from '@material-ui/core/styles';
 import usePagination from './usePagination';
 import PaginationItem from '../PaginationItem';
 

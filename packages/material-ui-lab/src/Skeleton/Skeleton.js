@@ -1,12 +1,12 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { useThemeVariants } from '@material-ui/styles';
 import {
   fade,
   withStyles,
   unstable_toUnitless as toUnitless,
   unstable_getUnit as getUnit,
+  useThemeVariants,
 } from '@material-ui/core/styles';
 
 export const styles = (theme) => {

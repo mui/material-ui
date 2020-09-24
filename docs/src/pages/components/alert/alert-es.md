@@ -19,7 +19,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
 
 La alerta ofrece cuatro niveles de severidad que distintivamente establecen un icono y un color.
 
-{{"demo": "pages/components/alert/SimpleAlerts.js"}}
+{{"demo": "pages/components/alert/BasicAlerts.js"}}
 
 ## Descripción
 
