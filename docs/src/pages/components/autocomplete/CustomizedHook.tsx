@@ -17,9 +17,8 @@ const InputWrapper = styled('div')`
   ${({ theme }) => `
   width: 300px;
   border: 1px solid ${theme.palette.mode === 'dark' ? '#434343' : '#d9d9d9'};
-  background-color: ${
-    theme.palette.mode === 'dark' ? `${theme.palette.background.paper}` : '#fff'
-  };
+  background-color: ${theme.palette.background.paper};
+
   border-radius: 4px;
   padding: 1px;
   display: flex;
@@ -35,11 +34,7 @@ const InputWrapper = styled('div')`
   }
 
   & input {
-    background-color: ${
-      theme.palette.mode === 'dark'
-        ? `${theme.palette.background.paper}`
-        : '#fff'
-    };
+    background-color: ${theme.palette.background.paper};
     color: ${theme.palette.mode === 'dark' ? '#fff' : '#000'};
     font-size: 14px;
     height: 30px;
@@ -103,9 +98,7 @@ const Listbox = styled('ul')`
   padding: 0;
   position: absolute;
   list-style: none;
-  background-color: ${
-    theme.palette.mode === 'dark' ? `${theme.palette.background.paper}` : '#fff'
-  };
+  background-color: ${theme.palette.background.paper};
   overflow: auto;
   max-height: 250px;
   border-radius: 4px;

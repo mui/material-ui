@@ -140,7 +140,6 @@ const ValidationTextField = withStyles({
 const theme = createMuiTheme({
   palette: {
     primary: green,
-    text: green,
   },
 });
 
