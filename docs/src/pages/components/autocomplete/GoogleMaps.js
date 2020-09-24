@@ -1,6 +1,6 @@
 import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
+import Autocomplete from '@material-ui/core/Autocomplete';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';

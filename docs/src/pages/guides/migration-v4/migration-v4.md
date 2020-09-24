@@ -207,6 +207,15 @@ const theme = createMuitheme({
   +import AlertTitle from '@material-ui/core/AlertTitle';
   ```
 
+  ### Autocomplete
+
+- Move the component from the lab to the core. The component is now stable.
+
+  ```diff
+  -import Autocomplete from '@material-ui/lab/Autocomplete';
+  +import Autocomplete from '@material-ui/core/Autocomplete';
+  ```
+
 ### Avatar
 
 - Rename `circle` to `circular` for consistency. The possible values should be adjectives, not nouns:

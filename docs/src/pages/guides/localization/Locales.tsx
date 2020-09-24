@@ -2,7 +2,7 @@ import * as React from 'react';
 import TablePagination from '@material-ui/core/TablePagination';
 import Pagination from '@material-ui/lab/Pagination';
 import Rating from '@material-ui/lab/Rating';
-import Autocomplete from '@material-ui/lab/Autocomplete';
+import Autocomplete from '@material-ui/core/Autocomplete';
 import TextField from '@material-ui/core/TextField';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import * as locales from '@material-ui/core/locale';

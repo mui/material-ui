@@ -2,7 +2,7 @@ import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete, {
   AutocompleteRenderGroupParams,
-} from '@material-ui/lab/Autocomplete';
+} from '@material-ui/core/Autocomplete';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import { useTheme, makeStyles } from '@material-ui/core/styles';

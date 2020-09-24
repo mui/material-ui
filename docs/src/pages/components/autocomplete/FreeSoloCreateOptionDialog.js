@@ -9,7 +9,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 import Autocomplete, {
   createFilterOptions,
-} from '@material-ui/lab/Autocomplete';
+} from '@material-ui/core/Autocomplete';
 
 const filter = createFilterOptions();
 
