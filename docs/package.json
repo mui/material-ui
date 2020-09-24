@@ -26,7 +26,7 @@
     "@emotion/core": "^10.0.27",
     "@emotion/styled": "^10.0.27",
     "@material-ui/core": "^4.1.2",
-    "@material-ui/data-grid": "https://pkg.csb.dev/mui-org/material-ui-x/commit/b5d0f060/@material-ui/data-grid",
+    "@material-ui/data-grid": "https://pkg.csb.dev/mui-org/material-ui-x/commit/6024274e/@material-ui/data-grid",
     "@material-ui/docs": "^4.0.0-beta.0",
     "@material-ui/icons": "^4.2.1",
     "@material-ui/lab": "^4.0.0-alpha.18",
