@@ -234,8 +234,7 @@ describe('<Autocomplete />', () => {
         getByRole('textbox').focus();
       });
       expect(container.textContent).to.equal('onetwothree');
-      // Depending on the subset of components used in this test run the computed `visibility` changes.
-      // Running this assertion only in browsers.
+      // Depending on the subset of components used in this test run the computed `visibility` changes in JSDOM.
       if (!/jsdom/.test(window.navigator.userAgent)) {
         expect(getAllByRole('button', { hidden: false })).to.have.lengthOf(5);
       }
@@ -261,8 +260,7 @@ describe('<Autocomplete />', () => {
         getByRole('textbox').focus();
       });
       expect(container.textContent).to.equal('onetwothree');
-      // Depending on the subset of components used in this test run the computed `visibility` changes.
-      // Running this assertion only in browsers.
+      // Depending on the subset of components used in this test run the computed `visibility` changes in JSDOM.
       if (!/jsdom/.test(window.navigator.userAgent)) {
         expect(getAllByRole('button', { hidden: false })).to.have.lengthOf(5);
       }
@@ -645,8 +643,7 @@ describe('<Autocomplete />', () => {
       expect(listbox).to.equal(null);
 
       const buttons = getAllByRole('button', { hidden: true });
-      // Depending on the subset of components used in this test run the computed `visibility` changes.
-      // Running this assertion only in browsers.
+      // Depending on the subset of components used in this test run the computed `visibility` changes in JSDOM.
       if (!/jsdom/.test(window.navigator.userAgent)) {
         expect(buttons[0]).toBeInaccessible();
       }
