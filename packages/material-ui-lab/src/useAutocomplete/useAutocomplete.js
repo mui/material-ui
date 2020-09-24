@@ -206,6 +206,8 @@ export default function useAutocomplete(props) {
       )
     : [];
 
+  const listboxAvailable = open && filteredOptions.length > 0;
+
   if (process.env.NODE_ENV !== 'production') {
     if (value !== null && !freeSolo && options.length > 0) {
       const missingValue = (multiple ? value : [value]).filter(
@@ -932,9 +934,9 @@ export default function useAutocomplete(props) {
 
   return {
     getRootProps: (other = {}) => ({
-      'aria-owns': popupOpen ? `${id}-popup` : null,
+      'aria-owns': listboxAvailable ? `${id}-listbox` : null,
       role: 'combobox',
-      'aria-expanded': popupOpen,
+      'aria-expanded': listboxAvailable,
       ...other,
       onKeyDown: handleKeyDown(other),
       onMouseDown: handleMouseDown,
@@ -955,7 +957,7 @@ export default function useAutocomplete(props) {
       // only have an opinion about this when closed
       'aria-activedescendant': popupOpen ? '' : null,
       'aria-autocomplete': autoComplete ? 'both' : 'list',
-      'aria-controls': popupOpen ? `${id}-popup` : null,
+      'aria-controls': listboxAvailable ? `${id}-listbox` : null,
       // Disable browser's suggestion that might overlap with the popup.
       // Handle autocomplete but not autofill.
       autoComplete: 'off',
@@ -979,7 +981,7 @@ export default function useAutocomplete(props) {
     }),
     getListboxProps: () => ({
       role: 'listbox',
-      id: `${id}-popup`,
+      id: `${id}-listbox`,
       'aria-labelledby': `${id}-label`,
       ref: handleListboxRef,
       onMouseDown: (event) => {

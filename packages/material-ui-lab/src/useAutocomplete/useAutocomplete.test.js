@@ -24,6 +24,15 @@ describe('createFilterOptions', () => {
     expect(filterOptions(options, { inputValue: 'a', getOptionLabel })).to.deep.equal([options[0]]);
   });
 
+  it('filters without error with empty option set', () => {
+    const filterOptions = createFilterOptions();
+
+    const getOptionLabel = (option) => option.name;
+    const options = [];
+
+    expect(filterOptions(options, { inputValue: 'a', getOptionLabel })).to.deep.equal([]);
+  });
+
   describe('option: limit', () => {
     it('limits the number of suggested options to be shown', () => {
       const filterOptions = createFilterOptions({ limit: 2 });
