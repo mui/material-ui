@@ -107,14 +107,14 @@ export interface RatingProps
    * @param {object} event The event source of the callback.
    * @param {number} value The new value.
    */
-  onChange?: (event: React.ChangeEvent<{}>, value: number | null) => void;
+  onChange?: (event: React.SyntheticEvent, value: number | null) => void;
   /**
    * Callback function that is fired when the hover state changes.
    *
    * @param {object} event The event source of the callback.
    * @param {number} value The new value.
    */
-  onChangeActive?: (event: React.ChangeEvent<{}>, value: number) => void;
+  onChangeActive?: (event: React.SyntheticEvent, value: number) => void;
   /**
    * The minimum increment value change allowed.
    * @default 1

@@ -142,7 +142,7 @@ export default function GitHubLabel() {
   };
 
   const handleClose = (
-    event: React.ChangeEvent<{}>,
+    event: React.SyntheticEvent,
     reason: AutocompleteCloseReason,
   ) => {
     if (reason === 'toggleInput') {
