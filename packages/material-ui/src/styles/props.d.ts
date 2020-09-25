@@ -71,6 +71,7 @@ import { PaperProps } from '../Paper';
 import { PopoverProps } from '../Popover';
 import { RadioGroupProps } from '../RadioGroup';
 import { RadioProps } from '../Radio';
+import { RatingProps } from '../Rating';
 import { ScopedCssBaselineProps } from '../ScopedCssBaseline';
 import { SelectProps } from '../Select';
 import { SliderProps } from '../Slider';
@@ -181,6 +182,7 @@ export interface ComponentsPropsList {
   MuiPopover: PopoverProps;
   MuiRadio: RadioProps;
   MuiRadioGroup: RadioGroupProps;
+  MuiRating: RatingProps;
   MuiScopedCssBaseline: ScopedCssBaselineProps;
   MuiSelect: SelectProps;
   MuiSlider: SliderProps;

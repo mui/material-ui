@@ -2,7 +2,6 @@ import { AutocompleteClassKey } from '../Autocomplete';
 import { AvatarGroupClassKey } from '../AvatarGroup';
 import { PaginationClassKey } from '../Pagination';
 import { PaginationItemClassKey } from '../PaginationItem';
-import { RatingClassKey } from '../Rating';
 import { SkeletonClassKey } from '../Skeleton';
 import { SpeedDialClassKey } from '../SpeedDial';
 import { SpeedDialActionClassKey } from '../SpeedDialAction';
@@ -26,7 +25,6 @@ export interface LabComponentNameToClassKey {
   MuiAvatarGroup: AvatarGroupClassKey;
   MuiPagination: PaginationClassKey;
   MuiPaginationItem: PaginationItemClassKey;
-  MuiRating: RatingClassKey;
   MuiSkeleton: SkeletonClassKey;
   MuiSpeedDial: SpeedDialClassKey;
   MuiSpeedDialAction: SpeedDialActionClassKey;
