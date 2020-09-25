@@ -2074,9 +2074,10 @@
     npmlog "^4.1.2"
     write-file-atomic "^2.3.0"
 
-"@material-ui/data-grid@https://pkg.csb.dev/mui-org/material-ui-x/commit/6024274e/@material-ui/data-grid":
-  version "4.0.0-alpha.2"
-  resolved "https://pkg.csb.dev/mui-org/material-ui-x/commit/6024274e/@material-ui/data-grid#91acdbf02dd386839f63a9d2d443863b9959a9a6"
+"@material-ui/data-grid@^4.0.0-alpha.6":
+  version "4.0.0-alpha.6"
+  resolved "https://registry.yarnpkg.com/@material-ui/data-grid/-/data-grid-4.0.0-alpha.6.tgz#78e14791777e1aa12b9b4b84d82d8e5ff437beb3"
+  integrity sha512-XFUdIK+It5PY3ivO4u0hDUxQNC4ASTuQHZlVe9K3RFEjZRNt70W29WoL36IvJ1o/bN208uUuQvzY9tn3J0P8lQ==
   dependencies:
     prop-types "^15.7.2"
     tslib "^2.0.0"
