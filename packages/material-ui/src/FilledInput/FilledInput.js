@@ -206,7 +206,7 @@ FilledInput.propTypes = {
   classes: PropTypes.object,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * The prop defaults to the value (`"primary"`) inherited by the parent FormControl component.
+   * The prop defaults to the value (`'primary'`) inherited by the parent FormControl component.
    */
   color: PropTypes.oneOf(['primary', 'secondary']),
   /**
