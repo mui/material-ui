@@ -527,8 +527,8 @@ const theme = createMuitheme({
 - Move the component from the lab to the core. The component is now stable.
 
   ```diff
-  -import Alert from '@material-ui/lab/Rating';
-  +import Alert from '@material-ui/core/Rating';
+  -import Rating from '@material-ui/lab/Rating';
+  +import Rating from '@material-ui/core/Rating';
   ```
 
 - Change the default empty icon to improve accessibility.
