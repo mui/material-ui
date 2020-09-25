@@ -221,7 +221,7 @@ OutlinedInput.propTypes = {
   /**
    * If `dense`, will adjust vertical spacing. This is normally obtained via context from
    * FormControl.
-   * The prop defaults to the value (`"none"`) inherited by the parent FormControl component.
+   * The prop defaults to the value (`'none'`) inherited by the parent FormControl component.
    */
   margin: PropTypes.oneOf(['dense', 'none']),
   /**
