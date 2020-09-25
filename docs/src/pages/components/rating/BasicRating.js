@@ -3,7 +3,7 @@ import Rating from '@material-ui/core/Rating';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
-export default function SimpleRating() {
+export default function BasicRating() {
   const [value, setValue] = React.useState(2);
 
   return (
