@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Skeleton from '@material-ui/lab/Skeleton';
+import Skeleton from '@material-ui/core/Skeleton';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({

@@ -2,7 +2,6 @@
 title: Skeleton React component
 components: Skeleton
 githubLabel: 'component: Skeleton'
-packageName: '@material-ui/lab'
 ---
 
 # Skeleton
