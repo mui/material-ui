@@ -185,7 +185,7 @@ TableCell.propTypes = {
   component: PropTypes.elementType,
   /**
    * Sets the padding applied to the cell.
-   * The prop defaults to the value (`"default"`) inherited by the parent Table component.
+   * The prop defaults to the value (`'default'`) inherited by the parent Table component.
    */
   padding: PropTypes.oneOf(['checkbox', 'default', 'none']),
   /**
@@ -194,7 +194,7 @@ TableCell.propTypes = {
   scope: PropTypes.string,
   /**
    * Specify the size of the cell.
-   * The prop defaults to the value (`"medium"`) inherited by the parent Table component.
+   * The prop defaults to the value (`'medium'`) inherited by the parent Table component.
    */
   size: PropTypes.oneOf(['medium', 'small']),
   /**
