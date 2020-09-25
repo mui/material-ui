@@ -580,6 +580,7 @@ Tooltip.propTypes = {
   /**
    * Set to `true` if the `title` acts as an accessible description.
    * By default the `title` acts as an accessible label for the child.
+   * @default false
    */
   describeChild: PropTypes.bool,
   /**
