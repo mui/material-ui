@@ -59,6 +59,7 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(props, ref) 
     className,
     control,
     disabled: disabledProp,
+    readOnly,
     inputRef,
     label,
     labelPlacement = 'end',
@@ -81,7 +82,7 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(props, ref) 
     disabled,
   };
 
-  ['checked', 'name', 'onChange', 'value', 'inputRef'].forEach((key) => {
+  ['checked', 'name', 'readOnly', 'onChange', 'value', 'inputRef'].forEach((key) => {
     if (typeof control.props[key] === 'undefined' && typeof props[key] !== 'undefined') {
       controlProps[key] = props[key];
     }
@@ -136,6 +137,10 @@ FormControlLabel.propTypes = {
    * If `true`, the control will be disabled.
    */
   disabled: PropTypes.bool,
+  /**
+   * If `true`, the value cant be changed by user input.
+   */
+  readOnly: PropTypes.bool,
   /**
    * Pass a ref to the `input` element.
    */
