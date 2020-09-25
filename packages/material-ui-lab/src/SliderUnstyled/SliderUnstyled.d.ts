@@ -202,6 +202,6 @@ export interface SliderTypeMap<P = {}, D extends React.ElementType = 'span'> {
  *
  * - [SliderUnstyled API](https://material-ui.com/api/slider-unstyled/)
  */
-declare const SliderBase: OverridableComponent<SliderTypeMap>;
+declare const SliderUnstyled: OverridableComponent<SliderTypeMap>;
 
-export default SliderBase;
+export default SliderUnstyled;
