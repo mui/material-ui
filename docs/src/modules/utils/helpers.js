@@ -44,7 +44,7 @@ function pageToTitleI18n(page, t) {
  * set of packages that ship their own typings instead of using @types/ namespace
  * Array because Set([iterable]) is not supported in IE11
  */
-const packagesWithBundledTypes = ['date-fns'];
+const packagesWithBundledTypes = ['date-fns', '@emotion/core', '@emotion/styled'];
 
 /**
  * WARNING: Always uses `latest` typings.
