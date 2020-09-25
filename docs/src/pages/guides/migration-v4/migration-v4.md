@@ -123,15 +123,6 @@ The following changes are supported by the adapter.
   theme.spacing(2) => '16px'
   ```
 
-  You can restore the previous behavior with:
-
-  ```diff
-  -const theme = createMuiTheme();
-  +const theme = createMuiTheme({
-  +  spacing: x => x * 8,
-  +});
-  ```
-
 - The `theme.palette.text.hint` key was unused in Material-UI components, and has been removed.
 
 ```diff
