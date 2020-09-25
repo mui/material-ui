@@ -67,9 +67,11 @@ module.exports = {
 
       config.externals = [
         (context, request, callback) => {
-          const hasDependencyOnRepoPackages = ['notistack', '@material-ui/pickers'].includes(
-            request,
-          );
+          const hasDependencyOnRepoPackages = [
+            'notistack',
+            '@material-ui/pickers',
+            '@material-ui/data-grid',
+          ].includes(request);
 
           if (hasDependencyOnRepoPackages) {
             return callback(null);
@@ -96,7 +98,7 @@ module.exports = {
           // transpile 3rd party packages with dependencies in this repository
           {
             test: /\.(js|mjs|jsx)$/,
-            include: /node_modules(\/|\\)(notistack|@material-ui(\/|\\)pickers)/,
+            include: /node_modules(\/|\\)(notistack|@material-ui(\/|\\)(pickers|data-grid))/,
             use: {
               loader: 'babel-loader',
               options: {
@@ -109,6 +111,7 @@ module.exports = {
                     {
                       alias: {
                         '@material-ui/core': '../packages/material-ui/src',
+                        '@material-ui/utils': '../packages/material-ui-utils/src',
                       },
                       transformFunctions: ['require'],
                     },

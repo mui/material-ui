@@ -26,6 +26,7 @@
     "@emotion/core": "^10.0.27",
     "@emotion/styled": "^10.0.27",
     "@material-ui/core": "^4.1.2",
+    "@material-ui/data-grid": "^4.0.0-alpha.6",
     "@material-ui/docs": "^4.0.0-beta.0",
     "@material-ui/icons": "^4.2.1",
     "@material-ui/lab": "^4.0.0-alpha.18",
