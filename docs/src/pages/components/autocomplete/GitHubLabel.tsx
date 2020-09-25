@@ -8,6 +8,7 @@ import {
   createStyles,
 } from '@material-ui/core/styles';
 import Popper from '@material-ui/core/Popper';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import SettingsIcon from '@material-ui/icons/Settings';
 import CloseIcon from '@material-ui/icons/Close';
 import DoneIcon from '@material-ui/icons/Done';
@@ -141,13 +142,7 @@ export default function GitHubLabel() {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = (
-    event: React.SyntheticEvent,
-    reason: AutocompleteCloseReason,
-  ) => {
-    if (reason === 'toggleInput') {
-      return;
-    }
+  const handleClose = () => {
     setValue(pendingValue);
     if (anchorEl) {
       anchorEl.focus();
@@ -190,74 +185,87 @@ export default function GitHubLabel() {
         placement="bottom-start"
         className={classes.popper}
       >
-        <div className={classes.header}>Apply labels to this pull request</div>
-        <Autocomplete
-          open
-          onClose={handleClose}
-          multiple
-          classes={{
-            paper: classes.paper,
-            option: classes.option,
-            popperDisablePortal: classes.popperDisablePortal,
-          }}
-          value={pendingValue}
-          onChange={(event, newValue, reason) => {
-            if (
-              event.type === 'keydown' &&
-              (event as React.KeyboardEvent).key === 'Backspace' &&
-              reason === 'remove-option'
-            ) {
-              return;
-            }
-            setPendingValue(newValue);
-          }}
-          disableCloseOnSelect
-          disablePortal
-          renderTags={() => null}
-          noOptionsText="No labels"
-          renderOption={(props, option, { selected }) => (
-            <li {...props}>
-              <DoneIcon
-                className={classes.iconSelected}
-                style={{
-                  visibility: selected ? 'visible' : 'hidden',
-                }}
-              />
-              <span
-                className={classes.color}
-                style={{ backgroundColor: option.color }}
-              />
-              <div className={classes.text}>
-                {option.name}
-                <br />
-                {option.description}
-              </div>
-              <CloseIcon
-                className={classes.close}
-                style={{
-                  visibility: selected ? 'visible' : 'hidden',
-                }}
-              />
-            </li>
-          )}
-          options={[...labels].sort((a, b) => {
-            // Display the selected labels first.
-            let ai = value.indexOf(a);
-            ai = ai === -1 ? value.length + labels.indexOf(a) : ai;
-            let bi = value.indexOf(b);
-            bi = bi === -1 ? value.length + labels.indexOf(b) : bi;
-            return ai - bi;
-          })}
-          getOptionLabel={(option) => option.name}
-          renderInput={(params) => (
-            <InputBase
-              ref={params.InputProps.ref}
-              inputProps={params.inputProps}
-              autoFocus
-              className={classes.inputBase}
+        <ClickAwayListener onClickAway={handleClose}>
+          <div>
+            <div className={classes.header}>
+              Apply labels to this pull request
+            </div>
+            <Autocomplete
+              open
+              multiple
+              onClose={(
+                event: React.ChangeEvent<{}>,
+                reason: AutocompleteCloseReason,
+              ) => {
+                if (reason === 'escape') {
+                  handleClose();
+                }
+              }}
+              classes={{
+                paper: classes.paper,
+                option: classes.option,
+                popperDisablePortal: classes.popperDisablePortal,
+              }}
+              value={pendingValue}
+              onChange={(event, newValue, reason) => {
+                if (
+                  event.type === 'keydown' &&
+                  (event as React.KeyboardEvent).key === 'Backspace' &&
+                  reason === 'remove-option'
+                ) {
+                  return;
+                }
+                setPendingValue(newValue);
+              }}
+              disableCloseOnSelect
+              disablePortal
+              renderTags={() => null}
+              noOptionsText="No labels"
+              renderOption={(props, option, { selected }) => (
+                <li {...props}>
+                  <DoneIcon
+                    className={classes.iconSelected}
+                    style={{
+                      visibility: selected ? 'visible' : 'hidden',
+                    }}
+                  />
+                  <span
+                    className={classes.color}
+                    style={{ backgroundColor: option.color }}
+                  />
+                  <div className={classes.text}>
+                    {option.name}
+                    <br />
+                    {option.description}
+                  </div>
+                  <CloseIcon
+                    className={classes.close}
+                    style={{
+                      visibility: selected ? 'visible' : 'hidden',
+                    }}
+                  />
+                </li>
+              )}
+              options={[...labels].sort((a, b) => {
+                // Display the selected labels first.
+                let ai = value.indexOf(a);
+                ai = ai === -1 ? value.length + labels.indexOf(a) : ai;
+                let bi = value.indexOf(b);
+                bi = bi === -1 ? value.length + labels.indexOf(b) : bi;
+                return ai - bi;
+              })}
+              getOptionLabel={(option) => option.name}
+              renderInput={(params) => (
+                <InputBase
+                  ref={params.InputProps.ref}
+                  inputProps={params.inputProps}
+                  autoFocus
+                  className={classes.inputBase}
+                />
+              )}
             />
-          )}
-        />
+          </div>
+        </ClickAwayListener>
       </Popper>
     </React.Fragment>
   );
