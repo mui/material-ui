@@ -282,7 +282,7 @@ SliderRoot.propTypes = {
   }),
 };
 
-const SliderStyled = React.forwardRef(function SliderStyled(inputProps, ref) {
+const Slider = React.forwardRef(function Slider(inputProps, ref) {
   const props = useThemeProps({ props: inputProps, name: 'MuiSlider' });
   const {
     /* eslint-disable react/prop-types */
@@ -302,7 +302,7 @@ const SliderStyled = React.forwardRef(function SliderStyled(inputProps, ref) {
   );
 });
 
-SliderRoot.propTypes = {
+Slider.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -311,10 +311,6 @@ SliderRoot.propTypes = {
    * @ignore
    */
   children: PropTypes.node,
-  /**
-   * @ignore
-   */
-  styleProps: PropTypes.object,
 };
 
-export default SliderStyled;
+export default Slider;
