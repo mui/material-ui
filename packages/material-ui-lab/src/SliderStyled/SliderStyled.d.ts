@@ -2,16 +2,6 @@ import * as React from 'react';
 import { OverridableComponent, OverrideProps } from '@material-ui/core/OverridableComponent';
 import { SliderTypeMap } from '../SliderUnstyled';
 
-/**
- *
- * API:
- *
- * - [SliderStyled API](https://material-ui.com/api/slider-styled/)
- */
-declare const Slider: OverridableComponent<SliderTypeMap>;
-
-export type SliderClassKey = keyof NonNullable<SliderTypeMap['props']['classes']>;
-
 export type SliderProps<
   D extends React.ElementType = SliderTypeMap['defaultComponent'],
   P = {}
@@ -32,5 +22,13 @@ export const SliderRail: React.FC<SliderRailProps>;
 export const SliderTrack: React.FC<SliderTrackProps>;
 export const SliderThumb: React.FC<SliderThumbProps>;
 export const SliderValueLabel: React.FC<SliderValueLabel>;
+
+/**
+ *
+ * API:
+ *
+ * - [SliderStyled API](https://material-ui.com/api/slider-styled/)
+ */
+declare const Slider: OverridableComponent<SliderTypeMap>;
 
 export default Slider;

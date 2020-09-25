@@ -201,10 +201,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     valueLabelDisplay = 'off',
     valueLabelFormat = Identity,
     isRtl = false,
-    // TODO: these proptypes were not generated
-    /* eslint-disable react/prop-types */
     components = {},
-    /* eslint-disable react/prop-types */
     componentsProps = {},
     /* eslint-disable react/prop-types */
     theme,
@@ -778,11 +775,6 @@ SliderUnstyled.propTypes = {
    */
   children: PropTypes.node,
   /**
-   * Override or extend the styles applied to the component.
-   * @default {}
-   */
-  classes: PropTypes.object,
-  /**
    * @ignore
    */
   className: PropTypes.string,
@@ -796,6 +788,25 @@ SliderUnstyled.propTypes = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * The components used for each slot inside the Slider.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components: PropTypes.shape({
+    Mark: PropTypes.elementType,
+    MarkLabel: PropTypes.elementType,
+    Rail: PropTypes.elementType,
+    Root: PropTypes.elementType,
+    Thumb: PropTypes.elementType,
+    Track: PropTypes.elementType,
+    ValueLabel: PropTypes.elementType,
+  }),
+  /**
+   * The props used for each slot inside the Slider.
+   * @default {}
+   */
+  componentsProps: PropTypes.object,
   /**
    * The default element value. Use when the component is not controlled.
    */
@@ -893,11 +904,6 @@ SliderUnstyled.propTypes = {
    * @default 1
    */
   step: PropTypes.number,
-  /**
-   * The component used to display the value label.
-   * @default 'span'
-   */
-  ThumbComponent: PropTypes.elementType,
   /**
    * The track presentation:
    *
