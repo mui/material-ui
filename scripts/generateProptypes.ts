@@ -226,8 +226,8 @@ async function generateProptypes(
         return true;
       }
       let shouldDocument;
-      let unstyledFile =
-        tsFile.indexOf('Styled.d.ts') != -1 ? tsFile.replace(/Styled/g, 'Unstyled') : null;
+      const unstyledFile =
+        tsFile.indexOf('Styled.d.ts') !== -1 ? tsFile.replace(/Styled/g, 'Unstyled') : null;
 
       prop.filenames.forEach((filename) => {
         const isExternal = filename !== tsFile;
