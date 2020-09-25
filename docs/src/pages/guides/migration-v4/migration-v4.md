@@ -666,6 +666,20 @@ const theme = createMuitheme({
   +<Tabs onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
   ```
 
+- The API that controls the scroll buttons has been split it in two props.
+
+  - The `scrollButtons` prop controls when the scroll buttons are displayed depending on the space available.
+  - The `allowScrollButtonsMobile` prop removes the CSS media query that systematically hide the scroll buttons on mobile.
+
+```diff
+-<Tabs scrollButtons="on" />
+-<Tabs scrollButtons="desktop" />
+-<Tabs scrollButtons="off" />
++<Tabs scrollButtons allowScrollButtonsMobile />
++<Tabs scrollButtons />
++<Tabs scrollButtons={false} />
+```
+
 ### TextField
 
 - Better isolate the fixed textarea height behavior to the dynamic one.

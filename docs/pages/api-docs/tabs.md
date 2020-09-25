@@ -29,6 +29,7 @@ The `MuiTabs` name can be used for providing [default props](/customization/glob
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">action</span> | <span class="prop-type">ref</span> |  | Callback fired when the component mounts. This is useful when you want to trigger an action programmatically. It supports two actions: `updateIndicator()` and `updateScrollButtons()` |
+| <span class="prop-name">allowScrollButtonsMobile</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the scroll buttons aren't forced hidden on mobile. By default the scroll buttons are hidden on mobile and takes precedence over `scrollButtons`. |
 | <span class="prop-name">aria-label</span> | <span class="prop-type">string</span> |  | The label for the Tabs as a string. |
 | <span class="prop-name">aria-labelledby</span> | <span class="prop-type">string</span> |  | An id or list of ids separated by a space that label the Tabs. |
 | <span class="prop-name">centered</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the tabs will be centered. This prop is intended for large views. |
@@ -39,7 +40,7 @@ The `MuiTabs` name can be used for providing [default props](/customization/glob
 | <span class="prop-name">onChange</span> | <span class="prop-type">func</span> |  | Callback fired when the value changes.<br><br>**Signature:**<br>`function(event: object, value: any) => void`<br>*event:* The event source of the callback. **Warning**: This is a generic event not a change event.<br>*value:* We default to the index of the child (number) |
 | <span class="prop-name">orientation</span> | <span class="prop-type">'horizontal'<br>&#124;&nbsp;'vertical'</span> | <span class="prop-default">'horizontal'</span> | The tabs orientation (layout flow direction). |
 | <span class="prop-name">ScrollButtonComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">TabScrollButton</span> | The component used to render the scroll buttons. |
-| <span class="prop-name">scrollButtons</span> | <span class="prop-type">'auto'<br>&#124;&nbsp;'desktop'<br>&#124;&nbsp;'off'<br>&#124;&nbsp;'on'</span> | <span class="prop-default">'auto'</span> | Determine behavior of scroll buttons when tabs are set to scroll:<br>- `auto` will only present them when not all the items are visible. - `desktop` will only present them on medium and larger viewports. - `on` will always present them. - `off` will never present them. |
+| <span class="prop-name">scrollButtons</span> | <span class="prop-type">'auto'<br>&#124;&nbsp;false<br>&#124;&nbsp;true</span> | <span class="prop-default">'auto'</span> | Determine behavior of scroll buttons when tabs are set to scroll:<br>- `auto` will only present them when not all the items are visible. - `true` will always present them. - `false` will never present them.<br>By default the scroll buttons are hidden on mobile. This behavior can be disabled with `allowScrollButtonsMobile`. |
 | <span class="prop-name">selectionFollowsFocus</span> | <span class="prop-type">bool</span> |  | If `true` the selected tab changes on focus. Otherwise it only changes on activation. |
 | <span class="prop-name">TabIndicatorProps</span> | <span class="prop-type">object</span> | <span class="prop-default">{}</span> | Props applied to the tab indicator element. |
 | <span class="prop-name">TabScrollButtonProps</span> | <span class="prop-type">object</span> |  | Props applied to the [`TabScrollButton`](/api/tab-scroll-button/) element. |
@@ -67,7 +68,7 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">scrollableY</span> | <span class="prop-name">.MuiTabs-scrollableY</span> | Styles applied to the tablist element if `variant="scrollable"` and `orientation="vertical"`.
 | <span class="prop-name">hideScrollbar</span> | <span class="prop-name">.MuiTabs-hideScrollbar</span> | Styles applied to the tablist element if `variant="scrollable"` and `visibleScrollbar={false}`.
 | <span class="prop-name">scrollButtons</span> | <span class="prop-name">.MuiTabs-scrollButtons</span> | Styles applied to the `ScrollButtonComponent` component.
-| <span class="prop-name">scrollButtonsDesktop</span> | <span class="prop-name">.MuiTabs-scrollButtonsDesktop</span> | Styles applied to the `ScrollButtonComponent` component if `scrollButtons="auto"` or scrollButtons="desktop"`.
+| <span class="prop-name">scrollButtonsHideMobile</span> | <span class="prop-name">.MuiTabs-scrollButtonsHideMobile</span> | Styles applied to the `ScrollButtonComponent` component if `allowScrollButtonsMobile={true}`.
 | <span class="prop-name">indicator</span> | <span class="prop-name">.MuiTabs-indicator</span> | Styles applied to the `TabIndicator` component.
 
 You can override the style of the component thanks to one of these customization points:
