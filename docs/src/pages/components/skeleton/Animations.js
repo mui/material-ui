@@ -13,8 +13,8 @@ export default function Animations() {
   return (
     <div className={classes.root}>
       <Skeleton />
-      <Skeleton animation={false} />
       <Skeleton animation="wave" />
+      <Skeleton animation={false} />
     </div>
   );
 }
