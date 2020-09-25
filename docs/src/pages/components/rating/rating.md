@@ -63,6 +63,6 @@ The read only rating has a role of "img", and an aria-label that describes the d
 
 ### Keyboard
 
-Because the rating component uses radio buttons, keyboard interaction follows the native broser behavior. Tab will focus the current rating, and cursor keys control the selected rating.
+Because the rating component uses radio buttons, keyboard interaction follows the native browser behavior. Tab will focus the current rating, and cursor keys control the selected rating.
 
 The read only rating is not focusable.
