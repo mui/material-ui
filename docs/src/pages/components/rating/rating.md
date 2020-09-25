@@ -15,12 +15,12 @@ waiAria: https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating
 
 {{"demo": "pages/components/rating/BasicRating.js"}}
 
-## Customized rating
+## Rating precision
 
-Here are some examples of customizing the component. You can learn more about this in the
-[overrides documentation page](/customization/components/).
+The rating can display any float number with the `value` prop.
+Use the `precision` prop to define the minimum increment value change allowed.
 
-{{"demo": "pages/components/rating/CustomizedRating.js"}}
+{{"demo": "pages/components/rating/HalfRating.js"}}
 
 ## Hover feedback
 
@@ -29,18 +29,18 @@ The demo uses the `onChangeActive` prop.
 
 {{"demo": "pages/components/rating/HoverRating.js"}}
 
-## Rating precision
-
-The rating can display any float number with the `value` prop.
-Use the `precision` prop to define the minimum increment value change allowed.
-
-{{"demo": "pages/components/rating/HalfRating.js"}}
-
 ## Sizes
 
 For larger or smaller ratings use the `size` prop.
 
 {{"demo": "pages/components/rating/RatingSize.js"}}
+
+## Customized rating
+
+Here are some examples of customizing the component. You can learn more about this in the
+[overrides documentation page](/customization/components/).
+
+{{"demo": "pages/components/rating/CustomizedRating.js"}}
 
 ## Accessibility
 
