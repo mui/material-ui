@@ -118,3 +118,13 @@ The tooltip is normally shown immediately when the user's mouse hovers over the 
 On mobile, the tooltip is displayed when the user longpresses the element and hides after a delay of 1500ms. You can disable this feature with the `disableTouchListener` prop.
 
 {{"demo": "pages/components/tooltips/DelayTooltips.js"}}
+
+## Accessibility
+
+By default the `Tooltip` only labels its child element.
+This is notably different from `title` which can either label **or** describe its child depending on whether the child is already labelled.
+For example, in `<button title="some more information">A button</button>` the `title` acts as an accessible description.
+If you want the tooltip to act as an accessible description you can pass `describeChild`.
+Note that you shouldn't use `describeChild` if the `Tooltip` provides the only visual label. Otherwise the child would have no accessible name and the `Tooltip` would violate [success criterion 2.5.3 in WCAG 2.1](https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html).
+
+{{"demo": "pages/components/tooltips/AccessibilityTooltips.js"}}
