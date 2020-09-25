@@ -33,7 +33,6 @@ export function convertLength(baseFontSize) {
         pxLength = toUnitless(length) * toUnitless(baseFontSize);
       } else if (fromUnit === 'rem') {
         pxLength = toUnitless(length) * toUnitless(baseFontSize);
-        return length;
       }
     }
 
