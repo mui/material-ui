@@ -20,7 +20,7 @@ waiAria: https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating
 Here are some examples of customizing the component. You can learn more about this in the
 [overrides documentation page](/customization/components/).
 
-{{"demo": "pages/components/rating/CustomizedRatings.js"}}
+{{"demo": "pages/components/rating/CustomizedRating.js"}}
 
 ## Hover feedback
 
