@@ -232,8 +232,8 @@ async function generateProptypes(
 
       prop.filenames.forEach((filename) => {
         const isExternal = filename !== tsFile;
-        const isUnstyledVariant = filename === unstyledFile;
-        if (!isExternal || isUnstyledVariant) {
+        const implementedByUnstyledVariant = filename === unstyledFile;
+        if (!isExternal || implementedByUnstyledVariant) {
           shouldDocument = true;
         }
       });
