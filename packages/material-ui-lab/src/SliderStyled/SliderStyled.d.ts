@@ -25,6 +25,10 @@ export const SliderValueLabel: React.FC<SliderValueLabel>;
 
 /**
  *
+ * Demos:
+ *
+ * - [Slider Styled](https://material-ui.com/components/slider-styled/)
+ *
  * API:
  *
  * - [SliderStyled API](https://material-ui.com/api/slider-styled/)

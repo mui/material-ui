@@ -56,3 +56,7 @@ The `ref` is forwarded to the root element.
 
 Any other props supplied will be provided to the root element (native element).
 
+## Demos
+
+- [Slider Styled](/components/slider-styled/)
+
