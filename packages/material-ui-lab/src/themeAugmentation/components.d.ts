@@ -19,18 +19,6 @@ export interface LabComponents {
     styleOverrides?: ComponentsOverrides['MuiPaginationItem'];
     variants?: ComponentsVariants['MuiPaginationItem'];
   };
-  MuiSpeedDial?: {
-    defaultProps?: ComponentsProps['MuiSpeedDial'];
-    styleOverrides?: ComponentsOverrides['MuiSpeedDial'];
-  };
-  MuiSpeedDialAction?: {
-    defaultProps?: ComponentsProps['MuiSpeedDialAction'];
-    styleOverrides?: ComponentsOverrides['MuiSpeedDialAction'];
-  };
-  MuiSpeedDialIcon?: {
-    defaultProps?: ComponentsProps['MuiSpeedDialIcon'];
-    styleOverrides?: ComponentsOverrides['MuiSpeedDialIcon'];
-  };
   MuiTabList?: {
     defaultProps?: ComponentsProps['MuiTabList'];
     styleOverrides?: ComponentsOverrides['MuiTabList'];

@@ -1,4 +1,4 @@
 {
   "extends": "../../tsconfig",
-  "include": ["src/**/*", "test/**/*"]
+  "include": ["src/**/*", "test/**/*", "../material-ui/src/internal/svg-icons/Add.js"]
 }

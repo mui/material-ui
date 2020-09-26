@@ -2,7 +2,6 @@
 title: Speed Dial React component
 components: SpeedDial, SpeedDialAction, SpeedDialIcon
 githubLabel: 'component: SpeedDial'
-packageName: '@material-ui/lab'
 ---
 
 # Speed Dial
@@ -17,7 +16,7 @@ If more than six actions are needed, something other than a FAB should be used t
 
 The floating action button can display related actions.
 
-{{"demo": "pages/components/speed-dial/SpeedDials.js"}}
+{{"demo": "pages/components/speed-dial/BasicSpeedDial.js"}}
 
 ## Controlled speed dial
 
@@ -39,3 +38,13 @@ The SpeedDialActions tooltips can be displayed persistently so that users don't 
 It is enabled here across all devices for demo purposes, but in production it could use the `isTouch` logic to conditionally set the prop.
 
 {{"demo": "pages/components/speed-dial/SpeedDialTooltipOpen.js"}}
+
+## Accessibility
+
+### ARIA
+
+### Keyboard
+
+It's complicated.
+
+SpeedDial behaves as a menu where keyboard interaction is concerned.
