@@ -197,6 +197,10 @@ export interface SliderTypeMap<P = {}, D extends React.ElementType = 'span'> {
 
 /**
  *
+ * Demos:
+ *
+ * - [Slider Styled](https://material-ui.com/components/slider-styled/)
+ *
  * API:
  *
  * - [SliderUnstyled API](https://material-ui.com/api/slider-unstyled/)
