@@ -19,6 +19,7 @@ Here are some highlights ✨:
 
   This change has been in our roadmap for more than a year.
   We have announced it in our [v4 release blog post](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701) as a direction v5 would take.
+
 - 🛠 A first iteration on the unstyled components.
 
   You can find a [new version](https://next.material-ui.com/components/slider-styled/#UnstyledSlider.tsx) of the slider in the lab without any styles.
@@ -28,12 +29,14 @@ Here are some highlights ✨:
 
   It took us 6 months of development since the initial commit (March 15th, 2020) to make the first alpha release of the grid. The component comes in two versions.
   @material-ui/data-grid is licensed under MIT while @material-ui/x-grid is licensed under a commercial license.
+
 - 🪓 Keep working on the breaking changes.
 
   We aim to concentrate most of the breaking changes during the alpha stage of v5.
   We will move to beta once all the breaking changes we have anticipated are handled.
   As always, you should find a clear and simple upgrade path for each of them.
   You can learn more about the breaking changes left to be done in #22700.
+
 - And many more 🐛 bug fixes and 📚 improvements.
 
 ### `@material-ui/core@v5.0.0-alpha.11`
@@ -97,7 +100,6 @@ Here are some highlights ✨:
 - [Checkbox] Improve indeterminate UI (#22635) @oliviertassinari
 - [Chip] Fix prop-type support for custom variants (#22603) @cansin
 - [icons] Expose a data-test-id attribute on all svg icons (#22634) @jaebradley
-- [icons] Synchronize with Google (#22680) @delewis13
 - [Rating] Add form integration test suite (#22573) @eps1lon
 - [Rating] Simpler customization of active "no value" styles (#22613) @eps1lon
 - [Rating] Treat as input when readOnly (#22606) @eps1lon
@@ -149,7 +151,7 @@ Here are some highlights ✨:
   It makes customizations easier.
   You can recover from the change with:
 
-  ``` diff
+  ```diff
   <Autocomplete
   - renderOption={(option, { selected }) => (
   -   <React.Fragment>
@@ -184,6 +186,18 @@ The new default style engine leveraging emotion.
 
 Allows developer to swap emotion with styled-components.
 More documentation are coming.
+
+### `@material-ui/icons@v5.0.0-alpha.11`
+
+- [icons] Synchronize with Google (#22680) @delewis13
+
+### `@material-ui/styles@v5.0.0-alpha.11`
+
+- [Slider] Create unstyled version and migrate to emotion & styled-components (#22435) @mnajdova
+
+### `@material-ui/system@v5.0.0-alpha.11`
+
+- [core] Port createSpacing to TypeScript (#22720) @eps1lon
 
 ### Docs
 
