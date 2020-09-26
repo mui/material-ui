@@ -34,6 +34,10 @@ describe('createBreakpoints', () => {
       expect(breakpoints.down('md')).to.equal('@media (max-width:959.95px)');
     });
 
+    it('should work for xs', () => {
+      expect(breakpoints.down('xs')).to.equal('@media (max-width:-0.05px)');
+    });
+
     it('should accept a number', () => {
       expect(breakpoints.down(600)).to.equal('@media (max-width:599.95px)');
     });
