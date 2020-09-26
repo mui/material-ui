@@ -54,7 +54,7 @@ It is enabled here across all devices for demo purposes, but in production it co
 
 - The Fab has `aria-haspopup`, `aria-expanded` and `aria-controls` attributes.
 - The speed dial actions container has `role="menu"` and `aria-orientation` set acccording to the direction.
-- The speed dial actions have `role="menuitem"`, and an `aria-describedby` attribute that references the the associated tooltip. 
+- The speed dial actions have `role="menuitem"`, and an `aria-describedby` attribute that references the the associated tooltip.
 
 ### Keyboard
 
