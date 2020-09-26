@@ -567,6 +567,13 @@ const theme = createMuitheme({
 
 ### Skeleton
 
+- Move the component from the lab to the core. The component is now stable.
+
+  ```diff
+  -import Skeleton from '@material-ui/lab/Skeleton';
+  +import Skeleton from '@material-ui/core/Skeleton';
+  ```
+
 - Rename `circle` to `circular` and `rect` to `rectangular` for consistency. The possible values should be adjectives, not nouns:
 
   ```diff
