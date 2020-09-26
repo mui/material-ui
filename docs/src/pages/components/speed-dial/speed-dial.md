@@ -44,7 +44,3 @@ It is enabled here across all devices for demo purposes, but in production it co
 ### ARIA
 
 ### Keyboard
-
-It's complicated.
-
-SpeedDial behaves as a menu where keyboard interaction is concerned.
