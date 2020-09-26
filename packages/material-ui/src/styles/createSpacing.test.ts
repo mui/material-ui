@@ -1,9 +1,9 @@
 import { expect } from 'chai';
-import createSpacing from './createSpacing';
+import createSpacing, { Spacing } from './createSpacing';
 
 describe('createSpacing', () => {
   it('should be configurable', () => {
-    let spacing;
+    let spacing: Spacing;
     spacing = createSpacing();
     expect(spacing(1)).to.equal('8px');
     spacing = createSpacing(10);
@@ -51,6 +51,7 @@ describe('createSpacing', () => {
     it('should warn for wrong input', () => {
       expect(() => {
         createSpacing({
+          // @ts-expect-error
           unit: 4,
         });
       }).toErrorDev('Material-UI: The `theme.spacing` value ([object Object]) is invalid');

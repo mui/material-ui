@@ -1,8 +1,6 @@
 import { AvatarGroupProps } from '../AvatarGroup';
 import { PaginationProps } from '../Pagination';
 import { PaginationItemProps } from '../PaginationItem';
-import { RatingProps } from '../Rating';
-import { SkeletonProps } from '../Skeleton';
 import { SpeedDialProps } from '../SpeedDial';
 import { SpeedDialActionProps } from '../SpeedDialAction';
 import { SpeedDialIconProps } from '../SpeedDialIcon';
@@ -24,8 +22,6 @@ export interface LabComponentsPropsList {
   MuiAvatarGroup: AvatarGroupProps;
   MuiPagination: PaginationProps;
   MuiPaginationItem: PaginationItemProps;
-  MuiRating: RatingProps;
-  MuiSkeleton: SkeletonProps;
   MuiSpeedDial: SpeedDialProps;
   MuiSpeedDialAction: SpeedDialActionProps;
   MuiSpeedDialIcon: SpeedDialIconProps;

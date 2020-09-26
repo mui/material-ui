@@ -1,6 +1,6 @@
 ---
 title: Slider React component
-components: Slider
+components: SliderStyled, SliderUnstyled
 githubLabel: component: Slider
 materialDesign: https://material.io/components/sliders
 waiAria: https://www.w3.org/TR/wai-aria-practices/#slider

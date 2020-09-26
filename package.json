@@ -1,5 +1,5 @@
 {
-  "version": "5.0.0-alpha.10",
+  "version": "5.0.0-alpha.11",
   "private": true,
   "scripts": {
     "proptypes": "cross-env BABEL_ENV=test babel-node --extensions \".tsx,.ts,.js\" ./scripts/generateProptypes.ts",
@@ -71,6 +71,7 @@
     "@types/prettier": "^2.0.0",
     "@types/react": "^16.9.44",
     "@types/sinon": "^9.0.0",
+    "@types/webpack": "^4.41.22",
     "@types/yargs": "^15.0.5",
     "@typescript-eslint/eslint-plugin": "^3.9.1",
     "@typescript-eslint/parser": "^3.9.1",

@@ -30,7 +30,7 @@ export default function ScrollableTabsButtonVisible() {
         value={value}
         onChange={handleChange}
         variant="scrollable"
-        scrollButtons="on"
+        scrollButtons
         aria-label="visible arrows tabs example"
         classes={{
           scrollButtons: classes.scrollButtons,

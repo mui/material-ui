@@ -1,14 +1,14 @@
 {
   "name": "@material-ui/core",
-  "version": "5.0.0-alpha.10",
+  "version": "5.0.0-alpha.11",
   "private": false,
   "author": "Material-UI Team",
   "description": "React components that implement Google's Material Design.",
   "keywords": [
     "react",
     "react-component",
-    "material design",
-    "material-ui"
+    "material-ui",
+    "material design"
   ],
   "repository": {
     "type": "git",
@@ -52,9 +52,9 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.4.4",
-    "@material-ui/styled-engine": "^5.0.0-alpha.1",
-    "@material-ui/styles": "^5.0.0-alpha.8",
-    "@material-ui/system": "^5.0.0-alpha.6",
+    "@material-ui/styled-engine": "^5.0.0-alpha.11",
+    "@material-ui/styles": "^5.0.0-alpha.11",
+    "@material-ui/system": "^5.0.0-alpha.11",
     "@material-ui/types": "^5.1.0",
     "@material-ui/utils": "^5.0.0-alpha.8",
     "@types/react-transition-group": "^4.2.0",

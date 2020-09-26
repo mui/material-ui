@@ -41,7 +41,7 @@ Para asegurar un renderizado adecuado y zoom táctil en todos los dispositivos, 
 ```html
 <meta
   name="viewport"
-  content="minimum-scale=1, initial-scale=1, width=device-width"
+  content="initial-scale=1, width=device-width"
 />
 ```
 

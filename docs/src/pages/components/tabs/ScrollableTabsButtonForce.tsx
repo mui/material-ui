@@ -25,7 +25,8 @@ export default function ScrollableTabsButtonForce() {
         value={value}
         onChange={handleChange}
         variant="scrollable"
-        scrollButtons="on"
+        scrollButtons
+        allowScrollButtonsMobile
         aria-label="scrollable force tabs example"
       >
         <Tab label="Item One" />

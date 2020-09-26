@@ -54,7 +54,7 @@ export default function FeaturedPost(props: FeaturedPostProps) {
               </Typography>
             </CardContent>
           </div>
-          <Hidden xsDown>
+          <Hidden smDown>
             <CardMedia
               className={classes.cardMedia}
               image={post.image}

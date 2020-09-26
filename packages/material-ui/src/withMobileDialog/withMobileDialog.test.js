@@ -16,7 +16,7 @@ describe('withMobileDialog', () => {
 
   function isFullScreen(breakpoints, width) {
     breakpoints.forEach((breakpoint) => {
-      it(`is for width: ${width} <= ${breakpoint}`, () => {
+      it(`is for width: ${width} < ${breakpoint}`, () => {
         const ResponsiveDialog = withMobileDialog({ breakpoint })(Dialog);
         const wrapper = shallow(
           <ResponsiveDialog {...defaultProps} width={width}>
@@ -30,7 +30,7 @@ describe('withMobileDialog', () => {
 
   function isNotFullScreen(breakpoints, width) {
     breakpoints.forEach((breakpoint) => {
-      it(`is not for width: ${width} > ${breakpoint}`, () => {
+      it(`is not for width: ${width} >= ${breakpoint}`, () => {
         const ResponsiveDialog = withMobileDialog({ breakpoint })(Dialog);
         const wrapper = shallow(
           <ResponsiveDialog {...defaultProps} width={width}>
@@ -43,26 +43,26 @@ describe('withMobileDialog', () => {
   }
 
   describe('screen width: xs', () => {
-    isFullScreen(['xs', 'sm', 'md', 'lg', 'xl'], 'xs');
+    isFullScreen(['sm', 'md', 'lg', 'xl'], 'xs');
+    isNotFullScreen(['xs'], 'xs');
   });
 
   describe('screen width: sm (default)', () => {
-    isFullScreen(['sm', 'md', 'lg', 'xl'], 'sm');
-    isNotFullScreen(['xs'], 'sm');
+    isFullScreen(['md', 'lg', 'xl'], 'sm');
+    isNotFullScreen(['xs', 'sm'], 'sm');
   });
 
   describe('screen width: md', () => {
-    isFullScreen(['md', 'lg', 'xl'], 'md');
-    isNotFullScreen(['xs', 'sm'], 'md');
+    isFullScreen(['lg', 'xl'], 'md');
+    isNotFullScreen(['xs', 'sm', 'md'], 'md');
   });
 
   describe('screen width: lg', () => {
-    isFullScreen(['lg', 'xl'], 'lg');
-    isNotFullScreen(['xs', 'sm', 'md'], 'lg');
+    isFullScreen(['xl'], 'lg');
+    isNotFullScreen(['xs', 'sm', 'md', 'lg'], 'lg');
   });
 
   describe('screen width: xl', () => {
-    isFullScreen(['xl'], 'xl');
-    isNotFullScreen(['xs', 'sm', 'md', 'lg'], 'xl');
+    isNotFullScreen(['xs', 'sm', 'md', 'lg', 'xl'], 'xl');
   });
 });

@@ -94,5 +94,4 @@ If that's not sufficient, you can check the [implementation of the component](ht
 ## Demos
 
 - [Slider](/components/slider/)
-- [Slider Styled](/components/slider-styled/)
 

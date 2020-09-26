@@ -1,11 +1,14 @@
 import React from 'react';
 import { ServerStyleSheets } from '@material-ui/styles';
 import { ServerStyleSheet } from 'styled-components';
-import { extractCritical } from 'emotion-server';
+import createEmotionServer from 'create-emotion-server';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { themeColor } from 'docs/src/modules/components/ThemeContext';
+import { cacheLtr } from 'docs/pages/_app';
+
+const { extractCritical } = createEmotionServer(cacheLtr);
 
 // You can find a benchmark of the available CSS minifiers under
 // https://github.com/GoalSmashers/css-minification-benchmark

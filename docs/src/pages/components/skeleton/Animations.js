@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Skeleton from '@material-ui/lab/Skeleton';
+import Skeleton from '@material-ui/core/Skeleton';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
@@ -13,8 +13,8 @@ export default function Animations() {
   return (
     <div className={classes.root}>
       <Skeleton />
-      <Skeleton animation={false} />
       <Skeleton animation="wave" />
+      <Skeleton animation={false} />
     </div>
   );
 }
