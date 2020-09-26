@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useSelector } from 'react-redux';
 import TablePagination from '@material-ui/core/TablePagination';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
@@ -10,7 +9,6 @@ type SupportedLocales = keyof typeof locales;
 
 export default function Locales() {
   const [locale, setLocale] = React.useState<SupportedLocales>('zhCN');
-  const t = useSelector((state: any) => state.options.t);
 
   return (
     <div>
@@ -31,7 +29,7 @@ export default function Locales() {
           renderInput={(params) => (
             <TextField
               {...params}
-              label={t('locale')}
+              label="Locale"
               variant="outlined"
               fullWidth
             />
