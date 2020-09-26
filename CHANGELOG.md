@@ -15,24 +15,24 @@ Here are some highlights ✨:
 
   The new styling solution saves 2kB gzipped in the bundle compared to JSS, and about 14 kB gzipped if you were already using emotion or styled-components.
 
-  Last but not least, the change allows us to leverate dynamic style props! We will leverate it for dynamic color props, variant props, and new style props (an improved [system](https://material-ui.com/system/basics/)).
+  Last but not least, the change allows us to take advantage dynamic style props. We will use them for dynamic color props, variant props, and new style props (an improved [system](https://material-ui.com/system/basics/)).
 
   This change has been in our roadmap for more than a year.
-  We have announced it in our [v4 release blog post](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701) as a direction v5 would take.
+  We announced it in the [v4 release blog post](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701) as a direction v5 would take.
 
 - 🛠 A first iteration on the unstyled components.
 
   You can find a [new version](https://next.material-ui.com/components/slider-styled/#UnstyledSlider.tsx) of the slider in the lab without any styles.
-  The unstyled component weights 6.5 kB gzipped instead of 26 kB for the styled version when used standalone. The component is best suited when you want to fully customize the look of the component without reimplementing the JavaScript and accessibility logic.
+  The unstyled component weighs 6.5 kB gzipped, compared with 26 kB for the styled version when used standalone. The component is best suited for use when you want to fully customize the look of the component without reimplementing the JavaScript and accessibility logic.
 
 - ⚡️ A first alpha of the [DataGrid](https://material-ui.com/components/data-grid/) component.
 
-  It took us 6 months of development since the initial commit (March 15th, 2020) to make the first alpha release of the grid. The component comes in two versions.
-  @material-ui/data-grid is licensed under MIT while @material-ui/x-grid is licensed under a commercial license.
+  It has taken 6 months of development since the initial commit (March 15th, 2020) to make the first alpha release of the grid. The component comes in two versions:
+  @material-ui/data-grid is licensed under MIT, while @material-ui/x-grid is licensed under a commercial license.
 
 - 🪓 Keep working on the breaking changes.
 
-  We aim to concentrate most of the breaking changes during the alpha stage of v5.
+  We aim to complete most of the breaking changes during the alpha stage of v5.
   We will move to beta once all the breaking changes we have anticipated are handled.
   As always, you should find a clear and simple upgrade path for each of them.
   You can learn more about the breaking changes left to be done in #22700.
