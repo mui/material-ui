@@ -7,7 +7,7 @@ describe('parseMarkdown', () => {
       expect(
         getHeaders(`
 ---
-title: Alert React component
+title: React Alert component
 components: Alert, AlertTitle
 githubLabel: 'component: Alert'
 packageName: '@material-ui/lab'
@@ -18,7 +18,7 @@ waiAria: https://www.w3.org/TR/wai-aria-practices/#alert
         components: ['Alert', 'AlertTitle'],
         githubLabel: 'component: Alert',
         packageName: '@material-ui/lab',
-        title: 'Alert React component',
+        title: 'React Alert component',
         waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert',
       });
     });
