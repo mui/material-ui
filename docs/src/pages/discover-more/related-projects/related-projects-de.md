@@ -33,20 +33,13 @@ Dies ist eine Sammlung von Drittanbieterprojekten, die Material-UI erweitern.
 
 - [@mui-treasury/layout](https://mui-treasury.com/layout): Komponenten für das grundlegende Layout einer Seite. Sie können ein paar Beispiele finden, z. B. [ein reactjs.org-Klon](https://mui-treasury.com/layout/clones/reactjs).
 
-### Tabelle
-
-- [material-table](https://github.com/mbrn/material-table): Eine einfache und leistungsstarke Datatable für React, basierend auf der Material-UI-Tabelle mit einigen zusätzlichen Funktionen. It supports many different use cases (editable, filtering, grouping, sorting, selection, i18n, tree data and more).
-- [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/): A data grid for Material-UI with paging, sorting, filtering, grouping and editing features ([paid license](https://js.devexpress.com/licensing/)).
-- [mui-datatables](https://github.com/gregnb/mui-datatables): Responsive data tables for Material-UI with filtering, sorting, search and more.
-- [tubular-react](https://github.com/unosquare/tubular-react): A Material-UI table with local or remote data-source. Featuring filtering, sorting, free-text search, export to CSV locally, and aggregations.
-
 ### Notification
 
 - [notistack](https://github.com/iamhosseindhv/notistack): Ermöglicht die einfache Anzeige von Snackbars (damit Sie sich nicht mit dem Öffnen/Schließen von Snackbars herumschlagen müssen).
 
 ### Upload
 
-- [material-ui-dropzone](https://github.com/Yuvaleros/material-ui-dropzone): Gebaut auf Basis der React-Dropzone.
+- [notistack](https://github.com/iamhosseindhv/notistack): Ermöglicht die einfache Anzeige von Snackbars (damit Sie sich nicht mit dem Öffnen/Schließen von Snackbars herumschlagen müssen).
 
 ### Form
 
@@ -57,7 +50,7 @@ Dies ist eine Sammlung von Drittanbieterprojekten, die Material-UI erweitern.
 
 ### Carousel
 
-- [material-auto-rotating-carousel](https://mui.wertarbyte.com/#material-auto-rotating-carousel): Neue Benutzer in Ihre App einführen.
+- [mui-rff](https://github.com/lookfirst/mui-rff) Bindings for using Material-UI with [React Final Form](https://final-form.org/react).
 
 ### Image
 
