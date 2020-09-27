@@ -1,6 +1,6 @@
 ---
 title: Componente React para Lista cuadriculada
-components: ImageList, ImageListItem, ImageListItemBar, ListSubheader, IconButton
+components: ImageList, ImageListItem, ImageListItemBar
 ---
 
 # Lista cuadriculada
