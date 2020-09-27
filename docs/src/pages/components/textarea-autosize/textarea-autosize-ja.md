@@ -1,8 +1,7 @@
 ---
 title: Textarea Autosize React component
 components: TextareaAutosize
-githubLabel:
-  component: TextareaAutosize
+githubLabel: 'component: TextareaAutosize'
 ---
 
 # テキストエリアの自動サイズ調整
