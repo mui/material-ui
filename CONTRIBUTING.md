@@ -51,9 +51,12 @@ git pull upstream next
 ```
 
 4. Install the dependencies:
-
+   To run the project on your local machine, install all the dependencies using npm or yarn as shown below:-
 ```sh
-yarn install
+//for npm
+npm  install <dependency>
+//for yarn
+yarn install <dependency>
 ```
 
 5. Create a new topic branch:
