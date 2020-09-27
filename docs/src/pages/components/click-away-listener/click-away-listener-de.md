@@ -1,8 +1,7 @@
 ---
 title: Erkennt einen Klick außerhalb der Komponente
 components: ClickAwayListener
-githubLabel:
-  component: ClickAwayListener
+githubLabel: 'component: ClickAwayListener'
 ---
 
 # Wegklick Zuhörer
