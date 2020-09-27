@@ -91,7 +91,7 @@ The end result? All of the capabilities you expect from commercial-grade softwar
 
 ### Trabajo personalizado 🛠
 
-Ajuste a Material-UI para cumplir con los requisitos específicos. Podemos: Danos un resumen de tus necesidades y te ayudaremos si podemos. Danos un resumen de tus necesidades y te ayudaremos si podemos.
+Ajuste a Material-UI para cumplir con los requisitos específicos. Danos un resumen de tus necesidades y te ayudaremos si podemos. Podemos: Danos un resumen de tus necesidades y te ayudaremos si podemos.
 
 - Dar una estimación de tiempo y el precio si el trabajo es sencillo
 - Sugerir alternativas que podrían no requerir Material-UI
