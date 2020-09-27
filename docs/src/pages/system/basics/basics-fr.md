@@ -50,6 +50,7 @@ This Box component now supports new [spacing properties](/system/spacing/#api) a
 ```jsx
 <Box p="1rem" color="grey">Give me some space!</Box>
 </Box>
+</Box>
 ```
 
 The component can be styled providing any valid CSS values.
