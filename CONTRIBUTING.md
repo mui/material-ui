@@ -50,8 +50,8 @@ git checkout next
 git pull upstream next
 ```
 
-4. Install the dependencies:
-   To run the project on your local machine, install all the dependencies using npm or yarn as shown below:-
+4. Install the dependencies using npm or yarn as shown below:
+   
 ```sh
 //for npm
 npm  install <dependency>
