@@ -19,31 +19,31 @@ Lorsque des outils sont inclus, ils doivent être placés directement au-dessus 
 
 ## Structure
 
+Un exemple simple et sans fioritures.
+
 Une table de données contient en haut une ligne d’en-tête qui répertorie les noms de colonne, suivis de lignes pour les données.
-
-Des cases à cocher doivent accompagner chaque ligne si l'utilisateur doit sélectionner ou manipuler des données.
-
-It utilizes the [`Collapse`](/api/collapse/) component. An example of a table with expandable rows, revealing more information.
 
 ## Tableau simple
 
-Un exemple simple et sans fioritures.
-
-{{"demo": "pages/components/tables/BasicTable.js", "bg": true}}
-
-## Tableau dense
-
-Un exemple simple de tableau dense sans fioritures.
+Des cases à cocher doivent accompagner chaque ligne si l'utilisateur doit sélectionner ou manipuler des données.
 
 {{"demo": "pages/components/tables/DenseTable.js", "bg": true}}
 
-## Tri & Sélection
+## Tableau dense
 
 Cet exemple illustre l'utilisation de `Checkbox` et des lignes cliquables pour la sélection, avec une `Toolbar` personnalisée. Il utilise le composant `TableSortLabel` pour aider à styliser les en-têtes de colonne.
 
 La table a reçu une largeur fixe pour illustrer le défilement horizontal. Afin d'éviter le défilement des contrôles de pagination, le composant TablePagination est utilisé en dehors du tableau. (L'exemple ['Action de pagination de table personnalisée' ](#custom-pagination-actions) ci-dessous montre la pagination dans TableFooter.)
 
 {{"demo": "pages/components/tables/EnhancedTable.js", "bg": true}}
+
+## Tri & Sélection
+
+The `Table` component has a close mapping to the native `<table>` elements. This constraint makes building rich data tables challenging.
+
+The [`DataGrid` component](/components/data-grid/) is designed for use-cases that are focused around handling a large amounts of tabular data. While it comes with a more rigid structure, in exchange, you gain more powerful features.
+
+{{"demo": "pages/components/tables/DataTable.js", "bg": "inline"}}
 
 ## Tableaux Personnalisés
 
@@ -96,16 +96,6 @@ Un exemple simple avec des colonnes couvrant & lignes.
 Dans l'exemple suivant, nous montrons comment utiliser [react-virtualized](https://github.com/bvaughn/react-virtualized) avec le composant `Table`. Il affiche 200 lignes et peut facilement gérer plus. La virtualisation aide à résoudre les problèmes de performances.
 
 {{"demo": "pages/components/tables/ReactVirtualizedTable.js", "bg": true}}
-
-## Projets complémentaires
-
-Pour des cas d'utilisation plus avancés, vous pourrez peut-être tirer parti des projects suivants:
-
-### Autres
-
-- [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/): A data grid for Material-UI with paging, sorting, filtering, grouping and editing features ([paid license](https://js.devexpress.com/licensing/)).
-- [mui-datatables](https://github.com/gregnb/mui-datatables): Responsive data tables for Material-UI with filtering, sorting, search and more.
-- [tubular-react](https://github.com/unosquare/tubular-react): A Material-UI table with local or remote data-source. Featuring filtering, sorting, free-text search, export to CSV locally, and aggregations.
 
 ## Accessibilité
 
