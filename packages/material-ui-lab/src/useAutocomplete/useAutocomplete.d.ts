@@ -293,14 +293,20 @@ export default function useAutocomplete<
 >(
   props: UseAutocompleteProps<T, Multiple, DisableClearable, FreeSolo>
 ): {
-  getRootProps: () => {};
-  getInputProps: () => {};
-  getInputLabelProps: () => {};
-  getClearProps: () => {};
-  getPopupIndicatorProps: () => {};
-  getTagProps: ({ index }: { index: number }) => {};
-  getListboxProps: () => {};
-  getOptionProps: ({ option, index }: { option: T; index: number }) => {};
+  getRootProps: () => React.HTMLAttributes<HTMLDivElement>;
+  getInputProps: () => React.HTMLAttributes<HTMLInputElement>;
+  getInputLabelProps: () => React.HTMLAttributes<HTMLLabelElement>;
+  getClearProps: () => React.HTMLAttributes<HTMLDivElement>;
+  getPopupIndicatorProps: () => React.HTMLAttributes<HTMLDivElement>;
+  getTagProps: ({ index }: { index: number }) => React.HTMLAttributes<HTMLDivElement>;
+  getListboxProps: () => React.HTMLAttributes<HTMLUListElement>;
+  getOptionProps: ({
+    option,
+    index,
+  }: {
+    option: T;
+    index: number;
+  }) => React.HTMLAttributes<HTMLLIElement>;
   id: string;
   inputValue: string;
   value: Value<T, Multiple, DisableClearable, FreeSolo>;
