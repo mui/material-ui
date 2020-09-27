@@ -2,8 +2,7 @@
 title: Сеть изображений, компонент React
 components: ImageList, ImageListItem, ImageListItemBar
 materialDesign: https://material.io/components/image-lists
-githubLabel:
-  component: ImageList
+githubLabel: 'component: ImageList'
 ---
 
 # Сеть изображений
@@ -56,6 +55,6 @@ The title bar can be placed below the image.
 
 ## Custom image list
 
-В этом примере демонстрирует «рекомендуемые» листы, в которых используются свойства `rows` и `cols` чтобы отрегулировать размер плитки, и свойство `padding` чтобы отрегулировать поля между плитками. Дополнительное действие в `Кнопке-иконке` распложенно по левую сторону. На плитках можно видеть пользовательскую полосу расположенную вверху с даным значением градиента в свойстве `titleBackground`.
+На плитках можно видеть пользовательскую полосу расположенную вверху с даным значением градиента в свойстве `titleBackground`. Дополнительное действие в `Кнопке-иконке` распложенно по левую сторону. На плитках можно видеть пользовательскую полосу расположенную вверху с даным значением градиента в свойстве `titleBackground`.
 
 {{"demo": "pages/components/image-list/CustomImageList.js", "defaultCodeOpen": false}}
