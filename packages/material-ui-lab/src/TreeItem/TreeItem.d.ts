@@ -6,21 +6,21 @@ export interface ContentProps extends StandardProps<React.HTMLAttributes<HTMLEle
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
+  classes: {
     /** Styles applied to the root element. */
-    root?: string;
+    root: string;
     /** Pseudo-class applied to the content element when expanded. */
-    expanded?: string;
+    expanded: string;
     /** Pseudo-class applied to the content element when selected. */
-    selected?: string;
+    selected: string;
     /** Pseudo-class applied to the content element when focused. */
-    focused?: string;
+    focused: string;
     /** Pseudo-class applied to the element when disabled. */
-    disabled?: string;
+    disabled: string;
     /** Styles applied to the tree node icon and collapse/expand icon. */
-    iconContainer?: string;
+    iconContainer: string;
     /** Styles applied to the label element. */
-    label?: string;
+    label: string;
   };
   /**
    * The tree node label.
