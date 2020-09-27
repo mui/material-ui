@@ -2,8 +2,8 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { withStyles } from '@material-ui/core/styles';
-import { capitalize } from '@material-ui/core/utils';
+import { withStyles } from '../styles';
+import { capitalize } from '../utils';
 import isValueSelected from './isValueSelected';
 
 export const styles = (theme) => ({
