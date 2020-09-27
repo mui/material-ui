@@ -13,11 +13,11 @@
 
 *sides* は次のいずれかである。
 
-- `t` - *margin-top*もしくは *padding-top*を設定するためのclass 
-- `t` - *margin-bottom*もしくは *padding-bottom*を設定するためのclass 
+- `t` - *margin-top*もしくは *padding-top*を設定するためのclass
+- `t` - *margin-bottom*もしくは *padding-bottom*を設定するためのclass
 - `t` - *margin-left*もしくは *padding-left*を設定するためのclass
-- `t` - *margin-right*もしくは *padding-right*を設定するためのclass 
-- `x` - 水平方向（**-left* および **-right*）を設定するためのclass 
+- `t` - *margin-right*もしくは *padding-right*を設定するためのclass
+- `x` - 水平方向（**-left* および **-right*）を設定するためのclass
 - `y` - 垂直方向( **-top* および **-bottom*) を設定するためのclass
 - (指定なし) - HTML要素の四方向のmarginもしくはpaddingを設定するためのクラス
 
