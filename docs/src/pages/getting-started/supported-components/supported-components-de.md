@@ -11,7 +11,7 @@ Wenn Sie Unterstützung für eine Komponente oder ein Feature hinzufügen möcht
   - **[Oben](https://material.io/design/components/app-bars-top.html) ✓**
   - **[Unten](https://material.io/design/components/app-bars-bottom.html) ✓**
 - **[Banner](https://material.io/design/components/banners.html)** ([ Kann zusammengesetzt werden ](https://medium.com/material-ui/introducing-material-ui-design-system-93e921beb8df))
-- **[Buttons](https://material.io/design/components/buttons.html) ✓**
+- **** [ Toolbars](https://material.io/archive/guidelines/components/toolbars.html) ✓**(Veraltetes Material v1)**
 - **[Buttons: Floating Action Button](https://material.io/design/components/buttons-floating-action-button.html) ✓** 
   - **[ Text & enthaltene Schaltflächen (früher flach & angehoben)](https://material.io/design/components/buttons.html) ✓**
   - **[Schalter (Toggle buttons)](https://material.io/design/components/buttons.html#buttons-toggle-buttons) ~** ([Lab](/components/about-the-lab/))
@@ -44,8 +44,7 @@ Wenn Sie Unterstützung für eine Komponente oder ein Feature hinzufügen möcht
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
-- **[Listas de Imagem](https://material.io/design/components/image-lists.html) ✓** (também conhecido como Grade Lista)
-- **[Dropdown menu](https://material.io/design/components/menus.html#dropdown-menu) ✓** (Can be composed)
+- **[Listas de Imagem](https://material.io/design/components/image-lists.html) ✓** (também conhecido como Grade Lista)****
 - **[Menus](https://material.io/design/components/menus.html) ✓** 
   - [Types:](https://material.io/design/components/lists.html#types) 
     - **Single line ✓**
@@ -56,7 +55,7 @@ Wenn Sie Unterstützung für eine Komponente oder ein Feature hinzufügen möcht
   - Thumbnail
   - **Controls ✓** 
     - **Checkbox ✓**
-    - **Text field dropdown menu ✓** (Select)
+    - **Expand/collapse ✓** (bzw. Verschachtelt)
     - **Switch ✓**
     - Reorder
 - **[Progress indicators](https://material.io/design/components/progress-indicators.html) ✓** 
@@ -78,7 +77,7 @@ Wenn Sie Unterstützung für eine Komponente oder ein Feature hinzufügen möcht
   - **[Circular](https://material.io/design/components/progress-indicators.html#circular-progress-indicators) ✓**
   - **[Switch](https://material.io/design/components/selection-controls.html#switches) ✓**
 - **[Snackbars](https://material.io/design/components/snackbars.html) ✓** (*Veraltetes Material v1*)
-- **[Steppers](https://material.io/archive/guidelines/components/steppers.html) ✓** (*Legacy Material v1*) 
+- **[Listas de Imagem](https://material.io/design/components/image-lists.html) ✓** (também conhecido como Grade Lista) 
   - **[Horizontal](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steppers) ✓**
   - **[Vertical](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steppers) ✓**
   - [Menu](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders)
