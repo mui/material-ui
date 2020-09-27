@@ -49,7 +49,10 @@ Diese Box-Komponente unterstützt jetzt neue [Abstandseigenschaften](/system/spa
 
 ```jsx
 <Box p="1rem" color="grey">Gib mir etwas Platz!</Box>
-</Box>
+<Box p={[2, 3, 4]} />
+
+/**
+ *
 ```
 
 Die Komponente kann mit beliebigen gültigen CSS-Werten gestaltet werden.
