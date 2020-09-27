@@ -65,10 +65,9 @@ describe('<Rating />', () => {
 
   it('should clear the rating', () => {
     const handleChange = spy();
-    const { getByRole } = render(<Rating onChange={handleChange} value={2} />);
+    const { container } = render(<Rating name="rating-test" onChange={handleChange} value={2} />);
 
-    const input = getByRole('radio', { name: '2 Stars' });
-    fireEvent.click(input, {
+    fireEvent.click(container.querySelector('#rating-test-2'), {
       clientX: 1,
     });
 
@@ -78,12 +77,8 @@ describe('<Rating />', () => {
 
   it('should select the rating', () => {
     const handleChange = spy();
-    const { container, getByRole } = render(
-      <Rating name="rating-test" onChange={handleChange} value={2} />,
-    );
-
-    fireEvent.click(getByRole('radio', { name: '3 Stars' }));
-
+    const { container } = render(<Rating name="rating-test" onChange={handleChange} value={2} />);
+    fireEvent.click(container.querySelector('#rating-test-3'));
     expect(handleChange.callCount).to.equal(1);
     expect(handleChange.args[0][1]).to.deep.equal(3);
     const checked = container.querySelector('input[name="rating-test"]:checked');
@@ -91,20 +86,20 @@ describe('<Rating />', () => {
   });
 
   it('should select the empty input if value is null', () => {
-    const { container, getByRole } = render(<Rating name="rating-test" value={null} />);
-    const input = getByRole('radio', { name: 'Empty' });
+    const { container } = render(<Rating name="rating-test" value={null} />);
+    const input = container.querySelector('#rating-test-empty');
     const checked = container.querySelector('input[name="rating-test"]:checked');
     expect(input).to.equal(checked);
     expect(input.value).to.equal('');
   });
 
   it('should support a defaultValue', () => {
-    const { container, getByRole } = render(<Rating defaultValue={3} name="rating-test" />);
+    const { container } = render(<Rating defaultValue={3} name="rating-test" />);
     let checked;
     checked = container.querySelector('input[name="rating-test"]:checked');
     expect(checked.value).to.equal('3');
 
-    fireEvent.click(getByRole('radio', { name: '2 Stars' }));
+    fireEvent.click(container.querySelector('#rating-test-2'));
     checked = container.querySelector('input[name="rating-test"]:checked');
     expect(checked.value).to.equal('2');
   });
