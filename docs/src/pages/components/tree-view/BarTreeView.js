@@ -140,9 +140,8 @@ const CustomContent = React.forwardRef(function CustomContent(props, ref) {
 CustomContent.propTypes = {
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * The icon to display next to the tree node's label. Either a parent or end icon.
    */

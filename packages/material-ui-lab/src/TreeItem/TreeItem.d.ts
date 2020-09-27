@@ -2,8 +2,7 @@ import * as React from 'react';
 import { InternalStandardProps as StandardProps } from '@material-ui/core';
 import { TransitionProps } from '@material-ui/core/transitions';
 
-export interface ContentProps
-  extends StandardProps<React.HTMLAttributes<HTMLElement>> {
+export interface ContentProps extends StandardProps<React.HTMLAttributes<HTMLElement>> {
   /**
    * Override or extend the styles applied to the component.
    */
