@@ -59,7 +59,7 @@ const SliderRoot = experimentalStyled(
   {},
   { muiName: 'MuiSlider', overridesResolver },
 )((props) => ({
-  height: 2,
+  height: 6,
   width: '100%',
   boxSizing: 'content-box',
   padding: '13px 0',
@@ -78,7 +78,7 @@ const SliderRoot = experimentalStyled(
     color: props.theme.palette.grey[400],
   },
   ...(props.styleProps.orientation === 'vertical' && {
-    width: 2,
+    width: 6,
     height: '100%',
     padding: '0 13px',
   }),
@@ -103,14 +103,18 @@ const SliderRoot = experimentalStyled(
   '& .MuiSlider-rail': {
     display: 'block',
     position: 'absolute',
-    width: '100%',
-    height: 2,
-    borderRadius: 1,
+    borderRadius: 2,
     backgroundColor: 'currentColor',
     opacity: 0.38,
+    ...(props.styleProps.orientation === 'horizontal' && {
+      height: 4,
+      width: '100%',
+      marginTop: 1,
+    }),
     ...(props.styleProps.orientation === 'vertical' && {
       height: '100%',
-      width: 2,
+      width: 4,
+      marginLeft: 1
     }),
     ...(props.styleProps.track === 'inverted' && {
       opacity: 1,
@@ -119,11 +123,11 @@ const SliderRoot = experimentalStyled(
   '& .MuiSlider-track': {
     display: 'block',
     position: 'absolute',
-    height: 2,
-    borderRadius: 1,
+    height: 6,
+    borderRadius: 3,
     backgroundColor: 'currentColor',
     ...(props.styleProps.orientation === 'vertical' && {
-      width: 2,
+      width: 6,
     }),
     ...(props.styleProps.track === false && {
       display: 'none',
@@ -138,10 +142,10 @@ const SliderRoot = experimentalStyled(
   },
   '& .MuiSlider-thumb': {
     position: 'absolute',
-    width: 12,
-    height: 12,
-    marginLeft: -6,
-    marginTop: -5,
+    width: 20,
+    height: 20,
+    marginLeft: -10,
+    marginTop: -7,
     boxSizing: 'border-box',
     borderRadius: '50%',
     outline: 0,
@@ -157,10 +161,10 @@ const SliderRoot = experimentalStyled(
       content: '""',
       borderRadius: '50%',
       // reach 42px hit target (2 * 15 + thumb diameter)
-      left: -15,
-      top: -15,
-      right: -15,
-      bottom: -15,
+      left: -11,
+      top: -11,
+      right: -11,
+      bottom: -11,
     },
     ':hover, &.Mui-focusVisible': {
       boxShadow: `0px 0px 0px 8px ${alpha(props.theme.palette.primary.main, 0.16)}`,
@@ -172,21 +176,13 @@ const SliderRoot = experimentalStyled(
       boxShadow: `0px 0px 0px 14px ${alpha(props.theme.palette.primary.main, 0.16)}`,
     },
     '&.Mui-disabled': {
-      width: 8,
-      height: 8,
-      marginLeft: -4,
-      marginTop: -3,
       ':hover': {
         boxShadow: 'none',
       },
-      ...(props.styleProps.orientation === 'vertical' && {
-        marginLeft: -3,
-        marginBottom: -4,
-      }),
     },
     ...(props.styleProps.orientation === 'vertical' && {
-      marginLeft: -5,
-      marginBottom: -6,
+      marginLeft: -7,
+      marginBottom: -10,
     }),
     ...(props.styleProps.color === 'secondary' && {
       ':hover': {
@@ -202,7 +198,7 @@ const SliderRoot = experimentalStyled(
   },
   '& .MuiSlider-valueLabel': {
     // IE 11 centering bug, to remove from the customization demos once no longer supported
-    left: 'calc(-50% - 4px)',
+    left: 'calc(-50% + 4px)',
   },
   '& .MuiSlider-mark': {
     position: 'absolute',
@@ -210,6 +206,12 @@ const SliderRoot = experimentalStyled(
     height: 2,
     borderRadius: 1,
     backgroundColor: 'currentColor',
+    ...(props.styleProps.orientation === 'horizontal' && {
+      marginTop: 2,
+    }),
+    ...(props.styleProps.orientation === 'vertical' && {
+      marginLeft: 2,
+    }),
     '&.MuiSlider-markActive': {
       backgroundColor: props.theme.palette.background.paper,
       opacity: 0.8,

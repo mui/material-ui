@@ -87,6 +87,7 @@ const IOSSlider = styled(Slider)({
   },
 
   '& .MuiSlider-rail': {
+    marginTop: 0,
     height: 2,
     opacity: 0.5,
     backgroundColor: '#bfbfbf',
@@ -128,6 +129,7 @@ const PrettoSlider = styled(Slider)({
   },
 
   '& .MuiSlider-rail': {
+    marginTop: 0,
     height: 8,
     borderRadius: 4,
   },
@@ -164,6 +166,7 @@ const AirbnbSlider = styled(Slider)({
   },
 
   '& .MuiSlider-rail': {
+    marginTop: 0,
     color: '#d8d8d8',
     opacity: 1,
     height: 3,

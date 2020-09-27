@@ -634,7 +634,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
       <input value={values.join(',')} name={name} type="hidden" />
       {marks.map((mark, index) => {
         const percent = valueToPercent(mark.value, min, max);
-        const style = axisProps[axis].offset(percent);
+        const style = axisProps[axis].offset(clamp(percent, 0.5, 99));
 
         let markActive;
         if (track === false) {
