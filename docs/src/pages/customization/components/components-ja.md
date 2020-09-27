@@ -26,7 +26,7 @@
 
 `className`プロパティでは不十分で、より深い要素にアクセスする必要がある場合は、`classes`オブジェクトプロパティを利用して、特定のコンポーネントに対してMaterial-UIによって注入されるすべてのCSSをカスタマイズできます。
 
-それぞれのクラスのリスト コンポーネントについては、コンポーネントAPIページの**CSS section**および**rule name column**を参照してください。 例えば、[Button CSS API](/api/button/#css)で見ることができます。 文 または、[browser dev tools](#using-the-dev-tools)を使用することもできます。 例えば、[Button CSS API](/api/button/#css)で見ることができます。 文 または、[browser dev tools](#using-the-dev-tools)を使用することもできます。 例えば、[Button CSS API](/api/button/#css)で見ることができます。 または、[ブラウザの開発ツール](#using-the-dev-tools)を使用することもできます。
+それぞれのクラスのリスト コンポーネントについては、コンポーネントAPIページの**CSS section**および**rule name column**を参照してください。 例えば、[Button CSS API](/api/button/#css)で見ることができます。 文 または、[browser dev tools](#using-the-dev-tools)を使用することもできます。 例えば、[Button CSS API](/api/button/#css)で見ることができます。 文 または、[browser dev tools](#using-the-dev-tools)を使用することもできます。 例えば、[Button CSS API](/api/button/#css)で見ることができます。 または、[ブラウザの開発ツール](#using-the-dev-tools)を使用することもできます。 例えば、[Button CSS API](/api/button/#css)で見ることができます。 または、[ブラウザの開発ツール](#using-the-dev-tools)を使用することもできます。
 
 この例では、`withStyles()`</code></code>も使用していますが、ここでは、`ClassesNesting(上記参照) は<code>Button`の`classes propを使用して、
 オーバーライドするクラスの<strong>名</strong>を適用するCSSクラス名(スタイルルール)</strong>にマップするオブジェクトを提供します(values)。
@@ -59,7 +59,7 @@ Material-UIのクラス名は、開発モードでは<a href="/styles/advanced/#
 
 ### ショートハンド
 
-上記のコード例は、子コンポーネントとして**同じCSS API**を使用することで要約できます。 上記のコード例は、子コンポーネントとして**同じCSS API**を使用することで要約できます。 この例では、`withStyles()`の上位(高次) コンポーネントは、[`Button`コンポーネント](/api/button/#css)が使用する`classes`プロパティーを注入しています。 この例では、`withStyles()`の上位(高次) コンポーネントは、[`Button`コンポーネント](/api/button/#css)が使用する`classes`プロパティーを注入しています。
+上記のコード例は、子コンポーネントとして**同じCSS API**を使用することで要約できます。 上記のコード例は、子コンポーネントとして**同じCSS API**を使用することで要約できます。 この例では、`withStyles()`の上位(高次) コンポーネントは、[`Button`コンポーネント](/api/button/#css)が使用する`classes`プロパティーを注入しています。 この例では、`withStyles()`の上位(高次) コンポーネントは、[`Button`コンポーネント](/api/button/#css)が使用する`classes`プロパティーを注入しています。 この例では、`withStyles()`の上位(高次) コンポーネントは、[`Button`コンポーネント](/api/button/#css)が使用する`classes`プロパティーを注入しています。
 
 ```jsx
 const StyledButton = withStyles({
@@ -84,7 +84,7 @@ const StyledButton = withStyles({
 
 *hover*、*focus*、*disabled*、*selected*などのコンポーネントの特殊状態は、より高いCSS 特異性(specificity) が設定されています。 [特異性の重み](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity)は、特定のCSS宣言に適用されます。 
 
-コンポーネントの特別な状態をオーバーライドするには、**特異性を高める必要があります** 。 コンポーネントの特別な状態をオーバーライドするには、**特異性を高める必要があります** 。 *disable*状態と、 **pseudo-class**(`:disabled`)を使用したボタンコンポーネントの例を示します。 コンポーネントの特別な状態をオーバーライドするには、**特異性を高める必要があります** 。 *disable*状態と、 **pseudo-class**(`:disabled`)を使用したボタンコンポーネントの例を示します。
+コンポーネントの特別な状態をオーバーライドするには、**特異性を高める必要があります** 。 コンポーネントの特別な状態をオーバーライドするには、**特異性を高める必要があります** 。 コンポーネントの特別な状態をオーバーライドするには、**特異性を高める必要があります** 。 *disable*状態と、 **pseudo-class**(`:disabled`)を使用したボタンコンポーネントの例を示します。 コンポーネントの特別な状態をオーバーライドするには、**特異性を高める必要があります** 。 *disable*状態と、 **pseudo-class**(`:disabled`)を使用したボタンコンポーネントの例を示します。
 
 ```css
 .Button {
@@ -99,7 +99,7 @@ const StyledButton = withStyles({
 <Button disabled className="Button">
 ```
 
-時にはこのプラットフォームではstateとして**pseudo-class**は使うことができない。 メニュー項目の構成要素と*選ばれた*例として述べる。 時にはこのプラットフォームではstateとして**pseudo-class**は使うことができない。 メニュー項目の構成要素と*選ばれた*例として述べる。 ネストされた要素にアクセスする以外にも、`classes`プロパティを使用して、Material-UIコンポーネントの特殊な状態をカスタマイズできます。 例として、メニュー項目コンポーネントと *selected* 状態を取り上げましょう。 ネストされた要素にアクセスする以外にも、`classes`プロパティを使用して、Material-UIコンポーネントの特殊な状態をカスタマイズできます。
+時にはこのプラットフォームではstateとして**pseudo-class**は使うことができない。 メニュー項目の構成要素と*選ばれた*例として述べる。 時にはこのプラットフォームではstateとして**pseudo-class**は使うことができない。 メニュー項目の構成要素と*選ばれた*例として述べる。 ネストされた要素にアクセスする以外にも、`classes`プロパティを使用して、Material-UIコンポーネントの特殊な状態をカスタマイズできます。 例として、メニュー項目コンポーネントと *selected* 状態を取り上げましょう。 ネストされた要素にアクセスする以外にも、`classes`プロパティを使用して、Material-UIコンポーネントの特殊な状態をカスタマイズできます。 例として、メニュー項目コンポーネントと *selected* 状態を取り上げましょう。 ネストされた要素にアクセスする以外にも、`classes`プロパティを使用して、Material-UIコンポーネントの特殊な状態をカスタマイズできます。
 
 ```css
 .MenuItem {
@@ -149,7 +149,7 @@ const StyledButton = withStyles({
 
 ### 同じスタイルシート内のローカルルールを参照するには、`$ruleName`を使用します
 
-[jss-nested](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-nested)プラグイン(デフォルトで使用可能) は、特異性を高めるプロセスをより簡単にします。
+⚠️DOMを機能させるには、生成された二つのクラス名(`root`&`disabled`) を適用する必要があります。
 
 ```js
 const styles = {
@@ -170,7 +170,7 @@ const styles = {
 }
 ```
 
-⚠️DOMを機能させるには、生成された二つのクラス名(`root`&`disabled`) を適用する必要があります。
+コンポーネントのスタイルをオーバーライドするもう一つの方法は、 **inline-style**アプローチを使用することです。 すべてのコンポーネントには、`style` プロパティがあります。 これらのプロパティは常にルート要素に適用されます。
 
 ```jsx
 <Button
@@ -222,25 +222,25 @@ const styles = {
 
 コンポーネントのバリエーションを作成し、製品ページのカラフルなボタンなど、さまざまなコンテキストで使用する必要があるかもしれませんが、コードは[*DRYにしておいた方がよいでしょう*](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)。
 
-最も良い方法は、オプション1を実行し、カスタマイズしたコンポーネントをエクスポートして必要な場所で使用することにより、Reactの合成能力を活用することです。
+Material Design仕様には、ボタンの形状が異なるなど、特定のコンポーネントのさまざまなバリエーションが記載されています。たとえば、[text](https://material.io/design/components/buttons.html#text-button)(以前の"flat")、[contained](https://material.io/design/components/buttons.html#contained-button)(以前の "raised")、[FAB](https://material.io/design/components/buttons-floating-action-button.html)などです。
 
 {{"demo": "pages/customization/components/Component.js", "hideEditButton": true}}
 
 ## 4. Material Designのバリエーション
 
-Material Design仕様には、ボタンの形状が異なるなど、特定のコンポーネントのさまざまなバリエーションが記載されています。たとえば、[text](https://material.io/design/components/buttons.html#text-button)(以前の"flat")、[contained](https://material.io/design/components/buttons.html#contained-button)(以前の "raised")、[FAB](https://material.io/design/components/buttons-floating-action-button.html)などです。
+コンポーネント間の一貫性を促進し、ユーザーインターフェイスの外観全体を管理するために、Material-UIはグローバルな変更を適用するメカニズムを提供します。
 
-Material-UIは、これらすべてのバリエーションを実装しようとします。 サポートされているMaterial Design コンポーネントの現状については、[Supported Components](/getting-started/supported-components/)のマニュアルを参照してください。
+Material-UIは、これらすべてのバリエーションを実装しようとします。 Material-UIは、これらすべてのバリエーションを実装しようとします。 サポートされているMaterial Design コンポーネントの現状については、[Supported Components](/getting-started/supported-components/)のマニュアルを参照してください。
 
 ## 5. グローバルテーマバリエーション
 
-コンポーネント間の一貫性を促進し、ユーザーインターフェイスの外観全体を管理するために、Material-UIはグローバルな変更を適用するメカニズムを提供します。
+[テーマ設定変数を調整できます](/customization/theming/#theme-configuration-variables) 。
 
 このセクションのデモでは、ボタンのフォントサイズを変更する方法について説明します。
 
 ### テーマ変数
 
-[テーマ設定変数を調整できます](/customization/theming/#theme-configuration-variables) 。
+`theme`の`overrides`キーを利用すると、Material-UIによってDOMに注入されるすべてのスタイルを潜在的に変更できます。 詳細については、ドキュメントの[テーマセクションをご覧ください](/customization/globals/#css)。
 
 ```jsx
 const theme = createMuiTheme({
