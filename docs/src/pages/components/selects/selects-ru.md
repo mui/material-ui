@@ -1,8 +1,7 @@
 ---
 title: Select React component
 components: Select, NativeSelect
-githubLabel:
-  component: Select (Список)
+githubLabel: 'component: Select'
 ---
 
 # Select (Список)
