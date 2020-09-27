@@ -6,7 +6,7 @@
 
 ### Woah - la API es muy diferente! ¿Significa eso que 1.0 es completamente diferente, tendré que aprender lo básico una vez más, y migrar será prácticamente imposible?
 
-¡Me alegro de que lo preguntas! The answer is no. The core concepts haven’t changed. You will notice that the API provides more flexibility, but this has a cost – lower-level components that abstract less complexity.
+¡Me alegro de que lo preguntas! ¡Me alegro de que lo preguntas! The answer is no. The core concepts haven’t changed. You will notice that the API provides more flexibility, but this has a cost – lower-level components that abstract less complexity.
 
 ### ¿Qué motivó un cambio tan importante?
 
