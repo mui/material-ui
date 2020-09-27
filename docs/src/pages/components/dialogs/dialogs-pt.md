@@ -1,8 +1,7 @@
 ---
 title: Componente React para Diálogos
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
-githubLabel:
-  component: Dialog
+githubLabel: 'component: Dialog'
 materialDesign: https://material.io/components/dialogs
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 ---
