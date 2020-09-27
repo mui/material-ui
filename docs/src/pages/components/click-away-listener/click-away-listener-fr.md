@@ -1,8 +1,7 @@
 ---
 title: Détecter les clics en dehors du composant React
 components: ClickAwayListener
-githubLabel:
-  component: ClickAwayListener
+githubLabel: 'component: ClickAwayListener'
 ---
 
 # Click Away Listener
