@@ -18,9 +18,9 @@
 
 #### 返回结果
 
-`transition`：一个 CSS 的动画值，它包含了所有需要应用动画效果的 CSS 属性，以及定义的时长、缓动效果。
+`
 
-使用 <code>theme.transitions.create()</code> 助手来为你的 UI 元素创建一致的过渡动画。</p>
+`transition`：一个 CSS 的动画值，它包含了所有需要应用动画效果的 CSS 属性，以及定义的时长、缓动效果。</p>
 
 ```js
 theme.transitions.create(['background-color', 'transform']);
@@ -89,4 +89,4 @@ const theme = createMuiTheme({
 
 ## 参考
 
-请查看 [过渡](/components/transitions/) 页面来了解 Material-UI 中所包含的过渡组件。
+你可以通过提供一个自定义的 CSS <code>transition-timing-function</code> 值来改变部分或全部的缓动值，或者提供你自己的缓动值。
