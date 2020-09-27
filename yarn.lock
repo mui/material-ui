@@ -2913,9 +2913,9 @@
     "@types/node" "*"
 
 "@types/sinon@^9.0.0":
-  version "9.0.5"
-  resolved "https://registry.yarnpkg.com/@types/sinon/-/sinon-9.0.5.tgz#56b2a12662dd8c7d081cdc511af5f872cb37377f"
-  integrity sha512-4CnkGdM/5/FXDGqL32JQ1ttVrGvhOoesLLF7VnTh4KdjK5N5VQOtxaylFqqTjnHx55MnD9O02Nbk5c1ELC8wlQ==
+  version "9.0.6"
+  resolved "https://registry.yarnpkg.com/@types/sinon/-/sinon-9.0.6.tgz#fb4b6883fe0417e6a1ac5d9753bdcb7016dd4dd0"
+  integrity sha512-j3GK0fiHgn8fe7sqOpInMjm0A2Tary1NBZ8gbI/sZ0C0JxYeO+nh8H0/pW/0l94vNWcH1FnZOZu/cOvIfNZTrg==
   dependencies:
     "@types/sinonjs__fake-timers" "*"
 
