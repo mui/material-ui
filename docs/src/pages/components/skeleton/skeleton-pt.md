@@ -1,16 +1,14 @@
 ---
 title: Componente React para Skeleton
 components: Skeleton
-githubLabel:
-  component: Skeleton
-packageName: '@material-ui/lab'
+githubLabel: 'component: Skeleton'
 ---
 
 # Skeleton
 
 <p class="description">Exiba uma visualização do espaço reservado de seu conteúdo antes que os dados sejam carregados, reduzindo a sensação de lentidão do tempo de carregamento.</p>
 
-Os dados dos seus componentes podem não estar imediatamente disponíveis. Você pode aumentar o desempenho percebido pelos usuários usando skeletons. Ele passa a sensação de que as coisas estão acontecendo imediatamente, então a informação é mostrada incrementalmente na tela (Cf. [Evite uso de progressos](https://www.lukew.com/ff/entry.asp?1797)).
+Os dados dos seus componentes podem não estar imediatamente disponíveis. You can improve the perceived responsiveness of the page by using skeletons. Ele passa a sensação de que as coisas estão acontecendo imediatamente, então a informação é mostrada incrementalmente na tela (Cf. [Evite uso de progressos](https://www.lukew.com/ff/entry.asp?1797)).
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -72,6 +70,14 @@ loading
 
 ## Acessibilidade
 
-Telas com Skeleton fornecem uma alternativa aos métodos tradicionais de feedback. Em vez de mostrar um resumo abstrato na tela, telas com skeleton criam uma expectativa do que está por vir, reduzindo a sensação cognitiva do processo de carregamento.
+Skeleton screens provide an alternative to the traditional spinner method. Em vez de mostrar um resumo abstrato na tela, telas com skeleton criam uma expectativa do que está por vir, reduzindo a sensação cognitiva do processo de carregamento.
 
 A cor de fundo do skeleton usa uma quantidade menor de luminância para ser visível em boas condições (boa luz ambiente, boa tela, sem deficiência visual).
+
+### ARIA
+
+None.
+
+### Teclado
+
+The skeleton is not focusable.
