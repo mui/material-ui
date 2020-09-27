@@ -62,6 +62,7 @@ import { StylesProvider } from '@material-ui/core/styles';
 </StylesProvider>
       Now, you can override Material-UI's styles. */}
 </StylesProvider>
+      Now, you can override Material-UI's styles.
 ```
 
 ### Tiefere Elemente
@@ -154,6 +155,7 @@ import { StylesProvider } from '@material-ui/core/styles';
 </StylesProvider>
       Now, you can override Material-UI's styles. */}
 </StylesProvider>
+      Now, you can override Material-UI's styles.
 ```
 
 ## Styled Components
@@ -204,6 +206,7 @@ import { StylesProvider } from '@material-ui/core/styles';
 </StylesProvider>
       Now, you can override Material-UI's styles. */}
 </StylesProvider>
+      Now, you can override Material-UI's styles.
 ```
 
 Ein anderer Ansatz ist die Verwendung von `&&` Zeichen in Stilkomponenten, um, durch Wiederholen des Klassennamens, die [Spezifität zu erhöhen ](https://www.styled-components.com/docs/advanced#issues-with-specificity). Avoid the usage of `!important`.
@@ -383,6 +386,7 @@ import { StylesProvider } from '@material-ui/core/styles';
 </StylesProvider>
       Now, you can override Material-UI's styles. */}
 </StylesProvider>
+      Now, you can override Material-UI's styles.
 ```
 
 ### Tiefere Elemente
@@ -479,6 +483,7 @@ import { StylesProvider } from '@material-ui/core/styles';
 </StylesProvider>
       Now, you can override Material-UI's styles. */}
 </StylesProvider>
+      Now, you can override Material-UI's styles.
 ```
 
 ### Theme
