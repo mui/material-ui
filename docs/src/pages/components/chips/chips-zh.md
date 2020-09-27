@@ -1,12 +1,11 @@
 ---
 title: React 纸片组件
 components: Chip
-githubLabel:
-  component: Chip
+githubLabel: 'component: Chip'
 materialDesign: https://material.io/components/chips
 ---
 
-# Chip
+# Chip 纸片组件
 
 <p class="description">纸片组件是用来表示输入框、属性或操作的紧凑元素。</p>
 
