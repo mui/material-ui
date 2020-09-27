@@ -4,6 +4,7 @@ import {
   fade,
   Theme,
   ThemeProvider,
+  useTheme,
   withStyles,
   makeStyles,
   createMuiTheme,
@@ -47,12 +48,12 @@ const BootstrapInput = withStyles((theme: Theme) =>
     input: {
       borderRadius: 4,
       position: 'relative',
-      backgroundColor: theme.palette.background.paper,
+      backgroundColor: theme.palette.mode === 'light' ? '#fcfcfb' : '#2b2b2b',
       border: '1px solid #ced4da',
       fontSize: 16,
       width: 'auto',
       padding: '10px 12px',
-      transition: theme.transitions.create(['border-color', 'box-shadow']),
+      transition: theme.transitions.create(['border-color', 'background-color', 'box-shadow']),
       // Use the system font instead of the default Roboto font.
       fontFamily: [
         '-apple-system',
@@ -80,13 +81,13 @@ const useStylesReddit = makeStyles((theme: Theme) =>
       border: '1px solid #e2e2e1',
       overflow: 'hidden',
       borderRadius: 4,
-      backgroundColor: theme.palette.background.paper,
-      transition: theme.transitions.create(['border-color', 'box-shadow']),
+      backgroundColor: theme.palette.mode === 'light' ? '#fcfcfb' : '#2b2b2b',
+      transition: theme.transitions.create(['border-color', 'background-color', 'box-shadow']),
       '&:hover': {
-        backgroundColor: theme.palette.action.hover,
+        backgroundColor: 'transparent',
       },
       '&$focused': {
-        backgroundColor: theme.palette.action.hover,
+        backgroundColor: 'transparent',
         boxShadow: `${fade(theme.palette.primary.main, 0.25)} 0 0 0 2px`,
         borderColor: theme.palette.primary.main,
       },
@@ -137,23 +138,16 @@ const ValidationTextField = withStyles({
   },
 })(TextField);
 
-const theme = createMuiTheme({
-  palette: {
-    primary: green,
-  },
-  components: {
-    MuiFormLabel: {
-      styleOverrides: {
-        root: {
-          color: '#fff',
-        },
-      },
-    },
-  },
-});
-
 export default function CustomizedInputs() {
   const classes = useStyles();
+  const theme = useTheme();
+
+  const newTheme = createMuiTheme({
+    palette: {
+      mode: theme.palette.mode,
+      primary: green,
+    },
+  });
 
   return (
     <form className={classes.root} noValidate>
@@ -168,7 +162,7 @@ export default function CustomizedInputs() {
         variant="outlined"
         id="custom-css-outlined-input"
       />
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={newTheme}>
         <TextField
           className={classes.margin}
           label="ThemeProvider"
