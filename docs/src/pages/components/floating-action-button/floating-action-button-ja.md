@@ -1,8 +1,7 @@
 ---
 title: Fab React component
 components: Fab
-githubLabel:
-  component: Fab
+githubLabel: 'component: Fab'
 materialDesign: https://material.io/components/buttons-floating-action-button
 ---
 
@@ -32,6 +31,6 @@ Use the `size` prop for larger or smaller floating action buttons.
 
 複数の横方向の画面（タブ付き画面など）にまたがるフローティングアクションボタンは、一時的に消えてから、アクションが変わると再表示されます。
 
-これを実現するにはズームトランジションを使用できます。 これを実現するにはズームトランジションを使用できます。 これを実現するにはズームトランジションを使用できます。 終了アニメーションと入力アニメーションの両方が同時にトリガーされるため、新しいフローティングアクションボタンのアニメーションが開始される前に終了するように`enterDelay`を使用します。
+これを実現するにはズームトランジションを使用できます。 これを実現するにはズームトランジションを使用できます。 これを実現するにはズームトランジションを使用できます。 これを実現するにはズームトランジションを使用できます。 終了アニメーションと入力アニメーションの両方が同時にトリガーされるため、新しいフローティングアクションボタンのアニメーションが開始される前に終了するように`enterDelay`を使用します。
 
 {{"demo": "pages/components/floating-action-button/FloatingActionButtonZoom.js", "bg": true}}
