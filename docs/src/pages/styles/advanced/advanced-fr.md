@@ -238,6 +238,8 @@ The `StylesProvider` component has an `injectFirst` prop to inject the style tag
 
 <StylesProvider injectFirst>
   {/* Your component tree.
+      */}
+</StylesProvider>
       import { StylesProvider } from '@material-ui/core/styles';
 
 <StylesProvider injectFirst>
