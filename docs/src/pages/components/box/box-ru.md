@@ -1,7 +1,6 @@
 ---
 title: React-компонент Box
-githubLabel:
-  component: Box
+githubLabel: 'component: Box'
 ---
 
 # Box
