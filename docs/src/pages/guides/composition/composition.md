@@ -168,7 +168,7 @@ React in your console similar to:
 
 > Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
 
-Be aware that you will still get this warning for `lazy` and `memo` components if their wrapped component can't hold a ref.
+Note that you will still get this warning for `lazy` and `memo` components if their wrapped component can't hold a ref.
 In some instances an additional warning is issued to help with debugging, similar to:
 
 > Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref.

@@ -467,8 +467,8 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
       if (childNode && !childNode.getAttribute('data-mui')) {
         console.error(
           [
-            'Material-UI: The `children` component of the Tooltip do not forward its props correctly.',
-            'Please make sure the props are spread on the same element the ref is applied to.',
+            'Material-UI: The `children` component of the Tooltip is not forwarding its props correctly.',
+            'Please make sure the props are spread on the same element that the ref is applied to.',
           ].join('\n'),
         );
       }
