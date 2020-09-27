@@ -17,7 +17,9 @@ The `ToggleButtonGroup` controls the selected state of its child buttons when gi
 
 ## Exclusive selection
 
-With exclusive selection, selecting one option deselects any other. In this example text justification toggle buttons present options for left, right, center, full, and justified text with only one item available for selection at a time.
+With exclusive selection, selecting one option deselects any other. 
+
+In this example text justification toggle buttons present options for left, center, right, and fully justified text (disabled), with only one item available for selection at a time.
 
 {{"demo": "pages/components/toggle-button/ToggleButtons.js"}}
 
