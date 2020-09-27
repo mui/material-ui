@@ -74,9 +74,8 @@ const IOSSlider = styled(Slider)({
   },
 
   '& .MuiSlider-valueLabel': {
-    left: 'calc(-50% + 12px)',
     top: -22,
-    '& *': {
+    '& *, & *::before': {
       background: 'transparent',
       color: '#000',
     },
@@ -120,7 +119,16 @@ const PrettoSlider = styled(Slider)({
     },
   },
   '& .MuiSlider-valueLabel': {
-    left: 'calc(-50% + 4px)',
+    '& > *': {
+      backgroundColor: '#d3f5e4',
+    },
+    '& *': {
+      color: 'inherit',
+      fontWeight: 'bold',
+    },
+    '& *::before': {
+      display: 'none',
+    },
   },
 
   '& .MuiSlider-track': {
@@ -132,6 +140,7 @@ const PrettoSlider = styled(Slider)({
     marginTop: 0,
     height: 8,
     borderRadius: 4,
+    backgroundColor: '#d1d7dd',
   },
 });
 

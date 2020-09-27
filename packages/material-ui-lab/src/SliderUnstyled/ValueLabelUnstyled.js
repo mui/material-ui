@@ -13,7 +13,8 @@ const useValueLabelClasses = (props) => {
     offset: clsx('MuiSlider-valueLabel', getUtilityClass('offset'), {
       [getUtilityClass('open')]: open || valueLabelDisplay === 'on',
     }),
-    circle: getUtilityClass('circle'),
+    container: getUtilityClass('container'),
+    arrow: getUtilityClass('arrow'),
     label: getUtilityClass('label'),
   };
 
@@ -39,8 +40,9 @@ function ValueLabel(props) {
       className: clsx(children.props.className),
     },
     <Root className={clsx(classes.offset, className)} theme={theme}>
-      <span className={classes.circle}>
+      <span className={classes.container}>
         <span className={classes.label}>{value}</span>
+        <span className={classes.arrow} />
       </span>
     </Root>,
   );
