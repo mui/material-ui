@@ -47,6 +47,17 @@ describe('<TreeItem />', () => {
         );
       }).toErrorDev('Failed prop type: The prop `onFocus` is not supported.');
     });
+
+    it('should warn if an `ContentComponent` that does not hold a ref is used', () => {
+      expect(() => {
+        PropTypes.checkPropTypes(
+          TreeItem.Naked.propTypes,
+          { nodeId: 'one', ContentComponent: () => {} },
+          'prop',
+          'TreeItem',
+        );
+      }).toErrorDev('Expected an element type that can hold a ref.');
+    });
   });
 
   it('should call onClick when clicked', () => {
@@ -2202,6 +2213,20 @@ describe('<TreeItem />', () => {
       expect(getByTestId('three')).to.have.attribute('aria-disabled', 'true');
     });
   });
+
+  describe('content customisation', () => {
+    it('should allow a custom ContentComponent', () => {
+      const mockContent = React.forwardRef((props, ref) => <div ref={ref}>MOCK CONTENT COMPONENT</div>);
+      const { container } = render(<TreeItem nodeId="one" ContentComponent={mockContent} />);
+      expect(container.textContent).to.equal('MOCK CONTENT COMPONENT');
+    })
+
+    it('should allow props to be passed to a custom ContentComponent', () => {
+      const mockContent = React.forwardRef((props, ref) => <div ref={ref}>{props.customProp}</div>);
+      const { container } = render(<TreeItem nodeId="one" ContentComponent={mockContent} ContentProps={{ customProp: 'ABCDEF' }} />);
+      expect(container.textContent).to.equal('ABCDEF');
+    })
+  })
 
   it('should be able to type in an child input', () => {
     const { getByRole } = render(

@@ -21,7 +21,7 @@ const useStyles = makeStyles({
 
 const CustomContent = React.forwardRef(function CustomContent(
   props: ContentProps,
-  ref,
+  ref: React.Ref<HTMLDivElement>,
 ) {
   const {
     classes,
@@ -72,7 +72,7 @@ const CustomContent = React.forwardRef(function CustomContent(
         [classes.disabled]: disabled,
       })}
       onMouseDown={handleMouseDown}
-      ref={ref as React.Ref<HTMLDivElement>}
+      ref={ref}
     >
       {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
       <div onClick={handleExpansionClick} className={classes.iconContainer}>
