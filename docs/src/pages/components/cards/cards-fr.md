@@ -25,7 +25,7 @@ Définissez `variant="outlined"` pour afficher une carte encadrée.
 
 ## Interaction complexe
 
-Sur grand écran, le contenu de la carte peut s’étendre.
+Sur grand écran, le contenu de la carte peut s’étendre. (Click the downward chevron to view the recipe.)
 
 {{"demo": "pages/components/cards/RecipeReviewCard.js", "bg": true}}
 
