@@ -60,13 +60,6 @@ const users = [
     caption: 'Netflix',
   },
   {
-    logo: 'coursera.svg',
-    logoWidth: 169,
-    logoHeight: 23,
-    caption: 'Coursera',
-    class: 'coursera',
-  },
-  {
     logo: 'amazon.svg',
     logoWidth: 119,
     logoHeight: 36,
@@ -79,6 +72,13 @@ const users = [
     logoHeight: 50,
     caption: 'Unity',
     class: 'unity',
+  },
+  {
+    logo: 'spotify.svg',
+    logoWidth: 180,
+    logoHeight: 54,
+    caption: 'Spotify',
+    class: 'spotify',
   },
 ];
 
@@ -105,11 +105,11 @@ const useStyles = makeStyles(
     amazon: {
       margin: theme.spacing(2.4, 3, 1.5),
     },
-    coursera: {
-      margin: theme.spacing(2.3, 3, 1.5),
-    },
     unity: {
       margin: theme.spacing(0.5, 3, 1.5),
+    },
+    spotify: {
+      margin: theme.spacing(0, 3, 1.5),
     },
     walmart: {
       margin: '13px 4px 12px',
