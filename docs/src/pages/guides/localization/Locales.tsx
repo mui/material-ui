@@ -1,7 +1,5 @@
 import * as React from 'react';
 import TablePagination from '@material-ui/core/TablePagination';
-import Pagination from '@material-ui/lab/Pagination';
-import Rating from '@material-ui/core/Rating';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
@@ -31,7 +29,7 @@ export default function Locales() {
           renderInput={(params) => (
             <TextField
               {...params}
-              label="自动完成"
+              label="Locale"
               variant="outlined"
               fullWidth
             />
@@ -44,8 +42,6 @@ export default function Locales() {
           component="div"
           onChangePage={() => {}}
         />
-        <Pagination count={2000} color="primary" />
-        <Rating defaultValue={4} name="locales" />
       </ThemeProvider>
     </div>
   );
