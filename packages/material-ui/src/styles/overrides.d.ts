@@ -98,6 +98,8 @@ import { TableRowClassKey } from '../TableRow';
 import { TableSortLabelClassKey } from '../TableSortLabel';
 import { TabsClassKey } from '../Tabs';
 import { TextFieldClassKey } from '../TextField';
+import { ToggleButtonClassKey } from '../ToggleButton';
+import { ToggleButtonGroupClassKey } from '../ToggleButtonGroup';
 import { ToolbarClassKey } from '../Toolbar';
 import { TooltipClassKey } from '../Tooltip';
 import { TouchRippleClassKey } from '../ButtonBase/TouchRipple';
@@ -217,6 +219,8 @@ export interface ComponentNameToClassKey {
   MuiTableSortLabel: TableSortLabelClassKey;
   MuiTabs: TabsClassKey;
   MuiTextField: TextFieldClassKey;
+  MuiToggleButton: ToggleButtonClassKey;
+  MuiToggleButtonGroup: ToggleButtonGroupClassKey;
   MuiToolbar: ToolbarClassKey;
   MuiTooltip: TooltipClassKey;
   MuiTouchRipple: TouchRippleClassKey;
