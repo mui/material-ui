@@ -509,7 +509,7 @@ InputBase.propTypes = {
   className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * The prop defaults to the value (`'primary'`) inherited by the parent FormControl component.
+   * The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
    */
   color: PropTypes.oneOf(['primary', 'secondary']),
   /**
@@ -518,7 +518,7 @@ InputBase.propTypes = {
   defaultValue: PropTypes.any,
   /**
    * If `true`, the `input` element will be disabled.
-   * The prop defaults to the value (`false`) inherited by the parent FormControl component.
+   * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   disabled: PropTypes.bool,
   /**
@@ -527,7 +527,7 @@ InputBase.propTypes = {
   endAdornment: PropTypes.node,
   /**
    * If `true`, the input will indicate an error.
-   * The prop defaults to the value (`false`) inherited by the parent FormControl component.
+   * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   error: PropTypes.bool,
   /**
@@ -557,7 +557,7 @@ InputBase.propTypes = {
   /**
    * If `dense`, will adjust vertical spacing. This is normally obtained via context from
    * FormControl.
-   * The prop defaults to the value (`'none'`) inherited by the parent FormControl component.
+   * The prop defaults to the value (`'none'`) inherited from the parent FormControl component.
    */
   margin: PropTypes.oneOf(['dense', 'none']),
   /**
@@ -621,7 +621,7 @@ InputBase.propTypes = {
   renderSuffix: PropTypes.func,
   /**
    * If `true`, the `input` element will be required.
-   * The prop defaults to the value (`false`) inherited by the parent FormControl component.
+   * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   required: PropTypes.bool,
   /**

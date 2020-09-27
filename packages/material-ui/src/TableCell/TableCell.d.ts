@@ -61,7 +61,7 @@ export interface TableCellProps extends StandardProps<TableCellBaseProps, 'align
   component?: React.ElementType<TableCellBaseProps>;
   /**
    * Sets the padding applied to the cell.
-   * The prop defaults to the value (`'default'`) inherited by the parent Table component.
+   * The prop defaults to the value (`'default'`) inherited from the parent Table component.
    */
   padding?: Padding;
   /**
@@ -70,7 +70,7 @@ export interface TableCellProps extends StandardProps<TableCellBaseProps, 'align
   scope?: TableCellBaseProps['scope'];
   /**
    * Specify the size of the cell.
-   * The prop defaults to the value (`'medium'`) inherited by the parent Table component.
+   * The prop defaults to the value (`'medium'`) inherited from the parent Table component.
    */
   size?: Size;
   /**
@@ -79,7 +79,7 @@ export interface TableCellProps extends StandardProps<TableCellBaseProps, 'align
   sortDirection?: SortDirection;
   /**
    * Specify the cell type.
-   * The prop defaults to the value inherited by the parent TableHead, TableBody, or TableFooter components.
+   * The prop defaults to the value inherited from the parent TableHead, TableBody, or TableFooter components.
    */
   variant?: 'head' | 'body' | 'footer';
 }

@@ -185,7 +185,7 @@ TableCell.propTypes = {
   component: PropTypes.elementType,
   /**
    * Sets the padding applied to the cell.
-   * The prop defaults to the value (`'default'`) inherited by the parent Table component.
+   * The prop defaults to the value (`'default'`) inherited from the parent Table component.
    */
   padding: PropTypes.oneOf(['checkbox', 'default', 'none']),
   /**
@@ -194,7 +194,7 @@ TableCell.propTypes = {
   scope: PropTypes.string,
   /**
    * Specify the size of the cell.
-   * The prop defaults to the value (`'medium'`) inherited by the parent Table component.
+   * The prop defaults to the value (`'medium'`) inherited from the parent Table component.
    */
   size: PropTypes.oneOf(['medium', 'small']),
   /**
@@ -203,7 +203,7 @@ TableCell.propTypes = {
   sortDirection: PropTypes.oneOf(['asc', 'desc', false]),
   /**
    * Specify the cell type.
-   * The prop defaults to the value inherited by the parent TableHead, TableBody, or TableFooter components.
+   * The prop defaults to the value inherited from the parent TableHead, TableBody, or TableFooter components.
    */
   variant: PropTypes.oneOf(['body', 'footer', 'head']),
 };
