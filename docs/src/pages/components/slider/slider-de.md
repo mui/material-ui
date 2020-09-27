@@ -1,8 +1,7 @@
 ---
 title: Slider React Komponente
 components: Slider
-githubLabel:
-  component: Slider
+githubLabel: 'component: Slider'
 materialDesign: https://material.io/components/sliders
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#slider'
 ---
