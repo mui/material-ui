@@ -36,8 +36,8 @@ components: TextField, Popper, Autocomplete
 
 コンポーネントは、操作できる二つのステートを持ちます。
 
-1. "value"ステートは `value`/`onChange` を組み合わせて使用します。 この値は、ユーザーが選択した値を示します。例えば、<kbd>Enter</kbd>を押している状態。
-2. "input value"ステートは`inputValue`/`onInputChange` を組み合わせて使用します。 この値は、テキストボックスに表示される値を示します。
+1. "value"ステートは `value`/`onChange` を組み合わせて使用します。 "value"ステートは `value`/`onChange` を組み合わせて使用します。 この値は、ユーザーが選択した値を示します。例えば、<kbd>Enter</kbd>を押している状態。
+2. "input value"ステートは`inputValue`/`onInputChange` を組み合わせて使用します。 この値は、テキストボックスに表示される値を示します。 この値は、テキストボックスに表示される値を示します。
 
 > 二つのステートは解離しており、独立して管理される必要があります。
 
@@ -45,22 +45,22 @@ components: TextField, Popper, Autocomplete
 
 ## Free solo
 
-`freeSolo`をtureにすることで、テキストボックスに任意の値を含むことができます。 
+`freeSolo`をtureにすることで、テキストボックスに任意の値を含むことができます。
 
 ### Search input
 
-提案付きの**検索欄**に使われることを主な使われ方として設計されています。例えば、Google searchやreact-autowhatever 
+提案付きの**検索欄**に使われることを主な使われ方として設計されています。例えば、Google searchやreact-autowhatever
 
 {{"demo": "pages/components/autocomplete/FreeSolo.js"}}
 
 ### Creatable
 
-このモードを[combo box](#combo-box)のような体験(selectの拡張版) に使う意図であれば、以下のような設定をお勧めします。 
+このモードを[combo box](#combo-box)のような体験(selectの拡張版) に使う意図であれば、以下のような設定をお勧めします。
 
-- `selectOnFocus`でユーザーが選択した値を消せるようにする。 
-- `clearOnBlur` でユーザーが新しい値を入力できるようにする。 
-- `handleHomeEndKeys`でポップアップな内で<kbd>Home</kbd> and <kbd>End</kbd>キーを使ってフォーカスが移動できるようにする。 
-- 最後の選択肢に, 例えば`Add "YOUR SEARCH"`を追加する。 
+- `selectOnFocus`でユーザーが選択した値を消せるようにする。
+- `clearOnBlur` でユーザーが新しい値を入力できるようにする。
+- `handleHomeEndKeys`でポップアップな内で<kbd>Home</kbd> and <kbd>End</kbd>キーを使ってフォーカスが移動できるようにする。
+- 最後の選択肢に, 例えば`Add "YOUR SEARCH"`を追加する。
 
 {{"demo": "pages/components/autocomplete/FreeSoloCreateOption.js"}}
 
@@ -100,7 +100,7 @@ import useAutocomplete from '@material-ui/lab/useAutocomplete';
 
 ### Google Maps place
 
-Google マップの位置の自動保管用のカスタムUI 
+Google マップの位置の自動保管用のカスタムUI
 
 {{"demo": "pages/components/autocomplete/GoogleMaps.js"}}
 
@@ -140,7 +140,7 @@ Fancy smaller inputs? `size`propを使用します。
 
 ### Custom input
 
-`renderInput`でレンダリングされる入力をカスタマイズできます。 このrender propsの一つ目の引数は、継承する必要のあるpropsを含みます。 `ref` と `inputProps` の扱いに特に注意してください。 
+`renderInput`でレンダリングされる入力をカスタマイズできます。 このrender propsの一つ目の引数は、継承する必要のあるpropsを含みます。 `ref` と `inputProps` の扱いに特に注意してください。 このrender propsの一つ目の引数は、継承する必要のあるpropsを含みます。 `ref` と `inputProps` の扱いに特に注意してください。 
 
 {{"demo": "pages/components/autocomplete/CustomInputAutocomplete.js"}}
 
@@ -160,7 +160,7 @@ GitHubのラベルピッカーを再現したデモです。
 
 ## Custom filter
 
-`filterOptions`に流せるフィルターメソッドを作成できるファクトリーを露出しているコンポーネント デフォルトのフィルター挙動を変更するのに使うことができます。
+`filterOptions`に流せるフィルターメソッドを作成できるファクトリーを露出しているコンポーネント デフォルトのフィルター挙動を変更するのに使うことができます。 デフォルトのフィルター挙動を変更するのに使うことができます。
 
 ```js
 import { createFilterOptions } from '@material-ui/lab/Autocomplete';
@@ -174,13 +174,13 @@ import { createFilterOptions } from '@material-ui/lab/Autocomplete';
   - `config.ignoreAccents` (*Boolean* [optional]): デフォルトは`true`. 発音記号を削除する
   - `config.ignoreCase` (*Boolean* [optional]): デフォルトは`true`. すべて小文字にする。
   - `config.limit` (*Number* [optional]): デフォルトはnull. 表示される推奨オプションの数を制限する。 例えば、 `config.limit` が `100`の時、頭の`100`個のマッチングオプションのみが表示されます。 バーチャライズせずに、大量の選択肢を扱うのに有効です。
-  - `config.matchFrom` (*'any' | 'start'* [optional]): デフォルトは `'any'`. 
+  - `config.matchFrom` (*'any' | 'start'* [optional]): デフォルトは `'any'`.
   - `config.stringify` (*Func* [optional]): オプションがどのようにstringに変換されるか制御します。入力文字片に対してマッチさせることができます。
   - `config.trim` (*Boolean* [optional]): デフォルトは `false`. 末尾のスペースを削除します。
 
 #### 戻り値
 
-`filterOptions`: 返り値のフィルターメソッドは、`Autocomplete`コンポーネントの`filterOptions`propに直接渡すことができます。hookにも渡すことができます。 
+`filterOptions`: 返り値のフィルターメソッドは、`Autocomplete`コンポーネントの`filterOptions`propに直接渡すことができます。hookにも渡すことができます。
 
 以下のデモでは、選択肢が前方一致する必要があります。
 
@@ -197,7 +197,7 @@ const filterOptions = createFilterOptions({
 
 ### 高度な機能(Advanced)
 
-fuzzy matchingのような高度なメカニズの為には [match-sorter](https://github.com/kentcdodds/match-sorter)を見ることをおすすめします。 例えば：
+fuzzy matchingのような高度なメカニズの為には [match-sorter](https://github.com/kentcdodds/match-sorter)を見ることをおすすめします。 例えば： 例えば：
 
 ```jsx
 import matchSorter from 'match-sorter';
@@ -210,7 +210,7 @@ const filterOptions = (options, { inputValue }) =>
 
 ## Virtualization
 
-10,000のランダム生成された選択肢内で検索します。 [react-window](https://github.com/bvaughn/react-window)でリストをバーチャライズしています。
+10,000のランダム生成された選択肢内で検索します。 10,000のランダム生成された選択肢内で検索します。 [react-window](https://github.com/bvaughn/react-window)でリストをバーチャライズしています。
 
 {{"demo": "pages/components/autocomplete/Virtualize.js"}}
 
@@ -222,10 +222,10 @@ const filterOptions = (options, { inputValue }) =>
 
 デフォルトでは, **autocomplete** 機能(特定の欄に以前入力した内容を保持しておくもの) は `autoComplete="off"` で無効化しています。 
 
-しかし、過去に入力された値を記憶しておくことに加えて、ブラウザは**autofill** を提案してくることがあります。(ログイン情報、住所、支払い情報) autofillを避けたい場合、以下の方法を取れます。
+しかし、過去に入力された値を記憶しておくことに加えて、ブラウザは**autofill** を提案してくることがあります。(ログイン情報、住所、支払い情報) autofillを避けたい場合、以下の方法を取れます。 autofillを避けたい場合、以下の方法を取れます。
 
-- ブラウザが判断できない命名を入力欄に使う。 例: `id="country"`の代わりに、`id="field1"`を使う idを空にした場合、コンポーネントはランダムなidを保管します。
-- Set `autoComplete="new-password"`: jsx 
+- ブラウザが判断できない命名を入力欄に使う。 ブラウザが判断できない命名を入力欄に使う。 例: `id="country"`の代わりに、`id="field1"`を使う idを空にした場合、コンポーネントはランダムなidを保管します。 idを空にした場合、コンポーネントはランダムなidを保管します。
+- Set `autoComplete="new-password"`: jsx jsx 
         jsx
         <TextField
         {...params}
@@ -237,11 +237,11 @@ const filterOptions = (options, { inputValue }) =>
 
 ### iOS VoiceOver
 
-iOS Safariのボイスオーバーは`aria-owns` を十分にサポートしていません。 `disablePortal`を用いて、この問題を回避できます。 
+iOS Safariのボイスオーバーは`aria-owns` を十分にサポートしていません。 `disablePortal`を用いて、この問題を回避できます。 `disablePortal`を用いて、この問題を回避できます。 
 
 ### ListBox コンポーネント
 
-`Listbox コンポーネント` のカスタムプロパティを提供する場合、意図するスクロールコンテナの `role` 属性として `listbox` が設定されていることを確認する必要があります。 これにより、例えばキーボードを使用して移動する場合など、スクロールの正しい動作が保証されます。 これにより、例えばキーボードを使用して移動する場合など、スクロールの正しい動作が保証されます。
+`Listbox コンポーネント` のカスタムプロパティを提供する場合、意図するスクロールコンテナの `role` 属性として `listbox` が設定されていることを確認する必要があります。 これにより、例えばキーボードを使用して移動する場合など、スクロールの正しい動作が保証されます。 これにより、例えばキーボードを使用して移動する場合など、スクロールの正しい動作が保証されます。 これにより、例えばキーボードを使用して移動する場合など、スクロールの正しい動作が保証されます。
 
 ## アクセシビリティ
 
