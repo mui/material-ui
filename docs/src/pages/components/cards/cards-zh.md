@@ -25,7 +25,7 @@ components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedi
 
 ## 复杂的交互情况
 
-在桌面上，卡片内容是可以展开的。
+在桌面上，卡片内容是可以展开的。 （点击向下箭头的按钮来查看食谱）
 
 {{"demo": "pages/components/cards/RecipeReviewCard.js", "bg": true}}
 
