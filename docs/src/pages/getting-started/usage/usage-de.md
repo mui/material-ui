@@ -39,10 +39,7 @@ Die Nutzungserfahrung mit der Material-UI kann mit einer Vielzahl wichtiger Glob
 Um eine korrektes Darstellen und Zoomen durch Berührungen für alle Geräte sicherzustellen, fügen Sie den auch viewport meta tag genannten responsiven Tag zu Ihrem `<head>`-Element. Material-UI is developed mobile-first, a strategy in which we first write code for mobile devices, and then scale up components as necessary using CSS media queries.
 
 ```html
-<meta
-  name="viewport"
-  content="initial-scale=1, width=device-width"
-/>
+<meta name="viewport" content="initial-scale=1, width=device-width" />
 ```
 
 ### CssBaseline
