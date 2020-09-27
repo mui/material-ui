@@ -3,7 +3,7 @@ title: Hinweis React-Komponente
 components: Alert, AlertTitle
 ---
 
-# Alert
+# Hinweis
 
 <p class="description">Ein Hinweis zeigt eine kurze, wichtige Nachricht auf eine Weise, welche die Aufmerksamkeit des Benutzers auf sich zieht ohne die Aufgabe des Benutzers zu unterbrechen.</p>
 
@@ -53,7 +53,7 @@ Zwei weitere Varianten sind verfügbar – umrandet und ausgefüllt:
 
 {{"demo": "pages/components/alert/OutlinedAlerts.js"}}
 
-### Gefüllt
+### Ausgefüllt
 
 {{"demo": "pages/components/alert/FilledAlerts.js"}}
 
