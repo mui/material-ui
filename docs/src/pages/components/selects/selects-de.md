@@ -1,8 +1,7 @@
 ---
 title: Auswahl React-Komponente
 components: Select, NativeSelect
-githubLabel:
-  component: Selects (auswähler)
+githubLabel: 'component: Select'
 ---
 
 # Selects (auswähler)
@@ -63,7 +62,7 @@ Der erste Schritt besteht darin, die `InputBase` Komponente zu formatieren. Ansc
 
 ## Kontrollierte Auswahl
 
-The `Select` component can handle multiple selections. The `Select` component can handle multiple selections.
+The `Select` component can handle multiple selections. Die `TextField` Wrapper-Komponente ist ein vollständiges Formularsteuerelement, das eine Beschriftung, Eingabe und Hilfetext enthält.
 
 Like with the single selection, you can pull out the new value by accessing `event.target.value` in the `onChange` callback. Es ist immer ein Array.
 
