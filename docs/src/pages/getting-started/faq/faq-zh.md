@@ -57,6 +57,10 @@ const theme = createMuiTheme({
     },
   },
 });
+      },
+    },
+  },
+});
 ```
 
 ## 如何禁用全局过渡动画？
@@ -249,6 +253,8 @@ CSS 只在页面第一次加载时生成。 那么，若连续地请求服务器
 ```diff
 -// 创建一个 sheets 实例
 
+-// 创建一个 sheets 实例
+
 -// Create a sheets instance.
 -const sheets = new ServerStyleSheets();
 
@@ -266,6 +272,11 @@ function handleRender(req, res) {
   //…
 
   // 将组件渲染为字符串。
++ const sheets = new ServerStyleSheets();
+
+  //…
+
+  // 将组件渲染为字符串。
   const html = ReactDOMServer.renderToString(
 ```
 
@@ -277,7 +288,7 @@ function handleRender(req, res) {
 
 #### 要运行的操作
 
-类名值依赖于 [类名生成器](/styles/advanced/#class-names) 的概念。 整个页面需要用 **一个类名生成器** 来渲染。 这个生成器需要在服务端和客户端上的行为一致。 就像这样：
+类名值依赖于 [类名生成器](/styles/advanced/#class-names) 的概念。 类名值依赖于 [类名生成器](/styles/advanced/#class-names) 的概念。 这个生成器需要在服务端和客户端上的行为一致。 就像这样：
 
 - 您需要为每个请求提供一个新的类名生成器。 但是您不应该在不同的请求之间共享 `createGenerateClassName()`：
 
@@ -285,16 +296,12 @@ function handleRender(req, res) {
 
   ```diff
   -  // 创建一个新的类名生成器。
+  -  // 创建一个新的类名生成器。
   -const generateClassName = createGenerateClassName();
 
 function handleRender(req, res) {
 
 + // 创建一个新的类名生成器。
-  + const generateClassName = createGenerateClassName();
-
-  //…
-
-  // 将组件渲染为字符串。
 
     // 将组件渲染为字符串。
     const html = ReactDOMServer.renderToString(
