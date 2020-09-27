@@ -1,44 +1,71 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
-import ListItem from '@material-ui/core/ListItem';
-import Button from '@material-ui/core/Button';
+import { makeStyles, fade } from '@material-ui/core/styles';
 import Collapse from '@material-ui/core/Collapse';
+import { createSvgIcon } from '@material-ui/core/utils';
 import Link from 'docs/src/modules/components/Link';
 
 const useStyles = makeStyles((theme) => ({
-  item: {
+  li: {
     display: 'block',
     paddingTop: 0,
     paddingBottom: 0,
   },
-  itemLeaf: {
+  liLeaf: {
     display: 'flex',
-    paddingTop: 0,
-    paddingBottom: 0,
+    padding: '0 12px',
   },
   button: {
-    letterSpacing: 0,
-    justifyContent: 'flex-start',
-    textTransform: 'none',
+    ...theme.typography.body2,
+    cursor: 'pointer',
+    padding: '8px 0 6px',
+    display: 'flex',
+    color: theme.palette.text.primary,
+    fontWeight: theme.typography.fontWeightMedium,
+    WebkitTapHighlightColor: 'transparent',
+    backgroundColor: 'transparent', // Reset default value
+    outline: 0,
+    border: 0,
+    margin: 0, // Remove the margin in Safari
+    borderRadius: 0,
+    textAlign: 'left',
+    '-moz-appearance': 'none', // Reset
+    '-webkit-appearance': 'none', // Reset
     width: '100%',
-  },
-  buttonLeaf: {
-    letterSpacing: 0,
-    justifyContent: 'flex-start',
-    textTransform: 'none',
-    width: '100%',
-    fontWeight: theme.typography.fontWeightRegular,
-    '&.depth-0': {
-      fontWeight: theme.typography.fontWeightMedium,
+    '& svg': {
+      fontSize: 18,
+      marginLeft: -6,
+      color: theme.palette.text.secondary,
+    },
+    '&:hover svg': {
+      color: theme.palette.text.primary,
     },
   },
-  active: {
-    color: theme.palette.primary.main,
+  link: {
+    ...theme.typography.body2,
+    borderRadius: theme.shape.borderRadius,
+    width: '100%',
+    padding: '6px 0',
+    textDecoration: 'none',
+    color: theme.palette.text.secondary,
     fontWeight: theme.typography.fontWeightMedium,
+    transition: theme.transitions.create(['color', 'background-color'], {
+      duration: theme.transitions.duration.shortest,
+    }),
+    '&:hover': {
+      color: theme.palette.text.primary,
+      backgroundColor: fade(theme.palette.text.primary, theme.palette.action.hoverOpacity),
+    },
+    '&$active': {
+      color: theme.palette.primary.main,
+      backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+    },
   },
+  active: {},
 }));
+
+const ArrowRight = createSvgIcon(<path d="M10 17l5-5-5-5v10z" />, 'ArrowRight');
 
 export default function AppDrawerNavItem(props) {
   const {
@@ -65,42 +92,39 @@ export default function AppDrawerNavItem(props) {
 
   if (href) {
     return (
-      <ListItem className={classes.itemLeaf} disableGutters {...other}>
-        <Button
-          color="inherit"
-          component={Link}
+      <li className={classes.liLeaf} {...other}>
+        <Link
           naked
           activeClassName={`drawer-active ${classes.active}`}
           href={href}
-          className={clsx(classes.buttonLeaf, `depth-${depth}`)}
-          disableTouchRipple
+          className={clsx(classes.link, `depth-${depth}`)}
           onClick={onClick}
           style={style}
           {...linkProps}
         >
           {title}
-        </Button>
-      </ListItem>
+        </Link>
+      </li>
     );
   }
 
   return (
-    <ListItem className={classes.item} disableGutters {...other}>
-      <Button
-        color="inherit"
-        classes={{
-          root: classes.button,
-          label: topLevel ? 'algolia-lvl0' : '',
-        }}
+    <li className={classes.li} {...other}>
+      <button
+        type="button"
+        className={clsx(classes.button, {
+          'algolia-lvl0': topLevel,
+        })}
         onClick={handleClick}
         style={style}
       >
+        <ArrowRight />
         {title}
-      </Button>
+      </button>
       <Collapse in={open} timeout="auto" unmountOnExit>
         {children}
       </Collapse>
-    </ListItem>
+    </li>
   );
 }
 
