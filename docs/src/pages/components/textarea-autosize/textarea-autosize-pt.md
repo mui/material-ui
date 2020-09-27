@@ -1,8 +1,7 @@
 ---
 title: Componente React de texto autoajustável
 components: TextareaAutosize
-githubLabel:
-  component: TextareaAutosize
+githubLabel: 'component: TextareaAutosize'
 ---
 
 # Texto autoajustável
