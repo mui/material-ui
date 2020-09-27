@@ -205,7 +205,7 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 
 #### 2. 转换您的所有模块导入方式
 
-Finally, you can convert your existing codebase to this option with this [top-level-imports](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#top-level-imports) codemod. It will perform the following diffs: 它将执行以下的差异：
+Finally, you can convert your existing codebase to this option with this [top-level-imports](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#top-level-imports) codemod. It will perform the following diffs: 它将执行以下的差异： 它将执行以下的差异：
 
 ```diff
 -import Button from '@material-ui/core/Button';
