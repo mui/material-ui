@@ -1,8 +1,7 @@
 ---
 title: 检测 React 组件外部的单击事件
 components: ClickAwayListener
-githubLabel:
-  component: ClickAwayListener
+githubLabel: 'component: ClickAwayListener'
 ---
 
 # Click away listener 他处点击监听器
