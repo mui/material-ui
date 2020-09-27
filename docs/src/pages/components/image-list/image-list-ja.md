@@ -1,6 +1,6 @@
 ---
 title: Grid List React component
-components: ImageList, ImageListItem, ImageListItemBar, ListSubheader, IconButton
+components: ImageList, ImageListItem, ImageListItemBar
 ---
 
 # Grid List
