@@ -1,8 +1,7 @@
 ---
 title: Сёдзи, компонент React
 components: Paper
-githubLabel:
-  component: Paper
+githubLabel: 'component: Paper'
 ---
 
 # Paper
