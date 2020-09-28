@@ -46,7 +46,7 @@ export const styles = (theme) => ({
   },
 });
 
-const ToggleButtonGroup = React.forwardRef(function ToggleButton(props, ref) {
+const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup(props, ref) {
   const {
     children,
     classes,
