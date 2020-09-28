@@ -3,16 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "^5.0.0-alpha.11",
-    "@material-ui/lab": "^5.0.0-alpha.11",
-    "@material-ui/styled-engine-sc": "^5.0.0-alpha.11",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "3.4.3",
-    "styled-components": "^5.2.0"
+    "@material-ui/core": "next",
+    "@material-ui/lab": "next",
+    "@material-ui/styled-engine-sc": "next",
+    "@testing-library/jest-dom": "latest",
+    "@testing-library/react": "latest",
+    "@testing-library/user-event": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-scripts": "latest",
+    "styled-components": "latest"
   },
   "scripts": {
     "start": "react-app-rewired start",
