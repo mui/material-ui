@@ -78,7 +78,7 @@ yarn add @material-ui/core@next
 
 -const theme = createMuitheme({
 +const theme = createMuitheme(adaptV4Theme({
-  // v4 theme
+  // v4 主题
 -});
 +}));
 ```
@@ -196,7 +196,7 @@ const theme = createMuitheme({
 
 ### Alert 警告提示
 
-- Move the component from the lab to the core. The component is now stable.
+- 该组件已从实验室包移动到核心包。 现在这个组件处于稳定版本。
 
   ```diff
   -import Alert from '@material-ui/lab/Alert';
@@ -519,7 +519,7 @@ const theme = createMuitheme({
 
 ### Rating
 
-- Move the component from the lab to the core. The component is now stable.
+- 该组件已从实验室包移动到核心包。 现在这个组件处于稳定版本。
 
   ```diff
   -import Rating from '@material-ui/lab/Rating';
@@ -559,7 +559,7 @@ const theme = createMuitheme({
 
 ### Skeleton
 
-- Move the component from the lab to the core. The component is now stable.
+- 该组件已从实验室包移动到核心包。 现在这个组件处于稳定版本。
 
   ```diff
   -import Skeleton from '@material-ui/lab/Skeleton';
