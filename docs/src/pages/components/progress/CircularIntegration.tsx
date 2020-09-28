@@ -62,7 +62,7 @@ export default function CircularIntegration() {
     if (!loading) {
       setSuccess(false);
       setLoading(true);
-      timer.current = setTimeout(() => {
+      timer.current = window.setTimeout(() => {
         setSuccess(true);
         setLoading(false);
       }, 2000);

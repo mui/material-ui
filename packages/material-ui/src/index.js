@@ -246,6 +246,9 @@ export * from './Radio';
 export { default as RadioGroup } from './RadioGroup';
 export * from './RadioGroup';
 
+export { default as Rating } from './Rating';
+export * from './Rating';
+
 export { default as ScopedCssBaseline } from './ScopedCssBaseline';
 export * from './ScopedCssBaseline';
 

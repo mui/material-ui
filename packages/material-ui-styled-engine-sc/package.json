@@ -1,16 +1,15 @@
 {
   "name": "@material-ui/styled-engine-sc",
-  "version": "5.0.0-alpha.8",
+  "version": "5.0.0-alpha.11",
   "private": false,
   "author": "Material-UI Team",
-  "description": "Material-UI Styled - Wrapper package for styled utility.",
+  "description": "Material-UI Styled - Wrapper package for styled-components.",
   "main": "./src/index.js",
   "keywords": [
     "react",
     "react-component",
-    "material design",
     "material-ui",
-    "styled"
+    "styled-components"
   ],
   "repository": {
     "type": "git",

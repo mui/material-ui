@@ -454,7 +454,7 @@ function DemoToolbar(props) {
               open={showSourceHint && atLeastSmallViewport ? true : undefined}
               PopperProps={{ disablePortal: true }}
               title={showCodeLabel}
-              placement="top"
+              placement="bottom"
             >
               <IconButton
                 aria-controls={openDemoSource ? demoSourceId : null}
@@ -472,7 +472,7 @@ function DemoToolbar(props) {
               <Tooltip
                 classes={{ popper: classes.tooltip }}
                 title={t('codesandbox')}
-                placement="top"
+                placement="bottom"
               >
                 <IconButton
                   data-ga-event-category="demo"
@@ -485,7 +485,11 @@ function DemoToolbar(props) {
                 </IconButton>
               </Tooltip>
             )}
-            <Tooltip classes={{ popper: classes.tooltip }} title={t('copySource')} placement="top">
+            <Tooltip
+              classes={{ popper: classes.tooltip }}
+              title={t('copySource')}
+              placement="bottom"
+            >
               <IconButton
                 data-ga-event-category="demo"
                 data-ga-event-label={demoOptions.demo}
@@ -496,7 +500,11 @@ function DemoToolbar(props) {
                 <FileCopyIcon fontSize="small" />
               </IconButton>
             </Tooltip>
-            <Tooltip classes={{ popper: classes.tooltip }} title={t('resetFocus')} placement="top">
+            <Tooltip
+              classes={{ popper: classes.tooltip }}
+              title={t('resetFocus')}
+              placement="bottom"
+            >
               <IconButton
                 data-ga-event-category="demo"
                 data-ga-event-label={demoOptions.demo}
@@ -507,7 +515,11 @@ function DemoToolbar(props) {
                 <ResetFocusIcon fontSize="small" />
               </IconButton>
             </Tooltip>
-            <Tooltip classes={{ popper: classes.tooltip }} title={t('resetDemo')} placement="top">
+            <Tooltip
+              classes={{ popper: classes.tooltip }}
+              title={t('resetDemo')}
+              placement="bottom"
+            >
               <IconButton
                 aria-controls={demoId}
                 data-ga-event-category="demo"

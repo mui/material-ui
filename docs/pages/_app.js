@@ -281,7 +281,7 @@ function findActivePage(currentPages, pathname) {
 }
 
 // Cache for the ltr version of the styles
-const cacheLtr = createCache();
+export const cacheLtr = createCache();
 cacheLtr.compat = true;
 
 // Cache for the rtl version of the styles

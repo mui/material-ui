@@ -27,10 +27,6 @@ export interface SliderTypeMap<P = {}, D extends React.ElementType = 'span'> {
      */
     'aria-valuetext'?: string;
     /**
-     * Override or extend the styles applied to the component.
-     */
-    classes?: {};
-    /**
      * The color of the component. It supports those theme colors that make sense for this component.
      * @default 'primary'
      */
@@ -38,6 +34,7 @@ export interface SliderTypeMap<P = {}, D extends React.ElementType = 'span'> {
     /**
      * The components used for each slot inside the Slider.
      * Either a string to use a HTML element or a component.
+     * @default {}
      */
     components?: {
       Root?: React.ElementType;
@@ -50,6 +47,7 @@ export interface SliderTypeMap<P = {}, D extends React.ElementType = 'span'> {
     };
     /**
      * The props used for each slot inside the Slider.
+     * @default {}
      */
     componentsProps?: {
       root?: {
@@ -101,6 +99,7 @@ export interface SliderTypeMap<P = {}, D extends React.ElementType = 'span'> {
     getAriaValueText?: (value: number, index: number) => string;
     /**
      * Indicates whether the theme context has rtl direction. It is set automatically.
+     * @default false
      */
     isRtl?: boolean;
     /**
@@ -198,10 +197,14 @@ export interface SliderTypeMap<P = {}, D extends React.ElementType = 'span'> {
 
 /**
  *
+ * Demos:
+ *
+ * - [Slider Styled](https://material-ui.com/components/slider-styled/)
+ *
  * API:
  *
  * - [SliderUnstyled API](https://material-ui.com/api/slider-unstyled/)
  */
-declare const SliderBase: OverridableComponent<SliderTypeMap>;
+declare const SliderUnstyled: OverridableComponent<SliderTypeMap>;
 
-export default SliderBase;
+export default SliderUnstyled;

@@ -41,7 +41,7 @@ Um eine korrektes Darstellen und Zoomen durch Berührungen für alle Geräte sic
 ```html
 <meta
   name="viewport"
-  content="minimum-scale=1, initial-scale=1, width=device-width"
+  content="initial-scale=1, width=device-width"
 />
 ```
 

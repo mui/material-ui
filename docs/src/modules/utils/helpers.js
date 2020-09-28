@@ -44,7 +44,7 @@ function pageToTitleI18n(page, t) {
  * set of packages that ship their own typings instead of using @types/ namespace
  * Array because Set([iterable]) is not supported in IE11
  */
-const packagesWithBundledTypes = ['date-fns'];
+const packagesWithBundledTypes = ['date-fns', '@emotion/core', '@emotion/styled'];
 
 /**
  * WARNING: Always uses `latest` typings.
@@ -77,6 +77,8 @@ function includePeerDependencies(deps, versions) {
   Object.assign(deps, {
     'react-dom': versions['react-dom'],
     react: versions.react,
+    '@emotion/core': versions['@emotion/core'],
+    '@emotion/styled': versions['@emotion/styled'],
   });
 
   if (
@@ -140,6 +142,8 @@ function getDependencies(raw, options = {}) {
     '@material-ui/system': getMuiPackageVersion('system', muiCommitRef),
     '@material-ui/utils': getMuiPackageVersion('utils', muiCommitRef),
     '@material-ui/pickers': 'next',
+    '@emotion/core': 'latest',
+    '@emotion/styled': 'latest',
   };
 
   const re = /^import\s'([^']+)'|import\s[\s\S]*?\sfrom\s+'([^']+)/gm;

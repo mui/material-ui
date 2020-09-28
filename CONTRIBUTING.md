@@ -50,7 +50,7 @@ git checkout next
 git pull upstream next
 ```
 
-4. Install the dependencies:
+4. Install the dependencies with yarn (npm isn't supported):
 
 ```sh
 yarn install
