@@ -1,8 +1,7 @@
 ---
 title: Tree View Reactコンポーネント
 components: TreeView、TreeItem
-githubLabel:
-  component: カスタマイズされたツリービュー
+githubLabel: 'component: TreeView'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#TreeView'
 packages: '@material-ui/lab'
 ---

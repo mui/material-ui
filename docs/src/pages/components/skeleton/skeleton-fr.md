@@ -1,16 +1,14 @@
 ---
 title: Skeleton React component
 components: Skeleton (Squelette)
-githubLabel:
-  component: Skeleton (Squelette)
-packageName: '@material-ui/lab'
+githubLabel: 'component: Skeleton'
 ---
 
 # Skeleton (Squelette)
 
 <p class="description">Display a placeholder preview of your content before the data gets loaded to reduce load-time frustration.</p>
 
-The data for your components might not be immediately available. You can increase the perceived performance for users by using skeletons. It feels like things are happening immediately, then the information is incrementally displayed on the screen (Cf. [Avoid The Spinner](https://www.lukew.com/ff/entry.asp?1797)).
+The data for your components might not be immediately available. You can improve the perceived responsiveness of the page by using skeletons. It feels like things are happening immediately, then the information is incrementally displayed on the screen (Cf. [Avoid The Spinner](https://www.lukew.com/ff/entry.asp?1797)).
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -72,6 +70,14 @@ loading
 
 ## Accessibilité
 
-Skeleton screens provide an alternative to the traditional spinner methods. Rather than showing an abstract widget, skeleton screens create anticipation of what is to come and reduce cognitive load.
+Skeleton screens provide an alternative to the traditional spinner method. Rather than showing an abstract widget, skeleton screens create anticipation of what is to come and reduce cognitive load.
 
 The background color of the skeleton uses the least amount of luminance to be visible in good conditions (good ambient light, good screen, no visual impairments).
+
+### ARIA
+
+None.
+
+### Clavier
+
+The skeleton is not focusable.

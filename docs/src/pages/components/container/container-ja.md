@@ -1,8 +1,7 @@
 ---
 title: Container Reactコンポーネント
 components: Container
-githubLabel:
-  component: Container
+githubLabel: 'component: Container'
 ---
 
 # Container

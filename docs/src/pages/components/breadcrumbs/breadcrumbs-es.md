@@ -1,8 +1,7 @@
 ---
 title: Componente React Migas de pan
 components: Breadcrumbs, Link, Typography
-githubLabel:
-  component: Migas de pan
+githubLabel: 'component: Breadcrumbs'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#breadcrumb'
 ---
 

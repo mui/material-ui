@@ -1,11 +1,10 @@
 ---
 title: React 弹出框组件
 components: Grow, Popover
-githubLabel:
-  component: Popover
+githubLabel: 'component: Popover'
 ---
 
-# Popover
+# Popover 弹出框
 
 <p class="description">使用弹出框组件，您可在另一个元素之上显示一些内容。</p>
 

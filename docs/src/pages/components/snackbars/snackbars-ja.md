@@ -1,8 +1,7 @@
 ---
 title: Snackbar React component
 components: Snackbar, SnackbarContent
-githubLabel:
-  component: Snackbar
+githubLabel: 'component: Snackbar'
 materialDesign: https://material.io/components/snackbars
 waiAria: 'https://www.w3.org/TR/wai-aria-1.1/#alert'
 ---
@@ -29,7 +28,7 @@ Google Keepのスナックバーの動作を再現することを目的とした
 
 ## カスタマイズされたスナックバー
 
-コンポーネントのカスタマイズの例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+コンポーネントのカスタマイズの例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/snackbars/CustomizedSnackbars.js"}}
 

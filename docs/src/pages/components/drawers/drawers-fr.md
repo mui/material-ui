@@ -1,8 +1,7 @@
 ---
 title: Composant React Tiroir
 components: Drawer, SwipeableDrawer
-githubLabel:
-  component: Drawer (Tiroir)
+githubLabel: 'component: Drawer'
 materialDesign: https://material.io/components/navigation-drawer
 ---
 

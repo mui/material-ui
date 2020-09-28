@@ -39,10 +39,7 @@ La experiencia de uso de Material-UI puede mejorar con algunas globales importan
 Para asegurar un renderizado adecuado y zoom táctil en todos los dispositivos, añade la meta-etiqueta para vista responsiva en el elemento `<head>`. Material-UI es desarrollado bajo el esquema "móviles primero", una estrategia en la que primero escribimos código para dispositivos móviles, y después escalamos los componentes según sea necesario utilizando CSS Media Queries.
 
 ```html
-<meta
-  name="viewport"
-  content="initial-scale=1, width=device-width"
-/>
+<meta name="viewport" content="initial-scale=1, width=device-width" />
 ```
 
 ### CssBaseline

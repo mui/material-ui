@@ -2,7 +2,7 @@
 
 <p class="description">Material-UIコンポーネントを使用していなくても使う事が出来ます。</p>
 
-Material-UI's styles are powered by the [@material-ui/styles](https://www.npmjs.com/package/@material-ui/styles) package, (built with JSS). Material-UIは、動的なUIを構築するための強固な基盤を提供することを目指しています。 It doesn't have a default theme, and can be used to style React applications that are not using Material-UI components.
+Material-UI's styles are powered by the [@material-ui/styles](https://www.npmjs.com/package/@material-ui/styles) package, (built with JSS). Material-UI's styles are powered by the [@material-ui/styles](https://www.npmjs.com/package/@material-ui/styles) package, (built with JSS). It doesn't have a default theme, and can be used to style React applications that are not using Material-UI components.
 
 ## Material-UIのスタイリングソリューションを使用する理由
 

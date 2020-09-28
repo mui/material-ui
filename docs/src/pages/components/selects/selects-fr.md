@@ -1,8 +1,7 @@
 ---
 title: Select React component
 components: Select, NativeSelect
-githubLabel:
-  component: Liste à choix simple
+githubLabel: 'component: Select'
 ---
 
 # Liste à choix simple
@@ -55,7 +54,7 @@ Le composant d'encapsulation `TextField` est un contrôle de formulaire complet 
 
 Here are some examples of customizing the component. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/components/).
 
-The first step is to style the `InputBase` component. Once it's styled, you can either use it directly as a text field or provide it to the select `input` property to have a `select` field.
+The first step is to style the `InputBase` component. Le composant d'encapsulation `TextField` est un contrôle de formulaire complet comprenant une étiquette, une entrée et un texte d'aide.
 
 {{"demo": "pages/components/selects/CustomizedSelects.js"}}
 

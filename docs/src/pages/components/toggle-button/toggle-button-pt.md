@@ -1,8 +1,7 @@
 ---
 title: Componente React para Botões de Alternância
 components: ToggleButton, ToggleButtonGroup
-githubLabel:
-  component: ToggleButton
+githubLabel: 'component: ToggleButton'
 materialDesign: 'https://material.io/components/buttons#toggle-button'
 packageName: '@material-ui/lab'
 ---

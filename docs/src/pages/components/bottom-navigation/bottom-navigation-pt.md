@@ -1,8 +1,7 @@
 ---
 title: Componente React para Navegação inferior
 components: BottomNavigation, BottomNavigationAction
-githubLabel:
-  component: BottomNavigation
+githubLabel: 'component: BottomNavigation'
 materialDesign: https://material.io/components/bottom-navigation
 ---
 

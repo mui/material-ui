@@ -1,13 +1,12 @@
 ---
 title: React 工具提示组件
 components: Tooltip
-githubLabel:
-  component: Tooltip
+githubLabel: 'component: Tooltip'
 materialDesign: https://material.io/components/tooltips
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tooltip'
 ---
 
-# Tooltip
+# Tooltip 工具提示
 
 <p class="description">当用户鼠标悬停，聚焦或者轻触一个元素时，工具提示组件会显示一段有意义的文本。</p>
 
@@ -96,6 +95,11 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
     <button
       disabled={disabled}
       style={disabled ? { pointerEvents: 'none' } : {}}
+    >
+      {'A disabled button'}
+    </button>
+  </span>
+</Tooltip> { pointerEvents: 'none' } : {}}
     >
       {'A disabled button'}
     </button>

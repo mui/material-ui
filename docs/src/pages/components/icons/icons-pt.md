@@ -1,8 +1,7 @@
 ---
 title: Componente React para Ícones
 components: Icon, SvgIcon
-githubLabel:
-  components: SvgIcon
+githubLabel: 'components: SvgIcon'
 materialDesign: https://material.io/design/iconography/system-icons.html
 ---
 
@@ -177,7 +176,7 @@ O componente `Icon` exibirá um ícone de qualquer fonte de ícone que suporte l
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 ```
 
-O componente `Icon` definirá automaticamente o nome da classe para a fonte Material icon. `Icon` definirá o nome correto da classe para a fonte do ícone Material.
+O componente `Icon` definirá automaticamente o nome da classe para a fonte Material icon. O componente `Icon` definirá automaticamente o nome da classe para a fonte Material icon.
 
 Para usar um ícone, simplesmente coloque o nome do ícone (font ligature) com o componente `Icon`, por exemplo:
 

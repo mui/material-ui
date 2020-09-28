@@ -1,9 +1,7 @@
 ---
 title: React 警告提示组件
 components: Alert, AlertTitle
-githubLabel:
-  component: Alert 警告提示
-packageName: '@material-ui/lab'
+githubLabel: 'component: Alert'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
 ---
 
@@ -47,7 +45,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
 
 通过使用 `iconMapping` 属性，您可以改变不同程度的默认图标映射。 使用 [自定义主题](/customization/globals/#default-props)，您可以进行全局的设置。
 
-把图标属性设置为 false 将会把图标都移除了。
+把图标属性设置为 `false` 将会移除所有图标。
 
 {{"demo": "pages/components/alert/IconAlerts.js"}}
 

@@ -1,8 +1,7 @@
 ---
 title: React 选项卡组件
 components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
-githubLabel:
-  component: Tabs 选项卡
+githubLabel: 'component: Tabs'
 materialDesign: https://material.io/components/tabs
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tabpanel'
 ---
@@ -59,7 +58,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tabpanel'
 
 ### 强制滚动按钮
 
-无论视图的宽度如何，都将显示左右滚动按钮。
+通过使用 `scrollButtons={true}` `allowScrollButtonsMobile` 属性，无论当前视口宽度如何，都可以显示左右的滚动按钮（保留空间）
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonForce.js", "bg": true}}
 
@@ -75,7 +74,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tabpanel'
 
 ### 防止滚动按钮
 
-永远不会显示左右滚动按钮。 所有的滚动比如通过用户代理的滚动机制来发起（例如，左右滑动，移动鼠标滑轮等等）。
+通过使用 `scrollButtons={false}` 属性，那么将永远隐藏左右的滚动按钮。 所有的滚动比如通过用户代理的滚动机制来发起（例如，左右滑动，移动鼠标滑轮等等）。
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonPrevent.js", "bg": true}}
 

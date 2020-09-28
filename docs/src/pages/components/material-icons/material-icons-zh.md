@@ -3,8 +3,7 @@ title: Material 图标
 components: Icon, SvgIcon
 materialDesign: https://material.io/design/iconography/system-icons.html
 packageName: '@material-ui/icons'
-githubLabel:
-  package: icons 图标
+githubLabel: 'icons 图标'
 ---
 
 # Material 图标

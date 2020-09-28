@@ -1,8 +1,7 @@
 ---
 title: Componente React para Botões de ação flutuante
 components: Fab
-githubLabel:
-  component: Fab
+githubLabel: 'component: Fab'
 materialDesign: https://material.io/components/buttons-floating-action-button
 ---
 
@@ -12,7 +11,7 @@ materialDesign: https://material.io/components/buttons-floating-action-button
 
 Um [botão de ação flutuante](https://material.io/design/components/buttons-floating-action-button.html) aparece na frente de todo conteudo da tela, tipicamente em uma forma circular com um ícone em seu centro. BAFs podem ser de dois tipos: regular e estendido.
 
-Use um BAF apenas se for a maneira mais adequada para apresentar a ação principal de uma tela. Only one component is recommended per screen to represent the most common action.
+Use um BAF apenas se for a maneira mais adequada para apresentar a ação principal de uma tela. Use um BAF apenas se for a maneira mais adequada para apresentar a ação principal de uma tela.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 

@@ -7,7 +7,7 @@ Material-UI utiliza [un factor recomendado de escalado de 8px](https://material.
 ```js
 const theme = createMuiTheme();
 
-theme.spacing(2) // = 8 * 2
+theme.spacing(2); // `${8 * 2}px` = '16px'
 ```
 
 ## Espacio personalizado
@@ -21,7 +21,7 @@ const theme = createMuiTheme({
   spacing: 4,
 });
 
-theme.spacing(2) // = 4 * 2
+theme.spacing(2); // `${4 * 2}px` = '8px'
 ```
 
 - una función
@@ -41,7 +41,7 @@ const theme = createMuiTheme({
   spacing: [0, 4, 8, 16, 32, 64],
 });
 
-theme.spacing(2); // = 8
+theme.spacing(2); // = '8px'
 ```
 
 ## Entidad múltiple

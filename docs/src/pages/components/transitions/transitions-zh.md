@@ -1,8 +1,7 @@
 ---
 title: React 过渡动画组件
 components: Collapse, Fade, Grow, Slide, Zoom
-githubLabel:
-  component: 过渡效果
+githubLabel: 'component: Transition'
 ---
 
 # 过渡动画

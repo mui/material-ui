@@ -52,6 +52,7 @@ export default Box;
 ```jsx
 <Box p="1rem" color="grey">Give me some space!</Box>
 </Box>
+</Box>
 ```
 
 您可以用任何有效的 CSS 值来装饰这个组件。
@@ -313,7 +314,7 @@ const palette = compose(textColor, bgcolor);
 
 ## CSS 属性
 
-如果您想要自定义 CSS 的值，您可以使用 `css()` 助手。 如果你想要自定义CSS值，你可以使用`css()`。
+如果您想要自定义 CSS 的值，您可以使用 `css()` 助手。 如果您想要自定义 CSS 的值，您可以使用 `css()` 助手。
 
 {{"demo": "pages/system/basics/CssProp.js", "defaultCodeOpen": true}}
 

@@ -1,8 +1,7 @@
 ---
 title: Tooltip React-Komponente
 components: Tooltip
-githubLabel:
-  component: Tooltip
+githubLabel: 'component: Tooltip'
 materialDesign: https://material.io/components/tooltips
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tooltip'
 ---
@@ -94,6 +93,11 @@ Standardmäßig lösen deaktivierte Elemente wie `<button>` keine Benutzerintera
 <Tooltip title="You don't have permission to do this">
   <span>
     <button disabled={disabled} style={disabled ? { pointerEvents: "none" } : {}}>
+      {'A disabled button'}
+    </button>
+  </span>
+</Tooltip> { pointerEvents: 'none' } : {}}
+    >
       {'A disabled button'}
     </button>
   </span>

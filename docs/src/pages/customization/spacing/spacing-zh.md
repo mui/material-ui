@@ -7,7 +7,7 @@ Material-UI 默认使用的是 [设计指南上建议的 8px 缩放系数](https
 ```js
 const theme = createMuiTheme();
 
-theme.spacing(2) // = 8 * 2
+theme.spacing(2); // `${8 * 2}px` = '16px'
 ```
 
 ## 自定义间距
@@ -21,7 +21,7 @@ const theme = createMuiTheme({
   spacing: 4,
 });
 
-theme.spacing(2) // = 4 * 2
+theme.spacing(2); // `${4 * 2}px` = '8px'
 ```
 
 - 一个函数
@@ -41,7 +41,7 @@ const theme = createMuiTheme({
   spacing: [0, 4, 8, 16, 32, 64],
 });
 
-theme.spacing(2); // = 8
+theme.spacing(2); // = '8px'
 ```
 
 ## 多个参数

@@ -1,8 +1,7 @@
 ---
 title: Componente React de Visualização em Árvore
 components: TreeView, TreeItem
-githubLabel:
-  component: A visualização em árvore também oferece uma API controlada.
+githubLabel: 'component: TreeView'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#TreeView'
 packages: '@material-ui/lab'
 ---

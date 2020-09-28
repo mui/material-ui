@@ -1,11 +1,10 @@
 ---
 title: React 容器组件
 components: Container
-githubLabel:
-  component: Container
+githubLabel: 'component: Container'
 ---
 
-# Container
+# Container 容器
 
 <p class="description">通过容器组件，您页面的内容会呈现水平居中。 这是最基本的布局元素。</p>
 

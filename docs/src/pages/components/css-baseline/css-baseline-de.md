@@ -1,7 +1,6 @@
 ---
 components: CssBaseline, ScopedCssBaseline
-githubLabel:
-  component: CssBaseline
+githubLabel: 'component: CssBaseline'
 ---
 
 # CSS-Baseline

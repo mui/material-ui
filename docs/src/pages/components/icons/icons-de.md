@@ -1,8 +1,7 @@
 ---
 title: React Icon Component
 components: Icon, SvgIcon
-githubLabel:
-  components: SvgIcon
+githubLabel: 'components: SvgIcon'
 materialDesign: https://material.io/design/iconography/system-icons.html
 ---
 
@@ -261,6 +260,14 @@ If your icons are purely decorative, you’re already done! The `aria-hidden=tru
 Wenn Ihre Symbole eine semantische Bedeutung haben, müssen Sie eine Textalternative bereitstellen, die nur für assistive Technologien sichtbar ist.
 
 ```jsx
+import Icon from '@material-ui/core/Icon';
+import Typography from '@material-ui/core/Typography';
+
+// ...
+
+<Icon>add_circle</Icon>
+<Typography variant="srOnly">Erstellen Sie einen Benutzer</Typography>
+
 import Icon from '@material-ui/core/Icon';
 import Typography from '@material-ui/core/Typography';
 

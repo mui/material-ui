@@ -1,16 +1,14 @@
 ---
 title: Skeleton React component
 components: Skeleton
-githubLabel:
-  component: Skeleton
-packageName: '@material-ui/lab'
+githubLabel: 'component: Skeleton'
 ---
 
 # Skeleton
 
 <p class="description">Display a placeholder preview of your content before the data gets loaded to reduce load-time frustration.</p>
 
-The data for your components might not be immediately available. You can increase the perceived performance for users by using skeletons. It feels like things are happening immediately, then the information is incrementally displayed on the screen (Cf. [Avoid The Spinner](https://www.lukew.com/ff/entry.asp?1797)).
+The data for your components might not be immediately available. You can improve the perceived responsiveness of the page by using skeletons. It feels like things are happening immediately, then the information is incrementally displayed on the screen (Cf. [Avoid The Spinner](https://www.lukew.com/ff/entry.asp?1797)).
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -20,6 +18,7 @@ The component is designed to be used **directly in your components**. Zum Beispi
 
 ```jsx
 {
+  item ? {
   item ? {item ? (
   <img style={{ width: 210, height: 118 }} alt={item.title} src={item.src} />
 ) : (
@@ -56,7 +55,7 @@ It works well when it comes to typography as its height is set using `em` units.
 ```jsx
 <Typography variant="h1">
   {loading ? <Skeleton /> : 'h1'}
-</Typography> <Skeleton /> : 'h1'}</Typography>
+</Typography> <Skeleton /> : 'h1'}</Typography> <Skeleton /> : 'h1'}</Typography>
 ```
 
 {{"demo": "pages/components/skeleton/SkeletonTypography.js", "defaultCodeOpen": false}}
@@ -77,6 +76,14 @@ loading ? (
 
 ## Barrierefreiheit
 
-Skeleton screens provide an alternative to the traditional spinner methods. Rather than showing an abstract widget, skeleton screens create anticipation of what is to come and reduce cognitive load.
+Skeleton screens provide an alternative to the traditional spinner method. Rather than showing an abstract widget, skeleton screens create anticipation of what is to come and reduce cognitive load.
 
 The background color of the skeleton uses the least amount of luminance to be visible in good conditions (good ambient light, good screen, no visual impairments).
+
+### ARIA
+
+None.
+
+### Keyboard
+
+The skeleton is not focusable.

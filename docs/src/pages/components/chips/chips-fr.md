@@ -1,8 +1,7 @@
 ---
 title: Composant React Puce
 components: Chip
-githubLabel:
-  component: Chip
+githubLabel: 'component: Chip'
 materialDesign: https://material.io/components/chips
 ---
 
