@@ -225,7 +225,6 @@ function AppFrame(props) {
               color="inherit"
               aria-owns={languageMenu ? 'language-menu' : undefined}
               aria-haspopup="true"
-              aria-label={t('changeLanguage')}
               onClick={handleLanguageIconClick}
               data-ga-event-category="header"
               data-ga-event-action="language"
@@ -284,7 +283,6 @@ function AppFrame(props) {
           <Tooltip title={t('editWebsiteColors')} enterDelay={300}>
             <IconButton
               color="inherit"
-              aria-label={t('editWebsiteColors')}
               component={Link}
               naked
               href="/customization/color/#playground"
@@ -299,7 +297,6 @@ function AppFrame(props) {
               component="a"
               color="inherit"
               href="https://github.com/mui-org/material-ui"
-              aria-label={t('github')}
               data-ga-event-category="header"
               data-ga-event-action="github"
             >
@@ -310,7 +307,6 @@ function AppFrame(props) {
             <IconButton
               color="inherit"
               onClick={handleTogglePaletteType}
-              aria-label={t('toggleTheme')}
               data-ga-event-category="header"
               data-ga-event-action="dark"
             >
@@ -322,7 +318,6 @@ function AppFrame(props) {
               edge="end"
               color="inherit"
               onClick={handleToggleDirection}
-              aria-label={t('toggleRTL')}
               data-ga-event-category="header"
               data-ga-event-action="rtl"
             >

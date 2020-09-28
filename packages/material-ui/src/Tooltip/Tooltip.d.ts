@@ -41,6 +41,12 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
     tooltipPlacementBottom?: string;
   };
   /**
+   * Set to `true` if the `title` acts as an accessible description.
+   * By default the `title` acts as an accessible label for the child.
+   * @default false
+   */
+  describeChild?: boolean;
+  /**
    * Do not respond to focus events.
    * @default false
    */
