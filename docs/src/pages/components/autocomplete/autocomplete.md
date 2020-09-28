@@ -1,5 +1,5 @@
 ---
-title: Autocomplete React component
+title: React Autocomplete component
 components: TextField, Popper, Autocomplete
 ---
 
