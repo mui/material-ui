@@ -39,7 +39,7 @@ import MyApp from './MyApp';
 export default function MyApp() {
   return (
     <ScopedCssBaseline>
-      {/* The rest of your application */}
+      {/* El resto de tu aplicación */}
       <MyApp />
     </ScopedCssBaseline>
   );
