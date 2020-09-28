@@ -99,7 +99,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#slider'
 
 {{"demo": "pages/components/slider-styled/NonLinearSlider.js"}}
 
-## Unstyled slider
+## 无样式的滑块
 
 {{"demo": "pages/components/slider-styled/UnstyledSlider.js"}}
 
