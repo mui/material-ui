@@ -9,13 +9,13 @@ describe('customStyled', () => {
   const render = createClientRender();
   it('should work', () => {
     const Div = styled('div')({
-      backgroundColor: 'rgb(255, 0, 0, 0)',
+      width: '200px',
     });
 
     render(<Div data-testid="component">Test</Div>);
 
     const style = window.getComputedStyle(screen.getByTestId('component'));
-    expect(style.getPropertyValue('background-color')).to.equal('rgb(255, 0, 0)'); 
+    expect(style.getPropertyValue('width')).to.equal('200px'); 
   });
 
   it('should use defaultTheme if no theme is provided', () => {
