@@ -167,9 +167,9 @@ function AppFrame(props) {
   const handleDrawerOpen = () => {
     setMobileOpen(true);
   };
-  const handleDrawerClose = () => {
+  const handleDrawerClose = React.useCallback(() => {
     setMobileOpen(false);
-  };
+  }, []);
 
   const changeTheme = useChangeTheme();
   const handleTogglePaletteType = () => {
