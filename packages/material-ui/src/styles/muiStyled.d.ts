@@ -88,7 +88,7 @@ export type PropsOf<
 export type Omit<T, U> = T extends any ? Pick<T, Exclude<keyof T, U>> : never;
 export type Overwrapped<T, U> = Pick<T, Extract<keyof T, keyof U>>;
 
-type JSXInEl = JSX.IntrinsicElements;
+export type JSXInEl = JSX.IntrinsicElements;
 type ReactClassPropKeys = keyof React.ClassAttributes<any>;
 
 export type WithTheme<P, T> = P extends { theme: infer Theme }
@@ -198,10 +198,12 @@ export interface CreateStyled<Theme extends object = any> {
 }
 
 /**
- * Cutom styled functionality that support mui specific config.
+ * Cutom styled utility that has a default mui theme.
  *
- * @param options Takes an incomplete theme object and adds the missing parts.
- * @returns A complete, ready to use theme object.
+ * @param tag HTML tag or component that should serve as base.
+ * @param options Styled options for the created component.
+ * @muiOptions Material-UI specific style options, consiting of overrides resolver.
+ * @returns React component that has styles attached to it.
  */
 declare const muiStyled: CreateStyled;
 

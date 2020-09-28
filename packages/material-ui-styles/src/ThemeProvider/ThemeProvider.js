@@ -62,7 +62,11 @@ function ThemeProvider(props) {
     return output;
   }, [localTheme, outerTheme]);
 
-  return <ThemeContext.Provider value={theme}><StyledEngineThemeProvider theme={theme}>{children}</StyledEngineThemeProvider></ThemeContext.Provider>;
+  return (
+    <ThemeContext.Provider value={theme}>
+      <StyledEngineThemeProvider theme={typeof theme === 'object' ? theme : {}}>{children}</StyledEngineThemeProvider>
+    </ThemeContext.Provider>
+  );
 }
 
 ThemeProvider.propTypes = {
