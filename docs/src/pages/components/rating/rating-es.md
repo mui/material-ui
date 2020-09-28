@@ -7,15 +7,15 @@ waiAria: 'https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating'
 
 # Rating
 
-<p class="description">Ratings provide insight regarding others’ opinions and experiences, and can allow the user to submit a rating of thier own.</p>
+<p class="description">Los ratings proporcionan una visión de las opiniones y experiencias de los demás, y pueden permitir al usuario enviar una valoración de sus propias opiniones.</p>
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Basic rating
+## Rating básico
 
 {{"demo": "pages/components/rating/BasicRating.js"}}
 
-## Rating precision
+## Precisión de Rating
 
 The rating can display any float number with the `value` prop. Use the `precision` prop to define the minimum increment value change allowed.
 
@@ -41,7 +41,7 @@ Here are some examples of customizing the component. You can learn more about th
 
 ## Accesibilidad
 
-([WAI tutorial](https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating))
+([tutorial WAI](https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating))
 
 La accesibilidad de este componente se basa en:
 
