@@ -13,8 +13,8 @@
   "checkoutTitle": "Check Out",
   "close": "Schließen",
   "codesandbox": "In CodeSandbox bearbeiten",
-  "copiedSource": "Der Quellcode wurde kopiert.",
-  "copiedSourceLink": "Der Link zum Quellcode wurde kopiert.",
+  "copiedSource": "The source code has been copied to your clipboard.",
+  "copiedSourceLink": "Link to the source code has been copied to your clipboard.",
   "copySource": "Quellcode kopieren",
   "copySourceLinkJS": "Kopiere Link zum JavaScript Quellcode",
   "copySourceLinkTS": "Kopiere Link zum TypeScript Quellcode",
@@ -133,7 +133,7 @@
     "/components/dialogs": "Dialog",
     "/components/dividers": "Divider",
     "/components/drawers": "Seitliches Menü (Drawer)",
-    "/components/accordion": "Accordion (erweiterungspanel)",
+    "/components/accordion": "Akkordeon",
     "/components/feedback": "Feedback",
     "/components/grid": "Grid",
     "/components/hidden": "Hidden",
@@ -240,7 +240,7 @@
     "/components/button-group": "Button Group",
     "/components/floating-action-button": "Floating Action Button",
     "/components/backdrop": "Backdrop",
-    "/components/alert": "Alert",
+    "/components/alert": "Hinweis",
     "/components/pagination": "Paginierung"
   }
 }

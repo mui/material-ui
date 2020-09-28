@@ -1,8 +1,7 @@
 ---
 title: Drawer
 components: Drawer, SwipeableDrawer
-githubLabel:
-  component: Cajón
+githubLabel: 'component: Drawer'
 materialDesign: https://material.io/components/navigation-drawer
 ---
 

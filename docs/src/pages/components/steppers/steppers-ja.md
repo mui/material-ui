@@ -1,8 +1,7 @@
 ---
 title: Stepper React component
 components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIcon, StepLabel, Stepper
-githubLabel:
-  component: Stepper（ステッパー）
+githubLabel: 'component: Stepper'
 materialDesign: https://material.io/archive/guidelines/components/steppers.html
 ---
 
@@ -57,7 +56,7 @@ The use of the `StepButton` here demonstrates clickable step labels, as well as 
 
 ### Non-linear - Alternative Label
 
-コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/steppers/CustomizedSteppers.js"}}
 
@@ -69,7 +68,7 @@ Vertical steppers are designed for narrow screen sizes. They are ideal for mobil
 
 ## モバイルステッパー
 
-このコンポーネントは、モバイルデバイスに適したコンパクトなステッパーを実装します。 IT has more limited functionality than the vertical stepper. このコンポーネントは、モバイルデバイスに適したコンパクトなステッパーを実装します。 このコンポーネントは、モバイルデバイスに適したコンパクトなステッパーを実装します。 その着想については、[mobile steps](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps)を参照してください。
+このコンポーネントは、モバイルデバイスに適したコンパクトなステッパーを実装します。 このコンポーネントは、モバイルデバイスに適したコンパクトなステッパーを実装します。 このコンポーネントは、モバイルデバイスに適したコンパクトなステッパーを実装します。 その着想については、[mobile steps](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps)を参照してください。 IT has more limited functionality than the vertical stepper. このコンポーネントは、モバイルデバイスに適したコンパクトなステッパーを実装します。 このコンポーネントは、モバイルデバイスに適したコンパクトなステッパーを実装します。 その着想については、[mobile steps](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps)を参照してください。
 
 The mobile stepper supports three variants to display progress through the available steps: text, dots, and progress.
 

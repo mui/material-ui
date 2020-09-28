@@ -1,13 +1,11 @@
 ---
 title: Hinweis React-Komponente
 components: Alert, AlertTitle
-githubLabel:
-  component: Alert
-packageName: '@material-ui/lab'
+githubLabel: 'component: Alert'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
 ---
 
-# Alert
+# Hinweis
 
 <p class="description">Ein Hinweis zeigt eine kurze, wichtige Nachricht auf eine Weise, welche die Aufmerksamkeit des Benutzers auf sich zieht ohne die Aufgabe des Benutzers zu unterbrechen.</p>
 
@@ -59,7 +57,7 @@ Zwei weitere Varianten sind verfügbar – umrandet und ausgefüllt:
 
 {{"demo": "pages/components/alert/OutlinedAlerts.js"}}
 
-### Gefüllt
+### Ausgefüllt
 
 {{"demo": "pages/components/alert/FilledAlerts.js"}}
 

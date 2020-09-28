@@ -1,7 +1,6 @@
 ---
 title: Consulta de mídia no React para design responsivo
-githubLabel:
-  hook: useMediaQuery
+githubLabel: 'hook: useMediaQuery'
 ---
 
 # useMediaQuery
@@ -137,6 +136,7 @@ function handleRender(req, res) {
   );
 
   // …
+}
 }
 }
 ```

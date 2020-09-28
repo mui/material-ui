@@ -1,8 +1,7 @@
 ---
 title: React 进度环和进度条组件
 components: CircularProgress, LinearProgress
-githubLabel:
-  component: CircularProgress
+githubLabel: 'component: CircularProgress'
 materialDesign: https://material.io/components/progress-indicators
 ---
 
@@ -73,6 +72,14 @@ function Progress(props) {
       <LinearProgress variant="determinate" value={normalise(props.value)} />
     </React.Fragment>
   )
+}
+function Progress(props) {
+  return (
+    <React.Fragment>
+      <CircularProgress variant="determinate" value={normalise(props.value)} />
+      <LinearProgress variant="determinate" value={normalise(props.value)} />
+    </React.Fragment>
+  );
 }
 function Progress(props) {
   return (

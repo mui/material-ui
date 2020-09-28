@@ -1,8 +1,7 @@
 ---
 title: Breadcrumbs
 components: Breadcrumbs, Link, Typography
-githubLabel:
-  component: Хлебные крошки
+githubLabel: 'component: Breadcrumbs'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#breadcrumb'
 ---
 

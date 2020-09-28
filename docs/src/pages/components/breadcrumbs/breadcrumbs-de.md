@@ -1,8 +1,7 @@
 ---
 title: Breadcrumbs React-Komponente
 components: Breadcrumbs, Link, Typography
-githubLabel:
-  component: Breadcrumbs
+githubLabel: 'component: Breadcrumbs'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#breadcrumb'
 ---
 

@@ -1,8 +1,7 @@
 ---
 title: Composant React Badge
 components: Badge
-githubLabel:
-  component: Badge
+githubLabel: 'component: Badge'
 ---
 
 # Badge

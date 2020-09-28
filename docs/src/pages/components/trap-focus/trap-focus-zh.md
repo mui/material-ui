@@ -1,11 +1,10 @@
 ---
 title: React 陷阱焦点组件
 components: Unstable_TrapFocus
-githubLabel:
-  component: 陷阱焦点
+githubLabel: 'component: TrapFocus'
 ---
 
-# 陷阱焦点
+# Trap Focus 陷阱焦点
 
 <p class="description">在 DOM 节点内捕获焦点。</p>
 

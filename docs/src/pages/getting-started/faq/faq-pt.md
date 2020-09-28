@@ -275,16 +275,12 @@ O valor de nomes de classe depende da lógica empregada pelo [gerador de nome de
 
   ```diff
   - // Crie um novo gerador de nome de classe.
+  - // Crie um novo gerador de nome de classe.
   -const generateClassName = createGenerateClassName();
 
 function handleRender(req, res) {
 
 + // Cria um novo gerador de nome de classe.
-  + const generateClassName = createGenerateClassName();
-
-  //…
-
-  // Renderize o componente para uma string.
 
     // Render the component to a string.
     const html = ReactDOMServer.renderToString(

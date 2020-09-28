@@ -1,8 +1,7 @@
 ---
 title: React 步骤条组件
 components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIcon, StepLabel, Stepper
-githubLabel:
-  component: Stepper 步骤条组件
+githubLabel: 'component: Stepper'
 materialDesign: https://material.io/archive/guidelines/components/steppers.html
 ---
 

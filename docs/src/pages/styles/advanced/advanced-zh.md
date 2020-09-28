@@ -267,6 +267,8 @@ export default function MyComponent() {
   // color: red 🔴 wins.
   return <div className={className} />;
 }
+  return <div className={className} />;
+}
 ```
 
 Hook 调用顺序和类名顺序**不影响**注入属性权重 。

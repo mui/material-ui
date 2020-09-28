@@ -2,7 +2,7 @@ import chai from 'chai';
 import chaiDom from 'chai-dom';
 import { isInaccessible } from '@testing-library/dom';
 import { prettyDOM } from '@testing-library/react/pure';
-import { computeAccessibleName } from 'dom-accessibility-api';
+import { computeAccessibleDescription, computeAccessibleName } from 'dom-accessibility-api';
 import formatUtil from 'format-util';
 
 chai.use(chaiDom);
@@ -84,6 +84,54 @@ function elementToString(element: Element | null | undefined) {
   return String(element);
 }
 chai.use((chaiAPI, utils) => {
+  const blockElements = new Set([
+    'html',
+    'address',
+    'blockquote',
+    'body',
+    'dd',
+    'div',
+    'dl',
+    'dt',
+    'fieldset',
+    'form',
+    'frame',
+    'frameset',
+    'h1',
+    'h2',
+    'h3',
+    'h4',
+    'h5',
+    'h6',
+    'noframes',
+    'ol',
+    'p',
+    'ul',
+    'center',
+    'dir',
+    'hr',
+    'menu',
+    'pre',
+  ]);
+
+  function pretendVisibleGetComputedStyle(element: Element): CSSStyleDeclaration {
+    // `CSSStyleDeclaration` is not constructable
+    // https://stackoverflow.com/a/52732909/3406963
+    // this is not equivalent to the declaration from `getComputedStyle`
+    // e.g `getComputedStyle` would return a readonly declaration
+    // let's hope this doesn't get passed around until it's no longer clear where it comes from
+    const declaration = document.createElement('span').style;
+
+    // initial values
+    declaration.content = '';
+    // technically it's `inline`. We partially apply the default user agent sheet (chrome) here
+    // we're only interested in elements that use block
+    declaration.display = blockElements.has(element.tagName) ? 'block' : 'inline';
+    declaration.visibility = 'visible';
+
+    return declaration;
+  }
+
   // better diff view for expect(element).to.equal(document.activeElement)
   chai.Assertion.addMethod('toHaveFocus', function elementIsFocused() {
     const element = utils.flag(this, 'object');
@@ -171,54 +219,6 @@ chai.use((chaiAPI, utils) => {
     // make sure it's an Element
     new chai.Assertion(root.nodeType, `Expected an Element but got '${String(root)}'`).to.equal(1);
 
-    const blockElements = new Set([
-      'html',
-      'address',
-      'blockquote',
-      'body',
-      'dd',
-      'div',
-      'dl',
-      'dt',
-      'fieldset',
-      'form',
-      'frame',
-      'frameset',
-      'h1',
-      'h2',
-      'h3',
-      'h4',
-      'h5',
-      'h6',
-      'noframes',
-      'ol',
-      'p',
-      'ul',
-      'center',
-      'dir',
-      'hr',
-      'menu',
-      'pre',
-    ]);
-
-    function pretendVisibleGetComputedStyle(element: Element): CSSStyleDeclaration {
-      // `CSSStyleDeclaration` is not constructable
-      // https://stackoverflow.com/a/52732909/3406963
-      // this is not equivalent to the declaration from `getComputedStyle`
-      // e.g `getComputedStyle` would return a readonly declaration
-      // let's hope this doesn't get passed around until it's no longer clear where it comes from
-      const declaration = document.createElement('span').style;
-
-      // initial values
-      declaration.content = '';
-      // technically it's `inline`. We partially apply the default user agent sheet (chrome) here
-      // we're only interested in elements that use block
-      declaration.display = blockElements.has(element.tagName) ? 'block' : 'inline';
-      declaration.visibility = 'visible';
-
-      return declaration;
-    }
-
     const actualName = computeAccessibleName(root, {
       computedStyleSupportsPseudoElements: !isInJSDOM(),
       // in local development we pretend to be visible. full getComputedStyle is
@@ -232,6 +232,35 @@ chai.use((chaiAPI, utils) => {
       `expected \n${elementToString(root)} not to have accessible name #{exp}.`,
       expectedName,
       actualName,
+    );
+  });
+
+  chai.Assertion.addMethod('toHaveAccessibleDescription', function hasAccessibleDescription(
+    expectedDescription,
+  ) {
+    const root = utils.flag(this, 'object');
+    // make sure it's an Element
+    new chai.Assertion(root.nodeType, `Expected an Element but got '${String(root)}'`).to.equal(1);
+
+    const actualDescription = computeAccessibleDescription(root, {
+      // in local development we pretend to be visible. full getComputedStyle is
+      // expensive and reserved for CI
+      getComputedStyle: process.env.CI ? undefined : pretendVisibleGetComputedStyle,
+    });
+
+    const possibleDescriptionComputationMessage = root.hasAttribute('title')
+      ? ' computeAccessibleDescription can be misleading when a `title` attribute is used. This might be a bug in `dom-accessibility-api`.'
+      : '';
+    this.assert(
+      actualDescription === expectedDescription,
+      `expected \n${elementToString(
+        root,
+      )} to have accessible description #{exp} but got #{act} instead.${possibleDescriptionComputationMessage}`,
+      `expected \n${elementToString(
+        root,
+      )} not to have accessible description #{exp}.${possibleDescriptionComputationMessage}`,
+      expectedDescription,
+      actualDescription,
     );
   });
 

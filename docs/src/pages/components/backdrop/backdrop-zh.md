@@ -1,8 +1,7 @@
 ---
 title: React 背景暗化组件
 components: Backdrop
-githubLabel:
-  component: Backdrop
+githubLabel: '组件：背景暗化'
 ---
 
 # Backdrop

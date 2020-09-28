@@ -2,7 +2,7 @@
 
 <p class="description">さまざまなコンテキストでブレークポイントを使用できるようにするAPI。</p>
 
-最適なユーザーエクスペリエンスを得るには、material designインターフェイスがさまざまなブレークポイントでレイアウトを調整できる必要があります。 Material-UIは、元の仕様の**簡易**[実装](https://material.io/design/layout/responsive-layout-grid.html#breakpoints)を使用します。
+最適なユーザーエクスペリエンスを得るには、material designインターフェイスがさまざまなブレークポイントでレイアウトを調整できる必要があります。 最適なユーザーエクスペリエンスを得るには、material designインターフェイスがさまざまなブレークポイントでレイアウトを調整できる必要があります。 最適なユーザーエクスペリエンスを得るには、material designインターフェイスがさまざまなブレークポイントでレイアウトを調整できる必要があります。 Material-UIは、元の仕様の**簡易**[実装](https://material.io/design/layout/responsive-layout-grid.html#breakpoints)を使用します。 Material-UIは、元の仕様の**簡易**[実装](https://material.io/design/layout/responsive-layout-grid.html#breakpoints)を使用します。
 
 ブレークポイントは、さまざまなコンポーネントで応答性を高めるために内部的に使用されますが、[Grid](/components/grid/)および[Hidden](/components/hidden/)コンポーネントを使用してアプリケーションのレイアウトを制御する場合にも利用できます。
 
@@ -15,15 +15,6 @@
 - **md,** medium: 960px
 - **lg,** large: 1280px
 - **xl,** extra-large: 1920px
-
-These breakpoint values are used to determine breakpoint ranges. 範囲は、ブレークポイント値を含む範囲から、次のブレークポイント値を除く範囲までです。
-
-```js
-value         |0px     600px    960px    1280px   1920px
-key           |xs      sm       md       lg       xl
-screen width  |--------|--------|--------|--------|-------->
-range         |   xs   |   sm   |   md   |   lg   |   xl
-```
 
 These values can be [customized](#custom-breakpoints).
 
@@ -39,20 +30,10 @@ CSS media queries are the idiomatic approach to make your UI responsive. The the
 次のデモでは、画面の幅に基づいて背景色(赤色、青色 、緑色) を変更します。
 
 ```jsx
-const styles = theme => ({
-  root: {
-    padding: theme.spacing(1),
-    [theme.breakpoints.down('sm')]: {
-      backgroundColor: theme.palette.secondary.main,
-    },
-    [theme.breakpoints.up('md')]: {
-      backgroundColor: theme.palette.primary.main,
-    },
-    [theme.breakpoints.up('lg')]: {
-      backgroundColor: green[500],
-    },
-  },
-});
+value         |0px     600px    960px    1280px   1920px
+key           |xs      sm       md       lg       xl
+screen width  |--------|--------|--------|--------|-------->
+range         |   xs   |   sm   |   md   |   lg   |   xl
 ```
 
 {{"demo": "pages/customization/breakpoints/MediaQuery.js"}}
@@ -79,7 +60,7 @@ function MyComponent(props) {
 export default withWidth()(MyComponent);
 ```
 
-次のデモでは、画面の幅に基づいてレンダリングされたDOM要素(*em*、<u>u</u>、~~del~~& span) を変更します。
+詳細については、 [useMediaQuery](/components/use-media-query/) ページを参照してください。
 
 {{"demo": "pages/customization/breakpoints/WithWidth.js"}}
 
@@ -148,6 +129,33 @@ declare module "@material-ui/core/styles/createBreakpoints" {
 
 #### 戻り値
 
+`media query`: A media query string ready to be used with most styling solutions, which matches screen widths greater than the screen size given by the breakpoint key in the first argument and less than the the screen size given by the breakpoint key in the second argument.
+
+#### 例
+
+```js
+declare module "@material-ui/core/styles/createBreakpoints" {
+  interface BreakpointOverrides {
+    xs: false; // removes the `xs` breakpoint
+    sm: false;
+    md: false;
+    lg: false;
+    xl: false;
+    tablet: true; // adds the `tablet` breakpoint
+    laptop: true;
+    desktop: true;
+  }
+}
+```
+
+### `theme.breakpoints.down(key) => media query`
+
+#### 引数
+
+1. `key` (*String* | *Number*)：ブレークポイントキー（`xs` 、`sm`など）またはピクセル単位の画面幅の数値。
+
+#### 戻り値
+
 `media query`: A media query string ready to be used with most styling solutions, which matches screen widths greater than and including the screen size given by the breakpoint key.
 
 #### 例
@@ -165,11 +173,11 @@ const styles = theme => ({
 });
 ```
 
-### `theme.breakpoints.down(key) => media query`
+### `theme.breakpoints.only(key) => media query`
 
 #### 引数
 
-1. `key` (*String* | *Number*)：ブレークポイントキー（`xs` 、`sm`など）またはピクセル単位の画面幅の数値。
+1. `key` (*String*)：ブレークポイントキー（`xs` 、`sm`など）。
 
 #### 戻り値
 
@@ -191,11 +199,12 @@ const styles = theme => ({
 });
 ```
 
-### `theme.breakpoints.only(key) => media query`
+### `theme.breakpoints.between(start, end) => media query`
 
 #### 引数
 
-1. `key` (*String*)：ブレークポイントキー（`xs` 、`sm`など）。
+1. `start` (*String*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
+2. `end` (*String*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
 
 #### 戻り値
 
@@ -211,33 +220,6 @@ const styles = theme => ({
     //       [md, lg)
     //       [960px, 1280px)
     [theme.breakpoints.only('md')]: {
-      backgroundColor: 'red',
-    },
-  },
-});
-```
-
-### `theme.breakpoints.between(start, end) => media query`
-
-#### 引数
-
-1. `start` (*String*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
-2. `end` (*String*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
-
-#### 戻り値
-
-`media query`: A media query string ready to be used with most styling solutions, which matches screen widths greater than the screen size given by the breakpoint key in the first argument and less than the the screen size given by the breakpoint key in the second argument.
-
-#### 例
-
-```js
-const styles = theme => ({
-  root: {
-    backgroundColor: 'blue',
-    // Match [sm, md + 1)
-    //       [sm, lg)
-    //       [600px, 1280px[
-    [theme.breakpoints.between('sm', 'md')]: {
       backgroundColor: 'red',
     },
   },

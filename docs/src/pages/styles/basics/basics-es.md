@@ -2,7 +2,7 @@
 
 <p class="description">Puede utilizar la solución de estilo de Material-UI en su aplicación, tanto si está usando o no componentes de Material-UI.</p>
 
-Material UI busca proveer fundamentos sólidos para la construcción de UIs de manera dinámica. Material-UI aims to provide a strong foundation for building dynamic UIs. You can use it, but you don't have to, since Material-UI is also [interoperable with](/guides/interoperability/) all the other major styling solutions.
+Material UI busca proveer fundamentos sólidos para la construcción de UIs de manera dinámica. Material UI busca proveer fundamentos sólidos para la construcción de UIs de manera dinámica. You can use it, but you don't have to, since Material-UI is also [interoperable with](/guides/interoperability/) all the other major styling solutions.
 
 ## ¿Por qué usar la solución de estilo de Material-UI?
 

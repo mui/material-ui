@@ -25,7 +25,7 @@ const theme = createMuiTheme({
 
 {{"demo": "pages/customization/globals/GlobalCss.js"}}
 
-每个组件可自定义的部分都被列在文档的 **Component API**。 例如，您可以参考以下 [Button](/api/button/#css) 组件。 另外，你也可以随时看看 [implementation](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Button/Button.js)。
+每个组件可自定义的部分都被列在文档的 **Component API**。 例如，您可以参考以下 [Button](/api/button/#css) 组件。 例如，您可以参考以下 [Button](/api/button/#css) 组件。
 
 ## 全局 CSS
 
@@ -68,6 +68,10 @@ const theme = createMuiTheme({
     MuiButtonBase: {
       // 需要修改的默认属性
       disableRipple: true, // 在整个程序中没有更多的ripple 💣!
+    },
+  },
+});
+      },
     },
   },
 });

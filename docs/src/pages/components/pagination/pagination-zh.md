@@ -1,12 +1,11 @@
 ---
 title: React 分页组件
 components: Pagination, PaginationItem
-githubLabel:
-  component: 分页
+githubLabel: 'component: Pagination'
 packageName: '@material-ui/lab'
 ---
 
-# 分页
+# Pagination 分页
 
 <p class="description">使用分页组件，用户可以从一系列页面中选择某个特定的页面。</p>
 

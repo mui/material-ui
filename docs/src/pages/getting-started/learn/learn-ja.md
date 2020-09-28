@@ -2,11 +2,11 @@
 
 <p class="description">Material-UIは初めてですか？ 何から始めればいいのかは簡単に分かります。 このガイドを読めばすぐに開始できます。 何から始めればいいのかは簡単に分かります。 このガイドを読めばすぐに開始できます。</p>
 
-Developers come to Material-UI from different backgrounds and with different learning styles. Whether you prefer a more theoretical or practical approach, we hope you’ll find this section helpful. 馴染みのないテクノロジーのようにMaterial-UIには学習曲線があります。 練習とある程度の忍耐力があれば、すぐに慣れると思います。 練習とある程度の忍耐力があれば、すぐに慣れると思います。 練習とある程度の忍耐力があれば、すぐに慣れると思います。
+Developers come to Material-UI from different backgrounds and with different learning styles. Whether you prefer a more theoretical or practical approach, we hope you’ll find this section helpful. 馴染みのないテクノロジーのようにMaterial-UIには学習曲線があります。 練習とある程度の忍耐力があれば、すぐに慣れると思います。 練習とある程度の忍耐力があれば、すぐに慣れると思います。 練習とある程度の忍耐力があれば、すぐに慣れると思います。 練習とある程度の忍耐力があれば、すぐに慣れると思います。
 
 ## 最初の例
 
-[使い方ページ](/getting-started/usage/#quick-start)ではMaterial-UIの小さな例とライブエディタがあります。 Material-UIについて何も知らなかったとしても、コードを書き換えてどのように作用するか確認してみてください。 Material-UIについて何も知らなかったとしても、コードを書き換えてどのように作用するか確認してみてください。 Material-UIについて何も知らなかったとしても、コードを書き換えてどのように作用するか確認してみてください。
+[使い方ページ](/getting-started/usage/#quick-start)ではMaterial-UIの小さな例とライブエディタがあります。 Material-UIについて何も知らなかったとしても、コードを書き換えてどのように作用するか確認してみてください。 Material-UIについて何も知らなかったとしても、コードを書き換えてどのように作用するか確認してみてください。 Material-UIについて何も知らなかったとしても、コードを書き換えてどのように作用するか確認してみてください。 Material-UIについて何も知らなかったとしても、コードを書き換えてどのように作用するか確認してみてください。
 
 ## サンプルプロジェクト
 
@@ -18,7 +18,7 @@ ReactでWebサイトを開発してデプロイする為に必要なインフラ
 
 ## 推奨する資料
 
-Material-UIを初めて学ぶときは、公式のドキュメントよりもサードパーティのブログ記事や本、動画のコースの方が役に立つかもしれません。 以下はオススメの資料です。中には無料で利用できるものもあります。 以下はオススメの資料です。中には無料で利用できるものもあります。 以下はオススメの資料です。中には無料で利用できるものもあります。
+Material-UIを初めて学ぶときは、公式のドキュメントよりもサードパーティのブログ記事や本、動画のコースの方が役に立つかもしれません。 以下はオススメの資料です。中には無料で利用できるものもあります。 以下はオススメの資料です。中には無料で利用できるものもあります。 以下はオススメの資料です。中には無料で利用できるものもあります。 以下はオススメの資料です。中には無料で利用できるものもあります。
 
 ### Gratuit
 
