@@ -12,7 +12,7 @@ El fondo de una aplicación asemeja la textura plana, opaca de una hoja de papel
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Basic paper
+## Papel básico
 
 {{"demo": "pages/components/paper/SimplePaper.js", "bg": true}}
 
