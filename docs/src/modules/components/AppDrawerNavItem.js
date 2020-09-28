@@ -38,10 +38,14 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: -6,
       color: theme.palette.text.secondary,
     },
+    '& svg$open': {
+      transform: 'rotate(90deg)',
+    },
     '&:hover svg': {
       color: theme.palette.text.primary,
     },
   },
+  open: {},
   link: {
     ...theme.typography.body2,
     borderRadius: theme.shape.borderRadius,
@@ -118,7 +122,7 @@ export default function AppDrawerNavItem(props) {
         onClick={handleClick}
         style={style}
       >
-        <ArrowRight />
+        <ArrowRight className={open ? classes.open : ''} />
         {title}
       </button>
       <Collapse in={open} timeout="auto" unmountOnExit>
