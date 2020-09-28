@@ -7,15 +7,16 @@ waiAria: 'https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating'
 
 # Rating 评分
 
-<p class="description">Ratings provide insight regarding others’ opinions and experiences, and can allow the user to submit a rating of thier own.</p>
+<p class="description">评分可以让用户充分了解到他人的意见和经验，同样的用户也可以提交自己的评价。
+</p>
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Basic rating
+## 基础的评分组件
 
 {{"demo": "pages/components/rating/BasicRating.js"}}
 
-## Rating precision
+## 评分精度
 
 使用 `value`  属性可以让评分组件展示任何的浮点的评分值。 您可以使用 `precision` 属性定义可变化的最小增量值。
 
@@ -23,17 +24,17 @@ waiAria: 'https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating'
 
 ## 悬停反馈
 
-You can display a label on hover to help the user pick the correct rating value. 以下案例使用了 `onChangeActive` 这一属性。
+你可以在悬停时显示一个辅助标签来帮助用户选择正确的评分值。 以下案例使用了 `onChangeActive` 这一属性。
 
 {{"demo": "pages/components/rating/HoverRating.js"}}
 
 ## 尺寸
 
-For larger or smaller ratings use the `size` prop.
+你可以使用 `size` 属性来更改评分组件大小。
 
 {{"demo": "pages/components/rating/RatingSize.js"}}
 
-## Customized rating
+## 自定义评分组件
 
 你可以参考以下一些例子来自定义组件。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
 
@@ -41,22 +42,22 @@ For larger or smaller ratings use the `size` prop.
 
 ## 无障碍设计
 
-([WAI tutorial](https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating))
+([WAI 教程](https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating))
 
 这个组件的可访问性依赖于：
 
-- A radio group with its fields visually hidden. It contains six radio buttons, one for each star, and another for 0 stars that is checked by default. Be sure to provide a value for the `name` prop that is unique to the parent form.
-- Labels for the radio buttons containing actual text (“1 Star”, “2 Stars”, …). Be sure to provide a suitable function to the `getLabelText` prop when the page is in a language other than English. You can use the [included locales](https://material-ui.com/guides/localization/), or provide your own.
-- A visually distinct appearance for the rating icons. By default, the rating component uses both a difference of color and shape (filled and empty icons)to indicate the value. 如果你使用颜色作为唯一的方式来表示数值，那么数值信息也应该像下面这个示例一样以文本的形式来显示。 这对于符合 WCAG2.1 的 [成功标准 1.4.1](https://www.w3.org/TR/WCAG21/#use-of-color) 非常重要。
+- 一个单选框组，其字段在视觉上是隐藏的。 它包含六个单选按钮，一组用于每颗星星的选择，另一组代表默认选中的 0 颗星。 请确保为 `name` 属性提供一个对父表单唯一的值。
+- 包含实际文字的单选按钮的标签（“一颗星”，“两颗星”，...）。 当页面的语言不是英语时，请确保为 `getLabelText` 属性提供一个合适的函数。 你可以使用这上面 [所提供的本地化语言选项](https://material-ui.com/guides/localization/)，或者单独提供你自己的语言包。
+- 为评分图标提供了一个视觉上独特的外观。 默认情况下，评分组件使用颜色和形状的差异（填充和空的图标）来表示值。 如果你使用颜色作为唯一的方式来表示数值，那么数值信息也应该像下面这个示例一样以文本的形式来显示。 这对于符合 WCAG2.1 的 [成功标准 1.4.1](https://www.w3.org/TR/WCAG21/#use-of-color) 非常重要。
 
 {{"demo": "pages/components/rating/TextRating.js"}}
 
 ### ARIA
 
-The read only rating has a role of "img", and an aria-label that describes the displayed rating.
+只读评分有一个 "img" 的角色（role），以及一个描述显示评分的 aria-label。
 
 ### 键盘输入
 
-Because the rating component uses radio buttons, keyboard interaction follows the native browser behavior. Tab will focus the current rating, and cursor keys control the selected rating.
+由于评分组件是由单选按钮组成的，所以键盘交互遵循本地浏览器行为。 Tab 键将聚焦当前的评分，光标键可以控制所选的评分。
 
-The read only rating is not focusable.
+只读的评分组件不可以被聚焦。
