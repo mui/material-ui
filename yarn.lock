@@ -6627,9 +6627,9 @@ dts-critic@latest:
     yargs "^12.0.5"
 
 dtslint@^4.0.0:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/dtslint/-/dtslint-4.0.2.tgz#29dd1cb902648fe5f4c3fe39616c43973e602f61"
-  integrity sha512-vWGZI+QSQ4AQAvJ3T0dnHf+fWqrmx4C0SR0h3Jubi5iBDA6Nsu2Ds+AjqxfiRl6py0yvEZU3T+MqNpKV07CI0A==
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/dtslint/-/dtslint-4.0.4.tgz#716faac1f8efd1593b469f6ced4d701a7cc62ff8"
+  integrity sha512-z5+aPNcF9gRjMLH95bMPsm1AYHERo3O6wFRf+2W1qRn/0b7xh4Qs1g+i0x/Th0Z3XRIIrhrBcW3dkvXgsQ95wA==
   dependencies:
     "@definitelytyped/header-parser" latest
     "@definitelytyped/typescript-versions" latest
