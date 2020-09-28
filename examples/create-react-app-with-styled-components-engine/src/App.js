@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import Slider from '@material-ui/lab/SliderStyled';
 import { Typography } from '@material-ui/core';
 
