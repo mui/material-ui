@@ -99,7 +99,7 @@ You can use the `scale` prop to represent the `value` on a different scale. For 
 
 {{"demo": "pages/components/slider-styled/NonLinearSlider.js"}}
 
-## Unstyled slider
+## Slider sin estilo
 
 {{"demo": "pages/components/slider-styled/UnstyledSlider.js"}}
 
