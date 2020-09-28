@@ -12,7 +12,7 @@ export default function AccessibilityTooltips() {
           <DeleteIcon />
         </IconButton>
       </Tooltip>
-      <Tooltip describeChild title="does not add if it already exists">
+      <Tooltip describeChild title="Does not add if it already exists.">
         <Button>Add</Button>
       </Tooltip>
     </div>
