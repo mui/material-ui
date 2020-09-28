@@ -1,0 +1,25 @@
+{
+  "name": "material-ui-with-styled-components",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "start": "parcel index.html --open",
+    "build": "parcel build index.html"
+  },
+  "dependencies": {
+    "@material-ui/core": "next",
+    "@material-ui/lab": "next",
+    "@material-ui/styled-engine-sc": "next",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "parcel-bundler": "^1.6.1",
+    "react": "latest",
+    "react-dom": "latest",
+    "styled-components": "latest"
+  },
+  "keywords": [],
+  "alias": {
+    "@material-ui/styled-engine": "@material-ui/styled-engine-sc"
+  }
+}
