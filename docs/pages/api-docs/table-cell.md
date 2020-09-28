@@ -33,11 +33,11 @@ The `MuiTableCell` name can be used for providing [default props](/customization
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The table cell contents. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> |  | The component used for the root node. Either a string to use a HTML element or a component. |
-| <span class="prop-name">padding</span> | <span class="prop-type">'checkbox'<br>&#124;&nbsp;'default'<br>&#124;&nbsp;'none'</span> |  | Sets the padding applied to the cell. By default, the Table parent component set the value (`default`). |
+| <span class="prop-name">padding</span> | <span class="prop-type">'checkbox'<br>&#124;&nbsp;'default'<br>&#124;&nbsp;'none'</span> |  | Sets the padding applied to the cell. The prop defaults to the value (`'default'`) inherited from the parent Table component. |
 | <span class="prop-name">scope</span> | <span class="prop-type">string</span> |  | Set scope attribute. |
-| <span class="prop-name">size</span> | <span class="prop-type">'medium'<br>&#124;&nbsp;'small'</span> |  | Specify the size of the cell. By default, the Table parent component set the value (`medium`). |
+| <span class="prop-name">size</span> | <span class="prop-type">'medium'<br>&#124;&nbsp;'small'</span> |  | Specify the size of the cell. The prop defaults to the value (`'medium'`) inherited from the parent Table component. |
 | <span class="prop-name">sortDirection</span> | <span class="prop-type">'asc'<br>&#124;&nbsp;'desc'<br>&#124;&nbsp;false</span> |  | Set aria-sort direction. |
-| <span class="prop-name">variant</span> | <span class="prop-type">'body'<br>&#124;&nbsp;'footer'<br>&#124;&nbsp;'head'</span> |  | Specify the cell type. By default, the TableHead, TableBody or TableFooter parent component set the value. |
+| <span class="prop-name">variant</span> | <span class="prop-type">'body'<br>&#124;&nbsp;'footer'<br>&#124;&nbsp;'head'</span> |  | Specify the cell type. The prop defaults to the value inherited from the parent TableHead, TableBody, or TableFooter components. |
 
 The `ref` is forwarded to the root element.
 
