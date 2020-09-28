@@ -64,7 +64,9 @@ function ThemeProvider(props) {
 
   return (
     <ThemeContext.Provider value={theme}>
-      <StyledEngineThemeProvider theme={typeof theme === 'object' ? theme : {}}>{children}</StyledEngineThemeProvider>
+      <StyledEngineThemeProvider theme={typeof theme === 'object' ? theme : {}}>
+        {children}
+      </StyledEngineThemeProvider>
     </ThemeContext.Provider>
   );
 }

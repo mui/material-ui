@@ -1,14 +1,19 @@
-import { StyledOptions, JSXInEl, CreateStyledComponentIntrinsic, CreateStyledComponentExtrinsic } from './muiStyled';
+import {
+  StyledOptions,
+  JSXInEl,
+  CreateStyledComponentIntrinsic,
+  CreateStyledComponentExtrinsic,
+} from './muiStyled';
 
 export interface CreateStyled<Theme extends object = any> {
   <Tag extends React.ComponentType<any>, ExtraProps = {}>(
     tag: Tag,
-    options?: StyledOptions,
+    options?: StyledOptions
   ): CreateStyledComponentExtrinsic<Tag, ExtraProps, Theme>;
 
   <Tag extends keyof JSXInEl, ExtraProps = {}>(
     tag: Tag,
-    options?: StyledOptions,
+    options?: StyledOptions
   ): CreateStyledComponentIntrinsic<Tag, ExtraProps, Theme>;
 }
 

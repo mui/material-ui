@@ -15,7 +15,7 @@ describe('customStyled', () => {
     render(<Div data-testid="component">Test</Div>);
 
     const style = window.getComputedStyle(screen.getByTestId('component'));
-    expect(style.getPropertyValue('width')).to.equal('200px'); 
+    expect(style.getPropertyValue('width')).to.equal('200px');
   });
 
   it('should use defaultTheme if no theme is provided', () => {
