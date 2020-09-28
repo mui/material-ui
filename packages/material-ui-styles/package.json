@@ -37,7 +37,10 @@
     "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json"
   },
   "peerDependencies": {
+    "@emotion/core": "^10.0.27",
+    "@emotion/styled": "^10.0.27",
     "@types/react": "^16.8.6",
+    "emotion-theming": "^10.0.27",
     "react": "^16.8.0",
     "react-dom": "^16.8.0"
   },
@@ -49,6 +52,7 @@
   "dependencies": {
     "@babel/runtime": "^7.4.4",
     "@emotion/hash": "^0.8.0",
+    "@material-ui/styled-engine": "^5.0.0-alpha.11",
     "@material-ui/types": "^5.1.0",
     "@material-ui/utils": "^5.0.0-alpha.8",
     "clsx": "^1.0.4",
