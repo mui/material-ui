@@ -633,7 +633,7 @@ describe('<Tooltip />', () => {
     it('should ignore event from the tooltip', () => {
       const handleMouseOver = spy();
       const { getByRole } = render(
-        <Tooltip title="Hello World" open>
+        <Tooltip title="Hello World" open interactive>
           <button type="submit" onMouseOver={handleMouseOver}>
             Hello World
           </button>
@@ -698,65 +698,68 @@ describe('<Tooltip />', () => {
     });
   });
 
-  it('should keep the overlay open if the popper element is hovered', () => {
-    const { getByRole } = render(
-      <Tooltip
-        title="Hello World"
-        enterDelay={100}
-        leaveDelay={111}
-        TransitionProps={{ timeout: 10 }}
-      >
-        <button id="testChild" type="submit">
-          Hello World
-        </button>
-      </Tooltip>,
-    );
+  describe('prop: interactive', () => {
+    it('should keep the overlay open if the popper element is hovered', () => {
+      const { getByRole } = render(
+        <Tooltip
+          title="Hello World"
+          enterDelay={100}
+          interactive
+          leaveDelay={111}
+          TransitionProps={{ timeout: 10 }}
+        >
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
 
-    fireEvent.mouseOver(getByRole('button'));
-    act(() => {
-      clock.tick(100);
+      fireEvent.mouseOver(getByRole('button'));
+      act(() => {
+        clock.tick(100);
+      });
+
+      expect(getByRole('tooltip')).toBeVisible();
+
+      fireEvent.mouseLeave(getByRole('button'));
+
+      expect(getByRole('tooltip')).toBeVisible();
+
+      fireEvent.mouseOver(getByRole('tooltip'));
+      clock.tick(111 + 10);
+
+      expect(getByRole('tooltip')).toBeVisible();
     });
 
-    expect(getByRole('tooltip')).toBeVisible();
+    it('should not animate twice', () => {
+      const { getByRole } = render(
+        <Tooltip title="Hello World" interactive enterDelay={500} TransitionProps={{ timeout: 10 }}>
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
 
-    fireEvent.mouseLeave(getByRole('button'));
+      fireEvent.mouseOver(getByRole('button'));
+      act(() => {
+        clock.tick(500);
+      });
 
-    expect(getByRole('tooltip')).toBeVisible();
+      expect(getByRole('tooltip')).toBeVisible();
 
-    fireEvent.mouseOver(getByRole('tooltip'));
-    clock.tick(111 + 10);
+      fireEvent.mouseLeave(getByRole('button'));
 
-    expect(getByRole('tooltip')).toBeVisible();
-  });
+      expect(getByRole('tooltip')).toBeVisible();
 
-  it('should not animate twice', () => {
-    const { getByRole } = render(
-      <Tooltip title="Hello World" enterDelay={500} TransitionProps={{ timeout: 10 }}>
-        <button id="testChild" type="submit">
-          Hello World
-        </button>
-      </Tooltip>,
-    );
+      fireEvent.mouseOver(getByRole('tooltip'));
+      clock.tick(10);
 
-    fireEvent.mouseOver(getByRole('button'));
-    act(() => {
-      clock.tick(500);
+      expect(getByRole('tooltip')).toBeVisible();
+
+      // TOD: Unclear why not running triggers microtasks but runAll does not trigger microtasks
+      // can be removed once Popper#update is sync
+      clock.runAll();
     });
-
-    expect(getByRole('tooltip')).toBeVisible();
-
-    fireEvent.mouseLeave(getByRole('button'));
-
-    expect(getByRole('tooltip')).toBeVisible();
-
-    fireEvent.mouseOver(getByRole('tooltip'));
-    clock.tick(10);
-
-    expect(getByRole('tooltip')).toBeVisible();
-
-    // TOD: Unclear why not running triggers microtasks but runAll does not trigger microtasks
-    // can be removed once Popper#update is sync
-    clock.runAll();
   });
 
   describe('prop: PopperProps', () => {
@@ -883,7 +886,7 @@ describe('<Tooltip />', () => {
         );
       });
       const { getByRole } = render(
-        <Tooltip open title="test">
+        <Tooltip interactive open title="test">
           <TextField onFocus={handleFocus} />
         </Tooltip>,
       );

@@ -19,6 +19,8 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
   classes?: {
     /** Styles applied to the Popper component. */
     popper?: string;
+    /** Styles applied to the Popper component unless `disableInteractive={true}`. */
+    popperInteractive?: string;
     /** Styles applied to the Popper component if `arrow={true}`. */
     popperArrow?: string;
     /** Styles applied to the tooltip (label wrapper) element. */
@@ -54,6 +56,11 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
    * @default false
    */
   disableHoverListener?: boolean;
+  /**
+   * Makes a tooltip not interactive, i.e. it will close when the user
+   * hovers over the tooltip before the `leaveDelay` is expired.
+   */
+  disableInteractive?: boolean;
   /**
    * Do not respond to long press touch events.
    * @default false

@@ -34,6 +34,7 @@ The `MuiTooltip` name can be used for providing [default props](/customization/g
 | <span class="prop-name">describeChild</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Set to `true` if the `title` acts as an accessible description. By default the `title` acts as an accessible label for the child. |
 | <span class="prop-name">disableFocusListener</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Do not respond to focus events. |
 | <span class="prop-name">disableHoverListener</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Do not respond to hover events. |
+| <span class="prop-name">disableInteractive</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Makes a tooltip not interactive, i.e. it will close when the user hovers over the tooltip before the `leaveDelay` is expired. |
 | <span class="prop-name">disableTouchListener</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Do not respond to long press touch events. |
 | <span class="prop-name">enterDelay</span> | <span class="prop-type">number</span> | <span class="prop-default">100</span> | The number of milliseconds to wait before showing the tooltip. This prop won't impact the enter touch delay (`enterTouchDelay`). |
 | <span class="prop-name">enterNextDelay</span> | <span class="prop-type">number</span> | <span class="prop-default">0</span> | The number of milliseconds to wait before showing the tooltip when one was already recently opened. |
@@ -60,6 +61,7 @@ Any other props supplied will be provided to the root element (native element).
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
 | <span class="prop-name">popper</span> | <span class="prop-name">.MuiTooltip-popper</span> | Styles applied to the Popper component.
+| <span class="prop-name">popperInteractive</span> | <span class="prop-name">.MuiTooltip-popperInteractive</span> | Styles applied to the Popper component unless `disableInteractive={true}`.
 | <span class="prop-name">popperArrow</span> | <span class="prop-name">.MuiTooltip-popperArrow</span> | Styles applied to the Popper component if `arrow={true}`.
 | <span class="prop-name">tooltip</span> | <span class="prop-name">.MuiTooltip-tooltip</span> | Styles applied to the tooltip (label wrapper) element.
 | <span class="prop-name">tooltipArrow</span> | <span class="prop-name">.MuiTooltip-tooltipArrow</span> | Styles applied to the tooltip (label wrapper) element if `arrow={true}`.
