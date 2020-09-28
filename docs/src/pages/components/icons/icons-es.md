@@ -60,7 +60,7 @@ Importa iconos usando una de estas dos opciones:
 
 La más segura es la Opción 1, pero la Opción 2 puede producir la mejor experiencia para el desarrollador. Make sure you follow the [minimizing bundle size guide](/guides/minimizing-bundle-size/#option-2) before using the second approach. La configuración de un plugin de Babel es recomendado.
 
-Cada icono también tiene un "tema": Filled (por defecto), Outlined, Rounded, Two tone y Sharp. Si desea importar el componente de icono con un tema distinto al predeterminado, añada el nombre del tema al nombre del icono. Por ejemplo el `@material-ui/icons/Delete` icono con: Por ejemplo el `@material-ui/icons/Delete` icono con:
+Cada icono también tiene un "tema": Filled (por defecto), Outlined, Rounded, Two tone y Sharp. Si desea importar el componente de icono con un tema distinto al predeterminado, añada el nombre del tema al nombre del icono. Por ejemplo el `@material-ui/icons/Delete` icono con: Por ejemplo el `@material-ui/icons/Delete` icono con: Por ejemplo el `@material-ui/icons/Delete` icono con:
 
 - El tema Filled (por defecto) se exporta como `@material-ui/icons/Delete`,
 - El tema Outlined se exporta como `@material-ui/icons/DeleteOutlined`,

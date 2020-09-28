@@ -37,7 +37,7 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 {{"demo": "pages/components/text-fields/MultilineTextFields.js"}}
 
-## 选择属性
+## Select 选择属性
 
 使用 `select` 属性的时候，您可以在文本框内插入一个 [Select](/components/selects/) 组件。
 

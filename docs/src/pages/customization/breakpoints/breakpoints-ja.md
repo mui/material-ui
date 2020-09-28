@@ -2,7 +2,7 @@
 
 <p class="description">さまざまなコンテキストでブレークポイントを使用できるようにするAPI。</p>
 
-最適なユーザーエクスペリエンスを得るには、material designインターフェイスがさまざまなブレークポイントでレイアウトを調整できる必要があります。 最適なユーザーエクスペリエンスを得るには、material designインターフェイスがさまざまなブレークポイントでレイアウトを調整できる必要があります。 最適なユーザーエクスペリエンスを得るには、material designインターフェイスがさまざまなブレークポイントでレイアウトを調整できる必要があります。 Material-UIは、元の仕様の**簡易**[実装](https://material.io/design/layout/responsive-layout-grid.html#breakpoints)を使用します。
+最適なユーザーエクスペリエンスを得るには、material designインターフェイスがさまざまなブレークポイントでレイアウトを調整できる必要があります。 最適なユーザーエクスペリエンスを得るには、material designインターフェイスがさまざまなブレークポイントでレイアウトを調整できる必要があります。 最適なユーザーエクスペリエンスを得るには、material designインターフェイスがさまざまなブレークポイントでレイアウトを調整できる必要があります。 Material-UIは、元の仕様の**簡易**[実装](https://material.io/design/layout/responsive-layout-grid.html#breakpoints)を使用します。 最適なユーザーエクスペリエンスを得るには、material designインターフェイスがさまざまなブレークポイントでレイアウトを調整できる必要があります。 最適なユーザーエクスペリエンスを得るには、material designインターフェイスがさまざまなブレークポイントでレイアウトを調整できる必要があります。 Material-UIは、元の仕様の**簡易**[実装](https://material.io/design/layout/responsive-layout-grid.html#breakpoints)を使用します。
 
 ブレークポイントは、さまざまなコンポーネントで応答性を高めるために内部的に使用されますが、[Grid](/components/grid/)および[Hidden](/components/hidden/)コンポーネントを使用してアプリケーションのレイアウトを制御する場合にも利用できます。
 
@@ -254,7 +254,7 @@ type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 注意が必要な実装の詳細は、次のとおりです。
 
-- *non React static* プロパティを転送するので、このHOCはより「透明」です。 たとえば、`getInitialProps()`静的メソッド (next.js) を定義するために使用できます。 たとえば、`getInitialProps()`静的メソッド (next.js) を定義するために使用できます。 たとえば、`getInitialProps()`静的メソッド (next.js) を定義するために使用できます。
+- *non React static* プロパティを転送するので、このHOCはより「透明」です。 たとえば、`getInitialProps()`静的メソッド (next.js) を定義するために使用できます。 たとえば、`getInitialProps()`静的メソッド (next.js) を定義するために使用できます。 たとえば、`getInitialProps()`静的メソッド (next.js) を定義するために使用できます。 たとえば、`getInitialProps()`静的メソッド (next.js) を定義するために使用できます。
 
 #### 引数
 

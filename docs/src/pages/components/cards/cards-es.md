@@ -25,7 +25,7 @@ Usa `variant="outlined"` para mostrar una tarjeta con bordes.
 
 ## Interacción compleja
 
-En desktop, el contenido de las tarjetas puede expandirse.
+En desktop, el contenido de las tarjetas puede expandirse. (Click the downward chevron to view the recipe.)
 
 {{"demo": "pages/components/cards/RecipeReviewCard.js", "bg": true}}
 

@@ -44,8 +44,7 @@ If you wish to add support for a component or feature not highlighted here, plea
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
-- **[Listas de Imagem](https://material.io/design/components/image-lists.html) ✓** (também conhecido como Grade Lista)
-- **[Dropdown menu](https://material.io/design/components/menus.html#dropdown-menu) ✓** (Can be composed)
+- **[Listas de Imagem](https://material.io/design/components/image-lists.html) ✓** (também conhecido como Grade Lista)****
 - **[Menus](https://material.io/design/components/menus.html) ✓** 
   - [Types:](https://material.io/design/components/lists.html#types) 
     - **Single line ✓**
@@ -56,7 +55,7 @@ If you wish to add support for a component or feature not highlighted here, plea
   - Thumbnail
   - **Controls ✓** 
     - **Checkbox ✓**
-    - **Expand/collapse ✓** (AKA Nested)
+    - **Развернуть/свернуть ✓** (Вложение)
     - **Switch ✓**
     - Reorder
 - **[Progress indicators](https://material.io/design/components/progress-indicators.html) ✓** 
@@ -69,7 +68,7 @@ If you wish to add support for a component or feature not highlighted here, plea
 - **[Selection controls](https://material.io/design/components/selection-controls.html) ✓** 
   - **[Checkbox](https://material.io/design/components/selection-controls.html#checkboxes) ✓**
   - **[Radio button](https://material.io/design/components/selection-controls.html#radio-buttons) ✓**
-  - **[Loading](https://material.io/archive/guidelines/components/progress-activity.html) ✓** (*Legacy Material v1*)
+  - **[Загрузка](https://material.io/archive/guidelines/components/progress-activity.html) ✓** (*Устаревший материал v1*)
 - **[Sliders](https://material.io/design/components/sliders.html) ✓** 
   - **[Continuous](https://material.io/design/components/sliders.html#continuous-slider) ✓**
   - **[Discrete](https://material.io/design/components/sliders.html#discrete-slider) ✓**
@@ -78,7 +77,7 @@ If you wish to add support for a component or feature not highlighted here, plea
   - **[Circular](https://material.io/design/components/progress-indicators.html#circular-progress-indicators) ✓**
   - **[Switch](https://material.io/design/components/selection-controls.html#switches) ✓**
 - **[Snackbars](https://material.io/design/components/snackbars.html) ✓** (*Legacy Material v1*)
-- **[Steppers](https://material.io/archive/guidelines/components/steppers.html) ✓** (*Legacy Material v1*) 
+- **[Listas de Imagem](https://material.io/design/components/image-lists.html) ✓** (também conhecido como Grade Lista) 
   - **[Horizontal](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steppers) ✓**
   - **[Vertical](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steppers) ✓**
   - [Menu](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders)
@@ -90,7 +89,7 @@ If you wish to add support for a component or feature not highlighted here, plea
   - **[Tooltips](https://material.io/design/components/tooltips.html) ✓**
   - **[Filled](https://material.io/design/components/text-fields.html#filled-text-field) ✓**
 - **[Outline](https://material.io/design/components/text-fields.html#outlined-text-field) ✓** 
-  - **[Standard](https://material.io/archive/guidelines/components/text-fields.html) ✓** (Legacy Material v1)
+  - **[Стандартный](https://material.io/archive/guidelines/components/text-fields.html) ✓** (устаревший материал v1)
   - **[Outline](https://material.io/design/components/text-fields.html#outlined-text-field) ✓**
   - **[Outline](https://material.io/design/components/text-fields.html#outlined-text-field) ✓**
   - [Types](https://material.io/design/components/text-fields.html#input-types): 
@@ -103,7 +102,7 @@ If you wish to add support for a component or feature not highlighted here, plea
     - **Error message ✓**
     - **Icon ✓**
     - Character counter
-- **[Toolbars](https://material.io/archive/guidelines/components/toolbars.html) ✓** (Legacy Material v1)
+- **[Панели инструментов](https://material.io/archive/guidelines/components/toolbars.html) ✓** (Устаревший материал v1)
 - **[Tooltips](https://material.io/design/components/tooltips.html) ✓** 
   - **Desktop ✓**
   - **Mobile ✓**

@@ -8,12 +8,12 @@ Labパッケージとcoreパッケージの明確な違いはどのようにバ�
 
 Coreパッケージに移るためには以下の基準を考慮します。
 
-* **使用されている**必要があります。 **使用されている**必要があります。 The Material-UI team uses Google Analytics stats among other metrics to evaluate the usage of each component. 実験的なコンポーネントで使用率が低いものは、動作が不完全であるか需要がないかのどちらかを意味します。
-* Coreコンポーネントと同**品質**である必要が あります。 Coreパッケージに含まれるほど完璧である必要はないが、開発者が頼れる信頼性はひつようです。 
+* **使用されている**必要があります。 **使用されている**必要があります。 **使用されている**必要があります。 The Material-UI team uses Google Analytics stats among other metrics to evaluate the usage of each component. 実験的なコンポーネントで使用率が低いものは、動作が不完全であるか需要がないかのどちらかを意味します。
+* Coreコンポーネントと同**品質**である必要が あります。 Coreパッケージに含まれるほど完璧である必要はないが、開発者が頼れる信頼性はひつようです。 Coreパッケージに含まれるほど完璧である必要はないが、開発者が頼れる信頼性はひつようです。 
     * 各コンポーネントが**型定義**を持つこと。 現在、Labパッケージへの採用基準に型はひつようないですが、Coreパッケージに移すためには必要です。
     * 十分な**テスト網羅度**がひつようです。 Labコンポーネントのいくつかは十分なテストコードが現在ありません。
 * ユーザーが最新のメジャーバージョンにアップデートするほどの**影響力**として使えるか? コミュニティが分断されないほど、良い。
-* 短/中期的に**破壊的変更**が起きる可能性が少ないことが必要。 たとえば、新しい機能を追加するのに破壊的変更が必要な可能性があれば、そのコンポーネントのCoreへの移動は遅らせた方がよい。
+* 短/中期的に**破壊的変更**が起きる可能性が少ないことが必要。 たとえば、新しい機能を追加するのに破壊的変更が必要な可能性があれば、そのコンポーネントのCoreへの移動は遅らせた方がよい。 たとえば、新しい機能を追加するのに破壊的変更が必要な可能性があれば、そのコンポーネントのCoreへの移動は遅らせた方がよい。
 
 ## インストール
 
@@ -39,7 +39,7 @@ yarn add @material-ui/core
 
 ## TypeScript
 
-[CSS overrides](/customization/globals/#css)と[default prop customization](/customization/globals/#default-props)の恩恵を受けるために、TypeScriptユーザーは以下の型をインポートする必要があります 内部的には、[module augmentation](/guides/typescript/#customization-of-theme)を使って、デフォルトのテーマ構造をLabで利用可能なコンポーネントに拡張します
+[CSS overrides](/customization/globals/#css)と[default prop customization](/customization/globals/#default-props)の恩恵を受けるために、TypeScriptユーザーは以下の型をインポートする必要があります 内部的には、[module augmentation](/guides/typescript/#customization-of-theme)を使って、デフォルトのテーマ構造をLabで利用可能なコンポーネントに拡張します 内部的には、[module augmentation](/guides/typescript/#customization-of-theme)を使って、デフォルトのテーマ構造をLabで利用可能なコンポーネントに拡張します
 
 ```tsx
 import type '@material-ui/lab/themeAugmentation';

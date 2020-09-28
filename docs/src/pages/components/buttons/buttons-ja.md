@@ -38,7 +38,7 @@ Cardでは、テキストボタンを使用することでCardの内容に重点
 
 ## Outlined Buttons
 
-[Outlined buttons](https://material.io/design/components/buttons.html#outlined-button) は少し強調されたボタンです。 重要ではあるが、一番ではないアクションを含みます。
+[Outlined buttons](https://material.io/design/components/buttons.html#outlined-button) は少し強調されたボタンです。 重要ではあるが、一番ではないアクションを含みます。 重要ではあるが、一番ではないアクションを含みます。
 
 Outlined buttonは、Contained buttonより弱く、 Text buttonよりは強い強調をします。
 
@@ -50,7 +50,6 @@ Outlined buttonは、Contained buttonより弱く、 Text buttonよりは強い�
 
 ```jsx
 <Button onClick={() => { alert('clicked') }}>クリックして!</Button>
-
 ```
 
 ドキュメントでは(多すぎるので)ネイティブpropsに関しては [言及していない](/guides/api/#native-properties)ことに注意してください。
@@ -67,7 +66,7 @@ Outlined buttonは、Contained buttonより弱く、 Text buttonよりは強い�
 
 ## Buttons with icons and label
 
-ロゴはプレーンテキストよりも認識しやすいため、ボタンにアイコンを追加してアプリケーションのUXを強化したい場合があります。 たとえば、削除ボタンにごみ箱アイコンを付けるような場合です。 たとえば、削除ボタンにごみ箱アイコンを付けるような場合です。 たとえば、削除ボタンにごみ箱アイコンを付けるような場合です。
+ロゴはプレーンテキストよりも認識しやすいため、ボタンにアイコンを追加してアプリケーションのUXを強化したい場合があります。 たとえば、削除ボタンにごみ箱アイコンを付けるような場合です。 たとえば、削除ボタンにごみ箱アイコンを付けるような場合です。 たとえば、削除ボタンにごみ箱アイコンを付けるような場合です。 たとえば、削除ボタンにごみ箱アイコンを付けるような場合です。
 
 {{"demo": "pages/components/buttons/IconLabelButtons.js"}}
 
@@ -81,7 +80,7 @@ Outlined buttonは、Contained buttonより弱く、 Text buttonよりは強い�
 
 ## カスタムButton
 
-コンポーネントのカスタマイズの例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+コンポーネントのカスタマイズの例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js", "defaultCodeOpen": false}}
 
@@ -89,7 +88,7 @@ Outlined buttonは、Contained buttonより弱く、 Text buttonよりは強い�
 
 ## 複雑なButton
 
-テキストボタン、コンテインボタン、フローティングアクションボタン、アイコンボタンは、同じコンポーネント(`ButtonBase`) を元に作成されています。 この元のコンポーネントを利用して独自のインタラクションを構築できます。
+テキストボタン、コンテインボタン、フローティングアクションボタン、アイコンボタンは、同じコンポーネント(`ButtonBase`) を元に作成されています。 この元のコンポーネントを利用して独自のインタラクションを構築できます。 この元のコンポーネントを利用して独自のインタラクションを構築できます。
 
 {{"demo": "pages/components/buttons/ButtonBase.js"}}
 
@@ -105,7 +104,7 @@ Outlined buttonは、Contained buttonより弱く、 Text buttonよりは強い�
 
 ButtonBaseコンポーネントは無効化時に、 `pointer-events: none;` としています。無効化されたカーソルが出現することを抑制するためです。
 
-`not-allowed`を意図的に使用したい場合、２つの選択肢があります。 
+`not-allowed`を意図的に使用したい場合、２つの選択肢があります。
 
 1. **CSS だけ**. `<button>` エレメントの無効化時のポインターイベントを削除できます:
 
@@ -118,7 +117,7 @@ ButtonBaseコンポーネントは無効化時に、 `pointer-events: none;` と
 
 ただし:
 
-- [tooltips を無効化したエレメント](/components/tooltips/#disabled-elements)で表示する必要がある時、 `pointer-events: none;` に戻す必要があります。 
+- [tooltips を無効化したエレメント](/components/tooltips/#disabled-elements)で表示する必要がある時、 `pointer-events: none;` に戻す必要があります。
 - ボタン要素以外をレンダリングする時、カーソルが変更されない時がある。例えば、link `<a>`要素。
 
 2. **DOM 変更**. Buttonコンポーネントを囲う。

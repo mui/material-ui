@@ -89,7 +89,18 @@ The key step in server-side rendering is to render the initial HTML of the compo
 We then get the CSS from the `sheets` using `sheets.toString()`. We will see how this is passed along in the `renderFullPage` function.
 
 ```jsx
-const html = ReactDOMServer.renderToString(
+const css = sheets.toString();
+
+  // Zurücksenden der gerenderten Seite an den Client.
+  res.send(renderFullPage(html, css));
+}
+
+const app = express();
+
+app.use('/build', express.static('build'));
+
+// Dies wird jedes Mal ausgelöst, wenn der Server eine Anfrage erhält.
+  const html = ReactDOMServer.renderToString(
     sheets.collect(
       <ThemeProvider theme={theme}>
         <App />
@@ -109,17 +120,6 @@ function handleRender(req, res) {
   const sheets = new ServerStyleSheets();
 
   // Render the component to a string.
-  res.send(renderFullPage(html, css));
-}
-
-const app = express();
-
-app.use('/build', express.static('build'));
-
-// Dies wird jedes Mal ausgelöst, wenn der Server eine Anfrage erhält.
-  const css = sheets.toString();
-
-  // Zurücksenden der gerenderten Seite an den Client.
 app.use(handleRender);
 
 const port = 3000;

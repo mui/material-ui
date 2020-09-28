@@ -25,7 +25,7 @@ Set `variant="outlined"` to render an outlined card.
 
 ## Сложное взаимодействие
 
-В варианте для десктопа контент карточки может расширяться.
+В варианте для десктопа контент карточки может расширяться. (Click the downward chevron to view the recipe.)
 
 {{"demo": "pages/components/cards/RecipeReviewCard.js", "bg": true}}
 

@@ -10,7 +10,7 @@ components: タイポグラフィ
 
 ## 基本設定
 
-*Roboto*フォントは、Material-UIによって自動的にロード**されません** 。 開発者は、アプリケーションで使用されるすべてのフォントをロードする責任があります。 Roboto Fontには、簡単に開始できる方法がいくつかあります。 より高度な設定については、[テーマのカスタマイズセクション](/customization/typography/)チェックしてください 。 開発者は、アプリケーションで使用されるすべてのフォントをロードする責任があります。 Roboto Fontには、簡単に開始できる方法がいくつかあります。 より高度な設定については、[テーマのカスタマイズセクション](/customization/typography/)チェックしてください 。
+*Roboto*フォントは、Material-UIによって自動的にロード**されません** 。 開発者は、アプリケーションで使用されるすべてのフォントをロードする責任があります。 Roboto Fontには、簡単に開始できる方法がいくつかあります。 より高度な設定については、[テーマのカスタマイズセクション](/customization/typography/)チェックしてください 。 開発者は、アプリケーションで使用されるすべてのフォントをロードする責任があります。 Roboto Fontには、簡単に開始できる方法がいくつかあります。 より高度な設定については、[テーマのカスタマイズセクション](/customization/typography/)チェックしてください 。 開発者は、アプリケーションで使用されるすべてのフォントをロードする責任があります。 Roboto Fontには、簡単に開始できる方法がいくつかあります。 より高度な設定については、[テーマのカスタマイズセクション](/customization/typography/)チェックしてください 。
 
 ## Roboto Font CDN
 
@@ -42,7 +42,7 @@ For more info check out [Fontsource](https://github.com/DecliningLotus/fontsourc
 
 ## テーマ
 
-状況によっては、 `Typography` コンポーネントを使用できない場合があります。 状況によっては、 `Typography` コンポーネントを使用できない場合があります。 状況によっては、 `Typography` コンポーネントを使用できない場合があります。 このテーマのe [`typography`](/customization/default-theme/?expand-path=$.typography)キーを活用できることを願っています。
+状況によっては、 `Typography` コンポーネントを使用できない場合があります。 状況によっては、 `Typography` コンポーネントを使用できない場合があります。 状況によっては、 `Typography` コンポーネントを使用できない場合があります。 状況によっては、 `Typography` コンポーネントを使用できない場合があります。 このテーマのe [`typography`](/customization/default-theme/?expand-path=$.typography)キーを活用できることを願っています。
 
 {{"demo": "pages/components/typography/TypographyTheme.js"}}
 

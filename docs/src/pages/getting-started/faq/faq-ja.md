@@ -8,7 +8,7 @@ If you still can't find what you're looking for, you can refer to our [support p
 
 Material-UIをサポートする方法はたくさんあります。
 
-- **ライブラリを布教する** **ライブラリを布教する** **ライブラリを布教する** Evangelize Material-UI by [linking to material-ui.com](https://material-ui.com/) on your website, every backlink matters. Follow us on [Twitter](https://twitter.com/MaterialUI), like and retweet the important news. Or just talk about us with your friends.
+- **ライブラリを布教する** **ライブラリを布教する** **ライブラリを布教する** **ライブラリを布教する** Evangelize Material-UI by [linking to material-ui.com](https://material-ui.com/) on your website, every backlink matters. Follow us on [Twitter](https://twitter.com/MaterialUI), like and retweet the important news. Or just talk about us with your friends.
 - **Give us feedback**. Tell us what we're doing well or where we can improve. Please upvote (👍) the issues that you are the most interested in seeing solved.
 - **Help new users**. You can answer questions on [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui).
 - **Make changes happen**. 
@@ -21,13 +21,13 @@ Material-UIをサポートする方法はたくさんあります。
 
 ## productionビルドでコンポーネントが正しくレンダリングされないのはなぜですか？
 
-Material-UIが機能するためには、`className`ページ上のすべてのコンポーネントの値は、[クラス名ジェネレータ](/styles/advanced/#class-names)の単一インスタンスによって生成される必要があります。 Material-UIが機能するためには、`className`ページ上のすべてのコンポーネントの値は、[クラス名ジェネレータ](/styles/advanced/#class-names)の単一インスタンスによって生成される必要があります。 The #1 reason this likely happens is due to class name conflicts once your code is in a production bundle.
+Material-UIが機能するためには、`className`ページ上のすべてのコンポーネントの値は、[クラス名ジェネレータ](/styles/advanced/#class-names)の単一インスタンスによって生成される必要があります。 Material-UIが機能するためには、`className`ページ上のすべてのコンポーネントの値は、[クラス名ジェネレータ](/styles/advanced/#class-names)の単一インスタンスによって生成される必要があります。 Material-UIが機能するためには、`className`ページ上のすべてのコンポーネントの値は、[クラス名ジェネレータ](/styles/advanced/#class-names)の単一インスタンスによって生成される必要があります。 The #1 reason this likely happens is due to class name conflicts once your code is in a production bundle.
 
 To correct this issue, all components on the page need to be initialized such that there is only ever **one class name generator** among them.
 
 さまざまなシナリオで、誤って2つのクラス名ジェネレータを使用することになる事例
 
-- If you think that the issue may be in the duplication of the @material-ui/styles module somewhere in your dependencies, there are several ways to check this. You can use `npm ls @material-ui/styles`, `yarn list @material-ui/styles` or `find -L ./node_modules | grep /@material-ui/styles/package.json` commands in your application folder.
+- If you think that the issue may be in the duplication of the @material-ui/styles module somewhere in your dependencies, there are several ways to check this. If you think that the issue may be in the duplication of the @material-ui/styles module somewhere in your dependencies, there are several ways to check this. --hoistフラグを指定してbootstrap option を実行してみてください。
 - You are using `StylesProvider` for a **subset** of your React tree.
 - バンドラーを使用していて、それが原因で複数のクラス名ジェネレータインスタンスが作成されるようにコードを分割している場合。
 
@@ -108,11 +108,11 @@ Notice that the usage of `CssBaseline` is required for the above approach to wor
 
 いいえ、必須ではありません。 いいえ、必須ではありません。 But this dependency comes built in, so carries no additional bundle size overhead. いいえ、必須ではありません。 But this dependency comes built in, so carries no additional bundle size overhead.
 
-その場合は、[スタイルライブラリの相互運用](/guides/interoperability/)セクションで、Material-UIコンポーネントを別のスタイルのライブラリでスタイル変更することがいかに簡単であるかを示します。 その場合は、[スタイルライブラリの相互運用](/guides/interoperability/)セクションで、Material-UIコンポーネントを別のスタイルのライブラリでスタイル変更することがいかに簡単であるかを示します。 Perhaps, however, you're adding some Material-UI components to an app that already uses another styling solution, or are already familiar with a different API, and don't want to learn a new one?
+その場合は、[スタイルライブラリの相互運用](/guides/interoperability/)セクションで、Material-UIコンポーネントを別のスタイルのライブラリでスタイル変更することがいかに簡単であるかを示します。 その場合は、[スタイルライブラリの相互運用](/guides/interoperability/)セクションで、Material-UIコンポーネントを別のスタイルのライブラリでスタイル変更することがいかに簡単であるかを示します。 その場合は、[スタイルライブラリの相互運用](/guides/interoperability/)セクションで、Material-UIコンポーネントを別のスタイルのライブラリでスタイル変更することがいかに簡単であるかを示します。 Perhaps, however, you're adding some Material-UI components to an app that already uses another styling solution, or are already familiar with a different API, and don't want to learn a new one?
 
 ## インラインスタイルとCSSのどちらを使用すべきか
 
-経験則として、動的styleプロパティにはinline-styleのみを使用してください。 CSSの代替手段は、次のようなより多くの利点を提供します。 CSSの代替手段は、次のようなより多くの利点を提供します。 CSSの代替手段は、次のようなより多くの利点を提供します。
+経験則として、動的styleプロパティにはinline-styleのみを使用してください。 CSSの代替手段は、次のようなより多くの利点を提供します。 CSSの代替手段は、次のようなより多くの利点を提供します。 CSSの代替手段は、次のようなより多くの利点を提供します。 CSSの代替手段は、次のようなより多くの利点を提供します。
 
 - auto-prefixing
 - デバックのしやすさ
@@ -125,7 +125,7 @@ We detail the [integration with third-party routing libraries](/guides/compositi
 
 ## どうやってDOM要素にアクセスできますか？
 
-DOM内の何かを描画するすべてのMaterial-UIコンポーネントは、そのrefを基礎となるDOMコンポーネントに転送します。 つまり、Material-UIコンポーネントにアタッチされたrefを読み取ることでDOM要素 を取得できます。 DOM内の何かを描画するすべてのMaterial-UIコンポーネントは、そのrefを基礎となるDOMコンポーネントに転送します。 つまり、Material-UIコンポーネントにアタッチされたrefを読み取ることでDOM要素 を取得できます。 DOM内の何かを描画するすべてのMaterial-UIコンポーネントは、そのrefを基礎となるDOMコンポーネントに転送します。 つまり、Material-UIコンポーネントにアタッチされたrefを読み取ることでDOM要素 を取得できます。
+DOM内の何かを描画するすべてのMaterial-UIコンポーネントは、そのrefを基礎となるDOMコンポーネントに転送します。 つまり、Material-UIコンポーネントにアタッチされたrefを読み取ることでDOM要素 を取得できます。 DOM内の何かを描画するすべてのMaterial-UIコンポーネントは、そのrefを基礎となるDOMコンポーネントに転送します。 つまり、Material-UIコンポーネントにアタッチされたrefを読み取ることでDOM要素 を取得できます。 DOM内の何かを描画するすべてのMaterial-UIコンポーネントは、そのrefを基礎となるDOMコンポーネントに転送します。 つまり、Material-UIコンポーネントにアタッチされたrefを読み取ることでDOM要素 を取得できます。 DOM内の何かを描画するすべてのMaterial-UIコンポーネントは、そのrefを基礎となるDOMコンポーネントに転送します。 つまり、Material-UIコンポーネントにアタッチされたrefを読み取ることでDOM要素 を取得できます。
 
 ```jsx
 // or a ref setter function
@@ -208,7 +208,7 @@ Lernaルートフォルダー内のpackage.jsonファイルの例
 
 ### 1つのページで複数のアプリケーションを実行する
 
-1つのページで複数のアプリケーションを実行している場合は、それらすべてに1つの@material-ui/stylesモジュールを使用することを検討してください。 1つのページで複数のアプリケーションを実行している場合は、それらすべてに1つの@material-ui/stylesモジュールを使用することを検討してください。 Webパックを使用している場合は、[CommonsChunkPlugin](https://webpack.js.org/plugins/commons-chunk-plugin/)を使用して@material-ui/stylesモジュールを含む明示的な[vendor chunk](https://webpack.js.org/plugins/commons-chunk-plugin/#explicit-vendor-chunk), を作成できます。 1つのページで複数のアプリケーションを実行している場合は、それらすべてに1つの@material-ui/stylesモジュールを使用することを検討してください。 Webパックを使用している場合は、[CommonsChunkPlugin](https://webpack.js.org/plugins/commons-chunk-plugin/)を使用して@material-ui/stylesモジュールを含む明示的な[vendor chunk](https://webpack.js.org/plugins/commons-chunk-plugin/#explicit-vendor-chunk), を作成できます。
+1つのページで複数のアプリケーションを実行している場合は、それらすべてに1つの@material-ui/stylesモジュールを使用することを検討してください。 1つのページで複数のアプリケーションを実行している場合は、それらすべてに1つの@material-ui/stylesモジュールを使用することを検討してください。 Webパックを使用している場合は、[CommonsChunkPlugin](https://webpack.js.org/plugins/commons-chunk-plugin/)を使用して@material-ui/stylesモジュールを含む明示的な[vendor chunk](https://webpack.js.org/plugins/commons-chunk-plugin/#explicit-vendor-chunk), を作成できます。 1つのページで複数のアプリケーションを実行している場合は、それらすべてに1つの@material-ui/stylesモジュールを使用することを検討してください。 Webパックを使用している場合は、[CommonsChunkPlugin](https://webpack.js.org/plugins/commons-chunk-plugin/)を使用して@material-ui/stylesモジュールを含む明示的な[vendor chunk](https://webpack.js.org/plugins/commons-chunk-plugin/#explicit-vendor-chunk), を作成できます。 1つのページで複数のアプリケーションを実行している場合は、それらすべてに1つの@material-ui/stylesモジュールを使用することを検討してください。 Webパックを使用している場合は、[CommonsChunkPlugin](https://webpack.js.org/plugins/commons-chunk-plugin/)を使用して@material-ui/stylesモジュールを含む明示的な[vendor chunk](https://webpack.js.org/plugins/commons-chunk-plugin/#explicit-vendor-chunk), を作成できます。
 
 ```diff
   module.exports = {
@@ -228,11 +228,11 @@ Lernaルートフォルダー内のpackage.jsonファイルの例
 
 ## サーバーでアプリが正しくレンダリングされない
 
-動作しない場合は、99%のケースで設定の問題になります。 動作しない場合は、99%のケースで設定の問題になります。 動作しない場合は、99%のケースで設定の問題になります。 A missing property, a wrong call order, or a missing component – server-side rendering is strict about configuration, and the best way to find out what's wrong is to compare your project to an already working setup. Check out the [reference implementations](/guides/server-rendering/#reference-implementations), bit by bit.
+動作しない場合は、99%のケースで設定の問題になります。 動作しない場合は、99%のケースで設定の問題になります。 動作しない場合は、99%のケースで設定の問題になります。 動作しない場合は、99%のケースで設定の問題になります。 A missing property, a wrong call order, or a missing component – server-side rendering is strict about configuration, and the best way to find out what's wrong is to compare your project to an already working setup. Check out the [reference implementations](/guides/server-rendering/#reference-implementations), bit by bit.
 
 ### CSSは最初のロードでのみ機能し、その後欠落します
 
-CSSは、ページの最初のロード時にのみ生成されます。 この場合、CSSは連続した要求に対してサーバに存在しません。 CSSは、ページの最初のロード時にのみ生成されます。 この場合、CSSは連続した要求に対してサーバに存在しません。 CSSは、ページの最初のロード時にのみ生成されます。 この場合、CSSは連続した要求に対してサーバに存在しません。
+CSSは、ページの最初のロード時にのみ生成されます。 この場合、CSSは連続した要求に対してサーバに存在しません。 CSSは、ページの最初のロード時にのみ生成されます。 この場合、CSSは連続した要求に対してサーバに存在しません。 CSSは、ページの最初のロード時にのみ生成されます。 この場合、CSSは連続した要求に対してサーバに存在しません。 CSSは、ページの最初のロード時にのみ生成されます。 この場合、CSSは連続した要求に対してサーバに存在しません。
 
 #### 実行するアクション
 
@@ -253,6 +253,7 @@ function handleRender(req, res) {
   // Render the component to a string.
 const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
+  const html = ReactDOMServer.renderToString(
   -// Create a sheets instance.
 ```
 
@@ -262,9 +263,9 @@ const html = ReactDOMServer.renderToString(
 
 #### 実行するアクション
 
-クラス名の値は、[class name generator](/styles/advanced/#class-names)の概念に基づいています。 ページ全体を**単一のジェネレーターでレンダリングする必要があります** 。 このジェネレーターは、サーバーとクライアントで同じように動作する必要があります。 例えば： ページ全体を**単一のジェネレーターでレンダリングする必要があります** 。 このジェネレーターは、サーバーとクライアントで同じように動作する必要があります。 例えば： ページ全体を**単一のジェネレーターでレンダリングする必要があります** 。 このジェネレーターは、サーバーとクライアントで同じように動作する必要があります。 例えば：
+クラス名の値は、[class name generator](/styles/advanced/#class-names)の概念に基づいています。 ページ全体を**単一のジェネレーターでレンダリングする必要があります** 。 このジェネレーターは、サーバーとクライアントで同じように動作する必要があります。 例えば： ページ全体を**単一のジェネレーターでレンダリングする必要があります** 。 このジェネレーターは、サーバーとクライアントで同じように動作する必要があります。 例えば： ページ全体を**単一のジェネレーターでレンダリングする必要があります** 。 このジェネレーターは、サーバーとクライアントで同じように動作する必要があります。 例えば： ページ全体を**単一のジェネレーターでレンダリングする必要があります** 。 このジェネレーターは、サーバーとクライアントで同じように動作する必要があります。 例えば：
 
-- 要求ごとに新しいクラス名ジェネレータを提供する必要があります。 しかし、異なるリクエスト間で`createGenerateClassName()`を共有すべきではありません。 要求ごとに新しいクラス名ジェネレータを提供する必要があります。 しかし、異なるリクエスト間で`createGenerateClassName()`を共有すべきではありません。 要求ごとに新しいクラス名ジェネレータを提供する必要があります。 しかし、異なるリクエスト間で`createGenerateClassName()`を共有すべきではありません。
+- 要求ごとに新しいクラス名ジェネレータを提供する必要があります。 しかし、異なるリクエスト間で`createGenerateClassName()`を共有すべきではありません。 要求ごとに新しいクラス名ジェネレータを提供する必要があります。 しかし、異なるリクエスト間で`createGenerateClassName()`を共有すべきではありません。 要求ごとに新しいクラス名ジェネレータを提供する必要があります。 しかし、異なるリクエスト間で`createGenerateClassName()`を共有すべきではありません。 要求ごとに新しいクラス名ジェネレータを提供する必要があります。 しかし、異なるリクエスト間で`createGenerateClassName()`を共有すべきではありません。
 
 *修正の例：*
 
@@ -280,6 +281,7 @@ function handleRender(req, res) {
   //…
 
   // Render the component to a string.
+  const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
   -// Create a sheets instance.
 ```
@@ -304,7 +306,7 @@ function handleRender(req, res) {
 
 ## 私が見ている色とこのサイトで見ている色が違うのはなぜですか？
 
-ドキュメントサイトはカスタムテーマを使用しています。 したがって、カラーパレットがあるMaterial-UIが提供しているデフォルトのテーマは異なります。 テーマのカスタマイズについて学ぶには、この[ページ](/customization/theming/)を参照してください。 したがって、カラーパレットがあるMaterial-UIが提供しているデフォルトのテーマは異なります。 テーマのカスタマイズについて学ぶには、この[ページ](/customization/theming/)を参照してください。
+ドキュメントサイトはカスタムテーマを使用しています。 したがって、カラーパレットがあるMaterial-UIが提供しているデフォルトのテーマは異なります。 テーマのカスタマイズについて学ぶには、この[ページ](/customization/theming/)を参照してください。 したがって、カラーパレットがあるMaterial-UIが提供しているデフォルトのテーマは異なります。 テーマのカスタマイズについて学ぶには、この[ページ](/customization/theming/)を参照してください。 したがって、カラーパレットがあるMaterial-UIが提供しているデフォルトのテーマは異なります。 テーマのカスタマイズについて学ぶには、この[ページ](/customization/theming/)を参照してください。
 
 ## Component Xがrefオブジェクトの代わりにpropでDOMノードを必要とするのはなぜですか？
 
@@ -325,7 +327,7 @@ function App() {
 }
 ```
 
-ここで、`Portal`は、`container.current`が使用可能の場合にのみ、子をコンテナーにマウントします。 ポータルの単純な実装は次のとおりです。 ポータルの単純な実装は次のとおりです。 ポータルの単純な実装は次のとおりです。
+ここで、`Portal`は、`container.current`が使用可能の場合にのみ、子をコンテナーにマウントします。 ポータルの単純な実装は次のとおりです。 ポータルの単純な実装は次のとおりです。 ポータルの単純な実装は次のとおりです。 ポータルの単純な実装は次のとおりです。
 
 ```jsx
 function Portal({ children, container }) {

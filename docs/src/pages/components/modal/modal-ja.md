@@ -7,7 +7,7 @@ components: Modal
 
 <p class="description">モーダルコンポーネントは、ダイアログ、ポップオーバー、ライトボックスなどを作成するための強固な基盤を提供します。</p>
 
-コンポーネントは、backdropコンポーネントの前にその `children`ノードをレンダリングします。 `Modal` には、次のような重要な機能があります。 `Modal` には、次のような重要な機能があります。 `Modal` には、次のような重要な機能があります。
+コンポーネントは、backdropコンポーネントの前にその `children`ノードをレンダリングします。 `Modal` には、次のような重要な機能があります。 `Modal` には、次のような重要な機能があります。 `Modal` には、次のような重要な機能があります。 `Modal` には、次のような重要な機能があります。
 
 - 💄 一度に1つだけでは不十分な場合に、モーダルスタッキングを管理します。
 - 🔐モーダルの下のインタラクションを無効にするためのバックドロップを作成します。
@@ -50,7 +50,7 @@ Alternatively, you can use [react-spring](https://github.com/react-spring/react-
 
 ## Server-side modal
 
-React は、サーバー上の [`createPortal（）`](https://reactjs.org/docs/portals.html) APIを[サポートしません。](https://github.com/facebook/react/issues/13097) In order to display the modal, you need to disable the portal feature with the `disablePortal` prop: In order to display the modal, you need to disable the portal feature with the `disablePortal` prop: In order to display the modal, you need to disable the portal feature with the `disablePortal` prop:
+React は、サーバー上の [`createPortal（）`](https://reactjs.org/docs/portals.html) APIを[サポートしません。](https://github.com/facebook/react/issues/13097) In order to display the modal, you need to disable the portal feature with the `disablePortal` prop: In order to display the modal, you need to disable the portal feature with the `disablePortal` prop: In order to display the modal, you need to disable the portal feature with the `disablePortal` prop: In order to display the modal, you need to disable the portal feature with the `disablePortal` prop:
 
 {{"demo": "pages/components/modal/ServerModal.js"}}
 

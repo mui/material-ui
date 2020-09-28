@@ -9,6 +9,8 @@ components: Grid
 
 Uma [grade](https://material.io/design/layout/responsive-layout-grid.html) cria consistência visual entre leiautes, enquanto permite flexibilidade em uma ampla variedade de projetos. A UI responsiva do Material Design é baseada em um leiaute de grade com 12 colunas.
 
+> O componente `Grid` não deve ser confundido com um data grid; ele está mais próximo de um layout grid. Para um cabeçalho do data grid para [o componente `DataGrid`](/components/data-grid/).
+
 ## Como funciona
 
 O sistema de grade é implementado com o componente `Grid`:
@@ -67,7 +69,7 @@ A demonstração a seguir não segue a especificação do Material Design, mas i
 
 As propriedades `container` e `item` são boleanas e independentes. Elas podem ser combinados.
 
-> Um **contêiner** flex é a caixa gerada por um elemento com uma exibição definida por `flex` ou `inline-flex`. Os filhos em um fluxo de um contêiner flex são chamados de **flex itens** e são dispostos usando o modelo de leiaute flex.
+> Um **container** flex é a caixa gerada por um elemento com uma exibição definida por `flex` ou `inline-flex`. Os filhos em um fluxo de um container flex são chamados de **flex itens** e são dispostos usando o modelo de layout flex.
 
 https://www.w3.org/TR/css-flexbox-1/#box-model
 

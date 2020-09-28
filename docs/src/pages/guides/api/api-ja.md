@@ -24,7 +24,7 @@ Api設計が難しいのは、単純に見えるようにしても実際には�
 
 Props supplied to a component which are not explictly documented, are spread to the root element; for instance, the `className` property is applied to the root.
 
-ここで、`MenuItem`のリプルを無効にするとします。 スプレッド動作を利用できます。 スプレッド動作を利用できます。 スプレッド動作を利用できます。
+ここで、`MenuItem`のリプルを無効にするとします。 スプレッド動作を利用できます。 スプレッド動作を利用できます。 スプレッド動作を利用できます。 スプレッド動作を利用できます。
 
 ```jsx
 <MenuItem disableRipple />

@@ -226,6 +226,7 @@ Sin embargo, además de recordar el valor introducido anteriormente, el navegado
 
 - Nombra la entrada sin filtrar ninguna información que el navegador pueda utilizar. p.e. `id="field1"` en vez de `id="country"`. Si dejas el id de vacío, el componente utiliza un identificador aleatorio.
 - Establecer `autoComplete="new-password"`: jsx Establecer `autoComplete="new-password": 
+    jsx` Establecer `autoComplete="new-password": 
         jsx` 
         Establecer <code>autoComplete="new-password": 
             jsx</code>

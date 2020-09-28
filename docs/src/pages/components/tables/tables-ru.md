@@ -19,31 +19,31 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 
 ## Структура
 
+Простой пример без излишеств.
+
 Таблица данных содержит 1 строку заголовка, в которой перечислены имена столбцов, за которыми следуют строки для данных.
-
-Флажки должны сопровождать каждую строку, если пользователю необходимо выбрать или манипулировать данными.
-
-It utilizes the [`Collapse`](/api/collapse/) component. Это позволяет программам чтения с экрана идентифицировать значение ячейки по имени строки и столбца.
 
 ## Простая таблица
 
-Простой пример без излишеств.
-
-{{"demo": "pages/components/tables/BasicTable.js", "bg": true}}
-
-## Плотная компоновка таблицы
-
-Простой пример таблицы с плотной компоновкой и без излишеств.
+Флажки должны сопровождать каждую строку, если пользователю необходимо выбрать или манипулировать данными.
 
 {{"demo": "pages/components/tables/DenseTable.js", "bg": true}}
 
-## Сортировка и выбор строк
+## Плотная компоновка таблицы
 
 В этом примере демонстрируется использование `чекбокса` и кликабельных строк для выбора данных в настраиваемой `панели инструментов`. Здесь используется компонент `TableSortLabel` чтобы помочь стилизовать заголовки столбцов.
 
 Таблица имеет фиксированную ширину для демонстрации горизонтальной прокрутки. Чтобы предотвратить прокрутку элементов управления нумерацией страниц, компонент TablePagination находится за пределами таблицы. (В [примерe «собственные действия элементов нумерации»](#custom-pagination-actions) ниже показывается управление нумерацией таблиц с помощью TableFooter.)
 
 {{"demo": "pages/components/tables/EnhancedTable.js", "bg": true}}
+
+## Сортировка и выбор строк
+
+The `Table` component has a close mapping to the native `<table>` elements. This constraint makes building rich data tables challenging.
+
+The [`DataGrid` component](/components/data-grid/) is designed for use-cases that are focused around handling a large amounts of tabular data. While it comes with a more rigid structure, in exchange, you gain more powerful features.
+
+{{"demo": "pages/components/tables/DataTable.js", "bg": "inline"}}
 
 ## Настраиваемые таблицы
 
@@ -96,16 +96,6 @@ An example of a table with expandable rows, revealing more information. It utili
 В следующем примере мы покажем, как использовать [react-virtualized](https://github.com/bvaughn/react-virtualized) с компонентом `Table`. Он отображает 200 строк и c легкостью может еще больше. Virtualization helps with performance issues.
 
 {{"demo": "pages/components/tables/ReactVirtualizedTable.js", "bg": true}}
-
-## Дополнительные проекты
-
-Для более сложных вариантов использования вы можете воспользоваться:
-
-### Прочее
-
-- [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/): A data grid for Material-UI with paging, sorting, filtering, grouping and editing features ([paid license](https://js.devexpress.com/licensing/)).
-- [mui-datatables](https://github.com/gregnb/mui-datatables): Responsive data tables for Material-UI with filtering, sorting, search and more.
-- [tubular-react](https://github.com/unosquare/tubular-react): A Material-UI table with local or remote data-source. Featuring filtering, sorting, free-text search, export to CSV locally, and aggregations.
 
 ## Доступность
 

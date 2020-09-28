@@ -1,6 +1,6 @@
 ---
 title: Componente React para Lista de Grade
-components: ImageList, ImageListItem, ImageListItemBar, ListSubheader, IconButton
+components: ImageList, ImageListItem, ImageListItemBar
 ---
 
 # Lista de Grade
