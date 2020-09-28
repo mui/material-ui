@@ -22,7 +22,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#checkbox'
 
 ## 带有 FormControlLabel 的多选框
 
-A checkbox input can only have two states in a form: checked or unchecked. It either submits its value or doesn't. Visually, there are actually three states a checkbox can be in: checked, unchecked, or indeterminate.
+多选框在表单中只能存在两种状态：已选中或未选中。 在其状态下提交的值只有存在和空两种形式。 从视觉上看的话，一个多选框其实有三种状态：选中、未选中、不确定。
 
 {{"demo": "pages/components/checkboxes/IndeterminateCheckbox.js"}}
 
@@ -32,7 +32,7 @@ A checkbox input can only have two states in a form: checked or unchecked. It ei
 
 {{"demo": "pages/components/checkboxes/CheckboxLabels.js"}}
 
-## 标签放置
+## 表单组
 
 `FormGroup` 会提供相对简单的 API 对选择控件进行分组。
 
