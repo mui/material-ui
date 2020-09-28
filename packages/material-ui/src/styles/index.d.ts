@@ -25,6 +25,7 @@ export {
 } from './withStyles';
 export { default as withTheme, WithTheme } from './withTheme';
 export { default as muiStyled } from './muiStyled';
+export { default as customStyled } from './customStyled';
 export { default as styled, ComponentCreator, StyledProps } from './styled';
 export {
   createGenerateClassName,
