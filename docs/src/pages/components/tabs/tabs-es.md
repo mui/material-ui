@@ -1,5 +1,5 @@
 ---
-title: React Tabs component
+title: Tabs React component
 components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
 githubLabel:
   component: Pestañas

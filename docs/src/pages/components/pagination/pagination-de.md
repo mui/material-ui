@@ -1,5 +1,5 @@
 ---
-title: React Pagination component
+title: Pagination React component
 components: Pagination, PaginationItem
 githubLabel:
   component: Paginierung

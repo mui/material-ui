@@ -1,5 +1,5 @@
 ---
-title: React Slider component
+title: Slider React component
 components: Slider
 githubLabel:
   component: Slider

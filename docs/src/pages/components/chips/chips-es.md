@@ -1,5 +1,5 @@
 ---
-title: React Chip component
+title: Chip React component
 components: Chip
 githubLabel:
   component: Chip

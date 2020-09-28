@@ -1,5 +1,5 @@
 ---
-title: React Select component
+title: Select React component
 components: Select, NativeSelect
 githubLabel:
   component: Select (選択)

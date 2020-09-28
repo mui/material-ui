@@ -1,5 +1,5 @@
 ---
-title: React Rating component
+title: Rating React component
 components: Rating
 githubLabel:
   component: Rating

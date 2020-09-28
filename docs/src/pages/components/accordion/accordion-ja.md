@@ -1,5 +1,5 @@
 ---
-title: React Accordion component
+title: Accordion React component
 components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 githubLabel:
   component: Accordion (拡張パネル)

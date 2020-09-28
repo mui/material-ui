@@ -1,5 +1,5 @@
 ---
-title: React Typography component
+title: Typography React component
 components: Typographie
 githubLabel:
   component: Typographie

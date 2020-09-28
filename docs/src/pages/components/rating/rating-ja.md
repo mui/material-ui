@@ -1,5 +1,5 @@
 ---
-title: React Rating component
+title: Rating React component
 components: レート
 githubLabel:
   component: レート

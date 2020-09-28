@@ -1,5 +1,5 @@
 ---
-title: React Switch component
+title: Switch React component
 components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 githubLabel:
   component: Interrupteur (switch)

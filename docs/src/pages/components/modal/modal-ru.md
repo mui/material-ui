@@ -1,5 +1,5 @@
 ---
-title: React Modal component
+title: Modal React component
 components: Modal
 githubLabel:
   component: Modal
