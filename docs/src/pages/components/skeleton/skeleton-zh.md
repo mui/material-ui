@@ -8,7 +8,7 @@ githubLabel: 'component: Skeleton'
 
 <p class="description">在数据完整加载之前将您的内容显示为一个占位的预览，这样可以减少由加载时间造成的困扰。</p>
 
-您的组件需要的数据可能无法立刻加载。 You can improve the perceived responsiveness of the page by using skeletons. 好像感觉到事情马上就要发生了，然后信息在屏幕上逐步地显示（Cf. [ 避开 Spinner](https://www.lukew.com/ff/entry.asp?1797)）。
+您的组件需要的数据可能无法立刻加载。 你可以通过使用骨架屏来提高页面的感知响应度。 好像感觉到事情马上就要发生了，然后信息在屏幕上逐步地显示（Cf. [ 避开 Spinner](https://www.lukew.com/ff/entry.asp?1797)）。
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -74,14 +74,14 @@ loading ? (
 
 ## 无障碍设计
 
-Skeleton screens provide an alternative to the traditional spinner method. 骨架屏不是一个抽象的小部件，而是提供一个对未来事件的预期，来减少人们的认知负荷。
+骨架屏的动画可以代替传统转圈动画的加载方式。 骨架屏不是一个抽象的小部件，而是提供一个对未来事件的预期，来减少人们的认知负荷。
 
 骨架屏使用的背景色是在良好条件下可见的最小亮度（良好的环境光源、清晰的屏幕、无其他视觉障碍）。
 
 ### ARIA
 
-None.
+无。
 
 ### 键盘输入
 
-The skeleton is not focusable.
+骨架屏不能被聚焦。
