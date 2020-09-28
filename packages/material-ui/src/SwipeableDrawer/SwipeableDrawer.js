@@ -648,7 +648,7 @@ SwipeableDrawer.propTypes = {
    */
   SwipeAreaProps: PropTypes.object,
   /**
-   * The width of the left most (or right most) area in px that
+   * The width of the left most (or right most) area in `px` that
    * the drawer can be swiped open from.
    * @default 20
    */

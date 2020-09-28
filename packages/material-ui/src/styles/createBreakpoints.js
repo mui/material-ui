@@ -27,15 +27,7 @@ export default function createBreakpoints(breakpoints) {
   }
 
   function down(key) {
-    const endIndex = keys.indexOf(key);
-    const upperbound = values[keys[endIndex]];
-
-    if (endIndex === keys.length) {
-      // down from the biggest breakpoint applies to all sizes
-      return up(0);
-    }
-
-    const value = typeof upperbound === 'number' && endIndex > 0 ? upperbound : key;
+    const value = typeof values[key] === 'number' ? values[key] : key;
     return `@media (max-width:${value - step / 100}${unit})`;
   }
 
