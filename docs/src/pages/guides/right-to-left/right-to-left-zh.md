@@ -87,7 +87,7 @@ import rtlPlugin from 'stylis-plugin-rtl';
 import { CacheProvider } from '@emotion/core';
 import createCache from '@emotion/cache';
 
-// Create rtl cache
+// 创建 rtl 缓存
 const cacheRtl = createCache({
   key: 'muirtl',
   stylisPlugins: [rtlPlugin],
