@@ -441,12 +441,23 @@ describe('<Tabs />', () => {
 
     it('should render scroll buttons', () => {
       const { container } = render(
-        <Tabs value={0} variant="scrollable" scrollButtons="on">
+        <Tabs value={0} variant="scrollable" scrollButtons>
           <Tab />
           <Tab />
         </Tabs>,
       );
       expect(container.querySelectorAll(`.${classes.scrollButtons}`)).to.have.lengthOf(2);
+    });
+
+    it('should not hide scroll buttons when allowScrollButtonsMobile is true', () => {
+      const { container } = render(
+        <Tabs value={0} variant="scrollable" scrollButtons allowScrollButtonsMobile>
+          <Tab />
+          <Tab />
+        </Tabs>,
+      );
+
+      expect(container.querySelectorAll(`.${classes.scrollButtonsHideMobile}`)).to.have.lengthOf(0);
     });
 
     it('should handle window resize event', function test() {
@@ -455,7 +466,7 @@ describe('<Tabs />', () => {
       }
 
       const { container, setProps, getByRole } = render(
-        <Tabs value={0} variant="scrollable" scrollButtons="on" style={{ width: 200 }}>
+        <Tabs value={0} variant="scrollable" scrollButtons style={{ width: 200 }}>
           <Tab />
           <Tab />
           <Tab />
@@ -489,7 +500,7 @@ describe('<Tabs />', () => {
     describe('scroll button visibility states', () => {
       it('should set neither left nor right scroll button state', () => {
         const { container, setProps, getByRole } = render(
-          <Tabs value={0} variant="scrollable" scrollButtons="on" style={{ width: 200 }}>
+          <Tabs value={0} variant="scrollable" scrollButtons style={{ width: 200 }}>
             <Tab />
             <Tab />
           </Tabs>,
@@ -506,7 +517,7 @@ describe('<Tabs />', () => {
 
       it('should set only left scroll button state', () => {
         const { container, setProps, getByRole } = render(
-          <Tabs value={0} variant="scrollable" scrollButtons="on" style={{ width: 200 }}>
+          <Tabs value={0} variant="scrollable" scrollButtons style={{ width: 200 }}>
             <Tab />
             <Tab />
             <Tab />
@@ -525,7 +536,7 @@ describe('<Tabs />', () => {
 
       it('should set only right scroll button state', () => {
         const { container, setProps, getByRole } = render(
-          <Tabs value={0} variant="scrollable" scrollButtons="on" style={{ width: 200 }}>
+          <Tabs value={0} variant="scrollable" scrollButtons style={{ width: 200 }}>
             <Tab />
             <Tab />
             <Tab />
@@ -544,7 +555,7 @@ describe('<Tabs />', () => {
 
       it('should set both left and right scroll button state', () => {
         const { container, setProps, getByRole } = render(
-          <Tabs value={0} variant="scrollable" scrollButtons="on" style={{ width: 200 }}>
+          <Tabs value={0} variant="scrollable" scrollButtons style={{ width: 200 }}>
             <Tab />
             <Tab />
           </Tabs>,
@@ -575,7 +586,7 @@ describe('<Tabs />', () => {
 
     it('should scroll visible items', () => {
       const { container, setProps, getByRole, getAllByRole } = render(
-        <Tabs value={0} variant="scrollable" scrollButtons="on" style={{ width: 200 }}>
+        <Tabs value={0} variant="scrollable" scrollButtons style={{ width: 200 }}>
           <Tab />
           <Tab />
           <Tab />
@@ -669,7 +680,7 @@ describe('<Tabs />', () => {
       }
 
       const { setProps, container, getByRole } = render(
-        <Tabs value={1} variant="scrollable" scrollButtons="on" orientation="vertical">
+        <Tabs value={1} variant="scrollable" scrollButtons orientation="vertical">
           <Tab />
           <Tab />
         </Tabs>,

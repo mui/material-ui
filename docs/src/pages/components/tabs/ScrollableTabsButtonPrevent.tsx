@@ -25,7 +25,7 @@ export default function ScrollableTabsButtonPrevent() {
         value={value}
         onChange={handleChange}
         variant="scrollable"
-        scrollButtons="off"
+        scrollButtons={false}
         aria-label="scrollable prevent tabs example"
       >
         <Tab label="Item One" />

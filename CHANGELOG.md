@@ -1,5 +1,239 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 5.0.0-alpha.11
+
+###### _Sep 26, 2020_
+
+Big thanks to the 29 contributors who made this release possible.
+Here are some highlights ✨:
+
+- 👩‍🎨 A first iteration on the new styling solution.
+
+  You can find a [new version](https://next.material-ui.com/components/slider-styled/) of the slider in the lab powered by [emotion](https://emotion.sh/).
+
+  In the event that you are already using styled-components in your application, you can swap emotion for styled-components 💅. Check [this CodeSandbox](https://codesandbox.io/s/sliderstyled-with-styled-components-forked-olc27?file=/package.json) for a demo. It relies on aliases to prevent any bundle size overhead.
+
+  The new styling solution saves 2kB gzipped in the bundle compared to JSS, and about 14 kB gzipped if you were already using emotion or styled-components.
+
+  Last but not least, the change allows us to take advantage dynamic style props. We will use them for dynamic color props, variant props, and new style props (an improved [system](https://material-ui.com/system/basics/)).
+
+  This change has been in our roadmap for more than a year.
+  We announced it in the [v4 release blog post](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701) as a direction v5 would take.
+
+- 🛠 A first iteration on the unstyled components.
+
+  You can find a [new version](https://next.material-ui.com/components/slider-styled/#UnstyledSlider.tsx) of the slider in the lab without any styles.
+  The unstyled component weighs 6.5 kB gzipped, compared with 26 kB for the styled version when used standalone. The component is best suited for use when you want to fully customize the look of the component without reimplementing the JavaScript and accessibility logic.
+
+- ⚡️ A first alpha of the [DataGrid](https://material-ui.com/components/data-grid/) component.
+
+  It has taken 6 months of development since the initial commit (March 15th, 2020) to make the first alpha release of the grid. The component comes in two versions:
+  @material-ui/data-grid is licensed under MIT, while @material-ui/x-grid is licensed under a commercial license.
+
+- 🪓 Keep working on the breaking changes.
+
+  We aim to complete most of the breaking changes during the alpha stage of v5.
+  We will move to beta once all the breaking changes we have anticipated are handled.
+  As always, you should find a clear and simple upgrade path for each of them.
+  You can learn more about the breaking changes left to be done in #22700.
+
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@material-ui/core@v5.0.0-alpha.11`
+
+#### Breaking changes
+
+- [Chip] Rename `default` variant to `filled` (#22683) @mnajdova
+  Rename `default` variant to `filled` for consistency.
+
+  ```diff
+  -<Chip variant="default">
+  +<Chip variant="filled">
+  ```
+
+- [Tabs] Add allowScrollButtonsMobile prop for mobile view (#22700) @GauravKesarwani
+  The API that controls the scroll buttons has been split it into two props:
+
+  - The `scrollButtons` prop controls when the scroll buttons are displayed depending on the space available.
+  - The `allowScrollButtonsMobile` prop removes the CSS media query that systematically hides the scroll buttons on mobile.
+
+  ```diff
+  -<Tabs scrollButtons="on" />
+  -<Tabs scrollButtons="desktop" />
+  -<Tabs scrollButtons="off" />
+  +<Tabs scrollButtons allowScrollButtonsMobile />
+  +<Tabs scrollButtons />
+  +<Tabs scrollButtons={false} />
+  ```
+
+- [theme] Improve breakpoints definitions (#22695) @mnajdova
+  Breakpoints are now treated as values instead of ranges.
+  The behavior of `down(key)` was changed to define media query less than the value defined with the corresponding breakpoint (exclusive).
+  The behavior of `between(start, end)` was also updated to define media query for the values between the actual values of start (inclusive) and end (exclusive).
+
+  Find examples of the changes required defined below:
+
+```diff
+-theme.breakpoints.down('sm') // '@media (max-width:959.95px)' - [0, sm + 1) => [0, md)
++theme.breakpoints.down('md') // '@media (max-width:959.95px)' - [0, md)
+```
+
+```diff
+-theme.breakpoints.between('sm', 'md') // '@media (min-width:600px) and (max-width:1279.95px)' - [sm, md + 1) => [sm, lg)
++theme.breakpoints.between('sm', 'lg') // '@media (min-width:600px) and (max-width:1279.95px)' - [sm, lg)
+```
+
+- [theme] Rename `type` to `mode` (#22687) @mnajdova
+  Renames `theme.palette.type` to `theme.palette.mode`, to better follow the "dark mode" term that is usually used for describing this feature.
+
+  ```diff
+  import { createMuiTheme } from '@material-ui/core/styles';
+
+  -const theme = createMuitheme({palette: { type: 'dark' }}),
+  +const theme = createMuitheme({palette: { mode: 'dark' }}),
+  ```
+
+  The changes are supported by the `adaptV4Theme()` for easing the migration
+
+#### Changes
+
+- [Checkbox] Improve indeterminate UI (#22635) @oliviertassinari
+- [Chip] Fix prop-type support for custom variants (#22603) @cansin
+- [icons] Expose a data-test-id attribute on all svg icons (#22634) @jaebradley
+- [Rating] Add form integration test suite (#22573) @eps1lon
+- [Rating] Simpler customization of active "no value" styles (#22613) @eps1lon
+- [Rating] Treat as input when readOnly (#22606) @eps1lon
+- [Rating] Treat read-only as image (#22639) @eps1lon
+- [Select] Improve docs for displayEmpty prop (#22601) @mihaipanait
+- [Slider] Better tracking of mouse events (#22557, #22638) @chrisinajar, @oliviertassinari
+- [Slider] Create unstyled version and migrate to emotion & styled-components (#22435) @mnajdova
+- [Slider] Export components from lab and renamed to fit file names (#22723) @mnajdova
+- [Slider] Fix value label display for custom value component (#22614) @NoNonsense126
+- [Stepper] Add slight transition (#22654) @xtrixia
+- [Tabs] Fix TabScrollButton using absolute path (#22690) @4vanger
+- [Tabs] Only scroll the visible tabs (#22600) @quochuy
+- [theme] convertLength does not work for fromUnit !== 'px' (#22739) @brorlarsnicklas
+- [theme] Fix createSpacing.d.ts definition (#22645) @dabretin
+- [theme] Fix Hidden breakpoints issues and updates the migration guide (#22702) @mnajdova
+
+### `@material-ui/lab@v5.0.0-alpha.11`
+
+#### Breaking changes
+
+- [Alert] Move from lab to core (#22651) @mbrookes
+  Move the component from the lab to the core. This component will become stable.
+
+  ```diff
+  -import Alert from '@material-ui/lab/Alert';
+  -import AlertTitle from '@material-ui/lab/AlertTitle';
+  +import Alert from '@material-ui/core/Alert';
+  +import AlertTitle from '@material-ui/core/AlertTitle';
+  ```
+
+- [Rating] Move from lab to core (#22725) @mbrookes
+  Move the component from the lab to the core. This component will become stable.
+
+  ```diff
+  -import Rating from '@material-ui/lab/Rating';
+  +import Rating from '@material-ui/core/Rating';
+  ```
+
+- [Skeleton] Move from lab to core (#22740) @mbrookes
+  Move the component from the lab to the core. This component will become stable.
+
+  ```diff
+  -import Skeleton from '@material-ui/lab/Skeleton';
+  +import Skeleton from '@material-ui/core/Skeleton';
+  ```
+
+- [Autocomplete] Get root elements of options via renderOption (#22591) @ImanMahmoudinasab
+  After this change, the full DOM structure of the option is exposed.
+  It makes customizations easier.
+  You can recover from the change with:
+
+  ```diff
+  <Autocomplete
+  - renderOption={(option, { selected }) => (
+  -   <React.Fragment>
+  + renderOption={(props, option, { selected }) => (
+  +   <li {...props}>
+        <Checkbox
+          icon={icon}
+          checkedIcon={checkedIcon}
+          style={{ marginRight: 8 }}
+          checked={selected}
+        />
+        {option.title}
+  -   </React.Fragment>
+  +   </li>
+    )}
+  />
+  ```
+
+#### Changes
+
+- [lab] Fix transitive dependencies in @material-ui/lab (#22671) @koistya
+- [Autocomplete] Add "remove-option" to AutocompleteCloseReason type (#22672) @iansjk
+- [Autocomplete] Don't close popup when Ctrl/Meta is pressed (#22696) @montelius
+- [Autocomplete] Fix accessibility issue with empty option set (#22712) @tylerjlawson
+- [Autocomplete] Update GitHub customization example (#22735) @hmaddisb
+
+### `@material-ui/styled-engine@v5.0.0-alpha.11`
+
+The new default style engine leveraging emotion.
+
+### `@material-ui/styled-engine-sc@v5.0.0-alpha.11`
+
+Allows developer to swap emotion with styled-components.
+More documentation are coming.
+
+### `@material-ui/icons@v5.0.0-alpha.11`
+
+- [icons] Synchronize with Google (#22680) @delewis13
+
+### `@material-ui/styles@v5.0.0-alpha.11`
+
+- [Slider] Create unstyled version and migrate to emotion & styled-components (#22435) @mnajdova
+
+### `@material-ui/system@v5.0.0-alpha.11`
+
+- [core] Port createSpacing to TypeScript (#22720) @eps1lon
+
+### Docs
+
+- [blog] New posts (#22607) @oliviertassinari
+- [docs] Add additional context to Autocomplete asynchronous documentation (#22621) @jaebradley
+- [docs] Add emotion dependencies in codesandbox examples (#22736) @mnajdova
+- [docs] Add props from Unstyled component to Styled API page (#22733) @mnajdova
+- [docs] Add ui-schema in related projects (#22644) @elbakerino
+- [docs] Avoid confusion between layout grid and data grid (#22681) @oliviertassinari
+- [docs] Batch small changes (#22646) @oliviertassinari
+- [docs] Configuring redirects for MUI X (#22632) @dtassone
+- [docs] Customized hook at Autocomplete issue in dark mode (#22605) @hmaddisb
+- [docs] Encourage DataGrid in /components/tables/ over alternatives (#22637) @oliviertassinari
+- [docs] Fix emotion broken in SSR (#22731) @mnajdova
+- [docs] Fix markdown metadata yaml (#22629) @oliviertassinari
+- [docs] Fix static asset loading with X @oliviertassinari
+- [docs] Improve Dashboard template (#22647) @pak1989
+- [docs] Improve DX for docs generation (#22619) @eps1lon
+- [docs] Migrate templates to TypeScript (#22650) @oliviertassinari
+- [docs] New Crowdin updates (#22620) @mbrookes
+- [docs] Prevent toolbar tooltips overlapping demos (#22732) @eps1lon
+- [docs] Reduce indirections (#22642) @Arsikod
+- [docs] Reference experimental slider demos correctly (#22738) @eps1lon
+- [docs] Remove minimum-scale from meta viewport in docs (#22724) @barik
+- [docs] Remove wrong migration instruction (#22710) @oliviertassinari
+- [docs] Use codesandbox deploy for demos created from deploy previews (#22616) @eps1lon
+
+### Core
+
+- [core] Port createSpacing to TypeScript (#22720) @eps1lon
+- [core] Replace ChangeEvent<{}> with SyntheticEvent (#22716) @eps1lon
+- [core] Use ttp sources directly (#22706) @eps1lon
+- [test] Add skip ci to Crowdin commit message (#22685) @mbrookes
+- [test] Only run on push for master/next (#22624) @eps1lon
+- [test] Run CircleCI anytime (#22676) @eps1lon
+
 ## 5.0.0-alpha.10
 
 ###### _Sep 15, 2020_

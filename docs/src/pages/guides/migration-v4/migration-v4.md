@@ -524,6 +524,13 @@ const theme = createMuitheme({
 
 ### Rating
 
+- Move the component from the lab to the core. The component is now stable.
+
+  ```diff
+  -import Rating from '@material-ui/lab/Rating';
+  +import Rating from '@material-ui/core/Rating';
+  ```
+
 - Change the default empty icon to improve accessibility.
   If you have a custom `icon` prop but no `emptyIcon` prop, you can restore the previous behavior with:
 
@@ -559,6 +566,13 @@ const theme = createMuitheme({
   ```
 
 ### Skeleton
+
+- Move the component from the lab to the core. The component is now stable.
+
+  ```diff
+  -import Skeleton from '@material-ui/lab/Skeleton';
+  +import Skeleton from '@material-ui/core/Skeleton';
+  ```
 
 - Rename `circle` to `circular` and `rect` to `rectangular` for consistency. The possible values should be adjectives, not nouns:
 
@@ -665,6 +679,20 @@ const theme = createMuitheme({
   -<Tabs onChange={(event: React.ChangeEvent<{}>, value: unknown) => {}} />
   +<Tabs onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
   ```
+
+- The API that controls the scroll buttons has been split it in two props.
+
+  - The `scrollButtons` prop controls when the scroll buttons are displayed depending on the space available.
+  - The `allowScrollButtonsMobile` prop removes the CSS media query that systematically hide the scroll buttons on mobile.
+
+```diff
+-<Tabs scrollButtons="on" />
+-<Tabs scrollButtons="desktop" />
+-<Tabs scrollButtons="off" />
++<Tabs scrollButtons allowScrollButtonsMobile />
++<Tabs scrollButtons />
++<Tabs scrollButtons={false} />
+```
 
 ### TextField
 
