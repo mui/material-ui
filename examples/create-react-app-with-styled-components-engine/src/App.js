@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Slider from '@material-ui/lab/SliderStyled';
-import { Typography } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
 
 export default function App() {
   return (
