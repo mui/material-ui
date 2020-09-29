@@ -196,6 +196,15 @@ const theme = createMuitheme({
 });
 ```
 
+### Styles
+
+- The `styled` utility from `@material-ui/core/styles` was renamed to `legacy_styled`, so that it won't conflict with the new `@material-ui/core/styled` utility.
+
+  ```diff
+  -import { styled } from '@material-ui/core/styles';
+  +import { legacy_styled } from '@material-ui/core/styles';
+  ```
+
 ### Alert
 
 - Move the component from the lab to the core. The component is now stable.

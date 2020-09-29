@@ -7,6 +7,7 @@ export { getUnit as unstable_getUnit, toUnitless as unstable_toUnitless } from '
 export { default as makeStyles } from './makeStyles';
 export { default as responsiveFontSizes } from './responsiveFontSizes';
 export { default as legacy_styled } from './legacy_styled';
+export { default as styled } from './styled';
 export { duration, easing } from './transitions';
 export { default as useTheme } from './useTheme';
 export { default as useThemeProps } from './useThemeProps';
