@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { legacy_styled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
 const MyButton = styled(({ color, ...other }) => <Button {...other} />)({

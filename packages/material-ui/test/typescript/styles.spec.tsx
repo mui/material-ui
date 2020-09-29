@@ -10,7 +10,7 @@ import {
   WithStyles,
   WithTheme,
   makeStyles,
-  legacy_styled as styled,
+  styled,
 } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';

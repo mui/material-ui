@@ -12,7 +12,7 @@ import {
   typography,
   css,
 } from '@material-ui/system';
-import styled from '../styles/legacy_styled';
+import styled from '../styles/styled';
 
 export const styleFunction = css(
   compose(

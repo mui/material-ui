@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useRouter } from 'next/router';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
-import { legacy_styled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import { render as renderMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
