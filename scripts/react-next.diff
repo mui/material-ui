@@ -1,8 +1,8 @@
 diff --git a/babel.config.js b/babel.config.js
-index 162d469804..f4b17916a4 100644
+index f314ca4c3b..9cc20c7d7b 100644
 --- a/babel.config.js
 +++ b/babel.config.js
-@@ -45,7 +45,16 @@ const productionPlugins = [
+@@ -48,7 +48,16 @@ const productionPlugins = [
  ];
  
  module.exports = {
@@ -21,10 +21,10 @@ index 162d469804..f4b17916a4 100644
      [
        'babel-plugin-macros',
 diff --git a/packages/material-ui-lab/src/Autocomplete/Autocomplete.test.js b/packages/material-ui-lab/src/Autocomplete/Autocomplete.test.js
-index 8addf692fb..86ea6e6dfa 100644
+index 025aaf707a..8d575dae50 100644
 --- a/packages/material-ui-lab/src/Autocomplete/Autocomplete.test.js
 +++ b/packages/material-ui-lab/src/Autocomplete/Autocomplete.test.js
-@@ -1139,8 +1139,6 @@ describe('<Autocomplete />', () => {
+@@ -1173,8 +1173,6 @@ describe('<Autocomplete />', () => {
          fireEvent.change(textbox, { target: { value: 'a' } });
          fireEvent.keyDown(textbox, { key: 'Enter' });
        }).toErrorDev([
@@ -33,7 +33,7 @@ index 8addf692fb..86ea6e6dfa 100644
          'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
          'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
          'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
-@@ -1195,9 +1193,6 @@ describe('<Autocomplete />', () => {
+@@ -1229,9 +1227,6 @@ describe('<Autocomplete />', () => {
            />,
          );
        }).toWarnDev([
@@ -43,7 +43,7 @@ index 8addf692fb..86ea6e6dfa 100644
          'None of the options match with `"not a good value"`',
          'None of the options match with `"not a good value"`',
        ]);
-@@ -1223,11 +1218,7 @@ describe('<Autocomplete />', () => {
+@@ -1257,11 +1252,7 @@ describe('<Autocomplete />', () => {
              groupBy={(option) => option.group}
            />,
          );
@@ -102,8 +102,27 @@ index 2ab151c6c8..6db6326d77 100644
        [
          `Material-UI: You are using a variant value \`test\` for which you didn't define styles.`,
          `Please create a new variant matcher in your theme for this variant. To learn more about matchers visit https://next.material-ui.com/r/custom-component-variants.`,
+diff --git a/packages/material-ui-utils/src/elementAcceptingRef.test.tsx b/packages/material-ui-utils/src/elementAcceptingRef.test.tsx
+index 10c5a998cb..b5390af22b 100644
+--- a/packages/material-ui-utils/src/elementAcceptingRef.test.tsx
++++ b/packages/material-ui-utils/src/elementAcceptingRef.test.tsx
+@@ -89,11 +89,11 @@ describe('elementAcceptingRef', () => {
+ 
+     it('accepts lazy', () => {
+       const Component = React.lazy(() =>
+-        Promise.resolve({ default: (props: any) => <div {...props} /> }),
++        Promise.resolve({
++          default: React.forwardRef((props, ref) => <div {...props} ref={ref} />),
++        }),
+       );
+ 
+-      // should actually fail when mounting since the ref is forwarded to a function component
+-      // but since this happens in a promise our consoleErrorMock doesn't catch it properly
+       assertPass(<Component />);
+     });
+ 
 diff --git a/packages/material-ui/src/Breadcrumbs/Breadcrumbs.test.js b/packages/material-ui/src/Breadcrumbs/Breadcrumbs.test.js
-index 273e3a009d..2a6c4b1379 100644
+index c397f4b9f0..2fbea8f53e 100644
 --- a/packages/material-ui/src/Breadcrumbs/Breadcrumbs.test.js
 +++ b/packages/material-ui/src/Breadcrumbs/Breadcrumbs.test.js
 @@ -100,7 +100,6 @@ describe('<Breadcrumbs />', () => {
@@ -129,7 +148,7 @@ index d78203151f..72ac37571b 100644
    });
  
 diff --git a/packages/material-ui/src/Tabs/Tabs.test.js b/packages/material-ui/src/Tabs/Tabs.test.js
-index e1365185fb..a34c50ebaa 100644
+index d629210cde..f53f50970f 100644
 --- a/packages/material-ui/src/Tabs/Tabs.test.js
 +++ b/packages/material-ui/src/Tabs/Tabs.test.js
 @@ -90,9 +90,6 @@ describe('<Tabs />', () => {
