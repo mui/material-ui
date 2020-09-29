@@ -960,7 +960,7 @@ export default function useAutocomplete(props) {
       'aria-controls': listboxAvailable ? `${id}-listbox` : null,
       // Disable browser's suggestion that might overlap with the popup.
       // Handle autocomplete but not autofill.
-      autoComplete: 'off',
+      autoComplete: 'no',
       ref: inputRef,
       autoCapitalize: 'none',
       spellCheck: 'false',
