@@ -22,4 +22,4 @@ or:
 
 ## The idea behind the example
 
-This example demonstrates how you can setup `styled-components` as a style engine for tour application when using [Create React App](https://github.com/facebookincubator/create-react-app).
+This example demonstrates how you can setup [Create React App](https://github.com/facebookincubator/create-react-app) with [styled-components](https://styled-components.com/) as a style engine for your application.
