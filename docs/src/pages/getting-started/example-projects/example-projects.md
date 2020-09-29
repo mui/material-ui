@@ -12,7 +12,7 @@ You can find some example projects in the [GitHub repository](https://github.com
 - [Preact](https://github.com/mui-org/material-ui/tree/next/examples/preact)
 - [CDN](https://github.com/mui-org/material-ui/tree/next/examples/cdn)
 - [Plain server-side](https://github.com/mui-org/material-ui/tree/next/examples/ssr)
-- [Use styled-components as styled engine](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-styled-components-engine)
+- [Use styled-components as style engine](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-styled-components-engine)
 - And more
 
 Create React App is an awesome project for learning React.
