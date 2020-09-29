@@ -84,7 +84,7 @@ describe('muiStyled', () => {
 
     const Test = styled(
       'div',
-      { shouldForwardProp: (prop) => prop != 'variant' && prop != 'size' },
+      { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' },
       { muiName: 'MuiTest', overridesResolver: testOverridesResolver },
     )`
       width: 200px;
