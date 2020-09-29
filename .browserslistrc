@@ -1,6 +1,44 @@
-ie 11
-edge >= 14
-firefox >= 52
-chrome >= 49
-safari >= 10
-node 8.0
+[modern]
+last 1 chrome version
+last 1 edge version
+last 1 firefox version
+last 1 safari version
+node 14
+
+# snapshot of "> 0.5%, last 2 versions, Firefox ESR, not dead, not IE 11" when the last major is released.
+[stable]
+and_chr 84
+and_ff 79
+and_qq 10.4
+and_uc 12.12
+android 81
+baidu 7.12
+chrome 83
+edge 83
+firefox 68
+ios_saf 12.0
+kaios 2.5
+op_mob 46
+opera 69
+safari 13
+samsung 11.1
+
+# Default/Fallback
+# Same as `stable` but with IE 11
+[production]
+IE 11
+and_chr 84
+and_ff 79
+and_qq 10.4
+and_uc 12.12
+android 81
+baidu 7.12
+chrome 83
+edge 83
+firefox 68
+ios_saf 12.0
+kaios 2.5
+op_mob 46
+opera 69
+safari 13
+samsung 11.1

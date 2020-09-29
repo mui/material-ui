@@ -14,7 +14,7 @@
   "scripts": {
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/material-ui-codemod/**/*.test.js'",
     "prebuild": "rimraf lib",
-    "build": "node ../../scripts/build cjs --out-dir ./lib",
+    "build": "node ../../scripts/build node --out-dir ./lib",
     "release": "yarn build && npm publish --tag next"
   },
   "repository": {

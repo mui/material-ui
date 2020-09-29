@@ -26,10 +26,11 @@
     "url": "https://opencollective.com/material-ui"
   },
   "scripts": {
-    "build": "yarn build:cjs && yarn build:esm && yarn build:es && yarn build:copy-files",
-    "build:cjs": "node ../../scripts/build cjs",
-    "build:esm": "node ../../scripts/build esm",
-    "build:es": "node ../../scripts/build es",
+    "build": "yarn build:legacy && yarn build:modern &&yarn build:node && yarn build:stable && yarn build:copy-files",
+    "build:legacy": "node ../../scripts/build legacy",
+    "build:modern": "node ../../scripts/build modern",
+    "build:node": "node ../../scripts/build node",
+    "build:stable": "node ../../scripts/build stable",
     "build:copy-files": "node ../../scripts/copy-files.js",
     "prebuild": "rimraf build",
     "release": "yarn build && npm publish build --tag next",
