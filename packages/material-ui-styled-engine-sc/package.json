@@ -44,9 +44,6 @@
   "peerDependenciesMeta": {
     "@types/styled-components": {
       "optional": true
-    },
-    "styled-components": {
-      "optional": true
     }
   },
   "sideEffects": false,
