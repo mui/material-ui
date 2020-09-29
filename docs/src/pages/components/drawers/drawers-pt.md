@@ -1,8 +1,7 @@
 ---
 title: Componente React para Drawer
 components: Drawer, SwipeableDrawer
-githubLabel:
-  component: Drawer
+githubLabel: 'component: Drawer'
 materialDesign: https://material.io/components/navigation-drawer
 ---
 

@@ -1,8 +1,7 @@
 ---
 title: Drawer React-Komponente
 components: Drawer, SwipeableDrawer
-githubLabel:
-  component: Seitliches Menü (Drawer)
+githubLabel: 'component: Drawer'
 materialDesign: https://material.io/components/navigation-drawer
 ---
 

@@ -32,7 +32,7 @@ The `MuiBottomNavigationAction` name can be used for providing [default props](/
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">icon</span> | <span class="prop-type">node</span> |  | The icon element. |
 | <span class="prop-name">label</span> | <span class="prop-type">node</span> |  | The label element. |
-| <span class="prop-name">showLabel</span> | <span class="prop-type">bool</span> |  | If `true`, the `BottomNavigationAction` will show its label. By default, only the selected `BottomNavigationAction` inside `BottomNavigation` will show its label. |
+| <span class="prop-name">showLabel</span> | <span class="prop-type">bool</span> |  | If `true`, the `BottomNavigationAction` will show its label. By default, only the selected `BottomNavigationAction` inside `BottomNavigation` will show its label.<br>The prop defaults to the value (`false`) inherited from the parent BottomNavigation component. |
 | <span class="prop-name">value</span> | <span class="prop-type">any</span> |  | You can provide your own value. Otherwise, we fallback to the child position index. |
 
 The `ref` is forwarded to the root element.

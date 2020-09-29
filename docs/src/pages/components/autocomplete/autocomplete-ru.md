@@ -1,8 +1,7 @@
 ---
 title: React-компонент Автозаполнение
 components: TextField, Popper, Autocomplete
-githubLabel:
-  component: Autocomplete (Автодополнение)
+githubLabel: 'component: Autocomplete'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#combobox'
 packageName: '@material-ui/lab'
 ---
@@ -285,6 +284,7 @@ By default, the component disable the **autocomplete** feature (remembering what
 
 - Name the input without leaking any information the browser can use. e.g. `id="field1"` instead of `id="country"`. If you leave the id empty, the component uses a random id.
 - Set `autoComplete="new-password"`: jsx Set `autoComplete="new-password": 
+    jsx` Set `autoComplete="new-password": 
         jsx`
 
   ```jsx

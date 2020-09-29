@@ -1,8 +1,7 @@
 ---
 title: React 单选按钮组件
 components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
-githubLabel:
-  component: Radio 单选框组件
+githubLabel: 'component: Radio'
 materialDesign: 'https://material.io/components/selection-controls#radio-buttons'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#radiobutton'
 ---

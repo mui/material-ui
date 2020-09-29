@@ -1,7 +1,6 @@
 ---
 components: CssBaseline, ScopedCssBaseline
-githubLabel:
-  component: CssBaseline
+githubLabel: 'component: CssBaseline'
 ---
 
 # Base de CSS
@@ -40,7 +39,7 @@ import MyApp from './MyApp';
 export default function MyApp() {
   return (
     <ScopedCssBaseline>
-      {/* The rest of your application */}
+      {/* El resto de tu aplicación */}
       <MyApp />
     </ScopedCssBaseline>
   );

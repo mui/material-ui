@@ -52,6 +52,7 @@ Este componente Box agora suporta novas [propriedades de espaçamento](/system/s
 ```jsx
 <Box p="1rem" color="grey">Me dê algum espaço!</Box>
 </Box>
+</Box>
 ```
 
 O componente pode ser estilizado, fornecendo quaisquer valores CSS válidos.

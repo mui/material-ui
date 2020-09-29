@@ -1,11 +1,10 @@
 ---
 title: React 徽章组件
 components: Badge
-githubLabel:
-  component: Badge
+githubLabel: 'component: Badge'
 ---
 
-# Badge
+# Badge 徽章
 
 <p class="description">徽章组件会在其子项（们）的右上角生成一个小徽章。</p>
 

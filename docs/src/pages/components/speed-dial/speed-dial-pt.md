@@ -1,8 +1,7 @@
 ---
 title: Componente React para Acesso Rápido
 components: SpeedDial, SpeedDialAction, SpeedDialIcon
-githubLabel:
-  component: SpeedDial
+githubLabel: 'component: SpeedDial'
 packageName: '@material-ui/lab'
 ---
 

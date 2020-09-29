@@ -1,8 +1,7 @@
 ---
 title: React-компонент Переключатель
 components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
-githubLabel:
-  component: Switch (переключатель)
+githubLabel: 'component: Switch'
 materialDesign: 'https://material.io/components/selection-controls#switches'
 ---
 

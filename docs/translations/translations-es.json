@@ -13,8 +13,8 @@
   "checkoutTitle": "Pagar",
   "close": "Cerrar",
   "codesandbox": "Editar en CodeSandbox",
-  "copiedSource": "El código fuente ha sido copiado.",
-  "copiedSourceLink": "El enlace al código fuente ha sido copiado.",
+  "copiedSource": "The source code has been copied to your clipboard.",
+  "copiedSourceLink": "Link to the source code has been copied to your clipboard.",
   "copySource": "Copiar el código fuente",
   "copySourceLinkJS": "Copiar enlace a fuente de JavaScript",
   "copySourceLinkTS": "Copiar enlace a código fuente en TypeScript",
@@ -241,6 +241,6 @@
     "/components/floating-action-button": "Botón de acción flotante",
     "/components/backdrop": "Backdrop",
     "/components/alert": "Alerta",
-    "/components/pagination": "Paginación"
+    "/components/pagination": "Pagination"
   }
 }

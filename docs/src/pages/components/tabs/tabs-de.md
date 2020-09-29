@@ -1,8 +1,7 @@
 ---
 title: Tabs React-Komponente
 components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
-githubLabel:
-  component: Tabs
+githubLabel: 'component: Tabs'
 materialDesign: https://material.io/components/tabs
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tabpanel'
 ---
@@ -59,7 +58,7 @@ By default, left and right scroll buttons are automatically presented on desktop
 
 ### Erzwungene Bildlaufschaltflächen
 
-Left and right scroll buttons be presented (reserve space) regardless of the viewport width with `scrollButtons="on"`:
+Left and right scroll buttons be presented (reserve space) regardless of the viewport width with `scrollButtons={true}` `allowScrollButtonsMobile`:
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonForce.js", "bg": true}}
 
@@ -75,7 +74,7 @@ If you want to make sure the buttons are always visible, you should customize th
 
 ### Scrolltasten verhindern
 
-Left and right scroll buttons will never be presented. All scrolling must be initiated through user agent scrolling mechanisms (e.g. left/right swipe, shift-mousewheel, etc.)
+Left and right scroll buttons are never be presented with `scrollButtons={false}`. All scrolling must be initiated through user agent scrolling mechanisms (e.g. left/right swipe, shift-mousewheel, etc.)
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonPrevent.js", "bg": true}}
 

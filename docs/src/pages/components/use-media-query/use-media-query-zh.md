@@ -1,7 +1,6 @@
 ---
 title: 用于响应式设计的 React 中的媒体查询
-githubLabel:
-  hook: useMediaQuery
+githubLabel: 'hook: useMediaQuery'
 ---
 
 # useMediaQuery
@@ -49,7 +48,7 @@ function MyComponent() {
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 function MyComponent() {
-  const matches = useMediaQuery(theme => theme.breakpoints.up('sm'));
+  const matches = useMediaQuery((theme) => theme.breakpoints.up('sm'));
 
   return <span>{`theme.breakpoints.up('sm') matches: ${matches}`}</span>;
 }
@@ -73,8 +72,10 @@ function MyComponent() {
 import mediaQuery from 'css-mediaquery';
 
 function createMatchMedia(width) {
-  return query => ({
-    matches: mediaQuery.match(query, { width }),
+  return (query) => ({
+    matches: mediaQuery.match(query, {
+      width,
+    }),
     addListener: () => {},
     removeListener: () => {},
   });
@@ -102,7 +103,7 @@ describe('MyTests', () => {
 首先，你需要从服务端上猜测客户端请求的特征。 你可以选择使用：
 
 - **用户代理（User agent）**。 解析客户端上用户代理的字符串来提取信息。 我们推荐使用 [ua-parser-js](https://github.com/faisalman/ua-parser-js) 来解析用户代理信息。
-- **Client hints**. Read the hints the client is sending to the server. Be aware that this feature is [not supported everywhere](https://caniuse.com/#search=client%20hint). 读取客户端向服务器发送的提示。 请注意，[并不是所有浏览器都会支持](https://caniuse.com/#search=client%20hint) 此功能。
+- **Client hints**. Read the hints the client is sending to the server. Be aware that this feature is [not supported everywhere](https://caniuse.com/#search=client%20hint). 读取客户端向服务器发送的提示。 读取客户端向服务器发送的提示。 请注意，[并不是所有浏览器都会支持](https://caniuse.com/#search=client%20hint) 此功能。
 
 最后，你需要为 `useMediaQuery` 提供一个具有预先猜测特征的 [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) 来实现。 我们建议使用 [css-mediaquery](https://github.com/ericf/css-mediaquery) 来模拟 matchMedia 环境。
 
@@ -119,6 +120,25 @@ function handleRender(req, res) {
   const ssrMatchMedia = (query) => ({
     matches: mediaQuery.match(query, {
       // 浏览器的 CSS 宽度预计值
+      width: deviceType === 'mobile' ? '0px' : '1024px',
+    }),
+  });
+
+  const html = ReactDOMServer.renderToString(
+    <ThemeProvider
+      theme={{
+        props: {
+          // 更改 useMediaQuery 的默认选项
+          MuiUseMediaQuery: {
+            ssrMatchMedia,
+          },
+        },
+      }}
+    >
+      <App />
+    </ThemeProvider>,
+  );
+}
       width: deviceType === 'mobile' ? '0px' : '1024px',
     }),
   });

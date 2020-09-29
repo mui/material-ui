@@ -1,8 +1,7 @@
 ---
 title: React 图标组件
 components: Icon, SvgIcon
-githubLabel:
-  components: SvgIcon（Svg 图标）
+githubLabel: 'SvgIcon（Svg 图标）'
 materialDesign: https://material.io/design/iconography/system-icons.html
 ---
 
@@ -77,13 +76,13 @@ yarn add @material-ui/core
 
 ### 测试
 
-For testing purposes, each icon exposed from `@material-ui/icons` has a `data-testid` attribute with the name of the icon. 就像这样：
+For testing purposes, each icon exposed from `@material-ui/icons` has a `data-testid` attribute with the name of the icon. 就像这样： 就像这样：
 
 ```jsx
 import DeleteIcon from '@material-ui/icons/Delete';
 ```
 
-has the following attribute once mounted:
+一旦挂载后，它就具有以下属性：
 
 ```html
 <svg data-testid="DeleteIcon"></svg>
@@ -177,7 +176,7 @@ Material Design 将 [1100 多个海量官方图标](#material-icons) 标准化�
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 ```
 
-`Icon`  将为 Material icon font 设置正确的类名。 `Icon`  将为 Material icon font 设置正确的 class 名字。
+`Icon`  将为 Material icon font 设置正确的类名。 `Icon`  将为 Material icon font 设置正确的类名。
 
 若想要使用图标，您只需把图标名（字体连字）和 `Icon` 组件包装到一起，例如：
 
@@ -239,7 +238,7 @@ const theme = createMuiTheme({
 
 ### 语义 SVG 图标
 
-如果您的图标带有语义，您只需要包含 `titleAccess =“含义”` 这个属性。 我们添加了 `role="img"` 属性和 `<title>` 元素，这样一来您的图标就满足无障碍设计的需求了。
+如果你的图标具有语义意义，你应该添加一个 `titleAccess` 属性并提供语义值。 我们添加了 `role="img"` 属性和 `<title>` 元素，这样一来您的图标就满足无障碍设计的需求了。
 
 对于那些可聚焦的交互式元素，譬如与一个图标按钮一起使用时，您可以使用 `aria-label` 属性：
 
@@ -265,6 +264,14 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 如果您的图标具有语义含义，您则需要提供一个对协助的技术可见的文本替代方法。
 
 ```jsx
+import Icon from '@material-ui/core/Icon';
+import Typography from '@material-ui/core/Typography';
+
+// ...
+
+<Icon>add_circle</Icon>
+<Typography variant="srOnly">创建一个用户</Typography>
+
 import Icon from '@material-ui/core/Icon';
 import Typography from '@material-ui/core/Typography';
 

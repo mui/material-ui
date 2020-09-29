@@ -1,8 +1,7 @@
 ---
 title: Hidden React-Komponente
 components: Hidden
-githubLabel:
-  component: Hidden
+githubLabel: 'component: Hidden'
 ---
 
 # Hidden

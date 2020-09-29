@@ -18,17 +18,16 @@ import { Button, TextField } from '@material-ui/core';
 
 ## 開発環境
 
-開発時のバンドルはライブラリの全てを含むので、 **遅い起動時間**の原因となります。 これは、特に`@material-ui/icons`からインポートする場合に顕著です。 起動時間は、上位からの名前指定インポートがない場合に比べて、約6倍遅い場合もあります。
+開発時のバンドルはライブラリの全てを含むので、 **遅い起動時間**の原因となります。 これは、特に`@material-ui/icons`からインポートする場合に顕著です。 起動時間は、上位からの名前指定インポートがない場合に比べて、約6倍遅い場合もあります。 これは、特に`@material-ui/icons`からインポートする場合に顕著です。 起動時間は、上位からの名前指定インポートがない場合に比べて、約6倍遅い場合もあります。
 
 この課題を持っているのであれば、様々な対応を取ることができます。
 
 ### 選択肢 1
 
-パス指定インポートを利用して、使用していないモジュールのインポートを避けることができます。 例えば：
+パス指定インポートを利用して、使用していないモジュールのインポートを避けることができます。 例えば： 例えば：
 
 ```js
-// 🚀 早い!
-import Button from '@material-ui/core/Button';
+// 🚀 早い! import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 ```
 
@@ -38,7 +37,7 @@ import TextField from '@material-ui/core/TextField';
 import { Button, TextField } from '@material-ui/core';
 ```
 
-設定を必要としないので、この選択肢は全てのデモで利用しています。 コンポーネントを利用するパッケージ作成者には推奨されています。 最高のDXとUXをもたらすアプローチは[選択肢 2](#option-2)をみましょう。
+設定を必要としないので、この選択肢は全てのデモで利用しています。 コンポーネントを利用するパッケージ作成者には推奨されています。 設定を必要としないので、この選択肢は全てのデモで利用しています。 コンポーネントを利用するパッケージ作成者には推奨されています。 最高のDXとUXをもたらすアプローチは[選択肢 2](#option-2)をみましょう。
 
 このように直接インポートする場合 [`@material-ui/core/index.js`](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/index.js)のエクスポートを使用しないので、公開されているモジュールと同じくらいに手軽な参照として提供されます。
 
@@ -60,7 +59,7 @@ import TabIndicator from '@material-ui/core/Tabs/TabIndicator';
 //                                               ^^^^^^^^^^^^ 3rd level
 ```
 
-`eslint`を使用している場合、 [`no-restricted-imports` ルール](https://eslint.org/docs/rules/no-restricted-imports)で問題のあるインポートを検知可能です。 以下の `.eslintrc`設定は、`@material-ui`からの問題のあるインポート文をハイライトします。
+`eslint`を使用している場合、 [`no-restricted-imports` ルール](https://eslint.org/docs/rules/no-restricted-imports)で問題のあるインポートを検知可能です。 以下の `.eslintrc`設定は、`@material-ui`からの問題のあるインポート文をハイライトします。 以下の `.eslintrc`設定は、`@material-ui`からの問題のあるインポート文をハイライトします。
 
 ```json
 {
@@ -81,7 +80,7 @@ import TabIndicator from '@material-ui/core/Tabs/TabIndicator';
 
 - UX: Babelプラグインは、バンドラーがサポートしていない場合でも、トップレベルのtree-shakingを有効にします。
 - DX: Babelプラグインは、開発モードでも選択肢1と同様の起動時間の速さをもたらします。
-- この記法は、一つのインポート文で複数のモジュールに対応するのでコードの重複をへらします。 全体として、読みやすく、新しいモジュールをimportする際に間違いをする機会を削減します。
+- この記法は、一つのインポート文で複数のモジュールに対応するのでコードの重複をへらします。 この記法は、一つのインポート文で複数のモジュールに対応するのでコードの重複をへらします。 全体として、読みやすく、新しいモジュールをimportする際に間違いをする機会を削減します。
 
 ```js
 import { Button, TextField } from '@material-ui/core';

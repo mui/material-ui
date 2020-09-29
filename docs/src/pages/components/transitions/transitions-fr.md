@@ -1,8 +1,7 @@
 ---
 title: Composants React de transitions
 components: Collapse, Fade, Grow, Slide, Zoom
-githubLabel:
-  component: Transition
+githubLabel: 'component: Transition'
 ---
 
 # Les transitions

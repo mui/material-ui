@@ -1,43 +1,45 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormLabel from '@material-ui/core/FormLabel';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Switch from '@material-ui/core/Switch';
-import SpeedDial from '@material-ui/lab/SpeedDial';
-import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
-import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
+import SpeedDial, { SpeedDialProps } from '@material-ui/core/SpeedDial';
+import SpeedDialIcon from '@material-ui/core/SpeedDialIcon';
+import SpeedDialAction from '@material-ui/core/SpeedDialAction';
 import FileCopyIcon from '@material-ui/icons/FileCopyOutlined';
 import SaveIcon from '@material-ui/icons/Save';
 import PrintIcon from '@material-ui/icons/Print';
 import ShareIcon from '@material-ui/icons/Share';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    transform: 'translateZ(0px)',
-    flexGrow: 1,
-  },
-  exampleWrapper: {
-    position: 'relative',
-    marginTop: theme.spacing(3),
-    height: 320,
-  },
-  radioGroup: {
-    margin: theme.spacing(1, 0),
-  },
-  speedDial: {
-    position: 'absolute',
-    '&.MuiSpeedDial-directionUp, &.MuiSpeedDial-directionLeft': {
-      bottom: theme.spacing(2),
-      right: theme.spacing(2),
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      transform: 'translateZ(0px)',
+      flexGrow: 1,
     },
-    '&.MuiSpeedDial-directionDown, &.MuiSpeedDial-directionRight': {
-      top: theme.spacing(2),
-      left: theme.spacing(2),
+    exampleWrapper: {
+      position: 'relative',
+      marginTop: theme.spacing(3),
+      height: 320,
     },
-  },
-}));
+    radioGroup: {
+      margin: theme.spacing(1, 0),
+    },
+    speedDial: {
+      position: 'absolute',
+      '&.MuiSpeedDial-directionUp, &.MuiSpeedDial-directionLeft': {
+        bottom: theme.spacing(2),
+        right: theme.spacing(2),
+      },
+      '&.MuiSpeedDial-directionDown, &.MuiSpeedDial-directionRight': {
+        top: theme.spacing(2),
+        left: theme.spacing(2),
+      },
+    },
+  }),
+);
 
 const actions = [
   { icon: <FileCopyIcon />, name: 'Copy' },
@@ -48,15 +50,20 @@ const actions = [
 
 export default function SpeedDials() {
   const classes = useStyles();
-  const [direction, setDirection] = React.useState('up');
-
+  const [direction, setDirection] = React.useState<SpeedDialProps['direction']>(
+    'up',
+  );
   const [hidden, setHidden] = React.useState(false);
 
-  const handleDirectionChange = (event) => {
-    setDirection(event.target.value);
+  const handleDirectionChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    setDirection(
+      (event.target as HTMLInputElement).value as SpeedDialProps['direction'],
+    );
   };
 
-  const handleHiddenChange = (event) => {
+  const handleHiddenChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setHidden(event.target.checked);
   };
 

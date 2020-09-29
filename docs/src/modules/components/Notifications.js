@@ -140,7 +140,6 @@ export default function Notifications() {
           ref={anchorRef}
           aria-controls={open ? 'notifications-popup' : undefined}
           aria-haspopup="true"
-          aria-label={t('toggleNotifications')}
           onClick={handleToggle}
           data-ga-event-category="AppBar"
           data-ga-event-action="toggleNotifications"

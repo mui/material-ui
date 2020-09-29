@@ -1,8 +1,7 @@
 ---
 title: Componente React para Pano de Fundo
 components: Backdrop
-githubLabel:
-  component: Backdrop
+githubLabel: 'component: Backdrop'
 ---
 
 # Backdrop

@@ -1,8 +1,7 @@
 ---
 title: Schalter React Komponente
 components: ToggleButton, ToggleButtonGroup
-githubLabel:
-  component: ToggleButton
+githubLabel: 'component: ToggleButton'
 materialDesign: 'https://material.io/components/buttons#toggle-button'
 packageName: '@material-ui/lab'
 ---

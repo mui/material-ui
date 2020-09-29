@@ -1,9 +1,7 @@
 ---
 title: Componente React para Alerta
 components: Alert, AlertTitle
-githubLabel:
-  component: Alerta
-packageName: '@material-ui/lab'
+githubLabel: 'component: Alert'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
 ---
 

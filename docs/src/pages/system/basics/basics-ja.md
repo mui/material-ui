@@ -50,6 +50,7 @@ export default Box;
 ```jsx
 <Box p="1rem" color="grey">Give me some space!</Box>
 </Box>
+</Box>
 ```
 
 The component can be styled providing any valid CSS values.

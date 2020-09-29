@@ -48,7 +48,7 @@ return React.createElement(props.component, props)
 
 ### 当与内联函数一起使用时要注意
 
-Using an inline function as an argument for the `component` prop may result in **unexpected unmounting**, since a new component is passed every time React renders. 例如，如果要创建自定义`ListItem`作为链接，您可以执行以下操作： 例如，如果要创建自定义 `ListItem` 来作为一个链接使用，您可以这样编写：
+Using an inline function as an argument for the `component` prop may result in **unexpected unmounting**, since a new component is passed every time React renders. 例如，如果要创建自定义`ListItem`作为链接，您可以执行以下操作： 例如，如果要创建自定义 `ListItem` 来作为一个链接使用，您可以这样编写： 例如，如果要创建自定义 `ListItem` 来作为一个链接使用，您可以这样编写：
 
 ```jsx
 import { Link } from 'react-router-dom';
@@ -71,7 +71,7 @@ function ListItemLink(props) {
 
 ⚠️ 然而，由于我们使用一个内联函数来更改渲染的组件，所以每一次渲染 `ListItemLink` 时，React 都会先将它卸载。 React 不仅会不必要地更新 DOM，还会影响 `ListItem` 的涟漪效果。
 
-The solution is simple: **avoid inline functions and pass a static component to the `component` prop** instead. Let's change the `ListItemLink` component so `CustomLink` always reference the same component: 我们可以改变 `ListItemLink` 组件，这样一来 `CustomLink` 总是引用相同的组件：
+The solution is simple: **avoid inline functions and pass a static component to the `component` prop** instead. Let's change the `ListItemLink` component so `CustomLink` always reference the same component: 我们可以改变 `ListItemLink` 组件，这样一来 `CustomLink` 总是引用相同的组件： 我们可以改变 `ListItemLink` 组件，这样一来 `CustomLink` 总是引用相同的组件：
 
 ```jsx
 import { Link } from 'react-router-dom';

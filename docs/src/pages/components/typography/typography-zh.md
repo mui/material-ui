@@ -1,12 +1,11 @@
 ---
 title: Typography 文字铸排
 components: 文字排版
-githubLabel:
-  component: 文字排版
+githubLabel: 'component: Typography'
 materialDesign: https://material.io/design/typography/the-type-system.html
 ---
 
-# 文字排版
+# Typography 文字铸排
 
 <p class="description">使用文字铸排可以尽可能清晰、高效地展示您的设计和内容。</p>
 
@@ -63,6 +62,7 @@ import 'fontsource-roboto';
 <Typography variant="h1" component="h2">
   h1. 标题
 </Typography> 标题
+</Typography>; 标题
 </Typography>;
 ```
 

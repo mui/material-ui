@@ -1,13 +1,12 @@
 ---
 title: React 滑块控件
 components: Slider
-githubLabel:
-  component: Slider
+githubLabel: 'component: Slider'
 materialDesign: https://material.io/components/sliders
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#slider'
 ---
 
-# Slider
+# Slider 滑块控件
 
 <p class="description">用户可以使用滑块控件在某一范围内取值。</p>
 

@@ -1,8 +1,7 @@
 ---
 title: React-компонент ButtonGroup
 components: Button, ButtonGroup
-githubLabel:
-  component: ButtonGroup
+githubLabel: 'component: ButtonGroup'
 ---
 
 # Группа кнопок
