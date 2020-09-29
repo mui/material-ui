@@ -2,7 +2,7 @@ import { ThemeProvider } from '@material-ui/styles';
 import React from 'react';
 import { expect } from 'chai';
 import { createClientRender, screen } from 'test/utils';
-import createMuiTheme from './createMuiTheme';
+import createMuiTheme from '../styles/createMuiTheme';
 import styled from './styled';
 
 describe('styled', () => {
