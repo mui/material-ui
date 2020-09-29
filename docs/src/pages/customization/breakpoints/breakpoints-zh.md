@@ -16,15 +16,6 @@
 - ** lg， **大：1280px
 - ** xl， **超大：1920px
 
-这些断点值用于确定断点范围。 一个断点范围包含了起始的断点值，不包含终止的断点值。
-
-```js
-value         |0px     600px    960px    1280px   1920px
-key           |xs      sm       md       lg       xl
-screen width  |--------|--------|--------|--------|-------->
-range         |   xs   |   sm   |   md   |   lg   |   xl
-```
-
 这些值可以是 [定制](#custom-breakpoints) 的。
 
 ## CSS 媒体查询（Media queries）
@@ -39,20 +30,10 @@ CSS media queries 是一种做出响应式的用户界面的特有方法。 而 
 在下面的演示中，我们根据屏幕宽度来更改背景颜色 (红色、蓝色和绿色)。
 
 ```jsx
-const styles = (theme) => ({
-  root: {
-    padding: theme.spacing(1),
-    [theme.breakpoints.down('sm')]: {
-      backgroundColor: theme.palette.secondary.main,
-    },
-    [theme.breakpoints.up('md')]: {
-      backgroundColor: theme.palette.primary.main,
-    },
-    [theme.breakpoints.up('lg')]: {
-      backgroundColor: green[500],
-    },
-  },
-});
+value         |0px     600px    960px    1280px   1920px
+key           |xs      sm       md       lg       xl
+screen width  |--------|--------|--------|--------|-------->
+range         |   xs   |   sm   |   md   |   lg   |   xl
 ```
 
 {{"demo": "pages/customization/breakpoints/MediaQuery.js"}}
@@ -79,7 +60,7 @@ function MyComponent(props) {
 export default withWidth()(MyComponent);
 ```
 
-在下面的演示中，我们基于屏幕宽度更改了渲染的 DOM 元素（_em_, <u>u</u>, ~~del~~ & span）。
+您可以在 [userMediaQuery](/components/use-media-query/) 页面上了解更多信息。
 
 {{"demo": "pages/customization/breakpoints/WithWidth.js"}}
 
@@ -148,6 +129,33 @@ declare module "@material-ui/core/styles/createBreakpoints" {
 
 #### 返回结果
 
+如果您使用的是 TypeScript，您还需要使用 [module augmentation](/guides/typescript/#customization-of-theme) 来让主题接受上述值。
+
+#### 例子
+
+```js
+declare module "@material-ui/core/styles/createBreakpoints" {
+  interface BreakpointOverrides {
+    xs: false; // 移除 `xs` 断点
+    sm: false;
+    md: false;
+    lg: false;
+    xl: false;
+    tablet: true; // 添加 `tablet` 断点
+    laptop: true;
+    desktop: true;
+  }
+}
+```
+
+### `theme.breakpoints.down(key) => media query`
+
+#### 参数
+
+1. `key` （*String* | *Number* ）：断点键（`xs` ，`sm`等等）或以像素为单位的屏幕宽度数。
+
+#### 返回结果
+
 `media query`：一个媒体查询字符串，适用于大多数的样式解决方案，它匹配的屏幕宽度大于（包含）断点键给出的屏幕尺寸。
 
 #### 例子
@@ -165,11 +173,11 @@ const styles = theme => ({
 });
 ```
 
-### `theme.breakpoints.down(key) => media query`
+### `theme.breakpoints.only(key) => media query`
 
 #### 参数
 
-1. `key` （*String* | *Number* ）：断点键（`xs` ，`sm`等等）或以像素为单位的屏幕宽度数。
+1. `key` （*String*）：断点键（`xs` ，`sm`等）。
 
 #### 返回结果
 
@@ -191,11 +199,12 @@ const styles = theme => ({
 });
 ```
 
-### `theme.breakpoints.only(key) => media query`
+### `theme.breakpoints.between(start, end) => media query`
 
 #### 参数
 
-1. `key` （*String*）：断点键（`xs` ，`sm`等）。
+1. `start` (*String*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
+2. `end` (*String*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
 
 #### 返回结果
 
@@ -211,33 +220,6 @@ const styles = theme => ({
     //       [md, lg)
     //       [960px, 1280px)
     [theme.breakpoints.only('md')]: {
-      backgroundColor: 'red',
-    },
-  },
-});
-```
-
-### `theme.breakpoints.between(start, end) => media query`
-
-#### 参数
-
-1. `start` (*String*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
-2. `end` (*String*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
-
-#### 返回结果
-
-`media query`：一个媒体查询字符串，适用于大多数的样式解决方案，它匹配的屏幕宽度大于第一个参数（包括）中断点键给出的屏幕尺寸，小于第二个参数（不包括）中断点键给出的屏幕尺寸。
-
-#### 例子
-
-```js
-const styles = theme => ({
-  root: {
-    backgroundColor: 'blue',
-    // Match [sm, md + 1)
-    //       [sm, lg)
-    //       [600px, 1280px[
-    [theme.breakpoints.between('sm', 'md')]: {
       backgroundColor: 'red',
     },
   },
@@ -287,17 +269,17 @@ const theme = createMuiTheme({
 #### 例子
 
 ```jsx
-import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
-
-function MyComponent(props) {
-  if (isWidthUp('sm', props.width)) {
-    return <span />
-  }
-
-  return <div />;
-}
-
-export default withWidth()(MyComponent);
+const theme = createMuiTheme({
+  components: {
+    // withWidth component ⚛️
+    MuiWithWidth: {
+      defaultProps: {
+        // Initial width prop
+        initialWidth: 'lg', // 断点的全局设置 🌎!
+      },
+    },
+  },
+});
 ```
 
 ## 默认值

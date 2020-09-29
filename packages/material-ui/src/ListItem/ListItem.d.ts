@@ -59,6 +59,7 @@ export interface ListItemTypeMap<P, D extends React.ElementType> {
     ContainerProps?: React.HTMLAttributes<HTMLDivElement>;
     /**
      * If `true`, compact vertical padding designed for keyboard and mouse input will be used.
+     * The prop defaults to the value inherited from the parent List component.
      * @default false
      */
     dense?: boolean;

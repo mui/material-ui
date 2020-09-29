@@ -12,7 +12,7 @@
 
    - `options.disableGlobal` (*Boolean* [optional]): 默认值为`false`。 阻止生成确定性的类名。
    - `options.seed` (*String* [optional])：初始值为 `''`. 用于唯一标识生成器的字符串。 字符串用来在生产中对类名称加上前缀。
-   - `options.seed` (_String_ [optional])：初始值为 `''`. 用于唯一标识生成器的字符串。 在同一个文档中使用多个生成器时，它可用于避免类名冲突。
+   - `options.seed` (_String_ [optional])：初始值为 `''`. 用于唯一标识生成器的字符串。 用于唯一标识生成器的字符串。 在同一个文档中使用多个生成器时，它可用于避免类名冲突。
 
 ### 返回结果
 

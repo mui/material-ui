@@ -1,8 +1,7 @@
 ---
 title: Popper React component
 components: Grow, Popover
-githubLabel:
-  component: Popover
+githubLabel: 'component: Popover'
 ---
 
 # Popover
@@ -22,7 +21,7 @@ githubLabel:
 
 ## Anchor playground
 
-ラジオボタンを使用して、 `anchorOrigin` および `transformOrigin` 位置を調整します。 `anchorReference` を `anchorPosition` または `anchorEl`設定することもできます。 `anchorPosition`の場合、コンポーネントは`anchorEl`の代わりに ポップオーバーの位置を調整する`anchorPosition` >propを参照してください。 `anchorReference` を `anchorPosition` または `anchorEl`設定することもできます。 `anchorPosition`の場合、コンポーネントは`anchorEl`の代わりに ポップオーバーの位置を調整する`anchorPosition` >propを参照してください。
+ラジオボタンを使用して、 `anchorOrigin` および `transformOrigin` 位置を調整します。 `anchorReference` を `anchorPosition` または `anchorEl`設定することもできます。 `anchorPosition`の場合、コンポーネントは`anchorEl`の代わりに ポップオーバーの位置を調整する`anchorPosition` >propを参照してください。 `anchorReference` を `anchorPosition` または `anchorEl`設定することもできます。 `anchorPosition`の場合、コンポーネントは`anchorEl`の代わりに ポップオーバーの位置を調整する`anchorPosition` >propを参照してください。 `anchorReference` を `anchorPosition` または `anchorEl`設定することもできます。 `anchorPosition`の場合、コンポーネントは`anchorEl`の代わりに ポップオーバーの位置を調整する`anchorPosition` >propを参照してください。
 
 {{"demo": "pages/components/popover/AnchorPlayground.js", "hideToolbar": true}}
 

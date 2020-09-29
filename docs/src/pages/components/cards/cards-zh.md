@@ -1,12 +1,11 @@
 ---
 title: React 卡片组件
 components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
-githubLabel:
-  component: Cards（卡片）
+githubLabel: 'component: Card'
 materialDesign: https://material.io/components/cards
 ---
 
-# Cards（卡片）
+# Card 卡片
 
 <p class="description">卡片组件能够承载与单个主题相关的内容和操作。</p>
 

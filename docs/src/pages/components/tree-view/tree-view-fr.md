@@ -1,8 +1,7 @@
 ---
 title: Tree View React component
 components: TreeView, TreeItem
-githubLabel:
-  component: TreeView
+githubLabel: 'component: TreeView'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#TreeView'
 packages: '@material-ui/lab'
 ---
@@ -19,9 +18,9 @@ Tree views can be used to represent a file system navigator displaying folders a
 
 {{"demo": "pages/components/tree-view/FileSystemNavigator.js"}}
 
-## Multi selection
+## Multi-sélection
 
-Tree views also support multi selection.
+L'arborescence prend également en charge la sélection multiple.
 
 {{"demo": "pages/components/tree-view/MultiSelectTreeView.js"}}
 
@@ -63,13 +62,13 @@ const data = {
 
 {{"demo": "pages/components/tree-view/GmailTreeView.js"}}
 
-## Disabled tree items
+## Items désactivés
 
 {{"demo": "pages/components/tree-view/DisabledTreeItems.js"}}
 
-The behavior of disabled tree items depends on the `disabledItemsFocusable` prop.
+Le comportement des items désactivés dépend de la propriété `disabledItemsFocusable`.
 
-If it is false:
+Si elle vaut `false`:
 
 - Arrow keys will not focus disabled items and, the next non-disabled item will be focused.
 - Typing the first character of a disabled item's label will not focus the item.
@@ -78,10 +77,10 @@ If it is false:
 - Shift + arrow keys will skip disabled items and, the next non-disabled item will be selected.
 - Programmatic focus will not focus disabled items.
 
-If it is true:
+Si elle vaut `true`:
 
 - Arrow keys will focus disabled items.
-- Typing the first character of a disabled item's label will focus the item.
+- Taper le premier caractère du label d'un élément désactivé pour mettre le focus sur l'élément.
 - Mouse or keyboard interaction will not expand/collapse disabled items.
 - Mouse or keyboard interaction will not select disabled items.
 - Shift + arrow keys will not skip disabled items but, the disabled item will not be selected.

@@ -458,7 +458,6 @@ function DemoToolbar(props) {
             >
               <IconButton
                 aria-controls={openDemoSource ? demoSourceId : null}
-                aria-label={showCodeLabel}
                 data-ga-event-category="demo"
                 data-ga-event-label={demoOptions.demo}
                 data-ga-event-action="expand"
@@ -476,7 +475,6 @@ function DemoToolbar(props) {
                 placement="bottom"
               >
                 <IconButton
-                  aria-label={t('codesandbox')}
                   data-ga-event-category="demo"
                   data-ga-event-label={demoOptions.demo}
                   data-ga-event-action="codesandbox"
@@ -493,7 +491,6 @@ function DemoToolbar(props) {
               placement="bottom"
             >
               <IconButton
-                aria-label={t('copySource')}
                 data-ga-event-category="demo"
                 data-ga-event-label={demoOptions.demo}
                 data-ga-event-action="copy"
@@ -509,7 +506,6 @@ function DemoToolbar(props) {
               placement="bottom"
             >
               <IconButton
-                aria-label={t('resetFocus')}
                 data-ga-event-category="demo"
                 data-ga-event-label={demoOptions.demo}
                 data-ga-event-action="reset-focus"
@@ -526,7 +522,6 @@ function DemoToolbar(props) {
             >
               <IconButton
                 aria-controls={demoId}
-                aria-label={t('resetDemo')}
                 data-ga-event-category="demo"
                 data-ga-event-label={demoOptions.demo}
                 data-ga-event-action="reset"
@@ -540,7 +535,6 @@ function DemoToolbar(props) {
               onClick={handleMoreClick}
               aria-owns={anchorEl ? 'demo-menu-more' : undefined}
               aria-haspopup="true"
-              aria-label={t('seeMore')}
               {...getControlProps(7)}
             >
               <MoreVertIcon fontSize="small" />

@@ -136,7 +136,7 @@ yarn add @material-ui/styles
   }
   ```
 
-  _提示：您可以提供多个参数：`theme.spacing(1, 2) // = '8px 16px'。`_
+  提示：您可以提供多个参数：`theme.spacing(1, 2) // = '8px 16px'。 `
 
   您可以在项目中使用 [迁移小帮手](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api) 来让您的迁移流程更加顺畅。
 

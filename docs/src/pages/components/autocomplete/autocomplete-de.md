@@ -1,8 +1,7 @@
 ---
 title: Autocomplete React-Komponente
 components: TextField, Popper, Autocomplete
-githubLabel:
-  component: Autovervollständigung (Autocomplete)
+githubLabel: 'component: Autocomplete'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#combobox'
 packageName: '@material-ui/lab'
 ---
@@ -285,6 +284,7 @@ Zusätzlich zur Speicherung der eingegebenen Werte kann der Browser aber auch **
 
 - Name the input without leaking any information the browser can use. e.g. `id="field1"` instead of `id="country"`. Wenn Sie die ID leer lassen, verwendet die Komponente eine zufällige ID.
 - Setze `autoComplete="neues Passwort"`: jsx Setze `autoComplete="neues Passwort": 
+    jsx` Setze `autoComplete="neues Passwort": 
         jsx`
 
   ```jsx

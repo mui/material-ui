@@ -4,7 +4,7 @@
 
 ## CSS
 
-設定変数が十分に強力でない場合は、 `theme` の</code>キーを`overrides</0> し、Material-UIによってDOMに注入される<strong>every single style</strong>を変更できるようにします。 それは本当に強力な機能です。 それは本当に強力な機能です。
+設定変数が十分に強力でない場合は、 `theme` の</code>キーを`overrides</0> し、Material-UIによってDOMに注入される<strong>every single style</strong>を変更できるようにします。 それは本当に強力な機能です。
 
 To override lab components styles with TypeScript, check [this documentation](/components/about-the-lab/#typescript).
 
@@ -30,7 +30,7 @@ const theme = createMuiTheme({
 
 {{"demo": "pages/customization/globals/GlobalCss.js"}}
 
-各コンポーネントのカスタマイズポイントの一覧は、 **Component API**のセクションに記載されています。 たとえば、 [Button](/api/button/#css)はこちらです。 あるいは、いつでも[実装を調べることができます](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Button/Button.js)。
+各コンポーネントのカスタマイズポイントの一覧は、 **Component API**のセクションに記載されています。 たとえば、 [Button](/api/button/#css)はこちらです。 たとえば、 [Button](/api/button/#css)はこちらです。
 
 ## Global CSS
 

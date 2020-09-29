@@ -92,7 +92,7 @@ function renderNavItems(options) {
   );
 }
 
-function reduceChildRoutes({ props, activePage, items, page, depth, t }) {
+function reduceChildRoutes({ onClose, activePage, items, page, depth, t }) {
   if (page.displayNav === false) {
     return items;
   }
@@ -110,7 +110,7 @@ function reduceChildRoutes({ props, activePage, items, page, depth, t }) {
         openImmediately={topLevel || Boolean(page.subheader)}
         title={title}
       >
-        {renderNavItems({ props, pages: page.children, activePage, depth: depth + 1, t })}
+        {renderNavItems({ onClose, pages: page.children, activePage, depth: depth + 1, t })}
       </AppDrawerNavItem>,
     );
   } else {
@@ -124,7 +124,7 @@ function reduceChildRoutes({ props, activePage, items, page, depth, t }) {
         key={title}
         title={title}
         href={page.pathname}
-        onClick={props.onClose}
+        onClick={onClose}
       />,
     );
   }
@@ -144,6 +144,10 @@ function AppDrawer(props) {
   const languagePrefix = userLanguage === 'en' ? '' : `/${userLanguage}`;
   const t = useSelector((state) => state.options.t);
 
+  const navItems = React.useMemo(
+    () => renderNavItems({ onClose, pages, activePage, depth: 0, t }),
+    [activePage, pages, onClose, t],
+  );
   const drawer = (
     <PersistScroll>
       <div className={classes.toolbarIe11}>
@@ -168,7 +172,7 @@ function AppDrawer(props) {
       <Box mx={3} my={2}>
         <DiamondSponsors spot="drawer" />
       </Box>
-      {renderNavItems({ props, pages, activePage, depth: 0, t })}
+      {navItems}
     </PersistScroll>
   );
 

@@ -1,8 +1,7 @@
 ---
 title: React 树视图组件
 components: TreeView, TreeItem
-githubLabel:
-  component: 树视图
+githubLabel: 'component: TreeView'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#TreeView'
 packages: '@material-ui/lab'
 ---
@@ -47,8 +46,6 @@ const data = {
       name: 'Child - 1',
     },
     // …
-  ],
-};
   ],
 };
 ```

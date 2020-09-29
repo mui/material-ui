@@ -1,7 +1,6 @@
 ---
 title: React 分组组件
-githubLabel:
-  component: Box 分组
+githubLabel: 'component: Box'
 ---
 
 # Box 分组
@@ -45,9 +44,7 @@ Box 组件有一个 `clone` 的属性，通过它您可以使用 React 克隆元
 您可以在 Box 的子组件中使用 render props 的函数。 您可以不用 `className`。
 
 ```jsx
-<Box color="text.primary">
-  {props => <Button {...props} />}
-</Box>
+<Box color="text.primary">{(props) => <Button {...props} />}</Box>
 ```
 
 > ⚠️CSS 的优先级依赖于导入的顺序。 如果您希望确保覆写包装组件的样式，则需要在最后才导入 Box。

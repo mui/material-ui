@@ -16,15 +16,6 @@ Each breakpoint (a key) matches with a *fixed* screen width (a value):
 - **lg,** large: 1280px
 - **xl,** extra-large: 1920px
 
-These breakpoint values are used to determine breakpoint ranges. A range starts from the breakpoint value inclusive, to the next breakpoint value exclusive:
-
-```js
-value         |0px     600px    960px    1280px   1920px
-key           |xs      sm       md       lg       xl
-screen width  |--------|--------|--------|--------|-------->
-range         |   xs   |   sm   |   md   |   lg   |   xl
-```
-
 These values can be [customized](#custom-breakpoints).
 
 ## CSS Media Queries
@@ -39,20 +30,10 @@ CSS media queries are the idiomatic approach to make your UI responsive. The the
 In the following demo, we change the background color (red, blue & green) based on the screen width.
 
 ```jsx
-const styles = theme => ({
-  root: {
-    padding: theme.spacing(1),
-    [theme.breakpoints.down('sm')]: {
-      backgroundColor: theme.palette.secondary.main,
-    },
-    [theme.breakpoints.up('md')]: {
-      backgroundColor: theme.palette.primary.main,
-    },
-    [theme.breakpoints.up('lg')]: {
-      backgroundColor: green[500],
-    },
-  },
-});
+value         |0px     600px    960px    1280px   1920px
+key           |xs      sm       md       lg       xl
+screen width  |--------|--------|--------|--------|-------->
+range         |   xs   |   sm   |   md   |   lg   |   xl
 ```
 
 {{"demo": "pages/customization/breakpoints/MediaQuery.js"}}
@@ -148,6 +129,33 @@ declare module "@material-ui/core/styles/createBreakpoints" {
 
 #### Valeur de retour
 
+`media query`: A media query string ready to be used with most styling solutions, which matches screen widths greater than the screen size given by the breakpoint key in the first argument and less than the the screen size given by the breakpoint key in the second argument.
+
+#### Exemples
+
+```js
+declare module "@material-ui/core/styles/createBreakpoints" {
+  interface BreakpointOverrides {
+    xs: false; // removes the `xs` breakpoint
+    sm: false;
+    md: false;
+    lg: false;
+    xl: false;
+    tablet: true; // adds the `tablet` breakpoint
+    laptop: true;
+    desktop: true;
+  }
+}
+```
+
+### `theme.breakpoints.down(key) => media query`
+
+#### Paramètres
+
+1. `key` (*String* | *Number*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
+
+#### Valeur de retour
+
 `media query`: A media query string ready to be used with most styling solutions, which matches screen widths greater than and including the screen size given by the breakpoint key.
 
 #### Exemples
@@ -165,11 +173,11 @@ const styles = theme => ({
 });
 ```
 
-### `theme.breakpoints.down(key) => media query`
+### `theme.breakpoints.only(key) => media query`
 
 #### Paramètres
 
-1. `key` (*String* | *Number*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
+1. `key` (*String*): A breakpoint key (`xs`, `sm`, etc.).
 
 #### Valeur de retour
 
@@ -191,11 +199,12 @@ const styles = theme => ({
 });
 ```
 
-### `theme.breakpoints.only(key) => media query`
+### `theme.breakpoints.between(start, end) => media query`
 
 #### Paramètres
 
-1. `key` (*String*): A breakpoint key (`xs`, `sm`, etc.).
+1. `start` (*String*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
+2. `end` (*String*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
 
 #### Valeur de retour
 
@@ -211,33 +220,6 @@ const styles = theme => ({
     //       [md, lg)
     //       [960px, 1280px)
     [theme.breakpoints.only('md')]: {
-      backgroundColor: 'red',
-    },
-  },
-});
-```
-
-### `theme.breakpoints.between(start, end) => media query`
-
-#### Paramètres
-
-1. `start` (*String*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
-2. `end` (*String*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
-
-#### Valeur de retour
-
-`media query`: A media query string ready to be used with most styling solutions, which matches screen widths greater than the screen size given by the breakpoint key in the first argument and less than the the screen size given by the breakpoint key in the second argument.
-
-#### Exemples
-
-```js
-const styles = theme => ({
-  root: {
-    backgroundColor: 'blue',
-    // Match [sm, md + 1)
-    //       [sm, lg)
-    //       [600px, 1280px[
-    [theme.breakpoints.between('sm', 'md')]: {
       backgroundColor: 'red',
     },
   },

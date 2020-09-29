@@ -31,13 +31,13 @@ export default function DiscreteSlider() {
         min={10}
         max={110}
       />
-      <Typography id="discrete-slider" gutterBottom>
+      <Typography id="discrete-slider-disabled" gutterBottom>
         Disabled
       </Typography>
       <Slider
         defaultValue={30}
         getAriaValueText={valuetext}
-        aria-labelledby="discrete-slider"
+        aria-labelledby="discrete-slider-disabled"
         valueLabelDisplay="auto"
         step={10}
         marks

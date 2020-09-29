@@ -1,8 +1,7 @@
 ---
 title: Componente React para Paginação
 components: Pagination, PaginationItem
-githubLabel:
-  component: Paginação
+githubLabel: 'component: Pagination'
 packageName: '@material-ui/lab'
 ---
 

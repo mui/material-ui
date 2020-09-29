@@ -1,8 +1,7 @@
 ---
 title: Tooltip React component
 components: Tooltip
-githubLabel:
-  component: Tooltip
+githubLabel: 'component: Tooltip'
 materialDesign: https://material.io/components/tooltips
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tooltip'
 ---
@@ -39,7 +38,7 @@ Puedes usar el apoyo del prop `flecha` para dar a tu tooltip una flecha indicand
 
 ## Elemento child personalizado
 
-El tooltip necesita aplicar los oyentes de eventos DOM a su elemento hijo. The tooltip needs to apply DOM event listeners to its child element.
+El tooltip necesita aplicar los oyentes de eventos DOM a su elemento hijo. El tooltip necesita aplicar los oyentes de eventos DOM a su elemento hijo.
 
 ```jsx
 const MyComponent = React.forwardRef(function MyComponent(props, ref) {
@@ -94,6 +93,11 @@ By default disabled elements like `<button>` do not trigger user interactions so
 <Tooltip title="You don't have permission to do this">
   <span>
     <button disabled={disabled} style={disabled ? { pointerEvents: "none" } : {}}>
+      {'A disabled button'}
+    </button>
+  </span>
+</Tooltip> { pointerEvents: 'none' } : {}}
+    >
       {'A disabled button'}
     </button>
   </span>

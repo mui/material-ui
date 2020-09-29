@@ -1,13 +1,12 @@
 ---
 title: React 按钮组件
-components: Button, IconButton, ButtonBase
+components: Button, IconButton, ButtonBase, LoadingButton
 materialDesign: https://material.io/components/buttons
-githubLabel:
-  component: Button
+githubLabel: 'component: Button'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
 ---
 
-# Button
+# Button 按钮
 
 <p class="description">只需通过轻按一下按钮，用户即可采取行动并做出选择。</p>
 
@@ -140,10 +139,10 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
 
 ```jsx
 <span style={{ cursor: 'not-allowed' }}>
-    <Button component={Link} disabled>
-      disabled
-    </Button>
-  </span>
+  <Button component={Link} disabled>
+    disabled
+  </Button>
+</span>
 ```
 
 这个方法能支持任何元素，例如，一个 `<a>` 元素。

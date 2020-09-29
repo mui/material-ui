@@ -268,6 +268,8 @@ const GlobalCss = withStyles({
 <GlobalCss />
 
 <GlobalCss />;
+
+<GlobalCss />;
 ```
 
 {{"demo": "pages/customization/components/GlobalCssOverride.js", "iframe": true, "height": 70}}

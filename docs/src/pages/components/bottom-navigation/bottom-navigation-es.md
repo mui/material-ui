@@ -1,8 +1,7 @@
 ---
 title: Componente para navegación a pie de página
 components: BottomNavigation, BottomNavigationAction
-githubLabel:
-  component: BottomNavigation
+githubLabel: 'component: BottomNavigation'
 materialDesign: https://material.io/components/bottom-navigation
 ---
 

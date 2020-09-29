@@ -166,6 +166,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     arrow = false,
     children,
     classes,
+    describeChild = false,
     disableFocusListener = false,
     disableHoverListener = false,
     disableTouchListener = false,
@@ -439,15 +440,18 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     open = false;
   }
 
-  // For accessibility and SEO concerns, we render the title to the DOM node when
-  // the tooltip is hidden. However, we have made a tradeoff when
-  // `disableHoverListener` is set. This title logic is disabled.
-  // It's allowing us to keep the implementation size minimal.
-  // We are open to change the tradeoff.
-  const shouldShowNativeTitle = !open && !disableHoverListener;
+  const nameOrDescProps = {};
+  const titleIsString = typeof title === 'string';
+  if (describeChild) {
+    nameOrDescProps['title'] = !open && titleIsString && !disableHoverListener ? title : null;
+    nameOrDescProps['aria-describedby'] = open ? id : null;
+  } else {
+    nameOrDescProps['aria-label'] = titleIsString ? title : null;
+    nameOrDescProps['aria-labelledby'] = open && !titleIsString ? id : null;
+  }
+
   const childrenProps = {
-    'aria-describedby': open ? id : null,
-    title: shouldShowNativeTitle && typeof title === 'string' ? title : null,
+    ...nameOrDescProps,
     ...other,
     ...children.props,
     className: clsx(other.className, children.props.className),
@@ -520,7 +524,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
         placement={placement}
         anchorEl={childNode}
         open={childNode ? open : false}
-        id={childrenProps['aria-describedby']}
+        id={id}
         transition
         {...interactiveWrapperListeners}
         {...mergedPopperProps}
@@ -573,6 +577,12 @@ Tooltip.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * Set to `true` if the `title` acts as an accessible description.
+   * By default the `title` acts as an accessible label for the child.
+   * @default false
+   */
+  describeChild: PropTypes.bool,
   /**
    * Do not respond to focus events.
    * @default false

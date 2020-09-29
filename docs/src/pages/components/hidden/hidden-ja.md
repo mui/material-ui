@@ -1,15 +1,14 @@
 ---
 title: Hidden Reactコンポーネント
 components: Hidden
-githubLabel:
-  component: Hidden
+githubLabel: 'component: Hidden'
 ---
 
 # Hidden
 
 <p class="description">Quickly and responsively toggle the visibility value of components and more with the hidden utilities.</p>
 
-**明示的に非表示にしない限り**、すべての要素が表示されます。 **明示的に非表示にしない限り**、すべての要素が表示されます。 **明示的に非表示にしない限り**、すべての要素が表示されます。 To ease integration with Material-UI's [responsive breakpoints](/customization/breakpoints/), this component can be used to hide any content, or you can use it in conjunction with the [`Grid`](/components/grid/) component.
+**明示的に非表示にしない限り**、すべての要素が表示されます。 **明示的に非表示にしない限り**、すべての要素が表示されます。 **明示的に非表示にしない限り**、すべての要素が表示されます。 **明示的に非表示にしない限り**、すべての要素が表示されます。 To ease integration with Material-UI's [responsive breakpoints](/customization/breakpoints/), this component can be used to hide any content, or you can use it in conjunction with the [`Grid`](/components/grid/) component.
 
 [The palette](/system/palette/) style関数。
 
