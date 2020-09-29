@@ -1,6 +1,6 @@
 {
   "name": "create-react-app-with-styled-components-engine",
-  "version": "0.1.0",
+  "version": "5.0.0",
   "private": true,
   "dependencies": {
     "@material-ui/core": "next",
