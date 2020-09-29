@@ -2,7 +2,6 @@ import * as React from 'react';
 import { InputLabelProps } from '@material-ui/core';
 import { Autocomplete, AutocompleteProps } from '@material-ui/lab';
 import { expectType } from '@material-ui/types';
-import { HTMLAttributes } from 'enzyme';
 
 interface MyAutocomplete<
   T,
