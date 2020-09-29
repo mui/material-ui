@@ -1,2 +1,2 @@
 export { default } from '@emotion/styled';
-export * from 'emotion-theming';
+export { ThemeProvider } from 'emotion-theming';
