@@ -9,14 +9,7 @@ export default function App() {
       <Slider defaultValue={30} color="primary" />
       <Slider defaultValue={30} color="secondary" />
       <Slider defaultValue={30} disabled />
-      <Slider
-        defaultValue={30}
-        valueLabelDisplay="auto"
-        step={10}
-        marks
-        min={10}
-        max={110}
-      />
+      <Slider defaultValue={30} valueLabelDisplay="auto" step={10} marks min={10} max={110} />
     </div>
   );
 }
