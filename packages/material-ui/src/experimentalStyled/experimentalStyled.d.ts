@@ -24,6 +24,6 @@ export interface CreateStyled<Theme extends object = any> {
  * @param options Styled options for the created component.
  * @returns React component that has styles attached to it.
  */
-declare const styled: CreateStyled;
+declare const experimentalStyled: CreateStyled;
 
-export default styled;
+export default experimentalStyled;

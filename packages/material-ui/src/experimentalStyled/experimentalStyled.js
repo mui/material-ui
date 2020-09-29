@@ -13,7 +13,7 @@ function isEmpty(obj) {
   return result;
 }
 
-export default function styled(tag, options) {
+export default function experimentalStyled(tag, options) {
   const defaultStyledResolver = seStyled(tag, options);
 
   const customStyledResolver = (...styles) => {

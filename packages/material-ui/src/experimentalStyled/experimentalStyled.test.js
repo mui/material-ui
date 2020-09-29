@@ -3,7 +3,7 @@ import React from 'react';
 import { expect } from 'chai';
 import { createClientRender, screen } from 'test/utils';
 import createMuiTheme from '../styles/createMuiTheme';
-import styled from './styled';
+import styled from './experimentalStyled';
 
 describe('styled', () => {
   const render = createClientRender();
