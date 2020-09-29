@@ -2,6 +2,18 @@ import styled from '@material-ui/styled-engine';
 import { propsToClassKey } from '@material-ui/styles';
 import defaultTheme from './defaultTheme';
 
+function isEmpty(obj) {
+  let result = true;
+
+  Object.keys(obj).forEach((key) => {
+    if (obj.hasOwnProperty(key)) {
+      result = false;
+    }
+  });
+
+  return result;
+}
+
 const getStyleOverrides = (name, theme) => {
   let styleOverrides = {};
 
@@ -41,7 +53,7 @@ const variantsResolver = (props, styles, theme, name) => {
     themeVariants.forEach((themeVariant) => {
       let isMatch = true;
       Object.keys(themeVariant.props).forEach((key) => {
-        if (styleProps[key] !== themeVariant.props[key]) {
+        if (styleProps[key] !== themeVariant.props[key] && props[key] !== themeVariant.props[key]) {
           isMatch = false;
         }
       });
@@ -56,23 +68,32 @@ const variantsResolver = (props, styles, theme, name) => {
 
 const shouldForwardProp = (prop) => prop !== 'styleProps' && prop !== 'theme';
 
-const muiStyled = (tag, options, muiOptions) => {
+const muiStyled = (tag, options, muiOptions = {}) => {
   const name = muiOptions.muiName;
   const defaultStyledResolver = styled(tag, { shouldForwardProp, label: name, ...options });
   const muiStyledResolver = (...styles) => {
-    if (muiOptions.overridesResolver) {
-      styles.push((props) => {
-        const theme = props.theme || defaultTheme;
+    const stylesWithDefaultTheme = styles.map((stylesArg) => {
+      return typeof stylesArg === 'function'
+        ? ({ theme: themeInput, ...rest }) =>
+            stylesArg({ theme: isEmpty(themeInput) ? defaultTheme : themeInput, ...rest })
+        : stylesArg;
+    });
+
+    if (name && muiOptions.overridesResolver) {
+      stylesWithDefaultTheme.push((props) => {
+        const theme = isEmpty(props.theme) ? defaultTheme : props.theme;
         return muiOptions.overridesResolver(props, getStyleOverrides(name, theme), name);
       });
     }
 
-    styles.push((props) => {
-      const theme = props.theme || defaultTheme;
-      return variantsResolver(props, getVariantStyles(name, theme), theme, name);
-    });
+    if (name) {
+      stylesWithDefaultTheme.push((props) => {
+        const theme = isEmpty(props.theme) ? defaultTheme : props.theme;
+        return variantsResolver(props, getVariantStyles(name, theme), theme, name);
+      });
+    }
 
-    return defaultStyledResolver(...styles);
+    return defaultStyledResolver(...stylesWithDefaultTheme);
   };
   return muiStyledResolver;
 };
