@@ -3,7 +3,7 @@ import {
   JSXInEl,
   CreateStyledComponentIntrinsic,
   CreateStyledComponentExtrinsic,
-} from './muiStyled';
+} from '../styles/muiStyled';
 
 export interface CreateStyled<Theme extends object = any> {
   <Tag extends React.ComponentType<any>, ExtraProps = {}>(

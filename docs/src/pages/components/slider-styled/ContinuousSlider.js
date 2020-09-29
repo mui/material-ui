@@ -1,12 +1,11 @@
-import * as React from 'react';
-import { customStyled } from '@material-ui/core/styles';
+import * as React from 'react';->import styled from '@material-ui/core/styled';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/lab/SliderStyled';
 import VolumeDown from '@material-ui/icons/VolumeDown';
 import VolumeUp from '@material-ui/icons/VolumeUp';
 
-const Root = customStyled('div')({
+const Root = styled('div')({
   width: 200,
 });
 

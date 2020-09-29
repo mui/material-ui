@@ -6,14 +6,13 @@ export { default as createStyles } from './createStyles';
 export { getUnit as unstable_getUnit, toUnitless as unstable_toUnitless } from './cssUtils';
 export { default as makeStyles } from './makeStyles';
 export { default as responsiveFontSizes } from './responsiveFontSizes';
-export { default as styled } from './styled';
+export { default as legacy_styled } from './legacy_styled';
 export { duration, easing } from './transitions';
 export { default as useTheme } from './useTheme';
 export { default as useThemeProps } from './useThemeProps';
 export { default as withStyles } from './withStyles';
 export { default as withTheme } from './withTheme';
 export { default as muiStyled } from './muiStyled';
-export { default as customStyled } from './customStyled';
 export {
   createGenerateClassName,
   jssPreset,

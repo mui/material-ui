@@ -183,7 +183,7 @@ interface MuiStyledOptions<Theme extends object = any> {
   overridesResolver?: (props: any, styles: string | object, name: string) => string | object;
 }
 
-export interface CreateStyled<Theme extends object = any> {
+export interface CreateMUIStyled<Theme extends object = any> {
   <Tag extends React.ComponentType<any>, ExtraProps = {}>(
     tag: Tag,
     options?: StyledOptions,
@@ -205,6 +205,6 @@ export interface CreateStyled<Theme extends object = any> {
  * @muiOptions Material-UI specific style options, consiting of overrides resolver.
  * @returns React component that has styles attached to it.
  */
-declare const muiStyled: CreateStyled;
+declare const muiStyled: CreateMUIStyled;
 
 export default muiStyled;

@@ -1,5 +1,5 @@
 import seStyled from '@material-ui/styled-engine';
-import defaultTheme from './defaultTheme';
+import defaultTheme from '../styles/defaultTheme';
 
 function isEmpty(obj) {
   let result = true;

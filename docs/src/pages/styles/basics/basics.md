@@ -72,7 +72,7 @@ You can also [change this behavior](/styles/advanced/#string-templates), with so
 
 ```jsx
 import * as React from 'react';
-import { styled } from '@material-ui/core/styles';
+import { legacy_styled as styled } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
 const MyButton = styled(Button)({

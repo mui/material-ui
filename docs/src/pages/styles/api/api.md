@@ -156,7 +156,7 @@ The method is an alternative to `.toString()` when you are rendering the whole p
 
 ⚠️ You must call `.collect()` before using this method.
 
-## `styled(Component)(styles, [options]) => Component`
+## `legacy_styled(Component)(styles, [options]) => Component`
 
 Link a style sheet with a function component using the **styled components** pattern.
 
@@ -183,7 +183,7 @@ Link a style sheet with a function component using the **styled components** pat
 
 ```jsx
 import * as React from 'react';
-import { styled } from '@material-ui/core/styles';
+import { legacy_styled as styled } from '@material-ui/core/styles';
 
 const MyComponent = styled('div')({
   backgroundColor: 'red',

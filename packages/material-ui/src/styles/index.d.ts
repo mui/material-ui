@@ -24,9 +24,8 @@ export {
   StyledComponentProps,
 } from './withStyles';
 export { default as withTheme, WithTheme } from './withTheme';
-export { default as muiStyled } from './muiStyled';
-export { default as customStyled } from './customStyled';
-export { default as styled, ComponentCreator, StyledProps } from './styled';
+export { default as muiStyled, CreateMUIStyled } from './muiStyled';
+export { default as legacy_styled, ComponentCreator, StyledProps } from './legacy_styled';
 export {
   createGenerateClassName,
   jssPreset,

@@ -362,6 +362,9 @@ export * from './StepLabel';
 export { default as Stepper } from './Stepper';
 export * from './Stepper';
 
+export { default as styled } from './styled';
+export * from './styled';
+
 export { default as SvgIcon } from './SvgIcon';
 export * from './SvgIcon';
 

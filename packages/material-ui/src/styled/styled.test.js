@@ -3,9 +3,9 @@ import React from 'react';
 import { expect } from 'chai';
 import { createClientRender, screen } from 'test/utils';
 import createMuiTheme from './createMuiTheme';
-import styled from './customStyled';
+import styled from './styled';
 
-describe('customStyled', () => {
+describe('styled', () => {
   const render = createClientRender();
   it('should work', () => {
     const Div = styled('div')({
