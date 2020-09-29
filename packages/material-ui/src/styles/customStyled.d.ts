@@ -18,7 +18,7 @@ export interface CreateStyled<Theme extends object = any> {
 }
 
 /**
- * Cutom styled utility that has a default mui theme.
+ * Custom styled utility that has a default MUI theme.
  *
  * @param tag HTML tag or component that should serve as base.
  * @param options Styled options for the created component.
