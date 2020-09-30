@@ -160,7 +160,7 @@ export interface SliderTypeMap<P = {}, D extends React.ElementType = 'span'> {
      */
     step?: number | null;
     /**
-     * Common system props.
+     * System props to apply to the component.
      */
     system?: ElementProps & SystemProps;
     /**

@@ -906,7 +906,7 @@ SliderUnstyled.propTypes = {
    */
   step: PropTypes.number,
   /**
-   * Common system props.
+   * System props to apply to the component.
    */
   system: PropTypes.object,
   /**
