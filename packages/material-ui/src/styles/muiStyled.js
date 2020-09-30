@@ -1,6 +1,5 @@
 import styled from '@material-ui/styled-engine';
 import { propsToClassKey } from '@material-ui/styles';
-import defaultTheme from './defaultTheme';
 import {
   borders,
   compose,
@@ -15,6 +14,7 @@ import {
   typography,
   css,
 } from '@material-ui/system';
+import defaultTheme from './defaultTheme';
 
 const getStyleOverrides = (name, theme) => {
   let styleOverrides = {};
