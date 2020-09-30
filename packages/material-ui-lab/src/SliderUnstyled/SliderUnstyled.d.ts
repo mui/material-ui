@@ -1,4 +1,5 @@
 import { OverridableComponent } from '@material-ui/core/OverridableComponent';
+import { ElementProps, SystemProps } from '@material-ui/core/Box';
 
 export interface Mark {
   value: number;
@@ -158,6 +159,10 @@ export interface SliderTypeMap<P = {}, D extends React.ElementType = 'span'> {
      * @default 1
      */
     step?: number | null;
+    /**
+     * Common system props.
+     */
+    system?: ElementProps & SystemProps
     /**
      * The track presentation:
      *

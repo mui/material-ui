@@ -30,8 +30,8 @@ type BoxStyleFunction = ComposedStyleFunction<
   ]
 >;
 
-type SystemProps = PropsFor<BoxStyleFunction>;
-type ElementProps = Omit<React.HTMLAttributes<HTMLElement>, keyof SystemProps>;
+export type SystemProps = PropsFor<BoxStyleFunction>;
+export type ElementProps = Omit<React.HTMLAttributes<HTMLElement>, keyof SystemProps>;
 
 export interface BoxProps extends ElementProps, SystemProps {
   // styled API

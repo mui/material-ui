@@ -437,6 +437,10 @@ Slider.propTypes = {
    */
   step: PropTypes.number,
   /**
+   * Common system props.
+   */
+  system: PropTypes.object,
+  /**
    * The track presentation:
    *
    * - `normal` the track will render a bar representing the slider value.
