@@ -3,7 +3,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import ButtonBase from '../ButtonBase';
-import IconButton from '../IconButton';
 import withStyles from '../styles/withStyles';
 import AccordionContext from '../Accordion/AccordionContext';
 
@@ -72,7 +71,6 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(props, ref) 
     className,
     expandIcon,
     focusVisibleClassName,
-    IconButtonProps = {},
     onClick,
     ...other
   } = props;
@@ -109,23 +107,17 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(props, ref) 
     >
       <div className={clsx(classes.content, { [classes.expanded]: expanded })}>{children}</div>
       {expandIcon && (
-        <IconButton
+        <div
           edge="end"
-          component="div"
-          tabIndex={null}
-          role={null}
-          aria-hidden
-          {...IconButtonProps}
           className={clsx(
             classes.expandIcon,
             {
               [classes.expanded]: expanded,
             },
-            IconButtonProps.className,
           )}
         >
           {expandIcon}
-        </IconButton>
+        </div>
       )}
     </ButtonBase>
   );
@@ -161,11 +153,6 @@ AccordionSummary.propTypes = {
    * if needed.
    */
   focusVisibleClassName: PropTypes.string,
-  /**
-   * Props applied to the `IconButton` element wrapping the expand icon.
-   * @default {}
-   */
-  IconButtonProps: PropTypes.object,
   /**
    * @ignore
    */

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
-import { IconButtonProps } from '../IconButton';
 import { OverrideProps } from '../OverridableComponent';
 
 export type AccordionSummaryTypeMap<
@@ -33,11 +32,6 @@ export type AccordionSummaryTypeMap<
      * The icon to display as the expand indicator.
      */
     expandIcon?: React.ReactNode;
-    /**
-     * Props applied to the `IconButton` element wrapping the expand icon.
-     * @default {}
-     */
-    IconButtonProps?: Partial<IconButtonProps>;
   };
   defaultComponent: D;
 }>;
