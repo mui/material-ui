@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { exactProp } from '@material-ui/utils';
-import { ThemeProvider as StyledEngineThemeProvider } from '@material-ui/styled-engine';
+import { ThemeContext as StyledEngineThemeContext } from '@material-ui/styled-engine';
 import ThemeContext from '../useTheme/ThemeContext';
 import useTheme from '../useTheme';
 import nested from './nested';
@@ -64,9 +64,9 @@ function ThemeProvider(props) {
 
   return (
     <ThemeContext.Provider value={theme}>
-      <StyledEngineThemeProvider theme={typeof theme === 'object' ? theme : {}}>
+      <StyledEngineThemeContext.Provider value={typeof theme === 'object' ? theme : {}}>
         {children}
-      </StyledEngineThemeProvider>
+      </StyledEngineThemeContext.Provider>
     </ThemeContext.Provider>
   );
 }
