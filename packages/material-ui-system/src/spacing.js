@@ -150,7 +150,7 @@ function getStyleFromPropValue(cssProperties, transformer) {
 }
 
 function spacing(componentProps) {
-  const theme = props.theme;
+  const theme = componentProps.theme;
   const transformer = createUnarySpacing(theme);
   const props = componentProps.system || componentProps;
 
