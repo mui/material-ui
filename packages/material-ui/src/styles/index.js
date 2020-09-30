@@ -12,7 +12,7 @@ export { default as useTheme } from './useTheme';
 export { default as useThemeProps } from './useThemeProps';
 export { default as withStyles } from './withStyles';
 export { default as withTheme } from './withTheme';
-export { default as muiStyled } from './muiStyled';
+export { default as experimentalStyled } from './experimentalStyled';
 export {
   createGenerateClassName,
   jssPreset,

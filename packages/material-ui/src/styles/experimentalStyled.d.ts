@@ -205,6 +205,6 @@ export interface CreateMUIStyled<Theme extends object = any> {
  * @muiOptions Material-UI specific style options, consiting of overrides resolver.
  * @returns React component that has styles attached to it.
  */
-declare const muiStyled: CreateMUIStyled;
+declare const experimentalStyled: CreateMUIStyled;
 
-export default muiStyled;
+export default experimentalStyled;

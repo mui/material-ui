@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useThemeProps, muiStyled, fade, lighten, darken } from '@material-ui/core/styles';
+import { useThemeProps, experimentalStyled, fade, lighten, darken } from '@material-ui/core/styles';
 import { capitalize } from '@material-ui/core/utils';
 import SliderUnstyled from '../SliderUnstyled';
 import ValueLabelStyled from './ValueLabelStyled';
@@ -48,7 +48,7 @@ const overridesResolver = (props, styles, name) => {
   return styleOverrides;
 };
 
-const SliderRoot = muiStyled(
+const SliderRoot = experimentalStyled(
   'span',
   {},
   { muiName: 'MuiSlider', overridesResolver },
