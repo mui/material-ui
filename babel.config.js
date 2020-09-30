@@ -28,6 +28,8 @@ const productionPlugins = [
 ];
 
 module.exports = function getBabelConfig(api) {
+  const useESModules = api.env(['legacy', 'modern', 'stable', 'production-umd']);
+
   const presets = [
     [
       '@babel/preset-env',
@@ -35,7 +37,7 @@ module.exports = function getBabelConfig(api) {
         bugfixes: true,
         browserslistEnv: process.env.BABEL_ENV || process.env.NODE_ENV,
         debug: process.env.MUI_BUILD_VERBOSE === 'true',
-        modules: api.env(['legacy', 'modern', 'stable', 'production-umd']) ? false : 'commonjs',
+        modules: useESModules ? false : 'commonjs',
         shippedProposals: api.env('modern'),
       },
     ],
@@ -59,12 +61,18 @@ module.exports = function getBabelConfig(api) {
     ['@babel/plugin-proposal-class-properties', { loose: true }],
     ['@babel/plugin-proposal-private-methods', { loose: true }],
     ['@babel/plugin-proposal-object-rest-spread', { loose: true }],
-    // any package needs to declare 7.4.4 as a runtime dependency. default is ^7.0.0
-    ['@babel/plugin-transform-runtime', { version: '^7.4.4' }],
+    [
+      '@babel/plugin-transform-runtime',
+      {
+        useESModules,
+        // any package needs to declare 7.4.4 as a runtime dependency. default is ^7.0.0
+        version: '^7.4.4',
+      },
+    ],
   ];
-  if (api.env('legacy')) {
-    // for IE 11 support
-    plugins.push('@babel/plugin-transform-object-assign');
+
+  if (process.env.NODE_ENV === 'production') {
+    plugins.push(...productionPlugins);
   }
 
   return {
@@ -72,9 +80,6 @@ module.exports = function getBabelConfig(api) {
     plugins,
     ignore: [/@babel[\\|/]runtime/], // Fix a Windows issue.
     env: {
-      cjs: {
-        plugins: productionPlugins,
-      },
       coverage: {
         plugins: [
           'babel-plugin-istanbul',
@@ -99,28 +104,10 @@ module.exports = function getBabelConfig(api) {
           ],
         ],
       },
-      esm: {
+      legacy: {
         plugins: [
-          ...productionPlugins,
-          ['@babel/plugin-transform-runtime', { useESModules: true }],
-        ],
-      },
-      es: {
-        plugins: [
-          ...productionPlugins,
-          ['@babel/plugin-transform-runtime', { useESModules: true }],
-        ],
-      },
-      production: {
-        plugins: [
-          ...productionPlugins,
-          ['@babel/plugin-transform-runtime', { useESModules: true }],
-        ],
-      },
-      'production-umd': {
-        plugins: [
-          ...productionPlugins,
-          ['@babel/plugin-transform-runtime', { useESModules: true }],
+          // IE 11 support
+          '@babel/plugin-transform-object-assign',
         ],
       },
       test: {
