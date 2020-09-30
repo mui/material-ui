@@ -9,8 +9,9 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
-    "@material-ui/core": "latest",
-    "clsx": "latest",
+    "@emotion/core": "latest",
+    "@emotion/styled": "latest",
+    "@material-ui/core": "next",
     "react": "latest",
     "react-dom": "latest",
     "react-scripts": "latest"
