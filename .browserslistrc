@@ -5,8 +5,9 @@ last 1 firefox version
 last 1 safari version
 node 14
 
+# Default/Fallback
 # snapshot of "> 0.5%, last 2 versions, Firefox ESR, not dead, not IE 11" when the last major is released.
-[stable]
+[production]
 and_chr 84
 and_ff 79
 and_qq 10.4
@@ -24,9 +25,8 @@ opera 69
 safari 13
 samsung 11.1
 
-# Default/Fallback
-# Same as `stable` but with IE 11
-[production]
+# Same as `production` but with IE 11
+[legacy]
 IE 11
 and_chr 84
 and_ff 79

@@ -35,7 +35,9 @@ module.exports = function getBabelConfig(api) {
       '@babel/preset-env',
       {
         bugfixes: true,
-        browserslistEnv: process.env.BABEL_ENV || process.env.NODE_ENV,
+        // Use `[production]` entry if no environment matches.
+        // Seems like `browserslist` doesn't support these semantics so we have to implement them here.
+        browserslistEnv: api.env(['modern', 'stable']) ? process.env.BABEL_ENV : 'production',
         debug: process.env.MUI_BUILD_VERBOSE === 'true',
         modules: useESModules ? false : 'commonjs',
         shippedProposals: api.env('modern'),
