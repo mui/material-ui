@@ -104,7 +104,7 @@ const muiStyled = (tag, options, muiOptions) => {
     if (muiOptions && muiOptions.useSystemProps) {
       styles.push(systemStyleFunction);
     }
-    
+
     return defaultStyledResolver(...styles);
   };
   return muiStyledResolver;

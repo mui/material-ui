@@ -162,7 +162,7 @@ export interface SliderTypeMap<P = {}, D extends React.ElementType = 'span'> {
     /**
      * Common system props.
      */
-    system?: ElementProps & SystemProps
+    system?: ElementProps & SystemProps;
     /**
      * The track presentation:
      *
