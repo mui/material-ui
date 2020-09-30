@@ -1,8 +1,7 @@
 ---
 title: Circular, Linear progress React components
 components: CircularProgress, LinearProgress
-githubLabel:
-  component: Fortschritt als Gruppe
+githubLabel: 'component: CircularProgress'
 materialDesign: https://material.io/components/progress-indicators
 ---
 

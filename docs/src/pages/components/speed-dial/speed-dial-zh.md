@@ -1,8 +1,7 @@
 ---
 title: React 快速拨号组件
 components: SpeedDial, SpeedDialAction, SpeedDialIcon
-githubLabel:
-  component: SpeedDial
+githubLabel: 'component: SpeedDial'
 packageName: '@material-ui/lab'
 ---
 

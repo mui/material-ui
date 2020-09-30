@@ -1,8 +1,7 @@
 ---
 title: React 自动补全组件
 components: TextField, Popper, Autocomplete
-githubLabel:
-  component: Autocomplete 自动补全组件
+githubLabel: 'component: Autocomplete'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#combobox'
 packageName: '@material-ui/lab'
 ---
@@ -282,11 +281,13 @@ const filterOptions = (options, { inputValue }) =>
 - 设置为 `autoComplete="new-password"`：
 
   ```jsx
-  inputProps={{
-        ...params.inputProps,
-        autoComplete: 'new-password',
-      }}
-      /&#062;
+  <TextField
+    {...params}
+    inputProps={{
+      ...params.inputProps,
+      autoComplete: 'new-password',
+    }}
+  />
   ```
 
 ### iOS VoiceOver 辅助功能

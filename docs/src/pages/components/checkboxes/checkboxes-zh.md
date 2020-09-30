@@ -2,8 +2,7 @@
 title: React 多选框组件
 components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 materialDesign: 'https://material.io/components/selection-controls#checkboxes'
-githubLabel:
-  component: Checkbox 选择框
+githubLabel: 'component: Checkbox'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#checkbox'
 ---
 
@@ -23,11 +22,17 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#checkbox'
 
 ## 带有 FormControlLabel 的多选框
 
+多选框在表单中只能存在两种状态：已选中或未选中。 在其状态下提交的值只有存在和空两种形式。 从视觉上看的话，一个多选框其实有三种状态：选中、未选中、不确定。
+
+{{"demo": "pages/components/checkboxes/IndeterminateCheckbox.js"}}
+
+## 使用表单组（FormGroup）控制多个多选框
+
 借助 `FormControlLabel` 组件，`多选框组件`可以和标签一起使用。
 
 {{"demo": "pages/components/checkboxes/CheckboxLabels.js"}}
 
-## 使用表单组（FormGroup）控制多个多选框
+## 表单组
 
 `FormGroup` 会提供相对简单的 API 对选择控件进行分组。
 
@@ -62,6 +67,8 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#checkbox'
 ```jsx
 <Checkbox
   value="checkedA"
-  inputProps={{ 'aria-label': 'Checkbox A' }}
+  inputProps={{
+    'aria-label': 'Checkbox A',
+  }}
 />
 ```

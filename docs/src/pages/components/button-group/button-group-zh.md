@@ -1,8 +1,7 @@
 ---
 title: React 按钮组组件
 components: Button, ButtonGroup
-githubLabel:
-  component: ButtonGroup
+githubLabel: '组件：按钮组'
 ---
 
 # Button groups 按钮组组件

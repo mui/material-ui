@@ -10,10 +10,10 @@ To install and save in your `package.json` dependencies, run:
 
 ```sh
 // with npm
-npm install @material-ui/core@next
+npm install @material-ui/core@next @emotion/core @emotion/styled
 
 // with yarn
-yarn add @material-ui/core@next
+yarn add @material-ui/core@next @emotion/core @emotion/styled
 ```
 
 Please note that [react](https://www.npmjs.com/package/react) >= 16.8.0 and [react-dom](https://www.npmjs.com/package/react-dom) >= 16.8.0 are peer dependencies.

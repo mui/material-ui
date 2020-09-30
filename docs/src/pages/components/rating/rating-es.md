@@ -1,57 +1,62 @@
 ---
 title: Componente de React Rating
 components: Rating
-githubLabel:
-  component: Rating
+githubLabel: 'component: Rating'
 waiAria: 'https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating'
-packageName: '@material-ui/lab'
 ---
 
 # Rating
 
-<p class="description">Las calificaciones proporcionan información sobre las opiniones y experiencias de otros con un producto. Los usuarios también pueden calificar los productos que han comprado.</p>
+<p class="description">Los ratings proporcionan una visión de las opiniones y experiencias de los demás, y pueden permitir al usuario enviar una valoración de sus propias opiniones.</p>
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Calificaciones simples
+## Rating básico
 
-{{"demo": "pages/components/rating/SimpleRating.js"}}
+{{"demo": "pages/components/rating/BasicRating.js"}}
 
-## Calificaciones personalizadas
-
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
-
-{{"demo": "pages/components/rating/CustomizedRatings.js"}}
-
-## Hover feedback
-
-You can display a label on hover to help users pick the correct rating value. The demo uses the `onChangeActive` prop.
-
-{{"demo": "pages/components/rating/HoverRating.js"}}
-
-## Half ratings
+## Precisión de Rating
 
 The rating can display any float number with the `value` prop. Use the `precision` prop to define the minimum increment value change allowed.
 
 {{"demo": "pages/components/rating/HalfRating.js"}}
 
+## Hover feedback
+
+You can display a label on hover to help the user pick the correct rating value. The demo uses the `onChangeActive` prop.
+
+{{"demo": "pages/components/rating/HoverRating.js"}}
+
 ## Tamaños
 
-Fancy larger or smaller ratings? Use the `size` prop.
+For larger or smaller ratings use the `size` prop.
 
 {{"demo": "pages/components/rating/RatingSize.js"}}
 
+## Customized rating
+
+Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+
+{{"demo": "pages/components/rating/CustomizedRating.js"}}
+
 ## Accesibilidad
 
-(WAI tutorial: https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating)
+([tutorial WAI](https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating))
 
 La accesibilidad de este componente se basa en:
 
-- A radio group is used with its fields visually hidden. It contains six radio buttons, one for each star and another for 0 stars, which is checked by default. Make sure you are providing a `name` prop that is unique to the parent form.
-- The labels for the radio buttons contain actual text (“1 Star”, “2 Stars”, …), make sure you provide a `getLabelText` prop when the page language is not English.
-
-By default, the rating component uses both a difference of color and shape between the filled and empty icons to indicate the value.
-
-In the event that you are using color as the only means to indicate the value, the information should also be also displayed as text, as in this demo. This is important to match [success Criterion 1.4.1](https://www.w3.org/TR/WCAG21/#use-of-color) of WCAG2.1.
+- A radio group with its fields visually hidden. It contains six radio buttons, one for each star, and another for 0 stars that is checked by default. Be sure to provide a value for the `name` prop that is unique to the parent form.
+- Labels for the radio buttons containing actual text (“1 Star”, “2 Stars”, …). Be sure to provide a suitable function to the `getLabelText` prop when the page is in a language other than English. You can use the [included locales](https://material-ui.com/guides/localization/), or provide your own.
+- A visually distinct appearance for the rating icons. By default, the rating component uses both a difference of color and shape (filled and empty icons)to indicate the value. In the event that you are using color as the only means to indicate the value, the information should also be also displayed as text, as in this demo. This is important to match [success Criterion 1.4.1](https://www.w3.org/TR/WCAG21/#use-of-color) of WCAG2.1.
 
 {{"demo": "pages/components/rating/TextRating.js"}}
+
+### ARIA
+
+The read only rating has a role of "img", and an aria-label that describes the displayed rating.
+
+### Teclado
+
+Because the rating component uses radio buttons, keyboard interaction follows the native browser behavior. Tab will focus the current rating, and cursor keys control the selected rating.
+
+The read only rating is not focusable.

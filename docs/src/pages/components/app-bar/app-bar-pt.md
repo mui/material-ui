@@ -1,8 +1,7 @@
 ---
 title: Componente Barra de Aplicativos para React
 components: AppBar, Toolbar, Menu
-githubLabel:
-  component: Uma barra de aplicativos proeminente.
+githubLabel: 'component: AppBar'
 materialDesign: https://material.io/components/app-bars-top
 ---
 

@@ -1,8 +1,7 @@
 ---
 title: React 文本框组件
 components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
-githubLabel:
-  component: TextField
+githubLabel: 'component: TextField'
 materialDesign: https://material.io/components/text-fields
 ---
 
@@ -42,7 +41,7 @@ materialDesign: https://material.io/components/text-fields
 
 {{"demo": "pages/components/text-fields/MultilineTextFields.js"}}
 
-## 选择属性
+## Select 选择属性
 
 使用 `select` 属性的时候，您可以在文本框内插入一个 [Select](/components/selects/) 组件。
 
@@ -138,7 +137,7 @@ materialDesign: https://material.io/components/text-fields
 
 type="number" 的输入存在潜在的可用性问题。
 
-- 这将允许某些非数字字符（'e', '+', '-', '.'） 并且丢失其他字符
+- 这将允许某些非数字字符（'e', '+', '-', '.'） 并且丢失其他字符 并且丢失其他字符
 - 滚动增加/减少数字的功能可能会导致意外和难以察觉的变化。
 
 有关该话题的更多信息 - 请参阅 GOV.UK 设计系统团队的 [这篇文章](https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-design-system-team-changed-the-input-type-for-numbers/)，来了解更详细的解释。

@@ -1,9 +1,6 @@
 import { AvatarGroupClassKey } from '../AvatarGroup';
 import { PaginationClassKey } from '../Pagination';
 import { PaginationItemClassKey } from '../PaginationItem';
-import { SpeedDialClassKey } from '../SpeedDial';
-import { SpeedDialActionClassKey } from '../SpeedDialAction';
-import { SpeedDialIconClassKey } from '../SpeedDialIcon';
 import { TabListClassKey } from '../TabList';
 import { TabPanelClassKey } from '../TabPanel';
 import { TimelineClassKey } from '../Timeline';
@@ -22,9 +19,6 @@ export interface LabComponentNameToClassKey {
   MuiAvatarGroup: AvatarGroupClassKey;
   MuiPagination: PaginationClassKey;
   MuiPaginationItem: PaginationItemClassKey;
-  MuiSpeedDial: SpeedDialClassKey;
-  MuiSpeedDialAction: SpeedDialActionClassKey;
-  MuiSpeedDialIcon: SpeedDialIconClassKey;
   MuiTabList: TabListClassKey;
   MuiTabPanel: TabPanelClassKey;
   MuiTimeline: TimelineClassKey;

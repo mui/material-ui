@@ -1,7 +1,6 @@
 ---
 components: Link
-githubLabel:
-  component: Link
+githubLabel: 'component: Link'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#link'
 ---
 

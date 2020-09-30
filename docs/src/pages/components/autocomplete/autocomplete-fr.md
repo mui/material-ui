@@ -1,8 +1,7 @@
 ---
 title: Composant React Auto-complétion
 components: TextField, Popper, Autocomplete
-githubLabel:
-  component: Autocomplete (Auto-complétion)
+githubLabel: 'component: Autocomplete'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#combobox'
 packageName: '@material-ui/lab'
 ---
@@ -284,7 +283,7 @@ Par défaut, le composant désactive la fonctionnalité **auto-complétion** (ra
 Cependant, en plus de se souvenir des valeurs entrées passées, le navigateur peut également proposer des suggestions de **remplissage automatique** (connexion, adresse ou détails de paiement enregistrés). Dans le cas où vous voulez le remplissage automatique, vous pouvez essayer ce qui suit :
 
 - Nommez l'input sans fuir les informations que le navigateur peut utiliser. par exemple `id="field1"` au lieu de `id="country"`. Si vous laissez l'id vide, le composant utilise un id aléatoire.
-- Définir `autoComplete="new-password"`: jsx
+- Définir `autoComplete="new-password"`: jsx jsx
 
   ```jsx
   inputProps={{

@@ -73,6 +73,10 @@ const theme = createMuiTheme({
     },
   },
 });
+      },
+    },
+  },
+});
 ```
 
 {{"demo": "pages/customization/globals/DefaultProps.js"}}

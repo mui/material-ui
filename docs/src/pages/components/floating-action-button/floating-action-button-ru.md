@@ -1,8 +1,7 @@
 ---
 title: Fab React component
 components: Fab
-githubLabel:
-  component: Fab
+githubLabel: 'component: Fab'
 materialDesign: https://material.io/components/buttons-floating-action-button
 ---
 
@@ -12,7 +11,7 @@ materialDesign: https://material.io/components/buttons-floating-action-button
 
 A [floating action button](https://material.io/design/components/buttons-floating-action-button.html) appears in front of all screen content, typically as a circular shape with an icon in its center. FABs бывают двух типов: обычные и расширенные.
 
-Используйте плавающую кнопку действий (FAB) только в том случае, если это наиболее подходящий способ представить основное действие экрана. Only one component is recommended per screen to represent the most common action.
+Используйте плавающую кнопку действий (FAB) только в том случае, если это наиболее подходящий способ представить основное действие экрана. Используйте плавающую кнопку действий (FAB) только в том случае, если это наиболее подходящий способ представить основное действие экрана.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 

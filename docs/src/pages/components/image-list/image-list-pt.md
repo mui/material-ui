@@ -2,8 +2,7 @@
 title: Componente React para Lista de Grade
 components: ImageList, ImageListItem, ImageListItemBar
 materialDesign: https://material.io/components/image-lists
-githubLabel:
-  component: ImageList
+githubLabel: 'component: ImageList'
 ---
 
 # Lista de Grade
@@ -56,6 +55,6 @@ The title bar can be placed below the image.
 
 ## Custom image list
 
-Este exemplo demonstra blocos "em destaque", usando as propriedades `rows` e `cols` para ajustar o tamanho do bloco, e a propriedade `padding` para ajustar o espaçamento. A ação secundária `IconButton` está posicionada à esquerda. Os blocos tem uma barra de título customizada, posicionada no topo e com um gradiente personalizado `titleBackground`.
+Os blocos tem uma barra de título customizada, posicionada no topo e com um gradiente personalizado `titleBackground`. A ação secundária `IconButton` está posicionada à esquerda. Os blocos tem uma barra de título customizada, posicionada no topo e com um gradiente personalizado `titleBackground`.
 
 {{"demo": "pages/components/image-list/CustomImageList.js", "defaultCodeOpen": false}}

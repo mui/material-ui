@@ -1,8 +1,7 @@
 ---
 title: Paper Reactコンポーネント
 components: Paper
-githubLabel:
-  component: Paper
+githubLabel: 'component: Paper'
 ---
 
 # Paper

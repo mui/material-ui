@@ -1,8 +1,7 @@
 ---
 title: Componente React para Interruptores
 components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
-githubLabel:
-  component: Interruptor
+githubLabel: 'component: Switch'
 materialDesign: 'https://material.io/components/selection-controls#switches'
 ---
 
@@ -26,7 +25,7 @@ O componente `Switch` pode ser fornecido com uma descrição graças ao componen
 
 ## Interruptores com FormGroup
 
-`FormGroup` é usado para agrupar componentes de seleção para facilitar o uso da API. `FormGroup` é um componente encapsulador usado para agrupar componentes de seleção para fornecer uma fácil API. (Veja: [Quando usar](#when-to-use)).
+`FormGroup` é usado para agrupar componentes de seleção para facilitar o uso da API. `FormGroup` é usado para agrupar componentes de seleção para facilitar o uso da API. (Veja: [Quando usar](#when-to-use)).
 
 {{"demo": "pages/components/switches/SwitchesGroup.js"}}
 

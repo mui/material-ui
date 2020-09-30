@@ -34,8 +34,8 @@ The `MuiStep` name can be used for providing [default props](/customization/glob
 | <span class="prop-name">completed</span> | <span class="prop-type">bool</span> |  | Mark the step as completed. Is passed to child components. |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> |  | Mark the step as disabled, will also disable the button if `StepButton` is a child of `Step`. Is passed to child components. |
 | <span class="prop-name">expanded</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Expand the step. |
-| <span class="prop-name">index</span> | <span class="prop-type">number</span> |  | The position of the step. |
-| <span class="prop-name">last</span> | <span class="prop-type">bool</span> |  | If `true`, the Step will be displayed as rendered last. |
+| <span class="prop-name">index</span> | <span class="prop-type">number</span> |  | The position of the step. The prop defaults to the value inherited from the parent Stepper component. |
+| <span class="prop-name">last</span> | <span class="prop-type">bool</span> |  | If `true`, the Step will be displayed as rendered last. The prop defaults to the value inherited from the parent Stepper component. |
 
 The `ref` is forwarded to the root element.
 

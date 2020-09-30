@@ -143,7 +143,7 @@ const StyledButton = withStyles({
 
 ### 同じスタイルシート内のローカルルールを参照するには、`$ruleName`を使用します
 
-[jss-nested](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-nested)プラグイン(デフォルトで使用可能) は、特異性を高めるプロセスをより簡単にします。
+⚠️DOMを機能させるには、生成された二つのクラス名(`root`&`disabled`) を適用する必要があります。
 
 ```js
 const styles = {
@@ -164,7 +164,7 @@ const styles = {
 }
 ```
 
-⚠️DOMを機能させるには、生成された二つのクラス名(`root`&`disabled`) を適用する必要があります。
+コンポーネントのスタイルをオーバーライドするもう一つの方法は、 **inline-style**アプローチを使用することです。 すべてのコンポーネントには、`style` プロパティがあります。 これらのプロパティは常にルート要素に適用されます。
 
 ```jsx
 <Button
@@ -216,25 +216,25 @@ const styles = {
 
 コンポーネントのバリエーションを作成し、製品ページのカラフルなボタンなど、さまざまなコンテキストで使用する必要があるかもしれませんが、コードは[*DRYにしておいた方がよいでしょう*](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)。
 
-最も良い方法は、オプション1を実行し、カスタマイズしたコンポーネントをエクスポートして必要な場所で使用することにより、Reactの合成能力を活用することです。
+Material Design仕様には、ボタンの形状が異なるなど、特定のコンポーネントのさまざまなバリエーションが記載されています。たとえば、[text](https://material.io/design/components/buttons.html#text-button)(以前の"flat")、[contained](https://material.io/design/components/buttons.html#contained-button)(以前の "raised")、[FAB](https://material.io/design/components/buttons-floating-action-button.html)などです。
 
 {{"demo": "pages/customization/components/Component.js", "hideEditButton": true}}
 
 ## 4. Material Designのバリエーション
 
-Material Design仕様には、ボタンの形状が異なるなど、特定のコンポーネントのさまざまなバリエーションが記載されています。たとえば、[text](https://material.io/design/components/buttons.html#text-button)(以前の"flat")、[contained](https://material.io/design/components/buttons.html#contained-button)(以前の "raised")、[FAB](https://material.io/design/components/buttons-floating-action-button.html)などです。
+コンポーネント間の一貫性を促進し、ユーザーインターフェイスの外観全体を管理するために、Material-UIはグローバルな変更を適用するメカニズムを提供します。
 
-Material-UIは、これらすべてのバリエーションを実装しようとします。 サポートされているMaterial Design コンポーネントの現状については、[Supported Components](/getting-started/supported-components/)のマニュアルを参照してください。
+Material-UIは、これらすべてのバリエーションを実装しようとします。 Material-UIは、これらすべてのバリエーションを実装しようとします。 サポートされているMaterial Design コンポーネントの現状については、[Supported Components](/getting-started/supported-components/)のマニュアルを参照してください。
 
 ## 5. グローバルテーマバリエーション
 
-コンポーネント間の一貫性を促進し、ユーザーインターフェイスの外観全体を管理するために、Material-UIはグローバルな変更を適用するメカニズムを提供します。
+[テーマ設定変数を調整できます](/customization/theming/#theme-configuration-variables) 。
 
 このセクションのデモでは、ボタンのフォントサイズを変更する方法について説明します。
 
 ### テーマ変数
 
-[テーマ設定変数を調整できます](/customization/theming/#theme-configuration-variables) 。
+`theme`の`overrides`キーを利用すると、Material-UIによってDOMに注入されるすべてのスタイルを潜在的に変更できます。 詳細については、ドキュメントの[テーマセクションをご覧ください](/customization/globals/#css)。
 
 ```jsx
 const theme = createMuiTheme({

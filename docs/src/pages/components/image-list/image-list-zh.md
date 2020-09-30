@@ -2,8 +2,7 @@
 title: React Grid List 图像列表组件
 components: ImageList, ImageListItem, ImageListItemBar
 materialDesign: https://material.io/components/image-lists
-githubLabel:
-  component: ImageList
+githubLabel: 'component: ImageList'
 ---
 
 # Image list 图像列表

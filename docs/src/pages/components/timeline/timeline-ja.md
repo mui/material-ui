@@ -1,8 +1,7 @@
 ---
 title: Timeline React component
 components: Timeline, TimelineItem, TimelineSeparator, TimelineDot, TimelineConnector, TimelineContent, TimelineOppositeContent
-githubLabel:
-  component: Timeline
+githubLabel: 'component: Timeline'
 packageName: '@material-ui/lab'
 ---
 
@@ -50,6 +49,6 @@ The timeline can display content on opposite sides.
 
 ## Customized timeline
 
-コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/timeline/CustomizedTimeline.js"}}

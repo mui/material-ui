@@ -1,8 +1,7 @@
 ---
 title: React 自适应文本框组件
 components: TextareaAutosize
-githubLabel:
-  component: TextareaAutosize
+githubLabel: 'component: TextareaAutosize'
 ---
 
 # Textarea Autosize 自适应文本框

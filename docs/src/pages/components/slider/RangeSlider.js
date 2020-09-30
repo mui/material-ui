@@ -23,14 +23,14 @@ export default function RangeSlider() {
 
   return (
     <div className={classes.root}>
-      <Typography id="range-slider" gutterBottom>
+      <Typography id="range-slider-demo" gutterBottom>
         Temperature range
       </Typography>
       <Slider
         value={value}
         onChange={handleChange}
         valueLabelDisplay="auto"
-        aria-labelledby="range-slider"
+        aria-labelledby="range-slider-demo"
         getAriaValueText={valuetext}
       />
     </div>

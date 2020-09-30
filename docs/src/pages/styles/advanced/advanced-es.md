@@ -235,11 +235,14 @@ import { StylesProvider } from '@material-ui/core/styles';
 
 <StylesProvider injectFirst>
   {/* Your component tree.
+      */}
+</StylesProvider>
       import { StylesProvider } from '@material-ui/core/styles';
 
 <StylesProvider injectFirst>
   {/* Your component tree. */}
 </StylesProvider>
+      Now, you can override Material-UI's styles.
 ```
 
 ### `makeStyles` / `withStyles` / `styled`

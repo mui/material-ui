@@ -1,8 +1,8 @@
-# Screen readers
+# Lectores de pantalla
 
-<p class="description">Collection of utilities for improving accessibility with screen readers.</p>
+<p class="description">Colección de utilidades para mejorar la accesibilidad con lectores de pantalla.</p>
 
-## Visually hidden elements
+## Elementos ocultos visualmente
 
 The visually hidden style utility provides a common mechanism for hidings elements visually, but making them available for the assistive technology.
 

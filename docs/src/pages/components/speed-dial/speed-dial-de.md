@@ -1,8 +1,7 @@
 ---
 title: Schnellwahl React Komponente
 components: SpeedDial, SpeedDialAction, SpeedDialIcon
-githubLabel:
-  component: SpeedDial
+githubLabel: 'component: SpeedDial'
 packageName: '@material-ui/lab'
 ---
 

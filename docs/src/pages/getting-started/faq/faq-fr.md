@@ -248,11 +248,10 @@ example of fix:
 function handleRender(req, res) {
 
 + // Create a sheets instance.
--const sheets = new ServerStyleSheets();
++ const sheets = new ServerStyleSheets();
 
-function handleRender(req, res) {
-
-+ // Create a sheets instance.
+  //… const html = ReactDOMServer.renderToString(
+  -// Create a sheets instance.
 -const sheets = new ServerStyleSheets();
 
 function handleRender(req, res) {
@@ -262,6 +261,7 @@ function handleRender(req, res) {
   + const sheets = new ServerStyleSheets();
 
   //…
+  const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
   -// Create a sheets instance.
 ```
@@ -282,7 +282,11 @@ The class names value relies on the concept of [class name generator](/styles/ad
 
   ```diff
   -// Create a new class name generator.
-  -// Create a new class name generator.
+  -const generateClassName = createGenerateClassName();
+
+function handleRender(req, res) {
+
++ // Create a new class name generator.
   -const generateClassName = createGenerateClassName();
 
 function handleRender(req, res) {
@@ -293,6 +297,7 @@ function handleRender(req, res) {
 
   //…
     const html = ReactDOMServer.renderToString(
+  const html = ReactDOMServer.renderToString(
   -// Create a sheets instance.
   ```
 

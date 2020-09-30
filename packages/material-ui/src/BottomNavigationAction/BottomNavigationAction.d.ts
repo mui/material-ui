@@ -39,6 +39,8 @@ export type BottomNavigationActionTypeMap<
      * If `true`, the `BottomNavigationAction` will show its label.
      * By default, only the selected `BottomNavigationAction`
      * inside `BottomNavigation` will show its label.
+     *
+     * The prop defaults to the value (`false`) inherited from the parent BottomNavigation component.
      */
     showLabel?: boolean;
     /**

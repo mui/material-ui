@@ -1,8 +1,7 @@
 ---
 title: Отлавливает щелчок за пределами компонента
 components: ClickAwayListener
-githubLabel:
-  component: ClickAwayListener
+githubLabel: 'component: ClickAwayListener'
 ---
 
 # Прослушиватель завершающего щелчка

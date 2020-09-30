@@ -1,6 +1,6 @@
 # Content Security Policy (CSP)
 
-<p class="description">This section covers the details of setting up a CSP.</p>
+<p class="description">Esta sección cubre los detalles de la creación de un CSP.</p>
 
 ## What is CSP and why is it useful?
 

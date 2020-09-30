@@ -20,7 +20,7 @@
 
 This document contains the practices that are followed to provide you with a leading-edge UI library, balanced with stability, ensuring that future changes are always introduced in a predictable way.
 
-Material-UI は [Semantic Versioning 2.0.0](https://semver.org/) に従いバージョンを付けています。 Material-UIのバージョン番号には3つの部分があります：`major.minor.patch` 。 バージョン番号は、リリースに含まれる変更のレベルに基づいて増分されます。 Material-UIのバージョン番号には3つの部分があります：` major.minor.patch ` 。 バージョン番号は、リリースに含まれる変更のレベルに基づいて増分されます。
+Material-UI は [Semantic Versioning 2.0.0](https://semver.org/) に従いバージョンを付けています。 Material-UIのバージョン番号には3つの部分があります：`major.minor.patch` 。 バージョン番号は、リリースに含まれる変更のレベルに基づいて増分されます。 Material-UIのバージョン番号には3つの部分があります：`major.minor.patch` 。 バージョン番号は、リリースに含まれる変更のレベルに基づいて増分されます。 Material-UIのバージョン番号には3つの部分があります：` major.minor.patch ` 。 バージョン番号は、リリースに含まれる変更のレベルに基づいて増分されます。
 
 - **マイナーリリース**　重要な新機能が含まれています。 新しいメジャーリリースに更新するときは、更新スクリプトの実行、コードのリファクタリング、追加テストの実行、および新しいAPIの学習が必要になる場合があります。
 - **パッチリリース**　リスクが低く、バグ修正と小さな新機能が含まれています。 マイナーリリースは完全に下位互換性がある; アップデート中に開発者の支援は必要ありませんが、必要に応じて、リリースで追加された新しいAPI、機能、および機能を使用するようにアプリケーションとライブラリを変更できます。

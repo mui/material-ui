@@ -1,8 +1,7 @@
 ---
 title: React 开关组件
 components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
-githubLabel:
-  component: Switch 开关
+githubLabel: 'component: Switch'
 materialDesign: 'https://material.io/components/selection-controls#switches'
 ---
 
@@ -26,7 +25,7 @@ materialDesign: 'https://material.io/components/selection-controls#switches'
 
 ## 带有 FormGroup 的开关
 
-`FormGroup` 会提供相对简单的 API 对选择控件进行分组。 `FormGroup`提供相对简单的 API 对选择控件进行分组。 (参见: [何时使用](#when-to-use))。
+`FormGroup` 会提供相对简单的 API 对选择控件进行分组。 `FormGroup` 会提供相对简单的 API 对选择控件进行分组。 (参见: [何时使用](#when-to-use))。
 
 {{"demo": "pages/components/switches/SwitchesGroup.js"}}
 
