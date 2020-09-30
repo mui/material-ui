@@ -13,11 +13,6 @@ function style(options) {
   const { prop, cssProperty = options.prop, themeKey, transform } = options;
 
   const fn = (props) => {
-    if(props.system) {
-      console.log(props.system);
-      console.log(prop);
-      console.log(props[prop] || props.system?.[prop]);
-    }
     const propValue = props[prop] || props.system?.[prop];
 
     if (propValue == null) {

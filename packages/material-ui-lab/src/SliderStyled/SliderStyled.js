@@ -81,188 +81,191 @@ const SliderRoot = muiStyled(
   'span',
   {},
   { muiName: 'MuiSlider', overridesResolver },
-)((props) => ({
-  height: 2,
-  width: '100%',
-  boxSizing: 'content-box',
-  padding: '13px 0',
-  display: 'inline-block',
-  position: 'relative',
-  cursor: 'pointer',
-  touchAction: 'none',
-  color: props.theme.palette.primary.main,
-  WebkitTapHighlightColor: 'transparent',
-  ...(props.styleProps.color === 'secondary' && {
-    color: props.theme.palette.secondary.main,
-  }),
-  '&.Mui-disabled': {
-    pointerEvents: 'none',
-    cursor: 'default',
-    color: props.theme.palette.grey[400],
-  },
-  ...(props.styleProps.orientation === 'vertical' && {
-    width: 2,
-    height: '100%',
-    padding: '0 13px',
-  }),
-  // The primary input mechanism of the device includes a pointing device of limited accuracy.
-  '@media (pointer: coarse)': {
-    // Reach 42px touch target, about ~8mm on screen.
-    padding: '20px 0',
-    ...(props.styleProps.orientation === 'vertical' && {
-      padding: '0 20px',
-    }),
-  },
-  '@media print': {
-    colorAdjust: 'exact',
-  },
-  ...(props.styleProps.marked && {
-    marginBottom: 20,
-    ...(props.styleProps.orientation === 'vertical' && {
-      marginBottom: 'auto',
-      marginRight: 20,
-    }),
-  }),
-  '& .MuiSlider-rail': {
-    display: 'block',
-    position: 'absolute',
+)(
+  (props) => ({
+    height: 2,
     width: '100%',
-    height: 2,
-    borderRadius: 1,
-    backgroundColor: 'currentColor',
-    opacity: 0.38,
-    ...(props.styleProps.orientation === 'vertical' && {
-      height: '100%',
-      width: 2,
-    }),
-    ...(props.styleProps.track === 'inverted' && {
-      opacity: 1,
-    }),
-  },
-  '& .MuiSlider-track': {
-    display: 'block',
-    position: 'absolute',
-    height: 2,
-    borderRadius: 1,
-    backgroundColor: 'currentColor',
-    ...(props.styleProps.orientation === 'vertical' && {
-      width: 2,
-    }),
-    ...(props.styleProps.track === false && {
-      display: 'none',
-    }),
-    ...(props.styleProps.track === 'inverted' && {
-      backgroundColor:
-        // Same logic as the LinearProgress track color
-        props.theme.palette.type === 'light'
-          ? lighten(props.theme.palette.primary.main, 0.62)
-          : darken(props.theme.palette.primary.main, 0.5),
-    }),
-  },
-  '& .MuiSlider-thumb': {
-    position: 'absolute',
-    width: 12,
-    height: 12,
-    marginLeft: -6,
-    marginTop: -5,
-    boxSizing: 'border-box',
-    borderRadius: '50%',
-    outline: 0,
-    backgroundColor: 'currentColor',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    transition: props.theme.transitions.create(['box-shadow'], {
-      duration: props.theme.transitions.duration.shortest,
-    }),
-    '::after': {
-      position: 'absolute',
-      content: '""',
-      borderRadius: '50%',
-      // reach 42px hit target (2 * 15 + thumb diameter)
-      left: -15,
-      top: -15,
-      right: -15,
-      bottom: -15,
-    },
-    ':hover, &.Mui-focusVisible': {
-      boxShadow: `0px 0px 0px 8px ${fade(props.theme.palette.primary.main, 0.16)}`,
-      '@media (hover: none)': {
-        boxShadow: 'none',
-      },
-    },
-    '&.Mui-active': {
-      boxShadow: `0px 0px 0px 14px ${fade(props.theme.palette.primary.main, 0.16)}`,
-    },
-    '&.Mui-disabled': {
-      width: 8,
-      height: 8,
-      marginLeft: -4,
-      marginTop: -3,
-      ':hover': {
-        boxShadow: 'none',
-      },
-    },
-    ...(props.styleProps.orientation === 'vertical' && {
-      marginLeft: -5,
-      marginBottom: -6,
-    }),
-    ...(props.styleProps.orientation === 'vertical' && {
-      '&.Mui-disabled': {
-        marginLeft: -3,
-        marginBottom: -4,
-      },
-    }),
+    boxSizing: 'content-box',
+    padding: '13px 0',
+    display: 'inline-block',
+    position: 'relative',
+    cursor: 'pointer',
+    touchAction: 'none',
+    color: props.theme.palette.primary.main,
+    WebkitTapHighlightColor: 'transparent',
     ...(props.styleProps.color === 'secondary' && {
-      ':hover': {
-        boxShadow: `0px 0px 0px 8px ${fade(props.theme.palette.secondary.main, 0.16)}`,
-      },
-      '&.Mui-focusVisible': {
-        boxShadow: `0px 0px 0px 8px ${fade(props.theme.palette.secondary.main, 0.16)}`,
-      },
-      '&.Mui-active': {
-        boxShadow: `0px 0px 0px 14px ${fade(props.theme.palette.secondary.main, 0.16)}`,
-      },
+      color: props.theme.palette.secondary.main,
     }),
-  },
-  '& .MuiSlider-valueLabel': {
-    // IE 11 centering bug, to remove from the customization demos once no longer supported
-    left: 'calc(-50% - 4px)',
-  },
-  '& .MuiSlider-mark': {
-    position: 'absolute',
-    width: 2,
-    height: 2,
-    borderRadius: 1,
-    backgroundColor: 'currentColor',
-    '&.MuiSlider-markActive': {
-      backgroundColor: props.theme.palette.background.paper,
-      opacity: 0.8,
+    '&.Mui-disabled': {
+      pointerEvents: 'none',
+      cursor: 'default',
+      color: props.theme.palette.grey[400],
     },
-  },
-  '& .MuiSlider-markLabel': {
-    ...props.theme.typography.body2,
-    color: props.theme.palette.text.secondary,
-    position: 'absolute',
-    top: 26,
-    transform: 'translateX(-50%)',
-    whiteSpace: 'nowrap',
     ...(props.styleProps.orientation === 'vertical' && {
-      top: 'auto',
-      left: 26,
-      transform: 'translateY(50%)',
+      width: 2,
+      height: '100%',
+      padding: '0 13px',
     }),
+    // The primary input mechanism of the device includes a pointing device of limited accuracy.
     '@media (pointer: coarse)': {
-      top: 40,
+      // Reach 42px touch target, about ~8mm on screen.
+      padding: '20px 0',
       ...(props.styleProps.orientation === 'vertical' && {
-        left: 31,
+        padding: '0 20px',
       }),
     },
-    '&.MuiSlider-markLabelActive': {
-      color: props.theme.palette.text.primary,
+    '@media print': {
+      colorAdjust: 'exact',
     },
-  },
-}), systemStyleFunction);
+    ...(props.styleProps.marked && {
+      marginBottom: 20,
+      ...(props.styleProps.orientation === 'vertical' && {
+        marginBottom: 'auto',
+        marginRight: 20,
+      }),
+    }),
+    '& .MuiSlider-rail': {
+      display: 'block',
+      position: 'absolute',
+      width: '100%',
+      height: 2,
+      borderRadius: 1,
+      backgroundColor: 'currentColor',
+      opacity: 0.38,
+      ...(props.styleProps.orientation === 'vertical' && {
+        height: '100%',
+        width: 2,
+      }),
+      ...(props.styleProps.track === 'inverted' && {
+        opacity: 1,
+      }),
+    },
+    '& .MuiSlider-track': {
+      display: 'block',
+      position: 'absolute',
+      height: 2,
+      borderRadius: 1,
+      backgroundColor: 'currentColor',
+      ...(props.styleProps.orientation === 'vertical' && {
+        width: 2,
+      }),
+      ...(props.styleProps.track === false && {
+        display: 'none',
+      }),
+      ...(props.styleProps.track === 'inverted' && {
+        backgroundColor:
+          // Same logic as the LinearProgress track color
+          props.theme.palette.type === 'light'
+            ? lighten(props.theme.palette.primary.main, 0.62)
+            : darken(props.theme.palette.primary.main, 0.5),
+      }),
+    },
+    '& .MuiSlider-thumb': {
+      position: 'absolute',
+      width: 12,
+      height: 12,
+      marginLeft: -6,
+      marginTop: -5,
+      boxSizing: 'border-box',
+      borderRadius: '50%',
+      outline: 0,
+      backgroundColor: 'currentColor',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      transition: props.theme.transitions.create(['box-shadow'], {
+        duration: props.theme.transitions.duration.shortest,
+      }),
+      '::after': {
+        position: 'absolute',
+        content: '""',
+        borderRadius: '50%',
+        // reach 42px hit target (2 * 15 + thumb diameter)
+        left: -15,
+        top: -15,
+        right: -15,
+        bottom: -15,
+      },
+      ':hover, &.Mui-focusVisible': {
+        boxShadow: `0px 0px 0px 8px ${fade(props.theme.palette.primary.main, 0.16)}`,
+        '@media (hover: none)': {
+          boxShadow: 'none',
+        },
+      },
+      '&.Mui-active': {
+        boxShadow: `0px 0px 0px 14px ${fade(props.theme.palette.primary.main, 0.16)}`,
+      },
+      '&.Mui-disabled': {
+        width: 8,
+        height: 8,
+        marginLeft: -4,
+        marginTop: -3,
+        ':hover': {
+          boxShadow: 'none',
+        },
+      },
+      ...(props.styleProps.orientation === 'vertical' && {
+        marginLeft: -5,
+        marginBottom: -6,
+      }),
+      ...(props.styleProps.orientation === 'vertical' && {
+        '&.Mui-disabled': {
+          marginLeft: -3,
+          marginBottom: -4,
+        },
+      }),
+      ...(props.styleProps.color === 'secondary' && {
+        ':hover': {
+          boxShadow: `0px 0px 0px 8px ${fade(props.theme.palette.secondary.main, 0.16)}`,
+        },
+        '&.Mui-focusVisible': {
+          boxShadow: `0px 0px 0px 8px ${fade(props.theme.palette.secondary.main, 0.16)}`,
+        },
+        '&.Mui-active': {
+          boxShadow: `0px 0px 0px 14px ${fade(props.theme.palette.secondary.main, 0.16)}`,
+        },
+      }),
+    },
+    '& .MuiSlider-valueLabel': {
+      // IE 11 centering bug, to remove from the customization demos once no longer supported
+      left: 'calc(-50% - 4px)',
+    },
+    '& .MuiSlider-mark': {
+      position: 'absolute',
+      width: 2,
+      height: 2,
+      borderRadius: 1,
+      backgroundColor: 'currentColor',
+      '&.MuiSlider-markActive': {
+        backgroundColor: props.theme.palette.background.paper,
+        opacity: 0.8,
+      },
+    },
+    '& .MuiSlider-markLabel': {
+      ...props.theme.typography.body2,
+      color: props.theme.palette.text.secondary,
+      position: 'absolute',
+      top: 26,
+      transform: 'translateX(-50%)',
+      whiteSpace: 'nowrap',
+      ...(props.styleProps.orientation === 'vertical' && {
+        top: 'auto',
+        left: 26,
+        transform: 'translateY(50%)',
+      }),
+      '@media (pointer: coarse)': {
+        top: 40,
+        ...(props.styleProps.orientation === 'vertical' && {
+          left: 31,
+        }),
+      },
+      '&.MuiSlider-markLabelActive': {
+        color: props.theme.palette.text.primary,
+      },
+    },
+  }),
+  systemStyleFunction,
+);
 
 SliderRoot.propTypes = {
   // ----------------------------- Warning --------------------------------

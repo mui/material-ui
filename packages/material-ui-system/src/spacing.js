@@ -152,7 +152,7 @@ function getStyleFromPropValue(cssProperties, transformer) {
 function spacing(props) {
   const theme = props.theme;
   const transformer = createUnarySpacing(theme);
-  if(props.system) {
+  if (props.system) {
     return Object.keys(props.system)
       .map((prop) => {
         // Using a hash computation over an array iteration could be faster, but with only 28 items,
