@@ -54,7 +54,7 @@ const variantsResolver = (props, styles, theme, name) => {
   return variantsStyles;
 };
 
-const shouldForwardProp = (prop) => prop !== 'styleProps' && prop !== 'theme';
+const shouldForwardProp = (prop) => prop !== 'styleProps' && prop !== 'theme' && prop !== 'system';
 
 const muiStyled = (tag, options, muiOptions) => {
   const name = muiOptions.muiName;

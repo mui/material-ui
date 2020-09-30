@@ -52,6 +52,13 @@ function breakpoints(styleFunction) {
     const themeBreakpoints = props.theme.breakpoints || defaultBreakpoints;
 
     const extended = themeBreakpoints.keys.reduce((acc, key) => {
+      if(props.system) {
+        if(props.system[key]) {
+          acc = acc || {};
+          acc[themeBreakpoints.up(key)] = styleFunction({ theme: props.theme, ...props.system[key] });
+        }
+        return acc;
+      }
       if (props[key]) {
         acc = acc || {};
         acc[themeBreakpoints.up(key)] = styleFunction({ theme: props.theme, ...props[key] });

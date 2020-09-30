@@ -31,6 +31,7 @@ export default function ContinuousSlider() {
         </Grid>
         <Grid item xs>
           <Slider
+            system={{ color: 'secondary.main' }}
             value={value}
             onChange={handleChange}
             aria-labelledby="continuous-slider"

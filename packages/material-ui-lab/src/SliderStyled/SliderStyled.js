@@ -1,9 +1,38 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import {
+  borders,
+  compose,
+  display,
+  flexbox,
+  grid,
+  palette,
+  positions,
+  shadows,
+  sizing,
+  spacing,
+  typography,
+  css,
+} from '@material-ui/system';
 import { useThemeProps, muiStyled, fade, lighten, darken } from '@material-ui/core/styles';
 import { capitalize } from '@material-ui/core/utils';
 import SliderUnstyled from '../SliderUnstyled';
 import ValueLabelStyled from './ValueLabelStyled';
+
+export const systemStyleFunction = css(
+  compose(
+    borders,
+    display,
+    flexbox,
+    grid,
+    positions,
+    palette,
+    shadows,
+    sizing,
+    spacing,
+    typography,
+  ),
+);
 
 const overridesResolver = (props, styles, name) => {
   const {
@@ -233,7 +262,7 @@ const SliderRoot = muiStyled(
       color: props.theme.palette.text.primary,
     },
   },
-}));
+}), systemStyleFunction);
 
 SliderRoot.propTypes = {
   // ----------------------------- Warning --------------------------------
