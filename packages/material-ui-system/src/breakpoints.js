@@ -47,21 +47,12 @@ export function handleBreakpoints(props, propValue, styleFromPropValue) {
 }
 
 function breakpoints(styleFunction) {
-  const newStyleFunction = (props) => {
-    const base = styleFunction(props);
-    const themeBreakpoints = props.theme.breakpoints || defaultBreakpoints;
+  const newStyleFunction = (componentProps) => {
+    const base = styleFunction(componentProps);
+    const themeBreakpoints = componentProps.theme.breakpoints || defaultBreakpoints;
+    const props = componentProps.system || componentProps;
 
     const extended = themeBreakpoints.keys.reduce((acc, key) => {
-      if (props.system) {
-        if (props.system[key]) {
-          acc = acc || {};
-          acc[themeBreakpoints.up(key)] = styleFunction({
-            theme: props.theme,
-            ...props.system[key],
-          });
-        }
-        return acc;
-      }
       if (props[key]) {
         acc = acc || {};
         acc[themeBreakpoints.up(key)] = styleFunction({ theme: props.theme, ...props[key] });

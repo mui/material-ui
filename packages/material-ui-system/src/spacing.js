@@ -149,26 +149,11 @@ function getStyleFromPropValue(cssProperties, transformer) {
     }, {});
 }
 
-function spacing(props) {
+function spacing(componentProps) {
   const theme = props.theme;
   const transformer = createUnarySpacing(theme);
-  if (props.system) {
-    return Object.keys(props.system)
-      .map((prop) => {
-        // Using a hash computation over an array iteration could be faster, but with only 28 items,
-        // it's doesn't worth the bundle size.
-        if (spacingKeys.indexOf(prop) === -1) {
-          return null;
-        }
+  const props = componentProps.system || componentProps;
 
-        const cssProperties = getCssProperties(prop);
-        const styleFromPropValue = getStyleFromPropValue(cssProperties, transformer);
-
-        const propValue = props.system[prop];
-        return handleBreakpoints(props, propValue, styleFromPropValue);
-      })
-      .reduce(merge, {});
-  }
   return Object.keys(props)
     .map((prop) => {
       // Using a hash computation over an array iteration could be faster, but with only 28 items,
