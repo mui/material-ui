@@ -1,6 +1,20 @@
 import styled from '@material-ui/styled-engine';
 import { propsToClassKey } from '@material-ui/styles';
 import defaultTheme from './defaultTheme';
+import {
+  borders,
+  compose,
+  display,
+  flexbox,
+  grid,
+  palette,
+  positions,
+  shadows,
+  sizing,
+  spacing,
+  typography,
+  css,
+} from '@material-ui/system';
 
 const getStyleOverrides = (name, theme) => {
   let styleOverrides = {};
@@ -56,6 +70,21 @@ const variantsResolver = (props, styles, theme, name) => {
 
 const shouldForwardProp = (prop) => prop !== 'styleProps' && prop !== 'theme' && prop !== 'system';
 
+export const systemStyleFunction = css(
+  compose(
+    borders,
+    display,
+    flexbox,
+    grid,
+    positions,
+    palette,
+    shadows,
+    sizing,
+    spacing,
+    typography,
+  ),
+);
+
 const muiStyled = (tag, options, muiOptions) => {
   const name = muiOptions.muiName;
   const defaultStyledResolver = styled(tag, { shouldForwardProp, label: name, ...options });
@@ -72,6 +101,10 @@ const muiStyled = (tag, options, muiOptions) => {
       return variantsResolver(props, getVariantStyles(name, theme), theme, name);
     });
 
+    if (muiOptions && muiOptions.useSystemProps) {
+      styles.push(systemStyleFunction);
+    }
+    
     return defaultStyledResolver(...styles);
   };
   return muiStyledResolver;
