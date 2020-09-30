@@ -11,7 +11,7 @@ Install the package in your project directory with:
 npm install @material-ui/styles @emotion/core @emotion/styled
 
 // with yarn
-yarn add @material-ui/styles @emotion/core @emotion/styled emotion-theming
+yarn add @material-ui/styles @emotion/core @emotion/styled
 ```
 
 ## Documentation
