@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { InternalStandardProps as StandardProps } from '@material-ui/core';
+import { ChipProps, ChipTypeMap } from '@material-ui/core/Chip';
 import { PopperProps } from '@material-ui/core/Popper';
-import {
+import useAutocomplete, {
   AutocompleteChangeDetails,
   AutocompleteChangeReason,
   AutocompleteCloseReason,
@@ -36,27 +37,28 @@ export interface AutocompleteRenderInputParams {
   disabled: boolean;
   fullWidth: boolean;
   size: 'small' | undefined;
-  InputLabelProps: object;
+  InputLabelProps: ReturnType<ReturnType<typeof useAutocomplete>['getInputLabelProps']>;
   InputProps: {
     ref: React.Ref<any>;
     className: string;
     startAdornment: React.ReactNode;
     endAdornment: React.ReactNode;
   };
-  inputProps: object;
+  inputProps: ReturnType<ReturnType<typeof useAutocomplete>['getInputProps']>;
 }
 
 export interface AutocompleteProps<
   T,
   Multiple extends boolean | undefined,
   DisableClearable extends boolean | undefined,
-  FreeSolo extends boolean | undefined
+  FreeSolo extends boolean | undefined,
+  ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent']
 > extends UseAutocompleteProps<T, Multiple, DisableClearable, FreeSolo>,
     StandardProps<React.HTMLAttributes<HTMLDivElement>, 'defaultValue' | 'onChange' | 'children'> {
   /**
    * Props applied to the [`Chip`](/api/chip/) element.
    */
-  ChipProps?: object;
+  ChipProps?: ChipProps<ChipComponent>;
   /**
    * Override or extend the styles applied to the component.
    */
@@ -165,7 +167,7 @@ export interface AutocompleteProps<
   /**
    * Props applied to the Listbox element.
    */
-  ListboxProps?: object;
+  ListboxProps?: ReturnType<ReturnType<typeof useAutocomplete>['getListboxProps']>;
   /**
    * If `true`, the component is in a loading state.
    * @default false
