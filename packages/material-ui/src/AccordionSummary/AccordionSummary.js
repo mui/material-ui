@@ -47,8 +47,7 @@ export const styles = (theme) => {
         margin: '20px 0',
       },
     },
-    /* Styles applied to the `IconButton` component when `expandIcon` is supplied. */
-    expandIcon: {
+    expandIconWrapper: {
       transform: 'rotate(0deg)',
       transition: theme.transitions.create('transform', transition),
       '&$expanded': {
@@ -104,7 +103,7 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(props, ref) 
         <div
           edge="end"
           className={clsx(
-            classes.expandIcon,
+            classes.expandIconWrapper,
             {
               [classes.expanded]: expanded,
             },
