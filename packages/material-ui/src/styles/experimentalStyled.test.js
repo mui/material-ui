@@ -20,26 +20,22 @@ describe('experimentalStyled', () => {
 
   it('should use defaultTheme if no theme is provided', () => {
     const Div = styled('div')((props) => ({
-      backgroundColor: props.theme.palette.background.paper,
+      width: props.theme.spacing(1),
     }));
 
     render(<Div data-testid="component">Test</Div>);
 
     const style = window.getComputedStyle(screen.getByTestId('component'));
-    expect(style.getPropertyValue('background-color')).to.equal('rgb(255, 255, 255)'); // white
+    expect(style.getPropertyValue('width')).to.equal('8px');
   });
 
   it('should use theme from context if available', () => {
     const Div = styled('div')((props) => ({
-      backgroundColor: props.theme.palette.background.paper,
+      width: props.theme.spacing(1),
     }));
 
     const theme = createMuiTheme({
-      palette: {
-        background: {
-          paper: 'rgb(255, 255, 0)',
-        },
-      },
+      spacing: 10,
     });
 
     render(
@@ -49,7 +45,7 @@ describe('experimentalStyled', () => {
     );
 
     const style = window.getComputedStyle(screen.getByTestId('component'));
-    expect(style.getPropertyValue('background-color')).to.equal('rgb(255, 255, 0)');
+    expect(style.getPropertyValue('width')).to.equal('10px');
   });
 
   describe('muiOptions', () => {

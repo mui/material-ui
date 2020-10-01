@@ -18,8 +18,7 @@ import { ThemeProvider } from '@material-ui/core/styles/ThemeProvider.js';
 
 You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
 
-This component takes a `theme` prop.
-It makes the `theme` available down the React tree thanks to React context.
+It makes the `theme` available down the React tree.
 This component should preferably be used at **the root of your component tree**.
 
 

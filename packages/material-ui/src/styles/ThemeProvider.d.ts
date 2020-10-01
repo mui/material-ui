@@ -6,8 +6,7 @@ export interface ThemeProviderProps<Theme = DefaultTheme> {
 }
 
 /**
- * This component takes a `theme` prop.
- * It makes the `theme` available down the React tree thanks to React context.
+ * It makes the `theme` available down the React tree.
  * This component should preferably be used at **the root of your component tree**.
  * API:
  *

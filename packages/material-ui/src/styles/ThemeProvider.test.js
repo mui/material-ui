@@ -9,12 +9,12 @@ describe('ThemeProvider', () => {
   const render = createClientRender();
 
   it('should provide the theme to the mui theme context', () => {
-    const ref = React.createRef();
-    const text = () => ref.current.textContent;
-    function Test() {
-      const theme = useTheme();
+    let theme;
 
-      return <span ref={ref}>{theme.foo}</span>;
+    function Test() {
+      theme = useTheme();
+
+      return null;
     }
 
     render(
@@ -22,16 +22,16 @@ describe('ThemeProvider', () => {
         <Test />
       </ThemeProvider>,
     );
-    expect(text()).to.equal('foo');
+    expect(theme).to.deep.equal({ foo: 'foo' });
   });
 
   it('should provide the theme to the styled engine theme context', () => {
-    const ref = React.createRef();
-    const text = () => ref.current.textContent;
-    function Test() {
-      const theme = React.useContext(ThemeContext);
+    let theme;
 
-      return <span ref={ref}>{theme.foo}</span>;
+    function Test() {
+      theme = React.useContext(ThemeContext);
+
+      return null;
     }
 
     render(
@@ -39,6 +39,6 @@ describe('ThemeProvider', () => {
         <Test />
       </ThemeProvider>,
     );
-    expect(text()).to.equal('foo');
+    expect(theme).to.deep.equal({ foo: 'foo' });
   });
 });

@@ -3,15 +3,7 @@ import { propsToClassKey } from '@material-ui/styles';
 import defaultTheme from './defaultTheme';
 
 function isEmpty(obj) {
-  let result = true;
-
-  Object.keys(obj).forEach((key) => {
-    if (obj.hasOwnProperty(key)) {
-      result = false;
-    }
-  });
-
-  return result;
+  return Object.keys(obj).length === 0;
 }
 
 const getStyleOverrides = (name, theme) => {
