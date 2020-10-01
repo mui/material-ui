@@ -34,8 +34,8 @@ export function detectScrollType() {
   if (dummy.scrollLeft > 0) {
     cachedType = 'default';
   } else {
-    dummy.scrollLeft = 1;
-    if (dummy.scrollLeft === 0) {
+    dummy.scrollLeft = 2;
+    if (dummy.scrollLeft < 2) {
       cachedType = 'negative';
     }
   }
