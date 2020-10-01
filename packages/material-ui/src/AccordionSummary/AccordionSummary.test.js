@@ -46,7 +46,14 @@ describe('<AccordionSummary />', () => {
     expect(getByRole('button')).to.have.class(classes.disabled);
   });
 
-  it('when expanded adds the expanded class to the button and expandIcon', () => {
+  it('renders the content given in expandIcon prop inside the div.expandIconWrapper', () => {
+    const { container } = render(<AccordionSummary expandIcon="icon" />);
+
+    const expandIconWrapper = container.querySelector(`.${classes.expandIconWrapper}`);
+    expect(expandIconWrapper).to.have.text('Icon');
+  });
+
+  it('when expanded adds the expanded class to the button and .expandIconWrapper', () => {
     const { container, getByRole } = render(
       <Accordion expanded>
         <AccordionSummary expandIcon="expand" />
@@ -56,28 +63,7 @@ describe('<AccordionSummary />', () => {
     const button = getByRole('button');
     expect(button).to.have.class(classes.expanded);
     expect(button).to.have.attribute('aria-expanded', 'true');
-    expect(container.querySelector(`.${classes.expandIcon}`)).to.have.class(classes.expanded);
-  });
-
-  it('when expanded adds both the expanded class and the className provided with `IconButtonProps` to the expandIcon', () => {
-    const iconButtonProps = { className: 'icon' };
-    const { container } = render(
-      <Accordion expanded>
-        <AccordionSummary expandIcon="expand" IconButtonProps={iconButtonProps} />
-      </Accordion>,
-    );
-
-    const expandIcon = container.querySelector(`.${classes.expandIcon}`);
-    expect(expandIcon).to.have.class(classes.expanded);
-    expect(expandIcon).to.have.class(iconButtonProps.className);
-  });
-
-  it('should render with an inaccessible expand icon and have the expandIcon class', () => {
-    const { container } = render(<AccordionSummary expandIcon={<div>Icon</div>} />);
-
-    const expandIcon = container.querySelector(`.${classes.expandIcon}`);
-    expect(expandIcon).to.have.text('Icon');
-    expect(expandIcon).toBeInaccessible();
+    expect(container.querySelector(`.${classes.expandIconWrapper}`)).to.have.class(classes.expanded);
   });
 
   it('should fire onBlur when the button blurs', () => {
