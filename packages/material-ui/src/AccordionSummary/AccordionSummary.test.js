@@ -47,10 +47,10 @@ describe('<AccordionSummary />', () => {
   });
 
   it('renders the content given in expandIcon prop inside the div.expandIconWrapper', () => {
-    const { container } = render(<AccordionSummary expandIcon="icon" />);
+    const { container } = render(<AccordionSummary expandIcon='iconElementContentExample' />);
 
     const expandIconWrapper = container.querySelector(`.${classes.expandIconWrapper}`);
-    expect(expandIconWrapper).to.have.text('Icon');
+    expect(expandIconWrapper).to.have.text('iconElementContentExample');
   });
 
   it('when expanded adds the expanded class to the button and .expandIconWrapper', () => {
