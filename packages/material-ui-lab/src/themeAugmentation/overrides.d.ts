@@ -1,4 +1,3 @@
-import { AutocompleteClassKey } from '../Autocomplete';
 import { AvatarGroupClassKey } from '../AvatarGroup';
 import { PaginationClassKey } from '../Pagination';
 import { PaginationItemClassKey } from '../PaginationItem';
@@ -17,7 +16,6 @@ import { TreeItemClassKey } from '../TreeItem';
 import { TreeViewClassKey } from '../TreeView';
 
 export interface LabComponentNameToClassKey {
-  MuiAutocomplete: AutocompleteClassKey;
   MuiAvatarGroup: AvatarGroupClassKey;
   MuiPagination: PaginationClassKey;
   MuiPaginationItem: PaginationItemClassKey;

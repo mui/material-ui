@@ -6,6 +6,7 @@ import { AccordionSummaryClassKey } from '../AccordionSummary';
 import { AlertClassKey } from '../Alert';
 import { AlertTitleClassKey } from '../AlertTitle';
 import { AppBarClassKey } from '../AppBar';
+import { AutocompleteClassKey } from '../Autocomplete';
 import { AvatarClassKey } from '../Avatar';
 import { BackdropClassKey } from '../Backdrop';
 import { BadgeClassKey } from '../Badge';
@@ -117,6 +118,7 @@ export interface ComponentNameToClassKey {
   MuiAlert: AlertClassKey;
   MuiAlertTitle: AlertTitleClassKey;
   MuiAppBar: AppBarClassKey;
+  MuiAutocomplete: AutocompleteClassKey;
   MuiAvatar: AvatarClassKey;
   MuiBackdrop: BackdropClassKey;
   MuiBadge: BadgeClassKey;

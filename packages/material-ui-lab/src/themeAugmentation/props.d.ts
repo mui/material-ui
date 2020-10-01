@@ -1,4 +1,3 @@
-import { AutocompleteProps } from '../Autocomplete';
 import { AvatarGroupProps } from '../AvatarGroup';
 import { PaginationProps } from '../Pagination';
 import { PaginationItemProps } from '../PaginationItem';
@@ -17,7 +16,6 @@ import { TreeItemProps } from '../TreeItem';
 import { TreeViewProps } from '../TreeView';
 
 export interface LabComponentsPropsList {
-  MuiAutocomplete: AutocompleteProps<any, any, any, any>;
   MuiAvatarGroup: AvatarGroupProps;
   MuiPagination: PaginationProps;
   MuiPaginationItem: PaginationItemProps;

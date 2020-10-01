@@ -114,7 +114,7 @@ You can group the options with the `groupBy` prop. If you do so, make sure that 
 Pour les cas de personnalisation avancée, nous exposons un hook `useAutocomplete()`. Il accepte presque les mêmes options que le composant de saisie automatique moins tous les props liés au rendu de JSX. Le composant Autocomplete utilise ce hook en interne.
 
 ```jsx
-import useAutocomplete from '@material-ui/lab/useAutocomplete';
+import useAutocomplete from '@material-ui/core/useAutocomplete';
 ```
 
 - 📦 [4.5 kB gzippé](/size-snapshot).
@@ -220,7 +220,7 @@ La démo suivante repose sur [autosuggest-highlight](https://github.com/moroshko
 Le composant expose une usine pour créer une méthode de filtre qui peut être fournie à la propriété `filterOptions`. Vous pouvez l'utiliser pour modifier le comportement de filtre par défaut.
 
 ```js
-import { createFilterOptions } from '@material-ui/lab/Autocomplete';
+import { createFilterOptions } from '@material-ui/core/Autocomplete';
 ```
 
 ### `createFilterOptions(config) => filterOptions`

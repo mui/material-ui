@@ -234,7 +234,10 @@ describe('<Autocomplete />', () => {
         getByRole('textbox').focus();
       });
       expect(container.textContent).to.equal('onetwothree');
-      expect(getAllByRole('button', { hidden: false })).to.have.lengthOf(5);
+      // Depending on the subset of components used in this test run the computed `visibility` changes in JSDOM.
+      if (!/jsdom/.test(window.navigator.userAgent)) {
+        expect(getAllByRole('button', { hidden: false })).to.have.lengthOf(5);
+      }
     });
 
     it('show 0 item on close when set 0 to limitTags', () => {
@@ -257,7 +260,10 @@ describe('<Autocomplete />', () => {
         getByRole('textbox').focus();
       });
       expect(container.textContent).to.equal('onetwothree');
-      expect(getAllByRole('button', { hidden: false })).to.have.lengthOf(5);
+      // Depending on the subset of components used in this test run the computed `visibility` changes in JSDOM.
+      if (!/jsdom/.test(window.navigator.userAgent)) {
+        expect(getAllByRole('button', { hidden: false })).to.have.lengthOf(5);
+      }
     });
   });
 
@@ -637,12 +643,9 @@ describe('<Autocomplete />', () => {
       expect(listbox).to.equal(null);
 
       const buttons = getAllByRole('button', { hidden: true });
+      // Depending on the subset of components used in this test run the computed `visibility` changes in JSDOM.
       if (!/jsdom/.test(window.navigator.userAgent)) {
         expect(buttons[0]).toBeInaccessible();
-      } else {
-        // JSDOM thinks the "Clear"-button has `visibility: visible`
-        // Leaving this to be notified once the JSDOM is fixed.
-        expect(buttons[0]).not.toBeInaccessible();
       }
       expect(buttons[1]).toHaveAccessibleName('Open');
       expect(buttons[1]).to.have.attribute('title', 'Open');
@@ -1339,7 +1342,7 @@ describe('<Autocomplete />', () => {
       expect(htmlOptions[0].innerHTML).to.equal('one');
     });
 
-    it('should display a no options message if no options are available', () => {
+    it("should display a 'no options' message if no options are available", () => {
       const { getByRole } = render(
         <Autocomplete
           {...defaultProps}

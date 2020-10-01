@@ -27,6 +27,9 @@ export * from './AlertTitle';
 export { default as AppBar } from './AppBar';
 export * from './AppBar';
 
+export { default as Autocomplete } from './Autocomplete';
+export * from './Autocomplete';
+
 export { default as Avatar } from './Avatar';
 export * from './Avatar';
 
@@ -365,3 +368,6 @@ export * from './withWidth';
 
 export { default as Zoom } from './Zoom';
 export * from './Zoom';
+
+// createFilterOptions is exported from Autocomplete
+export { default as useAutocomplete } from './useAutocomplete';
