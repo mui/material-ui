@@ -44,3 +44,18 @@ op_mob 46
 opera 69
 safari 13
 samsung 11.1
+
+[coverage]
+node 10.0
+
+[development]
+node 10.0
+
+[node]
+node 10.0
+
+[test]
+node 10.0
+
+[benchmark]
+node 10.0

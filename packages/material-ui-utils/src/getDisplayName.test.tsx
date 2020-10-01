@@ -75,10 +75,7 @@ describe('utils/getDisplayName.js', () => {
         return <div />;
       }
 
-      const SomeOtherFunction = () => <div />;
-
       expect(getFunctionName(SomeFunction)).to.equal('SomeFunction');
-      expect(getFunctionName(SomeOtherFunction)).to.equal('SomeOtherFunction');
     });
   });
 });

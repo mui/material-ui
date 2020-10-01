@@ -41,7 +41,7 @@ addPropertyControls(CircularProgress, {
   value: {
     type: ControlType.Number,
     title: 'Value',
-    hidden: function hidden(props) {
+    hidden(props) {
       return props.variant === 'indeterminate';
     },
   },
