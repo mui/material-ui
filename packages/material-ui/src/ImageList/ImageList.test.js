@@ -189,18 +189,25 @@ describe('<ImageList />', () => {
     });
 
     describe('prop: gap', () => {
-      it('should render with modified grid-template-columns style', () => {
+      it('should render with modified grid-template-columns style', function test() {
+        if (/jsdom/.test(window.navigator.userAgent)) {
+          this.skip();
+        }
+
         const { getByTestId } = render(
           <ImageList data-testid="test-root" gap={8}>
             {children}
           </ImageList>,
         );
 
-        expect(getByTestId('test-root').style.gap).to.equal('8px');
+        expect(window.getComputedStyle(getByTestId('test-root'))).to.include({
+          rowGap: '8px',
+          columnGap: '8px',
+        });
       });
 
       it('should render with modified column-gap style', function test() {
-        if (!/jsdom/.test(window.navigator.userAgent)) {
+        if (/jsdom/.test(window.navigator.userAgent)) {
           this.skip();
         }
 
@@ -210,7 +217,10 @@ describe('<ImageList />', () => {
           </ImageList>,
         );
 
-        expect(getByTestId('test-root').style['column-gap']).to.equal('8px');
+        expect(window.getComputedStyle(getByTestId('test-root'))).to.have.property(
+          'columnGap',
+          '8px',
+        );
       });
     });
   });
