@@ -101,12 +101,9 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(props, ref) 
       {expandIcon && (
         <div
           edge="end"
-          className={clsx(
-            classes.expandIconWrapper,
-            {
-              [classes.expanded]: expanded,
-            },
-          )}
+          className={clsx(classes.expandIconWrapper, {
+            [classes.expanded]: expanded,
+          })}
         >
           {expandIcon}
         </div>

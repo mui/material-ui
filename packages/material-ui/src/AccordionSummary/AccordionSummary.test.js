@@ -47,7 +47,7 @@ describe('<AccordionSummary />', () => {
   });
 
   it('renders the content given in expandIcon prop inside the div.expandIconWrapper', () => {
-    const { container } = render(<AccordionSummary expandIcon='iconElementContentExample' />);
+    const { container } = render(<AccordionSummary expandIcon="iconElementContentExample" />);
 
     const expandIconWrapper = container.querySelector(`.${classes.expandIconWrapper}`);
     expect(expandIconWrapper).to.have.text('iconElementContentExample');
@@ -63,7 +63,9 @@ describe('<AccordionSummary />', () => {
     const button = getByRole('button');
     expect(button).to.have.class(classes.expanded);
     expect(button).to.have.attribute('aria-expanded', 'true');
-    expect(container.querySelector(`.${classes.expandIconWrapper}`)).to.have.class(classes.expanded);
+    expect(container.querySelector(`.${classes.expandIconWrapper}`)).to.have.class(
+      classes.expanded,
+    );
   });
 
   it('should fire onBlur when the button blurs', () => {
