@@ -278,7 +278,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
     if (!open) {
       eventTimer.current = setTimeout(() => {
         setOpenState(true);
-      })
+      });
       if (onOpen) {
         event.persist();
         // Wait for a future focus or click event
