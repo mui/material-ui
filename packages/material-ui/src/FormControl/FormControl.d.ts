@@ -96,7 +96,7 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
  * </FormControl>
  * ```
  *
- * ⚠️Only one input can be used within a FormControl.
+ * ⚠️ Only one `InputBase` can be used within a FormControl because it create visual inconsistencies.
  * Demos:
  *
  * - [Checkboxes](https://material-ui.com/components/checkboxes/)
