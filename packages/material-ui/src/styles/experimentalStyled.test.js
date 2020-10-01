@@ -1,9 +1,9 @@
-import { ThemeProvider } from '@material-ui/styles';
 import React from 'react';
 import { expect } from 'chai';
 import { createClientRender, screen } from 'test/utils';
 import createMuiTheme from './createMuiTheme';
 import styled from './experimentalStyled';
+import ThemeProvider from './ThemeProvider';
 
 describe('experimentalStyled', () => {
   const render = createClientRender();

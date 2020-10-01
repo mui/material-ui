@@ -13,12 +13,11 @@ export { default as useThemeProps } from './useThemeProps';
 export { default as withStyles } from './withStyles';
 export { default as withTheme } from './withTheme';
 export { default as experimentalStyled } from './experimentalStyled';
+export { default as MuiThemeProvider, default as ThemeProvider } from './ThemeProvider';
 export {
   createGenerateClassName,
   jssPreset,
   ServerStyleSheets,
   StylesProvider,
-  ThemeProvider as MuiThemeProvider,
-  ThemeProvider,
   useThemeVariants,
 } from '@material-ui/styles';
