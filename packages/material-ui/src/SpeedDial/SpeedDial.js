@@ -287,6 +287,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
             focus: 'focus',
             mouseenter: 'mouseEnter',
           };
+
           onOpen(event, eventMap[event.type]);
         });
       }
