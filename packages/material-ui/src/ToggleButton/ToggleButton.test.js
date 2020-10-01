@@ -8,7 +8,7 @@ import {
   describeConformance,
   createServerRender,
 } from 'test/utils';
-import ButtonBase from '@material-ui/core/ButtonBase';
+import ButtonBase from '../ButtonBase';
 import ToggleButton from './ToggleButton';
 
 describe('<ToggleButton />', () => {

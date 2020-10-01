@@ -131,3 +131,55 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup(props, ref
     </div>
   );
 });
+
+ToggleButtonGroup.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
+  /**
+   * The content of the button.
+   */
+  children: PropTypes.node,
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: PropTypes.object,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * If `true`, only allow one of the child ToggleButton values to be selected.
+   * @default false
+   */
+  exclusive: PropTypes.bool,
+  /**
+   * Callback fired when the value changes.
+   *
+   * @param {object} event The event source of the callback.
+   * @param {any} value of the selected buttons. When `exclusive` is true
+   * this is a single value; when false an array of selected values. If no value
+   * is selected and `exclusive` is true the value is null; when false an empty array.
+   */
+  onChange: PropTypes.func,
+  /**
+   * The group orientation (layout flow direction).
+   * @default 'horizontal'
+   */
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  /**
+   * The size of the buttons.
+   * @default 'medium'
+   */
+  size: PropTypes.oneOf(['large', 'medium', 'small']),
+  /**
+   * The currently selected value within the group or an array of selected
+   * values when `exclusive` is false.
+   *
+   * The value must have reference equality with the option in order to be selected.
+   */
+  value: PropTypes.any,
+};
+
+export default withStyles(styles, { name: 'MuiToggleButtonGroup' })(ToggleButtonGroup);
