@@ -202,7 +202,7 @@ export interface CreateMUIStyled<Theme extends object = any> {
  *
  * @param tag HTML tag or component that should serve as base.
  * @param options Styled options for the created component.
- * @muiOptions Material-UI specific style options.
+ * @param muiOptions Material-UI specific style options.
  * @returns React component that has styles attached to it.
  */
 declare const experimentalStyled: CreateMUIStyled;
