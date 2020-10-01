@@ -24,7 +24,6 @@ export default function CustomInputAutocomplete() {
           <input
             type="text"
             {...params.inputProps}
-            // @ts-expect-error TODO
             className={clsx(classes.input, params.inputProps.className)}
           />
         </div>
