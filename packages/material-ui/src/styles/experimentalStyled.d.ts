@@ -88,7 +88,7 @@ export type PropsOf<
 export type Omit<T, U> = T extends any ? Pick<T, Exclude<keyof T, U>> : never;
 export type Overwrapped<T, U> = Pick<T, Extract<keyof T, keyof U>>;
 
-export type JSXInEl = JSX.IntrinsicElements;
+type JSXInEl = JSX.IntrinsicElements;
 type ReactClassPropKeys = keyof React.ClassAttributes<any>;
 
 export type WithTheme<P, T> = P extends { theme: infer Theme }
