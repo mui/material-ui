@@ -227,7 +227,9 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
     }
 
     clearTimeout(eventTimer.current);
-    setOpenState(false);
+    eventTimer.current = setTimeout(() => {
+      setOpenState(false);
+    });
     if (onClose) {
       if (event.type === 'blur') {
         event.persist();
@@ -273,9 +275,10 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
     // a chain if blur and focus event is triggered.
     // We only handle the last event.
     clearTimeout(eventTimer.current);
-
     if (!open) {
-      setOpenState(true);
+      eventTimer.current = setTimeout(() => {
+        setOpenState(true);
+      })
       if (onOpen) {
         event.persist();
         // Wait for a future focus or click event
@@ -284,7 +287,6 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
             focus: 'focus',
             mouseenter: 'mouseEnter',
           };
-
           onOpen(event, eventMap[event.type]);
         });
       }
