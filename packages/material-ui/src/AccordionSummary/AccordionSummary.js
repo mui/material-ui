@@ -46,6 +46,7 @@ export const styles = (theme) => {
         margin: '20px 0',
       },
     },
+    /* Styles applied to the `expandIcon`'s wrapper element. */
     expandIconWrapper: {
       transform: 'rotate(0deg)',
       transition: theme.transitions.create('transform', transition),

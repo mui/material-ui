@@ -25,8 +25,8 @@ export type AccordionSummaryTypeMap<
       disabled?: string;
       /** Styles applied to the children wrapper element. */
       content?: string;
-      /** Styles applied to the `IconButton` component when `expandIcon` is supplied. */
-      expandIcon?: string;
+      /** Styles applied to the `expandIcon`'s wrapper element. */
+      expandIconWrapper?: string;
     };
     /**
      * The icon to display as the expand indicator.
