@@ -51,12 +51,6 @@ export const styles = (theme) => {
     expandIcon: {
       transform: 'rotate(0deg)',
       transition: theme.transitions.create('transform', transition),
-      '&:hover': {
-        // Disable the hover effect for the IconButton,
-        // because a hover effect should apply to the entire Expand button and
-        // not only to the IconButton.
-        backgroundColor: 'transparent',
-      },
       '&$expanded': {
         transform: 'rotate(180deg)',
       },
