@@ -23,7 +23,7 @@ InnerThemeProvider.propTypes = {
 
 /**
  * This component makes the `theme` available down the React tree.
- * This component should preferably be used at **the root of your component tree**.
+ * It should preferably be used at **the root of your component tree**.
  */
 function ThemeProvider(props) {
   const { children, theme: localTheme } = props;
