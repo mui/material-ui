@@ -4,9 +4,9 @@ import { InputProps } from '../Input';
 import { MenuProps } from '../Menu';
 import { SelectInputProps } from './SelectInput';
 
-export interface SelectProps
+export interface SelectProps<T = unknown>
   extends StandardProps<InputProps, 'value' | 'onChange'>,
-    Pick<SelectInputProps, 'onChange'> {
+    Pick<SelectInputProps<T>, 'onChange'> {
   /**
    * If `true`, the width of the popover will automatically be set according to the items inside the
    * menu, otherwise it will be at least the width of the select input.
@@ -115,7 +115,7 @@ export interface SelectProps
    * You can pull out the new value by accessing `event.target.value` (any).
    * @param {object} [child] The react element that was selected when `native` is `false` (default).
    */
-  onChange?: SelectInputProps['onChange'];
+  onChange?: SelectInputProps<T>['onChange'];
   /**
    * Callback fired when the component requests to be closed.
    * Use in controlled mode (see open).
@@ -142,7 +142,7 @@ export interface SelectProps
    * @param {any} value The `value` provided to the component.
    * @returns {ReactNode}
    */
-  renderValue?: (value: SelectProps['value']) => React.ReactNode;
+  renderValue?: (value: SelectProps<T>['value']) => React.ReactNode;
   /**
    * Props applied to the clickable div element.
    */
@@ -163,7 +163,7 @@ export interface SelectProps
   variant?: 'standard' | 'outlined' | 'filled';
 }
 
-export type SelectClassKey = keyof NonNullable<SelectProps['classes']>;
+export type SelectClassKey = keyof NonNullable<SelectProps<any>['classes']>;
 
 /**
  *
@@ -176,4 +176,4 @@ export type SelectClassKey = keyof NonNullable<SelectProps['classes']>;
  * - [Select API](https://material-ui.com/api/select/)
  * - inherits [Input API](https://material-ui.com/api/input/)
  */
-export default function Select(props: SelectProps): JSX.Element;
+export default function Select<T>(props: SelectProps<T>): JSX.Element;

@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { MenuProps } from '../Menu';
 
-export interface SelectInputProps {
+export interface SelectInputProps<T> {
   autoFocus?: boolean;
   autoWidth: boolean;
   disabled?: boolean;
   IconComponent?: React.ElementType;
   inputRef?: (
-    ref: HTMLSelectElement | { node: HTMLInputElement; value: SelectInputProps['value'] }
+    ref: HTMLSelectElement | { node: HTMLInputElement; value: SelectInputProps<T>['value'] }
   ) => void;
   MenuProps?: Partial<MenuProps>;
   multiple: boolean;
@@ -15,7 +15,7 @@ export interface SelectInputProps {
   native: boolean;
   onBlur?: React.FocusEventHandler<any>;
   onChange?: (
-    event: React.ChangeEvent<{ name?: string; value: unknown }>,
+    event: React.ChangeEvent<{ name?: string; value: T }>,
     child: React.ReactNode
   ) => void;
   onClose?: (event: React.SyntheticEvent) => void;
@@ -23,13 +23,13 @@ export interface SelectInputProps {
   onOpen?: (event: React.SyntheticEvent) => void;
   open?: boolean;
   readOnly?: boolean;
-  renderValue?: (value: SelectInputProps['value']) => React.ReactNode;
+  renderValue?: (value: SelectInputProps<T>['value']) => React.ReactNode;
   SelectDisplayProps?: React.HTMLAttributes<HTMLDivElement>;
   tabIndex?: number;
-  value?: unknown;
+  value?: T;
   variant?: 'standard' | 'outlined' | 'filled';
 }
 
-declare const SelectInput: React.ComponentType<SelectInputProps>;
+declare const SelectInput: React.ComponentType<SelectInputProps<any>>;
 
 export default SelectInput;
