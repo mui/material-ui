@@ -152,7 +152,7 @@ const BoxRoot = React.forwardRef(function StyledComponent(props, ref) {
 
   if (clone) {
     return React.cloneElement(children, {
-      className: clsx(children.prop?.className, className),
+      className: clsx(children.props.className, className),
       ...spread,
     });
   }
