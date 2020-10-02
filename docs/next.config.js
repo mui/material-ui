@@ -22,8 +22,8 @@ const workspaceRoot = path.join(__dirname, '../');
 const reactMode = 'legacy';
 // eslint-disable-next-line no-console
 console.log(`Using React '${reactMode}' mode.`);
-const l10nPRInNetlify = /l10n_/.test(process.env.BRANCH) && process.env.NETLIFY === 'true';
-console.log('branch: "%s", netlify: %s', process.env.BRANCH, process.env.NETLIFY);
+const l10nPRInNetlify = /l10n_/.test(process.env.HEAD) && process.env.NETLIFY === 'true';
+console.log('head: "%s", netlify: %s', process.env.HEAD, process.env.NETLIFY);
 
 module.exports = {
   typescript: {
