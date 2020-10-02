@@ -48,7 +48,7 @@ describe('<AvatarGroup />', () => {
     expect(container.textContent).to.equal('+2');
   });
 
-  it('should display all avatars with default(circular) variant', () => {
+  it('should display all avatars with default (circular) variant', () => {
     const { container } = render(
       <AvatarGroup max={3}>
         <Avatar src="image-url" />
@@ -64,7 +64,7 @@ describe('<AvatarGroup />', () => {
     expect(container.querySelector('.MuiAvatar-square')).to.equal(null);
   });
 
-  it('should display all avatars with square variant', () => {
+  it('should display all avatars with the specified variant', () => {
     const { container } = render(
       <AvatarGroup max={3} variant="square">
         <Avatar src="image-url" />
@@ -79,7 +79,7 @@ describe('<AvatarGroup />', () => {
     expect(container.querySelector('.MuiAvatar-rounded')).to.equal(null);
   });
 
-  it('should display all avatars with square variant except the first avatar being rounded', () => {
+  it('should respect child\'s avatar variant prop if specified', () => {
     const { container } = render(
       <AvatarGroup max={3} variant="square">
         <Avatar src="image-url" variant="rounded" />
