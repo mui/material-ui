@@ -6,13 +6,13 @@ last 1 safari version
 node 14
 
 # Default/Fallback
-# snapshot of "> 0.5%, last 2 versions, Firefox ESR, not dead, not IE 11" when the last major is released.
+# `npx browserslist --mobile-to-desktop "> 0.5%, last 2 versions, Firefox ESR, not dead, not IE 11"` when the last major is released.
 [stable]
 and_chr 84
 and_ff 79
 and_qq 10.4
 and_uc 12.12
-android 81
+android 84
 baidu 7.12
 chrome 83
 edge 83
@@ -20,7 +20,7 @@ firefox 68
 ios_saf 12.0
 kaios 2.5
 op_mini all
-op_mob 46
+op_mob 69
 opera 69
 safari 13
 samsung 11.1
@@ -32,7 +32,7 @@ and_chr 84
 and_ff 79
 and_qq 10.4
 and_uc 12.12
-android 81
+android 84
 baidu 7.12
 chrome 83
 edge 83
@@ -40,7 +40,7 @@ firefox 68
 ios_saf 12.0
 kaios 2.5
 op_mini all
-op_mob 46
+op_mob 69
 opera 69
 safari 13
 samsung 11.1
