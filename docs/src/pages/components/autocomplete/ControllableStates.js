@@ -1,6 +1,6 @@
 import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
+import Autocomplete from '@material-ui/core/Autocomplete';
 
 const options = ['Option 1', 'Option 2'];
 

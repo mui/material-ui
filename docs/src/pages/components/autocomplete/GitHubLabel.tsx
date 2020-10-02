@@ -14,7 +14,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import DoneIcon from '@material-ui/icons/Done';
 import Autocomplete, {
   AutocompleteCloseReason,
-} from '@material-ui/lab/Autocomplete';
+} from '@material-ui/core/Autocomplete';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import InputBase from '@material-ui/core/InputBase';
 

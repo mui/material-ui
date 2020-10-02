@@ -6,7 +6,7 @@ Looking for the v4 docs? [Find them here](https://material-ui.com/versions/).
 
 > This document is a work in progress.
 > Have you upgraded your site and run into something that's not covered here?
-> [Add your changes on GitHub](https://github.com/mui-org/material-ui/blob/next/docs/src/pages/guides/migration-v4/migration-v4.md).
+> [Add your changes on GitHub](https://github.com/mui-org/material-ui/blob/HEAD/docs/src/pages/guides/migration-v4/migration-v4.md).
 
 ## Introduction
 
@@ -205,6 +205,15 @@ const theme = createMuitheme({
   -import AlertTitle from '@material-ui/lab/AlertTitle';
   +import Alert from '@material-ui/core/Alert';
   +import AlertTitle from '@material-ui/core/AlertTitle';
+  ```
+
+  ### Autocomplete
+
+- Move the component from the lab to the core. The component is now stable.
+
+  ```diff
+  -import Autocomplete from '@material-ui/lab/Autocomplete';
+  +import Autocomplete from '@material-ui/core/Autocomplete';
   ```
 
 ### Avatar

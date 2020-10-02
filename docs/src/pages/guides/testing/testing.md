@@ -18,4 +18,4 @@ We don't recommend snapshot testing though.
 
 Material-UI has **a wide range** of tests so we can
 iterate with confidence on the components, for instance, the visual regression tests provided by [Argos-CI](https://www.argos-ci.com/mui-org/material-ui/builds) have proven to be really helpful.
-To learn more about the internal tests, you can have a look at the [README](https://github.com/mui-org/material-ui/blob/next/test/README.md).
+To learn more about the internal tests, you can have a look at the [README](https://github.com/mui-org/material-ui/blob/HEAD/test/README.md).

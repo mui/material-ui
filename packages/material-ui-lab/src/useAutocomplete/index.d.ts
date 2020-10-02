@@ -1,2 +1,2 @@
-export { default } from './useAutocomplete';
-export * from './useAutocomplete';
+export { default } from '@material-ui/core/useAutocomplete';
+export * from '@material-ui/core/useAutocomplete';

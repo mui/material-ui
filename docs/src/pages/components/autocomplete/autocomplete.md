@@ -3,7 +3,6 @@ title: React Autocomplete component
 components: TextField, Popper, Autocomplete
 githubLabel: 'component: Autocomplete'
 waiAria: https://www.w3.org/TR/wai-aria-practices/#combobox
-packageName: '@material-ui/lab'
 ---
 
 # Autocomplete
@@ -118,7 +117,7 @@ related to the rendering of JSX.
 The Autocomplete component uses this hook internally.
 
 ```jsx
-import useAutocomplete from '@material-ui/lab/useAutocomplete';
+import useAutocomplete from '@material-ui/core/useAutocomplete';
 ```
 
 - 📦 [4.5 kB gzipped](/size-snapshot).
@@ -224,7 +223,7 @@ The component exposes a factory to create a filter method that can provided to t
 You can use it to change the default option filter behavior.
 
 ```js
-import { createFilterOptions } from '@material-ui/lab/Autocomplete';
+import { createFilterOptions } from '@material-ui/core/Autocomplete';
 ```
 
 ### `createFilterOptions(config) => filterOptions`

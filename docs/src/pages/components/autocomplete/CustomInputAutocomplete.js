@@ -1,6 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import Autocomplete from '@material-ui/lab/Autocomplete';
+import Autocomplete from '@material-ui/core/Autocomplete';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -24,7 +24,6 @@ export default function CustomInputAutocomplete() {
           <input
             type="text"
             {...params.inputProps}
-            // @ts-expect-error TODO
             className={clsx(classes.input, params.inputProps.className)}
           />
         </div>

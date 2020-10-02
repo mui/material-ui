@@ -53,6 +53,7 @@ const LANGUAGES_LABEL = [
   },
 ];
 
+// #default-branch-switch
 const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/next';
 
 module.exports = {

@@ -114,7 +114,7 @@ const options = ['The Godfather', 'Pulp Fiction'];
 作为一种高级定制方式，我们提供了一个 `useAutocomplete()` hook。 它接受几乎与 Autocomplete 组件相同的参数，辅以与 JSX 渲染有关的所有参数。 Autocomplete 组件内部也是使用的此 hook。
 
 ```jsx
-import useAutocomplete from '@material-ui/lab/useAutocomplete';
+import useAutocomplete from '@material-ui/core/useAutocomplete';
 ```
 
 - 📦  [4.5kB 的压缩包](/size-snapshot)。
@@ -215,7 +215,7 @@ import useAutocomplete from '@material-ui/lab/useAutocomplete';
 此组件提供了一个 factory 来构建一个筛选的方法，供给 `filterOptions` 属性使来用。 用此你可以更改默认的筛选行为。
 
 ```js
-import { createFilterOptions } from '@material-ui/lab/Autocomplete';
+import { createFilterOptions } from '@material-ui/core/Autocomplete';
 ```
 
 ### `createFilterOptions(config) => filterOptions`

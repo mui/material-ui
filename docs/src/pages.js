@@ -33,6 +33,7 @@ const pages = [
         pathname: '/components',
         subheader: '/components/inputs',
         children: [
+          { pathname: '/components/autocomplete' },
           { pathname: '/components/buttons' },
           { pathname: '/components/button-group' },
           { pathname: '/components/checkboxes' },
@@ -120,7 +121,6 @@ const pages = [
         subheader: '/components/lab',
         children: [
           { pathname: '/components/about-the-lab' },
-          { pathname: '/components/autocomplete' },
           { pathname: '/components/pagination' },
           { pathname: '/components/skeleton' },
           { pathname: '/components/rating' },

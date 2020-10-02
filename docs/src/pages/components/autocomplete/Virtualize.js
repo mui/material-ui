@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
+import Autocomplete from '@material-ui/core/Autocomplete';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import { useTheme, makeStyles } from '@material-ui/core/styles';

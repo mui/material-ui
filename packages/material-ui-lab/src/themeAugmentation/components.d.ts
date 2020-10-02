@@ -1,10 +1,6 @@
 import { ComponentsProps, ComponentsOverrides, ComponentsVariants } from '@material-ui/core';
 
 export interface LabComponents {
-  MuiAutocomplete?: {
-    defaultProps?: ComponentsProps['MuiAutocomplete'];
-    styleOverrides?: ComponentsOverrides['MuiAutocomplete'];
-  };
   MuiAvatarGroup?: {
     defaultProps?: ComponentsProps['MuiAvatarGroup'];
     styleOverrides?: ComponentsOverrides['MuiAvatarGroup'];

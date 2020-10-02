@@ -114,7 +114,7 @@ You can group the options with the `groupBy` prop. If you do so, make sure that 
 高度な利用方法のために、 `useAutocomplete()` hooksがあります。 JSXのレンダリングに関連する値以外は、Autocompleteコンポーネントとほぼ同じ値をとります。 Autocompleteコンポーネントは内部でこのhookを使用しています。
 
 ```jsx
-import useAutocomplete from '@material-ui/lab/useAutocomplete';
+import useAutocomplete from '@material-ui/core/useAutocomplete';
 ```
 
 - [4.5 kB gzipped](/size-snapshot).
@@ -220,7 +220,7 @@ GitHubのラベルピッカーを再現したデモです。
 `filterOptions`に流せるフィルターメソッドを作成できるファクトリーを露出しているコンポーネント デフォルトのフィルター挙動を変更するのに使うことができます。 デフォルトのフィルター挙動を変更するのに使うことができます。
 
 ```js
-import { createFilterOptions } from '@material-ui/lab/Autocomplete';
+import { createFilterOptions } from '@material-ui/core/Autocomplete';
 ```
 
 ### `createFilterOptions(config) => filterOptions`
