@@ -1,4 +1,3 @@
-commit_message: "[skip ci]"
 files:
   - source: /docs/src/**/*.md
     ignore:
