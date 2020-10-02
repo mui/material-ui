@@ -1,7 +1,19 @@
 import { expect } from 'chai';
-import { getContents, getHeaders, prepareMarkdown } from './parseMarkdown';
+import { getContents, getDescription, getHeaders, prepareMarkdown } from './parseMarkdown';
 
 describe('parseMarkdown', () => {
+  describe('getDescription', () => {
+    it('trims the description', () => {
+      expect(
+        getDescription(`
+        <p class="description">
+          Some description
+        </p>
+      `),
+      ).to.equal('Some description');
+    });
+  });
+
   describe('getHeaders', () => {
     it('should return a correct result', () => {
       expect(
