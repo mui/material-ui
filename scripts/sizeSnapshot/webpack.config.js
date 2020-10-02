@@ -123,6 +123,13 @@ module.exports = async function webpackConfig() {
     // ideally this would be computed from the bundles peer dependencies
     externals: /^(react|react-dom|react\/jsx-runtime)$/,
     mode: 'production',
+    optimization: {
+      // Otherwise bundles with that include chunks for which we track the size separately are penalized
+      // e.g. without this option `@material-ui/core.legacy` would be smaller since it could concatenate all modules
+      // while `@material-ui/core` had to import the chunks from all the components.
+      // Ideally we could just disable shared chunks but I couldn't figure out how.
+      concatenateModules: false,
+    },
     output: {
       filename: '[name].js',
       path: path.join(__dirname, 'build'),
