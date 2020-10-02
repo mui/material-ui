@@ -6,8 +6,8 @@ export interface ThemeProviderProps<Theme = DefaultTheme> {
 }
 
 /**
- * It makes the `theme` available down the React tree.
- * This component should preferably be used at **the root of your component tree**.
+ * This component makes the `theme` available down the React tree.
+ * It should preferably be used at **the root of your component tree**.
  * API:
  *
  * - [ThemeProvider API](https://material-ui.com/api/theme-provider/)
