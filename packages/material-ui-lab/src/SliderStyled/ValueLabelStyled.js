@@ -44,8 +44,7 @@ const ValueLabelRoot = experimentalStyled(
     backgroundColor: '#6e6e6e',
     borderRadius: 2,
     position: 'relative',
-    left: '-50%'
-
+    left: '-50%',
   },
   '& .MuiSlider-valueLabelArrow': {
     position: 'absolute',
@@ -72,7 +71,7 @@ const ValueLabelRoot = experimentalStyled(
   '& .MuiSlider-valueLabelLabel': {
     color: props.theme.palette.common.white,
     padding: '8px 12px',
-    whiteSpace: 'nowrap'
+    whiteSpace: 'nowrap',
   },
 }));
 

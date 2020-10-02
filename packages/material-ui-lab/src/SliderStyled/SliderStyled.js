@@ -114,7 +114,7 @@ const SliderRoot = experimentalStyled(
     ...(props.styleProps.orientation === 'vertical' && {
       height: '100%',
       width: 4,
-      marginLeft: 1
+      marginLeft: 1,
     }),
     ...(props.styleProps.track === 'inverted' && {
       opacity: 1,
