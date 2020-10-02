@@ -142,7 +142,7 @@ export interface SelectProps<T = unknown>
    * @param {any} value The `value` provided to the component.
    * @returns {ReactNode}
    */
-  renderValue?: (value: SelectProps<T>['value']) => React.ReactNode;
+  renderValue?: (value: T) => React.ReactNode;
   /**
    * Props applied to the clickable div element.
    */
@@ -163,7 +163,7 @@ export interface SelectProps<T = unknown>
   variant?: 'standard' | 'outlined' | 'filled';
 }
 
-export type SelectClassKey = keyof NonNullable<SelectProps<any>['classes']>;
+export type SelectClassKey = keyof NonNullable<SelectProps['classes']>;
 
 /**
  *

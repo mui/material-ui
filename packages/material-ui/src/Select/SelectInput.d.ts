@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { MenuProps } from '../Menu';
 
-export interface SelectInputProps<T> {
+export interface SelectInputProps<T = unknown> {
   autoFocus?: boolean;
   autoWidth: boolean;
   disabled?: boolean;
@@ -30,6 +30,6 @@ export interface SelectInputProps<T> {
   variant?: 'standard' | 'outlined' | 'filled';
 }
 
-declare const SelectInput: React.ComponentType<SelectInputProps<any>>;
+declare const SelectInput: React.ComponentType<SelectInputProps>;
 
 export default SelectInput;
