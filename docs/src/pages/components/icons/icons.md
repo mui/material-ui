@@ -60,7 +60,7 @@ Import icons using one of these two options:
   import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
   ```
 
-The safest for bundle size is Option 1, but soem developers prefer Option 2.
+The safest for bundle size is Option 1, but some developers prefer Option 2.
 Make sure you follow the [minimizing bundle size guide](/guides/minimizing-bundle-size/#option-2) before using the second approach.
 
 Each Material icon also has a "theme": Filled (default), Outlined, Rounded, Two tone, and Sharp. To import the icon component with a theme other than default, append the theme name to the icon name. For example `@material-ui/icons/Delete` icon with:
