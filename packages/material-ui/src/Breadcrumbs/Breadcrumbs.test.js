@@ -31,7 +31,7 @@ describe('<Breadcrumbs />', () => {
     testComponentPropWith: 'div',
   }));
 
-  it('should render inaccessible seperators between each listitem', () => {
+  it('should render inaccessible separators between each listitem', () => {
     const { getAllByRole, getByRole } = render(
       <Breadcrumbs>
         <span>first</span>
