@@ -166,7 +166,7 @@ module.exports = {
     }
 
     const l10nPRInNetlify = /l10n_/.test(process.env.BRANCH) && process.env.NETLIFY === 'true';
-    console.log(process.env.BRANCH);
+    console.log('branch: "%s"', process.env.BRANCH);
     // We want to speed-up the build of pull requests.
     // For crowdin PRs we want to build all locales for testing.
     if (process.env.PULL_REQUEST === 'true' && !l10nPRInNetlify) {
