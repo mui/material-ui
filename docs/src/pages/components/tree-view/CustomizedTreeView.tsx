@@ -1,7 +1,7 @@
 import * as React from 'react';
 import SvgIcon, { SvgIconProps } from '@material-ui/core/SvgIcon';
 import {
-  fade,
+  alpha,
   makeStyles,
   withStyles,
   Theme,
@@ -74,7 +74,7 @@ const StyledTreeItem = withStyles((theme: Theme) =>
     group: {
       marginLeft: 15,
       paddingLeft: 18,
-      borderLeft: `1px dashed ${fade(theme.palette.text.primary, 0.4)}`,
+      borderLeft: `1px dashed ${alpha(theme.palette.text.primary, 0.4)}`,
     },
   }),
 )((props: TreeItemProps) => (

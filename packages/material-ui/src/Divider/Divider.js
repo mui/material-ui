@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useThemeVariants } from '@material-ui/styles';
 import withStyles from '../styles/withStyles';
-import { fade } from '../styles/colorManipulator';
+import { alpha } from '../styles/colorManipulator';
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
@@ -30,7 +30,7 @@ export const styles = (theme) => ({
   fullWidth: {},
   /* Styles applied to the root element if `light={true}`. */
   light: {
-    borderColor: fade(theme.palette.divider, 0.08),
+    borderColor: alpha(theme.palette.divider, 0.08),
   },
   /* Styles applied to the root element if `variant="middle"`. */
   middle: {

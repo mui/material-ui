@@ -221,7 +221,7 @@ export function emphasize(color, coefficient = 0.15) {
  * @param {number} value - value to set the alpha channel to in the range 0 -1
  * @returns {string} A CSS color string. Hex input values are returned as rgb
  */
-export function fade(color, value) {
+export function alpha(color, value) {
   color = decomposeColor(color);
   value = clamp(value);
 

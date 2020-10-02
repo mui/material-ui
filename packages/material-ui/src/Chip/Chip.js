@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { useThemeVariants } from '@material-ui/styles';
 import CancelIcon from '../internal/svg-icons/Cancel';
 import withStyles from '../styles/withStyles';
-import { emphasize, fade } from '../styles/colorManipulator';
+import { emphasize, alpha } from '../styles/colorManipulator';
 import useForkRef from '../utils/useForkRef';
 import unsupportedProp from '../utils/unsupportedProp';
 import capitalize from '../utils/capitalize';
@@ -13,7 +13,7 @@ import ButtonBase from '../ButtonBase';
 export const styles = (theme) => {
   const backgroundColor =
     theme.palette.mode === 'light' ? theme.palette.grey[300] : theme.palette.grey[700];
-  const deleteIconColor = fade(theme.palette.text.primary, 0.26);
+  const deleteIconColor = alpha(theme.palette.text.primary, 0.26);
 
   return {
     /* Styles applied to the root element. */
@@ -131,7 +131,7 @@ export const styles = (theme) => {
         theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
       }`,
       '&$focusVisible, $clickable&:hover': {
-        backgroundColor: fade(theme.palette.text.primary, theme.palette.action.hoverOpacity),
+        backgroundColor: alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
       },
       '& $avatar': {
         marginLeft: 4,
@@ -159,7 +159,7 @@ export const styles = (theme) => {
       color: theme.palette.primary.main,
       border: `1px solid ${theme.palette.primary.main}`,
       '&$focusVisible, $clickable&:hover': {
-        backgroundColor: fade(theme.palette.primary.main, theme.palette.action.hoverOpacity),
+        backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.hoverOpacity),
       },
     },
     /* Styles applied to the root element if `variant="outlined"` and `color="secondary"`. */
@@ -167,7 +167,7 @@ export const styles = (theme) => {
       color: theme.palette.secondary.main,
       border: `1px solid ${theme.palette.secondary.main}`,
       '&$focusVisible, $clickable&:hover': {
-        backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
+        backgroundColor: alpha(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
       },
     },
     // TODO v5: remove
@@ -220,7 +220,7 @@ export const styles = (theme) => {
       cursor: 'pointer',
       margin: '0 5px 0 -6px',
       '&:hover': {
-        color: fade(deleteIconColor, 0.4),
+        color: alpha(deleteIconColor, 0.4),
       },
     },
     /* Styles applied to the `deleteIcon` element if `size="small"`. */
@@ -231,28 +231,28 @@ export const styles = (theme) => {
     },
     /* Styles applied to the deleteIcon element if `color="primary"` and `variant="filled"`. */
     deleteIconColorPrimary: {
-      color: fade(theme.palette.primary.contrastText, 0.7),
+      color: alpha(theme.palette.primary.contrastText, 0.7),
       '&:hover, &:active': {
         color: theme.palette.primary.contrastText,
       },
     },
     /* Styles applied to the deleteIcon element if `color="secondary"` and `variant="filled"`. */
     deleteIconColorSecondary: {
-      color: fade(theme.palette.secondary.contrastText, 0.7),
+      color: alpha(theme.palette.secondary.contrastText, 0.7),
       '&:hover, &:active': {
         color: theme.palette.secondary.contrastText,
       },
     },
     /* Styles applied to the deleteIcon element if `color="primary"` and `variant="outlined"`. */
     deleteIconOutlinedColorPrimary: {
-      color: fade(theme.palette.primary.main, 0.7),
+      color: alpha(theme.palette.primary.main, 0.7),
       '&:hover, &:active': {
         color: theme.palette.primary.main,
       },
     },
     /* Styles applied to the deleteIcon element if `color="secondary"` and `variant="outlined"`. */
     deleteIconOutlinedColorSecondary: {
-      color: fade(theme.palette.secondary.main, 0.7),
+      color: alpha(theme.palette.secondary.main, 0.7),
       '&:hover, &:active': {
         color: theme.palette.secondary.main,
       },

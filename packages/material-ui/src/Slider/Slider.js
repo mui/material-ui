@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import useTheme from '../styles/useTheme';
-import { fade, lighten, darken } from '../styles/colorManipulator';
+import { alpha, lighten, darken } from '../styles/colorManipulator';
 import useIsFocusVisible from '../utils/useIsFocusVisible';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
 import ownerDocument from '../utils/ownerDocument';
@@ -273,13 +273,13 @@ export const styles = (theme) => ({
       bottom: -15,
     },
     '&:hover, &$focusVisible': {
-      boxShadow: `0px 0px 0px 8px ${fade(theme.palette.primary.main, 0.16)}`,
+      boxShadow: `0px 0px 0px 8px ${alpha(theme.palette.primary.main, 0.16)}`,
       '@media (hover: none)': {
         boxShadow: 'none',
       },
     },
     '&$active': {
-      boxShadow: `0px 0px 0px 14px ${fade(theme.palette.primary.main, 0.16)}`,
+      boxShadow: `0px 0px 0px 14px ${alpha(theme.palette.primary.main, 0.16)}`,
     },
     '&$disabled': {
       width: 8,
@@ -306,10 +306,10 @@ export const styles = (theme) => ({
   /* Styles applied to the thumb element if `color="secondary"`. */
   thumbColorSecondary: {
     '&$focusVisible,&:hover': {
-      boxShadow: `0px 0px 0px 8px ${fade(theme.palette.secondary.main, 0.16)}`,
+      boxShadow: `0px 0px 0px 8px ${alpha(theme.palette.secondary.main, 0.16)}`,
     },
     '&$active': {
-      boxShadow: `0px 0px 0px 14px ${fade(theme.palette.secondary.main, 0.16)}`,
+      boxShadow: `0px 0px 0px 14px ${alpha(theme.palette.secondary.main, 0.16)}`,
     },
   },
   /* Pseudo-class applied to the thumb element if it's active. */

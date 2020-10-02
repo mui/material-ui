@@ -196,6 +196,20 @@ const theme = createMuitheme({
 });
 ```
 
+### Styles
+
+- Renamed `fade` to `alpha` to better describe the functinality of the utility.
+
+```diff
+- import { fade } from '@material-ui/core/styles';
++ import { alpha } from '@material-ui/core/styles';
+
+const classes = makeStyles(theme => ({
+-  backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
++  backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+}));
+```
+
 ### Alert
 
 - Move the component from the lab to the core. The component is now stable.

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-  fade,
+  alpha,
   withStyles,
   Theme,
   createStyles,
@@ -27,7 +27,7 @@ const PurpleSwitch = withStyles((theme: Theme) =>
       '&$checked': {
         color: purple[500],
         '&:hover': {
-          backgroundColor: fade(purple[500], theme.palette.action.hoverOpacity),
+          backgroundColor: alpha(purple[500], theme.palette.action.hoverOpacity),
         },
       },
       '&$checked + $track': {

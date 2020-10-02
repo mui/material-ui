@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import Collapse from '@material-ui/core/Collapse';
-import { fade, withStyles } from '@material-ui/core/styles';
+import { alpha, withStyles } from '@material-ui/core/styles';
 import { ownerDocument, useForkRef, unsupportedProp } from '@material-ui/core/utils';
 import TreeViewContext from '../TreeView/TreeViewContext';
 import { DescendantProvider, useDescendant } from '../TreeView/descendants';
@@ -45,19 +45,19 @@ export const styles = (theme) => ({
       backgroundColor: theme.palette.action.focus,
     },
     '&$selected': {
-      backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+      backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
       '&:hover': {
-        backgroundColor: fade(
+        backgroundColor: alpha(
           theme.palette.primary.main,
           theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
         ),
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
-          backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+          backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
         },
       },
       '&$focused': {
-        backgroundColor: fade(
+        backgroundColor: alpha(
           theme.palette.primary.main,
           theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
         ),
