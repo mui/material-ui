@@ -250,7 +250,7 @@ For more details, take a look at [why GitHub migrated from font icons to SVG ico
 
 ## Accessibility
 
-Icons can convey all sorts of meaningful information, so it’s important to ensure the are accessible wher appropriate.
+Icons can convey all sorts of meaningful information, so it’s important to ensure they are accessible where appropriate.
 There are two use cases you’ll want to consider:
 
 - **Decorative Icons** that are only being used for visual or branding reinforcement.
