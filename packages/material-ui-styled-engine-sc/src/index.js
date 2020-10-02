@@ -10,3 +10,5 @@ export default function styled(tag, options) {
 
   return scStyled(tag);
 }
+
+export { ThemeContext } from 'styled-components';

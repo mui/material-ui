@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useThemeProps, muiStyled } from '@material-ui/core/styles';
+import { useThemeProps, experimentalStyled } from '@material-ui/core/styles';
 import ValueLabelUnstyled from '../SliderUnstyled/ValueLabelUnstyled';
 
 const overridesResolver = (_, styles) => {
@@ -16,7 +16,7 @@ const overridesResolver = (_, styles) => {
   return styleOverrides;
 };
 
-const ValueLabelRoot = muiStyled(
+const ValueLabelRoot = experimentalStyled(
   'span',
   {},
   { muiName: 'PrivateValueLabel', overridesResolver },
