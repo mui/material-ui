@@ -28,7 +28,7 @@ const productionPlugins = [
 ];
 
 module.exports = function getBabelConfig(api) {
-  const useESModules = api.env(['legacy', 'modern', 'stable', 'production-umd']);
+  const useESModules = api.env(['legacy', 'modern', 'stable']);
 
   const presets = [
     [
