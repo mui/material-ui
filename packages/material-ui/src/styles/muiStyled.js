@@ -101,7 +101,7 @@ const muiStyled = (tag, options, muiOptions) => {
       return variantsResolver(props, getVariantStyles(name, theme), theme, name);
     });
 
-    if (muiOptions && muiOptions.useSystemProps) {
+    if (muiOptions && muiOptions.addSystemProps) {
       styles.push(systemStyleFunction);
     }
 

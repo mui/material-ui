@@ -51,7 +51,7 @@ const overridesResolver = (props, styles, name) => {
 const SliderRoot = muiStyled(
   'span',
   {},
-  { muiName: 'MuiSlider', overridesResolver, useSystemProps: true },
+  { muiName: 'MuiSlider', overridesResolver, addSystemProps: true },
 )((props) => ({
   height: 2,
   width: '100%',

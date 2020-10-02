@@ -181,6 +181,7 @@ export interface StyledOptions {
 interface MuiStyledOptions<Theme extends object = any> {
   muiName: string;
   overridesResolver?: (props: any, styles: string | object, name: string) => string | object;
+  addSystemProps?: boolean;
 }
 
 export interface CreateStyled<Theme extends object = any> {
