@@ -165,8 +165,11 @@ module.exports = {
       });
     }
 
+    const l10nPRInNetlify = /l10n_/.test(process.env.BRANCH) && process.env.NETLIFY === 'true';
+    console.log(process.env.BRANCH);
     // We want to speed-up the build of pull requests.
-    if (process.env.PULL_REQUEST === 'true') {
+    // For crowdin PRs we want to build all locales for testing.
+    if (process.env.PULL_REQUEST === 'true' && !l10nPRInNetlify) {
       // eslint-disable-next-line no-console
       console.log('Considering only English for SSR');
       traverse(pages, 'en');
