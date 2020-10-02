@@ -27,7 +27,10 @@ const PurpleSwitch = withStyles((theme: Theme) =>
       '&$checked': {
         color: purple[500],
         '&:hover': {
-          backgroundColor: alpha(purple[500], theme.palette.action.hoverOpacity),
+          backgroundColor: alpha(
+            purple[500],
+            theme.palette.action.hoverOpacity,
+          ),
         },
       },
       '&$checked + $track': {
