@@ -22,7 +22,7 @@ InnerThemeProvider.propTypes = {
 };
 
 /**
- * It makes the `theme` available down the React tree.
+ * This component makes the `theme` available down the React tree.
  * This component should preferably be used at **the root of your component tree**.
  */
 function ThemeProvider(props) {
