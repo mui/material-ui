@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { green } from '@material-ui/core/colors';
 import { createSvgIcon } from '@material-ui/core/utils';
 
 const useStyles = makeStyles((theme) => ({
@@ -16,17 +15,13 @@ const HomeIcon = createSvgIcon(
   'Home',
 );
 
-export default function SvgIconsColor() {
+export default function CreateSvgIcon() {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <HomeIcon />
       <HomeIcon color="primary" />
-      <HomeIcon color="secondary" />
-      <HomeIcon color="action" />
-      <HomeIcon color="disabled" />
-      <HomeIcon style={{ color: green[500] }} />
     </div>
   );
 }
