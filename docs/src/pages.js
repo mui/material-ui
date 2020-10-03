@@ -97,6 +97,28 @@ const pages = [
       },
       {
         pathname: '/components',
+        subheader: '/components/data-grid',
+        children: [
+          {
+            pathname: '/components/data-grid',
+            title: 'Overview',
+          },
+          { pathname: '/components/data-grid/getting-started' },
+          { pathname: '/components/data-grid/columns' },
+          { pathname: '/components/data-grid/rows' },
+          { pathname: '/components/data-grid/filtering', title: '🚧 Filtering' },
+          { pathname: '/components/data-grid/pagination' },
+          { pathname: '/components/data-grid/selection' },
+          { pathname: '/components/data-grid/editing', title: '🚧 Editing' },
+          { pathname: '/components/data-grid/rendering' },
+          { pathname: '/components/data-grid/export', title: '🚧 Export & Import' },
+          { pathname: '/components/data-grid/localization', title: '🚧 Localization' },
+          { pathname: '/components/data-grid/group-pivot', title: '🚧 Group & Pivot' },
+          { pathname: '/components/data-grid/accessibility' },
+        ],
+      },
+      {
+        pathname: '/components',
         subheader: '/components/utils',
         children: [
           { pathname: '/components/click-away-listener' },
@@ -126,48 +148,6 @@ const pages = [
           { pathname: '/components/toggle-button' },
           { pathname: '/components/tree-view' },
         ],
-      },
-      {
-        pathname: '/components',
-        subheader: '/components/data-grid',
-        children:
-          process.env.CONTEXT === 'production'
-            ? [
-                {
-                  pathname: '/components/data-grid',
-                  title: 'Overview',
-                },
-                { pathname: '/components/data-grid/getting-started' },
-                { pathname: '/components/data-grid/columns' },
-                { pathname: '/components/data-grid/rows' },
-                { pathname: '/components/data-grid/filtering', title: '🚧 Filtering' },
-                { pathname: '/components/data-grid/pagination' },
-                { pathname: '/components/data-grid/selection' },
-                { pathname: '/components/data-grid/editing', title: '🚧 Editing' },
-                { pathname: '/components/data-grid/rendering' },
-                { pathname: '/components/data-grid/export', title: '🚧 Export & Import' },
-                { pathname: '/components/data-grid/localization', title: '🚧 Localization' },
-                { pathname: '/components/data-grid/group-pivot', title: '🚧 Group & Pivot' },
-                { pathname: '/components/data-grid/accessibility' },
-              ]
-            : [
-                {
-                  pathname: '/components/data-grid',
-                  title: 'Overview',
-                },
-                { pathname: '/components/data-grid/getting-started' },
-                { pathname: '/components/data-grid/columns' },
-                { pathname: '/components/data-grid/rows' },
-                { pathname: '/components/data-grid/filtering', title: '🚧 Filtering' },
-                { pathname: '/components/data-grid/pagination' },
-                { pathname: '/components/data-grid/selection' },
-                { pathname: '/components/data-grid/editing', title: '🚧 Editing' },
-                { pathname: '/components/data-grid/rendering' },
-                { pathname: '/components/data-grid/export', title: '🚧 Export & Import' },
-                { pathname: '/components/data-grid/localization', title: '🚧 Localization' },
-                { pathname: '/components/data-grid/group-pivot', title: '🚧 Group & Pivot' },
-                { pathname: '/components/data-grid/accessibility' },
-              ],
       },
     ],
   },
