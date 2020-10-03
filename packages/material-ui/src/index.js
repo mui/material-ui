@@ -348,6 +348,12 @@ export * from './TextField';
 export { default as TextareaAutosize } from './TextareaAutosize';
 export * from './TextareaAutosize';
 
+export { default as ToggleButton } from './ToggleButton';
+export * from './ToggleButton';
+
+export { default as ToggleButtonGroup } from './ToggleButtonGroup';
+export * from './ToggleButtonGroup';
+
 export { default as Toolbar } from './Toolbar';
 export * from './Toolbar';
 

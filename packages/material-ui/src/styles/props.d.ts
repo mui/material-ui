@@ -106,6 +106,8 @@ import { TableFooterProps } from '../TableFooter';
 import { TabProps } from '../Tab';
 import { TabsProps } from '../Tabs';
 import { TextFieldProps } from '../TextField';
+import { ToggleButtonProps } from '../ToggleButton';
+import { ToggleButtonGroupProps } from '../ToggleButtonGroup';
 import { ToolbarProps } from '../Toolbar';
 import { TooltipProps } from '../Tooltip';
 import { TouchRippleProps } from '../ButtonBase/TouchRipple';
@@ -224,6 +226,8 @@ export interface ComponentsPropsList {
   MuiTableSortLabel: TableSortLabelProps;
   MuiTabs: TabsProps;
   MuiTextField: TextFieldProps;
+  MuiToggleButton: ToggleButtonProps;
+  MuiToggleButtonGroup: ToggleButtonGroupProps;
   MuiToolbar: ToolbarProps;
   MuiTooltip: TooltipProps;
   MuiTouchRipple: TouchRippleProps;

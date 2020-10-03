@@ -765,6 +765,17 @@ const theme = createMuitheme({
   +<TextareAutosize minRows={1}>
   ```
 
+### ToggleButton
+
+- Move the component from the lab to the core. The component is now stable.
+
+  ```diff
+  -import ToggleButton from '@material-ui/lab/ToggleButton';
+  -import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+  +import ToggleButton from '@material-ui/core/ToggleButton';
+  +import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
+  ```
+
 ### Typography
 
 - Replace the `srOnly` prop so as to not duplicate the capabilities of [System](https://material-ui.com/system/basics/):
