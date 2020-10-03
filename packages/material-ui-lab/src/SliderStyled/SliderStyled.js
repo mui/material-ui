@@ -173,16 +173,14 @@ const SliderRoot = muiStyled(
       ':hover': {
         boxShadow: 'none',
       },
+      ...(props.styleProps.orientation === 'vertical' && {
+        marginLeft: -3,
+        marginBottom: -4,
+      }),
     },
     ...(props.styleProps.orientation === 'vertical' && {
       marginLeft: -5,
       marginBottom: -6,
-    }),
-    ...(props.styleProps.orientation === 'vertical' && {
-      '&.Mui-disabled': {
-        marginLeft: -3,
-        marginBottom: -4,
-      },
     }),
     ...(props.styleProps.color === 'secondary' && {
       ':hover': {
