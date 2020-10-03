@@ -31,7 +31,7 @@ npm install @material-ui/icons@next
 yarn add @material-ui/icons@next
 ```
 
-These components use the Material-UI SvgIcon component to render the SVG path for each icon, and so they have a peer-dependency on the `next` release of Material-UI.
+These components use the Material-UI `SvgIcon` component to render the SVG path for each icon, and so have a peer-dependency on `@materialui/core`.
 
 If you aren't already using Material-UI in your project, you can add it with:
 
