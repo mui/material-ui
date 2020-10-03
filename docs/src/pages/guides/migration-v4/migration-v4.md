@@ -213,7 +213,9 @@ const theme = createMuitheme({
 
   ```diff
   -import Autocomplete from '@material-ui/lab/Autocomplete';
+  -import useAutocomplete  from '@material-ui/lab/useAutocomplete';
   +import Autocomplete from '@material-ui/core/Autocomplete';
+  +import useAutoComplete from '@material-ui/core/useAutocomplete';
   ```
 
 ### Avatar
@@ -491,7 +493,11 @@ const theme = createMuitheme({
 
   ```diff
   -import Pagination from '@material-ui/lab/Pagination';
+  -import PaginationItem from '@material-ui/lab/PaginationItem';
+  -import { usePagination } from '@material-ui/lab/Pagination';
   +import Pagination from '@material-ui/core/Pagination';
+  +import PaginationItem from '@material-ui/core/PaginationItem';
+  +import usePagination from '@material-ui/core/usePagination';
   ```
 
 - Rename `round` to `circular` for consistency. The possible values should be adjectives, not nouns:
@@ -502,13 +508,6 @@ const theme = createMuitheme({
   ```
 
 ### PaginationItem
-
-- Move the component from the lab to the core. The component is now stable.
-
-  ```diff
-  -import PaginationItem from '@material-ui/lab/PaginationItem';
-  +import PaginationItem from '@material-ui/core/PaginationItem';
-  ```
 
 - Rename `round` to `circular` for consistency. The possible values should be adjectives, not nouns:
 
@@ -784,22 +783,4 @@ const theme = createMuitheme({
 
   -<Typography variant="srOnly">Create a user</Typography>
   +<Span>Create a user</Span>
-  ```
-
-### useAutocomplete
-
-- Move the hook from the lab to the core. It is now stable.
-
-  ```diff
-  -import useAutocomplete  from '@material-ui/lab/useAutocomplete';
-  +import useAutoComplete from '@material-ui/core/useAutocomplete';
-  ```
-
-### usePagination
-
-- Move the hook from the lab to the core. It is now stable.
-
-  ```diff
-  -import { usePagination } from '@material-ui/lab/Pagination';
-  +import usePagination from '@material-ui/core/usePagination';
   ```
