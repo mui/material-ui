@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { makeStyles, fade } from '@material-ui/core/styles';
 import Collapse from '@material-ui/core/Collapse';
-import { createSvgIcon } from '@material-ui/core/utils';
+import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import Link from 'docs/src/modules/components/Link';
 
 const useStyles = makeStyles((theme) => ({
@@ -69,8 +69,6 @@ const useStyles = makeStyles((theme) => ({
   active: {},
 }));
 
-const ArrowRight = createSvgIcon(<path d="M10 17l5-5-5-5v10z" />, 'ArrowRight');
-
 export default function AppDrawerNavItem(props) {
   const {
     children,
@@ -122,7 +120,7 @@ export default function AppDrawerNavItem(props) {
         onClick={handleClick}
         style={style}
       >
-        <ArrowRight className={open ? classes.open : ''} />
+        <ArrowRightIcon className={open ? classes.open : ''} />
         {title}
       </button>
       <Collapse in={open} timeout="auto" unmountOnExit>
