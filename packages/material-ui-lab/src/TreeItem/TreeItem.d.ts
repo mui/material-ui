@@ -81,6 +81,7 @@ export interface TreeItemProps
   collapseIcon?: React.ReactNode;
   /**
    * The component used for the content node.
+   * @default TreeItemContent
    */
   ContentComponent?: React.ComponentType<ContentProps>;
   /**
