@@ -3,6 +3,9 @@ import * as PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useSelector } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
+import IconButton from '@material-ui/core/IconButton';
+import ThumbUpIcon from '@material-ui/icons/ThumbUpAlt';
+import ThumbDownIcon from '@material-ui/icons/ThumbDownAlt';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Button from '@material-ui/core/Button';
@@ -49,6 +52,34 @@ function findIndex(array, comp) {
 
   return -1;
 }
+
+async function postData(data = {}) {
+  const URL = 'https://170pen8h6j.execute-api.us-east-1.amazonaws.com/dev/rating';
+
+  const response = await fetch(URL, {
+    method: 'POST',
+    mode: 'cors',
+    cache: 'no-cache',
+    credentials: 'omit',
+    headers: {
+      'content-type': 'application/json'
+    },
+    referrerPolicy: 'origin',
+    body: JSON.stringify(data),
+  });
+  console.log('resp', response);
+  // return response.json();
+};
+
+async function rate(page, rating) {
+  console.log(rating);
+  const data = {
+    page,
+    rating,
+    // comment: "Yay!"
+  };
+  console.log(await postData(data))
+};
 
 const styles = (theme) => ({
   root: {
@@ -205,6 +236,14 @@ function MarkdownDocs(props) {
                     ) : (
                       <div />
                     )}
+                    <div>
+                      <IconButton>
+                        <ThumbUpIcon onClick={() => rate(currentPage.pathname, 1)} />
+                      </IconButton>
+                      <IconButton>
+                        <ThumbDownIcon onClick={() => rate(currentPage.pathname, 0)} />
+                      </IconButton>
+                    </div>
                     {nextPage.displayNav === false ? null : (
                       <Button
                         component={Link}
