@@ -22,6 +22,7 @@ const workspaceRoot = path.join(__dirname, '../');
 const reactMode = 'legacy';
 // eslint-disable-next-line no-console
 console.log(`Using React '${reactMode}' mode.`);
+const l10nPRInNetlify = /^l10n_/.test(process.env.HEAD) && process.env.NETLIFY === 'true';
 
 module.exports = {
   typescript: {
@@ -166,7 +167,8 @@ module.exports = {
     }
 
     // We want to speed-up the build of pull requests.
-    if (process.env.PULL_REQUEST === 'true') {
+    // For crowdin PRs we want to build all locales for testing.
+    if (process.env.PULL_REQUEST === 'true' && !l10nPRInNetlify) {
       // eslint-disable-next-line no-console
       console.log('Considering only English for SSR');
       traverse(pages, 'en');

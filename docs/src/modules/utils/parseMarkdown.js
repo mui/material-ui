@@ -6,7 +6,7 @@ import prism from 'docs/src/modules/utils/prism';
 
 const headerRegExp = /---[\r\n]([\s\S]*)[\r\n]---/;
 const titleRegExp = /# (.*)[\r\n]/;
-const descriptionRegExp = /<p class="description">(.*)<\/p>[\r\n]/;
+const descriptionRegExp = /<p class="description">(.*)<\/p>/s;
 const headerKeyValueRegExp = /(.*?): (.*)/g;
 const emptyRegExp = /^\s*$/;
 const notEnglishMarkdownRegExp = /-([a-z]{2})\.md$/;
@@ -78,7 +78,7 @@ export function getTitle(markdown) {
 export function getDescription(markdown) {
   const matches = markdown.match(descriptionRegExp);
 
-  return matches?.[1];
+  return matches?.[1].trim();
 }
 
 /**
