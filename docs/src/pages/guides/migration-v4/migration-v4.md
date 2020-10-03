@@ -397,6 +397,8 @@ const theme = createMuitheme({
   />
   ```
 
+- Remove `display: flex` from AccordionDetails as its too opinionated.
+
 ### Fab
 
 - Rename `round` to `circular` for consistency. The possible values should be adjectives, not nouns:
@@ -491,19 +493,12 @@ const theme = createMuitheme({
 
   ```diff
   -<Pagination shape="round">
-  +<Pagination shape="circular">
-  ```
-
-### PaginationItem
-
-- Rename `round` to `circular` for consistency. The possible values should be adjectives, not nouns:
-
-  ```diff
   -<PaginationItem shape="round">
+  +<Pagination shape="circular">
   +<PaginationItem shape="circular">
   ```
 
-  ### Popover
+### Popover
 
 - The onE\* transition props were removed. Use TransitionProps instead.
 
@@ -652,37 +647,37 @@ const theme = createMuitheme({
 
 - The root component (Paper) was replaced with a div. Stepper no longer has elevation, nor inherits Paper's props. This change is meant to encourage composition.
 
-```diff
--<Stepper elevation={2}>
--  <Step>
--    <StepLabel>Hello world</StepLabel>
--  </Step>
--</Stepper>
-+<Paper square elevation={2}>
-+  <Stepper>
-+    <Step>
-+      <StepLabel>Hello world</StepLabel>
-+    </Step>
-+  </Stepper>
-+<Paper>
-```
+  ```diff
+  -<Stepper elevation={2}>
+  -  <Step>
+  -    <StepLabel>Hello world</StepLabel>
+  -  </Step>
+  -</Stepper>
+  +<Paper square elevation={2}>
+  +  <Stepper>
+  +    <Step>
+  +      <StepLabel>Hello world</StepLabel>
+  +    </Step>
+  +  </Stepper>
+  +<Paper>
+  ```
 
 - Remove the built-in 24px padding.
 
-```diff
--<Stepper>
--  <Step>
--    <StepLabel>Hello world</StepLabel>
--  </Step>
--</Stepper>
-+<Stepper style={{ padding: 24 }}>
-+  <Step>
-+    <StepLabel>Hello world</StepLabel>
-+  </Step>
-+</Stepper>
-```
+  ```diff
+  -<Stepper>
+  -  <Step>
+  -    <StepLabel>Hello world</StepLabel>
+  -  </Step>
+  -</Stepper>
+  +<Stepper style={{ padding: 24 }}>
+  +  <Step>
+  +    <StepLabel>Hello world</StepLabel>
+  +  </Step>
+  +</Stepper>
+  ```
 
-### TablePagination
+### Table
 
 - The customization of the table pagination's actions labels must be done with the `getItemAriaLabel` prop. This increases consistency with the `Pagination` component.
 
@@ -707,14 +702,14 @@ const theme = createMuitheme({
   - The `scrollButtons` prop controls when the scroll buttons are displayed depending on the space available.
   - The `allowScrollButtonsMobile` prop removes the CSS media query that systematically hide the scroll buttons on mobile.
 
-```diff
--<Tabs scrollButtons="on" />
--<Tabs scrollButtons="desktop" />
--<Tabs scrollButtons="off" />
-+<Tabs scrollButtons allowScrollButtonsMobile />
-+<Tabs scrollButtons />
-+<Tabs scrollButtons={false} />
-```
+  ```diff
+  -<Tabs scrollButtons="on" />
+  -<Tabs scrollButtons="desktop" />
+  -<Tabs scrollButtons="off" />
+  +<Tabs scrollButtons allowScrollButtonsMobile />
+  +<Tabs scrollButtons />
+  +<Tabs scrollButtons={false} />
+  ```
 
 ### TextField
 
