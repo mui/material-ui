@@ -917,6 +917,20 @@ describe('<Tooltip />', () => {
         'Material-UI: A component is changing the uncontrolled open state of Tooltip to be controlled.',
       );
     });
+
+    it('should warn when not forwarding props', () => {
+      const BrokenButton = React.forwardRef((props, ref) => <button ref={ref}>Hello World</button>);
+
+      expect(() => {
+        render(
+          <Tooltip title="Hello World">
+            <BrokenButton />
+          </Tooltip>,
+        );
+      }).toErrorDev(
+        'The `children` component of the Tooltip is not forwarding its props correctly.',
+      );
+    });
   });
 
   it('should use the same popper.js instance between two renders', () => {

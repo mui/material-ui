@@ -464,7 +464,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
-      if (childNode && !childrenProps['data-mui']) {
+      if (childNode && !childNode.getAttribute('data-mui')) {
         console.error(
           [
             'Material-UI: The `children` component of the Tooltip is not forwarding its props correctly.',
@@ -472,7 +472,6 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
           ].join('\n'),
         );
       }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [childNode]);
   }
 
