@@ -25,10 +25,6 @@ export default function CreateSvgIcon() {
     <div className={classes.root}>
       <HomeIcon />
       <HomeIcon color="primary" />
-      <HomeIcon color="secondary" />
-      <HomeIcon color="action" />
-      <HomeIcon color="disabled" />
-      <HomeIcon style={{ color: green[500] }} />
     </div>
   );
 }
