@@ -226,6 +226,7 @@ const SliderRoot = muiStyled(
     '@media (pointer: coarse)': {
       top: 40,
       ...(props.styleProps.orientation === 'vertical' && {
+        top: 'auto',
         left: 31,
       }),
     },
