@@ -81,7 +81,7 @@ CustomContent.propTypes = {
   /**
    * Override or extend the styles applied to the component.
    */
-  classes: PropTypes.object,
+  classes: PropTypes.object.isRequired,
   /**
    * The icon to display next to the tree node's label. Either a parent or end icon.
    */

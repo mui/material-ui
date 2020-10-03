@@ -305,6 +305,7 @@ TreeItem.propTypes = {
   collapseIcon: PropTypes.node,
   /**
    * The component used for the content node.
+   * @default TreeItemContent
    */
   ContentComponent: elementTypeAcceptingRef,
   /**
