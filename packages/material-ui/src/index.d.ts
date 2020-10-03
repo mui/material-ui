@@ -305,6 +305,12 @@ export * from './NoSsr';
 export { default as OutlinedInput } from './OutlinedInput';
 export * from './OutlinedInput';
 
+export { default as Pagination } from './Pagination';
+export * from './Pagination';
+
+export { default as PaginationItem } from './PaginationItem';
+export * from './PaginationItem';
+
 export { default as Paper } from './Paper';
 export * from './Paper';
 

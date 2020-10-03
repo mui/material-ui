@@ -68,6 +68,8 @@ import { ModalProps } from '../Modal';
 import { NativeSelectProps } from '../NativeSelect';
 import { Options as useMediaQueryOptions } from '../useMediaQuery';
 import { OutlinedInputProps } from '../OutlinedInput';
+import { PaginationProps } from '../Pagination';
+import { PaginationItemProps } from '../PaginationItem';
 import { PaperProps } from '../Paper';
 import { PopoverProps } from '../Popover';
 import { RadioGroupProps } from '../RadioGroup';
@@ -184,6 +186,8 @@ export interface ComponentsPropsList {
   MuiModal: ModalProps;
   MuiNativeSelect: NativeSelectProps;
   MuiOutlinedInput: OutlinedInputProps;
+  MuiPagination: PaginationProps;
+  MuiPaginationItem: PaginationItemProps;
   MuiPaper: PaperProps;
   MuiPopover: PopoverProps;
   MuiRadio: RadioProps;

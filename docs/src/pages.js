@@ -57,6 +57,7 @@ const pages = [
           { pathname: '/components/drawers' },
           { pathname: '/components/links' },
           { pathname: '/components/menus' },
+          { pathname: '/components/pagination' },
           { pathname: '/components/speed-dial' },
           { pathname: '/components/steppers' },
           { pathname: '/components/tabs' },
@@ -121,9 +122,6 @@ const pages = [
         subheader: '/components/lab',
         children: [
           { pathname: '/components/about-the-lab' },
-          { pathname: '/components/pagination' },
-          { pathname: '/components/skeleton' },
-          { pathname: '/components/rating' },
           { pathname: '/components/slider-styled' },
           { pathname: '/components/timeline' },
           { pathname: '/components/toggle-button' },
