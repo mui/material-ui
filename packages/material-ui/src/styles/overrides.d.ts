@@ -65,6 +65,8 @@ import { MenuItemClassKey } from '../MenuItem';
 import { MobileStepperClassKey } from '../MobileStepper';
 import { NativeSelectClassKey } from '../NativeSelect';
 import { OutlinedInputClassKey } from '../OutlinedInput';
+import { PaginationClassKey } from '../Pagination';
+import { PaginationItemClassKey } from '../PaginationItem';
 import { PaperClassKey } from '../Paper';
 import { PopoverClassKey } from '../Popover';
 import { RadioClassKey } from '../Radio';
@@ -185,6 +187,8 @@ export interface ComponentNameToClassKey {
   MuiMobileStepper: MobileStepperClassKey;
   MuiNativeSelect: NativeSelectClassKey;
   MuiOutlinedInput: OutlinedInputClassKey;
+  MuiPagination: PaginationClassKey;
+  MuiPaginationItem: PaginationItemClassKey;
   MuiPaper: PaperClassKey;
   MuiPopover: PopoverClassKey;
   MuiRadio: RadioClassKey;

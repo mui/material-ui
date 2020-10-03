@@ -231,6 +231,12 @@ export * from './NoSsr';
 export { default as OutlinedInput } from './OutlinedInput';
 export * from './OutlinedInput';
 
+export { default as Pagination } from './Pagination';
+export * from './Pagination';
+
+export { default as PaginationItem } from './PaginationItem';
+export * from './PaginationItem';
+
 export { default as Paper } from './Paper';
 export * from './Paper';
 
@@ -356,6 +362,9 @@ export * from './Unstable_TrapFocus';
 
 export { default as useMediaQuery } from './useMediaQuery';
 export * from './useMediaQuery';
+
+export { default as usePagination } from './usePagination';
+export * from './usePagination';
 
 export { default as useScrollTrigger } from './useScrollTrigger';
 export * from './useScrollTrigger';
