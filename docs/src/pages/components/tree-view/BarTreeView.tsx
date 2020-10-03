@@ -89,7 +89,7 @@ const useContentStyles = makeStyles((theme) =>
 
 const CustomContent = React.forwardRef(function CustomContent(
   props: ContentProps,
-  ref: React.Ref<HTMLDivElement>,
+  ref,
 ) {
   const {
     classes,
@@ -136,7 +136,7 @@ const CustomContent = React.forwardRef(function CustomContent(
       })}
       onClick={handleClick}
       onMouseDown={handleMouseDown}
-      ref={ref}
+      ref={ref as React.Ref<HTMLDivElement>}
     >
       <div className={contentClasses.bar} />
       <div className={classes.iconContainer}>{icon}</div>
