@@ -220,19 +220,19 @@ const SliderRoot = experimentalStyled(
     ...props.theme.typography.body2,
     color: props.theme.palette.text.secondary,
     position: 'absolute',
-    top: 26,
+    top: 34,
     transform: 'translateX(-50%)',
     whiteSpace: 'nowrap',
     ...(props.styleProps.orientation === 'vertical' && {
       top: 'auto',
-      left: 26,
+      left: 34,
       transform: 'translateY(50%)',
     }),
     '@media (pointer: coarse)': {
-      top: 40,
+      top: 48,
       ...(props.styleProps.orientation === 'vertical' && {
         top: 'auto',
-        left: 31,
+        left: 48,
       }),
     },
     '&.MuiSlider-markLabelActive': {
