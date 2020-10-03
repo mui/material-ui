@@ -50,7 +50,7 @@ export interface SelectProps<T = unknown>
   /**
    * The default element value. Use when the component is not controlled.
    */
-  defaultValue?: unknown;
+  defaultValue?: T;
   /**
    * If `true`, a value is displayed even if no items are selected.
    *
@@ -155,7 +155,7 @@ export interface SelectProps<T = unknown>
    * If the value is an object it must have reference equality with the option in order to be selected.
    * If the value is not an object, the string representation must match with the string representation of the option in order to be selected.
    */
-  value?: unknown;
+  value?: T;
   /**
    * The variant to use.
    * @default 'standard'
