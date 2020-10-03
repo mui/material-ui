@@ -253,19 +253,19 @@ For more details, take a look at [why GitHub migrated from font icons to SVG ico
 Icons can convey all sorts of meaningful information, so it’s important to ensure they are accessible where appropriate.
 There are two use cases you’ll want to consider:
 
-- **Decorative Icons** that are only being used for visual or branding reinforcement.
+- **Decorative icons** that are only being used for visual or branding reinforcement.
   If they were removed from the page, users would still understand and be able to use your page.
-- **Semantic Icons** are ones that you’re using to convey meaning, rather than just pure decoration.
+- **Semantic icons** are ones that you’re using to convey meaning, rather than just pure decoration.
   This includes icons without text next to them that are used as interactive controls — buttons, form elements, toggles, etc.
 
-### Decorative Icons
+### Decorative icons
 
 If your icons are purely decorative, you’re already done!
 The `aria-hidden=true` attribute is added so that your icons are properly accessible (invisible).
 
-### Semantic Icons
+### Semantic icons
 
-#### Semantic SVG Icons
+#### Semantic SVG icons
 
 You should include the `titleAccess` prop with a meaningful value.
 The `role="img"` attribute and the `<title>` element are added so that your icons are correctly accessible.
@@ -285,7 +285,7 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 </IconButton>;
 ```
 
-#### Semantic Font Icons
+#### Semantic font icons
 
 You need to provide a text alternative that is only visible to assistive technologies.
 

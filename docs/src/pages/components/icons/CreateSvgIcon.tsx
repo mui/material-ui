@@ -18,7 +18,7 @@ const HomeIcon = createSvgIcon(
   'Home',
 );
 
-export default function SvgIconsColor() {
+export default function CreateSvgIcon() {
   const classes = useStyles();
 
   return (
