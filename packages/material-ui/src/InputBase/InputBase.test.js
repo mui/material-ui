@@ -488,13 +488,13 @@ describe('<InputBase />', () => {
     });
 
     describe('registering input', () => {
-      it("should warn if more than one input is rendered regarless how it's nested", () => {
+      it("should warn if more than one input is rendered regardless how it's nested", () => {
         expect(() => {
           render(
             <FormControl>
               <InputBase />
               <div>
-                {/* should work regarless how it's nested */}
+                {/* should work regardless how it's nested */}
                 <InputBase />
               </div>
             </FormControl>,

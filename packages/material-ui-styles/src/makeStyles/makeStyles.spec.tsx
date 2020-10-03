@@ -122,7 +122,7 @@ import { createStyles, makeStyles } from '@material-ui/styles';
 }
 
 function MyComponent() {
-  // If any generic is provided, inferrence breaks.
+  // If any generic is provided, inference breaks.
   // If the proposal https://github.com/Microsoft/TypeScript/issues/26242 goes through, we can fix this.
   const useStyles = makeStyles<Theme>((theme) => ({
     root: {
@@ -132,6 +132,6 @@ function MyComponent() {
 
   const classes = useStyles();
 
-  // This doesn't fail, because inferrence is broken
+  // This doesn't fail, because inference is broken
   classes.other;
 }

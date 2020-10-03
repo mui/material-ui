@@ -128,7 +128,7 @@ export default function useIsFocusVisible() {
    * Should be called if a blur event is fired
    */
   function handleBlurVisible() {
-    // checking against potential state variable does not suffice if we focus and blur syncronously.
+    // checking against potential state variable does not suffice if we focus and blur synchronously.
     // React wouldn't have time to trigger a re-render so `focusVisible` would be stale.
     // Ideally we would adjust `isFocusVisible(event)` to look at `relatedTarget` for blur events.
     // This doesn't work in IE 11 due to https://github.com/facebook/react/issues/3751
