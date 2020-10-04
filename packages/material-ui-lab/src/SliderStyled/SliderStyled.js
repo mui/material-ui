@@ -125,7 +125,7 @@ const SliderRoot = experimentalStyled(
     ...(props.styleProps.track === 'inverted' && {
       backgroundColor:
         // Same logic as the LinearProgress track color
-        props.theme.palette.type === 'light'
+        props.theme.palette.mode === 'light'
           ? lighten(props.theme.palette.primary.main, 0.62)
           : darken(props.theme.palette.primary.main, 0.5),
     }),
