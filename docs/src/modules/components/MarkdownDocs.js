@@ -11,6 +11,12 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import NoSsr from '@material-ui/core/NoSsr';
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import { exactProp } from '@material-ui/utils';
 import { getCookie, pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import { SOURCE_CODE_ROOT_URL } from 'docs/src/modules/constants';
@@ -27,6 +33,56 @@ import Ad from 'docs/src/modules/components/Ad';
 import AdManager from 'docs/src/modules/components/AdManager';
 import AdGuest from 'docs/src/modules/components/AdGuest';
 import ComponentLinkHeader from 'docs/src/modules/components/ComponentLinkHeader';
+
+function Comment(props) {
+  const { onClose: handleCloseComment, open } = props;
+  const t = useSelector((state) => state.options.t);
+
+  const [value, setValue] = React.useState('');
+
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
+
+  const handleClose = () => {
+    handleCloseComment(value);
+  };
+
+  return (
+    <div>
+      <Dialog
+        open={open}
+        onChange={handleChange}
+        onClose={handleClose}
+        aria-labelledby="form-dialog-title"
+        value={value}
+      >
+        <DialogTitle id="form-dialog-title">{t('ratingFeedback')}</DialogTitle>
+        <DialogContent>
+          <DialogContentText>{t('ratingThanks')}</DialogContentText>
+          <TextField
+            multiline
+            autoFocus
+            variant="outlined"
+            margin="dense"
+            id="comment"
+            fullWidth
+            rows={6}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>{t('cancel')}</Button>
+          <Button variant="outlined" onClick={handleClose}>{t('submit')}</Button>
+        </DialogActions>
+      </Dialog>
+    </div>
+  );
+}
+
+Comment.propTypes = {
+  onClose: PropTypes.func,
+  open: PropTypes.bool,
+};
 
 const markdownComponents = {
   'modules/components/ComponentLinkHeader.js': ComponentLinkHeader,
@@ -86,20 +142,21 @@ function getRatings() {
   if (process.browser) {
     const ratings = getCookie('ratings');
     return ratings && JSON.parse(ratings);
-  };
+  }
   return undefined;
-};
+}
 
 function getColor(pathname, thumb) {
   const ratings = getRatings();
-  
+
   if (thumb === 'up') {
-     return ratings && ratings[pathname] && ratings[pathname].rating === 1 ? 'primary' : undefined;
-  } else if (thumb === 'down') {
-     return ratings && ratings[pathname] && ratings[pathname].rating === 0 ? 'error' : undefined;
+    return ratings && ratings[pathname] && ratings[pathname].rating === 1 ? 'primary' : undefined;
+  }
+  if (thumb === 'down') {
+    return ratings && ratings[pathname] && ratings[pathname].rating === 0 ? 'error' : undefined;
   }
   return undefined;
-};
+}
 
 const styles = (theme) => ({
   root: {
@@ -163,6 +220,7 @@ function MarkdownDocs(props) {
   const nextPage = pageList[currentPageNum + 1];
   const [upColor, setUpColor] = React.useState(getColor(currentPage.pathname, 'up'));
   const [downColor, setDownColor] = React.useState(getColor(currentPage.pathname, 'down'));
+  const [commentOpen, setCommentOpen] = React.useState(false);
 
   function setColor(rating) {
     if (rating === 1) {
@@ -172,22 +230,36 @@ function MarkdownDocs(props) {
       setUpColor(undefined);
       setDownColor('error');
     }
-  };
+  }
 
-  async function rate(page, rating) {
-    setColor(rating);
-
+  async function submitRating(rating, comment) {
+    const page = currentPage.pathname;
     const data = {
       id: getCookie('ratingsId'),
       page,
       rating,
-      // comment: "Yay!"
+      comment,
     };
-  
+
     const result = await postData(data);
     document.cookie = `ratingsId=${result.id};path=/;max-age=31536000`;
     document.cookie = `ratings=${JSON.stringify(await getData(result.id))};path=/;max-age=31536000`;
   }
+
+  const handleClickUp = (rating) => {
+    setColor(rating);
+    submitRating(rating);
+  };
+
+  const handleClickDown = (rating) => {
+    setColor(rating);
+    setCommentOpen(true);
+  };
+
+  const handleCloseComment = (value) => {
+    setCommentOpen(false);
+    submitRating(0, value);
+  };
 
   return (
     <AppFrame>
@@ -262,6 +334,7 @@ function MarkdownDocs(props) {
                 />
               );
             })}
+            <Comment open={commentOpen} onClose={handleCloseComment} />
             <footer className={classes.footer}>
               {!currentPage ||
               currentPage.displayNav === false ||
@@ -285,10 +358,10 @@ function MarkdownDocs(props) {
                     )}
                     <NoSsr>
                       <div>
-                        <IconButton onClick={() => rate(currentPage.pathname, 1)}>
+                        <IconButton disabled={upColor === 'primary'} aria-label={t('voteUp')} onClick={() => handleClickUp(1)}>
                           <ThumbUpIcon color={upColor} />
                         </IconButton>
-                        <IconButton onClick={() => rate(currentPage.pathname, 0)}>
+                        <IconButton disabled={downColor === 'error'} aria-label={t('voteDown')} onClick={() => handleClickDown(0)}>
                           <ThumbDownIcon color={downColor} />
                         </IconButton>
                       </div>
