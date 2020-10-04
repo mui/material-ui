@@ -264,6 +264,9 @@ export * from './ScopedCssBaseline';
 export { default as Select } from './Select';
 export * from './Select';
 
+export { default as Skeleton } from './Skeleton';
+export * from './Skeleton';
+
 export { default as Slide } from './Slide';
 export * from './Slide';
 
