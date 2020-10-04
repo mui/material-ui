@@ -1,5 +1,5 @@
 ---
-title: Фишки, компонент React
+title: React Chip component
 components: Chip
 ---
 
