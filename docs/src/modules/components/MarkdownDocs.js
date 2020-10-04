@@ -121,7 +121,6 @@ function findIndex(array, comp) {
 }
 
 async function postData(data = {}) {
-
   const response = await fetch(RATINGS_URL, {
     method: 'POST',
     mode: 'cors',
@@ -217,7 +216,7 @@ const styles = (theme) => ({
   },
   feedbackMessage: {
     marginRight: 16,
-  }
+  },
 });
 
 function MarkdownDocs(props) {
@@ -359,7 +358,13 @@ function MarkdownDocs(props) {
                     )}
                     <NoSsr>
                       <div>
-                        <Typography variant="subtitle1" component="span" className={classes.feedbackMessage}>{t('ratingMesssage')}</Typography>
+                        <Typography
+                          variant="subtitle1"
+                          component="span"
+                          className={classes.feedbackMessage}
+                        >
+                          {t('ratingMesssage')}
+                        </Typography>
                         <Tooltip title={t('ratingYes')}>
                           <IconButton
                             onClick={handleClickUp}
