@@ -19,8 +19,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Snackbar from '@material-ui/core/Snackbar';
-import { getCookie, pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import { SOURCE_CODE_ROOT_URL } from 'docs/src/modules/constants';
+import { getCookie, pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import Head from 'docs/src/modules/components/Head';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import EditPage from 'docs/src/modules/components/EditPage';
@@ -36,17 +36,20 @@ import AdGuest from 'docs/src/modules/components/AdGuest';
 import ComponentLinkHeader from 'docs/src/modules/components/ComponentLinkHeader';
 
 function Comment(props) {
-  const { onClose: handleCloseComment, open } = props;
+  const { onClose: handleClose, open } = props;
   const t = useSelector((state) => state.options.t);
-
   const [value, setValue] = React.useState('');
 
   const handleChange = (event) => {
     setValue(event.target.value);
   };
 
-  const handleClose = () => {
-    handleCloseComment(value);
+  const handleSubmit = () => {
+    handleClose(value);
+  };
+
+  const handleCancel = () => {
+    handleClose(null);
   };
 
   return (
@@ -54,7 +57,7 @@ function Comment(props) {
       <Dialog
         open={open}
         onChange={handleChange}
-        onClose={handleClose}
+        onClose={handleCancel}
         aria-labelledby="form-dialog-title"
         value={value}
       >
@@ -72,8 +75,8 @@ function Comment(props) {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>{t('cancel')}</Button>
-          <Button variant="outlined" onClick={handleClose}>
+          <Button onClick={handleCancel}>{t('cancel')}</Button>
+          <Button variant="outlined" onClick={handleSubmit}>
             {t('submit')}
           </Button>
         </DialogActions>
@@ -235,16 +238,18 @@ function MarkdownDocs(props) {
     submitRating(currentPage.pathname, 1);
     setSnackbarOpen(true);
   };
-  
+
   const handleClickDown = () => {
-    setCurrentRating(0);
     setCommentOpen(true);
   };
-  
+
   const handleCloseComment = (comment) => {
     setCommentOpen(false);
-    submitRating(currentPage.pathname, 0, comment);
-    setSnackbarOpen(true);
+    if (comment !== null) {
+      setCurrentRating(0);
+      submitRating(currentPage.pathname, 0, comment);
+      setSnackbarOpen(true);
+    }
   };
 
   const handleSnackbarClose = () => {
