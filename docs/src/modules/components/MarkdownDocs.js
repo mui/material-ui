@@ -359,7 +359,7 @@ function MarkdownDocs(props) {
                     )}
                     <NoSsr>
                       <div>
-                        <Typography variant="subtitle1" component="span" className={classes.feedbackMessage}>Was this page helpful?</Typography>
+                        <Typography variant="subtitle1" component="span" className={classes.feedbackMessage}>{t('ratingMesssage')}</Typography>
                         <Tooltip title={t('ratingYes')}>
                           <IconButton
                             onClick={handleClickUp}
