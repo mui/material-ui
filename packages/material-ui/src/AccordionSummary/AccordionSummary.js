@@ -24,7 +24,7 @@ export const styles = (theme) => {
         minHeight: 64,
       },
       '&$focusVisible': {
-        backgroundColor: theme.palette.action.focus,
+        backgroundColor: theme.palette.grey['200'],
       },
       '&$disabled': {
         opacity: theme.palette.action.disabledOpacity,
@@ -48,6 +48,8 @@ export const styles = (theme) => {
     },
     /* Styles applied to the `expandIcon`'s wrapper element. */
     expandIconWrapper: {
+      height: '24px',
+      color: 'rgb(0, 0, 0, 0.38)',
       transform: 'rotate(0deg)',
       transition: theme.transitions.create('transform', transition),
       '&$expanded': {
