@@ -1,5 +1,5 @@
 ---
-title: Divider React component
+title: React Divider component
 components: Divider
 ---
 
