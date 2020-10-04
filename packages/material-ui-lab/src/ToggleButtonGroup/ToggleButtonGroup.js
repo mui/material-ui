@@ -22,4 +22,3 @@ export default React.forwardRef(function DeprecatedToggleButtonGroup(props, ref)
 
   return <ToggleButtonGroup ref={ref} {...props} />;
 });
-
