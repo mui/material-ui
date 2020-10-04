@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { exactProp } from '@material-ui/utils';
 import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
 import ThumbUpIcon from '@material-ui/icons/ThumbUpAlt';
 import ThumbDownIcon from '@material-ui/icons/ThumbDownAlt';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -144,6 +145,19 @@ async function getData(id) {
   return response.json();
 }
 
+async function submitRating(page, rating, comment) {
+  const data = {
+    id: getCookie('ratingsId'),
+    page,
+    rating,
+    comment,
+  };
+
+  const result = await postData(data);
+  document.cookie = `ratingsId=${result.id};path=/;max-age=31536000`;
+  document.cookie = `ratings=${JSON.stringify(await getData(result.id))};path=/;max-age=31536000`;
+}
+
 function getRatings() {
   if (process.browser) {
     const ratings = getCookie('ratings');
@@ -206,10 +220,6 @@ function MarkdownDocs(props) {
   const t = useSelector((state) => state.options.t);
   const userLanguage = useSelector((state) => state.options.userLanguage);
   const { description, location, rendered, title, toc, headers } = docs[userLanguage] || docs.en;
-  if (description === undefined) {
-    throw new Error('Missing description in the page');
-  }
-
   const { activePage, pages } = React.useContext(PageContext);
   const pageList = flattenPages(pages);
   const currentPageNum = findIndex(pageList, (page) => page.pathname === activePage?.pathname);
@@ -220,17 +230,8 @@ function MarkdownDocs(props) {
   const [currentRating, setCurrentRating] = React.useState(getCurrentRating(currentPage.pathname));
   const [snackbarOpen, setSnackbarOpen] = React.useState(false);
 
-  async function submitRating(page, rating, comment) {
-    const data = {
-      id: getCookie('ratingsId'),
-      page,
-      rating,
-      comment,
-    };
-
-    const result = await postData(data);
-    document.cookie = `ratingsId=${result.id};path=/;max-age=31536000`;
-    document.cookie = `ratings=${JSON.stringify(await getData(result.id))};path=/;max-age=31536000`;
+  if (description === undefined) {
+    throw new Error('Missing description in the page');
   }
 
   const handleClickUp = () => {
@@ -353,20 +354,24 @@ function MarkdownDocs(props) {
                     )}
                     <NoSsr>
                       <div>
-                        <IconButton
-                          onClick={handleClickUp}
-                          disabled={currentRating === 1}
-                          aria-label={t('voteUp')}
-                        >
-                          <ThumbUpIcon color={currentRating === 1 ? 'primary' : undefined} />
-                        </IconButton>
-                        <IconButton
-                          onClick={handleClickDown}
-                          disabled={currentRating === 0}
-                          aria-label={t('voteDown')}
-                        >
-                          <ThumbDownIcon color={currentRating === 0 ? 'error' : undefined} />
-                        </IconButton>
+                        <Tooltip title={t('ratingGiveKudos')}>
+                          <IconButton
+                            onClick={handleClickUp}
+                            disabled={currentRating === 1}
+                            aria-label={t('voteUp')}
+                          >
+                            <ThumbUpIcon color={currentRating === 1 ? 'primary' : undefined} />
+                          </IconButton>
+                        </Tooltip>
+                        <Tooltip title={t('ratingGiveFeedback')}>
+                          <IconButton
+                            onClick={handleClickDown}
+                            disabled={currentRating === 0}
+                            aria-label={t('voteDown')}
+                          >
+                            <ThumbDownIcon color={currentRating === 0 ? 'error' : undefined} />
+                          </IconButton>
+                        </Tooltip>
                       </div>
                     </NoSsr>
                     {nextPage.displayNav === false ? null : (
