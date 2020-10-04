@@ -47,7 +47,7 @@ describe('<HiddenJs />', () => {
       const props = { [prop]: upDownOnly === 'only' ? breakpoint : true };
 
       it(descriptions[upDownOnly], () => {
-        const { container, getByText } = render(
+        const { container, queryByText } = render(
           <HiddenJs width={width} {...props}>
             <div>foo</div>
           </HiddenJs>,
@@ -56,7 +56,7 @@ describe('<HiddenJs />', () => {
         const root = container.firstElementChild;
 
         expect(root).to.have.tagName('div');
-        expect(getByText('foo')).not.to.equal(null);
+        expect(queryByText('foo')).to.not.equal(null);
       });
     });
   }

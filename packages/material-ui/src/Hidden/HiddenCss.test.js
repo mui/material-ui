@@ -111,16 +111,16 @@ describe('<HiddenCss />', () => {
 
   describe('prop: children', () => {
     it('should work when text Node', () => {
-      const { container, getByText } = render(<HiddenCss mdUp>foo</HiddenCss>);
+      const { container, queryByText } = render(<HiddenCss mdUp>foo</HiddenCss>);
       const root = container.firstElementChild;
 
       expect(root).to.have.tagName('div');
       expect(root).to.have.class(classes.mdUp);
-      expect(getByText('foo')).to.not.equal(null);
+      expect(queryByText('foo')).to.not.equal(null);
     });
 
     it('should work when Element', () => {
-      const { container, getByTestId } = render(
+      const { container, queryByTestId } = render(
         <HiddenCss mdUp>
           <TestChild />
         </HiddenCss>,
@@ -130,11 +130,11 @@ describe('<HiddenCss />', () => {
 
       expect(root).to.have.tagName('div');
       expect(root).to.have.class(classes.mdUp);
-      expect(getByTestId('test-child')).not.to.equal(null);
+      expect(queryByTestId('test-child')).to.not.equal(null);
     });
 
     it('should work when mixed ChildrenArray', () => {
-      const { container, getAllByTestId, getByText } = render(
+      const { container, queryAllByTestId, queryByText } = render(
         <HiddenCss mdUp>
           <TestChild />
           <TestChild />
@@ -143,12 +143,12 @@ describe('<HiddenCss />', () => {
       );
 
       const root = container.firstElementChild;
-      const children = getAllByTestId('test-child');
+      const children = queryAllByTestId('test-child');
 
       expect(root).to.have.tagName('div');
       expect(root).to.have.class(classes.mdUp);
       expect(children.length).to.equal(2);
-      expect(getByText('foo')).not.to.equal(null);
+      expect(queryByText('foo')).to.not.equal(null);
     });
   });
 
