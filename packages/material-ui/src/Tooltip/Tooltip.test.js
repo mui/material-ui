@@ -878,9 +878,10 @@ describe('<Tooltip />', () => {
       // Tooltip should not assume that event handlers of children are attached to the
       // outermost host
       const TextField = React.forwardRef(function TextField(props, ref) {
+        const { onFocus, ...other } = props;
         return (
-          <div ref={ref}>
-            <input type="text" {...props} />
+          <div ref={ref} {...other}>
+            <input type="text" onFocus={onFocus} />
           </div>
         );
       });
