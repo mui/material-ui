@@ -72,7 +72,9 @@ function Comment(props) {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>{t('cancel')}</Button>
-          <Button variant="outlined" onClick={handleClose}>{t('submit')}</Button>
+          <Button variant="outlined" onClick={handleClose}>
+            {t('submit')}
+          </Button>
         </DialogActions>
       </Dialog>
     </div>
@@ -146,16 +148,9 @@ function getRatings() {
   return undefined;
 }
 
-function getColor(pathname, thumb) {
+function getCurrentRating(pathname) {
   const ratings = getRatings();
-
-  if (thumb === 'up') {
-    return ratings && ratings[pathname] && ratings[pathname].rating === 1 ? 'primary' : undefined;
-  }
-  if (thumb === 'down') {
-    return ratings && ratings[pathname] && ratings[pathname].rating === 0 ? 'error' : undefined;
-  }
-  return undefined;
+  return ratings && ratings[pathname] && ratings[pathname].rating;
 }
 
 const styles = (theme) => ({
@@ -204,7 +199,6 @@ const styles = (theme) => ({
 
 function MarkdownDocs(props) {
   const { classes, disableAd = false, disableToc = false, demos = {}, docs, requireDemo } = props;
-
   const t = useSelector((state) => state.options.t);
   const userLanguage = useSelector((state) => state.options.userLanguage);
   const { description, location, rendered, title, toc, headers } = docs[userLanguage] || docs.en;
@@ -218,19 +212,9 @@ function MarkdownDocs(props) {
   const currentPage = pageList[currentPageNum];
   const prevPage = pageList[currentPageNum - 1];
   const nextPage = pageList[currentPageNum + 1];
-  const [upColor, setUpColor] = React.useState(getColor(currentPage.pathname, 'up'));
-  const [downColor, setDownColor] = React.useState(getColor(currentPage.pathname, 'down'));
   const [commentOpen, setCommentOpen] = React.useState(false);
+  const [currentRating, setCurrentRating] = React.useState(getCurrentRating(currentPage.pathname));
 
-  function setColor(rating) {
-    if (rating === 1) {
-      setUpColor('primary');
-      setDownColor(undefined);
-    } else {
-      setUpColor(undefined);
-      setDownColor('error');
-    }
-  }
 
   async function submitRating(rating, comment) {
     const page = currentPage.pathname;
@@ -247,18 +231,18 @@ function MarkdownDocs(props) {
   }
 
   const handleClickUp = (rating) => {
-    setColor(rating);
+    setCurrentRating(rating);
     submitRating(rating);
   };
 
   const handleClickDown = (rating) => {
-    setColor(rating);
+    setCurrentRating(rating);
     setCommentOpen(true);
   };
 
-  const handleCloseComment = (value) => {
+  const handleCloseComment = (comment) => {
     setCommentOpen(false);
-    submitRating(0, value);
+    submitRating(0, comment);
   };
 
   return (
@@ -358,11 +342,19 @@ function MarkdownDocs(props) {
                     )}
                     <NoSsr>
                       <div>
-                        <IconButton disabled={upColor === 'primary'} aria-label={t('voteUp')} onClick={() => handleClickUp(1)}>
-                          <ThumbUpIcon color={upColor} />
+                        <IconButton
+                          disabled={currentRating === 1}
+                          aria-label={t('voteUp')}
+                          onClick={() => handleClickUp(1)}
+                        >
+                          <ThumbUpIcon color={currentRating === 1 ? 'primary' : undefined} />
                         </IconButton>
-                        <IconButton disabled={downColor === 'error'} aria-label={t('voteDown')} onClick={() => handleClickDown(0)}>
-                          <ThumbDownIcon color={downColor} />
+                        <IconButton
+                          disabled={currentRating === 0}
+                          aria-label={t('voteDown')}
+                          onClick={() => handleClickDown(0)}
+                        >
+                          <ThumbDownIcon color={currentRating === 0 ? 'error' : undefined} />
                         </IconButton>
                       </div>
                     </NoSsr>
