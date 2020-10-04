@@ -34,12 +34,18 @@ describe('<LoadingButton />', () => {
   });
 
   describe('prop: pending', () => {
-    it('disabled the button', () => {
+    it('disables the button', () => {
       render(<LoadingButton pending />);
 
       const button = screen.getByRole('button');
       expect(button).to.have.property('tabIndex', -1);
       expect(button).to.have.property('disabled', true);
+    });
+
+    it('cannot be enabled while `pending`', () => {
+      render(<LoadingButton disabled={false} pending />);
+
+      expect(screen.getByRole('button')).to.have.property('disabled', true);
     });
   });
 
