@@ -36,7 +36,7 @@ export const styles = (theme) => ({
   sticky: {
     position: 'sticky',
     top: 0,
-    zIndex: 1,
+    zIndex: theme.zIndex.listSubheaderSticky,
     backgroundColor: 'inherit',
   },
 });
