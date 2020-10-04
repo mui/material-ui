@@ -1,5 +1,5 @@
 ---
-title: Timeline React component
+title: React Timeline component
 components: Timeline, TimelineItem, TimelineSeparator, TimelineDot, TimelineConnector, TimelineContent, TimelineOppositeContent
 ---
 
@@ -33,7 +33,7 @@ El `TimelineDot` puede aparecer en diferentes colores.
 
 {{"demo": "pages/components/timeline/ColorsTimeline.js"}}
 
-## Fuera de línea
+## Delineada
 
 {{"demo": "pages/components/timeline/OutlinedTimeline.js"}}
 

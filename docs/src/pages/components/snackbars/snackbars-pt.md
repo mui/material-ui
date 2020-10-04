@@ -1,5 +1,5 @@
 ---
-title: Componente React Snackbar
+title: React Snackbar component
 components: Snackbar, SnackbarContent
 ---
 

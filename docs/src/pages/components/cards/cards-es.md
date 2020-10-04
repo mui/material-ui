@@ -1,5 +1,5 @@
 ---
-title: Componente de React Card (Tarjeta)
+title: React Card component
 components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
 ---
 

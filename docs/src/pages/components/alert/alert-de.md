@@ -1,5 +1,5 @@
 ---
-title: Hinweis React-Komponente
+title: React Alert component
 components: Alert, AlertTitle
 ---
 

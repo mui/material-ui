@@ -1,5 +1,5 @@
 ---
-title: Tabs React component
+title: React Tabs component
 components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
 ---
 
@@ -69,7 +69,7 @@ An example for the current implementation can be found in the demos on this page
 
 {{"demo": "pages/components/tabs/CustomizedTabs.js", "bg": true}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/tabs/).
+🎨 インスピレーションを求めている場合は、 [MUI Treasury's customization examples](https://mui-treasury.com/styles/tabs/) を確認すると良いでしょう。
 
 ## 垂直タブ
 

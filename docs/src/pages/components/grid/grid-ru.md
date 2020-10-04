@@ -1,5 +1,5 @@
 ---
-title: React-компонент Сетка
+title: React Grid component
 components: Grid
 ---
 

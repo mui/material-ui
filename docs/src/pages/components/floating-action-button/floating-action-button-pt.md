@@ -1,5 +1,5 @@
 ---
-title: Componente React para Botões de ação flutuante
+title: React Fab component
 components: Fab
 ---
 

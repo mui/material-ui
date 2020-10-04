@@ -1,5 +1,5 @@
 ---
-title: Portal React component
+title: React Portal component
 components: Portal
 ---
 
@@ -9,7 +9,7 @@ components: Portal
 
 - 📦 [1.3 kB gzipped](/size-snapshot)
 
-Дочерние элементы портала будут добавлены внутрь элемента, указанного в свойстве `container`. The component is used internally by the [`Modal`](/components/modal/) and [`Popper`](/components/popper/) components.
+Дочерние элементы портала будут добавлены внутрь элемента, указанного в свойстве `container`. Портал используется внутри компонентов [`Modal`](/components/modal/) и [`Popper`](/components/popper/).
 
 ## Пример
 

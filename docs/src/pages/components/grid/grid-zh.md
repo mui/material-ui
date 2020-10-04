@@ -9,7 +9,7 @@ components: Grid
 
 [Grid 栅格组件](https://material.io/design/layout/responsive-layout-grid.html) 能确保不同布局间的视觉层面的舒适感，同时在众多不同设计中保持灵活性。 Material Design 的响应式 UI 是基于12列的栅格系统。
 
-> ⚠️ The `Grid` component shouldn't be confused with a data grid; it is closer to a layout grid. For a data grid head to [the `DataGrid` component](/components/data-grid/).
+> ⚠️ `网格` 组件不要与承载大量数据的表格进行混淆; 这个组件更倾向于布局使用。 如果需使用承载大量数据的表格，请看这里[的 `数据表格` 组件](/components/data-grid/)。
 
 ## 它是如何工作的的呢
 

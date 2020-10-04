@@ -1,5 +1,5 @@
 ---
-title: Componente React para Caixa de Seleção
+title: React Checkbox component
 components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 ---
 

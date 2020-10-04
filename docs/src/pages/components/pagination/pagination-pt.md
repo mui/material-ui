@@ -1,5 +1,5 @@
 ---
-title: Componente React para Paginação
+title: React Pagination component
 components: Pagination, PaginationItem
 ---
 

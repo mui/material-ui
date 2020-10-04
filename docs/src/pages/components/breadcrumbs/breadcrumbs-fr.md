@@ -1,5 +1,5 @@
 ---
-title: Composant React Fil d'Ariane
+title: React Breadcrumbs component
 components: Breadcrumbs, Link, Typography
 ---
 
