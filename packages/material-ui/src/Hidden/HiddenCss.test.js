@@ -29,7 +29,7 @@ describe('<HiddenCss />', () => {
           <div className="foo" />
         </HiddenCss>,
       );
-      const root = container.firstElementChild;
+      const root = container.firstChild;
 
       expect(root).to.have.tagName('div');
       expect(root).to.have.class(classes.onlySm);
