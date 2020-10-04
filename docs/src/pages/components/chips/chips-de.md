@@ -1,5 +1,5 @@
 ---
-title: Chip React Component
+title: React Chip component
 components: Chip
 githubLabel: 'component: Chip'
 materialDesign: https://material.io/components/chips
