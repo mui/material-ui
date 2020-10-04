@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useSelector } from 'react-redux';
+import { exactProp } from '@material-ui/utils';
 import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import ThumbUpIcon from '@material-ui/icons/ThumbUpAlt';
@@ -17,7 +18,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { exactProp } from '@material-ui/utils';
+import Snackbar from '@material-ui/core/Snackbar';
 import { getCookie, pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import { SOURCE_CODE_ROOT_URL } from 'docs/src/modules/constants';
 import Head from 'docs/src/modules/components/Head';
@@ -214,10 +215,9 @@ function MarkdownDocs(props) {
   const nextPage = pageList[currentPageNum + 1];
   const [commentOpen, setCommentOpen] = React.useState(false);
   const [currentRating, setCurrentRating] = React.useState(getCurrentRating(currentPage.pathname));
+  const [snackbarOpen, setSnackbarOpen] = React.useState(false);
 
-
-  async function submitRating(rating, comment) {
-    const page = currentPage.pathname;
+  async function submitRating(page, rating, comment) {
     const data = {
       id: getCookie('ratingsId'),
       page,
@@ -230,19 +230,25 @@ function MarkdownDocs(props) {
     document.cookie = `ratings=${JSON.stringify(await getData(result.id))};path=/;max-age=31536000`;
   }
 
-  const handleClickUp = (rating) => {
-    setCurrentRating(rating);
-    submitRating(rating);
+  const handleClickUp = () => {
+    setCurrentRating(1);
+    submitRating(currentPage.pathname, 1);
+    setSnackbarOpen(true);
   };
-
-  const handleClickDown = (rating) => {
-    setCurrentRating(rating);
+  
+  const handleClickDown = () => {
+    setCurrentRating(0);
     setCommentOpen(true);
   };
-
+  
   const handleCloseComment = (comment) => {
     setCommentOpen(false);
-    submitRating(0, comment);
+    submitRating(currentPage.pathname, 0, comment);
+    setSnackbarOpen(true);
+  };
+
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false);
   };
 
   return (
@@ -343,16 +349,16 @@ function MarkdownDocs(props) {
                     <NoSsr>
                       <div>
                         <IconButton
+                          onClick={handleClickUp}
                           disabled={currentRating === 1}
                           aria-label={t('voteUp')}
-                          onClick={() => handleClickUp(1)}
                         >
                           <ThumbUpIcon color={currentRating === 1 ? 'primary' : undefined} />
                         </IconButton>
                         <IconButton
+                          onClick={handleClickDown}
                           disabled={currentRating === 0}
                           aria-label={t('voteDown')}
-                          onClick={() => handleClickDown(0)}
                         >
                           <ThumbDownIcon color={currentRating === 0 ? 'error' : undefined} />
                         </IconButton>
@@ -378,6 +384,12 @@ function MarkdownDocs(props) {
         </div>
         {disableToc ? null : <AppTableOfContents items={toc} />}
       </AdManager>
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={3000}
+        onClose={handleSnackbarClose}
+        message={t('ratingSubmitted')}
+      />
     </AppFrame>
   );
 }
