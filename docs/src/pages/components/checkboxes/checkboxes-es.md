@@ -1,5 +1,5 @@
 ---
-title: Componente Checkbox de React
+title: React Checkbox component
 components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 materialDesign: 'https://material.io/components/selection-controls#checkboxes'
 githubLabel: 'component: Checkbox'
@@ -50,7 +50,7 @@ He aquí un ejemplo de personalización del componente. You can learn more about
 
 {{"demo": "pages/components/checkboxes/CustomizedCheckbox.js", "defaultCodeOpen": false}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/checkbox).
+🎨 Si estás buscando inspiración, puedes mirar [los ejemplos de MUI Treasury](https://mui-treasury.com/styles/checkbox).
 
 ## Cuándo usarlo
 
