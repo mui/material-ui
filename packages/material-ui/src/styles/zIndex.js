@@ -1,6 +1,7 @@
 // We need to centralize the zIndex definitions as they work
 // like global values in the browser.
 const zIndex = {
+  listSubheaderSticky: 1,
   mobileStepper: 1000,
   speedDial: 1050,
   appBar: 1100,
