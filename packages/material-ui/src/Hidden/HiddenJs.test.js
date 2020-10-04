@@ -31,7 +31,7 @@ describe('<HiddenJs />', () => {
           </HiddenJs>,
         );
 
-        expect(container.firstElementChild).to.equal(null);
+        expect(container.firstChild).to.equal(null);
       });
     });
   }
@@ -53,9 +53,7 @@ describe('<HiddenJs />', () => {
           </HiddenJs>,
         );
 
-        const root = container.firstElementChild;
-
-        expect(root).to.have.tagName('div');
+        expect(container.firstChild).to.have.tagName('div');
         expect(queryByText('foo')).to.not.equal(null);
       });
     });

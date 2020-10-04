@@ -33,8 +33,8 @@ describe('<HiddenCss />', () => {
 
       expect(root).to.have.tagName('div');
       expect(root).to.have.class(classes.onlySm);
-      expect(root.firstElementChild).to.have.tagName('div');
-      expect(root.firstElementChild).to.have.class('foo');
+      expect(root.firstChild).to.have.tagName('div');
+      expect(root.firstChild).to.have.class('foo');
     });
 
     it('should be ok with only as an array', () => {
@@ -43,7 +43,7 @@ describe('<HiddenCss />', () => {
           <div className="foo" />
         </HiddenCss>,
       );
-      const root = container.firstElementChild;
+      const root = container.firstChild;
 
       expect(root).to.have.tagName('div');
       expect(root).to.have.class(classes.onlyXs);
@@ -56,7 +56,7 @@ describe('<HiddenCss />', () => {
           <div className="foo" />
         </HiddenCss>,
       );
-      const root = container.firstElementChild;
+      const root = container.firstChild;
 
       expect(root).to.have.tagName('div');
       Object.keys(classes).forEach((className) => expect(root).to.not.have.class(className));
@@ -68,9 +68,8 @@ describe('<HiddenCss />', () => {
           <div className="foo" />
         </HiddenCss>,
       );
-      const root = container.firstElementChild;
 
-      expect(root).to.have.class(classes.mdDown);
+      expect(container.firstChild).to.have.class(classes.mdDown);
     });
 
     it('should be ok with mdUp', () => {
@@ -79,9 +78,8 @@ describe('<HiddenCss />', () => {
           <div className="foo" />
         </HiddenCss>,
       );
-      const root = container.firstElementChild;
 
-      expect(root).to.have.class(classes.mdUp);
+      expect(container.firstChild).to.have.class(classes.mdUp);
     });
     it('should handle provided className prop', () => {
       const { container } = render(
@@ -89,9 +87,8 @@ describe('<HiddenCss />', () => {
           <div className="foo" />
         </HiddenCss>,
       );
-      const root = container.firstElementChild;
 
-      expect(root).to.have.class('custom');
+      expect(container.firstChild).to.have.class('custom');
     });
 
     it('allows custom breakpoints', () => {
@@ -103,16 +100,15 @@ describe('<HiddenCss />', () => {
           </HiddenCss>
         </MuiThemeProvider>,
       );
-      const root = container.querySelector('.testid');
 
-      expect(root).to.have.class('xxlUp');
+      expect(container.querySelector('.testid')).to.have.class('xxlUp');
     });
   });
 
   describe('prop: children', () => {
     it('should work when text Node', () => {
       const { container, queryByText } = render(<HiddenCss mdUp>foo</HiddenCss>);
-      const root = container.firstElementChild;
+      const root = container.firstChild;
 
       expect(root).to.have.tagName('div');
       expect(root).to.have.class(classes.mdUp);
@@ -125,8 +121,7 @@ describe('<HiddenCss />', () => {
           <TestChild />
         </HiddenCss>,
       );
-
-      const root = container.firstElementChild;
+      const root = container.firstChild;
 
       expect(root).to.have.tagName('div');
       expect(root).to.have.class(classes.mdUp);
@@ -141,8 +136,7 @@ describe('<HiddenCss />', () => {
           foo
         </HiddenCss>,
       );
-
-      const root = container.firstElementChild;
+      const root = container.firstChild;
       const children = queryAllByTestId('test-child');
 
       expect(root).to.have.tagName('div');
