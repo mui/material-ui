@@ -1,5 +1,5 @@
 ---
-title: Панель, компонент React
+title: React Drawer component
 components: Drawer, SwipeableDrawer
 githubLabel: 'component: Drawer'
 materialDesign: https://material.io/components/navigation-drawer
