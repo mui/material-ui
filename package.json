@@ -58,7 +58,7 @@
     "@rollup/plugin-replace": "^2.3.1",
     "@testing-library/dom": "^7.22.1",
     "@testing-library/react": "^11.0.2",
-    "@testing-library/react-hooks": "3.4.1",
+    "@testing-library/react-hooks": "3.4.2",
     "@types/chai": "^4.2.3",
     "@types/chai-dom": "^0.0.10",
     "@types/enzyme": "^3.10.3",
