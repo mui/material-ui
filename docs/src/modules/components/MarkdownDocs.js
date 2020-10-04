@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import { useSelector } from 'react-redux';
 import { exactProp } from '@material-ui/utils';
 import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import ThumbUpIcon from '@material-ui/icons/ThumbUpAlt';
@@ -64,9 +65,9 @@ function Comment(props) {
         aria-labelledby="form-dialog-title"
         value={value}
       >
-        <DialogTitle id="form-dialog-title">{t('ratingFeedback')}</DialogTitle>
+        <DialogTitle id="form-dialog-title">{t('ratingDialogTitle')}</DialogTitle>
         <DialogContent>
-          <DialogContentText>{t('ratingThanks')}</DialogContentText>
+          <DialogContentText>{t('ratingDialogMessage')}</DialogContentText>
           <TextField
             multiline
             autoFocus
@@ -214,6 +215,9 @@ const styles = (theme) => ({
     textTransform: 'none',
     fontWeight: theme.typography.fontWeightRegular,
   },
+  feedbackMessage: {
+    marginRight: 16,
+  }
 });
 
 function MarkdownDocs(props) {
@@ -355,7 +359,8 @@ function MarkdownDocs(props) {
                     )}
                     <NoSsr>
                       <div>
-                        <Tooltip title={t('ratingGiveKudos')}>
+                        <Typography variant="subtitle1" component="span" className={classes.feedbackMessage}>Was this page helpful?</Typography>
+                        <Tooltip title={t('ratingYes')}>
                           <IconButton
                             onClick={handleClickUp}
                             disabled={currentRating === 1}
@@ -364,7 +369,7 @@ function MarkdownDocs(props) {
                             <ThumbUpIcon color={currentRating === 1 ? 'primary' : undefined} />
                           </IconButton>
                         </Tooltip>
-                        <Tooltip title={t('ratingGiveFeedback')}>
+                        <Tooltip title={t('ratingNo')}>
                           <IconButton
                             onClick={handleClickDown}
                             disabled={currentRating === 0}
@@ -397,7 +402,7 @@ function MarkdownDocs(props) {
       </AdManager>
       <Snackbar
         open={snackbarOpen}
-        autoHideDuration={30000}
+        autoHideDuration={3000}
         onClose={handleSnackbarClose}
         message={t('ratingSubmitted')}
       />
