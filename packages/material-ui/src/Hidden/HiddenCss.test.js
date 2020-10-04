@@ -1,21 +1,20 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createShallow, getClasses, createMount } from 'test/utils';
+import { getClasses, createMount, createClientRender } from 'test/utils';
 import HiddenCss from './HiddenCss';
 import { createMuiTheme, MuiThemeProvider } from '../styles';
 
-const Foo = () => <div>bar</div>;
+const TestChild = () => <div data-testid="test-child">bar</div>;
 
 describe('<HiddenCss />', () => {
   /**
    * @type {ReturnType<typeof createMount>}
    */
   const mount = createMount();
-  let shallow;
+  const render = createClientRender();
   let classes;
 
   before(() => {
-    shallow = createShallow({ untilSelector: 'div' });
     classes = getClasses(
       <HiddenCss>
         <div />
@@ -25,116 +24,131 @@ describe('<HiddenCss />', () => {
 
   describe('the generated class names', () => {
     it('should be ok with only', () => {
-      const wrapper = shallow(
+      const { container } = render(
         <HiddenCss only="sm">
           <div className="foo" />
         </HiddenCss>,
       );
+      const root = container.firstElementChild;
 
-      expect(wrapper.type()).to.equal('div');
-      expect(wrapper.hasClass(classes.onlySm)).to.equal(true);
-
-      const div = wrapper.childAt(0);
-      expect(div.type()).to.equal('div');
-      expect(div.props().className).to.equal('foo');
+      expect(root).to.have.tagName('div');
+      expect(root).to.have.class(classes.onlySm);
+      expect(root.firstElementChild).to.have.tagName('div');
+      expect(root.firstElementChild).to.have.class('foo');
     });
 
     it('should be ok with only as an array', () => {
-      const wrapper = shallow(
+      const { container } = render(
         <HiddenCss only={['xs', 'sm']}>
           <div className="foo" />
         </HiddenCss>,
       );
+      const root = container.firstElementChild;
 
-      expect(wrapper.type()).to.equal('div');
-      expect(wrapper.props().className.split(' ')[0]).to.equal(classes.onlyXs);
-      expect(wrapper.props().className.split(' ')[1]).to.equal(classes.onlySm);
+      expect(root).to.have.tagName('div');
+      expect(root).to.have.class(classes.onlyXs);
+      expect(root).to.have.class(classes.onlySm);
     });
 
     it('should be ok with only as an empty array', () => {
-      const wrapper = shallow(
+      const { container } = render(
         <HiddenCss only={[]}>
           <div className="foo" />
         </HiddenCss>,
       );
+      const root = container.firstElementChild;
 
-      expect(wrapper.type()).to.equal('div');
-      expect(wrapper.props().className).to.equal('');
+      expect(root).to.have.tagName('div');
+      Object.keys(classes).forEach((className) => expect(root).to.not.have.class(className));
     });
 
     it('should be ok with mdDown', () => {
-      const wrapper = shallow(
+      const { container } = render(
         <HiddenCss mdDown>
           <div className="foo" />
         </HiddenCss>,
       );
-      expect(wrapper.hasClass(classes.mdDown)).to.equal(true);
+      const root = container.firstElementChild;
+
+      expect(root).to.have.class(classes.mdDown);
     });
 
     it('should be ok with mdUp', () => {
-      const wrapper = shallow(
+      const { container } = render(
         <HiddenCss mdUp>
           <div className="foo" />
         </HiddenCss>,
       );
-      expect(wrapper.hasClass(classes.mdUp)).to.equal(true);
+      const root = container.firstElementChild;
+
+      expect(root).to.have.class(classes.mdUp);
     });
     it('should handle provided className prop', () => {
-      const wrapper = shallow(
+      const { container } = render(
         <HiddenCss mdUp className="custom">
           <div className="foo" />
         </HiddenCss>,
       );
-      expect(wrapper.hasClass('custom')).to.equal(true);
+      const root = container.firstElementChild;
+
+      expect(root).to.have.class('custom');
     });
 
     it('allows custom breakpoints', () => {
       const theme = createMuiTheme({ breakpoints: { keys: ['xxl'] } });
-      const wrapper = mount(
+      const { container } = render(
         <MuiThemeProvider theme={theme}>
           <HiddenCss xxlUp className="testid" classes={{ xxlUp: 'xxlUp' }}>
             <div />
           </HiddenCss>
         </MuiThemeProvider>,
       );
+      const root = container.querySelector('.testid');
 
-      expect(wrapper.find('div.testid').hasClass('xxlUp')).to.equal(true);
+      expect(root).to.have.class('xxlUp');
     });
   });
 
   describe('prop: children', () => {
     it('should work when text Node', () => {
-      const wrapper = shallow(<HiddenCss mdUp>foo</HiddenCss>);
-      expect(wrapper.type()).to.equal('div');
-      expect(wrapper.hasClass(classes.mdUp)).to.equal(true);
-      expect(wrapper.childAt(0).text()).to.equal('foo');
+      const { container, getByText } = render(<HiddenCss mdUp>foo</HiddenCss>);
+      const root = container.firstElementChild;
+
+      expect(root).to.have.tagName('div');
+      expect(root).to.have.class(classes.mdUp);
+      expect(getByText('foo')).to.not.equal(null);
     });
 
     it('should work when Element', () => {
-      const wrapper = shallow(
+      const { container, getByTestId } = render(
         <HiddenCss mdUp>
-          <Foo />
+          <TestChild />
         </HiddenCss>,
       );
-      expect(wrapper.type()).to.equal('div');
-      expect(wrapper.hasClass(classes.mdUp)).to.equal(true);
-      expect(wrapper.childAt(0).is(Foo)).to.equal(true);
+
+      const root = container.firstElementChild;
+
+      expect(root).to.have.tagName('div');
+      expect(root).to.have.class(classes.mdUp);
+      expect(getByTestId('test-child')).not.to.equal(null);
     });
 
     it('should work when mixed ChildrenArray', () => {
-      const wrapper = shallow(
+      const { container, getAllByTestId, getByText } = render(
         <HiddenCss mdUp>
-          <Foo />
-          <Foo />
+          <TestChild />
+          <TestChild />
           foo
         </HiddenCss>,
       );
 
-      expect(wrapper.type()).to.equal('div');
-      expect(wrapper.hasClass(classes.mdUp)).to.equal(true);
-      expect(wrapper.childAt(0).is(Foo)).to.equal(true);
-      expect(wrapper.childAt(1).is(Foo)).to.equal(true);
-      expect(wrapper.childAt(2).text()).to.equal('foo');
+      const root = container.firstElementChild;
+      const children = getAllByTestId('test-child');
+
+      expect(root).to.have.tagName('div');
+      expect(root).to.have.class(classes.mdUp);
+      expect(children.length).to.equal(2);
+      expect(getByText('foo')).not.to.equal(null);
     });
   });
 

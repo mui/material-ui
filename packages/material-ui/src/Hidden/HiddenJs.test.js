@@ -1,14 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createShallow } from 'test/utils';
+import { createClientRender } from 'test/utils';
 import HiddenJs from './HiddenJs';
 
 describe('<HiddenJs />', () => {
-  let shallow;
-
-  before(() => {
-    shallow = createShallow({ dive: true });
-  });
+  let render = createClientRender();
 
   function resolvePropName(upDownOnly, breakpoint) {
     if (upDownOnly === 'only') {
@@ -29,12 +25,13 @@ describe('<HiddenJs />', () => {
       const props = { [prop]: upDownOnly === 'only' ? breakpoint : true };
 
       it(descriptions[upDownOnly], () => {
-        const wrapper = shallow(
+        const { container } = render(
           <HiddenJs width={width} {...props}>
             <div>foo</div>
           </HiddenJs>,
         );
-        expect(wrapper.type()).to.equal(null);
+
+        expect(container.firstElementChild).to.equal(null);
       });
     });
   }
@@ -50,14 +47,16 @@ describe('<HiddenJs />', () => {
       const props = { [prop]: upDownOnly === 'only' ? breakpoint : true };
 
       it(descriptions[upDownOnly], () => {
-        const wrapper = shallow(
+        const { container, getByText } = render(
           <HiddenJs width={width} {...props}>
             <div>foo</div>
           </HiddenJs>,
         );
-        expect(wrapper.type()).to.not.equal(null);
-        expect(wrapper.name()).to.equal('div');
-        expect(wrapper.first().text()).to.equal('foo');
+
+        const root = container.firstElementChild;
+
+        expect(root).to.have.tagName('div');
+        expect(getByText('foo')).not.to.equal(null);
       });
     });
   }
