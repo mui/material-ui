@@ -1,0 +1,28 @@
+{
+  "name": "ratings",
+  "version": "1.0.0",
+  "description": "Store and retrieve page ratings and comments",
+  "main": "index",
+  "license": "MIT",
+  "author": "Material-UI Team",
+  "private": true,
+  "files": [
+    "*.js"
+  ],
+  "scripts": {
+    "claudia": "claudia --profile claudia",
+    "curl": "curl -H \"Content-Type: application/json\" -X POST --data @example.json https://5fm2imnpv2.execute-api.us-east-1.amazonaws.com/dev/rating",
+    "setup": "claudia create --profile claudia --version dev --region us-east-1 --api-module index --policies policies --configure-db",
+    "update": "claudia update --profile claudia --version dev",
+    "deploy": "claudia update --profile claudia --version dev && claudia --profile claudia set-version --version prod",
+    "reconfigure": "claudia update --profile claudia --configure-db"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.766.0",
+    "claudia-api-builder": "^4",
+    "uuid": "3.3.2"
+  },
+  "devDependencies": {
+    "claudia": "^5"
+  }
+}

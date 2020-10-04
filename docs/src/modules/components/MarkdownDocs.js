@@ -36,6 +36,8 @@ import AdManager from 'docs/src/modules/components/AdManager';
 import AdGuest from 'docs/src/modules/components/AdGuest';
 import ComponentLinkHeader from 'docs/src/modules/components/ComponentLinkHeader';
 
+const RATINGS_URL = 'https://5fm2imnpv2.execute-api.us-east-1.amazonaws.com/dev/rating';
+
 function Comment(props) {
   const { onClose: handleClose, open } = props;
   const t = useSelector((state) => state.options.t);
@@ -118,9 +120,8 @@ function findIndex(array, comp) {
 }
 
 async function postData(data = {}) {
-  const URL = 'https://170pen8h6j.execute-api.us-east-1.amazonaws.com/dev/rating';
 
-  const response = await fetch(URL, {
+  const response = await fetch(RATINGS_URL, {
     method: 'POST',
     mode: 'cors',
     cache: 'no-cache',
@@ -133,7 +134,7 @@ async function postData(data = {}) {
 }
 
 async function getData(id) {
-  const URL = `https://170pen8h6j.execute-api.us-east-1.amazonaws.com/dev/rating/${id}`;
+  const URL = `${RATINGS_URL}/${id}`;
 
   const response = await fetch(URL, {
     method: 'GET',
@@ -396,7 +397,7 @@ function MarkdownDocs(props) {
       </AdManager>
       <Snackbar
         open={snackbarOpen}
-        autoHideDuration={3000}
+        autoHideDuration={30000}
         onClose={handleSnackbarClose}
         message={t('ratingSubmitted')}
       />
