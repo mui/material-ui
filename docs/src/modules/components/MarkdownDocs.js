@@ -10,15 +10,16 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
+import NoSsr from '@material-ui/core/NoSsr';
+import { exactProp } from '@material-ui/utils';
+import { getCookie, pageToTitleI18n } from 'docs/src/modules/utils/helpers';
+import { SOURCE_CODE_ROOT_URL } from 'docs/src/modules/constants';
 import Head from 'docs/src/modules/components/Head';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import EditPage from 'docs/src/modules/components/EditPage';
 import AppContainer from 'docs/src/modules/components/AppContainer';
 import PageContext from 'docs/src/modules/components/PageContext';
-import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import Link from 'docs/src/modules/components/Link';
-import { exactProp } from '@material-ui/utils';
-import { SOURCE_CODE_ROOT_URL } from 'docs/src/modules/constants';
 import Demo from 'docs/src/modules/components/Demo';
 import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
@@ -61,24 +62,43 @@ async function postData(data = {}) {
     mode: 'cors',
     cache: 'no-cache',
     credentials: 'omit',
-    headers: {
-      'content-type': 'application/json'
-    },
+    headers: { 'Content-Type': 'application/json' },
     referrerPolicy: 'origin',
     body: JSON.stringify(data),
   });
-  console.log('resp', response);
-  // return response.json();
+  return response.json();
+}
+
+async function getData(id) {
+  const URL = `https://170pen8h6j.execute-api.us-east-1.amazonaws.com/dev/rating/${id}`;
+
+  const response = await fetch(URL, {
+    method: 'GET',
+    mode: 'cors',
+    cache: 'no-cache',
+    credentials: 'omit',
+    referrerPolicy: 'origin',
+  });
+  return response.json();
+}
+
+function getRatings() {
+  if (process.browser) {
+    const ratings = getCookie('ratings');
+    return ratings && JSON.parse(ratings);
+  };
+  return undefined;
 };
 
-async function rate(page, rating) {
-  console.log(rating);
-  const data = {
-    page,
-    rating,
-    // comment: "Yay!"
-  };
-  console.log(await postData(data))
+function getColor(pathname, thumb) {
+  const ratings = getRatings();
+  
+  if (thumb === 'up') {
+     return ratings && ratings[pathname] && ratings[pathname].rating === 1 ? 'primary' : undefined;
+  } else if (thumb === 'down') {
+     return ratings && ratings[pathname] && ratings[pathname].rating === 0 ? 'error' : undefined;
+  }
+  return undefined;
 };
 
 const styles = (theme) => ({
@@ -141,6 +161,33 @@ function MarkdownDocs(props) {
   const currentPage = pageList[currentPageNum];
   const prevPage = pageList[currentPageNum - 1];
   const nextPage = pageList[currentPageNum + 1];
+  const [upColor, setUpColor] = React.useState(getColor(currentPage.pathname, 'up'));
+  const [downColor, setDownColor] = React.useState(getColor(currentPage.pathname, 'down'));
+
+  function setColor(rating) {
+    if (rating === 1) {
+      setUpColor('primary');
+      setDownColor(undefined);
+    } else {
+      setUpColor(undefined);
+      setDownColor('error');
+    }
+  };
+
+  async function rate(page, rating) {
+    setColor(rating);
+
+    const data = {
+      id: getCookie('ratingsId'),
+      page,
+      rating,
+      // comment: "Yay!"
+    };
+  
+    const result = await postData(data);
+    document.cookie = `ratingsId=${result.id};path=/;max-age=31536000`;
+    document.cookie = `ratings=${JSON.stringify(await getData(result.id))};path=/;max-age=31536000`;
+  }
 
   return (
     <AppFrame>
@@ -236,14 +283,16 @@ function MarkdownDocs(props) {
                     ) : (
                       <div />
                     )}
-                    <div>
-                      <IconButton>
-                        <ThumbUpIcon onClick={() => rate(currentPage.pathname, 1)} />
-                      </IconButton>
-                      <IconButton>
-                        <ThumbDownIcon onClick={() => rate(currentPage.pathname, 0)} />
-                      </IconButton>
-                    </div>
+                    <NoSsr>
+                      <div>
+                        <IconButton onClick={() => rate(currentPage.pathname, 1)}>
+                          <ThumbUpIcon color={upColor} />
+                        </IconButton>
+                        <IconButton onClick={() => rate(currentPage.pathname, 0)}>
+                          <ThumbDownIcon color={downColor} />
+                        </IconButton>
+                      </div>
+                    </NoSsr>
                     {nextPage.displayNav === false ? null : (
                       <Button
                         component={Link}
