@@ -1,5 +1,5 @@
 ---
-title: Сёдзи, компонент React
+title: React Paper component
 components: Paper
 ---
 
