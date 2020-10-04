@@ -82,7 +82,7 @@
     "babel-plugin-module-resolver": "^4.0.0",
     "babel-plugin-optimize-clsx": "^2.3.0",
     "babel-plugin-react-remove-properties": "^0.3.0",
-    "babel-plugin-tester": "^9.0.0",
+    "babel-plugin-tester": "^10.0.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.21",
     "chai": "^4.1.2",
     "chai-dom": "^1.8.1",
