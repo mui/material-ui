@@ -1,9 +1,10 @@
-/* global require, module */
+/* eslint-disable no-console */
 const ApiBuilder = require('claudia-api-builder');
 const AWS = require('aws-sdk');
+const uuid = require('uuid/v4');
+
 const api = new ApiBuilder();
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
-const uuid = require('uuid/v4');
 
 async function dbGet(request, id, page) {
   const params = {
@@ -82,7 +83,7 @@ async function updateAverageRating(request, currentUserRating) {
   let count = (pageAverage && pageAverage.count) || 0;
 
   let rating;
-  if (currentUserRating !== undefined) {
+  if (currentUserRating !== null) {
     rating = (average * count - currentUserRating + request.body.rating) / count;
   } else {
     rating = (average * count + request.body.rating) / (count + 1);
@@ -104,7 +105,7 @@ api.post(
     console.log('post /rating', request.body);
     const id = request.body.id || uuid();
 
-    let currentRating = undefined;
+    let currentRating = null;
     if (request.body.id) {
       const userPage = await dbGet(request, id, request.body.page);
       console.log({ userPage });
