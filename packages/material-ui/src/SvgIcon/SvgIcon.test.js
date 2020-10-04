@@ -39,10 +39,9 @@ describe('<SvgIcon />', () => {
 
   it('renders children by default', () => {
     const { container, queryByTestId } = render(<SvgIcon>{path}</SvgIcon>);
-    const root = container.firstChild;
 
     expect(queryByTestId('test-path')).to.not.equal(null);
-    expect(root).to.have.attribute('aria-hidden', 'true');
+    expect(container.firstChild).to.have.attribute('aria-hidden', 'true');
   });
 
   describe('prop: titleAccess', () => {
