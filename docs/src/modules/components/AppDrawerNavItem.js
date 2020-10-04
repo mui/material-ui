@@ -3,39 +3,47 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { makeStyles, fade } from '@material-ui/core/styles';
 import Collapse from '@material-ui/core/Collapse';
+import ButtonBase from '@material-ui/core/ButtonBase';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import Link from 'docs/src/modules/components/Link';
 
 const useStyles = makeStyles((theme) => ({
   li: {
+    padding: '1px 0',
     display: 'block',
-    paddingTop: 0,
-    paddingBottom: 0,
   },
-  liLeaf: {
+  liRoot: {
+    padding: '0 8px',
+  },
+  item: {
+    ...theme.typography.body2,
     display: 'flex',
-    padding: '0 12px',
+    borderRadius: theme.shape.borderRadius,
+    outline: 0,
+    width: '100%',
+    padding: '8px 0',
+    justifyContent: 'flex-start',
+    fontWeight: theme.typography.fontWeightMedium,
+    transition: theme.transitions.create(['color', 'background-color'], {
+      duration: theme.transitions.duration.shortest,
+    }),
+    '&:hover': {
+      color: theme.palette.text.primary,
+      backgroundColor: fade(theme.palette.text.primary, theme.palette.action.hoverOpacity),
+    },
+    '&.Mui-focusVisible': {
+      backgroundColor: theme.palette.action.focus,
+    },
+    [theme.breakpoints.up('md')]: {
+      padding: '6px 0',
+    },
   },
   button: {
-    ...theme.typography.body2,
-    cursor: 'pointer',
-    padding: '8px 0 6px',
-    display: 'flex',
     color: theme.palette.text.primary,
     fontWeight: theme.typography.fontWeightMedium,
-    WebkitTapHighlightColor: 'transparent',
-    backgroundColor: 'transparent', // Reset default value
-    outline: 0,
-    border: 0,
-    margin: 0, // Remove the margin in Safari
-    borderRadius: 0,
-    textAlign: 'left',
-    '-moz-appearance': 'none', // Reset
-    '-webkit-appearance': 'none', // Reset
-    width: '100%',
     '& svg': {
       fontSize: 18,
-      marginLeft: -6,
+      marginLeft: -19,
       color: theme.palette.text.secondary,
     },
     '& svg$open': {
@@ -47,23 +55,26 @@ const useStyles = makeStyles((theme) => ({
   },
   open: {},
   link: {
-    ...theme.typography.body2,
-    borderRadius: theme.shape.borderRadius,
-    width: '100%',
-    padding: '6px 0',
-    textDecoration: 'none',
     color: theme.palette.text.secondary,
-    fontWeight: theme.typography.fontWeightMedium,
-    transition: theme.transitions.create(['color', 'background-color'], {
-      duration: theme.transitions.duration.shortest,
-    }),
-    '&:hover': {
-      color: theme.palette.text.primary,
-      backgroundColor: fade(theme.palette.text.primary, theme.palette.action.hoverOpacity),
-    },
-    '&$active': {
+    '&.app-drawer-active': {
       color: theme.palette.primary.main,
       backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+      '&:hover': {
+        backgroundColor: fade(
+          theme.palette.primary.main,
+          theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+        ),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+        },
+      },
+      '&.Mui-focusVisible': {
+        backgroundColor: fade(
+          theme.palette.primary.main,
+          theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+        ),
+      },
     },
   },
   active: {},
@@ -89,17 +100,22 @@ export default function AppDrawerNavItem(props) {
   };
 
   const style = {
-    paddingLeft: 8 * (3 + 2 * depth),
+    paddingLeft: 8 * (3 + 1.5 * depth),
   };
 
   if (href) {
     return (
-      <li className={classes.liLeaf} {...other}>
+      <li
+        className={clsx(classes.li, {
+          [classes.liRoot]: depth === 0,
+        })}
+        {...other}
+      >
         <Link
-          naked
-          activeClassName={`drawer-active ${classes.active}`}
+          activeClassName="app-drawer-active"
           href={href}
-          className={clsx(classes.link, `depth-${depth}`)}
+          underline="none"
+          className={clsx(classes.item, classes.link)}
           onClick={onClick}
           style={style}
           {...linkProps}
@@ -111,10 +127,15 @@ export default function AppDrawerNavItem(props) {
   }
 
   return (
-    <li className={classes.li} {...other}>
-      <button
-        type="button"
-        className={clsx(classes.button, {
+    <li
+      className={clsx(classes.li, {
+        [classes.liRoot]: depth === 0,
+      })}
+      {...other}
+    >
+      <ButtonBase
+        disableRipple
+        className={clsx(classes.item, classes.button, {
           'algolia-lvl0': topLevel,
         })}
         onClick={handleClick}
@@ -122,7 +143,7 @@ export default function AppDrawerNavItem(props) {
       >
         <ArrowRightIcon className={open ? classes.open : ''} />
         {title}
-      </button>
+      </ButtonBase>
       <Collapse in={open} timeout="auto" unmountOnExit>
         {children}
       </Collapse>
