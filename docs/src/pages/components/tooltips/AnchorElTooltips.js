@@ -3,7 +3,11 @@ import Box from '@material-ui/core/Box';
 import Tooltip from '@material-ui/core/Tooltip';
 
 export default function AnchorElTooltips() {
-  const positionRef = React.useRef({ x: 0, y: 0 });
+  const positionRef = React.useRef({
+    x: 0,
+    y: 0,
+  });
+
   const popperRef = React.useRef(null);
   const areaRef = React.useRef(null);
 
