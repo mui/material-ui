@@ -267,7 +267,7 @@ const Button = React.forwardRef(function Button(props, ref) {
     fullWidth = false,
     size = 'medium',
     startIcon: startIconProp,
-    type = 'button',
+    type,
     variant = 'text',
     ...other
   } = props;
