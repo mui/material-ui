@@ -238,7 +238,7 @@
     "/components/tree-view": "Tree View (Vue arborescente)",
     "/customization/density": "Densité",
     "/components/button-group": "Button Group",
-    "/components/floating-action-button": "Floating Action Button",
+    "/components/floating-action-button": "Bouton d'action flottant",
     "/components/backdrop": "Backdrop",
     "/components/alert": "Alert",
     "/components/pagination": "Pagination"

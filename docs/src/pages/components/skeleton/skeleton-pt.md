@@ -1,5 +1,5 @@
 ---
-title: Componente React para Skeleton
+title: React Skeleton component
 components: Skeleton
 githubLabel: 'component: Skeleton'
 ---

@@ -1,5 +1,5 @@
 ---
-title: React 滑块控件
+title: React 滑块组件
 components: Slider
 githubLabel: 'component: Slider'
 materialDesign: https://material.io/components/sliders

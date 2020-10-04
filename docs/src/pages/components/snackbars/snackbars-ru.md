@@ -1,5 +1,5 @@
 ---
-title: Всплывающее уведомление
+title: React Snackbar component
 components: Snackbar, SnackbarContent
 githubLabel: 'component: Snackbar'
 materialDesign: https://material.io/components/snackbars

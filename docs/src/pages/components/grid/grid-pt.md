@@ -1,5 +1,5 @@
 ---
-title: Componente React para Grade
+title: React Grid component
 components: Grid
 githubLabel: 'component: Grid'
 materialDesign: https://material.io/design/layout/understanding-layout.html

@@ -9,11 +9,11 @@ Material-UI ist als [npm-Paket](https://www.npmjs.com/package/@material-ui/core)
 Um die Abhängigkeit zu ihrer `package.json` hinzuzufügen, führen Sie folgenden Befehl aus:
 
 ```sh
-// mit npm
-npm install @material-ui/core
+// with npm
+npm install @material-ui/core@next @emotion/core @emotion/styled
 
-// mit yarn
-yarn add @material-ui/core
+// with yarn
+yarn add @material-ui/core@next @emotion/core @emotion/styled
 ```
 
 Beachten Sie, dass [react](https://www.npmjs.com/package/react) >= 16.8.0 und [react-dom](https://www.npmjs.com/package/react-dom) >= 16.8.0 Abhängigkeiten in Ihrem Projekt sein müssen.

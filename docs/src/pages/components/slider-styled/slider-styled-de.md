@@ -1,5 +1,5 @@
 ---
-title: Slider React Komponente
+title: React Slider component
 components: SliderStyled, SliderUnstyled
 githubLabel:
   component: Slider

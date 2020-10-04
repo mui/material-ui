@@ -1,5 +1,5 @@
 ---
-title: Rating React component
+title: React Rating component
 components: Rating
 githubLabel: 'component: Rating'
 waiAria: 'https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating'
@@ -7,7 +7,7 @@ waiAria: 'https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating'
 
 # Rating
 
-<p class="description">Ratings provide insight regarding others’ opinions and experiences, and can allow the user to submit a rating of thier own.</p>
+<p class="description">Рейтинги дают представление о мнении и опыте других и позволяют пользователю дать собственную оценку.</p>
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 

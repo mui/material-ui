@@ -1,5 +1,5 @@
 ---
-title: Tabs React component
+title: React Tabs component
 components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
 githubLabel: 'component: Tabs'
 materialDesign: https://material.io/components/tabs
@@ -84,7 +84,7 @@ He aquí un ejemplo de personalización del componente. You can learn more about
 
 {{"demo": "pages/components/tabs/CustomizedTabs.js", "bg": true}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/tabs/).
+🎨 Si estás buscando inspiración, puedes mirar [los ejemplos de MUI Treasury](https://mui-treasury.com/styles/tabs/).
 
 ## Vertical tabs
 

@@ -1,9 +1,8 @@
 ---
-title: Componente de Autocompletado de React
+title: React Autocomplete component
 components: TextField, Popper, Autocomplete
 githubLabel: 'component: Autocomplete'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#combobox'
-packageName: '@material-ui/lab'
 ---
 
 # Autocompletado
@@ -114,7 +113,7 @@ Puedes agrupar las opciones con el accesorio `groupBy`. Si lo haces, asegúrate 
 Para la personalización avanzada de casos de uso, exponemos un hook `useAutocomplete()`. Acepta casi las mismas opciones que el componente Autocompletar menus las propiedades relacionadas al renderizado de JSX. El componente Autocompletar usa este hook internamente.
 
 ```jsx
-import useAutocomplete from '@material-ui/core/useAutocomplete';
+importar useAutocomplete de '@material-ui/core/useAutocomplete';
 ```
 
 - 📦 [4.5 kB comprimido](/size-snapshot).
@@ -307,4 +306,4 @@ If you provide a custom `ListboxComponent` prop, you need to make sure that the 
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#combobox)
 
-We encourage the usage of a label for the textbox. The component implements the WAI-ARIA authoring practices.
+We encourage the usage of a label for the textbox. El componente implementa las prácticas de creación de WAI-ARIA.

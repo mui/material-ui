@@ -10,18 +10,18 @@ githubLabel: 'component: TextareaAutosize'
 
 - 📦 [2.1 kB comprimido](/size-snapshot)
 
-The `TextareaAutosize` component automatically adjust the textarea height on keyboard and window resize events.
+El component `TextareaAutosize` ajusta automáticamente la altura del textarea con los eventos de cambio de tamaño del teclado y de la ventana.
 
 [La función de estilo de la paleta](/system/palette/).
 
-## Empty
+## Vacío
 
 {{"demo": "pages/components/textarea-autosize/EmptyTextarea.js"}}
 
-## Minimum height
+## Altura mínima
 
 {{"demo": "pages/components/textarea-autosize/MinHeightTextarea.js"}}
 
-## Maximum height
+## Altura máxima
 
 {{"demo": "pages/components/textarea-autosize/MaxHeightTextarea.js"}}

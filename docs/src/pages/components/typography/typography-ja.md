@@ -1,5 +1,5 @@
 ---
-title: タイポグラフィ
+title: React Typography component
 components: タイポグラフィ
 githubLabel: 'component: Typography'
 materialDesign: https://material.io/design/typography/the-type-system.html

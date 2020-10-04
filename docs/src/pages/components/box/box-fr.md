@@ -1,5 +1,5 @@
 ---
-title: Composant React Box
+title: React Box component
 githubLabel: 'component: Box'
 ---
 

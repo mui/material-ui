@@ -1,5 +1,5 @@
 ---
-title: Accordéon Composant React
+title: React Accordion component
 components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 githubLabel: 'component: Accordion'
 materialDesign: https://material.io/archive/guidelines/components/expansion-panels.html
@@ -47,12 +47,6 @@ Le contenu de l'accordéon est monter par défaut et se même si l'accordéon n'
 ```
 
 Se n'est tout de même pas une solution miracle. Soyez sure de d'abord identifier les goulot d'étranglement et ensuite de considérer ses stratégies d'optimisation.
-
-## Titres et colonnes secondaire
-
-Plusieurs colonnes peuvent être utilisées pour structurer le contenu et un texte d'assistance peut être ajouté a l'accordéon pour aider l'utilisateur.
-
-{{"demo": "pages/components/accordion/DetailedAccordion.js", "bg": true}}
 
 ## Accessibilité
 
