@@ -173,6 +173,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     enterDelay = 100,
     enterNextDelay = 0,
     enterTouchDelay = 700,
+    followCursor = false,
     id: idProp,
     interactive = false,
     leaveDelay = 0,
@@ -440,6 +441,22 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     open = false;
   }
 
+  const positionRef = React.useRef({ x: 0, y: 0 });
+  const popperRef = React.useRef();
+
+  const handleMouseMove = (event) => {
+    const childrenProps = children.props;
+    if (childrenProps.handleMouseMove) {
+      childrenProps.handleMouseMove(event);
+    }
+
+    positionRef.current = { x: event.clientX, y: event.clientY };
+
+    if (popperRef.current) {
+      popperRef.current.scheduleUpdate();
+    }
+  };
+
   const nameOrDescProps = {};
   const titleIsString = typeof title === 'string';
   if (describeChild) {
@@ -457,6 +474,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     className: clsx(other.className, children.props.className),
     onTouchStart: detectTouchStart,
     ref: handleRef,
+    ...(followCursor ? { onMouseMove: handleMouseMove } : {}),
   };
 
   const interactiveWrapperListeners = {};
@@ -522,7 +540,23 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
           [classes.popperArrow]: arrow,
         })}
         placement={placement}
-        anchorEl={childNode}
+        anchorEl={
+          followCursor
+            ? {
+                clientHeight: 0,
+                clientWidth: 0,
+                getBoundingClientRect: () => ({
+                  top: positionRef.current.y,
+                  left: positionRef.current.x,
+                  right: positionRef.current.x,
+                  bottom: positionRef.current.y,
+                  width: 0,
+                  height: 0,
+                }),
+              }
+            : childNode
+        }
+        popperRef={popperRef}
         open={childNode ? open : false}
         id={id}
         transition
@@ -614,6 +648,11 @@ Tooltip.propTypes = {
    * @default 700
    */
   enterTouchDelay: PropTypes.number,
+  /**
+   * If `true`, the tooltip follow the cursor over the wrapped element.
+   * @default false
+   */
+  followCursor: PropTypes.bool,
   /**
    * This prop is used to help implement the accessibility logic.
    * If you don't provide this prop. It falls back to a randomly generated id.

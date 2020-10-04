@@ -111,6 +111,20 @@ Use a different transition.
 
 {{"demo": "pages/components/tooltips/TransitionsTooltips.js"}}
 
+## Follow cursor
+
+You can enable the tooltip to follow the cursor with a single prop:
+
+{{"demo": "pages/components/tooltips/FollowCursorTooltips.js"}}
+
+## Faked reference object
+
+In the event you need to implement a custom placement, you can use the `anchorEl` prop:
+The value of the `anchorEl` prop can be a reference to a fake DOM element.
+You just need to create an object shaped like the [`ReferenceObject`](https://github.com/FezVrasta/popper.js/blob/0642ce0ddeffe3c7c033a412d4d60ce7ec8193c3/packages/popper/index.d.ts#L118-L123).
+
+{{"demo": "pages/components/tooltips/AnchorElTooltips.js"}}
+
 ## Showing and hiding
 
 The tooltip is normally shown immediately when the user's mouse hovers over the element, and hides immediately when the user's mouse leaves. A delay in showing or hiding the tooltip can be added through the `enterDelay` and `leaveDelay` props, as shown in the Controlled Tooltips demo above.

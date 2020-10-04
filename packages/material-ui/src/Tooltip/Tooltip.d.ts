@@ -78,6 +78,10 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
    */
   enterTouchDelay?: number;
   /**
+   * If `true`, the tooltip follow the cursor over the wrapped element.
+   */
+  followCursor?: boolean;
+  /**
    * This prop is used to help implement the accessibility logic.
    * If you don't provide this prop. It falls back to a randomly generated id.
    */
