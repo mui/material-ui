@@ -1,5 +1,5 @@
 ---
-title: React-компонент Автозаполнение
+title: React Autocomplete component
 components: TextField, Popper, Autocomplete
 ---
 
@@ -222,7 +222,7 @@ The browsers have heuristics to help the users fill the form inputs. However, it
 
 By default, the component disable the **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute.
 
-However, in addition to remembering past entered values, the browser might also propose **autofill** suggestions (saved login, address, or payment details). In the event you want the avoid autofill, you can try the following:
+Однако, помимо запоминания введенных ранее значений браузер может также предложить **автозаполнение** (сохраненный логин, адрес или платежная информация). In the event you want the avoid autofill, you can try the following:
 
 - Name the input without leaking any information the browser can use. e.g. `id="field1"` instead of `id="country"`. If you leave the id empty, the component uses a random id.
 - Set `autoComplete="new-password"`: jsx Set `autoComplete="new-password": 
