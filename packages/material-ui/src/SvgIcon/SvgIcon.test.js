@@ -39,7 +39,7 @@ describe('<SvgIcon />', () => {
 
   it('renders children by default', () => {
     const { container, queryByTestId } = render(<SvgIcon>{path}</SvgIcon>);
-    const root = container.querySelector(`.${classes.root}`);
+    const root = container.firstChild;
 
     expect(queryByTestId('test-path')).to.not.equal(null);
     expect(root).to.have.attribute('aria-hidden', 'true');
@@ -52,56 +52,49 @@ describe('<SvgIcon />', () => {
           {path}
         </SvgIcon>,
       );
-      const root = container.querySelector(`.${classes.root}`);
 
       expect(queryByText('Network')).to.not.equal(null);
-      expect(root).to.not.have.attribute('aria-hidden');
+      expect(container.firstChild).to.not.have.attribute('aria-hidden');
     });
   });
 
   describe('prop: color', () => {
     it('should render with the user and SvgIcon classes', () => {
       const { container } = render(<SvgIcon className="meow">{path}</SvgIcon>);
-      const root = container.querySelector(`.${classes.root}`);
 
-      expect(root).to.have.class('meow');
+      expect(container.firstChild).to.have.class('meow');
     });
 
     it('should render with the secondary color', () => {
       const { container } = render(<SvgIcon color="secondary">{path}</SvgIcon>);
-      const root = container.querySelector(`.${classes.root}`);
 
-      expect(root).to.have.class(classes.colorSecondary);
+      expect(container.firstChild).to.have.class(classes.colorSecondary);
     });
 
     it('should render with the action color', () => {
       const { container } = render(<SvgIcon color="action">{path}</SvgIcon>);
-      const root = container.querySelector(`.${classes.root}`);
 
-      expect(root).to.have.class(classes.colorAction);
+      expect(container.firstChild).to.have.class(classes.colorAction);
     });
 
     it('should render with the error color', () => {
       const { container } = render(<SvgIcon color="error">{path}</SvgIcon>);
-      const root = container.querySelector(`.${classes.root}`);
 
-      expect(root).to.have.class(classes.colorError);
+      expect(container.firstChild).to.have.class(classes.colorError);
     });
 
     it('should render with the primary class', () => {
       const { container } = render(<SvgIcon color="primary">{path}</SvgIcon>);
-      const root = container.querySelector(`.${classes.root}`);
 
-      expect(root).to.have.class(classes.colorPrimary);
+      expect(container.firstChild).to.have.class(classes.colorPrimary);
     });
   });
 
   describe('prop: fontSize', () => {
     it('should be able to change the fontSize', () => {
       const { container } = render(<SvgIcon fontSize="inherit">{path}</SvgIcon>);
-      const root = container.querySelector(`.${classes.root}`);
 
-      expect(root).to.have.class(classes.fontSizeInherit);
+      expect(container.firstChild).to.have.class(classes.fontSizeInherit);
     });
   });
 });
