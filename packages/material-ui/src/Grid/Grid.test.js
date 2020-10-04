@@ -1,16 +1,22 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createShallow, getClasses, createMount, describeConformance } from 'test/utils';
+import { spy } from 'sinon';
+import {
+  getClasses,
+  createMount,
+  describeConformance,
+  createClientRender,
+  fireEvent,
+} from 'test/utils';
 import { createMuiTheme } from '@material-ui/core/styles';
 import Grid, { styles } from './Grid';
 
 describe('<Grid />', () => {
   const mount = createMount();
-  let shallow;
+  const render = createClientRender();
   let classes;
 
   before(() => {
-    shallow = createShallow({ dive: true });
     classes = getClasses(<Grid />);
   });
 
@@ -24,68 +30,89 @@ describe('<Grid />', () => {
 
   describe('prop: container', () => {
     it('should apply the container class', () => {
-      const wrapper = shallow(<Grid container />);
-      expect(wrapper.hasClass(classes.container)).to.equal(true);
+      const { container } = render(<Grid container />);
+      const node = container.querySelector(`.${classes.container}`);
+
+      expect(node).to.not.equal(null);
     });
   });
 
   describe('prop: item', () => {
     it('should apply the item class', () => {
-      const wrapper = shallow(<Grid item />);
-      expect(wrapper.hasClass(classes.item)).to.equal(true);
+      const { container } = render(<Grid item />);
+      const node = container.querySelector(`.${classes.item}`);
+
+      expect(node).to.not.equal(null);
     });
   });
 
   describe('prop: xs', () => {
     it('should apply the flex-grow class', () => {
-      const wrapper = shallow(<Grid item xs />);
-      expect(wrapper.hasClass(classes['grid-xs-true'])).to.equal(true);
+      const { container } = render(<Grid item xs />);
+      const node = container.querySelector(`.${classes['grid-xs-true']}`);
+
+      expect(node).to.not.equal(null);
     });
 
     it('should apply the flex size class', () => {
-      const wrapper = shallow(<Grid item xs={3} />);
-      expect(wrapper.hasClass(classes['grid-xs-3'])).to.equal(true);
+      const { container } = render(<Grid item xs={3} />);
+      const node = container.querySelector(`.${classes['grid-xs-3']}`);
+
+      expect(node).to.not.equal(null);
     });
 
     it('should apply the flex auto class', () => {
-      const wrapper = shallow(<Grid item xs="auto" />);
-      expect(wrapper.hasClass(classes['grid-xs-auto'])).to.equal(true);
+      const { container } = render(<Grid item xs="auto" />);
+      const node = container.querySelector(`.${classes['grid-xs-auto']}`);
+
+      expect(node).to.not.equal(null);
     });
   });
 
   describe('prop: spacing', () => {
     it('should have a spacing', () => {
-      const wrapper = shallow(<Grid container spacing={1} />);
-      expect(wrapper.hasClass(classes['spacing-xs-1'])).to.equal(true);
+      const { container } = render(<Grid container spacing={1} />);
+      const node = container.querySelector(`.${classes['spacing-xs-1']}`);
+
+      expect(node).to.not.equal(null);
     });
   });
 
   describe('prop: alignItems', () => {
     it('should apply the align-item class', () => {
-      const wrapper = shallow(<Grid alignItems="center" container />);
-      expect(wrapper.hasClass(classes['align-items-xs-center'])).to.equal(true);
+      const { container } = render(<Grid alignItems="center" container />);
+      const node = container.querySelector(`.${classes['align-items-xs-center']}`);
+
+      expect(node).to.not.equal(null);
     });
   });
 
   describe('prop: alignContent', () => {
     it('should apply the align-content class', () => {
-      const wrapper = shallow(<Grid alignContent="center" container />);
-      expect(wrapper.hasClass(classes['align-content-xs-center'])).to.equal(true);
+      const { container } = render(<Grid alignContent="center" container />);
+      const node = container.querySelector(`.${classes['align-content-xs-center']}`);
+
+      expect(node).to.not.equal(null);
     });
   });
 
   describe('prop: justifyContent', () => {
     it('should apply the justify-content class', () => {
-      const wrapper = shallow(<Grid justifyContent="space-evenly" container />);
-      expect(wrapper.hasClass(classes['justify-content-xs-space-evenly'])).to.equal(true);
+      const { container } = render(<Grid justifyContent="space-evenly" container />);
+      const node = container.querySelector(`.${classes['justify-content-xs-space-evenly']}`);
+
+      expect(node).to.not.equal(null);
     });
   });
 
   describe('prop: other', () => {
     it('should spread the other props to the root element', () => {
-      const handleClick = () => {};
-      const wrapper = shallow(<Grid component="span" onClick={handleClick} />);
-      expect(wrapper.props().onClick).to.equal(handleClick);
+      const handleClick = spy();
+      const { container } = render(<Grid component="span" onClick={handleClick} />);
+      const root = container.querySelector(`.${classes.root}`);
+
+      fireEvent.click(root);
+      expect(handleClick.callCount).to.equal(1);
     });
   });
 
