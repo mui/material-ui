@@ -176,7 +176,7 @@ const element = ref.current;
   }
 ```
 
-### 和 Learn 一起使用
+### 与 Lerna 一起使用
 
 如果您想要让 @material-ui/styles 在 Lerna monorepo 中跨包运行，一个可行的修复方法是 [提升（hoist）](https://github.com/lerna/lerna/blob/master/doc/hoist.md)共享的依赖包到 monorepo 文件的根部。 您可以尝试使用 --hoist 标识运行引导的选项。
 
