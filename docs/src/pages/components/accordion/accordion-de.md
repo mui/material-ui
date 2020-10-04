@@ -1,5 +1,5 @@
 ---
-title: Accordion React-Komponente
+title: React Accordion component
 components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 githubLabel: 'component: Accordion'
 materialDesign: https://material.io/archive/guidelines/components/expansion-panels.html
@@ -47,12 +47,6 @@ Der Inhalt von Accordions wird standardmäßig bereitgestellt, auch wenn das Pan
 ```
 
 Wie bei jeder Leistungsoptimierung ist dies keine Silberkugel. Stellen Sie sicher, dass Sie zuerst Engpässe erkennen und anschließend diese Optimierungsstrategien ausprobieren.
-
-## Sekundäre Überschrift und Spalten
-
-Zur Strukturierung des Inhalts können mehrere Spalten verwendet werden. Dem Bedienfeld kann ein Hilfetext hinzugefügt werden, welches den Benutzer unterstützt.
-
-{{"demo": "pages/components/accordion/DetailedAccordion.js", "bg": true}}
 
 ## Barrierefreiheit
 
