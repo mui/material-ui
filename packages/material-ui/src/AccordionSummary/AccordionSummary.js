@@ -24,7 +24,7 @@ export const styles = (theme) => {
         minHeight: 64,
       },
       '&$focusVisible': {
-        backgroundColor: theme.palette.grey['200'],
+        backgroundColor: theme.palette.action.focus,
       },
       '&$disabled': {
         opacity: theme.palette.action.disabledOpacity,
@@ -48,8 +48,8 @@ export const styles = (theme) => {
     },
     /* Styles applied to the `expandIcon`'s wrapper element. */
     expandIconWrapper: {
-      height: '24px',
-      color: 'rgb(0, 0, 0, 0.38)',
+      display: 'flex',
+      color: theme.palette.action.active,
       transform: 'rotate(0deg)',
       transition: theme.transitions.create('transform', transition),
       '&$expanded': {
@@ -103,7 +103,6 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(props, ref) 
       <div className={clsx(classes.content, { [classes.expanded]: expanded })}>{children}</div>
       {expandIcon && (
         <div
-          edge="end"
           className={clsx(classes.expandIconWrapper, {
             [classes.expanded]: expanded,
           })}
