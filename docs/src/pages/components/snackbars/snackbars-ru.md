@@ -1,5 +1,5 @@
 ---
-title: Всплывающее уведомление
+title: React Snackbar component
 components: Snackbar, SnackbarContent
 ---
 
