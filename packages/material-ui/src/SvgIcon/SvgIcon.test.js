@@ -38,23 +38,23 @@ describe('<SvgIcon />', () => {
   );
 
   it('renders children by default', () => {
-    const { container, getByTestId } = render(<SvgIcon>{path}</SvgIcon>);
+    const { container, queryByTestId } = render(<SvgIcon>{path}</SvgIcon>);
     const root = container.querySelector(`.${classes.root}`);
 
-    expect(getByTestId('test-path')).to.not.equal(null);
+    expect(queryByTestId('test-path')).to.not.equal(null);
     expect(root).to.have.attribute('aria-hidden', 'true');
   });
 
   describe('prop: titleAccess', () => {
     it('should be able to make an icon accessible', () => {
-      const { container, getByText } = render(
+      const { container, queryByText } = render(
         <SvgIcon title="Go to link" titleAccess="Network">
           {path}
         </SvgIcon>,
       );
       const root = container.querySelector(`.${classes.root}`);
 
-      expect(getByText('Network')).to.not.equal(null);
+      expect(queryByText('Network')).to.not.equal(null);
       expect(root).to.not.have.attribute('aria-hidden');
     });
   });
