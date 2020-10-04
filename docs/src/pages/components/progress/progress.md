@@ -118,3 +118,8 @@ If you need to perform 30 re-renders per second or more, we recommend disabling 
   transition: none;
 }
 ```
+
+### IE 11
+
+The circular progress component animation on IE 11 is degraded. The stroke dash animation is not working (equivalent to `disableShrink`) and the circular animation wobbles.
+You can solve the latter issue following [#5735](https://github.com/mui-org/material-ui/issues/5735).
