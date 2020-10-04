@@ -1,26 +1,22 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createShallow } from 'test/utils';
+import { createClientRender } from 'test/utils';
 import Hidden from './Hidden';
-import HiddenJs from './HiddenJs';
-import HiddenCss from './HiddenCss';
 
 describe('<Hidden />', () => {
-  let shallow;
-
-  before(() => {
-    shallow = createShallow();
-  });
+  let render = createClientRender();
 
   describe('prop: implementation', () => {
     it('should use HiddenJs by default', () => {
-      const wrapper = shallow(<Hidden>Hello</Hidden>);
-      expect(wrapper.find(HiddenJs).length).to.equal(1);
+      const { container } = render(<Hidden>Hello</Hidden>);
+      // JS implementation doesn't requires wrapping <div />
+      expect(container.firstChild).to.equal(null);
     });
 
     it('should change the implementation', () => {
-      const wrapper = shallow(<Hidden implementation="css">Hello</Hidden>);
-      expect(wrapper.find(HiddenCss).length).to.equal(1);
+      const { container } = render(<Hidden implementation="css">Hello</Hidden>);
+      // CSS  implementation requires wrapping <div />
+      expect(container.firstChild).to.have.tagName('div');
     });
   });
 });
