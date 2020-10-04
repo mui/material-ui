@@ -468,7 +468,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
         console.error(
           [
             'Material-UI: The `children` component of the Tooltip is not forwarding its props correctly.',
-            'Please make sure the props are spread on the same element that the ref is applied to.',
+            'Please make sure that props are spread on the same element that the ref is applied to.',
           ].join('\n'),
         );
       }
