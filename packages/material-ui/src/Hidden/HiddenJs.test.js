@@ -4,7 +4,7 @@ import { createClientRender } from 'test/utils';
 import HiddenJs from './HiddenJs';
 
 describe('<HiddenJs />', () => {
-  let render = createClientRender();
+  const render = createClientRender();
 
   function resolvePropName(upDownOnly, breakpoint) {
     if (upDownOnly === 'only') {

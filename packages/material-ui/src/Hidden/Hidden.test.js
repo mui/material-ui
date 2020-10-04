@@ -4,18 +4,19 @@ import { createClientRender } from 'test/utils';
 import Hidden from './Hidden';
 
 describe('<Hidden />', () => {
-  let render = createClientRender();
+  const render = createClientRender();
+  const child = <span>Hello</span>;
 
   describe('prop: implementation', () => {
     it('should use HiddenJs by default', () => {
-      const { container } = render(<Hidden>Hello</Hidden>);
+      const { container } = render(<Hidden>{child}</Hidden>);
       // JS implementation doesn't requires wrapping <div />
-      expect(container.firstChild).to.equal(null);
+      expect(container.firstChild).to.have.tagName('span');
     });
 
     it('should change the implementation', () => {
-      const { container } = render(<Hidden implementation="css">Hello</Hidden>);
-      // CSS  implementation requires wrapping <div />
+      const { container } = render(<Hidden implementation="css">{child}</Hidden>);
+      // CSS implementation requires wrapping <div />
       expect(container.firstChild).to.have.tagName('div');
     });
   });
