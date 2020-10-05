@@ -12,7 +12,7 @@
   "scripts": {
     "claudia": "claudia --profile claudia",
     "curl": "curl -H \"Content-Type: application/json\" -X POST --data @example.json https://5fm2imnpv2.execute-api.us-east-1.amazonaws.com/dev/rating",
-    "setup": "claudia create --profile claudia --version dev --region us-east-1 --api-module index --policies policies --configure-db",
+    "setup": "claudia create --profile claudia --version dev --region us-east-1 --api-module index --policies policies --configure-table-dev --configure-table-prod",
     "update": "claudia update --profile claudia --version dev",
     "deploy": "claudia update --profile claudia --version dev && claudia --profile claudia set-version --version prod",
     "reconfigure": "claudia update --profile claudia --configure-db"

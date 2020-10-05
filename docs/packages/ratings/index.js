@@ -7,8 +7,9 @@ const api = new ApiBuilder();
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
 async function dbGet(request, id, page) {
+  const stage = request.context.stage;
   const params = {
-    TableName: request.env.tableName,
+    TableName: request.env[`${stage}TableName`],
     Key: {
       id,
       page,
@@ -28,11 +29,13 @@ async function dbGet(request, id, page) {
 }
 
 async function dbPut(request, id, item = {}) {
+  const stage = request.context.stage;
   const params = {
-    TableName: request.env.tableName,
+    TableName: request.env[`${stage}TableName`],
     Item: {
       id,
       page: request.body.page,
+      version: request.body.version,
       rating: request.body.rating,
       comment: request.body.comment,
       dateTime: new Date().toString(),
@@ -53,8 +56,9 @@ async function dbPut(request, id, item = {}) {
 }
 
 async function dbQuery(request, id) {
+  const stage = request.context.stage;
   const params = {
-    TableName: request.env.tableName,
+    TableName: request.env[`${stage}TableName`],
     KeyConditionExpression: 'id = :id',
     ExpressionAttributeValues: {
       ':id': id,
@@ -76,9 +80,8 @@ async function dbQuery(request, id) {
 async function updateAverageRating(request, currentUserRating) {
   console.log('updateAverageRating()');
 
-  const id = 'averageRating';
+  const id = 'average';
   const pageAverage = await dbGet(request, id, request.body.page);
-
   const average = (pageAverage && pageAverage.rating) || 0;
   let count = (pageAverage && pageAverage.count) || 0;
 
@@ -102,7 +105,7 @@ async function updateAverageRating(request, currentUserRating) {
 api.post(
   '/rating',
   async (request) => {
-    console.log('post /rating', request.body);
+    console.log('POST /rating', request.body);
     const id = request.body.id || uuid();
 
     let currentRating = null;
@@ -124,8 +127,8 @@ api.post(
   { success: 201 },
 );
 
-api.get('/rating/{id}', (request) => {
-  console.log(`get /rating/${request.pathParams.id}`);
+api.get('/ratings/{id}', (request) => {
+  console.log(`GET /ratings/${request.pathParams.id}`);
   return (async () => {
     const result = await dbQuery(request, request.pathParams.id);
     return result.reduce((acc, curr) => {
@@ -136,6 +139,7 @@ api.get('/rating/{id}', (request) => {
   })();
 });
 
-api.addPostDeployConfig('tableName', 'DynamoDB Table Name:', 'configure-db');
+api.addPostDeployConfig('devTableName', 'DynamoDB Development Table Name:', 'configure-table-dev');
+api.addPostDeployConfig('prodTableName', 'DynamoDB Production Table Name:', 'configure-table-prod');
 
 module.exports = api;

@@ -23,7 +23,7 @@ import { getCookie, pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
 import Link from 'docs/src/modules/components/Link';
 
-const RATINGS_URL = 'https://5fm2imnpv2.execute-api.us-east-1.amazonaws.com/dev/rating';
+const RATINGS_URL = 'https://5fm2imnpv2.execute-api.us-east-1.amazonaws.com/dev';
 
 function Comment(props) {
   const { onClose: handleClose, open } = props;
@@ -99,7 +99,7 @@ function findIndex(array, comp) {
 }
 
 async function postData(data = {}) {
-  const response = await fetch(RATINGS_URL, {
+  const response = await fetch(`${RATINGS_URL}/rating`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     referrerPolicy: 'origin',
@@ -109,7 +109,7 @@ async function postData(data = {}) {
 }
 
 async function getData(id) {
-  const URL = `${RATINGS_URL}/${id}`;
+  const URL = `${RATINGS_URL}/ratings/${id}`;
 
   const response = await fetch(URL, {
     method: 'GET',
@@ -211,6 +211,8 @@ function MarkdownDocsFooter(props) {
   if (description === undefined) {
     throw new Error('Missing description in the page');
   }
+
+  console.log({location});
 
   React.useEffect(() => {
     setCurrentRating(getCurrentRating(currentPage.pathname));
