@@ -86,11 +86,17 @@ index 10c5a998cb..b5390af22b 100644
      });
  
 diff --git a/packages/material-ui-utils/src/elementTypeAcceptingRef.test.tsx b/packages/material-ui-utils/src/elementTypeAcceptingRef.test.tsx
-index 38176e3c1a..163fc752ec 100644
+index 38176e3c1a..b72bf5d316 100644
 --- a/packages/material-ui-utils/src/elementTypeAcceptingRef.test.tsx
 +++ b/packages/material-ui-utils/src/elementTypeAcceptingRef.test.tsx
-@@ -96,8 +96,6 @@ describe('elementTypeAcceptingRef', () => {
-         Promise.resolve({ default: (props: any) => <div {...props} /> }),
+@@ -93,11 +93,11 @@ describe('elementTypeAcceptingRef', () => {
+ 
+     it('accepts lazy', () => {
+       const Component = React.lazy(() =>
+-        Promise.resolve({ default: (props: any) => <div {...props} /> }),
++        Promise.resolve({
++          default: React.forwardRef((props, ref) => <div ref={ref} {...props} />),
++        }),
        );
  
 -      // should actually fail when mounting since the ref is forwarded to a function component
