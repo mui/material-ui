@@ -8,12 +8,13 @@ You can find some example projects in the [GitHub repository](https://github.com
 
 - [Create React App](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app) ([TypeScript version](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-typescript))
 - [Gatsby](https://github.com/mui-org/material-ui/tree/next/examples/gatsby)
+- [Gatsby Theme](https://github.com/mui-org/material-ui/tree/next/examples/gatsby-theme)
 - [Next.js](https://github.com/mui-org/material-ui/tree/next/examples/nextjs) ([TypeScript version](https://github.com/mui-org/material-ui/tree/next/examples/nextjs-with-typescript))
 - [Preact](https://github.com/mui-org/material-ui/tree/next/examples/preact)
 - [CDN](https://github.com/mui-org/material-ui/tree/next/examples/cdn)
 - [Plain server-side](https://github.com/mui-org/material-ui/tree/next/examples/ssr)
 - [Use styled-components as style engine](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-styled-components)
-- And more
+- [Reason React](https://github.com/mui-org/material-ui/tree/next/examples/reason)
 
 Create React App is an awesome project for learning React.
 Have a look at [the alternatives available](https://github.com/facebook/create-react-app/blob/master/README.md#popular-alternatives) to see which project best fits your needs.
