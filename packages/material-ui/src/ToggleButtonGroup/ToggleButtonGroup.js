@@ -30,6 +30,10 @@ export const styles = (theme) => ({
       borderTopRightRadius: 0,
       borderBottomRightRadius: 0,
     },
+    '&.Mui-selected + &.Mui-selected': {
+      borderLeft: 0,
+      marginLeft: 0,
+    },
   },
   /* Styles applied to the children if `orientation="vertical"`. */
   groupedVertical: {
@@ -42,6 +46,10 @@ export const styles = (theme) => ({
     '&:not(:last-child)': {
       borderBottomLeftRadius: 0,
       borderBottomRightRadius: 0,
+    },
+    '&.Mui-selected + &.Mui-selected': {
+      borderTop: 0,
+      marginTop: 0,
     },
   },
 });
