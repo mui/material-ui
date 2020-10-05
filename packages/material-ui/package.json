@@ -48,6 +48,12 @@
   "peerDependenciesMeta": {
     "@types/react": {
       "optional": true
+    },
+    "@emotion/core": {
+      "optional": true
+    },
+    "@emotion/styled": {
+      "optional": true
     }
   },
   "dependencies": {
