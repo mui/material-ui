@@ -1,5 +1,5 @@
 ---
-title: React Tooltip component
+title: Компонент React Tooltip
 components: Tooltip
 githubLabel: 'component: Tooltip'
 materialDesign: https://material.io/components/tooltips
