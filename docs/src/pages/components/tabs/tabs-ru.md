@@ -1,5 +1,5 @@
 ---
-title: React Tabs component
+title: Компонент React Tabs
 components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
 githubLabel: 'component: Tabs'
 materialDesign: https://material.io/components/tabs
