@@ -1,5 +1,5 @@
 ---
-title: React Alert component
+title: Компонент React Alert
 components: Alert, AlertTitle
 githubLabel: 'component: Alert'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
