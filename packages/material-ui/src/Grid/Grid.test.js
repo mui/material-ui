@@ -1,12 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy } from 'sinon';
 import {
   getClasses,
   createMount,
   describeConformance,
   createClientRender,
-  fireEvent,
 } from 'test/utils';
 import { createMuiTheme } from '@material-ui/core/styles';
 import Grid, { styles } from './Grid';
