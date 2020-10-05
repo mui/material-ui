@@ -7,7 +7,8 @@ waiAria: 'https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating'
 
 # Rating 评分
 
-<p class="description">Ratings provide insight regarding others’ opinions and experiences, and can allow the user to submit a rating of their own.</p>
+<p class="description">评分可以让用户深入了解他人的意见和经验，也可以让用户提交自己的评分。
+</p>
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
