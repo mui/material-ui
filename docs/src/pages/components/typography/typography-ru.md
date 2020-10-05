@@ -1,5 +1,5 @@
 ---
-title: React Typography component
+title: Компонент React Typography
 components: Оформление текста
 ---
 
