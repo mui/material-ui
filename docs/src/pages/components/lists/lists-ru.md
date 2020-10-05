@@ -1,5 +1,5 @@
 ---
-title: React List component
+title: Компонент React List
 components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
 ---
 
