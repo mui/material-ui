@@ -57,7 +57,8 @@ export const styles = {
  * </FormControl>
  * ```
  *
- * ⚠️Only one input can be used within a FormControl.
+ * ⚠️ Only one `InputBase` can be used within a FormControl because it create visual inconsistencies.
+ * For instance, only one input can be focused at the same time, the state shouldn't be shared.
  */
 const FormControl = React.forwardRef(function FormControl(props, ref) {
   const {
@@ -134,9 +135,8 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
       if (registeredInput.current) {
         console.error(
           [
-            'Material-UI: There are multiple InputBase components inside a FormControl.',
-            'This is not supported. It might cause infinite rendering loops.',
-            'Only use one InputBase.',
+            'Material-UI: There are multiple `InputBase` components inside a FormControl.',
+            'This creates visual inconsistencies, only use one `InputBase`.',
           ].join('\n'),
         );
       }

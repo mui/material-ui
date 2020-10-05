@@ -499,7 +499,9 @@ describe('<InputBase />', () => {
               </div>
             </FormControl>,
           );
-        }).toErrorDev('Material-UI: There are multiple InputBase components inside a FormControl.');
+        }).toErrorDev(
+          'Material-UI: There are multiple `InputBase` components inside a FormControl.\nThis creates visual inconsistencies, only use one `InputBase`.',
+        );
       });
 
       it('should not warn if only one input is rendered', () => {
