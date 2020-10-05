@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy, useFakeTimers } from 'sinon';
+import { spy, stub, useFakeTimers } from 'sinon';
 import {
   getClasses,
   createMount,
@@ -950,6 +950,49 @@ describe('<Tooltip />', () => {
         </Tooltip>,
       );
       expect(getByTestId('CustomPopper')).toBeVisible();
+    });
+  });
+
+  describe('prop: followCursor', () => {
+    const x = 11;
+    const y = 0;
+    it('should pass onMouseMove props to children component', () => {
+      render(
+        <Tooltip title="Hello World" open followCursor PopperProps={{ 'data-testid': 'popper' }}>
+          <button data-testid="target" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+      const tooltipElement = screen.getByTestId('popper');
+      const targetElement = screen.getByTestId('target');
+      stub(tooltipElement, 'getBoundingClientRect').callsFake(() => ({
+        top: y,
+        left: x,
+        right: x,
+        bottom: y,
+        width: 0,
+        height: 0,
+      }));
+      fireEvent.mouseMove(targetElement, {
+        clientX: x,
+        clientY: y,
+      });
+
+      act(() => {
+        clock.tick(100);
+      });
+
+      expect(tooltipElement).toBeVisible();
+      expect(tooltipElement.getBoundingClientRect()).to.deep.equal({
+        top: y,
+        left: x,
+        right: x,
+        bottom: y,
+        width: 0,
+        height: 0,
+      });
+      clock.runAll();
     });
   });
 });
