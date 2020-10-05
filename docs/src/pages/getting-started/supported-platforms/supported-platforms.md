@@ -5,12 +5,13 @@
 ## Browser
 
 Material-UI supports the latest, stable releases of all major browsers and platforms.
-It also supports Internet Explorer 11.
 You don't need to provide any JavaScript polyfill as it manages unsupported browser features internally and in isolation.
 
-| IE  | Edge  | Firefox | Chrome | Safari | Googlebot |
-| :-- | :---- | :------ | :----- | :----- | :-------- |
-| 11  | >= 14 | >= 52   | >= 49  | >= 10  | ✅        |
+| Edge  | Firefox | Chrome | Safari |
+| :---- | :------ | :----- | :----- |
+| >= 83 | >= 68   | >= 83  | >= 13  |
+
+If you need to support IE 11, check out our [legacy bundle](/guides/minimizing-bundle-size#legacy-bundle).
 
 Because Googlebot uses a web rendering service (WRS) to index the page content, it's critical that Material-UI supports it.
 [WRS regularly updates the rendering engine it uses](https://webmasters.googleblog.com/2019/05/the-new-evergreen-googlebot.html).
@@ -19,7 +20,7 @@ You can expect Material-UI's components to render without major issues.
 ## Server
 
 Because Material-UI supports server-side rendering, it needs to support the latest, stable releases of [Node.js](https://github.com/nodejs/node).
-Where possible, the [LTS versions that are in maintenance](https://github.com/nodejs/Release#lts-schedule1) are supported. We recommend using **node v10.x** or newer. However we still support **node v8.x**. The support of **node v8.x** will be stopped in Material-UI Version 5.
+Where possible, the [LTS versions that are in maintenance](https://github.com/nodejs/Release#lts-schedule1) are supported.
 
 ### CSS prefixing
 

@@ -117,8 +117,6 @@ Pick one of the following plugins:
       'babel-plugin-import',
       {
         libraryName: '@material-ui/core',
-        // Use "'libraryDirectory': ''," if your bundler does not support ES modules
-        libraryDirectory: 'esm',
         camel2DashComponentName: false,
       },
       'core',
@@ -127,8 +125,6 @@ Pick one of the following plugins:
       'babel-plugin-import',
       {
         libraryName: '@material-ui/icons',
-        // Use "'libraryDirectory': ''," if your bundler does not support ES modules
-        libraryDirectory: 'esm',
         camel2DashComponentName: false,
       },
       'icons',
@@ -150,13 +146,11 @@ Pick one of the following plugins:
       'babel-plugin-transform-imports',
       {
         '@material-ui/core': {
-          // Use "transform: '@material-ui/core/${member}'," if your bundler does not support ES modules
-          transform: '@material-ui/core/esm/${member}',
+          transform: '@material-ui/core/${member}',
           preventFullImport: true,
         },
         '@material-ui/icons': {
-          // Use "transform: '@material-ui/icons/${member}'," if your bundler does not support ES modules
-          transform: '@material-ui/icons/esm/${member}',
+          transform: '@material-ui/icons/${member}',
           preventFullImport: true,
         },
       },
@@ -226,18 +220,20 @@ It will perform the following diffs:
 +import { Button, TextField } from '@material-ui/core';
 ```
 
-## ECMAScript
+## Available bundles
 
 The package published on npm is **transpiled**, with [Babel](https://github.com/babel/babel), to take into account the [supported platforms](/getting-started/supported-platforms/).
 
-A second version of the components is also published, which
-you can find under the [`/es` folder](https://unpkg.com/@material-ui/core/es/).
-All the non-official syntax is transpiled to the [ECMA-262 standard](https://www.ecma-international.org/publications/standards/Ecma-262.htm), nothing more.
-This can be used to make separate bundles targeting different browsers.
-Older browsers will require more JavaScript features to be transpiled,
-which increases the size of the bundle.
-No polyfills are included for ES2015 runtime features. IE11+ and evergreen browsers support all the
-necessary features. If you need support for other browsers, consider using
-[`@babel/polyfill`](https://www.npmjs.com/package/@babel/polyfill).
+⚠️ In order to minimize duplication of code in users' bundles, library authors are **strongly discouraged** to import from any of the other bundles.
 
-⚠️ In order to minimize duplication of code in users' bundles, library authors are **strongly discouraged** from using the `/es` folder.
+### Modern bundle
+
+The modern bundle can be found under the [`/modern` folder](https://unpkg.com/@material-ui/core/modern/).
+It targets the latest released versions of evergreen browsers (Chrome, Firefox, Safari, Edge).
+This can be used to make separate bundles targeting different browsers.
+
+### Legacy bundle
+
+If you need to support IE 11 you cannot use the default or modern bundle without transpilation.
+However, you can use the legacy bundle found under the [`/legacy` folder](https://unpkg.com/@material-ui/core/legacy/).
+You don't need any additional polyfills.
