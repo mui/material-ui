@@ -22,7 +22,7 @@ function PersistScroll(props) {
 
   React.useEffect(() => {
     const parent = rootRef.current ? rootRef.current.parentElement : null;
-    const activeElement = document.querySelector('.drawer-active');
+    const activeElement = document.querySelector('.app-drawer-active');
 
     if (!parent || !activeElement || !activeElement.scrollIntoView) {
       return undefined;
@@ -82,7 +82,7 @@ function renderNavItems(options) {
   const { pages, ...params } = options;
 
   return (
-    <List>
+    <List disablePadding>
       {pages.reduce(
         // eslint-disable-next-line @typescript-eslint/no-use-before-define
         (items, page) => reduceChildRoutes({ items, page, ...params }),

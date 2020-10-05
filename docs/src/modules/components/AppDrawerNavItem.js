@@ -1,43 +1,83 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
-import ListItem from '@material-ui/core/ListItem';
-import Button from '@material-ui/core/Button';
+import { makeStyles, fade } from '@material-ui/core/styles';
 import Collapse from '@material-ui/core/Collapse';
+import ButtonBase from '@material-ui/core/ButtonBase';
+import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import Link from 'docs/src/modules/components/Link';
 
 const useStyles = makeStyles((theme) => ({
-  item: {
+  li: {
+    padding: '1px 0',
     display: 'block',
-    paddingTop: 0,
-    paddingBottom: 0,
   },
-  itemLeaf: {
+  liRoot: {
+    padding: '0 8px',
+  },
+  item: {
+    ...theme.typography.body2,
     display: 'flex',
-    paddingTop: 0,
-    paddingBottom: 0,
-  },
-  button: {
-    letterSpacing: 0,
-    justifyContent: 'flex-start',
-    textTransform: 'none',
+    borderRadius: theme.shape.borderRadius,
+    outline: 0,
     width: '100%',
-  },
-  buttonLeaf: {
-    letterSpacing: 0,
+    padding: '8px 0',
     justifyContent: 'flex-start',
-    textTransform: 'none',
-    width: '100%',
-    fontWeight: theme.typography.fontWeightRegular,
-    '&.depth-0': {
-      fontWeight: theme.typography.fontWeightMedium,
+    fontWeight: theme.typography.fontWeightMedium,
+    transition: theme.transitions.create(['color', 'background-color'], {
+      duration: theme.transitions.duration.shortest,
+    }),
+    '&:hover': {
+      color: theme.palette.text.primary,
+      backgroundColor: fade(theme.palette.text.primary, theme.palette.action.hoverOpacity),
+    },
+    '&.Mui-focusVisible': {
+      backgroundColor: theme.palette.action.focus,
+    },
+    [theme.breakpoints.up('md')]: {
+      padding: '6px 0',
     },
   },
-  active: {
-    color: theme.palette.primary.main,
+  button: {
+    color: theme.palette.text.primary,
     fontWeight: theme.typography.fontWeightMedium,
+    '& svg': {
+      fontSize: 18,
+      marginLeft: -19,
+      color: theme.palette.text.secondary,
+    },
+    '& svg$open': {
+      transform: 'rotate(90deg)',
+    },
+    '&:hover svg': {
+      color: theme.palette.text.primary,
+    },
   },
+  open: {},
+  link: {
+    color: theme.palette.text.secondary,
+    '&.app-drawer-active': {
+      color: theme.palette.primary.main,
+      backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+      '&:hover': {
+        backgroundColor: fade(
+          theme.palette.primary.main,
+          theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+        ),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+        },
+      },
+      '&.Mui-focusVisible': {
+        backgroundColor: fade(
+          theme.palette.primary.main,
+          theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+        ),
+      },
+    },
+  },
+  active: {},
 }));
 
 export default function AppDrawerNavItem(props) {
@@ -60,47 +100,54 @@ export default function AppDrawerNavItem(props) {
   };
 
   const style = {
-    paddingLeft: 8 * (3 + 2 * depth),
+    paddingLeft: 8 * (3 + 1.5 * depth),
   };
 
   if (href) {
     return (
-      <ListItem className={classes.itemLeaf} disableGutters {...other}>
-        <Button
-          color="inherit"
-          component={Link}
-          naked
-          activeClassName={`drawer-active ${classes.active}`}
+      <li
+        className={clsx(classes.li, {
+          [classes.liRoot]: depth === 0,
+        })}
+        {...other}
+      >
+        <Link
+          activeClassName="app-drawer-active"
           href={href}
-          className={clsx(classes.buttonLeaf, `depth-${depth}`)}
-          disableTouchRipple
+          underline="none"
+          className={clsx(classes.item, classes.link)}
           onClick={onClick}
           style={style}
           {...linkProps}
         >
           {title}
-        </Button>
-      </ListItem>
+        </Link>
+      </li>
     );
   }
 
   return (
-    <ListItem className={classes.item} disableGutters {...other}>
-      <Button
-        color="inherit"
-        classes={{
-          root: classes.button,
-          label: topLevel ? 'algolia-lvl0' : '',
-        }}
+    <li
+      className={clsx(classes.li, {
+        [classes.liRoot]: depth === 0,
+      })}
+      {...other}
+    >
+      <ButtonBase
+        disableRipple
+        className={clsx(classes.item, classes.button, {
+          'algolia-lvl0': topLevel,
+        })}
         onClick={handleClick}
         style={style}
       >
+        <ArrowRightIcon className={open ? classes.open : ''} />
         {title}
-      </Button>
+      </ButtonBase>
       <Collapse in={open} timeout="auto" unmountOnExit>
         {children}
       </Collapse>
-    </ListItem>
+    </li>
   );
 }
 

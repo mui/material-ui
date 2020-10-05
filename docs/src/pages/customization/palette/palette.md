@@ -190,13 +190,13 @@ Need inspiration? The Material Design team has built an [palette configuration t
 ## Dark mode
 
 Material-UI comes with two palette types, light (the default) and dark.
-You can make the theme dark by setting `type: 'dark'`.
+You can make the theme dark by setting `mode: 'dark'`.
 While it's only a single value change, internally it modifies several palette values.
 
 ```js
 const darkTheme = createMuiTheme({
   palette: {
-    type: 'dark',
+    mode: 'dark',
   },
 });
 ```
