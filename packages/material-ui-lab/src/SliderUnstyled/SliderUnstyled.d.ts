@@ -51,26 +51,32 @@ export interface SliderTypeMap<P = {}, D extends React.ElementType = 'span'> {
      */
     componentsProps?: {
       root?: {
-        styleProps?: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
         as: React.ElementType;
+        styleProps?: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
       };
       track?: {
         as?: React.ElementType;
+        styleProps?: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
       };
       rail?: {
         as?: React.ElementType;
+        styleProps?: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
       };
       thumb?: {
         as?: React.ElementType;
+        styleProps?: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
       };
       mark?: {
         as?: React.ElementType;
+        styleProps?: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
       };
       markLabel?: {
         as?: React.ElementType;
+        styleProps?: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
       };
       valueLabel?: {
         as?: React.ElementType;
+        styleProps?: Omit<SliderTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
       };
     };
     /**

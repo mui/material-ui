@@ -625,9 +625,20 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
       {...other}
       className={clsx(utilityClasses.root, rootProps.className, className)}
     >
-      <Rail {...railProps} className={clsx(utilityClasses.rail, railProps.className)} />
+      <Rail
+        {...railProps}
+        {...(isComponent(Rail) && {
+          styleProps: stateAndProps,
+          theme,
+        })}
+        className={clsx(utilityClasses.rail, railProps.className)}
+      />
       <Track
         {...trackProps}
+        {...(isComponent(Track) && {
+          styleProps: stateAndProps,
+          theme,
+        })}
         className={clsx(utilityClasses.track, trackProps.className)}
         style={{ ...trackStyle, ...trackProps.style }}
       />
@@ -656,6 +667,10 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
             <Mark
               data-index={index}
               {...markProps}
+              {...(isComponent(Mark) && {
+                styleProps: stateAndProps,
+                theme,
+              })}
               style={{ ...style, ...markProps.style }}
               className={clsx(utilityClasses.mark, markProps.className, {
                 [getUtilityClass('markActive')]: markActive,
@@ -666,6 +681,10 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                 aria-hidden
                 data-index={index}
                 {...markLabelProps}
+                {...(isComponent(MarkLabel) && {
+                  styleProps: stateAndProps,
+                  theme,
+                })}
                 style={{ ...style, ...markLabelProps.style }}
                 className={clsx(utilityClasses.markLabel, markLabelProps.className, {
                   [getUtilityClass('markLabelActive')]: markActive,
@@ -686,6 +705,10 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
             key={index}
             valueLabelFormat={valueLabelFormat}
             valueLabelDisplay={valueLabelDisplay}
+            {...(isComponent(ValueLabel) && {
+              styleProps: stateAndProps,
+              theme,
+            })}
             value={
               typeof valueLabelFormat === 'function'
                 ? valueLabelFormat(scale(value), index)
@@ -707,6 +730,10 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                 'Mui-active': active === index,
                 'Mui-disabled': disabled,
                 'Mui-focusVisible': focusVisible === index,
+              })}
+              {...(isComponent(Thumb) && {
+                styleProps: stateAndProps,
+                theme,
               })}
               tabIndex={disabled ? null : 0}
               role="slider"
