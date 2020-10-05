@@ -1,8 +1,8 @@
 diff --git a/babel.config.js b/babel.config.js
-index f314ca4c3b..9cc20c7d7b 100644
+index 2023a104f5..7435aa568c 100644
 --- a/babel.config.js
 +++ b/babel.config.js
-@@ -48,7 +48,16 @@ const productionPlugins = [
+@@ -47,7 +47,16 @@ const productionPlugins = [
  ];
  
  module.exports = {
@@ -20,42 +20,6 @@ index f314ca4c3b..9cc20c7d7b 100644
    plugins: [
      [
        'babel-plugin-macros',
-diff --git a/packages/material-ui-lab/src/Autocomplete/Autocomplete.test.js b/packages/material-ui-lab/src/Autocomplete/Autocomplete.test.js
-index 025aaf707a..8d575dae50 100644
---- a/packages/material-ui-lab/src/Autocomplete/Autocomplete.test.js
-+++ b/packages/material-ui-lab/src/Autocomplete/Autocomplete.test.js
-@@ -1173,8 +1173,6 @@ describe('<Autocomplete />', () => {
-         fireEvent.change(textbox, { target: { value: 'a' } });
-         fireEvent.keyDown(textbox, { key: 'Enter' });
-       }).toErrorDev([
--        'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
--        // strict mode renders twice
-         'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
-         'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
-         'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
-@@ -1229,9 +1227,6 @@ describe('<Autocomplete />', () => {
-           />,
-         );
-       }).toWarnDev([
--        'None of the options match with `"not a good value"`',
--        // strict mode renders twice
--        'None of the options match with `"not a good value"`',
-         'None of the options match with `"not a good value"`',
-         'None of the options match with `"not a good value"`',
-       ]);
-@@ -1257,11 +1252,7 @@ describe('<Autocomplete />', () => {
-             groupBy={(option) => option.group}
-           />,
-         );
--      }).toWarnDev([
--        // strict mode renders twice
--        'returns duplicated headers',
--        'returns duplicated headers',
--      ]);
-+      }).toWarnDev(['returns duplicated headers']);
-       const options = screen.getAllByRole('option').map((el) => el.textContent);
-       expect(options).to.have.length(7);
-       expect(options).to.deep.equal(['A', 'D', 'E', 'B', 'G', 'F', 'C']);
 diff --git a/packages/material-ui-styles/src/ThemeProvider/ThemeProvider.test.js b/packages/material-ui-styles/src/ThemeProvider/ThemeProvider.test.js
 index 197b2f77a3..f1ead08079 100644
 --- a/packages/material-ui-styles/src/ThemeProvider/ThemeProvider.test.js
@@ -121,8 +85,44 @@ index 10c5a998cb..b5390af22b 100644
        assertPass(<Component />);
      });
  
+diff --git a/packages/material-ui/src/Autocomplete/Autocomplete.test.js b/packages/material-ui/src/Autocomplete/Autocomplete.test.js
+index 07345638e7..acfecbdf3e 100644
+--- a/packages/material-ui/src/Autocomplete/Autocomplete.test.js
++++ b/packages/material-ui/src/Autocomplete/Autocomplete.test.js
+@@ -1176,8 +1176,6 @@ describe('<Autocomplete />', () => {
+         fireEvent.change(textbox, { target: { value: 'a' } });
+         fireEvent.keyDown(textbox, { key: 'Enter' });
+       }).toErrorDev([
+-        'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
+-        // strict mode renders twice
+         'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
+         'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
+         'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
+@@ -1232,9 +1230,6 @@ describe('<Autocomplete />', () => {
+           />,
+         );
+       }).toWarnDev([
+-        'None of the options match with `"not a good value"`',
+-        // strict mode renders twice
+-        'None of the options match with `"not a good value"`',
+         'None of the options match with `"not a good value"`',
+         'None of the options match with `"not a good value"`',
+       ]);
+@@ -1260,11 +1255,7 @@ describe('<Autocomplete />', () => {
+             groupBy={(option) => option.group}
+           />,
+         );
+-      }).toWarnDev([
+-        // strict mode renders twice
+-        'returns duplicated headers',
+-        'returns duplicated headers',
+-      ]);
++      }).toWarnDev(['returns duplicated headers']);
+       const options = screen.getAllByRole('option').map((el) => el.textContent);
+       expect(options).to.have.length(7);
+       expect(options).to.deep.equal(['A', 'D', 'E', 'B', 'G', 'F', 'C']);
 diff --git a/packages/material-ui/src/Breadcrumbs/Breadcrumbs.test.js b/packages/material-ui/src/Breadcrumbs/Breadcrumbs.test.js
-index c397f4b9f0..2fbea8f53e 100644
+index d5c5735ecf..86a4ebdece 100644
 --- a/packages/material-ui/src/Breadcrumbs/Breadcrumbs.test.js
 +++ b/packages/material-ui/src/Breadcrumbs/Breadcrumbs.test.js
 @@ -100,7 +100,6 @@ describe('<Breadcrumbs />', () => {
