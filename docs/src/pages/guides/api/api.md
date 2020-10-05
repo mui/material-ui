@@ -102,6 +102,7 @@ This choice allows the shorthand notation:
 
 Most of the controlled component are controlled via the `value` and the `onChange` props,
 however, the `open` / `onClose` / `onOpen` combination is used for display related state.
+As a design approach, we decided to put the noun first, and then the verb. for example - `onPageChange`
 
 ### boolean vs enum
 

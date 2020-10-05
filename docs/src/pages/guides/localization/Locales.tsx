@@ -40,7 +40,7 @@ export default function Locales() {
           rowsPerPage={10}
           page={1}
           component="div"
-          onChangePage={() => {}}
+          onPageChange={() => {}}
         />
       </ThemeProvider>
     </div>

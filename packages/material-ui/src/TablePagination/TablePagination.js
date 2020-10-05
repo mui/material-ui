@@ -91,8 +91,8 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
     labelDisplayedRows = defaultLabelDisplayedRows,
     labelRowsPerPage = 'Rows per page:',
     nextIconButtonProps,
-    onChangePage,
-    onChangeRowsPerPage,
+    onPageChange,
+    onRowsPerPageChange,
     page,
     rowsPerPage,
     rowsPerPageOptions = [10, 25, 50, 100],
@@ -129,7 +129,7 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
             }}
             input={<InputBase className={clsx(classes.input, classes.selectRoot)} />}
             value={rowsPerPage}
-            onChange={onChangeRowsPerPage}
+            onChange={onRowsPerPageChange}
             id={selectId}
             labelId={labelId}
             {...SelectProps}
@@ -159,7 +159,7 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
           backIconButtonProps={backIconButtonProps}
           count={count}
           nextIconButtonProps={nextIconButtonProps}
-          onChangePage={onChangePage}
+          onPageChange={onPageChange}
           page={page}
           rowsPerPage={rowsPerPage}
           showFirstButton={showFirstButton}
@@ -248,13 +248,13 @@ TablePagination.propTypes = {
    * @param {object} event The event source of the callback.
    * @param {number} page The page selected.
    */
-  onChangePage: PropTypes.func.isRequired,
+  onPageChange: PropTypes.func.isRequired,
   /**
    * Callback fired when the number of rows per page is changed.
    *
    * @param {object} event The event source of the callback.
    */
-  onChangeRowsPerPage: PropTypes.func,
+  onRowsPerPageChange: PropTypes.func,
   /**
    * The zero-based index of the current page.
    */
