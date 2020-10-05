@@ -6,7 +6,7 @@ materialDesign: https://material.io/archive/guidelines/components/expansion-pane
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#accordion'
 ---
 
-# Akkordeon
+# Akkordeon (Accordion)
 
 <p class="description">Erweiterungspanels (Tafeln) enthalten Erstellungsabläufe und ermöglichen die einfache Bearbeitung eines Elements.</p>
 
