@@ -28,10 +28,7 @@ export interface Localization {
       };
     };
     MuiPagination?: {
-      defaultProps: {
-        'aria-label'?: string;
-        getItemAriaLabel?: (type: string, page: number, selected: boolean) => string;
-      };
+      defaultProps: Pick<ComponentsPropsList['MuiPagination'], 'aria-label' | 'getItemAriaLabel'>;
     };
   };
 }

@@ -22,7 +22,7 @@ const theme = createMuiTheme({
 });
 ```
 
-### 3。 Install the rtl plugin
+### 3。 安装 rtl 插件
 
 你需要这个 JSS 插件来翻转样式： [jss-rtl](https://github.com/alitaheri/jss-rtl)。
 
@@ -30,30 +30,18 @@ const theme = createMuiTheme({
 npm install jss-rtl
 ```
 
-If you are using `emotion` or `styled-components`, you need this stylis plugin to flip the styles: [stylis-plugin-rtl](https://github.com/styled-components/stylis-plugin-rtl).
+如果你正在使用 `emotion` 或者 `styled-components`，你需要使用该插件来翻转样式： [stylis-plugin-rtl](https://github.com/styled-components/stylis-plugin-rtl)。
 
 ```sh
-import { create } from 'jss';
-import rtl from 'jss-rtl';
-import { StylesProvider, jssPreset } from '@material-ui/core/styles';
+npm install stylis-plugin-rtl@^1
 
-// Configure JSS
-const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
-
-function RTL(props) {
-  return (
-    <StylesProvider jss={jss}>
-      {props.children}
-    </StylesProvider>
-  );
-}
 ```
 
-Note: both `emotion` and `styled-components` currently work with the v1 of the plugin.
+注意：`emotion` 和 `styled-components` 目前都兼容该插件的 v1 版本。
 
-Having installed the plugin in your project, Material-UI components still require it to be loaded by the style engine instance that you use. Find bellow guides on how you can load it.
+在你的项目中安装了该插件后，Material-UI 组件仍然需要通过你使用的样式引擎实例来加载它。 下面的指南讲述了如何进行加载。
 
-### 3。 Load the rtl plugin
+### 3。 加载 rtl 插件
 
 #### 3.1 JSS
 
@@ -67,20 +55,18 @@ import rtl from 'jss-rtl';
 import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 
 // Configure JSS
-const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
+const jss = create({
+  plugins: [...jssPreset().plugins, rtl()],
+});
 
 function RTL(props) {
-  return (
-    <StylesProvider jss={jss}>
-      {props.children}
-    </StylesProvider>
-  );
+  return <StylesProvider jss={jss}>{props.children}</StylesProvider>;
 }
 ```
 
 #### 3.2 emotion
 
-If you use emotion as your style engine, you should create new cache instance that uses the `stylis-plugin-rtl` and provide that on the top of your application tree. The [CacheProvider](https://emotion.sh/docs/cache-provider) component enables this:
+如果你的样式引擎的是 emotion，那么你应该创建并使用  `stylis-plugin-rtl` 的新缓存实例，并将其提供在你应用程序树的顶部。 [CacheProvider](https://emotion.sh/docs/cache-provider) 组件实现了这一点：
 
 ```jsx
 import rtlPlugin from 'stylis-plugin-rtl';
@@ -101,7 +87,7 @@ function RTL(props) {
 
 #### 3.3 styled-components
 
-If you use `styled-components` as your style engine, you can use the [StyleSheetManager](https://styled-components.com/docs/api#stylesheetmanager) and provide the stylis-plugin-rtl as an item in the `stylisPlugins` property:
+如果你的样式引擎是 `styled-components`，那么你可以使用 [StyleSheetManager](https://styled-components.com/docs/api#stylesheetmanager)，并在 `stylisPlugins` 属性中将 stylis-plugin-rtl 作为项目（item）提供。
 
 ```jsx
 import { StyleSheetManager } from 'styled-components';
@@ -134,7 +120,7 @@ _请使用右上角的方向切换按钮来查看效果。_
 
 ### emotion & styled-components
 
-You have to use the template literal syntax and add the `/* @noflip */` directive before the rule or property for which you want to disable right-to-left styles.
+你必须使用模板文字语法，并在你要禁用从右到左（right-to-left）样式的规则或属性前添加 `/* @noflip */` 指令。
 
 _请使用右上角的方向切换按钮来查看效果。_
 

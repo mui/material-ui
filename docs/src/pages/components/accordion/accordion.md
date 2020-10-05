@@ -57,12 +57,6 @@ accordions it might be a good idea to change this default behavior by enabling t
 As with any performance optimization this is not a silver bullet. Be sure to identify
 bottlenecks first and then try out these optimization strategies.
 
-## Secondary heading and columns
-
-Multiple columns can be used to structure the content, and a helper text may be added to the accordion to assist the user.
-
-{{"demo": "pages/components/accordion/DetailedAccordion.js", "bg": true}}
-
 ## Accessibility
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#accordion)

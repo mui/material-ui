@@ -11,6 +11,9 @@ Material-UI 旨在为构建动态的 UI 提供扎实的基础。 Material-UI 旨
 Material-UI 的样式方案来自于许多其他 CSS-in-JS 库的启发，例如 [styled-components](https://www.styled-components.com/) 和 [emotion](https://emotion.sh/)。
 
 - 💅你可以期待和 styled-components [一样的优势](https://www.styled-components.com/docs/basics#motivation)。
+
+<!-- #default-branch-switch -->
+
 - 🚀它的运行[超快的](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-benchmark/README.md#material-uistyles)。
 - 🧩你可以通过一个[插件](https://github.com/cssinjs/jss/blob/master/docs/plugins.md) API 来扩展。
 - ⚡️它使用 [JSS](https://github.com/cssinjs/jss) 为其核心 —— 一个 [高性能的](https://github.com/cssinjs/jss/blob/master/docs/performance.md) JavaScript 到 CSS 的编译器，它在运行时和服务器端编译。

@@ -1,5 +1,5 @@
 ---
-title: Componente React para Avatares
+title: React Avatar component
 components: Avatar, AvatarGroup, Badge
 githubLabel: 'component: Avatar'
 ---

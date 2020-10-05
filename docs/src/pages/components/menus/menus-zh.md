@@ -10,7 +10,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
 
 <p class="description">菜单在临时出现的位置上显示了一系列的选项。</p>
 
-一个[菜单组件](https://material.io/design/components/menus.html)在临时的位置上显示了一系列的选项。 当用户和一个按钮、或者其他控制元件交互的时候，菜单会出现。
+菜单组件在临时的位置上显示了一系列的选项。 当用户和一个按钮、或者其他控制元件交互的时候，菜单会出现。
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 

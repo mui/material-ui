@@ -1,5 +1,5 @@
 ---
-title: Componente Badge
+title: React Badge component
 components: Badge
 githubLabel: 'component: Badge'
 ---
@@ -18,7 +18,7 @@ Ejemplos de insignias que contienen texto, utilizando colores primarios y secund
 
 ## Placas personalizadas
 
-He aquí un ejemplo de personalización del componente. You can learn more about this in the [overrides documentation page](/customization/components/).
+He aquí un ejemplo de personalización del componente. Puedes aprender más sobre esto en la [sección Personalizando Componentes de la documentación](/customization/components/).
 
 {{"demo": "pages/components/badges/CustomizedBadges.js"}}
 
@@ -28,7 +28,7 @@ Usted puede usar la propiedad `overlap` para establecer el Badge relativo a la e
 
 {{"demo": "pages/components/badges/BadgeVisibility.js"}}
 
-El badge automáticamente se oculta con `badgeContent` igual a cero. Usted puede sobrescribir esto con la propiedad `showZero`.
+El badge se oculta automáticamente con `badgeContent` igual a cero. Usted puede sobrescribir esto con la propiedad `showZero`.
 
 {{"demo": "pages/components/badges/ShowZeroBadge.js"}}
 
@@ -40,7 +40,7 @@ Usted puede usar la propiedad `max` para establecer el valor máximo que puede c
 
 ## Badge de punto
 
-La propiedad `dot` cambia el badge a un pequeño punto. Esto puede ser usado para mostrar una notificación sin mostrar el valor.
+La propiedad `dot` cambia el badge a un pequeño punto. Esto se puede usar como una notificación de que algo ha cambiado sin contar.
 
 {{"demo": "pages/components/badges/DotBadge.js"}}
 
@@ -52,6 +52,6 @@ Usted puede usar la propiedad `anchorOrigin` para mover el Badge a cualquier esq
 
 ## Alineación del Badge
 
-Usted puede usar la propiedad `anchorOrigin` para mover el Badge a cualquier esquina del elemento envuelto.
+Puede usar la propiedad `overlap` para colocar la insignia relativa a la esquina del elemento envuelto.
 
 {{"demo": "pages/components/badges/BadgeAlignment.js", "hideToolbar": true}}
