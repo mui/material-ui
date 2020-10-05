@@ -125,7 +125,7 @@ The circular progress component animation on IE 11 is degraded. The stroke dash 
 You can solve the latter with:
 
 ```css
-.MuiCircularProgress-indeterminate {
+.MuiCircularProgress-indeterminate {
   animation: circular-rotate 1.4s linear infinite;
 }
 
