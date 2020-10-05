@@ -198,7 +198,7 @@ const theme = createMuitheme({
 
 ### Styles
 
-- Renamed `fade` to `alpha` to better describe the functinality of the utility.
+- Renamed `fade` to `alpha` to better describe the it's functionality.
 
 ```diff
 - import { fade } from '@material-ui/core/styles';
