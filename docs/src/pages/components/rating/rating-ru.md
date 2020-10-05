@@ -1,5 +1,5 @@
 ---
-title: React Rating component
+title: Компонент React Rating
 components: Rating
 githubLabel: 'component: Rating'
 waiAria: 'https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating'
