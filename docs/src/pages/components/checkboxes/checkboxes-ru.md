@@ -1,5 +1,5 @@
 ---
-title: React Checkbox component
+title: Компонент React Checkbox
 components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 materialDesign: 'https://material.io/components/selection-controls#checkboxes'
 githubLabel: 'component: Checkbox'
