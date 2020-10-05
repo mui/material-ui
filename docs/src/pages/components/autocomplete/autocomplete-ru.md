@@ -1,5 +1,5 @@
 ---
-title: React Autocomplete component
+title: Компонент React Autocomplete
 components: TextField, Popper, Autocomplete
 githubLabel: 'component: Autocomplete'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#combobox'
