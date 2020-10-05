@@ -5,7 +5,7 @@ githubLabel: 'component: Alert'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
 ---
 
-# Hinweis
+# Hinweis (Alert)
 
 <p class="description">Ein Hinweis zeigt eine kurze, wichtige Nachricht auf eine Weise, welche die Aufmerksamkeit des Benutzers auf sich zieht ohne die Aufgabe des Benutzers zu unterbrechen.</p>
 
