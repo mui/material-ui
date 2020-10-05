@@ -1,5 +1,5 @@
 ---
-title: React-компонент Значок
+title: React Badge component
 components: Badge
 ---
 

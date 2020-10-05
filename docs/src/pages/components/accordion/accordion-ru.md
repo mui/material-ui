@@ -1,5 +1,5 @@
 ---
-title: Панель расширения (Компонент React)
+title: React Accordion component
 components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 ---
 

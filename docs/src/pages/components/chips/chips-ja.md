@@ -1,5 +1,5 @@
 ---
-title: Chip コンポーネント
+title: React Chip component
 components: Chip
 ---
 

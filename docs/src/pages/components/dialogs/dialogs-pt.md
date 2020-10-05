@@ -1,5 +1,5 @@
 ---
-title: Componente React para Diálogos
+title: React Dialog component
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 ---
 

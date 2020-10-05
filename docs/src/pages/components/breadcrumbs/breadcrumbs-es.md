@@ -1,5 +1,5 @@
 ---
-title: Componente React Migas de pan
+title: React Breadcrumbs component
 components: Breadcrumbs, Link, Typography
 ---
 

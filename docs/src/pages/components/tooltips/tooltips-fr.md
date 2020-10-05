@@ -1,5 +1,5 @@
 ---
-title: Composant React Info-bulle
+title: React Tooltip component
 components: Tooltip
 ---
 

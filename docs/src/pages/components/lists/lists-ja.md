@@ -1,5 +1,5 @@
 ---
-title: Listコンポーネント
+title: React List component
 components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
 ---
 
@@ -95,4 +95,4 @@ Switchは補助的なアクションであり異なるターゲットです。
 
 ## カスタマイズ
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/list-item).
+🎨 インスピレーションを求めている場合は、 [MUI Treasury's customization examples](https://mui-treasury.com/styles/list-item) を確認すると良いでしょう。

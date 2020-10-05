@@ -1,5 +1,5 @@
 ---
-title: Modal React component
+title: React Modal component
 components: Modal
 ---
 
@@ -14,7 +14,7 @@ Le composant affiche ses nœuds `children` devant un composant d'arrière-plan. 
 - 🔐 It disables scrolling of the page content while open.
 - ♿️ It properly manages focus; moving to the modal content, and keeping it there until the modal is closed.
 - ♿️ Adds the appropriate ARIA roles automatically.
-- 📦 [5 kB gzipped](/size-snapshot).
+- 📦 [5 kB gzippé](/size-snapshot).
 
 > **Note de terminologie**. Le terme "modal" est parfois utilisé pour signifier "dialogue", mais c'est un terme impropre. Un élément est considéré modal si [il bloque l'interaction avec le reste de l'application](https://en.wikipedia.org/wiki/Modal_window). A modal window describes parts of a UI.
 

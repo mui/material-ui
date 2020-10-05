@@ -1,5 +1,5 @@
 ---
-title: Componente de React Table
+title: React Table component
 components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
 ---
 

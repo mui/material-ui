@@ -1,5 +1,5 @@
 ---
-title: Componente React Panel de Expansión
+title: React Accordion component
 components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 ---
 

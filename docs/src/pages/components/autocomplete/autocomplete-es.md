@@ -1,5 +1,5 @@
 ---
-title: Componente de Autocompletado de React
+title: React Autocomplete component
 components: TextField, Popper, Autocomplete
 ---
 
@@ -243,4 +243,4 @@ If you provide a custom `ListboxComponent` prop, you need to make sure that the 
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#combobox)
 
-We encourage the usage of a label for the textbox. The component implements the WAI-ARIA authoring practices.
+We encourage the usage of a label for the textbox. El componente implementa las prácticas de creación de WAI-ARIA.
