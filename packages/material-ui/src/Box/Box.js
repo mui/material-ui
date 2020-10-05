@@ -141,13 +141,7 @@ const boxProps = [
  * @ignore - do not document.
  */
 const BoxRoot = React.forwardRef(function StyledComponent(props, ref) {
-  const {
-    children,
-    clone,
-    className,
-    component: Component = "div",
-    ...other
-  } = props;
+  const { children, clone, className, component: Component = 'div', ...other } = props;
 
   const spread = omit(other, boxProps);
 
@@ -169,7 +163,7 @@ const BoxRoot = React.forwardRef(function StyledComponent(props, ref) {
   );
 });
 
-const shouldForwardProp = prop => boxProps.indexOf(prop) === -1;
+const shouldForwardProp = (prop) => boxProps.indexOf(prop) === -1;
 
 /**
  * @ignore - do not document.
