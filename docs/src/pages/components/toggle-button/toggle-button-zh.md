@@ -9,21 +9,21 @@ materialDesign: 'https://material.io/components/buttons#toggle-button'
 
 <p class="description">切换按钮组件可用于对相关选项进行分组。</p>
 
-为了强调组合之间的关联，每一组 [Toggle buttons](https://material.io/components/buttons#toggle-button) 应该共享一个容器。 当给定切换按钮的 `value` 属性时，`ToggleButtonGroup` 就可以控制其子按钮的选择状态（selected state）。
+为了强调组合之间的关联，每一组切换按钮应该共享一个容器。 当给定切换按钮的 `value` 属性时，`ToggleButtonGroup` 就可以控制其子按钮的选择状态（selected state）。
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## 唯一的选择
 
-With exclusive selection, selecting one option deselects any other.
+在唯一的选择中，选择一个选项就会取消其他的选择状态。
 
-In this example text justification toggle buttons present options for left, center, right, and fully justified text (disabled), with only one item available for selection at a time.
+在这个例子中，文本对齐切换按钮渲染了左、中、右和完全对齐文本（禁用）的选项，每次只有一个项目可供选择。
 
 {{"demo": "pages/components/toggle-button/ToggleButtons.js"}}
 
 ## 多选
 
-Multiple selection allows for logically-grouped options, like bold, italic, and underline, to have multiple options selected.
+多选允许使用逻辑分组的选项，如粗体、斜体和下划线，这可以选择多个选项。
 
 {{"demo": "pages/components/toggle-button/ToggleButtonsMultiple.js"}}
 
@@ -35,13 +35,13 @@ Multiple selection allows for logically-grouped options, like bold, italic, and 
 
 ## 垂直排列的按钮
 
-The buttons can be stacked vertically with the `orientation` prop set to "vertical".
+当 `orientation` 属性设置为 "vertical" 时，按钮可以变为垂直堆叠。
 
 {{"demo": "pages/components/toggle-button/VerticalToggleButtons.js"}}
 
 ## 强制设置值
 
-If you want to enforce that at least one button must be active, you can adapt your handleChange function.
+如果你想要至少一个按钮必须是强制选中状态的，那么你可以调整你的 handleChange 函数。
 
 ```jsx
 const handleFormat = (event, newFormats) => {
@@ -78,4 +78,4 @@ const handleAlignment = (event, newAlignment) => {
 
 ### 键盘输入
 
-At present, toggle buttons are in DOM order. Navigate between them with the tab key. The button behavior follows standard keyboard semantics.
+目前，切换按钮是按 DOM 顺序排列的。 可以用 tab 键在它们之间进行导航切换。 按钮的行为遵循标准键盘语义。
