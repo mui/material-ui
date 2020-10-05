@@ -173,16 +173,14 @@ const SliderRoot = experimentalStyled(
       ':hover': {
         boxShadow: 'none',
       },
+      ...(props.styleProps.orientation === 'vertical' && {
+        marginLeft: -3,
+        marginBottom: -4,
+      }),
     },
     ...(props.styleProps.orientation === 'vertical' && {
       marginLeft: -5,
       marginBottom: -6,
-    }),
-    ...(props.styleProps.orientation === 'vertical' && {
-      '&.Mui-disabled': {
-        marginLeft: -3,
-        marginBottom: -4,
-      },
     }),
     ...(props.styleProps.color === 'secondary' && {
       ':hover': {
@@ -226,6 +224,7 @@ const SliderRoot = experimentalStyled(
     '@media (pointer: coarse)': {
       top: 40,
       ...(props.styleProps.orientation === 'vertical' && {
+        top: 'auto',
         left: 31,
       }),
     },
