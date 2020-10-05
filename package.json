@@ -188,6 +188,7 @@
   "workspaces": [
     "packages/*",
     "docs",
+    "docs/packages/*",
     "framer"
   ]
 }
