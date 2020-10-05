@@ -12,11 +12,11 @@
   },
   "homepage": "https://github.com/mui-org/material-ui/tree/next/packages/material-ui-benchmark",
   "scripts": {
-    "core": "cd ../../ && NODE_ENV=production BABEL_ENV=benchmark babel-node packages/material-ui-benchmark/src/core.js --inspect=0.0.0.0:9229",
-    "docs": "cd ../../ && NODE_ENV=production BABEL_ENV=benchmark babel-node packages/material-ui-benchmark/src/docs.js --inspect=0.0.0.0:9229",
-    "server": "cd ../../ && NODE_ENV=production BABEL_ENV=benchmark babel-node packages/material-ui-benchmark/src/server.js --inspect=0.0.0.0:9229",
-    "styles": "cd ../../ && NODE_ENV=production BABEL_ENV=benchmark babel-node packages/material-ui-benchmark/src/styles.js --inspect=0.0.0.0:9229",
-    "system": "cd ../../ && NODE_ENV=production BABEL_ENV=benchmark babel-node packages/material-ui-benchmark/src/system.js --inspect=0.0.0.0:9229",
+    "core": "cd ../../ && cross-env NODE_ENV=production BABEL_ENV=benchmark babel-node packages/material-ui-benchmark/src/core.js --inspect=0.0.0.0:9229 --extensions \".tsx,.ts,.js\"",
+    "docs": "cd ../../ && cross-env NODE_ENV=production BABEL_ENV=benchmark babel-node packages/material-ui-benchmark/src/docs.js --inspect=0.0.0.0:9229 --extensions \".tsx,.ts,.js\"",
+    "server": "cd ../../ && cross-env NODE_ENV=production BABEL_ENV=benchmark babel-node packages/material-ui-benchmark/src/server.js --inspect=0.0.0.0:9229 --extensions \".tsx,.ts,.js\"",
+    "styles": "cd ../../ && cross-env NODE_ENV=production BABEL_ENV=benchmark babel-node packages/material-ui-benchmark/src/styles.js --inspect=0.0.0.0:9229 --extensions \".tsx,.ts,.js\"",
+    "system": "cd ../../ && cross-env NODE_ENV=production BABEL_ENV=benchmark babel-node packages/material-ui-benchmark/src/system.js --inspect=0.0.0.0:9229 --extensions \".tsx,.ts,.js\"",
     "test": "exit 0"
   },
   "engines": {
@@ -34,5 +34,8 @@
     "react-dom": "^16.13.0",
     "react-jss": "^10.3.0",
     "styled-system": "^5.1.2"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.2"
   }
 }
