@@ -1,3 +1,4 @@
+import React from 'react';
 import clsx from 'clsx';
 import {
   borders,
@@ -13,7 +14,7 @@ import {
   typography,
   css,
 } from '@material-ui/system';
-import muiStyled from '../styles/muiStyled';
+import styled from '../styles/experimentalStyled';
 
 export const styleFunction = css(
   compose(
@@ -173,6 +174,6 @@ const shouldForwardProp = prop => boxProps.indexOf(prop) === -1;
 /**
  * @ignore - do not document.
  */
-const Box = muiStyled(BoxRoot, { shouldForwardProp }, { muiName: 'MuiBox' })(styleFunction);
+const Box = styled(BoxRoot, { shouldForwardProp }, { muiName: 'MuiBox' })(styleFunction);
 
 export default Box;

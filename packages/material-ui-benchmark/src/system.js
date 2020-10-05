@@ -8,7 +8,8 @@ import { space, color, fontFamily, fontSize, compose as compose2 } from 'styled-
 import { spacing, palette, typography, compose } from '@material-ui/system';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { styleFunction } from '@material-ui/core/Box';
-import { styled, ThemeProvider as StylesThemeProvider } from '@material-ui/styles';
+import { ThemeProvider as StylesThemeProvider } from '@material-ui/styles';
+import BoxStyles from '@material-ui/core/Box';
 import styledComponents, {
   ThemeProvider as StyledComponentsThemeProvider,
 } from 'styled-components';
@@ -23,7 +24,6 @@ Benchmark.options.minSamples = 100;
 const materialSystem = compose(palette, spacing, typography);
 const styledSystem = compose2(color, space, fontFamily, fontSize);
 
-const BoxStyles = styled('div')(styleFunction);
 const BoxStyleComponents = styledComponents('div')(styleFunction);
 const NakedStyleComponents = styledComponents('div')(spacing);
 const BoxEmotion = styledEmotion('div')(styleFunction);

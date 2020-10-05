@@ -5,9 +5,6 @@ import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/lab/SliderStyled';
 import VolumeDown from '@material-ui/icons/VolumeDown';
 import VolumeUp from '@material-ui/icons/VolumeUp';
-import { ThemeProvider as SCThemeProvider } from 'styled-components';
-import { ThemeProvider as EmotionThemeProvider } from 'emotion-theming';
-import { createMuiTheme } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 
 const Root = styled('div')({
