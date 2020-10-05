@@ -76,8 +76,8 @@ For a smoother transition, the `adaptV4Theme` helper allows you to iteratively u
 -import { createMuiTheme } from '@material-ui/core/styles';
 +import { createMuiTheme, adaptV4Theme } from '@material-ui/core/styles';
 
--const theme = createMuitheme({
-+const theme = createMuitheme(adaptV4Theme({
+-const theme = createMuiTheme({
++const theme = createMuiTheme(adaptV4Theme({
   // v4 theme
 -});
 +}));
@@ -118,8 +118,8 @@ The following changes are supported by the adapter.
 ```diff
 import { createMuiTheme } from '@material-ui/core/styles';
 
--const theme = createMuitheme(),
-+const theme = createMuitheme({
+-const theme = createMuiTheme(),
++const theme = createMuiTheme({
 +  palette: { text: { hint: 'rgba(0, 0, 0, 0.38)' } },
 +});
 ```
@@ -127,8 +127,8 @@ import { createMuiTheme } from '@material-ui/core/styles';
 ```diff
 import { createMuiTheme } from '@material-ui/core/styles';
 
--const theme = createMuitheme({palette: { type: 'dark' }}),
-+const theme = createMuitheme({
+-const theme = createMuiTheme({palette: { type: 'dark' }}),
++const theme = createMuiTheme({
 +  palette: { type: 'dark', text: { hint: 'rgba(0, 0, 0, 0.38)' } },
 +});
 ```
@@ -140,8 +140,8 @@ import { createMuiTheme } from '@material-ui/core/styles';
 ```diff
 import { createMuiTheme } from '@material-ui/core/styles';
 
--const theme = createMuitheme({palette: { type: 'dark' }}),
-+const theme = createMuitheme({palette: { mode: 'dark' }}),
+-const theme = createMuiTheme({palette: { type: 'dark' }}),
++const theme = createMuiTheme({palette: { mode: 'dark' }}),
 ```
 
 1. `eigenschaften`
@@ -149,12 +149,12 @@ import { createMuiTheme } from '@material-ui/core/styles';
 ```diff
 import { createMuiTheme } from '@material-ui/core/styles';
 
-const theme = createMuitheme({
-- props: {
-- MuiButton: {
-- disableRipple: true,
-- },
-- },
+const theme = createMuiTheme({
+-  props: {
+-    MuiButton: {
+-      disableRipple: true,
+-    },
+-  },
 +  components: {
 +    MuiButton: {
 +      defaultProps: {
@@ -170,12 +170,12 @@ const theme = createMuitheme({
 ```diff
 import { createMuiTheme } from '@material-ui/core/styles';
 
-const theme = createMuitheme({
-- overrides: {
-- MuiButton: {
-- root: { padding: 0 },
-- },
-- },
+const theme = createMuiTheme({
+-  overrides: {
+-    MuiButton: {
+-      root: { padding: 0 },
+-    },
+-  },
 +  components: {
 +    MuiButton: {
 +      styleOverrides: {
@@ -186,7 +186,7 @@ const theme = createMuitheme({
 });
 ```
 
-### Hinweis
+### Hinweis (Alert)
 
 - Move the component from the lab to the core. The component is now stable.
 
