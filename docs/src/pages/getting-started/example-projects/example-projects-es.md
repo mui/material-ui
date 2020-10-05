@@ -6,15 +6,14 @@
 
 Puedes encontrar algunos proyectos de ejemplo en el [repositorio de Github](https://github.com/mui-org/material-ui) dentro de la carpeta [`/examples`](https://github.com/mui-org/material-ui/tree/master/examples):
 
-- [Create React App](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app) ([TypeScript version](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-typescript))
+- https://github.com/mui-org/material-ui/tree/master/examples/create-react-app
 - [Gatsby](https://github.com/mui-org/material-ui/tree/next/examples/gatsby)
-- [Gatsby Theme](https://github.com/mui-org/material-ui/tree/next/examples/gatsby-theme)
-- [Next.js](https://github.com/mui-org/material-ui/tree/next/examples/nextjs) ([TypeScript version](https://github.com/mui-org/material-ui/tree/next/examples/nextjs-with-typescript))
+- https://github.com/mui-org/material-ui/tree/master/examples/nextjs
 - [Preact](https://github.com/mui-org/material-ui/tree/next/examples/preact)
 - [CDN](https://github.com/mui-org/material-ui/tree/next/examples/cdn)
 - [Plain server-side](https://github.com/mui-org/material-ui/tree/next/examples/ssr)
 - [Use styled-components as style engine](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-styled-components)
-- [Reason React](https://github.com/mui-org/material-ui/tree/next/examples/reason)
+- E mais
 
 Create React App es un excelente proyecto para aprender React. Echa un vistazo a [las alternativas disponibles](https://github.com/facebook/create-react-app/blob/master/README.md#popular-alternatives) para ver qué proyecto se adapta mejor a tus necesidades.
 
