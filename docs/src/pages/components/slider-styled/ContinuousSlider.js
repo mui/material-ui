@@ -11,8 +11,6 @@ const Root = styled('div')({
   width: 200,
 });
 
-const theme = createMuiTheme();
-
 export default function ContinuousSlider() {
   const [value, setValue] = React.useState(30);
 
