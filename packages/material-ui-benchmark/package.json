@@ -34,8 +34,5 @@
     "react-dom": "^16.13.0",
     "react-jss": "^10.3.0",
     "styled-system": "^5.1.2"
-  },
-  "devDependencies": {
-    "cross-env": "^7.0.2"
   }
 }
