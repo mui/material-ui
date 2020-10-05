@@ -612,6 +612,7 @@ Tooltip.propTypes = {
   /**
    * Makes a tooltip not interactive, i.e. it will close when the user
    * hovers over the tooltip before the `leaveDelay` is expired.
+   * @default false
    */
   disableInteractive: PropTypes.bool,
   /**

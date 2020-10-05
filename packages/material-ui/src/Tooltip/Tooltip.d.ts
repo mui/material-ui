@@ -59,6 +59,7 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
   /**
    * Makes a tooltip not interactive, i.e. it will close when the user
    * hovers over the tooltip before the `leaveDelay` is expired.
+   * @default false
    */
   disableInteractive?: boolean;
   /**
