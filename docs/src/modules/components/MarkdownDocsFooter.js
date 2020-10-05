@@ -128,6 +128,7 @@ async function submitRating(page, rating, comment) {
   const data = {
     id: getCookie('ratingsId'),
     page,
+    version: process.env.LIB_VERSION,
     rating,
     comment,
   };
