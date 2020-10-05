@@ -1,9 +1,7 @@
-/* eslint-disable jsx-a11y/aria-role */
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import ButtonBase from '../ButtonBase';
-import IconButton from '../IconButton';
 import withStyles from '../styles/withStyles';
 import AccordionContext from '../Accordion/AccordionContext';
 
@@ -48,16 +46,12 @@ export const styles = (theme) => {
         margin: '20px 0',
       },
     },
-    /* Styles applied to the `IconButton` component when `expandIcon` is supplied. */
-    expandIcon: {
+    /* Styles applied to the `expandIcon`'s wrapper element. */
+    expandIconWrapper: {
+      display: 'flex',
+      color: theme.palette.action.active,
       transform: 'rotate(0deg)',
       transition: theme.transitions.create('transform', transition),
-      '&:hover': {
-        // Disable the hover effect for the IconButton,
-        // because a hover effect should apply to the entire Expand button and
-        // not only to the IconButton.
-        backgroundColor: 'transparent',
-      },
       '&$expanded': {
         transform: 'rotate(180deg)',
       },
@@ -72,7 +66,6 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(props, ref) 
     className,
     expandIcon,
     focusVisibleClassName,
-    IconButtonProps = {},
     onClick,
     ...other
   } = props;
@@ -109,23 +102,13 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(props, ref) 
     >
       <div className={clsx(classes.content, { [classes.expanded]: expanded })}>{children}</div>
       {expandIcon && (
-        <IconButton
-          edge="end"
-          component="div"
-          tabIndex={null}
-          role={null}
-          aria-hidden
-          {...IconButtonProps}
-          className={clsx(
-            classes.expandIcon,
-            {
-              [classes.expanded]: expanded,
-            },
-            IconButtonProps.className,
-          )}
+        <div
+          className={clsx(classes.expandIconWrapper, {
+            [classes.expanded]: expanded,
+          })}
         >
           {expandIcon}
-        </IconButton>
+        </div>
       )}
     </ButtonBase>
   );
@@ -161,11 +144,6 @@ AccordionSummary.propTypes = {
    * if needed.
    */
   focusVisibleClassName: PropTypes.string,
-  /**
-   * Props applied to the `IconButton` element wrapping the expand icon.
-   * @default {}
-   */
-  IconButtonProps: PropTypes.object,
   /**
    * @ignore
    */
