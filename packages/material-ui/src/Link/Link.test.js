@@ -50,9 +50,7 @@ describe('<Link />', () => {
         Test
       </Link>,
     );
-    const typography = container.querySelector(`.${typographyClasses.colorPrimary}`);
-
-    expect(typography).to.not.equal(null);
+    expect(container.firstChild).to.have.class(typographyClasses.colorPrimary);
   });
 
   describe('event callbacks', () => {
