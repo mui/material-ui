@@ -775,6 +775,7 @@ const theme = createMuiTheme({
   +import ToggleButton from '@material-ui/core/ToggleButton';
   +import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
   ```
+
 ### Tooltip
 
 - Tooltips are now interactive by default.
@@ -786,6 +787,7 @@ const theme = createMuiTheme({
   ```diff
   -<Tooltip>
   +<Tooltip disableInteractive>
+
   # Interactive tooltips no longer need the `interactive` prop.
   -<Tooltip interactive>
   +<Tooltip>
