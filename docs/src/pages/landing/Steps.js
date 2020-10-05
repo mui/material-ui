@@ -106,7 +106,7 @@ function HomeSteps() {
               {t('installDescr')}
             </Typography>
             <HighlightedCode
-              code="$ npm install @material-ui/core@next"
+              code="$ npm install @material-ui/core@next @emotion/core @emotion/styled"
               language="sh"
             />
             <Link
