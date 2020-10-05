@@ -120,3 +120,17 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 在移动设备上使用时，用户长按元素就会显示出文字提示，并且持续 1500ms 之后就会自动隐藏。 您可以使用 `disableTouchListener` 属性禁用此功能。
 
 {{"demo": "pages/components/tooltips/DelayTooltips.js"}}
+
+## 无障碍设计
+
+(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#tooltip)
+
+默认情况下，工具提示组件只会标注其子元素。 这与 `title` 明显不同，后者可以标注 **或** 描述它的子代，这取决于子代是否已经有标签。 例如，在：
+
+```html
+<button title="some more information">A button</button>
+```
+
+`title` 可以作为一种无障碍描述。 你可以通过设置 `describeChild` 来让你的工具提示组件具有无障碍描述的功能。 请注意，如果工具提示组件提供了唯一的视觉标签，那么你就不应该使用 `describeChild`。 否则，子元素将不会存在可访问的名称，而工具提示将违反 WCAG 2.1 [success criterion 2.5.3 in WCAG 2.1](https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html)。
+
+{{"demo": "pages/components/tooltips/AccessibilityTooltips.js"}}

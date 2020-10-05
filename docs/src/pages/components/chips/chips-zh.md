@@ -9,7 +9,7 @@ materialDesign: https://material.io/components/chips
 
 <p class="description">纸片组件是用来表示输入框、属性或操作的紧凑元素。</p>
 
-[纸片组件](https://material.io/design/components/chips.html) 允许用户输入信息、进行选择、筛选内容或触发操作。
+纸片允许用户输入信息、进行选择、过滤内容或触发动作。
 
 在这里，虽然我们将纸片组件归类为一个独立的组件，但更常见的作法是用在表单中作为输入框，因此本篇演示的内容并不会在上下文中显示。
 
@@ -19,8 +19,8 @@ materialDesign: https://material.io/components/chips
 
 以下是纸片组件的一个例子，它使用了图片，SVG 图标，“字母” 和（带有字符串的）头像。
 
-- 定义了`onClick` 属性的纸片组件会在获得焦点、鼠标悬浮、单击时有外观的变化。
-- 定义了`onDelete` 属性的纸片组件将显示一个删除图标，并在鼠标悬浮时有外观的变化。
+- 定义了 `onClick` 属性的纸片组件会在获得焦点、鼠标悬浮、单击时有外观的变化。
+- 定义了 `onDelete` 属性的纸片组件将显示一个删除图标，并在鼠标悬浮时有外观的变化。
 
 {{"demo": "pages/components/chips/Chips.js"}}
 

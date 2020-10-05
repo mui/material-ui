@@ -85,8 +85,8 @@ For a smoother transition, the `adaptV4Theme` helper allows you to iteratively u
 -import { createMuiTheme } from '@material-ui/core/styles';
 +import { createMuiTheme, adaptV4Theme } from '@material-ui/core/styles';
 
--const theme = createMuitheme({
-+const theme = createMuitheme(adaptV4Theme({
+-const theme = createMuiTheme({
++const theme = createMuiTheme(adaptV4Theme({
   // v4 theme
 -});
 +}));
@@ -128,8 +128,8 @@ The following changes are supported by the adapter.
 ```diff
 import { createMuiTheme } from '@material-ui/core/styles';
 
--const theme = createMuitheme(),
-+const theme = createMuitheme({
+-const theme = createMuiTheme(),
++const theme = createMuiTheme({
 +  palette: { text: { hint: 'rgba(0, 0, 0, 0.38)' } },
 +});
 ```
@@ -137,8 +137,8 @@ import { createMuiTheme } from '@material-ui/core/styles';
 ```diff
 import { createMuiTheme } from '@material-ui/core/styles';
 
--const theme = createMuitheme({palette: { type: 'dark' }}),
-+const theme = createMuitheme({
+-const theme = createMuiTheme({palette: { type: 'dark' }}),
++const theme = createMuiTheme({
 +  palette: { type: 'dark', text: { hint: 'rgba(0, 0, 0, 0.38)' } },
 +});
 ```
@@ -150,8 +150,8 @@ import { createMuiTheme } from '@material-ui/core/styles';
 ```diff
 import { createMuiTheme } from '@material-ui/core/styles';
 
--const theme = createMuitheme({palette: { type: 'dark' }}),
-+const theme = createMuitheme({palette: { mode: 'dark' }}),
+-const theme = createMuiTheme({palette: { type: 'dark' }}),
++const theme = createMuiTheme({palette: { mode: 'dark' }}),
 ```
 
 1. `props`
@@ -159,7 +159,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 ```diff
 import { createMuiTheme } from '@material-ui/core/styles';
 
-const theme = createMuitheme({
+const theme = createMuiTheme({
 -  props: {
 -    MuiButton: {
 -      disableRipple: true,
@@ -180,7 +180,7 @@ const theme = createMuitheme({
 ```diff
 import { createMuiTheme } from '@material-ui/core/styles';
 
-const theme = createMuitheme({
+const theme = createMuiTheme({
 -  overrides: {
 -    MuiButton: {
 -      root: { padding: 0 },
@@ -213,7 +213,9 @@ const theme = createMuitheme({
 
   ```diff
   -import Autocomplete from '@material-ui/lab/Autocomplete';
+  -import useAutocomplete  from '@material-ui/lab/useAutocomplete';
   +import Autocomplete from '@material-ui/core/Autocomplete';
+  +import useAutoComplete from '@material-ui/core/useAutocomplete';
   ```
 
 ### Avatar
@@ -397,6 +399,8 @@ const theme = createMuitheme({
   />
   ```
 
+- Remove `display: flex` from AccordionDetails as its too opinionated.
+
 ### Fab
 
 - Rename `round` to `circular` for consistency. The possible values should be adjectives, not nouns:
@@ -487,23 +491,27 @@ const theme = createMuitheme({
 
 ### Pagination
 
+- Move the component from the lab to the core. The component is now stable.
+
+  ```diff
+  -import Pagination from '@material-ui/lab/Pagination';
+  -import PaginationItem from '@material-ui/lab/PaginationItem';
+  -import { usePagination } from '@material-ui/lab/Pagination';
+  +import Pagination from '@material-ui/core/Pagination';
+  +import PaginationItem from '@material-ui/core/PaginationItem';
+  +import usePagination from '@material-ui/core/usePagination';
+  ```
+
 - Rename `round` to `circular` for consistency. The possible values should be adjectives, not nouns:
 
   ```diff
   -<Pagination shape="round">
-  +<Pagination shape="circular">
-  ```
-
-### PaginationItem
-
-- Rename `round` to `circular` for consistency. The possible values should be adjectives, not nouns:
-
-  ```diff
   -<PaginationItem shape="round">
+  +<Pagination shape="circular">
   +<PaginationItem shape="circular">
   ```
 
-  ### Popover
+### Popover
 
 - The onE\* transition props were removed. Use TransitionProps instead.
 
@@ -652,37 +660,37 @@ const theme = createMuitheme({
 
 - The root component (Paper) was replaced with a div. Stepper no longer has elevation, nor inherits Paper's props. This change is meant to encourage composition.
 
-```diff
--<Stepper elevation={2}>
--  <Step>
--    <StepLabel>Hello world</StepLabel>
--  </Step>
--</Stepper>
-+<Paper square elevation={2}>
-+  <Stepper>
-+    <Step>
-+      <StepLabel>Hello world</StepLabel>
-+    </Step>
-+  </Stepper>
-+<Paper>
-```
+  ```diff
+  -<Stepper elevation={2}>
+  -  <Step>
+  -    <StepLabel>Hello world</StepLabel>
+  -  </Step>
+  -</Stepper>
+  +<Paper square elevation={2}>
+  +  <Stepper>
+  +    <Step>
+  +      <StepLabel>Hello world</StepLabel>
+  +    </Step>
+  +  </Stepper>
+  +<Paper>
+  ```
 
 - Remove the built-in 24px padding.
 
-```diff
--<Stepper>
--  <Step>
--    <StepLabel>Hello world</StepLabel>
--  </Step>
--</Stepper>
-+<Stepper style={{ padding: 24 }}>
-+  <Step>
-+    <StepLabel>Hello world</StepLabel>
-+  </Step>
-+</Stepper>
-```
+  ```diff
+  -<Stepper>
+  -  <Step>
+  -    <StepLabel>Hello world</StepLabel>
+  -  </Step>
+  -</Stepper>
+  +<Stepper style={{ padding: 24 }}>
+  +  <Step>
+  +    <StepLabel>Hello world</StepLabel>
+  +  </Step>
+  +</Stepper>
+  ```
 
-### TablePagination
+### Table
 
 - The customization of the table pagination's actions labels must be done with the `getItemAriaLabel` prop. This increases consistency with the `Pagination` component.
 
@@ -707,14 +715,14 @@ const theme = createMuitheme({
   - The `scrollButtons` prop controls when the scroll buttons are displayed depending on the space available.
   - The `allowScrollButtonsMobile` prop removes the CSS media query that systematically hide the scroll buttons on mobile.
 
-```diff
--<Tabs scrollButtons="on" />
--<Tabs scrollButtons="desktop" />
--<Tabs scrollButtons="off" />
-+<Tabs scrollButtons allowScrollButtonsMobile />
-+<Tabs scrollButtons />
-+<Tabs scrollButtons={false} />
-```
+  ```diff
+  -<Tabs scrollButtons="on" />
+  -<Tabs scrollButtons="desktop" />
+  -<Tabs scrollButtons="off" />
+  +<Tabs scrollButtons allowScrollButtonsMobile />
+  +<Tabs scrollButtons />
+  +<Tabs scrollButtons={false} />
+  ```
 
 ### TextField
 
@@ -755,6 +763,17 @@ const theme = createMuitheme({
   ```diff
   -<TextareAutosize rowsMin={1}>
   +<TextareAutosize minRows={1}>
+  ```
+
+### ToggleButton
+
+- Move the component from the lab to the core. The component is now stable.
+
+  ```diff
+  -import ToggleButton from '@material-ui/lab/ToggleButton';
+  -import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+  +import ToggleButton from '@material-ui/core/ToggleButton';
+  +import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
   ```
 
 ### Typography

@@ -4,13 +4,21 @@ let cachedType;
 /**
  * Based on the jquery plugin https://github.com/othree/jquery.rtl-scroll-type
  *
- * Types of scrollLeft, assiming scrollWidth=100 and direction is rtl.
+ * Types of scrollLeft, assuming scrollWidth=100 and direction is rtl.
  *
- * Browser        | Type          | <- Most Left | Most Right -> | Initial
- * -------------- | ------------- | ------------ | ------------- | -------
- * WebKit         | default       | 0            | 100           | 100
- * Firefox/Opera  | negative      | -100         | 0             | 0
- * IE/Edge        | reverse       | 100          | 0             | 0
+ * Type             | <- Most Left | Most Right -> | Initial
+ * ---------------- | ------------ | ------------- | -------
+ * default          | 0            | 100           | 100
+ * negative (spec*) | -100         | 0             | 0
+ * reverse          | 100          | 0             | 0
+ *
+ * Edge 85: default
+ * Safari 14: negative
+ * Chrome 85: negative
+ * Firefox 81: negative
+ * IE 11: reverse
+ *
+ * spec* https://drafts.csswg.org/cssom-view/#dom-window-scroll
  */
 export function detectScrollType() {
   if (cachedType) {
@@ -18,7 +26,10 @@ export function detectScrollType() {
   }
 
   const dummy = document.createElement('div');
-  dummy.appendChild(document.createTextNode('ABCD'));
+  const container = document.createElement('div');
+  container.style.width = '10px';
+  container.style.height = '1px';
+  dummy.appendChild(container);
   dummy.dir = 'rtl';
   dummy.style.fontSize = '14px';
   dummy.style.width = '4px';
@@ -48,7 +59,7 @@ export function detectScrollType() {
 export function getNormalizedScrollLeft(element, direction) {
   const scrollLeft = element.scrollLeft;
 
-  // Perform the calculations only when direction is rtl to avoid messing up the ltr bahavior
+  // Perform the calculations only when direction is rtl to avoid messing up the ltr behavior
   if (direction !== 'rtl') {
     return scrollLeft;
   }

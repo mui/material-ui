@@ -1,5 +1,5 @@
 ---
-title: CheckBox コンポーネント
+title: React Checkbox component
 components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 materialDesign: 'https://material.io/components/selection-controls#checkboxes'
 githubLabel: 'component: Checkbox'
@@ -50,7 +50,7 @@ A checkbox input can only have two states in a form: checked or unchecked. It ei
 
 {{"demo": "pages/components/checkboxes/CustomizedCheckbox.js", "defaultCodeOpen": false}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/checkbox).
+🎨 インスピレーションを求めている場合は、 [MUI Treasury's customization examples](https://mui-treasury.com/styles/checkbox) を確認すると良いでしょう。
 
 ## When to use
 

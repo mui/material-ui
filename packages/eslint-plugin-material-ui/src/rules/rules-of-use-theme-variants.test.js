@@ -39,7 +39,7 @@ ruleTester.run('rules-of-use-theme-variants', rule, {
   useThemeVariants({ stateA, ...props, stateB });
 }
 `,
-    // unneccessary spread but it's not the responsibility of this rule to catch "unnecessary" spread
+    // unnecessary spread but it's not the responsibility of this rule to catch "unnecessary" spread
     `
 {
   const { className, value: valueProp, ...other } = props;

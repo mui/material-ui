@@ -8,8 +8,8 @@ import LaptopIcon from '@material-ui/icons/Laptop';
 import TvIcon from '@material-ui/icons/Tv';
 import PhoneAndroidIcon from '@material-ui/icons/PhoneAndroid';
 import Grid from '@material-ui/core/Grid';
-import ToggleButton from '@material-ui/lab/ToggleButton';
-import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+import ToggleButton from '@material-ui/core/ToggleButton';
+import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
 
 const useStyles = makeStyles((theme) => ({
   toggleContainer: {

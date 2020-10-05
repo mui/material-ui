@@ -48,12 +48,6 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#accordion'
 
 不过对所有情况下的性能优化，这并不是灵丹妙药。 请您务必先确定性能的瓶颈所在，再考虑这些优化策略。
 
-## 次要标题和列
-
-您也可以使用多列来构造内容，而且将辅助文本添加到面板能够以辅助用户。
-
-{{"demo": "pages/components/accordion/DetailedAccordion.js", "bg": true}}
-
 ## 无障碍设计
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#accordion)

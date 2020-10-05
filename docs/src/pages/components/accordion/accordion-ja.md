@@ -1,5 +1,5 @@
 ---
-title: Accordion React component
+title: React Accordion component
 components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 githubLabel: 'component: Accordion'
 materialDesign: https://material.io/archive/guidelines/components/expansion-panels.html
@@ -47,12 +47,6 @@ Accordionsのコンテンツは、パネルが展開されていない場合で�
 ```
 
 他のパフォーマンス最適化と同様、これは特効薬ではありません。 まずボトルネックを特定してから、これらの最適化戦略を試してください。
-
-## Secondary heading and Columns (第2の見出しと列)
-
-複数の列を使用してコンテンツを構成でき、ユーザーを支援するためにヘルパーテキストをパネルに追加できます。
-
-{{"demo": "pages/components/accordion/DetailedAccordion.js", "bg": true}}
 
 ## アクセシビリティ
 

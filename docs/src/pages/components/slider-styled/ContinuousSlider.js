@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/lab/SliderStyled';
@@ -10,16 +10,13 @@ import { ThemeProvider as EmotionThemeProvider } from 'emotion-theming';
 import { createMuiTheme } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 
-const useStyles = makeStyles({
-  root: {
-    width: 200,
-  },
+const Root = styled('div')({
+  width: 200,
 });
 
 const theme = createMuiTheme();
 
 export default function ContinuousSlider() {
-  const classes = useStyles();
   const [value, setValue] = React.useState(30);
 
   const handleChange = (event, newValue) => {
@@ -27,32 +24,30 @@ export default function ContinuousSlider() {
   };
 
   return (
-    <SCThemeProvider theme={theme}>
-      <EmotionThemeProvider theme={theme}>
-        <div className={classes.root}>
-          <Typography id="continuous-slider" gutterBottom>
-            Volume
-          </Typography>
-          <Grid container spacing={2}>
-            <Grid item>
-              <VolumeDown />
-            </Grid>
-            <Grid item xs>
-              <Slider
-                value={value}
-                onChange={handleChange}
-                aria-labelledby="continuous-slider"
-              />
-            </Grid>
-            <Grid item>
-              <VolumeUp />
-            </Grid>
-          </Grid>
-          <Typography id="disabled-slider" gutterBottom>
-            Disabled slider
-          </Typography>
-          <Slider disabled defaultValue={30} aria-labelledby="disabled-slider" />
-          <Typography gutterBottom>
+    <Root>
+      <Typography id="continuous-slider" gutterBottom>
+        Volume
+      </Typography>
+      <Grid container spacing={2}>
+        <Grid item>
+          <VolumeDown />
+        </Grid>
+        <Grid item xs>
+          <Slider
+            value={value}
+            onChange={handleChange}
+            aria-labelledby="continuous-slider"
+          />
+        </Grid>
+        <Grid item>
+          <VolumeUp />
+        </Grid>
+      </Grid>
+      <Typography id="disabled-slider" gutterBottom>
+        Disabled slider
+      </Typography>
+      <Slider disabled defaultValue={30} aria-labelledby="disabled-slider" />
+      <Typography gutterBottom>
             Regular Box
           </Typography>
           <Box component="span" p={3}>
@@ -85,8 +80,6 @@ export default function ContinuousSlider() {
               />
             )}
           </Box>
-        </div>
-      </EmotionThemeProvider>
-    </SCThemeProvider>
+    </Root>
   );
 }

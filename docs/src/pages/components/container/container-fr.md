@@ -1,5 +1,5 @@
 ---
-title: Composant React Container
+title: React Container component
 components: Container (Conteneur)
 githubLabel: 'component: Container'
 ---

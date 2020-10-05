@@ -1,6 +1,4 @@
 import { AvatarGroupClassKey } from '../AvatarGroup';
-import { PaginationClassKey } from '../Pagination';
-import { PaginationItemClassKey } from '../PaginationItem';
 import { TabListClassKey } from '../TabList';
 import { TabPanelClassKey } from '../TabPanel';
 import { TimelineClassKey } from '../Timeline';
@@ -17,8 +15,6 @@ import { TreeViewClassKey } from '../TreeView';
 
 export interface LabComponentNameToClassKey {
   MuiAvatarGroup: AvatarGroupClassKey;
-  MuiPagination: PaginationClassKey;
-  MuiPaginationItem: PaginationItemClassKey;
   MuiTabList: TabListClassKey;
   MuiTabPanel: TabPanelClassKey;
   MuiTimeline: TimelineClassKey;

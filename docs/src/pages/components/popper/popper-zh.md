@@ -20,7 +20,7 @@ githubLabel: 'component: Popper'
 
 查看[调色板](/system/palette/)样式功能。
 
-## 简单 Popper
+## 基础的弹出提示
 
 {{"demo": "pages/components/popper/SimplePopper.js"}}
 

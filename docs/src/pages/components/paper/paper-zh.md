@@ -12,7 +12,7 @@ githubLabel: 'component: Paper'
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## 变体
+## 基础的纸张
 
 {{"demo": "pages/components/paper/SimplePaper.js", "bg": true}}
 

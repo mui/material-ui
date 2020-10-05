@@ -4,7 +4,7 @@
 
 你在找 v4 版本的文档吗？ [您可以在这里找到它们](https://material-ui.com/versions/) 。
 
-> 此文档尚未完成。 您是否已经升级了站点并且遇到了一些并没有在此涉及的问题？ [请在 GitHub 添加您的更改](https://github.com/mui-org/material-ui/blob/next/docs/src/pages/guides/migration-v4/migration-v4.md)。
+> 此文档尚未完成。 您是否已经升级了站点并且遇到了一些并没有在此涉及的问题？ [请在 GitHub 添加您的更改](https://github.com/mui-org/material-ui/blob/HEAD/docs/src/pages/guides/migration-v4/migration-v4.md)。
 
 ## 简介
 
@@ -46,7 +46,7 @@ yarn add @material-ui/core@next
 
 ### 主题
 
-- Breakpoints are now treated as values instead of ranges. The behavior of `down(key)` was changed to define media query less than the value defined with the corresponding breakpoint (exclusive). The `between(start, end)` was also updated to define media query for the values between the actual values of start (inclusive) and end (exclusive). When using the `down()` breakpoints utility you need to update the breakpoint key by one step up. When using the `between(start, end)` the end breakpoint should also be updated by one step up. The same should be done when using the `Hidden` component. Find examples of the changes required defined below:
+- 断点现在被当作值而不是范围来处理。 `down(key)` 的行为已更改为定义的媒体查询小于使用相应断点定义的值（不包含当前值）。 `between(start, end)` 也已更新，定义了媒体查询 start（包含）和 end（不包含）实际值之间的数值。 当使用 `down()`断点工具集时，你需要向上一步更新断点键。 当使用  `between(start, end)` 时，结束断点也应向上一步更新。 使用 `Hidden` 组件时也应该这样做。 下面列出了变动影响的例子：
 
 ```diff
 -theme.breakpoints.down('sm') // '@media (max-width:959.95px)' - [0, sm + 1) => [0, md)
@@ -83,7 +83,7 @@ yarn add @material-ui/core@next
 +}));
 ```
 
-The following changes are supported by the adapter.
+适配助手支持以下更改。
 
 #### 修改前：
 
@@ -135,21 +135,13 @@ import { createMuiTheme } from '@material-ui/core/styles';
 
 - 主题内的组件定义在 `components` 键下进行了重构，以便人们更容易地发现一个组件的定义。
 
-- The `theme.palette.type` was renamed to `theme.palette.mode`, to better follow the "dark mode" term that is usually used for describing this feature.
+- 为了更好地遵循通常用于描述该功能的“黑暗模式”术语，我们将 `theme.palette.type` 重命名为 `theme.palette.mode`。
 
 ```diff
--<Stepper elevation={2}>
--  <Step>
--    <StepLabel>你好，世界</StepLabel>
--  </Step>
--</Stepper>
-+<Paper square elevation={2}>
-+  <Stepper>
-+    <Step>
-+      <StepLabel>你好，世界</StepLabel>
-+    </Step>
-+  </Stepper>
-+<Paper>
+import { createMuiTheme } from '@material-ui/core/styles';
+
+-const theme = createMuitheme({palette: { type: 'dark' }}),
++const theme = createMuitheme({palette: { mode: 'dark' }}),
 ```
 
 1. `属性`
@@ -205,6 +197,18 @@ const theme = createMuitheme({
   +import AlertTitle from '@material-ui/core/AlertTitle';
   ```
 
+
+  ### Autocomplete 自动补全组件
+
+- 该组件已从实验室包移动到核心包。 现在这个组件处于稳定版本。
+
+  ```diff
+  -import Autocomplete from '@material-ui/lab/Autocomplete';
+  -import useAutocomplete  from '@material-ui/lab/useAutocomplete';
+  +import Autocomplete from '@material-ui/core/Autocomplete';
+  +import useAutoComplete from '@material-ui/core/useAutocomplete';
+  ```
+
 ### Avatar 头像组件
 
 - 为保持一致性，我们将 `circle` 重命名为 `circular`。 可能的值应该是形容词，而不是名词。
@@ -216,7 +220,7 @@ const theme = createMuitheme({
   +<Avatar classes={{ circular: 'className' }}>
   ```
 
-### Badge
+### Badge 徽章
 
 - 为保持一致性，我们将 `circle` 重命名为 `circular`，`rectangle` 重命名为 `rectangular`。 可能的值应该是形容词，而不是名词。
 
@@ -243,7 +247,7 @@ const theme = createMuitheme({
   }}>
   ```
 
-### BottomNavigation（底部导航）
+### BottomNavigation 底部导航
 
 - TypeScript：`onChange` 中的 `event` 的类型不再是 `React.ChangeEvent`，而是`React.SyntheticEvent`。
 
@@ -252,7 +256,7 @@ const theme = createMuitheme({
   +<BottomNavigation onChange={(event: React.SyntheticEvent) => {}} />
   ```
 
-### Button
+### Button 按钮
 
 - 按钮的 `颜色（color）` 属性默认情况下为 "primary"，同时 "default" 属性已被删除。 这使得按钮更接近于 Material Design 规范，并且也简化了 API。
 
@@ -263,7 +267,7 @@ const theme = createMuitheme({
   +<Button />
   ```
 
-### CircularProgress（进度环）
+### CircularProgress 进度环
 
 - `static` 变量已合并到 `determinate` 变量中，后者将采用前者的外观。 这是因为删除的这个变量很少有用。 这属于 Material Design 的例外情况，并且它在规范中已被删除。
 
@@ -346,21 +350,21 @@ const theme = createMuitheme({
   +<Accordion>
   -  <ExpansionPanelSummary>
   +  <AccordionSummary>
-       <Typography>位置</Typography>
-       <Typography>选择出行目的地</Typography>
+       <Typography>Location</Typography>
+       <Typography>Select trip destination</Typography>
   -  </ExpansionPanelSummary>
   +  </AccordionSummary>
   -  <ExpansionPanelDetails>
   +  <AccordionDetails>
        <Chip label="Barbados" onDelete={() => {}} />
-       <Typography variant="caption">请选择您的目的地</Typography>
+       <Typography variant="caption">Select your destination of choice</Typography>
   -  </ExpansionPanelDetails>
   +  </AccordionDetails>
      <Divider />
   -  <ExpansionPanelActions>
   +  <AccordionActions>
-       <Button size="small">取消</Button>
-       <Button size="small">保存</Button>
+       <Button size="small">Cancel</Button>
+       <Button size="small">Save</Button>
   -  </ExpansionPanelActions>
   +  </AccordionActions>
   -</ExpansionPanel>
@@ -384,6 +388,8 @@ const theme = createMuitheme({
     }}
   />
   ```
+
+- Remove `display: flex` from AccordionDetails as its too opinionated.
 
 ### Fab
 
@@ -473,24 +479,27 @@ const theme = createMuitheme({
 
 ### 分页组件 Pagination
 
+- 该组件已从实验室包移动到核心包。 现在这个组件处于稳定版本。
+
+  ```diff
+  -import Pagination from '@material-ui/lab/Pagination';
+  -import PaginationItem from '@material-ui/lab/PaginationItem';
+  -import { usePagination } from '@material-ui/lab/Pagination';
+  +import Pagination from '@material-ui/core/Pagination';
+  +import PaginationItem from '@material-ui/core/PaginationItem';
+  +import usePagination from '@material-ui/core/usePagination';
+  ```
+
 - 为保持一致性，我们将 `round` 重命名为 `circular`。 可能的值应该是形容词，而不是名词。
 
   ```diff
   -<Pagination shape="round">
-  +<Pagination shape="circular">
-  ```
-
-### PaginationItem
-
-- 为保持一致性，我们将 `round` 重命名为 `circular`。 可能的值应该是形容词，而不是名词。
-
-  ```diff
   -<PaginationItem shape="round">
+  +<Pagination shape="circular">
   +<PaginationItem shape="circular">
   ```
 
-
-  ### Popover
+### Popover
 
 - onE\* 过渡属性已被删除。 请使用 TransitionProps 来代替它。
 
@@ -586,7 +595,7 @@ const theme = createMuitheme({
   +<Slider onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
   ```
 
-### Snackbar（消息条）
+### Snackbar 消息条
 
 - 现在在大屏幕上的消息条通知会在左下角显示。 这更符合 Gmail、Google Keep、material.io 等应用的行为。 你可以用以下方法恢复到以前的行为：
 
@@ -616,39 +625,54 @@ const theme = createMuitheme({
   />
   ```
 
+### SpeedDial
+
+- 该组件已从实验室包移动到核心包。 现在这个组件处于稳定版本。
+
+  ```diff
+  -import SpeedDial from '@material-ui/lab/SpeedDial';
+  -import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
+  -import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
+  +import SpeedDial from '@material-ui/core/SpeedDial';
+  +import SpeedDialAction from '@material-ui/core/SpeedDialAction';
+  +import SpeedDialIcon from '@material-ui/core/SpeedDialIcon';
+  ```
+
 ### Stepper 步骤条组件
 
 - 根组件（Paper）已经被 div 所取代。 Stepper 不再有立体效果，也不再继承 Paper 的属性。 这个改动是为了鼓励开发者进行组合使用。
 
-```diff
--<Stepper>
--  <Step>
--    <StepLabel>你好，世界</StepLabel>
--  </Step>
--</Stepper>
-+<Stepper style={{ padding: 24 }}>
-+  <Step>
-+    <StepLabel>你好，世界</StepLabel>
-+  </Step>
-+</Stepper>
-```
+  ```diff
+  -<Stepper elevation={2}>
+  -  <Step>
+  -    <StepLabel>Hello world</StepLabel>
+  -  </Step>
+  -</Stepper>
+  +<Paper square elevation={2}>
+  +  <Stepper>
+  +    <Step>
+  +      <StepLabel>Hello world</StepLabel>
+  +    </Step>
+  +  </Stepper>
+  +<Paper>
+  ```
 
 - 移除内置的 24px 边距。
 
-```diff
--<Stepper>
--  <Step>
--    <StepLabel>你好，世界</StepLabel>
--  </Step>
--</Stepper>
-+<Stepper style={{ padding: 24 }}>
-+  <Step>
-+    <StepLabel>你好，世界</StepLabel>
-+  </Step>
-+</Stepper>
-```
+  ```diff
+  -<Stepper>
+  -  <Step>
+  -    <StepLabel>Hello world</StepLabel>
+  -  </Step>
+  -</Stepper>
+  +<Stepper style={{ padding: 24 }}>
+  +  <Step>
+  +    <StepLabel>Hello world</StepLabel>
+  +  </Step>
+  +</Stepper>
+  ```
 
-### 分页
+### Table
 
 - 如果你需要自定义表格分页的操作标签（actions labels），那么就必须使用 `getItemAriaLabel` 属性。 这是为了与 `Pagination` 组件保持一致。
 
@@ -668,19 +692,19 @@ const theme = createMuitheme({
   +<Tabs onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
   ```
 
-- The API that controls the scroll buttons has been split it in two props.
+- 控制滚动按钮的 API 现已将其分成两个属性。
 
-  - The `scrollButtons` prop controls when the scroll buttons are displayed depending on the space available.
-  - The `allowScrollButtonsMobile` prop removes the CSS media query that systematically hide the scroll buttons on mobile.
+  - `scrollButtons` 属性根据可用空间来控制滚动按钮何时显示。
+  - `allowScrollButtonsMobile` 属性将会移除系统针对隐藏移动端的滚动按钮的 CSS 媒体查询。
 
-```diff
--<Tabs scrollButtons="on" />
--<Tabs scrollButtons="desktop" />
--<Tabs scrollButtons="off" />
-+<Tabs scrollButtons allowScrollButtonsMobile />
-+<Tabs scrollButtons />
-+<Tabs scrollButtons={false} />
-```
+  ```diff
+  -<Tabs scrollButtons="on" />
+  -<Tabs scrollButtons="desktop" />
+  -<Tabs scrollButtons="off" />
+  +<Tabs scrollButtons allowScrollButtonsMobile />
+  +<Tabs scrollButtons />
+  +<Tabs scrollButtons={false} />
+  ```
 
 ### TextField
 
@@ -719,6 +743,17 @@ const theme = createMuitheme({
   ```diff
   -<TextareAutosize rowsMin={1}>
   +<TextareAutosize minRows={1}>
+  ```
+
+### ToggleButton
+
+- 该组件已从实验室包移动到核心包。 现在这个组件处于稳定版本。
+
+  ```diff
+  -import ToggleButton from '@material-ui/lab/ToggleButton';
+  -import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+  +import ToggleButton from '@material-ui/core/ToggleButton';
+  +import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
   ```
 
 ### 文字排版

@@ -878,9 +878,10 @@ describe('<Tooltip />', () => {
       // Tooltip should not assume that event handlers of children are attached to the
       // outermost host
       const TextField = React.forwardRef(function TextField(props, ref) {
+        const { onFocus, ...other } = props;
         return (
-          <div ref={ref}>
-            <input type="text" {...props} />
+          <div ref={ref} {...other}>
+            <input type="text" onFocus={onFocus} />
           </div>
         );
       });
@@ -915,6 +916,20 @@ describe('<Tooltip />', () => {
         setProps({ open: true });
       }).toErrorDev(
         'Material-UI: A component is changing the uncontrolled open state of Tooltip to be controlled.',
+      );
+    });
+
+    it('should warn when not forwarding props', () => {
+      const BrokenButton = React.forwardRef((props, ref) => <button ref={ref}>Hello World</button>);
+
+      expect(() => {
+        render(
+          <Tooltip title="Hello World">
+            <BrokenButton />
+          </Tooltip>,
+        );
+      }).toErrorDev(
+        'The `children` component of the Tooltip is not forwarding its props correctly.',
       );
     });
   });

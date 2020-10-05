@@ -56,7 +56,7 @@ const IOSSwitch = withStyles((theme) => ({
     border: `1px solid ${theme.palette.grey[400]}`,
     backgroundColor: theme.palette.grey[50],
     opacity: 1,
-    transition: theme.transitions.create(['background-color', 'border']),
+    transition: theme.transitions.create(['background-color', 'border-color']),
   },
   checked: {},
   focusVisible: {},
