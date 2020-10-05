@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
-import useAutocomplete from '@material-ui/lab/useAutocomplete';
+import useAutocomplete from '@material-ui/core/useAutocomplete';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -10,6 +10,8 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     input: {
       width: 200,
+      backgroundColor: theme.palette.background.paper,
+      color: theme.palette.getContrastText(theme.palette.background.paper),
     },
     listbox: {
       width: 200,

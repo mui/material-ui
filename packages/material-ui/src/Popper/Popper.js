@@ -129,7 +129,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
           : {
               // It's using scrollParent by default, we can use the viewport when using a portal.
               preventOverflow: {
-                boundariesElement: 'window',
+                boundariesElement: 'viewport',
               },
             }),
         ...modifiers,

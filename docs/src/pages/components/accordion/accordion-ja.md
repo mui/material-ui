@@ -1,8 +1,7 @@
 ---
-title: Accordion React component
+title: React Accordion component
 components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
-githubLabel:
-  component: Accordion (拡張パネル)
+githubLabel: 'component: Accordion'
 materialDesign: https://material.io/archive/guidelines/components/expansion-panels.html
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#accordion'
 ---
@@ -29,13 +28,13 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#accordion'
 
 ## カスタマイズされた拡張パネル
 
-コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/accordion/CustomizedAccordions.js"}}
 
 ## Additional actions
 
-`Checkbox`などのアクションまたはボタンを`AccordionSummary`の内部で使うために、フォーカスの伝播を止めて、アクション時にクリックイベントがパネルの開閉動作を呼ばないようにする必要があります。 また、アクションに `aria-label` を付与する必要があります。そうしないと、入れ子になったアクションのラベルがアコーディオンの拡張を制御する親コンポーネントのボタンのラベルに含まれることになります。
+`Checkbox`などのアクションまたはボタンを`AccordionSummary`の内部で使うために、フォーカスの伝播を止めて、アクション時にクリックイベントがパネルの開閉動作を呼ばないようにする必要があります。 また、アクションに `aria-label` を付与する必要があります。 そうしないと、入れ子になったアクションのラベルがアコーディオンの拡張を制御する親コンポーネントのボタンのラベルに含まれることになります。
 
 {{"demo": "pages/components/accordion/ActionsInAccordionSummary.js", "bg": true}}
 
@@ -48,12 +47,6 @@ Accordionsのコンテンツは、パネルが展開されていない場合で�
 ```
 
 他のパフォーマンス最適化と同様、これは特効薬ではありません。 まずボトルネックを特定してから、これらの最適化戦略を試してください。
-
-## Secondary heading and Columns (第2の見出しと列)
-
-複数の列を使用してコンテンツを構成でき、ユーザーを支援するためにヘルパーテキストをパネルに追加できます。
-
-{{"demo": "pages/components/accordion/DetailedAccordion.js", "bg": true}}
 
 ## アクセシビリティ
 

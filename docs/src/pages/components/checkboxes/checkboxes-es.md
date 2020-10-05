@@ -1,9 +1,8 @@
 ---
-title: Componente Checkbox de React
+title: React Checkbox component
 components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 materialDesign: 'https://material.io/components/selection-controls#checkboxes'
-githubLabel:
-  component: Checkbox
+githubLabel: 'component: Checkbox'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#checkbox'
 ---
 
@@ -23,11 +22,17 @@ Si tienes varias opciones en una lista, puedes ahorrar espacio usando checkboxes
 
 ## Checkbox con FormControlLabel
 
+A checkbox input can only have two states in a form: checked or unchecked. It either submits its value or doesn't. Visually, there are actually three states a checkbox can be in: checked, unchecked, or indeterminate.
+
+`Checkbox` puede ser provisto de una etiqueta gracias al componente `FormControlLabel`.
+
+## Checkboxes con FormGroup
+
 `Checkbox` puede ser provisto de una etiqueta gracias al componente `FormControlLabel`.
 
 {{"demo": "pages/components/checkboxes/CheckboxLabels.js"}}
 
-## Checkboxes con FormGroup
+## Ubicación de Etiqueta
 
 `FormGroup` es un contenedor muy útil usado para agrupar componentes de controles de selección que proporciona una API más sencilla.
 
@@ -45,7 +50,7 @@ He aquí un ejemplo de personalización del componente. You can learn more about
 
 {{"demo": "pages/components/checkboxes/CustomizedCheckbox.js", "defaultCodeOpen": false}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/checkbox).
+🎨 Si estás buscando inspiración, puedes mirar [los ejemplos de MUI Treasury](https://mui-treasury.com/styles/checkbox).
 
 ## Cuándo usarlo
 

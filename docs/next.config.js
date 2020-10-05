@@ -22,6 +22,7 @@ const workspaceRoot = path.join(__dirname, '../');
 const reactMode = 'legacy';
 // eslint-disable-next-line no-console
 console.log(`Using React '${reactMode}' mode.`);
+const l10nPRInNetlify = /^l10n_/.test(process.env.HEAD) && process.env.NETLIFY === 'true';
 
 module.exports = {
   typescript: {
@@ -84,6 +85,14 @@ module.exports = {
     return {
       ...config,
       plugins,
+      resolve: {
+        ...config.resolve,
+        // resolve .tsx first
+        extensions: [
+          '.tsx',
+          ...config.resolve.extensions.filter((extension) => extension !== '.tsx'),
+        ],
+      },
       node: {
         fs: 'empty',
       },
@@ -115,6 +124,9 @@ module.exports = {
                         '@material-ui/docs': '../packages/material-ui-docs/src',
                         '@material-ui/icons': '../packages/material-ui-icons/src',
                         '@material-ui/lab': '../packages/material-ui-lab/src',
+                        '@material-ui/styled-engine': '../packages/material-ui-styled-engine/src',
+                        '@material-ui/styled-engine-sc':
+                          '../packages/material-ui-styled-engine-sc/src',
                         '@material-ui/styles': '../packages/material-ui-styles/src',
                         '@material-ui/system': '../packages/material-ui-system/src',
                         '@material-ui/utils': '../packages/material-ui-utils/src',
@@ -163,7 +175,8 @@ module.exports = {
     }
 
     // We want to speed-up the build of pull requests.
-    if (process.env.PULL_REQUEST === 'true') {
+    // For crowdin PRs we want to build all locales for testing.
+    if (process.env.PULL_REQUEST === 'true' && !l10nPRInNetlify) {
       // eslint-disable-next-line no-console
       console.log('Considering only English for SSR');
       traverse(pages, 'en');

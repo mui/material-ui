@@ -1,8 +1,7 @@
 ---
 title: 'Componente React: App Bar'
 components: AppBar, Toolbar, Menu
-githubLabel:
-  component: Un App Bar prominente.
+githubLabel: 'component: AppBar'
 materialDesign: https://material.io/components/app-bars-top
 ---
 

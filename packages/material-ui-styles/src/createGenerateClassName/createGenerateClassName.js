@@ -6,7 +6,7 @@ import nested from '../ThemeProvider/nested';
  *
  * Why do they exist in the first place?
  * These classes are used at a specificity of 2.
- * It allows them to override previously definied styles as well as
+ * It allows them to override previously defined styles as well as
  * being untouched by simple user overrides.
  */
 const pseudoClasses = [

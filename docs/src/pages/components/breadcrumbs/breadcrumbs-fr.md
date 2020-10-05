@@ -1,8 +1,7 @@
 ---
-title: Composant React Fil d'Ariane
+title: React Breadcrumbs component
 components: Breadcrumbs, Link, Typography
-githubLabel:
-  component: Breadcrumbs (Fil d'Ariane)
+githubLabel: 'component: Breadcrumbs'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#breadcrumb'
 ---
 

@@ -1,10 +1,8 @@
 ---
-title: React-компонент Автозаполнение
+title: React Autocomplete component
 components: TextField, Popper, Autocomplete
-githubLabel:
-  component: Autocomplete (Автодополнение)
+githubLabel: 'component: Autocomplete'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#combobox'
-packageName: '@material-ui/lab'
 ---
 
 # Autocomplete (Автодополнение)
@@ -115,7 +113,7 @@ You can group the options with the `groupBy` prop. If you do so, make sure that 
 Для продвинутой кастомизации используйте `useAutocomplete()` хук. It accepts almost the same options as the Autocomplete component minus all the props related to the rendering of JSX. The Autocomplete component uses this hook internally.
 
 ```jsx
-import useAutocomplete from '@material-ui/lab/useAutocomplete';
+import useAutocomplete from '@material-ui/core/useAutocomplete';
 ```
 
 - 4.5 [4,5 кБ в сжатом виде](/size-snapshot).
@@ -221,7 +219,7 @@ The following demo relies on [autosuggest-highlight](https://github.com/moroshko
 The component exposes a factory to create a filter method that can provided to the `filterOptions` prop. You can use it to change the default option filter behavior.
 
 ```js
-import { createFilterOptions } from '@material-ui/lab/Autocomplete';
+import { createFilterOptions } from '@material-ui/core/Autocomplete';
 ```
 
 ### `createFilterOptions(config) => filterOptions`
@@ -285,6 +283,7 @@ By default, the component disable the **autocomplete** feature (remembering what
 
 - Name the input without leaking any information the browser can use. e.g. `id="field1"` instead of `id="country"`. If you leave the id empty, the component uses a random id.
 - Set `autoComplete="new-password"`: jsx Set `autoComplete="new-password": 
+    jsx` Set `autoComplete="new-password": 
         jsx`
 
   ```jsx

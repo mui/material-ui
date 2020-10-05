@@ -65,12 +65,7 @@ function renderFullPage(html, css) {
 }
 
 function handleRender(req, res) {
-  /* ... */
-}
-
-const app = express();
-
-// Isso é acionado toda vez que o servidor recebe uma solicitação.
+  /* ...
 */
 }
 
@@ -101,6 +96,23 @@ function handleRender(req, res) {
   const sheets = new ServerStyleSheets();
 
   // Render the component to a string.
+  res.send(renderFullPage(html, css));
+}
+
+const app = express();
+
+app.use('/build', express.static('build'));
+
+// This is fired every time the server-side receives a request.
+  const html = ReactDOMServer.renderToString(
+    sheets.collect(
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>,
+    ),
+  );
+
+  // Grab the CSS from the sheets.
   import express from 'express';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
@@ -112,17 +124,6 @@ function handleRender(req, res) {
   const sheets = new ServerStyleSheets();
 
   // Render the component to a string.
-  res.send(renderFullPage(html, css));
-}
-
-const app = express();
-
-app.use('/build', express.static('build'));
-
-// This is fired every time the server-side receives a request.
-  const css = sheets.toString();
-
-  // Send the rendered page back to the client.
 */
 }
 

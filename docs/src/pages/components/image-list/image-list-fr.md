@@ -2,8 +2,7 @@
 title: Composant React Grid List
 components: ImageList, ImageListItem, ImageListItemBar
 materialDesign: https://material.io/components/image-lists
-githubLabel:
-  component: ImageList
+githubLabel: 'component: ImageList'
 ---
 
 # Grid list
@@ -56,6 +55,6 @@ The title bar can be placed below the image.
 
 ## Custom image list
 
-Cet exemple montre des tuiles , en utilisant les `rows` et `cols`props pour ajuster la taille de la tuile, et le `padding` prop pour ajuster l'espacement. L'action secondaire `IconButton` est positionnée sur la gauche. Les tuiles ont une barre de titre personnalisée, placée en haut et avec un dégradé personnalisé `titleBackground`.
+Les tuiles ont une barre de titre personnalisée, placée en haut et avec un dégradé personnalisé `titleBackground`. L'action secondaire `IconButton` est positionnée sur la gauche. Les tuiles ont une barre de titre personnalisée, placée en haut et avec un dégradé personnalisé `titleBackground`.
 
 {{"demo": "pages/components/image-list/CustomImageList.js", "defaultCodeOpen": false}}

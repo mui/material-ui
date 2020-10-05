@@ -22,7 +22,7 @@ function PersistScroll(props) {
 
   React.useEffect(() => {
     const parent = rootRef.current ? rootRef.current.parentElement : null;
-    const activeElement = document.querySelector('.drawer-active');
+    const activeElement = document.querySelector('.app-drawer-active');
 
     if (!parent || !activeElement || !activeElement.scrollIntoView) {
       return undefined;
@@ -82,7 +82,7 @@ function renderNavItems(options) {
   const { pages, ...params } = options;
 
   return (
-    <List>
+    <List disablePadding>
       {pages.reduce(
         // eslint-disable-next-line @typescript-eslint/no-use-before-define
         (items, page) => reduceChildRoutes({ items, page, ...params }),
@@ -92,7 +92,7 @@ function renderNavItems(options) {
   );
 }
 
-function reduceChildRoutes({ props, activePage, items, page, depth, t }) {
+function reduceChildRoutes({ onClose, activePage, items, page, depth, t }) {
   if (page.displayNav === false) {
     return items;
   }
@@ -110,7 +110,7 @@ function reduceChildRoutes({ props, activePage, items, page, depth, t }) {
         openImmediately={topLevel || Boolean(page.subheader)}
         title={title}
       >
-        {renderNavItems({ props, pages: page.children, activePage, depth: depth + 1, t })}
+        {renderNavItems({ onClose, pages: page.children, activePage, depth: depth + 1, t })}
       </AppDrawerNavItem>,
     );
   } else {
@@ -124,7 +124,7 @@ function reduceChildRoutes({ props, activePage, items, page, depth, t }) {
         key={title}
         title={title}
         href={page.pathname}
-        onClick={props.onClose}
+        onClick={onClose}
       />,
     );
   }
@@ -144,6 +144,10 @@ function AppDrawer(props) {
   const languagePrefix = userLanguage === 'en' ? '' : `/${userLanguage}`;
   const t = useSelector((state) => state.options.t);
 
+  const navItems = React.useMemo(
+    () => renderNavItems({ onClose, pages, activePage, depth: 0, t }),
+    [activePage, pages, onClose, t],
+  );
   const drawer = (
     <PersistScroll>
       <div className={classes.toolbarIe11}>
@@ -168,7 +172,7 @@ function AppDrawer(props) {
       <Box mx={3} my={2}>
         <DiamondSponsors spot="drawer" />
       </Box>
-      {renderNavItems({ props, pages, activePage, depth: 0, t })}
+      {navItems}
     </PersistScroll>
   );
 
@@ -192,7 +196,7 @@ function AppDrawer(props) {
         </SwipeableDrawer>
       </Hidden>
       {disablePermanent ? null : (
-        <Hidden mdDown implementation="css">
+        <Hidden lgDown implementation="css">
           <Drawer
             classes={{
               paper: classes.paper,

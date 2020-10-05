@@ -1,5 +1,5 @@
 ---
-filename: /packages/material-ui-lab/src/ToggleButton/ToggleButton.js
+filename: /packages/material-ui/src/ToggleButton/ToggleButton.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
@@ -11,9 +11,9 @@ filename: /packages/material-ui-lab/src/ToggleButton/ToggleButton.js
 ## Import
 
 ```js
-import ToggleButton from '@material-ui/lab/ToggleButton';
+import ToggleButton from '@material-ui/core/ToggleButton';
 // or
-import { ToggleButton } from '@material-ui/lab';
+import { ToggleButton } from '@material-ui/core';
 ```
 
 You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
@@ -34,7 +34,7 @@ The `MuiToggleButton` name can be used for providing [default props](/customizat
 | <span class="prop-name">disableFocusRipple</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the  keyboard focus ripple will be disabled. |
 | <span class="prop-name">disableRipple</span> | <span class="prop-type">bool</span> |  | If `true`, the ripple effect will be disabled.<br>⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure to highlight the element by applying separate styles with the `focusVisibleClassName`. |
 | <span class="prop-name">selected</span> | <span class="prop-type">bool</span> |  | If `true`, the button will be rendered in an active state. |
-| <span class="prop-name">size</span> | <span class="prop-type">'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'</span> | <span class="prop-default">'medium'</span> | The size of the button. The prop defaults to the value injected by the parent ToggleButtonGroup component. |
+| <span class="prop-name">size</span> | <span class="prop-type">'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'</span> | <span class="prop-default">'medium'</span> | The size of the button. The prop defaults to the value inherited from the parent ToggleButtonGroup component. |
 | <span class="prop-name required">value<abbr title="required">*</abbr></span> | <span class="prop-type">any</span> |  | The value to associate with the button when selected in a ToggleButtonGroup. |
 
 The `ref` is forwarded to the root element.
@@ -58,7 +58,7 @@ You can override the style of the component thanks to one of these customization
 - With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
 - With a theme and an [`overrides` property](/customization/globals/#css).
 
-If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-lab/src/ToggleButton/ToggleButton.js) for more detail.
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/ToggleButton/ToggleButton.js) for more detail.
 
 ## Inheritance
 

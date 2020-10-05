@@ -1,8 +1,7 @@
 ---
-title: Tabs React component
+title: React Tabs component
 components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
-githubLabel:
-  component: Pestañas
+githubLabel: 'component: Tabs'
 materialDesign: https://material.io/components/tabs
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tabpanel'
 ---
@@ -59,7 +58,7 @@ Left and right scroll buttons will automatically be presented on desktop and hid
 
 ### Forced Scroll Buttons
 
-Left and right scroll buttons will be presented regardless of the viewport width.
+Left and right scroll buttons be presented (reserve space) regardless of the viewport width with `scrollButtons={true}` `allowScrollButtonsMobile`:
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonForce.js", "bg": true}}
 
@@ -75,7 +74,7 @@ If you want to make sure the buttons are always visible, you should customize th
 
 ### Prevent Scroll Buttons
 
-Left and right scroll buttons will never be presented. All scrolling must be initiated through user agent scrolling mechanisms (e.g. left/right swipe, shift-mousewheel, etc.)
+Left and right scroll buttons are never be presented with `scrollButtons={false}`. All scrolling must be initiated through user agent scrolling mechanisms (e.g. left/right swipe, shift-mousewheel, etc.)
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonPrevent.js", "bg": true}}
 
@@ -85,7 +84,7 @@ He aquí un ejemplo de personalización del componente. You can learn more about
 
 {{"demo": "pages/components/tabs/CustomizedTabs.js", "bg": true}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/tabs/).
+🎨 Si estás buscando inspiración, puedes mirar [los ejemplos de MUI Treasury](https://mui-treasury.com/styles/tabs/).
 
 ## Vertical tabs
 

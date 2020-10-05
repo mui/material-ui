@@ -264,14 +264,14 @@ describe('<Popper />', () => {
       );
     });
 
-    it('sets preventOverflow to window when disablePortal is false', () => {
+    it('sets preventOverflow to viewport when disablePortal is false', () => {
       const popperRef = React.createRef();
       const { getByRole } = render(<Popper {...defaultProps} popperRef={popperRef} />);
       // renders
       expect(getByRole('tooltip')).to.not.equal(null);
       // correctly sets modifiers
       expect(popperRef.current.options.modifiers.preventOverflow.boundariesElement).to.equal(
-        'window',
+        'viewport',
       );
     });
   });

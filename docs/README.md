@@ -14,7 +14,7 @@ _DO NOT USE NPM, use Yarn to install the dependencies._
 
 ## How can I add a new demo to the documentation?
 
-[You can follow this guide](https://github.com/mui-org/material-ui/blob/next/CONTRIBUTING.md)
+[You can follow this guide](https://github.com/mui-org/material-ui/blob/HEAD/CONTRIBUTING.md)
 on how to get started contributing to Material-UI.
 
 ## How do I help to improve the translations?

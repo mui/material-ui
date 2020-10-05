@@ -2,7 +2,7 @@
 
 <p class="description">Puede utilizar la solución de estilo de Material-UI en su aplicación, tanto si está usando o no componentes de Material-UI.</p>
 
-Material UI busca proveer fundamentos sólidos para la construcción de UIs de manera dinámica. Material-UI aims to provide a strong foundation for building dynamic UIs. You can use it, but you don't have to, since Material-UI is also [interoperable with](/guides/interoperability/) all the other major styling solutions.
+Material UI busca proveer fundamentos sólidos para la construcción de UIs de manera dinámica. Material UI busca proveer fundamentos sólidos para la construcción de UIs de manera dinámica. You can use it, but you don't have to, since Material-UI is also [interoperable with](/guides/interoperability/) all the other major styling solutions.
 
 ## ¿Por qué usar la solución de estilo de Material-UI?
 
@@ -11,6 +11,9 @@ In previous versions, Material-UI has used LESS, then a custom inline-style solu
 Material-UI's styling solution is inspired by many other styling libraries such as [styled-components](https://www.styled-components.com/) and [emotion](https://emotion.sh/).
 
 - 💅 You can expect [the same advantages](https://www.styled-components.com/docs/basics#motivation) as styled-components.
+
+<!-- #default-branch-switch -->
+
 - 🚀 Es [ultra rápida](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-benchmark/README.md#material-uistyles).
 - 🧩 Es extensible a través de una [plugin](https://github.com/cssinjs/jss/blob/master/docs/plugins.md) API.
 - ⚡ Utiliza [JSS](https://github.com/cssinjs/jss) en su núcleo – un compilador de JavaScript a CSS de [alto rendimiento](https://github.com/cssinjs/jss/blob/master/docs/performance.md) que funciona en tiempo de ejecución y por el lado del servidor.

@@ -34,13 +34,6 @@
 
 - [@mui-treasury/layout](https://mui-treasury.com/layout)：处理一个页面整体布局的组件。 您可以找到几个相关的例子，例如： [a reactjs.org clone](https://mui-treasury.com/layout/clones/reactjs)。
 
-### Table
-
-- [material-table](https://github.com/mbrn/material-table)：一款针对 React 的简洁有效的的数据库，它基于 Material-UI Table 并且添加了一些额外的功能。 它支持许多不同的使用情况（可编辑、过滤、分组、排序、选择、国际化（i18n）、树状数据等）。
-- [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/)：针对 Material-UI 的兼并对数据进行排序、搜索、筛选、分组、操作等功能的数据网格（[付费的许可证](https://js.devexpress.com/licensing/)）。
-- [mui-datatables](https://github.com/gregnb/mui-datatables)：Material-UI 的响应式数据表格，包括筛选，排序，搜索等功能。
-- [tubular-react](https://github.com/unosquare/tubular-react): 一个带有本地或者远程的数据来源的 Material-UI 表格。 它能够对数据进行筛选、排序、自由搜索、导出为本地 CSV 以及汇总。
-
 ### 通知
 
 - [notistack](https://github.com/iamhosseindhv/notistack)：轻松地显示消息条（snackbars）（所以您不必手动处理它们的打开/关闭状态）。
@@ -55,6 +48,7 @@
 - [formik-material-ui](https://github.com/stackworx/formik-material-ui)：用于 [formik](https://jaredpalmer.com/formik) 和 Material-UI 捆绑使用。
 - [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui)：用于 [Redux Form](https://redux-form.com/) 和 Material-UI 捆绑使用。
 - [mui-rff](https://github.com/lookfirst/mui-rff)：用于 [React Final Form](https://final-form.org/react) 和 Material-UI 捆绑使用。
+- [formik-material-ui](https://github.com/stackworx/formik-material-ui)：用于 [formik](https://jaredpalmer.com/formik) 和 Material-UI 捆绑使用。
 
 ### 幻灯片
 
@@ -64,7 +58,7 @@
 
 - [material-ui-image](https://mui.wertarbyte.com/#material-ui-image)：图片在完全加载之前都是很简陋的。 使用 material 图像来物化它！ 它会像 material 图像的加载模式建议的一样淡入。
 
-### 分页
+### 分页组件 Pagination
 
 - [material-ui-flat-pagination](https://github.com/szmslab/material-ui-flat-pagination)：一个基于 Material-UI 的扁平化设计的分页组件。
 

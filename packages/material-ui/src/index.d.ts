@@ -92,8 +92,17 @@ export * from './AccordionDetails';
 export { default as AccordionSummary } from './AccordionSummary';
 export * from './AccordionSummary';
 
+export { default as Alert } from './Alert';
+export * from './Alert';
+
+export { default as AlertTitle } from './AlertTitle';
+export * from './AlertTitle';
+
 export { default as AppBar } from './AppBar';
 export * from './AppBar';
+
+export { default as Autocomplete } from './Autocomplete';
+export * from './Autocomplete';
 
 export { default as Avatar } from './Avatar';
 export * from './Avatar';
@@ -296,6 +305,12 @@ export * from './NoSsr';
 export { default as OutlinedInput } from './OutlinedInput';
 export * from './OutlinedInput';
 
+export { default as Pagination } from './Pagination';
+export * from './Pagination';
+
+export { default as PaginationItem } from './PaginationItem';
+export * from './PaginationItem';
+
 export { default as Paper } from './Paper';
 export * from './Paper';
 
@@ -314,11 +329,17 @@ export * from './Radio';
 export { default as RadioGroup } from './RadioGroup';
 export * from './RadioGroup';
 
+export { default as Rating } from './Rating';
+export * from './Rating';
+
 export { default as ScopedCssBaseline } from './ScopedCssBaseline';
 export * from './ScopedCssBaseline';
 
 export { default as Select } from './Select';
 export * from './Select';
+
+export { default as Skeleton } from './Skeleton';
+export * from './Skeleton';
 
 export { default as Slide } from './Slide';
 export * from './Slide';
@@ -404,6 +425,12 @@ export * from './TextField';
 export { default as TextareaAutosize } from './TextareaAutosize';
 export * from './TextareaAutosize';
 
+export { default as ToggleButton } from './ToggleButton';
+export * from './ToggleButton';
+
+export { default as ToggleButtonGroup } from './ToggleButtonGroup';
+export * from './ToggleButtonGroup';
+
 export { default as Toolbar } from './Toolbar';
 export * from './Toolbar';
 
@@ -430,3 +457,6 @@ export * from './withWidth';
 
 export { default as Zoom } from './Zoom';
 export * from './Zoom';
+
+export { default as useAutocomplete } from './useAutocomplete';
+export * from './useAutocomplete';

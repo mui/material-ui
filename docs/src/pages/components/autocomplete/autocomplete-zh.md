@@ -1,10 +1,8 @@
 ---
 title: React 自动补全组件
 components: TextField, Popper, Autocomplete
-githubLabel:
-  component: Autocomplete 自动补全组件
+githubLabel: 'component: Autocomplete'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#combobox'
-packageName: '@material-ui/lab'
 ---
 
 # Autocomplete 自动补全组件
@@ -31,12 +29,11 @@ packageName: '@material-ui/lab'
 默认情况下，该组件接受和以下结构相同的选项：
 
 ```ts
-const filterOptions = createFilterOptions({
-  matchFrom: 'start',
-  stringify: option => option.title,
-});
-
-<Autocomplete filterOptions={filterOptions} />
+interface AutocompleteOption {
+  label: string;
+}
+// 或者
+type AutocompleteOption = string;
 ```
 
 从248个国家中选择一个。
@@ -115,7 +112,7 @@ const options = ['The Godfather', 'Pulp Fiction'];
 作为一种高级定制方式，我们提供了一个 `useAutocomplete()` hook。 它接受几乎与 Autocomplete 组件相同的参数，辅以与 JSX 渲染有关的所有参数。 Autocomplete 组件内部也是使用的此 hook。
 
 ```jsx
-import useAutocomplete from '@material-ui/lab/useAutocomplete';
+import useAutocomplete from '@material-ui/core/useAutocomplete';
 ```
 
 - 📦  [4.5kB 的压缩包](/size-snapshot)。
@@ -216,7 +213,7 @@ import useAutocomplete from '@material-ui/lab/useAutocomplete';
 此组件提供了一个 factory 来构建一个筛选的方法，供给 `filterOptions` 属性使来用。 用此你可以更改默认的筛选行为。
 
 ```js
-import { createFilterOptions } from '@material-ui/lab/Autocomplete';
+import { createFilterOptions } from '@material-ui/core/Autocomplete';
 ```
 
 ### `createFilterOptions(config) => filterOptions`
@@ -282,11 +279,13 @@ const filterOptions = (options, { inputValue }) =>
 - 设置为 `autoComplete="new-password"`：
 
   ```jsx
-  inputProps={{
-        ...params.inputProps,
-        autoComplete: 'new-password',
-      }}
-      /&#062;
+  <TextField
+    {...params}
+    inputProps={{
+      ...params.inputProps,
+      autoComplete: 'new-password',
+    }}
+  />
   ```
 
 ### iOS VoiceOver 辅助功能

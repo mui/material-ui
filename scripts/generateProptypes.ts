@@ -3,7 +3,7 @@ import * as path from 'path';
 import * as fse from 'fs-extra';
 import * as ttp from 'typescript-to-proptypes';
 import * as prettier from 'prettier';
-import * as globCallback from 'glob';
+import globCallback from 'glob';
 import { promisify } from 'util';
 import * as _ from 'lodash';
 import * as yargs from 'yargs';
@@ -184,6 +184,9 @@ async function generateProptypes(
 
   const jsContent = await fse.readFile(jsFile, 'utf8');
 
+  const unstyledFile = tsFile.endsWith('Styled.d.ts')
+    ? tsFile.replace(/Styled/g, 'Unstyled')
+    : null;
   const result = ttp.inject(proptypes, jsContent, {
     removeExistingPropTypes: true,
     babelOptions: {
@@ -229,7 +232,8 @@ async function generateProptypes(
 
       prop.filenames.forEach((filename) => {
         const isExternal = filename !== tsFile;
-        if (!isExternal) {
+        const implementedByUnstyledVariant = filename === unstyledFile;
+        if (!isExternal || implementedByUnstyledVariant) {
           shouldDocument = true;
         }
       });

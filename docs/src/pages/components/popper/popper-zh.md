@@ -1,11 +1,10 @@
 ---
 title: React 弹出提示组件
 components: Popper
-githubLabel:
-  component: Popper
+githubLabel: 'component: Popper'
 ---
 
-# Popper
+# Popper 弹出提示
 
 <p class="description">使用弹出提示组件，您可在另一个元素之上显示一些内容。 这可以替代 react-popper。</p>
 
@@ -21,7 +20,7 @@ githubLabel:
 
 查看[调色板](/system/palette/)样式功能。
 
-## 简单 Popper
+## 基础的弹出提示
 
 {{"demo": "pages/components/popper/SimplePopper.js"}}
 

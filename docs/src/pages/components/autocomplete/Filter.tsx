@@ -3,7 +3,7 @@ import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete, {
   createFilterOptions,
-} from '@material-ui/lab/Autocomplete';
+} from '@material-ui/core/Autocomplete';
 
 const filterOptions = createFilterOptions({
   matchFrom: 'start',

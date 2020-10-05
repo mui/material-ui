@@ -1,10 +1,8 @@
 ---
-title: Componente React para Autocompletar
+title: React Autocomplete component
 components: TextField, Popper, Autocomplete
-githubLabel:
-  component: Autocompletar
+githubLabel: 'component: Autocomplete'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#combobox'
-packageName: '@material-ui/lab'
 ---
 
 # Autocompletar
@@ -115,7 +113,7 @@ You can group the options with the `groupBy` prop. If you do so, make sure that 
 Para casos de customização avançada nós expomos o hook `useAutocomplete()`. Ele aceita quase as mesmas opções do componente autocompletar exceto todas as propriedades relacionadas a renderização do JSX. O componente autocompletar usa esse hook internamente.
 
 ```jsx
-import useAutocomplete from '@material-ui/lab/useAutocomplete';
+import useAutocomplete from '@material-ui/core/useAutocomplete';
 ```
 
 - 📦 [4.5 kB gzipado](/size-snapshot).
@@ -221,7 +219,7 @@ A demonstração a seguir dependem do [autosuggest-highlight](https://github.com
 O componente expõe uma fábrica para criar um método de filtro que pode ser fornecido para a propriedade `filterOptions`. Você pode usar ela para modificar o comportamento padrão do filtro.
 
 ```js
-import { createFilterOptions } from '@material-ui/lab/Autocomplete';
+import { createFilterOptions } from '@material-ui/core/Autocomplete';
 ```
 
 ### `createFilterOptions(config) => filterOptions`
@@ -287,11 +285,13 @@ No entanto, além de relembrar valores fornecidos anteriormente, o navegador tam
 - Defina `autoComplete="new-password"`:
 
   ```jsx
-  inputProps={{
-        ...params.inputProps,
-        autoComplete: 'new-password',
-      }}
-      /&#062;
+  <TextField
+    {...params}
+    inputProps={{
+      ...params.inputProps,
+      autoComplete: 'new-password',
+    }}
+  />
   ```
 
 ### iOS VoiceOver

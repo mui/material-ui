@@ -454,11 +454,10 @@ function DemoToolbar(props) {
               open={showSourceHint && atLeastSmallViewport ? true : undefined}
               PopperProps={{ disablePortal: true }}
               title={showCodeLabel}
-              placement="top"
+              placement="bottom"
             >
               <IconButton
                 aria-controls={openDemoSource ? demoSourceId : null}
-                aria-label={showCodeLabel}
                 data-ga-event-category="demo"
                 data-ga-event-label={demoOptions.demo}
                 data-ga-event-action="expand"
@@ -473,10 +472,9 @@ function DemoToolbar(props) {
               <Tooltip
                 classes={{ popper: classes.tooltip }}
                 title={t('codesandbox')}
-                placement="top"
+                placement="bottom"
               >
                 <IconButton
-                  aria-label={t('codesandbox')}
                   data-ga-event-category="demo"
                   data-ga-event-label={demoOptions.demo}
                   data-ga-event-action="codesandbox"
@@ -487,9 +485,12 @@ function DemoToolbar(props) {
                 </IconButton>
               </Tooltip>
             )}
-            <Tooltip classes={{ popper: classes.tooltip }} title={t('copySource')} placement="top">
+            <Tooltip
+              classes={{ popper: classes.tooltip }}
+              title={t('copySource')}
+              placement="bottom"
+            >
               <IconButton
-                aria-label={t('copySource')}
                 data-ga-event-category="demo"
                 data-ga-event-label={demoOptions.demo}
                 data-ga-event-action="copy"
@@ -499,9 +500,12 @@ function DemoToolbar(props) {
                 <FileCopyIcon fontSize="small" />
               </IconButton>
             </Tooltip>
-            <Tooltip classes={{ popper: classes.tooltip }} title={t('resetFocus')} placement="top">
+            <Tooltip
+              classes={{ popper: classes.tooltip }}
+              title={t('resetFocus')}
+              placement="bottom"
+            >
               <IconButton
-                aria-label={t('resetFocus')}
                 data-ga-event-category="demo"
                 data-ga-event-label={demoOptions.demo}
                 data-ga-event-action="reset-focus"
@@ -511,10 +515,13 @@ function DemoToolbar(props) {
                 <ResetFocusIcon fontSize="small" />
               </IconButton>
             </Tooltip>
-            <Tooltip classes={{ popper: classes.tooltip }} title={t('resetDemo')} placement="top">
+            <Tooltip
+              classes={{ popper: classes.tooltip }}
+              title={t('resetDemo')}
+              placement="bottom"
+            >
               <IconButton
                 aria-controls={demoId}
-                aria-label={t('resetDemo')}
                 data-ga-event-category="demo"
                 data-ga-event-label={demoOptions.demo}
                 data-ga-event-action="reset"
@@ -528,7 +535,6 @@ function DemoToolbar(props) {
               onClick={handleMoreClick}
               aria-owns={anchorEl ? 'demo-menu-more' : undefined}
               aria-haspopup="true"
-              aria-label={t('seeMore')}
               {...getControlProps(7)}
             >
               <MoreVertIcon fontSize="small" />
@@ -658,7 +664,7 @@ const useStyles = makeStyles(
     /* Make no difference between the demo and the markdown. */
     demoBgInline: {
       // Maintain alignment with the markdown text
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         padding: theme.spacing(3),
       },
     },

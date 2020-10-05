@@ -1,9 +1,7 @@
 ---
-title: Composant Alert React
+title: React Alert component
 components: Alert, AlertTitle
-githubLabel:
-  component: Alert
-packageName: '@material-ui/lab'
+githubLabel: 'component: Alert'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
 ---
 
@@ -19,7 +17,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
 
 L'alerte offre quatre niveaux de sévérité qui définissent une icône et une couleur distinctes.
 
-{{"demo": "pages/components/alert/SimpleAlerts.js"}}
+{{"demo": "pages/components/alert/BasicAlerts.js"}}
 
 ## Description
 

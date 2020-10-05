@@ -74,17 +74,17 @@ export default function adaptV4Theme(inputTheme) {
     ...mixins,
   };
 
-  const { type: mode, ...paletteRest } = palette;
+  const { type: typeInput, mode: modeInput, ...paletteRest } = palette;
 
-  // theme.palette.text.hint
+  const finalMode = modeInput || typeInput || 'light';
+
   theme.palette = {
+    // theme.palette.text.hint
     text: {
-      hint:
-        palette.mode === 'dark' || palette.type === 'dark'
-          ? 'rgba(255, 255, 255, 0.5)'
-          : 'rgba(0, 0, 0, 0.38)',
+      hint: finalMode === 'dark' ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.38)',
     },
-    mode,
+    mode: finalMode,
+    type: finalMode,
     ...paletteRest,
   };
 

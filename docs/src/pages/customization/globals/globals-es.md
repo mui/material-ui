@@ -25,7 +25,7 @@ const theme = createMuiTheme({
 
 {{"demo": "pages/customization/globals/GlobalCss.js"}}
 
-The list of these customization points for each component is documented under the **Component API** section. For instance, you can have a look at the [Button](/api/button/#css). For instance, you can have a look at the [Button](/api/button/#css).
+The list of these customization points for each component is documented under the **Component API** section. For instance, you can have a look at the [Button](/api/button/#css).
 
 ## Global CSS
 
@@ -66,6 +66,10 @@ const theme = createMuiTheme({
     MuiButtonBase: {
       // The default props to change
       disableRipple: true, // No more ripple, on the whole application 💣!
+    },
+  },
+});
+      },
     },
   },
 });

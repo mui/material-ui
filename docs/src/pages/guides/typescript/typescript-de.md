@@ -114,7 +114,7 @@ const styles = createStyles({
 });
 ```
 
-Damit diese Stile an TypeScript übergeben werden können, müssen die Definitionen hinsichtlich der Namen der CSS-Klassen und der tatsächlichen CSS-Eigenschaftsnamen mehrdeutig sein. Aus diesem Grund sollten Klassennamen, die den CSS-Eigenschaften entsprechen, vermieden werden.
+However to allow these styles to pass TypeScript, the definitions have to be unambiguous concerning names for CSS classes and actual CSS property names. Aus diesem Grund sollten Klassennamen, die den CSS-Eigenschaften entsprechen, vermieden werden.
 
 ```ts
 // Fehler, da TypeScript denkte, dass `@media (min-width: 960px)` ein Klassen-

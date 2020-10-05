@@ -96,7 +96,7 @@ Request a demo
 
 ### Custom work 🛠
 
-Tweak Material-UI to meet specific requirements. We might: Give us a summary of your needs and we'll help you if we can. Give us a summary of your needs and we'll help you if we can.
+Tweak Material-UI to meet specific requirements. We might: Give us a summary of your needs and we'll help you if we can. We might: Give us a summary of your needs and we'll help you if we can.
 
 - Give you an estimate of time and price if the work is straightforward
 - Suggest alternatives that might not require Material-UI

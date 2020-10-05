@@ -1,8 +1,7 @@
 ---
 title: React 过渡动画组件
 components: Collapse, Fade, Grow, Slide, Zoom
-githubLabel:
-  component: 过渡效果
+githubLabel: 'component: Transition'
 ---
 
 # 过渡动画
@@ -84,5 +83,5 @@ export default Main() {
 - [Modal](/components/modal/#transitions)
 - [Dialog](/components/dialogs/#transitions)
 - [Popper](/components/popper/#transitions)
-- [Snackbar（消息条）](/components/snackbars/#transitions)
+- [Snackbar](/components/snackbars/#transitions)
 - [Tooltip](/components/tooltips/#transitions)

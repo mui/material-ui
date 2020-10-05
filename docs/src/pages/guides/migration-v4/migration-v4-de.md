@@ -4,7 +4,7 @@
 
 Looking for the v4 docs? [Find them here](https://material-ui.com/versions/).
 
-> This document is a work in progress. Have you upgraded your site and run into something that's not covered here? [Add your changes on GitHub](https://github.com/mui-org/material-ui/blob/next/docs/src/pages/guides/migration-v4/migration-v4.md).
+> This document is a work in progress. Have you upgraded your site and run into something that's not covered here? [Add your changes on GitHub](https://github.com/mui-org/material-ui/blob/HEAD/docs/src/pages/guides/migration-v4/migration-v4.md).
 
 ## Introduction
 
@@ -46,6 +46,30 @@ Support for non-ref-forwarding class components in the `component` prop or as an
 
 ### Theme
 
+- Breakpoints are now treated as values instead of ranges. The behavior of `down(key)` was changed to define media query less than the value defined with the corresponding breakpoint (exclusive). The `between(start, end)` was also updated to define media query for the values between the actual values of start (inclusive) and end (exclusive). When using the `down()` breakpoints utility you need to update the breakpoint key by one step up. When using the `between(start, end)` the end breakpoint should also be updated by one step up. The same should be done when using the `Hidden` component. Find examples of the changes required defined below:
+
+```diff
+-theme.breakpoints.down('sm') // '@media (max-width:959.95px)' - [0, sm + 1) => [0, md)
++theme.breakpoints.down('md') // '@media (max-width:959.95px)' - [0, md)
+```
+
+```diff
+-theme.breakpoints.between('sm', 'md') // '@media (min-width:600px) and (max-width:1279.95px)' - [sm, md + 1) => [0, lg)
++theme.breakpoints.between('sm', 'lg') // '@media (min-width:600px) and (max-width:1279.95px)' - [0, lg)
+```
+
+```diff
+-theme.breakpoints.between('sm', 'xl') // '@media (min-width:600px)'
++theme.breakpoints.up('sm') // '@media (min-width:600px)'
+```
+
+```diff
+-<Hidden smDown>{...}</Hidden> // '@media (min-width:600px)'
++<Hidden mdDown>{...}</Hidden> // '@media (min-width:600px)'
+```
+
+#### Upgrade helper
+
 For a smoother transition, the `adaptV4Theme` helper allows you to iteratively upgrade to the new theme structure.
 
 ```diff
@@ -58,6 +82,8 @@ For a smoother transition, the `adaptV4Theme` helper allows you to iteratively u
 -});
 +}));
 ```
+
+The following changes are supported by the adapter.
 
 #### Changes
 
@@ -87,15 +113,6 @@ For a smoother transition, the `adaptV4Theme` helper allows you to iteratively u
   theme.spacing(2) => '16px'
   ```
 
-  You can restore the previous behavior with:
-
-  ```diff
-  -const theme = createMuiTheme();
-  +const theme = createMuiTheme({
-  +  spacing: x => x * 8,
-  +});
-  ```
-
 - The `theme.palette.text.hint` key was unused in Material-UI components, and has been removed.
 
 ```diff
@@ -118,17 +135,26 @@ import { createMuiTheme } from '@material-ui/core/styles';
 
 - The components' definition inside the theme were restructure under the `components` key, to allow people easier discoverability about the definitions regarding one component.
 
+- The `theme.palette.type` was renamed to `theme.palette.mode`, to better follow the "dark mode" term that is usually used for describing this feature.
+
+```diff
+import { createMuiTheme } from '@material-ui/core/styles';
+
+-const theme = createMuitheme({palette: { type: 'dark' }}),
++const theme = createMuitheme({palette: { mode: 'dark' }}),
+```
+
 1. `eigenschaften`
 
 ```diff
 import { createMuiTheme } from '@material-ui/core/styles';
 
 const theme = createMuitheme({
--  props: {
--    MuiButton: {
--      disableRipple: true,
--    },
--  },
+- props: {
+- MuiButton: {
+- disableRipple: true,
+- },
+- },
 +  components: {
 +    MuiButton: {
 +      defaultProps: {
@@ -145,11 +171,11 @@ const theme = createMuitheme({
 import { createMuiTheme } from '@material-ui/core/styles';
 
 const theme = createMuitheme({
--  overrides: {
--    MuiButton: {
--      root: { padding: 0 },
--    },
--  },
+- overrides: {
+- MuiButton: {
+- root: { padding: 0 },
+- },
+- },
 +  components: {
 +    MuiButton: {
 +      styleOverrides: {
@@ -159,6 +185,29 @@ const theme = createMuitheme({
 +  },
 });
 ```
+
+### Hinweis
+
+- Move the component from the lab to the core. The component is now stable.
+
+  ```diff
+  -import Alert from '@material-ui/lab/Alert';
+  -import AlertTitle from '@material-ui/lab/AlertTitle';
+  +import Alert from '@material-ui/core/Alert';
+  +import AlertTitle from '@material-ui/core/AlertTitle';
+  ```
+
+
+  ### Autovervollständigung (Autocomplete)
+
+- Move the component from the lab to the core. The component is now stable.
+
+  ```diff
+  -import Autocomplete from '@material-ui/lab/Autocomplete';
+  -import useAutocomplete  from '@material-ui/lab/useAutocomplete';
+  +import Autocomplete from '@material-ui/core/Autocomplete';
+  +import useAutoComplete from '@material-ui/core/useAutocomplete';
+  ```
 
 ### Avatar
 
@@ -255,12 +304,12 @@ const theme = createMuitheme({
 
   ```diff
   <Dialog
-  -  onEnter={onEnter}
-  -  onEntered={onEntered},
-  -  onEntering={onEntered},
-  -  onExit={onEntered},
-  -  onExited={onEntered},
-  -  onExiting={onEntered}
+  - onEnter={onEnter}
+  - onEntered={onEntered},
+  - onEntering={onEntered},
+  - onExit={onEntered},
+  - onExited={onEntered},
+  - onExiting={onEntered}
   +  TransitionProps={{
   +    onEnter,
   +    onEntered,
@@ -299,24 +348,24 @@ const theme = createMuitheme({
 
   -<ExpansionPanel>
   +<Accordion>
-  -  <ExpansionPanelSummary>
+  - <ExpansionPanelSummary>
   +  <AccordionSummary>
        <Typography>Location</Typography>
        <Typography>Select trip destination</Typography>
-  -  </ExpansionPanelSummary>
+  - </ExpansionPanelSummary>
   +  </AccordionSummary>
-  -  <ExpansionPanelDetails>
+  - <ExpansionPanelDetails>
   +  <AccordionDetails>
        <Chip label="Barbados" onDelete={() => {}} />
        <Typography variant="caption">Select your destination of choice</Typography>
-  -  </ExpansionPanelDetails>
+  - </ExpansionPanelDetails>
   +  </AccordionDetails>
      <Divider />
-  -  <ExpansionPanelActions>
+  - <ExpansionPanelActions>
   +  <AccordionActions>
        <Button size="small">Cancel</Button>
        <Button size="small">Save</Button>
-  -  </ExpansionPanelActions>
+  - </ExpansionPanelActions>
   +  </AccordionActions>
   -</ExpansionPanel>
   +</Accordion>
@@ -334,11 +383,13 @@ const theme = createMuitheme({
   ```diff
   <Accordion
     classes={{
-  -    focused: 'custom-focus-visible-classname',
+  - focused: 'custom-focus-visible-classname',
   +    focusVisible: 'custom-focus-visible-classname',
     }}
   />
   ```
+
+- Remove `display: flex` from AccordionDetails as its too opinionated.
 
 ### Fab
 
@@ -347,6 +398,14 @@ const theme = createMuitheme({
   ```diff
   -<Fab variant="round">
   +<Fab variant="circular">
+  ```
+
+### Chip
+
+- Rename `default` variant to `filled` for consistency.
+  ```diff
+  -<Chip variant="default">
+  +<Chip variant="filled">
   ```
 
 ### Grid
@@ -376,16 +435,16 @@ const theme = createMuitheme({
 +import ImageListItemBar from '@material-ui/core/ImageListItemBar';
 
 -<GridList spacing={8} cellHeight={200}>
--  <GridListTile>
+- <GridListTile>
 +<ImageList gap={8} rowHeight={200}>
 +  <ImageListItem>
      <img src="file.jpg" alt="Image title" />
--    <GridListTileBar
+- <GridListTileBar
 +    <ImageListItemBar
        title="Title"
        subtitle="Subtitle"
      />
--  </GridListTile>
+- </GridListTile>
 -</GridList>
 +  </ImageListItem>
 +</ImageList>
@@ -397,12 +456,12 @@ const theme = createMuitheme({
 
   ```diff
   <Menu
-  -  onEnter={onEnter}
-  -  onEntered={onEntered},
-  -  onEntering={onEntered},
-  -  onExit={onEntered},
-  -  onExited={onEntered},
-  -  onExiting={onEntered}
+  - onEnter={onEnter}
+  - onEntered={onEntered},
+  - onEntering={onEntered},
+  - onExit={onEntered},
+  - onExited={onEntered},
+  - onExiting={onEntered}
   +  TransitionProps={{
   +    onEnter,
   +    onEntered,
@@ -420,35 +479,38 @@ const theme = createMuitheme({
 
 ### Paginierung
 
+- Move the component from the lab to the core. The component is now stable.
+
+  ```diff
+  -import Pagination from '@material-ui/lab/Pagination';
+  -import PaginationItem from '@material-ui/lab/PaginationItem';
+  -import { usePagination } from '@material-ui/lab/Pagination';
+  +import Pagination from '@material-ui/core/Pagination';
+  +import PaginationItem from '@material-ui/core/PaginationItem';
+  +import usePagination from '@material-ui/core/usePagination';
+  ```
+
 - Rename `round` to `circular` for consistency. The possible values should be adjectives, not nouns:
 
   ```diff
   -<Pagination shape="round">
-  +<Pagination shape="circular">
-  ```
-
-### PaginationItem
-
-- Rename `round` to `circular` for consistency. The possible values should be adjectives, not nouns:
-
-  ```diff
   -<PaginationItem shape="round">
+  +<Pagination shape="circular">
   +<PaginationItem shape="circular">
   ```
 
-
-  ### Popover
+### Popover
 
 - The onE\* transition props were removed. Use TransitionProps instead.
 
   ```diff
   <Popover
-  -  onEnter={onEnter}
-  -  onEntered={onEntered},
-  -  onEntering={onEntered},
-  -  onExit={onEntered},
-  -  onExited={onEntered},
-  -  onExiting={onEntered}
+  - onEnter={onEnter}
+  - onEntered={onEntered},
+  - onEntering={onEntered},
+  - onExit={onEntered},
+  - onExited={onEntered},
+  - onExiting={onEntered}
   +  TransitionProps={{
   +    onEnter,
   +    onEntered,
@@ -466,6 +528,13 @@ const theme = createMuitheme({
 
 ### Bewertung
 
+- Move the component from the lab to the core. The component is now stable.
+
+  ```diff
+  -import Rating from '@material-ui/lab/Rating';
+  +import Rating from '@material-ui/core/Rating';
+  ```
+
 - Change the default empty icon to improve accessibility. If you have a custom `icon` prop but no `emptyIcon` prop, you can restore the previous behavior with:
 
   ```diff
@@ -480,7 +549,7 @@ const theme = createMuitheme({
   ```diff
   <Rating
     classes={{
-  -    visuallyhidden: 'custom-visually-hidden-classname',
+  - visuallyhidden: 'custom-visually-hidden-classname',
   +    visuallyHidden: 'custom-visually-hidden-classname',
     }}
   />
@@ -492,12 +561,19 @@ const theme = createMuitheme({
 
   ```diff
   -<RootRef rootRef={ref}>
-  -  <Button />
+  - <Button />
   -</RootRef>
   +<Button ref={ref} />
   ```
 
 ### Skeleton
+
+- Move the component from the lab to the core. The component is now stable.
+
+  ```diff
+  -import Skeleton from '@material-ui/lab/Skeleton';
+  +import Skeleton from '@material-ui/core/Skeleton';
+  ```
 
 - Rename `circle` to `circular` and `rect` to `rectangular` for consistency. The possible values should be adjectives, not nouns:
 
@@ -521,7 +597,7 @@ const theme = createMuitheme({
 
 ### Snackbar
 
-- The notification now displays at the bottom left on large screens. This better matches the behavior of Gmail, Google Keep, material.io, etc. You can restore the previous behavior with:
+- The notification now displays at the bottom left on large screens. This better matches the behavior of Gmail, Google Keep, material.io, etc. You can restore the previous behavior with: You can restore the previous behavior with:
 
   ```diff
   -<Snackbar />
@@ -532,12 +608,12 @@ const theme = createMuitheme({
 
   ```diff
   <Snackbar
-  -  onEnter={onEnter}
-  -  onEntered={onEntered},
-  -  onEntering={onEntered},
-  -  onExit={onEntered},
-  -  onExited={onEntered},
-  -  onExiting={onEntered}
+  - onEnter={onEnter}
+  - onEntered={onEntered},
+  - onEntering={onEntered},
+  - onExit={onEntered},
+  - onExited={onEntered},
+  - onExiting={onEntered}
   +  TransitionProps={{
   +    onEnter,
   +    onEntered,
@@ -549,41 +625,54 @@ const theme = createMuitheme({
   />
   ```
 
+### SpeedDial
+
+- Move the component from the lab to the core. The component is now stable.
+
+  ```diff
+  -import SpeedDial from '@material-ui/lab/SpeedDial';
+  -import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
+  -import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
+  +import SpeedDial from '@material-ui/core/SpeedDial';
+  +import SpeedDialAction from '@material-ui/core/SpeedDialAction';
+  +import SpeedDialIcon from '@material-ui/core/SpeedDialIcon';
+  ```
+
 ### Stepper
 
 - The root component (Paper) was replaced with a div. Stepper no longer has elevation, nor inherits Paper's props. This change is meant to encourage composition.
 
-```diff
--<Stepper elevation={2}>
--  <Step>
--    <StepLabel>Hello world</StepLabel>
--  </Step>
--</Stepper>
-+<Paper square elevation={2}>
-+  <Stepper>
-+    <Step>
-+      <StepLabel>Hello world</StepLabel>
-+    </Step>
-+  </Stepper>
-+<Paper>
-```
+  ```diff
+  -<Stepper elevation={2}>
+  -  <Step>
+  -    <StepLabel>Hello world</StepLabel>
+  -  </Step>
+  -</Stepper>
+  +<Paper square elevation={2}>
+  +  <Stepper>
+  +    <Step>
+  +      <StepLabel>Hello world</StepLabel>
+  +    </Step>
+  +  </Stepper>
+  +<Paper>
+  ```
 
 - Remove the built-in 24px padding.
 
-```diff
--<Stepper>
--  <Step>
--    <StepLabel>Hello world</StepLabel>
--  </Step>
--</Stepper>
-+<Stepper style={{ padding: 24 }}>
-+  <Step>
-+    <StepLabel>Hello world</StepLabel>
-+  </Step>
-+</Stepper>
-```
+  ```diff
+  -<Stepper>
+  -  <Step>
+  -    <StepLabel>Hello world</StepLabel>
+  -  </Step>
+  -</Stepper>
+  +<Stepper style={{ padding: 24 }}>
+  +  <Step>
+  +    <StepLabel>Hello world</StepLabel>
+  +  </Step>
+  +</Stepper>
+  ```
 
-### TablePagination
+### Tabelle
 
 - The customization of the table pagination's actions labels must be done with the `getItemAriaLabel` prop. This increases consistency with the `Pagination` component.
 
@@ -601,6 +690,20 @@ const theme = createMuitheme({
   ```diff
   -<Tabs onChange={(event: React.ChangeEvent<{}>, value: unknown) => {}} />
   +<Tabs onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
+  ```
+
+- The API that controls the scroll buttons has been split it in two props.
+
+  - The `scrollButtons` prop controls when the scroll buttons are displayed depending on the space available.
+  - The `allowScrollButtonsMobile` prop removes the CSS media query that systematically hide the scroll buttons on mobile.
+
+  ```diff
+  -<Tabs scrollButtons="on" />
+  -<Tabs scrollButtons="desktop" />
+  -<Tabs scrollButtons="off" />
+  +<Tabs scrollButtons allowScrollButtonsMobile />
+  +<Tabs scrollButtons />
+  +<Tabs scrollButtons={false} />
   ```
 
 ### TextField
@@ -640,6 +743,17 @@ const theme = createMuitheme({
   ```diff
   -<TextareAutosize rowsMin={1}>
   +<TextareAutosize minRows={1}>
+  ```
+
+### ToggleButton
+
+- Move the component from the lab to the core. The component is now stable.
+
+  ```diff
+  -import ToggleButton from '@material-ui/lab/ToggleButton';
+  -import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+  +import ToggleButton from '@material-ui/core/ToggleButton';
+  +import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
   ```
 
 ### Typografie

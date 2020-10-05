@@ -1,8 +1,7 @@
 ---
-title: Select React component
+title: React Select component
 components: Select, NativeSelect
-githubLabel:
-  component: Selección
+githubLabel: 'component: Select'
 ---
 
 # Selección
@@ -55,11 +54,11 @@ El componente `TextField` es un control de formulario completo, incluyendo una e
 
 Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
-The first step is to style the `InputBase` component. Once it's styled, you can either use it directly as a text field or provide it to the select `input` property to have a `select` field.
+The first step is to style the `InputBase` component. El componente `TextField` es un control de formulario completo, incluyendo una etiqueta, el campo de texto y texto de ayuda.
 
 {{"demo": "pages/components/selects/CustomizedSelects.js"}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/select).
+🎨 Si estás buscando inspiración, puedes mirar [los ejemplos de MUI Treasury](https://mui-treasury.com/styles/select).
 
 ## Controlled Open Select
 

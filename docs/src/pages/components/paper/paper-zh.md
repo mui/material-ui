@@ -1,11 +1,10 @@
 ---
 title: React 纸张组件
 components: Paper
-githubLabel:
-  component: Paper
+githubLabel: 'component: Paper'
 ---
 
-# Paper
+# Paper 纸张组件
 
 <p class="description">在 Material Design 中，我们在屏幕上展现了纸张的物理属性。 </p>
 
@@ -13,7 +12,7 @@ githubLabel:
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## 变体
+## 基础的纸张
 
 {{"demo": "pages/components/paper/SimplePaper.js", "bg": true}}
 

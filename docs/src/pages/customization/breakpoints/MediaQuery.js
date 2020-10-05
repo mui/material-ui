@@ -6,7 +6,7 @@ import { green } from '@material-ui/core/colors';
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: theme.spacing(1),
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       backgroundColor: theme.palette.secondary.main,
     },
     [theme.breakpoints.up('md')]: {

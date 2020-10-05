@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/system",
-  "version": "5.0.0-alpha.6",
+  "version": "5.0.0-alpha.11",
   "private": false,
   "author": "Material-UI Team",
   "description": "Material-UI System - Design system for Material-UI.",
@@ -8,7 +8,6 @@
   "keywords": [
     "react",
     "react-component",
-    "material design",
     "material-ui",
     "system"
   ],

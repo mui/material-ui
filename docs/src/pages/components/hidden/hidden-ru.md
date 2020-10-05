@@ -1,8 +1,7 @@
 ---
-title: React-компонент Скрыть
+title: React Hidden component
 components: Hidden
-githubLabel:
-  component: Hidden
+githubLabel: 'component: Hidden'
 ---
 
 # Hidden

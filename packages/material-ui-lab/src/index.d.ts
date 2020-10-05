@@ -1,9 +1,6 @@
 export { default as Alert } from './Alert';
 export * from './Alert';
 
-export { default as AlertTitle } from './AlertTitle';
-export * from './AlertTitle';
-
 export { default as Autocomplete } from './Autocomplete';
 export * from './Autocomplete';
 
@@ -24,6 +21,12 @@ export * from './Rating';
 
 export { default as Skeleton } from './Skeleton';
 export * from './Skeleton';
+
+export { default as SliderStyled } from './SliderStyled';
+export * from './SliderStyled';
+
+export { default as SliderUnstyled } from './SliderUnstyled';
+export * from './SliderUnstyled';
 
 export { default as SpeedDial } from './SpeedDial';
 export * from './SpeedDial';

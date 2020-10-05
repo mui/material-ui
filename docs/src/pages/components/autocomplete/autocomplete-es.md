@@ -1,10 +1,8 @@
 ---
-title: Componente de Autocompletado de React
+title: React Autocomplete component
 components: TextField, Popper, Autocomplete
-githubLabel:
-  component: Autocompletado
+githubLabel: 'component: Autocomplete'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#combobox'
-packageName: '@material-ui/lab'
 ---
 
 # Autocompletado
@@ -115,7 +113,7 @@ Puedes agrupar las opciones con el accesorio `groupBy`. Si lo haces, asegúrate 
 Para la personalización avanzada de casos de uso, exponemos un hook `useAutocomplete()`. Acepta casi las mismas opciones que el componente Autocompletar menus las propiedades relacionadas al renderizado de JSX. El componente Autocompletar usa este hook internamente.
 
 ```jsx
-import useAutocomplete from '@material-ui/lab/useAutocomplete';
+importar useAutocomplete de '@material-ui/core/useAutocomplete';
 ```
 
 - 📦 [4.5 kB comprimido](/size-snapshot).
@@ -221,7 +219,7 @@ La siguiente demostración se basa en [autosuggest-highlight](https://github.com
 El componente expone una factoría para crear un método de filtrado para proveer a la propiedad `filterOptions`. Puede usarse para cambiar el comportamiento de filtrado por defecto.
 
 ```js
-import { createFilterOptions } from '@material-ui/lab/Autocomplete';
+import { createFilterOptions } from '@material-ui/core/Autocomplete';
 ```
 
 ### `createFilterOptions(config) => filterOptions`
@@ -285,6 +283,7 @@ Sin embargo, además de recordar el valor introducido anteriormente, el navegado
 
 - Nombra la entrada sin filtrar ninguna información que el navegador pueda utilizar. p.e. `id="field1"` en vez de `id="country"`. Si dejas el id de vacío, el componente utiliza un identificador aleatorio.
 - Establecer `autoComplete="new-password"`: jsx Establecer `autoComplete="new-password": 
+    jsx` Establecer `autoComplete="new-password": 
         jsx`
 
   ```jsx
@@ -307,4 +306,4 @@ If you provide a custom `ListboxComponent` prop, you need to make sure that the 
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#combobox)
 
-We encourage the usage of a label for the textbox. The component implements the WAI-ARIA authoring practices.
+We encourage the usage of a label for the textbox. El componente implementa las prácticas de creación de WAI-ARIA.

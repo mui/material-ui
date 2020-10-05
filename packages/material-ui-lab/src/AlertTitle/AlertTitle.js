@@ -1,48 +1,24 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
-import clsx from 'clsx';
+import React from 'react';
+import AlertTitle from '@material-ui/core/AlertTitle';
 
-export const styles = (theme) => ({
-  /* Styles applied to the root element. */
-  root: {
-    fontWeight: theme.typography.fontWeightMedium,
-    marginTop: -2,
-  },
+let warnedOnce = false;
+
+/**
+ * @ignore - do not document.
+ */
+export default React.forwardRef(function DeprecatedAlertTitle(props, ref) {
+  if (!warnedOnce) {
+    console.warn(
+      [
+        'Material-UI: The AlertTitle component was moved from the lab to the core.',
+        '',
+        "You should use `import { AlertTitle } from '@material-ui/core'`",
+        "or `import AlertTitle from '@material-ui/core/AlertTitle'`",
+      ].join('\n'),
+    );
+
+    warnedOnce = true;
+  }
+
+  return <AlertTitle ref={ref} {...props} />;
 });
-
-const AlertTitle = React.forwardRef(function AlertTitle(props, ref) {
-  const { classes, className, ...other } = props;
-
-  return (
-    <Typography
-      gutterBottom
-      component="div"
-      ref={ref}
-      className={clsx(classes.root, className)}
-      {...other}
-    />
-  );
-});
-
-AlertTitle.propTypes = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
-  /**
-   * The content of the component.
-   */
-  children: PropTypes.node,
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-};
-
-export default withStyles(styles, { name: 'MuiAlertTitle' })(AlertTitle);

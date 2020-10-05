@@ -1,11 +1,10 @@
 ---
 title: React 传送门组件
 components: Portal
-githubLabel:
-  component: Portal
+githubLabel: 'component: Portal'
 ---
 
-# Portal
+# Portal 传送门
 
 <p class="description">传送门组件将其子节点渲染到当前 DOM 结构之外的新 "子类树" 当中。</p>
 

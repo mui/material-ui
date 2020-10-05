@@ -1,16 +1,14 @@
 ---
 title: React 骨架屏组件
 components: Skeleton
-githubLabel:
-  component: Skeleton
-packageName: '@material-ui/lab'
+githubLabel: 'component: Skeleton'
 ---
 
-# Skeleton
+# Skeleton 骨架屏
 
 <p class="description">在数据完整加载之前将您的内容显示为一个占位的预览，这样可以减少由加载时间造成的困扰。</p>
 
-您的组件需要的数据可能无法立刻加载。 这时，你就可以使用骨架屏来提升用户的观感。 好像感觉到事情马上就要发生了，然后信息在屏幕上逐步地显示（Cf. [ 避开 Spinner](https://www.lukew.com/ff/entry.asp?1797)）。
+您的组件需要的数据可能无法立刻加载。 你可以通过使用骨架屏来提高页面的感知响应度。 好像感觉到事情马上就要发生了，然后信息在屏幕上逐步地显示（Cf. [ 避开 Spinner](https://www.lukew.com/ff/entry.asp?1797)）。
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -20,6 +18,7 @@ packageName: '@material-ui/lab'
 
 ```jsx
 {
+  item ? {
   item ? {item ? (
   <img style={{ width: 210, height: 118 }} alt={item.title} src={item.src} />
 ) : (
@@ -54,7 +53,7 @@ packageName: '@material-ui/lab'
 当您在排版的时候会得心应手，因为它的高度是用 `em` 单位设置的。
 
 ```jsx
-<Typography variant="h1">{loading ? <Skeleton /> : 'h1'}</Typography>
+<Typography variant="h1">{loading ? <Skeleton /> : 'h1'}</Typography> <Skeleton /> : 'h1'}</Typography>
 ```
 
 {{"demo": "pages/components/skeleton/SkeletonTypography.js", "defaultCodeOpen": false}}
@@ -75,6 +74,14 @@ loading ? (
 
 ## 无障碍设计
 
-骨架屏提供了一个可替代传统旋转动画（spinner）的解决方案。 骨架屏不是一个抽象的小部件，而是提供一个对未来事件的预期，来减少人们的认知负荷。
+骨架屏的动画可以代替传统转圈动画的加载方式。 骨架屏不是一个抽象的小部件，而是提供一个对未来事件的预期，来减少人们的认知负荷。
 
 骨架屏使用的背景色是在良好条件下可见的最小亮度（良好的环境光源、清晰的屏幕、无其他视觉障碍）。
+
+### ARIA
+
+无。
+
+### 键盘输入
+
+骨架屏不能被聚焦。

@@ -1,8 +1,7 @@
 ---
-title: Pagination React component
+title: React Pagination component
 components: Pagination, PaginationItem
 githubLabel: 'component: Pagination'
-packageName: '@material-ui/lab'
 ---
 
 # Pagination
@@ -55,7 +54,7 @@ related to the rendering of JSX.
 The Pagination component uses this hook internally.
 
 ```jsx
-import { usePagination } from '@material-ui/lab/Pagination';
+import { usePagination } from '@material-ui/core/Pagination';
 ```
 
 {{"demo": "pages/components/pagination/UsePagination.js"}}

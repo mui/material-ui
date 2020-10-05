@@ -1,8 +1,7 @@
 ---
-title: Componente React para Acordeão
+title: Componente de Acordeão React
 components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
-githubLabel:
-  component: Acordeão
+githubLabel: 'component: Accordion'
 materialDesign: https://material.io/archive/guidelines/components/expansion-panels.html
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#accordion'
 ---
@@ -48,12 +47,6 @@ O conteúdo dos acordeões é montado por padrão, mesmo que o acordeão não es
 ```
 
 Como acontece com qualquer otimização de desempenho, isso não é uma bala de prata. Certifique-se de identificar gargalos primeiro e, em seguida, experimente essas estratégias de otimização.
-
-## Cabeçalho secundário e colunas
-
-Várias colunas podem ser usadas para estruturar o conteúdo, e um texto auxiliar pode ser adicionado ao acordeão para ajudar o usuário.
-
-{{"demo": "pages/components/accordion/DetailedAccordion.js", "bg": true}}
 
 ## Acessibilidade
 

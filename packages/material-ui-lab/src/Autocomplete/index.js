@@ -1,1 +1,1 @@
-export { default, createFilterOptions } from './Autocomplete';
+export { default } from './Autocomplete';

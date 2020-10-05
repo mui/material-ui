@@ -27,32 +27,20 @@ export default function createBreakpoints(breakpoints) {
   }
 
   function down(key) {
-    const endIndex = keys.indexOf(key) + 1;
-    const upperbound = values[keys[endIndex]];
-
-    if (endIndex === keys.length) {
-      // down from the biggest breakpoint applies to all sizes
-      return up(0);
-    }
-
-    const value = typeof upperbound === 'number' && endIndex > 0 ? upperbound : key;
+    const value = typeof values[key] === 'number' ? values[key] : key;
     return `@media (max-width:${value - step / 100}${unit})`;
   }
 
   function between(start, end) {
     const endIndex = keys.indexOf(end);
 
-    if (endIndex === keys.length - 1) {
-      return up(start);
-    }
-
     return (
       `@media (min-width:${
         typeof values[start] === 'number' ? values[start] : start
       }${unit}) and ` +
       `(max-width:${
-        (endIndex !== -1 && typeof values[keys[endIndex + 1]] === 'number'
-          ? values[keys[endIndex + 1]]
+        (endIndex !== -1 && typeof values[keys[endIndex]] === 'number'
+          ? values[keys[endIndex]]
           : end) -
         step / 100
       }${unit})`
@@ -60,7 +48,11 @@ export default function createBreakpoints(breakpoints) {
   }
 
   function only(key) {
-    return between(key, key);
+    if (keys.indexOf(key) + 1 < keys.length) {
+      return between(key, keys[keys.indexOf(key) + 1]);
+    }
+
+    return up(key);
   }
 
   function width(key) {

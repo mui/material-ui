@@ -1,8 +1,7 @@
 ---
-title: Divider React-Komponente
+title: React Divider component
 components: Divider
-githubLabel:
-  component: Divider
+githubLabel: 'component: Divider'
 materialDesign: https://material.io/components/dividers
 ---
 
@@ -44,7 +43,7 @@ You can also render a divider with content.
 
 ## Vertical divider
 
-You can also render a divider vertically using the `orientation` prop.
+Sie können einen Trenner auch vertikal mit der `orientation` prop rendern.
 
 {{"demo": "pages/components/dividers/VerticalDividers.js", "bg": true}}
 

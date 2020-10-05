@@ -1,10 +1,8 @@
 ---
-title: Composant React Auto-complétion
+title: React Autocomplete component
 components: TextField, Popper, Autocomplete
-githubLabel:
-  component: Autocomplete (Auto-complétion)
+githubLabel: 'component: Autocomplete'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#combobox'
-packageName: '@material-ui/lab'
 ---
 
 # Autocomplete (Auto-complétion)
@@ -115,7 +113,7 @@ You can group the options with the `groupBy` prop. If you do so, make sure that 
 Pour les cas de personnalisation avancée, nous exposons un hook `useAutocomplete()`. Il accepte presque les mêmes options que le composant de saisie automatique moins tous les props liés au rendu de JSX. Le composant Autocomplete utilise ce hook en interne.
 
 ```jsx
-import useAutocomplete from '@material-ui/lab/useAutocomplete';
+import useAutocomplete from '@material-ui/core/useAutocomplete';
 ```
 
 - 📦 [4.5 kB gzippé](/size-snapshot).
@@ -221,7 +219,7 @@ La démo suivante repose sur [autosuggest-highlight](https://github.com/moroshko
 Le composant expose une usine pour créer une méthode de filtre qui peut être fournie à la propriété `filterOptions`. Vous pouvez l'utiliser pour modifier le comportement de filtre par défaut.
 
 ```js
-import { createFilterOptions } from '@material-ui/lab/Autocomplete';
+import { createFilterOptions } from '@material-ui/core/Autocomplete';
 ```
 
 ### `createFilterOptions(config) => filterOptions`
@@ -284,7 +282,7 @@ Par défaut, le composant désactive la fonctionnalité **auto-complétion** (ra
 Cependant, en plus de se souvenir des valeurs entrées passées, le navigateur peut également proposer des suggestions de **remplissage automatique** (connexion, adresse ou détails de paiement enregistrés). Dans le cas où vous voulez le remplissage automatique, vous pouvez essayer ce qui suit :
 
 - Nommez l'input sans fuir les informations que le navigateur peut utiliser. par exemple `id="field1"` au lieu de `id="country"`. Si vous laissez l'id vide, le composant utilise un id aléatoire.
-- Définir `autoComplete="new-password"`: jsx
+- Définir `autoComplete="new-password"`: jsx jsx
 
   ```jsx
   inputProps={{

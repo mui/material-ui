@@ -34,7 +34,7 @@ export default class DemoErrorBoundary extends React.Component {
             </Link>
             .
           </Typography>
-          <pre>{error.toString()}</pre>
+          <pre style={{ whiteSpace: 'pre-wrap' }}>{error.toString()}</pre>
           <Button color="secondary" onClick={onResetDemoClick} variant="text">
             {t('resetDemo')}
           </Button>

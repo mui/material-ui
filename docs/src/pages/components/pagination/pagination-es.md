@@ -1,12 +1,10 @@
 ---
-title: Pagination React component
+title: React Pagination component
 components: Pagination, PaginationItem
-githubLabel:
-  component: Paginación
-packageName: '@material-ui/lab'
+githubLabel: 'component: Pagination'
 ---
 
-# Paginación
+# Pagination
 
 <p class="description">El componente de paginación permite al usuario seleccionar una página específica de un rango de páginas.</p>
 
@@ -53,7 +51,7 @@ Puede especificar cuántos dígitos mostrar en ambos lados de la página actual 
 For advanced customization use cases, we expose a `usePagination()` hook. It accepts almost the same options as the Pagination component minus all the props related to the rendering of JSX. The Pagination component uses this hook internally.
 
 ```jsx
-import { usePagination } from '@material-ui/lab/Pagination';
+import { usePagination } from '@material-ui/core/Pagination';
 ```
 
 {{"demo": "pages/components/pagination/UsePagination.js"}}

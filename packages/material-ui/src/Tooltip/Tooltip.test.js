@@ -116,16 +116,124 @@ describe('<Tooltip />', () => {
       expect(queryByRole('tooltip')).to.equal(null);
     });
 
-    it('should be passed down to the child as a native title', () => {
-      const { getByRole } = render(
-        <Tooltip title="Hello World">
-          <button id="testChild" type="submit">
-            Hello World
+    it('should label the child when closed', () => {
+      render(
+        <Tooltip title="the title">
+          <button data-testid="target">The content</button>
+        </Tooltip>,
+      );
+
+      const target = screen.getByTestId('target');
+      expect(target).toHaveAccessibleName('the title');
+      expect(target).not.to.have.attribute('title');
+    });
+
+    it('cannot label the child when closed with an exotic title', () => {
+      render(
+        <Tooltip title={<div>the title</div>}>
+          <button data-testid="target">the content</button>
+        </Tooltip>,
+      );
+
+      const target = screen.getByTestId('target');
+      expect(target).toHaveAccessibleName('the content');
+      expect(target).not.to.have.attribute('title');
+    });
+
+    it('should label the child when open', () => {
+      render(
+        <Tooltip open title="the title">
+          <button data-testid="target">The content</button>
+        </Tooltip>,
+      );
+
+      const target = screen.getByTestId('target');
+      expect(target).toHaveAccessibleName('the title');
+      expect(target).not.to.have.attribute('title');
+
+      // TODO: can be removed with popper@2.x
+      clock.runAll();
+    });
+
+    it('should label the child when open with an exotic title', () => {
+      render(
+        <Tooltip open title={<div>the title</div>}>
+          <button data-testid="target">The content</button>
+        </Tooltip>,
+      );
+
+      const target = screen.getByTestId('target');
+      expect(target).toHaveAccessibleName('the title');
+      expect(target).not.to.have.attribute('title');
+
+      // TODO: can be removed with popper@2.x
+      clock.runAll();
+    });
+
+    it('can describe the child when closed', () => {
+      render(
+        <Tooltip describeChild title="the title">
+          <button aria-label="the label" data-testid="target">
+            The content
           </button>
         </Tooltip>,
       );
 
-      expect(getByRole('button')).to.have.attribute('title', 'Hello World');
+      const target = screen.getByTestId('target');
+      expect(target).toHaveAccessibleName('the label');
+      expect(target).toHaveAccessibleDescription('the title');
+      expect(target).to.have.attribute('title', 'the title');
+    });
+
+    it('cannot describe the child when closed with an exotic title', () => {
+      render(
+        <Tooltip describeChild title={<div>the title</div>}>
+          <button aria-label="the label" data-testid="target">
+            The content
+          </button>
+        </Tooltip>,
+      );
+
+      const target = screen.getByTestId('target');
+      expect(target).toHaveAccessibleName('the label');
+      expect(target).toHaveAccessibleDescription('');
+      expect(target).not.to.have.attribute('title');
+    });
+
+    it('can describe the child when open', () => {
+      render(
+        <Tooltip describeChild open title="the title">
+          <button aria-label="the label" data-testid="target">
+            The content
+          </button>
+        </Tooltip>,
+      );
+
+      const target = screen.getByTestId('target');
+      expect(target).toHaveAccessibleName('the label');
+      expect(target).toHaveAccessibleDescription('the title');
+      expect(target).not.to.have.attribute('title');
+
+      // TODO: can be removed with popper@2.x
+      clock.runAll();
+    });
+
+    it('can describe the child when open with an exotic title', () => {
+      render(
+        <Tooltip describeChild open title={<div>the title</div>}>
+          <button aria-label="the label" data-testid="target">
+            The content
+          </button>
+        </Tooltip>,
+      );
+
+      const target = screen.getByTestId('target');
+      expect(target).toHaveAccessibleName('the label');
+      expect(target).toHaveAccessibleDescription('the title');
+      expect(target).not.to.have.attribute('title');
+
+      // TODO: can be removed with popper@2.x
+      clock.runAll();
     });
   });
 
@@ -770,9 +878,10 @@ describe('<Tooltip />', () => {
       // Tooltip should not assume that event handlers of children are attached to the
       // outermost host
       const TextField = React.forwardRef(function TextField(props, ref) {
+        const { onFocus, ...other } = props;
         return (
-          <div ref={ref}>
-            <input type="text" {...props} />
+          <div ref={ref} {...other}>
+            <input type="text" onFocus={onFocus} />
           </div>
         );
       });
@@ -807,6 +916,20 @@ describe('<Tooltip />', () => {
         setProps({ open: true });
       }).toErrorDev(
         'Material-UI: A component is changing the uncontrolled open state of Tooltip to be controlled.',
+      );
+    });
+
+    it('should warn when not forwarding props', () => {
+      const BrokenButton = React.forwardRef((props, ref) => <button ref={ref}>Hello World</button>);
+
+      expect(() => {
+        render(
+          <Tooltip title="Hello World">
+            <BrokenButton />
+          </Tooltip>,
+        );
+      }).toErrorDev(
+        'The `children` component of the Tooltip is not forwarding its props correctly.',
       );
     });
   });

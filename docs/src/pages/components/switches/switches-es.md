@@ -1,8 +1,7 @@
 ---
-title: Switch React component
+title: React Switch component
 components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
-githubLabel:
-  component: Switch
+githubLabel: 'component: Switch'
 materialDesign: 'https://material.io/components/selection-controls#switches'
 ---
 
@@ -26,7 +25,7 @@ materialDesign: 'https://material.io/components/selection-controls#switches'
 
 ## Switches with FormGroup
 
-`FormGroup` es un contenedor muy útil usado para agrupar componentes de controles de selección que proporciona una API más sencilla. `FormGroup` es un contenedor muy útil usado para agrupar componentes de controles de selección que proporciona una API más sencilla. However, you are encouraged you to use [Checkboxes](/components/checkboxes/) instead if multiple related controls are required.
+`FormGroup` es un contenedor muy útil usado para agrupar componentes de controles de selección que proporciona una API más sencilla. However, you are encouraged you to use [Checkboxes](/components/checkboxes/) instead if multiple related controls are required. However, you are encouraged you to use [Checkboxes](/components/checkboxes/) instead if multiple related controls are required.
 
 {{"demo": "pages/components/switches/SwitchesGroup.js"}}
 
@@ -36,7 +35,7 @@ Here are some examples of customizing the component. You can learn more about th
 
 {{"demo": "pages/components/switches/CustomizedSwitches.js"}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/switch).
+🎨 Si estás buscando inspiración, puedes mirar [los ejemplos de MUI Treasury](https://mui-treasury.com/styles/switch).
 
 ## Tamaños
 

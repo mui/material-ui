@@ -1,26 +1,26 @@
-# Migration from v4 to v5
+# Migración de v4 a v5
 
-<p class="description">Yeah, v5 has been released!</p>
+<p class="description">¡Sí, v5 ha sido lanzada!</p>
 
-Looking for the v4 docs? [Find them here](https://material-ui.com/versions/).
+¿Buscando la documentación v4? [Encuéntralos aquí](https://material-ui.com/versions/).
 
-> This document is a work in progress. Have you upgraded your site and run into something that's not covered here? Have you upgraded your site and run into something that's not covered here? [Add your changes on GitHub](https://github.com/mui-org/material-ui/blob/next/docs/src/pages/guides/migration-v4/migration-v4.md).
+> Este documento es un trabajo en curso. ¿Ha actualizado su sitio y se ha topado con algo que no está cubierto aquí? [Añade tus cambios en GitHub](https://github.com/mui-org/material-ui/blob/HEAD/docs/src/pages/guides/migration-v4/migration-v4.md).
 
-## Introduction
+## Introducción
 
-This is a reference for upgrading your site from Material-UI v4 to v5. While there's a lot covered here, you probably won't need to do everything for your site. We'll do our best to keep things easy to follow, and as sequential as possible so you can quickly get rocking on v5!
+Esta es una referencia para actualizar su sitio de Material-UI v4 a v5. Aunque hay mucho cubierto aquí, probablemente no tendrá que hacer todo por su sitio. Haremos todo lo posible para mantener las cosas fáciles de seguir, y tan secuencial como sea posible para que pueda rápidamente ponerse usando la v5!
 
-## Why you should migrate
+## Por qué debería migrar
 
-This documentation page covers the _how_ of migrating from v4 to v5. The *why* is covered in the [release blog post on Medium](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701).
+Esta página de documentación cubre _cómo_ migrar de v4 a v5. The *why* is covered in the [release blog post on Medium](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701).
 
-## Updating your dependencies
+## Actualizando tus dependencias
 
-The very first thing you will need to do is to update your dependencies.
+Lo primero que necesitará hacer es actualizar sus dependencias.
 
-### Update Material-UI version
+### Actualizar versión de Material-UI
 
-You need to update your `package.json` to use the latest version of Material-UI.
+Necesitas actualizar tu `package.json` para usar la última versión de Material-UI.
 
 ```json
 "dependencies": {
@@ -33,7 +33,7 @@ Or run
 ```sh
 npm install @material-ui/core@next
 
-or
+o
 
 yarn add @material-ui/core@next
 ```
@@ -46,7 +46,31 @@ Support for non-ref-forwarding class components in the `component` prop or as an
 
 ### Tema
 
-For a smoother transition, the `adaptV4Theme` helper allows you to iteratively upgrade to the new theme structure.
+- Los puntos de interrupción ahora son tratados como valores en lugar de rangos. The behavior of `down(key)` was changed to define media query less than the value defined with the corresponding breakpoint (exclusive). The `between(start, end)` was also updated to define media query for the values between the actual values of start (inclusive) and end (exclusive). When using the `down()` breakpoints utility you need to update the breakpoint key by one step up. When using the `between(start, end)` the end breakpoint should also be updated by one step up. The same should be done when using the `Hidden` component. Find examples of the changes required defined below:
+
+```diff
+-theme.breakpoints.down('sm') // '@media (max-width:959.95px)' - [0, sm + 1) => [0, md)
++theme.breakpoints.down('md') // '@media (max-width:959.95px)' - [0, md)
+```
+
+```diff
+-theme.breakpoints.between('sm', 'md') // '@media (min-width:600px) y (max-width:1279.95px)' - [sm, md + 1) => [0, lg)
++theme. reakpoints.between('sm', 'lg') // '@media (min-width:600px) y (max-width:1279.95px)' - [0, lg)
+```
+
+```diff
+-theme.breakpoints.between('sm', 'xl') // '@media (min-width:600px)'
++theme.breakpoints.up('sm') // '@media (min-width:600px)'
+```
+
+```diff
+-<Hidden smDown>{...}</Hidden> // '@media (min-width:600px)'
++<Hidden mdDown>{...}</Hidden> // '@media (min-width:600px)'
+```
+
+#### Mejorar ayudante
+
+Para una transición más suave, el ayudante `adaptV4Theme` te permite actualizar iterativamente algunos de los cambios del tema a la nueva estructura del tema.
 
 ```diff
 -import { createMuiTheme } from '@material-ui/core/styles';
@@ -54,14 +78,16 @@ For a smoother transition, the `adaptV4Theme` helper allows you to iteratively u
 
 -const theme = createMuitheme({
 +const theme = createMuitheme(adaptV4Theme({
-  // v4 theme
+  // tema v4
 -});
 +}));
 ```
 
-#### Changes
+El adaptador soporta los siguientes cambios.
 
-- The "gutters" abstraction hasn't proven to be used frequently enough to be valuable.
+#### Cambios
+
+- La abstracción "gutters" no ha demostrado ser usada con suficiente frecuencia como para ser valiosa.
 
   ```diff
   -theme.mixins.gutters(),
@@ -73,33 +99,24 @@ For a smoother transition, the `adaptV4Theme` helper allows you to iteratively u
   +},
   ```
 
-- `theme.spacing` now returns single values with px units by default. This change improves the integration with styled-components & emotion.
+- `theme.spacing` ahora devuelve valores únicos con unidades px por defecto. This change improves the integration with styled-components & emotion.
 
-  Before:
+  Antes:
 
   ```
   theme.spacing(2) => 16
   ```
 
-  After:
+  Después:
 
   ```
   theme.spacing(2) => '16px'
   ```
 
-  You can restore the previous behavior with:
-
-  ```diff
-  -const theme = createMuiTheme();
-  +const theme = createMuiTheme({
-  +  spacing: x => x * 8,
-  +});
-  ```
-
-- The `theme.palette.text.hint` key was unused in Material-UI components, and has been removed.
+- La clave `theme.palette.text.hint` no fue usada en componentes de Material-UI y ha sido eliminada.
 
 ```diff
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles'
 
 -const theme = createMuitheme(),
 +const theme = createMuitheme({
@@ -108,15 +125,24 @@ import { createMuiTheme } from '@material-ui/core/styles';
 ```
 
 ```diff
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles'
 
 -const theme = createMuitheme({palette: { type: 'dark' }}),
 +const theme = createMuitheme({
-+  palette: { type: 'dark', text: { hint: 'rgba(0, 0, 0, 0.38)' } },
++  palette: { type: 'dark', text: { hint: 'rgba(0, 0, 0, 0. 8)' } },
 +});
 ```
 
 - The components' definition inside the theme were restructure under the `components` key, to allow people easier discoverability about the definitions regarding one component.
+
+- The `theme.palette.type` was renamed to `theme.palette.mode`, to better follow the "dark mode" term that is usually used for describing this feature.
+
+```diff
+import { createMuiTheme } from '@material-ui/core/styles';
+
+-const theme = createMuitheme({palette: { type: 'dark' }}),
++const theme = createMuitheme({palette: { mode: 'dark' }}),
+```
 
 1. `props`
 
@@ -139,7 +165,7 @@ const theme = createMuitheme({
 });
 ```
 
-2. `sobreponer`
+2. `overrides`
 
 ```diff
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -160,9 +186,32 @@ const theme = createMuitheme({
 });
 ```
 
+### Alerta
+
+- Mueve el componente del laboratorio al core. El componente ahora es estable.
+
+  ```diff
+  -import Alert from '@material-ui/lab/Alert';
+  -import AlertTitle from '@material-ui/lab/AlertTitle';
+  +import Alert from '@material-ui/core/Alert';
+  +import AlertTitle from '@material-ui/core/AlertTitle';
+  ```
+
+
+  ### Autocompletado
+
+- Mueve el componente del laboratorio al core. El componente ahora es estable.
+
+  ```diff
+  -import Autocomplete from '@material-ui/lab/Autocomplete';
+  -import useAutocomplete  from '@material-ui/lab/useAutocomplete';
+  +import Autocomplete from '@material-ui/core/Autocomplete';
+  +import useAutoComplete from '@material-ui/core/useAutocomplete';
+  ```
+
 ### Avatar
 
-- Rename `circle` to `circular` for consistency. The possible values should be adjectives, not nouns:
+- Renombrar `circle` a `circular` por consistencia. Los valores posibles deben ser adjetivos, no sustantivos:
 
   ```diff
   -<Avatar variant="circle">
@@ -173,7 +222,7 @@ const theme = createMuitheme({
 
 ### Badge
 
-- Rename `circle` to `circular` and `rectangle` to `rectangular` for consistency. The possible values should be adjectives, not nouns:
+- Renombrar `circle` a `circular` y `rectangle` a `rectangular` para consistencia. Los valores posibles deben ser adjetivos, no sustantivos:
 
   ```diff
   -<Badge overlap="circle">
@@ -203,13 +252,13 @@ const theme = createMuitheme({
 - TypeScript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
 
   ```diff
-  -<BottomNavigation onChange={(event: React.ChangeEvent<{}>) => {}} />
-  +<BottomNavigation onChange={(event: React.SyntheticEvent) => {}} />
+  -<BottomNavigation onChange={(event: React. ChangeEvent<{}>) => {}} />
+  +<BottomNavigation onChange={(event: React. SyntheticEvent) => {}} />
   ```
 
 ### Button (Botón)
 
-- The button `color` prop is now "primary" by default, and "default" has been removed. This makes the button closer to the Material Design specification and simplifies the API.
+- El prop `color` del botón ahora es "primary" por defecto, y "default" ha sido eliminado. Esto hace que el botón se acerque a la especificación de Material Design y simplifica la API.
 
   ```diff
   -<Button color="primary" />
@@ -218,7 +267,7 @@ const theme = createMuitheme({
   +<Button />
   ```
 
-### CircularProgress
+### Progreso circular
 
 - The `static` variant has been merged into the `determinate` variant, with the latter assuming the appearance of the former. The removed variant was rarely useful. It was an exception to Material Design, and was removed from the specification.
 
@@ -285,7 +334,7 @@ const theme = createMuitheme({
 
 ### ExpansionPanel
 
-- Rename the `ExpansionPanel` components to `Accordion` to use a more common naming convention:
+- Renombrar los componentes de `ExpansionPanel` a `Accordion` para usar una convención de nomenclatura más común:
 
   ```diff
   -import ExpansionPanel from '@material-ui/core/ExpansionPanel';
@@ -325,8 +374,8 @@ const theme = createMuitheme({
 - TypeScript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
 
   ```diff
-  -<Accordion onChange={(event: React.ChangeEvent<{}>, expanded: boolean) => {}} />
-  +<Accordion onChange={(event: React.SyntheticEvent, expanded: boolean) => {}} />
+  -<Accordion onChange={(event: React. ChangeEvent<{}>, expanded: boolean) => {}} />
+  +<Accordion onChange={(event: React. SyntheticEvent, expanded: boolean) => {}} />
   ```
 
 - Rename `focused` to `focusVisible` for consistency:
@@ -340,18 +389,28 @@ const theme = createMuitheme({
   />
   ```
 
+- Remove `display: flex` from AccordionDetails as its too opinionated.
+
 ### Fab
 
-- Rename `round` to `circular` for consistency. The possible values should be adjectives, not nouns:
+- Rename `round` to `circular` for consistency. Los valores posibles deben ser adjetivos, no sustantivos:
 
   ```diff
   -<Fab variant="round">
   +<Fab variant="circular">
   ```
 
+### Chip
+
+- Rename `default` variant to `filled` for consistency.
+  ```diff
+  -<Chip variant="default">
+  +<Chip variant="filled">
+  ```
+
 ### Grid
 
-- Rename `justify` prop with `justifyContent` to be aligned with the CSS property name.
+- Renombrar prop `justify` con `justifyContent` para estar alineado con el nombre de propiedad CSS.
 
   ```diff
   -<Grid justify="center">
@@ -418,26 +477,29 @@ const theme = createMuitheme({
 
 - Remove `onRendered` prop. Depending on your use case either use a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element or an effect hook in the child component.
 
-### Paginación
+### Pagination
 
-- Rename `round` to `circular` for consistency. The possible values should be adjectives, not nouns:
+- Mueve el componente del laboratorio al core. El componente ahora es estable.
+
+  ```diff
+  -import Pagination from '@material-ui/lab/Pagination';
+  -import PaginationItem from '@material-ui/lab/PaginationItem';
+  -import { usePagination } from '@material-ui/lab/Pagination';
+  +import Pagination from '@material-ui/core/Pagination';
+  +import PaginationItem from '@material-ui/core/PaginationItem';
+  +import usePagination from '@material-ui/core/usePagination';
+  ```
+
+- Rename `round` to `circular` for consistency. Los valores posibles deben ser adjetivos, no sustantivos:
 
   ```diff
   -<Pagination shape="round">
-  +<Pagination shape="circular">
-  ```
-
-### PaginationItem
-
-- Rename `round` to `circular` for consistency. The possible values should be adjectives, not nouns:
-
-  ```diff
   -<PaginationItem shape="round">
+  +<Pagination shape="circular">
   +<PaginationItem shape="circular">
   ```
 
-
-  ### Popover
+### Popover
 
 - The onE\* transition props were removed. Use TransitionProps instead.
 
@@ -465,6 +527,13 @@ const theme = createMuitheme({
 - Remove `onRendered` prop. Depending on your use case either use a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element or an effect hook in the child component.
 
 ### Rating
+
+- Mueve el componente del laboratorio al core. El componente ahora es estable.
+
+  ```diff
+  -import Rating from '@material-ui/lab/Rating';
+  +import Rating from '@material-ui/core/Rating';
+  ```
 
 - Change the default empty icon to improve accessibility. If you have a custom `icon` prop but no `emptyIcon` prop, you can restore the previous behavior with:
 
@@ -499,7 +568,14 @@ const theme = createMuitheme({
 
 ### Skeleton
 
-- Rename `circle` to `circular` and `rect` to `rectangular` for consistency. The possible values should be adjectives, not nouns:
+- Mueve el componente del laboratorio al core. El componente ahora es estable.
+
+  ```diff
+  -import Skeleton from '@material-ui/lab/Skeleton';
+  +import Skeleton from '@material-ui/core/Skeleton';
+  ```
+
+- Rename `circle` to `circular` and `rect` to `rectangular` for consistency. Los valores posibles deben ser adjetivos, no sustantivos:
 
   ```diff
   -<Skeleton variant="circle" />
@@ -515,8 +591,8 @@ const theme = createMuitheme({
 - TypeScript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
 
   ```diff
-  -<Slider onChange={(event: React.ChangeEvent<{}>, value: unknown) => {}} />
-  +<Slider onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
+  -<Slider onChange={(event: React. ChangeEvent<{}>, value: unknown) => {}} />
+  +<Slider onChange={(event: React. SyntheticEvent, value: unknown) => {}} />
   ```
 
 ### Snackbar
@@ -549,41 +625,54 @@ const theme = createMuitheme({
   />
   ```
 
+### SpeedDial
+
+- Mueve el componente del laboratorio al core. El componente ahora es estable.
+
+  ```diff
+  -import SpeedDial from '@material-ui/lab/SpeedDial';
+  -import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
+  -import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
+  +import SpeedDial from '@material-ui/core/SpeedDial';
+  +import SpeedDialAction from '@material-ui/core/SpeedDialAction';
+  +import SpeedDialIcon from '@material-ui/core/SpeedDialIcon';
+  ```
+
 ### Stepper (Pasos a pasos)
 
 - The root component (Paper) was replaced with a div. Stepper no longer has elevation, nor inherits Paper's props. This change is meant to encourage composition.
 
-```diff
--<Stepper elevation={2}>
--  <Step>
--    <StepLabel>Hello world</StepLabel>
--  </Step>
--</Stepper>
-+<Paper square elevation={2}>
-+  <Stepper>
-+    <Step>
-+      <StepLabel>Hello world</StepLabel>
-+    </Step>
-+  </Stepper>
-+<Paper>
-```
+  ```diff
+  -<Stepper elevation={2}>
+  -  <Step>
+  -    <StepLabel>Hello world</StepLabel>
+  -  </Step>
+  -</Stepper>
+  +<Paper square elevation={2}>
+  +  <Stepper>
+  +    <Step>
+  +      <StepLabel>Hello world</StepLabel>
+  +    </Step>
+  +  </Stepper>
+  +<Paper>
+  ```
 
-- Remove the built-in 24px padding.
+- Retire el relleno integrado de 24px.
 
-```diff
--<Stepper>
--  <Step>
--    <StepLabel>Hello world</StepLabel>
--  </Step>
--</Stepper>
-+<Stepper style={{ padding: 24 }}>
-+  <Step>
-+    <StepLabel>Hello world</StepLabel>
-+  </Step>
-+</Stepper>
-```
+  ```diff
+  -<Stepper>
+  -  <Step>
+  -    <StepLabel>Hello world</StepLabel>
+  -  </Step>
+  -</Stepper>
+  +<Stepper style={{ padding: 24 }}>
+  +  <Step>
+  +    <StepLabel>Hello world</StepLabel>
+  +  </Step>
+  +</Stepper>
+  ```
 
-### TablePagination
+### Table (Tabla)
 
 - The customization of the table pagination's actions labels must be done with the `getItemAriaLabel` prop. This increases consistency with the `Pagination` component.
 
@@ -599,8 +688,22 @@ const theme = createMuitheme({
 - TypeScript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
 
   ```diff
-  -<Tabs onChange={(event: React.ChangeEvent<{}>, value: unknown) => {}} />
-  +<Tabs onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
+  -<Tabs onChange={(event: React. ChangeEvent<{}>, value: unknown) => {}} />
+  +<Tabs onChange={(event: React. SyntheticEvent, value: unknown) => {}} />
+  ```
+
+- The API that controls the scroll buttons has been split it in two props.
+
+  - The `scrollButtons` prop controls when the scroll buttons are displayed depending on the space available.
+  - The `allowScrollButtonsMobile` prop removes the CSS media query that systematically hide the scroll buttons on mobile.
+
+  ```diff
+  -<Tabs scrollButtons="on" />
+  -<Tabs scrollButtons="desktop" />
+  -<Tabs scrollButtons="off" />
+  +<Tabs scrollButtons allowScrollButtonsMobile />
+  +<Tabs scrollButtons />
+  +<Tabs scrollButtons={false} />
   ```
 
 ### TextField
@@ -640,6 +743,17 @@ const theme = createMuitheme({
   ```diff
   -<TextareAutosize rowsMin={1}>
   +<TextareAutosize minRows={1}>
+  ```
+
+### ToggleButton
+
+- Mueve el componente del laboratorio al core. El componente ahora es estable.
+
+  ```diff
+  -import ToggleButton from '@material-ui/lab/ToggleButton';
+  -import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+  +import ToggleButton from '@material-ui/core/ToggleButton';
+  +import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
   ```
 
 ### Tipografía

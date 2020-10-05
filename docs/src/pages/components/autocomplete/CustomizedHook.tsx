@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
-import useAutocomplete from '@material-ui/lab/useAutocomplete';
+import useAutocomplete from '@material-ui/core/useAutocomplete';
 import NoSsr from '@material-ui/core/NoSsr';
 import { useTheme, createMuiTheme } from '@material-ui/core/styles';
 import CheckIcon from '@material-ui/icons/Check';

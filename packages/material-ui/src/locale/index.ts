@@ -3,6 +3,9 @@ import { ComponentsPropsList } from '../styles/props';
 
 export interface Localization {
   components?: {
+    MuiAlert?: {
+      defaultProps: Pick<ComponentsPropsList['MuiAlert'], 'closeText'>;
+    };
     MuiBreadcrumbs?: { defaultProps: Pick<ComponentsPropsList['MuiBreadcrumbs'], 'expandText'> };
     MuiTablePagination?: {
       defaultProps: Pick<
@@ -10,14 +13,11 @@ export interface Localization {
         'labelRowsPerPage' | 'labelDisplayedRows' | 'getItemAriaLabel'
       >;
     };
+    MuiRating?: {
+      defaultProps: Pick<ComponentsPropsList['MuiRating'], 'emptyLabelText' | 'getLabelText'>;
+    };
     // The core package has no dependencies on the @material-ui/lab components.
     // We can't use ComponentsPropsList, we have to duplicate and inline the definitions.
-    MuiRating?: {
-      defaultProps: {
-        emptyLabelText?: string;
-        getLabelText?: (value: number) => string;
-      };
-    };
     MuiAutocomplete?: {
       defaultProps: {
         clearText?: string;
@@ -27,16 +27,8 @@ export interface Localization {
         openText?: string;
       };
     };
-    MuiAlert?: {
-      defaultProps: {
-        closeText?: string;
-      };
-    };
     MuiPagination?: {
-      defaultProps: {
-        'aria-label'?: string;
-        getItemAriaLabel?: (type: string, page: number, selected: boolean) => string;
-      };
+      defaultProps: Pick<ComponentsPropsList['MuiPagination'], 'aria-label' | 'getItemAriaLabel'>;
     };
   };
 }

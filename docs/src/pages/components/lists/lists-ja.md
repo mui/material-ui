@@ -1,8 +1,7 @@
 ---
-title: Listコンポーネント
+title: React List component
 components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
-githubLabel:
-  component: List (リスト)
+githubLabel: 'component: List'
 materialDesign: https://material.io/components/lists
 ---
 
@@ -84,7 +83,7 @@ Switchは補助的なアクションであり異なるターゲットです。
 
 スクロールする上で、サブヘッダーは次のサブヘッダーによって画面から押し出されるまで画面の上部に固定されたままになります。
 
-この機能はCSSのSticky positioningに依存しています。 この機能はCSSのSticky positioningに依存しています。 この機能はCSSのSticky positioningに依存しています。 Unfortunately it's [not implemented](https://caniuse.com/#search=sticky) by all the supported browsers. It defaults to `disableSticky` when not supported.
+この機能はCSSのSticky positioningに依存しています。 この機能はCSSのSticky positioningに依存しています。 この機能はCSSのSticky positioningに依存しています。 Unfortunately it's [not implemented](https://caniuse.com/#search=sticky) by all the supported browsers. この機能はCSSのSticky positioningに依存しています。 この機能はCSSのSticky positioningに依存しています。 Unfortunately it's [not implemented](https://caniuse.com/#search=sticky) by all the supported browsers. It defaults to `disableSticky` when not supported.
 
 {{"demo": "pages/components/lists/PinnedSubheaderList.js", "bg": true}}
 
@@ -100,12 +99,12 @@ When rendering a list within a component that defines its own gutters, `ListItem
 
 ## Virtualized List
 
-次の例では、 `リスト` コンポーネントで [react-window](https://github.com/bvaughn/react-window) を使用する方法を示します。 これは200行をレンダリングし、より多くを簡単に処理できます。 仮想化はパフォーマンスの問題に役立ちます。 これは200行をレンダリングし、より多くを簡単に処理できます。 仮想化はパフォーマンスの問題に役立ちます。 これは200行をレンダリングし、より多くを簡単に処理できます。 仮想化はパフォーマンスの問題に役立ちます。
+次の例では、 `リスト` コンポーネントで [react-window](https://github.com/bvaughn/react-window) を使用する方法を示します。 これは200行をレンダリングし、より多くを簡単に処理できます。 仮想化はパフォーマンスの問題に役立ちます。 これは200行をレンダリングし、より多くを簡単に処理できます。 仮想化はパフォーマンスの問題に役立ちます。 これは200行をレンダリングし、より多くを簡単に処理できます。 仮想化はパフォーマンスの問題に役立ちます。 これは200行をレンダリングし、より多くを簡単に処理できます。 仮想化はパフォーマンスの問題に役立ちます。
 
 {{"demo": "pages/components/lists/VirtualizedList.js", "bg": true}}
 
-このライブラリがあなたのユースケースをカバーしていない場合は、 [react-virtualized](https://github.com/bvaughn/react-virtualized)、次に [react-virtuoso](https://github.com/petyosi/react-virtuoso)ような代替を使用することを検討する必要があります。 このライブラリがあなたのユースケースをカバーしていない場合は、 [react-virtualized](https://github.com/bvaughn/react-virtualized)、次に [react-virtuoso](https://github.com/petyosi/react-virtuoso)ような代替を使用することを検討する必要があります。 The use of [react-window](https://github.com/bvaughn/react-window) when possible is encouraged.
+このライブラリがあなたのユースケースをカバーしていない場合は、 [react-virtualized](https://github.com/bvaughn/react-virtualized)、次に [react-virtuoso](https://github.com/petyosi/react-virtuoso)ような代替を使用することを検討する必要があります。 このライブラリがあなたのユースケースをカバーしていない場合は、 [react-virtualized](https://github.com/bvaughn/react-virtualized)、次に [react-virtuoso](https://github.com/petyosi/react-virtuoso)ような代替を使用することを検討する必要があります。 このライブラリがあなたのユースケースをカバーしていない場合は、 [react-virtualized](https://github.com/bvaughn/react-virtualized)、次に [react-virtuoso](https://github.com/petyosi/react-virtuoso)ような代替を使用することを検討する必要があります。 The use of [react-window](https://github.com/bvaughn/react-window) when possible is encouraged.
 
 ## カスタマイズ
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/list-item).
+🎨 インスピレーションを求めている場合は、 [MUI Treasury's customization examples](https://mui-treasury.com/styles/list-item) を確認すると良いでしょう。

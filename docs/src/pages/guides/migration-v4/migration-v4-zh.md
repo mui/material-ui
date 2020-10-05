@@ -4,11 +4,11 @@
 
 你在找 v4 版本的文档吗？ [您可以在这里找到它们](https://material-ui.com/versions/) 。
 
-> 此文档尚未完成。 您是否已经升级了站点并且遇到了一些并没有在此涉及的问题？ [请在 GitHub 添加您的更改](https://github.com/mui-org/material-ui/blob/next/docs/src/pages/guides/migration-v4/migration-v4.md)。
+> 此文档尚未完成。 您是否已经升级了站点并且遇到了一些并没有在此涉及的问题？ [请在 GitHub 添加您的更改](https://github.com/mui-org/material-ui/blob/HEAD/docs/src/pages/guides/migration-v4/migration-v4.md)。
 
 ## 简介
 
-当你将站点从 Material-UI 的 v4 版本升级到 v5 版本时，这篇文章会为你提供一些参考。 您可能不会将这里所有涵盖的内容运用到你的站点上。 我们会尽我们最大的努力让文档简单易懂，并尽可能有序地介绍，这样你可以迅速对 v5 版本游刃有余。
+当你将站点从 Material-UI 的 v4 版本升级到 v5 版本时，这篇文章会为你提供一些参考。 您可能不会将这里所有涵盖的内容运用到你的站点上。 您可能不会将这里所有涵盖的内容运用到你的站点上。 我们会尽我们最大的努力让文档简单易懂，并尽可能有序地介绍，这样你可以迅速对 v5 版本游刃有余。
 
 ## 为什么您需要迁移呢
 
@@ -46,6 +46,30 @@ yarn add @material-ui/core@next
 
 ### 主题
 
+- 断点现在被当作值而不是范围来处理。 `down(key)` 的行为已更改为定义的媒体查询小于使用相应断点定义的值（不包含当前值）。 `between(start, end)` 也已更新，定义了媒体查询 start（包含）和 end（不包含）实际值之间的数值。 当使用 `down()`断点工具集时，你需要向上一步更新断点键。 当使用  `between(start, end)` 时，结束断点也应向上一步更新。 使用 `Hidden` 组件时也应该这样做。 下面列出了变动影响的例子：
+
+```diff
+-theme.breakpoints.down('sm') // '@media (max-width:959.95px)' - [0, sm + 1) => [0, md)
++theme.breakpoints.down('md') // '@media (max-width:959.95px)' - [0, md)
+```
+
+```diff
+-theme.breakpoints.between('sm', 'md') // '@media (min-width:600px) and (max-width:1279.95px)' - [sm, md + 1) => [0, lg)
++theme.breakpoints.between('sm', 'lg') // '@media (min-width:600px) and (max-width:1279.95px)' - [0, lg)
+```
+
+```diff
+-theme.breakpoints.between('sm', 'xl') // '@media (min-width:600px)'
++theme.breakpoints.up('sm') // '@media (min-width:600px)'
+```
+
+```diff
+-<Hidden smDown>{...}</Hidden> // '@media (min-width:600px)'
++<Hidden mdDown>{...}</Hidden> // '@media (min-width:600px)'
+```
+
+#### 变更
+
 为了能实现更平滑的过渡，`adaptV4Theme` 助手允许你迭代升级到新的主题结构。
 
 ```diff
@@ -54,12 +78,14 @@ yarn add @material-ui/core@next
 
 -const theme = createMuitheme({
 +const theme = createMuitheme(adaptV4Theme({
-  // v4 theme
+  // v4 主题
 -});
 +}));
 ```
 
-#### 变更
+适配助手支持以下更改。
+
+#### 修改前：
 
 - 事实证明，“水槽（gutters）”这个抽象的概念还没有被频繁使用，所以是没有价值的。
 
@@ -87,15 +113,6 @@ yarn add @material-ui/core@next
   theme.spacing(2) => '16px'
   ```
 
-  你可以用以下方法恢复到以前的行为：
-
-  ```diff
-  -const theme = createMuiTheme();
-  +const theme = createMuiTheme({
-  +  spacing: x => x * 8,
-  +});
-  ```
-
 - `theme.palette.text.hint` 键在 Material-UI 组件中未使用，现已被删除。
 
 ```diff
@@ -117,6 +134,15 @@ import { createMuiTheme } from '@material-ui/core/styles';
 ```
 
 - 主题内的组件定义在 `components` 键下进行了重构，以便人们更容易地发现一个组件的定义。
+
+- 为了更好地遵循通常用于描述该功能的“黑暗模式”术语，我们将 `theme.palette.type` 重命名为 `theme.palette.mode`。
+
+```diff
+import { createMuiTheme } from '@material-ui/core/styles';
+
+-const theme = createMuitheme({palette: { type: 'dark' }}),
++const theme = createMuitheme({palette: { mode: 'dark' }}),
+```
 
 1. `属性`
 
@@ -160,6 +186,29 @@ const theme = createMuitheme({
 });
 ```
 
+### Alert 警告提示
+
+- 该组件已从实验室包移动到核心包。 现在这个组件处于稳定版本。
+
+  ```diff
+  -import Alert from '@material-ui/lab/Alert';
+  -import AlertTitle from '@material-ui/lab/AlertTitle';
+  +import Alert from '@material-ui/core/Alert';
+  +import AlertTitle from '@material-ui/core/AlertTitle';
+  ```
+
+
+  ### Autocomplete 自动补全组件
+
+- 该组件已从实验室包移动到核心包。 现在这个组件处于稳定版本。
+
+  ```diff
+  -import Autocomplete from '@material-ui/lab/Autocomplete';
+  -import useAutocomplete  from '@material-ui/lab/useAutocomplete';
+  +import Autocomplete from '@material-ui/core/Autocomplete';
+  +import useAutoComplete from '@material-ui/core/useAutocomplete';
+  ```
+
 ### Avatar 头像组件
 
 - 为保持一致性，我们将 `circle` 重命名为 `circular`。 可能的值应该是形容词，而不是名词。
@@ -171,7 +220,7 @@ const theme = createMuitheme({
   +<Avatar classes={{ circular: 'className' }}>
   ```
 
-### Badge
+### Badge 徽章
 
 - 为保持一致性，我们将 `circle` 重命名为 `circular`，`rectangle` 重命名为 `rectangular`。 可能的值应该是形容词，而不是名词。
 
@@ -198,7 +247,7 @@ const theme = createMuitheme({
   }}>
   ```
 
-### BottomNavigation
+### BottomNavigation 底部导航
 
 - TypeScript：`onChange` 中的 `event` 的类型不再是 `React.ChangeEvent`，而是`React.SyntheticEvent`。
 
@@ -207,7 +256,7 @@ const theme = createMuitheme({
   +<BottomNavigation onChange={(event: React.SyntheticEvent) => {}} />
   ```
 
-### Button
+### Button 按钮
 
 - 按钮的 `颜色（color）` 属性默认情况下为 "primary"，同时 "default" 属性已被删除。 这使得按钮更接近于 Material Design 规范，并且也简化了 API。
 
@@ -218,7 +267,7 @@ const theme = createMuitheme({
   +<Button />
   ```
 
-### CircularProgress
+### CircularProgress 进度环
 
 - `static` 变量已合并到 `determinate` 变量中，后者将采用前者的外观。 这是因为删除的这个变量很少有用。 这属于 Material Design 的例外情况，并且它在规范中已被删除。
 
@@ -301,21 +350,21 @@ const theme = createMuitheme({
   +<Accordion>
   -  <ExpansionPanelSummary>
   +  <AccordionSummary>
-       <Typography>位置</Typography>
-       <Typography>选择出行目的地</Typography>
+       <Typography>Location</Typography>
+       <Typography>Select trip destination</Typography>
   -  </ExpansionPanelSummary>
   +  </AccordionSummary>
   -  <ExpansionPanelDetails>
   +  <AccordionDetails>
        <Chip label="Barbados" onDelete={() => {}} />
-       <Typography variant="caption">请选择您的目的地</Typography>
+       <Typography variant="caption">Select your destination of choice</Typography>
   -  </ExpansionPanelDetails>
   +  </AccordionDetails>
      <Divider />
   -  <ExpansionPanelActions>
   +  <AccordionActions>
-       <Button size="small">取消</Button>
-       <Button size="small">保存</Button>
+       <Button size="small">Cancel</Button>
+       <Button size="small">Save</Button>
   -  </ExpansionPanelActions>
   +  </AccordionActions>
   -</ExpansionPanel>
@@ -340,6 +389,8 @@ const theme = createMuitheme({
   />
   ```
 
+- Remove `display: flex` from AccordionDetails as its too opinionated.
+
 ### Fab
 
 - 为保持一致性，我们将 `round` 重命名为 `circular`。 可能的值应该是形容词，而不是名词。
@@ -347,6 +398,14 @@ const theme = createMuitheme({
   ```diff
   -<Fab variant="round">
   +<Fab variant="circular">
+  ```
+
+### Chip
+
+- 为保持一致性，我们将 `visuallyhidden` 重命名为 `visuallyHidden`：
+  ```diff
+  -<Chip variant="default">
+  +<Chip variant="filled">
   ```
 
 ### Grid
@@ -418,26 +477,29 @@ const theme = createMuitheme({
 
 - 移除 `onRendered` 属性。 具体迁移方法根据你的使用情况而定，你可以在子元素上使用 [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs)，也可以在子组件中使用 effect 钩子。
 
-### 分页
+### 分页组件 Pagination
+
+- 该组件已从实验室包移动到核心包。 现在这个组件处于稳定版本。
+
+  ```diff
+  -import Pagination from '@material-ui/lab/Pagination';
+  -import PaginationItem from '@material-ui/lab/PaginationItem';
+  -import { usePagination } from '@material-ui/lab/Pagination';
+  +import Pagination from '@material-ui/core/Pagination';
+  +import PaginationItem from '@material-ui/core/PaginationItem';
+  +import usePagination from '@material-ui/core/usePagination';
+  ```
 
 - 为保持一致性，我们将 `round` 重命名为 `circular`。 可能的值应该是形容词，而不是名词。
 
   ```diff
   -<Pagination shape="round">
-  +<Pagination shape="circular">
-  ```
-
-### PaginationItem
-
-- 为保持一致性，我们将 `round` 重命名为 `circular`。 可能的值应该是形容词，而不是名词。
-
-  ```diff
   -<PaginationItem shape="round">
+  +<Pagination shape="circular">
   +<PaginationItem shape="circular">
   ```
 
-
-  ### Popover
+### Popover
 
 - onE\* 过渡属性已被删除。 请使用 TransitionProps 来代替它。
 
@@ -465,6 +527,13 @@ const theme = createMuitheme({
 - 移除 `onRendered` 属性。 具体迁移方法根据你的使用情况而定，你可以在子元素上使用 [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs)，也可以在子组件中使用 effect 钩子。
 
 ### Rating
+
+- 该组件已从实验室包移动到核心包。 现在这个组件处于稳定版本。
+
+  ```diff
+  -import Rating from '@material-ui/lab/Rating';
+  +import Rating from '@material-ui/core/Rating';
+  ```
 
 - 为提高无障碍的可访问性，我们更改了默认的空图标。 如果你有自定义了 `icon` 属性，但没有使用 `emptyIcon` 属性，你可以用以下方法还原到以前的行为：
 
@@ -499,6 +568,13 @@ const theme = createMuitheme({
 
 ### Skeleton
 
+- 该组件已从实验室包移动到核心包。 现在这个组件处于稳定版本。
+
+  ```diff
+  -import Skeleton from '@material-ui/lab/Skeleton';
+  +import Skeleton from '@material-ui/core/Skeleton';
+  ```
+
 - 为保持一致性，我们将 `circle` 重命名为 `circular`，`rect` 重命名为 `rectangular`。 可能的值应该是形容词，而不是名词。
 
   ```diff
@@ -519,7 +595,7 @@ const theme = createMuitheme({
   +<Slider onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
   ```
 
-### Snackbar（消息条）
+### Snackbar 消息条
 
 - 现在在大屏幕上的消息条通知会在左下角显示。 这更符合 Gmail、Google Keep、material.io 等应用的行为。 你可以用以下方法恢复到以前的行为：
 
@@ -549,41 +625,54 @@ const theme = createMuitheme({
   />
   ```
 
+### SpeedDial
+
+- 该组件已从实验室包移动到核心包。 现在这个组件处于稳定版本。
+
+  ```diff
+  -import SpeedDial from '@material-ui/lab/SpeedDial';
+  -import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
+  -import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
+  +import SpeedDial from '@material-ui/core/SpeedDial';
+  +import SpeedDialAction from '@material-ui/core/SpeedDialAction';
+  +import SpeedDialIcon from '@material-ui/core/SpeedDialIcon';
+  ```
+
 ### Stepper 步骤条组件
 
 - 根组件（Paper）已经被 div 所取代。 Stepper 不再有立体效果，也不再继承 Paper 的属性。 这个改动是为了鼓励开发者进行组合使用。
 
-```diff
--<Stepper elevation={2}>
--  <Step>
--    <StepLabel>你好，世界</StepLabel>
--  </Step>
--</Stepper>
-+<Paper square elevation={2}>
-+  <Stepper>
-+    <Step>
-+      <StepLabel>你好，世界</StepLabel>
-+    </Step>
-+  </Stepper>
-+<Paper>
-```
+  ```diff
+  -<Stepper elevation={2}>
+  -  <Step>
+  -    <StepLabel>Hello world</StepLabel>
+  -  </Step>
+  -</Stepper>
+  +<Paper square elevation={2}>
+  +  <Stepper>
+  +    <Step>
+  +      <StepLabel>Hello world</StepLabel>
+  +    </Step>
+  +  </Stepper>
+  +<Paper>
+  ```
 
 - 移除内置的 24px 边距。
 
-```diff
--<Stepper>
--  <Step>
--    <StepLabel>你好，世界</StepLabel>
--  </Step>
--</Stepper>
-+<Stepper style={{ padding: 24 }}>
-+  <Step>
-+    <StepLabel>你好，世界</StepLabel>
-+  </Step>
-+</Stepper>
-```
+  ```diff
+  -<Stepper>
+  -  <Step>
+  -    <StepLabel>Hello world</StepLabel>
+  -  </Step>
+  -</Stepper>
+  +<Stepper style={{ padding: 24 }}>
+  +  <Step>
+  +    <StepLabel>Hello world</StepLabel>
+  +  </Step>
+  +</Stepper>
+  ```
 
-### TablePagination（表格分页）
+### Table
 
 - 如果你需要自定义表格分页的操作标签（actions labels），那么就必须使用 `getItemAriaLabel` 属性。 这是为了与 `Pagination` 组件保持一致。
 
@@ -601,6 +690,20 @@ const theme = createMuitheme({
   ```diff
   -<Tabs onChange={(event: React.ChangeEvent<{}>, value: unknown) => {}} />
   +<Tabs onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
+  ```
+
+- 控制滚动按钮的 API 现已将其分成两个属性。
+
+  - `scrollButtons` 属性根据可用空间来控制滚动按钮何时显示。
+  - `allowScrollButtonsMobile` 属性将会移除系统针对隐藏移动端的滚动按钮的 CSS 媒体查询。
+
+  ```diff
+  -<Tabs scrollButtons="on" />
+  -<Tabs scrollButtons="desktop" />
+  -<Tabs scrollButtons="off" />
+  +<Tabs scrollButtons allowScrollButtonsMobile />
+  +<Tabs scrollButtons />
+  +<Tabs scrollButtons={false} />
   ```
 
 ### TextField
@@ -640,6 +743,17 @@ const theme = createMuitheme({
   ```diff
   -<TextareAutosize rowsMin={1}>
   +<TextareAutosize minRows={1}>
+  ```
+
+### ToggleButton
+
+- 该组件已从实验室包移动到核心包。 现在这个组件处于稳定版本。
+
+  ```diff
+  -import ToggleButton from '@material-ui/lab/ToggleButton';
+  -import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+  +import ToggleButton from '@material-ui/core/ToggleButton';
+  +import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
   ```
 
 ### 文字排版

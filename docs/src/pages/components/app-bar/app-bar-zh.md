@@ -1,8 +1,7 @@
 ---
 title: React 应用栏组件
 components: AppBar, Toolbar, Menu
-githubLabel:
-  component: 一个突出的应用栏。
+githubLabel: 'component: AppBar'
 materialDesign: https://material.io/components/app-bars-top
 ---
 

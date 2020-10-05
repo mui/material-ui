@@ -1,8 +1,7 @@
 ---
 title: Text Field React-Komponente
 components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
-githubLabel:
-  component: TextField
+githubLabel: 'component: TextField'
 materialDesign: https://material.io/components/text-fields
 ---
 
@@ -138,7 +137,7 @@ The floating label is absolutely positioned, it won't impact the layout of the p
 
 Inputs of type="number" have potential usability issues:
 
-- Allowing certain non-numeric characters ('e', '+', '-', '.') and silently discarding others
+- Allowing certain non-numeric characters ('e', '+', '-', '.') and silently discarding others and silently discarding others
 - Wenn Sie die Komponente zusammenstellen:
 
 and more - see [this article](https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-design-system-team-changed-the-input-type-for-numbers/) by the GOV.UK Design System team for a more detailed explanation.

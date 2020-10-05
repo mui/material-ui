@@ -1,11 +1,10 @@
 ---
 title: React 隐藏组件
 components: Hidden
-githubLabel:
-  component: Hidden
+githubLabel: 'component: Hidden'
 ---
 
-# Hidden
+# Hidden 隐藏组件
 
 <p class="description">您可以使用隐藏组件来实现快速并响应式地控制元素的显隐。</p>
 

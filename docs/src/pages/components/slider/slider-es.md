@@ -1,8 +1,7 @@
 ---
-title: Slider React component
+title: React Slider component
 components: Slider
-githubLabel:
-  component: Slider
+githubLabel: 'component: Slider'
 materialDesign: https://material.io/components/sliders
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#slider'
 ---
@@ -69,7 +68,7 @@ In this example an input allows a discrete value to be set.
 
 ## Deslizadores personalizados
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Here are some examples of customizing the component. Puedes aprender más sobre esto en la [sección Personalizando Componentes de la documentación](/customization/components/).
 
 {{"demo": "pages/components/slider/CustomizedSlider.js"}}
 

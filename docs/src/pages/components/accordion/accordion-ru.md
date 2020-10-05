@@ -1,8 +1,7 @@
 ---
-title: Панель расширения (Компонент React)
+title: React Accordion component
 components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
-githubLabel:
-  component: Accordion (панель расширения)
+githubLabel: 'component: Accordion'
 materialDesign: https://material.io/archive/guidelines/components/expansion-panels.html
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#accordion'
 ---
@@ -48,12 +47,6 @@ In order to put an action such as a `Checkbox` or a button inside of the `Accord
 ```
 
 Как и при любой оптимизации производительности, не стоит переоценивать её. Сначала идентифицируйте узкие места и лишь затем пытайтесь применить эти стратегии.
-
-## Подзаголовок и столбцы
-
-Содержимое панели можно структурировать, сгруппировав его в отдельные столбцы, кроме того можно добавить подзаголовок и подсказки для пользователя.
-
-{{"demo": "pages/components/accordion/DetailedAccordion.js", "bg": true}}
 
 ## Доступность
 

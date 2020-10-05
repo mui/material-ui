@@ -1,12 +1,10 @@
 ---
 title: React 分页组件
 components: Pagination, PaginationItem
-githubLabel:
-  component: 分页
-packageName: '@material-ui/lab'
+githubLabel: 'component: Pagination'
 ---
 
-# 分页
+# Pagination 分页
 
 <p class="description">使用分页组件，用户可以从一系列页面中选择某个特定的页面。</p>
 
@@ -53,7 +51,7 @@ packageName: '@material-ui/lab'
 针对高级定制的用例，我们提供了一个 `usePagination()` hook。 它支持的选项与分页组件大致相同，但不包括与 JSX 渲染有关的所有属性。 分页组件内部也使用此 hook。
 
 ```jsx
-import { usePagination } from '@material-ui/lab/Pagination';
+import { usePagination } from '@material-ui/core/Pagination';
 ```
 
 {{"demo": "pages/components/pagination/UsePagination.js"}}

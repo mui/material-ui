@@ -41,6 +41,7 @@ describe('cssUtils', () => {
     it('should work as expected', () => {
       const convert = convertLength('16px');
       expect(convert('32px', 'rem')).to.equal('2rem');
+      expect(convert('2rem', 'px')).to.equal('32px');
     });
   });
 

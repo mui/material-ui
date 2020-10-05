@@ -22,13 +22,28 @@ const theme = createMuiTheme({
 });
 ```
 
-### 3。 jss-rtl
+### 3。 安装 rtl 插件
 
 你需要这个 JSS 插件来翻转样式： [jss-rtl](https://github.com/alitaheri/jss-rtl)。
 
 ```sh
 npm install jss-rtl
 ```
+
+如果你正在使用 `emotion` 或者 `styled-components`，你需要使用该插件来翻转样式： [stylis-plugin-rtl](https://github.com/styled-components/stylis-plugin-rtl)。
+
+```sh
+npm install stylis-plugin-rtl@^1
+
+```
+
+注意：`emotion` 和 `styled-components` 目前都兼容该插件的 v1 版本。
+
+在你的项目中安装了该插件后，Material-UI 组件仍然需要通过你使用的样式引擎实例来加载它。 下面的指南讲述了如何进行加载。
+
+### 3。 加载 rtl 插件
+
+#### 3.1 JSS
 
 如下所述，在项目中安装了插件后，Material-UI 组件仍然需要通过 jss 实例来加载。 在内部，若 `direction: 'rtl'` 上在主题设置了，withStyles 则会使用该 JSS 插件 。 请前往 [此插件的 README](https://github.com/alitaheri/jss-rtl) 来了解更多信息。
 
@@ -40,13 +55,49 @@ import rtl from 'jss-rtl';
 import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 
 // Configure JSS
-const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
+const jss = create({
+  plugins: [...jssPreset().plugins, rtl()],
+});
+
+function RTL(props) {
+  return <StylesProvider jss={jss}>{props.children}</StylesProvider>;
+}
+```
+
+#### 3.2 emotion
+
+如果你的样式引擎的是 emotion，那么你应该创建并使用  `stylis-plugin-rtl` 的新缓存实例，并将其提供在你应用程序树的顶部。 [CacheProvider](https://emotion.sh/docs/cache-provider) 组件实现了这一点：
+
+```jsx
+import rtlPlugin from 'stylis-plugin-rtl';
+import { CacheProvider } from '@emotion/core';
+import createCache from '@emotion/cache';
+
+// 创建 rtl 缓存
+const cacheRtl = createCache({
+  key: 'muirtl',
+  stylisPlugins: [rtlPlugin],
+  speedy: true,
+});
+
+function RTL(props) {
+  return <CacheProvider value={cacheRtl}>{props.children}</CacheProvider>;
+}
+```
+
+#### 3.3 styled-components
+
+如果你的样式引擎是 `styled-components`，那么你可以使用 [StyleSheetManager](https://styled-components.com/docs/api#stylesheetmanager)，并在 `stylisPlugins` 属性中将 stylis-plugin-rtl 作为项目（item）提供。
+
+```jsx
+import { StyleSheetManager } from 'styled-components';
+import rtlPlugin from 'stylis-plugin-rtl';
 
 function RTL(props) {
   return (
-    <StylesProvider jss={jss}>
+    <StyleSheetManager stylisPlugins={[rtlPlugin]}>
       {props.children}
-    </StylesProvider>
+    </StyleSheetManager>
   );
 }
 ```
@@ -59,8 +110,18 @@ _请使用右上角的方向切换按钮来翻转整个文档。_
 
 ## 选择退出 rtl 转换
 
+### JSS
+
 若您想避免一个特殊的特定规则受到 `rtl` 转换的影响，您可以在最开始时加上 `flip: false`。
 
 _请使用右上角的方向切换按钮来查看效果。_
 
 {{"demo": "pages/guides/right-to-left/RtlOptOut.js", "hideEditButton": true}}
+
+### emotion & styled-components
+
+你必须使用模板文字语法，并在你要禁用从右到左（right-to-left）样式的规则或属性前添加 `/* @noflip */` 指令。
+
+_请使用右上角的方向切换按钮来查看效果。_
+
+{{"demo": "pages/guides/right-to-left/RtlOptOutStylis.js", "hideEditButton": true}}

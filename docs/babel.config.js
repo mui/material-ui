@@ -19,6 +19,10 @@ const alias = {
   '@material-ui/icons': '../packages/material-ui-icons/src',
   '@material-ui/lab': '../packages/material-ui-lab/src',
   '@material-ui/styles': '../packages/material-ui-styles/src',
+  '@material-ui/styled-engine-sc': '../packages/material-ui-styled-engine-sc/src',
+  // Swap the comments on the next two lines for using the styled-components as style engine
+  '@material-ui/styled-engine': '../packages/material-ui-styled-engine/src',
+  // '@material-ui/styled-engine': '../packages/material-ui-styled-engine-sc/src',
   '@material-ui/system': '../packages/material-ui-system/src',
   '@material-ui/utils': '../packages/material-ui-utils/src',
   docs: './',
@@ -62,7 +66,6 @@ module.exports = {
     production: {
       plugins: [
         '@babel/plugin-transform-react-constant-elements',
-        'babel-plugin-transform-dev-warning',
         ['babel-plugin-react-remove-properties', { properties: ['data-mui-test'] }],
         ['babel-plugin-transform-react-remove-prop-types', { mode: 'remove' }],
       ],
