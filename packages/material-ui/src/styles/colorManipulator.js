@@ -217,7 +217,7 @@ export function fade(color, value) {
       warnedOnce = true;
       console.error(
         [
-          'Material-UI: The `fade` color utility was renamed to alpha to better describe its functionality.',
+          'Material-UI: The `fade` color utility was renamed to `alpha` to better describe its functionality.',
           '',
           "You should use `import { alpha } from '@material-ui/core/styles'`",
         ].join('\n'),
