@@ -101,9 +101,6 @@ function findIndex(array, comp) {
 async function postData(data = {}) {
   const response = await fetch(RATINGS_URL, {
     method: 'POST',
-    mode: 'cors',
-    cache: 'no-cache',
-    credentials: 'omit',
     headers: { 'Content-Type': 'application/json' },
     referrerPolicy: 'origin',
     body: JSON.stringify(data),
@@ -116,9 +113,7 @@ async function getData(id) {
 
   const response = await fetch(URL, {
     method: 'GET',
-    mode: 'cors',
-    cache: 'no-cache',
-    credentials: 'omit',
+    cache: 'no-store',
     referrerPolicy: 'origin',
   });
   return response.json();
