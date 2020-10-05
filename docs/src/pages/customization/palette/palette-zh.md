@@ -173,12 +173,12 @@ declare module "@material-ui/core/styles/createPalette" {
 
 ## 暗色模式
 
-材质界面有两种调色板的类型，亮色（light）（默认值）和 暗色（dark）模式。 您可以通过设置 `type: 'dark'` 来运用暗色主题。 虽然只是单一的数值变化，但在其内部却修改了多个调色板的数值。
+材质界面有两种调色板的类型，亮色（light）（默认值）和 暗色（dark）模式。 你可以通过设置 `mode: 'dark'` 来启用暗黑模式。 虽然只是单一的数值变化，但在其内部却修改了多个调色板的数值。
 
 ```js
 const darkTheme = createMuiTheme({
   palette: {
-    type: 'dark',
+    mode: 'dark',
   },
 });
 ```
