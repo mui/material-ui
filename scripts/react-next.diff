@@ -85,6 +85,19 @@ index 10c5a998cb..b5390af22b 100644
        assertPass(<Component />);
      });
  
+diff --git a/packages/material-ui-utils/src/elementTypeAcceptingRef.test.tsx b/packages/material-ui-utils/src/elementTypeAcceptingRef.test.tsx
+index 38176e3c1a..163fc752ec 100644
+--- a/packages/material-ui-utils/src/elementTypeAcceptingRef.test.tsx
++++ b/packages/material-ui-utils/src/elementTypeAcceptingRef.test.tsx
+@@ -96,8 +96,6 @@ describe('elementTypeAcceptingRef', () => {
+         Promise.resolve({ default: (props: any) => <div {...props} /> }),
+       );
+ 
+-      // should actually fail when mounting since the ref is forwarded to a function component
+-      // but since this happens in a promise our consoleErrorMock doesn't catch it properly
+       assertPass(Component);
+     });
+ 
 diff --git a/packages/material-ui/src/Autocomplete/Autocomplete.test.js b/packages/material-ui/src/Autocomplete/Autocomplete.test.js
 index 07345638e7..acfecbdf3e 100644
 --- a/packages/material-ui/src/Autocomplete/Autocomplete.test.js
