@@ -17,6 +17,19 @@ import { camelCase } from 'lodash/string';
 import Tooltip, { testReset } from './Tooltip';
 import Input from '../Input';
 
+async function raf() {
+  return new Promise((resolve) => {
+    // Chrome and Safari have a bug where calling rAF once returns the current
+    // frame instead of the next frame, so we need to call a double rAF here.
+    // See crbug.com/675795 for more.
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        resolve();
+      });
+    });
+  });
+}
+
 describe('<Tooltip />', () => {
   /**
    * @type {ReturnType<typeof useFakeTimers>}
@@ -954,9 +967,19 @@ describe('<Tooltip />', () => {
   });
 
   describe('prop: followCursor', () => {
-    const x = 11;
-    const y = 0;
-    it('should pass onMouseMove props to children component', () => {
+    it('should use the position of the mouse', async function test() {
+      // Only callig render() outputs:
+      // An update to ForwardRef(Popper) inside a test was not wrapped in act(...).
+      // Somethings is wrong in JSDOM and strict mode.
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const x = 5;
+      const y = 10;
+
+      // Avoid mock of raf
+      clock.restore();
       render(
         <Tooltip title="Hello World" open followCursor PopperProps={{ 'data-testid': 'popper' }}>
           <button data-testid="target" type="submit">
@@ -966,33 +989,18 @@ describe('<Tooltip />', () => {
       );
       const tooltipElement = screen.getByTestId('popper');
       const targetElement = screen.getByTestId('target');
-      stub(tooltipElement, 'getBoundingClientRect').callsFake(() => ({
-        top: y,
-        left: x,
-        right: x,
-        bottom: y,
-        width: 0,
-        height: 0,
-      }));
+
       fireEvent.mouseMove(targetElement, {
         clientX: x,
         clientY: y,
       });
 
-      act(() => {
-        clock.tick(100);
-      });
+      // Wait for the scheduleUpdate() call to resolve.
+      await raf();
 
       expect(tooltipElement).toBeVisible();
-      expect(tooltipElement.getBoundingClientRect()).to.deep.equal({
-        top: y,
-        left: x,
-        right: x,
-        bottom: y,
-        width: 0,
-        height: 0,
-      });
-      clock.runAll();
+      expect(tooltipElement.getBoundingClientRect()).to.have.property('top', y);
+      expect(tooltipElement.getBoundingClientRect()).to.have.property('left', x);
     });
   });
 });
