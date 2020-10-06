@@ -43,7 +43,7 @@ To set this up, first [set up the credentials](https://github.com/claudiajs/clau
 
 1. run `yarn install` to install the dependencies
 2. run `yarn setup` to create the lambda project under the default name on AWS.
-   This will also ask you for a table name for development and production. 
+   This will also ask you for a table name for development and production.
    If you used the above AWS command, they will be `feedback-dev` and `feedback-dev` respectively.
 3. Test the API with using the [example requests below](#testing)
 
