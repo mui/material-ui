@@ -226,7 +226,7 @@ const theme = createMuiTheme({
   +import AlertTitle from '@material-ui/core/AlertTitle';
   ```
 
-  ### Autocomplete
+### Autocomplete
 
 - Move the component from the lab to the core. The component is now stable.
 

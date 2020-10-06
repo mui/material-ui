@@ -1,4 +1,4 @@
-# Create React App example
+# Create React App example with styled-components
 
 ## How to use
 

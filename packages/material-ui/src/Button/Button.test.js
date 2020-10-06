@@ -26,7 +26,6 @@ describe('<Button />', () => {
     inheritComponent: ButtonBase,
     mount,
     refInstanceof: window.HTMLButtonElement,
-    skip: ['componentProp'],
   }));
 
   it('should render with the root, text, and textPrimary classes but no others', () => {

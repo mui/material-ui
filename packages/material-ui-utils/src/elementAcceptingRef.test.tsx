@@ -89,11 +89,11 @@ describe('elementAcceptingRef', () => {
 
     it('accepts lazy', () => {
       const Component = React.lazy(() =>
-        Promise.resolve({ default: (props: any) => <div {...props} /> }),
+        Promise.resolve({
+          default: React.forwardRef((props, ref) => <div {...props} ref={ref} />),
+        }),
       );
 
-      // should actually fail when mounting since the ref is forwarded to a function component
-      // but since this happens in a promise our consoleErrorMock doesn't catch it properly
       assertPass(<Component />);
     });
 
