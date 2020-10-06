@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 
 function genericValueTest() {
   function handleChangeWithSameTypeAsSelect(
@@ -20,5 +21,17 @@ function genericValueTest() {
     defaultValue={1}
     // @ts-expect-error Value should be a string
     value={10}
+  />;
+
+  <Select
+    onChange={(event) => {
+      function testString(value: string) {}
+      function testNumber(value: number) {}
+
+      testString(event.target.value);
+      // @ts-expect-error
+      testNumber(event.target.value);
+    }}
+    value="1"
   />;
 }
