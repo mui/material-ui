@@ -8,12 +8,13 @@ Puedes encontrar algunos proyectos de ejemplo en el [repositorio de Github](http
 
 - https://github.com/mui-org/material-ui/tree/master/examples/create-react-app
 - [Gatsby](https://github.com/mui-org/material-ui/tree/next/examples/gatsby)
+- [Gatsby Theme](https://github.com/mui-org/material-ui/tree/next/examples/gatsby-theme)
 - https://github.com/mui-org/material-ui/tree/master/examples/nextjs
 - [Preact](https://github.com/mui-org/material-ui/tree/next/examples/preact)
 - [CDN](https://github.com/mui-org/material-ui/tree/next/examples/cdn)
 - [Plain server-side](https://github.com/mui-org/material-ui/tree/next/examples/ssr)
 - [Use styled-components as style engine](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-styled-components)
-- E mais
+- [Reason React](https://github.com/mui-org/material-ui/tree/next/examples/reason)
 
 Create React App es un excelente proyecto para aprender React. Echa un vistazo a [las alternativas disponibles](https://github.com/facebook/create-react-app/blob/master/README.md#popular-alternatives) para ver qué proyecto se adapta mejor a tus necesidades.
 
