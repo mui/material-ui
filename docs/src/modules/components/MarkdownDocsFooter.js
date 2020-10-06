@@ -24,7 +24,7 @@ import { getCookie, pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
 import Link from 'docs/src/modules/components/Link';
 
-const RATINGS_URL = 'https://hgvi836wi8.execute-api.us-east-1.amazonaws.com';
+const FEEDBACK_URL = 'https://hgvi836wi8.execute-api.us-east-1.amazonaws.com';
 
 function Comment(props) {
   const { onClose: handleClose, open } = props;
@@ -102,7 +102,7 @@ function findIndex(array, comp) {
 async function postFeedback(data) {
   const env = location.hostname === 'material-ui.com' ? 'prod' : 'dev';
   try {
-    const response = await fetch(`${RATINGS_URL}/${env}/feedback`, {
+    const response = await fetch(`${FEEDBACK_URL}/${env}/feedback`, {
       method: 'POST',
       referrerPolicy: 'origin',
       headers: { 'Content-Type': 'application/json' },
@@ -117,7 +117,7 @@ async function postFeedback(data) {
 
 async function getUserFeedback(id) {
   const env = location.hostname === 'material-ui.com' ? 'prod' : 'dev';
-  const URL = `${RATINGS_URL}/${env}/feedback/${id}`;
+  const URL = `${FEEDBACK_URL}/${env}/feedback/${id}`;
 
   try {
     const response = await fetch(URL, {
