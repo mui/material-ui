@@ -45,6 +45,25 @@ yarn add @material-ui/core@next
 
 ## Handling breaking changes
 
+### Supported browsers and node versions
+
+The targets of the default bundle have changed.
+The exact versions will be pinned on release from the browserslist query `"> 0.5%, last 2 versions, Firefox ESR, not dead, not IE 11, maintained node versions"`.
+
+The default bundle now supports:
+
+<!-- #stable-snapshot -->
+
+- Node 10 (up from 8)
+- Chrome 83 (up from 49)
+- Edge 83 (up from 14)
+- Firefox 68 (up from 52)
+- Safari 13 (up from 10)
+- and more (see [.browserslistrc (`stable` entry)](https://github.com/mui-org/material-ui/blob/HEAD/.browserslistrc#L11))
+
+It no longer supports IE 11.
+If you need to support IE 11, check out our [legacy bundle](/guides/minimizing-bundle-size#legacy-bundle).
+
 ### non-ref-forwarding class components
 
 Support for non-ref-forwarding class components in the `component` prop or as an immediate `children` has been dropped. If you were using `unstable_createStrictModeTheme` or didn't see any warnings related to `findDOMNode` in `React.StrictMode` then you don't need to do anything.
