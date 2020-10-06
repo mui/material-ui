@@ -8,6 +8,7 @@ import Input from '@material-ui/core/Input';
 import SearchIcon from '@material-ui/icons/Search';
 import { handleEvent } from 'docs/src/modules/components/MarkdownLinks';
 import docsearch from 'docsearch.js';
+import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 
 const useStyles = makeStyles(
   (theme) => ({
@@ -143,6 +144,9 @@ export default function AppSearch() {
 
   React.useEffect(() => {
     if (desktop) {
+      // In non-SSR languages, fall back to English.
+      const facetFilterLanguage = LANGUAGES_SSR.includes(userLanguage) ? `language:${userLanguage}` : `language:en`
+
       // This assumes that by the time this effect runs the Input component is committed
       // this holds true as long as the effect and the component are in the same
       // suspense boundary. If you move effect and component apart be sure to check
@@ -152,7 +156,7 @@ export default function AppSearch() {
         indexName: 'material-ui',
         inputSelector: '#docsearch-input',
         algoliaOptions: {
-          facetFilters: ['version:next', `language:${userLanguage}`],
+          facetFilters: ['version:next', facetFilterLanguage],
         },
         autocompleteOptions: {
           openOnFocus: true,
