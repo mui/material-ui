@@ -28,7 +28,7 @@ const RATINGS_URL = 'https://5fm2imnpv2.execute-api.us-east-1.amazonaws.com';
 function Comment(props) {
   const { onClose: handleClose, open } = props;
   const t = useSelector((state) => state.options.t);
-  const [value, setValue] = React.useState(null);
+  const [value, setValue] = React.useState('');
 
   const handleChange = (event) => {
     setValue(event.target.value);
@@ -62,7 +62,7 @@ function Comment(props) {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleCancel}>{t('cancel')}</Button>
-          <Button variant="outlined" onClick={handleSubmit}>
+          <Button variant="outlined" disabled={value.length < 20} onClick={handleSubmit}>
             {t('submit')}
           </Button>
         </DialogActions>
