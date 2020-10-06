@@ -44,10 +44,10 @@ function Comment(props) {
 
   return (
     <div>
-      <Dialog open={open} onClose={handleCancel} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">{t('ratingDialogTitle')}</DialogTitle>
+      <Dialog open={open} onClose={handleCancel} aria-labelledby="feedback-dialog-title">
+        <DialogTitle id="feedback-dialog-title">{t('feedbackDialogTitle')}</DialogTitle>
         <DialogContent>
-          <DialogContentText>{t('ratingDialogMessage')}</DialogContentText>
+          <DialogContentText>{t('feedbackDialogMessage')}</DialogContentText>
           <TextField
             multiline
             autoFocus
@@ -98,7 +98,7 @@ function findIndex(array, comp) {
   return -1;
 }
 
-async function postRating(data = {}) {
+async function postFeedback(data = {}) {
   const env = location.hostname === 'material-ui.com' ? 'prod' : 'dev';
   try {
     const response = await fetch(`${RATINGS_URL}/${env}/rating`, {
@@ -113,7 +113,7 @@ async function postRating(data = {}) {
   }
 }
 
-async function getRatings(id) {
+async function getUserFeedback(id) {
   const env = location.hostname === 'material-ui.com' ? 'prod' : 'dev';
   const URL = `${RATINGS_URL}/${env}/ratings/${id}`;
 
@@ -129,21 +129,21 @@ async function getRatings(id) {
   }
 }
 
-async function submitRating(page, rating, comment) {
+async function submitFeedback(page, rating, comment) {
   const data = {
-    id: getCookie('ratingsId'),
+    id: getCookie('feedbackId'),
     page,
     version: process.env.LIB_VERSION,
     rating,
     comment,
   };
 
-  const result = await postRating(data);
+  const result = await postFeedback(data);
   if (result) {
-    document.cookie = `ratingsId=${result.id};path=/;max-age=31536000`;
-    const ratings = await getRatings(result.id);
-    if (ratings) {
-      document.cookie = `ratings=${JSON.stringify(ratings)};path=/;max-age=31536000`;
+    document.cookie = `feedbackId=${result.id};path=/;max-age=31536000`;
+    const userFeedback = await getUserFeedback(result.id);
+    if (userFeedback) {
+      document.cookie = `feedback=${JSON.stringify(userFeedback)};path=/;max-age=31536000`;
       return result;
     }
   }
@@ -151,12 +151,12 @@ async function submitRating(page, rating, comment) {
 }
 
 function getCurrentRating(pathname) {
-  let ratings;
+  let userFeedback;
   if (process.browser) {
-    ratings = getCookie('ratings');
-    ratings = ratings && JSON.parse(ratings);
+    userFeedback = getCookie('feedback');
+    userFeedback = userFeedback && JSON.parse(userFeedback);
   }
-  return ratings && ratings[pathname] && ratings[pathname].rating;
+  return userFeedback && userFeedback[pathname] && userFeedback[pathname].rating;
 }
 
 const styles = (theme) => ({
@@ -230,15 +230,19 @@ function MarkdownDocsFooter(props) {
     setCurrentRating(getCurrentRating(currentPage.pathname));
   }, [currentPage.pathname]);
 
-  const handleClickUp = async () => {
-    const result = await submitRating(currentPage.pathname, 1);
+  async function processFeedback(rating, comment) {
+    const result = await submitFeedback(currentPage.pathname, rating, comment);
     if (result) {
-      setCurrentRating(1);
-      setSnackbarMessage(t('ratingSubmitted'));
+      setCurrentRating(rating);
+      setSnackbarMessage(t('feedbackSubmitted'));
     } else {
-      setSnackbarMessage(t('ratingFailed'));
+      setSnackbarMessage(t('feedbackFailed'));
     }
     setSnackbarOpen(true);
+  }
+
+  const handleClickUp = async () => {
+    await processFeedback(1);
   };
 
   const handleClickDown = () => {
@@ -248,14 +252,7 @@ function MarkdownDocsFooter(props) {
   const handleCloseComment = async (comment) => {
     setCommentOpen(false);
     if (comment !== null) {
-      const result = await submitRating(currentPage.pathname, 0, comment);
-      if (result) {
-        setCurrentRating(0);
-        setSnackbarMessage(t('ratingSubmitted'));
-      } else {
-        setSnackbarMessage(t('ratingFailed'));
-      }
-      setSnackbarOpen(true);
+      await processFeedback(0, comment);
     }
   };
 
