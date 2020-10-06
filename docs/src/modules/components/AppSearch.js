@@ -145,7 +145,8 @@ export default function AppSearch() {
   React.useEffect(() => {
     if (desktop) {
       // In non-SSR languages, fall back to English.
-      const facetFilterLanguage = LANGUAGES_SSR.includes(userLanguage) ? `language:${userLanguage}` : `language:en`
+      const facetFilterLanguage =
+        LANGUAGES_SSR.indexOf(userLanguage) !== -1 ? `language:${userLanguage}` : `language:en`;
 
       // This assumes that by the time this effect runs the Input component is committed
       // this holds true as long as the effect and the component are in the same
