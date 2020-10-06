@@ -72,7 +72,7 @@ describe('<NativeSelectInput />', () => {
   });
 
   it('should apply filled class', () => {
-    const filled = '.filled';
+    const filled = 'filled';
     const { container } = render(
       <NativeSelectInput
         {...defaultProps}
