@@ -8,12 +8,13 @@
 
 - https://github.com/mui-org/material-ui/tree/master/examples/create-react-app
 - [Gatsby](https://github.com/mui-org/material-ui/tree/next/examples/gatsby)
+- [Gatsby Theme](https://github.com/mui-org/material-ui/tree/next/examples/gatsby-theme)
 - https://github.com/mui-org/material-ui/tree/master/examples/nextjs
 - [Preact](https://github.com/mui-org/material-ui/tree/next/examples/preact)
 - [CDN](https://github.com/mui-org/material-ui/tree/next/examples/cdn)
 - [Plain server-side](https://github.com/mui-org/material-ui/tree/next/examples/ssr)
 - [Use styled-components as style engine](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-styled-components)
-- 以及更多
+- [Reason React](https://github.com/mui-org/material-ui/tree/next/examples/reason)
 
 Create React App 是一个很棒的学习 React 的项目。 请看一下这些[可用的替代方案](https://github.com/facebook/create-react-app/blob/master/README.md#popular-alternatives) ，看看哪个项目最符合您的需求。
 
