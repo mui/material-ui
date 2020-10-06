@@ -62,7 +62,7 @@ The default bundle now supports:
 - and more (see [.browserslistrc (`stable` entry)](https://github.com/mui-org/material-ui/blob/HEAD/.browserslistrc#L11))
 
 It no longer supports IE 11.
-If you need to support IE 11, check out our [legacy bundle](/guides/minimizing-bundle-size#legacy-bundle).
+If you need to support IE 11, check out our [legacy bundle](/guides/minimizing-bundle-size/#legacy-bundle).
 
 ### non-ref-forwarding class components
 

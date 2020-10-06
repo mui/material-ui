@@ -13,7 +13,7 @@ You don't need to provide any JavaScript polyfill as it manages unsupported brow
 | :---- | :------ | :----- | :----- |
 | >= 83 | >= 68   | >= 83  | >= 13  |
 
-If you need to support IE 11, check out our [legacy bundle](/guides/minimizing-bundle-size#legacy-bundle).
+If you need to support IE 11, check out our [legacy bundle](/guides/minimizing-bundle-size/#legacy-bundle).
 
 Because Googlebot uses a web rendering service (WRS) to index the page content, it's critical that Material-UI supports it.
 [WRS regularly updates the rendering engine it uses](https://webmasters.googleblog.com/2019/05/the-new-evergreen-googlebot.html).
