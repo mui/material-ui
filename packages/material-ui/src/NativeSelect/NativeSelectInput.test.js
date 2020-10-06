@@ -1,14 +1,15 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createShallow, createMount, describeConformance } from 'test/utils';
+import { createMount, describeConformance, createClientRender } from 'test/utils';
 import NativeSelectInput from './NativeSelectInput';
 
 describe('<NativeSelectInput />', () => {
-  let shallow;
   const mount = createMount();
+  const render = createClientRender();
   const defaultProps = {
     classes: { select: 'select' },
+    onChange: () => {},
     value: 10,
     IconComponent: 'div',
     children: [
@@ -24,10 +25,6 @@ describe('<NativeSelectInput />', () => {
     ],
   };
 
-  before(() => {
-    shallow = createShallow();
-  });
-
   describeConformance(<NativeSelectInput {...defaultProps} onChange={() => {}} />, () => ({
     mount,
     only: ['refForwarding'],
@@ -35,14 +32,15 @@ describe('<NativeSelectInput />', () => {
   }));
 
   it('should render a native select', () => {
-    const wrapper = shallow(
+    const { container } = render(
       <NativeSelectInput {...defaultProps}>
         <option value={10}>Ten</option>
         <option value={20}>Twenty</option>
         <option value={30}>Thirty</option>
       </NativeSelectInput>,
     );
-    expect(wrapper.find('select').props().value).to.equal(10);
+
+    expect(container.firstChild.value).to.equal('10');
   });
 
   it('should respond to update event', () => {
@@ -61,8 +59,8 @@ describe('<NativeSelectInput />', () => {
   });
 
   it('should apply outlined class', () => {
-    const outlined = 'class for outlined variant';
-    const wrapper = shallow(
+    const outlined = '.outlined';
+    const { container } = render(
       <NativeSelectInput
         {...defaultProps}
         variant="outlined"
@@ -70,12 +68,12 @@ describe('<NativeSelectInput />', () => {
       />,
     );
 
-    expect(wrapper.find(`.${defaultProps.classes.select}`).hasClass(outlined)).to.equal(true);
+    expect(container.firstChild).to.have.class(outlined);
   });
 
   it('should apply filled class', () => {
-    const filled = 'class for filled variant';
-    const wrapper = shallow(
+    const filled = '.filled';
+    const { container } = render(
       <NativeSelectInput
         {...defaultProps}
         variant="filled"
@@ -83,6 +81,6 @@ describe('<NativeSelectInput />', () => {
       />,
     );
 
-    expect(wrapper.find(`.${defaultProps.classes.select}`).hasClass(filled)).to.equal(true);
+    expect(container.firstChild).to.have.class(filled);
   });
 });
