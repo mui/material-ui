@@ -26,9 +26,11 @@ describe('<TabIndicator />', () => {
 
   describe('prop: style', () => {
     it('should be applied on the root element', () => {
-      const wrapper = mount(<TabIndicator {...defaultProps} style={style} />);
-      const modal = wrapper.find(TabIndicator);
-      expect(modal.props().style).to.equal(style);
+      const { container } = render(<TabIndicator {...defaultProps} style={style} />);
+      const tab = container.firstChild;
+      
+      expect(tab.style).to.have.property('left', '1px');
+      expect(tab.style).to.have.property('width', '2px');
     });
   });
 
