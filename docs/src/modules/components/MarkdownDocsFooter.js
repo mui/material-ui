@@ -28,7 +28,7 @@ const RATINGS_URL = 'https://5fm2imnpv2.execute-api.us-east-1.amazonaws.com';
 function Comment(props) {
   const { onClose: handleClose, open } = props;
   const t = useSelector((state) => state.options.t);
-  const [value, setValue] = React.useState('');
+  const [value, setValue] = React.useState(null);
 
   const handleChange = (event) => {
     setValue(event.target.value);
@@ -129,13 +129,6 @@ async function getRatings(id) {
   }
 }
 
-// try {
-
-// } catch (error) {
-//   console.log(error);
-//   throw error;
-// }
-
 async function submitRating(page, rating, comment) {
   const data = {
     id: getCookie('ratingsId'),
@@ -151,8 +144,10 @@ async function submitRating(page, rating, comment) {
     const ratings = await getRatings(result.id);
     if (ratings) {
       document.cookie = `ratings=${JSON.stringify(ratings)};path=/;max-age=31536000`;
+      return result;
     }
   }
+  return result;
 }
 
 function getCurrentRating(pathname) {
@@ -235,10 +230,14 @@ function MarkdownDocsFooter(props) {
     setCurrentRating(getCurrentRating(currentPage.pathname));
   }, [currentPage.pathname]);
 
-  const handleClickUp = () => {
-    setCurrentRating(1);
-    submitRating(currentPage.pathname, 1);
-    setSnackbarMessage(t('ratingSubmitted'))
+  const handleClickUp = async () => {
+    const result = await submitRating(currentPage.pathname, 1);
+    if (result) {
+      setCurrentRating(1);
+      setSnackbarMessage(t('ratingSubmitted'))
+    } else {
+      setSnackbarMessage(t('ratingFailed'))
+    }
     setSnackbarOpen(true);
   };
 
@@ -246,12 +245,16 @@ function MarkdownDocsFooter(props) {
     setCommentOpen(true);
   };
 
-  const handleCloseComment = (comment) => {
+  const handleCloseComment = async (comment) => {
     setCommentOpen(false);
     if (comment !== null) {
-      setCurrentRating(0);
-      submitRating(currentPage.pathname, 0, comment);
-      setSnackbarMessage(t('ratingSubmitted'))
+      const result = await submitRating(currentPage.pathname, 0, comment);
+      if (result) {
+        setCurrentRating(0);
+        setSnackbarMessage(t('ratingSubmitted'))
+      } else {
+        setSnackbarMessage(t('ratingFailed'))
+      }
       setSnackbarOpen(true);
     }
   };

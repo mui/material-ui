@@ -62,6 +62,7 @@
   "pricingTitle": "Pricing",
   "ratingDialogMessage": "Thanks for your feedback! Please let us know what we could do to improve this page.",
   "ratingDialogTitle": "Help improve this page",
+  "ratingFailed": "Couldn't submit feedback. Please try again later.",
   "ratingMessage": "Was this page helpful?",
   "ratingNo": "No",
   "ratingSubmitted": "Feedback submitted",
