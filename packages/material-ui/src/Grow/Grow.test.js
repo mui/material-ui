@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 // use act from test/utils/createClientRender once we drop createMount from this test
-import { createMount, describeConformance } from 'test/utils';
+import { createClientRender, createMount, describeConformance } from 'test/utils';
 import { act } from 'react-dom/test-utils';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { Transition } from 'react-transition-group';
@@ -10,6 +10,7 @@ import Grow from './Grow';
 import useForkRef from '../utils/useForkRef';
 
 describe('<Grow />', () => {
+  const render = createClientRender();
   const mount = createMount({ strict: true });
   const defaultProps = {
     in: true,
@@ -51,7 +52,7 @@ describe('<Grow />', () => {
       const handleExit = spy();
       const handleExiting = spy();
       const handleExited = spy();
-      const wrapper = mount(
+      const { container, setProps } = render(
         <Grow
           onEnter={handleEnter}
           onEntering={handleEntering}
@@ -63,28 +64,29 @@ describe('<Grow />', () => {
           <div id="test" />
         </Grow>,
       );
-      const child = wrapper.find('#test');
 
-      wrapper.setProps({ in: true });
+      const child = container.querySelector('#test');
+
+      setProps({ in: true });
 
       expect(handleEnter.callCount).to.equal(1);
-      expect(handleEnter.args[0][0]).to.equal(child.instance());
+      expect(handleEnter.args[0][0]).to.equal(child);
 
       expect(handleEnter.args[0][0].style.transition).to.match(
         /opacity (0ms )?cubic-bezier\(0.4, 0, 0.2, 1\)( 0ms)?,( )?transform (0ms )?cubic-bezier\(0.4, 0, 0.2, 1\)( 0ms)?/,
       );
 
       expect(handleEntering.callCount).to.equal(1);
-      expect(handleEntering.args[0][0]).to.equal(child.instance());
+      expect(handleEntering.args[0][0]).to.equal(child);
 
       clock.tick(1000);
       expect(handleEntered.callCount).to.equal(1);
-      expect(handleEntered.args[0][0]).to.equal(child.instance());
+      expect(handleEntered.args[0][0]).to.equal(child);
 
-      wrapper.setProps({ in: false });
+      setProps({ in: false });
 
       expect(handleExit.callCount).to.equal(1);
-      expect(handleExit.args[0][0]).to.equal(child.instance());
+      expect(handleExit.args[0][0]).to.equal(child);
 
       expect(handleExit.args[0][0].style.opacity).to.equal('0');
       expect(handleExit.args[0][0].style.transform).to.equal(
@@ -93,14 +95,14 @@ describe('<Grow />', () => {
       );
 
       expect(handleExiting.callCount).to.equal(1);
-      expect(handleExiting.args[0][0]).to.equal(child.instance());
+      expect(handleExiting.args[0][0]).to.equal(child);
 
       expect(handleExiting.callCount).to.equal(1);
-      expect(handleExiting.args[0][0]).to.equal(child.instance());
+      expect(handleExiting.args[0][0]).to.equal(child);
 
       clock.tick(1000);
       expect(handleExited.callCount).to.equal(1);
-      expect(handleExited.args[0][0]).to.equal(child.instance());
+      expect(handleExited.args[0][0]).to.equal(child);
     });
   });
 
@@ -120,7 +122,7 @@ describe('<Grow />', () => {
     describe('onEnter', () => {
       it('should create proper easeOut animation', () => {
         const handleEnter = spy();
-        mount(
+        render(
           <Grow
             {...defaultProps}
             timeout={{
@@ -174,8 +176,8 @@ describe('<Grow />', () => {
           );
         }
 
-        const wrapper = mount(<MyTest />);
-        wrapper.setProps({
+        const { setProps } = render(<MyTest />);
+        setProps({
           in: true,
         });
 
@@ -213,7 +215,7 @@ describe('<Grow />', () => {
         const timeout = 10;
         const handleEntered = spy();
 
-        mount(<Grow {...defaultProps} timeout={timeout} onEntered={handleEntered} />);
+        render(<Grow {...defaultProps} timeout={timeout} onEntered={handleEntered} />);
 
         expect(handleEntered.callCount).to.equal(0);
 
@@ -234,7 +236,7 @@ describe('<Grow />', () => {
     describe('onExit', () => {
       it('should delay based on height when timeout is auto', () => {
         const handleExited = spy();
-        const wrapper = mount(
+        const { setProps } = render(
           <Grow in timeout="auto" onExited={handleExited}>
             <div />
           </Grow>,
@@ -242,7 +244,7 @@ describe('<Grow />', () => {
 
         clock.tick(0);
 
-        wrapper.setProps({
+        setProps({
           in: false,
         });
 
@@ -254,10 +256,12 @@ describe('<Grow />', () => {
       it('should use timeout as delay when timeout is number', () => {
         const timeout = 20;
         const handleExited = spy();
-        const wrapper = mount(<Grow {...defaultProps} timeout={timeout} onExited={handleExited} />);
+        const { setProps } = render(
+          <Grow {...defaultProps} timeout={timeout} onExited={handleExited} />,
+        );
 
         clock.tick(timeout);
-        wrapper.setProps({
+        setProps({
           in: false,
         });
 
@@ -270,7 +274,7 @@ describe('<Grow />', () => {
 
       it('should create proper sharp animation', () => {
         const handleExit = spy();
-        const wrapper = mount(
+        const { setProps } = render(
           <Grow
             {...defaultProps}
             timeout={{
@@ -281,7 +285,7 @@ describe('<Grow />', () => {
           />,
         );
 
-        wrapper.setProps({
+        setProps({
           in: false,
         });
 
