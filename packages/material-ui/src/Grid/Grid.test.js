@@ -25,7 +25,7 @@ describe('<Grid />', () => {
     it('should apply the container class', () => {
       const { container } = render(<Grid container />);
 
-      expect(container.firstChild).to.have.class(classes.container)
+      expect(container.firstChild).to.have.class(classes.container);
     });
   });
 
@@ -33,7 +33,7 @@ describe('<Grid />', () => {
     it('should apply the item class', () => {
       const { container } = render(<Grid item />);
 
-      expect(container.firstChild).to.have.class(classes.item)
+      expect(container.firstChild).to.have.class(classes.item);
     });
   });
 
@@ -41,19 +41,19 @@ describe('<Grid />', () => {
     it('should apply the flex-grow class', () => {
       const { container } = render(<Grid item xs />);
 
-      expect(container.firstChild).to.have.class(classes['grid-xs-true'])
+      expect(container.firstChild).to.have.class(classes['grid-xs-true']);
     });
 
     it('should apply the flex size class', () => {
       const { container } = render(<Grid item xs={3} />);
 
-      expect(container.firstChild).to.have.class(classes['grid-xs-3'])
+      expect(container.firstChild).to.have.class(classes['grid-xs-3']);
     });
 
     it('should apply the flex auto class', () => {
       const { container } = render(<Grid item xs="auto" />);
 
-      expect(container.firstChild).to.have.class(classes['grid-xs-auto'])
+      expect(container.firstChild).to.have.class(classes['grid-xs-auto']);
     });
   });
 
@@ -61,7 +61,7 @@ describe('<Grid />', () => {
     it('should have a spacing', () => {
       const { container } = render(<Grid container spacing={1} />);
 
-      expect(container.firstChild).to.have.class(classes['spacing-xs-1'])
+      expect(container.firstChild).to.have.class(classes['spacing-xs-1']);
     });
   });
 
@@ -69,7 +69,7 @@ describe('<Grid />', () => {
     it('should apply the align-item class', () => {
       const { container } = render(<Grid alignItems="center" container />);
 
-      expect(container.firstChild).to.have.class(classes['align-items-xs-center'])
+      expect(container.firstChild).to.have.class(classes['align-items-xs-center']);
     });
   });
 
@@ -77,7 +77,7 @@ describe('<Grid />', () => {
     it('should apply the align-content class', () => {
       const { container } = render(<Grid alignContent="center" container />);
 
-      expect(container.firstChild).to.have.class(classes['align-content-xs-center'])
+      expect(container.firstChild).to.have.class(classes['align-content-xs-center']);
     });
   });
 
@@ -85,13 +85,13 @@ describe('<Grid />', () => {
     it('should apply the justify-content class', () => {
       const { container } = render(<Grid justifyContent="space-evenly" container />);
 
-      expect(container.firstChild).to.have.class(classes['justify-content-xs-space-evenly'])
+      expect(container.firstChild).to.have.class(classes['justify-content-xs-space-evenly']);
     });
   });
 
   describe('prop: other', () => {
     it('should spread the other props to the root element', () => {
-      const handleClick = () => { };
+      const handleClick = () => {};
       const wrapper = mount(<Grid component="span" onClick={handleClick} />);
       const modal = wrapper.find(Grid);
 
