@@ -32,12 +32,6 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#accordion'
 
 {{"demo": "pages/components/accordion/CustomizedAccordions.js"}}
 
-## 其他操作
-
-当你把 `Checkbox` 或者一个按钮这样的操作事件放进 `AccordionSummary`，当在打开和收缩控制面板时使用这个操作，你则需要阻止 focus 和 click 事件的传播（propagation）。 您还应该为该操作提供一个 `aria-label` 标签，否则嵌套操作的标签将包含在控制扩展面板的父按钮的标签中。
-
-{{"demo": "pages/components/accordion/ActionsInAccordionSummary.js", "bg": true}}
-
 ## 性能
 
 即使扩展面板没有展开，默认情况下扩展面板的内容也会挂载。 这样的默认情况是是考虑到了服务端渲染（server-side rendering）和搜索引擎优化（SEO）。 如果您在扩展面板中渲染组件树性能开销很大，或者只是想要渲染很多不带内容的扩展面板，那么通过启用 `TransitionProps` 中的 `unmountOnExit` 来改变默认的渲染方式也许可行。
