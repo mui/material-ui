@@ -141,6 +141,7 @@
     "rollup-plugin-terser": "^7.0.0",
     "sinon": "^9.0.0",
     "size-limit": "^0.21.0",
+    "terser-webpack-plugin": "^4.2.2",
     "tslint": "5.14.0",
     "typescript": "^4.0.2",
     "unist-util-visit": "^2.0.2",
@@ -154,7 +155,7 @@
   "resolutions": {
     "**/@babel/core": "^7.10.2",
     "**/@babel/code-frame": "^7.10.4",
-    "**/@babel/parser": "7.10.5",
+    "**/@babel/parser": "^7.10.5",
     "**/@babel/plugin-proposal-class-properties": "^7.10.1",
     "**/@babel/plugin-proposal-object-rest-spread": "^7.10.1",
     "**/@babel/plugin-proposal-nullish-coalescing-operator": "^7.10.1",
@@ -170,7 +171,8 @@
     "**/cross-fetch": "^3.0.5",
     "**/dot-prop": "^5.2.0",
     "**/hoist-non-react-statics": "^3.3.2",
-    "**/webpack": "^4.44.1"
+    "**/webpack": "^4.44.1",
+    "**/webpack/acorn": "^7.4.0"
   },
   "nyc": {
     "include": [

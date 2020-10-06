@@ -1,6 +1,7 @@
 const globCallback = require('glob');
 const path = require('path');
 const CompressionPlugin = require('compression-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const { promisify } = require('util');
 
 const glob = promisify(globCallback);
@@ -96,13 +97,11 @@ async function getSizeLimitBundles() {
       webpack: true,
       path: 'packages/material-ui-utils/build/index.js',
     },
-    // TODO: Needs webpack 5
-    // https://github.com/webpack/webpack/issues/10227
-    // {
-    //   name: '@material-ui/core.modern',
-    //   webpack: true,
-    //   path: path.join(path.relative(workspaceRoot, corePackagePath), 'modern/index.js'),
-    // },
+    {
+      name: '@material-ui/core.modern',
+      webpack: true,
+      path: path.join(path.relative(workspaceRoot, corePackagePath), 'modern/index.js'),
+    },
     {
       name: '@material-ui/core.legacy',
       webpack: true,
@@ -129,6 +128,11 @@ module.exports = async function webpackConfig() {
       // while `@material-ui/core` had to import the chunks from all the components.
       // Ideally we could just disable shared chunks but I couldn't figure out how.
       concatenateModules: false,
+      minimizer: [
+        new TerserPlugin({
+          test: /\.js(\?.*)?$/i,
+        }),
+      ],
     },
     output: {
       filename: '[name].js',
