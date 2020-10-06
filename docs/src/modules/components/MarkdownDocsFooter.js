@@ -116,7 +116,7 @@ async function postRating(data = {}) {
 async function getRatings(id) {
   const env = location.hostname === 'material-ui.com' ? 'prod' : 'dev';
   const URL = `${RATINGS_URL}/${env}/ratings/${id}`;
-  
+
   try {
     const response = await fetch(URL, {
       method: 'GET',
@@ -234,9 +234,9 @@ function MarkdownDocsFooter(props) {
     const result = await submitRating(currentPage.pathname, 1);
     if (result) {
       setCurrentRating(1);
-      setSnackbarMessage(t('ratingSubmitted'))
+      setSnackbarMessage(t('ratingSubmitted'));
     } else {
-      setSnackbarMessage(t('ratingFailed'))
+      setSnackbarMessage(t('ratingFailed'));
     }
     setSnackbarOpen(true);
   };
@@ -251,9 +251,9 @@ function MarkdownDocsFooter(props) {
       const result = await submitRating(currentPage.pathname, 0, comment);
       if (result) {
         setCurrentRating(0);
-        setSnackbarMessage(t('ratingSubmitted'))
+        setSnackbarMessage(t('ratingSubmitted'));
       } else {
-        setSnackbarMessage(t('ratingFailed'))
+        setSnackbarMessage(t('ratingFailed'));
       }
       setSnackbarOpen(true);
     }
