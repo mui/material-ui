@@ -34,4 +34,10 @@ function genericValueTest() {
     }}
     value="1"
   />;
+
+  <Select onChange={(event) => console.log(event.target.value)} value="1">
+    <MenuItem value="1" />
+    {/* Whoops. The value in onChange won't be a string */}
+    <MenuItem value={2} />
+  </Select>;
 }
