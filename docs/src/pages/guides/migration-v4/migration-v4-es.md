@@ -390,6 +390,7 @@ const theme = createMuiTheme({
   ```
 
 - Remove `display: flex` from AccordionDetails as its too opinionated.
+- Remove `IconButtonProps` prop from AccordionSummary. The component renders a `<div>` element instead of an IconButton. The prop is no longer necessary.
 
 ### Fab
 
