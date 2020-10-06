@@ -390,6 +390,7 @@ const theme = createMuiTheme({
   ```
 
 - Удаляем `display: flex` из AccordionDetails, так как он навязывает определенный вид компоновки.
+- Удаляем свойство `IconButtonProps` из AccordionSummary. При отрисовке этого компонента вместо IconButton используется элемент `<div>`. Данное свойство больше не требуется.
 
 ### Fab
 
@@ -758,7 +759,7 @@ const theme = createMuiTheme({
 
 ### Оформление текста
 
-- Replace the `srOnly` prop so as to not duplicate the capabilities of [System](https://material-ui.com/system/basics/):
+- Заменяем свойство `srOnly`, чтобы не дублировать возможности [System](https://material-ui.com/system/basics/):
 
   ```diff
   -import Typography from '@material-ui/core/Typography';
