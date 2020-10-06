@@ -32,12 +32,6 @@ He aquí un ejemplo de personalización del componente. You can learn more about
 
 {{"demo": "pages/components/accordion/CustomizedAccordions.js"}}
 
-## Acciones Adicionales
-
-In order to put an action such as a `Checkbox` or a button inside of the `AccordionSummary`, you need to stop the propagation of the focus and click events to prevent the panel from expanding/collapsing when using the action. You should also provide an `aria-label` for the action, otherwise the label of the nested action will be included in the label of the parent button that controls the accordion expansion.
-
-{{"demo": "pages/components/accordion/ActionsInAccordionSummary.js", "bg": true}}
-
 ## Rendimiento
 
 The content of Accordions is mounted by default even if the panel is not expanded. This default behavior has server-side rendering and SEO in mind. If you render expensive component trees inside your panels or simply render many panels it might be a good idea to change this default behavior by enabling the `unmountOnExit` in `TransitionProps`:
