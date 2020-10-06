@@ -13,6 +13,16 @@
  */
 const appList = [
   {
+    title: 'SkyRocket',
+    description:
+    'SkyRocket, The Progression Tool. ' +
+    'A Web App using Material-UI, NextJS and AWS Lambda.',
+    image: 'skyrocket.jpg',
+    link: 'https://sky-rocket.io/',
+    similarWebVisits: 433,
+    dateAdded: '2020-10-06',
+  },
+  {
     title: 'd-cide',
     description:
       'A progressive Web App to make rational decisions in workshops. ' +
