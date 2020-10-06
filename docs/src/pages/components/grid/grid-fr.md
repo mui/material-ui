@@ -125,7 +125,9 @@ In order for the item to stay within the container you need to set `min-width: 0
 
 ### direction: column | column-reverse
 
-Bien que le composant `Grid` ait une propriété `direction` qui autorise les valeurs de `rows`, `row-reverse`, `column` et `column-reverse`, certaines fonctionnalités ne sont pas prises en charge dans les containers `rows` et `column-reverse`. Les propriétés qui définissent le nombre de grilles que le composant utilisera pour un point d' arrêt donné (`xs`, `sm`, `md`, `lg`et `xl`) sont centrées sur le contrôle de la largeur et n'ont **pas** d'effets similaires sur la hauteur dans les conteneurs `column` et `column-reverse`. Si elle est utilisée à l'intérieur des containers `column` ou `column-reverse` , ces propriétés peuvent avoir des effets indésirables sur la largeur des éléments `Grid` .
+The `xs`, `sm`, `md`, `lg`, and `xl` props are **not supported** within `direction="column"` and `direction="column-reverse"` containers.
+
+They define the number of grids the component will use for a given breakpoint. They are intended to control **width** using `flex-basis` in `row` containers but they will impact height in `column` containers. If used, these props may have undesirable effects on the height of the `Grid` item elements.
 
 ## CSS Grid Layout
 
