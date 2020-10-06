@@ -125,7 +125,9 @@ Para que o item permaneça dentro do contêiner, você precisa definir `min-widt
 
 ### direction: column | column-reverse
 
-Embora o componente `Grid` tenha uma propriedade `direction` que permite valores de `row`, `row-reverse`, `column`, e `column-reverse`, existem algumas funcionalidades que não são suportadas dentro de containers `column` e `column-reverse`. As propriedades que definem o número de grades que o componente usará para um determinado ponto de interrupção (`xs`, `sm`, `md`, `lg`, and `xl`) são focadas no controle da largura e **não** tem efeitos similares na altura dentro de containers `column` e `column-reverse`. Se usados dentro de containers `column` e `column-reverse`, estas propriedades apresentam efeitos indesejáveis na largura dos elementos do `Grid`.
+The `xs`, `sm`, `md`, `lg`, and `xl` props are **not supported** within `direction="column"` and `direction="column-reverse"` containers.
+
+They define the number of grids the component will use for a given breakpoint. They are intended to control **width** using `flex-basis` in `row` containers but they will impact height in `column` containers. If used, these props may have undesirable effects on the height of the `Grid` item elements.
 
 ## Leiaute de Grade CSS
 
