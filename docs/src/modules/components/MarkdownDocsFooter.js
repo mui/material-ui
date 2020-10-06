@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
@@ -109,7 +110,8 @@ async function postFeedback(data = {}) {
     });
     return response.json();
   } catch (error) {
-    console.log(error);
+    console.error(error);
+    return null;
   }
 }
 
@@ -125,7 +127,8 @@ async function getUserFeedback(id) {
     });
     return response.json();
   } catch (error) {
-    console.log(error);
+    console.error(error);
+    return null;
   }
 }
 
