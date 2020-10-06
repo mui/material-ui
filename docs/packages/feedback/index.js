@@ -103,9 +103,9 @@ async function updateAverageRating(request, currentUserRating) {
 }
 
 api.post(
-  '/rating',
+  '/feedback',
   async (request) => {
-    console.log('POST /rating', request.body);
+    console.log('POST /feedback', request.body);
     const id = request.body.id || uuid();
 
     let currentRating = null;
@@ -127,8 +127,8 @@ api.post(
   { success: 201 },
 );
 
-api.get('/ratings/{id}', (request) => {
-  console.log(`GET /ratings/${request.pathParams.id}`);
+api.get('/feedback/{id}', (request) => {
+  console.log(`GET /feedback/${request.pathParams.id}`);
   return (async () => {
     const result = await dbQuery(request, request.pathParams.id);
     return result.reduce((acc, curr) => {

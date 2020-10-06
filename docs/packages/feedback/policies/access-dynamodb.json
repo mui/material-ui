@@ -4,12 +4,12 @@
     {
       "Action": ["dynamodb:DeleteItem", "dynamodb:GetItem", "dynamodb:PutItem", "dynamodb:Query"],
       "Effect": "Allow",
-      "Resource": "arn:aws:dynamodb:us-east-1:446171413463:table/ratings-dev"
+      "Resource": "arn:aws:dynamodb:us-east-1:446171413463:table/feedback-dev"
     },
     {
       "Action": ["dynamodb:DeleteItem", "dynamodb:GetItem", "dynamodb:PutItem", "dynamodb:Query"],
       "Effect": "Allow",
-      "Resource": "arn:aws:dynamodb:us-east-1:446171413463:table/ratings-prod"
+      "Resource": "arn:aws:dynamodb:us-east-1:446171413463:table/feedback-dev"
     }
   ]
 }

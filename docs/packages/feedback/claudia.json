@@ -1,11 +1,11 @@
 {
   "lambda": {
-    "role": "ratings-executor",
-    "name": "ratings",
+    "role": "feedback-executor",
+    "name": "feedback",
     "region": "us-east-1"
   },
   "api": {
-    "id": "5fm2imnpv2",
+    "id": "hgvi836wi8",
     "module": "index"
   }
 }

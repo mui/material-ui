@@ -1,12 +1,12 @@
 # Rating
 
-This Lambda function stores and retrieves page ratings using DynamoDB.
+This Lambda function stores and retrieves page feedback using DynamoDB.
 
 ## Prerequisites
 
 Create an AWS profile in ~/.aws/credentials called "claudia" with credentials corresponding to an IAM user with AWSLambdaFullAccess and IAMFullAccess policies.
 
-Create a table in DynamoDB, with a `string` partition key called `id`, and a sort key called `page`. You can do that from the DynamoDB web console, or using the AWS CLI command line. Here is an example command that will create the `ratings-dev` table with the minimal provisioned throughput:
+Create a table in DynamoDB, with a `string` partition key called `id`, and a sort key called `page`. You can do that from the DynamoDB web console, or using the AWS CLI command line. Here is an example command that will create the `feedback-dev` table with the minimal provisioned throughput:
 
 ```bash
 aws dynamodb create-table --profile claudia --region us-east-1 \
@@ -14,10 +14,10 @@ aws dynamodb create-table --profile claudia --region us-east-1 \
   --key-schema AttributeName=id,KeyType=HASH AttributeName=page,KeyType=RANGE \
   --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=1 \
   --query TableDescription.TableArn --output text \
-  --table-name ratings-dev
+  --table-name feedback-dev
 ```
 
-You will need to repeat this command to create a `ratings-prod` table for production.
+You will need to repeat this command to create a table for production, for example `feedback-prod`.
 
 For on-demand throughput, replace:
 
@@ -43,7 +43,8 @@ To set this up, first [set up the credentials](https://github.com/claudiajs/clau
 
 1. run `yarn install` to install the dependencies
 2. run `yarn setup` to create the lambda project under the default name on AWS.
-   This will also ask you for a table name. If you used the above AWS command, it will be `ratings`.
+   This will also ask you for a table name for development and production. 
+   If you used the above AWS command, they will be `feedback-dev` and `feedback-dev` respectively.
 3. Test the API with using the [example requests below](#testing)
 
 For subsequent updates, use the `npm run deploy` command.
@@ -56,9 +57,9 @@ The value is set during the first deployment, using `--configure-table-dev` & `-
 
 ## The API
 
-- `POST` to `/rating` - stores a new rating data object
-- `GET` from `/rating/{id}` - returns all ratings with id `{id}`
-- `GET` from `/rating/averageRating` - returns average ratings for all pages
+- `POST` to `/feedback` - stores a new rating data object
+- `GET` from `/feedback/{id}` - returns all ratings with id `{id}`
+- `GET` from `/rating/average` - returns average ratings for all pages
 
 ## Testing
 
@@ -66,20 +67,28 @@ Claudia will print the API URL after it is created (typically something in the f
 
 You can test the API by using `curl` (or using a fancier client like [Postman](https://www.getpostman.com/)). Below are some examples with `curl`.
 
-### Create new rating
+### Create new feedback
 
-This will create a rating from the data stored in [example.json](example.json). Change the data in the file to create ratings:
+This will create a feedback entry from the data stored in [example.json](example.json). Change the data in the file to create ratings:
 
 ```bash
-curl -H "Content-Type: application/json" -X POST --data @example.json <API-URL>/rating
+curl -H "Content-Type: application/json" -X POST --data @example.json <API-URL>/feedback
 ```
 
-Add the UUID returned to `example.json` with key `id` to store more ratings under the same id.
+Add the UUID returned to `example.json` with key `id` to store more feedback under the same id.
 
-### Get ratings
+### Retrieve feedback
 
-This will get the ratings for ID 123 (replace the ID to get other ratings)
+This will get the feedback stored for ID d6890562-3606-4c14-a765-da81919057d1
 
 ```bash
-curl <API-URL>/ratings/123
+curl <API-URL>/feedback/d6890562-3606-4c14-a765-da81919057d1
+```
+
+### Retrieve average ratings
+
+This will get the average feedback stored for all pages
+
+```bash
+curl <API-URL>/feedback/average
 ```
