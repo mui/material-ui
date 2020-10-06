@@ -7,6 +7,8 @@
 Material-UI supports the latest, stable releases of all major browsers and platforms.
 You don't need to provide any JavaScript polyfill as it manages unsupported browser features internally and in isolation.
 
+<!-- #stable-snapshot -->
+
 | Edge  | Firefox | Chrome | Safari |
 | :---- | :------ | :----- | :----- |
 | >= 83 | >= 68   | >= 83  | >= 13  |
@@ -19,7 +21,9 @@ You can expect Material-UI's components to render without major issues.
 
 ## Server
 
-Because Material-UI supports server-side rendering, it needs to support the latest, stable releases of [Node.js](https://github.com/nodejs/node).
+<!-- #stable-snapshot -->
+
+We support [Node.js](https://github.com/nodejs/node) starting with version 10 for server-side rendering.
 Where possible, the [LTS versions that are in maintenance](https://github.com/nodejs/Release#lts-schedule1) are supported.
 
 ### CSS prefixing

@@ -7,6 +7,7 @@ node 14
 
 # Default/Fallback
 # `npx browserslist --mobile-to-desktop "> 0.5%, last 2 versions, Firefox ESR, not dead, not IE 11"` when the last major is released.
+# #stable-snapshot
 [stable]
 and_chr 84
 and_ff 79
@@ -45,17 +46,22 @@ opera 69
 safari 13
 samsung 11.1
 
-[coverage]
-node 10.0
-
-[development]
-node 10.0
-
+# snapshot of `npx browserslist "maintained node versions"`
 [node]
 node 10.0
 
+# same as `node`
+[coverage]
+node 10.0
+
+# same as `node`
+[development]
+node 10.0
+
+# same as `node`
 [test]
 node 10.0
 
+# same as `node`
 [benchmark]
 node 10.0
