@@ -59,7 +59,7 @@ describe('<NativeSelectInput />', () => {
   });
 
   it('should apply outlined class', () => {
-    const outlined = '.outlined';
+    const outlined = 'outlined';
     const { container } = render(
       <NativeSelectInput
         {...defaultProps}
