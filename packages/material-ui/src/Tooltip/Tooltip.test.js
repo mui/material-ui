@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy, stub, useFakeTimers } from 'sinon';
+import { spy, useFakeTimers } from 'sinon';
 import {
   getClasses,
   createMount,
