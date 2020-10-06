@@ -231,11 +231,12 @@ function MarkdownDocsFooter(props) {
   }, [currentPage.pathname]);
 
   async function processFeedback(rating, comment) {
+    setCurrentRating(rating);
     const result = await submitFeedback(currentPage.pathname, rating, comment);
     if (result) {
-      setCurrentRating(rating);
       setSnackbarMessage(t('feedbackSubmitted'));
     } else {
+      setCurrentRating(null);
       setSnackbarMessage(t('feedbackFailed'));
     }
     setSnackbarOpen(true);
