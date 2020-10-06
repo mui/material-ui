@@ -98,28 +98,43 @@ function findIndex(array, comp) {
   return -1;
 }
 
-async function postData(data = {}) {
+async function postRating(data = {}) {
   const env = location.hostname === 'material-ui.com' ? 'prod' : 'dev';
-  const response = await fetch(`${RATINGS_URL}/${env}/rating`, {
-    method: 'POST',
-    referrerPolicy: 'origin',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data),
-  });
-  return response.json();
+  try {
+    const response = await fetch(`${RATINGS_URL}/${env}/rating`, {
+      method: 'POST',
+      referrerPolicy: 'origin',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    return response.json();
+  } catch (error) {
+    console.log(error);
+  }
 }
 
-async function getData(id) {
+async function getRatings(id) {
   const env = location.hostname === 'material-ui.com' ? 'prod' : 'dev';
   const URL = `${RATINGS_URL}/${env}/ratings/${id}`;
-
-  const response = await fetch(URL, {
-    method: 'GET',
-    cache: 'no-store',
-    referrerPolicy: 'origin',
-  });
-  return response.json();
+  
+  try {
+    const response = await fetch(URL, {
+      method: 'GET',
+      cache: 'no-store',
+      referrerPolicy: 'origin',
+    });
+    return response.json();
+  } catch (error) {
+    console.log(error);
+  }
 }
+
+// try {
+
+// } catch (error) {
+//   console.log(error);
+//   throw error;
+// }
 
 async function submitRating(page, rating, comment) {
   const data = {
@@ -130,21 +145,22 @@ async function submitRating(page, rating, comment) {
     comment,
   };
 
-  const result = await postData(data);
-  document.cookie = `ratingsId=${result.id};path=/;max-age=31536000`;
-  document.cookie = `ratings=${JSON.stringify(await getData(result.id))};path=/;max-age=31536000`;
-}
-
-function getRatings() {
-  if (process.browser) {
-    const ratings = getCookie('ratings');
-    return ratings && JSON.parse(ratings);
+  const result = await postRating(data);
+  if (result) {
+    document.cookie = `ratingsId=${result.id};path=/;max-age=31536000`;
+    const ratings = await getRatings(result.id);
+    if (ratings) {
+      document.cookie = `ratings=${JSON.stringify(ratings)};path=/;max-age=31536000`;
+    }
   }
-  return undefined;
 }
 
 function getCurrentRating(pathname) {
-  const ratings = getRatings();
+  let ratings;
+  if (process.browser) {
+    ratings = getCookie('ratings');
+    ratings = ratings && JSON.parse(ratings);
+  }
   return ratings && ratings[pathname] && ratings[pathname].rating;
 }
 
@@ -208,6 +224,7 @@ function MarkdownDocsFooter(props) {
   const nextPage = pageList[currentPageNum + 1];
   const [commentOpen, setCommentOpen] = React.useState(false);
   const [currentRating, setCurrentRating] = React.useState();
+  const [snackbarMessage, setSnackbarMessage] = React.useState(false);
   const [snackbarOpen, setSnackbarOpen] = React.useState(false);
 
   if (description === undefined) {
@@ -221,6 +238,7 @@ function MarkdownDocsFooter(props) {
   const handleClickUp = () => {
     setCurrentRating(1);
     submitRating(currentPage.pathname, 1);
+    setSnackbarMessage(t('ratingSubmitted'))
     setSnackbarOpen(true);
   };
 
@@ -233,11 +251,12 @@ function MarkdownDocsFooter(props) {
     if (comment !== null) {
       setCurrentRating(0);
       submitRating(currentPage.pathname, 0, comment);
+      setSnackbarMessage(t('ratingSubmitted'))
       setSnackbarOpen(true);
     }
   };
 
-  const handleSnackbarClose = () => {
+  const handleCloseSnackbar = () => {
     setSnackbarOpen(false);
   };
 
@@ -303,8 +322,8 @@ function MarkdownDocsFooter(props) {
       <Snackbar
         open={snackbarOpen}
         autoHideDuration={3000}
-        onClose={handleSnackbarClose}
-        message={t('ratingSubmitted')}
+        onClose={handleCloseSnackbar}
+        message={snackbarMessage}
       />
     </React.Fragment>
   );
