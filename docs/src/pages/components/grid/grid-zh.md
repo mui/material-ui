@@ -125,7 +125,9 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
 
 ### direction: column | column-reverse
 
-虽然 `Grid` 组件有 `direction` 属性，所以组件能用这些的值：`row`，`row-reverse`，`column`，和`column-reverse`，但是有些功能是不被 `column` 和`column-reverse` 容器支持的。 一些定义了组件栅格数量的属性会用于一个特定的断点：（ `xs`，`sm`，`md`，`lg` 以及 `xl`)，而这这些属性主要来控制宽度，并且**不会**再 `column` 和 `column-reverse` 内产生对高度相同的效果。 如过在 `column` 或者 `column-reverse` 容器内使用这些属性,，将会对 `Grid` 元素产生意想不到的效果。
+`direction="column"` 和 `direction="column-reverse"`的容器**不支持** 和断点有关的 `xs`, `sm`, `md`, `lg`，以及 `xl` 这几个props。
+
+它们决定在某个断点下组件占几个格子 他们是用`flex-basis`实现，在`row`容器用来控制 **宽度** 的，但是在`column` 容器里就会改变高度。 If used, these props may have undesirable effects on the height of the `Grid` item elements.
 
 ## CSS 栅格布局
 
