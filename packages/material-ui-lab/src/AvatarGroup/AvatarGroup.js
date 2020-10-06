@@ -35,6 +35,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(props, ref) {
     className,
     max = 5,
     spacing = 'medium',
+    variant = 'circular',
     ...other
   } = props;
   const clampedMax = max < 2 ? 2 : max;
@@ -66,6 +67,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(props, ref) {
           style={{
             marginLeft,
           }}
+          variant={variant}
         >
           +{extraAvatars}
         </Avatar>
@@ -80,6 +82,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(props, ref) {
               marginLeft,
               ...child.props.style,
             },
+            variant: child.props.variant || variant,
           });
         })}
     </div>
@@ -122,6 +125,14 @@ AvatarGroup.propTypes = {
    * @default 'medium'
    */
   spacing: PropTypes.oneOfType([PropTypes.oneOf(['medium', 'small']), PropTypes.number]),
+  /**
+   * The shape of the avatars.
+   * @default 'circular'
+   */
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['circular', 'rounded', 'square']),
+    PropTypes.string,
+  ]),
 };
 
 export default withStyles(styles, { name: 'MuiAvatarGroup' })(AvatarGroup);
