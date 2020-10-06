@@ -296,12 +296,12 @@ function MarkdownDocsFooter(props) {
                 >
                   {t('ratingMessage')}
                 </Typography>
-                <Tooltip title={t('ratingYes')}>
+                <Tooltip title={t('feedbackYes')}>
                   <IconButton onClick={handleClickUp} disabled={currentRating === 1}>
                     <ThumbUpIcon color={currentRating === 1 ? 'primary' : undefined} />
                   </IconButton>
                 </Tooltip>
-                <Tooltip title={t('ratingNo')}>
+                <Tooltip title={t('feedbackNo')}>
                   <IconButton onClick={handleClickDown} disabled={currentRating === 0}>
                     <ThumbDownIcon color={currentRating === 0 ? 'error' : undefined} />
                   </IconButton>
