@@ -14,9 +14,12 @@ export const styles = (theme) => ({
     minWidth: 64,
     padding: '6px 16px',
     borderRadius: theme.shape.borderRadius,
-    transition: theme.transitions.create(['background-color', 'box-shadow', 'border'], {
-      duration: theme.transitions.duration.short,
-    }),
+    transition: theme.transitions.create(
+      ['background-color', 'box-shadow', 'border-color', 'color'],
+      {
+        duration: theme.transitions.duration.short,
+      },
+    ),
     '&:hover': {
       textDecoration: 'none',
       backgroundColor: fade(theme.palette.text.primary, theme.palette.action.hoverOpacity),
@@ -267,7 +270,7 @@ const Button = React.forwardRef(function Button(props, ref) {
     fullWidth = false,
     size = 'medium',
     startIcon: startIconProp,
-    type = 'button',
+    type,
     variant = 'text',
     ...other
   } = props;

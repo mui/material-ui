@@ -633,7 +633,7 @@ describe('<Tooltip />', () => {
     it('should ignore event from the tooltip', () => {
       const handleMouseOver = spy();
       const { getByRole } = render(
-        <Tooltip title="Hello World" open interactive>
+        <Tooltip title="Hello World" open>
           <button type="submit" onMouseOver={handleMouseOver}>
             Hello World
           </button>
@@ -698,13 +698,12 @@ describe('<Tooltip />', () => {
     });
   });
 
-  describe('prop: interactive', () => {
-    it('should keep the overlay open if the popper element is hovered', () => {
+  describe('prop: disableInteractive', () => {
+    it('when false should keep the overlay open if the popper element is hovered', () => {
       const { getByRole } = render(
         <Tooltip
           title="Hello World"
           enterDelay={100}
-          interactive
           leaveDelay={111}
           TransitionProps={{ timeout: 10 }}
         >
@@ -731,9 +730,14 @@ describe('<Tooltip />', () => {
       expect(getByRole('tooltip')).toBeVisible();
     });
 
-    it('should not animate twice', () => {
+    it('when `true` should not keep the overlay open if the popper element is hovered', () => {
       const { getByRole } = render(
-        <Tooltip title="Hello World" interactive enterDelay={500} TransitionProps={{ timeout: 10 }}>
+        <Tooltip
+          title="Hello World"
+          enterDelay={100}
+          leaveDelay={111}
+          TransitionProps={{ timeout: 10 }}
+        >
           <button id="testChild" type="submit">
             Hello World
           </button>
@@ -742,7 +746,7 @@ describe('<Tooltip />', () => {
 
       fireEvent.mouseOver(getByRole('button'));
       act(() => {
-        clock.tick(500);
+        clock.tick(100);
       });
 
       expect(getByRole('tooltip')).toBeVisible();
@@ -752,13 +756,9 @@ describe('<Tooltip />', () => {
       expect(getByRole('tooltip')).toBeVisible();
 
       fireEvent.mouseOver(getByRole('tooltip'));
-      clock.tick(10);
+      clock.tick(111 + 10);
 
-      expect(getByRole('tooltip')).toBeVisible();
-
-      // TOD: Unclear why not running triggers microtasks but runAll does not trigger microtasks
-      // can be removed once Popper#update is sync
-      clock.runAll();
+      expect(getByRole('tooltip')).not.toBeVisible();
     });
   });
 
@@ -886,7 +886,7 @@ describe('<Tooltip />', () => {
         );
       });
       const { getByRole } = render(
-        <Tooltip interactive open title="test">
+        <Tooltip open title="test">
           <TextField onFocus={handleFocus} />
         </Tooltip>,
       );

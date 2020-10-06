@@ -80,11 +80,12 @@ describe('<ButtonBase />', () => {
     });
 
     it('should automatically change the button to an anchor element when href is provided', () => {
-      const { getByText } = render(<ButtonBase href="https://google.com">Hello</ButtonBase>);
-      const button = getByText('Hello');
+      const { container } = render(<ButtonBase href="https://google.com">Hello</ButtonBase>);
+      const button = container.firstChild;
 
       expect(button).to.have.property('nodeName', 'A');
       expect(button).not.to.have.attribute('role');
+      expect(button).not.to.have.attribute('type');
       expect(button).to.have.attribute('href', 'https://google.com');
     });
 

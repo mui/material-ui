@@ -21,10 +21,6 @@ export const styles = (theme) => ({
       '&:hover': {
         backgroundColor: fade(theme.palette.action.active, 0.15),
       },
-      '& + &': {
-        borderLeft: 0,
-        marginLeft: 0,
-      },
     },
     '&$disabled': {
       color: fade(theme.palette.action.disabled, 0.12),
