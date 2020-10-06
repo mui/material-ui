@@ -8,12 +8,13 @@ You can find some example projects in the [GitHub repository](https://github.com
 
 - https://github.com/mui-org/material-ui/tree/master/examples/create-react-app
 - [Gatsby](https://github.com/mui-org/material-ui/tree/next/examples/gatsby)
+- [Gatsby Theme](https://github.com/mui-org/material-ui/tree/next/examples/gatsby-theme)
 - https://github.com/mui-org/material-ui/tree/master/examples/nextjs
 - [Preact](https://github.com/mui-org/material-ui/tree/next/examples/preact)
 - [CDN](https://github.com/mui-org/material-ui/tree/next/examples/cdn)
 - [Plain server-side](https://github.com/mui-org/material-ui/tree/next/examples/ssr)
 - [Use styled-components as style engine](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-styled-components)
-- E mais
+- [Reason React](https://github.com/mui-org/material-ui/tree/next/examples/reason)
 
 Create React AppはReactを学ぶのに良いプロジェクトです。 Create React AppはReactを学ぶのに良いプロジェクトです。 どのプロジェクトが自分のニーズに最も適しているか知る為に[利用可能な代替案](https://github.com/facebook/create-react-app/blob/master/README.md#popular-alternatives)をみてみてください。 Create React AppはReactを学ぶのに良いプロジェクトです。 どのプロジェクトが自分のニーズに最も適しているか知る為に[利用可能な代替案](https://github.com/facebook/create-react-app/blob/master/README.md#popular-alternatives)をみてみてください。 Create React AppはReactを学ぶのに良いプロジェクトです。 どのプロジェクトが自分のニーズに最も適しているか知る為に[利用可能な代替案](https://github.com/facebook/create-react-app/blob/master/README.md#popular-alternatives)をみてみてください。
 
