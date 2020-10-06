@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createClientRender, createMount } from 'test/utils';
+import { getClasses, createClientRender } from 'test/utils';
 import TabIndicator from './TabIndicator';
 
 describe('<TabIndicator />', () => {
-  const mount = createMount();
   const render = createClientRender();
   let classes;
   const defaultProps = {
