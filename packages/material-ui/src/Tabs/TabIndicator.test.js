@@ -28,7 +28,7 @@ describe('<TabIndicator />', () => {
     it('should be applied on the root element', () => {
       const { container } = render(<TabIndicator {...defaultProps} style={style} />);
       const tab = container.firstChild;
-      
+
       expect(tab.style).to.have.property('left', '1px');
       expect(tab.style).to.have.property('width', '2px');
     });
