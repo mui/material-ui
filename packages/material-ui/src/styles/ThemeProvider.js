@@ -5,11 +5,11 @@ import { exactProp } from '@material-ui/utils';
 import { ThemeContext as StyledEngineThemeContext } from '@material-ui/styled-engine';
 import useTheme from './useTheme';
 
-function InnerThemeProvider({ children }) {
+function InnerThemeProvider(props) {
   const theme = useTheme();
   return (
     <StyledEngineThemeContext.Provider value={typeof theme === 'object' ? theme : {}}>
-      {children}
+      {props.children}
     </StyledEngineThemeContext.Provider>
   );
 }

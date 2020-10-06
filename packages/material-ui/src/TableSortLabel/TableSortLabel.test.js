@@ -18,7 +18,6 @@ describe('<TableSortLabel />', () => {
     classes,
     inheritComponent: ButtonBase,
     mount,
-
     refInstanceof: window.HTMLSpanElement,
     skip: ['componentProp'],
   }));
