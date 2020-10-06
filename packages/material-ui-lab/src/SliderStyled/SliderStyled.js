@@ -153,6 +153,7 @@ const SliderRoot = experimentalStyled(
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    boxShadow: props.theme.shadows[1],
     transition: props.theme.transitions.create(['box-shadow'], {
       duration: props.theme.transitions.duration.shortest,
     }),
