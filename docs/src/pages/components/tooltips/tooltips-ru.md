@@ -75,9 +75,9 @@ The `Tooltip` wraps long text by default to make it readable.
 
 ## Интерактивность
 
-A tooltip can be interactive. It won't close when the user hovers over the tooltip before the `leaveDelay` is expired.
+Подсказки интерактивны по умолчанию (чтобы пройти тест [WCAG 2.1 success criterion 1.4.13](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus)). Перемещение указателя над подсказкой до истечения срока `leaveDelay` не приведет к её закрытию. Вы можете отключить это поведение (и таким образом не пройти тест, необходимый для достижения уровня АА), передав `disableInteractive`.
 
-{{"demo": "pages/components/tooltips/InteractiveTooltips.js"}}
+{{"demo": "pages/components/tooltips/NonInteractiveTooltips.js"}}
 
 ## Неактивные элементы
 
