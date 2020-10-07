@@ -27,6 +27,7 @@
     "jsonlint": "node scripts/jsonlint.js",
     "lint": "eslint . --cache --report-unused-disable-directives --ext .js,.ts,.tsx",
     "lint:ci": "eslint . --report-unused-disable-directives --ext .js,.ts,.tsx",
+    "perf": "yarn webpack --config test/perf/webpack.config.js --mode  \"production\" &&  concurrently \"npx serve .\" \"npx wait-on http://localhost:5000/test/perf/debug && node scripts/perf.js \"",
     "prettier": "node ./scripts/prettier.js",
     "prettier:all": "node ./scripts/prettier.js write",
     "size:snapshot": "node scripts/sizeSnapshot/create",
@@ -189,5 +190,9 @@
     "packages/*",
     "docs",
     "framer"
-  ]
+  ],
+  "dependencies": {
+    "concurrently": "^5.3.0",
+    "wait-on": "^5.2.0"
+  }
 }
