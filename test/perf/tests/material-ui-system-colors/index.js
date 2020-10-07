@@ -1,7 +1,7 @@
-import React from 'react';
+import * as React from 'react';
 import { palette } from '@material-ui/system';
 
-const App = () => {
+export default function MaterialUISystemColors() {
   const result = palette({
     theme: {},
     bgcolor: ['red', 'blue'],
@@ -9,5 +9,3 @@ const App = () => {
 
   return null;
 }
-
-export default App;

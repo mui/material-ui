@@ -1,4 +1,4 @@
-import React, { Profiler } from 'react';
+import * as React from 'react';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { spacing } from '@material-ui/system';
 import styledComponents, {
@@ -9,9 +9,9 @@ import { logReactMetrics } from '../utils';
 const materialSystemTheme = createMuiTheme();
 const NakedStyleComponents = styledComponents('div')(spacing);
 
-const App = () => {
+export default function NakedStyledComponents() {
   return (
-    <Profiler id="naked-styled-components" onRender={logReactMetrics}>
+    <React.Profiler id="naked-styled-components" onRender={logReactMetrics}>
       {new Array(100).fill().map(() => (
         <StyledComponentsThemeProvider theme={materialSystemTheme}>
           <NakedStyleComponents
@@ -26,8 +26,6 @@ const App = () => {
           </NakedStyleComponents>
         </StyledComponentsThemeProvider>
       ))}
-    </Profiler>          
+    </React.Profiler>          
   );
 }
-
-export default App;

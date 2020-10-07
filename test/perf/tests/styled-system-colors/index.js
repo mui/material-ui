@@ -1,7 +1,7 @@
-import React from 'react';
+import * as React from 'react';
 import { color } from 'styled-system';
 
-const App = () => {
+export default function StyledSystemColors() {
   const result = color({
     theme: {},
     bg: ['red', 'blue'],
@@ -9,5 +9,3 @@ const App = () => {
 
   return null;
 }
-
-export default App;

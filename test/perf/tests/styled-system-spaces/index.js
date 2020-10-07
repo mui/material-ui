@@ -1,7 +1,7 @@
-import React from 'react';
+import * as React from 'react';
 import { space } from 'styled-system';
 
-const App = () => {
+export default function StyledSystemSpaces() {
   const result = space({
     theme: {},
     p: [1, 2, 3],
@@ -9,5 +9,3 @@ const App = () => {
 
   return null;
 }
-
-export default App;

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { space, color, fontFamily, fontSize, compose } from 'styled-system';
 
@@ -9,7 +9,7 @@ styledSystemTheme.colors = styledSystemTheme.palette;
 styledSystemTheme.fontSizes = styledSystemTheme.typography;
 styledSystemTheme.fonts = styledSystemTheme.typography;
 
-const App = () => {
+export default function StyledSystemCompose() {
   const result = styledSystem({
     theme: styledSystemTheme,
     color: 'primary.main',
@@ -21,5 +21,3 @@ const App = () => {
 
   return null;
 }
-
-export default App;

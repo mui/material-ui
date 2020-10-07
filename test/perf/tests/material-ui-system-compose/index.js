@@ -1,11 +1,11 @@
-import React from 'react';
+import * as React from 'react';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { spacing, palette, typography, compose } from '@material-ui/system';
 
 const materialSystem = compose(palette, spacing, typography);
 const materialSystemTheme = createMuiTheme();
 
-const App = () => {
+export default function MaterialUISystemCompose() {
   const result = materialSystem({
     theme: materialSystemTheme,
     color: 'primary.main',
@@ -17,5 +17,3 @@ const App = () => {
 
   return null;
 }
-
-export default App;

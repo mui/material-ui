@@ -1,4 +1,4 @@
-import React, { Profiler } from 'react';
+import * as React from 'react';
 import { createMuiTheme } from '@material-ui/core/styles';
 import styledComponents, {
   ThemeProvider as StyledComponentsThemeProvider,
@@ -10,9 +10,9 @@ const materialSystem = compose(palette, spacing, typography);
 const materialSystemTheme = createMuiTheme();
 const BoxMaterialSystem = styledComponents('div')(materialSystem);
 
-const App = () => {
+export default function StyledComponentsBoxMaterialUISystem() {
   return (
-    <Profiler id="styled-components-box-material-ui-system" onRender={logReactMetrics}>
+    <React.Profiler id="styled-components-box-material-ui-system" onRender={logReactMetrics}>
       {new Array(100).fill().map(() => (
         <StyledComponentsThemeProvider theme={materialSystemTheme}>
           <BoxMaterialSystem
@@ -26,9 +26,6 @@ const App = () => {
           </BoxMaterialSystem>
         </StyledComponentsThemeProvider>
       ))}
-    </Profiler>            
+    </React.Profiler>            
   );
 }
-
-export default App;
-
