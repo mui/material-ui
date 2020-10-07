@@ -21,4 +21,12 @@ module.exports = {
       },
     ]),
   },
+  resolve: {
+    ...webpackBaseConfig.resolve,
+    alias: {
+      ...webpackBaseConfig.resolve.alias,
+      'react-dom$': 'react-dom/profiling',
+      'scheduler/tracing': 'scheduler/tracing-profiling',
+    }
+  }
 };

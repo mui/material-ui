@@ -1,14 +1,15 @@
 
-import React from 'react';
+import React, { Profiler } from 'react';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider as StylesThemeProvider } from '@material-ui/styles';
 import BoxStyles from '@material-ui/core/Box';
+import { logReactMetrics } from '../utils';
 
 const materialSystemTheme = createMuiTheme();
 
 const App = () => {
   return (
-    <>
+    <Profiler id="box-material-ui-system" onRender={logReactMetrics}>
       {new Array(100).fill().map(() => (
         <StylesThemeProvider theme={materialSystemTheme}>
           <BoxStyles
@@ -23,7 +24,7 @@ const App = () => {
           </BoxStyles>
         </StylesThemeProvider>
       ))}
-    </>        
+    </Profiler>        
   );
 }
 

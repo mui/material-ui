@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Profiler } from 'react';
 import { createMuiTheme } from '@material-ui/core/styles';
 import styledComponents, {
   ThemeProvider as StyledComponentsThemeProvider,
 } from 'styled-components';
 import { space, color, fontFamily, fontSize, compose } from 'styled-system';
+import { logReactMetrics } from '../utils';
 
 const styledSystem = compose(color, space, fontFamily, fontSize);
 const BoxStyledSystem = styledComponents('div')(styledSystem);
@@ -16,7 +17,7 @@ styledSystemTheme.fonts = styledSystemTheme.typography;
 
 const App = () => {
   return (
-    <>
+    <Profiler id="styled-components-box-styled-system" onRender={logReactMetrics}>
       {new Array(100).fill().map(() => (
         <StyledComponentsThemeProvider theme={styledSystemTheme}>
           <BoxStyledSystem
@@ -30,7 +31,7 @@ const App = () => {
           </BoxStyledSystem>
         </StyledComponentsThemeProvider>
       ))}
-    </>             
+    </Profiler>             
   );
 }
 

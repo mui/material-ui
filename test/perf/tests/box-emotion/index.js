@@ -1,16 +1,17 @@
 
-import React from 'react';
+import React, { Profiler } from 'react';
 import { createMuiTheme } from '@material-ui/core/styles';
 import styledEmotion from '@emotion/styled';
 import { ThemeProvider as EmotionTheme } from 'emotion-theming';
 import { styleFunction } from '@material-ui/core/Box';
+import { logReactMetrics } from '../utils';
 
 const materialSystemTheme = createMuiTheme();
 const BoxEmotion = styledEmotion('div')(styleFunction);
 
 const App = () => {
   return (
-    <>
+    <Profiler id="box-emotion" onRender={logReactMetrics}>
       {new Array(100).fill().map(() => (
         <EmotionTheme theme={materialSystemTheme}>
           <BoxEmotion
@@ -24,7 +25,7 @@ const App = () => {
           </BoxEmotion>
       </EmotionTheme>
       ))}
-    </>
+    </Profiler>
   );
 }
 
