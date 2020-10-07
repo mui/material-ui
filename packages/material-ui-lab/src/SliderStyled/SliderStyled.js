@@ -1,6 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useThemeProps, experimentalStyled, alpha, lighten, darken } from '@material-ui/core/styles';
+import {
+  useThemeProps,
+  experimentalStyled,
+  alpha,
+  lighten,
+  darken,
+} from '@material-ui/core/styles';
 import { capitalize } from '@material-ui/core/utils';
 import SliderUnstyled from '../SliderUnstyled';
 import ValueLabelStyled from './ValueLabelStyled';
