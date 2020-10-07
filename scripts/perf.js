@@ -1,9 +1,18 @@
 const puppeteer = require('puppeteer');
 const { performance } = require('perf_hooks');
+const waitOn = require('wait-on');
+const handler = require('serve-handler');
+const http = require('http');
 
 const SERVER = 'localhost';
-const PORT = 5000;
+const PORT = 1122;
 const APP = 'test/perf/debug';
+
+http.createServer((request, response) => {
+  return handler(request, response);
+}).listen(PORT, () => {
+  console.log(`Running at http://localhost:${PORT}`);
+});
 
 async function createBrowser() {
   const browser = await puppeteer.launch();
@@ -14,7 +23,7 @@ async function createBrowser() {
       await page.goto(url);
 
       return {
-        close: async () => page.close(),
+        close: () => page.close(),
       };
     },
     close: async () => browser.close(),
@@ -60,6 +69,12 @@ const printMeasures = (measures) => {
 }
 
 async function run(argv) {
+  await waitOn({
+    resources: [
+      `http://${SERVER}:${PORT}/${APP}`
+    ],
+  });
+
   const browser = await createBrowser();
   let measures = {};
 
