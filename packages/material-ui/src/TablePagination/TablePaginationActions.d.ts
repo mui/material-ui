@@ -18,7 +18,7 @@ export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDi
    */
   getItemAriaLabel: (type: 'first' | 'last' | 'next' | 'previous') => string;
   nextIconButtonProps?: Partial<IconButtonProps>;
-  onChangePage: (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void;
+  onPageChange: (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void;
   page: number;
   rowsPerPage: number;
   showFirstButton: boolean;
