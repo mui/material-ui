@@ -195,9 +195,7 @@ export default function useAutocomplete(props) {
           }
           return true;
         }),
-        // we use the empty string to manipulate `filterOptions` to not filter any options
-        // i.e. the filter predicate always returns true
-        { inputValue: inputValueIsSelectedValue ? '' : inputValue, getOptionLabel },
+        { inputValue, getOptionLabel },
       )
     : [];
 
