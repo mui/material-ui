@@ -5,9 +5,8 @@ import ReactDOMServer from 'react-dom/server';
 import styledEmotion from '@emotion/styled';
 import { ThemeProvider as EmotionTheme } from 'emotion-theming';
 import { space, color, fontFamily, fontSize, compose as compose2 } from 'styled-system';
-import { spacing, palette, typography, compose } from '@material-ui/system';
+import { spacing, palette, typography, compose, styleFunctionInversed } from '@material-ui/system';
 import { createMuiTheme } from '@material-ui/core/styles';
-import { styleFunction } from '@material-ui/core/Box';
 import { ThemeProvider as StylesThemeProvider } from '@material-ui/styles';
 import BoxStyles from '@material-ui/core/Box';
 import styledComponents, {
@@ -24,9 +23,9 @@ Benchmark.options.minSamples = 100;
 const materialSystem = compose(palette, spacing, typography);
 const styledSystem = compose2(color, space, fontFamily, fontSize);
 
-const BoxStyleComponents = styledComponents('div')(styleFunction);
+const BoxStyleComponents = styledComponents('div')(styleFunctionInversed);
 const NakedStyleComponents = styledComponents('div')(spacing);
-const BoxEmotion = styledEmotion('div')(styleFunction);
+const BoxEmotion = styledEmotion('div')(styleFunctionInversed);
 
 const BoxMaterialSystem = styledComponents('div')(materialSystem);
 const BoxStyledSystem = styledComponents('div')(styledSystem);
@@ -89,7 +88,7 @@ suite
   })
   // ---
   .add('@material-ui/core all-inclusive', () => {
-    styleFunction({
+    styleFunctionInversed({
       theme: materialSystemTheme,
       color: 'primary.main',
       bgcolor: 'background.paper',

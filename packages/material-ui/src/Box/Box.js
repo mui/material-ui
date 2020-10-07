@@ -13,6 +13,7 @@ import {
   spacing,
   typography,
   css,
+  styleFunctionInversed,
 } from '@material-ui/system';
 import styled from '../styles/experimentalStyled';
 
@@ -44,6 +45,7 @@ function omit(input, fields) {
 }
 
 const boxProps = [
+  // borders
   'border',
   'borderTop',
   'borderRight',
@@ -51,12 +53,16 @@ const boxProps = [
   'borderLeft',
   'borderColor',
   'borderRadius',
+
+  // display
   'display',
   'displayPrint',
   'overflow',
   'textOverflow',
   'visibility',
   'whiteSpace',
+
+  // flexbox
   'flexBasis',
   'flexDirection',
   'flexWrap',
@@ -70,6 +76,8 @@ const boxProps = [
   'alignSelf',
   'justifyItems',
   'justifySelf',
+
+  // grid
   'gridGap',
   'gridColumnGap',
   'gridRowGap',
@@ -82,15 +90,23 @@ const boxProps = [
   'gridTemplateRows',
   'gridTemplateAreas',
   'gridArea',
+
+  // positions
   'zIndex',
   'position',
   'top',
   'right',
   'bottom',
   'left',
+
+  // palette
   'bgcolor',
   'color',
+
+  // shadows
   'boxShadow',
+
+  // sizing
   'width',
   'maxWidth',
   'minWidth',
@@ -100,6 +116,8 @@ const boxProps = [
   'sizeWidth',
   'sizeHeight',
   'boxSizing',
+
+  // spacing
   'm',
   'mt',
   'mr',
@@ -128,6 +146,8 @@ const boxProps = [
   'paddingLeft',
   'paddingX',
   'paddingY',
+
+  // typography
   'fontFamily',
   'fontSize',
   'fontStyle',
@@ -168,6 +188,6 @@ const shouldForwardProp = (prop) => boxProps.indexOf(prop) === -1;
 /**
  * @ignore - do not document.
  */
-const Box = styled(BoxRoot, { shouldForwardProp }, { muiName: 'MuiBox' })(styleFunction);
+const Box = styled(BoxRoot, { shouldForwardProp }, { muiName: 'MuiBox' })(styleFunctionInversed);
 
 export default Box;
