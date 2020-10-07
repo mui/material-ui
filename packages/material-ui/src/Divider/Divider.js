@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
-import { fade } from '../styles/colorManipulator';
+import { alpha } from '../styles/colorManipulator';
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
@@ -26,7 +26,7 @@ export const styles = (theme) => ({
   },
   /* Styles applied to the root element if `light={true}`. */
   light: {
-    backgroundColor: fade(theme.palette.divider, 0.08),
+    backgroundColor: alpha(theme.palette.divider, 0.08),
   },
   /* Styles applied to the root element if `variant="middle"`. */
   middle: {
