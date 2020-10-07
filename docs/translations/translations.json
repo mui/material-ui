@@ -32,6 +32,7 @@
   "feedbackDialogMessage": "Please let us know what we could do to improve this page.",
   "feedbackDialogTitle": "Thanks for your feedback!",
   "feedbackFailed": "Couldn't submit feedback. Please try again later.",
+  "feedbackGroupLabel": "give page feedback",
   "ratingMessage": "Was this page helpful?",
   "feedbackNo": "No",
   "feedbackSubmitted": "Feedback submitted",

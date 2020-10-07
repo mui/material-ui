@@ -295,7 +295,7 @@ function MarkdownDocsFooter(props) {
               ) : (
                 <div />
               )}
-              <div>
+              <div role="group" aria-label={t('feedbackGroupLabel')}>
                 <Typography
                   variant="subtitle1"
                   component="span"
@@ -305,14 +305,22 @@ function MarkdownDocsFooter(props) {
                 </Typography>
                 <Tooltip title={t('feedbackYes')}>
                   <span>
-                    <IconButton onClick={handleClickUp} disabled={currentRating === 1}>
+                    <IconButton
+                      onClick={handleClickUp}
+                      disabled={currentRating === 1}
+                      aria-pressed={currentRating === 1}
+                    >
                       <ThumbUpIcon color={currentRating === 1 ? 'primary' : undefined} />
                     </IconButton>
                   </span>
                 </Tooltip>
                 <Tooltip title={t('feedbackNo')}>
                   <span>
-                    <IconButton onClick={handleClickDown} disabled={currentRating === 0}>
+                    <IconButton
+                      onClick={handleClickDown}
+                      disabled={currentRating === 0}
+                      aria-pressed={currentRating === 0}
+                    >
                       <ThumbDownIcon color={currentRating === 0 ? 'error' : undefined} />
                     </IconButton>
                   </span>
