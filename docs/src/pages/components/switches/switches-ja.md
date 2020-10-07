@@ -1,5 +1,5 @@
 ---
-title: Reactコンポーネントの切り替え
+title: React Switch component
 components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 githubLabel: 'component: Switch'
 materialDesign: 'https://material.io/components/selection-controls#switches'
@@ -35,7 +35,7 @@ materialDesign: 'https://material.io/components/selection-controls#switches'
 
 {{"demo": "pages/components/switches/CustomizedSwitches.js"}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/switch).
+🎨 インスピレーションを求めている場合は、 [MUI Treasury's customization examples](https://mui-treasury.com/styles/switch) を確認すると良いでしょう。
 
 ## サイズ
 

@@ -183,7 +183,7 @@ interface MuiStyledOptions<Theme extends object = any> {
   overridesResolver?: (props: any, styles: string | object, name: string) => string | object;
 }
 
-export interface CreateStyled<Theme extends object = any> {
+export interface CreateMUIStyled<Theme extends object = any> {
   <Tag extends React.ComponentType<any>, ExtraProps = {}>(
     tag: Tag,
     options?: StyledOptions,
@@ -198,11 +198,13 @@ export interface CreateStyled<Theme extends object = any> {
 }
 
 /**
- * Cutom styled functionality that support mui specific config.
+ * Custom styled utility that has a default MUI theme.
  *
- * @param options Takes an incomplete theme object and adds the missing parts.
- * @returns A complete, ready to use theme object.
+ * @param tag HTML tag or component that should serve as base.
+ * @param options Styled options for the created component.
+ * @param muiOptions Material-UI specific style options.
+ * @returns React component that has styles attached to it.
  */
-declare const muiStyled: CreateStyled;
+declare const experimentalStyled: CreateMUIStyled;
 
-export default muiStyled;
+export default experimentalStyled;

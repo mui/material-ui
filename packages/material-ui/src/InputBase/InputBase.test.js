@@ -488,18 +488,20 @@ describe('<InputBase />', () => {
     });
 
     describe('registering input', () => {
-      it("should warn if more than one input is rendered regarless how it's nested", () => {
+      it("should warn if more than one input is rendered regardless how it's nested", () => {
         expect(() => {
           render(
             <FormControl>
               <InputBase />
               <div>
-                {/* should work regarless how it's nested */}
+                {/* should work regardless how it's nested */}
                 <InputBase />
               </div>
             </FormControl>,
           );
-        }).toErrorDev('Material-UI: There are multiple InputBase components inside a FormControl.');
+        }).toErrorDev(
+          'Material-UI: There are multiple `InputBase` components inside a FormControl.\nThis creates visual inconsistencies, only use one `InputBase`.',
+        );
       });
 
       it('should not warn if only one input is rendered', () => {

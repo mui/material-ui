@@ -1,5 +1,5 @@
 ---
-title: Tooltip React component
+title: React Tooltip component
 components: Tooltip
 githubLabel: 'component: Tooltip'
 materialDesign: https://material.io/components/tooltips
@@ -122,3 +122,17 @@ The tooltip is normally shown immediately when the user's mouse hovers over the 
 On mobile, the tooltip is displayed when the user longpresses the element and hides after a delay of 1500ms. You can disable this feature with the `disableTouchListener` property.
 
 {{"demo": "pages/components/tooltips/DelayTooltips.js"}}
+
+## Accesibilidad
+
+(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#tooltip)
+
+Por defecto, Tooltip solo etiqueta a su elemento hijo. This is notably different from `title` which can either label **or** describe its child depending on whether the child already has a label. Por ejemplo, en:
+
+```html
+<button title="más información">Un botón</button>
+```
+
+el  `title` actúa como una descripción accesible. Si quieres que Tooltip actúe como una descripción accesible, puedes utilizar `describeChild`. Ten en cuenta que no deberías usar `describeChild` si Tooltip es la única etiqueta visual. De lo contrario, el hijo no tendría un nombre accesible y la descripción violaría [criterio de éxito 2.5.3 en WCAG 2.1](https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html).
+
+{{"demo": "páginas/componentes/tooltips/AccessibilityTooltips.js"}}

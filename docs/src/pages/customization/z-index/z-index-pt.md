@@ -4,7 +4,7 @@
 
 Vários componentes do Material-UI utiliza `z-index`, empregando uma escala z-index padrão em Material-UI, que foi projetada para adequar camadas de drawers, modais, snackbars, dicas, e muito mais.
 
-[Estes valores](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/styles/zIndex.js) começam em um número arbitrário, alto e específico, o suficiente para idealmente evitar conflitos.
+The `z-index` values start at an arbitrary number, high and specific enough to ideally avoid conflicts:
 
 - assistente mobile: 1000
 - acesso rápido: 1050

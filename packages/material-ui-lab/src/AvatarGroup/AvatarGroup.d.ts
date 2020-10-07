@@ -1,5 +1,9 @@
 import * as React from 'react';
 import { InternalStandardProps as StandardProps } from '@material-ui/core';
+import { OverridableStringUnion } from '@material-ui/types';
+
+export interface AvatarGroupPropsVariantOverrides {}
+export type AvatarGroupVariantDefaults = Record<'circular' | 'rounded' | 'square', true>;
 
 export interface AvatarGroupProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
@@ -25,6 +29,11 @@ export interface AvatarGroupProps extends StandardProps<React.HTMLAttributes<HTM
    * @default 'medium'
    */
   spacing?: 'small' | 'medium' | number;
+  /**
+   * The shape of the avatars.
+   * @default 'circular'
+   */
+  variant?: OverridableStringUnion<AvatarGroupVariantDefaults, AvatarGroupPropsVariantOverrides>;
 }
 
 export type AvatarGroupClassKey = keyof NonNullable<AvatarGroupProps['classes']>;

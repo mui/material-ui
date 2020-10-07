@@ -112,7 +112,7 @@ const styles = createStyles({
 });
 ```
 
-但是，为了允许这些样式来传递 TypeScript，鉴于CSS 类的名称和实际的 CSS 属性名称不一致，所赋予的定义必须是模糊的。 由于类名称应与 CSS 属性相同，因此应避免使用。
+However to allow these styles to pass TypeScript, the definitions have to be unambiguous concerning names for CSS classes and actual CSS property names. 由于类名称应与 CSS 属性相同，因此应避免使用。
 
 ```ts
 // 这样是错误的，由于 TypeScript 认为 `@media (min-width: 960px)` 是一个类名

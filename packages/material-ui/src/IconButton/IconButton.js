@@ -145,11 +145,9 @@ IconButton.propTypes = {
     if (found) {
       return new Error(
         [
-          'Material-UI: You are providing an onClick event listener ' +
-            'to a child of a button element.',
-          'Firefox will never trigger the event.',
-          'You should move the onClick listener to the parent button element.',
-          'https://github.com/mui-org/material-ui/issues/13957',
+          'Material-UI: You are providing an onClick event listener to a child of a button element.',
+          'Prefer applying it to the IconButton directly.',
+          'This guarantees that the whole <button> will be responsive to click events.',
         ].join('\n'),
       );
     }

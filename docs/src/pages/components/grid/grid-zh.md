@@ -13,7 +13,7 @@ materialDesign: https://material.io/design/layout/understanding-layout.html
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-> ⚠️ The `Grid` component shouldn't be confused with a data grid; it is closer to a layout grid. For a data grid head to [the `DataGrid` component](/components/data-grid/).
+> ⚠️ `网格` 组件不要与承载大量数据的表格进行混淆; 这个组件更倾向于布局使用。 如果需使用承载大量数据的表格，请看这里[的 `数据表格` 组件](/components/data-grid/)。
 
 ## 它是如何工作的的呢
 

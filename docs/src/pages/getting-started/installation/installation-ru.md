@@ -10,10 +10,10 @@ Material-UI доступен в виде пакета [ npm ](https://www.npmjs.
 
 ```sh
 // with npm
-npm install @material-ui/core
+npm install @material-ui/core@next @emotion/core @emotion/styled
 
 // with yarn
-yarn add @material-ui/core
+yarn add @material-ui/core@next @emotion/core @emotion/styled
 ```
 
 Обратите внимание, что [react](https://www.npmjs.com/package/react) > = 16.8.0 и [react-dom](https://www.npmjs.com/package/react-dom) > = 16.8.0 являются одноранговыми зависимостями.

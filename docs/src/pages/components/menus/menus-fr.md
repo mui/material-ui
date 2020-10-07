@@ -1,5 +1,5 @@
 ---
-title: Composant React Menu
+title: React Menu component
 components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 githubLabel: 'component: Menu'
 materialDesign: https://material.io/components/menus
@@ -46,7 +46,7 @@ Voici un exemple de personnalisation du composant. Vous pouvez en savoir plus da
 
 Le `MenuItem` est un wrapper autour de `ListItem` avec quelques styles supplémentaires. Vous pouvez utiliser les mêmes fonctionnalités de composition de liste avec le composant `MenuItem`:
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/menu).
+🎨 Si vous cherchez de l'inspiration, vous pouvez consulter les [exemples de personnalisation de MUI Treasury](https://mui-treasury.com/styles/menu).
 
 ## Hauteur maximale des menus
 

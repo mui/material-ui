@@ -1,5 +1,5 @@
 ---
-title: Select React component
+title: React Select component
 components: Select, NativeSelect
 githubLabel: 'component: Select'
 ---
@@ -60,7 +60,7 @@ To properly label your `Select` input you need an extra element with an `id` tha
 
 {{"demo": "pages/components/selects/CustomizedSelects.js"}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/select).
+🎨 インスピレーションを求めている場合は、 [MUI Treasury's customization examples](https://mui-treasury.com/styles/select) を確認すると良いでしょう。
 
 
 

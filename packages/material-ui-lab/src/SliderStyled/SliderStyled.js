@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useThemeProps, muiStyled, alpha, lighten, darken } from '@material-ui/core/styles';
+import { useThemeProps, experimentalStyled, alpha, lighten, darken } from '@material-ui/core/styles';
 import { capitalize } from '@material-ui/core/utils';
 import SliderUnstyled from '../SliderUnstyled';
 import ValueLabelStyled from './ValueLabelStyled';
@@ -48,7 +48,7 @@ const overridesResolver = (props, styles, name) => {
   return styleOverrides;
 };
 
-const SliderRoot = muiStyled(
+const SliderRoot = experimentalStyled(
   'span',
   {},
   { muiName: 'MuiSlider', overridesResolver },
@@ -125,7 +125,7 @@ const SliderRoot = muiStyled(
     ...(props.styleProps.track === 'inverted' && {
       backgroundColor:
         // Same logic as the LinearProgress track color
-        props.theme.palette.type === 'light'
+        props.theme.palette.mode === 'light'
           ? lighten(props.theme.palette.primary.main, 0.62)
           : darken(props.theme.palette.primary.main, 0.5),
     }),
@@ -173,16 +173,14 @@ const SliderRoot = muiStyled(
       ':hover': {
         boxShadow: 'none',
       },
+      ...(props.styleProps.orientation === 'vertical' && {
+        marginLeft: -3,
+        marginBottom: -4,
+      }),
     },
     ...(props.styleProps.orientation === 'vertical' && {
       marginLeft: -5,
       marginBottom: -6,
-    }),
-    ...(props.styleProps.orientation === 'vertical' && {
-      '&.Mui-disabled': {
-        marginLeft: -3,
-        marginBottom: -4,
-      },
     }),
     ...(props.styleProps.color === 'secondary' && {
       ':hover': {
@@ -226,6 +224,7 @@ const SliderRoot = muiStyled(
     '@media (pointer: coarse)': {
       top: 40,
       ...(props.styleProps.orientation === 'vertical' && {
+        top: 'auto',
         left: 31,
       }),
     },

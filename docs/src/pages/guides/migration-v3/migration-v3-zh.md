@@ -308,7 +308,7 @@ function MySelect({ children }) {
   +track
   ```
 
-### Snackbar（消息条）
+### Snackbar
 
 - [Snackbar] 匹配新的规范。
 

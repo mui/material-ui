@@ -40,7 +40,7 @@ describe('<SpeedDialAction />', () => {
       inheritComponent: Tooltip,
       mount,
       refInstanceof: window.HTMLButtonElement,
-      skip: ['componentProp'],
+      skip: ['componentProp', 'reactTestRenderer'],
     }),
   );
 

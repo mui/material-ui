@@ -51,8 +51,7 @@ export const styles = (theme) => ({
   },
   '@keyframes circular-rotate': {
     '0%': {
-      // Fix IE 11 wobbly
-      transformOrigin: '50% 50%',
+      transform: 'rotate(0deg)',
     },
     '100%': {
       transform: 'rotate(360deg)',

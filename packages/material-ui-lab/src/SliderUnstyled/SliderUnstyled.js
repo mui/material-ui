@@ -211,7 +211,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
   const touchId = React.useRef();
   // We can't use the :active browser pseudo-classes.
   // - The active state isn't triggered when clicking on the rail.
-  // - The active state isn't transfered when inversing a range slider.
+  // - The active state isn't transferred when inversing a range slider.
   const [active, setActive] = React.useState(-1);
   const [open, setOpen] = React.useState(-1);
 

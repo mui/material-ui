@@ -1,5 +1,5 @@
 ---
-filename: /packages/material-ui-lab/src/ToggleButtonGroup/ToggleButtonGroup.js
+filename: /packages/material-ui/src/ToggleButtonGroup/ToggleButtonGroup.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
@@ -11,9 +11,9 @@ filename: /packages/material-ui-lab/src/ToggleButtonGroup/ToggleButtonGroup.js
 ## Import
 
 ```js
-import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
 // or
-import { ToggleButtonGroup } from '@material-ui/lab';
+import { ToggleButtonGroup } from '@material-ui/core';
 ```
 
 You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
@@ -56,7 +56,7 @@ You can override the style of the component thanks to one of these customization
 - With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
 - With a theme and an [`overrides` property](/customization/globals/#css).
 
-If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-lab/src/ToggleButtonGroup/ToggleButtonGroup.js) for more detail.
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/ToggleButtonGroup/ToggleButtonGroup.js) for more detail.
 
 ## Demos
 

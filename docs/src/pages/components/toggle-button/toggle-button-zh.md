@@ -3,7 +3,6 @@ title: React 切换按钮组件
 components: ToggleButton, ToggleButtonGroup
 githubLabel: 'component: ToggleButton'
 materialDesign: 'https://material.io/components/buttons#toggle-button'
-packageName: '@material-ui/lab'
 ---
 
 # Toggle Button 切换按钮
@@ -16,29 +15,33 @@ packageName: '@material-ui/lab'
 
 ## 唯一的选择
 
-文本对齐的切换按钮提供了 left，right，center，full 和 justified 的选项，但是每次只能选择一个项目。 选择一个选项则会取抵消其他的选项。
+With exclusive selection, selecting one option deselects any other.
+
+In this example text justification toggle buttons present options for left, center, right, and fully justified text (disabled), with only one item available for selection at a time.
 
 {{"demo": "pages/components/toggle-button/ToggleButtons.js"}}
 
 ## 多选
 
-有一些逻辑分组 (Logically-grouped) 的选项，如粗体，斜体和下划线，则允许同时选择多个选项。
+Multiple selection allows for logically-grouped options, like bold, italic, and underline, to have multiple options selected.
 
 {{"demo": "pages/components/toggle-button/ToggleButtonsMultiple.js"}}
 
 ## 尺寸
 
-您想要一个大一点或者小一点的按钮吗？ 试着使用 `size` 属性吧。
+您想要一个大一点或者小一点的按钮吗？ 我们提供了 `size` 这个属性供您调整。
 
 {{"demo": "pages/components/toggle-button/ToggleButtonSizes.js"}}
 
 ## 垂直排列的按钮
 
+The buttons can be stacked vertically with the `orientation` prop set to "vertical".
+
 {{"demo": "pages/components/toggle-button/VerticalToggleButtons.js"}}
 
 ## 强制设置值
 
-如果您想约束至少一个按钮处于活动状态，请尝试调整 handleChange 函数。
+If you want to enforce that at least one button must be active, you can adapt your handleChange function.
 
 ```jsx
 const handleFormat = (event, newFormats) => {
@@ -68,5 +71,11 @@ const handleAlignment = (event, newAlignment) => {
 
 ## 无障碍设计
 
+### ARIA
+
 - ToggleButtonGroup 具有 `role="group"`。 请您提供一个可访问的标签，标签包含 `aria-label="label"`，`aria-labelledby="id"` 或 `<label>`。
 - ToggleButton 根据按钮的状态来设置 `aria-pressed="<bool>"`。 您应该用 `aria-label` 标记每个按钮。
+
+### 键盘输入
+
+At present, toggle buttons are in DOM order. Navigate between them with the tab key. The button behavior follows standard keyboard semantics.

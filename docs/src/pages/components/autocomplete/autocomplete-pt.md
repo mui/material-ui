@@ -1,9 +1,8 @@
 ---
-title: Componente React para Autocompletar
+title: React Autocomplete component
 components: TextField, Popper, Autocomplete
 githubLabel: 'component: Autocomplete'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#combobox'
-packageName: '@material-ui/lab'
 ---
 
 # Autocompletar
@@ -286,11 +285,13 @@ No entanto, além de relembrar valores fornecidos anteriormente, o navegador tam
 - Defina `autoComplete="new-password"`:
 
   ```jsx
-  inputProps={{
-        ...params.inputProps,
-        autoComplete: 'new-password',
-      }}
-      /&#062;
+  <TextField
+    {...params}
+    inputProps={{
+      ...params.inputProps,
+      autoComplete: 'new-password',
+    }}
+  />
   ```
 
 ### iOS VoiceOver

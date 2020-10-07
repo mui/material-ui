@@ -11,7 +11,7 @@ export const styles = (theme) => ({
   root: {
     ...theme.typography.button,
     minHeight: 36,
-    transition: theme.transitions.create(['background-color', 'box-shadow', 'border'], {
+    transition: theme.transitions.create(['background-color', 'box-shadow', 'border-color'], {
       duration: theme.transitions.duration.short,
     }),
     borderRadius: '50%',

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { usePagination } from '@material-ui/lab/Pagination';
+import usePagination from '@material-ui/core/usePagination';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({

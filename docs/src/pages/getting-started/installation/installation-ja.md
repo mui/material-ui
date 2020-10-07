@@ -9,11 +9,11 @@ Material-UIは[ npmパッケージ](https://www.npmjs.com/package/@material-ui/c
 次のコマンドを実行してください。これで、あなたの`package.json` に保存できます。
 
 ```sh
-// npmの場合
-npm install @material-ui/core
+// with npm
+npm install @material-ui/core@next @emotion/core @emotion/styled
 
-// yarnの場合
-yarn add @material-ui/core
+// with yarn
+yarn add @material-ui/core@next @emotion/core @emotion/styled
 ```
 
 [react](https://www.npmjs.com/package/react) >= 16.8.0 and [react-dom](https://www.npmjs.com/package/react-dom) >= 16.8.0が peer dependencies であることに注意してください。

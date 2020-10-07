@@ -633,7 +633,7 @@ describe('<Tooltip />', () => {
     it('should ignore event from the tooltip', () => {
       const handleMouseOver = spy();
       const { getByRole } = render(
-        <Tooltip title="Hello World" open interactive>
+        <Tooltip title="Hello World" open>
           <button type="submit" onMouseOver={handleMouseOver}>
             Hello World
           </button>
@@ -698,13 +698,12 @@ describe('<Tooltip />', () => {
     });
   });
 
-  describe('prop: interactive', () => {
-    it('should keep the overlay open if the popper element is hovered', () => {
+  describe('prop: disableInteractive', () => {
+    it('when false should keep the overlay open if the popper element is hovered', () => {
       const { getByRole } = render(
         <Tooltip
           title="Hello World"
           enterDelay={100}
-          interactive
           leaveDelay={111}
           TransitionProps={{ timeout: 10 }}
         >
@@ -731,9 +730,14 @@ describe('<Tooltip />', () => {
       expect(getByRole('tooltip')).toBeVisible();
     });
 
-    it('should not animate twice', () => {
+    it('when `true` should not keep the overlay open if the popper element is hovered', () => {
       const { getByRole } = render(
-        <Tooltip title="Hello World" interactive enterDelay={500} TransitionProps={{ timeout: 10 }}>
+        <Tooltip
+          title="Hello World"
+          enterDelay={100}
+          leaveDelay={111}
+          TransitionProps={{ timeout: 10 }}
+        >
           <button id="testChild" type="submit">
             Hello World
           </button>
@@ -742,7 +746,7 @@ describe('<Tooltip />', () => {
 
       fireEvent.mouseOver(getByRole('button'));
       act(() => {
-        clock.tick(500);
+        clock.tick(100);
       });
 
       expect(getByRole('tooltip')).toBeVisible();
@@ -752,13 +756,9 @@ describe('<Tooltip />', () => {
       expect(getByRole('tooltip')).toBeVisible();
 
       fireEvent.mouseOver(getByRole('tooltip'));
-      clock.tick(10);
+      clock.tick(111 + 10);
 
-      expect(getByRole('tooltip')).toBeVisible();
-
-      // TOD: Unclear why not running triggers microtasks but runAll does not trigger microtasks
-      // can be removed once Popper#update is sync
-      clock.runAll();
+      expect(getByRole('tooltip')).not.toBeVisible();
     });
   });
 
@@ -878,14 +878,15 @@ describe('<Tooltip />', () => {
       // Tooltip should not assume that event handlers of children are attached to the
       // outermost host
       const TextField = React.forwardRef(function TextField(props, ref) {
+        const { onFocus, ...other } = props;
         return (
-          <div ref={ref}>
-            <input type="text" {...props} />
+          <div ref={ref} {...other}>
+            <input type="text" onFocus={onFocus} />
           </div>
         );
       });
       const { getByRole } = render(
-        <Tooltip interactive open title="test">
+        <Tooltip open title="test">
           <TextField onFocus={handleFocus} />
         </Tooltip>,
       );
@@ -915,6 +916,20 @@ describe('<Tooltip />', () => {
         setProps({ open: true });
       }).toErrorDev(
         'Material-UI: A component is changing the uncontrolled open state of Tooltip to be controlled.',
+      );
+    });
+
+    it('should warn when not forwarding props', () => {
+      const BrokenButton = React.forwardRef((props, ref) => <button ref={ref}>Hello World</button>);
+
+      expect(() => {
+        render(
+          <Tooltip title="Hello World">
+            <BrokenButton />
+          </Tooltip>,
+        );
+      }).toErrorDev(
+        'The `children` component of the Tooltip is not forwarding its props correctly.',
       );
     });
   });

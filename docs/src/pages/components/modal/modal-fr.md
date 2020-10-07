@@ -1,5 +1,5 @@
 ---
-title: Modal React component
+title: React Modal component
 components: Modal
 githubLabel: 'component: Modal'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
@@ -16,7 +16,7 @@ Le composant affiche ses nœuds `children` devant un composant d'arrière-plan. 
 - 🔐 It disables scrolling of the page content while open.
 - ♿️ It properly manages focus; moving to the modal content, and keeping it there until the modal is closed.
 - ♿️ Adds the appropriate ARIA roles automatically.
-- 📦 [5 kB gzipped](/size-snapshot).
+- 📦 [5 kB gzippé](/size-snapshot).
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 

@@ -1,6 +1,4 @@
 import { AvatarGroupProps } from '../AvatarGroup';
-import { PaginationProps } from '../Pagination';
-import { PaginationItemProps } from '../PaginationItem';
 import { TabListProps } from '../TabList';
 import { TabPanelProps } from '../TabPanel';
 import { TimelineProps } from '../Timeline';
@@ -17,8 +15,6 @@ import { TreeViewProps } from '../TreeView';
 
 export interface LabComponentsPropsList {
   MuiAvatarGroup: AvatarGroupProps;
-  MuiPagination: PaginationProps;
-  MuiPaginationItem: PaginationItemProps;
   MuiTabList: TabListProps;
   MuiTabPanel: TabPanelProps;
   MuiTimeline: TimelineProps;

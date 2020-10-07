@@ -71,7 +71,7 @@ export const styles = (theme) => ({
     zIndex: theme.zIndex.tooltip,
     pointerEvents: 'none', // disable jss-rtl plugin
   },
-  /* Styles applied to the Popper component if `interactive={true}`. */
+  /* Styles applied to the Popper component unless `disableInteractive={true}`. */
   popperInteractive: {
     pointerEvents: 'auto',
   },
@@ -174,7 +174,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     enterNextDelay = 0,
     enterTouchDelay = 700,
     id: idProp,
-    interactive = false,
+    disableInteractive = false,
     leaveDelay = 0,
     leaveTouchDelay = 1500,
     onClose,
@@ -459,6 +459,22 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     ref: handleRef,
   };
 
+  if (process.env.NODE_ENV !== 'production') {
+    childrenProps['data-mui-internal-clone-element'] = true;
+
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
+      if (childNode && !childNode.getAttribute('data-mui-internal-clone-element')) {
+        console.error(
+          [
+            'Material-UI: The `children` component of the Tooltip is not forwarding its props correctly.',
+            'Please make sure that props are spread on the same element that the ref is applied to.',
+          ].join('\n'),
+        );
+      }
+    }, [childNode]);
+  }
+
   const interactiveWrapperListeners = {};
 
   if (!disableTouchListener) {
@@ -470,7 +486,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     childrenProps.onMouseOver = handleEnter();
     childrenProps.onMouseLeave = handleLeave();
 
-    if (interactive) {
+    if (!disableInteractive) {
       interactiveWrapperListeners.onMouseOver = handleEnter(false);
       interactiveWrapperListeners.onMouseLeave = handleLeave(false);
     }
@@ -480,7 +496,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     childrenProps.onFocus = handleFocus();
     childrenProps.onBlur = handleLeave();
 
-    if (interactive) {
+    if (!disableInteractive) {
       interactiveWrapperListeners.onFocus = handleFocus(false);
       interactiveWrapperListeners.onBlur = handleLeave(false);
     }
@@ -518,7 +534,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
       {React.cloneElement(children, childrenProps)}
       <PopperComponent
         className={clsx(classes.popper, {
-          [classes.popperInteractive]: interactive,
+          [classes.popperInteractive]: !disableInteractive,
           [classes.popperArrow]: arrow,
         })}
         placement={placement}
@@ -594,6 +610,12 @@ Tooltip.propTypes = {
    */
   disableHoverListener: PropTypes.bool,
   /**
+   * Makes a tooltip not interactive, i.e. it will close when the user
+   * hovers over the tooltip before the `leaveDelay` is expired.
+   * @default false
+   */
+  disableInteractive: PropTypes.bool,
+  /**
    * Do not respond to long press touch events.
    * @default false
    */
@@ -619,12 +641,6 @@ Tooltip.propTypes = {
    * If you don't provide this prop. It falls back to a randomly generated id.
    */
   id: PropTypes.string,
-  /**
-   * Makes a tooltip interactive, i.e. will not close when the user
-   * hovers over the tooltip before the `leaveDelay` is expired.
-   * @default false
-   */
-  interactive: PropTypes.bool,
   /**
    * The number of milliseconds to wait before hiding the tooltip.
    * This prop won't impact the leave touch delay (`leaveTouchDelay`).

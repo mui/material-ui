@@ -24,16 +24,18 @@ export {
   StyledComponentProps,
 } from './withStyles';
 export { default as withTheme, WithTheme } from './withTheme';
-export { default as muiStyled } from './muiStyled';
+export { default as experimentalStyled, CreateMUIStyled } from './experimentalStyled';
 export { default as styled, ComponentCreator, StyledProps } from './styled';
+export {
+  default as MuiThemeProvider,
+  default as ThemeProvider,
+  ThemeProviderProps,
+} from './ThemeProvider';
 export {
   createGenerateClassName,
   jssPreset,
   ServerStyleSheets,
   StylesProvider,
-  ThemeProvider as MuiThemeProvider,
-  ThemeProvider,
-  ThemeProviderProps,
 } from '@material-ui/styles';
 export { ComponentsProps } from './props';
 export { ComponentsVariants } from './variants';

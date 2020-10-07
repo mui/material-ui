@@ -9,11 +9,11 @@ Material-UI está disponible como un [ paquete npm ](https://www.npmjs.com/packa
 Para instalarlo y guardarlo en las dependencias de tu ` package.json `, ejecuta:
 
 ```sh
-// usando npm
-npm install @material-ui/core
+// con npm
+npm install @material-ui/core@next @emotion/core @emotion/styled
 
-// usando yarn
-yarn add @material-ui/core
+// con yarn
+yarn add @material-ui/core@next @emotion/core @emotion/styled
 ```
 
 Ten en cuenta que [ react ](https://www.npmjs.com/package/react) > = 16.8.0 y [ react-dom ](https://www.npmjs.com/package/react-dom) > = 16.8.0 son dependencias tipo "peer".
