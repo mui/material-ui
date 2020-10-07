@@ -8,13 +8,13 @@ import {
   createMount,
   createClientRender,
   act,
+  fireEvent,
   describeConformance,
 } from 'test/utils';
 import Icon from '@material-ui/core/Icon';
 import Fab from '@material-ui/core/Fab';
 import SpeedDial from './SpeedDial';
 import SpeedDialAction from '../SpeedDialAction';
-import { fireEvent } from '@testing-library/dom';
 
 describe('<SpeedDial />', () => {
   // StrictModeViolation: not using act(), prefer test/utils/createClientRender
