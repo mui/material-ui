@@ -75,9 +75,9 @@ El `Tooltip` envuelve texto largo por defecto para hacerlo legible.
 
 ## Explora
 
-Un tooltip puede ser interactivo. No se cerrará cuando el usuario pase sobre el tooltip antes de que el `leaveDelay` expire.
+Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus)). No se cerrará cuando el usuario pase sobre el tooltip antes de que el `leaveDelay` expire. You can disable this behavior (thus failing the success criterion which is required to reach level AA) by passing `disableInteractive`.
 
-{{"demo": "pages/components/tooltips/InteractiveTooltips.js"}}
+{{"demo": "pages/components/tooltips/NonInteractiveTooltips.js"}}
 
 ## Elementos deshabilitados
 
