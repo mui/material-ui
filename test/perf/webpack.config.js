@@ -10,8 +10,6 @@ module.exports = {
     path: path.resolve(__dirname, '../../tmp'),
     filename: 'tests.js',
   },
-  // Avoid bundling the whole @material-ui/icons package. x2 the bundling speed.
-  plugins: [new webpack.IgnorePlugin(/material-icons\/SearchIcons\.js/)],
   module: {
     ...webpackBaseConfig.module,
     rules: webpackBaseConfig.module.rules.concat([
