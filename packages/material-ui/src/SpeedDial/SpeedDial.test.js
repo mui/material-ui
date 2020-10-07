@@ -1,21 +1,25 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy } from 'sinon';
+import { spy, useFakeTimers } from 'sinon';
 import {
   findOutermostIntrinsic,
   getClasses,
   wrapsIntrinsicElement,
   createMount,
+  createClientRender,
+  act,
   describeConformance,
 } from 'test/utils';
 import Icon from '@material-ui/core/Icon';
 import Fab from '@material-ui/core/Fab';
 import SpeedDial from './SpeedDial';
 import SpeedDialAction from '../SpeedDialAction';
+import { fireEvent } from '@testing-library/dom';
 
-describe.only('<SpeedDial />', () => {
+describe('<SpeedDial />', () => {
   // StrictModeViolation: not using act(), prefer test/utils/createClientRender
   const mount = createMount({ strict: false });
+  const render = createClientRender({ strict: false });
   let classes;
 
   const icon = <Icon>font_icon</Icon>;
@@ -124,6 +128,39 @@ describe.only('<SpeedDial />', () => {
       });
     });
   });
+
+  describe('mock time', () => {
+    let clock;
+
+    beforeEach(() => {
+      clock = useFakeTimers();
+    });
+
+    afterEach(() => {
+      clock.restore();
+    });
+
+    it('should support keyboard navigation', () => {
+      const handleOpen = spy();
+      const { getByRole, getAllByRole } = render(
+        <SpeedDial ariaLabel="mySpeedDial" onOpen={handleOpen}>
+          <SpeedDialAction tooltipTitle="action1" />
+          <SpeedDialAction tooltipTitle="action2" />
+        </SpeedDial>,
+      );
+      const fab = getByRole('button')
+      fab.focus();
+      act(() => {
+        clock.tick();
+      });
+      expect(handleOpen.callCount).to.equal(1);
+      const actions = getAllByRole('menuitem');
+      expect(actions.length).to.equal(2);
+      fireEvent.keyDown(fab, { key: 'ArrowUp' });
+      expect(document.activeElement).to.equal(actions[0]);
+      expect(fab).to.have.attribute('aria-expanded', 'true');
+    });
+  })
 
   describe('dial focus', () => {
     let actionRefs;
