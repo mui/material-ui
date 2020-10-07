@@ -81,17 +81,23 @@ function getLanguageConfig(demoData) {
 
 export default function getDemo(demoData) {
   const baseConfig = {
-    title: 'Material demo',
+    title: demoData.title,
     description: demoData.githubLocation,
     files: {
-      'index.html': `
-<body>
-  <!-- Fonts to support Material Design -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
-  <!-- Icons to support Material Design -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-  <div id="root"></div>
-</body>
+      'public/index.html': `
+<!DOCTYPE html>
+<html lang="${demoData.language}">
+  <head>
+    <title>${demoData.title}</title>
+  </head>
+  <body>
+    <!-- Fonts to support Material Design -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+    <!-- Icons to support Material Design -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <div id="root"></div>
+  </body>
+</html>
       `,
     },
   };

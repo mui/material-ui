@@ -50,23 +50,29 @@ function getDemoName(location) {
   return location.replace(/(.+?)(\w+)\.\w+$$/, '$2');
 }
 
-function getDemoData(codeVariant, demo, githubLocation) {
+function useDemoData(codeVariant, demo, githubLocation) {
+  const userLanguage = useSelector((state) => state.options.userLanguage);
+  const title = `${getDemoName(githubLocation)} Material Demo`;
   if (codeVariant === CODE_VARIANTS.TS && demo.rawTS) {
     return {
       codeVariant: CODE_VARIANTS.TS,
       githubLocation: githubLocation.replace(/\.js$/, '.tsx'),
+      language: userLanguage,
       raw: demo.rawTS,
       Component: demo.tsx,
       sourceLanguage: 'tsx',
+      title,
     };
   }
 
   return {
     codeVariant: CODE_VARIANTS.JS,
     githubLocation,
+    language: userLanguage,
     raw: demo.raw,
     Component: demo.js,
     sourceLanguage: 'jsx',
+    title,
   };
 }
 
@@ -284,7 +290,7 @@ function DemoToolbar(props) {
       files: {
         'package.json': {
           content: {
-            title: demoConfig.title,
+            name: demoConfig.title,
             description: demoConfig.description,
             dependencies: demoConfig.dependencies,
             devDependencies: {
@@ -710,7 +716,7 @@ export default function Demo(props) {
   const classes = useStyles();
   const t = useSelector((state) => state.options.t);
   const codeVariant = useSelector((state) => state.options.codeVariant);
-  const demoData = getDemoData(codeVariant, demo, githubLocation);
+  const demoData = useDemoData(codeVariant, demo, githubLocation);
 
   const [demoHovered, setDemoHovered] = React.useState(false);
   const handleDemoHover = (event) => {
