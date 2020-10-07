@@ -20,12 +20,11 @@ export default function NakedStyledComponents() {
             fontFamily="h6.fontFamily"
             fontSize={['h6.fontSize', 'h4.fontSize', 'h3.fontSize']}
             p={[2, 3, 4]}
-            fuu={Math.round(Math.random() * 10000)}
           >
             styled-components
           </NakedStyleComponents>
         </StyledComponentsThemeProvider>
       ))}
-    </React.Profiler>          
+    </React.Profiler>
   );
 }

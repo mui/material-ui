@@ -31,6 +31,6 @@ export default function StyledComponentsBoxStyledSystem() {
           </BoxStyledSystem>
         </StyledComponentsThemeProvider>
       ))}
-    </React.Profiler>             
+    </React.Profiler>
   );
 }

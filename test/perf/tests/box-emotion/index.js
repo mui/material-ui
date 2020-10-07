@@ -22,7 +22,7 @@ export default function BoxEmotion() {
           >
             emotion
           </Box>
-      </EmotionTheme>
+        </EmotionTheme>
       ))}
     </React.Profiler>
   );

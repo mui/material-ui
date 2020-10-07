@@ -5,7 +5,7 @@ export const logReactMetrics = (
   baseDuration, // estimated time to render the entire subtree without memoization
   startTime, // when React began rendering this update
   commitTime, // when React committed this update
-  interactions // the Set of interactions belonging to this update
+  interactions, // the Set of interactions belonging to this update
 ) => {
   console.info({
     id,
@@ -16,4 +16,4 @@ export const logReactMetrics = (
     commitTime,
     interactions,
   });
-}
+};

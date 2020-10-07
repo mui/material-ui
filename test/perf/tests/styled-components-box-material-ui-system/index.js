@@ -26,6 +26,6 @@ export default function StyledComponentsBoxMaterialUISystem() {
           </BoxMaterialSystem>
         </StyledComponentsThemeProvider>
       ))}
-    </React.Profiler>            
+    </React.Profiler>
   );
 }

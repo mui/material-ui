@@ -9,11 +9,8 @@ const rootEl = document.getElementById('root');
 // ./Button/index.js
 // ./Dialog/index.js
 
-const testSuitePath = window.location.search.replace("?", "");
+const testSuitePath = window.location.search.replace('?', '');
 
 const Component = requirePerfTests(testSuitePath).default;
 
-ReactDOM.render(
-  <Component />,
-  rootEl,
-);
+ReactDOM.render(<Component />, rootEl);
