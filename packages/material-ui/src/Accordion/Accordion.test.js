@@ -25,6 +25,11 @@ describe('<Accordion />', () => {
     skip: ['componentProp'],
   }));
 
+  // TODO REVERT LATER
+  it('fails', () => {
+    expect(1).to.equal(2);
+  });
+
   it('should render and not be controlled', () => {
     const wrapper = mount(<Accordion>{minimalChildren}</Accordion>);
     const root = wrapper.find(`.${classes.root}`).first();
