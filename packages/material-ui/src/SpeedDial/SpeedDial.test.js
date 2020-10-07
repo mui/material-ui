@@ -13,7 +13,7 @@ import Fab from '@material-ui/core/Fab';
 import SpeedDial from './SpeedDial';
 import SpeedDialAction from '../SpeedDialAction';
 
-describe('<SpeedDial />', () => {
+describe.only('<SpeedDial />', () => {
   // StrictModeViolation: not using act(), prefer test/utils/createClientRender
   const mount = createMount({ strict: false });
   let classes;
