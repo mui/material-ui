@@ -1,4 +1,5 @@
 import React from 'react';
+import { createMuiTheme } from '@material-ui/core/styles';
 import styledComponents, {
   ThemeProvider as StyledComponentsThemeProvider,
 } from 'styled-components';
@@ -15,17 +16,21 @@ styledSystemTheme.fonts = styledSystemTheme.typography;
 
 const App = () => {
   return (
-    <StyledComponentsThemeProvider theme={styledSystemTheme}>
-      <BoxStyledSystem
-        color="primary.main"
-        bg="background.paper"
-        fontFamily="h6.fontFamily"
-        fontSize={['h6.fontSize', 'h4.fontSize', 'h3.fontSize']}
-        p={[2, 3, 4]}
-      >
-        styled-system
-      </BoxStyledSystem>
-    </StyledComponentsThemeProvider>
+    <>
+      {new Array(100).fill().map(() => (
+        <StyledComponentsThemeProvider theme={styledSystemTheme}>
+          <BoxStyledSystem
+            color="primary.main"
+            bg="background.paper"
+            fontFamily="h6.fontFamily"
+            fontSize={['h6.fontSize', 'h4.fontSize', 'h3.fontSize']}
+            p={[2, 3, 4]}
+          >
+            styled-system
+          </BoxStyledSystem>
+        </StyledComponentsThemeProvider>
+      ))}
+    </>             
   );
 }
 

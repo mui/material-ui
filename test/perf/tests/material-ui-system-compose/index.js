@@ -1,7 +1,9 @@
 import React from 'react';
+import { createMuiTheme } from '@material-ui/core/styles';
 import { spacing, palette, typography, compose } from '@material-ui/system';
 
 const materialSystem = compose(palette, spacing, typography);
+const materialSystemTheme = createMuiTheme();
 
 const App = () => {
   const result = materialSystem({

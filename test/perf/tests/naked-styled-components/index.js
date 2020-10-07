@@ -10,18 +10,22 @@ const NakedStyleComponents = styledComponents('div')(spacing);
 
 const App = () => {
   return (
-    <StyledComponentsThemeProvider theme={materialSystemTheme}>
-      <NakedStyleComponents
-        color="primary.main"
-        bgcolor="background.paper"
-        fontFamily="h6.fontFamily"
-        fontSize={['h6.fontSize', 'h4.fontSize', 'h3.fontSize']}
-        p={[2, 3, 4]}
-        fuu={Math.round(Math.random() * 10000)}
-      >
-        styled-components
-      </NakedStyleComponents>
-    </StyledComponentsThemeProvider>
+    <>
+      {new Array(100).fill().map(() => (
+        <StyledComponentsThemeProvider theme={materialSystemTheme}>
+          <NakedStyleComponents
+            color="primary.main"
+            bgcolor="background.paper"
+            fontFamily="h6.fontFamily"
+            fontSize={['h6.fontSize', 'h4.fontSize', 'h3.fontSize']}
+            p={[2, 3, 4]}
+            fuu={Math.round(Math.random() * 10000)}
+          >
+            styled-components
+          </NakedStyleComponents>
+        </StyledComponentsThemeProvider>
+      ))}
+    </>          
   );
 }
 

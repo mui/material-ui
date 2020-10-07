@@ -1,7 +1,13 @@
 import React from 'react';
+import { createMuiTheme } from '@material-ui/core/styles';
 import { space, color, fontFamily, fontSize, compose } from 'styled-system';
 
 const styledSystem = compose(color, space, fontFamily, fontSize);
+const styledSystemTheme = createMuiTheme();
+styledSystemTheme.breakpoints = ['40em', '52em', '64em'];
+styledSystemTheme.colors = styledSystemTheme.palette;
+styledSystemTheme.fontSizes = styledSystemTheme.typography;
+styledSystemTheme.fonts = styledSystemTheme.typography;
 
 const App = () => {
   const result = styledSystem({

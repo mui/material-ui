@@ -1,6 +1,9 @@
 
 import React from 'react';
+import { createMuiTheme } from '@material-ui/core/styles';
 import { styleFunction } from '@material-ui/core/Box';
+
+const materialSystemTheme = createMuiTheme();
 
 const App = () => {
   const result = styleFunction({
