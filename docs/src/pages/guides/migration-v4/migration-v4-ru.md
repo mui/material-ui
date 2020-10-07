@@ -188,7 +188,7 @@ const theme = createMuiTheme({
 
 ### Alert
 
-- Move the component from the lab to the core. The component is now stable.
+- Перемещаем компонент из lab в core. Компонент теперь стабилен.
 
   ```diff
   -import Alert from '@material-ui/lab/Alert';
@@ -197,10 +197,9 @@ const theme = createMuiTheme({
   +import AlertTitle from '@material-ui/core/AlertTitle';
   ```
 
+### Autocomplete (Автодополнение)
 
-  ### Autocomplete (Автодополнение)
-
-- Move the component from the lab to the core. The component is now stable.
+- Перемещаем компонент из lab в core. Компонент теперь стабилен.
 
   ```diff
   -import Autocomplete from '@material-ui/lab/Autocomplete';
@@ -211,7 +210,7 @@ const theme = createMuiTheme({
 
 ### Avatar
 
-- Rename `circle` to `circular` for consistency. The possible values should be adjectives, not nouns:
+- Переименовываем `circle` в `circular` для единообразия. The possible values should be adjectives, not nouns:
 
   ```diff
   -<Avatar variant="circle">
@@ -222,7 +221,7 @@ const theme = createMuiTheme({
 
 ### Badge
 
-- Rename `circle` to `circular` and `rectangle` to `rectangular` for consistency. The possible values should be adjectives, not nouns:
+- Переименовываем `circle` в `circular` и `rectangle` в `rectangular` для единообразия. The possible values should be adjectives, not nouns:
 
   ```diff
   -<Badge overlap="circle">
@@ -249,7 +248,7 @@ const theme = createMuiTheme({
 
 ### BottomNavigation
 
-- TypeScript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
+- TypeScript: тип параметра `event` в `onChange` теперь не `React.ChangeEvent` а `React.SyntheticEvent`.
 
   ```diff
   -<BottomNavigation onChange={(event: React.ChangeEvent<{}>) => {}} />
@@ -258,7 +257,7 @@ const theme = createMuiTheme({
 
 ### Button
 
-- The button `color` prop is now "primary" by default, and "default" has been removed. This makes the button closer to the Material Design specification and simplifies the API.
+- Свойство `color` у кнопки теперь "primary" по умолчанию, а опция "default" удалена. За счет этого кнопка становится ближе к спецификации Material Design, а API становится проще.
 
   ```diff
   -<Button color="primary" />
@@ -267,9 +266,9 @@ const theme = createMuiTheme({
   +<Button />
   ```
 
-### Групповой прогресс
+### CircularProgress
 
-- The `static` variant has been merged into the `determinate` variant, with the latter assuming the appearance of the former. The removed variant was rarely useful. It was an exception to Material Design, and was removed from the specification.
+- Вариант `static` объединен с вариантом `determinate`, и последний подразумевает внешний вид первого. Удаленный вариант редко был полезен. Это было исключением из Material Design и удалено из спецификации.
 
   ```diff
   -<CircularProgress variant="determinate" />
@@ -284,14 +283,14 @@ const theme = createMuiTheme({
 
 ### Collapse
 
-- The `collapsedHeight` prop was renamed `collapsedSize` to support the horizontal direction.
+- Свойство `collapsedHeight` переименовано в `collapsedSize` для поддержки горизонтального направления.
 
   ```diff
   -<Collapse collapsedHeight={40}>
   +<Collapse collapsedSize={40}>
   ```
 
-- The `classes.container` key was changed to match the convention of the other components.
+- Ключ `classes.container` был изменен для соответствия соглашениям других компонентов.
 
   ```diff
   -<Collapse classes={{ container: 'collapse' }}>
@@ -300,7 +299,7 @@ const theme = createMuiTheme({
 
 ### Dialog
 
-- The onE\* transition props were removed. Use TransitionProps instead.
+- Свойства onE\* transition были удалены. Используйте вместо них TransitionProps.
 
   ```diff
   <Dialog
@@ -371,7 +370,7 @@ const theme = createMuiTheme({
   +</Accordion>
   ```
 
-- TypeScript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
+- TypeScript: тип параметра `event` в `onChange` теперь не `React.ChangeEvent` а `React.SyntheticEvent`.
 
   ```diff
   -<Accordion onChange={(event: React.ChangeEvent<{}>, expanded: boolean) => {}} />
@@ -422,10 +421,10 @@ const theme = createMuiTheme({
 
 - Rename the `GridList` components to `ImageList` to align with the current Material Design naming.
 - Rename the GridList `spacing` prop to `gap` to align with the CSS attribute.
-- Rename the GridList `cellHeight` prop to `rowHieght`.
-- Add the `variant` prop to GridList.
-- Rename the GridListItemBar `actionPosition` prop to `position`. (Note also the related classname changes.)
-- Use CSS object-fit. For IE11 support either use a polyfill such as https://www.npmjs.com/package/object-fit-images, or continue to use the v4 component.
+- Переименовываем GridList свойство `cellHeight` в `rowHieght`.
+- Добавляем в GridList свойство `variant`.
+- Переименовываем GridListItemBar свойство `actionPosition`  в `position`. (Обратите внимание, что соответствующее имя класса также изменяется.)
+- Используем CSS object-fit. For IE11 support either use a polyfill such as https://www.npmjs.com/package/object-fit-images, or continue to use the v4 component.
 
 ```diff
 -import GridList from '@material-ui/core/GridList';
@@ -453,7 +452,7 @@ const theme = createMuiTheme({
 
 ### Menu
 
-- The onE\* transition props were removed. Use TransitionProps instead.
+- Свойства onE\* transition были удалены. Используйте вместо них TransitionProps.
 
   ```diff
   <Menu
@@ -476,11 +475,11 @@ const theme = createMuiTheme({
 
 ### Modal
 
-- Remove `onRendered` prop. Depending on your use case either use a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element or an effect hook in the child component.
+- Удаляем свойство `onRendered`. Depending on your use case either use a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element or an effect hook in the child component.
 
 ### Pagination
 
-- Move the component from the lab to the core. The component is now stable.
+- Перемещаем компонент из lab в core. Компонент теперь стабилен.
 
   ```diff
   -import Pagination from '@material-ui/lab/Pagination';
@@ -502,7 +501,7 @@ const theme = createMuiTheme({
 
 ### Popover
 
-- The onE\* transition props were removed. Use TransitionProps instead.
+- Свойства onE\* transition были удалены. Используйте вместо них TransitionProps.
 
   ```diff
   <Popover
@@ -525,11 +524,11 @@ const theme = createMuiTheme({
 
 ### Portal
 
-- Remove `onRendered` prop. Depending on your use case either use a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element or an effect hook in the child component.
+- Удаляем свойство `onRendered`. Depending on your use case either use a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element or an effect hook in the child component.
 
 ### Rating
 
-- Move the component from the lab to the core. The component is now stable.
+- Перемещаем компонент из lab в core. Компонент теперь стабилен.
 
   ```diff
   -import Rating from '@material-ui/lab/Rating';
@@ -558,7 +557,7 @@ const theme = createMuiTheme({
 
 ### RootRef
 
-- This component was removed. You can get a reference to the underlying DOM node of our components via `ref` prop. The component relied on [`ReactDOM.findDOMNode`](https://reactjs.org/docs/react-dom.html#finddomnode) which is [deprecated in `React.StrictMode`](https://reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage).
+- This component was removed. Ссылку на лежащий в основе наших компонентов DOM узел вы можете получить через `ref`. Компонент основывался на [`ReactDOM.findDOMNode`](https://reactjs.org/docs/react-dom.html#finddomnode), использование которого [порицается в `React.StrictMode`](https://reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage).
 
   ```diff
   -<RootRef rootRef={ref}>
@@ -569,14 +568,14 @@ const theme = createMuiTheme({
 
 ### Skeleton
 
-- Move the component from the lab to the core. The component is now stable.
+- Перемещаем компонент из lab в core. Компонент теперь стабилен.
 
   ```diff
   -import Skeleton from '@material-ui/lab/Skeleton';
   +import Skeleton from '@material-ui/core/Skeleton';
   ```
 
-- Rename `circle` to `circular` and `rect` to `rectangular` for consistency. The possible values should be adjectives, not nouns:
+- Переименовываем `circle` в `circular` и `rect` в `rectangular` для единообразия. The possible values should be adjectives, not nouns:
 
   ```diff
   -<Skeleton variant="circle" />
@@ -589,7 +588,7 @@ const theme = createMuiTheme({
 
 ### Slider
 
-- TypeScript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
+- TypeScript: тип параметра `event` в `onChange` теперь не `React.ChangeEvent` а `React.SyntheticEvent`.
 
   ```diff
   -<Slider onChange={(event: React.ChangeEvent<{}>, value: unknown) => {}} />
@@ -598,14 +597,14 @@ const theme = createMuiTheme({
 
 ### Snackbar
 
-- The notification now displays at the bottom left on large screens. This better matches the behavior of Gmail, Google Keep, material.io, etc. You can restore the previous behavior with:
+- Уведомление теперь отображается в левом нижнем углу на больших экранах. Это лучше соответствует поведению Gmail, Google Keep, material.io и т.д. You can restore the previous behavior with:
 
   ```diff
   -<Snackbar />
   +<Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} />
   ```
 
-- The onE\* transition props were removed. Use TransitionProps instead.
+- Свойства onE\* transition были удалены. Используйте вместо них TransitionProps.
 
   ```diff
   <Snackbar
@@ -628,7 +627,7 @@ const theme = createMuiTheme({
 
 ### SpeedDial
 
-- Move the component from the lab to the core. The component is now stable.
+- Перемещаем компонент из lab в core. Компонент теперь стабилен.
 
   ```diff
   -import SpeedDial from '@material-ui/lab/SpeedDial';
@@ -684,9 +683,9 @@ const theme = createMuiTheme({
   + getItemAriaLabel={…}
   ```
 
-### Вкладки
+### Tabs
 
-- TypeScript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
+- TypeScript: тип параметра `event` в `onChange` теперь не `React.ChangeEvent` а `React.SyntheticEvent`.
 
   ```diff
   -<Tabs onChange={(event: React.ChangeEvent<{}>, value: unknown) => {}} />
@@ -748,7 +747,7 @@ const theme = createMuiTheme({
 
 ### ToggleButton
 
-- Move the component from the lab to the core. The component is now stable.
+- Перемещаем компонент из lab в core. Компонент теперь стабилен.
 
   ```diff
   -import ToggleButton from '@material-ui/lab/ToggleButton';
@@ -757,7 +756,22 @@ const theme = createMuiTheme({
   +import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
   ```
 
-### Оформление текста
+### Tooltip
+
+- Tooltips are now interactive by default.
+
+  The previous default behavior failed [success criterion 1.4.3 ("hoverable") in WCAG 2.1](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus). To reflect the new default value, the prop was renamed to `disableInteractive`. If you want to restore the old behavior (thus not reaching level AA), you can apply the following diff:
+
+  ```diff
+  -<Tooltip>
+  +<Tooltip disableInteractive>
+
+  # Interactive tooltips no longer need the `interactive` prop.
+  -<Tooltip interactive>
+  +<Tooltip>
+  ```
+
+### Typography
 
 - Заменяем свойство `srOnly`, чтобы не дублировать возможности [System](https://material-ui.com/system/basics/):
 
