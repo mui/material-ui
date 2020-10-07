@@ -197,8 +197,7 @@ const theme = createMuiTheme({
   +import AlertTitle from '@material-ui/core/AlertTitle';
   ```
 
-
-  ### Autocomplete 自动补全组件
+### Autocomplete 自动补全组件
 
 - 该组件已从实验室包移动到核心包。 现在这个组件处于稳定版本。
 
@@ -220,7 +219,7 @@ const theme = createMuiTheme({
   +<Avatar classes={{ circular: 'className' }}>
   ```
 
-### Badge 徽章
+### Badge
 
 - 为保持一致性，我们将 `circle` 重命名为 `circular`，`rectangle` 重命名为 `rectangular`。 可能的值应该是形容词，而不是名词。
 
@@ -247,7 +246,7 @@ const theme = createMuiTheme({
   }}>
   ```
 
-### BottomNavigation 底部导航
+### BottomNavigation（底部导航）
 
 - TypeScript：`onChange` 中的 `event` 的类型不再是 `React.ChangeEvent`，而是`React.SyntheticEvent`。
 
@@ -256,7 +255,7 @@ const theme = createMuiTheme({
   +<BottomNavigation onChange={(event: React.SyntheticEvent) => {}} />
   ```
 
-### Button 按钮
+### Button
 
 - 按钮的 `颜色（color）` 属性默认情况下为 "primary"，同时 "default" 属性已被删除。 这使得按钮更接近于 Material Design 规范，并且也简化了 API。
 
@@ -267,7 +266,7 @@ const theme = createMuiTheme({
   +<Button />
   ```
 
-### CircularProgress 进度环
+### CircularProgress（进度环）
 
 - `static` 变量已合并到 `determinate` 变量中，后者将采用前者的外观。 这是因为删除的这个变量很少有用。 这属于 Material Design 的例外情况，并且它在规范中已被删除。
 
@@ -350,21 +349,21 @@ const theme = createMuiTheme({
   +<Accordion>
   -  <ExpansionPanelSummary>
   +  <AccordionSummary>
-       <Typography>Location</Typography>
-       <Typography>Select trip destination</Typography>
+       <Typography>位置</Typography>
+       <Typography>选择出行目的地</Typography>
   -  </ExpansionPanelSummary>
   +  </AccordionSummary>
   -  <ExpansionPanelDetails>
   +  <AccordionDetails>
        <Chip label="Barbados" onDelete={() => {}} />
-       <Typography variant="caption">Select your destination of choice</Typography>
+       <Typography variant="caption">请选择您的目的地</Typography>
   -  </ExpansionPanelDetails>
   +  </AccordionDetails>
      <Divider />
   -  <ExpansionPanelActions>
   +  <AccordionActions>
-       <Button size="small">Cancel</Button>
-       <Button size="small">Save</Button>
+       <Button size="small">取消</Button>
+       <Button size="small">保存</Button>
   -  </ExpansionPanelActions>
   +  </AccordionActions>
   -</ExpansionPanel>
@@ -596,7 +595,7 @@ const theme = createMuiTheme({
   +<Slider onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
   ```
 
-### Snackbar 消息条
+### Snackbar
 
 - 现在在大屏幕上的消息条通知会在左下角显示。 这更符合 Gmail、Google Keep、material.io 等应用的行为。 你可以用以下方法恢复到以前的行为：
 
@@ -755,6 +754,21 @@ const theme = createMuiTheme({
   -import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
   +import ToggleButton from '@material-ui/core/ToggleButton';
   +import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
+  ```
+
+### Tooltip
+
+- Tooltips are now interactive by default.
+
+  The previous default behavior failed [success criterion 1.4.3 ("hoverable") in WCAG 2.1](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus). To reflect the new default value, the prop was renamed to `disableInteractive`. If you want to restore the old behavior (thus not reaching level AA), you can apply the following diff:
+
+  ```diff
+  -<Tooltip>
+  +<Tooltip disableInteractive>
+
+  # Interactive tooltips no longer need the `interactive` prop.
+  -<Tooltip interactive>
+  +<Tooltip>
   ```
 
 ### 文字排版
