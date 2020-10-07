@@ -40,16 +40,16 @@ export default function AnchorElTooltips() {
         },
       }}
     >
-      <div ref={areaRef}>
-        <Box
-          bgcolor="primary.main"
-          color="primary.contrastText"
-          onMouseMove={handleMouseMove}
-          p={2}
-        >
-          Hover
-        </Box>
-      </div>
+      <Box
+        /* @ts-expect-error need to fix #17010 */
+        ref={areaRef}
+        bgcolor="primary.main"
+        color="primary.contrastText"
+        onMouseMove={handleMouseMove}
+        p={2}
+      >
+        Hover
+      </Box>
     </Tooltip>
   );
 }
