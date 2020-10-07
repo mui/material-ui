@@ -75,9 +75,9 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 
 ## インタラクティブ
 
-ツールチップをインタラクティブにすることができます。 ツールチップをインタラクティブにすることができます。 `leaveDelay` が期限切れになる前に、ユーザーがツールチップにカーソルを合わせても閉じません。
+Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus)). ツールチップをインタラクティブにすることができます。 `leaveDelay` が期限切れになる前に、ユーザーがツールチップにカーソルを合わせても閉じません。 You can disable this behavior (thus failing the success criterion which is required to reach level AA) by passing `disableInteractive`.
 
-{{"demo": "pages/components/tooltips/InteractiveTooltips.js"}}
+{{"demo": "pages/components/tooltips/NonInteractiveTooltips.js"}}
 
 ## 無効な要素
 
