@@ -129,7 +129,7 @@ describe('<SpeedDial />', () => {
     });
   });
 
-  describe('mock time', () => {
+  describe('mock time', () => {
     let clock;
 
     beforeEach(() => {
@@ -148,7 +148,7 @@ describe('<SpeedDial />', () => {
           <SpeedDialAction tooltipTitle="action2" />
         </SpeedDial>,
       );
-      const fab = getByRole('button')
+      const fab = getByRole('button');
       fab.focus();
       act(() => {
         clock.tick();
@@ -160,7 +160,7 @@ describe('<SpeedDial />', () => {
       expect(document.activeElement).to.equal(actions[0]);
       expect(fab).to.have.attribute('aria-expanded', 'true');
     });
-  })
+  });
 
   describe('dial focus', () => {
     let actionRefs;
