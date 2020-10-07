@@ -23,6 +23,7 @@ async function createBrowser() {
       await page.goto(url);
 
       return {
+        page,
         close: () => page.close(),
       };
     },
@@ -38,12 +39,15 @@ async function runMeasures(
   const measures = [];
 
   for (let i = 0; i < times; i++) {
-    var start = performance.now();
-    const page = await browser.openPage(`http://${SERVER}:${PORT}/${APP}?${testCase}`);
-    const end = performance.now();
+    const { page, close } = await browser.openPage(`http://${SERVER}:${PORT}/${APP}?${testCase}`);
 
-    measures.push(end - start);
-    await page.close();
+    const perf = await page.evaluate(_ => {
+      const { loadEventEnd, navigationStart } = performance.timing;
+      return loadEventEnd - navigationStart;
+    });
+
+    measures.push(perf);
+    await close();
   }
 
   return measures;
