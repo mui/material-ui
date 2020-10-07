@@ -23,24 +23,21 @@ describe('<List />', () => {
 
   it('should render with padding classes', () => {
     const { container } = render(<List className="woofList" />);
-    const root = container.querySelector('ul');
 
-    expect(root).to.have.class(classes.padding);
+    expect(container.firstChild).to.have.class(classes.padding);
   });
 
   it('can disable the padding', () => {
     const { container } = render(<List disablePadding />);
-    const root = container.querySelector('ul');
 
-    expect(root).not.to.have.class(classes.padding);
+    expect(container.firstChild).not.to.have.class(classes.padding);
   });
 
   describe('prop: subheader', () => {
     it('should render with subheader class', () => {
       const { container } = render(<List subheader={<ListSubheader>Title</ListSubheader>} />);
-      const root = container.querySelector('ul');
 
-      expect(root).to.have.class(classes.subheader);
+      expect(container.firstChild).to.have.class(classes.subheader);
     });
 
     it('should render ListSubheader', () => {
@@ -55,16 +52,14 @@ describe('<List />', () => {
   describe('prop: dense', () => {
     it('is disabled by default', () => {
       const { container } = render(<List />);
-      const root = container.querySelector('ul');
 
-      expect(root).not.to.have.class(classes.dense);
+      expect(container.firstChild).not.to.have.class(classes.dense);
     });
 
     it('adds a dense class', () => {
       const { container } = render(<List dense />);
-      const root = container.querySelector('ul');
 
-      expect(root).to.have.class(classes.dense);
+      expect(container.firstChild).to.have.class(classes.dense);
     });
 
     it('sets dense on deep nested ListItem', () => {
@@ -83,9 +78,9 @@ describe('<List />', () => {
 
       const listItemClasses = getClasses(<ListItem />);
 
-      const liItems = container.querySelector('ul');
+      const liItems = container.querySelector('li');
       for (let i = 0; i < liItems.length; i += 1) {
-        expect(liItems.item(i)).to.have.class(listItemClasses.dense);
+        expect(liItems[i]).to.have.class(listItemClasses.dense);
       }
     });
   });
