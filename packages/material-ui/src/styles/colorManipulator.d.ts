@@ -12,6 +12,11 @@ export function recomposeColor(color: ColorObject): string;
 export function getContrastRatio(foreground: string, background: string): number;
 export function getLuminance(color: string): number;
 export function emphasize(color: string, coefficient?: number): string;
+/**
+ * @deprecated
+ * Use `import { alpha } from '@material-ui/core/styles'` instead.
+ */
 export function fade(color: string, value: number): string;
+export function alpha(color: string, value: number): string;
 export function darken(color: string, coefficient: number): string;
 export function lighten(color: string, coefficient: number): string;
