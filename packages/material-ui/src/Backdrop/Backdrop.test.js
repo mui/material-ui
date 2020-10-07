@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, describeConformance } from 'test/utils';
+import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
 import Backdrop from './Backdrop';
 import Fade from '../Fade';
 
 describe('<Backdrop />', () => {
   const mount = createMount({ strict: true });
+  const render = createClientRender();
   let classes;
 
   before(() => {
@@ -25,11 +26,11 @@ describe('<Backdrop />', () => {
   }));
 
   it('should render a backdrop div with content of nested children', () => {
-    const wrapper = mount(
+    const { container } = render(
       <Backdrop open className="woofBackdrop">
         <h1>Hello World</h1>
       </Backdrop>,
     );
-    expect(wrapper.contains(<h1>Hello World</h1>)).to.equal(true);
+    expect(container.querySelector('h1')).to.have.text('Hello World');
   });
 });
