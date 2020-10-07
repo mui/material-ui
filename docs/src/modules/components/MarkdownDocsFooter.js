@@ -229,27 +229,32 @@ function MarkdownDocsFooter(props) {
     throw new Error('Missing description in the page');
   }
 
-  React.useEffect(() => {
+  const setCurrentRatingFromCookie = React.useCallback(() => {
     setCurrentRating(getCurrentRating(currentPage.pathname));
   }, [currentPage.pathname]);
 
+  React.useEffect(() => {
+    setCurrentRatingFromCookie();
+  }, [setCurrentRatingFromCookie]);
+
   async function processFeedback(rating, comment) {
-    setCurrentRating(rating);
     const result = await submitFeedback(currentPage.pathname, rating, comment);
     if (result) {
       setSnackbarMessage(t('feedbackSubmitted'));
     } else {
-      setCurrentRating(null);
+      setCurrentRatingFromCookie();
       setSnackbarMessage(t('feedbackFailed'));
     }
     setSnackbarOpen(true);
   }
 
   const handleClickUp = async () => {
+    setCurrentRating(1);
     await processFeedback(1);
   };
 
   const handleClickDown = () => {
+    setCurrentRating(0);
     setCommentOpen(true);
   };
 
@@ -257,6 +262,8 @@ function MarkdownDocsFooter(props) {
     setCommentOpen(false);
     if (comment !== null) {
       await processFeedback(0, comment);
+    } else {
+      setCurrentRatingFromCookie();
     }
   };
 
@@ -297,14 +304,18 @@ function MarkdownDocsFooter(props) {
                   {t('ratingMessage')}
                 </Typography>
                 <Tooltip title={t('feedbackYes')}>
-                  <IconButton onClick={handleClickUp} disabled={currentRating === 1}>
-                    <ThumbUpIcon color={currentRating === 1 ? 'primary' : undefined} />
-                  </IconButton>
+                  <span>
+                    <IconButton onClick={handleClickUp} disabled={currentRating === 1}>
+                      <ThumbUpIcon color={currentRating === 1 ? 'primary' : undefined} />
+                    </IconButton>
+                  </span>
                 </Tooltip>
                 <Tooltip title={t('feedbackNo')}>
-                  <IconButton onClick={handleClickDown} disabled={currentRating === 0}>
-                    <ThumbDownIcon color={currentRating === 0 ? 'error' : undefined} />
-                  </IconButton>
+                  <span>
+                    <IconButton onClick={handleClickDown} disabled={currentRating === 0}>
+                      <ThumbDownIcon color={currentRating === 0 ? 'error' : undefined} />
+                    </IconButton>
+                  </span>
                 </Tooltip>
               </div>
               {nextPage.displayNav === false ? null : (
