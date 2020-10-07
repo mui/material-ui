@@ -6,7 +6,7 @@ import CssBaseline from './CssBaseline';
 describe('<CssBaseline />', () => {
   // StrictModeViolation: makeStyles will retain the styles in the head in strict mode
   // which becomes an issue for global styles
-  const render = createClientRender();
+  const render = createClientRender({ strict: false });
 
   it('renders its children', () => {
     const { container } = render(
