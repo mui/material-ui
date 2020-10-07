@@ -197,8 +197,7 @@ const theme = createMuiTheme({
   +import AlertTitle from '@material-ui/core/AlertTitle';
   ```
 
-
-  ### Autocomplete (Auto-complétion)
+### Autocomplete (Auto-complétion)
 
 - Move the component from the lab to the core. The component is now stable.
 
@@ -755,6 +754,21 @@ const theme = createMuiTheme({
   -import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
   +import ToggleButton from '@material-ui/core/ToggleButton';
   +import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
+  ```
+
+### Tooltip
+
+- Tooltips are now interactive by default.
+
+  The previous default behavior failed [success criterion 1.4.3 ("hoverable") in WCAG 2.1](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus). To reflect the new default value, the prop was renamed to `disableInteractive`. If you want to restore the old behavior (thus not reaching level AA), you can apply the following diff:
+
+  ```diff
+  -<Tooltip>
+  +<Tooltip disableInteractive>
+
+  # Interactive tooltips no longer need the `interactive` prop.
+  -<Tooltip interactive>
+  +<Tooltip>
   ```
 
 ### Typographie
