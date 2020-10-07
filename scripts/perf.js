@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable no-await-in-loop */
 const puppeteer = require('puppeteer');
 const { performance } = require('perf_hooks');
 const waitOn = require('wait-on');
@@ -70,13 +72,13 @@ const printMeasures = (measures) => {
   });
 };
 
-async function run(argv) {
+async function run() {
   await waitOn({
     resources: [`http://${SERVER}:${PORT}/${APP}`],
   });
 
   const browser = await createBrowser();
-  let measures = {};
+  const measures = {};
 
   try {
     measures['@material-ui/system colors'] = await runMeasures(

@@ -1,11 +1,10 @@
-import * as React from 'react';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { styleFunction } from '@material-ui/core/Box';
 
 const materialSystemTheme = createMuiTheme();
 
 export default function MaterialUISystemAllInclusive() {
-  const result = styleFunction({
+  styleFunction({
     theme: materialSystemTheme,
     color: 'primary.main',
     bgcolor: 'background.paper',

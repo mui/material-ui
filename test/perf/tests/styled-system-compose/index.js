@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { space, color, fontFamily, fontSize, compose } from 'styled-system';
 
@@ -10,7 +9,7 @@ styledSystemTheme.fontSizes = styledSystemTheme.typography;
 styledSystemTheme.fonts = styledSystemTheme.typography;
 
 export default function StyledSystemCompose() {
-  const result = styledSystem({
+  styledSystem({
     theme: styledSystemTheme,
     color: 'primary.main',
     bg: 'background.paper',
