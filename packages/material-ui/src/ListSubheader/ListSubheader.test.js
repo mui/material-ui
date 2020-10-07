@@ -1,15 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createShallow, getClasses, createMount, describeConformance } from 'test/utils';
+import { getClasses, createMount, describeConformance, createClientRender } from 'test/utils';
 import ListSubheader from './ListSubheader';
 
 describe('<ListSubheader />', () => {
   const mount = createMount();
-  let shallow;
+  const render = createClientRender();
   let classes;
 
   before(() => {
-    shallow = createShallow({ dive: true });
     classes = getClasses(<ListSubheader />);
   });
 
@@ -21,38 +20,44 @@ describe('<ListSubheader />', () => {
   }));
 
   it('should display primary color', () => {
-    const wrapper = shallow(<ListSubheader color="primary" />);
-    expect(wrapper.hasClass(classes.colorPrimary)).to.equal(true);
-    expect(wrapper.hasClass(classes.root)).to.equal(true);
+    const { container } = render(<ListSubheader color="primary" />);
+
+    expect(container.firstChild).to.have.class(classes.colorPrimary);
+    expect(container.firstChild).to.have.class(classes.root);
   });
 
   it('should display inset class', () => {
-    const wrapper = shallow(<ListSubheader inset />);
-    expect(wrapper.hasClass(classes.inset)).to.equal(true);
-    expect(wrapper.hasClass(classes.root)).to.equal(true);
+    const { container } = render(<ListSubheader inset />);
+
+    expect(container.firstChild).to.have.class(classes.inset);
+    expect(container.firstChild).to.have.class(classes.root);
   });
 
   describe('prop: disableSticky', () => {
     it('should display sticky class', () => {
-      const wrapper = shallow(<ListSubheader />);
-      expect(wrapper.hasClass(classes.sticky)).to.equal(true);
+      const { container } = render(<ListSubheader />);
+
+      expect(container.firstChild).to.have.class(classes.sticky);
     });
 
     it('should not display sticky class', () => {
-      const wrapper = shallow(<ListSubheader disableSticky />);
-      expect(wrapper.hasClass(classes.sticky)).to.equal(false);
+      const { container } = render(<ListSubheader disableSticky />);
+
+      expect(container.firstChild).to.not.have.class(classes.sticky);
     });
   });
 
   describe('prop: disableGutters', () => {
     it('should not display gutters class', () => {
-      const wrapper = shallow(<ListSubheader disableGutters />);
-      expect(wrapper.hasClass(classes.gutters)).to.equal(false);
+      const { container } = render(<ListSubheader disableGutters />);
+
+      expect(container.firstChild).to.not.have.class(classes.gutters);
     });
 
     it('should display gutters class', () => {
-      const wrapper = shallow(<ListSubheader />);
-      expect(wrapper.hasClass(classes.gutters)).to.equal(true);
+      const { container } = render(<ListSubheader />);
+
+      expect(container.firstChild).to.have.class(classes.gutters);
     });
   });
 });

@@ -66,44 +66,6 @@ index 2ab151c6c8..6db6326d77 100644
        [
          `Material-UI: You are using a variant value \`test\` for which you didn't define styles.`,
          `Please create a new variant matcher in your theme for this variant. To learn more about matchers visit https://next.material-ui.com/r/custom-component-variants.`,
-diff --git a/packages/material-ui-utils/src/elementAcceptingRef.test.tsx b/packages/material-ui-utils/src/elementAcceptingRef.test.tsx
-index 10c5a998cb..b5390af22b 100644
---- a/packages/material-ui-utils/src/elementAcceptingRef.test.tsx
-+++ b/packages/material-ui-utils/src/elementAcceptingRef.test.tsx
-@@ -89,11 +89,11 @@ describe('elementAcceptingRef', () => {
- 
-     it('accepts lazy', () => {
-       const Component = React.lazy(() =>
--        Promise.resolve({ default: (props: any) => <div {...props} /> }),
-+        Promise.resolve({
-+          default: React.forwardRef((props, ref) => <div {...props} ref={ref} />),
-+        }),
-       );
- 
--      // should actually fail when mounting since the ref is forwarded to a function component
--      // but since this happens in a promise our consoleErrorMock doesn't catch it properly
-       assertPass(<Component />);
-     });
- 
-diff --git a/packages/material-ui-utils/src/elementTypeAcceptingRef.test.tsx b/packages/material-ui-utils/src/elementTypeAcceptingRef.test.tsx
-index 38176e3c1a..b72bf5d316 100644
---- a/packages/material-ui-utils/src/elementTypeAcceptingRef.test.tsx
-+++ b/packages/material-ui-utils/src/elementTypeAcceptingRef.test.tsx
-@@ -93,11 +93,11 @@ describe('elementTypeAcceptingRef', () => {
- 
-     it('accepts lazy', () => {
-       const Component = React.lazy(() =>
--        Promise.resolve({ default: (props: any) => <div {...props} /> }),
-+        Promise.resolve({
-+          default: React.forwardRef((props, ref) => <div ref={ref} {...props} />),
-+        }),
-       );
- 
--      // should actually fail when mounting since the ref is forwarded to a function component
--      // but since this happens in a promise our consoleErrorMock doesn't catch it properly
-       assertPass(Component);
-     });
- 
 diff --git a/packages/material-ui/src/Autocomplete/Autocomplete.test.js b/packages/material-ui/src/Autocomplete/Autocomplete.test.js
 index 07345638e7..acfecbdf3e 100644
 --- a/packages/material-ui/src/Autocomplete/Autocomplete.test.js

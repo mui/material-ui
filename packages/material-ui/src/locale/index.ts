@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { ComponentsPropsList } from '../styles/props';
 
 export interface Localization {
@@ -16,17 +15,14 @@ export interface Localization {
     MuiRating?: {
       defaultProps: Pick<ComponentsPropsList['MuiRating'], 'emptyLabelText' | 'getLabelText'>;
     };
+    MuiAutocomplete?: {
+      defaultProps: Pick<
+        ComponentsPropsList['MuiAutocomplete'],
+        'clearText' | 'closeText' | 'loadingText' | 'noOptionsText' | 'openText'
+      >;
+    };
     // The core package has no dependencies on the @material-ui/lab components.
     // We can't use ComponentsPropsList, we have to duplicate and inline the definitions.
-    MuiAutocomplete?: {
-      defaultProps: {
-        clearText?: string;
-        closeText?: string;
-        loadingText?: React.ReactNode;
-        noOptionsText?: React.ReactNode;
-        openText?: string;
-      };
-    };
     MuiPagination?: {
       defaultProps: Pick<ComponentsPropsList['MuiPagination'], 'aria-label' | 'getItemAriaLabel'>;
     };
