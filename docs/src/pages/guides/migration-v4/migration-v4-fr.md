@@ -186,6 +186,20 @@ const theme = createMuiTheme({
 });
 ```
 
+### Styles
+
+- Renamed `fade` to `alpha` to better describe the it's functionality.
+
+```diff
+- import { fade } from '@material-ui/core/styles';
++ import { alpha } from '@material-ui/core/styles';
+
+const classes = makeStyles(theme => ({
+-  backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
++  backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+}));
+```
+
 ### Alert
 
 - Move the component from the lab to the core. The component is now stable.
@@ -681,6 +695,16 @@ const theme = createMuiTheme({
   - backIconButtonText="Avant"
   - nextIconButtonText="Après
   + getItemAriaLabel={…}
+  ```
+
+- Rename `onChangeRowsPerPage` to `onRowsPerPageChange` and `onChangePage` to `onPageChange` due to API consistency.
+
+  ```diff
+  <TablePagination
+  - onChangeRowsPerPage={()=>{}}
+  - onChangePage={()=>{}}
+  + onRowsPerPageChange={()=>{}}
+  + onPageChange={()=>{}}
   ```
 
 ### Tabs (Onglets)
