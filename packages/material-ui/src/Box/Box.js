@@ -1,20 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import {
-  borders,
-  compose,
-  display,
-  flexbox,
-  grid,
-  palette,
-  positions,
-  shadows,
-  sizing,
-  spacing,
-  typography,
-  css,
-  styleFunctionInversed,
-} from '@material-ui/system';
+import { styleFunctionInversed } from '@material-ui/system';
 import styled from '../styles/experimentalStyled';
 
 export const styleFunction = styleFunctionInversed;

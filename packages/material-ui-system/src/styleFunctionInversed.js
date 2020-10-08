@@ -28,57 +28,56 @@ const getThemeValue = (prop, value, theme) => {
     theme,
   };
 
-  if(borders.filterProps.indexOf(prop) !== -1) {
+  if (borders.filterProps.indexOf(prop) !== -1) {
     return borders(inputProps);
   }
-  if(display.filterProps.indexOf(prop) !== -1) {
+  if (display.filterProps.indexOf(prop) !== -1) {
     return display(inputProps);
   }
-  if(flexbox.filterProps.indexOf(prop) !== -1) {
+  if (flexbox.filterProps.indexOf(prop) !== -1) {
     return flexbox(inputProps);
   }
-  if(grid.filterProps.indexOf(prop) !== -1) {
+  if (grid.filterProps.indexOf(prop) !== -1) {
     return grid(inputProps);
   }
-  if(positions.filterProps.indexOf(prop) !== -1) {
+  if (positions.filterProps.indexOf(prop) !== -1) {
     return positions(inputProps);
   }
-  if(palette.filterProps.indexOf(prop) !== -1) {
+  if (palette.filterProps.indexOf(prop) !== -1) {
     return palette(inputProps);
   }
-  if(shadows.filterProps.indexOf(prop) !== -1) {
+  if (shadows.filterProps.indexOf(prop) !== -1) {
     return shadows(inputProps);
   }
-  if(sizing.filterProps.indexOf(prop) !== -1) {
+  if (sizing.filterProps.indexOf(prop) !== -1) {
     return sizing(inputProps);
   }
-  if(spacing.filterProps.indexOf(prop) !== -1) {
+  if (spacing.filterProps.indexOf(prop) !== -1) {
     return spacing(inputProps);
   }
-  if(typography.filterProps.indexOf(prop) !== -1) {
+  if (typography.filterProps.indexOf(prop) !== -1) {
     return typography(inputProps);
   }
   return { [prop]: value };
 };
 
 const traverseSx = (styles, theme) => {
-  if(!styles)
-    return null;
+  if (!styles) return null;
 
-  if(typeof styles !== 'object') {
+  if (typeof styles !== 'object') {
     // value
     return styles;
   }
 
   let css = {};
 
-  Object.keys(styles).forEach(styleKey => {
-    if(typeof styles[styleKey] === 'object') {
-      if(filterProps.indexOf(styleKey) !== -1) {
+  Object.keys(styles).forEach((styleKey) => {
+    if (typeof styles[styleKey] === 'object') {
+      if (filterProps.indexOf(styleKey) !== -1) {
         css = {
           ...css,
-          ...getThemeValue(styleKey, value, theme)
-        }
+          ...getThemeValue(styleKey, value, theme),
+        };
       } else {
         const transformedValue = traverseSx(styles[styleKey], theme);
         css[styleKey] = transformedValue;
@@ -87,22 +86,22 @@ const traverseSx = (styles, theme) => {
       const value = styles[styleKey];
       css = {
         ...css,
-        ...getThemeValue(styleKey, value, theme)
+        ...getThemeValue(styleKey, value, theme),
       };
     }
   });
 
   return css;
-}
+};
 
-const styleFunctionInversed = props => {
+const styleFunctionInversed = (props) => {
   let result = {};
-  Object.keys(props).forEach(prop => {
-    if(filterProps.indexOf(prop) !== -1) {
+  Object.keys(props).forEach((prop) => {
+    if (filterProps.indexOf(prop) !== -1) {
       result = {
         ...result,
-        ...getThemeValue(prop, props[prop], props.theme)
-      }
+        ...getThemeValue(prop, props[prop], props.theme),
+      };
     }
   });
 
@@ -112,7 +111,7 @@ const styleFunctionInversed = props => {
     ...result,
     ...sxValue,
   };
-}
+};
 
 styleFunctionInversed.filterProps = filterProps;
 

@@ -43,15 +43,18 @@ export default function ContinuousSlider() {
       </Typography>
       <Slider disabled defaultValue={30} aria-labelledby="disabled-slider" />
       <Typography gutterBottom>Regular Box</Typography>
-      <Box component="span" sx={{
-         p: 1,
-         bgcolor: 'primary.main',
-         color: 'green',
-         ':hover': {
-           backgroundColor: 'secondary.main',
-           border: "1px solid #232323",
-         }
-      }}>
+      <Box
+        component="span"
+        sx={{
+          p: 1,
+          bgcolor: 'primary.main',
+          color: 'green',
+          ':hover': {
+            backgroundColor: 'secondary.main',
+            border: '1px solid #232323',
+          },
+        }}
+      >
         <Slider
           value={value}
           onChange={handleChange}
