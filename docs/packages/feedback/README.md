@@ -41,7 +41,7 @@ The project includes an IAM access policy that will grant the lambda function ac
 
 To set this up, first [set up the credentials](https://github.com/claudiajs/claudia/blob/master/getting_started.md#configuring-access-credentials), then:
 
-1. run `yarn install` to install the dependencies
+1. run `yarn` to install the dependencies
 2. run `yarn setup` to create the lambda project under the default name on AWS.
    This will also ask you for a table name for development and production.
    If you used the above AWS command, they will be `feedback-dev` and `feedback-dev` respectively.
