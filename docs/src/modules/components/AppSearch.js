@@ -3,11 +3,12 @@ import url from 'url';
 import { useSelector } from 'react-redux';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { fade, useTheme, makeStyles } from '@material-ui/core/styles';
+import { alpha, useTheme, makeStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import SearchIcon from '@material-ui/icons/Search';
 import { handleEvent } from 'docs/src/modules/components/MarkdownLinks';
 import docsearch from 'docsearch.js';
+import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 
 const useStyles = makeStyles(
   (theme) => ({
@@ -76,9 +77,9 @@ const useStyles = makeStyles(
       marginRight: theme.spacing(2),
       marginLeft: theme.spacing(1),
       borderRadius: theme.shape.borderRadius,
-      backgroundColor: fade(theme.palette.common.white, 0.15),
+      backgroundColor: alpha(theme.palette.common.white, 0.15),
       '&:hover': {
-        backgroundColor: fade(theme.palette.common.white, 0.25),
+        backgroundColor: alpha(theme.palette.common.white, 0.25),
       },
       '& $inputInput': {
         transition: theme.transitions.create('width'),
@@ -143,6 +144,10 @@ export default function AppSearch() {
 
   React.useEffect(() => {
     if (desktop) {
+      // In non-SSR languages, fall back to English.
+      const facetFilterLanguage =
+        LANGUAGES_SSR.indexOf(userLanguage) !== -1 ? `language:${userLanguage}` : `language:en`;
+
       // This assumes that by the time this effect runs the Input component is committed
       // this holds true as long as the effect and the component are in the same
       // suspense boundary. If you move effect and component apart be sure to check
@@ -152,7 +157,7 @@ export default function AppSearch() {
         indexName: 'material-ui',
         inputSelector: '#docsearch-input',
         algoliaOptions: {
-          facetFilters: ['version:next', `language:${userLanguage}`],
+          facetFilters: ['version:next', facetFilterLanguage],
         },
         autocompleteOptions: {
           openOnFocus: true,

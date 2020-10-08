@@ -1,6 +1,6 @@
 import React from 'react';
 import { expect } from 'chai';
-import { createMount } from 'test/utils';
+import { createClientRender } from 'test/utils';
 import { Input } from '@material-ui/core';
 import { isMuiElement } from '@material-ui/core/utils';
 import PropTypes from 'prop-types';
@@ -8,7 +8,7 @@ import withTheme from './withTheme';
 import ThemeProvider from '../ThemeProvider';
 
 describe('withTheme', () => {
-  const mount = createMount();
+  const render = createClientRender();
 
   it('should inject the theme', () => {
     const ref = React.createRef();
@@ -23,7 +23,7 @@ describe('withTheme', () => {
 
     const TestWithTheme = withTheme(Test);
 
-    mount(
+    render(
       <ThemeProvider theme={{ foo: 'foo' }}>
         <TestWithTheme />
       </ThemeProvider>,
@@ -57,7 +57,7 @@ describe('withTheme', () => {
       const ThemedTarget = withTheme(TargetComponent);
 
       const ref = React.createRef();
-      mount(<ThemedTarget ref={ref} />);
+      render(<ThemedTarget ref={ref} />);
       expect(ref.current instanceof TargetComponent).to.equal(true);
     });
 
@@ -67,7 +67,7 @@ describe('withTheme', () => {
       );
 
       const ref = React.createRef();
-      mount(<ThemedTarget ref={ref} />);
+      render(<ThemedTarget ref={ref} />);
 
       expect(ref.current.nodeName).to.equal('DIV');
     });

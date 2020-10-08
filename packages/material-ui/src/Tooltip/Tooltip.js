@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { deepmerge, elementAcceptingRef } from '@material-ui/utils';
-import { fade } from '../styles/colorManipulator';
+import { alpha } from '../styles/colorManipulator';
 import withStyles from '../styles/withStyles';
 import capitalize from '../utils/capitalize';
 import Grow from '../Grow';
@@ -79,7 +79,7 @@ export const styles = (theme) => ({
   popperArrow: arrowGenerator(),
   /* Styles applied to the tooltip (label wrapper) element. */
   tooltip: {
-    backgroundColor: fade(theme.palette.grey[700], 0.92),
+    backgroundColor: alpha(theme.palette.grey[700], 0.92),
     borderRadius: theme.shape.borderRadius,
     color: theme.palette.common.white,
     fontFamily: theme.typography.fontFamily,
@@ -101,7 +101,7 @@ export const styles = (theme) => ({
     width: '1em',
     height: '0.71em' /* = width / sqrt(2) = (length of the hypotenuse) */,
     boxSizing: 'border-box',
-    color: fade(theme.palette.grey[700], 0.9),
+    color: alpha(theme.palette.grey[700], 0.9),
     '&::before': {
       content: '""',
       margin: 'auto',
@@ -173,6 +173,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     enterDelay = 100,
     enterNextDelay = 0,
     enterTouchDelay = 700,
+    followCursor = false,
     id: idProp,
     disableInteractive = false,
     leaveDelay = 0,
@@ -440,6 +441,22 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     open = false;
   }
 
+  const positionRef = React.useRef({ x: 0, y: 0 });
+  const popperRef = React.useRef();
+
+  const handleMouseMove = (event) => {
+    const childrenProps = children.props;
+    if (childrenProps.handleMouseMove) {
+      childrenProps.handleMouseMove(event);
+    }
+
+    positionRef.current = { x: event.clientX, y: event.clientY };
+
+    if (popperRef.current) {
+      popperRef.current.scheduleUpdate();
+    }
+  };
+
   const nameOrDescProps = {};
   const titleIsString = typeof title === 'string';
   if (describeChild) {
@@ -457,6 +474,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     className: clsx(other.className, children.props.className),
     onTouchStart: detectTouchStart,
     ref: handleRef,
+    ...(followCursor ? { onMouseMove: handleMouseMove } : {}),
   };
 
   if (process.env.NODE_ENV !== 'production') {
@@ -538,7 +556,23 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
           [classes.popperArrow]: arrow,
         })}
         placement={placement}
-        anchorEl={childNode}
+        anchorEl={
+          followCursor
+            ? {
+                clientHeight: 0,
+                clientWidth: 0,
+                getBoundingClientRect: () => ({
+                  top: positionRef.current.y,
+                  left: positionRef.current.x,
+                  right: positionRef.current.x,
+                  bottom: positionRef.current.y,
+                  width: 0,
+                  height: 0,
+                }),
+              }
+            : childNode
+        }
+        popperRef={popperRef}
         open={childNode ? open : false}
         id={id}
         transition
@@ -636,6 +670,11 @@ Tooltip.propTypes = {
    * @default 700
    */
   enterTouchDelay: PropTypes.number,
+  /**
+   * If `true`, the tooltip follow the cursor over the wrapped element.
+   * @default false
+   */
+  followCursor: PropTypes.bool,
   /**
    * This prop is used to help implement the accessibility logic.
    * If you don't provide this prop. It falls back to a randomly generated id.

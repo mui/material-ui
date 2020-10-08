@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useThemeVariants } from '@material-ui/styles';
 import capitalize from '../utils/capitalize';
-import { fade } from '../styles/colorManipulator';
+import { alpha } from '../styles/colorManipulator';
 import withStyles from '../styles/withStyles';
 import Button from '../Button';
 
@@ -87,13 +87,13 @@ export const styles = (theme) => ({
   /* Styles applied to the children if `variant="text"` and `color="primary"`. */
   groupedTextPrimary: {
     '&:not(:last-child)': {
-      borderColor: fade(theme.palette.primary.main, 0.5),
+      borderColor: alpha(theme.palette.primary.main, 0.5),
     },
   },
   /* Styles applied to the children if `variant="text"` and `color="secondary"`. */
   groupedTextSecondary: {
     '&:not(:last-child)': {
-      borderColor: fade(theme.palette.secondary.main, 0.5),
+      borderColor: alpha(theme.palette.secondary.main, 0.5),
     },
   },
   /* Styles applied to the children if `variant="outlined"`. */
