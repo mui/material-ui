@@ -5036,12 +5036,12 @@ classnames@2.2.6, classnames@^2.2.5, classnames@^2.2.6:
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
   integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
 
-claudia-api-builder@^4:
+claudia-api-builder@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/claudia-api-builder/-/claudia-api-builder-4.1.2.tgz#a44479ee44d41936c0bf68c2fe9c8d30f3f31daf"
   integrity sha512-xXS9ew32KRJSMQGHMTEsvSkd1FTs9GK3JjiBIuxk9EJz2hubryrWiTzsJQvcVcfBYE0fb7bO+ZhH2/fqqG7Acg==
 
-claudia@^5:
+claudia@^5.12.0:
   version "5.12.0"
   resolved "https://registry.yarnpkg.com/claudia/-/claudia-5.12.0.tgz#774e05d00d29cb6064d19da1c0d4a4713f2836e0"
   integrity sha512-ukgOGUNeIaU23xQB5r41AqGPAcq8bBd5LGz4Q880aRgGSW6VGHVMD/srsZcWM6mP4XKSmaofHzmJfoIXSmlJFg==

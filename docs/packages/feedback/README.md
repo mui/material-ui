@@ -6,7 +6,8 @@ If you wish to deploy your own instance for testing, follow the steps below.
 
 ## Prerequisites
 
-Create an AWS profile in ~/.aws/credentials called "claudia" with credentials corresponding to an IAM user with AWSLambdaFullAccess and IAMFullAccess policies.
+Create an AWS profile in ~/.aws/credentials called "claudia" with credentials corresponding to an IAM user with AmazonAPIGatewayAdministrator, AWSLambdaFullAccess and IAMFullAccess policies.
+You can do that with `aws configure --profile claudia`.
 
 Create a table in DynamoDB, with a `string` partition key called `id`, and a sort key called `page`. You can do that from the DynamoDB web console, or using the AWS CLI command line. Here is an example command that will create the `feedback-dev` table with the minimal provisioned throughput:
 
@@ -41,13 +42,14 @@ The project includes an IAM access policy that will grant the lambda function ac
 
 > ⚠️ When setting up for the first time, you will need to delete the included `claudia.json` file that is specific to the MUI installation. Alternatively, if making changes to the function that you intend to submit back, then to avoid inadvetantly commiting changes to `claudia.json`, use `--config` with each command to create and use a local config file, and exclude this file in your `~/.gitignore`.
 
-To set this up, first [set up the credentials](https://github.com/claudiajs/claudia/blob/master/getting_started.md#configuring-access-credentials), then:
+To set this up, first [set up the credentials](https://claudiajs.com/tutorials/installing.html#configuring-access-credentials), then:
 
-1. run `yarn` to install the dependencies
-2. run `yarn setup` to create the lambda project under the default name on AWS.
-   This will also ask you for a table name for development and production.
+1. run `yarn install` (from the root workspace) to install the dependencies
+1. Navigate into the directory of this README, e.g. `cd docs/packages/feedback`
+1. run `yarn setup` to create the lambda function on AWS under the default name.
+   This will also ask you for table names for development and production.
    If you used the above AWS command, they will be `feedback-dev` and `feedback-dev` respectively.
-3. Test the API with using the [example requests below](#testing)
+1. Test the API using the [example requests below](#testing)
 
 For subsequent updates, use the `npm run deploy` command.
 
