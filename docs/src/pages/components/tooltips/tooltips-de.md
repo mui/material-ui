@@ -115,6 +115,18 @@ Verwenden Sie einen anderen Übergang.
 
 {{"demo": "pages/components/tooltips/TransitionsTooltips.js"}}
 
+## Follow cursor
+
+You can enable the tooltip to follow the cursor by setting `followCursor={true}`.
+
+{{"demo": "pages/components/tooltips/FollowCursorTooltips.js"}}
+
+## Gefälschtes Referenzobjekt
+
+In the event you need to implement a custom placement, you can use the `anchorEl` prop: The value of the `anchorEl` prop can be a reference to a fake DOM element. You need to create an object shaped like the [`ReferenceObject`](https://github.com/FezVrasta/popper.js/blob/0642ce0ddeffe3c7c033a412d4d60ce7ec8193c3/packages/popper/index.d.ts#L118-L123).
+
+{{"demo": "pages/components/tooltips/AnchorElTooltips.js"}}
+
 ## Ein-und ausblenden
 
 Der Tooltip wird normalerweise sofort angezeigt, wenn sich die Maus des Benutzers über dem Element befindet und sofort ausgeblendet wird, wenn die Maus des Benutzers verlassen wird. Eine Verzögerung beim Anzeigen oder Ausblenden des Tooltips kann über die Eigenschaften `enterDelay` und `leaveDelay` hinzugefügt werden, wie in der Demo zum kontrollierten Tooltip oben gezeigt.
