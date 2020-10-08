@@ -113,6 +113,18 @@ Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13]
 
 {{"demo": "pages/components/tooltips/TransitionsTooltips.js"}}
 
+## Follow cursor
+
+You can enable the tooltip to follow the cursor by setting `followCursor={true}`.
+
+{{"demo": "pages/components/tooltips/FollowCursorTooltips.js"}}
+
+## 占位的参考对象
+
+In the event you need to implement a custom placement, you can use the `anchorEl` prop: The value of the `anchorEl` prop can be a reference to a fake DOM element. You need to create an object shaped like the [`ReferenceObject`](https://github.com/FezVrasta/popper.js/blob/0642ce0ddeffe3c7c033a412d4d60ce7ec8193c3/packages/popper/index.d.ts#L118-L123).
+
+{{"demo": "pages/components/tooltips/AnchorElTooltips.js"}}
+
 ## 显示和隐藏组件
 
 一般情况下，当用户的鼠标悬停在元素上时，工具提示会立即显示，而用户的鼠标离开当前元素时，它则会立即隐藏。 可以通过 `enterDelay` 和 `leaveDelay` 属性来控制显示及隐藏文字提示的延迟，如上面的"受控的文字提示"部分的例子所示。
