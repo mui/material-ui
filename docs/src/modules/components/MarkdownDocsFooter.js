@@ -4,21 +4,22 @@ import * as PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { exactProp } from '@material-ui/utils';
 import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import Tooltip from '@material-ui/core/Tooltip';
-import ThumbUpIcon from '@material-ui/icons/ThumbUpAlt';
-import ThumbDownIcon from '@material-ui/icons/ThumbDownAlt';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import Button from '@material-ui/core/Button';
-import Divider from '@material-ui/core/Divider';
-import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import Divider from '@material-ui/core/Divider';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import Tooltip from '@material-ui/core/Tooltip';
+import IconButton from '@material-ui/core/IconButton';
+import ThumbUpIcon from '@material-ui/icons/ThumbUpAlt';
+import ThumbDownIcon from '@material-ui/icons/ThumbDownAlt';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Snackbar from '@material-ui/core/Snackbar';
 import { getCookie, pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
@@ -44,31 +45,29 @@ function Comment(props) {
   };
 
   return (
-    <div>
-      <Dialog open={open} onClose={handleCancel} aria-labelledby="feedback-dialog-title">
-        <DialogTitle id="feedback-dialog-title">{t('feedbackDialogTitle')}</DialogTitle>
-        <DialogContent>
-          <DialogContentText>{t('feedbackDialogMessage')}</DialogContentText>
-          <TextField
-            multiline
-            autoFocus
-            variant="outlined"
-            margin="dense"
-            id="comment"
-            fullWidth
-            rows={6}
-            value={value}
-            onChange={handleChange}
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCancel}>{t('cancel')}</Button>
-          <Button variant="outlined" disabled={value.length < 20} onClick={handleSubmit}>
-            {t('submit')}
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </div>
+    <Dialog open={open} onClose={handleCancel} aria-labelledby="feedback-dialog-title">
+      <DialogTitle id="feedback-dialog-title">{t('feedbackDialogTitle')}</DialogTitle>
+      <DialogContent>
+        <DialogContentText>{t('feedbackDialogMessage')}</DialogContentText>
+        <TextField
+          multiline
+          autoFocus
+          variant="outlined"
+          margin="dense"
+          id="comment"
+          fullWidth
+          rows={6}
+          value={value}
+          onChange={handleChange}
+        />
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleCancel}>{t('cancel')}</Button>
+        <Button disabled={value.length < 20} onClick={handleSubmit}>
+          {t('submit')}
+        </Button>
+      </DialogActions>
+    </Dialog>
   );
 }
 
@@ -205,7 +204,7 @@ const styles = (theme) => ({
     fontWeight: theme.typography.fontWeightRegular,
   },
   feedbackMessage: {
-    marginRight: 16,
+    marginRight: '0 8px',
   },
 });
 
@@ -295,25 +294,30 @@ function MarkdownDocsFooter(props) {
               ) : (
                 <div />
               )}
-              <div role="group" aria-label={t('feedbackGroupLabel')}>
+              <Grid container role="group" justifyContent="center" aria-label={t('feedbackGroupLabel')}>
+                <Grid container item xs={12} md alignItems="center" >
                 <Typography
+                  align="center" 
                   variant="subtitle1"
-                  component="span"
+                  component="div"
                   className={classes.feedbackMessage}
                 >
                   {t('ratingMessage')}
                 </Typography>
-                <Tooltip title={t('feedbackYes')}>
-                  <IconButton onClick={handleClickUp} aria-pressed={currentRating === 1}>
-                    <ThumbUpIcon color={currentRating === 1 ? 'primary' : undefined} />
-                  </IconButton>
-                </Tooltip>
-                <Tooltip title={t('feedbackNo')}>
-                  <IconButton onClick={handleClickDown} aria-pressed={currentRating === 0}>
-                    <ThumbDownIcon color={currentRating === 0 ? 'error' : undefined} />
-                  </IconButton>
-                </Tooltip>
-              </div>
+                </Grid>
+                <Grid container item xs={12} md justifyContent="center">
+                  <Tooltip title={t('feedbackYes')}>
+                    <IconButton onClick={handleClickUp} aria-pressed={currentRating === 1}>
+                      <ThumbUpIcon color={currentRating === 1 ? 'primary' : undefined} />
+                    </IconButton>
+                  </Tooltip>
+                  <Tooltip title={t('feedbackNo')}>
+                    <IconButton onClick={handleClickDown} aria-pressed={currentRating === 0}>
+                      <ThumbDownIcon color={currentRating === 0 ? 'error' : undefined} />
+                    </IconButton>
+                  </Tooltip>
+                </Grid>
+              </Grid>
               {nextPage.displayNav === false ? null : (
                 <Button
                   component={Link}
