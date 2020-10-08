@@ -80,7 +80,7 @@ const styles = {
 
 ### 受控的组件
 
-大多数受控组件通过 `value` 和 `onChange` 属性进行控制, 但是, `onChange`/`onClose`/`onOpen` 组合用于显示相关状态。
+大多数受控组件通过 `value` 和 `onChange` 属性进行控制, 但是, `onChange`/`onClose`/`onOpen` 组合用于显示相关状态。 In the cases where there are more events, we put the noun first, and then the verb, for example: `onPageChange`, `onRowsChange`.
 
 ### boolean vs enum
 
