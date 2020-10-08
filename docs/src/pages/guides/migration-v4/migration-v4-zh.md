@@ -186,6 +186,20 @@ const theme = createMuiTheme({
 });
 ```
 
+### Styles（样式表单）
+
+- Renamed `fade` to `alpha` to better describe the it's functionality.
+
+```diff
+- import { fade } from '@material-ui/core/styles';
++ import { alpha } from '@material-ui/core/styles';
+
+const classes = makeStyles(theme => ({
+-  backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
++  backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+}));
+```
+
 ### Alert 警告提示
 
 - 该组件已从实验室包移动到核心包。 现在这个组件处于稳定版本。
@@ -681,6 +695,16 @@ const theme = createMuiTheme({
   - backIconButtonText="Avant"
   - nextIconButtonText="Après
   + getItemAriaLabel={…}
+  ```
+
+- Rename `onChangeRowsPerPage` to `onRowsPerPageChange` and `onChangePage` to `onPageChange` due to API consistency.
+
+  ```diff
+  <TablePagination
+  - onChangeRowsPerPage={()=>{}}
+  - onChangePage={()=>{}}
+  + onRowsPerPageChange={()=>{}}
+  + onPageChange={()=>{}}
   ```
 
 ### Tabs 选项卡
