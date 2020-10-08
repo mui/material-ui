@@ -299,6 +299,9 @@ function DemoToolbar(props) {
             },
             main: demoConfig.main,
             scripts: demoConfig.scripts,
+            // We used `title` previously but only inference from `name` is documented.
+            // TODO revisit once https://github.com/codesandbox/codesandbox-client/issues/4983 is resolved.
+            title: demoConfig.title,
           },
         },
         ...Object.keys(demoConfig.files).reduce((files, name) => {
