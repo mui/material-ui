@@ -117,11 +117,13 @@ describe('<TextField />', () => {
 
     it('should set shrink prop on outline from label', () => {
       const outlinedInputClasses = getClasses(<OutlinedInput />);
-      const { getByRole } = render(
+      const { container } = render(
         <TextField variant="outlined" InputLabelProps={{ shrink: true }} classes={{}} />,
       );
 
-      expect(getByRole('group')).to.have.class(outlinedInputClasses.notchedOutline);
+      expect(container.querySelector('fieldset')).to.have.class(
+        outlinedInputClasses.notchedOutline,
+      );
     });
   });
 
