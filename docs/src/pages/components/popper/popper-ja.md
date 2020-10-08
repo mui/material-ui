@@ -50,7 +50,7 @@ Alternatively, you can use [react-spring](https://github.com/react-spring/react-
 
 ## 偽の参照オブジェクト
 
-`anchorEl` プロパティは、偽のDOM要素への参照することができます。 `anchorEl` プロパティは、偽のDOM要素への参照することができます。 [`ReferenceObject`](https://github.com/FezVrasta/popper.js/blob/0642ce0ddeffe3c7c033a412d4d60ce7ec8193c3/packages/popper/index.d.ts#L118-L123)のような形のオブジェクトを作成するだけです。
+`anchorEl` プロパティは、偽のDOM要素への参照することができます。 You need to create an object shaped like the [`ReferenceObject`](https://github.com/FezVrasta/popper.js/blob/0642ce0ddeffe3c7c033a412d4d60ce7ec8193c3/packages/popper/index.d.ts#L118-L123).
 
 テキストの一部をハイライトして、ポップヒントを表示します。
 
