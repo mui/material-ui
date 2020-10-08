@@ -186,6 +186,20 @@ const theme = createMuiTheme({
 });
 ```
 
+### Стили
+
+- Renamed `fade` to `alpha` to better describe the it's functionality.
+
+```diff
+- import { fade } from '@material-ui/core/styles';
++ import { alpha } from '@material-ui/core/styles';
+
+const classes = makeStyles(theme => ({
+-  backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
++  backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+}));
+```
+
 ### Alert
 
 - Перемещаем компонент из lab в core. Компонент теперь стабилен.
@@ -266,7 +280,7 @@ const theme = createMuiTheme({
   +<Button />
   ```
 
-### CircularProgress
+### Групповой прогресс
 
 - Вариант `static` объединен с вариантом `determinate`, и последний подразумевает внешний вид первого. Удаленный вариант редко был полезен. Это было исключением из Material Design и удалено из спецификации.
 
@@ -322,7 +336,7 @@ const theme = createMuiTheme({
 
 ### Divider
 
-- Use border instead of background color. It prevents inconsistent height on scaled screens. For people customizing the color of the border, the change requires changing the override CSS property:
+- Используем рамку вместо цвета фона. Это предотвращает колебания высоты на масштабированных экранах. Для тех кто настраивает цвет контура, данное изменение требует корректировки переопределения CSS свойства:
 
   ```diff
   .MuiDivider-root {
@@ -333,7 +347,7 @@ const theme = createMuiTheme({
 
 ### ExpansionPanel
 
-- Rename the `ExpansionPanel` components to `Accordion` to use a more common naming convention:
+- Переименовываем компоненты `ExpansionPanel` в `Accordion` для соответствия наиболее распространенным соглашениям:
 
   ```diff
   -import ExpansionPanel from '@material-ui/core/ExpansionPanel';
@@ -377,7 +391,7 @@ const theme = createMuiTheme({
   +<Accordion onChange={(event: React.SyntheticEvent, expanded: boolean) => {}} />
   ```
 
-- Rename `focused` to `focusVisible` for consistency:
+- Переименовываем `focused` в `focusVisible` для единообразия:
 
   ```diff
   <Accordion
@@ -393,7 +407,7 @@ const theme = createMuiTheme({
 
 ### Fab
 
-- Rename `round` to `circular` for consistency. The possible values should be adjectives, not nouns:
+- Переименовываем `round` в `circular` для единообразия. The possible values should be adjectives, not nouns:
 
   ```diff
   -<Fab variant="round">
@@ -402,7 +416,7 @@ const theme = createMuiTheme({
 
 ### Chip
 
-- Rename `default` variant to `filled` for consistency.
+- Переименовываем вариант `default` на `filled` для единообразия.
   ```diff
   -<Chip variant="default">
   +<Chip variant="filled">
@@ -410,7 +424,7 @@ const theme = createMuiTheme({
 
 ### Grid
 
-- Rename `justify` prop with `justifyContent` to be aligned with the CSS property name.
+- Переименовываем свойство `justify` на `justifyContent` для согласованности с названием CSS свойства.
 
   ```diff
   -<Grid justify="center">
@@ -419,8 +433,8 @@ const theme = createMuiTheme({
 
 ### GridList
 
-- Rename the `GridList` components to `ImageList` to align with the current Material Design naming.
-- Rename the GridList `spacing` prop to `gap` to align with the CSS attribute.
+- Переименовываем компоненты `GridList` на `ImageList` для согласованности с текущими наименованиями  Material Design.
+- Переименовываем GridList свойство `spacing` на `gap` для соответствия CSS атрибуту.
 - Переименовываем GridList свойство `cellHeight` в `rowHieght`.
 - Добавляем в GridList свойство `variant`.
 - Переименовываем GridListItemBar свойство `actionPosition`  в `position`. (Обратите внимание, что соответствующее имя класса также изменяется.)
@@ -475,7 +489,7 @@ const theme = createMuiTheme({
 
 ### Modal
 
-- Удаляем свойство `onRendered`. Depending on your use case either use a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element or an effect hook in the child component.
+- Удаляем свойство `onRendered`. В зависимости от варианта использования либо используйте [обратную ссылку](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) на дочерний элемент либо хук эффекта в дочернем компоненте.
 
 ### Pagination
 
@@ -490,7 +504,7 @@ const theme = createMuiTheme({
   +import usePagination from '@material-ui/core/usePagination';
   ```
 
-- Rename `round` to `circular` for consistency. The possible values should be adjectives, not nouns:
+- Переименовываем `round` в `circular` для единообразия. The possible values should be adjectives, not nouns:
 
   ```diff
   -<Pagination shape="round">
@@ -524,7 +538,7 @@ const theme = createMuiTheme({
 
 ### Portal
 
-- Удаляем свойство `onRendered`. Depending on your use case either use a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element or an effect hook in the child component.
+- Удаляем свойство `onRendered`. В зависимости от варианта использования либо используйте [обратную ссылку](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) на дочерний элемент либо хук эффекта в дочернем компоненте.
 
 ### Rating
 
@@ -535,7 +549,7 @@ const theme = createMuiTheme({
   +import Rating from '@material-ui/core/Rating';
   ```
 
-- Change the default empty icon to improve accessibility. If you have a custom `icon` prop but no `emptyIcon` prop, you can restore the previous behavior with:
+- Чтобы улучшить доступность изменяем используемую по умолчанию пустую иконку. Если у вас есть свой значок (`icon`), но нет пустого значка (`emptyIcon`), вы можете восстановить прежнее поведение с помощью:
 
   ```diff
   <Rating
@@ -544,7 +558,7 @@ const theme = createMuiTheme({
   />
   ```
 
-- Rename `visuallyhidden` to `visuallyHidden` for consistency:
+- Переименовываем `visuallyhidden` в `visuallyHidden` для единообразия:
 
   ```diff
   <Rating
@@ -557,7 +571,7 @@ const theme = createMuiTheme({
 
 ### RootRef
 
-- This component was removed. Ссылку на лежащий в основе наших компонентов DOM узел вы можете получить через `ref`. Компонент основывался на [`ReactDOM.findDOMNode`](https://reactjs.org/docs/react-dom.html#finddomnode), использование которого [порицается в `React.StrictMode`](https://reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage).
+- Этот компонент был удален. Ссылку на лежащий в основе наших компонентов DOM узел вы можете получить через `ref`. Компонент основывался на [`ReactDOM.findDOMNode`](https://reactjs.org/docs/react-dom.html#finddomnode), использование которого [порицается в `React.StrictMode`](https://reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage).
 
   ```diff
   -<RootRef rootRef={ref}>
@@ -597,7 +611,7 @@ const theme = createMuiTheme({
 
 ### Snackbar
 
-- Уведомление теперь отображается в левом нижнем углу на больших экранах. Это лучше соответствует поведению Gmail, Google Keep, material.io и т.д. You can restore the previous behavior with:
+- Уведомление теперь отображается в левом нижнем углу на больших экранах. Это лучше соответствует поведению Gmail, Google Keep, material.io и т.д. Вы можете восстановить прежнее поведение с помощью:
 
   ```diff
   -<Snackbar />
@@ -683,7 +697,17 @@ const theme = createMuiTheme({
   + getItemAriaLabel={…}
   ```
 
-### Tabs
+- Rename `onChangeRowsPerPage` to `onRowsPerPageChange` and `onChangePage` to `onPageChange` due to API consistency.
+
+  ```diff
+  <TablePagination
+  - onChangeRowsPerPage={()=>{}}
+  - onChangePage={()=>{}}
+  + onRowsPerPageChange={()=>{}}
+  + onPageChange={()=>{}}
+  ```
+
+### Вкладки
 
 - TypeScript: тип параметра `event` в `onChange` теперь не `React.ChangeEvent` а `React.SyntheticEvent`.
 
@@ -758,20 +782,20 @@ const theme = createMuiTheme({
 
 ### Tooltip
 
-- Tooltips are now interactive by default.
+- Подсказки теперь интерактивны по умолчанию.
 
-  The previous default behavior failed [success criterion 1.4.3 ("hoverable") in WCAG 2.1](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus). To reflect the new default value, the prop was renamed to `disableInteractive`. If you want to restore the old behavior (thus not reaching level AA), you can apply the following diff:
+  Прежнее подразумеваемое по умолчанию поведение не удовлетворяет требованию [success criterion 1.4.3 ("hoverable") в WCAG 2.1](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus). Чтобы отразить новое значение по умолчанию, прежнее свойство переименовано на `disableInteractive`. Если вы хотите восстановить прежнее поведение (лишившись при этом уровня АА), вы можете применить следующие изменения:
 
   ```diff
   -<Tooltip>
   +<Tooltip disableInteractive>
 
-  # Interactive tooltips no longer need the `interactive` prop.
+  # Интерактивные подсказки больше не нуждаются в свойстве `interactive`.
   -<Tooltip interactive>
   +<Tooltip>
   ```
 
-### Typography
+### Оформление текста
 
 - Заменяем свойство `srOnly`, чтобы не дублировать возможности [System](https://material-ui.com/system/basics/):
 
