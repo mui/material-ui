@@ -80,7 +80,7 @@ The name of a boolean property should be chosen based on the **default value**. 
 
 ### Controlled components
 
-Most of the controlled component are controlled via the `value` and the `onChange` properties, however, the `open` / `onClose` / `onOpen` combination is used for display related state.
+Most of the controlled component are controlled via the `value` and the `onChange` properties, however, the `open` / `onClose` / `onOpen` combination is used for display related state. In the cases where there are more events, we put the noun first, and then the verb, for example: `onPageChange`, `onRowsChange`.
 
 ### boolean vs enum
 
