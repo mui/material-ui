@@ -59,15 +59,18 @@ function randomStringValue() {
  */
 function testClassName(element, getOptions) {
   it('applies the className to the root component', () => {
-    const { mount } = getOptions();
+    const { mount, useRTL } = getOptions();
     const className = randomStringValue();
 
     const wrapper = mount(React.cloneElement(element, { className }));
-
-    expect(findOutermostIntrinsic(wrapper).hasClass(className)).to.equal(
-      true,
-      'does have a custom `className`',
-    );
+    if (useRTL) {
+      expect(wrapper.container.firstChild.classList.contains(className)).to.be.equal(true);
+    } else {
+      expect(findOutermostIntrinsic(wrapper).hasClass(className)).to.equal(
+        true,
+        'does have a custom `className`',
+      );
+    }
   });
 }
 
@@ -98,14 +101,17 @@ function testComponentProp(element, getOptions) {
 function testPropsSpread(element, getOptions) {
   it(`spreads props to the root component`, () => {
     // type def in ConformanceOptions
-    const { classes, inheritComponent, mount } = getOptions();
+    const { classes, inheritComponent, mount, useRTL } = getOptions();
     const testProp = 'data-test-props-spread';
     const value = randomStringValue();
 
     const wrapper = mount(React.cloneElement(element, { [testProp]: value }));
-    const root = findRootComponent(wrapper, { classes, component: inheritComponent });
-
-    expect(root.props()[testProp]).to.equal(value);
+    if(useRTL) {
+      expect(wrapper.container.firstChild.getAttribute(testProp)).to.equal(value);
+    } else {
+      const root = findRootComponent(wrapper, { classes, component: inheritComponent });
+      expect(root.props()[testProp]).to.equal(value);
+    }
   });
 }
 
@@ -121,14 +127,20 @@ function describeRef(element, getOptions) {
   describe('ref', () => {
     it(`attaches the ref`, () => {
       // type def in ConformanceOptions
-      const { inheritComponent, mount, refInstanceof } = getOptions();
+      const { inheritComponent, mount, refInstanceof, useRTL } = getOptions();
 
       testRef(element, mount, (instance, wrapper) => {
         expect(instance).to.be.instanceof(refInstanceof);
 
         if (inheritComponent && instance.nodeType === 1) {
-          const rootHost = findOutermostIntrinsic(wrapper);
-          expect(instance).to.equal(rootHost.instance());
+          if (useRTL) {
+            const rootHost = wrapper.container.firstChild;
+            expect(instance).to.equal(rootHost);
+          } else {
+            const rootHost = findOutermostIntrinsic(wrapper);
+            expect(instance).to.equal(rootHost.instance());
+          }
+
         }
       });
     });
@@ -142,7 +154,7 @@ function describeRef(element, getOptions) {
  */
 function testRootClass(element, getOptions) {
   it('applies the root class to the root component if it has this class', () => {
-    const { classes, mount } = getOptions();
+    const { classes, mount, useRTL } = getOptions();
     if (classes.root == null) {
       return;
     }
@@ -154,8 +166,13 @@ function testRootClass(element, getOptions) {
     // jump to the host component because some components pass the `root` class
     // to the `classes` prop of the root component.
     // https://github.com/mui-org/material-ui/blob/f9896bcd129a1209153106296b3d2487547ba205/packages/material-ui/src/OutlinedInput/OutlinedInput.js#L101
-    expect(findOutermostIntrinsic(wrapper).hasClass(classes.root)).to.equal(true);
-    expect(findOutermostIntrinsic(wrapper).hasClass(className)).to.equal(true);
+    if (useRTL) {
+      expect(wrapper.container.firstChild.classList.contains(classes.root)).to.be.equal(true);
+      expect(wrapper.container.firstChild.classList.contains(className)).to.be.equal(true);
+    } else {
+      expect(findOutermostIntrinsic(wrapper).hasClass(classes.root)).to.equal(true);
+      expect(findOutermostIntrinsic(wrapper).hasClass(className)).to.equal(true);
+    }
   });
 }
 

@@ -137,7 +137,7 @@ module.exports = {
       env: {
         mocha: true,
       },
-      extends: ['plugin:mocha/recommended'],
+      extends: ['plugin:mocha/recommended', 'plugin:chai-friendly/recommended'],
       rules: {
         // does not work with wildcard imports. Mistakes will throw at runtime anyway
         'import/named': 'off',
