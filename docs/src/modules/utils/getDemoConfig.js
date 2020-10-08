@@ -14,7 +14,7 @@ import ReactDOM from 'react-dom';
 import Demo from './demo';
 
 ReactDOM.render(<Demo />, document.querySelector('#root'));
-    `,
+    `.trim(),
     },
   };
 }
@@ -33,7 +33,7 @@ import ReactDOM from 'react-dom';
 import Demo from './demo';
 
 ReactDOM.render(<Demo />, document.querySelector('#root'));
-    `,
+    `.trim(),
       'tsconfig.json': `{
   "compilerOptions": {
     "target": "es5",
@@ -90,15 +90,21 @@ export default function getDemo(demoData) {
   <head>
     <title>${demoData.title}</title>
     <!-- Fonts to support Material Design -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    />
     <!-- Icons to support Material Design -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
   </head>
   <body>
     <div id="root"></div>
   </body>
 </html>
-      `,
+`.trim(),
     },
   };
   const languageConfig = getLanguageConfig(demoData);
