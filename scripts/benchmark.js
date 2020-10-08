@@ -41,12 +41,9 @@ async function createBrowser() {
       const page = await browser.newPage();
       await page.goto(url);
 
-      return {
-        page,
-        close: () => page.close(),
-      };
+      return page;
     },
-    close: async () => browser.close(),
+    close: () => browser.close(),
   };
 }
 
@@ -54,7 +51,7 @@ async function runMeasures(browser, testCase, times) {
   const measures = [];
 
   for (let i = 0; i < times; i += 1) {
-    const { page, close } = await browser.openPage(`http://localhost:${PORT}/${APP}?${testCase}`);
+    const page = await browser.openPage(`http://localhost:${PORT}/${APP}?${testCase}`);
 
     const benchmark = await page.evaluate(() => {
       const { loadEventEnd, navigationStart } = performance.timing;
@@ -62,7 +59,7 @@ async function runMeasures(browser, testCase, times) {
     });
 
     measures.push(benchmark);
-    await close();
+    await page.close();
   }
 
   return measures;
