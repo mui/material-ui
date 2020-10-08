@@ -2,21 +2,36 @@
 /* eslint-disable no-await-in-loop */
 const puppeteer = require('puppeteer');
 const { performance } = require('perf_hooks');
-const waitOn = require('wait-on');
 const handler = require('serve-handler');
 const http = require('http');
 
-const SERVER = 'localhost';
 const PORT = 1122;
 const APP = 'benchmark';
 
-http
-  .createServer((request, response) => {
+function createServer(options) {
+  const { port } = options;
+  const server = http.createServer((request, response) => {
     return handler(request, response);
-  })
-  .listen(PORT, () => {
-    console.log(`Running at http://localhost:${PORT}`);
   });
+
+  function close() {
+    return new Promise((resolve, reject) => {
+      server.close((error) => {
+        if (error !== undefined) {
+          reject(error);
+        } else {
+          resolve();
+        }
+      });
+    });
+  }
+
+  return new Promise((resolve) => {
+    server.listen(port, () => {
+      resolve({ close });
+    });
+  });
+}
 
 async function createBrowser() {
   const browser = await puppeteer.launch();
@@ -26,12 +41,9 @@ async function createBrowser() {
       const page = await browser.newPage();
       await page.goto(url);
 
-      return {
-        page,
-        close: () => page.close(),
-      };
+      return page;
     },
-    close: async () => browser.close(),
+    close: () => browser.close(),
   };
 }
 
@@ -39,7 +51,7 @@ async function runMeasures(browser, testCase, times) {
   const measures = [];
 
   for (let i = 0; i < times; i += 1) {
-    const { page, close } = await browser.openPage(`http://${SERVER}:${PORT}/${APP}?${testCase}`);
+    const page = await browser.openPage(`http://localhost:${PORT}/${APP}?${testCase}`);
 
     const benchmark = await page.evaluate(() => {
       const { loadEventEnd, navigationStart } = performance.timing;
@@ -47,7 +59,7 @@ async function runMeasures(browser, testCase, times) {
     });
 
     measures.push(benchmark);
-    await close();
+    await page.close();
   }
 
   return measures;
@@ -73,11 +85,7 @@ const printMeasures = (measures) => {
 };
 
 async function run() {
-  await waitOn({
-    resources: [`http://${SERVER}:${PORT}/${APP}`],
-  });
-
-  const browser = await createBrowser();
+  const [server, browser] = await Promise.all([createServer({ port: PORT }), createBrowser()]);
   const measures = {};
 
   try {
@@ -143,7 +151,7 @@ async function run() {
       10,
     );
   } finally {
-    await browser.close();
+    await Promise.all([browser.close(), server.close()]);
   }
 
   printMeasures(measures);
