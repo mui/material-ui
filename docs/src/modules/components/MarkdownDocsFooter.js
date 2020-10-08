@@ -294,16 +294,21 @@ function MarkdownDocsFooter(props) {
               ) : (
                 <div />
               )}
-              <Grid container role="group" justifyContent="center" aria-label={t('feedbackGroupLabel')}>
-                <Grid container item xs={12} md alignItems="center" >
-                <Typography
-                  align="center" 
-                  variant="subtitle1"
-                  component="div"
-                  className={classes.feedbackMessage}
-                >
-                  {t('ratingMessage')}
-                </Typography>
+              <Grid
+                container
+                role="group"
+                justifyContent="center"
+                aria-label={t('feedbackGroupLabel')}
+              >
+                <Grid container item xs={12} md alignItems="center">
+                  <Typography
+                    align="center"
+                    variant="subtitle1"
+                    component="div"
+                    className={classes.feedbackMessage}
+                  >
+                    {t('ratingMessage')}
+                  </Typography>
                 </Grid>
                 <Grid container item xs={12} md justifyContent="center">
                   <Tooltip title={t('feedbackYes')}>
