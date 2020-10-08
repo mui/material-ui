@@ -129,7 +129,7 @@ describe('<SpeedDial />', () => {
     });
   });
 
-  describe('mock time', () => {
+  describe('keyboard', () => {
     let clock;
 
     beforeEach(() => {
@@ -140,7 +140,7 @@ describe('<SpeedDial />', () => {
       clock.restore();
     });
 
-    it('should support keyboard navigation', () => {
+    it('should open the speed dial and move to the first action without closing', () => {
       const handleOpen = spy();
       const { getByRole, getAllByRole } = render(
         <SpeedDial ariaLabel="mySpeedDial" onOpen={handleOpen}>
