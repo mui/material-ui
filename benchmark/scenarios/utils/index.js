@@ -1,3 +1,5 @@
+/* eslint-disable import/prefer-default-export */
+
 export const logReactMetrics = (
   id, // the "id" prop of the Profiler tree that has just committed
   phase, // either "mount" (if the tree just mounted) or "update" (if it re-rendered)
