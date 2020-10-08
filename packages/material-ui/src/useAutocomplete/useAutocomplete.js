@@ -177,8 +177,10 @@ export default function useAutocomplete(props) {
     state: 'open',
   });
 
+  const [inputChange, setInputChange] = React.useState(false);
+
   const inputValueIsSelectedValue =
-    !multiple && value != null && inputValue === getOptionLabel(value);
+    !multiple && value != null && inputValue === getOptionLabel(value) && inputChange != null && !inputChange;
 
   const popupOpen = open;
 
@@ -495,6 +497,7 @@ export default function useAutocomplete(props) {
     }
 
     setOpenState(true);
+    setInputChange(false);
 
     if (onOpen) {
       onOpen(event);
@@ -811,10 +814,13 @@ export default function useAutocomplete(props) {
 
     if (inputValue !== newValue) {
       setInputValueState(newValue);
+      setInputChange(true);
 
       if (onInputChange) {
         onInputChange(event, newValue, 'input');
       }
+    } else {
+      setInputChange(false);
     }
 
     if (newValue === '') {
