@@ -31,7 +31,6 @@ export const styleFunction = css(
   ),
 );
 
-
 function omit(input, fields) {
   const output = {};
 
