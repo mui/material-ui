@@ -2,7 +2,7 @@ import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import {
-  fade,
+  alpha,
   withStyles,
   unstable_toUnitless as toUnitless,
   unstable_getUnit as getUnit,
@@ -18,7 +18,7 @@ export const styles = (theme) => {
     root: {
       display: 'block',
       // Create a "on paper" color with sufficient contrast retaining the color
-      backgroundColor: fade(
+      backgroundColor: alpha(
         theme.palette.text.primary,
         theme.palette.mode === 'light' ? 0.11 : 0.13,
       ),
