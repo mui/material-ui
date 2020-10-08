@@ -19,6 +19,7 @@ const filterProps = [
   ...shadows.filterProps,
   ...spacing.filterProps,
   ...typography.filterProps,
+  'sx',
 ];
 
 const getThemeValue = (prop, value, theme) => {
@@ -97,7 +98,7 @@ const traverseSx = (styles, theme) => {
 const styleFunctionInversed = props => {
   let result = {};
   Object.keys(props).forEach(prop => {
-    if(prop !== 'sx' && prop !== 'theme' && prop !== 'children' && prop !== 'component') {
+    if(filterProps.indexOf(prop) !== -1) {
       result = {
         ...result,
         ...getThemeValue(prop, props[prop], props.theme)
