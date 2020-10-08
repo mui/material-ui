@@ -7,6 +7,7 @@ export const logReactMetrics = (
   commitTime, // when React committed this update
   interactions, // the Set of interactions belonging to this update
 ) => {
+  // eslint-disable-next-line no-console
   console.info({
     id,
     phase,

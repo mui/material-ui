@@ -38,10 +38,10 @@ async function createBrowser() {
 async function runMeasures(browser, testCase, times) {
   const measures = [];
 
-  for (let i = 0; i < times; i++) {
+  for (let i = 0; i < times; i += 1) {
     const { page, close } = await browser.openPage(`http://${SERVER}:${PORT}/${APP}?${testCase}`);
 
-    const perf = await page.evaluate((_) => {
+    const perf = await page.evaluate(() => {
       const { loadEventEnd, navigationStart } = performance.timing;
       return loadEventEnd - navigationStart;
     });
