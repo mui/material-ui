@@ -8,7 +8,7 @@ const http = require('http');
 
 const SERVER = 'localhost';
 const PORT = 1122;
-const APP = 'test/perf/debug';
+const APP = 'benchmark';
 
 http
   .createServer((request, response) => {
@@ -41,12 +41,12 @@ async function runMeasures(browser, testCase, times) {
   for (let i = 0; i < times; i += 1) {
     const { page, close } = await browser.openPage(`http://${SERVER}:${PORT}/${APP}?${testCase}`);
 
-    const perf = await page.evaluate(() => {
+    const benchmark = await page.evaluate(() => {
       const { loadEventEnd, navigationStart } = performance.timing;
       return loadEventEnd - navigationStart;
     });
 
-    measures.push(perf);
+    measures.push(benchmark);
     await close();
   }
 
