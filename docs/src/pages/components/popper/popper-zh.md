@@ -50,7 +50,7 @@ githubLabel: 'component: Popper'
 
 ## 占位的参考对象
 
-`anchorEl` 属性可以是对占位 DOM 元素的引用。 You need to create an object shaped like the [`ReferenceObject`](https://github.com/FezVrasta/popper.js/blob/0642ce0ddeffe3c7c033a412d4d60ce7ec8193c3/packages/popper/index.d.ts#L118-L123).
+`anchorEl` 属性可以是对占位 DOM 元素的引用。 你需要创建一个类似于 [`ReferenceObject`](https://github.com/FezVrasta/popper.js/blob/0642ce0ddeffe3c7c033a412d4d60ce7ec8193c3/packages/popper/index.d.ts#L118-L123) 的对象。
 
 高亮文本来显示弹出提示组件：
 
