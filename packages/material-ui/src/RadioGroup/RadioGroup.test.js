@@ -159,7 +159,7 @@ describe('<RadioGroup />', () => {
       expect(twoRadioOnFocus.callCount).to.equal(1);
     });
 
-    specify('should focus the non-disabled radio rather than the disabled selected radio', () => {
+    it('should focus the non-disabled radio rather than the disabled selected radio', () => {
       const actionsRef = React.createRef();
       const threeRadioOnFocus = spy();
 
