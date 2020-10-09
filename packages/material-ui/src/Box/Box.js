@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import {
   borders,
   compose,
@@ -68,6 +69,13 @@ const BoxRoot = React.forwardRef(function StyledComponent(props, ref) {
     </Component>
   );
 });
+
+BoxRoot.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+  clone: PropTypes.bool,
+  component: PropTypes.elementType,
+};
 
 const shouldForwardProp = (prop) => styleFunction.filterProps.indexOf(prop) === -1;
 
