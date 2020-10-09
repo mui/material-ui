@@ -139,6 +139,7 @@ export const styles = (theme) => ({
     position: 'absolute',
     right: 0,
     top: 'calc(50% - 14px)', // Center vertically
+    backgroundColor: 'white', // Fix long selected text overlap to endAdornment.
   },
   /* Styles applied to the clear indicator. */
   clearIndicator: {
