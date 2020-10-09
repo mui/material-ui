@@ -6,7 +6,6 @@ import {
   createClientRender,
   createMount,
   createServerRender,
-  fireEvent,
 } from 'test/utils';
 import Fab from './Fab';
 import ButtonBase from '../ButtonBase';
@@ -111,11 +110,11 @@ describe('<Fab />', () => {
       <Fab TouchRippleProps={{ 'data-testid': 'mui-ripple-root' }}>Fab</Fab>,
     );
 
-    fireEvent.focus(getByRole('button'));
+    getByRole('button').focus();
 
-    expect((await findByTestId('mui-ripple-root')).firstChild).to.have.class(
-      touchRippleClasses.ripple,
-    );
+    expect(
+      (await findByTestId('mui-ripple-root', undefined, { timeout: 5000 })).firstChild,
+    ).to.have.class(touchRippleClasses.ripple);
   });
 
   it('should pass disableFocusRipple to ButtonBase', async () => {
@@ -125,9 +124,11 @@ describe('<Fab />', () => {
       </Fab>,
     );
 
-    fireEvent.focus(getByRole('button'));
+    getByRole('button').focus();
 
-    expect((await findByTestId('mui-ripple-root')).firstChild).to.equal(null);
+    expect(
+      (await findByTestId('mui-ripple-root', undefined, { timeout: 5000 })).firstChild,
+    ).to.equal(null);
   });
 
   it('should render Icon children with right classes', () => {
