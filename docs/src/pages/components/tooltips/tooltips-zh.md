@@ -75,7 +75,7 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 
 ## 交互式
 
-Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus)). 若用户在 `leaveDelay` 过期之前将鼠标悬停在工具提示上时，它则不会被关闭。 You can disable this behavior (thus failing the success criterion which is required to reach level AA) by passing `disableInteractive`.
+工具提示组件默认是可交互的（遵循 [WCAG 2.1 success criterion 1.4.13](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus)）。 若用户在 `leaveDelay` 过期之前将鼠标悬停在工具提示上时，它则不会被关闭。 你可以通过 `disableInteractive` 来禁止交互（但是这将无法达到 AA 级所需的标准）。
 
 {{"demo": "pages/components/tooltips/NonInteractiveTooltips.js"}}
 
@@ -90,16 +90,11 @@ Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13]
 > 如果你没有包装从 `ButtonBase` 继承的 Material-UI 组件，譬如一个原生的 `<button>` 元素，当禁用元素的时候，你应该将 _pointer-events: none;_ 这个CSS 属性添加到您的元素中：
 
 ```jsx
-<Tooltip title="你没有足够的权限">
+<Tooltip title="You don't have permission to do this">
   <span>
     <button
       disabled={disabled}
       style={disabled ? { pointerEvents: 'none' } : {}}
-    >
-      {'A disabled button'}
-    </button>
-  </span>
-</Tooltip> { pointerEvents: 'none' } : {}}
     >
       {'A disabled button'}
     </button>
@@ -113,15 +108,15 @@ Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13]
 
 {{"demo": "pages/components/tooltips/TransitionsTooltips.js"}}
 
-## Follow cursor
+## 跟踪光标
 
-You can enable the tooltip to follow the cursor by setting `followCursor={true}`.
+你可以通过设置 `followCursor={true}` 使工具提示组件跟随光标。
 
 {{"demo": "pages/components/tooltips/FollowCursorTooltips.js"}}
 
 ## 占位的参考对象
 
-In the event you need to implement a custom placement, you can use the `anchorEl` prop: The value of the `anchorEl` prop can be a reference to a fake DOM element. You need to create an object shaped like the [`ReferenceObject`](https://github.com/FezVrasta/popper.js/blob/0642ce0ddeffe3c7c033a412d4d60ce7ec8193c3/packages/popper/index.d.ts#L118-L123).
+如果你需要实现一个自定义的布局，那么你可以使用 `anchorEl` 属性： `anchorEl` 属性的值可以是一个假（fake） DOM 元素的引用。 你需要创建一个类似于 [`ReferenceObject`](https://github.com/FezVrasta/popper.js/blob/0642ce0ddeffe3c7c033a412d4d60ce7ec8193c3/packages/popper/index.d.ts#L118-L123) 的对象。
 
 {{"demo": "pages/components/tooltips/AnchorElTooltips.js"}}
 
@@ -140,7 +135,7 @@ In the event you need to implement a custom placement, you can use the `anchorEl
 默认情况下，工具提示组件只会标注其子元素。 这与 `title` 明显不同，后者可以标注 **或** 描述它的子代，这取决于子代是否已经有标签。 例如，在：
 
 ```html
-<button title="some more information">A button</button>
+<button title="some more information">一个按钮</button>
 ```
 
 `title` 可以作为一种无障碍描述。 你可以通过设置 `describeChild` 来让你的工具提示组件具有无障碍描述的功能。 请注意，如果工具提示组件提供了唯一的视觉标签，那么你就不应该使用 `describeChild`。 否则，子元素将不会存在可访问的名称，而工具提示将违反 WCAG 2.1 [success criterion 2.5.3 in WCAG 2.1](https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html)。
