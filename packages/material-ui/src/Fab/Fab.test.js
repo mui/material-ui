@@ -105,24 +105,29 @@ describe('<Fab />', () => {
     expect(container.querySelector(`.${touchRippleClasses.root}`)).to.equal(null);
   });
 
-  it('should have a focusRipple by default', () => {
+  it('should have a focusRipple by default', async () => {
     const touchRippleClasses = getClasses(<TouchRipple />);
-    const { container, getByRole } = render(<Fab>Fab</Fab>);
+    const { getByRole, findByTestId } = render(
+      <Fab TouchRippleProps={{ 'data-testid': 'mui-ripple-root' }}>Fab</Fab>,
+    );
 
     fireEvent.focus(getByRole('button'));
 
-    expect(container.querySelector(`.${touchRippleClasses.root}`).firstChild).to.have.class(
+    expect((await findByTestId('mui-ripple-root')).firstChild).to.have.class(
       touchRippleClasses.ripple,
     );
   });
 
-  it('should pass disableFocusRipple to ButtonBase', () => {
-    const touchRippleClasses = getClasses(<TouchRipple />);
-    const { container, getByRole } = render(<Fab disableFocusRipple>Fab</Fab>);
+  it('should pass disableFocusRipple to ButtonBase', async () => {
+    const { getByRole, findByTestId } = render(
+      <Fab TouchRippleProps={{ 'data-testid': 'mui-ripple-root' }} disableFocusRipple>
+        Fab
+      </Fab>,
+    );
 
     fireEvent.focus(getByRole('button'));
 
-    expect(container.querySelector(`.${touchRippleClasses.root}`).firstChild).to.equal(null);
+    expect((await findByTestId('mui-ripple-root')).firstChild).to.equal(null);
   });
 
   it('should render Icon children with right classes', () => {
