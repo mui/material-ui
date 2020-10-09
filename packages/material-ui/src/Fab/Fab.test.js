@@ -6,10 +6,12 @@ import {
   createClientRender,
   createMount,
   createServerRender,
+  fireEvent,
 } from 'test/utils';
 import Fab from './Fab';
 import ButtonBase from '../ButtonBase';
 import Icon from '../Icon';
+import TouchRipple from '../ButtonBase/TouchRipple';
 
 describe('<Fab />', () => {
   const mount = createMount();
@@ -90,27 +92,37 @@ describe('<Fab />', () => {
   });
 
   it('should have a ripple by default', () => {
-    const wrapper = mount(<Fab>Fab</Fab>);
+    const touchRippleClasses = getClasses(<TouchRipple />);
+    const { container } = render(<Fab>Fab</Fab>);
 
-    expect(wrapper.find(ButtonBase).props()).not.to.have.property('disableRipple');
+    expect(container.querySelector(`.${touchRippleClasses.root}`)).not.to.equal(null);
   });
 
   it('should pass disableRipple to ButtonBase', () => {
-    const wrapper = mount(<Fab disableRipple>Fab</Fab>);
+    const touchRippleClasses = getClasses(<TouchRipple />);
+    const { container } = render(<Fab disableRipple>Fab</Fab>);
 
-    expect(wrapper.find(ButtonBase).props()).to.have.property('disableRipple', true);
+    expect(container.querySelector(`.${touchRippleClasses.root}`)).to.equal(null);
   });
 
   it('should have a focusRipple by default', () => {
-    const wrapper = mount(<Fab>Fab</Fab>);
+    const touchRippleClasses = getClasses(<TouchRipple />);
+    const { container, getByRole } = render(<Fab>Fab</Fab>);
 
-    expect(wrapper.find(ButtonBase).props()).to.have.property('focusRipple', true);
+    fireEvent.focus(getByRole('button'));
+
+    expect(container.querySelector(`.${touchRippleClasses.root}`).firstChild).to.have.class(
+      touchRippleClasses.ripple,
+    );
   });
 
   it('should pass disableFocusRipple to ButtonBase', () => {
-    const wrapper = mount(<Fab disableFocusRipple>Fab</Fab>);
+    const touchRippleClasses = getClasses(<TouchRipple />);
+    const { container, getByRole } = render(<Fab disableFocusRipple>Fab</Fab>);
 
-    expect(wrapper.find(ButtonBase).props()).to.have.property('focusRipple', false);
+    fireEvent.focus(getByRole('button'));
+
+    expect(container.querySelector(`.${touchRippleClasses.root}`).firstChild).to.equal(null);
   });
 
   it('should render Icon children with right classes', () => {
