@@ -403,7 +403,7 @@ const classes = makeStyles(theme => ({
   ```
 
 - Remove `display: flex` from AccordionDetails as its too opinionated.
-- Remove `IconButtonProps` prop from AccordionSummary. The component renders a `<div>` element instead of an IconButton. The prop is no longer necessary.
+- 删除 AccordionSummary 中的 `IconButtonProps` 属性。 该组件渲染一个 `<div>` 元素而不是 IconButton。 所以不再需要该属性了。
 
 ### Fab
 
@@ -659,13 +659,13 @@ const classes = makeStyles(theme => ({
   ```diff
   -<Stepper elevation={2}>
   -  <Step>
-  -    <StepLabel>Hello world</StepLabel>
+  -    <StepLabel>你好世界</StepLabel>
   -  </Step>
   -</Stepper>
   +<Paper square elevation={2}>
   +  <Stepper>
   +    <Step>
-  +      <StepLabel>Hello world</StepLabel>
+  +      <StepLabel>你好世界</StepLabel>
   +    </Step>
   +  </Stepper>
   +<Paper>
@@ -676,12 +676,12 @@ const classes = makeStyles(theme => ({
   ```diff
   -<Stepper>
   -  <Step>
-  -    <StepLabel>Hello world</StepLabel>
+  -    <StepLabel>你好世界</StepLabel>
   -  </Step>
   -</Stepper>
   +<Stepper style={{ padding: 24 }}>
   +  <Step>
-  +    <StepLabel>Hello world</StepLabel>
+  +    <StepLabel>你好世界</StepLabel>
   +  </Step>
   +</Stepper>
   ```
@@ -697,7 +697,7 @@ const classes = makeStyles(theme => ({
   + getItemAriaLabel={…}
   ```
 
-- Rename `onChangeRowsPerPage` to `onRowsPerPageChange` and `onChangePage` to `onPageChange` due to API consistency.
+- 为保持 API 一致性，我们将 `onChangeRowsPerPage` 重命名为 `onRowsPerPageChange`，`onChangePage` 重命名为 `onPageChange`。
 
   ```diff
   <TablePagination
@@ -782,15 +782,15 @@ const classes = makeStyles(theme => ({
 
 ### Tooltip
 
-- Tooltips are now interactive by default.
+- 工具提示组件默认是可交互的：
 
-  The previous default behavior failed [success criterion 1.4.3 ("hoverable") in WCAG 2.1](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus). To reflect the new default value, the prop was renamed to `disableInteractive`. If you want to restore the old behavior (thus not reaching level AA), you can apply the following diff:
+  该组件之前的默认行为不遵循 [success criterion 1.4.3 ("hoverable") in WCAG 2.1](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus)。 为了反映新的默认值，该属性被重命名为 `disableInteractive`。 如果你想回滚到旧的行为（但是这无法达到 AA 级），你可以应用下面的差异：
 
   ```diff
   -<Tooltip>
   +<Tooltip disableInteractive>
 
-  # Interactive tooltips no longer need the `interactive` prop.
+  # 交互式的工具提示组件不再需要 `interactive` 属性。
   -<Tooltip interactive>
   +<Tooltip>
   ```
