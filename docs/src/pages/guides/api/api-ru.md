@@ -78,9 +78,9 @@ The name of a boolean property should be chosen based on the **default value**. 
 +<Input disabled />
 ```
 
-### Controlled components
+### Управляемые компоненты
 
-Most of the controlled component are controlled via the `value` and the `onChange` properties, however, the `open` / `onClose` / `onOpen` combination is used for display related state. In the cases where there are more events, we put the noun first, and then the verb, for example: `onPageChange`, `onRowsChange`.
+Большинство управляемых компонентов контролируются параметрами `value` и `onChange`, хотя комбинация `open` / `onClose` / `onOpen` используется с отвечающим за отображение состоянием. Если же событий несколько, то мы ставим в начало существительное, а затем глагол, например: `onPageChange`, `onRowsChange`.
 
 ### boolean vs enum
 
