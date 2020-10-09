@@ -196,7 +196,7 @@ describe('<Grow />', () => {
         expect(handleEntered.callCount).to.equal(1);
 
         const handleEntered2 = spy();
-        mount(
+        render(
           <Grow in timeout="auto" onEntered={handleEntered2}>
             <div />
           </Grow>,
