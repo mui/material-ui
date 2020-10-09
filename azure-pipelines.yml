@@ -78,10 +78,7 @@ steps:
 
   - task: Cache@2
     inputs:
-      key: 'yarn | "$(Agent.OS)" | yarn.lock'
-      restoreKeys: |
-        yarn | "$(Agent.OS)"
-        yarn
+      key: 'nextjs-build | yarn.lock'
       path: $(DOCS_NEXT_CACHE_FOLDER)
     displayName: Cache nextjs build
 
