@@ -1,4 +1,4 @@
-# Migration from v4 to v5
+# Переход с v4 на v5
 
 <p class="description">Yeah, v5 has been released!</p>
 
@@ -188,7 +188,7 @@ const theme = createMuiTheme({
 
 ### Стили
 
-- Renamed `fade` to `alpha` to better describe the it's functionality.
+- Переименовывыем `fade` на `alpha`, чтобы лучше описать его функционал.
 
 ```diff
 - import { fade } from '@material-ui/core/styles';
@@ -654,7 +654,7 @@ const classes = makeStyles(theme => ({
 
 ### Stepper
 
-- The root component (Paper) was replaced with a div. Stepper no longer has elevation, nor inherits Paper's props. This change is meant to encourage composition.
+- Корневой компонент (Paper) заменен на div. Свойство elevation удалено и Stepper больше не наследует свойста от Paper. Это изменение рассчитано на поощрение композиции.
 
   ```diff
   -<Stepper elevation={2}>
@@ -671,7 +671,7 @@ const classes = makeStyles(theme => ({
   +<Paper>
   ```
 
-- Remove the built-in 24px padding.
+- Удаляем встроенные отступы(padding) 24px.
 
   ```diff
   -<Stepper>
@@ -688,16 +688,16 @@ const classes = makeStyles(theme => ({
 
 ### Table (tаблица)
 
-- The customization of the table pagination's actions labels must be done with the `getItemAriaLabel` prop. This increases consistency with the `Pagination` component.
+- Настройка ярлыков кнопок постраничной разбивки должна осуществляться с помощью свойства `getItemAriaLabel`. За счет этого улучшается сопоставимость с компонентом `Pagination`.
 
   ```diff
   <TablePagination
-  - backIconButtonText="Avant"
-  - nextIconButtonText="Après
+  - backIconButtonText="Предыдущая"
+  - nextIconButtonText="Следующая"
   + getItemAriaLabel={…}
   ```
 
-- Rename `onChangeRowsPerPage` to `onRowsPerPageChange` and `onChangePage` to `onPageChange` due to API consistency.
+- Переименовываем `onChangeRowsPerPage` на `onRowsPerPageChange` и `onChangePage` на `onPageChange` для сопоставимоти с API.
 
   ```diff
   <TablePagination
@@ -716,10 +716,10 @@ const classes = makeStyles(theme => ({
   +<Tabs onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
   ```
 
-- The API that controls the scroll buttons has been split it in two props.
+- Управляющее кнопками прокрутки API разделено на два параметра.
 
-  - The `scrollButtons` prop controls when the scroll buttons are displayed depending on the space available.
-  - The `allowScrollButtonsMobile` prop removes the CSS media query that systematically hide the scroll buttons on mobile.
+  - Параметр `scrollButtons` управляет видимостью кнопок в зависимоти от доступного пространства.
+  - Параметр `allowScrollButtonsMobile` удаляет медиа-запрос CSS, который систематически скрывает кнопки прокрутки на мобильных устройствах.
 
   ```diff
   -<Tabs scrollButtons="on" />
@@ -732,7 +732,7 @@ const classes = makeStyles(theme => ({
 
 ### TextField
 
-- Better isolate the fixed textarea height behavior to the dynamic one. You need to use the `minRows` prop in the following case:
+- Улучшаем определение поведения - когда используется textarea фиксированной высоты, а когда textarea c динамической высотой. Вам нужно использовать параметр `minRows` в следующем случае:
 
   ```diff
   -<TextField rows={2} maxRows={5} />
@@ -748,7 +748,7 @@ const classes = makeStyles(theme => ({
 
 ### TextareaAutosize
 
-- Remove the `rows` prop, use the `minRows` prop instead. This change aims to clarify the behavior of the prop.
+- Удаляем свойство `rows` и используем вместо него `minRows`. Цель этого изменения - сделать поведение свойства более понятным.
 
   ```diff
   -<TextareaAutosize rows={2} />
@@ -762,7 +762,7 @@ const classes = makeStyles(theme => ({
   +<TextareAutosize maxRows={6}>
   ```
 
-- Rename `rowsMin` prop with `minRows` for consistency with HTML attributes.
+- Переименовываем свойство `rowsMin` на `minRows` для соответствия HTML атрибутам.
 
   ```diff
   -<TextareAutosize rowsMin={1}>
