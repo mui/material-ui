@@ -118,7 +118,7 @@ import Box from '@material-ui/core/Box';
 
 ## Interoperability
 
-`@material-ui/system` works with most CSS-in-JS libraries, including JSS, styled-components, and emotion. Here are hew examples usages.
+`@material-ui/system` works with most CSS-in-JS libraries, including JSS, styled-components, and emotion. Here are a few examples usages.
 
 ### Styled components
 
