@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from '@material-ui/styled-engine';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
 import SliderUnstyled from '@material-ui/lab/SliderUnstyled';
 
 const StyledSlider = styled(SliderUnstyled)`

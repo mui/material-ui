@@ -1,22 +1,20 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/lab/SliderStyled';
-import Input from '@material-ui/core/Input';
+import MuiInput from '@material-ui/core/Input';
 import VolumeUp from '@material-ui/icons/VolumeUp';
 
-const useStyles = makeStyles({
-  root: {
-    width: 250,
-  },
-  input: {
-    width: 42,
-  },
-});
+const Root = styled('div')`
+  width: 300px;
+`;
+
+const Input = styled(MuiInput)`
+  width: 42;
+`
 
 export default function InputSlider() {
-  const classes = useStyles();
   const [value, setValue] = React.useState<
     number | string | Array<number | string>
   >(30);
@@ -41,7 +39,7 @@ export default function InputSlider() {
   };
 
   return (
-    <div className={classes.root}>
+    <Root>
       <Typography id="input-slider" gutterBottom>
         Volume
       </Typography>
@@ -58,7 +56,6 @@ export default function InputSlider() {
         </Grid>
         <Grid item>
           <Input
-            className={classes.input}
             value={value}
             margin="dense"
             onChange={handleInputChange}
@@ -73,6 +70,6 @@ export default function InputSlider() {
           />
         </Grid>
       </Grid>
-    </div>
+    </Root>
   );
 }

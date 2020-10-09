@@ -5,13 +5,13 @@ import Slider from '@material-ui/lab/SliderStyled';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
 
-const Root = styled('div')((props) => ({
-  width: `calc(300px + ${props.theme.spacing(6)})`,
-}));
+const Root = styled('div')`
+  width: ${(props) => `calc(300px + ${props.theme.spacing(6)})`};
+`;
 
-const Separator = styled('div')((props) => ({
-  height: props.theme.spacing(3),
-}));
+const Separator = styled('div')`
+  height: ${(props) => props.theme.spacing(3)};
+`;
 
 function ValueLabelComponent(props) {
   const { children, open, value } = props;

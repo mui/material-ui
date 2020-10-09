@@ -1,16 +1,16 @@
 import * as React from 'react';
-import { experimentalStyled as styled, Theme } from '@material-ui/core/styles';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
 import Slider from '@material-ui/lab/SliderStyled';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
 
-const Root = styled('div')<{theme?: Theme}>(props => ({
-  width: `calc(300px + ${props.theme.spacing(6)})`,
-}));
+const Root = styled('div')`
+  width: ${props => `calc(300px + ${props.theme.spacing(6)})`};
+`;
 
-const Separator = styled('div')<{theme?: Theme}>(props => ({
-  height: props.theme.spacing(3),
-}));
+const Separator = styled('div')`
+  height: ${props => props.theme.spacing(3)};
+`;
 
 interface Props {
   children: React.ReactElement;

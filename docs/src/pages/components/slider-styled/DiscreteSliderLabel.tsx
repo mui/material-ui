@@ -1,18 +1,11 @@
 import * as React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/lab/SliderStyled';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: 300,
-    },
-    margin: {
-      height: theme.spacing(3),
-    },
-  }),
-);
+const Root = styled('div')`
+  width: 300px;
+`;
 
 const marks = [
   {
@@ -38,10 +31,8 @@ function valuetext(value: number) {
 }
 
 export default function DiscreteSlider() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Root>
       <Typography id="discrete-slider-always" gutterBottom>
         Always visible
       </Typography>
@@ -53,6 +44,6 @@ export default function DiscreteSlider() {
         marks={marks}
         valueLabelDisplay="on"
       />
-    </div>
+    </Root>
   );
 }
