@@ -33,9 +33,9 @@ describe('<TextField />', () => {
 
     it('should forward the multiline prop to Input', () => {
       const inputClasses = getClasses(<Input />);
-      const { getAllByRole } = render(<TextField multiline />);
+      const { getByRole } = render(<TextField multiline />);
 
-      expect(getAllByRole('textbox')[0]).to.have.class(inputClasses.inputMultiline);
+      expect(getByRole('textbox', { hidden: false })).to.have.class(inputClasses.inputMultiline);
     });
 
     it('should forward the fullWidth prop to Input', () => {
