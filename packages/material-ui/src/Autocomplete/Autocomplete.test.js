@@ -2050,77 +2050,34 @@ describe('<Autocomplete />', () => {
     });
   });
 
-  describe('when option is selected', () => {
-    it('should show all options when popup is opened by focusing on textbox', () => {
-      const { getAllByRole, getByRole } = render(
-        <Autocomplete
-          openOnFocus
-          options={['one', 'two']}
-          renderInput={(params) => <TextField {...params} />}
-          value='one'
-        />,
-      );
-      const input = getByRole('textbox');
-      act(() => {
-        input.blur();
-        input.focus(); // opens the listbox
-      });
- 
-      const options = getAllByRole('option');
-      expect(options).to.have.length(2);
- 
-      const listbox = getByRole('listbox');
-      options.forEach((option) => {
-        expect(listbox).to.contain(option);
-      });
-    });
- 
-    it('should show all options when popup button is clicked', () => {
-      const { getAllByRole, getByRole, queryByTitle } = render(
-        <Autocomplete
-          options={['one', 'two']}
-          renderInput={(params) => <TextField {...params} />}
-          value='one'
-        />,
-      );
-      fireEvent.click(queryByTitle('Open'));
- 
-      const options = getAllByRole('option');
-      expect(options).to.have.length(2);
- 
-      const listbox = getByRole('listbox');
-      options.forEach((option) => {
-        expect(listbox).to.contain(option);
-      });
-    });
- 
-    it('should filter options when new input value matches option', () => {
-      const handleKeyDown = spy();
-      const { getAllByRole, getByRole } = render(
-        <Autocomplete
-          inputValue="on"
-          onKeyDown={handleKeyDown}
-          openOnFocus
-          options={['one', 'two']}
-          renderInput={(params) => <TextField {...params} />}
-          value='one'
-        />,
-      );
-      const input = getByRole('textbox');
-      act(() => {
-        input.blur();
-        input.focus(); // opens the listbox
-      });
- 
-      fireEvent.keyDown(input, { key: 'e' });
-      expect(handleKeyDown.callCount).to.equal(1);
-      expect(input.value).to.equal('one');
+  it('should filter options when new input value matches option', () => {
+    const handleChange = spy();
+    const { getAllByRole, getByRole } = render(
+      <Autocomplete
+        openOnFocus
+        options={['one', 'two']}
+        onChange={handleChange}
+        renderInput={(params) => <TextField autoFocus {...params} />}
+      />,
+    );
+    const textbox = getByRole('textbox');
+    const combobox = getByRole('combobox');
 
-      const options = getAllByRole('option');
-      expect(options).to.have.length(1);
- 
-      const listbox = getByRole('listbox');
-      expect(listbox).to.contain(options[0]);
-    });
+    fireEvent.change(textbox, { target: { value: 'one' } });
+    fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+    fireEvent.keyDown(textbox, { key: 'Enter' });
+    expect(handleChange.callCount).to.equal(1);
+    expect(handleChange.args[0][1]).to.deep.equal('one');
+    expect(combobox).to.have.attribute('aria-expanded', 'false');
+
+    fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+    expect(combobox).to.have.attribute('aria-expanded', 'true');
+
+    expect(getAllByRole('option')).to.have.length(2);
+
+    fireEvent.change(textbox, { target: { value: 'on' } });
+    fireEvent.change(textbox, { target: { value: 'one' } });
+
+    expect(getAllByRole('option')).to.have.length(1);
   });
 });
