@@ -1,18 +1,16 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
 import Slider from '@material-ui/lab/SliderStyled';
-import styled from '@emotion/styled';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: `calc(300px + ${theme.spacing(6)})`,
-  },
-  margin: {
-    height: theme.spacing(3),
-  },
+const Root = styled('div')((props) => ({
+  width: `calc(300px + ${props.theme.spacing(6)})`,
+}));
+
+const Separator = styled('div')((props) => ({
+  height: props.theme.spacing(3),
 }));
 
 function ValueLabelComponent(props) {
@@ -169,10 +167,8 @@ function AirbnbThumbComponent(props) {
 }
 
 export default function CustomizedSlider() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Root>
       <Typography gutterBottom>iOS</Typography>
       <IOSSlider
         aria-label="ios slider"
@@ -180,14 +176,14 @@ export default function CustomizedSlider() {
         marks={marks}
         valueLabelDisplay="on"
       />
-      <div className={classes.margin} />
+      <Separator />
       <Typography gutterBottom>pretto.fr</Typography>
       <PrettoSlider
         valueLabelDisplay="auto"
         aria-label="pretto slider"
         defaultValue={20}
       />
-      <div className={classes.margin} />
+      <Separator />
       <Typography gutterBottom>Tooltip value label</Typography>
       <Slider
         components={{
@@ -196,7 +192,7 @@ export default function CustomizedSlider() {
         aria-label="custom thumb label"
         defaultValue={20}
       />
-      <div className={classes.margin} />
+      <Separator />
       <Typography gutterBottom>Airbnb</Typography>
       <AirbnbSlider
         components={{ Thumb: AirbnbThumbComponent }}
@@ -205,6 +201,6 @@ export default function CustomizedSlider() {
         }
         defaultValue={[20, 40]}
       />
-    </div>
+    </Root>
   );
 }
