@@ -1,18 +1,26 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, findOutermostIntrinsic, createMount, describeConformance } from 'test/utils';
+import {
+  getClasses,
+  createMount,
+  createClientRender,
+  describeConformance,
+  screen,
+} from 'test/utils';
 import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
 import Paper from '../Paper';
 import Button from '../Button/Button';
-import LinearProgress from '../LinearProgress';
 import MobileStepper from './MobileStepper';
 
 describe('<MobileStepper />', () => {
   const mount = createMount();
+  const render = createClientRender();
+  const testId = 'mobile-stepper-test';
   let classes;
   const defaultProps = {
     steps: 2,
+    'data-testid': testId,
     nextButton: (
       <Button aria-label="next">
         Next
@@ -40,92 +48,80 @@ describe('<MobileStepper />', () => {
   }));
 
   it('should render a Paper with 0 elevation', () => {
-    const wrapper = mount(<MobileStepper {...defaultProps} />);
-    expect(wrapper.find(Paper).props().elevation).to.equal(0);
+    render(<MobileStepper {...defaultProps} />);
+    const paperClasses = getClasses(<Paper elevation={0} />);
+    expect(screen.getByTestId(testId)).to.have.class(paperClasses.elevation0);
   });
 
   it('should render with the bottom class if position prop is set to bottom', () => {
-    const wrapper = mount(<MobileStepper {...defaultProps} position="bottom" />);
-    expect(findOutermostIntrinsic(wrapper).hasClass(classes.positionBottom)).to.equal(true);
+    render(<MobileStepper {...defaultProps} position="bottom" />);
+    expect(screen.getByTestId(testId)).to.have.class(classes.positionBottom);
   });
 
   it('should render with the top class if position prop is set to top', () => {
-    const wrapper = mount(<MobileStepper {...defaultProps} position="top" />);
-    expect(findOutermostIntrinsic(wrapper).hasClass(classes.positionTop)).to.equal(true);
+    render(<MobileStepper {...defaultProps} position="top" />);
+    expect(screen.getByTestId(testId)).to.have.class(classes.positionTop);
   });
 
   it('should render two buttons', () => {
-    const wrapper = mount(<MobileStepper {...defaultProps} />);
-    expect(wrapper.find(Button)).to.have.lengthOf(2);
+    render(<MobileStepper {...defaultProps} />);
+    expect(screen.getAllByRole('button')).to.have.lengthOf(2);
   });
 
   it('should render the back button', () => {
-    const wrapper = mount(<MobileStepper {...defaultProps} />);
-    const backButton = wrapper.find('button[aria-label="back"]');
-    expect(backButton.exists()).to.equal(true);
-    expect(backButton.find('svg[data-testid="KeyboardArrowLeftIcon"]')).to.have.lengthOf(1);
+    render(<MobileStepper {...defaultProps} />);
+    const backButton = screen.getByTestId(testId).querySelector('button[aria-label="back"]');
+    expect(backButton).to.not.equal(null);
+    expect(backButton.querySelector('svg[data-testid="KeyboardArrowLeftIcon"]')).to.not.equal(null);
   });
 
   it('should render next button', () => {
-    const wrapper = mount(<MobileStepper {...defaultProps} />);
-    const nextButton = wrapper.find('button[aria-label="next"]');
-    expect(nextButton.exists()).to.equal(true);
-    expect(nextButton.find('svg[data-testid="KeyboardArrowRightIcon"]')).to.have.lengthOf(1);
+    render(<MobileStepper {...defaultProps} />);
+    const nextButton = screen.getByTestId(testId).querySelector('button[aria-label="next"]');
+    expect(nextButton).to.not.equal(null);
+    expect(nextButton.querySelector('svg[data-testid="KeyboardArrowRightIcon"]')).to.not.equal(
+      null,
+    );
   });
 
   it('should render two buttons and text displaying progress when supplied with variant text', () => {
-    const wrapper = mount(
-      <MobileStepper {...defaultProps} variant="text" activeStep={1} steps={3} />,
-    );
-    expect(findOutermostIntrinsic(wrapper).instance().textContent).to.equal('Back2 / 3Next');
+    render(<MobileStepper {...defaultProps} variant="text" activeStep={1} steps={3} />);
+    expect(screen.getByTestId(testId).textContent).to.equal('Back2 / 3Next');
   });
 
   it('should render dots when supplied with variant dots', () => {
-    const wrapper = mount(<MobileStepper {...defaultProps} variant="dots" />);
-    const outermost = findOutermostIntrinsic(wrapper);
-    expect(outermost.children()).to.have.lengthOf(3);
-    expect(outermost.childAt(1).hasClass(classes.dots)).to.equal(true);
+    render(<MobileStepper {...defaultProps} variant="dots" />);
+    const outermost = screen.getByTestId(testId);
+    expect(outermost.children).to.have.lengthOf(3);
+    expect(outermost.children[1]).to.has.class(classes.dots);
   });
 
   it('should render a dot for each step when using dots variant', () => {
-    const wrapper = mount(<MobileStepper {...defaultProps} variant="dots" />);
-    expect(wrapper.find(`.${classes.dot}`)).to.have.lengthOf(2);
+    render(<MobileStepper {...defaultProps} variant="dots" />);
+    expect(screen.getByTestId(testId).querySelectorAll(`.${classes.dot}`)).to.have.lengthOf(2);
   });
 
   it('should render the first dot as active if activeStep is not set', () => {
-    const wrapper = mount(<MobileStepper {...defaultProps} variant="dots" />);
-    expect(
-      findOutermostIntrinsic(wrapper).childAt(1).childAt(0).hasClass(classes.dotActive),
-    ).to.equal(true);
+    render(<MobileStepper {...defaultProps} variant="dots" />);
+    expect(screen.getByTestId(testId).children[1].firstChild).to.has.class(classes.dotActive);
   });
 
   it('should honor the activeStep prop', () => {
-    const wrapper = mount(<MobileStepper {...defaultProps} variant="dots" activeStep={1} />);
-    expect(
-      findOutermostIntrinsic(wrapper).childAt(1).childAt(1).hasClass(classes.dotActive),
-    ).to.equal(true);
+    render(<MobileStepper {...defaultProps} variant="dots" activeStep={1} />);
+    expect(screen.getByTestId(testId).children[1].children[1]).to.has.class(classes.dotActive);
   });
 
   it('should render a <LinearProgress /> when supplied with variant progress', () => {
-    const wrapper = mount(<MobileStepper {...defaultProps} variant="progress" />);
-    expect(wrapper.find(LinearProgress)).to.have.lengthOf(1);
+    render(<MobileStepper {...defaultProps} variant="progress" />);
+    expect(screen.queryByRole('progressbar')).to.not.equal(null);
   });
 
   it('should calculate the <LinearProgress /> value correctly', () => {
-    let wrapper = mount(<MobileStepper {...defaultProps} variant="progress" steps={3} />);
-    let linearProgressProps = wrapper.find(LinearProgress).props();
-    expect(linearProgressProps.value).to.equal(0);
-
-    wrapper = mount(
-      <MobileStepper {...defaultProps} variant="progress" steps={3} activeStep={1} />,
-    );
-    linearProgressProps = wrapper.find(LinearProgress).props();
-    expect(linearProgressProps.value).to.equal(50);
-
-    wrapper = mount(
-      <MobileStepper {...defaultProps} variant="progress" steps={3} activeStep={2} />,
-    );
-    linearProgressProps = wrapper.find(LinearProgress).props();
-    expect(linearProgressProps.value).to.equal(100);
+    const { rerender } = render(<MobileStepper {...defaultProps} variant="progress" steps={3} />);
+    expect(screen.getByRole('progressbar').getAttribute('aria-valuenow')).to.equal('0');
+    rerender(<MobileStepper {...defaultProps} variant="progress" steps={3} activeStep={1} />);
+    expect(screen.getByRole('progressbar').getAttribute('aria-valuenow')).to.equal('50');
+    rerender(<MobileStepper {...defaultProps} variant="progress" steps={3} activeStep={2} />);
+    expect(screen.getByRole('progressbar').getAttribute('aria-valuenow')).to.equal('100');
   });
 });
