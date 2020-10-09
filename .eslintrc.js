@@ -137,7 +137,7 @@ module.exports = {
       env: {
         mocha: true,
       },
-      extends: ['plugin:mocha/recommended'],
+      extends: ['plugin:mocha/recommended', 'plugin:chai-friendly/recommended'],
       rules: {
         // does not work with wildcard imports. Mistakes will throw at runtime anyway
         'import/named': 'off',
@@ -187,6 +187,7 @@ module.exports = {
         // components that are defined in test are isolated enough
         // that they don't need type-checking
         'react/prop-types': 'off',
+        '@typescript-eslint/no-unused-expressions': 'off',
       },
     },
     {

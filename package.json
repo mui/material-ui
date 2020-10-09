@@ -102,6 +102,7 @@
     "eslint-config-prettier": "^6.11.0",
     "eslint-import-resolver-webpack": "^0.13.0",
     "eslint-plugin-babel": "^5.3.1",
+    "eslint-plugin-chai-friendly": "^0.6.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-mocha": "^8.0.0",
