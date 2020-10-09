@@ -8,7 +8,7 @@ Material-UI 的打包文件大小至关重要。 每一次提交代码时，我�
 
 ## 何时以及如何使用 tree-shaking?
 
-在现代框架中，Material-UI 的 Tree-shaking 可开箱即用。 Material-UI 在导入顶层的 `material-ui` 时会提供出其完整的 API。 Tree-shaking of Material-UI works out of the box in modern frameworks. Material-UI exposes its full API on the top-level `material-ui` import. If you're using ES6 modules and a bundler that supports tree-shaking ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` with a flag](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) you can safely use named imports and still get an optimised bundle size automatically:
+在现代框架中，Material-UI 的 Tree-shaking 可开箱即用。 Material-UI 在导入顶层的 `material-ui` 时会提供出其完整的 API。 如果你使用的是 ES6 模块和支持 tree-shaking 的打包程序（[`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` with a flag](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)），那么你可以安全地使用命名的导入，并且仍然可以自动获得优化的捆绑包大小。
 
 ```js
 import { Button, TextField } from '@material-ui/core';
@@ -40,7 +40,7 @@ import { Button, TextField } from '@material-ui/core';
 
 这是我们在所有演示中记录的选项，因为它不需要配置。 我们鼓励库的创建者来扩充已有组件。 请前往带来最佳 DX 和 UX 的方法： [选项2](#option-2)。
 
-While importing directly in this manner doesn't use the exports in [the main file of `@material-ui/core`](https://unpkg.com/@material-ui/core), this file can serve as a handy reference as to which modules are public.
+虽然以这种方式直接进行导入不会使用 [`@material-ui/core` 主文件](https://unpkg.com/@material-ui/core)中的导出模块（exports），但该文件可以方便地参考哪些模块是公共的。
 
 请注意，我们只支持第一级和第二级的导入。 再深入的导入就是私有的，它们会造成一些问题，譬如你的打包文件会产生重复的模块。
 
@@ -104,26 +104,26 @@ import { Button, TextField } from '@material-ui/core';
     [
       'babel-plugin-import',
       {
-        'libraryName': '@material-ui/core',
-        // Use "'libraryDirectory': ''," if your bundler does not support ES modules
-        'libraryDirectory': 'esm',
-        'camel2DashComponentName': false
+        libraryName: '@material-ui/core',
+        // Use "'libraryDirectory': ''," 如果你的打包程序不支持 ES modules
+        libraryDirectory: 'esm',
+        camel2DashComponentName: false,
       },
-      'core'
+      'core',
     ],
     [
       'babel-plugin-import',
       {
-        'libraryName': '@material-ui/icons',
-        // Use "'libraryDirectory': ''," if your bundler does not support ES modules
-        'libraryDirectory': 'esm',
-        'camel2DashComponentName': false
+        libraryName: '@material-ui/icons',
+        // Use "'libraryDirectory': ''," 如果你的打包程序不支持 ES modules
+        libraryDirectory: 'esm',
+        camel2DashComponentName: false,
       },
-      'icons'
-    ]
+      'icons',
+    ],
   ];
 
-  module.exports = {plugins};
+  module.exports = { plugins };
   ```
 
 - [babel-plugin-transform-imports](https://www.npmjs.com/package/babel-plugin-transform-imports) 的配置如下：
@@ -138,20 +138,18 @@ import { Button, TextField } from '@material-ui/core';
       'babel-plugin-transform-imports',
       {
         '@material-ui/core': {
-          // Use "transform: '@material-ui/core/${member}'," if your bundler does not support ES modules
-          'transform': '@material-ui/core/esm/${member}',
-          'preventFullImport': true
+          // Use "transform: '@material-ui/core/${member}'," 如果你的打包程序不支持 ES modules
+          transform: '@material-ui/core/esm/${member}',
+          preventFullImport: true,
         },
         '@material-ui/icons': {
-          // Use "transform: '@material-ui/icons/${member}'," if your bundler does not support ES modules
-          'transform': '@material-ui/icons/esm/${member}',
-          'preventFullImport': true
-        }
-      }
-    ]
+          // Use "transform: '@material-ui/icons/${member}'," 如果你的打包程序不支持 ES modules
+          transform: '@material-ui/icons/esm/${member}',
+          preventFullImport: true,
+        },
+      },
+    ],
   ];
-
-  module.exports = {plugins};
   ```
 
 如果您正在使用 Create React App，您将需要使用几个项目，让您可以使用 `.babelrc` 来配置，而无需 ejecting。
@@ -169,7 +167,7 @@ module.exports = override(useBabelRc());
 
 如果您愿意，使用此 [配置](https://github.com/arackaf/customize-cra/blob/master/api.md#fixbabelimportslibraryname-options) ，那么就可以通过 `config-overrides.js` 而不是 `.babelrc` 来配置 `babel-plugin-import` 。
 
-Modify your `package.json` start command:
+修改你的 `package.json` 命令：
 
 ```diff
   "scripts": {
@@ -205,7 +203,7 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 
 #### 2. 转换您的所有模块导入方式
 
-Finally, you can convert your existing codebase to this option with this [top-level-imports codemod](https://www.npmjs.com/package/@material-ui/codemod#top-level-imports). 它将执行以下的差异：
+最后，你可以使用这个 [top-level-imports codemod](https://www.npmjs.com/package/@material-ui/codemod#top-level-imports) 将现有的代码库转换为此选项。 它将执行以下的差异：
 
 ```diff
 -import Button from '@material-ui/core/Button';
