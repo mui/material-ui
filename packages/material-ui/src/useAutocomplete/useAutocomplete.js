@@ -177,6 +177,8 @@ export default function useAutocomplete(props) {
     state: 'open',
   });
 
+  const [inputPristine, setInputPristine] = React.useState(true);
+
   const inputValueIsSelectedValue =
     !multiple && value != null && inputValue === getOptionLabel(value);
 
@@ -197,7 +199,10 @@ export default function useAutocomplete(props) {
         }),
         // we use the empty string to manipulate `filterOptions` to not filter any options
         // i.e. the filter predicate always returns true
-        { inputValue: inputValueIsSelectedValue ? '' : inputValue, getOptionLabel },
+        {
+          inputValue: inputValueIsSelectedValue && inputPristine ? '' : inputValue,
+          getOptionLabel,
+        },
       )
     : [];
 
@@ -495,6 +500,7 @@ export default function useAutocomplete(props) {
     }
 
     setOpenState(true);
+    setInputPristine(true);
 
     if (onOpen) {
       onOpen(event);
@@ -811,6 +817,7 @@ export default function useAutocomplete(props) {
 
     if (inputValue !== newValue) {
       setInputValueState(newValue);
+      setInputPristine(false);
 
       if (onInputChange) {
         onInputChange(event, newValue, 'input');
