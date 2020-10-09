@@ -41,7 +41,6 @@ export default function AnchorElTooltips() {
       }}
     >
       <Box
-        /* @ts-expect-error need to fix #17010 */
         ref={areaRef}
         bgcolor="primary.main"
         color="primary.contrastText"
