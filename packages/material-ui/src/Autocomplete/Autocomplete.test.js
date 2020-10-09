@@ -2049,4 +2049,35 @@ describe('<Autocomplete />', () => {
       );
     });
   });
+
+  it('should filter options when new input value matches option', () => {
+    const handleChange = spy();
+    const { getAllByRole, getByRole } = render(
+      <Autocomplete
+        openOnFocus
+        options={['one', 'two']}
+        onChange={handleChange}
+        renderInput={(params) => <TextField autoFocus {...params} />}
+      />,
+    );
+    const textbox = getByRole('textbox');
+    const combobox = getByRole('combobox');
+
+    fireEvent.change(textbox, { target: { value: 'one' } });
+    fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+    fireEvent.keyDown(textbox, { key: 'Enter' });
+    expect(handleChange.callCount).to.equal(1);
+    expect(handleChange.args[0][1]).to.deep.equal('one');
+    expect(combobox).to.have.attribute('aria-expanded', 'false');
+
+    fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+    expect(combobox).to.have.attribute('aria-expanded', 'true');
+
+    expect(getAllByRole('option')).to.have.length(2);
+
+    fireEvent.change(textbox, { target: { value: 'on' } });
+    fireEvent.change(textbox, { target: { value: 'one' } });
+
+    expect(getAllByRole('option')).to.have.length(1);
+  });
 });
