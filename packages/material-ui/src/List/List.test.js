@@ -78,7 +78,7 @@ describe('<List />', () => {
 
       const listItemClasses = getClasses(<ListItem />);
 
-      const liItems = container.querySelector('li');
+      const liItems = container.querySelectorAll('li');
       for (let i = 0; i < liItems.length; i += 1) {
         expect(liItems[i]).to.have.class(listItemClasses.dense);
       }
