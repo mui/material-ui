@@ -29,7 +29,7 @@ describe('<SpeedDialIcon />', () => {
 
   it('should render an Icon', () => {
     const { container } = render(<SpeedDialIcon icon={icon} />);
-    expect(container.firstChild).to.have.class(classes.root);
+    expect(container.firstChild.querySelector('span')).to.have.class(classes.icon);
   });
 
   it('should render an openIcon', () => {
