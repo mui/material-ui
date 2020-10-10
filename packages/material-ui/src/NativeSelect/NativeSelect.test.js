@@ -6,7 +6,7 @@ import NativeSelect from './NativeSelect';
 
 describe('<NativeSelect />', () => {
   let classes;
-  let classesInput;
+  let inputClasses;
   const mount = createMount();
   const render = createClientRender();
   const defaultProps = {
@@ -23,7 +23,7 @@ describe('<NativeSelect />', () => {
 
   before(() => {
     classes = getClasses(<NativeSelect {...defaultProps} />);
-    classesInput = getClasses(<Input />);
+    inputClasses = getClasses(<Input />);
   });
 
   describeConformance(<NativeSelect {...defaultProps} />, () => ({
@@ -35,7 +35,7 @@ describe('<NativeSelect />', () => {
   }));
 
   it('should render a native select', () => {
-    const { container } = render(
+    const { getByRole } = render(
       <NativeSelect {...defaultProps} value={10}>
         <option value="">empty</option>
         <option value={10}>Ten</option>
@@ -44,7 +44,7 @@ describe('<NativeSelect />', () => {
       </NativeSelect>,
     );
 
-    const select = container.querySelector('select');
+    const select = getByRole('combobox');
     const options = select.children;
     expect(select.value).to.equal('10');
     expect(options.length).to.equal(4);
@@ -61,11 +61,11 @@ describe('<NativeSelect />', () => {
 
   it('should provide the classes to the input component', () => {
     const { container } = render(<NativeSelect {...defaultProps} />);
-    expect(container.firstChild).to.have.class(classesInput.root);
+    expect(container.firstChild).to.have.class(inputClasses.root);
   });
 
   it('should provide the classes to the select component', () => {
-    const { container } = render(<NativeSelect {...defaultProps} />);
-    expect(container.querySelector('select')).to.have.class(classes.root);
+    const { getByRole } = render(<NativeSelect {...defaultProps} />);
+    expect(getByRole('combobox')).to.have.class(classes.root);
   });
 });
