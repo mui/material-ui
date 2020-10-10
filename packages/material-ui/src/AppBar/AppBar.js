@@ -39,7 +39,7 @@ export const styles = (theme) => {
     },
     /* Styles applied to the root element if `position="sticky"`. */
     positionSticky: {
-      // ⚠️ sticky is not supported by IE 11.
+      // ⚠️ sticky is not supported by IE11.
       position: 'sticky',
       top: 0,
       left: 'auto',

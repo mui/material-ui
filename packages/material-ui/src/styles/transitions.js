@@ -42,7 +42,7 @@ export function create(props = ['all'], options = {}) {
 
   if (process.env.NODE_ENV !== 'production') {
     const isString = (value) => typeof value === 'string';
-    // IE 11 support, replace with Number.isNaN
+    // IE11 support, replace with Number.isNaN
     // eslint-disable-next-line no-restricted-globals
     const isNumber = (value) => !isNaN(parseFloat(value));
     if (!isString(props) && !Array.isArray(props)) {

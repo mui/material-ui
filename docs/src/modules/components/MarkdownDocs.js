@@ -39,7 +39,7 @@ function flattenPages(pages, current = []) {
   }, current);
 }
 
-// To replace with .findIndex() once we stop IE 11 support.
+// To replace with .findIndex() once we stop IE11 support.
 function findIndex(array, comp) {
   for (let i = 0; i < array.length; i += 1) {
     if (comp(array[i])) {

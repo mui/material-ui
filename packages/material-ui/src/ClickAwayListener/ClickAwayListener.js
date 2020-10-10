@@ -56,7 +56,7 @@ function ClickAwayListener(props) {
 
     const doc = ownerDocument(nodeRef.current);
 
-    // 1. IE 11 support, which trigger the handleClickAway even after the unbind
+    // 1. IE11 support, which trigger the handleClickAway even after the unbind
     // 2. The child might render null.
     // 3. Behave like a blur listener.
     if (!mountedRef.current || !nodeRef.current || clickedRootScrollbar(event, doc)) {

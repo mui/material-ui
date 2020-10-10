@@ -198,7 +198,7 @@ const theme = createMuiTheme({
 
 ### Styles
 
-- Renamed `fade` to `alpha` to better describe the it's functionality.
+- Renamed `fade` to `alpha` to better describe its functionality.
 
 ```diff
 - import { fade } from '@material-ui/core/styles';
@@ -414,6 +414,7 @@ const classes = makeStyles(theme => ({
   ```
 
 - Remove `display: flex` from AccordionDetails as its too opinionated.
+  Most developers expect a display block.
 - Remove `IconButtonProps` prop from AccordionSummary.
   The component renders a `<div>` element instead of an IconButton.
   The prop is no longer necessary.
