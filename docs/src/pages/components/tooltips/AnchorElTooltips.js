@@ -27,8 +27,6 @@ export default function AnchorElTooltips() {
       PopperProps={{
         popperRef,
         anchorEl: {
-          clientHeight: 0,
-          clientWidth: 0,
           getBoundingClientRect: () => ({
             top: areaRef.current?.getBoundingClientRect().top ?? 0,
             left: positionRef.current.x,

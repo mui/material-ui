@@ -1,14 +1,14 @@
 import * as React from 'react';
 import Box from '@material-ui/core/Box';
 import Tooltip from '@material-ui/core/Tooltip';
-import PopperJs from 'popper.js';
+import { Instance } from '@popperjs/core';
 
 export default function AnchorElTooltips() {
   const positionRef = React.useRef<{ x: number; y: number }>({
     x: 0,
     y: 0,
   });
-  const popperRef = React.useRef<PopperJs>(null);
+  const popperRef = React.useRef<Instance>(null);
   const areaRef = React.useRef<HTMLDivElement>(null);
 
   const handleMouseMove = (event: React.MouseEvent) => {
@@ -27,8 +27,6 @@ export default function AnchorElTooltips() {
       PopperProps={{
         popperRef,
         anchorEl: {
-          clientHeight: 0,
-          clientWidth: 0,
           getBoundingClientRect: () => ({
             top: areaRef.current?.getBoundingClientRect().top ?? 0,
             left: positionRef.current.x,
