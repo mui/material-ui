@@ -8,10 +8,10 @@ Big thanks to the 45 contributors who made this release possible.
 Here are some highlights ✨:
 
 - 🧪 A promotion of 4 components from the lab to core: Autocomplete, Pagination, SpeedDial, and ToggleButton. These components have been in the lab for more than 10 months @mbrookes.
-- 📦 Switch the style engine of the `Box` component from JSS to *@material-ui/styled-engine* (use emotion by default) (#22945) @mnajdova.
-The early benchmark we have run show that the performance is improved. We will share more detailed results in #21657.
+- 📦 Switch the style engine of the `Box` component from JSS to _@material-ui/styled-engine_ (use emotion by default) (#22945) @mnajdova.
+  The early benchmark we have run show that the performance is improved. We will share more detailed results in #21657.
 - 🐙 Migrate a large portion of the tests from enzyme to react-testing-library @eladmotola, @baterson, @bewong89, @devrasec, @guillermaster, @itamar244, @jeferson-sb, @The24thDS.
-Last month, react-testing-library had [more downloads](https://npm-stat.com/charts.html?package=enzyme&package=%40testing-library%2Freact&from=2019-10-10&to=2020-10-10) than enzyme in the ecosystem!
+  Last month, react-testing-library had [more downloads](https://npm-stat.com/charts.html?package=enzyme&package=%40testing-library%2Freact&from=2019-10-10&to=2020-10-10) than enzyme in the ecosystem!
 - 🏷 Add support for tooltips [following the cursor](https://next.material-ui.com/components/tooltips/#follow-cursor) (#22876) @xtrixia.
 - And many more 🐛 bug fixes and 📚 improvements.
 
@@ -43,7 +43,7 @@ Last month, react-testing-library had [more downloads](https://npm-stat.com/char
   ```
 
 - [theme] Rename fade to alpha (#22834) @mnajdova
-  Better describe its functionality.
+  Better describe its functionality. The previous name was leading to confusion when the input color already had an alpha value. The helper **overrides** the alpha value of the color.
 
   ```diff
   - import { fade } from '@material-ui/core/styles';

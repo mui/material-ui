@@ -199,6 +199,7 @@ const theme = createMuiTheme({
 ### Styles
 
 - Renamed `fade` to `alpha` to better describe its functionality.
+  The previous name was leading to confusion when the input color already had an alpha value. The helper **overrides** the alpha value of the color.
 
 ```diff
 - import { fade } from '@material-ui/core/styles';
