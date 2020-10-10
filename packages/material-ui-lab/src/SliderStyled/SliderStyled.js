@@ -167,17 +167,24 @@ const SliderRoot = experimentalStyled(
       right: -11,
       bottom: -11,
     },
-    ':hover, &.Mui-focusVisible': {
+    '::before': {
+      position: 'absolute',
+      content: '""',
+      borderRadius: '50%',
+      width: '100%',
+      height: '100%',
+    },
+    ':hover::before, &.Mui-focusVisible::before': {
       boxShadow: `0px 0px 0px 8px ${alpha(props.theme.palette.primary.main, 0.16)}`,
       '@media (hover: none)': {
         boxShadow: 'none',
       },
     },
-    '&.Mui-active': {
+    '&.Mui-active::before': {
       boxShadow: `0px 0px 0px 14px ${alpha(props.theme.palette.primary.main, 0.16)}`,
     },
     '&.Mui-disabled': {
-      ':hover': {
+      ':hover::before': {
         boxShadow: 'none',
       },
     },
