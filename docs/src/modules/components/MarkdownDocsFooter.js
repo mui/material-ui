@@ -248,13 +248,17 @@ function MarkdownDocsFooter(props) {
   }
 
   const handleClickUp = async () => {
-    setCurrentRating(1);
-    await processFeedback(1);
+    if (getCurrentRating !== 1) {
+      setCurrentRating(1);
+      await processFeedback(1);
+    }
   };
 
   const handleClickDown = () => {
-    setCurrentRating(0);
-    setCommentOpen(true);
+    if (getCurrentRating !== 0) {
+      setCurrentRating(0);
+      setCommentOpen(true);
+    }
   };
 
   const handleCloseComment = async (comment) => {
@@ -304,7 +308,6 @@ function MarkdownDocsFooter(props) {
                 <Typography
                   align="center"
                   variant="subtitle1"
-                  component="div"
                   className={classes.feedbackMessage}
                 >
                   {t('ratingMessage')}
