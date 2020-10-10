@@ -1021,8 +1021,7 @@ describe('<Tooltip />', () => {
       await raf();
 
       expect(tooltipElement).toBeVisible();
-      expect(tooltipElement.getBoundingClientRect()).to.have.property('top', y);
-      expect(tooltipElement.getBoundingClientRect()).to.have.property('left', x);
+      expect(tooltipElement.style).to.have.property('transform', `translate(${x}px, ${y}px)`);
     });
   });
 });
