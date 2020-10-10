@@ -990,7 +990,7 @@ describe('<Tooltip />', () => {
 
   describe('prop: followCursor', () => {
     it('should use the position of the mouse', async function test() {
-      // Only callig render() outputs:
+      // Only calling render() outputs:
       // An update to ForwardRef(Popper) inside a test was not wrapped in act(...).
       // Somethings is wrong in JSDOM and strict mode.
       if (/jsdom/.test(window.navigator.userAgent)) {

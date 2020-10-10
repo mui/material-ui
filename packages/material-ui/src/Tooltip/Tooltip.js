@@ -540,8 +540,6 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
         anchorEl={
           followCursor
             ? {
-                clientHeight: 0,
-                clientWidth: 0,
                 getBoundingClientRect: () => ({
                   top: positionRef.current.y,
                   left: positionRef.current.x,

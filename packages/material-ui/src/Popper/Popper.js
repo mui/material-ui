@@ -270,15 +270,15 @@ Popper.propTypes = {
           }
         } else if (
           !resolvedAnchorEl ||
-          typeof resolvedAnchorEl.clientWidth !== 'number' ||
-          typeof resolvedAnchorEl.clientHeight !== 'number' ||
-          typeof resolvedAnchorEl.getBoundingClientRect !== 'function'
+          typeof resolvedAnchorEl.getBoundingClientRect !== 'function' ||
+          (resolvedAnchorEl.contextElement != null &&
+            resolvedAnchorEl.contextElement.nodeType !== 1)
         ) {
           return new Error(
             [
               'Material-UI: The `anchorEl` prop provided to the component is invalid.',
-              'It should be an HTML element instance or a referenceObject ',
-              '(https://popper.js.org/docs/v1/#referenceObject).',
+              'It should be an HTML element instance or a virtualElement ',
+              '(https://popper.js.org/docs/v2/virtual-elements/).',
             ].join('\n'),
           );
         }
