@@ -9,22 +9,24 @@ import useEnhancedEffect from '../utils/useEnhancedEffect';
 
 function nextItem(list, item, disableListWrap) {
   if (list === item) {
-    return list.firstChild;
+    return list[0];
   }
-  if (item && item.nextElementSibling) {
-    return item.nextElementSibling;
+  const i = list.findIndex((c) => c === item);
+  if (item && i > -1 && i + 1 < list.length) {
+    return list[i + 1];
   }
-  return disableListWrap ? null : list.firstChild;
+  return disableListWrap ? null : list[0];
 }
 
 function previousItem(list, item, disableListWrap) {
   if (list === item) {
-    return disableListWrap ? list.firstChild : list.lastChild;
+    return disableListWrap ? list[0] : list[list.length - 1];
   }
-  if (item && item.previousElementSibling) {
-    return item.previousElementSibling;
+  const i = list.findIndex((c) => c === item);
+  if (item && i > -1 && i - 1 >= 0) {
+    return list[i - 1];
   }
-  return disableListWrap ? null : list.lastChild;
+  return disableListWrap ? null : list[list.length - 1];
 }
 
 function textCriteriaMatches(nextFocus, textCriteria) {
@@ -59,7 +61,7 @@ function moveFocus(
 
   while (nextFocus) {
     // Prevent infinite loop.
-    if (nextFocus === list.firstChild) {
+    if (nextFocus === list[0]) {
       if (wrappedOnce) {
         return;
       }
@@ -114,6 +116,13 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     lastTime: null,
   });
 
+  const [menuItems, setMenuItems] = React.useState([]);
+
+  useEnhancedEffect(() => {
+    const allMenuItems = Array.from(listRef.current.querySelectorAll('[role=menuitem]'));
+    setMenuItems(allMenuItems);
+  }, []);
+
   useEnhancedEffect(() => {
     if (autoFocus) {
       listRef.current.focus();
@@ -141,7 +150,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
   );
 
   const handleKeyDown = (event) => {
-    const list = listRef.current;
+    const list = menuItems;
     const key = event.key;
     /**
      * @type {Element} - will always be defined since we are in a keydown handler
@@ -149,7 +158,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
      * or document.body or document.documentElement. Only the first case will
      * trigger this specific handler.
      */
-    const currentFocus = ownerDocument(list).activeElement;
+    const currentFocus = ownerDocument(listRef.current).activeElement;
 
     if (key === 'ArrowDown') {
       // Prevent scroll of the page
