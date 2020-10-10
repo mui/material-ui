@@ -67,15 +67,15 @@ describe('<MobileStepper />', () => {
   });
 
   it('should render the back button', () => {
-    const { container, queryByTestId } = render(<MobileStepper {...defaultProps} />);
-    const backButton = container.querySelector('button[aria-label="back"]');
+    const { queryByTestId, getByRole } = render(<MobileStepper {...defaultProps} />);
+    const backButton = getByRole('button', { name: 'back' });
     expect(backButton).to.not.equal(null);
     expect(queryByTestId('KeyboardArrowLeftIcon')).to.not.equal(null);
   });
 
   it('should render next button', () => {
-    const { container, queryByTestId } = render(<MobileStepper {...defaultProps} />);
-    const nextButton = container.querySelector('button[aria-label="next"]');
+    const { getByRole, queryByTestId } = render(<MobileStepper {...defaultProps} />);
+    const nextButton = getByRole('button', { name: 'next' });
     expect(nextButton).to.not.equal(null);
     expect(queryByTestId('KeyboardArrowRightIcon')).to.not.equal(null);
   });
