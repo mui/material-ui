@@ -6,10 +6,13 @@ import {
   createClientRender,
   createMount,
   createServerRender,
+  act,
+  fireEvent,
 } from 'test/utils';
 import Fab from './Fab';
 import ButtonBase from '../ButtonBase';
 import Icon from '../Icon';
+import TouchRipple from '../ButtonBase/TouchRipple';
 
 describe('<Fab />', () => {
   const mount = createMount();
@@ -39,7 +42,6 @@ describe('<Fab />', () => {
     expect(button).not.to.have.class(classes.focusVisible);
     expect(button).not.to.have.class(classes.disabled);
     expect(button).not.to.have.class(classes.colorInherit);
-    expect(button).not.to.have.class(classes.mini);
     expect(button).not.to.have.class(classes.fullWidth);
     expect(button).not.to.have.class(classes.sizeSmall);
     expect(button).not.to.have.class(classes.sizeMedium);
@@ -90,27 +92,58 @@ describe('<Fab />', () => {
   });
 
   it('should have a ripple by default', () => {
-    const wrapper = mount(<Fab>Fab</Fab>);
+    const touchRippleClasses = getClasses(<TouchRipple />);
+    const { container } = render(<Fab>Fab</Fab>);
 
-    expect(wrapper.find(ButtonBase).props()).not.to.have.property('disableRipple');
+    expect(container.querySelector(`.${touchRippleClasses.root}`)).not.to.equal(null);
   });
 
   it('should pass disableRipple to ButtonBase', () => {
-    const wrapper = mount(<Fab disableRipple>Fab</Fab>);
+    const touchRippleClasses = getClasses(<TouchRipple />);
+    const { container } = render(<Fab disableRipple>Fab</Fab>);
 
-    expect(wrapper.find(ButtonBase).props()).to.have.property('disableRipple', true);
+    expect(container.querySelector(`.${touchRippleClasses.root}`)).to.equal(null);
   });
 
-  it('should have a focusRipple by default', () => {
-    const wrapper = mount(<Fab>Fab</Fab>);
+  it('should have a focusRipple by default', async () => {
+    const { getByRole } = render(
+      <Fab
+        TouchRippleProps={{
+          classes: { ripplePulsate: 'pulsate-focus-visible' },
+        }}
+      >
+        Fab
+      </Fab>,
+    );
+    const button = getByRole('button');
 
-    expect(wrapper.find(ButtonBase).props()).to.have.property('focusRipple', true);
+    act(() => {
+      fireEvent.keyDown(document.body, { key: 'TAB' });
+      button.focus();
+    });
+
+    expect(button.querySelector('.pulsate-focus-visible')).not.to.equal(null);
   });
 
-  it('should pass disableFocusRipple to ButtonBase', () => {
-    const wrapper = mount(<Fab disableFocusRipple>Fab</Fab>);
+  it('should pass disableFocusRipple to ButtonBase', async () => {
+    const { getByRole } = render(
+      <Fab
+        TouchRippleProps={{
+          classes: { ripplePulsate: 'pulsate-focus-visible' },
+        }}
+        disableFocusRipple
+      >
+        Fab
+      </Fab>,
+    );
+    const button = getByRole('button');
 
-    expect(wrapper.find(ButtonBase).props()).to.have.property('focusRipple', false);
+    act(() => {
+      fireEvent.keyDown(document.body, { key: 'TAB' });
+      button.focus();
+    });
+
+    expect(button.querySelector('.pulsate-focus-visible')).to.equal(null);
   });
 
   it('should render Icon children with right classes', () => {
