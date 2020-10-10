@@ -1,4 +1,5 @@
 /.git
+/.yarn
 /coverage
 /docs/.next
 /docs/export
