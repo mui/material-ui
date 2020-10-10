@@ -7,7 +7,7 @@ import {
   describeConformance,
   getClasses,
   createClientRender,
-  fireEvent
+  fireEvent,
 } from 'test/utils';
 import Paper from '../Paper';
 import Accordion from './Accordion';
@@ -33,8 +33,7 @@ describe('<Accordion />', () => {
 
   it('should render and not be controlled', () => {
     const { container } = render(<Accordion>{minimalChildren}</Accordion>);
-    const root = container.firstChild;
-    expect(root).to.not.have.class(classes.expanded);
+    expect(container.firstChild).to.not.have.class(classes.expanded);
   });
 
   it('should handle defaultExpanded prop', () => {
@@ -43,14 +42,14 @@ describe('<Accordion />', () => {
   });
 
   it('should render the summary and collapse elements', () => {
-    const { getByText } = render(
+    const { getByRole, getByText } = render(
       <Accordion>
         <AccordionSummary>Summary</AccordionSummary>
         <div id="panel-content">Hello</div>
       </Accordion>,
     );
-    expect(getByText("Summary")).to.not.have.attribute("aria-expanded");
-    expect(getByText("Hello")).to.not.be.visible;
+    expect(getByText('Summary')).toBeVisible();
+    expect(getByRole('button')).to.have.attribute('aria-expanded', 'false');
   });
 
   it('should be controlled', () => {
@@ -64,7 +63,7 @@ describe('<Accordion />', () => {
   it('should call onChange when clicking the summary element', () => {
     const handleChange = spy();
     const { getByText } = render(<Accordion onChange={handleChange}>{minimalChildren}</Accordion>);
-    fireEvent.click(getByText("Header"));
+    fireEvent.click(getByText('Header'));
     expect(handleChange.callCount).to.equal(1);
   });
 
@@ -82,13 +81,13 @@ describe('<Accordion />', () => {
 
   it('when undefined onChange and controlled should not call the onChange', () => {
     const handleChange = spy();
-    const { setProps, getByText} = render(
+    const { setProps, getByText } = render(
       <Accordion onChange={handleChange} expanded>
         {minimalChildren}
       </Accordion>,
     );
     setProps({ onChange: undefined });
-    fireEvent.click(getByText("Header"));
+    fireEvent.click(getByText('Header'));
     expect(handleChange.callCount).to.equal(0);
   });
 
@@ -99,7 +98,7 @@ describe('<Accordion />', () => {
 
   it('should handle the TransitionComponent prop', () => {
     const NoTransitionCollapse = (props) => {
-      return props.in ? <div data-testid="no-transition-collapse">{props.children}</div> : null;
+      return props.in ? <div>{props.children}</div> : null;
     };
     NoTransitionCollapse.propTypes = {
       children: PropTypes.node,
@@ -115,11 +114,11 @@ describe('<Accordion />', () => {
     );
 
     // Collapse is initially shown
-    expect(getByText('Hello')).to.be.visible;
+    expect(getByText('Hello')).toBeVisible();
 
     // Hide the collapse
     setProps({ expanded: false });
-    expect(queryByText("Hello")).to.not.exist
+    expect(queryByText('Hello')).to.equal(null);
   });
 
   describe('prop: children', () => {
