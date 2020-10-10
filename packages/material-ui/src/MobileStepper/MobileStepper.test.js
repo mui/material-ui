@@ -52,13 +52,13 @@ describe('<MobileStepper />', () => {
   });
 
   it('should render with the bottom class if position prop is set to bottom', () => {
-    render(<MobileStepper {...defaultProps} position="bottom" data-testid="mobile-stepper-test" />);
-    expect(screen.getByTestId('mobile-stepper-test')).to.have.class(classes.positionBottom);
+    const { container } = render(<MobileStepper {...defaultProps} position="bottom" />);
+    expect(container.firstChild).to.have.class(classes.positionBottom);
   });
 
   it('should render with the top class if position prop is set to top', () => {
-    render(<MobileStepper {...defaultProps} position="top" data-testid="mobile-stepper-test" />);
-    expect(screen.getByTestId('mobile-stepper-test')).to.have.class(classes.positionTop);
+    const { container } = render(<MobileStepper {...defaultProps} position="top" />);
+    expect(container.firstChild).to.have.class(classes.positionTop);
   });
 
   it('should render two buttons', () => {
@@ -67,19 +67,15 @@ describe('<MobileStepper />', () => {
   });
 
   it('should render the back button', () => {
-    render(<MobileStepper {...defaultProps} data-testid="mobile-stepper-test" />);
-    const backButton = screen
-      .getByTestId('mobile-stepper-test')
-      .querySelector('button[aria-label="back"]');
+    const { container } = render(<MobileStepper {...defaultProps} />);
+    const backButton = container.firstChild.querySelector('button[aria-label="back"]');
     expect(backButton).to.not.equal(null);
     expect(backButton.querySelector('svg[data-testid="KeyboardArrowLeftIcon"]')).to.not.equal(null);
   });
 
   it('should render next button', () => {
-    render(<MobileStepper {...defaultProps} data-testid="mobile-stepper-test" />);
-    const nextButton = screen
-      .getByTestId('mobile-stepper-test')
-      .querySelector('button[aria-label="next"]');
+    const { container } = render(<MobileStepper {...defaultProps} />);
+    const nextButton = container.firstChild.querySelector('button[aria-label="next"]');
     expect(nextButton).to.not.equal(null);
     expect(nextButton.querySelector('svg[data-testid="KeyboardArrowRightIcon"]')).to.not.equal(
       null,
@@ -87,51 +83,31 @@ describe('<MobileStepper />', () => {
   });
 
   it('should render two buttons and text displaying progress when supplied with variant text', () => {
-    render(
-      <MobileStepper
-        {...defaultProps}
-        variant="text"
-        activeStep={1}
-        steps={3}
-        data-testid="mobile-stepper-test"
-      />,
+    const { container } = render(
+      <MobileStepper {...defaultProps} variant="text" activeStep={1} steps={3} />,
     );
-    expect(screen.getByTestId('mobile-stepper-test').textContent).to.equal('Back2 / 3Next');
+    expect(container.firstChild.textContent).to.equal('Back2 / 3Next');
   });
 
   it('should render dots when supplied with variant dots', () => {
-    render(<MobileStepper {...defaultProps} variant="dots" data-testid="mobile-stepper-test" />);
-    const outermost = screen.getByTestId('mobile-stepper-test');
-    expect(outermost.children).to.have.lengthOf(3);
-    expect(outermost.children[1]).to.has.class(classes.dots);
+    const { container } = render(<MobileStepper {...defaultProps} variant="dots" />);
+    expect(container.firstChild.children).to.have.lengthOf(3);
+    expect(container.firstChild.children[1]).to.has.class(classes.dots);
   });
 
   it('should render a dot for each step when using dots variant', () => {
-    render(<MobileStepper {...defaultProps} variant="dots" data-testid="mobile-stepper-test" />);
-    expect(
-      screen.getByTestId('mobile-stepper-test').querySelectorAll(`.${classes.dot}`),
-    ).to.have.lengthOf(2);
+    const { container } = render(<MobileStepper {...defaultProps} variant="dots" />);
+    expect(container.firstChild.querySelectorAll(`.${classes.dot}`)).to.have.lengthOf(2);
   });
 
   it('should render the first dot as active if activeStep is not set', () => {
-    render(<MobileStepper {...defaultProps} variant="dots" data-testid="mobile-stepper-test" />);
-    expect(screen.getByTestId('mobile-stepper-test').children[1].firstChild).to.has.class(
-      classes.dotActive,
-    );
+    const { container } = render(<MobileStepper {...defaultProps} variant="dots" />);
+    expect(container.firstChild.children[1].firstChild).to.has.class(classes.dotActive);
   });
 
   it('should honor the activeStep prop', () => {
-    render(
-      <MobileStepper
-        {...defaultProps}
-        variant="dots"
-        activeStep={1}
-        data-testid="mobile-stepper-test"
-      />,
-    );
-    expect(screen.getByTestId('mobile-stepper-test').children[1].children[1]).to.has.class(
-      classes.dotActive,
-    );
+    const { container } = render(<MobileStepper {...defaultProps} variant="dots" activeStep={1} />);
+    expect(container.firstChild.children[1].children[1]).to.has.class(classes.dotActive);
   });
 
   it('should render a <LinearProgress /> when supplied with variant progress', () => {
