@@ -204,7 +204,7 @@ const styles = (theme) => ({
     fontWeight: theme.typography.fontWeightRegular,
   },
   feedbackMessage: {
-    marginRight: '0 8px',
+    margin: theme.spacing(0, 2),
   },
 });
 
@@ -298,19 +298,18 @@ function MarkdownDocsFooter(props) {
                 container
                 role="group"
                 justifyContent="center"
+                alignItems="center"
                 aria-label={t('feedbackGroupLabel')}
               >
-                <Grid container item xs={12} md alignItems="center">
-                  <Typography
-                    align="center"
-                    variant="subtitle1"
-                    component="div"
-                    className={classes.feedbackMessage}
-                  >
-                    {t('ratingMessage')}
-                  </Typography>
-                </Grid>
-                <Grid container item xs={12} md justifyContent="center">
+                <Typography
+                  align="center"
+                  variant="subtitle1"
+                  component="div"
+                  className={classes.feedbackMessage}
+                >
+                  {t('ratingMessage')}
+                </Typography>
+                <div>
                   <Tooltip title={t('feedbackYes')}>
                     <IconButton onClick={handleClickUp} aria-pressed={currentRating === 1}>
                       <ThumbUpIcon color={currentRating === 1 ? 'primary' : undefined} />
@@ -321,7 +320,7 @@ function MarkdownDocsFooter(props) {
                       <ThumbDownIcon color={currentRating === 0 ? 'error' : undefined} />
                     </IconButton>
                   </Tooltip>
-                </Grid>
+                </div>
               </Grid>
               {nextPage.displayNav === false ? null : (
                 <Button
