@@ -25,7 +25,7 @@ import { getCookie, pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
 import Link from 'docs/src/modules/components/Link';
 
-const FEEDBACK_URL = 'https://hgvi836wi8.execute-api.us-east-1.amazonaws.com';
+const FEEDBACK_URL = process.env.FEEDBACK_URL;
 
 function Comment(props) {
   const { onClose: handleClose, open } = props;

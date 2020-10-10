@@ -1,6 +1,8 @@
 # Rating
 
-This Lambda function stores and retrieves page feedback using DynamoDB.
+This Lambda function stores and retrieves page feedback using DynamoDB. It is already deployed in the Material-UI AWS account. Request credentials if you need to update dev for testing, or to deploy a new prod version.
+
+If you wish to deploy your own instance for testing, follow the steps below.
 
 ## Prerequisites
 
@@ -31,13 +33,13 @@ with:
   --billing-mode PAY_PER_REQUEST \
 ```
 
-The project includes an IAM access policy that will grant the lambda function access to the tables. You can edit the [policies/access-dynamodb.json](policies/access-dynamodb.json) file to change the access permissions. These are only applied on create.
+The project includes an IAM access policy that will grant the lambda function access to the tables. You can edit the [policies/access-dynamodb.json](policies/access-dynamodb.json) file to change the access permissions. These are only applied on create (`yarn setup`). Alternatively, to avoid inadvetantly pushing changes, use the `--policies` flag with `yarn setup` to refer to a copy of this directory, and exclude it in your `~/.gitignore`.
 
 > ⚠️ You will need to update the "Resource" key in this file with the value returned after creating each table.
 
 ## Get started
 
-> ⚠️ When setting up for the first time, you will need to delete the included `claudia.json` file that is specific to the MUI installation. It is only included here for ease of access.
+> ⚠️ When setting up for the first time, you will need to delete the included `claudia.json` file that is specific to the MUI installation. Alternatively, if making changes to the function that you intend to submit back, then to avoid inadvetantly commiting changes to `claudia.json`, use `--config` with each command to create and use a local config file, and exclude this file in your `~/.gitignore`.
 
 To set this up, first [set up the credentials](https://github.com/claudiajs/claudia/blob/master/getting_started.md#configuring-access-credentials), then:
 
@@ -92,3 +94,13 @@ This will get the average feedback stored for all pages
 ```bash
 curl <API-URL>/feedback/average
 ```
+
+### Testing with the documentation
+
+Create the file `docs/.env.local` containing an environment variable `FEEDBACK_URL` with your API URL without the version. For example:
+
+```sh
+FEEDBACK_URL=https://abcd123ef4.execute-api.us-east-1.amazonaws.com
+```
+
+If already running, restart the local docs site. Feedback should now be posted to your deployment.
