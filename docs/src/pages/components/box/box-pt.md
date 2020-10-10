@@ -7,7 +7,7 @@ githubLabel: 'component: Box'
 
 <p class="description">O componente Box serve como um componente encapsulador (wrapper) para a auxiliar na maioria das necessidades de uso com CSS.</p>
 
-O component Box compõe [todas as funções de estilo](/system/basics/#all-inclusive) que são expostas no `@material-ui/system`. Ele é criado usando a função [`styled()`](/styles/api/#styled-style-function-component) de `@material-ui/core/styles`.
+O component Box compõe [todas as funções de estilo](/system/basics/#all-inclusive) que são expostas no `@material-ui/system`. It's created using the `experimentalStyled()` function of `@material-ui/core/styles`.
 
 [A paleta](/system/palette/) com funções de estilo.
 
