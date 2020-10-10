@@ -6,6 +6,8 @@ import {
   createClientRender,
   createMount,
   createServerRender,
+  act,
+  fireEvent,
 } from 'test/utils';
 import Fab from './Fab';
 import ButtonBase from '../ButtonBase';
@@ -105,30 +107,44 @@ describe('<Fab />', () => {
   });
 
   it('should have a focusRipple by default', async () => {
-    const touchRippleClasses = getClasses(<TouchRipple />);
-    const { getByRole, findByTestId } = render(
-      <Fab TouchRippleProps={{ 'data-testid': 'mui-ripple-root' }}>Fab</Fab>,
-    );
-
-    getByRole('button').focus();
-
-    expect(
-      (await findByTestId('mui-ripple-root', undefined, { timeout: 5000 })).firstChild,
-    ).to.have.class(touchRippleClasses.ripple);
-  });
-
-  it('should pass disableFocusRipple to ButtonBase', async () => {
-    const { getByRole, findByTestId } = render(
-      <Fab TouchRippleProps={{ 'data-testid': 'mui-ripple-root' }} disableFocusRipple>
+    const { getByRole } = render(
+      <Fab
+        TouchRippleProps={{
+          classes: { ripplePulsate: 'pulsate-focus-visible' },
+        }}
+      >
         Fab
       </Fab>,
     );
+    const button = getByRole('button');
 
-    getByRole('button').focus();
+    act(() => {
+      fireEvent.keyDown(document.body, { key: 'TAB' });
+      button.focus();
+    });
 
-    expect(
-      (await findByTestId('mui-ripple-root', undefined, { timeout: 5000 })).firstChild,
-    ).to.equal(null);
+    expect(button.querySelector('.pulsate-focus-visible')).not.to.equal(null);
+  });
+
+  it('should pass disableFocusRipple to ButtonBase', async () => {
+    const { getByRole } = render(
+      <Fab
+        TouchRippleProps={{
+          classes: { ripplePulsate: 'pulsate-focus-visible' },
+        }}
+        disableFocusRipple
+      >
+        Fab
+      </Fab>,
+    );
+    const button = getByRole('button');
+
+    act(() => {
+      fireEvent.keyDown(document.body, { key: 'TAB' });
+      button.focus();
+    });
+
+    expect(button.querySelector('.pulsate-focus-visible')).to.equal(null);
   });
 
   it('should render Icon children with right classes', () => {
