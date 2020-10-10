@@ -66,6 +66,8 @@ const theme = createMuiTheme({
 | Ucraniano               | uk-UA                     | `ukUA`             |
 | Vietnamita              | vi-VN                     | `viVN`             |
 
+<!-- #default-branch-switch -->
+
 Você pode [encontrar o fonte](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/locale/index.ts) no repositório do GitHub.
 
 Para criar sua própria tradução, ou para personalizar o texto em Inglês. copie este arquivo para o seu projeto, faça as alterações necessárias e importe a localidade de lá.

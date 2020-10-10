@@ -38,7 +38,8 @@ You can find one composition example below and more going to [the demos](/compon
 </FormControl>
 ```
 
-⚠️Only one input can be used within a FormControl.
+⚠️ Only one `InputBase` can be used within a FormControl because it create visual inconsistencies.
+For instance, only one input can be focused at the same time, the state shouldn't be shared.
 
 ## Component name
 

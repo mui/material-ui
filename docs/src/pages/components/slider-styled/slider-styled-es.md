@@ -1,5 +1,5 @@
 ---
-title: Slider React component
+title: React Slider component
 components: SliderStyled, SliderUnstyled
 githubLabel:
   component: Slider
@@ -69,7 +69,7 @@ In this example an input allows a discrete value to be set.
 
 ## Deslizadores personalizados
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Here are some examples of customizing the component. Puedes aprender más sobre esto en la [sección Personalizando Componentes de la documentación](/customization/components/).
 
 {{"demo": "pages/components/slider-styled/CustomizedSlider.js"}}
 

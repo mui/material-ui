@@ -112,7 +112,7 @@ const styles = createStyles({
 });
 ```
 
-ただし、これらのスタイルがTypeScriptを渡せるようにするには、CSSクラスの名前と実際のCSSプロパティ名に関して定義があいまいでなければなりません。 このため、CSSプロパティと同じクラス名は使用しないでください。 ただし、これらのスタイルがTypeScriptを渡せるようにするには、CSSクラスの名前と実際のCSSプロパティ名に関して定義があいまいでなければなりません。 このため、CSSプロパティと同じクラス名は使用しないでください。 ただし、これらのスタイルがTypeScriptを渡せるようにするには、CSSクラスの名前と実際のCSSプロパティ名に関して定義があいまいでなければなりません。 このため、CSSプロパティと同じクラス名は使用しないでください。 ただし、これらのスタイルがTypeScriptを渡せるようにするには、CSSクラスの名前と実際のCSSプロパティ名に関して定義があいまいでなければなりません。 このため、CSSプロパティと同じクラス名は使用しないでください。
+However to allow these styles to pass TypeScript, the definitions have to be unambiguous concerning names for CSS classes and actual CSS property names. ただし、これらのスタイルがTypeScriptを渡せるようにするには、CSSクラスの名前と実際のCSSプロパティ名に関して定義があいまいでなければなりません。 このため、CSSプロパティと同じクラス名は使用しないでください。
 
 ```ts
 // error because TypeScript thinks `@media (min-width: 960px)` is a class name

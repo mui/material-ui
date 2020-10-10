@@ -1,6 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useThemeProps, experimentalStyled, fade, lighten, darken } from '@material-ui/core/styles';
+import {
+  useThemeProps,
+  experimentalStyled,
+  alpha,
+  lighten,
+  darken,
+} from '@material-ui/core/styles';
 import { capitalize } from '@material-ui/core/utils';
 import SliderUnstyled from '../SliderUnstyled';
 import ValueLabelStyled from './ValueLabelStyled';
@@ -125,7 +131,7 @@ const SliderRoot = experimentalStyled(
     ...(props.styleProps.track === 'inverted' && {
       backgroundColor:
         // Same logic as the LinearProgress track color
-        props.theme.palette.type === 'light'
+        props.theme.palette.mode === 'light'
           ? lighten(props.theme.palette.primary.main, 0.62)
           : darken(props.theme.palette.primary.main, 0.5),
     }),
@@ -157,13 +163,13 @@ const SliderRoot = experimentalStyled(
       bottom: -15,
     },
     ':hover, &.Mui-focusVisible': {
-      boxShadow: `0px 0px 0px 8px ${fade(props.theme.palette.primary.main, 0.16)}`,
+      boxShadow: `0px 0px 0px 8px ${alpha(props.theme.palette.primary.main, 0.16)}`,
       '@media (hover: none)': {
         boxShadow: 'none',
       },
     },
     '&.Mui-active': {
-      boxShadow: `0px 0px 0px 14px ${fade(props.theme.palette.primary.main, 0.16)}`,
+      boxShadow: `0px 0px 0px 14px ${alpha(props.theme.palette.primary.main, 0.16)}`,
     },
     '&.Mui-disabled': {
       width: 8,
@@ -173,26 +179,24 @@ const SliderRoot = experimentalStyled(
       ':hover': {
         boxShadow: 'none',
       },
+      ...(props.styleProps.orientation === 'vertical' && {
+        marginLeft: -3,
+        marginBottom: -4,
+      }),
     },
     ...(props.styleProps.orientation === 'vertical' && {
       marginLeft: -5,
       marginBottom: -6,
     }),
-    ...(props.styleProps.orientation === 'vertical' && {
-      '&.Mui-disabled': {
-        marginLeft: -3,
-        marginBottom: -4,
-      },
-    }),
     ...(props.styleProps.color === 'secondary' && {
       ':hover': {
-        boxShadow: `0px 0px 0px 8px ${fade(props.theme.palette.secondary.main, 0.16)}`,
+        boxShadow: `0px 0px 0px 8px ${alpha(props.theme.palette.secondary.main, 0.16)}`,
       },
       '&.Mui-focusVisible': {
-        boxShadow: `0px 0px 0px 8px ${fade(props.theme.palette.secondary.main, 0.16)}`,
+        boxShadow: `0px 0px 0px 8px ${alpha(props.theme.palette.secondary.main, 0.16)}`,
       },
       '&.Mui-active': {
-        boxShadow: `0px 0px 0px 14px ${fade(props.theme.palette.secondary.main, 0.16)}`,
+        boxShadow: `0px 0px 0px 14px ${alpha(props.theme.palette.secondary.main, 0.16)}`,
       },
     }),
   },
@@ -226,6 +230,7 @@ const SliderRoot = experimentalStyled(
     '@media (pointer: coarse)': {
       top: 40,
       ...(props.styleProps.orientation === 'vertical' && {
+        top: 'auto',
         left: 31,
       }),
     },

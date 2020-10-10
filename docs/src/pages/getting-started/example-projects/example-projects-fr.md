@@ -12,6 +12,7 @@ Vous pouvez trouver des exemples de projets dans le [dépôt GitHub](https://git
 - [Preact](https://github.com/mui-org/material-ui/tree/next/examples/preact)
 - [CDN](https://github.com/mui-org/material-ui/tree/next/examples/cdn)
 - [Plain server-side](https://github.com/mui-org/material-ui/tree/next/examples/ssr)
+- [Use styled-components as style engine](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-styled-components)
 - Et plus encore
 
 Create React App est un projet génial pour apprendre React. Regardez [les alternatives disponibles](https://github.com/facebook/create-react-app/blob/master/README.md#popular-alternatives) pour voir quel projet correspond le mieux à vos besoins.

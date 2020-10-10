@@ -1,5 +1,5 @@
 ---
-title: Componente React Panel de Expansión
+title: React Accordion component
 components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 githubLabel: 'component: Accordion'
 materialDesign: https://material.io/archive/guidelines/components/expansion-panels.html
@@ -47,12 +47,6 @@ The content of Accordions is mounted by default even if the panel is not expande
 ```
 
 As with any performance optimization this is not a silver bullet. Be sure to identify bottlenecks first and then try out these optimization strategies.
-
-## Cabecera secundaria y columnas
-
-Múltiples columnas pueden ser usadas para estructurar el contenido, y un texto de ayuda puede ser agregado al panel para asistir al usuario.
-
-{{"demo": "pages/components/accordion/DetailedAccordion.js", "bg": true}}
 
 ## Accesibilidad
 

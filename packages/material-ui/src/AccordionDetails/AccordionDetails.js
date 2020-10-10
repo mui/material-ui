@@ -6,7 +6,6 @@ import withStyles from '../styles/withStyles';
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
-    display: 'flex',
     padding: theme.spacing(1, 2, 2),
   },
 });

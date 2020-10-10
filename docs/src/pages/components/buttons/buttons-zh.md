@@ -32,7 +32,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
 
 ## Text Buttons 文本按钮
 
-在卡片中，文本按钮有助于强调卡片的内容。
+[文本按钮](https://material.io/components/buttons#text-button) 通常用于不太明显的操作，包括那些位于：
 
 - 在 dialogs 对话框中的
 - 在 cards 卡片中的
@@ -43,7 +43,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
 
 ## Outlined Buttons 描边按钮
 
-[描边按钮](https://material.io/design/components/buttons.html#outlined-button)表示中等的强调。 它们包含了一些重要的操作，但不是一个 app 中的主要操作。
+[描边按钮](https://material.io/components/buttons#outlined-button) 表示中等程度的强调。 它们包含了一些重要的操作，但不是一个 app 中的主要操作。
 
 你也可以将描边按钮作为比实心按钮次要一点的替代方案，或者用来作为比文本按钮重要一点的展示。
 
@@ -54,7 +54,13 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
 所有组件都接受 `onClick` 处理程序，该处理程序被应用到根 DOM 元素中。
 
 ```jsx
-<Button onClick={() => { alert('clicked') }}>Click me</Button>
+<Button
+  onClick={() => {
+    alert('clicked');
+  }}
+>
+  点击我
+</Button>
 ```
 
 请注意，文档里组件的 API 部分 [避免](/guides/api/#native-properties) 提到原生的属性（还是有很多）。

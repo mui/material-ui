@@ -55,6 +55,10 @@ function Link(props) {
   const isExternal = href.indexOf('https:') === 0 || href.indexOf('mailto:') === 0;
 
   if (isExternal) {
+    if (naked) {
+      return <a className={className} href={href} ref={innerRef} role={role} {...other} />;
+    }
+
     return <MuiLink className={className} href={href} ref={innerRef} role={role} {...other} />;
   }
 

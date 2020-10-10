@@ -17,6 +17,19 @@ import { camelCase } from 'lodash/string';
 import Tooltip, { testReset } from './Tooltip';
 import Input from '../Input';
 
+async function raf() {
+  return new Promise((resolve) => {
+    // Chrome and Safari have a bug where calling rAF once returns the current
+    // frame instead of the next frame, so we need to call a double rAF here.
+    // See crbug.com/675795 for more.
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        resolve();
+      });
+    });
+  });
+}
+
 describe('<Tooltip />', () => {
   /**
    * @type {ReturnType<typeof useFakeTimers>}
@@ -633,7 +646,7 @@ describe('<Tooltip />', () => {
     it('should ignore event from the tooltip', () => {
       const handleMouseOver = spy();
       const { getByRole } = render(
-        <Tooltip title="Hello World" open interactive>
+        <Tooltip title="Hello World" open>
           <button type="submit" onMouseOver={handleMouseOver}>
             Hello World
           </button>
@@ -698,13 +711,12 @@ describe('<Tooltip />', () => {
     });
   });
 
-  describe('prop: interactive', () => {
-    it('should keep the overlay open if the popper element is hovered', () => {
+  describe('prop: disableInteractive', () => {
+    it('when false should keep the overlay open if the popper element is hovered', () => {
       const { getByRole } = render(
         <Tooltip
           title="Hello World"
           enterDelay={100}
-          interactive
           leaveDelay={111}
           TransitionProps={{ timeout: 10 }}
         >
@@ -731,9 +743,14 @@ describe('<Tooltip />', () => {
       expect(getByRole('tooltip')).toBeVisible();
     });
 
-    it('should not animate twice', () => {
+    it('when `true` should not keep the overlay open if the popper element is hovered', () => {
       const { getByRole } = render(
-        <Tooltip title="Hello World" interactive enterDelay={500} TransitionProps={{ timeout: 10 }}>
+        <Tooltip
+          title="Hello World"
+          enterDelay={100}
+          leaveDelay={111}
+          TransitionProps={{ timeout: 10 }}
+        >
           <button id="testChild" type="submit">
             Hello World
           </button>
@@ -742,7 +759,7 @@ describe('<Tooltip />', () => {
 
       fireEvent.mouseOver(getByRole('button'));
       act(() => {
-        clock.tick(500);
+        clock.tick(100);
       });
 
       expect(getByRole('tooltip')).toBeVisible();
@@ -752,13 +769,9 @@ describe('<Tooltip />', () => {
       expect(getByRole('tooltip')).toBeVisible();
 
       fireEvent.mouseOver(getByRole('tooltip'));
-      clock.tick(10);
+      clock.tick(111 + 10);
 
-      expect(getByRole('tooltip')).toBeVisible();
-
-      // TOD: Unclear why not running triggers microtasks but runAll does not trigger microtasks
-      // can be removed once Popper#update is sync
-      clock.runAll();
+      expect(getByRole('tooltip')).not.toBeVisible();
     });
   });
 
@@ -878,14 +891,15 @@ describe('<Tooltip />', () => {
       // Tooltip should not assume that event handlers of children are attached to the
       // outermost host
       const TextField = React.forwardRef(function TextField(props, ref) {
+        const { onFocus, ...other } = props;
         return (
-          <div ref={ref}>
-            <input type="text" {...props} />
+          <div ref={ref} {...other}>
+            <input type="text" onFocus={onFocus} />
           </div>
         );
       });
       const { getByRole } = render(
-        <Tooltip interactive open title="test">
+        <Tooltip open title="test">
           <TextField onFocus={handleFocus} />
         </Tooltip>,
       );
@@ -915,6 +929,20 @@ describe('<Tooltip />', () => {
         setProps({ open: true });
       }).toErrorDev(
         'Material-UI: A component is changing the uncontrolled open state of Tooltip to be controlled.',
+      );
+    });
+
+    it('should warn when not forwarding props', () => {
+      const BrokenButton = React.forwardRef((props, ref) => <button ref={ref}>Hello World</button>);
+
+      expect(() => {
+        render(
+          <Tooltip title="Hello World">
+            <BrokenButton />
+          </Tooltip>,
+        );
+      }).toErrorDev(
+        'The `children` component of the Tooltip is not forwarding its props correctly.',
       );
     });
   });
@@ -950,6 +978,44 @@ describe('<Tooltip />', () => {
         </Tooltip>,
       );
       expect(getByTestId('CustomPopper')).toBeVisible();
+    });
+  });
+
+  describe('prop: followCursor', () => {
+    it('should use the position of the mouse', async function test() {
+      // Only callig render() outputs:
+      // An update to ForwardRef(Popper) inside a test was not wrapped in act(...).
+      // Somethings is wrong in JSDOM and strict mode.
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const x = 5;
+      const y = 10;
+
+      // Avoid mock of raf
+      clock.restore();
+      render(
+        <Tooltip title="Hello World" open followCursor PopperProps={{ 'data-testid': 'popper' }}>
+          <button data-testid="target" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+      const tooltipElement = screen.getByTestId('popper');
+      const targetElement = screen.getByTestId('target');
+
+      fireEvent.mouseMove(targetElement, {
+        clientX: x,
+        clientY: y,
+      });
+
+      // Wait for the scheduleUpdate() call to resolve.
+      await raf();
+
+      expect(tooltipElement).toBeVisible();
+      expect(tooltipElement.getBoundingClientRect()).to.have.property('top', y);
+      expect(tooltipElement.getBoundingClientRect()).to.have.property('left', x);
     });
   });
 });

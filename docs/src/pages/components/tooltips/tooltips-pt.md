@@ -1,5 +1,5 @@
 ---
-title: Componente React para Dicas
+title: React Tooltip component
 components: Tooltip
 githubLabel: 'component: Tooltip'
 materialDesign: https://material.io/components/tooltips
@@ -112,3 +112,17 @@ A dica normalmente é exibida imediatamente quando o mouse do usuário passa sob
 No celular, a dica é exibida quando o usuário pressiona longamente o elemento e oculta após um atraso de 1500 ms. Você pode desativar esse recurso com a propriedade `disableTouchListener`.
 
 {{"demo": "pages/components/tooltips/DelayTooltips.js"}}
+
+## Acessibilidade
+
+(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#tooltip)
+
+By default, the tooltip only labels its child element. This is notably different from `title` which can either label **or** describe its child depending on whether the child already has a label. For example, in:
+
+```html
+<button title="some more information">A button</button>
+```
+
+the `title` acts as an accessible description. If you want the tooltip to act as an accessible description you can pass `describeChild`. Note that you shouldn't use `describeChild` if the tooltip provides the only visual label. Otherwise, the child would have no accessible name and the tooltip would violate [success criterion 2.5.3 in WCAG 2.1](https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html).
+
+{{"demo": "pages/components/tooltips/AccessibilityTooltips.js"}}

@@ -1,5 +1,5 @@
 ---
-title: Grid React Komponente
+title: React Grid component
 components: Grid
 githubLabel: 'component: Grid'
 materialDesign: https://material.io/design/layout/understanding-layout.html

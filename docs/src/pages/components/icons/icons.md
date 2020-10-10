@@ -31,9 +31,9 @@ npm install @material-ui/icons@next
 yarn add @material-ui/icons@next
 ```
 
-These components use the Material-UI SvgIcon component to render the SVG path for each icon, and so they have a peer-dependency on the next release of Material-UI.
+These components use the Material-UI `SvgIcon` component to render the SVG path for each icon, and so have a peer-dependency on `@materialui/core`.
 
-If you are not already using Material-UI in your project, you can add it with:
+If you aren't already using Material-UI in your project, you can add it with:
 
 ```sh
 // with npm
@@ -60,11 +60,10 @@ Import icons using one of these two options:
   import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
   ```
 
-The safest is Option 1 but Option 2 can yield the best developer experience.
+The safest for bundle size is Option 1, but some developers prefer Option 2.
 Make sure you follow the [minimizing bundle size guide](/guides/minimizing-bundle-size/#option-2) before using the second approach.
-The configuration of a Babel plugin is encouraged.
 
-Each icon also has a "theme": Filled (default), Outlined, Rounded, Two tone and Sharp. If you want to import the icon component with a theme other than default, append the theme name to the icon name. For example `@material-ui/icons/Delete` icon with:
+Each Material icon also has a "theme": Filled (default), Outlined, Rounded, Two-tone, and Sharp. To import the icon component with a theme other than the default, append the theme name to the icon name. For example `@material-ui/icons/Delete` icon with:
 
 - Filled theme (default) is exported as `@material-ui/icons/Delete`,
 - Outlined theme is exported as `@material-ui/icons/DeleteOutlined`,
@@ -92,13 +91,12 @@ has the following attribute once mounted:
 
 ## SvgIcon
 
-If you need a custom SVG icon (not available in the Material Icons [default set](/components/material-icons/)) you can use the `SvgIcon` wrapper.
+If you need a custom SVG icon (not available in the [Material Icons](/components/material-icons/)) you can use the `SvgIcon` wrapper.
 This component extends the native `<svg>` element:
 
 - It comes with built-in accessibility.
-- SVG elements should be scaled for a 24x24px viewport, so the resulting icon can be used as is, or included as a child for other Material-UI components that use icons. (This can be customized with the `viewBox` attribute).
-- By default, the component inherits the current color.
-  Optionally, you can apply one of the theme colors using the `color` prop.
+- SVG elements should be scaled for a 24x24px viewport so that the resulting icon can be used as is, or included as a child for other Material-UI components that use icons. (This can be customized with the `viewBox` attribute).
+- By default, the component inherits the current color. Optionally, you can apply one of the theme colors using the `color` prop.
 
 ```jsx
 function HomeIcon(props) {
@@ -136,8 +134,7 @@ import StarIcon from './star.svg';
 <SvgIcon component={StarIcon} viewBox="0 0 600 476.6" />
 ```
 
-It's also possible to use it with "url-loader" or "file-loader".
-It's the approach used by Create React App.
+It's also possible to use it with "url-loader" or "file-loader". This is the approach used by Create React App.
 
 ```jsx
 // webpack.config.js
@@ -152,27 +149,35 @@ import { ReactComponent as StarIcon } from './star.svg';
 <SvgIcon component={StarIcon} viewBox="0 0 600 476.6" />
 ```
 
+### createSvgIcon
+
+The `createSvgIcon` utility component is used to create the [Material icons](#material-icons). It can be used to wrap an SVG path with an SvgIcon component.
+
+```jsx
+const HomeIcon = createSvgIcon(
+  <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />,
+  'Home',
+);
+```
+
+{{"demo": "pages/components/icons/CreateSvgIcon.js"}}
+
 ### Font Awesome
 
-If you find that there are layout issues when using FontAwesomeIcon from `@fortawesome/react-fontawesome`, you may try passing the Font Awesome SVG data directly to SvgIcon.
-This is best implemented as a custom wrapper component but will render more reliably in Material UI components (e.g. an IconButton).
+If you find that there are layout issues when using FontAwesomeIcon from `@fortawesome/react-fontawesome`, you can try passing the Font Awesome SVG data directly to SvgIcon.
 
 Below is a comparison of the `FontAwesomeIcon` component and a wrapped `SvgIcon` component.
 
 {{"demo": "pages/components/icons/FontAwesomeSvgIconDemo.js"}}
 
-The `fullWidth` prop of `FontAwesomeIcon` can also be used to approximate the correct dimensions, but it isn't perfect.
+FontAwesomeIcon's `fullWidth` prop can also be used to approximate the correct dimensions, but it isn't perfect.
 
 ### Other Libraries
-
-#### Material Design (recommended)
-
-Material Design has standardized over [1,100 official icons](#material-icons).
 
 #### MDI
 
 [materialdesignicons.com](https://materialdesignicons.com/) provides over 2,000 icons.
-For the wanted icon, copy the SVG `path` they provide, and use it as the child of the `SvgIcon` component.
+For the wanted icon, copy the SVG `path` they provide, and use it as the child of the `SvgIcon` component, or with `createSvgIcon()`.
 
 Note: [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) has already wrapped each of these SVG icons with the `SvgIcon` component, so you don't have to do it yourself.
 
@@ -189,7 +194,7 @@ As a prerequisite, you must include one, such as the
 />
 ```
 
-`Icon` will set the correct class name for the Material icon font. For other fonts, you must supply the
+`Icon` will set the correct class name for the Material Icons font. For other fonts, you must supply the
 class name using the Icon component's `className` prop.
 
 To use an icon simply wrap the icon name (font ligature) with the `Icon` component,
@@ -210,13 +215,12 @@ Optionally, you can set the icon color using one of the theme color properties: 
 
 ### Font Awesome
 
-[Font Awesome](https://fontawesome.com/icons) can be used with the `Icon` component as follow:
+[Font Awesome](https://fontawesome.com/icons) can be used with the `Icon` component as follows:
 
 {{"demo": "pages/components/icons/FontAwesomeIcon.js"}}
 
-But note that the Font Awesome icons weren't designed like the Material Design icons (compare the two previous demos).
-The fa icons are cropped to use all the space available.
-It's recommanded to adjust for this with a global override:
+Note that the Font Awesome icons weren't designed like the Material Design icons (compare the two previous demos).
+The fa icons are cropped to use all the space available. You can adjust for this with a global override:
 
 ```jsx
 const theme = createMuiTheme({
@@ -239,32 +243,34 @@ const theme = createMuiTheme({
 
 ## Font vs SVG. Which approach to use?
 
-Both approaches work fine, however, there are some subtle differences, especially in terms of performance and rendering quality.
-Whenever possible SVG is preferred as it allows code splitting, supports more icons, renders faster and better.
+Both approaches work fine, however there are some subtle differences, especially in terms of performance and rendering quality.
+Whenever possible SVG is preferred as it allows code splitting, supports more icons, and renders faster and better.
 
-For more details, you can check out [why GitHub migrated from font icons to SVG icons](https://github.blog/2016-02-22-delivering-octicons-with-svg/).
+For more details, take a look at [why GitHub migrated from font icons to SVG icons](https://github.blog/2016-02-22-delivering-octicons-with-svg/).
 
 ## Accessibility
 
-Icons can convey all sorts of meaningful information, so it’s important that they reach the largest amount of people possible.
+Icons can convey all sorts of meaningful information, so it’s important to ensure they are accessible where appropriate.
 There are two use cases you’ll want to consider:
 
-- **Decorative Icons** are only being used for visual or branding reinforcement.
+- **Decorative icons** that are only being used for visual or branding reinforcement.
   If they were removed from the page, users would still understand and be able to use your page.
-- **Semantic Icons** are ones that you’re using to convey meaning, rather than just pure decoration.
-  This includes icons without text next to them used as interactive controls — buttons, form elements, toggles, etc.
+- **Semantic icons** are ones that you’re using to convey meaning, rather than just pure decoration.
+  This includes icons without text next to them that are used as interactive controls — buttons, form elements, toggles, etc.
 
-### Decorative SVG Icons
+### Decorative icons
 
 If your icons are purely decorative, you’re already done!
 The `aria-hidden=true` attribute is added so that your icons are properly accessible (invisible).
 
-### Semantic SVG Icons
+### Semantic icons
 
-If your icon has semantic meaning, you should include the `titleAccess` prop with a meaningful value.
-The `role="img"` attribute and the `<title>` element are added so that your icons are properly accessible.
+#### Semantic SVG icons
 
-In the case of focusable interactive elements, like when used with an icon button, you can use the `aria-label` prop:
+You should include the `titleAccess` prop with a meaningful value.
+The `role="img"` attribute and the `<title>` element are added so that your icons are correctly accessible.
+
+In the case of focusable interactive elements, for example when used with an icon button, you can use the `aria-label` prop:
 
 ```jsx
 import IconButton from '@material-ui/core/IconButton';
@@ -279,14 +285,9 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 </IconButton>;
 ```
 
-### Decorative Font Icons
+#### Semantic font icons
 
-If your icons are purely decorative, you’re already done!
-The `aria-hidden=true` attribute is added so that your icons are properly accessible (invisible).
-
-### Semantic Font Icons
-
-If your icons have semantic meaning, you need to provide a text alternative only visible to assistive technologies.
+You need to provide a text alternative that is only visible to assistive technologies.
 
 ```jsx
 import Icon from '@material-ui/core/Icon';
@@ -301,6 +302,6 @@ const classes = makeStyles({ visuallyHidden })();
 <span className={classes.visuallyHidden}>Create a user</span>
 ```
 
-### Reference
+#### Reference
 
 - https://developer.paciellogroup.com/blog/2013/12/using-aria-enhance-svg-accessibility/

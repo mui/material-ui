@@ -1,5 +1,5 @@
 ---
-title: React-компонент ButtonGroup
+title: React ButtonGroup component
 components: Button, ButtonGroup
 githubLabel: 'component: ButtonGroup'
 ---

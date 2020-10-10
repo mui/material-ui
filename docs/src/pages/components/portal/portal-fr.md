@@ -1,5 +1,5 @@
 ---
-title: Composant React Téléportation
+title: React Portal component
 components: Portal
 githubLabel: 'component: Portal'
 ---
@@ -8,9 +8,9 @@ githubLabel: 'component: Portal'
 
 <p class="description">The portal component renders its children into a new "subtree" outside of current DOM hierarchy.</p>
 
-- 📦 [1.3 kB gzipped](/size-snapshot)
+- 📦 [1.3 kB gzippé](/size-snapshot)
 
-Les enfants du composant Portal seront ajoutés au `container` fournit. The component is used internally by the [`Modal`](/components/modal/) and [`Popper`](/components/popper/) components.
+Les enfants du composant Portal seront ajoutés au `container` fournit. Ce composant est utilisé en interne par les composants [`Modal`](/components/modal/) et [`Popper`](/components/popper/).
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 

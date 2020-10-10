@@ -74,7 +74,7 @@ jobs:
       - install_js
       - run:
           name: Tests fake browser
-          command: yarn test:coverage
+          command: yarn test:coverage:ci
       - run:
           name: Check coverage generated
           command: |

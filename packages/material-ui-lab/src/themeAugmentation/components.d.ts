@@ -52,14 +52,6 @@ export interface LabComponents {
     defaultProps?: ComponentsProps['MuiTimelineSeparator'];
     styleOverrides?: ComponentsOverrides['MuiTimelineSeparator'];
   };
-  MuiToggleButton?: {
-    defaultProps?: ComponentsProps['MuiToggleButton'];
-    styleOverrides?: ComponentsOverrides['MuiToggleButton'];
-  };
-  MuiToggleButtonGroup?: {
-    defaultProps?: ComponentsProps['MuiToggleButtonGroup'];
-    styleOverrides?: ComponentsOverrides['MuiToggleButtonGroup'];
-  };
   MuiTreeItem?: {
     defaultProps?: ComponentsProps['MuiTreeItem'];
     styleOverrides?: ComponentsOverrides['MuiTreeItem'];

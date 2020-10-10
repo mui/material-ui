@@ -25,7 +25,7 @@ const theme = createMuiTheme({
 
 {{"demo": "pages/customization/globals/GlobalCss.js"}}
 
-每个组件可自定义的部分都被列在文档的 **Component API**。 例如，您可以参考以下 [Button](/api/button/#css) 组件。 例如，您可以参考以下 [Button](/api/button/#css) 组件。
+每个组件可自定义的部分都被列在文档的 **Component API**。 例如，您可以参考以下 [Button](/api/button/#css) 组件。
 
 ## 全局 CSS
 

@@ -1,5 +1,5 @@
 ---
-title: Slider React Komponente
+title: React Slider component
 components: Slider
 githubLabel: 'component: Slider'
 materialDesign: https://material.io/components/sliders

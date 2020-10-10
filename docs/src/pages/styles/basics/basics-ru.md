@@ -11,6 +11,9 @@ Material-UI стремится обеспечить прочную основу 
 Подход к стилизации Material-UI вдохновлен многими другими библиотеками стилей, такими как [ styled-components ](https://www.styled-components.com/) и [ emotion](https://emotion.sh/).
 
 - 💅 Вы можете ожидать [всех преимуществ](https://www.styled-components.com/docs/basics#motivation), которые имеются в styled-components.
+
+<!-- #default-branch-switch -->
+
 - 🚀 [невероятно быстро](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-benchmark/README.md#material-uistyles) ,
 - 🧩 возможность расширения с помощью [плагина](https://github.com/cssinjs/jss/blob/master/docs/plugins.md) API.
 - ⚡️ решение использует [ JSS ](https://github.com/cssinjs/jss) в своей основе - [ высокая производительность ](https://github.com/cssinjs/jss/blob/master/docs/performance.md) компилятора JavaScript в CSS, который работает и во время выполнения и на стороне сервера.

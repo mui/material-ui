@@ -25,7 +25,7 @@ const theme = createMuiTheme({
 
 {{"Демо": "pages/customization/globals/GlobalCss.js"}}
 
-Список всех возможных кастомизаций для компонент задокументирован в разделе **Component API**. Например, вы можете взглянуть на кнопку [Button](/api/button/#css). Например, вы можете взглянуть на кнопку [Button](/api/button/#css).
+Список всех возможных кастомизаций для компонент задокументирован в разделе **Component API**. Например, вы можете взглянуть на кнопку [Button](/api/button/#css).
 
 ## Глобальный CSS
 

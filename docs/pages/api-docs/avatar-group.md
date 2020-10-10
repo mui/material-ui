@@ -32,6 +32,7 @@ The `MuiAvatarGroup` name can be used for providing [default props](/customizati
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">max</span> | <span class="prop-type">number</span> | <span class="prop-default">5</span> | Max avatars to show before +x. |
 | <span class="prop-name">spacing</span> | <span class="prop-type">'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;number</span> | <span class="prop-default">'medium'</span> | Spacing between avatars. |
+| <span class="prop-name">variant</span> | <span class="prop-type">'circular'<br>&#124;&nbsp;'rounded'<br>&#124;&nbsp;'square'<br>&#124;&nbsp;string</span> | <span class="prop-default">'circular'</span> | The shape of the avatars. |
 
 The `ref` is forwarded to the root element.
 

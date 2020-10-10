@@ -78,9 +78,11 @@ The `Tooltip` wraps long text by default to make it readable.
 
 ## Interactive
 
-A tooltip can be interactive. It won't close when the user hovers over the tooltip before the `leaveDelay` is expired.
+Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus)).
+It won't close when the user hovers over the tooltip before the `leaveDelay` is expired.
+You can disable this behavior (thus failing the success criterion which is required to reach level AA) by passing `disableInteractive`.
 
-{{"demo": "pages/components/tooltips/InteractiveTooltips.js"}}
+{{"demo": "pages/components/tooltips/NonInteractiveTooltips.js"}}
 
 ## Disabled Elements
 
@@ -110,6 +112,20 @@ By default disabled elements like `<button>` do not trigger user interactions so
 Use a different transition.
 
 {{"demo": "pages/components/tooltips/TransitionsTooltips.js"}}
+
+## Follow cursor
+
+You can enable the tooltip to follow the cursor by setting `followCursor={true}`.
+
+{{"demo": "pages/components/tooltips/FollowCursorTooltips.js"}}
+
+## Faked reference object
+
+In the event you need to implement a custom placement, you can use the `anchorEl` prop:
+The value of the `anchorEl` prop can be a reference to a fake DOM element.
+You need to create an object shaped like the [`ReferenceObject`](https://github.com/FezVrasta/popper.js/blob/0642ce0ddeffe3c7c033a412d4d60ce7ec8193c3/packages/popper/index.d.ts#L118-L123).
+
+{{"demo": "pages/components/tooltips/AnchorElTooltips.js"}}
 
 ## Showing and hiding
 

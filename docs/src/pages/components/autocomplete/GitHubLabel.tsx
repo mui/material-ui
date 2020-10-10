@@ -2,7 +2,7 @@
 import * as React from 'react';
 import {
   useTheme,
-  fade,
+  alpha,
   makeStyles,
   Theme,
   createStyles,
@@ -77,7 +77,7 @@ const useStyles = makeStyles((theme: Theme) =>
         border: '1px solid #ced4da',
         fontSize: 14,
         '&:focus': {
-          boxShadow: `${fade(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
+          boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
           borderColor: theme.palette.primary.main,
         },
       },

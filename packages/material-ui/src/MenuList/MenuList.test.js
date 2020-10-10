@@ -112,7 +112,7 @@ describe('<MenuList />', () => {
     it('should not adjust styles when width already specified', () => {
       const menuListActionsRef = React.createRef();
       const listRef = React.createRef();
-      mount(<MenuList ref={listRef} actions={menuListActionsRef} />);
+      render(<MenuList ref={listRef} actions={menuListActionsRef} />);
       const list = listRef.current;
       setStyleWidthForJsdomOrBrowser(list.style, '10px');
       Object.defineProperty(list, 'clientHeight', { value: 11 });

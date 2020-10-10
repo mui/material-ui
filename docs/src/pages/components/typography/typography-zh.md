@@ -1,5 +1,5 @@
 ---
-title: Typography 文字铸排
+title: React 文字铸排组件
 components: 文字排版
 githubLabel: 'component: Typography'
 materialDesign: https://material.io/design/typography/the-type-system.html
@@ -58,11 +58,11 @@ import 'fontsource-roboto';
 - 使用 `component` 属性，您可以一次性改变底层元素的样式：
 
 ```jsx
-{/* 在此页面中已经有一个 h1 标签，我们不会再重复。 */}
+{
+  /* 在此页面中已经有一个 h1 标签，我们不会再重复。 */
+}
 <Typography variant="h1" component="h2">
   h1. 标题
-</Typography> 标题
-</Typography>; 标题
 </Typography>;
 ```
 

@@ -29,7 +29,7 @@ describe('<StepContent />', () => {
       return wrapper.find(Step).childAt(0).childAt(0).childAt(0);
     },
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp', 'reactTestRenderer', 'refForwarding'],
+    skip: ['componentProp', 'reactTestRenderer'],
   }));
 
   it('renders children inside an Collapse component', () => {

@@ -6,6 +6,6 @@ Material-UI es mantenido por un grupo de colaboradores esenciales invaluables, c
 
 {{"demo": "pages/discover-more/team/Team.js", "hideToolbar": true, "bg": "inline"}}
 
-Involúcrese con el desarrollo de Material-UI [abriendo un problema](https://github.com/mui-org/material-ui/issues/new) o enviando un pull request. Lee las [directrices para contribuir](https://github.com/mui-org/material-ui/blob/next/CONTRIBUTING.md) para obtener información sobre cómo desarrollamos.
+Involúcrese con el desarrollo de Material-UI [abriendo un problema](https://github.com/mui-org/material-ui/issues/new) o enviando un pull request. Lee las [directrices para contribuir](https://github.com/mui-org/material-ui/blob/HEAD/CONTRIBUTING.md) para obtener información sobre cómo desarrollamos.
 
 [¡Únete y apoya el proyecto!](/getting-started/faq/#material-ui-is-awesome-how-can-i-support-the-project)

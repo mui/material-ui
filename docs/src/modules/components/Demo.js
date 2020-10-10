@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import copy from 'clipboard-copy';
 import { useSelector, useDispatch } from 'react-redux';
-import { fade, makeStyles, useTheme } from '@material-ui/core/styles';
+import { alpha, makeStyles, useTheme } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Collapse from '@material-ui/core/Collapse';
@@ -50,23 +50,29 @@ function getDemoName(location) {
   return location.replace(/(.+?)(\w+)\.\w+$$/, '$2');
 }
 
-function getDemoData(codeVariant, demo, githubLocation) {
+function useDemoData(codeVariant, demo, githubLocation) {
+  const userLanguage = useSelector((state) => state.options.userLanguage);
+  const title = `${getDemoName(githubLocation)} Material Demo`;
   if (codeVariant === CODE_VARIANTS.TS && demo.rawTS) {
     return {
       codeVariant: CODE_VARIANTS.TS,
       githubLocation: githubLocation.replace(/\.js$/, '.tsx'),
+      language: userLanguage,
       raw: demo.rawTS,
       Component: demo.tsx,
       sourceLanguage: 'tsx',
+      title,
     };
   }
 
   return {
     codeVariant: CODE_VARIANTS.JS,
     githubLocation,
+    language: userLanguage,
     raw: demo.raw,
     Component: demo.js,
     sourceLanguage: 'jsx',
+    title,
   };
 }
 
@@ -284,7 +290,7 @@ function DemoToolbar(props) {
       files: {
         'package.json': {
           content: {
-            title: demoConfig.title,
+            name: demoConfig.title,
             description: demoConfig.description,
             dependencies: demoConfig.dependencies,
             devDependencies: {
@@ -293,6 +299,9 @@ function DemoToolbar(props) {
             },
             main: demoConfig.main,
             scripts: demoConfig.scripts,
+            // We used `title` previously but only inference from `name` is documented.
+            // TODO revisit once https://github.com/codesandbox/codesandbox-client/issues/4983 is resolved.
+            title: demoConfig.title,
           },
         },
         ...Object.keys(demoConfig.files).reduce((files, name) => {
@@ -648,7 +657,7 @@ const useStyles = makeStyles(
     /* Isolate the demo with an outline. */
     demoBgOutlined: {
       padding: theme.spacing(3),
-      border: `1px solid ${fade(theme.palette.action.active, 0.12)}`,
+      border: `1px solid ${alpha(theme.palette.action.active, 0.12)}`,
       borderLeftWidth: 0,
       borderRightWidth: 0,
       [theme.breakpoints.up('sm')]: {
@@ -710,7 +719,7 @@ export default function Demo(props) {
   const classes = useStyles();
   const t = useSelector((state) => state.options.t);
   const codeVariant = useSelector((state) => state.options.codeVariant);
-  const demoData = getDemoData(codeVariant, demo, githubLocation);
+  const demoData = useDemoData(codeVariant, demo, githubLocation);
 
   const [demoHovered, setDemoHovered] = React.useState(false);
   const handleDemoHover = (event) => {

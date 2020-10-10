@@ -385,11 +385,13 @@ function render() {
 
 这个 [官方的 Gatsby 插件](https://github.com/hupe1980/gatsby-plugin-material-ui)，可以利用它来实现 `@material-ui/style` 的服务器端渲染。 请参考插件页面的设置和使用说明。
 
+<!-- #default-branch-switch -->
+
 请参考 [Gatsby 项目案例](https://github.com/mui-org/material-ui/blob/next/examples/gatsby) 以了解最新的使用方法。
 
 ### Next.js
 
-您需要有一个自定义的 `pages/_document.js`，然后复制 [此逻辑](https://github.com/mui-org/material-ui/blob/next/examples/nextjs/pages/_document.js) 以注入服务器侧渲染的样式到 `<head>` 元素中。
+您需要有一个自定义的 `pages/_document.js`，然后复制 [此逻辑](https://github.com/mui-org/material-ui/blob/814fb60bbd8e500517b2307b6a297a638838ca89/examples/nextjs/pages/_document.js#L52-L59) 以注入服务器侧渲染的样式到 `<head>` 元素中。
 
 请参考 [示例项目](https://github.com/mui-org/material-ui/blob/next/examples/nextjs) 以获取最新的使用方法。
 

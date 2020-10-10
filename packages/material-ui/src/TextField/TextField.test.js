@@ -32,15 +32,19 @@ describe('<TextField />', () => {
     });
 
     it('should forward the multiline prop to Input', () => {
-      const wrapper = mount(<TextField multiline />);
+      const inputClasses = getClasses(<Input />);
+      const { getByRole } = render(<TextField multiline />);
 
-      expect(wrapper.find(Input).props()).to.have.property('multiline', true);
+      expect(getByRole('textbox', { hidden: false })).to.have.class(inputClasses.inputMultiline);
     });
 
     it('should forward the fullWidth prop to Input', () => {
-      const wrapper = mount(<TextField fullWidth />);
+      const inputClasses = getClasses(<Input />);
+      const { getByTestId } = render(
+        <TextField fullWidth InputProps={{ 'data-testid': 'mui-input-base-root' }} />,
+      );
 
-      expect(wrapper.find(Input).props()).to.have.property('fullWidth', true);
+      expect(getByTestId('mui-input-base-root')).to.have.class(inputClasses.fullWidth);
     });
   });
 
@@ -112,11 +116,14 @@ describe('<TextField />', () => {
     });
 
     it('should set shrink prop on outline from label', () => {
-      const wrapper = mount(
+      const outlinedInputClasses = getClasses(<OutlinedInput />);
+      const { container } = render(
         <TextField variant="outlined" InputLabelProps={{ shrink: true }} classes={{}} />,
       );
 
-      expect(wrapper.find(OutlinedInput).props()).to.have.property('notched', true);
+      expect(container.querySelector('fieldset')).to.have.class(
+        outlinedInputClasses.notchedOutline,
+      );
     });
   });
 

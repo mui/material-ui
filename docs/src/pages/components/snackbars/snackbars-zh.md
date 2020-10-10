@@ -6,11 +6,11 @@ materialDesign: https://material.io/components/snackbars
 waiAria: 'https://www.w3.org/TR/wai-aria-1.1/#alert'
 ---
 
-# Snackbar（消息条）
+# Snackbar
 
 <p class="description">消息条组件提供了关于应用流程的简短信息。 该组件也被称为 toast。</p>
 
-[消息条](https://material.io/design/components/snackbars.html)将应用程序已执行或即将执行的进程通知用户。 它们会从屏幕底部短暂地出现。 它们不应中断用户体验，也不要求任何用户的操作来关闭。
+消息条将应用程序已执行或即将执行的进程通知用户。 它们会从屏幕底部短暂地出现。 它们不应中断用户体验，也不要求任何用户的操作来关闭。
 
 消息条包含了一行直接与所执行操作相关的文本。 它们可能包含一些文本操作，但并不会展示图标。 您也可以用他们展示通知。
 

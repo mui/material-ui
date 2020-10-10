@@ -3,7 +3,6 @@ title: Schalter React Komponente
 components: ToggleButton, ToggleButtonGroup
 githubLabel: 'component: ToggleButton'
 materialDesign: 'https://material.io/components/buttons#toggle-button'
-packageName: '@material-ui/lab'
 ---
 
 # Schalter (Toggle Buttons)
@@ -16,29 +15,33 @@ Um Gruppen von verwandten [Schaltern](https://material.io/components/buttons#tog
 
 ## Exclusive selection
 
-Text justification toggle buttons present options for left, right, center, full, and justified text with only one item available for selection at a time. Selecting one option deselects any other.
+With exclusive selection, selecting one option deselects any other.
+
+In this example text justification toggle buttons present options for left, center, right, and fully justified text (disabled), with only one item available for selection at a time.
 
 {{"demo": "pages/components/toggle-button/ToggleButtons.js"}}
 
 ## Multiple selection
 
-Logically-grouped options, like bold, italic, and underline, allow multiple options to be selected.
+Multiple selection allows for logically-grouped options, like bold, italic, and underline, to have multiple options selected.
 
 {{"demo": "pages/components/toggle-button/ToggleButtonsMultiple.js"}}
 
 ## Größen
 
-Fancy larger or smaller buttons? Verwenden Sie die `size` Prop.
+Fancy larger or smaller buttons? Verwende die Eigenschaft `size`.
 
 {{"demo": "pages/components/toggle-button/ToggleButtonSizes.js"}}
 
 ## Vertical buttons
 
+The buttons can be stacked vertically with the `orientation` prop set to "vertical".
+
 {{"demo": "pages/components/toggle-button/VerticalToggleButtons.js"}}
 
 ## Enforce value set
 
-If you want to enforce at least one button to be active, you can adapt your handleChange function.
+If you want to enforce that at least one button must be active, you can adapt your handleChange function.
 
 ```jsx
 const handleFormat = (event, newFormats) => {
@@ -68,5 +71,11 @@ Hier ist ein Beispiel zum Anpassen der Komponente. Mehr dazu erfahren Sie auf de
 
 ## Barrierefreiheit
 
+### ARIA
+
 - ToggleButtonGroup has `role="group"`. You should provide an accessible label with `aria-label="label"`, `aria-labelledby="id"` or `<label>`.
 - ToggleButton sets `aria-pressed="<bool>"` according to the button state. You should label each button with `aria-label`.
+
+### Keyboard
+
+At present, toggle buttons are in DOM order. Navigate between them with the tab key. The button behavior follows standard keyboard semantics.

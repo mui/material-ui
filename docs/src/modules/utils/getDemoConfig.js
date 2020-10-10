@@ -14,7 +14,7 @@ import ReactDOM from 'react-dom';
 import Demo from './demo';
 
 ReactDOM.render(<Demo />, document.querySelector('#root'));
-    `,
+    `.trim(),
     },
   };
 }
@@ -33,7 +33,7 @@ import ReactDOM from 'react-dom';
 import Demo from './demo';
 
 ReactDOM.render(<Demo />, document.querySelector('#root'));
-    `,
+    `.trim(),
       'tsconfig.json': `{
   "compilerOptions": {
     "target": "es5",
@@ -81,18 +81,30 @@ function getLanguageConfig(demoData) {
 
 export default function getDemo(demoData) {
   const baseConfig = {
-    title: 'Material demo',
+    title: demoData.title,
     description: demoData.githubLocation,
     files: {
-      'index.html': `
-<body>
-  <!-- Fonts to support Material Design -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
-  <!-- Icons to support Material Design -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-  <div id="root"></div>
-</body>
-      `,
+      'public/index.html': `
+<!DOCTYPE html>
+<html lang="${demoData.language}">
+  <head>
+    <title>${demoData.title}</title>
+    <!-- Fonts to support Material Design -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    />
+    <!-- Icons to support Material Design -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
+`.trim(),
     },
   };
   const languageConfig = getLanguageConfig(demoData);

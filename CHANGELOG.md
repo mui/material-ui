@@ -89,8 +89,8 @@ Here are some highlights ✨:
   ```diff
   import { createMuiTheme } from '@material-ui/core/styles';
 
-  -const theme = createMuitheme({palette: { type: 'dark' }}),
-  +const theme = createMuitheme({palette: { mode: 'dark' }}),
+  -const theme = createMuiTheme({palette: { type: 'dark' }}),
+  +const theme = createMuiTheme({palette: { mode: 'dark' }}),
   ```
 
   The changes are supported by the `adaptV4Theme()` for easing the migration
@@ -469,7 +469,7 @@ const theme = createMuiTheme({
   ```diff
   import { createMuiTheme } from '@material-ui/core/styles';
 
-  const theme = createMuitheme({
+  const theme = createMuiTheme({
   -  props: {
   -    MuiButton: {
   -      disableRipple: true,
@@ -490,7 +490,7 @@ const theme = createMuiTheme({
   ```diff
   import { createMuiTheme } from '@material-ui/core/styles';
 
-  const theme = createMuitheme({
+  const theme = createMuiTheme({
   -  overrides: {
   -    MuiButton: {
   -      root: { padding: 0 },

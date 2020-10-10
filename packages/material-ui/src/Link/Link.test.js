@@ -1,7 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createShallow, getClasses, createMount, describeConformance, act } from 'test/utils';
+import {
+  getClasses,
+  createMount,
+  describeConformance,
+  act,
+  createClientRender,
+  fireEvent,
+} from 'test/utils';
 import Link from './Link';
 import Typography from '../Typography';
 
@@ -15,12 +22,13 @@ function focusVisible(element) {
 
 describe('<Link />', () => {
   const mount = createMount();
-  let shallow;
+  const render = createClientRender();
   let classes;
+  let typographyClasses;
 
   before(() => {
-    shallow = createShallow({ dive: true });
     classes = getClasses(<Link href="/">Home</Link>);
+    typographyClasses = getClasses(<Typography />);
   });
 
   describeConformance(<Link href="/">Home</Link>, () => ({
@@ -31,18 +39,18 @@ describe('<Link />', () => {
   }));
 
   it('should render children', () => {
-    const wrapper = mount(<Link href="/">Home</Link>);
-    expect(wrapper.contains('Home')).to.equal(true);
+    const { queryByText } = render(<Link href="/">Home</Link>);
+
+    expect(queryByText('Home')).to.not.equal(null);
   });
 
   it('should pass props to the <Typography> component', () => {
-    const wrapper = mount(
+    const { container } = render(
       <Link href="/" color="primary">
         Test
       </Link>,
     );
-    const typography = wrapper.find(Typography);
-    expect(typography.props().color).to.equal('primary');
+    expect(container.firstChild).to.have.class(typographyClasses.colorPrimary);
   });
 
   describe('event callbacks', () => {
@@ -54,15 +62,16 @@ describe('<Link />', () => {
         return result;
       }, {});
 
-      const wrapper = shallow(
+      const { container } = render(
         <Link href="/" {...handlers}>
           Home
         </Link>,
       );
+      const anchor = container.querySelector('a');
 
       events.forEach((n) => {
         const event = n.charAt(2).toLowerCase() + n.slice(3);
-        wrapper.simulate(event, { target: { tagName: 'a' } });
+        fireEvent[event](anchor);
         expect(handlers[n].callCount).to.equal(1);
       });
     });
@@ -70,20 +79,20 @@ describe('<Link />', () => {
 
   describe('keyboard focus', () => {
     it('should add the focusVisible class when focused', () => {
-      const wrapper = mount(<Link href="/">Home</Link>);
-      const anchor = wrapper.find('a').instance();
+      const { container } = render(<Link href="/">Home</Link>);
+      const anchor = container.querySelector('a');
 
-      expect(anchor.classList.contains(classes.focusVisible)).to.equal(false);
+      expect(anchor).to.not.have.class(classes.focusVisible);
 
       focusVisible(anchor);
 
-      expect(anchor.classList.contains(classes.focusVisible)).to.equal(true);
+      expect(anchor).to.have.class(classes.focusVisible);
 
       act(() => {
         anchor.blur();
       });
 
-      expect(anchor.classList.contains(classes.focusVisible)).to.equal(false);
+      expect(anchor).to.not.have.class(classes.focusVisible);
     });
   });
 });
