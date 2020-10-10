@@ -42,7 +42,6 @@ describe('<Fab />', () => {
     expect(button).not.to.have.class(classes.focusVisible);
     expect(button).not.to.have.class(classes.disabled);
     expect(button).not.to.have.class(classes.colorInherit);
-    expect(button).not.to.have.class(classes.mini);
     expect(button).not.to.have.class(classes.fullWidth);
     expect(button).not.to.have.class(classes.sizeSmall);
     expect(button).not.to.have.class(classes.sizeMedium);
