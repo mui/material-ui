@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as CSS from 'csstype';
 import { Theme as DefaultTheme } from './createMuiTheme';
+
 export interface SerializedStyles {
   name: string;
   styles: string;
