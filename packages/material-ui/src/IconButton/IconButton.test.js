@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
+import { getClasses, createMount, createClientRender, describeConformance ,act ,fireEvent} from 'test/utils';
 import Icon from '../Icon';
 import ButtonBase from '../ButtonBase';
 import IconButton from './IconButton';
+import TouchRipple from '../ButtonBase/TouchRipple';
 
 describe('<IconButton />', () => {
   let classes;
@@ -61,20 +62,52 @@ describe('<IconButton />', () => {
     );
     expect(container.querySelector('.touch-ripple')).to.equal(null);
   });
-
+  
   it('should pass centerRipple={true} to ButtonBase', () => {
-    const wrapper = mount(<IconButton>book</IconButton>);
-    expect(wrapper.find(ButtonBase).props()).to.have.property('centerRipple', true);
+    const touchRippleClasses = getClasses(<TouchRipple />);
+    const {container} = render(<IconButton>book</IconButton>);
+    expect(container.querySelector(`.${touchRippleClasses.root}`)).not.to.equal(true);
+
   });
 
-  it('should have a focusRipple by default', () => {
-    const wrapper = mount(<IconButton>book</IconButton>);
-    expect(wrapper.find(ButtonBase).props()).to.have.property('focusRipple', true);
+    it('should have a focusRipple by default', async () => {
+      const { getByRole } = render(
+        <IconButton
+          TouchRippleProps={{
+            classes: { ripplePulsate: 'pulsate-focus-visible' },
+          }}
+          
+        >
+          Book
+        </IconButton>,
+      );
+      const button = getByRole('button');
+  
+      act(() => {
+        fireEvent.keyDown(document.body, { key: 'TAB' });
+        button.focus();
+      });
+      expect(button.querySelector('.pulsate-focus-visible')).not.to.equal(null);
   });
 
-  it('should pass disableFocusRipple to ButtonBase', () => {
-    const wrapper = mount(<IconButton disableFocusRipple>book</IconButton>);
-    expect(wrapper.find(ButtonBase).props()).to.have.property('focusRipple', false);
+  it('should pass disableFocusRipple to ButtonBase', async () => {
+    const { getByRole } = render(
+      <IconButton
+        TouchRippleProps={{
+          classes: { ripplePulsate: 'pulsate-focus-visible' },
+        }}
+        disableFocusRipple
+      >
+        book
+      </IconButton>,
+    );
+    const button = getByRole('button');
+
+    act(() => {
+      fireEvent.keyDown(document.body, { key: 'TAB' });
+      button.focus();
+    });
+    expect(button.querySelector('.pulsate-focus-visible')).to.equal(null);
   });
 
   describe('prop: size', () => {
