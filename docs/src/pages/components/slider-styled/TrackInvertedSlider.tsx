@@ -1,15 +1,14 @@
 import * as React from 'react';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/lab/SliderStyled';
 
-const Root = styled('div')`
-  width: 250;
-`;
-
-const Separator = styled('div')`
-  height: ${(props) => props.theme.spacing(3)};
-`;
+const Separator = styled('div')(
+  ({ theme }) => `
+  height: ${theme.spacing(3)};
+`,
+);
 
 const marks = [
   {
@@ -36,7 +35,7 @@ function valuetext(value: number) {
 
 export default function TrackInvertedSlider() {
   return (
-    <Root>
+    <Box width={250}>
       <Typography id="track-inverted-slider" gutterBottom>
         Inverted track
       </Typography>
@@ -58,6 +57,6 @@ export default function TrackInvertedSlider() {
         defaultValue={[20, 37]}
         marks={marks}
       />
-    </Root>
+    </Box>
   );
 }

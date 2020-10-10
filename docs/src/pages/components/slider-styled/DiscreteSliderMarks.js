@@ -1,11 +1,7 @@
 import * as React from 'react';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/lab/SliderStyled';
-
-const Root = styled('div')`
-  width: 300px;
-`;
 
 const marks = [
   {
@@ -32,7 +28,7 @@ function valuetext(value) {
 
 export default function DiscreteSlider() {
   return (
-    <Root>
+    <Box width={300}>
       <Typography id="discrete-slider-custom" gutterBottom>
         Custom marks
       </Typography>
@@ -44,6 +40,6 @@ export default function DiscreteSlider() {
         valueLabelDisplay="auto"
         marks={marks}
       />
-    </Root>
+    </Box>
   );
 }

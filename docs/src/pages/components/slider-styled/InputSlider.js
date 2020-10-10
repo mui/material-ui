@@ -1,17 +1,14 @@
 import * as React from 'react';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/lab/SliderStyled';
 import MuiInput from '@material-ui/core/Input';
 import VolumeUp from '@material-ui/icons/VolumeUp';
 
-const Root = styled('div')`
-  width: 300px;
-`;
-
 const Input = styled(MuiInput)`
-  width: 42;
+  width: 42px;
 `;
 
 export default function InputSlider() {
@@ -34,7 +31,7 @@ export default function InputSlider() {
   };
 
   return (
-    <Root>
+    <Box width={300}>
       <Typography id="input-slider" gutterBottom>
         Volume
       </Typography>
@@ -65,6 +62,6 @@ export default function InputSlider() {
           />
         </Grid>
       </Grid>
-    </Root>
+    </Box>
   );
 }

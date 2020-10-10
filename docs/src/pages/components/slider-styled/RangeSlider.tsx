@@ -1,11 +1,7 @@
 import * as React from 'react';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/lab/SliderStyled';
-
-const Root = styled('div')`
-  width: 300px;
-`;
 
 function valuetext(value: number) {
   return `${value}°C`;
@@ -22,7 +18,7 @@ export default function RangeSlider() {
   };
 
   return (
-    <Root>
+    <Box width={300}>
       <Typography id="range-slider-demo" gutterBottom>
         Temperature range
       </Typography>
@@ -33,6 +29,6 @@ export default function RangeSlider() {
         aria-labelledby="range-slider-demo"
         getAriaValueText={valuetext}
       />
-    </Root>
+    </Box>
   );
 }

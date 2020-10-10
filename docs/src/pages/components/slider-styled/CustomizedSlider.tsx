@@ -4,13 +4,17 @@ import Slider from '@material-ui/lab/SliderStyled';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
 
-const Root = styled('div')`
-  width: ${props => `calc(300px + ${props.theme.spacing(6)})`};
-`;
+const Root = styled('div')(
+  ({ theme }) => `
+  width: calc(300px + ${theme.spacing(6)});
+`,
+);
 
-const Separator = styled('div')`
-  height: ${props => props.theme.spacing(3)};
-`;
+const Separator = styled('div')(
+  ({ theme }) => `
+  height: ${theme.spacing(3)};
+`,
+);
 
 interface Props {
   children: React.ReactElement;
