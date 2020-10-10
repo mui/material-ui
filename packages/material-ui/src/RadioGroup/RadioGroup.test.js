@@ -31,9 +31,7 @@ describe('<RadioGroup />', () => {
     const handleBlur = spy();
     const { container } = render(<RadioGroup value="" onBlur={handleBlur} />);
 
-    act(() => {
-      fireEvent.blur(container.firstChild);
-    });
+    fireEvent.blur(container.firstChild);
 
     expect(handleBlur.callCount).to.equal(1);
   });
