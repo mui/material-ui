@@ -7,7 +7,7 @@ githubLabel: 'component: Box'
 
 <p class="description">Le composant Box sert de composant de wrapper pour la plupart des besoins de l'utilitaire CSS.</p>
 
-Le composant Box contiens [toutes les fonctions de style](/system/basics/#all-inclusive) qui sont exposées dans `@material-ui/system`. Il est créé en utilisant la fonction [`styled()`](/styles/api/#styled-style-function-component) de `@material-ui/core/styles`.
+Le composant Box contiens [toutes les fonctions de style](/system/basics/#all-inclusive) qui sont exposées dans `@material-ui/system`. It's created using the `experimentalStyled()` function of `@material-ui/core/styles`.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
