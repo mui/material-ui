@@ -61,7 +61,7 @@ Such as limiting expansion to clicking the icon:
 {{"demo": "pages/components/tree-view/IconExpansionTreeView.js", "defaultCodeOpen": false}}
 
 Or increasing the width of the state indicator:
- 
+
 {{"demo": "pages/components/tree-view/BarTreeView.js", "defaultCodeOpen": false}}
 
 ## Customized tree view
