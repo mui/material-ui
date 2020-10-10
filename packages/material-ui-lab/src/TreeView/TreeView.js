@@ -102,7 +102,10 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     [expanded],
   );
 
-  const isExpandable = React.useCallback((id) => nodeMap.current[id].expandable, []);
+  const isExpandable = React.useCallback(
+    (id) => nodeMap.current[id] && nodeMap.current[id].expandable,
+    [],
+  );
 
   const isSelected = React.useCallback(
     (id) => (Array.isArray(selected) ? selected.indexOf(id) !== -1 : selected === id),
@@ -602,7 +605,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
    */
 
   const handleNextArrow = (event) => {
-    if (nodeMap.current[focusedNodeId].expandable) {
+    if (isExpandable(focusedNodeId)) {
       if (isExpanded(focusedNodeId)) {
         focusNextNode(event, focusedNodeId);
       } else if (!isDisabled(focusedNodeId)) {
@@ -652,7 +655,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
         break;
       case 'Enter':
         if (!isDisabled(focusedNodeId)) {
-          if (nodeMap.current[focusedNodeId].expandable) {
+          if (isExpandable(focusedNodeId)) {
             toggleExpansion(event);
             flag = true;
           }
@@ -767,6 +770,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
         focus,
         toggleExpansion,
         isExpanded,
+        isExpandable,
         isFocused,
         isSelected,
         isDisabled,
@@ -887,7 +891,7 @@ TreeView.propTypes = {
   /**
    * Callback fired when tree items are focused.
    *
-   * @param {object} event The event source of the callback
+   * @param {object} event The event source of the callback **Warning**: This is a generic event not a focus event.
    * @param {string} value of the focused node.
    */
   onNodeFocus: PropTypes.func,
