@@ -44,7 +44,7 @@ describe('<RadioGroup />', () => {
     act(() => {
       radiogroup.focus();
     });
-    
+
     fireEvent.keyDown(radiogroup);
 
     expect(handleKeyDown.callCount).to.equal(1);
