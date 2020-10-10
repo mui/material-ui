@@ -89,6 +89,7 @@ export const styles = (theme) => ({
     width: '100%',
     paddingLeft: 4,
     position: 'relative',
+    ...theme.typography.body1,
   },
 });
 

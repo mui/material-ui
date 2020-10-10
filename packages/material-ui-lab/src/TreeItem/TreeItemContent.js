@@ -1,7 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
 import useTreeItem from './useTreeItem';
 
 /**
@@ -64,9 +63,7 @@ const TreeItemContent = React.forwardRef(function TreeItemContent(props, ref) {
       {...other}
     >
       <div className={classes.iconContainer}>{icon}</div>
-      <Typography component="div" className={classes.label}>
-        {label}
-      </Typography>
+      <div className={classes.label}>{label}</div>
     </div>
   );
 });
