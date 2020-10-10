@@ -280,7 +280,7 @@ const classes = makeStyles(theme => ({
   +<Button />
   ```
 
-### Групповой прогресс
+### CircularProgress
 
 - Вариант `static` объединен с вариантом `determinate`, и последний подразумевает внешний вид первого. Удаленный вариант редко был полезен. Это было исключением из Material Design и удалено из спецификации.
 
@@ -686,7 +686,7 @@ const classes = makeStyles(theme => ({
   +</Stepper>
   ```
 
-### Table (tаблица)
+### Table (таблица)
 
 - Настройка ярлыков кнопок постраничной разбивки должна осуществляться с помощью свойства `getItemAriaLabel`. За счет этого улучшается сопоставимость с компонентом `Pagination`.
 
@@ -707,7 +707,7 @@ const classes = makeStyles(theme => ({
   + onPageChange={()=>{}}
   ```
 
-### Вкладки
+### Tabs
 
 - TypeScript: тип параметра `event` в `onChange` теперь не `React.ChangeEvent` а `React.SyntheticEvent`.
 
@@ -795,7 +795,7 @@ const classes = makeStyles(theme => ({
   +<Tooltip>
   ```
 
-### Оформление текста
+### Typography
 
 - Заменяем свойство `srOnly`, чтобы не дублировать возможности [System](https://material-ui.com/system/basics/):
 
