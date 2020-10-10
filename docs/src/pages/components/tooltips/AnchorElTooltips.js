@@ -15,7 +15,7 @@ export default function AnchorElTooltips() {
     positionRef.current = { x: event.clientX, y: event.clientY };
 
     if (popperRef.current != null) {
-      popperRef.current.scheduleUpdate();
+      popperRef.current.update();
     }
   };
 
