@@ -111,7 +111,7 @@ function includePeerDependencies(deps, versions) {
 function getMuiPackageVersion(packageName, commitRef) {
   if (commitRef === undefined) {
     // TODO: change 'next' to 'latest' once next is merged into master.
-    return 'next';
+    return 'latest';
   }
   const shortSha = commitRef.slice(0, 8);
   return `https://pkg.csb.dev/mui-org/material-ui/commit/${shortSha}/@material-ui/${packageName}`;
