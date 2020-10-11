@@ -115,7 +115,7 @@
     "rimraf": "^3.0.0",
     "styled-components": "^5.0.0",
     "stylis-plugin-rtl": "^1.0.0",
-    "stylis": "^3.5.4",
+    "stylis": "^4.0.3",
     "webfontloader": "^1.6.28",
     "webpack": "^4.41.0",
     "webpack-bundle-analyzer": "^3.5.1"
