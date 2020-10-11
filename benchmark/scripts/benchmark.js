@@ -68,7 +68,7 @@ const printMeasure = (name, measures) => {
   });
 
   console.log('-------------');
-  console.log(`Avg: ${Number(sum / totalNum).toFixed(2)}ms\n`);
+  console.log(`Avg: ${Number(sum / totalNum).toFixed(2)}ms`);
   console.log(`Median: ${getMedian(measures)}`);
 };
 
@@ -96,6 +96,12 @@ async function run() {
   const [server, browser] = await Promise.all([createServer({ port: PORT }), createBrowser()]);
 
   try {
+    await runMeasures(
+      browser,
+      'noop (baseline)',
+      './noop/index.js',
+      10,
+    );
     await runMeasures(
       browser,
       '@material-ui/system colors',
