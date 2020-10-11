@@ -12,7 +12,7 @@ const BoxStyleComponents = styledComponents('div')(styleFunction);
 export default function BoxStyledComponents() {
   return (
     <React.Profiler id="box-styled-components" onRender={logReactMetrics}>
-      {new Array(100).fill().map(() => (
+      {new Array(1000).fill().map(() => (
         <StyledComponentsThemeProvider theme={materialSystemTheme}>
           <BoxStyleComponents
             color="primary.main"

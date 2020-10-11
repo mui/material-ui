@@ -12,7 +12,7 @@ const NakedStyleComponents = styledComponents('div')(spacing);
 export default function NakedStyledComponents() {
   return (
     <React.Profiler id="naked-styled-components" onRender={logReactMetrics}>
-      {new Array(100).fill().map(() => (
+      {new Array(1000).fill().map(() => (
         <StyledComponentsThemeProvider theme={materialSystemTheme}>
           <NakedStyleComponents
             color="primary.main"

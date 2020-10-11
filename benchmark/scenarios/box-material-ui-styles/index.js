@@ -9,7 +9,7 @@ const materialSystemTheme = createMuiTheme();
 export default function BoxMaterialUIStyles() {
   return (
     <React.Profiler id="box-material-ui-system" onRender={logReactMetrics}>
-      {new Array(100).fill().map(() => (
+      {new Array(1000).fill().map(() => (
         <StylesThemeProvider theme={materialSystemTheme}>
           <BoxStyles
             color="primary.main"

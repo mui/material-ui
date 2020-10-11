@@ -18,7 +18,7 @@ styledSystemTheme.fonts = styledSystemTheme.typography;
 export default function StyledComponentsBoxStyledSystem() {
   return (
     <React.Profiler id="styled-components-box-styled-system" onRender={logReactMetrics}>
-      {new Array(100).fill().map(() => (
+      {new Array(1000).fill().map(() => (
         <StyledComponentsThemeProvider theme={styledSystemTheme}>
           <BoxStyledSystem
             color="primary.main"

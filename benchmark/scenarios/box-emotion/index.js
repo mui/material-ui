@@ -11,7 +11,7 @@ const Box = styledEmotion('div')(styleFunction);
 export default function BoxEmotion() {
   return (
     <React.Profiler id="box-emotion" onRender={logReactMetrics}>
-      {new Array(100).fill().map(() => (
+      {new Array(1000).fill().map(() => (
         <EmotionTheme theme={materialSystemTheme}>
           <Box
             color="primary.main"
