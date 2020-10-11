@@ -164,12 +164,14 @@ const useDialogStyles = makeStyles((theme) => ({
   canvas: {
     fontSize: 210,
     marginTop: theme.spacing(2),
-    color: theme.palette.primary.dark,
+    color: theme.palette.text.primary,
     backgroundSize: '30px 30px',
-    backgroundColor: '#fff',
+    backgroundColor: 'transparent',
     backgroundPosition: '0 0, 0 15px, 15px -15px, -15px 0',
     backgroundImage:
-      'linear-gradient(45deg, #f4f4f4 25%, transparent 25%), linear-gradient(-45deg, #f4f4f4 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #f4f4f4 75%), linear-gradient(-45deg, transparent 75%, #f4f4f4 75%)',
+      theme.palette.mode === 'light'
+        ? 'linear-gradient(45deg, #e6e6e6 25%, transparent 25%), linear-gradient(-45deg, #e6e6e6 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #e6e6e6 75%), linear-gradient(-45deg, transparent 75%, #e6e6e6 75%)'
+        : 'linear-gradient(45deg, #595959 25%, transparent 25%), linear-gradient(-45deg, #595959 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #595959 75%), linear-gradient(-45deg, transparent 75%, #595959 75%)',
   },
   fontSize: {
     margin: theme.spacing(2),
