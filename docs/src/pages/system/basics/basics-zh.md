@@ -18,7 +18,7 @@
 
 ### 演示
 
-在*开始*章节的余下部分，我们会配合**styled-components** 作为演示例子(因为这个库具有普遍性)。 另外一个方案就是 [使用 JSS](#interoperability)。 另外，以下的例子都直接使用了 Material-UI 的 **默认** [主题对象](/customization/default-theme/)。
+在*开始*章节的余下部分，我们会配合**styled-components** 作为演示例子(因为这个库具有普遍性)。 Alternatively, you can [emotion](#interoperability) or any other CSS-in-JS styling solution. 另外，以下的例子都直接使用了 Material-UI 的 **默认** [主题对象](/customization/default-theme/)。
 
 {{"demo": "pages/system/basics/Demo.js", "defaultCodeOpen": true}}
 
@@ -105,7 +105,7 @@ export default function App() {
 - [spacing](/system/spacing/#api)
 - [typography](/system/typography/#api)
 
-如果你已经在使用 `@material-ui/core`，那么你可以使用 [Box 组件](/components/box/)（使用内嵌的 JSS）：
+If you are already using `@material-ui/core`, you can use the [Box component](/components/box/) (using emotion internally by default):
 
 ```jsx
 import Box from '@material-ui/core/Box';
@@ -113,13 +113,7 @@ import Box from '@material-ui/core/Box';
 
 ## 互操作性
 
-`@material-ui/system` 适用于大多数 CSS-in-JS 库，包括了 JSS，styled-components，还有 emotion。
-
-如果你已经在使用 `@material-ui/core`，我们推荐你使用 **JSS** 方案，这样有助于减少包大小。
-
-### JSS
-
-{{"demo": "pages/system/basics/JSS.js", "defaultCodeOpen": true}}
+`@material-ui/system` 适用于大多数 CSS-in-JS 库，包括了 JSS，styled-components，还有 emotion。 Here are a few examples usages.
 
 ### Styled components
 
