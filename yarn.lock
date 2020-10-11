@@ -424,7 +424,7 @@
     "@babel/helper-plugin-utils" "^7.10.4"
     "@babel/plugin-syntax-numeric-separator" "^7.10.4"
 
-"@babel/plugin-proposal-object-rest-spread@7.11.0", "@babel/plugin-proposal-object-rest-spread@^7.0.0", "@babel/plugin-proposal-object-rest-spread@^7.10.1", "@babel/plugin-proposal-object-rest-spread@^7.11.0":
+"@babel/plugin-proposal-object-rest-spread@7.11.0", "@babel/plugin-proposal-object-rest-spread@^7.10.1", "@babel/plugin-proposal-object-rest-spread@^7.11.0":
   version "7.11.0"
   resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-object-rest-spread/-/plugin-proposal-object-rest-spread-7.11.0.tgz#bd81f95a1f746760ea43b6c2d3d62b11790ad0af"
   integrity sha512-wzch41N4yztwoRw0ak+37wxwJM2oiIiy6huGCoqkvSTA9acYWcPfn9Y4aJqmFFJ70KTJUu29f3DQ43uJ9HXzEA==
@@ -928,7 +928,7 @@
     core-js "^2.6.5"
     regenerator-runtime "^0.13.4"
 
-"@babel/preset-env@7.11.5", "@babel/preset-env@^7.1.6", "@babel/preset-env@^7.10.2":
+"@babel/preset-env@7.11.5", "@babel/preset-env@^7.10.2":
   version "7.11.5"
   resolved "https://registry.yarnpkg.com/@babel/preset-env/-/preset-env-7.11.5.tgz#18cb4b9379e3e92ffea92c07471a99a2914e4272"
   integrity sha512-kXqmW1jVcnB2cdueV+fyBM8estd5mlNfaQi6lwLgRwCby4edpavgbFhiBNjmWA3JpB/yZGSISa7Srf+TwxDQoA==
@@ -3830,11 +3830,6 @@ ast-types-flow@^0.0.7:
   version "0.0.7"
   resolved "https://registry.yarnpkg.com/ast-types-flow/-/ast-types-flow-0.0.7.tgz#f70b735c6bca1a5c9c22d982c3e39e7feba3bdad"
   integrity sha1-9wtzXGvKGlycItmCw+Oef+ujva0=
-
-ast-types@0.11.7:
-  version "0.11.7"
-  resolved "https://registry.yarnpkg.com/ast-types/-/ast-types-0.11.7.tgz#f318bf44e339db6a320be0009ded64ec1471f46c"
-  integrity sha512-2mP3TwtkY/aTv5X3ZsMpNAbOnyoC/aMJwJSoaELPkHId0nSQgFcnU4dRW3isxiz7+zBexk0ym3WNVjMiQBnJSw==
 
 ast-types@0.13.2:
   version "0.13.2"
@@ -9617,19 +9612,17 @@ jsbn@~0.1.0:
   integrity sha1-peZUwuWi3rXyAdls77yoDA7y9RM=
 
 jscodeshift-add-imports@^1.0.1:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/jscodeshift-add-imports/-/jscodeshift-add-imports-1.0.3.tgz#1e27ee28e284b3be3db22853738b5bcb04a6bf79"
-  integrity sha512-h7zZ6HS+k2hlXYtx3sFoMAOZq0yGnDfCAHudZqw0KnF1qV30wcXwN9bO5v8zRLUhoUibli8xx3wbT2QDGc+ung==
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/jscodeshift-add-imports/-/jscodeshift-add-imports-1.0.4.tgz#237e5af6f6945fd096b030a0946738f569521546"
+  integrity sha512-I5VZTN+beq5UMMMKy5HaBI1rgQwdVABO6fyojoi5fZFosoVgAJrd8tBkPFexCBj3Otton8KJ7uuiHzENTdSTlw==
   dependencies:
     "@babel/traverse" "^7.4.5"
-    jscodeshift-find-imports "^1.0.2"
+    jscodeshift-find-imports "^2.0.1"
 
-jscodeshift-find-imports@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/jscodeshift-find-imports/-/jscodeshift-find-imports-1.0.2.tgz#27c36ecc5f7572829164bab5092c24ee07ff8ef5"
-  integrity sha512-O6lbEWWjL/mwwxNcwy/ea2X6YCqE5OhaqTPy2rBRkWJGD/ESXYNoLL7En/LXwe4IbJQOcaMbGIGOGzmxIGR5xQ==
-  dependencies:
-    jscodeshift "^0.6.4"
+jscodeshift-find-imports@^2.0.1:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/jscodeshift-find-imports/-/jscodeshift-find-imports-2.0.3.tgz#1e6949fc01bab7672a30622533f860285df84fc6"
+  integrity sha512-By/Od+r17bRv3laSd38mk5SFnuP7T1SRS8Zj4Cdw0xqFTnXzhCTgWAQHYN8frGKo3W2N9P24fUpJLbRcddI5GA==
 
 jscodeshift@^0.11.0:
   version "0.11.0"
@@ -9653,30 +9646,6 @@ jscodeshift@^0.11.0:
     neo-async "^2.5.0"
     node-dir "^0.1.17"
     recast "^0.20.3"
-    temp "^0.8.1"
-    write-file-atomic "^2.3.0"
-
-jscodeshift@^0.6.4:
-  version "0.6.4"
-  resolved "https://registry.yarnpkg.com/jscodeshift/-/jscodeshift-0.6.4.tgz#e19ab86214edac86a75c4557fc88b3937d558a8e"
-  integrity sha512-+NF/tlNbc2WEhXUuc4WEJLsJumF84tnaMUZW2hyJw3jThKKRvsPX4sPJVgO1lPE28z0gNL+gwniLG9d8mYvQCQ==
-  dependencies:
-    "@babel/core" "^7.1.6"
-    "@babel/parser" "^7.1.6"
-    "@babel/plugin-proposal-class-properties" "^7.1.0"
-    "@babel/plugin-proposal-object-rest-spread" "^7.0.0"
-    "@babel/preset-env" "^7.1.6"
-    "@babel/preset-flow" "^7.0.0"
-    "@babel/preset-typescript" "^7.1.0"
-    "@babel/register" "^7.0.0"
-    babel-core "^7.0.0-bridge.0"
-    colors "^1.1.2"
-    flow-parser "0.*"
-    graceful-fs "^4.1.11"
-    micromatch "^3.1.10"
-    neo-async "^2.5.0"
-    node-dir "^0.1.17"
-    recast "^0.16.1"
     temp "^0.8.1"
     write-file-atomic "^2.3.0"
 
@@ -13022,7 +12991,7 @@ prismjs@^1.17.1:
   optionalDependencies:
     clipboard "^2.0.0"
 
-private@^0.1.8, private@~0.1.5:
+private@^0.1.8:
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/private/-/private-0.1.8.tgz#2381edb3689f7a53d653190060fcf822d2f368ff"
   integrity sha512-VvivMrbvd2nKkiG38qjULzlc+4Vx4wm/whI9pQD35YrARNnhxeiRktSOhSukRLFNlzg6Br/cJPet5J/u19r/mg==
@@ -13791,16 +13760,6 @@ readline-sync@^1.4.9:
   version "1.4.10"
   resolved "https://registry.yarnpkg.com/readline-sync/-/readline-sync-1.4.10.tgz#41df7fbb4b6312d673011594145705bf56d8873b"
   integrity sha512-gNva8/6UAe8QYepIQH/jQ2qn91Qj0B9sYjMBBs3QOB8F2CXcKgLxQaJRP76sWVRQt+QU+8fAkCbCvjjMFu7Ycw==
-
-recast@^0.16.1:
-  version "0.16.2"
-  resolved "https://registry.yarnpkg.com/recast/-/recast-0.16.2.tgz#3796ebad5fe49ed85473b479cd6df554ad725dc2"
-  integrity sha512-O/7qXi51DPjRVdbrpNzoBQH5dnAPQNbfoOFyRiUwreTMJfIHYOEBzwuH+c0+/BTSJ3CQyKs6ILSWXhESH6Op3A==
-  dependencies:
-    ast-types "0.11.7"
-    esprima "~4.0.0"
-    private "~0.1.5"
-    source-map "~0.6.1"
 
 recast@^0.20.2, recast@^0.20.3:
   version "0.20.3"
