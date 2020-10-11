@@ -1,7 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import { getClasses, createMount, createClientRender, describeConformance ,act ,fireEvent} from 'test/utils';
+import {
+  getClasses,
+  createMount,
+  createClientRender,
+  describeConformance,
+  act,
+  fireEvent,
+} from 'test/utils';
 import Icon from '../Icon';
 import ButtonBase from '../ButtonBase';
 import IconButton from './IconButton';
@@ -62,32 +69,30 @@ describe('<IconButton />', () => {
     );
     expect(container.querySelector('.touch-ripple')).to.equal(null);
   });
-  
+
   it('should pass centerRipple={true} to ButtonBase', () => {
     const touchRippleClasses = getClasses(<TouchRipple />);
-    const {container} = render(<IconButton>book</IconButton>);
+    const { container } = render(<IconButton>book</IconButton>);
     expect(container.querySelector(`.${touchRippleClasses.root}`)).not.to.equal(true);
-
   });
 
-    it('should have a focusRipple by default', async () => {
-      const { getByRole } = render(
-        <IconButton
-          TouchRippleProps={{
-            classes: { ripplePulsate: 'pulsate-focus-visible' },
-          }}
-          
-        >
-          Book
-        </IconButton>,
-      );
-      const button = getByRole('button');
-  
-      act(() => {
-        fireEvent.keyDown(document.body, { key: 'TAB' });
-        button.focus();
-      });
-      expect(button.querySelector('.pulsate-focus-visible')).not.to.equal(null);
+  it('should have a focusRipple by default', async () => {
+    const { getByRole } = render(
+      <IconButton
+        TouchRippleProps={{
+          classes: { ripplePulsate: 'pulsate-focus-visible' },
+        }}
+      >
+        Book
+      </IconButton>,
+    );
+    const button = getByRole('button');
+
+    act(() => {
+      fireEvent.keyDown(document.body, { key: 'TAB' });
+      button.focus();
+    });
+    expect(button.querySelector('.pulsate-focus-visible')).not.to.equal(null);
   });
 
   it('should pass disableFocusRipple to ButtonBase', async () => {
