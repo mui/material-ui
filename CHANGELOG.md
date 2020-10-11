@@ -9,7 +9,7 @@ Here are some highlights ✨:
 
 - 🧪 The promotion of 4 components from the lab to core: Autocomplete, Pagination, SpeedDial, and ToggleButton. These components have been in the lab for more than 10 months @mbrookes.
 - 📦 Switch the style engine of the `Box` component from JSS to _@material-ui/styled-engine_ (use emotion by default) (#22945) @mnajdova.
-  The early benchmark we have run shows that the performance is improved. We will share more detailed results in #21657.
+  The early benchmark we have run shows that performance has improved. We will share more detailed results in #21657.
 - 🐙 Migrate a large portion of the tests from enzyme to react-testing-library @eladmotola, @baterson, @bewong89, @devrasec, @guillermaster, @itamar244, @jeferson-sb, @The24thDS.
   Last month, react-testing-library had [more downloads](https://npm-stat.com/charts.html?package=enzyme&package=%40testing-library%2Freact&from=2019-10-10&to=2020-10-10) than enzyme in the ecosystem!
 - 🏷 Add support for tooltips [following the cursor](https://next.material-ui.com/components/tooltips/#follow-cursor) (#22876) @xtrixia.
