@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles, fade } from '@material-ui/core/styles';
+import { makeStyles, alpha } from '@material-ui/core/styles';
 import TreeView from '@material-ui/lab/TreeView';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -49,27 +49,27 @@ const useContentStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.action.focus,
     },
     '$root$selected &': {
-      backgroundColor: fade(
+      backgroundColor: alpha(
         theme.palette.primary.main,
         theme.palette.action.selectedOpacity,
       ),
     },
     '$root$selected:hover &': {
-      backgroundColor: fade(
+      backgroundColor: alpha(
         theme.palette.primary.main,
         theme.palette.action.selectedOpacity +
           theme.palette.action.hoverOpacity,
       ),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
-        backgroundColor: fade(
+        backgroundColor: alpha(
           theme.palette.primary.main,
           theme.palette.action.selectedOpacity,
         ),
       },
     },
     '$root$selected$focused &': {
-      backgroundColor: fade(
+      backgroundColor: alpha(
         theme.palette.primary.main,
         theme.palette.action.selectedOpacity +
           theme.palette.action.focusOpacity,
