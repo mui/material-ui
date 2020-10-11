@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { InternalStandardProps as StandardProps } from '@material-ui/core';
 import { TransitionProps } from '@material-ui/core/transitions';
-import { Omit } from '@material-ui/types';
+import { ContentProps } from './TreeItemContent';
 
 export interface TreeItemProps
-  extends StandardProps<Omit<React.HTMLAttributes<HTMLLIElement>, 'onFocus'>> {
+  extends StandardProps<React.HTMLAttributes<HTMLLIElement>, 'onFocus'> {
   /**
    * The content of the component.
    */
@@ -17,7 +17,7 @@ export interface TreeItemProps
     root?: string;
     /** Styles applied to the `role="group"` element. */
     group?: string;
-    /** Styles applied to the tree node content. */
+    /** Styles applied to the content element. */
     content?: string;
     /** Pseudo-class applied to the content element when expanded. */
     expanded?: string;
@@ -27,7 +27,7 @@ export interface TreeItemProps
     focused?: string;
     /** Pseudo-class applied to the element when disabled. */
     disabled?: string;
-    /** Styles applied to the tree node icon and collapse/expand icon. */
+    /** Styles applied to the tree node icon. */
     iconContainer?: string;
     /** Styles applied to the label element. */
     label?: string;
@@ -36,6 +36,15 @@ export interface TreeItemProps
    * The icon used to collapse the node.
    */
   collapseIcon?: React.ReactNode;
+  /**
+   * The component used for the content node.
+   * @default TreeItemContent
+   */
+  ContentComponent?: React.ComponentType<ContentProps>;
+  /**
+   * Props applied to ContentComponent
+   */
+  ContentProps?: React.HTMLAttributes<HTMLElement>;
   /**
    * If `true`, the node will be disabled.
    */
@@ -58,17 +67,9 @@ export interface TreeItemProps
    */
   onFocus?: null;
   /**
-   * `onClick` handler for the icon container. Call `event.preventDefault()` to prevent `onNodeToggle` from being called.
-   */
-  onIconClick?: React.MouseEventHandler;
-  /**
    * The tree node label.
    */
   label?: React.ReactNode;
-  /**
-   * `onClick` handler for the label container. Call `event.preventDefault()` to prevent `onNodeToggle` from being called.
-   */
-  onLabelClick?: React.MouseEventHandler;
   /**
    * The id of the node.
    */
