@@ -15,9 +15,14 @@ import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
-import sleep from 'modules/waterfall/sleep';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import { ACTION_TYPES } from 'docs/src/modules/constants';
+
+function sleep(delay) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, delay);
+  });
+}
 
 const useStyles = makeStyles((theme) => ({
   paper: {
