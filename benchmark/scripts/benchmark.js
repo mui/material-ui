@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 /* eslint-disable no-await-in-loop */
 const puppeteer = require('puppeteer');
-const { performance } = require('perf_hooks');
 const handler = require('serve-handler');
 const http = require('http');
 
@@ -76,11 +75,12 @@ async function runMeasures(browser, testCaseName, testCase, times) {
   const measures = [];
 
   for (let i = 0; i < times; i += 1) {
-    const page = await browser.openPage(`http://localhost:${PORT}/${APP}?${testCase}`);
+    const url = `http://localhost:${PORT}/${APP}?${testCase}`;
+    const page = await browser.openPage(url);
+    // console.log('url', url)
 
     const benchmark = await page.evaluate(() => {
-      const { loadEventEnd, navigationStart } = performance.timing;
-      return loadEventEnd - navigationStart;
+      return window.timing.render;
     });
 
     measures.push(benchmark);
