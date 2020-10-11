@@ -18,7 +18,7 @@ export const styles = {
   },
   /* Styles applied to the root element if `component="picture or img"`. */
   img: {
-    // ⚠️ object-fit is not supported by IE 11.
+    // ⚠️ object-fit is not supported by IE11.
     objectFit: 'cover',
   },
 };

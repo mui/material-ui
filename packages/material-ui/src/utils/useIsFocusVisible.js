@@ -131,7 +131,7 @@ export default function useIsFocusVisible() {
     // checking against potential state variable does not suffice if we focus and blur synchronously.
     // React wouldn't have time to trigger a re-render so `focusVisible` would be stale.
     // Ideally we would adjust `isFocusVisible(event)` to look at `relatedTarget` for blur events.
-    // This doesn't work in IE 11 due to https://github.com/facebook/react/issues/3751
+    // This doesn't work in IE11 due to https://github.com/facebook/react/issues/3751
     // TODO: check again if React releases their internal changes to focus event handling (https://github.com/facebook/react/pull/19186).
     if (isFocusVisibleRef.current) {
       // To detect a tab/window switch, we look for a blur event followed

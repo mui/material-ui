@@ -140,7 +140,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
    * Child Helpers
    */
 
-  // Using Object.keys -> .map to mimic Object.values we should replace with Object.values() once we stop IE 11 support.
+  // Using Object.keys -> .map to mimic Object.values we should replace with Object.values() once we stop IE11 support.
   const getChildrenIds = (id) =>
     Object.keys(nodeMap.current)
       .map((key) => {
