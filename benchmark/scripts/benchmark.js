@@ -53,7 +53,7 @@ const getMedian = (measures) => {
   if (length % 2 === 0) {
     return (measures[length / 2] + measures[length / 2 - 1]) / 2;
   }
-  return measures[parseInt(length / 2)];
+  return measures[parseInt(length / 2, 10)];
 };
 
 const printMeasure = (name, measures) => {
