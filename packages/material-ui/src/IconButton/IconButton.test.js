@@ -9,10 +9,10 @@ import {
   act,
   fireEvent,
 } from 'test/utils';
+import { stub } from 'sinon';
 import Icon from '../Icon';
 import ButtonBase from '../ButtonBase';
 import IconButton from './IconButton';
-import TouchRipple from '../ButtonBase/TouchRipple';
 
 describe('<IconButton />', () => {
   let classes;
@@ -71,9 +71,31 @@ describe('<IconButton />', () => {
   });
 
   it('should pass centerRipple={true} to ButtonBase', () => {
-    const touchRippleClasses = getClasses(<TouchRipple />);
-    const { container } = render(<IconButton>book</IconButton>);
-    expect(container.querySelector(`.${touchRippleClasses.root}`)).not.to.equal(true);
+    const { container, getByRole } = render(
+      <IconButton
+        TouchRippleProps={{ classes: { root: 'touch-ripple', ripple: 'touch-ripple-ripple' } }}
+      >
+        book
+      </IconButton>,
+    );
+
+    stub(container.querySelector('.touch-ripple'), 'getBoundingClientRect').callsFake(() => ({
+      width: 100,
+      height: 100,
+      bottom: 10,
+      left: 20,
+      top: 20,
+    }));
+
+    fireEvent.mouseDown(getByRole('button'), { clientX: 10, clientY: 10 });
+    expect(container.querySelector('.touch-ripple-ripple').style).to.have.property(
+      'height',
+      '101px',
+    );
+    expect(container.querySelector('.touch-ripple-ripple').style).to.have.property(
+      'width',
+      '101px',
+    );
   });
 
   it('should have a focusRipple by default', async () => {
