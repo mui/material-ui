@@ -404,7 +404,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   const currentRangeSelection = React.useRef([]);
 
   const handleRangeArrowSelect = (event, nodes) => {
-    let base = [...selected];
+    let base = selected.slice();
     const { start, next, current } = nodes;
 
     if (!next || !current) {
@@ -438,7 +438,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   };
 
   const handleRangeSelect = (event, nodes) => {
-    let base = [...selected];
+    let base = selected.slice();
     const { start, end } = nodes;
     // If last selection was a range selection ignore nodes that were selected.
     if (lastSelectionWasRange.current) {
