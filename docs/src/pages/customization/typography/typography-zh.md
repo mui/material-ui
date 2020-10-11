@@ -179,7 +179,7 @@ html {
 - body1
 - body2
 - button
-- caption
+- 标签
 - overline
 
 每个变体都可以被单独地定制：
