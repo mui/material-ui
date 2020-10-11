@@ -47,7 +47,32 @@ async function createBrowser() {
   };
 }
 
-async function runMeasures(browser, testCase, times) {
+const getMedian = (measures) => {
+  const length = measures.length;
+  measures.sort();
+  if (length % 2 === 0) {
+    return (measures[length / 2] + measures[length / 2 - 1]) / 2;
+  }
+  return measures[Integer.parseInt(length / 2)];
+};
+
+const printMeasure = (name, measures) => {
+  console.log(`\n${name}:\n`);
+
+  let sum = 0;
+  const totalNum = measures.length;
+
+  measures.forEach((measure) => {
+    sum += measure;
+    console.log(`${measure.toFixed(2)}ms`);
+  });
+
+  console.log('-------------');
+  console.log(`Avg: ${Number(sum / totalNum).toFixed(2)}ms\n`);
+  console.log(`Median: ${getMedian(measures)}`);
+};
+
+async function runMeasures(browser, testCaseName, testCase, times) {
   const measures = [];
 
   for (let i = 0; i < times; i += 1) {
@@ -62,99 +87,61 @@ async function runMeasures(browser, testCase, times) {
     await page.close();
   }
 
+  printMeasure(testCaseName, measures);
+
   return measures;
 }
 
-const printMeasures = (measures) => {
-  console.log('\nMeasures\n');
-
-  Object.keys(measures).forEach((measureKey) => {
-    console.log(`\n${measureKey}:\n`);
-
-    let sum = 0;
-    const totalNum = measures[measureKey].length;
-
-    measures[measureKey].forEach((measure) => {
-      sum += measure;
-      console.log(`${measure.toFixed(2)}ms`);
-    });
-
-    console.log('-------------');
-    console.log(`Avg: ${Number(sum / totalNum).toFixed(2)}ms\n`);
-  });
-};
-
 async function run() {
   const [server, browser] = await Promise.all([createServer({ port: PORT }), createBrowser()]);
-  const measures = {};
 
   try {
-    measures['@material-ui/system colors'] = await runMeasures(
+    await runMeasures(
       browser,
+      '@material-ui/system colors',
       './material-ui-system-colors/index.js',
       10,
     );
-    measures['styled-system colors'] = await runMeasures(
+    await runMeasures(browser, 'styled-system colors', './styled-system-colors/index.js', 10);
+    await runMeasures(
       browser,
-      './styled-system-colors/index.js',
-      10,
-    );
-    measures['@material-ui/system spaces'] = await runMeasures(
-      browser,
+      '@material-ui/system spaces',
       './material-ui-system-spaces/index.js',
       10,
     );
-    measures['styled-system spaces'] = await runMeasures(
+    await runMeasures(browser, 'styled-system spaces', './styled-system-spaces/index.js', 10);
+    await runMeasures(
       browser,
-      './styled-system-spaces/index.js',
-      10,
-    );
-    measures['@material-ui/system compose'] = await runMeasures(
-      browser,
+      '@material-ui/system compose',
       './material-ui-system-compose/index.js',
       10,
     );
-    measures['styled-system compose'] = await runMeasures(
+    await runMeasures(browser, 'styled-system compose', './styled-system-compose/index.js', 10);
+    await runMeasures(
       browser,
-      './styled-system-compose/index.js',
-      10,
-    );
-    measures['@material-ui/core all-inclusive'] = await runMeasures(
-      browser,
+      '@material-ui/core all-inclusive',
       './material-ui-system-all-inclusive/index.js',
       10,
     );
-    measures['styled-components Box + @material-ui/system'] = await runMeasures(
+    await runMeasures(
       browser,
+      'styled-components Box + @material-ui/system',
       './styled-components-box-material-ui-system/index.js',
       10,
     );
-    measures['styled-components Box + styled-system'] = await runMeasures(
+    await runMeasures(
       browser,
+      'styled-components Box + styled-system',
       './styled-components-box-styled-system/index.js',
       10,
     );
-    measures['Box emotion'] = await runMeasures(browser, './box-emotion/index.js', 10);
-    measures['Box @material-ui/styles'] = await runMeasures(
-      browser,
-      './box-material-ui-styles/index.js',
-      10,
-    );
-    measures['Box styled-components'] = await runMeasures(
-      browser,
-      './box-styled-components/index.js',
-      10,
-    );
-    measures['Naked styled-components'] = await runMeasures(
-      browser,
-      './naked-styled-components/index.js',
-      10,
-    );
+    await runMeasures(browser, 'Box emotion', './box-emotion/index.js', 10);
+    await runMeasures(browser, 'Box @material-ui/styles', './box-material-ui-styles/index.js', 10);
+    await runMeasures(browser, 'Box styled-components', './box-styled-components/index.js', 10);
+    await runMeasures(browser, 'Naked styled-components', './naked-styled-components/index.js', 10);
   } finally {
     await Promise.all([browser.close(), server.close()]);
   }
-
-  printMeasures(measures);
 }
 
 run();
