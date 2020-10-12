@@ -188,7 +188,7 @@ const theme = createMuiTheme({
 
 ### Стили
 
-- Переименовывыем `fade` на `alpha`, чтобы лучше описать его функционал.
+- Renamed `fade` to `alpha` to better describe its functionality. The previous name was leading to confusion when the input color already had an alpha value. The helper **overrides** the alpha value of the color.
 
 ```diff
 - import { fade } from '@material-ui/core/styles';
@@ -280,7 +280,7 @@ const classes = makeStyles(theme => ({
   +<Button />
   ```
 
-### CircularProgress
+### Групповой прогресс
 
 - Вариант `static` объединен с вариантом `determinate`, и последний подразумевает внешний вид первого. Удаленный вариант редко был полезен. Это было исключением из Material Design и удалено из спецификации.
 
@@ -402,7 +402,7 @@ const classes = makeStyles(theme => ({
   />
   ```
 
-- Удаляем `display: flex` из AccordionDetails, так как он навязывает определенный вид компоновки.
+- Удаляем `display: flex` из AccordionDetails, так как он навязывает определенный вид компоновки. Most developers expect a display block.
 - Удаляем свойство `IconButtonProps` из AccordionSummary. При отрисовке этого компонента вместо IconButton используется элемент `<div>`. Данное свойство больше не требуется.
 
 ### Fab
