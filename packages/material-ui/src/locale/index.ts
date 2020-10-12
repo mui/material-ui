@@ -30,50 +30,71 @@ export interface Localization {
 }
 
 export const arAR: Localization = {
-  props: {
+  components: {
     MuiBreadcrumbs: {
-      expandText: 'إظهر العنوان',
+      defaultProps: {
+        expandText: 'إظهر العنوان',
+      },
     },
     MuiTablePagination: {
-      backIconButtonText: 'الصفحة السابقة',
-      labelRowsPerPage: 'عدد الصفوف في الصفحة:',
-      labelDisplayedRows: ({ from, to, count }) =>
-        `${from}-${to} من ${count !== -1 ? count : ` أكثر من${to}`}`,
-      nextIconButtonText: 'الصفحة التالية',
+      defaultProps: {
+        getItemAriaLabel: (type) => {
+          if (type === 'first') {
+            return 'إذهب الى الصفحة الأولى';
+          }
+          if (type === 'last') {
+            return 'إذهب الي الصفحة الأخيرة';
+          }
+          if (type === 'next') {
+            return 'إذهب الى الصفحة التالية';
+          }
+          // if (type === 'previous') {
+          return 'إذهب الى الصفحة السابقة';
+        },
+        labelRowsPerPage: 'عدد الصفوف في الصفحة:',
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}-${to} من ${count !== -1 ? count : ` أكثر من${to}`}`,
+      },
     },
     MuiRating: {
-      getLabelText: (value) => `${value} ${value !== 1 ? 'نجوم' : 'نجمة'}`,
-      emptyLabelText: 'فارغ',
+      defaultProps: {
+        getLabelText: (value) => `${value} ${value !== 1 ? 'نجوم' : 'نجمة'}`,
+        emptyLabelText: 'فارغ',
+      },
     },
     MuiAutocomplete: {
-      clearText: 'مسح',
-      closeText: 'إغلاق',
-      loadingText: 'يتم التحميل…',
-      noOptionsText: 'لا يوجد خيارات',
-      openText: 'فتح',
+      defaultProps: {
+        clearText: 'مسح',
+        closeText: 'إغلاق',
+        loadingText: 'يتم التحميل…',
+        noOptionsText: 'لا يوجد خيارات',
+        openText: 'فتح',
+      },
     },
     MuiAlert: {
-      closeText: 'إغلاق',
+      defaultProps: {
+        closeText: 'إغلاق',
+      },
     },
     MuiPagination: {
-      'aria-label': 'التنقل عبر الصفحات',
-      getItemAriaLabel: (type, page, selected) => {
-        if (type === 'page') {
-          return `${selected ? '' : 'إذهب إلى '} صفحة ${page}`;
-        }
-        if (type === 'first') {
-          return 'إذهب الى الصفحة الأولى';
-        }
-        if (type === 'last') {
-          return 'إذهب الي الصفحة الأخيرة';
-        }
-        if (type === 'next') {
-          return 'إذهب الى الصفحة التالية';
-        }
-        if (type === 'previous') {
+      defaultProps: {
+        'aria-label': 'التنقل عبر الصفحات',
+        getItemAriaLabel: (type, page, selected) => {
+          if (type === 'page') {
+            return `${selected ? '' : 'إذهب إلى '} صفحة ${page}`;
+          }
+          if (type === 'first') {
+            return 'إذهب الى الصفحة الأولى';
+          }
+          if (type === 'last') {
+            return 'إذهب الي الصفحة الأخيرة';
+          }
+          if (type === 'next') {
+            return 'إذهب الى الصفحة التالية';
+          }
+          // if (type === 'previous') {
           return 'إذهب الى الصفحة السابقة';
-        }
-        return undefined;
+        },
       },
     },
   },
