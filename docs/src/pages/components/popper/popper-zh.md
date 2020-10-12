@@ -18,7 +18,7 @@ githubLabel: 'component: Popper'
 - Clicking away 不会隐藏`弹出提示`组件。 若您需要这个功能，请使用 [`ClickAwayListener`](/components/click-away-listener/) - 可以参照 [menu 文档章节](/components/menus/#menulist-composition) 中的一个样例。
 - 创建一个新 ` Popper.js` 实例时，` anchorEl ` 作为一个参考对象在其中传递。
 
-查看[调色板](/system/palette/)样式功能。
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## 基础的弹出提示
 
