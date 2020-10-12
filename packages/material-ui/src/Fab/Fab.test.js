@@ -98,6 +98,17 @@ describe('<Fab />', () => {
     expect(container.querySelector(`.${touchRippleClasses.root}`)).not.to.equal(null);
   });
 
+  it('should pass disabled to ButtonBase', () => {
+    const { getByRole } = render(<Fab disabled>Fab</Fab>);
+    const button = getByRole('button');
+    expect(button).to.have.class(classes.disabled);
+    act(() => {
+      fireEvent.keyDown(document.body, { key: 'TAB' });
+      button.focus();
+    });
+    expect(button).not.to.have.class(classes.focusVisible);
+  });
+
   it('should pass disableRipple to ButtonBase', () => {
     const touchRippleClasses = getClasses(<TouchRipple />);
     const { container } = render(<Fab disableRipple>Fab</Fab>);
