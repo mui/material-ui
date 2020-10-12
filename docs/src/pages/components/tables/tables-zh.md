@@ -21,7 +21,7 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 
 一个没有多余装饰的简单例子
 
-一个数据表格的顶部是标题行，并展示各列的名称，而后续的各行则是表格的数据。
+{{"demo": "pages/components/tables/BasicTable.js", "bg": true}}
 
 ## 简单的表格
 
