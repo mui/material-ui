@@ -93,7 +93,7 @@ Outlined buttonは、Contained buttonより弱く、 Text buttonよりは強い�
 
 ## 複雑なButton
 
-The loading buttons can show pending state and disable interactions.
+The loading buttons can show loading state and disable interactions.
 
 {{"demo": "pages/components/buttons/LoadingButtons.js"}}
 

@@ -93,7 +93,7 @@ Fancy larger or smaller buttons? Use the `size` property.
 
 ## Сложные кнопки
 
-The loading buttons can show pending state and disable interactions.
+The loading buttons can show loading state and disable interactions.
 
 {{"demo": "pages/components/buttons/LoadingButtons.js"}}
 

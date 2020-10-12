@@ -31,9 +31,9 @@ The `MuiLoadingButton` name can be used for providing [default props](/customiza
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the button. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the button will be disabled. |
-| <span class="prop-name">pending</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the pending indicator will be shown. |
-| <span class="prop-name">pendingIndicator</span> | <span class="prop-type">node</span> | <span class="prop-default">&lt;CircularProgress color="inherit" size={16} /></span> | Element placed before the children if the button is in pending state. |
-| <span class="prop-name">pendingPosition</span> | <span class="prop-type">'start'<br>&#124;&nbsp;'end'<br>&#124;&nbsp;'center'</span> | <span class="prop-default">'center'</span> | The pending indicator can be positioned on the start, end, or the center of the button. |
+| <span class="prop-name">loading</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the loading indicator will be shown. |
+| <span class="prop-name">loadingIndicator</span> | <span class="prop-type">node</span> | <span class="prop-default">&lt;CircularProgress color="inherit" size={16} /></span> | Element placed before the children if the button is in loading state. |
+| <span class="prop-name">loadingPosition</span> | <span class="prop-type">'start'<br>&#124;&nbsp;'end'<br>&#124;&nbsp;'center'</span> | <span class="prop-default">'center'</span> | The loading indicator can be positioned on the start, end, or the center of the button. |
 
 The `ref` is forwarded to the root element.
 
@@ -44,14 +44,14 @@ Any other props supplied will be provided to the root element ([Button](/api/but
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
 | <span class="prop-name">root</span> | <span class="prop-name">.MuiLoadingButton-root</span> | Styles applied to the root element.
-| <span class="prop-name">pending</span> | <span class="prop-name">.MuiLoadingButton-pending</span> | Styles applied to the root element if `pending={true}`.
-| <span class="prop-name">pendingIndicator</span> | <span class="prop-name">.MuiLoadingButton-pendingIndicator</span> | Styles applied to the pendingIndicator element.
-| <span class="prop-name">pendingIndicatorCenter</span> | <span class="prop-name">.MuiLoadingButton-pendingIndicatorCenter</span> | Styles applied to the pendingIndicator element if `pendingPosition="center"`.
-| <span class="prop-name">pendingIndicatorStart</span> | <span class="prop-name">.MuiLoadingButton-pendingIndicatorStart</span> | Styles applied to the pendingIndicator element if `pendingPosition="start"`.
-| <span class="prop-name">pendingIndicatorEnd</span> | <span class="prop-name">.MuiLoadingButton-pendingIndicatorEnd</span> | Styles applied to the pendingIndicator element if `pendingPosition="end"`.
-| <span class="prop-name">endIconPendingEnd</span> | <span class="prop-name">.MuiLoadingButton-endIconPendingEnd</span> | Styles applied to the endIcon element if `pending={true}` and `pendingPosition="end"`.
-| <span class="prop-name">startIconPendingStart</span> | <span class="prop-name">.MuiLoadingButton-startIconPendingStart</span> | Styles applied to the startIcon element if `pending={true}` and `pendingPosition="start"`.
-| <span class="prop-name">labelPendingCenter</span> | <span class="prop-name">.MuiLoadingButton-labelPendingCenter</span> | Styles applied to the label element if `pending={true}` and `pendingPosition="center"`.
+| <span class="prop-name">loading</span> | <span class="prop-name">.MuiLoadingButton-loading</span> | Styles applied to the root element if `loading={true}`.
+| <span class="prop-name">loadingIndicator</span> | <span class="prop-name">.MuiLoadingButton-loadingIndicator</span> | Styles applied to the loadingIndicator element.
+| <span class="prop-name">loadingIndicatorCenter</span> | <span class="prop-name">.MuiLoadingButton-loadingIndicatorCenter</span> | Styles applied to the loadingIndicator element if `loadingPosition="center"`.
+| <span class="prop-name">loadingIndicatorStart</span> | <span class="prop-name">.MuiLoadingButton-loadingIndicatorStart</span> | Styles applied to the loadingIndicator element if `loadingPosition="start"`.
+| <span class="prop-name">loadingIndicatorEnd</span> | <span class="prop-name">.MuiLoadingButton-loadingIndicatorEnd</span> | Styles applied to the loadingIndicator element if `loadingPosition="end"`.
+| <span class="prop-name">endIconLoadingEnd</span> | <span class="prop-name">.MuiLoadingButton-endIconLoadingEnd</span> | Styles applied to the endIcon element if `loading={true}` and `loadingPosition="end"`.
+| <span class="prop-name">startIconLoadingStart</span> | <span class="prop-name">.MuiLoadingButton-startIconLoadingStart</span> | Styles applied to the startIcon element if `loading={true}` and `loadingPosition="start"`.
+| <span class="prop-name">labelLoadingCenter</span> | <span class="prop-name">.MuiLoadingButton-labelLoadingCenter</span> | Styles applied to the label element if `loading={true}` and `loadingPosition="center"`.
 
 You can override the style of the component thanks to one of these customization points:
 
