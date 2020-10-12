@@ -29,7 +29,7 @@ export interface Localization {
   };
 }
 
-export const arAR: Localization = {
+export const arEG: Localization = {
   components: {
     MuiBreadcrumbs: {
       defaultProps: {
