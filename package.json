@@ -143,6 +143,7 @@
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-size-snapshot": "^0.12.0",
     "rollup-plugin-terser": "^7.0.0",
+    "serve-handler": "^6.1.3",
     "sinon": "^9.0.0",
     "size-limit": "^0.21.0",
     "tslint": "5.14.0",
