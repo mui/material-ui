@@ -59,7 +59,7 @@
     - **Switch（开关）✓**
     - Reorder（重新排序）
 - **[Menus（菜单）](https://material.io/design/components/menus.html) ✓** 
-  - **[Image lists（图像列表）](https://material.io/design/components/image-lists.html) ✓** (又名 Grid Lists 网格列表) 
+  - **[Dropdown menu](https://material.io/design/components/menus.html#dropdown-menu) ✓** （可被组合使用） 
     - [Cascade（级联菜单）](https://material.io/design/components/menus.html#dropdown-menu)
   - [Exposed dropdown menus（公开的下拉菜单）](https://material.io/design/components/menus.html#exposed-dropdown-menu) 
     - **Text field dropdown menu（文本框下拉菜单）** ✓（Select 选择框）
