@@ -10,7 +10,7 @@ githubLabel: 'component: Hidden'
 
 除非**明确指定是隐藏的**，所有元素都是可见的。 为了简化与 [响应式断点](/customization/breakpoints/) 的集成，此组件可用于隐藏任何内容，或者您可以将它与我们的 [`栅格（Grid）`](/components/grid/) 组件结合使用。
 
-查看[调色板](/system/palette/)样式功能。
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## 它是如何工作的的呢
 
