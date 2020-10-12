@@ -111,9 +111,9 @@ function Progress(props) {
 }
 ```
 
-### IE 11
+### IE11
 
-IE 11 上的循环进度组件动画会退化。 Stroke dash 动画将不起作用（相当于`disableShrink`）并且 circular 动画将会抖动。 你可以通过以下方式来解决它：
+The circular progress component animation on IE11 is degraded. Stroke dash 动画将不起作用（相当于`disableShrink`）并且 circular 动画将会抖动。 你可以通过以下方式来解决它：
 
 ```css
 .MuiCircularProgress-indeterminate {
@@ -123,7 +123,7 @@ IE 11 上的循环进度组件动画会退化。 Stroke dash 动画将不起作�
 @keyframes circular-rotate {
   0% {
     transform: rotate(0deg);
-    /* 修复 IE 11 抖动 */
+    /* Fix IE11 wobbly */
     transform-origin: 50% 50%;
   }
   100% {
