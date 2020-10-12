@@ -16,7 +16,7 @@ let cachedType;
  * Safari 14: negative
  * Chrome 85: negative
  * Firefox 81: negative
- * IE 11: reverse
+ * IE11: reverse
  *
  * spec* https://drafts.csswg.org/cssom-view/#dom-window-scroll
  */

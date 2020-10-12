@@ -115,7 +115,7 @@ module.exports = function getBabelConfig(api) {
       },
       legacy: {
         plugins: [
-          // IE 11 support
+          // IE11 support
           '@babel/plugin-transform-object-assign',
         ],
       },

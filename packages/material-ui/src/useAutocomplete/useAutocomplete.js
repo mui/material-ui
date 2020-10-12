@@ -3,7 +3,7 @@ import * as React from 'react';
 import { setRef, useEventCallback, useControlled, unstable_useId as useId } from '../utils';
 
 // https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript
-// Give up on IE 11 support for this feature
+// Give up on IE11 support for this feature
 function stripDiacritics(string) {
   return typeof string.normalize !== 'undefined'
     ? string.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
@@ -45,7 +45,7 @@ export function createFilterOptions(config = {}) {
   };
 }
 
-// To replace with .findIndex() once we stop IE 11 support.
+// To replace with .findIndex() once we stop IE11 support.
 function findIndex(array, comp) {
   for (let i = 0; i < array.length; i += 1) {
     if (comp(array[i])) {
@@ -177,6 +177,8 @@ export default function useAutocomplete(props) {
     state: 'open',
   });
 
+  const [inputPristine, setInputPristine] = React.useState(true);
+
   const inputValueIsSelectedValue =
     !multiple && value != null && inputValue === getOptionLabel(value);
 
@@ -197,7 +199,10 @@ export default function useAutocomplete(props) {
         }),
         // we use the empty string to manipulate `filterOptions` to not filter any options
         // i.e. the filter predicate always returns true
-        { inputValue: inputValueIsSelectedValue ? '' : inputValue, getOptionLabel },
+        {
+          inputValue: inputValueIsSelectedValue && inputPristine ? '' : inputValue,
+          getOptionLabel,
+        },
       )
     : [];
 
@@ -495,6 +500,7 @@ export default function useAutocomplete(props) {
     }
 
     setOpenState(true);
+    setInputPristine(true);
 
     if (onOpen) {
       onOpen(event);
@@ -778,10 +784,10 @@ export default function useAutocomplete(props) {
   };
 
   const handleBlur = (event) => {
-    // Ignore the event when using the scrollbar with IE 11
+    // Ignore the event when using the scrollbar with IE11
     if (
       listboxRef.current !== null &&
-      document.activeElement === listboxRef.current.parentElement
+      listboxRef.current.parentElement.contains(document.activeElement)
     ) {
       inputRef.current.focus();
       return;
@@ -811,6 +817,7 @@ export default function useAutocomplete(props) {
 
     if (inputValue !== newValue) {
       setInputValueState(newValue);
+      setInputPristine(false);
 
       if (onInputChange) {
         onInputChange(event, newValue, 'input');

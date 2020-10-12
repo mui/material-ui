@@ -43,7 +43,7 @@ export const styles = (theme) => ({
     width: '100%',
     height: '100%',
     textAlign: 'center',
-    // Handle non-square image. The property isn't supported by IE 11.
+    // Handle non-square image. The property isn't supported by IE11.
     objectFit: 'cover',
     // Hide alt text.
     color: 'transparent',

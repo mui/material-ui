@@ -35,7 +35,7 @@ describe('<ImageListItem />', () => {
     });
     Image.muiName = 'Image';
 
-    return mount(
+    return render(
       <ImageListItem>
         <Image />
         {null}

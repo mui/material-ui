@@ -19,7 +19,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function LoadingButtonsTransition() {
   const classes = useStyles();
+
   const [pending, setPending] = React.useState(false);
+  function handleClick() {
+    setPending(true);
+  }
 
   return (
     <div className={classes.root}>
@@ -35,30 +39,33 @@ export default function LoadingButtonsTransition() {
         className={classes.switch}
         label="Pending"
       />
-      <LoadingButton variant="outlined" pending={pending}>
+      <LoadingButton onClick={handleClick} pending={pending} variant="outlined">
         Submit
       </LoadingButton>
       <LoadingButton
-        variant="outlined"
+        onClick={handleClick}
         pending={pending}
         pendingIndicator="Loading..."
+        variant="outlined"
       >
         Fetch data
       </LoadingButton>
       <LoadingButton
-        variant="contained"
+        onClick={handleClick}
+        endIcon={<SendIcon />}
         pending={pending}
         pendingPosition="end"
-        endIcon={<SendIcon />}
+        variant="contained"
       >
         Send
       </LoadingButton>
       <LoadingButton
-        variant="contained"
         color="secondary"
+        onClick={handleClick}
         pending={pending}
         pendingPosition="start"
         startIcon={<SaveIcon />}
+        variant="contained"
       >
         Save
       </LoadingButton>

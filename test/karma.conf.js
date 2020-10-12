@@ -26,7 +26,13 @@ module.exports = function setKarmaConfig(config) {
         included: true,
       },
     ],
-    plugins: ['karma-mocha', 'karma-chrome-launcher', 'karma-sourcemap-loader', 'karma-webpack'],
+    plugins: [
+      'karma-mocha',
+      'karma-mocha-reporter',
+      'karma-chrome-launcher',
+      'karma-sourcemap-loader',
+      'karma-webpack',
+    ],
     /**
      * possible values:
      * - config.LOG_DISABLE
@@ -40,7 +46,7 @@ module.exports = function setKarmaConfig(config) {
     preprocessors: {
       'test/karma.tests.js': ['webpack', 'sourcemap'],
     },
-    reporters: ['dots'],
+    reporters: [process.env.CI ? 'mocha' : 'dots'],
     webpack: {
       mode: 'development',
       devtool: 'inline-source-map',

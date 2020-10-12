@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ForwardRef, Memo } from 'react-is';
 
-// Simplified polyfill for IE 11 support
+// Simplified polyfill for IE11 support
 // https://github.com/JamesMGreene/Function.name/blob/58b314d4a983110c3682f1228f845d39ccca1817/Function.name.js#L3
 const fnNameMatchRegex = /^\s*function(?:\s|\s*\/\*.*\*\/\s*)+([^(\s/]*)\s*/;
 export function getFunctionName(fn: Function): string {
@@ -27,7 +27,7 @@ function getWrappedName(outerType: any, innerType: any, wrapperName: string) {
 /**
  * cherry-pick from
  * https://github.com/facebook/react/blob/769b1f270e1251d9dbdce0fcbd9e92e502d059b8/packages/shared/getComponentName.js
- * originally forked from recompose/getDisplayName with added IE 11 support
+ * originally forked from recompose/getDisplayName with added IE11 support
  */
 export default function getDisplayName(Component: React.ElementType): string | undefined {
   if (Component == null) {

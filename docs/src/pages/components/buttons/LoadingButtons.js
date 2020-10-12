@@ -16,17 +16,17 @@ export default function LoadingButtons() {
 
   return (
     <div className={classes.root}>
-      <LoadingButton variant="outlined" pending>
+      <LoadingButton pending variant="outlined">
         Submit
       </LoadingButton>
-      <LoadingButton variant="outlined" pending pendingIndicator="Loading...">
+      <LoadingButton pending pendingIndicator="Loading..." variant="outlined">
         Fetch data
       </LoadingButton>
       <LoadingButton
-        variant="outlined"
         pending
         pendingPosition="start"
         startIcon={<SaveIcon />}
+        variant="outlined"
       >
         Save
       </LoadingButton>
