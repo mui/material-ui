@@ -24,7 +24,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
 
 您可以使用 `SpeedDialIcon` 组件的 `图标` 和 `openIcon` 道具 为关闭和打开状态提供备用图标。
 
-SpeedDialActions工具提示可以持久显示，这样用户无需长按即可在触摸设备上查看工具提示。
+{{"demo": "pages/components/speed-dial/ControlledOpenSpeedDial.js"}}
 
 ## 自定义关闭图标
 
