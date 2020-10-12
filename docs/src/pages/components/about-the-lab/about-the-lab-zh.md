@@ -8,7 +8,7 @@
 
 对于那些准备放到核心库里的组件，需要考虑以下几点：
 
-- 它需要**被使用过** Material-UI 团队使用谷歌分析的数据去评估每个组件的使用情况。 Material-UI 团队使用谷歌分析的数据（Google Analytics stats）去评估每个组件的使用情况。 如果一个 lab 的组件使用数据比较低，意味着它并不能全部正常工作，或者需求量比较小。
+- 它需要**被使用过**。 Material-UI 团队使用谷歌分析的数据（Google Analytics stats）去评估每个组件的使用情况。 如果一个 lab 的组件使用数据比较低，意味着它并不能全部正常工作，或者需求量比较小。
 - 它需要和核心组件的**代码质量**相似。 作为核心代码的一部分，它不需要很完美，但是这个组件应该要很可靠，这样其他开发者可以依赖它。
   - 每个组件需要**类型定义**。 就目前来说，一个实验室组件不需要定义类型，但是当搬到核心代码之后就需要定义好类型了。
   - 需要一个好的**测试覆盖率**。 有一些实验室组件目前不带有一些综合的测试。
@@ -21,20 +21,20 @@
 
 ```sh
 // 用 npm 安装
-npm install @material-ui/lab
+npm install @material-ui/lab@next
 
 // 用 yarn 安装
-yarn add @material-ui/lab
+yarn add @material-ui/lab@next
 ```
 
 该 lab 和那些核心组件是对等依赖的。 若您还未在项目中使用 Material-UI，那可以按如下方式安装：
 
 ```sh
 // 用 npm 安装
-npm install @material-ui/core
+npm install @material-ui/core@next
 
 // 用 yarn 安装
-yarn add @material-ui/core
+yarn add @material-ui/core@next
 ```
 
 ## TypeScript
