@@ -3,7 +3,7 @@ title: React 树视图组件
 components: TreeView, TreeItem
 githubLabel: 'component: TreeView'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#TreeView'
-packages: '@material-ui/lab'
+packageName: '@material-ui/lab'
 ---
 
 # Tree View 树视图
