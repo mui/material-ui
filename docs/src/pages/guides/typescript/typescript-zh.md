@@ -297,10 +297,7 @@ function ThirdPartyComponent({ prop1 } : { prop1: string }) {
   return <div />
 }
 // ...
-function ThirdPartyComponent({ prop1 } : { prop1: string }) {
-  return <div />
-}
-// ...
+<GenericCustomComponent component={ThirdPartyComponent} prop1="some value" />;
 ```
 
 当所需的 `ThirdPartyComponent` 是明确要求时，`prop1` 也成为 `GenericCustomComponent` 的必需属性。
