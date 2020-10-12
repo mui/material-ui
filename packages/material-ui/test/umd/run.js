@@ -4,46 +4,38 @@ const http = require('http');
 const path = require('path');
 const express = require('express');
 const expect = require('expect-puppeteer');
-const { addTeardown, shutdown } = require('../../../../modules/handleKillSignals');
-const log = require('../../../../modules/log');
 
 const port = 3090;
 const host = '0.0.0.0';
 
 function startServer(app) {
-  return new Promise((resolve, reject) => {
-    const server = http.createServer(app);
-    server.listen(port, host, (err) => {
-      if (err) {
-        reject(err);
-        return;
-      }
+  const server = http.createServer(app);
 
-      log.info({
-        name: 'http',
-        msg: `ready on http://${server.address().address}:${server.address().port}`,
+  function close() {
+    // eslint-disable-next-line no-console
+    console.info('http: server is stopping');
+
+    return new Promise((resolve, reject) => {
+      server.close((error) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve();
+        }
       });
-
-      resolve();
     });
+  }
 
-    addTeardown({
-      callback: () => {
-        log.info({
-          name: 'http',
-          msg: 'server is stopping',
-        });
-        return new Promise((resolve2, reject2) => {
-          server.close((err) => {
-            if (err) {
-              reject2(err);
-              return;
-            }
-            resolve2();
-          });
-        });
-      },
-      nice: 1, // Do it first.
+  return new Promise((resolve, reject) => {
+    server.listen(port, host, (error) => {
+      if (error) {
+        reject(error);
+      } else {
+        // eslint-disable-next-line no-console
+        console.info(`http: ready on http://${server.address().address}:${server.address().port}`);
+
+        resolve({ close });
+      }
     });
   });
 }
@@ -95,10 +87,8 @@ function App() {
 }
 
 async function startBrowser() {
-  log.info({
-    name: 'browser',
-    msg: 'start',
-  });
+  // eslint-disable-next-line no-console
+  console.info('browser: start');
   const browser = await puppeteer.launch({
     args: [
       '--single-process', // Solve mono-thread issue on CircleCI
@@ -112,46 +102,34 @@ async function startBrowser() {
     throw err;
   });
 
-  addTeardown({
-    callback: () => {
-      log.info({
-        name: 'browser',
-        msg: 'server is stopping',
-      });
-      return browser.close();
-    },
-    nice: 2,
-  });
+  function close() {
+    // eslint-disable-next-line no-console
+    console.info('browser:server is stopping');
+    return browser.close();
+  }
 
-  return page;
+  return { page, close };
 }
 
-process.on('unhandledRejection', (reason, promise) => {
-  log.fatal({
-    name: 'unhandledRejection',
-    msg: { reason, promise },
-  });
-  process.exit(1);
-});
-
 async function run() {
+  let server = { close() {} };
+  let closeBrowser = () => {};
   try {
     const app = await createApp();
-    await startServer(app);
+    server = await startServer(app);
 
-    const page = await startBrowser();
+    const { page, close } = await startBrowser();
+    closeBrowser = close;
+
     await page.goto(`http://${host}:${port}`);
     await expect(page).toClick('button', { text: 'Super Secret Password' });
     await expect(page).toMatch('1-2-3-4-5');
-  } catch (err) {
-    log.fatal({
-      name: 'test',
-      msg: { err },
-    });
-    process.exit(1);
+  } finally {
+    await Promise.all([closeBrowser(), server.close()]);
   }
-
-  shutdown('SIGINT', 'done');
 }
 
-run();
+run().catch((error) => {
+  console.error('test: ', error);
+  process.exit(1);
+});
