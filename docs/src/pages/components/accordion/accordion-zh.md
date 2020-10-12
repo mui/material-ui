@@ -10,7 +10,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#accordion'
 
 <p class="description">扩展面板包含了流程的创建和元素的轻量编辑。</p>
 
-[扩展面板](https://material.io/archive/guidelines/components/accordion.html)是一个轻量级容器，既可以单独使用，也可以和卡片这样更大的平面相结合。
+扩展面板是一个轻量级容器，既可以单独使用，也可以和卡片这样更大的平面相结合。
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
