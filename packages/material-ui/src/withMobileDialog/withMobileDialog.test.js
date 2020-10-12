@@ -14,6 +14,18 @@ describe('withMobileDialog', () => {
     shallow = createShallow({ dive: true });
   });
 
+  function isFullScreenDefaultCase(width) {
+    it(`is for width: ${width} on default case`, () => {
+      const ResponsiveDialog = withMobileDialog()(Dialog);
+      const wrapper = shallow(
+        <ResponsiveDialog {...defaultProps} width={width}>
+          foo
+        </ResponsiveDialog>,
+      );
+      expect(wrapper.props().fullScreen).to.equal(true);
+    });
+  }
+
   function isFullScreen(breakpoints, width) {
     breakpoints.forEach((breakpoint) => {
       it(`is for width: ${width} < ${breakpoint}`, () => {
@@ -45,6 +57,7 @@ describe('withMobileDialog', () => {
   describe('screen width: xs', () => {
     isFullScreen(['sm', 'md', 'lg', 'xl'], 'xs');
     isNotFullScreen(['xs'], 'xs');
+    isFullScreenDefaultCase('xs');
   });
 
   describe('screen width: sm (default)', () => {
