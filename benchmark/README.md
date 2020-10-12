@@ -1,6 +1,6 @@
 # Browser benchmark
 
-This project is used when running the following command: 
+This project is used when running the following command:
 
 ```sh
 yarn benchmark
