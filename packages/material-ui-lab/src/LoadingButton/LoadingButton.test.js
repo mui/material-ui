@@ -33,37 +33,37 @@ describe('<LoadingButton />', () => {
     expect(screen.getByRole('button')).to.have.property('tabIndex', 0);
   });
 
-  describe('prop: pending', () => {
+  describe('prop: loading', () => {
     it('disables the button', () => {
-      render(<LoadingButton pending />);
+      render(<LoadingButton loading />);
 
       const button = screen.getByRole('button');
       expect(button).to.have.property('tabIndex', -1);
       expect(button).to.have.property('disabled', true);
     });
 
-    it('cannot be enabled while `pending`', () => {
-      render(<LoadingButton disabled={false} pending />);
+    it('cannot be enabled while `loading`', () => {
+      render(<LoadingButton disabled={false} loading />);
 
       expect(screen.getByRole('button')).to.have.property('disabled', true);
     });
   });
 
-  describe('prop: pendingIndicator', () => {
+  describe('prop: loadingIndicator', () => {
     it('is not rendered by default', () => {
-      render(<LoadingButton pendingIndicator="pending">Test</LoadingButton>);
+      render(<LoadingButton loadingIndicator="loading">Test</LoadingButton>);
 
       expect(screen.getByRole('button')).to.have.text('Test');
     });
 
-    it('is rendered before the children when `pending`', () => {
+    it('is rendered before the children when `loading`', () => {
       render(
-        <LoadingButton pendingIndicator="pending..." pending>
+        <LoadingButton loadingIndicator="loading..." loading>
           Test
         </LoadingButton>,
       );
 
-      expect(screen.getByRole('button')).to.have.text('pending...Test');
+      expect(screen.getByRole('button')).to.have.text('loading...Test');
     });
   });
 });
