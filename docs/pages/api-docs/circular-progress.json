@@ -1,0 +1,94 @@
+{
+  "name": "CircularProgress",
+  "filename": "/packages/material-ui/src/CircularProgress/CircularProgress.js",
+  "description": "## ARIA\n\nIf the progress bar is describing the loading progress of a particular region of a page,\nyou should use `aria-describedby` to point to the progress bar, and set the `aria-busy`\nattribute to `true` on that region until it has finished loading.",
+  "props": {
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "color": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'inherit'", "computed": false },
+          { "value": "'primary'", "computed": false },
+          { "value": "'secondary'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'primary'" },
+      "defaultValue": { "value": "'primary'", "computed": false }
+    },
+    "disableShrink": {
+      "type": {
+        "name": "custom",
+        "raw": "chainPropTypes(PropTypes.bool, (props) => {\n  if (props.disableShrink && props.variant && props.variant !== 'indeterminate') {\n    return new Error(\n      'Material-UI: You have provided the `disableShrink` prop ' +\n        'with a variant other than `indeterminate`. This will have no effect.',\n    );\n  }\n\n  return null;\n})"
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "size": {
+      "type": { "name": "union", "value": [{ "name": "number" }, { "name": "string" }] },
+      "required": false,
+      "jsdocDefaultValue": { "value": "40" },
+      "defaultValue": { "value": "40", "computed": false }
+    },
+    "style": { "type": { "name": "object" }, "required": false, "description": "@ignore" },
+    "thickness": {
+      "type": { "name": "number" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "3.6" },
+      "defaultValue": { "value": "3.6", "computed": false }
+    },
+    "value": {
+      "type": { "name": "number" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "0" },
+      "defaultValue": { "value": "0", "computed": false }
+    },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'determinate'", "computed": false },
+          { "value": "'indeterminate'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'indeterminate'" },
+      "defaultValue": { "value": "'indeterminate'", "computed": false }
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": [
+      "root",
+      "determinate",
+      "indeterminate",
+      "colorPrimary",
+      "colorSecondary",
+      "svg",
+      "circle",
+      "circleDeterminate",
+      "circleIndeterminate",
+      "circleDisableShrink"
+    ],
+    "name": "MuiCircularProgress",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiCircularProgress-root",
+      "determinate": "MuiCircularProgress-determinate",
+      "indeterminate": "MuiCircularProgress-indeterminate",
+      "colorPrimary": "MuiCircularProgress-colorPrimary",
+      "colorSecondary": "MuiCircularProgress-colorSecondary",
+      "svg": "MuiCircularProgress-svg",
+      "circle": "MuiCircularProgress-circle",
+      "circleDeterminate": "MuiCircularProgress-circleDeterminate",
+      "circleIndeterminate": "MuiCircularProgress-circleIndeterminate",
+      "circleDisableShrink": "MuiCircularProgress-circleDisableShrink"
+    }
+  },
+  "forwardsRefTo": "HTMLDivElement",
+  "inheritance": null,
+  "demos": "- [Progress](/components/progress/)"
+}

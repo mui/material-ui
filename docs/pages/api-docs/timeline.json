@@ -1,0 +1,38 @@
+{
+  "name": "Timeline",
+  "filename": "/packages/material-ui-lab/src/Timeline/Timeline.js",
+  "description": "",
+  "props": {
+    "align": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'alternate'", "computed": false },
+          { "value": "'left'", "computed": false },
+          { "value": "'right'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'left'" },
+      "defaultValue": { "value": "'left'", "computed": false }
+    },
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" }
+  },
+  "spread": true,
+  "styles": {
+    "classes": ["root", "alignLeft", "alignRight", "alignAlternate"],
+    "name": "MuiTimeline",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiTimeline-root",
+      "alignLeft": "MuiTimeline-alignLeft",
+      "alignRight": "MuiTimeline-alignRight",
+      "alignAlternate": "MuiTimeline-alignAlternate"
+    }
+  },
+  "forwardsRefTo": "HTMLUListElement",
+  "inheritance": null,
+  "demos": "- [Timeline](/components/timeline/)"
+}

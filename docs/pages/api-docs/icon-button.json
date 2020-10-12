@@ -1,0 +1,98 @@
+{
+  "name": "IconButton",
+  "filename": "/packages/material-ui/src/IconButton/IconButton.js",
+  "description": "Refer to the [Icons](/components/icons/) section of the documentation\nregarding the available icon options.",
+  "props": {
+    "children": {
+      "type": {
+        "name": "custom",
+        "raw": "chainPropTypes(PropTypes.node, (props) => {\n  const found = React.Children.toArray(props.children).some(\n    (child) => React.isValidElement(child) && child.props.onClick,\n  );\n\n  if (found) {\n    return new Error(\n      [\n        'Material-UI: You are providing an onClick event listener to a child of a button element.',\n        'Prefer applying it to the IconButton directly.',\n        'This guarantees that the whole <button> will be responsive to click events.',\n      ].join('\\n'),\n    );\n  }\n\n  return null;\n})"
+      },
+      "required": false
+    },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "color": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'default'", "computed": false },
+          { "value": "'inherit'", "computed": false },
+          { "value": "'primary'", "computed": false },
+          { "value": "'secondary'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'default'" },
+      "defaultValue": { "value": "'default'", "computed": false }
+    },
+    "disabled": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "disableFocusRipple": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "disableRipple": { "type": { "name": "bool" }, "required": false },
+    "edge": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'end'", "computed": false },
+          { "value": "'start'", "computed": false },
+          { "value": "false", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "size": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'medium'", "computed": false },
+          { "value": "'small'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'medium'" },
+      "defaultValue": { "value": "'medium'", "computed": false }
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": [
+      "root",
+      "edgeStart",
+      "edgeEnd",
+      "colorInherit",
+      "colorPrimary",
+      "colorSecondary",
+      "disabled",
+      "sizeSmall",
+      "label"
+    ],
+    "name": "MuiIconButton",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiIconButton-root",
+      "edgeStart": "MuiIconButton-edgeStart",
+      "edgeEnd": "MuiIconButton-edgeEnd",
+      "colorInherit": "MuiIconButton-colorInherit",
+      "colorPrimary": "MuiIconButton-colorPrimary",
+      "colorSecondary": "MuiIconButton-colorSecondary",
+      "disabled": "Mui-disabled",
+      "sizeSmall": "MuiIconButton-sizeSmall",
+      "label": "MuiIconButton-label"
+    }
+  },
+  "forwardsRefTo": "HTMLButtonElement",
+  "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },
+  "demos": "- [Buttons](/components/buttons/)"
+}

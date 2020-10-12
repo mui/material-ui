@@ -1,0 +1,38 @@
+{
+  "name": "TextareaAutosize",
+  "filename": "/packages/material-ui/src/TextareaAutosize/TextareaAutosize.js",
+  "description": "",
+  "props": {
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "maxRows": {
+      "type": { "name": "union", "value": [{ "name": "number" }, { "name": "string" }] },
+      "required": false
+    },
+    "minRows": {
+      "type": { "name": "union", "value": [{ "name": "number" }, { "name": "string" }] },
+      "required": false,
+      "jsdocDefaultValue": { "value": "1" },
+      "defaultValue": { "value": "1", "computed": false }
+    },
+    "onChange": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "placeholder": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "style": { "type": { "name": "object" }, "required": false, "description": "@ignore" },
+    "value": {
+      "type": {
+        "name": "union",
+        "value": [
+          { "name": "arrayOf", "value": { "name": "string" } },
+          { "name": "number" },
+          { "name": "string" }
+        ]
+      },
+      "required": false,
+      "description": "@ignore"
+    }
+  },
+  "spread": true,
+  "styles": { "classes": [], "name": null, "descriptions": {}, "globalClasses": {} },
+  "forwardsRefTo": "HTMLTextAreaElement",
+  "inheritance": null,
+  "demos": "- [Textarea Autosize](/components/textarea-autosize/)"
+}

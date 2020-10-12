@@ -3,7 +3,7 @@ import memoize from '@material-ui/system/memoize';
 import mapTranslations from 'docs/src/modules/utils/mapTranslations';
 
 const req = require.context('docs/translations', false, /translations.*\.json$/);
-const translations = mapTranslations(req, 'json');
+const translations = mapTranslations(req);
 
 function getPath(obj, path) {
   if (!path || typeof path !== 'string') {

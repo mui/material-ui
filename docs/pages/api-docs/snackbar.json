@@ -1,0 +1,121 @@
+{
+  "name": "Snackbar",
+  "filename": "/packages/material-ui/src/Snackbar/Snackbar.js",
+  "description": "",
+  "props": {
+    "action": { "type": { "name": "node" }, "required": false },
+    "anchorOrigin": {
+      "type": {
+        "name": "shape",
+        "value": {
+          "horizontal": {
+            "name": "enum",
+            "value": [
+              { "value": "'center'", "computed": false },
+              { "value": "'left'", "computed": false },
+              { "value": "'right'", "computed": false }
+            ],
+            "required": true
+          },
+          "vertical": {
+            "name": "enum",
+            "value": [
+              { "value": "'bottom'", "computed": false },
+              { "value": "'top'", "computed": false }
+            ],
+            "required": true
+          }
+        }
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "{ vertical: 'bottom', horizontal: 'left' }" },
+      "defaultValue": { "value": "{ vertical: 'bottom', horizontal: 'left' }", "computed": false }
+    },
+    "autoHideDuration": {
+      "type": { "name": "number" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "null" },
+      "defaultValue": { "value": "null", "computed": false }
+    },
+    "children": { "type": { "name": "element" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "ClickAwayListenerProps": { "type": { "name": "object" }, "required": false },
+    "ContentProps": { "type": { "name": "object" }, "required": false },
+    "disableWindowBlurListener": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "key": { "type": { "name": "any" }, "required": false },
+    "message": { "type": { "name": "node" }, "required": false },
+    "onClose": { "type": { "name": "func" }, "required": false },
+    "onMouseEnter": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onMouseLeave": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "open": { "type": { "name": "bool" }, "required": false },
+    "resumeHideDuration": { "type": { "name": "number" }, "required": false },
+    "TransitionComponent": {
+      "type": { "name": "elementType" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "Grow" },
+      "defaultValue": { "value": "Grow", "computed": true }
+    },
+    "transitionDuration": {
+      "type": {
+        "name": "union",
+        "value": [
+          { "name": "number" },
+          {
+            "name": "shape",
+            "value": {
+              "appear": { "name": "number", "required": false },
+              "enter": { "name": "number", "required": false },
+              "exit": { "name": "number", "required": false }
+            }
+          }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": {
+        "value": "{\n  enter: duration.enteringScreen,\n  exit: duration.leavingScreen,\n}"
+      },
+      "defaultValue": {
+        "value": "{\n  enter: duration.enteringScreen,\n  exit: duration.leavingScreen,\n}",
+        "computed": false
+      }
+    },
+    "TransitionProps": {
+      "type": { "name": "object" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "{}" },
+      "defaultValue": { "value": "{}", "computed": false }
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": [
+      "root",
+      "anchorOriginTopCenter",
+      "anchorOriginBottomCenter",
+      "anchorOriginTopRight",
+      "anchorOriginBottomRight",
+      "anchorOriginTopLeft",
+      "anchorOriginBottomLeft"
+    ],
+    "name": "MuiSnackbar",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiSnackbar-root",
+      "anchorOriginTopCenter": "MuiSnackbar-anchorOriginTopCenter",
+      "anchorOriginBottomCenter": "MuiSnackbar-anchorOriginBottomCenter",
+      "anchorOriginTopRight": "MuiSnackbar-anchorOriginTopRight",
+      "anchorOriginBottomRight": "MuiSnackbar-anchorOriginBottomRight",
+      "anchorOriginTopLeft": "MuiSnackbar-anchorOriginTopLeft",
+      "anchorOriginBottomLeft": "MuiSnackbar-anchorOriginBottomLeft"
+    }
+  },
+  "forwardsRefTo": "HTMLDivElement",
+  "inheritance": null,
+  "demos": "- [Snackbars](/components/snackbars/)"
+}

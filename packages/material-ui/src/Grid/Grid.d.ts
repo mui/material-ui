@@ -51,13 +51,9 @@ export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * Override or extend the styles applied to the component.
      */
     classes?: {
-      /** Styles applied to the root element. */
       root?: string;
-      /** Styles applied to the root element if `container={true}`. */
       container?: string;
-      /** Styles applied to the root element if `item={true}`. */
       item?: string;
-      /** Styles applied to the root element if `zeroMinWidth={true}`. */
       zeroMinWidth?: string;
       'direction-xs-column'?: string;
       'direction-xs-column-reverse'?: string;

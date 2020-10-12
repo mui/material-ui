@@ -1,0 +1,43 @@
+{
+  "name": "ListItemText",
+  "filename": "/packages/material-ui/src/ListItemText/ListItemText.js",
+  "description": "",
+  "props": {
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "disableTypography": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "inset": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "primary": { "type": { "name": "node" }, "required": false },
+    "primaryTypographyProps": { "type": { "name": "object" }, "required": false },
+    "secondary": { "type": { "name": "node" }, "required": false },
+    "secondaryTypographyProps": { "type": { "name": "object" }, "required": false }
+  },
+  "spread": true,
+  "styles": {
+    "classes": ["root", "multiline", "dense", "inset", "primary", "secondary"],
+    "name": "MuiListItemText",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiListItemText-root",
+      "multiline": "MuiListItemText-multiline",
+      "dense": "MuiListItemText-dense",
+      "inset": "MuiListItemText-inset",
+      "primary": "MuiListItemText-primary",
+      "secondary": "MuiListItemText-secondary"
+    }
+  },
+  "forwardsRefTo": "HTMLDivElement",
+  "inheritance": null,
+  "demos": "- [Lists](/components/lists/)"
+}

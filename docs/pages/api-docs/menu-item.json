@@ -1,0 +1,52 @@
+{
+  "name": "MenuItem",
+  "filename": "/packages/material-ui/src/MenuItem/MenuItem.js",
+  "description": "",
+  "props": {
+    "button": { "type": { "name": "bool" }, "required": false, "description": "@ignore" },
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "component": {
+      "type": { "name": "elementType" },
+      "required": false,
+      "defaultValue": { "value": "'li'", "computed": false }
+    },
+    "dense": { "type": { "name": "bool" }, "required": false },
+    "disabled": { "type": { "name": "bool" }, "required": false, "description": "@ignore" },
+    "disableGutters": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "ListItemClasses": { "type": { "name": "object" }, "required": false },
+    "role": {
+      "type": { "name": "string" },
+      "required": false,
+      "description": "@ignore",
+      "defaultValue": { "value": "'menuitem'", "computed": false }
+    },
+    "selected": { "type": { "name": "bool" }, "required": false, "description": "@ignore" },
+    "tabIndex": {
+      "type": { "name": "union", "value": [{ "name": "number" }, { "name": "string" }] },
+      "required": false,
+      "description": "@ignore"
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": ["root", "gutters", "selected", "dense"],
+    "name": "MuiMenuItem",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiMenuItem-root",
+      "gutters": "MuiMenuItem-gutters",
+      "selected": "Mui-selected",
+      "dense": "MuiMenuItem-dense"
+    }
+  },
+  "forwardsRefTo": "HTMLLIElement",
+  "inheritance": { "component": "ListItem", "pathname": "/api/list-item/" },
+  "demos": "- [Menus](/components/menus/)"
+}

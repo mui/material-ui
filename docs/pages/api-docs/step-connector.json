@@ -1,0 +1,41 @@
+{
+  "name": "StepConnector",
+  "filename": "/packages/material-ui/src/StepConnector/StepConnector.js",
+  "description": "",
+  "props": {
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" }
+  },
+  "spread": true,
+  "styles": {
+    "classes": [
+      "root",
+      "horizontal",
+      "vertical",
+      "alternativeLabel",
+      "active",
+      "completed",
+      "disabled",
+      "line",
+      "lineHorizontal",
+      "lineVertical"
+    ],
+    "name": "MuiStepConnector",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiStepConnector-root",
+      "horizontal": "MuiStepConnector-horizontal",
+      "vertical": "MuiStepConnector-vertical",
+      "alternativeLabel": "MuiStepConnector-alternativeLabel",
+      "active": "MuiStepConnector-active",
+      "completed": "MuiStepConnector-completed",
+      "disabled": "Mui-disabled",
+      "line": "MuiStepConnector-line",
+      "lineHorizontal": "MuiStepConnector-lineHorizontal",
+      "lineVertical": "MuiStepConnector-lineVertical"
+    }
+  },
+  "forwardsRefTo": "HTMLDivElement",
+  "inheritance": null,
+  "demos": "- [Steppers](/components/steppers/)"
+}

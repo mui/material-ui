@@ -1,0 +1,44 @@
+{
+  "name": "CardHeader",
+  "filename": "/packages/material-ui/src/CardHeader/CardHeader.js",
+  "description": "",
+  "props": {
+    "action": { "type": { "name": "node" }, "required": false },
+    "avatar": { "type": { "name": "node" }, "required": false },
+    "children": { "type": { "name": "node" }, "required": false, "description": "@ignore" },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "component": {
+      "type": { "name": "elementType" },
+      "required": false,
+      "defaultValue": { "value": "'div'", "computed": false }
+    },
+    "disableTypography": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "subheader": { "type": { "name": "node" }, "required": false },
+    "subheaderTypographyProps": { "type": { "name": "object" }, "required": false },
+    "title": { "type": { "name": "node" }, "required": false },
+    "titleTypographyProps": { "type": { "name": "object" }, "required": false }
+  },
+  "spread": true,
+  "styles": {
+    "classes": ["root", "avatar", "action", "content", "title", "subheader"],
+    "name": "MuiCardHeader",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiCardHeader-root",
+      "avatar": "MuiCardHeader-avatar",
+      "action": "MuiCardHeader-action",
+      "content": "MuiCardHeader-content",
+      "title": "MuiCardHeader-title",
+      "subheader": "MuiCardHeader-subheader"
+    }
+  },
+  "forwardsRefTo": "HTMLDivElement",
+  "inheritance": null,
+  "demos": "- [Cards](/components/cards/)"
+}

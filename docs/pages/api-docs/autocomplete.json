@@ -1,0 +1,341 @@
+{
+  "name": "Autocomplete",
+  "filename": "/packages/material-ui/src/Autocomplete/Autocomplete.js",
+  "description": "",
+  "props": {
+    "autoComplete": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "autoHighlight": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "autoSelect": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "blurOnSelect": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "enum",
+            "value": [
+              { "value": "'mouse'", "computed": false },
+              { "value": "'touch'", "computed": false }
+            ]
+          },
+          { "name": "bool" }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "ChipProps": { "type": { "name": "object" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "clearOnBlur": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "!props.freeSolo" },
+      "defaultValue": { "value": "!props.freeSolo", "computed": false }
+    },
+    "clearOnEscape": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "clearText": {
+      "type": { "name": "string" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'Clear'" },
+      "defaultValue": { "value": "'Clear'", "computed": false }
+    },
+    "closeIcon": {
+      "type": { "name": "node" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "<CloseIcon fontSize=\"small\" />" },
+      "defaultValue": { "value": "<CloseIcon fontSize=\"small\" />", "computed": false }
+    },
+    "closeText": {
+      "type": { "name": "string" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'Close'" },
+      "defaultValue": { "value": "'Close'", "computed": false }
+    },
+    "debug": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "defaultValue": {
+      "type": { "name": "any" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "props.multiple ? [] : null" },
+      "defaultValue": { "value": "props.multiple ? [] : null", "computed": false }
+    },
+    "disableClearable": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "disableCloseOnSelect": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "disabled": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "disabledItemsFocusable": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "disableListWrap": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "disablePortal": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "filterOptions": { "type": { "name": "func" }, "required": false },
+    "filterSelectedOptions": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "forcePopupIcon": {
+      "type": {
+        "name": "union",
+        "value": [
+          { "name": "enum", "value": [{ "value": "'auto'", "computed": false }] },
+          { "name": "bool" }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'auto'" },
+      "defaultValue": { "value": "'auto'", "computed": false }
+    },
+    "freeSolo": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "fullWidth": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "getLimitTagsText": {
+      "type": { "name": "func" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "(more) => `+${more}`" },
+      "defaultValue": { "value": "(more) => `+${more}`", "computed": false }
+    },
+    "getOptionDisabled": { "type": { "name": "func" }, "required": false },
+    "getOptionLabel": {
+      "type": { "name": "func" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "(option) => option.label ?? option" },
+      "defaultValue": { "value": "(option) => option.label ?? option", "computed": false }
+    },
+    "getOptionSelected": { "type": { "name": "func" }, "required": false },
+    "groupBy": { "type": { "name": "func" }, "required": false },
+    "handleHomeEndKeys": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "!props.freeSolo" },
+      "defaultValue": { "value": "!props.freeSolo", "computed": false }
+    },
+    "id": { "type": { "name": "string" }, "required": false },
+    "includeInputInList": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "inputValue": { "type": { "name": "string" }, "required": false },
+    "limitTags": {
+      "type": { "name": "number" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "-1" },
+      "defaultValue": { "value": "-1", "computed": false }
+    },
+    "ListboxComponent": {
+      "type": { "name": "elementType" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'ul'" },
+      "defaultValue": { "value": "'ul'", "computed": false }
+    },
+    "ListboxProps": { "type": { "name": "object" }, "required": false },
+    "loading": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "loadingText": {
+      "type": { "name": "node" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'Loading…'" },
+      "defaultValue": { "value": "'Loading…'", "computed": false }
+    },
+    "multiple": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "noOptionsText": {
+      "type": { "name": "node" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'No options'" },
+      "defaultValue": { "value": "'No options'", "computed": false }
+    },
+    "onChange": { "type": { "name": "func" }, "required": false },
+    "onClose": { "type": { "name": "func" }, "required": false },
+    "onHighlightChange": { "type": { "name": "func" }, "required": false },
+    "onInputChange": { "type": { "name": "func" }, "required": false },
+    "onOpen": { "type": { "name": "func" }, "required": false },
+    "open": { "type": { "name": "bool" }, "required": false },
+    "openOnFocus": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "openText": {
+      "type": { "name": "string" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'Open'" },
+      "defaultValue": { "value": "'Open'", "computed": false }
+    },
+    "options": { "type": { "name": "array" }, "required": true },
+    "PaperComponent": {
+      "type": { "name": "elementType" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "Paper" },
+      "defaultValue": { "value": "Paper", "computed": true }
+    },
+    "PopperComponent": {
+      "type": { "name": "elementType" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "Popper" },
+      "defaultValue": { "value": "Popper", "computed": true }
+    },
+    "popupIcon": {
+      "type": { "name": "node" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "<ArrowDropDownIcon />" },
+      "defaultValue": { "value": "<ArrowDropDownIcon />", "computed": false }
+    },
+    "renderGroup": { "type": { "name": "func" }, "required": false },
+    "renderInput": { "type": { "name": "func" }, "required": true },
+    "renderOption": { "type": { "name": "func" }, "required": false },
+    "renderTags": { "type": { "name": "func" }, "required": false },
+    "selectOnFocus": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "!props.freeSolo" },
+      "defaultValue": { "value": "!props.freeSolo", "computed": false }
+    },
+    "size": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'medium'", "computed": false },
+          { "value": "'small'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'medium'" },
+      "defaultValue": { "value": "'medium'", "computed": false }
+    },
+    "value": { "type": { "name": "any" }, "required": false }
+  },
+  "spread": true,
+  "styles": {
+    "classes": [
+      "root",
+      "fullWidth",
+      "focused",
+      "tag",
+      "tagSizeSmall",
+      "hasPopupIcon",
+      "hasClearIcon",
+      "inputRoot",
+      "input",
+      "inputFocused",
+      "endAdornment",
+      "clearIndicator",
+      "clearIndicatorDirty",
+      "popupIndicator",
+      "popupIndicatorOpen",
+      "popper",
+      "popperDisablePortal",
+      "paper",
+      "listbox",
+      "loading",
+      "noOptions",
+      "option",
+      "groupLabel",
+      "groupUl"
+    ],
+    "name": "MuiAutocomplete",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiAutocomplete-root",
+      "fullWidth": "MuiAutocomplete-fullWidth",
+      "focused": "Mui-focused",
+      "tag": "MuiAutocomplete-tag",
+      "tagSizeSmall": "MuiAutocomplete-tagSizeSmall",
+      "hasPopupIcon": "MuiAutocomplete-hasPopupIcon",
+      "hasClearIcon": "MuiAutocomplete-hasClearIcon",
+      "inputRoot": "MuiAutocomplete-inputRoot",
+      "input": "MuiAutocomplete-input",
+      "inputFocused": "MuiAutocomplete-inputFocused",
+      "endAdornment": "MuiAutocomplete-endAdornment",
+      "clearIndicator": "MuiAutocomplete-clearIndicator",
+      "clearIndicatorDirty": "MuiAutocomplete-clearIndicatorDirty",
+      "popupIndicator": "MuiAutocomplete-popupIndicator",
+      "popupIndicatorOpen": "MuiAutocomplete-popupIndicatorOpen",
+      "popper": "MuiAutocomplete-popper",
+      "popperDisablePortal": "MuiAutocomplete-popperDisablePortal",
+      "paper": "MuiAutocomplete-paper",
+      "listbox": "MuiAutocomplete-listbox",
+      "loading": "MuiAutocomplete-loading",
+      "noOptions": "MuiAutocomplete-noOptions",
+      "option": "MuiAutocomplete-option",
+      "groupLabel": "MuiAutocomplete-groupLabel",
+      "groupUl": "MuiAutocomplete-groupUl"
+    }
+  },
+  "forwardsRefTo": "HTMLDivElement",
+  "inheritance": null,
+  "demos": "- [Autocomplete](/components/autocomplete/)"
+}

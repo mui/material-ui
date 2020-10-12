@@ -1,0 +1,43 @@
+{
+  "name": "List",
+  "filename": "/packages/material-ui/src/List/List.js",
+  "description": "",
+  "props": {
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "component": {
+      "type": { "name": "elementType" },
+      "required": false,
+      "defaultValue": { "value": "'ul'", "computed": false }
+    },
+    "dense": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "disablePadding": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "subheader": { "type": { "name": "node" }, "required": false }
+  },
+  "spread": true,
+  "styles": {
+    "classes": ["root", "padding", "dense", "subheader"],
+    "name": "MuiList",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiList-root",
+      "padding": "MuiList-padding",
+      "dense": "MuiList-dense",
+      "subheader": "MuiList-subheader"
+    }
+  },
+  "forwardsRefTo": "HTMLUListElement",
+  "inheritance": null,
+  "demos": "- [Lists](/components/lists/)\n- [Transfer List](/components/transfer-list/)"
+}

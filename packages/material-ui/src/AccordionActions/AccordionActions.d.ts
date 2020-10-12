@@ -10,9 +10,7 @@ export interface AccordionActionsProps extends StandardProps<React.HTMLAttribute
    * Override or extend the styles applied to the component.
    */
   classes?: {
-    /** Styles applied to the root element. */
     root?: string;
-    /** Styles applied to the root element unless `disableSpacing={true}`. */
     spacing?: string;
   };
   /**

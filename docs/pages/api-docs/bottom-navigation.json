@@ -1,0 +1,33 @@
+{
+  "name": "BottomNavigation",
+  "filename": "/packages/material-ui/src/BottomNavigation/BottomNavigation.js",
+  "description": "",
+  "props": {
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "component": {
+      "type": { "name": "elementType" },
+      "required": false,
+      "defaultValue": { "value": "'div'", "computed": false }
+    },
+    "onChange": { "type": { "name": "func" }, "required": false },
+    "showLabels": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "value": { "type": { "name": "any" }, "required": false }
+  },
+  "spread": true,
+  "styles": {
+    "classes": ["root"],
+    "name": "MuiBottomNavigation",
+    "descriptions": {},
+    "globalClasses": { "root": "MuiBottomNavigation-root" }
+  },
+  "forwardsRefTo": "HTMLDivElement",
+  "inheritance": null,
+  "demos": "- [Bottom Navigation](/components/bottom-navigation/)"
+}

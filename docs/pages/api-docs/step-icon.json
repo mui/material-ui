@@ -1,0 +1,44 @@
+{
+  "name": "StepIcon",
+  "filename": "/packages/material-ui/src/StepIcon/StepIcon.js",
+  "description": "",
+  "props": {
+    "active": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "completed": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "error": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "icon": { "type": { "name": "node" }, "required": false }
+  },
+  "spread": true,
+  "styles": {
+    "classes": ["root", "text", "active", "completed", "error"],
+    "name": "MuiStepIcon",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiStepIcon-root",
+      "text": "MuiStepIcon-text",
+      "active": "MuiStepIcon-active",
+      "completed": "MuiStepIcon-completed",
+      "error": "Mui-error"
+    }
+  },
+  "forwardsRefTo": "SVGSVGElement",
+  "inheritance": null,
+  "demos": "- [Steppers](/components/steppers/)"
+}

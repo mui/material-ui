@@ -1,0 +1,136 @@
+{
+  "name": "Alert",
+  "filename": "/packages/material-ui/src/Alert/Alert.js",
+  "description": "",
+  "props": {
+    "action": { "type": { "name": "node" }, "required": false },
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "closeText": {
+      "type": { "name": "string" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'Close'" },
+      "defaultValue": { "value": "'Close'", "computed": false }
+    },
+    "color": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'error'", "computed": false },
+          { "value": "'info'", "computed": false },
+          { "value": "'success'", "computed": false },
+          { "value": "'warning'", "computed": false }
+        ]
+      },
+      "required": false
+    },
+    "icon": { "type": { "name": "node" }, "required": false },
+    "iconMapping": {
+      "type": {
+        "name": "shape",
+        "value": {
+          "error": { "name": "node", "required": false },
+          "info": { "name": "node", "required": false },
+          "success": { "name": "node", "required": false },
+          "warning": { "name": "node", "required": false }
+        }
+      },
+      "required": false,
+      "defaultValue": {
+        "value": "{\n  success: <SuccessOutlinedIcon fontSize=\"inherit\" />,\n  warning: <ReportProblemOutlinedIcon fontSize=\"inherit\" />,\n  error: <ErrorOutlineIcon fontSize=\"inherit\" />,\n  info: <InfoOutlinedIcon fontSize=\"inherit\" />,\n}",
+        "computed": false
+      }
+    },
+    "onClose": { "type": { "name": "func" }, "required": false },
+    "role": {
+      "type": { "name": "string" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'alert'" },
+      "defaultValue": { "value": "'alert'", "computed": false }
+    },
+    "severity": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'error'", "computed": false },
+          { "value": "'info'", "computed": false },
+          { "value": "'success'", "computed": false },
+          { "value": "'warning'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'success'" },
+      "defaultValue": { "value": "'success'", "computed": false }
+    },
+    "variant": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "enum",
+            "value": [
+              { "value": "'filled'", "computed": false },
+              { "value": "'outlined'", "computed": false },
+              { "value": "'standard'", "computed": false }
+            ]
+          },
+          { "name": "string" }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'standard'" },
+      "defaultValue": { "value": "'standard'", "computed": false }
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": [
+      "root",
+      "filled",
+      "outlined",
+      "standard",
+      "standardSuccess",
+      "standardInfo",
+      "standardWarning",
+      "standardError",
+      "outlinedSuccess",
+      "outlinedInfo",
+      "outlinedWarning",
+      "outlinedError",
+      "filledSuccess",
+      "filledInfo",
+      "filledWarning",
+      "filledError",
+      "icon",
+      "message",
+      "action"
+    ],
+    "name": "MuiAlert",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiAlert-root",
+      "filled": "MuiAlert-filled",
+      "outlined": "MuiAlert-outlined",
+      "standard": "MuiAlert-standard",
+      "standardSuccess": "MuiAlert-standardSuccess",
+      "standardInfo": "MuiAlert-standardInfo",
+      "standardWarning": "MuiAlert-standardWarning",
+      "standardError": "MuiAlert-standardError",
+      "outlinedSuccess": "MuiAlert-outlinedSuccess",
+      "outlinedInfo": "MuiAlert-outlinedInfo",
+      "outlinedWarning": "MuiAlert-outlinedWarning",
+      "outlinedError": "MuiAlert-outlinedError",
+      "filledSuccess": "MuiAlert-filledSuccess",
+      "filledInfo": "MuiAlert-filledInfo",
+      "filledWarning": "MuiAlert-filledWarning",
+      "filledError": "MuiAlert-filledError",
+      "icon": "MuiAlert-icon",
+      "message": "MuiAlert-message",
+      "action": "MuiAlert-action"
+    }
+  },
+  "forwardsRefTo": "HTMLDivElement",
+  "inheritance": { "component": "Paper", "pathname": "/api/paper/" },
+  "demos": "- [Alert](/components/alert/)"
+}

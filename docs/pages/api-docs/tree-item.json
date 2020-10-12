@@ -1,0 +1,65 @@
+{
+  "name": "TreeItem",
+  "filename": "/packages/material-ui-lab/src/TreeItem/TreeItem.js",
+  "description": "",
+  "props": {
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "collapseIcon": { "type": { "name": "node" }, "required": false },
+    "ContentComponent": {
+      "type": { "name": "custom", "raw": "elementTypeAcceptingRef" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "TreeItemContent" },
+      "defaultValue": { "value": "TreeItemContent", "computed": true }
+    },
+    "ContentProps": { "type": { "name": "object" }, "required": false },
+    "disabled": { "type": { "name": "bool" }, "required": false },
+    "endIcon": { "type": { "name": "node" }, "required": false },
+    "expandIcon": { "type": { "name": "node" }, "required": false },
+    "icon": { "type": { "name": "node" }, "required": false },
+    "id": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "label": { "type": { "name": "node" }, "required": false },
+    "nodeId": { "type": { "name": "string" }, "required": true },
+    "onClick": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onFocus": { "type": { "name": "custom", "raw": "unsupportedProp" }, "required": false },
+    "onMouseDown": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "TransitionComponent": {
+      "type": { "name": "elementType" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "Collapse" },
+      "defaultValue": { "value": "Collapse", "computed": true }
+    },
+    "TransitionProps": { "type": { "name": "object" }, "required": false }
+  },
+  "spread": true,
+  "styles": {
+    "classes": [
+      "root",
+      "group",
+      "content",
+      "expanded",
+      "selected",
+      "focused",
+      "disabled",
+      "iconContainer",
+      "label"
+    ],
+    "name": "MuiTreeItem",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiTreeItem-root",
+      "group": "MuiTreeItem-group",
+      "content": "MuiTreeItem-content",
+      "expanded": "Mui-expanded",
+      "selected": "Mui-selected",
+      "focused": "Mui-focused",
+      "disabled": "Mui-disabled",
+      "iconContainer": "MuiTreeItem-iconContainer",
+      "label": "MuiTreeItem-label"
+    }
+  },
+  "forwardsRefTo": "HTMLLIElement",
+  "inheritance": null,
+  "demos": "- [Tree View](/components/tree-view/)"
+}

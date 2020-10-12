@@ -1,0 +1,94 @@
+{
+  "name": "Modal",
+  "filename": "/packages/material-ui/src/Modal/Modal.js",
+  "description": "Modal is a lower-level construct that is leveraged by the following components:\n\n- [Dialog](/api/dialog/)\n- [Drawer](/api/drawer/)\n- [Menu](/api/menu/)\n- [Popover](/api/popover/)\n\nIf you are creating a modal dialog, you probably want to use the [Dialog](/api/dialog/) component\nrather than directly using Modal.\n\nThis component shares many concepts with [react-overlays](https://react-bootstrap.github.io/react-overlays/#modals).",
+  "props": {
+    "BackdropComponent": {
+      "type": { "name": "elementType" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "SimpleBackdrop" },
+      "defaultValue": { "value": "SimpleBackdrop", "computed": true }
+    },
+    "BackdropProps": { "type": { "name": "object" }, "required": false },
+    "children": {
+      "type": { "name": "custom", "raw": "elementAcceptingRef.isRequired" },
+      "required": false
+    },
+    "closeAfterTransition": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "container": {
+      "type": {
+        "name": "union",
+        "value": [{ "name": "custom", "raw": "HTMLElementType" }, { "name": "func" }]
+      },
+      "required": false
+    },
+    "disableAutoFocus": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "disableBackdropClick": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "disableEnforceFocus": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "disableEscapeKeyDown": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "disablePortal": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "disableRestoreFocus": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "disableScrollLock": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "hideBackdrop": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "keepMounted": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "onBackdropClick": { "type": { "name": "func" }, "required": false },
+    "onClose": { "type": { "name": "func" }, "required": false },
+    "onEscapeKeyDown": { "type": { "name": "func" }, "required": false },
+    "open": { "type": { "name": "bool" }, "required": true }
+  },
+  "spread": true,
+  "styles": { "classes": [], "name": null, "descriptions": {}, "globalClasses": {} },
+  "forwardsRefTo": "HTMLDivElement",
+  "inheritance": null,
+  "demos": "- [Modal](/components/modal/)"
+}

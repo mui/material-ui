@@ -1,0 +1,81 @@
+{
+  "name": "Collapse",
+  "filename": "/packages/material-ui/src/Collapse/Collapse.js",
+  "description": "The Collapse transition is used by the\n[Vertical Stepper](/components/steppers/#vertical-stepper) StepContent component.\nIt uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.",
+  "props": {
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "collapsedSize": {
+      "type": { "name": "union", "value": [{ "name": "number" }, { "name": "string" }] },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'0px'" },
+      "defaultValue": { "value": "'0px'", "computed": false }
+    },
+    "component": {
+      "type": { "name": "custom", "raw": "elementTypeAcceptingRef" },
+      "required": false,
+      "defaultValue": { "value": "'div'", "computed": false }
+    },
+    "in": { "type": { "name": "bool" }, "required": false },
+    "onEnter": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onEntered": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onEntering": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onExit": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onExited": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onExiting": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "orientation": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'horizontal'", "computed": false },
+          { "value": "'vertical'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'vertical'" },
+      "defaultValue": { "value": "'vertical'", "computed": false }
+    },
+    "style": { "type": { "name": "object" }, "required": false, "description": "@ignore" },
+    "timeout": {
+      "type": {
+        "name": "union",
+        "value": [
+          { "name": "enum", "value": [{ "value": "'auto'", "computed": false }] },
+          { "name": "number" },
+          {
+            "name": "shape",
+            "value": {
+              "appear": { "name": "number", "required": false },
+              "enter": { "name": "number", "required": false },
+              "exit": { "name": "number", "required": false }
+            }
+          }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "duration.standard" },
+      "defaultValue": { "value": "duration.standard", "computed": true }
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": ["root", "horizontal", "entered", "hidden", "wrapper", "wrapperInner"],
+    "name": "MuiCollapse",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiCollapse-root",
+      "horizontal": "MuiCollapse-horizontal",
+      "entered": "MuiCollapse-entered",
+      "hidden": "MuiCollapse-hidden",
+      "wrapper": "MuiCollapse-wrapper",
+      "wrapperInner": "MuiCollapse-wrapperInner"
+    }
+  },
+  "forwardsRefTo": "HTMLDivElement",
+  "inheritance": {
+    "component": "Transition",
+    "pathname": "https://reactcommunity.org/react-transition-group/transition#Transition-props"
+  },
+  "demos": "- [Cards](/components/cards/)\n- [Lists](/components/lists/)\n- [Transitions](/components/transitions/)"
+}

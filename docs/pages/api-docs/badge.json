@@ -1,0 +1,146 @@
+{
+  "name": "Badge",
+  "filename": "/packages/material-ui/src/Badge/Badge.js",
+  "description": "",
+  "props": {
+    "anchorOrigin": {
+      "type": {
+        "name": "shape",
+        "value": {
+          "horizontal": {
+            "name": "enum",
+            "value": [
+              { "value": "'left'", "computed": false },
+              { "value": "'right'", "computed": false }
+            ],
+            "required": true
+          },
+          "vertical": {
+            "name": "enum",
+            "value": [
+              { "value": "'bottom'", "computed": false },
+              { "value": "'top'", "computed": false }
+            ],
+            "required": true
+          }
+        }
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "{\n  vertical: 'top',\n  horizontal: 'right',\n}" },
+      "defaultValue": {
+        "value": "{\n  vertical: 'top',\n  horizontal: 'right',\n}",
+        "computed": false
+      }
+    },
+    "badgeContent": { "type": { "name": "node" }, "required": false },
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "color": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'default'", "computed": false },
+          { "value": "'error'", "computed": false },
+          { "value": "'primary'", "computed": false },
+          { "value": "'secondary'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'default'" },
+      "defaultValue": { "value": "'default'", "computed": false }
+    },
+    "component": {
+      "type": { "name": "elementType" },
+      "required": false,
+      "defaultValue": { "value": "'span'", "computed": false }
+    },
+    "invisible": { "type": { "name": "bool" }, "required": false },
+    "max": {
+      "type": { "name": "number" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "99" },
+      "defaultValue": { "value": "99", "computed": false }
+    },
+    "overlap": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'circular'", "computed": false },
+          { "value": "'rectangular'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'rectangular'" },
+      "defaultValue": { "value": "'rectangular'", "computed": false }
+    },
+    "showZero": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "variant": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "enum",
+            "value": [
+              { "value": "'dot'", "computed": false },
+              { "value": "'standard'", "computed": false }
+            ]
+          },
+          { "name": "string" }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'standard'" },
+      "defaultValue": { "value": "'standard'", "computed": false }
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": [
+      "root",
+      "badge",
+      "colorPrimary",
+      "colorSecondary",
+      "colorError",
+      "dot",
+      "standard",
+      "anchorOriginTopRightRectangular",
+      "anchorOriginBottomRightRectangular",
+      "anchorOriginTopLeftRectangular",
+      "anchorOriginBottomLeftRectangular",
+      "anchorOriginTopRightCircular",
+      "anchorOriginBottomRightCircular",
+      "anchorOriginTopLeftCircular",
+      "anchorOriginBottomLeftCircular",
+      "invisible"
+    ],
+    "name": "MuiBadge",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiBadge-root",
+      "badge": "MuiBadge-badge",
+      "colorPrimary": "MuiBadge-colorPrimary",
+      "colorSecondary": "MuiBadge-colorSecondary",
+      "colorError": "MuiBadge-colorError",
+      "dot": "MuiBadge-dot",
+      "standard": "MuiBadge-standard",
+      "anchorOriginTopRightRectangular": "MuiBadge-anchorOriginTopRightRectangular",
+      "anchorOriginBottomRightRectangular": "MuiBadge-anchorOriginBottomRightRectangular",
+      "anchorOriginTopLeftRectangular": "MuiBadge-anchorOriginTopLeftRectangular",
+      "anchorOriginBottomLeftRectangular": "MuiBadge-anchorOriginBottomLeftRectangular",
+      "anchorOriginTopRightCircular": "MuiBadge-anchorOriginTopRightCircular",
+      "anchorOriginBottomRightCircular": "MuiBadge-anchorOriginBottomRightCircular",
+      "anchorOriginTopLeftCircular": "MuiBadge-anchorOriginTopLeftCircular",
+      "anchorOriginBottomLeftCircular": "MuiBadge-anchorOriginBottomLeftCircular",
+      "invisible": "MuiBadge-invisible"
+    }
+  },
+  "forwardsRefTo": "HTMLSpanElement",
+  "inheritance": null,
+  "demos": "- [Avatars](/components/avatars/)\n- [Badges](/components/badges/)"
+}

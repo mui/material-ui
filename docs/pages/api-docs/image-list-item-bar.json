@@ -1,0 +1,74 @@
+{
+  "name": "ImageListItemBar",
+  "filename": "/packages/material-ui/src/ImageListItemBar/ImageListItemBar.js",
+  "description": "",
+  "props": {
+    "actionIcon": { "type": { "name": "node" }, "required": false },
+    "actionPosition": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'left'", "computed": false },
+          { "value": "'right'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'right'" },
+      "defaultValue": { "value": "'right'", "computed": false }
+    },
+    "children": { "type": { "name": "node" }, "required": false, "description": "@ignore" },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "position": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'below'", "computed": false },
+          { "value": "'bottom'", "computed": false },
+          { "value": "'top'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'bottom'" },
+      "defaultValue": { "value": "'bottom'", "computed": false }
+    },
+    "subtitle": { "type": { "name": "node" }, "required": false },
+    "title": { "type": { "name": "node" }, "required": false }
+  },
+  "spread": true,
+  "styles": {
+    "classes": [
+      "root",
+      "positionBottom",
+      "positionTop",
+      "positionBelow",
+      "titleWrap",
+      "titleWrapBelow",
+      "titleWrapActionPosLeft",
+      "titleWrapActionPosRight",
+      "title",
+      "subtitle",
+      "actionIcon",
+      "actionIconActionPosLeft"
+    ],
+    "name": "MuiImageListItemBar",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiImageListItemBar-root",
+      "positionBottom": "MuiImageListItemBar-positionBottom",
+      "positionTop": "MuiImageListItemBar-positionTop",
+      "positionBelow": "MuiImageListItemBar-positionBelow",
+      "titleWrap": "MuiImageListItemBar-titleWrap",
+      "titleWrapBelow": "MuiImageListItemBar-titleWrapBelow",
+      "titleWrapActionPosLeft": "MuiImageListItemBar-titleWrapActionPosLeft",
+      "titleWrapActionPosRight": "MuiImageListItemBar-titleWrapActionPosRight",
+      "title": "MuiImageListItemBar-title",
+      "subtitle": "MuiImageListItemBar-subtitle",
+      "actionIcon": "MuiImageListItemBar-actionIcon",
+      "actionIconActionPosLeft": "MuiImageListItemBar-actionIconActionPosLeft"
+    }
+  },
+  "forwardsRefTo": "HTMLDivElement",
+  "inheritance": null,
+  "demos": "- [Image List](/components/image-list/)"
+}

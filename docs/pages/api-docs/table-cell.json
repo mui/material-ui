@@ -1,0 +1,106 @@
+{
+  "name": "TableCell",
+  "filename": "/packages/material-ui/src/TableCell/TableCell.js",
+  "description": "The component renders a `<th>` element when the parent context is a header\nor otherwise a `<td>` element.",
+  "props": {
+    "align": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'center'", "computed": false },
+          { "value": "'inherit'", "computed": false },
+          { "value": "'justify'", "computed": false },
+          { "value": "'left'", "computed": false },
+          { "value": "'right'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'inherit'" },
+      "defaultValue": { "value": "'inherit'", "computed": false }
+    },
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "component": { "type": { "name": "elementType" }, "required": false },
+    "padding": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'checkbox'", "computed": false },
+          { "value": "'default'", "computed": false },
+          { "value": "'none'", "computed": false }
+        ]
+      },
+      "required": false
+    },
+    "scope": { "type": { "name": "string" }, "required": false },
+    "size": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'medium'", "computed": false },
+          { "value": "'small'", "computed": false }
+        ]
+      },
+      "required": false
+    },
+    "sortDirection": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'asc'", "computed": false },
+          { "value": "'desc'", "computed": false },
+          { "value": "false", "computed": false }
+        ]
+      },
+      "required": false
+    },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'body'", "computed": false },
+          { "value": "'footer'", "computed": false },
+          { "value": "'head'", "computed": false }
+        ]
+      },
+      "required": false
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": [
+      "root",
+      "head",
+      "body",
+      "footer",
+      "sizeSmall",
+      "paddingCheckbox",
+      "paddingNone",
+      "alignLeft",
+      "alignCenter",
+      "alignRight",
+      "alignJustify",
+      "stickyHeader"
+    ],
+    "name": "MuiTableCell",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiTableCell-root",
+      "head": "MuiTableCell-head",
+      "body": "MuiTableCell-body",
+      "footer": "MuiTableCell-footer",
+      "sizeSmall": "MuiTableCell-sizeSmall",
+      "paddingCheckbox": "MuiTableCell-paddingCheckbox",
+      "paddingNone": "MuiTableCell-paddingNone",
+      "alignLeft": "MuiTableCell-alignLeft",
+      "alignCenter": "MuiTableCell-alignCenter",
+      "alignRight": "MuiTableCell-alignRight",
+      "alignJustify": "MuiTableCell-alignJustify",
+      "stickyHeader": "MuiTableCell-stickyHeader"
+    }
+  },
+  "forwardsRefTo": "HTMLTableCellElement",
+  "inheritance": null,
+  "demos": "- [Tables](/components/tables/)"
+}

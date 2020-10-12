@@ -1,0 +1,55 @@
+{
+  "name": "FormControlLabel",
+  "filename": "/packages/material-ui/src/FormControlLabel/FormControlLabel.js",
+  "description": "Drop in replacement of the `Radio`, `Switch` and `Checkbox` component.\nUse this component if you want to display an extra label.",
+  "props": {
+    "checked": { "type": { "name": "bool" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "control": { "type": { "name": "element" }, "required": true },
+    "disabled": { "type": { "name": "bool" }, "required": false },
+    "inputRef": { "type": { "name": "custom", "raw": "refType" }, "required": false },
+    "label": { "type": { "name": "node" }, "required": false },
+    "labelPlacement": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'bottom'", "computed": false },
+          { "value": "'end'", "computed": false },
+          { "value": "'start'", "computed": false },
+          { "value": "'top'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'end'" },
+      "defaultValue": { "value": "'end'", "computed": false }
+    },
+    "name": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "onChange": { "type": { "name": "func" }, "required": false },
+    "value": { "type": { "name": "any" }, "required": false }
+  },
+  "spread": true,
+  "styles": {
+    "classes": [
+      "root",
+      "labelPlacementStart",
+      "labelPlacementTop",
+      "labelPlacementBottom",
+      "disabled",
+      "label"
+    ],
+    "name": "MuiFormControlLabel",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiFormControlLabel-root",
+      "labelPlacementStart": "MuiFormControlLabel-labelPlacementStart",
+      "labelPlacementTop": "MuiFormControlLabel-labelPlacementTop",
+      "labelPlacementBottom": "MuiFormControlLabel-labelPlacementBottom",
+      "disabled": "Mui-disabled",
+      "label": "MuiFormControlLabel-label"
+    }
+  },
+  "forwardsRefTo": "HTMLLabelElement",
+  "inheritance": null,
+  "demos": "- [Checkboxes](/components/checkboxes/)\n- [Radio Buttons](/components/radio-buttons/)\n- [Switches](/components/switches/)"
+}

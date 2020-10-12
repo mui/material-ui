@@ -37,37 +37,21 @@ export interface BadgeTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * Override or extend the styles applied to the component.
      */
     classes?: {
-      /** Styles applied to the root element. */
       root?: string;
-      /** Styles applied to the badge `span` element. */
       badge?: string;
-      /** Styles applied to the root element if `color="primary"`. */
       colorPrimary?: string;
-      /** Styles applied to the root element if `color="secondary"`. */
       colorSecondary?: string;
-      /** Styles applied to the root element if `color="error"`. */
       colorError?: string;
-      /** Styles applied to the root element if `variant="dot"`. */
       dot?: string;
-      /** Styles applied to the root element if `variant="standard"`. */
       standard?: string;
-      /** Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }} overlap="rectangular"`. */
       anchorOriginTopRightRectangular?: string;
-      /** Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }} overlap="rectangular"`. */
       anchorOriginBottomRightRectangular?: string;
-      /** Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }} overlap="rectangular"`. */
       anchorOriginTopLeftRectangular?: string;
-      /** Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }} overlap="rectangular"`. */
       anchorOriginBottomLeftRectangular?: string;
-      /** Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }} overlap="circular"`. */
       anchorOriginTopRightCircular?: string;
-      /** Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }} overlap="circular"`. */
       anchorOriginBottomRightCircular?: string;
-      /** Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }} overlap="circular"`. */
       anchorOriginTopLeftCircular?: string;
-      /** Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }} overlap="circular"`. */
       anchorOriginBottomLeftCircular?: string;
-      /** Pseudo-class to the badge `span` element if `invisible={true}`. */
       invisible?: string;
     };
     /**

@@ -1,0 +1,202 @@
+{
+  "name": "Popover",
+  "filename": "/packages/material-ui/src/Popover/Popover.js",
+  "description": "",
+  "props": {
+    "action": { "type": { "name": "custom", "raw": "refType" }, "required": false },
+    "anchorEl": {
+      "type": {
+        "name": "custom",
+        "raw": "chainPropTypes(PropTypes.oneOfType([HTMLElementType, PropTypes.func]), (props) => {\n  if (props.open && (!props.anchorReference || props.anchorReference === 'anchorEl')) {\n    const resolvedAnchorEl = getAnchorEl(props.anchorEl);\n\n    if (resolvedAnchorEl && resolvedAnchorEl.nodeType === 1) {\n      const box = resolvedAnchorEl.getBoundingClientRect();\n\n      if (\n        process.env.NODE_ENV !== 'test' &&\n        box.top === 0 &&\n        box.left === 0 &&\n        box.right === 0 &&\n        box.bottom === 0\n      ) {\n        return new Error(\n          [\n            'Material-UI: The `anchorEl` prop provided to the component is invalid.',\n            'The anchor element should be part of the document layout.',\n            \"Make sure the element is present in the document or that it's not display none.\",\n          ].join('\\n'),\n        );\n      }\n    } else {\n      return new Error(\n        [\n          'Material-UI: The `anchorEl` prop provided to the component is invalid.',\n          `It should be an Element instance but it's \\`${resolvedAnchorEl}\\` instead.`,\n        ].join('\\n'),\n      );\n    }\n  }\n\n  return null;\n})"
+      },
+      "required": false
+    },
+    "anchorOrigin": {
+      "type": {
+        "name": "shape",
+        "value": {
+          "horizontal": {
+            "name": "union",
+            "value": [
+              {
+                "name": "enum",
+                "value": [
+                  { "value": "'center'", "computed": false },
+                  { "value": "'left'", "computed": false },
+                  { "value": "'right'", "computed": false }
+                ]
+              },
+              { "name": "number" }
+            ],
+            "required": true
+          },
+          "vertical": {
+            "name": "union",
+            "value": [
+              {
+                "name": "enum",
+                "value": [
+                  { "value": "'bottom'", "computed": false },
+                  { "value": "'center'", "computed": false },
+                  { "value": "'top'", "computed": false }
+                ]
+              },
+              { "name": "number" }
+            ],
+            "required": true
+          }
+        }
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "{\n  vertical: 'top',\n  horizontal: 'left',\n}" },
+      "defaultValue": {
+        "value": "{\n  vertical: 'top',\n  horizontal: 'left',\n}",
+        "computed": false
+      }
+    },
+    "anchorPosition": {
+      "type": {
+        "name": "shape",
+        "value": {
+          "left": { "name": "number", "required": true },
+          "top": { "name": "number", "required": true }
+        }
+      },
+      "required": false
+    },
+    "anchorReference": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'anchorEl'", "computed": false },
+          { "value": "'anchorPosition'", "computed": false },
+          { "value": "'none'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'anchorEl'" },
+      "defaultValue": { "value": "'anchorEl'", "computed": false }
+    },
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "container": {
+      "type": {
+        "name": "union",
+        "value": [{ "name": "custom", "raw": "HTMLElementType" }, { "name": "func" }]
+      },
+      "required": false
+    },
+    "elevation": {
+      "type": { "name": "number" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "8" },
+      "defaultValue": { "value": "8", "computed": false }
+    },
+    "getContentAnchorEl": { "type": { "name": "func" }, "required": false },
+    "marginThreshold": {
+      "type": { "name": "number" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "16" },
+      "defaultValue": { "value": "16", "computed": false }
+    },
+    "onClose": { "type": { "name": "func" }, "required": false },
+    "open": { "type": { "name": "bool" }, "required": true },
+    "PaperProps": {
+      "type": {
+        "name": "shape",
+        "value": {
+          "component": { "name": "custom", "raw": "elementTypeAcceptingRef", "required": false }
+        }
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "{}" },
+      "defaultValue": { "value": "{}", "computed": false }
+    },
+    "transformOrigin": {
+      "type": {
+        "name": "shape",
+        "value": {
+          "horizontal": {
+            "name": "union",
+            "value": [
+              {
+                "name": "enum",
+                "value": [
+                  { "value": "'center'", "computed": false },
+                  { "value": "'left'", "computed": false },
+                  { "value": "'right'", "computed": false }
+                ]
+              },
+              { "name": "number" }
+            ],
+            "required": true
+          },
+          "vertical": {
+            "name": "union",
+            "value": [
+              {
+                "name": "enum",
+                "value": [
+                  { "value": "'bottom'", "computed": false },
+                  { "value": "'center'", "computed": false },
+                  { "value": "'top'", "computed": false }
+                ]
+              },
+              { "name": "number" }
+            ],
+            "required": true
+          }
+        }
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "{\n  vertical: 'top',\n  horizontal: 'left',\n}" },
+      "defaultValue": {
+        "value": "{\n  vertical: 'top',\n  horizontal: 'left',\n}",
+        "computed": false
+      }
+    },
+    "TransitionComponent": {
+      "type": { "name": "elementType" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "Grow" },
+      "defaultValue": { "value": "Grow", "computed": true }
+    },
+    "transitionDuration": {
+      "type": {
+        "name": "union",
+        "value": [
+          { "name": "enum", "value": [{ "value": "'auto'", "computed": false }] },
+          { "name": "number" },
+          {
+            "name": "shape",
+            "value": {
+              "appear": { "name": "number", "required": false },
+              "enter": { "name": "number", "required": false },
+              "exit": { "name": "number", "required": false }
+            }
+          }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'auto'" },
+      "defaultValue": { "value": "'auto'", "computed": false }
+    },
+    "TransitionProps": {
+      "type": { "name": "object" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "{}" },
+      "defaultValue": { "value": "{}", "computed": false }
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": ["root", "paper"],
+    "name": "MuiPopover",
+    "descriptions": {},
+    "globalClasses": { "root": "MuiPopover-root", "paper": "MuiPopover-paper" }
+  },
+  "forwardsRefTo": "HTMLDivElement",
+  "inheritance": { "component": "Modal", "pathname": "/api/modal/" },
+  "demos": "- [Menus](/components/menus/)\n- [Popover](/components/popover/)"
+}

@@ -10,7 +10,6 @@ export interface DialogTitleProps extends StandardProps<React.HTMLAttributes<HTM
    * Override or extend the styles applied to the component.
    */
   classes?: {
-    /** Styles applied to the root element. */
     root?: string;
   };
   /**

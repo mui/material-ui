@@ -1,0 +1,106 @@
+{
+  "name": "SpeedDial",
+  "filename": "/packages/material-ui/src/SpeedDial/SpeedDial.js",
+  "description": "",
+  "props": {
+    "ariaLabel": { "type": { "name": "string" }, "required": true },
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "direction": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'down'", "computed": false },
+          { "value": "'left'", "computed": false },
+          { "value": "'right'", "computed": false },
+          { "value": "'up'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'up'" },
+      "defaultValue": { "value": "'up'", "computed": false }
+    },
+    "FabProps": {
+      "type": { "name": "object" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "{}" },
+      "defaultValue": { "value": "{}", "computed": false }
+    },
+    "hidden": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "icon": { "type": { "name": "node" }, "required": false },
+    "onBlur": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onClose": { "type": { "name": "func" }, "required": false },
+    "onFocus": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onKeyDown": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onMouseEnter": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onMouseLeave": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onOpen": { "type": { "name": "func" }, "required": false },
+    "open": { "type": { "name": "bool" }, "required": false },
+    "openIcon": { "type": { "name": "node" }, "required": false },
+    "TransitionComponent": {
+      "type": { "name": "elementType" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "Zoom" },
+      "defaultValue": { "value": "Zoom", "computed": true }
+    },
+    "transitionDuration": {
+      "type": {
+        "name": "union",
+        "value": [
+          { "name": "number" },
+          {
+            "name": "shape",
+            "value": {
+              "appear": { "name": "number", "required": false },
+              "enter": { "name": "number", "required": false },
+              "exit": { "name": "number", "required": false }
+            }
+          }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": {
+        "value": "{\n  enter: duration.enteringScreen,\n  exit: duration.leavingScreen,\n}"
+      },
+      "defaultValue": {
+        "value": "{\n  enter: duration.enteringScreen,\n  exit: duration.leavingScreen,\n}",
+        "computed": false
+      }
+    },
+    "TransitionProps": { "type": { "name": "object" }, "required": false }
+  },
+  "spread": true,
+  "styles": {
+    "classes": [
+      "root",
+      "fab",
+      "directionUp",
+      "directionDown",
+      "directionLeft",
+      "directionRight",
+      "actions",
+      "actionsClosed"
+    ],
+    "name": "MuiSpeedDial",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiSpeedDial-root",
+      "fab": "MuiSpeedDial-fab",
+      "directionUp": "MuiSpeedDial-directionUp",
+      "directionDown": "MuiSpeedDial-directionDown",
+      "directionLeft": "MuiSpeedDial-directionLeft",
+      "directionRight": "MuiSpeedDial-directionRight",
+      "actions": "MuiSpeedDial-actions",
+      "actionsClosed": "MuiSpeedDial-actionsClosed"
+    }
+  },
+  "forwardsRefTo": "HTMLDivElement",
+  "inheritance": null,
+  "demos": "- [Speed Dial](/components/speed-dial/)"
+}

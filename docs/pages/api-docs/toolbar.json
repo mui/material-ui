@@ -1,0 +1,54 @@
+{
+  "name": "Toolbar",
+  "filename": "/packages/material-ui/src/Toolbar/Toolbar.js",
+  "description": "",
+  "props": {
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "component": {
+      "type": { "name": "elementType" },
+      "required": false,
+      "defaultValue": { "value": "'div'", "computed": false }
+    },
+    "disableGutters": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "variant": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "enum",
+            "value": [
+              { "value": "'dense'", "computed": false },
+              { "value": "'regular'", "computed": false }
+            ]
+          },
+          { "name": "string" }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'regular'" },
+      "defaultValue": { "value": "'regular'", "computed": false }
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": ["root", "gutters", "regular", "dense"],
+    "name": "MuiToolbar",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiToolbar-root",
+      "gutters": "MuiToolbar-gutters",
+      "regular": "MuiToolbar-regular",
+      "dense": "MuiToolbar-dense"
+    }
+  },
+  "forwardsRefTo": "HTMLDivElement",
+  "inheritance": null,
+  "demos": "- [App Bar](/components/app-bar/)"
+}

@@ -1,0 +1,181 @@
+{
+  "name": "Button",
+  "filename": "/packages/material-ui/src/Button/Button.js",
+  "description": "",
+  "props": {
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "color": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'inherit'", "computed": false },
+          { "value": "'primary'", "computed": false },
+          { "value": "'secondary'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'primary'" },
+      "defaultValue": { "value": "'primary'", "computed": false }
+    },
+    "component": {
+      "type": { "name": "elementType" },
+      "required": false,
+      "defaultValue": { "value": "'button'", "computed": false }
+    },
+    "disabled": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "disableElevation": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "disableFocusRipple": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "disableRipple": { "type": { "name": "bool" }, "required": false },
+    "endIcon": { "type": { "name": "node" }, "required": false },
+    "focusVisibleClassName": {
+      "type": { "name": "string" },
+      "required": false,
+      "description": "@ignore"
+    },
+    "fullWidth": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "href": { "type": { "name": "string" }, "required": false },
+    "size": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'large'", "computed": false },
+          { "value": "'medium'", "computed": false },
+          { "value": "'small'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'medium'" },
+      "defaultValue": { "value": "'medium'", "computed": false }
+    },
+    "startIcon": { "type": { "name": "node" }, "required": false },
+    "type": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "enum",
+            "value": [
+              { "value": "'button'", "computed": false },
+              { "value": "'reset'", "computed": false },
+              { "value": "'submit'", "computed": false }
+            ]
+          },
+          { "name": "string" }
+        ]
+      },
+      "required": false,
+      "description": "@ignore"
+    },
+    "variant": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "enum",
+            "value": [
+              { "value": "'contained'", "computed": false },
+              { "value": "'outlined'", "computed": false },
+              { "value": "'text'", "computed": false }
+            ]
+          },
+          { "name": "string" }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'text'" },
+      "defaultValue": { "value": "'text'", "computed": false }
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": [
+      "root",
+      "label",
+      "text",
+      "textPrimary",
+      "textSecondary",
+      "outlined",
+      "outlinedPrimary",
+      "outlinedSecondary",
+      "contained",
+      "containedPrimary",
+      "containedSecondary",
+      "disableElevation",
+      "focusVisible",
+      "disabled",
+      "colorInherit",
+      "textSizeSmall",
+      "textSizeLarge",
+      "outlinedSizeSmall",
+      "outlinedSizeLarge",
+      "containedSizeSmall",
+      "containedSizeLarge",
+      "sizeSmall",
+      "sizeLarge",
+      "fullWidth",
+      "startIcon",
+      "endIcon",
+      "iconSizeSmall",
+      "iconSizeMedium",
+      "iconSizeLarge"
+    ],
+    "name": "MuiButton",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiButton-root",
+      "label": "MuiButton-label",
+      "text": "MuiButton-text",
+      "textPrimary": "MuiButton-textPrimary",
+      "textSecondary": "MuiButton-textSecondary",
+      "outlined": "MuiButton-outlined",
+      "outlinedPrimary": "MuiButton-outlinedPrimary",
+      "outlinedSecondary": "MuiButton-outlinedSecondary",
+      "contained": "MuiButton-contained",
+      "containedPrimary": "MuiButton-containedPrimary",
+      "containedSecondary": "MuiButton-containedSecondary",
+      "disableElevation": "MuiButton-disableElevation",
+      "focusVisible": "Mui-focusVisible",
+      "disabled": "Mui-disabled",
+      "colorInherit": "MuiButton-colorInherit",
+      "textSizeSmall": "MuiButton-textSizeSmall",
+      "textSizeLarge": "MuiButton-textSizeLarge",
+      "outlinedSizeSmall": "MuiButton-outlinedSizeSmall",
+      "outlinedSizeLarge": "MuiButton-outlinedSizeLarge",
+      "containedSizeSmall": "MuiButton-containedSizeSmall",
+      "containedSizeLarge": "MuiButton-containedSizeLarge",
+      "sizeSmall": "MuiButton-sizeSmall",
+      "sizeLarge": "MuiButton-sizeLarge",
+      "fullWidth": "MuiButton-fullWidth",
+      "startIcon": "MuiButton-startIcon",
+      "endIcon": "MuiButton-endIcon",
+      "iconSizeSmall": "MuiButton-iconSizeSmall",
+      "iconSizeMedium": "MuiButton-iconSizeMedium",
+      "iconSizeLarge": "MuiButton-iconSizeLarge"
+    }
+  },
+  "forwardsRefTo": "HTMLButtonElement",
+  "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },
+  "demos": "- [Button Group](/components/button-group/)\n- [Buttons](/components/buttons/)"
+}

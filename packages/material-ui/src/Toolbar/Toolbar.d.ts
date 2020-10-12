@@ -15,13 +15,9 @@ export interface ToolbarTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * Override or extend the styles applied to the component.
      */
     classes?: {
-      /** Styles applied to the root element. */
       root?: string;
-      /** Styles applied to the root element unless `disableGutters={true}`. */
       gutters?: string;
-      /** Styles applied to the root element if `variant="regular"`. */
       regular?: string;
-      /** Styles applied to the root element if `variant="dense"`. */
       dense?: string;
     };
     /**

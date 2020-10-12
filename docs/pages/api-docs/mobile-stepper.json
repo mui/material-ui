@@ -1,0 +1,73 @@
+{
+  "name": "MobileStepper",
+  "filename": "/packages/material-ui/src/MobileStepper/MobileStepper.js",
+  "description": "",
+  "props": {
+    "activeStep": {
+      "type": { "name": "number" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "0" },
+      "defaultValue": { "value": "0", "computed": false }
+    },
+    "backButton": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "LinearProgressProps": { "type": { "name": "object" }, "required": false },
+    "nextButton": { "type": { "name": "node" }, "required": false },
+    "position": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'bottom'", "computed": false },
+          { "value": "'static'", "computed": false },
+          { "value": "'top'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'bottom'" },
+      "defaultValue": { "value": "'bottom'", "computed": false }
+    },
+    "steps": { "type": { "name": "number" }, "required": true },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'dots'", "computed": false },
+          { "value": "'progress'", "computed": false },
+          { "value": "'text'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'dots'" },
+      "defaultValue": { "value": "'dots'", "computed": false }
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": [
+      "root",
+      "positionBottom",
+      "positionTop",
+      "positionStatic",
+      "dots",
+      "dot",
+      "dotActive",
+      "progress"
+    ],
+    "name": "MuiMobileStepper",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiMobileStepper-root",
+      "positionBottom": "MuiMobileStepper-positionBottom",
+      "positionTop": "MuiMobileStepper-positionTop",
+      "positionStatic": "MuiMobileStepper-positionStatic",
+      "dots": "MuiMobileStepper-dots",
+      "dot": "MuiMobileStepper-dot",
+      "dotActive": "MuiMobileStepper-dotActive",
+      "progress": "MuiMobileStepper-progress"
+    }
+  },
+  "forwardsRefTo": "HTMLDivElement",
+  "inheritance": { "component": "Paper", "pathname": "/api/paper/" },
+  "demos": "- [Steppers](/components/steppers/)"
+}

@@ -1,0 +1,138 @@
+{
+  "name": "TextField",
+  "filename": "/packages/material-ui/src/TextField/TextField.js",
+  "description": "The `TextField` is a convenience wrapper for the most common cases (80%).\nIt cannot be all things to all people, otherwise the API would grow out of control.\n\n## Advanced Configuration\n\nIt's important to understand that the text field is a simple abstraction\non top of the following components:\n\n- [FormControl](/api/form-control/)\n- [InputLabel](/api/input-label/)\n- [FilledInput](/api/filled-input/)\n- [OutlinedInput](/api/outlined-input/)\n- [Input](/api/input/)\n- [FormHelperText](/api/form-helper-text/)\n\nIf you wish to alter the props applied to the `input` element, you can do so as follows:\n\n```jsx\nconst inputProps = {\n  step: 300,\n};\n\nreturn <TextField id=\"time\" type=\"time\" inputProps={inputProps} />;\n```\n\nFor advanced cases, please look at the source of TextField by clicking on the\n\"Edit this page\" button above. Consider either:\n\n- using the upper case props for passing values directly to the components\n- using the underlying components directly as shown in the demos",
+  "props": {
+    "autoComplete": { "type": { "name": "string" }, "required": false },
+    "autoFocus": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "children": { "type": { "name": "node" }, "required": false, "description": "@ignore" },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "color": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'primary'", "computed": false },
+          { "value": "'secondary'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'primary'" },
+      "defaultValue": { "value": "'primary'", "computed": false }
+    },
+    "defaultValue": { "type": { "name": "any" }, "required": false },
+    "disabled": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "error": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "FormHelperTextProps": { "type": { "name": "object" }, "required": false },
+    "fullWidth": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "helperText": { "type": { "name": "node" }, "required": false },
+    "id": { "type": { "name": "string" }, "required": false },
+    "InputLabelProps": { "type": { "name": "object" }, "required": false },
+    "inputProps": { "type": { "name": "object" }, "required": false },
+    "InputProps": { "type": { "name": "object" }, "required": false },
+    "inputRef": { "type": { "name": "custom", "raw": "refType" }, "required": false },
+    "label": { "type": { "name": "node" }, "required": false },
+    "margin": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'dense'", "computed": false },
+          { "value": "'none'", "computed": false },
+          { "value": "'normal'", "computed": false }
+        ]
+      },
+      "required": false
+    },
+    "maxRows": {
+      "type": { "name": "union", "value": [{ "name": "number" }, { "name": "string" }] },
+      "required": false
+    },
+    "minRows": {
+      "type": { "name": "union", "value": [{ "name": "number" }, { "name": "string" }] },
+      "required": false
+    },
+    "multiline": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "name": { "type": { "name": "string" }, "required": false },
+    "onBlur": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onChange": { "type": { "name": "func" }, "required": false },
+    "onFocus": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "placeholder": { "type": { "name": "string" }, "required": false },
+    "required": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "rows": {
+      "type": { "name": "union", "value": [{ "name": "number" }, { "name": "string" }] },
+      "required": false
+    },
+    "select": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "SelectProps": { "type": { "name": "object" }, "required": false },
+    "size": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'medium'", "computed": false },
+          { "value": "'small'", "computed": false }
+        ]
+      },
+      "required": false
+    },
+    "type": { "type": { "name": "string" }, "required": false },
+    "value": { "type": { "name": "any" }, "required": false },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'filled'", "computed": false },
+          { "value": "'outlined'", "computed": false },
+          { "value": "'standard'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'standard'" },
+      "defaultValue": { "value": "'standard'", "computed": false }
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": ["root"],
+    "name": "MuiTextField",
+    "descriptions": {},
+    "globalClasses": { "root": "MuiTextField-root" }
+  },
+  "forwardsRefTo": "HTMLDivElement",
+  "inheritance": { "component": "FormControl", "pathname": "/api/form-control/" },
+  "demos": "- [Autocomplete](/components/autocomplete/)\n- [Pickers](/components/pickers/)\n- [Text Fields](/components/text-fields/)"
+}

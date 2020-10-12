@@ -1,0 +1,101 @@
+{
+  "name": "ButtonBase",
+  "filename": "/packages/material-ui/src/ButtonBase/ButtonBase.js",
+  "description": "`ButtonBase` contains as few styles as possible.\nIt aims to be a simple building block for creating a button.\nIt contains a load of style reset and some focus/ripple logic.",
+  "props": {
+    "action": { "type": { "name": "custom", "raw": "refType" }, "required": false },
+    "buttonRef": { "type": { "name": "custom", "raw": "refType" }, "required": false },
+    "centerRipple": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "component": {
+      "type": { "name": "custom", "raw": "elementTypeAcceptingRef" },
+      "required": false,
+      "defaultValue": { "value": "'button'", "computed": false }
+    },
+    "disabled": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "disableRipple": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "disableTouchRipple": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "focusRipple": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "focusVisibleClassName": { "type": { "name": "string" }, "required": false },
+    "href": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "onBlur": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onClick": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onDragLeave": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onFocus": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onFocusVisible": { "type": { "name": "func" }, "required": false },
+    "onKeyDown": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onKeyUp": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onMouseDown": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onMouseLeave": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onMouseUp": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onTouchEnd": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onTouchMove": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onTouchStart": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "tabIndex": {
+      "type": { "name": "union", "value": [{ "name": "number" }, { "name": "string" }] },
+      "required": false,
+      "jsdocDefaultValue": { "value": "0" },
+      "defaultValue": { "value": "0", "computed": false }
+    },
+    "TouchRippleProps": { "type": { "name": "object" }, "required": false },
+    "type": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "enum",
+            "value": [
+              { "value": "'button'", "computed": false },
+              { "value": "'reset'", "computed": false },
+              { "value": "'submit'", "computed": false }
+            ]
+          },
+          { "name": "string" }
+        ]
+      },
+      "required": false,
+      "description": "@ignore"
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": ["root", "disabled", "focusVisible"],
+    "name": "MuiButtonBase",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiButtonBase-root",
+      "disabled": "Mui-disabled",
+      "focusVisible": "Mui-focusVisible"
+    }
+  },
+  "forwardsRefTo": "HTMLButtonElement",
+  "inheritance": null,
+  "demos": "- [Buttons](/components/buttons/)"
+}

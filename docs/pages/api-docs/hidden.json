@@ -1,0 +1,128 @@
+{
+  "name": "Hidden",
+  "filename": "/packages/material-ui/src/Hidden/Hidden.js",
+  "description": "Responsively hides children based on the selected implementation.",
+  "props": {
+    "children": { "type": { "name": "node" }, "required": false },
+    "implementation": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'css'", "computed": false },
+          { "value": "'js'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'js'" },
+      "defaultValue": { "value": "'js'", "computed": false }
+    },
+    "initialWidth": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'xs'", "computed": false },
+          { "value": "'sm'", "computed": false },
+          { "value": "'md'", "computed": false },
+          { "value": "'lg'", "computed": false },
+          { "value": "'xl'", "computed": false }
+        ]
+      },
+      "required": false
+    },
+    "lgDown": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "lgUp": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "mdDown": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "mdUp": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "only": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "enum",
+            "value": [
+              { "value": "'xs'", "computed": false },
+              { "value": "'sm'", "computed": false },
+              { "value": "'md'", "computed": false },
+              { "value": "'lg'", "computed": false },
+              { "value": "'xl'", "computed": false }
+            ]
+          },
+          {
+            "name": "arrayOf",
+            "value": {
+              "name": "enum",
+              "value": [
+                { "value": "'xs'", "computed": false },
+                { "value": "'sm'", "computed": false },
+                { "value": "'md'", "computed": false },
+                { "value": "'lg'", "computed": false },
+                { "value": "'xl'", "computed": false }
+              ]
+            }
+          }
+        ]
+      },
+      "required": false
+    },
+    "smDown": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "smUp": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "xlDown": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "xlUp": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "xsDown": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "xsUp": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    }
+  },
+  "spread": true,
+  "styles": { "classes": [], "name": null, "descriptions": {}, "globalClasses": {} },
+  "inheritance": null,
+  "demos": "- [Hidden](/components/hidden/)"
+}

@@ -1,0 +1,45 @@
+{
+  "name": "TabScrollButton",
+  "filename": "/packages/material-ui/src/TabScrollButton/TabScrollButton.js",
+  "description": "",
+  "props": {
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "direction": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'left'", "computed": false },
+          { "value": "'right'", "computed": false }
+        ]
+      },
+      "required": true
+    },
+    "disabled": { "type": { "name": "bool" }, "required": false },
+    "orientation": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'horizontal'", "computed": false },
+          { "value": "'vertical'", "computed": false }
+        ]
+      },
+      "required": true
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": ["root", "vertical", "disabled"],
+    "name": "MuiTabScrollButton",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiTabScrollButton-root",
+      "vertical": "MuiTabScrollButton-vertical",
+      "disabled": "Mui-disabled"
+    }
+  },
+  "forwardsRefTo": "HTMLDivElement",
+  "inheritance": null,
+  "demos": "- [Tabs](/components/tabs/)"
+}

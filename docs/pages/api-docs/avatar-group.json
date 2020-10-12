@@ -1,0 +1,66 @@
+{
+  "name": "AvatarGroup",
+  "filename": "/packages/material-ui/src/AvatarGroup/AvatarGroup.js",
+  "description": "",
+  "props": {
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "max": {
+      "type": {
+        "name": "custom",
+        "raw": "chainPropTypes(PropTypes.number, (props) => {\n  if (props.max < 2) {\n    throw new Error(\n      [\n        'Material-UI: The prop `max` should be equal to 2 or above.',\n        'A value below is clamped to 2.',\n      ].join('\\n'),\n    );\n  }\n})"
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "5" },
+      "defaultValue": { "value": "5", "computed": false }
+    },
+    "spacing": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "enum",
+            "value": [
+              { "value": "'medium'", "computed": false },
+              { "value": "'small'", "computed": false }
+            ]
+          },
+          { "name": "number" }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'medium'" },
+      "defaultValue": { "value": "'medium'", "computed": false }
+    },
+    "variant": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "enum",
+            "value": [
+              { "value": "'circular'", "computed": false },
+              { "value": "'rounded'", "computed": false },
+              { "value": "'square'", "computed": false }
+            ]
+          },
+          { "name": "string" }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'circular'" },
+      "defaultValue": { "value": "'circular'", "computed": false }
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": ["root", "avatar"],
+    "name": "MuiAvatarGroup",
+    "descriptions": {},
+    "globalClasses": { "root": "MuiAvatarGroup-root", "avatar": "MuiAvatarGroup-avatar" }
+  },
+  "forwardsRefTo": "HTMLDivElement",
+  "inheritance": null,
+  "demos": "- [Avatars](/components/avatars/)"
+}

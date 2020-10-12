@@ -1,0 +1,139 @@
+{
+  "name": "SwipeableDrawer",
+  "filename": "/packages/material-ui/src/SwipeableDrawer/SwipeableDrawer.js",
+  "description": "",
+  "props": {
+    "anchor": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'bottom'", "computed": false },
+          { "value": "'left'", "computed": false },
+          { "value": "'right'", "computed": false },
+          { "value": "'top'", "computed": false }
+        ]
+      },
+      "required": false,
+      "description": "@ignore",
+      "defaultValue": { "value": "'left'", "computed": false }
+    },
+    "children": { "type": { "name": "node" }, "required": false },
+    "disableBackdropTransition": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "disableDiscovery": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "disableSwipeToOpen": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": {
+        "value": "typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent)"
+      },
+      "defaultValue": {
+        "value": "typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent)",
+        "computed": false
+      }
+    },
+    "hideBackdrop": { "type": { "name": "bool" }, "required": false, "description": "@ignore" },
+    "hysteresis": {
+      "type": { "name": "number" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "0.52" },
+      "defaultValue": { "value": "0.52", "computed": false }
+    },
+    "minFlingVelocity": {
+      "type": { "name": "number" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "450" },
+      "defaultValue": { "value": "450", "computed": false }
+    },
+    "ModalProps": {
+      "type": {
+        "name": "shape",
+        "value": {
+          "BackdropProps": {
+            "name": "shape",
+            "value": {
+              "component": { "name": "custom", "raw": "elementTypeAcceptingRef", "required": false }
+            },
+            "required": false
+          }
+        }
+      },
+      "required": false,
+      "description": "@ignore",
+      "defaultValue": { "value": "{}", "computed": false }
+    },
+    "onClose": { "type": { "name": "func" }, "required": true },
+    "onOpen": { "type": { "name": "func" }, "required": true },
+    "open": { "type": { "name": "bool" }, "required": true },
+    "PaperProps": {
+      "type": {
+        "name": "shape",
+        "value": {
+          "component": { "name": "custom", "raw": "elementTypeAcceptingRef", "required": false },
+          "style": { "name": "object", "required": false }
+        }
+      },
+      "required": false,
+      "description": "@ignore",
+      "defaultValue": { "value": "{}", "computed": false }
+    },
+    "SwipeAreaProps": { "type": { "name": "object" }, "required": false },
+    "swipeAreaWidth": {
+      "type": { "name": "number" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "20" },
+      "defaultValue": { "value": "20", "computed": false }
+    },
+    "transitionDuration": {
+      "type": {
+        "name": "union",
+        "value": [
+          { "name": "number" },
+          {
+            "name": "shape",
+            "value": {
+              "appear": { "name": "number", "required": false },
+              "enter": { "name": "number", "required": false },
+              "exit": { "name": "number", "required": false }
+            }
+          }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": {
+        "value": "{ enter: duration.enteringScreen, exit: duration.leavingScreen }"
+      },
+      "defaultValue": {
+        "value": "{ enter: duration.enteringScreen, exit: duration.leavingScreen }",
+        "computed": false
+      }
+    },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'permanent'", "computed": false },
+          { "value": "'persistent'", "computed": false },
+          { "value": "'temporary'", "computed": false }
+        ]
+      },
+      "required": false,
+      "description": "@ignore",
+      "defaultValue": { "value": "'temporary'", "computed": false }
+    }
+  },
+  "spread": true,
+  "styles": { "classes": [], "name": null, "descriptions": {}, "globalClasses": {} },
+  "forwardsRefTo": "HTMLDivElement",
+  "inheritance": { "component": "Drawer", "pathname": "/api/drawer/" },
+  "demos": "- [Drawers](/components/drawers/)"
+}

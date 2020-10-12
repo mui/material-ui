@@ -1,0 +1,13 @@
+{
+  "name": "TabContext",
+  "filename": "/packages/material-ui-lab/src/TabContext/TabContext.js",
+  "description": "",
+  "props": {
+    "children": { "type": { "name": "node" }, "required": false },
+    "value": { "type": { "name": "string" }, "required": true }
+  },
+  "spread": true,
+  "styles": { "classes": [], "name": null, "descriptions": {}, "globalClasses": {} },
+  "inheritance": null,
+  "demos": "- [Tabs](/components/tabs/)"
+}

@@ -1,0 +1,86 @@
+{
+  "name": "Skeleton",
+  "filename": "/packages/material-ui/src/Skeleton/Skeleton.js",
+  "description": "",
+  "props": {
+    "animation": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'pulse'", "computed": false },
+          { "value": "'wave'", "computed": false },
+          { "value": "false", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'pulse'" },
+      "defaultValue": { "value": "'pulse'", "computed": false }
+    },
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "component": {
+      "type": { "name": "elementType" },
+      "required": false,
+      "defaultValue": { "value": "'span'", "computed": false }
+    },
+    "height": {
+      "type": { "name": "union", "value": [{ "name": "number" }, { "name": "string" }] },
+      "required": false
+    },
+    "style": { "type": { "name": "object" }, "required": false, "description": "@ignore" },
+    "variant": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "enum",
+            "value": [
+              { "value": "'circular'", "computed": false },
+              { "value": "'rectangular'", "computed": false },
+              { "value": "'text'", "computed": false }
+            ]
+          },
+          { "name": "string" }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'text'" },
+      "defaultValue": { "value": "'text'", "computed": false }
+    },
+    "width": {
+      "type": { "name": "union", "value": [{ "name": "number" }, { "name": "string" }] },
+      "required": false
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": [
+      "root",
+      "text",
+      "rectangular",
+      "circular",
+      "pulse",
+      "wave",
+      "withChildren",
+      "fitContent",
+      "heightAuto"
+    ],
+    "name": "MuiSkeleton",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiSkeleton-root",
+      "text": "MuiSkeleton-text",
+      "rectangular": "MuiSkeleton-rectangular",
+      "circular": "MuiSkeleton-circular",
+      "pulse": "MuiSkeleton-pulse",
+      "wave": "MuiSkeleton-wave",
+      "withChildren": "MuiSkeleton-withChildren",
+      "fitContent": "MuiSkeleton-fitContent",
+      "heightAuto": "MuiSkeleton-heightAuto"
+    }
+  },
+  "forwardsRefTo": "HTMLSpanElement",
+  "inheritance": null,
+  "demos": "- [Skeleton](/components/skeleton/)"
+}

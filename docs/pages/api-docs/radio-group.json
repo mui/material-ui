@@ -1,0 +1,27 @@
+{
+  "name": "RadioGroup",
+  "filename": "/packages/material-ui/src/RadioGroup/RadioGroup.js",
+  "description": "",
+  "props": {
+    "children": { "type": { "name": "node" }, "required": false },
+    "defaultValue": {
+      "type": {
+        "name": "union",
+        "value": [
+          { "name": "arrayOf", "value": { "name": "string" } },
+          { "name": "number" },
+          { "name": "string" }
+        ]
+      },
+      "required": false
+    },
+    "name": { "type": { "name": "string" }, "required": false },
+    "onChange": { "type": { "name": "func" }, "required": false },
+    "value": { "type": { "name": "any" }, "required": false }
+  },
+  "spread": true,
+  "styles": { "classes": [], "name": null, "descriptions": {}, "globalClasses": {} },
+  "forwardsRefTo": "HTMLDivElement",
+  "inheritance": { "component": "FormGroup", "pathname": "/api/form-group/" },
+  "demos": "- [Radio Buttons](/components/radio-buttons/)"
+}

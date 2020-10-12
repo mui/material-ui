@@ -1,0 +1,23 @@
+{
+  "name": "ListItemSecondaryAction",
+  "filename": "/packages/material-ui/src/ListItemSecondaryAction/ListItemSecondaryAction.js",
+  "description": "Must be used as the last child of ListItem to function properly.",
+  "props": {
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" }
+  },
+  "spread": true,
+  "styles": {
+    "classes": ["root", "disableGutters"],
+    "name": "MuiListItemSecondaryAction",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiListItemSecondaryAction-root",
+      "disableGutters": "MuiListItemSecondaryAction-disableGutters"
+    }
+  },
+  "forwardsRefTo": "HTMLDivElement",
+  "inheritance": null,
+  "demos": "- [Lists](/components/lists/)"
+}

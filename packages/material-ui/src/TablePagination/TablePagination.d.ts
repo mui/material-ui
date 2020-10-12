@@ -30,25 +30,15 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
        * Override or extend the styles applied to the component.
        */
       classes?: {
-        /** Styles applied to the root element. */
         root?: string;
-        /** Styles applied to the Toolbar component. */
         toolbar?: string;
-        /** Styles applied to the spacer element. */
         spacer?: string;
-        /** Styles applied to the caption Typography components if `variant="caption"`. */
         caption?: string;
-        /** Styles applied to the Select component root element. */
         selectRoot?: string;
-        /** Styles applied to the Select component `select` class. */
         select?: string;
-        /** Styles applied to the Select component `icon` class. */
         selectIcon?: string;
-        /** Styles applied to the `InputBase` component. */
         input?: string;
-        /** Styles applied to the MenuItem component. */
         menuItem?: string;
-        /** Styles applied to the internal `TablePaginationActions` component. */
         actions?: string;
       };
       /**

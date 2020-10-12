@@ -1,0 +1,43 @@
+{
+  "name": "TableRow",
+  "filename": "/packages/material-ui/src/TableRow/TableRow.js",
+  "description": "Will automatically set dynamic row height\nbased on the material table element parent (head, body, etc).",
+  "props": {
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "component": {
+      "type": { "name": "elementType" },
+      "required": false,
+      "defaultValue": { "value": "'tr'", "computed": false }
+    },
+    "hover": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "selected": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": ["root", "selected", "hover", "head", "footer"],
+    "name": "MuiTableRow",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiTableRow-root",
+      "selected": "Mui-selected",
+      "hover": "MuiTableRow-hover",
+      "head": "MuiTableRow-head",
+      "footer": "MuiTableRow-footer"
+    }
+  },
+  "forwardsRefTo": "HTMLTableRowElement",
+  "inheritance": null,
+  "demos": "- [Tables](/components/tables/)"
+}

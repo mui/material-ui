@@ -1,0 +1,26 @@
+{
+  "name": "DialogActions",
+  "filename": "/packages/material-ui/src/DialogActions/DialogActions.js",
+  "description": "",
+  "props": {
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "disableSpacing": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": ["root", "spacing"],
+    "name": "MuiDialogActions",
+    "descriptions": {},
+    "globalClasses": { "root": "MuiDialogActions-root", "spacing": "MuiDialogActions-spacing" }
+  },
+  "forwardsRefTo": "HTMLDivElement",
+  "inheritance": null,
+  "demos": "- [Dialogs](/components/dialogs/)"
+}

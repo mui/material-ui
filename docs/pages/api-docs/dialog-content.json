@@ -1,0 +1,26 @@
+{
+  "name": "DialogContent",
+  "filename": "/packages/material-ui/src/DialogContent/DialogContent.js",
+  "description": "",
+  "props": {
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "dividers": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": ["root", "dividers"],
+    "name": "MuiDialogContent",
+    "descriptions": {},
+    "globalClasses": { "root": "MuiDialogContent-root", "dividers": "MuiDialogContent-dividers" }
+  },
+  "forwardsRefTo": "HTMLDivElement",
+  "inheritance": null,
+  "demos": "- [Dialogs](/components/dialogs/)"
+}

@@ -1,0 +1,61 @@
+{
+  "name": "Radio",
+  "filename": "/packages/material-ui/src/Radio/Radio.js",
+  "description": "",
+  "props": {
+    "checked": { "type": { "name": "bool" }, "required": false },
+    "checkedIcon": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "color": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'default'", "computed": false },
+          { "value": "'primary'", "computed": false },
+          { "value": "'secondary'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'secondary'" },
+      "defaultValue": { "value": "'secondary'", "computed": false }
+    },
+    "disabled": { "type": { "name": "bool" }, "required": false },
+    "disableRipple": { "type": { "name": "bool" }, "required": false },
+    "icon": { "type": { "name": "node" }, "required": false },
+    "id": { "type": { "name": "string" }, "required": false },
+    "inputProps": { "type": { "name": "object" }, "required": false },
+    "inputRef": { "type": { "name": "custom", "raw": "refType" }, "required": false },
+    "name": { "type": { "name": "string" }, "required": false },
+    "onChange": { "type": { "name": "func" }, "required": false },
+    "required": { "type": { "name": "bool" }, "required": false },
+    "size": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'medium'", "computed": false },
+          { "value": "'small'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'medium'" },
+      "defaultValue": { "value": "'medium'", "computed": false }
+    },
+    "value": { "type": { "name": "any" }, "required": false }
+  },
+  "spread": true,
+  "styles": {
+    "classes": ["root", "checked", "disabled", "colorPrimary", "colorSecondary"],
+    "name": "MuiRadio",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiRadio-root",
+      "checked": "Mui-checked",
+      "disabled": "Mui-disabled",
+      "colorPrimary": "MuiRadio-colorPrimary",
+      "colorSecondary": "MuiRadio-colorSecondary"
+    }
+  },
+  "forwardsRefTo": "HTMLSpanElement",
+  "inheritance": { "component": "IconButton", "pathname": "/api/icon-button/" },
+  "demos": "- [Radio Buttons](/components/radio-buttons/)"
+}

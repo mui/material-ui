@@ -1,0 +1,58 @@
+{
+  "name": "FormLabel",
+  "filename": "/packages/material-ui/src/FormLabel/FormLabel.js",
+  "description": "",
+  "props": {
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "color": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'primary'", "computed": false },
+          { "value": "'secondary'", "computed": false }
+        ]
+      },
+      "required": false
+    },
+    "component": {
+      "type": { "name": "elementType" },
+      "required": false,
+      "defaultValue": { "value": "'label'", "computed": false }
+    },
+    "disabled": { "type": { "name": "bool" }, "required": false },
+    "error": { "type": { "name": "bool" }, "required": false },
+    "filled": { "type": { "name": "bool" }, "required": false },
+    "focused": { "type": { "name": "bool" }, "required": false },
+    "required": { "type": { "name": "bool" }, "required": false }
+  },
+  "spread": true,
+  "styles": {
+    "classes": [
+      "root",
+      "colorSecondary",
+      "focused",
+      "disabled",
+      "error",
+      "filled",
+      "required",
+      "asterisk"
+    ],
+    "name": "MuiFormLabel",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiFormLabel-root",
+      "colorSecondary": "MuiFormLabel-colorSecondary",
+      "focused": "Mui-focused",
+      "disabled": "Mui-disabled",
+      "error": "Mui-error",
+      "filled": "MuiFormLabel-filled",
+      "required": "Mui-required",
+      "asterisk": "MuiFormLabel-asterisk"
+    }
+  },
+  "forwardsRefTo": "HTMLLabelElement",
+  "inheritance": null,
+  "demos": "- [Checkboxes](/components/checkboxes/)\n- [Radio Buttons](/components/radio-buttons/)\n- [Switches](/components/switches/)"
+}

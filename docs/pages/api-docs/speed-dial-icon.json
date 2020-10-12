@@ -1,0 +1,29 @@
+{
+  "name": "SpeedDialIcon",
+  "filename": "/packages/material-ui/src/SpeedDialIcon/SpeedDialIcon.js",
+  "description": "",
+  "props": {
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "icon": { "type": { "name": "node" }, "required": false },
+    "open": { "type": { "name": "bool" }, "required": false },
+    "openIcon": { "type": { "name": "node" }, "required": false }
+  },
+  "spread": true,
+  "styles": {
+    "classes": ["root", "icon", "iconOpen", "iconWithOpenIconOpen", "openIcon", "openIconOpen"],
+    "name": "MuiSpeedDialIcon",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiSpeedDialIcon-root",
+      "icon": "MuiSpeedDialIcon-icon",
+      "iconOpen": "MuiSpeedDialIcon-iconOpen",
+      "iconWithOpenIconOpen": "MuiSpeedDialIcon-iconWithOpenIconOpen",
+      "openIcon": "MuiSpeedDialIcon-openIcon",
+      "openIconOpen": "MuiSpeedDialIcon-openIconOpen"
+    }
+  },
+  "forwardsRefTo": "HTMLSpanElement",
+  "inheritance": null,
+  "demos": "- [Speed Dial](/components/speed-dial/)"
+}

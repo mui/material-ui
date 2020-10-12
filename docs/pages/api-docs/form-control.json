@@ -1,0 +1,109 @@
+{
+  "name": "FormControl",
+  "filename": "/packages/material-ui/src/FormControl/FormControl.js",
+  "description": "Provides context such as filled/focused/error/required for form inputs.\nRelying on the context provides high flexibility and ensures that the state always stays\nconsistent across the children of the `FormControl`.\nThis context is used by the following components:\n\n - FormLabel\n - FormHelperText\n - Input\n - InputLabel\n\nYou can find one composition example below and more going to [the demos](/components/text-fields/#components).\n\n```jsx\n<FormControl>\n  <InputLabel htmlFor=\"my-input\">Email address</InputLabel>\n  <Input id=\"my-input\" aria-describedby=\"my-helper-text\" />\n  <FormHelperText id=\"my-helper-text\">We'll never share your email.</FormHelperText>\n</FormControl>\n```\n\n⚠️ Only one `InputBase` can be used within a FormControl because it create visual inconsistencies.\nFor instance, only one input can be focused at the same time, the state shouldn't be shared.",
+  "props": {
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "color": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'primary'", "computed": false },
+          { "value": "'secondary'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'primary'" },
+      "defaultValue": { "value": "'primary'", "computed": false }
+    },
+    "component": {
+      "type": { "name": "elementType" },
+      "required": false,
+      "defaultValue": { "value": "'div'", "computed": false }
+    },
+    "disabled": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "error": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "focused": { "type": { "name": "bool" }, "required": false },
+    "fullWidth": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "hiddenLabel": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "margin": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'dense'", "computed": false },
+          { "value": "'none'", "computed": false },
+          { "value": "'normal'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'none'" },
+      "defaultValue": { "value": "'none'", "computed": false }
+    },
+    "required": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "size": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'medium'", "computed": false },
+          { "value": "'small'", "computed": false }
+        ]
+      },
+      "required": false
+    },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'filled'", "computed": false },
+          { "value": "'outlined'", "computed": false },
+          { "value": "'standard'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'standard'" },
+      "defaultValue": { "value": "'standard'", "computed": false }
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": ["root", "marginNormal", "marginDense", "fullWidth"],
+    "name": "MuiFormControl",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiFormControl-root",
+      "marginNormal": "MuiFormControl-marginNormal",
+      "marginDense": "MuiFormControl-marginDense",
+      "fullWidth": "MuiFormControl-fullWidth"
+    }
+  },
+  "forwardsRefTo": "HTMLDivElement",
+  "inheritance": null,
+  "demos": "- [Checkboxes](/components/checkboxes/)\n- [Radio Buttons](/components/radio-buttons/)\n- [Switches](/components/switches/)\n- [Text Fields](/components/text-fields/)"
+}

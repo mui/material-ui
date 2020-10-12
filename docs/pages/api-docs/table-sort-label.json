@@ -1,0 +1,56 @@
+{
+  "name": "TableSortLabel",
+  "filename": "/packages/material-ui/src/TableSortLabel/TableSortLabel.js",
+  "description": "A button based label for placing inside `TableCell` for column sorting.",
+  "props": {
+    "active": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "direction": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'asc'", "computed": false },
+          { "value": "'desc'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'asc'" },
+      "defaultValue": { "value": "'asc'", "computed": false }
+    },
+    "hideSortIcon": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "IconComponent": {
+      "type": { "name": "elementType" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "ArrowDownwardIcon" },
+      "defaultValue": { "value": "ArrowDownwardIcon", "computed": true }
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": ["root", "active", "icon", "iconDirectionDesc", "iconDirectionAsc"],
+    "name": "MuiTableSortLabel",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiTableSortLabel-root",
+      "active": "MuiTableSortLabel-active",
+      "icon": "MuiTableSortLabel-icon",
+      "iconDirectionDesc": "MuiTableSortLabel-iconDirectionDesc",
+      "iconDirectionAsc": "MuiTableSortLabel-iconDirectionAsc"
+    }
+  },
+  "forwardsRefTo": "HTMLSpanElement",
+  "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },
+  "demos": "- [Tables](/components/tables/)"
+}

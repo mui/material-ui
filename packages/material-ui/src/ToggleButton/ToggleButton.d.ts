@@ -14,17 +14,11 @@ export type ToggleButtonTypeMap<
      * Override or extend the styles applied to the component.
      */
     classes?: {
-      /** Styles applied to the root element. */
       root?: string;
-      /** Pseudo-class applied to the root element if `disabled={true}`. */
       disabled?: string;
-      /** Pseudo-class applied to the root element if `selected={true}`. */
       selected?: string;
-      /** Styles applied to the `label` wrapper element. */
       label?: string;
-      /** Styles applied to the root element if `size="small"`. */
       sizeSmall?: string;
-      /** Styles applied to the root element if `size="large"`. */
       sizeLarge?: string;
     };
     /**

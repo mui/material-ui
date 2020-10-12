@@ -1,0 +1,106 @@
+{
+  "name": "Select",
+  "filename": "/packages/material-ui/src/Select/Select.js",
+  "description": "",
+  "props": {
+    "autoWidth": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "defaultValue": { "type": { "name": "any" }, "required": false },
+    "displayEmpty": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "IconComponent": {
+      "type": { "name": "elementType" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "ArrowDropDownIcon" },
+      "defaultValue": { "value": "ArrowDropDownIcon", "computed": true }
+    },
+    "id": { "type": { "name": "string" }, "required": false },
+    "input": { "type": { "name": "element" }, "required": false },
+    "inputProps": { "type": { "name": "object" }, "required": false },
+    "label": { "type": { "name": "node" }, "required": false },
+    "labelId": { "type": { "name": "string" }, "required": false },
+    "labelWidth": {
+      "type": { "name": "number" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "0" },
+      "defaultValue": { "value": "0", "computed": false }
+    },
+    "MenuProps": { "type": { "name": "object" }, "required": false },
+    "multiple": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "native": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "onChange": { "type": { "name": "func" }, "required": false },
+    "onClose": { "type": { "name": "func" }, "required": false },
+    "onOpen": { "type": { "name": "func" }, "required": false },
+    "open": { "type": { "name": "bool" }, "required": false },
+    "renderValue": { "type": { "name": "func" }, "required": false },
+    "SelectDisplayProps": { "type": { "name": "object" }, "required": false },
+    "value": { "type": { "name": "any" }, "required": false },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'filled'", "computed": false },
+          { "value": "'outlined'", "computed": false },
+          { "value": "'standard'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'standard'" },
+      "defaultValue": { "value": "'standard'", "computed": false }
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": [
+      "root",
+      "select",
+      "filled",
+      "outlined",
+      "selectMenu",
+      "disabled",
+      "icon",
+      "iconOpen",
+      "iconFilled",
+      "iconOutlined",
+      "nativeInput"
+    ],
+    "name": "MuiSelect",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiSelect-root",
+      "select": "MuiSelect-select",
+      "filled": "MuiSelect-filled",
+      "outlined": "MuiSelect-outlined",
+      "selectMenu": "MuiSelect-selectMenu",
+      "disabled": "Mui-disabled",
+      "icon": "MuiSelect-icon",
+      "iconOpen": "MuiSelect-iconOpen",
+      "iconFilled": "MuiSelect-iconFilled",
+      "iconOutlined": "MuiSelect-iconOutlined",
+      "nativeInput": "MuiSelect-nativeInput"
+    }
+  },
+  "forwardsRefTo": "HTMLDivElement",
+  "inheritance": { "component": "Input", "pathname": "/api/input/" },
+  "demos": "- [Selects](/components/selects/)"
+}

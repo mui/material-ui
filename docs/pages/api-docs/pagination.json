@@ -1,0 +1,150 @@
+{
+  "name": "Pagination",
+  "filename": "/packages/material-ui/src/Pagination/Pagination.js",
+  "description": "",
+  "props": {
+    "boundaryCount": {
+      "type": { "name": "number" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "1" },
+      "defaultValue": { "value": "1", "computed": false }
+    },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "color": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'primary'", "computed": false },
+          { "value": "'secondary'", "computed": false },
+          { "value": "'standard'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'standard'" },
+      "defaultValue": { "value": "'standard'", "computed": false }
+    },
+    "count": {
+      "type": { "name": "number" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "1" },
+      "defaultValue": { "value": "1", "computed": false }
+    },
+    "defaultPage": {
+      "type": { "name": "number" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "1" },
+      "defaultValue": { "value": "1", "computed": false }
+    },
+    "disabled": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "getItemAriaLabel": {
+      "type": { "name": "func" },
+      "required": false,
+      "defaultValue": {
+        "value": "function defaultGetAriaLabel(type, page, selected) {\n  if (type === 'page') {\n    return `${selected ? '' : 'Go to '}page ${page}`;\n  }\n  return `Go to ${type} page`;\n}",
+        "computed": false
+      }
+    },
+    "hideNextButton": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "hidePrevButton": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "onChange": { "type": { "name": "func" }, "required": false },
+    "page": { "type": { "name": "number" }, "required": false },
+    "renderItem": {
+      "type": { "name": "func" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "(item) => <PaginationItem {...item} />" },
+      "defaultValue": { "value": "(item) => <PaginationItem {...item} />", "computed": false }
+    },
+    "shape": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'circular'", "computed": false },
+          { "value": "'rounded'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'circular'" },
+      "defaultValue": { "value": "'circular'", "computed": false }
+    },
+    "showFirstButton": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "showLastButton": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "siblingCount": {
+      "type": { "name": "number" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "1" },
+      "defaultValue": { "value": "1", "computed": false }
+    },
+    "size": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'large'", "computed": false },
+          { "value": "'medium'", "computed": false },
+          { "value": "'small'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'medium'" },
+      "defaultValue": { "value": "'medium'", "computed": false }
+    },
+    "variant": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "enum",
+            "value": [
+              { "value": "'outlined'", "computed": false },
+              { "value": "'text'", "computed": false }
+            ]
+          },
+          { "name": "string" }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'text'" },
+      "defaultValue": { "value": "'text'", "computed": false }
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": ["root", "ul", "outlined", "text"],
+    "name": "MuiPagination",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiPagination-root",
+      "ul": "MuiPagination-ul",
+      "outlined": "MuiPagination-outlined",
+      "text": "MuiPagination-text"
+    }
+  },
+  "forwardsRefTo": "HTMLElement",
+  "inheritance": null,
+  "demos": "- [Pagination](/components/pagination/)"
+}

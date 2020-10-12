@@ -12,13 +12,9 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
      * Override or extend the styles applied to the component.
      */
     classes?: {
-      /** Styles applied to the root element. */
       root?: string;
-      /** Styles applied to the root element if `margin="normal"`. */
       marginNormal?: string;
-      /** Styles applied to the root element if `margin="dense"`. */
       marginDense?: string;
-      /** Styles applied to the root element if `fullWidth={true}`. */
       fullWidth?: string;
     };
     /**

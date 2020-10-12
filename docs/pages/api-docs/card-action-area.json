@@ -1,0 +1,29 @@
+{
+  "name": "CardActionArea",
+  "filename": "/packages/material-ui/src/CardActionArea/CardActionArea.js",
+  "description": "",
+  "props": {
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "focusVisibleClassName": {
+      "type": { "name": "string" },
+      "required": false,
+      "description": "@ignore"
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": ["root", "focusVisible", "focusHighlight"],
+    "name": "MuiCardActionArea",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiCardActionArea-root",
+      "focusVisible": "Mui-focusVisible",
+      "focusHighlight": "MuiCardActionArea-focusHighlight"
+    }
+  },
+  "forwardsRefTo": "HTMLButtonElement",
+  "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },
+  "demos": "- [Cards](/components/cards/)"
+}

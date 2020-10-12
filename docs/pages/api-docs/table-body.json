@@ -1,0 +1,25 @@
+{
+  "name": "TableBody",
+  "filename": "/packages/material-ui/src/TableBody/TableBody.js",
+  "description": "",
+  "props": {
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "component": {
+      "type": { "name": "elementType" },
+      "required": false,
+      "defaultValue": { "value": "'tbody'", "computed": false }
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": ["root"],
+    "name": "MuiTableBody",
+    "descriptions": {},
+    "globalClasses": { "root": "MuiTableBody-root" }
+  },
+  "forwardsRefTo": "HTMLTableSectionElement",
+  "inheritance": null,
+  "demos": "- [Tables](/components/tables/)"
+}

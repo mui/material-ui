@@ -1,15 +1,23 @@
 import React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
+import ApiDocs from 'docs/src/modules/components/ApiDocs';
+import mapApiTranslations from 'docs/src/modules/utils/mapApiTranslations';
+import jsonPageContent from './text-field.json';
 
-const pageFilename = 'api/text-field';
-const requireRaw = require.context('!raw-loader!./', false, /\/text-field\.md$/);
+export async function getStaticProps() {
+  const req = require.context('docs/translations', false, /prop-descriptions.*.json$/);
+  const req2 = require.context('docs/translations', false, /class-descriptions.*.json$/);
+  const req3 = require.context('docs/translations', false, /class-conditions.*.json$/);
 
-export default function Page({ docs }) {
-  return <MarkdownDocs docs={docs} />;
+  const propDescriptions = mapApiTranslations(req, 'TextField');
+  const classDescriptions = mapApiTranslations(req2, 'TextField');
+  const classConditions = mapApiTranslations(req3, 'TextField');
+
+  const pageContent = { ...jsonPageContent, propDescriptions, classDescriptions, classConditions };
+  return {
+    props: { pageContent },
+  };
 }
 
-Page.getInitialProps = () => {
-  const { demos, docs } = prepareMarkdown({ pageFilename, requireRaw });
-  return { demos, docs };
-};
+export default function Page({ pageContent }) {
+  return <ApiDocs pageContent={pageContent} />;
+}

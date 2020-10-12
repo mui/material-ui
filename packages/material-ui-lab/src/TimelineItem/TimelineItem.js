@@ -32,7 +32,7 @@ export const styles = () => ({
       },
     },
   },
-  /* Styles applied to the root element if no there isn't TimelineOppositeContent provided. */
+  /* Styles applied to the root element if TimelineOppositeContent isn't provided. */
   missingOppositeContent: {
     '&:before': {
       content: '""',

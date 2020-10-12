@@ -1,0 +1,74 @@
+{
+  "name": "InputAdornment",
+  "filename": "/packages/material-ui/src/InputAdornment/InputAdornment.js",
+  "description": "",
+  "props": {
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "component": {
+      "type": { "name": "elementType" },
+      "required": false,
+      "defaultValue": { "value": "'div'", "computed": false }
+    },
+    "disablePointerEvents": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "disableTypography": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "position": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'end'", "computed": false },
+          { "value": "'start'", "computed": false }
+        ]
+      },
+      "required": false
+    },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'filled'", "computed": false },
+          { "value": "'outlined'", "computed": false },
+          { "value": "'standard'", "computed": false }
+        ]
+      },
+      "required": false
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": [
+      "root",
+      "filled",
+      "positionStart",
+      "positionEnd",
+      "disablePointerEvents",
+      "hiddenLabel",
+      "marginDense"
+    ],
+    "name": "MuiInputAdornment",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiInputAdornment-root",
+      "filled": "MuiInputAdornment-filled",
+      "positionStart": "MuiInputAdornment-positionStart",
+      "positionEnd": "MuiInputAdornment-positionEnd",
+      "disablePointerEvents": "MuiInputAdornment-disablePointerEvents",
+      "hiddenLabel": "MuiInputAdornment-hiddenLabel",
+      "marginDense": "MuiInputAdornment-marginDense"
+    }
+  },
+  "forwardsRefTo": "HTMLDivElement",
+  "inheritance": null,
+  "demos": "- [Text Fields](/components/text-fields/)"
+}

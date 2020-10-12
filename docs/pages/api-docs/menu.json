@@ -1,0 +1,91 @@
+{
+  "name": "Menu",
+  "filename": "/packages/material-ui/src/Menu/Menu.js",
+  "description": "",
+  "props": {
+    "anchorEl": {
+      "type": {
+        "name": "union",
+        "value": [{ "name": "custom", "raw": "HTMLElementType" }, { "name": "func" }]
+      },
+      "required": false
+    },
+    "autoFocus": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "true" },
+      "defaultValue": { "value": "true", "computed": false }
+    },
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "disableAutoFocusItem": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "MenuListProps": {
+      "type": { "name": "object" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "{}" },
+      "defaultValue": { "value": "{}", "computed": false }
+    },
+    "onClose": { "type": { "name": "func" }, "required": false },
+    "open": { "type": { "name": "bool" }, "required": true },
+    "PaperProps": {
+      "type": { "name": "object" },
+      "required": false,
+      "description": "@ignore",
+      "defaultValue": { "value": "{}", "computed": false }
+    },
+    "PopoverClasses": { "type": { "name": "object" }, "required": false },
+    "transitionDuration": {
+      "type": {
+        "name": "union",
+        "value": [
+          { "name": "enum", "value": [{ "value": "'auto'", "computed": false }] },
+          { "name": "number" },
+          {
+            "name": "shape",
+            "value": {
+              "appear": { "name": "number", "required": false },
+              "enter": { "name": "number", "required": false },
+              "exit": { "name": "number", "required": false }
+            }
+          }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'auto'" },
+      "defaultValue": { "value": "'auto'", "computed": false }
+    },
+    "TransitionProps": {
+      "type": { "name": "object" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "{}" },
+      "defaultValue": { "value": "{}", "computed": false }
+    },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'menu'", "computed": false },
+          { "value": "'selectedMenu'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'selectedMenu'" },
+      "defaultValue": { "value": "'selectedMenu'", "computed": false }
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": ["paper", "list"],
+    "name": "MuiMenu",
+    "descriptions": {},
+    "globalClasses": { "paper": "MuiMenu-paper", "list": "MuiMenu-list" }
+  },
+  "forwardsRefTo": "HTMLDivElement",
+  "inheritance": { "component": "Popover", "pathname": "/api/popover/" },
+  "demos": "- [App Bar](/components/app-bar/)\n- [Menus](/components/menus/)"
+}

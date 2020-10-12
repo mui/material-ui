@@ -1,0 +1,187 @@
+{
+  "name": "Typography",
+  "filename": "/packages/material-ui/src/Typography/Typography.js",
+  "description": "",
+  "props": {
+    "align": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'center'", "computed": false },
+          { "value": "'inherit'", "computed": false },
+          { "value": "'justify'", "computed": false },
+          { "value": "'left'", "computed": false },
+          { "value": "'right'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'inherit'" },
+      "defaultValue": { "value": "'inherit'", "computed": false }
+    },
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "color": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'error'", "computed": false },
+          { "value": "'inherit'", "computed": false },
+          { "value": "'initial'", "computed": false },
+          { "value": "'primary'", "computed": false },
+          { "value": "'secondary'", "computed": false },
+          { "value": "'textPrimary'", "computed": false },
+          { "value": "'textSecondary'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'initial'" },
+      "defaultValue": { "value": "'initial'", "computed": false }
+    },
+    "component": { "type": { "name": "elementType" }, "required": false },
+    "display": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'block'", "computed": false },
+          { "value": "'initial'", "computed": false },
+          { "value": "'inline'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'initial'" },
+      "defaultValue": { "value": "'initial'", "computed": false }
+    },
+    "gutterBottom": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "noWrap": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "paragraph": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "variant": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "enum",
+            "value": [
+              { "value": "'body1'", "computed": false },
+              { "value": "'body2'", "computed": false },
+              { "value": "'button'", "computed": false },
+              { "value": "'caption'", "computed": false },
+              { "value": "'h1'", "computed": false },
+              { "value": "'h2'", "computed": false },
+              { "value": "'h3'", "computed": false },
+              { "value": "'h4'", "computed": false },
+              { "value": "'h5'", "computed": false },
+              { "value": "'h6'", "computed": false },
+              { "value": "'inherit'", "computed": false },
+              { "value": "'overline'", "computed": false },
+              { "value": "'subtitle1'", "computed": false },
+              { "value": "'subtitle2'", "computed": false }
+            ]
+          },
+          { "name": "string" }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'body1'" },
+      "defaultValue": { "value": "'body1'", "computed": false }
+    },
+    "variantMapping": {
+      "type": { "name": "object" },
+      "required": false,
+      "jsdocDefaultValue": {
+        "value": "{\n  h1: 'h1',\n  h2: 'h2',\n  h3: 'h3',\n  h4: 'h4',\n  h5: 'h5',\n  h6: 'h6',\n  subtitle1: 'h6',\n  subtitle2: 'h6',\n  body1: 'p',\n  body2: 'p',\n  inherit: 'p',\n}"
+      },
+      "defaultValue": {
+        "value": "{\n  h1: 'h1',\n  h2: 'h2',\n  h3: 'h3',\n  h4: 'h4',\n  h5: 'h5',\n  h6: 'h6',\n  subtitle1: 'h6',\n  subtitle2: 'h6',\n  body1: 'p',\n  body2: 'p',\n  inherit: 'p',\n}",
+        "computed": false
+      }
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": [
+      "root",
+      "body2",
+      "body1",
+      "caption",
+      "button",
+      "h1",
+      "h2",
+      "h3",
+      "h4",
+      "h5",
+      "h6",
+      "subtitle1",
+      "subtitle2",
+      "overline",
+      "inherit",
+      "alignLeft",
+      "alignCenter",
+      "alignRight",
+      "alignJustify",
+      "noWrap",
+      "gutterBottom",
+      "paragraph",
+      "colorInherit",
+      "colorPrimary",
+      "colorSecondary",
+      "colorTextPrimary",
+      "colorTextSecondary",
+      "colorError",
+      "displayInline",
+      "displayBlock"
+    ],
+    "name": "MuiTypography",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiTypography-root",
+      "body2": "MuiTypography-body2",
+      "body1": "MuiTypography-body1",
+      "caption": "MuiTypography-caption",
+      "button": "MuiTypography-button",
+      "h1": "MuiTypography-h1",
+      "h2": "MuiTypography-h2",
+      "h3": "MuiTypography-h3",
+      "h4": "MuiTypography-h4",
+      "h5": "MuiTypography-h5",
+      "h6": "MuiTypography-h6",
+      "subtitle1": "MuiTypography-subtitle1",
+      "subtitle2": "MuiTypography-subtitle2",
+      "overline": "MuiTypography-overline",
+      "inherit": "MuiTypography-inherit",
+      "alignLeft": "MuiTypography-alignLeft",
+      "alignCenter": "MuiTypography-alignCenter",
+      "alignRight": "MuiTypography-alignRight",
+      "alignJustify": "MuiTypography-alignJustify",
+      "noWrap": "MuiTypography-noWrap",
+      "gutterBottom": "MuiTypography-gutterBottom",
+      "paragraph": "MuiTypography-paragraph",
+      "colorInherit": "MuiTypography-colorInherit",
+      "colorPrimary": "MuiTypography-colorPrimary",
+      "colorSecondary": "MuiTypography-colorSecondary",
+      "colorTextPrimary": "MuiTypography-colorTextPrimary",
+      "colorTextSecondary": "MuiTypography-colorTextSecondary",
+      "colorError": "MuiTypography-colorError",
+      "displayInline": "MuiTypography-displayInline",
+      "displayBlock": "MuiTypography-displayBlock"
+    }
+  },
+  "forwardsRefTo": "HTMLParagraphElement",
+  "inheritance": null,
+  "demos": "- [Breadcrumbs](/components/breadcrumbs/)\n- [Typography](/components/typography/)"
+}

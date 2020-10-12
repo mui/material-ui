@@ -1,0 +1,72 @@
+{
+  "name": "TimelineDot",
+  "filename": "/packages/material-ui-lab/src/TimelineDot/TimelineDot.js",
+  "description": "",
+  "props": {
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "color": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'grey'", "computed": false },
+          { "value": "'inherit'", "computed": false },
+          { "value": "'primary'", "computed": false },
+          { "value": "'secondary'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'grey'" },
+      "defaultValue": { "value": "'grey'", "computed": false }
+    },
+    "variant": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "enum",
+            "value": [
+              { "value": "'filled'", "computed": false },
+              { "value": "'outlined'", "computed": false }
+            ]
+          },
+          { "name": "string" }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'filled'" },
+      "defaultValue": { "value": "'filled'", "computed": false }
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": [
+      "root",
+      "filled",
+      "outlined",
+      "filledGrey",
+      "outlinedGrey",
+      "filledPrimary",
+      "outlinedPrimary",
+      "filledSecondary",
+      "outlinedSecondary"
+    ],
+    "name": "MuiTimelineDot",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiTimelineDot-root",
+      "filled": "MuiTimelineDot-filled",
+      "outlined": "MuiTimelineDot-outlined",
+      "filledGrey": "MuiTimelineDot-filledGrey",
+      "outlinedGrey": "MuiTimelineDot-outlinedGrey",
+      "filledPrimary": "MuiTimelineDot-filledPrimary",
+      "outlinedPrimary": "MuiTimelineDot-outlinedPrimary",
+      "filledSecondary": "MuiTimelineDot-filledSecondary",
+      "outlinedSecondary": "MuiTimelineDot-outlinedSecondary"
+    }
+  },
+  "forwardsRefTo": "HTMLSpanElement",
+  "inheritance": null,
+  "demos": "- [Timeline](/components/timeline/)"
+}

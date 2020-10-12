@@ -1,0 +1,71 @@
+{
+  "name": "Container",
+  "filename": "/packages/material-ui/src/Container/Container.js",
+  "description": "",
+  "props": {
+    "children": { "type": { "name": "node" }, "required": false, "description": "@ignore" },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "component": {
+      "type": { "name": "elementType" },
+      "required": false,
+      "defaultValue": { "value": "'div'", "computed": false }
+    },
+    "disableGutters": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "fixed": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "maxWidth": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'lg'", "computed": false },
+          { "value": "'md'", "computed": false },
+          { "value": "'sm'", "computed": false },
+          { "value": "'xl'", "computed": false },
+          { "value": "'xs'", "computed": false },
+          { "value": "false", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'lg'" },
+      "defaultValue": { "value": "'lg'", "computed": false }
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": [
+      "root",
+      "disableGutters",
+      "fixed",
+      "maxWidthXs",
+      "maxWidthSm",
+      "maxWidthMd",
+      "maxWidthLg",
+      "maxWidthXl"
+    ],
+    "name": "MuiContainer",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiContainer-root",
+      "disableGutters": "MuiContainer-disableGutters",
+      "fixed": "MuiContainer-fixed",
+      "maxWidthXs": "MuiContainer-maxWidthXs",
+      "maxWidthSm": "MuiContainer-maxWidthSm",
+      "maxWidthMd": "MuiContainer-maxWidthMd",
+      "maxWidthLg": "MuiContainer-maxWidthLg",
+      "maxWidthXl": "MuiContainer-maxWidthXl"
+    }
+  },
+  "forwardsRefTo": "HTMLElement",
+  "inheritance": null,
+  "demos": "- [Container](/components/container/)"
+}

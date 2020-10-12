@@ -25,13 +25,9 @@ export interface StepperProps extends StandardProps<PaperProps> {
    * Override or extend the styles applied to the component.
    */
   classes?: {
-    /** Styles applied to the root element. */
     root?: string;
-    /** Styles applied to the root element if `orientation="horizontal"`. */
     horizontal?: string;
-    /** Styles applied to the root element if `orientation="vertical"`. */
     vertical?: string;
-    /** Styles applied to the root element if `alternativeLabel={true}`. */
     alternativeLabel?: string;
   };
   /**

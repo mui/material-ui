@@ -12,29 +12,17 @@ export interface SwitchProps
    * Override or extend the styles applied to the component.
    */
   classes?: {
-    /** Styles applied to the root element. */
     root?: string;
-    /** Styles applied to the root element if `edge="start"`. */
     edgeStart?: string;
-    /** Styles applied to the root element if `edge="end"`. */
     edgeEnd?: string;
-    /** Styles applied to the internal `SwitchBase` component's `root` class. */
     switchBase?: string;
-    /** Styles applied to the internal SwitchBase component's root element if `color="primary"`. */
     colorPrimary?: string;
-    /** Styles applied to the internal SwitchBase component's root element if `color="secondary"`. */
     colorSecondary?: string;
-    /** Styles applied to the root element if `size="small"`. */
     sizeSmall?: string;
-    /** Pseudo-class applied to the internal `SwitchBase` component's `checked` class. */
     checked?: string;
-    /** Pseudo-class applied to the internal SwitchBase component's disabled class. */
     disabled?: string;
-    /** Styles applied to the internal SwitchBase component's input element. */
     input?: string;
-    /** Styles used to create the thumb passed to the internal `SwitchBase` component `icon` prop. */
     thumb?: string;
-    /** Styles applied to the track element. */
     track?: string;
   };
   /**

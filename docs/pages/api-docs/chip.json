@@ -1,0 +1,145 @@
+{
+  "name": "Chip",
+  "filename": "/packages/material-ui/src/Chip/Chip.js",
+  "description": "Chips represent complex entities in small blocks, such as a contact.",
+  "props": {
+    "avatar": { "type": { "name": "element" }, "required": false },
+    "children": { "type": { "name": "custom", "raw": "unsupportedProp" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "clickable": { "type": { "name": "bool" }, "required": false },
+    "color": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'default'", "computed": false },
+          { "value": "'primary'", "computed": false },
+          { "value": "'secondary'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'default'" },
+      "defaultValue": { "value": "'default'", "computed": false }
+    },
+    "component": { "type": { "name": "elementType" }, "required": false },
+    "deleteIcon": { "type": { "name": "element" }, "required": false },
+    "disabled": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "icon": { "type": { "name": "element" }, "required": false },
+    "label": { "type": { "name": "node" }, "required": false },
+    "onClick": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onDelete": { "type": { "name": "func" }, "required": false },
+    "onKeyDown": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onKeyUp": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "size": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'medium'", "computed": false },
+          { "value": "'small'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'medium'" },
+      "defaultValue": { "value": "'medium'", "computed": false }
+    },
+    "variant": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "enum",
+            "value": [
+              { "value": "'filled'", "computed": false },
+              { "value": "'outlined'", "computed": false }
+            ]
+          },
+          { "name": "string" }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'filled'" },
+      "defaultValue": { "value": "'filled'", "computed": false }
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": [
+      "root",
+      "sizeSmall",
+      "colorPrimary",
+      "colorSecondary",
+      "disabled",
+      "clickable",
+      "clickableColorPrimary",
+      "clickableColorSecondary",
+      "deletable",
+      "deletableColorPrimary",
+      "deletableColorSecondary",
+      "outlined",
+      "filled",
+      "outlinedPrimary",
+      "outlinedSecondary",
+      "avatar",
+      "avatarSmall",
+      "avatarColorPrimary",
+      "avatarColorSecondary",
+      "icon",
+      "iconSmall",
+      "iconColorPrimary",
+      "iconColorSecondary",
+      "label",
+      "labelSmall",
+      "deleteIcon",
+      "deleteIconSmall",
+      "deleteIconColorPrimary",
+      "deleteIconColorSecondary",
+      "deleteIconOutlinedColorPrimary",
+      "deleteIconOutlinedColorSecondary",
+      "focusVisible"
+    ],
+    "name": "MuiChip",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiChip-root",
+      "sizeSmall": "MuiChip-sizeSmall",
+      "colorPrimary": "MuiChip-colorPrimary",
+      "colorSecondary": "MuiChip-colorSecondary",
+      "disabled": "Mui-disabled",
+      "clickable": "MuiChip-clickable",
+      "clickableColorPrimary": "MuiChip-clickableColorPrimary",
+      "clickableColorSecondary": "MuiChip-clickableColorSecondary",
+      "deletable": "MuiChip-deletable",
+      "deletableColorPrimary": "MuiChip-deletableColorPrimary",
+      "deletableColorSecondary": "MuiChip-deletableColorSecondary",
+      "outlined": "MuiChip-outlined",
+      "filled": "MuiChip-filled",
+      "outlinedPrimary": "MuiChip-outlinedPrimary",
+      "outlinedSecondary": "MuiChip-outlinedSecondary",
+      "avatar": "MuiChip-avatar",
+      "avatarSmall": "MuiChip-avatarSmall",
+      "avatarColorPrimary": "MuiChip-avatarColorPrimary",
+      "avatarColorSecondary": "MuiChip-avatarColorSecondary",
+      "icon": "MuiChip-icon",
+      "iconSmall": "MuiChip-iconSmall",
+      "iconColorPrimary": "MuiChip-iconColorPrimary",
+      "iconColorSecondary": "MuiChip-iconColorSecondary",
+      "label": "MuiChip-label",
+      "labelSmall": "MuiChip-labelSmall",
+      "deleteIcon": "MuiChip-deleteIcon",
+      "deleteIconSmall": "MuiChip-deleteIconSmall",
+      "deleteIconColorPrimary": "MuiChip-deleteIconColorPrimary",
+      "deleteIconColorSecondary": "MuiChip-deleteIconColorSecondary",
+      "deleteIconOutlinedColorPrimary": "MuiChip-deleteIconOutlinedColorPrimary",
+      "deleteIconOutlinedColorSecondary": "MuiChip-deleteIconOutlinedColorSecondary",
+      "focusVisible": "Mui-focusVisible"
+    }
+  },
+  "forwardsRefTo": "HTMLDivElement",
+  "inheritance": null,
+  "demos": "- [Chips](/components/chips/)"
+}

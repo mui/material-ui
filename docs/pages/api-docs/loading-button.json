@@ -1,0 +1,70 @@
+{
+  "name": "LoadingButton",
+  "filename": "/packages/material-ui-lab/src/LoadingButton/LoadingButton.js",
+  "description": "",
+  "props": {
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "disabled": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "pending": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "pendingIndicator": {
+      "type": { "name": "node" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "<CircularProgress color=\"inherit\" size={16} />" },
+      "defaultValue": {
+        "value": "<CircularProgress color=\"inherit\" size={16} />",
+        "computed": false
+      }
+    },
+    "pendingPosition": {
+      "type": {
+        "name": "custom",
+        "raw": "chainPropTypes(PropTypes.oneOf(['start', 'end', 'center']), (props) => {\n  if (props.pendingPosition === 'start' && !props.startIcon) {\n    return new Error(\n      `Material-UI: The pendingPosition=\"start\" should be used in combination with startIcon.`,\n    );\n  }\n  if (props.pendingPosition === 'end' && !props.endIcon) {\n    return new Error(\n      `Material-UI: The pendingPosition=\"end\" should be used in combination with endIcon.`,\n    );\n  }\n  return null;\n})"
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'center'" },
+      "defaultValue": { "value": "'center'", "computed": false }
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": [
+      "root",
+      "pending",
+      "pendingIndicator",
+      "pendingIndicatorCenter",
+      "pendingIndicatorStart",
+      "pendingIndicatorEnd",
+      "endIconPendingEnd",
+      "startIconPendingStart",
+      "labelPendingCenter"
+    ],
+    "name": "MuiLoadingButton",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiLoadingButton-root",
+      "pending": "MuiLoadingButton-pending",
+      "pendingIndicator": "MuiLoadingButton-pendingIndicator",
+      "pendingIndicatorCenter": "MuiLoadingButton-pendingIndicatorCenter",
+      "pendingIndicatorStart": "MuiLoadingButton-pendingIndicatorStart",
+      "pendingIndicatorEnd": "MuiLoadingButton-pendingIndicatorEnd",
+      "endIconPendingEnd": "MuiLoadingButton-endIconPendingEnd",
+      "startIconPendingStart": "MuiLoadingButton-startIconPendingStart",
+      "labelPendingCenter": "MuiLoadingButton-labelPendingCenter"
+    }
+  },
+  "forwardsRefTo": "HTMLButtonElement",
+  "inheritance": { "component": "Button", "pathname": "/api/button/" },
+  "demos": "- [Buttons](/components/buttons/)"
+}

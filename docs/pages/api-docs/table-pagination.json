@@ -1,0 +1,133 @@
+{
+  "name": "TablePagination",
+  "filename": "/packages/material-ui/src/TablePagination/TablePagination.js",
+  "description": "A `TableCell` based component for placing inside `TableFooter` for pagination.",
+  "props": {
+    "ActionsComponent": {
+      "type": { "name": "elementType" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "TablePaginationActions" },
+      "defaultValue": { "value": "TablePaginationActions", "computed": true }
+    },
+    "backIconButtonProps": { "type": { "name": "object" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "colSpan": { "type": { "name": "number" }, "required": false, "description": "@ignore" },
+    "component": {
+      "type": { "name": "elementType" },
+      "required": false,
+      "defaultValue": { "value": "TableCell", "computed": true }
+    },
+    "count": { "type": { "name": "number" }, "required": true },
+    "getItemAriaLabel": {
+      "type": { "name": "func" },
+      "required": false,
+      "jsdocDefaultValue": {
+        "value": "function defaultGetAriaLabel(type) {\n  return `Go to ${type} page`;\n}"
+      },
+      "defaultValue": {
+        "value": "function defaultGetAriaLabel(type) {\n  return `Go to ${type} page`;\n}",
+        "computed": false
+      }
+    },
+    "labelDisplayedRows": {
+      "type": { "name": "func" },
+      "required": false,
+      "jsdocDefaultValue": {
+        "value": "function defaultLabelDisplayedRows({ from, to, count }) {\n  return `${from}-${to} of ${count !== -1 ? count : `more than ${to}`}`;\n}"
+      },
+      "defaultValue": {
+        "value": "function defaultLabelDisplayedRows({ from, to, count }) {\n  return `${from}-${to} of ${count !== -1 ? count : `more than ${to}`}`;\n}",
+        "computed": false
+      }
+    },
+    "labelRowsPerPage": {
+      "type": { "name": "node" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'Rows per page:'" },
+      "defaultValue": { "value": "'Rows per page:'", "computed": false }
+    },
+    "nextIconButtonProps": { "type": { "name": "object" }, "required": false },
+    "onPageChange": { "type": { "name": "func" }, "required": true },
+    "onRowsPerPageChange": { "type": { "name": "func" }, "required": false },
+    "page": {
+      "type": {
+        "name": "custom",
+        "raw": "chainPropTypes(PropTypes.number.isRequired, (props) => {\n  const { count, page, rowsPerPage } = props;\n\n  if (count === -1) {\n    return null;\n  }\n\n  const newLastPage = Math.max(0, Math.ceil(count / rowsPerPage) - 1);\n  if (page < 0 || page > newLastPage) {\n    return new Error(\n      'Material-UI: The page prop of a TablePagination is out of range ' +\n        `(0 to ${newLastPage}, but page is ${page}).`,\n    );\n  }\n  return null;\n})"
+      },
+      "required": false
+    },
+    "rowsPerPage": { "type": { "name": "number" }, "required": true },
+    "rowsPerPageOptions": {
+      "type": {
+        "name": "arrayOf",
+        "value": {
+          "name": "union",
+          "value": [
+            { "name": "number" },
+            {
+              "name": "shape",
+              "value": {
+                "label": { "name": "string", "required": true },
+                "value": { "name": "number", "required": true }
+              }
+            }
+          ]
+        }
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "[10, 25, 50, 100]" },
+      "defaultValue": { "value": "[10, 25, 50, 100]", "computed": false }
+    },
+    "SelectProps": {
+      "type": { "name": "object" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "{}" },
+      "defaultValue": { "value": "{}", "computed": false }
+    },
+    "showFirstButton": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "showLastButton": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": [
+      "root",
+      "toolbar",
+      "spacer",
+      "caption",
+      "selectRoot",
+      "select",
+      "selectIcon",
+      "input",
+      "menuItem",
+      "actions"
+    ],
+    "name": "MuiTablePagination",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiTablePagination-root",
+      "toolbar": "MuiTablePagination-toolbar",
+      "spacer": "MuiTablePagination-spacer",
+      "caption": "MuiTablePagination-caption",
+      "selectRoot": "MuiTablePagination-selectRoot",
+      "select": "MuiTablePagination-select",
+      "selectIcon": "MuiTablePagination-selectIcon",
+      "input": "MuiTablePagination-input",
+      "menuItem": "MuiTablePagination-menuItem",
+      "actions": "MuiTablePagination-actions"
+    }
+  },
+  "forwardsRefTo": "HTMLTableCellElement",
+  "inheritance": { "component": "TableCell", "pathname": "/api/table-cell/" },
+  "demos": "- [Tables](/components/tables/)"
+}

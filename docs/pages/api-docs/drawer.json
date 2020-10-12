@@ -1,0 +1,124 @@
+{
+  "name": "Drawer",
+  "filename": "/packages/material-ui/src/Drawer/Drawer.js",
+  "description": "The props of the [Modal](/api/modal/) component are available\nwhen `variant=\"temporary\"` is set.",
+  "props": {
+    "anchor": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'bottom'", "computed": false },
+          { "value": "'left'", "computed": false },
+          { "value": "'right'", "computed": false },
+          { "value": "'top'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'left'" },
+      "defaultValue": { "value": "'left'", "computed": false }
+    },
+    "BackdropProps": { "type": { "name": "object" }, "required": false, "description": "@ignore" },
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "elevation": {
+      "type": { "name": "number" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "16" },
+      "defaultValue": { "value": "16", "computed": false }
+    },
+    "ModalProps": {
+      "type": { "name": "object" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "{}" },
+      "defaultValue": { "value": "{}", "computed": false }
+    },
+    "onClose": { "type": { "name": "func" }, "required": false },
+    "open": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "PaperProps": {
+      "type": { "name": "object" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "{}" },
+      "defaultValue": { "value": "{}", "computed": false }
+    },
+    "SlideProps": { "type": { "name": "object" }, "required": false },
+    "transitionDuration": {
+      "type": {
+        "name": "union",
+        "value": [
+          { "name": "number" },
+          {
+            "name": "shape",
+            "value": {
+              "appear": { "name": "number", "required": false },
+              "enter": { "name": "number", "required": false },
+              "exit": { "name": "number", "required": false }
+            }
+          }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": {
+        "value": "{ enter: duration.enteringScreen, exit: duration.leavingScreen }"
+      },
+      "defaultValue": {
+        "value": "{ enter: duration.enteringScreen, exit: duration.leavingScreen }",
+        "computed": false
+      }
+    },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'permanent'", "computed": false },
+          { "value": "'persistent'", "computed": false },
+          { "value": "'temporary'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'temporary'" },
+      "defaultValue": { "value": "'temporary'", "computed": false }
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": [
+      "root",
+      "docked",
+      "paper",
+      "paperAnchorLeft",
+      "paperAnchorRight",
+      "paperAnchorTop",
+      "paperAnchorBottom",
+      "paperAnchorDockedLeft",
+      "paperAnchorDockedTop",
+      "paperAnchorDockedRight",
+      "paperAnchorDockedBottom",
+      "modal"
+    ],
+    "name": "MuiDrawer",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiDrawer-root",
+      "docked": "MuiDrawer-docked",
+      "paper": "MuiDrawer-paper",
+      "paperAnchorLeft": "MuiDrawer-paperAnchorLeft",
+      "paperAnchorRight": "MuiDrawer-paperAnchorRight",
+      "paperAnchorTop": "MuiDrawer-paperAnchorTop",
+      "paperAnchorBottom": "MuiDrawer-paperAnchorBottom",
+      "paperAnchorDockedLeft": "MuiDrawer-paperAnchorDockedLeft",
+      "paperAnchorDockedTop": "MuiDrawer-paperAnchorDockedTop",
+      "paperAnchorDockedRight": "MuiDrawer-paperAnchorDockedRight",
+      "paperAnchorDockedBottom": "MuiDrawer-paperAnchorDockedBottom",
+      "modal": "MuiDrawer-modal"
+    }
+  },
+  "forwardsRefTo": "HTMLDivElement",
+  "inheritance": null,
+  "demos": "- [Drawers](/components/drawers/)"
+}

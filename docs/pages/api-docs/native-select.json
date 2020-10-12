@@ -1,0 +1,69 @@
+{
+  "name": "NativeSelect",
+  "filename": "/packages/material-ui/src/NativeSelect/NativeSelect.js",
+  "description": "An alternative to `<Select native />` with a much smaller bundle size footprint.",
+  "props": {
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "IconComponent": {
+      "type": { "name": "elementType" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "ArrowDropDownIcon" },
+      "defaultValue": { "value": "ArrowDropDownIcon", "computed": true }
+    },
+    "input": {
+      "type": { "name": "element" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "<Input />" },
+      "defaultValue": { "value": "<Input />", "computed": false }
+    },
+    "inputProps": { "type": { "name": "object" }, "required": false },
+    "onChange": { "type": { "name": "func" }, "required": false },
+    "value": { "type": { "name": "any" }, "required": false },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'filled'", "computed": false },
+          { "value": "'outlined'", "computed": false },
+          { "value": "'standard'", "computed": false }
+        ]
+      },
+      "required": false
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": [
+      "root",
+      "select",
+      "filled",
+      "outlined",
+      "selectMenu",
+      "disabled",
+      "icon",
+      "iconOpen",
+      "iconFilled",
+      "iconOutlined",
+      "nativeInput"
+    ],
+    "name": "MuiNativeSelect",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiNativeSelect-root",
+      "select": "MuiNativeSelect-select",
+      "filled": "MuiNativeSelect-filled",
+      "outlined": "MuiNativeSelect-outlined",
+      "selectMenu": "MuiNativeSelect-selectMenu",
+      "disabled": "Mui-disabled",
+      "icon": "MuiNativeSelect-icon",
+      "iconOpen": "MuiNativeSelect-iconOpen",
+      "iconFilled": "MuiNativeSelect-iconFilled",
+      "iconOutlined": "MuiNativeSelect-iconOutlined",
+      "nativeInput": "MuiNativeSelect-nativeInput"
+    }
+  },
+  "forwardsRefTo": "HTMLDivElement",
+  "inheritance": { "component": "Input", "pathname": "/api/input/" },
+  "demos": "- [Selects](/components/selects/)"
+}

@@ -8,19 +8,12 @@ export interface SpeedDialActionProps extends StandardProps<Partial<TooltipProps
    * Override or extend the styles applied to the component.
    */
   classes?: {
-    /** Styles applied to the Fab component. */
     fab?: string;
-    /** Styles applied to the Fab component if `open={false}`. */
     fabClosed?: string;
-    /** Styles applied to the root element if `tooltipOpen={true}`. */
     staticTooltip?: string;
-    /** Styles applied to the root element if `tooltipOpen={true}` and `open={false}`. */
     staticTooltipClosed?: string;
-    /** Styles applied to the static tooltip label if `tooltipOpen={true}`. */
     staticTooltipLabel?: string;
-    /** Styles applied to the root if `tooltipOpen={true}` and `tooltipPlacement="left"`` */
     tooltipPlacementLeft?: string;
-    /** Styles applied to the root if `tooltipOpen={true}` and `tooltipPlacement="right"`` */
     tooltipPlacementRight?: string;
   };
   /**

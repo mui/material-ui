@@ -1,0 +1,25 @@
+{
+  "name": "TableFooter",
+  "filename": "/packages/material-ui/src/TableFooter/TableFooter.js",
+  "description": "",
+  "props": {
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "component": {
+      "type": { "name": "elementType" },
+      "required": false,
+      "defaultValue": { "value": "'tfoot'", "computed": false }
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": ["root"],
+    "name": "MuiTableFooter",
+    "descriptions": {},
+    "globalClasses": { "root": "MuiTableFooter-root" }
+  },
+  "forwardsRefTo": "HTMLTableSectionElement",
+  "inheritance": null,
+  "demos": "- [Tables](/components/tables/)"
+}

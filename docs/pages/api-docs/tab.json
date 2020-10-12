@@ -1,0 +1,70 @@
+{
+  "name": "Tab",
+  "filename": "/packages/material-ui/src/Tab/Tab.js",
+  "description": "",
+  "props": {
+    "children": { "type": { "name": "custom", "raw": "unsupportedProp" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "disabled": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "disableFocusRipple": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "disableRipple": { "type": { "name": "bool" }, "required": false },
+    "icon": {
+      "type": { "name": "union", "value": [{ "name": "element" }, { "name": "string" }] },
+      "required": false
+    },
+    "label": { "type": { "name": "node" }, "required": false },
+    "onChange": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onClick": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onFocus": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "value": { "type": { "name": "any" }, "required": false },
+    "wrapped": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": [
+      "root",
+      "labelIcon",
+      "textColorInherit",
+      "textColorPrimary",
+      "textColorSecondary",
+      "selected",
+      "disabled",
+      "fullWidth",
+      "wrapped",
+      "wrapper"
+    ],
+    "name": "MuiTab",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiTab-root",
+      "labelIcon": "MuiTab-labelIcon",
+      "textColorInherit": "MuiTab-textColorInherit",
+      "textColorPrimary": "MuiTab-textColorPrimary",
+      "textColorSecondary": "MuiTab-textColorSecondary",
+      "selected": "Mui-selected",
+      "disabled": "Mui-disabled",
+      "fullWidth": "MuiTab-fullWidth",
+      "wrapped": "MuiTab-wrapped",
+      "wrapper": "MuiTab-wrapper"
+    }
+  },
+  "forwardsRefTo": "HTMLButtonElement",
+  "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },
+  "demos": "- [Tabs](/components/tabs/)"
+}

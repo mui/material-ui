@@ -1,0 +1,26 @@
+{
+  "name": "CardActions",
+  "filename": "/packages/material-ui/src/CardActions/CardActions.js",
+  "description": "",
+  "props": {
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "disableSpacing": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": ["root", "spacing"],
+    "name": "MuiCardActions",
+    "descriptions": {},
+    "globalClasses": { "root": "MuiCardActions-root", "spacing": "MuiCardActions-spacing" }
+  },
+  "forwardsRefTo": "HTMLDivElement",
+  "inheritance": null,
+  "demos": "- [Cards](/components/cards/)"
+}

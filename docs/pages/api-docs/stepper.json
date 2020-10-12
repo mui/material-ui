@@ -1,0 +1,61 @@
+{
+  "name": "Stepper",
+  "filename": "/packages/material-ui/src/Stepper/Stepper.js",
+  "description": "",
+  "props": {
+    "activeStep": {
+      "type": { "name": "number" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "0" },
+      "defaultValue": { "value": "0", "computed": false }
+    },
+    "alternativeLabel": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "connector": {
+      "type": { "name": "element" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "<StepConnector />" },
+      "defaultValue": { "value": "<StepConnector />", "computed": false }
+    },
+    "nonLinear": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "orientation": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'horizontal'", "computed": false },
+          { "value": "'vertical'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'horizontal'" },
+      "defaultValue": { "value": "'horizontal'", "computed": false }
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": ["root", "horizontal", "vertical", "alternativeLabel"],
+    "name": "MuiStepper",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiStepper-root",
+      "horizontal": "MuiStepper-horizontal",
+      "vertical": "MuiStepper-vertical",
+      "alternativeLabel": "MuiStepper-alternativeLabel"
+    }
+  },
+  "forwardsRefTo": "HTMLDivElement",
+  "inheritance": null,
+  "demos": "- [Steppers](/components/steppers/)"
+}

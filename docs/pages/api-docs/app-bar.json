@@ -1,0 +1,74 @@
+{
+  "name": "AppBar",
+  "filename": "/packages/material-ui/src/AppBar/AppBar.js",
+  "description": "",
+  "props": {
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "color": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'default'", "computed": false },
+          { "value": "'inherit'", "computed": false },
+          { "value": "'primary'", "computed": false },
+          { "value": "'secondary'", "computed": false },
+          { "value": "'transparent'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'primary'" },
+      "defaultValue": { "value": "'primary'", "computed": false }
+    },
+    "position": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'absolute'", "computed": false },
+          { "value": "'fixed'", "computed": false },
+          { "value": "'relative'", "computed": false },
+          { "value": "'static'", "computed": false },
+          { "value": "'sticky'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'fixed'" },
+      "defaultValue": { "value": "'fixed'", "computed": false }
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": [
+      "root",
+      "positionFixed",
+      "positionAbsolute",
+      "positionSticky",
+      "positionStatic",
+      "positionRelative",
+      "colorDefault",
+      "colorPrimary",
+      "colorSecondary",
+      "colorInherit",
+      "colorTransparent"
+    ],
+    "name": "MuiAppBar",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiAppBar-root",
+      "positionFixed": "MuiAppBar-positionFixed",
+      "positionAbsolute": "MuiAppBar-positionAbsolute",
+      "positionSticky": "MuiAppBar-positionSticky",
+      "positionStatic": "MuiAppBar-positionStatic",
+      "positionRelative": "MuiAppBar-positionRelative",
+      "colorDefault": "MuiAppBar-colorDefault",
+      "colorPrimary": "MuiAppBar-colorPrimary",
+      "colorSecondary": "MuiAppBar-colorSecondary",
+      "colorInherit": "MuiAppBar-colorInherit",
+      "colorTransparent": "MuiAppBar-colorTransparent"
+    }
+  },
+  "forwardsRefTo": "HTMLElement",
+  "inheritance": { "component": "Paper", "pathname": "/api/paper/" },
+  "demos": "- [App Bar](/components/app-bar/)"
+}

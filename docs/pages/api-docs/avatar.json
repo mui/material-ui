@@ -1,0 +1,57 @@
+{
+  "name": "Avatar",
+  "filename": "/packages/material-ui/src/Avatar/Avatar.js",
+  "description": "",
+  "props": {
+    "alt": { "type": { "name": "string" }, "required": false },
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "component": {
+      "type": { "name": "elementType" },
+      "required": false,
+      "defaultValue": { "value": "'div'", "computed": false }
+    },
+    "imgProps": { "type": { "name": "object" }, "required": false },
+    "sizes": { "type": { "name": "string" }, "required": false },
+    "src": { "type": { "name": "string" }, "required": false },
+    "srcSet": { "type": { "name": "string" }, "required": false },
+    "variant": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "enum",
+            "value": [
+              { "value": "'circular'", "computed": false },
+              { "value": "'rounded'", "computed": false },
+              { "value": "'square'", "computed": false }
+            ]
+          },
+          { "name": "string" }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'circular'" },
+      "defaultValue": { "value": "'circular'", "computed": false }
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": ["root", "colorDefault", "circular", "rounded", "square", "img", "fallback"],
+    "name": "MuiAvatar",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiAvatar-root",
+      "colorDefault": "MuiAvatar-colorDefault",
+      "circular": "MuiAvatar-circular",
+      "rounded": "MuiAvatar-rounded",
+      "square": "MuiAvatar-square",
+      "img": "MuiAvatar-img",
+      "fallback": "MuiAvatar-fallback"
+    }
+  },
+  "forwardsRefTo": "HTMLDivElement",
+  "inheritance": null,
+  "demos": "- [Avatars](/components/avatars/)"
+}

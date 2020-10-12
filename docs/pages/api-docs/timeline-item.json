@@ -1,0 +1,36 @@
+{
+  "name": "TimelineItem",
+  "filename": "/packages/material-ui-lab/src/TimelineItem/TimelineItem.js",
+  "description": "",
+  "props": {
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" }
+  },
+  "spread": true,
+  "styles": {
+    "classes": [
+      "root",
+      "alignLeft",
+      "alignRight",
+      "alignAlternate",
+      "missingOppositeContent",
+      "content",
+      "oppositeContent"
+    ],
+    "name": "MuiTimelineItem",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiTimelineItem-root",
+      "alignLeft": "MuiTimelineItem-alignLeft",
+      "alignRight": "MuiTimelineItem-alignRight",
+      "alignAlternate": "MuiTimelineItem-alignAlternate",
+      "missingOppositeContent": "MuiTimelineItem-missingOppositeContent",
+      "content": "MuiTimelineItem-content",
+      "oppositeContent": "MuiTimelineItem-oppositeContent"
+    }
+  },
+  "forwardsRefTo": "HTMLLIElement",
+  "inheritance": null,
+  "demos": "- [Timeline](/components/timeline/)"
+}

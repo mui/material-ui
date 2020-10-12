@@ -11,13 +11,9 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      * Override or extend the styles applied to the component.
      */
     classes?: {
-      /** Styles applied to the root element. */
       root?: string;
-      /** Styles applied to the root element unless `disablePadding={true}`. */
       padding?: string;
-      /** Styles applied to the root element if dense. */
       dense?: string;
-      /** Styles applied to the root element if a `subheader` is provided. */
       subheader?: string;
     };
     /**

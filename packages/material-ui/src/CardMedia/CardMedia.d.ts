@@ -11,11 +11,8 @@ export interface CardMediaTypeMap<P, D extends React.ElementType> {
      * Override or extend the styles applied to the component.
      */
     classes?: {
-      /** Styles applied to the root element. */
       root?: string;
-      /** Styles applied to the root element if `component="video, audio, picture, iframe, or img"`. */
       media?: string;
-      /** Styles applied to the root element if `component="picture or img"`. */
       img?: string;
     };
     /**

@@ -1,0 +1,141 @@
+{
+  "name": "PaginationItem",
+  "filename": "/packages/material-ui/src/PaginationItem/PaginationItem.js",
+  "description": "",
+  "props": {
+    "children": { "type": { "name": "node" }, "required": false, "description": "@ignore" },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "color": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'primary'", "computed": false },
+          { "value": "'secondary'", "computed": false },
+          { "value": "'standard'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'standard'" },
+      "defaultValue": { "value": "'standard'", "computed": false }
+    },
+    "component": { "type": { "name": "elementType" }, "required": false },
+    "disabled": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "page": { "type": { "name": "number" }, "required": false },
+    "selected": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "shape": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'circular'", "computed": false },
+          { "value": "'rounded'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'circular'" },
+      "defaultValue": { "value": "'circular'", "computed": false }
+    },
+    "size": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'large'", "computed": false },
+          { "value": "'medium'", "computed": false },
+          { "value": "'small'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'medium'" },
+      "defaultValue": { "value": "'medium'", "computed": false }
+    },
+    "type": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'end-ellipsis'", "computed": false },
+          { "value": "'first'", "computed": false },
+          { "value": "'last'", "computed": false },
+          { "value": "'next'", "computed": false },
+          { "value": "'page'", "computed": false },
+          { "value": "'previous'", "computed": false },
+          { "value": "'start-ellipsis'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'page'" },
+      "defaultValue": { "value": "'page'", "computed": false }
+    },
+    "variant": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "enum",
+            "value": [
+              { "value": "'outlined'", "computed": false },
+              { "value": "'text'", "computed": false }
+            ]
+          },
+          { "name": "string" }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'text'" },
+      "defaultValue": { "value": "'text'", "computed": false }
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": [
+      "root",
+      "page",
+      "sizeSmall",
+      "sizeLarge",
+      "text",
+      "textPrimary",
+      "textSecondary",
+      "outlined",
+      "outlinedPrimary",
+      "outlinedSecondary",
+      "rounded",
+      "ellipsis",
+      "focusVisible",
+      "disabled",
+      "selected",
+      "icon"
+    ],
+    "name": "MuiPaginationItem",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiPaginationItem-root",
+      "page": "MuiPaginationItem-page",
+      "sizeSmall": "MuiPaginationItem-sizeSmall",
+      "sizeLarge": "MuiPaginationItem-sizeLarge",
+      "text": "MuiPaginationItem-text",
+      "textPrimary": "MuiPaginationItem-textPrimary",
+      "textSecondary": "MuiPaginationItem-textSecondary",
+      "outlined": "MuiPaginationItem-outlined",
+      "outlinedPrimary": "MuiPaginationItem-outlinedPrimary",
+      "outlinedSecondary": "MuiPaginationItem-outlinedSecondary",
+      "rounded": "MuiPaginationItem-rounded",
+      "ellipsis": "MuiPaginationItem-ellipsis",
+      "focusVisible": "Mui-focusVisible",
+      "disabled": "Mui-disabled",
+      "selected": "Mui-selected",
+      "icon": "MuiPaginationItem-icon"
+    }
+  },
+  "forwardsRefTo": "HTMLButtonElement",
+  "inheritance": null,
+  "demos": "- [Pagination](/components/pagination/)"
+}

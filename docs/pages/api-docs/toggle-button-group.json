@@ -1,0 +1,59 @@
+{
+  "name": "ToggleButtonGroup",
+  "filename": "/packages/material-ui/src/ToggleButtonGroup/ToggleButtonGroup.js",
+  "description": "",
+  "props": {
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "exclusive": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "onChange": { "type": { "name": "func" }, "required": false },
+    "orientation": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'horizontal'", "computed": false },
+          { "value": "'vertical'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'horizontal'" },
+      "defaultValue": { "value": "'horizontal'", "computed": false }
+    },
+    "size": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'large'", "computed": false },
+          { "value": "'medium'", "computed": false },
+          { "value": "'small'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'medium'" },
+      "defaultValue": { "value": "'medium'", "computed": false }
+    },
+    "value": { "type": { "name": "any" }, "required": false }
+  },
+  "spread": true,
+  "styles": {
+    "classes": ["root", "vertical", "grouped", "groupedHorizontal", "groupedVertical"],
+    "name": "MuiToggleButtonGroup",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiToggleButtonGroup-root",
+      "vertical": "MuiToggleButtonGroup-vertical",
+      "grouped": "MuiToggleButtonGroup-grouped",
+      "groupedHorizontal": "MuiToggleButtonGroup-groupedHorizontal",
+      "groupedVertical": "MuiToggleButtonGroup-groupedVertical"
+    }
+  },
+  "forwardsRefTo": "HTMLDivElement",
+  "inheritance": null,
+  "demos": "- [Toggle Button](/components/toggle-button/)"
+}

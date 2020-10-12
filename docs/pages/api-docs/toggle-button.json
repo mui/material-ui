@@ -1,0 +1,57 @@
+{
+  "name": "ToggleButton",
+  "filename": "/packages/material-ui/src/ToggleButton/ToggleButton.js",
+  "description": "",
+  "props": {
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "disabled": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "disableFocusRipple": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "disableRipple": { "type": { "name": "bool" }, "required": false },
+    "onChange": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onClick": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "selected": { "type": { "name": "bool" }, "required": false },
+    "size": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'large'", "computed": false },
+          { "value": "'medium'", "computed": false },
+          { "value": "'small'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'medium'" },
+      "defaultValue": { "value": "'medium'", "computed": false }
+    },
+    "value": { "type": { "name": "any" }, "required": true }
+  },
+  "spread": true,
+  "styles": {
+    "classes": ["root", "disabled", "selected", "label", "sizeSmall", "sizeLarge"],
+    "name": "MuiToggleButton",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiToggleButton-root",
+      "disabled": "Mui-disabled",
+      "selected": "Mui-selected",
+      "label": "MuiToggleButton-label",
+      "sizeSmall": "MuiToggleButton-sizeSmall",
+      "sizeLarge": "MuiToggleButton-sizeLarge"
+    }
+  },
+  "forwardsRefTo": "HTMLButtonElement",
+  "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },
+  "demos": "- [Toggle Button](/components/toggle-button/)"
+}

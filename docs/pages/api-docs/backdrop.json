@@ -1,0 +1,44 @@
+{
+  "name": "Backdrop",
+  "filename": "/packages/material-ui/src/Backdrop/Backdrop.js",
+  "description": "",
+  "props": {
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "invisible": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "open": { "type": { "name": "bool" }, "required": true },
+    "transitionDuration": {
+      "type": {
+        "name": "union",
+        "value": [
+          { "name": "number" },
+          {
+            "name": "shape",
+            "value": {
+              "appear": { "name": "number", "required": false },
+              "enter": { "name": "number", "required": false },
+              "exit": { "name": "number", "required": false }
+            }
+          }
+        ]
+      },
+      "required": false
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": ["root", "invisible"],
+    "name": "MuiBackdrop",
+    "descriptions": {},
+    "globalClasses": { "root": "MuiBackdrop-root", "invisible": "MuiBackdrop-invisible" }
+  },
+  "forwardsRefTo": "HTMLDivElement",
+  "inheritance": { "component": "Fade", "pathname": "/api/fade/" },
+  "demos": "- [Backdrop](/components/backdrop/)"
+}

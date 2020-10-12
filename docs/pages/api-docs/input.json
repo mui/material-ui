@@ -1,0 +1,121 @@
+{
+  "name": "Input",
+  "filename": "/packages/material-ui/src/Input/Input.js",
+  "description": "",
+  "props": {
+    "autoComplete": { "type": { "name": "string" }, "required": false },
+    "autoFocus": { "type": { "name": "bool" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "color": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'primary'", "computed": false },
+          { "value": "'secondary'", "computed": false }
+        ]
+      },
+      "required": false
+    },
+    "defaultValue": { "type": { "name": "any" }, "required": false },
+    "disabled": { "type": { "name": "bool" }, "required": false },
+    "disableUnderline": { "type": { "name": "bool" }, "required": false },
+    "endAdornment": { "type": { "name": "node" }, "required": false },
+    "error": { "type": { "name": "bool" }, "required": false },
+    "fullWidth": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "id": { "type": { "name": "string" }, "required": false },
+    "inputComponent": {
+      "type": { "name": "elementType" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'input'" },
+      "defaultValue": { "value": "'input'", "computed": false }
+    },
+    "inputProps": { "type": { "name": "object" }, "required": false },
+    "inputRef": { "type": { "name": "custom", "raw": "refType" }, "required": false },
+    "margin": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'dense'", "computed": false },
+          { "value": "'none'", "computed": false }
+        ]
+      },
+      "required": false
+    },
+    "maxRows": {
+      "type": { "name": "union", "value": [{ "name": "number" }, { "name": "string" }] },
+      "required": false
+    },
+    "minRows": {
+      "type": { "name": "union", "value": [{ "name": "number" }, { "name": "string" }] },
+      "required": false
+    },
+    "multiline": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "name": { "type": { "name": "string" }, "required": false },
+    "onChange": { "type": { "name": "func" }, "required": false },
+    "placeholder": { "type": { "name": "string" }, "required": false },
+    "readOnly": { "type": { "name": "bool" }, "required": false },
+    "required": { "type": { "name": "bool" }, "required": false },
+    "rows": {
+      "type": { "name": "union", "value": [{ "name": "number" }, { "name": "string" }] },
+      "required": false
+    },
+    "startAdornment": { "type": { "name": "node" }, "required": false },
+    "type": {
+      "type": { "name": "string" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'text'" },
+      "defaultValue": { "value": "'text'", "computed": false }
+    },
+    "value": { "type": { "name": "any" }, "required": false }
+  },
+  "spread": true,
+  "styles": {
+    "classes": [
+      "root",
+      "formControl",
+      "focused",
+      "disabled",
+      "colorSecondary",
+      "underline",
+      "error",
+      "marginDense",
+      "multiline",
+      "fullWidth",
+      "input",
+      "inputMarginDense",
+      "inputMultiline",
+      "inputTypeSearch"
+    ],
+    "name": "MuiInput",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiInput-root",
+      "formControl": "MuiInput-formControl",
+      "focused": "Mui-focused",
+      "disabled": "Mui-disabled",
+      "colorSecondary": "MuiInput-colorSecondary",
+      "underline": "MuiInput-underline",
+      "error": "Mui-error",
+      "marginDense": "MuiInput-marginDense",
+      "multiline": "MuiInput-multiline",
+      "fullWidth": "MuiInput-fullWidth",
+      "input": "MuiInput-input",
+      "inputMarginDense": "MuiInput-inputMarginDense",
+      "inputMultiline": "MuiInput-inputMultiline",
+      "inputTypeSearch": "MuiInput-inputTypeSearch"
+    }
+  },
+  "forwardsRefTo": "HTMLDivElement",
+  "inheritance": { "component": "InputBase", "pathname": "/api/input-base/" },
+  "demos": "- [Text Fields](/components/text-fields/)"
+}

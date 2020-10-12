@@ -1,0 +1,147 @@
+{
+  "name": "InputBase",
+  "filename": "/packages/material-ui/src/InputBase/InputBase.js",
+  "description": "`InputBase` contains as few styles as possible.\nIt aims to be a simple building block for creating an input.\nIt contains a load of style reset and some state logic.",
+  "props": {
+    "aria-describedby": {
+      "type": { "name": "string" },
+      "required": false,
+      "description": "@ignore"
+    },
+    "autoComplete": { "type": { "name": "string" }, "required": false },
+    "autoFocus": { "type": { "name": "bool" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "color": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'primary'", "computed": false },
+          { "value": "'secondary'", "computed": false }
+        ]
+      },
+      "required": false
+    },
+    "defaultValue": { "type": { "name": "any" }, "required": false },
+    "disabled": { "type": { "name": "bool" }, "required": false },
+    "endAdornment": { "type": { "name": "node" }, "required": false },
+    "error": { "type": { "name": "bool" }, "required": false },
+    "fullWidth": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "id": { "type": { "name": "string" }, "required": false },
+    "inputComponent": {
+      "type": { "name": "custom", "raw": "elementTypeAcceptingRef" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'input'" },
+      "defaultValue": { "value": "'input'", "computed": false }
+    },
+    "inputProps": {
+      "type": { "name": "object" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "{}" },
+      "defaultValue": { "value": "{}", "computed": false }
+    },
+    "inputRef": { "type": { "name": "custom", "raw": "refType" }, "required": false },
+    "margin": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'dense'", "computed": false },
+          { "value": "'none'", "computed": false }
+        ]
+      },
+      "required": false
+    },
+    "maxRows": {
+      "type": { "name": "union", "value": [{ "name": "number" }, { "name": "string" }] },
+      "required": false
+    },
+    "minRows": {
+      "type": { "name": "union", "value": [{ "name": "number" }, { "name": "string" }] },
+      "required": false
+    },
+    "multiline": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "name": { "type": { "name": "string" }, "required": false },
+    "onBlur": { "type": { "name": "func" }, "required": false },
+    "onChange": { "type": { "name": "func" }, "required": false },
+    "onClick": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onFocus": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onKeyDown": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onKeyUp": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "placeholder": { "type": { "name": "string" }, "required": false },
+    "readOnly": { "type": { "name": "bool" }, "required": false },
+    "renderSuffix": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "required": { "type": { "name": "bool" }, "required": false },
+    "rows": {
+      "type": { "name": "union", "value": [{ "name": "number" }, { "name": "string" }] },
+      "required": false
+    },
+    "startAdornment": { "type": { "name": "node" }, "required": false },
+    "type": {
+      "type": { "name": "string" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'text'" },
+      "defaultValue": { "value": "'text'", "computed": false }
+    },
+    "value": { "type": { "name": "any" }, "required": false }
+  },
+  "spread": true,
+  "styles": {
+    "classes": [
+      "root",
+      "formControl",
+      "focused",
+      "disabled",
+      "adornedStart",
+      "adornedEnd",
+      "error",
+      "marginDense",
+      "multiline",
+      "colorSecondary",
+      "fullWidth",
+      "hiddenLabel",
+      "input",
+      "inputMarginDense",
+      "inputMultiline",
+      "inputTypeSearch",
+      "inputAdornedStart",
+      "inputAdornedEnd",
+      "inputHiddenLabel"
+    ],
+    "name": "MuiInputBase",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiInputBase-root",
+      "formControl": "MuiInputBase-formControl",
+      "focused": "Mui-focused",
+      "disabled": "Mui-disabled",
+      "adornedStart": "MuiInputBase-adornedStart",
+      "adornedEnd": "MuiInputBase-adornedEnd",
+      "error": "Mui-error",
+      "marginDense": "MuiInputBase-marginDense",
+      "multiline": "MuiInputBase-multiline",
+      "colorSecondary": "MuiInputBase-colorSecondary",
+      "fullWidth": "MuiInputBase-fullWidth",
+      "hiddenLabel": "MuiInputBase-hiddenLabel",
+      "input": "MuiInputBase-input",
+      "inputMarginDense": "MuiInputBase-inputMarginDense",
+      "inputMultiline": "MuiInputBase-inputMultiline",
+      "inputTypeSearch": "MuiInputBase-inputTypeSearch",
+      "inputAdornedStart": "MuiInputBase-inputAdornedStart",
+      "inputAdornedEnd": "MuiInputBase-inputAdornedEnd",
+      "inputHiddenLabel": "MuiInputBase-inputHiddenLabel"
+    }
+  },
+  "forwardsRefTo": "HTMLDivElement",
+  "inheritance": null,
+  "demos": "- [Text Fields](/components/text-fields/)"
+}

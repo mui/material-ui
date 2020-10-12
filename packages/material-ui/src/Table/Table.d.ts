@@ -15,9 +15,7 @@ export interface TableTypeMap<P = {}, D extends React.ElementType = 'table'> {
      * Override or extend the styles applied to the component.
      */
     classes?: {
-      /** Styles applied to the root element. */
       root?: string;
-      /** Styles applied to the root element if `stickyHeader={true}`. */
       stickyHeader?: string;
     };
     /**

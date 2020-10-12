@@ -1,0 +1,44 @@
+{
+  "name": "Grow",
+  "filename": "/packages/material-ui/src/Grow/Grow.js",
+  "description": "The Grow transition is used by the [Tooltip](/components/tooltips/) and\n[Popover](/components/popover/) components.\nIt uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.",
+  "props": {
+    "children": { "type": { "name": "custom", "raw": "elementAcceptingRef" }, "required": false },
+    "in": { "type": { "name": "bool" }, "required": false },
+    "onEnter": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onEntered": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onEntering": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onExit": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onExited": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onExiting": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "style": { "type": { "name": "object" }, "required": false, "description": "@ignore" },
+    "timeout": {
+      "type": {
+        "name": "union",
+        "value": [
+          { "name": "enum", "value": [{ "value": "'auto'", "computed": false }] },
+          { "name": "number" },
+          {
+            "name": "shape",
+            "value": {
+              "appear": { "name": "number", "required": false },
+              "enter": { "name": "number", "required": false },
+              "exit": { "name": "number", "required": false }
+            }
+          }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'auto'" },
+      "defaultValue": { "value": "'auto'", "computed": false }
+    }
+  },
+  "spread": true,
+  "styles": { "classes": [], "name": null, "descriptions": {}, "globalClasses": {} },
+  "forwardsRefTo": "HTMLDivElement",
+  "inheritance": {
+    "component": "Transition",
+    "pathname": "https://reactcommunity.org/react-transition-group/transition#Transition-props"
+  },
+  "demos": "- [Popover](/components/popover/)\n- [Transitions](/components/transitions/)"
+}

@@ -1,0 +1,80 @@
+{
+  "name": "SpeedDialAction",
+  "filename": "/packages/material-ui/src/SpeedDialAction/SpeedDialAction.js",
+  "description": "",
+  "props": {
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "delay": {
+      "type": { "name": "number" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "0" },
+      "defaultValue": { "value": "0", "computed": false }
+    },
+    "FabProps": {
+      "type": { "name": "object" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "{}" },
+      "defaultValue": { "value": "{}", "computed": false }
+    },
+    "icon": { "type": { "name": "node" }, "required": false },
+    "id": { "type": { "name": "string" }, "required": false },
+    "open": { "type": { "name": "bool" }, "required": false },
+    "TooltipClasses": { "type": { "name": "object" }, "required": false },
+    "tooltipOpen": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "tooltipPlacement": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'bottom-end'", "computed": false },
+          { "value": "'bottom-start'", "computed": false },
+          { "value": "'bottom'", "computed": false },
+          { "value": "'left-end'", "computed": false },
+          { "value": "'left-start'", "computed": false },
+          { "value": "'left'", "computed": false },
+          { "value": "'right-end'", "computed": false },
+          { "value": "'right-start'", "computed": false },
+          { "value": "'right'", "computed": false },
+          { "value": "'top-end'", "computed": false },
+          { "value": "'top-start'", "computed": false },
+          { "value": "'top'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'left'" },
+      "defaultValue": { "value": "'left'", "computed": false }
+    },
+    "tooltipTitle": { "type": { "name": "node" }, "required": false }
+  },
+  "spread": true,
+  "styles": {
+    "classes": [
+      "fab",
+      "fabClosed",
+      "staticTooltip",
+      "staticTooltipClosed",
+      "staticTooltipLabel",
+      "tooltipPlacementLeft",
+      "tooltipPlacementRight"
+    ],
+    "name": "MuiSpeedDialAction",
+    "descriptions": {},
+    "globalClasses": {
+      "fab": "MuiSpeedDialAction-fab",
+      "fabClosed": "MuiSpeedDialAction-fabClosed",
+      "staticTooltip": "MuiSpeedDialAction-staticTooltip",
+      "staticTooltipClosed": "MuiSpeedDialAction-staticTooltipClosed",
+      "staticTooltipLabel": "MuiSpeedDialAction-staticTooltipLabel",
+      "tooltipPlacementLeft": "MuiSpeedDialAction-tooltipPlacementLeft",
+      "tooltipPlacementRight": "MuiSpeedDialAction-tooltipPlacementRight"
+    }
+  },
+  "forwardsRefTo": "HTMLButtonElement",
+  "inheritance": { "component": "Tooltip", "pathname": "/api/tooltip/" },
+  "demos": "- [Speed Dial](/components/speed-dial/)"
+}

@@ -1,0 +1,49 @@
+{
+  "name": "ClickAwayListener",
+  "filename": "/packages/material-ui/src/ClickAwayListener/ClickAwayListener.js",
+  "description": "Listen for click events that occur somewhere in the document, outside of the element itself.\nFor instance, if you need to hide a menu when people click anywhere else on your page.",
+  "props": {
+    "children": {
+      "type": { "name": "custom", "raw": "elementAcceptingRef.isRequired" },
+      "required": false
+    },
+    "disableReactTree": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "mouseEvent": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'onClick'", "computed": false },
+          { "value": "'onMouseDown'", "computed": false },
+          { "value": "'onMouseUp'", "computed": false },
+          { "value": "false", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'onClick'" },
+      "defaultValue": { "value": "'onClick'", "computed": false }
+    },
+    "onClickAway": { "type": { "name": "func" }, "required": true },
+    "touchEvent": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'onTouchEnd'", "computed": false },
+          { "value": "'onTouchStart'", "computed": false },
+          { "value": "false", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'onTouchEnd'" },
+      "defaultValue": { "value": "'onTouchEnd'", "computed": false }
+    }
+  },
+  "spread": false,
+  "styles": { "classes": [], "name": null, "descriptions": {}, "globalClasses": {} },
+  "inheritance": null,
+  "demos": "- [Click Away Listener](/components/click-away-listener/)\n- [Menus](/components/menus/)"
+}

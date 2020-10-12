@@ -1,0 +1,76 @@
+{
+  "name": "ImageList",
+  "filename": "/packages/material-ui/src/ImageList/ImageList.js",
+  "description": "",
+  "props": {
+    "children": { "type": { "name": "node" }, "required": true },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "cols": {
+      "type": { "name": "number" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "2" },
+      "defaultValue": { "value": "2", "computed": false }
+    },
+    "component": {
+      "type": { "name": "elementType" },
+      "required": false,
+      "defaultValue": { "value": "'ul'", "computed": false }
+    },
+    "gap": {
+      "type": { "name": "number" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "4" },
+      "defaultValue": { "value": "4", "computed": false }
+    },
+    "rowHeight": {
+      "type": {
+        "name": "union",
+        "value": [
+          { "name": "enum", "value": [{ "value": "'auto'", "computed": false }] },
+          { "name": "number" }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'auto'" },
+      "defaultValue": { "value": "'auto'", "computed": false }
+    },
+    "style": { "type": { "name": "object" }, "required": false, "description": "@ignore" },
+    "variant": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "enum",
+            "value": [
+              { "value": "'masonry'", "computed": false },
+              { "value": "'quilted'", "computed": false },
+              { "value": "'standard'", "computed": false },
+              { "value": "'woven'", "computed": false }
+            ]
+          },
+          { "name": "string" }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'standard'" },
+      "defaultValue": { "value": "'standard'", "computed": false }
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": ["root", "masonry", "quilted", "standard", "woven"],
+    "name": "MuiImageList",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiImageList-root",
+      "masonry": "MuiImageList-masonry",
+      "quilted": "MuiImageList-quilted",
+      "standard": "MuiImageList-standard",
+      "woven": "MuiImageList-woven"
+    }
+  },
+  "forwardsRefTo": "HTMLUListElement",
+  "inheritance": null,
+  "demos": "- [Image List](/components/image-list/)"
+}

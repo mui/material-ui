@@ -15,23 +15,14 @@ export type IconButtonTypeMap<
      * Override or extend the styles applied to the component.
      */
     classes?: {
-      /** Styles applied to the root element. */
       root?: string;
-      /** Styles applied to the root element if `edge="start"`. */
       edgeStart?: string;
-      /** Styles applied to the root element if `edge="end"`. */
       edgeEnd?: string;
-      /** Styles applied to the root element if `color="inherit"`. */
       colorInherit?: string;
-      /** Styles applied to the root element if `color="primary"`. */
       colorPrimary?: string;
-      /** Styles applied to the root element if `color="secondary"`. */
       colorSecondary?: string;
-      /** Pseudo-class applied to the root element if `disabled={true}`. */
       disabled?: string;
-      /** Styles applied to the root element if `size="small"`. */
       sizeSmall?: string;
-      /** Styles applied to the children container element. */
       label?: string;
     };
     /**

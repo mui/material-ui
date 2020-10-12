@@ -11,11 +11,8 @@ export interface SnackbarContentProps extends StandardProps<PaperProps, 'childre
    * Override or extend the styles applied to the component.
    */
   classes?: {
-    /** Styles applied to the root element. */
     root?: string;
-    /** Styles applied to the message wrapper element. */
     message?: string;
-    /** Styles applied to the action wrapper element if `action` is provided. */
     action?: string;
   };
   /**

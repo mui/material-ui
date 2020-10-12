@@ -1,0 +1,82 @@
+{
+  "name": "InputLabel",
+  "filename": "/packages/material-ui/src/InputLabel/InputLabel.js",
+  "description": "",
+  "props": {
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "color": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'primary'", "computed": false },
+          { "value": "'secondary'", "computed": false }
+        ]
+      },
+      "required": false
+    },
+    "disableAnimation": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "disabled": { "type": { "name": "bool" }, "required": false },
+    "error": { "type": { "name": "bool" }, "required": false },
+    "focused": { "type": { "name": "bool" }, "required": false },
+    "margin": {
+      "type": { "name": "enum", "value": [{ "value": "'dense'", "computed": false }] },
+      "required": false
+    },
+    "required": { "type": { "name": "bool" }, "required": false },
+    "shrink": { "type": { "name": "bool" }, "required": false },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'filled'", "computed": false },
+          { "value": "'outlined'", "computed": false },
+          { "value": "'standard'", "computed": false }
+        ]
+      },
+      "required": false
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": [
+      "root",
+      "focused",
+      "disabled",
+      "error",
+      "required",
+      "asterisk",
+      "formControl",
+      "marginDense",
+      "shrink",
+      "animated",
+      "filled",
+      "outlined"
+    ],
+    "name": "MuiInputLabel",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiInputLabel-root",
+      "focused": "Mui-focused",
+      "disabled": "Mui-disabled",
+      "error": "Mui-error",
+      "required": "Mui-required",
+      "asterisk": "MuiInputLabel-asterisk",
+      "formControl": "MuiInputLabel-formControl",
+      "marginDense": "MuiInputLabel-marginDense",
+      "shrink": "MuiInputLabel-shrink",
+      "animated": "MuiInputLabel-animated",
+      "filled": "MuiInputLabel-filled",
+      "outlined": "MuiInputLabel-outlined"
+    }
+  },
+  "forwardsRefTo": "HTMLLabelElement",
+  "inheritance": { "component": "FormLabel", "pathname": "/api/form-label/" },
+  "demos": "- [Text Fields](/components/text-fields/)"
+}

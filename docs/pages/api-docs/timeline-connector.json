@@ -1,0 +1,20 @@
+{
+  "name": "TimelineConnector",
+  "filename": "/packages/material-ui-lab/src/TimelineConnector/TimelineConnector.js",
+  "description": "",
+  "props": {
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" }
+  },
+  "spread": true,
+  "styles": {
+    "classes": ["root"],
+    "name": "MuiTimelineConnector",
+    "descriptions": {},
+    "globalClasses": { "root": "MuiTimelineConnector-root" }
+  },
+  "forwardsRefTo": "HTMLSpanElement",
+  "inheritance": null,
+  "demos": "- [Timeline](/components/timeline/)"
+}

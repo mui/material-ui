@@ -1,0 +1,123 @@
+{
+  "name": "Divider",
+  "filename": "/packages/material-ui/src/Divider/Divider.js",
+  "description": "",
+  "props": {
+    "absolute": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "component": {
+      "type": { "name": "elementType" },
+      "required": false,
+      "defaultValue": { "value": "children ? 'div' : 'hr'", "computed": false }
+    },
+    "flexItem": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "light": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "orientation": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'horizontal'", "computed": false },
+          { "value": "'vertical'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'horizontal'" },
+      "defaultValue": { "value": "'horizontal'", "computed": false }
+    },
+    "role": {
+      "type": { "name": "string" },
+      "required": false,
+      "description": "@ignore",
+      "defaultValue": { "value": "Component !== 'hr' ? 'separator' : undefined", "computed": false }
+    },
+    "textAlign": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'center'", "computed": false },
+          { "value": "'left'", "computed": false },
+          { "value": "'right'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'center'" },
+      "defaultValue": { "value": "'center'", "computed": false }
+    },
+    "variant": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "enum",
+            "value": [
+              { "value": "'fullWidth'", "computed": false },
+              { "value": "'inset'", "computed": false },
+              { "value": "'middle'", "computed": false }
+            ]
+          },
+          { "name": "string" }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'fullWidth'" },
+      "defaultValue": { "value": "'fullWidth'", "computed": false }
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": [
+      "root",
+      "absolute",
+      "inset",
+      "fullWidth",
+      "light",
+      "middle",
+      "vertical",
+      "flexItem",
+      "withChildren",
+      "withChildrenVertical",
+      "textAlignRight",
+      "textAlignLeft",
+      "wrapper",
+      "wrapperVertical"
+    ],
+    "name": "MuiDivider",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiDivider-root",
+      "absolute": "MuiDivider-absolute",
+      "inset": "MuiDivider-inset",
+      "fullWidth": "MuiDivider-fullWidth",
+      "light": "MuiDivider-light",
+      "middle": "MuiDivider-middle",
+      "vertical": "MuiDivider-vertical",
+      "flexItem": "MuiDivider-flexItem",
+      "withChildren": "MuiDivider-withChildren",
+      "withChildrenVertical": "MuiDivider-withChildrenVertical",
+      "textAlignRight": "MuiDivider-textAlignRight",
+      "textAlignLeft": "MuiDivider-textAlignLeft",
+      "wrapper": "MuiDivider-wrapper",
+      "wrapperVertical": "MuiDivider-wrapperVertical"
+    }
+  },
+  "forwardsRefTo": "HTMLHRElement",
+  "inheritance": null,
+  "demos": "- [Dividers](/components/dividers/)\n- [Lists](/components/lists/)"
+}

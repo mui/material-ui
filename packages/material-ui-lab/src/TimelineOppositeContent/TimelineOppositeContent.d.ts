@@ -10,9 +10,7 @@ export interface TimelineOppositeContentProps extends StandardProps<TypographyPr
    * Override or extend the styles applied to the component.
    */
   classes?: {
-    /** Styles applied to the root element. */
     root?: string;
-    /** Styles applied to the root element if `align="right"`. */
     alignRight?: string;
   };
 }

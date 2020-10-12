@@ -1,0 +1,102 @@
+{
+  "name": "Link",
+  "filename": "/packages/material-ui/src/Link/Link.js",
+  "description": "",
+  "props": {
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "color": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'error'", "computed": false },
+          { "value": "'inherit'", "computed": false },
+          { "value": "'initial'", "computed": false },
+          { "value": "'primary'", "computed": false },
+          { "value": "'secondary'", "computed": false },
+          { "value": "'textPrimary'", "computed": false },
+          { "value": "'textSecondary'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'primary'" },
+      "defaultValue": { "value": "'primary'", "computed": false }
+    },
+    "component": {
+      "type": { "name": "custom", "raw": "elementTypeAcceptingRef" },
+      "required": false,
+      "defaultValue": { "value": "'a'", "computed": false }
+    },
+    "onBlur": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onFocus": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "TypographyClasses": { "type": { "name": "object" }, "required": false },
+    "underline": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'always'", "computed": false },
+          { "value": "'hover'", "computed": false },
+          { "value": "'none'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'hover'" },
+      "defaultValue": { "value": "'hover'", "computed": false }
+    },
+    "variant": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "enum",
+            "value": [
+              { "value": "'body1'", "computed": false },
+              { "value": "'body2'", "computed": false },
+              { "value": "'button'", "computed": false },
+              { "value": "'caption'", "computed": false },
+              { "value": "'h1'", "computed": false },
+              { "value": "'h2'", "computed": false },
+              { "value": "'h3'", "computed": false },
+              { "value": "'h4'", "computed": false },
+              { "value": "'h5'", "computed": false },
+              { "value": "'h6'", "computed": false },
+              { "value": "'inherit'", "computed": false },
+              { "value": "'overline'", "computed": false },
+              { "value": "'subtitle1'", "computed": false },
+              { "value": "'subtitle2'", "computed": false }
+            ]
+          },
+          { "name": "string" }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'inherit'" },
+      "defaultValue": { "value": "'inherit'", "computed": false }
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": [
+      "root",
+      "underlineNone",
+      "underlineHover",
+      "underlineAlways",
+      "button",
+      "focusVisible"
+    ],
+    "name": "MuiLink",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiLink-root",
+      "underlineNone": "MuiLink-underlineNone",
+      "underlineHover": "MuiLink-underlineHover",
+      "underlineAlways": "MuiLink-underlineAlways",
+      "button": "MuiLink-button",
+      "focusVisible": "Mui-focusVisible"
+    }
+  },
+  "forwardsRefTo": "HTMLAnchorElement",
+  "inheritance": { "component": "Typography", "pathname": "/api/typography/" },
+  "demos": "- [Breadcrumbs](/components/breadcrumbs/)\n- [Links](/components/links/)"
+}

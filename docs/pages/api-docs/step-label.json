@@ -1,0 +1,54 @@
+{
+  "name": "StepLabel",
+  "filename": "/packages/material-ui/src/StepLabel/StepLabel.js",
+  "description": "",
+  "props": {
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "error": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "icon": { "type": { "name": "node" }, "required": false },
+    "optional": { "type": { "name": "node" }, "required": false },
+    "StepIconComponent": { "type": { "name": "elementType" }, "required": false },
+    "StepIconProps": { "type": { "name": "object" }, "required": false }
+  },
+  "spread": true,
+  "styles": {
+    "classes": [
+      "root",
+      "horizontal",
+      "vertical",
+      "label",
+      "active",
+      "completed",
+      "error",
+      "disabled",
+      "iconContainer",
+      "alternativeLabel",
+      "labelContainer"
+    ],
+    "name": "MuiStepLabel",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiStepLabel-root",
+      "horizontal": "MuiStepLabel-horizontal",
+      "vertical": "MuiStepLabel-vertical",
+      "label": "MuiStepLabel-label",
+      "active": "MuiStepLabel-active",
+      "completed": "MuiStepLabel-completed",
+      "error": "Mui-error",
+      "disabled": "Mui-disabled",
+      "iconContainer": "MuiStepLabel-iconContainer",
+      "alternativeLabel": "MuiStepLabel-alternativeLabel",
+      "labelContainer": "MuiStepLabel-labelContainer"
+    }
+  },
+  "forwardsRefTo": "HTMLSpanElement",
+  "inheritance": null,
+  "demos": "- [Steppers](/components/steppers/)"
+}

@@ -1,0 +1,56 @@
+{
+  "name": "Table",
+  "filename": "/packages/material-ui/src/Table/Table.js",
+  "description": "",
+  "props": {
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "component": {
+      "type": { "name": "elementType" },
+      "required": false,
+      "defaultValue": { "value": "'table'", "computed": false }
+    },
+    "padding": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'checkbox'", "computed": false },
+          { "value": "'default'", "computed": false },
+          { "value": "'none'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'default'" },
+      "defaultValue": { "value": "'default'", "computed": false }
+    },
+    "size": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'medium'", "computed": false },
+          { "value": "'small'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'medium'" },
+      "defaultValue": { "value": "'medium'", "computed": false }
+    },
+    "stickyHeader": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": ["root", "stickyHeader"],
+    "name": "MuiTable",
+    "descriptions": {},
+    "globalClasses": { "root": "MuiTable-root", "stickyHeader": "MuiTable-stickyHeader" }
+  },
+  "forwardsRefTo": "HTMLTableElement",
+  "inheritance": null,
+  "demos": "- [Tables](/components/tables/)"
+}

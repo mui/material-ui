@@ -1,0 +1,124 @@
+{
+  "name": "SliderStyled",
+  "filename": "/packages/material-ui-lab/src/SliderStyled/SliderStyled.js",
+  "description": "",
+  "props": {
+    "aria-label": { "type": { "name": "string" }, "required": false },
+    "aria-labelledby": { "type": { "name": "string" }, "required": false },
+    "aria-valuetext": { "type": { "name": "string" }, "required": false },
+    "children": { "type": { "name": "node" }, "required": false, "description": "@ignore" },
+    "color": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'primary'", "computed": false },
+          { "value": "'secondary'", "computed": false }
+        ]
+      },
+      "required": false
+    },
+    "components": {
+      "type": {
+        "name": "shape",
+        "value": {
+          "Mark": { "name": "elementType", "required": false },
+          "MarkLabel": { "name": "elementType", "required": false },
+          "Rail": { "name": "elementType", "required": false },
+          "Root": { "name": "elementType", "required": false },
+          "Thumb": { "name": "elementType", "required": false },
+          "Track": { "name": "elementType", "required": false },
+          "ValueLabel": { "name": "elementType", "required": false }
+        }
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "{}" },
+      "defaultValue": { "value": "{}", "computed": false }
+    },
+    "componentsProps": { "type": { "name": "object" }, "required": false },
+    "defaultValue": {
+      "type": {
+        "name": "union",
+        "value": [{ "name": "arrayOf", "value": { "name": "number" } }, { "name": "number" }]
+      },
+      "required": false
+    },
+    "disabled": { "type": { "name": "bool" }, "required": false },
+    "getAriaLabel": { "type": { "name": "func" }, "required": false },
+    "getAriaValueText": { "type": { "name": "func" }, "required": false },
+    "isRtl": { "type": { "name": "bool" }, "required": false },
+    "marks": {
+      "type": {
+        "name": "union",
+        "value": [
+          {
+            "name": "arrayOf",
+            "value": {
+              "name": "shape",
+              "value": {
+                "label": { "name": "node", "required": false },
+                "value": { "name": "number", "required": true }
+              }
+            }
+          },
+          { "name": "bool" }
+        ]
+      },
+      "required": false
+    },
+    "max": { "type": { "name": "number" }, "required": false },
+    "min": { "type": { "name": "number" }, "required": false },
+    "name": { "type": { "name": "string" }, "required": false },
+    "onChange": { "type": { "name": "func" }, "required": false },
+    "onChangeCommitted": { "type": { "name": "func" }, "required": false },
+    "orientation": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'horizontal'", "computed": false },
+          { "value": "'vertical'", "computed": false }
+        ]
+      },
+      "required": false
+    },
+    "scale": { "type": { "name": "func" }, "required": false },
+    "step": { "type": { "name": "number" }, "required": false },
+    "track": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'inverted'", "computed": false },
+          { "value": "'normal'", "computed": false },
+          { "value": "false", "computed": false }
+        ]
+      },
+      "required": false
+    },
+    "value": {
+      "type": {
+        "name": "union",
+        "value": [{ "name": "arrayOf", "value": { "name": "number" } }, { "name": "number" }]
+      },
+      "required": false
+    },
+    "valueLabelDisplay": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'auto'", "computed": false },
+          { "value": "'off'", "computed": false },
+          { "value": "'on'", "computed": false }
+        ]
+      },
+      "required": false
+    },
+    "valueLabelFormat": {
+      "type": { "name": "union", "value": [{ "name": "func" }, { "name": "string" }] },
+      "required": false
+    }
+  },
+  "spread": true,
+  "styles": { "classes": [], "name": null, "descriptions": {}, "globalClasses": {} },
+  "forwardsRefTo": "HTMLSpanElement",
+  "inheritance": null,
+  "demos": "- [Slider Styled](/components/slider-styled/)"
+}

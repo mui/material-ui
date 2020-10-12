@@ -1,0 +1,155 @@
+{
+  "name": "Popper",
+  "filename": "/packages/material-ui/src/Popper/Popper.js",
+  "description": "Poppers rely on the 3rd party library [Popper.js](https://popper.js.org/docs/v2/) for positioning.",
+  "props": {
+    "anchorEl": {
+      "type": {
+        "name": "custom",
+        "raw": "chainPropTypes(\n  PropTypes.oneOfType([HTMLElementType, PropTypes.object, PropTypes.func]),\n  (props) => {\n    if (props.open) {\n      const resolvedAnchorEl = getAnchorEl(props.anchorEl);\n\n      if (resolvedAnchorEl && resolvedAnchorEl.nodeType === 1) {\n        const box = resolvedAnchorEl.getBoundingClientRect();\n\n        if (\n          process.env.NODE_ENV !== 'test' &&\n          box.top === 0 &&\n          box.left === 0 &&\n          box.right === 0 &&\n          box.bottom === 0\n        ) {\n          return new Error(\n            [\n              'Material-UI: The `anchorEl` prop provided to the component is invalid.',\n              'The anchor element should be part of the document layout.',\n              \"Make sure the element is present in the document or that it's not display none.\",\n            ].join('\\n'),\n          );\n        }\n      } else if (\n        !resolvedAnchorEl ||\n        typeof resolvedAnchorEl.getBoundingClientRect !== 'function' ||\n        (resolvedAnchorEl.contextElement != null &&\n          resolvedAnchorEl.contextElement.nodeType !== 1)\n      ) {\n        return new Error(\n          [\n            'Material-UI: The `anchorEl` prop provided to the component is invalid.',\n            'It should be an HTML element instance or a virtualElement ',\n            '(https://popper.js.org/docs/v2/virtual-elements/).',\n          ].join('\\n'),\n        );\n      }\n    }\n\n    return null;\n  },\n)"
+      },
+      "required": false
+    },
+    "children": {
+      "type": { "name": "union", "value": [{ "name": "node" }, { "name": "func" }] },
+      "required": false
+    },
+    "container": {
+      "type": {
+        "name": "union",
+        "value": [{ "name": "custom", "raw": "HTMLElementType" }, { "name": "func" }]
+      },
+      "required": false
+    },
+    "disablePortal": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "keepMounted": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "modifiers": {
+      "type": {
+        "name": "arrayOf",
+        "value": {
+          "name": "shape",
+          "value": {
+            "data": { "name": "object", "required": false },
+            "effect": { "name": "func", "required": false },
+            "enabled": { "name": "bool", "required": false },
+            "fn": { "name": "func", "required": false },
+            "name": { "name": "any", "required": true },
+            "options": { "name": "object", "required": false },
+            "phase": {
+              "name": "enum",
+              "value": [
+                { "value": "'afterMain'", "computed": false },
+                { "value": "'afterRead'", "computed": false },
+                { "value": "'afterWrite'", "computed": false },
+                { "value": "'beforeMain'", "computed": false },
+                { "value": "'beforeRead'", "computed": false },
+                { "value": "'beforeWrite'", "computed": false },
+                { "value": "'main'", "computed": false },
+                { "value": "'read'", "computed": false },
+                { "value": "'write'", "computed": false }
+              ],
+              "required": false
+            },
+            "requires": { "name": "arrayOf", "value": { "name": "string" }, "required": false },
+            "requiresIfExists": {
+              "name": "arrayOf",
+              "value": { "name": "string" },
+              "required": false
+            }
+          }
+        }
+      },
+      "required": false
+    },
+    "open": { "type": { "name": "bool" }, "required": true },
+    "placement": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'auto-end'", "computed": false },
+          { "value": "'auto-start'", "computed": false },
+          { "value": "'auto'", "computed": false },
+          { "value": "'bottom-end'", "computed": false },
+          { "value": "'bottom-start'", "computed": false },
+          { "value": "'bottom'", "computed": false },
+          { "value": "'left-end'", "computed": false },
+          { "value": "'left-start'", "computed": false },
+          { "value": "'left'", "computed": false },
+          { "value": "'right-end'", "computed": false },
+          { "value": "'right-start'", "computed": false },
+          { "value": "'right'", "computed": false },
+          { "value": "'top-end'", "computed": false },
+          { "value": "'top-start'", "computed": false },
+          { "value": "'top'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'bottom'" },
+      "defaultValue": { "value": "'bottom'", "computed": false }
+    },
+    "popperOptions": {
+      "type": {
+        "name": "shape",
+        "value": {
+          "modifiers": { "name": "array", "required": false },
+          "onFirstUpdate": { "name": "func", "required": false },
+          "placement": {
+            "name": "enum",
+            "value": [
+              { "value": "'auto-end'", "computed": false },
+              { "value": "'auto-start'", "computed": false },
+              { "value": "'auto'", "computed": false },
+              { "value": "'bottom-end'", "computed": false },
+              { "value": "'bottom-start'", "computed": false },
+              { "value": "'bottom'", "computed": false },
+              { "value": "'left-end'", "computed": false },
+              { "value": "'left-start'", "computed": false },
+              { "value": "'left'", "computed": false },
+              { "value": "'right-end'", "computed": false },
+              { "value": "'right-start'", "computed": false },
+              { "value": "'right'", "computed": false },
+              { "value": "'top-end'", "computed": false },
+              { "value": "'top-start'", "computed": false },
+              { "value": "'top'", "computed": false }
+            ],
+            "required": false
+          },
+          "strategy": {
+            "name": "enum",
+            "value": [
+              { "value": "'absolute'", "computed": false },
+              { "value": "'fixed'", "computed": false }
+            ],
+            "required": false
+          }
+        }
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "{}" },
+      "defaultValue": { "value": "{}", "computed": false }
+    },
+    "popperRef": { "type": { "name": "custom", "raw": "refType" }, "required": false },
+    "style": { "type": { "name": "object" }, "required": false, "description": "@ignore" },
+    "transition": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    }
+  },
+  "spread": true,
+  "styles": { "classes": [], "name": null, "descriptions": {}, "globalClasses": {} },
+  "forwardsRefTo": "HTMLDivElement",
+  "inheritance": null,
+  "demos": "- [Autocomplete](/components/autocomplete/)\n- [Menus](/components/menus/)\n- [Popper](/components/popper/)"
+}

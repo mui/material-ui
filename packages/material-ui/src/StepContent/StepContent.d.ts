@@ -11,11 +11,8 @@ export interface StepContentProps extends StandardProps<React.HTMLAttributes<HTM
    * Override or extend the styles applied to the component.
    */
   classes?: {
-    /** Styles applied to the root element. */
     root?: string;
-    /** Styles applied to the root element if `last={true}` (controlled by `Step`). */
     last?: string;
-    /** Styles applied to the Transition component. */
     transition?: string;
   };
   /**

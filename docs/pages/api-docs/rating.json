@@ -1,0 +1,145 @@
+{
+  "name": "Rating",
+  "filename": "/packages/material-ui/src/Rating/Rating.js",
+  "description": "",
+  "props": {
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "defaultValue": {
+      "type": { "name": "number" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "null" },
+      "defaultValue": { "value": "null", "computed": false }
+    },
+    "disabled": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "emptyIcon": {
+      "type": { "name": "node" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "<StarBorder fontSize=\"inherit\" />" },
+      "defaultValue": { "value": "<StarBorder fontSize=\"inherit\" />", "computed": false }
+    },
+    "emptyLabelText": {
+      "type": { "name": "node" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'Empty'" },
+      "defaultValue": { "value": "'Empty'", "computed": false }
+    },
+    "getLabelText": {
+      "type": { "name": "func" },
+      "required": false,
+      "jsdocDefaultValue": {
+        "value": "function defaultLabelText(value) {\n  return `${value} Star${value !== 1 ? 's' : ''}`;\n}"
+      },
+      "defaultValue": {
+        "value": "function defaultLabelText(value) {\n  return `${value} Star${value !== 1 ? 's' : ''}`;\n}",
+        "computed": false
+      }
+    },
+    "icon": {
+      "type": { "name": "node" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "<Star fontSize=\"inherit\" />" },
+      "defaultValue": { "value": "<Star fontSize=\"inherit\" />", "computed": false }
+    },
+    "IconContainerComponent": {
+      "type": { "name": "elementType" },
+      "required": false,
+      "jsdocDefaultValue": {
+        "value": "function IconContainer(props) {\n  const { value, ...other } = props;\n  return <span {...other} />;\n}"
+      },
+      "defaultValue": {
+        "value": "function IconContainer(props) {\n  const { value, ...other } = props;\n  return <span {...other} />;\n}",
+        "computed": false
+      }
+    },
+    "max": {
+      "type": { "name": "number" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "5" },
+      "defaultValue": { "value": "5", "computed": false }
+    },
+    "name": { "type": { "name": "string" }, "required": false },
+    "onChange": { "type": { "name": "func" }, "required": false },
+    "onChangeActive": { "type": { "name": "func" }, "required": false },
+    "onMouseLeave": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "onMouseMove": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
+    "precision": {
+      "type": {
+        "name": "custom",
+        "raw": "chainPropTypes(PropTypes.number, (props) => {\n  if (props.precision < 0.1) {\n    return new Error(\n      [\n        'Material-UI: The prop `precision` should be above 0.1.',\n        'A value below this limit has an imperceptible impact.',\n      ].join('\\n'),\n    );\n  }\n  return null;\n})"
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "1" },
+      "defaultValue": { "value": "1", "computed": false }
+    },
+    "readOnly": {
+      "type": { "name": "bool" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "false" },
+      "defaultValue": { "value": "false", "computed": false }
+    },
+    "size": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'large'", "computed": false },
+          { "value": "'medium'", "computed": false },
+          { "value": "'small'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'medium'" },
+      "defaultValue": { "value": "'medium'", "computed": false }
+    },
+    "value": { "type": { "name": "number" }, "required": false }
+  },
+  "spread": true,
+  "styles": {
+    "classes": [
+      "root",
+      "sizeSmall",
+      "sizeLarge",
+      "readOnly",
+      "disabled",
+      "focusVisible",
+      "visuallyHidden",
+      "label",
+      "labelEmptyValueActive",
+      "icon",
+      "iconEmpty",
+      "iconFilled",
+      "iconHover",
+      "iconFocus",
+      "iconActive",
+      "decimal"
+    ],
+    "name": "MuiRating",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiRating-root",
+      "sizeSmall": "MuiRating-sizeSmall",
+      "sizeLarge": "MuiRating-sizeLarge",
+      "readOnly": "MuiRating-readOnly",
+      "disabled": "Mui-disabled",
+      "focusVisible": "Mui-focusVisible",
+      "visuallyHidden": "MuiRating-visuallyHidden",
+      "label": "MuiRating-label",
+      "labelEmptyValueActive": "MuiRating-labelEmptyValueActive",
+      "icon": "MuiRating-icon",
+      "iconEmpty": "MuiRating-iconEmpty",
+      "iconFilled": "MuiRating-iconFilled",
+      "iconHover": "MuiRating-iconHover",
+      "iconFocus": "MuiRating-iconFocus",
+      "iconActive": "MuiRating-iconActive",
+      "decimal": "MuiRating-decimal"
+    }
+  },
+  "forwardsRefTo": "HTMLSpanElement",
+  "inheritance": null,
+  "demos": "- [Rating](/components/rating/)"
+}

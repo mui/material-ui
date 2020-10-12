@@ -1,0 +1,84 @@
+{
+  "name": "SvgIcon",
+  "filename": "/packages/material-ui/src/SvgIcon/SvgIcon.js",
+  "description": "",
+  "props": {
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "color": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'action'", "computed": false },
+          { "value": "'disabled'", "computed": false },
+          { "value": "'error'", "computed": false },
+          { "value": "'inherit'", "computed": false },
+          { "value": "'primary'", "computed": false },
+          { "value": "'secondary'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'inherit'" },
+      "defaultValue": { "value": "'inherit'", "computed": false }
+    },
+    "component": {
+      "type": { "name": "elementType" },
+      "required": false,
+      "defaultValue": { "value": "'svg'", "computed": false }
+    },
+    "fontSize": {
+      "type": {
+        "name": "enum",
+        "value": [
+          { "value": "'default'", "computed": false },
+          { "value": "'inherit'", "computed": false },
+          { "value": "'large'", "computed": false },
+          { "value": "'small'", "computed": false }
+        ]
+      },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'default'" },
+      "defaultValue": { "value": "'default'", "computed": false }
+    },
+    "htmlColor": { "type": { "name": "string" }, "required": false },
+    "shapeRendering": { "type": { "name": "string" }, "required": false },
+    "titleAccess": { "type": { "name": "string" }, "required": false },
+    "viewBox": {
+      "type": { "name": "string" },
+      "required": false,
+      "jsdocDefaultValue": { "value": "'0 0 24 24'" },
+      "defaultValue": { "value": "'0 0 24 24'", "computed": false }
+    }
+  },
+  "spread": true,
+  "styles": {
+    "classes": [
+      "root",
+      "colorPrimary",
+      "colorSecondary",
+      "colorAction",
+      "colorError",
+      "colorDisabled",
+      "fontSizeInherit",
+      "fontSizeSmall",
+      "fontSizeLarge"
+    ],
+    "name": "MuiSvgIcon",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiSvgIcon-root",
+      "colorPrimary": "MuiSvgIcon-colorPrimary",
+      "colorSecondary": "MuiSvgIcon-colorSecondary",
+      "colorAction": "MuiSvgIcon-colorAction",
+      "colorError": "MuiSvgIcon-colorError",
+      "colorDisabled": "MuiSvgIcon-colorDisabled",
+      "fontSizeInherit": "MuiSvgIcon-fontSizeInherit",
+      "fontSizeSmall": "MuiSvgIcon-fontSizeSmall",
+      "fontSizeLarge": "MuiSvgIcon-fontSizeLarge"
+    }
+  },
+  "forwardsRefTo": "SVGSVGElement",
+  "inheritance": null,
+  "demos": "- [Icons](/components/icons/)\n- [Material Icons](/components/material-icons/)"
+}

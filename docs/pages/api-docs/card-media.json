@@ -1,0 +1,38 @@
+{
+  "name": "CardMedia",
+  "filename": "/packages/material-ui/src/CardMedia/CardMedia.js",
+  "description": "",
+  "props": {
+    "children": {
+      "type": {
+        "name": "custom",
+        "raw": "chainPropTypes(PropTypes.node, (props) => {\n  if (!props.children && !props.image && !props.src && !props.component) {\n    return new Error(\n      'Material-UI: Either `children`, `image`, `src` or `component` prop must be specified.',\n    );\n  }\n  return null;\n})"
+      },
+      "required": false
+    },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "component": {
+      "type": { "name": "elementType" },
+      "required": false,
+      "defaultValue": { "value": "'div'", "computed": false }
+    },
+    "image": { "type": { "name": "string" }, "required": false },
+    "src": { "type": { "name": "string" }, "required": false },
+    "style": { "type": { "name": "object" }, "required": false, "description": "@ignore" }
+  },
+  "spread": true,
+  "styles": {
+    "classes": ["root", "media", "img"],
+    "name": "MuiCardMedia",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiCardMedia-root",
+      "media": "MuiCardMedia-media",
+      "img": "MuiCardMedia-img"
+    }
+  },
+  "forwardsRefTo": "HTMLDivElement",
+  "inheritance": null,
+  "demos": "- [Cards](/components/cards/)"
+}

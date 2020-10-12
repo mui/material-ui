@@ -10,7 +10,6 @@ export interface TreeViewPropsBase extends StandardProps<React.HTMLAttributes<HT
    * Override or extend the styles applied to the component.
    */
   classes?: {
-    /** Styles applied to the root element. */
     root?: string;
   };
   /**

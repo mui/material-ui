@@ -1,0 +1,30 @@
+{
+  "name": "AccordionSummary",
+  "filename": "/packages/material-ui/src/AccordionSummary/AccordionSummary.js",
+  "description": "",
+  "props": {
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false },
+    "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
+    "expandIcon": { "type": { "name": "node" }, "required": false },
+    "focusVisibleClassName": { "type": { "name": "string" }, "required": false },
+    "onClick": { "type": { "name": "func" }, "required": false, "description": "@ignore" }
+  },
+  "spread": true,
+  "styles": {
+    "classes": ["root", "expanded", "focusVisible", "disabled", "content", "expandIconWrapper"],
+    "name": "MuiAccordionSummary",
+    "descriptions": {},
+    "globalClasses": {
+      "root": "MuiAccordionSummary-root",
+      "expanded": "Mui-expanded",
+      "focusVisible": "Mui-focusVisible",
+      "disabled": "Mui-disabled",
+      "content": "MuiAccordionSummary-content",
+      "expandIconWrapper": "MuiAccordionSummary-expandIconWrapper"
+    }
+  },
+  "forwardsRefTo": "HTMLDivElement",
+  "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },
+  "demos": "- [Accordion](/components/accordion/)"
+}

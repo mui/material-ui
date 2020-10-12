@@ -1,0 +1,19 @@
+{
+  "name": "DialogContentText",
+  "filename": "/packages/material-ui/src/DialogContentText/DialogContentText.js",
+  "description": "",
+  "props": {
+    "children": { "type": { "name": "node" }, "required": false },
+    "classes": { "type": { "name": "object" }, "required": false }
+  },
+  "spread": true,
+  "styles": {
+    "classes": ["root"],
+    "name": "MuiDialogContentText",
+    "descriptions": {},
+    "globalClasses": { "root": "MuiDialogContentText-root" }
+  },
+  "forwardsRefTo": "HTMLParagraphElement",
+  "inheritance": { "component": "Typography", "pathname": "/api/typography/" },
+  "demos": "- [Dialogs](/components/dialogs/)"
+}

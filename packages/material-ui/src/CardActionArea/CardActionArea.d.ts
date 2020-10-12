@@ -7,11 +7,8 @@ export type CardActionAreaTypeMap<P, D extends React.ElementType> = ExtendButton
      * Override or extend the styles applied to the component.
      */
     classes?: {
-      /** Styles applied to the root element. */
       root?: string;
-      /** Pseudo-class applied to the ButtonBase root element if the action area is keyboard focused. */
       focusVisible?: string;
-      /** Styles applied to the overlay that covers the action area when it is keyboard focused. */
       focusHighlight?: string;
     };
     focusVisibleClassName?: string;
