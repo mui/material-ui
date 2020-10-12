@@ -15,7 +15,6 @@ import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
-import sleep from 'modules/waterfall/sleep';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import { ACTION_TYPES } from 'docs/src/modules/constants';
 
@@ -91,33 +90,33 @@ export default function Notifications() {
       return undefined;
     }
 
-    (async () => {
-      await sleep(1500); // Soften the pressure on the main thread.
-      let newMessages;
-      try {
-        const result = await fetch(
-          'https://raw.githubusercontent.com/mui-org/material-ui/master/docs/notifications.json',
-        );
-        newMessages = await result.json();
-      } catch (err) {
-        // Swallow the exceptions, e.g. rate limit
-      }
-
-      if (active) {
-        const seen = getCookie('lastSeenNotification');
-        const lastSeenNotification = seen === '' ? 0 : parseInt(seen, 10);
-
-        dispatch({
-          type: ACTION_TYPES.NOTIFICATIONS_CHANGE,
-          payload: {
-            messages: newMessages || [],
-            lastSeen: lastSeenNotification,
-          },
+    // Soften the pressure on the main thread.
+    const timeout = setTimeout(() => {
+      fetch('https://raw.githubusercontent.com/mui-org/material-ui/master/docs/notifications.json')
+        .then((response) => {
+          return response.json();
+        })
+        .catch(() => {
+          // Swallow the exceptions, e.g. rate limit
+          return [];
+        })
+        .then((newMessages) => {
+          if (active) {
+            const seen = getCookie('lastSeenNotification');
+            const lastSeenNotification = seen === '' ? 0 : parseInt(seen, 10);
+            dispatch({
+              type: ACTION_TYPES.NOTIFICATIONS_CHANGE,
+              payload: {
+                messages: newMessages || [],
+                lastSeen: lastSeenNotification,
+              },
+            });
+          }
         });
-      }
-    })();
+    }, 1500);
 
     return () => {
+      clearTimeout(timeout);
       active = false;
     };
   }, []);
