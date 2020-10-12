@@ -17,7 +17,7 @@ import {
 import * as PropTypes from 'prop-types';
 import ButtonBase from './ButtonBase';
 
-describe.only('<ButtonBase />', () => {
+describe('<ButtonBase />', () => {
   const render = createClientRender();
   /**
    * @type {ReturnType<typeof createMount>}
