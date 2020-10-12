@@ -68,7 +68,7 @@ const printMeasure = (name, measures) => {
 
   console.log('-------------');
   console.log(`Avg: ${Number(sum / totalNum).toFixed(2)}ms`);
-  console.log(`Median: ${getMedian(measures)}`);
+  console.log(`Median: ${Number(getMedian(measures)).toFixed(2)}ms`);
 };
 
 async function runMeasures(browser, testCaseName, testCase, times) {
