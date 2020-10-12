@@ -77,7 +77,6 @@ async function runMeasures(browser, testCaseName, testCase, times) {
   for (let i = 0; i < times; i += 1) {
     const url = `http://localhost:${PORT}/${APP}?${testCase}`;
     const page = await browser.openPage(url);
-    // console.log('url', url)
 
     const benchmark = await page.evaluate(() => {
       return window.timing.render;
