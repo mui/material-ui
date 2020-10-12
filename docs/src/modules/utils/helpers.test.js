@@ -22,7 +22,7 @@ const styles = theme => ({
 
   it('should handle @ dependencies', () => {
     expect(getDependencies(s1)).to.deep.equal({
-      '@emotion/core': 'latest',
+      '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       '@foo-bar/bip': 'latest',
       '@material-ui/core': 'next',
@@ -48,7 +48,7 @@ const suggestions = [
 `;
 
     expect(getDependencies(source)).to.deep.equal({
-      '@emotion/core': 'latest',
+      '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       '@material-ui/core': 'next',
       '@unexisting/thing': 'latest',
@@ -62,7 +62,7 @@ const suggestions = [
 
   it('should support next dependencies', () => {
     expect(getDependencies(s1, { reactVersion: 'next' })).to.deep.equal({
-      '@emotion/core': 'latest',
+      '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       '@foo-bar/bip': 'latest',
       '@material-ui/core': 'next',
@@ -84,7 +84,7 @@ import { LocalizationProvider as MuiPickersLocalizationProvider, KeyboardTimePic
 
     expect(getDependencies(source)).to.deep.equal({
       'date-fns': 'latest',
-      '@emotion/core': 'latest',
+      '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       '@material-ui/pickers': 'next',
       '@material-ui/core': 'next',
@@ -96,7 +96,7 @@ import { LocalizationProvider as MuiPickersLocalizationProvider, KeyboardTimePic
 
   it('can collect required @types packages', () => {
     expect(getDependencies(s1, { codeLanguage: 'TS' })).to.deep.equal({
-      '@emotion/core': 'latest',
+      '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       '@foo-bar/bip': 'latest',
       '@material-ui/core': 'next',
@@ -124,7 +124,7 @@ import {
 
     expect(getDependencies(source)).to.deep.equal({
       'date-fns': 'latest',
-      '@emotion/core': 'latest',
+      '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       '@material-ui/core': 'next',
       '@material-ui/pickers': 'next',
@@ -139,7 +139,7 @@ import lab from '@material-ui/lab';
     `;
 
     expect(getDependencies(source)).to.deep.equal({
-      '@emotion/core': 'latest',
+      '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       '@material-ui/core': 'next',
       '@material-ui/lab': 'next',
@@ -156,7 +156,7 @@ import { useDemoData } from '@material-ui/x-grid-data-generator';
     `;
 
     expect(getDependencies(source, { codeLanguage: 'TS' })).to.deep.equal({
-      '@emotion/core': 'latest',
+      '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       '@material-ui/core': 'next',
       '@material-ui/lab': 'next',
@@ -186,7 +186,7 @@ import * as Utils from '@material-ui/utils';
     ).to.deep.equal({
       react: 'latest',
       'react-dom': 'latest',
-      '@emotion/core': 'latest',
+      '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       '@material-ui/core':
         'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@material-ui/core',

@@ -3,7 +3,7 @@ import Benchmark from 'benchmark';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import styledEmotion from '@emotion/styled';
-import { ThemeProvider as EmotionTheme } from 'emotion-theming';
+import { ThemeProvider as EmotionTheme } from '@emotion/react';
 import { space, color, fontFamily, fontSize, compose as compose2 } from 'styled-system';
 import { spacing, palette, typography, compose } from '@material-ui/system';
 import { createMuiTheme } from '@material-ui/core/styles';

@@ -1,7 +1,6 @@
 /** @jsx jsx */
-import { jsx, css } from '@emotion/core';
+import { jsx, css, ThemeProvider } from '@emotion/react';
 import Button from '@material-ui/core/Button';
-import { ThemeProvider } from 'emotion-theming';
 import {
   createMuiTheme,
   ThemeProvider as MuiThemeProvider,

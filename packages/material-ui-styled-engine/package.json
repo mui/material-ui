@@ -38,11 +38,11 @@
   },
   "dependencies": {},
   "peerDependencies": {
-    "@emotion/core": "^10.0.27",
-    "@emotion/styled": "^10.0.27"
+    "@emotion/react": "^11.0.0-rc.0",
+    "@emotion/styled": "^11.0.0-rc.0"
   },
   "peerDependenciesMeta": {
-    "@emotion/core": {
+    "@emotion/react": {
       "optional": true
     },
     "@emotion/styled": {

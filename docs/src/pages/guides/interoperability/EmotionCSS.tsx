@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, css } from '@emotion/core';
+import { jsx, css } from '@emotion/react';
 import Button from '@material-ui/core/Button';
 
 export default function EmotionCSS() {
