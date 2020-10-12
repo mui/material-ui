@@ -181,7 +181,7 @@ interface InputElement {
 function MyInputComponent(props) {
   const { component: Component, inputRef, ...other } = props;
 
-  // 实现 `InputElement` 界面
+  // 实现 `InputElement` 接口
   React.useImperativeHandle(inputRef, () => ({
     focus: () => {
       // 在这里加上来自第三方渲染的组件的逻辑 
@@ -197,7 +197,9 @@ function MyInputComponent(props) {
 <TextField
   InputProps={{
     inputComponent: MyInputComponent,
-    inputProps: { component: SomeThirdPartyComponent },
+    inputProps: {
+      component: SomeThirdPartyComponent,
+    },
   }}
 />;
 ```
