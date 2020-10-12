@@ -59,13 +59,13 @@ describe('<SpeedDial />', () => {
   });
 
   it('should render a Fab', () => {
-    const wrapper = mount(
-      <SpeedDial {...defaultProps}>
+    const fabTestId = { 'data-testid': 'fab' };
+    const { queryByTestId } = render(
+      <SpeedDial {...defaultProps} FabProps={fabTestId}>
         <FakeAction />
       </SpeedDial>,
     );
-    const buttonWrapper = wrapper.find('[aria-expanded]').first();
-    expect(buttonWrapper.type()).to.equal(Fab);
+    expect(queryByTestId('fab')).not.to.equal(null);
   });
 
   it('should render with a null child', () => {
