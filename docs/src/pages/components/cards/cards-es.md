@@ -43,7 +43,7 @@ Por defecto usamos una combinacion de un `<div>` y una *imagen de fondo* para mo
 
 {{"demo": "pages/components/cards/ImgMediaCard.js", "bg": true}}
 
-> ⚠ Cuando `component="img"`, CardMedia depende de `object-fit` para centrar la imagen. No es compatible con IE 11.
+> ⚠ Cuando `component="img"`, CardMedia depende de `object-fit` para centrar la imagen. It's not supported by IE11.
 
 ## Controles de IU
 
