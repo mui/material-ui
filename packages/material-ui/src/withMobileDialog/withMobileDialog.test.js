@@ -14,6 +14,16 @@ describe('withMobileDialog', () => {
     shallow = createShallow({ dive: true });
   });
 
+  function getWrapper(breakpoint, width) {
+    const ResponsiveDialog = withMobileDialog({ breakpoint })(Dialog);
+      const wrapper = shallow(
+        <ResponsiveDialog {...defaultProps} width={width}>
+          foo
+        </ResponsiveDialog>,
+    );
+    return wrapper;
+  }
+
   function isFullScreenDefaultCase(width) {
     it(`is for width: ${width} on default case`, () => {
       const ResponsiveDialog = withMobileDialog()(Dialog);
@@ -29,12 +39,7 @@ describe('withMobileDialog', () => {
   function isFullScreen(breakpoints, width) {
     breakpoints.forEach((breakpoint) => {
       it(`is for width: ${width} < ${breakpoint}`, () => {
-        const ResponsiveDialog = withMobileDialog({ breakpoint })(Dialog);
-        const wrapper = shallow(
-          <ResponsiveDialog {...defaultProps} width={width}>
-            foo
-          </ResponsiveDialog>,
-        );
+        const wrapper = getWrapper(breakpoint, width);
         expect(wrapper.props().fullScreen).to.equal(true);
       });
     });
