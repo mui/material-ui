@@ -181,7 +181,7 @@ _您需要在此页面的 html 元素上应用上述的 CSS 才能看到以下�
 - body1
 - body2
 - button
-- 标签
+- caption
 - overline
 
 每个变体都可以被单独地定制：
