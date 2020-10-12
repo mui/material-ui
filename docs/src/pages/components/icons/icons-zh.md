@@ -1,7 +1,7 @@
 ---
 title: React 图标组件
 components: Icon, SvgIcon
-githubLabel: 'SvgIcon（Svg 图标）'
+githubLabel: 'components: SvgIcon'
 materialDesign: https://material.io/design/iconography/system-icons.html
 ---
 
@@ -24,11 +24,11 @@ Material Design 已经将1,100多个官方图标标准化，而每个图标都�
 请在您的项目目录中用以下方式安装依赖包：
 
 ```sh
-// 通过 npm
-npm install @material-ui/icons
+// 使用 npm 安装
+npm install @material-ui/icons@next
 
-// 通过 yarn
-yarn add @material-ui/icons
+// 使用 yarn 安装
+yarn add @material-ui/icons@next
 ```
 
 这些组件使用 Material-UI 的`SvgIcon` 组件来渲染每个图标的 SVG 路径，因此对 `@materialui/core` 具有对等依赖性。
@@ -37,10 +37,10 @@ yarn add @material-ui/icons
 
 ```sh
 // 用 npm 安装
-npm install @material-ui/core
+npm install @material-ui/core@next
 
 // 用 yarn 安装
-yarn add @material-ui/core
+yarn add @material-ui/core@next
 ```
 
 ### 使用
@@ -165,7 +165,7 @@ const HomeIcon = createSvgIcon(
 
 如下是一个同时使用[Font Awesome](https://fontawesome.com/icons) 与 `Icon` 的示例：
 
-友情提示：[mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) 已经将每个 SVG 图标用 `SvgIcon` 组件包装起来，你可以高枕无忧了。
+{{"demo": "pages/components/icons/FontAwesomeSvgIconDemo.js"}}
 
 FontAwesomeIcon 的 `fullWidth` 属性也可以用来应用近似正确的尺寸，但这样的效果并不完美。
 
@@ -192,7 +192,7 @@ FontAwesomeIcon 的 `fullWidth` 属性也可以用来应用近似正确的尺寸
 ```jsx
 import Icon from '@material-ui/core/Icon';
 
-<Icon>star</Icon>
+<Icon>star</Icon>;
 ```
 
 默认情况下，一个图标会继承使用当前的文本颜色。 您也可以选择使用以下任何一个主题颜色属性来设置图标的颜色：`primary`，`secondary`，`action`，`error` 以及 `disabled`。
