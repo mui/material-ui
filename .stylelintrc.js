@@ -1,9 +1,7 @@
 module.exports = {
-  'processors': [
-    'stylelint-processor-styled-components'
-  ],
-  'extends': 'stylelint-config-standard',
-  'rules': {
+  processors: ['stylelint-processor-styled-components'],
+  extends: 'stylelint-config-standard',
+  rules: {
     'value-no-vendor-prefix': true,
     'property-no-vendor-prefix': true,
     'no-empty-source': null,
