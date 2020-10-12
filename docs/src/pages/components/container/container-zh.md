@@ -10,7 +10,7 @@ githubLabel: 'component: Container'
 
 虽然容器可以嵌套，但大多数布局不需要嵌套的容器。
 
-查看[调色板](/system/palette/)样式功能。
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Fluid 流体布局
 
