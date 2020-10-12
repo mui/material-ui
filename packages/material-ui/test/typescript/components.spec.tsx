@@ -896,8 +896,8 @@ const TableTest = () => {
                 count={5}
                 rowsPerPage={2}
                 page={1}
-                onChangePage={() => {}}
-                onChangeRowsPerPage={(event) => log({ rowsPerPage: event.target.value })}
+                onPageChange={() => {}}
+                onRowsPerPageChange={(event) => log({ rowsPerPage: event.target.value })}
               />
             </TableRow>
           </TableFooter>

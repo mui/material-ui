@@ -2,13 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import * as PropTypes from 'prop-types';
-import {
-  findOutermostIntrinsic,
-  createMount,
-  describeConformance,
-  act,
-  createClientRender,
-} from 'test/utils';
+import { createMount, describeConformance, act, createClientRender, fireEvent } from 'test/utils';
 import FormGroup from '../FormGroup';
 import Radio from '../Radio';
 import RadioGroup from './RadioGroup';
@@ -19,10 +13,6 @@ describe('<RadioGroup />', () => {
   const mount = createMount({ strict: false });
   const render = createClientRender({ strict: true });
 
-  function findRadio(wrapper, value) {
-    return wrapper.find(`input[value="${value}"]`).first();
-  }
-
   describeConformance(<RadioGroup value="" />, () => ({
     classes: {},
     inheritComponent: FormGroup,
@@ -32,64 +22,77 @@ describe('<RadioGroup />', () => {
   }));
 
   it('the root component has the radiogroup role', () => {
-    const wrapper = mount(<RadioGroup value="" />);
-    expect(findOutermostIntrinsic(wrapper).props().role).to.equal('radiogroup');
+    const { container } = render(<RadioGroup value="" />);
+
+    expect(container.firstChild).to.have.attribute('role', 'radiogroup');
   });
 
   it('should fire the onBlur callback', () => {
     const handleBlur = spy();
-    const wrapper = mount(<RadioGroup value="" onBlur={handleBlur} />);
+    const { container } = render(<RadioGroup value="" onBlur={handleBlur} />);
 
-    const eventMock = 'something-to-match';
-    wrapper.simulate('blur', { eventMock });
+    fireEvent.blur(container.firstChild);
+
     expect(handleBlur.callCount).to.equal(1);
-    expect(handleBlur.calledWithMatch({ eventMock })).to.equal(true);
   });
 
   it('should fire the onKeyDown callback', () => {
     const handleKeyDown = spy();
-    const wrapper = mount(<RadioGroup value="" onKeyDown={handleKeyDown} />);
+    const { getByRole } = render(<RadioGroup tabIndex={-1} value="" onKeyDown={handleKeyDown} />);
+    const radiogroup = getByRole('radiogroup');
 
-    const eventMock = 'something-to-match';
-    wrapper.simulate('keyDown', { eventMock });
+    act(() => {
+      radiogroup.focus();
+    });
+
+    fireEvent.keyDown(radiogroup);
+
     expect(handleKeyDown.callCount).to.equal(1);
-    expect(handleKeyDown.calledWithMatch({ eventMock })).to.equal(true);
   });
 
   it('should support uncontrolled mode', () => {
-    const wrapper = mount(
+    const { getByRole } = render(
       <RadioGroup name="group">
         <Radio value="one" />
       </RadioGroup>,
     );
 
-    findRadio(wrapper, 'one').simulate('change');
-    expect(findRadio(wrapper, 'one').props().checked).to.equal(true);
+    const radio = getByRole('radio');
+
+    fireEvent.click(radio);
+
+    expect(radio.checked).to.equal(true);
   });
 
   it('should support default value in uncontrolled mode', () => {
-    const wrapper = mount(
+    const { getAllByRole } = render(
       <RadioGroup name="group" defaultValue="zero">
         <Radio value="zero" />
         <Radio value="one" />
       </RadioGroup>,
     );
 
-    expect(findRadio(wrapper, 'zero').props().checked).to.equal(true);
-    findRadio(wrapper, 'one').simulate('change');
-    expect(findRadio(wrapper, 'one').props().checked).to.equal(true);
+    const radios = getAllByRole('radio');
+
+    expect(radios[0].checked).to.equal(true);
+
+    fireEvent.click(radios[1]);
+
+    expect(radios[1].checked).to.equal(true);
   });
 
   it('should have a default name', () => {
-    const wrapper = mount(
+    const { getAllByRole } = render(
       <RadioGroup>
         <Radio value="zero" />
         <Radio value="one" />
       </RadioGroup>,
     );
 
-    expect(findRadio(wrapper, 'zero').props().name).to.match(/^mui-[0-9]+/);
-    expect(findRadio(wrapper, 'one').props().name).to.match(/^mui-[0-9]+/);
+    const radios = getAllByRole('radio');
+
+    expect(radios[0].name).to.match(/^mui-[0-9]+/);
+    expect(radios[1].name).to.match(/^mui-[0-9]+/);
   });
 
   describe('imperative focus()', () => {
@@ -97,7 +100,7 @@ describe('<RadioGroup />', () => {
       const actionsRef = React.createRef();
       const oneRadioOnFocus = spy();
 
-      mount(
+      render(
         <RadioGroup actions={actionsRef} value="">
           <Radio value="zero" disabled />
           <Radio value="one" onFocus={oneRadioOnFocus} />
@@ -105,7 +108,10 @@ describe('<RadioGroup />', () => {
         </RadioGroup>,
       );
 
-      actionsRef.current.focus();
+      act(() => {
+        actionsRef.current.focus();
+      });
+
       expect(oneRadioOnFocus.callCount).to.equal(1);
     });
 
@@ -115,7 +121,7 @@ describe('<RadioGroup />', () => {
       const oneRadioOnFocus = spy();
       const twoRadioOnFocus = spy();
 
-      mount(
+      render(
         <RadioGroup actions={actionsRef} value="">
           <Radio value="zero" disabled onFocus={zeroRadioOnFocus} />
           <Radio value="one" disabled onFocus={oneRadioOnFocus} />
@@ -123,7 +129,9 @@ describe('<RadioGroup />', () => {
         </RadioGroup>,
       );
 
-      actionsRef.current.focus();
+      act(() => {
+        actionsRef.current.focus();
+      });
 
       expect(zeroRadioOnFocus.callCount).to.equal(0);
       expect(oneRadioOnFocus.callCount).to.equal(0);
@@ -134,7 +142,7 @@ describe('<RadioGroup />', () => {
       const actionsRef = React.createRef();
       const twoRadioOnFocus = spy();
 
-      mount(
+      render(
         <RadioGroup actions={actionsRef} value="two">
           <Radio value="zero" disabled />
           <Radio value="one" />
@@ -143,7 +151,10 @@ describe('<RadioGroup />', () => {
         </RadioGroup>,
       );
 
-      actionsRef.current.focus();
+      act(() => {
+        actionsRef.current.focus();
+      });
+
       expect(twoRadioOnFocus.callCount).to.equal(1);
     });
 
@@ -151,7 +162,7 @@ describe('<RadioGroup />', () => {
       const actionsRef = React.createRef();
       const threeRadioOnFocus = spy();
 
-      mount(
+      const { getAllByRole } = render(
         <RadioGroup actions={actionsRef} value="two">
           <Radio value="zero" disabled />
           <Radio value="one" disabled />
@@ -160,20 +171,29 @@ describe('<RadioGroup />', () => {
         </RadioGroup>,
       );
 
-      actionsRef.current.focus();
+      act(() => {
+        actionsRef.current.focus();
+      });
+
+      const radios = getAllByRole('radio');
+
+      expect(radios[0]).not.toHaveFocus();
+      expect(radios[1]).not.toHaveFocus();
+      expect(radios[2]).not.toHaveFocus();
+      expect(radios[3]).toHaveFocus();
       expect(threeRadioOnFocus.callCount).to.equal(1);
     });
 
     it('should be able to focus with no radios', () => {
       const actionsRef = React.createRef();
-      mount(<RadioGroup actions={actionsRef} value="" />);
+      render(<RadioGroup actions={actionsRef} value="" />);
 
       actionsRef.current.focus();
     });
   });
 
   it('should accept invalid child', () => {
-    mount(
+    render(
       <RadioGroup value="">
         <Radio />
         {null}
@@ -184,42 +204,40 @@ describe('<RadioGroup />', () => {
   describe('prop: onChange', () => {
     it('should fire onChange', () => {
       const handleChange = spy();
-      const wrapper = mount(
+      const { getAllByRole } = render(
         <RadioGroup value="" onChange={handleChange}>
           <Radio value="woofRadioGroup" />
           <Radio />
         </RadioGroup>,
       );
 
-      const eventMock = 'something-to-match';
-      findRadio(wrapper, 'woofRadioGroup').simulate('change', { eventMock });
+      const radios = getAllByRole('radio');
+
+      fireEvent.click(radios[0]);
+
       expect(handleChange.callCount).to.equal(1);
-      expect(handleChange.calledWithMatch({ eventMock })).to.equal(true);
     });
 
     it('should chain the onChange property', () => {
       const handleChange1 = spy();
       const handleChange2 = spy();
-      const wrapper = mount(
+      const { getAllByRole } = render(
         <RadioGroup value="" onChange={handleChange1}>
           <Radio value="woofRadioGroup" onChange={handleChange2} />
           <Radio />
         </RadioGroup>,
       );
 
-      findRadio(wrapper, 'woofRadioGroup').simulate('change');
+      const radios = getAllByRole('radio');
+
+      fireEvent.click(radios[0]);
+
       expect(handleChange1.callCount).to.equal(1);
       expect(handleChange2.callCount).to.equal(1);
     });
 
     describe('with non-string values', () => {
       it('passes the value of the selected Radio as a string', () => {
-        function selectNth(wrapper, n) {
-          return wrapper.find('input[type="radio"]').at(n).simulate('change');
-        }
-        function isNthChecked(wrapper, n) {
-          return wrapper.find('input[type="radio"]').at(n).is('[checked=true]');
-        }
         function Test(props) {
           const { values, ...other } = props;
           return (
@@ -237,16 +255,21 @@ describe('<RadioGroup />', () => {
         const values = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }];
         const handleChange = spy();
 
-        const wrapper = mount(<Test onChange={handleChange} value={values[1]} values={values} />);
-        // on the initial mount it works because we compare to the `value` prop
-        expect(isNthChecked(wrapper, 0)).to.equal(false);
-        expect(isNthChecked(wrapper, 1)).to.equal(true);
+        const { getAllByRole } = render(
+          <Test onChange={handleChange} value={values[1]} values={values} />,
+        );
 
-        selectNth(wrapper, 0);
+        const radios = getAllByRole('radio');
+
+        expect(radios[0].checked).to.equal(false);
+        expect(radios[1].checked).to.equal(true);
+
+        fireEvent.click(radios[0]);
+
         // on updates, however, we compare against event.target.value
         // object information is lost on stringification.
-        expect(isNthChecked(wrapper, 0)).to.equal(false);
-        expect(isNthChecked(wrapper, 1)).to.equal(true);
+        expect(radios[0].checked).to.equal(false);
+        expect(radios[1].checked).to.equal(true);
         expect(handleChange.firstCall.args[1]).to.equal('[object Object]');
       });
     });
@@ -325,28 +348,28 @@ describe('<RadioGroup />', () => {
 
   describe('warnings', () => {
     it('should warn when switching from controlled to uncontrolled', () => {
-      const wrapper = mount(
+      const { setProps } = render(
         <RadioGroup value="foo">
           <Radio value="foo" />
         </RadioGroup>,
       );
 
       expect(() => {
-        wrapper.setProps({ value: undefined });
+        setProps({ value: undefined });
       }).toErrorDev(
         'Material-UI: A component is changing the controlled value state of RadioGroup to be uncontrolled.',
       );
     });
 
     it('should warn when switching between uncontrolled to controlled', () => {
-      const wrapper = mount(
+      const { setProps } = render(
         <RadioGroup>
           <Radio value="foo" />
         </RadioGroup>,
       );
 
       expect(() => {
-        wrapper.setProps({ value: 'foo' });
+        setProps({ value: 'foo' });
       }).toErrorDev(
         'Material-UI: A component is changing the uncontrolled value state of RadioGroup to be controlled.',
       );

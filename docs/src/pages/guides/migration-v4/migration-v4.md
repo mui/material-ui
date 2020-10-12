@@ -196,6 +196,21 @@ const theme = createMuiTheme({
 });
 ```
 
+### Styles
+
+- Renamed `fade` to `alpha` to better describe its functionality.
+  The previous name was leading to confusion when the input color already had an alpha value. The helper **overrides** the alpha value of the color.
+
+```diff
+- import { fade } from '@material-ui/core/styles';
++ import { alpha } from '@material-ui/core/styles';
+
+const classes = makeStyles(theme => ({
+-  backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
++  backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+}));
+```
+
 ### Alert
 
 - Move the component from the lab to the core. The component is now stable.
@@ -400,6 +415,7 @@ const theme = createMuiTheme({
   ```
 
 - Remove `display: flex` from AccordionDetails as its too opinionated.
+  Most developers expect a display block.
 - Remove `IconButtonProps` prop from AccordionSummary.
   The component renders a `<div>` element instead of an IconButton.
   The prop is no longer necessary.
@@ -702,6 +718,16 @@ const theme = createMuiTheme({
   - backIconButtonText="Avant"
   - nextIconButtonText="Après
   + getItemAriaLabel={…}
+  ```
+
+- Rename `onChangeRowsPerPage` to `onRowsPerPageChange` and `onChangePage` to `onPageChange` due to API consistency.
+
+  ```diff
+  <TablePagination
+  - onChangeRowsPerPage={()=>{}}
+  - onChangePage={()=>{}}
+  + onRowsPerPageChange={()=>{}}
+  + onPageChange={()=>{}}
   ```
 
 ### Tabs

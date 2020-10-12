@@ -1,13 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
-import { createMount, describeConformance } from 'test/utils';
+import { createClientRender, createMount, describeConformance } from 'test/utils';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { Transition } from 'react-transition-group';
 import Slide, { setTranslateValue } from './Slide';
 import { useForkRef } from '../utils';
 
 describe('<Slide />', () => {
+  const render = createClientRender();
   const mount = createMount({ strict: true });
   const defaultProps = {
     in: true,
@@ -33,7 +34,7 @@ describe('<Slide />', () => {
   );
 
   it('should not override children styles', () => {
-    const wrapper = mount(
+    const { container } = render(
       <Slide
         {...defaultProps}
         style={{ color: 'red', backgroundColor: 'yellow' }}
@@ -42,11 +43,12 @@ describe('<Slide />', () => {
         <div id="with-slide" style={{ color: 'blue' }} />
       </Slide>,
     );
-    expect(wrapper.find('#with-slide').props().style).to.deep.equal({
-      backgroundColor: 'yellow',
-      color: 'blue',
-      visibility: undefined,
-    });
+
+    const slide = container.querySelector('#with-slide');
+
+    expect(slide.style).to.have.property('backgroundColor', 'yellow');
+    expect(slide.style).to.have.property('color', 'blue');
+    expect(slide.style).to.have.property('visibility', '');
   });
 
   describe('transition lifecycle', () => {
@@ -69,7 +71,7 @@ describe('<Slide />', () => {
       const handleExited = spy();
 
       let child;
-      const wrapper = mount(
+      const { setProps } = render(
         <Slide
           onEnter={handleEnter}
           onEntering={handleEntering}
@@ -86,7 +88,7 @@ describe('<Slide />', () => {
         </Slide>,
       );
 
-      wrapper.setProps({ in: true });
+      setProps({ in: true });
 
       expect(handleEntering.callCount).to.equal(1);
       expect(handleEntering.args[0][0]).to.equal(child);
@@ -99,7 +101,7 @@ describe('<Slide />', () => {
       clock.tick(1000);
       expect(handleEntered.callCount).to.equal(1);
 
-      wrapper.setProps({ in: false });
+      setProps({ in: false });
 
       expect(handleExiting.callCount).to.equal(1);
       expect(handleExiting.args[0][0]).to.equal(child);
@@ -117,7 +119,7 @@ describe('<Slide />', () => {
     it('should create proper easeOut animation onEntering', () => {
       const handleEntering = spy();
 
-      mount(
+      render(
         <Slide
           {...defaultProps}
           timeout={{
@@ -134,7 +136,7 @@ describe('<Slide />', () => {
 
     it('should create proper sharp animation onExit', () => {
       const handleExit = spy();
-      const wrapper = mount(
+      const { setProps } = render(
         <Slide
           {...defaultProps}
           timeout={{
@@ -144,7 +146,7 @@ describe('<Slide />', () => {
         />,
       );
 
-      wrapper.setProps({ in: false });
+      setProps({ in: false });
 
       expect(handleExit.args[0][0].style.transition).to.match(
         /transform 446ms cubic-bezier\(0.4, 0, 0.6, 1\)( 0ms)?/,
@@ -154,11 +156,13 @@ describe('<Slide />', () => {
 
   describe('prop: direction', () => {
     it('should update the position', () => {
-      const wrapper = mount(<Slide {...defaultProps} in={false} direction="left" />);
-      const child = wrapper.find('#testChild').instance();
+      const { container, setProps } = render(
+        <Slide {...defaultProps} in={false} direction="left" />,
+      );
+      const child = container.querySelector('#testChild');
 
       const transition1 = child.style.transform;
-      wrapper.setProps({
+      setProps({
         direction: 'right',
       });
 
@@ -194,7 +198,7 @@ describe('<Slide />', () => {
     describe('handleEnter()', () => {
       it('should set element transform and transition in the `left` direction', () => {
         let nodeEnterTransformStyle;
-        const wrapper = mount(
+        const { setProps } = render(
           <Slide
             direction="left"
             onEnter={(node) => {
@@ -205,7 +209,7 @@ describe('<Slide />', () => {
           </Slide>,
         );
 
-        wrapper.setProps({ in: true });
+        setProps({ in: true });
 
         expect(nodeEnterTransformStyle).to.equal(
           `translateX(${global.innerWidth}px) translateX(-300px)`,
@@ -214,7 +218,7 @@ describe('<Slide />', () => {
 
       it('should set element transform and transition in the `right` direction', () => {
         let nodeEnterTransformStyle;
-        const wrapper = mount(
+        const { setProps } = render(
           <Slide
             direction="right"
             onEnter={(node) => {
@@ -225,14 +229,14 @@ describe('<Slide />', () => {
           </Slide>,
         );
 
-        wrapper.setProps({ in: true });
+        setProps({ in: true });
 
         expect(nodeEnterTransformStyle).to.equal('translateX(-800px)');
       });
 
       it('should set element transform and transition in the `up` direction', () => {
         let nodeEnterTransformStyle;
-        const wrapper = mount(
+        const { setProps } = render(
           <Slide
             direction="up"
             onEnter={(node) => {
@@ -243,7 +247,7 @@ describe('<Slide />', () => {
           </Slide>,
         );
 
-        wrapper.setProps({ in: true });
+        setProps({ in: true });
 
         expect(nodeEnterTransformStyle).to.equal(
           `translateY(${global.innerHeight}px) translateY(-200px)`,
@@ -252,7 +256,7 @@ describe('<Slide />', () => {
 
       it('should set element transform and transition in the `down` direction', () => {
         let nodeEnterTransformStyle;
-        const wrapper = mount(
+        const { setProps } = render(
           <Slide
             direction="down"
             onEnter={(node) => {
@@ -263,7 +267,7 @@ describe('<Slide />', () => {
           </Slide>,
         );
 
-        wrapper.setProps({ in: true });
+        setProps({ in: true });
 
         expect(nodeEnterTransformStyle).to.equal('translateY(-500px)');
       });
@@ -271,7 +275,7 @@ describe('<Slide />', () => {
       it('should reset the previous transition if needed', () => {
         const childRef = React.createRef();
         let nodeEnterTransformStyle;
-        const wrapper = mount(
+        const { setProps } = render(
           <Slide
             direction="right"
             onEnter={(node) => {
@@ -283,7 +287,7 @@ describe('<Slide />', () => {
         );
 
         childRef.current.style.transform = 'translateX(-800px)';
-        wrapper.setProps({ in: true });
+        setProps({ in: true });
 
         expect(nodeEnterTransformStyle).to.equal('translateX(-800px)');
       });
@@ -291,7 +295,7 @@ describe('<Slide />', () => {
       it('should set element transform in the `up` direction when element is offscreen', () => {
         const childRef = React.createRef();
         let nodeEnterTransformStyle;
-        const wrapper = mount(
+        const { setProps } = render(
           <Slide
             direction="up"
             onEnter={(node) => {
@@ -302,7 +306,7 @@ describe('<Slide />', () => {
           </Slide>,
         );
 
-        wrapper.setProps({ in: true });
+        setProps({ in: true });
 
         expect(nodeEnterTransformStyle).to.equal(
           `translateY(${global.innerHeight}px) translateY(100px)`,
@@ -312,7 +316,7 @@ describe('<Slide />', () => {
       it('should set element transform in the `left` direction when element is offscreen', () => {
         const childRef = React.createRef();
         let nodeEnterTransformStyle;
-        const wrapper = mount(
+        const { setProps } = render(
           <Slide
             direction="left"
             onEnter={(node) => {
@@ -323,7 +327,7 @@ describe('<Slide />', () => {
           </Slide>,
         );
 
-        wrapper.setProps({ in: true });
+        setProps({ in: true });
 
         expect(nodeEnterTransformStyle).to.equal(
           `translateX(${global.innerWidth}px) translateX(100px)`,
@@ -334,7 +338,7 @@ describe('<Slide />', () => {
     describe('handleExiting()', () => {
       it('should set element transform and transition in the `left` direction', () => {
         let nodeExitingTransformStyle;
-        const wrapper = mount(
+        const { setProps } = render(
           <Slide
             direction="left"
             in
@@ -346,7 +350,7 @@ describe('<Slide />', () => {
           </Slide>,
         );
 
-        wrapper.setProps({ in: false });
+        setProps({ in: false });
 
         expect(nodeExitingTransformStyle).to.equal(
           `translateX(${global.innerWidth}px) translateX(-300px)`,
@@ -355,7 +359,7 @@ describe('<Slide />', () => {
 
       it('should set element transform and transition in the `right` direction', () => {
         let nodeExitingTransformStyle;
-        const wrapper = mount(
+        const { setProps } = render(
           <Slide
             direction="right"
             in
@@ -367,14 +371,14 @@ describe('<Slide />', () => {
           </Slide>,
         );
 
-        wrapper.setProps({ in: false });
+        setProps({ in: false });
 
         expect(nodeExitingTransformStyle).to.equal('translateX(-800px)');
       });
 
       it('should set element transform and transition in the `up` direction', () => {
         let nodeExitingTransformStyle;
-        const wrapper = mount(
+        const { setProps } = render(
           <Slide
             direction="up"
             in
@@ -386,7 +390,7 @@ describe('<Slide />', () => {
           </Slide>,
         );
 
-        wrapper.setProps({ in: false });
+        setProps({ in: false });
 
         expect(nodeExitingTransformStyle).to.equal(
           `translateY(${global.innerHeight}px) translateY(-200px)`,
@@ -395,7 +399,7 @@ describe('<Slide />', () => {
 
       it('should set element transform and transition in the `down` direction', () => {
         let nodeExitingTransformStyle;
-        const wrapper = mount(
+        const { setProps } = render(
           <Slide
             direction="down"
             in
@@ -407,7 +411,7 @@ describe('<Slide />', () => {
           </Slide>,
         );
 
-        wrapper.setProps({ in: false });
+        setProps({ in: false });
 
         expect(nodeExitingTransformStyle).to.equal('translateY(-500px)');
       });
@@ -417,7 +421,7 @@ describe('<Slide />', () => {
   describe('mount', () => {
     it('should work when initially hidden', () => {
       const childRef = React.createRef();
-      mount(
+      render(
         <Slide in={false}>
           <div ref={childRef}>Foo</div>
         </Slide>,
@@ -441,7 +445,7 @@ describe('<Slide />', () => {
     });
 
     it('should recompute the correct position', () => {
-      const wrapper = mount(
+      const { container } = render(
         <Slide direction="up" in={false}>
           <div id="testChild">Foo</div>
         </Slide>,
@@ -449,7 +453,7 @@ describe('<Slide />', () => {
 
       window.dispatchEvent(new window.Event('resize', {}));
       clock.tick(166);
-      const child = wrapper.find('#testChild').instance();
+      const child = container.querySelector('#testChild');
 
       expect(child.style.transform).to.not.equal(undefined);
     });
@@ -474,7 +478,7 @@ describe('<Slide />', () => {
     });
 
     it('should do nothing when visible', () => {
-      mount(<Slide {...defaultProps} />);
+      render(<Slide {...defaultProps} />);
       window.dispatchEvent(new window.Event('resize', {}));
       clock.tick(166);
     });
@@ -482,12 +486,15 @@ describe('<Slide />', () => {
 
   describe('server-side', () => {
     it('should be initially hidden', () => {
-      const wrapper = mount(
+      const { container } = render(
         <Slide {...defaultProps} in={false}>
           <div id="with-slide" />
         </Slide>,
       );
-      expect(wrapper.find('#with-slide').props().style.visibility).to.equal('hidden');
+
+      const slide = container.querySelector('#with-slide');
+
+      expect(slide.style).to.have.property('visibility', 'hidden');
     });
   });
 });

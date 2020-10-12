@@ -58,7 +58,7 @@ export interface TreeViewPropsBase extends StandardProps<React.HTMLAttributes<HT
   /**
    * Callback fired when tree items are focused.
    *
-   * @param {object} event The event source of the callback
+   * @param {object} event The event source of the callback **Warning**: This is a generic event not a focus event.
    * @param {string} value of the focused node.
    */
   onNodeFocus?: (event: React.SyntheticEvent, nodeId: string) => void;

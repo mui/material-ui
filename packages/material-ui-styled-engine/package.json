@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/styled-engine",
-  "version": "5.0.0-alpha.11",
+  "version": "5.0.0-alpha.12",
   "private": false,
   "author": "Material-UI Team",
   "description": "Material-UI Styled - Wrapper package for emotion.",

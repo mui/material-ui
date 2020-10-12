@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/core",
-  "version": "5.0.0-alpha.11",
+  "version": "5.0.0-alpha.12",
   "private": false,
   "author": "Material-UI Team",
   "description": "React components that implement Google's Material Design.",
@@ -58,7 +58,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.4.4",
-    "@material-ui/styled-engine": "^5.0.0-alpha.11",
+    "@material-ui/styled-engine": "^5.0.0-alpha.12",
     "@material-ui/styles": "^5.0.0-alpha.11",
     "@material-ui/system": "^5.0.0-alpha.11",
     "@material-ui/types": "^5.1.0",

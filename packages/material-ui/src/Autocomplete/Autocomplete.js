@@ -168,7 +168,7 @@ export const styles = (theme) => ({
   /* Styles applied to the `Paper` component. */
   paper: {
     ...theme.typography.body1,
-    overflow: 'hidden',
+    overflow: 'auto',
     margin: '4px 0',
   },
   /* Styles applied to the `listbox` component. */
@@ -193,6 +193,7 @@ export const styles = (theme) => ({
   option: {
     minHeight: 48,
     display: 'flex',
+    overflow: 'hidden',
     justifyContent: 'flex-start',
     alignItems: 'center',
     cursor: 'pointer',

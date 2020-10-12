@@ -1,5 +1,5 @@
 {
-  "version": "5.0.0-alpha.11",
+  "version": "5.0.0-alpha.12",
   "private": true,
   "scripts": {
     "proptypes": "cross-env BABEL_ENV=test babel-node --extensions \".tsx,.ts,.js\" ./scripts/generateProptypes.ts",
@@ -34,8 +34,9 @@
     "size:why": "size-limit --why packages/material-ui/build/index.js",
     "start": "yarn docs:dev",
     "test": "yarn lint && yarn typescript && yarn test:coverage",
-    "test:coverage": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}' 'scripts/**/*.test.{js,ts,tsx}' 'test/utils/**/*.test.{js,ts,tsx}' && nyc report --reporter=lcovonly",
-    "test:coverage:html": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}' 'scripts/**/*.test.{js,ts,tsx}' 'test/utils/**/*.test.{js,ts,tsx}' && nyc report --reporter=html",
+    "test:coverage": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=text mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}' 'scripts/**/*.test.{js,ts,tsx}' 'test/utils/**/*.test.{js,ts,tsx}'",
+    "test:coverage:ci": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=lcov mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}' 'scripts/**/*.test.{js,ts,tsx}' 'test/utils/**/*.test.{js,ts,tsx}'",
+    "test:coverage:html": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=html mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}' 'scripts/**/*.test.{js,ts,tsx}' 'test/utils/**/*.test.{js,ts,tsx}'",
     "test:karma": "cross-env NODE_ENV=test karma start test/karma.conf.js",
     "test:regressions": "yarn test:regressions:build && rimraf test/regressions/screenshots/chrome/* && vrtest run --config test/vrtest.config.js --record",
     "test:regressions:build": "webpack --config test/regressions/webpack.config.js",
@@ -119,6 +120,7 @@
     "karma-browserstack-launcher": "~1.4.0",
     "karma-chrome-launcher": "^3.0.0",
     "karma-mocha": "^2.0.0",
+    "karma-mocha-reporter": "^2.2.5",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^4.0.2",
     "lerna": "^3.16.4",
@@ -158,7 +160,6 @@
   "resolutions": {
     "**/@babel/core": "^7.10.2",
     "**/@babel/code-frame": "^7.10.4",
-    "**/@babel/parser": "7.10.5",
     "**/@babel/plugin-proposal-class-properties": "^7.10.1",
     "**/@babel/plugin-proposal-object-rest-spread": "^7.10.1",
     "**/@babel/plugin-proposal-nullish-coalescing-operator": "^7.10.1",
@@ -173,7 +174,7 @@
     "**/@babel/types": "^7.10.2",
     "**/cross-fetch": "^3.0.5",
     "**/dot-prop": "^5.2.0",
-    "**/hoist-non-react-statics": "^3.3.2",
+    "**/react-docgen/ast-types": "^0.14.1",
     "**/webpack": "^4.44.1"
   },
   "nyc": {

@@ -659,6 +659,13 @@ const appList = [
     similarWebVisits: 534,
     dateAdded: '2020-09-11',
   },
+  {
+    title: 'buybags',
+    description: 'buybags is a fashion shopping aggregator in Germany.',
+    image: 'buybags.jpg',
+    link: 'https://www.buybags.de/',
+    dateAdded: '2020-10-08',
+  },
 ];
 
 export default appList;

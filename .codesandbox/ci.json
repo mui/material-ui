@@ -23,9 +23,9 @@
     "@material-ui/utils": "packages/material-ui-utils/build"
   },
   "sandboxes": [
-    "new",
-    "github/mui-org/material-ui/tree/master/examples/create-react-app",
-    "github/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript"
+    "material-ui-issue-dh2yh",
+    "github/mui-org/material-ui/tree/HEAD/examples/create-react-app",
+    "github/mui-org/material-ui/tree/HEAD/examples/create-react-app-with-typescript"
   ],
   "silent": true
 }

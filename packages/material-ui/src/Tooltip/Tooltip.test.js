@@ -17,6 +17,19 @@ import { camelCase } from 'lodash/string';
 import Tooltip, { testReset } from './Tooltip';
 import Input from '../Input';
 
+async function raf() {
+  return new Promise((resolve) => {
+    // Chrome and Safari have a bug where calling rAF once returns the current
+    // frame instead of the next frame, so we need to call a double rAF here.
+    // See crbug.com/675795 for more.
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        resolve();
+      });
+    });
+  });
+}
+
 describe('<Tooltip />', () => {
   /**
    * @type {ReturnType<typeof useFakeTimers>}
@@ -965,6 +978,44 @@ describe('<Tooltip />', () => {
         </Tooltip>,
       );
       expect(getByTestId('CustomPopper')).toBeVisible();
+    });
+  });
+
+  describe('prop: followCursor', () => {
+    it('should use the position of the mouse', async function test() {
+      // Only callig render() outputs:
+      // An update to ForwardRef(Popper) inside a test was not wrapped in act(...).
+      // Somethings is wrong in JSDOM and strict mode.
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const x = 5;
+      const y = 10;
+
+      // Avoid mock of raf
+      clock.restore();
+      render(
+        <Tooltip title="Hello World" open followCursor PopperProps={{ 'data-testid': 'popper' }}>
+          <button data-testid="target" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+      const tooltipElement = screen.getByTestId('popper');
+      const targetElement = screen.getByTestId('target');
+
+      fireEvent.mouseMove(targetElement, {
+        clientX: x,
+        clientY: y,
+      });
+
+      // Wait for the scheduleUpdate() call to resolve.
+      await raf();
+
+      expect(tooltipElement).toBeVisible();
+      expect(tooltipElement.getBoundingClientRect()).to.have.property('top', y);
+      expect(tooltipElement.getBoundingClientRect()).to.have.property('left', x);
     });
   });
 });

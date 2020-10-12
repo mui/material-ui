@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { createMount, describeConformance } from 'test/utils';
+import { createClientRender, createMount, describeConformance } from 'test/utils';
 import { Transition } from 'react-transition-group';
 import Fade from './Fade';
 
 describe('<Fade />', () => {
+  const render = createClientRender();
   const mount = createMount({ strict: true });
 
   const defaultProps = {
@@ -45,7 +46,7 @@ describe('<Fade />', () => {
       const handleExiting = spy();
       const handleExited = spy();
 
-      const wrapper = mount(
+      const { container, setProps } = render(
         <Fade
           onEnter={handleEnter}
           onEntering={handleEntering}
@@ -57,64 +58,66 @@ describe('<Fade />', () => {
           <div id="test" />
         </Fade>,
       );
-      const child = wrapper.find('#test');
+      const child = container.querySelector('#test');
 
-      wrapper.setProps({ in: true });
+      setProps({ in: true });
 
       expect(handleEnter.callCount).to.equal(1);
-      expect(handleEnter.args[0][0]).to.equal(child.instance());
+      expect(handleEnter.args[0][0]).to.equal(child);
       expect(handleEnter.args[0][0].style.transition).to.match(
         /opacity 225ms cubic-bezier\(0.4, 0, 0.2, 1\)( 0ms)?/,
       );
 
       expect(handleEntering.callCount).to.equal(1);
-      expect(handleEntering.args[0][0]).to.equal(child.instance());
+      expect(handleEntering.args[0][0]).to.equal(child);
 
       clock.tick(1000);
       expect(handleEntered.callCount).to.equal(1);
-      expect(handleEntered.args[0][0]).to.equal(child.instance());
+      expect(handleEntered.args[0][0]).to.equal(child);
 
-      wrapper.setProps({ in: false });
+      setProps({ in: false });
 
       expect(handleExit.callCount).to.equal(1);
-      expect(handleExit.args[0][0]).to.equal(child.instance());
+      expect(handleExit.args[0][0]).to.equal(child);
 
       expect(handleExit.args[0][0].style.transition).to.match(
         /opacity 195ms cubic-bezier\(0.4, 0, 0.2, 1\)( 0ms)?/,
       );
 
       expect(handleExiting.callCount).to.equal(1);
-      expect(handleExiting.args[0][0]).to.equal(child.instance());
+      expect(handleExiting.args[0][0]).to.equal(child);
 
       clock.tick(1000);
       expect(handleExited.callCount).to.equal(1);
-      expect(handleExited.args[0][0]).to.equal(child.instance());
+      expect(handleExited.args[0][0]).to.equal(child);
     });
   });
 
   describe('prop: appear', () => {
     it('should work when initially hidden, appear=true', () => {
-      const wrapper = mount(
+      const { container } = render(
         <Fade in={false} appear>
           <div>Foo</div>
         </Fade>,
       );
-      expect(wrapper.find('div').props().style).to.deep.equal({
-        opacity: 0,
-        visibility: 'hidden',
-      });
+
+      const element = container.querySelector('div');
+
+      expect(element.style).to.have.property('opacity', '0');
+      expect(element.style).to.have.property('visibility', 'hidden');
     });
 
     it('should work when initially hidden, appear=false', () => {
-      const wrapper = mount(
+      const { container } = render(
         <Fade in={false} appear={false}>
           <div>Foo</div>
         </Fade>,
       );
-      expect(wrapper.find('div').props().style).to.deep.equal({
-        opacity: 0,
-        visibility: 'hidden',
-      });
+
+      const element = container.querySelector('div');
+
+      expect(element.style).to.have.property('opacity', '0');
+      expect(element.style).to.have.property('visibility', 'hidden');
     });
   });
 });

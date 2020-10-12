@@ -85,7 +85,7 @@ describe('<InputBase />', () => {
       expect(handleFocus.callCount).to.equal(1);
     });
 
-    // IE 11 bug
+    // IE11 bug
     it('should not respond the focus event when disabled', () => {
       const handleFocus = spy();
       // non-native input simulating how IE11 treats disabled inputs

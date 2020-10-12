@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { makeStyles, fade } from '@material-ui/core/styles';
+import { makeStyles, alpha } from '@material-ui/core/styles';
 import Collapse from '@material-ui/core/Collapse';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     }),
     '&:hover': {
       color: theme.palette.text.primary,
-      backgroundColor: fade(theme.palette.text.primary, theme.palette.action.hoverOpacity),
+      backgroundColor: alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
     },
     '&.Mui-focusVisible': {
       backgroundColor: theme.palette.action.focus,
@@ -58,19 +58,19 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
     '&.app-drawer-active': {
       color: theme.palette.primary.main,
-      backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+      backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
       '&:hover': {
-        backgroundColor: fade(
+        backgroundColor: alpha(
           theme.palette.primary.main,
           theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
         ),
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
-          backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+          backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
         },
       },
       '&.Mui-focusVisible': {
-        backgroundColor: fade(
+        backgroundColor: alpha(
           theme.palette.primary.main,
           theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
         ),

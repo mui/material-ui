@@ -118,7 +118,7 @@ const NotchedOutline = React.forwardRef(function NotchedOutline(props, ref) {
       <legend
         className={classes.legend}
         style={{
-          // IE 11: fieldset with legend does not render
+          // IE11: fieldset with legend does not render
           // a border radius. This maintains consistency
           // by always having a legend rendered
           width: notched ? labelWidth : 0.01,

@@ -1,11 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import SvgIcon from '@material-ui/core/SvgIcon';
-import { fade, makeStyles, withStyles } from '@material-ui/core/styles';
+import { alpha, makeStyles, withStyles } from '@material-ui/core/styles';
 import TreeView from '@material-ui/lab/TreeView';
 import TreeItem from '@material-ui/lab/TreeItem';
 import Collapse from '@material-ui/core/Collapse';
-import { useSpring, animated } from 'react-spring/web.cjs'; // web.cjs is required for IE 11 support
+import { useSpring, animated } from 'react-spring/web.cjs'; // web.cjs is required for IE11 support
 
 function MinusSquare(props) {
   return (
@@ -74,7 +74,7 @@ const StyledTreeItem = withStyles((theme) => ({
   group: {
     marginLeft: 15,
     paddingLeft: 18,
-    borderLeft: `1px dashed ${fade(theme.palette.text.primary, 0.4)}`,
+    borderLeft: `1px dashed ${alpha(theme.palette.text.primary, 0.4)}`,
   },
 }))((props) => (
   <TreeItem {...props} TransitionComponent={TransitionComponent} />

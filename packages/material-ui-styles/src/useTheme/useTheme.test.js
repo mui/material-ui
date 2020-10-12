@@ -1,11 +1,11 @@
 import React from 'react';
 import { expect } from 'chai';
-import { createMount } from 'test/utils';
+import { createClientRender } from 'test/utils';
 import useTheme from './useTheme';
 import ThemeProvider from '../ThemeProvider';
 
 describe('useTheme', () => {
-  const mount = createMount();
+  const render = createClientRender();
 
   it('should use the theme', () => {
     const ref = React.createRef();
@@ -16,7 +16,7 @@ describe('useTheme', () => {
       return <span ref={ref}>{theme.foo}</span>;
     }
 
-    mount(
+    render(
       <ThemeProvider theme={{ foo: 'foo' }}>
         <Test />
       </ThemeProvider>,
