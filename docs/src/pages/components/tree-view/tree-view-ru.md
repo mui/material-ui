@@ -3,7 +3,7 @@ title: Tree View React component
 components: TreeView, TreeItem
 githubLabel: 'component: TreeView'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#TreeView'
-packages: '@material-ui/lab'
+packageName: '@material-ui/lab'
 ---
 
 # Иерархическое представление
@@ -52,15 +52,15 @@ const data = {
 
 {{"demo": "pages/components/tree-view/RecursiveTreeView.js", "defaultCodeOpen": false}}
 
-## ContentComponent prop
+## Параметр ContentComponent
 
-You can use the `ContentComponent` prop and the `useTreeItem` hook to further customize the behavior of the TreeItem.
+Вы можете использовать параметр `ContentComponent`  и хук ` useTreeItem` для дальнейшей настройки поведения TreeItem.
 
-Such as limiting expansion to clicking the icon:
+Такой, как ограничение раскрытия только нажатием иконки:
 
 {{"demo": "pages/components/tree-view/IconExpansionTreeView.js", "defaultCodeOpen": false}}
 
-Or increasing the width of the state indicator:
+Или увеличение ширины индикатора состояния:
 
 {{"demo": "pages/components/tree-view/BarTreeView.js", "defaultCodeOpen": false}}
 
@@ -74,13 +74,13 @@ Or increasing the width of the state indicator:
 
 {{"demo": "pages/components/tree-view/GmailTreeView.js"}}
 
-## Disabled tree items
+## Отключенные элементы иерархии
 
 {{"demo": "pages/components/tree-view/DisabledTreeItems.js"}}
 
-The behavior of disabled tree items depends on the `disabledItemsFocusable` prop.
+Поведение отключенных элементов иерархии зависит от параметра `disabledItemsFocusable`.
 
-If it is false:
+Если он false:
 
 - Arrow keys will not focus disabled items and, the next non-disabled item will be focused.
 - Typing the first character of a disabled item's label will not focus the item.
@@ -89,7 +89,7 @@ If it is false:
 - Shift + arrow keys will skip disabled items and, the next non-disabled item will be selected.
 - Programmatic focus will not focus disabled items.
 
-If it is true:
+Если он true:
 
 - Arrow keys will focus disabled items.
 - Typing the first character of a disabled item's label will focus the item.
@@ -104,4 +104,4 @@ If it is true:
 
 The component follows the WAI-ARIA authoring practices.
 
-To have an accessible tree view you must use `aria-labelledby` or `aria-label` to reference or provide a label on the TreeView, otherwise screen readers will announce it as "tree", making it hard to understand the context of a specific tree item.
+Чтобы иметь доступное иерархическое представление, вы должны использовать `aria-labelledby` чтобы сослаться на метку или `aria-label` чтобы поставить метку на TreeView, иначе программы для чтения с экрана будут объявлены "иерархией", что усложнит понимание контекста конкретного иерархического элемента.
