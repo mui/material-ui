@@ -1,6 +1,6 @@
 # Style Library Interoperability
 
-<p class="description">While you can use the JSS based styling solution provided by Material-UI to style your application, you can also use the one you already know and love (from plain CSS to styled-components).</p>
+<p class="description">While you can use the emotion based styling solution provided by Material-UI to style your application, you can also use the one you already know and love (from plain CSS to styled-components).</p>
 
 This guide aims to document the most popular alternatives,
 but you should find that the principles applied here can be adapted to other libraries.
@@ -18,7 +18,7 @@ Nothing fancy, just plain CSS.
 
 {{"demo": "pages/guides/interoperability/StyledComponents.js", "hideToolbar": true}}
 
-[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/plain-css-mtzri)
+[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/plain-css-1k9wb)
 
 **PlainCssButton.css**
 
@@ -50,64 +50,77 @@ export default function PlainCssButton() {
   );
 }
 ```
-
 ### Controlling priority ⚠️
 
-**Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/styles/advanced/#css-injection-order), as in the demo:
+**Note:** Most of the CSS-in-JS solutions inject their styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change the CSS injection order, as in the demo:
 
 ```jsx
-import { StylesProvider } from '@material-ui/core/styles';
+import * as React from 'react';
+import { CacheProvider } from "@emotion/core";
+import createCache from "@emotion/cache";
 
-<StylesProvider injectFirst>{/* Your component tree.
-      Now, you can override Material-UI's styles. */}</StylesProvider>;
+const head = document.getElementsByTagName("head")[0];
+
+const emotionContainer = head.insertBefore(
+  document.createElement("STYLE"),
+  head.firstChild
+);
+
+const cache = createCache({
+  container: emotionContainer
+});
+
+export default function PlainCSSButton() {
+  return (
+    <CacheProvider value={cache}>
+      {/* Your component tree. Now you can override Material-UI's styles. */}
+    </CacheProvider>
+  );
+}
 ```
 
 ### Deeper elements
 
-If you attempt to style a Drawer with variant permanent,
-you will likely need to affect the Drawer's child paper element.
-However, the paper is not the root element of Drawer and therefore styled-components customization as above will not work.
-You need to use the [`classes`](/styles/advanced/#overriding-styles-classes-prop) API of Material-UI.
+If you attempt to style the Slider,
+you will likely need to affect some of the Slider's child elements, for example the thumb.
+However, the rhumb is not the root element of Slider and therefore styled-components customization as above will not work.
+You need to use the `componentProps` API of Material-UI, in order to provide custom classNames for the slots.
 
-The following example overrides the `label` style of `Button` in addition to the custom styles on the button itself.
+The following example overrides the `thumb` style of `Slider` in addition to the custom styles on the slider itself.
 
 {{"demo": "pages/guides/interoperability/StyledComponents.js", "hideToolbar": true}}
 
-**PlainCssButtonDeep.css**
+**PlainCssSliderDeep.css**
 
 ```css
-.button {
-  background-color: #6772e5;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-  padding: 7px 14px;
+.slider {
+  color: #20b2aa;
 }
-.button:hover {
-  background-color: #5469d4;
+.slider:hover {
+  color: #2e8b57;
 }
-.button-label {
-  color: #fff;
+
+.slider .thumb {
+  border-radius: 30%;
 }
 ```
 
 **PlainCssButtonDeep.js**
 
 ```jsx
-import * as React from 'react';
-import Button from '@material-ui/core/Button';
-import './PlainCssButtonDeep.css';
+import * as React from "react";
+import Slider from "@material-ui/lab/SliderStyled";
+import "./PlainCssSliderDeep.css";
 
-export default function PlainCssButtonDeep() {
+export default function PlainCSSSlider() {
   return (
     <div>
-      <Button>Default</Button>
-      <Button
-        classes={{
-          root: 'button',
-          label: 'button-label',
-        }}
-      >
-        Customized
-      </Button>
+      <Slider defaultValue={30} />
+      <Slider
+        className="slider"
+        defaultValue={30}
+        componentsProps={{ thumb: { className: "thumb" } }}
+      />
     </div>
   );
 }
