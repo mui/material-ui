@@ -1,15 +1,18 @@
 import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
+import markdownRaw from './button.md';
 
-const pageFilename = 'api/button';
-const requireRaw = require.context('!raw-loader!./', false, /\/button\.md$/);
+const pageFilename = 'button';
+const requireRaw = () => markdownRaw;
+requireRaw.keys = () => ['./button.md'];
+
+export async function getStaticProps() {
+  const { docs } = prepareMarkdown({ pageFilename, requireRaw });
+
+  return { props: { docs } };
+}
 
 export default function Page({ docs }) {
   return <MarkdownDocs docs={docs} />;
 }
-
-Page.getInitialProps = () => {
-  const { demos, docs } = prepareMarkdown({ pageFilename, requireRaw });
-  return { demos, docs };
-};
