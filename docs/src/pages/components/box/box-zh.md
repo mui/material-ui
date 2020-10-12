@@ -9,7 +9,7 @@ githubLabel: 'component: Box'
 
 在`@material-ui/system`中，您可以找到所述 Box 组件包的 [所有的样式功能](/system/basics/#all-inclusive)。 It's created using the `experimentalStyled()` function of `@material-ui/core/styles`.
 
-查看[调色板](/system/palette/)样式功能。
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## 示例
 
@@ -55,10 +55,10 @@ Box 组件有一个 `clone` 的属性，通过它您可以使用 React 克隆元
 import Box from '@material-ui/core/Box';
 ```
 
-| 名称                                                      | 类型                                                                                                                            | 默认值                                     | 描述                                                             |
-|:------------------------------------------------------- |:----------------------------------------------------------------------------------------------------------------------------- |:--------------------------------------- |:-------------------------------------------------------------- |
-| <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">union:&nbsp;node&nbsp;&#124;<br>&nbsp;func<br></span>                                     |                                         | Box 渲染函数或者返回节点。                                                |
-| <span class="prop-name">clone</span>                    | <span class="prop-type">bool</span>                                                                                           | <span class="prop-default">false</span> | 如果设置为 `true`，box 将会重复利用其子 DOM 元素。 它在内部使用 `React.cloneElement`。 |
-| <span class="prop-name">component</span>                | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func&nbsp;&#124;<br>&nbsp;object<br></span> | <span class="prop-default">'div'</span> | component 用于根节点。 可以是一个使用 DOM 元素或者一个组件的字符串。                     |
+| 名称                                                         | 类型                                                                                                                            | 默认值                                     | 描述                                                             |
+|:---------------------------------------------------------- |:----------------------------------------------------------------------------------------------------------------------------- |:--------------------------------------- |:-------------------------------------------------------------- |
+| <span class="prop-name required">children&nbsp;\*</span> | <span class="prop-type">union:&nbsp;node&nbsp;&#124;<br>&nbsp;func<br></span>                                     |                                         | Box 渲染函数或者返回节点。                                                |
+| <span class="prop-name">clone</span>                       | <span class="prop-type">bool</span>                                                                                           | <span class="prop-default">false</span> | 如果设置为 `true`，box 将会重复利用其子 DOM 元素。 它在内部使用 `React.cloneElement`。 |
+| <span class="prop-name">component</span>                   | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func&nbsp;&#124;<br>&nbsp;object<br></span> | <span class="prop-default">'div'</span> | component 用于根节点。 可以是一个使用 DOM 元素或者一个组件的字符串。                     |
 
 任何所提供的其它的属性会在[样式功能](/system/basics/#all-inclusive)中使用，或者传递到根元素。
