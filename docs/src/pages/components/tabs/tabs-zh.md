@@ -16,7 +16,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tabpanel'
 
 ## 简单的选项卡
 
-{{"demo": "pages/components/tabs/SimpleTabs.js", "bg": true}}
+A basic example with no frills.
 
 {{"demo": "pages/components/tabs/BasicTabs.js", "bg": true}}
 
