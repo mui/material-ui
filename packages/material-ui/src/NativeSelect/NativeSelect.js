@@ -26,7 +26,7 @@ export const styles = (theme) => ({
         theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.05)' : 'rgba(255, 255, 255, 0.05)',
       borderRadius: 0, // Reset Chrome style
     },
-    // Remove IE 11 arrow
+    // Remove IE11 arrow
     '&::-ms-expand': {
       display: 'none',
     },

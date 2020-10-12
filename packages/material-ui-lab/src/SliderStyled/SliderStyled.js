@@ -201,7 +201,7 @@ const SliderRoot = experimentalStyled(
     }),
   },
   '& .MuiSlider-valueLabel': {
-    // IE 11 centering bug, to remove from the customization demos once no longer supported
+    // IE11 centering bug, to remove from the customization demos once no longer supported
     left: 'calc(-50% - 4px)',
   },
   '& .MuiSlider-mark': {

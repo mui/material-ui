@@ -49,7 +49,7 @@ export const styles = (theme) => ({
   paper: {
     margin: 32,
     position: 'relative',
-    overflowY: 'auto', // Fix IE 11 issue, to remove at some point.
+    overflowY: 'auto', // Fix IE11 issue, to remove at some point.
     '@media print': {
       overflowY: 'visible',
       boxShadow: 'none',
@@ -65,7 +65,7 @@ export const styles = (theme) => ({
   paperScrollBody: {
     display: 'inline-block',
     verticalAlign: 'middle',
-    textAlign: 'left', // 'initial' doesn't work on IE 11
+    textAlign: 'left', // 'initial' doesn't work on IE11
   },
   /* Styles applied to the `Paper` component if `maxWidth=false`. */
   paperWidthFalse: {

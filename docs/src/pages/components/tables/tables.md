@@ -80,7 +80,7 @@ The `ActionsComponent` prop of the `TablePagination` component allows the implem
 ## Fixed header
 
 An example of a table with scrollable rows and fixed column headers.
-It leverages the `stickyHeader` prop (⚠️ no IE 11 support).
+It leverages the `stickyHeader` prop (⚠️ no IE11 support).
 
 {{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
 

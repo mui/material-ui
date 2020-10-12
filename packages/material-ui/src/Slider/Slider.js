@@ -318,7 +318,7 @@ export const styles = (theme) => ({
   focusVisible: {},
   /* Styles applied to the thumb label element. */
   valueLabel: {
-    // IE 11 centering bug, to remove from the customization demos once no longer supported
+    // IE11 centering bug, to remove from the customization demos once no longer supported
     left: 'calc(-50% - 4px)',
   },
   /* Styles applied to the mark element. */

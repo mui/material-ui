@@ -86,10 +86,10 @@ function Unstable_TrapFocus(props) {
     return () => {
       // restoreLastFocus()
       if (!disableRestoreFocus) {
-        // In IE 11 it is possible for document.activeElement to be null resulting
+        // In IE11 it is possible for document.activeElement to be null resulting
         // in nodeToRestore.current being null.
-        // Not all elements in IE 11 have a focus method.
-        // Once IE 11 support is dropped the focus() call can be unconditional.
+        // Not all elements in IE11 have a focus method.
+        // Once IE11 support is dropped the focus() call can be unconditional.
         if (nodeToRestore.current && nodeToRestore.current.focus) {
           ignoreNextEnforceFocus.current = true;
           nodeToRestore.current.focus();

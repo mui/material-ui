@@ -49,7 +49,7 @@ module.exports = {
       },
     ],
     'babel-plugin-optimize-clsx',
-    // for IE 11 support
+    // for IE11 support
     '@babel/plugin-transform-object-assign',
     'babel-plugin-preval',
     [

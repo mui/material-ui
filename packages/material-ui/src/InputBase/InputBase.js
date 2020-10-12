@@ -96,12 +96,12 @@ export const styles = (theme) => {
       display: 'block',
       // Make the flex item shrink with Firefox
       minWidth: 0,
-      width: '100%', // Fix IE 11 width issue
+      width: '100%', // Fix IE11 width issue
       animationName: 'mui-auto-fill-cancel',
       animationDuration: '10ms',
       '&::-webkit-input-placeholder': placeholder,
       '&::-moz-placeholder': placeholder, // Firefox 19+
-      '&:-ms-input-placeholder': placeholder, // IE 11
+      '&:-ms-input-placeholder': placeholder, // IE11
       '&::-ms-input-placeholder': placeholder, // Edge
       '&:focus': {
         outline: 0,
@@ -118,11 +118,11 @@ export const styles = (theme) => {
       'label[data-shrink=false] + $formControl &': {
         '&::-webkit-input-placeholder': placeholderHidden,
         '&::-moz-placeholder': placeholderHidden, // Firefox 19+
-        '&:-ms-input-placeholder': placeholderHidden, // IE 11
+        '&:-ms-input-placeholder': placeholderHidden, // IE11
         '&::-ms-input-placeholder': placeholderHidden, // Edge
         '&:focus::-webkit-input-placeholder': placeholderVisible,
         '&:focus::-moz-placeholder': placeholderVisible, // Firefox 19+
-        '&:focus:-ms-input-placeholder': placeholderVisible, // IE 11
+        '&:focus:-ms-input-placeholder': placeholderVisible, // IE11
         '&:focus::-ms-input-placeholder': placeholderVisible, // Edge
       },
       '&$disabled': {
@@ -278,7 +278,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
   }, [value, checkDirty, isControlled]);
 
   const handleFocus = (event) => {
-    // Fix a bug with IE 11 where the focus/blur events are triggered
+    // Fix a bug with IE11 where the focus/blur events are triggered
     // while the input is disabled.
     if (fcs.disabled) {
       event.stopPropagation();
