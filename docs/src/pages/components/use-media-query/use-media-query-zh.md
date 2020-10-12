@@ -14,7 +14,7 @@ githubLabel: 'hook: useMediaQuery'
 - 📦 [1kB 已压缩的包](/size-snapshot)。
 - 🤖 它支持服务器端渲染。
 
-查看[调色板](/system/palette/)样式功能。
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## 简单的媒体查询
 
@@ -120,25 +120,6 @@ function handleRender(req, res) {
   const ssrMatchMedia = (query) => ({
     matches: mediaQuery.match(query, {
       // 浏览器的 CSS 宽度预计值
-      width: deviceType === 'mobile' ? '0px' : '1024px',
-    }),
-  });
-
-  const html = ReactDOMServer.renderToString(
-    <ThemeProvider
-      theme={{
-        props: {
-          // 更改 useMediaQuery 的默认选项
-          MuiUseMediaQuery: {
-            ssrMatchMedia,
-          },
-        },
-      }}
-    >
-      <App />
-    </ThemeProvider>,
-  );
-}
       width: deviceType === 'mobile' ? '0px' : '1024px',
     }),
   });
