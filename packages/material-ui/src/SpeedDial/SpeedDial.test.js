@@ -128,7 +128,7 @@ describe('<SpeedDial />', () => {
             <SpeedDialAction icon={icon} tooltipTitle="action2" />
           </SpeedDial>,
         );
-        expect(getByRole('presentation').classList.contains(classes[className])).to.equal(true);
+        expect(getByRole('presentation')).to.have.class(classes[className]);
       });
     });
   });
@@ -241,7 +241,7 @@ describe('<SpeedDial />', () => {
     it('displays the actions on focus gain', () => {
       resetDialToOpen();
       expect(screen.getAllByRole('menuitem')).to.have.lengthOf(4);
-      expect(screen.getByRole('menu').classList.contains(classes['actionsClosed'])).to.equal(false);
+      expect(screen.getByRole('menu')).not.to.have.class(classes['actionsClosed']);
     });
 
     describe('first item selection', () => {
