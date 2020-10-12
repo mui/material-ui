@@ -111,9 +111,9 @@ If you need to perform 30 re-renders per second or more, we recommend disabling 
 }
 ```
 
-### IE 11
+### IE11
 
-The circular progress component animation on IE 11 is degraded. The stroke dash animation is not working (equivalent to `disableShrink`) and the circular animation wobbles. You can solve the latter with:
+The circular progress component animation on IE11 is degraded. The stroke dash animation is not working (equivalent to `disableShrink`) and the circular animation wobbles. You can solve the latter with:
 
 ```css
 .MuiCircularProgress-indeterminate {
@@ -123,7 +123,7 @@ The circular progress component animation on IE 11 is degraded. The stroke dash 
 @keyframes circular-rotate {
   0% {
     transform: rotate(0deg);
-    /* Fix IE 11 wobbly */
+    /* Fix IE11 wobbly */
     transform-origin: 50% 50%;
   }
   100% {
