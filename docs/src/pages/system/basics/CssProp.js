@@ -19,6 +19,7 @@ export default function CssProp() {
           css={{
             bgcolor: 'palevioletred',
             p: 1,
+            // @ts-ignore
             textTransform: 'uppercase',
           }}
         >
