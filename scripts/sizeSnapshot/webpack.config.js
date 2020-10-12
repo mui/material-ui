@@ -97,11 +97,13 @@ async function getSizeLimitBundles() {
       webpack: true,
       path: 'packages/material-ui-utils/build/index.js',
     },
-    {
-      name: '@material-ui/core.modern',
-      webpack: true,
-      path: path.join(path.relative(workspaceRoot, corePackagePath), 'modern/index.js'),
-    },
+    // TODO: Requires webpack v5
+    // Resolution of webpack/acorn to 7.x is blocked by nextjs (https://github.com/vercel/next.js/issues/11947)
+    // {
+    //   name: '@material-ui/core.modern',
+    //   webpack: true,
+    //   path: path.join(path.relative(workspaceRoot, corePackagePath), 'modern/index.js'),
+    // },
     {
       name: '@material-ui/core.legacy',
       webpack: true,
