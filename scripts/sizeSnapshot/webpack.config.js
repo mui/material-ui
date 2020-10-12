@@ -1,6 +1,7 @@
 const globCallback = require('glob');
 const path = require('path');
 const CompressionPlugin = require('compression-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const { promisify } = require('util');
 
 const glob = promisify(globCallback);
@@ -8,36 +9,40 @@ const glob = promisify(globCallback);
 const workspaceRoot = path.join(__dirname, '..', '..');
 
 async function getSizeLimitBundles() {
-  const corePackagePath = path.join(workspaceRoot, 'packages/material-ui/build/esm');
-  const coreComponents = (await glob(path.join(corePackagePath, '[A-Z]*'))).map((componentPath) => {
-    const componentName = path.basename(componentPath);
-    let entryName = componentName;
-    // adjust for legacy names
-    if (componentName === 'Paper') {
-      entryName = '@material-ui/core/Paper.esm';
-    } else if (componentName === 'TextareaAutosize') {
-      entryName = '@material-ui/core/Textarea';
-    } else if (['Popper'].indexOf(componentName) !== -1) {
-      entryName = `@material-ui/core/${componentName}`;
-    }
+  const corePackagePath = path.join(workspaceRoot, 'packages/material-ui/build');
+  const coreComponents = (await glob(path.join(corePackagePath, '[A-Z]*/index.js'))).map(
+    (componentPath) => {
+      const componentName = path.basename(path.dirname(componentPath));
+      let entryName = componentName;
+      // adjust for legacy names
+      if (componentName === 'Paper') {
+        entryName = '@material-ui/core/Paper.esm';
+      } else if (componentName === 'TextareaAutosize') {
+        entryName = '@material-ui/core/Textarea';
+      } else if (['Popper'].indexOf(componentName) !== -1) {
+        entryName = `@material-ui/core/${componentName}`;
+      }
 
-    return {
-      name: entryName,
-      webpack: true,
-      path: path.relative(workspaceRoot, componentPath),
-    };
-  });
+      return {
+        name: entryName,
+        webpack: true,
+        path: path.relative(workspaceRoot, path.dirname(componentPath)),
+      };
+    },
+  );
 
-  const labPackagePath = path.join(workspaceRoot, 'packages/material-ui-lab/build/esm');
-  const labComponents = (await glob(path.join(labPackagePath, '[A-Z]*'))).map((componentPath) => {
-    const componentName = path.basename(componentPath);
+  const labPackagePath = path.join(workspaceRoot, 'packages/material-ui-lab/build');
+  const labComponents = (await glob(path.join(labPackagePath, '[A-Z]*/index.js'))).map(
+    (componentPath) => {
+      const componentName = path.basename(path.dirname(componentPath));
 
-    return {
-      name: componentName,
-      webpack: true,
-      path: path.relative(workspaceRoot, componentPath),
-    };
-  });
+      return {
+        name: componentName,
+        webpack: true,
+        path: path.relative(workspaceRoot, path.dirname(componentPath)),
+      };
+    },
+  );
 
   return [
     {
@@ -53,44 +58,54 @@ async function getSizeLimitBundles() {
     {
       name: '@material-ui/styles',
       webpack: true,
-      path: 'packages/material-ui-styles/build/esm/index.js',
+      path: 'packages/material-ui-styles/build/index.js',
     },
     {
       name: '@material-ui/system',
       webpack: true,
-      path: 'packages/material-ui-system/build/esm/index.js',
+      path: 'packages/material-ui-system/build/index.js',
     },
     ...coreComponents,
     {
       name: '@material-ui/core/styles/createMuiTheme',
       webpack: true,
-      path: 'packages/material-ui/build/esm/styles/createMuiTheme.js',
+      path: 'packages/material-ui/build/styles/createMuiTheme.js',
     },
     {
       name: 'colorManipulator',
       webpack: true,
-      path: 'packages/material-ui/build/esm/styles/colorManipulator.js',
+      path: 'packages/material-ui/build/styles/colorManipulator.js',
     },
     ...labComponents,
     {
       name: 'useAutocomplete',
       webpack: true,
-      path: 'packages/material-ui-lab/build/esm/useAutocomplete/index.js',
+      path: 'packages/material-ui-lab/build/useAutocomplete/index.js',
     },
     {
       name: '@material-ui/core/useMediaQuery',
       webpack: true,
-      path: 'packages/material-ui/build/esm/useMediaQuery/index.js',
+      path: 'packages/material-ui/build/useMediaQuery/index.js',
     },
     {
       name: '@material-ui/core/useScrollTrigger',
       webpack: true,
-      path: 'packages/material-ui/build/esm/useScrollTrigger/index.js',
+      path: 'packages/material-ui/build/useScrollTrigger/index.js',
     },
     {
       name: '@material-ui/utils',
       webpack: true,
-      path: 'packages/material-ui-utils/build/esm/index.js',
+      path: 'packages/material-ui-utils/build/index.js',
+    },
+    {
+      name: '@material-ui/core.modern',
+      webpack: true,
+      path: path.join(path.relative(workspaceRoot, corePackagePath), 'modern/index.js'),
+    },
+    {
+      name: '@material-ui/core.legacy',
+      webpack: true,
+      path: path.join(path.relative(workspaceRoot, corePackagePath), 'legacy/index.js'),
     },
   ];
 }
@@ -107,6 +122,18 @@ module.exports = async function webpackConfig() {
     // ideally this would be computed from the bundles peer dependencies
     externals: /^(react|react-dom|react\/jsx-runtime)$/,
     mode: 'production',
+    optimization: {
+      // Otherwise bundles with that include chunks for which we track the size separately are penalized
+      // e.g. without this option `@material-ui/core.legacy` would be smaller since it could concatenate all modules
+      // while `@material-ui/core` had to import the chunks from all the components.
+      // Ideally we could just disable shared chunks but I couldn't figure out how.
+      concatenateModules: false,
+      minimizer: [
+        new TerserPlugin({
+          test: /\.js(\?.*)?$/i,
+        }),
+      ],
+    },
     output: {
       filename: '[name].js',
       path: path.join(__dirname, 'build'),

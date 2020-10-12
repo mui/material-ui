@@ -5,7 +5,6 @@ import {
   act,
   buildQueries,
   cleanup,
-  createEvent,
   fireEvent as rtlFireEvent,
   queries,
   render as testingLibraryRender,
@@ -157,10 +156,9 @@ export function createClientRender(globalOptions = {}) {
   };
 }
 
+const originalFireEventKeyDown = rtlFireEvent.keyDown;
+const originalFireEventKeyUp = rtlFireEvent.keyUp;
 const fireEvent = Object.assign(rtlFireEvent, {
-  // polyfill event.key(Code) for chrome 49 and edge 15 (supported in Material-UI v4)
-  // for user-interactions react does the polyfilling but manually created
-  // events don't have this luxury
   keyDown(element, options = {}) {
     // `element` shouldn't be `document` but we catch this later anyway
     const document = element.ownerDocument || element;
@@ -182,21 +180,7 @@ const fireEvent = Object.assign(rtlFireEvent, {
       throw error;
     }
 
-    const event = createEvent.keyDown(element, options);
-    Object.defineProperty(event, 'key', {
-      get() {
-        return options.key || '';
-      },
-    });
-    if (options.keyCode !== undefined && event.keyCode === 0) {
-      Object.defineProperty(event, 'keyCode', {
-        get() {
-          return options.keyCode;
-        },
-      });
-    }
-
-    rtlFireEvent(element, event);
+    originalFireEventKeyDown(element, options);
   },
   keyUp(element, options = {}) {
     // `element` shouldn't be `document` but we catch this later anyway
@@ -218,21 +202,8 @@ const fireEvent = Object.assign(rtlFireEvent, {
         .join('\n');
       throw error;
     }
-    const event = createEvent.keyUp(element, options);
-    Object.defineProperty(event, 'key', {
-      get() {
-        return options.key || '';
-      },
-    });
-    if (options.keyCode !== undefined && event.keyCode === 0) {
-      Object.defineProperty(event, 'keyCode', {
-        get() {
-          return options.keyCode;
-        },
-      });
-    }
 
-    rtlFireEvent(element, event);
+    originalFireEventKeyUp(element, options);
   },
 });
 

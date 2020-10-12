@@ -110,7 +110,6 @@
     "eslint-plugin-react-hooks": "^4.0.7",
     "expect-puppeteer": "^4.3.0",
     "format-util": "^1.0.5",
-    "formdata-polyfill": "^3.0.20",
     "fs-extra": "^9.0.0",
     "glob": "^7.1.2",
     "glob-gitignore": "^1.0.11",
@@ -145,6 +144,7 @@
     "rollup-plugin-terser": "^7.0.0",
     "serve-handler": "^6.1.3",
     "sinon": "^9.0.0",
+    "terser-webpack-plugin": "^4.2.2",
     "tslint": "5.14.0",
     "typescript": "^4.0.2",
     "unist-util-visit": "^2.0.2",
@@ -174,7 +174,8 @@
     "**/cross-fetch": "^3.0.5",
     "**/dot-prop": "^5.2.0",
     "**/react-docgen/ast-types": "^0.14.1",
-    "**/webpack": "^4.44.1"
+    "**/webpack": "^4.44.1",
+    "**/webpack/acorn": "^7.4.0"
   },
   "nyc": {
     "include": [
