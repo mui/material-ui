@@ -23,7 +23,7 @@ materialDesign: https://material.io/components/data-tables
 
 一个没有多余装饰的简单例子
 
-一个数据表格的顶部是标题行，并展示各列的名称，而后续的各行则是表格的数据。
+{{"demo": "pages/components/tables/BasicTable.js", "bg": true}}
 
 ## 简单的表格
 
@@ -75,7 +75,7 @@ materialDesign: https://material.io/components/data-tables
 
 ## 固定表头
 
-一个具有可滚动行和固定表头的表格示例。 它利用了 `stickyheader` 这个属性（⚠️不支持 IE11）。
+一个具有可滚动行和固定表头的表格示例。 It leverages the `stickyHeader` prop (⚠️ no IE11 support).
 
 {{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
 
