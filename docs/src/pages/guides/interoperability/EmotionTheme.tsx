@@ -5,7 +5,12 @@ import {
   createMuiTheme,
   ThemeProvider as MuiThemeProvider,
   darken,
+  Theme as MuiTheme,
 } from '@material-ui/core/styles';
+
+declare module '@emotion/react' {
+  export interface Theme extends MuiTheme {}
+}
 
 const customTheme = createMuiTheme({
   palette: {
