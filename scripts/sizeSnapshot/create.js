@@ -39,6 +39,11 @@ async function getWebpackSizes() {
   // memory. This will sometimes crash node in azure pipelines with "heap out of memory"
   const webpackStats = await webpack(await createWebpackConfig(webpack));
   const stats = webpackStats.toJson();
+  if (stats.errors.length > 0) {
+    throw new Error(
+      `The following errors occured during bundling with webpack: \n${stats.errors.join('\n')}`,
+    );
+  }
 
   const assets = new Map(stats.assets.map((asset) => [asset.name, asset]));
 

@@ -3,7 +3,7 @@ import chainPropTypes from './chainPropTypes';
 
 function isClassComponent(elementType: Function) {
   // elementType.prototype?.isReactComponent
-  const { prototype } = elementType;
+  const { prototype = {} } = elementType;
 
   return Boolean(prototype.isReactComponent);
 }

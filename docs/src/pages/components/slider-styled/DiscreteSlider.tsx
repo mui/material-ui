@@ -1,23 +1,15 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/lab/SliderStyled';
-
-const useStyles = makeStyles({
-  root: {
-    width: 300,
-  },
-});
 
 function valuetext(value: number) {
   return `${value}°C`;
 }
 
 export default function DiscreteSlider() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Box width={300}>
       <Typography id="discrete-slider" gutterBottom>
         Temperature
       </Typography>
@@ -45,6 +37,6 @@ export default function DiscreteSlider() {
         max={110}
         disabled
       />
-    </div>
+    </Box>
   );
 }
