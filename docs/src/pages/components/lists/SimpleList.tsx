@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function ListItemLink(props: ListItemProps<'a', { button?: true }>) {
+function ListItemLink(props: ListItemProps<'a', { button?: boolean }>) {
   return <ListItem button component="a" {...props} />;
 }
 

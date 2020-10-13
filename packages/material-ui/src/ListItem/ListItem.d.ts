@@ -106,7 +106,7 @@ declare const ListItem: OverridableComponent<
        * for `ButtonBase` can then be applied to `ListItem`.
        * @default false
        */
-      button?: false;
+      button?: boolean;
     },
     'li'
   >
@@ -119,7 +119,7 @@ declare const ListItem: OverridableComponent<
          * for `ButtonBase` can then be applied to `ListItem`.
          * @default false
          */
-        button: true;
+        button: boolean;
       },
       'div'
     >
