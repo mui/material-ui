@@ -12,6 +12,15 @@ export interface Components {
     styleOverrides?: ComponentsOverrides['MuiAvatar'];
     variants?: ComponentsVariants['MuiAvatar'];
   };
+  MuiAlert?: {
+    defaultProps?: ComponentsProps['MuiAlert'];
+    styleOverrides?: ComponentsOverrides['MuiAlert'];
+    variants?: ComponentsVariants['MuiAlert'];
+  };
+  MuiAlertTitle?: {
+    defaultProps?: ComponentsProps['MuiAlertTitle'];
+    styleOverrides?: ComponentsOverrides['MuiAlertTitle'];
+  };
   MuiBackdrop?: {
     defaultProps?: ComponentsProps['MuiBackdrop'];
     styleOverrides?: ComponentsOverrides['MuiBackdrop'];
