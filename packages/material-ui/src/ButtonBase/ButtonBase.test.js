@@ -435,6 +435,7 @@ describe('<ButtonBase />', () => {
           Hello
         </ButtonBase>,
       );
+      // @ts-ignore
       stub(container.querySelector('.touch-ripple'), 'getBoundingClientRect').callsFake(() => ({
         width: 100,
         height: 100,
@@ -443,14 +444,13 @@ describe('<ButtonBase />', () => {
         top: 20,
       }));
       fireEvent.mouseDown(getByRole('button'), { clientX: 10, clientY: 10 });
-      expect(container.querySelector('.touch-ripple-ripple').style).to.have.property(
-        'height',
-        '101px',
-      );
-      expect(container.querySelector('.touch-ripple-ripple').style).to.have.property(
-        'width',
-        '101px',
-      );
+      const rippleRipple = container.querySelector('.touch-ripple-ripple');
+      expect(rippleRipple).to.not.equal(null);
+      if (rippleRipple !== null) {
+        const rippleSyle = window.getComputedStyle(rippleRipple);
+        expect(rippleSyle).to.have.property('height', '101px');
+        expect(rippleSyle).to.have.property('width', '101px');
+      }
     });
 
     it('is disabled by default', () => {
@@ -461,6 +461,7 @@ describe('<ButtonBase />', () => {
           Hello
         </ButtonBase>,
       );
+      // @ts-ignore
       stub(container.querySelector('.touch-ripple'), 'getBoundingClientRect').callsFake(() => ({
         width: 100,
         height: 100,
@@ -469,14 +470,13 @@ describe('<ButtonBase />', () => {
         top: 20,
       }));
       fireEvent.mouseDown(getByRole('button'), { clientX: 10, clientY: 10 });
-      expect(container.querySelector('.touch-ripple-ripple').style).to.not.have.property(
-        'height',
-        '101px',
-      );
-      expect(container.querySelector('.touch-ripple-ripple').style).to.not.have.property(
-        'width',
-        '101px',
-      );
+      const rippleRipple = container.querySelector('.touch-ripple-ripple');
+      expect(rippleRipple).to.not.equal(null);
+      if (rippleRipple !== null) {
+        const rippleSyle = window.getComputedStyle(rippleRipple);
+        expect(rippleSyle).to.not.have.property('height', '101px');
+        expect(rippleSyle).to.not.have.property('width', '101px');
+      }
     });
   });
 
