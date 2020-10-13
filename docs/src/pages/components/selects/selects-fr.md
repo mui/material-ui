@@ -66,7 +66,7 @@ The `Select` component can handle multiple selections. The `Select` component ca
 
 Like with the single selection, you can pull out the new value by accessing `event.target.value` in the `onChange` callback. It's always an array.
 
-### Default
+### Défaut
 
 {{"demo": "pages/components/selects/MultipleSelect.js"}}
 
