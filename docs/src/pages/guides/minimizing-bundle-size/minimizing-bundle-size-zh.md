@@ -105,8 +105,6 @@ import { Button, TextField } from '@material-ui/core';
       'babel-plugin-import',
       {
         libraryName: '@material-ui/core',
-        // Use "'libraryDirectory': ''," 如果你的打包程序不支持 ES modules
-        libraryDirectory: 'esm',
         camel2DashComponentName: false,
       },
       'core',
@@ -115,8 +113,6 @@ import { Button, TextField } from '@material-ui/core';
       'babel-plugin-import',
       {
         libraryName: '@material-ui/icons',
-        // Use "'libraryDirectory': ''," 如果你的打包程序不支持 ES modules
-        libraryDirectory: 'esm',
         camel2DashComponentName: false,
       },
       'icons',
@@ -138,18 +134,18 @@ import { Button, TextField } from '@material-ui/core';
       'babel-plugin-transform-imports',
       {
         '@material-ui/core': {
-          // Use "transform: '@material-ui/core/${member}'," 如果你的打包程序不支持 ES modules
-          transform: '@material-ui/core/esm/${member}',
+          transform: '@material-ui/core/${member}',
           preventFullImport: true,
         },
         '@material-ui/icons': {
-          // Use "transform: '@material-ui/icons/${member}'," 如果你的打包程序不支持 ES modules
-          transform: '@material-ui/icons/esm/${member}',
+          transform: '@material-ui/icons/${member}',
           preventFullImport: true,
         },
       },
     ],
   ];
+
+  module.exports = { plugins };
   ```
 
 如果您正在使用 Create React App，您将需要使用几个项目，让您可以使用 `.babelrc` 来配置，而无需 ejecting。
@@ -211,10 +207,16 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 +import { Button, TextField } from '@material-ui/core';
 ```
 
-## ECMAScript
+## Available bundles
 
 考虑到一些 [支持的平台](/getting-started/supported-platforms/)，在 npm 上发布的这个依赖包是和 [Babel](https://github.com/babel/babel) 一起被**编译**过的。
 
-第二个版本的组件也已经发布，你可以在 [`/es` 文件夹](https://unpkg.com/@material-ui/core/es/) 下找到。 所有非官方的语义都被编译成 [ECMA-262 的标准](https://www.ecma-international.org/publications/standards/Ecma-262.htm)，仅此而已。 这样一来，针对不同的浏览器，您可以编译出不同的打包文件。 一些旧的浏览器需编译一些 JavaScript 的功能，这样会增加打包文件的大小。 ES2015 运行的时候的功能中不包含兼容性的库的补充（polyfills）。 IE11+ 和一些长青浏览器会支持所有必要的功能。 如果您需要支持其他浏览器，请考虑使用 [`@babel/polyfill`](https://www.npmjs.com/package/@babel/polyfill)。
+⚠️ In order to minimize duplication of code in users' bundles, library authors are **strongly discouraged** to import from any of the other bundles.
 
-⚠️为了最大限度地减少用户捆绑包中的代码重复，我们**强烈建议**库作者不要使用 `/es` 文件夹。
+### Modern bundle
+
+The modern bundle can be found under the [`/modern` folder](https://unpkg.com/@material-ui/core/modern/). It targets the latest released versions of evergreen browsers (Chrome, Firefox, Safari, Edge). 这样一来，针对不同的浏览器，您可以编译出不同的打包文件。
+
+### Legacy bundle
+
+If you need to support IE 11 you cannot use the default or modern bundle without transpilation. However, you can use the legacy bundle found under the [`/legacy` folder](https://unpkg.com/@material-ui/core/legacy/). You don't need any additional polyfills.
