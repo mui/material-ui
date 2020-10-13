@@ -261,7 +261,7 @@ describe('<SpeedDial />', () => {
       /**
        * tests a combination of arrow keys on a focused SpeedDial
        */
-      const testCombination = async (
+      const testCombination = (
         dialDirection,
         [firstKey, ...combination],
         [firstFocusedAction, ...foci],
@@ -291,84 +291,84 @@ describe('<SpeedDial />', () => {
         });
       };
 
-      it('considers the first arrow key press as forward navigation', async () => {
-        await testCombination('up', ['ArrowUp', 'ArrowUp', 'ArrowUp', 'ArrowDown'], [0, 1, 2, 1]);
-        await testCombination(
+      it('considers the first arrow key press as forward navigation', () => {
+        testCombination('up', ['ArrowUp', 'ArrowUp', 'ArrowUp', 'ArrowDown'], [0, 1, 2, 1]);
+        testCombination(
           'up',
           ['ArrowDown', 'ArrowDown', 'ArrowDown', 'ArrowUp'],
           [0, 1, 2, 1],
         );
 
-        await testCombination(
+        testCombination(
           'right',
           ['ArrowRight', 'ArrowRight', 'ArrowRight', 'ArrowLeft'],
           [0, 1, 2, 1],
         );
-        await testCombination(
+        testCombination(
           'right',
           ['ArrowLeft', 'ArrowLeft', 'ArrowLeft', 'ArrowRight'],
           [0, 1, 2, 1],
         );
 
-        await testCombination(
+        testCombination(
           'down',
           ['ArrowDown', 'ArrowDown', 'ArrowDown', 'ArrowUp'],
           [0, 1, 2, 1],
         );
-        await testCombination('down', ['ArrowUp', 'ArrowUp', 'ArrowUp', 'ArrowDown'], [0, 1, 2, 1]);
+        testCombination('down', ['ArrowUp', 'ArrowUp', 'ArrowUp', 'ArrowDown'], [0, 1, 2, 1]);
 
-        await testCombination(
+        testCombination(
           'left',
           ['ArrowLeft', 'ArrowLeft', 'ArrowLeft', 'ArrowRight'],
           [0, 1, 2, 1],
         );
-        await testCombination(
+        testCombination(
           'left',
           ['ArrowRight', 'ArrowRight', 'ArrowRight', 'ArrowLeft'],
           [0, 1, 2, 1],
         );
       });
 
-      it('ignores array keys orthogonal to the direction', async () => {
-        await testCombination(
+      it('ignores array keys orthogonal to the direction', () => {
+        testCombination(
           'up',
           ['ArrowUp', 'ArrowLeft', 'ArrowRight', 'ArrowUp'],
           [0, 0, 0, 1],
         );
-        await testCombination(
+        testCombination(
           'right',
           ['ArrowRight', 'ArrowUp', 'ArrowDown', 'ArrowRight'],
           [0, 0, 0, 1],
         );
-        await testCombination(
+        testCombination(
           'down',
           ['ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowDown'],
           [0, 0, 0, 1],
         );
-        await testCombination(
+        testCombination(
           'left',
           ['ArrowLeft', 'ArrowUp', 'ArrowDown', 'ArrowLeft'],
           [0, 0, 0, 1],
         );
       });
 
-      it('does not wrap around', async () => {
-        await testCombination(
+      it('does not wrap around', () => {
+        testCombination(
           'up',
           ['ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowUp'],
           [0, -1, -1, 0],
         );
-        await testCombination(
+        testCombination(
           'right',
           ['ArrowRight', 'ArrowLeft', 'ArrowLeft', 'ArrowRight'],
           [0, -1, -1, 0],
         );
-        await testCombination(
+        testCombination(
           'down',
           ['ArrowDown', 'ArrowUp', 'ArrowUp', 'ArrowDown'],
           [0, -1, -1, 0],
         );
-        await testCombination(
+        testCombination(
           'left',
           ['ArrowLeft', 'ArrowRight', 'ArrowRight', 'ArrowLeft'],
           [0, -1, -1, 0],
