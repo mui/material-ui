@@ -177,7 +177,7 @@ describe('<Autocomplete />', () => {
     });
 
     it('should work with filterSelectedOptions too', () => {
-      const options = ["Foo", "Bar", "Baz"];
+      const options = ['Foo', 'Bar', 'Baz'];
       const { getByRole } = render(
         <Autocomplete
           multiple
@@ -185,10 +185,8 @@ describe('<Autocomplete />', () => {
           autoHighlight
           value={options.slice(0, 1)}
           options={options}
-          renderInput={(params) => (
-            <TextField {...params} autoFocus />
-          )}
-        />
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
       );
       const textbox = getByRole('textbox');
 
