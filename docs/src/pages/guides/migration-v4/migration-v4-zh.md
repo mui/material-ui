@@ -40,6 +40,23 @@ yarn add @material-ui/core@next
 
 ## 处理变化带来的系统崩溃
 
+### Supported browsers and node versions
+
+The targets of the default bundle have changed. The exact versions will be pinned on release from the browserslist query `"> 0.5%, last 2 versions, Firefox ESR, not dead, not IE 11, maintained node versions"`.
+
+The default bundle now supports:
+
+<!-- #stable-snapshot -->
+
+- Node 10 (up from 8)
+- Chrome 83 (up from 49)
+- Edge 83 (up from 14)
+- Firefox 68 (up from 52)
+- Safari 13 (up from 10)
+- and more (see [.browserslistrc (`stable` entry)](https://github.com/mui-org/material-ui/blob/HEAD/.browserslistrc#L11))
+
+It no longer supports IE 11. If you need to support IE 11, check out our [legacy bundle](/guides/minimizing-bundle-size/#legacy-bundle).
+
 ### 非转发类（non-ref-forwarding class）组件
 
 对 `component` 属性中的非转发类组件或作为直接 `子类` 的支持已被放弃。 如果你使用了 `unstable_createStrictModeTheme` 或者在 `React.StrictMode` 中没有看到任何与 `findDOMNode` 相关的任何警告，那么你不需要做任何事情。 否则请查看我们指南中的 [“注意事项与参考文献”部分](/guides/composition/#caveat-with-refs) 来了解如何迁移。 这个变化几乎影响了所有使用 `component` 属性的组件或者将 `children` 传递给要求 `children` 作为元素的组件（例如 `<MenuList><CustomMenuItem /></MenuList>`）
