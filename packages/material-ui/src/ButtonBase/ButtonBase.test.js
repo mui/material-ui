@@ -446,11 +446,10 @@ describe('<ButtonBase />', () => {
       fireEvent.mouseDown(getByRole('button'), { clientX: 10, clientY: 10 });
       const rippleRipple = container.querySelector('.touch-ripple-ripple');
       expect(rippleRipple).to.not.equal(null);
-      if (rippleRipple !== null) {
-        const rippleSyle = window.getComputedStyle(rippleRipple);
-        expect(rippleSyle).to.have.property('height', '101px');
-        expect(rippleSyle).to.have.property('width', '101px');
-      }
+      // @ts-ignore
+      const rippleSyle = window.getComputedStyle(rippleRipple);
+      expect(rippleSyle).to.have.property('height', '101px');
+      expect(rippleSyle).to.have.property('width', '101px');
     });
 
     it('is disabled by default', () => {
@@ -472,11 +471,10 @@ describe('<ButtonBase />', () => {
       fireEvent.mouseDown(getByRole('button'), { clientX: 10, clientY: 10 });
       const rippleRipple = container.querySelector('.touch-ripple-ripple');
       expect(rippleRipple).to.not.equal(null);
-      if (rippleRipple !== null) {
-        const rippleSyle = window.getComputedStyle(rippleRipple);
-        expect(rippleSyle).to.not.have.property('height', '101px');
-        expect(rippleSyle).to.not.have.property('width', '101px');
-      }
+      // @ts-ignore
+      const rippleSyle = window.getComputedStyle(rippleRipple);
+      expect(rippleSyle).to.not.have.property('height', '101px');
+      expect(rippleSyle).to.not.have.property('width', '101px');
     });
   });
 
