@@ -52,7 +52,7 @@ const data = {
 
 {{"demo": "pages/components/tree-view/RichObjectTreeView.js", "defaultCodeOpen": false}}
 
-## ContentComponent prop
+## ContentComponent 属性
 
 You can use the `ContentComponent` prop and the `useTreeItem` hook to further customize the behavior of the TreeItem.
 
@@ -84,8 +84,8 @@ Or increasing the width of the state indicator:
 
 - 箭头键不会聚焦已禁用的项目，下一个非禁用的项目将会被聚焦。
 - 键入所被禁用的项目标签的第一个字符是无法聚焦该项目的。
+- 鼠标或键盘交互不会展开/折叠所被禁用的项目。https://crowdin.com/
 - 鼠标或键盘交互不会展开/折叠所被禁用的项目。
-- 鼠标或键盘交互不会选择所被禁用的项目。
 - Shift + 方向键将跳过所被禁用的项目，并且会选择到下一个非禁用的项目。
 - Programmatic focus will not focus disabled items.
 
@@ -93,8 +93,8 @@ Or increasing the width of the state indicator:
 
 - 箭头键将会聚焦到已禁用的项目。
 - 键入所被禁用的项目标签的第一个字符将聚焦到该项目。
+- 鼠标或键盘交互不会展开/折叠所被禁用的项目。https://crowdin.com/
 - 鼠标或键盘交互不会展开/折叠所被禁用的项目。
-- 鼠标或键盘交互不会选择所被禁用的项目。
 - Shift + 方向键不会跳过禁用的项目，但是已被禁用项目也不会被选中。
 - Programmatic focus will focus disabled items.
 
