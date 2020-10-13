@@ -293,11 +293,7 @@ describe('<SpeedDial />', () => {
 
       it('considers the first arrow key press as forward navigation', () => {
         testCombination('up', ['ArrowUp', 'ArrowUp', 'ArrowUp', 'ArrowDown'], [0, 1, 2, 1]);
-        testCombination(
-          'up',
-          ['ArrowDown', 'ArrowDown', 'ArrowDown', 'ArrowUp'],
-          [0, 1, 2, 1],
-        );
+        testCombination('up', ['ArrowDown', 'ArrowDown', 'ArrowDown', 'ArrowUp'], [0, 1, 2, 1]);
 
         testCombination(
           'right',
@@ -310,11 +306,7 @@ describe('<SpeedDial />', () => {
           [0, 1, 2, 1],
         );
 
-        testCombination(
-          'down',
-          ['ArrowDown', 'ArrowDown', 'ArrowDown', 'ArrowUp'],
-          [0, 1, 2, 1],
-        );
+        testCombination('down', ['ArrowDown', 'ArrowDown', 'ArrowDown', 'ArrowUp'], [0, 1, 2, 1]);
         testCombination('down', ['ArrowUp', 'ArrowUp', 'ArrowUp', 'ArrowDown'], [0, 1, 2, 1]);
 
         testCombination(
@@ -330,11 +322,7 @@ describe('<SpeedDial />', () => {
       });
 
       it('ignores array keys orthogonal to the direction', () => {
-        testCombination(
-          'up',
-          ['ArrowUp', 'ArrowLeft', 'ArrowRight', 'ArrowUp'],
-          [0, 0, 0, 1],
-        );
+        testCombination('up', ['ArrowUp', 'ArrowLeft', 'ArrowRight', 'ArrowUp'], [0, 0, 0, 1]);
         testCombination(
           'right',
           ['ArrowRight', 'ArrowUp', 'ArrowDown', 'ArrowRight'],
@@ -345,29 +333,17 @@ describe('<SpeedDial />', () => {
           ['ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowDown'],
           [0, 0, 0, 1],
         );
-        testCombination(
-          'left',
-          ['ArrowLeft', 'ArrowUp', 'ArrowDown', 'ArrowLeft'],
-          [0, 0, 0, 1],
-        );
+        testCombination('left', ['ArrowLeft', 'ArrowUp', 'ArrowDown', 'ArrowLeft'], [0, 0, 0, 1]);
       });
 
       it('does not wrap around', () => {
-        testCombination(
-          'up',
-          ['ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowUp'],
-          [0, -1, -1, 0],
-        );
+        testCombination('up', ['ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowUp'], [0, -1, -1, 0]);
         testCombination(
           'right',
           ['ArrowRight', 'ArrowLeft', 'ArrowLeft', 'ArrowRight'],
           [0, -1, -1, 0],
         );
-        testCombination(
-          'down',
-          ['ArrowDown', 'ArrowUp', 'ArrowUp', 'ArrowDown'],
-          [0, -1, -1, 0],
-        );
+        testCombination('down', ['ArrowDown', 'ArrowUp', 'ArrowUp', 'ArrowDown'], [0, -1, -1, 0]);
         testCombination(
           'left',
           ['ArrowLeft', 'ArrowRight', 'ArrowRight', 'ArrowLeft'],
