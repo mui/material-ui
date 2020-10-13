@@ -2,17 +2,16 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import {
-  findOutermostIntrinsic,
   getClasses,
-  wrapsIntrinsicElement,
+  cleanup,
   createMount,
   createClientRender,
   act,
   fireEvent,
   describeConformance,
+  screen,
 } from 'test/utils';
 import Icon from '@material-ui/core/Icon';
-import Fab from '@material-ui/core/Fab';
 import SpeedDial from './SpeedDial';
 import SpeedDialAction from '../SpeedDialAction';
 
@@ -50,63 +49,62 @@ describe('<SpeedDial />', () => {
   }));
 
   it('should render a Fade transition', () => {
-    const wrapper = mount(
+    const { container } = render(
       <SpeedDial {...defaultProps}>
         <FakeAction />
       </SpeedDial>,
     );
-    expect(findOutermostIntrinsic(wrapper).type()).to.equal('div');
+    expect(container.firstChild.localName).to.equal('div');
   });
 
   it('should render a Fab', () => {
-    const wrapper = mount(
+    render(
       <SpeedDial {...defaultProps}>
         <FakeAction />
       </SpeedDial>,
     );
-    const buttonWrapper = wrapper.find('[aria-expanded]').first();
-    expect(buttonWrapper.type()).to.equal(Fab);
+
+    expect(screen.getByLabelText('mySpeedDial')).to.have.class('MuiSpeedDial-fab');
   });
 
   it('should render with a null child', () => {
-    const wrapper = mount(
+    const { container } = render(
       <SpeedDial {...defaultProps}>
         <SpeedDialAction icon={icon} tooltipTitle="One" />
         {null}
         <SpeedDialAction icon={icon} tooltipTitle="Three" />
       </SpeedDial>,
     );
-    expect(wrapper.find(SpeedDialAction).length).to.equal(2);
+    expect(container.querySelectorAll('.MuiSpeedDial-actions')).to.have.lengthOf(1);
   });
 
   it('should pass the open prop to its children', () => {
     const actionClasses = { fabClosed: 'is-closed' };
-    const wrapper = mount(
+    const { getAllByRole } = render(
       <SpeedDial {...defaultProps}>
         <SpeedDialAction classes={actionClasses} icon={icon} tooltipTitle="SpeedDialAction1" />
         <SpeedDialAction classes={actionClasses} icon={icon} tooltipTitle="SpeedDialAction2" />
       </SpeedDial>,
     );
-    const actions = wrapper.find('[role="menuitem"]').filterWhere(wrapsIntrinsicElement);
-    expect(actions.some('.is-closed')).to.equal(false);
+    const actions = getAllByRole('menuitem');
+    const actionClassNames = actions.map((action) => action.className);
+    expect(actionClassNames).to.not.contain('is-closed');
   });
 
   describe('prop: onKeyDown', () => {
     it('should be called when a key is pressed', () => {
       const handleKeyDown = spy();
-      const wrapper = mount(
+      const { getByRole } = render(
         <SpeedDial {...defaultProps} onKeyDown={handleKeyDown}>
           <FakeAction />
         </SpeedDial>,
       );
-      const buttonWrapper = wrapper.find('[aria-expanded]').first();
-      const eventMock = 'something-to-match';
-      buttonWrapper.simulate('keyDown', {
+      const button = getByRole('button');
+      button.focus();
+      fireEvent.keyDown(button, {
         key: ' ',
-        eventMock,
       });
       expect(handleKeyDown.callCount).to.equal(1);
-      expect(handleKeyDown.calledWithMatch({ eventMock })).to.equal(true);
     });
   });
 
@@ -118,13 +116,13 @@ describe('<SpeedDial />', () => {
       ['right', 'directionRight'],
     ].forEach(([direction, className]) => {
       it(`should place actions in the correct position when direction=${direction}`, () => {
-        const wrapper = mount(
+        const { container } = render(
           <SpeedDial {...defaultProps} direction={direction.toLowerCase()}>
             <SpeedDialAction icon={icon} tooltipTitle="action1" />
             <SpeedDialAction icon={icon} tooltipTitle="action2" />
           </SpeedDial>,
         );
-        expect(findOutermostIntrinsic(wrapper).hasClass(classes[className])).to.equal(true);
+        expect(container.firstChild).to.have.class(classes[className]);
       });
     });
   });
@@ -166,14 +164,13 @@ describe('<SpeedDial />', () => {
     let actionRefs;
     let dialButtonRef;
     let onkeydown;
-    let wrapper;
 
     const mountSpeedDial = (direction = 'up', actionCount = 4) => {
       actionRefs = [];
       dialButtonRef = undefined;
       onkeydown = spy();
 
-      wrapper = mount(
+      render(
         <SpeedDial
           {...defaultProps}
           FabProps={{
@@ -204,7 +201,7 @@ describe('<SpeedDial />', () => {
     /**
      * @returns the button of SpeedDial
      */
-    const getDialButton = () => wrapper.find('[aria-controls]').first();
+    const getDialButton = () => window.document.body.querySelector('[aria-controls]');
     /**
      *
      * @param actionIndex
@@ -214,7 +211,8 @@ describe('<SpeedDial />', () => {
       if (actionIndex === -1) {
         return getDialButton();
       }
-      return wrapper.find(SpeedDialAction).at(actionIndex).find(Fab);
+      const actions = screen.getAllByRole('menuitem');
+      return actions[actionIndex];
     };
     /**
      * @returns true if the button of the nth action is focused
@@ -225,9 +223,7 @@ describe('<SpeedDial />', () => {
     };
 
     const resetDialToOpen = (direction) => {
-      if (wrapper && wrapper.exists()) {
-        wrapper.unmount();
-      }
+      cleanup();
 
       mountSpeedDial(direction);
       dialButtonRef.focus();
@@ -235,19 +231,27 @@ describe('<SpeedDial />', () => {
 
     it('displays the actions on focus gain', () => {
       resetDialToOpen();
-      expect(wrapper.find(SpeedDial).props().open).to.equal(true);
+      expect(screen.getByRole('menu')).to.not.have.class('MuiSpeedDial-actionsClosed');
     });
 
     describe('first item selection', () => {
       it('considers arrow keys with the same initial orientation', () => {
         resetDialToOpen();
-        getDialButton().simulate('keydown', { key: 'left' });
+        fireEvent.keyDown(dialButtonRef, {
+          key: 'left',
+        });
         expect(isActionFocused(0)).to.equal(true);
-        getDialButton().simulate('keydown', { key: 'up' });
+        fireEvent.keyDown(window.document.activeElement, {
+          key: 'up',
+        });
         expect(isActionFocused(0)).to.equal(true);
-        getDialButton().simulate('keydown', { key: 'left' });
+        fireEvent.keyDown(window.document.activeElement, {
+          key: 'left',
+        });
         expect(isActionFocused(1)).to.equal(true);
-        getDialButton().simulate('keydown', { key: 'right' });
+        fireEvent.keyDown(window.document.activeElement, {
+          key: 'right',
+        });
         expect(isActionFocused(0)).to.equal(true);
       });
     });
@@ -266,7 +270,9 @@ describe('<SpeedDial />', () => {
       ) => {
         resetDialToOpen(dialDirection);
 
-        getDialButton().simulate('keydown', { key: firstKey });
+        fireEvent.keyDown(dialButtonRef, {
+          key: firstKey,
+        });
         expect(isActionFocused(firstFocusedAction)).to.equal(
           true,
           `focused action initial ${firstKey} should be ${firstFocusedAction}`,
@@ -277,7 +283,9 @@ describe('<SpeedDial />', () => {
           const expectedFocusedAction = foci[i];
           const combinationUntilNot = [firstKey, ...combination.slice(0, i + 1)];
 
-          getActionButton(previousFocusedAction).simulate('keydown', {
+          const actionButton = getActionButton(previousFocusedAction);
+          actionButton.focus();
+          fireEvent.keyDown(actionButton, {
             key: arrowKey,
           });
           expect(isActionFocused(expectedFocusedAction)).to.equal(
