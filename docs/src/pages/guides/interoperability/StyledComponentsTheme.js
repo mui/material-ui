@@ -6,6 +6,7 @@ import {
   darken,
 } from '@material-ui/core/styles';
 import Slider from '@material-ui/lab/SliderStyled';
+import Box from '@material-ui/core/Box';
 
 const customTheme = createMuiTheme({
   palette: {
@@ -27,8 +28,9 @@ const CustomizedSlider = styled(Slider)`
 export default function StyledComponentsTheme() {
   return (
     <MuiThemeProvider theme={customTheme}>
-      <Slider defaultValue={30} />
-      <CustomizedSlider defaultValue={30} />
+      <Box width={300}>
+        <CustomizedSlider defaultValue={30} />
+      </Box>
     </MuiThemeProvider>
   );
 }
