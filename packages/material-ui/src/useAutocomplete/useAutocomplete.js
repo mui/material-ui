@@ -1008,6 +1008,7 @@ export default function useAutocomplete(props) {
         'data-option-index': index,
         'aria-disabled': disabled,
         'aria-selected': selected,
+        'data-focus': index ? false : true,
       };
     },
     id,
