@@ -432,7 +432,7 @@ export default function useAutocomplete(props) {
     }
 
     // Synchronize the value with the highlighted index
-    if (!filterSelectedOptions && valueItem != null) {
+    if (valueItem != null) {
       const currentOption = filteredOptions[highlightedIndexRef.current];
 
       // Keep the current highlighted index if possible
@@ -1008,7 +1008,6 @@ export default function useAutocomplete(props) {
         'data-option-index': index,
         'aria-disabled': disabled,
         'aria-selected': selected,
-        'data-focus': index ? 'false' : 'true',
       };
     },
     id,
