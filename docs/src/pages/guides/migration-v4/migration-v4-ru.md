@@ -40,6 +40,23 @@ yarn add @material-ui/core@next
 
 ## Handling breaking changes
 
+### Supported browsers and node versions
+
+The targets of the default bundle have changed. The exact versions will be pinned on release from the browserslist query `"> 0.5%, last 2 versions, Firefox ESR, not dead, not IE 11, maintained node versions"`.
+
+The default bundle now supports:
+
+<!-- #stable-snapshot -->
+
+- Node 10 (up from 8)
+- Chrome 83 (up from 49)
+- Edge 83 (up from 14)
+- Firefox 68 (up from 52)
+- Safari 13 (up from 10)
+- and more (see [.browserslistrc (`stable` entry)](https://github.com/mui-org/material-ui/blob/HEAD/.browserslistrc#L11))
+
+It no longer supports IE 11. If you need to support IE 11, check out our [legacy bundle](/guides/minimizing-bundle-size/#legacy-bundle).
+
 ### non-ref-forwarding class components
 
 Support for non-ref-forwarding class components in the `component` prop or as an immediate `children` has been dropped. If you were using `unstable_createStrictModeTheme` or didn't see any warnings related to `findDOMNode` in `React.StrictMode` then you don't need to do anything. Otherwise check out the ["Caveat with refs" section in our composition guide](/guides/composition/#caveat-with-refs) to find out how to migrate. This change affects almost all components where you're using the `component` prop or passing `children` to components that require `children` to be elements (e.g. `<MenuList><CustomMenuItem /></MenuList>`)
@@ -686,7 +703,7 @@ const classes = makeStyles(theme => ({
   +</Stepper>
   ```
 
-### Table (таблица)
+### Table (tаблица)
 
 - Настройка ярлыков кнопок постраничной разбивки должна осуществляться с помощью свойства `getItemAriaLabel`. За счет этого улучшается сопоставимость с компонентом `Pagination`.
 
@@ -707,7 +724,7 @@ const classes = makeStyles(theme => ({
   + onPageChange={()=>{}}
   ```
 
-### Tabs
+### Вкладки
 
 - TypeScript: тип параметра `event` в `onChange` теперь не `React.ChangeEvent` а `React.SyntheticEvent`.
 
@@ -795,7 +812,7 @@ const classes = makeStyles(theme => ({
   +<Tooltip>
   ```
 
-### Typography
+### Оформление текста
 
 - Заменяем свойство `srOnly`, чтобы не дублировать возможности [System](https://material-ui.com/system/basics/):
 
