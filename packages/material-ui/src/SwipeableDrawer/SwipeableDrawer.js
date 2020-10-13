@@ -16,6 +16,8 @@ import SwipeArea from './SwipeArea';
 // This value is closed to what browsers are using internally to
 // trigger a native scroll.
 const UNCERTAINTY_THRESHOLD = 3; // px
+
+// This is the part of the drawer displayed on touch start.
 const DRAG_STARTED_SIGNAL = 20; // px
 
 // We can only have one node at the time claiming ownership for handling the swipe.
