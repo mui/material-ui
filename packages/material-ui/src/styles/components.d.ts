@@ -3,9 +3,22 @@ import { ComponentsOverrides } from './overrides';
 import { ComponentsVariants } from './variants';
 
 export interface Components {
+  MuiAlert?: {
+    defaultProps?: ComponentsProps['MuiAlert'];
+    styleOverrides?: ComponentsOverrides['MuiAlert'];
+    variants?: ComponentsVariants['MuiAlert'];
+  };
+  MuiAlertTitle?: {
+    defaultProps?: ComponentsProps['MuiAlertTitle'];
+    styleOverrides?: ComponentsOverrides['MuiAlertTitle'];
+  };
   MuiAppBar?: {
     defaultProps?: ComponentsProps['MuiAppBar'];
     styleOverrides?: ComponentsOverrides['MuiAppBar'];
+  };
+  MuiAutocomplete?: {
+    defaultProps?: ComponentsProps['MuiAutocomplete'];
+    styleOverrides?: ComponentsOverrides['MuiAutocomplete'];
   };
   MuiAvatar?: {
     defaultProps?: ComponentsProps['MuiAvatar'];
@@ -270,6 +283,14 @@ export interface Components {
     defaultProps?: ComponentsProps['MuiOutlinedInput'];
     styleOverrides?: ComponentsOverrides['MuiOutlinedInput'];
   };
+  MuiPagination?: {
+    defaultProps?: ComponentsProps['MuiPagination'];
+    styleOverrides?: ComponentsOverrides['MuiPagination'];
+  };
+  MuiPaginationItem?: {
+    defaultProps?: ComponentsProps['MuiPaginationItem'];
+    styleOverrides?: ComponentsOverrides['MuiPaginationItem'];
+  };
   MuiPaper?: {
     defaultProps?: ComponentsProps['MuiPaper'];
     styleOverrides?: ComponentsOverrides['MuiPaper'];
@@ -302,6 +323,18 @@ export interface Components {
   MuiSnackbarContent?: {
     defaultProps?: ComponentsProps['MuiSnackbarContent'];
     styleOverrides?: ComponentsOverrides['MuiSnackbarContent'];
+  };
+  MuiSpeedDial?: {
+    defaultProps?: ComponentsProps['MuiSpeedDial'];
+    styleOverrides?: ComponentsOverrides['MuiSpeedDial'];
+  };
+  MuiSpeedDialAction?: {
+    defaultProps?: ComponentsProps['MuiSpeedDialAction'];
+    styleOverrides?: ComponentsOverrides['MuiSpeedDialAction'];
+  };
+  MuiSpeedDialIcon?: {
+    defaultProps?: ComponentsProps['MuiSpeedDialIcon'];
+    styleOverrides?: ComponentsOverrides['MuiSpeedDialIcon'];
   };
   MuiStep?: {
     defaultProps?: ComponentsProps['MuiStep'];
@@ -386,6 +419,14 @@ export interface Components {
   MuiTextField?: {
     defaultProps?: ComponentsProps['MuiTextField'];
     styleOverrides?: ComponentsOverrides['MuiTextField'];
+  };
+  MuiToggleButton?: {
+    defaultProps?: ComponentsProps['MuiToggleButton'];
+    styleOverrides?: ComponentsOverrides['MuiToggleButton'];
+  };
+  MuiToggleButtonGroup?: {
+    defaultProps?: ComponentsProps['MuiToggleButtonGroup'];
+    styleOverrides?: ComponentsOverrides['MuiToggleButtonGroup'];
   };
   MuiToolbar?: {
     defaultProps?: ComponentsProps['MuiToolbar'];
