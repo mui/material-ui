@@ -7,7 +7,6 @@ import {
   createClientRender,
   act,
   fireEvent,
-  createEvent,
   screen,
   describeConformance,
 } from 'test/utils';
@@ -105,12 +104,9 @@ describe('<SpeedDial />', () => {
         fireEvent.keyDown(document.body, { key: 'TAB' });
         buttonWrapper.focus();
       });
-      const myEvent = createEvent.keyDown(buttonWrapper, { key: ' ' });
-      act(() => {
-        fireEvent(buttonWrapper, myEvent);
-      });
+      fireEvent.keyDown(buttonWrapper, { key: ' ' });
       expect(handleKeyDown.callCount).to.equal(1);
-      expect(handleKeyDown.calledWithMatch({ nativeEvent: myEvent })).to.equal(true);
+      expect(handleKeyDown.calledWithMatch({ key: ' ' })).to.equal(true);
     });
   });
 
