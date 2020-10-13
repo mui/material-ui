@@ -32,15 +32,15 @@ export const styles = () => ({
     right: 14,
   },
   /* Styles applied to the endIcon element if `loading={true}` and `loadingPosition="end"`. */
-  endIconloadingEnd: {
+  endIconLoadingEnd: {
     visibility: 'hidden',
   },
   /* Styles applied to the startIcon element if `loading={true}` and `loadingPosition="start"`. */
-  startIconloadingStart: {
+  startIconLoadingStart: {
     visibility: 'hidden',
   },
   /* Styles applied to the label element if `loading={true}` and `loadingPosition="center"`. */
-  labelloadingCenter: {
+  labelLoadingCenter: {
     visibility: 'hidden',
   },
 });
