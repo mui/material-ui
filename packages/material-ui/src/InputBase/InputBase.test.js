@@ -12,7 +12,6 @@ import {
 } from 'test/utils';
 import FormControl, { useFormControl } from '../FormControl';
 import InputAdornment from '../InputAdornment';
-import TextareaAutosize from '../TextareaAutosize';
 import InputBase from './InputBase';
 import TextField from '../TextField';
 import Select from '../Select';
@@ -44,8 +43,8 @@ describe('<InputBase />', () => {
 
   describe('multiline', () => {
     it('should render an <TextareaAutosize /> when passed the multiline prop', () => {
-      const wrapper = mount(<InputBase multiline />);
-      expect(wrapper.find(TextareaAutosize)).to.have.lengthOf(1);
+      const { container } = render(<InputBase multiline />);
+      expect(container.querySelectorAll('textarea')).to.have.lengthOf(2);
     });
 
     it('should render an <textarea /> when passed the multiline and rows props', () => {
@@ -54,8 +53,8 @@ describe('<InputBase />', () => {
     });
 
     it('should forward the value to the TextareaAutosize', () => {
-      const wrapper = mount(<InputBase multiline maxRows={4} value="" />);
-      expect(wrapper.find(TextareaAutosize).props()).to.have.property('value', '');
+      const { container } = render(<InputBase multiline maxRows={4} value="Hello" />);
+      expect(container.querySelector('textarea')).to.have.value('Hello');
     });
   });
 
