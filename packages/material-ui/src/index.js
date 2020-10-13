@@ -279,6 +279,15 @@ export * from './Snackbar';
 export { default as SnackbarContent } from './SnackbarContent';
 export * from './SnackbarContent';
 
+export { default as SpeedDial } from './SpeedDial';
+export * from './SpeedDial';
+
+export { default as SpeedDialAction } from './SpeedDialAction';
+export * from './SpeedDialAction';
+
+export { default as SpeedDialIcon } from './SpeedDialIcon';
+export * from './SpeedDialIcon';
+
 export { default as Step } from './Step';
 export * from './Step';
 
