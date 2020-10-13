@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
 import {
   createMuiTheme,
+  experimentalStyled as styled,
   ThemeProvider as MuiThemeProvider,
   darken,
 } from '@material-ui/core/styles';
