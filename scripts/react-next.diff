@@ -1,13 +1,12 @@
 diff --git a/babel.config.js b/babel.config.js
-index 2023a104f5..7435aa568c 100644
+index ac044fb372..4d59b97096 100644
 --- a/babel.config.js
 +++ b/babel.config.js
-@@ -47,7 +47,16 @@ const productionPlugins = [
- ];
- 
- module.exports = {
--  presets: defaultPresets.concat(['@babel/preset-react', '@babel/preset-typescript']),
-+  presets: defaultPresets.concat([
+@@ -41,7 +41,13 @@ module.exports = function getBabelConfig(api) {
+         shippedProposals: api.env('modern'),
+       },
+     ],
+-    '@babel/preset-react',
 +    [
 +      '@babel/preset-react',
 +      {
@@ -15,11 +14,9 @@ index 2023a104f5..7435aa568c 100644
 +        runtime: 'automatic',
 +      },
 +    ],
-+    '@babel/preset-typescript',
-+  ]),
-   plugins: [
-     [
-       'babel-plugin-macros',
+     '@babel/preset-typescript',
+   ];
+
 diff --git a/packages/material-ui-styles/src/ThemeProvider/ThemeProvider.test.js b/packages/material-ui-styles/src/ThemeProvider/ThemeProvider.test.js
 index 197b2f77a3..f1ead08079 100644
 --- a/packages/material-ui-styles/src/ThemeProvider/ThemeProvider.test.js
