@@ -6,12 +6,14 @@ const yargs = require('yargs');
 const exec = promisify(childProcess.exec);
 
 const validBundles = [
-  // legacy build using commonJS modules
-  'cjs',
-  // modern build
-  'es',
   // legacy build using ES6 modules
-  'esm',
+  'legacy',
+  // modern build with a rolling target using ES6 modules
+  'modern',
+  // build for node using commonJS modules
+  'node',
+  // build with a hardcoded target using ES6 modules
+  'stable',
 ];
 
 async function run(argv) {
@@ -24,18 +26,19 @@ async function run(argv) {
   }
 
   const env = {
-    ...process.env,
     NODE_ENV: 'production',
     BABEL_ENV: bundle,
+    MUI_BUILD_VERBOSE: verbose,
   };
   const babelConfigPath = path.resolve(__dirname, '../babel.config.js');
   const srcDir = path.resolve('./src');
   const outDir = path.resolve(
     relativeOutDir,
     {
-      cjs: '.',
-      esm: './esm',
-      es: './es',
+      node: './node',
+      modern: './modern',
+      stable: './',
+      legacy: './legacy',
     }[bundle],
   );
 
@@ -65,7 +68,15 @@ async function run(argv) {
     console.log(`running '${command}' with ${JSON.stringify(env)}`);
   }
 
-  return exec(command, { env });
+  const { stderr, stdout } = await exec(command, { env: { ...process.env, ...env } });
+  if (stderr) {
+    throw new Error(`'${command}' failed with \n${stderr}`);
+  }
+
+  if (verbose) {
+    // eslint-disable-next-line no-console
+    console.log(stdout);
+  }
 }
 
 yargs

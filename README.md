@@ -46,9 +46,13 @@ npm install @material-ui/core@next
 yarn add @material-ui/core@next
 ```
 
-**[v3.x](https://v3.material-ui.com/)** ([Migration from v3 to v4](https://material-ui.com/guides/migration-v3/))
-
-**[v0.x](https://v0.material-ui.com/)** ([Migration to v1](https://material-ui.com/guides/migration-v0x/))
+<details>
+  <summary>Older versions</summary>
+  
+  - **[v3.x](https://v3.material-ui.com/)** ([Migration from v3 to v4](https://material-ui.com/guides/migration-v3/))
+  - **[v0.x](https://v0.material-ui.com/)** ([Migration to v1](https://material-ui.com/guides/migration-v0x/))
+  
+</details>
 
 Please note that `@next` will only point to pre-releases; to get the latest stable release use `@latest` instead.
 

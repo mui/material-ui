@@ -37,6 +37,7 @@ function runPrettier(options) {
         'docs/pages/api-docs/**/*.md',
         ...ignoredFiles,
       ],
+      dot: true,
     })
     .filter(
       (f) =>

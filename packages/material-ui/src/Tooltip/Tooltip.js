@@ -419,7 +419,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
      * @param {KeyboardEvent} nativeEvent
      */
     function handleKeyDown(nativeEvent) {
-      // IE 11, Edge (prior to using Bink?) use 'Esc'
+      // IE11, Edge (prior to using Bink?) use 'Esc'
       if (nativeEvent.key === 'Escape' || nativeEvent.key === 'Esc') {
         handleClose(nativeEvent);
       }

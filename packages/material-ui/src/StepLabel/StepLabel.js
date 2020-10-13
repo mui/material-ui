@@ -57,7 +57,7 @@ export const styles = (theme) => ({
   disabled: {},
   /* Styles applied to the `icon` container element. */
   iconContainer: {
-    flexShrink: 0, // Fix IE 11 issue
+    flexShrink: 0, // Fix IE11 issue
     display: 'flex',
     paddingRight: 8,
     '&$alternativeLabel': {

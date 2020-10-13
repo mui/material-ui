@@ -176,7 +176,7 @@ ${propName}: {
       }${
         hidden
           ? `
-  hidden: ${hidden},`
+  ${hidden},`
           : ''
       }${otherValues(other)}
 },`;

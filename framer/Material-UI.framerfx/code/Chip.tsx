@@ -102,7 +102,7 @@ addPropertyControls(Chip, {
   avatarImageUrl: {
     type: ControlType.String,
     title: 'Avatar Image URL',
-    hidden: function hidden(props) {
+    hidden(props) {
       return props.avatarImageFile !== '';
     },
   },

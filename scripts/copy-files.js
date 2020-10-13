@@ -30,7 +30,8 @@ async function createModulePackages({ from, to }) {
     directoryPackages.map(async (directoryPackage) => {
       const packageJson = {
         sideEffects: false,
-        module: path.join('../esm', directoryPackage, 'index.js'),
+        module: './index.js',
+        main: path.join('../node', directoryPackage, 'index.js'),
         typings: './index.d.ts',
       };
       const packageJsonPath = path.join(to, directoryPackage, 'package.json');
@@ -68,8 +69,8 @@ async function createPackageFile() {
   const newPackageData = {
     ...packageDataOther,
     private: false,
-    main: './index.js',
-    module: './esm/index.js',
+    main: './node/index.js',
+    module: './index.js',
     typings: './index.d.ts',
   };
   const targetPath = path.resolve(buildPath, './package.json');
@@ -95,7 +96,9 @@ async function addLicense(packageData) {
   await Promise.all(
     [
       './index.js',
-      './esm/index.js',
+      './legacy/index.js',
+      './modern/index.js',
+      './node/index.js',
       './umd/material-ui.development.js',
       './umd/material-ui.production.min.js',
     ].map(async (file) => {

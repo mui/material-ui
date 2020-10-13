@@ -191,7 +191,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
   };
 
   /**
-   * IE 11 shim for https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/repeat
+   * IE11 shim for https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/repeat
    */
   const keydownRef = React.useRef(false);
   const handleKeyDown = useEventCallback((event) => {

@@ -8,6 +8,6 @@ module.exports = {
     'docs/.next/**',
   ],
   recursive: true,
-  reporter: process.env.CI ? 'spec' : 'dot',
+  reporter: 'dot',
   require: [require.resolve('./test/utils/setupBabel'), require.resolve('./test/utils/setupJSDOM')],
 };
