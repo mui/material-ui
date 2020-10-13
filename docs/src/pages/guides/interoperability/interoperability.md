@@ -35,7 +35,7 @@ Nothing fancy, just plain CSS.
 
 ```jsx
 import * as React from 'react';
-import Slider from "@material-ui/lab/SliderStyled";
+import Slider from '@material-ui/lab/SliderStyled';
 import './PlainCssSlider.css';
 
 export default function PlainCSSSlider() {
@@ -47,24 +47,25 @@ export default function PlainCSSSlider() {
   );
 }
 ```
+
 ### Controlling priority ⚠️
 
 **Note:** Most of the CSS-in-JS solutions inject their styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change the CSS injection order, as in the demo:
 
 ```jsx
 import * as React from 'react';
-import { CacheProvider } from "@emotion/core";
-import createCache from "@emotion/cache";
+import { CacheProvider } from '@emotion/core';
+import createCache from '@emotion/cache';
 
-const head = document.getElementsByTagName("head")[0];
+const head = document.getElementsByTagName('head')[0];
 
 const emotionContainer = head.insertBefore(
-  document.createElement("STYLE"),
-  head.firstChild
+  document.createElement('STYLE'),
+  head.firstChild,
 );
 
 const cache = createCache({
-  container: emotionContainer
+  container: emotionContainer,
 });
 
 export default function App() {
@@ -104,9 +105,9 @@ The following example overrides the `thumb` style of `Slider` in addition to the
 **PlainCssSliderDeep.js**
 
 ```jsx
-import * as React from "react";
-import Slider from "@material-ui/lab/SliderStyled";
-import "./PlainCssSliderDeep.css";
+import * as React from 'react';
+import Slider from '@material-ui/lab/SliderStyled';
+import './PlainCssSliderDeep.css';
 
 export default function PlainCSSSlider() {
   return (
@@ -115,7 +116,7 @@ export default function PlainCSSSlider() {
       <Slider
         className="slider"
         defaultValue={30}
-        componentsProps={{ thumb: { className: "thumb" } }}
+        componentsProps={{ thumb: { className: 'thumb' } }}
       />
     </div>
   );
@@ -147,7 +148,7 @@ Explicitly providing the class names to the component is too much effort?
 
 ```jsx
 import * as React from 'react';
-import Slider from "@material-ui/lab/SliderStyled";
+import Slider from '@material-ui/lab/SliderStyled';
 import './GlobalCssSlider.css';
 
 export default function GlobalCSSSlider() {
@@ -171,9 +172,9 @@ from `@material-ui/core/styles` and have direct access to the theme.
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/styled-components-6bwu7)
 
 ```jsx
-import * as React from "react";
-import Slider from "@material-ui/lab/SliderStyled";
-import { experimentalStyled as styled } from "@material-ui/core/styles";
+import * as React from 'react';
+import Slider from '@material-ui/lab/SliderStyled';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
 
 const CustomizedSlider = styled(Slider)`
   color: #20b2aa;
@@ -199,9 +200,9 @@ The following example overrides the `thumb` style of `Slider` in addition to the
 {{"demo": "pages/guides/interoperability/StyledComponentsDeep.js"}}
 
 ```jsx
-import * as React from "react";
-import Slider from "@material-ui/lab/SliderStyled";
-import { experimentalStyled as styled } from "@material-ui/core/styles";
+import * as React from 'react';
+import Slider from '@material-ui/lab/SliderStyled';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
 
 const CustomizedSliderDeep = styled(Slider)`
   color: #20b2aa;
@@ -226,12 +227,12 @@ export default function App() {
 The above demo relies on the [default `className` values](/styles/advanced/#with-material-ui-core) but you can provide your own class name: `.thumb`.
 
 ```jsx
-import * as React from "react";
-import { experimentalStyled as styled } from "@material-ui/core/styles";
-import Slider from "@material-ui/lab/SliderStyled";
+import * as React from 'react';
+import { experimentalStyled as styled } from '@material-ui/core/styles';
+import Slider from '@material-ui/lab/SliderStyled';
 
 const StyledSlider = styled((props) => (
-  <Slider componentsProps={{ thumb: { className: "thumb" } }} {...props} />
+  <Slider componentsProps={{ thumb: { className: 'thumb' } }} {...props} />
 ))`
   color: #20b2aa;
   :hover {
