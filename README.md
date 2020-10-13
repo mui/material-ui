@@ -46,7 +46,7 @@ npm install @material-ui/core@next
 yarn add @material-ui/core@next
 ```
 <details>
-  <summary>Outdated Versions</summary>
+  <summary>Older versions</summary>
   
   **[v3.x](https://v3.material-ui.com/)** ([Migration from v3 to v4](https://material-ui.com/guides/migration-v3/))
   
