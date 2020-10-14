@@ -5,7 +5,7 @@ const handler = require('serve-handler');
 const http = require('http');
 
 const PORT = 1122;
-const APP = 'browser-benchmark';
+const APP = 'benchmark/browser';
 
 function createServer(options) {
   const { port } = options;
