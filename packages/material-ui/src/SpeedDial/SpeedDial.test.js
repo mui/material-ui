@@ -252,8 +252,8 @@ describe('<SpeedDial />', () => {
     });
 
     // eslint-disable-next-line func-names
-    describe('actions navigation', function () {
-      this.timeout(7500); // These tests are really slow.
+    describe('actions navigation', () => {
+      // this.timeout(5000); // These tests are really slow.
 
       /**
        * tests a combination of arrow keys on a focused SpeedDial
@@ -288,60 +288,66 @@ describe('<SpeedDial />', () => {
         });
       };
 
-      it('considers the first arrow key press as forward navigation', () => {
-        testCombination('up', ['ArrowUp', 'ArrowUp', 'ArrowUp', 'ArrowDown'], [0, 1, 2, 1]);
-        testCombination('up', ['ArrowDown', 'ArrowDown', 'ArrowDown', 'ArrowUp'], [0, 1, 2, 1]);
+      const itTestCombination = (dir, keys, expected) => {
+        it(`Start dir ${dir} with keys ${keys.join(',')}`, () => {
+          testCombination(dir, keys, expected);
+        });
+      };
 
-        testCombination(
+      describe('considers the first arrow key press as forward navigation', () => {
+        itTestCombination('up', ['ArrowUp', 'ArrowUp', 'ArrowUp', 'ArrowDown'], [0, 1, 2, 1]);
+        itTestCombination('up', ['ArrowDown', 'ArrowDown', 'ArrowDown', 'ArrowUp'], [0, 1, 2, 1]);
+
+        itTestCombination(
           'right',
           ['ArrowRight', 'ArrowRight', 'ArrowRight', 'ArrowLeft'],
           [0, 1, 2, 1],
         );
-        testCombination(
+        itTestCombination(
           'right',
           ['ArrowLeft', 'ArrowLeft', 'ArrowLeft', 'ArrowRight'],
           [0, 1, 2, 1],
         );
 
-        testCombination('down', ['ArrowDown', 'ArrowDown', 'ArrowDown', 'ArrowUp'], [0, 1, 2, 1]);
-        testCombination('down', ['ArrowUp', 'ArrowUp', 'ArrowUp', 'ArrowDown'], [0, 1, 2, 1]);
+        itTestCombination('down', ['ArrowDown', 'ArrowDown', 'ArrowDown', 'ArrowUp'], [0, 1, 2, 1]);
+        itTestCombination('down', ['ArrowUp', 'ArrowUp', 'ArrowUp', 'ArrowDown'], [0, 1, 2, 1]);
 
-        testCombination(
+        itTestCombination(
           'left',
           ['ArrowLeft', 'ArrowLeft', 'ArrowLeft', 'ArrowRight'],
           [0, 1, 2, 1],
         );
-        testCombination(
+        itTestCombination(
           'left',
           ['ArrowRight', 'ArrowRight', 'ArrowRight', 'ArrowLeft'],
           [0, 1, 2, 1],
         );
       });
 
-      it('ignores array keys orthogonal to the direction', () => {
-        testCombination('up', ['ArrowUp', 'ArrowLeft', 'ArrowRight', 'ArrowUp'], [0, 0, 0, 1]);
-        testCombination(
+      describe('ignores array keys orthogonal to the direction', () => {
+        itTestCombination('up', ['ArrowUp', 'ArrowLeft', 'ArrowRight', 'ArrowUp'], [0, 0, 0, 1]);
+        itTestCombination(
           'right',
           ['ArrowRight', 'ArrowUp', 'ArrowDown', 'ArrowRight'],
           [0, 0, 0, 1],
         );
-        testCombination(
+        itTestCombination(
           'down',
           ['ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowDown'],
           [0, 0, 0, 1],
         );
-        testCombination('left', ['ArrowLeft', 'ArrowUp', 'ArrowDown', 'ArrowLeft'], [0, 0, 0, 1]);
+        itTestCombination('left', ['ArrowLeft', 'ArrowUp', 'ArrowDown', 'ArrowLeft'], [0, 0, 0, 1]);
       });
 
-      it('does not wrap around', () => {
-        testCombination('up', ['ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowUp'], [0, -1, -1, 0]);
-        testCombination(
+      describe('does not wrap around', () => {
+        itTestCombination('up', ['ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowUp'], [0, -1, -1, 0]);
+        itTestCombination(
           'right',
           ['ArrowRight', 'ArrowLeft', 'ArrowLeft', 'ArrowRight'],
           [0, -1, -1, 0],
         );
-        testCombination('down', ['ArrowDown', 'ArrowUp', 'ArrowUp', 'ArrowDown'], [0, -1, -1, 0]);
-        testCombination(
+        itTestCombination('down', ['ArrowDown', 'ArrowUp', 'ArrowUp', 'ArrowDown'], [0, -1, -1, 0]);
+        itTestCombination(
           'left',
           ['ArrowLeft', 'ArrowRight', 'ArrowRight', 'ArrowLeft'],
           [0, -1, -1, 0],
