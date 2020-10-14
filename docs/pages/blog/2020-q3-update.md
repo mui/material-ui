@@ -151,6 +151,7 @@ We'll do our best, no guarantee!
 ### Community
 
 - 🗓 Execute on all the items of the [public roadmap](https://github.com/mui-org/material-ui/projects/25).
+- 👩‍🎨 Simplify the migration experience from v4 to v5.
 - ❓ Please upvote [GitHub issues](https://github.com/mui-org/material-ui/issues) if you want us to focus on a specific problem. The number of 👍 helps us to prioritize.
 
 ### Enterprise
