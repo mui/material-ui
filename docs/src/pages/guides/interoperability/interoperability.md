@@ -38,7 +38,7 @@ import * as React from 'react';
 import Slider from '@material-ui/lab/SliderStyled';
 import './PlainCssSlider.css';
 
-export default function PlainCSSSlider() {
+export default function PlainCssSlider() {
   return (
     <div>
       <Slider defaultValue={30} />
