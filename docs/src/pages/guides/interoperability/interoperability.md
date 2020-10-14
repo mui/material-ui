@@ -164,7 +164,7 @@ export default function GlobalCssSlider() {
 ### Change the default styled engine
 
 By default the Material-UI components, comes with emotion as their style engine. However,
-if you would like to use `styled-components`, you can configure your app, by following this [example project](https://github.com/mui-org/material-ui/blob/next/examples/create-react-app-with-styled-components/README.md).
+if you would like to use `styled-components`, you can configure your app, by following this [example project](https://github.com/mui-org/material-ui/blob/next/examples/create-react-app-with-styled-components).
 
 After the style engine is configured properly, you can use the `experimentalStyled()` utility
 from `@material-ui/core/styles` and have direct access to the theme.
