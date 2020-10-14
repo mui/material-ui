@@ -1,4 +1,4 @@
-# Spacing（间距）
+# Spacing 间距
 
 <p class="description">使用 theme.spacing() 助手来打造 UI 元素之间的一致的间距。</p>
 
