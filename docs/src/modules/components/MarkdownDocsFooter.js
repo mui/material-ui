@@ -181,7 +181,8 @@ function MarkdownDocsFooter(props) {
   const handleClickThumb = (vote) => async () => {
     if (vote !== rating) {
       setRating(vote);
-      // Focus an element at the bottom of the page so that the texfield is visible when it opens.
+      // Focus a hidden element at the bottom of the page 
+      // so that the texfield is visible when it opens.
       bottomRef.current.focus();
       setCommentOpen(true);
     }
@@ -308,7 +309,7 @@ function MarkdownDocsFooter(props) {
         onClose={handleCloseSnackbar}
         message={snackbarMessage}
       />
-      <button tabIndex="-1" ref={bottomRef} className={classes.hidden} />
+      <input tabIndex="-1" ref={bottomRef} className={classes.hidden} />
     </React.Fragment>
   );
 }
