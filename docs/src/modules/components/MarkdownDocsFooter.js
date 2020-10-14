@@ -109,13 +109,14 @@ async function getUserFeedback(id) {
   }
 }
 
-async function submitFeedback(page, rating, comment) {
+async function submitFeedback(page, rating, comment, language) {
   const data = {
     id: getCookie('feedbackId'),
     page,
-    version: process.env.LIB_VERSION,
     rating,
     comment,
+    version: process.env.LIB_VERSION,
+    language
   };
 
   const result = await postFeedback(data);
@@ -167,7 +168,7 @@ function MarkdownDocsFooter(props) {
   }, [setCurrentRatingFromCookie]);
 
   async function processFeedback(rating, comment) {
-    const result = await submitFeedback(currentPage.pathname, rating, comment);
+    const result = await submitFeedback(currentPage.pathname, rating, comment, userLanguage);
     if (result) {
       setSnackbarMessage(t('feedbackSubmitted'));
     } else {
