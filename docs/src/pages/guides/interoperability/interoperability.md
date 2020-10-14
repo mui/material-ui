@@ -226,7 +226,7 @@ export default function App() {
 }
 ```
 
-The above demo relies on the [default `className` values](/styles/advanced/#with-material-ui-core) but you can provide your own class name: `.thumb`.
+The above demo relies on the [default `className` values](/styles/advanced/#with-material-ui-core), but you can provide your own class name: `.thumb`.
 
 ```jsx
 import * as React from 'react';
