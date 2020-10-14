@@ -87,7 +87,7 @@ function Progress(props) {
 
 {{"demo": "pages/components/progress/DelayingAppearance.js"}}
 
-## 局限性
+## 设计局限
 
 ### 高负载
 
@@ -113,7 +113,7 @@ function Progress(props) {
 
 ### IE11
 
-The circular progress component animation on IE11 is degraded. Stroke dash 动画将不起作用（相当于`disableShrink`）并且 circular 动画将会抖动。 你可以通过以下方式来解决它：
+IE 11 上的循环进度组件动画会降级。 Stroke dash 动画将不起作用（相当于`disableShrink`）并且 circular 动画将会抖动。 你可以通过以下方式来解决它：
 
 ```css
 .MuiCircularProgress-indeterminate {
