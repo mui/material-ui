@@ -20,7 +20,7 @@
 
 - [Palette 调色板](/customization/palette/)
 - [文字排版](/customization/typography/)
-- [Spacing（间距）](/customization/spacing/)
+- [Spacing 间距](/customization/spacing/)
 - [Breakpoints 断点](/customization/breakpoints/)
 - [z-index](/customization/z-index/)
 - [全局样式](/customization/globals/)
