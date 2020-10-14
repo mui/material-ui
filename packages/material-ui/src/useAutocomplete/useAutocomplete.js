@@ -659,7 +659,6 @@ export default function useAutocomplete(props) {
       focusTag(-1);
     }
 
-
     // Wait until IME is settled.
     if (event.which !== 229) {
       switch (event.key) {
