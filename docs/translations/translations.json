@@ -33,7 +33,7 @@
   "feedbackDialogTitle": "Thanks for your feedback!",
   "feedbackFailed": "Couldn't submit feedback. Please try again later.",
   "feedbackGroupLabel": "give page feedback",
-  "ratingMessage": "Was this page helpful?",
+  "feedbackMessage": "Was this page helpful?",
   "feedbackNo": "No",
   "feedbackSubmitted": "Feedback submitted",
   "feedbackYes": "Yes",

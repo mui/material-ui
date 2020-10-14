@@ -269,17 +269,17 @@ function MarkdownDocsFooter(props) {
                 alignItems="center"
                 aria-label={t('feedbackGroupLabel')}
               >
-                <Typography align="center" variant="subtitle1" className={classes.feedbackMessage}>
-                  {t('ratingMessage')}
+                <Typography align="center" variant="subtitle1" id="feedback-message" className={classes.feedbackMessage}>
+                  {t('feedbackMessage')}
                 </Typography>
                 <div>
                   <Tooltip title={t('feedbackYes')}>
-                    <IconButton onClick={handleClickUp} aria-pressed={currentRating === 1}>
+                    <IconButton onClick={handleClickUp} aria-pressed={currentRating === 1} aria-describedby="feedback-message">
                       <ThumbUpIcon color={currentRating === 1 ? 'primary' : undefined} />
                     </IconButton>
                   </Tooltip>
                   <Tooltip title={t('feedbackNo')}>
-                    <IconButton onClick={handleClickDown} aria-pressed={currentRating === 0}>
+                    <IconButton onClick={handleClickDown} aria-pressed={currentRating === 0} aria-describedby="feedback-message">
                       <ThumbDownIcon color={currentRating === 0 ? 'error' : undefined} />
                     </IconButton>
                   </Tooltip>
