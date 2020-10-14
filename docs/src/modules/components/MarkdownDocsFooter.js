@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-globals */
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { exactProp } from '@material-ui/utils';
 import { withStyles } from '@material-ui/core/styles';
@@ -24,8 +24,6 @@ import Snackbar from '@material-ui/core/Snackbar';
 import { getCookie, pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
 import Link from 'docs/src/modules/components/Link';
-
-const FEEDBACK_URL = process.env.FEEDBACK_URL;
 
 function Comment(props) {
   const { onClose: handleClose, open } = props;
@@ -101,7 +99,7 @@ function findIndex(array, comp) {
 async function postFeedback(data) {
   const env = location.hostname === 'material-ui.com' ? 'prod' : 'dev';
   try {
-    const response = await fetch(`${FEEDBACK_URL}/${env}/feedback`, {
+    const response = await fetch(`${process.env.FEEDBACK_URL}/${env}/feedback`, {
       method: 'POST',
       referrerPolicy: 'origin',
       headers: { 'Content-Type': 'application/json' },
@@ -116,7 +114,7 @@ async function postFeedback(data) {
 
 async function getUserFeedback(id) {
   const env = location.hostname === 'material-ui.com' ? 'prod' : 'dev';
-  const URL = `${FEEDBACK_URL}/${env}/feedback/${id}`;
+  const URL = `${process.env.FEEDBACK_URL}/${env}/feedback/${id}`;
 
   try {
     const response = await fetch(URL, {
@@ -143,11 +141,12 @@ async function submitFeedback(page, rating, comment) {
   const result = await postFeedback(data);
   if (result) {
     document.cookie = `feedbackId=${result.id};path=/;max-age=31536000`;
-    const userFeedback = await getUserFeedback(result.id);
-    if (userFeedback) {
-      document.cookie = `feedback=${JSON.stringify(userFeedback)};path=/;max-age=31536000`;
-      return result;
-    }
+    setTimeout(async () => {
+      const userFeedback = await getUserFeedback(result.id);
+      if (userFeedback) {
+        document.cookie = `feedback=${JSON.stringify(userFeedback)};path=/;max-age=31536000`;
+      }
+    });
   }
   return result;
 }
@@ -248,14 +247,14 @@ function MarkdownDocsFooter(props) {
   }
 
   const handleClickUp = async () => {
-    if (getCurrentRating !== 1) {
+    if (currentRating !== 1) {
       setCurrentRating(1);
       await processFeedback(1);
     }
   };
 
   const handleClickDown = () => {
-    if (getCurrentRating !== 0) {
+    if (currentRating !== 0) {
       setCurrentRating(0);
       setCommentOpen(true);
     }
