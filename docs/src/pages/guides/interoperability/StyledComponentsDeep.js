@@ -9,7 +9,7 @@ const SliderCustomized = styled(Slider)`
     color: #2e8b57;
   }
   & .MuiSlider-thumb {
-    border-radius: 30%;
+    border-radius: 1px;
   }
 `;
 

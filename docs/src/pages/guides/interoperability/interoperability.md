@@ -98,7 +98,7 @@ The following example overrides the `thumb` style of `Slider` in addition to the
   color: #2e8b57;
 }
 .slider .thumb {
-  border-radius: 30%;
+  border-radius: 1px;
 }
 ```
 
@@ -140,7 +140,7 @@ Explicitly providing the class names to the component is too much effort?
   color: #2e8b57;
 }
 .MuiSlider-root .MuiSlider-thumb {
-  border-radius: 30%;
+  border-radius: 1px;
 }
 ```
 
@@ -212,7 +212,7 @@ const CustomizedSliderDeep = styled(Slider)`
     color: #2e8b57;
   }
   & .MuiSlider-thumb {
-    border-radius: 30%;
+    border-radius: 1px;
   }
 `;
 
@@ -241,7 +241,7 @@ const StyledSlider = styled((props) => (
     color: #2e8b57;
   }
   & .thumb {
-    border-radius: 30%;
+    border-radius: 1px;
   }
 `;
 
@@ -399,7 +399,7 @@ The following example overrides the `thumb` style of `Slider` in addition to the
   color: #2e8b57;
 }
 .slider .thumb {
-  border-radius: 30%;
+  border-radius: 1px;
 }
 ```
 
@@ -436,7 +436,7 @@ Emotion's **css()** method works seamlessly with Material-UI.
 
 {{"demo": "pages/guides/interoperability/EmotionCSS.js", "hideToolbar": true}}
 
-[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/emotion-bgfxj)
+[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/emotion-lvtcm)
 
 ```jsx
 /** @jsx jsx */
