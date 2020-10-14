@@ -50,8 +50,8 @@ const styles = (theme) => ({
   },
   hidden: {
     ariaHidden: 'true',
-    opacity:0 
-  }
+    opacity: 0,
+  },
 });
 
 function flattenPages(pages, current = []) {
@@ -116,7 +116,7 @@ async function submitFeedback(page, rating, comment, language) {
     rating,
     comment,
     version: process.env.LIB_VERSION,
-    language
+    language,
   };
 
   const result = await postFeedback(data);
@@ -146,28 +146,28 @@ function MarkdownDocsFooter(props) {
   const t = useSelector((state) => state.options.t);
   const userLanguage = useSelector((state) => state.options.userLanguage);
   const { activePage, pages } = React.useContext(PageContext);
+  const [rating, setRating] = React.useState();
+  const [comment, setComment] = React.useState('');
+  const [commentOpen, setCommentOpen] = React.useState(false);
+  const [snackbarOpen, setSnackbarOpen] = React.useState(false);
+  const [snackbarMessage, setSnackbarMessage] = React.useState(false);
+  const inputRef = React.useRef();
+  const bottomRef = React.useRef();
   const pageList = flattenPages(pages);
   const currentPageNum = findIndex(pageList, (page) => page.pathname === activePage?.pathname);
   const currentPage = pageList[currentPageNum];
   const prevPage = pageList[currentPageNum - 1];
   const nextPage = pageList[currentPageNum + 1];
-  const [commentOpen, setCommentOpen] = React.useState(false);
-  const [currentRating, setCurrentRating] = React.useState();
-  const [snackbarMessage, setSnackbarMessage] = React.useState(false);
-  const [snackbarOpen, setSnackbarOpen] = React.useState(false);
-  const [textfieldValue, setTextfieldValue] = React.useState('');
-  const inputRef = React.useRef();
-  const bottomRef = React.useRef();
 
   const setCurrentRatingFromCookie = React.useCallback(() => {
-    setCurrentRating(getCurrentRating(currentPage.pathname));
+    setRating(getCurrentRating(currentPage.pathname));
   }, [currentPage.pathname]);
 
   React.useEffect(() => {
     setCurrentRatingFromCookie();
   }, [setCurrentRatingFromCookie]);
 
-  async function processFeedback(rating, comment) {
+  async function processFeedback() {
     const result = await submitFeedback(currentPage.pathname, rating, comment, userLanguage);
     if (result) {
       setSnackbarMessage(t('feedbackSubmitted'));
@@ -178,33 +178,22 @@ function MarkdownDocsFooter(props) {
     setSnackbarOpen(true);
   }
 
-  const handleClickUp = async () => {
-    if (currentRating !== 1) {
-      setCurrentRating(1);
-      await processFeedback(1);
-    }
-  };
-
-  const handleClickDown = () => {
-    if (currentRating !== 0) {
-      setCurrentRating(0);
+  const handleClickThumb = (vote) => async () => {
+    if (vote !== rating) {
+      setRating(vote);
       // Focus an element at the bottom of the page so that the texfield is visible when it opens.
       bottomRef.current.focus();
       setCommentOpen(true);
     }
   };
 
-  const handleCloseSnackbar = () => {
-    setSnackbarOpen(false);
-  };
-
   const handleChangeTextfield = (event) => {
-    setTextfieldValue(event.target.value);
+    setComment(event.target.value);
   };
 
   const handleSubmitComment = () => {
     setCommentOpen(false);
-    processFeedback(0, textfieldValue);
+    processFeedback();
   };
 
   const handleCancelComment = () => {
@@ -213,7 +202,11 @@ function MarkdownDocsFooter(props) {
   };
 
   const handleEntered = () => {
-    inputRef.current.focus()
+    inputRef.current.focus();
+  };
+
+  const handleCloseSnackbar = () => {
+    setSnackbarOpen(false);
   };
 
   return (
@@ -247,18 +240,18 @@ function MarkdownDocsFooter(props) {
                 aria-label={t('feedbackGroupLabel')}
                 className={classes.feedback}
               >
-                <Typography align="center" variant="subtitle1" id="feedback-message" className={classes.feedbackMessage}>
+                <Typography align="center" variant="subtitle1" className={classes.feedbackMessage}>
                   {t('feedbackMessage')}
                 </Typography>
                 <div>
                   <Tooltip title={t('feedbackYes')}>
-                    <IconButton onClick={handleClickUp} aria-pressed={currentRating === 1} aria-describedby="feedback-message">
-                      <ThumbUpIcon color={currentRating === 1 ? 'primary' : undefined} />
+                    <IconButton onClick={handleClickThumb(1)} aria-pressed={rating === 1}>
+                      <ThumbUpIcon color={rating === 1 ? 'primary' : undefined} />
                     </IconButton>
                   </Tooltip>
                   <Tooltip title={t('feedbackNo')}>
-                    <IconButton onClick={handleClickDown} aria-pressed={currentRating === 0} aria-describedby="feedback-message">
-                      <ThumbDownIcon color={currentRating === 0 ? 'error' : undefined} />
+                    <IconButton onClick={handleClickThumb(0)} aria-pressed={rating === 0}>
+                      <ThumbDownIcon color={rating === 0 ? 'error' : undefined} />
                     </IconButton>
                   </Tooltip>
                 </div>
@@ -280,9 +273,13 @@ function MarkdownDocsFooter(props) {
         )}
         <Collapse in={commentOpen} onEntered={handleEntered}>
           <div>
-            <Typography variant="h6" gutterBottom id="feedback-title">{t('feedbackDialogTitle')}</Typography>
+            <Typography variant="h6" gutterBottom id="feedback-title">
+              {t('feedbackTitle')}
+            </Typography>
             <div>
-              <Typography color="textSecondary" gutterBottom>{t('feedbackDialogMessage')}</Typography>
+              <Typography color="textSecondary" gutterBottom>
+                {rating === 1 ? t('feedbackMessageUp') : t('feedbackMessageDown')}
+              </Typography>
               <TextField
                 multiline
                 variant="outlined"
@@ -290,15 +287,15 @@ function MarkdownDocsFooter(props) {
                 id="comment"
                 fullWidth
                 rows={6}
-                value={textfieldValue}
+                value={comment}
                 onChange={handleChangeTextfield}
-                inputProps={{ref: inputRef }}
+                inputProps={{ ref: inputRef }}
                 aria-labelledby="feedback-title"
               />
             </div>
             <DialogActions>
               <Button onClick={handleCancelComment}>{t('cancel')}</Button>
-              <Button disabled={textfieldValue.length < 20} onClick={handleSubmitComment}>
+              <Button disabled={comment.length < 20} onClick={handleSubmitComment}>
                 {t('submit')}
               </Button>
             </DialogActions>
