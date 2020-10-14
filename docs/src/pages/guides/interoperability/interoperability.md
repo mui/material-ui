@@ -151,7 +151,7 @@ import * as React from 'react';
 import Slider from '@material-ui/lab/SliderStyled';
 import './GlobalCssSlider.css';
 
-export default function GlobalCSSSlider() {
+export default function GlobalCssSlider() {
   return <Slider defaultValue={30} />;
 }
 ```
