@@ -1,5 +1,6 @@
 import chai from 'chai';
 import chaiDom from 'chai-dom';
+import _ from 'lodash';
 import { isInaccessible } from '@testing-library/dom';
 import { prettyDOM } from '@testing-library/react/pure';
 import { computeAccessibleDescription, computeAccessibleName } from 'dom-accessibility-api';
@@ -17,6 +18,25 @@ declare global {
        * @deprecated Use `inaccessible` + `visible` instead
        */
       toBeAriaHidden(): void;
+      /**
+       * Checks `expectedStyle` is a subset of the given `CSSStyleDeclaration`.
+       * @example expect(element.style).toHaveStyle({ width: '200px' })
+       * @example expect(window.getComputedStyle(element)).toHaveStyle({ backgroundColor: 'rgb(255, 0, 0)' })
+       */
+      toHaveStyle(
+        expectedStyle: Record<
+          Exclude<
+            keyof CSSStyleDeclaration,
+            | 'getPropertyPriority'
+            | 'getPropertyValue'
+            | 'item'
+            | 'removeProperty'
+            | 'setProperty'
+            | number
+          >,
+          string
+        >,
+      ): void;
       /**
        * Check if an element's [`visibility`](https://developer.mozilla.org/en-US/docs/Web/CSS/visibility) is not `hidden` or `collapsed`.
        */
@@ -270,6 +290,34 @@ chai.use((chaiAPI, utils) => {
   chai.Assertion.addMethod('toBeVisible', function toBeVisible() {
     // eslint-disable-next-line no-underscore-dangle, @typescript-eslint/no-unused-expressions
     new chai.Assertion(this._obj).to.be.visible;
+  });
+
+  chai.Assertion.addMethod('toHaveStyle', function toHaveComputedStyle(
+    expectedStyleUnnormalized: Record<string, string>,
+  ) {
+    // Compare objects using hyphen case.
+    // This is closer to actual CSS and required for getPropertyValue anyway.
+    const expectedStyle: Record<string, string> = {};
+    Object.keys(expectedStyleUnnormalized).forEach((cssProperty) => {
+      expectedStyle[_.kebabCase(cssProperty)] = expectedStyleUnnormalized[cssProperty];
+    });
+
+    // eslint-disable-next-line no-underscore-dangle
+    const style = this._obj as CSSStyleDeclaration;
+    const actualStyle: Record<string, string> = {};
+    Object.keys(expectedStyle).forEach((cssProperty) => {
+      actualStyle[cssProperty] = style.getPropertyValue(cssProperty);
+    });
+
+    const assertion = new chai.Assertion(
+      actualStyle,
+      'Styles did not match. ' +
+        'Test results in JSDOM e.g. from `test:unit` are often misleading since JSDOM does not implement the Cascade nor actual CSS property value computation. ' +
+        'If results differ between real browsers and JSDOM, skip the test in JSDOM e.g. `if (/jsdom/.test(window.navigator.userAgent)) this.skip();`',
+    );
+    // TODO: Investigate if `as any` can be removed after https://github.com/DefinitelyTyped/DefinitelyTyped/issues/48634 is resolved.
+    utils.transferFlags(this as any, assertion, false);
+    assertion.to.deep.equal(expectedStyle);
   });
 });
 
