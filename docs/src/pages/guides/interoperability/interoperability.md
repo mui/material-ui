@@ -257,7 +257,7 @@ export default function StyledComponentsDeep() {
 
 ### Theme
 
-Material-UI has a rich theme structure that you can leverage for
+Material-UI has a rich theme structure that you can take advantage of for
 the color manipulations, the transitions, the media queries, and more.
 
 By using the Material-UI's Provider, the theme will be available for the
