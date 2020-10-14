@@ -58,7 +58,7 @@ React [不支持](https://github.com/facebook/react/issues/13097)服务端渲染
 
 {{"demo": "pages/components/modal/ServerModal.js"}}
 
-## 局限性
+## 设计局限
 
 ### 焦点陷阱
 
