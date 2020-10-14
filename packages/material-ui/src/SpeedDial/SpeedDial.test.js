@@ -217,7 +217,7 @@ describe('<SpeedDial />', () => {
       if (actionIndex === -1) {
         return getDialButton();
       }
-      return r.getAllByRole('menuitem')[actionIndex]; // .find(Fab);
+      return r.getAllByRole('menuitem')[actionIndex];
     };
     /**
      * @returns true if the button of the nth action is focused
@@ -237,7 +237,7 @@ describe('<SpeedDial />', () => {
     it('displays the actions on focus gain', () => {
       resetDialToOpen();
       expect(screen.getAllByRole('menuitem')).to.have.lengthOf(4);
-      expect(screen.getByRole('menu')).not.to.have.class(classes['actionsClosed']);
+      expect(screen.getByRole('menu')).not.to.have.class(classes.actionsClosed);
     });
 
     describe('first item selection', () => {
