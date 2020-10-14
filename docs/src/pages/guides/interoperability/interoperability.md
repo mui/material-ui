@@ -81,7 +81,7 @@ export default function PlainCssPriority() {
 
 If you attempt to style the Slider,
 you will likely need to affect some of the Slider's child elements, for example the thumb.
-In Material-UI, all child elements have increased specificity of 2 `.parent .child {}`. When writing overrides, the author need
+In Material-UI, all child elements have an increased specificity of 2 `.parent .child {}`. When writing overrides, you need
 to do the same. In order to provide custom class names for the slots, you need to use the `componentProps` API of Material-UI.
 
 The following example overrides the `thumb` style of `Slider` in addition to the custom styles on the slider itself.
