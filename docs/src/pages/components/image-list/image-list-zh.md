@@ -29,6 +29,6 @@ components: ImageList, ImageListItem, ImageListItemBar
 
 ## 高级图像列表
 
-此示例演示“feated”项目。 使用 `行` 和 `cols` 属性来调整项目的大小。 和 `间距` prop 来调整间距。 瓷砖有一个位于顶部的自定义标题栏，并带有自定义渐变的 `titleBackground`。 而辅助操作的 `IconButton` 则位于左侧。
+此示例演示“feated”项目。 使用 `row` 和 `cols` 属性来调整项目的大小, 并且使用 `gap`  属性来调整间距。 瓷砖有一个位于顶部的自定义标题栏，并带有自定义渐变的 `titleBackground`。 而辅助操作的 `IconButton` 则位于左侧。
 
 {{"demo": "pages/components/image-list/AdvancedImageList.js", "hideEditButton": true, "defaultCodeOpen": false}}
