@@ -329,14 +329,12 @@ of the styled engine too (emotion or styled-components, depending on your config
 You are encouraged to share the same theme object between Material-UI and your styles.
 
 ```jsx
-const CustomizedSlider = styled(Slider)`
-  ${({ theme }) => `
+const CustomizedSlider = styled(Slider)(({ theme }) => `
   color: ${theme.palette.primary.main};
   :hover {
     color: ${darken(theme.palette.primary.main, 0.2)};
   }
-  `}
-`;
+`);
 ```
 
 {{"demo": "pages/guides/interoperability/StyledComponentsTheme.js"}}
