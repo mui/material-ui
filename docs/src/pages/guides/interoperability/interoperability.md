@@ -323,7 +323,7 @@ export default function StyledComponentsDeep() {
 Material-UI has a rich theme structure that you can take advantage of for
 color manipulations, transitions, media queries, and more.
 
-By using the Material-UI ThemeProvider, the theme will be available in the theme context 
+By using the Material-UI theme provider, the theme will be available in the theme context 
 of the styled engine too (emotion or styled-components, depending on your configuration).
 
 You are encouraged to share the same theme object between Material-UI and your styles.
