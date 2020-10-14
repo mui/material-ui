@@ -12,7 +12,7 @@ githubLabel: 'component: Hidden'
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## 它是如何工作的的呢
+## 工作原理
 
 通常我们将隐藏组件和一系列 breakpoint（断点）放在一起使用。例如 `xsUp` 或 `mdDown`，或一个或多个断点，例如 `only='sm'` 或 `only={['md', 'xl']}`。 可以同时使用范围（Ranges）和单独的断点（breakpoints）来实现极其定制的行为。 范围包括指定的断点。
 
