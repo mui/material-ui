@@ -68,7 +68,7 @@ const cache = createCache({
   container: emotionContainer,
 });
 
-export default function App() {
+export default function PlainCssPriority() {
   return (
     <CacheProvider value={cache}>
       {/* Your component tree. Now you can override Material-UI's styles. */}
