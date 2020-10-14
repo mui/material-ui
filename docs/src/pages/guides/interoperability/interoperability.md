@@ -325,6 +325,7 @@ bundling solution people are using.
 .slider {
   color: #20b2aa;
 }
+
 .slider:hover {
   color: #2e8b57;
 }
