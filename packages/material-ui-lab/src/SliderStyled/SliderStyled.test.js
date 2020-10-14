@@ -766,8 +766,8 @@ describe('<Slider />', () => {
         </ThemeProvider>,
       );
 
-      expect(window.getComputedStyle(screen.getByTestId('component'))).toIncludeStyle({
-        backgroundColor: 'rgb(255, 0, 0)',
+      expect(screen.getByTestId('component')).toHaveComputedStyle({
+        backgroundColor: 'rgb(255, 1, 0)',
       });
     });
 
@@ -780,7 +780,7 @@ describe('<Slider />', () => {
         </ThemeProvider>,
       );
 
-      expect(window.getComputedStyle(screen.getByTestId('component'))).toIncludeStyle({
+      expect(screen.getByTestId('component')).toHaveComputedStyle({
         backgroundColor: 'rgb(0, 255, 0)',
       });
     });
@@ -798,7 +798,7 @@ describe('<Slider />', () => {
         </ThemeProvider>,
       );
 
-      expect(window.getComputedStyle(screen.getByTestId('component'))).toIncludeStyle({
+      expect(screen.getByTestId('component')).toHaveComputedStyle({
         backgroundColor: 'rgb(0, 0, 255)',
       });
     });

@@ -19,11 +19,28 @@ declare global {
        */
       toBeAriaHidden(): void;
       /**
-       * Checks `expectedStyle` is a subset of the given `CSSStyleDeclaration`.
-       * @example expect(element.style).toIncludeStyle({ width: '200px' })
-       * @example expect(window.getComputedStyle(element)).toIncludeStyle({ backgroundColor: 'rgb(255, 0, 0)' })
+       * Checks `expectedStyle` is a subset of the elements inline style i.e. `element.style`.
+       * @example expect(element).toHaveInlineStyle({ width: '200px' })
        */
-      toIncludeStyle(
+      toHaveInlineStyle(
+        expectedStyle: Record<
+          Exclude<
+            keyof CSSStyleDeclaration,
+            | 'getPropertyPriority'
+            | 'getPropertyValue'
+            | 'item'
+            | 'removeProperty'
+            | 'setProperty'
+            | number
+          >,
+          string
+        >,
+      ): void;
+      /**
+       * Checks `expectedStyle` is a subset of the elements computed style i.e. `window.getComputedStyle(element)`.
+       * @example expect(element).toHaveComputedStyle({ width: '200px' })
+       */
+      toHaveComputedStyle(
         expectedStyle: Record<
           Exclude<
             keyof CSSStyleDeclaration,
@@ -292,9 +309,13 @@ chai.use((chaiAPI, utils) => {
     new chai.Assertion(this._obj).to.be.visible;
   });
 
-  chai.Assertion.addMethod('toIncludeStyle', function toHaveComputedStyle(
+  function assertMatchingStyles(
+    this: Chai.AssertionStatic,
+    actualStyleDeclaration: CSSStyleDeclaration,
     expectedStyleUnnormalized: Record<string, string>,
-  ) {
+    options: { styleTypeHint: string },
+  ): void {
+    const { styleTypeHint } = options;
     // Compare objects using hyphen case.
     // This is closer to actual CSS and required for getPropertyValue anyway.
     const expectedStyle: Record<string, string> = {};
@@ -302,22 +323,60 @@ chai.use((chaiAPI, utils) => {
       expectedStyle[_.kebabCase(cssProperty)] = expectedStyleUnnormalized[cssProperty];
     });
 
-    // eslint-disable-next-line no-underscore-dangle
-    const style = this._obj as CSSStyleDeclaration;
     const actualStyle: Record<string, string> = {};
     Object.keys(expectedStyle).forEach((cssProperty) => {
-      actualStyle[cssProperty] = style.getPropertyValue(cssProperty);
+      actualStyle[cssProperty] = actualStyleDeclaration.getPropertyValue(cssProperty);
     });
 
-    const assertion = new chai.Assertion(
-      actualStyle,
-      'Styles did not match. ' +
-        'Test results in JSDOM e.g. from `test:unit` are often misleading since JSDOM does not implement the Cascade nor actual CSS property value computation. ' +
-        'If results differ between real browsers and JSDOM, skip the test in JSDOM e.g. `if (/jsdom/.test(window.navigator.userAgent)) this.skip();`',
-    );
-    // TODO: Investigate if `as any` can be removed after https://github.com/DefinitelyTyped/DefinitelyTyped/issues/48634 is resolved.
-    utils.transferFlags(this as any, assertion, false);
-    assertion.to.deep.equal(expectedStyle);
+    const jsdomHint =
+      'Styles in JSDOM e.g. from `test:unit` are often misleading since JSDOM does not implement the Cascade nor actual CSS property value computation. ' +
+      'If results differ between real browsers and JSDOM, skip the test in JSDOM e.g. `if (/jsdom/.test(window.navigator.userAgent)) this.skip();`';
+
+    if (isInKarma()) {
+      // `#{exp}` and `#{act}` placeholders escape the newlines
+      const expected = JSON.stringify(expectedStyle, null, 2);
+      const actual = JSON.stringify(actualStyle, null, 2);
+      // karma's `dots` reporter does not support diffs
+      this.assert(
+        // TODO Fix upstream docs/types
+        (utils as any).eql(actualStyle, expectedStyle),
+        `expected ${styleTypeHint} style of #{this} did not match\nExpected:\n${expected}\nActual:\n${actual}\n\n\n${jsdomHint}`,
+        `expected #{this} to not have ${styleTypeHint} style\n${expected}\n\n\n${jsdomHint}`,
+        expectedStyle,
+        actualStyle,
+      );
+    } else {
+      this.assert(
+        // TODO Fix upstream docs/types
+        (utils as any).eql(actualStyle, expectedStyle),
+        `expected #{this} to have ${styleTypeHint} style #{exp} \n\n${jsdomHint}`,
+        `expected #{this} not to have ${styleTypeHint} style #{exp}${jsdomHint}`,
+        expectedStyle,
+        actualStyle,
+        true,
+      );
+    }
+  }
+
+  chai.Assertion.addMethod('toHaveInlineStyle', function toHaveInlineStyle(
+    expectedStyleUnnormalized: Record<string, string>,
+  ) {
+    const element = utils.flag(this, 'object') as HTMLElement;
+
+    assertMatchingStyles.call(this, element.style, expectedStyleUnnormalized, {
+      styleTypeHint: 'inline',
+    });
+  });
+
+  chai.Assertion.addMethod('toHaveComputedStyle', function toHaveComputedStyle(
+    expectedStyleUnnormalized: Record<string, string>,
+  ) {
+    const element = utils.flag(this, 'object') as HTMLElement;
+    const computedStyle = element.ownerDocument.defaultView!.getComputedStyle(element);
+
+    assertMatchingStyles.call(this, computedStyle, expectedStyleUnnormalized, {
+      styleTypeHint: 'computed',
+    });
   });
 });
 
