@@ -155,7 +155,7 @@ export default function GlobalCssSlider() {
 
 ### Controlling priority ⚠️
 
-**Note:** Most CSS-in-JS solutions inject their styles at the bottom of the html `<head>`. If you don't want to mark style attributes with **!important**, you need to change the CSS injection order. Here is a demo of how it can be done for our default styled engine - emotion:
+**Note:** Most CSS-in-JS solutions inject their styles at the bottom of the HTML `<head>`. If you don't want to mark style attributes with **!important**, you need to change the CSS injection order. Here's a demo of how it can be done for the default style engine - emotion:
 
 ```jsx
 import * as React from 'react';
@@ -412,7 +412,7 @@ export default function CssModulesSlider() {
 
 ### Controlling priority ⚠️
 
-**Note:** Most CSS-in-JS solutions inject their styles at the bottom of the HTML `<head>`. If you don't want to mark style attributes with **!important**, you need to change the CSS injection order, as in the demo:
+**Note:** Most CSS-in-JS solutions inject their styles at the bottom of the HTML `<head>`. If you don't want to mark style attributes with **!important**, you need to change the CSS injection order. Here's a demo of how it can be done for the default style engine - emotion:
 
 ```jsx
 import * as React from 'react';
