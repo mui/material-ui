@@ -24,41 +24,15 @@ import Link from 'docs/src/modules/components/Link';
 
 const styles = (theme) => ({
   root: {
-    width: '100%',
-  },
-  container: {
-    position: 'relative',
-  },
-  actions: {
-    position: 'absolute',
-    right: 16,
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-end',
-  },
-  ad: {
-    '& .description': {
-      marginBottom: 198,
-    },
-    '& .description.ad': {
-      marginBottom: 40,
-    },
-  },
-  toc: {
-    [theme.breakpoints.up('sm')]: {
-      width: 'calc(100% - 175px)',
-    },
-    [theme.breakpoints.up('lg')]: {
-      width: 'calc(100% - 175px - 240px)',
-    },
-  },
-  footer: {
     marginTop: theme.spacing(12),
   },
   pagination: {
     margin: theme.spacing(3, 0, 4),
     display: 'flex',
     justifyContent: 'space-between',
+    [theme.breakpoints.down('sm')]: {
+      flexWrap: 'wrap',
+    },
   },
   pageLinkButton: {
     textTransform: 'none',
@@ -66,6 +40,13 @@ const styles = (theme) => ({
   },
   feedbackMessage: {
     margin: theme.spacing(0, 2),
+  },
+  feedback: {
+    width: 'auto',
+    [theme.breakpoints.down('sm')]: {
+      order: 3,
+      width: '100%',
+    },
   },
   hidden: {
     ariaHidden: 'true',
@@ -160,10 +141,9 @@ function getCurrentRating(pathname) {
 }
 
 function MarkdownDocsFooter(props) {
-  const { classes, docs } = props;
+  const { classes } = props;
   const t = useSelector((state) => state.options.t);
   const userLanguage = useSelector((state) => state.options.userLanguage);
-  const { description } = docs[userLanguage] || docs.en;
   const { activePage, pages } = React.useContext(PageContext);
   const pageList = flattenPages(pages);
   const currentPageNum = findIndex(pageList, (page) => page.pathname === activePage?.pathname);
@@ -177,10 +157,6 @@ function MarkdownDocsFooter(props) {
   const [textfieldValue, setTextfieldValue] = React.useState('');
   const inputRef = React.useRef();
   const bottomRef = React.useRef();
-
-  if (description === undefined) {
-    throw new Error('Missing description in the page');
-  }
 
   const setCurrentRatingFromCookie = React.useCallback(() => {
     setCurrentRating(getCurrentRating(currentPage.pathname));
@@ -241,7 +217,7 @@ function MarkdownDocsFooter(props) {
 
   return (
     <React.Fragment>
-      <footer className={classes.footer}>
+      <footer className={classes.root}>
         {!currentPage ||
         currentPage.displayNav === false ||
         (nextPage.displayNav === false && !prevPage) ? null : (
@@ -268,6 +244,7 @@ function MarkdownDocsFooter(props) {
                 justifyContent="center"
                 alignItems="center"
                 aria-label={t('feedbackGroupLabel')}
+                className={classes.feedback}
               >
                 <Typography align="center" variant="subtitle1" id="feedback-message" className={classes.feedbackMessage}>
                   {t('feedbackMessage')}
@@ -340,7 +317,6 @@ function MarkdownDocsFooter(props) {
 
 MarkdownDocsFooter.propTypes = {
   classes: PropTypes.object.isRequired,
-  docs: PropTypes.object.isRequired,
 };
 
 if (process.env.NODE_ENV !== 'production') {

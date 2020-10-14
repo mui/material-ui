@@ -139,7 +139,7 @@ function MarkdownDocs(props) {
               );
             })}
             <NoSsr>
-              <MarkdownDocsFooter docs={docs} />
+              <MarkdownDocsFooter />
             </NoSsr>
           </AppContainer>
         </div>
