@@ -351,7 +351,7 @@ export default function CssModulesSlider() {
 
 ### Controlling priority ⚠️
 
-**Note:** Most of the CSS-in-JS solutions inject their styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change the CSS injection order, as in the demo:
+**Note:** Most CSS-in-JS solutions inject their styles at the bottom of the HTML `<head>`. If you don't want to mark style attributes with **!important**, you need to change the CSS injection order, as in the demo:
 
 ```jsx
 import * as React from 'react';
