@@ -81,8 +81,8 @@ export default function PlainCssPriority() {
 
 If you attempt to style the Slider,
 you will likely need to affect some of the Slider's child elements, for example the thumb.
-However, the thumb is not the root element of Slider and therefore customization as above will not work.
-You need to use the `componentProps` API of Material-UI, in order to provide custom class names for the slots.
+In Material-UI, all child elements have increased specificity of 2 `.parent .child {}`. When writing overrides, the author need
+to do the same. In order to provide custom class names for the slots, you need to use the `componentProps` API of Material-UI.
 
 The following example overrides the `thumb` style of `Slider` in addition to the custom styles on the slider itself.
 
@@ -139,17 +139,80 @@ Explicitly providing the class names to the component is too much effort?
 .MuiSlider-root:hover {
   color: #2e8b57;
 }
-.MuiSlider-root .MuiSlider-thumb {
-  border-radius: 1px;
-}
 ```
 
-**GlobalCssButton.js**
+**GlobalCssSlider.js**
 
 ```jsx
 import * as React from 'react';
 import Slider from '@material-ui/lab/SliderStyled';
 import './GlobalCssSlider.css';
+
+export default function GlobalCssSlider() {
+  return <Slider defaultValue={30} />;
+}
+```
+
+### Controlling priority ⚠️
+
+**Note:** Most CSS-in-JS solutions inject their styles at the bottom of the html `<head>`. If you don't want to mark style attributes with **!important**, you need to change the CSS injection order. Here is a demo of how it can be done for our default styled engine - emotion:
+
+```jsx
+import * as React from 'react';
+import { CacheProvider } from '@emotion/core';
+import createCache from '@emotion/cache';
+
+const head = document.getElementsByTagName('head')[0];
+
+const emotionContainer = head.insertBefore(
+  document.createElement('STYLE'),
+  head.firstChild,
+);
+
+const cache = createCache({
+  container: emotionContainer,
+});
+
+export default function PlainCssPriority() {
+  return (
+    <CacheProvider value={cache}>
+      {/* Your component tree. Now you can override Material-UI's styles. */}
+    </CacheProvider>
+  );
+}
+```
+
+### Deeper elements
+
+If you attempt to style the Slider,
+you will likely need to affect some of the Slider's child elements, for example the thumb.
+In Material-UI, all child elements have increased specificity of 2 `.parent .child {}`. When writing overrides, the author need
+to do the same.
+
+The following example overrides the `MuiSlider-thumb` style of `Slider` in addition to the custom styles on the slider itself.
+
+{{"demo": "pages/guides/interoperability/StyledComponentsDeep.js", "hideToolbar": true}}
+
+**GlobalCssSliderDeep.css**
+
+```css
+.MuiSlider-root {
+  color: #20b2aa;
+}
+.MuiSlider-root:hover {
+  color: #2e8b57;
+}
+.MuiSlider-root .MuiSlider-thumb {
+  border-radius: 1px;
+}
+```
+
+**GlobalCssSliderDeep.js**
+
+```jsx
+import * as React from 'react';
+import Slider from '@material-ui/lab/SliderStyled';
+import './GlobalCssSliderDeep.css';
 
 export default function GlobalCssSlider() {
   return <Slider defaultValue={30} />;
