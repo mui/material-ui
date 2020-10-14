@@ -4,12 +4,9 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { exactProp } from '@material-ui/utils';
 import { withStyles } from '@material-ui/core/styles';
-import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
+import Collapse from '@material-ui/core/Collapse';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
@@ -25,54 +22,56 @@ import { getCookie, pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
 import Link from 'docs/src/modules/components/Link';
 
-function Comment(props) {
-  const { onClose: handleClose, open } = props;
-  const t = useSelector((state) => state.options.t);
-  const [value, setValue] = React.useState('');
-
-  const handleChange = (event) => {
-    setValue(event.target.value);
-  };
-
-  const handleSubmit = () => {
-    handleClose(value);
-  };
-
-  const handleCancel = () => {
-    handleClose(null);
-  };
-
-  return (
-    <Dialog open={open} onClose={handleCancel} aria-labelledby="feedback-dialog-title">
-      <DialogTitle id="feedback-dialog-title">{t('feedbackDialogTitle')}</DialogTitle>
-      <DialogContent>
-        <DialogContentText>{t('feedbackDialogMessage')}</DialogContentText>
-        <TextField
-          multiline
-          autoFocus
-          variant="outlined"
-          margin="dense"
-          id="comment"
-          fullWidth
-          rows={6}
-          value={value}
-          onChange={handleChange}
-        />
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={handleCancel}>{t('cancel')}</Button>
-        <Button disabled={value.length < 20} onClick={handleSubmit}>
-          {t('submit')}
-        </Button>
-      </DialogActions>
-    </Dialog>
-  );
-}
-
-Comment.propTypes = {
-  onClose: PropTypes.func,
-  open: PropTypes.bool,
-};
+const styles = (theme) => ({
+  root: {
+    width: '100%',
+  },
+  container: {
+    position: 'relative',
+  },
+  actions: {
+    position: 'absolute',
+    right: 16,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-end',
+  },
+  ad: {
+    '& .description': {
+      marginBottom: 198,
+    },
+    '& .description.ad': {
+      marginBottom: 40,
+    },
+  },
+  toc: {
+    [theme.breakpoints.up('sm')]: {
+      width: 'calc(100% - 175px)',
+    },
+    [theme.breakpoints.up('lg')]: {
+      width: 'calc(100% - 175px - 240px)',
+    },
+  },
+  footer: {
+    marginTop: theme.spacing(12),
+  },
+  pagination: {
+    margin: theme.spacing(3, 0, 4),
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+  pageLinkButton: {
+    textTransform: 'none',
+    fontWeight: theme.typography.fontWeightRegular,
+  },
+  feedbackMessage: {
+    margin: theme.spacing(0, 2),
+  },
+  hidden: {
+    ariaHidden: 'true',
+    opacity:0 
+  }
+});
 
 function flattenPages(pages, current = []) {
   return pages.reduce((items, item) => {
@@ -160,53 +159,6 @@ function getCurrentRating(pathname) {
   return userFeedback && userFeedback[pathname] && userFeedback[pathname].rating;
 }
 
-const styles = (theme) => ({
-  root: {
-    width: '100%',
-  },
-  container: {
-    position: 'relative',
-  },
-  actions: {
-    position: 'absolute',
-    right: 16,
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-end',
-  },
-  ad: {
-    '& .description': {
-      marginBottom: 198,
-    },
-    '& .description.ad': {
-      marginBottom: 40,
-    },
-  },
-  toc: {
-    [theme.breakpoints.up('sm')]: {
-      width: 'calc(100% - 175px)',
-    },
-    [theme.breakpoints.up('lg')]: {
-      width: 'calc(100% - 175px - 240px)',
-    },
-  },
-  footer: {
-    marginTop: theme.spacing(12),
-  },
-  pagination: {
-    margin: theme.spacing(3, 0, 4),
-    display: 'flex',
-    justifyContent: 'space-between',
-  },
-  pageLinkButton: {
-    textTransform: 'none',
-    fontWeight: theme.typography.fontWeightRegular,
-  },
-  feedbackMessage: {
-    margin: theme.spacing(0, 2),
-  },
-});
-
 function MarkdownDocsFooter(props) {
   const { classes, docs } = props;
   const t = useSelector((state) => state.options.t);
@@ -222,6 +174,9 @@ function MarkdownDocsFooter(props) {
   const [currentRating, setCurrentRating] = React.useState();
   const [snackbarMessage, setSnackbarMessage] = React.useState(false);
   const [snackbarOpen, setSnackbarOpen] = React.useState(false);
+  const [textfieldValue, setTextfieldValue] = React.useState('');
+  const inputRef = React.useRef();
+  const bottomRef = React.useRef();
 
   if (description === undefined) {
     throw new Error('Missing description in the page');
@@ -256,16 +211,9 @@ function MarkdownDocsFooter(props) {
   const handleClickDown = () => {
     if (currentRating !== 0) {
       setCurrentRating(0);
+      // Focus an element at the bottom of the page so that the texfield is visible when it opens.
+      bottomRef.current.focus();
       setCommentOpen(true);
-    }
-  };
-
-  const handleCloseComment = async (comment) => {
-    setCommentOpen(false);
-    if (comment !== null) {
-      await processFeedback(0, comment);
-    } else {
-      setCurrentRatingFromCookie();
     }
   };
 
@@ -273,9 +221,26 @@ function MarkdownDocsFooter(props) {
     setSnackbarOpen(false);
   };
 
+  const handleChangeTextfield = (event) => {
+    setTextfieldValue(event.target.value);
+  };
+
+  const handleSubmitComment = () => {
+    setCommentOpen(false);
+    processFeedback(0, textfieldValue);
+  };
+
+  const handleCancelComment = () => {
+    setCommentOpen(false);
+    setCurrentRatingFromCookie();
+  };
+
+  const handleEntered = () => {
+    inputRef.current.focus()
+  };
+
   return (
     <React.Fragment>
-      <Comment open={commentOpen} onClose={handleCloseComment} />
       <footer className={classes.footer}>
         {!currentPage ||
         currentPage.displayNav === false ||
@@ -335,6 +300,32 @@ function MarkdownDocsFooter(props) {
             </div>
           </React.Fragment>
         )}
+        <Collapse in={commentOpen} onEntered={handleEntered}>
+          <div>
+            <Typography variant="h6" gutterBottom id="feedback-title">{t('feedbackDialogTitle')}</Typography>
+            <div>
+              <Typography color="textSecondary" gutterBottom>{t('feedbackDialogMessage')}</Typography>
+              <TextField
+                multiline
+                variant="outlined"
+                margin="dense"
+                id="comment"
+                fullWidth
+                rows={6}
+                value={textfieldValue}
+                onChange={handleChangeTextfield}
+                inputProps={{ref: inputRef }}
+                aria-labelledby="feedback-title"
+              />
+            </div>
+            <DialogActions>
+              <Button onClick={handleCancelComment}>{t('cancel')}</Button>
+              <Button disabled={textfieldValue.length < 20} onClick={handleSubmitComment}>
+                {t('submit')}
+              </Button>
+            </DialogActions>
+          </div>
+        </Collapse>
       </footer>
       <Snackbar
         open={snackbarOpen}
@@ -342,6 +333,7 @@ function MarkdownDocsFooter(props) {
         onClose={handleCloseSnackbar}
         message={snackbarMessage}
       />
+      <button tabIndex="-1" ref={bottomRef} className={classes.hidden} />
     </React.Fragment>
   );
 }
