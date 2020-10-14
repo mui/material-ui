@@ -767,7 +767,7 @@ describe('<Slider />', () => {
       );
 
       expect(screen.getByTestId('component')).toHaveComputedStyle({
-        backgroundColor: 'rgb(255, 1, 0)',
+        backgroundColor: 'rgb(255, 0, 0)',
       });
     });
 
