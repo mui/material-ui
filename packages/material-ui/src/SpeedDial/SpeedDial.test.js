@@ -253,7 +253,7 @@ describe('<SpeedDial />', () => {
 
     // eslint-disable-next-line func-names
     describe('actions navigation', function () {
-      this.timeout(5000); // These tests are really slow.
+      this.timeout(7500); // These tests are really slow.
 
       /**
        * tests a combination of arrow keys on a focused SpeedDial
