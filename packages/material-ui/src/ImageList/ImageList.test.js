@@ -117,7 +117,7 @@ describe('<ImageList />', () => {
         </ImageList>,
       );
 
-      expect(getByTestId('test-root').style).toHaveStyle({ backgroundColor: 'red' });
+      expect(getByTestId('test-root').style).toIncludeStyle({ backgroundColor: 'red' });
     });
   });
 
@@ -200,7 +200,7 @@ describe('<ImageList />', () => {
           </ImageList>,
         );
 
-        expect(window.getComputedStyle(getByTestId('test-root'))).toHaveStyle({
+        expect(window.getComputedStyle(getByTestId('test-root'))).toIncludeStyle({
           rowGap: '8px',
           columnGap: '8px',
         });
@@ -217,7 +217,9 @@ describe('<ImageList />', () => {
           </ImageList>,
         );
 
-        expect(window.getComputedStyle(getByTestId('test-root'))).toHaveStyle({ columnGap: '8px' });
+        expect(window.getComputedStyle(getByTestId('test-root'))).toIncludeStyle({
+          columnGap: '8px',
+        });
       });
     });
   });

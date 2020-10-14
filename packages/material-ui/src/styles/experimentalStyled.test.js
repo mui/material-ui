@@ -14,7 +14,7 @@ describe('experimentalStyled', () => {
 
     render(<Div data-testid="component">Test</Div>);
 
-    expect(window.getComputedStyle(screen.getByTestId('component'))).toHaveStyle({
+    expect(window.getComputedStyle(screen.getByTestId('component'))).toIncludeStyle({
       width: '200px',
     });
   });
@@ -26,7 +26,9 @@ describe('experimentalStyled', () => {
 
     render(<Div data-testid="component">Test</Div>);
 
-    expect(window.getComputedStyle(screen.getByTestId('component'))).toHaveStyle({ width: '8px' });
+    expect(window.getComputedStyle(screen.getByTestId('component'))).toIncludeStyle({
+      width: '8px',
+    });
   });
 
   it('should use theme from context if available', () => {
@@ -44,7 +46,9 @@ describe('experimentalStyled', () => {
       </ThemeProvider>,
     );
 
-    expect(window.getComputedStyle(screen.getByTestId('component'))).toHaveStyle({ width: '10px' });
+    expect(window.getComputedStyle(screen.getByTestId('component'))).toIncludeStyle({
+      width: '10px',
+    });
   });
 
   describe('muiOptions', () => {
@@ -89,7 +93,7 @@ describe('experimentalStyled', () => {
     it('should work with specified muiOptions', () => {
       render(<Test data-testid="component">Test</Test>);
 
-      expect(window.getComputedStyle(screen.getByTestId('component'))).toHaveStyle({
+      expect(window.getComputedStyle(screen.getByTestId('component'))).toIncludeStyle({
         width: '200px',
         height: '300px',
       });
@@ -102,7 +106,7 @@ describe('experimentalStyled', () => {
         </ThemeProvider>,
       );
 
-      expect(window.getComputedStyle(screen.getByTestId('component'))).toHaveStyle({
+      expect(window.getComputedStyle(screen.getByTestId('component'))).toIncludeStyle({
         width: '250px',
         height: '300px',
       });
@@ -117,7 +121,7 @@ describe('experimentalStyled', () => {
         </ThemeProvider>,
       );
 
-      expect(window.getComputedStyle(screen.getByTestId('component'))).toHaveStyle({
+      expect(window.getComputedStyle(screen.getByTestId('component'))).toIncludeStyle({
         width: '250px',
         height: '250px',
       });
@@ -132,7 +136,7 @@ describe('experimentalStyled', () => {
         </ThemeProvider>,
       );
 
-      expect(window.getComputedStyle(screen.getByTestId('component'))).toHaveStyle({
+      expect(window.getComputedStyle(screen.getByTestId('component'))).toIncludeStyle({
         width: '400px',
         height: '400px',
       });
@@ -151,7 +155,7 @@ describe('experimentalStyled', () => {
         </ThemeProvider>,
       );
 
-      expect(window.getComputedStyle(screen.getByTestId('component'))).toHaveStyle({
+      expect(window.getComputedStyle(screen.getByTestId('component'))).toIncludeStyle({
         width: '500px',
         height: '400px',
       });

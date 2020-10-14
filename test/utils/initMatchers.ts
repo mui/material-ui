@@ -20,10 +20,10 @@ declare global {
       toBeAriaHidden(): void;
       /**
        * Checks `expectedStyle` is a subset of the given `CSSStyleDeclaration`.
-       * @example expect(element.style).toHaveStyle({ width: '200px' })
-       * @example expect(window.getComputedStyle(element)).toHaveStyle({ backgroundColor: 'rgb(255, 0, 0)' })
+       * @example expect(element.style).toIncludeStyle({ width: '200px' })
+       * @example expect(window.getComputedStyle(element)).toIncludeStyle({ backgroundColor: 'rgb(255, 0, 0)' })
        */
-      toHaveStyle(
+      toIncludeStyle(
         expectedStyle: Record<
           Exclude<
             keyof CSSStyleDeclaration,
@@ -292,7 +292,7 @@ chai.use((chaiAPI, utils) => {
     new chai.Assertion(this._obj).to.be.visible;
   });
 
-  chai.Assertion.addMethod('toHaveStyle', function toHaveComputedStyle(
+  chai.Assertion.addMethod('toIncludeStyle', function toHaveComputedStyle(
     expectedStyleUnnormalized: Record<string, string>,
   ) {
     // Compare objects using hyphen case.
