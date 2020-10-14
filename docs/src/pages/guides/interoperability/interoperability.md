@@ -463,27 +463,7 @@ export default function EmotionCSS() {
 
 ### Theme
 
-Material-UI has a rich theme structure that you can leverage for
-the color manipulations, the transitions, the media queries, and more.
-
-By using the Material-UI's Provider, the theme will be available for the
-context as well (emotion or styled-components, depending on your configuraiton).
-
-We encourage to share the same theme object between Material-UI and your styles.
-
-```jsx
-<Slider
-  defaultValue={30}
-  css={(theme) => css`
-    color: ${theme.palette.primary.main};
-    :hover {
-      color: ${darken(theme.palette.primary.main, 0.2)};
-    }
-  `}
-/>
-```
-
-{{"demo": "pages/guides/interoperability/EmotionTheme.js"}}
+It works exactly like styled components. You can [use the same guide](/guides/interoperability/#styled-components).
 
 ### The `styled()` API
 
