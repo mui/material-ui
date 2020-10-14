@@ -161,6 +161,8 @@ export default function GlobalCSSSlider() {
 ![stars](https://img.shields.io/github/stars/styled-components/styled-components.svg?style=social&label=Star)
 ![npm](https://img.shields.io/npm/dm/styled-components.svg?)
 
+### Change the default styled engine
+
 By default the Material-UI components, comes with emotion as their style engine. However,
 if you would like to use `styled-components`, you can configure your app, by following this [example project](https://github.com/mui-org/material-ui/blob/next/examples/create-react-app-with-styled-components/README.md).
 
