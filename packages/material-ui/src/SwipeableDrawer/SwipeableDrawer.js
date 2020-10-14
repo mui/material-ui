@@ -476,7 +476,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
       // The ref may be null when a parent component updates while swiping.
       setPosition(
         getMaxTranslate(horizontalSwipe, paperRef.current) +
-          (disableDiscovery ? 1 : -1) * DRAG_STARTED_SIGNAL,
+          (disableDiscovery ? 15 : -DRAG_STARTED_SIGNAL,
         {
           changeTransition: false,
         },
