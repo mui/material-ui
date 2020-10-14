@@ -5,7 +5,7 @@ const handler = require('serve-handler');
 const http = require('http');
 
 const PORT = 1122;
-const APP = 'benchmark';
+const APP = 'browser-benchmark';
 
 function createServer(options) {
   const { port } = options;
@@ -96,33 +96,6 @@ async function run() {
 
   try {
     await runMeasures(browser, 'noop (baseline)', './noop/index.js', 10);
-    await runMeasures(
-      browser,
-      '@material-ui/system colors',
-      './material-ui-system-colors/index.js',
-      10,
-    );
-    await runMeasures(browser, 'styled-system colors', './styled-system-colors/index.js', 10);
-    await runMeasures(
-      browser,
-      '@material-ui/system spaces',
-      './material-ui-system-spaces/index.js',
-      10,
-    );
-    await runMeasures(browser, 'styled-system spaces', './styled-system-spaces/index.js', 10);
-    await runMeasures(
-      browser,
-      '@material-ui/system compose',
-      './material-ui-system-compose/index.js',
-      10,
-    );
-    await runMeasures(browser, 'styled-system compose', './styled-system-compose/index.js', 10);
-    await runMeasures(
-      browser,
-      '@material-ui/core all-inclusive',
-      './material-ui-system-all-inclusive/index.js',
-      10,
-    );
     await runMeasures(
       browser,
       'styled-components Box + @material-ui/system',
