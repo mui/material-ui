@@ -1,4 +1,5 @@
 import React from 'react';
+import * as PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { styleFunctionInversed } from '@material-ui/system';
 import styled from '../styles/experimentalStyled';
@@ -51,8 +52,6 @@ BoxRoot.propTypes = {
   clone: PropTypes.bool,
   component: PropTypes.elementType,
 };
-
-const shouldForwardProp = (prop) => styleFunction.filterProps.indexOf(prop) === -1;
 
 /**
  * @ignore - do not document.

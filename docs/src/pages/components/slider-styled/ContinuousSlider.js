@@ -5,7 +5,6 @@ import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/lab/SliderStyled';
 import VolumeDown from '@material-ui/icons/VolumeDown';
 import VolumeUp from '@material-ui/icons/VolumeUp';
-import Box from '@material-ui/core/Box';
 
 export default function ContinuousSlider() {
   const [value, setValue] = React.useState(30);
@@ -15,7 +14,7 @@ export default function ContinuousSlider() {
   };
 
   return (
-    <Box width={200}>
+    <Box width={300}>
       <Typography id="continuous-slider" gutterBottom>
         Volume
       </Typography>

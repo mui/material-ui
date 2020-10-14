@@ -17,7 +17,7 @@ export default function ContinuousSlider() {
   };
 
   return (
-    <Box width={200}>
+    <Box width={300}>
       <Typography id="continuous-slider" gutterBottom>
         Volume
       </Typography>
