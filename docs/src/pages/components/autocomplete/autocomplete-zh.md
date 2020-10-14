@@ -265,7 +265,7 @@ const filterOptions = (options, { inputValue }) =>
 
 {{"demo": "pages/components/autocomplete/Virtualize.js"}}
 
-## 局限性
+## 设计局限
 
 ### autocomplete/autofill
 
