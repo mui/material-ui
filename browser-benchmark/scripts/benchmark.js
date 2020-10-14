@@ -111,7 +111,7 @@ async function run() {
     await runMeasures(browser, 'Box emotion', './box-emotion/index.js', 10);
     await runMeasures(browser, 'Box @material-ui/styles', './box-material-ui-styles/index.js', 10);
     await runMeasures(browser, 'Box styled-components', './box-styled-components/index.js', 10);
-    await runMeasures(browser, 'Naked styled-components', './naked-styled-components/index.js', 10);
+    await runMeasures(browser, 'Basic styled-components box', './basic-styled-components/index.js', 10);
   } finally {
     await Promise.all([browser.close(), server.close()]);
   }
