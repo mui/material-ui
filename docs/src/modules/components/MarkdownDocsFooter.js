@@ -305,11 +305,7 @@ function MarkdownDocsFooter(props) {
                 alignItems="center"
                 aria-label={t('feedbackGroupLabel')}
               >
-                <Typography
-                  align="center"
-                  variant="subtitle1"
-                  className={classes.feedbackMessage}
-                >
+                <Typography align="center" variant="subtitle1" className={classes.feedbackMessage}>
                   {t('ratingMessage')}
                 </Typography>
                 <div>
