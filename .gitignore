@@ -1,16 +1,15 @@
 # It is best to ignoring editor and system files in a local .gitignore configuration file.
 # However, in order to prevent issues, they are ignored here.
+.DS_STORE
 .idea
 .vscode
-.DS_STORE
-
 *.log
 /.eslintcache
 /.nyc_output
 /coverage
+/docs/.env.local
 /docs/.next
 /docs/export
-/docs/.env.local
 /examples/**/.cache
 /packages/material-ui-codemod/lib
 /packages/material-ui-icons/material-icons/*
