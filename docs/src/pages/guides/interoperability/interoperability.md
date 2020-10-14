@@ -330,7 +330,7 @@ bundling solution people are using.
 }
 ```
 
-**CssModulesButton.js**
+**CssModulesSlider.js**
 
 ```jsx
 import React from 'react';
