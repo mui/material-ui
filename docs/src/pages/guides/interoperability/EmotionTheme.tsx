@@ -3,7 +3,7 @@ import { jsx, css } from '@emotion/core';
 import Slider from '@material-ui/lab/SliderStyled';
 import {
   createMuiTheme,
-  ThemeProvider as MuiThemeProvider,
+  ThemeProvider,
   darken,
 } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
@@ -18,8 +18,8 @@ const customTheme = createMuiTheme({
 
 export default function EmotionTheme() {
   return (
-    <MuiThemeProvider theme={customTheme}>
-      <Box width={300}>
+    <Box width={300}>
+      <ThemeProvider theme={customTheme}>
         <Slider
           defaultValue={30}
           css={(theme) => css`
@@ -29,7 +29,7 @@ export default function EmotionTheme() {
             }
           `}
         />
-      </Box>
-    </MuiThemeProvider>
+      </ThemeProvider>
+    </Box>
   );
 }
