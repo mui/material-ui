@@ -5,7 +5,7 @@ const handler = require('serve-handler');
 const http = require('http');
 
 const PORT = 1122;
-const APP = 'benchmark';
+const APP = 'benchmark/browser';
 
 function createServer(options) {
   const { port } = options;
@@ -98,33 +98,6 @@ async function run() {
     await runMeasures(browser, 'noop (baseline)', './noop/index.js', 10);
     await runMeasures(
       browser,
-      '@material-ui/system colors',
-      './material-ui-system-colors/index.js',
-      10,
-    );
-    await runMeasures(browser, 'styled-system colors', './styled-system-colors/index.js', 10);
-    await runMeasures(
-      browser,
-      '@material-ui/system spaces',
-      './material-ui-system-spaces/index.js',
-      10,
-    );
-    await runMeasures(browser, 'styled-system spaces', './styled-system-spaces/index.js', 10);
-    await runMeasures(
-      browser,
-      '@material-ui/system compose',
-      './material-ui-system-compose/index.js',
-      10,
-    );
-    await runMeasures(browser, 'styled-system compose', './styled-system-compose/index.js', 10);
-    await runMeasures(
-      browser,
-      '@material-ui/core all-inclusive',
-      './material-ui-system-all-inclusive/index.js',
-      10,
-    );
-    await runMeasures(
-      browser,
       'styled-components Box + @material-ui/system',
       './styled-components-box-material-ui-system/index.js',
       10,
@@ -138,7 +111,12 @@ async function run() {
     await runMeasures(browser, 'Box emotion', './box-emotion/index.js', 10);
     await runMeasures(browser, 'Box @material-ui/styles', './box-material-ui-styles/index.js', 10);
     await runMeasures(browser, 'Box styled-components', './box-styled-components/index.js', 10);
-    await runMeasures(browser, 'Naked styled-components', './naked-styled-components/index.js', 10);
+    await runMeasures(
+      browser,
+      'Basic styled-components box',
+      './basic-styled-components/index.js',
+      10,
+    );
   } finally {
     await Promise.all([browser.close(), server.close()]);
   }

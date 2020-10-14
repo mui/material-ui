@@ -5,7 +5,7 @@
     "proptypes": "cross-env BABEL_ENV=test babel-node --extensions \".tsx,.ts,.js\" ./scripts/generateProptypes.ts",
     "deduplicate": "node scripts/deduplicate.js",
     "argos": "argos upload test/regressions/screenshots/chrome --token $ARGOS_TOKEN",
-    "benchmark": "yarn webpack --config benchmark/webpack.config.js && node benchmark/scripts/benchmark.js",
+    "benchmark:browser": "yarn webpack --config benchmark/browser/webpack.config.js && node benchmark/browser/scripts/benchmark.js",
     "build:codesandbox": "lerna run --parallel --scope \"@material-ui/*\" build",
     "docs:api": "rimraf ./docs/pages/api-docs && yarn docs:api:build",
     "docs:api:build": "cross-env BABEL_ENV=test __NEXT_EXPORT_TRAILING_SLASH=true babel-node --extensions \".tsx,.ts,.js\" ./docs/scripts/buildApi.ts  ./docs/pages/api-docs ./packages/material-ui/src ./packages/material-ui-lab/src",
