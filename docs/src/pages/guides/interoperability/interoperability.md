@@ -82,7 +82,7 @@ export default function App() {
 If you attempt to style the Slider,
 you will likely need to affect some of the Slider's child elements, for example the thumb.
 However, the thumb is not the root element of Slider and therefore customization as above will not work.
-You need to use the `componentProps` API of Material-UI, in order to provide custom classNames for the slots.
+You need to use the `componentProps` API of Material-UI, in order to provide custom class names for the slots.
 
 The following example overrides the `thumb` style of `Slider` in addition to the custom styles on the slider itself.
 
