@@ -119,7 +119,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
 
 这有一个[与 react-router 交互的例子](/guides/composition/#button)。
 
-## 局限性
+## 设计局限
 
 ### Cursor 鼠标悬浮的禁用
 
