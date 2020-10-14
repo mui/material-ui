@@ -263,7 +263,7 @@ the color manipulations, the transitions, the media queries, and more.
 By using the Material-UI's Provider, the theme will be available for the
 context as well (emotion or styled-components, depending on your configuraiton).
 
-We encourage to share the same theme object between Material-UI and your styles.
+You are encouraged to share the same theme object between Material-UI and your styles.
 
 ```jsx
 const CustomizedSlider = styled(Slider)`
