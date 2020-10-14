@@ -408,7 +408,7 @@ import React from 'react';
 import styles from './CssModulesSliderDeep.module.css';
 import Slider from '@material-ui/lab/SliderStyled';
 
-export default function PlainCSSSlider() {
+export default function CssModulesSliderDeep() {
   return (
     <div>
       <Slider defaultValue={30} />
