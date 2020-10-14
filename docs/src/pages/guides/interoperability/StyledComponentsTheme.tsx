@@ -16,12 +16,14 @@ const customTheme = createMuiTheme({
   },
 });
 
-const CustomizedSlider = styled(Slider)(({ theme }) => `
+const CustomizedSlider = styled(Slider)(
+  ({ theme }) => `
   color: ${theme.palette.primary.main};
   :hover {
     color: ${darken(theme.palette.primary.main, 0.2)};
   }
-`);
+`,
+);
 
 export default function StyledComponentsTheme() {
   return (
