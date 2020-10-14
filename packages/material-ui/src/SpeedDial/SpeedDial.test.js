@@ -8,6 +8,7 @@ import {
   act,
   fireEvent,
   screen,
+  cleanup,
   describeConformance,
 } from 'test/utils';
 import Icon from '@material-ui/core/Icon';
@@ -88,7 +89,7 @@ describe('<SpeedDial />', () => {
     );
     const actions = getAllByRole('menuitem');
     expect(actions).to.have.lengthOf(2);
-    expect(actions.every((element) => !element.classList.contains('is-closed'))).to.equal(true);
+    expect(actions.map((element) => element.className)).not.to.contain('is-closed');
   });
 
   describe('prop: onKeyDown', () => {
@@ -166,15 +167,13 @@ describe('<SpeedDial />', () => {
     let actionRefs;
     let dialButtonRef;
     let onkeydown;
-    let unmount = () => {};
-    let r;
 
     const renderSpeedDial = (direction = 'up', actionCount = 4) => {
       actionRefs = [];
       dialButtonRef = undefined;
       onkeydown = spy();
 
-      const rendered = render(
+      render(
         <SpeedDial
           {...defaultProps}
           FabProps={{
@@ -200,14 +199,12 @@ describe('<SpeedDial />', () => {
           ))}
         </SpeedDial>,
       );
-      unmount = rendered.unmount;
-      r = rendered;
     };
 
     /**
      * @returns the button of SpeedDial
      */
-    const getDialButton = () => r.getByRole('button', { name: 'mySpeedDial' });
+    const getDialButton = () => screen.getByRole('button', { name: 'mySpeedDial' });
     /**
      *
      * @param actionIndex
@@ -217,7 +214,7 @@ describe('<SpeedDial />', () => {
       if (actionIndex === -1) {
         return getDialButton();
       }
-      return r.getAllByRole('menuitem')[actionIndex];
+      return screen.getAllByRole('menuitem')[actionIndex];
     };
     /**
      * @returns true if the button of the nth action is focused
@@ -228,7 +225,7 @@ describe('<SpeedDial />', () => {
     };
 
     const resetDialToOpen = (direction) => {
-      unmount();
+      cleanup();
 
       renderSpeedDial(direction);
       dialButtonRef.focus();
