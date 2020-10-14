@@ -44,14 +44,14 @@ const BoxRoot = React.forwardRef(function StyledComponent(props, ref) {
   );
 });
 
-const shouldForwardProp = (prop) => styleFunction.filterProps.indexOf(prop) === -1;
-
 BoxRoot.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   clone: PropTypes.bool,
   component: PropTypes.elementType,
 };
+
+const shouldForwardProp = (prop) => styleFunction.filterProps.indexOf(prop) === -1;
 
 /**
  * @ignore - do not document.
