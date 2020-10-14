@@ -8,7 +8,6 @@ import {
   act,
   fireEvent,
   screen,
-  cleanup,
   describeConformance,
 } from 'test/utils';
 import Icon from '@material-ui/core/Icon';
@@ -164,47 +163,40 @@ describe('<SpeedDial />', () => {
   });
 
   describe('dial focus', () => {
-    let actionRefs;
-    let dialButtonRef;
-    let onkeydown;
+    let actionButtons;
+    let fabButton;
 
     const renderSpeedDial = (direction = 'up', actionCount = 4) => {
-      actionRefs = [];
-      dialButtonRef = undefined;
-      onkeydown = spy();
+      actionButtons = [];
+      fabButton = undefined;
 
       render(
         <SpeedDial
           {...defaultProps}
           FabProps={{
-            ref: (ref) => {
-              dialButtonRef = ref;
+            ref: (element) => {
+              fabButton = element;
             },
           }}
           direction={direction}
-          onKeyDown={onkeydown}
         >
-          {Array.from({ length: actionCount }, (_, i) => (
+          {Array.from({ length: actionCount }, (_, index) => (
             <SpeedDialAction
-              key={i}
+              key={index}
               FabProps={{
-                ref: (ref) => {
-                  actionRefs[i] = ref;
+                ref: (element) => {
+                  actionButtons[index] = element;
                 },
               }}
               icon={icon}
-              data-test={i}
-              tooltipTitle={`action${i}`}
+              tooltipTitle={`action${index}`}
             />
           ))}
         </SpeedDial>,
       );
+      fabButton.focus();
     };
 
-    /**
-     * @returns the button of SpeedDial
-     */
-    const getDialButton = () => screen.getByRole('button', { name: 'mySpeedDial' });
     /**
      *
      * @param actionIndex
@@ -212,84 +204,68 @@ describe('<SpeedDial />', () => {
      */
     const getActionButton = (actionIndex) => {
       if (actionIndex === -1) {
-        return getDialButton();
+        return fabButton;
       }
-      return screen.getAllByRole('menuitem')[actionIndex];
+      return actionButtons[actionIndex];
     };
     /**
      * @returns true if the button of the nth action is focused
      */
     const isActionFocused = (index) => {
-      const expectedFocusedElement = index === -1 ? dialButtonRef : actionRefs[index];
-      return expectedFocusedElement === window.document.activeElement;
-    };
-
-    const resetDialToOpen = (direction) => {
-      cleanup();
-
-      renderSpeedDial(direction);
-      dialButtonRef.focus();
+      const expectedFocusedElement = index === -1 ? fabButton : actionButtons[index];
+      return expectedFocusedElement === document.activeElement;
     };
 
     it('displays the actions on focus gain', () => {
-      resetDialToOpen();
+      renderSpeedDial();
       expect(screen.getAllByRole('menuitem')).to.have.lengthOf(4);
       expect(screen.getByRole('menu')).not.to.have.class(classes.actionsClosed);
     });
 
-    describe('first item selection', () => {
-      it('considers arrow keys with the same initial orientation', () => {
-        resetDialToOpen();
-        fireEvent.keyDown(getDialButton(), { key: 'left' });
-        expect(isActionFocused(0)).to.equal(true);
-        fireEvent.keyDown(getActionButton(0), { key: 'up' });
-        expect(isActionFocused(0)).to.equal(true);
-        fireEvent.keyDown(getActionButton(0), { key: 'left' });
-        expect(isActionFocused(1)).to.equal(true);
-        fireEvent.keyDown(getActionButton(1), { key: 'right' });
-        expect(isActionFocused(0)).to.equal(true);
-      });
+    it('considers arrow keys with the same initial orientation', () => {
+      renderSpeedDial();
+      fireEvent.keyDown(fabButton, { key: 'left' });
+      expect(isActionFocused(0)).to.equal(true);
+      fireEvent.keyDown(getActionButton(0), { key: 'up' });
+      expect(isActionFocused(0)).to.equal(true);
+      fireEvent.keyDown(getActionButton(0), { key: 'left' });
+      expect(isActionFocused(1)).to.equal(true);
+      fireEvent.keyDown(getActionButton(1), { key: 'right' });
+      expect(isActionFocused(0)).to.equal(true);
     });
 
     describe('actions navigation', () => {
-      // this.timeout(5000); // These tests are really slow.
-
       /**
        * tests a combination of arrow keys on a focused SpeedDial
        */
-      const testCombination = (
-        dialDirection,
-        [firstKey, ...combination],
-        [firstFocusedAction, ...foci],
-      ) => {
-        resetDialToOpen(dialDirection);
+      const itTestCombination = (dialDirection, keys, expected) => {
+        it(`start dir ${dialDirection} with keys ${keys.join(',')}`, () => {
+          const [firstKey, ...combination] = keys;
+          const [firstFocusedAction, ...foci] = expected;
 
-        fireEvent.keyDown(getDialButton(), { key: firstKey });
-        expect(isActionFocused(firstFocusedAction)).to.equal(
-          true,
-          `focused action initial ${firstKey} should be ${firstFocusedAction}`,
-        );
+          renderSpeedDial(dialDirection);
 
-        combination.forEach((arrowKey, i) => {
-          const previousFocusedAction = foci[i - 1] || firstFocusedAction;
-          const expectedFocusedAction = foci[i];
-          const combinationUntilNot = [firstKey, ...combination.slice(0, i + 1)];
-
-          fireEvent.keyDown(getActionButton(previousFocusedAction), {
-            key: arrowKey,
-          });
-          expect(isActionFocused(expectedFocusedAction)).to.equal(
+          fireEvent.keyDown(fabButton, { key: firstKey });
+          expect(isActionFocused(firstFocusedAction)).to.equal(
             true,
-            `focused action after ${combinationUntilNot.join(
-              ',',
-            )} should be ${expectedFocusedAction}`,
+            `focused action initial ${firstKey} should be ${firstFocusedAction}`,
           );
-        });
-      };
 
-      const itTestCombination = (dir, keys, expected) => {
-        it(`Start dir ${dir} with keys ${keys.join(',')}`, () => {
-          testCombination(dir, keys, expected);
+          combination.forEach((arrowKey, i) => {
+            const previousFocusedAction = foci[i - 1] || firstFocusedAction;
+            const expectedFocusedAction = foci[i];
+            const combinationUntilNot = [firstKey, ...combination.slice(0, i + 1)];
+
+            fireEvent.keyDown(getActionButton(previousFocusedAction), {
+              key: arrowKey,
+            });
+            expect(isActionFocused(expectedFocusedAction)).to.equal(
+              true,
+              `focused action after ${combinationUntilNot.join(
+                ',',
+              )} should be ${expectedFocusedAction}`,
+            );
+          });
         });
       };
 
