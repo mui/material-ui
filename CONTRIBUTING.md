@@ -276,4 +276,4 @@ To get a sense of where Material-UI is heading, or for ideas on where you could 
 
 ## License
 
-By contributing your code to the mui-org/material-ui GitHub repository, you agree to license your contribution under the MIT license.
+By contributing your code to the mui-org/material-ui GitHub repository, you agree to license your contribution under the MIT license.For further details visit [here.](https://material-ui.com/store/license/)
