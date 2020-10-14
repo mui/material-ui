@@ -1,36 +1,9 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import {
-  borders,
-  compose,
-  display,
-  flexbox,
-  grid,
-  palette,
-  positions,
-  shadows,
-  sizing,
-  spacing,
-  typography,
-  css,
-} from '@material-ui/system';
+import React from 'react';
 import clsx from 'clsx';
+import { styleFunctionInversed } from '@material-ui/system';
 import styled from '../styles/experimentalStyled';
 
-export const styleFunction = css(
-  compose(
-    borders,
-    display,
-    flexbox,
-    grid,
-    positions,
-    palette,
-    shadows,
-    sizing,
-    spacing,
-    typography,
-  ),
-);
+export const styleFunction = styleFunctionInversed;
 
 function omit(input, fields) {
   const output = {};
@@ -69,6 +42,8 @@ const BoxRoot = React.forwardRef(function StyledComponent(props, ref) {
     </Component>
   );
 });
+
+const shouldForwardProp = (prop) => styleFunction.filterProps.indexOf(prop) === -1;
 
 BoxRoot.propTypes = {
   children: PropTypes.node,
