@@ -312,7 +312,7 @@ const palette = compose(textColor, bgcolor);
 
 {{"demo": "pages/system/basics/CssProp.js", "defaultCodeOpen": true}}
 
-## 它是如何工作的的呢
+## 工作原理
 
 styled-system 在 [解释它是如何工作的](https://github.com/jxnblk/styled-system/blob/master/docs/how-it-works.md#how-it-works) 方面做得很好 。 它可以协助为这种 “style function” 概念建立一个心理模型。
 
