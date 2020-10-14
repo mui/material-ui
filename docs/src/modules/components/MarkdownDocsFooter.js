@@ -181,7 +181,7 @@ function MarkdownDocsFooter(props) {
   const handleClickThumb = (vote) => async () => {
     if (vote !== rating) {
       setRating(vote);
-      // Focus a hidden element at the bottom of the page 
+      // Focus a hidden element at the bottom of the page
       // so that the texfield is visible when it opens.
       bottomRef.current.focus();
       setCommentOpen(true);
