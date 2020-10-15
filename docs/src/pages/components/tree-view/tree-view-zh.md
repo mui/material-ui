@@ -54,13 +54,13 @@ const data = {
 
 ## ContentComponent 属性
 
-You can use the `ContentComponent` prop and the `useTreeItem` hook to further customize the behavior of the TreeItem.
+你可以使用 `ContentComponent` 属性和 `useTreeItem` hook 来进一步定制 TreeItem 的行为。
 
-Such as limiting expansion to clicking the icon:
+比如限制扩展动作，只能够点击图标。
 
 {{"demo": "pages/components/tree-view/IconExpansionTreeView.js", "defaultCodeOpen": false}}
 
-Or increasing the width of the state indicator:
+或者增加状态指示器的宽度：
 
 {{"demo": "pages/components/tree-view/BarTreeView.js", "defaultCodeOpen": false}}
 
