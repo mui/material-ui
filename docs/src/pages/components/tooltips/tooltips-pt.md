@@ -75,9 +75,9 @@ A dica (`Tooltip`) quebra o texto longo por padrão para torná-lo legível.
 
 ## Interativo
 
-Uma dica pode ser interativa. Ela não será fechada quando o usuário passar por cima da dica antes que `leaveDelay` expire.
+Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus)). Ela não será fechada quando o usuário passar por cima da dica antes que `leaveDelay` expire. You can disable this behavior (thus failing the success criterion which is required to reach level AA) by passing `disableInteractive`.
 
-{{"demo": "pages/components/tooltips/InteractiveTooltips.js"}}
+{{"demo": "pages/components/tooltips/NonInteractiveTooltips.js"}}
 
 ## Elementos Desabilitados
 
@@ -105,6 +105,18 @@ Use uma transição diferente.
 
 {{"demo": "pages/components/tooltips/TransitionsTooltips.js"}}
 
+## Segue o cursor
+
+You can enable the tooltip to follow the cursor by setting `followCursor={true}`.
+
+{{"demo": "pages/components/tooltips/FollowCursorTooltips.js"}}
+
+## Objeto de referência falsificado
+
+In the event you need to implement a custom placement, you can use the `anchorEl` prop: The value of the `anchorEl` prop can be a reference to a fake DOM element. You need to create an object shaped like the [`ReferenceObject`](https://github.com/FezVrasta/popper.js/blob/0642ce0ddeffe3c7c033a412d4d60ce7ec8193c3/packages/popper/index.d.ts#L118-L123).
+
+{{"demo": "pages/components/tooltips/AnchorElTooltips.js"}}
+
 ## Exibindo e ocultando
 
 A dica normalmente é exibida imediatamente quando o mouse do usuário passa sobre o elemento e se oculta imediatamente quando o mouse do usuário sai. Um atraso na exibição ou ocultação da dica pode ser adicionado por meio das propriedades `enterDelay` e `leaveDelay`, conforme mostrado na demonstração de dicas controladas acima.
@@ -117,7 +129,7 @@ No celular, a dica é exibida quando o usuário pressiona longamente o elemento 
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#tooltip)
 
-By default, the tooltip only labels its child element. This is notably different from `title` which can either label **or** describe its child depending on whether the child already has a label. For example, in:
+By default, the tooltip only labels its child element. This is notably different from `title` which can either label **or** describe its child depending on whether the child already has a label. Por exemplo, em:
 
 ```html
 <button title="some more information">A button</button>

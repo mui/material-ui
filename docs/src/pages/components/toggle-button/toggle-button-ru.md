@@ -15,15 +15,15 @@ To emphasize groups of related [Toggle buttons](https://material.io/components/b
 
 ## Exclusive selection
 
-With exclusive selection, selecting one option deselects any other.
+С исключительным выделением выбор одной опции снимает выделение с остальных.
 
-In this example text justification toggle buttons present options for left, center, right, and fully justified text (disabled), with only one item available for selection at a time.
+В этом примере кнопки переключения представляют варианты выравнивания текста left, center, right и fully justified text (отключено), с возможностью выбора лишь одного элемента.
 
 {{"demo": "pages/components/toggle-button/ToggleButtons.js"}}
 
 ## Multiple selection
 
-Multiple selection allows for logically-grouped options, like bold, italic, and underline, to have multiple options selected.
+Множественное выделение позволяет выбрать несколько вариантов из логически связанных опций, таких как bold, italic, и underline.
 
 {{"demo": "pages/components/toggle-button/ToggleButtonsMultiple.js"}}
 
@@ -35,13 +35,13 @@ Fancy larger or smaller buttons? Use the `size` property.
 
 ## Vertical buttons
 
-The buttons can be stacked vertically with the `orientation` prop set to "vertical".
+Кнопки можно выстроить вертикально задав свойству `orientation` значение "vertical".
 
 {{"demo": "pages/components/toggle-button/VerticalToggleButtons.js"}}
 
 ## Enforce value set
 
-If you want to enforce that at least one button must be active, you can adapt your handleChange function.
+Если вы хотите, чтобы по крайней мере одна кнопка была активной, то можете адаптировать под себя функцию handleChange.
 
 ```jsx
 const handleFormat = (event, newFormats) => {
@@ -78,4 +78,4 @@ const handleAlignment = (event, newAlignment) => {
 
 ### Keyboard
 
-At present, toggle buttons are in DOM order. Navigate between them with the tab key. The button behavior follows standard keyboard semantics.
+В настоящее время кнопки переключения расположены в порядке DOM. Для перемещения между ними используйте клавишу табуляции. Поведение кнопки следует стандартной семантике клавиатуры.

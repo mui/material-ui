@@ -1,5 +1,5 @@
 ---
-title: React Card component
+title: Компонент React Card
 components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
 githubLabel: 'component: Card'
 materialDesign: https://material.io/components/cards
@@ -43,7 +43,7 @@ Set `variant="outlined"` to render an outlined card.
 
 {{"demo": "pages/components/cards/ImgMediaCard.js", "bg": true}}
 
-> ⚠️ When `component="img"`, CardMedia relies on `object-fit` for centering the image. It's not supported by IE 11.
+> ⚠️ When `component="img"`, CardMedia relies on `object-fit` for centering the image. It's not supported by IE11.
 
 ## Элементы управления
 

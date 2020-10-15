@@ -10,9 +10,9 @@ githubLabel: 'component: Hidden'
 
 除非**明确指定是隐藏的**，所有元素都是可见的。 为了简化与 [响应式断点](/customization/breakpoints/) 的集成，此组件可用于隐藏任何内容，或者您可以将它与我们的 [`栅格（Grid）`](/components/grid/) 组件结合使用。
 
-查看[调色板](/system/palette/)样式功能。
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## 它是如何工作的的呢
+## 工作原理
 
 通常我们将隐藏组件和一系列 breakpoint（断点）放在一起使用。例如 `xsUp` 或 `mdDown`，或一个或多个断点，例如 `only='sm'` 或 `only={['md', 'xl']}`。 可以同时使用范围（Ranges）和单独的断点（breakpoints）来实现极其定制的行为。 范围包括指定的断点。
 

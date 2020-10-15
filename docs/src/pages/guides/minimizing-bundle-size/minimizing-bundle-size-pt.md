@@ -104,26 +104,22 @@ Escolha um dos seguintes plugins:
     [
       'babel-plugin-import',
       {
-        'libraryName': '@material-ui/core',
-        // Use "'libraryDirectory': ''," se o seu bundler não suportar módulos ES
-        'libraryDirectory': 'esm',
-        'camel2DashComponentName': false
+        libraryName: '@material-ui/core',
+        camel2DashComponentName: false,
       },
-      'core'
+      'core',
     ],
     [
       'babel-plugin-import',
       {
-        'libraryName': '@material-ui/icons',
-        // Use "'libraryDirectory': ''," se o seu bundler não suportar módulos ES
-        'libraryDirectory': 'esm',
-        'camel2DashComponentName': false
+        libraryName: '@material-ui/icons',
+        camel2DashComponentName: false,
       },
-      'icons'
-    ]
+      'icons',
+    ],
   ];
 
-  module.exports = {plugins};
+  module.exports = { plugins };
   ```
 
 - [babel-plugin-transform-imports](https://www.npmjs.com/package/babel-plugin-transform-imports) com a seguinte configuração:
@@ -138,20 +134,18 @@ Escolha um dos seguintes plugins:
       'babel-plugin-transform-imports',
       {
         '@material-ui/core': {
-          // Use "transform: '@material-ui/core/${member}'," se o seu bundler não suportar módulos ES
-          'transform': '@material-ui/core/esm/${member}',
-          'preventFullImport': true
+          transform: '@material-ui/core/${member}',
+          preventFullImport: true,
         },
         '@material-ui/icons': {
-          // Use "transform: '@material-ui/icons/${member}'," se o seu bundler não suportar módulos ES
-          'transform': '@material-ui/icons/esm/${member}',
-          'preventFullImport': true
-        }
-      }
-    ]
+          transform: '@material-ui/icons/${member}',
+          preventFullImport: true,
+        },
+      },
+    ],
   ];
 
-  module.exports = {plugins};
+  module.exports = { plugins };
   ```
 
 Se você estiver usando Create React App, você precisará usar alguns projetos que permitem a configuração por `.babelrc`, sem ejetar.
@@ -213,10 +207,16 @@ Finally, you can convert your existing codebase to this option with this [top-le
 +import { Button, TextField } from '@material-ui/core';
 ```
 
-## ECMAScript
+## Available bundles
 
 O pacote publicado no npm é **transpilado** com [Babel](https://github.com/babel/babel), para levar em consideração as [plataformas suportadas](/getting-started/supported-platforms/).
 
-Uma segunda versão dos componentes é também publicada, essa versão pode ser encontrada na [pasta `/es`](https://unpkg.com/@material-ui/core/es/). Toda a sintaxe não oficial é transpilada para o [padrão ECMA-262](https://www.ecma-international.org/publications/standards/Ecma-262.htm), nada mais. Isso pode ser usado para criar pacotes separados visando diferentes navegadores. Os navegadores mais antigos exigem mais recursos JavaScript para serem transpilados, o que aumenta o tamanho do pacote. Nenhum polyfill está incluído para os recursos de tempo de execução do ES2015. IE11+ e navegadores evergreen suportam todos os recursos necessários. Se você precisar de suporte para outros navegadores, considere usar [`@babel/polyfill`](https://www.npmjs.com/package/@babel/polyfill).
+⚠️ In order to minimize duplication of code in users' bundles, library authors are **strongly discouraged** to import from any of the other bundles.
 
-⚠️ Para minimizar a duplicação de código nos pacotes de usuários, autores de bibliotecas são **fortemente desencorajados** de usar a pasta `/es`.
+### Modern bundle
+
+The modern bundle can be found under the [`/modern` folder](https://unpkg.com/@material-ui/core/modern/). It targets the latest released versions of evergreen browsers (Chrome, Firefox, Safari, Edge). Isso pode ser usado para criar pacotes separados visando diferentes navegadores.
+
+### Legacy bundle
+
+If you need to support IE 11 you cannot use the default or modern bundle without transpilation. However, you can use the legacy bundle found under the [`/legacy` folder](https://unpkg.com/@material-ui/core/legacy/). You don't need any additional polyfills.

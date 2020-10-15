@@ -1,5 +1,5 @@
 ---
-title: React Modal component
+title: Компонент React Modal
 components: Modal
 githubLabel: 'component: Modal'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'

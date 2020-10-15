@@ -18,7 +18,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 - ♿️ 自动添加适当的 ARIA 角色。
 - 📦 [5kB 的压缩包](/size-snapshot)。
 
-查看[调色板](/system/palette/)样式功能。
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 > **术语注释**。 “模态框”（Modal）这个词有时也被用来指代“对话框”，但是这种用法属于误用。 模态框的窗口描述了 UI 的一部分。 如果一个元素[阻挡了用户与应用的其它部分的互动](https://en.wikipedia.org/wiki/Modal_window)，这个元素就是模态的。
 
@@ -58,7 +58,7 @@ React [不支持](https://github.com/facebook/react/issues/13097)服务端渲染
 
 {{"demo": "pages/components/modal/ServerModal.js"}}
 
-## 局限性
+## 设计局限
 
 ### 焦点陷阱
 

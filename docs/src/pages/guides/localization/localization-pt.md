@@ -31,6 +31,7 @@ const theme = createMuiTheme({
 
 | Localidade              | Etiqueta do idioma BCP 47 | Nome da importação |
 |:----------------------- |:------------------------- |:------------------ |
+| Arabic (Egypt)          | ar-EG                     | `arEG`             |
 | Armênio                 | hy-AM                     | `hyAM`             |
 | Azerbaijano             | az-AZ                     | `azAZ`             |
 | Búlgaro                 | bg-BG                     | `bgBG`             |

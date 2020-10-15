@@ -53,7 +53,7 @@ Un App Bar prominente.
 
 Cuando muestra la posición de la barra de App Bar fija, la dimensión de los elementos no tiene impacto sobre el resto de la página. Esto puede causar que alguna parte de su contenido no sea visible, detrás del App Bar. Aquí hay 3 posibles soluciones:
 
-1. Puedes usar `position = "sticky"` en lugar de fijo. ⚠️ sticky no es compatible con IE 11.
+1. Puedes usar `position = "sticky"` en lugar de fijo. ⚠️ sticky is not supported by IE11.
 2. Puedes renderizar un segundo componente `<Toolbar />`:
 
 ```jsx

@@ -147,17 +147,17 @@ If you don't use one of the above types when using your components in conjunctio
 
 > Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
 
-Be aware that you will still get this warning for `lazy` and `memo` components if their wrapped component can't hold a ref.
-
-In some instances an additional warning is issued to help with debugging, similar to:
+Ten en cuenta que seguirás recibiendo esta advertencia por componentes `perezosos` y `memo` si su componente envuelto no puede contener ref. In some instances an additional warning is issued to help with debugging, similar to:
 
 > Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref.
 
 Only the two most common use cases are covered. For more information see [this section in the official React docs](https://reactjs.org/docs/forwarding-refs.html).
 
 ```diff
--const MyButton = props => <div role="button" {...props} />;
-+const MyButton = React.forwardRef((props, ref) => <div role="button" {...props} ref={ref} />);
+-const MyButton = () => <div role="button" />;
++const MyButton = React.forwardRef((props, ref) =>
++  <div role="button" {...props} ref={ref} />);
+
 <Button component={MyButton} />;
 ```
 
@@ -167,7 +167,7 @@ Only the two most common use cases are covered. For more information see [this s
 <Tooltip title="Hello, again."><SomeContent /></Tooltip>;
 ```
 
-To find out if the Material-UI component you're using has this requirement, check out the the props API documentation for that component. If you need to forward refs the description will link to this section.
+Para averiguar si el componente de Material-UI que estás utilizando tiene este requisito, revisa la documentación de los accesorios de ese componente. If you need to forward refs the description will link to this section.
 
 ### Caveat with StrictMode
 

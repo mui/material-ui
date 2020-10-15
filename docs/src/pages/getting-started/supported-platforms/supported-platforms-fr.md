@@ -4,17 +4,23 @@
 
 ## Navigateur
 
-Material-UI prend en charge les dernières versions stables de tous les principaux navigateurs et plates-formes. It also supports Internet Explorer 11. You don't need to provide any JavaScript polyfill as it manages unsupported browser features internally and in isolation.
+Material-UI prend en charge les dernières versions stables de tous les principaux navigateurs et plates-formes. You don't need to provide any JavaScript polyfill as it manages unsupported browser features internally and in isolation.
 
-| IE | Edge  | Firefox | Chrome | Safari | Googlebot |
-|:-- |:----- |:------- |:------ |:------ |:--------- |
-| 11 | >= 14 | >= 52   | >= 49  | >= 10  | ✅         |
+<!-- #stable-snapshot -->
+
+| Edge  | Firefox | Chrome | Safari |
+|:----- |:------- |:------ |:------ |
+| >= 83 | >= 68   | >= 83  | >= 13  |
+
+If you need to support IE 11, check out our [legacy bundle](/guides/minimizing-bundle-size/#legacy-bundle).
 
 Étant donné que Googlebot utilise un service de rendu Web (WRS) pour indexer le contenu de la page, il est essentiel que Material-UI le prenne en charge. [WRS regularly updates the rendering engine it uses](https://webmasters.googleblog.com/2019/05/the-new-evergreen-googlebot.html). Vous pouvez vous attendre à ce que les composants de Material-UI soient rendus sans problèmes majeurs.
 
 ## Serveur
 
-Because Material-UI supports server-side rendering, it needs to support the latest, stable releases of [Node.js](https://github.com/nodejs/node). Where possible, the [LTS versions that are in maintenance](https://github.com/nodejs/Release#lts-schedule1) are supported. The support of **node v8.x** will be stopped in Material-UI Version 5. We recommend using **node v10.x** or newer. However we still support **node v8.x**.
+<!-- #stable-snapshot -->
+
+We support [Node.js](https://github.com/nodejs/node) starting with version 10 for server-side rendering. Where possible, the [LTS versions that are in maintenance](https://github.com/nodejs/Release#lts-schedule1) are supported.
 
 ### Préfixes CSS
 

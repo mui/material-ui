@@ -54,7 +54,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
 
 {{"demo": "pages/components/menus/LongMenu.js"}}
 
-## 局限性
+## 设计局限
 
 有 [一个 flexbox 的错误](https://bugs.chromium.org/p/chromium/issues/detail?id=327437)，在 flexbox 的布局中，无法正常使用 `text-overflow: ellipsis`。 您可以使用 `Typography` 组件和 `noWrap` 来解决此问题：
 

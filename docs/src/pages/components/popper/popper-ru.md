@@ -1,5 +1,5 @@
 ---
-title: React Popper component
+title: Компонент React Popper
 components: Popper
 githubLabel: 'component: Popper'
 ---
@@ -50,9 +50,9 @@ Alternatively, you can use [react-spring](https://github.com/react-spring/react-
 
 ## Faked reference object
 
-The `anchorEl` property can be a reference to a fake DOM element. You just need to create an object shaped like the [`ReferenceObject`](https://github.com/FezVrasta/popper.js/blob/0642ce0ddeffe3c7c033a412d4d60ce7ec8193c3/packages/popper/index.d.ts#L118-L123).
+Значение `anchorEl` может быть ссылкой на фиктивный DOM-элемент. Вам нужно создать объект с подобной [`ReferenceObject`](https://github.com/FezVrasta/popper.js/blob/0642ce0ddeffe3c7c033a412d4d60ce7ec8193c3/packages/popper/index.d.ts#L118-L123) структурой.
 
-Highlight part of the text to see the popper:
+Выделите фрагмент текста, чтобы увидеть всплывающее окно:
 
 {{"demo": "pages/components/popper/FakedReferencePopper.js"}}
 

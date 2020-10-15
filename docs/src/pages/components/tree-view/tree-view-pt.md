@@ -3,7 +3,7 @@ title: Componente React de Visualização em Árvore
 components: TreeView, TreeItem
 githubLabel: 'component: TreeView'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#TreeView'
-packages: '@material-ui/lab'
+packageName: '@material-ui/lab'
 ---
 
 # Visualização em árvore
@@ -49,6 +49,18 @@ const data = {
 ```
 
 {{"demo": "pages/components/tree-view/RichObjectTreeView.js", "defaultCodeOpen": false}}
+
+## ContentComponent prop
+
+You can use the `ContentComponent` prop and the `useTreeItem` hook to further customize the behavior of the TreeItem.
+
+Such as limiting expansion to clicking the icon:
+
+{{"demo": "pages/components/tree-view/IconExpansionTreeView.js", "defaultCodeOpen": false}}
+
+Or increasing the width of the state indicator:
+
+{{"demo": "pages/components/tree-view/BarTreeView.js", "defaultCodeOpen": false}}
 
 ## Visualização em árvore customizada
 

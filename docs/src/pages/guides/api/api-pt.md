@@ -80,7 +80,7 @@ O nome de uma propriedade booleana deve ser escolhido com base no **valor padrã
 
 ### Componentes controlados
 
-A maior parte de componentes controlados, é controlado pelas propriedades `value` e `onChange`, no entanto, o `open` / `onClose` / `onOpen` é uma combinação usada para o estado relacionado à exibição.
+A maior parte de componentes controlados, é controlado pelas propriedades `value` e `onChange`, no entanto, o `open` / `onClose` / `onOpen` é uma combinação usada para o estado relacionado à exibição. In the cases where there are more events, we put the noun first, and then the verb, for example: `onPageChange`, `onRowsChange`.
 
 ### booleano vs enumerador
 

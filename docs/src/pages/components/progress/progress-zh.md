@@ -61,26 +61,10 @@ materialDesign: https://material.io/components/progress-indicators
 ```jsx
 // MIN = 最小值
 // MAX = 最大值
-// 正常化值的函数（MIN / MAX 可相互协调）
-const normalise = value => (value - MIN) * 100 / (MAX - MIN);
+// 使数值正常化的功能（MIN/MAX 可以整合）。
+const normalise = (value) => ((value - MIN) * 100) / (MAX - MIN);
 
-// 示例组件展示了在 render 函数中，利用`normalise`这个函数
-function Progress(props) {
-  return (
-    <React.Fragment>
-      <CircularProgress variant="determinate" value={normalise(props.value)} />
-      <LinearProgress variant="determinate" value={normalise(props.value)} />
-    </React.Fragment>
-  )
-}
-function Progress(props) {
-  return (
-    <React.Fragment>
-      <CircularProgress variant="determinate" value={normalise(props.value)} />
-      <LinearProgress variant="determinate" value={normalise(props.value)} />
-    </React.Fragment>
-  );
-}
+// 在渲染时使用“归一化”功能的示例组件。
 function Progress(props) {
   return (
     <React.Fragment>
@@ -103,11 +87,11 @@ function Progress(props) {
 
 {{"demo": "pages/components/progress/DelayingAppearance.js"}}
 
-## 局限性
+## 设计局限
 
 ### 高负载
 
-在加载的特别慢时，您可能丢失stroke dash的动画或看到环形进度会有一些半径随机的情况。 为了不阻碍主渲染进程，您应该在 web worker 中或批处理中运行密集操作的处理器。
+在加载特别慢时，你可能丢失 stroke dash 的动画或看到 `环形CircularProgress` 会有一些半径随机的情况。 为了不阻碍主渲染进程，您应该在 web worker 中或批处理中运行密集操作的处理器。
 
 ![高负载](/static/images/progress/heavy-load.gif)
 
@@ -124,5 +108,26 @@ function Progress(props) {
 ```css
 .MuiLinearProgress-bar {
   transition: none;
+}
+```
+
+### IE11
+
+IE 11 上的循环进度组件动画会降级。 Stroke dash 动画将不起作用（相当于`disableShrink`）并且 circular 动画将会抖动。 你可以通过以下方式来解决它：
+
+```css
+.MuiCircularProgress-indeterminate {
+  animation: circular-rotate 1.4s linear infinite;
+}
+
+@keyframes circular-rotate {
+  0% {
+    transform: rotate(0deg);
+    /* 修复 IE11 下的抖动 */
+    transform-origin: 50% 50%;
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 ```

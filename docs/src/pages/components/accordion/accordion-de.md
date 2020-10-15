@@ -6,7 +6,7 @@ materialDesign: https://material.io/archive/guidelines/components/expansion-pane
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#accordion'
 ---
 
-# Akkordeon
+# Akkordeon (Accordion)
 
 <p class="description">Erweiterungspanels (Tafeln) enthalten Erstellungsabläufe und ermöglichen die einfache Bearbeitung eines Elements.</p>
 
@@ -31,12 +31,6 @@ Erweitern Sie das Standardbedienfeldverhalten, um ein Akkordeon mit der Komponen
 Hier ist ein Beispiel zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
 
 {{"demo": "pages/components/accordion/CustomizedAccordions.js"}}
-
-## Zusätzliche Aktionen
-
-In order to put an action such as a `Checkbox` or a button inside of the `AccordionSummary`, you need to stop the propagation of the focus and click events to prevent the panel from expanding/collapsing when using the action. You should also provide an `aria-label` for the action, otherwise the label of the nested action will be included in the label of the parent button that controls the accordion expansion.
-
-{{"demo": "pages/components/accordion/ActionsInAccordionSummary.js", "bg": true}}
 
 ## Performance
 

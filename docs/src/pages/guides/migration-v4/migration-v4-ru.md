@@ -1,4 +1,4 @@
-# Migration from v4 to v5
+# Переход с v4 на v5
 
 <p class="description">Yeah, v5 has been released!</p>
 
@@ -40,6 +40,23 @@ yarn add @material-ui/core@next
 
 ## Handling breaking changes
 
+### Supported browsers and node versions
+
+The targets of the default bundle have changed. The exact versions will be pinned on release from the browserslist query `"> 0.5%, last 2 versions, Firefox ESR, not dead, not IE 11, maintained node versions"`.
+
+The default bundle now supports:
+
+<!-- #stable-snapshot -->
+
+- Node 10 (up from 8)
+- Chrome 83 (up from 49)
+- Edge 83 (up from 14)
+- Firefox 68 (up from 52)
+- Safari 13 (up from 10)
+- and more (see [.browserslistrc (`stable` entry)](https://github.com/mui-org/material-ui/blob/HEAD/.browserslistrc#L11))
+
+It no longer supports IE 11. If you need to support IE 11, check out our [legacy bundle](/guides/minimizing-bundle-size/#legacy-bundle).
+
 ### non-ref-forwarding class components
 
 Support for non-ref-forwarding class components in the `component` prop or as an immediate `children` has been dropped. If you were using `unstable_createStrictModeTheme` or didn't see any warnings related to `findDOMNode` in `React.StrictMode` then you don't need to do anything. Otherwise check out the ["Caveat with refs" section in our composition guide](/guides/composition/#caveat-with-refs) to find out how to migrate. This change affects almost all components where you're using the `component` prop or passing `children` to components that require `children` to be elements (e.g. `<MenuList><CustomMenuItem /></MenuList>`)
@@ -76,8 +93,8 @@ For a smoother transition, the `adaptV4Theme` helper allows you to iteratively u
 -import { createMuiTheme } from '@material-ui/core/styles';
 +import { createMuiTheme, adaptV4Theme } from '@material-ui/core/styles';
 
--const theme = createMuitheme({
-+const theme = createMuitheme(adaptV4Theme({
+-const theme = createMuiTheme({
++const theme = createMuiTheme(adaptV4Theme({
   // v4 theme
 -});
 +}));
@@ -118,8 +135,8 @@ The following changes are supported by the adapter.
 ```diff
 import { createMuiTheme } from '@material-ui/core/styles';
 
--const theme = createMuitheme(),
-+const theme = createMuitheme({
+-const theme = createMuiTheme(),
++const theme = createMuiTheme({
 +  palette: { text: { hint: 'rgba(0, 0, 0, 0.38)' } },
 +});
 ```
@@ -127,8 +144,8 @@ import { createMuiTheme } from '@material-ui/core/styles';
 ```diff
 import { createMuiTheme } from '@material-ui/core/styles';
 
--const theme = createMuitheme({palette: { type: 'dark' }}),
-+const theme = createMuitheme({
+-const theme = createMuiTheme({palette: { type: 'dark' }}),
++const theme = createMuiTheme({
 +  palette: { type: 'dark', text: { hint: 'rgba(0, 0, 0, 0.38)' } },
 +});
 ```
@@ -140,8 +157,8 @@ import { createMuiTheme } from '@material-ui/core/styles';
 ```diff
 import { createMuiTheme } from '@material-ui/core/styles';
 
--const theme = createMuitheme({palette: { type: 'dark' }}),
-+const theme = createMuitheme({palette: { mode: 'dark' }}),
+-const theme = createMuiTheme({palette: { type: 'dark' }}),
++const theme = createMuiTheme({palette: { mode: 'dark' }}),
 ```
 
 1. `props`
@@ -149,7 +166,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 ```diff
 import { createMuiTheme } from '@material-ui/core/styles';
 
-const theme = createMuitheme({
+const theme = createMuiTheme({
 -  props: {
 -    MuiButton: {
 -      disableRipple: true,
@@ -170,7 +187,7 @@ const theme = createMuitheme({
 ```diff
 import { createMuiTheme } from '@material-ui/core/styles';
 
-const theme = createMuitheme({
+const theme = createMuiTheme({
 -  overrides: {
 -    MuiButton: {
 -      root: { padding: 0 },
@@ -186,9 +203,23 @@ const theme = createMuitheme({
 });
 ```
 
+### Стили
+
+- Renamed `fade` to `alpha` to better describe its functionality. The previous name was leading to confusion when the input color already had an alpha value. The helper **overrides** the alpha value of the color.
+
+```diff
+- import { fade } from '@material-ui/core/styles';
++ import { alpha } from '@material-ui/core/styles';
+
+const classes = makeStyles(theme => ({
+-  backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
++  backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+}));
+```
+
 ### Alert
 
-- Move the component from the lab to the core. The component is now stable.
+- Перемещаем компонент из lab в core. Компонент теперь стабилен.
 
   ```diff
   -import Alert from '@material-ui/lab/Alert';
@@ -197,10 +228,9 @@ const theme = createMuitheme({
   +import AlertTitle from '@material-ui/core/AlertTitle';
   ```
 
+### Autocomplete (Автодополнение)
 
-  ### Autocomplete (Автодополнение)
-
-- Move the component from the lab to the core. The component is now stable.
+- Перемещаем компонент из lab в core. Компонент теперь стабилен.
 
   ```diff
   -import Autocomplete from '@material-ui/lab/Autocomplete';
@@ -211,7 +241,7 @@ const theme = createMuitheme({
 
 ### Avatar
 
-- Rename `circle` to `circular` for consistency. The possible values should be adjectives, not nouns:
+- Переименовываем `circle` в `circular` для единообразия. The possible values should be adjectives, not nouns:
 
   ```diff
   -<Avatar variant="circle">
@@ -222,7 +252,7 @@ const theme = createMuitheme({
 
 ### Badge
 
-- Rename `circle` to `circular` and `rectangle` to `rectangular` for consistency. The possible values should be adjectives, not nouns:
+- Переименовываем `circle` в `circular` и `rectangle` в `rectangular` для единообразия. The possible values should be adjectives, not nouns:
 
   ```diff
   -<Badge overlap="circle">
@@ -249,7 +279,7 @@ const theme = createMuitheme({
 
 ### BottomNavigation
 
-- TypeScript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
+- TypeScript: тип параметра `event` в `onChange` теперь не `React.ChangeEvent` а `React.SyntheticEvent`.
 
   ```diff
   -<BottomNavigation onChange={(event: React.ChangeEvent<{}>) => {}} />
@@ -258,7 +288,7 @@ const theme = createMuitheme({
 
 ### Button
 
-- The button `color` prop is now "primary" by default, and "default" has been removed. This makes the button closer to the Material Design specification and simplifies the API.
+- Свойство `color` у кнопки теперь "primary" по умолчанию, а опция "default" удалена. За счет этого кнопка становится ближе к спецификации Material Design, а API становится проще.
 
   ```diff
   -<Button color="primary" />
@@ -269,7 +299,7 @@ const theme = createMuitheme({
 
 ### Групповой прогресс
 
-- The `static` variant has been merged into the `determinate` variant, with the latter assuming the appearance of the former. The removed variant was rarely useful. It was an exception to Material Design, and was removed from the specification.
+- Вариант `static` объединен с вариантом `determinate`, и последний подразумевает внешний вид первого. Удаленный вариант редко был полезен. Это было исключением из Material Design и удалено из спецификации.
 
   ```diff
   -<CircularProgress variant="determinate" />
@@ -284,14 +314,14 @@ const theme = createMuitheme({
 
 ### Collapse
 
-- The `collapsedHeight` prop was renamed `collapsedSize` to support the horizontal direction.
+- Свойство `collapsedHeight` переименовано в `collapsedSize` для поддержки горизонтального направления.
 
   ```diff
   -<Collapse collapsedHeight={40}>
   +<Collapse collapsedSize={40}>
   ```
 
-- The `classes.container` key was changed to match the convention of the other components.
+- Ключ `classes.container` был изменен для соответствия соглашениям других компонентов.
 
   ```diff
   -<Collapse classes={{ container: 'collapse' }}>
@@ -300,7 +330,7 @@ const theme = createMuitheme({
 
 ### Dialog
 
-- The onE\* transition props were removed. Use TransitionProps instead.
+- Свойства onE\* transition были удалены. Используйте вместо них TransitionProps.
 
   ```diff
   <Dialog
@@ -323,7 +353,7 @@ const theme = createMuitheme({
 
 ### Divider
 
-- Use border instead of background color. It prevents inconsistent height on scaled screens. For people customizing the color of the border, the change requires changing the override CSS property:
+- Используем рамку вместо цвета фона. Это предотвращает колебания высоты на масштабированных экранах. Для тех кто настраивает цвет контура, данное изменение требует корректировки переопределения CSS свойства:
 
   ```diff
   .MuiDivider-root {
@@ -334,7 +364,7 @@ const theme = createMuitheme({
 
 ### ExpansionPanel
 
-- Rename the `ExpansionPanel` components to `Accordion` to use a more common naming convention:
+- Переименовываем компоненты `ExpansionPanel` в `Accordion` для соответствия наиболее распространенным соглашениям:
 
   ```diff
   -import ExpansionPanel from '@material-ui/core/ExpansionPanel';
@@ -371,14 +401,14 @@ const theme = createMuitheme({
   +</Accordion>
   ```
 
-- TypeScript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
+- TypeScript: тип параметра `event` в `onChange` теперь не `React.ChangeEvent` а `React.SyntheticEvent`.
 
   ```diff
   -<Accordion onChange={(event: React.ChangeEvent<{}>, expanded: boolean) => {}} />
   +<Accordion onChange={(event: React.SyntheticEvent, expanded: boolean) => {}} />
   ```
 
-- Rename `focused` to `focusVisible` for consistency:
+- Переименовываем `focused` в `focusVisible` для единообразия:
 
   ```diff
   <Accordion
@@ -389,11 +419,12 @@ const theme = createMuitheme({
   />
   ```
 
-- Remove `display: flex` from AccordionDetails as its too opinionated.
+- Удаляем `display: flex` из AccordionDetails, так как он навязывает определенный вид компоновки. Most developers expect a display block.
+- Удаляем свойство `IconButtonProps` из AccordionSummary. При отрисовке этого компонента вместо IconButton используется элемент `<div>`. Данное свойство больше не требуется.
 
 ### Fab
 
-- Rename `round` to `circular` for consistency. The possible values should be adjectives, not nouns:
+- Переименовываем `round` в `circular` для единообразия. The possible values should be adjectives, not nouns:
 
   ```diff
   -<Fab variant="round">
@@ -402,7 +433,7 @@ const theme = createMuitheme({
 
 ### Chip
 
-- Rename `default` variant to `filled` for consistency.
+- Переименовываем вариант `default` на `filled` для единообразия.
   ```diff
   -<Chip variant="default">
   +<Chip variant="filled">
@@ -410,7 +441,7 @@ const theme = createMuitheme({
 
 ### Grid
 
-- Rename `justify` prop with `justifyContent` to be aligned with the CSS property name.
+- Переименовываем свойство `justify` на `justifyContent` для согласованности с названием CSS свойства.
 
   ```diff
   -<Grid justify="center">
@@ -419,12 +450,12 @@ const theme = createMuitheme({
 
 ### GridList
 
-- Rename the `GridList` components to `ImageList` to align with the current Material Design naming.
-- Rename the GridList `spacing` prop to `gap` to align with the CSS attribute.
-- Rename the GridList `cellHeight` prop to `rowHieght`.
-- Add the `variant` prop to GridList.
-- Rename the GridListItemBar `actionPosition` prop to `position`. (Note also the related classname changes.)
-- Use CSS object-fit. For IE11 support either use a polyfill such as https://www.npmjs.com/package/object-fit-images, or continue to use the v4 component.
+- Переименовываем компоненты `GridList` на `ImageList` для согласованности с текущими наименованиями  Material Design.
+- Переименовываем GridList свойство `spacing` на `gap` для соответствия CSS атрибуту.
+- Переименовываем GridList свойство `cellHeight` в `rowHieght`.
+- Добавляем в GridList свойство `variant`.
+- Переименовываем GridListItemBar свойство `actionPosition`  в `position`. (Обратите внимание, что соответствующее имя класса также изменяется.)
+- Используем CSS object-fit. For IE11 support either use a polyfill such as https://www.npmjs.com/package/object-fit-images, or continue to use the v4 component.
 
 ```diff
 -import GridList from '@material-ui/core/GridList';
@@ -452,7 +483,7 @@ const theme = createMuitheme({
 
 ### Menu
 
-- The onE\* transition props were removed. Use TransitionProps instead.
+- Свойства onE\* transition были удалены. Используйте вместо них TransitionProps.
 
   ```diff
   <Menu
@@ -475,11 +506,11 @@ const theme = createMuitheme({
 
 ### Modal
 
-- Remove `onRendered` prop. Depending on your use case either use a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element or an effect hook in the child component.
+- Удаляем свойство `onRendered`. В зависимости от варианта использования либо используйте [обратную ссылку](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) на дочерний элемент либо хук эффекта в дочернем компоненте.
 
 ### Pagination
 
-- Move the component from the lab to the core. The component is now stable.
+- Перемещаем компонент из lab в core. Компонент теперь стабилен.
 
   ```diff
   -import Pagination from '@material-ui/lab/Pagination';
@@ -490,7 +521,7 @@ const theme = createMuitheme({
   +import usePagination from '@material-ui/core/usePagination';
   ```
 
-- Rename `round` to `circular` for consistency. The possible values should be adjectives, not nouns:
+- Переименовываем `round` в `circular` для единообразия. The possible values should be adjectives, not nouns:
 
   ```diff
   -<Pagination shape="round">
@@ -501,7 +532,7 @@ const theme = createMuitheme({
 
 ### Popover
 
-- The onE\* transition props were removed. Use TransitionProps instead.
+- Свойства onE\* transition были удалены. Используйте вместо них TransitionProps.
 
   ```diff
   <Popover
@@ -524,18 +555,18 @@ const theme = createMuitheme({
 
 ### Portal
 
-- Remove `onRendered` prop. Depending on your use case either use a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element or an effect hook in the child component.
+- Удаляем свойство `onRendered`. В зависимости от варианта использования либо используйте [обратную ссылку](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) на дочерний элемент либо хук эффекта в дочернем компоненте.
 
 ### Rating
 
-- Move the component from the lab to the core. The component is now stable.
+- Перемещаем компонент из lab в core. Компонент теперь стабилен.
 
   ```diff
   -import Rating from '@material-ui/lab/Rating';
   +import Rating from '@material-ui/core/Rating';
   ```
 
-- Change the default empty icon to improve accessibility. If you have a custom `icon` prop but no `emptyIcon` prop, you can restore the previous behavior with:
+- Чтобы улучшить доступность изменяем используемую по умолчанию пустую иконку. Если у вас есть свой значок (`icon`), но нет пустого значка (`emptyIcon`), вы можете восстановить прежнее поведение с помощью:
 
   ```diff
   <Rating
@@ -544,7 +575,7 @@ const theme = createMuitheme({
   />
   ```
 
-- Rename `visuallyhidden` to `visuallyHidden` for consistency:
+- Переименовываем `visuallyhidden` в `visuallyHidden` для единообразия:
 
   ```diff
   <Rating
@@ -557,7 +588,7 @@ const theme = createMuitheme({
 
 ### RootRef
 
-- This component was removed. You can get a reference to the underlying DOM node of our components via `ref` prop. The component relied on [`ReactDOM.findDOMNode`](https://reactjs.org/docs/react-dom.html#finddomnode) which is [deprecated in `React.StrictMode`](https://reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage).
+- Этот компонент был удален. Ссылку на лежащий в основе наших компонентов DOM узел вы можете получить через `ref`. Компонент основывался на [`ReactDOM.findDOMNode`](https://reactjs.org/docs/react-dom.html#finddomnode), использование которого [порицается в `React.StrictMode`](https://reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage).
 
   ```diff
   -<RootRef rootRef={ref}>
@@ -568,14 +599,14 @@ const theme = createMuitheme({
 
 ### Skeleton
 
-- Move the component from the lab to the core. The component is now stable.
+- Перемещаем компонент из lab в core. Компонент теперь стабилен.
 
   ```diff
   -import Skeleton from '@material-ui/lab/Skeleton';
   +import Skeleton from '@material-ui/core/Skeleton';
   ```
 
-- Rename `circle` to `circular` and `rect` to `rectangular` for consistency. The possible values should be adjectives, not nouns:
+- Переименовываем `circle` в `circular` и `rect` в `rectangular` для единообразия. The possible values should be adjectives, not nouns:
 
   ```diff
   -<Skeleton variant="circle" />
@@ -588,7 +619,7 @@ const theme = createMuitheme({
 
 ### Slider
 
-- TypeScript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
+- TypeScript: тип параметра `event` в `onChange` теперь не `React.ChangeEvent` а `React.SyntheticEvent`.
 
   ```diff
   -<Slider onChange={(event: React.ChangeEvent<{}>, value: unknown) => {}} />
@@ -597,14 +628,14 @@ const theme = createMuitheme({
 
 ### Snackbar
 
-- The notification now displays at the bottom left on large screens. This better matches the behavior of Gmail, Google Keep, material.io, etc. You can restore the previous behavior with:
+- Уведомление теперь отображается в левом нижнем углу на больших экранах. Это лучше соответствует поведению Gmail, Google Keep, material.io и т.д. Вы можете восстановить прежнее поведение с помощью:
 
   ```diff
   -<Snackbar />
   +<Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} />
   ```
 
-- The onE\* transition props were removed. Use TransitionProps instead.
+- Свойства onE\* transition были удалены. Используйте вместо них TransitionProps.
 
   ```diff
   <Snackbar
@@ -627,7 +658,7 @@ const theme = createMuitheme({
 
 ### SpeedDial
 
-- Move the component from the lab to the core. The component is now stable.
+- Перемещаем компонент из lab в core. Компонент теперь стабилен.
 
   ```diff
   -import SpeedDial from '@material-ui/lab/SpeedDial';
@@ -640,7 +671,7 @@ const theme = createMuitheme({
 
 ### Stepper
 
-- The root component (Paper) was replaced with a div. Stepper no longer has elevation, nor inherits Paper's props. This change is meant to encourage composition.
+- Корневой компонент (Paper) заменен на div. Свойство elevation удалено и Stepper больше не наследует свойста от Paper. Это изменение рассчитано на поощрение композиции.
 
   ```diff
   -<Stepper elevation={2}>
@@ -657,7 +688,7 @@ const theme = createMuitheme({
   +<Paper>
   ```
 
-- Remove the built-in 24px padding.
+- Удаляем встроенные отступы(padding) 24px.
 
   ```diff
   -<Stepper>
@@ -674,28 +705,38 @@ const theme = createMuitheme({
 
 ### Table (tаблица)
 
-- The customization of the table pagination's actions labels must be done with the `getItemAriaLabel` prop. This increases consistency with the `Pagination` component.
+- Настройка ярлыков кнопок постраничной разбивки должна осуществляться с помощью свойства `getItemAriaLabel`. За счет этого улучшается сопоставимость с компонентом `Pagination`.
 
   ```diff
   <TablePagination
-  - backIconButtonText="Avant"
-  - nextIconButtonText="Après
+  - backIconButtonText="Предыдущая"
+  - nextIconButtonText="Следующая"
   + getItemAriaLabel={…}
+  ```
+
+- Переименовываем `onChangeRowsPerPage` на `onRowsPerPageChange` и `onChangePage` на `onPageChange` для сопоставимоти с API.
+
+  ```diff
+  <TablePagination
+  - onChangeRowsPerPage={()=>{}}
+  - onChangePage={()=>{}}
+  + onRowsPerPageChange={()=>{}}
+  + onPageChange={()=>{}}
   ```
 
 ### Вкладки
 
-- TypeScript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
+- TypeScript: тип параметра `event` в `onChange` теперь не `React.ChangeEvent` а `React.SyntheticEvent`.
 
   ```diff
   -<Tabs onChange={(event: React.ChangeEvent<{}>, value: unknown) => {}} />
   +<Tabs onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
   ```
 
-- The API that controls the scroll buttons has been split it in two props.
+- Управляющее кнопками прокрутки API разделено на два параметра.
 
-  - The `scrollButtons` prop controls when the scroll buttons are displayed depending on the space available.
-  - The `allowScrollButtonsMobile` prop removes the CSS media query that systematically hide the scroll buttons on mobile.
+  - Параметр `scrollButtons` управляет видимостью кнопок в зависимоти от доступного пространства.
+  - Параметр `allowScrollButtonsMobile` удаляет медиа-запрос CSS, который систематически скрывает кнопки прокрутки на мобильных устройствах.
 
   ```diff
   -<Tabs scrollButtons="on" />
@@ -708,7 +749,7 @@ const theme = createMuitheme({
 
 ### TextField
 
-- Better isolate the fixed textarea height behavior to the dynamic one. You need to use the `minRows` prop in the following case:
+- Улучшаем определение поведения - когда используется textarea фиксированной высоты, а когда textarea c динамической высотой. Вам нужно использовать параметр `minRows` в следующем случае:
 
   ```diff
   -<TextField rows={2} maxRows={5} />
@@ -724,7 +765,7 @@ const theme = createMuitheme({
 
 ### TextareaAutosize
 
-- Remove the `rows` prop, use the `minRows` prop instead. This change aims to clarify the behavior of the prop.
+- Удаляем свойство `rows` и используем вместо него `minRows`. Цель этого изменения - сделать поведение свойства более понятным.
 
   ```diff
   -<TextareaAutosize rows={2} />
@@ -738,7 +779,7 @@ const theme = createMuitheme({
   +<TextareAutosize maxRows={6}>
   ```
 
-- Rename `rowsMin` prop with `minRows` for consistency with HTML attributes.
+- Переименовываем свойство `rowsMin` на `minRows` для соответствия HTML атрибутам.
 
   ```diff
   -<TextareAutosize rowsMin={1}>
@@ -747,7 +788,7 @@ const theme = createMuitheme({
 
 ### ToggleButton
 
-- Move the component from the lab to the core. The component is now stable.
+- Перемещаем компонент из lab в core. Компонент теперь стабилен.
 
   ```diff
   -import ToggleButton from '@material-ui/lab/ToggleButton';
@@ -756,9 +797,24 @@ const theme = createMuitheme({
   +import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
   ```
 
+### Tooltip
+
+- Подсказки теперь интерактивны по умолчанию.
+
+  Прежнее подразумеваемое по умолчанию поведение не удовлетворяет требованию [success criterion 1.4.3 ("hoverable") в WCAG 2.1](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus). Чтобы отразить новое значение по умолчанию, прежнее свойство переименовано на `disableInteractive`. Если вы хотите восстановить прежнее поведение (лишившись при этом уровня АА), вы можете применить следующие изменения:
+
+  ```diff
+  -<Tooltip>
+  +<Tooltip disableInteractive>
+
+  # Интерактивные подсказки больше не нуждаются в свойстве `interactive`.
+  -<Tooltip interactive>
+  +<Tooltip>
+  ```
+
 ### Оформление текста
 
-- Replace the `srOnly` prop so as to not duplicate the capabilities of [System](https://material-ui.com/system/basics/):
+- Заменяем свойство `srOnly`, чтобы не дублировать возможности [System](https://material-ui.com/system/basics/):
 
   ```diff
   -import Typography from '@material-ui/core/Typography';
