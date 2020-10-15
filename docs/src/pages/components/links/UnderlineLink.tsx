@@ -1,12 +1,14 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react';
+import * as React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
-import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
+      ...theme.typography.body1,
       '& > * + *': {
         marginLeft: theme.spacing(2),
       },
@@ -16,20 +18,19 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function Links() {
   const classes = useStyles();
-  const preventDefault = (event: React.SyntheticEvent) =>
-    event.preventDefault();
+  const preventDefault = (event: React.SyntheticEvent) => event.preventDefault();
 
   return (
-    <Typography className={classes.root}>
-      <Link href="#" onClick={preventDefault} underline="none">
+    <div className={classes.root} onClick={preventDefault}>
+      <Link href="#" underline="none">
         {'underline="none"'}
       </Link>
-      <Link href="#" onClick={preventDefault} underline="hover">
+      <Link href="#" underline="hover">
         {'underline="hover"'}
       </Link>
-      <Link href="#" onClick={preventDefault} underline="always">
+      <Link href="#" underline="always">
         {'underline="always"'}
       </Link>
-    </Typography>
+    </div>
   );
 }
