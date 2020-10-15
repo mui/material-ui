@@ -100,6 +100,12 @@ For instance, in the following demo, the value _x_ represents the power of _10^x
 
 {{"demo": "pages/components/slider/NonLinearSlider.js"}}
 
+### Logarithmic scale
+
+Another use-case for sliders are logarithmic scales. For each step, the value doubles.
+
+{{"demo": "pages/components/slider/LogarithmicSlider.js"}}
+
 ## Accessibility
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#slider)
