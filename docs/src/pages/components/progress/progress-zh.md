@@ -123,7 +123,7 @@ IE 11 上的循环进度组件动画会降级。 Stroke dash 动画将不起作�
 @keyframes circular-rotate {
   0% {
     transform: rotate(0deg);
-    /* Fix IE11 wobbly */
+    /* 修复 IE11 下的抖动 */
     transform-origin: 50% 50%;
   }
   100% {
