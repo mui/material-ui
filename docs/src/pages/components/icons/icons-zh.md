@@ -62,7 +62,7 @@ yarn add @material-ui/core@next
 
 对于捆绑包的大小来说，最安全的是方案 1，但有些开发者更喜欢方案 2。 在使用第二个方法之前，请确保您遵循 [最小化捆绑包大小指南](/guides/minimizing-bundle-size/#option-2)。
 
-Each Material icon also has a "theme": Filled (default), Outlined, Rounded, Two-tone, and Sharp. 要导入非默认主题的图标组件，请在图标名称后附加主题名称。 例如，`@material-ui/icons/Delete` 图标可以：
+每个 Material icon 都有一个“主题”：Filled（默认）, Outlined, Rounded, Two-tone, 和 Sharp。 要导入非默认主题的图标组件，请在图标名称后附加主题名称。 例如，`@material-ui/icons/Delete` 图标可以：
 
 - 导出为 Filled 主题（默认值）：`@material-ui/icons/Delete`，
 - 导出为 Outlined 主题：`@material-ui/icons/DeleteOutlined`，
