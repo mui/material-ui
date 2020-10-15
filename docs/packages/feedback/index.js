@@ -30,14 +30,17 @@ async function dbGet(request, id, page) {
 
 async function dbPut(request, id, item = {}) {
   const stage = request.context.stage;
+  const { page, rating, comment, version, language } = request.body;
+
   const params = {
     TableName: request.env[`${stage}TableName`],
     Item: {
       id,
-      page: request.body.page,
-      version: request.body.version,
-      rating: request.body.rating,
-      comment: request.body.comment,
+      page,
+      rating,
+      comment,
+      version,
+      language,
       dateTime: new Date().toString(),
     },
   };
@@ -97,6 +100,7 @@ async function updateAverageRating(request, currentUserRating) {
     rating,
     count,
     comment: undefined,
+    language: undefined,
   };
 
   return dbPut(request, id, newAverageRating);
