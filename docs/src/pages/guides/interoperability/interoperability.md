@@ -26,6 +26,7 @@ Nothing fancy, just plain CSS.
 .slider {
   color: #20b2aa;
 }
+
 .slider:hover {
   color: #2e8b57;
 }
@@ -42,15 +43,15 @@ export default function PlainCssSlider() {
   return (
     <div>
       <Slider defaultValue={30} />
-      <Slider className="slider" defaultValue={30} />
+      <Slider defaultValue={30} className="slider" />
     </div>
   );
 }
 ```
 
-### Controlling priority ⚠️
+### CSS injection order ⚠️
 
-**Note:** Most CSS-in-JS solutions inject their styles at the bottom of the HTML `<head>`. If you don't want to mark style attributes with **!important**, you need to change the CSS injection order. Here's a demo of how it can be done for the default style engine - emotion:
+**Note:** Most CSS-in-JS solutions inject their styles at the bottom of the HTML `<head>`, which make Material-UI take precedence over your `<style>`. To remove the need for **!important**, you need to change the CSS injection order. Here's a demo of how it can be done for the default style engine - emotion:
 
 ```jsx
 import * as React from 'react';
@@ -81,41 +82,77 @@ export default function PlainCssPriority() {
 
 If you attempt to style the Slider,
 you will likely need to affect some of the Slider's child elements, for example the thumb.
-In Material-UI, all child elements have an increased specificity of 2 `.parent .child {}`. When writing overrides, you need
-to do the same. In order to provide custom class names, you need to use the `componentProps` API.
+In Material-UI, all child elements have an increased specificity of 2 `.parent .child {}`. When writing overrides, you need to do the same.
 
-The following example overrides the `thumb` style of `Slider` in addition to the custom styles on the slider itself.
+The following examples override the slider's `thumb` style in addition to the custom styles on the slider itself.
 
 {{"demo": "pages/guides/interoperability/StyledComponentsDeep.js", "hideToolbar": true}}
 
-**PlainCssSliderDeep.css**
+**PlainCssSliderDeep1.css**
 
 ```css
 .slider {
   color: #20b2aa;
 }
+
 .slider:hover {
   color: #2e8b57;
 }
+
+.slider .MuiSlider-thumb {
+  border-radius: 1px;
+}
+```
+
+**PlainCssSliderDeep1.js**
+
+```jsx
+import * as React from 'react';
+import Slider from '@material-ui/lab/SliderStyled';
+import './PlainCssSliderDeep1.css';
+
+export default function PlainCssSliderDeep1() {
+  return (
+    <div>
+      <Slider defaultValue={30} />
+      <Slider defaultValue={30} className="slider" />
+    </div>
+  );
+}
+```
+
+The above demo relies on the [default `className` values](/styles/advanced/#with-material-ui-core), but you can provide your own class name with the `componentsProps` API.
+
+**PlainCssSliderDeep2.css**
+
+```css
+.slider {
+  color: #20b2aa;
+}
+
+.slider:hover {
+  color: #2e8b57;
+}
+
 .slider .thumb {
   border-radius: 1px;
 }
 ```
 
-**PlainCssSliderDeep.js**
+**PlainCssSliderDeep2.js**
 
 ```jsx
 import * as React from 'react';
 import Slider from '@material-ui/lab/SliderStyled';
-import './PlainCssSliderDeep.css';
+import './PlainCssSliderDeep2.css';
 
-export default function PlainCssSliderDeep() {
+export default function PlainCssSliderDeep2() {
   return (
     <div>
       <Slider defaultValue={30} />
       <Slider
-        className="slider"
         defaultValue={30}
+        className="slider"
         componentsProps={{ thumb: { className: 'thumb' } }}
       />
     </div>
@@ -136,6 +173,7 @@ Explicitly providing the class names to the component is too much effort?
 .MuiSlider-root {
   color: #20b2aa;
 }
+
 .MuiSlider-root:hover {
   color: #2e8b57;
 }
@@ -153,9 +191,9 @@ export default function GlobalCssSlider() {
 }
 ```
 
-### Controlling priority ⚠️
+### CSS injection order ⚠️
 
-**Note:** Most CSS-in-JS solutions inject their styles at the bottom of the HTML `<head>`. If you don't want to mark style attributes with **!important**, you need to change the CSS injection order. Here's a demo of how it can be done for the default style engine - emotion:
+**Note:** Most CSS-in-JS solutions inject their styles at the bottom of the HTML `<head>`, which make Material-UI take precedence over your `<style>`. To remove the need to mark your style attributes with **!important**, you need to change the CSS injection order. Here's a demo of how it can be done for the default style engine - emotion:
 
 ```jsx
 import * as React from 'react';
@@ -173,7 +211,7 @@ const cache = createCache({
   container: emotionContainer,
 });
 
-export default function PlainCssPriority() {
+export default function GlobalCssPriority() {
   return (
     <CacheProvider value={cache}>
       {/* Your component tree. Now you can override Material-UI's styles. */}
@@ -186,10 +224,9 @@ export default function PlainCssPriority() {
 
 If you attempt to style the Slider,
 you will likely need to affect some of the Slider's child elements, for example the thumb.
-In Material-UI, all child elements have an increased specificity of 2 `.parent .child {}`. When writing overrides, you need
-to do the same.
+In Material-UI, all child elements have an increased specificity of 2 `.parent .child {}`. When writing overrides, you need to do the same.
 
-The following example overrides the `MuiSlider-thumb` style of `Slider` in addition to the custom styles on the slider itself.
+The following example overrides the slider's `thumb` style in addition to the custom styles on the slider itself.
 
 {{"demo": "pages/guides/interoperability/StyledComponentsDeep.js", "hideToolbar": true}}
 
@@ -199,9 +236,11 @@ The following example overrides the `MuiSlider-thumb` style of `Slider` in addit
 .MuiSlider-root {
   color: #20b2aa;
 }
+
 .MuiSlider-root:hover {
   color: #2e8b57;
 }
+
 .MuiSlider-root .MuiSlider-thumb {
   border-radius: 1px;
 }
@@ -214,7 +253,7 @@ import * as React from 'react';
 import Slider from '@material-ui/lab/SliderStyled';
 import './GlobalCssSliderDeep.css';
 
-export default function GlobalCssSlider() {
+export default function GlobalCssSliderDeep() {
   return <Slider defaultValue={30} />;
 }
 ```
@@ -227,7 +266,8 @@ export default function GlobalCssSlider() {
 ### Change the default styled engine
 
 By default, Material-UI components come with emotion as their style engine. If,
-however, you would like to use `styled-components`, you can configure your app by following this [example project](https://github.com/mui-org/material-ui/blob/next/examples/create-react-app-with-styled-components).
+however, you would like to use `styled-components`, you are encouraged to configure your app by following this [example project](https://github.com/mui-org/material-ui/blob/next/examples/create-react-app-with-styled-components).
+Following the previous approach reduces the bundle size and removes the need to configure the CSS injection order.
 
 After the style engine is configured properly, you can use the `experimentalStyled()` utility
 from `@material-ui/core/styles` and have direct access to the theme.
@@ -243,6 +283,7 @@ import { experimentalStyled as styled } from '@material-ui/core/styles';
 
 const CustomizedSlider = styled(Slider)`
   color: #20b2aa;
+
   :hover {
     color: #2e8b57;
   }
@@ -257,62 +298,65 @@ export default function StyledComponents() {
 
 If you attempt to style the Slider,
 you will likely need to affect some of the Slider's child elements, for example the thumb.
-In Material-UI, all child elements have an increased specificity of 2 `.parent .child {}`. When writing overrides, you need
-to do the same.
+In Material-UI, all child elements have an increased specificity of 2 `.parent .child {}`. When writing overrides, you need to do the same.
 
-The following example overrides the `thumb` style of `Slider` in addition to the custom styles on the slider itself.
+The following examples override the slider's `thumb` style in addition to the custom styles on the slider itself.
 
-{{"demo": "pages/guides/interoperability/StyledComponentsDeep.js"}}
+{{"demo": "pages/guides/interoperability/StyledComponentsDeep.js", "defaultCodeOpen": false}}
 
 ```jsx
 import * as React from 'react';
 import Slider from '@material-ui/lab/SliderStyled';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
 
-const CustomizedSliderDeep = styled(Slider)`
+const CustomizedSlider = styled(Slider)`
   color: #20b2aa;
+
   :hover {
     color: #2e8b57;
   }
+
   & .MuiSlider-thumb {
     border-radius: 1px;
   }
 `;
 
-export default function CustomizedSliderDeepDemo() {
+export default function StyledComponentsDeep1() {
   return (
     <div>
       <Slider defaultValue={30} />
-      <CustomizedSliderDeep defaultValue={30} />
+      <CustomizedSlider defaultValue={30} />
     </div>
   );
 }
 ```
 
-The above demo relies on the [default `className` values](/styles/advanced/#with-material-ui-core), but you can provide your own class name: `.thumb`.
+The above demo relies on the [default `className` values](/styles/advanced/#with-material-ui-core), but you can provide your own class name with the `componentsProps` API.
 
 ```jsx
 import * as React from 'react';
 import { experimentalStyled as styled } from '@material-ui/core/styles';
 import Slider from '@material-ui/lab/SliderStyled';
 
-const StyledSlider = styled((props) => (
+const CustomizedSlider = styled((props) => (
   <Slider componentsProps={{ thumb: { className: 'thumb' } }} {...props} />
 ))`
   color: #20b2aa;
+
   :hover {
     color: #2e8b57;
   }
+
   & .thumb {
     border-radius: 1px;
   }
 `;
 
-export default function StyledComponentsDeep() {
+export default function StyledComponentsDeep2() {
   return (
     <div>
-      <Slider defaultValue={30}>Default</Slider>
-      <StyledSlider defaultValue={30}>Customized</StyledSlider>
+      <Slider defaultValue={30} />
+      <CustomizedSlider defaultValue={30} />
     </div>
   );
 }
@@ -320,24 +364,22 @@ export default function StyledComponentsDeep() {
 
 ### Theme
 
-Material-UI has a rich theme structure that you can take advantage of for
-color manipulations, transitions, media queries, and more.
-
 By using the Material-UI theme provider, the theme will be available in the theme context
 of the styled engine too (emotion or styled-components, depending on your configuration).
 
-You are encouraged to share the same theme object between Material-UI and your styles.
+> ⚠️ If you are **already** using a custom theme with styled-components or emotion,
+> it might not be compatible with Material-UI's theme specification. If it's not
+> compatible, you need to render the Material-UI's ThemeProvider <b>first</b>. This will
+> ensure the theme structures are isolated. This is ideal for the progressive adoption
+> of Material-UI's components in the codebase.
 
-If you are already using a custom theme with styled-components or emotion,
-it might not be compatible with Material-UI's theme specification. If it's not
-compatible, you need to render the Material-UI's ThemeProvider <b>first</b>. This will
-ensure the theme structures are isolated. This is ideal for the progressive adoption
-of Material-UI's components in the codebase.
+You are encouraged to share the same theme object between Material-UI and the rest of your project.
 
 ```jsx
 const CustomizedSlider = styled(Slider)(
   ({ theme }) => `
   color: ${theme.palette.primary.main};
+
   :hover {
     color: ${darken(theme.palette.primary.main, 0.2)};
   }
@@ -349,7 +391,7 @@ const CustomizedSlider = styled(Slider)(
 
 ### Portals
 
-<!-- TODO: fill this section after the portal are implemented with the new styled engine -->
+TODO: fill this section after the portal are implemented with the new styled engine.
 
 ## CSS Modules
 
@@ -378,23 +420,23 @@ bundling solution people are using.
 
 ```jsx
 import React from 'react';
+import Slider from '@material-ui/lab/SliderStyled';
 // webpack, parcel or else will inject the CSS into the page
 import styles from './CssModulesSlider.module.css';
-import Slider from '@material-ui/lab/SliderStyled';
 
 export default function CssModulesSlider() {
   return (
     <div>
       <Slider defaultValue={30} />
-      <Slider className={styles.slider} defaultValue={30} />
+      <Slider defaultValue={30} className={styles.slider} />
     </div>
   );
 }
 ```
 
-### Controlling priority ⚠️
+### CSS injection order ⚠️
 
-**Note:** Most CSS-in-JS solutions inject their styles at the bottom of the HTML `<head>`. If you don't want to mark style attributes with **!important**, you need to change the CSS injection order. Here's a demo of how it can be done for the default style engine - emotion:
+**Note:** Most CSS-in-JS solutions inject their styles at the bottom of the HTML `<head>`, which make Material-UI take precedence over your `<style>`. To remove the need to mark your style attributes with **!important**, you need to change the CSS injection order. Here's a demo of how it can be done for the default style engine - emotion:
 
 ```jsx
 import * as React from 'react';
@@ -425,43 +467,80 @@ export default function CssModulesPriority() {
 
 If you attempt to style the Slider,
 you will likely need to affect some of the Slider's child elements, for example the thumb.
-In Material-UI, all child elements have an increased specificity of 2 `.parent .child {}`. When writing overrides, you need
-to do the same. In order to provide custom class names, you need to use the `componentProps` API.
+In Material-UI, all child elements have an increased specificity of 2 `.parent .child {}`. When writing overrides, you need to do the same.
 
-The following example overrides the `thumb` style of `Slider` in addition to the custom styles on the slider itself.
+The following examples override the slider's `thumb` style in addition to the custom styles on the slider itself.
 
 {{"demo": "pages/guides/interoperability/StyledComponentsDeep.js", "hideToolbar": true}}
 
-**CssModulesSliderDeep.module.css**
+**CssModulesSliderDeep1.module.css**
 
 ```css
 .slider {
   color: #20b2aa;
 }
+
 .slider:hover {
   color: #2e8b57;
 }
+
+.slider .MuiSlider-thumb {
+  border-radius: 1px;
+}
+```
+
+**CssModulesSliderDeep1.js**
+
+```jsx
+import React from 'react';
+// webpack, parcel or else will inject the CSS into the page
+import styles from './CssModulesSliderDeep1.module.css';
+import Slider from '@material-ui/lab/SliderStyled';
+
+export default function CssModulesSliderDeep1() {
+  return (
+    <div>
+      <Slider defaultValue={30} />
+      <Slider defaultValue={30} className={styles.slider} />
+    </div>
+  );
+}
+```
+
+The above demo relies on the [default `className` values](/styles/advanced/#with-material-ui-core), but you can provide your own class name with the `componentsProps` API.
+
+**CssModulesSliderDeep2.module.css**
+
+```css
+.slider {
+  color: #20b2aa;
+}
+
+.slider:hover {
+  color: #2e8b57;
+}
+
 .slider .thumb {
   border-radius: 1px;
 }
 ```
 
-**CssModulesSliderDeep.js**
+**CssModulesSliderDeep2.js**
 
 ```jsx
 import React from 'react';
 // webpack, parcel or else will inject the CSS into the page
-import styles from './CssModulesSliderDeep.module.css';
+import styles from './CssModulesSliderDeep2.module.css';
 import Slider from '@material-ui/lab/SliderStyled';
 
-export default function CssModulesSliderDeep() {
+export default function CssModulesSliderDeep2() {
   return (
     <div>
       <Slider defaultValue={30} />
       <Slider
+        defaultValue={30}
         className={styles.slider}
         componentsProps={{ thumb: { className: styles.thumb } }}
-        defaultValue={30}
       />
     </div>
   );
@@ -494,6 +573,7 @@ export default function EmotionCSS() {
         defaultValue={30}
         css={css`
           color: #20b2aa;
+
           :hover {
             color: #2e8b57;
           }

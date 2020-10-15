@@ -15,7 +15,7 @@ const SliderCustomized = styled(Slider)`
   }
 `;
 
-export default function StyledComponents() {
+export default function StyledComponentsDeep() {
   return (
     <Box width={300}>
       <Slider defaultValue={30} />
