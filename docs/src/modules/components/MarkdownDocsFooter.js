@@ -296,9 +296,7 @@ function MarkdownDocsFooter(props) {
             </div>
             <DialogActions>
               <Button onClick={handleCancelComment}>{t('cancel')}</Button>
-              <Button disabled={comment.length < 20} onClick={handleSubmitComment}>
-                {t('submit')}
-              </Button>
+              <Button onClick={handleSubmitComment}>{t('submit')}</Button>
             </DialogActions>
           </div>
         </Collapse>
