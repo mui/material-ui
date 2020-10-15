@@ -56,10 +56,15 @@ function moveFocus(
   disabledItemsFocusable,
   traversalFunction,
   textCriteria,
-  listRef
+  listRef,
 ) {
   let wrappedOnce = false;
-  let nextFocus = traversalFunction(list, currentFocus, currentFocus ? disableListWrap : false, listRef);
+  let nextFocus = traversalFunction(
+    list,
+    currentFocus,
+    currentFocus ? disableListWrap : false,
+    listRef,
+  );
 
   while (nextFocus) {
     // Prevent infinite loop.
@@ -123,15 +128,12 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
   const [activeItemIndex, setActiveItemIndex] = React.useState(-1);
 
   useEnhancedEffect(() => {
-    // if (items) {
-    //   return;
-    // }
     /**
      * the index of the item should receive focus
      * in a `variant="selectedMenu"` it's the first `selected` item
      * otherwise it's the very first item.
      */
-    let activeItem = -1; 
+    let activeItem = -1;
     const menuItemRefs = [];
 
     const setup = (child) => {
@@ -153,7 +155,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
       if (child.type === MenuItem || (child.props.role && child.props.role === 'menuitem')) {
         const itemRef = React.createRef();
         const newProps = {
-          ref: itemRef
+          ref: itemRef,
         };
 
         if (!child.props.disabled) {
@@ -175,8 +177,8 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
         const newChild = React.cloneElement(child, newProps);
         menuItemRefs.push(itemRef);
         return newChild;
-      } 
-      
+      }
+
       if (child.props.children) {
         const newChildren = React.Children.map(child.props.children, setup);
         return React.cloneElement(child, { children: newChildren });
@@ -198,21 +200,19 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
   useEnhancedEffect(() => {
     if (autoFocusItem && activeItemIndex >= 0) {
       menuItems[activeItemIndex].current.focus();
-      // if (menuItems[activeItemIndex].current.tabIndex === undefined) {
-      //   menuItems[activeItemIndex].current.tabIndex = 0;
-      // }
     } else if (autoFocus) {
       listRef.current.focus();
     }
 
-    if (variant === 'selectedMenu' && 
-      activeItemIndex >= 0 && 
-      menuItems[activeItemIndex].current && 
-      (menuItems[activeItemIndex].current.tabIndex === undefined || menuItems[activeItemIndex].current.tabIndex === -1)
+    if (
+      variant === 'selectedMenu' &&
+      activeItemIndex >= 0 &&
+      menuItems[activeItemIndex].current &&
+      (menuItems[activeItemIndex].current.tabIndex === undefined ||
+        menuItems[activeItemIndex].current.tabIndex === -1)
     ) {
       menuItems[activeItemIndex].current.tabIndex = 0;
     }
-    
   }, [autoFocus, activeItemIndex, autoFocusItem, menuItems, variant]);
 
   React.useImperativeHandle(
@@ -249,16 +249,40 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     if (key === 'ArrowDown') {
       // Prevent scroll of the page
       event.preventDefault();
-      moveFocus(list, currentFocus, disableListWrap, disabledItemsFocusable, nextItem, undefined, listRef);
+      moveFocus(
+        list,
+        currentFocus,
+        disableListWrap,
+        disabledItemsFocusable,
+        nextItem,
+        undefined,
+        listRef,
+      );
     } else if (key === 'ArrowUp') {
       event.preventDefault();
-      moveFocus(list, currentFocus, disableListWrap, disabledItemsFocusable, previousItem, undefined, listRef);
+      moveFocus(
+        list,
+        currentFocus,
+        disableListWrap,
+        disabledItemsFocusable,
+        previousItem,
+        undefined,
+        listRef,
+      );
     } else if (key === 'Home') {
       event.preventDefault();
       moveFocus(list, null, disableListWrap, disabledItemsFocusable, nextItem, undefined, listRef);
     } else if (key === 'End') {
       event.preventDefault();
-      moveFocus(list, null, disableListWrap, disabledItemsFocusable, previousItem, undefined, listRef);
+      moveFocus(
+        list,
+        null,
+        disableListWrap,
+        disabledItemsFocusable,
+        previousItem,
+        undefined,
+        listRef,
+      );
     } else if (key.length === 1) {
       const criteria = textCriteriaRef.current;
       const lowerKey = key.toLowerCase();
