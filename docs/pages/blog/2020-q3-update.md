@@ -123,7 +123,7 @@ Here are the most significant improvements since June 2020. The was a dense quar
 
 We are thrilled to welcome two new full-time developers to Material-UI:
 
-- [Marija Najdova](https://github.com/mnajdova). Marija is coming from the Fluent-UI's React team at Microsoft. She's consolidating the community team. You can learn more about her in the [introduction blog post](/blog/marija-najdova-joining/).
+- [Marija Najdova](https://github.com/mnajdova). Marija joins us from the Fluent-UI React team at Microsoft. She's allowing the community team to move faster. You can learn more about her in the [introduction blog post](/blog/marija-najdova-joining/).
 
   <img src="https://avatars3.githubusercontent.com/u/4512430?s=320" alt="marija" style="max-width: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
 
