@@ -328,6 +328,12 @@ of the styled engine too (emotion or styled-components, depending on your config
 
 You are encouraged to share the same theme object between Material-UI and your styles.
 
+If you are already using a custom theme with styled-components or emotion,
+it might not be compatible with Material-UI's theme specification. If it's not
+compatible, you need to render the Material-UI's ThemeProvider <b>first</b>. This will
+ensure the theme structures are isolated. This is ideal for the progressive adoption
+of Material-UI's components in the codebase.
+
 ```jsx
 const CustomizedSlider = styled(Slider)(
   ({ theme }) => `
@@ -343,33 +349,7 @@ const CustomizedSlider = styled(Slider)(
 
 ### Portals
 
-The [Portal](/components/portal/) provides a first-class way to render children into a DOM node that exists outside the DOM hierarchy of the parent component.
-Because of the way styled-components scopes its CSS, you may run into issues where styling is not applied.
-
-For example, if you attempt to style the [Menu](/components/menus/) of a [Select](/components/selects/) component using the `MenuProps` prop,
-you will need to pass along the `className` prop to the element being rendered outside of it's DOM hierarchy.
-The following example shows a workaround:
-
-```jsx
-import * as React from 'react';
-import styled from 'styled-components';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-
-const StyledMenu = styled(({ className, ...props }) => (
-  <Menu {...props} classes={{ paper: className }} />
-))`
-  box-shadow: none;
-  border: 1px solid #d3d4d5;
-
-  li {
-    padding-top: 8px;
-    padding-bottom: 8px;
-  }
-`;
-```
-
-{{"demo": "pages/guides/interoperability/StyledComponentsPortal.js"}}
+<!-- TODO: fill this section after the portal are implemented with the new styled engine -->
 
 ## CSS Modules
 
