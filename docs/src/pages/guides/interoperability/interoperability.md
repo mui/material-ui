@@ -369,7 +369,7 @@ of the styled engine too (emotion or styled-components, depending on your config
 
 > ⚠️ If you are **already** using a custom theme with styled-components or emotion,
 > it might not be compatible with Material-UI's theme specification. If it's not
-> compatible, you need to render the Material-UI's ThemeProvider <b>first</b>. This will
+> compatible, you need to render Material-UI's ThemeProvider <b>first</b>. This will
 > ensure the theme structures are isolated. This is ideal for the progressive adoption
 > of Material-UI's components in the codebase.
 
