@@ -467,7 +467,7 @@ export default function CssModulesPriority() {
 
 If you attempt to style the Slider,
 you will likely need to affect some of the Slider's child elements, for example the thumb.
-In Material-UI, all child elements have an increased specificity of 2 `.parent .child {}`. When writing overrides, you need to do the same.
+In Material-UI, all child elements have an increased specificity of 2: `.parent .child {}`. When writing overrides, you need to do the same.
 
 The following examples override the slider's `thumb` style in addition to the custom styles on the slider itself.
 
