@@ -27,7 +27,7 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 
 这是一个简单紧凑型表格，并且没有多余的装饰。
 
-{{"demo": "pages/components/tables/DenseTable.js", "bg": true}} 
+{{"demo": "pages/components/tables/DenseTable.js", "bg": true}}
 
 ## 紧凑的表格
 
@@ -35,7 +35,7 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 
 这个表格已被赋予一个固定的宽度，您可以查看如何实现横向滚动。 在表格外部使用 TablePagination 组件，能够防止分页控件的滚动。 (以下的['Custom Table Pagination Action' （自定义表分页操作示例）](#custom-pagination-actions)展示了 TableFooter 中的分页。)
 
-{{"demo": "pages/components/tables/EnhancedTable.js", "bg": true}} 
+{{"demo": "pages/components/tables/EnhancedTable.js", "bg": true}}
 
 ## 排序 & 筛选
 
@@ -49,7 +49,7 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 
 以下是自定义组件的一个示例。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
 
-{{"demo": "pages/components/tables/CustomizedTables.js", "bg": true}} 
+{{"demo": "pages/components/tables/CustomizedTables.js", "bg": true}}
 
 ### 自定义的分页选项
 
@@ -71,31 +71,31 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 
 `TablePagination` 组件的 ` ActionsComponent ` 属性能够让您实现一些自定义的行为。
 
-{{"demo": "pages/components/tables/CustomPaginationActionsTable.js", "bg": true}} 
+{{"demo": "pages/components/tables/CustomPaginationActionsTable.js", "bg": true}}
 
 ## 固定表头
 
 一个具有可滚动行和固定表头的表格示例。 它利用了 `stickyheader` 这个属性（⚠️不支持 IE11）。
 
-{{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}} 
+{{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
 
 ## 可折叠的表格
 
 以可扩展行的表格为例，揭示更多信息。 它利用了 [`Collapse`](/api/collapse/) 组件。
 
-{{"demo": "pages/components/tables/CollapsibleTable.js", "bg": true}} 
+{{"demo": "pages/components/tables/CollapsibleTable.js", "bg": true}}
 
 ## 跨越表格（Spanning Table）
 
 一个行和列跨越的简单例子。
 
-{{"demo": "pages/components/tables/SpanningTable.js", "bg": true}} 
+{{"demo": "pages/components/tables/SpanningTable.js", "bg": true}}
 
 ## 大型列表渲染（Virtualized Table）
 
 以下例子展示了将 [react-virtualized](https://github.com/bvaughn/react-virtualized) 与 `Table` 组件一起使用的方法。 它渲染了200多行，并且可以轻松的延展到更多行。 可视化优化了整体的性能。
 
-{{"demo": "pages/components/tables/ReactVirtualizedTable.js", "bg": true}} 
+{{"demo": "pages/components/tables/ReactVirtualizedTable.js", "bg": true}}
 
 ## 无障碍设计
 
