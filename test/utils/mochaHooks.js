@@ -1,5 +1,7 @@
 const formatUtil = require('format-util');
 
+const isKarma = Boolean(process.env.KARMA);
+
 function createUnexpectedConsoleMessagesHooks(Mocha, methodName, expectedMatcher) {
   const mochaHooks = {
     beforeAll: [],
@@ -39,26 +41,27 @@ function createUnexpectedConsoleMessagesHooks(Mocha, methodName, expectedMatcher
       throw new Error(`Did not tear down spy or stub of console.${methodName} in your test.`);
     }
     if (hadUnexpectedCalls) {
-      // In karma `file` is `null`.
-      // We still have the stacktrace though
-      const location = this.currentTest.file ?? '(unknown file)';
-      const testPath = `"${this.currentTest.parent
-        .titlePath()
-        .concat(this.currentTest.title)
-        .join('" -> "')}"`;
       const message =
         `Expected test not to call console.${methodName}()\n\n` +
         'If the warning is expected, test for it explicitly by ' +
         `using the ${expectedMatcher}() matcher.`;
 
-      const error = new Error(
-        `${location}: ${message}\n\n${formattedCalls.join('\n\n')}\n\n` +
-          `in ${testPath} (${location})`,
-      );
+      const error = new Error(`${message}\n\n${formattedCalls.join('\n\n')}`);
       // The stack of `flushUnexpectedCalls` is irrelevant.
       // It includes no clue where the test was triggered
       error.stack = '';
-      throw error;
+
+      if (isKarma) {
+        const testPath = `"${this.currentTest.parent
+          .titlePath()
+          .concat(this.currentTest.title)
+          .join('" -> "')}"`;
+
+        error.message += `\n\nin ${testPath}`;
+        throw error;
+      } else {
+        this.test.error(error);
+      }
     }
   });
 
