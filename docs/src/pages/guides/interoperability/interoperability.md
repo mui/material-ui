@@ -391,7 +391,7 @@ const CustomizedSlider = styled(Slider)(
 
 ### Portals
 
-TODO: fill this section after the portal are implemented with the new styled engine.
+TODO: fill this section after the portal is implemented with the new styled engine.
 
 ## CSS Modules
 
