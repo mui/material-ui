@@ -50,7 +50,7 @@ const ValueLabelRoot = experimentalStyled(
   '& .MuiSlider-valueLabelLabel': {
     color: props.theme.palette.primary.contrastText,
     transform: 'rotate(45deg)',
-    align: 'center',
+    textAlign: 'center',
   },
 }));
 
