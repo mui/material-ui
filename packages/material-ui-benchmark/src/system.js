@@ -1,8 +1,9 @@
 /* eslint-disable no-console */
 import Benchmark from 'benchmark';
 import { space, color, fontFamily, fontSize, compose as compose2 } from 'styled-system';
-import { spacing, palette, typography, compose, styleFunctionInversed } from '@material-ui/system';
+import { spacing, palette, typography, compose } from '@material-ui/system';
 import { createMuiTheme } from '@material-ui/core/styles';
+import { styleFunction } from '@material-ui/core/Box';
 
 const suite = new Benchmark.Suite('system', {
   onError: (event) => {
@@ -72,7 +73,7 @@ suite
   })
   // ---
   .add('@material-ui/core all-inclusive', () => {
-    styleFunctionInversed({
+    styleFunction({
       theme: materialSystemTheme,
       color: 'primary.main',
       bgcolor: 'background.paper',

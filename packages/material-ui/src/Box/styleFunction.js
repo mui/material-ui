@@ -1,13 +1,15 @@
-import borders from './borders';
-import display from './display';
-import flexbox from './flexbox';
-import grid from './grid';
-import positions from './positions';
-import palette from './palette';
-import shadows from './shadows';
-import sizing from './sizing';
-import spacing from './spacing';
-import typography from './typography';
+import {
+  borders,
+  display,
+  flexbox,
+  grid,
+  positions,
+  palette,
+  shadows,
+  sizing,
+  spacing,
+  typography,
+} from '@material-ui/system';
 
 const filterProps = [
   ...borders.filterProps,
@@ -93,7 +95,7 @@ const traverseSx = (styles, theme) => {
   return css;
 };
 
-function styleFunctionInversed(props) {
+const styleFunction = (props) => {
   let result = {};
   Object.keys(props).forEach((prop) => {
     if (filterProps.indexOf(prop) !== -1) {
@@ -110,8 +112,8 @@ function styleFunctionInversed(props) {
     ...result,
     ...sxValue,
   };
-}
+};
 
-styleFunctionInversed.filterProps = filterProps;
+styleFunction.filterProps = filterProps;
 
-export default styleFunctionInversed;
+export default styleFunction;

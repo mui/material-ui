@@ -16,7 +16,7 @@ import {
 import { CSSObject } from '../styles/experimentalStyled';
 import { Omit } from '..';
 
-type BoxStyleFunction = ComposedStyleFunction<
+export type BoxStyleFunction = ComposedStyleFunction<
   [
     typeof borders,
     typeof display,

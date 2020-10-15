@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { styleFunctionInversed } from '@material-ui/system';
+import styleFunction from './styleFunction';
 import styled from '../styles/experimentalStyled';
-
-export const styleFunction = styleFunctionInversed;
 
 function omit(input, fields) {
   const output = {};
