@@ -127,7 +127,7 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
 
 `direction="column"` 和 `direction="column-reverse"`的容器**不支持** 和断点有关的 `xs`, `sm`, `md`, `lg`，以及 `xl` 这几个props。
 
-它们决定在某个断点下组件占几个格子 他们是用`flex-basis`实现，在`row`容器用来控制 **宽度** 的，但是在`column` 容器里就会改变高度。 If used, these props may have undesirable effects on the height of the `Grid` item elements.
+它们决定在某个断点下组件占几个格子 他们是用`flex-basis`实现，在`row`容器用来控制 **宽度** 的，但是在`column` 容器里就会改变高度。 如果使用这些属性，可能会对 `Grid` 块元素的高度产生副作用。
 
 ## CSS 栅格布局
 
