@@ -2,17 +2,15 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import {
-  findOutermostIntrinsic,
   getClasses,
-  wrapsIntrinsicElement,
   createMount,
   createClientRender,
   act,
   fireEvent,
+  screen,
   describeConformance,
 } from 'test/utils';
 import Icon from '@material-ui/core/Icon';
-import Fab from '@material-ui/core/Fab';
 import SpeedDial from './SpeedDial';
 import SpeedDialAction from '../SpeedDialAction';
 
@@ -50,63 +48,65 @@ describe('<SpeedDial />', () => {
   }));
 
   it('should render a Fade transition', () => {
-    const wrapper = mount(
+    const { container } = render(
       <SpeedDial {...defaultProps}>
         <FakeAction />
       </SpeedDial>,
     );
-    expect(findOutermostIntrinsic(wrapper).type()).to.equal('div');
+
+    expect(container.firstChild.tagName).to.equal('DIV');
   });
 
   it('should render a Fab', () => {
-    const wrapper = mount(
+    const { getByRole } = render(
       <SpeedDial {...defaultProps}>
         <FakeAction />
       </SpeedDial>,
     );
-    const buttonWrapper = wrapper.find('[aria-expanded]').first();
-    expect(buttonWrapper.type()).to.equal(Fab);
+    expect(getByRole('button', { expanded: true })).not.to.equal(null);
   });
 
   it('should render with a null child', () => {
-    const wrapper = mount(
+    const { getByRole, getAllByRole } = render(
       <SpeedDial {...defaultProps}>
         <SpeedDialAction icon={icon} tooltipTitle="One" />
         {null}
         <SpeedDialAction icon={icon} tooltipTitle="Three" />
       </SpeedDial>,
     );
-    expect(wrapper.find(SpeedDialAction).length).to.equal(2);
+    expect(getByRole('menu').children).to.have.lengthOf(2);
+    expect(getAllByRole('menuitem')).to.have.lengthOf(2);
   });
 
   it('should pass the open prop to its children', () => {
     const actionClasses = { fabClosed: 'is-closed' };
-    const wrapper = mount(
+    const { getAllByRole } = render(
       <SpeedDial {...defaultProps}>
         <SpeedDialAction classes={actionClasses} icon={icon} tooltipTitle="SpeedDialAction1" />
         <SpeedDialAction classes={actionClasses} icon={icon} tooltipTitle="SpeedDialAction2" />
       </SpeedDial>,
     );
-    const actions = wrapper.find('[role="menuitem"]').filterWhere(wrapsIntrinsicElement);
-    expect(actions.some('.is-closed')).to.equal(false);
+    const actions = getAllByRole('menuitem');
+    expect(actions).to.have.lengthOf(2);
+    expect(actions.map((element) => element.className)).not.to.contain('is-closed');
   });
 
   describe('prop: onKeyDown', () => {
     it('should be called when a key is pressed', () => {
       const handleKeyDown = spy();
-      const wrapper = mount(
+      const { getByRole } = render(
         <SpeedDial {...defaultProps} onKeyDown={handleKeyDown}>
           <FakeAction />
         </SpeedDial>,
       );
-      const buttonWrapper = wrapper.find('[aria-expanded]').first();
-      const eventMock = 'something-to-match';
-      buttonWrapper.simulate('keyDown', {
-        key: ' ',
-        eventMock,
+      const buttonWrapper = getByRole('button', { expanded: true });
+      act(() => {
+        fireEvent.keyDown(document.body, { key: 'TAB' });
+        buttonWrapper.focus();
       });
+      fireEvent.keyDown(buttonWrapper, { key: ' ' });
       expect(handleKeyDown.callCount).to.equal(1);
-      expect(handleKeyDown.calledWithMatch({ eventMock })).to.equal(true);
+      expect(handleKeyDown.calledWithMatch({ key: ' ' })).to.equal(true);
     });
   });
 
@@ -118,13 +118,13 @@ describe('<SpeedDial />', () => {
       ['right', 'directionRight'],
     ].forEach(([direction, className]) => {
       it(`should place actions in the correct position when direction=${direction}`, () => {
-        const wrapper = mount(
+        const { getByRole } = render(
           <SpeedDial {...defaultProps} direction={direction.toLowerCase()}>
             <SpeedDialAction icon={icon} tooltipTitle="action1" />
             <SpeedDialAction icon={icon} tooltipTitle="action2" />
           </SpeedDial>,
         );
-        expect(findOutermostIntrinsic(wrapper).hasClass(classes[className])).to.equal(true);
+        expect(getByRole('presentation')).to.have.class(classes[className]);
       });
     });
   });
@@ -163,48 +163,40 @@ describe('<SpeedDial />', () => {
   });
 
   describe('dial focus', () => {
-    let actionRefs;
-    let dialButtonRef;
-    let onkeydown;
-    let wrapper;
+    let actionButtons;
+    let fabButton;
 
-    const mountSpeedDial = (direction = 'up', actionCount = 4) => {
-      actionRefs = [];
-      dialButtonRef = undefined;
-      onkeydown = spy();
+    const renderSpeedDial = (direction = 'up', actionCount = 4) => {
+      actionButtons = [];
+      fabButton = undefined;
 
-      wrapper = mount(
+      render(
         <SpeedDial
           {...defaultProps}
           FabProps={{
-            ref: (ref) => {
-              dialButtonRef = ref;
+            ref: (element) => {
+              fabButton = element;
             },
           }}
           direction={direction}
-          onKeyDown={onkeydown}
         >
-          {Array.from({ length: actionCount }, (_, i) => (
+          {Array.from({ length: actionCount }, (_, index) => (
             <SpeedDialAction
-              key={i}
+              key={index}
               FabProps={{
-                ref: (ref) => {
-                  actionRefs[i] = ref;
+                ref: (element) => {
+                  actionButtons[index] = element;
                 },
               }}
               icon={icon}
-              data-test={i}
-              tooltipTitle={`action${i}`}
+              tooltipTitle={`action${index}`}
             />
           ))}
         </SpeedDial>,
       );
+      fabButton.focus();
     };
 
-    /**
-     * @returns the button of SpeedDial
-     */
-    const getDialButton = () => wrapper.find('[aria-controls]').first();
     /**
      *
      * @param actionIndex
@@ -212,161 +204,125 @@ describe('<SpeedDial />', () => {
      */
     const getActionButton = (actionIndex) => {
       if (actionIndex === -1) {
-        return getDialButton();
+        return fabButton;
       }
-      return wrapper.find(SpeedDialAction).at(actionIndex).find(Fab);
+      return actionButtons[actionIndex];
     };
     /**
      * @returns true if the button of the nth action is focused
      */
     const isActionFocused = (index) => {
-      const expectedFocusedElement = index === -1 ? dialButtonRef : actionRefs[index];
-      return expectedFocusedElement === window.document.activeElement;
-    };
-
-    const resetDialToOpen = (direction) => {
-      if (wrapper && wrapper.exists()) {
-        wrapper.unmount();
-      }
-
-      mountSpeedDial(direction);
-      dialButtonRef.focus();
+      const expectedFocusedElement = index === -1 ? fabButton : actionButtons[index];
+      return expectedFocusedElement === document.activeElement;
     };
 
     it('displays the actions on focus gain', () => {
-      resetDialToOpen();
-      expect(wrapper.find(SpeedDial).props().open).to.equal(true);
+      renderSpeedDial();
+      expect(screen.getAllByRole('menuitem')).to.have.lengthOf(4);
+      expect(screen.getByRole('menu')).not.to.have.class(classes.actionsClosed);
     });
 
-    describe('first item selection', () => {
-      it('considers arrow keys with the same initial orientation', () => {
-        resetDialToOpen();
-        getDialButton().simulate('keydown', { key: 'left' });
-        expect(isActionFocused(0)).to.equal(true);
-        getDialButton().simulate('keydown', { key: 'up' });
-        expect(isActionFocused(0)).to.equal(true);
-        getDialButton().simulate('keydown', { key: 'left' });
-        expect(isActionFocused(1)).to.equal(true);
-        getDialButton().simulate('keydown', { key: 'right' });
-        expect(isActionFocused(0)).to.equal(true);
-      });
+    it('considers arrow keys with the same initial orientation', () => {
+      renderSpeedDial();
+      fireEvent.keyDown(fabButton, { key: 'left' });
+      expect(isActionFocused(0)).to.equal(true);
+      fireEvent.keyDown(getActionButton(0), { key: 'up' });
+      expect(isActionFocused(0)).to.equal(true);
+      fireEvent.keyDown(getActionButton(0), { key: 'left' });
+      expect(isActionFocused(1)).to.equal(true);
+      fireEvent.keyDown(getActionButton(1), { key: 'right' });
+      expect(isActionFocused(0)).to.equal(true);
     });
 
-    // eslint-disable-next-line func-names
-    describe('actions navigation', function () {
-      this.timeout(5000); // These tests are really slow.
-
+    describe('actions navigation', () => {
       /**
        * tests a combination of arrow keys on a focused SpeedDial
        */
-      const testCombination = async (
-        dialDirection,
-        [firstKey, ...combination],
-        [firstFocusedAction, ...foci],
-      ) => {
-        resetDialToOpen(dialDirection);
+      const itTestCombination = (dialDirection, keys, expected) => {
+        it(`start dir ${dialDirection} with keys ${keys.join(',')}`, () => {
+          const [firstKey, ...combination] = keys;
+          const [firstFocusedAction, ...foci] = expected;
 
-        getDialButton().simulate('keydown', { key: firstKey });
-        expect(isActionFocused(firstFocusedAction)).to.equal(
-          true,
-          `focused action initial ${firstKey} should be ${firstFocusedAction}`,
-        );
+          renderSpeedDial(dialDirection);
 
-        combination.forEach((arrowKey, i) => {
-          const previousFocusedAction = foci[i - 1] || firstFocusedAction;
-          const expectedFocusedAction = foci[i];
-          const combinationUntilNot = [firstKey, ...combination.slice(0, i + 1)];
-
-          getActionButton(previousFocusedAction).simulate('keydown', {
-            key: arrowKey,
-          });
-          expect(isActionFocused(expectedFocusedAction)).to.equal(
+          fireEvent.keyDown(fabButton, { key: firstKey });
+          expect(isActionFocused(firstFocusedAction)).to.equal(
             true,
-            `focused action after ${combinationUntilNot.join(
-              ',',
-            )} should be ${expectedFocusedAction}`,
+            `focused action initial ${firstKey} should be ${firstFocusedAction}`,
           );
+
+          combination.forEach((arrowKey, i) => {
+            const previousFocusedAction = foci[i - 1] || firstFocusedAction;
+            const expectedFocusedAction = foci[i];
+            const combinationUntilNot = [firstKey, ...combination.slice(0, i + 1)];
+
+            fireEvent.keyDown(getActionButton(previousFocusedAction), {
+              key: arrowKey,
+            });
+            expect(isActionFocused(expectedFocusedAction)).to.equal(
+              true,
+              `focused action after ${combinationUntilNot.join(
+                ',',
+              )} should be ${expectedFocusedAction}`,
+            );
+          });
         });
       };
 
-      it('considers the first arrow key press as forward navigation', async () => {
-        await testCombination('up', ['ArrowUp', 'ArrowUp', 'ArrowUp', 'ArrowDown'], [0, 1, 2, 1]);
-        await testCombination(
-          'up',
-          ['ArrowDown', 'ArrowDown', 'ArrowDown', 'ArrowUp'],
-          [0, 1, 2, 1],
-        );
+      describe('considers the first arrow key press as forward navigation', () => {
+        itTestCombination('up', ['ArrowUp', 'ArrowUp', 'ArrowUp', 'ArrowDown'], [0, 1, 2, 1]);
+        itTestCombination('up', ['ArrowDown', 'ArrowDown', 'ArrowDown', 'ArrowUp'], [0, 1, 2, 1]);
 
-        await testCombination(
+        itTestCombination(
           'right',
           ['ArrowRight', 'ArrowRight', 'ArrowRight', 'ArrowLeft'],
           [0, 1, 2, 1],
         );
-        await testCombination(
+        itTestCombination(
           'right',
           ['ArrowLeft', 'ArrowLeft', 'ArrowLeft', 'ArrowRight'],
           [0, 1, 2, 1],
         );
 
-        await testCombination(
-          'down',
-          ['ArrowDown', 'ArrowDown', 'ArrowDown', 'ArrowUp'],
-          [0, 1, 2, 1],
-        );
-        await testCombination('down', ['ArrowUp', 'ArrowUp', 'ArrowUp', 'ArrowDown'], [0, 1, 2, 1]);
+        itTestCombination('down', ['ArrowDown', 'ArrowDown', 'ArrowDown', 'ArrowUp'], [0, 1, 2, 1]);
+        itTestCombination('down', ['ArrowUp', 'ArrowUp', 'ArrowUp', 'ArrowDown'], [0, 1, 2, 1]);
 
-        await testCombination(
+        itTestCombination(
           'left',
           ['ArrowLeft', 'ArrowLeft', 'ArrowLeft', 'ArrowRight'],
           [0, 1, 2, 1],
         );
-        await testCombination(
+        itTestCombination(
           'left',
           ['ArrowRight', 'ArrowRight', 'ArrowRight', 'ArrowLeft'],
           [0, 1, 2, 1],
         );
       });
 
-      it('ignores array keys orthogonal to the direction', async () => {
-        await testCombination(
-          'up',
-          ['ArrowUp', 'ArrowLeft', 'ArrowRight', 'ArrowUp'],
-          [0, 0, 0, 1],
-        );
-        await testCombination(
+      describe('ignores array keys orthogonal to the direction', () => {
+        itTestCombination('up', ['ArrowUp', 'ArrowLeft', 'ArrowRight', 'ArrowUp'], [0, 0, 0, 1]);
+        itTestCombination(
           'right',
           ['ArrowRight', 'ArrowUp', 'ArrowDown', 'ArrowRight'],
           [0, 0, 0, 1],
         );
-        await testCombination(
+        itTestCombination(
           'down',
           ['ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowDown'],
           [0, 0, 0, 1],
         );
-        await testCombination(
-          'left',
-          ['ArrowLeft', 'ArrowUp', 'ArrowDown', 'ArrowLeft'],
-          [0, 0, 0, 1],
-        );
+        itTestCombination('left', ['ArrowLeft', 'ArrowUp', 'ArrowDown', 'ArrowLeft'], [0, 0, 0, 1]);
       });
 
-      it('does not wrap around', async () => {
-        await testCombination(
-          'up',
-          ['ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowUp'],
-          [0, -1, -1, 0],
-        );
-        await testCombination(
+      describe('does not wrap around', () => {
+        itTestCombination('up', ['ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowUp'], [0, -1, -1, 0]);
+        itTestCombination(
           'right',
           ['ArrowRight', 'ArrowLeft', 'ArrowLeft', 'ArrowRight'],
           [0, -1, -1, 0],
         );
-        await testCombination(
-          'down',
-          ['ArrowDown', 'ArrowUp', 'ArrowUp', 'ArrowDown'],
-          [0, -1, -1, 0],
-        );
-        await testCombination(
+        itTestCombination('down', ['ArrowDown', 'ArrowUp', 'ArrowUp', 'ArrowDown'], [0, -1, -1, 0]);
+        itTestCombination(
           'left',
           ['ArrowLeft', 'ArrowRight', 'ArrowRight', 'ArrowLeft'],
           [0, -1, -1, 0],
