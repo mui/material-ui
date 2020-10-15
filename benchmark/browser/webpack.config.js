@@ -1,12 +1,12 @@
 const path = require('path');
-const webpackBaseConfig = require('../webpackBaseConfig');
+const webpackBaseConfig = require('../../webpackBaseConfig');
 
 module.exports = {
   ...webpackBaseConfig,
   entry: path.resolve(__dirname, 'index.js'),
   mode: 'production',
   output: {
-    path: path.resolve(__dirname, '../tmp'),
+    path: path.resolve(__dirname, '../../tmp'),
     filename: 'benchmark.js',
   },
   module: {

@@ -7,14 +7,14 @@ import styledComponents, {
 import { logReactMetrics } from '../utils';
 
 const materialSystemTheme = createMuiTheme();
-const NakedStyleComponents = styledComponents('div')(spacing);
+const BasicStyleComponents = styledComponents('div')(spacing);
 
-export default function NakedStyledComponents() {
+export default function BasicStyledComponents() {
   return (
-    <React.Profiler id="naked-styled-components" onRender={logReactMetrics}>
+    <React.Profiler id="basic-styled-components" onRender={logReactMetrics}>
       {new Array(1000).fill().map(() => (
         <StyledComponentsThemeProvider theme={materialSystemTheme}>
-          <NakedStyleComponents
+          <BasicStyleComponents
             color="primary.main"
             bgcolor="background.paper"
             fontFamily="h6.fontFamily"
@@ -22,7 +22,7 @@ export default function NakedStyledComponents() {
             p={[2, 3, 4]}
           >
             styled-components
-          </NakedStyleComponents>
+          </BasicStyleComponents>
         </StyledComponentsThemeProvider>
       ))}
     </React.Profiler>

@@ -432,7 +432,7 @@ export default function useAutocomplete(props) {
     }
 
     // Synchronize the value with the highlighted index
-    if (!filterSelectedOptions && valueItem != null) {
+    if (valueItem != null) {
       const currentOption = filteredOptions[highlightedIndexRef.current];
 
       // Keep the current highlighted index if possible

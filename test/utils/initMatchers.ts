@@ -1,5 +1,6 @@
 import chai from 'chai';
 import chaiDom from 'chai-dom';
+import _ from 'lodash';
 import { isInaccessible } from '@testing-library/dom';
 import { prettyDOM } from '@testing-library/react/pure';
 import { computeAccessibleDescription, computeAccessibleName } from 'dom-accessibility-api';
@@ -17,6 +18,42 @@ declare global {
        * @deprecated Use `inaccessible` + `visible` instead
        */
       toBeAriaHidden(): void;
+      /**
+       * Checks `expectedStyle` is a subset of the elements inline style i.e. `element.style`.
+       * @example expect(element).toHaveInlineStyle({ width: '200px' })
+       */
+      toHaveInlineStyle(
+        expectedStyle: Record<
+          Exclude<
+            keyof CSSStyleDeclaration,
+            | 'getPropertyPriority'
+            | 'getPropertyValue'
+            | 'item'
+            | 'removeProperty'
+            | 'setProperty'
+            | number
+          >,
+          string
+        >,
+      ): void;
+      /**
+       * Checks `expectedStyle` is a subset of the elements computed style i.e. `window.getComputedStyle(element)`.
+       * @example expect(element).toHaveComputedStyle({ width: '200px' })
+       */
+      toHaveComputedStyle(
+        expectedStyle: Record<
+          Exclude<
+            keyof CSSStyleDeclaration,
+            | 'getPropertyPriority'
+            | 'getPropertyValue'
+            | 'item'
+            | 'removeProperty'
+            | 'setProperty'
+            | number
+          >,
+          string
+        >,
+      ): void;
       /**
        * Check if an element's [`visibility`](https://developer.mozilla.org/en-US/docs/Web/CSS/visibility) is not `hidden` or `collapsed`.
        */
@@ -270,6 +307,76 @@ chai.use((chaiAPI, utils) => {
   chai.Assertion.addMethod('toBeVisible', function toBeVisible() {
     // eslint-disable-next-line no-underscore-dangle, @typescript-eslint/no-unused-expressions
     new chai.Assertion(this._obj).to.be.visible;
+  });
+
+  function assertMatchingStyles(
+    this: Chai.AssertionStatic,
+    actualStyleDeclaration: CSSStyleDeclaration,
+    expectedStyleUnnormalized: Record<string, string>,
+    options: { styleTypeHint: string },
+  ): void {
+    const { styleTypeHint } = options;
+    // Compare objects using hyphen case.
+    // This is closer to actual CSS and required for getPropertyValue anyway.
+    const expectedStyle: Record<string, string> = {};
+    Object.keys(expectedStyleUnnormalized).forEach((cssProperty) => {
+      expectedStyle[_.kebabCase(cssProperty)] = expectedStyleUnnormalized[cssProperty];
+    });
+
+    const actualStyle: Record<string, string> = {};
+    Object.keys(expectedStyle).forEach((cssProperty) => {
+      actualStyle[cssProperty] = actualStyleDeclaration.getPropertyValue(cssProperty);
+    });
+
+    const jsdomHint =
+      'Styles in JSDOM e.g. from `test:unit` are often misleading since JSDOM does not implement the Cascade nor actual CSS property value computation. ' +
+      'If results differ between real browsers and JSDOM, skip the test in JSDOM e.g. `if (/jsdom/.test(window.navigator.userAgent)) this.skip();`';
+
+    if (isInKarma()) {
+      // `#{exp}` and `#{act}` placeholders escape the newlines
+      const expected = JSON.stringify(expectedStyle, null, 2);
+      const actual = JSON.stringify(actualStyle, null, 2);
+      // karma's `dots` reporter does not support diffs
+      this.assert(
+        // TODO Fix upstream docs/types
+        (utils as any).eql(actualStyle, expectedStyle),
+        `expected ${styleTypeHint} style of #{this} did not match\nExpected:\n${expected}\nActual:\n${actual}\n\n\n${jsdomHint}`,
+        `expected #{this} to not have ${styleTypeHint} style\n${expected}\n\n\n${jsdomHint}`,
+        expectedStyle,
+        actualStyle,
+      );
+    } else {
+      this.assert(
+        // TODO Fix upstream docs/types
+        (utils as any).eql(actualStyle, expectedStyle),
+        `expected #{this} to have ${styleTypeHint} style #{exp} \n\n${jsdomHint}`,
+        `expected #{this} not to have ${styleTypeHint} style #{exp}${jsdomHint}`,
+        expectedStyle,
+        actualStyle,
+        true,
+      );
+    }
+  }
+
+  chai.Assertion.addMethod('toHaveInlineStyle', function toHaveInlineStyle(
+    expectedStyleUnnormalized: Record<string, string>,
+  ) {
+    const element = utils.flag(this, 'object') as HTMLElement;
+
+    assertMatchingStyles.call(this, element.style, expectedStyleUnnormalized, {
+      styleTypeHint: 'inline',
+    });
+  });
+
+  chai.Assertion.addMethod('toHaveComputedStyle', function toHaveComputedStyle(
+    expectedStyleUnnormalized: Record<string, string>,
+  ) {
+    const element = utils.flag(this, 'object') as HTMLElement;
+    const computedStyle = element.ownerDocument.defaultView!.getComputedStyle(element);
+
+    assertMatchingStyles.call(this, computedStyle, expectedStyleUnnormalized, {
+      styleTypeHint: 'computed',
+    });
   });
 });
 

@@ -766,8 +766,9 @@ describe('<Slider />', () => {
         </ThemeProvider>,
       );
 
-      const style = window.getComputedStyle(screen.getByTestId('component'));
-      expect(style.getPropertyValue('background-color')).to.equal('rgb(255, 0, 0)');
+      expect(screen.getByTestId('component')).toHaveComputedStyle({
+        backgroundColor: 'rgb(255, 0, 0)',
+      });
     });
 
     it('variants should win over overrides', () => {
@@ -779,8 +780,9 @@ describe('<Slider />', () => {
         </ThemeProvider>,
       );
 
-      const style = window.getComputedStyle(screen.getByTestId('component'));
-      expect(style.getPropertyValue('background-color')).to.equal('rgb(0, 255, 0)');
+      expect(screen.getByTestId('component')).toHaveComputedStyle({
+        backgroundColor: 'rgb(0, 255, 0)',
+      });
     });
 
     it('styled wrapper should win over variants', () => {
@@ -796,8 +798,9 @@ describe('<Slider />', () => {
         </ThemeProvider>,
       );
 
-      const style = window.getComputedStyle(screen.getByTestId('component'));
-      expect(style.getPropertyValue('background-color')).to.equal('rgb(0, 0, 255)');
+      expect(screen.getByTestId('component')).toHaveComputedStyle({
+        backgroundColor: 'rgb(0, 0, 255)',
+      });
     });
   });
 });

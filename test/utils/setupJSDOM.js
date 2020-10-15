@@ -44,10 +44,6 @@ function throwOnUnexpectedConsoleMessages(methodName, expectedMatcher) {
     console[methodName] = logUnexpectedConsoleCalls;
   });
 
-  mochaHooks.beforeEach.push(function resetUnexpectedCalls() {
-    unexpectedCalls.length = 0;
-  });
-
   mochaHooks.afterEach.push(function flushUnexpectedCalls() {
     const hadUnexpectedCalls = unexpectedCalls.length > 0;
     const formattedCalls = unexpectedCalls.map(([stack, message]) => `${message}\n${stack}`);

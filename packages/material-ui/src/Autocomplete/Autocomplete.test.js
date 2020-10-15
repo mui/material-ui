@@ -15,6 +15,14 @@ import Chip from '@material-ui/core/Chip';
 import { createFilterOptions } from '../useAutocomplete/useAutocomplete';
 import Autocomplete from './Autocomplete';
 
+function checkHighlightIs(listbox, expected) {
+  if (expected) {
+    expect(listbox.querySelector('li[data-focus]')).to.have.text(expected);
+  } else {
+    expect(listbox.querySelector('li[data-focus]')).to.equal(null);
+  }
+}
+
 describe('<Autocomplete />', () => {
   const mount = createMount();
   let classes;
@@ -89,14 +97,10 @@ describe('<Autocomplete />', () => {
         />,
       );
 
-      function checkHighlightIs(expected) {
-        expect(getByRole('listbox').querySelector('li[data-focus]')).to.have.text(expected);
-      }
-
-      checkHighlightIs('one');
+      checkHighlightIs(getByRole('listbox'), 'one');
       fireEvent.change(document.activeElement, { target: { value: 'oo' } });
       fireEvent.change(document.activeElement, { target: { value: 'o' } });
-      checkHighlightIs('one');
+      checkHighlightIs(getByRole('listbox'), 'one');
     });
 
     it('should keep the highlight on the first item', () => {
@@ -111,13 +115,9 @@ describe('<Autocomplete />', () => {
         />,
       );
 
-      function checkHighlightIs(expected) {
-        expect(getByRole('listbox').querySelector('li[data-focus]')).to.have.text(expected);
-      }
-
-      checkHighlightIs('one');
+      checkHighlightIs(getByRole('listbox'), 'one');
       fireEvent.change(document.activeElement, { target: { value: 'two' } });
-      checkHighlightIs('two');
+      checkHighlightIs(getByRole('listbox'), 'two');
     });
 
     it('should set the focus on the first item when possible', () => {
@@ -151,13 +151,9 @@ describe('<Autocomplete />', () => {
         />,
       );
 
-      function checkHighlightIs(expected) {
-        expect(getByRole('listbox').querySelector('li[data-focus]')).to.have.text(expected);
-      }
-
-      checkHighlightIs('one');
+      checkHighlightIs(getByRole('listbox'), 'one');
       setProps({ value: 'two' });
-      checkHighlightIs('two');
+      checkHighlightIs(getByRole('listbox'), 'two');
     });
 
     it('should keep the current highlight if possible', () => {
@@ -173,15 +169,34 @@ describe('<Autocomplete />', () => {
       );
       const textbox = getByRole('textbox');
 
-      function checkHighlightIs(expected) {
-        expect(getByRole('listbox').querySelector('li[data-focus]')).to.have.text(expected);
-      }
-
-      checkHighlightIs('one');
+      checkHighlightIs(getByRole('listbox'), 'one');
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      checkHighlightIs('two');
+      checkHighlightIs(getByRole('listbox'), 'two');
       fireEvent.keyDown(textbox, { key: 'Enter' });
-      checkHighlightIs('two');
+      checkHighlightIs(getByRole('listbox'), 'two');
+    });
+
+    it('should work with filterSelectedOptions too', () => {
+      const options = ['Foo', 'Bar', 'Baz'];
+      const { getByRole } = render(
+        <Autocomplete
+          multiple
+          filterSelectedOptions
+          autoHighlight
+          value={options.slice(0, 1)}
+          options={options}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+      const textbox = getByRole('textbox');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      checkHighlightIs(getByRole('listbox'), 'Bar');
+      fireEvent.change(textbox, { target: { value: 'a' } });
+      checkHighlightIs(getByRole('listbox'), 'Bar');
+      fireEvent.change(textbox, { target: { value: 'aa' } });
+      fireEvent.change(textbox, { target: { value: 'a' } });
+      checkHighlightIs(getByRole('listbox'), 'Bar');
     });
   });
 
@@ -197,15 +212,11 @@ describe('<Autocomplete />', () => {
         />,
       );
 
-      function checkHighlightIs(expected) {
-        expect(getByRole('listbox').querySelector('li[data-focus]')).to.have.text(expected);
-      }
-
-      checkHighlightIs('two');
+      checkHighlightIs(getByRole('listbox'), 'two');
       setProps({
         value: [],
       });
-      checkHighlightIs('two');
+      checkHighlightIs(getByRole('listbox'), 'two');
     });
   });
 
@@ -273,19 +284,15 @@ describe('<Autocomplete />', () => {
       );
       const textbox = getByRole('textbox');
 
-      function checkHighlightIs(expected) {
-        expect(getByRole('listbox').querySelector('li[data-focus]')).to.have.text(expected);
-      }
-
       fireEvent.keyDown(textbox, { key: 'ArrowUp' });
-      checkHighlightIs('three');
+      checkHighlightIs(getByRole('listbox'), 'three');
       fireEvent.keyDown(textbox, { key: 'Enter' }); // selects the last option (three)
       const input = getByRole('textbox');
       act(() => {
         input.blur();
         input.focus(); // opens the listbox again
       });
-      checkHighlightIs('two');
+      checkHighlightIs(getByRole('listbox'), null);
     });
   });
 
@@ -1258,15 +1265,11 @@ describe('<Autocomplete />', () => {
       fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // goes to 'one'
       fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // goes to 'two'
 
-      function checkHighlightIs(expected) {
-        expect(listbox.querySelector('li[data-focus]')).to.have.text(expected);
-      }
-
-      checkHighlightIs('two');
+      checkHighlightIs(listbox, 'two');
 
       // three option is added and autocomplete re-renders, two should still be highlighted
       setProps({ options: ['one', 'two', 'three'] });
-      checkHighlightIs('two');
+      checkHighlightIs(listbox, 'two');
     });
 
     it('should not select undefined', () => {
