@@ -19,6 +19,7 @@ const filterProps = [
   ...positions.filterProps,
   ...palette.filterProps,
   ...shadows.filterProps,
+  ...sizing.filterProps,
   ...spacing.filterProps,
   ...typography.filterProps,
   'sx',
