@@ -7,6 +7,7 @@ import ThemeProvider from './ThemeProvider';
 
 describe('experimentalStyled', () => {
   const render = createClientRender();
+
   it('should work', () => {
     const Div = styled('div')({
       width: '200px',
@@ -91,6 +92,7 @@ describe('experimentalStyled', () => {
         ...(props.variant && styles[props.variant]),
       });
 
+      // FIXME: Should not error in DEV
       expect(() => {
         Test = styled(
           'div',
