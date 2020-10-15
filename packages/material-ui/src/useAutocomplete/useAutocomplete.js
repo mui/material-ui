@@ -659,115 +659,119 @@ export default function useAutocomplete(props) {
       focusTag(-1);
     }
 
-    switch (event.key) {
-      case 'Home':
-        if (popupOpen && handleHomeEndKeys) {
-          // Prevent scroll of the page
-          event.preventDefault();
-          changeHighlightedIndex({ diff: 'start', direction: 'next', reason: 'keyboard', event });
-        }
-        break;
-      case 'End':
-        if (popupOpen && handleHomeEndKeys) {
-          // Prevent scroll of the page
-          event.preventDefault();
-          changeHighlightedIndex({ diff: 'end', direction: 'previous', reason: 'keyboard', event });
-        }
-        break;
-      case 'PageUp':
-        // Prevent scroll of the page
-        event.preventDefault();
-        changeHighlightedIndex({
-          diff: -pageSize,
-          direction: 'previous',
-          reason: 'keyboard',
-          event,
-        });
-        handleOpen(event);
-        break;
-      case 'PageDown':
-        // Prevent scroll of the page
-        event.preventDefault();
-        changeHighlightedIndex({ diff: pageSize, direction: 'next', reason: 'keyboard', event });
-        handleOpen(event);
-        break;
-      case 'ArrowDown':
-        // Prevent cursor move
-        event.preventDefault();
-        changeHighlightedIndex({ diff: 1, direction: 'next', reason: 'keyboard', event });
-        handleOpen(event);
-        break;
-      case 'ArrowUp':
-        // Prevent cursor move
-        event.preventDefault();
-        changeHighlightedIndex({ diff: -1, direction: 'previous', reason: 'keyboard', event });
-        handleOpen(event);
-        break;
-      case 'ArrowLeft':
-        handleFocusTag(event, 'previous');
-        break;
-      case 'ArrowRight':
-        handleFocusTag(event, 'next');
-        break;
-      case 'Enter':
-        // Wait until IME is settled.
-        if (event.which === 229) {
-          break;
-        }
-        if (highlightedIndexRef.current !== -1 && popupOpen) {
-          const option = filteredOptions[highlightedIndexRef.current];
-          const disabled = getOptionDisabled ? getOptionDisabled(option) : false;
-
-          // We don't want to validate the form.
-          event.preventDefault();
-
-          if (disabled) {
-            return;
-          }
-
-          selectNewValue(event, option, 'select-option');
-
-          // Move the selection to the end.
-          if (autoComplete) {
-            inputRef.current.setSelectionRange(
-              inputRef.current.value.length,
-              inputRef.current.value.length,
-            );
-          }
-        } else if (freeSolo && inputValue !== '' && inputValueIsSelectedValue === false) {
-          if (multiple) {
-            // Allow people to add new values before they submit the form.
+    // Wait until IME is settled.
+    if (event.which !== 229) {
+      switch (event.key) {
+        case 'Home':
+          if (popupOpen && handleHomeEndKeys) {
+            // Prevent scroll of the page
             event.preventDefault();
+            changeHighlightedIndex({ diff: 'start', direction: 'next', reason: 'keyboard', event });
           }
-          selectNewValue(event, inputValue, 'create-option', 'freeSolo');
-        }
-        break;
-      case 'Escape':
-        if (popupOpen) {
-          // Avoid Opera to exit fullscreen mode.
+          break;
+        case 'End':
+          if (popupOpen && handleHomeEndKeys) {
+            // Prevent scroll of the page
+            event.preventDefault();
+            changeHighlightedIndex({
+              diff: 'end',
+              direction: 'previous',
+              reason: 'keyboard',
+              event,
+            });
+          }
+          break;
+        case 'PageUp':
+          // Prevent scroll of the page
           event.preventDefault();
-          // Avoid the Modal to handle the event.
-          event.stopPropagation();
-          handleClose(event, 'escape');
-        } else if (clearOnEscape && (inputValue !== '' || (multiple && value.length > 0))) {
-          // Avoid Opera to exit fullscreen mode.
-          event.preventDefault();
-          // Avoid the Modal to handle the event.
-          event.stopPropagation();
-          handleClear(event);
-        }
-        break;
-      case 'Backspace':
-        if (multiple && inputValue === '' && value.length > 0) {
-          const index = focusedTag === -1 ? value.length - 1 : focusedTag;
-          const newValue = value.slice();
-          newValue.splice(index, 1);
-          handleValue(event, newValue, 'remove-option', {
-            option: value[index],
+          changeHighlightedIndex({
+            diff: -pageSize,
+            direction: 'previous',
+            reason: 'keyboard',
+            event,
           });
-        }
-        break;
-      default:
+          handleOpen(event);
+          break;
+        case 'PageDown':
+          // Prevent scroll of the page
+          event.preventDefault();
+          changeHighlightedIndex({ diff: pageSize, direction: 'next', reason: 'keyboard', event });
+          handleOpen(event);
+          break;
+        case 'ArrowDown':
+          // Prevent cursor move
+          event.preventDefault();
+          changeHighlightedIndex({ diff: 1, direction: 'next', reason: 'keyboard', event });
+          handleOpen(event);
+          break;
+        case 'ArrowUp':
+          // Prevent cursor move
+          event.preventDefault();
+          changeHighlightedIndex({ diff: -1, direction: 'previous', reason: 'keyboard', event });
+          handleOpen(event);
+          break;
+        case 'ArrowLeft':
+          handleFocusTag(event, 'previous');
+          break;
+        case 'ArrowRight':
+          handleFocusTag(event, 'next');
+          break;
+        case 'Enter':
+          if (highlightedIndexRef.current !== -1 && popupOpen) {
+            const option = filteredOptions[highlightedIndexRef.current];
+            const disabled = getOptionDisabled ? getOptionDisabled(option) : false;
+
+            // We don't want to validate the form.
+            event.preventDefault();
+
+            if (disabled) {
+              return;
+            }
+
+            selectNewValue(event, option, 'select-option');
+
+            // Move the selection to the end.
+            if (autoComplete) {
+              inputRef.current.setSelectionRange(
+                inputRef.current.value.length,
+                inputRef.current.value.length,
+              );
+            }
+          } else if (freeSolo && inputValue !== '' && inputValueIsSelectedValue === false) {
+            if (multiple) {
+              // Allow people to add new values before they submit the form.
+              event.preventDefault();
+            }
+            selectNewValue(event, inputValue, 'create-option', 'freeSolo');
+          }
+          break;
+        case 'Escape':
+          if (popupOpen) {
+            // Avoid Opera to exit fullscreen mode.
+            event.preventDefault();
+            // Avoid the Modal to handle the event.
+            event.stopPropagation();
+            handleClose(event, 'escape');
+          } else if (clearOnEscape && (inputValue !== '' || (multiple && value.length > 0))) {
+            // Avoid Opera to exit fullscreen mode.
+            event.preventDefault();
+            // Avoid the Modal to handle the event.
+            event.stopPropagation();
+            handleClear(event);
+          }
+          break;
+        case 'Backspace':
+          if (multiple && inputValue === '' && value.length > 0) {
+            const index = focusedTag === -1 ? value.length - 1 : focusedTag;
+            const newValue = value.slice();
+            newValue.splice(index, 1);
+            handleValue(event, newValue, 'remove-option', {
+              option: value[index],
+            });
+          }
+          break;
+        default:
+      }
     }
 
     if (other.onKeyDown) {

@@ -893,6 +893,24 @@ describe('<Autocomplete />', () => {
         options[options.length - 1].getAttribute('id'),
       );
     });
+
+    it('should ignore keydown event until the IME is confirmed', () => {
+      const { getByRole } = render(
+        <Autocomplete
+          open
+          options={['가1', '가2']}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+      const textbox = getByRole('textbox');
+      const listbox = getByRole('listbox');
+      // Actual Behavior when "가" (Korean) is entered and press the arrow down key once on macOS/Chrome
+      fireEvent.change(textbox, { target: { value: '가' } });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown', keyCode: 229 });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown', keyCode: 40 });
+
+      checkHighlightIs(listbox, '가1');
+    });
   });
 
   describe('prop: openOnFocus', () => {
