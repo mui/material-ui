@@ -76,17 +76,16 @@ const traverseSx = (styles, theme) => {
       if (filterProps.indexOf(styleKey) !== -1) {
         css = {
           ...css,
-          ...getThemeValue(styleKey, value, theme),
+          ...getThemeValue(styleKey, styles[styleKey], theme),
         };
       } else {
         const transformedValue = traverseSx(styles[styleKey], theme);
         css[styleKey] = transformedValue;
       }
     } else {
-      const value = styles[styleKey];
       css = {
         ...css,
-        ...getThemeValue(styleKey, value, theme),
+        ...getThemeValue(styleKey, styles[styleKey], theme),
       };
     }
   });
@@ -94,7 +93,7 @@ const traverseSx = (styles, theme) => {
   return css;
 };
 
-const styleFunctionInversed = (props) => {
+function styleFunctionInversed(props) {
   let result = {};
   Object.keys(props).forEach((prop) => {
     if (filterProps.indexOf(prop) !== -1) {
@@ -105,13 +104,13 @@ const styleFunctionInversed = (props) => {
     }
   });
 
-  let sxValue = traverseSx(props.sx, props.theme);
+  const sxValue = traverseSx(props.sx, props.theme);
 
   return {
     ...result,
     ...sxValue,
   };
-};
+}
 
 styleFunctionInversed.filterProps = filterProps;
 

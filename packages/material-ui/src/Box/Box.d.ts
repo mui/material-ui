@@ -13,6 +13,7 @@ import {
   typography,
   PropsFor,
 } from '@material-ui/system';
+import { CSSObject } from '../styles/experimentalStyled';
 import { Omit } from '..';
 
 type BoxStyleFunction = ComposedStyleFunction<
@@ -32,6 +33,7 @@ type BoxStyleFunction = ComposedStyleFunction<
 
 type SystemProps = PropsFor<BoxStyleFunction>;
 type ElementProps = Omit<React.HTMLAttributes<HTMLElement>, keyof SystemProps>;
+type SxProps = Omit<CSSObject, keyof SystemProps> & SystemProps;
 
 export interface BoxProps extends ElementProps, SystemProps {
   // styled API
@@ -40,6 +42,7 @@ export interface BoxProps extends ElementProps, SystemProps {
   ref?: React.Ref<unknown>;
   // workaround for https://github.com/mui-org/material-ui/pull/15611
   css?: SystemProps;
+  sx?: SxProps;
 }
 
 declare const Box: React.ComponentType<BoxProps>;

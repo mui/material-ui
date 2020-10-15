@@ -1,5 +1,5 @@
 import React from 'react';
-import * as PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { styleFunctionInversed } from '@material-ui/system';
 import styled from '../styles/experimentalStyled';

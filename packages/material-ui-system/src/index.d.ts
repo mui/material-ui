@@ -216,4 +216,4 @@ export const visuallyHidden: React.CSSProperties;
 // utils
 type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
 
-export const styleFunctionInversed: (props: any) => object;
+export function styleFunctionInversed(props: any): object;

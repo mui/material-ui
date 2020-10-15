@@ -37,44 +37,6 @@ export default function ContinuousSlider() {
         Disabled slider
       </Typography>
       <Slider disabled defaultValue={30} aria-labelledby="disabled-slider" />
-      <Typography gutterBottom>Regular Box</Typography>
-      <Box
-        component="span"
-        sx={{
-          p: 1,
-          bgcolor: 'primary.main',
-          color: 'green',
-          ':hover': {
-            backgroundColor: 'secondary.main',
-            border: '1px solid #232323',
-          },
-        }}
-      >
-        <Slider
-          value={value}
-          onChange={handleChange}
-          aria-labelledby="continuous-slider"
-        />
-      </Box>
-      <Typography gutterBottom>Cloned Box</Typography>
-      <Box component="span" color="secondary.main" clone>
-        <Slider
-          value={value}
-          onChange={handleChange}
-          aria-labelledby="continuous-slider"
-        />
-      </Box>
-      <Typography gutterBottom>Children as fn Box</Typography>
-      <Box color="secondary.main">
-        {({ className }) => (
-          <Slider
-            value={value}
-            onChange={handleChange}
-            aria-labelledby="continuous-slider"
-            className={className}
-          />
-        )}
-      </Box>
     </Box>
   );
 }
