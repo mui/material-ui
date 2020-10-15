@@ -423,6 +423,56 @@ describe('<MenuList> integration', () => {
     expect(menuitems[2]).toHaveFocus();
   });
 
+  it('should traverse menuitems when nested within an arbitrary amount of HTML', () => {
+    render(
+      <MenuList autoFocus>
+        <div>
+          <b>Section 1</b>
+          <div>
+            <MenuItem>Menu Item 1</MenuItem>
+            <MenuItem>Menu Item 2</MenuItem>
+            <MenuItem>Menu Item 3</MenuItem>
+          </div>
+        </div>
+        <Divider component="li" />
+        <div>
+          <b>Section 2</b>
+          <div>
+            <MenuItem>Menu Item 4</MenuItem>
+            <MenuItem disabled>Menu Item 5</MenuItem>
+            <MenuItem>Menu Item 6</MenuItem>
+          </div>
+        </div>
+      </MenuList>,
+    );
+    const menuitems = screen.getAllByRole('menuitem');
+
+    fireEvent.keyDown(screen.getByRole('menu'), { key: 'ArrowDown' });
+    expect(menuitems[0]).toHaveFocus();
+    fireEvent.keyDown(menuitems[0], { key: 'ArrowDown' });
+    expect(menuitems[1]).toHaveFocus();
+    fireEvent.keyDown(menuitems[1], { key: 'ArrowDown' });
+    expect(menuitems[2]).toHaveFocus();
+    fireEvent.keyDown(menuitems[2], { key: 'ArrowDown' });
+    expect(menuitems[3]).toHaveFocus();
+    fireEvent.keyDown(menuitems[3], { key: 'ArrowDown' });
+    expect(menuitems[5]).toHaveFocus();
+    fireEvent.keyDown(menuitems[5], { key: 'ArrowDown' });
+    expect(menuitems[0]).toHaveFocus();
+
+    // and ArrowUp again
+    fireEvent.keyDown(menuitems[0], { key: 'ArrowUp' });
+    expect(menuitems[5]).toHaveFocus();
+    fireEvent.keyDown(menuitems[5], { key: 'ArrowUp' });
+    expect(menuitems[3]).toHaveFocus();
+    fireEvent.keyDown(menuitems[3], { key: 'ArrowUp' });
+    expect(menuitems[2]).toHaveFocus();
+    fireEvent.keyDown(menuitems[2], { key: 'ArrowUp' });
+    expect(menuitems[1]).toHaveFocus();
+    fireEvent.keyDown(menuitems[1], { key: 'ArrowUp' });
+    expect(menuitems[0]).toHaveFocus();
+  });
+
   describe('MenuList text-based keyboard controls', () => {
     let innerTextSupported;
 

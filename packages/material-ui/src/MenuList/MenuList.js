@@ -6,27 +6,28 @@ import List from '../List';
 import getScrollbarSize from '../utils/getScrollbarSize';
 import useForkRef from '../utils/useForkRef';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
+import MenuItem from '../MenuItem';
 
-function nextItem(list, item, disableListWrap) {
-  if (list === item) {
-    return list[0];
+function nextItem(list, item, disableListWrap, listRef) {
+  if (listRef.current === item) {
+    return list[0].current;
   }
-  const i = list.findIndex((c) => c === item);
+  const i = list.findIndex((c) => c.current === item);
   if (item && i > -1 && i + 1 < list.length) {
-    return list[i + 1];
+    return list[i + 1].current;
   }
-  return disableListWrap ? null : list[0];
+  return disableListWrap ? null : list[0].current;
 }
 
-function previousItem(list, item, disableListWrap) {
-  if (list === item) {
-    return disableListWrap ? list[0] : list[list.length - 1];
+function previousItem(list, item, disableListWrap, listRef) {
+  if (listRef.current === item) {
+    return disableListWrap ? list[0].current : list[list.length - 1].current;
   }
-  const i = list.findIndex((c) => c === item);
+  const i = list.findIndex((c) => c.current === item);
   if (item && i > -1 && i - 1 >= 0) {
-    return list[i - 1];
+    return list[i - 1].current;
   }
-  return disableListWrap ? null : list[list.length - 1];
+  return disableListWrap ? null : list[list.length - 1].current;
 }
 
 function textCriteriaMatches(nextFocus, textCriteria) {
@@ -55,13 +56,14 @@ function moveFocus(
   disabledItemsFocusable,
   traversalFunction,
   textCriteria,
+  listRef
 ) {
   let wrappedOnce = false;
-  let nextFocus = traversalFunction(list, currentFocus, currentFocus ? disableListWrap : false);
+  let nextFocus = traversalFunction(list, currentFocus, currentFocus ? disableListWrap : false, listRef);
 
   while (nextFocus) {
     // Prevent infinite loop.
-    if (nextFocus === list[0]) {
+    if (nextFocus === list[0].current) {
       if (wrappedOnce) {
         return;
       }
@@ -79,7 +81,7 @@ function moveFocus(
       nextFocusDisabled
     ) {
       // Move to the next element.
-      nextFocus = traversalFunction(list, nextFocus, disableListWrap);
+      nextFocus = traversalFunction(list, nextFocus, disableListWrap, listRef);
     } else {
       nextFocus.focus();
       return;
@@ -117,17 +119,101 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
   });
 
   const [menuItems, setMenuItems] = React.useState([]);
+  const [items, setItems] = React.useState(null);
+  const [activeItemIndex, setActiveItemIndex] = React.useState(-1);
 
   useEnhancedEffect(() => {
-    const allMenuItems = Array.from(listRef.current.querySelectorAll('[role=menuitem]'));
-    setMenuItems(allMenuItems);
-  }, []);
+    // if (items) {
+    //   return;
+    // }
+    /**
+     * the index of the item should receive focus
+     * in a `variant="selectedMenu"` it's the first `selected` item
+     * otherwise it's the very first item.
+     */
+    let activeItem = -1; 
+    const menuItemRefs = [];
+
+    const setup = (child) => {
+      if (!React.isValidElement(child)) {
+        return child;
+      }
+
+      if (process.env.NODE_ENV !== 'production') {
+        if (isFragment(child)) {
+          console.error(
+            [
+              "Material-UI: The Menu component doesn't accept a Fragment as a child.",
+              'Consider providing an array instead.',
+            ].join('\n'),
+          );
+        }
+      }
+
+      if (child.type === MenuItem || (child.props.role && child.props.role === 'menuitem')) {
+        const itemRef = React.createRef();
+        const newProps = {
+          ref: itemRef
+        };
+
+        if (!child.props.disabled) {
+          if (variant === 'selectedMenu' && child.props.selected) {
+            activeItem = menuItemRefs.length;
+            if (autoFocusItem) {
+              newProps.autoFocus = true;
+            }
+          } else if (child.props.autoFocus) {
+            activeItem = menuItemRefs.length;
+          } else if (activeItem === -1) {
+            activeItem = menuItemRefs.length;
+            if (autoFocusItem) {
+              newProps.autoFocus = true;
+            }
+          }
+        }
+
+        const newChild = React.cloneElement(child, newProps);
+        menuItemRefs.push(itemRef);
+        return newChild;
+      } 
+      
+      if (child.props.children) {
+        const newChildren = React.Children.map(child.props.children, setup);
+        return React.cloneElement(child, { children: newChildren });
+      }
+
+      return child;
+    };
+
+    // since we inject focus related props into children we have to do a lookahead
+    // to check if there is a `selected` item. We're looking for the last `selected`
+    // item and use the first valid item as a fallback
+    const listChildren = React.Children.map(children, setup);
+
+    setItems(listChildren);
+    setMenuItems(menuItemRefs);
+    setActiveItemIndex(activeItem);
+  }, [children, variant, autoFocusItem]);
 
   useEnhancedEffect(() => {
-    if (autoFocus) {
+    if (autoFocusItem && activeItemIndex >= 0) {
+      menuItems[activeItemIndex].current.focus();
+      // if (menuItems[activeItemIndex].current.tabIndex === undefined) {
+      //   menuItems[activeItemIndex].current.tabIndex = 0;
+      // }
+    } else if (autoFocus) {
       listRef.current.focus();
     }
-  }, [autoFocus]);
+
+    if (variant === 'selectedMenu' && 
+      activeItemIndex >= 0 && 
+      menuItems[activeItemIndex].current && 
+      (menuItems[activeItemIndex].current.tabIndex === undefined || menuItems[activeItemIndex].current.tabIndex === -1)
+    ) {
+      menuItems[activeItemIndex].current.tabIndex = 0;
+    }
+    
+  }, [autoFocus, activeItemIndex, autoFocusItem, menuItems, variant]);
 
   React.useImperativeHandle(
     actions,
@@ -163,16 +249,16 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     if (key === 'ArrowDown') {
       // Prevent scroll of the page
       event.preventDefault();
-      moveFocus(list, currentFocus, disableListWrap, disabledItemsFocusable, nextItem);
+      moveFocus(list, currentFocus, disableListWrap, disabledItemsFocusable, nextItem, undefined, listRef);
     } else if (key === 'ArrowUp') {
       event.preventDefault();
-      moveFocus(list, currentFocus, disableListWrap, disabledItemsFocusable, previousItem);
+      moveFocus(list, currentFocus, disableListWrap, disabledItemsFocusable, previousItem, undefined, listRef);
     } else if (key === 'Home') {
       event.preventDefault();
-      moveFocus(list, null, disableListWrap, disabledItemsFocusable, nextItem);
+      moveFocus(list, null, disableListWrap, disabledItemsFocusable, nextItem, undefined, listRef);
     } else if (key === 'End') {
       event.preventDefault();
-      moveFocus(list, null, disableListWrap, disabledItemsFocusable, previousItem);
+      moveFocus(list, null, disableListWrap, disabledItemsFocusable, previousItem, undefined, listRef);
     } else if (key.length === 1) {
       const criteria = textCriteriaRef.current;
       const lowerKey = key.toLowerCase();
@@ -194,7 +280,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
       if (
         criteria.previousKeyMatched &&
         (keepFocusOnCurrent ||
-          moveFocus(list, currentFocus, false, disabledItemsFocusable, nextItem, criteria))
+          moveFocus(list, currentFocus, false, disabledItemsFocusable, nextItem, criteria, listRef))
       ) {
         event.preventDefault();
       } else {
@@ -208,56 +294,6 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
   };
 
   const handleRef = useForkRef(listRef, ref);
-
-  /**
-   * the index of the item should receive focus
-   * in a `variant="selectedMenu"` it's the first `selected` item
-   * otherwise it's the very first item.
-   */
-  let activeItemIndex = -1;
-  // since we inject focus related props into children we have to do a lookahead
-  // to check if there is a `selected` item. We're looking for the last `selected`
-  // item and use the first valid item as a fallback
-  React.Children.forEach(children, (child, index) => {
-    if (!React.isValidElement(child)) {
-      return;
-    }
-
-    if (process.env.NODE_ENV !== 'production') {
-      if (isFragment(child)) {
-        console.error(
-          [
-            "Material-UI: The Menu component doesn't accept a Fragment as a child.",
-            'Consider providing an array instead.',
-          ].join('\n'),
-        );
-      }
-    }
-
-    if (!child.props.disabled) {
-      if (variant === 'selectedMenu' && child.props.selected) {
-        activeItemIndex = index;
-      } else if (activeItemIndex === -1) {
-        activeItemIndex = index;
-      }
-    }
-  });
-
-  const items = React.Children.map(children, (child, index) => {
-    if (index === activeItemIndex) {
-      const newChildProps = {};
-      if (autoFocusItem) {
-        newChildProps.autoFocus = true;
-      }
-      if (child.props.tabIndex === undefined && variant === 'selectedMenu') {
-        newChildProps.tabIndex = 0;
-      }
-
-      return React.cloneElement(child, newChildProps);
-    }
-
-    return child;
-  });
 
   return (
     <List

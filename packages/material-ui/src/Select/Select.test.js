@@ -898,8 +898,8 @@ describe('<Select />', () => {
           return (
             <Select multiple name="age" onChange={handleChange} value={values}>
               <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Ten</MenuItem>
-              <MenuItem value={30}>Ten</MenuItem>
+              <MenuItem value={20}>Twenty</MenuItem>
+              <MenuItem value={30}>Thirty</MenuItem>
             </Select>
           );
         }
