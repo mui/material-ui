@@ -14,7 +14,6 @@ export const bgcolor = style({
 
 export const backgroundColor = style({
   prop: 'backgroundColor',
-  cssProperty: 'backgroundColor',
   themeKey: 'palette',
 });
 
