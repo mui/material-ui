@@ -40,11 +40,11 @@ yarn add @material-ui/core@next
 
 ## 处理变化带来的系统崩溃
 
-### Supported browsers and node versions
+### 支持的浏览器和 node 版本
 
-The targets of the default bundle have changed. The exact versions will be pinned on release from the browserslist query `"> 0.5%, last 2 versions, Firefox ESR, not dead, not IE 11, maintained node versions"`.
+默认捆绑包的目标已更改。 The exact versions will be pinned on release from the browserslist query `"> 0.5%, last 2 versions, Firefox ESR, not dead, not IE 11, maintained node versions"`.
 
-The default bundle now supports:
+当前默认的捆绑包支持以下版本：
 
 <!-- #stable-snapshot -->
 
@@ -55,7 +55,7 @@ The default bundle now supports:
 - Safari 13 (up from 10)
 - and more (see [.browserslistrc (`stable` entry)](https://github.com/mui-org/material-ui/blob/HEAD/.browserslistrc#L11))
 
-It no longer supports IE 11. If you need to support IE 11, check out our [legacy bundle](/guides/minimizing-bundle-size/#legacy-bundle).
+不再对 IE 11 进行兼容支持。 如果你需要对 IE 11 进行兼容性支持，请查看我们的 [旧版本包](/guides/minimizing-bundle-size/#legacy-bundle)。
 
 ### 非转发类（non-ref-forwarding class）组件
 
@@ -205,7 +205,7 @@ const theme = createMuiTheme({
 
 ### Styles（样式表单）
 
-- Renamed `fade` to `alpha` to better describe its functionality. The previous name was leading to confusion when the input color already had an alpha value. The helper **overrides** the alpha value of the color.
+- 为更好地描述功能，我们将 `fade` 重命名为 `alpha`。 当输入颜色已经有一个 alpha 值时，以前的名称会导致混乱。 **overrides** 助手覆盖了颜色的 alpha 值。
 
 ```diff
 - import { fade } from '@material-ui/core/styles';
@@ -419,7 +419,7 @@ const classes = makeStyles(theme => ({
   />
   ```
 
-- Remove `display: flex` from AccordionDetails as its too opinionated. Most developers expect a display block.
+- 因为投诉太多，我们删除了 AccordionDetails 中的 `display: flex`。 大多数开发者都期望显示为块级（block）元素。
 - 删除 AccordionSummary 中的 `IconButtonProps` 属性。 该组件渲染一个 `<div>` 元素而不是 IconButton。 所以不再需要该属性了。
 
 ### Fab
