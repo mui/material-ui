@@ -78,7 +78,7 @@ You could also display a dialog when the user wants to add a new value.
 
 ## `useAutocomplete`
 
-For advanced customization use cases, we expose a `useAutocomplete()` hook.
+For advanced customization use cases, we expose a headless `useAutocomplete()` hook.
 It accepts almost the same options as the Autocomplete component minus all the props
 related to the rendering of JSX.
 The Autocomplete component uses this hook internally.

@@ -24,7 +24,7 @@ const styles = (theme) => ({
       marginBottom: theme.spacing(4),
     },
     '& .markdown-body': {
-      fontSize: 18,
+      fontSize: theme.typography.pxToRem(17),
       lineHeight: 1.7,
       [theme.breakpoints.up('md')]: {
         paddingRight: theme.spacing(4),
@@ -33,6 +33,9 @@ const styles = (theme) => ({
     '& img, & video': {
       display: 'block',
       margin: 'auto',
+    },
+    '& pre': {
+      fontSize: theme.typography.pxToRem(16),
     },
     '& .blog-description': {
       fontSize: theme.typography.pxToRem(14),
