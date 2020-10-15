@@ -116,7 +116,8 @@ const styleFunction = (props) => {
     }
   });
 
-  const sxValue = traverseSx(props.sx, props.theme);
+  const sxObjectInput = typeof props.sx === 'function' ? props.sx(props.theme) : props.sx;
+  const sxValue = traverseSx(sxObjectInput, props.theme);
 
   return {
     ...result,
