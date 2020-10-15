@@ -29,9 +29,11 @@ export default function EmotionTheme() {
               0 1px 3px rgba(0, 0, 0, 0.08);
             padding: 4px 10px;
             font-size: 13px;
+
             &:hover {
               background-color: ${darken(theme.palette.primary.main, 0.2)};
             }
+
             ${theme.breakpoints.up('sm')} {
               font-size: 14px;
               padding: 7px 14px;

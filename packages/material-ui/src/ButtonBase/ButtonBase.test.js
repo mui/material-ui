@@ -1,7 +1,7 @@
 // @ts-check
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy } from 'sinon';
+import { spy, stub } from 'sinon';
 import {
   getClasses,
   createMount,
@@ -15,7 +15,6 @@ import {
   programmaticFocusTriggersFocusVisible,
 } from 'test/utils';
 import * as PropTypes from 'prop-types';
-import TouchRipple from './TouchRipple';
 import ButtonBase from './ButtonBase';
 
 describe('<ButtonBase />', () => {
@@ -428,13 +427,54 @@ describe('<ButtonBase />', () => {
 
   describe('prop: centerRipple', () => {
     it('centers the TouchRipple', () => {
-      const wrapper = mount(<ButtonBase centerRipple>Hello</ButtonBase>);
-      expect(wrapper.find(TouchRipple).props()).to.have.property('center', true);
+      const { container, getByRole } = render(
+        <ButtonBase
+          centerRipple
+          TouchRippleProps={{ classes: { root: 'touch-ripple', ripple: 'touch-ripple-ripple' } }}
+        >
+          Hello
+        </ButtonBase>,
+      );
+      // @ts-ignore
+      stub(container.querySelector('.touch-ripple'), 'getBoundingClientRect').callsFake(() => ({
+        width: 100,
+        height: 100,
+        bottom: 10,
+        left: 20,
+        top: 20,
+      }));
+      fireEvent.mouseDown(getByRole('button'), { clientX: 10, clientY: 10 });
+      const rippleRipple = container.querySelector('.touch-ripple-ripple');
+      expect(rippleRipple).to.not.equal(null);
+      // @ts-ignore
+      const rippleSyle = window.getComputedStyle(rippleRipple);
+      expect(rippleSyle).to.have.property('height', '101px');
+      expect(rippleSyle).to.have.property('width', '101px');
     });
 
     it('is disabled by default', () => {
-      const wrapper = mount(<ButtonBase>Hello</ButtonBase>);
-      expect(wrapper.find(TouchRipple).props()).to.have.property('center', false);
+      const { container, getByRole } = render(
+        <ButtonBase
+          TouchRippleProps={{ classes: { root: 'touch-ripple', ripple: 'touch-ripple-ripple' } }}
+        >
+          Hello
+        </ButtonBase>,
+      );
+      // @ts-ignore
+      stub(container.querySelector('.touch-ripple'), 'getBoundingClientRect').callsFake(() => ({
+        width: 100,
+        height: 100,
+        bottom: 10,
+        left: 20,
+        top: 20,
+      }));
+      fireEvent.mouseDown(getByRole('button'), { clientX: 10, clientY: 10 });
+      const rippleRipple = container.querySelector('.touch-ripple-ripple');
+      expect(rippleRipple).to.not.equal(null);
+      // @ts-ignore
+      const rippleSyle = window.getComputedStyle(rippleRipple);
+      expect(rippleSyle).to.not.have.property('height', '101px');
+      expect(rippleSyle).to.not.have.property('width', '101px');
     });
   });
 

@@ -7,6 +7,7 @@ import ThemeProvider from './ThemeProvider';
 
 describe('experimentalStyled', () => {
   const render = createClientRender();
+
   it('should work', () => {
     const Div = styled('div')({
       width: '200px',
@@ -14,8 +15,9 @@ describe('experimentalStyled', () => {
 
     render(<Div data-testid="component">Test</Div>);
 
-    const style = window.getComputedStyle(screen.getByTestId('component'));
-    expect(style.getPropertyValue('width')).to.equal('200px');
+    expect(screen.getByTestId('component')).toHaveComputedStyle({
+      width: '200px',
+    });
   });
 
   it('should use defaultTheme if no theme is provided', () => {
@@ -25,8 +27,9 @@ describe('experimentalStyled', () => {
 
     render(<Div data-testid="component">Test</Div>);
 
-    const style = window.getComputedStyle(screen.getByTestId('component'));
-    expect(style.getPropertyValue('width')).to.equal('8px');
+    expect(screen.getByTestId('component')).toHaveComputedStyle({
+      width: '8px',
+    });
   });
 
   it('should use theme from context if available', () => {
@@ -44,55 +47,74 @@ describe('experimentalStyled', () => {
       </ThemeProvider>,
     );
 
-    const style = window.getComputedStyle(screen.getByTestId('component'));
-    expect(style.getPropertyValue('width')).to.equal('10px');
+    expect(screen.getByTestId('component')).toHaveComputedStyle({
+      width: '10px',
+    });
   });
 
   describe('muiOptions', () => {
-    const theme = createMuiTheme({
-      components: {
-        MuiTest: {
-          variants: [
-            {
-              props: { variant: 'rect', size: 'large' },
-              style: {
-                width: '400px',
-                height: '400px',
+    /**
+     * @type {ReturnType<typeof createMuiTheme>}
+     */
+    let theme;
+    /**
+     * @type {ReturnType<typeof styled>}
+     */
+    let Test;
+
+    before(() => {
+      theme = createMuiTheme({
+        components: {
+          MuiTest: {
+            variants: [
+              {
+                props: { variant: 'rect', size: 'large' },
+                style: {
+                  width: '400px',
+                  height: '400px',
+                },
               },
-            },
-          ],
-          styleOverrides: {
-            root: {
-              width: '250px',
-            },
-            rect: {
-              height: '250px',
+            ],
+            styleOverrides: {
+              root: {
+                width: '250px',
+              },
+              rect: {
+                height: '250px',
+              },
             },
           },
         },
-      },
-    });
+      });
 
-    const testOverridesResolver = (props, styles) => ({
-      ...styles.root,
-      ...(props.variant && styles[props.variant]),
-    });
+      const testOverridesResolver = (props, styles) => ({
+        ...styles.root,
+        ...(props.variant && styles[props.variant]),
+      });
 
-    const Test = styled(
-      'div',
-      { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' },
-      { muiName: 'MuiTest', overridesResolver: testOverridesResolver },
-    )`
-      width: 200px;
-      height: 300px;
-    `;
+      // FIXME: Should not error in DEV
+      expect(() => {
+        Test = styled(
+          'div',
+          { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' },
+          { muiName: 'MuiTest', overridesResolver: testOverridesResolver },
+        )`
+          width: 200px;
+          height: 300px;
+        `;
+      }).toErrorDev([
+        'You have illegal escape sequence in your template literal',
+        'You have illegal escape sequence in your template literal',
+      ]);
+    });
 
     it('should work with specified muiOptions', () => {
       render(<Test data-testid="component">Test</Test>);
 
-      const style = window.getComputedStyle(screen.getByTestId('component'));
-      expect(style.getPropertyValue('width')).to.equal('200px');
-      expect(style.getPropertyValue('height')).to.equal('300px');
+      expect(screen.getByTestId('component')).toHaveComputedStyle({
+        width: '200px',
+        height: '300px',
+      });
     });
 
     it('overrides should be respected', () => {
@@ -102,9 +124,10 @@ describe('experimentalStyled', () => {
         </ThemeProvider>,
       );
 
-      const style = window.getComputedStyle(screen.getByTestId('component'));
-      expect(style.getPropertyValue('width')).to.equal('250px');
-      expect(style.getPropertyValue('height')).to.equal('300px');
+      expect(screen.getByTestId('component')).toHaveComputedStyle({
+        width: '250px',
+        height: '300px',
+      });
     });
 
     it('overrides should be respected when prop is specified', () => {
@@ -116,9 +139,10 @@ describe('experimentalStyled', () => {
         </ThemeProvider>,
       );
 
-      const style = window.getComputedStyle(screen.getByTestId('component'));
-      expect(style.getPropertyValue('width')).to.equal('250px');
-      expect(style.getPropertyValue('height')).to.equal('250px');
+      expect(screen.getByTestId('component')).toHaveComputedStyle({
+        width: '250px',
+        height: '250px',
+      });
     });
 
     it('variants should win over overrides', () => {
@@ -130,9 +154,10 @@ describe('experimentalStyled', () => {
         </ThemeProvider>,
       );
 
-      const style = window.getComputedStyle(screen.getByTestId('component'));
-      expect(style.getPropertyValue('width')).to.equal('400px');
-      expect(style.getPropertyValue('height')).to.equal('400px');
+      expect(screen.getByTestId('component')).toHaveComputedStyle({
+        width: '400px',
+        height: '400px',
+      });
     });
 
     it('styled wrapper should win over variants', () => {
@@ -148,9 +173,10 @@ describe('experimentalStyled', () => {
         </ThemeProvider>,
       );
 
-      const style = window.getComputedStyle(screen.getByTestId('component'));
-      expect(style.getPropertyValue('width')).to.equal('500px');
-      expect(style.getPropertyValue('height')).to.equal('400px');
+      expect(screen.getByTestId('component')).toHaveComputedStyle({
+        width: '500px',
+        height: '400px',
+      });
     });
   });
 });
