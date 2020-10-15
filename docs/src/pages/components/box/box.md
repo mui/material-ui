@@ -57,7 +57,7 @@ The Box children accepts a render props function. You can pull out the `classNam
 > ⚠️ The CSS specificity relies on the import order.
 > If you want the guarantee that the wrapped component's style will be overridden, you need to import the Box last.
 
-### The sx prop
+## The sx prop
 
 Sometimes, the properties on the Box component are not enough for styling the component. For solving this, we support the `sx` prop, which allows you to specify any css rules you want, in addition to the ones already available on the `Box` component. Here is an example of how you may use it:
 
