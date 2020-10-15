@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Links() {
+export default function UnderlineLink() {
   const classes = useStyles();
   const preventDefault = (event) => event.preventDefault();
 
