@@ -70,8 +70,8 @@ describe('<TouchRipple />', () => {
         );
       });
 
-      expect(queryRipple().style).to.have.property('height', '1px');
-      expect(queryRipple().style).to.have.property('width', '1px');
+      expect(queryRipple()).toHaveInlineStyle({ height: '1px' });
+      expect(queryRipple()).toHaveInlineStyle({ width: '1px' });
     });
   });
 
@@ -173,8 +173,8 @@ describe('<TouchRipple />', () => {
 
       expect(queryAllActiveRipples()).to.have.lengthOf(1);
       expect(queryAllStoppingRipples()).to.have.lengthOf(0);
-      expect(queryRipple().style).to.have.property('top', '-0.5px');
-      expect(queryRipple().style).to.have.property('left', '-0.5px');
+      expect(queryRipple()).toHaveInlineStyle({ top: '-0.5px' });
+      expect(queryRipple()).toHaveInlineStyle({ left: '-0.5px' });
     });
   });
 
