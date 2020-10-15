@@ -59,7 +59,7 @@ The Box children accepts a render props function. You can pull out the `classNam
 
 ## The sx prop
 
-Sometimes, the properties on the Box component are not enough for styling the component. For solving this, we support the `sx` prop, which allows you to specify any css rules you want, in addition to the ones already available on the `Box` component. Here is an example of how you may use it:
+Sometimes, the props on the Box component are not enough for styling the component. For solving this, we support the `sx` prop, which allows you to specify any CSS rules you want, in addition to the ones already available on the `Box` component. Here is an example of how you may use it:
 
 ```jsx
 <Box
