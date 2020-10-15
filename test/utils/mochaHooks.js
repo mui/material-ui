@@ -33,7 +33,9 @@ function createUnexpectedConsoleMessagesHooks(Mocha, methodName, expectedMatcher
 
   mochaHooks.afterEach.push(function flushUnexpectedCalls() {
     const hadUnexpectedCalls = unexpectedCalls.length > 0;
-    const formattedCalls = unexpectedCalls.map(([stack, message]) => `${message}\n${stack}`);
+    const formattedCalls = unexpectedCalls.map(
+      ([stack, message]) => `console.${methodName} message:\n  ${message}\n\nStack:\n${stack}`,
+    );
     unexpectedCalls.length = 0;
 
     // eslint-disable-next-line no-console
@@ -41,10 +43,15 @@ function createUnexpectedConsoleMessagesHooks(Mocha, methodName, expectedMatcher
       throw new Error(`Did not tear down spy or stub of console.${methodName} in your test.`);
     }
     if (hadUnexpectedCalls) {
+      // In karma `file` is `null`.
+      // We still have the stacktrace though
+      const location = this.currentTest.file ?? '(unknown file)';
       const message =
         `Expected test not to call console.${methodName}()\n\n` +
         'If the warning is expected, test for it explicitly by ' +
-        `using the ${expectedMatcher}() matcher.`;
+        // Don't add any punctuation after the location.
+        // Otherwise it's not clickable in IDEs
+        `using the ${expectedMatcher}() matcher.\nTest location:\n  ${location} `;
 
       const error = new Error(`${message}\n\n${formattedCalls.join('\n\n')}`);
       // The stack of `flushUnexpectedCalls` is irrelevant.
