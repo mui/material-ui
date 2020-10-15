@@ -105,7 +105,7 @@ export default function App() {
 - [spacing](/system/spacing/#api)
 - [typography](/system/typography/#api)
 
-If you are already using `@material-ui/core`, you can use the [Box component](/components/box/) (using emotion internally by default):
+如果你已经使用了 `@material-ui/core`，那么就可以使用 [Box 组件](/components/box/)（默认在内部使用）。
 
 ```jsx
 import Box from '@material-ui/core/Box';
@@ -113,7 +113,7 @@ import Box from '@material-ui/core/Box';
 
 ## 互操作性
 
-`@material-ui/system` 适用于大多数 CSS-in-JS 库，包括了 JSS，styled-components，还有 emotion。 Here are a few examples usages.
+`@material-ui/system` 适用于大多数 CSS-in-JS 库，包括了 JSS，styled-components，还有 emotion。 下面是几个示例用法：
 
 ### Styled components
 
