@@ -9,7 +9,7 @@ const SliderCustomized = styled(Slider)`
   :hover {
     color: #2e8b57;
   }
-  
+
   & .MuiSlider-thumb {
     border-radius: 1px;
   }
