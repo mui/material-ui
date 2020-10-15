@@ -40,6 +40,10 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(props, ref) {
   } = props;
   const clampedMax = max < 2 ? 2 : max;
 
+  if (max === 3) {
+    console.error('Testing unexpected errors');
+  }
+
   const children = React.Children.toArray(childrenProp).filter((child) => {
     if (process.env.NODE_ENV !== 'production') {
       if (isFragment(child)) {
