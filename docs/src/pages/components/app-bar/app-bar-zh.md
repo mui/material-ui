@@ -53,7 +53,7 @@ materialDesign: https://material.io/components/app-bars-top
 
 当渲染一个固定位置的应用栏时，元素的尺寸不会影响页面的其余内容。 这可能导致部分内容会被挡在应用程序栏后面，而无法可见。 下面是3种可能的解决方案：
 
-1. 使用 `position =“ sticky”` 代替 fixed。 ⚠️ sticky is not supported by IE11.
+1. 使用 `position =“ sticky”` 代替 fixed。 ⚠️ sticky 不支持 IE11。
 2. 可以渲染第二个 `<Toolbar />` 组件：
 
 ```jsx
@@ -115,10 +115,10 @@ function App() {
 
 #### 参数
 
-1. `options` (*Object* [optional]):
+1. `options` (_Object_ [optional]):
 
-   - `options.disableHysteresis` (*Boolean* [optional]): 默认值为`false`。 禁用迟滞的效果。 在决定 `trigger` 的值时会忽略在滚动的方向。
-   - `options.target` （*Node* [optional]）：默认值时 `window`。
+   - `options.disableHysteresis` (_Boolean_ [optional])：默认值为`false`。 禁用迟滞的效果。 在决定 `trigger` 的值时会忽略在滚动的方向。
+   - `options.target` (_Node_ [optional])：默认值是 `window`。
    - `options.threshold` (_Number_ [optional])：默认值是 `100`。 严格来说，当垂直滚动超过（但不包括）此阈值时，请更改 `trigger` 的值。
 
 #### 返回结果
