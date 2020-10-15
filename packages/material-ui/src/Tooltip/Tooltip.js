@@ -387,14 +387,16 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
   };
 
   const handleTouchStart = (event) => {
-    detectTouchStart(event);
-    clearTimeout(leaveTimer.current);
-    clearTimeout(closeTimer.current);
-    clearTimeout(touchTimer.current);
-    event.persist();
-    touchTimer.current = setTimeout(() => {
-      handleEnter()(event);
-    }, enterTouchDelay);
+    if (typeof PointerEvent === 'undefined') {
+      detectTouchStart(event);
+      clearTimeout(leaveTimer.current);
+      clearTimeout(closeTimer.current);
+      clearTimeout(touchTimer.current);
+      event.persist();
+      touchTimer.current = setTimeout(() => {
+        handleEnter()(event);
+      }, enterTouchDelay);
+    }
   };
 
   const handleTouchEnd = (event) => {
@@ -402,12 +404,14 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
       children.props.onTouchEnd(event);
     }
 
-    clearTimeout(touchTimer.current);
-    clearTimeout(leaveTimer.current);
-    event.persist();
-    leaveTimer.current = setTimeout(() => {
-      handleClose(event);
-    }, leaveTouchDelay);
+    if (typeof PointerEvent === 'undefined') {
+      clearTimeout(touchTimer.current);
+      clearTimeout(leaveTimer.current);
+      event.persist();
+      leaveTimer.current = setTimeout(() => {
+        handleClose(event);
+      }, leaveTouchDelay);
+    }
   };
 
   React.useEffect(() => {
