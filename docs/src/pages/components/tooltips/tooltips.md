@@ -101,7 +101,7 @@ By default disabled elements like `<button>` do not trigger user interactions so
       disabled={disabled}
       style={disabled ? { pointerEvents: 'none' } : {}}
     >
-      {'A disabled button'}
+      A disabled button
     </button>
   </span>
 </Tooltip>
