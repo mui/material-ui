@@ -34,7 +34,11 @@ export type BoxStyleFunction = ComposedStyleFunction<
 
 type SystemProps = PropsFor<BoxStyleFunction>;
 type ElementProps = Omit<React.HTMLAttributes<HTMLElement>, keyof SystemProps>;
-type SxObjectType = Omit<CSSObject, keyof SystemProps> & SystemProps | Partial<Record<keyof Omit<CSSObject, keyof SystemProps> & SystemProps, (theme: Theme) => CSSObject>>
+type SxObjectType =
+  | (Omit<CSSObject, keyof SystemProps> & SystemProps)
+  | Partial<
+      Record<keyof Omit<CSSObject, keyof SystemProps> & SystemProps, (theme: Theme) => CSSObject>
+    >;
 type SxProps = SxObjectType | ((theme: Theme) => SxObjectType);
 
 export interface BoxProps extends ElementProps, SystemProps {
