@@ -8,7 +8,7 @@
 
 ### 参数
 
-1. `options` (*Object* [optional]):
+1. `options` (_Object_ [optional]):
 
    - `options.disableGlobal` (*Boolean* [optional]): 默认值为`false`。 阻止生成确定性的类名。
    - `options.seed` (*String* [optional])：初始值为 `''`. 用于唯一标识生成器的字符串。 字符串用来在生产中对类名称加上前缀。
@@ -54,7 +54,7 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
-    backgroundColor: theme.color.red,
+    backgroundColor: theme.palette.red,
   },
 }));
 
@@ -71,7 +71,7 @@ export default function MyComponent {
 ### 参数
 
 1. `styles`(* Function | Object *): 生成样式或样式对象的函数。 它将被链接到组件中。 若您需要访问主题，请使用函数签名（function signature）。 它是提供的第一个参数。
-2. `options` (*Object* [optional]):
+2. `options` (_Object_ [optional]):
 
 - `options.defaultTheme`（*Object* [optional]）：如果未通过主题提供者提供主题，则使用默认主题。
 - `options.name` (*String* [optional]): 样式表的名称。 适合调试。
@@ -154,7 +154,7 @@ const response = `
 
 1. `Component` ：将被包装的组件。
 2. `styles`(* Function | Object *): 生成样式或样式对象的函数。 它将被链接到组件中。 若您需要访问主题，请使用函数签名（function signature）。 它作为第一个参数的属性给出。
-3. `options` (*Object* [optional]):
+3. `options` (_Object_ [optional]):
 
 - `options.defaultTheme`（*Object* [optional]）：如果未通过主题提供者提供主题，则使用默认主题。
 - `options.withTheme` (*Boolean* [optional]): 默认值为 `false`。 将 `theme` 对象作为属性提供给组件。
@@ -287,7 +287,7 @@ export default function MyComponent() {
 ### 参数
 
 1. `styles`(* Function | Object *): 生成样式或样式对象的函数。 它将被链接到组件中。 若您需要访问主题，请使用函数签名（function signature）。 它是提供的第一个参数。
-2. `options` (*Object* [optional]):
+2. `options` (_Object_ [optional]):
 
 - `options.defaultTheme`（*Object* [optional]）：如果未通过主题提供者提供主题，则使用默认主题。
 - `options.withTheme` (*Boolean* [optional]): 默认值为 `false`。 将 `theme` 对象作为属性提供给组件。
