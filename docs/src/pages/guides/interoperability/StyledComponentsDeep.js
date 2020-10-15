@@ -5,9 +5,11 @@ import Box from '@material-ui/core/Box';
 
 const SliderCustomized = styled(Slider)`
   color: #20b2aa;
+
   :hover {
     color: #2e8b57;
   }
+  
   & .MuiSlider-thumb {
     border-radius: 1px;
   }
