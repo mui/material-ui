@@ -66,6 +66,10 @@ const getThemeValue = (prop, value, theme) => {
 const traverseSx = (styles, theme) => {
   if (!styles) return null;
 
+  if(typeof styles === 'function') {
+    return styles(theme);
+  }
+
   if (typeof styles !== 'object') {
     // value
     return styles;
@@ -84,6 +88,11 @@ const traverseSx = (styles, theme) => {
         const transformedValue = traverseSx(styles[styleKey], theme);
         css[styleKey] = transformedValue;
       }
+    } else if(typeof styles[styleKey] === 'function') {
+      css = {
+        ...css,
+        [styleKey]: styles[styleKey](theme),
+      };
     } else {
       css = {
         ...css,
