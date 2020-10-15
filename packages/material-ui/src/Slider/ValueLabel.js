@@ -37,6 +37,7 @@ const styles = (theme) => ({
   label: {
     color: theme.palette.primary.contrastText,
     transform: 'rotate(45deg)',
+    textAlign: 'center',
   },
 });
 
