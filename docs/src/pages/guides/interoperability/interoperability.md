@@ -51,7 +51,7 @@ export default function PlainCssSlider() {
 
 ### CSS injection order ⚠️
 
-**Note:** Most CSS-in-JS solutions inject their styles at the bottom of the HTML `<head>`, which make Material-UI take precedence over your `<style>`. To remove the need for **!important**, you need to change the CSS injection order. Here's a demo of how it can be done for the default style engine - emotion:
+**Note:** Most CSS-in-JS solutions inject their styles at the bottom of the HTML `<head>`, which gives Material-UI precedence over your custom styles. To remove the need for **!important**, you need to change the CSS injection order. Here's a demo of how it can be done for the default style engine - emotion:
 
 ```jsx
 import * as React from 'react';
