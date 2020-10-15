@@ -7,6 +7,7 @@ import ThemeProvider from './ThemeProvider';
 
 describe('experimentalStyled', () => {
   const render = createClientRender();
+
   it('should work', () => {
     const Div = styled('div')({
       width: '200px',
@@ -52,43 +53,60 @@ describe('experimentalStyled', () => {
   });
 
   describe('muiOptions', () => {
-    const theme = createMuiTheme({
-      components: {
-        MuiTest: {
-          variants: [
-            {
-              props: { variant: 'rect', size: 'large' },
-              style: {
-                width: '400px',
-                height: '400px',
+    /**
+     * @type {ReturnType<typeof createMuiTheme>}
+     */
+    let theme;
+    /**
+     * @type {ReturnType<typeof styled>}
+     */
+    let Test;
+
+    before(() => {
+      theme = createMuiTheme({
+        components: {
+          MuiTest: {
+            variants: [
+              {
+                props: { variant: 'rect', size: 'large' },
+                style: {
+                  width: '400px',
+                  height: '400px',
+                },
               },
-            },
-          ],
-          styleOverrides: {
-            root: {
-              width: '250px',
-            },
-            rect: {
-              height: '250px',
+            ],
+            styleOverrides: {
+              root: {
+                width: '250px',
+              },
+              rect: {
+                height: '250px',
+              },
             },
           },
         },
-      },
-    });
+      });
 
-    const testOverridesResolver = (props, styles) => ({
-      ...styles.root,
-      ...(props.variant && styles[props.variant]),
-    });
+      const testOverridesResolver = (props, styles) => ({
+        ...styles.root,
+        ...(props.variant && styles[props.variant]),
+      });
 
-    const Test = styled(
-      'div',
-      { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' },
-      { muiName: 'MuiTest', overridesResolver: testOverridesResolver },
-    )`
-      width: 200px;
-      height: 300px;
-    `;
+      // FIXME: Should not error in DEV
+      expect(() => {
+        Test = styled(
+          'div',
+          { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' },
+          { muiName: 'MuiTest', overridesResolver: testOverridesResolver },
+        )`
+          width: 200px;
+          height: 300px;
+        `;
+      }).toErrorDev([
+        'You have illegal escape sequence in your template literal',
+        'You have illegal escape sequence in your template literal',
+      ]);
+    });
 
     it('should work with specified muiOptions', () => {
       render(<Test data-testid="component">Test</Test>);
