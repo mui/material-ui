@@ -666,14 +666,19 @@ export default function useAutocomplete(props) {
           if (popupOpen && handleHomeEndKeys) {
             // Prevent scroll of the page
             event.preventDefault();
-            changeHighlightedIndex({diff: 'start', direction: 'next', reason: 'keyboard', event});
+            changeHighlightedIndex({ diff: 'start', direction: 'next', reason: 'keyboard', event });
           }
           break;
         case 'End':
           if (popupOpen && handleHomeEndKeys) {
             // Prevent scroll of the page
             event.preventDefault();
-            changeHighlightedIndex({diff: 'end', direction: 'previous', reason: 'keyboard', event});
+            changeHighlightedIndex({
+              diff: 'end',
+              direction: 'previous',
+              reason: 'keyboard',
+              event,
+            });
           }
           break;
         case 'PageUp':
@@ -690,19 +695,19 @@ export default function useAutocomplete(props) {
         case 'PageDown':
           // Prevent scroll of the page
           event.preventDefault();
-          changeHighlightedIndex({diff: pageSize, direction: 'next', reason: 'keyboard', event});
+          changeHighlightedIndex({ diff: pageSize, direction: 'next', reason: 'keyboard', event });
           handleOpen(event);
           break;
         case 'ArrowDown':
           // Prevent cursor move
           event.preventDefault();
-          changeHighlightedIndex({diff: 1, direction: 'next', reason: 'keyboard', event});
+          changeHighlightedIndex({ diff: 1, direction: 'next', reason: 'keyboard', event });
           handleOpen(event);
           break;
         case 'ArrowUp':
           // Prevent cursor move
           event.preventDefault();
-          changeHighlightedIndex({diff: -1, direction: 'previous', reason: 'keyboard', event});
+          changeHighlightedIndex({ diff: -1, direction: 'previous', reason: 'keyboard', event });
           handleOpen(event);
           break;
         case 'ArrowLeft':

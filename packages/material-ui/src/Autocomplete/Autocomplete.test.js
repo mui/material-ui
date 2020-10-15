@@ -902,8 +902,8 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
-      const textbox = getByRole('textbox')
-      const listbox = getByRole('listbox')
+      const textbox = getByRole('textbox');
+      const listbox = getByRole('listbox');
       // Actual Behavior when "가" (Korean) is entered and press the arrow down key once on macOS/Chrome
       fireEvent.change(textbox, { target: { value: '가' } });
       fireEvent.keyDown(textbox, { key: 'ArrowDown', keyCode: 229 });
