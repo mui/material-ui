@@ -80,35 +80,23 @@ The `ActionsComponent` prop of the `TablePagination` component allows the implem
 ## Fixed header
 
 An example of a table with scrollable rows and fixed column headers.
-It leverages the `stickyHeader` prop (⚠️ no IE11 support).
+It leverages the `stickyHeader` prop.<br />
+(⚠️ no IE11 support)
 
 {{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
 
-##### Note: If the table has multiple header rows, additional styling must be added to ensure that all of them are visible. By default, they will be stacked together on the top and only the last one will be visible. To avoid this behavior, additional header rows must be styled with a `top` value to create the necessary spacing.
+## Column grouping
 
-##### Example:
+You can group column header by rendering multiple table rows inside a table head:
 
 ```jsx
-		<TableHead>
-      <TableRow>
-        <TableCell
-          align="center"
-          colSpan={columns.length}
-        >
-          First Header Row
-        </TableCell>
-      </TableRow>
-      <TableRow>
-        <TableCell
-          style={{ top: 57 }}
-          align="center"
-          colSpan={columns.length}
-        >
-          Another Header Row
-        </TableCell>
-      </TableRow>
-    </TableHead>
+<TableHead>
+  <TableRow />
+  <TableRow />
+</TableHead>
 ```
+
+{{"demo": "pages/components/tables/ColumnGroupingTable.js", "bg": true}}
 
 ## Collapsible table
 
