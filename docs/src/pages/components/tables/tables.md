@@ -85,6 +85,7 @@ It leverages the `stickyHeader` prop (⚠️ no IE11 support).
 {{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
 
 ##### Note: If the table has multiple header rows, additional styling must be added to ensure that all of them are visible. By default, they will be stacked together on the top and only the last one will be visible. To avoid this behavior, additional header rows must be styled with a `top` value to create the necessary spacing.
+
 ##### Example:
 
 ```jsx
