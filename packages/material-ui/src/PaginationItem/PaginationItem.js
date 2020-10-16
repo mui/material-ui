@@ -27,7 +27,7 @@ export const styles = (theme) => ({
     transition: theme.transitions.create(['color', 'background-color'], {
       duration: theme.transitions.duration.short,
     }),
-    '&:hover': {
+    '&:hover:not($disabled)': {
       backgroundColor: theme.palette.action.hover,
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
@@ -39,7 +39,7 @@ export const styles = (theme) => ({
     },
     '&$selected': {
       backgroundColor: theme.palette.action.selected,
-      '&:hover': {
+      '&:hover:not($disabled)': {
         backgroundColor: alpha(
           theme.palette.action.selected,
           theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
@@ -94,7 +94,7 @@ export const styles = (theme) => ({
     '&$selected': {
       color: theme.palette.primary.contrastText,
       backgroundColor: theme.palette.primary.main,
-      '&:hover, &$focusVisible': {
+      '&:hover:not($disabled), &$focusVisible': {
         backgroundColor: theme.palette.primary.dark,
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
@@ -111,7 +111,7 @@ export const styles = (theme) => ({
     '&$selected': {
       color: theme.palette.secondary.contrastText,
       backgroundColor: theme.palette.secondary.main,
-      '&:hover, &$focusVisible': {
+      '&:hover:not($disabled), &$focusVisible': {
         backgroundColor: theme.palette.secondary.dark,
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
@@ -140,7 +140,7 @@ export const styles = (theme) => ({
       color: theme.palette.primary.main,
       border: `1px solid ${alpha(theme.palette.primary.main, 0.5)}`,
       backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
-      '&:hover, &$focusVisible': {
+      '&:hover:not($disabled), &$focusVisible': {
         backgroundColor: alpha(
           theme.palette.primary.main,
           theme.palette.action.activatedOpacity + theme.palette.action.focusOpacity,
@@ -161,7 +161,7 @@ export const styles = (theme) => ({
       color: theme.palette.secondary.main,
       border: `1px solid ${alpha(theme.palette.secondary.main, 0.5)}`,
       backgroundColor: alpha(theme.palette.secondary.main, theme.palette.action.activatedOpacity),
-      '&:hover, &$focusVisible': {
+      '&:hover:not($disabled), &$focusVisible': {
         backgroundColor: alpha(
           theme.palette.secondary.main,
           theme.palette.action.activatedOpacity + theme.palette.action.focusOpacity,

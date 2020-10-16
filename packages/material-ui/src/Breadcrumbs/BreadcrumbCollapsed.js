@@ -13,7 +13,7 @@ const styles = (theme) => ({
     backgroundColor: theme.palette.grey[100],
     color: theme.palette.grey[700],
     borderRadius: 2,
-    '&:hover, &:focus': {
+    '&:hover:not($disabled), &:focus': {
       backgroundColor: theme.palette.grey[200],
     },
     '&:active': {

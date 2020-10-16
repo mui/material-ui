@@ -32,6 +32,7 @@ The `MuiTableSortLabel` name can be used for providing [default props](/customiz
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | Label contents, the arrow will be appended automatically. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">direction</span> | <span class="prop-type">'asc'<br>&#124;&nbsp;'desc'</span> | <span class="prop-default">'asc'</span> | The current sort direction. |
+| <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the base button will be disabled. |
 | <span class="prop-name">hideSortIcon</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Hide sort icon when active is false. |
 | <span class="prop-name">IconComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">ArrowDownwardIcon</span> | Sort icon to use. |
 
@@ -45,6 +46,7 @@ Any other props supplied will be provided to the root element ([ButtonBase](/api
 |:-----|:-------------|:------------|
 | <span class="prop-name">root</span> | <span class="prop-name">.MuiTableSortLabel-root</span> | Styles applied to the root element.
 | <span class="prop-name">active</span> | <span class="prop-name">.MuiTableSortLabel-active</span> | Pseudo-class applied to the root element if `active={true}`.
+| <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`
 | <span class="prop-name">icon</span> | <span class="prop-name">.MuiTableSortLabel-icon</span> | Styles applied to the icon component.
 | <span class="prop-name">iconDirectionDesc</span> | <span class="prop-name">.MuiTableSortLabel-iconDirectionDesc</span> | Styles applied to the icon component if `direction="desc"`.
 | <span class="prop-name">iconDirectionAsc</span> | <span class="prop-name">.MuiTableSortLabel-iconDirectionAsc</span> | Styles applied to the icon component if `direction="asc"`.

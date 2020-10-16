@@ -20,7 +20,7 @@ export const styles = (theme) => ({
     transition: theme.transitions.create('background-color', {
       duration: theme.transitions.duration.shortest,
     }),
-    '&:hover': {
+    '&:hover:not($disabled)': {
       backgroundColor: alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
@@ -53,7 +53,7 @@ export const styles = (theme) => ({
   /* Styles applied to the root element if `color="primary"`. */
   colorPrimary: {
     color: theme.palette.primary.main,
-    '&:hover': {
+    '&:hover:not($disabled)': {
       backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
@@ -64,7 +64,7 @@ export const styles = (theme) => ({
   /* Styles applied to the root element if `color="secondary"`. */
   colorSecondary: {
     color: theme.palette.secondary.main,
-    '&:hover': {
+    '&:hover:not($disabled)': {
       backgroundColor: alpha(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {

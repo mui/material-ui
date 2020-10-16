@@ -17,7 +17,7 @@ export const styles = (theme) => ({
     '&:focus': {
       color: theme.palette.text.secondary,
     },
-    '&:hover': {
+    '&:hover:not($disabled)': {
       color: theme.palette.text.secondary,
       '& $icon': {
         opacity: 0.5,
@@ -34,6 +34,8 @@ export const styles = (theme) => ({
   },
   /* Pseudo-class applied to the root element if `active={true}`. */
   active: {},
+  /* Pseudo-class applied to the root element if `disabled={true}` */
+  disabled: {},
   /* Styles applied to the icon component. */
   icon: {
     fontSize: 18,
@@ -65,6 +67,7 @@ const TableSortLabel = React.forwardRef(function TableSortLabel(props, ref) {
     classes,
     className,
     direction = 'asc',
+    disabled = false,
     hideSortIcon = false,
     IconComponent = ArrowDownwardIcon,
     ...other
@@ -72,8 +75,13 @@ const TableSortLabel = React.forwardRef(function TableSortLabel(props, ref) {
 
   return (
     <ButtonBase
-      className={clsx(classes.root, { [classes.active]: active }, className)}
+      className={clsx(
+        classes.root,
+        { [classes.active]: active, [classes.disabled]: disabled },
+        className,
+      )}
       component="span"
+      disabled={disabled}
       disableRipple
       ref={ref}
       {...other}
@@ -115,6 +123,11 @@ TableSortLabel.propTypes = {
    * @default 'asc'
    */
   direction: PropTypes.oneOf(['asc', 'desc']),
+  /**
+   * If `true`, the base button will be disabled.
+   * @default false
+   */
+  disabled: PropTypes.bool,
   /**
    * Hide sort icon when active is false.
    * @default false

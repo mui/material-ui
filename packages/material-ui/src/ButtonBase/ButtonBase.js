@@ -36,7 +36,6 @@ export const styles = {
       borderStyle: 'none', // Remove Firefox dotted outline.
     },
     '&$disabled': {
-      pointerEvents: 'none', // Disable link interactions
       cursor: 'default',
     },
     '@media print': {
@@ -131,8 +130,6 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
       if (!ignore && rippleRef.current) {
         rippleRef.current[rippleAction](event);
       }
-
-      return true;
     });
   }
 
@@ -258,7 +255,8 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
       event.target === event.currentTarget &&
       isNonNativeButton() &&
       event.key === ' ' &&
-      !event.defaultPrevented
+      !event.defaultPrevented &&
+      !disabled
     ) {
       onClick(event);
     }

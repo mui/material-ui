@@ -87,7 +87,7 @@ export const styles = (theme) => {
       userSelect: 'none',
       WebkitTapHighlightColor: 'transparent',
       cursor: 'pointer',
-      '&:hover, &$focusVisible': {
+      '&:hover:not($disabled), &$focusVisible': {
         backgroundColor: emphasize(backgroundColor, 0.08),
       },
       '&:active': {
@@ -96,13 +96,13 @@ export const styles = (theme) => {
     },
     /* Styles applied to the root element if `onClick` and `color="primary"` is defined or `clickable={true}`. */
     clickableColorPrimary: {
-      '&:hover, &$focusVisible': {
+      '&:hover:not($disabled), &$focusVisible': {
         backgroundColor: emphasize(theme.palette.primary.main, 0.08),
       },
     },
     /* Styles applied to the root element if `onClick` and `color="secondary"` is defined or `clickable={true}`. */
     clickableColorSecondary: {
-      '&:hover, &$focusVisible': {
+      '&:hover:not($disabled), &$focusVisible': {
         backgroundColor: emphasize(theme.palette.secondary.main, 0.08),
       },
     },
@@ -130,7 +130,7 @@ export const styles = (theme) => {
       border: `1px solid ${
         theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
       }`,
-      '&$focusVisible, $clickable&:hover': {
+      '&$focusVisible, $clickable&:hover:not($disabled)': {
         backgroundColor: alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
       },
       '& $avatar': {
@@ -158,7 +158,7 @@ export const styles = (theme) => {
     outlinedPrimary: {
       color: theme.palette.primary.main,
       border: `1px solid ${theme.palette.primary.main}`,
-      '&$focusVisible, $clickable&:hover': {
+      '&$focusVisible, $clickable&:hover:not($disabled)': {
         backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.hoverOpacity),
       },
     },
@@ -166,7 +166,7 @@ export const styles = (theme) => {
     outlinedSecondary: {
       color: theme.palette.secondary.main,
       border: `1px solid ${theme.palette.secondary.main}`,
-      '&$focusVisible, $clickable&:hover': {
+      '&$focusVisible, $clickable&:hover:not($disabled)': {
         backgroundColor: alpha(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
       },
     },
@@ -219,7 +219,7 @@ export const styles = (theme) => {
       fontSize: 22,
       cursor: 'pointer',
       margin: '0 5px 0 -6px',
-      '&:hover': {
+      '&:hover:not($disabled)': {
         color: alpha(deleteIconColor, 0.4),
       },
     },
@@ -232,28 +232,28 @@ export const styles = (theme) => {
     /* Styles applied to the deleteIcon element if `color="primary"` and `variant="filled"`. */
     deleteIconColorPrimary: {
       color: alpha(theme.palette.primary.contrastText, 0.7),
-      '&:hover, &:active': {
+      '&:hover:not($disabled), &:active': {
         color: theme.palette.primary.contrastText,
       },
     },
     /* Styles applied to the deleteIcon element if `color="secondary"` and `variant="filled"`. */
     deleteIconColorSecondary: {
       color: alpha(theme.palette.secondary.contrastText, 0.7),
-      '&:hover, &:active': {
+      '&:hover:not($disabled), &:active': {
         color: theme.palette.secondary.contrastText,
       },
     },
     /* Styles applied to the deleteIcon element if `color="primary"` and `variant="outlined"`. */
     deleteIconOutlinedColorPrimary: {
       color: alpha(theme.palette.primary.main, 0.7),
-      '&:hover, &:active': {
+      '&:hover:not($disabled), &:active': {
         color: theme.palette.primary.main,
       },
     },
     /* Styles applied to the deleteIcon element if `color="secondary"` and `variant="outlined"`. */
     deleteIconOutlinedColorSecondary: {
       color: alpha(theme.palette.secondary.main, 0.7),
-      '&:hover, &:active': {
+      '&:hover:not($disabled), &:active': {
         color: theme.palette.secondary.main,
       },
     },

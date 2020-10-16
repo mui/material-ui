@@ -25,7 +25,7 @@ export const styles = (theme) => ({
     '&$disabled': {
       color: alpha(theme.palette.action.disabled, 0.12),
     },
-    '&:hover': {
+    '&:hover:not($disabled)': {
       textDecoration: 'none',
       // Reset on mouse devices
       backgroundColor: alpha(theme.palette.text.primary, 0.05),

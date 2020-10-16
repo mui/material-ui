@@ -20,7 +20,7 @@ export const styles = (theme) => ({
         duration: theme.transitions.duration.short,
       },
     ),
-    '&:hover': {
+    '&:hover:not($disabled)': {
       textDecoration: 'none',
       backgroundColor: alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
@@ -46,7 +46,7 @@ export const styles = (theme) => ({
   /* Styles applied to the root element if `variant="text"` and `color="primary"`. */
   textPrimary: {
     color: theme.palette.primary.main,
-    '&:hover': {
+    '&:hover:not($disabled)': {
       backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
@@ -57,7 +57,7 @@ export const styles = (theme) => ({
   /* Styles applied to the root element if `variant="text"` and `color="secondary"`. */
   textSecondary: {
     color: theme.palette.secondary.main,
-    '&:hover': {
+    '&:hover:not($disabled)': {
       backgroundColor: alpha(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
@@ -109,7 +109,7 @@ export const styles = (theme) => ({
     color: theme.palette.getContrastText(theme.palette.grey[300]),
     backgroundColor: theme.palette.grey[300],
     boxShadow: theme.shadows[2],
-    '&:hover': {
+    '&:hover:not($disabled)': {
       backgroundColor: theme.palette.grey.A100,
       boxShadow: theme.shadows[4],
       // Reset on touch devices, it doesn't add specificity
@@ -134,7 +134,7 @@ export const styles = (theme) => ({
   containedPrimary: {
     color: theme.palette.primary.contrastText,
     backgroundColor: theme.palette.primary.main,
-    '&:hover': {
+    '&:hover:not($disabled)': {
       backgroundColor: theme.palette.primary.dark,
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
@@ -146,7 +146,7 @@ export const styles = (theme) => ({
   containedSecondary: {
     color: theme.palette.secondary.contrastText,
     backgroundColor: theme.palette.secondary.main,
-    '&:hover': {
+    '&:hover:not($disabled)': {
       backgroundColor: theme.palette.secondary.dark,
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {

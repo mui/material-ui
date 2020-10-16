@@ -25,7 +25,7 @@ export const styles = (theme) => ({
     },
     color: theme.palette.getContrastText(theme.palette.grey[300]),
     backgroundColor: theme.palette.grey[300],
-    '&:hover': {
+    '&:hover:not($disabled)': {
       backgroundColor: theme.palette.grey.A100,
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
@@ -53,7 +53,7 @@ export const styles = (theme) => ({
   primary: {
     color: theme.palette.primary.contrastText,
     backgroundColor: theme.palette.primary.main,
-    '&:hover': {
+    '&:hover:not($disabled)': {
       backgroundColor: theme.palette.primary.dark,
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
@@ -65,7 +65,7 @@ export const styles = (theme) => ({
   secondary: {
     color: theme.palette.secondary.contrastText,
     backgroundColor: theme.palette.secondary.main,
-    '&:hover': {
+    '&:hover:not($disabled)': {
       backgroundColor: theme.palette.secondary.dark,
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {

@@ -24,6 +24,8 @@ export type TableSortLabelTypeMap<
       root?: string;
       /** Pseudo-class applied to the root element if `active={true}`. */
       active?: string;
+      /** Pseudo-class applied to the root element if `disabled={true}` */
+      disabled?: string;
       /** Styles applied to the icon component. */
       icon?: string;
       /** Styles applied to the icon component if `direction="desc"`. */

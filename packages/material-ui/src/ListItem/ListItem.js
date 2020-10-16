@@ -71,7 +71,7 @@ export const styles = (theme) => ({
     transition: theme.transitions.create('background-color', {
       duration: theme.transitions.duration.shortest,
     }),
-    '&:hover': {
+    '&:hover:not($disabled)': {
       textDecoration: 'none',
       backgroundColor: theme.palette.action.hover,
       // Reset on touch devices, it doesn't add specificity
@@ -79,7 +79,7 @@ export const styles = (theme) => ({
         backgroundColor: 'transparent',
       },
     },
-    '&$selected:hover': {
+    '&$selected:hover:not($disabled)': {
       backgroundColor: alpha(
         theme.palette.primary.main,
         theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
