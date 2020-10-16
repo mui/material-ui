@@ -103,7 +103,7 @@ Standardmäßig lösen deaktivierte Elemente wie `<button>` keine Benutzerintera
   </span>
 </Tooltip> { pointerEvents: 'none' } : {}}
     >
-      {'A disabled button'}
+      A disabled button
     </button>
   </span>
 </Tooltip>
