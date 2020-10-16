@@ -158,6 +158,15 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
           ref: itemRef,
         };
 
+        if (typeof child.ref === 'function') {
+          newProps.ref = (instance) => {
+            child.ref(instance);
+            itemRef.current = instance;
+          };
+        } else if (child.ref) {
+          itemRef.current = child.ref;
+        }
+
         if (!child.props.disabled) {
           if (variant === 'selectedMenu' && child.props.selected) {
             activeItem = menuItemRefs.length;
