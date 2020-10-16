@@ -5,12 +5,12 @@ import ImageList from './ImageList';
 
 const itemsData = [
   {
-    img: 'fake.png',
+    img: '/fake.png',
     title: 'Breakfast',
     author: 'jill111',
   },
   {
-    img: 'fake.png',
+    img: '/fake.png',
     title: 'Tasty burger',
     author: 'director90',
   },
