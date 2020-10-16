@@ -12,6 +12,9 @@ export const styles = (theme) => ({
     width: '100%',
     '&:hover $focusHighlight': {
       opacity: theme.palette.action.hoverOpacity,
+      '@media (hover: none)': {
+        opacity: 0,
+      },
     },
     '&$focusVisible $focusHighlight': {
       opacity: 0.12,
