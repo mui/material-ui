@@ -16,19 +16,21 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function Links() {
+export default function UnderlineLink() {
   const classes = useStyles();
   const preventDefault = (event: React.SyntheticEvent) =>
     event.preventDefault();
 
   return (
     <div className={classes.root} onClick={preventDefault}>
-      <Link href="#">Link</Link>
-      <Link href="#" color="inherit">
-        {'color="inherit"'}
+      <Link href="#" underline="none">
+        {'underline="none"'}
       </Link>
-      <Link href="#" variant="body2">
-        {'variant="body2"'}
+      <Link href="#" underline="hover">
+        {'underline="hover"'}
+      </Link>
+      <Link href="#" underline="always">
+        {'underline="always"'}
       </Link>
     </div>
   );
