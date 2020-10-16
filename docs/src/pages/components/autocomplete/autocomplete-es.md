@@ -12,7 +12,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#combobox'
 El widget es útil para establecer el valor de un cuadro de texto de una sola línea en uno de los dos tipos de escenarios:
 
 1. El valor para el cuadro de texto debe elegirse de un conjunto predefinido de valores permitidos, por ejemplo, un campo de ubicación debe contener un nombre de ubicación válido: [cuadro combinado](#combo-box).
-2. El cuadro de texto puede contener cualquier valor arbitrario, pero es ventajoso sugerir posibles valores al usuario, por ejemplo, un campo de búsqueda puede sugerir búsquedas similares o anteriores para ahorrarle tiempo al usuario: [gratis solo](#free-solo).
+2. El cuadro de texto puede contener cualquier valor arbitrario, pero es de gran ventaja sugerir posibles valores al usuario, por ejemplo, un campo de búsqueda puede sugerir búsquedas similares o anteriores para ahorrarle tiempo al usuario: [solo libre](#free-solo).
 
 Esto pretende ser una versión mejorada de los paquetes "react-select" y "downshift".
 
@@ -110,7 +110,7 @@ Puedes agrupar las opciones con el accesorio `groupBy`. Si lo haces, asegúrate 
 
 ## `useAutocomplete`
 
-Para la personalización avanzada de casos de uso, exponemos un hook `useAutocomplete()`. Acepta casi las mismas opciones que el componente Autocompletar menus las propiedades relacionadas al renderizado de JSX. El componente Autocompletar usa este hook internamente.
+For advanced customization use cases, we expose a headless `useAutocomplete()` hook. Acepta casi las mismas opciones que el componente Autocompletar menus las propiedades relacionadas al renderizado de JSX. El componente Autocompletar usa este hook internamente.
 
 ```jsx
 importar useAutocomplete de '@material-ui/core/useAutocomplete';
