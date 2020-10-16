@@ -96,7 +96,7 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
       disabled={disabled}
       style={disabled ? { pointerEvents: 'none' } : {}}
     >
-      {'A disabled button'}
+      禁用按钮
     </button>
   </span>
 </Tooltip>
