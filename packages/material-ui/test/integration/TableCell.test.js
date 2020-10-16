@@ -5,6 +5,7 @@ import TableCell from '@material-ui/core/TableCell';
 import Table from '@material-ui/core/Table';
 import TableFooter from '@material-ui/core/TableFooter';
 import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
 import TableBody from '@material-ui/core/TableBody';
 
 describe('<TableRow> integration', () => {
@@ -13,8 +14,8 @@ describe('<TableRow> integration', () => {
   function renderInTable(node, Variant) {
     return render(
       <Table>
-        <Variant data-testid="outer">
-          <tr>{node}</tr>
+        <Variant>
+          <TableRow>{node}</TableRow>
         </Variant>
       </Table>,
     );
