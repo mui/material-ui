@@ -33,7 +33,7 @@ describe('<Avatar />', () => {
       const { container } = render(
         <Avatar
           className="my-avatar"
-          src="something.jpg"
+          src="/fake.png"
           alt="Hello World!"
           data-my-prop="woofAvatar"
         />,
@@ -48,12 +48,12 @@ describe('<Avatar />', () => {
       expect(avatar).to.not.have.class(classes.colorDefault);
       expect(img).to.have.class(classes.img);
       expect(img).to.have.attribute('alt', 'Hello World!');
-      expect(img).to.have.attribute('src', 'something.jpg');
+      expect(img).to.have.attribute('src', '/fake.png');
     });
 
     it('should be able to add more props to the image', () => {
       const onError = spy();
-      const { container } = render(<Avatar src="something.jpg" imgProps={{ onError }} />);
+      const { container } = render(<Avatar src="/fake.png" imgProps={{ onError }} />);
       const img = container.querySelector('img');
       fireEvent.error(img);
       expect(onError.callCount).to.equal(1);
@@ -62,7 +62,7 @@ describe('<Avatar />', () => {
 
   describe('image avatar with unrendered children', () => {
     it('should render a div containing an img, not children', () => {
-      const { container } = render(<Avatar src="something.jpg">MB</Avatar>);
+      const { container } = render(<Avatar src="/fake.png">MB</Avatar>);
       const avatar = container.firstChild;
       const imgs = container.querySelectorAll('img');
       expect(imgs.length).to.equal(1);
@@ -71,7 +71,7 @@ describe('<Avatar />', () => {
 
     it('should be able to add more props to the image', () => {
       const onError = spy();
-      const { container } = render(<Avatar src="something.jpg" imgProps={{ onError }} />);
+      const { container } = render(<Avatar src="/fake.png" imgProps={{ onError }} />);
       const img = container.querySelector('img');
       fireEvent.error(img);
       expect(onError.callCount).to.equal(1);

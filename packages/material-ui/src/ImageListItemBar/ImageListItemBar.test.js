@@ -21,7 +21,7 @@ describe('<ImageListItemBar />', () => {
   }));
 
   const itemData = {
-    img: 'images/image-list/00-52-29-429_640.jpg',
+    img: '/fake.png',
     title: 'Breakfast',
     author: 'jill111',
   };
