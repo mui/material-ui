@@ -446,8 +446,8 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
 
   const handleMouseMove = (event) => {
     const childrenProps = children.props;
-    if (childrenProps.handleMouseMove) {
-      childrenProps.handleMouseMove(event);
+    if (childrenProps.onMouseMove) {
+      childrenProps.onMouseMove(event);
     }
 
     positionRef.current = { x: event.clientX, y: event.clientY };
