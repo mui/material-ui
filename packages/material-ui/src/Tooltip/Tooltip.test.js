@@ -663,54 +663,6 @@ describe('<Tooltip />', () => {
     });
   });
 
-  describe('disabled button warning', () => {
-    it('should not raise a warning if title is empty', () => {
-      expect(() => {
-        render(
-          <Tooltip title="">
-            <button type="submit" disabled>
-              Hello World
-            </button>
-          </Tooltip>,
-        );
-      }).not.toErrorDev();
-
-      // TOD: Unclear why not running triggers microtasks but runAll does not trigger microtasks
-      // can be removed once Popper#update is sync
-      clock.runAll();
-    });
-
-    it('should raise a warning when we are uncontrolled and can not listen to events', () => {
-      expect(() => {
-        render(
-          <Tooltip title="Hello World">
-            <button type="submit" disabled>
-              Hello World
-            </button>
-          </Tooltip>,
-        );
-      }).toErrorDev(
-        'Material-UI: You are providing a disabled `button` child to the Tooltip component',
-      );
-    });
-
-    it('should not raise a warning when we are controlled', () => {
-      expect(() => {
-        render(
-          <Tooltip title="Hello World" open>
-            <button type="submit" disabled>
-              Hello World
-            </button>
-          </Tooltip>,
-        );
-      }).not.toErrorDev();
-
-      // TOD: Unclear why not running triggers microtasks but runAll does not trigger microtasks
-      // can be removed once Popper#update is sync
-      clock.runAll();
-    });
-  });
-
   describe('prop: disableInteractive', () => {
     it('when false should keep the overlay open if the popper element is hovered', () => {
       const { getByRole } = render(
