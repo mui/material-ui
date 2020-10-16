@@ -78,7 +78,7 @@ components: TextField, Popper, Autocomplete
 
 ## `useAutocomplete`
 
-作为一种高级定制方式，我们提供了一个 `useAutocomplete()` hook。 它接受几乎与 Autocomplete 组件相同的参数，辅以与 JSX 渲染有关的所有参数。 Autocomplete 组件内部也是使用的此 hook。
+对于高级定制用例，我们暴露了一个无头（headless）的 `useAutocomplete()` hook。 它接受几乎与 Autocomplete 组件相同的参数，辅以与 JSX 渲染有关的所有参数。 Autocomplete 组件内部也是使用的此 hook。
 
 ```jsx
 import useAutocomplete from '@material-ui/lab/useAutocomplete';
