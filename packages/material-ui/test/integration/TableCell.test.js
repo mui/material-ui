@@ -1,23 +1,23 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createClientRender, within } from 'test/utils';
+import { getClasses, createClientRender } from 'test/utils';
 import TableCell from '@material-ui/core/TableCell';
+import Table from '@material-ui/core/Table';
 import TableFooter from '@material-ui/core/TableFooter';
 import TableHead from '@material-ui/core/TableHead';
 import TableBody from '@material-ui/core/TableBody';
 
 describe('<TableRow> integration', () => {
   let classes;
-  const table = document.createElement('table');
   const render = createClientRender();
   function renderInTable(node, Variant) {
-    const InnerWrapper = ({ children }) => (
-      <Variant data-testid="outer">
-        <tr>{children}</tr>
-      </Variant>
+    return render(
+      <Table>
+        <Variant data-testid="outer">
+          <tr>{node}</tr>
+        </Variant>
+      </Table>,
     );
-    const wrapper = render(node, { wrapper: InnerWrapper, container: table });
-    return { ...wrapper, root: within(wrapper.getByRole('row').firstChild) };
   }
 
   before(() => {
