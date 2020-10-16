@@ -282,7 +282,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     },
   );
 
-  const handleEnter = (forward = true) => (event) => {
+  const handleEnter = (event) => {
     if (ignoreNonTouchEvents.current && event.type !== 'touchstart') {
       return;
     }
@@ -309,7 +309,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     }
   };
 
-  const handleLeave = (forward = true) => (event) => {
+  const handleLeave = (event) => {
     clearTimeout(enterTimer.current);
     clearTimeout(leaveTimer.current);
     event.persist();
@@ -336,7 +336,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     handleBlurVisible(event);
     if (isFocusVisibleRef.current === false) {
       setChildIsFocusVisible(false);
-      handleLeave()(event);
+      handleLeave(event);
     }
   };
 
@@ -351,7 +351,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     handleFocusVisible(event);
     if (isFocusVisibleRef.current === true) {
       setChildIsFocusVisible(true);
-      handleEnter()(event);
+      handleEnter(event);
     }
 
     const childrenProps = children.props;
@@ -367,7 +367,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
       childrenProps.onMouseOver(event);
     }
 
-    handleEnter()(event);
+    handleEnter(event);
   };
 
   const handleMouseLeave = (forward = true) => (event) => {
@@ -377,7 +377,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
       childrenProps.onMouseLeave(event);
     }
 
-    handleLeave()(event);
+    handleLeave(event);
   };
 
   const detectTouchStart = (event) => {
@@ -396,7 +396,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     clearTimeout(touchTimer.current);
     event.persist();
     touchTimer.current = setTimeout(() => {
-      handleEnter()(event);
+      handleEnter(event);
     }, enterTouchDelay);
   };
 
