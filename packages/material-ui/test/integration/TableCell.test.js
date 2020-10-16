@@ -27,20 +27,20 @@ describe('<TableRow> integration', () => {
 
   it('should render a th with the head class when in the context of a table head', () => {
     const { getByTestId } = renderInTable(<TableCell data-testid="cell" />, TableHead);
-    expect(getByTestId('cell').tagName).to.equal('TH');
+    expect(getByTestId('cell')).to.have.tagName('th');
     expect(getByTestId('cell')).to.have.class(classes.root);
     expect(getByTestId('cell')).to.have.class(classes.head);
-    expect(getByTestId('cell')).to.have.property('scope', 'col');
+    expect(getByTestId('cell')).to.have.attribute('scope', 'col');
   });
 
   it('should render specified scope attribute even when in the context of a table head', () => {
     const { getByTestId } = renderInTable(<TableCell scope="row" data-testid="cell" />, TableHead);
-    expect(getByTestId('cell')).to.have.property('scope', 'row');
+    expect(getByTestId('cell')).to.have.attribute('scope', 'row');
   });
 
   it('should render a th with the footer class when in the context of a table footer', () => {
     const { getByTestId } = renderInTable(<TableCell data-testid="cell" />, TableFooter);
-    expect(getByTestId('cell').localName).to.equal('td');
+    expect(getByTestId('cell')).to.have.tagName('td');
     expect(getByTestId('cell')).to.have.class(classes.root);
     expect(getByTestId('cell')).to.have.class(classes.footer);
   });
@@ -57,7 +57,7 @@ describe('<TableRow> integration', () => {
       TableFooter,
     );
     expect(getByTestId('cell')).to.have.class(classes.head);
-    expect(getByTestId('cell')).to.have.property('scope', '');
+    expect(getByTestId('cell')).to.not.have.attribute('scope');
   });
 
   it('should render without head class when variant is body, overriding context', () => {
