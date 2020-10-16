@@ -52,7 +52,7 @@ describe('<CardMedia />', () => {
       const { container } = render(
         <CardMedia component="picture">
           <source media="(min-width: 600px)" srcSet="fake.png" />
-          <img src="cat.jpg" alt="hello" />
+          <img src="fake.png" alt="hello" />
         </CardMedia>,
       );
       const cardMedia = container.firstChild;
