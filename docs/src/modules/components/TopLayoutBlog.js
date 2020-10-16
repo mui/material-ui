@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Head from 'docs/src/modules/components/Head';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import AppContainer from 'docs/src/modules/components/AppContainer';
+import { useRouter } from 'next/router';
 import Link from '@material-ui/core/Link';
 import AppFooter from 'docs/src/modules/components/AppFooter';
 import { exactProp } from '@material-ui/utils';
@@ -53,10 +54,20 @@ function TopLayoutBlog(props) {
   const { classes, docs } = props;
   const { description, rendered, title } = docs.en;
   const finalTitle = title || docs.en.headers.title;
+  const router = useRouter();
 
   return (
     <AppFrame disableDrawer>
-      <Head title={`${finalTitle} - Material-UI`} description={description} />
+      <Head
+        title={`${finalTitle} - Material-UI`}
+        description={description}
+        largeCard={docs.en.headers.card === 'true' ? true : undefined}
+        card={
+          docs.en.headers.card === 'true'
+            ? `https://material-ui.com/static${router.pathname}/card.png`
+            : undefined
+        }
+      />
       <div className={classes.root}>
         <AppContainer className={classes.container}>
           <Link

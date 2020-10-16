@@ -1,5 +1,6 @@
 ---
 description: An update on our mission for Q3 2020.
+card: true
 ---
 
 # Q3 2020 Update
@@ -10,7 +11,7 @@ This update covers our progress over the last three months, and what we aim to a
 
 ## Product
 
-Here are the most significant improvements since June 2020. The was a dense quarter!
+Here are the most significant improvements since June 2020. This was a dense quarter!
 
 - 🚧 We have started the quarter with the first pre-release [v5.0.0-alpha.1](https://github.com/mui-org/material-ui/releases?after=v5.0.0-alpha.1) of the next major iteration of the library.
   There have been eleven more pre-releases since then. During the alpha development stage of version 5, we are focusing on making the planned breaking changes, as well as developing new features.
@@ -18,7 +19,7 @@ Here are the most significant improvements since June 2020. The was a dense quar
 - 🧪 We have promoted 7 components from the lab to the core: Alert, Autocomplete, Pagination, Rating, Skeleton, SpeedDial, and ToggleButton.
   Thank you for all your feedback on these components.
   While we still plan a couple of breaking changes on them, we are confident that they have reached the same level of quality as the other core components.
-- 👮 We have introduced a new component in the lab, the [TrapFocus](https://next.material-ui.com/components/trap-focus/). It manages focus for its descendants. This is useful when implementing overlays such as modal dialogs, which should not allow focus to escape while open:
+- 👮 We have introduced a new component in the lab, the [TrapFocus](https://next.material-ui.com/components/trap-focus/). It manages focus for its descendants. This is useful when implementing overlays such as modal dialogs, which should not allow the focus to escape while open:
 
   <video autoplay muted loop style="max-height: 416px; margin-bottom: 24px;">
     <source src="/static/blog/2020-q3-update/trap-focus.mp4" type="video/mp4" />
@@ -59,12 +60,12 @@ Here are the most significant improvements since June 2020. The was a dense quar
   Note that the API not only allows to match a single prop, but also a combination of props.
   This is especially interesting to resolve the conflict when different variants try to modify the same CSS property.
 
-  Hopefully in the future we will be able to take advantage of the variant feature [coming in Figma](https://help.figma.com/hc/en-us/articles/360055471353-Prepare-for-Variants) with this API.
+  Hopefully, in the future, we will be able to take advantage of the variant feature [coming in Figma](https://help.figma.com/hc/en-us/articles/360055471353-Prepare-for-Variants) with this API.
 
 - ⚡️ We have released a first alpha version of the [data grid component](/components/data-grid/).<br />
-  We announced our intent to building this component [a year ago](/blog/september-2019-update/#our-roadmap-intent-for-october). While we could have implemented a simple version and release it a month later, it wouldn't have set us in the right direction for the years to follow. We're aiming aim to deliver the best-in-class React data grid.
+  We announced our intent to build this component [a year ago](/blog/september-2019-update/#our-roadmap-intent-for-october). While we could have implemented a simple version and release it a month later, it wouldn't have set us in the right direction for the years to follow. We're aiming aim to deliver the best-in-class React data grid.
   This objective requires a twin licensing model. The component is available under an MIT license for the features that can be relatively easily implemented, and that can be sustained with an open-source model; as well as a paid commercial license for the more advanced features.
-  <br />To ensure we could meet this objective, we spent time finding an expert in the field. This led us to opening a new job position, and, a few months later, [Damien Tassone](/blog/spotlight-damien-tassone/) joined to lead the work on this component.
+  <br />To ensure we could meet this objective, we spent time finding an expert in the field. This led us to open a new job position, and, a few months later, [Damien Tassone](/blog/spotlight-damien-tassone/) joined to lead the work on this component.
 
   <a href="/components/data-grid/"><img src="/static/blog/2020-q3-update/data-grid.png" alt="" style="width: 829px; margin-bottom: 8px;" /></a>
 
@@ -72,7 +73,7 @@ Here are the most significant improvements since June 2020. The was a dense quar
 
   After 6 months of development since the initial commit (March 15th, 2020), you can start using the component! (It targets v4.)
 
-- ⚡️ The data grid effort has led to the introduction of a new repository: [_mui-org/material-ui-x_](https://github.com/mui-org/material-ui-x). This is the repository that will host all the future commercial components, all the components that we can't sustain with the open-source model. Material-UI X is our next iteration in scaling Material-UI, both as a company, and as a comprehensive React library of components. While we have an existing sustainability model that can support, in long term, up to 10 people full-time, we are keen to push it by an order of magnitude.
+- ⚡️ The data grid effort has led to the introduction of a new repository: [_mui-org/material-ui-x_](https://github.com/mui-org/material-ui-x). This is the repository that will host all the future commercial components, all the components that we can't sustain with the open-source model. Material-UI X is our next iteration in scaling Material-UI, both as a company and as a comprehensive React library of components. While we have an existing sustainability model that can support, in long term, up to 10 people full-time, we are keen to push it by an order of magnitude.
 - 🛠 We have migrated parts of the codebase to TypeScript.<br />
   We had to work on the code infrastructure of _mui-org/material-ui_ to prepare to host the date picker components that are written in TypeScript inside the lab (coming from _mui-org/material-ui-pickers_ that we will archive once we can).
 
@@ -164,6 +165,6 @@ We'll do our best, no guarantee!
 
 These are objectives, no guarantees:
 
-- 🏢 We might hire a designer that has coding skills. One of the objectives would be to solve [#22485](https://github.com/mui-org/material-ui/issues/22485).
+- 🏢 We might hire a full-time designer that has coding skills. One of the objectives would be to solve [#22485](https://github.com/mui-org/material-ui/issues/22485).
 - 🏝 We have put the company-wide team retreat on hold because of the continued risk presented by COVID-19.
   Hopefully, we will be able to hold it in Q2 2021.
