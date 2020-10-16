@@ -92,8 +92,9 @@ Par éléments désactivés par défaut comme `<button>` ne déclenchent pas les
 ```jsx
 <Tooltip title="You don't have permission to do this">
   <span>
-    <button disabled={disabled} style={disabled ? { pointerEvents: "none" } : {}}>
-      {'A disabled button'}
+    <button disabled={disabled} style={disabled ? { pointerEvents: 'none' } : {}}
+    >
+      Un bouton désactivé
     </button>
   </span>
 </Tooltip>
