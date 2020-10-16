@@ -79,6 +79,31 @@ Um exemplo de uma tabela com linhas roláveis e cabeçalhos de coluna fixos. It 
 
 {{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
 
+##### Nota: Se a tabela tiver múltiplas linhas de cabeçalho, é necessário adicionar estilos adicionais para garantir que todas as linhas fiquem visíveis. Por defeito, as linhas irão acumular uma em cima da outra de forma a que apenas a última linha de cabeçalho ficará visível. Para evitar este comportamento, será necessário estilizar as linhas de cabeçalho adicionais com um valor de `top` para criar o espaçamento necessário.
+##### Exemplo:
+
+```jsx
+		<TableHead>
+      <TableRow>
+        <TableCell
+          align="center"
+          colSpan={columns.length}
+        >
+          First Header Row
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell
+          style={{ top: 57 }}
+          align="center"
+          colSpan={columns.length}
+        >
+          Another Header Row
+        </TableCell>
+      </TableRow>
+    </TableHead>
+```
+
 ## Tabela minimizável
 
 Um exemplo de uma tabela com linhas expansíveis, revelando mais informações. Ela utiliza o componente [`Collapse`](/api/collapse/).

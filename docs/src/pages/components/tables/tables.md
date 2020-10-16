@@ -84,6 +84,31 @@ It leverages the `stickyHeader` prop (⚠️ no IE11 support).
 
 {{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
 
+##### Note: If the table has multiple header rows, additional styling must be added to ensure that all of them are visible. By default, they will be stacked together on the top and only the last one will be visible. To avoid this behavior, additional header rows must be styled with a `top` value to create the necessary spacing.
+##### Example:
+
+```jsx
+		<TableHead>
+      <TableRow>
+        <TableCell
+          align="center"
+          colSpan={columns.length}
+        >
+          First Header Row
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell
+          style={{ top: 57 }}
+          align="center"
+          colSpan={columns.length}
+        >
+          Another Header Row
+        </TableCell>
+      </TableRow>
+    </TableHead>
+```
+
 ## Collapsible table
 
 An example of a table with expandable rows, revealing more information.
