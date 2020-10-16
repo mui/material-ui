@@ -10,7 +10,7 @@ githubLabel: 'component: Badge'
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## 基本徽章
+## 简单的徽章
 
 这个示例是个包含了文本的徽章，同时使用了主色和副色。 徽章会对其子元素生效。
 
