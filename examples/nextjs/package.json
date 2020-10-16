@@ -3,10 +3,12 @@
   "version": "5.0.0",
   "private": true,
   "dependencies": {
+    "@emotion/cache": "latest",
     "@emotion/core": "latest",
     "@emotion/styled": "latest",
     "@material-ui/core": "next",
     "clsx": "latest",
+    "create-emotion-server": "latest",
     "next": "latest",
     "prop-types": "latest",
     "react": "latest",

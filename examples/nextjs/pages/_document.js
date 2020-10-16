@@ -1,6 +1,11 @@
 import React from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheets } from '@material-ui/core/styles';
+import createEmotionServer from 'create-emotion-server';
+import { cache } from './_app.js';
+
+const { extractCritical } = createEmotionServer(cache);
+
 import theme from '../src/theme';
 
 export default class MyDocument extends Document {
@@ -59,10 +64,18 @@ MyDocument.getInitialProps = async (ctx) => {
     });
 
   const initialProps = await Document.getInitialProps(ctx);
+  const styles = extractCritical(initialProps.html);
 
   return {
     ...initialProps,
     // Styles fragment is rendered after the app and page rendering finish.
-    styles: [...React.Children.toArray(initialProps.styles), sheets.getStyleElement()],
+    styles: [
+      ...React.Children.toArray(initialProps.styles),
+      sheets.getStyleElement(),
+      <style
+        data-emotion-css={styles.ids.join(' ')}
+        dangerouslySetInnerHTML={{ __html: styles.css }}
+      />
+    ],
   };
 };
