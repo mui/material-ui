@@ -27,7 +27,7 @@ materialDesign: https://material.io/components/dividers
 
 {{"demo": "pages/components/dividers/InsetDividers.js", "bg": true}}
 
-## 副标题分隔符
+## 副标题分割线
 
 {{"demo": "pages/components/dividers/SubheaderDividers.js", "bg": true}}
 
