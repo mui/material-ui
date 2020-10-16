@@ -17,7 +17,7 @@ export const styles = (theme) => ({
       },
     },
     '&$focusVisible $focusHighlight': {
-      opacity: 0.12,
+      opacity: theme.palette.action.focusOpacity,
     },
   },
   /* Pseudo-class applied to the ButtonBase root element if the action area is keyboard focused. */
