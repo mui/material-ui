@@ -110,7 +110,7 @@ You can group the options with the `groupBy` prop. If you do so, make sure that 
 
 ## `useAutocomplete`
 
-Pour les cas de personnalisation avancée, nous exposons un hook `useAutocomplete()`. Il accepte presque les mêmes options que le composant de saisie automatique moins tous les props liés au rendu de JSX. Le composant Autocomplete utilise ce hook en interne.
+For advanced customization use cases, we expose a headless `useAutocomplete()` hook. Il accepte presque les mêmes options que le composant de saisie automatique moins tous les props liés au rendu de JSX. Le composant Autocomplete utilise ce hook en interne.
 
 ```jsx
 import useAutocomplete from '@material-ui/core/useAutocomplete';
