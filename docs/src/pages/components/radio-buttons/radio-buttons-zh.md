@@ -72,7 +72,7 @@ import { useRadioGroup } from '@material-ui/core/RadioGroup';
 
 ## 什么时候使用
 
-- [复选框 对比 单选按钮（Radio Buttons）](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
+- [多选框 对比 单选按钮（Radio Buttons）](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
 
 ## 无障碍设计
 
