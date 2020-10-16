@@ -93,7 +93,7 @@ The track can be inverted with `track="inverted"`.
 
 {{"demo": "pages/components/slider/TrackInvertedSlider.js"}}
 
-### Non-linear scale
+## Non-linear scale
 
 You can use the `scale` prop to represent the `value` on a different scale.
 
