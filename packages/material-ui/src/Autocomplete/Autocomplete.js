@@ -64,7 +64,7 @@ export const styles = (theme) => ({
       '& $input': {
         padding: 4,
       },
-      '& $input:first-child': {
+      '& $input:first-of-type': {
         padding: '6px 0',
       },
     },
@@ -72,7 +72,7 @@ export const styles = (theme) => ({
       '& $input': {
         padding: '2px 4px 3px',
       },
-      '& $input:first-child': {
+      '& $input:first-of-type': {
         padding: '1px 0 4px',
       },
     },
@@ -87,7 +87,7 @@ export const styles = (theme) => ({
       '& $input': {
         padding: '7.5px 4px',
       },
-      '& $input:first-child': {
+      '& $input:first-of-type': {
         paddingLeft: 6,
       },
       '& $endAdornment': {
