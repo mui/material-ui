@@ -79,7 +79,7 @@ function moveFocus(
     const nextFocusDisabled = disabledItemsFocusable
       ? false
       : nextFocus.disabled || nextFocus.getAttribute('aria-disabled') === 'true';
-      
+
     if (
       !nextFocus.hasAttribute('tabindex') ||
       !textCriteriaMatches(nextFocus, textCriteria) ||
