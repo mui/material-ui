@@ -5,17 +5,20 @@ import Typography from '@material-ui/core/Typography';
 
 const images = [
   {
-    url: '/static/images/image-list/breakfast.jpg',
+    url:
+      'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e?w=164&h=164&fit=crop&auto=format&dpr=2',
     title: 'Breakfast',
     width: '40%',
   },
   {
-    url: '/static/images/image-list/burgers.jpg',
+    url:
+      'https://images.unsplash.com/photo-1551782450-a2132b4ba21d?w=164&h=164&fit=crop&auto=format&dpr=2',
     title: 'Burgers',
     width: '30%',
   },
   {
-    url: '/static/images/image-list/camera.jpg',
+    url:
+      'https://images.unsplash.com/photo-1522770179533-24471fcdba45?w=164&h=164&fit=crop&auto=format&dpr=2',
     title: 'Camera',
     width: '30%',
   },
