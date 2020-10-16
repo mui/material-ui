@@ -25,6 +25,12 @@ module.exports = function setKarmaConfig(config) {
         served: true,
         included: true,
       },
+      {
+        pattern: 'test/assets/*.png',
+        watched: false,
+        included: false,
+        served: true,
+      },
     ],
     plugins: ['karma-mocha', 'karma-chrome-launcher', 'karma-sourcemap-loader', 'karma-webpack'],
     /**
@@ -39,6 +45,10 @@ module.exports = function setKarmaConfig(config) {
     port: 9876,
     preprocessors: {
       'test/karma.tests.js': ['webpack', 'sourcemap'],
+    },
+    proxies: {
+      '/fake.png': '/base/test/assets/fake.png',
+      '/fake2.png': '/base/test/assets/fake2.png',
     },
     reporters: ['dots'],
     webpack: {
