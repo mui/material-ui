@@ -42,6 +42,7 @@ function addHiddenInput(form, name, value) {
 const useDemoToolbarStyles = makeStyles(
   (theme) => {
     return {
+      // Sync with styles form DemoToolbarFallback.
       root: {
         display: 'none',
         [theme.breakpoints.up('sm')]: {

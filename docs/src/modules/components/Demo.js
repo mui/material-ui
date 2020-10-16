@@ -8,12 +8,35 @@ import Collapse from '@material-ui/core/Collapse';
 import NoSsr from '@material-ui/core/NoSsr';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import DemoSandboxed from 'docs/src/modules/components/DemoSandboxed';
-import { DemoToolbarFallback } from 'docs/src/modules/components/DemoToolbar';
 import { AdCarbonInline } from 'docs/src/modules/components/AdCarbon';
 import getJsxPreview from 'docs/src/modules/utils/getJsxPreview';
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
 
 const DemoToolbar = React.lazy(() => import('./DemoToolbar'));
+// Sync with styles from DemoToolbar
+// Importing the styles results in no bundle size reduction
+const useDemoToolbarFallbackStyles = makeStyles(
+  (theme) => {
+    return {
+      root: {
+        display: 'none',
+        [theme.breakpoints.up('sm')]: {
+          display: 'flex',
+          height: theme.spacing(6),
+        },
+      },
+    };
+  },
+  { name: 'DemoToolbar' },
+);
+export function DemoToolbarFallback() {
+  const classes = useDemoToolbarFallbackStyles();
+  const t = useSelector((state) => state.options.t);
+
+  return (
+    <div aria-busy aria-label={t('demoToolbarLabel')} className={classes.root} role="toolbar" />
+  );
+}
 
 function getDemoName(location) {
   return location.replace(/(.+?)(\w+)\.\w+$$/, '$2');
