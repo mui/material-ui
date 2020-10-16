@@ -260,6 +260,28 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     }
   };
 
+  const handleClose = useEventCallback(
+    /**
+     * @param {React.SyntheticEvent | Event} event
+     */
+    (event) => {
+      clearTimeout(hystersisTimer);
+      hystersisTimer = setTimeout(() => {
+        hystersisOpen = false;
+      }, 800 + leaveDelay);
+      setOpenState(false);
+
+      if (onClose) {
+        onClose(event);
+      }
+
+      clearTimeout(closeTimer.current);
+      closeTimer.current = setTimeout(() => {
+        ignoreNonTouchEvents.current = false;
+      }, theme.transitions.duration.shortest);
+    },
+  );
+
   const handleEnter = (forward = true) => (event) => {
     const childrenProps = children.props;
 
@@ -293,6 +315,25 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     }
   };
 
+  const handleLeave = (forward = true) => (event) => {
+    const childrenProps = children.props;
+
+    if (
+      event.type === 'mouseleave' &&
+      childrenProps.onMouseLeave &&
+      event.currentTarget === childNode
+    ) {
+      childrenProps.onMouseLeave(event);
+    }
+
+    clearTimeout(enterTimer.current);
+    clearTimeout(leaveTimer.current);
+    event.persist();
+    leaveTimer.current = setTimeout(() => {
+      handleClose(event);
+    }, leaveDelay);
+  };
+
   const {
     isFocusVisibleRef,
     onBlur: handleBlurVisible,
@@ -302,10 +343,16 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
   // We don't necessarily care about the focusVisible state (which is safe to access via ref anyway).
   // We just need to re-render the Tooltip if the focus-visible state changes.
   const [, setChildIsFocusVisible] = React.useState(false);
-  const handleBlur = (event) => {
+  const handleBlur = (forward = true) => (event) => {
+    const childrenProps = children.props;
+    if (childrenProps.onBlur && forward) {
+      childrenProps.onBlur(event);
+    }
+
     handleBlurVisible(event);
     if (isFocusVisibleRef.current === false) {
       setChildIsFocusVisible(false);
+      handleLeave()(event);
     }
   };
 
@@ -327,54 +374,6 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     if (childrenProps.onFocus && forward) {
       childrenProps.onFocus(event);
     }
-  };
-
-  const handleClose = useEventCallback(
-    /**
-     * @param {React.SyntheticEvent | Event} event
-     */
-    (event) => {
-      clearTimeout(hystersisTimer);
-      hystersisTimer = setTimeout(() => {
-        hystersisOpen = false;
-      }, 800 + leaveDelay);
-      setOpenState(false);
-
-      if (onClose) {
-        onClose(event);
-      }
-
-      clearTimeout(closeTimer.current);
-      closeTimer.current = setTimeout(() => {
-        ignoreNonTouchEvents.current = false;
-      }, theme.transitions.duration.shortest);
-    },
-  );
-
-  const handleLeave = (forward = true) => (event) => {
-    const childrenProps = children.props;
-
-    if (event.type === 'blur') {
-      if (childrenProps.onBlur && forward) {
-        childrenProps.onBlur(event);
-      }
-      handleBlur(event);
-    }
-
-    if (
-      event.type === 'mouseleave' &&
-      childrenProps.onMouseLeave &&
-      event.currentTarget === childNode
-    ) {
-      childrenProps.onMouseLeave(event);
-    }
-
-    clearTimeout(enterTimer.current);
-    clearTimeout(leaveTimer.current);
-    event.persist();
-    leaveTimer.current = setTimeout(() => {
-      handleClose(event);
-    }, leaveDelay);
   };
 
   const detectTouchStart = (event) => {
@@ -512,11 +511,11 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
 
   if (!disableFocusListener) {
     childrenProps.onFocus = handleFocus();
-    childrenProps.onBlur = handleLeave();
+    childrenProps.onBlur = handleBlur();
 
     if (!disableInteractive) {
       interactiveWrapperListeners.onFocus = handleFocus(false);
-      interactiveWrapperListeners.onBlur = handleLeave(false);
+      interactiveWrapperListeners.onBlur = handleBlur(false);
     }
   }
 
