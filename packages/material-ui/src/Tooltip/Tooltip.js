@@ -283,12 +283,6 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
   );
 
   const handleEnter = (forward = true) => (event) => {
-    const childrenProps = children.props;
-
-    if (event.type === 'mouseover' && childrenProps.onMouseOver && forward) {
-      childrenProps.onMouseOver(event);
-    }
-
     if (ignoreNonTouchEvents.current && event.type !== 'touchstart') {
       return;
     }
@@ -374,6 +368,16 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     if (childrenProps.onFocus && forward) {
       childrenProps.onFocus(event);
     }
+  };
+
+  const handleMouseOver = (forward = true) => (event) => {
+    const childrenProps = children.props;
+
+    if (childrenProps.onMouseOver && forward) {
+      childrenProps.onMouseOver(event);
+    }
+
+    handleEnter()(event);
   };
 
   const detectTouchStart = (event) => {
@@ -500,11 +504,11 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
   }
 
   if (!disableHoverListener) {
-    childrenProps.onMouseOver = handleEnter();
+    childrenProps.onMouseOver = handleMouseOver();
     childrenProps.onMouseLeave = handleLeave();
 
     if (!disableInteractive) {
-      interactiveWrapperListeners.onMouseOver = handleEnter(false);
+      interactiveWrapperListeners.onMouseOver = handleMouseOver(false);
       interactiveWrapperListeners.onMouseLeave = handleLeave(false);
     }
   }
