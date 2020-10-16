@@ -598,23 +598,28 @@ describe('<Tooltip />', () => {
   });
 
   describe('prop: overrides', () => {
-    ['onTouchStart', 'onTouchEnd', 'onMouseEnter', 'onMouseOver', 'onMouseLeave'].forEach(
-      (name) => {
-        it(`should be transparent for the ${name} event`, () => {
-          const handler = spy();
-          const { getByRole } = render(
-            <Tooltip title="Hello World">
-              <button id="testChild" type="submit" {...{ [name]: handler }}>
-                Hello World
-              </button>
-            </Tooltip>,
-          );
-          const type = camelCase(name.slice(2));
-          fireEvent[type](getByRole('button'));
-          expect(handler.callCount).to.equal(1, `${name} should've been called`);
-        });
-      },
-    );
+    [
+      'onTouchStart',
+      'onTouchEnd',
+      'onMouseEnter',
+      'onMouseMove',
+      'onMouseOver',
+      'onMouseLeave',
+    ].forEach((name) => {
+      it(`should be transparent for the ${name} event`, () => {
+        const handler = spy();
+        const { getByRole } = render(
+          <Tooltip followCursor title="Hello World">
+            <button id="testChild" type="submit" {...{ [name]: handler }}>
+              Hello World
+            </button>
+          </Tooltip>,
+        );
+        const type = camelCase(name.slice(2));
+        fireEvent[type](getByRole('button'));
+        expect(handler.callCount).to.equal(1, `${name} should've been called`);
+      });
+    });
 
     it(`should be transparent for the focus and blur event`, () => {
       const handleBlur = spy();
