@@ -87,7 +87,7 @@ It leverages the `stickyHeader` prop.<br />
 
 ## Column grouping
 
-You can group column header by rendering multiple table rows inside a table head:
+You can group column headers by rendering multiple table rows inside a table head:
 
 ```jsx
 <TableHead>
