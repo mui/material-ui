@@ -639,6 +639,15 @@ const appList = [
     similarWebVisits: 534,
     dateAdded: '2020-09-11',
   },
+    {
+    title: 'Ingredient',
+    description:
+      'A web application that helps you find food dishes and provides detailed info about them.',
+    image: 'https://ingredient.recipes/ingredient-image.svg',
+    link: 'https://ingredient.recipes/',
+    similarWebVisits: 20,
+    dateAdded: '2020-10-16',
+  },
 ];
 
 export default appList;
