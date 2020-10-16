@@ -23,6 +23,10 @@ A set of reusable components for design tools is available, designed to match th
 - [unDraw](https://undraw.co/): 📐 Like Unsplash but for amazing vector illustrations.
 - [Simple Icons](https://simpleicons.org/): Over 1000 Free SVG icons for popular brands.
 
+## Application Frameworks
+
+- [react-admin](https://github.com/marmelab/react-admin): A frontend Framework for building B2B applications running in the browser on top of REST/GraphQL APIs
+
 ## IDE Tools
 
 - [Material-UI Snippets](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-snippets): VSCode extension providing snippets.
