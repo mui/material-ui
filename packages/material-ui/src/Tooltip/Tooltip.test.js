@@ -880,7 +880,7 @@ describe('<Tooltip />', () => {
       focusVisible(getByRole('button'));
 
       expect(getByRole('tooltip')).toBeVisible();
-      expect(eventLog).to.deep.equal(['open', 'focus']);
+      expect(eventLog).to.deep.equal(['focus', 'open']);
 
       // TODO: Can be removed once Popper#update is sync.
       act(() => {
