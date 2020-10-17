@@ -103,7 +103,13 @@ function sieveResults(results) {
   return { all: results, main, pages };
 }
 
-async function run() {
+function postInitialComment() {
+  markdown(`Bundle size changes will be reported soon.`);
+}
+
+async function postBundleSize(context) {
+  const { azureBuildId } = context;
+
   // Use git locally to grab the commit which represents the place
   // where the branches differ
   const upstreamRepo = danger.github.pr.base.repo.full_name;
@@ -134,13 +140,21 @@ async function run() {
       markdown(importantChanges.join('\n'));
     }
 
-    const details = `[Details of bundle changes](https://mui-dashboard.netlify.app/size-comparison?buildId=${process.env.AZURE_BUILD_ID}&baseRef=${danger.github.pr.base.ref}&baseCommit=${mergeBaseCommit}&prNumber=${danger.github.pr.number})`;
+    const details = `[Details of bundle changes](https://mui-dashboard.netlify.app/size-comparison?buildId=${azureBuildId}&baseRef=${danger.github.pr.base.ref}&baseCommit=${mergeBaseCommit}&prNumber=${danger.github.pr.number})`;
 
     markdown(details);
   } else {
     // this can later be removed to reduce PR noise. It is kept for now for debug
     // purposes only. DangerJS will swallow console.logs if it completes successfully
     markdown(`No bundle size changes comparing ${commitRange}`);
+  }
+}
+
+async function run() {
+  if (process.env.AZURE_BUILD_ID === undefined) {
+    postInitialComment();
+  } else {
+    await postBundleSize({ azureBuildId: process.env.AZURE_BUILD_ID });
   }
 }
 

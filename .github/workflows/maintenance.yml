@@ -12,9 +12,24 @@ on:
     branches:
       - master
       - next
-    types: [synchronize]
+    types: [opened, synchronize]
 
 jobs:
+  danger:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name === "opened" }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use node@10
+        uses: actions/setup-node@v1
+        with:
+          node-version: '10.x'
+      - name: Install dependencies
+        run: yarn install
+      - name: Run danger
+        run: yarn danger ci
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   main:
     runs-on: ubuntu-latest
     steps:
