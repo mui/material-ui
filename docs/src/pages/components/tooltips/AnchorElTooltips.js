@@ -28,10 +28,10 @@ export default function AnchorElTooltips() {
         popperRef,
         anchorEl: {
           getBoundingClientRect: () => ({
-            top: areaRef.current?.getBoundingClientRect().top ?? 0,
+            top: areaRef.current.getBoundingClientRect().top ?? 0,
             left: positionRef.current.x,
             right: positionRef.current.x,
-            bottom: areaRef.current?.getBoundingClientRect().bottom ?? 0,
+            bottom: areaRef.current.getBoundingClientRect().bottom ?? 0,
             width: 0,
             height: 0,
           }),

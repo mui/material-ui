@@ -176,7 +176,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     enterTouchDelay = 700,
     followCursor = false,
     id: idProp,
-    disableInteractive = false,
+    disableInteractive: disableInteractiveProp = false,
     leaveDelay = 0,
     leaveTouchDelay = 1500,
     onClose,
@@ -195,6 +195,8 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
   const [childNode, setChildNode] = React.useState();
   const [arrowRef, setArrowRef] = React.useState(null);
   const ignoreNonTouchEvents = React.useRef(false);
+
+  const disableInteractive = disableInteractiveProp || followCursor;
 
   const closeTimer = React.useRef();
   const enterTimer = React.useRef();

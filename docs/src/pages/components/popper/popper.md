@@ -10,9 +10,9 @@ githubLabel: 'component: Popper'
 
 Some important features of the `Popper` component:
 
-- 🕷 Popper relies on the 3rd party library ([Popper.js](https://github.com/FezVrasta/popper.js)) for perfect positioning.
+- 🕷 Popper relies on the 3rd party library ([Popper.js](https://github.com/popperjs/popper-core)) for perfect positioning.
 - 💄 It's an alternative API to react-popper. It aims for simplicity.
-- 📦 [10 kB gzipped](/size-snapshot) ([7 kB](https://bundlephobia.com/result?p=popper.js) from Popper.js).
+- 📦 [8.5 kB gzipped](/size-snapshot) ([6.5 kB](https://bundlephobia.com/result?p=@popperjs/core) from Popper.js).
 - The children is [`Portal`](/components/portal/) to the body of the document to avoid rendering problems.
   You can disable this behavior with `disablePortal`.
 - The scroll isn't blocked like with the [`Popover`](/components/popover/) component.
@@ -45,9 +45,9 @@ Alternatively, you can use [react-spring](https://github.com/react-spring/react-
 
 {{"demo": "pages/components/popper/SpringPopper.js"}}
 
-## Positioned Popper
+## Positioned popper
 
-{{"demo": "pages/components/popper/PositionedPopper.js", "bg": true}}
+{{"demo": "pages/components/popper/PositionedPopper.js"}}
 
 ## Scroll playground
 

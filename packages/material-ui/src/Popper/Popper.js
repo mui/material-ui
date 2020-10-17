@@ -36,7 +36,7 @@ function getAnchorEl(anchorEl) {
 const defaultPopperOptions = {};
 
 /**
- * Poppers rely on the 3rd party library [Popper.js](https://popper.js.org/docs/v2/) for positioning.
+ * Poppers rely on the 3rd party library [Popper.js](https://github.com/popperjs/popper-core) for positioning.
  */
 const Popper = React.forwardRef(function Popper(props, ref) {
   const {
@@ -375,7 +375,7 @@ Popper.propTypes = {
     'top',
   ]),
   /**
-   * Options provided to the [`popper.js`](https://popper.js.org/docs/v2/constructors/#options) instance.
+   * Options provided to the [`Popper.js`](https://popper.js.org/docs/v2/constructors/#options) instance.
    * @default {}
    */
   popperOptions: PropTypes.shape({

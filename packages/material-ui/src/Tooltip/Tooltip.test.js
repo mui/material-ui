@@ -142,9 +142,6 @@ describe('<Tooltip />', () => {
       const target = screen.getByTestId('target');
       expect(target).toHaveAccessibleName('the title');
       expect(target).not.to.have.attribute('title');
-
-      // TODO: can be removed with popper@2.x
-      clock.runAll();
     });
 
     it('should label the child when open with an exotic title', () => {
@@ -157,9 +154,6 @@ describe('<Tooltip />', () => {
       const target = screen.getByTestId('target');
       expect(target).toHaveAccessibleName('the title');
       expect(target).not.to.have.attribute('title');
-
-      // TODO: can be removed with popper@2.x
-      clock.runAll();
     });
 
     it('can describe the child when closed', () => {
@@ -205,9 +199,6 @@ describe('<Tooltip />', () => {
       expect(target).toHaveAccessibleName('the label');
       expect(target).toHaveAccessibleDescription('the title');
       expect(target).not.to.have.attribute('title');
-
-      // TODO: can be removed with popper@2.x
-      clock.runAll();
     });
 
     it('can describe the child when open with an exotic title', () => {
@@ -223,9 +214,6 @@ describe('<Tooltip />', () => {
       expect(target).toHaveAccessibleName('the label');
       expect(target).toHaveAccessibleDescription('the title');
       expect(target).not.to.have.attribute('title');
-
-      // TODO: can be removed with popper@2.x
-      clock.runAll();
     });
   });
 
@@ -320,11 +308,6 @@ describe('<Tooltip />', () => {
     });
 
     expect(eventLog).to.deep.equal(['mouseover', 'open', 'mouseleave', 'close']);
-
-    // TODO: Can be removed once Popper#update is sync.
-    act(() => {
-      clock.runAll();
-    });
   });
 
   it('is dismissable by pressing Escape', () => {
@@ -836,13 +819,7 @@ describe('<Tooltip />', () => {
       focusVisible(getByRole('button'));
 
       expect(getByRole('tooltip')).toBeVisible();
-<<<<<<< HEAD
       expect(eventLog).to.deep.equal(['focus', 'open']);
-
-      // TODO: Can be removed once Popper#update is sync.
-      act(() => {
-        clock.runAll();
-      });
     });
 
     it('closes on blur', () => {
@@ -870,13 +847,6 @@ describe('<Tooltip />', () => {
 
       expect(getByRole('tooltip')).toBeVisible();
       expect(eventLog).to.deep.equal(['blur', 'close']);
-
-      // TODO: Can be removed once Popper#update is sync.
-      act(() => {
-        clock.runAll();
-      });
-=======
->>>>>>> Simplify tests
     });
 
     // https://github.com/mui-org/material-ui/issues/19883
@@ -941,7 +911,7 @@ describe('<Tooltip />', () => {
     });
   });
 
-  it('should use the same popper.js instance between two renders', () => {
+  it('should use the same Popper.js instance between two renders', () => {
     const popperRef = React.createRef();
     const { forceUpdate } = render(
       <Tooltip
