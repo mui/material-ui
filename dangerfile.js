@@ -4,6 +4,10 @@ const { danger, markdown } = require('danger');
 const { exec } = require('child_process');
 const { loadComparison } = require('./scripts/sizeSnapshot');
 
+const azureBuildId = process.env.AZURE_BUILD_ID;
+const azureBuildUri = process.env.AZURE_BUILD_URI;
+const dangerCommand = process.env.DANGER_COMMAND;
+
 const parsedSizeChangeThreshold = 300;
 const gzipSizeChangeThreshold = 100;
 
@@ -103,13 +107,13 @@ function sieveResults(results) {
   return { all: results, main, pages };
 }
 
-function postInitialComment() {
-  markdown(`Bundle size changes will be reported soon.`);
+function prepareBundleSizeReport() {
+  markdown(
+    `Bundle size will be reported once [Azure build #${azureBuildId}](${azureBuildUri}) finishes.`,
+  );
 }
 
-async function postBundleSize(context) {
-  const { azureBuildId } = context;
-
+async function reportBundleSize() {
   // Use git locally to grab the commit which represents the place
   // where the branches differ
   const upstreamRepo = danger.github.pr.base.repo.full_name;
@@ -151,10 +155,15 @@ async function postBundleSize(context) {
 }
 
 async function run() {
-  if (process.env.AZURE_BUILD_ID === undefined) {
-    postInitialComment();
-  } else {
-    await postBundleSize({ azureBuildId: process.env.AZURE_BUILD_ID });
+  switch (dangerCommand) {
+    case 'prepareBundleSizeReport':
+      prepareBundleSizeReport();
+      break;
+    case 'reportBundleSize':
+      await reportBundleSize();
+      break;
+    default:
+      throw new TypeError(`Unrecognized danger command '${dangerCommand}'`);
   }
 }
 
