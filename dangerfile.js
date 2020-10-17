@@ -126,7 +126,7 @@ async function reportBundleSize() {
   await git(`fetch ${UPSTREAM_REMOTE}`);
   const mergeBaseCommit = await git(`merge-base HEAD ${UPSTREAM_REMOTE}/${upstreamRef}`);
 
-  const commitRange = `${mergeBaseCommit}...${danger.github.pr.head.sha}`;
+  const detailedComparisonUrl = `https://mui-dashboard.netlify.app/size-comparison?buildId=${azureBuildId}&baseRef=${danger.github.pr.base.ref}&baseCommit=${mergeBaseCommit}&prNumber=${danger.github.pr.number}`;
 
   const comparison = await loadComparison(mergeBaseCommit, upstreamRef);
 
@@ -144,13 +144,11 @@ async function reportBundleSize() {
       markdown(importantChanges.join('\n'));
     }
 
-    const details = `[Details of bundle changes](https://mui-dashboard.netlify.app/size-comparison?buildId=${azureBuildId}&baseRef=${danger.github.pr.base.ref}&baseCommit=${mergeBaseCommit}&prNumber=${danger.github.pr.number})`;
+    const details = `[Details of bundle changes](${detailedComparisonUrl})`;
 
     markdown(details);
   } else {
-    // this can later be removed to reduce PR noise. It is kept for now for debug
-    // purposes only. DangerJS will swallow console.logs if it completes successfully
-    markdown(`No bundle size changes comparing ${commitRange}`);
+    markdown(`[No bundle size changes](${detailedComparisonUrl})`);
   }
 }
 
