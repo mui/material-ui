@@ -8,11 +8,13 @@ Material-UI es compatible con las versiones más recientes y estables de todos l
 
 <!-- #stable-snapshot -->
 
-| Edge  | Firefox | Chrome | Safari |
-|:----- |:------- |:------ |:------ |
-| >= 83 | >= 68   | >= 83  | >= 13  |
+| Edge  | Firefox | Chrome | Safari (macOS) | Safari (iOS) |
+|:----- |:------- |:------ |:-------------- |:------------ |
+| >= 85 | >= 78   | >= 84  | >= 13          | >= 12.2      |
 
-If you need to support IE 11, check out our [legacy bundle](/guides/minimizing-bundle-size/#legacy-bundle).
+<!-- #default-branch-switch -->
+
+An extensive list can be found in our [.browserlistrc](https://github.com/mui-org/material-ui/blob/next/.browserslistrc#L12-L27) (check the `stable` entry). If you need to support IE 11, check out our [legacy bundle](/guides/minimizing-bundle-size/#legacy-bundle).
 
 Es fundamental que Material-UI sea compatible con el servicio de renderización web (WRS) utilizado por Googlebot para clasificar el contenido de la página web. [WRS regularly updates the rendering engine it uses](https://webmasters.googleblog.com/2019/05/the-new-evergreen-googlebot.html). Podrás contar con que los componentes de Material-UI sean renderizados sin mayores problemas.
 
