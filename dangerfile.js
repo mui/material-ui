@@ -34,7 +34,7 @@ const UPSTREAM_REMOTE = 'danger-upstream';
  * scripts exit to avoid adding internal remotes to the local machine. This is
  * not an issue in CI.
  */
-async function cleanup() {
+async function reportBundleSizeCleanup() {
   await git(`remote remove ${UPSTREAM_REMOTE}`);
 }
 
@@ -158,18 +158,18 @@ async function run() {
       prepareBundleSizeReport();
       break;
     case 'reportBundleSize':
-      await reportBundleSize();
+      try {
+        await reportBundleSize();
+      } finally {
+        await reportBundleSizeCleanup();
+      }
       break;
     default:
       throw new TypeError(`Unrecognized danger command '${dangerCommand}'`);
   }
 }
 
-run()
-  .finally(() => {
-    return cleanup();
-  })
-  .catch((error) => {
-    console.error(error);
-    process.exit(1);
-  });
+run().catch((error) => {
+  console.error(error);
+  process.exit(1);
+});
