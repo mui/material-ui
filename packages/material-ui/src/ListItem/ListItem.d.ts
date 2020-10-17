@@ -38,7 +38,7 @@ export interface ListItemTypeMap<P, D extends React.ElementType> {
       disabled?: string;
       /** Styles applied to the inner `component` element if `divider={true}`. */
       divider?: string;
-      /** Styles applied to the inner `component` element if `disableGutters={false}`. */
+      /** Styles applied to the inner `component` element unless `disableGutters={true}`. */
       gutters?: string;
       /** Styles applied to the inner `component` element if `button={true}`. */
       button?: string;
