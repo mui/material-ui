@@ -7,9 +7,11 @@ import Typography from '../Typography';
 describe('<CardHeader />', () => {
   const mount = createMount();
   let classes;
+  let typographyClasses;
   const render = createClientRender();
-  const typographyClasses = getClasses(<Typography />);
+
   before(() => {
+    typographyClasses = getClasses(<Typography />);
     classes = getClasses(<CardHeader />);
   });
 
