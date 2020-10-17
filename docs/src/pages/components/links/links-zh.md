@@ -21,6 +21,12 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#link'
 - 当链接需要突出显示时，设置 `color="primary"`。
 - 在多数的情况下，当链接需要作为文字铸排的子组件使用，则设置 `variant="inherit"`。
 
+## Underline
+
+The `underline` prop can be used to set the underline behavior. The default is `hover`.
+
+{{"demo": "pages/components/links/UnderlineLink.js"}}
+
 ## 安全性
 
 当你将 `target="_blank"`和链接组件一起使用时，若想和第三方的内容相连，我们[推荐](https://developers.google.com/web/tools/lighthouse/audits/noopener)始终配置 `rel="noopener"` 或者 `rel="noreferrer"`。
