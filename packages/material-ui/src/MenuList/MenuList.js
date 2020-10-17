@@ -123,104 +123,13 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     lastTime: null,
   });
 
-  const [menuItems, setMenuItems] = React.useState([]);
-  const [items, setItems] = React.useState(null);
-  const [activeItemIndex, setActiveItemIndex] = React.useState(-1);
-
-  useEnhancedEffect(() => {
-    /**
-     * the index of the item should receive focus
-     * in a `variant="selectedMenu"` it's the first `selected` item
-     * otherwise it's the very first item.
-     */
-    let activeItem = -1;
-    const menuItemRefs = [];
-
-    const setup = (child) => {
-      if (!React.isValidElement(child)) {
-        return child;
-      }
-
-      if (process.env.NODE_ENV !== 'production') {
-        if (isFragment(child)) {
-          console.error(
-            [
-              "Material-UI: The Menu component doesn't accept a Fragment as a child.",
-              'Consider providing an array instead.',
-            ].join('\n'),
-          );
-        }
-      }
-
-      if (child.type === MenuItem || (child.props.role && child.props.role === 'menuitem')) {
-        const itemRef = React.createRef();
-        const newProps = {
-          ref: itemRef,
-        };
-
-        if (typeof child.ref === 'function') {
-          newProps.ref = (instance) => {
-            child.ref(instance);
-            itemRef.current = instance;
-          };
-        } else if (child.ref) {
-          itemRef.current = child.ref;
-        }
-
-        if (!child.props.disabled) {
-          if (variant === 'selectedMenu' && child.props.selected) {
-            activeItem = menuItemRefs.length;
-            if (autoFocusItem) {
-              newProps.autoFocus = true;
-            }
-          } else if (child.props.autoFocus) {
-            activeItem = menuItemRefs.length;
-          } else if (activeItem === -1) {
-            activeItem = menuItemRefs.length;
-            if (autoFocusItem) {
-              newProps.autoFocus = true;
-            }
-          }
-        }
-
-        const newChild = React.cloneElement(child, newProps);
-        menuItemRefs.push(itemRef);
-        return newChild;
-      }
-
-      if (child.props.children) {
-        const newChildren = React.Children.map(child.props.children, setup);
-        return React.cloneElement(child, { children: newChildren });
-      }
-
-      return child;
-    };
-
-    // since we inject focus related props into children we have to do a lookahead
-    // to check if there is a `selected` item. We're looking for the last `selected`
-    // item and use the first valid item as a fallback
-    const listChildren = React.Children.map(children, setup);
-
-    setItems(listChildren);
-    setMenuItems(menuItemRefs);
-    setActiveItemIndex(activeItem);
-  }, [children, variant, autoFocusItem]);
+  const menuItemRefs = [];
 
   useEnhancedEffect(() => {
     if (autoFocus) {
       listRef.current.focus();
     }
-
-    if (
-      variant === 'selectedMenu' &&
-      activeItemIndex >= 0 &&
-      menuItems[activeItemIndex].current &&
-      (menuItems[activeItemIndex].current.tabIndex === undefined ||
-        menuItems[activeItemIndex].current.tabIndex === -1)
-    ) {
-      menuItems[activeItemIndex].current.tabIndex = 0;
-    }
-  }, [autoFocus, activeItemIndex, autoFocusItem, menuItems, variant]);
+  }, [autoFocus]);
 
   React.useImperativeHandle(
     actions,
@@ -243,7 +152,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
   );
 
   const handleKeyDown = (event) => {
-    const list = menuItems;
+    const list = menuItemRefs;
     const key = event.key;
     /**
      * @type {Element} - will always be defined since we are in a keydown handler
@@ -325,6 +234,86 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
   };
 
   const handleRef = useForkRef(listRef, ref);
+
+  /**
+   * the index of the item should receive focus
+   * in a `variant="selectedMenu"` it's the first `selected` item
+   * otherwise it's the very first item.
+   */
+  let activeItemIndex = -1;
+
+  const setup = (child, index) => {
+    if (!React.isValidElement(child)) {
+      return child;
+    }
+
+    if (process.env.NODE_ENV !== 'production') {
+      if (isFragment(child)) {
+        console.error(
+          [
+            "Material-UI: The Menu component doesn't accept a Fragment as a child.",
+            'Consider providing an array instead.',
+          ].join('\n'),
+        );
+      }
+    }
+
+    if (child.type === MenuItem || (child.props.role && child.props.role === 'menuitem')) {
+      const itemRef = React.createRef();
+      const newProps = {
+        ref: itemRef,
+      };
+
+      if (typeof child.ref === 'function') {
+        newProps.ref = (instance) => {
+          child.ref(instance);
+          itemRef.current = instance;
+        };
+      } else if (child.ref) {
+        itemRef.current = child.ref;
+      }
+
+      if (!child.props.disabled) {
+        if (variant === 'selectedMenu' && child.props.selected) {
+          activeItemIndex = index;
+        } else if (activeItemIndex === -1) {
+          activeItemIndex = index;
+        }
+      }
+
+      const newChild = React.cloneElement(child, newProps);
+      menuItemRefs.push(itemRef);
+      return newChild;
+    }
+
+    if (child.props.children) {
+      const newChildren = React.Children.map(child.props.children, setup);
+      return React.cloneElement(child, { children: newChildren });
+    }
+
+    return child;
+  };
+
+  // since we inject focus related props into children we have to do a lookahead
+  // to check if there is a `selected` item. We're looking for the last `selected`
+  // item and use the first valid item as a fallback
+  const refedChildren = React.Children.map(children, setup);
+  
+  const items = React.Children.map(refedChildren, (child, index) => {
+    if (index === activeItemIndex) {
+      const newChildProps = {};
+      if (autoFocusItem) {
+        newChildProps.autoFocus = true;
+      }
+      if (child.props.tabIndex === undefined && variant === 'selectedMenu') {
+        newChildProps.tabIndex = 0;
+      }
+
+      return React.cloneElement(child, newChildProps);
+    }
+
+    return child;
+  });
 
   return (
     <List
