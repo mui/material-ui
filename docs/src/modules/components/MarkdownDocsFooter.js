@@ -77,7 +77,7 @@ function findIndex(array, comp) {
 }
 
 async function postFeedback(data) {
-  const env = location.hostname === 'material-ui.com' ? 'prod' : 'dev';
+  const env = window.location.host.indexOf('material-ui.com') !== -1 ? 'prod' : 'dev';
   try {
     const response = await fetch(`${process.env.FEEDBACK_URL}/${env}/feedback`, {
       method: 'POST',
