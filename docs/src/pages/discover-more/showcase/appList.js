@@ -639,6 +639,16 @@ const appList = [
     similarWebVisits: 534,
     dateAdded: '2020-09-11',
   },
+  {
+    title: 'Uclusion',
+    description:
+      'Uclusion is an autonomous teamwork application built on Material UI with a public fully documented repo.',
+    image: 'uclusion.jpg',
+    link: 'https://uclusion.com',
+    source: 'https://github.com/Uclusion/uclusion_web_ui',
+    similarWebVisits: 524,
+    dateAdded: '2020-10-16',
+  },
 ];
 
 export default appList;
