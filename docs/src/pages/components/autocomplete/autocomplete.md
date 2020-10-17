@@ -286,7 +286,6 @@ By default, the component disables the **autocomplete** feature (remembering wha
 Google Chrome does not currently support this attribute setting ([Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)).
 A possible workaround is to remove the `id` to have the component generate a random one.
 
-
 In addition to remembering past entered values, the browser might also propose **autofill** suggestions (saved login, address, or payment details).
 In the event you want the avoid autofill, you can try the following:
 
