@@ -1,5 +1,5 @@
 ---
-title: React Grid List 图像列表组件
+title: React Image list 图像列表组件
 components: ImageList, ImageListItem, ImageListItemBar
 ---
 
@@ -7,7 +7,7 @@ components: ImageList, ImageListItem, ImageListItemBar
 
 <p class="description">图像列表的功能是在一个有组织的一张图中展示一系列图像。</p>
 
-图像列表展示了一个在重复的模式中的子集。 它们有助于提高对所持内容的视觉理解。
+图像列表表示重复模式的项目集合。 它们有助于提高对所持内容的视觉理解。
 
 ## 基本的图像列表
 
