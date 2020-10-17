@@ -94,7 +94,9 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#slider'
 
 ## 非线性缩放
 
-你可以使用 `scale` 属性来表示不同范围的`值`。 例如，下面的例子中，*x* 的值表示 *10^x*。
+你可以使用 `scale` 属性来表示不同范围的`值`。
+
+In the following demo, the value _x_ represents the value _2^x_. Increasing _x_ by one increases the represented value by factor _2_.
 
 {{"demo": "pages/components/slider/NonLinearSlider.js"}}
 
