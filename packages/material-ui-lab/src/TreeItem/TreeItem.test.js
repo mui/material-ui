@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import * as PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { spy } from 'sinon';
 import {
   getClasses,
