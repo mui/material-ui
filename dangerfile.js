@@ -5,7 +5,7 @@ const { exec } = require('child_process');
 const { loadComparison } = require('./scripts/sizeSnapshot');
 
 const azureBuildId = process.env.AZURE_BUILD_ID;
-const azureBuildUri = process.env.AZURE_BUILD_URI;
+const azureBuildUrl = `https://dev.azure.com/mui-org/Material-UI/_build/results?buildId=${azureBuildId}`;
 const dangerCommand = process.env.DANGER_COMMAND;
 
 const parsedSizeChangeThreshold = 300;
@@ -109,7 +109,7 @@ function sieveResults(results) {
 
 function prepareBundleSizeReport() {
   markdown(
-    `Bundle size will be reported once [Azure build #${azureBuildId}](${azureBuildUri}) finishes.`,
+    `Bundle size will be reported once [Azure build #${azureBuildId}](${azureBuildUrl}) finishes.`,
   );
 }
 
@@ -153,7 +153,6 @@ async function reportBundleSize() {
 }
 
 async function run() {
-  console.log(process.env);
   switch (dangerCommand) {
     case 'prepareBundleSizeReport':
       prepareBundleSizeReport();
