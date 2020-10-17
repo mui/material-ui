@@ -153,6 +153,7 @@ async function reportBundleSize() {
 }
 
 async function run() {
+  console.log(process.env);
   switch (dangerCommand) {
     case 'prepareBundleSizeReport':
       prepareBundleSizeReport();
