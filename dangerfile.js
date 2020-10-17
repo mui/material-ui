@@ -144,21 +144,11 @@ async function run() {
   }
 }
 
-(async () => {
-  let exitCode = 0;
-  try {
-    await run();
-  } catch (err) {
-    console.error(err);
-    exitCode = 1;
-  }
-
-  try {
-    await cleanup();
-  } catch (err) {
-    console.error(err);
-    exitCode = 1;
-  }
-
-  process.exit(exitCode);
-})();
+run()
+  .finally(() => {
+    return cleanup();
+  })
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
