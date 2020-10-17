@@ -282,13 +282,15 @@ Search within 10,000 randomly generated options. The list is virtualized thanks 
 The browsers have heuristics to help the users fill the form inputs.
 However, it can harm the UX of the component.
 
-By default, the component disable the **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute.
+By default, the component disables the **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute.
+Google Chrome does not currently support this attribute setting ([Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)).
+A possible workaround is to remove the `id` to have the component generate a random one.
 
-However, in addition to remembering past entered values, the browser might also propose **autofill** suggestions (saved login, address, or payment details).
+In addition to remembering past entered values, the browser might also propose **autofill** suggestions (saved login, address, or payment details).
 In the event you want the avoid autofill, you can try the following:
 
 - Name the input without leaking any information the browser can use. e.g. `id="field1"` instead of `id="country"`. If you leave the id empty, the component uses a random id.
-- Set `autoComplete="new-password"`:
+- Set `autoComplete="new-password"` (some browsers will suggest a strong password for inputs with this attribute setting):
 
   ```jsx
   <TextField
@@ -299,6 +301,8 @@ In the event you want the avoid autofill, you can try the following:
     }}
   />
   ```
+
+Read [the guide on MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Securing_your_site/Turning_off_form_autocompletion) for more details.
 
 ### iOS VoiceOver
 
