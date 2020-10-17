@@ -49,10 +49,10 @@ yarn add @material-ui/core@next
 <!-- #stable-snapshot -->
 
 - Node 10 (up from 8)
-- Chrome 83 (up from 49)
-- Edge 83 (up from 14)
-- Firefox 68 (up from 52)
-- Safari 13 (up from 10)
+- 从Chrome49到Chrome 84
+- Edge14到85
+- 从Firefox52到78
+- 从Safari10到Safari 13 (macOS) 和 12.2 (iOS)
 - and more (see [.browserslistrc (`stable` entry)](https://github.com/mui-org/material-ui/blob/HEAD/.browserslistrc#L11))
 
 不再对 IE 11 进行兼容支持。 如果你需要对 IE 11 进行兼容性支持，请查看我们的 [旧版本包](/guides/minimizing-bundle-size/#legacy-bundle)。
