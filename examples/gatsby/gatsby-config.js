@@ -13,6 +13,7 @@ module.exports = {
     // If you want to use styled components you should add the plugin here.
     // 'gatsby-plugin-styled-components',
     'gatsby-plugin-react-helmet',
+    'gatsby-plugin-emotion',
   ],
   siteMetadata: {
     title: 'My page',
