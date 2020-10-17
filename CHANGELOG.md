@@ -8,24 +8,25 @@ Big thanks to the 25 contributors who made this release possible.
 Here are some highlights ✨:
 
 - 📦 Ship modern bundle (#22814) @eps1lon.
-  This is a significant update to the [supported browsers](https://next.material-ui.com/getting-started/supported-platforms/) of Material-UI.
-  The previous policy was defined 2 years ago, the landscape has evolved during the period. The package now includes 4 bundles:
+  This is a significant update to the [browsers supported](https://next.material-ui.com/getting-started/supported-platforms/) by Material-UI.
+  The previous policy was defined 2 years ago, and the landscape has evolved since then. The package now includes 4 bundles:
 
   1. `stable` (default, formerly `esm`) which targets a snapshot (on release) of `> 0.5%, last 2 versions, Firefox ESR, not dead, not IE 11"`
   2. `node` (formerly default) which targets a snapshot (on release) of `maintained node versions`
   3. `legacy` (new) which is `stable` + IE11
   4. `modern` (formerly `es`) which targets the last 1 version of evergreen browsers and active node (currently that is 14
 
-  The change yields a -6% reduction of bundle size 📦 (Babel only).
-  In the coming weeks, we will refactor the internals to leverage the new browser's capability that this drop of older platforms allows. For instance, we might be able to remove the span we render inside the `<Button>` to work around [Flexbug #9](https://github.com/philipwalton/flexbugs/blob/master/README.md#flexbug-9).
+  The change yields a 6% reduction in bundle size 📦 (Babel only).
+  In the coming weeks, we will refactor the internals to take advantage of the new browser capabilities that dropping these older platforms allows. For instance, we might be able to remove the span we render inside the `<Button>` to work around [Flexbug #9](https://github.com/philipwalton/flexbugs/blob/master/README.md#flexbug-9).
 
-  You can find the new [Supported platforms documentation](https://next.material-ui.com/getting-started/supported-platforms/) and [new "minimizing bundle size" guide](https://next.material-ui.com/guides/minimizing-bundle-size/).
+  Check the updated [Supported platforms documentation](https://next.material-ui.com/getting-started/supported-platforms/) and [new "minimizing bundle size" guide](https://next.material-ui.com/guides/minimizing-bundle-size/).
 
-  If you target IE11, you need to use the new bundle (`legacy`). We are treating IE11 as a second class-citizen, it's a continuation of the direction taken in #22873.
+  If you target IE11, you need to use the new bundle (`legacy`). We are treating IE11 as a second class-citizen, which is a continuation of the direction taken in #22873.
+
 - 🚀 Improve the internal benchmark suite (#22923, #23058) @mnajdova.
-  This was a prerequisite step to improve the system. We needed to be able to measure performance. After #22945, we have measured that the `Box` component is x3 faster on v5-alpha compared to v4.
+  This was a prerequisite step to improve the [system](https://next.material-ui.com/system/basics/). We needed to be able to measure performance. After #22945, we have measured that the `Box` component is x3 faster in v5-alpha compared to v4.
 - ✏️ A new blog post: [Q3 2020 Update](https://material-ui.com/blog/2020-q3-update/) (#23055) @oliviertassinari.
-- 🐙 Migrate more test to react-testing-library @deiga, @Morteza-Jenabzadeh, @nicholas-l.
+- 🐙 Migrate more tests to react-testing-library @deiga, @Morteza-Jenabzadeh, @nicholas-l.
 - And many more 🐛 bug fixes and 📚 improvements.
 
 ### `@material-ui/core@v5.0.0-alpha.13`
@@ -97,9 +98,9 @@ Here are some highlights ✨:
 - [docs] Restore ButtonBases images (#23083) @eps1lon
 - [docs] Slider demos clean up (#22964) @mnajdova
 - [docs] Sync translations (#22888) @l10nbot
-- [examples] Update gatsby example to use @material-ui/* next (#23089) @mnajdova
-- [examples] Update gatsby-theme example to use @material-ui/* next #23093 @mnajdova
-- [examples] Update nextjs example project to use @material-ui/* next (#23094) @mnajdova
+- [examples] Update gatsby example to use @material-ui/\* next (#23089) @mnajdova
+- [examples] Update gatsby-theme example to use @material-ui/\* next #23093 @mnajdova
+- [examples] Update nextjs example project to use @material-ui/\* next (#23094) @mnajdova
 
 ### Core
 
@@ -123,7 +124,7 @@ Here are some highlights ✨:
 - [core] Extend yarn size:why (#22979) @eps1lon
 - [core] Fix react-next test (#23027) @oliviertassinari
 - [core] Lint CSS (#22976) @oliviertassinari
-- [core] Misc modules/* cleanup (#22983) @eps1lon
+- [core] Misc modules/\* cleanup (#22983) @eps1lon
 
 ## 5.0.0-alpha.12
 
