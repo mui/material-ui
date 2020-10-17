@@ -138,9 +138,9 @@ Fancy smaller inputs? Use the `size` prop.
 
 ## Personalizaciones
 
-### Custom input
+### Input personalizado
 
-The `renderInput` prop allows you to customize the rendered input. The first argument of this render prop contains props that you need to forward. Pay specific attention to the `ref` and `inputProps` keys.
+El apoyo `renderInput` te permite personalizar la entrada renderizada. El primer argumento de este apoyo renderizado contiene apoyos que necesitas para avanzar. Ponga atención específica a las claves `red` y `inputProps`.
 
 {{"demo": "pages/components/autocomplete/CustomInputAutocomplete.js"}}
 
@@ -237,10 +237,10 @@ VoiceOver en iOS Safari no soporta el atributo `aria-owns` especialmente bien. P
 
 ### ListboxComponent
 
-If you provide a custom `ListboxComponent` prop, you need to make sure that the intended scroll container has the `role` attribute set to `listbox`. This ensures the correct behavior of the scroll, for example when using the keyboard to navigate.
+Si proporciona un apoyo personalizado `ListboxComponent`, usted necesita asegurarse de que el contedenedor de desplazamiento destinado tiene el atributo `role` esta configurado `listbox`. Esto asegura el comportamiento correcto del desplazamiento, por ejemplo cuando usas el teclado para navegar.
 
 ## Accesibilidad
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#combobox)
 
-We encourage the usage of a label for the textbox. El componente implementa las prácticas de creación de WAI-ARIA.
+Animamos el uso de una etiqueta para el cuadro de texto. El componente implementa las prácticas de creación de WAI-ARIA.
