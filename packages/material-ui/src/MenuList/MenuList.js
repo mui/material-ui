@@ -298,7 +298,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
   // to check if there is a `selected` item. We're looking for the last `selected`
   // item and use the first valid item as a fallback
   const refedChildren = React.Children.map(children, setup);
-  
+
   const items = React.Children.map(refedChildren, (child, index) => {
     if (index === activeItemIndex) {
       const newChildProps = {};
