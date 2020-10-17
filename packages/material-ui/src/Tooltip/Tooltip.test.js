@@ -305,45 +305,47 @@ describe('<Tooltip />', () => {
   });
 
   it('should be controllable', () => {
-    const handleRequestOpen = spy();
-    const handleClose = spy();
+    const eventLog = [];
 
     const { getByRole } = render(
       <Tooltip
         enterDelay={100}
         title="Hello World"
-        onOpen={handleRequestOpen}
-        onClose={handleClose}
+        onOpen={() => eventLog.push('open')}
+        onClose={() => eventLog.push('close')}
         open
       >
-        <button id="testChild" type="submit">
+        <button
+          id="testChild"
+          onMouseLeave={() => eventLog.push('mouseleave')}
+          onMouseOver={() => eventLog.push('mouseover')}
+          type="submit"
+        >
           Hello World
         </button>
       </Tooltip>,
     );
 
-    expect(handleRequestOpen.callCount).to.equal(0);
-    expect(handleClose.callCount).to.equal(0);
+    expect(eventLog).to.deep.equal([]);
 
     fireEvent.mouseOver(getByRole('button'));
     act(() => {
       clock.tick(100);
     });
 
-    expect(handleRequestOpen.callCount).to.equal(1);
-    expect(handleClose.callCount).to.equal(0);
+    expect(eventLog).to.deep.equal(['mouseover', 'open']);
 
     fireEvent.mouseLeave(getByRole('button'));
     act(() => {
       clock.tick(0);
     });
 
-    expect(handleRequestOpen.callCount).to.equal(1);
-    expect(handleClose.callCount).to.equal(1);
+    expect(eventLog).to.deep.equal(['mouseover', 'open', 'mouseleave', 'close']);
 
-    // TODO: Unclear why not running triggers microtasks but runAll does not trigger microtasks
-    // can be removed once Popper#update is sync
-    clock.runAll();
+    // TODO: Can be removed once Popper#update is sync.
+    act(() => {
+      clock.runAll();
+    });
   });
 
   it('is dismissable by pressing Escape', () => {
@@ -850,18 +852,12 @@ describe('<Tooltip />', () => {
   });
 
   describe('focus', () => {
-    function Test() {
-      return (
-        <Tooltip enterDelay={0} leaveDelay={0} title="Some information">
-          <button id="target" type="button">
-            Do something
-          </button>
-        </Tooltip>
-      );
-    }
-
     it('ignores base focus', () => {
-      const { getByRole, queryByRole } = render(<Test />);
+      const { getByRole, queryByRole } = render(
+        <Tooltip enterDelay={0} title="Some information">
+          <button />
+        </Tooltip>,
+      );
       simulatePointerDevice();
 
       expect(queryByRole('tooltip')).to.equal(null);
@@ -876,7 +872,12 @@ describe('<Tooltip />', () => {
     });
 
     it('opens on focus-visible', () => {
-      const { queryByRole, getByRole } = render(<Test />);
+      const eventLog = [];
+      const { queryByRole, getByRole } = render(
+        <Tooltip enterDelay={0} onOpen={() => eventLog.push('open')} title="Some information">
+          <button onFocus={() => eventLog.push('focus')} />
+        </Tooltip>,
+      );
       simulatePointerDevice();
 
       expect(queryByRole('tooltip')).to.equal(null);
@@ -884,10 +885,44 @@ describe('<Tooltip />', () => {
       focusVisible(getByRole('button'));
 
       expect(getByRole('tooltip')).toBeVisible();
+      expect(eventLog).to.deep.equal(['focus', 'open']);
 
-      // TOD: Unclear why not running triggers microtasks but runAll does not trigger microtasks
-      // can be removed once Popper#update is sync
-      clock.runAll();
+      // TODO: Can be removed once Popper#update is sync.
+      act(() => {
+        clock.runAll();
+      });
+    });
+
+    it('closes on blur', () => {
+      const eventLog = [];
+      const transitionTimeout = 0;
+      const { getByRole } = render(
+        <Tooltip
+          enterDelay={0}
+          leaveDelay={0}
+          onClose={() => eventLog.push('close')}
+          open
+          title="Some information"
+          TransitionProps={{ timeout: transitionTimeout }}
+        >
+          <button onBlur={() => eventLog.push('blur')} />
+        </Tooltip>,
+      );
+      const button = getByRole('button');
+
+      act(() => {
+        button.focus();
+        button.blur();
+        clock.tick(transitionTimeout);
+      });
+
+      expect(getByRole('tooltip')).toBeVisible();
+      expect(eventLog).to.deep.equal(['blur', 'close']);
+
+      // TODO: Can be removed once Popper#update is sync.
+      act(() => {
+        clock.runAll();
+      });
     });
 
     // https://github.com/mui-org/material-ui/issues/19883

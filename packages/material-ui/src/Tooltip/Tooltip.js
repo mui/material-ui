@@ -161,6 +161,15 @@ export function testReset() {
   clearTimeout(hystersisTimer);
 }
 
+function composeEventHandler(handler, eventHandler) {
+  return (event) => {
+    if (eventHandler) {
+      eventHandler(event);
+    }
+    handler(event);
+  };
+}
+
 const Tooltip = React.forwardRef(function Tooltip(props, ref) {
   const {
     arrow = false,
@@ -260,13 +269,29 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     }
   };
 
-  const handleEnter = (forward = true) => (event) => {
-    const childrenProps = children.props;
+  const handleClose = useEventCallback(
+    /**
+     * @param {React.SyntheticEvent | Event} event
+     */
+    (event) => {
+      clearTimeout(hystersisTimer);
+      hystersisTimer = setTimeout(() => {
+        hystersisOpen = false;
+      }, 800 + leaveDelay);
+      setOpenState(false);
 
-    if (event.type === 'mouseover' && childrenProps.onMouseOver && forward) {
-      childrenProps.onMouseOver(event);
-    }
+      if (onClose) {
+        onClose(event);
+      }
 
+      clearTimeout(closeTimer.current);
+      closeTimer.current = setTimeout(() => {
+        ignoreNonTouchEvents.current = false;
+      }, theme.transitions.duration.shortest);
+    },
+  );
+
+  const handleEnter = (event) => {
     if (ignoreNonTouchEvents.current && event.type !== 'touchstart') {
       return;
     }
@@ -293,6 +318,15 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     }
   };
 
+  const handleLeave = (event) => {
+    clearTimeout(enterTimer.current);
+    clearTimeout(leaveTimer.current);
+    event.persist();
+    leaveTimer.current = setTimeout(() => {
+      handleClose(event);
+    }, leaveDelay);
+  };
+
   const {
     isFocusVisibleRef,
     onBlur: handleBlurVisible,
@@ -306,10 +340,11 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     handleBlurVisible(event);
     if (isFocusVisibleRef.current === false) {
       setChildIsFocusVisible(false);
+      handleLeave(event);
     }
   };
 
-  const handleFocus = (forward = true) => (event) => {
+  const handleFocus = (event) => {
     // Workaround for https://github.com/facebook/react/issues/7769
     // The autoFocus of React might trigger the event before the componentDidMount.
     // We need to account for this eventuality.
@@ -320,61 +355,8 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     handleFocusVisible(event);
     if (isFocusVisibleRef.current === true) {
       setChildIsFocusVisible(true);
-      handleEnter()(event);
+      handleEnter(event);
     }
-
-    const childrenProps = children.props;
-    if (childrenProps.onFocus && forward) {
-      childrenProps.onFocus(event);
-    }
-  };
-
-  const handleClose = useEventCallback(
-    /**
-     * @param {React.SyntheticEvent | Event} event
-     */
-    (event) => {
-      clearTimeout(hystersisTimer);
-      hystersisTimer = setTimeout(() => {
-        hystersisOpen = false;
-      }, 800 + leaveDelay);
-      setOpenState(false);
-
-      if (onClose) {
-        onClose(event);
-      }
-
-      clearTimeout(closeTimer.current);
-      closeTimer.current = setTimeout(() => {
-        ignoreNonTouchEvents.current = false;
-      }, theme.transitions.duration.shortest);
-    },
-  );
-
-  const handleLeave = (forward = true) => (event) => {
-    const childrenProps = children.props;
-
-    if (event.type === 'blur') {
-      if (childrenProps.onBlur && forward) {
-        childrenProps.onBlur(event);
-      }
-      handleBlur(event);
-    }
-
-    if (
-      event.type === 'mouseleave' &&
-      childrenProps.onMouseLeave &&
-      event.currentTarget === childNode
-    ) {
-      childrenProps.onMouseLeave(event);
-    }
-
-    clearTimeout(enterTimer.current);
-    clearTimeout(leaveTimer.current);
-    event.persist();
-    leaveTimer.current = setTimeout(() => {
-      handleClose(event);
-    }, leaveDelay);
   };
 
   const detectTouchStart = (event) => {
@@ -386,6 +368,9 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     }
   };
 
+  const handleMouseOver = handleEnter;
+  const handleMouseLeave = handleLeave;
+
   const handleTouchStart = (event) => {
     detectTouchStart(event);
     clearTimeout(leaveTimer.current);
@@ -393,7 +378,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     clearTimeout(touchTimer.current);
     event.persist();
     touchTimer.current = setTimeout(() => {
-      handleEnter()(event);
+      handleEnter(event);
     }, enterTouchDelay);
   };
 
@@ -501,22 +486,22 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
   }
 
   if (!disableHoverListener) {
-    childrenProps.onMouseOver = handleEnter();
-    childrenProps.onMouseLeave = handleLeave();
+    childrenProps.onMouseOver = composeEventHandler(handleMouseOver, childrenProps.onMouseOver);
+    childrenProps.onMouseLeave = composeEventHandler(handleMouseLeave, childrenProps.onMouseLeave);
 
     if (!disableInteractive) {
-      interactiveWrapperListeners.onMouseOver = handleEnter(false);
-      interactiveWrapperListeners.onMouseLeave = handleLeave(false);
+      interactiveWrapperListeners.onMouseOver = handleMouseOver;
+      interactiveWrapperListeners.onMouseLeave = handleMouseLeave;
     }
   }
 
   if (!disableFocusListener) {
-    childrenProps.onFocus = handleFocus();
-    childrenProps.onBlur = handleLeave();
+    childrenProps.onFocus = composeEventHandler(handleFocus, childrenProps.onFocus);
+    childrenProps.onBlur = composeEventHandler(handleBlur, childrenProps.onBlur);
 
     if (!disableInteractive) {
-      interactiveWrapperListeners.onFocus = handleFocus(false);
-      interactiveWrapperListeners.onBlur = handleLeave(false);
+      interactiveWrapperListeners.onFocus = handleFocus;
+      interactiveWrapperListeners.onBlur = handleBlur;
     }
   }
 
