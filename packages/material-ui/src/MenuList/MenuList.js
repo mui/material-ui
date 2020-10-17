@@ -207,9 +207,10 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
   }, [children, variant, autoFocusItem]);
 
   useEnhancedEffect(() => {
-    if (autoFocusItem && activeItemIndex >= 0) {
-      menuItems[activeItemIndex].current.focus();
-    } else if (autoFocus) {
+    // if (autoFocusItem && activeItemIndex >= 0) {
+    //   menuItems[activeItemIndex].current.focus();
+    // } else 
+    if (autoFocus) {
       listRef.current.focus();
     }
 
