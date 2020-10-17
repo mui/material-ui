@@ -119,7 +119,7 @@ describe('<Rating />', () => {
       noValueRadio.focus();
     });
 
-    expect(container.querySelector('.customized')).to.have.property('tagName', 'LABEL');
+    expect(container.querySelector('.customized')).to.have.tagName('label');
   });
 
   describe('prop: readOnly', () => {

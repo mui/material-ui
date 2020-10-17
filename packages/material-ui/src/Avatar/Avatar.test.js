@@ -40,8 +40,8 @@ describe('<Avatar />', () => {
       );
       const avatar = container.firstChild;
       const img = avatar.firstChild;
-      expect(avatar.tagName).to.equal('DIV');
-      expect(img.tagName).to.equal('IMG');
+      expect(avatar).to.have.tagName('div');
+      expect(img).to.have.tagName('img');
       expect(avatar).to.have.class(classes.root);
       expect(avatar).to.have.class('my-avatar');
       expect(avatar).to.have.attribute('data-my-prop', 'woofAvatar');
@@ -94,8 +94,8 @@ describe('<Avatar />', () => {
     });
 
     it('should render a div containing an font icon', () => {
-      expect(avatar.tagName).to.equal('DIV');
-      expect(icon.tagName).to.equal('SPAN');
+      expect(avatar).to.have.tagName('div');
+      expect(icon).to.have.tagName('span');
       expect(icon).to.have.class('my-icon-font');
       expect(icon).to.have.text('icon');
     });
@@ -125,7 +125,7 @@ describe('<Avatar />', () => {
     });
 
     it('should render a div containing an svg icon', () => {
-      expect(avatar.tagName).to.equal('DIV');
+      expect(avatar).to.have.tagName('div');
       const cancelIcon = avatar.firstChild;
       expect(cancelIcon).to.have.attribute('data-testid', 'CancelIcon');
     });
@@ -155,7 +155,7 @@ describe('<Avatar />', () => {
     });
 
     it('should render a div containing a string', () => {
-      expect(avatar.tagName).to.equal('DIV');
+      expect(avatar).to.have.tagName('div');
       expect(avatar.firstChild).to.text('OT');
     });
 
@@ -184,7 +184,7 @@ describe('<Avatar />', () => {
     });
 
     it('should render with defaultColor class when supplied with a child with falsey value', () => {
-      expect(avatar.tagName).to.equal('DIV');
+      expect(avatar).to.have.tagName('div');
       expect(avatar.firstChild).to.text('0');
     });
 

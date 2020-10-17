@@ -62,9 +62,9 @@ describe('<CardHeader />', () => {
 
     it('should render the avatar inside the first child', () => {
       const avatarWrapper = cardHeader.childNodes[0];
-      expect(avatarWrapper.tagName).to.equal('DIV');
+      expect(avatarWrapper).to.have.tagName('div');
       expect(avatarWrapper).to.have.class(classes.avatar);
-      expect(avatarWrapper.firstChild.tagName).to.equal('SPAN');
+      expect(avatarWrapper.firstChild).to.have.tagName('span');
     });
 
     it('should render the title text inside the second child', () => {
