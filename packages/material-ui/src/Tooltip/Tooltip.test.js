@@ -947,11 +947,17 @@ describe('<Tooltip />', () => {
 
   describe('prop: followCursor', () => {
     it('should use the position of the mouse', () => {
-      const x = 5;
+      const x = 50;
       const y = 10;
 
       render(
-        <Tooltip title="Hello World" open followCursor PopperProps={{ 'data-testid': 'popper' }}>
+        <Tooltip
+          title="Hello World"
+          placement="bottom-end"
+          open
+          followCursor
+          PopperProps={{ 'data-testid': 'popper' }}
+        >
           <button data-testid="target" type="submit">
             Hello World
           </button>
@@ -966,7 +972,19 @@ describe('<Tooltip />', () => {
       });
 
       expect(tooltipElement).toBeVisible();
-      expect(tooltipElement.style).to.have.property('transform', `translate(${x}px, ${y}px)`);
+
+      // Layer acceleration can disable subpixel rendering which causes slightly
+      // blurry text on low PPI displays, so we want to use 2D transforms
+      // instead
+      if ((window.devicePixelRatio || 1) < 2) {
+        expect(tooltipElement).to.have.toHaveInlineStyle({
+          transform: `translate(${x}px, ${y}px)`,
+        });
+      } else {
+        expect(tooltipElement).to.have.toHaveInlineStyle({
+          transform: `translate3d(${x}px, ${y}px, 0px)`,
+        });
+      }
     });
   });
 });
