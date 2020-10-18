@@ -124,7 +124,6 @@ export interface ComponentsPropsList {
   MuiAlertTitle: AlertTitleProps;
   MuiAppBar: AppBarProps;
   MuiAutocomplete: AutocompleteProps<any, any, any, any>;
-  MuiGroup: AvatarProps;
   MuiAvatar: AvatarProps;
   MuiAvatarGroup: AvatarGroupProps;
   MuiBackdrop: BackdropProps;
