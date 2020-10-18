@@ -9,7 +9,7 @@ materialDesign: https://material.io/design/layout/understanding-layout.html
 
 <p class="description">Material Design 响应式布局的栅格可适应屏幕大小和方向，确保布局在不同尺寸之间的一致性。</p>
 
-[Grid 栅格组件](https://material.io/design/layout/responsive-layout-grid.html) 能确保不同布局间的视觉层面的舒适感，同时在众多不同设计中保持灵活性。 Material Design 的响应式 UI 是基于12列的栅格系统。
+[Grid 栅格组件](https://material.io/design/layout/responsive-layout-grid.html) 能确保不同布局间的视觉层面的舒适感，同时在众多不同设计中保持灵活性。 Material Design 的响应式 UI 是基于 12 列的栅格布局。
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -88,7 +88,7 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
 
 ### 负边距
 
-当我们使用负的外边距来实现块之间的间距时，会引出一个由于设计上的局限性所导致的问题。 如果负的外边距超出了 `<body>` 的范围，水平滚动条将会出现。 有3种方法可以解决这个问题：
+当我们使用负的外边距来实现块之间的间距时，会引出一个由于设计上的局限性所导致的问题。 如果负的外边距超出了 `<body>` 的范围，水平滚动条将会出现。 我们提供了 3 种解决方案：
 
 1. 不使用间距特性，或设置成 `spacing={0}`（默认设定）。
 2. 为父元素设置内边距，值至少为子元素间距值的一半：
