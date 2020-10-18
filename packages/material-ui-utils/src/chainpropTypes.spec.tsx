@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import chainPropTypes from './chainPropTypes';
 
 interface ChainProps {
-  foo?: boolean,
-};
+  foo?: boolean;
+}
 
 const Chain: React.FC<ChainProps> = (props) => {
   return <div />;
-}
+};
 
 Chain.propTypes = {
   foo: chainPropTypes(PropTypes.bool, () => {
