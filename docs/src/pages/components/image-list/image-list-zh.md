@@ -1,5 +1,5 @@
 ---
-title: React Image list 图像列表组件
+title: React 图像列表组件
 components: ImageList, ImageListItem, ImageListItemBar
 ---
 
