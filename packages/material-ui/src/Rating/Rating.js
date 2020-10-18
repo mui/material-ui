@@ -244,20 +244,10 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     }
   };
 
-  const handleChange = (event) => {
-    const newValue = parseFloat(event.target.value);
-
-    setValueState(newValue);
-
-    if (onChange) {
-      onChange(event, newValue);
-    }
-  };
-
-  const handleClear = (event) => {
+  const handleClick = (event) => {
     // Ignore keyboard events
     // https://github.com/facebook/react/issues/7407
-    if (event.clientX === 0 && event.clientY === 0) {
+    if (event.type !== 'click' || (event.clientX === 0 && event.clientY === 0)) {
       return;
     }
 
@@ -266,10 +256,12 @@ const Rating = React.forwardRef(function Rating(props, ref) {
       focus: -1,
     });
 
-    setValueState(null);
+    const newValue = hover === valueRounded ? null : hover;
 
-    if (onChange && parseFloat(event.target.value) === valueRounded) {
-      onChange(event, null);
+    setValueState(newValue);
+
+    if (onChange) {
+      onChange(event, newValue);
     }
   };
 
@@ -340,15 +332,14 @@ const Rating = React.forwardRef(function Rating(props, ref) {
 
     return (
       <React.Fragment key={state.value}>
-        <label className={classes.label} htmlFor={id} {...labelProps}>
+        <label className={classes.label} {...labelProps}>
           {container}
           <span className={classes.visuallyHidden}>{getLabelText(state.value)}</span>
         </label>
         <input
           onFocus={handleFocus}
           onBlur={handleBlur}
-          onChange={handleChange}
-          onClick={handleClear}
+          readOnly
           disabled={disabled}
           value={state.value}
           id={id}
@@ -366,6 +357,8 @@ const Rating = React.forwardRef(function Rating(props, ref) {
       ref={handleRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
+      onClick={readOnly ? null : handleClick}
+      onKeyPress={readOnly ? null : handleClick}
       className={clsx(
         classes.root,
         {
