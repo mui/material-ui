@@ -271,12 +271,12 @@ const filterOptions = (options, { inputValue }) =>
 
 浏览器会有启发性的帮助用户填写表格。 然而，这样的功能会削弱的组件用户体验。
 
-默认情况下，组件通过 `autoComplete="off"` 这个属性来禁用 **autocomplete** 功能（请注意用户可能在之前已经在给定域输入内容）。
+By default, the component disables the **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute. Google Chrome does not currently support this attribute setting ([Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)). A possible workaround is to remove the `id` to have the component generate a random one.
 
-然而，除了记住过去已经输入的值，浏览器可能也会给出 **自动填充（autofill）** 的建议（譬如有保存的登录信息，地址，或者支付方式等）。 若您不需要自动填充，您可以尝试以下的方式：
+In addition to remembering past entered values, the browser might also propose **autofill** suggestions (saved login, address, or payment details). 若您不需要自动填充，您可以尝试以下的方式：
 
 - 给输入框一个不同的名字，这样不会给浏览器泄露任何可以滥用的信息。 例如：`id="field1"` 而不是 `id="country"`。 若你不填写 id 的话，该组件则会使用一个随机的 id。
-- 设置为 `autoComplete="new-password"`：
+- Set `autoComplete="new-password"` (some browsers will suggest a strong password for inputs with this attribute setting):
 
   ```jsx
   <TextField
@@ -287,6 +287,8 @@ const filterOptions = (options, { inputValue }) =>
     }}
   />
   ```
+
+Read [the guide on MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Securing_your_site/Turning_off_form_autocompletion) for more details.
 
 ### iOS VoiceOver 辅助功能
 
