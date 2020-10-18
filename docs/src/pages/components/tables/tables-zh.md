@@ -75,9 +75,22 @@ materialDesign: https://material.io/components/data-tables
 
 ## 固定表头
 
-一个具有可滚动行和固定表头的表格示例。 It leverages the `stickyHeader` prop (⚠️ no IE11 support).
+一个具有可滚动行和固定表头的表格示例。 它是利用 `stickyHeader` 属性 <br /> 实现的（不支持 IE11）。
 
 {{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
+
+## 按列分组
+
+你可以在一个表头内渲染多个表行来分组列头：
+
+```jsx
+<TableHead>
+  <TableRow />
+  <TableRow />
+</TableHead>
+```
+
+{{"demo": "pages/components/tables/ColumnGroupingTable.js", "bg": true}}
 
 ## 可折叠的表格
 
