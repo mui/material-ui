@@ -8,7 +8,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
 
 # Button 按钮
 
-<p class="description">只需通过轻按一下按钮，用户即可采取行动并做出选择。</p>
+<p class="description">只需轻点按钮，用户就可以触发动作或做出选择。</p>
 
 [按钮](https://material.io/design/components/buttons.html) 传达了一系列用户可以执行的操作命令。 他们通常直接放置在您的用户界面中，例如：
 
