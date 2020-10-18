@@ -12,7 +12,7 @@ export interface DialogActionsProps extends StandardProps<React.HTMLAttributes<H
   classes?: {
     /** Styles applied to the root element. */
     root?: string;
-    /** Styles applied to the root element if `disableSpacing={false}`. */
+    /** Styles applied to the root element unless `disableSpacing={true}`. */
     spacing?: string;
   };
   /**

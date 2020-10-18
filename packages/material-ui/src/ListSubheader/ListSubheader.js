@@ -23,7 +23,7 @@ export const styles = (theme) => ({
   colorInherit: {
     color: 'inherit',
   },
-  /* Styles applied to the inner `component` element if `disableGutters={false}`. */
+  /* Styles applied to the inner `component` element unless `disableGutters={true}`. */
   gutters: {
     paddingLeft: 16,
     paddingRight: 16,
@@ -32,7 +32,7 @@ export const styles = (theme) => ({
   inset: {
     paddingLeft: 72,
   },
-  /* Styles applied to the root element if `disableSticky={false}`. */
+  /* Styles applied to the root element unless `disableSticky={true}`. */
   sticky: {
     position: 'sticky',
     top: 0,

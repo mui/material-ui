@@ -57,7 +57,7 @@ export const styles = (theme) => {
         backgroundColor: theme.palette.action.disabledBackground,
       },
     },
-    /* Styles applied to the root element if `square={false}`. */
+    /* Styles applied to the root element unless `square={true}`. */
     rounded: {
       borderRadius: 0,
       '&:first-child': {

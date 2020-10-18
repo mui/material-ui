@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
 import { findOutermostIntrinsic, getClasses, createMount, describeConformance } from 'test/utils';
-import * as PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import Grow from '../Grow';
 import Modal from '../Modal';
 import Paper from '../Paper';

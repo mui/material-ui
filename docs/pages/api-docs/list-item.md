@@ -57,7 +57,7 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">alignItemsFlexStart</span> | <span class="prop-name">.MuiListItem-alignItemsFlexStart</span> | Styles applied to the `component` element if `alignItems="flex-start"`.
 | <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the inner `component` element if `disabled={true}`.
 | <span class="prop-name">divider</span> | <span class="prop-name">.MuiListItem-divider</span> | Styles applied to the inner `component` element if `divider={true}`.
-| <span class="prop-name">gutters</span> | <span class="prop-name">.MuiListItem-gutters</span> | Styles applied to the inner `component` element if `disableGutters={false}`.
+| <span class="prop-name">gutters</span> | <span class="prop-name">.MuiListItem-gutters</span> | Styles applied to the inner `component` element unless `disableGutters={true}`.
 | <span class="prop-name">button</span> | <span class="prop-name">.MuiListItem-button</span> | Styles applied to the inner `component` element if `button={true}`.
 | <span class="prop-name">secondaryAction</span> | <span class="prop-name">.MuiListItem-secondaryAction</span> | Styles applied to the `component` element if `children` includes `ListItemSecondaryAction`.
 | <span class="prop-name">selected</span> | <span class="prop-name">.Mui-selected</span> | Pseudo-class applied to the root element if `selected={true}`.

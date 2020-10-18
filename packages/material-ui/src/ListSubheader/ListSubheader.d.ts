@@ -17,11 +17,11 @@ export interface ListSubheaderTypeMap<P = {}, D extends React.ElementType = 'li'
       colorPrimary?: string;
       /** Styles applied to the root element if `color="inherit"`. */
       colorInherit?: string;
-      /** Styles applied to the inner `component` element if `disableGutters={false}`. */
+      /** Styles applied to the inner `component` element unless `disableGutters={true}`. */
       gutters?: string;
       /** Styles applied to the root element if `inset={true}`. */
       inset?: string;
-      /** Styles applied to the root element if `disableSticky={false}`. */
+      /** Styles applied to the root element unless `disableSticky={true}`. */
       sticky?: string;
     };
     /**

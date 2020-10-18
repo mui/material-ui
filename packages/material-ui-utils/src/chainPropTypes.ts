@@ -1,4 +1,4 @@
-import * as PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 export default function chainPropTypes(
   propType1: PropTypes.Validator<unknown>,

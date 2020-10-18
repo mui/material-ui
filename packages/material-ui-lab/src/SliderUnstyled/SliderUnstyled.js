@@ -549,6 +549,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
       return;
     }
 
+    // Avoid text selection
     event.preventDefault();
     const finger = trackFinger(event, touchId);
     const { newValue, activeIndex } = getFingerNewValue({ finger, values, source: valueDerived });
