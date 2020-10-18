@@ -6,7 +6,7 @@ materialDesign: https://material.io/components/snackbars
 waiAria: 'https://www.w3.org/TR/wai-aria-1.1/#alert'
 ---
 
-# Snackbar
+# Snackbar（消息条）
 
 <p class="description">消息条组件提供了关于应用流程的简短信息。 该组件也被称为 toast。</p>
 
