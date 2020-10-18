@@ -1,10 +1,14 @@
 {
   "name": "nextjs-with-typescript",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "latest",
+    "@emotion/cache": "latest",
+    "@emotion/core": "latest",
+    "@emotion/styled": "latest",
+    "@material-ui/core": "next",
     "clsx": "latest",
+    "create-emotion-server": "latest",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest"
