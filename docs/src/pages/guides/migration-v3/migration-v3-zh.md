@@ -198,7 +198,7 @@ function MySelect({ children }) {
   
     当 `button` 属性设置为 true 时，这也适用于 `BottomNavigationAction`，`Button`，`CardActionArea`，`Checkbox`，`ExpansionPanelSummary`，`Fab`，`IconButton`，`MenuItem`，`Radio`，`StepButton`，`Tab`，`TableSortLabel` 以及 `ListItem`。
 
-### Cards（卡片）
+### Card（卡片）
 
 - [CardActions] 将 `disableActionSpacing` 属性重命名为 `disableSpacing`。
 - [CardActions] 移除 CSS类中的 `disableActionSpacing`。
@@ -294,7 +294,7 @@ function MySelect({ children }) {
   +track
   ```
 
-### Snackbar
+### Snackbar（消息条）
 
 - [Snackbar] 匹配新的规范。
   
