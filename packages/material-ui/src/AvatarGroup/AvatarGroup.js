@@ -2,9 +2,9 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { isFragment } from 'react-is';
 import clsx from 'clsx';
+import { chainPropTypes } from '@material-ui/utils';
 import { withStyles } from '../styles';
 import Avatar from '../Avatar';
-import { chainPropTypes } from '../utils';
 
 const SPACINGS = {
   small: -16,
