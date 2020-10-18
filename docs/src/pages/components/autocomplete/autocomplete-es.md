@@ -277,14 +277,12 @@ Buscar entre 10.000 opciones generadas al azar. La lista está virtualizada grac
 
 Los navegadores tienen heurísticos para ayudar a los usuarios a rellenar el formulario. Sin embargo, puede dañar la experiencia de usuario del componente.
 
-Dirígete a la sección [Autocompletar Personalizado](#customized-autocomplete) para un ejemplo de personalización con el componente `Autcompletar` en vez del hook.
+By default, the component disables the **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute. Google Chrome does not currently support this attribute setting ([Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)). A possible workaround is to remove the `id` to have the component generate a random one.
 
-Sin embargo, además de recordar el valor introducido anteriormente, el navegador también puede proponer sugerencias **autorellenadas** (inicio de sesión guardado, la dirección o detalles de pago). En el caso de que desees evitar el autorellenar, puedes intentar lo siguiente:
+In addition to remembering past entered values, the browser might also propose **autofill** suggestions (saved login, address, or payment details). En el caso de que desees evitar el autorellenar, puedes intentar lo siguiente:
 
 - Nombra la entrada sin filtrar ninguna información que el navegador pueda utilizar. p.e. `id="field1"` en vez de `id="country"`. Si dejas el id de vacío, el componente utiliza un identificador aleatorio.
-- Establecer `autoComplete="new-password"`: jsx Establecer `autoComplete="new-password": 
-    jsx` Establecer `autoComplete="new-password": 
-        jsx`
+- Set `autoComplete="new-password"` (some browsers will suggest a strong password for inputs with this attribute setting):
 
   ```jsx
   inputProps={{
@@ -293,6 +291,8 @@ Sin embargo, además de recordar el valor introducido anteriormente, el navegado
       }}
       /&#062;
   ```
+
+Read [the guide on MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Securing_your_site/Turning_off_form_autocompletion) for more details.
 
 ### iOS VoiceOver
 
