@@ -13,6 +13,7 @@ export const styles = {
   },
   /* Styles applied to the avatar element. */
   avatar: {
+    display: 'flex',
     flex: '0 0 auto',
     marginRight: 16,
   },
