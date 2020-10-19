@@ -16,7 +16,7 @@ A Menu displays a list of choices on a temporary surface. It appears when the us
 
 ## Simple Menu
 
-Simple menus open over the anchor element by default (this option can be [changed](#positioned-menu) via props). When close to a screen edge, simple menus vertically realign to make sure that all menu items are completely visible.
+Simple menus open over the anchor element by default (this option can be [changed](#positioned-menus) via props). When close to a screen edge, simple menus vertically realign to make sure that all menu items are completely visible.
 
 Choosing an option should immediately ideally commit the option and close the menu.
 
