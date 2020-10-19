@@ -36,7 +36,6 @@
     "@types/uuid": "^8.0.0",
     "glob": "^7.1.6",
     "prettier": "^2.0.5",
-    "react": "^16.8.6",
     "rimraf": "^3.0.2"
   },
   "dependencies": {
