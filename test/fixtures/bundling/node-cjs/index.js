@@ -268,8 +268,6 @@ const { withWidth: withWidth_core } = require('@material-ui/core');
 const { default: withWidth_core__pathImport } = require('@material-ui/core/withWidth');
 const { Zoom: Zoom_core } = require('@material-ui/core');
 const { default: Zoom_core__pathImport } = require('@material-ui/core/Zoom');
-const { NProgressBar: NProgressBar_docs } = require('@material-ui/docs');
-const { default: NProgressBar_docs__pathImport } = require('@material-ui/docs/NProgressBar');
 const { AccessAlarm: AccessAlarm_icons } = require('@material-ui/icons');
 const { default: AccessAlarm_icons__pathImport } = require('@material-ui/icons/AccessAlarm');
 const { AccessAlarmOutlined: AccessAlarmOutlined_icons } = require('@material-ui/icons');
@@ -6206,8 +6204,6 @@ const { IndeterminateCheckBoxSharp: IndeterminateCheckBoxSharp_icons } = require
 const { default: IndeterminateCheckBoxSharp_icons__pathImport } = require('@material-ui/icons/IndeterminateCheckBoxSharp');
 const { IndeterminateCheckBoxTwoTone: IndeterminateCheckBoxTwoTone_icons } = require('@material-ui/icons');
 const { default: IndeterminateCheckBoxTwoTone_icons__pathImport } = require('@material-ui/icons/IndeterminateCheckBoxTwoTone');
-const { index: index_icons } = require('@material-ui/icons');
-const { default: index_icons__pathImport } = require('@material-ui/icons/index');
 const { Info: Info_icons } = require('@material-ui/icons');
 const { default: Info_icons__pathImport } = require('@material-ui/icons/Info');
 const { InfoOutlined: InfoOutlined_icons } = require('@material-ui/icons');
@@ -12908,8 +12904,6 @@ const { UsbSharp: UsbSharp_icons } = require('@material-ui/icons');
 const { default: UsbSharp_icons__pathImport } = require('@material-ui/icons/UsbSharp');
 const { UsbTwoTone: UsbTwoTone_icons } = require('@material-ui/icons');
 const { default: UsbTwoTone_icons__pathImport } = require('@material-ui/icons/UsbTwoTone');
-const { utils: utils_icons } = require('@material-ui/icons');
-const utils_icons__pathImport = require('@material-ui/icons/utils');
 const { Verified: Verified_icons } = require('@material-ui/icons');
 const { default: Verified_icons__pathImport } = require('@material-ui/icons/Verified');
 const { VerifiedOutlined: VerifiedOutlined_icons } = require('@material-ui/icons');
@@ -13738,8 +13732,6 @@ const { TabList: TabList_lab } = require('@material-ui/lab');
 const { default: TabList_lab__pathImport } = require('@material-ui/lab/TabList');
 const { TabPanel: TabPanel_lab } = require('@material-ui/lab');
 const { default: TabPanel_lab__pathImport } = require('@material-ui/lab/TabPanel');
-const { themeAugmentation: themeAugmentation_lab } = require('@material-ui/lab');
-const { default: themeAugmentation_lab__pathImport } = require('@material-ui/lab/themeAugmentation');
 const { Timeline: Timeline_lab } = require('@material-ui/lab');
 const { default: Timeline_lab__pathImport } = require('@material-ui/lab/Timeline');
 const { TimelineConnector: TimelineConnector_lab } = require('@material-ui/lab');
@@ -13768,8 +13760,6 @@ const { createGenerateClassName: createGenerateClassName_styles } = require('@ma
 const { default: createGenerateClassName_styles__pathImport } = require('@material-ui/styles/createGenerateClassName');
 const { createStyles: createStyles_styles } = require('@material-ui/styles');
 const { default: createStyles_styles__pathImport } = require('@material-ui/styles/createStyles');
-const { defaultTheme: defaultTheme_styles } = require('@material-ui/styles');
-const { default: defaultTheme_styles__pathImport } = require('@material-ui/styles/defaultTheme');
 const { getStylesCreator: getStylesCreator_styles } = require('@material-ui/styles');
 const { default: getStylesCreator_styles__pathImport } = require('@material-ui/styles/getStylesCreator');
 const { getThemeProps: getThemeProps_styles } = require('@material-ui/styles');
@@ -14061,7 +14051,8 @@ console.assert(ReactIs.isValidElementType(StepLabel_core), 'StepLabel named impo
 console.assert(ReactIs.isValidElementType(StepLabel_core__pathImport), 'StepLabel path import is not consumeable.');
 console.assert(ReactIs.isValidElementType(Stepper_core), 'Stepper named import is not consumeable.');
 console.assert(ReactIs.isValidElementType(Stepper_core__pathImport), 'Stepper path import is not consumeable.');
-console.assert(styles_core != null && styles_core.default === undefined, 'styles named import is not consumeable.');
+// Not supported
+// console.assert(styles_core != null && styles_core.default === undefined, 'styles named import is not consumeable.');
 console.assert(styles_core__pathImport != null && styles_core__pathImport.default === undefined, 'styles path import is not consumeable.');
 console.assert(ReactIs.isValidElementType(SvgIcon_core), 'SvgIcon named import is not consumeable.');
 console.assert(ReactIs.isValidElementType(SvgIcon_core__pathImport), 'SvgIcon path import is not consumeable.');
@@ -14117,7 +14108,8 @@ console.assert(usePagination_core != null && usePagination_core.default === unde
 console.assert(usePagination_core__pathImport != null && usePagination_core__pathImport.default === undefined, 'usePagination path import is not consumeable.');
 console.assert(useScrollTrigger_core != null && useScrollTrigger_core.default === undefined, 'useScrollTrigger named import is not consumeable.');
 console.assert(useScrollTrigger_core__pathImport != null && useScrollTrigger_core__pathImport.default === undefined, 'useScrollTrigger path import is not consumeable.');
-console.assert(utils_core != null && utils_core.default === undefined, 'utils named import is not consumeable.');
+// Not supported
+// console.assert(utils_core != null && utils_core.default === undefined, 'utils named import is not consumeable.');
 console.assert(utils_core__pathImport != null && utils_core__pathImport.default === undefined, 'utils path import is not consumeable.');
 console.assert(withMobileDialog_core != null && withMobileDialog_core.default === undefined, 'withMobileDialog named import is not consumeable.');
 console.assert(withMobileDialog_core__pathImport != null && withMobileDialog_core__pathImport.default === undefined, 'withMobileDialog path import is not consumeable.');
@@ -14125,8 +14117,6 @@ console.assert(withWidth_core != null && withWidth_core.default === undefined, '
 console.assert(withWidth_core__pathImport != null && withWidth_core__pathImport.default === undefined, 'withWidth path import is not consumeable.');
 console.assert(ReactIs.isValidElementType(Zoom_core), 'Zoom named import is not consumeable.');
 console.assert(ReactIs.isValidElementType(Zoom_core__pathImport), 'Zoom path import is not consumeable.');
-console.assert(ReactIs.isValidElementType(NProgressBar_docs), 'NProgressBar named import is not consumeable.');
-console.assert(ReactIs.isValidElementType(NProgressBar_docs__pathImport), 'NProgressBar path import is not consumeable.');
 console.assert(ReactIs.isValidElementType(AccessAlarm_icons), 'AccessAlarm named import is not consumeable.');
 console.assert(ReactIs.isValidElementType(AccessAlarm_icons__pathImport), 'AccessAlarm path import is not consumeable.');
 console.assert(ReactIs.isValidElementType(AccessAlarmOutlined_icons), 'AccessAlarmOutlined named import is not consumeable.');
@@ -20063,8 +20053,6 @@ console.assert(ReactIs.isValidElementType(IndeterminateCheckBoxSharp_icons), 'In
 console.assert(ReactIs.isValidElementType(IndeterminateCheckBoxSharp_icons__pathImport), 'IndeterminateCheckBoxSharp path import is not consumeable.');
 console.assert(ReactIs.isValidElementType(IndeterminateCheckBoxTwoTone_icons), 'IndeterminateCheckBoxTwoTone named import is not consumeable.');
 console.assert(ReactIs.isValidElementType(IndeterminateCheckBoxTwoTone_icons__pathImport), 'IndeterminateCheckBoxTwoTone path import is not consumeable.');
-console.assert(index_icons != null && index_icons.default === undefined, 'index named import is not consumeable.');
-console.assert(index_icons__pathImport != null && index_icons__pathImport.default === undefined, 'index path import is not consumeable.');
 console.assert(ReactIs.isValidElementType(Info_icons), 'Info named import is not consumeable.');
 console.assert(ReactIs.isValidElementType(Info_icons__pathImport), 'Info path import is not consumeable.');
 console.assert(ReactIs.isValidElementType(InfoOutlined_icons), 'InfoOutlined named import is not consumeable.');
@@ -26765,8 +26753,6 @@ console.assert(ReactIs.isValidElementType(UsbSharp_icons), 'UsbSharp named impor
 console.assert(ReactIs.isValidElementType(UsbSharp_icons__pathImport), 'UsbSharp path import is not consumeable.');
 console.assert(ReactIs.isValidElementType(UsbTwoTone_icons), 'UsbTwoTone named import is not consumeable.');
 console.assert(ReactIs.isValidElementType(UsbTwoTone_icons__pathImport), 'UsbTwoTone path import is not consumeable.');
-console.assert(utils_icons != null && utils_icons.default === undefined, 'utils named import is not consumeable.');
-console.assert(utils_icons__pathImport != null && utils_icons__pathImport.default === undefined, 'utils path import is not consumeable.');
 console.assert(ReactIs.isValidElementType(Verified_icons), 'Verified named import is not consumeable.');
 console.assert(ReactIs.isValidElementType(Verified_icons__pathImport), 'Verified path import is not consumeable.');
 console.assert(ReactIs.isValidElementType(VerifiedOutlined_icons), 'VerifiedOutlined named import is not consumeable.');
@@ -27595,8 +27581,6 @@ console.assert(ReactIs.isValidElementType(TabList_lab), 'TabList named import is
 console.assert(ReactIs.isValidElementType(TabList_lab__pathImport), 'TabList path import is not consumeable.');
 console.assert(ReactIs.isValidElementType(TabPanel_lab), 'TabPanel named import is not consumeable.');
 console.assert(ReactIs.isValidElementType(TabPanel_lab__pathImport), 'TabPanel path import is not consumeable.');
-console.assert(themeAugmentation_lab != null && themeAugmentation_lab.default === undefined, 'themeAugmentation named import is not consumeable.');
-console.assert(themeAugmentation_lab__pathImport != null && themeAugmentation_lab__pathImport.default === undefined, 'themeAugmentation path import is not consumeable.');
 console.assert(ReactIs.isValidElementType(Timeline_lab), 'Timeline named import is not consumeable.');
 console.assert(ReactIs.isValidElementType(Timeline_lab__pathImport), 'Timeline path import is not consumeable.');
 console.assert(ReactIs.isValidElementType(TimelineConnector_lab), 'TimelineConnector named import is not consumeable.');
@@ -27625,8 +27609,6 @@ console.assert(createGenerateClassName_styles != null && createGenerateClassName
 console.assert(createGenerateClassName_styles__pathImport != null && createGenerateClassName_styles__pathImport.default === undefined, 'createGenerateClassName path import is not consumeable.');
 console.assert(createStyles_styles != null && createStyles_styles.default === undefined, 'createStyles named import is not consumeable.');
 console.assert(createStyles_styles__pathImport != null && createStyles_styles__pathImport.default === undefined, 'createStyles path import is not consumeable.');
-console.assert(defaultTheme_styles != null && defaultTheme_styles.default === undefined, 'defaultTheme named import is not consumeable.');
-console.assert(defaultTheme_styles__pathImport != null && defaultTheme_styles__pathImport.default === undefined, 'defaultTheme path import is not consumeable.');
 console.assert(getStylesCreator_styles != null && getStylesCreator_styles.default === undefined, 'getStylesCreator named import is not consumeable.');
 console.assert(getStylesCreator_styles__pathImport != null && getStylesCreator_styles__pathImport.default === undefined, 'getStylesCreator path import is not consumeable.');
 console.assert(getThemeProps_styles != null && getThemeProps_styles.default === undefined, 'getThemeProps named import is not consumeable.');

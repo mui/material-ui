@@ -135,7 +135,6 @@ module.exports = Object.freeze({
     'withWidth',
     'Zoom',
   ],
-  '@material-ui/docs': ['NProgressBar'],
   '@material-ui/icons': [
     'AccessAlarm',
     'AccessAlarmOutlined',
@@ -3105,7 +3104,6 @@ module.exports = Object.freeze({
     'IndeterminateCheckBoxRounded',
     'IndeterminateCheckBoxSharp',
     'IndeterminateCheckBoxTwoTone',
-    'index',
     'Info',
     'InfoOutlined',
     'InfoRounded',
@@ -6456,7 +6454,8 @@ module.exports = Object.freeze({
     'UsbRounded',
     'UsbSharp',
     'UsbTwoTone',
-    'utils',
+    // private
+    // 'utils',
     'Verified',
     'VerifiedOutlined',
     'VerifiedRounded',
@@ -6873,7 +6872,8 @@ module.exports = Object.freeze({
     'TabContext',
     'TabList',
     'TabPanel',
-    'themeAugmentation',
+    // types only
+    // 'themeAugmentation',
     'Timeline',
     'TimelineConnector',
     'TimelineContent',
@@ -6890,7 +6890,8 @@ module.exports = Object.freeze({
   '@material-ui/styles': [
     'createGenerateClassName',
     'createStyles',
-    'defaultTheme',
+    // Types only
+    // 'defaultTheme',
     'getStylesCreator',
     'getThemeProps',
     'jssPreset',

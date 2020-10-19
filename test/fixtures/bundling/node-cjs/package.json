@@ -10,7 +10,6 @@
     "@emotion/core": "latest",
     "@emotion/styled": "latest",
     "@material-ui/core": "next",
-    "@material-ui/docs": "next",
     "@material-ui/icons": "next",
     "@material-ui/lab": "next",
     "@material-ui/styled-engine": "next",
