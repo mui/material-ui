@@ -4,7 +4,7 @@ const path = require('path');
 
 function resolveVersion(packageName, distTag) {
   if (distTag.startsWith('csb:')) {
-    const shortSha = distTag.replace(/^csb:/, '');
+    const shortSha = distTag.replace(/^csb:/, '').slice(0, 8);
     return `https://pkg.csb.dev/mui-org/material-ui/commit/${shortSha}/${packageName}`;
   }
   return distTag;
@@ -23,6 +23,7 @@ async function run(context) {
   const manifestPath = path.resolve(fixturePath, './package.json');
   const manifestContent = fs.readFileSync(manifestPath, { encoding: 'utf8' });
   const manifest = JSON.parse(manifestContent);
+  manifest.resolutions = manifest.resolutions || {};
   Object.entries(manifest.dependencies).map(([packageName, distTag]) => {
     if (packageName.startsWith('@material-ui/')) {
       manifest.dependencies[packageName] = resolveVersion(packageName, muiDistTag);
