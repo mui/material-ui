@@ -1,4 +1,5 @@
 const childProcess = require('child_process');
+const fse = require('fs-extra');
 const path = require('path');
 const { promisify } = require('util');
 const yargs = require('yargs');
@@ -32,12 +33,27 @@ async function run(argv) {
   };
   const babelConfigPath = path.resolve(__dirname, '../babel.config.js');
   const srcDir = path.resolve('./src');
+
+  let topLevelPathImportsArePackages = true;
+  fse.readdirSync(srcDir, { withFileTypes: true }).forEach((dirEntry) => {
+    if (dirEntry.isFile() && !path.basename(dirEntry.name).startsWith('index.')) {
+      topLevelPathImportsArePackages = false;
+    }
+  });
+
   const outDir = path.resolve(
     relativeOutDir,
+    // We generally support top level path imports e.g.
+    // 1. `import ArrowDownIcon from '@material-ui/icons/ArrowDown'`.
+    // 2. `import Typography from '@material-ui/core/Typography'`.
+    // The first case resolves to a file while the second case resolves to a package first i.e. a package.json
+    // This means that only in the second case the bundler can decide whether it uses ES modules or CommonJS modules.
+    // Different extensions are not viable yet since they require additional bundler config for users and additional transpilation steps in our repo.
+    // Switch to `exports` field in v6.
     {
-      node: './node',
+      node: topLevelPathImportsArePackages ? './node' : './',
       modern: './modern',
-      stable: './',
+      stable: topLevelPathImportsArePackages ? './' : './esm',
       legacy: './legacy',
     }[bundle],
   );
