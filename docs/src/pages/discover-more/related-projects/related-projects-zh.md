@@ -21,11 +21,11 @@
 - [unDraw](https://undraw.co/)： 📐 和 Unsplash 类似，但是提供了超赞的矢量插图。
 - [Simple Icons](https://simpleicons.org/)：超过 1000 个热门品牌的免费 SVG 图标。
 
-## Application frameworks
+## 应用程序框架
 
-- [react-admin](https://github.com/marmelab/react-admin): A frontend Framework for building B2B applications running in the browser on top of REST/GraphQL APIs.
+- [react-admin](https://github.com/marmelab/react-admin): 一个前端框架，用于在浏览器中构建运行与  REST/GraphQL APIs 之上的 B2B 应用程序。
 
-## IDE tools
+## IDE 工具
 
 - [Material-UI Snippets](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-snippets)：提供编写提示的 VSCode 扩展。
 - [Material-UI Codemorphs](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-codemorphs)：提供代码模块的 VSCode 扩展。
