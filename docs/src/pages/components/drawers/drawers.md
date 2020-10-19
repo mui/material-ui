@@ -30,10 +30,10 @@ To ensure a temporary drawer is not unmounted, specify the `ModalProps` prop lik
 <Drawer
   variant="temporary"
   ModalProps={{
-    keepMounted: true
+    keepMounted: true,
   }}
 />
-````
+```
 
 ### Swipeable
 
