@@ -78,7 +78,7 @@ export default function PlainCssPriority() {
 
 ### 更深层的元素
 
-如果你试图自定义滑块的样式，那么很可能会影响到滑块的一些子元素，例如滚动条的箭头（thumb）。 In Material-UI, all child elements have an increased specificity of 2: `.parent .child {}`. 所以在编写覆盖样式的时候，你也需要这样做。
+如果你试图自定义滑块的样式，那么很可能会影响到滑块的一些子元素，例如滚动条的箭头（thumb）。 在 Material-UI 中，所有的子元素都增加了两层的特定类：`.parent .child {}`。 所以在编写覆盖样式的时候，你也需要这样做。
 
 以下示例除了覆盖滑块本身的自定义样式外，还覆盖了滑块的 `thumb` 样式。
 
@@ -217,7 +217,7 @@ export default function GlobalCssPriority() {
 
 ### 更深层的元素
 
-如果你试图自定义滑块的样式，那么很可能会影响到滑块的一些子元素，例如滚动条的箭头（thumb）。 In Material-UI, all child elements have an increased specificity of 2: `.parent .child {}`. 所以在编写覆盖样式的时候，你也需要这样做。
+如果你试图自定义滑块的样式，那么很可能会影响到滑块的一些子元素，例如滚动条的箭头（thumb）。 在 Material-UI 中，所有的子元素都增加了两层的特定类：`.parent .child {}`。 所以在编写覆盖样式的时候，你也需要这样做。
 
 以下示例除了覆盖滑块本身的自定义样式外，还覆盖了滑块的 `thumb` 样式。
 
@@ -285,7 +285,7 @@ export default function StyledComponents() {
 
 ### 更深层的元素
 
-如果你试图自定义滑块的样式，那么很可能会影响到滑块的一些子元素，例如滚动条的箭头（thumb）。 In Material-UI, all child elements have an increased specificity of 2: `.parent .child {}`. 所以在编写覆盖样式的时候，你也需要这样做。
+如果你试图自定义滑块的样式，那么很可能会影响到滑块的一些子元素，例如滚动条的箭头（thumb）。 在 Material-UI 中，所有的子元素都增加了两层的特定类：`.parent .child {}`。 所以在编写覆盖样式的时候，你也需要这样做。
 
 以下示例除了覆盖滑块本身的自定义样式外，还覆盖了滑块的 `thumb` 样式。
 
@@ -446,7 +446,7 @@ export default function CssModulesPriority() {
 
 ### 更深层的元素
 
-如果你试图自定义滑块的样式，那么很可能会影响到滑块的一些子元素，例如滚动条的箭头（thumb）。 In Material-UI, all child elements have an increased specificity of 2: `.parent .child {}`. 所以在编写覆盖样式的时候，你也需要这样做。
+如果你试图自定义滑块的样式，那么很可能会影响到滑块的一些子元素，例如滚动条的箭头（thumb）。 在 Material-UI 中，所有的子元素都增加了两层的特定类：`.parent .child {}`。 所以在编写覆盖样式的时候，你也需要这样做。
 
 以下示例除了覆盖滑块本身的自定义样式外，还覆盖了滑块的 `thumb` 样式。
 
@@ -472,7 +472,7 @@ export default function CssModulesPriority() {
 
 ```jsx
 import React from 'react';
-// webpack, parcel or else will inject the CSS into the page
+// webpack，parcel 或者其他的打包程序将把 CSS 注入到页面中。
 import styles from './CssModulesSliderDeep1.module.css';
 import Slider from '@material-ui/lab/SliderStyled';
 
