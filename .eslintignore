@@ -19,6 +19,7 @@
 /packages/material-ui-icons/templateSvgIcon.js
 # Ignore fixtures
 /packages/typescript-to-proptypes/test/*/*
+/test/fixtures
 /tmp
 build
 node_modules
