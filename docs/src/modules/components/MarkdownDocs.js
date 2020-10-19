@@ -3,18 +3,12 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useSelector } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import Button from '@material-ui/core/Button';
-import Divider from '@material-ui/core/Divider';
+import NoSsr from '@material-ui/core/NoSsr';
+import { exactProp } from '@material-ui/utils';
 import Head from 'docs/src/modules/components/Head';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import EditPage from 'docs/src/modules/components/EditPage';
 import AppContainer from 'docs/src/modules/components/AppContainer';
-import PageContext from 'docs/src/modules/components/PageContext';
-import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
-import Link from 'docs/src/modules/components/Link';
-import { exactProp } from '@material-ui/utils';
 import { SOURCE_CODE_ROOT_URL } from 'docs/src/modules/constants';
 import Demo from 'docs/src/modules/components/Demo';
 import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
@@ -23,32 +17,11 @@ import Ad from 'docs/src/modules/components/Ad';
 import AdManager from 'docs/src/modules/components/AdManager';
 import AdGuest from 'docs/src/modules/components/AdGuest';
 import ComponentLinkHeader from 'docs/src/modules/components/ComponentLinkHeader';
+import MarkdownDocsFooter from './MarkdownDocsFooter';
 
 const markdownComponents = {
   'modules/components/ComponentLinkHeader.js': ComponentLinkHeader,
 };
-
-function flattenPages(pages, current = []) {
-  return pages.reduce((items, item) => {
-    if (item.children && item.children.length > 1) {
-      items = flattenPages(item.children, items);
-    } else {
-      items.push(item.children && item.children.length === 1 ? item.children[0] : item);
-    }
-    return items;
-  }, current);
-}
-
-// To replace with .findIndex() once we stop IE11 support.
-function findIndex(array, comp) {
-  for (let i = 0; i < array.length; i += 1) {
-    if (comp(array[i])) {
-      return i;
-    }
-  }
-
-  return -1;
-}
 
 const styles = (theme) => ({
   root: {
@@ -80,18 +53,6 @@ const styles = (theme) => ({
       width: 'calc(100% - 175px - 240px)',
     },
   },
-  footer: {
-    marginTop: theme.spacing(12),
-  },
-  pagination: {
-    margin: theme.spacing(3, 0, 4),
-    display: 'flex',
-    justifyContent: 'space-between',
-  },
-  pageLinkButton: {
-    textTransform: 'none',
-    fontWeight: theme.typography.fontWeightRegular,
-  },
 });
 
 function MarkdownDocs(props) {
@@ -103,13 +64,6 @@ function MarkdownDocs(props) {
   if (description === undefined) {
     throw new Error('Missing description in the page');
   }
-
-  const { activePage, pages } = React.useContext(PageContext);
-  const pageList = flattenPages(pages);
-  const currentPageNum = findIndex(pageList, (page) => page.pathname === activePage?.pathname);
-  const currentPage = pageList[currentPageNum];
-  const prevPage = pageList[currentPageNum - 1];
-  const nextPage = pageList[currentPageNum + 1];
 
   return (
     <AppFrame>
@@ -184,43 +138,9 @@ function MarkdownDocs(props) {
                 />
               );
             })}
-            <footer className={classes.footer}>
-              {!currentPage ||
-              currentPage.displayNav === false ||
-              (nextPage.displayNav === false && !prevPage) ? null : (
-                <React.Fragment>
-                  <Divider />
-                  <div className={classes.pagination}>
-                    {prevPage ? (
-                      <Button
-                        component={Link}
-                        naked
-                        href={prevPage.pathname}
-                        size="large"
-                        className={classes.pageLinkButton}
-                        startIcon={<ChevronLeftIcon />}
-                      >
-                        {pageToTitleI18n(prevPage, t)}
-                      </Button>
-                    ) : (
-                      <div />
-                    )}
-                    {nextPage.displayNav === false ? null : (
-                      <Button
-                        component={Link}
-                        naked
-                        href={nextPage.pathname}
-                        size="large"
-                        className={classes.pageLinkButton}
-                        endIcon={<ChevronRightIcon />}
-                      >
-                        {pageToTitleI18n(nextPage, t)}
-                      </Button>
-                    )}
-                  </div>
-                </React.Fragment>
-              )}
-            </footer>
+            <NoSsr>
+              <MarkdownDocsFooter />
+            </NoSsr>
           </AppContainer>
         </div>
         {disableToc ? null : <AppTableOfContents items={toc} />}

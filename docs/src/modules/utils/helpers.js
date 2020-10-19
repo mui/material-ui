@@ -175,9 +175,17 @@ function getDependencies(raw, options = {}) {
   return deps;
 }
 
+/**
+ * Get the value of a cookie
+ * Source: https://vanillajstoolkit.com/helpers/getcookie/
+ * @param  {String} name  The name of the cookie
+ * @return {String}       The cookie value
+ */
 function getCookie(name) {
-  const regex = new RegExp(`(?:(?:^|.*;*)${name}*=*([^;]*).*$)|^.*$`);
-  return document.cookie.replace(regex, '$1');
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+  return undefined;
 }
 
 function pathnameToLanguage(pathname) {
