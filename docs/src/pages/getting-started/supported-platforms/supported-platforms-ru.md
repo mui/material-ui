@@ -22,7 +22,7 @@ Because Googlebot uses a web rendering service (WRS) to index the page content, 
 
 <!-- #stable-snapshot -->
 
-We support [Node.js](https://github.com/nodejs/node) starting with version 10 for server-side rendering. Where possible, the [LTS versions that are in maintenance](https://github.com/nodejs/Release#lts-schedule1) are supported.
+We support [Node.js](https://github.com/nodejs/node) starting with version 10 for server-side rendering. Where possible, the [LTS versions that are in maintenance](https://github.com/nodejs/Release#release-schedule) are supported.
 
 ### CSS prefixing
 
