@@ -24,6 +24,17 @@ It closes when an item is selected, handled by controlling the `open` prop.
 
 {{"demo": "pages/components/drawers/TemporaryDrawer.js"}}
 
+To ensure a temporary drawer is not unmounted, specify the `ModalProps` prop like
+
+```jsx
+<Drawer
+  variant="temporary"
+  ModalProps={{
+    keepMounted: true
+  }}
+/>
+````
+
 ### Swipeable
 
 You can make the drawer swipeable with the `SwipeableDrawer` component.
