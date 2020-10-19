@@ -207,16 +207,16 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 +import { Button, TextField } from '@material-ui/core';
 ```
 
-## Available bundles
+## 可用的捆绑包
 
 考虑到一些 [支持的平台](/getting-started/supported-platforms/)，在 npm 上发布的这个依赖包是和 [Babel](https://github.com/babel/babel) 一起被**编译**过的。
 
 ⚠️为了尽量减少用户捆绑包中的重复代码，库作者 **非常不鼓励** 从任何其他捆绑包中导入。
 
-### Modern bundle
+### 现代的捆绑包
 
 modern bundle 可以在 [`/modern` 文件夹](https://unpkg.com/@material-ui/core/modern/) 下找到。 它的目标是最新发布的常青（evergreen）浏览器版本（Chrome、Firefox、Safari、Edge）。 这样一来，针对不同的浏览器，您可以编译出不同的打包文件。
 
-### Legacy bundle
+### 旧版的捆绑包
 
 如果你需要对 IE11 进行兼容支持，那么你不能在不适用转换（transpilation）的情况下使用默认或者 modern bundle。 然而，你可以在 [`legacy` 文件夹下](https://unpkg.com/@material-ui/core/legacy/) 找到 legacy bundle。 你不需要编写额外的 polyfills 来转换它。
