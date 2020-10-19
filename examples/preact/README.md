@@ -30,7 +30,7 @@ It's ejected to change the webpack configuration:
 ```js
 alias: {
   // Use Preact instead of React.
-  'react': 'preact-compat',
+  'react': 'preact/compat',
   'react-dom': 'preact-compat',
 }
 ```
