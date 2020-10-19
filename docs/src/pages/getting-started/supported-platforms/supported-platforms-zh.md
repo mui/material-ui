@@ -22,7 +22,7 @@ Material-UI 支持所有主流浏览器和平台的最新稳定版本。 您不�
 
 <!-- #stable-snapshot -->
 
-我们从 [Node.js](https://github.com/nodejs/node) 第十个版本开始支持服务端渲染。 我们还会尽可能的支持 [维护中的 LTS 版本](https://github.com/nodejs/Release#lts-schedule1) 。
+我们从 [Node.js](https://github.com/nodejs/node) 第十个版本开始支持服务端渲染。 我们还会尽可能的支持 [维护中的 LTS 版本](https://github.com/nodejs/Release#release-schedule) 。
 
 ### CSS 前缀
 
