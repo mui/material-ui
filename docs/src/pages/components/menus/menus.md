@@ -16,7 +16,7 @@ A Menu displays a list of choices on a temporary surface. It appears when the us
 
 ## Simple Menu
 
-Simple menus open over the anchor element by default (this option can be changed via props). When close to a screen edge, simple menus vertically realign to make sure that all menu items are completely visible.
+Simple menus open over the anchor element by default (this option can be [changed](#positioned-menu) via props). When close to a screen edge, simple menus vertically realign to make sure that all menu items are completely visible.
 
 Choosing an option should immediately ideally commit the option and close the menu.
 
@@ -32,6 +32,14 @@ The currently selected menu item is set using the `selected` prop (from [ListIte
 To use a selected menu item without impacting the initial focus or the vertical positioning of the menu, set the `variant` prop to "menu".
 
 {{"demo": "pages/components/menus/SimpleListMenu.js"}}
+
+## Positioned menus
+
+Because the `Menu` component uses the `Popover` component to position itself, you can use the same [positioning props](/components/popover/#anchor-playground) to position `Menu`s.
+
+For instance, you can display the menu below the anchor:
+
+{{"demo": "pages/components/menus/PositionedMenu.js"}}
 
 ## MenuList composition
 
