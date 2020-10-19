@@ -83,7 +83,7 @@ app.listen(port);
 
 当渲染时，我们将把根组件 `App` 包裹在 [`StylesProvider`](/styles/api/#stylesprovider) 和 [`ThemeProvider`](/styles/api/#themeprovider) 中，这样组件树中的所有组件都可以使用样式配置和 `theme`。
 
-The key step in server-side rendering is to render the initial HTML of the component **before** we send it to the client side. 我们用 [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html) 来实现此操作。 我们用 [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html) 来实现此操作。
+服务端渲染的关键步骤是，在将组件的初始 HTML 发送到客户端**之前**，就开始进行渲染。 我们用 [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html) 来实现此操作。
 
 然后我们就可以使用 `sheets.toString()` 方法从`表单（sheets）`中获取 CSS。 我们将看到在 `renderFullPage` 函数中，是如何传递这些信息的。
 
@@ -179,11 +179,11 @@ ReactDOM.hydrate(<Main />, document.querySelector('#root'));
 
 ## 参考实现
 
-我们托管了不同的参考实现，您可以在 [GitHub仓库](https://github.com/mui-org/material-ui) 的 [`/examples`](https://github.com/mui-org/material-ui/tree/next/examples) 文件夹下找到。
+你可以在 [GitHub仓库](https://github.com/mui-org/material-ui) 的 [`/examples`](https://github.com/mui-org/material-ui/tree/next/examples) 文件夹下找到我们托管的不同范例项目。
 
 - [本教程的参考实现](https://github.com/mui-org/material-ui/tree/next/examples/ssr)
 - [Gatsby](https://github.com/mui-org/material-ui/tree/next/examples/gatsby)
-- [Next.js](https://github.com/mui-org/material-ui/tree/next/examples/nextjs) ([TypeScript version](https://github.com/mui-org/material-ui/tree/next/examples/nextjs-with-typescript))
+- [Next.js](https://github.com/mui-org/material-ui/tree/next/examples/nextjs) （[TypeScript 版本](https://github.com/mui-org/material-ui/tree/next/examples/nextjs-with-typescript)）
 
 ## 故障排除（Troubleshooting）
 
