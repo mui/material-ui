@@ -11,7 +11,7 @@
 # production
 /build
 
-# IDEs and editors	
+# IDEs and editors
 /.idea	
 /.vscode	
 
