@@ -40,7 +40,8 @@ function handleRender(req, res) {
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />
           <App />
-        </ThemeProvider>,
+        </ThemeProvider>
+        ,
       </CacheProvider>,
     ),
   );
