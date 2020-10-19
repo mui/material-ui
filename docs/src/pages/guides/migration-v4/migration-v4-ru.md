@@ -250,6 +250,13 @@ const classes = makeStyles(theme => ({
   +<Avatar classes={{ circular: 'className' }}>
   ```
 
+- Move the AvatarGroup from the lab to the core.
+
+  ```diff
+  -import AvatarGroup from '@material-ui/lab/AvatarGroup';
+  +import AvatarGroup from '@material-ui/core/AvatarGroup';
+  ```
+
 ### Badge
 
 - Переименовываем `circle` в `circular` и `rectangle` в `rectangular` для единообразия. The possible values should be adjectives, not nouns:
