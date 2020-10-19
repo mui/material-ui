@@ -32,7 +32,7 @@ async function createModulePackages({ from, to }) {
         sideEffects: false,
         module: './index.js',
         main: path.join('../node', directoryPackage, 'index.js'),
-        typings: './index.d.ts',
+        types: './index.d.ts',
       };
       const packageJsonPath = path.join(to, directoryPackage, 'package.json');
 
@@ -69,9 +69,13 @@ async function createPackageFile() {
   const newPackageData = {
     ...packageDataOther,
     private: false,
-    main: './node/index.js',
-    module: './index.js',
-    typings: './index.d.ts',
+    ...(packageDataOther.main
+      ? {
+          main: './node/index.js',
+          module: './index.js',
+        }
+      : {}),
+    types: './index.d.ts',
   };
   const targetPath = path.resolve(buildPath, './package.json');
 
