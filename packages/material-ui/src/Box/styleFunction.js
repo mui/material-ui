@@ -9,7 +9,14 @@ import {
   sizing,
   spacing,
   typography,
+  handleBreakpoints,
 } from '@material-ui/system';
+
+function objectsHaveSameKeys(...objects) {
+  const allKeys = objects.reduce((keys, object) => keys.concat(Object.keys(object)), []);
+  const union = new Set(allKeys);
+  return objects.every(object => union.size === Object.keys(object).length);
+}
 
 const filterProps = [
   ...borders.filterProps,
@@ -86,8 +93,24 @@ const traverseSx = (styles, theme) => {
           ...getThemeValue(styleKey, styles[styleKey], theme),
         };
       } else {
-        const transformedValue = traverseSx(styles[styleKey], theme);
-        css[styleKey] = transformedValue;
+        const breakpointsValues = handleBreakpoints({ theme }, styles[styleKey], x => ({ [styleKey]: x }));
+
+        if(objectsHaveSameKeys(breakpointsValues, styles[styleKey])) {
+          const transformedValue = traverseSx(styles[styleKey], theme);
+          css[styleKey] = transformedValue;
+        } else {
+          const spread = {};
+          Object.keys(breakpointsValues).forEach(breakpoint => {
+            spread[breakpoint] = {
+              ...css[breakpoint],
+              ...breakpointsValues[breakpoint],
+            }
+          })
+          css = {
+            ...css,
+            ...spread,
+          }
+        }
       }
     } else if (typeof styles[styleKey] === 'function') {
       css = {
@@ -101,7 +124,6 @@ const traverseSx = (styles, theme) => {
       };
     }
   });
-
   return css;
 };
 
@@ -116,8 +138,7 @@ const styleFunction = (props) => {
     }
   });
 
-  const sxObjectInput = typeof props.sx === 'function' ? props.sx(props.theme) : props.sx;
-  const sxValue = traverseSx(sxObjectInput, props.theme);
+  const sxValue = traverseSx(props.sx, props.theme);
 
   return {
     ...result,
