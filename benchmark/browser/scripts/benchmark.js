@@ -117,6 +117,18 @@ async function run() {
       './basic-styled-components/index.js',
       10,
     );
+    await runMeasures(
+      browser,
+      'Theme-UI box sx prop',
+      './sx-prop-box-theme-ui/index.js',
+      10,
+    );
+    await runMeasures(
+      browser,
+      'Material-UI box sx prop',
+      './sx-prop-box-material-ui/index.js',
+      10,
+    );
   } finally {
     await Promise.all([browser.close(), server.close()]);
   }
