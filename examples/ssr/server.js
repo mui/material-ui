@@ -41,7 +41,6 @@ function handleRender(req, res) {
           <CssBaseline />
           <App />
         </ThemeProvider>
-        ,
       </CacheProvider>,
     ),
   );
