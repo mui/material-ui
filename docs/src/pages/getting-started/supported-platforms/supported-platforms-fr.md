@@ -22,7 +22,7 @@ Une liste exhaustive se trouve dans notre [.browserlistrc](https://github.com/mu
 
 <!-- #stable-snapshot -->
 
-We support [Node.js](https://github.com/nodejs/node) starting with version 10 for server-side rendering. Where possible, the [LTS versions that are in maintenance](https://github.com/nodejs/Release#lts-schedule1) are supported.
+We support [Node.js](https://github.com/nodejs/node) starting with version 10 for server-side rendering. Where possible, the [LTS versions that are in maintenance](https://github.com/nodejs/Release#release-schedule) are supported.
 
 ### Préfixes CSS
 
