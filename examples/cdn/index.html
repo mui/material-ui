@@ -75,7 +75,6 @@ function ProTip() {
         templates
       </Link>{' '}
       on the Material-UI documentation.
-      <Div />
     </Typography>
   );
 }
@@ -96,13 +95,13 @@ function Copyright() {
 function App() {
   return (
     <Container maxWidth="sm">
-      <div style={{ marginTop: 24, }}>
+      <Box my={4}>
         <Typography variant="h4" component="h1" gutterBottom>
-          CDN v4-beta example
+          CDN v5-alpha example
         </Typography>
         <ProTip />
         <Copyright />
-      </div>
+      </Box>
     </Container>
   );
 }
