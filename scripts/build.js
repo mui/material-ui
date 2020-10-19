@@ -1,5 +1,5 @@
 const childProcess = require('child_process');
-const fse = require('fs-extra');
+const glob = require('glob');
 const path = require('path');
 const { promisify } = require('util');
 const yargs = require('yargs');
@@ -33,13 +33,22 @@ async function run(argv) {
   };
   const babelConfigPath = path.resolve(__dirname, '../babel.config.js');
   const srcDir = path.resolve('./src');
+  const extensions = ['.js', '.ts', '.tsx'];
+  const ignore = [
+    '**/*.test.js',
+    '**/*.test.ts',
+    '**/*.test.tsx',
+    '**/*.spec.ts',
+    '**/*.spec.tsx',
+    '**/*.d.ts',
+  ];
 
-  let topLevelPathImportsArePackages = true;
-  fse.readdirSync(srcDir, { withFileTypes: true }).forEach((dirEntry) => {
-    if (dirEntry.isFile() && !path.basename(dirEntry.name).startsWith('index.')) {
-      topLevelPathImportsArePackages = false;
-    }
-  });
+  const topLevelNonIndexFiles = glob
+    .sync(`*{${extensions.join(',')}}`, { cwd: srcDir, ignore })
+    .filter((file) => {
+      return path.basename(file, path.extname(file)) !== 'index';
+    });
+  const topLevelPathImportsArePackages = topLevelNonIndexFiles.length === 0;
 
   const outDir = path.resolve(
     relativeOutDir,
@@ -63,20 +72,13 @@ async function run(argv) {
     '--config-file',
     babelConfigPath,
     '--extensions',
-    '".js,.ts,.tsx"',
+    `"${extensions.join(',')}"`,
     srcDir,
     '--out-dir',
     outDir,
     '--ignore',
     // Need to put these patterns in quotes otherwise they might be evaluated by the used terminal.
-    `"${[
-      '**/*.test.js',
-      '**/*.test.ts',
-      '**/*.test.tsx',
-      '**/*.spec.ts',
-      '**/*.spec.tsx',
-      '**/*.d.ts',
-    ].join('","')}"`,
+    `"${ignore.join('","')}"`,
   ].join(' ');
 
   if (verbose) {
