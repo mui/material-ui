@@ -1,5 +1,5 @@
 import { ACTION_TYPES, CODE_VARIANTS } from 'docs/src/modules/constants';
-import memoize from '@material-ui/system/memoize';
+import { memoize } from '@material-ui/system';
 import mapTranslations from 'docs/src/modules/utils/mapTranslations';
 
 const req = require.context('docs/translations', false, /translations.*\.json$/);

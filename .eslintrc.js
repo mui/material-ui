@@ -52,6 +52,17 @@ module.exports = {
       {
         patterns: [
           '@material-ui/*/*/*',
+          // Begin block: Packages with files instead of packages in the top level
+          // Importing from the top level pulls in CommonJS instead of ES modules
+          // Allowing /icons as to reduce cold-start of dev builds significantly.
+          // There's nothing to tree-shake when importing from /icons this way:
+          // '@material-ui/icons/*/',
+          '@material-ui/system/*',
+          '@material-ui/utils/*',
+          // End block
+          // Macros are fine since their import path is transpiled away
+          '!@material-ui/utils/macros',
+          '@material-ui/utils/macros/*',
           '!@material-ui/utils/macros/*.macro',
           // public API: https://next.material-ui-pickers.dev/getting-started/installation#peer-library
           '!@material-ui/pickers/adapter/*',
