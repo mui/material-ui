@@ -18,7 +18,7 @@
 
 ### 演示
 
-在*开始*章节的余下部分，我们会配合**styled-components** 作为演示例子(因为这个库具有普遍性)。 Alternatively, you can [emotion](#interoperability) or any other CSS-in-JS styling solution. 另外，以下的例子都直接使用了 Material-UI 的 **默认** [主题对象](/customization/default-theme/)。
+在*开始*章节的余下部分，我们会配合**styled-components** 作为演示例子(因为这个库具有普遍性)。 另外，你也可以使用 [emotion](#interoperability) 或其他的任何 CSS-in-JS 样式解决方案。 另外，以下的例子都直接使用了 Material-UI 的 **默认** [主题对象](/customization/default-theme/)。
 
 {{"demo": "pages/system/basics/Demo.js", "defaultCodeOpen": true}}
 
@@ -195,7 +195,7 @@ const Box = styled.div`
 <Box p={2} sm={{ p: 3 }} md={{ p: 4 }} />;
 
 /**
- * Outputs:
+ * 输出：
  *
  * padding: 16px;
  * @media (min-width: 600px) {
@@ -222,7 +222,7 @@ const Box = styled.div`
 1. `options` (*Object*):
 
 - [Tachyons](https://tachyons.io/) (2014年) 是第一个促进了 [原子 CSS 模式(Atomic CSS pattern)](https://css-tricks.com/lets-define-exactly-atomic-css/) 发展的CSS库。
-- `options.cssProperty` (*String|Boolean* [optional]):默认是 `options.prop`。 这使用了 CSS 属性。 你可以传入 `false` 来禁用此选项。 禁用的情况下，这个属性会被作为样式对象应用于本身。 它可以用来 [渲染变体（rendering variants）](#variants)。
+- `options.cssProperty` (_String|Boolean_ [optional])：默认值是 `options.prop`。 这使用了 CSS 属性。 你可以传入 `false` 来禁用此选项。 禁用的情况下，这个属性会被作为样式对象应用于本身。 它可以用来 [渲染变体（rendering variants）](#variants)。
 - `options.themeKey` (*String* [optional])：主题路径的前缀。
 - `options.transform` (*Function* [optional])：指定在输出 CSS 值之前经过的转换
 
