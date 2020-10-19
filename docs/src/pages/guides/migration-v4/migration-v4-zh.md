@@ -48,12 +48,12 @@ yarn add @material-ui/core@next
 
 <!-- #stable-snapshot -->
 
-- Node 10 (up from 8)
-- 从Chrome49到Chrome 84
-- Edge14到85
-- 从Firefox52到78
-- 从Safari10到Safari 13 (macOS) 和 12.2 (iOS)
-- and more (see [.browserslistrc (`stable` entry)](https://github.com/mui-org/material-ui/blob/HEAD/.browserslistrc#L11))
+- Node 10（最低兼容到 8）
+- Chrome 84（最低兼容到 49）
+- Edge 85（最低兼容到 14）
+- Firefox 78（最低兼容到 52）
+- Safari 13 (macOS) 和 12.2 (iOS)（最低兼容到 10）
+- 更多内容请（参阅 [.browserslistrc (`stable` entry)](https://github.com/mui-org/material-ui/blob/HEAD/.browserslistrc#L11)）
 
 不再对 IE 11 进行兼容支持。 如果你需要对 IE 11 进行兼容性支持，请查看我们的 [旧版本包](/guides/minimizing-bundle-size/#legacy-bundle)。
 
@@ -248,6 +248,13 @@ const classes = makeStyles(theme => ({
   -<Avatar classes={{ circle: 'className' }}>
   +<Avatar variant="circular">
   +<Avatar classes={{ circular: 'className' }}>
+  ```
+
+- Move the AvatarGroup from the lab to the core.
+
+  ```diff
+  -import AvatarGroup from '@material-ui/lab/AvatarGroup';
+  +import AvatarGroup from '@material-ui/core/AvatarGroup';
   ```
 
 ### Badge
