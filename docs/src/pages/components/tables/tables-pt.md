@@ -75,7 +75,7 @@ A propriedade `Action` do componente `TablePagination` permite a implementação
 
 ## Cabeçalho fixo
 
-Um exemplo de uma tabela com linhas roláveis e cabeçalhos de coluna fixos. Ele se beneficia do suporte de `stickyHeader` (⚠️ sem suporte ao IE 11).
+Um exemplo de uma tabela com linhas roláveis e cabeçalhos de coluna fixos. It leverages the `stickyHeader` prop (⚠️ no IE11 support).
 
 {{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
 

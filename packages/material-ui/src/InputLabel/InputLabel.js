@@ -40,7 +40,7 @@ export const styles = (theme) => ({
     transform: 'translate(0, 1.5px) scale(0.75)',
     transformOrigin: 'top left',
   },
-  /* Styles applied to the `input` element if `disableAnimation={false}`. */
+  /* Styles applied to the `input` element unless `disableAnimation={true}`. */
   animated: {
     transition: theme.transitions.create(['color', 'transform'], {
       duration: theme.transitions.duration.shorter,

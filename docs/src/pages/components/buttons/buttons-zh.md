@@ -105,7 +105,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
 
 这有一个[与 react-router 交互的例子](/guides/composition/#button)。
 
-在 disabled 不可用的按钮上，ButtonBase 组件会有这个设置：`pointer-events: none;` ，这样一来不可用样式的鼠标悬浮就不会出现。
+{{"demo": "pages/components/buttons/LoadingButtonsTransition.js"}}
 
 ## Complex Buttons（复杂按钮）
 
@@ -119,7 +119,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
 
 这有一个[与 react-router 交互的例子](/guides/composition/#button)。
 
-## 局限性
+## 设计局限
 
 ### Cursor 鼠标悬浮的禁用
 

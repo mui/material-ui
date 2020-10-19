@@ -30,7 +30,7 @@ export const styles = (theme) => {
         borderBottomColor: theme.palette.secondary.main,
       },
     },
-    /* Styles applied to the root element if `disableUnderline={false}`. */
+    /* Styles applied to the root element unless `disableUnderline={true}`. */
     underline: {
       '&:after': {
         borderBottom: `2px solid ${theme.palette.primary.main}`,

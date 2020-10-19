@@ -25,6 +25,10 @@ export interface Components {
     styleOverrides?: ComponentsOverrides['MuiAvatar'];
     variants?: ComponentsVariants['MuiAvatar'];
   };
+  MuiAvatarGroup?: {
+    defaultProps?: ComponentsProps['MuiAvatarGroup'];
+    styleOverrides?: ComponentsOverrides['MuiAvatarGroup'];
+  };
   MuiBackdrop?: {
     defaultProps?: ComponentsProps['MuiBackdrop'];
     styleOverrides?: ComponentsOverrides['MuiBackdrop'];

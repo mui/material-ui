@@ -9,7 +9,7 @@ materialDesign: https://material.io/components/app-bars-top
 
 <p class="description">应用栏组件展示了与当前屏幕息息相关的信息和操作。</p>
 
-而[顶部应用栏](https://material.io/design/components/app-bars-top.html)则提供与当前屏幕相关的内容和操作。 它可用于展示品牌、屏幕标题、导航和操作选项。
+而顶部应用栏（App Bar）则提供与当前屏幕相关的内容和操作。 它可用于展示品牌、屏幕标题、导航和操作选项。
 
 它既可以用作于转换为上下文相关的操作栏，又可以直接充当导航栏。
 
@@ -53,7 +53,7 @@ materialDesign: https://material.io/components/app-bars-top
 
 当渲染一个固定位置的应用栏时，元素的尺寸不会影响页面的其余内容。 这可能导致部分内容会被挡在应用程序栏后面，而无法可见。 下面是3种可能的解决方案：
 
-1. 使用 `position =“ sticky”` 代替 fixed。 ⚠️ IE 11不支持 sticky。
+1. 使用 `position =“ sticky”` 代替 fixed。 ⚠️ sticky 不支持 IE11。
 2. 可以渲染第二个 `<Toolbar />` 组件：
 
 ```jsx
@@ -72,21 +72,21 @@ function App() {
 3. 也可以用 `theme.mixins.toolbar` 的 CSS：
 
 ```jsx
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   offset: theme.mixins.toolbar,
-}))
+}));
 
 function App() {
   const classes = useStyles();
   return (
     <React.Fragment>
       <AppBar position="fixed">
-        <Toolbar>{/* content */}</Toolbar>
+        <Toolbar>{/* 内容 */}</Toolbar>
       </AppBar>
       <div className={classes.offset} />
     </React.Fragment>
-  )
-};
+  );
+}
 ```
 
 ## Scrolling 滚动
@@ -115,11 +115,11 @@ function App() {
 
 #### 参数
 
-1. `options` (*Object* [optional]):
+1. `options` (_Object_ [optional]):
 
-   - `options.disableHysteresis` (*Boolean* [optional]): 默认值为`false`。 禁用迟滞的效果。 在决定 `trigger` 的值时会忽略在滚动的方向。
-   - `options.target` （*Node* [optional]）：默认值时 `window`。
-   - `options.threshold` (*Number* [optional]): 默认值是 `100`. 严格来说，当垂直滚动超过（但不包括）此阈值时，请更改 `trigger` 的值。 严格来说，当垂直滚动超过（但不包括）此阈值时，请更改 `trigger` 的值。
+   - `options.disableHysteresis` (_Boolean_ [optional])：默认值为`false`。 禁用迟滞的效果。 在决定 `trigger` 的值时会忽略在滚动的方向。
+   - `options.target` (_Node_ [optional])：默认值是 `window`。
+   - `options.threshold` (_Number_ [optional])：默认值是 `100`。 严格来说，当垂直滚动超过（但不包括）此阈值时，请更改 `trigger` 的值。
 
 #### 返回结果
 
@@ -134,7 +134,7 @@ function HideOnScroll(props) {
   const trigger = useScrollTrigger();
   return (
     <Slide in={!trigger}>
-      <div>Hello</div>
+      <div>你好</div>
     </Slide>
   );
 }

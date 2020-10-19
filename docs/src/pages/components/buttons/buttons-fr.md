@@ -26,7 +26,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
 
 {{"demo": "pages/components/buttons/ContainedButtons.js"}}
 
-You can remove the elevation with the `disableElevation` prop.
+Vous pouvez supprimer l'élévation avec la propriété `disableElevation`.
 
 {{"demo": "pages/components/buttons/DisableElevation.js"}}
 

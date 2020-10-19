@@ -167,12 +167,12 @@ declare module "@material-ui/core/styles/createPalette" {
 
 ## Dark mode
 
-Material-UI comes with two palette types, light (the default) and dark. You can make the theme dark by setting `type: 'dark'`. While it's only a single property value change, internally it modifies several palette values.
+Material-UI comes with two palette types, light (the default) and dark. You can make the theme dark by setting `mode: 'dark'`. While it's only a single property value change, internally it modifies several palette values.
 
 ```js
 const darkTheme = createMuiTheme({
   palette: {
-    type: 'dark',
+    mode: 'dark',
   },
 });
 ```

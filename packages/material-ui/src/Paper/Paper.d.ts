@@ -16,7 +16,7 @@ export interface PaperProps extends StandardProps<React.HTMLAttributes<HTMLDivEl
   classes?: {
     /** Styles applied to the root element. */
     root?: string;
-    /** Styles applied to the root element if `square={false}`. */
+    /** Styles applied to the root element unless `square={true}`. */
     rounded?: string;
     /** Styles applied to the root element if `variant="outlined"`. */
     outlined?: string;

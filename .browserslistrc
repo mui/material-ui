@@ -7,44 +7,44 @@ node 14
 
 # Default/Fallback
 # `npx browserslist --mobile-to-desktop "> 0.5%, last 2 versions, Firefox ESR, not dead, not IE 11"` when the last major is released.
-# #stable-snapshot
+# On update check all #stable-snapshot markers
 [stable]
-and_chr 84
-and_ff 79
+and_chr 85
+and_ff 80
 and_qq 10.4
 and_uc 12.12
-android 84
+android 85
 baidu 7.12
-chrome 83
-edge 83
-firefox 68
-ios_saf 12.0
+chrome 84
+edge 85
+firefox 78
+ios_saf 12.2
 kaios 2.5
 op_mini all
-op_mob 69
-opera 69
-safari 13
-samsung 11.1
+op_mob 70
+opera 70
+safari 13.1
+samsung 11.1-11.2
 
 # Same as `stable` but with IE 11
 [legacy]
 IE 11
-and_chr 84
-and_ff 79
+and_chr 85
+and_ff 80
 and_qq 10.4
 and_uc 12.12
-android 84
+android 85
 baidu 7.12
-chrome 83
-edge 83
-firefox 68
-ios_saf 12.0
+chrome 84
+edge 85
+firefox 78
+ios_saf 12.2
 kaios 2.5
 op_mini all
-op_mob 69
-opera 69
-safari 13
-samsung 11.1
+op_mob 70
+opera 70
+safari 13.1
+samsung 11.1-11.2
 
 # snapshot of `npx browserslist "maintained node versions"`
 [node]

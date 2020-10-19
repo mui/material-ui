@@ -57,7 +57,7 @@ Any other props supplied will be provided to the root element ([FormLabel](/api/
 | <span class="prop-name">formControl</span> | <span class="prop-name">.MuiInputLabel-formControl</span> | Styles applied to the root element if the component is a descendant of `FormControl`.
 | <span class="prop-name">marginDense</span> | <span class="prop-name">.MuiInputLabel-marginDense</span> | Styles applied to the root element if `margin="dense"`.
 | <span class="prop-name">shrink</span> | <span class="prop-name">.MuiInputLabel-shrink</span> | Styles applied to the `input` element if `shrink={true}`.
-| <span class="prop-name">animated</span> | <span class="prop-name">.MuiInputLabel-animated</span> | Styles applied to the `input` element if `disableAnimation={false}`.
+| <span class="prop-name">animated</span> | <span class="prop-name">.MuiInputLabel-animated</span> | Styles applied to the `input` element unless `disableAnimation={true}`.
 | <span class="prop-name">filled</span> | <span class="prop-name">.MuiInputLabel-filled</span> | Styles applied to the root element if `variant="filled"`.
 | <span class="prop-name">outlined</span> | <span class="prop-name">.MuiInputLabel-outlined</span> | Styles applied to the root element if `variant="outlined"`.
 

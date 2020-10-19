@@ -12,7 +12,7 @@ export const styles = {
     padding: 0,
     position: 'relative',
   },
-  /* Styles applied to the root element if `disablePadding={false}`. */
+  /* Styles applied to the root element unless `disablePadding={true}`. */
   padding: {
     paddingTop: 8,
     paddingBottom: 8,

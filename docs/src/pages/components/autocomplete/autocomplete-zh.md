@@ -78,7 +78,7 @@ const options = ['The Godfather', 'Pulp Fiction'];
 
 ### 搜索输入栏
 
-您也可以在用户想要添加一个新的值时显示一个对话框
+该属性的主要使用方式是创建一个带有搜索建议的 **输入文本框**，例如 Google 搜索 或 react-autowhatever。
 
 {{"demo": "pages/components/autocomplete/FreeSolo.js"}}
 
@@ -265,13 +265,13 @@ const filterOptions = (options, { inputValue }) =>
 
 {{"demo": "pages/components/autocomplete/Virtualize.js"}}
 
-## 局限性
+## 设计局限
 
 ### autocomplete/autofill
 
 浏览器会有启发性的帮助用户填写表格。 然而，这样的功能会削弱的组件用户体验。
 
-默认情况下，组件通过 `autoComplete="off"` 这个属性，禁用了 **autocomplete** 功能（请注意用户可能在之前已经在给定域输入内容）。
+默认情况下，组件通过 `autoComplete="off"` 这个属性来禁用 **autocomplete** 功能（请注意用户可能在之前已经在给定域输入内容）。
 
 然而，除了记住过去已经输入的值，浏览器可能也会给出 **自动填充（autofill）** 的建议（譬如有保存的登录信息，地址，或者支付方式等）。 若您不需要自动填充，您可以尝试以下的方式：
 

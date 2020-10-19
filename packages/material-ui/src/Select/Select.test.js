@@ -940,12 +940,12 @@ describe('<Select />', () => {
     const ref = React.createRef();
     const { setProps } = render(<Select inputProps={{ ref }} value="" />);
 
-    expect(ref.current.node).to.have.property('tagName', 'INPUT');
+    expect(ref.current.node).to.have.tagName('input');
 
     setProps({
       value: '',
     });
-    expect(ref.current.node).to.have.property('tagName', 'INPUT');
+    expect(ref.current.node).to.have.tagName('input');
   });
 
   describe('prop: inputRef', () => {
@@ -953,7 +953,7 @@ describe('<Select />', () => {
       const ref = React.createRef();
       render(<Select inputRef={ref} value="" />);
 
-      expect(ref.current.node).to.have.property('tagName', 'INPUT');
+      expect(ref.current.node).to.have.tagName('input');
     });
 
     // TODO: This might be confusing a prop called input!Ref can imperatively

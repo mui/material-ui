@@ -40,6 +40,23 @@ yarn add @material-ui/core@next
 
 ## 处理变化带来的系统崩溃
 
+### 支持的浏览器和 node 版本
+
+默认捆绑包的目标已更改。 The exact versions will be pinned on release from the browserslist query `"> 0.5%, last 2 versions, Firefox ESR, not dead, not IE 11, maintained node versions"`.
+
+当前默认的捆绑包支持以下版本：
+
+<!-- #stable-snapshot -->
+
+- Node 10 (up from 8)
+- Chrome 83 (up from 49)
+- Edge 83 (up from 14)
+- Firefox 68 (up from 52)
+- Safari 13 (up from 10)
+- and more (see [.browserslistrc (`stable` entry)](https://github.com/mui-org/material-ui/blob/HEAD/.browserslistrc#L11))
+
+不再对 IE 11 进行兼容支持。 如果你需要对 IE 11 进行兼容性支持，请查看我们的 [旧版本包](/guides/minimizing-bundle-size/#legacy-bundle)。
+
 ### 非转发类（non-ref-forwarding class）组件
 
 对 `component` 属性中的非转发类组件或作为直接 `子类` 的支持已被放弃。 如果你使用了 `unstable_createStrictModeTheme` 或者在 `React.StrictMode` 中没有看到任何与 `findDOMNode` 相关的任何警告，那么你不需要做任何事情。 否则请查看我们指南中的 [“注意事项与参考文献”部分](/guides/composition/#caveat-with-refs) 来了解如何迁移。 这个变化几乎影响了所有使用 `component` 属性的组件或者将 `children` 传递给要求 `children` 作为元素的组件（例如 `<MenuList><CustomMenuItem /></MenuList>`）
@@ -76,9 +93,9 @@ yarn add @material-ui/core@next
 -import { createMuiTheme } from '@material-ui/core/styles';
 +import { createMuiTheme, adaptV4Theme } from '@material-ui/core/styles';
 
--const theme = createMuitheme({
-+const theme = createMuitheme(adaptV4Theme({
-  // v4 主题
+-const theme = createMuiTheme({
++const theme = createMuiTheme(adaptV4Theme({
+  // v4 theme
 -});
 +}));
 ```
@@ -118,8 +135,8 @@ yarn add @material-ui/core@next
 ```diff
 import { createMuiTheme } from '@material-ui/core/styles';
 
--const theme = createMuitheme(),
-+const theme = createMuitheme({
+-const theme = createMuiTheme(),
++const theme = createMuiTheme({
 +  palette: { text: { hint: 'rgba(0, 0, 0, 0.38)' } },
 +});
 ```
@@ -127,8 +144,8 @@ import { createMuiTheme } from '@material-ui/core/styles';
 ```diff
 import { createMuiTheme } from '@material-ui/core/styles';
 
--const theme = createMuitheme({palette: { type: 'dark' }}),
-+const theme = createMuitheme({
+-const theme = createMuiTheme({palette: { type: 'dark' }}),
++const theme = createMuiTheme({
 +  palette: { type: 'dark', text: { hint: 'rgba(0, 0, 0, 0.38)' } },
 +});
 ```
@@ -140,8 +157,8 @@ import { createMuiTheme } from '@material-ui/core/styles';
 ```diff
 import { createMuiTheme } from '@material-ui/core/styles';
 
--const theme = createMuitheme({palette: { type: 'dark' }}),
-+const theme = createMuitheme({palette: { mode: 'dark' }}),
+-const theme = createMuiTheme({palette: { type: 'dark' }}),
++const theme = createMuiTheme({palette: { mode: 'dark' }}),
 ```
 
 1. `属性`
@@ -149,7 +166,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 ```diff
 import { createMuiTheme } from '@material-ui/core/styles';
 
-const theme = createMuitheme({
+const theme = createMuiTheme({
 -  props: {
 -    MuiButton: {
 -      disableRipple: true,
@@ -170,7 +187,7 @@ const theme = createMuitheme({
 ```diff
 import { createMuiTheme } from '@material-ui/core/styles';
 
-const theme = createMuitheme({
+const theme = createMuiTheme({
 -  overrides: {
 -    MuiButton: {
 -      root: { padding: 0 },
@@ -186,6 +203,20 @@ const theme = createMuitheme({
 });
 ```
 
+### Styles（样式表单）
+
+- 为更好地描述功能，我们将 `fade` 重命名为 `alpha`。 当输入颜色已经有一个 alpha 值时，以前的名称会导致混乱。 **overrides** 助手覆盖了颜色的 alpha 值。
+
+```diff
+- import { fade } from '@material-ui/core/styles';
++ import { alpha } from '@material-ui/core/styles';
+
+const classes = makeStyles(theme => ({
+-  backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
++  backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+}));
+```
+
 ### Alert 警告提示
 
 - 该组件已从实验室包移动到核心包。 现在这个组件处于稳定版本。
@@ -197,8 +228,7 @@ const theme = createMuitheme({
   +import AlertTitle from '@material-ui/core/AlertTitle';
   ```
 
-
-  ### Autocomplete 自动补全组件
+### Autocomplete 自动补全组件
 
 - 该组件已从实验室包移动到核心包。 现在这个组件处于稳定版本。
 
@@ -220,7 +250,7 @@ const theme = createMuitheme({
   +<Avatar classes={{ circular: 'className' }}>
   ```
 
-### Badge 徽章
+### Badge
 
 - 为保持一致性，我们将 `circle` 重命名为 `circular`，`rectangle` 重命名为 `rectangular`。 可能的值应该是形容词，而不是名词。
 
@@ -247,7 +277,7 @@ const theme = createMuitheme({
   }}>
   ```
 
-### BottomNavigation 底部导航
+### BottomNavigation（底部导航）
 
 - TypeScript：`onChange` 中的 `event` 的类型不再是 `React.ChangeEvent`，而是`React.SyntheticEvent`。
 
@@ -256,7 +286,7 @@ const theme = createMuitheme({
   +<BottomNavigation onChange={(event: React.SyntheticEvent) => {}} />
   ```
 
-### Button 按钮
+### Button
 
 - 按钮的 `颜色（color）` 属性默认情况下为 "primary"，同时 "default" 属性已被删除。 这使得按钮更接近于 Material Design 规范，并且也简化了 API。
 
@@ -267,7 +297,7 @@ const theme = createMuitheme({
   +<Button />
   ```
 
-### CircularProgress 进度环
+### CircularProgress（进度环）
 
 - `static` 变量已合并到 `determinate` 变量中，后者将采用前者的外观。 这是因为删除的这个变量很少有用。 这属于 Material Design 的例外情况，并且它在规范中已被删除。
 
@@ -350,21 +380,21 @@ const theme = createMuitheme({
   +<Accordion>
   -  <ExpansionPanelSummary>
   +  <AccordionSummary>
-       <Typography>Location</Typography>
-       <Typography>Select trip destination</Typography>
+       <Typography>位置</Typography>
+       <Typography>选择出行目的地</Typography>
   -  </ExpansionPanelSummary>
   +  </AccordionSummary>
   -  <ExpansionPanelDetails>
   +  <AccordionDetails>
        <Chip label="Barbados" onDelete={() => {}} />
-       <Typography variant="caption">Select your destination of choice</Typography>
+       <Typography variant="caption">请选择您的目的地</Typography>
   -  </ExpansionPanelDetails>
   +  </AccordionDetails>
      <Divider />
   -  <ExpansionPanelActions>
   +  <AccordionActions>
-       <Button size="small">Cancel</Button>
-       <Button size="small">Save</Button>
+       <Button size="small">取消</Button>
+       <Button size="small">保存</Button>
   -  </ExpansionPanelActions>
   +  </AccordionActions>
   -</ExpansionPanel>
@@ -389,7 +419,8 @@ const theme = createMuitheme({
   />
   ```
 
-- Remove `display: flex` from AccordionDetails as its too opinionated.
+- 因为投诉太多，我们删除了 AccordionDetails 中的 `display: flex`。 大多数开发者都期望显示为块级（block）元素。
+- 删除 AccordionSummary 中的 `IconButtonProps` 属性。 该组件渲染一个 `<div>` 元素而不是 IconButton。 所以不再需要该属性了。
 
 ### Fab
 
@@ -595,7 +626,7 @@ const theme = createMuitheme({
   +<Slider onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
   ```
 
-### Snackbar 消息条
+### Snackbar
 
 - 现在在大屏幕上的消息条通知会在左下角显示。 这更符合 Gmail、Google Keep、material.io 等应用的行为。 你可以用以下方法恢复到以前的行为：
 
@@ -625,7 +656,7 @@ const theme = createMuitheme({
   />
   ```
 
-### SpeedDial
+### SpeedDial 快速拨号
 
 - 该组件已从实验室包移动到核心包。 现在这个组件处于稳定版本。
 
@@ -645,13 +676,13 @@ const theme = createMuitheme({
   ```diff
   -<Stepper elevation={2}>
   -  <Step>
-  -    <StepLabel>Hello world</StepLabel>
+  -    <StepLabel>你好世界</StepLabel>
   -  </Step>
   -</Stepper>
   +<Paper square elevation={2}>
   +  <Stepper>
   +    <Step>
-  +      <StepLabel>Hello world</StepLabel>
+  +      <StepLabel>你好世界</StepLabel>
   +    </Step>
   +  </Stepper>
   +<Paper>
@@ -662,12 +693,12 @@ const theme = createMuitheme({
   ```diff
   -<Stepper>
   -  <Step>
-  -    <StepLabel>Hello world</StepLabel>
+  -    <StepLabel>你好世界</StepLabel>
   -  </Step>
   -</Stepper>
   +<Stepper style={{ padding: 24 }}>
   +  <Step>
-  +    <StepLabel>Hello world</StepLabel>
+  +    <StepLabel>你好世界</StepLabel>
   +  </Step>
   +</Stepper>
   ```
@@ -681,6 +712,16 @@ const theme = createMuitheme({
   - backIconButtonText="Avant"
   - nextIconButtonText="Après
   + getItemAriaLabel={…}
+  ```
+
+- 为保持 API 一致性，我们将 `onChangeRowsPerPage` 重命名为 `onRowsPerPageChange`，`onChangePage` 重命名为 `onPageChange`。
+
+  ```diff
+  <TablePagination
+  - onChangeRowsPerPage={()=>{}}
+  - onChangePage={()=>{}}
+  + onRowsPerPageChange={()=>{}}
+  + onPageChange={()=>{}}
   ```
 
 ### Tabs 选项卡
@@ -754,6 +795,21 @@ const theme = createMuitheme({
   -import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
   +import ToggleButton from '@material-ui/core/ToggleButton';
   +import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
+  ```
+
+### Tooltip
+
+- 工具提示组件默认是可交互的：
+
+  该组件之前的默认行为不遵循 [success criterion 1.4.3 ("hoverable") in WCAG 2.1](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus)。 为了反映新的默认值，该属性被重命名为 `disableInteractive`。 如果你想回滚到旧的行为（但是这无法达到 AA 级），你可以应用下面的差异：
+
+  ```diff
+  -<Tooltip>
+  +<Tooltip disableInteractive>
+
+  # 交互式的工具提示组件不再需要 `interactive` 属性。
+  -<Tooltip interactive>
+  +<Tooltip>
   ```
 
 ### 文字排版

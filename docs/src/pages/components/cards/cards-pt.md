@@ -43,7 +43,7 @@ Por padrão, nós usamos uma combinação de um elemento `&lt;div&gt;` e um *bac
 
 {{"demo": "pages/components/cards/ImgMediaCard.js", "bg": true}}
 
-> ⚠️ Quando `component="img"`, CardMedia depende de `object-fit` para centralizar a imagem. Não é suportado pelo IE 11.
+> ⚠️ Quando `component="img"`, CardMedia depende de `object-fit` para centralizar a imagem. It's not supported by IE11.
 
 ## Controles da interface do usuário
 

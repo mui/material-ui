@@ -43,7 +43,7 @@ materialDesign: https://material.io/components/cards
 
 {{"demo": "pages/components/cards/ImgMediaCard.js", "bg": true}}
 
-> ⚠️ 当 `component="img"` 时，CardMedia 通过 `object-fit` 来居中图像。 但是 IE 11不支持这一属性。
+> ⚠️ 当 `component="img"` 时，CardMedia 通过 `object-fit` 来居中图像。 It's not supported by IE11.
 
 ## UI 控件
 

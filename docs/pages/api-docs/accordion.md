@@ -47,7 +47,7 @@ Any other props supplied will be provided to the root element ([Paper](/api/pape
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
 | <span class="prop-name">root</span> | <span class="prop-name">.MuiAccordion-root</span> | Styles applied to the root element.
-| <span class="prop-name">rounded</span> | <span class="prop-name">.MuiAccordion-rounded</span> | Styles applied to the root element if `square={false}`.
+| <span class="prop-name">rounded</span> | <span class="prop-name">.MuiAccordion-rounded</span> | Styles applied to the root element unless `square={true}`.
 | <span class="prop-name">expanded</span> | <span class="prop-name">.Mui-expanded</span> | Pseudo-class applied to the root element if `expanded={true}`.
 | <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
 | <span class="prop-name">region</span> | <span class="prop-name">.MuiAccordion-region</span> | Styles applied to the region element, the container of the children.

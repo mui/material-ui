@@ -183,7 +183,7 @@ ReactDOM.hydrate(<Main />, document.querySelector('#root'));
 
 - [本教程的参考实现](https://github.com/mui-org/material-ui/tree/next/examples/ssr)
 - [Gatsby](https://github.com/mui-org/material-ui/tree/next/examples/gatsby)
-- https://github.com/mui-org/material-ui/tree/master/examples/nextjs
+- [Next.js](https://github.com/mui-org/material-ui/tree/next/examples/nextjs) ([TypeScript version](https://github.com/mui-org/material-ui/tree/next/examples/nextjs-with-typescript))
 
 ## 故障排除（Troubleshooting）
 

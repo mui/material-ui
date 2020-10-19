@@ -19,7 +19,7 @@ export const styles = (theme) => ({
     },
   },
   // TODO v5: remove
-  /* Styles applied to the root element if `disableGutters={false}`. */
+  /* Styles applied to the root element unless `disableGutters={true}`. */
   gutters: {},
   /* Styles applied to the root element if `selected={true}`. */
   selected: {},

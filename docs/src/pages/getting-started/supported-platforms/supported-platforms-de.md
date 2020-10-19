@@ -4,17 +4,23 @@
 
 ## Browser
 
-Die Material-UI unterstützt die neuesten, stabilen Versionen aller gängigen Browser und Plattformen. It also supports Internet Explorer 11. You don't need to provide any JavaScript polyfill as it manages unsupported browser features internally and in isolation.
+Die Material-UI unterstützt die neuesten, stabilen Versionen aller gängigen Browser und Plattformen. You don't need to provide any JavaScript polyfill as it manages unsupported browser features internally and in isolation.
 
-| IE | Edge  | Firefox | Chrome | Safari | Googlebot |
-|:-- |:----- |:------- |:------ |:------ |:--------- |
-| 11 | >= 14 | >= 52   | >= 49  | >= 10  | ✅         |
+<!-- #stable-snapshot -->
+
+| Edge  | Firefox | Chrome | Safari |
+|:----- |:------- |:------ |:------ |
+| >= 83 | >= 68   | >= 83  | >= 13  |
+
+If you need to support IE 11, check out our [legacy bundle](/guides/minimizing-bundle-size/#legacy-bundle).
 
 Da Googlebot einen Web-Rendering-Service (WRS) zum Indizieren des Seiteninhalts verwendet, ist es entscheidend, dass Material-UI dies unterstützt. [WRS aktualisiert regelmäßig die verwendete Rendering-Engine](https://webmasters.googleblog.com/2019/05/the-new-evergreen-googlebot.html). Sie können erwarten, dass die Komponenten von Material-UI ohne größere Probleme gerendert werden.
 
 ## Server
 
-Because Material-UI supports server-side rendering, it needs to support the latest, stable releases of [Node.js](https://github.com/nodejs/node). Where possible, the [LTS versions that are in maintenance](https://github.com/nodejs/Release#lts-schedule1) are supported. The support of **node v8.x** will be stopped in Material-UI Version 5. We recommend using **node v10.x** or newer. However we still support **node v8.x**.
+<!-- #stable-snapshot -->
+
+We support [Node.js](https://github.com/nodejs/node) starting with version 10 for server-side rendering. Where possible, the [LTS versions that are in maintenance](https://github.com/nodejs/Release#lts-schedule1) are supported.
 
 ### CSS-Präfix
 

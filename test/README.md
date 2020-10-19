@@ -42,14 +42,11 @@ Deciding where to put a test is (like naming things) a hard problem:
 
 ### Unexpected calls to `console.error` or `console.warn`
 
-By default our test suite fails if any test recorded `console.error` or `console.warn` calls:
-![unexpected console.error call](./unexpected-console-error-call.png)
+By default our test suite fails if any test recorded `console.error` or `console.warn` calls that are unexpected.
 
-The failure message includes the name of the test.
-The logged error is prefixed with the test file as well as suffixed with the full test name and test file.
+The failure message includes the full test name (suite names + test name).
 This should help locating the test in case the top of the stack can't be read due to excessive error messages.
 The error includes the logged message as well as the stacktrace of that message.
-Unfortunately the stacktrace is currently duplicated due to `chai`.
 
 You can explicitly [expect no console calls](#writing-a-test-for-consoleerror-or-consolewarn) for when you're adding a regression test.
 This makes the test more readable and properly fails the test in watchmode if the test had unexpected `console` calls.

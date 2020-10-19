@@ -31,6 +31,7 @@ const theme = createMuiTheme({
 
 | Locale                  | BCP 47 language tag | Import name |
 |:----------------------- |:------------------- |:----------- |
+| Arabe (Égypte)          | ar-EG               | `arEG`      |
 | Armenian                | hy-AM               | `hyAM`      |
 | Azerbaijani             | az-AZ               | `azAZ`      |
 | Bulgarian               | bg-BG               | `bgBG`      |
@@ -43,7 +44,7 @@ const theme = createMuiTheme({
 | Finnish                 | fi-FI               | `fiFI`      |
 | French                  | fr-FR               | `frFR`      |
 | German                  | de-DE               | `deDE`      |
-| Greek                   | el-GR               | `elGR`      |
+| Grec                    | el-GR               | `elGR`      |
 | Hebrew                  | he-IL               | `heIL`      |
 | Hindi                   | hi-IN               | `hiIN`      |
 | Hungarian               | hu-HU               | `huHU`      |
@@ -62,7 +63,7 @@ const theme = createMuiTheme({
 | Spanish                 | es-ES               | `esES`      |
 | Swedish                 | sv-SE               | `svSE`      |
 | Turkish                 | tr-TR               | `trTR`      |
-| Thai                    | th-TH               | `thTH`      |
+| Thaïlandais             | th-TH               | `thTH`      |
 | Ukrainian               | uk-UA               | `ukUA`      |
 | Vietnamese              | vi-VN               | `viVN`      |
 

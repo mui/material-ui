@@ -8,12 +8,13 @@ You can find some example projects in the [GitHub repository](https://github.com
 
 - https://github.com/mui-org/material-ui/tree/master/examples/create-react-app
 - [Gatsby](https://github.com/mui-org/material-ui/tree/next/examples/gatsby)
+- [Gatsby Theme](https://github.com/mui-org/material-ui/tree/next/examples/gatsby-theme)
 - https://github.com/mui-org/material-ui/tree/master/examples/nextjs
 - [Preact](https://github.com/mui-org/material-ui/tree/next/examples/preact)
 - [CDN](https://github.com/mui-org/material-ui/tree/next/examples/cdn)
 - [Plain server-side](https://github.com/mui-org/material-ui/tree/next/examples/ssr)
-- [Use styled-components as style engine](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-styled-components)
-- И многое другое
+- [Используем styled-components в качестве движка стилей](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-styled-components)
+- [Reason React](https://github.com/mui-org/material-ui/tree/next/examples/reason)
 
 Create React App - отличный проект для изучения React. Посмотрите на [доступные альтернативы](https://github.com/facebook/create-react-app/blob/master/README.md#popular-alternatives) чтобы увидеть, какой проект лучше всего соответствует вашим потребностям.
 
@@ -21,7 +22,7 @@ Create React App - отличный проект для изучения React. 
 
 ## Более продвинутые примеры проектов
 
-If you want to start with a more complete and real-world example, you could take a look at the [premium themes & templates](https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=example-projects-store) or:
+Если вы хотите начать с более полного и реального примера вы можете посмотреть [premium themes & templates](https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=example-projects-store) или:
 
 ### Free
 

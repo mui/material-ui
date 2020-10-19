@@ -1,4 +1,3 @@
-import { AvatarGroupProps } from '../AvatarGroup';
 import { TabListProps } from '../TabList';
 import { TabPanelProps } from '../TabPanel';
 import { TimelineProps } from '../Timeline';
@@ -8,13 +7,10 @@ import { TimelineDotProps } from '../TimelineDot';
 import { TimelineItemProps } from '../TimelineItem';
 import { TimelineOppositeContentProps } from '../TimelineOppositeContent';
 import { TimelineSeparatorProps } from '../TimelineSeparator';
-import { ToggleButtonProps } from '../ToggleButton';
-import { ToggleButtonGroupProps } from '../ToggleButtonGroup';
 import { TreeItemProps } from '../TreeItem';
 import { TreeViewProps } from '../TreeView';
 
 export interface LabComponentsPropsList {
-  MuiAvatarGroup: AvatarGroupProps;
   MuiTabList: TabListProps;
   MuiTabPanel: TabPanelProps;
   MuiTimeline: TimelineProps;
@@ -24,8 +20,6 @@ export interface LabComponentsPropsList {
   MuiTimelineItem: TimelineItemProps;
   MuiTimelineOppositeContent: TimelineOppositeContentProps;
   MuiTimelineSeparator: TimelineSeparatorProps;
-  MuiToggleButton: ToggleButtonProps;
-  MuiToggleButtonGroup: ToggleButtonGroupProps;
   MuiTreeItem: TreeItemProps;
   MuiTreeView: TreeViewProps;
 }

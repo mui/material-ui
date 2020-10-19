@@ -5,12 +5,12 @@ import ImageList from './ImageList';
 
 const itemsData = [
   {
-    img: 'images/image-list/00-52-29-429_640.jpg',
+    img: '/fake.png',
     title: 'Breakfast',
     author: 'jill111',
   },
   {
-    img: 'images/image-list/burger-827309_640.jpg',
+    img: '/fake.png',
     title: 'Tasty burger',
     author: 'director90',
   },
@@ -40,7 +40,7 @@ describe('<ImageList />', () => {
 
   const children = itemsData.map((item) => (
     <span
-      key={item.img}
+      key={item.title}
       title={item.title}
       subtitle={<span>by: {item.author}</span>}
       data-testid="test-children"
@@ -117,7 +117,7 @@ describe('<ImageList />', () => {
         </ImageList>,
       );
 
-      expect(getByTestId('test-root').style).to.have.property('backgroundColor', 'red');
+      expect(getByTestId('test-root')).toHaveInlineStyle({ backgroundColor: 'red' });
     });
   });
 
@@ -200,7 +200,7 @@ describe('<ImageList />', () => {
           </ImageList>,
         );
 
-        expect(window.getComputedStyle(getByTestId('test-root'))).to.include({
+        expect(getByTestId('test-root')).toHaveComputedStyle({
           rowGap: '8px',
           columnGap: '8px',
         });
@@ -217,10 +217,9 @@ describe('<ImageList />', () => {
           </ImageList>,
         );
 
-        expect(window.getComputedStyle(getByTestId('test-root'))).to.have.property(
-          'columnGap',
-          '8px',
-        );
+        expect(getByTestId('test-root')).toHaveComputedStyle({
+          columnGap: '8px',
+        });
       });
     });
   });

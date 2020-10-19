@@ -13,7 +13,7 @@ githubLabel: 'component: Popover'
 - 该组件构建在 [`Modal`](/components/modal/) 组件之上。
 - 不同于  [`Popper`](/components/popper/) 组件，滚动（scroll）和 click away 行为是被阻止的。
 
-查看[调色板](/system/palette/)样式功能。
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## 简单的弹出框
 

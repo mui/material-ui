@@ -66,7 +66,7 @@ Any other props supplied will be provided to the root element ([InputBase](/api/
 |:-----|:-------------|:------------|
 | <span class="prop-name">root</span> | <span class="prop-name">.MuiFilledInput-root</span> | Styles applied to the root element.
 | <span class="prop-name">colorSecondary</span> | <span class="prop-name">.MuiFilledInput-colorSecondary</span> | Styles applied to the root element if color secondary.
-| <span class="prop-name">underline</span> | <span class="prop-name">.MuiFilledInput-underline</span> | Styles applied to the root element if `disableUnderline={false}`.
+| <span class="prop-name">underline</span> | <span class="prop-name">.MuiFilledInput-underline</span> | Styles applied to the root element unless `disableUnderline={true}`.
 | <span class="prop-name">focused</span> | <span class="prop-name">.Mui-focused</span> | Pseudo-class applied to the root element if the component is focused.
 | <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
 | <span class="prop-name">adornedStart</span> | <span class="prop-name">.MuiFilledInput-adornedStart</span> | Styles applied to the root element if `startAdornment` is provided.

@@ -15,7 +15,7 @@ components: NoSsr
 - 在过重的服务器负载下，您可以打开服务降级。
 - 通过仅渲染重要的内容（使用 `defer` 属性），从而来改善交互时间。
 
-查看[调色板](/system/palette/)样式功能。
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## 客户端延迟
 

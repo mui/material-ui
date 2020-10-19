@@ -4,17 +4,23 @@
 
 ## 浏览器
 
-Material-UI 支持所有主流浏览器和平台的最新稳定版本。 我们也支持 Internet Explorer 11。 您不需要提供任何 JavaScript polyfill， 鉴于它在内部管理了不支持的浏览器的功能并且将其隔离。
+Material-UI 支持所有主流浏览器和平台的最新稳定版本。 您不需要提供任何 JavaScript polyfill， 鉴于它在内部管理了不支持的浏览器的功能并且将其隔离。
 
-| IE | Edge  | Firefox | Chrome | Safari | Googlebot |
-|:-- |:----- |:------- |:------ |:------ |:--------- |
-| 11 | >= 14 | >= 52   | >= 49  | >= 10  | ✅         |
+<!-- #stable-snapshot -->
+
+| Edge  | Firefox | Chrome | Safari |
+|:----- |:------- |:------ |:------ |
+| >= 83 | >= 68   | >= 83  | >= 13  |
+
+如果你需要对 IE 11 进行兼容性支持，请查看我们的 [旧版本包](/guides/minimizing-bundle-size/#legacy-bundle)。
 
 因为 Googlebot 使用了Web rendering service - WRS （网络渲染服务）对页面进行索引，所以Material-UI能提供对它的支持非常重要。 [WRS 定期更新它使用的渲染引擎](https://webmasters.googleblog.com/2019/05/the-new-evergreen-googlebot.html)。 您可以依赖 Material-UI 组件的渲染，并不会出现重大的问题。
 
 ## 服务器
 
-因为 Material-UI 支持服务器端渲染，所以它需要支持 [Node.js](https://github.com/nodejs/node)的最新稳定版本。 我们还会尽可能的支持 [维护中的 LTS 版本](https://github.com/nodejs/Release#lts-schedule1) 。 我们建议使用 **node v10.x** 或更高版本。 然而，我们仍然支持 **node v8.x**。 对 **node v8.x** 的支持会在 Material-UI 第5版 中停止。
+<!-- #stable-snapshot -->
+
+我们从 [Node.js](https://github.com/nodejs/node) 第十个版本开始支持服务端渲染。 我们还会尽可能的支持 [维护中的 LTS 版本](https://github.com/nodejs/Release#lts-schedule1) 。
 
 ### CSS 前缀
 

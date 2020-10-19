@@ -27,10 +27,11 @@ describe('<SpeedDialAction />', () => {
   const mount = createMount({ strict: true });
   const render = createClientRender();
   let classes;
-  const fabClasses = getClasses(<Fab>Fab</Fab>);
+  let fabClasses;
 
   before(() => {
     classes = getClasses(<SpeedDialAction icon={<Icon>add</Icon>} tooltipTitle="placeholder" />);
+    fabClasses = getClasses(<Fab>Fab</Fab>);
   });
 
   describeConformance(

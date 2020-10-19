@@ -18,12 +18,19 @@ githubLabel: 'component: Skeleton'
 
 ```jsx
 {
-  item ? {
-  item ? {item ? (
-  <img style={{ width: 210, height: 118 }} alt={item.title} src={item.src} />
-) : (
-  <Skeleton variant="rect" width={210} height={118} />
-)}
+  item ? (
+    <img
+      style={{
+        width: 210,
+        height: 118,
+      }}
+      alt={item.title}
+      src={item.src}
+    />
+  ) : (
+    <Skeleton variant="rectangular" width={210} height={118} />
+  );
+}
 ```
 
 ## 变体

@@ -4,17 +4,23 @@
 
 ## Navegador
 
-O Material-UI suporta as versões mais recentes e estáveis de todos os principais navegadores e plataformas. Suporta também o Internet Explorer 11. Você não precisa fornecer nenhum poyfill JavaScript, pois ele gerencia recursos não suportados do navegador internamente e isoladamente.
+O Material-UI suporta as versões mais recentes e estáveis de todos os principais navegadores e plataformas. Você não precisa fornecer nenhum poyfill JavaScript, pois ele gerencia recursos não suportados do navegador internamente e isoladamente.
 
-| IE | Edge  | Firefox | Chrome | Safari | Googlebot |
-|:-- |:----- |:------- |:------ |:------ |:--------- |
-| 11 | >= 14 | >= 52   | >= 49  | >= 10  | ✅         |
+<!-- #stable-snapshot -->
+
+| Edge  | Firefox | Chrome | Safari |
+|:----- |:------- |:------ |:------ |
+| >= 83 | >= 68   | >= 83  | >= 13  |
+
+If you need to support IE 11, check out our [legacy bundle](/guides/minimizing-bundle-size/#legacy-bundle).
 
 Como o Googlebot usa um serviço de renderização da Web (WRS) para indexar o conteúdo da página, é essencial que o Material-UI o suporte. [O WRS atualiza regularmente o mecanismo de renderização usado por ele](https://webmasters.googleblog.com/2019/05/the-new-evergreen-googlebot.html). Você pode esperar que os componentes do Material-UI sejam renderizados sem grandes problemas.
 
 ## Servidor
 
-Por suportar renderização no lado do servidor, o Material-UI precisa oferecer suporte as versões mais recentes e estáveis do Node.js. Sempre que possível, as versões [ LTS que estão em manutenção ](https://github.com/nodejs/Release#lts-schedule1) são suportados. Recomendamos usar o **node v10.x** ou mais recente. No entanto, ainda suportamos **node v8.x**. O suporte do **node v8.x** será interrompido na Versão 5 do Material-UI.
+<!-- #stable-snapshot -->
+
+We support [Node.js](https://github.com/nodejs/node) starting with version 10 for server-side rendering. Sempre que possível, as versões [ LTS que estão em manutenção ](https://github.com/nodejs/Release#lts-schedule1) são suportados.
 
 ### Prefixos CSS
 

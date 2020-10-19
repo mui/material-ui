@@ -46,7 +46,7 @@ describe('<Chip />', () => {
       const chip = container.querySelector(`.${classes.root}`);
       const label = container.querySelector(`.${classes.label}`);
 
-      expect(label).to.have.property('tagName', 'SPAN');
+      expect(label).to.have.tagName('span');
       expect(label).to.have.text('My text Chip');
 
       expect(chip).to.have.class(classes.root);

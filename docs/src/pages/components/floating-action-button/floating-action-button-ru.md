@@ -1,5 +1,5 @@
 ---
-title: React Fab component
+title: Компонент React Fab
 components: Fab
 githubLabel: 'component: Fab'
 materialDesign: https://material.io/components/buttons-floating-action-button

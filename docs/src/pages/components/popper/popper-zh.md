@@ -18,7 +18,7 @@ githubLabel: 'component: Popper'
 - Clicking away 不会隐藏`弹出提示`组件。 若您需要这个功能，请使用 [`ClickAwayListener`](/components/click-away-listener/) - 可以参照 [menu 文档章节](/components/menus/#menulist-composition) 中的一个样例。
 - 创建一个新 ` Popper.js` 实例时，` anchorEl ` 作为一个参考对象在其中传递。
 
-查看[调色板](/system/palette/)样式功能。
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## 基础的弹出提示
 
@@ -50,7 +50,7 @@ githubLabel: 'component: Popper'
 
 ## 占位的参考对象
 
-`anchorEl` 属性可以是对占位 DOM 元素的引用。 您只需要创建一个形状类似于 [`ReferenceObject`](https://github.com/FezVrasta/popper.js/blob/0642ce0ddeffe3c7c033a412d4d60ce7ec8193c3/packages/popper/index.d.ts#L118-L123) 的对象。
+`anchorEl` 属性可以是对占位 DOM 元素的引用。 你需要创建一个类似于 [`ReferenceObject`](https://github.com/FezVrasta/popper.js/blob/0642ce0ddeffe3c7c033a412d4d60ce7ec8193c3/packages/popper/index.d.ts#L118-L123) 的对象。
 
 高亮文本来显示弹出提示组件：
 
