@@ -295,6 +295,7 @@ module.exports = function(webpackEnv) {
         {
           test: /\.(js|mjs|jsx)$/,
           enforce: 'pre',
+          exclude: /node_modules/,
           use: [
             {
               options: {

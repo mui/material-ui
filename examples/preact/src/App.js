@@ -23,7 +23,7 @@ export default function App() {
     <Container maxWidth="sm">
       <Box my={4}>
         <Typography variant="h4" component="h1" gutterBottom>
-          Preact v4-beta example
+          Preact v5-alpha example
         </Typography>
         <ProTip />
         <Copyright />
