@@ -1,10 +1,12 @@
 const fse = require('fs-extra');
+const globCallback = require('glob');
 const lodash = require('lodash');
 const path = require('path');
 const { promisify } = require('util');
 const webpackCallbackBased = require('webpack');
 const createWebpackConfig = require('./webpack.config');
 
+const glob = promisify(globCallback);
 const webpack = promisify(webpackCallbackBased);
 
 const workspaceRoot = path.join(__dirname, '../../');
@@ -28,30 +30,138 @@ async function getRollupSize(snapshotPath) {
   ]);
 }
 
+async function getWebpackEntries() {
+  const corePackagePath = path.join(workspaceRoot, 'packages/material-ui/build');
+  const coreComponents = (await glob(path.join(corePackagePath, '[A-Z]*/index.js'))).map(
+    (componentPath) => {
+      const componentName = path.basename(path.dirname(componentPath));
+      let entryName = componentName;
+      // adjust for legacy names
+      if (componentName === 'Paper') {
+        entryName = '@material-ui/core/Paper.esm';
+      } else if (componentName === 'TextareaAutosize') {
+        entryName = '@material-ui/core/Textarea';
+      } else if (['Popper'].indexOf(componentName) !== -1) {
+        entryName = `@material-ui/core/${componentName}`;
+      }
+
+      return {
+        name: entryName,
+        path: path.relative(workspaceRoot, path.dirname(componentPath)),
+      };
+    },
+  );
+
+  const labPackagePath = path.join(workspaceRoot, 'packages/material-ui-lab/build');
+  const labComponents = (await glob(path.join(labPackagePath, '[A-Z]*/index.js'))).map(
+    (componentPath) => {
+      const componentName = path.basename(path.dirname(componentPath));
+
+      return {
+        name: componentName,
+        path: path.relative(workspaceRoot, path.dirname(componentPath)),
+      };
+    },
+  );
+
+  return [
+    {
+      name: '@material-ui/core',
+      path: path.join(path.relative(workspaceRoot, corePackagePath), 'index.js'),
+    },
+    {
+      name: '@material-ui/lab',
+      path: path.join(path.relative(workspaceRoot, labPackagePath), 'index.js'),
+    },
+    {
+      name: '@material-ui/styles',
+      path: 'packages/material-ui-styles/build/index.js',
+    },
+    {
+      name: '@material-ui/system',
+      path: 'packages/material-ui-system/build/esm/index.js',
+    },
+    ...coreComponents,
+    {
+      name: '@material-ui/core/styles/createMuiTheme',
+      path: 'packages/material-ui/build/styles/createMuiTheme.js',
+    },
+    {
+      name: 'colorManipulator',
+      path: 'packages/material-ui/build/styles/colorManipulator.js',
+    },
+    ...labComponents,
+    {
+      name: 'useAutocomplete',
+      path: 'packages/material-ui-lab/build/useAutocomplete/index.js',
+    },
+    {
+      name: '@material-ui/core/useMediaQuery',
+      path: 'packages/material-ui/build/useMediaQuery/index.js',
+    },
+    {
+      name: '@material-ui/core/useScrollTrigger',
+      path: 'packages/material-ui/build/useScrollTrigger/index.js',
+    },
+    {
+      name: '@material-ui/utils',
+      path: 'packages/material-ui-utils/build/esm/index.js',
+    },
+    // TODO: Requires webpack v5
+    // Resolution of webpack/acorn to 7.x is blocked by nextjs (https://github.com/vercel/next.js/issues/11947)
+    // {
+    //   name: '@material-ui/core.modern',
+    //   webpack: true,
+    //   path: path.join(path.relative(workspaceRoot, corePackagePath), 'modern/index.js'),
+    // },
+    {
+      name: '@material-ui/core.legacy',
+      path: path.join(path.relative(workspaceRoot, corePackagePath), 'legacy/index.js'),
+    },
+  ];
+}
+
 /**
  * creates size snapshot for every bundle that built with webpack
  */
 async function getWebpackSizes() {
   await fse.mkdirp(path.join(__dirname, 'build'));
+  const [baseConfig, entries] = await Promise.all([
+    createWebpackConfig(webpack),
+    getWebpackEntries(),
+  ]);
 
-  // webpack --config $configPath --json > $statsPath
-  // will create a 300MB big json file which sometimes requires up to 1.5GB
-  // memory. This will sometimes crash node in azure pipelines with "heap out of memory"
-  const webpackStats = await webpack(await createWebpackConfig(webpack));
-  const stats = webpackStats.toJson();
-  if (stats.errors.length > 0) {
-    throw new Error(
-      `The following errors occured during bundling with webpack: \n${stats.errors.join('\n')}`,
-    );
-  }
-
-  const assets = new Map(stats.assets.map((asset) => [asset.name, asset]));
-
-  return Object.entries(stats.assetsByChunkName).map(([chunkName, assetName]) => {
-    const parsedSize = assets.get(assetName).size;
-    const gzipSize = assets.get(`${assetName}.gz`).size;
-    return [chunkName, { parsed: parsedSize, gzip: gzipSize }];
+  const configurations = entries.map((entry) => {
+    return {
+      ...baseConfig,
+      entry: { [entry.name]: path.join(workspaceRoot, entry.path) },
+    };
   });
+
+  const webpackMultiStats = await webpack(configurations);
+
+  const sizes = [];
+  webpackMultiStats.stats.forEach((webpackStats) => {
+    // webpack --config $configPath --json > $statsPath
+    // will create a 300MB big json file which sometimes requires up to 1.5GB
+    // memory. This will sometimes crash node in azure pipelines with "heap out of memory"
+    const stats = webpackStats.toJson();
+    if (stats.errors.length > 0) {
+      throw new Error(
+        `The following errors occured during bundling with webpack: \n${stats.errors.join('\n')}`,
+      );
+    }
+
+    const assets = new Map(stats.assets.map((asset) => [asset.name, asset]));
+
+    Object.entries(stats.assetsByChunkName).forEach(([chunkName, assetName]) => {
+      const parsedSize = assets.get(assetName).size;
+      const gzipSize = assets.get(`${assetName}.gz`).size;
+      sizes.push([chunkName, { parsed: parsedSize, gzip: gzipSize }]);
+    });
+  });
+
+  return sizes;
 }
 
 // waiting for String.prototype.matchAll in node 10
