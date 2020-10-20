@@ -15,6 +15,7 @@ You should use these numbers exclusively for comparing performance between diffe
 ```
 yarn benchmark:browser
 
+
 noop (baseline):
 
 12.20ms
