@@ -63,7 +63,7 @@ async function getSizeLimitBundles() {
     {
       name: '@material-ui/system',
       webpack: true,
-      path: 'packages/material-ui-system/build/index.js',
+      path: 'packages/material-ui-system/build/esm/index.js',
     },
     ...coreComponents,
     {
@@ -95,7 +95,7 @@ async function getSizeLimitBundles() {
     {
       name: '@material-ui/utils',
       webpack: true,
-      path: 'packages/material-ui-utils/build/index.js',
+      path: 'packages/material-ui-utils/build/esm/index.js',
     },
     // TODO: Requires webpack v5
     // Resolution of webpack/acorn to 7.x is blocked by nextjs (https://github.com/vercel/next.js/issues/11947)
