@@ -29,7 +29,7 @@ const generateClassName = createGenerateClassName({
 
 export default function App() {
   return (
-    <StylesProvider generateClassName={generateClassName}>...</StylesProvider>
+    <StylesProvider generateClassName={generateClassName()}>...</StylesProvider>
   );
 }
 ```
