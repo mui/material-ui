@@ -71,8 +71,12 @@ async function createPackageFile() {
     private: false,
     ...(packageDataOther.main
       ? {
-          main: './node/index.js',
-          module: './index.js',
+          main: fse.existsSync(path.resolve(buildPath, './node/index.js'))
+            ? './node/index.js'
+            : './index.js',
+          module: fse.existsSync(path.resolve(buildPath, './esm/index.js'))
+            ? './esm/index.js'
+            : './index.js',
         }
       : {}),
     types: './index.d.ts',
