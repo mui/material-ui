@@ -9,7 +9,7 @@ materialDesign: https://material.io/components/text-fields
 
 <p class="description">用户可以在文本框内输入或编辑文字。</p>
 
-用户可以通过[文本框](https://material.io/design/components/text-fields.html)在界面中输入文本。 通常，我们会在表单域和对话框中使用它们。
+用户可以通过文本框在界面中输入文本。 通常，我们会在表单域和对话框中使用它们。
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
