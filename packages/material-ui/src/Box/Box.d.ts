@@ -43,6 +43,7 @@ type SxProps = {
 };
 
 export interface BoxProps extends ElementProps, SystemProps {
+  children?: React.ReactNode | ((props: ElementProps) => React.ReactNode);
   // styled API
   component?: React.ElementType;
   clone?: boolean;
