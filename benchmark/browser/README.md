@@ -15,117 +15,164 @@ You should use these numbers exclusively for comparing performance between diffe
 ```
 yarn benchmark:browser
 
-
 noop (baseline):
 
-12.20ms
-12.99ms
-15.31ms
-12.06ms
-12.93ms
-12.50ms
-12.07ms
-12.81ms
-12.01ms
-11.85ms
+20.10ms
+20.05ms
+19.28ms
+19.64ms
+20.96ms
+18.80ms
+18.39ms
+20.38ms
+18.85ms
+18.99ms
 -------------
-Avg: 12.67ms
-Median: 12.35ms
+Avg: 19.55ms
+Median: 19.46ms
 
 styled-components Box + @material-ui/system:
 
-148.88ms
-154.47ms
-149.66ms
-152.75ms
-174.62ms
-149.49ms
-150.06ms
-153.79ms
-153.12ms
-149.17ms
+184.17ms
+161.51ms
+168.84ms
+165.21ms
+163.43ms
+158.10ms
+158.81ms
+297.91ms
+161.25ms
+158.87ms
 -------------
-Avg: 153.60ms
-Median: 151.41ms
+Avg: 177.81ms
+Median: 162.47ms
 
 styled-components Box + styled-system:
 
-130.70ms
-129.77ms
-128.83ms
-129.73ms
-130.86ms
-133.08ms
-134.11ms
-128.06ms
-130.84ms
-132.48ms
+142.66ms
+146.55ms
+141.12ms
+141.04ms
+139.45ms
+145.63ms
+141.36ms
+134.98ms
+123.98ms
+146.09ms
 -------------
-Avg: 130.85ms
-Median: 130.77ms
+Avg: 140.29ms
+Median: 141.24ms
 
 Box emotion:
 
-131.44ms
-135.85ms
-119.47ms
-133.24ms
-128.53ms
-133.93ms
-121.94ms
-117.34ms
-128.39ms
-137.50ms
+143.21ms
+135.28ms
+122.53ms
+124.80ms
+143.69ms
+147.81ms
+138.16ms
+124.55ms
+140.32ms
+157.74ms
 -------------
-Avg: 128.76ms
-Median: 129.99ms
+Avg: 137.81ms
+Median: 139.24ms
 
 Box @material-ui/styles:
 
-137.14ms
-126.32ms
-128.90ms
-140.05ms
-135.97ms
-127.30ms
-128.47ms
-124.21ms
-138.90ms
-142.17ms
+146.16ms
+131.37ms
+139.43ms
+158.55ms
+149.54ms
+131.81ms
+134.84ms
+151.08ms
+152.30ms
+130.69ms
 -------------
-Avg: 132.94ms
-Median: 132.44ms
+Avg: 142.58ms
+Median: 142.79ms
 
 Box styled-components:
 
-139.43ms
-141.04ms
-138.50ms
-149.58ms
-151.25ms
-139.19ms
-138.18ms
-140.28ms
-151.55ms
-145.84ms
+145.59ms
+150.12ms
+179.04ms
+169.63ms
+148.21ms
+155.55ms
+182.55ms
+170.04ms
+153.14ms
+148.92ms
 -------------
-Avg: 143.48ms
-Median: 140.66ms
+Avg: 160.28ms
+Median: 154.35ms
 
 Basic styled-components box:
 
-101.34ms
-108.33ms
-107.84ms
-128.64ms
-129.10ms
-120.34ms
-114.48ms
-113.67ms
-133.23ms
-133.86ms
+141.73ms
+139.71ms
+121.01ms
+120.02ms
+121.81ms
+143.22ms
+135.67ms
+120.85ms
+121.08ms
+120.59ms
 -------------
-Avg: 119.08ms
-Median: 117.41ms
-Done in 19.83s.
+Avg: 128.57ms
+Median: 121.44ms
+
+Chakra-UI box component:
+
+147.42ms
+128.51ms
+118.74ms
+110.01ms
+133.05ms
+130.20ms
+121.57ms
+119.11ms
+108.57ms
+134.90ms
+-------------
+Avg: 125.21ms
+Median: 125.04ms
+
+Theme-UI box sx prop:
+
+165.02ms
+141.07ms
+139.19ms
+185.45ms
+166.16ms
+138.83ms
+140.56ms
+139.02ms
+179.26ms
+165.58ms
+-------------
+Avg: 156.01ms
+Median: 153.05ms
+
+Theme-UI div sx prop:
+
+131.07ms
+130.84ms
+130.99ms
+132.66ms
+132.24ms
+130.89ms
+131.11ms
+167.10ms
+154.42ms
+131.48ms
+-------------
+Avg: 137.28ms
+Median: 131.30ms
+Done in 31.83s.
 ```
