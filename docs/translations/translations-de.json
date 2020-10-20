@@ -133,7 +133,7 @@
     "/components/dialogs": "Dialog",
     "/components/dividers": "Divider",
     "/components/drawers": "Seitliches Menü (Drawer)",
-    "/components/accordion": "Akkordeon",
+    "/components/accordion": "Akkordeon (Accordion)",
     "/components/feedback": "Feedback",
     "/components/grid": "Grid",
     "/components/hidden": "Hidden",
@@ -240,7 +240,7 @@
     "/components/button-group": "Button Group",
     "/components/floating-action-button": "Floating Action Button",
     "/components/backdrop": "Backdrop",
-    "/components/alert": "Hinweis",
+    "/components/alert": "Hinweis (Alert)",
     "/components/pagination": "Paginierung"
   }
 }

@@ -61,7 +61,7 @@ export const styles = (theme) => ({
     borderBottom: `1px solid ${theme.palette.divider}`,
     backgroundClip: 'padding-box',
   },
-  /* Styles applied to the inner `component` element if `disableGutters={false}`. */
+  /* Styles applied to the inner `component` element unless `disableGutters={true}`. */
   gutters: {
     paddingLeft: 16,
     paddingRight: 16,

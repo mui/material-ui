@@ -75,9 +75,9 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 
 ## インタラクティブ
 
-ツールチップをインタラクティブにすることができます。 ツールチップをインタラクティブにすることができます。 `leaveDelay` が期限切れになる前に、ユーザーがツールチップにカーソルを合わせても閉じません。
+Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus)). ツールチップをインタラクティブにすることができます。 `leaveDelay` が期限切れになる前に、ユーザーがツールチップにカーソルを合わせても閉じません。 You can disable this behavior (thus failing the success criterion which is required to reach level AA) by passing `disableInteractive`.
 
-{{"demo": "pages/components/tooltips/InteractiveTooltips.js"}}
+{{"demo": "pages/components/tooltips/NonInteractiveTooltips.js"}}
 
 ## 無効な要素
 
@@ -104,6 +104,18 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 別のトランジションを使用します。
 
 {{"demo": "pages/components/tooltips/TransitionsTooltips.js"}}
+
+## Follow cursor
+
+You can enable the tooltip to follow the cursor by setting `followCursor={true}`.
+
+{{"demo": "pages/components/tooltips/FollowCursorTooltips.js"}}
+
+## 偽の参照オブジェクト
+
+In the event you need to implement a custom placement, you can use the `anchorEl` prop: The value of the `anchorEl` prop can be a reference to a fake DOM element. You need to create an object shaped like the [`ReferenceObject`](https://github.com/FezVrasta/popper.js/blob/0642ce0ddeffe3c7c033a412d4d60ce7ec8193c3/packages/popper/index.d.ts#L118-L123).
+
+{{"demo": "pages/components/tooltips/AnchorElTooltips.js"}}
 
 ## 表示と非表示
 

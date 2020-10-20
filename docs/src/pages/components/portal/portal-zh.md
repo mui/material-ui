@@ -12,7 +12,7 @@ githubLabel: 'component: Portal'
 
 传送门组件的子节点将被添加到指定的 `container` 中。 [`Modal`](/components/modal/) 和 [`Popper`](/components/popper/) 组件内部都是用了该组件。
 
-查看[调色板](/system/palette/)样式功能。
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## 示例
 

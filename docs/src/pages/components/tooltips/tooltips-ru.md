@@ -1,5 +1,5 @@
 ---
-title: React Tooltip component
+title: Компонент React Tooltip
 components: Tooltip
 githubLabel: 'component: Tooltip'
 materialDesign: https://material.io/components/tooltips
@@ -75,9 +75,9 @@ The `Tooltip` wraps long text by default to make it readable.
 
 ## Интерактивность
 
-A tooltip can be interactive. It won't close when the user hovers over the tooltip before the `leaveDelay` is expired.
+Подсказки интерактивны по умолчанию (чтобы пройти тест [WCAG 2.1 success criterion 1.4.13](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus)). Перемещение указателя над подсказкой до истечения срока `leaveDelay` не приведет к её закрытию. Вы можете отключить это поведение (и таким образом не пройти тест, необходимый для достижения уровня АА), передав `disableInteractive`.
 
-{{"demo": "pages/components/tooltips/InteractiveTooltips.js"}}
+{{"demo": "pages/components/tooltips/NonInteractiveTooltips.js"}}
 
 ## Неактивные элементы
 
@@ -105,9 +105,21 @@ By default disabled elements like `<button>` do not trigger user interactions so
 
 {{"demo": "pages/components/tooltips/TransitionsTooltips.js"}}
 
-## Showing and hiding
+## Следовать за курсором
 
-Всплывающая подсказка обычно отображается сразу же, как пользователь наводит курсор на элемент, и сразу же скрывается, когда курсор уходит с элемента. Задержку в отображении или скрытии всплывающей подсказки можно добавить через свойства `enterDelay` и `leaveDelay`, как показано выше в демонстрационной версии «Контролируемые подсказки».
+Вы можете разрешить подсказке следовать за курсором установкой `followCursor={true}`.
+
+{{"demo": "pages/components/tooltips/FollowCursorTooltips.js"}}
+
+## Имитированный якорь
+
+Если вам нужно указать собственное положение подсказки, вы можете воспользоваться параметром `anchorEl`. Значение `anchorEl` может быть ссылкой на имитированный DOM-элемент. Вам нужно создать объект с подобной [`ReferenceObject`](https://github.com/FezVrasta/popper.js/blob/0642ce0ddeffe3c7c033a412d4d60ce7ec8193c3/packages/popper/index.d.ts#L118-L123) структурой.
+
+{{"demo": "pages/components/tooltips/AnchorElTooltips.js"}}
+
+## Отображение и скрытие
+
+Всплывающая подсказка обычно отображается сразу же, как пользователь наводит курсор на элемент, и скрывается, как только курсор уходит с элемента. Задержку в отображении или скрытии всплывающей подсказки можно добавить через свойства `enterDelay` и `leaveDelay`, как показано выше в демонстрационной версии «Контролируемые подсказки».
 
 On mobile, the tooltip is displayed when the user longpresses the element and hides after a delay of 1500ms. You can disable this feature with the `disableTouchListener` property.
 
@@ -117,12 +129,12 @@ On mobile, the tooltip is displayed when the user longpresses the element and hi
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#tooltip)
 
-By default, the tooltip only labels its child element. This is notably different from `title` which can either label **or** describe its child depending on whether the child already has a label. For example, in:
+По умолчанию подсказка лишь маркирует дочерний элемент. Это существенно отличает её от `title`, который может либо маркировать **либо** описать свой дочерний элемент в зависимости от того, есть ли у него уже метка. Например, здесь:
 
 ```html
 <button title="some more information">A button</button>
 ```
 
-the `title` acts as an accessible description. If you want the tooltip to act as an accessible description you can pass `describeChild`. Note that you shouldn't use `describeChild` if the tooltip provides the only visual label. Otherwise, the child would have no accessible name and the tooltip would violate [success criterion 2.5.3 in WCAG 2.1](https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html).
+параметр `title` действует как доступное описание. Если вы хотите, чтобы сама подсказка служила доступным описанием, вы можете передать `describeChild`. Обратите внимание, вам не следует использовать `describeChild` если подсказка предоставляет только визуальную метку. В противном случае дочерний элемент не будет иметь доступного имени, и подсказка нарушит [критерий успеха 2.5.3 в WCAG 2.1](https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html).
 
 {{"demo": "pages/components/tooltips/AccessibilityTooltips.js"}}

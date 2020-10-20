@@ -8,6 +8,8 @@ import formatUtil from 'format-util';
 
 chai.use(chaiDom);
 
+const isKarma = Boolean(process.env.KARMA);
+
 // https://stackoverflow.com/a/46755166/3406963
 declare global {
   namespace Chai {
@@ -109,14 +111,10 @@ function isInJSDOM() {
   return /jsdom/.test(window.navigator.userAgent);
 }
 
-function isInKarma() {
-  return !isInJSDOM();
-}
-
 // chai#utils.elToString that looks like stringified elements in testing-library
 function elementToString(element: Element | null | undefined) {
   if (typeof element?.nodeType === 'number') {
-    return prettyDOM(element, undefined, { highlight: !isInKarma(), maxDepth: 1 });
+    return prettyDOM(element, undefined, { highlight: !isKarma, maxDepth: 1 });
   }
   return String(element);
 }
@@ -176,7 +174,7 @@ chai.use((chaiAPI, utils) => {
     this.assert(
       element === document.activeElement,
       // karma does not show the diff like mocha does
-      `expected element to have focus${isInKarma() ? '\nexpected #{exp}\nactual: #{act}' : ''}`,
+      `expected element to have focus${isKarma ? '\nexpected #{exp}\nactual: #{act}' : ''}`,
       `expected element to NOT have focus \n${elementToString(element)}`,
       elementToString(element),
       elementToString(document.activeElement),
@@ -332,7 +330,7 @@ chai.use((chaiAPI, utils) => {
       'Styles in JSDOM e.g. from `test:unit` are often misleading since JSDOM does not implement the Cascade nor actual CSS property value computation. ' +
       'If results differ between real browsers and JSDOM, skip the test in JSDOM e.g. `if (/jsdom/.test(window.navigator.userAgent)) this.skip();`';
 
-    if (isInKarma()) {
+    if (isKarma) {
       // `#{exp}` and `#{act}` placeholders escape the newlines
       const expected = JSON.stringify(expectedStyle, null, 2);
       const actual = JSON.stringify(actualStyle, null, 2);

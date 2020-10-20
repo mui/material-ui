@@ -48,6 +48,15 @@ steps:
     displayName: 'install dependencies'
 
   - script: |
+      yarn danger ci
+    displayName: 'prepare danger on PRs'
+    condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
+    env:
+      AZURE_BUILD_ID: $(Build.BuildId)
+      DANGER_COMMAND: 'prepareBundleSizeReport'
+      DANGER_GITHUB_API_TOKEN: $(GITHUB_API_TOKEN)
+
+  - script: |
       yarn lerna run --ignore @material-ui/icons --parallel --scope "@material-ui/*" build
     displayName: 'build @material-ui packages'
 
@@ -135,4 +144,5 @@ steps:
     condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
     env:
       AZURE_BUILD_ID: $(Build.BuildId)
+      DANGER_COMMAND: 'reportBundleSize'
       DANGER_GITHUB_API_TOKEN: $(GITHUB_API_TOKEN)

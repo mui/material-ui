@@ -69,8 +69,12 @@ async function createPackageFile() {
   const newPackageData = {
     ...packageDataOther,
     private: false,
-    main: './node/index.js',
-    module: './index.js',
+    main: fse.existsSync(path.resolve(buildPath, './node/index.js'))
+      ? './node/index.js'
+      : './index.js',
+    module: fse.existsSync(path.resolve(buildPath, './esm/index.js'))
+      ? './esm/index.js'
+      : './index.js',
     typings: './index.d.ts',
   };
   const targetPath = path.resolve(buildPath, './package.json');

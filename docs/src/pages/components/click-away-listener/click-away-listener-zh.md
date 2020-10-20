@@ -11,7 +11,7 @@ githubLabel: 'component: ClickAwayListener'
 - 📦 [1.5kB 已压缩的包](/size-snapshot)。
 - ⚛️ 支持传送门组件
 
-查看[调色板](/system/palette/)样式功能。
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## 示例
 

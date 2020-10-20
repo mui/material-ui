@@ -10,7 +10,7 @@ export const styles = {
     alignItems: 'center',
     padding: 8,
   },
-  /* Styles applied to the root element if `disableSpacing={false}`. */
+  /* Styles applied to the root element unless `disableSpacing={true}`. */
   spacing: {
     '& > :not(:first-child)': {
       marginLeft: 8,

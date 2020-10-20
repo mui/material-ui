@@ -18,7 +18,7 @@ It's important to understand that this package exposes pure (side-effect free) s
 
 ### Demo
 
-In the rest of this *Getting Started* section we are using **styled-components** as the reference example (to emphasize the universality of this package). Alternatively, you can [use JSS](#interoperability). The demos are also based on the **default** Material-UI [theme object](/customization/default-theme/).
+In the rest of this *Getting Started* section we are using **styled-components** as the reference example (to emphasize the universality of this package). Alternatively, you can [emotion](#interoperability) or any other CSS-in-JS styling solution. The demos are also based on the **default** Material-UI [theme object](/customization/default-theme/).
 
 {{"demo": "pages/system/basics/Demo.js", "defaultCodeOpen": true}}
 
@@ -107,7 +107,7 @@ To make the Box component more useful, we have been building a collection of sty
 - [spacing](/system/spacing/#api)
 - [typography](/system/typography/#api)
 
-既に`@material-ui/core`を使用している場合は、[ボックスコンポーネント](/components/box/)を使用できます(内部でのJSSの使用)。
+If you are already using `@material-ui/core`, you can use the [Box component](/components/box/) (using emotion internally by default):
 
 ```jsx
 import Box from '@material-ui/core/Box';
@@ -115,13 +115,7 @@ import Box from '@material-ui/core/Box';
 
 ## 相互運用性
 
-`@material-ui/system`は、JSS、スタイルコンポーネント、感情を含むほとんどのCSS-in-JSライブラリで動作します。
-
-すでに`@material-ui/core`を使用している場合は、バンドルサイズを最小化するために、**JSS**ソリューションから始めることをお勧めします。
-
-### JSS
-
-{{"demo": "pages/system/basics/JSS.js", "defaultCodeOpen": true}}
+`@material-ui/system`は、JSS、スタイルコンポーネント、感情を含むほとんどのCSS-in-JSライブラリで動作します。 Here are a few examples usages.
 
 ### Styled components
 

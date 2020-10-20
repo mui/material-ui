@@ -117,7 +117,7 @@ function MyComponent() {
 
 {{"demo": "pages/components/dialogs/ScrollDialog.js"}}
 
-## 局限性
+## 设计局限
 
 参考[对话框性能部分](/components/modal/#limitations)。
 

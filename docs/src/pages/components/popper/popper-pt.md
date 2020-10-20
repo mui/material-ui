@@ -50,7 +50,7 @@ Como alternativa, você pode usar [react-spring](https://github.com/react-spring
 
 ## Objeto de referência falsificado
 
-A propriedade `anchorEl` pode ser uma referência a um elemento DOM falso. Você só precisa criar um objeto com o formato [`ReferenceObject`](https://github.com/FezVrasta/popper.js/blob/0642ce0ddeffe3c7c033a412d4d60ce7ec8193c3/packages/popper/index.d.ts#L118-L123).
+A propriedade `anchorEl` pode ser uma referência a um elemento DOM falso. You need to create an object shaped like the [`ReferenceObject`](https://github.com/FezVrasta/popper.js/blob/0642ce0ddeffe3c7c033a412d4d60ce7ec8193c3/packages/popper/index.d.ts#L118-L123).
 
 Selecione parte do texto para ver o popper:
 

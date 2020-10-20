@@ -18,7 +18,7 @@
 
 ### 演示
 
-在*开始*章节的余下部分，我们会配合**styled-components** 作为演示例子(因为这个库具有普遍性)。 另外一个方案就是 [使用 JSS](#interoperability)。 另外，以下的例子都直接使用了 Material-UI 的 **默认** [主题对象](/customization/default-theme/)。
+在*开始*章节的余下部分，我们会配合**styled-components** 作为演示例子(因为这个库具有普遍性)。 Alternatively, you can [emotion](#interoperability) or any other CSS-in-JS styling solution. 另外，以下的例子都直接使用了 Material-UI 的 **默认** [主题对象](/customization/default-theme/)。
 
 {{"demo": "pages/system/basics/Demo.js", "defaultCodeOpen": true}}
 
@@ -105,7 +105,7 @@ export default function App() {
 - [spacing](/system/spacing/#api)
 - [typography](/system/typography/#api)
 
-如果你已经在使用 `@material-ui/core`，那么你可以使用 [Box 组件](/components/box/)（使用内嵌的 JSS）：
+如果你已经使用了 `@material-ui/core`，那么就可以使用 [Box 组件](/components/box/)（默认在内部使用）。
 
 ```jsx
 import Box from '@material-ui/core/Box';
@@ -113,13 +113,7 @@ import Box from '@material-ui/core/Box';
 
 ## 互操作性
 
-`@material-ui/system` 适用于大多数 CSS-in-JS 库，包括了 JSS，styled-components，还有 emotion。
-
-如果你已经在使用 `@material-ui/core`，我们推荐你使用 **JSS** 方案，这样有助于减少包大小。
-
-### JSS
-
-{{"demo": "pages/system/basics/JSS.js", "defaultCodeOpen": true}}
+`@material-ui/system` 适用于大多数 CSS-in-JS 库，包括了 JSS，styled-components，还有 emotion。 下面是几个示例用法：
 
 ### Styled components
 
@@ -318,7 +312,7 @@ const palette = compose(textColor, bgcolor);
 
 {{"demo": "pages/system/basics/CssProp.js", "defaultCodeOpen": true}}
 
-## 它是如何工作的的呢
+## 工作原理
 
 styled-system 在 [解释它是如何工作的](https://github.com/jxnblk/styled-system/blob/master/docs/how-it-works.md#how-it-works) 方面做得很好 。 它可以协助为这种 “style function” 概念建立一个心理模型。
 

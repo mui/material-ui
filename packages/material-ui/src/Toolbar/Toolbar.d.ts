@@ -17,7 +17,7 @@ export interface ToolbarTypeMap<P = {}, D extends React.ElementType = 'div'> {
     classes?: {
       /** Styles applied to the root element. */
       root?: string;
-      /** Styles applied to the root element if `disableGutters={false}`. */
+      /** Styles applied to the root element unless `disableGutters={true}`. */
       gutters?: string;
       /** Styles applied to the root element if `variant="regular"`. */
       regular?: string;

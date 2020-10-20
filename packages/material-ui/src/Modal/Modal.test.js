@@ -91,7 +91,7 @@ describe('<Modal />', () => {
         </Modal>,
       );
 
-      expect(getByTestId('Portal')).to.have.property('tagName', 'DIV');
+      expect(getByTestId('Portal')).to.have.tagName('div');
     });
 
     it('makes the child focusable without adding a role', () => {
@@ -102,7 +102,7 @@ describe('<Modal />', () => {
       );
 
       expect(getByTestId('child')).not.to.have.attribute('role');
-      expect(getByTestId('child')).to.have.property('tabIndex', -1);
+      expect(getByTestId('child')).to.have.attribute('tabIndex', '-1');
     });
   });
 

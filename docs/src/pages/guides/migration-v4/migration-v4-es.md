@@ -40,6 +40,23 @@ yarn add @material-ui/core@next
 
 ## Handling breaking changes
 
+### Supported browsers and node versions
+
+The targets of the default bundle have changed. The exact versions will be pinned on release from the browserslist query `"> 0.5%, last 2 versions, Firefox ESR, not dead, not IE 11, maintained node versions"`.
+
+The default bundle now supports:
+
+<!-- #stable-snapshot -->
+
+- Node 10 (up from 8)
+- Chrome 83 (up from 49)
+- Edge 83 (up from 14)
+- Firefox 68 (up from 52)
+- Safari 13 (up from 10)
+- and more (see [.browserslistrc (`stable` entry)](https://github.com/mui-org/material-ui/blob/HEAD/.browserslistrc#L11))
+
+It no longer supports IE 11. If you need to support IE 11, check out our [legacy bundle](/guides/minimizing-bundle-size/#legacy-bundle).
+
 ### non-ref-forwarding class components
 
 Support for non-ref-forwarding class components in the `component` prop or as an immediate `children` has been dropped. If you were using `unstable_createStrictModeTheme` or didn't see any warnings related to `findDOMNode` in `React.StrictMode` then you don't need to do anything. Otherwise check out the ["Caveat with refs" section in our composition guide](/guides/composition/#caveat-with-refs) to find out how to migrate. This change affects almost all components where you're using the `component` prop or passing `children` to components that require `children` to be elements (e.g. `<MenuList><CustomMenuItem /></MenuList>`)
@@ -76,9 +93,9 @@ Para una transición más suave, el ayudante `adaptV4Theme` te permite actualiza
 -import { createMuiTheme } from '@material-ui/core/styles';
 +import { createMuiTheme, adaptV4Theme } from '@material-ui/core/styles';
 
--const theme = createMuitheme({
-+const theme = createMuitheme(adaptV4Theme({
-  // tema v4
+-const theme = createMuiTheme({
++const theme = createMuiTheme(adaptV4Theme({
+  // v4 theme
 -});
 +}));
 ```
@@ -116,20 +133,20 @@ El adaptador soporta los siguientes cambios.
 - La clave `theme.palette.text.hint` no fue usada en componentes de Material-UI y ha sido eliminada.
 
 ```diff
-import { createMuiTheme } from '@material-ui/core/styles'
+import { createMuiTheme } from '@material-ui/core/styles';
 
--const theme = createMuitheme(),
-+const theme = createMuitheme({
+-const theme = createMuiTheme(),
++const theme = createMuiTheme({
 +  palette: { text: { hint: 'rgba(0, 0, 0, 0.38)' } },
 +});
 ```
 
 ```diff
-import { createMuiTheme } from '@material-ui/core/styles'
+import { createMuiTheme } from '@material-ui/core/styles';
 
--const theme = createMuitheme({palette: { type: 'dark' }}),
-+const theme = createMuitheme({
-+  palette: { type: 'dark', text: { hint: 'rgba(0, 0, 0, 0. 8)' } },
+-const theme = createMuiTheme({palette: { type: 'dark' }}),
++const theme = createMuiTheme({
++  palette: { type: 'dark', text: { hint: 'rgba(0, 0, 0, 0.38)' } },
 +});
 ```
 
@@ -140,8 +157,8 @@ import { createMuiTheme } from '@material-ui/core/styles'
 ```diff
 import { createMuiTheme } from '@material-ui/core/styles';
 
--const theme = createMuitheme({palette: { type: 'dark' }}),
-+const theme = createMuitheme({palette: { mode: 'dark' }}),
+-const theme = createMuiTheme({palette: { type: 'dark' }}),
++const theme = createMuiTheme({palette: { mode: 'dark' }}),
 ```
 
 1. `props`
@@ -149,7 +166,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 ```diff
 import { createMuiTheme } from '@material-ui/core/styles';
 
-const theme = createMuitheme({
+const theme = createMuiTheme({
 -  props: {
 -    MuiButton: {
 -      disableRipple: true,
@@ -170,7 +187,7 @@ const theme = createMuitheme({
 ```diff
 import { createMuiTheme } from '@material-ui/core/styles';
 
-const theme = createMuitheme({
+const theme = createMuiTheme({
 -  overrides: {
 -    MuiButton: {
 -      root: { padding: 0 },
@@ -186,6 +203,20 @@ const theme = createMuitheme({
 });
 ```
 
+### Estilos
+
+- Renamed `fade` to `alpha` to better describe its functionality. The previous name was leading to confusion when the input color already had an alpha value. The helper **overrides** the alpha value of the color.
+
+```diff
+- import { fade } from '@material-ui/core/styles';
++ import { alpha } from '@material-ui/core/styles';
+
+const classes = makeStyles(theme => ({
+-  backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
++  backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+}));
+```
+
 ### Alerta
 
 - Mueve el componente del laboratorio al core. El componente ahora es estable.
@@ -197,8 +228,7 @@ const theme = createMuitheme({
   +import AlertTitle from '@material-ui/core/AlertTitle';
   ```
 
-
-  ### Autocompletado
+### Autocompletado
 
 - Mueve el componente del laboratorio al core. El componente ahora es estable.
 
@@ -389,7 +419,8 @@ const theme = createMuitheme({
   />
   ```
 
-- Remove `display: flex` from AccordionDetails as its too opinionated.
+- Remove `display: flex` from AccordionDetails as its too opinionated. Most developers expect a display block.
+- Remove `IconButtonProps` prop from AccordionSummary. The component renders a `<div>` element instead of an IconButton. The prop is no longer necessary.
 
 ### Fab
 
@@ -683,6 +714,16 @@ const theme = createMuitheme({
   + getItemAriaLabel={…}
   ```
 
+- Rename `onChangeRowsPerPage` to `onRowsPerPageChange` and `onChangePage` to `onPageChange` due to API consistency.
+
+  ```diff
+  <TablePagination
+  - onChangeRowsPerPage={()=>{}}
+  - onChangePage={()=>{}}
+  + onRowsPerPageChange={()=>{}}
+  + onPageChange={()=>{}}
+  ```
+
 ### Pestañas
 
 - TypeScript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
@@ -754,6 +795,21 @@ const theme = createMuitheme({
   -import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
   +import ToggleButton from '@material-ui/core/ToggleButton';
   +import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
+  ```
+
+### Tooltip
+
+- Tooltips are now interactive by default.
+
+  The previous default behavior failed [success criterion 1.4.3 ("hoverable") in WCAG 2.1](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus). To reflect the new default value, the prop was renamed to `disableInteractive`. If you want to restore the old behavior (thus not reaching level AA), you can apply the following diff:
+
+  ```diff
+  -<Tooltip>
+  +<Tooltip disableInteractive>
+
+  # Interactive tooltips no longer need the `interactive` prop.
+  -<Tooltip interactive>
+  +<Tooltip>
   ```
 
 ### Tipografía

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import prism from 'docs/src/modules/utils/prism';
 import MarkdownElement from './MarkdownElement';
 

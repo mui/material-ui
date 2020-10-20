@@ -10,7 +10,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#accordion'
 
 <p class="description">扩展面板包含了流程的创建和元素的轻量编辑。</p>
 
-[扩展面板](https://material.io/archive/guidelines/components/accordion.html)是一个轻量级容器，既可以单独使用，也可以和卡片这样更大的平面相结合。
+扩展面板是一个轻量级容器，既可以单独使用，也可以和卡片这样更大的平面相结合。
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -31,12 +31,6 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#accordion'
 以下是自定义组件的一个示例。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
 
 {{"demo": "pages/components/accordion/CustomizedAccordions.js"}}
-
-## 其他操作
-
-当你把 `Checkbox` 或者一个按钮这样的操作事件放进 `AccordionSummary`，当在打开和收缩控制面板时使用这个操作，你则需要阻止 focus 和 click 事件的传播（propagation）。 您还应该为该操作提供一个 `aria-label` 标签，否则嵌套操作的标签将包含在控制扩展面板的父按钮的标签中。
-
-{{"demo": "pages/components/accordion/ActionsInAccordionSummary.js", "bg": true}}
 
 ## 性能
 

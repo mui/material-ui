@@ -24,9 +24,9 @@ describe('<AvatarGroup />', () => {
   it('should display all the avatars', () => {
     const { container } = render(
       <AvatarGroup max={3}>
-        <Avatar src="image-url" />
-        <Avatar src="image-url" />
-        <Avatar src="image-url" />
+        <Avatar src="/fake.png" />
+        <Avatar src="/fake.png" />
+        <Avatar src="/fake.png" />
       </AvatarGroup>,
     );
     expect(container.querySelectorAll('.MuiAvatar-root').length).to.equal(3);
@@ -37,10 +37,10 @@ describe('<AvatarGroup />', () => {
   it('should display 2 avatars and "+2"', () => {
     const { container } = render(
       <AvatarGroup max={3}>
-        <Avatar src="image-url" />
-        <Avatar src="image-url" />
-        <Avatar src="image-url" />
-        <Avatar src="image-url" />
+        <Avatar src="/fake.png" />
+        <Avatar src="/fake.png" />
+        <Avatar src="/fake.png" />
+        <Avatar src="/fake.png" />
       </AvatarGroup>,
     );
     expect(container.querySelectorAll('.MuiAvatar-root').length).to.equal(3);
@@ -51,7 +51,7 @@ describe('<AvatarGroup />', () => {
   it('should display all avatars with default (circular) variant', () => {
     const { container } = render(
       <AvatarGroup>
-        <Avatar src="image-url" />
+        <Avatar src="/fake.png" />
       </AvatarGroup>,
     );
     const avatarGroup = container.firstChild;
@@ -67,7 +67,7 @@ describe('<AvatarGroup />', () => {
   it('should display all avatars with the specified variant', () => {
     const { container } = render(
       <AvatarGroup variant="square">
-        <Avatar src="image-url" />
+        <Avatar src="/fake.png" />
       </AvatarGroup>,
     );
     const avatarGroup = container.firstChild;
@@ -83,7 +83,7 @@ describe('<AvatarGroup />', () => {
   it("should respect child's avatar variant prop if specified", () => {
     const { container } = render(
       <AvatarGroup variant="square">
-        <Avatar src="image-url" variant="rounded" />
+        <Avatar src="/fake.png" variant="rounded" />
       </AvatarGroup>,
     );
     const avatarGroup = container.firstChild;

@@ -147,17 +147,17 @@ import { Link } from 'react-router-dom';
 
 > Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
 
-请注意，在使用 `lazy` 和 `memo` 组件时，如果被封装的组件无法承载一个 ref，您仍然有可能收到这个警告。
-
-在某些情况下，我们发出了一个额外警告来帮助调试，类似于：
+请注意，如果 `lazy` 和 `memo` 组件的包装组件包装组件不能容纳 ref，那么仍然会收到此警告。 在某些情况下，我们发出了一个额外警告来帮助调试，类似于：
 
 > Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref.
 
 这只包含了两个最常见的用例。 欲了解更多信息，请查阅[在 React 官方文档中的此章节](https://reactjs.org/docs/forwarding-refs.html)。
 
 ```diff
--const MyButton = props => <div role="button" {...props} />;
-+const MyButton = React.forwardRef((props, ref) => <div role="button" {...props} ref={ref} />);
+-const MyButton = () => <div role="button" />;
++const MyButton = React.forwardRef((props, ref) =>
++  <div role="button" {...props} ref={ref} />);
+
 <Button component={MyButton} />;
 ```
 
@@ -167,7 +167,7 @@ import { Link } from 'react-router-dom';
 <Tooltip title="Hello, again."><SomeContent /></Tooltip>;
 ```
 
-要确定您使用的Material-UI组件是否具有此需求，请查阅该组件的props API文档。 如果您需要转递 refs，描述会关联到此章节。
+要确定你使用的 Material-UI 组件是否具有此要求，请查阅该组件的 props API 文档。 如果您需要转递 refs，描述会关联到此章节。
 
 ### 使用 StrictMode 的注意事项
 

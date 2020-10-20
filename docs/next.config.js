@@ -40,6 +40,7 @@ module.exports = {
           LIB_VERSION: JSON.stringify(pkg.version),
           PULL_REQUEST: JSON.stringify(process.env.PULL_REQUEST === 'true'),
           REACT_MODE: JSON.stringify(reactMode),
+          FEEDBACK_URL: JSON.stringify(process.env.FEEDBACK_URL),
         },
       }),
     ]);

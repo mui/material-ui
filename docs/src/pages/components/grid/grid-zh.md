@@ -7,38 +7,38 @@ materialDesign: https://material.io/design/layout/understanding-layout.html
 
 # Grid 栅格
 
-<p class="description">Material Design 响应式布局的栅格可适应屏幕大小和方向，确保布局之间的一致性。</p>
+<p class="description">Material Design 响应式布局的栅格可适应屏幕大小和方向，确保布局在不同尺寸之间的一致性。</p>
 
 [Grid 栅格组件](https://material.io/design/layout/responsive-layout-grid.html)能确保不同布局间的视觉层面的舒适感，同时在众多不同设计中保持灵活性。 Material Design 的响应式 UI 是基于12列的栅格系统。
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-> ⚠️ `网格` 组件不要与承载大量数据的表格进行混淆; 这个组件更倾向于布局使用。 如果需使用承载大量数据的表格，请看这里[的 `数据表格` 组件](/components/data-grid/)。
+> ⚠️ `栅格` 组件不要与承载大量数据的表格（data grid）进行混淆；这个组件更倾向于布局使用。 如果需使用承载大量数据的表格，请看这里的 [ `数据表格` 组件](/components/data-grid/)。
 
-## 它是如何工作的的呢
+## 工作原理
 
-栅格系统使用 `Grid` “盒子”组件实现：
+栅格系统是通过 `Grid` 组件实现的：
 
-- 为了达到高度的灵活性，盒子组件运用了用 [CSS 的 Flexible Box 模块](https://www.w3.org/TR/css-flexbox-1/) 。
+- 为了高度的灵活性，组件使用了 [CSS 的 Flexible Box 模块](https://www.w3.org/TR/css-flexbox-1/) 。
 - 它有两种类型的布局： *containers* ， *items*。
-- 而项目宽度以百分比设置，因此相对于其父元素，它们总是流动的和变换大小的。
-- 子元素则自带 padding 来和其他元素间隔。
-- 你可以找到五个网格断点：xs，sm，md，lg 和 xl。
+- 块（Item）的宽度以百分比设置，因此对于其父元素而言，它们具有流动性和尺寸可控的特点。
+- 块（items）使用内边距来保持和其他块（items）的间距。
+- 其中五个断点可供使用：xs，sm，md，lg 和 xl。
 - 你可以为每个断点提供整数值，表示当视口宽度满足 [断点约束](/customization/breakpoints/#default-breakpoints) 时，12 个可用列中有多少列被组件占用。
 
 若你对 **flexbox 不太熟悉**，我们建议你阅读 [CSS-Tricks flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) 手册。
 
-## Spacing（间距）
+## Spacing 间距
 
-响应式栅格侧重于的一致的水平间距，而不是列宽。 Material design 外边距（margins）和列（col）都遵循 **8px** 的方块形基线栅格。 你可以将 `spacing` 的属性值设置为一个在 0 到 10 之间的整数 默认情况下，两个网格项之间的间距遵循这样的线性函数： `output(spacing) = spacing * 8px`，例如 `spacing={2}` 会创建一个 16px 的宽间距。
+响应式栅格布局追求块与块之间统一的间距，而非块本身的宽度。 Material design 外边距（margins）和列（col）都遵循 **8px** 的方块形基线栅格。 你可以将 `spacing` 的属性值设置为一个在 0 到 10 之间的整数 "默认情况下，块之间的间距由该线性函数决定： `output(spacing) = spacing * 8px`，例如 `spacing={2}` 会创建一个 16px 宽的间距。"
 
-通过[使用主题](/customization/spacing/)，该变换函数的输出是可定制的。
+通过[使用主题](/customization/spacing/)，可自定义该函数的输出。
 
 {{"demo": "pages/components/grid/SpacingGrid.js", "bg": true}}
 
 ## Fluid grids 流式网格
 
-流式网格可以通过列（column）来缩放和调整内容的大小。 而其布局则可以通过使用断点（breakpoints）来决定布局是否需要明显的变化。
+流式网格可以通过列（column）来缩放和调整内容的大小。 而其布局则可以通过使用断点（breakpoints）来决定布局是否需要进行较大的调整。
 
 ### 基本栅格
 
@@ -84,14 +84,14 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
 
 {{"demo": "pages/components/grid/NestedGrid.js", "bg": true}}
 
-## 局限性
+## 设计局限
 
 ### 负边距
 
-当我们使用负边距来实现项目之间的间距的时候，会有一个限制。 如果负边距超出`<body>`元素，则会出现水平滚动。 我们提供了有3种可用的解决方案供以参考：
+当我们使用负的外边距来实现块之间的间距时，会引出一个由于设计上的局限性所导致的问题。 如果负的外边距超出了 `<body>` 的范围，水平滚动条将会出现。 有3种方法可以解决这个问题：
 
-1. 不使用 spacing 的特性，并且在用户层面设置成`spacing={0}`。
-2. 将间距（padding）应用于父级元素，并且将至少一半的间距值赋予子级元素：
+1. 不使用间距特性，或设置成 `spacing={0}`（默认设定）。
+2. 为父元素设置内边距，值至少为子元素间距值的一半：
 
    ```jsx
    <body>
@@ -103,7 +103,7 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
    </body>
    ```
 
-3. 将父元素设置为 `overflow-x: hidden;`。
+3. 在父元素上添加 `overflow-x: hidden;`。
 
 ### white-space: nowrap;
 
@@ -125,7 +125,9 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
 
 ### direction: column | column-reverse
 
-虽然 `Grid` 组件有 `direction` 属性，所以组件能用这些的值：`row`，`row-reverse`，`column`，和`column-reverse`，但是有些功能是不被 `column` 和`column-reverse` 容器支持的。 一些定义了组件栅格数量的属性会用于一个特定的断点：（ `xs`，`sm`，`md`，`lg` 以及 `xl`)，而这这些属性主要来控制宽度，并且**不会**再 `column` 和 `column-reverse` 内产生对高度相同的效果。 如过在 `column` 或者 `column-reverse` 容器内使用这些属性,，将会对 `Grid` 元素产生意想不到的效果。
+`direction="column"` 和 `direction="column-reverse"`的容器**不支持** 和断点有关的 `xs`, `sm`, `md`, `lg`，以及 `xl` 这几个props。
+
+它们决定在某个断点下组件占几个格子 他们是用`flex-basis`实现，在`row`容器用来控制 **宽度** 的，但是在`column` 容器里就会改变高度。 如果使用这些属性，可能会对 `Grid` 块元素的高度产生副作用。
 
 ## CSS 栅格布局
 

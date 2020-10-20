@@ -146,17 +146,17 @@ If you don't use one of the above types when using your components in conjunctio
 
 > Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
 
-Be aware that you will still get this warning for `lazy` and `memo` components if their wrapped component can't hold a ref.
-
-In some instances an additional warning is issued to help with debugging, similar to:
+Обратите внимание, что вы все равно получите это предупреждение для `lazy` и `memo` компонентов, если обернутый ими компонент не может содержать ссылку. In some instances an additional warning is issued to help with debugging, similar to:
 
 > Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref.
 
 Only the two most common use cases are covered. For more information see [this section in the official React docs](https://reactjs.org/docs/forwarding-refs.html).
 
 ```diff
--const MyButton = props => <div role="button" {...props} />;
-+const MyButton = React.forwardRef((props, ref) => <div role="button" {...props} ref={ref} />);
+-const MyButton = () => <div role="button" />;
++const MyButton = React.forwardRef((props, ref) =>
++  <div role="button" {...props} ref={ref} />);
+
 <Button component={MyButton} />;
 ```
 

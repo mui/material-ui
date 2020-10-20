@@ -50,7 +50,7 @@ Alternativ können Sie [react-spring](https://github.com/react-spring/react-spri
 
 ## Gefälschtes Referenzobjekt
 
-Die `anchorEl` -Eigenschaft kann eine Referenz auf ein künstliches DOM-Element sein. Sie müssen nur ein Objekt mit der Form [`ReferenceObject`](https://github.com/FezVrasta/popper.js/blob/0642ce0ddeffe3c7c033a412d4d60ce7ec8193c3/packages/popper/index.d.ts#L118-L123) erstellen.
+Die `anchorEl` -Eigenschaft kann eine Referenz auf ein künstliches DOM-Element sein. You need to create an object shaped like the [`ReferenceObject`](https://github.com/FezVrasta/popper.js/blob/0642ce0ddeffe3c7c033a412d4d60ce7ec8193c3/packages/popper/index.d.ts#L118-L123).
 
 Markieren Sie einen Teil des Textes, um den Popper zu sehen:
 

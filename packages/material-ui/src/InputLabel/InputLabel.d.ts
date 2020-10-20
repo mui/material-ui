@@ -29,7 +29,7 @@ export interface InputLabelProps extends StandardProps<FormLabelProps> {
     marginDense?: string;
     /** Styles applied to the `input` element if `shrink={true}`. */
     shrink?: string;
-    /** Styles applied to the `input` element if `disableAnimation={false}`. */
+    /** Styles applied to the `input` element unless `disableAnimation={true}`. */
     animated?: string;
     /** Styles applied to the root element if `variant="filled"`. */
     filled?: string;

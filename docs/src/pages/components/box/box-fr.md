@@ -7,7 +7,7 @@ githubLabel: 'component: Box'
 
 <p class="description">Le composant Box sert de composant de wrapper pour la plupart des besoins de l'utilitaire CSS.</p>
 
-Le composant Box contiens [toutes les fonctions de style](/system/basics/#all-inclusive) qui sont exposées dans `@material-ui/system`. Il est créé en utilisant la fonction [`styled()`](/styles/api/#styled-style-function-component) de `@material-ui/core/styles`.
+Le composant Box contiens [toutes les fonctions de style](/system/basics/#all-inclusive) qui sont exposées dans `@material-ui/system`. It's created using the `experimentalStyled()` function of `@material-ui/core/styles`.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -57,7 +57,7 @@ Les enfants de la boîte acceptent une fonction de rendu des props. Vous pouvez 
 import Box from '@material-ui/core/Box';
 ```
 
-| Name                                                    | Type                                                                                                                          | Default                                 | Description                                                                                                            |
+| Nom                                                     | Type                                                                                                                          | Défaut                                  | Description                                                                                                            |
 |:------------------------------------------------------- |:----------------------------------------------------------------------------------------------------------------------------- |:--------------------------------------- |:---------------------------------------------------------------------------------------------------------------------- |
 | <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">union:&nbsp;node&nbsp;&#124;<br>&nbsp;func<br></span>                                     |                                         | Fonction de rendu ou noeud de la boîte.                                                                                |
 | <span class="prop-name">clone</span>                    | <span class="prop-type">bool</span>                                                                                           | <span class="prop-default">false</span> | Si `true`, la boîte recycle son élément DOM enfant. Il utilise `React.cloneElement` en interne.                        |

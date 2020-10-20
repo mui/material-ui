@@ -55,10 +55,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#radiobutton'
 ### API
 
 ```jsx
-<RadioButton
-  value="radioA"
-  inputProps={{ 'aria-label': 'Radio A' }}
-/>
+import { useRadioGroup } from '@material-ui/core/RadioGroup';
 ```
 
 #### 返回结果

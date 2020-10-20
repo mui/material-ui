@@ -43,7 +43,7 @@ Set `variant="outlined"` to render an outlined card.
 
 {{"demo": "pages/components/cards/ImgMediaCard.js", "bg": true}}
 
-> `component="img"`の場合、CardMediaはイメージのセンタリングを`object-fit`に依存します。 IE 11ではサポートされていません。
+> `component="img"`の場合、CardMediaはイメージのセンタリングを`object-fit`に依存します。 It's not supported by IE11.
 
 ## UIコントロール
 

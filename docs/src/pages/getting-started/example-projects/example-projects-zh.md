@@ -6,14 +6,15 @@
 
 您可以在 [GitHub 存储库](https://github.com/mui-org/material-ui)中的 [`/examples`](https://github.com/mui-org/material-ui/tree/master/examples) 文件夹下找到一些示例项目：
 
-- https://github.com/mui-org/material-ui/tree/master/examples/create-react-app
+- [Create React App](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app) （[TypeScript 版本](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-typescript)）
 - [Gatsby](https://github.com/mui-org/material-ui/tree/next/examples/gatsby)
-- https://github.com/mui-org/material-ui/tree/master/examples/nextjs
+- [Gatsby 主题](https://github.com/mui-org/material-ui/tree/next/examples/gatsby-theme)
+- [Next.js](https://github.com/mui-org/material-ui/tree/next/examples/nextjs) （[TypeScript 版本](https://github.com/mui-org/material-ui/tree/next/examples/nextjs-with-typescript)）
 - [Preact](https://github.com/mui-org/material-ui/tree/next/examples/preact)
 - [CDN](https://github.com/mui-org/material-ui/tree/next/examples/cdn)
-- [Plain server-side](https://github.com/mui-org/material-ui/tree/next/examples/ssr)
-- [Use styled-components as style engine](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-styled-components)
-- 以及更多
+- [朴素的服务端渲染](https://github.com/mui-org/material-ui/tree/next/examples/ssr)
+- [使用 styled-components 来作为样式渲染引擎](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-styled-components)
+- [Reason React](https://github.com/mui-org/material-ui/tree/next/examples/reason)
 
 Create React App 是一个很棒的学习 React 的项目。 请看一下这些[可用的替代方案](https://github.com/facebook/create-react-app/blob/master/README.md#popular-alternatives) ，看看哪个项目最符合您的需求。
 

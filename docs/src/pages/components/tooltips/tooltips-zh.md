@@ -75,9 +75,9 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 
 ## 交互式
 
-工具提示可以是可交互的。 若用户在 `leaveDelay` 过期之前将鼠标悬停在工具提示上时，它则不会被关闭。
+工具提示组件默认是可交互的（遵循 [WCAG 2.1 success criterion 1.4.13](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus)）。 若用户在 `leaveDelay` 过期之前将鼠标悬停在工具提示上时，它则不会被关闭。 你可以通过 `disableInteractive` 来禁止交互（但是这将无法达到 AA 级所需的标准）。
 
-{{"demo": "pages/components/tooltips/InteractiveTooltips.js"}}
+{{"demo": "pages/components/tooltips/NonInteractiveTooltips.js"}}
 
 ## 禁用的元素
 
@@ -99,11 +99,6 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
       {'A disabled button'}
     </button>
   </span>
-</Tooltip> { pointerEvents: 'none' } : {}}
-    >
-      {'A disabled button'}
-    </button>
-  </span>
 </Tooltip>
 ```
 
@@ -112,6 +107,18 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 使用不同的过渡动画。
 
 {{"demo": "pages/components/tooltips/TransitionsTooltips.js"}}
+
+## 跟踪光标
+
+你可以通过设置 `followCursor={true}` 使工具提示组件跟随光标。
+
+{{"demo": "pages/components/tooltips/FollowCursorTooltips.js"}}
+
+## 占位的参考对象
+
+如果你需要实现一个自定义的布局，那么你可以使用 `anchorEl` 属性： `anchorEl` 属性的值可以是一个假（fake） DOM 元素的引用。 你需要创建一个类似于 [`ReferenceObject`](https://github.com/FezVrasta/popper.js/blob/0642ce0ddeffe3c7c033a412d4d60ce7ec8193c3/packages/popper/index.d.ts#L118-L123) 的对象。
+
+{{"demo": "pages/components/tooltips/AnchorElTooltips.js"}}
 
 ## 显示和隐藏组件
 
@@ -128,7 +135,7 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 默认情况下，工具提示组件只会标注其子元素。 这与 `title` 明显不同，后者可以标注 **或** 描述它的子代，这取决于子代是否已经有标签。 例如，在：
 
 ```html
-<button title="some more information">A button</button>
+<button title="some more information">一个按钮</button>
 ```
 
 `title` 可以作为一种无障碍描述。 你可以通过设置 `describeChild` 来让你的工具提示组件具有无障碍描述的功能。 请注意，如果工具提示组件提供了唯一的视觉标签，那么你就不应该使用 `describeChild`。 否则，子元素将不会存在可访问的名称，而工具提示将违反 WCAG 2.1 [success criterion 2.5.3 in WCAG 2.1](https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html)。

@@ -20,7 +20,7 @@ export const styles = (theme) => {
       color: theme.palette.text.primary,
       transition: theme.transitions.create('box-shadow'),
     },
-    /* Styles applied to the root element if `square={false}`. */
+    /* Styles applied to the root element unless `square={true}`. */
     rounded: {
       borderRadius: theme.shape.borderRadius,
     },
