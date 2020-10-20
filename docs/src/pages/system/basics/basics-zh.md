@@ -4,7 +4,7 @@
 
 ## 快速上手
 
-`@material-ui/system` 提供了一些底层辅助函数，我们称之为 "_style functions_"，它们可以用于建立强大的设计系统。 以下是一些重要的特点：
+`@material-ui/system` 提供了一些底层工具集函数，我们称之为 "_style functions_"，它们可以用于建立强大的设计系统。 以下是一些重要的特点：
 
 - ⚛️ 可以在组件的属性中直接获取主题（theme）的值。
 - 🦋 鼓励 UI 保持一致性。
@@ -12,13 +12,13 @@
 - 🦎 可以和任何主题对象 (theme object) 结合使用。
 - 💅 使用广为流行的 CSS-in-JS 样式方案。
 - 📦 小于 [4KB 的压缩包](https://bundlephobia.com/result?p=@material-ui/system)。
-- 🚀 [快速](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-benchmark/README.md#material-uisystem)，性能不是运行时问题
+- 🚀 [快速](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-benchmark/README.md#material-uisystem)，性能不会成为运行的瓶颈
 
-值得关注的是，整个仓库的函数都是无副作用的(side-effect free)，它们拥有这样的类型签名： `({ theme, ...style })=> style`。
+值得关注的是，整个仓库的函数都是无副作用的（side-effect free），它们都拥有这样的类型签名：`({ theme, ...style }) => style`, **就是这样**。
 
 ### 演示
 
-在*开始*章节的余下部分，我们会配合**styled-components** 作为演示例子(因为这个库具有普遍性)。 另外，你也可以使用 [emotion](#interoperability) 或其他的任何 CSS-in-JS 样式解决方案。 另外，以下的例子都直接使用了 Material-UI 的 **默认** [主题对象](/customization/default-theme/)。
+在_开始（Getting Started）_章节的余下部分，我们会配合 **styled-components** 作为演示例子（因为这个库具有普遍性）。 另外，你也可以使用 [emotion](#interoperability) 或其他的任何 CSS-in-JS 样式解决方案。 以下的例子也都基于 Material-UI 的 **默认** [主题对象（theme object）](/customization/default-theme/)。
 
 {{"demo": "pages/system/basics/Demo.js", "defaultCodeOpen": true}}
 
@@ -47,11 +47,11 @@ const Box = styled.div`
 export default Box;
 ```
 
-这个 Box 组件现在就支持了 [间距属性](/system/spacing/#api) 和 [颜色属性](/system/palette/#api)。 例如，你可以提供一个间距属性：`p` 和一个颜色属性： `color`。
+如此操作之后，这个 Box 组件现在就支持了 [间距属性](/system/spacing/#api) 和 [颜色属性](/system/palette/#api)。 例如，你可以提供一个间距属性：`p` 和一个颜色属性： `color`。
 
 ```jsx
-<Box p="1rem" color="grey">Give me some space!</Box>
-</Box>
+<Box p="1rem" color="grey">
+  给我一些间距！
 </Box>
 ```
 
@@ -125,7 +125,7 @@ import Box from '@material-ui/core/Box';
 
 ## 响应式（Responsive）
 
-**所有** 的属性都是响应式的，我们支持3种不同的 Api。 如下的配置是默认断点(breakpoints) 配置，不过同时它们是可定制的。
+**所有**的属性都是响应式的。 有三种不同的 API – Array、Object 和 Collocation – 分别使用这种默认的（但可自定义）断点主题结构。
 
 ```js
 const values = {
@@ -232,7 +232,7 @@ const Box = styled.div`
 
 #### 例子
 
-你可以创建一个支持一些CSS的网格属性的组件，如`grid-gap`。 若将 `spacing` 作为 `themeKey` 提供，你可以重用该逻辑，从而实现我们在其他 spacing 属性（如  `padding`）中定义的行为。
+你可以创建一个支持一些 CSS 的栅格属性的组件，如 `grid-gap`。 若将 `spacing` 作为 `themeKey` 提供，你可以重用该逻辑，从而实现我们在其他 spacing 属性（如  `padding`）中定义的行为。
 
 ```jsx
 import styled from 'styled-components';
@@ -302,7 +302,7 @@ const palette = compose(textColor, bgcolor);
 
 ## 变体
 
-帮助函数 `style()` 也可用于根据主题来返回不同的属性给样式对象。 在在这个例子中， `variant` 属性可以是 `theme.typography` 对象的任意键(key)。
+助手函数 `style()` 也可用于根据主题来为样式对象返回不同的属性。 在这个例子中， `variant` 属性支持 `theme.typography` 对象的所有键。
 
 {{"demo": "pages/system/basics/Variant.js", "defaultCodeOpen": true}}
 
