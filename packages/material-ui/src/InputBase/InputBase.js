@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { refType } from '@material-ui/utils';
+import { refType, elementTypeAcceptingRef } from '@material-ui/utils';
 import MuiError from '@material-ui/utils/macros/MuiError.macro';
 import formControlState from '../FormControl/formControlState';
 import FormControlContext, { useFormControl } from '../FormControl/FormControlContext';
@@ -357,36 +357,30 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
   };
 
   let InputComponent = inputComponent;
-  let inputProps = {
-    ...inputPropsProp,
-    ref: handleInputRef,
-  };
+  let inputProps = inputPropsProp;
 
-  if (typeof InputComponent === 'string') {
-    if (multiline) {
-      if (rows) {
-        InputComponent = 'textarea';
-        if (process.env.NODE_ENV !== 'production') {
-          if (minRows || maxRows) {
-            console.warn(
-              'Material-UI: You can not use the `minRows` or `maxRows` props when the input `rows` prop is set.',
-            );
-          }
+  if (multiline && InputComponent === 'input') {
+    if (rows) {
+      if (process.env.NODE_ENV !== 'production') {
+        if (minRows || maxRows) {
+          console.warn(
+            'Material-UI: You can not use the `minRows` or `maxRows` props when the input `rows` prop is set.',
+          );
         }
-      } else {
-        inputProps = {
-          maxRows,
-          minRows,
-          ...inputProps,
-        };
-
-        InputComponent = TextareaAutosize;
       }
-    } else {
       inputProps = {
-        type,
+        type: undefined,
         ...inputProps,
       };
+      InputComponent = 'textarea';
+    } else {
+      inputProps = {
+        type: undefined,
+        maxRows,
+        minRows,
+        ...inputProps,
+      };
+      InputComponent = TextareaAutosize;
     }
   }
 
@@ -443,7 +437,9 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
           value={value}
           onKeyDown={onKeyDown}
           onKeyUp={onKeyUp}
+          type={type}
           {...inputProps}
+          ref={handleInputRef}
           className={clsx(
             classes.input,
             {
@@ -537,7 +533,7 @@ InputBase.propTypes = {
    * Either a string to use a HTML element or a component.
    * @default 'input'
    */
-  inputComponent: PropTypes.elementType,
+  inputComponent: elementTypeAcceptingRef,
   /**
    * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
    * @default {}

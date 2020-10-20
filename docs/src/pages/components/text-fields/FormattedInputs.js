@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const TextMaskCustom = React.forwardRef((props, ref) => {
+const TextMaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
   const setRef = React.useCallback(
     (maskedInputRef) => {
       const value = maskedInputRef?.inputElement ?? null;
@@ -56,7 +56,10 @@ const TextMaskCustom = React.forwardRef((props, ref) => {
   );
 });
 
-const NumberFormatCustom = React.forwardRef((props, ref) => {
+const NumberFormatCustom = React.forwardRef(function NumberFormatCustom(
+  props,
+  ref,
+) {
   const { onChange, ...other } = props;
 
   return (
