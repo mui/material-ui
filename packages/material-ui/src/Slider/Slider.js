@@ -708,9 +708,11 @@ const Slider = React.forwardRef(function Slider(props, ref) {
 
   React.useEffect(() => {
     const { current: slider } = sliderRef;
-    slider.addEventListener('touchstart', handleTouchStart, {
-      passive: doesSupportTouchActionNone(),
-    });
+    if(slider){
+      slider.addEventListener('touchstart', handleTouchStart, {
+        passive: doesSupportTouchActionNone(),
+      });
+    }
 
     return () => {
       slider.removeEventListener('touchstart', handleTouchStart, {
