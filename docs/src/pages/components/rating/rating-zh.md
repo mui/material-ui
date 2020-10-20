@@ -24,7 +24,7 @@ waiAria: 'https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating'
 
 ## 悬停反馈
 
-你可以在悬停时显示一个辅助标签来帮助用户选择正确的评分值。 以下案例使用了 `onChangeActive` 这一属性。
+你可以在鼠标悬停时让组件显示一个辅助标签来帮助用户选择正确的评分值。 以下案例使用了 `onChangeActive` 这一属性。
 
 {{"demo": "pages/components/rating/HoverRating.js"}}
 
