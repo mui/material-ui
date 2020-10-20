@@ -142,16 +142,20 @@ async function getWebpackSizes() {
 
   const sizes = [];
   webpackMultiStats.stats.forEach((webpackStats) => {
-    // webpack --config $configPath --json > $statsPath
-    // will create a 300MB big json file which sometimes requires up to 1.5GB
-    // memory. This will sometimes crash node in azure pipelines with "heap out of memory"
-    const stats = webpackStats.toJson();
-    if (stats.errors.length > 0) {
+    if (webpackStats.hasErrors()) {
+      const { entrypoints, errors } = webpackStats.toJson({
+        all: false,
+        entrypoints: true,
+        errors: true,
+      });
       throw new Error(
-        `The following errors occured during bundling with webpack: \n${stats.errors.join('\n')}`,
+        `The following errors occured during bundling of ${Object.keys(
+          entrypoints,
+        )} with webpack: \n${errors.join('\n')}`,
       );
     }
 
+    const stats = webpackStats.toJson({ all: false, assets: true });
     const assets = new Map(stats.assets.map((asset) => [asset.name, asset]));
 
     Object.entries(stats.assetsByChunkName).forEach(([chunkName, assetName]) => {
