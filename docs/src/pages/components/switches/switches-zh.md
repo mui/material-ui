@@ -1,5 +1,5 @@
 ---
-title: React 开关组件
+title: React Switch（开关）组件
 components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 githubLabel: 'component: Switch'
 materialDesign: 'https://material.io/components/selection-controls#switches'
@@ -9,7 +9,7 @@ materialDesign: 'https://material.io/components/selection-controls#switches'
 
 <p class="description">开关控制能切换单个设置的开/关两个状态。</p>
 
-[Switches](https://material.io/design/components/selection-controls.html#switches) 是在移动设备上调整设置的首选方式。 开关控制的选项，以及它当前所处的状态，都应该在相应的描述标签中明确说明。
+开关组件是在移动设备上调整设置的首选方式。 开关控制的选项，以及它当前所处的状态，都应该在相应的描述标签中明确说明。
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -25,7 +25,7 @@ materialDesign: 'https://material.io/components/selection-controls#switches'
 
 ## 带有 FormGroup 的开关
 
-`FormGroup` 会提供相对简单的 API 对选择控件进行分组。 `FormGroup` 会提供相对简单的 API 对选择控件进行分组。 (参见: [何时使用](#when-to-use))。
+`FormGroup` 会提供相对简单的 API 对选择控件进行分组。 但是，如果需要操作多个相关的控件，我们鼓励您使用 [Checkboxes](/components/checkboxes/) 来代替它。 (参见: [何时使用](#when-to-use))。
 
 {{"demo": "pages/components/switches/SwitchesGroup.js"}}
 
