@@ -14,7 +14,7 @@ Material-UI поддерживает все последние, стабильн
 
 <!-- #default-branch-switch -->
 
-An extensive list can be found in our [.browserlistrc](https://github.com/mui-org/material-ui/blob/next/.browserslistrc#L12-L27) (check the `stable` entry). If you need to support IE 11, check out our [legacy bundle](/guides/minimizing-bundle-size/#legacy-bundle).
+An extensive list can be found in our [.browserlistrc](https://github.com/mui-org/material-ui/blob/next/.browserslistrc#L12-L27) (check the `stable` entry). Если вам нужна поддержка IE 11, воспользуйтесь [устаревшим пакетом](/guides/minimizing-bundle-size/#legacy-bundle).
 
 Because Googlebot uses a web rendering service (WRS) to index the page content, it's critical that Material-UI supports it. [WRS regularly updates the rendering engine it uses](https://webmasters.googleblog.com/2019/05/the-new-evergreen-googlebot.html). You can expect Material-UI's components to render without major issues.
 
@@ -22,7 +22,7 @@ Because Googlebot uses a web rendering service (WRS) to index the page content, 
 
 <!-- #stable-snapshot -->
 
-We support [Node.js](https://github.com/nodejs/node) starting with version 10 for server-side rendering. Where possible, the [LTS versions that are in maintenance](https://github.com/nodejs/Release#release-schedule) are supported.
+Для рендеринга на стороне сервера мы поддерживаем версии [Node.js](https://github.com/nodejs/node)  начиная с 10. Where possible, the [LTS versions that are in maintenance](https://github.com/nodejs/Release#release-schedule) are supported.
 
 ### CSS prefixing
 
