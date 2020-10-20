@@ -372,6 +372,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
         type: undefined,
         ...inputProps,
       };
+
       InputComponent = 'textarea';
     } else {
       inputProps = {
@@ -380,6 +381,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
         minRows,
         ...inputProps,
       };
+
       InputComponent = TextareaAutosize;
     }
   }
