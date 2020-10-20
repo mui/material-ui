@@ -166,15 +166,10 @@ describe('<InputBase />', () => {
 
     it('should inject onBlur and onFocus', () => {
       let injectedProps;
-      function MyInputBase(props) {
+      const MyInputBase = React.forwardRef(function MyInputBase(props, ref) {
         injectedProps = props;
-        const { inputRef, ...other } = props;
-        return <input ref={inputRef} {...other} />;
-      }
-
-      MyInputBase.propTypes = {
-        inputRef: PropTypes.func.isRequired,
-      };
+        return <input ref={ref} {...props} />;
+      });
 
       render(<InputBase inputComponent={MyInputBase} />);
       expect(typeof injectedProps.onBlur).to.equal('function');
@@ -183,17 +178,15 @@ describe('<InputBase />', () => {
 
     describe('target mock implementations', () => {
       it('can just mock the value', () => {
-        function MockedValue(props) {
+        const MockedValue = React.forwardRef(function MockedValue(props, ref) {
           const { onChange } = props;
 
           const handleChange = (event) => {
             onChange({ target: { value: event.target.value } });
           };
 
-          // TODO: required because of a bug in aria-query
-          // remove `type` once https://github.com/A11yance/aria-query/pull/42 is merged
-          return <input onChange={handleChange} type="text" />;
-        }
+          return <input ref={ref} onChange={handleChange} />;
+        });
         MockedValue.propTypes = { onChange: PropTypes.func.isRequired };
 
         function FilledState(props) {
@@ -213,15 +206,10 @@ describe('<InputBase />', () => {
         expect(getByTestId('filled')).to.have.text('filled: true');
       });
 
-      it('can expose the full target with `inputRef`', () => {
-        function FullTarget(props) {
-          const { inputRef, ...other } = props;
-
-          return <input ref={inputRef} {...other} />;
-        }
-        FullTarget.propTypes = {
-          inputRef: PropTypes.any,
-        };
+      it("can expose the input component's ref through the inputComponent prop", () => {
+        const FullTarget = React.forwardRef(function FullTarget(props, ref) {
+          return <input ref={ref} {...props} />;
+        });
 
         function FilledState(props) {
           const { filled } = useFormControl();
@@ -563,18 +551,17 @@ describe('<InputBase />', () => {
       const INPUT_VALUE = 'material';
       const OUTPUT_VALUE = 'test';
 
-      function MyInputBase(props) {
-        const { inputRef, onChange, ...other } = props;
+      const MyInputBase = React.forwardRef(function MyInputBase(props, ref) {
+        const { onChange, ...other } = props;
 
         const handleChange = (e) => {
           onChange(e.target.value, OUTPUT_VALUE);
         };
 
-        return <input ref={inputRef} onChange={handleChange} {...other} />;
-      }
+        return <input ref={ref} onChange={handleChange} {...other} />;
+      });
 
       MyInputBase.propTypes = {
-        inputRef: PropTypes.func.isRequired,
         onChange: PropTypes.func.isRequired,
       };
 
