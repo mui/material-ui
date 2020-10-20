@@ -19,7 +19,7 @@
 更改主题配置变量是将 Material-UI 与您的需求相匹配的最有效方法。 以下各节涵盖了一些最重要的主题变量：
 
 - [Palette 调色板](/customization/palette/)
-- [文字排版](/customization/typography/)
+- [文字铸排](/customization/typography/)
 - [Spacing 间距](/customization/spacing/)
 - [Breakpoints 断点](/customization/breakpoints/)
 - [z-index](/customization/z-index/)
