@@ -244,10 +244,26 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     }
   };
 
-  const handleClick = (event) => {
+  const handleChange = (event) => {
+    let newValue = parseFloat(event.target.value);
+
+    // Give mouse priority over keyboard
+    // Fix https://github.com/mui-org/material-ui/issues/22827
+    if (hover !== -1) {
+      newValue = hover;
+    }
+
+    setValueState(newValue);
+
+    if (onChange) {
+      onChange(event, newValue);
+    }
+  };
+
+  const handleClear = (event) => {
     // Ignore keyboard events
     // https://github.com/facebook/react/issues/7407
-    if (event.type !== 'click' || (event.clientX === 0 && event.clientY === 0)) {
+    if (event.clientX === 0 && event.clientY === 0) {
       return;
     }
 
@@ -256,12 +272,10 @@ const Rating = React.forwardRef(function Rating(props, ref) {
       focus: -1,
     });
 
-    const newValue = hover === valueRounded ? null : hover;
+    setValueState(null);
 
-    setValueState(newValue);
-
-    if (onChange) {
-      onChange(event, newValue);
+    if (onChange && parseFloat(event.target.value) === valueRounded) {
+      onChange(event, null);
     }
   };
 
@@ -332,14 +346,15 @@ const Rating = React.forwardRef(function Rating(props, ref) {
 
     return (
       <React.Fragment key={state.value}>
-        <label className={classes.label} {...labelProps}>
+        <label className={classes.label} htmlFor={id} {...labelProps}>
           {container}
           <span className={classes.visuallyHidden}>{getLabelText(state.value)}</span>
         </label>
         <input
           onFocus={handleFocus}
           onBlur={handleBlur}
-          readOnly
+          onChange={handleChange}
+          onClick={handleClear}
           disabled={disabled}
           value={state.value}
           id={id}
@@ -357,8 +372,6 @@ const Rating = React.forwardRef(function Rating(props, ref) {
       ref={handleRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      onClick={readOnly ? null : handleClick}
-      onKeyPress={readOnly ? null : handleClick}
       className={clsx(
         classes.root,
         {
