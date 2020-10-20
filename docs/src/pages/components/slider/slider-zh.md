@@ -10,7 +10,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#slider'
 
 <p class="description">用户可以使用滑块控件在某一范围内取值。</p>
 
-[滑块](https://material.io/design/components/sliders.html) 反映了条形图上的一系列值，用户可以从中选择单个值。 它们通常适用于调节一些设置，譬如调节设备音量、调整屏幕亮度，或者改变图像的滤镜。
+滑块反映了一根条上的一系列值，用户可以从中选择单个值。 它们通常适用于调节一些设置，譬如调节设备音量、调整屏幕亮度，或者改变图像的滤镜。
 
 - 📦 [22 kB 压缩大小](/size-snapshot) (但与其他 Material-UI 组件使用时只有+8 kB)。
 
