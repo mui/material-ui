@@ -1,5 +1,5 @@
 ---
-title: React 弹出框组件
+title: React 弹出框（Popover）组件
 components: Grow, Popover
 githubLabel: 'component: Popover'
 ---
@@ -27,7 +27,7 @@ githubLabel: 'component: Popover'
 
 ## 鼠标悬停的交互事件
 
-这表明如何使用 `Popover` 组件来实现基于鼠标事件的弹出窗口行为。
+这表明如何使用 `Popover` 组件，并展示了使用鼠标事件来实现弹出窗口的效果。
 
 {{"demo": "pages/components/popover/MouseOverPopover.js"}}
 
