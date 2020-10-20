@@ -1,10 +1,9 @@
 import * as React from 'react';
 import Box from '@material-ui/core/Box';
-import { logReactMetrics } from '../utils';
 
 export default function BasicStyledComponents() {
   return (
-    <React.Profiler id="sx-prop-box-material-ui" onRender={logReactMetrics}>
+    <>
       {new Array(1000).fill().map(() => (
         <Box
           sx={{
@@ -22,6 +21,6 @@ export default function BasicStyledComponents() {
           material-ui
         </Box>
       ))}
-    </React.Profiler>
+    </>
   );
 }
