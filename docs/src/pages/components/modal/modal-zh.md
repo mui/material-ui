@@ -1,5 +1,5 @@
 ---
-title: React 模态框组件
+title: React 模态框（Modal）组件
 components: Modal
 githubLabel: 'component: Modal'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
@@ -25,7 +25,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 当你创建一个模态对话框时，使用[对话框（Dialog）](/components/dialogs/)组件比直接使用模态框更佳。 以下的组件将将模态框作为一个低级别的组件运用：
 
 - [Dialog](/components/dialogs/)
-- [Drawer 抽屉](/components/drawers/)
+- [Drawer（抽屉）](/components/drawers/)
 - [Menu](/components/menus/)
 - [Popover](/components/popover/)
 
@@ -82,13 +82,13 @@ React [不支持](https://github.com/facebook/react/issues/13097)服务端渲染
     aria-describedby="modal-description"
     >
     <h2 id="modal-title">
-      My Title
+      我的标题
     </h2>
     <p id="modal-description">
-      My Description
+      我的描述
     </p>
     </Modal>
   ```
 
 - 这篇 [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) 里的方法可以根据你的模态窗口里的内容, 为最合适的元素设置初始焦点.
-- 请记住，“模态窗口” 覆盖在主窗口或者另一个模态窗口上。 请记住，“模态窗口” 覆盖在主窗口或者另一个模态窗口上。 也就是说，用户不能与当前处于活跃状态下的模态框之外的内容进行交互。 因为这可能会造成[冲突行为](#focus-trap)。
+- 请记住，“模态窗口” 覆盖在主窗口或者另一个模态窗口上。 一个模态框下的窗口都是 **（惰性的）inert** 。 也就是说，用户不能与当前处于活跃状态下的模态框之外的内容进行交互。 因为这可能会造成[冲突行为](#focus-trap)。
