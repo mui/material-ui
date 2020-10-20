@@ -11,6 +11,7 @@ import {
   typography,
   handleBreakpoints,
 } from '@material-ui/system';
+import { deepmerge } from '@material-ui/utils';
 
 function objectsHaveSameKeys(...objects) {
   const allKeys = objects.reduce((keys, object) => keys.concat(Object.keys(object)), []);
@@ -88,10 +89,7 @@ const styleFunctionSx = (styles, theme) => {
   Object.keys(styles).forEach((styleKey) => {
     if (typeof styles[styleKey] === 'object') {
       if (filterProps.indexOf(styleKey) !== -1) {
-        css = {
-          ...css,
-          ...getThemeValue(styleKey, styles[styleKey], theme),
-        };
+        css = deepmerge(css, getThemeValue(styleKey, styles[styleKey], theme));
       } else {
         const breakpointsValues = handleBreakpoints({ theme }, styles[styleKey], (x) => ({
           [styleKey]: x,
@@ -101,17 +99,7 @@ const styleFunctionSx = (styles, theme) => {
           const transformedValue = styleFunctionSx(styles[styleKey], theme);
           css[styleKey] = transformedValue;
         } else {
-          const spread = {};
-          Object.keys(breakpointsValues).forEach((breakpoint) => {
-            spread[breakpoint] = {
-              ...css[breakpoint],
-              ...breakpointsValues[breakpoint],
-            };
-          });
-          css = {
-            ...css,
-            ...spread,
-          };
+          css = deepmerge(css, breakpointsValues);
         }
       }
     } else if (typeof styles[styleKey] === 'function') {

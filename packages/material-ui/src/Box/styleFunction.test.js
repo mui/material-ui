@@ -152,7 +152,7 @@ describe('styleFunction', () => {
       });
     });
 
-    it('resolves non system CSS properties', () => {
+    it('resolves non system CSS properties if specified', () => {
       const result = styleFunction({
         theme,
         sx: {
@@ -165,7 +165,9 @@ describe('styleFunction', () => {
               md: 0.3,
               lg: 0.4,
               xl: 0.5
-            }
+            },
+            border: [1, 2, 3],
+            borderColor: t => t.palette.secondary.main,
           }
         }
       });
@@ -174,11 +176,12 @@ describe('styleFunction', () => {
         background: 'rgb(0, 0, 255)',
         ":hover": {
           backgroundColor: 'rgb(0, 0, 255)',
-          '@media (min-width:0px)': { opacity: 0.1 },
-          '@media (min-width:600px)': { opacity: 0.2 },
-          '@media (min-width:960px)': { opacity: 0.3 },
+          '@media (min-width:0px)': { opacity: 0.1, border: '1px solid' },
+          '@media (min-width:600px)': { opacity: 0.2, border: '2px solid' },
+          '@media (min-width:960px)': { opacity: 0.3, border: '3px solid' },
           '@media (min-width:1280px)': { opacity: 0.4 },
           '@media (min-width:1920px)': { opacity: 0.5 },
+          borderColor: 'rgb(0, 255, 0)',
         },
       });
     });
