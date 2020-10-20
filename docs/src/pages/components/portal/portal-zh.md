@@ -1,5 +1,5 @@
 ---
-title: React 传送门组件
+title: React 传送门（Portal）组件
 components: Portal
 githubLabel: 'component: Portal'
 ---
