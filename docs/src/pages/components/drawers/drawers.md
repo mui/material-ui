@@ -50,7 +50,7 @@ const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
 ### Keep mounted
 
-To ensure a temporary drawer is not unmounted, specify the `ModalProps` prop like
+To ensure a temporary drawer is not unmounted, specify the `ModalProps` prop like:
 
 ```jsx
 <Drawer
