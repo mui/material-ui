@@ -42,7 +42,7 @@ yarn add @material-ui/core@next
 
 ### 支持的浏览器和 node 版本
 
-默认捆绑包的目标已更改。 The exact versions will be pinned on release from the browserslist query `"> 0.5%, last 2 versions, Firefox ESR, not dead, not IE 11, maintained node versions"`.
+默认捆绑包的目标已更改。 实际支持的版本将在发布时从浏览器列表中查询 `"> 0.5%, last 2 versions, Firefox ESR, not dead, not IE 11, maintained node versions"`。
 
 当前默认的捆绑包支持以下版本：
 
@@ -250,7 +250,7 @@ const classes = makeStyles(theme => ({
   +<Avatar classes={{ circular: 'className' }}>
   ```
 
-- Move the AvatarGroup from the lab to the core.
+- AvatarGroup 已从实验室包移动到核心包。
 
   ```diff
   -import AvatarGroup from '@material-ui/lab/AvatarGroup';
@@ -819,7 +819,7 @@ const classes = makeStyles(theme => ({
   +<Tooltip>
   ```
 
-### 文字排版
+### 文字铸排
 
 - 为了避免 [System](https://material-ui.com/system/basics/) 功能重复，我们替换了 `srOnly` 属性。
 
