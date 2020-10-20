@@ -237,34 +237,33 @@ describe('<InputBase />', () => {
          *
          * A ref is exposed to trigger a change event instead of using fireEvent.change
          */
-        function BadInputComponent(props) {
-          const { onChange, triggerChangeRef } = props;
+        const BadInputComponent = React.forwardRef(function BadInputComponent(props, ref) {
+          const { onChange } = props;
 
           // simulates const handleChange = () => onChange({}) and passing that
           // handler to the onChange prop of `input`
-          React.useImperativeHandle(triggerChangeRef, () => () => onChange({}));
+          React.useImperativeHandle(ref, () => () => onChange({}));
 
           return <input />;
-        }
+        });
+
         BadInputComponent.propTypes = {
           onChange: PropTypes.func.isRequired,
-          triggerChangeRef: PropTypes.object,
         };
 
         const triggerChangeRef = React.createRef();
-        render(<InputBase inputProps={{ triggerChangeRef }} inputComponent={BadInputComponent} />);
 
-        // mocking fireEvent.change(getByRole('textbox'), { target: { value: 1 } });
-        // using dispatchEvents prevents us from catching the error in the browser
-        // in test:karma neither try-catch nor consoleErrorMock.spy catches the error
-        let errorMessage = '';
-        try {
-          triggerChangeRef.current();
-        } catch (error) {
-          errorMessage = String(error);
-        }
-
-        expect(errorMessage).to.include('Material-UI: Expected valid input target');
+        expect(() => {
+          render(
+            <InputBase inputProps={{ ref: triggerChangeRef }} inputComponent={BadInputComponent} />,
+          );
+        }).toErrorDev(
+          [
+            'Material-UI: You have provided a `inputComponent` to the input component',
+            'that does not correctly handle the `ref` prop.',
+            'Make sure the `ref` prop is called with a HTMLInputElement.',
+          ].join('\n'),
+        );
       });
     });
   });
