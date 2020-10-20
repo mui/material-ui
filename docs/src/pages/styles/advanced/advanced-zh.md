@@ -178,18 +178,14 @@ JSS 使用插件来扩展其核心，您可以挑选所需的功能，并且只�
 ```jsx
 import { create } from 'jss';
 import { StylesProvider, jssPreset } from '@material-ui/core/styles';
-import rtl from 'jss-rtl'
+import rtl from 'jss-rtl';
 
 const jss = create({
   plugins: [...jssPreset().plugins, rtl()],
 });
 
 export default function App() {
-  return (
-    <StylesProvider jss={jss}>
-      ...
-    </StylesProvider>
-  );
+  return <StylesProvider jss={jss}>...</StylesProvider>;
 }
 ```
 
@@ -229,10 +225,7 @@ const useStyles = makeStyles({
 ```jsx
 import { StylesProvider } from '@material-ui/core/styles';
 
-<StylesProvider injectFirst>
-  {/* Your component tree.
-      Now, you can override Material-UI's styles. */}
-</StylesProvider>
+<StylesProvider injectFirst>{/* 你的组件树。
       样式化组件可以覆盖 Material-UI 的样式。 */}</StylesProvider>;
 ```
 
@@ -257,16 +250,14 @@ const useStyles = makeStyles({
 });
 
 export default function MyComponent() {
-  // 先后顺序不重要
+  // 下列函数先后顺序不重要
   const classes = useStyles();
   const classesBase = useStylesBase();
 
-  // 先后顺序不重要
+  // 下列函数先后顺序不重要
   const className = clsx(classes.root, classesBase.root);
 
-  // color: red 🔴 wins.
-  return <div className={className} />;
-}
+  // color: red 🔴 优先渲染。
   return <div className={className} />;
 }
 ```
