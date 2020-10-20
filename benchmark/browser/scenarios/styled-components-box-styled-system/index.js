@@ -20,15 +20,15 @@ export default function StyledComponentsBoxStyledSystem() {
     <React.Profiler id="styled-components-box-styled-system" onRender={logReactMetrics}>
       <StyledComponentsThemeProvider theme={styledSystemTheme}>
         {new Array(1000).fill().map(() => (
-            <BoxStyledSystem
-              color="primary.main"
-              bg="background.paper"
-              fontFamily="h6.fontFamily"
-              fontSize={['h6.fontSize', 'h4.fontSize', 'h3.fontSize']}
-              p={[2, 3, 4]}
-            >
-              styled-system
-            </BoxStyledSystem>
+          <BoxStyledSystem
+            color="primary.main"
+            bg="background.paper"
+            fontFamily="h6.fontFamily"
+            fontSize={['h6.fontSize', 'h4.fontSize', 'h3.fontSize']}
+            p={[2, 3, 4]}
+          >
+            styled-system
+          </BoxStyledSystem>
         ))}
       </StyledComponentsThemeProvider>
     </React.Profiler>

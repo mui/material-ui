@@ -15,7 +15,7 @@ import {
 function objectsHaveSameKeys(...objects) {
   const allKeys = objects.reduce((keys, object) => keys.concat(Object.keys(object)), []);
   const union = new Set(allKeys);
-  return objects.every(object => union.size === Object.keys(object).length);
+  return objects.every((object) => union.size === Object.keys(object).length);
 }
 
 const filterProps = [
@@ -71,7 +71,7 @@ const getThemeValue = (prop, value, theme) => {
   return { [prop]: value };
 };
 
-const traverseSx = (styles, theme) => {
+const styleFunctionSx = (styles, theme) => {
   if (!styles) return null;
 
   if (typeof styles === 'function') {
@@ -93,23 +93,25 @@ const traverseSx = (styles, theme) => {
           ...getThemeValue(styleKey, styles[styleKey], theme),
         };
       } else {
-        const breakpointsValues = handleBreakpoints({ theme }, styles[styleKey], x => ({ [styleKey]: x }));
+        const breakpointsValues = handleBreakpoints({ theme }, styles[styleKey], (x) => ({
+          [styleKey]: x,
+        }));
 
-        if(objectsHaveSameKeys(breakpointsValues, styles[styleKey])) {
-          const transformedValue = traverseSx(styles[styleKey], theme);
+        if (objectsHaveSameKeys(breakpointsValues, styles[styleKey])) {
+          const transformedValue = styleFunctionSx(styles[styleKey], theme);
           css[styleKey] = transformedValue;
         } else {
           const spread = {};
-          Object.keys(breakpointsValues).forEach(breakpoint => {
+          Object.keys(breakpointsValues).forEach((breakpoint) => {
             spread[breakpoint] = {
               ...css[breakpoint],
               ...breakpointsValues[breakpoint],
-            }
-          })
+            };
+          });
           css = {
             ...css,
             ...spread,
-          }
+          };
         }
       }
     } else if (typeof styles[styleKey] === 'function') {
@@ -130,7 +132,7 @@ const traverseSx = (styles, theme) => {
 const styleFunction = (props) => {
   let result = {};
   Object.keys(props).forEach((prop) => {
-    if (filterProps.indexOf(prop) !== -1) {
+    if (filterProps.indexOf(prop) !== -1 && prop !== 'sx') {
       result = {
         ...result,
         ...getThemeValue(prop, props[prop], props.theme),
@@ -138,7 +140,7 @@ const styleFunction = (props) => {
     }
   });
 
-  const sxValue = traverseSx(props.sx, props.theme);
+  const sxValue = styleFunctionSx(props.sx, props.theme);
 
   return {
     ...result,

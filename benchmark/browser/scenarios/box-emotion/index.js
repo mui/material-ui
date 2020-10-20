@@ -13,15 +13,15 @@ export default function BoxEmotion() {
     <React.Profiler id="box-emotion" onRender={logReactMetrics}>
       <EmotionTheme theme={materialSystemTheme}>
         {new Array(1000).fill().map(() => (
-            <Box
-              color="primary.main"
-              bgcolor="background.paper"
-              fontFamily="h6.fontFamily"
-              fontSize={['h6.fontSize', 'h4.fontSize', 'h3.fontSize']}
-              p={[2, 3, 4]}
-            >
-              emotion
-            </Box>
+          <Box
+            color="primary.main"
+            bgcolor="background.paper"
+            fontFamily="h6.fontFamily"
+            fontSize={['h6.fontSize', 'h4.fontSize', 'h3.fontSize']}
+            p={[2, 3, 4]}
+          >
+            emotion
+          </Box>
         ))}
       </EmotionTheme>
     </React.Profiler>

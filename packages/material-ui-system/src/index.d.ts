@@ -30,14 +30,16 @@ export type BordersProps = PropsFor<typeof borders>;
 // breakpoints.js
 type DefaultBreakPoints = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
+export function handleBreakpoints<Props, Breakpoints extends string = DefaultBreakPoints>(
+  props: Props,
+  propValue: any,
+  styleFromPropValue: (value: any) => any
+): any;
+
 /**
  * @returns An enhanced stylefunction that considers breakpoints
  */
 export function breakpoints<Props, Breakpoints extends string = DefaultBreakPoints>(
-  props: Props, propValue: any, styleFromPropValue: (value: any) => any
-): any;
-
-export function handleBreakpoints<Props, Breakpoints extends string = DefaultBreakPoints>(
   styleFunction: StyleFunction<Props>
 ): StyleFunction<Partial<Record<Breakpoints, Props>> & Props>;
 

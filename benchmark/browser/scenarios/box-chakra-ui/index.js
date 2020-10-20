@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { logReactMetrics } from '../utils';
 import { Box, ThemeProvider, theme } from '@chakra-ui/core';
+import { logReactMetrics } from '../utils';
 
 // Let's say you want to add custom colors
 const customTheme = {
@@ -8,9 +8,9 @@ const customTheme = {
   colors: {
     ...theme.colors,
     brand: {
-      900: "#1a365d",
-      800: "#153e75",
-      700: "#2a69ac",
+      900: '#1a365d',
+      800: '#153e75',
+      700: '#2a69ac',
     },
   },
 };
@@ -20,15 +20,15 @@ export default function BoxEmotion() {
     <React.Profiler id="box-emotion" onRender={logReactMetrics}>
       <ThemeProvider theme={customTheme}>
         {new Array(1000).fill().map(() => (
-            <Box
-              color="primary.main"
-              bg="background.paper"
-              fontWeight="semibold"
-              fontSize={["30em", "48em", "62em", "80em"]}
-              p={[2, 3, 4]}
-            >
-              chakra-ui
-            </Box>
+          <Box
+            color="primary.main"
+            bg="background.paper"
+            fontWeight="semibold"
+            fontSize={['30em', '48em', '62em', '80em']}
+            p={[2, 3, 4]}
+          >
+            chakra-ui
+          </Box>
         ))}
       </ThemeProvider>
     </React.Profiler>
