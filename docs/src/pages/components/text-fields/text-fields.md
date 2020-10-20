@@ -191,8 +191,7 @@ The following demo uses the [react-text-mask](https://github.com/text-mask/text-
 
 {{"demo": "pages/components/text-fields/FormattedInputs.js"}}
 
-The provided input component should handle the `inputRef` property.
-The property should be called with a value that implements the following interface:
+The provided input component should expose a ref with a value that implements the following interface:
 
 ```ts
 interface InputElement {
@@ -202,11 +201,11 @@ interface InputElement {
 ```
 
 ```jsx
-function MyInputComponent(props) {
-  const { component: Component, inputRef, ...other } = props;
+const MyInputComponent = React.forwardRef((props, ref) => {
+  const { component: Component, ...other } = props;
 
   // implement `InputElement` interface
-  React.useImperativeHandle(inputRef, () => ({
+  React.useImperativeHandle(ref, () => ({
     focus: () => {
       // logic to focus the rendered component from 3rd party belongs here
     },
@@ -215,7 +214,7 @@ function MyInputComponent(props) {
 
   // `Component` will be your `SomeThirdPartyComponent` from below
   return <Component {...other} />;
-}
+});
 
 // usage
 <TextField
