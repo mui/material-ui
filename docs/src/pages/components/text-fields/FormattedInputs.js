@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 const TextMaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
   const setRef = React.useCallback(
     (maskedInputRef) => {
-      const value = maskedInputRef?.inputElement ?? null;
+      const value = maskedInputRef ? maskedInputRef.inputElement : null;
 
       if (typeof ref === 'function') {
         ref(value);

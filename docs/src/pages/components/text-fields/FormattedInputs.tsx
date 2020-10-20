@@ -23,7 +23,7 @@ const TextMaskCustom = React.forwardRef<HTMLElement>(function TextMaskCustom(
 ) {
   const setRef = React.useCallback(
     (maskedInputRef: { inputElement: HTMLElement } | null) => {
-      const value = maskedInputRef?.inputElement ?? null;
+      const value = maskedInputRef ? maskedInputRef.inputElement : null;
 
       if (typeof ref === 'function') {
         ref(value);
