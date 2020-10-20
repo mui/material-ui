@@ -211,8 +211,8 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
         console.error(
           [
             'Material-UI: You have provided a `inputComponent` to the input component',
-            'that does not correctly handle the `inputRef` prop.',
-            'Make sure the `inputRef` prop is called with a HTMLInputElement.',
+            'that does not correctly handle the `ref` prop.',
+            'Make sure the `ref` prop is called with a HTMLInputElement.',
           ].join('\n'),
         );
       }
