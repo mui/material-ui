@@ -40,7 +40,7 @@ materialDesign: https://material.io/components/chips
 
 您可以借助 `size` 属性来定义一个小型纸片组件。
 
-### 默认的变量
+### 填充的变量
 
 {{"demo": "pages/components/chips/SmallChips.js"}}
 
