@@ -11,15 +11,15 @@ export default function BoxMaterialUIStyles() {
     <React.Profiler id="box-material-ui-system" onRender={logReactMetrics}>
       <StylesThemeProvider theme={materialSystemTheme}>
         {new Array(1000).fill().map(() => (
-            <BoxStyles
-              color="primary.main"
-              bgcolor="background.paper"
-              fontFamily="h6.fontFamily"
-              fontSize={['h6.fontSize', 'h4.fontSize', 'h3.fontSize']}
-              p={[2, 3, 4]}
-            >
-              @material-ui/styles
-            </BoxStyles>
+          <BoxStyles
+            color="primary.main"
+            bgcolor="background.paper"
+            fontFamily="h6.fontFamily"
+            fontSize={['h6.fontSize', 'h4.fontSize', 'h3.fontSize']}
+            p={[2, 3, 4]}
+          >
+            @material-ui/styles
+          </BoxStyles>
         ))}
       </StylesThemeProvider>
     </React.Profiler>

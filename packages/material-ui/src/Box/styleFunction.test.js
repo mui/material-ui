@@ -88,7 +88,7 @@ describe('styleFunction', () => {
       '@media (min-width:600px)': { border: '2px solid' },
       '@media (min-width:960px)': { border: '3px solid' },
       '@media (min-width:1280px)': { border: '4px solid' },
-      '@media (min-width:1920px)': { border: '5px solid' }
+      '@media (min-width:1920px)': { border: '5px solid' },
     };
 
     it('resolves breakpoints array', () => {
@@ -104,11 +104,11 @@ describe('styleFunction', () => {
       const result = styleFunction({
         theme,
         border: {
-          xs: 1, 
+          xs: 1,
           sm: 2,
           md: 3,
-          lg: 4, 
-          xl: 5
+          lg: 4,
+          xl: 5,
         },
       });
 
@@ -130,7 +130,7 @@ describe('styleFunction', () => {
           fontSize: 'fontSize',
           displayPrint: 'block',
           border: [1, 2, 3, 4, 5],
-        }
+        },
       });
 
       expect(result).to.deep.equal({
@@ -164,17 +164,17 @@ describe('styleFunction', () => {
               sm: 0.2,
               md: 0.3,
               lg: 0.4,
-              xl: 0.5
+              xl: 0.5,
             },
             border: [1, 2, 3],
-            borderColor: t => t.palette.secondary.main,
-          }
-        }
+            borderColor: (t) => t.palette.secondary.main,
+          },
+        },
       });
 
       expect(result).to.deep.equal({
         background: 'rgb(0, 0, 255)',
-        ":hover": {
+        ':hover': {
           backgroundColor: 'rgb(0, 0, 255)',
           '@media (min-width:0px)': { opacity: 0.1, border: '1px solid' },
           '@media (min-width:600px)': { opacity: 0.2, border: '2px solid' },

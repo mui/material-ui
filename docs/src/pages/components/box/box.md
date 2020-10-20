@@ -66,13 +66,16 @@ Sometimes, the props on the Box component are not enough to style the component.
   sx={{
     width: 300,
     height: 300,
-    bgcolor: 'primary.light',
+    bgcolor: 'primary.dark',
     ':hover': {
       backgroundColor: 'primary.main',
+      opacity: [0.9, 0.8, 0.7],
     },
   }}
 />
 ```
+
+{{"demo": "pages/components/box/BoxSx.js"}}
 
 ## API
 
