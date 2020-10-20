@@ -40,22 +40,22 @@ yarn add @material-ui/core@next
 
 ## Handling breaking changes
 
-### Supported browsers and node versions
+### Поддерживаемые версии браузеров и node
 
-The targets of the default bundle have changed. The exact versions will be pinned on release from the browserslist query `"> 0.5%, last 2 versions, Firefox ESR, not dead, not IE 11, maintained node versions"`.
+Изменены целевые версии для базового пакета. Конкретные версии базового пакета будут уточнены на момент релиза по результатам следующего browserslist-запроса `"> 0.5%, last 2 versions, Firefox ESR, not dead, not IE 11, maintained node versions"`.
 
-The default bundle now supports:
+На данный момент базовый пакет поддерживает:
 
 <!-- #stable-snapshot -->
 
-- Node 10 (up from 8)
-- Chrome 84 (up from 49)
-- Edge 85 (up from 14)
-- Firefox 78 (up from 52)
-- Safari 13 (macOS) and 12.2 (iOS) (up from 10)
-- and more (see [.browserslistrc (`stable` entry)](https://github.com/mui-org/material-ui/blob/HEAD/.browserslistrc#L11))
+- Node 10 (не ниже 8)
+- Chrome 84 (не ниже 49)
+- Edge 85 (не ниже 14)
+- Firefox 78 (не ниже 52)
+- Safari 13 (macOS) и 12.2 (iOS) (не ниже 10)
+- и так далее (см. [.browserslistrc (раздел `stable`)](https://github.com/mui-org/material-ui/blob/HEAD/.browserslistrc#L11))
 
-It no longer supports IE 11. If you need to support IE 11, check out our [legacy bundle](/guides/minimizing-bundle-size/#legacy-bundle).
+IE 11 больше не поддерживается. Если вам нужна поддержка IE 11, воспользуйтесь [устаревшим пакетом](/guides/minimizing-bundle-size/#legacy-bundle).
 
 ### non-ref-forwarding class components
 
