@@ -1,4 +1,3 @@
-import * as React from 'react';
 /** @jsx jsx */
 import { jsx, ThemeProvider } from 'theme-ui';
 
