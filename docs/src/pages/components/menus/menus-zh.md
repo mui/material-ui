@@ -26,7 +26,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
 
 ## 选择菜单
 
-若用于选项的选择，当打开简单菜单的时候，它会通过一个锚元素来尝试与当前被选择的菜单的选择项垂直对齐，而初始的焦点集中于被选中的那个选项。 通过 `selected` 属性（在[ListItem](/api/list-item/)中），能够设置当前被选中的那个选项。 若想要使用一个被选项，且不影响初始的焦点或者菜单的垂直位置，您可以设置一下`菜单`的 `variant` 属性。
+若用于选项的选择，当打开简单菜单的时候，它会通过一个锚元素来尝试与当前被选择的菜单的选择项垂直对齐，而初始的焦点集中于被选中的那个选项。 通过 `selected` 属性（在[ListItem](/api/list-item/)中），您能够设置当前被选中的选项。 若想要使用一个已被选的项目，且不影响初始的焦点或者菜单的垂直位置，您可以设置一下”菜单“的 `variant` 属性。
 
 {{"demo": "pages/components/menus/SimpleListMenu.js"}}
 
