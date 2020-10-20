@@ -362,39 +362,32 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     ref: handleInputRef,
   };
 
-  if (typeof InputComponent !== 'string') {
-    inputProps = {
-      // Rename ref to inputRef as we don't know the
-      // provided `inputComponent` structure.
-      inputRef: handleInputRef,
-      type,
-      ...inputProps,
-      ref: null,
-    };
-  } else if (multiline) {
-    if (rows) {
-      InputComponent = 'textarea';
-      if (process.env.NODE_ENV !== 'production') {
-        if (minRows || maxRows) {
-          console.warn(
-            'Material-UI: You can not use the `minRows` or `maxRows` props when the input `rows` prop is set.',
-          );
+  if (typeof InputComponent === 'string') {
+    if (multiline) {
+      if (rows) {
+        InputComponent = 'textarea';
+        if (process.env.NODE_ENV !== 'production') {
+          if (minRows || maxRows) {
+            console.warn(
+              'Material-UI: You can not use the `minRows` or `maxRows` props when the input `rows` prop is set.',
+            );
+          }
         }
+      } else {
+        inputProps = {
+          maxRows,
+          minRows,
+          ...inputProps,
+        };
+
+        InputComponent = TextareaAutosize;
       }
     } else {
       inputProps = {
-        maxRows,
-        minRows,
+        type,
         ...inputProps,
       };
-
-      InputComponent = TextareaAutosize;
     }
-  } else {
-    inputProps = {
-      type,
-      ...inputProps,
-    };
   }
 
   const handleAutoFill = (event) => {
