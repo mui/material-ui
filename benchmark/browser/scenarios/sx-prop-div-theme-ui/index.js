@@ -1,6 +1,7 @@
 import * as React from 'react';
+/** @jsx jsx */
 import {
-    Box,
+    jsx,
     ThemeProvider
   } from 'theme-ui';
 import { logReactMetrics } from '../utils';
@@ -23,7 +24,7 @@ export default function BasicStyledComponents() {
       <React.Profiler id="sx-prop-box-theme-ui" onRender={logReactMetrics}>
         <ThemeProvider theme={theme}>
           {new Array(1000).fill().map(() => (
-              <Box
+              <div
                 sx={{
                   width: 200,
                   height: 200,
@@ -38,7 +39,7 @@ export default function BasicStyledComponents() {
                 }}
               >
                 theme-ui
-              </Box>
+              </div>
           ))}
         </ThemeProvider>
       </React.Profiler>

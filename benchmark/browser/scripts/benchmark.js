@@ -125,6 +125,12 @@ async function run() {
     );
     await runMeasures(
       browser,
+      'Theme-UI div sx prop',
+      './sx-prop-div-theme-ui/index.js',
+      10,
+    );
+    await runMeasures(
+      browser,
       'Material-UI box sx prop',
       './sx-prop-box-material-ui/index.js',
       10,
