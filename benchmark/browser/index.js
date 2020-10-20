@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import { logReactMetrics } from './utils';
 
 // Get all the scenarios
 const requirePerfScenarios = require.context('./scenarios', true, /(js|ts|tsx)$/);
@@ -27,7 +28,11 @@ function TestCase(props) {
     };
   });
 
-  return <div ref={ref}>{props.children}</div>;
+  return (
+    <React.Profiler id={scenarioSuitePath} onRender={logReactMetrics}>
+      <div ref={ref}>{props.children}</div>
+    </React.Profiler>
+  );
 }
 
 TestCase.propTypes = {
