@@ -123,7 +123,7 @@ import useAutocomplete from '@material-ui/core/useAutocomplete';
 
 {{"demo": "pages/components/autocomplete/CustomizedHook.js"}}
 
-前往[自定义](#customization)部分，查看使用 `自动完成` 组件代替 hook 的示例。
+请前往 [自定义](#customization) 部分，查看使用 `自动完成` 组件代替 hook 的示例。
 
 ## 异步请求
 
@@ -226,7 +226,7 @@ import { createFilterOptions } from '@material-ui/core/Autocomplete';
 - `config.ignoreCase` (_Boolean_ [optional]): 默认值为 `true`。 所有字母都小写。
 - `config.limit` (_Number_ [optional]): 默认值为 null。 显示限定数量的建议选项。 例如，如果 `config.limit` 是 `100`,，那么只显示前 `100 个` 匹配的选项。 如果存在很多选项匹配，并且虚拟化设置还没建立成时，这样的限制是非常有效的。
 - `config.matchFrom` (_'any' | 'start'_ [optional]): 默认值为 `'any'`。
-- `config.stringify` (_Func_ [optional]): 控制如何将一个选项转换成一个字符串，这样，选项就能够和输入文本的片段相匹配。
+- `config.stringify` (_Func_ [optional]): 控制如何将一个选项转换成一个字符串，这样选项就能够和输入文本的片段相匹配。
 - `config.trim` (_Boolean_ [optional]): 默认值为 `false`。 删除尾随空格。
 
 #### 返回结果
@@ -288,7 +288,7 @@ const filterOptions = (options, { inputValue }) =>
   />
   ```
 
-阅读 [这篇 MDN 指南](https://developer.mozilla.org/en-US/docs/Web/Security/Securing_your_site/Turning_off_form_autocompletion) 来寻求更多解决方案。
+请阅读 [这篇 MDN 指南](https://developer.mozilla.org/en-US/docs/Web/Security/Securing_your_site/Turning_off_form_autocompletion) 来寻求更多解决方案。
 
 ### iOS VoiceOver 辅助功能
 
