@@ -18,19 +18,19 @@ styledSystemTheme.fonts = styledSystemTheme.typography;
 export default function StyledComponentsBoxStyledSystem() {
   return (
     <React.Profiler id="styled-components-box-styled-system" onRender={logReactMetrics}>
-      {new Array(1000).fill().map(() => (
-        <StyledComponentsThemeProvider theme={styledSystemTheme}>
-          <BoxStyledSystem
-            color="primary.main"
-            bg="background.paper"
-            fontFamily="h6.fontFamily"
-            fontSize={['h6.fontSize', 'h4.fontSize', 'h3.fontSize']}
-            p={[2, 3, 4]}
-          >
-            styled-system
-          </BoxStyledSystem>
-        </StyledComponentsThemeProvider>
-      ))}
+      <StyledComponentsThemeProvider theme={styledSystemTheme}>
+        {new Array(1000).fill().map(() => (
+            <BoxStyledSystem
+              color="primary.main"
+              bg="background.paper"
+              fontFamily="h6.fontFamily"
+              fontSize={['h6.fontSize', 'h4.fontSize', 'h3.fontSize']}
+              p={[2, 3, 4]}
+            >
+              styled-system
+            </BoxStyledSystem>
+        ))}
+      </StyledComponentsThemeProvider>
     </React.Profiler>
   );
 }

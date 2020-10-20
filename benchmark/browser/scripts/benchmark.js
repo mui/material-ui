@@ -119,6 +119,12 @@ async function run() {
     );
     await runMeasures(
       browser,
+      'Chakra-UI box component',
+      './box-chakra-ui/index.js',
+      10,
+    );
+    await runMeasures(
+      browser,
       'Theme-UI box sx prop',
       './sx-prop-box-theme-ui/index.js',
       10,

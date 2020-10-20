@@ -12,19 +12,19 @@ const BoxStyleComponents = styledComponents('div')(styleFunction);
 export default function BoxStyledComponents() {
   return (
     <React.Profiler id="box-styled-components" onRender={logReactMetrics}>
-      {new Array(1000).fill().map(() => (
-        <StyledComponentsThemeProvider theme={materialSystemTheme}>
-          <BoxStyleComponents
-            color="primary.main"
-            bgcolor="background.paper"
-            fontFamily="h6.fontFamily"
-            fontSize={['h6.fontSize', 'h4.fontSize', 'h3.fontSize']}
-            p={[2, 3, 4]}
-          >
-            styled-components
-          </BoxStyleComponents>
-        </StyledComponentsThemeProvider>
-      ))}
+      <StyledComponentsThemeProvider theme={materialSystemTheme}>
+        {new Array(1000).fill().map(() => (
+            <BoxStyleComponents
+              color="primary.main"
+              bgcolor="background.paper"
+              fontFamily="h6.fontFamily"
+              fontSize={['h6.fontSize', 'h4.fontSize', 'h3.fontSize']}
+              p={[2, 3, 4]}
+            >
+              styled-components
+            </BoxStyleComponents>
+        ))}
+      </StyledComponentsThemeProvider>
     </React.Profiler>
   );
 }

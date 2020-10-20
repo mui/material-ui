@@ -13,19 +13,19 @@ const BoxMaterialSystem = styledComponents('div')(materialSystem);
 export default function StyledComponentsBoxMaterialUISystem() {
   return (
     <React.Profiler id="styled-components-box-material-ui-system" onRender={logReactMetrics}>
-      {new Array(1000).fill().map(() => (
-        <StyledComponentsThemeProvider theme={materialSystemTheme}>
-          <BoxMaterialSystem
-            color="primary.main"
-            bgcolor="background.paper"
-            fontFamily="h6.fontFamily"
-            fontSize={['h6.fontSize', 'h4.fontSize', 'h3.fontSize']}
-            p={[2, 3, 4]}
-          >
-            @material-ui/system
-          </BoxMaterialSystem>
-        </StyledComponentsThemeProvider>
-      ))}
+      <StyledComponentsThemeProvider theme={materialSystemTheme}>
+        {new Array(1000).fill().map(() => (
+            <BoxMaterialSystem
+              color="primary.main"
+              bgcolor="background.paper"
+              fontFamily="h6.fontFamily"
+              fontSize={['h6.fontSize', 'h4.fontSize', 'h3.fontSize']}
+              p={[2, 3, 4]}
+            >
+              @material-ui/system
+            </BoxMaterialSystem>
+        ))}
+      </StyledComponentsThemeProvider>
     </React.Profiler>
   );
 }
