@@ -1,5 +1,5 @@
 ---
-title: React 分页组件
+title: React 分页（Pagination）组件
 components: Pagination, PaginationItem
 ---
 
@@ -45,7 +45,7 @@ components: Pagination, PaginationItem
 
 ## `usePagination`
 
-对于高级自定义用例，我们暴露了一个无头（headless）的 `usePagination()` hook。 它支持的选项与分页组件大致相同，但不包括与 JSX 渲染有关的所有属性。 分页组件内部也使用此 hook。
+对于高级自定义用例，我们暴露了一个 headless 的 `usePagination()` hook。 它支持的选项与分页组件大致相同，但不包括与 JSX 渲染有关的所有属性。 分页组件内部也使用此 hook。
 
 ```jsx
 import { usePagination } from '@material-ui/lab/Pagination';
