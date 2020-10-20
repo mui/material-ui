@@ -14,7 +14,7 @@ const customTheme = {
   },
 };
 
-export default function BoxEmotion() {
+export default function BoxChakraUi() {
   return (
     <ThemeProvider theme={customTheme}>
       {new Array(1000).fill().map(() => (

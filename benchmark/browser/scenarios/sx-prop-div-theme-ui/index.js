@@ -15,7 +15,7 @@ const theme = {
   },
 };
 
-export default function BasicStyledComponents() {
+export default function ThemeUiSxProp() {
   return (
     <ThemeProvider theme={theme}>
       {new Array(1000).fill().map(() => (
