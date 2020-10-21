@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@material-ui/core/Box';
 
-export default function BasicStyledComponents() {
+export default function BoxSxPropMaterialUI() {
   return (
     <React.Fragment>
       {new Array(1000).fill().map(() => (
