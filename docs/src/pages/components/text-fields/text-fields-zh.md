@@ -168,7 +168,7 @@ type="number" 的输入存在潜在的可用性问题。
 
 {{"demo": "pages/components/text-fields/FormattedInputs.js"}}
 
-我们要求提供的输入组件能够受理 `inputRef` 这个属性。 这个属性可以通过一个值来调用，而这个值实现了一下的接口：
+第三方所提供的输入组件应该暴露一个 ref，其值实现以下接口：
 
 ```ts
 interface InputElement {
@@ -178,22 +178,22 @@ interface InputElement {
 ```
 
 ```jsx
-function MyInputComponent(props) {
-  const { component: Component, inputRef, ...other } = props;
+const MyInputComponent = React.forwardRef((props, ref) => {
+  const { component: Component, ...other } = props;
 
-  // 实现 `InputElement` 接口
-  React.useImperativeHandle(inputRef, () => ({
+  // implement `InputElement` interface
+  React.useImperativeHandle(ref, () => ({
     focus: () => {
-      // 在这里加上来自第三方渲染的组件的逻辑 
+      // logic to focus the rendered component from 3rd party belongs here
     },
-    // 隐藏值 例如：react-stripe-elements
+    // hiding the value e.g. react-stripe-elements
   }));
 
-  // `Component` 将会来自以下的 `SomeThirdPartyComponent`
+  // `Component` will be your `SomeThirdPartyComponent` from below
   return <Component {...other} />;
-}
+});
 
-// 使用
+// usage
 <TextField
   InputProps={{
     inputComponent: MyInputComponent,
