@@ -117,6 +117,10 @@ function MyComponent() {
 
 {{"demo": "pages/components/dialogs/ScrollDialog.js"}}
 
+## 性能
+
+参考[模态性能部分](/components/modal/#performance)。
+
 ## 设计局限
 
 参考[对话框性能部分](/components/modal/#limitations)。
