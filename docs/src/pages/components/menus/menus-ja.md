@@ -6,17 +6,17 @@ materialDesign: https://material.io/components/menus
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
 ---
 
-# Menus
+# Menu
 
 <p class="description">メニューには、一時的なサーフェスの選択肢のリストが表示されます。</p>
 
-[Menu](https://material.io/design/components/menus.html)には、一時サーフェス上の選択項目のリストが表示されます。 ユーザーがボタンやその他のコントロールを操作すると表示されます。
+A menu displays a list of choices on a temporary surface. ユーザーがボタンやその他のコントロールを操作すると表示されます。
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## シンプルなメニュー
+## Basic menu
 
-デフォルトでは、アンカー要素の上にシンプルなメニューが開きます（このオプションはpropsを介して変更できます）。 画面の端に近づくと、シンプルメニューが垂直方向に再配置され、すべてのメニュー項目が完全に表示されます。 画面の端に近づくと、シンプルメニューが垂直方向に再配置され、すべてのメニュー項目が完全に表示されます。
+A basic menu opens over the anchor element by default (this option can be [changed](#menu-positioning) via props). When close to a screen edge, a basic menu vertically realigns to make sure that all menu items are completely visible.
 
 オプションを選択したら、そのオプションをすぐにコミットしてメニューを閉じるのが理想的です。
 
@@ -29,6 +29,12 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
 項目の選択に使用した場合、シンプルメニューを開くと、現在選択されているメニュー項目がアンカー要素に垂直に配置されます。 選択したメニュー項目に初期フォーカスが移ります。 The `MenuItem` is a wrapper around `ListItem` with some additional styles. 現在選択されているメニュー項目は、 `selected` プロパティ（[ListItem](/api/list-item/)）を使用して設定されます。 選択したメニュー項目を、初期フォーカスやメニューの縦位置に影響を与えずに使用するには、`variant`プロパティを `menu`に設定します。
 
 {{"demo": "pages/components/menus/SimpleListMenu.js"}}
+
+## Menu positioning
+
+Because the `Menu` component uses the `Popover` component to position itself, you can use the same [positioning props](/components/popover/#anchor-playground) to position it. For instance, you can display the menu below the anchor:
+
+{{"demo": "pages/components/menus/PositionedMenu.js"}}
 
 ## メニューリストの構成
 
