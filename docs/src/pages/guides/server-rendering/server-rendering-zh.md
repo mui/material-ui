@@ -85,40 +85,63 @@ app.listen(port);
 
 服务端渲染的关键步骤是，在将组件的初始 HTML 发送到客户端**之前**，就开始进行渲染。 我们用 [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html) 来实现此操作。
 
-然后我们就可以使用 `sheets.toString()` 方法从`表单（sheets）`中获取 CSS。 我们将看到在 `renderFullPage` 函数中，是如何传递这些信息的。
+然后我们就可以使用 `sheets.toString()` 方法从`表单（sheets）`中获取 CSS。 As we are also using emotion as our default styled engine, we need to extract the styles from the emotion instance as well. For this we need to share the same cache definition for both the client and server:
+
+`cache.js`
+
+```js
+import createCache from '@emotion/cache';
+
+const cache = createCache();
+
+export default cache;
+```
+
+With this we are creating new Emotion server instance and using this to extract the critical styles for the html as well.
+
+我们将看到在 `renderFullPage` 函数中，是如何传递这些信息的。
 
 ```jsx
 import express from 'express';
 import * as React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { ServerStyleSheets, ThemeProvider } from '@material-ui/core/styles';
+import createEmotionServer from 'create-emotion-server';
 import App from './App';
 import theme from './theme';
+import cache from './cache';
+
+const { extractCritical } = createEmotionServer(cache);
 
 function handleRender(req, res) {
   const sheets = new ServerStyleSheets();
 
-  // 将组件渲染成字符串。
+  // Render the component to a string.
   const html = ReactDOMServer.renderToString(
     sheets.collect(
-      <ThemeProvider theme={theme}>
-        <App />
-      </ThemeProvider>,
+      <CacheProvider value={cache}>
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
+      </CacheProvider>,
     ),
   );
 
-  // 从 sheet 中抓取 CSS。
+  // Grab the CSS from the sheets.
   const css = sheets.toString();
 
-  // 将渲染的页面发送回客户端。
-  res.send(renderFullPage(html, css));
+  // Grab the CSS from emotion
+  const styles = extractCritical(html);
+
+  // Send the rendered page back to the client.
+  res.send(renderFullPage(html, `${css} ${styles.css}`));
 }
 
 const app = express();
 
 app.use('/build', express.static('build'));
 
-// 每次服务器端收到请求时都会触发此操作。
+// This is fired every time the server-side receives a request.
 app.use(handleRender);
 
 const port = 3000;
@@ -156,8 +179,10 @@ function renderFullPage(html, css) {
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 import { ThemeProvider } from '@material-ui/core/styles';
+import { CacheProvider } from '@emotion/core';
 import App from './App';
 import theme from './theme';
+import cache from './cache';
 
 function Main() {
   React.useEffect(() => {
@@ -168,9 +193,11 @@ function Main() {
   }, []);
 
   return (
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
+    <CacheProvider value={cache}>
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
+    </CacheProvider>
   );
 }
 
