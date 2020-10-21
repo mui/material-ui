@@ -44,19 +44,19 @@ export const styles = (theme) => ({
   /* Styles applied to the root element if `maxWidth="sm"`. */
   maxWidthSm: {
     [theme.breakpoints.up('sm')]: {
-      maxWidth: `${theme.breakpoints.values.xl}${theme.breakpoints.unit}`,
+      maxWidth: `${theme.breakpoints.values.sm}${theme.breakpoints.unit}`,
     },
   },
   /* Styles applied to the root element if `maxWidth="md"`. */
   maxWidthMd: {
     [theme.breakpoints.up('md')]: {
-      maxWidth: `${theme.breakpoints.values.xl}${theme.breakpoints.unit}`,
+      maxWidth: `${theme.breakpoints.values.md}${theme.breakpoints.unit}`,
     },
   },
   /* Styles applied to the root element if `maxWidth="lg"`. */
   maxWidthLg: {
     [theme.breakpoints.up('lg')]: {
-      maxWidth: `${theme.breakpoints.values.xl}${theme.breakpoints.unit}`,
+      maxWidth: `${theme.breakpoints.values.lg}${theme.breakpoints.unit}`,
     },
   },
   /* Styles applied to the root element if `maxWidth="xl"`. */
