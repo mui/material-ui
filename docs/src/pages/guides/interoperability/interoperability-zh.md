@@ -257,7 +257,7 @@ export default function GlobalCssSliderDeep() {
 
 ### 改变默认的样式引擎
 
-默认情况下，Material-UI 组件使用 emotion 来作为它们的样式引擎。 然而，如果你想使用 `styled-components`，那么可以参考这个[示例项目](https://github.com/mui-org/material-ui/blob/next/examples/create-react-app-with-styled-components)来配置你的应用程序。 按照这种方法来配置的话，则可以减少捆绑包的大小，并且无需配置 CSS 注入顺序。
+默认情况下，Material-UI 组件使用 emotion 来作为它们的样式引擎。 If, however, you would like to use `styled-components`, you can configure your app by following this [example project](https://github.com/mui-org/material-ui/blob/next/examples/create-react-app-with-styled-components). 按照这种方法来配置的话，则可以减少捆绑包的大小，并且无需配置 CSS 注入顺序。
 
 在正确配置了样式引擎之后，你可以使用 `@material-ui/core/styles` 中的 `experimentalStyled()` 工具集来直接访问主题。
 
