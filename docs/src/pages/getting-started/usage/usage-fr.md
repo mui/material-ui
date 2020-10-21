@@ -47,7 +47,7 @@ Pour que le rendu et le zoom tactile soient corrects pour tous les périphériqu
 
 ### CssBaseline
 
-Material-UI fournit un composant [CssBaseline](/components/css-baseline/) facultatif. It fixes some inconsistencies across browsers and devices while providing slightly more opinionated resets to common HTML elements.
+Material-UI fournit un composant [CssBaseline](/components/css-baseline/) facultatif. Cela corrige les incohérences entre les navigateurs et les périphériques tout en réinitialisant le style des éléments HTML les plus courants.
 
 ## Documentation versionnée
 
