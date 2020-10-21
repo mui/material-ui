@@ -19,6 +19,21 @@ describe('<Box />', () => {
     </div>
   );
 
+  it('warns if system props are used directly on the Box component', () => {
+    expect(() => {
+      render(
+        <Box
+          color="primary.main"
+          fontFamily="Comic Sans"
+          fontSize={{ xs: 'h6.fontSize', sm: 'h4.fontSize', md: 'h3.fontSize' }}
+        />,
+      );
+    }).toWarnDev('Material-UI: You are using deprecated propreties directly on the Box component.\n' +
+      'You should move the properties inside the `sx` prop. For example:\n' +
+      '<Box m={2} /> should become <Box sx={{ m: 2 }} />'
+    );
+  });
+
   it('renders children and box content', () => {
     const { container, getByTestId } = render(
       <Box component="span" m={1}>
