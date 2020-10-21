@@ -823,6 +823,27 @@ const classes = makeStyles(theme => ({
   ```
 
 
+- Change ref forwarding expections on custom `inputComponent`. The component should forward the `ref` prop instead of the `inputRef` prop. 
+  
+  
+
+  ```diff
+  -function NumberFormatCustom(props) {
+  -  const { inputRef, onChange, ...other } = props;
+  +const NumberFormatCustom = React.forwardRef(function NumberFormatCustom(
+  +  props,
+  +  ref,
+  +) {
+    const { onChange, ...other } = props;
+
+    return (
+      <NumberFormat
+        {...other}
+  -     getInputRef={inputRef}
+  +     getInputRef={ref}
+  ```
+
+
 
 
 ### TextareaAutosize
