@@ -42,6 +42,21 @@ const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 <SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />
 ```
 
+### Keep mounted
+
+To ensure a temporary drawer is not unmounted, specify the `ModalProps` prop like:
+
+```jsx
+<Drawer
+  variant="temporary"
+  ModalProps={{
+    keepMounted: true,
+  }}
+/>
+```
+
+More details in the [Modal performance section](/components/modal/#performance).
+
 ## Приспосабливающаяся панель
 
 Адапивный дизайн может быть достигнут использованием компонента `Hidden`. `cкрытая` панель может быть показана для экранов с небольшим разрешением, тогда как `вполне видимая` панель будет показана на широких экранах.
