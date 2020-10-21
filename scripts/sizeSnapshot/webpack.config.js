@@ -114,22 +114,24 @@ module.exports = async function webpackConfig(webpack, environment) {
           new TerserPlugin({
             test: /\.js(\?.*)?$/i,
           }),
-          new BundleAnalyzerPlugin({
-            analyzerMode,
-            // We create a report for each bundle so around 120 reports.
-            // Opening them all is spam.
-            // If opened with `webpack --config . --analyze` it'll still open one new tab though.
-            openAnalyzer: false,
-            // '[name].html' not supported: https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/12
-            reportFilename: `${entry.name}.html`,
-          }),
         ],
       },
       output: {
         filename: '[name].js',
         path: path.join(__dirname, 'build'),
       },
-      plugins: [new CompressionPlugin()],
+      plugins: [
+        new CompressionPlugin(),
+        new BundleAnalyzerPlugin({
+          analyzerMode,
+          // We create a report for each bundle so around 120 reports.
+          // Opening them all is spam.
+          // If opened with `webpack --config . --analyze` it'll still open one new tab though.
+          openAnalyzer: false,
+          // '[name].html' not supported: https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/12
+          reportFilename: `${entry.name}.html`,
+        }),
+      ],
       resolve: {
         alias: {
           '@material-ui/core': path.join(workspaceRoot, 'packages/material-ui/build'),
