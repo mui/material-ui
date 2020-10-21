@@ -666,6 +666,15 @@ const appList = [
     link: 'https://www.buybags.de/',
     dateAdded: '2020-10-08',
   },
+  {
+    title: 'Me vs Yall',
+    description:
+      'Feel the thrill of betting without risking anything on Me vs Yall. ' +
+      'Compete against others around the world for rep.  Your home for sports fun and facts!',
+    link: 'https://www.mevsyall.com',
+    similarWebVisits: 150,
+    dateAdded: '2020-10-21',
+  },
 ];
 
 export default appList;
