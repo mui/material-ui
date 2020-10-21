@@ -770,6 +770,24 @@ const classes = makeStyles(theme => ({
   +<TextField maxRows={6}>
   ```
 
+- Change ref forwarding expections on custom `inputComponent`. The component should forward the `ref` prop instead of the `inputRef` prop.
+
+  ```diff
+  -function NumberFormatCustom(props) {
+  -  const { inputRef, onChange, ...other } = props;
+  +const NumberFormatCustom = React.forwardRef(function NumberFormatCustom(
+  +  props,
+  +  ref,
+  +) {
+    const { onChange, ...other } = props;
+
+    return (
+      <NumberFormat
+        {...other}
+  -     getInputRef={inputRef}
+  +     getInputRef={ref}
+  ```
+
 ### TextareaAutosize
 
 - Удаляем свойство `rows` и используем вместо него `minRows`. Цель этого изменения - сделать поведение свойства более понятным.
