@@ -47,6 +47,14 @@ By default, we use the combination of a `<div>` element and a _background image_
 
 ## UI Controls
 
+Often cards allow users to interact with the entirety of their surface to trigger its main action, be it an expansion, a link to another screen or some other behavior. The action area of the card can be specified by wrapping its contents in a `CardActionArea` component.
+
+{{"demo": "pages/components/cards/ActionAreaCard.js", "bg": true}}
+
+A card can also offer supplemental actions which should stand detached from the main action area in order to avoid event overlap. This is usually achieved by vertically separating the two Action Areas in order to keep a clear visual hierarchy between them.
+
+{{"demo": "pages/components/cards/MultiActionAreaCard.js", "bg": true}}
+
 Supplemental actions within the card are explicitly called out using icons, text, and UI controls, typically placed at the bottom of the card.
 
 Here's an example of a media control card.
