@@ -3,7 +3,7 @@ import Box from '@material-ui/core/Box';
 
 export default function BasicStyledComponents() {
   return (
-    <>
+    <React.Fragment>
       {new Array(1000).fill().map(() => (
         <Box
           sx={{
@@ -21,6 +21,6 @@ export default function BasicStyledComponents() {
           material-ui
         </Box>
       ))}
-    </>
+    </React.Fragment>
   );
 }
