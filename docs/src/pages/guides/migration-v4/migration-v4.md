@@ -593,6 +593,7 @@ const classes = makeStyles(theme => ({
     + '&[data-popper-placement*="bottom"] $arrow': {
     ```
   - Method names have changed.
+
     ```diff
     -popperRef.current.scheduleUpdate()
     +popperRef.current.update()
@@ -602,6 +603,7 @@ const classes = makeStyles(theme => ({
     -popperRef.current.update()
     +popperRef.current.forceUpdate()
     ```
+
   - Modifiers' API has changed a lot. There are too many changes to be covered here.
 
 ### Portal
