@@ -3,6 +3,7 @@ const lodash = require('lodash');
 const path = require('path');
 const { promisify } = require('util');
 const webpackCallbackBased = require('webpack');
+const yargs = require('yargs');
 const createWebpackConfig = require('./webpack.config');
 
 const webpack = promisify(webpackCallbackBased);
@@ -31,10 +32,10 @@ async function getRollupSize(snapshotPath) {
 /**
  * creates size snapshot for every bundle that built with webpack
  */
-async function getWebpackSizes() {
+async function getWebpackSizes(webpackEnvironment) {
   await fse.mkdirp(path.join(__dirname, 'build'));
 
-  const configurations = await createWebpackConfig(webpack);
+  const configurations = await createWebpackConfig(webpack, webpackEnvironment);
   const webpackMultiStats = await webpack(configurations);
 
   const sizes = [];
@@ -160,10 +161,12 @@ async function getNextPagesSize() {
   return entries;
 }
 
-async function run() {
+async function run(argv) {
+  const { analyze } = argv;
+
   const rollupBundles = [path.join(workspaceRoot, 'packages/material-ui/size-snapshot.json')];
   const bundleSizes = lodash.fromPairs([
-    ...(await getWebpackSizes()),
+    ...(await getWebpackSizes({ analyze })),
     ...lodash.flatten(await Promise.all(rollupBundles.map(getRollupSize))),
     ...(await getNextPagesSize()),
   ]);
@@ -171,7 +174,20 @@ async function run() {
   await fse.writeJSON(snapshotDestPath, bundleSizes, { spaces: 2 });
 }
 
-run().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
+yargs
+  .command({
+    command: '$0',
+    description: 'Saves a size snapshot in size-snapshot.json',
+    builder: (command) => {
+      return command.option('analyze', {
+        default: false,
+        describe: 'Creates a webpack-bundle-analyzer report for each bundle.',
+        type: 'boolean',
+      });
+    },
+    handler: run,
+  })
+  .help()
+  .strict(true)
+  .version(false)
+  .parse();
