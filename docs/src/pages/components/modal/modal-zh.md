@@ -52,6 +52,18 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 
 {{"demo": "pages/components/modal/SpringModal.js"}}
 
+## 性能
+
+模态的内容在关闭时是不被加载的。 如果你需要将内容提供给搜索引擎或在你的模态框中渲染昂贵的组件树，同时还要优化交互响应能力，那么你可以启用 `keepMounted` 属性来改变这一默认行为：
+
+```jsx
+<Modal keepMounted />
+```
+
+{{"demo": "pages/components/modal/KeepMountedModal.js", "defaultCodeOpen": false}}
+
+不过对所有情况下的性能优化，这并不是灵丹妙药。 请您务必先确定性能的瓶颈所在，再考虑这些优化策略。
+
 ## 服务端渲染的模态框
 
 React [不支持](https://github.com/facebook/react/issues/13097)服务端渲染的 [`createPortal()`](https://reactjs.org/docs/portals.html) API。 若您想显示模态框，则需要通过 `disablePortal`  这个属性来禁用 protal 功能：
@@ -77,17 +89,10 @@ React [不支持](https://github.com/facebook/react/issues/13097)服务端渲染
 - 记得用 `aria-labelledby="id..."` 属性来指向 `Modal` 的标题。 此外，您可以使用 `aria-describedby="id..."` 属性来为 `Modal` 组件添加一段描述。
 
   ```jsx
-  <Modal
-    aria-labelledby="modal-title"
-    aria-describedby="modal-description"
-    >
-    <h2 id="modal-title">
-      我的标题
-    </h2>
-    <p id="modal-description">
-      我的描述
-    </p>
-    </Modal>
+  <Modal aria-labelledby="modal-title" aria-describedby="modal-description">
+    <h2 id="modal-title">我的标题</h2>
+    <p id="modal-description">我的描述</p>
+  </Modal>
   ```
 
 - 这篇 [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) 里的方法可以根据你的模态窗口里的内容, 为最合适的元素设置初始焦点.
