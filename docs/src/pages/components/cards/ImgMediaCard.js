@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -19,7 +18,6 @@ export default function ImgMediaCard() {
 
   return (
     <Card className={classes.root}>
-      <CardActionArea>
         <CardMedia
           component="img"
           alt="Contemplative Reptile"
@@ -36,7 +34,6 @@ export default function ImgMediaCard() {
             species, ranging across all continents except Antarctica
           </Typography>
         </CardContent>
-      </CardActionArea>
       <CardActions>
         <Button size="small">Share</Button>
         <Button size="small">Learn More</Button>
