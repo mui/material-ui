@@ -595,8 +595,11 @@ const classes = makeStyles(theme => ({
   - Method names have changed.
     ```diff
     -popperRef.current.scheduleUpdate()
-    -popperRef.current.update()
     +popperRef.current.update()
+    ```
+
+    ```diff
+    -popperRef.current.update()
     +popperRef.current.forceUpdate()
     ```
   - Modifiers' API has changed a lot. There are too many changes to be covered here.
