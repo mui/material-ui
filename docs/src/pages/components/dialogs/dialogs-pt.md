@@ -117,6 +117,10 @@ Experimente a demonstração abaixo para ver o que queremos dizer:
 
 {{"demo": "pages/components/dialogs/ScrollDialog.js"}}
 
+## Performance
+
+Siga a seção [Performance Modal](/components/modal/#performance).
+
 ## Limitações
 
 Siga a [seção de limitações do Modal](/components/modal/#limitations).
