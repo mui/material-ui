@@ -82,40 +82,6 @@ describe('styleFunction', () => {
     });
   });
 
-  describe('breakpoints', () => {
-    const breakpointsExpectedResult = {
-      '@media (min-width:0px)': { border: '1px solid' },
-      '@media (min-width:600px)': { border: '2px solid' },
-      '@media (min-width:960px)': { border: '3px solid' },
-      '@media (min-width:1280px)': { border: '4px solid' },
-      '@media (min-width:1920px)': { border: '5px solid' },
-    };
-
-    it('resolves breakpoints array', () => {
-      const result = styleFunction({
-        theme,
-        border: [1, 2, 3, 4, 5],
-      });
-
-      expect(result).to.deep.equal(breakpointsExpectedResult);
-    });
-
-    it('resolves breakpoints object', () => {
-      const result = styleFunction({
-        theme,
-        border: {
-          xs: 1,
-          sm: 2,
-          md: 3,
-          lg: 4,
-          xl: 5,
-        },
-      });
-
-      expect(result).to.deep.equal(breakpointsExpectedResult);
-    });
-  });
-
   describe('sx prop', () => {
     it('resolves system', () => {
       const result = styleFunction({
@@ -186,4 +152,67 @@ describe('styleFunction', () => {
       });
     });
   });
+
+  describe('breakpoints', () => {
+    const breakpointsExpectedResult = {
+      '@media (min-width:0px)': { border: '1px solid' },
+      '@media (min-width:600px)': { border: '2px solid' },
+      '@media (min-width:960px)': { border: '3px solid' },
+      '@media (min-width:1280px)': { border: '4px solid' },
+      '@media (min-width:1920px)': { border: '5px solid' },
+    };
+
+    it('resolves breakpoints array', () => {
+      const result = styleFunction({
+        theme,
+        border: [1, 2, 3, 4, 5],
+      });
+
+      expect(result).to.deep.equal(breakpointsExpectedResult);
+    });
+
+    it('resolves breakpoints object', () => {
+      const result = styleFunction({
+        theme,
+        border: {
+          xs: 1,
+          sm: 2,
+          md: 3,
+          lg: 4,
+          xl: 5,
+        },
+      });
+
+      expect(result).to.deep.equal(breakpointsExpectedResult);
+    });
+
+    it('merges multiple breakpoints object', () => {
+      const result = styleFunction({
+        theme,
+        m: [1, 2, 3],
+        p: [5, 6, 7],
+      });
+
+      expect(result).to.deep.equal({
+        '@media (min-width:0px)': { padding: '50px', margin: '10px' },
+        '@media (min-width:600px)': { padding: '60px', margin: '20px' },
+        '@media (min-width:960px)': { padding: '70px', margin: '30px' },
+      });
+    });
+
+    it('merges breakpoints from props and sx', () => {
+      const result = styleFunction({
+        theme,
+        m: [1, 2, 3],
+        sx: { p: [5, 6, 7] },
+      });
+
+      expect(result).to.deep.equal({
+        '@media (min-width:0px)': { padding: '50px', margin: '10px' },
+        '@media (min-width:600px)': { padding: '60px', margin: '20px' },
+        '@media (min-width:960px)': { padding: '70px', margin: '30px' },
+      });
+    });
+  });
+
 });

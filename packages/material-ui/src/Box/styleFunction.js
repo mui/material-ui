@@ -103,15 +103,9 @@ const styleFunctionSx = (styles, theme) => {
         }
       }
     } else if (typeof styles[styleKey] === 'function') {
-      css = {
-        ...css,
-        [styleKey]: styles[styleKey](theme),
-      };
+      css = deepmerge(css, { [styleKey]: styles[styleKey](theme) });
     } else {
-      css = {
-        ...css,
-        ...getThemeValue(styleKey, styles[styleKey], theme),
-      };
+      css = deepmerge(css, getThemeValue(styleKey, styles[styleKey], theme));
     }
   });
   return css;
@@ -121,19 +115,13 @@ const styleFunction = (props) => {
   let result = {};
   Object.keys(props).forEach((prop) => {
     if (filterProps.indexOf(prop) !== -1 && prop !== 'sx') {
-      result = {
-        ...result,
-        ...getThemeValue(prop, props[prop], props.theme),
-      };
+      result = deepmerge(result, getThemeValue(prop, props[prop], props.theme));
     }
   });
 
   const sxValue = styleFunctionSx(props.sx, props.theme);
 
-  return {
-    ...result,
-    ...sxValue,
-  };
+  return deepmerge(result, sxValue);
 };
 
 styleFunction.filterProps = filterProps;
