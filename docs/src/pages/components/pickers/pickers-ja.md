@@ -8,7 +8,7 @@ components: TextField
 <p class="description">Date pickers and Time pickers provide a simple way to select a single value from a pre-determined set.</p>
 
 - モバイルでは、ピッカーは確認ダイアログでの表示に最適です。
-- ォームなどのインライン表示では、セグメント化されたドロップダウンボタンなどのコンパクトなコントロールの使用を検討してください。
+- フォームなどのインライン表示では、セグメント化されたドロップダウンボタンなどのコンパクトなコントロールの使用を検討してください。
 
 ## @material-ui/pickers
 
