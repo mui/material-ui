@@ -168,7 +168,7 @@ This can be fixed by passing a space character to the `helperText` prop:
 
 {{"demo": "pages/components/text-fields/FormattedInputs.js"}}
 
-Предоставленный компонент ввода должен обрабатывать свойство `inputRef`. Свойство должно вызываться со значением, которое реализует следующий интерфейс:
+The provided input component should expose a ref with a value that implements the following interface:
 
 ```ts
 interface InputElement {
@@ -178,11 +178,30 @@ interface InputElement {
 ```
 
 ```jsx
-<div class="form-control">
-  <label for="my-input">Адрес электронной почты</label>
-  <input id="my-input" aria-describedby="my-helper-text" />
-  <span id="my-helper-text">Мы никогда не распостраним ваш адрес.</span>
-</div>
+const MyInputComponent = React.forwardRef((props, ref) => {
+  const { component: Component, ...other } = props;
+
+  // implement `InputElement` interface
+  React.useImperativeHandle(ref, () => ({
+    focus: () => {
+      // logic to focus the rendered component from 3rd party belongs here
+    },
+    // hiding the value e.g. react-stripe-elements
+  }));
+
+  // `Component` will be your `SomeThirdPartyComponent` from below
+  return <Component {...other} />;
+});
+
+// usage
+<TextField
+  InputProps={{
+    inputComponent: MyInputComponent,
+    inputProps: {
+      component: SomeThirdPartyComponent,
+    },
+  }}
+/>;
 ```
 
 ## Доступность
