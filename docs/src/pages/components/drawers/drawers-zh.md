@@ -42,6 +42,21 @@ const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 <SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />
 ```
 
+### 保持安装（mounted）
+
+你可以使用 `ModalProps` 属性来确保临时抽屉不会被卸载，就像这样：
+
+```jsx
+<Drawer
+  variant="temporary"
+  ModalProps={{
+    keepMounted: true,
+  }}
+/>
+```
+
+有关此部分的更多详情请查看 [模态框性能部分](/components/modal/#performance)。
+
 ## 响应式的抽屉
 
 利用` Hidden `这个响应式的辅助组件，可以根据屏幕宽度显示不同类型的抽屉。 屏幕尺寸较小的时候会显示 `temporary` 抽屉，而更宽的屏幕则显示 `permanent` 抽屉。
