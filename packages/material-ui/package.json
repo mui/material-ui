@@ -3,6 +3,7 @@
   "version": "5.0.0-alpha.13",
   "private": false,
   "author": "Material-UI Team",
+  "main": "./src/index.ts",
   "description": "React components that implement Google's Material Design.",
   "keywords": [
     "react",

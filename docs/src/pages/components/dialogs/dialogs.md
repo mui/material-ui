@@ -126,6 +126,10 @@ Try the demo below to see what we mean:
 
 {{"demo": "pages/components/dialogs/ScrollDialog.js"}}
 
+## Performance
+
+Follow the [Modal performance section](/components/modal/#performance).
+
 ## Limitations
 
 Follow the [Modal limitations section](/components/modal/#limitations).
