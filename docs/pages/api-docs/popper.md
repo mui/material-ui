@@ -18,7 +18,7 @@ import { Popper } from '@material-ui/core';
 
 You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
 
-Poppers rely on the 3rd party library [Popper.js](https://github.com/popperjs/popper-core) for positioning.
+Poppers rely on the 3rd party library [Popper.js](https://popper.js.org/docs/v2/) for positioning.
 
 
 
