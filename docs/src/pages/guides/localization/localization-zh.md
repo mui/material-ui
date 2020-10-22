@@ -55,6 +55,7 @@ const theme = createMuiTheme(
 | 印度尼西亚语   | id-ID       | `idID` |
 | 意大利语     | it-IT       | `itIT` |
 | 日语       | ja-JP       | `jaJP` |
+| Kazakh   | kz-KZ       | `kzKZ` |
 | 韩语/朝鲜语   | ko-KR       | `koKR` |
 | 波斯语      | fa-IR       | `faIR` |
 | 波兰语      | pl-PL       | `plPL` |
@@ -66,7 +67,7 @@ const theme = createMuiTheme(
 | 西班牙语     | es-ES       | `esES` |
 | 瑞典语      | sv-SE       | `svSE` |
 | 土耳其语     | tr-TR       | `trTR` |
-| 泰国语      | th-TH       | `thTH` |
+| 越南语      | th-TH       | `thTH` |
 | 乌克兰语     | uk-UA       | `ukUA` |
 | 越南语      | vi-VN       | `viVN` |
 
