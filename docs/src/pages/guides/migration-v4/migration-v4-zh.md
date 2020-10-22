@@ -770,7 +770,7 @@ const classes = makeStyles(theme => ({
   +<TextField maxRows={6}>
   ```
 
-- Change ref forwarding expections on custom `inputComponent`. The component should forward the `ref` prop instead of the `inputRef` prop.
+- 更改自定义 `inputComponent` 中的 ref 转发期望值 该组件应该转发 `ref` 属性，而不是 `inputRef` 属性。
 
   ```diff
   -function NumberFormatCustom(props) {
