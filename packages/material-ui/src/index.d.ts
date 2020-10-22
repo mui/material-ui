@@ -461,9 +461,6 @@ export * from './useMediaQuery';
 export { default as useScrollTrigger } from './useScrollTrigger';
 export * from './useScrollTrigger';
 
-export { default as withMobileDialog } from './withMobileDialog';
-export * from './withMobileDialog';
-
 export { default as withWidth } from './withWidth';
 export * from './withWidth';
 
