@@ -353,16 +353,6 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   return (
     <React.Fragment>
       <div
-        className={clsx(
-          classes.root, // TODO v5: merge root and select
-          classes.select,
-          classes.selectMenu,
-          classes[variant],
-          {
-            [classes.disabled]: disabled,
-          },
-          className,
-        )}
         ref={setDisplayNode}
         tabIndex={tabIndex}
         role="button"
@@ -376,6 +366,17 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         onBlur={handleBlur}
         onFocus={onFocus}
         {...SelectDisplayProps}
+        className={clsx(
+          classes.root, // TODO v5: merge root and select
+          classes.select,
+          classes.selectMenu,
+          classes[variant],
+          {
+            [classes.disabled]: disabled,
+          },
+          className,
+          SelectDisplayProps.className,
+        )}
         // The id is required for proper a11y
         id={buttonId}
       >
