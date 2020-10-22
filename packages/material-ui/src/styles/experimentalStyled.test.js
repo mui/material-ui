@@ -67,7 +67,7 @@ describe('experimentalStyled', () => {
         palette: {
           primary: {
             main: 'rgb(0, 0, 255)',
-          }
+          },
         },
         components: {
           MuiTest: {
