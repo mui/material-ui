@@ -1,10 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import PopperJs from 'popper.js';
+import { createPopper } from '@popperjs/core';
 import { chainPropTypes, refType, HTMLElementType } from '@material-ui/utils';
 import { useTheme } from '@material-ui/styles';
 import Portal from '../Portal';
-import createChainedFunction from '../utils/createChainedFunction';
 import setRef from '../utils/setRef';
 import useForkRef from '../utils/useForkRef';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
@@ -37,7 +36,7 @@ function getAnchorEl(anchorEl) {
 const defaultPopperOptions = {};
 
 /**
- * Poppers rely on the 3rd party library [Popper.js](https://popper.js.org/docs/v1/) for positioning.
+ * Poppers rely on the 3rd party library [Popper.js](https://popper.js.org/docs/v2/) for positioning.
  */
 const Popper = React.forwardRef(function Popper(props, ref) {
   const {
@@ -78,7 +77,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
 
   React.useEffect(() => {
     if (popperRef.current) {
-      popperRef.current.update();
+      popperRef.current.forceUpdate();
     }
   });
 
@@ -120,25 +119,40 @@ const Popper = React.forwardRef(function Popper(props, ref) {
       }
     }
 
-    const popper = new PopperJs(getAnchorEl(anchorEl), tooltipRef.current, {
+    let popperModifiers = [
+      {
+        name: 'preventOverflow',
+        options: {
+          altBoundary: disablePortal,
+        },
+      },
+      {
+        name: 'flip',
+        options: {
+          altBoundary: disablePortal,
+        },
+      },
+      {
+        name: 'onUpdate',
+        enabled: true,
+        phase: 'afterWrite',
+        fn({ state }) {
+          handlePopperUpdate(state);
+        },
+      },
+    ];
+
+    if (modifiers != null) {
+      popperModifiers = popperModifiers.concat(modifiers);
+    }
+    if (popperOptions && popperOptions.modifiers != null) {
+      popperModifiers = popperModifiers.concat(popperOptions.modifiers);
+    }
+
+    const popper = createPopper(getAnchorEl(anchorEl), tooltipRef.current, {
       placement: rtlPlacement,
       ...popperOptions,
-      modifiers: {
-        ...(disablePortal
-          ? {}
-          : {
-              // It's using scrollParent by default, we can use the viewport when using a portal.
-              preventOverflow: {
-                boundariesElement: 'viewport',
-              },
-            }),
-        ...modifiers,
-        ...popperOptions.modifiers,
-      },
-      // We could have been using a custom modifier like react-popper is doing.
-      // But it seems this is the best public API for this use case.
-      onCreate: createChainedFunction(handlePopperUpdate, popperOptions.onCreate),
-      onUpdate: createChainedFunction(handlePopperUpdate, popperOptions.onUpdate),
+      modifiers: popperModifiers,
     });
 
     handlePopperRefRef.current(popper);
@@ -225,7 +239,7 @@ Popper.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * A HTML element, [referenceObject](https://popper.js.org/docs/v1/#referenceObject),
+   * A HTML element, [virtualElement](https://popper.js.org/docs/v2/virtual-elements/),
    * or a function that returns either.
    * It's used to set the position of the popper.
    * The return value will passed as the reference object of the Popper instance.
@@ -256,15 +270,15 @@ Popper.propTypes = {
           }
         } else if (
           !resolvedAnchorEl ||
-          typeof resolvedAnchorEl.clientWidth !== 'number' ||
-          typeof resolvedAnchorEl.clientHeight !== 'number' ||
-          typeof resolvedAnchorEl.getBoundingClientRect !== 'function'
+          typeof resolvedAnchorEl.getBoundingClientRect !== 'function' ||
+          (resolvedAnchorEl.contextElement != null &&
+            resolvedAnchorEl.contextElement.nodeType !== 1)
         ) {
           return new Error(
             [
               'Material-UI: The `anchorEl` prop provided to the component is invalid.',
-              'It should be an HTML element instance or a referenceObject ',
-              '(https://popper.js.org/docs/v1/#referenceObject).',
+              'It should be an HTML element instance or a virtualElement ',
+              '(https://popper.js.org/docs/v2/virtual-elements/).',
             ].join('\n'),
           );
         }
@@ -310,9 +324,31 @@ Popper.propTypes = {
    * A modifier is a function that is called each time Popper.js needs to
    * compute the position of the popper.
    * For this reason, modifiers should be very performant to avoid bottlenecks.
-   * To learn how to create a modifier, [read the modifiers documentation](https://popper.js.org/docs/v1/#modifiers).
+   * To learn how to create a modifier, [read the modifiers documentation](https://popper.js.org/docs/v2/modifiers/).
    */
-  modifiers: PropTypes.object,
+  modifiers: PropTypes.arrayOf(
+    PropTypes.shape({
+      data: PropTypes.object,
+      effect: PropTypes.func,
+      enabled: PropTypes.bool,
+      fn: PropTypes.func,
+      name: PropTypes.any.isRequired,
+      options: PropTypes.object,
+      phase: PropTypes.oneOf([
+        'afterMain',
+        'afterRead',
+        'afterWrite',
+        'beforeMain',
+        'beforeRead',
+        'beforeWrite',
+        'main',
+        'read',
+        'write',
+      ]),
+      requires: PropTypes.arrayOf(PropTypes.string),
+      requiresIfExists: PropTypes.arrayOf(PropTypes.string),
+    }),
+  ),
   /**
    * If `true`, the popper is visible.
    */
@@ -322,6 +358,9 @@ Popper.propTypes = {
    * @default 'bottom'
    */
   placement: PropTypes.oneOf([
+    'auto-end',
+    'auto-start',
+    'auto',
     'bottom-end',
     'bottom-start',
     'bottom',
@@ -336,10 +375,31 @@ Popper.propTypes = {
     'top',
   ]),
   /**
-   * Options provided to the [`popper.js`](https://popper.js.org/docs/v1/) instance.
+   * Options provided to the [`Popper.js`](https://popper.js.org/docs/v2/constructors/#options) instance.
    * @default {}
    */
-  popperOptions: PropTypes.object,
+  popperOptions: PropTypes.shape({
+    modifiers: PropTypes.array,
+    onFirstUpdate: PropTypes.func,
+    placement: PropTypes.oneOf([
+      'auto-end',
+      'auto-start',
+      'auto',
+      'bottom-end',
+      'bottom-start',
+      'bottom',
+      'left-end',
+      'left-start',
+      'left',
+      'right-end',
+      'right-start',
+      'right',
+      'top-end',
+      'top-start',
+      'top',
+    ]),
+    strategy: PropTypes.oneOf(['absolute', 'fixed']),
+  }),
   /**
    * A ref that points to the used popper instance.
    */

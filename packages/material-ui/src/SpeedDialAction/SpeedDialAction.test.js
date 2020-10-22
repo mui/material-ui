@@ -61,10 +61,6 @@ describe('<SpeedDialAction />', () => {
     });
 
     expect(getByText('placeholder')).to.have.class('bar');
-
-    // TODO: Unclear why not running triggers microtasks but runAll does not trigger microtasks
-    // can be removed once Popper#update is sync
-    clock.runAll();
   });
 
   it('should render a Fab', () => {

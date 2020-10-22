@@ -20,44 +20,36 @@ function round(value) {
 
 function arrowGenerator() {
   return {
-    '&[x-placement*="bottom"] $arrow': {
+    '&[data-popper-placement*="bottom"] $arrow': {
       top: 0,
       left: 0,
       marginTop: '-0.71em',
-      marginLeft: 4,
-      marginRight: 4,
       '&::before': {
         transformOrigin: '0 100%',
       },
     },
-    '&[x-placement*="top"] $arrow': {
+    '&[data-popper-placement*="top"] $arrow': {
       bottom: 0,
       left: 0,
       marginBottom: '-0.71em',
-      marginLeft: 4,
-      marginRight: 4,
       '&::before': {
         transformOrigin: '100% 0',
       },
     },
-    '&[x-placement*="right"] $arrow': {
+    '&[data-popper-placement*="right"] $arrow': {
       left: 0,
       marginLeft: '-0.71em',
       height: '1em',
       width: '0.71em',
-      marginTop: 4,
-      marginBottom: 4,
       '&::before': {
         transformOrigin: '100% 100%',
       },
     },
-    '&[x-placement*="left"] $arrow': {
+    '&[data-popper-placement*="left"] $arrow': {
       right: 0,
       marginRight: '-0.71em',
       height: '1em',
       width: '0.71em',
-      marginTop: 4,
-      marginBottom: 4,
       '&::before': {
         transformOrigin: '0 0',
       },
@@ -184,7 +176,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     enterTouchDelay = 700,
     followCursor = false,
     id: idProp,
-    disableInteractive = false,
+    disableInteractive: disableInteractiveProp = false,
     leaveDelay = 0,
     leaveTouchDelay = 1500,
     onClose,
@@ -203,6 +195,8 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
   const [childNode, setChildNode] = React.useState();
   const [arrowRef, setArrowRef] = React.useState(null);
   const ignoreNonTouchEvents = React.useRef(false);
+
+  const disableInteractive = disableInteractiveProp || followCursor;
 
   const closeTimer = React.useRef();
   const enterTimer = React.useRef();
@@ -438,7 +432,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     positionRef.current = { x: event.clientX, y: event.clientY };
 
     if (popperRef.current) {
-      popperRef.current.scheduleUpdate();
+      popperRef.current.update();
     }
   };
 
@@ -520,12 +514,16 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     return deepmerge(
       {
         popperOptions: {
-          modifiers: {
-            arrow: {
+          modifiers: [
+            {
+              name: 'arrow',
               enabled: Boolean(arrowRef),
-              element: arrowRef,
+              options: {
+                element: arrowRef,
+                padding: 4,
+              },
             },
-          },
+          ],
         },
       },
       PopperProps,
@@ -544,8 +542,6 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
         anchorEl={
           followCursor
             ? {
-                clientHeight: 0,
-                clientWidth: 0,
                 getBoundingClientRect: () => ({
                   top: positionRef.current.y,
                   left: positionRef.current.x,
