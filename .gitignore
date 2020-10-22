@@ -6,6 +6,7 @@
 *.log
 /.eslintcache
 /.nyc_output
+/benchmark/**/dist
 /coverage
 /docs/.env.local
 /docs/.next
