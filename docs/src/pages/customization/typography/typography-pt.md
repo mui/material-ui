@@ -83,9 +83,9 @@ const theme = createMuiTheme({
 
 O tamanho da fonte computada pelo navegador segue esta equação matemática:
 
-![font-size](/static/images/font-size.gif)
+<img src="/static/images/font-size.png" alt="font size calculation" style="width: 458px;" />
 
-<!-- https://latex.codecogs.com/gif.latex?computed&space;=&space;specification&space;\frac{typography.fontSize}{14}&space;\frac{html&space;font&space;size}{typography.htmlFontSize} -->
+<!-- https://latex.codecogs.com/png.latex?\dpi{200}&space;\text{computed}&space;=&space;\text{specification}\cdot\frac{\text{typography.fontSize}}{14}\cdot\frac{\text{html&space;fontsize}}{\text{typography.htmlFontSize}} -->
 
 ### Tamanhos de fonte responsivo
 
