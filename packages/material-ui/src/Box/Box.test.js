@@ -29,7 +29,7 @@ describe('<Box />', () => {
         />,
       );
     }).toWarnDev(
-      'Material-UI: You are using deprecated propreties directly on the Box component.\n' +
+      'Material-UI: You are using deprecated props on the Box component.\n'
     );
   });
 
