@@ -28,9 +28,10 @@ describe('<Box />', () => {
           fontSize={{ xs: 'h6.fontSize', sm: 'h4.fontSize', md: 'h3.fontSize' }}
         />,
       );
-    }).toWarnDev('Material-UI: You are using deprecated propreties directly on the Box component.\n' +
-      'You should move the properties inside the `sx` prop. For example:\n' +
-      '<Box m={2} /> should become <Box sx={{ m: 2 }} />'
+    }).toWarnDev(
+      'Material-UI: You are using deprecated propreties directly on the Box component.\n' +
+        'You should move the properties inside the `sx` prop. For example:\n' +
+        '<Box m={2} /> should become <Box sx={{ m: 2 }} />',
     );
   });
 
