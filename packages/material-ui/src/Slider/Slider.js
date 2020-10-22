@@ -5,13 +5,13 @@ import { chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import useTheme from '../styles/useTheme';
 import { alpha, lighten, darken } from '../styles/colorManipulator';
-import useIsFocusVisible from '../utils/useIsFocusVisible';
-import useEnhancedEffect from '../utils/useEnhancedEffect';
-import ownerDocument from '../utils/ownerDocument';
-import useEventCallback from '../utils/useEventCallback';
-import useForkRef from '../utils/useForkRef';
-import capitalize from '../utils/capitalize';
-import useControlled from '../utils/useControlled';
+import useIsFocusVisible from '@material-ui/utils/useIsFocusVisible';
+import useEnhancedEffect from '@material-ui/utils/useEnhancedEffect';
+import ownerDocument from '@material-ui/utils/ownerDocument';
+import useEventCallback from '@material-ui/utils/useEventCallback';
+import useForkRef from '@material-ui/utils/useForkRef';
+import capitalize from '@material-ui/utils/capitalize';
+import useControlled from '@material-ui/utils/useControlled';
 import ValueLabel from './ValueLabel';
 
 function asc(a, b) {

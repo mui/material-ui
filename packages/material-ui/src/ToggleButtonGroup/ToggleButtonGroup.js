@@ -3,7 +3,7 @@ import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { withStyles } from '../styles';
-import { capitalize } from '../utils';
+import { capitalize } from '@material-ui/utils';
 import isValueSelected from './isValueSelected';
 
 export const styles = (theme) => ({

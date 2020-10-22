@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useThemeVariants } from '@material-ui/styles';
 import withStyles from '../styles/withStyles';
-import capitalize from '../utils/capitalize';
+import capitalize from '@material-ui/utils/capitalize';
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */

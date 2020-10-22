@@ -4,8 +4,8 @@ import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';
 import ClickAwayListener from '../ClickAwayListener';
-import useEventCallback from '../utils/useEventCallback';
-import capitalize from '../utils/capitalize';
+import useEventCallback from '@material-ui/utils/useEventCallback';
+import capitalize from '@material-ui/utils/capitalize';
 import Grow from '../Grow';
 import SnackbarContent from '../SnackbarContent';
 

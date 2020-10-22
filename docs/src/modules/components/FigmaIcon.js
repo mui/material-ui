@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createSvgIcon } from '@material-ui/core/utils';
+import { createSvgIcon } from '@material-ui/core/SvgIcon';
 
 export default createSvgIcon(
   <g fillRule="nonzero" fill="none">

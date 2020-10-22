@@ -7,7 +7,7 @@ import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';
 import { getTransitionProps } from '../transitions/utils';
 import useTheme from '../styles/useTheme';
-import { useForkRef } from '../utils';
+import { useForkRef } from '@material-ui/utils';
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */

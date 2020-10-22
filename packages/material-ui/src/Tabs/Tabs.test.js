@@ -11,7 +11,7 @@ import {
   screen,
   createServerRender,
 } from 'test/utils';
-import capitalize from '../utils/capitalize';
+import capitalize from '@material-ui/utils/capitalize';
 import Tab from '../Tab';
 import Tabs from './Tabs';
 import { createMuiTheme, ThemeProvider } from '../styles';

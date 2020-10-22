@@ -3,15 +3,15 @@ import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { refType } from '@material-ui/utils';
-import debounce from '../utils/debounce';
-import ownerWindow from '../utils/ownerWindow';
-import { getNormalizedScrollLeft, detectScrollType } from '../utils/scrollLeft';
+import debounce from '@material-ui/utils/debounce';
+import ownerWindow from '@material-ui/utils/ownerWindow';
+import { getNormalizedScrollLeft, detectScrollType } from '@material-ui/utils/scrollLeft';
 import animate from '../internal/animate';
 import ScrollbarSize from './ScrollbarSize';
 import withStyles from '../styles/withStyles';
 import TabIndicator from './TabIndicator';
 import TabScrollButton from '../TabScrollButton';
-import useEventCallback from '../utils/useEventCallback';
+import useEventCallback from '@material-ui/utils/useEventCallback';
 import useTheme from '../styles/useTheme';
 
 export const styles = (theme) => ({

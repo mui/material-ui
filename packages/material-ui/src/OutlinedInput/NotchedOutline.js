@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import useTheme from '../styles/useTheme';
-import capitalize from '../utils/capitalize';
+import capitalize from '@material-ui/utils/capitalize';
 
 export const styles = (theme) => {
   return {

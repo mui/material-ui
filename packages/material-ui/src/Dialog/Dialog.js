@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
-import capitalize from '../utils/capitalize';
+import capitalize from '@material-ui/utils/capitalize';
 import Modal from '../Modal';
 import Backdrop from '../Backdrop';
 import Fade from '../Fade';

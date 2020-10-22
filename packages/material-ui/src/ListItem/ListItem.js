@@ -5,9 +5,9 @@ import { chainPropTypes, elementTypeAcceptingRef } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import { alpha } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
-import isMuiElement from '../utils/isMuiElement';
-import useEnhancedEffect from '../utils/useEnhancedEffect';
-import useForkRef from '../utils/useForkRef';
+import isMuiElement from '@material-ui/utils/isMuiElement';
+import useEnhancedEffect from '@material-ui/utils/useEnhancedEffect';
+import useForkRef from '@material-ui/utils/useForkRef';
 import ListContext from '../List/ListContext';
 
 export const styles = (theme) => ({

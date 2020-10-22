@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { capitalize } from '@material-ui/core/utils';
+import { capitalize } from '@material-ui/utils';
 import clsx from 'clsx';
 
 const getUtilityClass = (name) => {

@@ -10,7 +10,7 @@ import TableCell from '../TableCell';
 import Toolbar from '../Toolbar';
 import Typography from '../Typography';
 import TablePaginationActions from './TablePaginationActions';
-import useId from '../utils/useId';
+import useId from '@material-ui/utils/useId';
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */

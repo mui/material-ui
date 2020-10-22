@@ -7,7 +7,7 @@ import {
   lighten,
   darken,
 } from '@material-ui/core/styles';
-import { capitalize } from '@material-ui/core/utils';
+import { capitalize } from '@material-ui/utils';
 import SliderUnstyled from '../SliderUnstyled';
 import ValueLabelStyled from './ValueLabelStyled';
 

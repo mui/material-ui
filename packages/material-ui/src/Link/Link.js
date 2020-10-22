@@ -2,10 +2,10 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { elementTypeAcceptingRef } from '@material-ui/utils';
-import capitalize from '../utils/capitalize';
+import capitalize from '@material-ui/utils/capitalize';
 import withStyles from '../styles/withStyles';
-import useIsFocusVisible from '../utils/useIsFocusVisible';
-import useForkRef from '../utils/useForkRef';
+import useIsFocusVisible from '@material-ui/utils/useIsFocusVisible';
+import useForkRef from '@material-ui/utils/useForkRef';
 import Typography from '../Typography';
 
 export const styles = {

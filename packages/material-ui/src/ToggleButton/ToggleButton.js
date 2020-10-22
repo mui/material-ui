@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { alpha, withStyles } from '../styles';
 import ButtonBase from '../ButtonBase';
-import { capitalize } from '../utils';
+import { capitalize } from '@material-ui/utils';
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */

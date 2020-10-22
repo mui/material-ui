@@ -7,9 +7,9 @@ import MuiError from '@material-ui/utils/macros/MuiError.macro';
 import formControlState from '../FormControl/formControlState';
 import FormControlContext, { useFormControl } from '../FormControl/FormControlContext';
 import withStyles from '../styles/withStyles';
-import capitalize from '../utils/capitalize';
-import useForkRef from '../utils/useForkRef';
-import useEnhancedEffect from '../utils/useEnhancedEffect';
+import capitalize from '@material-ui/utils/capitalize';
+import useForkRef from '@material-ui/utils/useForkRef';
+import useEnhancedEffect from '@material-ui/utils/useEnhancedEffect';
 import TextareaAutosize from '../TextareaAutosize';
 import { isFilled } from './utils';
 

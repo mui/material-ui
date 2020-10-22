@@ -7,7 +7,7 @@ import withStyles from '../styles/withStyles';
 import { emphasize } from '../styles/colorManipulator';
 import Fab from '../Fab';
 import Tooltip from '../Tooltip';
-import capitalize from '../utils/capitalize';
+import capitalize from '@material-ui/utils/capitalize';
 
 export const styles = (theme) => ({
   /* Styles applied to the Fab component. */

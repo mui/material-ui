@@ -4,10 +4,10 @@ import PopperJs from 'popper.js';
 import { chainPropTypes, refType, HTMLElementType } from '@material-ui/utils';
 import { useTheme } from '@material-ui/styles';
 import Portal from '../Portal';
-import createChainedFunction from '../utils/createChainedFunction';
-import setRef from '../utils/setRef';
-import useForkRef from '../utils/useForkRef';
-import useEnhancedEffect from '../utils/useEnhancedEffect';
+import createChainedFunction from '@material-ui/utils/createChainedFunction';
+import setRef from '@material-ui/utils/setRef';
+import useForkRef from '@material-ui/utils/useForkRef';
+import useEnhancedEffect from '@material-ui/utils/useEnhancedEffect';
 
 function flipPlacement(placement, theme) {
   const direction = (theme && theme.direction) || 'ltr';

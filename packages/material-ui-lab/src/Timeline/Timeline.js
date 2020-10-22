@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { capitalize } from '@material-ui/core/utils';
+import { capitalize } from '@material-ui/utils';
 import { withStyles } from '@material-ui/core/styles';
 import TimelineContext from './TimelineContext';
 

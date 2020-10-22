@@ -6,7 +6,7 @@ import clsx from 'clsx';
 import { refType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import { alpha } from '../styles/colorManipulator';
-import capitalize from '../utils/capitalize';
+import capitalize from '@material-ui/utils/capitalize';
 import SwitchBase from '../internal/SwitchBase';
 
 export const styles = (theme) => ({

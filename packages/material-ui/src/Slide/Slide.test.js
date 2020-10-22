@@ -5,7 +5,7 @@ import { createClientRender, createMount, describeConformance } from 'test/utils
 import { createMuiTheme } from '@material-ui/core/styles';
 import { Transition } from 'react-transition-group';
 import Slide, { setTranslateValue } from './Slide';
-import { useForkRef } from '../utils';
+import { useForkRef } from '@material-ui/utils';
 
 describe('<Slide />', () => {
   const render = createClientRender();

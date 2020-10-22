@@ -4,14 +4,14 @@ import clsx from 'clsx';
 import { deepmerge, elementAcceptingRef } from '@material-ui/utils';
 import { alpha } from '../styles/colorManipulator';
 import withStyles from '../styles/withStyles';
-import capitalize from '../utils/capitalize';
+import capitalize from '@material-ui/utils/capitalize';
 import Grow from '../Grow';
 import Popper from '../Popper';
-import useEventCallback from '../utils/useEventCallback';
-import useForkRef from '../utils/useForkRef';
-import useId from '../utils/useId';
-import useIsFocusVisible from '../utils/useIsFocusVisible';
-import useControlled from '../utils/useControlled';
+import useEventCallback from '@material-ui/utils/useEventCallback';
+import useForkRef from '@material-ui/utils/useForkRef';
+import useId from '@material-ui/utils/useId';
+import useIsFocusVisible from '@material-ui/utils/useIsFocusVisible';
+import useControlled from '@material-ui/utils/useControlled';
 import useTheme from '../styles/useTheme';
 
 function round(value) {

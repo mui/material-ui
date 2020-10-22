@@ -2,12 +2,12 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
 import { elementAcceptingRef } from '@material-ui/utils';
-import debounce from '../utils/debounce';
-import useForkRef from '../utils/useForkRef';
+import debounce from '@material-ui/utils/debounce';
+import useForkRef from '@material-ui/utils/useForkRef';
 import useTheme from '../styles/useTheme';
 import { duration } from '../styles/transitions';
 import { reflow, getTransitionProps } from '../transitions/utils';
-import { ownerWindow } from '../utils';
+import { ownerWindow } from '@material-ui/utils';
 
 // Translate the node so he can't be seen on the screen.
 // Later, we gonna translate back the node to his original location

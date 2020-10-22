@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { createSvgIcon } from '@material-ui/core/utils';
+import { createSvgIcon } from '@material-ui/utils';
 
 const useStyles = makeStyles((theme) => ({
   root: {

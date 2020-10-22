@@ -3,7 +3,7 @@ import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
-import isMuiElement from '../utils/isMuiElement';
+import isMuiElement from '@material-ui/utils/isMuiElement';
 import ImageListContext from '../ImageList/ImageListContext';
 
 export const styles = {

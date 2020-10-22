@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import useEventCallback from '../utils/useEventCallback';
-import useEnhancedEffect from '../utils/useEnhancedEffect';
+import useEventCallback from '@material-ui/utils/useEventCallback';
+import useEnhancedEffect from '@material-ui/utils/useEnhancedEffect';
 
 /**
  * @ignore - internal component.

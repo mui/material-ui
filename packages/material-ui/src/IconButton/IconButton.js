@@ -5,7 +5,7 @@ import { chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import { alpha } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
-import capitalize from '../utils/capitalize';
+import capitalize from '@material-ui/utils/capitalize';
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */

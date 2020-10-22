@@ -6,7 +6,7 @@ import PropTypes, { checkPropTypes } from 'prop-types';
 import Drawer from '../Drawer';
 import SwipeableDrawer, { reset } from './SwipeableDrawer';
 import SwipeArea from './SwipeArea';
-import useForkRef from '../utils/useForkRef';
+import useForkRef from '@material-ui/utils/useForkRef';
 
 function fireMouseEvent(name, element, properties = {}) {
   act(() => {

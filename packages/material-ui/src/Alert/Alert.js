@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { useThemeVariants } from '@material-ui/styles';
 import withStyles from '../styles/withStyles';
 import { darken, lighten } from '../styles/colorManipulator';
-import capitalize from '../utils/capitalize';
+import capitalize from '@material-ui/utils/capitalize';
 import Paper from '../Paper';
 import IconButton from '../IconButton';
 import SuccessOutlinedIcon from '../internal/svg-icons/SuccessOutlined';

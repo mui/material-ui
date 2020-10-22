@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { alpha, useTheme, withStyles, useThemeVariants } from '../styles';
 import ButtonBase from '../ButtonBase';
-import { capitalize } from '../utils';
+import { capitalize } from '@material-ui/utils';
 import FirstPageIcon from '../internal/svg-icons/FirstPage';
 import LastPageIcon from '../internal/svg-icons/LastPage';
 import NavigateBeforeIcon from '../internal/svg-icons/NavigateBefore';

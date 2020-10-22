@@ -2,7 +2,7 @@ import React from 'react';
 import { expect } from 'chai';
 import { createClientRender } from 'test/utils';
 import { Input } from '@material-ui/core';
-import { isMuiElement } from '@material-ui/core/utils';
+import { isMuiElement } from '@material-ui/utils';
 import PropTypes from 'prop-types';
 import withTheme from './withTheme';
 import ThemeProvider from '../ThemeProvider';

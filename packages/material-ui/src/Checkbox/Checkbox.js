@@ -7,7 +7,7 @@ import CheckBoxOutlineBlankIcon from '../internal/svg-icons/CheckBoxOutlineBlank
 import CheckBoxIcon from '../internal/svg-icons/CheckBox';
 import { alpha } from '../styles/colorManipulator';
 import IndeterminateCheckBoxIcon from '../internal/svg-icons/IndeterminateCheckBox';
-import capitalize from '../utils/capitalize';
+import capitalize from '@material-ui/utils/capitalize';
 import withStyles from '../styles/withStyles';
 
 export const styles = (theme) => ({

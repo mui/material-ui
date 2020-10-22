@@ -5,7 +5,7 @@ import { elementAcceptingRef } from '@material-ui/utils';
 import { duration } from '../styles/transitions';
 import useTheme from '../styles/useTheme';
 import { reflow, getTransitionProps } from '../transitions/utils';
-import useForkRef from '../utils/useForkRef';
+import useForkRef from '@material-ui/utils/useForkRef';
 
 const styles = {
   entering: {

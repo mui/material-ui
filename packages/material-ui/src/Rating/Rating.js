@@ -10,7 +10,7 @@ import {
   useIsFocusVisible,
   useControlled,
   unstable_useId as useId,
-} from '../utils';
+} from '@material-ui/utils';
 import Star from '../internal/svg-icons/Star';
 import StarBorder from '../internal/svg-icons/StarBorder';
 

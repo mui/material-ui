@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 import StepLabel from '../StepLabel';
-import isMuiElement from '../utils/isMuiElement';
+import isMuiElement from '@material-ui/utils/isMuiElement';
 import StepperContext from '../Stepper/StepperContext';
 import StepContext from '../Step/StepContext';
 

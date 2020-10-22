@@ -2,10 +2,10 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { elementTypeAcceptingRef, refType } from '@material-ui/utils';
-import useForkRef from '../utils/useForkRef';
-import useEventCallback from '../utils/useEventCallback';
+import useForkRef from '@material-ui/utils/useForkRef';
+import useEventCallback from '@material-ui/utils/useEventCallback';
 import withStyles from '../styles/withStyles';
-import useIsFocusVisible from '../utils/useIsFocusVisible';
+import useIsFocusVisible from '@material-ui/utils/useIsFocusVisible';
 import TouchRipple from './TouchRipple';
 
 export const styles = {

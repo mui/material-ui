@@ -7,7 +7,7 @@ import {
   useForkRef,
   ownerDocument,
   unstable_useId as useId,
-} from '@material-ui/core/utils';
+} from '@material-ui/utils';
 import TreeViewContext from './TreeViewContext';
 import { DescendantProvider } from './descendants';
 

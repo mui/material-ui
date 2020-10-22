@@ -2,12 +2,11 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes } from '@material-ui/utils';
+import { chainPropTypes, useControlled } from '@material-ui/utils';
 import Collapse from '../Collapse';
 import Paper from '../Paper';
 import withStyles from '../styles/withStyles';
 import AccordionContext from './AccordionContext';
-import useControlled from '../utils/useControlled';
 
 export const styles = (theme) => {
   const transition = {

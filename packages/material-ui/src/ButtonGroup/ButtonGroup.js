@@ -3,7 +3,7 @@ import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useThemeVariants } from '@material-ui/styles';
-import capitalize from '../utils/capitalize';
+import capitalize from '@material-ui/utils/capitalize';
 import { alpha } from '../styles/colorManipulator';
 import withStyles from '../styles/withStyles';
 import Button from '../Button';

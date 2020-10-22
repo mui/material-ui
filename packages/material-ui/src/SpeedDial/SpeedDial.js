@@ -6,10 +6,10 @@ import { duration } from '../styles/transitions';
 import withStyles from '../styles/withStyles';
 import Zoom from '../Zoom';
 import Fab from '../Fab';
-import capitalize from '../utils/capitalize';
-import isMuiElement from '../utils/isMuiElement';
-import useForkRef from '../utils/useForkRef';
-import useControlled from '../utils/useControlled';
+import capitalize from '@material-ui/utils/capitalize';
+import isMuiElement from '@material-ui/utils/isMuiElement';
+import useForkRef from '@material-ui/utils/useForkRef';
+import useControlled from '@material-ui/utils/useControlled';
 
 function getOrientation(direction) {
   if (direction === 'up' || direction === 'down') {
