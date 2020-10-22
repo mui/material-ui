@@ -245,7 +245,13 @@ const Rating = React.forwardRef(function Rating(props, ref) {
   };
 
   const handleChange = (event) => {
-    const newValue = parseFloat(event.target.value);
+    let newValue = parseFloat(event.target.value);
+
+    // Give mouse priority over keyboard
+    // Fix https://github.com/mui-org/material-ui/issues/22827
+    if (hover !== -1) {
+      newValue = hover;
+    }
 
     setValueState(newValue);
 

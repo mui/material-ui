@@ -42,9 +42,7 @@ The Box component has a `clone` prop to enable the use of the clone element meth
 
 The Box children accepts a render props function. You can pull out the `className`.
 
-```jsx
-<Box color="text.primary">{(props) => <Button {...props} />}</Box>
-```
+{{"demo": "pages/components/box/BoxRenderProps.js", "defaultCodeOpen": true }}
 
 {{"demo": "pages/components/box/BoxRenderProps.js", "defaultCodeOpen": true }}
 
