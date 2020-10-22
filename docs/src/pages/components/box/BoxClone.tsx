@@ -4,7 +4,7 @@ import Box from '@material-ui/core/Box';
 
 export default function BoxClone() {
   return (
-    <Box border="1px dashed grey" clone>
+    <Box sx={{ border: '1px dashed grey' }} clone>
       <Button>Save</Button>
     </Box>
   );
