@@ -64,6 +64,11 @@ describe('experimentalStyled', () => {
 
     before(() => {
       theme = createMuiTheme({
+        palette: {
+          primary: {
+            main: 'rgb(0, 0, 255)',
+          }
+        },
         components: {
           MuiTest: {
             variants: [
@@ -174,18 +179,16 @@ describe('experimentalStyled', () => {
     });
 
     it('should resolve the sx prop', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
-      
       render(
-        <Test data-testid="component" sx={{ m: 1 }}>
-          Test
-        </Test>,
+        <ThemeProvider theme={theme}>
+          <Test data-testid="component" sx={{ color: 'primary.main' }}>
+            Test
+          </Test>
+        </ThemeProvider>,
       );
 
       expect(screen.getByTestId('component')).toHaveComputedStyle({
-        margin: '8px',
+        color: 'rgb(0, 0, 255)',
       });
     });
   });
