@@ -1,14 +1,18 @@
 import scStyled from 'styled-components';
 
 export default function styled(tag, options) {
+  let scStyledPrepared = scStyled(tag); 
+  
   if (options) {
-    return scStyled(tag).withConfig({
+    scStyledPrepared = scStyled(tag).withConfig({
       displayName: options.label,
       shouldForwardProp: options.shouldForwardProp,
     });
   }
 
-  return scStyled(tag);
+  return (styles) => {
+    return scStyledPrepared(...styles);
+  }
 }
 
 export { ThemeContext } from 'styled-components';

@@ -37,6 +37,15 @@ export default function ContinuousSlider() {
         Disabled slider
       </Typography>
       <Slider disabled defaultValue={30} aria-labelledby="disabled-slider" />
+      <Slider
+        defaultValue={30}
+        aria-labelledby="disabled-slider"
+        sx={{
+          m: 2,
+          color: 'secondary.main',
+          bgcolor: 'primary.light',
+        }}
+      />
     </Box>
   );
 }
