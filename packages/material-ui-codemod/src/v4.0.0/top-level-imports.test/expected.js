@@ -24,7 +24,6 @@ import {
   DialogContentText,
   DialogContent,
   DialogActions,
-  withMobileDialog,
   Slide,
   RadioGroup,
   Radio,

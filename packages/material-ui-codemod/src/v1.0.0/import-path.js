@@ -58,7 +58,6 @@ const entryModuleToFlatten = [
   'TablePagination',
   'TableRow',
   'Tabs',
-  'withMobileDialog',
   'withWidth',
   'Zoom',
 ];
