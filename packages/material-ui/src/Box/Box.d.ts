@@ -35,6 +35,7 @@ export type BoxStyleFunction = ComposedStyleFunction<
 type SystemProps = PropsFor<BoxStyleFunction>;
 type ElementProps = Omit<React.HTMLAttributes<HTMLElement>, keyof SystemProps>;
 type SxPropsValue = Omit<CSSObject, keyof SystemProps> & SystemProps;
+
 export type SxProps = {
   [Name in keyof SxPropsValue]?:
     | SxPropsValue[Name]

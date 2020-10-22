@@ -30,7 +30,7 @@ export const styles = (theme) => ({
 
     if (value !== 0) {
       acc[theme.breakpoints.up(breakpoint)] = {
-        maxWidth: value,
+        maxWidth: `${value}${theme.breakpoints.unit}`,
       };
     }
     return acc;
@@ -38,31 +38,31 @@ export const styles = (theme) => ({
   /* Styles applied to the root element if `maxWidth="xs"`. */
   maxWidthXs: {
     [theme.breakpoints.up('xs')]: {
-      maxWidth: Math.max(theme.breakpoints.values.xs, 444),
+      maxWidth: Math.max(`${theme.breakpoints.values.xs}${theme.breakpoints.unit}`, 444),
     },
   },
   /* Styles applied to the root element if `maxWidth="sm"`. */
   maxWidthSm: {
     [theme.breakpoints.up('sm')]: {
-      maxWidth: theme.breakpoints.values.sm,
+      maxWidth: `${theme.breakpoints.values.sm}${theme.breakpoints.unit}`,
     },
   },
   /* Styles applied to the root element if `maxWidth="md"`. */
   maxWidthMd: {
     [theme.breakpoints.up('md')]: {
-      maxWidth: theme.breakpoints.values.md,
+      maxWidth: `${theme.breakpoints.values.md}${theme.breakpoints.unit}`,
     },
   },
   /* Styles applied to the root element if `maxWidth="lg"`. */
   maxWidthLg: {
     [theme.breakpoints.up('lg')]: {
-      maxWidth: theme.breakpoints.values.lg,
+      maxWidth: `${theme.breakpoints.values.lg}${theme.breakpoints.unit}`,
     },
   },
   /* Styles applied to the root element if `maxWidth="xl"`. */
   maxWidthXl: {
     [theme.breakpoints.up('xl')]: {
-      maxWidth: theme.breakpoints.values.xl,
+      maxWidth: `${theme.breakpoints.values.xl}${theme.breakpoints.unit}`,
     },
   },
 });

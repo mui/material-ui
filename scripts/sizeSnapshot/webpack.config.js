@@ -1,14 +1,15 @@
-const globCallback = require('glob');
 const path = require('path');
-const CompressionPlugin = require('compression-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
 const { promisify } = require('util');
-
-const glob = promisify(globCallback);
+const CompressionPlugin = require('compression-webpack-plugin');
+const globCallback = require('glob');
+const TerserPlugin = require('terser-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const workspaceRoot = path.join(__dirname, '..', '..');
 
-async function getSizeLimitBundles() {
+const glob = promisify(globCallback);
+
+async function getWebpackEntries() {
   const corePackagePath = path.join(workspaceRoot, 'packages/material-ui/build');
   const coreComponents = (await glob(path.join(corePackagePath, '[A-Z]*/index.js'))).map(
     (componentPath) => {
@@ -25,7 +26,6 @@ async function getSizeLimitBundles() {
 
       return {
         name: entryName,
-        webpack: true,
         path: path.relative(workspaceRoot, path.dirname(componentPath)),
       };
     },
@@ -38,7 +38,6 @@ async function getSizeLimitBundles() {
 
       return {
         name: componentName,
-        webpack: true,
         path: path.relative(workspaceRoot, path.dirname(componentPath)),
       };
     },
@@ -47,54 +46,44 @@ async function getSizeLimitBundles() {
   return [
     {
       name: '@material-ui/core',
-      webpack: true,
       path: path.join(path.relative(workspaceRoot, corePackagePath), 'index.js'),
     },
     {
       name: '@material-ui/lab',
-      webpack: true,
       path: path.join(path.relative(workspaceRoot, labPackagePath), 'index.js'),
     },
     {
       name: '@material-ui/styles',
-      webpack: true,
       path: 'packages/material-ui-styles/build/index.js',
     },
     {
       name: '@material-ui/system',
-      webpack: true,
       path: 'packages/material-ui-system/build/esm/index.js',
     },
     ...coreComponents,
     {
       name: '@material-ui/core/styles/createMuiTheme',
-      webpack: true,
       path: 'packages/material-ui/build/styles/createMuiTheme.js',
     },
     {
       name: 'colorManipulator',
-      webpack: true,
       path: 'packages/material-ui/build/styles/colorManipulator.js',
     },
     ...labComponents,
     {
       name: 'useAutocomplete',
-      webpack: true,
       path: 'packages/material-ui-lab/build/useAutocomplete/index.js',
     },
     {
       name: '@material-ui/core/useMediaQuery',
-      webpack: true,
       path: 'packages/material-ui/build/useMediaQuery/index.js',
     },
     {
       name: '@material-ui/core/useScrollTrigger',
-      webpack: true,
       path: 'packages/material-ui/build/useScrollTrigger/index.js',
     },
     {
       name: '@material-ui/utils',
-      webpack: true,
       path: 'packages/material-ui-utils/build/esm/index.js',
     },
     // TODO: Requires webpack v5
@@ -106,59 +95,65 @@ async function getSizeLimitBundles() {
     // },
     {
       name: '@material-ui/core.legacy',
-      webpack: true,
       path: path.join(path.relative(workspaceRoot, corePackagePath), 'legacy/index.js'),
     },
   ];
 }
 
-module.exports = async function webpackConfig() {
-  const entries = await getSizeLimitBundles();
-  const entry = entries.reduce((acc, bundle) => {
-    acc[bundle.name] = path.join(workspaceRoot, bundle.path);
-    return acc;
-  }, {});
+module.exports = async function webpackConfig(webpack, environment) {
+  const analyzerMode = environment.analyze ? 'static' : 'disabled';
+  const concatenateModules = !environment.accurateBundles;
 
-  const config = {
-    entry,
-    // ideally this would be computed from the bundles peer dependencies
-    externals: /^(react|react-dom|react\/jsx-runtime)$/,
-    mode: 'production',
-    optimization: {
-      // Otherwise bundles with that include chunks for which we track the size separately are penalized
-      // e.g. without this option `@material-ui/core.legacy` would be smaller since it could concatenate all modules
-      // while `@material-ui/core` had to import the chunks from all the components.
-      // Ideally we could just disable shared chunks but I couldn't figure out how.
-      concatenateModules: false,
-      minimizer: [
-        new TerserPlugin({
-          test: /\.js(\?.*)?$/i,
+  const entries = await getWebpackEntries();
+  const configurations = entries.map((entry) => {
+    return {
+      // ideally this would be computed from the bundles peer dependencies
+      externals: /^(react|react-dom|react\/jsx-runtime)$/,
+      mode: 'production',
+      optimization: {
+        concatenateModules,
+        minimizer: [
+          new TerserPlugin({
+            test: /\.js(\?.*)?$/i,
+          }),
+        ],
+      },
+      output: {
+        filename: '[name].js',
+        path: path.join(__dirname, 'build'),
+      },
+      plugins: [
+        new CompressionPlugin(),
+        new BundleAnalyzerPlugin({
+          analyzerMode,
+          // We create a report for each bundle so around 120 reports.
+          // Opening them all is spam.
+          // If opened with `webpack --config . --analyze` it'll still open one new tab though.
+          openAnalyzer: false,
+          // '[name].html' not supported: https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/12
+          reportFilename: `${entry.name}.html`,
         }),
       ],
-    },
-    output: {
-      filename: '[name].js',
-      path: path.join(__dirname, 'build'),
-    },
-    plugins: [new CompressionPlugin()],
-    resolve: {
-      alias: {
-        '@material-ui/core': path.join(workspaceRoot, 'packages/material-ui/build'),
-        '@material-ui/lab': path.join(workspaceRoot, 'packages/material-ui-lab/build'),
-        '@material-ui/styled-engine': path.join(
-          workspaceRoot,
-          'packages/material-ui-styled-engine/build',
-        ),
-        '@material-ui/styled-engine-sc': path.join(
-          workspaceRoot,
-          'packages/material-ui-styles-sc/build',
-        ),
-        '@material-ui/styles': path.join(workspaceRoot, 'packages/material-ui-styles/build'),
-        '@material-ui/system': path.join(workspaceRoot, 'packages/material-ui-system/build'),
-        '@material-ui/utils': path.join(workspaceRoot, 'packages/material-ui-utils/build'),
+      resolve: {
+        alias: {
+          '@material-ui/core': path.join(workspaceRoot, 'packages/material-ui/build'),
+          '@material-ui/lab': path.join(workspaceRoot, 'packages/material-ui-lab/build'),
+          '@material-ui/styled-engine': path.join(
+            workspaceRoot,
+            'packages/material-ui-styled-engine/build',
+          ),
+          '@material-ui/styled-engine-sc': path.join(
+            workspaceRoot,
+            'packages/material-ui-styles-sc/build',
+          ),
+          '@material-ui/styles': path.join(workspaceRoot, 'packages/material-ui-styles/build'),
+          '@material-ui/system': path.join(workspaceRoot, 'packages/material-ui-system/build'),
+          '@material-ui/utils': path.join(workspaceRoot, 'packages/material-ui-utils/build'),
+        },
       },
-    },
-  };
+      entry: { [entry.name]: path.join(workspaceRoot, entry.path) },
+    };
+  });
 
-  return config;
+  return configurations;
 };
