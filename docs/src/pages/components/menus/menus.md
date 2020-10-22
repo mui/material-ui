@@ -6,17 +6,17 @@ materialDesign: https://material.io/components/menus
 waiAria: https://www.w3.org/TR/wai-aria-practices/#menubutton
 ---
 
-# Menus
+# Menu
 
 <p class="description">Menus display a list of choices on temporary surfaces.</p>
 
-A Menu displays a list of choices on a temporary surface. It appears when the user interacts with a button, or other control.
+A menu displays a list of choices on a temporary surface. It appears when the user interacts with a button, or other control.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Simple Menu
+## Basic menu
 
-Simple menus open over the anchor element by default (this option can be changed via props). When close to a screen edge, simple menus vertically realign to make sure that all menu items are completely visible.
+A basic menu opens over the anchor element by default (this option can be [changed](#menu-positioning) via props). When close to a screen edge, a basic menu vertically realigns to make sure that all menu items are completely visible.
 
 Choosing an option should immediately ideally commit the option and close the menu.
 
@@ -32,6 +32,13 @@ The currently selected menu item is set using the `selected` prop (from [ListIte
 To use a selected menu item without impacting the initial focus or the vertical positioning of the menu, set the `variant` prop to "menu".
 
 {{"demo": "pages/components/menus/SimpleListMenu.js"}}
+
+## Menu positioning
+
+Because the `Menu` component uses the `Popover` component to position itself, you can use the same [positioning props](/components/popover/#anchor-playground) to position it.
+For instance, you can display the menu below the anchor:
+
+{{"demo": "pages/components/menus/PositionedMenu.js"}}
 
 ## MenuList composition
 
