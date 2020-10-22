@@ -28,9 +28,7 @@ describe('<Box />', () => {
           fontSize={{ xs: 'h6.fontSize', sm: 'h4.fontSize', md: 'h3.fontSize' }}
         />,
       );
-    }).toWarnDev(
-      'Material-UI: You are using deprecated props on the Box component.\n'
-    );
+    }).toWarnDev('Material-UI: You are using deprecated props on the Box component.\n');
   });
 
   it('renders children and box content', () => {
