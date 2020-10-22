@@ -102,6 +102,7 @@ async function getWebpackEntries() {
 
 module.exports = async function webpackConfig(webpack, environment) {
   const analyzerMode = environment.analyze ? 'static' : 'disabled';
+  const concatenateModules = !environment.accurateBundles;
 
   const entries = await getWebpackEntries();
   const configurations = entries.map((entry) => {
@@ -110,6 +111,7 @@ module.exports = async function webpackConfig(webpack, environment) {
       externals: /^(react|react-dom|react\/jsx-runtime)$/,
       mode: 'production',
       optimization: {
+        concatenateModules,
         minimizer: [
           new TerserPlugin({
             test: /\.js(\?.*)?$/i,

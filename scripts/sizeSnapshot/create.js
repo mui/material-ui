@@ -179,11 +179,17 @@ yargs
     command: '$0',
     description: 'Saves a size snapshot in size-snapshot.json',
     builder: (command) => {
-      return command.option('analyze', {
-        default: false,
-        describe: 'Creates a webpack-bundle-analyzer report for each bundle.',
-        type: 'boolean',
-      });
+      return command
+        .option('analyze', {
+          default: false,
+          describe: 'Creates a webpack-bundle-analyzer report for each bundle.',
+          type: 'boolean',
+        })
+        .option('accurateBundles', {
+          default: false,
+          describe: 'Displays used bundles accurately at the cost of accurate bundle size.',
+          type: 'boolean',
+        });
     },
     handler: run,
   })
