@@ -178,7 +178,7 @@ describe('experimentalStyled', () => {
       });
     });
 
-    it('should resolve the sx prop', function test() {
+    it('should resolve the sx prop', () => {
       render(
         <ThemeProvider theme={theme}>
           <Test data-testid="component" sx={{ color: 'primary.main' }}>
