@@ -179,10 +179,11 @@ describe('experimentalStyled', () => {
         <Test data-testid="component" sx={{ m: 1 }}>
           Test
         </Test>,
-      ),
-        expect(screen.getByTestId('component')).toHaveComputedStyle({
-          margin: '8px',
-        });
+      );
+
+      expect(screen.getByTestId('component')).toHaveComputedStyle({
+        margin: '8px',
+      });
     });
   });
 });
