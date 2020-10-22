@@ -196,7 +196,7 @@ export interface SliderTypeMap<P = {}, D extends React.ElementType = 'span'> {
 }
 
 /**
- * utility to create component types that inherit props from SliderUnstyled.
+ * Utility to create component types that inherit props from SliderUnstyled.
  */
 export interface ExtendSliderUnstyledTypeMap<M extends OverridableTypeMap> {
   props: M['props'] & Omit<SliderTypeMap['props'], 'classes'>;
