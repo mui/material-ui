@@ -181,19 +181,19 @@ interface InputElement {
 const MyInputComponent = React.forwardRef((props, ref) => {
   const { component: Component, ...other } = props;
 
-  // implement `InputElement` interface
+  // 实现 `InputElement` 接口
   React.useImperativeHandle(ref, () => ({
     focus: () => {
-      // logic to focus the rendered component from 3rd party belongs here
+      // 在这里提供第三方组件的聚焦（focus）渲染方法
     },
-    // hiding the value e.g. react-stripe-elements
+    // 隐藏值，例如 react-stripe-elements
   }));
 
-  // `Component` will be your `SomeThirdPartyComponent` from below
+  // `Component` 将会是下面例子中的 `SomeThirdPartyComponent`
   return <Component {...other} />;
 });
 
-// usage
+// 使用
 <TextField
   InputProps={{
     inputComponent: MyInputComponent,
@@ -223,7 +223,8 @@ const MyInputComponent = React.forwardRef((props, ref) => {
 <FormControl>
   <InputLabel htmlFor="my-input">电子邮件</InputLabel>
   <Input id="my-input" aria-describedby="my-helper-text" />
-  <FormHelperText id="my-helper-text">我们绝不会分享您的邮件地址。
+  <FormHelperText id="my-helper-text">
+    我们绝不会分享您的邮件地址。
   </FormHelperText>
 </FormControl>
 ```
