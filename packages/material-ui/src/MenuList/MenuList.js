@@ -1,8 +1,12 @@
 import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
-import { ownerDocument, getScrollbarSize, useForkRef } from '@material-ui/utils';
-import { unstable_useEnhancedEffect as useEnhancedEffect } from '@material-ui/utils';
+import {
+  ownerDocument,
+  getScrollbarSize,
+  useForkRef,
+  unstable_useEnhancedEffect as useEnhancedEffect,
+} from '@material-ui/utils';
 import List from '../List';
 
 function nextItem(list, item, disableListWrap) {

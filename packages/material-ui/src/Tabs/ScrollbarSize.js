@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { debounce } from '@material-ui/utils';
-import { ownerWindow } from '@material-ui/utils';
+import { debounce, ownerWindow } from '@material-ui/utils';
 
 const styles = {
   width: 99,

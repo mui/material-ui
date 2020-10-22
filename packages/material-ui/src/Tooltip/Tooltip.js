@@ -1,13 +1,15 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge, elementAcceptingRef, unstable_useId as useId } from '@material-ui/utils';
 import {
   capitalize,
   useEventCallback,
   useForkRef,
   useIsFocusVisible,
   useControlled,
+  deepmerge,
+  elementAcceptingRef,
+  unstable_useId as useId,
 } from '@material-ui/utils';
 import { alpha } from '../styles/colorManipulator';
 import withStyles from '../styles/withStyles';

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import RadioGroupContext from './RadioGroupContext';
 import { useForkRef, useControlled, unstable_useId as useId } from '@material-ui/utils';
+import RadioGroupContext from './RadioGroupContext';
 import FormGroup from '../FormGroup';
 
 const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {

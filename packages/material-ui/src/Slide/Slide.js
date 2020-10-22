@@ -1,8 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
-import { elementAcceptingRef, debounce, useForkRef } from '@material-ui/utils';
-import { ownerWindow } from '@material-ui/utils';
+import { elementAcceptingRef, debounce, useForkRef, ownerWindow } from '@material-ui/utils';
 import useTheme from '../styles/useTheme';
 import { duration } from '../styles/transitions';
 import { reflow, getTransitionProps } from '../transitions/utils';
