@@ -375,7 +375,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
             [classes.disabled]: disabled,
           },
           className,
-          SelectDisplayProps.className
+          SelectDisplayProps.className,
         )}
         // The id is required for proper a11y
         id={buttonId}
