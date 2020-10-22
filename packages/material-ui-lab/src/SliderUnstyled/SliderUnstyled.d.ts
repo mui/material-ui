@@ -203,7 +203,9 @@ export interface ExtendSliderUnstyledTypeMap<M extends OverridableTypeMap> {
   defaultComponent: M['defaultComponent'];
 }
 
-export type ExtendSliderUnstyled<M extends OverridableTypeMap> = OverridableComponent<ExtendSliderUnstyledTypeMap<M>>;
+export type ExtendSliderUnstyled<M extends OverridableTypeMap> = OverridableComponent<
+  ExtendSliderUnstyledTypeMap<M>
+>;
 
 /**
  *

@@ -93,19 +93,14 @@ describe('experimentalStyled', () => {
       });
 
       // FIXME: Should not error in DEV
-      expect(() => {
-        Test = styled(
-          'div',
-          { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' },
-          { muiName: 'MuiTest', overridesResolver: testOverridesResolver },
-        )`
-          width: 200px;
-          height: 300px;
-        `;
-      }).toErrorDev([
-        'You have illegal escape sequence in your template literal',
-        'You have illegal escape sequence in your template literal',
-      ]);
+      Test = styled(
+        'div',
+        { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' },
+        { muiName: 'MuiTest', overridesResolver: testOverridesResolver },
+      )`
+        width: 200px;
+        height: 300px;
+      `;
     });
 
     it('should work with specified muiOptions', () => {
@@ -177,6 +172,17 @@ describe('experimentalStyled', () => {
         width: '500px',
         height: '400px',
       });
+    });
+
+    it('should resolve the sx prop', () => {
+      render(
+        <Test data-testid="component" sx={{ m: 1 }}>
+          Test
+        </Test>,
+      ),
+        expect(screen.getByTestId('component')).toHaveComputedStyle({
+          margin: '8px',
+        });
     });
   });
 });

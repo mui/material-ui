@@ -86,9 +86,9 @@ const experimentalStyled = (tag, options, muiOptions = {}) => {
       });
     }
 
-    stylesWithDefaultTheme.push(props => {
+    stylesWithDefaultTheme.push((props) => {
       const theme = isEmpty(props.theme) ? defaultTheme : props.theme;
-      return styleFunctionSx(props.sx, theme)
+      return styleFunctionSx(props.sx, theme);
     });
 
     return defaultStyledResolver(stylesWithDefaultTheme);

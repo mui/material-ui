@@ -3,7 +3,7 @@ import { SxProps } from '@material-ui/core/Box';
 import { ExtendSliderUnstyledTypeMap, ExtendSliderUnstyled } from '../SliderUnstyled';
 
 export type SliderStyledTypeMap<
-  D extends React.ElementType = "span",
+  D extends React.ElementType = 'span',
   P = {}
 > = ExtendSliderUnstyledTypeMap<{
   props: P & {
@@ -17,7 +17,9 @@ export type SliderStyledTypeMap<
 
 type SliderRootProps = NonNullable<SliderStyledTypeMap['props']['componentsProps']>['root'];
 type SliderMarkProps = NonNullable<SliderStyledTypeMap['props']['componentsProps']>['mark'];
-type SliderMarkLabelProps = NonNullable<SliderStyledTypeMap['props']['componentsProps']>['markLabel'];
+type SliderMarkLabelProps = NonNullable<
+  SliderStyledTypeMap['props']['componentsProps']
+>['markLabel'];
 type SliderRailProps = NonNullable<SliderStyledTypeMap['props']['componentsProps']>['rail'];
 type SliderTrackProps = NonNullable<SliderStyledTypeMap['props']['componentsProps']>['track'];
 type SliderThumbProps = NonNullable<SliderStyledTypeMap['props']['componentsProps']>['thumb'];

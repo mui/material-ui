@@ -1,8 +1,8 @@
 import scStyled from 'styled-components';
 
 export default function styled(tag, options) {
-  let scStyledPrepared = scStyled(tag); 
-  
+  let scStyledPrepared = scStyled(tag);
+
   if (options) {
     scStyledPrepared = scStyled(tag).withConfig({
       displayName: options.label,
@@ -12,7 +12,7 @@ export default function styled(tag, options) {
 
   return (styles) => {
     return scStyledPrepared(...styles);
-  }
+  };
 }
 
 export { ThemeContext } from 'styled-components';
