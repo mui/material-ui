@@ -1,6 +1,4 @@
-import getScrollbarSize from '@material-ui/utils/getScrollbarSize';
-import ownerDocument from '@material-ui/utils/ownerDocument';
-import ownerWindow from '@material-ui/utils/ownerWindow';
+import { getScrollbarSize, ownerDocument, ownerWindow } from '@material-ui/utils';
 
 export interface ManagedModalProps {
   disableScrollLock?: boolean;

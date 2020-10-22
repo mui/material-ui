@@ -8,11 +8,11 @@ import {
   unstable_useEnhancedEffect as useEnhancedEffect,
 } from '@material-ui/utils';
 import MuiError from '@material-ui/utils/macros/MuiError.macro';
+import capitalize from '@material-ui/utils/capitalize';
+import useForkRef from '@material-ui/utils/useForkRef';
 import formControlState from '../FormControl/formControlState';
 import FormControlContext, { useFormControl } from '../FormControl/FormControlContext';
 import withStyles from '../styles/withStyles';
-import capitalize from '@material-ui/utils/capitalize';
-import useForkRef from '@material-ui/utils/useForkRef';
 import TextareaAutosize from '../TextareaAutosize';
 import { isFilled } from './utils';
 

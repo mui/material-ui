@@ -4,8 +4,8 @@ import clsx from 'clsx';
 import { elementTypeAcceptingRef, refType } from '@material-ui/utils';
 import useForkRef from '@material-ui/utils/useForkRef';
 import useEventCallback from '@material-ui/utils/useEventCallback';
-import withStyles from '../styles/withStyles';
 import useIsFocusVisible from '@material-ui/utils/useIsFocusVisible';
+import withStyles from '../styles/withStyles';
 import TouchRipple from './TouchRipple';
 
 export const styles = {

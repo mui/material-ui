@@ -2,14 +2,14 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { duration } from '../styles/transitions';
-import withStyles from '../styles/withStyles';
-import Zoom from '../Zoom';
-import Fab from '../Fab';
 import capitalize from '@material-ui/utils/capitalize';
 import isMuiElement from '@material-ui/utils/isMuiElement';
 import useForkRef from '@material-ui/utils/useForkRef';
 import useControlled from '@material-ui/utils/useControlled';
+import { duration } from '../styles/transitions';
+import withStyles from '../styles/withStyles';
+import Zoom from '../Zoom';
+import Fab from '../Fab';
 
 function getOrientation(direction) {
   if (direction === 'up' || direction === 'down') {

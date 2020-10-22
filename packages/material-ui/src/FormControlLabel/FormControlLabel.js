@@ -2,10 +2,10 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { refType } from '@material-ui/utils';
+import capitalize from '@material-ui/utils/capitalize';
 import { useFormControl } from '../FormControl';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
-import capitalize from '@material-ui/utils/capitalize';
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */

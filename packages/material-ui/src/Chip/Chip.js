@@ -2,12 +2,12 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useThemeVariants } from '@material-ui/styles';
-import CancelIcon from '../internal/svg-icons/Cancel';
-import withStyles from '../styles/withStyles';
-import { emphasize, alpha } from '../styles/colorManipulator';
 import useForkRef from '@material-ui/utils/useForkRef';
 import unsupportedProp from '@material-ui/utils/unsupportedProp';
 import capitalize from '@material-ui/utils/capitalize';
+import CancelIcon from '../internal/svg-icons/Cancel';
+import withStyles from '../styles/withStyles';
+import { emphasize, alpha } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
 
 export const styles = (theme) => {

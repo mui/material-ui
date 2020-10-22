@@ -5,10 +5,10 @@ import {
   unstable_useEnhancedEffect as useEnhancedEffect,
 } from '@material-ui/utils';
 import { getThemeProps } from '@material-ui/styles';
-import Drawer, { getAnchor, isHorizontal } from '../Drawer/Drawer';
 import ownerDocument from '@material-ui/utils/ownerDocument';
 import ownerWindow from '@material-ui/utils/ownerWindow';
 import useEventCallback from '@material-ui/utils/useEventCallback';
+import Drawer, { getAnchor, isHorizontal } from '../Drawer/Drawer';
 import { duration } from '../styles/transitions';
 import useTheme from '../styles/useTheme';
 import { getTransitionProps } from '../transitions/utils';

@@ -6,11 +6,11 @@ import {
   elementTypeAcceptingRef,
   unstable_useEnhancedEffect as useEnhancedEffect,
 } from '@material-ui/utils';
+import isMuiElement from '@material-ui/utils/isMuiElement';
+import useForkRef from '@material-ui/utils/useForkRef';
 import withStyles from '../styles/withStyles';
 import { alpha } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
-import isMuiElement from '@material-ui/utils/isMuiElement';
-import useForkRef from '@material-ui/utils/useForkRef';
 import ListContext from '../List/ListContext';
 
 export const styles = (theme) => ({

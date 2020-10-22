@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes } from '@material-ui/utils';
 import {
+  chainPropTypes,
   useIsFocusVisible,
   unstable_useEnhancedEffect as useEnhancedEffect,
   ownerDocument,

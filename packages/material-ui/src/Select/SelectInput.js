@@ -6,10 +6,10 @@ import MuiError from '@material-ui/utils/macros/MuiError.macro';
 import { refType } from '@material-ui/utils';
 import ownerDocument from '@material-ui/utils/ownerDocument';
 import capitalize from '@material-ui/utils/capitalize';
-import Menu from '../Menu/Menu';
-import { isFilled } from '../InputBase/utils';
 import useForkRef from '@material-ui/utils/useForkRef';
 import useControlled from '@material-ui/utils/useControlled';
+import Menu from '../Menu/Menu';
+import { isFilled } from '../InputBase/utils';
 
 function areEqualValues(a, b) {
   if (typeof b === 'object' && b !== null) {

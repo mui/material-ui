@@ -3,10 +3,10 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import { act, createMount, fireEvent, createClientRender, describeConformance } from 'test/utils';
 import PropTypes, { checkPropTypes } from 'prop-types';
+import useForkRef from '@material-ui/utils/useForkRef';
 import Drawer from '../Drawer';
 import SwipeableDrawer, { reset } from './SwipeableDrawer';
 import SwipeArea from './SwipeArea';
-import useForkRef from '@material-ui/utils/useForkRef';
 
 function fireMouseEvent(name, element, properties = {}) {
   act(() => {

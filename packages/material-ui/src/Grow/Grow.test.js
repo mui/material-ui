@@ -5,9 +5,9 @@ import { spy, useFakeTimers } from 'sinon';
 import { createClientRender, createMount, describeConformance } from 'test/utils';
 import { act } from 'react-dom/test-utils';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import useForkRef from '@material-ui/utils/useForkRef';
 import { Transition } from 'react-transition-group';
 import Grow from './Grow';
-import useForkRef from '@material-ui/utils/useForkRef';
 
 describe('<Grow />', () => {
   const render = createClientRender();

@@ -3,11 +3,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import capitalize from '@material-ui/utils/capitalize';
 import withStyles from '../styles/withStyles';
 import { emphasize } from '../styles/colorManipulator';
 import Fab from '../Fab';
 import Tooltip from '../Tooltip';
-import capitalize from '@material-ui/utils/capitalize';
 
 export const styles = (theme) => ({
   /* Styles applied to the Fab component. */

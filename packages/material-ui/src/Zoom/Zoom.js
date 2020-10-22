@@ -2,10 +2,10 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
 import { elementAcceptingRef } from '@material-ui/utils';
+import useForkRef from '@material-ui/utils/useForkRef';
 import { duration } from '../styles/transitions';
 import useTheme from '../styles/useTheme';
 import { reflow, getTransitionProps } from '../transitions/utils';
-import useForkRef from '@material-ui/utils/useForkRef';
 
 const styles = {
   entering: {

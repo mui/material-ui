@@ -1,11 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import useEventCallback from '@material-ui/utils/useEventCallback';
+import capitalize from '@material-ui/utils/capitalize';
 import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';
 import ClickAwayListener from '../ClickAwayListener';
-import useEventCallback from '@material-ui/utils/useEventCallback';
-import capitalize from '@material-ui/utils/capitalize';
 import Grow from '../Grow';
 import SnackbarContent from '../SnackbarContent';
 

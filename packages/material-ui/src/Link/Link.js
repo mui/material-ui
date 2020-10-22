@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { elementTypeAcceptingRef } from '@material-ui/utils';
 import capitalize from '@material-ui/utils/capitalize';
-import withStyles from '../styles/withStyles';
 import useIsFocusVisible from '@material-ui/utils/useIsFocusVisible';
 import useForkRef from '@material-ui/utils/useForkRef';
+import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 
 export const styles = {

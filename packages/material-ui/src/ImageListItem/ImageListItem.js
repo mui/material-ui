@@ -2,8 +2,8 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
 import isMuiElement from '@material-ui/utils/isMuiElement';
+import withStyles from '../styles/withStyles';
 import ImageListContext from '../ImageList/ImageListContext';
 
 export const styles = {

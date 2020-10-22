@@ -1,9 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import capitalize from '@material-ui/utils/capitalize';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
-import capitalize from '@material-ui/utils/capitalize';
 import withStyles from '../styles/withStyles';
 
 export const styles = (theme) => ({

@@ -3,9 +3,9 @@ import { expect } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
 import { createClientRender, createMount, describeConformance } from 'test/utils';
 import { createMuiTheme } from '@material-ui/core/styles';
+import { useForkRef } from '@material-ui/utils';
 import { Transition } from 'react-transition-group';
 import Slide, { setTranslateValue } from './Slide';
-import { useForkRef } from '@material-ui/utils';
 
 describe('<Slide />', () => {
   const render = createClientRender();

@@ -3,10 +3,10 @@ import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { HTMLElementType } from '@material-ui/utils';
+import setRef from '@material-ui/utils/setRef';
 import withStyles from '../styles/withStyles';
 import Popover from '../Popover';
 import MenuList from '../MenuList';
-import setRef from '@material-ui/utils/setRef';
 import useTheme from '../styles/useTheme';
 
 const RTL_ORIGIN = {

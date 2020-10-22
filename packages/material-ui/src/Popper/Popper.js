@@ -8,10 +8,10 @@ import {
   unstable_useEnhancedEffect as useEnhancedEffect,
 } from '@material-ui/utils';
 import { useTheme } from '@material-ui/styles';
-import Portal from '../Portal';
 import createChainedFunction from '@material-ui/utils/createChainedFunction';
 import setRef from '@material-ui/utils/setRef';
 import useForkRef from '@material-ui/utils/useForkRef';
+import Portal from '../Portal';
 
 function flipPlacement(placement, theme) {
   const direction = (theme && theme.direction) || 'ltr';

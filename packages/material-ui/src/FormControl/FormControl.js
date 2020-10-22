@@ -1,10 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { isFilled, isAdornedStart } from '../InputBase/utils';
-import withStyles from '../styles/withStyles';
 import capitalize from '@material-ui/utils/capitalize';
 import isMuiElement from '@material-ui/utils/isMuiElement';
+import { isFilled, isAdornedStart } from '../InputBase/utils';
+import withStyles from '../styles/withStyles';
 import FormControlContext from './FormControlContext';
 
 export const styles = {

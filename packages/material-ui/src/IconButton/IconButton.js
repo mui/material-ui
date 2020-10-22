@@ -2,10 +2,10 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
+import capitalize from '@material-ui/utils/capitalize';
 import withStyles from '../styles/withStyles';
 import { alpha } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
-import capitalize from '@material-ui/utils/capitalize';
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */

@@ -2,15 +2,15 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { visuallyHidden } from '@material-ui/system';
-import { chainPropTypes } from '@material-ui/utils';
-import { useTheme, withStyles } from '../styles';
 import {
+  chainPropTypes,
   capitalize,
   useForkRef,
   useIsFocusVisible,
   useControlled,
   unstable_useId as useId,
 } from '@material-ui/utils';
+import { useTheme, withStyles } from '../styles';
 import Star from '../internal/svg-icons/Star';
 import StarBorder from '../internal/svg-icons/StarBorder';
 

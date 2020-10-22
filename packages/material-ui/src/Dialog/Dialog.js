@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
 import capitalize from '@material-ui/utils/capitalize';
+import withStyles from '../styles/withStyles';
 import Modal from '../Modal';
 import Backdrop from '../Backdrop';
 import Fade from '../Fade';

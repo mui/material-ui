@@ -3,11 +3,11 @@ import { expect } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
 import { findOutermostIntrinsic, getClasses, createMount, describeConformance } from 'test/utils';
 import PropTypes from 'prop-types';
+import useForkRef from '@material-ui/utils/useForkRef';
 import Grow from '../Grow';
 import Modal from '../Modal';
 import Paper from '../Paper';
 import Popover, { getOffsetLeft, getOffsetTop } from './Popover';
-import useForkRef from '@material-ui/utils/useForkRef';
 
 const mockedAnchorEl = () => {
   const div = document.createElement('div');
