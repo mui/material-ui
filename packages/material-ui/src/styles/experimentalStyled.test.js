@@ -92,10 +92,9 @@ describe('experimentalStyled', () => {
         ...(props.variant && styles[props.variant]),
       });
 
-      // FIXME: Should not error in DEV
       Test = styled(
         'div',
-        { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' },
+        { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx' },
         { muiName: 'MuiTest', overridesResolver: testOverridesResolver },
       )`
         width: 200px;
@@ -175,6 +174,9 @@ describe('experimentalStyled', () => {
     });
 
     it('should resolve the sx prop', () => {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
       render(
         <Test data-testid="component" sx={{ m: 1 }}>
           Test
