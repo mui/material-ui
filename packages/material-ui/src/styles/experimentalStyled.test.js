@@ -173,10 +173,11 @@ describe('experimentalStyled', () => {
       });
     });
 
-    it('should resolve the sx prop', () => {
+    it('should resolve the sx prop', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
+      
       render(
         <Test data-testid="component" sx={{ m: 1 }}>
           Test
