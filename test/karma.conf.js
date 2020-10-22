@@ -13,9 +13,9 @@ module.exports = function setKarmaConfig(config) {
   const baseConfig = {
     basePath: '../',
     browsers: ['ChromeHeadlessNoSandbox'],
-    browserDisconnectTimeout: 120000, // default 2000
-    browserDisconnectTolerance: 1, // default 0
-    browserNoActivityTimeout: 300000, // default 10000
+    browserDisconnectTimeout: 120 * 1000, // default 2 * 1000
+    browserDisconnectTolerance: 3, // default 0
+    browserNoActivityTimeout: 60 * 1000, // default 10 * 1000
     colors: true,
     frameworks: ['mocha'],
     files: [
