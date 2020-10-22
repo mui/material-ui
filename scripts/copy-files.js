@@ -32,7 +32,7 @@ async function createModulePackages({ from, to }) {
         sideEffects: false,
         module: './index.js',
         main: path.join('../node', directoryPackage, 'index.js'),
-        typings: './index.d.ts',
+        types: './index.d.ts',
       };
       const packageJsonPath = path.join(to, directoryPackage, 'package.json');
 
@@ -69,13 +69,17 @@ async function createPackageFile() {
   const newPackageData = {
     ...packageDataOther,
     private: false,
-    main: fse.existsSync(path.resolve(buildPath, './node/index.js'))
-      ? './node/index.js'
-      : './index.js',
-    module: fse.existsSync(path.resolve(buildPath, './esm/index.js'))
-      ? './esm/index.js'
-      : './index.js',
-    typings: './index.d.ts',
+    ...(packageDataOther.main
+      ? {
+          main: fse.existsSync(path.resolve(buildPath, './node/index.js'))
+            ? './node/index.js'
+            : './index.js',
+          module: fse.existsSync(path.resolve(buildPath, './esm/index.js'))
+            ? './esm/index.js'
+            : './index.js',
+        }
+      : {}),
+    types: './index.d.ts',
   };
   const targetPath = path.resolve(buildPath, './package.json');
 
