@@ -85,7 +85,7 @@ app.listen(port);
 
 服务端渲染的关键步骤是，在将组件的初始 HTML 发送到客户端**之前**，就开始进行渲染。 我们用 [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html) 来实现此操作。
 
-然后我们就可以使用 `sheets.toString()` 方法从`表单（sheets）`中获取 CSS。 As we are also using emotion as our default styled engine, we need to extract the styles from the emotion instance as well. For this we need to share the same cache definition for both the client and server:
+然后我们就可以使用 `sheets.toString()` 方法从`表单（sheets）`中获取 CSS。 由于我们也使用 emotion 作为默认的样式引擎，所以我们也需要从 emotion 实例中提取样式。 为此，我们需要为客户端和服务端共享相同的缓存定义：
 
 `cache.js`
 
@@ -97,7 +97,7 @@ const cache = createCache();
 export default cache;
 ```
 
-With this we are creating new Emotion server instance and using this to extract the critical styles for the html as well.
+这样做之后，我们就可以在服务器上创建新的 Emotion 实例，并用它来提取 html 的关键样式。
 
 我们将看到在 `renderFullPage` 函数中，是如何传递这些信息的。
 
@@ -116,7 +116,7 @@ const { extractCritical } = createEmotionServer(cache);
 function handleRender(req, res) {
   const sheets = new ServerStyleSheets();
 
-  // Render the component to a string.
+  // 将组件渲染成字符串
   const html = ReactDOMServer.renderToString(
     sheets.collect(
       <CacheProvider value={cache}>
@@ -127,13 +127,13 @@ function handleRender(req, res) {
     ),
   );
 
-  // Grab the CSS from the sheets.
+  // 从 sheet 中抓取 CSS。
   const css = sheets.toString();
 
-  // Grab the CSS from emotion
+  // 从 emotion 中抓取 CSS
   const styles = extractCritical(html);
 
-  // Send the rendered page back to the client.
+  // 将渲染好的页面发回给客户端。
   res.send(renderFullPage(html, `${css} ${styles.css}`));
 }
 
@@ -141,7 +141,7 @@ const app = express();
 
 app.use('/build', express.static('build'));
 
-// This is fired every time the server-side receives a request.
+// 每当服务器端接收到一个请求时，这个功能就会被触发。
 app.use(handleRender);
 
 const port = 3000;
