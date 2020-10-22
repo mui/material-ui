@@ -14,5 +14,11 @@
     "date": "2020-03-30",
     "title": "Sketch",
     "text": "<a style=\"color: inherit;\" target=\"_blank\" rel=\"noopener\" href=\"https://twitter.com/MaterialUI/status/1244519729978437633\">Introducing Material-UI for Sketch</a>. Today, we’re excited to introduce the Sketch symbols 💎 for Material-UI."
+  },
+  {
+    "id": 50,
+    "date": "2020-10-22",
+    "title": "Figma",
+    "text": "<a style=\"color: inherit;\" target=\"_blank\" href=\"/store/items/figma-react/\">Material-UI for Figma</a>. Not new, but definitely improved – v4.12.0 now available in the store!"
   }
 ]
