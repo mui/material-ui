@@ -78,8 +78,6 @@ import * as colors from './colors';
 export { colors };
 export * from './styles';
 
-export * from './utils';
-
 export { default as Accordion } from './Accordion';
 export * from './Accordion';
 
