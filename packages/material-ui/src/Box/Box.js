@@ -30,7 +30,7 @@ const BoxRoot = React.forwardRef(function StyledComponent(props, ref) {
     if (!warnedOnce && Object.keys(spread).length !== Object.keys(other).length) {
       warnedOnce = true;
       console.warn(
-        'Material-UI: You are using deprecated propreties directly on the Box component.\n' +
+        'Material-UI: You are using deprecated props on the Box component.\n' +
           'You should move the properties inside the `sx` prop. For example:\n' +
           '<Box m={2} /> should become <Box sx={{ m: 2 }} />',
       );
