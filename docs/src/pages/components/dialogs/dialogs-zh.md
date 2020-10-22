@@ -119,7 +119,7 @@ function MyComponent() {
 
 ## 性能
 
-参考[模态性能部分](/components/modal/#performance)。
+参考 [模态框性能部分](/components/modal/#performance)。
 
 ## 设计局限
 
