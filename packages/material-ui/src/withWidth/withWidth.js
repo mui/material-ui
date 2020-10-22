@@ -1,6 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { getDisplayName, unstable_useEnhancedEffect as useEnhancedEffect } from '@material-ui/utils';
+import {
+  getDisplayName,
+  unstable_useEnhancedEffect as useEnhancedEffect,
+} from '@material-ui/utils';
 import { getThemeProps } from '@material-ui/styles';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import useTheme from '../styles/useTheme';

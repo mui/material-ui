@@ -20,7 +20,12 @@ export interface UseControlledProps<T = unknown> {
   state?: string;
 }
 
-export default function useControlled<T = unknown>({ controlled, default: defaultProp, name, state = 'value' }: UseControlledProps<T>): [T, (newValue: T) => void] {
+export default function useControlled<T = unknown>({
+  controlled,
+  default: defaultProp,
+  name,
+  state = 'value',
+}: UseControlledProps<T>): [T, (newValue: T) => void] {
   // isControlled is ignored in the hook dependency lists as it should never change.
   const { current: isControlled } = React.useRef(controlled !== undefined);
   const [valueState, setValue] = React.useState(defaultProp);

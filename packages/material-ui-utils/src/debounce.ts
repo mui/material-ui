@@ -6,7 +6,7 @@ export interface Cancelable {
 // A few bytes payload overhead when lodash/debounce is ~3 kB and debounce ~300 B.
 export default function debounce<T extends (...args: any[]) => any>(
   func: T,
-  wait: number = 166
+  wait: number = 166,
 ): T & Cancelable {
   let timeout: any;
   function debounced(...args: any[]) {

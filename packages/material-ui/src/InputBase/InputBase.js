@@ -2,7 +2,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { refType, elementTypeAcceptingRef, unstable_useEnhancedEffect as useEnhancedEffect } from '@material-ui/utils';
+import {
+  refType,
+  elementTypeAcceptingRef,
+  unstable_useEnhancedEffect as useEnhancedEffect,
+} from '@material-ui/utils';
 import MuiError from '@material-ui/utils/macros/MuiError.macro';
 import formControlState from '../FormControl/formControlState';
 import FormControlContext, { useFormControl } from '../FormControl/FormControlContext';

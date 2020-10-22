@@ -8,7 +8,9 @@ export type ChainedFunction = ((...args: any[]) => void) | undefined | null;
  * @param {function} functions to chain
  * @returns {function|null}
  */
-export default function createChainedFunction(...funcs: ChainedFunction[]): (...args: any[]) => never {
+export default function createChainedFunction(
+  ...funcs: ChainedFunction[]
+): (...args: any[]) => never {
   return funcs.reduce(
     (acc, func) => {
       if (func == null) {

@@ -1,7 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes, elementTypeAcceptingRef, unstable_useEnhancedEffect as useEnhancedEffect } from '@material-ui/utils';
+import {
+  chainPropTypes,
+  elementTypeAcceptingRef,
+  unstable_useEnhancedEffect as useEnhancedEffect,
+} from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import { alpha } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';

@@ -1,7 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes, unstable_useEnhancedEffect as useEnhancedEffect } from '@material-ui/utils';
+import {
+  chainPropTypes,
+  unstable_useEnhancedEffect as useEnhancedEffect,
+} from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import useTheme from '../styles/useTheme';
 import { alpha, lighten, darken } from '../styles/colorManipulator';

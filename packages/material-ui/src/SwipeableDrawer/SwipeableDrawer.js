@@ -1,6 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { elementTypeAcceptingRef, unstable_useEnhancedEffect as useEnhancedEffect } from '@material-ui/utils';
+import {
+  elementTypeAcceptingRef,
+  unstable_useEnhancedEffect as useEnhancedEffect,
+} from '@material-ui/utils';
 import { getThemeProps } from '@material-ui/styles';
 import Drawer, { getAnchor, isHorizontal } from '../Drawer/Drawer';
 import ownerDocument from '@material-ui/utils/ownerDocument';

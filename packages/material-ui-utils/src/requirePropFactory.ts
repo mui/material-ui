@@ -4,7 +4,7 @@ export default function requirePropFactory(componentNameInError: string): any {
   }
 
   const requireProp = (requiredProp: string): any => (
-    props: {[key: string]: any},
+    props: { [key: string]: any },
     propName: string,
     componentName: string,
     location: string,
