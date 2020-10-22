@@ -1,11 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { getDisplayName } from '@material-ui/utils';
+import { getDisplayName, unstable_useEnhancedEffect as useEnhancedEffect } from '@material-ui/utils';
 import { getThemeProps } from '@material-ui/styles';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import useTheme from '../styles/useTheme';
 import { breakpointKeys } from '../styles/createBreakpoints';
-import useEnhancedEffect from '@material-ui/utils/useEnhancedEffect';
 import useMediaQuery from '../useMediaQuery';
 
 // By default, returns true if screen width is the same or greater than the given breakpoint.

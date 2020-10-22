@@ -1,4 +1,10 @@
-export default function unsupportedProp(props, propName, componentName, location, propFullName) {
+export default function unsupportedProp(
+  props: { [key: string]: any },
+  propName: string,
+  componentName: string,
+  location: string,
+  propFullName: string
+): Error | null {
   if (process.env.NODE_ENV === 'production') {
     return null;
   }

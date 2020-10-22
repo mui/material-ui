@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { chainPropTypes } from '@material-ui/utils';
+import { chainPropTypes, unstable_useId as useId } from '@material-ui/utils';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import InputBase from '../InputBase';
@@ -10,7 +10,6 @@ import TableCell from '../TableCell';
 import Toolbar from '../Toolbar';
 import Typography from '../Typography';
 import TablePaginationActions from './TablePaginationActions';
-import useId from '@material-ui/utils/useId';
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */

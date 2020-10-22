@@ -1,7 +1,26 @@
 /* eslint-disable react-hooks/rules-of-hooks, react-hooks/exhaustive-deps */
 import * as React from 'react';
 
-export default function useControlled({ controlled, default: defaultProp, name, state = 'value' }) {
+export interface UseControlledProps<T = unknown> {
+  /**
+   * This prop contains the component value when it's controlled.
+   */
+  controlled: T | undefined;
+  /**
+   * The default value when uncontrolled.
+   */
+  default: T | undefined;
+  /**
+   * The component name displayed in warnings.
+   */
+  name: string;
+  /**
+   * The name of the state variable displayed in warnings.
+   */
+  state?: string;
+}
+
+export default function useControlled<T = unknown>({ controlled, default: defaultProp, name, state = 'value' }: UseControlledProps<T>): [T, (newValue: T) => void] {
   // isControlled is ignored in the hook dependency lists as it should never change.
   const { current: isControlled } = React.useRef(controlled !== undefined);
   const [valueState, setValue] = React.useState(defaultProp);
@@ -45,5 +64,5 @@ export default function useControlled({ controlled, default: defaultProp, name, 
     }
   }, []);
 
-  return [value, setValueIfUncontrolled];
+  return [value, setValueIfUncontrolled] as [T, (newValue: T) => void];
 }

@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import debounce from '@material-ui/utils/debounce';
 import useForkRef from '@material-ui/utils/useForkRef';
-import useEnhancedEffect from '@material-ui/utils/useEnhancedEffect';
+import { unstable_useEnhancedEffect as useEnhancedEffect } from '@material-ui/utils';
 import ownerWindow from '@material-ui/utils/ownerWindow';
 
 function getStyleValue(computedStyle, property) {

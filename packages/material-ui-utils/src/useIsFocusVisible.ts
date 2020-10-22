@@ -3,7 +3,7 @@ import * as React from 'react';
 
 let hadKeyboardEvent = true;
 let hadFocusVisibleRecently = false;
-let hadFocusVisibleRecentlyTimeout = null;
+let hadFocusVisibleRecentlyTimeout: any = null;
 
 const inputTypesWhitelist = {
   text: true,
@@ -28,9 +28,11 @@ const inputTypesWhitelist = {
  * @param {Element} node
  * @returns {boolean}
  */
+// @ts-ignore
 function focusTriggersKeyboardModality(node) {
   const { type, tagName } = node;
 
+  // @ts-ignore
   if (tagName === 'INPUT' && inputTypesWhitelist[type] && !node.readOnly) {
     return true;
   }
@@ -53,6 +55,7 @@ function focusTriggersKeyboardModality(node) {
  * then the modality is keyboard. Otherwise, the modality is not keyboard.
  * @param {KeyboardEvent} event
  */
+// @ts-ignore
 function handleKeyDown(event) {
   if (event.metaKey || event.altKey || event.ctrlKey) {
     return;
@@ -72,6 +75,7 @@ function handlePointerDown() {
 }
 
 function handleVisibilityChange() {
+  // @ts-ignore
   if (this.visibilityState === 'hidden') {
     // If the tab becomes active again, the browser will handle calling focus
     // on the element (Safari actually calls it twice).
@@ -83,7 +87,7 @@ function handleVisibilityChange() {
   }
 }
 
-function prepare(doc) {
+function prepare(doc: Document) {
   doc.addEventListener('keydown', handleKeyDown, true);
   doc.addEventListener('mousedown', handlePointerDown, true);
   doc.addEventListener('pointerdown', handlePointerDown, true);
@@ -91,7 +95,7 @@ function prepare(doc) {
   doc.addEventListener('visibilitychange', handleVisibilityChange, true);
 }
 
-export function teardown(doc) {
+export function teardown(doc: Document) {
   doc.removeEventListener('keydown', handleKeyDown, true);
   doc.removeEventListener('mousedown', handlePointerDown, true);
   doc.removeEventListener('pointerdown', handlePointerDown, true);
@@ -99,6 +103,7 @@ export function teardown(doc) {
   doc.removeEventListener('visibilitychange', handleVisibilityChange, true);
 }
 
+// @ts-ignore
 function isFocusVisible(event) {
   const { target } = event;
   try {
@@ -115,7 +120,12 @@ function isFocusVisible(event) {
   return hadKeyboardEvent || focusTriggersKeyboardModality(target);
 }
 
-export default function useIsFocusVisible() {
+export default function useIsFocusVisible(): {
+  isFocusVisibleRef: React.MutableRefObject<boolean>;
+  onBlur: (event: React.FocusEvent<any>) => void;
+  onFocus: (event: React.FocusEvent<any>) => void;
+  ref: React.Ref<unknown>;
+} {
   const ref = React.useCallback((node) => {
     if (node != null) {
       prepare(node.ownerDocument);
@@ -155,6 +165,7 @@ export default function useIsFocusVisible() {
   /**
    * Should be called if a blur event is fired
    */
+  // @ts-ignore
   function handleFocusVisible(event) {
     if (isFocusVisible(event)) {
       isFocusVisibleRef.current = true;

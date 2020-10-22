@@ -5,7 +5,7 @@ import ownerDocument from '@material-ui/utils/ownerDocument';
 import List from '../List';
 import getScrollbarSize from '@material-ui/utils/getScrollbarSize';
 import useForkRef from '@material-ui/utils/useForkRef';
-import useEnhancedEffect from '@material-ui/utils/useEnhancedEffect';
+import { unstable_useEnhancedEffect as useEnhancedEffect } from '@material-ui/utils';
 
 function nextItem(list, item, disableListWrap) {
   if (list === item) {

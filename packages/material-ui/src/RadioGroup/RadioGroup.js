@@ -4,7 +4,7 @@ import FormGroup from '../FormGroup';
 import useForkRef from '@material-ui/utils/useForkRef';
 import useControlled from '@material-ui/utils/useControlled';
 import RadioGroupContext from './RadioGroupContext';
-import useId from '@material-ui/utils/useId';
+import { unstable_useId as useId } from '@material-ui/utils';
 
 const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {
   const {
