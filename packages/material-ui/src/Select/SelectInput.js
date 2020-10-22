@@ -3,11 +3,7 @@ import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import MuiError from '@material-ui/utils/macros/MuiError.macro';
-import { refType } from '@material-ui/utils';
-import ownerDocument from '@material-ui/utils/ownerDocument';
-import capitalize from '@material-ui/utils/capitalize';
-import useForkRef from '@material-ui/utils/useForkRef';
-import useControlled from '@material-ui/utils/useControlled';
+import { capitalize, refType, useForkRef, useControlled, ownerDocument } from '@material-ui/utils';
 import Menu from '../Menu/Menu';
 import { isFilled } from '../InputBase/utils';
 

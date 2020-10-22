@@ -1,11 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { getThemeProps, useTheme } from '@material-ui/styles';
-import { elementAcceptingRef, HTMLElementType } from '@material-ui/utils';
-import ownerDocument from '@material-ui/utils/ownerDocument';
-import createChainedFunction from '@material-ui/utils/createChainedFunction';
-import useForkRef from '@material-ui/utils/useForkRef';
-import useEventCallback from '@material-ui/utils/useEventCallback';
+import {
+  elementAcceptingRef,
+  HTMLElementType,
+  ownerDocument,
+  createChainedFunction,
+  useForkRef,
+  useEventCallback,
+} from '@material-ui/utils';
 import Portal from '../Portal';
 import zIndex from '../styles/zIndex';
 import ModalManager, { ariaHidden } from './ModalManager';

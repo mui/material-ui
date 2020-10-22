@@ -1,9 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { elementAcceptingRef, exactProp } from '@material-ui/utils';
-import ownerDocument from '@material-ui/utils/ownerDocument';
-import useForkRef from '@material-ui/utils/useForkRef';
-import useEventCallback from '@material-ui/utils/useEventCallback';
+import {
+  elementAcceptingRef,
+  exactProp,
+  ownerDocument,
+  useForkRef,
+  useEventCallback,
+} from '@material-ui/utils';
 
 function mapEventPropToEvent(eventProp) {
   return eventProp.substring(2).toLowerCase();

@@ -1,9 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { refType } from '@material-ui/utils';
-import capitalize from '@material-ui/utils/capitalize';
-import createChainedFunction from '@material-ui/utils/createChainedFunction';
+import { capitalize, refType, createChainedFunction } from '@material-ui/utils';
 import SwitchBase from '../internal/SwitchBase';
 import RadioButtonIcon from './RadioButtonIcon';
 import { alpha } from '../styles/colorManipulator';

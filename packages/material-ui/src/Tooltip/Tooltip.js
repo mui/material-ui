@@ -2,11 +2,13 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { deepmerge, elementAcceptingRef, unstable_useId as useId } from '@material-ui/utils';
-import capitalize from '@material-ui/utils/capitalize';
-import useEventCallback from '@material-ui/utils/useEventCallback';
-import useForkRef from '@material-ui/utils/useForkRef';
-import useIsFocusVisible from '@material-ui/utils/useIsFocusVisible';
-import useControlled from '@material-ui/utils/useControlled';
+import {
+  capitalize,
+  useEventCallback,
+  useForkRef,
+  useIsFocusVisible,
+  useControlled,
+} from '@material-ui/utils';
 import { alpha } from '../styles/colorManipulator';
 import withStyles from '../styles/withStyles';
 import Grow from '../Grow';

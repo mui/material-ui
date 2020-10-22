@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useThemeVariants } from '@material-ui/styles';
-import capitalize from '@material-ui/utils/capitalize';
+import { capitalize } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import { darken, lighten } from '../styles/colorManipulator';
 import Paper from '../Paper';

@@ -2,12 +2,12 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import {
+  setRef,
+  useForkRef,
   exactProp,
   HTMLElementType,
   unstable_useEnhancedEffect as useEnhancedEffect,
 } from '@material-ui/utils';
-import setRef from '@material-ui/utils/setRef';
-import useForkRef from '@material-ui/utils/useForkRef';
 
 function getContainer(container) {
   return typeof container === 'function' ? container() : container;

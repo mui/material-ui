@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import capitalize from '@material-ui/utils/capitalize';
+import { capitalize } from '@material-ui/utils';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
 import withStyles from '../styles/withStyles';

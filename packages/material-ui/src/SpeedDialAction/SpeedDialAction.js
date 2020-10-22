@@ -3,7 +3,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import capitalize from '@material-ui/utils/capitalize';
+import { capitalize } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import { emphasize } from '../styles/colorManipulator';
 import Fab from '../Fab';

@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
 import { findOutermostIntrinsic, getClasses, createMount, describeConformance } from 'test/utils';
 import PropTypes from 'prop-types';
-import useForkRef from '@material-ui/utils/useForkRef';
+import { useForkRef } from '@material-ui/utils';
 import Grow from '../Grow';
 import Modal from '../Modal';
 import Paper from '../Paper';

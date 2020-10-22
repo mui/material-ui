@@ -6,11 +6,11 @@ import {
   refType,
   HTMLElementType,
   unstable_useEnhancedEffect as useEnhancedEffect,
+  createChainedFunction,
+  setRef,
+  useForkRef,
 } from '@material-ui/utils';
 import { useTheme } from '@material-ui/styles';
-import createChainedFunction from '@material-ui/utils/createChainedFunction';
-import setRef from '@material-ui/utils/setRef';
-import useForkRef from '@material-ui/utils/useForkRef';
 import Portal from '../Portal';
 
 function flipPlacement(placement, theme) {

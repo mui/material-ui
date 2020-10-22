@@ -25,3 +25,4 @@ export { default as useEventCallback } from './useEventCallback';
 export { default as useForkRef } from './useForkRef';
 export { default as useIsFocusVisible } from './useIsFocusVisible';
 export { default as getScrollbarSize } from './getScrollbarSize';
+export { detectScrollType, getNormalizedScrollLeft } from './scrollLeft';

@@ -1,7 +1,12 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { elementTypeAcceptingRef, ownerDocument, useForkRef, unsupportedProp } from '@material-ui/utils';
+import {
+  elementTypeAcceptingRef,
+  ownerDocument,
+  useForkRef,
+  unsupportedProp,
+} from '@material-ui/utils';
 import Collapse from '@material-ui/core/Collapse';
 import { alpha, withStyles } from '@material-ui/core/styles';
 import TreeViewContext from '../TreeView/TreeViewContext';

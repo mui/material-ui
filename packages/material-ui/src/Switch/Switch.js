@@ -3,8 +3,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { refType } from '@material-ui/utils';
-import capitalize from '@material-ui/utils/capitalize';
+import { capitalize, refType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import { alpha } from '../styles/colorManipulator';
 import SwitchBase from '../internal/SwitchBase';

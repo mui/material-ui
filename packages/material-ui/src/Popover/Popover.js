@@ -1,15 +1,15 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import {
+  debounce,
+  ownerDocument,
+  ownerWindow,
   chainPropTypes,
   elementTypeAcceptingRef,
   refType,
   HTMLElementType,
 } from '@material-ui/utils';
 import clsx from 'clsx';
-import debounce from '@material-ui/utils/debounce';
-import ownerDocument from '@material-ui/utils/ownerDocument';
-import ownerWindow from '@material-ui/utils/ownerWindow';
 import withStyles from '../styles/withStyles';
 import Modal from '../Modal';
 import Grow from '../Grow';

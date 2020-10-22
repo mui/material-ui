@@ -2,15 +2,15 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
+  capitalize,
+  useForkRef,
+  useEventCallback,
+  ownerDocument,
+  useIsFocusVisible,
   chainPropTypes,
+  useControlled,
   unstable_useEnhancedEffect as useEnhancedEffect,
 } from '@material-ui/utils';
-import useIsFocusVisible from '@material-ui/utils/useIsFocusVisible';
-import ownerDocument from '@material-ui/utils/ownerDocument';
-import useEventCallback from '@material-ui/utils/useEventCallback';
-import useForkRef from '@material-ui/utils/useForkRef';
-import capitalize from '@material-ui/utils/capitalize';
-import useControlled from '@material-ui/utils/useControlled';
 import withStyles from '../styles/withStyles';
 import useTheme from '../styles/useTheme';
 import { alpha, lighten, darken } from '../styles/colorManipulator';

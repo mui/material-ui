@@ -1,8 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import useEventCallback from '@material-ui/utils/useEventCallback';
-import capitalize from '@material-ui/utils/capitalize';
+import { capitalize, useEventCallback } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';
 import ClickAwayListener from '../ClickAwayListener';

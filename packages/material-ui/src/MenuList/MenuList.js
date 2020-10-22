@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
-import ownerDocument from '@material-ui/utils/ownerDocument';
-import getScrollbarSize from '@material-ui/utils/getScrollbarSize';
-import useForkRef from '@material-ui/utils/useForkRef';
+import { ownerDocument, getScrollbarSize, useForkRef } from '@material-ui/utils';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@material-ui/utils';
 import List from '../List';
 

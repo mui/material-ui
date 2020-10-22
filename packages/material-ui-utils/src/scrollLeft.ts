@@ -1,5 +1,5 @@
 // Source from https://github.com/alitaheri/normalize-scroll-left
-let cachedType;
+let cachedType: string;
 
 /**
  * Based on the jquery plugin https://github.com/othree/jquery.rtl-scroll-type
@@ -20,7 +20,7 @@ let cachedType;
  *
  * spec* https://drafts.csswg.org/cssom-view/#dom-window-scroll
  */
-export function detectScrollType() {
+export function detectScrollType(): string {
   if (cachedType) {
     return cachedType;
   }
@@ -56,7 +56,7 @@ export function detectScrollType() {
 }
 
 // Based on https://stackoverflow.com/a/24394376
-export function getNormalizedScrollLeft(element, direction) {
+export function getNormalizedScrollLeft(element: Element, direction: string): number {
   const scrollLeft = element.scrollLeft;
 
   // Perform the calculations only when direction is rtl to avoid messing up the ltr behavior

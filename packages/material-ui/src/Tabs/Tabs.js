@@ -2,11 +2,14 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { refType } from '@material-ui/utils';
-import debounce from '@material-ui/utils/debounce';
-import ownerWindow from '@material-ui/utils/ownerWindow';
-import { getNormalizedScrollLeft, detectScrollType } from '@material-ui/utils/scrollLeft';
-import useEventCallback from '@material-ui/utils/useEventCallback';
+import {
+  refType,
+  debounce,
+  ownerWindow,
+  useEventCallback,
+  getNormalizedScrollLeft,
+  detectScrollType,
+} from '@material-ui/utils';
 import animate from '../internal/animate';
 import ScrollbarSize from './ScrollbarSize';
 import withStyles from '../styles/withStyles';

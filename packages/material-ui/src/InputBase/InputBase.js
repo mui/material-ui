@@ -3,13 +3,13 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
+  capitalize,
+  useForkRef,
   refType,
   elementTypeAcceptingRef,
   unstable_useEnhancedEffect as useEnhancedEffect,
 } from '@material-ui/utils';
 import MuiError from '@material-ui/utils/macros/MuiError.macro';
-import capitalize from '@material-ui/utils/capitalize';
-import useForkRef from '@material-ui/utils/useForkRef';
 import formControlState from '../FormControl/formControlState';
 import FormControlContext, { useFormControl } from '../FormControl/FormControlContext';
 import withStyles from '../styles/withStyles';

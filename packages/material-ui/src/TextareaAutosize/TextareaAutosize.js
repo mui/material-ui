@@ -1,9 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import debounce from '@material-ui/utils/debounce';
-import useForkRef from '@material-ui/utils/useForkRef';
-import { unstable_useEnhancedEffect as useEnhancedEffect } from '@material-ui/utils';
-import ownerWindow from '@material-ui/utils/ownerWindow';
+import {
+  debounce,
+  useForkRef,
+  ownerWindow,
+  unstable_useEnhancedEffect as useEnhancedEffect,
+} from '@material-ui/utils';
 
 function getStyleValue(computedStyle, property) {
   return parseInt(computedStyle[property], 10) || 0;

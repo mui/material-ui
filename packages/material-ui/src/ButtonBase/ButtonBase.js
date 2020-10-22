@@ -1,10 +1,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { elementTypeAcceptingRef, refType } from '@material-ui/utils';
-import useForkRef from '@material-ui/utils/useForkRef';
-import useEventCallback from '@material-ui/utils/useEventCallback';
-import useIsFocusVisible from '@material-ui/utils/useIsFocusVisible';
+import {
+  elementTypeAcceptingRef,
+  refType,
+  useForkRef,
+  useEventCallback,
+  useIsFocusVisible,
+} from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import TouchRipple from './TouchRipple';
 

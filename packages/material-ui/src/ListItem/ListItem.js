@@ -4,10 +4,10 @@ import clsx from 'clsx';
 import {
   chainPropTypes,
   elementTypeAcceptingRef,
+  isMuiElement,
+  useForkRef,
   unstable_useEnhancedEffect as useEnhancedEffect,
 } from '@material-ui/utils';
-import isMuiElement from '@material-ui/utils/isMuiElement';
-import useForkRef from '@material-ui/utils/useForkRef';
 import withStyles from '../styles/withStyles';
 import { alpha } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';

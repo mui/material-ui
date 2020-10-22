@@ -2,12 +2,12 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import {
   elementTypeAcceptingRef,
+  ownerDocument,
+  ownerWindow,
+  useEventCallback,
   unstable_useEnhancedEffect as useEnhancedEffect,
 } from '@material-ui/utils';
 import { getThemeProps } from '@material-ui/styles';
-import ownerDocument from '@material-ui/utils/ownerDocument';
-import ownerWindow from '@material-ui/utils/ownerWindow';
-import useEventCallback from '@material-ui/utils/useEventCallback';
 import Drawer, { getAnchor, isHorizontal } from '../Drawer/Drawer';
 import { duration } from '../styles/transitions';
 import useTheme from '../styles/useTheme';

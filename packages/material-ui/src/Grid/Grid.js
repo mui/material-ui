@@ -12,7 +12,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import requirePropFactory from '@material-ui/utils/requirePropFactory';
+import { requirePropFactory } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 
 const SPACINGS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
