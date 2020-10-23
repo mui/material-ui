@@ -1,13 +1,7 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
-
-const useStyles = makeStyles({
-  root: {
-    width: 250,
-  },
-});
 
 function valueLabelFormat(value: number) {
   const units = ['KB', 'MB', 'GB', 'TB'];
@@ -39,10 +33,8 @@ export default function NonLinearSlider() {
     }
   };
 
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Box sx={{ width: 250 }}>
       <Typography id="non-linear-slider" gutterBottom>
         Storage: {valueLabelFormat(calculateValue(value))}
       </Typography>
@@ -58,6 +50,6 @@ export default function NonLinearSlider() {
         valueLabelDisplay="auto"
         aria-labelledby="non-linear-slider"
       />
-    </div>
+    </Box>
   );
 }
