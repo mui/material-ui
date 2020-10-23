@@ -47,6 +47,7 @@
     },
     "scale": { "type": { "name": "func", "description": "func" }, "required": false },
     "step": { "type": { "name": "number", "description": "number" }, "required": false },
+    "sx": { "type": { "name": "object", "description": "object" }, "required": false },
     "track": {
       "type": {
         "name": "enum",

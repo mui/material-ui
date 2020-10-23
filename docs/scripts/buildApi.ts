@@ -25,12 +25,10 @@ import { getLineFeed } from './helpers';
 
 const DEMO_IGNORE = LANGUAGES_IN_PROGRESS.map((language) => `-${language}.md`);
 
-const generateClassName = createGenerateClassName();
-
-const inheritedComponentRegexp = /\/\/ @inheritedComponent (.*)/;
-
 const propDescriptions: { [key: string]: { [key: string]: string | undefined } } = {};
 const classDescriptions: { [key: string]: { [key: string]: string } } = {};
+
+const generateClassName = createGenerateClassName();
 
 function writePrettifiedFile(filename: string, data: string, prettierConfigPath: string) {
   const prettierConfig = prettier.resolveConfig.sync(filename, {
@@ -63,7 +61,7 @@ function getInheritance(
   let inheritedComponentName = testInfo.inheritComponent;
 
   if (inheritedComponentName == null) {
-    const match = src.match(inheritedComponentRegexp);
+    const match = src.match(/\/\/ @inheritedComponent (.*)/);
     if (match !== null) {
       inheritedComponentName = match[1];
     }
@@ -119,11 +117,9 @@ function computeApiDescription(api: ReactApi, options: { host: string }): Promis
   });
 }
 
-/*
+/**
  * Add demos comment block to type definitions, e.g.:
- *
  * /**
- *  *
  *  * Demos:
  *  *
  *  * - [Icons](https://material-ui.com/components/icons/)
@@ -132,8 +128,6 @@ function computeApiDescription(api: ReactApi, options: { host: string }): Promis
  *  * API:
  *  *
  *  * - [Icon API](https://material-ui.com/api/icon/)
- *  */
-/*
  */
 async function annotateComponentDefinition(context: {
   component: { filename: string };
@@ -291,12 +285,13 @@ async function annotateClassesDefinition(context: {
   writePrettifiedFile(typesFilename, typesSourceNew, prettierConfigPath);
 }
 
-function getClassConditions() {
+/**
+ * Substitue CSS class description conditions with placeholder, and store in a separate opbject
+ */
+ function getClassConditions() {
   const classConditions: any = {};
   const stylesRegex = /(if |unless )(`.*)./;
 
-  // Substitue CSS class description conditions with placeholder, and store in a separate opbject;
-  // Would be one less iterator if done per component above...
   Object.entries(classDescriptions).forEach(([componentName, descriptions]: [string, object]) => {
     classConditions[componentName] = {};
 
@@ -317,7 +312,10 @@ function getClassConditions() {
   return classConditions;
 }
 
-function generateDemosListMarkdown(reactAPI: ReactApi): string {
+/**
+ * Generate list of demos for a component as markdown
+ */
+function generateMarkdownDemoList(reactAPI: ReactApi): string {
   const pagesMarkdown = reactAPI.pagesMarkdown.filter((page) => {
     return (
       !DEMO_IGNORE.includes(page.filename.slice(-6)) && page.components.includes(reactAPI.name)
@@ -331,6 +329,10 @@ function generateDemosListMarkdown(reactAPI: ReactApi): string {
   return `${pagesMarkdown.map((page) => `- [${pageToTitle(page)}](${page.pathname}/)`).join('\n')}`;
 }
 
+/**
+ * Replace backslahes with slashes 
+ * (TODO: Why not nodels path.normalize?)
+ */
 function normalizePath(filepath: string): string {
   return filepath.replace(/\\/g, '/');
 }
@@ -501,7 +503,7 @@ async function buildDocs(options: {
     styles,
     forwardsRefTo,
     inheritance,
-    demos: generateDemosListMarkdown(reactAPI),
+    demos: generateMarkdownDemoList(reactAPI),
   }))(reactAPI);
 
   // Don't mutate reactAPI
