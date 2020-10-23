@@ -1,6 +1,5 @@
-
 import * as recast from 'recast';
-import {   parse as docgenParse, PropTypeDescriptor } from 'react-docgen';
+import { parse as docgenParse, PropTypeDescriptor } from 'react-docgen';
 
 function getDeprecatedInfo(type: PropTypeDescriptor) {
   const marker = /deprecatedPropType\((\r*\n)*\s*PropTypes\./g;

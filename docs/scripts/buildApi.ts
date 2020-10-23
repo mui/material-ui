@@ -470,7 +470,7 @@ async function buildDocs(options: {
       description += ' See [CSS API](#css) below for more details.';
     }
 
-    reactAPI.props[propName].type.description = generatePropType(propData.type)
+    reactAPI.props[propName].type.description = generatePropType(propData.type);
     delete reactAPI.props[propName].type.value;
 
     propDescriptions[name] = {

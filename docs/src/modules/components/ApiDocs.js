@@ -208,7 +208,19 @@ import { ${name} } from '${source}';`}
                             </span>
                           </td>
                           <td align="left">
-                            <span className="prop-type" dangerouslySetInnerHTML={{ __html: propData.type.description}} />
+                            {propData.type.description.length > 20 ? (
+                              <details className="prop-type">
+                                <summary>{propData.type.name}</summary>
+                                <span
+                                  dangerouslySetInnerHTML={{ __html: propData.type.description }}
+                                />
+                              </details>
+                            ) : (
+                              <span
+                                className="prop-type"
+                                dangerouslySetInnerHTML={{ __html: propData.type.description }}
+                              />
+                            )}
                           </td>
                           <td align="left">
                             <span className="prop-default">
