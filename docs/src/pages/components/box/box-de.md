@@ -19,11 +19,7 @@ Die Style-Funktion der [Palette](/system/palette/).
 
 Die Box-Komponente umschließt Ihre Komponente. It creates a new DOM element, a `<div>` by default that can be changed with the `component` prop. Angenommen, stattdessen soll ein `<span>`-Element verwendet werden:
 
-```jsx
-<Box component="span" m={1}>
-  <Button />
-</Box>
-```
+{{"demo": "pages/components/box/BoxComponent.js", "defaultCodeOpen": true }}
 
 Dies funktioniert hervorragend, wenn die Änderungen für ein neues DOM-Element isoliert werden können. Zum Beispiel kann der Rand auf diese Weise verändert werden.
 
@@ -33,23 +29,21 @@ Manchmal müssen Sie jedoch das zugrunde liegende DOM-Element als Ziel festlegen
 
 Die Box-Komponente verfügt über eine `clone`-Eigenschaft, um die Verwendung der Klonelementmethode von React zu ermöglichen.
 
-```jsx
-<Box color="text.primary" clone>
-  <Button />
-</Box>
-```
+{{"demo": "pages/components/box/BoxClone.js", "defaultCodeOpen": true }}
 
 2. Verwenden Sie Render Eigenschaften
 
 Die Box-Kinder akzeptieren eine Render-Funktion als Eigenschaft. Sie können den `className` herausziehen.
 
-```jsx
-<Box color="text.primary">
-  {props => <Button {...props} />}
-</Box>
-```
+{{"demo": "pages/components/box/BoxRenderProps.js", "defaultCodeOpen": true }}
 
 > ⚠️ Die CSS-Spezifität hängt von der Importreihenfolge ab. Wenn Sie garantieren wollen, dass der Stil der wrapped Komponente überschrieben wird, müssen Sie die Box zuletzt importieren.
+
+## The sx prop
+
+Sometimes, the props on the Box component are not enough to style the component. To solve this, `Box` supports the `sx` prop. This allows you to specify any CSS rules you want, in addition to the ones already available using system props. Here is an example of how you can use it:
+
+{{"demo": "pages/components/box/BoxSx.js", "defaultCodeOpen": true }}
 
 ## API
 
