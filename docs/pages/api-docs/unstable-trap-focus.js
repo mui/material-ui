@@ -4,15 +4,24 @@ import mapApiTranslations from 'docs/src/modules/utils/mapApiTranslations';
 import jsonPageContent from './unstable-trap-focus.json';
 
 export async function getStaticProps() {
-  const req = require.context('docs/translations', false, /prop-descriptions.*.json$/);
-  const req2 = require.context('docs/translations', false, /class-descriptions.*.json$/);
-  const req3 = require.context('docs/translations', false, /class-conditions.*.json$/);
+  const req1 = require.context('docs/translations', false, /component-descriptions.*.json$/);
+  const req2 = require.context('docs/translations', false, /prop-descriptions.*.json$/);
+  const req3 = require.context('docs/translations', false, /class-descriptions.*.json$/);
+  const req4 = require.context('docs/translations', false, /class-conditions.*.json$/);
 
-  const propDescriptions = mapApiTranslations(req, 'Unstable_TrapFocus');
-  const classDescriptions = mapApiTranslations(req2, 'Unstable_TrapFocus');
-  const classConditions = mapApiTranslations(req3, 'Unstable_TrapFocus');
+  const componentDescription = mapApiTranslations(req1, 'Unstable_TrapFocus');
+  const propDescriptions = mapApiTranslations(req2, 'Unstable_TrapFocus');
+  const classDescriptions = mapApiTranslations(req3, 'Unstable_TrapFocus');
+  const classConditions = mapApiTranslations(req4, 'Unstable_TrapFocus');
 
-  const pageContent = { ...jsonPageContent, propDescriptions, classDescriptions, classConditions };
+  const pageContent = {
+    ...jsonPageContent,
+    componentDescription,
+    propDescriptions,
+    classDescriptions,
+    classConditions,
+  };
+
   return {
     props: { pageContent },
   };

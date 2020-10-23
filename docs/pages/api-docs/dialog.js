@@ -4,15 +4,24 @@ import mapApiTranslations from 'docs/src/modules/utils/mapApiTranslations';
 import jsonPageContent from './dialog.json';
 
 export async function getStaticProps() {
-  const req = require.context('docs/translations', false, /prop-descriptions.*.json$/);
-  const req2 = require.context('docs/translations', false, /class-descriptions.*.json$/);
-  const req3 = require.context('docs/translations', false, /class-conditions.*.json$/);
+  const req1 = require.context('docs/translations', false, /component-descriptions.*.json$/);
+  const req2 = require.context('docs/translations', false, /prop-descriptions.*.json$/);
+  const req3 = require.context('docs/translations', false, /class-descriptions.*.json$/);
+  const req4 = require.context('docs/translations', false, /class-conditions.*.json$/);
 
-  const propDescriptions = mapApiTranslations(req, 'Dialog');
-  const classDescriptions = mapApiTranslations(req2, 'Dialog');
-  const classConditions = mapApiTranslations(req3, 'Dialog');
+  const componentDescription = mapApiTranslations(req1, 'Dialog');
+  const propDescriptions = mapApiTranslations(req2, 'Dialog');
+  const classDescriptions = mapApiTranslations(req3, 'Dialog');
+  const classConditions = mapApiTranslations(req4, 'Dialog');
 
-  const pageContent = { ...jsonPageContent, propDescriptions, classDescriptions, classConditions };
+  const pageContent = {
+    ...jsonPageContent,
+    componentDescription,
+    propDescriptions,
+    classDescriptions,
+    classConditions,
+  };
+
   return {
     props: { pageContent },
   };

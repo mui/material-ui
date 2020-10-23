@@ -10,9 +10,6 @@ import remark from 'remark';
 import remarkVisit from 'unist-util-visit';
 import * as yargs from 'yargs';
 import { defaultHandlers, parse as docgenParse } from 'react-docgen';
-import createMuiTheme from '../../packages/material-ui/src/styles/createMuiTheme';
-import getStylesCreator from '../../packages/material-ui-styles/src/getStylesCreator';
-import createGenerateClassName from '../../packages/material-ui-styles/src/createGenerateClassName';
 import muiDefaultPropsHandler from 'docs/src/modules/utils/defaultPropsHandler';
 import checkProps, { ReactApi } from 'docs/src/modules/utils/checkProps';
 import { LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
@@ -21,29 +18,18 @@ import { findPagesMarkdown, findComponents } from 'docs/src/modules/utils/find';
 import { getHeaders } from 'docs/src/modules/utils/parseMarkdown';
 import { pageToTitle } from 'docs/src/modules/utils/helpers';
 import generatePropType from 'docs/src/modules/utils/generatePropType';
+import createGenerateClassName from '../../packages/material-ui-styles/src/createGenerateClassName';
+import getStylesCreator from '../../packages/material-ui-styles/src/getStylesCreator';
+import createMuiTheme from '../../packages/material-ui/src/styles/createMuiTheme';
 import { getLineFeed } from './helpers';
 
 const DEMO_IGNORE = LANGUAGES_IN_PROGRESS.map((language) => `-${language}.md`);
 
 const propDescriptions: { [key: string]: { [key: string]: string | undefined } } = {};
 const classDescriptions: { [key: string]: { [key: string]: string } } = {};
+const componentDescriptions: { [key: string]: string } = {};
 
 const generateClassName = createGenerateClassName();
-
-function writePrettifiedFile(filename: string, data: string, prettierConfigPath: string) {
-  const prettierConfig = prettier.resolveConfig.sync(filename, {
-    config: prettierConfigPath,
-  });
-  if (prettierConfig === null) {
-    throw new Error(
-      `Could not resolve config for '${filename}' using prettier config path '${prettierConfigPath}'.`,
-    );
-  }
-
-  writeFileSync(filename, prettier.format(data, { ...prettierConfig, filepath: filename }), {
-    encoding: 'utf8',
-  });
-}
 
 /**
  * Receives a component's test information and source code and return's an object
@@ -224,7 +210,22 @@ async function annotateComponentDefinition(context: {
   writeFileSync(typesFilename, typesSourceNew, { encoding: 'utf8' });
 }
 
-/*
+function writePrettifiedFile(filename: string, data: string, prettierConfigPath: string) {
+  const prettierConfig = prettier.resolveConfig.sync(filename, {
+    config: prettierConfigPath,
+  });
+  if (prettierConfig === null) {
+    throw new Error(
+      `Could not resolve config for '${filename}' using prettier config path '${prettierConfigPath}'.`,
+    );
+  }
+
+  writeFileSync(filename, prettier.format(data, { ...prettierConfig, filepath: filename }), {
+    encoding: 'utf8',
+  });
+}
+
+/**
  * Add class descriptions to type definitions
  */
 async function annotateClassesDefinition(context: {
@@ -288,7 +289,7 @@ async function annotateClassesDefinition(context: {
 /**
  * Substitue CSS class description conditions with placeholder, and store in a separate opbject
  */
- function getClassConditions() {
+function getClassConditions() {
   const classConditions: any = {};
   const stylesRegex = /(if |unless )(`.*)./;
 
@@ -313,7 +314,7 @@ async function annotateClassesDefinition(context: {
 }
 
 /**
- * Generate list of demos for a component as markdown
+ * Generate markdown list of component demos
  */
 function generateMarkdownDemoList(reactAPI: ReactApi): string {
   const pagesMarkdown = reactAPI.pagesMarkdown.filter((page) => {
@@ -330,11 +331,21 @@ function generateMarkdownDemoList(reactAPI: ReactApi): string {
 }
 
 /**
- * Replace backslahes with slashes 
- * (TODO: Why not nodels path.normalize?)
+ * Replaces backslashes with slashes
+ * TODO: Why not node's path.normalize?
  */
 function normalizePath(filepath: string): string {
   return filepath.replace(/\\/g, '/');
+}
+
+function sortObject(object: any) {
+  const orderedData: any = {};
+  Object.keys(object)
+    .sort()
+    .forEach((key) => {
+      orderedData[key] = object[key];
+    });
+  return orderedData;
 }
 
 async function buildDocs(options: {
@@ -457,7 +468,7 @@ async function buildDocs(options: {
   try {
     checkProps(reactAPI);
   } catch (err) {
-    console.log('Error running generate markdown for', componentObject.filename);
+    console.log('Error checking props for', componentObject.filename);
     throw err;
   }
 
@@ -482,6 +493,9 @@ async function buildDocs(options: {
     delete reactAPI.props[propName].description;
   });
 
+  if (reactAPI.description.length) {
+    componentDescriptions[reactAPI.name] = reactAPI.description;
+  }
   classDescriptions[reactAPI.name] = reactAPI.styles.descriptions;
 
   // https://medium.com/@captaindaylight/get-a-subset-of-an-object-9896148b9c72
@@ -506,7 +520,7 @@ async function buildDocs(options: {
     demos: generateMarkdownDemoList(reactAPI),
   }))(reactAPI);
 
-  // Don't mutate reactAPI
+  // Deep clone so as not to mutate reactAPI (it's used later for th etype annotations)
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign#Deep_Clone
   pageContent = JSON.parse(JSON.stringify(pageContent));
   pageContent.styles.descriptions = {};
@@ -526,15 +540,24 @@ import mapApiTranslations from 'docs/src/modules/utils/mapApiTranslations';
 import jsonPageContent from './${kebabCase(reactAPI.name)}.json';
 
 export async function getStaticProps() {
-  const req = require.context('docs/translations', false, /prop-descriptions.*.json$/);
-  const req2 = require.context('docs/translations', false, /class-descriptions.*.json$/);
-  const req3 = require.context('docs/translations', false, /class-conditions.*.json$/);
+  const req1 = require.context('docs/translations', false, /component-descriptions.*.json$/);
+  const req2 = require.context('docs/translations', false, /prop-descriptions.*.json$/);
+  const req3 = require.context('docs/translations', false, /class-descriptions.*.json$/);
+  const req4 = require.context('docs/translations', false, /class-conditions.*.json$/);
 
-  const propDescriptions = mapApiTranslations(req, '${reactAPI.name}');
-  const classDescriptions = mapApiTranslations(req2, '${reactAPI.name}');
-  const classConditions = mapApiTranslations(req3, '${reactAPI.name}');
+  const componentDescription = mapApiTranslations(req1, '${reactAPI.name}');
+  const propDescriptions = mapApiTranslations(req2, '${reactAPI.name}');
+  const classDescriptions = mapApiTranslations(req3, '${reactAPI.name}');
+  const classConditions = mapApiTranslations(req4, '${reactAPI.name}');
 
-  const pageContent = { ...jsonPageContent, propDescriptions, classDescriptions, classConditions };
+  const pageContent = {
+    ...jsonPageContent,
+    componentDescription,
+    propDescriptions,
+    classDescriptions,
+    classConditions,
+  };
+
   return {
     props: { pageContent },
   };
@@ -557,16 +580,6 @@ export default function Page({ pageContent }) {
   });
 }
 
-function sortObject(object: any) {
-  const orderedData: any = {};
-  Object.keys(object)
-    .sort()
-    .forEach((key) => {
-      orderedData[key] = object[key];
-    });
-  return orderedData;
-}
-
 function run(argv: { componentDirectories?: string[]; grep?: string; outputDirectory?: string }) {
   const workspaceRoot = path.resolve(__dirname, '../../');
   /**
@@ -584,8 +597,10 @@ function run(argv: { componentDirectories?: string[]; grep?: string; outputDirec
 
   const theme = createMuiTheme();
 
-  /*
+  /**
    * pageMarkdown: Array<{ components: string[]; filename: string; pathname: string }>
+   *
+   * e.g.:
    * [{
    *   pathname: '/components/accordion',
    *   filename: '/Users/user/Projects/material-ui/docs/src/pages/components/badges/accordion-ja.md',
@@ -602,7 +617,7 @@ function run(argv: { componentDirectories?: string[]; grep?: string; outputDirec
     })
     .filter((markdown) => markdown.components.length > 0);
 
-  /*
+  /**
    * components: Array<{ filename: string }>
    * [{ filename: '/Users/user/Projects/material-ui/packages/material-ui/src/Accordion/Accordion.js'}, ...]
    */
@@ -644,6 +659,12 @@ function run(argv: { componentDirectories?: string[]; grep?: string; outputDirec
   });
 
   Promise.all(componentBuilds).then((builds) => {
+    writePrettifiedFile(
+      path.resolve('docs/translations', 'component-descriptions.json'),
+      JSON.stringify(sortObject(componentDescriptions)),
+      prettierConfigPath,
+    );
+
     writePrettifiedFile(
       path.resolve('docs/translations', 'prop-descriptions.json'),
       JSON.stringify(sortObject(propDescriptions)),

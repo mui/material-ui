@@ -4,15 +4,24 @@ import mapApiTranslations from 'docs/src/modules/utils/mapApiTranslations';
 import jsonPageContent from './table-pagination.json';
 
 export async function getStaticProps() {
-  const req = require.context('docs/translations', false, /prop-descriptions.*.json$/);
-  const req2 = require.context('docs/translations', false, /class-descriptions.*.json$/);
-  const req3 = require.context('docs/translations', false, /class-conditions.*.json$/);
+  const req1 = require.context('docs/translations', false, /component-descriptions.*.json$/);
+  const req2 = require.context('docs/translations', false, /prop-descriptions.*.json$/);
+  const req3 = require.context('docs/translations', false, /class-descriptions.*.json$/);
+  const req4 = require.context('docs/translations', false, /class-conditions.*.json$/);
 
-  const propDescriptions = mapApiTranslations(req, 'TablePagination');
-  const classDescriptions = mapApiTranslations(req2, 'TablePagination');
-  const classConditions = mapApiTranslations(req3, 'TablePagination');
+  const componentDescription = mapApiTranslations(req1, 'TablePagination');
+  const propDescriptions = mapApiTranslations(req2, 'TablePagination');
+  const classDescriptions = mapApiTranslations(req3, 'TablePagination');
+  const classConditions = mapApiTranslations(req4, 'TablePagination');
 
-  const pageContent = { ...jsonPageContent, propDescriptions, classDescriptions, classConditions };
+  const pageContent = {
+    ...jsonPageContent,
+    componentDescription,
+    propDescriptions,
+    classDescriptions,
+    classConditions,
+  };
+
   return {
     props: { pageContent },
   };

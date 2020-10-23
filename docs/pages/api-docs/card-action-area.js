@@ -4,15 +4,24 @@ import mapApiTranslations from 'docs/src/modules/utils/mapApiTranslations';
 import jsonPageContent from './card-action-area.json';
 
 export async function getStaticProps() {
-  const req = require.context('docs/translations', false, /prop-descriptions.*.json$/);
-  const req2 = require.context('docs/translations', false, /class-descriptions.*.json$/);
-  const req3 = require.context('docs/translations', false, /class-conditions.*.json$/);
+  const req1 = require.context('docs/translations', false, /component-descriptions.*.json$/);
+  const req2 = require.context('docs/translations', false, /prop-descriptions.*.json$/);
+  const req3 = require.context('docs/translations', false, /class-descriptions.*.json$/);
+  const req4 = require.context('docs/translations', false, /class-conditions.*.json$/);
 
-  const propDescriptions = mapApiTranslations(req, 'CardActionArea');
-  const classDescriptions = mapApiTranslations(req2, 'CardActionArea');
-  const classConditions = mapApiTranslations(req3, 'CardActionArea');
+  const componentDescription = mapApiTranslations(req1, 'CardActionArea');
+  const propDescriptions = mapApiTranslations(req2, 'CardActionArea');
+  const classDescriptions = mapApiTranslations(req3, 'CardActionArea');
+  const classConditions = mapApiTranslations(req4, 'CardActionArea');
 
-  const pageContent = { ...jsonPageContent, propDescriptions, classDescriptions, classConditions };
+  const pageContent = {
+    ...jsonPageContent,
+    componentDescription,
+    propDescriptions,
+    classDescriptions,
+    classConditions,
+  };
+
   return {
     props: { pageContent },
   };

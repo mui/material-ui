@@ -4,15 +4,24 @@ import mapApiTranslations from 'docs/src/modules/utils/mapApiTranslations';
 import jsonPageContent from './mobile-stepper.json';
 
 export async function getStaticProps() {
-  const req = require.context('docs/translations', false, /prop-descriptions.*.json$/);
-  const req2 = require.context('docs/translations', false, /class-descriptions.*.json$/);
-  const req3 = require.context('docs/translations', false, /class-conditions.*.json$/);
+  const req1 = require.context('docs/translations', false, /component-descriptions.*.json$/);
+  const req2 = require.context('docs/translations', false, /prop-descriptions.*.json$/);
+  const req3 = require.context('docs/translations', false, /class-descriptions.*.json$/);
+  const req4 = require.context('docs/translations', false, /class-conditions.*.json$/);
 
-  const propDescriptions = mapApiTranslations(req, 'MobileStepper');
-  const classDescriptions = mapApiTranslations(req2, 'MobileStepper');
-  const classConditions = mapApiTranslations(req3, 'MobileStepper');
+  const componentDescription = mapApiTranslations(req1, 'MobileStepper');
+  const propDescriptions = mapApiTranslations(req2, 'MobileStepper');
+  const classDescriptions = mapApiTranslations(req3, 'MobileStepper');
+  const classConditions = mapApiTranslations(req4, 'MobileStepper');
 
-  const pageContent = { ...jsonPageContent, propDescriptions, classDescriptions, classConditions };
+  const pageContent = {
+    ...jsonPageContent,
+    componentDescription,
+    propDescriptions,
+    classDescriptions,
+    classConditions,
+  };
+
   return {
     props: { pageContent },
   };

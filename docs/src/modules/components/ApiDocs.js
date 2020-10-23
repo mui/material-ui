@@ -60,6 +60,7 @@ function ApiDocs(props) {
   const {
     classDescriptions,
     classConditions,
+    componentDescription,
     demos,
     filename,
     forwardsRefTo,
@@ -176,6 +177,8 @@ import { ${name} } from '${source}';`}
                 language="jsx"
               />
               {dangerousMarkdown(t('apiImportDifference'))}
+              {componentDescription[userLanguage] &&
+                dangerousMarkdown(componentDescription[userLanguage])}
               {componentStyles.name && (
                 <React.Fragment>
                   {heading('component-name')}
