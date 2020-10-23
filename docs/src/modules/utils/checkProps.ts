@@ -26,15 +26,11 @@ export interface ReactApi extends ReactDocgenApi {
 }
 
 /**
- * Returns `null` if the prop should be ignored.
  * Throws if it is invalid.
  * @param prop
  * @param propName
  */
-function createDescribeableProp(
-  prop: PropDescriptor,
-  propName: string,
-): DescribeablePropDescriptor | null {
+function checkProp(prop: PropDescriptor, propName: string): DescribeablePropDescriptor | null {
   const { defaultValue, jsdocDefaultValue, description, required, type } = prop;
 
   const renderedDefaultValue = defaultValue?.value.replace(/\r?\n/g, '');
@@ -89,13 +85,10 @@ function createDescribeableProp(
   };
 }
 
-export default function generateProps(reactAPI: ReactApi) {
+export default function checkProps(reactAPI: ReactApi) {
   Object.keys(reactAPI.props).forEach((propName) => {
     const propDescriptor = reactAPI.props[propName];
-    if (propName === 'classes') {
-      propDescriptor.description += ' See [CSS API](#css) below for more details.';
-    }
 
-    createDescribeableProp(propDescriptor, propName);
+    checkProp(propDescriptor, propName);
   });
 }

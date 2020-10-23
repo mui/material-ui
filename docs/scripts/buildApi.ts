@@ -6,14 +6,14 @@ import path from 'path';
 import kebabCase from 'lodash/kebabCase';
 import uniqBy from 'lodash/uniqBy';
 import * as prettier from 'prettier';
-import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-docgen';
+import { defaultHandlers, parse as docgenParse } from 'react-docgen';
 import remark from 'remark';
 import remarkVisit from 'unist-util-visit';
 import * as yargs from 'yargs';
 import { LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
 import { getLineFeed } from './helpers';
 import muiDefaultPropsHandler from '../src/modules/utils/defaultPropsHandler';
-import generateProps from '../src/modules/utils/generateMarkdown';
+import checkProps, { ReactApi } from '../src/modules/utils/checkProps';
 import { findPagesMarkdown, findComponents } from '../src/modules/utils/find';
 import { getHeaders } from '../src/modules/utils/parseMarkdown';
 import parseTest from '../src/modules/utils/parseTest';
@@ -23,23 +23,6 @@ import getStylesCreator from '../../packages/material-ui-styles/src/getStylesCre
 import createGenerateClassName from '../../packages/material-ui-styles/src/createGenerateClassName';
 
 const DEMO_IGNORE = LANGUAGES_IN_PROGRESS.map((language) => `-${language}.md`);
-
-interface ReactApi extends ReactDocgenApi {
-  EOL: string;
-  filename: string;
-  forwardsRefTo: string | undefined;
-  inheritance: { component: string; pathname: string } | null;
-  name: string;
-  pagesMarkdown: Array<{ components: string[]; filename: string; pathname: string }>;
-  spread: boolean;
-  src: string;
-  styles: {
-    classes: string[];
-    globalClasses: Record<string, string>;
-    name: string | null;
-    descriptions: Record<string, string>;
-  };
-}
 
 const generateClassName = createGenerateClassName();
 
@@ -246,6 +229,9 @@ async function annotateComponentDefinition(context: {
   writeFileSync(typesFilename, typesSourceNew, { encoding: 'utf8' });
 }
 
+/*
+ * Add class descriptions to type definitions
+ */
 async function annotateClassesDefinition(context: {
   api: ReactApi;
   component: { filename: string };
@@ -466,17 +452,21 @@ async function buildDocs(options: {
   reactAPI.inheritance = getInheritance(testInfo, src);
 
   try {
-    generateProps(reactAPI);
+    checkProps(reactAPI);
   } catch (err) {
     console.log('Error running generate markdown for', componentObject.filename);
     throw err;
   }
 
   Object.keys(reactAPI.props).forEach((propName) => {
-    const description = reactAPI.props[propName].description;
+    let description = reactAPI.props[propName].description;
 
     if (description === '@ignore') {
       return;
+    }
+
+    if (propName === 'classes') {
+      description += ' See [CSS API](#css) below for more details.';
     }
 
     propDescriptions[name] = {
