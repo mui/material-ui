@@ -1,11 +1,10 @@
 ---
+title: Q3 2020 Update
 description: An update on our mission for Q3 2020.
+date: 2020-10-14T00:00:00.000Z
+authors: ['oliviertassinari']
 card: true
 ---
-
-# Q3 2020 Update
-
-Olivier Tassinari. October 14, 2020.
 
 This update covers our progress over the last three months, and what we aim to achieve in the coming months.
 
