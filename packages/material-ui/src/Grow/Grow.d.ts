@@ -20,6 +20,12 @@ export interface GrowProps extends Omit<TransitionProps, 'timeout'> {
    * @default 'auto'
    */
   timeout?: TransitionProps['timeout'] | 'auto';
+  /**
+   * Perform the enter transition when it first mounts if `in` is also `true`.
+   * Set this to `false` to disable this behavior.
+   * @default true
+   */
+  appear?: boolean;
 }
 
 /**

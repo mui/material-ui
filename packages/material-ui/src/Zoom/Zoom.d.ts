@@ -20,6 +20,12 @@ export interface ZoomProps extends TransitionProps {
    * }
    */
   timeout?: TransitionProps['timeout'];
+  /**
+   * Perform the enter transition when it first mounts if `in` is also `true`.
+   * Set this to `false` to disable this behavior.
+   * @default true
+   */
+  appear?: boolean;
 }
 
 /**

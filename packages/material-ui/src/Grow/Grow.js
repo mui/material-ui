@@ -38,6 +38,7 @@ const Grow = React.forwardRef(function Grow(props, ref) {
     onExiting,
     style,
     timeout = 'auto',
+    appear = true,
     // eslint-disable-next-line react/prop-types
     TransitionComponent = Transition,
     ...other
@@ -154,7 +155,7 @@ const Grow = React.forwardRef(function Grow(props, ref) {
 
   return (
     <TransitionComponent
-      appear
+      appear={appear}
       in={inProp}
       nodeRef={nodeRef}
       onEnter={handleEnter}
@@ -190,6 +191,12 @@ Grow.propTypes = {
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
+  /**
+   * Perform the enter transition when it first mounts if `in` is also `true`.
+   * Set this to `false` to disable this behavior.
+   * @default true
+   */
+  appear: PropTypes.bool,
   /**
    * A single child content element.
    */
