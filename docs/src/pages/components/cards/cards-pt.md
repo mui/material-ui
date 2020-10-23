@@ -45,6 +45,16 @@ Por padrão, nós usamos uma combinação de um elemento `&lt;div&gt;` e um *bac
 
 > ⚠️ Quando `component="img"`, CardMedia depende de `object-fit` para centralizar a imagem. It's not supported by IE11.
 
+## Primary action
+
+Often a card allow users to interact with the entirety of its surface to trigger its main action, be it an expansion, a link to another screen or some other behavior. The action area of the card can be specified by wrapping its contents in a `CardActionArea` component.
+
+{{"demo": "pages/components/cards/ActionAreaCard.js", "bg": true}}
+
+A card can also offer supplemental actions which should stand detached from the main action area in order to avoid event overlap.
+
+{{"demo": "pages/components/cards/MultiActionAreaCard.js", "bg": true}}
+
 ## Controles da interface do usuário
 
 Ações suplementares dentro do cartão são explicitamente chamadas usando ícones, texto e controles de interface do usuário, normalmente colocados na parte inferior do cartão.
