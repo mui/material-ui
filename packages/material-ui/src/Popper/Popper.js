@@ -7,7 +7,7 @@ import {
   HTMLElementType,
   setRef,
   useForkRef,
-  unstable_useEnhancedEffect as useEnhancedEffect
+  unstable_useEnhancedEffect as useEnhancedEffect,
 } from '@material-ui/utils';
 import { useTheme } from '@material-ui/styles';
 import Portal from '../Portal';

@@ -20,7 +20,7 @@ export default function transformer(fileInfo, api, options) {
 
   const root = j(fileInfo.source);
   const importRegExp = new RegExp(`^${importModule}$`);
-  
+
   const resultSpecifiers = new Map();
 
   const addSpecifier = (source, specifier) => {
@@ -38,7 +38,7 @@ export default function transformer(fileInfo, api, options) {
     if (!match) return;
 
     const targetImportPath = targetModule;
- 
+
     const whitelist = getJSExports(
       require.resolve(targetImportPath, {
         paths: [dirname(fileInfo.path)],
