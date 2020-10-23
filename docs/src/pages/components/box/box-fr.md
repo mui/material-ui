@@ -19,11 +19,7 @@ Le composant Box contiens [toutes les fonctions de style](/system/basics/#all-in
 
 Le composant Box enveloppe votre composant. It creates a new DOM element, a `<div>` by default that can be changed with the `component` property. Disons que vous voulez utiliser un `<span>` à la place :
 
-```jsx
-<Box component="span" m={1}>
-  <Button />
-</Box>
-```
+{{"demo": "pages/components/box/BoxComponent.js", "defaultCodeOpen": true }}
 
 Cela fonctionne très bien quand les changements peuvent être isolés dans un nouvel élément DOM. Par exemple, vous pouvez changer la marge de cette façon.
 
@@ -33,23 +29,21 @@ Cependant, vous devez parfois cibler l'élément DOM sous-jacent. Par exemple, v
 
 The Box component has a `clone` property to enable the usage of the clone element method of React.
 
-```jsx
-<Box color="text.primary" clone>
-  <Button />
-</Box>
-```
+{{"demo": "pages/components/box/BoxClone.js", "defaultCodeOpen": true }}
 
 2. Utiliser les props de rendu
 
 Les enfants de la boîte acceptent une fonction de rendu des props. Vous pouvez retirer le `className`.
 
-```jsx
-<Box color="text.primary">
-  {props => <Button {...props} />}
-</Box>
-```
+{{"demo": "pages/components/box/BoxRenderProps.js", "defaultCodeOpen": true }}
 
 > ⚠ La spécificité CSS dépend de l'ordre d'importation. Si vous voulez la garantie que le style du composant enveloppé sera surchargé, vous devez importer le Box en dernier.
+
+## The sx prop
+
+Sometimes, the props on the Box component are not enough to style the component. To solve this, `Box` supports the `sx` prop. This allows you to specify any CSS rules you want, in addition to the ones already available using system props. Here is an example of how you can use it:
+
+{{"demo": "pages/components/box/BoxSx.js", "defaultCodeOpen": true }}
 
 ## API
 
