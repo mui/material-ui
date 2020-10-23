@@ -19,6 +19,18 @@ describe('<Box />', () => {
     </div>
   );
 
+  it('warns if system props are used directly on the Box component', () => {
+    expect(() => {
+      render(
+        <Box
+          color="primary.main"
+          fontFamily="Comic Sans"
+          fontSize={{ xs: 'h6.fontSize', sm: 'h4.fontSize', md: 'h3.fontSize' }}
+        />,
+      );
+    }).toWarnDev('Material-UI: You are using deprecated props on the Box component.\n');
+  });
+
   it('renders children and box content', () => {
     const { container, getByTestId } = render(
       <Box component="span" m={1}>

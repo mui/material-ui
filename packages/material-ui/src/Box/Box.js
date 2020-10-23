@@ -16,6 +16,8 @@ function omit(input, fields) {
   return output;
 }
 
+let warnedOnce = false;
+
 /**
  * @ignore - do not document.
  */
@@ -23,6 +25,17 @@ const BoxRoot = React.forwardRef(function StyledComponent(props, ref) {
   const { children, clone, className, component: Component = 'div', ...other } = props;
 
   const spread = omit(other, styleFunction.filterProps);
+
+  if (process.env.NODE_ENV !== 'production') {
+    if (!warnedOnce && Object.keys(spread).length !== Object.keys(other).length) {
+      warnedOnce = true;
+      console.warn(
+        'Material-UI: You are using deprecated props on the Box component.\n' +
+          'You should move the properties inside the `sx` prop. For example:\n' +
+          '<Box m={2} /> should become <Box sx={{ m: 2 }} />',
+      );
+    }
+  }
 
   if (clone) {
     return React.cloneElement(children, {
@@ -49,11 +62,9 @@ BoxRoot.propTypes = {
   component: PropTypes.elementType,
 };
 
-const shouldForwardProp = (prop) => styleFunction.filterProps.indexOf(prop) === -1;
-
 /**
  * @ignore - do not document.
  */
-const Box = styled(BoxRoot, { shouldForwardProp }, { muiName: 'MuiBox' })(styleFunction);
+const Box = styled(BoxRoot, {}, { muiName: 'MuiBox' })(styleFunction);
 
 export default Box;
