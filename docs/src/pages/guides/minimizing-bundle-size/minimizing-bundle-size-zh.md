@@ -40,7 +40,7 @@ import { Button, TextField } from '@material-ui/core';
 
 这是我们在所有演示中记录的选项，因为它不需要配置。 我们鼓励库的创建者来扩充已有组件。 请前往带来最佳 DX 和 UX 的方法： [选项2](#option-2)。
 
-虽然以这种方式直接进行导入不会使用 [`@material-ui/core` 主文件](https://unpkg.com/@material-ui/core)中的导出模块（exports），但该文件可以方便地参考哪些模块是公共的。
+虽然以这种方式直接进行导入不会使用 [`@material-ui/core` 主文件](https://unpkg.com/@material-ui/core) 中的导出模块（exports），但该文件可以方便地参考哪些模块是可供公共使用的。
 
 请注意，我们只支持第一级和第二级的导入。 再深入的导入就是私有的，它们会造成一些问题，譬如你的打包文件会产生重复的模块。
 
