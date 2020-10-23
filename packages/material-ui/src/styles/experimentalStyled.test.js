@@ -132,9 +132,7 @@ describe('experimentalStyled', () => {
     it('overrides should be respected when prop is specified', () => {
       const { container } = render(
         <ThemeProvider theme={theme}>
-          <Test variant="rect">
-            Test
-          </Test>
+          <Test variant="rect">Test</Test>
         </ThemeProvider>,
       );
 
@@ -181,9 +179,7 @@ describe('experimentalStyled', () => {
     it('should resolve the sx prop', () => {
       const { container } = render(
         <ThemeProvider theme={theme}>
-          <Test sx={{ color: 'primary.main' }}>
-            Test
-          </Test>
+          <Test sx={{ color: 'primary.main' }}>Test</Test>
         </ThemeProvider>,
       );
 
