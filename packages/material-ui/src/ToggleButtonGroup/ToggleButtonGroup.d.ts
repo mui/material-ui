@@ -11,10 +11,15 @@ export interface ToggleButtonGroupProps
    * Override or extend the styles applied to the component.
    */
   classes?: {
+    /** Styles applied to the root element. */
     root?: string;
+    /** Styles applied to the root element if `orientation="vertical"`. */
     vertical?: string;
+    /** Styles applied to the children. */
     grouped?: string;
+    /** Styles applied to the children if `orientation="horizontal"`. */
     groupedHorizontal?: string;
+    /** Styles applied to the children if `orientation="vertical"`. */
     groupedVertical?: string;
   };
   /**

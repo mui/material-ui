@@ -13,11 +13,17 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
       /**
        */
       classes?: {
+        /** Styles applied to the root element. */
         root?: string;
+        /** Styles applied to the root element if `underline="none"`. */
         underlineNone?: string;
+        /** Styles applied to the root element if `underline="hover"`. */
         underlineHover?: string;
+        /** Styles applied to the root element if `underline="always"`. */
         underlineAlways?: string;
+        /** Styles applied to the root element if `component="button"`. */
         button?: string;
+        /** Pseudo-class applied to the root element if the link is keyboard focused. */
         focusVisible?: string;
       };
       /**

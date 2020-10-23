@@ -26,7 +26,9 @@ export interface MenuProps extends StandardProps<PopoverProps & Partial<Transiti
    * Override or extend the styles applied to the component.
    */
   classes?: {
+    /** Styles applied to the `Paper` component. */
     paper?: string;
+    /** Styles applied to the `List` component via `MenuList`. */
     list?: string;
   };
   /**

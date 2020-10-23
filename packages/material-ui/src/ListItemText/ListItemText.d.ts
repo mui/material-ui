@@ -14,11 +14,17 @@ export interface ListItemTextProps<
    * Override or extend the styles applied to the component.
    */
   classes?: {
+    /** Styles applied to the root element. */
     root?: string;
+    /** Styles applied to the `Typography` components if primary and secondary are set. */
     multiline?: string;
+    /** Styles applied to the `Typography` components if dense. */
     dense?: string;
+    /** Styles applied to the root element if `inset={true}`. */
     inset?: string;
+    /** Styles applied to the primary `Typography` component. */
     primary?: string;
+    /** Styles applied to the secondary `Typography` component. */
     secondary?: string;
   };
   /**

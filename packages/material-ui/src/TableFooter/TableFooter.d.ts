@@ -11,6 +11,7 @@ export interface TableFooterTypeMap<P = {}, D extends React.ElementType = 'tfoot
      * Override or extend the styles applied to the component.
      */
     classes?: {
+      /** Styles applied to the root element. */
       root?: string;
     };
   };

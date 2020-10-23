@@ -11,11 +11,17 @@ export interface FormControlLabelProps
    * Override or extend the styles applied to the component.
    */
   classes?: {
+    /** Styles applied to the root element. */
     root?: string;
+    /** Styles applied to the root element if `labelPlacement="start"`. */
     labelPlacementStart?: string;
+    /** Styles applied to the root element if `labelPlacement="top"`. */
     labelPlacementTop?: string;
+    /** Styles applied to the root element if `labelPlacement="bottom"`. */
     labelPlacementBottom?: string;
+    /** Pseudo-class applied to the root element if `disabled={true}`. */
     disabled?: string;
+    /** Styles applied to the label's Typography component. */
     label?: string;
   };
   /**

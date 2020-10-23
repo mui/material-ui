@@ -12,11 +12,17 @@ export interface CollapseProps extends StandardProps<TransitionProps, 'timeout'>
    * Override or extend the styles applied to the component.
    */
   classes?: {
+    /** Styles applied to the root element. */
     root?: string;
+    /** Pseudo-class applied to the root element if `orientation="horizontal"`. */
     horizontal?: string;
+    /** Styles applied to the root element when the transition has entered. */
     entered?: string;
+    /** Styles applied to the root element when the transition has exited and `collapsedSize` != 0px. */
     hidden?: string;
+    /** Styles applied to the outer wrapper element. */
     wrapper?: string;
+    /** Styles applied to the inner wrapper element. */
     wrapperInner?: string;
   };
   /**

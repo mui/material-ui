@@ -14,10 +14,15 @@ export interface ImageListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      * Override or extend the styles applied to the component.
      */
     classes?: {
+      /** Styles applied to the root element. */
       root?: string;
+      /** Styles applied to the root element if `variant="masonry"`. */
       masonry?: string;
+      /** Styles applied to the root element if `variant="quilted"`. */
       quilted?: string;
+      /** Styles applied to the root element if `variant="standard"`. */
       standard?: string;
+      /** Styles applied to the root element if `variant="woven"`. */
       woven?: string;
     };
     /**

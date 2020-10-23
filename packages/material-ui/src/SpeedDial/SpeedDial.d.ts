@@ -19,13 +19,21 @@ export interface SpeedDialProps
    * Override or extend the styles applied to the component.
    */
   classes?: {
+    /** Styles applied to the root element. */
     root?: string;
+    /** Styles applied to the Fab component. */
     fab?: string;
+    /** Styles applied to the root if direction="up" */
     directionUp?: string;
+    /** Styles applied to the root if direction="down" */
     directionDown?: string;
+    /** Styles applied to the root if direction="left" */
     directionLeft?: string;
+    /** Styles applied to the root if direction="right" */
     directionRight?: string;
+    /** Styles applied to the actions (`children` wrapper) element. */
     actions?: string;
+    /** Styles applied to the actions (`children` wrapper) element if `open={false}`. */
     actionsClosed?: string;
   };
   /**

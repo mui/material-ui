@@ -9,7 +9,9 @@ export interface ListItemAvatarProps extends StandardProps<React.HTMLAttributes<
    * Override or extend the styles applied to the component.
    */
   classes?: {
+    /** Styles applied to the root element. */
     root?: string;
+    /** Styles applied to the root element when the parent `ListItem` uses `alignItems="flex-start"`. */
     alignItemsFlexStart?: string;
   };
 }

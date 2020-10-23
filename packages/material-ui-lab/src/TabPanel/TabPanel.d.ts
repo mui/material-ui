@@ -12,6 +12,7 @@ export interface TabPanelProps extends StandardProps<React.HTMLAttributes<HTMLDi
    * Override or extend the styles applied to the component.
    */
   classes?: {
+    /** Styles applied to the root element. */
     root?: string;
   };
   /**

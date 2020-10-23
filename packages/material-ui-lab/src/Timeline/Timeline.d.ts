@@ -10,9 +10,13 @@ export interface TimelineProps extends StandardProps<React.HTMLAttributes<HTMLUL
    * Override or extend the styles applied to the component.
    */
   classes?: {
+    /** Styles applied to the root element. */
     root?: string;
+    /** Styles applied to the root element if `align="left"`. */
     alignLeft?: string;
+    /** Styles applied to the root element if `align="right"`. */
     alignRight?: string;
+    /** Styles applied to the root element if `align="alternate"`. */
     alignAlternate?: string;
   };
   /**

@@ -265,12 +265,14 @@ import { ${name} } from '${source}';`}
                           <td
                             align="left"
                             dangerouslySetInnerHTML={{
-                              __html: marked(
-                                classDescriptions[userLanguage][className].replace(
-                                  /{{conditions}}/,
-                                  classConditions[userLanguage][className],
+                              __html:
+                                classDescriptions[userLanguage][className] &&
+                                marked(
+                                  classDescriptions[userLanguage][className].replace(
+                                    /{{conditions}}/,
+                                    classConditions[userLanguage][className],
+                                  ),
                                 ),
-                              ),
                             }}
                           />
                         </tr>

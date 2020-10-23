@@ -26,24 +26,43 @@ export interface InputBaseProps
    * Override or extend the styles applied to the component.
    */
   classes?: {
+    /** Styles applied to the root element. */
     root?: string;
+    /** Styles applied to the root element if the component is a descendant of `FormControl`. */
     formControl?: string;
+    /** Styles applied to the root element if the component is focused. */
     focused?: string;
+    /** Styles applied to the root element if `disabled={true}`. */
     disabled?: string;
+    /** Styles applied to the root element if `startAdornment` is provided. */
     adornedStart?: string;
+    /** Styles applied to the root element if `endAdornment` is provided. */
     adornedEnd?: string;
+    /** Pseudo-class applied to the root element if `error={true}`. */
     error?: string;
+    /** Styles applied to the `input` element if `margin="dense"`. */
     marginDense?: string;
+    /** Styles applied to the root element if `multiline={true}`. */
     multiline?: string;
+    /** Styles applied to the root element if the color is secondary. */
     colorSecondary?: string;
+    /** Styles applied to the root element if `fullWidth={true}`. */
     fullWidth?: string;
+    /** Styles applied to the root element if `hiddenLabel={true}`. */
     hiddenLabel?: string;
+    /** Styles applied to the `input` element. */
     input?: string;
+    /** Styles applied to the `input` element if `margin="dense"`. */
     inputMarginDense?: string;
+    /** Styles applied to the `input` element if `multiline={true}`. */
     inputMultiline?: string;
+    /** Styles applied to the `input` element if `type="search"`. */
     inputTypeSearch?: string;
+    /** Styles applied to the `input` element if `startAdornment` is provided. */
     inputAdornedStart?: string;
+    /** Styles applied to the `input` element if `endAdornment` is provided. */
     inputAdornedEnd?: string;
+    /** Styles applied to the `input` element if `hiddenLabel={true}`. */
     inputHiddenLabel?: string;
   };
   /**

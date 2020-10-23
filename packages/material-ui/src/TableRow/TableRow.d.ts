@@ -11,10 +11,15 @@ export interface TableRowTypeMap<P = {}, D extends React.ElementType = 'tr'> {
      * Override or extend the styles applied to the component.
      */
     classes?: {
+      /** Styles applied to the root element. */
       root?: string;
+      /** Pseudo-class applied to the root element if `selected={true}`. */
       selected?: string;
+      /** Pseudo-class applied to the root element if `hover={true}`. */
       hover?: string;
+      /** Styles applied to the root element if table variant="head". */
       head?: string;
+      /** Styles applied to the root element if table variant="footer". */
       footer?: string;
     };
     /**

@@ -30,8 +30,11 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
      * Override or extend the styles applied to the component.
      */
     classes?: {
+      /** Styles applied to the root element. */
       root?: string;
+      /** Pseudo-class applied to the root element if `disabled={true}`. */
       disabled?: string;
+      /** Pseudo-class applied to the root element if keyboard focused. */
       focusVisible?: string;
     };
     /**

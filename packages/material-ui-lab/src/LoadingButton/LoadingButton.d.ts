@@ -10,14 +10,23 @@ export type LoadingButtonTypeMap<
      * Override or extend the styles applied to the component.
      */
     classes?: {
+      /** Styles applied to the root element. */
       root?: string;
+      /** Styles applied to the root element if `pending={true}`. */
       pending?: string;
+      /** Styles applied to the pendingIndicator element. */
       pendingIndicator?: string;
+      /** Styles applied to the pendingIndicator element if `pendingPosition="center"`. */
       pendingIndicatorCenter?: string;
+      /** Styles applied to the pendingIndicator element if `pendingPosition="start"`. */
       pendingIndicatorStart?: string;
+      /** Styles applied to the pendingIndicator element if `pendingPosition="end"`. */
       pendingIndicatorEnd?: string;
+      /** Styles applied to the endIcon element if `pending={true}` and `pendingPosition="end"`. */
       endIconPendingEnd?: string;
+      /** Styles applied to the startIcon element if `pending={true}` and `pendingPosition="start"`. */
       startIconPendingStart?: string;
+      /** Styles applied to the label element if `pending={true}` and `pendingPosition="center"`. */
       labelPendingCenter?: string;
     };
     /**

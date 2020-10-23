@@ -10,7 +10,9 @@ export interface ListItemSecondaryActionProps
    * Override or extend the styles applied to the component.
    */
   classes?: {
+    /** Styles applied to the root element. */
     root?: string;
+    /** Styles applied to the root element when the parent `ListItem` has `disableGutters={true}`. */
     disableGutters?: string;
   };
 }

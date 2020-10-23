@@ -11,6 +11,7 @@ export interface TableHeadTypeMap<P = {}, D extends React.ElementType = 'thead'>
      * Override or extend the styles applied to the component.
      */
     classes?: {
+      /** Styles applied to the root element. */
       root?: string;
     };
   };

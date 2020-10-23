@@ -420,8 +420,10 @@ async function buildDocs(options: {
     /**
      * Collect classes comments from the source
      */
-    const stylesRegexp = /export const styles.*[\r\n](.*[\r\n])*};[\r\n][\r\n]/;
-    const styleRegexp = /\/\* (.*) \*\/[\r\n]\s*(\w*)/g;
+    // Match the styles definition in the source
+    const stylesRegexp = /export const styles.*[\r\n](.*[\r\n])*?}\){0,1};[\r\n][\r\n]/;
+
+    const styleRegexp = /\/\* (.*) \*\/[\r\n]\s*'*(.*?)'*?:/g;
     // Extract the styles section from the source
     const stylesSrc = stylesRegexp.exec(styleSrc);
 
@@ -487,7 +489,7 @@ async function buildDocs(options: {
   classDescriptions[reactAPI.name] = reactAPI.styles.descriptions;
 
   // https://medium.com/@captaindaylight/get-a-subset-of-an-object-9896148b9c72
-  const pageContent = (({
+  let pageContent = (({
     name,
     filename,
     description,
@@ -508,6 +510,9 @@ async function buildDocs(options: {
     demos: generateDemosListMarkdown(reactAPI),
   }))(reactAPI);
 
+  // Don't mutate reactAPI
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign#Deep_Clone
+  pageContent = JSON.parse(JSON.stringify(pageContent));
   pageContent.styles.descriptions = {};
 
   // docs/pages/component-name.json
@@ -554,6 +559,16 @@ export default function Page({ pageContent }) {
     component: componentObject,
     prettierConfigPath,
   });
+}
+
+function sortObject(object: any) {
+  const orderedData: any = {};
+  Object.keys(object)
+    .sort()
+    .forEach((key) => {
+      orderedData[key] = object[key];
+    });
+  return orderedData;
 }
 
 function run(argv: { componentDirectories?: string[]; grep?: string; outputDirectory?: string }) {
@@ -606,17 +621,14 @@ function run(argv: { componentDirectories?: string[]; grep?: string; outputDirec
       return grep.test(component.filename);
     });
 
-  function sortObject(object: any) {
-    const orderedData: any = {};
-    Object.keys(object)
-      .sort()
-      .forEach((key) => {
-        orderedData[key] = object[key];
-      });
-    return orderedData;
-  }
   const componentBuilds = components.map((component) => {
     // use Promise.allSettled once we switch to node 12
+
+    // Don't document ThmeProvider API
+    if (component.filename.includes('ThemeProvider')) {
+      return { status: 'fulfilled' };
+    }
+
     return buildDocs({
       component,
       outputDirectory,
@@ -643,14 +655,14 @@ function run(argv: { componentDirectories?: string[]; grep?: string; outputDirec
     );
 
     writePrettifiedFile(
-      path.resolve('docs/translations', 'class-conditions.json'),
-      JSON.stringify(sortObject(getClassConditions())),
+      path.resolve('docs/translations', 'class-descriptions.json'),
+      JSON.stringify(sortObject(classDescriptions)),
       prettierConfigPath,
     );
 
     writePrettifiedFile(
-      path.resolve('docs/translations', 'class-descriptions.json'),
-      JSON.stringify(sortObject(classDescriptions)),
+      path.resolve('docs/translations', 'class-conditions.json'),
+      JSON.stringify(sortObject(getClassConditions())),
       prettierConfigPath,
     );
 
