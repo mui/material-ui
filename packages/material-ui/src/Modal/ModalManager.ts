@@ -58,6 +58,11 @@ function findIndexOf<T>(items: T[], callback: (item: T) => boolean): number {
   return idx;
 }
 
+function isSafari() {
+  const ua = navigator.userAgent.toLowerCase();
+  return ua.includes('safari') && !ua.includes('chrome');
+}
+
 function handleContainer(containerInfo: Container, props: ManagedModalProps) {
   const restoreStyle: Array<{
     /**
@@ -69,11 +74,13 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
   }> = [];
   const container = containerInfo.container;
 
-  if (!props.disableScrollLock) {
+  // Compute the size before applying overflow hidden to avoid any scroll jumps.
+  const scrollbarSize = getScrollbarSize(ownerDocument(container));
+  const lg = 1280;
+  const clientWidth = ownerDocument(container).documentElement.clientWidth;
+  const epilepsyZone =  isSafari() && lg >= clientWidth && clientWidth >= (lg - scrollbarSize);
+  if (!props.disableScrollLock && !epilepsyZone) {
     if (isOverflowing(container)) {
-      // Compute the size before applying overflow hidden to avoid any scroll jumps.
-      const scrollbarSize = getScrollbarSize(ownerDocument(container));
-
       restoreStyle.push({
         value: container.style.paddingRight,
         property: 'padding-right',
