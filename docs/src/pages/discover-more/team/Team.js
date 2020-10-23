@@ -36,7 +36,7 @@ const activeCore = [
     github: 'dtassone',
     twitter: 'madKakoO',
     flag: 'Enterprise team',
-    location: 'Barcelona, Spain',
+    location: 'London, UK',
   },
   {
     name: 'Marija Najdova',

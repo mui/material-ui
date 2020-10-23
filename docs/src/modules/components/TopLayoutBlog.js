@@ -57,7 +57,6 @@ const styles = (theme) => ({
     },
   },
   time: {
-    display: 'block',
     color: theme.palette.text.secondary,
     ...theme.typography.body2,
   },
