@@ -10,7 +10,7 @@ We are excited to share that [Danail Hadjiatanasov](https://twitter.com/danail_h
 
 For the past 3 years Danail has been working in a company called [Backbase](https://www.backbase.com/) where he was responsible for building a UI library based on Angular that was specifically designed for banks. The UI library and its corresponding design system were sold under a commercial license, and today some of the biggest names in the banking industry have web applications powered by those UI components (RBC, Central 1, Deutsche Bank, BNP Paribas, and others).
 
-Although he was working with Angular, his true passion is React, having hacked side projects with it. now he will be able to combine these two talents, and help take Material-UI X to the next level!
+Although he was working with Angular, his true passion is React, having hacked side projects with it. Now he will be able to combine these two talents, and help take Material-UI X to the next level!
 
 Danail has already landed his first feature in the data grid: [column reordering](https://material-ui.com/components/data-grid/columns/#column-reorder):
 
