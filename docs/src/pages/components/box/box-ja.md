@@ -19,11 +19,7 @@ Boxコンポーネントは、`@material-ui/system`で公開される[すべて�
 
 The Box componentは、コンポーネントをラップします。 新しいDOM要素を作成します。 この要素はデフォルトで`<div>`であり、`component` プロパティを使用して変更できます。 代わりに `<span>` を使用すると
 
-```jsx
-<Box component="span" m={1}>
-  <Button />
-</Box>
-```
+{{"demo": "pages/components/box/BoxComponent.js", "defaultCodeOpen": true }}
 
 これは、新しいDOM要素に分離する変更の場合に非常に有効です。 たとえば、この方法で余白を変更できます。 たとえば、この方法で余白を変更できます。 たとえば、この方法で余白を変更できます。
 
@@ -33,23 +29,21 @@ The Box componentは、コンポーネントをラップします。 新しいDO
 
 ボックスの子は、レンダープロップス機能を受け入れます `className`を取り出すことができます。
 
-```jsx
-<Box color="text.primary" clone>
-  <Button />
-</Box>
-```
+{{"demo": "pages/components/box/BoxClone.js", "defaultCodeOpen": true }}
 
 2. Render propsを使う
 
 ボックスの子は、レンダープロップス機能を受け入れます `className`を取り出すことができます。
 
-```jsx
-<Box color="text.primary">
-  {props => <Button {...props} />}
-</Box>
-```
+{{"demo": "pages/components/box/BoxRenderProps.js", "defaultCodeOpen": true }}
 
 > CSSの仕様は、インポート順序に依存します。 ラップされたコンポーネントのスタイルが確実にオーバーライドされるようにするには、最後にボックスをインポートする必要があります。
+
+## The sx prop
+
+Sometimes, the props on the Box component are not enough to style the component. To solve this, `Box` supports the `sx` prop. This allows you to specify any CSS rules you want, in addition to the ones already available using system props. Here is an example of how you can use it:
+
+{{"demo": "pages/components/box/BoxSx.js", "defaultCodeOpen": true }}
 
 ## API
 
