@@ -67,15 +67,15 @@ export default function transformer(fileInfo, api, options) {
           break;
         }
         case 'ImportSpecifier':
-          if(localName === 'createSvgIcon') {
+          if (localName === 'createSvgIcon') {
             addSpecifier('@material-ui/core/SvgIcon', specifier);
           } else {
             if (!whitelist.has(specifier.imported.name)) return;
             addSpecifier(targetImportPath, specifier);
           }
 
-          if(index === specifiersLength - 1) {
-            for(let i=0; i <= index; i++) {
+          if (index === specifiersLength - 1) {
+            for (let i = 0; i <= index; i++) {
               path.get('specifiers', 0).prune();
             }
           }
