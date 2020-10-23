@@ -45,6 +45,8 @@ export default function transformer(fileInfo, api, options) {
       }),
     );
 
+    const specifiersLength = path.node.specifiers.length;
+
     path.node.specifiers.forEach((specifier, index) => {
       if (!path.node.specifiers.length) return;
 
@@ -71,7 +73,13 @@ export default function transformer(fileInfo, api, options) {
             if (!whitelist.has(specifier.imported.name)) return;
             addSpecifier(targetImportPath, specifier);
           }
-          path.get('specifiers', index).prune();
+
+          if(index === specifiersLength - 1) {
+            for(let i=0; i <= index; i++) {
+              path.get('specifiers', 0).prune();
+            }
+          }
+
           break;
         default:
           break;
