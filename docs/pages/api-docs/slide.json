@@ -3,22 +3,20 @@
   "filename": "/packages/material-ui/src/Slide/Slide.js",
   "description": "The Slide transition is used by the [Drawer](/components/drawers/) component.\nIt uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.",
   "props": {
-    "children": { "type": { "name": "custom", "raw": "elementAcceptingRef" }, "required": false },
+    "children": {
+      "type": { "name": "custom", "raw": "elementAcceptingRef", "description": "element" },
+      "required": false
+    },
     "direction": {
       "type": {
         "name": "enum",
-        "value": [
-          { "value": "'down'", "computed": false },
-          { "value": "'left'", "computed": false },
-          { "value": "'right'", "computed": false },
-          { "value": "'up'", "computed": false }
-        ]
+        "description": "'down'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'up'"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'down'" },
       "defaultValue": { "value": "'down'", "computed": false }
     },
-    "in": { "type": { "name": "bool" }, "required": false },
+    "in": { "type": { "name": "bool", "description": "bool" }, "required": false },
     "onEnter": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "onEntered": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "onEntering": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
@@ -29,17 +27,7 @@
     "timeout": {
       "type": {
         "name": "union",
-        "value": [
-          { "name": "number" },
-          {
-            "name": "shape",
-            "value": {
-              "appear": { "name": "number", "required": false },
-              "enter": { "name": "number", "required": false },
-              "exit": { "name": "number", "required": false }
-            }
-          }
-        ]
+        "description": "number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
       },
       "required": false,
       "jsdocDefaultValue": {

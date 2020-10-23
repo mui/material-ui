@@ -4,23 +4,26 @@
   "description": "A `TableCell` based component for placing inside `TableFooter` for pagination.",
   "props": {
     "ActionsComponent": {
-      "type": { "name": "elementType" },
+      "type": { "name": "elementType", "description": "elementType" },
       "required": false,
       "jsdocDefaultValue": { "value": "TablePaginationActions" },
       "defaultValue": { "value": "TablePaginationActions", "computed": true }
     },
-    "backIconButtonProps": { "type": { "name": "object" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "backIconButtonProps": {
+      "type": { "name": "object", "description": "object" },
+      "required": false
+    },
+    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "colSpan": { "type": { "name": "number" }, "required": false, "description": "@ignore" },
     "component": {
-      "type": { "name": "elementType" },
+      "type": { "name": "elementType", "description": "elementType" },
       "required": false,
       "defaultValue": { "value": "TableCell", "computed": true }
     },
-    "count": { "type": { "name": "number" }, "required": true },
+    "count": { "type": { "name": "number", "description": "number" }, "required": true },
     "getItemAriaLabel": {
-      "type": { "name": "func" },
+      "type": { "name": "func", "description": "func" },
       "required": false,
       "jsdocDefaultValue": {
         "value": "function defaultGetAriaLabel(type) {\n  return `Go to ${type} page`;\n}"
@@ -31,7 +34,7 @@
       }
     },
     "labelDisplayedRows": {
-      "type": { "name": "func" },
+      "type": { "name": "func", "description": "func" },
       "required": false,
       "jsdocDefaultValue": {
         "value": "function defaultLabelDisplayedRows({ from, to, count }) {\n  return `${from}-${to} of ${count !== -1 ? count : `more than ${to}`}`;\n}"
@@ -42,57 +45,49 @@
       }
     },
     "labelRowsPerPage": {
-      "type": { "name": "node" },
+      "type": { "name": "node", "description": "node" },
       "required": false,
       "jsdocDefaultValue": { "value": "'Rows per page:'" },
       "defaultValue": { "value": "'Rows per page:'", "computed": false }
     },
-    "nextIconButtonProps": { "type": { "name": "object" }, "required": false },
-    "onPageChange": { "type": { "name": "func" }, "required": true },
-    "onRowsPerPageChange": { "type": { "name": "func" }, "required": false },
+    "nextIconButtonProps": {
+      "type": { "name": "object", "description": "object" },
+      "required": false
+    },
+    "onPageChange": { "type": { "name": "func", "description": "func" }, "required": true },
+    "onRowsPerPageChange": { "type": { "name": "func", "description": "func" }, "required": false },
     "page": {
       "type": {
         "name": "custom",
-        "raw": "chainPropTypes(PropTypes.number.isRequired, (props) => {\n  const { count, page, rowsPerPage } = props;\n\n  if (count === -1) {\n    return null;\n  }\n\n  const newLastPage = Math.max(0, Math.ceil(count / rowsPerPage) - 1);\n  if (page < 0 || page > newLastPage) {\n    return new Error(\n      'Material-UI: The page prop of a TablePagination is out of range ' +\n        `(0 to ${newLastPage}, but page is ${page}).`,\n    );\n  }\n  return null;\n})"
+        "raw": "chainPropTypes(PropTypes.number.isRequired, (props) => {\n  const { count, page, rowsPerPage } = props;\n\n  if (count === -1) {\n    return null;\n  }\n\n  const newLastPage = Math.max(0, Math.ceil(count / rowsPerPage) - 1);\n  if (page < 0 || page > newLastPage) {\n    return new Error(\n      'Material-UI: The page prop of a TablePagination is out of range ' +\n        `(0 to ${newLastPage}, but page is ${page}).`,\n    );\n  }\n  return null;\n})",
+        "description": "number"
       },
       "required": false
     },
-    "rowsPerPage": { "type": { "name": "number" }, "required": true },
+    "rowsPerPage": { "type": { "name": "number", "description": "number" }, "required": true },
     "rowsPerPageOptions": {
       "type": {
         "name": "arrayOf",
-        "value": {
-          "name": "union",
-          "value": [
-            { "name": "number" },
-            {
-              "name": "shape",
-              "value": {
-                "label": { "name": "string", "required": true },
-                "value": { "name": "number", "required": true }
-              }
-            }
-          ]
-        }
+        "description": "Array&lt;number<br>&#124;&nbsp;{ label: string, value: number }&gt;"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "[10, 25, 50, 100]" },
       "defaultValue": { "value": "[10, 25, 50, 100]", "computed": false }
     },
     "SelectProps": {
-      "type": { "name": "object" },
+      "type": { "name": "object", "description": "object" },
       "required": false,
       "jsdocDefaultValue": { "value": "{}" },
       "defaultValue": { "value": "{}", "computed": false }
     },
     "showFirstButton": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "showLastButton": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }

@@ -3,26 +3,32 @@
   "filename": "/packages/material-ui/src/CardHeader/CardHeader.js",
   "description": "",
   "props": {
-    "action": { "type": { "name": "node" }, "required": false },
-    "avatar": { "type": { "name": "node" }, "required": false },
+    "action": { "type": { "name": "node", "description": "node" }, "required": false },
+    "avatar": { "type": { "name": "node", "description": "node" }, "required": false },
     "children": { "type": { "name": "node" }, "required": false, "description": "@ignore" },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "component": {
-      "type": { "name": "elementType" },
+      "type": { "name": "elementType", "description": "elementType" },
       "required": false,
       "defaultValue": { "value": "'div'", "computed": false }
     },
     "disableTypography": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
-    "subheader": { "type": { "name": "node" }, "required": false },
-    "subheaderTypographyProps": { "type": { "name": "object" }, "required": false },
-    "title": { "type": { "name": "node" }, "required": false },
-    "titleTypographyProps": { "type": { "name": "object" }, "required": false }
+    "subheader": { "type": { "name": "node", "description": "node" }, "required": false },
+    "subheaderTypographyProps": {
+      "type": { "name": "object", "description": "object" },
+      "required": false
+    },
+    "title": { "type": { "name": "node", "description": "node" }, "required": false },
+    "titleTypographyProps": {
+      "type": { "name": "object", "description": "object" },
+      "required": false
+    }
   },
   "spread": true,
   "styles": {

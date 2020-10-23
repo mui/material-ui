@@ -3,22 +3,22 @@
   "filename": "/packages/material-ui/src/BottomNavigation/BottomNavigation.js",
   "description": "",
   "props": {
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node", "description": "node" }, "required": false },
+    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "component": {
-      "type": { "name": "elementType" },
+      "type": { "name": "elementType", "description": "elementType" },
       "required": false,
       "defaultValue": { "value": "'div'", "computed": false }
     },
-    "onChange": { "type": { "name": "func" }, "required": false },
+    "onChange": { "type": { "name": "func", "description": "func" }, "required": false },
     "showLabels": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
-    "value": { "type": { "name": "any" }, "required": false }
+    "value": { "type": { "name": "any", "description": "any" }, "required": false }
   },
   "spread": true,
   "styles": {

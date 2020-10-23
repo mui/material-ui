@@ -6,61 +6,46 @@
     "anchor": {
       "type": {
         "name": "enum",
-        "value": [
-          { "value": "'bottom'", "computed": false },
-          { "value": "'left'", "computed": false },
-          { "value": "'right'", "computed": false },
-          { "value": "'top'", "computed": false }
-        ]
+        "description": "'bottom'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'top'"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'left'" },
       "defaultValue": { "value": "'left'", "computed": false }
     },
     "BackdropProps": { "type": { "name": "object" }, "required": false, "description": "@ignore" },
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node", "description": "node" }, "required": false },
+    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "elevation": {
-      "type": { "name": "number" },
+      "type": { "name": "number", "description": "number" },
       "required": false,
       "jsdocDefaultValue": { "value": "16" },
       "defaultValue": { "value": "16", "computed": false }
     },
     "ModalProps": {
-      "type": { "name": "object" },
+      "type": { "name": "object", "description": "object" },
       "required": false,
       "jsdocDefaultValue": { "value": "{}" },
       "defaultValue": { "value": "{}", "computed": false }
     },
-    "onClose": { "type": { "name": "func" }, "required": false },
+    "onClose": { "type": { "name": "func", "description": "func" }, "required": false },
     "open": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "PaperProps": {
-      "type": { "name": "object" },
+      "type": { "name": "object", "description": "object" },
       "required": false,
       "jsdocDefaultValue": { "value": "{}" },
       "defaultValue": { "value": "{}", "computed": false }
     },
-    "SlideProps": { "type": { "name": "object" }, "required": false },
+    "SlideProps": { "type": { "name": "object", "description": "object" }, "required": false },
     "transitionDuration": {
       "type": {
         "name": "union",
-        "value": [
-          { "name": "number" },
-          {
-            "name": "shape",
-            "value": {
-              "appear": { "name": "number", "required": false },
-              "enter": { "name": "number", "required": false },
-              "exit": { "name": "number", "required": false }
-            }
-          }
-        ]
+        "description": "number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
       },
       "required": false,
       "jsdocDefaultValue": {
@@ -74,11 +59,7 @@
     "variant": {
       "type": {
         "name": "enum",
-        "value": [
-          { "value": "'permanent'", "computed": false },
-          { "value": "'persistent'", "computed": false },
-          { "value": "'temporary'", "computed": false }
-        ]
+        "description": "'permanent'<br>&#124;&nbsp;'persistent'<br>&#124;&nbsp;'temporary'"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'temporary'" },

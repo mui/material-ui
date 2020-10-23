@@ -3,39 +3,35 @@
   "filename": "/packages/material-ui/src/ToggleButton/ToggleButton.js",
   "description": "",
   "props": {
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node", "description": "node" }, "required": false },
+    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "disabled": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "disableFocusRipple": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
-    "disableRipple": { "type": { "name": "bool" }, "required": false },
+    "disableRipple": { "type": { "name": "bool", "description": "bool" }, "required": false },
     "onChange": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "onClick": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
-    "selected": { "type": { "name": "bool" }, "required": false },
+    "selected": { "type": { "name": "bool", "description": "bool" }, "required": false },
     "size": {
       "type": {
         "name": "enum",
-        "value": [
-          { "value": "'large'", "computed": false },
-          { "value": "'medium'", "computed": false },
-          { "value": "'small'", "computed": false }
-        ]
+        "description": "'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'medium'" },
       "defaultValue": { "value": "'medium'", "computed": false }
     },
-    "value": { "type": { "name": "any" }, "required": true }
+    "value": { "type": { "name": "any", "description": "any" }, "required": true }
   },
   "spread": true,
   "styles": {

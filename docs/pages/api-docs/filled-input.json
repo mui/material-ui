@@ -3,80 +3,71 @@
   "filename": "/packages/material-ui/src/FilledInput/FilledInput.js",
   "description": "",
   "props": {
-    "autoComplete": { "type": { "name": "string" }, "required": false },
-    "autoFocus": { "type": { "name": "bool" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "autoComplete": { "type": { "name": "string", "description": "string" }, "required": false },
+    "autoFocus": { "type": { "name": "bool", "description": "bool" }, "required": false },
+    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
     "color": {
-      "type": {
-        "name": "enum",
-        "value": [
-          { "value": "'primary'", "computed": false },
-          { "value": "'secondary'", "computed": false }
-        ]
-      },
+      "type": { "name": "enum", "description": "'primary'<br>&#124;&nbsp;'secondary'" },
       "required": false
     },
-    "defaultValue": { "type": { "name": "any" }, "required": false },
-    "disabled": { "type": { "name": "bool" }, "required": false },
-    "disableUnderline": { "type": { "name": "bool" }, "required": false },
-    "endAdornment": { "type": { "name": "node" }, "required": false },
-    "error": { "type": { "name": "bool" }, "required": false },
+    "defaultValue": { "type": { "name": "any", "description": "any" }, "required": false },
+    "disabled": { "type": { "name": "bool", "description": "bool" }, "required": false },
+    "disableUnderline": { "type": { "name": "bool", "description": "bool" }, "required": false },
+    "endAdornment": { "type": { "name": "node", "description": "node" }, "required": false },
+    "error": { "type": { "name": "bool", "description": "bool" }, "required": false },
     "fullWidth": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
-    "id": { "type": { "name": "string" }, "required": false },
+    "id": { "type": { "name": "string", "description": "string" }, "required": false },
     "inputComponent": {
-      "type": { "name": "elementType" },
+      "type": { "name": "elementType", "description": "elementType" },
       "required": false,
       "jsdocDefaultValue": { "value": "'input'" },
       "defaultValue": { "value": "'input'", "computed": false }
     },
-    "inputProps": { "type": { "name": "object" }, "required": false },
-    "inputRef": { "type": { "name": "custom", "raw": "refType" }, "required": false },
+    "inputProps": { "type": { "name": "object", "description": "object" }, "required": false },
+    "inputRef": {
+      "type": { "name": "custom", "raw": "refType", "description": "ref" },
+      "required": false
+    },
     "margin": {
-      "type": {
-        "name": "enum",
-        "value": [
-          { "value": "'dense'", "computed": false },
-          { "value": "'none'", "computed": false }
-        ]
-      },
+      "type": { "name": "enum", "description": "'dense'<br>&#124;&nbsp;'none'" },
       "required": false
     },
     "maxRows": {
-      "type": { "name": "union", "value": [{ "name": "number" }, { "name": "string" }] },
+      "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
       "required": false
     },
     "minRows": {
-      "type": { "name": "union", "value": [{ "name": "number" }, { "name": "string" }] },
+      "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
       "required": false
     },
     "multiline": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
-    "name": { "type": { "name": "string" }, "required": false },
-    "onChange": { "type": { "name": "func" }, "required": false },
-    "placeholder": { "type": { "name": "string" }, "required": false },
-    "readOnly": { "type": { "name": "bool" }, "required": false },
-    "required": { "type": { "name": "bool" }, "required": false },
+    "name": { "type": { "name": "string", "description": "string" }, "required": false },
+    "onChange": { "type": { "name": "func", "description": "func" }, "required": false },
+    "placeholder": { "type": { "name": "string", "description": "string" }, "required": false },
+    "readOnly": { "type": { "name": "bool", "description": "bool" }, "required": false },
+    "required": { "type": { "name": "bool", "description": "bool" }, "required": false },
     "rows": {
-      "type": { "name": "union", "value": [{ "name": "number" }, { "name": "string" }] },
+      "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
       "required": false
     },
-    "startAdornment": { "type": { "name": "node" }, "required": false },
+    "startAdornment": { "type": { "name": "node", "description": "node" }, "required": false },
     "type": {
-      "type": { "name": "string" },
+      "type": { "name": "string", "description": "string" },
       "required": false,
       "jsdocDefaultValue": { "value": "'text'" },
       "defaultValue": { "value": "'text'", "computed": false }
     },
-    "value": { "type": { "name": "any" }, "required": false }
+    "value": { "type": { "name": "any", "description": "any" }, "required": false }
   },
   "spread": true,
   "styles": {

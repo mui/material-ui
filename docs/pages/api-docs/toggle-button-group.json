@@ -3,24 +3,18 @@
   "filename": "/packages/material-ui/src/ToggleButtonGroup/ToggleButtonGroup.js",
   "description": "",
   "props": {
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node", "description": "node" }, "required": false },
+    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "exclusive": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
-    "onChange": { "type": { "name": "func" }, "required": false },
+    "onChange": { "type": { "name": "func", "description": "func" }, "required": false },
     "orientation": {
-      "type": {
-        "name": "enum",
-        "value": [
-          { "value": "'horizontal'", "computed": false },
-          { "value": "'vertical'", "computed": false }
-        ]
-      },
+      "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
       "required": false,
       "jsdocDefaultValue": { "value": "'horizontal'" },
       "defaultValue": { "value": "'horizontal'", "computed": false }
@@ -28,17 +22,13 @@
     "size": {
       "type": {
         "name": "enum",
-        "value": [
-          { "value": "'large'", "computed": false },
-          { "value": "'medium'", "computed": false },
-          { "value": "'small'", "computed": false }
-        ]
+        "description": "'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'medium'" },
       "defaultValue": { "value": "'medium'", "computed": false }
     },
-    "value": { "type": { "name": "any" }, "required": false }
+    "value": { "type": { "name": "any", "description": "any" }, "required": false }
   },
   "spread": true,
   "styles": {

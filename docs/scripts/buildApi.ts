@@ -1,26 +1,27 @@
 /* eslint-disable no-console, no-shadow */
-import * as babel from '@babel/core';
-import traverse from '@babel/traverse';
 import { mkdirSync, readFileSync, writeFileSync } from 'fs';
 import path from 'path';
+import * as babel from '@babel/core';
+import traverse from '@babel/traverse';
 import kebabCase from 'lodash/kebabCase';
 import uniqBy from 'lodash/uniqBy';
 import * as prettier from 'prettier';
-import { defaultHandlers, parse as docgenParse } from 'react-docgen';
 import remark from 'remark';
 import remarkVisit from 'unist-util-visit';
 import * as yargs from 'yargs';
-import { LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
-import { getLineFeed } from './helpers';
-import muiDefaultPropsHandler from '../src/modules/utils/defaultPropsHandler';
-import checkProps, { ReactApi } from '../src/modules/utils/checkProps';
-import { findPagesMarkdown, findComponents } from '../src/modules/utils/find';
-import { getHeaders } from '../src/modules/utils/parseMarkdown';
-import parseTest from '../src/modules/utils/parseTest';
-import { pageToTitle } from '../src/modules/utils/helpers';
+import { defaultHandlers, parse as docgenParse } from 'react-docgen';
 import createMuiTheme from '../../packages/material-ui/src/styles/createMuiTheme';
 import getStylesCreator from '../../packages/material-ui-styles/src/getStylesCreator';
 import createGenerateClassName from '../../packages/material-ui-styles/src/createGenerateClassName';
+import muiDefaultPropsHandler from 'docs/src/modules/utils/defaultPropsHandler';
+import checkProps, { ReactApi } from 'docs/src/modules/utils/checkProps';
+import { LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
+import parseTest from 'docs/src/modules/utils/parseTest';
+import { findPagesMarkdown, findComponents } from 'docs/src/modules/utils/find';
+import { getHeaders } from 'docs/src/modules/utils/parseMarkdown';
+import { pageToTitle } from 'docs/src/modules/utils/helpers';
+import generatePropType from 'docs/src/modules/utils/generatePropType';
+import { getLineFeed } from './helpers';
 
 const DEMO_IGNORE = LANGUAGES_IN_PROGRESS.map((language) => `-${language}.md`);
 
@@ -458,8 +459,8 @@ async function buildDocs(options: {
     throw err;
   }
 
-  Object.keys(reactAPI.props).forEach((propName) => {
-    let description = reactAPI.props[propName].description;
+  Object.entries(reactAPI.props).forEach(([propName, propData]) => {
+    let description = propData.description;
 
     if (description === '@ignore') {
       return;
@@ -468,6 +469,9 @@ async function buildDocs(options: {
     if (propName === 'classes') {
       description += ' See [CSS API](#css) below for more details.';
     }
+
+    reactAPI.props[propName].type.description = generatePropType(propData.type)
+    delete reactAPI.props[propName].type.value;
 
     propDescriptions[name] = {
       ...propDescriptions[name],

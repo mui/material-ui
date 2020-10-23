@@ -3,33 +3,23 @@
   "filename": "/packages/material-ui/src/Avatar/Avatar.js",
   "description": "",
   "props": {
-    "alt": { "type": { "name": "string" }, "required": false },
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "alt": { "type": { "name": "string", "description": "string" }, "required": false },
+    "children": { "type": { "name": "node", "description": "node" }, "required": false },
+    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "component": {
-      "type": { "name": "elementType" },
+      "type": { "name": "elementType", "description": "elementType" },
       "required": false,
       "defaultValue": { "value": "'div'", "computed": false }
     },
-    "imgProps": { "type": { "name": "object" }, "required": false },
-    "sizes": { "type": { "name": "string" }, "required": false },
-    "src": { "type": { "name": "string" }, "required": false },
-    "srcSet": { "type": { "name": "string" }, "required": false },
+    "imgProps": { "type": { "name": "object", "description": "object" }, "required": false },
+    "sizes": { "type": { "name": "string", "description": "string" }, "required": false },
+    "src": { "type": { "name": "string", "description": "string" }, "required": false },
+    "srcSet": { "type": { "name": "string", "description": "string" }, "required": false },
     "variant": {
       "type": {
         "name": "union",
-        "value": [
-          {
-            "name": "enum",
-            "value": [
-              { "value": "'circular'", "computed": false },
-              { "value": "'rounded'", "computed": false },
-              { "value": "'square'", "computed": false }
-            ]
-          },
-          { "name": "string" }
-        ]
+        "description": "'circular'<br>&#124;&nbsp;'rounded'<br>&#124;&nbsp;'square'<br>&#124;&nbsp;string"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'circular'" },

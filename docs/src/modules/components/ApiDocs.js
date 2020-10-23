@@ -208,7 +208,7 @@ import { ${name} } from '${source}';`}
                             </span>
                           </td>
                           <td align="left">
-                            <span className="prop-type">{propData.type.name}</span>
+                            <span className="prop-type" dangerouslySetInnerHTML={{ __html: propData.type.description}} />
                           </td>
                           <td align="left">
                             <span className="prop-default">

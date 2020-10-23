@@ -3,26 +3,26 @@
   "filename": "/packages/material-ui/src/SpeedDialAction/SpeedDialAction.js",
   "description": "",
   "props": {
-    "classes": { "type": { "name": "object" }, "required": false },
+    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "delay": {
-      "type": { "name": "number" },
+      "type": { "name": "number", "description": "number" },
       "required": false,
       "jsdocDefaultValue": { "value": "0" },
       "defaultValue": { "value": "0", "computed": false }
     },
     "FabProps": {
-      "type": { "name": "object" },
+      "type": { "name": "object", "description": "object" },
       "required": false,
       "jsdocDefaultValue": { "value": "{}" },
       "defaultValue": { "value": "{}", "computed": false }
     },
-    "icon": { "type": { "name": "node" }, "required": false },
-    "id": { "type": { "name": "string" }, "required": false },
-    "open": { "type": { "name": "bool" }, "required": false },
-    "TooltipClasses": { "type": { "name": "object" }, "required": false },
+    "icon": { "type": { "name": "node", "description": "node" }, "required": false },
+    "id": { "type": { "name": "string", "description": "string" }, "required": false },
+    "open": { "type": { "name": "bool", "description": "bool" }, "required": false },
+    "TooltipClasses": { "type": { "name": "object", "description": "object" }, "required": false },
     "tooltipOpen": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
@@ -30,26 +30,13 @@
     "tooltipPlacement": {
       "type": {
         "name": "enum",
-        "value": [
-          { "value": "'bottom-end'", "computed": false },
-          { "value": "'bottom-start'", "computed": false },
-          { "value": "'bottom'", "computed": false },
-          { "value": "'left-end'", "computed": false },
-          { "value": "'left-start'", "computed": false },
-          { "value": "'left'", "computed": false },
-          { "value": "'right-end'", "computed": false },
-          { "value": "'right-start'", "computed": false },
-          { "value": "'right'", "computed": false },
-          { "value": "'top-end'", "computed": false },
-          { "value": "'top-start'", "computed": false },
-          { "value": "'top'", "computed": false }
-        ]
+        "description": "'bottom-end'<br>&#124;&nbsp;'bottom-start'<br>&#124;&nbsp;'bottom'<br>&#124;&nbsp;'left-end'<br>&#124;&nbsp;'left-start'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right-end'<br>&#124;&nbsp;'right-start'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'top-end'<br>&#124;&nbsp;'top-start'<br>&#124;&nbsp;'top'"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'left'" },
       "defaultValue": { "value": "'left'", "computed": false }
     },
-    "tooltipTitle": { "type": { "name": "node" }, "required": false }
+    "tooltipTitle": { "type": { "name": "node", "description": "node" }, "required": false }
   },
   "spread": true,
   "styles": {

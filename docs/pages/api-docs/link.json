@@ -3,42 +3,33 @@
   "filename": "/packages/material-ui/src/Link/Link.js",
   "description": "",
   "props": {
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node", "description": "node" }, "required": false },
+    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "color": {
       "type": {
         "name": "enum",
-        "value": [
-          { "value": "'error'", "computed": false },
-          { "value": "'inherit'", "computed": false },
-          { "value": "'initial'", "computed": false },
-          { "value": "'primary'", "computed": false },
-          { "value": "'secondary'", "computed": false },
-          { "value": "'textPrimary'", "computed": false },
-          { "value": "'textSecondary'", "computed": false }
-        ]
+        "description": "'error'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'initial'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'textPrimary'<br>&#124;&nbsp;'textSecondary'"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'primary'" },
       "defaultValue": { "value": "'primary'", "computed": false }
     },
     "component": {
-      "type": { "name": "custom", "raw": "elementTypeAcceptingRef" },
+      "type": { "name": "custom", "raw": "elementTypeAcceptingRef", "description": "element type" },
       "required": false,
       "defaultValue": { "value": "'a'", "computed": false }
     },
     "onBlur": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "onFocus": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
-    "TypographyClasses": { "type": { "name": "object" }, "required": false },
+    "TypographyClasses": {
+      "type": { "name": "object", "description": "object" },
+      "required": false
+    },
     "underline": {
       "type": {
         "name": "enum",
-        "value": [
-          { "value": "'always'", "computed": false },
-          { "value": "'hover'", "computed": false },
-          { "value": "'none'", "computed": false }
-        ]
+        "description": "'always'<br>&#124;&nbsp;'hover'<br>&#124;&nbsp;'none'"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'hover'" },
@@ -47,28 +38,7 @@
     "variant": {
       "type": {
         "name": "union",
-        "value": [
-          {
-            "name": "enum",
-            "value": [
-              { "value": "'body1'", "computed": false },
-              { "value": "'body2'", "computed": false },
-              { "value": "'button'", "computed": false },
-              { "value": "'caption'", "computed": false },
-              { "value": "'h1'", "computed": false },
-              { "value": "'h2'", "computed": false },
-              { "value": "'h3'", "computed": false },
-              { "value": "'h4'", "computed": false },
-              { "value": "'h5'", "computed": false },
-              { "value": "'h6'", "computed": false },
-              { "value": "'inherit'", "computed": false },
-              { "value": "'overline'", "computed": false },
-              { "value": "'subtitle1'", "computed": false },
-              { "value": "'subtitle2'", "computed": false }
-            ]
-          },
-          { "name": "string" }
-        ]
+        "description": "'body1'<br>&#124;&nbsp;'body2'<br>&#124;&nbsp;'button'<br>&#124;&nbsp;'caption'<br>&#124;&nbsp;'h1'<br>&#124;&nbsp;'h2'<br>&#124;&nbsp;'h3'<br>&#124;&nbsp;'h4'<br>&#124;&nbsp;'h5'<br>&#124;&nbsp;'h6'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'overline'<br>&#124;&nbsp;'subtitle1'<br>&#124;&nbsp;'subtitle2'<br>&#124;&nbsp;string"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'inherit'" },

@@ -3,15 +3,9 @@
   "filename": "/packages/material-ui/src/Hidden/Hidden.js",
   "description": "Responsively hides children based on the selected implementation.",
   "props": {
-    "children": { "type": { "name": "node" }, "required": false },
+    "children": { "type": { "name": "node", "description": "node" }, "required": false },
     "implementation": {
-      "type": {
-        "name": "enum",
-        "value": [
-          { "value": "'css'", "computed": false },
-          { "value": "'js'", "computed": false }
-        ]
-      },
+      "type": { "name": "enum", "description": "'css'<br>&#124;&nbsp;'js'" },
       "required": false,
       "jsdocDefaultValue": { "value": "'js'" },
       "defaultValue": { "value": "'js'", "computed": false }
@@ -19,36 +13,30 @@
     "initialWidth": {
       "type": {
         "name": "enum",
-        "value": [
-          { "value": "'xs'", "computed": false },
-          { "value": "'sm'", "computed": false },
-          { "value": "'md'", "computed": false },
-          { "value": "'lg'", "computed": false },
-          { "value": "'xl'", "computed": false }
-        ]
+        "description": "'xs'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;'xl'"
       },
       "required": false
     },
     "lgDown": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "lgUp": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "mdDown": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "mdUp": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
@@ -56,66 +44,42 @@
     "only": {
       "type": {
         "name": "union",
-        "value": [
-          {
-            "name": "enum",
-            "value": [
-              { "value": "'xs'", "computed": false },
-              { "value": "'sm'", "computed": false },
-              { "value": "'md'", "computed": false },
-              { "value": "'lg'", "computed": false },
-              { "value": "'xl'", "computed": false }
-            ]
-          },
-          {
-            "name": "arrayOf",
-            "value": {
-              "name": "enum",
-              "value": [
-                { "value": "'xs'", "computed": false },
-                { "value": "'sm'", "computed": false },
-                { "value": "'md'", "computed": false },
-                { "value": "'lg'", "computed": false },
-                { "value": "'xl'", "computed": false }
-              ]
-            }
-          }
-        ]
+        "description": "'xs'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;'xl'<br>&#124;&nbsp;Array&lt;'xs'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;'xl'&gt;"
       },
       "required": false
     },
     "smDown": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "smUp": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "xlDown": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "xlUp": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "xsDown": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "xsUp": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }

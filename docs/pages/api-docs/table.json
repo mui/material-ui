@@ -3,41 +3,31 @@
   "filename": "/packages/material-ui/src/Table/Table.js",
   "description": "",
   "props": {
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node", "description": "node" }, "required": false },
+    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "component": {
-      "type": { "name": "elementType" },
+      "type": { "name": "elementType", "description": "elementType" },
       "required": false,
       "defaultValue": { "value": "'table'", "computed": false }
     },
     "padding": {
       "type": {
         "name": "enum",
-        "value": [
-          { "value": "'checkbox'", "computed": false },
-          { "value": "'default'", "computed": false },
-          { "value": "'none'", "computed": false }
-        ]
+        "description": "'checkbox'<br>&#124;&nbsp;'default'<br>&#124;&nbsp;'none'"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'default'" },
       "defaultValue": { "value": "'default'", "computed": false }
     },
     "size": {
-      "type": {
-        "name": "enum",
-        "value": [
-          { "value": "'medium'", "computed": false },
-          { "value": "'small'", "computed": false }
-        ]
-      },
+      "type": { "name": "enum", "description": "'medium'<br>&#124;&nbsp;'small'" },
       "required": false,
       "jsdocDefaultValue": { "value": "'medium'" },
       "defaultValue": { "value": "'medium'", "computed": false }
     },
     "stickyHeader": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }

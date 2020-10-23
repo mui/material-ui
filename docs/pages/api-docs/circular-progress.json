@@ -3,16 +3,12 @@
   "filename": "/packages/material-ui/src/CircularProgress/CircularProgress.js",
   "description": "## ARIA\n\nIf the progress bar is describing the loading progress of a particular region of a page,\nyou should use `aria-describedby` to point to the progress bar, and set the `aria-busy`\nattribute to `true` on that region until it has finished loading.",
   "props": {
-    "classes": { "type": { "name": "object" }, "required": false },
+    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "color": {
       "type": {
         "name": "enum",
-        "value": [
-          { "value": "'inherit'", "computed": false },
-          { "value": "'primary'", "computed": false },
-          { "value": "'secondary'", "computed": false }
-        ]
+        "description": "'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'primary'" },
@@ -21,39 +17,34 @@
     "disableShrink": {
       "type": {
         "name": "custom",
-        "raw": "chainPropTypes(PropTypes.bool, (props) => {\n  if (props.disableShrink && props.variant && props.variant !== 'indeterminate') {\n    return new Error(\n      'Material-UI: You have provided the `disableShrink` prop ' +\n        'with a variant other than `indeterminate`. This will have no effect.',\n    );\n  }\n\n  return null;\n})"
+        "raw": "chainPropTypes(PropTypes.bool, (props) => {\n  if (props.disableShrink && props.variant && props.variant !== 'indeterminate') {\n    return new Error(\n      'Material-UI: You have provided the `disableShrink` prop ' +\n        'with a variant other than `indeterminate`. This will have no effect.',\n    );\n  }\n\n  return null;\n})",
+        "description": "bool"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "size": {
-      "type": { "name": "union", "value": [{ "name": "number" }, { "name": "string" }] },
+      "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
       "required": false,
       "jsdocDefaultValue": { "value": "40" },
       "defaultValue": { "value": "40", "computed": false }
     },
     "style": { "type": { "name": "object" }, "required": false, "description": "@ignore" },
     "thickness": {
-      "type": { "name": "number" },
+      "type": { "name": "number", "description": "number" },
       "required": false,
       "jsdocDefaultValue": { "value": "3.6" },
       "defaultValue": { "value": "3.6", "computed": false }
     },
     "value": {
-      "type": { "name": "number" },
+      "type": { "name": "number", "description": "number" },
       "required": false,
       "jsdocDefaultValue": { "value": "0" },
       "defaultValue": { "value": "0", "computed": false }
     },
     "variant": {
-      "type": {
-        "name": "enum",
-        "value": [
-          { "value": "'determinate'", "computed": false },
-          { "value": "'indeterminate'", "computed": false }
-        ]
-      },
+      "type": { "name": "enum", "description": "'determinate'<br>&#124;&nbsp;'indeterminate'" },
       "required": false,
       "jsdocDefaultValue": { "value": "'indeterminate'" },
       "defaultValue": { "value": "'indeterminate'", "computed": false }

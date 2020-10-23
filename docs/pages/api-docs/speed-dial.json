@@ -3,48 +3,43 @@
   "filename": "/packages/material-ui/src/SpeedDial/SpeedDial.js",
   "description": "",
   "props": {
-    "ariaLabel": { "type": { "name": "string" }, "required": true },
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "ariaLabel": { "type": { "name": "string", "description": "string" }, "required": true },
+    "children": { "type": { "name": "node", "description": "node" }, "required": false },
+    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "direction": {
       "type": {
         "name": "enum",
-        "value": [
-          { "value": "'down'", "computed": false },
-          { "value": "'left'", "computed": false },
-          { "value": "'right'", "computed": false },
-          { "value": "'up'", "computed": false }
-        ]
+        "description": "'down'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'up'"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'up'" },
       "defaultValue": { "value": "'up'", "computed": false }
     },
     "FabProps": {
-      "type": { "name": "object" },
+      "type": { "name": "object", "description": "object" },
       "required": false,
       "jsdocDefaultValue": { "value": "{}" },
       "defaultValue": { "value": "{}", "computed": false }
     },
     "hidden": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
-    "icon": { "type": { "name": "node" }, "required": false },
+    "icon": { "type": { "name": "node", "description": "node" }, "required": false },
     "onBlur": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
-    "onClose": { "type": { "name": "func" }, "required": false },
+    "onClose": { "type": { "name": "func", "description": "func" }, "required": false },
     "onFocus": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "onKeyDown": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "onMouseEnter": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "onMouseLeave": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
-    "onOpen": { "type": { "name": "func" }, "required": false },
-    "open": { "type": { "name": "bool" }, "required": false },
-    "openIcon": { "type": { "name": "node" }, "required": false },
+    "onOpen": { "type": { "name": "func", "description": "func" }, "required": false },
+    "open": { "type": { "name": "bool", "description": "bool" }, "required": false },
+    "openIcon": { "type": { "name": "node", "description": "node" }, "required": false },
     "TransitionComponent": {
-      "type": { "name": "elementType" },
+      "type": { "name": "elementType", "description": "elementType" },
       "required": false,
       "jsdocDefaultValue": { "value": "Zoom" },
       "defaultValue": { "value": "Zoom", "computed": true }
@@ -52,17 +47,7 @@
     "transitionDuration": {
       "type": {
         "name": "union",
-        "value": [
-          { "name": "number" },
-          {
-            "name": "shape",
-            "value": {
-              "appear": { "name": "number", "required": false },
-              "enter": { "name": "number", "required": false },
-              "exit": { "name": "number", "required": false }
-            }
-          }
-        ]
+        "description": "number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
       },
       "required": false,
       "jsdocDefaultValue": {
@@ -73,7 +58,7 @@
         "computed": false
       }
     },
-    "TransitionProps": { "type": { "name": "object" }, "required": false }
+    "TransitionProps": { "type": { "name": "object", "description": "object" }, "required": false }
   },
   "spread": true,
   "styles": {

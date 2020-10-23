@@ -3,44 +3,34 @@
   "filename": "/packages/material-ui/src/InputAdornment/InputAdornment.js",
   "description": "",
   "props": {
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node", "description": "node" }, "required": false },
+    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "component": {
-      "type": { "name": "elementType" },
+      "type": { "name": "elementType", "description": "elementType" },
       "required": false,
       "defaultValue": { "value": "'div'", "computed": false }
     },
     "disablePointerEvents": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "disableTypography": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "position": {
-      "type": {
-        "name": "enum",
-        "value": [
-          { "value": "'end'", "computed": false },
-          { "value": "'start'", "computed": false }
-        ]
-      },
+      "type": { "name": "enum", "description": "'end'<br>&#124;&nbsp;'start'" },
       "required": false
     },
     "variant": {
       "type": {
         "name": "enum",
-        "value": [
-          { "value": "'filled'", "computed": false },
-          { "value": "'outlined'", "computed": false },
-          { "value": "'standard'", "computed": false }
-        ]
+        "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'"
       },
       "required": false
     }

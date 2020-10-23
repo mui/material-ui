@@ -6,18 +6,14 @@
     "align": {
       "type": {
         "name": "enum",
-        "value": [
-          { "value": "'alternate'", "computed": false },
-          { "value": "'left'", "computed": false },
-          { "value": "'right'", "computed": false }
-        ]
+        "description": "'alternate'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'left'" },
       "defaultValue": { "value": "'left'", "computed": false }
     },
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node", "description": "node" }, "required": false },
+    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" }
   },
   "spread": true,

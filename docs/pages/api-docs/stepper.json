@@ -4,40 +4,34 @@
   "description": "",
   "props": {
     "activeStep": {
-      "type": { "name": "number" },
+      "type": { "name": "number", "description": "number" },
       "required": false,
       "jsdocDefaultValue": { "value": "0" },
       "defaultValue": { "value": "0", "computed": false }
     },
     "alternativeLabel": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node", "description": "node" }, "required": false },
+    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "connector": {
-      "type": { "name": "element" },
+      "type": { "name": "element", "description": "element" },
       "required": false,
       "jsdocDefaultValue": { "value": "<StepConnector />" },
       "defaultValue": { "value": "<StepConnector />", "computed": false }
     },
     "nonLinear": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "orientation": {
-      "type": {
-        "name": "enum",
-        "value": [
-          { "value": "'horizontal'", "computed": false },
-          { "value": "'vertical'", "computed": false }
-        ]
-      },
+      "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
       "required": false,
       "jsdocDefaultValue": { "value": "'horizontal'" },
       "defaultValue": { "value": "'horizontal'", "computed": false }

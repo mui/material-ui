@@ -3,7 +3,10 @@
   "filename": "/packages/material-ui-lab/src/TabList/TabList.js",
   "description": "",
   "props": {
-    "children": { "type": { "name": "arrayOf", "value": { "name": "element" } }, "required": false }
+    "children": {
+      "type": { "name": "arrayOf", "description": "Array&lt;element&gt;" },
+      "required": false
+    }
   },
   "spread": true,
   "styles": { "classes": [], "name": null, "descriptions": {}, "globalClasses": {} },

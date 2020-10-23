@@ -6,14 +6,7 @@
     "alignContent": {
       "type": {
         "name": "enum",
-        "value": [
-          { "value": "'center'", "computed": false },
-          { "value": "'flex-end'", "computed": false },
-          { "value": "'flex-start'", "computed": false },
-          { "value": "'space-around'", "computed": false },
-          { "value": "'space-between'", "computed": false },
-          { "value": "'stretch'", "computed": false }
-        ]
+        "description": "'center'<br>&#124;&nbsp;'flex-end'<br>&#124;&nbsp;'flex-start'<br>&#124;&nbsp;'space-around'<br>&#124;&nbsp;'space-between'<br>&#124;&nbsp;'stretch'"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'stretch'" },
@@ -22,28 +15,22 @@
     "alignItems": {
       "type": {
         "name": "enum",
-        "value": [
-          { "value": "'baseline'", "computed": false },
-          { "value": "'center'", "computed": false },
-          { "value": "'flex-end'", "computed": false },
-          { "value": "'flex-start'", "computed": false },
-          { "value": "'stretch'", "computed": false }
-        ]
+        "description": "'baseline'<br>&#124;&nbsp;'center'<br>&#124;&nbsp;'flex-end'<br>&#124;&nbsp;'flex-start'<br>&#124;&nbsp;'stretch'"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'stretch'" },
       "defaultValue": { "value": "'stretch'", "computed": false }
     },
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node", "description": "node" }, "required": false },
+    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "component": {
-      "type": { "name": "elementType" },
+      "type": { "name": "elementType", "description": "elementType" },
       "required": false,
       "defaultValue": { "value": "'div'", "computed": false }
     },
     "container": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
@@ -51,19 +38,14 @@
     "direction": {
       "type": {
         "name": "enum",
-        "value": [
-          { "value": "'column-reverse'", "computed": false },
-          { "value": "'column'", "computed": false },
-          { "value": "'row-reverse'", "computed": false },
-          { "value": "'row'", "computed": false }
-        ]
+        "description": "'column-reverse'<br>&#124;&nbsp;'column'<br>&#124;&nbsp;'row-reverse'<br>&#124;&nbsp;'row'"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'row'" },
       "defaultValue": { "value": "'row'", "computed": false }
     },
     "item": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
@@ -71,14 +53,7 @@
     "justifyContent": {
       "type": {
         "name": "enum",
-        "value": [
-          { "value": "'center'", "computed": false },
-          { "value": "'flex-end'", "computed": false },
-          { "value": "'flex-start'", "computed": false },
-          { "value": "'space-around'", "computed": false },
-          { "value": "'space-between'", "computed": false },
-          { "value": "'space-evenly'", "computed": false }
-        ]
+        "description": "'center'<br>&#124;&nbsp;'flex-end'<br>&#124;&nbsp;'flex-start'<br>&#124;&nbsp;'space-around'<br>&#124;&nbsp;'space-between'<br>&#124;&nbsp;'space-evenly'"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'flex-start'" },
@@ -87,27 +62,7 @@
     "lg": {
       "type": {
         "name": "union",
-        "value": [
-          {
-            "name": "enum",
-            "value": [
-              { "value": "'auto'", "computed": false },
-              { "value": "1", "computed": false },
-              { "value": "2", "computed": false },
-              { "value": "3", "computed": false },
-              { "value": "4", "computed": false },
-              { "value": "5", "computed": false },
-              { "value": "6", "computed": false },
-              { "value": "7", "computed": false },
-              { "value": "8", "computed": false },
-              { "value": "9", "computed": false },
-              { "value": "10", "computed": false },
-              { "value": "11", "computed": false },
-              { "value": "12", "computed": false }
-            ]
-          },
-          { "name": "bool" }
-        ]
+        "description": "'auto'<br>&#124;&nbsp;1<br>&#124;&nbsp;2<br>&#124;&nbsp;3<br>&#124;&nbsp;4<br>&#124;&nbsp;5<br>&#124;&nbsp;6<br>&#124;&nbsp;7<br>&#124;&nbsp;8<br>&#124;&nbsp;9<br>&#124;&nbsp;10<br>&#124;&nbsp;11<br>&#124;&nbsp;12<br>&#124;&nbsp;bool"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
@@ -116,27 +71,7 @@
     "md": {
       "type": {
         "name": "union",
-        "value": [
-          {
-            "name": "enum",
-            "value": [
-              { "value": "'auto'", "computed": false },
-              { "value": "1", "computed": false },
-              { "value": "2", "computed": false },
-              { "value": "3", "computed": false },
-              { "value": "4", "computed": false },
-              { "value": "5", "computed": false },
-              { "value": "6", "computed": false },
-              { "value": "7", "computed": false },
-              { "value": "8", "computed": false },
-              { "value": "9", "computed": false },
-              { "value": "10", "computed": false },
-              { "value": "11", "computed": false },
-              { "value": "12", "computed": false }
-            ]
-          },
-          { "name": "bool" }
-        ]
+        "description": "'auto'<br>&#124;&nbsp;1<br>&#124;&nbsp;2<br>&#124;&nbsp;3<br>&#124;&nbsp;4<br>&#124;&nbsp;5<br>&#124;&nbsp;6<br>&#124;&nbsp;7<br>&#124;&nbsp;8<br>&#124;&nbsp;9<br>&#124;&nbsp;10<br>&#124;&nbsp;11<br>&#124;&nbsp;12<br>&#124;&nbsp;bool"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
@@ -145,27 +80,7 @@
     "sm": {
       "type": {
         "name": "union",
-        "value": [
-          {
-            "name": "enum",
-            "value": [
-              { "value": "'auto'", "computed": false },
-              { "value": "1", "computed": false },
-              { "value": "2", "computed": false },
-              { "value": "3", "computed": false },
-              { "value": "4", "computed": false },
-              { "value": "5", "computed": false },
-              { "value": "6", "computed": false },
-              { "value": "7", "computed": false },
-              { "value": "8", "computed": false },
-              { "value": "9", "computed": false },
-              { "value": "10", "computed": false },
-              { "value": "11", "computed": false },
-              { "value": "12", "computed": false }
-            ]
-          },
-          { "name": "bool" }
-        ]
+        "description": "'auto'<br>&#124;&nbsp;1<br>&#124;&nbsp;2<br>&#124;&nbsp;3<br>&#124;&nbsp;4<br>&#124;&nbsp;5<br>&#124;&nbsp;6<br>&#124;&nbsp;7<br>&#124;&nbsp;8<br>&#124;&nbsp;9<br>&#124;&nbsp;10<br>&#124;&nbsp;11<br>&#124;&nbsp;12<br>&#124;&nbsp;bool"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
@@ -174,19 +89,7 @@
     "spacing": {
       "type": {
         "name": "enum",
-        "value": [
-          { "value": "0", "computed": false },
-          { "value": "1", "computed": false },
-          { "value": "2", "computed": false },
-          { "value": "3", "computed": false },
-          { "value": "4", "computed": false },
-          { "value": "5", "computed": false },
-          { "value": "6", "computed": false },
-          { "value": "7", "computed": false },
-          { "value": "8", "computed": false },
-          { "value": "9", "computed": false },
-          { "value": "10", "computed": false }
-        ]
+        "description": "0<br>&#124;&nbsp;1<br>&#124;&nbsp;2<br>&#124;&nbsp;3<br>&#124;&nbsp;4<br>&#124;&nbsp;5<br>&#124;&nbsp;6<br>&#124;&nbsp;7<br>&#124;&nbsp;8<br>&#124;&nbsp;9<br>&#124;&nbsp;10"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "0" },
@@ -195,11 +98,7 @@
     "wrap": {
       "type": {
         "name": "enum",
-        "value": [
-          { "value": "'nowrap'", "computed": false },
-          { "value": "'wrap-reverse'", "computed": false },
-          { "value": "'wrap'", "computed": false }
-        ]
+        "description": "'nowrap'<br>&#124;&nbsp;'wrap-reverse'<br>&#124;&nbsp;'wrap'"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'wrap'" },
@@ -208,27 +107,7 @@
     "xl": {
       "type": {
         "name": "union",
-        "value": [
-          {
-            "name": "enum",
-            "value": [
-              { "value": "'auto'", "computed": false },
-              { "value": "1", "computed": false },
-              { "value": "2", "computed": false },
-              { "value": "3", "computed": false },
-              { "value": "4", "computed": false },
-              { "value": "5", "computed": false },
-              { "value": "6", "computed": false },
-              { "value": "7", "computed": false },
-              { "value": "8", "computed": false },
-              { "value": "9", "computed": false },
-              { "value": "10", "computed": false },
-              { "value": "11", "computed": false },
-              { "value": "12", "computed": false }
-            ]
-          },
-          { "name": "bool" }
-        ]
+        "description": "'auto'<br>&#124;&nbsp;1<br>&#124;&nbsp;2<br>&#124;&nbsp;3<br>&#124;&nbsp;4<br>&#124;&nbsp;5<br>&#124;&nbsp;6<br>&#124;&nbsp;7<br>&#124;&nbsp;8<br>&#124;&nbsp;9<br>&#124;&nbsp;10<br>&#124;&nbsp;11<br>&#124;&nbsp;12<br>&#124;&nbsp;bool"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
@@ -237,34 +116,14 @@
     "xs": {
       "type": {
         "name": "union",
-        "value": [
-          {
-            "name": "enum",
-            "value": [
-              { "value": "'auto'", "computed": false },
-              { "value": "1", "computed": false },
-              { "value": "2", "computed": false },
-              { "value": "3", "computed": false },
-              { "value": "4", "computed": false },
-              { "value": "5", "computed": false },
-              { "value": "6", "computed": false },
-              { "value": "7", "computed": false },
-              { "value": "8", "computed": false },
-              { "value": "9", "computed": false },
-              { "value": "10", "computed": false },
-              { "value": "11", "computed": false },
-              { "value": "12", "computed": false }
-            ]
-          },
-          { "name": "bool" }
-        ]
+        "description": "'auto'<br>&#124;&nbsp;1<br>&#124;&nbsp;2<br>&#124;&nbsp;3<br>&#124;&nbsp;4<br>&#124;&nbsp;5<br>&#124;&nbsp;6<br>&#124;&nbsp;7<br>&#124;&nbsp;8<br>&#124;&nbsp;9<br>&#124;&nbsp;10<br>&#124;&nbsp;11<br>&#124;&nbsp;12<br>&#124;&nbsp;bool"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "zeroMinWidth": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }

@@ -3,22 +3,22 @@
   "filename": "/packages/material-ui/src/Paper/Paper.js",
   "description": "",
   "props": {
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node", "description": "node" }, "required": false },
+    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "component": {
-      "type": { "name": "elementType" },
+      "type": { "name": "elementType", "description": "elementType" },
       "required": false,
       "defaultValue": { "value": "'div'", "computed": false }
     },
     "elevation": {
-      "type": { "name": "number" },
+      "type": { "name": "number", "description": "number" },
       "required": false,
       "jsdocDefaultValue": { "value": "1" },
       "defaultValue": { "value": "1", "computed": false }
     },
     "square": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
@@ -26,16 +26,7 @@
     "variant": {
       "type": {
         "name": "union",
-        "value": [
-          {
-            "name": "enum",
-            "value": [
-              { "value": "'elevation'", "computed": false },
-              { "value": "'outlined'", "computed": false }
-            ]
-          },
-          { "name": "string" }
-        ]
+        "description": "'elevation'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;string"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'elevation'" },

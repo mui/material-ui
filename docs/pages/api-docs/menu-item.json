@@ -4,23 +4,23 @@
   "description": "",
   "props": {
     "button": { "type": { "name": "bool" }, "required": false, "description": "@ignore" },
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node", "description": "node" }, "required": false },
+    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "component": {
-      "type": { "name": "elementType" },
+      "type": { "name": "elementType", "description": "elementType" },
       "required": false,
       "defaultValue": { "value": "'li'", "computed": false }
     },
-    "dense": { "type": { "name": "bool" }, "required": false },
+    "dense": { "type": { "name": "bool", "description": "bool" }, "required": false },
     "disabled": { "type": { "name": "bool" }, "required": false, "description": "@ignore" },
     "disableGutters": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
-    "ListItemClasses": { "type": { "name": "object" }, "required": false },
+    "ListItemClasses": { "type": { "name": "object", "description": "object" }, "required": false },
     "role": {
       "type": { "name": "string" },
       "required": false,

@@ -3,37 +3,27 @@
   "filename": "/packages/material-ui/src/ImageListItemBar/ImageListItemBar.js",
   "description": "",
   "props": {
-    "actionIcon": { "type": { "name": "node" }, "required": false },
+    "actionIcon": { "type": { "name": "node", "description": "node" }, "required": false },
     "actionPosition": {
-      "type": {
-        "name": "enum",
-        "value": [
-          { "value": "'left'", "computed": false },
-          { "value": "'right'", "computed": false }
-        ]
-      },
+      "type": { "name": "enum", "description": "'left'<br>&#124;&nbsp;'right'" },
       "required": false,
       "jsdocDefaultValue": { "value": "'right'" },
       "defaultValue": { "value": "'right'", "computed": false }
     },
     "children": { "type": { "name": "node" }, "required": false, "description": "@ignore" },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "position": {
       "type": {
         "name": "enum",
-        "value": [
-          { "value": "'below'", "computed": false },
-          { "value": "'bottom'", "computed": false },
-          { "value": "'top'", "computed": false }
-        ]
+        "description": "'below'<br>&#124;&nbsp;'bottom'<br>&#124;&nbsp;'top'"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'bottom'" },
       "defaultValue": { "value": "'bottom'", "computed": false }
     },
-    "subtitle": { "type": { "name": "node" }, "required": false },
-    "title": { "type": { "name": "node" }, "required": false }
+    "subtitle": { "type": { "name": "node", "description": "node" }, "required": false },
+    "title": { "type": { "name": "node", "description": "node" }, "required": false }
   },
   "spread": true,
   "styles": {

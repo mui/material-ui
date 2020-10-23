@@ -4,39 +4,33 @@
   "description": "",
   "props": {
     "absolute": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node", "description": "node" }, "required": false },
+    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "component": {
-      "type": { "name": "elementType" },
+      "type": { "name": "elementType", "description": "elementType" },
       "required": false,
       "defaultValue": { "value": "children ? 'div' : 'hr'", "computed": false }
     },
     "flexItem": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "light": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "orientation": {
-      "type": {
-        "name": "enum",
-        "value": [
-          { "value": "'horizontal'", "computed": false },
-          { "value": "'vertical'", "computed": false }
-        ]
-      },
+      "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
       "required": false,
       "jsdocDefaultValue": { "value": "'horizontal'" },
       "defaultValue": { "value": "'horizontal'", "computed": false }
@@ -50,11 +44,7 @@
     "textAlign": {
       "type": {
         "name": "enum",
-        "value": [
-          { "value": "'center'", "computed": false },
-          { "value": "'left'", "computed": false },
-          { "value": "'right'", "computed": false }
-        ]
+        "description": "'center'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'center'" },
@@ -63,17 +53,7 @@
     "variant": {
       "type": {
         "name": "union",
-        "value": [
-          {
-            "name": "enum",
-            "value": [
-              { "value": "'fullWidth'", "computed": false },
-              { "value": "'inset'", "computed": false },
-              { "value": "'middle'", "computed": false }
-            ]
-          },
-          { "name": "string" }
-        ]
+        "description": "'fullWidth'<br>&#124;&nbsp;'inset'<br>&#124;&nbsp;'middle'<br>&#124;&nbsp;string"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'fullWidth'" },

@@ -3,30 +3,28 @@
   "filename": "/packages/material-ui/src/FormControlLabel/FormControlLabel.js",
   "description": "Drop in replacement of the `Radio`, `Switch` and `Checkbox` component.\nUse this component if you want to display an extra label.",
   "props": {
-    "checked": { "type": { "name": "bool" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "checked": { "type": { "name": "bool", "description": "bool" }, "required": false },
+    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "control": { "type": { "name": "element" }, "required": true },
-    "disabled": { "type": { "name": "bool" }, "required": false },
-    "inputRef": { "type": { "name": "custom", "raw": "refType" }, "required": false },
-    "label": { "type": { "name": "node" }, "required": false },
+    "control": { "type": { "name": "element", "description": "element" }, "required": true },
+    "disabled": { "type": { "name": "bool", "description": "bool" }, "required": false },
+    "inputRef": {
+      "type": { "name": "custom", "raw": "refType", "description": "ref" },
+      "required": false
+    },
+    "label": { "type": { "name": "node", "description": "node" }, "required": false },
     "labelPlacement": {
       "type": {
         "name": "enum",
-        "value": [
-          { "value": "'bottom'", "computed": false },
-          { "value": "'end'", "computed": false },
-          { "value": "'start'", "computed": false },
-          { "value": "'top'", "computed": false }
-        ]
+        "description": "'bottom'<br>&#124;&nbsp;'end'<br>&#124;&nbsp;'start'<br>&#124;&nbsp;'top'"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'end'" },
       "defaultValue": { "value": "'end'", "computed": false }
     },
     "name": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "onChange": { "type": { "name": "func" }, "required": false },
-    "value": { "type": { "name": "any" }, "required": false }
+    "onChange": { "type": { "name": "func", "description": "func" }, "required": false },
+    "value": { "type": { "name": "any", "description": "any" }, "required": false }
   },
   "spread": true,
   "styles": {

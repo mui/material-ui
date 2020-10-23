@@ -4,34 +4,28 @@
   "description": "A button based label for placing inside `TableCell` for column sorting.",
   "props": {
     "active": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node", "description": "node" }, "required": false },
+    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "direction": {
-      "type": {
-        "name": "enum",
-        "value": [
-          { "value": "'asc'", "computed": false },
-          { "value": "'desc'", "computed": false }
-        ]
-      },
+      "type": { "name": "enum", "description": "'asc'<br>&#124;&nbsp;'desc'" },
       "required": false,
       "jsdocDefaultValue": { "value": "'asc'" },
       "defaultValue": { "value": "'asc'", "computed": false }
     },
     "hideSortIcon": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "IconComponent": {
-      "type": { "name": "elementType" },
+      "type": { "name": "elementType", "description": "elementType" },
       "required": false,
       "jsdocDefaultValue": { "value": "ArrowDownwardIcon" },
       "defaultValue": { "value": "ArrowDownwardIcon", "computed": true }

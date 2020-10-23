@@ -3,12 +3,12 @@
   "filename": "/packages/material-ui/src/Alert/Alert.js",
   "description": "",
   "props": {
-    "action": { "type": { "name": "node" }, "required": false },
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "action": { "type": { "name": "node", "description": "node" }, "required": false },
+    "children": { "type": { "name": "node", "description": "node" }, "required": false },
+    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "closeText": {
-      "type": { "name": "string" },
+      "type": { "name": "string", "description": "string" },
       "required": false,
       "jsdocDefaultValue": { "value": "'Close'" },
       "defaultValue": { "value": "'Close'", "computed": false }
@@ -16,25 +16,15 @@
     "color": {
       "type": {
         "name": "enum",
-        "value": [
-          { "value": "'error'", "computed": false },
-          { "value": "'info'", "computed": false },
-          { "value": "'success'", "computed": false },
-          { "value": "'warning'", "computed": false }
-        ]
+        "description": "'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'"
       },
       "required": false
     },
-    "icon": { "type": { "name": "node" }, "required": false },
+    "icon": { "type": { "name": "node", "description": "node" }, "required": false },
     "iconMapping": {
       "type": {
         "name": "shape",
-        "value": {
-          "error": { "name": "node", "required": false },
-          "info": { "name": "node", "required": false },
-          "success": { "name": "node", "required": false },
-          "warning": { "name": "node", "required": false }
-        }
+        "description": "{ error?: node, info?: node, success?: node, warning?: node }"
       },
       "required": false,
       "defaultValue": {
@@ -42,9 +32,9 @@
         "computed": false
       }
     },
-    "onClose": { "type": { "name": "func" }, "required": false },
+    "onClose": { "type": { "name": "func", "description": "func" }, "required": false },
     "role": {
-      "type": { "name": "string" },
+      "type": { "name": "string", "description": "string" },
       "required": false,
       "jsdocDefaultValue": { "value": "'alert'" },
       "defaultValue": { "value": "'alert'", "computed": false }
@@ -52,12 +42,7 @@
     "severity": {
       "type": {
         "name": "enum",
-        "value": [
-          { "value": "'error'", "computed": false },
-          { "value": "'info'", "computed": false },
-          { "value": "'success'", "computed": false },
-          { "value": "'warning'", "computed": false }
-        ]
+        "description": "'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'success'" },
@@ -66,17 +51,7 @@
     "variant": {
       "type": {
         "name": "union",
-        "value": [
-          {
-            "name": "enum",
-            "value": [
-              { "value": "'filled'", "computed": false },
-              { "value": "'outlined'", "computed": false },
-              { "value": "'standard'", "computed": false }
-            ]
-          },
-          { "name": "string" }
-        ]
+        "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'<br>&#124;&nbsp;string"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'standard'" },

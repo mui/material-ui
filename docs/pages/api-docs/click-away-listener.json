@@ -4,11 +4,15 @@
   "description": "Listen for click events that occur somewhere in the document, outside of the element itself.\nFor instance, if you need to hide a menu when people click anywhere else on your page.",
   "props": {
     "children": {
-      "type": { "name": "custom", "raw": "elementAcceptingRef.isRequired" },
+      "type": {
+        "name": "custom",
+        "raw": "elementAcceptingRef.isRequired",
+        "description": "element"
+      },
       "required": false
     },
     "disableReactTree": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
@@ -16,26 +20,17 @@
     "mouseEvent": {
       "type": {
         "name": "enum",
-        "value": [
-          { "value": "'onClick'", "computed": false },
-          { "value": "'onMouseDown'", "computed": false },
-          { "value": "'onMouseUp'", "computed": false },
-          { "value": "false", "computed": false }
-        ]
+        "description": "'onClick'<br>&#124;&nbsp;'onMouseDown'<br>&#124;&nbsp;'onMouseUp'<br>&#124;&nbsp;false"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'onClick'" },
       "defaultValue": { "value": "'onClick'", "computed": false }
     },
-    "onClickAway": { "type": { "name": "func" }, "required": true },
+    "onClickAway": { "type": { "name": "func", "description": "func" }, "required": true },
     "touchEvent": {
       "type": {
         "name": "enum",
-        "value": [
-          { "value": "'onTouchEnd'", "computed": false },
-          { "value": "'onTouchStart'", "computed": false },
-          { "value": "false", "computed": false }
-        ]
+        "description": "'onTouchEnd'<br>&#124;&nbsp;'onTouchStart'<br>&#124;&nbsp;false"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'onTouchEnd'" },

@@ -3,31 +3,20 @@
   "filename": "/packages/material-ui/src/LinearProgress/LinearProgress.js",
   "description": "## ARIA\n\nIf the progress bar is describing the loading progress of a particular region of a page,\nyou should use `aria-describedby` to point to the progress bar, and set the `aria-busy`\nattribute to `true` on that region until it has finished loading.",
   "props": {
-    "classes": { "type": { "name": "object" }, "required": false },
+    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "color": {
-      "type": {
-        "name": "enum",
-        "value": [
-          { "value": "'primary'", "computed": false },
-          { "value": "'secondary'", "computed": false }
-        ]
-      },
+      "type": { "name": "enum", "description": "'primary'<br>&#124;&nbsp;'secondary'" },
       "required": false,
       "jsdocDefaultValue": { "value": "'primary'" },
       "defaultValue": { "value": "'primary'", "computed": false }
     },
-    "value": { "type": { "name": "number" }, "required": false },
-    "valueBuffer": { "type": { "name": "number" }, "required": false },
+    "value": { "type": { "name": "number", "description": "number" }, "required": false },
+    "valueBuffer": { "type": { "name": "number", "description": "number" }, "required": false },
     "variant": {
       "type": {
         "name": "enum",
-        "value": [
-          { "value": "'buffer'", "computed": false },
-          { "value": "'determinate'", "computed": false },
-          { "value": "'indeterminate'", "computed": false },
-          { "value": "'query'", "computed": false }
-        ]
+        "description": "'buffer'<br>&#124;&nbsp;'determinate'<br>&#124;&nbsp;'indeterminate'<br>&#124;&nbsp;'query'"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'indeterminate'" },

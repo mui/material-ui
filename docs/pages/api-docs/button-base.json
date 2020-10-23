@@ -3,53 +3,62 @@
   "filename": "/packages/material-ui/src/ButtonBase/ButtonBase.js",
   "description": "`ButtonBase` contains as few styles as possible.\nIt aims to be a simple building block for creating a button.\nIt contains a load of style reset and some focus/ripple logic.",
   "props": {
-    "action": { "type": { "name": "custom", "raw": "refType" }, "required": false },
-    "buttonRef": { "type": { "name": "custom", "raw": "refType" }, "required": false },
+    "action": {
+      "type": { "name": "custom", "raw": "refType", "description": "ref" },
+      "required": false
+    },
+    "buttonRef": {
+      "type": { "name": "custom", "raw": "refType", "description": "ref" },
+      "required": false
+    },
     "centerRipple": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node", "description": "node" }, "required": false },
+    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "component": {
-      "type": { "name": "custom", "raw": "elementTypeAcceptingRef" },
+      "type": { "name": "custom", "raw": "elementTypeAcceptingRef", "description": "element type" },
       "required": false,
       "defaultValue": { "value": "'button'", "computed": false }
     },
     "disabled": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "disableRipple": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "disableTouchRipple": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "focusRipple": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
-    "focusVisibleClassName": { "type": { "name": "string" }, "required": false },
+    "focusVisibleClassName": {
+      "type": { "name": "string", "description": "string" },
+      "required": false
+    },
     "href": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "onBlur": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "onClick": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "onDragLeave": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "onFocus": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
-    "onFocusVisible": { "type": { "name": "func" }, "required": false },
+    "onFocusVisible": { "type": { "name": "func", "description": "func" }, "required": false },
     "onKeyDown": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "onKeyUp": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "onMouseDown": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
@@ -59,12 +68,15 @@
     "onTouchMove": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "onTouchStart": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "tabIndex": {
-      "type": { "name": "union", "value": [{ "name": "number" }, { "name": "string" }] },
+      "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
       "required": false,
       "jsdocDefaultValue": { "value": "0" },
       "defaultValue": { "value": "0", "computed": false }
     },
-    "TouchRippleProps": { "type": { "name": "object" }, "required": false },
+    "TouchRippleProps": {
+      "type": { "name": "object", "description": "object" },
+      "required": false
+    },
     "type": {
       "type": {
         "name": "union",

@@ -6,24 +6,7 @@
     "anchorOrigin": {
       "type": {
         "name": "shape",
-        "value": {
-          "horizontal": {
-            "name": "enum",
-            "value": [
-              { "value": "'left'", "computed": false },
-              { "value": "'right'", "computed": false }
-            ],
-            "required": true
-          },
-          "vertical": {
-            "name": "enum",
-            "value": [
-              { "value": "'bottom'", "computed": false },
-              { "value": "'top'", "computed": false }
-            ],
-            "required": true
-          }
-        }
+        "description": "{ horizontal: 'left'<br>&#124;&nbsp;'right', vertical: 'bottom'<br>&#124;&nbsp;'top' }"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "{\n  vertical: 'top',\n  horizontal: 'right',\n}" },
@@ -32,50 +15,39 @@
         "computed": false
       }
     },
-    "badgeContent": { "type": { "name": "node" }, "required": false },
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "badgeContent": { "type": { "name": "node", "description": "node" }, "required": false },
+    "children": { "type": { "name": "node", "description": "node" }, "required": false },
+    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "color": {
       "type": {
         "name": "enum",
-        "value": [
-          { "value": "'default'", "computed": false },
-          { "value": "'error'", "computed": false },
-          { "value": "'primary'", "computed": false },
-          { "value": "'secondary'", "computed": false }
-        ]
+        "description": "'default'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'default'" },
       "defaultValue": { "value": "'default'", "computed": false }
     },
     "component": {
-      "type": { "name": "elementType" },
+      "type": { "name": "elementType", "description": "elementType" },
       "required": false,
       "defaultValue": { "value": "'span'", "computed": false }
     },
-    "invisible": { "type": { "name": "bool" }, "required": false },
+    "invisible": { "type": { "name": "bool", "description": "bool" }, "required": false },
     "max": {
-      "type": { "name": "number" },
+      "type": { "name": "number", "description": "number" },
       "required": false,
       "jsdocDefaultValue": { "value": "99" },
       "defaultValue": { "value": "99", "computed": false }
     },
     "overlap": {
-      "type": {
-        "name": "enum",
-        "value": [
-          { "value": "'circular'", "computed": false },
-          { "value": "'rectangular'", "computed": false }
-        ]
-      },
+      "type": { "name": "enum", "description": "'circular'<br>&#124;&nbsp;'rectangular'" },
       "required": false,
       "jsdocDefaultValue": { "value": "'rectangular'" },
       "defaultValue": { "value": "'rectangular'", "computed": false }
     },
     "showZero": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
@@ -83,16 +55,7 @@
     "variant": {
       "type": {
         "name": "union",
-        "value": [
-          {
-            "name": "enum",
-            "value": [
-              { "value": "'dot'", "computed": false },
-              { "value": "'standard'", "computed": false }
-            ]
-          },
-          { "name": "string" }
-        ]
+        "description": "'dot'<br>&#124;&nbsp;'standard'<br>&#124;&nbsp;string"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'standard'" },

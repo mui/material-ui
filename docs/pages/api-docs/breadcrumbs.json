@@ -3,40 +3,40 @@
   "filename": "/packages/material-ui/src/Breadcrumbs/Breadcrumbs.js",
   "description": "",
   "props": {
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node", "description": "node" }, "required": false },
+    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "component": {
-      "type": { "name": "elementType" },
+      "type": { "name": "elementType", "description": "elementType" },
       "required": false,
       "defaultValue": { "value": "'nav'", "computed": false }
     },
     "expandText": {
-      "type": { "name": "string" },
+      "type": { "name": "string", "description": "string" },
       "required": false,
       "jsdocDefaultValue": { "value": "'Show path'" },
       "defaultValue": { "value": "'Show path'", "computed": false }
     },
     "itemsAfterCollapse": {
-      "type": { "name": "number" },
+      "type": { "name": "number", "description": "number" },
       "required": false,
       "jsdocDefaultValue": { "value": "1" },
       "defaultValue": { "value": "1", "computed": false }
     },
     "itemsBeforeCollapse": {
-      "type": { "name": "number" },
+      "type": { "name": "number", "description": "number" },
       "required": false,
       "jsdocDefaultValue": { "value": "1" },
       "defaultValue": { "value": "1", "computed": false }
     },
     "maxItems": {
-      "type": { "name": "number" },
+      "type": { "name": "number", "description": "number" },
       "required": false,
       "jsdocDefaultValue": { "value": "8" },
       "defaultValue": { "value": "8", "computed": false }
     },
     "separator": {
-      "type": { "name": "node" },
+      "type": { "name": "node", "description": "node" },
       "required": false,
       "jsdocDefaultValue": { "value": "'/'" },
       "defaultValue": { "value": "'/'", "computed": false }

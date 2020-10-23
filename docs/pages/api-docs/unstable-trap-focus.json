@@ -3,28 +3,31 @@
   "filename": "/packages/material-ui/src/Unstable_TrapFocus/Unstable_TrapFocus.js",
   "description": "Utility component that locks focus inside the component.",
   "props": {
-    "children": { "type": { "name": "custom", "raw": "elementAcceptingRef" }, "required": false },
+    "children": {
+      "type": { "name": "custom", "raw": "elementAcceptingRef", "description": "element" },
+      "required": false
+    },
     "disableAutoFocus": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "disableEnforceFocus": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "disableRestoreFocus": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
-    "getDoc": { "type": { "name": "func" }, "required": true },
-    "isEnabled": { "type": { "name": "func" }, "required": true },
-    "open": { "type": { "name": "bool" }, "required": true }
+    "getDoc": { "type": { "name": "func", "description": "func" }, "required": true },
+    "isEnabled": { "type": { "name": "func", "description": "func" }, "required": true },
+    "open": { "type": { "name": "bool", "description": "bool" }, "required": true }
   },
   "spread": false,
   "styles": { "classes": [], "name": null, "descriptions": {}, "globalClasses": {} },

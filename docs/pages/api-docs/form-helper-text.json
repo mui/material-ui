@@ -3,31 +3,24 @@
   "filename": "/packages/material-ui/src/FormHelperText/FormHelperText.js",
   "description": "",
   "props": {
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node", "description": "node" }, "required": false },
+    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "component": {
-      "type": { "name": "elementType" },
+      "type": { "name": "elementType", "description": "elementType" },
       "required": false,
       "defaultValue": { "value": "'p'", "computed": false }
     },
-    "disabled": { "type": { "name": "bool" }, "required": false },
-    "error": { "type": { "name": "bool" }, "required": false },
-    "filled": { "type": { "name": "bool" }, "required": false },
-    "focused": { "type": { "name": "bool" }, "required": false },
-    "margin": {
-      "type": { "name": "enum", "value": [{ "value": "'dense'", "computed": false }] },
-      "required": false
-    },
-    "required": { "type": { "name": "bool" }, "required": false },
+    "disabled": { "type": { "name": "bool", "description": "bool" }, "required": false },
+    "error": { "type": { "name": "bool", "description": "bool" }, "required": false },
+    "filled": { "type": { "name": "bool", "description": "bool" }, "required": false },
+    "focused": { "type": { "name": "bool", "description": "bool" }, "required": false },
+    "margin": { "type": { "name": "enum", "description": "'dense'" }, "required": false },
+    "required": { "type": { "name": "bool", "description": "bool" }, "required": false },
     "variant": {
       "type": {
         "name": "enum",
-        "value": [
-          { "value": "'filled'", "computed": false },
-          { "value": "'outlined'", "computed": false },
-          { "value": "'standard'", "computed": false }
-        ]
+        "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'"
       },
       "required": false
     }

@@ -6,63 +6,39 @@
     "align": {
       "type": {
         "name": "enum",
-        "value": [
-          { "value": "'center'", "computed": false },
-          { "value": "'inherit'", "computed": false },
-          { "value": "'justify'", "computed": false },
-          { "value": "'left'", "computed": false },
-          { "value": "'right'", "computed": false }
-        ]
+        "description": "'center'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'justify'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'inherit'" },
       "defaultValue": { "value": "'inherit'", "computed": false }
     },
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node", "description": "node" }, "required": false },
+    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "component": { "type": { "name": "elementType" }, "required": false },
+    "component": {
+      "type": { "name": "elementType", "description": "elementType" },
+      "required": false
+    },
     "padding": {
       "type": {
         "name": "enum",
-        "value": [
-          { "value": "'checkbox'", "computed": false },
-          { "value": "'default'", "computed": false },
-          { "value": "'none'", "computed": false }
-        ]
+        "description": "'checkbox'<br>&#124;&nbsp;'default'<br>&#124;&nbsp;'none'"
       },
       "required": false
     },
-    "scope": { "type": { "name": "string" }, "required": false },
+    "scope": { "type": { "name": "string", "description": "string" }, "required": false },
     "size": {
-      "type": {
-        "name": "enum",
-        "value": [
-          { "value": "'medium'", "computed": false },
-          { "value": "'small'", "computed": false }
-        ]
-      },
+      "type": { "name": "enum", "description": "'medium'<br>&#124;&nbsp;'small'" },
       "required": false
     },
     "sortDirection": {
-      "type": {
-        "name": "enum",
-        "value": [
-          { "value": "'asc'", "computed": false },
-          { "value": "'desc'", "computed": false },
-          { "value": "false", "computed": false }
-        ]
-      },
+      "type": { "name": "enum", "description": "'asc'<br>&#124;&nbsp;'desc'<br>&#124;&nbsp;false" },
       "required": false
     },
     "variant": {
       "type": {
         "name": "enum",
-        "value": [
-          { "value": "'body'", "computed": false },
-          { "value": "'footer'", "computed": false },
-          { "value": "'head'", "computed": false }
-        ]
+        "description": "'body'<br>&#124;&nbsp;'footer'<br>&#124;&nbsp;'head'"
       },
       "required": false
     }

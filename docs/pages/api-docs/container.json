@@ -4,21 +4,21 @@
   "description": "",
   "props": {
     "children": { "type": { "name": "node" }, "required": false, "description": "@ignore" },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "component": {
-      "type": { "name": "elementType" },
+      "type": { "name": "elementType", "description": "elementType" },
       "required": false,
       "defaultValue": { "value": "'div'", "computed": false }
     },
     "disableGutters": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "fixed": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
@@ -26,14 +26,7 @@
     "maxWidth": {
       "type": {
         "name": "enum",
-        "value": [
-          { "value": "'lg'", "computed": false },
-          { "value": "'md'", "computed": false },
-          { "value": "'sm'", "computed": false },
-          { "value": "'xl'", "computed": false },
-          { "value": "'xs'", "computed": false },
-          { "value": "false", "computed": false }
-        ]
+        "description": "'lg'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'xl'<br>&#124;&nbsp;'xs'<br>&#124;&nbsp;false"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'lg'" },

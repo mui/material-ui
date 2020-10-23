@@ -3,15 +3,15 @@
   "filename": "/packages/material-ui/src/NoSsr/NoSsr.js",
   "description": "NoSsr purposely removes components from the subject of Server Side Rendering (SSR).\n\nThis component can be useful in a variety of situations:\n- Escape hatch for broken dependencies not supporting SSR.\n- Improve the time-to-first paint on the client by only rendering above the fold.\n- Reduce the rendering time on the server.\n- Under too heavy server load, you can turn on service degradation.",
   "props": {
-    "children": { "type": { "name": "node" }, "required": false },
+    "children": { "type": { "name": "node", "description": "node" }, "required": false },
     "defer": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "fallback": {
-      "type": { "name": "node" },
+      "type": { "name": "node", "description": "node" },
       "required": false,
       "jsdocDefaultValue": { "value": "null" },
       "defaultValue": { "value": "null", "computed": false }

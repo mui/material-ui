@@ -3,60 +3,48 @@
   "filename": "/packages/material-ui/src/Snackbar/Snackbar.js",
   "description": "",
   "props": {
-    "action": { "type": { "name": "node" }, "required": false },
+    "action": { "type": { "name": "node", "description": "node" }, "required": false },
     "anchorOrigin": {
       "type": {
         "name": "shape",
-        "value": {
-          "horizontal": {
-            "name": "enum",
-            "value": [
-              { "value": "'center'", "computed": false },
-              { "value": "'left'", "computed": false },
-              { "value": "'right'", "computed": false }
-            ],
-            "required": true
-          },
-          "vertical": {
-            "name": "enum",
-            "value": [
-              { "value": "'bottom'", "computed": false },
-              { "value": "'top'", "computed": false }
-            ],
-            "required": true
-          }
-        }
+        "description": "{ horizontal: 'center'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right', vertical: 'bottom'<br>&#124;&nbsp;'top' }"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "{ vertical: 'bottom', horizontal: 'left' }" },
       "defaultValue": { "value": "{ vertical: 'bottom', horizontal: 'left' }", "computed": false }
     },
     "autoHideDuration": {
-      "type": { "name": "number" },
+      "type": { "name": "number", "description": "number" },
       "required": false,
       "jsdocDefaultValue": { "value": "null" },
       "defaultValue": { "value": "null", "computed": false }
     },
-    "children": { "type": { "name": "element" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "element", "description": "element" }, "required": false },
+    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "ClickAwayListenerProps": { "type": { "name": "object" }, "required": false },
-    "ContentProps": { "type": { "name": "object" }, "required": false },
+    "ClickAwayListenerProps": {
+      "type": { "name": "object", "description": "object" },
+      "required": false
+    },
+    "ContentProps": { "type": { "name": "object", "description": "object" }, "required": false },
     "disableWindowBlurListener": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
-    "key": { "type": { "name": "any" }, "required": false },
-    "message": { "type": { "name": "node" }, "required": false },
-    "onClose": { "type": { "name": "func" }, "required": false },
+    "key": { "type": { "name": "any", "description": "any" }, "required": false },
+    "message": { "type": { "name": "node", "description": "node" }, "required": false },
+    "onClose": { "type": { "name": "func", "description": "func" }, "required": false },
     "onMouseEnter": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "onMouseLeave": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
-    "open": { "type": { "name": "bool" }, "required": false },
-    "resumeHideDuration": { "type": { "name": "number" }, "required": false },
+    "open": { "type": { "name": "bool", "description": "bool" }, "required": false },
+    "resumeHideDuration": {
+      "type": { "name": "number", "description": "number" },
+      "required": false
+    },
     "TransitionComponent": {
-      "type": { "name": "elementType" },
+      "type": { "name": "elementType", "description": "elementType" },
       "required": false,
       "jsdocDefaultValue": { "value": "Grow" },
       "defaultValue": { "value": "Grow", "computed": true }
@@ -64,17 +52,7 @@
     "transitionDuration": {
       "type": {
         "name": "union",
-        "value": [
-          { "name": "number" },
-          {
-            "name": "shape",
-            "value": {
-              "appear": { "name": "number", "required": false },
-              "enter": { "name": "number", "required": false },
-              "exit": { "name": "number", "required": false }
-            }
-          }
-        ]
+        "description": "number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
       },
       "required": false,
       "jsdocDefaultValue": {
@@ -86,7 +64,7 @@
       }
     },
     "TransitionProps": {
-      "type": { "name": "object" },
+      "type": { "name": "object", "description": "object" },
       "required": false,
       "jsdocDefaultValue": { "value": "{}" },
       "defaultValue": { "value": "{}", "computed": false }

@@ -3,110 +3,92 @@
   "filename": "/packages/material-ui/src/Tabs/Tabs.js",
   "description": "",
   "props": {
-    "action": { "type": { "name": "custom", "raw": "refType" }, "required": false },
+    "action": {
+      "type": { "name": "custom", "raw": "refType", "description": "ref" },
+      "required": false
+    },
     "allowScrollButtonsMobile": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
-    "aria-label": { "type": { "name": "string" }, "required": false },
-    "aria-labelledby": { "type": { "name": "string" }, "required": false },
+    "aria-label": { "type": { "name": "string", "description": "string" }, "required": false },
+    "aria-labelledby": { "type": { "name": "string", "description": "string" }, "required": false },
     "centered": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node", "description": "node" }, "required": false },
+    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "component": {
-      "type": { "name": "elementType" },
+      "type": { "name": "elementType", "description": "elementType" },
       "required": false,
       "defaultValue": { "value": "'div'", "computed": false }
     },
     "indicatorColor": {
-      "type": {
-        "name": "enum",
-        "value": [
-          { "value": "'primary'", "computed": false },
-          { "value": "'secondary'", "computed": false }
-        ]
-      },
+      "type": { "name": "enum", "description": "'primary'<br>&#124;&nbsp;'secondary'" },
       "required": false,
       "jsdocDefaultValue": { "value": "'secondary'" },
       "defaultValue": { "value": "'secondary'", "computed": false }
     },
-    "onChange": { "type": { "name": "func" }, "required": false },
+    "onChange": { "type": { "name": "func", "description": "func" }, "required": false },
     "orientation": {
-      "type": {
-        "name": "enum",
-        "value": [
-          { "value": "'horizontal'", "computed": false },
-          { "value": "'vertical'", "computed": false }
-        ]
-      },
+      "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
       "required": false,
       "jsdocDefaultValue": { "value": "'horizontal'" },
       "defaultValue": { "value": "'horizontal'", "computed": false }
     },
     "ScrollButtonComponent": {
-      "type": { "name": "elementType" },
+      "type": { "name": "elementType", "description": "elementType" },
       "required": false,
       "jsdocDefaultValue": { "value": "TabScrollButton" },
       "defaultValue": { "value": "TabScrollButton", "computed": true }
     },
     "scrollButtons": {
-      "type": {
-        "name": "enum",
-        "value": [
-          { "value": "'auto'", "computed": false },
-          { "value": "false", "computed": false },
-          { "value": "true", "computed": false }
-        ]
-      },
+      "type": { "name": "enum", "description": "'auto'<br>&#124;&nbsp;false<br>&#124;&nbsp;true" },
       "required": false,
       "jsdocDefaultValue": { "value": "'auto'" },
       "defaultValue": { "value": "'auto'", "computed": false }
     },
-    "selectionFollowsFocus": { "type": { "name": "bool" }, "required": false },
+    "selectionFollowsFocus": {
+      "type": { "name": "bool", "description": "bool" },
+      "required": false
+    },
     "TabIndicatorProps": {
-      "type": { "name": "object" },
+      "type": { "name": "object", "description": "object" },
       "required": false,
       "jsdocDefaultValue": { "value": "{}" },
       "defaultValue": { "value": "{}", "computed": false }
     },
-    "TabScrollButtonProps": { "type": { "name": "object" }, "required": false },
+    "TabScrollButtonProps": {
+      "type": { "name": "object", "description": "object" },
+      "required": false
+    },
     "textColor": {
       "type": {
         "name": "enum",
-        "value": [
-          { "value": "'inherit'", "computed": false },
-          { "value": "'primary'", "computed": false },
-          { "value": "'secondary'", "computed": false }
-        ]
+        "description": "'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'inherit'" },
       "defaultValue": { "value": "'inherit'", "computed": false }
     },
-    "value": { "type": { "name": "any" }, "required": false },
+    "value": { "type": { "name": "any", "description": "any" }, "required": false },
     "variant": {
       "type": {
         "name": "enum",
-        "value": [
-          { "value": "'fullWidth'", "computed": false },
-          { "value": "'scrollable'", "computed": false },
-          { "value": "'standard'", "computed": false }
-        ]
+        "description": "'fullWidth'<br>&#124;&nbsp;'scrollable'<br>&#124;&nbsp;'standard'"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'standard'" },
       "defaultValue": { "value": "'standard'", "computed": false }
     },
     "visibleScrollbar": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }

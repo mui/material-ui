@@ -3,47 +3,41 @@
   "filename": "/packages/material-ui/src/FormControl/FormControl.js",
   "description": "Provides context such as filled/focused/error/required for form inputs.\nRelying on the context provides high flexibility and ensures that the state always stays\nconsistent across the children of the `FormControl`.\nThis context is used by the following components:\n\n - FormLabel\n - FormHelperText\n - Input\n - InputLabel\n\nYou can find one composition example below and more going to [the demos](/components/text-fields/#components).\n\n```jsx\n<FormControl>\n  <InputLabel htmlFor=\"my-input\">Email address</InputLabel>\n  <Input id=\"my-input\" aria-describedby=\"my-helper-text\" />\n  <FormHelperText id=\"my-helper-text\">We'll never share your email.</FormHelperText>\n</FormControl>\n```\n\n⚠️ Only one `InputBase` can be used within a FormControl because it create visual inconsistencies.\nFor instance, only one input can be focused at the same time, the state shouldn't be shared.",
   "props": {
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node", "description": "node" }, "required": false },
+    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "color": {
-      "type": {
-        "name": "enum",
-        "value": [
-          { "value": "'primary'", "computed": false },
-          { "value": "'secondary'", "computed": false }
-        ]
-      },
+      "type": { "name": "enum", "description": "'primary'<br>&#124;&nbsp;'secondary'" },
       "required": false,
       "jsdocDefaultValue": { "value": "'primary'" },
       "defaultValue": { "value": "'primary'", "computed": false }
     },
     "component": {
-      "type": { "name": "elementType" },
+      "type": { "name": "elementType", "description": "elementType" },
       "required": false,
       "defaultValue": { "value": "'div'", "computed": false }
     },
     "disabled": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "error": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
-    "focused": { "type": { "name": "bool" }, "required": false },
+    "focused": { "type": { "name": "bool", "description": "bool" }, "required": false },
     "fullWidth": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "hiddenLabel": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
@@ -51,40 +45,26 @@
     "margin": {
       "type": {
         "name": "enum",
-        "value": [
-          { "value": "'dense'", "computed": false },
-          { "value": "'none'", "computed": false },
-          { "value": "'normal'", "computed": false }
-        ]
+        "description": "'dense'<br>&#124;&nbsp;'none'<br>&#124;&nbsp;'normal'"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'none'" },
       "defaultValue": { "value": "'none'", "computed": false }
     },
     "required": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "size": {
-      "type": {
-        "name": "enum",
-        "value": [
-          { "value": "'medium'", "computed": false },
-          { "value": "'small'", "computed": false }
-        ]
-      },
+      "type": { "name": "enum", "description": "'medium'<br>&#124;&nbsp;'small'" },
       "required": false
     },
     "variant": {
       "type": {
         "name": "enum",
-        "value": [
-          { "value": "'filled'", "computed": false },
-          { "value": "'outlined'", "computed": false },
-          { "value": "'standard'", "computed": false }
-        ]
+        "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'standard'" },

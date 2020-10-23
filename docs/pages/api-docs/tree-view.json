@@ -3,44 +3,44 @@
   "filename": "/packages/material-ui-lab/src/TreeView/TreeView.js",
   "description": "",
   "props": {
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node", "description": "node" }, "required": false },
+    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "defaultCollapseIcon": { "type": { "name": "node" }, "required": false },
-    "defaultEndIcon": { "type": { "name": "node" }, "required": false },
+    "defaultCollapseIcon": { "type": { "name": "node", "description": "node" }, "required": false },
+    "defaultEndIcon": { "type": { "name": "node", "description": "node" }, "required": false },
     "defaultExpanded": {
-      "type": { "name": "arrayOf", "value": { "name": "string" } },
+      "type": { "name": "arrayOf", "description": "Array&lt;string&gt;" },
       "required": false,
       "jsdocDefaultValue": { "value": "[]" },
       "defaultValue": { "value": "[]", "computed": false }
     },
-    "defaultExpandIcon": { "type": { "name": "node" }, "required": false },
-    "defaultParentIcon": { "type": { "name": "node" }, "required": false },
+    "defaultExpandIcon": { "type": { "name": "node", "description": "node" }, "required": false },
+    "defaultParentIcon": { "type": { "name": "node", "description": "node" }, "required": false },
     "defaultSelected": {
-      "type": {
-        "name": "union",
-        "value": [{ "name": "arrayOf", "value": { "name": "string" } }, { "name": "string" }]
-      },
+      "type": { "name": "union", "description": "Array&lt;string&gt;<br>&#124;&nbsp;string" },
       "required": false,
       "jsdocDefaultValue": { "value": "[]" },
       "defaultValue": { "value": "[]", "computed": false }
     },
     "disabledItemsFocusable": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "disableSelection": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
-    "expanded": { "type": { "name": "arrayOf", "value": { "name": "string" } }, "required": false },
-    "id": { "type": { "name": "string" }, "required": false },
+    "expanded": {
+      "type": { "name": "arrayOf", "description": "Array&lt;string&gt;" },
+      "required": false
+    },
+    "id": { "type": { "name": "string", "description": "string" }, "required": false },
     "multiSelect": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
@@ -48,14 +48,11 @@
     "onBlur": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "onFocus": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "onKeyDown": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
-    "onNodeFocus": { "type": { "name": "func" }, "required": false },
-    "onNodeSelect": { "type": { "name": "func" }, "required": false },
-    "onNodeToggle": { "type": { "name": "func" }, "required": false },
+    "onNodeFocus": { "type": { "name": "func", "description": "func" }, "required": false },
+    "onNodeSelect": { "type": { "name": "func", "description": "func" }, "required": false },
+    "onNodeToggle": { "type": { "name": "func", "description": "func" }, "required": false },
     "selected": {
-      "type": {
-        "name": "union",
-        "value": [{ "name": "arrayOf", "value": { "name": "string" } }, { "name": "string" }]
-      },
+      "type": { "name": "union", "description": "Array&lt;string&gt;<br>&#124;&nbsp;string" },
       "required": false
     }
   },

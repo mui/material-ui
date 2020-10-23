@@ -3,32 +3,35 @@
   "filename": "/packages/material-ui/src/Dialog/Dialog.js",
   "description": "Dialogs are overlaid modal paper based components with a backdrop.",
   "props": {
-    "aria-describedby": { "type": { "name": "string" }, "required": false },
-    "aria-labelledby": { "type": { "name": "string" }, "required": false },
+    "aria-describedby": {
+      "type": { "name": "string", "description": "string" },
+      "required": false
+    },
+    "aria-labelledby": { "type": { "name": "string", "description": "string" }, "required": false },
     "BackdropProps": { "type": { "name": "object" }, "required": false, "description": "@ignore" },
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node", "description": "node" }, "required": false },
+    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "disableBackdropClick": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "disableEscapeKeyDown": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "fullScreen": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "fullWidth": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
@@ -36,49 +39,36 @@
     "maxWidth": {
       "type": {
         "name": "enum",
-        "value": [
-          { "value": "'lg'", "computed": false },
-          { "value": "'md'", "computed": false },
-          { "value": "'sm'", "computed": false },
-          { "value": "'xl'", "computed": false },
-          { "value": "'xs'", "computed": false },
-          { "value": "false", "computed": false }
-        ]
+        "description": "'lg'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'xl'<br>&#124;&nbsp;'xs'<br>&#124;&nbsp;false"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'sm'" },
       "defaultValue": { "value": "'sm'", "computed": false }
     },
-    "onBackdropClick": { "type": { "name": "func" }, "required": false },
-    "onClose": { "type": { "name": "func" }, "required": false },
-    "onEscapeKeyDown": { "type": { "name": "func" }, "required": false },
-    "open": { "type": { "name": "bool" }, "required": true },
+    "onBackdropClick": { "type": { "name": "func", "description": "func" }, "required": false },
+    "onClose": { "type": { "name": "func", "description": "func" }, "required": false },
+    "onEscapeKeyDown": { "type": { "name": "func", "description": "func" }, "required": false },
+    "open": { "type": { "name": "bool", "description": "bool" }, "required": true },
     "PaperComponent": {
-      "type": { "name": "elementType" },
+      "type": { "name": "elementType", "description": "elementType" },
       "required": false,
       "jsdocDefaultValue": { "value": "Paper" },
       "defaultValue": { "value": "Paper", "computed": true }
     },
     "PaperProps": {
-      "type": { "name": "object" },
+      "type": { "name": "object", "description": "object" },
       "required": false,
       "jsdocDefaultValue": { "value": "{}" },
       "defaultValue": { "value": "{}", "computed": false }
     },
     "scroll": {
-      "type": {
-        "name": "enum",
-        "value": [
-          { "value": "'body'", "computed": false },
-          { "value": "'paper'", "computed": false }
-        ]
-      },
+      "type": { "name": "enum", "description": "'body'<br>&#124;&nbsp;'paper'" },
       "required": false,
       "jsdocDefaultValue": { "value": "'paper'" },
       "defaultValue": { "value": "'paper'", "computed": false }
     },
     "TransitionComponent": {
-      "type": { "name": "elementType" },
+      "type": { "name": "elementType", "description": "elementType" },
       "required": false,
       "jsdocDefaultValue": { "value": "Fade" },
       "defaultValue": { "value": "Fade", "computed": true }
@@ -86,17 +76,7 @@
     "transitionDuration": {
       "type": {
         "name": "union",
-        "value": [
-          { "name": "number" },
-          {
-            "name": "shape",
-            "value": {
-              "appear": { "name": "number", "required": false },
-              "enter": { "name": "number", "required": false },
-              "exit": { "name": "number", "required": false }
-            }
-          }
-        ]
+        "description": "number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
       },
       "required": false,
       "jsdocDefaultValue": {
@@ -107,7 +87,7 @@
         "computed": false
       }
     },
-    "TransitionProps": { "type": { "name": "object" }, "required": false }
+    "TransitionProps": { "type": { "name": "object", "description": "object" }, "required": false }
   },
   "spread": true,
   "styles": {

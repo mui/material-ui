@@ -3,12 +3,12 @@
   "filename": "/packages/material-ui/src/SnackbarContent/SnackbarContent.js",
   "description": "",
   "props": {
-    "action": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "action": { "type": { "name": "node", "description": "node" }, "required": false },
+    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "message": { "type": { "name": "node" }, "required": false },
+    "message": { "type": { "name": "node", "description": "node" }, "required": false },
     "role": {
-      "type": { "name": "string" },
+      "type": { "name": "string", "description": "string" },
       "required": false,
       "jsdocDefaultValue": { "value": "'alert'" },
       "defaultValue": { "value": "'alert'", "computed": false }

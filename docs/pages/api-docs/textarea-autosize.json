@@ -5,11 +5,11 @@
   "props": {
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "maxRows": {
-      "type": { "name": "union", "value": [{ "name": "number" }, { "name": "string" }] },
+      "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
       "required": false
     },
     "minRows": {
-      "type": { "name": "union", "value": [{ "name": "number" }, { "name": "string" }] },
+      "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
       "required": false,
       "jsdocDefaultValue": { "value": "1" },
       "defaultValue": { "value": "1", "computed": false }

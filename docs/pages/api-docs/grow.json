@@ -3,8 +3,11 @@
   "filename": "/packages/material-ui/src/Grow/Grow.js",
   "description": "The Grow transition is used by the [Tooltip](/components/tooltips/) and\n[Popover](/components/popover/) components.\nIt uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.",
   "props": {
-    "children": { "type": { "name": "custom", "raw": "elementAcceptingRef" }, "required": false },
-    "in": { "type": { "name": "bool" }, "required": false },
+    "children": {
+      "type": { "name": "custom", "raw": "elementAcceptingRef", "description": "element" },
+      "required": false
+    },
+    "in": { "type": { "name": "bool", "description": "bool" }, "required": false },
     "onEnter": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "onEntered": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "onEntering": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
@@ -15,18 +18,7 @@
     "timeout": {
       "type": {
         "name": "union",
-        "value": [
-          { "name": "enum", "value": [{ "value": "'auto'", "computed": false }] },
-          { "name": "number" },
-          {
-            "name": "shape",
-            "value": {
-              "appear": { "name": "number", "required": false },
-              "enter": { "name": "number", "required": false },
-              "exit": { "name": "number", "required": false }
-            }
-          }
-        ]
+        "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'auto'" },

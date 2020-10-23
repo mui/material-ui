@@ -3,65 +3,58 @@
   "filename": "/packages/material-ui/src/Checkbox/Checkbox.js",
   "description": "",
   "props": {
-    "checked": { "type": { "name": "bool" }, "required": false },
+    "checked": { "type": { "name": "bool", "description": "bool" }, "required": false },
     "checkedIcon": {
-      "type": { "name": "node" },
+      "type": { "name": "node", "description": "node" },
       "required": false,
       "jsdocDefaultValue": { "value": "<CheckBoxIcon />" },
       "defaultValue": { "value": "<CheckBoxIcon />", "computed": false }
     },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
     "color": {
       "type": {
         "name": "enum",
-        "value": [
-          { "value": "'default'", "computed": false },
-          { "value": "'primary'", "computed": false },
-          { "value": "'secondary'", "computed": false }
-        ]
+        "description": "'default'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'secondary'" },
       "defaultValue": { "value": "'secondary'", "computed": false }
     },
-    "disabled": { "type": { "name": "bool" }, "required": false },
-    "disableRipple": { "type": { "name": "bool" }, "required": false },
+    "disabled": { "type": { "name": "bool", "description": "bool" }, "required": false },
+    "disableRipple": { "type": { "name": "bool", "description": "bool" }, "required": false },
     "icon": {
-      "type": { "name": "node" },
+      "type": { "name": "node", "description": "node" },
       "required": false,
       "jsdocDefaultValue": { "value": "<CheckBoxOutlineBlankIcon />" },
       "defaultValue": { "value": "<CheckBoxOutlineBlankIcon />", "computed": false }
     },
-    "id": { "type": { "name": "string" }, "required": false },
+    "id": { "type": { "name": "string", "description": "string" }, "required": false },
     "indeterminate": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "indeterminateIcon": {
-      "type": { "name": "node" },
+      "type": { "name": "node", "description": "node" },
       "required": false,
       "jsdocDefaultValue": { "value": "<IndeterminateCheckBoxIcon />" },
       "defaultValue": { "value": "<IndeterminateCheckBoxIcon />", "computed": false }
     },
-    "inputProps": { "type": { "name": "object" }, "required": false },
-    "inputRef": { "type": { "name": "custom", "raw": "refType" }, "required": false },
-    "onChange": { "type": { "name": "func" }, "required": false },
-    "required": { "type": { "name": "bool" }, "required": false },
+    "inputProps": { "type": { "name": "object", "description": "object" }, "required": false },
+    "inputRef": {
+      "type": { "name": "custom", "raw": "refType", "description": "ref" },
+      "required": false
+    },
+    "onChange": { "type": { "name": "func", "description": "func" }, "required": false },
+    "required": { "type": { "name": "bool", "description": "bool" }, "required": false },
     "size": {
-      "type": {
-        "name": "enum",
-        "value": [
-          { "value": "'medium'", "computed": false },
-          { "value": "'small'", "computed": false }
-        ]
-      },
+      "type": { "name": "enum", "description": "'medium'<br>&#124;&nbsp;'small'" },
       "required": false,
       "jsdocDefaultValue": { "value": "'medium'" },
       "defaultValue": { "value": "'medium'", "computed": false }
     },
-    "value": { "type": { "name": "any" }, "required": false }
+    "value": { "type": { "name": "any", "description": "any" }, "required": false }
   },
   "spread": true,
   "styles": {

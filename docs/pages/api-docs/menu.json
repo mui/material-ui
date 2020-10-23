@@ -4,75 +4,55 @@
   "description": "",
   "props": {
     "anchorEl": {
-      "type": {
-        "name": "union",
-        "value": [{ "name": "custom", "raw": "HTMLElementType" }, { "name": "func" }]
-      },
+      "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" },
       "required": false
     },
     "autoFocus": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "true" },
       "defaultValue": { "value": "true", "computed": false }
     },
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node", "description": "node" }, "required": false },
+    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
     "disableAutoFocusItem": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "MenuListProps": {
-      "type": { "name": "object" },
+      "type": { "name": "object", "description": "object" },
       "required": false,
       "jsdocDefaultValue": { "value": "{}" },
       "defaultValue": { "value": "{}", "computed": false }
     },
-    "onClose": { "type": { "name": "func" }, "required": false },
-    "open": { "type": { "name": "bool" }, "required": true },
+    "onClose": { "type": { "name": "func", "description": "func" }, "required": false },
+    "open": { "type": { "name": "bool", "description": "bool" }, "required": true },
     "PaperProps": {
       "type": { "name": "object" },
       "required": false,
       "description": "@ignore",
       "defaultValue": { "value": "{}", "computed": false }
     },
-    "PopoverClasses": { "type": { "name": "object" }, "required": false },
+    "PopoverClasses": { "type": { "name": "object", "description": "object" }, "required": false },
     "transitionDuration": {
       "type": {
         "name": "union",
-        "value": [
-          { "name": "enum", "value": [{ "value": "'auto'", "computed": false }] },
-          { "name": "number" },
-          {
-            "name": "shape",
-            "value": {
-              "appear": { "name": "number", "required": false },
-              "enter": { "name": "number", "required": false },
-              "exit": { "name": "number", "required": false }
-            }
-          }
-        ]
+        "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'auto'" },
       "defaultValue": { "value": "'auto'", "computed": false }
     },
     "TransitionProps": {
-      "type": { "name": "object" },
+      "type": { "name": "object", "description": "object" },
       "required": false,
       "jsdocDefaultValue": { "value": "{}" },
       "defaultValue": { "value": "{}", "computed": false }
     },
     "variant": {
-      "type": {
-        "name": "enum",
-        "value": [
-          { "value": "'menu'", "computed": false },
-          { "value": "'selectedMenu'", "computed": false }
-        ]
-      },
+      "type": { "name": "enum", "description": "'menu'<br>&#124;&nbsp;'selectedMenu'" },
       "required": false,
       "jsdocDefaultValue": { "value": "'selectedMenu'" },
       "defaultValue": { "value": "'selectedMenu'", "computed": false }

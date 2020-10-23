@@ -3,11 +3,11 @@
   "filename": "/packages/material-ui/src/StepContent/StepContent.js",
   "description": "",
   "props": {
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node", "description": "node" }, "required": false },
+    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "TransitionComponent": {
-      "type": { "name": "elementType" },
+      "type": { "name": "elementType", "description": "elementType" },
       "required": false,
       "jsdocDefaultValue": { "value": "Collapse" },
       "defaultValue": { "value": "Collapse", "computed": true }
@@ -15,24 +15,13 @@
     "transitionDuration": {
       "type": {
         "name": "union",
-        "value": [
-          { "name": "enum", "value": [{ "value": "'auto'", "computed": false }] },
-          { "name": "number" },
-          {
-            "name": "shape",
-            "value": {
-              "appear": { "name": "number", "required": false },
-              "enter": { "name": "number", "required": false },
-              "exit": { "name": "number", "required": false }
-            }
-          }
-        ]
+        "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'auto'" },
       "defaultValue": { "value": "'auto'", "computed": false }
     },
-    "TransitionProps": { "type": { "name": "object" }, "required": false }
+    "TransitionProps": { "type": { "name": "object", "description": "object" }, "required": false }
   },
   "spread": true,
   "styles": {

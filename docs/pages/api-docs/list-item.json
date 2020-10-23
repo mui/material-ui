@@ -4,25 +4,19 @@
   "description": "Uses an additional container component if `ListItemSecondaryAction` is the last child.",
   "props": {
     "alignItems": {
-      "type": {
-        "name": "enum",
-        "value": [
-          { "value": "'center'", "computed": false },
-          { "value": "'flex-start'", "computed": false }
-        ]
-      },
+      "type": { "name": "enum", "description": "'center'<br>&#124;&nbsp;'flex-start'" },
       "required": false,
       "jsdocDefaultValue": { "value": "'center'" },
       "defaultValue": { "value": "'center'", "computed": false }
     },
     "autoFocus": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "button": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
@@ -30,45 +24,49 @@
     "children": {
       "type": {
         "name": "custom",
-        "raw": "chainPropTypes(PropTypes.node, (props) => {\n  const children = React.Children.toArray(props.children);\n\n  // React.Children.toArray(props.children).findLastIndex(isListItemSecondaryAction)\n  let secondaryActionIndex = -1;\n  for (let i = children.length - 1; i >= 0; i -= 1) {\n    const child = children[i];\n    if (isMuiElement(child, ['ListItemSecondaryAction'])) {\n      secondaryActionIndex = i;\n      break;\n    }\n  }\n\n  //  is ListItemSecondaryAction the last child of ListItem\n  if (secondaryActionIndex !== -1 && secondaryActionIndex !== children.length - 1) {\n    return new Error(\n      'Material-UI: You used an element after ListItemSecondaryAction. ' +\n        'For ListItem to detect that it has a secondary action ' +\n        'you must pass it as the last child to ListItem.',\n    );\n  }\n\n  return null;\n})"
+        "raw": "chainPropTypes(PropTypes.node, (props) => {\n  const children = React.Children.toArray(props.children);\n\n  // React.Children.toArray(props.children).findLastIndex(isListItemSecondaryAction)\n  let secondaryActionIndex = -1;\n  for (let i = children.length - 1; i >= 0; i -= 1) {\n    const child = children[i];\n    if (isMuiElement(child, ['ListItemSecondaryAction'])) {\n      secondaryActionIndex = i;\n      break;\n    }\n  }\n\n  //  is ListItemSecondaryAction the last child of ListItem\n  if (secondaryActionIndex !== -1 && secondaryActionIndex !== children.length - 1) {\n    return new Error(\n      'Material-UI: You used an element after ListItemSecondaryAction. ' +\n        'For ListItem to detect that it has a secondary action ' +\n        'you must pass it as the last child to ListItem.',\n    );\n  }\n\n  return null;\n})",
+        "description": "node"
       },
       "required": false
     },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "component": { "type": { "name": "elementType" }, "required": false },
+    "component": {
+      "type": { "name": "elementType", "description": "elementType" },
+      "required": false
+    },
     "ContainerComponent": {
-      "type": { "name": "custom", "raw": "elementTypeAcceptingRef" },
+      "type": { "name": "custom", "raw": "elementTypeAcceptingRef", "description": "element type" },
       "required": false,
       "jsdocDefaultValue": { "value": "'li'" },
       "defaultValue": { "value": "'li'", "computed": false }
     },
     "ContainerProps": {
-      "type": { "name": "object" },
+      "type": { "name": "object", "description": "object" },
       "required": false,
       "jsdocDefaultValue": { "value": "{}" },
       "defaultValue": { "value": "{}", "computed": false }
     },
     "dense": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "disabled": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "disableGutters": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "divider": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
@@ -79,7 +77,7 @@
       "description": "@ignore"
     },
     "selected": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }

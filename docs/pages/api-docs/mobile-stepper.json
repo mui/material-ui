@@ -4,38 +4,33 @@
   "description": "",
   "props": {
     "activeStep": {
-      "type": { "name": "number" },
+      "type": { "name": "number", "description": "number" },
       "required": false,
       "jsdocDefaultValue": { "value": "0" },
       "defaultValue": { "value": "0", "computed": false }
     },
-    "backButton": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "backButton": { "type": { "name": "node", "description": "node" }, "required": false },
+    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "LinearProgressProps": { "type": { "name": "object" }, "required": false },
-    "nextButton": { "type": { "name": "node" }, "required": false },
+    "LinearProgressProps": {
+      "type": { "name": "object", "description": "object" },
+      "required": false
+    },
+    "nextButton": { "type": { "name": "node", "description": "node" }, "required": false },
     "position": {
       "type": {
         "name": "enum",
-        "value": [
-          { "value": "'bottom'", "computed": false },
-          { "value": "'static'", "computed": false },
-          { "value": "'top'", "computed": false }
-        ]
+        "description": "'bottom'<br>&#124;&nbsp;'static'<br>&#124;&nbsp;'top'"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'bottom'" },
       "defaultValue": { "value": "'bottom'", "computed": false }
     },
-    "steps": { "type": { "name": "number" }, "required": true },
+    "steps": { "type": { "name": "number", "description": "number" }, "required": true },
     "variant": {
       "type": {
         "name": "enum",
-        "value": [
-          { "value": "'dots'", "computed": false },
-          { "value": "'progress'", "computed": false },
-          { "value": "'text'", "computed": false }
-        ]
+        "description": "'dots'<br>&#124;&nbsp;'progress'<br>&#124;&nbsp;'text'"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'dots'" },

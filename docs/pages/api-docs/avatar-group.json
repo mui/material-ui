@@ -3,13 +3,14 @@
   "filename": "/packages/material-ui/src/AvatarGroup/AvatarGroup.js",
   "description": "",
   "props": {
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node", "description": "node" }, "required": false },
+    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "max": {
       "type": {
         "name": "custom",
-        "raw": "chainPropTypes(PropTypes.number, (props) => {\n  if (props.max < 2) {\n    throw new Error(\n      [\n        'Material-UI: The prop `max` should be equal to 2 or above.',\n        'A value below is clamped to 2.',\n      ].join('\\n'),\n    );\n  }\n})"
+        "raw": "chainPropTypes(PropTypes.number, (props) => {\n  if (props.max < 2) {\n    throw new Error(\n      [\n        'Material-UI: The prop `max` should be equal to 2 or above.',\n        'A value below is clamped to 2.',\n      ].join('\\n'),\n    );\n  }\n})",
+        "description": "number"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "5" },
@@ -18,16 +19,7 @@
     "spacing": {
       "type": {
         "name": "union",
-        "value": [
-          {
-            "name": "enum",
-            "value": [
-              { "value": "'medium'", "computed": false },
-              { "value": "'small'", "computed": false }
-            ]
-          },
-          { "name": "number" }
-        ]
+        "description": "'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;number"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'medium'" },
@@ -36,17 +28,7 @@
     "variant": {
       "type": {
         "name": "union",
-        "value": [
-          {
-            "name": "enum",
-            "value": [
-              { "value": "'circular'", "computed": false },
-              { "value": "'rounded'", "computed": false },
-              { "value": "'square'", "computed": false }
-            ]
-          },
-          { "name": "string" }
-        ]
+        "description": "'circular'<br>&#124;&nbsp;'rounded'<br>&#124;&nbsp;'square'<br>&#124;&nbsp;string"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'circular'" },

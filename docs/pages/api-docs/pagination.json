@@ -4,46 +4,42 @@
   "description": "",
   "props": {
     "boundaryCount": {
-      "type": { "name": "number" },
+      "type": { "name": "number", "description": "number" },
       "required": false,
       "jsdocDefaultValue": { "value": "1" },
       "defaultValue": { "value": "1", "computed": false }
     },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "color": {
       "type": {
         "name": "enum",
-        "value": [
-          { "value": "'primary'", "computed": false },
-          { "value": "'secondary'", "computed": false },
-          { "value": "'standard'", "computed": false }
-        ]
+        "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'standard'"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'standard'" },
       "defaultValue": { "value": "'standard'", "computed": false }
     },
     "count": {
-      "type": { "name": "number" },
+      "type": { "name": "number", "description": "number" },
       "required": false,
       "jsdocDefaultValue": { "value": "1" },
       "defaultValue": { "value": "1", "computed": false }
     },
     "defaultPage": {
-      "type": { "name": "number" },
+      "type": { "name": "number", "description": "number" },
       "required": false,
       "jsdocDefaultValue": { "value": "1" },
       "defaultValue": { "value": "1", "computed": false }
     },
     "disabled": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "getItemAriaLabel": {
-      "type": { "name": "func" },
+      "type": { "name": "func", "description": "func" },
       "required": false,
       "defaultValue": {
         "value": "function defaultGetAriaLabel(type, page, selected) {\n  if (type === 'page') {\n    return `${selected ? '' : 'Go to '}page ${page}`;\n  }\n  return `Go to ${type} page`;\n}",
@@ -51,51 +47,45 @@
       }
     },
     "hideNextButton": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "hidePrevButton": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
-    "onChange": { "type": { "name": "func" }, "required": false },
-    "page": { "type": { "name": "number" }, "required": false },
+    "onChange": { "type": { "name": "func", "description": "func" }, "required": false },
+    "page": { "type": { "name": "number", "description": "number" }, "required": false },
     "renderItem": {
-      "type": { "name": "func" },
+      "type": { "name": "func", "description": "func" },
       "required": false,
       "jsdocDefaultValue": { "value": "(item) => <PaginationItem {...item} />" },
       "defaultValue": { "value": "(item) => <PaginationItem {...item} />", "computed": false }
     },
     "shape": {
-      "type": {
-        "name": "enum",
-        "value": [
-          { "value": "'circular'", "computed": false },
-          { "value": "'rounded'", "computed": false }
-        ]
-      },
+      "type": { "name": "enum", "description": "'circular'<br>&#124;&nbsp;'rounded'" },
       "required": false,
       "jsdocDefaultValue": { "value": "'circular'" },
       "defaultValue": { "value": "'circular'", "computed": false }
     },
     "showFirstButton": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "showLastButton": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
     "siblingCount": {
-      "type": { "name": "number" },
+      "type": { "name": "number", "description": "number" },
       "required": false,
       "jsdocDefaultValue": { "value": "1" },
       "defaultValue": { "value": "1", "computed": false }
@@ -103,11 +93,7 @@
     "size": {
       "type": {
         "name": "enum",
-        "value": [
-          { "value": "'large'", "computed": false },
-          { "value": "'medium'", "computed": false },
-          { "value": "'small'", "computed": false }
-        ]
+        "description": "'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'medium'" },
@@ -116,16 +102,7 @@
     "variant": {
       "type": {
         "name": "union",
-        "value": [
-          {
-            "name": "enum",
-            "value": [
-              { "value": "'outlined'", "computed": false },
-              { "value": "'text'", "computed": false }
-            ]
-          },
-          { "name": "string" }
-        ]
+        "description": "'outlined'<br>&#124;&nbsp;'text'<br>&#124;&nbsp;string"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'text'" },

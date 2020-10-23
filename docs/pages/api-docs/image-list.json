@@ -3,34 +3,28 @@
   "filename": "/packages/material-ui/src/ImageList/ImageList.js",
   "description": "",
   "props": {
-    "children": { "type": { "name": "node" }, "required": true },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node", "description": "node" }, "required": true },
+    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "cols": {
-      "type": { "name": "number" },
+      "type": { "name": "number", "description": "number" },
       "required": false,
       "jsdocDefaultValue": { "value": "2" },
       "defaultValue": { "value": "2", "computed": false }
     },
     "component": {
-      "type": { "name": "elementType" },
+      "type": { "name": "elementType", "description": "elementType" },
       "required": false,
       "defaultValue": { "value": "'ul'", "computed": false }
     },
     "gap": {
-      "type": { "name": "number" },
+      "type": { "name": "number", "description": "number" },
       "required": false,
       "jsdocDefaultValue": { "value": "4" },
       "defaultValue": { "value": "4", "computed": false }
     },
     "rowHeight": {
-      "type": {
-        "name": "union",
-        "value": [
-          { "name": "enum", "value": [{ "value": "'auto'", "computed": false }] },
-          { "name": "number" }
-        ]
-      },
+      "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number" },
       "required": false,
       "jsdocDefaultValue": { "value": "'auto'" },
       "defaultValue": { "value": "'auto'", "computed": false }
@@ -39,18 +33,7 @@
     "variant": {
       "type": {
         "name": "union",
-        "value": [
-          {
-            "name": "enum",
-            "value": [
-              { "value": "'masonry'", "computed": false },
-              { "value": "'quilted'", "computed": false },
-              { "value": "'standard'", "computed": false },
-              { "value": "'woven'", "computed": false }
-            ]
-          },
-          { "name": "string" }
-        ]
+        "description": "'masonry'<br>&#124;&nbsp;'quilted'<br>&#124;&nbsp;'standard'<br>&#124;&nbsp;'woven'<br>&#124;&nbsp;string"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'standard'" },

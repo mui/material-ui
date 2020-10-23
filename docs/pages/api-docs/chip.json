@@ -3,46 +3,42 @@
   "filename": "/packages/material-ui/src/Chip/Chip.js",
   "description": "Chips represent complex entities in small blocks, such as a contact.",
   "props": {
-    "avatar": { "type": { "name": "element" }, "required": false },
-    "children": { "type": { "name": "custom", "raw": "unsupportedProp" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "avatar": { "type": { "name": "element", "description": "element" }, "required": false },
+    "children": {
+      "type": { "name": "custom", "raw": "unsupportedProp", "description": "unsupportedProp" },
+      "required": false
+    },
+    "classes": { "type": { "name": "object", "description": "object" }, "required": false },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "clickable": { "type": { "name": "bool" }, "required": false },
+    "clickable": { "type": { "name": "bool", "description": "bool" }, "required": false },
     "color": {
       "type": {
         "name": "enum",
-        "value": [
-          { "value": "'default'", "computed": false },
-          { "value": "'primary'", "computed": false },
-          { "value": "'secondary'", "computed": false }
-        ]
+        "description": "'default'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'default'" },
       "defaultValue": { "value": "'default'", "computed": false }
     },
-    "component": { "type": { "name": "elementType" }, "required": false },
-    "deleteIcon": { "type": { "name": "element" }, "required": false },
+    "component": {
+      "type": { "name": "elementType", "description": "elementType" },
+      "required": false
+    },
+    "deleteIcon": { "type": { "name": "element", "description": "element" }, "required": false },
     "disabled": {
-      "type": { "name": "bool" },
+      "type": { "name": "bool", "description": "bool" },
       "required": false,
       "jsdocDefaultValue": { "value": "false" },
       "defaultValue": { "value": "false", "computed": false }
     },
-    "icon": { "type": { "name": "element" }, "required": false },
-    "label": { "type": { "name": "node" }, "required": false },
+    "icon": { "type": { "name": "element", "description": "element" }, "required": false },
+    "label": { "type": { "name": "node", "description": "node" }, "required": false },
     "onClick": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
-    "onDelete": { "type": { "name": "func" }, "required": false },
+    "onDelete": { "type": { "name": "func", "description": "func" }, "required": false },
     "onKeyDown": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "onKeyUp": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "size": {
-      "type": {
-        "name": "enum",
-        "value": [
-          { "value": "'medium'", "computed": false },
-          { "value": "'small'", "computed": false }
-        ]
-      },
+      "type": { "name": "enum", "description": "'medium'<br>&#124;&nbsp;'small'" },
       "required": false,
       "jsdocDefaultValue": { "value": "'medium'" },
       "defaultValue": { "value": "'medium'", "computed": false }
@@ -50,16 +46,7 @@
     "variant": {
       "type": {
         "name": "union",
-        "value": [
-          {
-            "name": "enum",
-            "value": [
-              { "value": "'filled'", "computed": false },
-              { "value": "'outlined'", "computed": false }
-            ]
-          },
-          { "name": "string" }
-        ]
+        "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;string"
       },
       "required": false,
       "jsdocDefaultValue": { "value": "'filled'" },
