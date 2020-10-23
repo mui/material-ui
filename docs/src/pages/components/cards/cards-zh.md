@@ -45,6 +45,16 @@ materialDesign: https://material.io/components/cards
 
 > ⚠️ 当 `component="img"` 时，CardMedia 通过 `object-fit` 来居中图像。 这个用法不兼容 IE11。
 
+## Primary action
+
+Often a card allow users to interact with the entirety of its surface to trigger its main action, be it an expansion, a link to another screen or some other behavior. The action area of the card can be specified by wrapping its contents in a `CardActionArea` component.
+
+{{"demo": "pages/components/cards/ActionAreaCard.js", "bg": true}}
+
+A card can also offer supplemental actions which should stand detached from the main action area in order to avoid event overlap.
+
+{{"demo": "pages/components/cards/MultiActionAreaCard.js", "bg": true}}
+
 ## UI 控件
 
 卡片内部的一些补充操作可使用图标、文本和 UI 控件显式调用，我们通常将其放在卡片组件的底部。
