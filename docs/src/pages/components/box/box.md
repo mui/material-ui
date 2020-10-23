@@ -16,6 +16,12 @@ It's created using the `experimentalStyled()` function of `@material-ui/core/sty
 
 [The palette](/system/palette/) style function.
 
+## The sx prop
+
+All system properties, are available via the `sx` prop. This property allows you to specify any CSS rules you may need, in addition to the ones already available as part of the system. Here is an example of how you can use it:
+
+{{"demo": "pages/components/box/BoxSx.js", "defaultCodeOpen": true }}
+
 ## Overriding Material-UI components
 
 The Box component wraps your component.
@@ -28,7 +34,7 @@ This works great when the changes can be isolated to a new DOM element.
 For instance, you can change the margin this way.
 
 However, sometimes you have to target the underlying DOM element.
-For instance, you want to change the border of the button.
+For instance, you want to change the border of the Button.
 The Button component defines its own styles. CSS inheritance doesn't help.
 To workaround the problem, you have two options:
 
@@ -46,12 +52,6 @@ The Box children accepts a render props function. You can pull out the `classNam
 
 > ⚠️ The CSS specificity relies on the import order.
 > If you want the guarantee that the wrapped component's style will be overridden, you need to import the Box last.
-
-## The sx prop
-
-All system props, are available via the `sx` prop. This property allows you to specify any CSS rules you may need, in addition to the ones already available as part of the system. Here is an example of how you can use it:
-
-{{"demo": "pages/components/box/BoxSx.js", "defaultCodeOpen": true }}
 
 ## API
 
