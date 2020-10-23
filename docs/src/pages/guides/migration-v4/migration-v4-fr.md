@@ -358,6 +358,24 @@ const classes = makeStyles(theme => ({
   />
   ```
 
+- [withMobileDialog] Remove this higher-order component. The hook API allows a simpler and more flexible solution:
+
+  ```diff
+  -import withMobileDialog from '@material-ui/core/withMobileDialog';
+  +import { useTheme, useMediaQuery } from '@material-ui/core';
+
+  function ResponsiveDialog(props) {
+  - const { fullScreen } = props;
+  + const theme = useTheme();
+  + const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+    const [open, setOpen] = React.useState(false);
+
+  // ...
+
+  -export default withMobileDialog()(ResponsiveDialog);
+  +export default ResponsiveDialog;
+  ```
+
 ### Divider
 
 - Use border instead of background color. It prevents inconsistent height on scaled screens. For people customizing the color of the border, the change requires changing the override CSS property:
@@ -559,6 +577,31 @@ const classes = makeStyles(theme => ({
   +  }}
   />
   ```
+
+### Popper
+
+- Upgrade [Popper.js](https://github.com/popperjs/popper-core) from v1 to v2. This third-party library has introduced a lot of changes.<br /> You can read [their migration guide](https://popper.js.org/docs/v2/migration-guide/) or the following summary:
+
+  - The CSS prefixes have changed:
+    ```diff
+    popper: {
+      zIndex: 1,
+    - '&[x-placement*="bottom"] $arrow': {
+    + '&[data-popper-placement*="bottom"] $arrow': {
+    ```
+  - Method names have changed.
+
+    ```diff
+    -popperRef.current.scheduleUpdate()
+    +popperRef.current.update()
+    ```
+
+    ```diff
+    -popperRef.current.update()
+    +popperRef.current.forceUpdate()
+    ```
+
+  - Modifiers' API has changed a lot. There are too many changes to be covered here.
 
 ### Portal
 
