@@ -19,11 +19,7 @@ The Box component packages [all the style functions](/system/basics/#all-inclusi
 
 Box компонент оборачивает ваш компонент. Он создает новый DOM элемент, это `<div>` по умолчанию, хотя это можно изменить свойством `component`. Например если вы хотите использовать`<span>` взамен:
 
-```jsx
-<Box component="span" m={1}>
-  <Button />
-</Box>
-```
+{{"demo": "pages/components/box/BoxComponent.js", "defaultCodeOpen": true }}
 
 Это работает превосходно когда изменения могут быть изолированы в новый DOM элемент. Для сущности, вы можете изменить margin(внешний отступ) таким образом.
 
@@ -33,23 +29,21 @@ Box компонент оборачивает ваш компонент. Он с
 
 Компонент Box имеет свойство `clone`, которое позволяет использовать метод clone element из React.
 
-```jsx
-<Box color="text.primary" clone>
-  <Button />
-</Box>
-```
+{{"demo": "pages/components/box/BoxClone.js", "defaultCodeOpen": true }}
 
 2. Используйте render свойства
 
 The Box children accepts a render props function. You can pull out the `className`.
 
-```jsx
-<Box color="text.primary">
-  {props => <Button {...props} />}
-</Box>
-```
+{{"demo": "pages/components/box/BoxRenderProps.js", "defaultCodeOpen": true }}
 
 > ⚠️ The CSS specificity relies on the import order. If you want the guarantee that the wrapped component's style will be overridden, you need to import the Box last.
+
+## The sx prop
+
+Sometimes, the props on the Box component are not enough to style the component. To solve this, `Box` supports the `sx` prop. This allows you to specify any CSS rules you want, in addition to the ones already available using system props. Here is an example of how you can use it:
+
+{{"demo": "pages/components/box/BoxSx.js", "defaultCodeOpen": true }}
 
 ## API
 
