@@ -28,7 +28,7 @@ function valuetext(value: number) {
 
 export default function DiscreteSlider() {
   return (
-    <Box width={300}>
+    <Box sx={{ width: 300 }}>
       <Typography id="discrete-slider-always" gutterBottom>
         Always visible
       </Typography>

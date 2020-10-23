@@ -35,7 +35,7 @@ function valuetext(value) {
 
 export default function TrackInvertedSlider() {
   return (
-    <Box width={250}>
+    <Box sx={{ width: 250 }}>
       <Typography id="track-inverted-slider" gutterBottom>
         Inverted track
       </Typography>

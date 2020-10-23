@@ -31,7 +31,7 @@ export default function InputSlider() {
   };
 
   return (
-    <Box width={250}>
+    <Box sx={{ width: 250 }}>
       <Typography id="input-slider" gutterBottom>
         Volume
       </Typography>
