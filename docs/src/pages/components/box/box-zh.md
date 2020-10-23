@@ -19,11 +19,7 @@ githubLabel: 'component: Box'
 
 Box 组件能够封装您的组件。 它创建了一个新的 DOM 元素，默认情况下为 `<div>`，并可以通过 `组件` 的属性进行更改。 假设反之你想使用一个 `<span>`：
 
-```jsx
-<Box component="span" m={1}>
-  <Button />
-</Box>
-```
+{{"demo": "pages/components/box/BoxComponent.js", "defaultCodeOpen": true }}
 
 当所需的更改与新的 DOM 元素分开时比较有效。 例如，您可以使用这个方法来更改边距。
 
@@ -33,21 +29,21 @@ Box 组件能够封装您的组件。 它创建了一个新的 DOM 元素，默�
 
 Box 组件有一个 `clone` 的属性，通过它您可以使用 React 克隆元素的方法。
 
-```jsx
-<Box color="text.primary" clone>
-  <Button />
-</Box>
-```
+{{"demo": "pages/components/box/BoxClone.js", "defaultCodeOpen": true }}
 
 2. 使用 render props
 
 您可以在 Box 的子组件中使用 render props 的函数。 您可以不用 `className`。
 
-```jsx
-<Box color="text.primary">{(props) => <Button {...props} />}</Box>
-```
+{{"demo": "pages/components/box/BoxRenderProps.js", "defaultCodeOpen": true }}
 
 > ⚠️CSS 的优先级依赖于导入的顺序。 如果您希望确保覆写包装组件的样式，则需要在最后才导入 Box。
+
+## The sx prop
+
+Sometimes, the props on the Box component are not enough to style the component. To solve this, `Box` supports the `sx` prop. This allows you to specify any CSS rules you want, in addition to the ones already available using system props. Here is an example of how you can use it:
+
+{{"demo": "pages/components/box/BoxSx.js", "defaultCodeOpen": true }}
 
 ## API
 
