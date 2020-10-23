@@ -32,7 +32,7 @@ export default function VerticalSlider() {
       <Typography id="vertical-slider" gutterBottom>
         Temperature
       </Typography>
-      <Box height={300}>
+      <Box sx={{ height: 300 }}>
         <Slider
           orientation="vertical"
           getAriaValueText={valuetext}

@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function FakedReferencePopper() {
+export default function VirtualElementPopper() {
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState<PopperProps['anchorEl']>(null);
   const classes = useStyles();
@@ -36,13 +36,11 @@ export default function FakedReferencePopper() {
 
     setOpen(true);
     setAnchorEl({
-      clientWidth: getBoundingClientRect().width,
-      clientHeight: getBoundingClientRect().height,
       getBoundingClientRect,
     });
   };
 
-  const id = open ? 'faked-reference-popper' : undefined;
+  const id = open ? 'virtual-element-popper' : undefined;
 
   return (
     <div onMouseLeave={handleClose}>

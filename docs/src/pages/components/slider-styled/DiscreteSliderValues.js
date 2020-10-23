@@ -32,7 +32,7 @@ function valueLabelFormat(value) {
 
 export default function DiscreteSlider() {
   return (
-    <Box width={300}>
+    <Box sx={{ width: 300 }}>
       <Typography id="discrete-slider-restrict" gutterBottom>
         Restricted values
       </Typography>

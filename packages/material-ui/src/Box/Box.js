@@ -1,36 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import {
-  borders,
-  compose,
-  display,
-  flexbox,
-  grid,
-  palette,
-  positions,
-  shadows,
-  sizing,
-  spacing,
-  typography,
-  css,
-} from '@material-ui/system';
 import clsx from 'clsx';
+import styleFunction from './styleFunction';
 import styled from '../styles/experimentalStyled';
-
-export const styleFunction = css(
-  compose(
-    borders,
-    display,
-    flexbox,
-    grid,
-    positions,
-    palette,
-    shadows,
-    sizing,
-    spacing,
-    typography,
-  ),
-);
 
 function omit(input, fields) {
   const output = {};
@@ -71,7 +43,7 @@ const BoxRoot = React.forwardRef(function StyledComponent(props, ref) {
 });
 
 BoxRoot.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
   className: PropTypes.string,
   clone: PropTypes.bool,
   component: PropTypes.elementType,

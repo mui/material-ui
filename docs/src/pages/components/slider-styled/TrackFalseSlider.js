@@ -35,7 +35,7 @@ function valuetext(value) {
 
 export default function TrackFalseSlider() {
   return (
-    <Box width={250}>
+    <Box sx={{ width: 250 }}>
       <Typography id="track-false-slider" gutterBottom>
         Removed track
       </Typography>

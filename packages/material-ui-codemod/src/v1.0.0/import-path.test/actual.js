@@ -15,7 +15,6 @@ import List, {
 } from '@material-ui/core/List';
 import Dialog, { DialogTitle } from '@material-ui/core/Dialog';
 import {
-  withMobileDialog,
   DialogActions,
   DialogContent,
   DialogContentText,

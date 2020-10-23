@@ -4,7 +4,6 @@ import { spy, useFakeTimers } from 'sinon';
 import PropTypes from 'prop-types';
 import { createMount, describeConformance, act, createClientRender, fireEvent } from 'test/utils';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import PopperJs from 'popper.js';
 import Grow from '../Grow';
 import Popper from './Popper';
 
@@ -93,10 +92,10 @@ describe('<Popper />', () => {
       });
     });
 
-    it('should flip placement when edge is reached', () => {
+    it('should flip placement when edge is reached', async () => {
       const renderSpy = spy();
       const popperRef = React.createRef();
-      const { unmount } = render(
+      render(
         <ThemeProvider theme={rtlTheme}>
           <Popper popperRef={popperRef} {...defaultProps} placement="bottom">
             {({ placement }) => {
@@ -108,17 +107,17 @@ describe('<Popper />', () => {
         </ThemeProvider>,
       );
       expect(renderSpy.args).to.deep.equal([['bottom'], ['bottom']]);
-
-      act(() => {
-        popperRef.current.options.onUpdate({
-          placement: 'top',
-        });
+      await act(() => {
+        return popperRef.current.setOptions({ placement: 'top' });
       });
-
-      expect(renderSpy.args).to.deep.equal([['bottom'], ['bottom'], ['top'], ['top']]);
-
-      // FIXME: Unclear why we need this to fix "missing act()"-warning
-      unmount();
+      expect(renderSpy.args).to.deep.equal([
+        ['bottom'],
+        ['bottom'],
+        ['top'],
+        ['top'],
+        ['top'],
+        ['top'],
+      ]);
     });
   });
 
@@ -141,16 +140,19 @@ describe('<Popper />', () => {
   });
 
   describe('prop: popperOptions', () => {
-    it('should pass all popperOptions to popperjs', (done) => {
-      const popperOptions = {
-        onCreate: (data) => {
-          data.instance.update({ placement: 'left' });
+    it('should pass all popperOptions to popperjs', () => {
+      const popperRef = React.createRef();
+      const { setProps } = render(
+        <Popper {...defaultProps} popperRef={popperRef} placement="top" open />,
+      );
+
+      setProps({
+        popperOptions: {
+          placement: 'bottom',
         },
-        onUpdate: () => {
-          done();
-        },
-      };
-      render(<Popper {...defaultProps} popperOptions={popperOptions} placement="top" open />);
+      });
+
+      expect(popperRef.current.state.placement).to.equal('bottom');
     });
   });
 
@@ -241,12 +243,12 @@ describe('<Popper />', () => {
       const ref1 = React.createRef();
       const ref2 = React.createRef();
       const { setProps } = render(<Popper {...defaultProps} popperRef={ref1} />);
-      expect(ref1.current instanceof PopperJs).to.equal(true);
+      expect(ref1.current).not.to.equal(null);
       setProps({
         popperRef: ref2,
       });
       expect(ref1.current).to.equal(null);
-      expect(ref2.current instanceof PopperJs).to.equal(true);
+      expect(ref2.current).not.to.equal(null);
     });
   });
 
@@ -259,20 +261,16 @@ describe('<Popper />', () => {
       // renders
       expect(getByRole('tooltip')).to.not.equal(null);
       // correctly sets modifiers
-      expect(popperRef.current.options.modifiers.preventOverflow.boundariesElement).to.equal(
-        'scrollParent',
-      );
+      expect(popperRef.current.state.options.modifiers[0].options.altBoundary).to.equal(true);
     });
 
-    it('sets preventOverflow to viewport when disablePortal is false', () => {
+    it('sets preventOverflow altBoundary to false when disablePortal is false', () => {
       const popperRef = React.createRef();
       const { getByRole } = render(<Popper {...defaultProps} popperRef={popperRef} />);
       // renders
       expect(getByRole('tooltip')).to.not.equal(null);
       // correctly sets modifiers
-      expect(popperRef.current.options.modifiers.preventOverflow.boundariesElement).to.equal(
-        'viewport',
-      );
+      expect(popperRef.current.state.options.modifiers[0].options.altBoundary).to.equal(false);
     });
   });
 

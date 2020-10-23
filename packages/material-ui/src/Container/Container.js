@@ -38,7 +38,7 @@ export const styles = (theme) => ({
   /* Styles applied to the root element if `maxWidth="xs"`. */
   maxWidthXs: {
     [theme.breakpoints.up('xs')]: {
-      maxWidth: Math.max(`${theme.breakpoints.values.xs}${theme.breakpoints.unit}`, 444),
+      maxWidth: Math.max(theme.breakpoints.values.xs, 444),
     },
   },
   /* Styles applied to the root element if `maxWidth="sm"`. */

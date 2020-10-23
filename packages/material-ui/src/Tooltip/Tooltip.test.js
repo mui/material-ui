@@ -83,10 +83,6 @@ describe('<Tooltip />', () => {
     );
 
     expect(getByRole('tooltip')).to.have.class(classes.popper);
-
-    // TODO: Unclear why not running triggers microtasks but runAll does not trigger microtasks
-    // can be removed once Popper#update is sync
-    clock.runAll();
   });
 
   describe('prop: disableHoverListener', () => {
@@ -112,10 +108,6 @@ describe('<Tooltip />', () => {
       );
 
       expect(getByRole('tooltip')).toBeVisible();
-
-      // TODO: Unclear why not running triggers microtasks but runAll does not trigger microtasks
-      // can be removed once Popper#update is sync
-      clock.runAll();
     });
 
     it('should not display if the title is an empty string', () => {
@@ -163,9 +155,6 @@ describe('<Tooltip />', () => {
       const target = screen.getByTestId('target');
       expect(target).toHaveAccessibleName('the title');
       expect(target).not.to.have.attribute('title');
-
-      // TODO: can be removed with popper@2.x
-      clock.runAll();
     });
 
     it('should label the child when open with an exotic title', () => {
@@ -178,9 +167,6 @@ describe('<Tooltip />', () => {
       const target = screen.getByTestId('target');
       expect(target).toHaveAccessibleName('the title');
       expect(target).not.to.have.attribute('title');
-
-      // TODO: can be removed with popper@2.x
-      clock.runAll();
     });
 
     it('can describe the child when closed', () => {
@@ -226,9 +212,6 @@ describe('<Tooltip />', () => {
       expect(target).toHaveAccessibleName('the label');
       expect(target).toHaveAccessibleDescription('the title');
       expect(target).not.to.have.attribute('title');
-
-      // TODO: can be removed with popper@2.x
-      clock.runAll();
     });
 
     it('can describe the child when open with an exotic title', () => {
@@ -244,9 +227,6 @@ describe('<Tooltip />', () => {
       expect(target).toHaveAccessibleName('the label');
       expect(target).toHaveAccessibleDescription('the title');
       expect(target).not.to.have.attribute('title');
-
-      // TODO: can be removed with popper@2.x
-      clock.runAll();
     });
   });
 
@@ -341,11 +321,6 @@ describe('<Tooltip />', () => {
     });
 
     expect(eventLog).to.deep.equal(['mouseover', 'open', 'mouseleave', 'close']);
-
-    // TODO: Can be removed once Popper#update is sync.
-    act(() => {
-      clock.runAll();
-    });
   });
 
   it('is dismissable by pressing Escape', () => {
@@ -448,10 +423,6 @@ describe('<Tooltip />', () => {
           </button>
         </Tooltip>,
       );
-
-      // TODO: Unclear why not running triggers microtasks but runAll does not trigger microtasks
-      // can be removed once Popper#update is sync
-      clock.runAll();
     });
 
     it('should handle autoFocus + onFocus forwarding', () => {
@@ -473,10 +444,6 @@ describe('<Tooltip />', () => {
       });
 
       expect(getByRole('tooltip')).toBeVisible();
-
-      // TODO: Unclear why not running triggers microtasks but runAll does not trigger microtasks
-      // can be removed once Popper#update is sync
-      clock.runAll();
     });
   });
 
@@ -499,10 +466,6 @@ describe('<Tooltip />', () => {
       });
 
       expect(getByRole('tooltip')).toBeVisible();
-
-      // TOD: Unclear why not running triggers microtasks but runAll does not trigger microtasks
-      // can be removed once Popper#update is sync
-      clock.runAll();
     });
 
     it('should use hysteresis with the enterDelay', () => {
@@ -551,10 +514,6 @@ describe('<Tooltip />', () => {
       });
 
       expect(getByRole('tooltip')).toBeVisible();
-
-      // TOD: Unclear why not running triggers microtasks but runAll does not trigger microtasks
-      // can be removed once Popper#update is sync
-      clock.runAll();
     });
 
     it('should take the leaveDelay into account', () => {
@@ -663,10 +622,6 @@ describe('<Tooltip />', () => {
       fireEvent.mouseOver(getByRole('tooltip'));
 
       expect(handleMouseOver.callCount).to.equal(0);
-
-      // TOD: Unclear why not running triggers microtasks but runAll does not trigger microtasks
-      // can be removed once Popper#update is sync
-      clock.runAll();
     });
   });
 
@@ -681,10 +636,6 @@ describe('<Tooltip />', () => {
           </Tooltip>,
         );
       }).not.toErrorDev();
-
-      // TOD: Unclear why not running triggers microtasks but runAll does not trigger microtasks
-      // can be removed once Popper#update is sync
-      clock.runAll();
     });
 
     it('should raise a warning when we are uncontrolled and can not listen to events', () => {
@@ -711,10 +662,6 @@ describe('<Tooltip />', () => {
           </Tooltip>,
         );
       }).not.toErrorDev();
-
-      // TOD: Unclear why not running triggers microtasks but runAll does not trigger microtasks
-      // can be removed once Popper#update is sync
-      clock.runAll();
     });
   });
 
@@ -793,10 +740,6 @@ describe('<Tooltip />', () => {
       );
 
       expect(getByTestId('popper')).not.to.equal(null);
-
-      // TOD: Unclear why not running triggers microtasks but runAll does not trigger microtasks
-      // can be removed once Popper#update is sync
-      clock.runAll();
     });
 
     it('should merge popperOptions with arrow modifier', () => {
@@ -809,11 +752,14 @@ describe('<Tooltip />', () => {
           PopperProps={{
             popperRef,
             popperOptions: {
-              modifiers: {
-                arrow: {
-                  foo: 'bar',
+              modifiers: [
+                {
+                  name: 'arrow',
+                  options: {
+                    foo: 'bar',
+                  },
                 },
-              },
+              ],
             },
           }}
         >
@@ -822,11 +768,12 @@ describe('<Tooltip />', () => {
           </button>
         </Tooltip>,
       );
-      expect(popperRef.current.modifiers.find((x) => x.name === 'arrow').foo).to.equal('bar');
-
-      // TOD: Unclear why not running triggers microtasks but runAll does not trigger microtasks
-      // can be removed once Popper#update is sync
-      clock.runAll();
+      expect(
+        popperRef.current.state.orderedModifiers.find((x) => x.name === 'arrow').options.foo,
+      ).to.equal('bar');
+      expect(
+        popperRef.current.state.orderedModifiers.find((x) => x.name === 'arrow').enabled,
+      ).to.equal(true);
     });
   });
 
@@ -886,11 +833,6 @@ describe('<Tooltip />', () => {
 
       expect(getByRole('tooltip')).toBeVisible();
       expect(eventLog).to.deep.equal(['focus', 'open']);
-
-      // TODO: Can be removed once Popper#update is sync.
-      act(() => {
-        clock.runAll();
-      });
     });
 
     it('closes on blur', () => {
@@ -918,11 +860,6 @@ describe('<Tooltip />', () => {
 
       expect(getByRole('tooltip')).toBeVisible();
       expect(eventLog).to.deep.equal(['blur', 'close']);
-
-      // TODO: Can be removed once Popper#update is sync.
-      act(() => {
-        clock.runAll();
-      });
     });
 
     // https://github.com/mui-org/material-ui/issues/19883
@@ -987,7 +924,7 @@ describe('<Tooltip />', () => {
     });
   });
 
-  it('should use the same popper.js instance between two renders', () => {
+  it('should use the same Popper.js instance between two renders', () => {
     const popperRef = React.createRef();
     const { forceUpdate } = render(
       <Tooltip
@@ -1030,13 +967,20 @@ describe('<Tooltip />', () => {
         this.skip();
       }
 
-      const x = 5;
-      const y = 10;
-
       // Avoid mock of raf
       clock.restore();
+
+      const x = 50;
+      const y = 10;
+
       render(
-        <Tooltip title="Hello World" open followCursor PopperProps={{ 'data-testid': 'popper' }}>
+        <Tooltip
+          title="Hello World"
+          placement="bottom-end"
+          open
+          followCursor
+          PopperProps={{ 'data-testid': 'popper' }}
+        >
           <button data-testid="target" type="submit">
             Hello World
           </button>
@@ -1050,12 +994,23 @@ describe('<Tooltip />', () => {
         clientY: y,
       });
 
-      // Wait for the scheduleUpdate() call to resolve.
+      // Wait for the popperRef.current.update() call to resolve.
       await raf();
 
       expect(tooltipElement).toBeVisible();
-      expect(tooltipElement.getBoundingClientRect()).to.have.property('top', y);
-      expect(tooltipElement.getBoundingClientRect()).to.have.property('left', x);
+
+      // Layer acceleration can disable subpixel rendering which causes slightly
+      // blurry text on low PPI displays, so we want to use 2D transforms
+      // instead
+      if ((window.devicePixelRatio || 1) < 2) {
+        expect(tooltipElement).to.have.toHaveInlineStyle({
+          transform: `translate(${x}px, ${y}px)`,
+        });
+      } else {
+        expect(tooltipElement).to.have.toHaveInlineStyle({
+          transform: `translate3d(${x}px, ${y}px, 0px)`,
+        });
+      }
     });
   });
 });
