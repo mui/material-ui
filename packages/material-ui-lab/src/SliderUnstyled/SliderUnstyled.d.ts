@@ -1,4 +1,4 @@
-import { OverridableComponent } from '@material-ui/core/OverridableComponent';
+import { OverridableComponent, OverridableTypeMap } from '@material-ui/core/OverridableComponent';
 
 export interface Mark {
   value: number;
@@ -194,6 +194,18 @@ export interface SliderTypeMap<P = {}, D extends React.ElementType = 'span'> {
   };
   defaultComponent: D;
 }
+
+/**
+ * Utility to create component types that inherit props from SliderUnstyled.
+ */
+export interface ExtendSliderUnstyledTypeMap<M extends OverridableTypeMap> {
+  props: M['props'] & Omit<SliderTypeMap['props'], 'classes'>;
+  defaultComponent: M['defaultComponent'];
+}
+
+export type ExtendSliderUnstyled<M extends OverridableTypeMap> = OverridableComponent<
+  ExtendSliderUnstyledTypeMap<M>
+>;
 
 /**
  *

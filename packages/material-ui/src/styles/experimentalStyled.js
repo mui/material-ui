@@ -1,5 +1,6 @@
 import styled from '@material-ui/styled-engine';
 import { propsToClassKey } from '@material-ui/styles';
+import { styleFunctionSx } from '../Box/styleFunction';
 import defaultTheme from './defaultTheme';
 
 function isEmpty(obj) {
@@ -58,7 +59,7 @@ const variantsResolver = (props, styles, theme, name) => {
   return variantsStyles;
 };
 
-const shouldForwardProp = (prop) => prop !== 'styleProps' && prop !== 'theme';
+const shouldForwardProp = (prop) => prop !== 'styleProps' && prop !== 'theme' && prop !== 'sx';
 
 const experimentalStyled = (tag, options, muiOptions = {}) => {
   const name = muiOptions.muiName;
@@ -85,7 +86,12 @@ const experimentalStyled = (tag, options, muiOptions = {}) => {
       });
     }
 
-    return defaultStyledResolver(...stylesWithDefaultTheme);
+    stylesWithDefaultTheme.push((props) => {
+      const theme = isEmpty(props.theme) ? defaultTheme : props.theme;
+      return styleFunctionSx(props.sx, theme);
+    });
+
+    return defaultStyledResolver(stylesWithDefaultTheme);
   };
   return muiStyledResolver;
 };
