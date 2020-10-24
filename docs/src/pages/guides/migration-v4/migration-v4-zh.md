@@ -358,7 +358,7 @@ const classes = makeStyles(theme => ({
   />
   ```
 
-- [withMobileDialog] Remove this higher-order component. The hook API allows a simpler and more flexible solution:
+- [withMobileDialog] 此高阶组件已被删除。 Hook API 提供了一个更简单且灵活的方案：
 
   ```diff
   -import withMobileDialog from '@material-ui/core/withMobileDialog';
@@ -580,16 +580,16 @@ const classes = makeStyles(theme => ({
 
 ### Popper
 
-- Upgrade [Popper.js](https://github.com/popperjs/popper-core) from v1 to v2. This third-party library has introduced a lot of changes.<br /> You can read [their migration guide](https://popper.js.org/docs/v2/migration-guide/) or the following summary:
+- 我们将 [Popper.js](https://github.com/popperjs/popper-core) 从 v1 升级到 v2。 这个第三方库的升级引入了很多变化。<br /> 你可以阅读 [他们的迁移指南](https://popper.js.org/docs/v2/migration-guide/) 或参考以下摘要：
 
-  - The CSS prefixes have changed:
+  - CSS 前缀已更改：
     ```diff
     popper: {
       zIndex: 1,
     - '&[x-placement*="bottom"] $arrow': {
     + '&[data-popper-placement*="bottom"] $arrow': {
     ```
-  - Method names have changed.
+  - 方法名已改变。
 
     ```diff
     -popperRef.current.scheduleUpdate()
@@ -601,7 +601,7 @@ const classes = makeStyles(theme => ({
     +popperRef.current.forceUpdate()
     ```
 
-  - Modifiers' API has changed a lot. There are too many changes to be covered here.
+  - Modifiers' API has changed a lot. 这其中有太多的内容不能涵盖说明。
 
 ### Portal
 
