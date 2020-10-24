@@ -78,7 +78,7 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
   const scrollbarSize = getScrollbarSize(ownerDocument(container));
   const lg = 1280;
   const clientWidth = ownerDocument(container).documentElement.clientWidth;
-  const epilepsyZone =  isSafari() && lg >= clientWidth && clientWidth >= (lg - scrollbarSize);
+  const epilepsyZone = isSafari() && lg >= clientWidth && clientWidth >= lg - scrollbarSize;
   if (!props.disableScrollLock && !epilepsyZone) {
     if (isOverflowing(container)) {
       restoreStyle.push({
