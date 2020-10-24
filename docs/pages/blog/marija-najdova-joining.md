@@ -3,6 +3,7 @@ title: Marija Najdova joins Material-UI
 description: We are excited to share that Marija Najdova has joined Material-UI. She has started this week full-time and is now part of the community team.
 date: 2020-09-15T00:00:00.000Z
 authors: ['oliviertassinari']
+card: true
 ---
 
 We are excited to share that [Marija Najdova](https://twitter.com/marijanajdova) has joined Material-UI. She has started this week full-time, and is now part of the community team.
