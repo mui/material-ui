@@ -55,7 +55,7 @@ const theme = createMuiTheme(
 | 印度尼西亚语   | id-ID       | `idID` |
 | 意大利语     | it-IT       | `itIT` |
 | 日语       | ja-JP       | `jaJP` |
-| Kazakh   | kz-KZ       | `kzKZ` |
+| 哈萨克语     | kz-KZ       | `kzKZ` |
 | 韩语/朝鲜语   | ko-KR       | `koKR` |
 | 波斯语      | fa-IR       | `faIR` |
 | 波兰语      | pl-PL       | `plPL` |
