@@ -71,6 +71,7 @@ const defaultTimeout = {
  */
 const Slide = React.forwardRef(function Slide(props, ref) {
   const {
+    appear = true,
     children,
     direction = 'down',
     in: inProp,
@@ -81,7 +82,6 @@ const Slide = React.forwardRef(function Slide(props, ref) {
     onExited,
     onExiting,
     style,
-    appear = true,
     timeout = defaultTimeout,
     // eslint-disable-next-line react/prop-types
     TransitionComponent = Transition,

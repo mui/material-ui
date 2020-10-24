@@ -28,6 +28,7 @@ const styles = {
  */
 const Grow = React.forwardRef(function Grow(props, ref) {
   const {
+    appear = true,
     children,
     in: inProp,
     onEnter,
@@ -38,7 +39,6 @@ const Grow = React.forwardRef(function Grow(props, ref) {
     onExiting,
     style,
     timeout = 'auto',
-    appear = true,
     // eslint-disable-next-line react/prop-types
     TransitionComponent = Transition,
     ...other

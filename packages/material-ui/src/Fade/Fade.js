@@ -27,6 +27,7 @@ const defaultTimeout = {
  */
 const Fade = React.forwardRef(function Fade(props, ref) {
   const {
+    appear = true,
     children,
     in: inProp,
     onEnter,
@@ -36,7 +37,6 @@ const Fade = React.forwardRef(function Fade(props, ref) {
     onExited,
     onExiting,
     style,
-    appear = true,
     // eslint-disable-next-line react/prop-types
     TransitionComponent = Transition,
     timeout = defaultTimeout,

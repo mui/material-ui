@@ -28,6 +28,7 @@ const defaultTimeout = {
  */
 const Zoom = React.forwardRef(function Zoom(props, ref) {
   const {
+    appear = true,
     children,
     in: inProp,
     onEnter,
@@ -37,7 +38,6 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
     onExited,
     onExiting,
     style,
-    appear = true,
     timeout = defaultTimeout,
     // eslint-disable-next-line react/prop-types
     TransitionComponent = Transition,
