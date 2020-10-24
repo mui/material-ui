@@ -40,7 +40,7 @@ githubLabel: 'component: Popper'
 
 {{"demo": "pages/components/popper/SpringPopper.js"}}
 
-## Positioned popper
+## 弹出提示组件的位置
 
 {{"demo": "pages/components/popper/PositionedPopper.js"}}
 
@@ -48,9 +48,9 @@ githubLabel: 'component: Popper'
 
 {{"demo": "pages/components/popper/ScrollPlayground.js", "hideToolbar": true, "bg": true}}
 
-## Virtual element
+## 虚拟元素
 
-而 `anchorEl` 属性的值可以是对一个占位 DOM 元素的引用。 You need to create an object shaped like the [`VirtualElement`](https://popper.js.org/docs/v2/virtual-elements/).
+而 `anchorEl` 属性的值可以是对一个占位 DOM 元素的引用。 你需要创建一个类似 [`VirtualElement`](https://popper.js.org/docs/v2/virtual-elements/) 的对象。
 
 高亮文本来显示弹出提示组件：
 
