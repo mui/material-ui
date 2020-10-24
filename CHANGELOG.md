@@ -15,14 +15,14 @@ Here are some highlights ✨:
 
   1. Naming things is hard. How should a class name, JSS style rule, or styled component be named?
   2. Jumping between JS and CSS in the editor wastes time. This is particularly true as the complexity (LOCs/# of elements) of a component increases. It's still true when using the `styled()` API.
-  3. Introducing a `makeStyles` for the first time in a component is daunting. For instance, it's why https://github.com/vscodeshift/material-ui-codemorphs#add-usestyles-hook exists. What if we had less code to type, ganing velocity when writing styles?
+  3. Introducing a `makeStyles` for the first time in a component is daunting. For example, it's why https://github.com/vscodeshift/material-ui-codemorphs#add-usestyles-hook exists. What if we had less code to type, gaining velocity when writing styles?
   4. Pulling values out from the theme can be cumbersome. How can we make it less painful to increase the usage of design tokens?
 
-  This new iteration on the system brings two major improvements:
+  This new iteration of the system brings two major improvements:
 
   - It moves from the support of a subset of CSS to the support of a superset of CSS.
-    Learning the shortands is optional. It's no longer necessary to moving back to styled() when the system doesn't support a specific CSS property.
-  - It moves from the support on the Box only to any core component (starting with the slider).
+    Learning the shorthand is optional. It's no longer necessary to moving back to styled() when the system doesn't support a specific CSS property.
+  - It moves from support on Box only to any core component (starting with the slider).
 
     ```jsx
     import Slider from '@material-ui/lab/SliderStyled';
@@ -36,7 +36,7 @@ Here are some highlights ✨:
 
 - 🐛 Fix broken nested imports with the icons package (#23157) @eps1lon
   The revamp of the bundling strategy in #22814 has broken the nested imports.
-  For instance, the import bellow below should work again with this release:
+  Imports such as the one below should work again with this release:
 
   ```jsx
   import CloseIcon from '@material-ui/icons/Close';
