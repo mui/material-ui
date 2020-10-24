@@ -45,13 +45,13 @@ materialDesign: https://material.io/components/cards
 
 > ⚠️ 当 `component="img"` 时，CardMedia 通过 `object-fit` 来居中图像。 这个用法不兼容 IE11。
 
-## Primary action
+## 主要（primary）操作
 
-Often a card allow users to interact with the entirety of its surface to trigger its main action, be it an expansion, a link to another screen or some other behavior. The action area of the card can be specified by wrapping its contents in a `CardActionArea` component.
+通常情况下，卡片允许用户与它的整个表面进行交互，以触发它的主要动作，无论是扩展，链接到另一个屏幕或使用其他行为。 卡片的操作区域可以通过将其内容包裹在 `CardActionArea` 组件中来指定。
 
 {{"demo": "pages/components/cards/ActionAreaCard.js", "bg": true}}
 
-A card can also offer supplemental actions which should stand detached from the main action area in order to avoid event overlap.
+卡片还可以提供额外的操作功能，这些功能应该脱离主操作区域，以避免事件重叠。
 
 {{"demo": "pages/components/cards/MultiActionAreaCard.js", "bg": true}}
 
