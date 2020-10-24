@@ -253,6 +253,7 @@
     "/components/floating-action-button": "Floating Action Buttons 浮动操作按钮",
     "/components/backdrop": "Backdrop",
     "/components/alert": "Alert 警告提示",
-    "/components/pagination": "分页组件 Pagination "
+    "/components/pagination": "分页组件 Pagination ",
+    "/api-docs": "组件API"
   }
 }
