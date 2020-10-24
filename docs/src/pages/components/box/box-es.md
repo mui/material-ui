@@ -15,6 +15,12 @@ El componente Box recoge [todas las funciones de estilo](/system/basics/#all-inc
 
 [La función de estilo de la paleta](/system/palette/).
 
+## The sx prop
+
+All system properties are available via the `sx` prop. This property allows you to specify any CSS rules you may need, in addition to the ones already available as part of the system. Here is an example of how you can use it:
+
+{{"demo": "pages/components/box/BoxSx.js", "defaultCodeOpen": true }}
+
 ## Anulación de componentes de material-UI
 
 El componente Box envuelve su componente. Crea un nuevo elemento DOM, un `<div>` por defecto que se puede cambiar con la propiedad `componente`. Digamos que quiere usar un `<span>` en lugar:
@@ -23,7 +29,7 @@ El componente Box envuelve su componente. Crea un nuevo elemento DOM, un `<div>`
 
 Esto funciona muy bien cuando los cambios se pueden aislar a un nuevo elemento DOM. Por ejemplo, puede cambiar el margen de esta manera.
 
-Sin embargo, a veces tienes que apuntar al elemento DOM subyacente. Por ejemplo, desea cambiar el color del texto del botón. El componente Button define su propio color. La herencia por CSS no ayuda. Para solucionar el problema, tiene dos opciones:
+Sin embargo, a veces tienes que apuntar al elemento DOM subyacente. For instance, you want to change the border of the Button. The Button component defines its own styles. La herencia por CSS no ayuda. Para solucionar el problema, tiene dos opciones:
 
 1. Utilice [`React.cloneElement ()`](https://reactjs.org/docs/react-api.html#cloneelement)
 
@@ -39,12 +45,6 @@ Los elementos hijo de Box aceptan una función props de render. Puede extraer el
 
 > ⚠️ La especificidad de CSS se basa en el orden de importación. Si desea la garantía de que se anulará el estilo del componente envuelto, debe importar el cuadro al final.
 
-## The sx prop
-
-Sometimes, the props on the Box component are not enough to style the component. To solve this, `Box` supports the `sx` prop. This allows you to specify any CSS rules you want, in addition to the ones already available using system props. Here is an example of how you can use it:
-
-{{"demo": "pages/components/box/BoxSx.js", "defaultCodeOpen": true }}
-
 ## API
 
 ```jsx
@@ -56,5 +56,4 @@ import Box from '@material-ui/core/Box';
 | <span class="prop-name required">hijos&nbsp;*</span> | <span class="prop-type">union:&nbsp;node&nbsp;&#124;<br>&nbsp;func<br></span>                                     |                                         | Función de render de Box o nodo.                                                                         |
 | <span class="prop-name">clone</span>                 | <span class="prop-type">bool</span>                                                                                           | <span class="prop-default">false</span> | Si `true`, el Box reciclará su elemento DOM secundario. Está usando `React.cloneElement` internamente.   |
 | <span class="prop-name">component</span>             | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func&nbsp;&#124;<br>&nbsp;object<br></span> | <span class="prop-default">'div'</span> | El componente utilizado para el nodo raíz. Ya sea un 'string' para usar un elemento DOM o un componente. |
-
-Cualquier otra propiedad proporcionada será utilizada por [las funciones de estilo](/system/basics/#all-inclusive) o se extenderá al elemento raíz.
+| <span class="prop-name">sx</span>                    | <span class="prop-type">object</span>                                                                                         | <span class="prop-default">{}</span>    | Accepts all system properties, as well as any valid CSS properties.                                      |
