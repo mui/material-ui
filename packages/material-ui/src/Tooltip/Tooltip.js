@@ -114,33 +114,33 @@ export const styles = (theme) => ({
   /* Styles applied to the tooltip (label wrapper) element if `placement` contains "left". */
   tooltipPlacementLeft: {
     transformOrigin: 'right center',
-    margin: '0 24px ',
+    margin: '0 0 24px 0',
     [theme.breakpoints.up('sm')]: {
-      margin: '0 14px',
+      margin: '0 0 14px 0',
     },
   },
   /* Styles applied to the tooltip (label wrapper) element if `placement` contains "right". */
   tooltipPlacementRight: {
     transformOrigin: 'left center',
-    margin: '0 24px',
+    margin: '0 24px 0 0',
     [theme.breakpoints.up('sm')]: {
-      margin: '0 14px',
+      margin: '0 14px 0 0',
     },
   },
   /* Styles applied to the tooltip (label wrapper) element if `placement` contains "top". */
   tooltipPlacementTop: {
     transformOrigin: 'center bottom',
-    margin: '24px 0',
+    margin: '0 0 0 24px',
     [theme.breakpoints.up('sm')]: {
-      margin: '14px 0',
+      margin: '0 0 0 14px',
     },
   },
   /* Styles applied to the tooltip (label wrapper) element if `placement` contains "bottom". */
   tooltipPlacementBottom: {
     transformOrigin: 'center top',
-    margin: '24px 0',
+    margin: '24px 0 0 0',
     [theme.breakpoints.up('sm')]: {
-      margin: '14px 0',
+      margin: '14px 0 0 0',
     },
   },
 });
