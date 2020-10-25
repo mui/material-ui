@@ -4,7 +4,7 @@ import Timeline from './Timeline';
 
 describe('<Timeline />', () => {
   const mount = createMount();
-  let classes;
+  let classes: Record<string, string>;
 
   before(() => {
     classes = getClasses(<Timeline />);

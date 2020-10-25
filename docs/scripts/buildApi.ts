@@ -134,8 +134,8 @@ async function annotateComponentDefinition(context: {
       }
 
       const { leadingComments } = node;
-      const jsdocBlock = leadingComments !== null ? leadingComments[0] : null;
-      if (leadingComments !== null && leadingComments.length > 1) {
+      const jsdocBlock = leadingComments != null ? leadingComments[0] : null;
+      if (leadingComments != null && leadingComments.length > 1) {
         throw new Error('Should only have a single leading jsdoc block');
       }
       if (jsdocBlock != null) {
@@ -372,7 +372,7 @@ async function buildDocs(options: {
   // no Object.assign to visually check for collisions
   reactAPI.forwardsRefTo = testInfo.forwardsRefTo;
 
-  // if (reactAPI.name !== 'TableCell') {
+  // if (reactAPI.name !== 'Timeline') {
   //   return;
   // }
 

@@ -1,11 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { InternalStandardProps as StandardProps } from '@material-ui/core';
 import { capitalize } from '@material-ui/core/utils';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, createStyles, WithStyles } from '@material-ui/core/styles';
 import TimelineContext from './TimelineContext';
 
-export const styles = () => ({
+export const styles = createStyles({
   /* Styles applied to the root element. */
   root: {
     display: 'flex',
@@ -21,12 +22,42 @@ export const styles = () => ({
   alignAlternate: {},
 });
 
-const Timeline = React.forwardRef(function Timeline(props, ref) {
+export type TimelineClassKey = keyof WithStyles<typeof styles>['classes'];
+
+export interface TimelineProps extends StandardProps<React.HTMLAttributes<HTMLUListElement>> {
+  /**
+   * The position where the timeline's content should appear.
+   * @default 'left'
+   */
+  align?: 'left' | 'right' | 'alternate';
+  /**
+   * The content of the component.
+   */
+  children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: {
+    /** Styles applied to the root element. */
+    root?: string;
+    /** Styles applied to the root element if `align="left"`. */
+    alignLeft?: string;
+    /** Styles applied to the root element if `align="right"`. */
+    alignRight?: string;
+    /** Styles applied to the root element if `align="alternate"`. */
+    alignAlternate?: string;
+  };
+
+  ref?: React.Ref<HTMLUListElement>;
+}
+
+const Timeline = React.forwardRef<HTMLUListElement, TimelineProps>(function Timeline(props, ref) {
   const { align = 'left', classes, className, ...other } = props;
 
   return (
     <TimelineContext.Provider value={{ align }}>
       <ul
+        // @ts-expect-error unsafe string concat
         className={clsx(classes.root, classes[`align${capitalize(align)}`], className)}
         ref={ref}
         {...other}
@@ -38,7 +69,7 @@ const Timeline = React.forwardRef(function Timeline(props, ref) {
 Timeline.propTypes = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * The position where the timeline's content should appear.
@@ -59,4 +90,14 @@ Timeline.propTypes = {
   className: PropTypes.string,
 };
 
+/**
+ *
+ * Demos:
+ *
+ * - [Timeline](https://material-ui.com/components/timeline/)
+ *
+ * API:
+ *
+ * - [Timeline API](https://material-ui.com/api/timeline/)
+ */
 export default withStyles(styles, { name: 'MuiTimeline' })(Timeline);
