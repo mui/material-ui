@@ -3,35 +3,25 @@
   "filename": "/packages/material-ui/src/Rating/Rating.js",
   "description": "",
   "props": {
-    "classes": { "type": { "name": "object" }, "required": false },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "defaultValue": { "type": { "name": "number" }, "required": false, "default": "null" },
-    "disabled": { "type": { "name": "bool" }, "required": false },
-    "emptyIcon": {
-      "type": { "name": "node" },
-      "required": false,
-      "default": "<StarBorder fontSize=\"inherit\" />"
-    },
-    "emptyLabelText": { "type": { "name": "node" }, "required": false, "default": "'Empty'" },
+    "defaultValue": { "type": { "name": "number" }, "default": "null" },
+    "disabled": { "type": { "name": "bool" } },
+    "emptyIcon": { "type": { "name": "node" }, "default": "<StarBorder fontSize=\"inherit\" />" },
+    "emptyLabelText": { "type": { "name": "node" }, "default": "'Empty'" },
     "getLabelText": {
       "type": { "name": "func" },
-      "required": false,
       "default": "function defaultLabelText(value) {\n  return `${value} Star${value !== 1 ? 's' : ''}`;\n}"
     },
-    "icon": {
-      "type": { "name": "node" },
-      "required": false,
-      "default": "<Star fontSize=\"inherit\" />"
-    },
+    "icon": { "type": { "name": "node" }, "default": "<Star fontSize=\"inherit\" />" },
     "IconContainerComponent": {
       "type": { "name": "elementType" },
-      "required": false,
       "default": "function IconContainer(props) {\n  const { value, ...other } = props;\n  return <span {...other} />;\n}"
     },
-    "max": { "type": { "name": "number" }, "required": false, "default": "5" },
-    "name": { "type": { "name": "string" }, "required": false },
-    "onChange": { "type": { "name": "func" }, "required": false },
-    "onChangeActive": { "type": { "name": "func" }, "required": false },
+    "max": { "type": { "name": "number" }, "default": "5" },
+    "name": { "type": { "name": "string" } },
+    "onChange": { "type": { "name": "func" } },
+    "onChangeActive": { "type": { "name": "func" } },
     "onMouseLeave": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "onMouseMove": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "precision": {
@@ -40,19 +30,17 @@
         "raw": "chainPropTypes(PropTypes.number, (props) => {\n  if (props.precision < 0.1) {\n    return new Error(\n      [\n        'Material-UI: The prop `precision` should be above 0.1.',\n        'A value below this limit has an imperceptible impact.',\n      ].join('\\n'),\n    );\n  }\n  return null;\n})",
         "description": "number"
       },
-      "required": false,
       "default": "1"
     },
-    "readOnly": { "type": { "name": "bool" }, "required": false },
+    "readOnly": { "type": { "name": "bool" } },
     "size": {
       "type": {
         "name": "enum",
         "description": "'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'"
       },
-      "required": false,
       "default": "'medium'"
     },
-    "value": { "type": { "name": "number" }, "required": false }
+    "value": { "type": { "name": "number" } }
   },
   "spread": true,
   "styles": {

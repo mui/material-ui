@@ -8,33 +8,29 @@
         "name": "custom",
         "raw": "chainPropTypes(PropTypes.node, (props) => {\n  const found = React.Children.toArray(props.children).some(\n    (child) => React.isValidElement(child) && child.props.onClick,\n  );\n\n  if (found) {\n    return new Error(\n      [\n        'Material-UI: You are providing an onClick event listener to a child of a button element.',\n        'Prefer applying it to the IconButton directly.',\n        'This guarantees that the whole <button> will be responsive to click events.',\n      ].join('\\n'),\n    );\n  }\n\n  return null;\n})",
         "description": "node"
-      },
-      "required": false
+      }
     },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "color": {
       "type": {
         "name": "enum",
         "description": "'default'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'"
       },
-      "required": false,
       "default": "'default'"
     },
-    "disabled": { "type": { "name": "bool" }, "required": false },
-    "disableFocusRipple": { "type": { "name": "bool" }, "required": false },
-    "disableRipple": { "type": { "name": "bool" }, "required": false },
+    "disabled": { "type": { "name": "bool" } },
+    "disableFocusRipple": { "type": { "name": "bool" } },
+    "disableRipple": { "type": { "name": "bool" } },
     "edge": {
       "type": {
         "name": "enum",
         "description": "'end'<br>&#124;&nbsp;'start'<br>&#124;&nbsp;false"
       },
-      "required": false,
       "default": "false"
     },
     "size": {
       "type": { "name": "enum", "description": "'medium'<br>&#124;&nbsp;'small'" },
-      "required": false,
       "default": "'medium'"
     }
   },

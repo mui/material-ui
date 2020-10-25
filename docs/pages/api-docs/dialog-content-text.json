@@ -3,8 +3,8 @@
   "filename": "/packages/material-ui/src/DialogContentText/DialogContentText.js",
   "description": "",
   "props": {
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false }
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } }
   },
   "spread": true,
   "styles": {

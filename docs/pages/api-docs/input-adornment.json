@@ -3,22 +3,18 @@
   "filename": "/packages/material-ui/src/InputAdornment/InputAdornment.js",
   "description": "",
   "props": {
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "component": { "type": { "name": "elementType" }, "required": false },
-    "disablePointerEvents": { "type": { "name": "bool" }, "required": false },
-    "disableTypography": { "type": { "name": "bool" }, "required": false },
-    "position": {
-      "type": { "name": "enum", "description": "'end'<br>&#124;&nbsp;'start'" },
-      "required": false
-    },
+    "component": { "type": { "name": "elementType" } },
+    "disablePointerEvents": { "type": { "name": "bool" } },
+    "disableTypography": { "type": { "name": "bool" } },
+    "position": { "type": { "name": "enum", "description": "'end'<br>&#124;&nbsp;'start'" } },
     "variant": {
       "type": {
         "name": "enum",
         "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'"
-      },
-      "required": false
+      }
     }
   },
   "spread": true,

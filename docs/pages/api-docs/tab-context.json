@@ -3,7 +3,7 @@
   "filename": "/packages/material-ui-lab/src/TabContext/TabContext.js",
   "description": "",
   "props": {
-    "children": { "type": { "name": "node" }, "required": false },
+    "children": { "type": { "name": "node" } },
     "value": { "type": { "name": "string" }, "required": true }
   },
   "spread": true,

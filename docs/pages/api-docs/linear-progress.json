@@ -3,21 +3,19 @@
   "filename": "/packages/material-ui/src/LinearProgress/LinearProgress.js",
   "description": "## ARIA\n\nIf the progress bar is describing the loading progress of a particular region of a page,\nyou should use `aria-describedby` to point to the progress bar, and set the `aria-busy`\nattribute to `true` on that region until it has finished loading.",
   "props": {
-    "classes": { "type": { "name": "object" }, "required": false },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "color": {
       "type": { "name": "enum", "description": "'primary'<br>&#124;&nbsp;'secondary'" },
-      "required": false,
       "default": "'primary'"
     },
-    "value": { "type": { "name": "number" }, "required": false },
-    "valueBuffer": { "type": { "name": "number" }, "required": false },
+    "value": { "type": { "name": "number" } },
+    "valueBuffer": { "type": { "name": "number" } },
     "variant": {
       "type": {
         "name": "enum",
         "description": "'buffer'<br>&#124;&nbsp;'determinate'<br>&#124;&nbsp;'indeterminate'<br>&#124;&nbsp;'query'"
       },
-      "required": false,
       "default": "'indeterminate'"
     }
   },

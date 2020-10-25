@@ -3,35 +3,29 @@
   "filename": "/packages/material-ui-lab/src/TreeItem/TreeItem.js",
   "description": "",
   "props": {
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "collapseIcon": { "type": { "name": "node" }, "required": false },
+    "collapseIcon": { "type": { "name": "node" } },
     "ContentComponent": {
       "type": { "name": "custom", "raw": "elementTypeAcceptingRef", "description": "element type" },
-      "required": false,
       "default": "TreeItemContent"
     },
-    "ContentProps": { "type": { "name": "object" }, "required": false },
-    "disabled": { "type": { "name": "bool" }, "required": false },
-    "endIcon": { "type": { "name": "node" }, "required": false },
-    "expandIcon": { "type": { "name": "node" }, "required": false },
-    "icon": { "type": { "name": "node" }, "required": false },
+    "ContentProps": { "type": { "name": "object" } },
+    "disabled": { "type": { "name": "bool" } },
+    "endIcon": { "type": { "name": "node" } },
+    "expandIcon": { "type": { "name": "node" } },
+    "icon": { "type": { "name": "node" } },
     "id": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "label": { "type": { "name": "node" }, "required": false },
+    "label": { "type": { "name": "node" } },
     "nodeId": { "type": { "name": "string" }, "required": true },
     "onClick": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "onFocus": {
-      "type": { "name": "custom", "raw": "unsupportedProp", "description": "unsupportedProp" },
-      "required": false
+      "type": { "name": "custom", "raw": "unsupportedProp", "description": "unsupportedProp" }
     },
     "onMouseDown": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
-    "TransitionComponent": {
-      "type": { "name": "elementType" },
-      "required": false,
-      "default": "Collapse"
-    },
-    "TransitionProps": { "type": { "name": "object" }, "required": false }
+    "TransitionComponent": { "type": { "name": "elementType" }, "default": "Collapse" },
+    "TransitionProps": { "type": { "name": "object" } }
   },
   "spread": true,
   "styles": {

@@ -8,43 +8,38 @@
         "name": "enum",
         "description": "'center'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'justify'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'"
       },
-      "required": false,
       "default": "'inherit'"
     },
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "color": {
       "type": {
         "name": "enum",
         "description": "'error'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'initial'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'textPrimary'<br>&#124;&nbsp;'textSecondary'"
       },
-      "required": false,
       "default": "'initial'"
     },
-    "component": { "type": { "name": "elementType" }, "required": false },
+    "component": { "type": { "name": "elementType" } },
     "display": {
       "type": {
         "name": "enum",
         "description": "'block'<br>&#124;&nbsp;'initial'<br>&#124;&nbsp;'inline'"
       },
-      "required": false,
       "default": "'initial'"
     },
-    "gutterBottom": { "type": { "name": "bool" }, "required": false },
-    "noWrap": { "type": { "name": "bool" }, "required": false },
-    "paragraph": { "type": { "name": "bool" }, "required": false },
+    "gutterBottom": { "type": { "name": "bool" } },
+    "noWrap": { "type": { "name": "bool" } },
+    "paragraph": { "type": { "name": "bool" } },
     "variant": {
       "type": {
         "name": "union",
         "description": "'body1'<br>&#124;&nbsp;'body2'<br>&#124;&nbsp;'button'<br>&#124;&nbsp;'caption'<br>&#124;&nbsp;'h1'<br>&#124;&nbsp;'h2'<br>&#124;&nbsp;'h3'<br>&#124;&nbsp;'h4'<br>&#124;&nbsp;'h5'<br>&#124;&nbsp;'h6'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'overline'<br>&#124;&nbsp;'subtitle1'<br>&#124;&nbsp;'subtitle2'<br>&#124;&nbsp;string"
       },
-      "required": false,
       "default": "'body1'"
     },
     "variantMapping": {
       "type": { "name": "object" },
-      "required": false,
       "default": "{\n  h1: 'h1',\n  h2: 'h2',\n  h3: 'h3',\n  h4: 'h4',\n  h5: 'h5',\n  h6: 'h6',\n  subtitle1: 'h6',\n  subtitle2: 'h6',\n  body1: 'p',\n  body2: 'p',\n  inherit: 'p',\n}"
     }
   },

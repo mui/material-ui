@@ -3,14 +3,13 @@
   "filename": "/packages/material-ui/src/CircularProgress/CircularProgress.js",
   "description": "## ARIA\n\nIf the progress bar is describing the loading progress of a particular region of a page,\nyou should use `aria-describedby` to point to the progress bar, and set the `aria-busy`\nattribute to `true` on that region until it has finished loading.",
   "props": {
-    "classes": { "type": { "name": "object" }, "required": false },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "color": {
       "type": {
         "name": "enum",
         "description": "'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'"
       },
-      "required": false,
       "default": "'primary'"
     },
     "disableShrink": {
@@ -19,20 +18,17 @@
         "raw": "chainPropTypes(PropTypes.bool, (props) => {\n  if (props.disableShrink && props.variant && props.variant !== 'indeterminate') {\n    return new Error(\n      'Material-UI: You have provided the `disableShrink` prop ' +\n        'with a variant other than `indeterminate`. This will have no effect.',\n    );\n  }\n\n  return null;\n})",
         "description": "bool"
       },
-      "required": false,
       "default": "false"
     },
     "size": {
       "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
-      "required": false,
       "default": "40"
     },
     "style": { "type": { "name": "object" }, "required": false, "description": "@ignore" },
-    "thickness": { "type": { "name": "number" }, "required": false, "default": "3.6" },
-    "value": { "type": { "name": "number" }, "required": false, "default": "0" },
+    "thickness": { "type": { "name": "number" }, "default": "3.6" },
+    "value": { "type": { "name": "number" }, "default": "0" },
     "variant": {
       "type": { "name": "enum", "description": "'determinate'<br>&#124;&nbsp;'indeterminate'" },
-      "required": false,
       "default": "'indeterminate'"
     }
   },

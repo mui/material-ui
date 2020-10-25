@@ -3,17 +3,16 @@
   "filename": "/packages/material-ui/src/Toolbar/Toolbar.js",
   "description": "",
   "props": {
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "component": { "type": { "name": "elementType" }, "required": false },
-    "disableGutters": { "type": { "name": "bool" }, "required": false },
+    "component": { "type": { "name": "elementType" } },
+    "disableGutters": { "type": { "name": "bool" } },
     "variant": {
       "type": {
         "name": "union",
         "description": "'dense'<br>&#124;&nbsp;'regular'<br>&#124;&nbsp;string"
       },
-      "required": false,
       "default": "'regular'"
     }
   },

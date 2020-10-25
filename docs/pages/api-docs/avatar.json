@@ -3,21 +3,20 @@
   "filename": "/packages/material-ui/src/Avatar/Avatar.js",
   "description": "",
   "props": {
-    "alt": { "type": { "name": "string" }, "required": false },
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "alt": { "type": { "name": "string" } },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "component": { "type": { "name": "elementType" }, "required": false },
-    "imgProps": { "type": { "name": "object" }, "required": false },
-    "sizes": { "type": { "name": "string" }, "required": false },
-    "src": { "type": { "name": "string" }, "required": false },
-    "srcSet": { "type": { "name": "string" }, "required": false },
+    "component": { "type": { "name": "elementType" } },
+    "imgProps": { "type": { "name": "object" } },
+    "sizes": { "type": { "name": "string" } },
+    "src": { "type": { "name": "string" } },
+    "srcSet": { "type": { "name": "string" } },
     "variant": {
       "type": {
         "name": "union",
         "description": "'circular'<br>&#124;&nbsp;'rounded'<br>&#124;&nbsp;'square'<br>&#124;&nbsp;string"
       },
-      "required": false,
       "default": "'circular'"
     }
   },

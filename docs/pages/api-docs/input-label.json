@@ -3,26 +3,22 @@
   "filename": "/packages/material-ui/src/InputLabel/InputLabel.js",
   "description": "",
   "props": {
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "color": {
-      "type": { "name": "enum", "description": "'primary'<br>&#124;&nbsp;'secondary'" },
-      "required": false
-    },
-    "disableAnimation": { "type": { "name": "bool" }, "required": false },
-    "disabled": { "type": { "name": "bool" }, "required": false },
-    "error": { "type": { "name": "bool" }, "required": false },
-    "focused": { "type": { "name": "bool" }, "required": false },
-    "margin": { "type": { "name": "enum", "description": "'dense'" }, "required": false },
-    "required": { "type": { "name": "bool" }, "required": false },
-    "shrink": { "type": { "name": "bool" }, "required": false },
+    "color": { "type": { "name": "enum", "description": "'primary'<br>&#124;&nbsp;'secondary'" } },
+    "disableAnimation": { "type": { "name": "bool" } },
+    "disabled": { "type": { "name": "bool" } },
+    "error": { "type": { "name": "bool" } },
+    "focused": { "type": { "name": "bool" } },
+    "margin": { "type": { "name": "enum", "description": "'dense'" } },
+    "required": { "type": { "name": "bool" } },
+    "shrink": { "type": { "name": "bool" } },
     "variant": {
       "type": {
         "name": "enum",
         "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'"
-      },
-      "required": false
+      }
     }
   },
   "spread": true,

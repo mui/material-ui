@@ -3,13 +3,13 @@
   "filename": "/packages/material-ui/src/BottomNavigation/BottomNavigation.js",
   "description": "",
   "props": {
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "component": { "type": { "name": "elementType" }, "required": false },
-    "onChange": { "type": { "name": "func" }, "required": false },
-    "showLabels": { "type": { "name": "bool" }, "required": false },
-    "value": { "type": { "name": "any" }, "required": false }
+    "component": { "type": { "name": "elementType" } },
+    "onChange": { "type": { "name": "func" } },
+    "showLabels": { "type": { "name": "bool" } },
+    "value": { "type": { "name": "any" } }
   },
   "spread": true,
   "styles": {

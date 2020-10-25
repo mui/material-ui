@@ -3,34 +3,31 @@
   "filename": "/packages/material-ui/src/Alert/Alert.js",
   "description": "",
   "props": {
-    "action": { "type": { "name": "node" }, "required": false },
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "action": { "type": { "name": "node" } },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "closeText": { "type": { "name": "string" }, "required": false, "default": "'Close'" },
+    "closeText": { "type": { "name": "string" }, "default": "'Close'" },
     "color": {
       "type": {
         "name": "enum",
         "description": "'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'"
-      },
-      "required": false
+      }
     },
-    "icon": { "type": { "name": "node" }, "required": false },
+    "icon": { "type": { "name": "node" } },
     "iconMapping": {
       "type": {
         "name": "shape",
         "description": "{ error?: node, info?: node, success?: node, warning?: node }"
-      },
-      "required": false
+      }
     },
-    "onClose": { "type": { "name": "func" }, "required": false },
-    "role": { "type": { "name": "string" }, "required": false, "default": "'alert'" },
+    "onClose": { "type": { "name": "func" } },
+    "role": { "type": { "name": "string" }, "default": "'alert'" },
     "severity": {
       "type": {
         "name": "enum",
         "description": "'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'"
       },
-      "required": false,
       "default": "'success'"
     },
     "variant": {
@@ -38,7 +35,6 @@
         "name": "union",
         "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'<br>&#124;&nbsp;string"
       },
-      "required": false,
       "default": "'standard'"
     }
   },

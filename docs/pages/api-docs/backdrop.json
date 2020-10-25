@@ -3,17 +3,16 @@
   "filename": "/packages/material-ui/src/Backdrop/Backdrop.js",
   "description": "",
   "props": {
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "invisible": { "type": { "name": "bool" }, "required": false },
+    "invisible": { "type": { "name": "bool" } },
     "open": { "type": { "name": "bool" }, "required": true },
     "transitionDuration": {
       "type": {
         "name": "union",
         "description": "number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
-      },
-      "required": false
+      }
     }
   },
   "spread": true,

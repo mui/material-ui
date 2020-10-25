@@ -3,12 +3,12 @@
   "filename": "/packages/material-ui/src/TableRow/TableRow.js",
   "description": "Will automatically set dynamic row height\nbased on the material table element parent (head, body, etc).",
   "props": {
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "component": { "type": { "name": "elementType" }, "required": false },
-    "hover": { "type": { "name": "bool" }, "required": false },
-    "selected": { "type": { "name": "bool" }, "required": false }
+    "component": { "type": { "name": "elementType" } },
+    "hover": { "type": { "name": "bool" } },
+    "selected": { "type": { "name": "bool" } }
   },
   "spread": true,
   "styles": {

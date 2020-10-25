@@ -8,7 +8,6 @@
         "name": "enum",
         "description": "'center'<br>&#124;&nbsp;'flex-end'<br>&#124;&nbsp;'flex-start'<br>&#124;&nbsp;'space-around'<br>&#124;&nbsp;'space-between'<br>&#124;&nbsp;'stretch'"
       },
-      "required": false,
       "default": "'stretch'"
     },
     "alignItems": {
@@ -16,29 +15,26 @@
         "name": "enum",
         "description": "'baseline'<br>&#124;&nbsp;'center'<br>&#124;&nbsp;'flex-end'<br>&#124;&nbsp;'flex-start'<br>&#124;&nbsp;'stretch'"
       },
-      "required": false,
       "default": "'stretch'"
     },
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "component": { "type": { "name": "elementType" }, "required": false },
-    "container": { "type": { "name": "bool" }, "required": false },
+    "component": { "type": { "name": "elementType" } },
+    "container": { "type": { "name": "bool" } },
     "direction": {
       "type": {
         "name": "enum",
         "description": "'column-reverse'<br>&#124;&nbsp;'column'<br>&#124;&nbsp;'row-reverse'<br>&#124;&nbsp;'row'"
       },
-      "required": false,
       "default": "'row'"
     },
-    "item": { "type": { "name": "bool" }, "required": false },
+    "item": { "type": { "name": "bool" } },
     "justifyContent": {
       "type": {
         "name": "enum",
         "description": "'center'<br>&#124;&nbsp;'flex-end'<br>&#124;&nbsp;'flex-start'<br>&#124;&nbsp;'space-around'<br>&#124;&nbsp;'space-between'<br>&#124;&nbsp;'space-evenly'"
       },
-      "required": false,
       "default": "'flex-start'"
     },
     "lg": {
@@ -46,7 +42,6 @@
         "name": "union",
         "description": "'auto'<br>&#124;&nbsp;1<br>&#124;&nbsp;2<br>&#124;&nbsp;3<br>&#124;&nbsp;4<br>&#124;&nbsp;5<br>&#124;&nbsp;6<br>&#124;&nbsp;7<br>&#124;&nbsp;8<br>&#124;&nbsp;9<br>&#124;&nbsp;10<br>&#124;&nbsp;11<br>&#124;&nbsp;12<br>&#124;&nbsp;bool"
       },
-      "required": false,
       "default": "false"
     },
     "md": {
@@ -54,7 +49,6 @@
         "name": "union",
         "description": "'auto'<br>&#124;&nbsp;1<br>&#124;&nbsp;2<br>&#124;&nbsp;3<br>&#124;&nbsp;4<br>&#124;&nbsp;5<br>&#124;&nbsp;6<br>&#124;&nbsp;7<br>&#124;&nbsp;8<br>&#124;&nbsp;9<br>&#124;&nbsp;10<br>&#124;&nbsp;11<br>&#124;&nbsp;12<br>&#124;&nbsp;bool"
       },
-      "required": false,
       "default": "false"
     },
     "sm": {
@@ -62,7 +56,6 @@
         "name": "union",
         "description": "'auto'<br>&#124;&nbsp;1<br>&#124;&nbsp;2<br>&#124;&nbsp;3<br>&#124;&nbsp;4<br>&#124;&nbsp;5<br>&#124;&nbsp;6<br>&#124;&nbsp;7<br>&#124;&nbsp;8<br>&#124;&nbsp;9<br>&#124;&nbsp;10<br>&#124;&nbsp;11<br>&#124;&nbsp;12<br>&#124;&nbsp;bool"
       },
-      "required": false,
       "default": "false"
     },
     "spacing": {
@@ -70,7 +63,6 @@
         "name": "enum",
         "description": "0<br>&#124;&nbsp;1<br>&#124;&nbsp;2<br>&#124;&nbsp;3<br>&#124;&nbsp;4<br>&#124;&nbsp;5<br>&#124;&nbsp;6<br>&#124;&nbsp;7<br>&#124;&nbsp;8<br>&#124;&nbsp;9<br>&#124;&nbsp;10"
       },
-      "required": false,
       "default": "0"
     },
     "wrap": {
@@ -78,7 +70,6 @@
         "name": "enum",
         "description": "'nowrap'<br>&#124;&nbsp;'wrap-reverse'<br>&#124;&nbsp;'wrap'"
       },
-      "required": false,
       "default": "'wrap'"
     },
     "xl": {
@@ -86,7 +77,6 @@
         "name": "union",
         "description": "'auto'<br>&#124;&nbsp;1<br>&#124;&nbsp;2<br>&#124;&nbsp;3<br>&#124;&nbsp;4<br>&#124;&nbsp;5<br>&#124;&nbsp;6<br>&#124;&nbsp;7<br>&#124;&nbsp;8<br>&#124;&nbsp;9<br>&#124;&nbsp;10<br>&#124;&nbsp;11<br>&#124;&nbsp;12<br>&#124;&nbsp;bool"
       },
-      "required": false,
       "default": "false"
     },
     "xs": {
@@ -94,10 +84,9 @@
         "name": "union",
         "description": "'auto'<br>&#124;&nbsp;1<br>&#124;&nbsp;2<br>&#124;&nbsp;3<br>&#124;&nbsp;4<br>&#124;&nbsp;5<br>&#124;&nbsp;6<br>&#124;&nbsp;7<br>&#124;&nbsp;8<br>&#124;&nbsp;9<br>&#124;&nbsp;10<br>&#124;&nbsp;11<br>&#124;&nbsp;12<br>&#124;&nbsp;bool"
       },
-      "required": false,
       "default": "false"
     },
-    "zeroMinWidth": { "type": { "name": "bool" }, "required": false }
+    "zeroMinWidth": { "type": { "name": "bool" } }
   },
   "spread": true,
   "styles": {

@@ -3,15 +3,15 @@
   "filename": "/packages/material-ui/src/ListItemText/ListItemText.js",
   "description": "",
   "props": {
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "disableTypography": { "type": { "name": "bool" }, "required": false },
-    "inset": { "type": { "name": "bool" }, "required": false },
-    "primary": { "type": { "name": "node" }, "required": false },
-    "primaryTypographyProps": { "type": { "name": "object" }, "required": false },
-    "secondary": { "type": { "name": "node" }, "required": false },
-    "secondaryTypographyProps": { "type": { "name": "object" }, "required": false }
+    "disableTypography": { "type": { "name": "bool" } },
+    "inset": { "type": { "name": "bool" } },
+    "primary": { "type": { "name": "node" } },
+    "primaryTypographyProps": { "type": { "name": "object" } },
+    "secondary": { "type": { "name": "node" } },
+    "secondaryTypographyProps": { "type": { "name": "object" } }
   },
   "spread": true,
   "styles": {

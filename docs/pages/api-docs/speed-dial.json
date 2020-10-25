@@ -4,43 +4,37 @@
   "description": "",
   "props": {
     "ariaLabel": { "type": { "name": "string" }, "required": true },
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "direction": {
       "type": {
         "name": "enum",
         "description": "'down'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'up'"
       },
-      "required": false,
       "default": "'up'"
     },
-    "FabProps": { "type": { "name": "object" }, "required": false, "default": "{}" },
-    "hidden": { "type": { "name": "bool" }, "required": false },
-    "icon": { "type": { "name": "node" }, "required": false },
+    "FabProps": { "type": { "name": "object" }, "default": "{}" },
+    "hidden": { "type": { "name": "bool" } },
+    "icon": { "type": { "name": "node" } },
     "onBlur": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
-    "onClose": { "type": { "name": "func" }, "required": false },
+    "onClose": { "type": { "name": "func" } },
     "onFocus": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "onKeyDown": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "onMouseEnter": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "onMouseLeave": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
-    "onOpen": { "type": { "name": "func" }, "required": false },
-    "open": { "type": { "name": "bool" }, "required": false },
-    "openIcon": { "type": { "name": "node" }, "required": false },
-    "TransitionComponent": {
-      "type": { "name": "elementType" },
-      "required": false,
-      "default": "Zoom"
-    },
+    "onOpen": { "type": { "name": "func" } },
+    "open": { "type": { "name": "bool" } },
+    "openIcon": { "type": { "name": "node" } },
+    "TransitionComponent": { "type": { "name": "elementType" }, "default": "Zoom" },
     "transitionDuration": {
       "type": {
         "name": "union",
         "description": "number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
       },
-      "required": false,
       "default": "{\n  enter: duration.enteringScreen,\n  exit: duration.leavingScreen,\n}"
     },
-    "TransitionProps": { "type": { "name": "object" }, "required": false }
+    "TransitionProps": { "type": { "name": "object" } }
   },
   "spread": true,
   "styles": {

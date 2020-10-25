@@ -3,12 +3,9 @@
   "filename": "/packages/material-ui/src/Portal/Portal.js",
   "description": "Portals provide a first-class way to render children into a DOM node\nthat exists outside the DOM hierarchy of the parent component.",
   "props": {
-    "children": { "type": { "name": "node" }, "required": false },
-    "container": {
-      "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" },
-      "required": false
-    },
-    "disablePortal": { "type": { "name": "bool" }, "required": false }
+    "children": { "type": { "name": "node" } },
+    "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
+    "disablePortal": { "type": { "name": "bool" } }
   },
   "spread": false,
   "styles": { "name": null, "globalClasses": {} },

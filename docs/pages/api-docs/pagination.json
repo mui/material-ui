@@ -3,44 +3,40 @@
   "filename": "/packages/material-ui/src/Pagination/Pagination.js",
   "description": "",
   "props": {
-    "boundaryCount": { "type": { "name": "number" }, "required": false, "default": "1" },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "boundaryCount": { "type": { "name": "number" }, "default": "1" },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "color": {
       "type": {
         "name": "enum",
         "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'standard'"
       },
-      "required": false,
       "default": "'standard'"
     },
-    "count": { "type": { "name": "number" }, "required": false, "default": "1" },
-    "defaultPage": { "type": { "name": "number" }, "required": false, "default": "1" },
-    "disabled": { "type": { "name": "bool" }, "required": false },
-    "getItemAriaLabel": { "type": { "name": "func" }, "required": false },
-    "hideNextButton": { "type": { "name": "bool" }, "required": false },
-    "hidePrevButton": { "type": { "name": "bool" }, "required": false },
-    "onChange": { "type": { "name": "func" }, "required": false },
-    "page": { "type": { "name": "number" }, "required": false },
+    "count": { "type": { "name": "number" }, "default": "1" },
+    "defaultPage": { "type": { "name": "number" }, "default": "1" },
+    "disabled": { "type": { "name": "bool" } },
+    "getItemAriaLabel": { "type": { "name": "func" } },
+    "hideNextButton": { "type": { "name": "bool" } },
+    "hidePrevButton": { "type": { "name": "bool" } },
+    "onChange": { "type": { "name": "func" } },
+    "page": { "type": { "name": "number" } },
     "renderItem": {
       "type": { "name": "func" },
-      "required": false,
       "default": "(item) => <PaginationItem {...item} />"
     },
     "shape": {
       "type": { "name": "enum", "description": "'circular'<br>&#124;&nbsp;'rounded'" },
-      "required": false,
       "default": "'circular'"
     },
-    "showFirstButton": { "type": { "name": "bool" }, "required": false },
-    "showLastButton": { "type": { "name": "bool" }, "required": false },
-    "siblingCount": { "type": { "name": "number" }, "required": false, "default": "1" },
+    "showFirstButton": { "type": { "name": "bool" } },
+    "showLastButton": { "type": { "name": "bool" } },
+    "siblingCount": { "type": { "name": "number" }, "default": "1" },
     "size": {
       "type": {
         "name": "enum",
         "description": "'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'"
       },
-      "required": false,
       "default": "'medium'"
     },
     "variant": {
@@ -48,7 +44,6 @@
         "name": "union",
         "description": "'outlined'<br>&#124;&nbsp;'text'<br>&#124;&nbsp;string"
       },
-      "required": false,
       "default": "'text'"
     }
   },

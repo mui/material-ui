@@ -3,11 +3,11 @@
   "filename": "/packages/material-ui/src/StepButton/StepButton.js",
   "description": "",
   "props": {
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "icon": { "type": { "name": "node" }, "required": false },
-    "optional": { "type": { "name": "node" }, "required": false }
+    "icon": { "type": { "name": "node" } },
+    "optional": { "type": { "name": "node" } }
   },
   "spread": true,
   "styles": {

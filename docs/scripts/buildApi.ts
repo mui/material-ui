@@ -498,6 +498,9 @@ async function buildDocs(options: {
     delete reactAPI.props[propName].defaultValue;
     delete reactAPI.props[propName].jsdocDefaultValue;
 
+    if (reactAPI.props[propName].required === false) {
+      delete reactAPI.props[propName].required;
+    }
     
 
     propDescriptions[name] = {

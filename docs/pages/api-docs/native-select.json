@@ -3,23 +3,18 @@
   "filename": "/packages/material-ui/src/NativeSelect/NativeSelect.js",
   "description": "An alternative to `<Select native />` with a much smaller bundle size footprint.",
   "props": {
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
-    "IconComponent": {
-      "type": { "name": "elementType" },
-      "required": false,
-      "default": "ArrowDropDownIcon"
-    },
-    "input": { "type": { "name": "element" }, "required": false, "default": "<Input />" },
-    "inputProps": { "type": { "name": "object" }, "required": false },
-    "onChange": { "type": { "name": "func" }, "required": false },
-    "value": { "type": { "name": "any" }, "required": false },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "IconComponent": { "type": { "name": "elementType" }, "default": "ArrowDropDownIcon" },
+    "input": { "type": { "name": "element" }, "default": "<Input />" },
+    "inputProps": { "type": { "name": "object" } },
+    "onChange": { "type": { "name": "func" } },
+    "value": { "type": { "name": "any" } },
     "variant": {
       "type": {
         "name": "enum",
         "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'"
-      },
-      "required": false
+      }
     }
   },
   "spread": true,

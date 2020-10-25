@@ -3,17 +3,16 @@
   "filename": "/packages/material-ui/src/RadioGroup/RadioGroup.js",
   "description": "",
   "props": {
-    "children": { "type": { "name": "node" }, "required": false },
+    "children": { "type": { "name": "node" } },
     "defaultValue": {
       "type": {
         "name": "union",
         "description": "Array&lt;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;string"
-      },
-      "required": false
+      }
     },
-    "name": { "type": { "name": "string" }, "required": false },
-    "onChange": { "type": { "name": "func" }, "required": false },
-    "value": { "type": { "name": "any" }, "required": false }
+    "name": { "type": { "name": "string" } },
+    "onChange": { "type": { "name": "func" } },
+    "value": { "type": { "name": "any" } }
   },
   "spread": true,
   "styles": { "name": null, "globalClasses": {} },

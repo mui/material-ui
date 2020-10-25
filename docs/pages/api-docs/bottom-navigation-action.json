@@ -4,19 +4,18 @@
   "description": "",
   "props": {
     "children": {
-      "type": { "name": "custom", "raw": "unsupportedProp", "description": "unsupportedProp" },
-      "required": false
+      "type": { "name": "custom", "raw": "unsupportedProp", "description": "unsupportedProp" }
     },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "icon": { "type": { "name": "node" }, "required": false },
-    "label": { "type": { "name": "node" }, "required": false },
+    "icon": { "type": { "name": "node" } },
+    "label": { "type": { "name": "node" } },
     "onChange": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "onClick": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "onTouchEnd": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "onTouchStart": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
-    "showLabel": { "type": { "name": "bool" }, "required": false },
-    "value": { "type": { "name": "any" }, "required": false }
+    "showLabel": { "type": { "name": "bool" } },
+    "value": { "type": { "name": "any" } }
   },
   "spread": true,
   "styles": {

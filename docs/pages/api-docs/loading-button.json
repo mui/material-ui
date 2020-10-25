@@ -3,14 +3,13 @@
   "filename": "/packages/material-ui-lab/src/LoadingButton/LoadingButton.js",
   "description": "",
   "props": {
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "disabled": { "type": { "name": "bool" }, "required": false },
-    "pending": { "type": { "name": "bool" }, "required": false },
+    "disabled": { "type": { "name": "bool" } },
+    "pending": { "type": { "name": "bool" } },
     "pendingIndicator": {
       "type": { "name": "node" },
-      "required": false,
       "default": "<CircularProgress color=\"inherit\" size={16} />"
     },
     "pendingPosition": {
@@ -19,7 +18,6 @@
         "raw": "chainPropTypes(PropTypes.oneOf(['start', 'end', 'center']), (props) => {\n  if (props.pendingPosition === 'start' && !props.startIcon) {\n    return new Error(\n      `Material-UI: The pendingPosition=\"start\" should be used in combination with startIcon.`,\n    );\n  }\n  if (props.pendingPosition === 'end' && !props.endIcon) {\n    return new Error(\n      `Material-UI: The pendingPosition=\"end\" should be used in combination with endIcon.`,\n    );\n  }\n  return null;\n})",
         "description": "'start'<br>&#124;&nbsp;'end'<br>&#124;&nbsp;'center'"
       },
-      "required": false,
       "default": "'center'"
     }
   },

@@ -8,22 +8,17 @@
         "name": "custom",
         "raw": "chainPropTypes(PropTypes.node.isRequired, (props) => {\n  const summary = React.Children.toArray(props.children)[0];\n  if (isFragment(summary)) {\n    return new Error(\n      \"Material-UI: The Accordion doesn't accept a Fragment as a child. \" +\n        'Consider providing an array instead.',\n    );\n  }\n\n  if (!React.isValidElement(summary)) {\n    return new Error('Material-UI: Expected the first child of Accordion to be a valid element.');\n  }\n\n  return null;\n})",
         "description": "node"
-      },
-      "required": false
+      }
     },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "defaultExpanded": { "type": { "name": "bool" }, "required": false },
-    "disabled": { "type": { "name": "bool" }, "required": false },
-    "expanded": { "type": { "name": "bool" }, "required": false },
-    "onChange": { "type": { "name": "func" }, "required": false },
-    "square": { "type": { "name": "bool" }, "required": false },
-    "TransitionComponent": {
-      "type": { "name": "elementType" },
-      "required": false,
-      "default": "Collapse"
-    },
-    "TransitionProps": { "type": { "name": "object" }, "required": false }
+    "defaultExpanded": { "type": { "name": "bool" } },
+    "disabled": { "type": { "name": "bool" } },
+    "expanded": { "type": { "name": "bool" } },
+    "onChange": { "type": { "name": "func" } },
+    "square": { "type": { "name": "bool" } },
+    "TransitionComponent": { "type": { "name": "elementType" }, "default": "Collapse" },
+    "TransitionProps": { "type": { "name": "object" } }
   },
   "spread": true,
   "styles": {

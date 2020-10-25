@@ -3,60 +3,48 @@
   "filename": "/packages/material-ui/src/Tabs/Tabs.js",
   "description": "",
   "props": {
-    "action": {
-      "type": { "name": "custom", "raw": "refType", "description": "ref" },
-      "required": false
-    },
-    "allowScrollButtonsMobile": { "type": { "name": "bool" }, "required": false },
-    "aria-label": { "type": { "name": "string" }, "required": false },
-    "aria-labelledby": { "type": { "name": "string" }, "required": false },
-    "centered": { "type": { "name": "bool" }, "required": false },
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "action": { "type": { "name": "custom", "raw": "refType", "description": "ref" } },
+    "allowScrollButtonsMobile": { "type": { "name": "bool" } },
+    "aria-label": { "type": { "name": "string" } },
+    "aria-labelledby": { "type": { "name": "string" } },
+    "centered": { "type": { "name": "bool" } },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "component": { "type": { "name": "elementType" }, "required": false },
+    "component": { "type": { "name": "elementType" } },
     "indicatorColor": {
       "type": { "name": "enum", "description": "'primary'<br>&#124;&nbsp;'secondary'" },
-      "required": false,
       "default": "'secondary'"
     },
-    "onChange": { "type": { "name": "func" }, "required": false },
+    "onChange": { "type": { "name": "func" } },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
-      "required": false,
       "default": "'horizontal'"
     },
-    "ScrollButtonComponent": {
-      "type": { "name": "elementType" },
-      "required": false,
-      "default": "TabScrollButton"
-    },
+    "ScrollButtonComponent": { "type": { "name": "elementType" }, "default": "TabScrollButton" },
     "scrollButtons": {
       "type": { "name": "enum", "description": "'auto'<br>&#124;&nbsp;false<br>&#124;&nbsp;true" },
-      "required": false,
       "default": "'auto'"
     },
-    "selectionFollowsFocus": { "type": { "name": "bool" }, "required": false },
-    "TabIndicatorProps": { "type": { "name": "object" }, "required": false, "default": "{}" },
-    "TabScrollButtonProps": { "type": { "name": "object" }, "required": false },
+    "selectionFollowsFocus": { "type": { "name": "bool" } },
+    "TabIndicatorProps": { "type": { "name": "object" }, "default": "{}" },
+    "TabScrollButtonProps": { "type": { "name": "object" } },
     "textColor": {
       "type": {
         "name": "enum",
         "description": "'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'"
       },
-      "required": false,
       "default": "'inherit'"
     },
-    "value": { "type": { "name": "any" }, "required": false },
+    "value": { "type": { "name": "any" } },
     "variant": {
       "type": {
         "name": "enum",
         "description": "'fullWidth'<br>&#124;&nbsp;'scrollable'<br>&#124;&nbsp;'standard'"
       },
-      "required": false,
       "default": "'standard'"
     },
-    "visibleScrollbar": { "type": { "name": "bool" }, "required": false }
+    "visibleScrollbar": { "type": { "name": "bool" } }
   },
   "spread": true,
   "styles": {

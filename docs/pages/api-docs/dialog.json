@@ -3,49 +3,42 @@
   "filename": "/packages/material-ui/src/Dialog/Dialog.js",
   "description": "Dialogs are overlaid modal paper based components with a backdrop.",
   "props": {
-    "aria-describedby": { "type": { "name": "string" }, "required": false },
-    "aria-labelledby": { "type": { "name": "string" }, "required": false },
+    "aria-describedby": { "type": { "name": "string" } },
+    "aria-labelledby": { "type": { "name": "string" } },
     "BackdropProps": { "type": { "name": "object" }, "required": false, "description": "@ignore" },
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "disableBackdropClick": { "type": { "name": "bool" }, "required": false },
-    "disableEscapeKeyDown": { "type": { "name": "bool" }, "required": false },
-    "fullScreen": { "type": { "name": "bool" }, "required": false },
-    "fullWidth": { "type": { "name": "bool" }, "required": false },
+    "disableBackdropClick": { "type": { "name": "bool" } },
+    "disableEscapeKeyDown": { "type": { "name": "bool" } },
+    "fullScreen": { "type": { "name": "bool" } },
+    "fullWidth": { "type": { "name": "bool" } },
     "maxWidth": {
       "type": {
         "name": "enum",
         "description": "'lg'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'xl'<br>&#124;&nbsp;'xs'<br>&#124;&nbsp;false"
       },
-      "required": false,
       "default": "'sm'"
     },
-    "onBackdropClick": { "type": { "name": "func" }, "required": false },
-    "onClose": { "type": { "name": "func" }, "required": false },
-    "onEscapeKeyDown": { "type": { "name": "func" }, "required": false },
+    "onBackdropClick": { "type": { "name": "func" } },
+    "onClose": { "type": { "name": "func" } },
+    "onEscapeKeyDown": { "type": { "name": "func" } },
     "open": { "type": { "name": "bool" }, "required": true },
-    "PaperComponent": { "type": { "name": "elementType" }, "required": false, "default": "Paper" },
-    "PaperProps": { "type": { "name": "object" }, "required": false, "default": "{}" },
+    "PaperComponent": { "type": { "name": "elementType" }, "default": "Paper" },
+    "PaperProps": { "type": { "name": "object" }, "default": "{}" },
     "scroll": {
       "type": { "name": "enum", "description": "'body'<br>&#124;&nbsp;'paper'" },
-      "required": false,
       "default": "'paper'"
     },
-    "TransitionComponent": {
-      "type": { "name": "elementType" },
-      "required": false,
-      "default": "Fade"
-    },
+    "TransitionComponent": { "type": { "name": "elementType" }, "default": "Fade" },
     "transitionDuration": {
       "type": {
         "name": "union",
         "description": "number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
       },
-      "required": false,
       "default": "{ enter: duration.enteringScreen, exit: duration.leavingScreen }"
     },
-    "TransitionProps": { "type": { "name": "object" }, "required": false }
+    "TransitionProps": { "type": { "name": "object" } }
   },
   "spread": true,
   "styles": {

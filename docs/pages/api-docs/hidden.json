@@ -3,36 +3,33 @@
   "filename": "/packages/material-ui/src/Hidden/Hidden.js",
   "description": "Responsively hides children based on the selected implementation.",
   "props": {
-    "children": { "type": { "name": "node" }, "required": false },
+    "children": { "type": { "name": "node" } },
     "implementation": {
       "type": { "name": "enum", "description": "'css'<br>&#124;&nbsp;'js'" },
-      "required": false,
       "default": "'js'"
     },
     "initialWidth": {
       "type": {
         "name": "enum",
         "description": "'xs'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;'xl'"
-      },
-      "required": false
+      }
     },
-    "lgDown": { "type": { "name": "bool" }, "required": false },
-    "lgUp": { "type": { "name": "bool" }, "required": false },
-    "mdDown": { "type": { "name": "bool" }, "required": false },
-    "mdUp": { "type": { "name": "bool" }, "required": false },
+    "lgDown": { "type": { "name": "bool" } },
+    "lgUp": { "type": { "name": "bool" } },
+    "mdDown": { "type": { "name": "bool" } },
+    "mdUp": { "type": { "name": "bool" } },
     "only": {
       "type": {
         "name": "union",
         "description": "'xs'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;'xl'<br>&#124;&nbsp;Array&lt;'xs'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;'xl'&gt;"
-      },
-      "required": false
+      }
     },
-    "smDown": { "type": { "name": "bool" }, "required": false },
-    "smUp": { "type": { "name": "bool" }, "required": false },
-    "xlDown": { "type": { "name": "bool" }, "required": false },
-    "xlUp": { "type": { "name": "bool" }, "required": false },
-    "xsDown": { "type": { "name": "bool" }, "required": false },
-    "xsUp": { "type": { "name": "bool" }, "required": false }
+    "smDown": { "type": { "name": "bool" } },
+    "smUp": { "type": { "name": "bool" } },
+    "xlDown": { "type": { "name": "bool" } },
+    "xlUp": { "type": { "name": "bool" } },
+    "xsDown": { "type": { "name": "bool" } },
+    "xsUp": { "type": { "name": "bool" } }
   },
   "spread": true,
   "styles": { "name": null, "globalClasses": {} },

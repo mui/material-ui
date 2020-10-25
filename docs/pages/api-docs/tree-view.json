@@ -3,40 +3,34 @@
   "filename": "/packages/material-ui-lab/src/TreeView/TreeView.js",
   "description": "",
   "props": {
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "defaultCollapseIcon": { "type": { "name": "node" }, "required": false },
-    "defaultEndIcon": { "type": { "name": "node" }, "required": false },
+    "defaultCollapseIcon": { "type": { "name": "node" } },
+    "defaultEndIcon": { "type": { "name": "node" } },
     "defaultExpanded": {
       "type": { "name": "arrayOf", "description": "Array&lt;string&gt;" },
-      "required": false,
       "default": "[]"
     },
-    "defaultExpandIcon": { "type": { "name": "node" }, "required": false },
-    "defaultParentIcon": { "type": { "name": "node" }, "required": false },
+    "defaultExpandIcon": { "type": { "name": "node" } },
+    "defaultParentIcon": { "type": { "name": "node" } },
     "defaultSelected": {
       "type": { "name": "union", "description": "Array&lt;string&gt;<br>&#124;&nbsp;string" },
-      "required": false,
       "default": "[]"
     },
-    "disabledItemsFocusable": { "type": { "name": "bool" }, "required": false },
-    "disableSelection": { "type": { "name": "bool" }, "required": false },
-    "expanded": {
-      "type": { "name": "arrayOf", "description": "Array&lt;string&gt;" },
-      "required": false
-    },
-    "id": { "type": { "name": "string" }, "required": false },
-    "multiSelect": { "type": { "name": "bool" }, "required": false },
+    "disabledItemsFocusable": { "type": { "name": "bool" } },
+    "disableSelection": { "type": { "name": "bool" } },
+    "expanded": { "type": { "name": "arrayOf", "description": "Array&lt;string&gt;" } },
+    "id": { "type": { "name": "string" } },
+    "multiSelect": { "type": { "name": "bool" } },
     "onBlur": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "onFocus": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
     "onKeyDown": { "type": { "name": "func" }, "required": false, "description": "@ignore" },
-    "onNodeFocus": { "type": { "name": "func" }, "required": false },
-    "onNodeSelect": { "type": { "name": "func" }, "required": false },
-    "onNodeToggle": { "type": { "name": "func" }, "required": false },
+    "onNodeFocus": { "type": { "name": "func" } },
+    "onNodeSelect": { "type": { "name": "func" } },
+    "onNodeToggle": { "type": { "name": "func" } },
     "selected": {
-      "type": { "name": "union", "description": "Array&lt;string&gt;<br>&#124;&nbsp;string" },
-      "required": false
+      "type": { "name": "union", "description": "Array&lt;string&gt;<br>&#124;&nbsp;string" }
     }
   },
   "spread": true,

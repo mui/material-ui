@@ -3,25 +3,23 @@
   "filename": "/packages/material-ui/src/ImageListItemBar/ImageListItemBar.js",
   "description": "",
   "props": {
-    "actionIcon": { "type": { "name": "node" }, "required": false },
+    "actionIcon": { "type": { "name": "node" } },
     "actionPosition": {
       "type": { "name": "enum", "description": "'left'<br>&#124;&nbsp;'right'" },
-      "required": false,
       "default": "'right'"
     },
     "children": { "type": { "name": "node" }, "required": false, "description": "@ignore" },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "position": {
       "type": {
         "name": "enum",
         "description": "'below'<br>&#124;&nbsp;'bottom'<br>&#124;&nbsp;'top'"
       },
-      "required": false,
       "default": "'bottom'"
     },
-    "subtitle": { "type": { "name": "node" }, "required": false },
-    "title": { "type": { "name": "node" }, "required": false }
+    "subtitle": { "type": { "name": "node" } },
+    "title": { "type": { "name": "node" } }
   },
   "spread": true,
   "styles": {

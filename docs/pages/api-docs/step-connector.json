@@ -3,7 +3,7 @@
   "filename": "/packages/material-ui/src/StepConnector/StepConnector.js",
   "description": "",
   "props": {
-    "classes": { "type": { "name": "object" }, "required": false },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" }
   },
   "spread": true,

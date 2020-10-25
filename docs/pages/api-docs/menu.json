@@ -3,16 +3,13 @@
   "filename": "/packages/material-ui/src/Menu/Menu.js",
   "description": "",
   "props": {
-    "anchorEl": {
-      "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" },
-      "required": false
-    },
-    "autoFocus": { "type": { "name": "bool" }, "required": false },
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
-    "disableAutoFocusItem": { "type": { "name": "bool" }, "required": false },
-    "MenuListProps": { "type": { "name": "object" }, "required": false, "default": "{}" },
-    "onClose": { "type": { "name": "func" }, "required": false },
+    "anchorEl": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
+    "autoFocus": { "type": { "name": "bool" } },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "disableAutoFocusItem": { "type": { "name": "bool" } },
+    "MenuListProps": { "type": { "name": "object" }, "default": "{}" },
+    "onClose": { "type": { "name": "func" } },
     "open": { "type": { "name": "bool" }, "required": true },
     "PaperProps": {
       "type": { "name": "object" },
@@ -20,19 +17,17 @@
       "description": "@ignore",
       "defaultValue": { "value": "{}", "computed": false }
     },
-    "PopoverClasses": { "type": { "name": "object" }, "required": false },
+    "PopoverClasses": { "type": { "name": "object" } },
     "transitionDuration": {
       "type": {
         "name": "union",
         "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
       },
-      "required": false,
       "default": "'auto'"
     },
-    "TransitionProps": { "type": { "name": "object" }, "required": false, "default": "{}" },
+    "TransitionProps": { "type": { "name": "object" }, "default": "{}" },
     "variant": {
       "type": { "name": "enum", "description": "'menu'<br>&#124;&nbsp;'selectedMenu'" },
-      "required": false,
       "default": "'selectedMenu'"
     }
   },

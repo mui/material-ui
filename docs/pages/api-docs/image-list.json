@@ -4,14 +4,13 @@
   "description": "",
   "props": {
     "children": { "type": { "name": "node" }, "required": true },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "cols": { "type": { "name": "number" }, "required": false, "default": "2" },
-    "component": { "type": { "name": "elementType" }, "required": false },
-    "gap": { "type": { "name": "number" }, "required": false, "default": "4" },
+    "cols": { "type": { "name": "number" }, "default": "2" },
+    "component": { "type": { "name": "elementType" } },
+    "gap": { "type": { "name": "number" }, "default": "4" },
     "rowHeight": {
       "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number" },
-      "required": false,
       "default": "'auto'"
     },
     "style": { "type": { "name": "object" }, "required": false, "description": "@ignore" },
@@ -20,7 +19,6 @@
         "name": "union",
         "description": "'masonry'<br>&#124;&nbsp;'quilted'<br>&#124;&nbsp;'standard'<br>&#124;&nbsp;'woven'<br>&#124;&nbsp;string"
       },
-      "required": false,
       "default": "'standard'"
     }
   },

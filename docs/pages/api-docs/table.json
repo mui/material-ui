@@ -3,24 +3,22 @@
   "filename": "/packages/material-ui/src/Table/Table.js",
   "description": "",
   "props": {
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "component": { "type": { "name": "elementType" }, "required": false },
+    "component": { "type": { "name": "elementType" } },
     "padding": {
       "type": {
         "name": "enum",
         "description": "'checkbox'<br>&#124;&nbsp;'default'<br>&#124;&nbsp;'none'"
       },
-      "required": false,
       "default": "'default'"
     },
     "size": {
       "type": { "name": "enum", "description": "'medium'<br>&#124;&nbsp;'small'" },
-      "required": false,
       "default": "'medium'"
     },
-    "stickyHeader": { "type": { "name": "bool" }, "required": false }
+    "stickyHeader": { "type": { "name": "bool" } }
   },
   "spread": true,
   "styles": {

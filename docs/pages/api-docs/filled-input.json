@@ -3,55 +3,33 @@
   "filename": "/packages/material-ui/src/FilledInput/FilledInput.js",
   "description": "",
   "props": {
-    "autoComplete": { "type": { "name": "string" }, "required": false },
-    "autoFocus": { "type": { "name": "bool" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
-    "color": {
-      "type": { "name": "enum", "description": "'primary'<br>&#124;&nbsp;'secondary'" },
-      "required": false
-    },
-    "defaultValue": { "type": { "name": "any" }, "required": false },
-    "disabled": { "type": { "name": "bool" }, "required": false },
-    "disableUnderline": { "type": { "name": "bool" }, "required": false },
-    "endAdornment": { "type": { "name": "node" }, "required": false },
-    "error": { "type": { "name": "bool" }, "required": false },
-    "fullWidth": { "type": { "name": "bool" }, "required": false },
-    "id": { "type": { "name": "string" }, "required": false },
-    "inputComponent": {
-      "type": { "name": "elementType" },
-      "required": false,
-      "default": "'input'"
-    },
-    "inputProps": { "type": { "name": "object" }, "required": false },
-    "inputRef": {
-      "type": { "name": "custom", "raw": "refType", "description": "ref" },
-      "required": false
-    },
-    "margin": {
-      "type": { "name": "enum", "description": "'dense'<br>&#124;&nbsp;'none'" },
-      "required": false
-    },
-    "maxRows": {
-      "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
-      "required": false
-    },
-    "minRows": {
-      "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
-      "required": false
-    },
-    "multiline": { "type": { "name": "bool" }, "required": false },
-    "name": { "type": { "name": "string" }, "required": false },
-    "onChange": { "type": { "name": "func" }, "required": false },
-    "placeholder": { "type": { "name": "string" }, "required": false },
-    "readOnly": { "type": { "name": "bool" }, "required": false },
-    "required": { "type": { "name": "bool" }, "required": false },
-    "rows": {
-      "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
-      "required": false
-    },
-    "startAdornment": { "type": { "name": "node" }, "required": false },
-    "type": { "type": { "name": "string" }, "required": false, "default": "'text'" },
-    "value": { "type": { "name": "any" }, "required": false }
+    "autoComplete": { "type": { "name": "string" } },
+    "autoFocus": { "type": { "name": "bool" } },
+    "classes": { "type": { "name": "object" } },
+    "color": { "type": { "name": "enum", "description": "'primary'<br>&#124;&nbsp;'secondary'" } },
+    "defaultValue": { "type": { "name": "any" } },
+    "disabled": { "type": { "name": "bool" } },
+    "disableUnderline": { "type": { "name": "bool" } },
+    "endAdornment": { "type": { "name": "node" } },
+    "error": { "type": { "name": "bool" } },
+    "fullWidth": { "type": { "name": "bool" } },
+    "id": { "type": { "name": "string" } },
+    "inputComponent": { "type": { "name": "elementType" }, "default": "'input'" },
+    "inputProps": { "type": { "name": "object" } },
+    "inputRef": { "type": { "name": "custom", "raw": "refType", "description": "ref" } },
+    "margin": { "type": { "name": "enum", "description": "'dense'<br>&#124;&nbsp;'none'" } },
+    "maxRows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
+    "minRows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
+    "multiline": { "type": { "name": "bool" } },
+    "name": { "type": { "name": "string" } },
+    "onChange": { "type": { "name": "func" } },
+    "placeholder": { "type": { "name": "string" } },
+    "readOnly": { "type": { "name": "bool" } },
+    "required": { "type": { "name": "bool" } },
+    "rows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
+    "startAdornment": { "type": { "name": "node" } },
+    "type": { "type": { "name": "string" }, "default": "'text'" },
+    "value": { "type": { "name": "any" } }
   },
   "spread": true,
   "styles": {

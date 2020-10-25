@@ -3,15 +3,15 @@
   "filename": "/packages/material-ui/src/Step/Step.js",
   "description": "",
   "props": {
-    "active": { "type": { "name": "bool" }, "required": false },
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "active": { "type": { "name": "bool" } },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "completed": { "type": { "name": "bool" }, "required": false },
-    "disabled": { "type": { "name": "bool" }, "required": false },
-    "expanded": { "type": { "name": "bool" }, "required": false },
-    "index": { "type": { "name": "number" }, "required": false },
-    "last": { "type": { "name": "bool" }, "required": false }
+    "completed": { "type": { "name": "bool" } },
+    "disabled": { "type": { "name": "bool" } },
+    "expanded": { "type": { "name": "bool" } },
+    "index": { "type": { "name": "number" } },
+    "last": { "type": { "name": "bool" } }
   },
   "spread": true,
   "styles": {

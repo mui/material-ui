@@ -3,8 +3,8 @@
   "filename": "/packages/material-ui/src/AvatarGroup/AvatarGroup.js",
   "description": "",
   "props": {
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "max": {
       "type": {
@@ -12,7 +12,6 @@
         "raw": "chainPropTypes(PropTypes.number, (props) => {\n  if (props.max < 2) {\n    throw new Error(\n      [\n        'Material-UI: The prop `max` should be equal to 2 or above.',\n        'A value below is clamped to 2.',\n      ].join('\\n'),\n    );\n  }\n})",
         "description": "number"
       },
-      "required": false,
       "default": "5"
     },
     "spacing": {
@@ -20,7 +19,6 @@
         "name": "union",
         "description": "'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;number"
       },
-      "required": false,
       "default": "'medium'"
     },
     "variant": {
@@ -28,7 +26,6 @@
         "name": "union",
         "description": "'circular'<br>&#124;&nbsp;'rounded'<br>&#124;&nbsp;'square'<br>&#124;&nbsp;string"
       },
-      "required": false,
       "default": "'circular'"
     }
   },

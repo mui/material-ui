@@ -3,39 +3,37 @@
   "filename": "/packages/material-ui/src/Button/Button.js",
   "description": "",
   "props": {
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "color": {
       "type": {
         "name": "enum",
         "description": "'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'"
       },
-      "required": false,
       "default": "'primary'"
     },
-    "component": { "type": { "name": "elementType" }, "required": false },
-    "disabled": { "type": { "name": "bool" }, "required": false },
-    "disableElevation": { "type": { "name": "bool" }, "required": false },
-    "disableFocusRipple": { "type": { "name": "bool" }, "required": false },
-    "disableRipple": { "type": { "name": "bool" }, "required": false },
-    "endIcon": { "type": { "name": "node" }, "required": false },
+    "component": { "type": { "name": "elementType" } },
+    "disabled": { "type": { "name": "bool" } },
+    "disableElevation": { "type": { "name": "bool" } },
+    "disableFocusRipple": { "type": { "name": "bool" } },
+    "disableRipple": { "type": { "name": "bool" } },
+    "endIcon": { "type": { "name": "node" } },
     "focusVisibleClassName": {
       "type": { "name": "string" },
       "required": false,
       "description": "@ignore"
     },
-    "fullWidth": { "type": { "name": "bool" }, "required": false },
-    "href": { "type": { "name": "string" }, "required": false },
+    "fullWidth": { "type": { "name": "bool" } },
+    "href": { "type": { "name": "string" } },
     "size": {
       "type": {
         "name": "enum",
         "description": "'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'"
       },
-      "required": false,
       "default": "'medium'"
     },
-    "startIcon": { "type": { "name": "node" }, "required": false },
+    "startIcon": { "type": { "name": "node" } },
     "type": {
       "type": {
         "name": "union",
@@ -59,7 +57,6 @@
         "name": "union",
         "description": "'contained'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'text'<br>&#124;&nbsp;string"
       },
-      "required": false,
       "default": "'text'"
     }
   },

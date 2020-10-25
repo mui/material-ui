@@ -3,8 +3,8 @@
   "filename": "/packages/material-ui/src/ListItemIcon/ListItemIcon.js",
   "description": "A simple wrapper to apply `List` styles to an `Icon` or `SvgIcon`.",
   "props": {
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" }
   },
   "spread": true,

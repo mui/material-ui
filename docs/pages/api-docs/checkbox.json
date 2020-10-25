@@ -3,44 +3,31 @@
   "filename": "/packages/material-ui/src/Checkbox/Checkbox.js",
   "description": "",
   "props": {
-    "checked": { "type": { "name": "bool" }, "required": false },
-    "checkedIcon": { "type": { "name": "node" }, "required": false, "default": "<CheckBoxIcon />" },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "checked": { "type": { "name": "bool" } },
+    "checkedIcon": { "type": { "name": "node" }, "default": "<CheckBoxIcon />" },
+    "classes": { "type": { "name": "object" } },
     "color": {
       "type": {
         "name": "enum",
         "description": "'default'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'"
       },
-      "required": false,
       "default": "'secondary'"
     },
-    "disabled": { "type": { "name": "bool" }, "required": false },
-    "disableRipple": { "type": { "name": "bool" }, "required": false },
-    "icon": {
-      "type": { "name": "node" },
-      "required": false,
-      "default": "<CheckBoxOutlineBlankIcon />"
-    },
-    "id": { "type": { "name": "string" }, "required": false },
-    "indeterminate": { "type": { "name": "bool" }, "required": false },
-    "indeterminateIcon": {
-      "type": { "name": "node" },
-      "required": false,
-      "default": "<IndeterminateCheckBoxIcon />"
-    },
-    "inputProps": { "type": { "name": "object" }, "required": false },
-    "inputRef": {
-      "type": { "name": "custom", "raw": "refType", "description": "ref" },
-      "required": false
-    },
-    "onChange": { "type": { "name": "func" }, "required": false },
-    "required": { "type": { "name": "bool" }, "required": false },
+    "disabled": { "type": { "name": "bool" } },
+    "disableRipple": { "type": { "name": "bool" } },
+    "icon": { "type": { "name": "node" }, "default": "<CheckBoxOutlineBlankIcon />" },
+    "id": { "type": { "name": "string" } },
+    "indeterminate": { "type": { "name": "bool" } },
+    "indeterminateIcon": { "type": { "name": "node" }, "default": "<IndeterminateCheckBoxIcon />" },
+    "inputProps": { "type": { "name": "object" } },
+    "inputRef": { "type": { "name": "custom", "raw": "refType", "description": "ref" } },
+    "onChange": { "type": { "name": "func" } },
+    "required": { "type": { "name": "bool" } },
     "size": {
       "type": { "name": "enum", "description": "'medium'<br>&#124;&nbsp;'small'" },
-      "required": false,
       "default": "'medium'"
     },
-    "value": { "type": { "name": "any" }, "required": false }
+    "value": { "type": { "name": "any" } }
   },
   "spread": true,
   "styles": {

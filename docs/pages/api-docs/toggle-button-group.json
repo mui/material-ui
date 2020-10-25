@@ -3,14 +3,13 @@
   "filename": "/packages/material-ui/src/ToggleButtonGroup/ToggleButtonGroup.js",
   "description": "",
   "props": {
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "exclusive": { "type": { "name": "bool" }, "required": false },
-    "onChange": { "type": { "name": "func" }, "required": false },
+    "exclusive": { "type": { "name": "bool" } },
+    "onChange": { "type": { "name": "func" } },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
-      "required": false,
       "default": "'horizontal'"
     },
     "size": {
@@ -18,10 +17,9 @@
         "name": "enum",
         "description": "'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'"
       },
-      "required": false,
       "default": "'medium'"
     },
-    "value": { "type": { "name": "any" }, "required": false }
+    "value": { "type": { "name": "any" } }
   },
   "spread": true,
   "styles": {

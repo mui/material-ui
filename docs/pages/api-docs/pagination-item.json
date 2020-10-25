@@ -4,23 +4,21 @@
   "description": "",
   "props": {
     "children": { "type": { "name": "node" }, "required": false, "description": "@ignore" },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "color": {
       "type": {
         "name": "enum",
         "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'standard'"
       },
-      "required": false,
       "default": "'standard'"
     },
-    "component": { "type": { "name": "elementType" }, "required": false },
-    "disabled": { "type": { "name": "bool" }, "required": false },
-    "page": { "type": { "name": "number" }, "required": false },
-    "selected": { "type": { "name": "bool" }, "required": false },
+    "component": { "type": { "name": "elementType" } },
+    "disabled": { "type": { "name": "bool" } },
+    "page": { "type": { "name": "number" } },
+    "selected": { "type": { "name": "bool" } },
     "shape": {
       "type": { "name": "enum", "description": "'circular'<br>&#124;&nbsp;'rounded'" },
-      "required": false,
       "default": "'circular'"
     },
     "size": {
@@ -28,7 +26,6 @@
         "name": "enum",
         "description": "'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'"
       },
-      "required": false,
       "default": "'medium'"
     },
     "type": {
@@ -36,7 +33,6 @@
         "name": "enum",
         "description": "'end-ellipsis'<br>&#124;&nbsp;'first'<br>&#124;&nbsp;'last'<br>&#124;&nbsp;'next'<br>&#124;&nbsp;'page'<br>&#124;&nbsp;'previous'<br>&#124;&nbsp;'start-ellipsis'"
       },
-      "required": false,
       "default": "'page'"
     },
     "variant": {
@@ -44,7 +40,6 @@
         "name": "union",
         "description": "'outlined'<br>&#124;&nbsp;'text'<br>&#124;&nbsp;string"
       },
-      "required": false,
       "default": "'text'"
     }
   },

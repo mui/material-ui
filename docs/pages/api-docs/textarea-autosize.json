@@ -4,13 +4,9 @@
   "description": "",
   "props": {
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "maxRows": {
-      "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
-      "required": false
-    },
+    "maxRows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
     "minRows": {
       "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
-      "required": false,
       "default": "1"
     },
     "onChange": { "type": { "name": "func" }, "required": false, "description": "@ignore" },

@@ -3,17 +3,17 @@
   "filename": "/packages/material-ui/src/CardHeader/CardHeader.js",
   "description": "",
   "props": {
-    "action": { "type": { "name": "node" }, "required": false },
-    "avatar": { "type": { "name": "node" }, "required": false },
+    "action": { "type": { "name": "node" } },
+    "avatar": { "type": { "name": "node" } },
     "children": { "type": { "name": "node" }, "required": false, "description": "@ignore" },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "component": { "type": { "name": "elementType" }, "required": false },
-    "disableTypography": { "type": { "name": "bool" }, "required": false },
-    "subheader": { "type": { "name": "node" }, "required": false },
-    "subheaderTypographyProps": { "type": { "name": "object" }, "required": false },
-    "title": { "type": { "name": "node" }, "required": false },
-    "titleTypographyProps": { "type": { "name": "object" }, "required": false }
+    "component": { "type": { "name": "elementType" } },
+    "disableTypography": { "type": { "name": "bool" } },
+    "subheader": { "type": { "name": "node" } },
+    "subheaderTypographyProps": { "type": { "name": "object" } },
+    "title": { "type": { "name": "node" } },
+    "titleTypographyProps": { "type": { "name": "object" } }
   },
   "spread": true,
   "styles": {

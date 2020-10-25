@@ -3,11 +3,11 @@
   "filename": "/packages/material-ui/src/SpeedDialIcon/SpeedDialIcon.js",
   "description": "",
   "props": {
-    "classes": { "type": { "name": "object" }, "required": false },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "icon": { "type": { "name": "node" }, "required": false },
-    "open": { "type": { "name": "bool" }, "required": false },
-    "openIcon": { "type": { "name": "node" }, "required": false }
+    "icon": { "type": { "name": "node" } },
+    "open": { "type": { "name": "bool" } },
+    "openIcon": { "type": { "name": "node" } }
   },
   "spread": true,
   "styles": {

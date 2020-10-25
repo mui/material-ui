@@ -3,44 +3,38 @@
   "filename": "/packages/material-ui/src/Switch/Switch.js",
   "description": "",
   "props": {
-    "checked": { "type": { "name": "bool" }, "required": false },
-    "checkedIcon": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "checked": { "type": { "name": "bool" } },
+    "checkedIcon": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "color": {
       "type": {
         "name": "enum",
         "description": "'default'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'"
       },
-      "required": false,
       "default": "'secondary'"
     },
     "defaultChecked": { "type": { "name": "bool" }, "required": false, "description": "@ignore" },
-    "disabled": { "type": { "name": "bool" }, "required": false },
-    "disableRipple": { "type": { "name": "bool" }, "required": false },
+    "disabled": { "type": { "name": "bool" } },
+    "disableRipple": { "type": { "name": "bool" } },
     "edge": {
       "type": {
         "name": "enum",
         "description": "'end'<br>&#124;&nbsp;'start'<br>&#124;&nbsp;false"
       },
-      "required": false,
       "default": "false"
     },
-    "icon": { "type": { "name": "node" }, "required": false },
-    "id": { "type": { "name": "string" }, "required": false },
-    "inputProps": { "type": { "name": "object" }, "required": false },
-    "inputRef": {
-      "type": { "name": "custom", "raw": "refType", "description": "ref" },
-      "required": false
-    },
-    "onChange": { "type": { "name": "func" }, "required": false },
-    "required": { "type": { "name": "bool" }, "required": false },
+    "icon": { "type": { "name": "node" } },
+    "id": { "type": { "name": "string" } },
+    "inputProps": { "type": { "name": "object" } },
+    "inputRef": { "type": { "name": "custom", "raw": "refType", "description": "ref" } },
+    "onChange": { "type": { "name": "func" } },
+    "required": { "type": { "name": "bool" } },
     "size": {
       "type": { "name": "enum", "description": "'medium'<br>&#124;&nbsp;'small'" },
-      "required": false,
       "default": "'medium'"
     },
-    "value": { "type": { "name": "any" }, "required": false }
+    "value": { "type": { "name": "any" } }
   },
   "spread": true,
   "styles": {

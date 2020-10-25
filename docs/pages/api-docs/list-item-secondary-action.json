@@ -3,8 +3,8 @@
   "filename": "/packages/material-ui/src/ListItemSecondaryAction/ListItemSecondaryAction.js",
   "description": "Must be used as the last child of ListItem to function properly.",
   "props": {
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" }
   },
   "spread": true,

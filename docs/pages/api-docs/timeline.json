@@ -8,11 +8,10 @@
         "name": "enum",
         "description": "'alternate'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'"
       },
-      "required": false,
       "default": "'left'"
     },
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" }
   },
   "spread": true,

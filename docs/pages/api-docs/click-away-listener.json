@@ -8,16 +8,14 @@
         "name": "custom",
         "raw": "elementAcceptingRef.isRequired",
         "description": "element"
-      },
-      "required": false
+      }
     },
-    "disableReactTree": { "type": { "name": "bool" }, "required": false },
+    "disableReactTree": { "type": { "name": "bool" } },
     "mouseEvent": {
       "type": {
         "name": "enum",
         "description": "'onClick'<br>&#124;&nbsp;'onMouseDown'<br>&#124;&nbsp;'onMouseUp'<br>&#124;&nbsp;false"
       },
-      "required": false,
       "default": "'onClick'"
     },
     "onClickAway": { "type": { "name": "func" }, "required": true },
@@ -26,7 +24,6 @@
         "name": "enum",
         "description": "'onTouchEnd'<br>&#124;&nbsp;'onTouchStart'<br>&#124;&nbsp;false"
       },
-      "required": false,
       "default": "'onTouchEnd'"
     }
   },

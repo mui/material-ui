@@ -3,10 +3,10 @@
   "filename": "/packages/material-ui/src/Card/Card.js",
   "description": "",
   "props": {
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "raised": { "type": { "name": "bool" }, "required": false }
+    "raised": { "type": { "name": "bool" } }
   },
   "spread": true,
   "styles": { "name": "MuiCard", "globalClasses": { "root": "MuiCard-root" } },

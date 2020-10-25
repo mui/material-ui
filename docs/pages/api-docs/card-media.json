@@ -8,14 +8,13 @@
         "name": "custom",
         "raw": "chainPropTypes(PropTypes.node, (props) => {\n  if (!props.children && !props.image && !props.src && !props.component) {\n    return new Error(\n      'Material-UI: Either `children`, `image`, `src` or `component` prop must be specified.',\n    );\n  }\n  return null;\n})",
         "description": "node"
-      },
-      "required": false
+      }
     },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "component": { "type": { "name": "elementType" }, "required": false },
-    "image": { "type": { "name": "string" }, "required": false },
-    "src": { "type": { "name": "string" }, "required": false },
+    "component": { "type": { "name": "elementType" } },
+    "image": { "type": { "name": "string" } },
+    "src": { "type": { "name": "string" } },
     "style": { "type": { "name": "object" }, "required": false, "description": "@ignore" }
   },
   "spread": true,

@@ -3,20 +3,15 @@
   "filename": "/packages/material-ui/src/Stepper/Stepper.js",
   "description": "",
   "props": {
-    "activeStep": { "type": { "name": "number" }, "required": false, "default": "0" },
-    "alternativeLabel": { "type": { "name": "bool" }, "required": false },
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "activeStep": { "type": { "name": "number" }, "default": "0" },
+    "alternativeLabel": { "type": { "name": "bool" } },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "connector": {
-      "type": { "name": "element" },
-      "required": false,
-      "default": "<StepConnector />"
-    },
-    "nonLinear": { "type": { "name": "bool" }, "required": false },
+    "connector": { "type": { "name": "element" }, "default": "<StepConnector />" },
+    "nonLinear": { "type": { "name": "bool" } },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
-      "required": false,
       "default": "'horizontal'"
     }
   },

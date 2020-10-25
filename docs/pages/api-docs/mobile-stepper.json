@@ -3,18 +3,17 @@
   "filename": "/packages/material-ui/src/MobileStepper/MobileStepper.js",
   "description": "",
   "props": {
-    "activeStep": { "type": { "name": "number" }, "required": false, "default": "0" },
-    "backButton": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "activeStep": { "type": { "name": "number" }, "default": "0" },
+    "backButton": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "LinearProgressProps": { "type": { "name": "object" }, "required": false },
-    "nextButton": { "type": { "name": "node" }, "required": false },
+    "LinearProgressProps": { "type": { "name": "object" } },
+    "nextButton": { "type": { "name": "node" } },
     "position": {
       "type": {
         "name": "enum",
         "description": "'bottom'<br>&#124;&nbsp;'static'<br>&#124;&nbsp;'top'"
       },
-      "required": false,
       "default": "'bottom'"
     },
     "steps": { "type": { "name": "number" }, "required": true },
@@ -23,7 +22,6 @@
         "name": "enum",
         "description": "'dots'<br>&#124;&nbsp;'progress'<br>&#124;&nbsp;'text'"
       },
-      "required": false,
       "default": "'dots'"
     }
   },

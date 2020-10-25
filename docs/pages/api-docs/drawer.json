@@ -8,25 +8,23 @@
         "name": "enum",
         "description": "'bottom'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'top'"
       },
-      "required": false,
       "default": "'left'"
     },
     "BackdropProps": { "type": { "name": "object" }, "required": false, "description": "@ignore" },
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "elevation": { "type": { "name": "number" }, "required": false, "default": "16" },
-    "ModalProps": { "type": { "name": "object" }, "required": false, "default": "{}" },
-    "onClose": { "type": { "name": "func" }, "required": false },
-    "open": { "type": { "name": "bool" }, "required": false },
-    "PaperProps": { "type": { "name": "object" }, "required": false, "default": "{}" },
-    "SlideProps": { "type": { "name": "object" }, "required": false },
+    "elevation": { "type": { "name": "number" }, "default": "16" },
+    "ModalProps": { "type": { "name": "object" }, "default": "{}" },
+    "onClose": { "type": { "name": "func" } },
+    "open": { "type": { "name": "bool" } },
+    "PaperProps": { "type": { "name": "object" }, "default": "{}" },
+    "SlideProps": { "type": { "name": "object" } },
     "transitionDuration": {
       "type": {
         "name": "union",
         "description": "number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
       },
-      "required": false,
       "default": "{ enter: duration.enteringScreen, exit: duration.leavingScreen }"
     },
     "variant": {
@@ -34,7 +32,6 @@
         "name": "enum",
         "description": "'permanent'<br>&#124;&nbsp;'persistent'<br>&#124;&nbsp;'temporary'"
       },
-      "required": false,
       "default": "'temporary'"
     }
   },

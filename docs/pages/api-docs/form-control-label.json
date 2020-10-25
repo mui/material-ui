@@ -3,27 +3,23 @@
   "filename": "/packages/material-ui/src/FormControlLabel/FormControlLabel.js",
   "description": "Drop in replacement of the `Radio`, `Switch` and `Checkbox` component.\nUse this component if you want to display an extra label.",
   "props": {
-    "checked": { "type": { "name": "bool" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "checked": { "type": { "name": "bool" } },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "control": { "type": { "name": "element" }, "required": true },
-    "disabled": { "type": { "name": "bool" }, "required": false },
-    "inputRef": {
-      "type": { "name": "custom", "raw": "refType", "description": "ref" },
-      "required": false
-    },
-    "label": { "type": { "name": "node" }, "required": false },
+    "disabled": { "type": { "name": "bool" } },
+    "inputRef": { "type": { "name": "custom", "raw": "refType", "description": "ref" } },
+    "label": { "type": { "name": "node" } },
     "labelPlacement": {
       "type": {
         "name": "enum",
         "description": "'bottom'<br>&#124;&nbsp;'end'<br>&#124;&nbsp;'start'<br>&#124;&nbsp;'top'"
       },
-      "required": false,
       "default": "'end'"
     },
     "name": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
-    "onChange": { "type": { "name": "func" }, "required": false },
-    "value": { "type": { "name": "any" }, "required": false }
+    "onChange": { "type": { "name": "func" } },
+    "value": { "type": { "name": "any" } }
   },
   "spread": true,
   "styles": {

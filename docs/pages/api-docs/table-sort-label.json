@@ -3,21 +3,16 @@
   "filename": "/packages/material-ui/src/TableSortLabel/TableSortLabel.js",
   "description": "A button based label for placing inside `TableCell` for column sorting.",
   "props": {
-    "active": { "type": { "name": "bool" }, "required": false },
-    "children": { "type": { "name": "node" }, "required": false },
-    "classes": { "type": { "name": "object" }, "required": false },
+    "active": { "type": { "name": "bool" } },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" }, "required": false, "description": "@ignore" },
     "direction": {
       "type": { "name": "enum", "description": "'asc'<br>&#124;&nbsp;'desc'" },
-      "required": false,
       "default": "'asc'"
     },
-    "hideSortIcon": { "type": { "name": "bool" }, "required": false },
-    "IconComponent": {
-      "type": { "name": "elementType" },
-      "required": false,
-      "default": "ArrowDownwardIcon"
-    }
+    "hideSortIcon": { "type": { "name": "bool" } },
+    "IconComponent": { "type": { "name": "elementType" }, "default": "ArrowDownwardIcon" }
   },
   "spread": true,
   "styles": {

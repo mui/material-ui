@@ -2,12 +2,7 @@
   "name": "TabList",
   "filename": "/packages/material-ui-lab/src/TabList/TabList.js",
   "description": "",
-  "props": {
-    "children": {
-      "type": { "name": "arrayOf", "description": "Array&lt;element&gt;" },
-      "required": false
-    }
-  },
+  "props": { "children": { "type": { "name": "arrayOf", "description": "Array&lt;element&gt;" } } },
   "spread": true,
   "styles": { "name": null, "globalClasses": {} },
   "forwardsRefTo": "HTMLDivElement",
