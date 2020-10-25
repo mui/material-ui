@@ -473,6 +473,51 @@ describe('<MenuList> integration', () => {
     expect(menuitems[0]).toHaveFocus();
   });
 
+  it('should traverse a collection of MenuItems containing HTML', () => {
+    const MenuItems = () => {
+      return (
+        <div>
+          <div>
+            <MenuItem>Menu Item 1</MenuItem>
+          </div>
+          <div>
+            <MenuItem>Menu Item 2</MenuItem>
+          </div>
+          <div>
+            <MenuItem disabled>Menu Item 3</MenuItem>
+          </div>
+          <div>
+            <MenuItem>Menu Item 4</MenuItem>
+          </div>
+        </div>
+
+      )
+    }
+    render(
+      <MenuList autoFocus>
+        <MenuItems />
+      </MenuList>,
+    );
+    const menuitems = screen.getAllByRole('menuitem');
+
+    fireEvent.keyDown(screen.getByRole('menu'), { key: 'ArrowDown' });
+    expect(menuitems[0]).toHaveFocus();
+    fireEvent.keyDown(menuitems[0], { key: 'ArrowDown' });
+    expect(menuitems[1]).toHaveFocus();
+    fireEvent.keyDown(menuitems[1], { key: 'ArrowDown' });
+    expect(menuitems[3]).toHaveFocus();
+    fireEvent.keyDown(menuitems[3], { key: 'ArrowDown' });
+    expect(menuitems[0]).toHaveFocus();
+
+    // and ArrowUp again
+    fireEvent.keyDown(menuitems[0], { key: 'ArrowUp' });
+    expect(menuitems[3]).toHaveFocus();
+    fireEvent.keyDown(menuitems[3], { key: 'ArrowUp' });
+    expect(menuitems[1]).toHaveFocus();
+    fireEvent.keyDown(menuitems[1], { key: 'ArrowUp' });
+    expect(menuitems[0]).toHaveFocus();
+  });
+
   describe('MenuList text-based keyboard controls', () => {
     let innerTextSupported;
 

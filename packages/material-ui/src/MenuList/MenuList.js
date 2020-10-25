@@ -6,7 +6,7 @@ import List from '../List';
 import getScrollbarSize from '../utils/getScrollbarSize';
 import useForkRef from '../utils/useForkRef';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
-import MenuItem from '../MenuItem';
+import MenuListContext from './MenuListContext';
 
 function nextItem(list, item, disableListWrap, listRef) {
   if (listRef.current === item) {
@@ -122,8 +122,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     previousKeyMatched: true,
     lastTime: null,
   });
-
-  const menuItemRefs = [];
+  const menuItemRefs = React.useRef([]);
 
   useEnhancedEffect(() => {
     if (autoFocus) {
@@ -152,7 +151,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
   );
 
   const handleKeyDown = (event) => {
-    const list = menuItemRefs;
+    const list = menuItemRefs.current;
     const key = event.key;
     /**
      * @type {Element} - will always be defined since we are in a keydown handler
@@ -235,16 +234,22 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
 
   const handleRef = useForkRef(listRef, ref);
 
+  const registerMenuItem = React.useCallback((item) => {
+    menuItemRefs.current.push(item);
+  }, [menuItemRefs]);
+
   /**
    * the index of the item should receive focus
    * in a `variant="selectedMenu"` it's the first `selected` item
    * otherwise it's the very first item.
    */
   let activeItemIndex = -1;
-
-  const setup = (child, index) => {
+  // since we inject focus related props into children we have to do a lookahead
+  // to check if there is a `selected` item. We're looking for the last `selected`
+  // item and use the first valid item as a fallback
+  React.Children.forEach(children, (child, index) => {
     if (!React.isValidElement(child)) {
-      return child;
+      return;
     }
 
     if (process.env.NODE_ENV !== 'production') {
@@ -258,48 +263,16 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
       }
     }
 
-    if (child.type === MenuItem || (child.props.role && child.props.role === 'menuitem')) {
-      const itemRef = React.createRef();
-      const newProps = {
-        ref: itemRef,
-      };
-
-      if (typeof child.ref === 'function') {
-        newProps.ref = (instance) => {
-          child.ref(instance);
-          itemRef.current = instance;
-        };
-      } else if (child.ref) {
-        itemRef.current = child.ref;
+    if (!child.props.disabled) {
+      if (variant === 'selectedMenu' && child.props.selected) {
+        activeItemIndex = index;
+      } else if (activeItemIndex === -1) {
+        activeItemIndex = index;
       }
-
-      if (!child.props.disabled) {
-        if (variant === 'selectedMenu' && child.props.selected) {
-          activeItemIndex = index;
-        } else if (activeItemIndex === -1) {
-          activeItemIndex = index;
-        }
-      }
-
-      const newChild = React.cloneElement(child, newProps);
-      menuItemRefs.push(itemRef);
-      return newChild;
     }
+  });
 
-    if (child.props.children) {
-      const newChildren = React.Children.map(child.props.children, setup);
-      return React.cloneElement(child, { children: newChildren });
-    }
-
-    return child;
-  };
-
-  // since we inject focus related props into children we have to do a lookahead
-  // to check if there is a `selected` item. We're looking for the last `selected`
-  // item and use the first valid item as a fallback
-  const refedChildren = React.Children.map(children, setup);
-
-  const items = React.Children.map(refedChildren, (child, index) => {
+  const items = React.Children.map(children, (child, index) => {
     if (index === activeItemIndex) {
       const newChildProps = {};
       if (autoFocusItem) {
@@ -316,16 +289,22 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
   });
 
   return (
-    <List
-      role="menu"
-      ref={handleRef}
-      className={className}
-      onKeyDown={handleKeyDown}
-      tabIndex={autoFocus ? 0 : -1}
-      {...other}
+    <MenuListContext.Provider
+      value={{
+        registerMenuItem
+      }}
     >
-      {items}
-    </List>
+      <List
+        role="menu"
+        ref={handleRef}
+        className={className}
+        onKeyDown={handleKeyDown}
+        tabIndex={autoFocus ? 0 : -1}
+        {...other}
+      >
+        {items}
+      </List>
+    </MenuListContext.Provider>
   );
 });
 
